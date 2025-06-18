@@ -4,120 +4,133 @@
 
 {% block content %}
 
-{% if page == 1 %}
-<section class="p-strip--suru-blog-header is-dark">
-  <div class="row">
-    <div class="col-6">
-      <h1>Tutorials</h1>
-      <p>These tutorials provide a step-by-step process to doing development and dev-ops activities on Ubuntu machines, servers or devices.</p>
-      <p><a class="p-link--inverted" href="https://discourse.ubuntu.com/c/tutorials">You can write your own&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-</section>
-{% endif %}
+  {% if page == 1 %}
+    <section class="p-strip--suru-blog-header is-dark">
+      <div class="row">
+        <div class="col-6">
+          <h1>Tutorials</h1>
+          <p>
+            These tutorials provide a step-by-step process to doing development and dev-ops activities on Ubuntu machines, servers or devices.
+          </p>
+          <p>
+            <a class="p-link--inverted"
+               href="https://discourse.ubuntu.com/c/tutorials">You can write your own&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  {% endif %}
 
-<section class="p-strip is-shallow l-tutorials__filters">
-  <div class="row">
-    <div class="col-4">
-      <div class="p-form__group">
-        <label for="tutorials-search-input">Search tutorials containing:</label>
-        <form class="p-search-box u-no-margin--bottom" id="tutorials-search" action="">
-          <input type="search" class="p-search-box__input" id="tutorials-search-input" name="search" placeholder="Search" required="" autocomplete="on">
-          <button type="reset" class="p-search-box__reset"><i class="p-icon--close">Close</i></button>
-          <button type="submit" class="p-search-box__button"><i class="p-icon--search">Submit</i></button>
-        </form>
+  <section class="p-strip is-shallow l-tutorials__filters">
+    <div class="row">
+      <div class="col-4">
+        <div class="p-form__group">
+          <label for="tutorials-search-input">Search tutorials containing:</label>
+          <form class="p-search-box u-no-margin--bottom"
+                id="tutorials-search"
+                action="">
+            <input type="search"
+                   class="p-search-box__input"
+                   id="tutorials-search-input"
+                   name="search"
+                   placeholder="Search"
+                   required=""
+                   autocomplete="on" />
+            <button type="reset" class="p-search-box__reset">
+              <i class="p-icon--close">Close</i>
+            </button>
+            <button type="submit" class="p-search-box__button">
+              <i class="p-icon--search">Submit</i>
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="p-form__group">
+          <label for="tutorials-topic">Topic:</label>
+          <select name="tutorials-topic"
+                  id="tutorials-topic"
+                  class="u-no-margin--bottom">
+            <option value="">Any</option>
+            {% for key in topics_list %}<option value="{{ topics_list[key] }}">{{ key }}</option>{% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="p-form__group">
+          <label for="tutorials-sort">Sorted by:</label>
+          <select name="tutorials-sort" id="tutorials-sort" class="u-no-margin--bottom">
+            <option value="difficulty-asc">Least difficult</option>
+            <option value="difficulty-desc">Most difficult</option>
+          </select>
+        </div>
       </div>
     </div>
-    <div class="col-4">
-      <div class="p-form__group">
-        <label for="tutorials-topic">Topic:</label>
-        <select name="tutorials-topic" id="tutorials-topic" class="u-no-margin--bottom">
-          <option value="">Any</option>
-          {% for key in topics_list %}
-            <option value="{{ topics_list[key] }}">{{ key }}</option>
-          {% endfor %}
-        </select>
+  </section>
+
+  {% if query and total_results == 0 %}
+
+    <div class="p-strip">
+      <div class="row">
+        <div class="col-6">
+          <h3>Why not try widening your search?</h3>
+          <p>You can do this by:</p>
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">Adding alternative words or phrases</li>
+            <li class="p-list__item is-ticked">Using individual words instead of phrases</li>
+            <li class="p-list__item is-ticked">Trying a different spelling</li>
+          </ul>
+        </div>
+        <div class="col-6">
+          <h3>Still no luck?</h3>
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">
+              <a href="/tutorials">View all Tutorials</a>
+            </li>
+            <li class="p-list__item is-ticked">
+              <a href="/desktop/contact-us?product=search-page">Contact us</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div class="col-4">
-      <div class="p-form__group">
-        <label for="tutorials-sort">Sorted by:</label>
-        <select name="tutorials-sort" id="tutorials-sort" class="u-no-margin--bottom">
-          <option value="difficulty-asc">Least difficult</option>
-          <option value="difficulty-desc">Most difficult</option>
-        </select>
+
+  {% else %}
+
+    <section class="p-strip has-shadow">
+      <div class="row u-equal-height">
+        {% if query %}
+          <h4 class="col-12">{{ total_results }} search result{%- if total_results > 1 -%}s{%- endif -%}</h4>
+        {% endif %}
+
+        {% for item in tutorials %}
+
+          {% if loop.index <= posts_per_page * page and loop.index >= posts_per_page * page - posts_per_page + 1 %}
+            <div class="col-4 blog-p-card--post">
+              <header class="blog-p-card__header--tutorial">
+                <h5 class="p-muted-heading u-no-margin--bottom">{{ item.categories }}</h5>
+              </header>
+              <div class="blog-p-card__content">
+                <h3 class="p-heading--3 u-no-margin--top u-no-margin--bottom">
+                  <a class="p-link--soft" href="{{ item.link }}">{{ item.title | safe }}</a>
+                </h3>
+                <p class="u-sv3">{{ item.summary | safe }}</p>
+              </div>
+              <footer class="blog-p-card__footer">
+                Difficulty:<span class="l-tutorials-meter l-tutorials-meter--{{ item.difficulty }}">{{ item.difficulty }} out of 5</span>
+              </footer>
+            </div>
+          {% endif %}
+
+        {% endfor %}
       </div>
-    </div>
-  </div>
-</section>
+    </section>
+  {% endif %}
 
-{% if query and total_results == 0 %}
-
-<div class="p-strip">
-  <div class="row">
-    <div class="col-6">
-      <h3>Why not try widening your search?</h3>
-      <p>You can do this by:</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">
-          Adding alternative words or phrases
-        </li>
-        <li class="p-list__item is-ticked">
-          Using individual words instead of phrases
-        </li>
-        <li class="p-list__item is-ticked">Trying a different spelling</li>
-      </ul>
-    </div>
-    <div class="col-6">
-      <h3>Still no luck?</h3>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">
-          <a href="/tutorials">View all Tutorials</a>
-        </li>
-        <li class="p-list__item is-ticked">
-          <a href="/desktop/contact-us?product=search-page">Contact us</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-{% else %}
-
-<section class="p-strip has-shadow">
-  <div class="row u-equal-height">
-    {% if query %}
-    <h4 class="col-12">
-      {{total_results}} search result{% if total_results > 1 %}s{% endif %}
-    </h4>
-    {% endif %} {% for item in tutorials %} {% if loop.index <= posts_per_page * page and loop.index >= posts_per_page * page - posts_per_page + 1 %}
-    <div class="col-4 blog-p-card--post">
-      <header class="blog-p-card__header--tutorial">
-        <h5 class="p-muted-heading u-no-margin--bottom">
-          {{ item.categories }}
-        </h5>
-      </header>
-      <div class="blog-p-card__content">
-        <h3 class="p-heading--3 u-no-margin--top u-no-margin--bottom">
-          <a class="p-link--soft" href="{{ item.link }}">
-            {{ item.title | safe }}
-          </a>
-        </h3>
-        <p class="u-sv3">{{ item.summary | safe }}</p>
-      </div>
-      <footer class="blog-p-card__footer">
-        Difficulty:<span class="l-tutorials-meter l-tutorials-meter--{{ item.difficulty }}">{{ item.difficulty }} out of 5</span>
-      </footer>
-    </div>
-    {% endif %} {% endfor %}
-  </div>
-</section>
-{% endif %}
-
-{% with %}
-  {% set total_pages = total_pages %}
-  {% set current_page = page %}
-  {% include "shared/_pagination.html" %}
-{% endwith %}
+  {% with %}
+    {% set total_pages = total_pages %}
+    {% set current_page = page %}
+    {% include "shared/_pagination.html" %}
+  {% endwith %}
 
 {% endblock %}

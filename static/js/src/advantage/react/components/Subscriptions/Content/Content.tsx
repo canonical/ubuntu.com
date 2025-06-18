@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Card,
   Notification,
@@ -21,9 +21,8 @@ const Content = () => {
   const [modalActive, setModalActive] = useState(false);
   const [selectedId, setSelectedId] = useState<SelectedId>(null);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
-  const [scrollTargetRef, scrollIntoView] = useScrollIntoView<HTMLDivElement>(
-    20
-  );
+  const [scrollTargetRef, scrollIntoView] =
+    useScrollIntoView<HTMLDivElement>(20);
 
   const { data: allSubscriptions, isError, isLoading } = useUserSubscriptions();
   const onSetActive = useCallback(
@@ -33,7 +32,7 @@ const Content = () => {
       if (hasUnsavedChanges) {
         if (
           window.confirm(
-            "You have unsaved changes. Are you sure you want to leave?"
+            "You have unsaved changes. Are you sure you want to leave?",
           )
         ) {
           // User asked to leave the page
@@ -49,21 +48,20 @@ const Content = () => {
       }
       setModalActive(!!token);
     },
-    [setSelectedId, hasUnsavedChanges]
+    [setSelectedId, hasUnsavedChanges],
   );
 
   // Select a token on the first load.
   useEffect(() => {
     if (!selectedId && !isLoading && allSubscriptions?.length) {
-      const sortedSubscriptions = sortSubscriptionsByStartDate(
-        allSubscriptions
-      );
+      const sortedSubscriptions =
+        sortSubscriptionsByStartDate(allSubscriptions);
       // Get the first UA subscription, or if there are none then get the first
       // available.
       const firstSubscription =
         sortedSubscriptions.find(
           ({ marketplace }) =>
-            marketplace === UserSubscriptionMarketplace.CanonicalUA
+            marketplace === UserSubscriptionMarketplace.CanonicalUA,
         ) || sortedSubscriptions[0];
       // This only sets the selected token and does not set the modal to active
       // to prevent the modal appearing on first load on mobile.
@@ -104,14 +102,18 @@ const Content = () => {
     };
 
     const shopCheckoutData = {
-      product: product,
-      quantity: parseInt(units),
+      products: [
+        {
+          product: product,
+          quantity: parseInt(units),
+        },
+      ],
       action: "purchase",
     };
 
     localStorage.setItem(
       "shop-checkout-data",
-      JSON.stringify(shopCheckoutData)
+      JSON.stringify(shopCheckoutData),
     );
     location.href = "/account/checkout";
   }

@@ -1,7 +1,7 @@
 {% extends "download/_base_download.html" %}
 
 {% block title %}Thank you | Download{% endblock %}
-{% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
+{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 {% block meta_description %}Download Ubuntu desktop, Ubuntu Server, Ubuntu for Raspberry Pi and IoT devices, Ubuntu Core and all the Ubuntu flavours.  Ubuntu is an open-source software platform that runs everywhere from the PC to the server and the cloud.{% endblock %}
 {% block meta_copydoc %}{% endblock meta_copydoc %}
 
@@ -10,6 +10,10 @@
 {% if product == 'supported-platforms' %}
 
   {% with thanks_context="contacting us about supported platforms" %}{% include "shared/_thank_you.html" %}{% endwith %}
+
+{% elif product == 'qualcomm-iot' or 'renesas-iot' %}
+
+  {% with thanks_context="contacting the Alliances team. We will be in touch shortly." %}{% include "shared/_thank_you.html" %}{% endwith %}
 
 {% else %}
 

@@ -1,5 +1,5 @@
 import { Row, Col, Strip } from "@canonical/react-components";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import Feature from "./Feature";
 import Quantity from "./Quantity";
 import Support from "./Support";
@@ -18,86 +18,104 @@ const Form = () => {
 
   return (
     <form className="product-selector">
-      <Strip includeCol={false}>
-        <Col size={6}>
-          <h2>Who will be using this subscription?</h2>
-        </Col>
-        <Col size={6}>
-          <ProductUser />
-        </Col>
-      </Strip>
-      {productUser !== ProductUsers.myself ? (
-        <>
-          <Row>
-            <hr />
-          </Row>
+      <ol className="p-stepped-list">
+        <li className="p-stepped-list__item">
           <Strip includeCol={false}>
             <Col size={6}>
-              <h2>What are you setting up?</h2>
+              <h2 className="p-stepped-list__title">
+                Who will be using this subscription?
+              </h2>
             </Col>
             <Col size={6}>
-              <ProductType />
+              <ProductUser />
             </Col>
           </Strip>
-          {!disabled && (
-            <>
-              <Row>
-                <hr />
-              </Row>
+        </li>
+        {productUser !== ProductUsers.myself ? (
+          <>
+            <Row>
+              <hr />
+            </Row>
+            <li className="p-stepped-list__item">
               <Strip includeCol={false}>
                 <Col size={6}>
-                  <h2>For how many machines?</h2>
+                  <h2 className="p-stepped-list__title">
+                    What are you setting up?
+                  </h2>
                 </Col>
                 <Col size={6}>
-                  <Quantity />
+                  <ProductType />
                 </Col>
               </Strip>
-              <Row>
-                <hr />
-              </Row>
-
-              <Strip includeCol={false}>
-                <Col size={6}>
-                  <h2>What Ubuntu LTS version are you running?</h2>
-                  <p style={{ marginLeft: "3.6rem" }}>
-                    {" "}
-                    Ubuntu Pro is available for Ubuntu 14.04 and higher.
-                    <br />{" "}
-                    <a href="/contact-us/form?product=pro">
-                      Are you using an older version?
-                    </a>
-                  </p>
-                </Col>
-                <Col size={6}>
-                  <Version />
-                </Col>
-              </Strip>
-              <Row>
-                <hr />
-              </Row>
-              <Strip includeCol={false}>
-                <Col size={12}>
-                  <h2>What security coverage do you need?</h2>
-                </Col>
-                <Col size={12}>
-                  <Feature />
-                </Col>
-              </Strip>
-              <Row>
-                <hr />
-              </Row>
-              <Strip includeCol={false}>
-                <Col size={12}>
-                  <h2>Do you also need phone and ticket support?</h2>
-                </Col>
-                <Col size={12}>
-                  <Support />
-                </Col>
-              </Strip>
-            </>
-          )}
-        </>
-      ) : null}
+            </li>
+            {!disabled && (
+              <>
+                <Row>
+                  <hr />
+                </Row>
+                <li className="p-stepped-list__item">
+                  <Strip includeCol={false}>
+                    <Col size={6}>
+                      <h2 className="p-stepped-list__title">
+                        For how many machines?
+                      </h2>
+                    </Col>
+                    <Col size={6}>
+                      <Quantity />
+                    </Col>
+                  </Strip>
+                </li>
+                <Row>
+                  <hr />
+                </Row>
+                <li className="p-stepped-list__item">
+                  <Strip includeCol={false}>
+                    <Col size={6}>
+                      <h2 className="p-stepped-list__title">
+                        What Ubuntu LTS version are you running?
+                      </h2>
+                      <p style={{ marginLeft: "3.6rem" }}>
+                        {" "}
+                        Ubuntu Pro is available for Ubuntu 16.04 LTS and higher.
+                        <br />{" "}
+                        <a href="/contact-us/form?product=pro">
+                          Are you using an older version?
+                        </a>
+                      </p>
+                    </Col>
+                    <Col size={6}>
+                      <Version />
+                    </Col>
+                  </Strip>
+                </li>
+                <Row>
+                  <hr />
+                </Row>
+                <li className="p-stepped-list__item">
+                  <Strip includeCol={false}>
+                    <Feature />
+                  </Strip>
+                </li>
+                <Row>
+                  <hr />
+                </Row>
+                <li className="p-stepped-list__item">
+                  <Strip includeCol={false}>
+                    <Col size={12}>
+                      <h2 className="p-stepped-list__title">
+                        Do you also need phone and ticket support?
+                      </h2>
+                    </Col>
+                    <Col size={12}>
+                      <Support />
+                    </Col>
+                  </Strip>
+                </li>
+              </>
+            )}
+          </>
+        ) : null}
+      </ol>
     </form>
   );
 };

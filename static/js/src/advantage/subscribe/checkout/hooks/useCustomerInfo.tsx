@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import {
   getCustomerInfo,
   getPurchaseAccountStatus,
@@ -6,9 +6,9 @@ import {
 import { LoginSession, UserInfo } from "../utils/types";
 
 const useCustomerInfo = () => {
-  const { isLoading, isError, isSuccess, data, error } = useQuery(
-    "customerInfo",
-    async () => {
+  const { isLoading, isError, isSuccess, data, error } = useQuery({
+    queryKey: ["customerInfo"],
+    queryFn: async () => {
       if (!window.accountId && !window.loginSession) {
         const request = await fetch(`/account.json${window.location.search}`, {
           cache: "no-store",
@@ -21,7 +21,7 @@ const useCustomerInfo = () => {
 
         window.loginSession = response;
         const accountStatusReq = await getPurchaseAccountStatus(
-          window.marketplace
+          window.marketplace,
         );
 
         if (!accountStatusReq.account) {
@@ -54,10 +54,8 @@ const useCustomerInfo = () => {
 
       return data;
     },
-    {
-      retry: false,
-    }
-  );
+    retry: false,
+  });
 
   return {
     isLoading: isLoading,

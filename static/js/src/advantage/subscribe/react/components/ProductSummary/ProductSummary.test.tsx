@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { FormProvider } from "advantage/subscribe/react/utils/FormContext";
@@ -22,18 +21,18 @@ test("Should show Buy now button and full service description link when 'organis
       initialUser={ProductUsers.organisation}
     >
       <ProductSummary />
-    </FormProvider>
+    </FormProvider>,
   );
   expect(screen.getByTestId("summary-product-name")).toHaveTextContent(
-    "Ubuntu Pro"
+    "Ubuntu Pro",
   );
   expect(screen.getByTestId("summary-product-name")?.textContent).not.toContain(
-    "Desktop"
+    "Desktop",
   );
   expect(
-    screen.getAllByText("See full service description")[0]
+    screen.getAllByText("See full service description")[0],
   ).toHaveAttribute("href", "/legal/ubuntu-pro-description");
-  expect(screen.getAllByText("Buy now")[0]).toBeInTheDocument();
+  expect(screen.getAllByText("Continue to checkout")[0]).toBeInTheDocument();
 });
 
 test("Should show Ubuntu Pro Desktop when 'Desktops' is selected ", async () => {
@@ -41,31 +40,31 @@ test("Should show Ubuntu Pro Desktop when 'Desktops' is selected ", async () => 
     <FormProvider
       initialType={ProductTypes.desktop}
       initialUser={ProductUsers.organisation}
-      initialVersion={LTSVersions.trusty}
+      initialVersion={LTSVersions.jammy}
     >
       <ProductSummary />
-    </FormProvider>
+    </FormProvider>,
   );
   expect(screen.getByTestId("summary-product-name")?.textContent).toContain(
-    "Desktop"
+    "Desktop",
   );
   expect(
-    screen.getAllByText("See full service description")[0]
+    screen.getAllByText("See full service description")[0],
   ).toHaveAttribute("href", "/legal/ubuntu-pro-description");
-  expect(screen.getAllByText("Buy now")[0]).toBeInTheDocument();
+  expect(screen.getAllByText("Continue to checkout")[0]).toBeInTheDocument();
 });
 test("Should show register button and person subscription terms of service when 'myself' is selected ", async () => {
   render(
     <FormProvider initialUser={ProductUsers.myself}>
       <ProductSummary />
-    </FormProvider>
+    </FormProvider>,
   );
   expect(screen.getByTestId("summary-product-name")).toHaveTextContent(
-    /^Ubuntu Pro$/
+    /^Ubuntu Pro$/,
   );
   expect(screen.getByTestId("personal-subscription")).toHaveAttribute(
     "href",
-    "/legal/ubuntu-pro/personal"
+    "/legal/ubuntu-pro/personal",
   );
   expect(screen.getAllByText("Register")[0]).toBeInTheDocument();
 });
@@ -77,9 +76,9 @@ test("Type selector displays the public cloud section if a public cloud is selec
       initialType={ProductTypes.publicCloud}
     >
       <ProductSummary />
-    </FormProvider>
+    </FormProvider>,
   );
   expect(screen.getByTestId("summary-section")).toHaveClass(
-    "p-shop-cart--hidden"
+    "p-shop-cart--hidden",
   );
 });

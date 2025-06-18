@@ -2,901 +2,1147 @@
 
 {% block title %}Enterprise open source support{% endblock %}
 
-{% block meta_description %}Ubuntu Pro with Enterprise Open Source Support offers the most comprehensive Linux, open source infrastructure & applications security and support in the industry. Available at simple per-node, pricing, it supports infrastructure solutions such as OpenStack and Kubernetes, as well as applications such as Spark, MongoDB, Kafka&reg;, Postgres, MySQL and more.{% endblock %}
+{% block meta_description %}
+  Ubuntu Pro with Enterprise Open Source Support offers the most comprehensive Linux, open source infrastructure & applications security and support in the industry. Available at simple per-node pricing, it supports infrastructure solutions such as OpenStack and Kubernetes, as well as applications such as Spark, MongoDB, Kafka&reg;, Postgres, MySQL and more.
+{% endblock %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1AU2dwTXpQk2UuEvSuAqRKrbPWYb-LR0ZGvWu6xw95I8/edit#{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1AU2dwTXpQk2UuEvSuAqRKrbPWYb-LR0ZGvWu6xw95I8/edit#
+{% endblock meta_copydoc %}
 
-{% block body_class %}is-paper{% endblock body_class %}
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
-<section class="p-strip is-shallow u-no-margin--bottom">
-  <div class="row--25-75">
-    <div class="col">
-      <div class="p-section--shallow">
-        <h1 class="u-no-margin--bottom">Enterprise support <br /> for your full open source stack</h1>
-      </div>
-      <div class="p-section--shallow u-no-margin--bottom">
-        <p>Build with confidence and operate at scale with enterprise support from Canonical. Our global team of experts is available 24/7 to provide the best support experience for Ubuntu and your full open source stack, from infrastructure to applications.</p>
-        <hr />
-      </div>
-      <p>
-        <a href="/support/contact-us?product=support-overview" class="p-button--positive">Contact us</a>
-        <a href="/pro/subscribe" class="p-button">Get support now</a>
-      </p>
-    </div>
-  </div>
-  <div class="p-suru"></div>
-</section>
-
-<section class="p-section">
-	<div class="u-fixed-width p-section">
-		<hr class="p-rule" />
-		<h2>Why choose Canonical for open source support</h2>
-	</div>
-	<div class="row--25-75">
-		<div class="col">
-			<div class="row">
-				<div class="col-medium-2 col-3">
-					<hr class="p-rule--highlight" />
-          <div class="row">
-            <div class="p-image-wrapper col-small-1">
-              <img src="https://assets.ubuntu.com/v1/3f7601a8-cof.png" alt="" width="64" height="128" />
-            </div>
-            <div class="col-small-3">
-              <h4>One support vendor for everything open source</h4>
-            </div>
-          </div>
-				</div>
-				<div class="col-medium-2 col-3">
-					<hr class="p-rule--highlight" />
-          <div class="row">
-            <div class="p-image-wrapper col-small-1">
-              <img src="https://assets.ubuntu.com/v1/706e2877-support icon.png" alt="" width="76" height="128" />
-            </div>
-            <div class="col-small-3">
-              <h4>Peace of mind with experts <br class="u-hide--small" />by your side 24/7</h4>
-            </div>
-          </div>
-				</div>
-				<div class="col-medium-2 col-3">
-					<hr class="p-rule--highlight" />
-					<div class="row">
-            <div class="p-image-wrapper col-small-1">
-              <img src="https://assets.ubuntu.com/v1/d25cbd99-Frame 25.png" alt="" width="57" height="128" />
-            </div>
-            <div class="col-small-3">
-              <h4>Available everywhere, from the public cloud to devices</h4>
-            </div>
-          </div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="p-section">
-  <div class="u-fixed-width">
-		<hr class="p-rule" />
-		<h2>Trusted by professionals</h2>
-	</div>
-  <div class="u-fixed-width">
-    <div class="p-logo-section">
-      <div class="p-logo-section__items">
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/5e382b40-Bloomberg-Logo.png",
-            alt="Bloomberg",
-            width="385",
-            height="384",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
+  <section class="p-strip is-shallow u-no-margin--bottom">
+    <div class="row--25-75">
+      <div class="col">
+        <div class="p-section--shallow">
+          <h1 class="u-no-margin--bottom">
+            Enterprise support
+            <br />
+            for your full open source stack
+          </h1>
         </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/dc042380-AT&T-Logo.png",
-            alt="AT&T",
-            width="357",
-            height="384",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/7754b212-Walmart-logo.png",
-            alt="Walmart",
-            width="437",
-            height="384",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/97a2f98a-paypal-logo.png",
-            alt="Paypal",
-            width="344",
-            height="384",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/b9529acd-deutsche-telekom.png",
-            alt="Deutsche Telekom",
-            width="385",
-            height="384",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/b8ca28f0-cisco-logo.png",
-            alt="Cisco",
-            width="232",
-            height="384",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/3a24c948-NTT-logo.png",
-            alt="NTT",
-            width="312",
-            height="384",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-section">
-  <hr class="p-rule is-fixed-width" />
-  <div class="row--50-50 p-section--shallow">
-    <div class="col-6 col-medium-3">
-      <h2>What's included</h2>
-    </div>
-    <div class="col-6 col-medium-3">
-      <p>Hands-on support and knowledge transfer on top of our 10-year security maintenance commitment with Ubuntu Pro + Support.</p>
-      <p>
-        Learn the difference <a href="/blog/security-maintenance-vs-support-whats-the-difference">between security maintenance and support&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-	</div>
-  <div class="row--25-75">
-    <div class="col">
-      <hr class="p-rule" />
-      <div class="row">
-        <div class="col-3 col-medium-3">
-          <h3 class="p-heading--5">Full access to our Knowledge Base</h3>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>Expand your team's expertise with our <a href="https://support-portal.canonical.com/">Knowledge Base</a>, a database comprising articles on troubleshooting open source software, based on our 20 years of experience.</p>
-        </div>
-      </div>
-      <hr class="p-rule" />
-      <div class="row">
-        <div class="col-3 col-medium-3">
-          <h3 class="p-heading--5">Break-fix support</h3>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>Get assistance in the event of an incident, diagnosing and resolving technical problems that impact your system's stability, performance, or security. Our experts will provide timely solutions to minimise downtime and ensure smooth operations.</p>
-        </div>
-      </div>
-      <hr class="p-rule" />
-      <div class="row">
-        <div class="col-3 col-medium-3">
-          <h3 class="p-heading--5">Bug-fix support</h3>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>Get reported software bugs fixed quickly. Our team acts as a bridge between your organisation and the upstream package maintainers. We speed up the resolution of business-critical problems when the upstream schedule lags.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-section">
-  <hr class="p-rule is-fixed-width" />
-  <div class="u-fixed-width p-section">
-    <h2>Enterprise-grade support on top of your Ubuntu LTS</h2>
-  </div>
-  <div class="row--50-50">
-    <div class="col">
-      <h5>10 years of coverage for 25,000+ packages</h5>
-      <div class="p-logo-section--dense">
-        <div class="p-logo-section__items u-sv3">
-          <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/93af6c88-rust logo.png",
-              alt="Rust",
-              width="120",
-              height="252",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/3b69f369-ruby-logo.png",
-              alt="Ruby",
-              width="104",
-              height="252",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/bedc5d63-rabbitmq-logo.png",
-              alt="RabbitMQ",
-              width="248",
-              height="257",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/c2cd0bc4-php-logo.png",
-              alt="PHP",
-              width="160",
-              height="252",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class":"p-logo-section__logo"},
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/86fdc1d7-openssl-logo.png",
-              alt="OpenSSL",
-              width="172",
-              height="252",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/a92957da-nginex logo.png",
-              alt="Nginx",
-              width="184",
-              height="258",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/0e5bcec1-mysql logo.png",
-              alt="MySQL",
-              width="180",
-              height="252",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/6cdc1a69-ansible logo.png",
-              alt="Ansible",
-              width="124",
-              height="253",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/605af026-apache tomcat logo.png",
-              alt="Tomcat",
-              width="204",
-              height="253",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/5dbf023e-docker logo.png",
-              alt="Docker",
-              width="244",
-              height="245",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/933cc587-etcd logo.png",
-              alt="Etcd",
-              width="196",
-              height="253",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/1f55452f-glusterfs logo.png",
-              alt="Glusterfs",
-              width="196",
-              height="253",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/973c8e10-Frame 19.png",
-              alt="Frame",
-              width="232",
-              height="253",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/3ec28413-powerdns logo.png",
-              alt="PowerDNS",
-              width="252",
-              height="253",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-           <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/7e68a46f-perl logo.png",
-              alt="Perl",
-              width="252",
-              height="253",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/35e5c439-puppet logo.png",
-              alt="Puppet",
-              width="236",
-              height="253",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/2ad3b2ba-python logo.png",
-              alt="Python",
-              width="252",
-              height="253",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/8279fc01-go logo.png",
-              alt="Go",
-              width="168",
-              height="253",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/94f1e342-nagios logo.png",
-              alt="Nagios",
-              width="252",
-              height="253",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/56d8741e-node-logo.png",
-              alt="Node.js",
-              width="196",
-              height="253",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item u-sv1">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/fa78f5b4-openjdk logo.png",
-            alt="OpenJDK",
-            width="240",
-            height="253",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-          </div>
-          <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/05c01589-redis logo.png",
-              alt="Redis",
-              width="252",
-              height="253",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/850af73c-ruby-rails logo.png",
-              alt="Ruby on Rails",
-              width="240",
-              height="253",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <h5>Add phone and ticket support on top of Ubuntu Pro</h5>
-      <p>Build with confidence with 24/7/365 phone and ticket support. Get prompt help when something breaks on more than 25,000 packages in the Ubuntu Main and Universe repositories, including the most widely used open source applications and toolchains.</p>
-      <p>Benefit from the collective knowledge of our team, based on our 20 years of experience building and sustaining open source software.</p>
-    </div>
-  </div>
-</section>
-
-<section class="p-section">
-  <hr class="p-rule is-fixed-width" />
-  <div class="row--50-50">
-    <div class="col">
-      <div class="p-section--shallow">
-        <h2>Peace of mind for your infrastructure</h2>
-      </div>
-    </div>
-    <div class="col">
-      <div class="u-embedded-media">
-        <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/5yEw_7M8vNM?si=Lju5yPAmcMvxODE4" title="YouTube video player" frameborder="0" allow="accelerometer; encrypted-media;" allowfullscreen></iframe>
-      </div>
-      <p>60% of IT managers reported an outage in the last three years.*</p>
-      <p>Minimise downtime and speed up remediation for your IT infrastructure in case of incidents, with experts available 24/7/365.</p>
-      <p>Enjoy peace of mind with guaranteed service level agreements and fully committed support on popular infrastructure tools, including:</p>
-      <hr class="p-rule is-muted" />
-      <ul class="p-list--divided">
-        <li class="p-list__item has-bullet"><a href="/kubernetes">Kubernetes</a></li>
-        <li class="p-list__item has-bullet"><a href="/openstack">OpenStack</a></li>
-        <li class="p-list__item has-bullet"><a href="/ceph">Ceph</a></li>
-        <li class="p-list__item has-bullet"><a href="https://maas.io/">MAAS</a></li>
-        <li class="p-list__item has-bullet"><a href="/lxd">LXD</a></li>
-        <li class="p-list__item has-bullet"><a href="https://canonical.com/microcloud">MicroCloud</a></li>
-      </ul>
-      <hr class="p-rule" />
-      <p>* Based on <a href="https://uptimeinstitute.com/uptime_assets/5f40588be8d57272f91e4526dc8f821521950b7bec7148f815b6612651d5a9b3-annual-outages-analysis-2023.pdf">Uptime Institute's 2023 outage analysis</a></p>
-      <hr class="p-rule" />
-      <p>Learn <a href="/blog/how-to-ensure-business-continuity-with-it-infrastructure-support">how to ensure business continuity for your IT infrastructure&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-</section>
-
-<section class="p-section">
-  <hr class="p-rule is-fixed-width" />
-  <div class="row--50-50 p-section--shallow">
-    <div class="col-6 col-medium-3">
-      <h2>Supported applications</h2>
-    </div>
-    <div class="col-6 col-medium-3">
-      <p>Also running workloads on top of your infrastructure? Get full stack support for 25,000+ packages and all of Canonical's applications, no matter the packaging format.</p>
-    </div>
-	</div>
-  <div class="row--25-75">
-    <div class="col">
-      <div class="row">
-        <div class="col-start-medium-2">
+        <div class="p-section--shallow u-no-margin--bottom">
+          <p>
+            Build with confidence and operate at scale with enterprise support from Canonical. Our global team of experts is available 24/7 to provide the best support experience for Ubuntu and your full open source stack, from infrastructure to applications.
+          </p>
           <hr class="p-rule" />
         </div>
-      </div>
-      <div class="row">
-        <div class="col-3 col-medium-2 col-start-medium-2">
-          <h3 class="p-heading--5">Snaps: containerised software packages</h3>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>Whether you're running on a desktop, server or on IoT devices, ensure full integration, security and interoperability of your workloads with snaps. Get full stack support for all Canonical-maintained snaps published on the Snap Store.</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-start-medium-2">
-          <hr class="p-rule" />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-3 col-medium-2 col-start-medium-2">
-          <h3 class="p-heading--5">ROCKs</h3>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>In addition to the <a href="https://opencontainers.org/">OCI</a>-compliant container images listed in the Canonical <a href="https://github.com/orgs/canonical/packages?ecosystem=container&tab=packages&ecosystem=container&q=charmed-">GitHub</a>, <a href="http://hub.docker.com/u/ubuntu/">Docker hub</a> and <a href="https://gallery.ecr.aws/ubuntu">Amazon ECR</a>, get full support for:</p>
-          <ul class="p-list--divided">
-            <li class="p-list__item has-bullet"><a href="https://canonical-rockcraft.readthedocs-hosted.com/en/latest/explanation/rocks/">ROCKs</a>, Canonical's new generation of OCI-compliant, container images, built on top of Ubuntu LTS and optimised to run applications</li>
-            <li class="p-list__item has-bullet"><a href="https://ubuntu.com/engage/chiselled-ubuntu-images-for-containers">Chiselled Ubuntu</a>, Canonical's distroless container images that only fit the strictly required dependencies</li>
-          </ul>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-start-medium-2">
-          <hr class="p-rule" />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-3 col-medium-2 col-start-medium-2">
-          <h3 class="p-heading--5">Charms: Juju-based software operators</h3>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>Revolutionise the speed and quality of software operations in distributed systems with <a href="https://juju.is/">Juju</a>, an open source orchestration engine for software operators that enables the deployment, integration and lifecycle management of applications at any scale, on any infrastructure.</p>
-          <p>Get full support on all Canonical maintained Charms, the operators that encapsulate business logic in reusable software packages that automate every aspect of an application's life.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-section">
-  <hr class="p-rule is-fixed-width" />
-  <div class="u-fixed-width p-section">
-    <h2>Popular use cases for Canonical support</h2>
-	</div>
-  <div class="row">
-    <div class="col-start-large-4 col-9 col-medium-5 col-start-medium-2">
-      <hr class="p-rule" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h3 class="p-heading--5">Fully supported data fabric</h3>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>Simplify operations and focus on innovation with fully-supported <a href="https://canonical.com/data">enterprise data fabric solutions</a> from Canonical, including Spark, Kafka&reg;, MongoDB and OpenSearch, as well as MySQL and PostgreSQL. Get the predictable pricing you need to scale your projects, backed by expert support.</p>
-          <p>Learn more about our supported solution for <a href="https://canonical.com/blog/canonical-releases-charmed-spark">Apache Spark</a> and <a href="https://ubuntu.com/blog/charmed-mongodb-beta">MongoDB</a> on Kubernetes.</p>
-        </div>
-      </div>
-      <hr class="p-rule" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h3 class="p-heading--5">Modular MLOps platforms</h3>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>Rely on secure and supported leading open source tools like Kubeflow and MLFlow as part of <a href="https://ubuntu.com/ai/mlops">Canonical MLOps</a> to scale your AI initiatives and move from experimentation to production. Benefit from a modular solution to develop and deploy machine learning projects.</p>
-          <p>Let our team handle the maintenance and back up your team with any unexpected events.</p>
-        </div>
-      </div>
-      <hr class="p-rule" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h3 class="p-heading--5">Cost-effective private and hybrid cloud</h3>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>Rely on Canonical's <a href="/openstack">Charmed OpenStack</a> to build a cost-effective hybrid multi-cloud infrastructure with the peace of mind of experts on your side.</p>
-          <p>Want to deploy your clouds in minutes, with just a simple command? Check out Canonical's <a href="https://canonical.com/microcloud">Microcloud</a>, the low-touch cloud solution, optimized for easy and repeatable deployments.</p>
-        </div>
-      </div>
-      <hr class="p-rule" />
-      <div class="u-fixed-width p-strip u-no-padding--bottom">
-        <p>All Canonical-maintained applications are security maintained under Ubuntu Pro. Add operational and bug-fix support on top of it to ensure any potential issues with your specific workload are addressed in advance.</p>
         <p>
-          <a href="/support/contact-us?product=support-overview" class="p-button--positive">Contact us</a>
-          <a href="/pro/subscribe" class="p-button">Get support now</a>
+          <a href="/support/contact-us?product=support-overview"
+             class="p-button--positive">Get in touch</a>
+          <a href="/pro/subscribe">Get support with Ubuntu Pro&nbsp;&rsaquo;</a>
         </p>
       </div>
     </div>
-  </div>
-</section>
+    <div class="p-suru"></div>
+  </section>
 
-<section class="p-section">
-  <hr class="p-rule is-fixed-width" />
-  <div class="row--50-50">
-    <div class="col">
-      <h2>Available everywhere</h2>
+  <section class="p-section">
+
+    <div class="u-fixed-width p-section">
+
+      <hr class="p-rule" />
+
+      <h2>Why choose Canonical for open source support</h2>
+
     </div>
-    <div class="col">
+
+    <div class="row--25-75">
+
+      <div class="col">
+
+        <div class="row">
+
+          <div class="col-medium-2 col-3">
+
+            <hr class="p-rule--highlight" />
+            <div class="row">
+              <div class="p-image-wrapper col-small-1">
+                <img src="https://assets.ubuntu.com/v1/3f7601a8-cof.png"
+                     alt=""
+                     width="64"
+                     height="128" />
+              </div>
+              <div class="col-small-3">
+                <h4>One support vendor for everything open source</h4>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-medium-2 col-3">
+
+            <hr class="p-rule--highlight" />
+            <div class="row">
+              <div class="p-image-wrapper col-small-1">
+                <img src="https://assets.ubuntu.com/v1/706e2877-support icon.png"
+                     alt=""
+                     width="76"
+                     height="128" />
+              </div>
+              <div class="col-small-3">
+                <h4>
+                  Peace of mind with experts
+                  <br class="u-hide--small" />
+                  by your side 24/7
+                </h4>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-medium-2 col-3">
+
+            <hr class="p-rule--highlight" />
+
+            <div class="row">
+              <div class="p-image-wrapper col-small-1">
+                <img src="https://assets.ubuntu.com/v1/d25cbd99-Frame 25.png"
+                     alt=""
+                     width="57"
+                     height="128" />
+              </div>
+              <div class="col-small-3">
+                <h4>Available everywhere, from the public cloud to devices</h4>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+
+      <hr class="p-rule" />
+
+      <h2>Trusted by professionals</h2>
+
+    </div>
+    <div class="u-fixed-width">
       <div class="p-logo-section">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/30421a00-microsoft-azure-2021.png",
-              alt="Microsoft Azure",
-              width="116",
-              height="385",
-              hi_def=True,
-              loading="auto|lazy",
-              attrs={"class": "p-logo-section__logo"},
-              ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/5e382b40-Bloomberg-Logo.png",
+                        alt="Bloomberg",
+                        width="385",
+                        height="384",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
             }}
-            <hr class="p-rule" />
-            <p class="u-align-text--left">
-              <a class="off-screen" href="http://ubuntu.com/aws">Learn more<span class="u-off-screen"> about Ubuntu on AWS</span>&nbsp;&rsaquo;</a>
-            </p>
           </div>
           <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/b374c3bb-aws-logo.png",
-              alt="AWS",
-              width="187",
-              height="385",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"},
-              ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/dc042380-AT&T-Logo.png",
+                        alt="AT&T",
+                        width="357",
+                        height="384",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
             }}
-            <hr class="p-rule" />
-            <p class="u-align-text--left">
-              <a class="off-screen" href="http://ubuntu.com/azure">Learn more<span class="u-off-screen"> about Azure</span>&nbsp;&rsaquo;</a>
-            </p>
           </div>
           <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/79dea225-google-cloud-logo.png",
-              alt="Google Cloud",
-              width="595",
-              height="385",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"},
-              ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/7754b212-Walmart-logo.png",
+                        alt="Walmart",
+                        width="437",
+                        height="384",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"},) | safe
             }}
-            <hr class="p-rule" />
-            <p class="u-align-text--left">
-              <a class="off-screen" href="/gcp">Learn more<span class="u-off-screen"> about Google Cloud Platform</span>&nbsp;&rsaquo;</a>
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/97a2f98a-paypal-logo.png",
+                        alt="Paypal",
+                        width="344",
+                        height="384",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"},) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/b9529acd-deutsche-telekom.png",
+                        alt="Deutsche Telekom",
+                        width="385",
+                        height="384",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"},) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/b8ca28f0-cisco-logo.png",
+                        alt="Cisco",
+                        width="232",
+                        height="384",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"},) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/3a24c948-NTT-logo.png",
+                        alt="NTT",
+                        width="312",
+                        height="384",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"},) | safe
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50 p-section--shallow">
+      <div class="col-6 col-medium-3">
+        <h2>What's included</h2>
+      </div>
+      <div class="col-6 col-medium-3">
+        <p>
+          Hands-on support and knowledge transfer on top of our 10-year security maintenance commitment with Ubuntu Pro + Support.
+        </p>
+        <p>
+          Learn the difference <a href="/blog/security-maintenance-vs-support-whats-the-difference">between security maintenance and support&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+
+    </div>
+    <div class="row--25-75">
+      <div class="col">
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">Full access to our Knowledge Base</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Expand your team's expertise with our Knowledge Base, for Pro customers. This database has articles on how to troubleshoot open source software, based on our 20 years of experience.
             </p>
           </div>
         </div>
         <hr class="p-rule" />
-        <p><a href="/pricing/pro">View pricing and find the right subscription for your needs&nbsp;&rsaquo;</a></p>
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">Break-fix support</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Get assistance in the event of an incident, diagnosing and resolving technical problems that impact your system's stability, or security. With defined service-level agreements (SLAs) for both initial response and onging updates based on issue severity, our experts will provide timely solutions to minimize downtime and ensure smooth operations.
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">Bug-fix support</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Get reported software bugs fixed quickly. Our team acts as a bridge between your organization and the upstream package maintainers. We speed up the resolution of business-critical problems when the upstream schedule lags.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-section">
-  <hr class="p-rule is-fixed-width" />
-  <div class="row">
-    <div class="p-section--shallow">
-      <h2>Service Level Agreements</h2>
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="u-fixed-width p-section">
+      <h2>Enterprise-grade support on top of your Ubuntu LTS</h2>
     </div>
-  </div>
-  <div class="u-fixed-width">
-    <table aria-label="Ubuntu Pro security and compliance">
-      <thead>
-        <tr>
-          <th style="width: 25%;"></th>
-          <th><span class="u-text--muted">Self-Support<sup>1</sup></span></th>
-          <th><span class="u-text--muted">Weekday support</span></th>
-          <th><span class="u-text--muted">24/7 Support</span></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Hours of coverage</td>
-          <td>N/A</td>
-          <td>24/5<sup>2</sup></td>
-          <td>24/7/365<sup>3</sup></td>
-        </tr>
-        <tr>
-          <td>Available channels</td>
-          <td><a href="https://support-portal.canonical.com/">Knowledge Base</a></td>
-          <td><a href="https://support-portal.canonical.com/">Support portal</a>, including <a href="https://support-portal.canonical.com/">Knowledge Base</a>, phone, and ticket</td>
-          <td><a href="https://support-portal.canonical.com/">Support portal</a>, including <a href="https://support-portal.canonical.com/">Knowledge Base</a>, phone, and ticket</td>
-        </tr>
-        <tr>
-          <td>Number of cases allowed</td>
-          <td>N/A</td>
-          <td>Unlimited</td>
-          <td>Unlimited</td>
-        </tr>
-        <tr>
-          <td><strong>Response times by severity level</strong></td>
-          <td><strong>First response</strong></td>
-          <td><strong>First response</strong></td>
-          <td><strong>First response</strong></td>
-        </tr>
-        <tr>
-          <td><strong>Severity 1 - </strong>Production service down, critically affecting core functionality in a production environment.</td>
-          <td>N/A</td>
-          <td>4 hours</td>
-          <td>1 hour</td>
-        </tr>
-        <tr>
-          <td><strong>Severity 2 - </strong>Core functionality severely degraded in a production environment.</td>
-          <td>N/A</td>
-          <td>8 business hours</td>
-          <td>2 hours</td>
-        </tr>
-        <tr>
-          <td><strong>Severity 3 - </strong>Issues have a medium to low impact in a production environment.</td>
-          <td>N/A</td>
-          <td>12 business hours</td>
-          <td>6 hours</td>
-        </tr>
-        <tr>
-          <td><strong>Severity 4 - </strong>Non-urgent requests with low to no impact on production environments.</td>
-          <td>N/A</td>
-          <td>24 business hours</td>
-          <td>12 hours</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <hr class="is-fixed-width" />
-  <div class="row--25-75">
-    <ol class="col">
-      <li>Included with any <a href="/pro">Ubuntu Pro</a> subscription</li>
-      <li>24/5 support is intended for Severity 1 issues. Standard business hours are defined as Monday to Friday from
-        8:00 AM to 6:00 PM at the location of your organization’s headquarters. Weekends and holidays are excluded.</li>
-      <li>24/7/365 support is intended for Severity 1 issues. We will work with you until the issue is solved or mitigated
-        with a workaround. As soon as the service or the core functionality is available in production, we will adjust the
-        severity level accordingly. We assume that you will be reachable throughout the process as the functionality is
-        restored.</li>
-    </ol>
-  </div>
-</section>
+    <div class="row--50-50">
+      <div class="col">
+        <h5>10 years of coverage for 36,000+ packages</h5>
+        <div class="p-logo-section--dense">
+          <div class="p-logo-section__items u-sv3">
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/93af6c88-rust logo.png",
+                            alt="Rust",
+                            width="120",
+                            height="252",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/3b69f369-ruby-logo.png",
+                            alt="Ruby",
+                            width="104",
+                            height="252",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/bedc5d63-rabbitmq-logo.png",
+                            alt="RabbitMQ",
+                            width="248",
+                            height="257",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/c2cd0bc4-php-logo.png",
+                            alt="PHP",
+                            width="160",
+                            height="252",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class":"p-logo-section__logo"},) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/86fdc1d7-openssl-logo.png",
+                            alt="OpenSSL",
+                            width="172",
+                            height="252",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/a92957da-nginex logo.png",
+                            alt="Nginx",
+                            width="184",
+                            height="258",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/0e5bcec1-mysql logo.png",
+                            alt="MySQL",
+                            width="180",
+                            height="252",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/6cdc1a69-ansible logo.png",
+                            alt="Ansible",
+                            width="124",
+                            height="253",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/605af026-apache tomcat logo.png",
+                            alt="Tomcat",
+                            width="204",
+                            height="253",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/5dbf023e-docker logo.png",
+                            alt="Docker",
+                            width="244",
+                            height="245",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/933cc587-etcd logo.png",
+                            alt="Etcd",
+                            width="196",
+                            height="253",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/1f55452f-glusterfs logo.png",
+                            alt="Glusterfs",
+                            width="196",
+                            height="253",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/973c8e10-Frame 19.png",
+                            alt="Frame",
+                            width="232",
+                            height="253",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/3ec28413-powerdns logo.png",
+                            alt="PowerDNS",
+                            width="252",
+                            height="253",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/7e68a46f-perl logo.png",
+                            alt="Perl",
+                            width="252",
+                            height="253",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/35e5c439-puppet logo.png",
+                            alt="Puppet",
+                            width="236",
+                            height="253",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/2ad3b2ba-python logo.png",
+                            alt="Python",
+                            width="252",
+                            height="253",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/8279fc01-go logo.png",
+                            alt="Go",
+                            width="168",
+                            height="253",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/94f1e342-nagios logo.png",
+                            alt="Nagios",
+                            width="252",
+                            height="253",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/56d8741e-node-logo.png",
+                            alt="Node.js",
+                            width="196",
+                            height="253",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/fa78f5b4-openjdk logo.png",
+                            alt="OpenJDK",
+                            width="240",
+                            height="253",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/05c01589-redis logo.png",
+                            alt="Redis",
+                            width="252",
+                            height="253",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item u-sv1">
+              {{ image(url="https://assets.ubuntu.com/v1/850af73c-ruby-rails logo.png",
+                            alt="Ruby on Rails",
+                            width="240",
+                            height="253",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <h5>Get phone and ticket support with Ubuntu Pro + support</h5>
+        <p>
+          Build with confidence with 24/7/365 phone and ticket support. Get prompt help when something breaks on more than 36,000 packages in the Ubuntu Main and Universe repositories, including the most widely used open source applications and toolchains. Our 24/7 plans now include SLAs not only for initial response times, but also for ongoing follow-up updates ensuring continuous visibility and faster remediation throughout the lifecycle of your support case.
+        </p>
+        <p>
+          Benefit from the collective knowledge of our team, based on our 20 years of experience building and sustaining open source software.
+        </p>
+        <a class="p-button--positive"
+           href="/support/contact-us?product=support-overview">Get in touch</a>
+      </div>
+    </div>
+  </section>
 
-<section class="p-section">
-  <hr class="p-rule is-fixed-width" />
-  <div class="row p-section--shallow">
-    <div class="col-6 col-medium-3">
-      <h2>Additional services</h2>
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <div class="p-section--shallow">
+          <h2>Peace of mind for your infrastructure</h2>
+        </div>
+      </div>
+      <div class="col">
+        <div class="u-embedded-media">
+          <iframe class="u-embedded-media__element"
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/5yEw_7M8vNM?si=Lju5yPAmcMvxODE4"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; encrypted-media;"
+                  allowfullscreen></iframe>
+        </div>
+        <p>60% of IT managers reported an outage in the last three years.*</p>
+        <p>
+          Minimize downtime and speed up remediation for your IT infrastructure in case of incidents, with experts available 24/7/365. Stay informed with clearly defined response SLAs that include both initial contact and ongoing updates keeping your teams aligned through every step of an incident.
+        </p>
+        <p>
+          Enjoy peace of mind with guaranteed service level agreements and fully committed support on popular infrastructure tools, including:
+        </p>
+        <hr class="p-rule is-muted" />
+        <ul class="p-list--divided">
+          <li class="p-list__item has-bullet">
+            <a href="/kubernetes">Kubernetes</a>
+          </li>
+          <li class="p-list__item has-bullet">
+            <a href="/openstack">OpenStack</a>
+          </li>
+          <li class="p-list__item has-bullet">
+            <a href="/ceph">Ceph</a>
+          </li>
+          <li class="p-list__item has-bullet">
+            <a href="https://maas.io/">MAAS</a>
+          </li>
+          <li class="p-list__item has-bullet">
+            <a href="/lxd">LXD</a>
+          </li>
+          <li class="p-list__item has-bullet">
+            <a href="https://canonical.com/microcloud">MicroCloud</a>
+          </li>
+        </ul>
+        <hr class="p-rule" />
+        <p>
+          * Based on <a href="https://uptimeinstitute.com/uptime_assets/5f40588be8d57272f91e4526dc8f821521950b7bec7148f815b6612651d5a9b3-annual-outages-analysis-2023.pdf">Uptime Institute's 2023 outage analysis</a>
+        </p>
+        <hr class="p-rule" />
+        <p>
+          Learn <a href="/blog/how-to-ensure-business-continuity-with-it-infrastructure-support">how to ensure business continuity for your IT infrastructure&nbsp;&rsaquo;</a>
+        </p>
+      </div>
     </div>
-	</div>
-  <div class="row">
-    <div class="col-start-large-4 col-9 col-medium-5 col-start-medium-2">
-      <hr class="p-rule" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h3 class="p-heading--5">Professional support&nbsp;services</h3>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50 p-section--shallow">
+      <div class="col-6 col-medium-3">
+        <h2>Supported applications</h2>
+      </div>
+      <div class="col-6 col-medium-3">
+        <p>
+          Also running workloads on top of your infrastructure? Get full stack support for 36,000+ packages and all of Canonical's applications, no matter the packaging format.
+        </p>
+      </div>
+
+    </div>
+    <div class="row--25-75">
+      <div class="col">
+        <div class="row">
+          <div class="col-start-medium-2">
+            <hr class="p-rule" />
+          </div>
         </div>
-        <div class="col-6 col-medium-3">
-          <p>A Dedicated Support Engineer or Dedicated Technical Account Manager will be by your side, either remotely or on-site. They will be your go-to expert, your first and last point of contact for all your support enquiries and escalations, delivering tailored guidance for your unique platform and configuration needs.</p>
+        <div class="row">
+          <div class="col-3 col-medium-2 col-start-medium-2">
+            <h3 class="p-heading--5">Snaps: containerised software packages</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Whether you're running on a desktop, server or on IoT devices, ensure full integration, security and interoperability of your workloads with snaps. Get full stack support for all Canonical-maintained snaps published on the <a href="https://snapcraft.io/publisher/canonical">Snap Store</a>.
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-start-medium-2">
+            <hr class="p-rule" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 col-medium-2 col-start-medium-2">
+            <h3 class="p-heading--5">Rocks</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              In addition to the <a href="https://opencontainers.org/">OCI</a>-compliant container images listed in the Canonical <a href="https://github.com/orgs/canonical/packages?ecosystem=container&tab=packages&ecosystem=container&q=charmed-">GitHub</a>, <a href="https://hub.docker.com/u/ubuntu/">Docker hub</a> and <a href="https://gallery.ecr.aws/ubuntu">Amazon ECR</a>, get full support for:
+            </p>
+            <ul class="p-list--divided">
+              <li class="p-list__item has-bullet">
+                <a href="/server/docs/about-rock-images">Rocks</a>, Canonical's new generation of OCI-compliant, container images, built on top of Ubuntu LTS and optimised to run applications
+              </li>
+              <li class="p-list__item has-bullet">
+                <a href="/engage/chiselled-ubuntu-images-for-containers">Chiselled Ubuntu</a>, Canonical's distroless container images that only fit the strictly required dependencies
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-start-medium-2">
+            <hr class="p-rule" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 col-medium-2 col-start-medium-2">
+            <h3 class="p-heading--5">Charms: Juju-based software operators</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Revolutionise the speed and quality of software operations in distributed systems with <a href="https://juju.is/">Juju</a>, an open source orchestration engine for software operators that enables the deployment, integration and lifecycle management of applications at any scale, on any infrastructure.
+            </p>
+            <p>
+              Get full support on all Canonical maintained Charms, the operators that encapsulate business logic in reusable software packages that automate every aspect of an application's life.
+            </p>
+          </div>
         </div>
       </div>
-      <hr class="p-rule" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h3 class="p-heading--5">Embedded services</h3>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="u-fixed-width p-section">
+      <h2>Popular use cases for Canonical support</h2>
+
+    </div>
+    <div class="row">
+      <div class="col-start-large-4 col-9 col-medium-5 col-start-medium-2">
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Fully supported data solutions</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Simplify operations and focus on innovation with fully-supported enterprise data solutions from Canonical, including <a href="https://canonical.com/data/spark">Spark</a>, <a href="https://canonical.com/data/kafka">Kafka&reg;</a>, <a href="https://canonical.com/data/mongodb">MongoDB&reg;</a> and <a href="https://canonical.com/data/opensearch">OpenSearch</a>, <a href="https://canonical.com/data/mysql">MySQL</a> and <a href="https://canonical.com/data/postgresql">PostgreSQL</a>. Get the predictable pricing you need to scale your projects, backed by expert support.
+            </p>
+            <hr class="p-rule--muted" />
+            <a href="https://canonical.com/data">Learn more about our data solutions&nbsp;&rsaquo;</a>
+            <div class="u-fixed-width">
+              <div class="p-logo-section--dense">
+                <div class="p-logo-section__items">
+                  <div class="p-logo-section__item">
+                    {{ image(url="https://assets.ubuntu.com/v1/6e18d17f-apache-spark-logo.png",
+                                        alt="",
+                                        width="150",
+                                        height="256",
+                                        hi_def=True,
+                                        loading="lazy",
+                                        attrs={"class": "p-logo-section__logo"}) | safe
+                    }}
+                  </div>
+                  <div class="p-logo-section__item">
+                    {{ image(url="https://assets.ubuntu.com/v1/c2d27381-kafka.png",
+                                        alt="",
+                                        width="228",
+                                        height="256",
+                                        hi_def=True,
+                                        loading="lazy",
+                                        attrs={"class": "p-logo-section__logo"}) | safe
+                    }}
+                  </div>
+                  <div class="p-logo-section__item">
+                    {{ image(url="https://assets.ubuntu.com/v1/662c72e2-mongodb.png",
+                                        alt="",
+                                        width="425",
+                                        height="512",
+                                        hi_def=True,
+                                        loading="lazy",
+                                        attrs={"class": "p-logo-section__logo"}) | safe
+                    }}
+                  </div>
+                  <div class="p-logo-section__item">
+                    {{ image(url="https://assets.ubuntu.com/v1/7cf825b5-opensearch-logo.png",
+                                        alt="",
+                                        width="407",
+                                        height="384",
+                                        hi_def=True,
+                                        loading="lazy",
+                                        attrs={"class": "p-logo-section__logo"}) | safe
+                    }}
+                  </div>
+                  <div class="p-logo-section__item">
+                    {{ image(url="https://assets.ubuntu.com/v1/0c7a5744-mysql-logo.png",
+                                        alt="",
+                                        width="490",
+                                        height="512",
+                                        hi_def=True,
+                                        loading="lazy",
+                                        attrs={"class": "p-logo-section__logo"}) | safe
+                    }}
+                  </div>
+                  <div class="p-logo-section__item">
+                    {{ image(url="https://assets.ubuntu.com/v1/3fb0b600-postgresql-logo.png",
+                                        alt="",
+                                        width="67",
+                                        height="192",
+                                        hi_def=True,
+                                        loading="lazy",
+                                        attrs={"class": "p-logo-section__logo"}) | safe
+                    }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-6 col-medium-3">
-          <p>Already in control of your operational support and focused on quick bug fixes? Take the direct route to the Canonical engineering team, a global team of community members with years of experience in sustaining and bug fixing open source software. They will bridge the gap between your team and the upstream open source community.</p>
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Modular MLOps platforms</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Rely on secure and supported leading open source tools like <a href="/ai/what-is-kubeflow">Kubeflow</a> and <a href="/ai/mlflow">MLFlow</a> as part of Canonical MLOps to scale your AI initiatives and move from experimentation to production. Benefit from a modular solution to develop and deploy machine learning projects. Let our team handle the maintenance and back up your team with any unexpected events.
+            </p>
+            <hr class="p-rule--muted" />
+            <a href="/ai/mlops">Learn more about Canonical MLOps&nbsp;&rsaquo;</a>
+            <div class="p-logo-section--dense">
+              <div class="p-logo-section__items">
+                <div class="p-logo-section__item">
+                  {{ image(url="https://assets.ubuntu.com/v1/913372cb-kubeflow-logo.png",
+                                    alt="Kubeflow",
+                                    width="379",
+                                    height="384",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-logo-section__logo"}) | safe
+                  }}
+                </div>
+                <div class="p-logo-section__item">
+                  {{ image(url="https://assets.ubuntu.com/v1/d49635e3-mlflow-logo.png",
+                                    alt="ML Flow",
+                                    width="273",
+                                    height="384",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-logo-section__logo"}) | safe
+                  }}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <hr class="p-rule" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h3 class="p-heading--5">Legacy support</h3>
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Cost-effective private and hybrid cloud</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <div class="row">
+              <div class="col-3">
+                <div class="p-image-wrapper">
+                  <a href="/openstack"></a>
+                  {{ image(url="https://assets.ubuntu.com/v1/6ac07c33-canonical-openstack.png",
+                                    alt="Canonical Openstack",
+                                    width="126",
+                                    height="34",
+                                    hi_def=True,
+                                    loading="lazy") | safe
+                  }}
+                </div>
+              </div>
+              <div class="col-3">
+                <p>
+                  Rely on <a href="/openstack">Canonical OpenStack</a> to build a cost-effective hybrid multi-cloud infrastructure with the peace of mind of experts on your side.
+                </p>
+              </div>
+            </div>
+            <hr class="p-rule" />
+            <div class="row">
+              <div class="col-3">
+                <div class="p-image-wrapper">
+                  <a href="https://canonical.com/microcloud">
+                    {{ image (
+                    url="https://assets.ubuntu.com/v1/4e576e00-Canonical MicroCloud logo@4x.png",
+                    alt="Canonical MicroCloud",
+                    width="131",
+                    height="34",
+                    hi_def=True,
+                    loading="lazy"
+                    ) | safe
+                    }}
+                  </a>
+                </div>
+              </div>
+              <div class="col-3">
+                <p>
+                  Want to deploy your clouds in minutes, with just a simple command? Check out Canonical's <a href="https://canonical.com/microcloud">MicroCloud</a>, the low-touch cloud solution, optimised for easy and repeatable deployments.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-6 col-medium-3">
-          <p>Still running Ubuntu 14.04 and need time to migrate to a newer version?</p>
-          <p>Ensure the stability of your platform by getting assistance directly from Canonical and get the time you need to migrate to the newer version.</p>
-        </div>
-      </div>
-      <hr class="p-rule" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h3 class="p-heading--5">Upgrade to managed services</h3>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>Get enhanced guidance from Canonical engineers when facing critical issues with Firefighting Support, or choose our <a href="/managed">fully managed</a> solutions and allow us to operate your environments from set-up to production.</p>
-          <p>Our managed offering covers the entire infrastructure layer (MAAS, Ceph, OpenStack, MicroCloud, LXD, Kubernetes), as well as an extensive collection of applications (Kafka&reg;, Kubeflow, Grafana, PostgreSQL, and many others).</p>
+        <hr class="p-rule" />
+        <div class="p-section">
           <p>
-            <a href="/managed">Learn more about our managed offering&nbsp;&rsaquo;</a>
+            All Canonical-maintained applications are security maintained under Ubuntu Pro. Add operational and bug-fix support on top of it to ensure any potential issues with your specific workload are addressed in advance.
+          </p>
+          <p>
+            <a href="/support/contact-us?product=support-overview"
+               class="p-button--positive">Get in touch</a>
+            <a href="/pro/subscribe" class="p-button">Get support now</a>
           </p>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<hr class="p-rule is-fixed-width" />
-<section class="p-strip is-deep">
-  <div class="u-fixed-width">
-    <p class="p-heading--2"><a href="/support/contact-us?product=support-overview">Get comprehensive support for your open&nbsp;source&nbsp;stack&nbsp;&rsaquo;</a></p>
-  </div>
-</section>
-
-<section class="p-section">
-  <hr class="p-rule is-fixed-width" />
-  <div class="row--50-50">
-    <div class="col">
-      <h2>Education, research and academia</h2>
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Available everywhere</h2>
+      </div>
+      <div class="col">
+        <div class="p-logo-section">
+          <div class="p-logo-section__items">
+            <div class="p-logo-section__item">
+              {{ image(url="https://assets.ubuntu.com/v1/30421a00-microsoft-azure-2021.png",
+                            alt="Microsoft Azure",
+                            width="116",
+                            height="385",
+                            hi_def=True,
+                            loading="auto|lazy",
+                            attrs={"class": "p-logo-section__logo"},) | safe
+              }}
+              <hr class="p-rule" />
+              <p class="u-align-text--left">
+                <a class="off-screen" href="/azure">Learn more<span class="u-off-screen">about Ubuntu on AWS</span>&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <div class="p-logo-section__item">
+              {{ image(url="https://assets.ubuntu.com/v1/b374c3bb-aws-logo.png",
+                            alt="AWS",
+                            width="187",
+                            height="385",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"},) | safe
+              }}
+              <hr class="p-rule" />
+              <p class="u-align-text--left">
+                <a class="off-screen" href="/aws">Learn more<span class="u-off-screen">about Azure</span>&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <div class="p-logo-section__item">
+              {{ image(url="https://assets.ubuntu.com/v1/79dea225-google-cloud-logo.png",
+                            alt="Google Cloud",
+                            width="595",
+                            height="385",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"},) | safe
+              }}
+              <hr class="p-rule" />
+              <p class="u-align-text--left">
+                <a class="off-screen" href="/gcp">Learn more<span class="u-off-screen">about Google Cloud Platform</span>&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+          <hr class="p-rule" />
+          <p>
+            <a href="/pricing/pro">View pricing and find the right subscription for your needs&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
     </div>
-    <div class="col">
-      <p>Canonical offers Ubuntu Pro + Support at a discount for approved institutions, such as schools, research and academia.</p>
-      <p>
-        <a class="p-button" href="/support/contact-us?product=education-discount">Contact us for pricing</a>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row">
+      <div class="p-section--shallow">
+        <h2>Service Level Agreements</h2>
+      </div>
+    </div>
+    <div class="u-fixed-width">
+      <table aria-label="Ubuntu Pro security and compliance">
+        <thead>
+          <tr>
+            <th style="width: 25%;"></th>
+            <th>
+              <span class="u-text--muted">Self-Support<sup>1</sup></span>
+            </th>
+            <th>
+              <span class="u-text--muted">Weekday support</span>
+            </th>
+            <th>
+              <span class="u-text--muted">24/7 Support</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Hours of coverage</td>
+            <td>N/A</td>
+            <td>
+              24/5<sup>2</sup>
+            </td>
+            <td>
+              24/7/365<sup>3</sup>
+            </td>
+          </tr>
+          <tr>
+            <td>Available channels</td>
+            <td>
+              <a href="https://support-portal.canonical.com/">Knowledge Base</a>
+            </td>
+            <td>
+              <a href="https://support-portal.canonical.com/">Support portal</a>, including <a href="https://support-portal.canonical.com/">Knowledge Base</a>, phone, and ticket
+            </td>
+            <td>
+              <a href="https://support-portal.canonical.com/">Support portal</a>, including <a href="https://support-portal.canonical.com/">Knowledge Base</a>, phone, and ticket
+            </td>
+          </tr>
+          <tr>
+            <td>Number of cases allowed</td>
+            <td>N/A</td>
+            <td>Unlimited</td>
+            <td>Unlimited</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Response times by severity level</strong>
+            </td>
+            <td>
+              <strong>First response</strong>
+            </td>
+            <td>
+              <strong>First response</strong>
+            </td>
+            <td>
+              <strong>First response</strong>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Severity 1 -</strong>Production service down. Critical impact on core functionality in a production environment
+            </td>
+            <td>N/A</td>
+            <td>4 hours</td>
+            <td>1 hour</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Severity 2 -</strong>Core functionality severely degraded in a production environment.
+            </td>
+            <td>N/A</td>
+            <td>8 hours</td>
+            <td>2 hours</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Severity 3 -</strong>Issues have a medium to low impact in a production environment.
+            </td>
+            <td>N/A</td>
+            <td>12 hours</td>
+            <td>6 hours</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Severity 4 -</strong>Non-urgent requests with low to no impact on production environments.
+            </td>
+            <td>N/A</td>
+            <td>24 hours</td>
+            <td>12 hours</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--25-75">
+      <ol class="col">
+        <li>
+          Included with any <a href="/pro">Ubuntu Pro</a> subscription
+        </li>
+        <li>
+          24/5 support is intended for Severity 1 issues. Issues at other severity levels will be worked on during standard business hours. Standard business hours are defined as Monday to Friday from 8:00 AM to 6:00 PM at your organisation's headquarters. Weekends and holidays are excluded.
+        </li>
+        <li>
+          24/7/365 support is intended for Severity 1 issues. Issues at other severity levels will be worked on during standard business hours. In case of a Severity 1 issue, we will work with you until the issue is solved or mitigated with a workaround. As soon as the service or the core functionality is available in production, we will adjust the severity level accordingly. We assume you will be reachable throughout the process as the functionality is being restored.
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row p-section--shallow">
+      <div class="col-6 col-medium-3">
+        <h2>Additional services</h2>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-start-large-4 col-9 col-medium-5 col-start-medium-2">
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Professional support&nbsp;services</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              A Dedicated Support Engineer or Dedicated Technical Account Manager will be by your side, either remotely or on-site. They will be your go-to expert, your first and last point of contact for all your support enquiries and escalations, delivering tailored guidance for your unique platform and configuration needs.
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Embedded services</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Already in control of your operational support and focused on quick bug fixes? Take the direct route to the Canonical engineering team, a global team of community members with years of experience in sustaining and bug fixing open source software. They will bridge the gap between your team and the upstream open source community.
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Legacy support</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Still running Ubuntu 14.04 and need time to migrate to a newer version?</p>
+            <p>
+              Ensure the stability of your platform by getting assistance directly from Canonical and get the time you need to migrate to the newer version.
+            </p>
+            <p>
+              <a href="/blog/canonical-expands-long-term-support-to-12-years-starting-with-ubuntu-14-04-lts">Read more about Canonical Legacy Support&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Upgrade to managed services</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Get enhanced guidance from Canonical engineers when facing critical issues with Firefighting Support, or choose our <a href="/managed">fully managed</a> solutions and allow us to operate your environments from set-up to production.
+            </p>
+            <p>
+              Our managed offering covers the entire infrastructure layer (MAAS, Ceph, OpenStack, MicroCloud, LXD, Kubernetes), as well as an extensive collection of applications (Kafka&reg;, Kubeflow, Grafana, PostgreSQL, and many others).
+            </p>
+            <p>
+              <a href="/managed">Learn more about our managed offering&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="p-rule is-fixed-width" />
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <p class="p-heading--2">
+        <a href="/support/contact-us?product=support-overview">Get comprehensive support for your open&nbsp;source&nbsp;stack&nbsp;&rsaquo;</a>
       </p>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-section--deep">
-  <hr class="p-rule is-fixed-width" />
-  <div class="row--50-50">
-    <div class="col">
-      <h2>Learn more</h2>
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Education, research and academia</h2>
+      </div>
+      <div class="col">
+        <p>
+          Canonical offers Ubuntu Pro + Support at a discount for approved institutions, such as schools, research and academia.
+        </p>
+        <p>
+          <a class="p-button"
+             href="/support/contact-us?product=education-discount">Contact us for pricing</a>
+        </p>
+      </div>
     </div>
-    <div class="col">
-      <ul class="p-list--divided">
-        <li class="p-list__item"><a href="/training">Get training</a></li>
-        <li class="p-list__item"><a href="/support/contact-us?product=support-overview">Contact us</a></li>
-        <li class="p-list__item"><a href="/pro/subscribe">Get support now</a></li>
-      </ul>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/support" data-form-id="1240" data-lp-id="2065" data-return-url="https://ubuntu.com/support/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
+  <section class="p-section--deep">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Learn more</h2>
+      </div>
+      <div class="col">
+        <ul class="p-list--divided">
+          <li class="p-list__item">
+            <a href="/training">Get training</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/support/contact-us?product=support-overview">Contact us</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/pro/subscribe">Get support now</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide"
+       id="contact-form-container"
+       data-form-location="/shared/forms/interactive/support"
+       data-form-id="1240"
+       data-lp-id="2065"
+       data-return-url="https://ubuntu.com/support/thank-you"
+       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
 
 {% endblock content %}

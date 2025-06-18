@@ -1,5 +1,3 @@
-import React from "react";
-
 const Organisation = ({ name }: { name: string }) => (
   <>
     <p className="p-text--small-caps">organisation</p>

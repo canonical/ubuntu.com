@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "@canonical/react-components";
 import { Product } from "advantage/subscribe/checkout/utils/types";
 
@@ -8,8 +7,12 @@ type Prop = {
 
 export default function PaymentButton({ product }: Prop) {
   const shopCheckoutData = {
-    product: product,
-    quantity: 1,
+    products: [
+      {
+        product,
+        quantity: 1,
+      },
+    ],
     action: "offer",
   };
 
@@ -22,7 +25,7 @@ export default function PaymentButton({ product }: Prop) {
           e.preventDefault();
           localStorage.setItem(
             "shop-checkout-data",
-            JSON.stringify(shopCheckoutData)
+            JSON.stringify(shopCheckoutData),
           );
           location.href = "/account/checkout";
         }}

@@ -1,6 +1,18 @@
-from typing import List
+from typing import List, Optional
 
 from dateutil.parser import parse
+
+
+class Metadata:
+    def __init__(self, key: str, value: str):
+        self.key = key
+        self.value = value
+
+
+class ExternalID:
+    def __init__(self, origin: str, ids: List[str]):
+        self.origin = origin
+        self.ids = ids
 
 
 class Entitlement:
@@ -59,6 +71,32 @@ class Listing:
         self.can_be_trialled = can_be_trialled
 
 
+class ChannelListing:
+    def __init__(
+        self,
+        id: str,
+        name: str,
+        marketplace: str,
+        price: int,
+        currency: str,
+        status: str,
+        product: Product = None,
+        metadata: List[Metadata] = None,
+        exclusion_group: str = "",
+        effective_days: int = None,
+    ):
+        self.id = id
+        self.name = name
+        self.marketplace = marketplace
+        self.product = product
+        self.price = price
+        self.currency = currency
+        self.status = status
+        self.metadata = metadata
+        self.exclusion_group = exclusion_group
+        self.effective_days = effective_days
+
+
 class UserSubscription:
     def __init__(
         self,
@@ -82,6 +120,7 @@ class UserSubscription:
         period: str = None,
         listing_id: str = None,
         renewal_id: str = None,
+        max_tracking_reached: bool = False,
     ):
         self.id = id
         self.account_id = account_id
@@ -103,14 +142,29 @@ class UserSubscription:
         self.contract_id = contract_id
         self.listing_id = listing_id
         self.renewal_id = renewal_id
+        self.max_tracking_reached = max_tracking_reached
 
 
 class OfferItem:
-    def __init__(self, id: str, name: str, price: int, allowance: int):
+    def __init__(
+        self,
+        id: str,
+        name: str,
+        price: int,
+        allowance: int,
+        effectiveDays: Optional[int] = None,
+        currency: Optional[str] = None,
+        productID: Optional[str] = None,
+        productName: Optional[str] = None,
+    ):
         self.id = id
         self.name = name
         self.price = price
+        self.currency = currency
         self.allowance = allowance
+        self.effectiveDays = effectiveDays
+        self.productID = productID
+        self.productName = productName
 
 
 class Offer:
@@ -124,6 +178,18 @@ class Offer:
         total: int,
         items: List[OfferItem],
         discount: int = None,
+        can_change_items: Optional[bool] = False,
+        purchase: Optional[bool] = False,
+        external_ids: Optional[List[ExternalID]] = None,
+        activation_account_id: Optional[str] = None,
+        channel_deal_creator_name: Optional[str] = None,
+        distributor_account_name: Optional[str] = None,
+        reseller_account_name: Optional[str] = None,
+        end_user_account_name: Optional[str] = None,
+        technical_contact_email: Optional[str] = None,
+        technical_contact_name: Optional[str] = None,
+        opportunity_number: Optional[str] = None,
+        exclusion_group: Optional[str] = None,
     ):
         self.id = id
         self.account_id = account_id
@@ -133,6 +199,27 @@ class Offer:
         self.created_at = created_at
         self.actionable = actionable
         self.discount = discount
+
+        # If activation_account_id exist, it's a channel offer.
+        self.is_channel_offer = activation_account_id is not None
+
+        # Properties below apply only to channel offers.
+        if self.is_channel_offer:
+            self.can_change_items = can_change_items
+            self.purchase = purchase
+            self.external_ids = external_ids
+            self.activation_account_id = activation_account_id
+            self.channel_deal_creator_name = channel_deal_creator_name
+            self.distributor_account_name = distributor_account_name
+            self.reseller_account_name = reseller_account_name
+            self.end_user_account_name = end_user_account_name
+            self.technical_contact_email = technical_contact_email
+            self.technical_contact_name = technical_contact_name
+            self.opportunity_number = opportunity_number
+            self.exclusion_group = exclusion_group
+
+    def check_is_channel_offer(self) -> bool:
+        return self.is_channel_offer
 
 
 class Invoice:
@@ -186,6 +273,7 @@ class Purchase:
         items: List[PurchaseItem],
         subscription_id: str = None,
         invoice: Invoice = None,
+        coupon: dict = None,
     ):
         self.account_id = account_id
         self.created_at = created_at
@@ -195,6 +283,7 @@ class Purchase:
         self.marketplace = marketplace
         self.status = status
         self.subscription_id = subscription_id
+        self.coupon = coupon
 
     def get_period(self):
         listing = self.items[0].listing

@@ -1,49 +1,58 @@
 {% extends "templates/base.html" %}
 
 {% block title %}Certified servers{% endblock %}
-{% block meta_description %}Servers that have been certified for use with Ubuntu.{% endblock meta_description %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1TN2UKhUSB6-kXbLyDM4al2ufB4cgx-W6BsIUOBLP8vU/edit{% endblock meta_copydoc %}
+
+{% block meta_description %}
+  Servers that have been certified for use with Ubuntu.
+{% endblock meta_description %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1TN2UKhUSB6-kXbLyDM4al2ufB4cgx-W6BsIUOBLP8vU/edit
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block outer_content %}
-
-<section class="p-strip--suru-topped is-bordered">
-  <div class="u-fixed-width">
-    <a href="/certified">&lsaquo; Certified hardware</a>
-  </div>
-  <br />
-  <div class="row">
-    <div class="col-8">
-      <h1>Ubuntu certified servers</h1>
-      <p>Using Ubuntu Server speeds up the ability to deploy physical infrastructure on bare metal as it is in the cloud.</p>
-      <p>Deploying on certified servers saves you time in choosing and testing what hardware you will use from a single server instance to the largest scale-out data-center environments.</p>
-    </div>
-    <div class="col-4 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
-        alt="",
-        width="136",
-        height="153",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-    </div>
-  </div>
+<section class="p-section--deep">
+  <form class="js-search-results">
+    <section class="p-section--hero">
+      <div class="row--25-75">
+        <div class="col">
+          {% with category="Server" %}
+            {% include "certified/shared/category-image.html" %}
+          {% endwith %}
+        </div>
+        <div class="col">
+          <div class="p-section--shallow">
+            <h1>Ubuntu certified servers</h1>
+          </div>
+          <div class="p-section--shallow">
+            <p>Using Ubuntu Server speeds up the ability to deploy physical infrastructure on bare metal as it is in the cloud.</p>
+            <p>
+              Deploying on certified servers saves you time in choosing and testing what hardware you will use from a single server instance to the largest scale-out data-center environments.
+            </p>
+            {% with query=query, placeholder="Search in certified servers" %}
+              {% include "/certified/search/_query-search-box.html" %}
+            {% endwith %}
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr class="p-rule is-fixed-width" />
+    {% with
+      title="All certified servers",
+      total_results=total_results,
+      total_pages=total_pages,
+      offset=offset,
+      limit=limit,
+      vendor_filters=vendor_filters,
+      release_filters=release_filters,
+      results=results
+      %}
+      {% include "certified/search/_search-results-main-block.html" %}
+    {% endwith %}
+  </form>
 </section>
-
-{% with
-  title="All certified servers",
-  query=query,
-  placeholder="Search in certified servers",
-  total_results=total_results,
-  total_pages=total_pages,
-  offset=offset,
-  limit=limit,
-  vendor_filters=vendor_filters,
-  release_filters=release_filters,
-  results=results
-%}
-  {% include "certified/shared/category-search-results.html" %}
-{% endwith %}
-
 {% endblock %}

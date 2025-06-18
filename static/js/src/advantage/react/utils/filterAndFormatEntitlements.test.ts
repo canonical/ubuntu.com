@@ -111,7 +111,7 @@ it("ignores some labels", () => {
   ]);
   expect(filterAndFormatEntitlements(entitlements).excluded).toHaveLength(0);
   expect(
-    filterAndFormatEntitlements(entitlements).alwaysAvailable
+    filterAndFormatEntitlements(entitlements).alwaysAvailable,
   ).toHaveLength(0);
 });
 
@@ -126,7 +126,7 @@ it("correctly groups always available features", () => {
   expect(filterAndFormatEntitlements(entitlements).included).toHaveLength(0);
   expect(filterAndFormatEntitlements(entitlements).excluded).toHaveLength(0);
   expect(
-    filterAndFormatEntitlements(entitlements).alwaysAvailable
+    filterAndFormatEntitlements(entitlements).alwaysAvailable,
   ).toStrictEqual([
     EntitlementLabel.Cis,
     EntitlementLabel.FipsUpdates,

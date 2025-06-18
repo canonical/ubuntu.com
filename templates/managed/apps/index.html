@@ -2,614 +2,385 @@
 
 {% block title %}Canonical's Managed Apps | Multi-Cloud and On-Premise{% endblock %}
 
-{% block meta_description %}Our app and cloud experience lets you maintain business focus in a complex tech landscape.
-Rely on our expert engineers to set-up and operate your apps, with full lifecycle
-coverage.{% endblock meta_description %}
+{% block meta_description %}
+  Our app and cloud experience lets you maintain business focus in a complex tech landscape.
+  Rely on our expert engineers to set-up and operate your apps, with full lifecycle
+  coverage.
+{% endblock meta_description %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1fLRWW-Gtslaia2ypSrLJVBxZVHo5FY5Q84o97Gs2-w4/edit{% endblock meta_copydoc %}
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1fLRWW-Gtslaia2ypSrLJVBxZVHo5FY5Q84o97Gs2-w4/edit
+{% endblock meta_copydoc %}
 
 {% block content %}
 
-<section class="p-strip--suru">
-  <div class="row u-vertically-center">
-    <div class="col-6">
-      <h1>Performant open source with Managed Apps</h1>
-      <p class="p-heading--4">One vendor, easy deployment, guaranteed uptime</p>
+  <section class="p-section--hero">
+    <div class="row--50-50">
+      <div class="col">
+        <h1>Managed Apps</h1>
+      </div>
+      <div class="col">
+        <p>
+          Effortlessly achieve operational excellence for your cloud-native application ecosystem. Our end-to-end, single-vendor managed app portfolio enables you to focus on making the most of your tools, whichever they are and whatever they are running on, without worrying about their operations.
+        </p>
+        <hr class="p-rule--muted" />
+        <p>
+          <a href="/managed/contact-us" class="js-invoke-modal">Discover how to bring your cloud-native apps to new levels&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--25-75">
+      <hr class="p-rule" />
+      <div class="col p-section--shallow">
+        <h2>Ecosystem breakdown</h2>
+      </div>
+      <div class="col" aria-describedby="diagram-desc">
+        {{ image(url="https://assets.ubuntu.com/v1/3e365249-managed%20diagram-30.07.2024.png",
+                alt="A diagram showing that Managed Apps supports cloud-native applications across Canonical infrastructure and public clouds.",
+                width="5503",
+                height="757",
+                hi_def=True,
+                attrs={"class": "u-hide--small"},
+                loading="auto") | safe
+        }}
+        <div class="u-hide--large u-hide--medium" id="diagram-desc">
+          <hr class="p-rule--muted" />
+          <h3 class="p-heading--5">Comprehensive ecosystem</h3>
+          <ul class="p-list--divided">
+            <li class="p-list__item has-bullet">Canonical MLOps</li>
+            <li class="p-list__item has-bullet">Kafka, Spark</li>
+            <li class="p-list__item has-bullet">SQL Databases</li>
+            <li class="p-list__item has-bullet">NoSQL Databases</li>
+          </ul>
+          <div class="col-small-3 col-start-small-2">
+          </div>
+          <hr class="p-rule--muted" />
+          <h3 class="p-heading--5">Native multicloud compatibility</h3>
+          <ul class="p-list--divided">
+            <li class="p-list__item">Canonical infrastructure
+              <ul class="p-list--divided">
+                <li class="p-list__item has-bullet">OpenStack</li>
+                <li class="p-list__item has-bullet">Kubernetes</li>
+                <li class="p-list__item has-bullet">Microcloud</li>
+              </ul>
+            </li>
+            <li class="p-list__item">Public cloud instances
+              <ul class="p-list--divided">
+                <li class="p-list__item has-bullet">Microsoft Azure</li>
+                <li class="p-list__item has-bullet">AWS</li>
+                <li class="p-list__item has-bullet">Google Cloud</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+  <div class="u-fixed-width p-section--shallow">
+    <hr class="p-rule" />
+    <h2>App portfolio</h2>
+  </div>
+  <div class="row">
+    <div class="col-start-large-4 col-9 col-medium-6">
+      <hr class="p-rule--muted" />
+      <div class="row">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">MLOps</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>Automate your machine learning operations at any scale with fully managed Kubeflow and MLFlow.</p>
+        </div>
+      </div>
+      <hr class="p-rule--muted" />
+      <div class="row">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">Data processing</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>Deploy high performance Apache Kafka or Spark clusters, and leave the rest to us.</p>
+        </div>
+      </div>
+      <hr class="p-rule--muted" />
+      <div class="row">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">NoSQL databases</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>Enjoy hassle-free relational databases like MongoDB and OpenSearch for any use case.</p>
+        </div>
+      </div>
+      <hr class="p-rule--muted" />
+      <div class="row">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">SQL databases</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>Go in depth with extensible and compliant tools like MySQL or PostgreSQL, minding only the data.</p>
+        </div>
+      </div>
+      <hr class="p-rule--muted" />
+      <div class="row">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">Landscape</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>
+            Manage your Ubuntu machines at scale without worrying about tooling, with <a href="/landscape/managed">Landscape</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <hr class="p-rule--muted" />
+    <div class="col-start-large-7 col-6 p-section--shallow">
       <p>
-        <a href="/managed/contact-us" class="p-button--positive js-invoke-modal" data-form-location="/shared/forms/interactive/managed-apps.html" data-form-id="3545" data-lp-id="3828" data-return-url="https://ubuntu.com/managed/apps#success" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">Free deployment assessment</a>
+        <a href="/managed/contact-us" class="js-invoke-modal">Tell us about your app ecosystem&nbsp;&rsaquo;</a>
       </p>
     </div>
-    <div class="col-6 u-embedded-media u-align--center">
-      <iframe title="Why managed open source?" class="u-embedded-media__element"
-        src="https://player.vimeo.com/video/505174501" allow="autoplay; fullscreen; picture-in-picture"
-        allowfullscreen=""></iframe>
-    </div>
   </div>
-</section>
+  </section>
 
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <ul class="p-matrix">
-      <li class="p-matrix__item u-align--center">
-        <div style="min-width: 50%">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/d689326e-apache-kafka-logo.jpg",
-          alt="Apache kafka",
-          width="170",
-          height="80",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class":"p-matrix__img", "style":"height:80px; width:auto; margin-bottom: 1rem;" },
-          ) | safe
-        }}
-        </div>
-        <div class="p-matrix__content u-align--center">
-          <div class="p-matrix__desc">
-            <p class="p-muted-heading"><a href="/managed/kafka">High-performance Apache Kafka clusters</a></p>
-          </div>
-      </li>
-      <li class="p-matrix__item u-align--center">
-        <div style="min-width: 50%">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/c182bf3c-apps_postgres.png",
-          alt="Postgres",
-          width="100",
-          height="100",
-          hi_def=True,
-          loading="lazy",
-          attrs={"style":"height:80px; width:auto; margin-bottom: 1rem;"},
-          ) | safe
-        }}
-        </div>
-        <div class="p-matrix__content u-align--center">
-          <div class="p-matrix__desc">
-            <p class="p-muted-heading">Extensible, compliant SQL</p>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item u-align--center">
-        <div style="min-width: 50%">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/176a11dd-opensource-MANO.svg",
-          alt="Open Source MANO",
-          width="144",
-          height="52",
-          hi_def=True,
-          loading="lazy",
-          attrs={"style": "height: 50px; width: auto; margin-bottom: 2rem; margin-top:.8rem;"},
-          ) | safe
-        }}
-        </div>
-        <div class="p-matrix__content u-align--center">
-          <div class="p-matrix__desc">
-            <p class="p-muted-heading" style="margin-left: 1rem"><a href="/blog/managed-apps-charmed-osm">Simplified NFV adoption</a></p>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item u-align--center">
-        <div style="min-width: 50%">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/b1f04506-Kubeflow-Logo-RGB.svg",
-          alt="Kubeflow",
-          width="398",
-          height="92",
-          hi_def=True,
-          loading="lazy",
-          attrs={"style": "height: 40px; width: auto; margin-bottom: 2rem; margin-top:.8rem;"},
-          ) | safe
-        }}
-        </div>
-        <div class="p-matrix__content u-align--center">
-          <div class="p-matrix__desc">
-            <p class="p-muted-heading" style="margin-left: 1rem">AI/MLOps at any scale</p>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item u-align--center">
-        <div style="min-width: 50%">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/703b9461-apps_mysql.png",
-          alt="mysql",
-          width="144",
-          height="103",
-          hi_def=True,
-          loading="lazy",
-          attrs={"style": "height: 80px; width: auto; margin-bottom: 1rem;"},
-          ) | safe
-        }}
-        </div>
-        <div class="p-matrix__content u-align--center">
-          <div class="p-matrix__desc">
-            <p class="p-muted-heading">Managed relational databases</p>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item u-hide--small"></li>
-    </ul>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Unlocking operational excellence</h2>
+      </div>
+      <div class="col">
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">Accelerate your time to market</li>
+          <li class="p-list__item is-ticked">Cover your team's skill gaps</li>
+          <li class="p-list__item is-ticked">Focus <i>only</i> on what matters</li>
+          <li class="p-list__item is-ticked">Harness the power of hybrid clouds</li>
+          <li class="p-list__item is-ticked">Enjoy fully predictable costs</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Operational coverage</h2>
+      </div>
+      <div class="col">
+        <p>
+          Our extensive team of dedicated engineers works around the clock to provide you with expertise, as well as simultaneous reactivity and proactivity when it comes to operations. We cover all the ops your apps (and their underlying infrastructure) might need:
+        </p>
+      </div>
+    </div>
     <div class="row">
-      <div class="col-8">
-        <p><a href="/managed/contact-us" class="p-button js-invoke-modal">Contact us</a></p>
+      <div class="col-start-large-4 col-9 col-medium-6">
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">Monitoring</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Our ever-developing in-house <a href="https://canonical.com/observability/managed">observability toolkit</a> alongside our engineers' watchful eyes will ensure that your systems are correctly and completely monitored. Nothing escapes our eyes!
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">Management</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Upgrades and patches are a headache &ndash; knowing when to apply a new release, and taking all the precautions before doing so can be tedious and use precious resources. Let us cover that for you.
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">Troubleshooting</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Even the strongest systems sometimes fail. Our military-grade incident and recovery protocols give you quick functionality restoration and extensive root-cause investigations.
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">Security enforcement</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              We pay obsessive attention to compliance, security regulations, and legal restrictions, ensuring that both our practices and your stacks are protected against even the greatest threats.
+            </p>
+          </div>
+        </div>
+      </div>
+      <hr class="p-rule--muted" />
+      <div class="col-start-large-7 col-6 p-section--shallow">
+        <p>
+          <a href="/managed/contact-us" class="js-invoke-modal">Enforce your applications now&nbsp;&rsaquo;</a>
+        </p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip--light">
-  <div class="row">
+  <section class="p-section">
+    <div class="row--50-50 p-section--shallow">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Options to fit any business need</h2>
+      </div>
+      <div class="col">
+        <p>
+          Whether you want to just kick back and not worry about your operations at all, or a hotline-style support that allows you to take the reins and call for immediate help in high-severity situations, our comprehensive solution packages have your back.
+        </p>
+      </div>
+    </div>
+    <div class="row--50-50">
+      <div class="col">
+        <hr class="p-rule--highlight" />
+        <div style="padding: 0 1rem 1rem 1rem; background-color: #EBEBEB;">
+          <div class="p-section--shallow">
+            <h3>Managed Services</h3>
+            <p class="u-text--muted">
+              Regain your space to innovate, and leave all your operations to us with our fully managed services.
+            </p>
+          </div>
+          <div class="row p-section--shallow">
+            <div class="col-2">
+              <p class="p-text--smal-caps">What's included:</p>
+            </div>
+            <div class="col-4">
+              <ul class="p-list--divided">
+                <li class="p-list__item is-ticked">24/7 end-to-end operational coverage</li>
+                <li class="p-list__item is-ticked">Proactive and reactive excellence</li>
+                <li class="p-list__item is-ticked">Market-standard SLA's</li>
+              </ul>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <p>
+            <a href="/managed">Access your ideal managed service&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+      <div class="col">
+        <hr class="p-rule--highlight" />
+        <div style="padding: 0 1rem 1rem 1rem; background-color: #EBEBEB;">
+          <div class="p-section--shallow">
+            <h3>Firefighting Support</h3>
+            <p class="u-text--muted">
+              Get engineers on call to help you resolve the most critical issues while managing your own environments.
+            </p>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <p class="p-text--smal-caps">What's included:</p>
+            </div>
+            <div class="col-4">
+              <ul class="p-list--divided">
+                <li class="p-list__item is-ticked">1-hour response time via video call for high-severity situations</li>
+                <li class="p-list__item is-ticked">
+                  Access to <a href="/managed/firefighting-support">Ops Consulting</a> packages
+                </li>
+                <li class="p-list__item is-ticked">
+                  <a href="/pro">Ubuntu Pro &plus; Support</a> for all covered products
+                </li>
+              </ul>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <p>
+            <a href="/managed/firefighting-support">Get firefighting support&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Natively multi-cloud</h2>
+      </div>
+      <div class="col">
+        <p>
+          You no longer need to worry about tailoring your application ecosystem to a single cloud. Our managed app portfolio is natively multicloud, allowing you to deploy, run, and harness the power of your applications both on-premises and on all the major public clouds.
+        </p>
+        <hr class="p-rule--muted" />
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">Full stack on-premises portfolio</li>
+          <li class="p-list__item is-ticked">
+            Active collaborations with Microsoft Azure, Amazon Web Services, and Google Cloud
+          </li>
+          <li class="p-list__item is-ticked">
+            Seamless integration between any cloud image via <a href="https://juju.is/">Juju</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <hr class="p-rule--muted" />
+      <div class="col-start-large-7 col-6 p-section--shallow">
+        <p>
+          <a href="https://canonical.com/solutions/infrastructure">Discover our infrastructure story&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Use cases</h2>
+      </div>
+      <div class="col">
+        <p>Managed AI</p>
+        <p>
+          <a href="/engage/guide-to-managed-ai-infrastructure">Discover how managed services can bring AI closer to any company</a>
+        </p>
+        <hr class="p-rule--muted" />
+        <p>Managed MongoDB</p>
+        <p>
+          <a href="https://assets.ubuntu.com/v1/aeb556fb-MongoDB%20-%20Datasheet-revised.pdf?_gl=1*u13t3p*_gcl_au*MTA1NjA4ODkwMy4xNzE0NTcwMzMw&_ga=2.3615472.1764863720.1717683420-375269112.1717683420">Harness the power of one of the best NoSQL databases through managed services</a>
+        </p>
+        <hr class="p-rule--muted" />
+        <p>Managed Apps on public cloud</p>
+        <p>
+          <a href="/blog/managed-apps-on-public-cloud-why-operations-matter-part-i">Explore what operational excellence looks like in a public cloud ecosystem</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="p-rule is-fixed-width" />
+  <section class="p-strip is-deep">
     <div class="u-fixed-width">
-      <h2 class="u-sv3">
-        Enterprises trust Canonical to manage their apps
-      </h2>
-      <div class="row">
-        <div class="col-4 u-sv3" style="margin-bottom: 2rem;">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/3b176ef1-managed-private-cloud.svg",
-            alt="",
-            width="100",
-            height="100",
-            hi_def=True,
-            loading="lazy",
-            attrs={"style":"height: 60px;width: auto;"},
-            ) | safe
-          }}
-          <h3>99.9% uptime</h3>
-          <p>Backed by an SLA</p>
-        </div>
-
-        <div class="col-4 u-sv3" style="margin-bottom: 2rem;">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/81e3bf86-We+operate+your+Kubernetes.svg",
-            alt="",
-            width="100",
-            height="100",
-            hi_def=True,
-            loading="lazy",
-            attrs={"style":"height: 60px;width: auto;"},
-            ) | safe
-          }}
-          <h3>24/7 monitoring</h3>
-          <p>Active management and break/fix response by app engineers</p>
-        </div>
-
-        <div class="col-4 u-sv3" style="margin-bottom: 2rem;">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/0714f018-VMware-migration.svg",
-            alt="",
-            width="170",
-            height="170",
-            hi_def=True,
-            loading="lazy",
-            attrs={"style":"height: 60px;width: auto;"},
-            ) | safe
-          }}
-          <h3>High availability</h3>
-          <p>Fault tolerant and ready for real-world challenges</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/a43d61ae-update+control.svg",
-            alt="",
-            width="100",
-            height="100",
-            hi_def=True,
-            loading="lazy",
-            attrs={"style":"height: 60px;width: auto;"},
-            ) | safe
-          }}
-          <h3>Patching and updates</h3>
-          <p>All updates and security patches included.</p>
-        </div>
-
-        <div class="col-4">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/46439b10-2.+model_AW.svg",
-            alt="",
-            width="152",
-            height="100",
-            hi_def=True,
-            loading="lazy",
-            attrs={"style":"height: 60px;width: auto;"},
-            ) | safe
-          }}
-          <h3>Transparency</h3>
-          <p>Dashboard with key metrics for each deployment</p>
-        </div>
-
-        <div class="col-4">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/69aaa876-compliance.svg",
-            alt="",
-            width="100",
-            height="100",
-            hi_def=True,
-            loading="lazy",
-            attrs={"style":"height: 60px;width: auto;"},
-            ) | safe
-          }}
-          <h3>Security and certifications</h3>
-          <p>ISO 27000, GDPR compliant, SOC2 Type 2</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <h2 class="p-muted-heading">Run your apps anywhere</h2>
-    <div class="p-logo-section">
-      <div class="p-logo-section__items">
-        <div class="p-logo-section__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/5d01375a-google-cloud-logo.png",
-            alt="Google Cloud Platform",
-            width="316",
-            height="316",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/1a2ca878-kubernetes-logomark-logo.png",
-            alt="Kubernetes",
-            width="316",
-            height="316",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
-            image (
-            url="https://assets.ubuntu.com/v1/bdadf238-oracle-cloud.png",
-            alt="Oracle cloud",
-            width="316",
-            height="316",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
-            image (
-            url="https://assets.ubuntu.com/v1/c7b9a434-microsoft-azure-logomark-new.png",
-            alt="",
-            width="316",
-            height="316",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/87b04c6a-vmware-logo.png",
-            alt="VMWARE",
-            width="316",
-            height="316",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/6d16204d-openstack-logomark-logo.png",
-            alt="Openstack",
-            width="316",
-            height="316",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
-            image (
-            url="https://assets.ubuntu.com/v1/505ecea2-maas-logo-stacked.png",
-            alt="MAAS",
-            width="316",
-            height="316",
-            hi_def=True,
-            loading="auto",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/0070b81e-aws-logo.png",
-            alt="AWS",
-            width="316",
-            height="316",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-8">
-      <h2 class="u-sv3">
-        Optimise your open source
-      </h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <p><a href="/managed/contact-us" class="p-button js-invoke-modal">Contact us</a></p>
-    </div>
-  </div>
-  <div class="row p-divider">
-    <div class="col-3 p-divider__block">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header is-stacked">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/7de21966-snapshot.svg",
-            alt="",
-            width="100",
-            height="100",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img"},
-            ) | safe
-          }}
-          <h4 class="p-heading-icon__title" style="padding-top: .5rem;">Regain focus</h4>
-        </div>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">You drive the business, we maintain the apps</li>
-          <li class="p-list__item is-ticked">Put DevOps on-rails with high quality foundation</li>
-          <li class="p-list__item is-ticked">Expand globally without needing a global team</li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-3 p-divider__block">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header is-stacked">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/ec3f53f7-extended-security-maintenance.svg",
-            alt="",
-            width="100",
-            height="100",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img"},
-            ) | safe
-          }}
-          <h4 class="p-heading-icon__title" style="padding-top: .5rem;">Reliable and robust</h4>
-        </div>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Reduce human-error</li>
-          <li class="p-list__item is-ticked">Automated response to common issues</li>
-          <li class="p-list__item is-ticked">Managed by app specific experts</li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-3 p-divider__block">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header is-stacked">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/c0e765e4-save-time-money-icon-lrg.svg",
-            alt="",
-            width="100",
-            height="100",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img"},
-            ) | safe
-          }}
-          <h4 class="p-heading-icon__title" style="padding-top: .5rem;">Predictable pricing</h4>
-        </div>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Per-machine price</li>
-          <li class="p-list__item is-ticked">Multiple portfolio apps, no extra cost</li>
-          <li class="p-list__item is-ticked">Unlimited usage</li>
-          <li class="p-list__item is-ticked">Transfer management back on request</li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-3 p-divider__block">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header is-stacked">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/0714f018-VMware-migration.svg",
-            alt="",
-            width="100",
-            height="100",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img"},
-            ) | safe
-          }}
-          <h4 class="p-heading-icon__title" style="padding-top: .5rem;">Open source, simplified</h4>
-        </div>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Bring your own cloud</li>
-          <li class="p-list__item is-ticked">Use the latest open source without hiring delays</li>
-          <li class="p-list__item is-ticked">Offload the resource intensive stuff to our specialist team</li>
-          <li class="p-list__item is-ticked">Accelerate to market with our experienced support</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row">
-    <div class="col-8">
-      <h2>
-        Fully managed applications pricing
-      </h2>
-      <p>
-        We manage applications at both the host and the guest level. All prices are dependent on current cloud
-        architecture and requirements.
+      <h2>Enjoy all the benefits of managed cloud apps now.</h2>
+      <p class="p-heading--2">
+        <a class="js-invoke-modal" href="/managed/contact-us">Get in touch&nbsp;&rsaquo;</a>
       </p>
     </div>
-  </div>
-  {% include '/shared/pricing/_managed-pricing.html' %}
-</section>
+  </section>
 
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-6">
-      <h2>How can you reduce costs with&nbsp;Managed Apps?</h2>
-      <p>Reduce costs and maintain a business focus in a cloud native world with Managed Apps.</p>
-      <p><a href="/engage/managed-apps-webinar">Watch the full webinar on demand now&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-6">
-      <iframe title="How does Canonical's managed service for cloud applications help reduce costs?" src="https://player.vimeo.com/video/456162146" width="500" height="300" frameborder="0"
-        allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-4 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/0e5f4269-questions.svg",
-        alt="",
-        height="180",
-        width="180",
-        hi_def=True,
-        loading="lazy",
-        ) | safe
-      }}
-    </div>
-    <div class="col-8 u-vertically-center">
-      <h2>
-        Can't find what you're looking for?
-      </h2>
-      <p>
-        Our Managed Apps portfolio is constantly evolving and expanding. Speak to us today about your specific needs.
-      </p>
-      <p>
-        <a href="/managed/contact-us">
-          Contact us about your unique requirements&nbsp;&rsaquo;
-        </a>
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light is-deep">
-  <div class="u-fixed-width">
-    <h3>
-      Learn how Canonical deploys and runs Kubernetes and OpenStack
-    </h3>
-  </div>
-
-  <div class="row p-divider">
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/6e184942-Webinar.svg",
-            alt="",
-            width="32",
-            height="28",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-            ) | safe
-          }}
-          <h4 class="p-heading-icon__title">Webinar</h4>
-        </div>
-      </div>
-      <h3 class="p-heading--4"><a
-          href="https://www.brighttalk.com/webcast/6793/394568">Maintaining business focus in a cloud-native world with
-          Managed Apps</a></h3>
-    </div>
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/57364a8b-e-book-icon.svg",
-            alt="",
-            width="32",
-            height="28",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-            ) | safe
-          }}
-          <h4 class="p-heading-icon__title">Ebook</h4>
-        </div>
-      </div>
-      <h3 class="p-heading--4"><a href="/engage/stuckstack-ebook">How to escape StuckStack and profit from your
-          OpenStack investment&nbsp;&rsaquo;</a></h3>
-    </div>
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/6e184942-Webinar.svg",
-            alt="",
-            width="32",
-            height="28",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-            ) | safe
-          }}
-          <h4 class="p-heading-icon__title">Webinar</h4>
-        </div>
-      </div>
-      <h3 class="p-heading--4"><a
-          href="https://www.brighttalk.com/webcast/6793/410402">Kafka in production - making sure your deployment is
-          fast, reliable and secure</a></h3>
-    </div>
-  </div>
-</section>
-
-{% with first_item="_cloud_ubuntu_advantage", second_item="_cloud_contact_us", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
-
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/managed-apps-contact-us.html"
-  data-form-id="3545" data-lp-id="3828" data-return-url="https://ubuntu.com/managed/thank-you"
-  data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
+  <div class="u-hide"
+      id="contact-form-container"
+      data-form-location="/shared/forms/interactive/managed-services.html"
+      data-form-id="4053"
+      data-lp-id=""
+      data-return-url="https://ubuntu.com/managed/thank-you"
+      data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
 
 {% endblock content %}

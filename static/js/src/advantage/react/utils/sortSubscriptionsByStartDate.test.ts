@@ -5,13 +5,13 @@ describe("sortSubscriptionsByStartDate", () => {
   it("sorts the subscriptions", () => {
     const subscriptions = [
       userSubscriptionFactory.build({
-        start_date: new Date("2020-08-11T02:56:54Z"),
+        start_date: "2020-08-11T02:56:54Z",
       }),
       userSubscriptionFactory.build({
-        start_date: new Date("2021-08-11T02:56:54Z"),
+        start_date: "2021-08-11T02:56:54Z",
       }),
       userSubscriptionFactory.build({
-        start_date: new Date("1999-08-11T02:56:54Z"),
+        start_date: "1999-08-11T02:56:54Z",
       }),
     ];
     expect(sortSubscriptionsByStartDate(subscriptions)).toStrictEqual([

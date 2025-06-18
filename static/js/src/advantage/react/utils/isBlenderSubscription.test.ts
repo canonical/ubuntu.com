@@ -8,8 +8,8 @@ describe("isBlenderSubscription", () => {
       isBlenderSubscription(
         userSubscriptionFactory.build({
           marketplace: UserSubscriptionMarketplace.Blender,
-        })
-      )
+        }),
+      ),
     ).toBe(true);
   });
 
@@ -18,8 +18,8 @@ describe("isBlenderSubscription", () => {
       isBlenderSubscription(
         userSubscriptionFactory.build({
           marketplace: UserSubscriptionMarketplace.CanonicalUA,
-        })
-      )
+        }),
+      ),
     ).toBe(false);
   });
 });

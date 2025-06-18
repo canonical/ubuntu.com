@@ -1,366 +1,389 @@
 {% extends "confidential-computing/base_confidential-computing.html" %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+
 {% block title %}Confidential Computing{% endblock %}
-{% block meta_description %}Protect data in use with confidential computing. Build the foundation of your
-privacy-enhancing technology strategy with Ubuntu confidential VMs on both public and private clouds.{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1QGwS5CYlwXkaPibSFvcag6zLcUH5lNDUbM18hCqbOJM/edit{% endblock
+
+{% block meta_description %}
+  Protect data in use with confidential computing. Build the foundation of your
+  privacy-enhancing technology strategy with Ubuntu confidential VMs on both public and private clouds.
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1QGwS5CYlwXkaPibSFvcag6zLcUH5lNDUbM18hCqbOJM/edit
+{% endblock
 %}
 
 {% block content %}
 
-<div class="is-paper">
-  <section class="p-strip is-shallow u-no-padding--bottom">
-    <div class="row">
-      <div class="col-9 col-start-large-4">
-        <div class="p-section--shallow">
-          <h1 class="u-no-margin--bottom">Ubuntu for confidential computing</h1>
-          <p class="p-heading--2">
-            Protect your data in use,
-            <br class="u-hide--small u-hide--medium" />across public and private clouds.
+  <div class="is-paper">
+    {% call(slot) vf_hero(
+        title_text='Ubuntu <br/>for confidential compute',
+        subtitle_text='Protect your data in use,<br/> across public and private clouds.',
+        layout='50/50'
+      ) -%}
+      {%- if slot == 'cta' -%}
+        <a href="/contact-us" class="js-invoke-modal">Contact us to learn more ›</a>
+      {%- endif -%}
+      {%- if slot == 'image' -%}
+        <div class="p-image-container--3-2 is-cover">
+          {{ image(url="https://assets.ubuntu.com/v1/cf1e2ddb-datacenter-wide-crop.jpeg",
+            alt="",
+            width="1662",
+            height="1240",
+            hi_def=True,
+            loading="auto",
+            attrs={"class": "p-image-container__image"}
+            ) | safe
+          }}
+        </div>
+      {%- endif -%}
+    {% endcall -%}
+
+
+    <section class="p-section">
+      <hr class="p-rule is-fixed-width" />
+      <div class="row--50-50">
+        <div class="col">
+          <h2>What is confidential computing?</h2>
+        </div>
+        <div class="col">
+          <p>
+            Confidential computing is a new security technique that protects virtual machine workloads from unauthorized access by keeping data encrypted while in system memory. This encryption shields sensitive code and data at runtime from privileged system software and other VMs by operating within a hardware-protected Trusted Execution Environment.
+          </p>
+          <div class="p-cta-block">
+            <a href="/blog/what-is-confidential-computing-a-high-level-explanation-for-cisos">Learn more about confidential computing&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-section">
+      <hr class="p-rule is-fixed-width" />
+      <div class="row--50-50">
+        <div class="col">
+          <h2>Benefits of Ubuntu<br class="u-hide--medium"/> for confidential computing</h2>
+        </div>
+        <div class="col">
+          <ul class="p-list--divided">
+            <li class="p-list__item is-ticked">Protect sensitive data by encrypting it when it’s being processed</li>
+            <li class="p-list__item is-ticked">Secure your workloads in untrusted environments</li>
+            <li class="p-list__item is-ticked">Build data clean rooms for collaborative AI analytics</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-section">
+      {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+        {%- if slot == 'title' -%}
+          <h2>Intel TDX is available on Ubuntu for both the host and guest</h2>
+        {%- endif -%}
+
+        {%- if slot == 'description' -%}
+          <div class="col">
+            <p>Ubuntu now supports Intel’s latest confidential computing technology. This hardware-based trusted execution environment enables you to add an extra layer of protection to the code and data running within your confidential virtual machines.</p>
+            <div class="p-section--shallow">
+              <div class="p-image-container is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/db3fddbb-intel-tdx-is.png",
+                  alt="Diagram showing that Ubuntu builds cater to both the host and guest sides, empowering users to launch a confidential TDX virtual machine seamlessly",
+                  width="1200",
+                  height="1140",
+                  hi_def=True,
+                  attrs={"class": "p-image-container__image"},
+                  loading="lazy"
+                  ) | safe
+                }}
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_title_1' -%}
+          <h3 class="p-heading--5">Private preview available on Ubuntu 24.04</h3>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_description_1' -%}
+          <p>Canonical’s strategic partnership with Intel gives you a customized Ubuntu build for Intel®TDX, incorporating all the latest necessary end-to-end host-to-guest patches available, even before they make it upstream.</p>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_title_2' -%}
+          <h3 class="p-heading--5">Host side</h3>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_description_2' -%}
+          <p>We support a 6.8 kernel, derived from the 24.04 generic kernel, and offer essential user space components accessible through PPAs, such as Libvirt 9.6, and QEMU 8.0. We also offer a set of user-friendly scripts to simplify the creation of confidential environments with just a few commands.</p>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_title_3' -%}
+          <h3 class="p-heading--5">Guest side</h3>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_description_3' -%}
+          <p>We support a comprehensive package, featuring a 6.8 kernel, Shim, Grub, and TDVF, which serves as an in-guest VM firmware.</p>
+        {%- endif -%}
+
+        {%- if slot == 'cta' -%}
+          <a href="https://github.com/canonical/tdx">Deploy Intel TDX with Ubuntu 24.04 today&nbsp;&rsaquo;</a>
+        {%- endif -%}
+      {%- endcall -%}
+    </section>
+
+    <section class="p-section">
+      <hr class="p-rule is-fixed-width" />
+      <div class="row--50-50">
+        <div class="col">
+          <h2>How confidential VMs work</h2>
+        </div>
+        <div class="col">
+          <p>
+            Confidential VMs introduce a new trust boundary which only includes the software running within, and the platform’s hardware. All other software outside is no longer part of your trusted computing base. To provide such strong security guarantees, confidential computing relies on two main primitives:
+          </p>
+          <div class="p-section--shallow">
+            <div class="p-image-container is-highlighted u-sv3">
+              {{ image(url="https://assets.ubuntu.com/v1/480ebd6e-how-confidential-vms.png",
+                alt="",
+                width="1200",
+                height="800",
+                hi_def=True,
+                attrs={"class": "p-image-container__image"},
+                loading="lazy"
+                ) | safe
+              }}
+            </div>
+          </div>
+
+          <ol class="p-stepped-list">
+            <li class="p-stepped-list__item">
+              <h3 class="p-heading--5 p-stepped-list__title">
+                Isolation
+              </h3>
+              <p class="p-stepped-list__content">Confidential computing capable CPUs are equipped with an AES hardware memory encryption engine, which encrypts data when it is written to system memory, and decrypts it when read. The encryption key itself is stored in the hardware root of trust and is never exposed to the platform’s system software.</p>
+            </li>
+            <li class="p-stepped-list__item">
+              <hr class="p-rule--muted" />
+              <h3 class="p-heading--5 p-stepped-list__title">
+                Remote attestation
+              </h3>
+              <p class="p-stepped-list__content">When a confidential VM is launched, its integrity is verified and its initial code and data are measured by a hardware root of trust. This ensures they have not been tampered with. The measurement is cryptographically signed and can be attested to a remote verifier.</p>
+            </li>
+          </ol>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="p-strip u-no-padding--top">
+      <hr class="p-rule is-fixed-width" />
+      <div class="u-fixed-width">
+        <h2>Launch enterprise-grade confidential VMs on all major public clouds</h2>
+      </div>
+      <div class="row">
+        <div class="col-9 col-start-large-4">
+          <hr class="p-rule--muted" />
+          <div class="row">
+            <div class="col-2 col-medium-3 col-small-2 u-pad-logo">
+              <p class="u-no-margin--bottom">
+                {{ image(url="https://assets.ubuntu.com/v1/aa515363-azure-logo-updated.svg",
+                  alt="Azure logo",
+                  width="108",
+                  height="31",
+                  hi_def=True,
+                  loading="lazy"
+                  ) | safe
+                }}
+              </p>
+            </div>
+            <div class="col-6 col-medium-3 col-small-2 col-start-large-4">
+              <ul class="p-list--divided u-no-margin--bottom">
+                <li class="p-list__item">
+                  <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.ubuntu-24_04-lts?tab=Overview">Ubuntu 24.04 confidential VMs on Azure</a>
+                </li>
+                <li class="p-list__item">
+                  <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-confidential-vm-focal?tab=Overview">AMD SEV SNP with Ubuntu  20.04 LTS on Azure</a>
+                </li>
+                <li class="p-list__item">
+                  <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-confidential-vm-jammy">AMD SEV SNP with Ubuntu 22.04 LTS on Azure</a>
+                </li>
+                <li class="p-list__item">
+                  <a href="https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR9_qJVF-zyZCqvwR_iaG2EFUME1BT1hJN0I1VjhGWE9QNUJGREQ5QUlMNS4u">Intel TDX in private preview with 22.04 LTS on Azure</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <div class="row">
+            <div class="col-3 col-medium-3 col-small-2 u-pad-logo">
+              <p class="u-no-margin--bottom">
+                {{ image(url="https://assets.ubuntu.com/v1/b31d530e-google-cloud-high-res.png",
+                  alt="Google Cloud logo",
+                  height="27",
+                  width="239",
+                  hi_def=True,
+                  loading="lazy") | safe
+                }}
+              </p>
+            </div>
+            <div class="col-6 col-medium-3 col-small-2 col-start-large-4">
+              <p>
+                <a href="https://canonical.com/blog/start-your-ubuntu-confidential-vm-with-intel-tdx-on-google-cloud">AMD SEV SNP with Ubuntu 22.04 LTS on Google Cloud</a>
+              </p>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <div class="row">
+            <div class="col-2 col-medium-3 col-small-2 u-pad-logo">
+              <p class="u-no-margin--bottom">
+                {{ image(url="https://assets.ubuntu.com/v1/8e5cc412-AWS.svg",
+                                alt="AWS logo",
+                                height="22",
+                                width="36",
+                                hi_def=True,
+                                loading="lazy") | safe
+                }}
+              </p>
+            </div>
+            <div class="col-6 col-medium-3 col-small-2 col-start-large-4">
+              <p>
+                <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sev-snp.html">AMD SEV SNP with Ubuntu 23.10 on AWS</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-section">
+      <hr class="p-rule is-fixed-width" />
+      <div class="row--50-50">
+        <div class="col">
+          <h2>How to map security primitives<br> to attacker capabilities</h2>
+        </div>
+        <div class="col">
+          <div class="p-section--shallow">
+            <div class="p-image-container is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/d8d1c7c8-how-to-map.png",
+                alt="",
+                width="1200",
+                height="800",
+                hi_def=True,
+                attrs={"class": "p-image-container__image"},
+                loading="lazy") | safe
+              }}
+            </div>
+          </div>
+          <p>
+            Uncover the details of Ubuntu’s security solutions and learn how to tailor them to your environment. Equip yourself with the tools to protect your data and stay one step ahead of evolving threats.
+          </p>
+          <div class="p-cta-block">
+            <a href="/engage/security-in-depth">Download the Security in Depth Whitepaper here&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-strip u-no-padding--top">
+      <hr class="p-rule is-fixed-width" />
+      <div class="row--50-50">
+        <div class="col">
+          <h2>Use Ubuntu Pro to further harden your confidential VMs</h2>
+        </div>
+        <div class="col">
+          <p>
+            While confidential VMs safeguard your workload from external threats, internal vulnerabilities within their boundaries can still pose risks. This is where Ubuntu Pro proves invaluable, ensuring your guest CVM software stack is continuously patched and up-to-date.
+          </p>
+          <div class="p-cta-block">
+            <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-strip u-no-padding--top">
+      <hr class="p-rule is-fixed-width" />
+      <div class="row--50-50">
+        <div class="col">
+          <h2>A solid foundation of your<br class="u-hide--small"/> zero trust strategy</h2>
+        </div>
+        <div class="col">
+          <p>
+            With confidential computing, you can remove the privileged systems software from your trusted computing base, reduce your attack surface, and get a remotely verifiable cryptographic guarantee before trusting any platform with your data.
+          </p>
+          <p class="p-cta-block">
+            <a href="/blog/build-foundation-zero-trust-strategy-ubuntu-confidential-computing">Learn more about zero trust and confidential computing&nbsp;&rsaquo;</a>
           </p>
         </div>
-        <hr />
-        <a class="js-invoke-modal p-button--positive" href="/contact-us">Contact us to learn more</a>
       </div>
-    </div>
-
-    <div class="u-fixed-width u-no-padding">
-      <img src="https://assets.ubuntu.com/v1/7f34ade9-website_suru_25.jpg" alt=""
-        style="aspect-ratio: 5.177570093457944; width: 100%" />
-    </div>
-  </section>
-
-  <section class="p-section">
-    <hr class="is-fixed-width" />
-    <div class="row--50-50">
-      <div class="col">
-        <h2>Benefits of Ubuntu for confidential computing</h2>
-      </div>
-      <div class="col">
-        <ul class="p-list--divided">
-          <li class="p-list__item is-ticked">Protect sensitive data by encrypting it when it’s being processed</li>
-          <li class="p-list__item is-ticked">Secure your workloads in untrusted environments</li>
-          <li class="p-list__item is-ticked">Build data clean rooms for collaborative AI analytics</li>
-          </ol>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-section">
-    <hr class="is-fixed-width" />
-    <div class="row--50-50">
-      <div class="col">
-        <h2>Intel TDX is available on Ubuntu for both the host and guest</h2>
-      </div>
-      <div class="col">
-        <p>Ubuntu now supports Intel’s latest confidential computing technology. This hardware-based trusted execution
-          environment enables you to add an extra layer of protection to the code and data running within your
-          confidential virtual machines.
-        </p>
-        <div class="u-align--center u-vertically-center u-hide--small">
-          {{ image (
-          url="https://assets.ubuntu.com/v1/eb3679e5-Intel%20%20TDX%20and%20Ubuntu%20Figure.png",
-          alt="Diagram showing that Ubuntu builds cater to both the host and guest sides, empowering users to launch a
-          confidential TDX virtual machine seamlessly",
-          width="410",
-          height="550",
+      <div class="u-fixed-width">
+        {{ image(url="https://assets.ubuntu.com/v1/e3769453-server-room.png",
+          alt="",
+          width="2464",
+          height="1027",
           hi_def=True,
-          loading="lazy" ) | safe
-          }}
-        </div>
+          loading="lazy"
+          ) | safe
+        }}
       </div>
-    </div>
-    <div class="row">
-      <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
-        <div class="row">
-          <div class="col-3 col-medium-3">
-            <h3 class="p-text--small-caps p-heading--5">Private preview available on Ubuntu 23.10</h3>
-          </div>
-          <div class="col-6 col-medium-3">
-            <p>Canonical’s strategic partnership with Intel gives you a customised Ubuntu
-              build for Intel®TDX, incorporating all the latest necessary end-to-end host-to-guest patches available,
-              even before they make it upstream.</p>
-          </div>
+    </section>
+
+    <section class="p-strip u-no-padding--top">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>Confidential computing in your private data center</h2>
         </div>
-        <div class="row">
-          <div class="col-3 col-medium-3">
-            <h3 class="p-text--small-caps p-heading--5">Host side</h3>
-          </div>
-          <div class="col-6 col-medium-3">
-            <p>We support a 6.5 kernel, derived from the 23.10 generic kernel, and offer essential user space components
-              accessible through PPAs, such as Libvirt 9.6, and QEMU 8.0. We also offer a set of user-friendly scripts
-              to simplify the creation of confidential environments with just a few commands.
-            </p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-3 col-medium-3">
-            <h3 class="p-text--small-caps p-heading--5">Guest side</h3>
-          </div>
-          <div class="col-6 col-medium-3">
-            <p>We support a comprehensive package, featuring a 6.5 kernel, Shim, Grub, and TDVF, which serves as an
-              in-guest VM firmware.
-            </p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-6 col-start-large-4">
-            <p>
-              <a href="https://github.com/canonical/tdx">Deploy Intel TDX with Ubuntu 23.10 today&nbsp;&rsaquo;</a>
-            </p>
+        <div class="col">
+          <p>
+            Combine good data governance practices with the latest advances in
+            privacy-enhancing computation. Use confidential computing to protect
+            the confidentiality and integrity of the sensitive data hosted on your
+            on-premises servers, using hardware-rooted primitives beyond
+            traditional measures.
+          </p>
+          <div class="p-cta-block">
+            <a href="/pro/subscribe" class="p-button">Get a free trial for Ubuntu Pro</a>
+            <a href="https://canonical.com/blog/why-do-you-also-need-confidential-computing-for-your-private-datacenter">Why use confidential VMs in your private datacenter?&nbsp;&rsaquo;</a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="p-section">
-    <hr class="is-fixed-width" />
-    <div class="row--50-50">
-      <div class="col">
-        <h2>How confidential VMs work</h2>
-      </div>
-      <div class="col">
-        <p>
-          Confidential VMs introduce a new trust boundary which only includes
-          the software running within, and the platform’s hardware. All other
-          software outside is no longer part of your trusted computing base.
-        </p>
-        <div class="p-image__background--3-2 u-align--center u-vertically-center">
-          {{ image (
-          url="https://assets.ubuntu.com/v1/abd7bccf-Hypervisor%20diagram%203.png",
-          alt="Diagram showing the hardware is at the base and the CVM can add a layer of protection around the software
-          it's running",
-          width="195",
-          height="282",
-          hi_def=True,
-          loading="lazy" ) | safe
-          }}
+    <hr class="p-rule is-fixed-width" />
+
+    <section class="p-strip is-deep u-no-padding--top">
+      <div class="row--50-50">
+        <div class="col">
+          <h2>Learn more about<br/> confidential computing</h2>
         </div>
-        <p>
-          To provide such strong security guarantees, confidential computing
-          relies on two main primitives:
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
-        <ol class="p-stepped-list--detailed">
-          <li class="p-stepped-list__item">
-            <div class="row">
-              <div class="col-3 col-medium-3">
-                <h3 class="p-heading-icon__title p-heading--5">1. Isolation</h3>
-              </div>
-              <div class="col-6 col-medium-3">
-                <p>
-                  Confidential computing capable CPUs are equipped with an AES
-                  hardware memory encryption engine, which encrypts data when it is
-                  written to system memory, and decrypts it when read. The
-                  encryption key itself is stored in the hardware root of trust and
-                  is never exposed to the platform’s system software.
-                </p>
-              </div>
-            </div>
-          </li>
-          <li class="p-stepped-list__item">
-            <div class="row">
-              <div class="col-3 col-medium-3">
-                <h3 class="p-heading-icon__title p-heading--5">
-                  2. Remote attestation
-                </h3>
-              </div>
-              <div class="col-6 col-medium-3">
-                <p>
-                  When a confidential VM is launched, its integrity is verified and
-                  its initial code and data are measured by a hardware root of
-                  trust. This ensures they have not been tampered with. The
-                  measurement is cryptographically signed and can be attested to a
-                  remote verifier.
-                </p>
-              </div>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </div>
-  </section>
-
-  <hr class="is-fixed-width" />
-
-  <section class="p-strip u-no-padding--top">
-    <div class="row">
-      <div class="col-6 col-medium-6">
-        <h2>Enterprise-grade confidential VMs on all major public clouds</h2>
-      </div>
-      <div class="col-6 col-medium-6">
-        <div class="row">
-          <div class="col-2 col-medium-3 col-small-2 u-pad-logo">
-            <p class="u-no-margin--bottom">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/dbab00f7-Microsoft_Azure.svg",
-              alt="Azure logo",
-              height="22",
-              width="22",
-              hi_def=True,
-              loading="lazy" ) | safe
-              }}
-            </p>
-          </div>
-          <div class="col-4 col-medium-3 col-small-2">
-            <ul class="p-list--divided u-no-margin--bottom">
-              <li class="p-list__item">
-                <a
-                  href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-confidential-vm-focal?tab=Overview">AMD
-                  SEV SNP with Ubuntu 20.04 LTS on Azure</a>
-              </li>
-              <li class="p-list__item">
-                <a
-                  href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-confidential-vm-jammy">AMD
-                  SEV SNP with Ubuntu 22.04 LTS on Azure</a>
-              </li>
-              <li class="p-list__item">
-                <a
-                  href="https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR9_qJVF-zyZCqvwR_iaG2EFUME1BT1hJN0I1VjhGWE9QNUJGREQ5QUlMNS4u">Intel
-                  TDX in private preview with 22.04 LTS on Azure</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <hr />
-        <div class="row">
-          <div class="col-2 col-medium-3 col-small-2 u-pad-logo">
-            <p class="u-no-margin--bottom">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/2c479064-cloud-logo%201.svg",
-              alt="Google Cloud logo",
-              height="22",
-              width="120",
-              hi_def=True,
-              loading="lazy" ) | safe
-              }}
-            </p>
-          </div>
-          <div class="col-4 col-medium-3 col-small-2">
-            <p><a href="/blog/start-your-snp-vms-on-google-cloud">AMD SEV SNP with Ubuntu 22.04 LTS on Google Cloud</a>
-            </p>
-          </div>
-        </div>
-        <hr />
-        <div class="row">
-          <div class="col-2 col-medium-3 col-small-2 u-pad-logo">
-            <p class="u-no-margin--bottom">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/8e5cc412-AWS.svg",
-              alt="AWS logo",
-              height="22",
-              width="36",
-              hi_def=True,
-              loading="lazy" ) | safe
-              }}
-            </p>
-          </div>
-          <div class="col-4 col-medium-3 col-small-2">
-            <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snp-requirements.html">AMD SEV SNP with
-                Ubuntu 23.10 on AWS</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="is-fixed-width" />
-
-  <section class="p-strip is-deep">
-    <div class="row">
-      <div class="col-12">
-        <p class="p-heading--2">
-          <a href="/engage/introduction-confidential-computing">Download our guide to confidential
-            computing&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <hr class="is-fixed-width" />
-
-  <section class="p-strip u-no-padding--top">
-    <div class="row--50-50">
-      <div class="col">
-        <h2>A solid foundation of your zero trust strategy</h2>
-      </div>
-      <div class="col">
-        <p>
-          With confidential computing, you can remove the privileged systems
-          software from your trusted computing base, reduce your attack surface,
-          and get a remotely verifiable cryptographic guarantee before trusting
-          any platform with your data.
-        </p>
-        <p>
-          <a href="/blog/build-foundation-zero-trust-strategy-ubuntu-confidential-computing">Learn
-            more about zero trust and confidential computing&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <hr class="is-fixed-width" />
-
-  <section class="p-strip u-no-padding--top">
-    <div class="row--50-50">
-      <div class="col">
-        <h2>Confidential computing in your private data centre</h2>
-      </div>
-      <div class="col">
-        <p>
-          Combine good data governance practices with the latest advances in
-          privacy-enhancing computation. Use confidential computing to protect
-          the confidentiality and integrity of the sensitive data hosted on your
-          on-premises servers, using hardware-rooted primitives beyond
-          traditional measures.
-        </p>
-        <p>
-          <a href="https://canonical.com/blog/why-do-you-also-need-confidential-computing-for-your-private-datacenter">Why
-            use confidential VMs in your private datacenter?&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <hr class="is-fixed-width" />
-
-  <section class="p-strip is-deep u-no-padding--top">
-    <div class="row--50-50">
-      <div class="col">
-        <h2>Learn more about confidential computing</h2>
-      </div>
-      <div class="col">
-        <ul class="p-list--divided u-no-margin--bottom">
-          <li class="p-list__item">
-            <a href="/blog/what-is-confidential-computing-a-high-level-explanation-for-cisos">What is
-              confidential computing? A high-level explanation for CISOs</a>
-          </li>
-          <li class="p-list__item">
-            <a href="/blog/confidential-computing-in-public-clouds-isolation-and-remote-attestation-explained">Confidential
+        <div class="col">
+          <ul class="p-list--divided u-no-margin--bottom">
+            <li class="p-list__item">
+              <a href="https://canonical.com/blog/tracing-origins-confidential-computing">Learn about the history of confidential computing</a>
+            </li>
+            <li class="p-list__item">
+              <a href="/blog/confidential-computing-in-public-clouds-isolation-and-remote-attestation-explained">Confidential
               computing in public clouds: isolation and remote attestation explained</a>
-          </li>
-          <li class="p-list__item">
-            <a href="/blog/cloud-cyber-security-with-ubuntu-pro-confidential-vms">Strengthen your cloud
+            </li>
+            <li class="p-list__item">
+              <a href="/blog/cloud-cyber-security-with-ubuntu-pro-confidential-vms">Strengthen your cloud
               cyber security with Ubuntu Pro and confidential VMs</a>
-          </li>
-        </ul>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </section>
-</div>
+    </section>
 
-<section class="p-strip--white is-deep">
-  <div class="row">
-    <div class="col-12">
-      <p class="p-heading--2">
-        <a class="js-invoke-modal" href="/contact-us">Contact us to discuss your use case&nbsp;&rsaquo;</a>
-      </p>
-    </div>
+    <hr class="p-rule is-fixed-width" />
+    <section class="p-strip is-deep">
+      <div class="u-fixed-width">
+        <p class="p-heading--2">
+          <a class="js-invoke-modal" href="/contact-us">Contact us to discuss your use case&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+    </section>
   </div>
-</section>
+
 
 {% endblock %}

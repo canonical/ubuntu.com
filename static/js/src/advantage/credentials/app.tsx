@@ -1,14 +1,8 @@
-import React from "react";
-import ReactDOM from "react-dom";
 import * as Sentry from "@sentry/react";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { Integrations } from "@sentry/tracing";
-import { ReactQueryDevtools } from "react-query/devtools";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { createRoot } from "react-dom/client";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import CredManage from "./components/CredManage";
-import CredKeyShop from "./components/CredKeyShop";
-import CredExamShop from "./components/CredExamShop/CredExamShop";
-import CredWebhookResponses from "./components/CredWebhookResponses";
 
 const oneHour = 1000 * 60 * 60;
 const queryClient = new QueryClient({
@@ -25,33 +19,19 @@ const queryClient = new QueryClient({
 
 Sentry.init({
   dsn: "https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13",
-  integrations: [
-    new Integrations.BrowserTracing({
-      tracingOrigins: ["ubuntu.com"],
-    }),
-  ],
+  integrations: [Sentry.browserTracingIntegration()],
   allowUrls: ["ubuntu.com"],
 });
 
-function App() {
+function App(): JSX.Element {
   return (
-    <Sentry.ErrorBoundary>
+    <Sentry.ErrorBoundary fallback={<p>An error has occurred</p>}>
       <QueryClientProvider client={queryClient}>
-        <Router basename="/credentials/shop">
-          <Routes>
-            <Route path="/" element={<CredExamShop />} />
-            <Route path="/keys" element={<CredKeyShop />} />
-            <Route path="/manage" element={<CredManage />} />
-            <Route
-              path="/webhook_responses"
-              element={<CredWebhookResponses />}
-            />
-          </Routes>
-        </Router>
+        <CredManage />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </Sentry.ErrorBoundary>
   );
 }
 
-ReactDOM.render(<App />, document.getElementById("react-root"));
+createRoot(document.getElementById("react-root")!).render(<App />);

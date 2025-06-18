@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Formik } from "formik";
 import {
   Col,
@@ -6,36 +6,57 @@ import {
   Notification,
   Row,
   Spinner,
+  Strip,
 } from "@canonical/react-components";
 import { checkoutEvent } from "advantage/ecom-events";
 import useCustomerInfo from "../../hooks/useCustomerInfo";
 import { canBeTrialled, getInitialFormValues } from "../../utils/helpers";
-import { Action, marketplaceDisplayName, Product } from "../../utils/types";
+import {
+  Action,
+  Coupon,
+  CheckoutProducts,
+  marketplaceDisplayName,
+} from "../../utils/types";
 import BuyButton from "../BuyButton";
 import ConfirmAndBuy from "../ConfirmAndBuy";
 import FreeTrial from "../FreeTrial";
 import Summary from "../Summary";
 import Taxes from "../Taxes";
 import UserInfoForm from "../UserInfoForm";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
+import AdditionalNotes from "../AdditionalNotes";
+import type { DisplayError } from "../../utils/types";
 
 type Props = {
-  product: Product;
-  quantity: number;
+  products: CheckoutProducts[];
   action: Action;
+  coupon: Coupon;
 };
 
-const Checkout = ({ product, quantity, action }: Props) => {
-  const [error, setError] = useState<React.ReactNode>(null);
+const Checkout = ({ products, action, coupon }: Props) => {
+  const [error, setError] = useState<DisplayError | null>(null);
+  const [errorType, setErrorType] = useState<string>("");
   const { data: userInfo, isLoading: isUserInfoLoading } = useCustomerInfo();
   const userCanTrial = window.canTrial;
-  const productCanBeTrialled = product?.canBeTrialled;
-  const canTrial = canBeTrialled(productCanBeTrialled, userCanTrial);
-  const initialValues = getInitialFormValues(product, canTrial, userInfo);
+  const marketplace = products[0].product.marketplace;
+  let canTrial = false;
+  if (
+    marketplace !== UserSubscriptionMarketplace.CanonicalProChannel &&
+    products?.length === 1
+  ) {
+    const product = products[0].product;
+    const productCanBeTrialled = product?.canBeTrialled;
+    canTrial = canBeTrialled(productCanBeTrialled, userCanTrial);
+  }
+
+  const product = products[0].product;
+  const initialValues = getInitialFormValues(marketplace, canTrial, userInfo);
 
   if (!localStorage.getItem("gaEventTriggered")) {
     localStorage.setItem("gaEventTriggered", "true");
     checkoutEvent(window.GAFriendlyProduct, "2");
   }
+
   return (
     <>
       <div className="p-strip">
@@ -48,8 +69,8 @@ const Checkout = ({ product, quantity, action }: Props) => {
       <div className="p-strip u-no-padding--top checkout-container">
         <Row>
           {error ? (
-            <Notification severity="negative" title="error">
-              {error}
+            <Notification severity="negative" title={error.title ?? "error"}>
+              {error.description}
             </Notification>
           ) : null}
           {isUserInfoLoading ? (
@@ -85,38 +106,48 @@ const Checkout = ({ product, quantity, action }: Props) => {
                     {
                       title: "Region and taxes",
                       content: (
-                        <Taxes
-                          product={product}
-                          quantity={quantity}
-                          setError={setError}
-                        />
+                        <Taxes products={products} setError={setError} />
                       ),
                     },
                     {
                       title: "Your purchase",
                       content: (
                         <Summary
-                          quantity={quantity}
-                          product={product}
+                          products={products}
                           action={action}
+                          coupon={coupon}
                           setError={setError}
+                          setErrorType={setErrorType}
                         />
                       ),
                     },
-                    {
-                      title: "Your information",
-                      content: <UserInfoForm setError={setError} />,
-                    },
+                    ...(product?.price?.value == 0
+                      ? []
+                      : [
+                          {
+                            title: "Your information",
+                            content: <UserInfoForm setError={setError} />,
+                          },
+                        ]),
                     ...(canTrial
                       ? [
                           {
                             title: "Free trial",
                             content: (
-                              <FreeTrial
-                                quantity={quantity}
-                                product={product}
-                                action={action}
-                              />
+                              <FreeTrial products={products} action={action} />
+                            ),
+                          },
+                        ]
+                      : []),
+                    ...(marketplace ===
+                    UserSubscriptionMarketplace.CanonicalProChannel
+                      ? [
+                          {
+                            title: "Additional notes",
+                            content: (
+                              <Strip className="u-no-padding--top">
+                                <AdditionalNotes />
+                              </Strip>
                             ),
                           },
                         ]
@@ -125,15 +156,16 @@ const Checkout = ({ product, quantity, action }: Props) => {
                       title: "Confirm and buy",
                       content: (
                         <>
-                          <ConfirmAndBuy product={product} action={action} />
+                          <ConfirmAndBuy products={products} action={action} />
                           <Row>
                             <Col emptyLarge={7} size={6}>
                               <BuyButton
-                                product={product}
-                                quantity={quantity}
+                                products={products}
                                 action={action}
                                 setError={setError}
-                              ></BuyButton>
+                                coupon={coupon}
+                                errorType={errorType}
+                              />
                             </Col>
                           </Row>
                         </>

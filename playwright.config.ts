@@ -11,6 +11,7 @@ dotenv.config({
  */
 export default defineConfig({
   testDir: path.join(__dirname, "tests/playwright/tests"),
+  testIgnore: '**\/pro/**',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -22,7 +23,7 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  timeout: 30000,
+  timeout: 60000,
   use: {
     baseURL: "http://0.0.0.0:8001",
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */

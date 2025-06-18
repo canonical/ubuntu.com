@@ -1,0 +1,51 @@
+{
+  "accountID": "aAIL8S9pbKfjiMl1_COENPU6ihwqQZzOxvyYdgnxHWYI",
+  "actionable": true,
+  "activationAccountID": "aACel74nW_2C8T6Db2wdRACFlUN",
+  "canChangeItems": true,
+  "createdAt": "2024-12-08T20:21:31Z",
+  "discount": 15,
+  "externalIDs": [{"IDs": ["salesforce-123"], "origin": "Salesforce"}],
+  "id": "oALglA-u0O25o5lqXcCqwqZ4atIhBIHJEIPrmCJYz51A",
+  "items": [
+      {"productListingID": "lACtSZzXX04SacirJ7ey4AATwJzG7hxeCbnl9EUqXXFo", "value": 2}
+  ],
+  "lastModified": "0001-01-01T00:00:00Z",
+  "marketplace": "canonical-pro-channel",
+  "metadata": [
+      {"key": "channelDealCreatorName", "value": "John Smith"},
+      {"key": "distributorAccountName", "value": "Distributor, Ltd."},
+      {"key": "endUserAccountName", "value": "End Users, Ltd."},
+      {"key": "opportunityNumber", "value": "OP-102345"},
+      {"key": "resellerAccountName", "value": "Resellers, Inc."},
+      {"key": "technicalContactEmail", "value": "contact@example.com"},
+      {"key": "technicalContactName", "value": "Jane Doe"}
+  ],
+  "productListings": [
+      {
+          "allowanceMetric": "units",
+          "bundleQuantity": 1,
+          "createdAt": "2024-07-16T08:51:11.797Z",
+          "effectiveDays": 1095,
+          "externalIDs": [{"IDs": ["CQC271902"], "origin": "Salesforce"}],
+          "externalMarketplaceIDs": {"IDs": ["CQC271902"], "origin": "Salesforce"},
+          "externalPricingID": {
+              "IDs": ["price_1Pd76JCzjFajHovdpbsWjXvo"],
+              "origin": "Stripe"
+          },
+          "id": "lACtSZzXX04SacirJ7ey4AATwJzG7hxeCbnl9EUqXXFo",
+          "lastModifiedAt": "2024-07-16T08:51:11.797Z",
+          "marketplace": "canonical-pro-channel",
+          "metadata": [
+              {"key": "sfLOB", "value": "Personal Devices"},
+              {"key": "version", "value": "1"}
+          ],
+          "name": "uai-advanced-desktop-3y-channel-gbp-v1",
+          "period": "none",
+          "price": {"currency": "GBP", "value": 71109},
+          "productID": "uai-advanced-desktop",
+          "productName": "Ubuntu Pro Desktop + Support (24/7)",
+          "status": "active"
+      }
+  ]
+}

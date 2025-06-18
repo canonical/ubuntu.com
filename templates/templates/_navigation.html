@@ -1,134 +1,226 @@
 {% set breadcrumbs = get_navigation(request.path).breadcrumbs %}
-<header id="navigation" class="p-navigation--sliding is-dark {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced {% elif breadcrumbs == 'tutorials' %}is-reduced{% endif %}">
+<header id="navigation"
+        class="p-navigation--sliding is-dark {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced {% elif breadcrumbs == 'tutorials' %}is-reduced{% endif %}">
+
   {% block header_banner %}
-  <div class="row">
-    <div class="p-navigation__banner col-3">
-      <div class="p-navigation__tagged-logo">
-        <a class="p-navigation__link" href="/">
-          {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}
-          Canonical Ubuntu
-          {% elif breadcrumbs == "tutorials" %}
-          Canonical Ubuntu
-          {% else %}
-          <div class="p-navigation__logo-tag">
-            <img class="p-navigation__logo-icon" src="https://assets.ubuntu.com/v1/82818827-CoF_white.svg" alt="">
-          </div>
-          <span class="p-navigation__logo-title">Canonical Ubuntu</span>
-          {% endif %}
-        </a>
-      </div>
-      <ul class="p-navigation__items">
-        <li class="p-navigation__item">
-          <a href="/search" class="js-search-button p-navigation__link--search-toggle" aria-label="Search">
+    <div class="p-navigation__row--25-75">
+      <div class="p-navigation__banner">
+        <div class="p-navigation__tagged-logo">
+          <a class="p-navigation__link" href="/">
+            {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}
+              Canonical Ubuntu
+            {% elif breadcrumbs == "tutorials" %}
+              Canonical Ubuntu
+            {% else %}
+              <div class="p-navigation__logo-tag">
+                <img class="p-navigation__logo-icon"
+                     src="https://assets.ubuntu.com/v1/82818827-CoF_white.svg"
+                     alt="" />
+              </div>
+              <span class="p-navigation__logo-title">Canonical Ubuntu</span>
+            {% endif %}
           </a>
-        </li>
-        <li class="p-navigation__item">
-          <a href="/navigation" class="js-menu-button p-navigation__link">Menu</a>
-        </li>
-      </ul>
-    </div>
-    <nav class="p-navigation__nav col-9 js-show-nav" aria-label="Categories">
-      <ul class="p-navigation__items">
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="products" onmouseenter="fetchDropdown('/templates/meganav/products', 'products', event); this.onmouseenter = null;">
-          <a class="p-navigation__link" href="/navigation#products-navigation" aria-controls="products-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/products', 'products');">Products</a>
-        </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="use-case" onmouseenter="fetchDropdown('/templates/meganav/use-case', 'use-case', event); this.onmouseenter = null;">
-          <a class="p-navigation__link" href="/navigation#use-case-navigation" aria-controls="use-case-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/use-case', 'use-case');">Use cases</a>
-        </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="support" onmouseenter="fetchDropdown('/templates/meganav/support', 'support', event); this.onmouseenter = null;">
-          <a class="p-navigation__link" href="/navigation#support-navigation" aria-controls="support-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/support', 'support');">Support</a>
-        </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="community" onmouseenter="fetchDropdown('/templates/meganav/community', 'community', event); this.onmouseenter = null;">
-          <a class="p-navigation__link" href="/navigation#community-navigation" aria-controls="community-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/community', 'community');">Community</a>
-        </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="get-ubuntu" onmouseenter="fetchDropdown('/templates/meganav/get-ubuntu', 'get-ubuntu', event); this.onmouseenter = null;">
-          <a class="p-navigation__link" href="/navigation#get-ubuntu-navigation" aria-controls="#get-ubuntu-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/get-ubuntu', 'get-ubuntu');">Get Ubuntu</a>
-        </li>
-        <li class="p-navigation__item--dropdown-toggle global-nav-mobile global-nav" role="menuitem" id="all-canonical"></li>
-        <li class="p-navigation__item--dropdown-toggle js-account" role="menuitem" id="canonical-login"></li>
-        <li class="p-navigation__item">
-          <a href="/search" class="js-search-button p-navigation__link--search-toggle"></a>
-        </li>
-      </ul>
-      <div class="p-navigation__search">
-        <form action="/search" class="p-search-box">
-          <input type="search" class="p-search-box__input" name="q" placeholder="Search our sites" required="" aria-label="Search our sites">
-          <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
-          <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
-        </form>
+        </div>
+        <ul class="p-navigation__items">
+          <li class="p-navigation__item">
+            <a href="/search"
+               class="js-search-button p-navigation__link--search-toggle"
+               aria-label="Search"></a>
+          </li>
+          <li class="p-navigation__item">
+            <a href="/navigation" class="js-menu-button p-navigation__link">Menu</a>
+          </li>
+        </ul>
       </div>
-    </nav>
-  </div>
+      <nav class="p-navigation__nav js-show-nav" aria-label="Categories">
+        <ul class="p-navigation__items" role="menu">
+          <li class="p-navigation__item--dropdown-toggle"
+              role="menuitem"
+              id="products"
+              onmouseenter="fetchDropdown('/templates/meganav/products', 'products', event); this.onmouseenter = null;">
+            <a class="p-navigation__link"
+               href="/navigation#products-navigation"
+               aria-controls="products-content"
+               tabindex="0"
+               onfocus="fetchDropdown('/templates/meganav/products', 'products');">Products</a>
+          </li>
+          <li class="p-navigation__item--dropdown-toggle"
+              role="menuitem"
+              id="use-case"
+              onmouseenter="fetchDropdown('/templates/meganav/use-case', 'use-case', event); this.onmouseenter = null;">
+            <a class="p-navigation__link"
+               href="/navigation#use-case-navigation"
+               aria-controls="use-case-content"
+               tabindex="0"
+               onfocus="fetchDropdown('/templates/meganav/use-case', 'use-case');">Use cases</a>
+          </li>
+          <li class="p-navigation__item--dropdown-toggle"
+              role="menuitem"
+              id="support"
+              onmouseenter="fetchDropdown('/templates/meganav/support', 'support', event); this.onmouseenter = null;">
+            <a class="p-navigation__link"
+               href="/navigation#support-navigation"
+               aria-controls="support-content"
+               tabindex="0"
+               onfocus="fetchDropdown('/templates/meganav/support', 'support');">Support</a>
+          </li>
+          <li class="p-navigation__item--dropdown-toggle"
+              role="menuitem"
+              id="community"
+              onmouseenter="fetchDropdown('/templates/meganav/community', 'community', event); this.onmouseenter = null;">
+            <a class="p-navigation__link"
+               href="/navigation#community-navigation"
+               aria-controls="community-content"
+               tabindex="0"
+               onfocus="fetchDropdown('/templates/meganav/community', 'community');">Community</a>
+          </li>
+          <li class="p-navigation__item--dropdown-toggle"
+              role="menuitem"
+              id="download-ubuntu"
+              onmouseenter="fetchDropdown('/templates/meganav/download-ubuntu', 'download-ubuntu', event); this.onmouseenter = null;">
+            <a class="p-navigation__link"
+               href="/navigation#download-ubuntu-navigation"
+               aria-controls="download-ubuntu-content"
+               tabindex="0"
+               onfocus="fetchDropdown('/templates/meganav/download-ubuntu', 'download-ubuntu');">Download Ubuntu</a>
+          </li>
+          <li class="p-navigation__item--dropdown-toggle global-nav-mobile global-nav"
+              role="menuitem"
+              id="all-canonical"></li>
+          <li class="p-navigation__item--dropdown-toggle js-account"
+              role="menuitem"
+              id="canonical-login"></li>
+          <li class="p-navigation__item">
+            <a href="/search"
+               class="js-search-button p-navigation__link--search-toggle"></a>
+          </li>
+        </ul>
+        <div class="p-navigation__search">
+          <form action="/search" class="p-search-box is-light js-search-form">
+            <!-- honeypot search input -->
+            <input type="search"
+                    id="search"
+                    class="p-search-box__input u-hide "
+                    name="search"
+                    placeholder="Search our sites"
+                    aria-label="Search our sites"
+                    value=""/>
+            <!-- end of honeypot search input -->
+            <input type="search"
+                   class="p-search-box__input"
+                   name="q"
+                   placeholder="Search our sites"
+                   required=""
+                   aria-label="Search our sites" />
+            <button type="reset" class="p-search-box__reset">
+              <i class="p-icon--close"></i>
+            </button>
+            <button type="submit" class="p-search-box__button">
+              <i class="p-icon--search"></i>
+            </button>
+          </form>
+        </div>
+      </nav>
+    </div>
   {% endblock header_banner %}
   <div class="p-navigation__search-overlay"></div>
   <div id="control-height"></div>
 </header>
 <div class="dropdown-window-overlay fade-animation"></div>
-<div class="dropdown-window slide-animation {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced {% elif breadcrumbs == 'tutorials' %}is-reduced{% endif %}">
+<div class="dropdown-window  is-dark slide-animation {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced {% elif breadcrumbs == 'tutorials' %}is-reduced{% endif %}">
   <div class="u-hide dropdown-content-desktop" id="products-content"></div>
   <div class="u-hide dropdown-content-desktop" id="use-case-content"></div>
   <div class="u-hide dropdown-content-desktop" id="support-content"></div>
   <div class="u-hide dropdown-content-desktop" id="community-content"></div>
-  <div class="u-hide dropdown-content-desktop" id="get-ubuntu-content"></div>
-  <div class="u-hide dropdown-content-desktop global-nav-desktop" id="all-canonical-content"></div>
+  <div class="u-hide dropdown-content-desktop" id="download-ubuntu-content"></div>
+  <div class="u-hide dropdown-content-desktop global-nav-desktop"
+       id="all-canonical-content"></div>
 </div>
 {% if not(hide_subnav == True) %}
-{% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}
-<div id="secondary-navigation" class="p-navigation is-secondary is-dark">
-  <div class="row">
-    <div class="p-navigation__banner col-3">
-      <div class="p-navigation__tagged-logo">
-        <a class="p-navigation__link" href="{{ breadcrumbs.section.path }}">
-          <div class="p-navigation__logo-tag">
-            <img class="p-navigation__logo-icon" src="https://assets.ubuntu.com/v1/82818827-CoF_white.svg" alt="">
+  {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}
+    <div id="secondary-navigation" class="p-navigation is-secondary is-dark">
+      <div class="p-navigation__row--25-75">
+        <div class="p-navigation__banner">
+          <div class="p-navigation__tagged-logo">
+            <a class="p-navigation__link" href="{{ breadcrumbs.section.path }}">
+              <div class="p-navigation__logo-tag">
+                <img class="p-navigation__logo-icon"
+                     src="https://assets.ubuntu.com/v1/82818827-CoF_white.svg"
+                     alt="" />
+              </div>
+              <span class="p-navigation__logo-title">{{ breadcrumbs.section.title | replace(' ', '&nbsp;') | safe }}</span>
+            </a>
           </div>
-          <span class="p-navigation__logo-title">{{ breadcrumbs.section.title | replace(" ", "&nbsp;") | safe }}</span>
-        </a>
-      </div>
-      {% if breadcrumbs.children %}
-        {% if not (breadcrumbs.children | length == 1 and breadcrumbs.children[0].title == "Overview") %}
-         <a href="#" class="p-navigation__toggle--open" title="Toggle navigation"><i class="p-icon--chevron-down is-light"></i></a>
-        {% endif %}
-      {% endif %}
-    </div>
-
-    <nav class="p-navigation__nav col-9" aria-label="{{ breadcrumbs.section.title | replace(' ', '&nbsp;') | safe }} navigation">
-      {% if breadcrumbs.children %}
-      <ul class="p-navigation__items">
-        {% for child in breadcrumbs.children %}
-          {% if child.title != "Overview" %}
-            {% if child.path == '/blog/topics' %}
-            <li class="p-navigation__item  {% if child.active %}is-selected{% endif %}" style="position: relative;">
-              <a aria-controls="#topics" data-trigger="hover" class="p-navigation__link  p-contextual-menu__toggle" href="#">{{ child.title }}</a>
-              <span class="p-contextual-menu__dropdown" id="topics" aria-hidden="true" aria-label="submenu" style="position: absolute; font-size: .875rem;">
-                <span class="p-contextual-menu__group">
-                  {% for item in child.children %}
-                  <a href="{{ item.path }}" class="p-contextual-menu__link breadcrumbs p-link--soft">{{ item.title }}</a>
-                  {% endfor %}
-                </span>
-              </span>
-            </li>
-            {% elif child.path != '/blog/archives' and child.path != '/blog/upcoming' %}
-            <li class="p-navigation__item {% if child.active %}is-selected{% endif %}">
-              <a class="p-navigation__link" href="{{ child.path }}" {% if child.active %}aria-current="page"{% endif %}>{{ child.title }}</a>
-            </li>
+          {% if breadcrumbs.children %}
+            {% if not (breadcrumbs.children | length == 1 and breadcrumbs.children[0].title == "Overview") %}
+              <a href="#" class="p-navigation__toggle--open" title="Toggle navigation"><i class="p-icon--chevron-down is-light"></i></a>
             {% endif %}
           {% endif %}
-        {% endfor %}
+        </div>
 
-        {% for child in breadcrumbs.children %}
-          {% if child.path == "/blog/topics" %}
-            {% for item in child.children %}
-            <li class="p-navigation__item u-hide--medium u-hide--large {% if request.path == item.path %}is-selected{% endif %}">
-              <a class="p-navigation__link" href="{{ item.path }}">{{ item.title }}</a>
-            </li>
-            {% endfor %}
+        <nav class="p-navigation__nav"
+             aria-label="{{ breadcrumbs.section.title | replace(' ', '&nbsp;') | safe }} navigation">
+          {% if breadcrumbs.children %}
+            <ul class="p-navigation__items">
+              {% for child in breadcrumbs.children %}
+                {% if child.title != "Overview" %}
+                  {% if child.path == '/blog/topics' %}
+                    <li class="p-navigation__item  {% if child.active %}is-selected{% endif %}"
+                        style="position: relative">
+                      <a aria-controls="#topics"
+                         data-trigger="hover"
+                         class="p-navigation__link  p-contextual-menu__toggle"
+                         href="#">{{ child.title }}</a>
+                      <span class="p-contextual-menu__dropdown"
+                            id="topics"
+                            aria-hidden="true"
+                            aria-label="submenu"
+                            style="position: absolute;
+                                   font-size: .875rem">
+                        <span class="p-contextual-menu__group">
+                          {% for item in child.children %}
+                            <a href="{{ item.path }}"
+                               class="p-contextual-menu__link breadcrumbs p-link--soft">{{ item.title }}</a>
+                          {% endfor %}
+                        </span>
+                      </span>
+                    </li>
+                  {% elif child.path != '/blog/archives' and child.path != '/blog/upcoming' %}
+                    {% set has_access = not child.login_required or child.login_required and user_info %}
+                    {% if has_access %}
+                      {% if breadcrumbs.section.title == "Ubuntu Pro Distributor" and child.title == "Docs" or child.title == "Discourse" %}
+                        <li class="p-navigation__item {% if child.active %}is-selected{% endif %}">
+                          <a class="p-navigation__link"
+                            href="{{ child.path }}" target="_blank"
+                            {% if child.active %}aria-current="page"{% endif %}>{{
+                          child.title }}</a>
+                        </li>
+                      {% else %}
+                      <li class="p-navigation__item {% if child.active %}is-selected{% endif %}">
+                        <a class="p-navigation__link"
+                           href="{{ child.path }}"
+                           {% if child.active %}aria-current="page"{% endif %}>{{
+                        child.title }}</a>
+                      </li>
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+
+              {% for child in breadcrumbs.children %}
+                {% if child.path == "/blog/topics" %}
+                  {% for item in child.children %}
+                    <li class="p-navigation__item u-hide--medium u-hide--large {% if request.path == item.path %}is-selected{% endif %}">
+                      <a class="p-navigation__link" href="{{ item.path }}">{{ item.title }}</a>
+                    </li>
+                  {% endfor %}
+                {% endif %}
+              {% endfor %}
+            </ul>
           {% endif %}
-        {% endfor %}
-      </ul>
-      {% endif %}
-    </nav>
-  </div>
-</div>
-{% endif %}
+        </nav>
+      </div>
+    </div>
+  {% endif %}
 {% endif %}

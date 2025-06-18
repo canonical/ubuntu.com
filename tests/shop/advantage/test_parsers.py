@@ -10,6 +10,7 @@ from webapp.shop.api.ua_contracts.models import (
     Product,
     OfferItem,
     Offer,
+    ExternalID,
 )
 from webapp.shop.api.ua_contracts.parsers import (
     parse_offer_items,
@@ -619,8 +620,10 @@ class TestParsers(unittest.TestCase):
                     allowance=5,
                 ),
             ],
+            exclusion_group="",
         )
 
+        self.assertFalse(expectation.check_is_channel_offer())
         self.assertIsInstance(parsed_offer, Offer)
         self.assertEqual(to_dict(expectation), to_dict(parsed_offer))
 
@@ -653,6 +656,98 @@ class TestParsers(unittest.TestCase):
                 ],
             )
         ]
+        self.assertFalse(expectation[0].check_is_channel_offer())
+        self.assertIsInstance(parsed_offers, List)
+        self.assertEqual(to_dict(expectation), to_dict(parsed_offers))
 
+    # Channel offer
+    def test_parse_channel_offer(self):
+        raw_offer = get_fixture("channel-offer")
+
+        parsed_offer = parse_offer(raw_offer)
+
+        expectation = Offer(
+            id="oALglA-u0O25o5lqXcCqwqZ4atIhBIHJEIPrmCJYz51A",
+            account_id="aAIL8S9pbKfjiMl1_COENPU6ihwqQZzOxvyYdgnxHWYI",
+            total=142218,
+            discount=15,
+            actionable=True,
+            created_at="2024-12-08T20:21:31Z",
+            marketplace="canonical-pro-channel",
+            can_change_items=True,
+            external_ids=[
+                ExternalID(origin="Salesforce", ids=["salesforce-123"]),
+            ],
+            activation_account_id="aACel74nW_2C8T6Db2wdRACFlUN",
+            channel_deal_creator_name="John Smith",
+            distributor_account_name="Distributor, Ltd.",
+            reseller_account_name="Resellers, Inc.",
+            end_user_account_name="End Users, Ltd.",
+            technical_contact_email="contact@example.com",
+            technical_contact_name="Jane Doe",
+            opportunity_number="OP-102345",
+            items=[
+                OfferItem(
+                    id="lACtSZzXX04SacirJ7ey4AATwJzG7hxeCbnl9EUqXXFo",
+                    name="uai-advanced-desktop-3y-channel-gbp-v1",
+                    price=142218,
+                    allowance=2,
+                    currency="GBP",
+                    effectiveDays=1095,
+                    productID="uai-advanced-desktop",
+                    productName="Ubuntu Pro Desktop + Support (24/7)",
+                ),
+            ],
+            exclusion_group="",
+        )
+        self.maxDiff = None
+        self.assertTrue(expectation.check_is_channel_offer())
+        self.assertIsInstance(parsed_offer, Offer)
+        self.assertEqual(to_dict(expectation), to_dict(parsed_offer))
+
+    # Channel offers
+    def test_parse_channel_offers(self):
+        raw_offers = get_fixture("channel-offers")
+
+        parsed_offers = parse_offers(raw_offers)
+
+        expectation = [
+            Offer(
+                id="oALglA-u0O25o5lqXcCqwqZ4atIhBIHJEIPrmCJYz51A",
+                account_id="aAIL8S9pbKfjiMl1_COENPU6ihwqQZzOxvyYdgnxHWYI",
+                total=142218,
+                discount=15,
+                actionable=True,
+                created_at="2024-12-08T20:21:31Z",
+                marketplace="canonical-pro-channel",
+                can_change_items=True,
+                external_ids=[
+                    ExternalID(origin="Salesforce", ids=["salesforce-123"]),
+                ],
+                activation_account_id="aACel74nW_2C8T6Db2wdRACFlUN",
+                channel_deal_creator_name="John Smith",
+                distributor_account_name="Distributor, Ltd.",
+                reseller_account_name="Resellers, Inc.",
+                end_user_account_name="End Users, Ltd.",
+                technical_contact_email="contact@example.com",
+                technical_contact_name="Jane Doe",
+                opportunity_number="OP-102345",
+                items=[
+                    OfferItem(
+                        id="lACtSZzXX04SacirJ7ey4AATwJzG7hxeCbnl9EUqXXFo",
+                        name="uai-advanced-desktop-3y-channel-gbp-v1",
+                        price=142218,
+                        allowance=2,
+                        currency="GBP",
+                        effectiveDays=1095,
+                        productID="uai-advanced-desktop",
+                        productName="Ubuntu Pro Desktop + Support (24/7)",
+                    ),
+                ],
+                exclusion_group="",
+            )
+        ]
+        self.maxDiff = None
+        self.assertTrue(expectation[0].check_is_channel_offer())
         self.assertIsInstance(parsed_offers, List)
         self.assertEqual(to_dict(expectation), to_dict(parsed_offers))

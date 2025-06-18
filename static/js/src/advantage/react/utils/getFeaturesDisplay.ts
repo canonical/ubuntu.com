@@ -14,7 +14,7 @@ const labels: Record<string, string | null> = {
 };
 
 export const getFeaturesDisplay = (
-  entitlements: UserSubscriptionEntitlement[]
+  entitlements: UserSubscriptionEntitlement[],
 ) => {
   const included: string[] = [];
   const excluded: string[] = [];

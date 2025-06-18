@@ -25,6 +25,8 @@ azure:
       path: /azure/fips
     - title: SQL
       path: /azure/sql
+    - title: Docs
+      path: https://documentation.ubuntu.com/azure
 
 appliance:
   title: Appliance
@@ -35,14 +37,10 @@ appliance:
       path: /appliance
     - title: About
       path: /appliance/about
-    - title: Portfolio
-      path: /appliance/portfolio
     - title: Community
       path: /appliance/community
     - title: Hardware
       path: /appliance/hardware
-    - title: Virtual machines
-      path: /appliance/vm
 aws:
   title: AWS
   path: /aws
@@ -60,9 +58,11 @@ aws:
       path: /aws/fips
     - title: WorkSpaces
       path: /aws/workspaces
+    - title: Docs
+      path: https://documentation.ubuntu.com/aws/en/latest/
 
 managedapps:
-  title: Managed
+  title: Managed Services
   path: /managed
 
   children:
@@ -76,8 +76,8 @@ managedapps:
       path: /ceph/managed
     - title: Apps
       path: /managed/apps
-    - title: Observability
-      path: /observability/managed
+    - title: Firefighting
+      path: /managed/firefighting-support
 
 openstack:
   title: Canonical OpenStack
@@ -98,28 +98,6 @@ openstack:
       path: /openstack/install
     - title: Support
       path: /openstack/support
-
-raspberrypi:
-  title: Raspberry Pi
-  path: /raspberry-pi
-
-  children:
-    - title: Overview
-      path: /raspberry-pi
-    - title: Desktop
-      path: /raspberry-pi/desktop
-    - title: Server
-      path: /raspberry-pi/server
-
-financial-services:
-  title: Finance
-  path: /financial-services
-
-  children:
-    - title: Overview
-      path: /financial-services
-    - title: Resources
-      path: /financial-services/resources
 
 ceph:
   title: Canonical Ceph
@@ -196,10 +174,12 @@ containers:
       path: /containers
     - title: What are containers
       path: /containers/what-are-containers
-    - title: Chiselled Ubuntu
-      path: /containers/chiselled
-    - title: Chiselled and .NET
-      path: /containers/chiselled/dotnet
+    - title: Chiseled Ubuntu
+      path: /containers/chiseled
+    - title: Chiseled and .NET
+      path: /containers/chiseled/dotnet
+    - title: Container Build Service
+      path: /containers/container-build-service
 
 ai:
   title: AI / ML
@@ -216,8 +196,10 @@ ai:
       path: /ai/mlflow
     - title: Consulting
       path: /ai/consulting
-    - title: Roadshow
-      path: /ai/roadshow
+    - title: Data Science
+      path: /ai/data-science
+    - title: MLOps workshop
+      path: /ai/mlops-workshop
 
 kubernetes:
   title: Canonical Kubernetes
@@ -228,14 +210,12 @@ kubernetes:
       path: /kubernetes
     - title: What is Kubernetes
       path: /kubernetes/what-is-kubernetes
-    - title: Charmed Kubernetes
-      path: /kubernetes/charmed-k8s
     - title: Managed
       path: /kubernetes/managed
     - title: Install
       path: /kubernetes/install
     - title: Docs
-      path: /kubernetes/docs
+      path: /kubernetes/documentation
     - title: Resources
       path: /kubernetes/resources
 
@@ -254,8 +234,6 @@ blog:
       path: /blog/cloud-and-server
     - title: Web and Design
       path: /blog/topics/design
-    - title: Robotics
-      path: /blog/topics/robotics
     - title: People and culture
       path: /blog/people-and-culture
     - title: Archives
@@ -270,14 +248,12 @@ desktop:
   children:
     - title: Overview
       path: /desktop
-    - title: Features
-      path: /desktop/features
-    - title: Organisations
-      path: /desktop/organisations
+    - title: Organizations
+      path: /desktop/organizations
     - title: Developers
       path: /desktop/developers
-    - title: Flavours
-      path: /desktop/flavours
+    - title: Flavors
+      path: /desktop/flavors
     - title: WSL
       path: /desktop/wsl
 
@@ -288,16 +264,14 @@ core:
   children:
     - title: Overview
       path: /core
-    - title: Consulting
-      path: /core/services
-    - title: Success stories
-      path: /core/stories
     - title: Features
       path: /core/features
-    - title: Tutorials
-      path: /tutorials?q=core
+    - title: Success stories
+      path: /core/stories
+    - title: Services
+      path: /core/services
     - title: Docs
-      path: /core/docs
+      path: https://documentation.ubuntu.com/core/
 
 iot:
   title: IoT
@@ -327,7 +301,7 @@ support:
     - title: Pricing
       path: /pricing/pro
     - title: Discourse
-      path: https://discourse.ubuntu.com/c/ubuntu-pro
+      path: https://discourse.ubuntu.com/c/project/ubuntu-pro/116/
 
 pro:
   title: Ubuntu Pro
@@ -342,8 +316,26 @@ pro:
       path: /pro/users
     - title: Pricing
       path: /pricing/pro
-    - title: Tutorial
-      path: /pro/tutorial
+    - title: Free trial
+      path: /pro/free-trial
+    - title: Docs
+      path: https://documentation.ubuntu.com/pro
+    - title: Discourse
+      path: https://discourse.ubuntu.com/c/project/ubuntu-pro/116/
+
+Distributor:
+  title: Ubuntu Pro Distributor
+  path: /pro/distributor
+
+  children:
+    - title: Overview
+      path: /pro/distributor
+    - title: Account users
+      path: /pro/distributor/users
+    - title: Invoices
+      path: /pro/distributor/invoice
+    - title: Docs
+      path: https://documentation.ubuntu.com/pro
     - title: Discourse
       path: https://discourse.ubuntu.com/c/ubuntu-pro
 
@@ -370,8 +362,8 @@ download:
       path: /download/desktop
     - title: Server
       path: /download/server
-    - title: IoT
-      path: /download/iot
+    - title: Core
+      path: /download/core
     - title: Cloud
       path: /download/cloud
 
@@ -401,18 +393,6 @@ legal:
     - title: Contributors
       path: /legal/contributors
 
-observability:
-  title: Observability
-  path: /observability
-
-  children:
-    - title: Overview
-      path: /observability
-    - title: What is observability
-      path: /observability/what-is-observability
-    - title: Managed
-      path: /observability/managed
-
 security:
   title: Security
   path: /security
@@ -420,18 +400,20 @@ security:
   children:
     - title: Overview
       path: /security
+    - title: Platform Security
+      path: /security/platform-security
     - title: ESM
       path: /security/esm
     - title: Livepatch
       path: /security/livepatch
-    - title: Certifications & Hardening
-      path: /security/certifications
+    - title: Security standards
+      path: /security/security-standards
     - title: CVEs
       path: /security/cves
     - title: Notices
       path: /security/notices
-    - title: Docker Images
-      path: /security/docker-images
+    - title: Assurances
+      path: /security/assurances
 
 community:
   title: Community
@@ -456,7 +438,7 @@ engage:
       path: /engage
 
 about:
-  title: About
+  title: About Ubuntu
   path: /about
 
   children:
@@ -474,8 +456,6 @@ pricing:
   children:
     - title: Overview
       path: /pricing
-    - title: Consulting
-      path: /pricing/consulting
     - title: Desktops
       path: /pricing/desktop
     - title: Devices
@@ -525,7 +505,7 @@ robotics:
     - title: Community
       path: /robotics/community
     - title: Docs
-      path: /robotics/docs
+      path: https://canonical-robotics.readthedocs-hosted.com/en/latest/
 
 credentials:
   title: Credentials
@@ -534,14 +514,17 @@ credentials:
   children:
     - title: Overview
       path: /credentials
-    - title: Syllabus
-      path: /credentials/syllabus
+    - title: Exam content
+      path: /credentials/exam-content
     - title: Study guide
       path: /credentials/self-study
+    - title: FAQ
+      path: /credentials/faq
     # - title: Schedule
     #   path: /credentials/schedule
-    # - title: Your exams
-    #   path: /credentials/your-exams
+    - title: Your exams
+      path: /credentials/your-exams
+      login_required: True
 
 gcp:
   title: GCP
@@ -554,6 +537,8 @@ gcp:
       path: /gcp/pro
     - title: FIPS
       path: /gcp/fips
+    - title: Docs
+      path: https://documentation.ubuntu.com/gcp/en/latest/
 
 ubuntu1604:
   title: 16-04
@@ -583,21 +568,19 @@ ubuntu1804:
     - title: OCI
       path: /18-04/oci
 
-telco:
-  title: Telco
-  path: /telco
+ubuntu2004:
+  title: 20.04
+  path: /20-04
 
   children:
     - title: Overview
-      path: /telco
-    - title: VNF
-      path: /telco/vnf
-    - title: CNF
-      path: /telco/cnf
-    - title: OpenRAN
-      path: /telco/openran
-    - title: Magma
-      path: /telco/magma
+      path: /20-04
+    - title: Azure
+      path: /20-04/azure
+    - title: AWS
+      path: /20-04/aws
+    - title: Google Cloud
+      path: /20-04/gcp
 
 certification:
   title: Ubuntu Certified
@@ -621,11 +604,27 @@ certification:
 
 edge-computing:
   title: Micro cloud
-  path: /edge-computing
+  path: https://canonical.com/edge-computing
 
   children:
     - title: Overview
-      path: /edge-computing
+      path: https://canonical.com/edge-computing
+
+summit:
+  title: Ubuntu Summit
+  path: /summit
+
+  children:
+    - title: Overview
+      path: /summit
+    - title: Register
+      path: https://events.canonical.com/event/51/registrations/
+    - title: Timetable
+      path: https://events.canonical.com/event/51/timetable/?layout=room#20241025.detailed
+    - title: Travel
+      path: https://events.canonical.com/event/51/page/335-travelling-to-the-hague
+    - title: Call for collaboration
+      path: /summit/call-for-collaboration
 
 landscape:
   title: Landscape
@@ -638,12 +637,21 @@ landscape:
       path: /landscape/features
     - title: Managed
       path: /landscape/managed
-    - title: Pricing
-      path: /landscape/pricing
+    - title: Compare
+      path: /landscape/compare
     - title: Install
-      path: /landscape/install
+      path: /landscape/docs/quickstart-deployment
     - title: Docs
       path: /landscape/docs
     - title: Log in to Landscape
-      path: https://landscape.canonical.com/login/authenticate
+      path: https://landscape.canonical.com/
 
+confidential-ai:
+  title: Confidential Computing
+  path: /confidential-computing
+
+  children:
+    - title: Overview
+      path: /confidential-computing
+    - title: AI
+      path: /confidential-computing/ai

@@ -66,6 +66,11 @@ class PurchaseItemSchema(BaseSchema):
         return PurchaseItem(**data)
 
 
+class CouponSchema(BaseSchema):
+    origin = String(attribute="origin")
+    IDs = List(String(), attribute="IDs")
+
+
 class PurchaseSchema(BaseSchema):
     accountID = String(required=True, attribute="account_id")
     id = String(required=True)
@@ -77,9 +82,17 @@ class PurchaseSchema(BaseSchema):
         Nested(PurchaseItemSchema), required=True, attribute="items"
     )
     marketplace = String(
-        validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender"]),
+        validate=validate.OneOf(
+            [
+                "canonical-ua",
+                "canonical-cube",
+                "blender",
+                "canonical-pro-channel",
+            ]
+        ),
         required=True,
     )
+    coupon = Nested(CouponSchema)
 
     @post_load
     def make_purchase(self, data, **kwargs) -> Purchase:
@@ -91,6 +104,7 @@ class AccountSchema(BaseSchema):
     name = String(required=True)
     type = String(required=True)
     userRoleOnAccount = String(required=True, attribute="role")
+    hasChannelStoreAccess = Boolean(required=True)
 
     @post_load
     def make_purchase(self, data, **kwargs) -> Account:

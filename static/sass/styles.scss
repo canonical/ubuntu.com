@@ -5,6 +5,28 @@
 
 // settings
 @import "global-settings";
+
+// XXX: remove once these are updated in vanilla (v 4.12 or later)
+$colors--dark-theme--text-default: hsl(0, 0%, 100%) !default;
+$colors--light-theme--text-default: #000 !default;
+
+$colors--dark-theme--border-default: rgba(
+  $colors--dark-theme--text-default,
+  0.3
+);
+$colors--dark-theme--border-low-contrast: rgba(
+  $colors--dark-theme--text-default,
+  0.1
+);
+$colors--light-theme--border-default: rgba(
+  $colors--light-theme--text-default,
+  0.3
+);
+$colors--light-theme--border-low-contrast: rgba(
+  $colors--light-theme--text-default,
+  0.1
+);
+
 @import "settings_colors";
 
 // custom mixins
@@ -43,6 +65,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_carousel";
 @import "pattern_checkout";
 @import "pattern_certification-results";
+@import "pattern_certified-model-details-tabs";
 @import "pattern_chart";
 @import "pattern_component-details-table";
 @import "pattern_component-table";
@@ -52,13 +75,13 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_cube-progression";
 @import "pattern_cube-table";
 @import "pattern_cve";
-@import "pattern_desktop-statistics";
 @import "pattern_grid";
 @import "pattern_footer";
 @import "pattern_hardware-details-table";
 @import "pattern_heading-icon";
 @import "pattern_icons";
 @import "pattern_inline-list-midline";
+@import "pattern_invoices";
 @import "pattern_lightbox";
 @import "pattern_lists";
 @import "pattern_matrix";
@@ -73,6 +96,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_strip-photos";
 @import "pattern_subscriptions";
 @import "pattern_subscribe";
+@import "pattern_distributor";
 @import "pattern_tabs";
 @import "pattern_takeunders";
 @import "pattern_takeovers";
@@ -81,14 +105,15 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_tco-calculator";
 @import "pattern_ubuntu_intro";
 @import "pattern_dell";
-@import "takeovers/financial-services";
+@import "pattern_modals";
+@import "pattern_tube-line";
 @import "utility_animations";
 @import "utility_crop";
 @import "utility_vertically-center";
 
+@include additional-p-icons;
 @include blog-p-card;
 @include blog-p-featured;
-@include blog-p-icons;
 @include blog-p-list;
 @include blog-p-post;
 @include blog-p-strips-suru;
@@ -106,12 +131,12 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-cube-animation;
 @include ubuntu-p-cube-progression;
 @include ubuntu-p-cve;
-@include ubuntu-p-desktop-statistics;
 @include ubuntu-p-floating-image;
 @include ubuntu-p-footer;
 @include ubuntu-p-grid;
 @include ubuntu-p-heading-icon;
 @include ubuntu-p-inline-list-midline;
+@include ubuntu-p-invoices;
 @include ubuntu-p-attention-icon;
 @include ubuntu-p-lightbox;
 @include ubuntu-p-lists;
@@ -125,6 +150,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-pie-chart;
 @include ubuntu-p-ua-shop-cart;
 @include ubuntu-p-ua-subscribe;
+@include ubuntu-p-distributor;
 @include ubuntu-p-ua-subscriptions;
 @include ubuntu-p-strip-photos;
 @include ubuntu-p-table-compliance-profiles;
@@ -140,11 +166,14 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-u-animations;
 @include ubuntu-u-vertically-center;
 @include ubuntu-p-dell;
-@include p-takeover-financial-services;
+@include ubuntu-p-tube-line;
 @include vf-p-icon-success-grey;
 @include vf-p-icon-restart;
 @include vf-p-icon-begin-downloading;
 @include vf-p-icon-video-play;
+@include vf-p-icon-machines;
+@include vf-p-icon-units;
+@include vf-p-icon-plans;
 @include openstack-carousel;
 
 // Layouts:
@@ -166,16 +195,18 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 
 // Overide the path to flags for dial codes
 .iti__flag {
-  background-image: url("#{$assets-path}21572c97-flags.png");
+  background-image: url("#{$assets-path}685bc1a3-flags.png");
 }
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .iti__flag {
-    background-image: url("#{$assets-path}d6f84371-flags%402x.png");
+    background-image: url("#{$assets-path}01807c27-flags@2x.png");
   }
 }
 
+// Make sure the phone input has the same margin as other inputs
 .iti {
+  margin-bottom: $input-margin-bottom;
   width: 100%;
 }
 
@@ -245,6 +276,11 @@ fieldset:last-child {
   border-bottom-left-radius: $sp-xx-small !important;
   border-bottom-right-radius: $sp-xx-small !important;
   border-bottom-width: 1px !important;
+}
+
+.p-fieldset-section {
+  border: none !important;
+  padding: 0 !important;
 }
 
 // XXX Steve: Overriding default Vanilla style :(
@@ -473,6 +509,15 @@ summary {
   }
 }
 
+// Align blog thumbnails
+.u-blog-thumbnails {
+  // Images are populated by JS
+  img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+}
+
 // Styling for ubuntu navigation logo for engage pages
 .navigation-logo-engage {
   margin-top: -2.2rem;
@@ -515,6 +560,10 @@ summary {
 
 .u-text-light {
   color: $color-mid-dark;
+}
+
+.p-list--divided .p-list__item {
+  box-shadow: inset 0 1px 0 0 $colors--theme--border-low-contrast;
 }
 
 .p-list--no-borders {
@@ -727,6 +776,10 @@ td.p-accordion {
   @media (max-width: $breakpoint-small) {
     height: auto;
   }
+
+  @media only screen and (min-width: $breakpoint-large) {
+    min-width: 38rem;
+  }
 }
 
 .card-management-section {
@@ -792,43 +845,18 @@ td.p-accordion {
 }
 
 // Styling to display a success message when forms are successfully submitted.
-#success {
+.p-popup-notification {
   display: none;
-  position: absolute;
+  position: relative;
+  padding-bottom: 0;
+  .p-notification__content {
+    margin-bottom: 0.6rem;
+  }
 }
 
-#success:target {
+.p-popup-notification:target {
   display: block;
-  z-index: 10;
-}
-
-#newsletter-signup {
-  display: none;
-  position: absolute;
-}
-
-#newsletter-signup:target {
-  display: block;
-  z-index: 10;
-}
-
-#updated {
-  display: none;
-}
-
-#updated:target {
-  display: block;
-  z-index: 10;
-}
-
-#unsubscribed {
-  display: none;
-  position: absolute;
-}
-
-#unsubscribed:target {
-  display: block;
-  z-index: 10;
+  z-index: 9;
 }
 
 html {
@@ -1112,13 +1140,6 @@ hr.p-separator.is-shallow {
   margin-bottom: 0;
   overflow: auto;
 
-  @media screen and (min-width: 601px) {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 850px;
-    width: 100%;
-  }
-
   @media screen and (max-width: 600px) {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -1347,7 +1368,7 @@ $color-link-dark: #69c !default;
 .p-modal__dialog.is-paper {
   max-width: $grid-max-width !important;
 
-  &.is-ai-modal {
+  .row--50-50 {
     .p-modal__close {
       background-color: transparent;
       margin-top: 1.5rem;
@@ -1366,8 +1387,17 @@ $color-link-dark: #69c !default;
   }
 }
 
-// XXX: @bartaz: this will be covered in Vanilla
-// can be removed once https://github.com/canonical/vanilla-framework/issues/4875 is done and released
+// XXX: Lyubo: reduce logo section component height globally (to be moved to vanilla)
+.p-logo-section--dense .p-logo-section__logo {
+  height: 6rem;
+}
+
+.landing-logos {
+  .p-logo-section__logo {
+    height: 6.5rem;
+  }
+}
+
 .p-logo-section.has-misaligned-images {
   .p-logo-section__item {
     margin-bottom: $spv--x-large;
@@ -1401,6 +1431,10 @@ $color-link-dark: #69c !default;
 
   &.is-product {
     background-color: #f3f3f3;
+  }
+
+  &--logo {
+    margin-top: $spv--large;
   }
 }
 
@@ -1466,6 +1500,48 @@ $color-link-dark: #69c !default;
   }
 }
 
+.p-graphic-main {
+  background: #923a66;
+  display: inline-block;
+  height: 48px;
+  width: 10%;
+}
+
+.p-graphic-universe {
+  background: #000;
+  display: inline-block;
+  height: 48px;
+  width: 90%;
+}
+.p-graphic-universe--empty {
+  border-color: #757575;
+  border-style: dashed;
+  border-width: 1px;
+  display: inline-block;
+  height: 48px;
+  width: 90%;
+}
+
+.graphic-legend-main,
+.graphic-legend-universe {
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+  &::before {
+    content: "";
+    display: inline-flex;
+    flex-shrink: 0;
+    height: 25px;
+    width: 25px;
+  }
+}
+.graphic-legend-main::before {
+  background: #923a66;
+}
+.graphic-legend-universe::before {
+  background: #000;
+}
+
 // XXX: MPT: Can be removed once this is fixed in Vanilla
 // https://github.com/canonical/vanilla-framework/pull/4950
 .desktop-footer {
@@ -1492,4 +1568,296 @@ $color-link-dark: #69c !default;
 hr.is-extra-muted {
   background-color: rgba(0, 0, 0, 0.1);
   opacity: 0.5;
+}
+
+// Decimal number bug
+// To be removed once is bug is fixed: https://github.com/canonical/vanilla-framework/issues/4998
+ol.p-list--divided .p-list__item::before {
+  content: counter(list-item) ". ";
+}
+
+//XXX: styles from Liza's js snippet, taken here because the scss is not parsed inside js and the include doesn't work there. This should be refactored.
+.p-hero-video-link {
+  .p-hero-video__play {
+    @include vf-transition(background-size, fast, out);
+
+    display: block;
+  }
+
+  &:hover img {
+    opacity: 0.9;
+  }
+
+  &.p-equal-height-row__col::before {
+    content: none !important;
+  }
+}
+
+// Fix stepped list title grid bug
+// To be removed once is bug is fixed: https://github.com/canonical/vanilla-framework/issues/5002
+@media screen and (max-width: $breakpoint-small - 1) {
+  .p-stepped-list--detailed .p-stepped-list__title {
+    grid-column-end: span 4;
+    margin-left: 0;
+  }
+}
+
+// Fix slider background
+// https://github.com/canonical/vanilla-framework/issues/5025
+@-moz-document url-prefix() {
+  .p-slider {
+    @extend .is-paper;
+  }
+}
+
+.u-responsive-realign {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 0.5rem;
+}
+
+@media screen and ((max-width: #{ $breakpoint-large - 1 }) and (min-width: $breakpoint-medium)) {
+  .u-table-scroll--medium {
+    overflow-x: hidden;
+    table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }
+}
+
+@media screen and (max-width: #{ $breakpoint-medium - 1 }) {
+  .u-table-scroll--small {
+    overflow-x: hidden;
+    table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }
+}
+
+.u-align-last--logo {
+  @media screen and (max-width: $breakpoint-large - 1) {
+    .p-logo-section__item {
+      margin-right: 2rem;
+    }
+  }
+}
+
+.u-center-illutrations {
+  align-items: center;
+  display: flex;
+  height: 21rem; // provided by design
+  justify-content: center;
+}
+
+// Following two classes can be removed once Github issue is completed
+// https://github.com/canonical/vanilla-framework/issues/4876
+.u-background--fade {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.u-aspect-ratio--16-9 {
+  aspect-ratio: 16/9;
+}
+
+.u-darker-background {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+ol.ordered-counter {
+  counter-reset: item;
+
+  > li {
+    display: flex;
+  }
+
+  > li::before {
+    content: counters(item, "") ". ";
+    counter-increment: item;
+    margin-right: 0.25rem;
+  }
+}
+
+.align-center-bottom {
+  left: 0;
+  margin: auto !important;
+  right: 0;
+  text-align: center;
+}
+
+.js-invoke-modal.p-button.is-dark {
+  color: white !important;
+}
+
+legend {
+  &.is-required::before {
+    content: "* " !important;
+    position: relative !important;
+  }
+}
+
+.p-breadcrumbs {
+  margin-bottom: $spv--small;
+  margin-top: $spv--small;
+}
+
+.p-equal-height-row-50-50 {
+  .p-equal-height-row__col {
+    grid-column: span 6;
+    padding-top: 0.5rem;
+  }
+}
+
+// XXX: MPT: Can be removed once this is upstreamed in Vanilla
+// https://github.com/canonical/vanilla-framework/issues/5293
+.list-matrix {
+  @extend .p-list__item;
+
+  .list-matrix-container::before {
+    background-image: var(
+      --vf-theme-light,
+      url("data:image/svg+xml,%3Csvg width='16' height='16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 0a8 8 0 110 16A8 8 0 018 0zm0 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zm2.814 2.45l1.203.897-5.537 7.43-3.485-3.694 1.09-1.03 2.259 2.394 4.47-5.997z' fill='%23000'  fill-rule='nonzero'/%3E%3C/svg%3E")
+    );
+    background-repeat: no-repeat;
+    background-size: 1rem;
+    content: "";
+    display: inline-block;
+    height: 1rem;
+    top: 0.85rem;
+    left: 0;
+    position: absolute;
+    width: 1rem;
+  }
+
+  padding-left: 2rem;
+  position: relative;
+}
+
+// Custom styling for the social media cards found on /20years
+.p-card--social-media {
+  @extend .p-card;
+  background: $color-x-light;
+  border: unset;
+
+  .p-heading-icon {
+    margin-bottom: 0;
+
+    @media (min-width: $breakpoint-large) {
+      margin-bottom: 0.5rem;
+    }
+
+    .p-heading-icon__header .p-heading-icon__img {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .p-heading-icon--small .p-heading-icon__header .p-heading-icon__title {
+    align-self: center;
+    margin: 0;
+  }
+}
+
+.u-no-wrap {
+  white-space: nowrap;
+}
+
+// Fix for spacing in the footer
+.p-footer-list {
+  @extend %paragraph;
+}
+
+.u-additional-spacing--large {
+  @media screen and ($breakpoint-large <= width) {
+    margin-bottom: $sp-unit * 12.5;
+  }
+}
+
+.u-responsive-cta {
+  @media screen and ($breakpoint-large <= width) {
+    height: 15rem;
+  }
+}
+
+.u-horizontal-nudge {
+  @media screen and ($breakpoint-large <= width) {
+    margin-left: $spv--small;
+  }
+}
+
+.u-vertical-nudge {
+  margin-bottom: $spv--small !important;
+}
+
+.p-table--mobile-card tr td {
+  white-space: normal;
+}
+
+// XXX: Custom styling to remove the full-stop after the counter in 'p-stepped-list'
+ol.p-stepped-list.no-full-stop
+  .p-stepped-list__item
+  .p-stepped-list__title::before {
+  content: counter(p-stepped-list-counter);
+  text-align: left;
+}
+
+// Zoom effect for images on hover, used on /summit page
+.u-zoom-on-hover {
+  transition: transform 1s;
+}
+
+.u-zoom-on-hover:hover {
+  transform: scale(1.25);
+}
+
+// Custom styling for side navigation used as a TOC
+.p-side-navigation--raw-html.is-single-page {
+  position: sticky;
+  top: 4rem;
+
+  @media (max-width: $breakpoint-large) {
+    position: unset;
+    top: 0;
+  }
+}
+
+.p-toggle--sticky {
+  @extend .p-side-navigation__toggle;
+  position: sticky;
+  top: 4rem;
+  width: fit-content;
+  z-index: 2;
+}
+
+.vulnerabilities-content .section-heading {
+  scroll-margin-top: 80px;
+  @media (max-width: $breakpoint-large) {
+    scroll-margin-top: 100px;
+  }
+}
+
+// Custom styling for the vulnerability details page
+// that allows large complex tables to be scrollable
+.vulnerability-details .p-table--wide-table {
+  width: 100%;
+  overflow-x: auto;
+
+  table {
+    width: auto;
+
+    td,
+    th {
+      white-space: nowrap;
+    }
+  }
+}
+
+// Custom styling for training page that ensures
+// CTA buttons/links are stacked on small screens
+.training-cta--stacked {
+  display: flex;
+  flex-wrap: wrap;
 }

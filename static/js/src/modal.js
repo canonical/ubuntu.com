@@ -124,6 +124,6 @@ function initModals(modalId, ariaControls, open) {
   toggleModal(
     document.querySelector(modalId),
     document.querySelector(ariaControls),
-    open
+    open,
   );
 }

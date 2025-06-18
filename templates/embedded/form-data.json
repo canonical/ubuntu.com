@@ -1,0 +1,280 @@
+{
+  "form": {
+    "/embedded": {
+      "templatePath": "/embedded/index.html",
+      "isModal": true,
+      "modalId": "embedded-modal",
+      "formData": {
+        "title": "Let's get your device to market faster!",
+        "introText": "Canonical partners with silicon companies, board manufacturers and ODMs to help you bring smart devices to market faster. Tell us about your project so we can bring the right team to the conversation.",
+        "formId": 1266,
+        "returnUrl": "/embedded#contact-form-success",
+        "product": ""
+      },
+      "fieldsets": [
+        {
+          "title": "Do you have a commercial project?",
+          "id": "commercial-project",
+          "inputType": "radio",
+          "inputName": "commercial-project",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "radio",
+              "label": "Yes",
+              "value": "Yes",
+              "id": "yes"
+            },
+            {
+              "type": "radio",
+              "label": "No",
+              "value": "No",
+              "id": "no"
+            }
+          ]
+        },
+        {
+          "title": "When do you need to ship?",
+          "id": "when-to-ship",
+          "inputType": "radio",
+          "inputName": "when-to-ship",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "radio",
+              "label": "Next 3 months",
+              "value": "Next 3 months",
+              "id": "next-3-months"
+            },
+            {
+              "type": "radio",
+              "label": "Next 3 - 6 months",
+              "value": "Next 3 - 6 months",
+              "id": "next-3-6-months"
+            },
+            {
+              "type": "radio",
+              "label": "Next 6 - 12 months",
+              "value": "Next 6 - 12 months",
+              "id": "next-6-12-months"
+            },
+            {
+              "type": "radio",
+              "label": "No timeline - just researching",
+              "value": "No timeline - just researching",
+              "id": "no-timeline"
+            }
+          ]
+        },
+        {
+          "title": "What is your first year ship volume?",
+          "id": "first-year-ship-volume",
+          "inputType": "radio",
+          "inputName": "first-year-ship-volume",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "radio",
+              "label": "0-100 units",
+              "value": "0-100 units",
+              "id": "0-100-units"
+            },
+            {
+              "type": "radio",
+              "label": "100-1000 units",
+              "value": "100-1000 units",
+              "id": "100-1000-units"
+            },
+            {
+              "type": "radio",
+              "label": "1000-5,000 units",
+              "value": "1000-5,000 units",
+              "id": "1000-5000-units"
+            },
+            {
+              "type": "radio",
+              "label": "5,000-25,000 units",
+              "value": "5,000-25,000 units",
+              "id": "5000-25000-units"
+            },
+            {
+              "type": "radio",
+              "label": "25,000-50,000 units",
+              "value": "25,000-50,000 units",
+              "id": "25000-50000-units"
+            },
+            {
+              "type": "radio",
+              "label": "50,000-100,000 units",
+              "value": "50,000-100,000 units",
+              "id": "50000-100000-units"
+            },
+            {
+              "type": "radio",
+              "label": "100,000+ units",
+              "value": "100,000+ units",
+              "id": "100000-units"
+            }
+          ]
+        },
+        {
+          "title": "What is your selected hardware?",
+          "id": "selected-hardware",
+          "inputType": "radio",
+          "inputName": "selected-hardware",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "radio",
+              "label": "Intel",
+              "value": "Intel",
+              "id": "intel"
+            },
+            {
+              "type": "radio",
+              "label": "Arm",
+              "value": "Arm",
+              "id": "arm"
+            },
+            {
+              "type": "radio",
+              "label": "Raspberry Pi/CM",
+              "value": "Raspberry Pi/CM",
+              "id": "raspberry-pi"
+            },
+            {
+              "type": "radio",
+              "label": "NXP",
+              "value": "NXP",
+              "id": "nxp"
+            },
+            {
+              "type": "radio",
+              "label": "Nvidia",
+              "value": "Nvidia",
+              "id": "nvidia"
+            },
+            {
+              "type": "radio",
+              "label": "Qualcomm",
+              "value": "Qualcomm",
+              "id": "qualcomm"
+            },
+            {
+              "type": "radio",
+              "label": "Texas Instruments",
+              "value": "Texas Instruments",
+              "id": "texas-instruments"
+            },
+            {
+              "type": "radio",
+              "label": "Rockchip",
+              "value": "Rockchip",
+              "id": "rockchip"
+            },
+            {
+              "type": "radio",
+              "label": "Not sure",
+              "value": "Not sure",
+              "id": "not-sure"
+            },
+            {
+              "type": "radio",
+              "id": "other",
+              "label": "Other - please describe",
+              "value": "Other",
+              "hasTextarea": true
+            }
+          ]
+        },
+        {
+          "title": "Which products are you most interested in?",
+          "inputType": "checkbox",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "checkbox",
+              "label": "SMART START",
+              "value": "SMART START"
+            },
+            {
+              "type": "checkbox",
+              "label": "App Store",
+              "value": "App Store"
+            },
+            {
+              "type": "checkbox",
+              "label": "Board Enablement",
+              "value": "Board Enablement"
+            },
+            {
+              "type": "checkbox",
+              "label": "Maintenance",
+              "value": "Maintenance"
+            },
+            {
+              "type": "checkbox",
+              "label": "Expanded Security Maintenance (ESM)",
+              "value": "Expanded Security Maintenance (ESM)"
+            },
+            {
+              "type": "checkbox",
+              "label": "Technical Support",
+              "value": "Technical Support"
+            },
+            {
+              "type": "checkbox",
+              "label": "Training",
+              "value": "Training"
+            },
+            {
+              "type": "checkbox",
+              "label": "All of the above",
+              "value": "All of the above"
+            }
+          ]
+        },
+        {
+          "title": "Anything else you would like to tell us?",
+          "id": "any-other-comments",
+          "isRequired": false,
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "any-other-comments"
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "text",
+              "id": "company",
+              "label": "Company name",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "id": "title",
+              "label": "Job title",
+              "isRequired": true
+            },
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number"
+            },
+            {
+              "type": "country",
+              "label": "Country",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

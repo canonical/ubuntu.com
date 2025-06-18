@@ -1,150 +1,391 @@
-import {
-  isValidCveId,
-  disableField,
-  enableField,
-  attachEvents,
-  handleButtons,
-  disableSelectedVersions,
-} from "./cve-search.js";
-
-const searchInput = document.querySelector("#q");
 const searchForm = document.querySelector("#searchForm");
+const searchSubmitButton = document.querySelector("#cve-search-button");
+const url = new URL(window.location.href);
+const urlParams = new URLSearchParams(url.search);
+const apiBase = "https://ubuntu.com/security/cves.json";
+const limitSelect = document.querySelector(".js-limit-select");
+const orderSelect = document.querySelector(".js-order-select");
+const exportLink = document.querySelector("#js-export-link");
+const releaseFilter = document.querySelector("#release-filter");
+const priorityFilter = document.querySelector("#priority-filter");
+const statusFilter = document.querySelector("#status-filter");
+const clearFiltersButton = document.querySelector("#clear-filters");
+const vulnerableStatuses = ["pending", "needed", "deferred"];
+const releaseCheckboxes = releaseFilter
+  ? releaseFilter.querySelectorAll(".p-checkbox__input")
+  : null;
+const applyFiltersButton = document.querySelector("#apply-filters");
+const packageInput = document.querySelector("#affectedPackages");
+const priorityCheckboxes = priorityFilter
+  ? priorityFilter.querySelectorAll(".p-checkbox__input")
+  : null;
+const statusCheckboxes = statusFilter
+  ? statusFilter.querySelectorAll(".p-checkbox__input")
+  : null;
+const unmaintainedReleasesLink = document.querySelector(
+  ".js-show-unmaintained-releases",
+);
+const unmaintainedReleasesContainer = document.querySelector(
+  ".js-unmaintained-releases",
+);
+const showPackagesLinks = document.querySelectorAll(".js-show-packages");
+const hidePackagesLinks = document.querySelectorAll(".js-hide-packages");
+const detailedSwitch = document.querySelector(".js-detailed-switch");
+const detailedTables = document.querySelectorAll(".detailed-table");
+const cveDescs = document.querySelectorAll(".cve-summary");
+// eslint-disable-next-line no-undef
+const maintainedReleases = Object.values(maintainedReleasesObj).map(
+  (release) => release.codename,
+);
+// eslint-disable-next-line no-undef
+const ltsReleases = Object.values(ltsReleasesObj).map(
+  (release) => release.codename,
+);
+// eslint-disable-next-line no-undef
+const unmaintainedReleases = Object.values(unmaintainedReleasesObj).map(
+  (release) => release.codename,
+);
 
-function handleCveIdInput(value) {
-  const packageInput = document.querySelector("#package");
-  const priorityInput = document.querySelector("#priority");
-  const componentInput = document.querySelector("#component");
-  const statusInputs = document.querySelectorAll(".js-status-input");
-  const ubuntuVersionInputs = document.querySelectorAll(
-    ".js-ubuntu-version-input"
-  );
-  const addRowButtons = document.querySelectorAll(".js-add-row");
-  const removeRowButtons = document.querySelectorAll(".js-remove-row");
-  const searchButtonText = document.querySelector(".cve-search-text");
-  const searchButtonValidCveText = document.querySelector(
-    ".cve-search-valid-cve-text"
-  );
+function handleSearchInput() {
+  const formData = new FormData(searchForm);
 
-  if (isValidCveId(value)) {
-    searchButtonValidCveText.classList.remove("u-hide");
-    searchButtonText.classList.add("u-hide");
+  for (const key of formData.values()) {
+    urlParams.set("q", key);
+  }
 
-    disableField(packageInput);
-    disableField(priorityInput);
-    disableField(componentInput);
+  url.search = urlParams.toString();
+  window.location.href = url.href;
+}
 
-    statusInputs.forEach((statusInput) => disableField(statusInput));
-    ubuntuVersionInputs.forEach((ubuntuVersionInput) =>
-      disableField(ubuntuVersionInput)
-    );
-    addRowButtons.forEach((addRowButton) => disableField(addRowButton));
-    removeRowButtons.forEach((removeRowButton) =>
-      disableField(removeRowButton)
-    );
+searchForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+  handleSearchInput();
+});
+
+// Adds listener to package filter text field and adds value
+// to URLSearchParams object
+function handlePackageInput() {
+  if (packageInput) {
+    packageInput.addEventListener("input", function (event) {
+      urlParams.set("package", packageInput.value);
+    });
+  }
+}
+handlePackageInput();
+
+// Adds event listeners to all filter checkboxes
+function handleFilters() {
+  if (releaseCheckboxes) {
+    releaseCheckboxes.forEach(function (checkbox) {
+      checkbox.addEventListener("change", function (event) {
+        if (event.target.checked) {
+          addParam(releaseFilter.name, event.target.value);
+        } else {
+          removeParam(releaseFilter.name, event.target.value);
+        }
+      });
+    });
+  }
+
+  if (priorityCheckboxes) {
+    priorityCheckboxes.forEach(function (checkbox) {
+      checkbox.addEventListener("change", function (event) {
+        if (event.target.checked) {
+          addParam(priorityFilter?.name, event.target.value);
+        } else {
+          removeParam(priorityFilter?.name, event.target.value);
+        }
+      });
+    });
+  }
+
+  if (statusCheckboxes) {
+    statusCheckboxes.forEach(function (checkbox) {
+      checkbox.addEventListener("change", function (event) {
+        if (event.target.checked) {
+          addParam(statusFilter?.name, event.target.value);
+        } else {
+          removeParam(statusFilter?.name, event.target.value);
+        }
+      });
+    });
+  }
+}
+handleFilters();
+
+// Removes a parameter from URLSearchParams object
+function removeParam(param, value) {
+  if (value === "maintained") {
+    maintainedReleases.forEach(function (release) {
+      const checkbox = getCheckboxFromRelease(release);
+      checkbox.checked = false;
+      urlParams.delete(param, release);
+    });
+  } else if (value === "vulnerable") {
+    vulnerableStatuses.forEach(function (status) {
+      urlParams.delete(param, status);
+    });
   } else {
-    enableField(packageInput);
-    enableField(priorityInput);
-    enableField(componentInput);
+    if (maintainedReleases.includes(value)) {
+      const maintainedCheckbox = document.querySelector(
+        "input[type='checkbox'][value='maintained']",
+      );
+      maintainedCheckbox.checked = false;
+    }
+    urlParams.delete(param, value);
+  }
+}
 
-    statusInputs.forEach((statusInput) => enableField(statusInput));
-    ubuntuVersionInputs.forEach((ubuntuVersionInput) =>
-      enableField(ubuntuVersionInput)
-    );
-    removeRowButtons.forEach((removeRowButton, index) => {
-      if (index > 0) {
-        enableField(removeRowButton);
+function applyFilters() {
+  if (applyFiltersButton) {
+    applyFiltersButton.addEventListener("click", function (event) {
+      url.search = urlParams.toString();
+      window.location.href = url.href;
+    });
+  }
+}
+applyFilters();
+
+let includesFilterSubset = (parentArray, subsetArray) => {
+  return subsetArray.every((el) => {
+    return parentArray.includes(el);
+  });
+};
+
+// Maintains filter state on page load
+function handleFilterPersist() {
+  if (urlParams.has("version")) {
+    const params = urlParams.getAll("version");
+
+    if (releaseCheckboxes) {
+      releaseCheckboxes.forEach(function (checkbox) {
+        if (params.includes(checkbox.value)) {
+          checkbox.checked = true;
+        }
+      });
+    }
+
+    if (includesFilterSubset(params, maintainedReleases)) {
+      let maintainedCheckbox = releaseFilter.querySelector(
+        "input[value='maintained']",
+      );
+      maintainedCheckbox.checked = true;
+    }
+  }
+
+  if (urlParams.has("priority")) {
+    const params = urlParams.getAll("priority");
+
+    if (priorityCheckboxes) {
+      priorityCheckboxes.forEach(function (checkbox) {
+        if (params.includes(checkbox.value)) {
+          checkbox.checked = true;
+        }
+      });
+    }
+  }
+
+  if (urlParams.has("status")) {
+    const params = urlParams.getAll("status");
+
+    if (params.includes("pending") && statusFilter) {
+      const checkbox = statusFilter.querySelector("input[value='vulnerable']");
+      checkbox.checked = true;
+    }
+
+    if (statusCheckboxes) {
+      statusCheckboxes.forEach(function (checkbox) {
+        if (params.includes(checkbox.value)) {
+          checkbox.checked = true;
+        }
+      });
+    }
+  }
+
+  if (urlParams.has("detailed") && detailedSwitch) {
+    detailedSwitch.checked = true;
+    handleDetailedViewSwitch({ target: detailedSwitch });
+  }
+}
+handleFilterPersist();
+
+function handleClearFilters() {
+  if (clearFiltersButton) {
+    clearFiltersButton.addEventListener("click", function (event) {
+      let keys = [...urlParams.keys()];
+      keys.forEach((key) => {
+        urlParams.delete(key);
+      });
+      // Always leave this empty param on clear
+      // so the user is not redirected to the landing page
+      urlParams.set("q", "");
+
+      url.search = urlParams.toString();
+      window.location.href = url.href;
+    });
+  }
+}
+handleClearFilters();
+
+// Maintained releases and vulnerable params statuses are handled differently
+// because they are both arrays of params instead of individual values.
+// Existing params are checked before appending to the URLSearchParams object
+// to avoid duplicates
+function addParam(param, value) {
+  if (value === "maintained") {
+    maintainedReleases.forEach(function (release) {
+      const checkbox = getCheckboxFromRelease(release);
+      checkbox.checked = true;
+      urlParams.append(param, release);
+    });
+  } else if (value === "vulnerable") {
+    vulnerableStatuses.forEach(function (status) {
+      if (!urlParams.has(param, status)) {
+        urlParams.append(param, status);
       }
     });
-
-    searchButtonText.classList.remove("u-hide");
-    searchButtonValidCveText.classList.add("u-hide");
-  }
-}
-
-handleCveIdInput(searchInput.value);
-
-function handleSearchInput(event) {
-  if (event.key === "Enter") {
-    searchForm.submit();
   } else {
-    handleCveIdInput(event.target.value);
+    if (!urlParams.has(param, value)) {
+      urlParams.append(param, value);
+    }
   }
 }
 
-searchInput.addEventListener("keyup", handleSearchInput);
-
-attachEvents();
-handleButtons();
-disableSelectedVersions();
-
-const priorities = {
-  critical:
-    "<strong>Critical:</strong> A world-burning problem that is exploitable for most Ubuntu users. Examples include remote root privilege escalations or remote data theft.",
-  high:
-    "<strong>High:</strong> Exploitable for many users in the default configuration of the affected software. Examples include serious remote denial of service of the system, local root privilege escalations or local data theft.",
-  medium:
-    "<strong>Medium:</strong> Exploitable for many users of the affected software. Examples include network daemon denial of service, cross-site scripting and gaining user privileges.",
-  low:
-    "<strong>Low:</strong> Does very little damage or is otherwise hard to exploit, due to small user base or other factors such as requiring specific environment, uncommon configuration, or user assistance. These tend to be included in security updates only when higher priority issues require an update or if many low-priority issues have built up.",
-  negligible:
-    "<strong>Negligible:</strong> May be a problem, but does not impose a security risk due to various factors. Examples include when the vulnerability is only theoretical in nature, requires a very special situation, has almost no install base or does no real damage. These typically will not receive security updates unless there is an easy fix and some other issue causes an update.",
-  unknown:
-    "<strong>Unknown:</strong> Open vulnerability where the priority is currently unknown and needs to be triaged.",
-};
-
-const statuses = {
-  "not-affected":
-    "<strong>Not vulnerable:</strong> Packages which do not exist in the archive, are not affected by the vulnerability or have a fix applied in the archive.",
-  pending:
-    "<strong>Pending:</strong> A fix has been applied and updated packages are awaiting arrival into the archive. For example, this might be used when wider testing is requested for the updated package.",
-};
-
-const tooltipIconList = document.querySelectorAll(".cve-tooltip-icon");
-
-tooltipIconList.forEach(function (tooltipIcon) {
-  tooltipIcon.addEventListener(
-    "mouseover",
-    function () {
-      if (tooltipIcon.parentElement.querySelector(".cve-tooltip") == null) {
-        const priority = this.dataset.priority;
-        const status = this.dataset.status;
-
-        if (!(priority in priorities) && !(status in statuses)) {
-          return;
-        }
-
-        const tooltip = document.createElement("div");
-        tooltip.classList.add("cve-tooltip");
-
-        tooltip.innerHTML +=
-          "<div class='arrow-up back'></div><div class='arrow-up front'></div>";
-
-        if (priority in priorities) {
-          tooltip.innerHTML += priorities[priority];
-        }
-
-        if (priority in priorities && status in statuses) {
-          tooltip.innerHTML += "<br><br>";
-        }
-
-        if (status in statuses) {
-          tooltip.innerHTML += statuses[status];
-        }
-
-        tooltipIcon.parentElement.append(tooltip);
-      }
-    },
-    false
+function getCheckboxFromRelease(release) {
+  const releaseCheckboxesArray = Array.from(releaseCheckboxes);
+  const checkbox = releaseCheckboxesArray.find(
+    (checkbox) => checkbox.value === release,
   );
-  tooltipIcon.addEventListener(
-    "mouseout",
-    function () {
-      const tooltip = tooltipIcon.parentElement.querySelector(".cve-tooltip");
 
-      if (tooltip != null) {
-        tooltipIcon.parentElement.removeChild(tooltip);
-      }
-    },
-    false
-  );
-});
+  return checkbox;
+}
+
+function showUnmaintainedReleases() {
+  if (unmaintainedReleasesLink) {
+    unmaintainedReleasesLink.onclick = function (event) {
+      event.preventDefault();
+      unmaintainedReleasesLink.classList.add("u-hide");
+      unmaintainedReleasesContainer.classList.remove("u-hide");
+    };
+  }
+}
+showUnmaintainedReleases();
+
+function handleLimitSelect() {
+  if (urlParams.has("limit")) {
+    limitSelect.value = urlParams.get("limit");
+  }
+
+  if (limitSelect) {
+    limitSelect.onchange = function (event) {
+      limitSelect.value = event.target.value;
+      urlParams.set("limit", limitSelect.value);
+      url.search = urlParams.toString();
+      window.location.href = url.href;
+    };
+  }
+}
+handleLimitSelect();
+
+function handleOrderSelect() {
+  if (urlParams.has("order")) {
+    orderSelect.value = urlParams.get("order");
+  }
+
+  if (orderSelect) {
+    orderSelect.onchange = function (event) {
+      orderSelect.value = event.target.value;
+      urlParams.set("order", orderSelect.value);
+      url.search = urlParams.toString();
+      window.location.href = url.href;
+    };
+  }
+}
+handleOrderSelect();
+
+function exportToJSON() {
+  if (exportLink) {
+    exportLink.onclick = function (event) {
+      event.preventDefault();
+      let apiURL = new URL(url.search, apiBase);
+      window.location.href = apiURL.href;
+    };
+  }
+}
+exportToJSON();
+
+// Button to handle detailed view of packages
+// Adds and removes param to maintain table view state on filter
+function handleDetailedViewSwitch(event) {
+  if (event.target.checked) {
+    detailedTables.forEach((table) => table.classList.remove("u-hide"));
+    cveDescs.forEach((desc) => desc.classList.add("u-hide"));
+    urlParams.append("detailed", event.target.checked);
+  } else {
+    detailedTables.forEach((table) => table.classList.add("u-hide"));
+    cveDescs.forEach((desc) => desc.classList.remove("u-hide"));
+    urlParams.delete("detailed");
+  }
+}
+if (detailedSwitch) {
+  detailedSwitch.addEventListener("click", handleDetailedViewSwitch);
+}
+
+// Show detailed view of packages
+function handleShowDetailedView() {
+  showPackagesLinks.forEach((showPackagesLink) => {
+    showPackagesLink.onclick = function (event) {
+      event.preventDefault();
+      const id = showPackagesLink.id.split("--")[1];
+      const cveTable = document.querySelector(`#table--${id}`);
+
+      cveTable.querySelectorAll(".blurred-row").forEach((cell) => {
+        cell.classList.remove("cve-table-blur");
+      });
+
+      cveTable.querySelectorAll(".expandable-row").forEach((row) => {
+        row.classList.remove("u-hide");
+        showPackagesLink.classList.add("u-hide");
+        const hidePackagesLink = document.querySelector(`#hide--${id}`);
+        hidePackagesLink.classList.remove("u-hide");
+      });
+    };
+  });
+}
+handleShowDetailedView();
+
+// Hide detailed view of packages
+function handleHideDetailedView() {
+  hidePackagesLinks.forEach((hidePackagesLink) => {
+    hidePackagesLink.onclick = function (event) {
+      event.preventDefault();
+      const id = hidePackagesLink.id.split("--")[1];
+      const cveTable = document.querySelector(`#table--${id}`);
+
+      cveTable.querySelectorAll(".blurred-row").forEach((cell) => {
+        cell.classList.add("cve-table-blur");
+      });
+
+      cveTable.querySelectorAll(".expandable-row").forEach((row) => {
+        row.classList.add("u-hide");
+        hidePackagesLink.classList.add("u-hide");
+        const showPackagesLink = document.querySelector(`#show--${id}`);
+        showPackagesLink.classList.remove("u-hide");
+
+        const card = document.querySelector(`#card--${id}`);
+        card.scrollIntoView({ behavior: "smooth" });
+      });
+    };
+  });
+}
+handleHideDetailedView();
+
+// On page load, check if the detailed view switch is checked
+function handleDetailedView() {
+  if (detailedSwitch?.checked) {
+    handleShowDetailedView();
+  } else {
+    handleHideDetailedView();
+  }
+}
+handleDetailedView();

@@ -10,21 +10,16 @@ import {
 } from "../../utils/utils";
 import { currencyFormatter } from "advantage/react/utils";
 import PaymentButton from "../PaymentButton";
+import { PRO_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
 
 const ProductSummary = () => {
-  const {
-    productUser,
-    quantity,
-    period,
-    setPeriod,
-    product,
-    productType,
-  } = useContext(FormContext);
+  const { productUser, quantity, period, setPeriod, product, productType } =
+    useContext(FormContext);
   const handlePeriodChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setPeriod(event.target.value as Periods);
     localStorage.setItem(
-      "pro-selector-period",
-      JSON.stringify(event.target.value as Periods)
+      PRO_SELECTOR_KEYS.PERIOD,
+      JSON.stringify(event.target.value as Periods),
     );
   };
   const isHidden =
@@ -37,7 +32,7 @@ const ProductSummary = () => {
   return (
     <>
       <section
-        className={`p-strip--light is-shallow p-shop-cart u-hide--small ${
+        className={`p-strip--light is-shallow p-shop-cart u-hide--small u-hide--medium ${
           isHidden ? "p-shop-cart--hidden" : ""
         }`}
         id="summary-section"
@@ -108,7 +103,7 @@ const ProductSummary = () => {
                 ? `Free`
                 : currencyFormatter.format(
                     ((product?.price.value ?? 0) / 100) *
-                      (Number(quantity) ?? 0)
+                      (Number(quantity) ?? 0),
                   )}
             </p>{" "}
             <p className="p-text--small">
@@ -126,7 +121,7 @@ const ProductSummary = () => {
           >
             {product?.canBeTrialled && productUser !== ProductUsers.myself ? (
               <StatusLabel appearance="positive">
-                Free trial available
+                Free trial on checkout
               </StatusLabel>
             ) : null}
             <PaymentButton />
@@ -134,7 +129,7 @@ const ProductSummary = () => {
         </Row>
       </section>
       <section
-        className={`p-strip--light is-shallow p-shop-cart--small u-hide u-show--small ${
+        className={`p-strip--light is-shallow p-shop-cart--small u-hide u-show--small u-show--medium ${
           isHidden ? "p-shop-cart--hidden" : ""
         }`}
         id="summary-section"
@@ -142,7 +137,11 @@ const ProductSummary = () => {
         <Row className="u-sv3">
           <Col size={12}>
             <p>
-              {quantity} subscription{+quantity > 1 ? "s" : ""} for
+              {productUser == ProductUsers.myself ? 5 : quantity} subscription
+              {+quantity > 1 || productUser == ProductUsers.myself
+                ? "s"
+                : ""}{" "}
+              for
             </p>
           </Col>
           <Col size={12}>
@@ -180,9 +179,12 @@ const ProductSummary = () => {
           </Col>
           <Col size={1} small={2}>
             <p className="p-heading--2">
-              {currencyFormatter.format(
-                ((product?.price.value ?? 0) / 100) * (Number(quantity) ?? 0)
-              )}
+              {productUser == ProductUsers.myself
+                ? "Free"
+                : currencyFormatter.format(
+                    ((product?.price.value ?? 0) / 100) *
+                      (Number(quantity) ?? 0),
+                  )}
             </p>
             {productUser === ProductUsers.myself ? (
               <a
@@ -209,7 +211,7 @@ const ProductSummary = () => {
           {product?.canBeTrialled && productUser !== ProductUsers.myself ? (
             <Col size={12}>
               <StatusLabel appearance="positive">
-                Free trial available
+                Free trial on checkout
               </StatusLabel>
             </Col>
           ) : null}

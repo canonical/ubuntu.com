@@ -1,216 +1,237 @@
-
 {% extends "templates/base.html" %}
 
 {% block title %}{{ document.title }}{% endblock %}
+{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 
 {% macro create_navigation(nav_items, expandable=False, expanded=False) %}
   <ul class="p-side-navigation__list">
     {% for element in nav_items %}
-    <li class="p-side-navigation__item">
-      {% if element.navlink_href %}
-        <a
-          href="{{ element.navlink_href }}"
-          class="p-side-navigation__link {% if expandable and element.children %}is-expandable{% endif %}"
-          {% if expandable and element.children %}aria-expanded={% if expanded or element.is_active %}"true"{% else %}"false"{% endif %}{% endif %}
-          {% if element.is_active and not element.navlink_fragment %}aria-current="page"{% endif %}>
+      <li class="p-side-navigation__item">
+        {% if element.navlink_href %}
+          <a href="{{ element.navlink_href }}"
+             class="p-side-navigation__link {% if expandable and element.children %}is-expandable{% endif %}"
+             {% if expandable and element.children %}aria-expanded={% if expanded or element.is_active %}"true"{% else %}"false"{% endif %}
+             {% endif %}
+             {% if element.is_active and not element.navlink_fragment %}aria-current="page"{% endif %}>
             {{ element.navlink_text }}
-        </a>
-      {% else %}
-        <strong
-          class="p-side-navigation__text {% if expandable and element.children %}is-expandable{% endif %}"
-          {% if expandable and element.children %}aria-expanded={% if expanded %}"true"{% else %}"false"{% endif %}{% endif %}
-          {% if element.is_active %}aria-current="page"{% endif %}>
-            {{ element.navlink_text }}
-        </strong>
-      {% endif %}
+          </a>
+        {% else %}
+          <strong class="p-side-navigation__text {% if expandable and element.children %}is-expandable{% endif %}"
+                  {% if expandable and element.children %}aria-expanded={% if expanded %}"true"{% else %}"false"{% endif %}
+                  {% endif %}
+                  {% if element.is_active %}aria-current="page"{% endif %}>{{ element.navlink_text }}</strong>
+        {% endif %}
 
-      {% if expandable %}
-        {% if element.children %}
-          <button
-            class="p-side-navigation__expand"
-            aria-expanded={% if element.is_active or element.has_active_child %}"true"{% else %}"false"{% endif %}
-            aria-label="show submenu for {{ element.navlink_text }}">
-          </button>
+        {% if expandable %}
+          {% if element.children %}
+            <button class="p-side-navigation__expand"
+                    aria-expanded="{% if element.is_active or element.has_active_child %}true{% else %}false{% endif %}"
+                    aria-label=" show submenu for {{ element.navlink_text }} "></button>
+          {% endif %}
+          {{ create_navigation(element.children, expandable, element.is_active or element.has_active_child) }}
+        {% else %}
+          {% if element.children %}{{ create_navigation(element.children, expandable) }}{% endif %}
         {% endif %}
-        {{ create_navigation(element.children, expandable, element.is_active or element.has_active_child) }}
-      {% else %}
-        {% if element.children %}
-          {{ create_navigation(element.children, expandable) }}
-        {% endif %}
-      {% endif %}
-    </li>
+      </li>
     {% endfor %}
   </ul>
 {% endmacro %}
 
 {% block outer_content %}
-{% with
-  search_action=search_action,
-  siteSearch=siteSearch,
-  placeholder=placeholder
-%}
-  {% if not disableSearch %}
-    {% include "templates/docs/shared/_search-box.html" %}
-  {% endif %}
-  <script src="{{ versioned_static('js/dist/side-navigation.js') }}" defer></script>
-{% endwith %}
+  {% with
+    search_action=search_action,
+    siteSearch=siteSearch,
+    placeholder=placeholder
+    %}
+    {% if not disableSearch %}
+      {% include "templates/docs/shared/_search-box.html" %}
+    {% endif %}
+    <script src="{{ versioned_static('js/dist/side-navigation.js') }}" defer></script>
+  {% endwith %}
 
-<div class="p-strip is-shallow">
-  <div class="row">
-    <aside class="col-3">
-      {% if versions | length > 1 %}
-      <label for="version-select" class="u-off-screen">Version selection</label>
-      <select name="version-select" id="version-select">
-      {% for version in versions %}
-        {% set active = docs_version == version['path'] %}
-        <option value="{{ version_paths[version['path']] }}"{% if active %} selected{% endif %}>Version {{ version['version'] }}</option>
-      {% endfor %}
-      <select>
-      {% endif %}
+  <div class="p-strip is-shallow">
+    <div class="row">
+      <aside class="col-3">
+        {% if versions | length > 1 %}
+          <label for="version-select" class="u-off-screen">Version selection</label>
+          <select name="version-select" id="version-select">
+            {% for version in versions %}
+              {% set active = docs_version == version['path'] %}
+              <option value="{{ version_paths[version['path']] }}"
+                      {% if active %}selected{% endif %}>Version {{ version['version'] }}</option>
+            {% endfor %}
+          </select>
+        {% endif %}
 
-      <nav class="p-side-navigation--raw-html" id="drawer">
-        <a href="#drawer" class="p-side-navigation__toggle js-drawer-toggle" aria-controls="drawer">
-          Toggle side navigation
-        </a>
-        <div class="p-side-navigation__overlay js-drawer-toggle" aria-controls="drawer"></div>
-        <div class="p-side-navigation__drawer">
-          <div class="p-side-navigation__drawer-header">
-            <a href="#" class="p-side-navigation__toggle--in-drawer js-drawer-toggle" aria-controls="drawer">
-              Toggle side navigation
-            </a>
-          </div>
-          {% for nav_group in navigation.nav_items %}
-            {% if not nav_group.hidden %}
-              {% if nav_group.navlink_text %}
-                {% if nav_group.navlink_href %}
-                  <h3 class="p-side-navigation__heading--linked u-no-padding--left" data-level="{{ nav_group.level }}">
-                    <a class="p-side-navigation__link" href="{{ nav_group.navlink_href }}" {% if nav_group.is_active %}aria-current="page"{% endif %}>
-                      {{ nav_group.navlink_text }}
-                    </a>
-                  </h3>
-                {% else %}
-                  <h3 class="p-side-navigation__heading">{{ nav_group.navlink_text }}</h3>
+        <nav class="p-side-navigation--raw-html" id="drawer">
+          <a href="#drawer"
+             class="p-side-navigation__toggle js-drawer-toggle"
+             aria-controls="drawer">Toggle side navigation</a>
+          <div class="p-side-navigation__overlay js-drawer-toggle"
+               aria-controls="drawer"></div>
+          <div class="p-side-navigation__drawer">
+            <div class="p-side-navigation__drawer-header">
+              <a href="#"
+                 class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
+                 aria-controls="drawer">Toggle side navigation</a>
+            </div>
+            {% for nav_group in navigation.nav_items %}
+              {% if not nav_group.hidden %}
+                {% if nav_group.navlink_text %}
+                  {% if nav_group.navlink_href %}
+                    <h3 class="p-side-navigation__heading--linked u-no-padding--left"
+                        data-level="{{ nav_group.level }}">
+                      <a class="p-side-navigation__link"
+                         href="{{ nav_group.navlink_href }}"
+                         {% if nav_group.is_active %}aria-current="page"{% endif %}>{{ nav_group.navlink_text }}</a>
+                    </h3>
+                  {% else %}
+                    <h3 class="p-side-navigation__heading">{{ nav_group.navlink_text }}</h3>
+                  {% endif %}
                 {% endif %}
+                {{ create_navigation(nav_group.children, expandable=True) }}
               {% endif %}
-              {{ create_navigation(nav_group.children, expandable=True) }}
-            {% endif %}
-          {% endfor %}
-        </div>
-      </nav>
-    </aside>
+            {% endfor %}
+          </div>
+        </nav>
+      </aside>
 
-    <main class="col-9">
-      {% if not disable_title %}
-      <h1>{{ document.title }}</h1>
-      {% endif %}
+      <main class="col-9">
+        {% if not disable_title %}<h1>{{ document.title }}</h1>{% endif %}
 
-      {{ document.body_html | safe }}
+        {{ document.body_html | safe }}
 
-      <div class="p-strip">
-        <hr class="u-no-margin--bottom">
-        <div class="p-article-pagination">
-          {% set nav_items = navigation.nav_items %}
-          {% set ns = namespace(use_next=false, outer_title=none) %}
+        <div class="p-strip">
+          <hr class="p-rule" />
+          <div class="p-article-pagination">
+            {% set nav_items = navigation.nav_items %}
+            {% set ns = namespace(use_next=false, outer_title=none) %}
 
-          {%- for page in nav_items|reverse recursive %}
-            {% if ns.use_next and not page.hidden and page.navlink_text and not page.navlink_href %}
-              {% set ns.outer_title = page.navlink_text %}
-            {% endif %}
-            {{- loop(page.children|reverse) }}
-            {% if page.is_active %}
-                {% set ns.use_next = true %}
-            {% elif ns.use_next and not page.hidden and page.navlink_text %}
-              {% if page.navlink_href %}
-                <a class="p-article-pagination__link--previous" href="{{ page.navlink_href }}">
-                  <span class="p-article-pagination__label">Previous</span>
-                  <span class="p-article-pagination__title">{% if ns.outer_title %}{{ ns.outer_title }}: {% endif %}{{ page.navlink_text }}</span>
-                </a>
-                {% set ns.use_next = false %}
-              {% endif %}
-            {% endif %}
-          {%- endfor %}
-
-          {% set ns.outer_title = none %}
-          {% set ns.use_next = false %}
-
-          {%- for page in nav_items recursive %}
-            {% if page.is_active %}
-                {% set ns.use_next = true %}
-            {% elif ns.use_next and not page.hidden and page.navlink_text %}
-              {% if page.navlink_href %}
-                <a class="p-article-pagination__link--next" href="{{ page.navlink_href }}">
-                  <span class="p-article-pagination__label">Next</span>
-                  <span class="p-article-pagination__title">{% if ns.outer_title %}{{ ns.outer_title }}: {% endif %}{{ page.navlink_text }}</span>
-                </a>
-                {% set ns.use_next = false %}
-              {% else %}
+            {%- for page in nav_items|reverse recursive %}
+              {% if ns.use_next and not page.hidden and page.navlink_text and not page.navlink_href %}
                 {% set ns.outer_title = page.navlink_text %}
               {% endif %}
-            {% endif %}
-            {{- loop(page.children) }}
-          {%- endfor %}
-        </div>
-      </div>
+              {{- loop(page.children|reverse) }}
+              {% if page.is_active %}
+                {% set ns.use_next = true %}
+              {% elif ns.use_next and not page.hidden and page.navlink_text %}
+                {% if page.navlink_href %}
+                  <a class="p-article-pagination__link--previous"
+                     href="{{ page.navlink_href }}">
+                    <span class="p-article-pagination__label">Previous</span>
+                    <span class="p-article-pagination__title">
+                      {% if ns.outer_title %}{{ ns.outer_title }}:{% endif %}
+                    {{ page.navlink_text }}</span>
+                  </a>
+                  {% set ns.use_next = false %}
+                {% endif %}
+              {% endif %}
+            {%- endfor %}
 
-			<div class="p-strip is-shallow">
-				<div class="p-notification--information">
-					<div class="p-notification__content">
-            <p class="p-notification__message">This page was last modified {{ document.updated }}. <a href="{{ forum_url }}{{ document.topic_path }}">Help improve this document in the forum</a>.</p>
+            {% set ns.outer_title = none %}
+            {% set ns.use_next = false %}
+
+            {%- for page in nav_items recursive %}
+              {% if page.is_active %}
+                {% set ns.use_next = true %}
+              {% elif ns.use_next and not page.hidden and page.navlink_text %}
+                {% if page.navlink_href %}
+                  <a class="p-article-pagination__link--next"
+                     href="{{ page.navlink_href }}">
+                    <span class="p-article-pagination__label">Next</span>
+                    <span class="p-article-pagination__title">
+                      {% if ns.outer_title %}{{ ns.outer_title }}:{% endif %}
+                    {{ page.navlink_text }}</span>
+                  </a>
+                  {% set ns.use_next = false %}
+                {% else %}
+                  {% set ns.outer_title = page.navlink_text %}
+                {% endif %}
+              {% endif %}
+              {{- loop(page.children) }}
+            {%- endfor %}
           </div>
-				</div>
-			</div>
-    </main>
+        </div>
+
+        <div class="p-strip is-shallow">
+
+          <div class="p-notification--information">
+
+            <div class="p-notification__content">
+              <p class="p-notification__message">
+                This page was last modified {{ document.updated }}. <a href="{{ forum_url }}{{ document.topic_path }}">Help improve this document in the forum</a>.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </main>
+    </div>
   </div>
-</div>
 
-<script>
-// Allows the 'onchange' listener to be used on a select field, while still being accessible.
-(function initSelect() {
-	var selectField = document.querySelector("#version-select");
+  <script>
+    // Allows the 'onchange' listener to be used on a select field, while still being accessible.
+    (function initSelect() {
+      var selectField = document.querySelector("#version-select");
 
-  selectField.changed = false;
-  selectField.onfocus = selectFocussed;
-  selectField.onblur = selectUnFocussed;
-  selectField.onkeyup = selectKeyed;
-  selectField.onchange = updatePage;
-})();
+      selectField.changed = false;
+      selectField.onfocus = selectFocussed;
+      selectField.onblur = selectUnFocussed;
+      selectField.onkeyup = selectKeyed;
+      selectField.onchange = updatePage;
+    })();
 
-function updatePage(e) {
-	this.changed = true;
-  window.location.href =  e.target.value;
-}
+    function updatePage(e) {
+      this.changed = true;
+      window.location.href = e.target.value;
+    }
 
-function selectFocussed() {
-  this.initValue = this.value;
-}
+    function selectFocussed() {
+      this.initValue = this.value;
+    }
 
-function selectUnFocussed() {
-  if (this.value != this.initValue) {
-    this.changed = true;
-		window.location.href = this.value;
-  }
-}
+    function selectUnFocussed() {
+      if (this.value != this.initValue) {
+        this.changed = true;
+        window.location.href = this.value;
+      }
+    }
 
-function selectKeyed(e) {
-  e.preventDefault();
-	var theKeyPressed;
-  var validConfirmKeys = [9, "Tab", 13, "Enter"]
-  var validCancleKeys = [27, "Escape", "esc"]
+    function selectKeyed(e) {
+      e.preventDefault();
+      var theKeyPressed;
+      var validConfirmKeys = [9, "Tab", 13, "Enter"]
+      var validCancleKeys = [27, "Escape", "esc"]
 
-	if (e) {
-    theKeyPressed = e.key || e.keyCode;
-  } else {
-    return false;
-  }
+      if (e) {
+        theKeyPressed = e.key || e.keyCode;
+      } else {
+        return false;
+      }
 
-	if (validConfirmKeys.includes(theKeyPressed) &&  this.value != this.initValue) {
-		this.changed = true;
-		window.location.href = this.value;
-	} else if (validCancleKeys.includes(theKeyPressed)) {
-		this.value = this.initValue;
-	} else {
-		this.changed = false;
-	}
-}
-</script>
+      if (validConfirmKeys.includes(theKeyPressed) && this.value != this.initValue) {
+        this.changed = true;
+        window.location.href = this.value;
+      } else if (validCancleKeys.includes(theKeyPressed)) {
+        this.value = this.initValue;
+      } else {
+        this.changed = false;
+      }
+    }
+  </script>
+
+  <!-- These styles take care of the issue where the same page links for h2, h3 are cut-off from the top upon click and auto-scroll -->
+  <style>
+    h2,
+    h3 {
+      &[id] {
+        scroll-margin: 2.05rem;
+      }
+
+      & a.p-link--anchor-heading {
+        scroll-margin: 4rem;
+      }
+    }
+  </style>
 {% endblock %}

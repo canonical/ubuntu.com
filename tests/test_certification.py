@@ -43,6 +43,10 @@ class TestCertification(VCRTestCase):
         response = self.client.get("/certified/component/682")
         self.assertEqual(response.status_code, 200)
 
+    def test_platform_details(self):
+        response = self.client.get("/certified/platforms/14169")
+        self.assertEqual(response.status_code, 200)
+
     def test_vendor_pages(self):
         response = self.client.get("/certified/vendors/HP")
         self.assertEqual(response.status_code, 200)
@@ -54,3 +58,35 @@ class TestCertification(VCRTestCase):
         # so please change it also in the certified-search-results.js
         self.assertIn("release_filters", response.json.keys())
         self.assertIn("vendor_filters", response.json.keys())
+
+    def test_note_rendering(self):
+        """
+        Test that basic markdown elements are rendered correctly.
+        Raw HTML should be escaped
+        """
+        response = self.client.get("/certified/202301-31183")
+        content = response.data.decode("utf-8")
+
+        # Check for headings
+        self.assertIn("<h1>Heading 1</h1>", content)
+        self.assertIn("<h2>Heading 2</h2>", content)
+
+        # Check for formatting
+        self.assertIn("<strong>Bold text</strong>", content)
+        self.assertIn("<em>Italic text</em>", content)
+
+        # Check for links
+        self.assertIn('<a href="https://example.com">Link text</a>', content)
+
+        # Check for lists
+        self.assertIn("<li>List item 1</li>", content)
+        self.assertIn("<li>List item 2</li>", content)
+
+        # HTML should be escaped and not interpreted
+        self.assertNotIn("<script>alert('XSS attack');</script>", content)
+        self.assertNotIn('<div class="dangerous">', content)
+        self.assertNotIn("<img src=\"javascript:alert('XSS')\" />", content)
+
+        self.assertIn("&lt;script&gt;", content)
+        self.assertIn("&lt;div class=&quot;dangerous&quot;&gt;", content)
+        self.assertIn("&lt;img src=", content)

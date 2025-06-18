@@ -1,0 +1,261 @@
+{% extends "security/base_security.html" %}
+
+{% block title %}Track vulnerability data in VEX | Vulnerability Exploitability eXchange{% endblock %}
+
+{% block meta_description %}
+  Learn about how Ubuntu vulnerability data in Vulnerability Exploitability eXchange (VEX) format can help you in vulnerability management.
+{% endblock %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+
+{% block meta_copydoc %}
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+  <section class="u-fixed-width">
+    <div class="row">
+      <nav class="p-breadcrumbs" aria-label="Breadcrumbs">
+        <ol class="p-breadcrumbs__items">
+          <li class="p-breadcrumbs__item">
+            <a href="/security">Security</a>
+          </li>
+          <li class="p-breadcrumbs__item">VEX</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <hr class="p-rule" />
+    </div>
+  </section>
+
+  {% call(slot) vf_hero(
+    title_text='Ubuntu VEX data feed',
+    layout='50/50'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Improve visibility and vulnerability tracking in your codebase by consuming Ubuntu's Vulnerability Exploitability eXchange (VEX) data - a structured, human and machine readable format describing known vulnerabilities and available security patches for <a href="/about/release-cycle">all supported Ubuntu releases</a>. Ubuntu's VEX data currently follows the OpenVEX specification, a minimal, compliant, interoperable, embeddable and open source implementation of VEX.
+      </p>
+    {%- endif -%}
+  {% endcall -%}
+
+  <section class="p-section">
+    <div class="row">
+      <hr class="p-rule" />
+    </div>
+    <div class="row--50-50">
+      <div class="col">
+        <h2>What is VEX?</h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="p-image-container">
+            {{ image(url="https://assets.ubuntu.com/v1/bf47ee71-what-is-vex.png",
+                      alt="Developer working at desk",
+                      width="1200",
+                      height="800",
+                      hi_def=True,
+                      loading="auto") | safe
+            }}
+          </div>
+        </div>
+        <p>
+          Vulnerability Exploitability eXchange (VEX) is a type of  security advisory, represented as a JSON-based schema. It describes the exploitability status of vulnerabilities across open source software ecosystems, focusing on clarifying whether known vulnerabilities are exploitable in specific configurations or not.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row">
+      <hr class="p-rule" />
+    </div>
+    <div class="row--50-50">
+      <div class="col">
+        <h2>When to use VEX</h2>
+      </div>
+      <div class="col">
+        <p>
+          As organizations adopt <a href="/blog/what-is-sbom-software-bill-of-materials-explained">software bills of materials (SBOMs)</a> to track components in their software, they face the challenge of determining which vulnerabilities identified in these inventories are actually exploitable. SBOMs provide transparency by listing all dependencies, but without contextual information, they often flag vulnerabilities that are not relevant to the deployed environment, which leads to false alarms.
+        </p>
+        <p>
+          VEX addresses this gap by providing clear exploitability status for vulnerabilities. It helps organizations prioritize security actions by identifying which vulnerabilities are exploitable based on the system’s configuration, or mitigations (e.g. patches) that are already in place. This integration transforms SBOM data from static inventories into dynamic and actionable items, enabling efficient patching, compliance assurance, and stronger security overall.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="p-section">
+    <div class="row">
+      <hr class="p-rule" />
+    </div>
+    <div class="row--50-50">
+      <div class="col">
+        <h2>What types of Ubuntu VEX data are available?</h2>
+      </div>
+      <div class="col">
+        <p>Currently, Ubuntu's Security Team produces Ubuntu VEX data for two different types of vulnerability data:</p>
+        <ul class="p-list--divided">
+          <li class="p-list__item"></li>
+          <li class="p-list__item has-bullet">
+            <a href="/security/notices">Ubuntu Security Notices</a>: announcements about fixed vulnerabilities in Ubuntu.
+          </li>
+          <li class="p-list__item has-bullet">
+            <a href="/security/cves">Ubuntu CVEs</a>: vulnerabilities that affect packages in the Ubuntu archive.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row">
+      <hr class="p-rule" />
+    </div>
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Where can I get the data from?</h2>
+      </div>
+      <div class="col">
+        <p>
+          Ubuntu VEX data is available through two different channels:
+          <ul class="p-list--divided">
+            <li class="p-list__item"></li>
+            <li class="p-list__item has-bullet">
+              <a href="https://security-metadata.canonical.com/vex/index.html">Canonical's VEX metadata page</a>
+            </li>
+            <li class="p-list__item has-bullet">
+              <a href="https://github.com/canonical/ubuntu-security-notices">Canonical's GitHub repository</a>
+            </li>
+          </ul>
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="p-section">
+    <div class="row">
+      <hr class="p-rule" />
+    </div>
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Are VEX documents versioned?</h2>
+      </div>
+      <div class="col">
+        <p>
+          Yes. Each document has a unique identifier and a version, which gets updated each time the document is edited with new information. Those changes can be seen in <a href="https://github.com/canonical/ubuntu-security-notices">Canonical's GitHub repository</a>, where a history of all the previous versions is stored for each file.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+      <div class="row--50-50">
+        <div class="col">
+          <h2>How does Ubuntu VEX data work?</h2>
+        </div>
+        <div class="col">
+          <div class="p-section--shallow">
+            <div class="p-image-container">
+              {{ image(url="https://assets.ubuntu.com/v1/a942ed7e-how-does-ubuntu-vex.png",
+                            alt="cloud environments, which rely on servers (closeup)",
+                            width="1200",
+                            height="676",
+                            hi_def=True,
+                            loading="lazy") | safe
+              }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-section--shallow">
+        <div class="row">
+          <div class="col-9 col-start-large-4">
+            <hr class="is-muted" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-medium-3 col-3 col-start-large-4">
+            <h3 class="p-heading--5">CVE VEX</h3>
+          </div>
+          <div class="col-medium-3 col-6">
+            <div class="p-section--shallow">
+              <p>
+                As software vulnerabilities are discovered, they are assigned CVE identifiers by MITRE and other organizations. Canonical triages these CVEs to determine whether the vulnerabilities affect software distributed within Ubuntu. The results of this triage are then used to generate the first version of the CVE VEX document, which specifies the status of the CVE for every related product in the Ubuntu ecosystem, and every supported release.
+              </p>
+              <p>
+                After the initial triage, the CVE might be revisited again by the Ubuntu Security team, either to mark it as resolved, or to adapt its status after communication with the team behind the distribution of a specific package. The team may also edit the CVE to add notes and comments about this vulnerability. When any of this happens, a new VEX document is created, with an incremented version, and more information about the new status.
+              </p>
+              <p>This document can be used to assess the local system for vulnerabilities.</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-9 col-start-large-4">
+            <hr class="is-muted" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-medium-3 col-3 col-start-large-4">
+            <h3 class="p-heading--5">USN VEX</h3>
+          </div>
+          <div class="col-medium-3 col-6">
+            <p>
+              When Ubuntu's Security Team patches software to address one or more CVEs, an Ubuntu Security Notice (USN) is published announcing the update. USN VEX data is generated from information encapsulated within the USN, and can be used to assess the system for missing patches.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section--deep">
+    <div class="row">
+      <hr class="p-rule" />
+    </div>
+    <div class="row--25-75">
+      <div class="col">
+        <h2>More resources</h2>
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col-medium-3 col-3">
+            <p>
+              <a href="/security/vulnerability-management">Vulnerability management in Ubuntu</a>
+            </p>
+          </div>
+          <div class="col-medium-3 col-6">
+            <p>Learn about vulnerability management tools in Ubuntu to make your processes more efficient.</p>
+          </div>
+        </div>
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-medium-3 col-3">
+            <p>
+              <a href="/security/cves">Ubuntu CVE reports</a>
+            </p>
+          </div>
+          <div class="col-medium-3 col-6">
+            <p>Access an overview of common vulnerabilities and exposures.</p>
+          </div>
+        </div>
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-medium-3 col-3">
+            <p>
+              <a href="/security">Security features in Ubuntu</a>
+            </p>
+          </div>
+          <div class="col-medium-3 col-6">
+            <p>Learn more about Ubuntu security maintenance and platform security features.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

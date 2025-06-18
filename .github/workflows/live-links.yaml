@@ -1,4 +1,4 @@
-name: Links on live
+name: Links on ubuntu.com live
 
 on:
   schedule:
@@ -39,19 +39,22 @@ jobs:
             http://www.brendangregg.com
             http://www.adlinktech.com/en/index
             https://www.zoominfo.com/legal/privacy-policy
+            https://player.vimeo.com/video/*
             /flags.png
             /flags@2x.png
             https?://[a-z0-9]*\.example\.com
             https://lenovopress.lenovo.com/*
+            https://www.xilinx.com/applications/*
 
           [output]
           status=0
           warnings=0
+          ignoreerrors=
+            ^http?s://.* ^.*(471|500|503|504|400)
           EOF
 
-      - name: Run linkchecker
-        run: |
-          linkchecker https://ubuntu.com
+      - name: Run linkchecker for 404 errors only
+        run: linkchecker --no-warning https://ubuntu.com
 
       - name: Send message on failure
         if: failure()

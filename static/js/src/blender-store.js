@@ -29,7 +29,7 @@ import { debounce } from "./utils/debounce.js";
 
   function setupEventHandlers() {
     const packageOptions = Array.prototype.slice.call(
-      document.querySelectorAll(".js-radio")
+      document.querySelectorAll(".js-radio"),
     );
 
     packageOptions.forEach((option) => {
@@ -69,7 +69,7 @@ import { debounce } from "./utils/debounce.js";
         } else {
           mainCart.classList.add("p-shop-cart--hidden");
         }
-      }, 50)
+      }, 50),
     );
   }
 
@@ -98,7 +98,7 @@ import { debounce } from "./utils/debounce.js";
     userCount.innerText = STATE.users;
 
     const packageName = cartContainer.querySelector(
-      "[data-prop=selected-package]"
+      "[data-prop=selected-package]",
     );
     packageName.innerText =
       STATE.package === "advanced"

@@ -1,40 +1,39 @@
-<section {% if lang %}lang="{{ lang }}"{% endif %} class="{% if active == 'true' %}is-active {% endif %}{% if class %}{{ class }}{% else %}p-takeover--grad{% endif %} js-takeover" {% if lang_skip %}lang-skip="{{ lang_skip }}"{% endif %} >
-  <div class="row u-equal-height">
-    <div class="{% if equal_cols == 'false' %}col-7{% else %}col-6{% endif %} u-vertically-center">
+<section {% if lang %}lang="{{ lang }}"{% endif %} class="{% if active == 'true' %}is-active {% endif %} p-strip js-takeover" {% if lang_skip %}lang-skip="{{ lang_skip }}"{% endif %} >
+  <div class="row">
+    <div class="col-9">
       {% if stacked_image %}
         <!-- FIXME: why using heading icon component if there is no title in the component? -->
         <div class="u-hide u-show--small p-heading-icon--large">
           <div class="p-heading-icon__header is-stacked">
-            <img class="p-heading-icon__img " src="{{ header_image }}" alt="">
+            <img class="p-heading-icon__img " src="{{ header_image }}" alt="" />
           </div>
         </div>
       {% endif %}
-      <h1>{{ title | safe }}</h1>
-      {% if subtitle %}
-        <h4>{{ subtitle | safe }}</h4>
-      {% endif %}
+      <div class="p-section">
+        <h1 class="u-no-margin--bottom">{{ title | safe }}</h1>
+        {% if subtitle %}<h2>{{ subtitle | safe }}</h2>{% endif %}
+      </div>
       <div class="u-hide--small">
         {% if primary_url %}
           <p>
-            <a href="{{ primary_url }}" class="{% if primary_cta_class %}{{ primary_cta_class }}{% else %}p-button--positive{% endif %} u-no-margin--bottom">
-              {% if 'http' in primary_url %}
-                <span>{% endif %}{{ primary_cta }}{% if 'http' in primary_url %}</span>
-              {% endif %}
+            <a href="{{ primary_url }}"
+               class="{% if primary_cta_class %}{{ primary_cta_class }}{% else %}p-button--positive{% endif %} u-no-margin--bottom">
+              {% if 'http' in primary_url %}<span>{% endif %}
+                {{ primary_cta }}
+                {% if 'http' in primary_url %}</span>{% endif %}
             </a>
           </p>
         {% endif %}
 
         {% if secondary_url %}
           <p>
-            <a href="{{ secondary_url }}" class="p-link--inverted">
-              {{ secondary_cta }}&nbsp;&rsaquo;
-            </a>
+            <a href="{{ secondary_url }}" class="p-link--inverted">{{ secondary_cta }}&nbsp;&rsaquo;</a>
           </p>
         {% endif %}
       </div>
     </div>
     {% if header_image %}
-      <div class="{% if equal_cols == 'false' %}col-5{% else %}col-6{% endif %} {% if image_hide_small is sameas true %}u-hide--small{% endif %} u-vertically-center u-align--center u-align--left-medium {% if stacked_image %}u-hide--small{% endif %}">
+      <div class="col-3 {% if image_hide_small is sameas true %}u-hide--small{% endif %} u-align--center u-align--left-medium {% if stacked_image %}u-hide--small{% endif %}">
         {% if 'http' not in header_image %}
           {% set image_url = "https://assets.ubuntu.com/v1/" + header_image %}
         {% else %}
@@ -44,24 +43,26 @@
           To make it look as close as possible to homepage takeover we can't use image-template
           the homepage takeover uses JS to populate the HTML attributes
         #}
-        <img src="{{ header_image }}" alt="" width="{{ image_width }}" height="{{ image_height }}">
+        <img src="{{ header_image }}"
+             alt=""
+             width="{{ image_width }}"
+             height="{{ image_height }}" />
       </div>
     {% endif %}
     <div class="u-hide--medium u-hide--large">
       {% if primary_url %}
         <p>
-          <a href="{{ primary_url }}" class="{% if primary_cta_class %}{{ primary_cta_class }}{% else %}p-button--positive{% endif %}">
-            {% if 'http' in primary_url %}
-              <span>{% endif %}{{ primary_cta }}{% if 'http' in primary_url %}</span>
-            {% endif %}
+          <a href="{{ primary_url }}"
+             class="{% if primary_cta_class %}{{ primary_cta_class }}{% else %}p-button--positive{% endif %}">
+            {% if 'http' in primary_url %}<span>{% endif %}
+              {{ primary_cta }}
+              {% if 'http' in primary_url %}</span>{% endif %}
           </a>
         </p>
       {% endif %}
       {% if secondary_url %}
         <p>
-          <a href="{{ secondary_url }}" class="p-link--inverted">
-            {{ secondary_cta }}&nbsp;&rsaquo;
-          </a>
+          <a href="{{ secondary_url }}" class="p-link--inverted">{{ secondary_cta }}&nbsp;&rsaquo;</a>
         </p>
       {% endif %}
     </div>

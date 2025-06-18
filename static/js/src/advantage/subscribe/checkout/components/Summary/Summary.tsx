@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useMemo, useEffect } from "react";
 import { add, format } from "date-fns";
 import { useFormikContext } from "formik";
 import { Col, Row, Spinner } from "@canonical/react-components";
@@ -6,23 +6,32 @@ import * as Sentry from "@sentry/react";
 import { currencyFormatter } from "advantage/react/utils";
 import useCalculate from "../../hooks/useCalculate";
 import usePreview from "../../hooks/usePreview";
-import { Action, FormValues, Product, TaxInfo } from "../../utils/types";
+import {
+  Action,
+  Coupon,
+  CheckoutProducts,
+  FormValues,
+  TaxInfo,
+} from "../../utils/types";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
+import DistributorSummary from "../DistributorSummary.tsx/DistributorSummary";
+import type { DisplayError } from "../../utils/types";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
 type Props = {
-  product: Product;
-  quantity: number;
+  products: CheckoutProducts[];
   action: Action;
-  setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+  setError: React.Dispatch<React.SetStateAction<DisplayError | null>>;
+  setErrorType: React.Dispatch<React.SetStateAction<string>>;
+  coupon: Coupon;
 };
 
-function Summary({ quantity, product, action, setError }: Props) {
+function Summary({ products, action, coupon, setError, setErrorType }: Props) {
   const { values } = useFormikContext<FormValues>();
+
   const { data: calculate, isFetching: isCalculateFetching } = useCalculate({
-    quantity: quantity,
-    marketplace: product.marketplace,
-    productListingId: product.longId,
+    products,
     country: values.country,
     VATNumber: values.VATNumber,
     isTaxSaved: values.isTaxSaved,
@@ -33,36 +42,69 @@ function Summary({ quantity, product, action, setError }: Props) {
     isFetching: isPreviewFetching,
     error: error,
   } = usePreview({
-    quantity,
-    product,
+    products,
     action,
+    coupon,
   });
 
   const isSummaryLoading = isPreviewFetching || isCalculateFetching;
   const priceData: TaxInfo | undefined = preview || calculate;
   const taxAmount = (priceData?.tax ?? 0) / 100;
   const total = (priceData?.total ?? 0) / 100;
+  const marketplace = products[0]?.product.marketplace;
+  const product = products[0]?.product;
+  const quantity = products[0]?.quantity;
+
   const units =
-    product?.marketplace === "canonical-ua"
+    marketplace === UserSubscriptionMarketplace.CanonicalUA
       ? "Machines"
-      : product?.marketplace === "canonical-cube"
-      ? "Exams"
-      : "Users";
+      : marketplace === "canonical-cube"
+        ? "Exams"
+        : "Users";
+
   const planType =
-    product?.marketplace === "canonical-cube"
+    marketplace === "canonical-cube"
       ? "Product"
       : action !== "offer"
-      ? "Plan type"
-      : "Products";
+        ? "Plan type"
+        : "Products";
+
   const productName =
-    action !== "offer" ? product?.name : product?.name.replace(", ", "<br>");
+    action !== "offer"
+      ? product?.name === "cue-linux-essentials-free"
+        ? "CUE.01 Linux"
+        : product?.name
+      : product?.name.replace(", ", "<br>");
+
   const discount =
     (product?.price?.value * ((product?.price?.discount ?? 0) / 100)) / 100;
   const defaultTotal = (product?.price?.value * quantity) / 100 - discount;
 
+  const calculateProductEndDate = () => {
+    const addObj: {
+      days?: number;
+      weeks?: number;
+      months?: number;
+      years?: number;
+    } = {};
+    const period = product?.period;
+    const quantity = product?.periodQuantity ?? 1;
+    if (period === "monthly" && quantity === 1) {
+      addObj.months = quantity;
+    } else if (period === "monthly" && quantity > 1) {
+      addObj.days = quantity;
+    } else {
+      addObj.years = quantity;
+    }
+    return format(add(new Date(), addObj), DATE_FORMAT);
+  };
+
+  const endDate = useMemo(() => calculateProductEndDate(), [product]);
+
   useEffect(() => {
     if (error instanceof Error) {
       let message = <></>;
+      let errorType = "";
       if (error.message.includes("can only make one purchase at a time")) {
         message = (
           <>
@@ -72,7 +114,7 @@ function Summary({ quantity, product, action, setError }: Props) {
         );
       } else if (
         error.message.includes(
-          "cannot make a purchase while subscription is in trial"
+          "cannot make a purchase while subscription is in trial",
         )
       ) {
         message = (
@@ -81,11 +123,37 @@ function Summary({ quantity, product, action, setError }: Props) {
             purchase, cancel your current trial subscription.
           </>
         );
+      } else if (
+        error.message.includes(
+          "missing one-off product listing for renewal product",
+        )
+      ) {
+        message = (
+          <>
+            {" "}
+            The chosen product cannot be renewed as it has been deprecated.
+            Contact <a href="https://ubuntu.com/contact-us">Canonical sales </a>
+            to choose a substitute offering.
+          </>
+        );
+      } else if (
+        error.message.includes(
+          "user has been banned from purchasing products in the canonical-cube marketplace",
+        )
+      ) {
+        message = (
+          <>
+            You cannot make this purchase as your account has been banned from
+            purchasing CUE exams.
+          </>
+        );
+        errorType = "cue-banned";
       } else {
         message = <>Sorry, there was an unknown error with your purchase.</>;
       }
       Sentry.captureException(error);
-      setError(message);
+      setError({ description: message });
+      setErrorType(errorType);
       document.querySelector("h1")?.scrollIntoView();
       return;
     }
@@ -124,6 +192,7 @@ function Summary({ quantity, product, action, setError }: Props) {
             <>
               {total == 0 &&
                 priceData !== undefined &&
+                product?.id !== "cue-01-linux" &&
                 "This is because you have likely already paid for this product for the current billing period."}
             </>
           </p>
@@ -204,7 +273,7 @@ function Summary({ quantity, product, action, setError }: Props) {
                     {currencyFormatter.format(
                       (product?.price?.value *
                         (product?.price?.discount / 100)) /
-                        100
+                        100,
                     )}
                   </strong>
                 </p>
@@ -229,7 +298,15 @@ function Summary({ quantity, product, action, setError }: Props) {
       </>
     );
   }
-  return (
+  return marketplace === UserSubscriptionMarketplace.CanonicalProChannel ? (
+    <DistributorSummary
+      products={products}
+      priceData={priceData}
+      taxAmount={taxAmount}
+      isSummaryLoading={isSummaryLoading}
+      error={error}
+    />
+  ) : (
     <section
       id="summary-section"
       className="p-strip is-shallow u-no-padding--top"
@@ -269,19 +346,15 @@ function Summary({ quantity, product, action, setError }: Props) {
                 {format(new Date(priceData?.end_of_cycle), DATE_FORMAT)}
               </strong>
             </p>
-            <p>The same date as your existing subscription.</p>
+            <p>
+              This subscription is co-termed with your existing subscription.
+              Both subscriptions will end on the same date.
+            </p>
           </Col>
         ) : (
           <Col size={8}>
             <p data-testid="end-date">
-              <strong>
-                {format(
-                  add(new Date(), {
-                    months: product?.period === "monthly" ? 1 : 12,
-                  }),
-                  DATE_FORMAT
-                )}
-              </strong>
+              <strong>{endDate}</strong>
             </p>
           </Col>
         )}

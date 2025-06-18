@@ -1,0 +1,78 @@
+{% set form_id = formId or formData.formId %}
+
+{% if isModal %}
+  <div class="u-hide"
+       id="contact-form-container"
+       data-form-location="/shared/forms/form-template"
+       data-form-id="{{ form_id }}"
+       data-lp-id=""
+       data-return-url="{{ formData.returnUrl }}"
+       data-lp-url="{{ formData.lpUrl }}">
+    <div class="p-modal p-modal--generated js-modal-ready" id="{{ modalId }}">
+      <div class="p-modal__dialog is-wide-modal"
+           role="dialog"
+           aria-labelledby="modal-title"
+           aria-describedby="modal-description">
+        <header class="p-modal__header"
+                style="display: block;
+                       border-bottom: 0;
+                       overflow: auto">
+          <button class="p-modal__close js-close"
+                  aria-label="Close active modal"
+                  style="margin-left: -1rem">Close</button>
+          <div class="u-fixed-width">
+            <h3>{{ formData.title }}</h3>
+          </div>
+        </header>
+        {% if formData.introText %}
+          <div class="p-section u-sv-3">
+            <hr class="p-rule is-fixed-width" />
+            <div class="row">
+              <div class="col">
+                <span>
+                  {% if formData.introText is string %}
+                    {{ formData.introText }}
+                  {% elif formData.introText is iterable and not formData.introText is string %}
+                    {% for text in formData.introText %}
+                      {{ text }}
+                      <br />
+                    {% endfor %}
+                  {% endif %}
+                </span>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+        {% include "/shared/forms/form-fields.html" %}
+      </div>
+    </div>
+  </div>
+{% else %}
+  <section class="p-section--hero">
+    <div class="row--50-50">
+      <div class="col">
+        <h1>{{ formData.title }}</h1>
+      </div>
+      <div class="col">
+        {% if formData.introText is string %}
+          <p>{{ formData.introText }}</p>
+        {% elif formData.introText is iterable and not formData.introText is string %}
+          {% for text in formData.introText %}<p>{{ text }}</p>{% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </section>
+  {% include "/shared/forms/form-fields.html" %}
+{% endif %}
+
+<script>
+  document.querySelector('form').addEventListener('submit', function(event) {
+    dataLayer.push({
+      'event': 'GAEvent',
+      'eventCategory': 'Form',
+      'eventAction': 'iot contact-us',
+      'eventLabel': '{{ formData.product }}',
+      'eventValue': undefined
+    });
+  });
+</script>

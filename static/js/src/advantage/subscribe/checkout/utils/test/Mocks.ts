@@ -3,6 +3,7 @@ import {
   UserSubscriptionPeriod,
 } from "advantage/api/enum";
 import { Product, TaxInfo } from "../types";
+import { ChannelProduct, Currencies } from "advantage/distributor/utils/utils";
 
 export const taxInfo: TaxInfo = {
   currency: "USD",
@@ -149,4 +150,32 @@ export const BlenderProduct: Product = {
   name: "Blender Support Yearly",
   price: { value: 50000 },
   canBeTrialled: false,
+};
+
+export const DistributorProduct: ChannelProduct = {
+  id: "uai-essential-desktop-1y-channel-eur-v2",
+  longId: "lANXjQ-H8fzvf_Ea8bIK1KW7Wi2W0VHnV0ZUsrEGbUiQ",
+  name: "uai-essential-desktop-1y-channel-eur-v2",
+  price: {
+    value: 50000,
+    currency: Currencies.eur,
+  },
+  productID: "uai-essential-desktop",
+  productName: "Ubuntu Pro Desktop",
+  marketplace: UserSubscriptionMarketplace.CanonicalProChannel,
+  exclusion_group: "",
+};
+
+export const CUEProduct: ChannelProduct = {
+  id: "uai-essential-desktop-1y-channel-eur-v2",
+  longId: "lANXjQ-H8fzvf_Ea8bIK1KW7Wi2W0VHnV0ZUsrEGbUiQ",
+  name: "uai-essential-desktop-1y-channel-eur-v2",
+  price: {
+    value: 50000,
+    currency: Currencies.eur,
+  },
+  productID: "uai-essential-desktop",
+  productName: "CUE.01",
+  marketplace: UserSubscriptionMarketplace.CanonicalCUBE,
+  exclusion_group: "",
 };

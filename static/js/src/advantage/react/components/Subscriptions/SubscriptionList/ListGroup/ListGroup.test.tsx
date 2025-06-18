@@ -1,6 +1,5 @@
-import React from "react";
 import { mount } from "enzyme";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   userSubscriptionFactory,
   userSubscriptionStatusesFactory,
@@ -25,7 +24,7 @@ describe("ListGroup", () => {
         }),
       }),
     ];
-    queryClient.setQueryData("userSubscriptions", subscriptions);
+    queryClient.setQueryData(["userSubscriptions"], subscriptions);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <ListGroup
@@ -34,7 +33,7 @@ describe("ListGroup", () => {
         >
           Group content
         </ListGroup>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("RenewalSettings").exists()).toBe(false);
   });
@@ -48,7 +47,7 @@ describe("ListGroup", () => {
         }),
       }),
     ];
-    queryClient.setQueryData("userSubscriptions", subscriptions);
+    queryClient.setQueryData(["userSubscriptions"], subscriptions);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <ListGroup
@@ -57,7 +56,7 @@ describe("ListGroup", () => {
         >
           Group content
         </ListGroup>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("RenewalSettings").exists()).toBe(true);
   });

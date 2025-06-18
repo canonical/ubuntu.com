@@ -8,6 +8,7 @@ import {
   ProductTypes,
   PublicClouds,
 } from "advantage/subscribe/react/utils/utils";
+import { PRO_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
 
 const PublicCloudInfo = {
   [PublicClouds.aws]: {
@@ -16,13 +17,12 @@ const PublicCloudInfo = {
     CTA: [
       {
         CTAName: "In-place upgrade to Ubuntu Pro",
-        link:
-          "/blog/upgrade-your-existing-ubuntu-lts-instances-to-ubuntu-pro-in-aws",
+        link: "/blog/upgrade-your-existing-ubuntu-lts-instances-to-ubuntu-pro-in-aws",
         appearance: "positive",
       },
       {
-        CTAName: "More info for Ubuntu 18.04 LTS users",
-        link: "/18-04/aws",
+        CTAName: "More info for Ubuntu 20.04 LTS users",
+        link: "/20-04/aws",
         appearance: "",
       },
     ],
@@ -49,13 +49,12 @@ const PublicCloudInfo = {
     CTA: [
       {
         CTAName: "In-place upgrade to Ubuntu Pro",
-        link:
-          "/blog/announcing-in-place-upgrade-from-ubuntu-server-to-ubuntu-pro-on-azure",
+        link: "/blog/announcing-in-place-upgrade-from-ubuntu-server-to-ubuntu-pro-on-azure",
         appearance: "positive",
       },
       {
-        CTAName: "More info for Ubuntu 18.04 LTS users",
-        link: "/18-04/azure",
+        CTAName: "More info for Ubuntu 20.04 LTS users",
+        link: "/20-04/azure",
         appearance: "",
       },
     ],
@@ -78,20 +77,19 @@ const PublicCloudInfo = {
     CTA: [
       {
         CTAName: "In-place upgrade to Ubuntu Pro",
-        link:
-          "https://cloud.google.com/compute/docs/images/premium/ubuntu-pro/upgrade-from-ubuntu",
+        link: "https://cloud.google.com/compute/docs/images/premium/ubuntu-pro/upgrade-from-ubuntu",
         appearance: "positive",
       },
       {
-        CTAName: "More info for Ubuntu 18.04 LTS users",
-        link: "/18-04/gcp",
+        CTAName: "More info for Ubuntu 20.04 LTS users",
+        link: "/20-04/gcp",
         appearance: "",
       },
     ],
     describe: (
       <>
         You can{" "}
-        <a href="https://console.cloud.google.com/marketplace/browse?q=ubuntu%20pro&filter=partner:Canonical%20Group&authuser=1&pli=1">
+        <a href="https://console.cloud.google.com/marketplace/browse?q=ubuntu%20pro%20LTS%20canonical%20group">
           launch new Ubuntu Pro instances on the Google Compute Engine
         </a>{" "}
         at an hourly, per-machine rate. If you have a running Ubuntu LTS
@@ -100,8 +98,7 @@ const PublicCloudInfo = {
         <a href="/gcp#get-in-touch">contact us</a>.{" "}
       </>
     ),
-    link:
-      "https://console.cloud.google.com/marketplace/browse?q=ubuntu%20pro&filter=partner:Canonical%20Group&authuser=1",
+    link: "https://console.cloud.google.com/marketplace/browse?q=ubuntu%20pro&filter=partner:Canonical%20Group&authuser=1",
   },
   [PublicClouds.oracle]: {
     title: "Oracle",
@@ -113,8 +110,8 @@ const PublicCloudInfo = {
         appearance: "positive",
       },
       {
-        CTAName: "More info for Ubuntu 18.04 LTS instances",
-        link: "/18-04/oci",
+        CTAName: "More info for Ubuntu 20.04 LTS instances",
+        link: "/20-04/oci",
         appearance: "",
       },
     ],
@@ -136,8 +133,8 @@ const PublicCloudInfo = {
         appearance: "positive",
       },
       {
-        CTAName: "More info for Ubuntu 18.04 LTS instances",
-        link: "/18-04/ibm",
+        CTAName: "More info for Ubuntu 20.04 LTS instances",
+        link: "/20-04/ibm",
         appearance: "",
       },
     ],
@@ -148,25 +145,47 @@ const PublicCloudInfo = {
       </>
     ),
   },
+  [PublicClouds.other]: {
+    title: "Other",
+    name: "Other public clouds",
+    CTA: [
+      {
+        CTAName: "Contact us",
+        link: "/pro/subscribe#get-in-touch",
+        appearance: "positive",
+      },
+      {
+        CTAName: "More info for Ubuntu 20.04 LTS instances",
+        link: "/20-04",
+        appearance: "",
+      },
+    ],
+    describe: (
+      <>
+        Don’t see your cloud provider listed here?{" "}
+        <a href="/pro/subscribe#get-in-touch">Contact us</a> for more
+        information on how we can support your preferred cloud provider.
+      </>
+    ),
+  },
 };
 const ProductType = () => {
-  const localPublicCloud = localStorage.getItem("pro-selector-publicCloud");
-  const { productType, setProductType, iotDevice, setIoTDevice } = useContext(
-    FormContext
-  );
+  const localPublicCloud = localStorage.getItem(PRO_SELECTOR_KEYS.IOT_DEVICE);
+  const { productType, setProductType, iotDevice, setIoTDevice } =
+    useContext(FormContext);
   const [publicCloud, setPublicCloud] = useState(
     localPublicCloud
       ? (JSON.parse(localPublicCloud) as PublicClouds)
-      : PublicClouds.aws
+      : PublicClouds.aws,
   );
 
   const handleProductTypeChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setProductType(event.target.value as ProductTypes);
     localStorage.setItem(
-      "pro-selector-productType",
-      JSON.stringify(event.target.value as ProductTypes)
+      PRO_SELECTOR_KEYS.PRODUCT_TYPE,
+      JSON.stringify(event.target.value as ProductTypes),
     );
   };
 
@@ -188,8 +207,8 @@ const ProductType = () => {
               e.preventDefault();
               setPublicCloud(PublicClouds.aws);
               localStorage.setItem(
-                "pro-selector-publicCloud",
-                JSON.stringify(PublicClouds.aws)
+                PRO_SELECTOR_KEYS.PUBLIC_CLOUD,
+                JSON.stringify(PublicClouds.aws),
               );
             }}
           >
@@ -205,8 +224,8 @@ const ProductType = () => {
               e.preventDefault();
               setPublicCloud(PublicClouds.azure);
               localStorage.setItem(
-                "pro-selector-publicCloud",
-                JSON.stringify(PublicClouds.azure)
+                PRO_SELECTOR_KEYS.PUBLIC_CLOUD,
+                JSON.stringify(PublicClouds.azure),
               );
             }}
           >
@@ -222,8 +241,8 @@ const ProductType = () => {
               e.preventDefault();
               setPublicCloud(PublicClouds.gcp);
               localStorage.setItem(
-                "pro-selector-publicCloud",
-                JSON.stringify(PublicClouds.gcp)
+                PRO_SELECTOR_KEYS.PUBLIC_CLOUD,
+                JSON.stringify(PublicClouds.gcp),
               );
             }}
           >
@@ -239,8 +258,8 @@ const ProductType = () => {
               e.preventDefault();
               setPublicCloud(PublicClouds.oracle);
               localStorage.setItem(
-                "pro-selector-publicCloud",
-                JSON.stringify(PublicClouds.oracle)
+                PRO_SELECTOR_KEYS.PUBLIC_CLOUD,
+                JSON.stringify(PublicClouds.oracle),
               );
             }}
           >
@@ -256,12 +275,29 @@ const ProductType = () => {
               e.preventDefault();
               setPublicCloud(PublicClouds.ibm);
               localStorage.setItem(
-                "pro-selector-publicCloud",
-                JSON.stringify(PublicClouds.ibm)
+                PRO_SELECTOR_KEYS.PUBLIC_CLOUD,
+                JSON.stringify(PublicClouds.ibm),
               );
             }}
           >
             {PublicCloudInfo[PublicClouds.ibm].title}
+          </button>
+          <button
+            className="p-segmented-control__button"
+            role="tab"
+            aria-selected={publicCloud === PublicClouds.other}
+            aria-controls={PublicClouds.other}
+            id={PublicClouds.other}
+            onClick={(e) => {
+              e.preventDefault();
+              setPublicCloud(PublicClouds.other);
+              localStorage.setItem(
+                PRO_SELECTOR_KEYS.PUBLIC_CLOUD,
+                JSON.stringify(PublicClouds.other),
+              );
+            }}
+          >
+            {PublicCloudInfo[PublicClouds.other].title}
           </button>
         </div>
       </div>
@@ -301,8 +337,8 @@ const ProductType = () => {
               e.preventDefault();
               setIoTDevice(IoTDevices.classic);
               localStorage.setItem(
-                "pro-selector-iotDevice",
-                JSON.stringify(IoTDevices.classic)
+                PRO_SELECTOR_KEYS.IOT_DEVICE,
+                JSON.stringify(IoTDevices.classic),
               );
             }}
           >
@@ -319,8 +355,8 @@ const ProductType = () => {
               e.preventDefault();
               setIoTDevice(IoTDevices.core);
               localStorage.setItem(
-                "pro-selector-iotDevice",
-                JSON.stringify(IoTDevices.core)
+                PRO_SELECTOR_KEYS.IOT_DEVICE,
+                JSON.stringify(IoTDevices.core),
               );
             }}
           >

@@ -1,248 +1,364 @@
 {% extends "cloud/_base-cloud.html" %}
 
 {% block title %}Ubuntu on Clouds{% endblock %}
-{% block meta_description %}Ubuntu is the most popular Linux distribution across public and private clouds which makes it an ideal platform for hybrid cloud and multicloud implementation. It powers both infrastructure and applications, ensuring production-grade stability and best-in-class security. {% endblock meta_description %}
 
-{% block meta_image %}https://assets.ubuntu.com/v1/b0824086-twitter_wide_banner+%288%29.jpeg{% endblock %}
+{% block meta_description %}
+  Ubuntu is the most popular Linux distribution across public and private clouds which makes it an ideal platform for hybrid cloud and multicloud implementation. It powers both infrastructure and applications, ensuring production-grade stability and best-in-class security.
+{% endblock meta_description %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1DJZFADvRr_hrHzRWJrUTJxAM2ocZJ_ZWEnQVdKi6JBE/edit#{% endblock meta_copydoc %}
+{% block meta_image %}
+  https://assets.ubuntu.com/v1/b0824086-twitter_wide_banner+%288%29.jpeg
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1DJZFADvRr_hrHzRWJrUTJxAM2ocZJ_ZWEnQVdKi6JBE/edit#
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
-<section class="p-strip--suru-topped is-deep">
-  <div class="row">
-    <div class="col-8">
+  <section class="p-section--hero">
+    <div class="row--50-50">
+      <div class="col">
         <h1>Private cloud vs hybrid cloud, multicloud and more</h1>
-      <p class="p-heading--4">Choose the cloud architecture that suits you best</p>
-      <p>There is no one size fits all cloud architecture. Developing the optimum cloud strategy requires evaluating your business needs and aligning them with the different solutions available.</p>
-      <p>Canonical fully supports public clouds and provides its own solutions for <a href="/openstack/consulting">private cloud implementation</a> and <a href="/openstack/managed">management</a>, as well as workload orchestration in hybrid cloud and multicloud environments.</p>
-      <p>
-        <a class="p-button--positive" href="/engage/cloud-cost-optimisation-best-practices">Optimise your cloud infrastructure</a>
-      </p>
+      </div>
+      <div class="col">
+        <p class="p-heading--2">Choose the cloud architecture that suits you best</p>
+        <p>
+          There is no one size fits all cloud architecture. Developing the optimum cloud strategy requires evaluating your business needs and aligning them with the different solutions available.
+        </p>
+        <div class="p-section--shallow">
+          <p>
+            Canonical fully supports public clouds and provides its own <a href="https://canonical.com/solutions/infrastructure">infrastructure solutions</a> for <a href="/openstack/consulting">private cloud implementation</a> and <a href="/openstack/managed">management</a>, as well as workload orchestration in hybrid cloud and multicloud environments.
+          </p>
+        </div>
+        <hr class="is-muted" />
+        <p>
+          <a class="p-button--positive"
+             href="/engage/cloud-cost-optimisation-best-practices">Optimise your cloud infrastructure</a>
+        </p>
+      </div>
     </div>
-    <div class="col-4 u-hide--small u-vertically-center u-align--center">
-      {{
-        image(
-         url="https://assets.ubuntu.com/v1/ab87e245-Private-v-Public-Mulit-Cloud.svg",
-         alt="Private vs public cloud",
-         width="350",
-         height="300",
-         hi_def=True,
-         loading="auto",
-        ) | safe
-      }}
+    <div class="row">
+      <div class="p-image-container--cinematic u-hide--small is-highlighted"> 
+        <img class="p-image-container__image p-strip is-shallow" src="https://assets.ubuntu.com/v1/bb3fc02c-image.png" alt="" /> 
+      </div>    
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h2>What is a private cloud?</h2>
-      <p>A <a href="/cloud/private-cloud">private cloud</a> provides organisations with on-demand compute, storage and other resources that can be accessed over the network and that are reserved exclusively for them - either in their own data centre or via a 3rd party.</p>
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr />
+        <div class="col">
+          <h2>What is a private cloud?</h2>
+        </div>
+        <div class="col">
+          <p>
+            A <a href="/cloud/private-cloud">private cloud</a> provides organisations with on-demand compute, storage and other resources that can be accessed over the network and that are reserved exclusively for them - either in their own data centre or via a 3rd party.
+          </p>
+        </div>
+      </div>
     </div>
-    <div class="col-4 u-hide--small u-vertically-center u-align--center">
-      {{
-        image(
-         url="https://assets.ubuntu.com/v1/f25ccac7-Private+Cloud.svg",
-         alt="Private cloud",
-         width="190",
-         height="130",
-         hi_def=True,
-         loading="auto",
-        ) | safe
-      }}  
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Advantages:</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked">
+                If run efficiently and well-utilised, private clouds are often <a href="https://go.451research.com/Emerging-pricing-model-for-private-cloud">more cost-effective</a> for equivalent resources than public clouds.
+              </li>
+              <li class="p-list__item is-ticked">
+                An organisation with a private cloud does not share its hosting resources with other organisations meaning in general, private clouds provide better performance.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-5">
-      <p><b>Advantages:</b></p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Compared to public clouds, private clouds are often <a href="https://go.451research.com/Emerging-pricing-model-for-private-cloud">more cost-effective</a>&mdash;especially when used at scale and in the long-term.</li>
-        <li class="p-list__item is-ticked">An organisation with a private cloud does not share its hosting resources with other organisations meaning in general, private clouds provide better performance.</li>
-      </ul>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Disadvantages:</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-crossed">
+                Purchasing and provisioning new hardware carries relatively high fixed costs, which are wasted if the cloud has low utilisation.
+              </li>
+              <li class="p-list__item is-crossed">
+                The deployment and on-going management of a private cloud requires dedicated team resources and technical skill.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-5">
-      <p><b>Disadvantages:</b></p>
-      <ul class="p-list">
-        <li class="p-list__item is-crossed">The deployment and on-going management of a private cloud requires dedicated team resources and technical skill.</li>
-      </ul>
+    <div class="row">
+      <hr class="is-muted" />
+      <div class="col-6 col-start-large-7 col-medium-3 col-start-medium-4">
+        <p>
+          <a href="/engage/openstack-introduction">Read an introduction to OpenStack&nbsp;&rsaquo;</a>
+        </p>
+      </div>
     </div>
-  </div>
-  <div class="u-fixed-width">
-    <p><a href="/openstack">Canonical's Charmed OpenStack</a> solves this problem by simplifying OpenStack deployment and providing operational automation which significantly reduces the total cost of ownership (TCO) of a private cloud. 
-    </p>
-    <p>
-      <a href="/engage/openstack-introduction">Read an introduction to OpenStack&nbsp;&rsaquo;</a>
-    </p>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h2>What is a public cloud?</h2>
-      <p>In a <a href="/cloud/public-cloud">public cloud environment</a>, compute, storage and other infrastructure resources are provided as a service by an external provider.</p>
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr />
+        <div class="col">
+          <h2>What is a public cloud?</h2>
+        </div>
+        <div class="col">
+          <p>
+            In a <a href="/cloud/public-cloud">public cloud environment</a>, compute, storage and other infrastructure resources are provided as a service by an external provider.
+          </p>
+        </div>
+      </div>
     </div>
-    <div class="col-4 u-hide--small u-vertically-center u-align--center">
-      {{
-        image(
-         url="https://assets.ubuntu.com/v1/a3694a61-Public+Cloud.svg",
-         alt="Public cloud",
-         width="190",
-         height="130",
-         hi_def=True,
-         loading="auto",
-        ) | safe
-      }}  
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Advantages:</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked">
+                Immediate access to infrastructure as a service (IaaS) can significantly accelerate time to market for organisations.
+              </li>
+              <li class="p-list__item is-ticked">
+                Public clouds provide the ability to scale resource consumption as needed and virtually without limits.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-5">
-      <p><b>Advantages:</b></p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Immediate access to infrastructure as a service (IaaS) can significantly accelerate time to market for organisations.</li>
-        <li class="p-list__item is-ticked">Public clouds provide the ability to scale resource consumption virtually without limits.</li>
-      </ul>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Disadvantages:</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-crossed">
+                <a href="https://go.451research.com/Emerging-pricing-model-for-private-cloud">Can be more expensive</a> than an efficiently-managed and well-utilised private cloud.
+              </li>
+              <li class="p-list__item is-crossed">
+                In addition to the compute costs, there can be unexpected ancillary costs like egress (taking your data out of the cloud)
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-5">
-      <p><b>Disadvantages:</b></p>
-      <ul class="p-list">
-        <li class="p-list__item is-crossed">While the headline costs of the public cloud look attractive, hidden ancillary costs often make it an expensive choice of cloud architecture.</li>
-      </ul>
+    <div class="row">
+      <hr class="is-muted" />
+      <div class="col-6 col-start-large-7 col-medium-3 col-start-medium-4">
+        <p>
+          <a href="/download/cloud">Learn more about Ubuntu on Public Clouds&nbsp;&rsaquo;</a>
+        </p>
+      </div>
     </div>
-  </div>
-  <div class="u-fixed-width">
-    <p>Major public cloud providers include Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform, Oracle and IBM Cloud.</p>
-    <p>
-      <a href="/engage/public-cloud-openstack-implementation">Learn how to build your own public cloud&nbsp;&rsaquo;</a>
-    </p>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h2>What is a hybrid cloud?</h2>
-      <p>A <a href="/cloud/hybrid-cloud">hybrid cloud</a> architecture is one that combines the usage of a private cloud and one or more public cloud services with a workload orchestration engine between the platforms.</p>
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr />
+        <div class="col">
+          <h2>What is a hybrid cloud?</h2>
+        </div>
+        <div class="col">
+          <p>
+            A <a href="/cloud/hybrid-cloud">hybrid cloud</a> architecture is one that combines the usage of a private cloud and one or more public cloud services with a workload orchestration engine between the platforms.
+          </p>
+        </div>
+      </div>
     </div>
-    <div class="col-4 u-hide--small u-vertically-center u-align--center">
-      {{
-        image(
-         url="https://assets.ubuntu.com/v1/45120edb-Hybrid+Cloud.svg",
-         alt="Hybrid cloud",
-         width="190",
-         height="130",
-         hi_def=True,
-         loading="auto",
-        ) | safe
-      }}  
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Advantages:</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked">
+                A hybrid strategy provides maximum OpEx efficiency when executed in the right way.
+              </li>
+              <li class="p-list__item is-ticked">Hybrid clouds are ideal for workloads with diverse requirements.</li>
+              <li class="p-list__item is-ticked">Prevents vendor-lock in as organisations are not tied to one cloud vendor.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-5">
-      <p><b>Advantages:</b></p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">A hybrid strategy provides maximum OpEx efficiency when executed in the right way.</li>
-        <li class="p-list__item is-ticked">Hybrid clouds are ideal for workloads with diverse requirements.</li>
-        <li class="p-list__item is-ticked">Prevents vendor-lock in as organisations are not tied to one cloud vendor.</li>
-      </ul>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Disadvantages:</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-crossed">Workload orchestration across various cloud platforms can be challenging.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-5">
-      <p><b>Disadvantages:</b></p>
-      <ul class="p-list">
-        <li class="p-list__item is-crossed">Workload orchestration across various cloud platforms can be challenging.</li>
-      </ul>
+    <div class="row--50-50">
+      <hr class="is-muted" />
+      <div class="col"></div>
+      <div class="col">
+        <p>
+          <a href="/engage/hybrid-cloud-strategy-playbook">Read our hybrid cloud modernisation playbook&nbsp;&rsaquo;</a>
+        </p>
+      </div>
     </div>
-  </div>
-  <div class="u-fixed-width">
-    <p>
-      <a href="/engage/hybrid-cloud-strategy-playbook">Read our hybrid cloud modernisation playbook&nbsp;&rsaquo;</a>
-    </p>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h2>What is a multicloud?</h2>
-      <p>A <a href="/cloud/multi-cloud">multicloud</a> architecture can be considered as a relative of the hybrid cloud. It is a combination of multiple private, public or hybrid clouds.</p>
-      <p>The multicloud architecture is quickly being seen as the de-facto cloud strategy for enterprises, with <a href="https://www.gartner.com/smarterwithgartner/why-organizations-choose-a-multicloud-strategy/">81% of businesses</a> working with more than one cloud provider.</p>
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr />
+        <div class="col">
+          <h2>What is a multicloud?</h2>
+        </div>
+        <div class="col">
+          <p>
+            A <a href="/cloud/multi-cloud">multicloud</a> architecture can be considered as a relative of the hybrid cloud. It is a combination of multiple private, public or hybrid clouds.
+          </p>
+          <p>
+            The multicloud architecture is quickly being seen as the de-facto cloud strategy for enterprises, with <a href="https://www.gartner.com/smarterwithgartner/why-organizations-choose-a-multicloud-strategy/">81% of businesses</a> working with more than one cloud provider.
+          </p>
+        </div>
+      </div>
     </div>
-    <div class="col-4 u-hide--small u-vertically-center u-align--center">
-      {{
-        image(
-         url="https://assets.ubuntu.com/v1/dd0465c8-Multi-Cloud.svg",
-         alt="Multicloud",
-         width="220",
-         height="130",
-         hi_def=True,
-         loading="auto",
-        ) | safe
-      }}  
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Advantages:</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked">Prevents vendor-lock in as organisations are not tied to one cloud vendor.</li>
+              <li class="p-list__item is-ticked">
+                Greater flexibility than other models when it comes to operating applications in their most optimal environment.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-5">
-      <p><b>Advantages:</b></p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Prevents vendor-lock in as organisations are not tied to one cloud vendor. </li>
-        <li class="p-list__item is-ticked">Greater flexibility than other models when it comes to operating applications in their most optimal environment.</li>
-      </ul>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Disadvantages:</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-crossed">
+                May introduce an additional complexity to the organisation&nbsp;&rsaquo;s infrastructure unless proper tools are used to facilitate workloads operations in these kind of environments.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-5">
-      <p><b>Disadvantages:</b></p>
-      <ul class="p-list">
-        <li class="p-list__item is-crossed">May introduce an additional complexity to the organisation&nbsp;&rsaquo;s infrastructure unless proper tools are used to facilitate workloads operations in these kind of environments.</li>
-      </ul>
+    <div class="row--50-50">
+      <hr class="is-muted" />
+      <div class="col"></div>
+      <div class="col">
+        <p>
+          <a href="/engage/multi-cloud-business-guide">Learn how to optimise costs in multi-cloud environments&nbsp;&rsaquo;</a>
+        </p>
+      </div>
     </div>
-  </div>
-  <div class="u-fixed-width">
-    <p>
-      <a href="/engage/multi-cloud-business-guide">Learn how to optimise costs in multi-cloud environments&nbsp;&rsaquo;</a>
-    </p>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h2>What is an edge cloud?</h2>
-      <p>An edge cloud is a micro cloud run outside of the data centre, which brings computation and data storage closer to the location it's needed.</p>
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr />
+        <div class="col">
+          <h2>What is an edge cloud?</h2>
+        </div>
+        <div class="col">
+          <p>
+            An edge cloud is a micro cloud run outside of the data centre, which brings computation and data storage closer to the location it's needed.
+          </p>
+        </div>
+      </div>
     </div>
-    <div class="col-4 u-hide--small u-vertically-center u-align--center">
-      {{
-        image(
-         url="https://assets.ubuntu.com/v1/f24913d5-Edge+Cloud.svg",
-         alt="Edge cloud",
-         width="210",
-         height="140",
-         hi_def=True,
-         loading="auto",
-        ) | safe
-      }}  
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Advantages:</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked">
+                With an edge cloud, enterprises benefit from increased network performance as a result of an increase in bandwidth and a reduction in latency.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-5">
-      <p><b>Advantages:</b></p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">With an edge cloud, enterprises benefit from increased network performance as a result of an increase in bandwidth and a reduction in latency.</li>
-      </ul>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Disadvantages:</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-crossed">
+                The biggest challenges on the edge are increasing capital and operational costs, footprint minimisation, operations automation and security.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-5">
-      <p><b>Disadvantages:</b></p>
-      <ul class="p-list">
-        <li class="p-list__item is-crossed">The biggest challenges on the edge are increasing capital and operational costs, footprint minimisation, operations automation and security. </li>
-      </ul>
+    <div class="row--50-50">
+      <hr class="is-muted" />
+      <div class="col"></div>
+      <div class="col">
+        <p>
+          <a href="/engage/edge-infrastructure">Implement edge infrastructure the open-source way&nbsp;&rsaquo;</a>
+        </p>
+      </div>
     </div>
-  </div>
-  <div class="u-fixed-width">
-    <p>
-      <a href="/engage/edge-infrastructure">Implement edge infrastructure the open-source way&nbsp;&rsaquo;</a>
-    </p>
-  </div>
-</section>
+  </section>
 
-{% with first_item="_cloud_ubuntu_advantage", second_item="_cloud_contact_us", third_item="_cloud_engage_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+  {% with first_item="_cloud_ubuntu_advantage", second_item="_cloud_contact_us", third_item="_cloud_engage_further_reading" %}
+    {% include "shared/contextual_footers/_contextual_footer.html" %}
+  {% endwith %}
 
 {% endblock content %}

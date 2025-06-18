@@ -22,6 +22,12 @@
   stroke-width: 1px;
 }
 
+.chart__bar--mid-dark {
+  fill: $color-mid-dark;
+  stroke: $color-mid-dark;
+  stroke-width: 1px;
+}
+
 .chart__bar--aubergine {
   fill: #772953;
   stroke: #772953;
@@ -58,6 +64,10 @@
   stroke-width: 1px;
 }
 
+.chart__hwe-key {
+  display: none;
+}
+
 .chart__label--bold {
   font-weight: bold;
 }
@@ -80,6 +90,11 @@
 
 .chart-key text {
   font-size: 14px;
+  font-family: Ubuntu, sans-serif;
+}
+
+.chart text {
+  font-family: Ubuntu, sans-serif;
 }
 
 .x.axis text {

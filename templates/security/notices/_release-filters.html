@@ -1,0 +1,40 @@
+<form id="release-filter" name="release">
+  <label class="p-checkbox">
+    <input type="checkbox"
+           aria-labelledby="allMaintainedReleases"
+           class="p-checkbox__input"
+           value="maintained" />
+    <span class="p-checkbox__label p-heading--5 u-no-padding--top" id="allMaintainedReleases">All maintained releases</span>
+  </label>
+  {% for release in lts_releases %}
+    <label class="p-checkbox">
+      <input type="checkbox" aria-labelledby={{ release.version }} class="p-checkbox__input" value={{ release.codename }} />
+      <span class="p-checkbox__label" id={{ release.version }}>{{ release.version }}
+        {% if release.support_tag %}{{ release.support_tag }}{% endif %}
+        <span class="u-text--muted">{{ release.codename }}</span></span>
+      </label>
+    {% endfor %}
+    <p class="p-heading--5 u-text--muted">
+      Still maintained with Ubuntu Pro
+    </p>
+    {% for release in esm_releases %}
+      <label class="p-checkbox">
+        <input type="checkbox" aria-labelledby={{ release.version }} class="p-checkbox__input" value={{ release.codename }} />
+        <span class="p-checkbox__label" id={{ release.version }}>{{ release.version }}
+          {% if release.lts == True %}LTS{% endif %}
+          <span class="u-text--muted">{{ release.codename }}</span></span>
+        </label>
+      {% endfor %}
+      <p class="u-no-margin--bottom">
+        <a href="" class="js-show-unmaintained-releases">Show unmaintained releases</a>
+      </p>
+      <div class="js-unmaintained-releases u-hide">
+        <p class="p-heading--5 u-text--muted">Unmaintained</p>
+        {% for release in unmaintained_releases %}
+          <label class="p-checkbox">
+            <input type="checkbox" aria-labelledby={{ release.version }} class="p-checkbox__input" value={{ release.codename }} />
+            <span class="p-checkbox__label" id={{ release.version }}>{{ release.version }} <span class="u-text--muted">{{ release.codename }}</span></span>
+          </label>
+        {% endfor %}
+      </div>
+    </form>

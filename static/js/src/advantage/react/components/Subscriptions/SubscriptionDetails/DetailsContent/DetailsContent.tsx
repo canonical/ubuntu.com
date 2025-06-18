@@ -1,9 +1,11 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useCallback, useState } from "react";
 import classNames from "classnames";
 import {
   Button,
   Col,
   ColProps,
+  Notification,
+  type NotificationProps,
   Row,
   Spinner,
   Tooltip,
@@ -48,6 +50,10 @@ const generateFeatures = (features: Feature[]) =>
   ));
 
 const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
+  const [notification, setNotification] = useState<NotificationProps | null>(
+    null,
+  );
+
   const { data: subscription, isLoading } = useUserSubscriptions({
     select: selectSubscriptionById(selectedId),
   });
@@ -57,7 +63,7 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
 
   const { data: token, isLoading: isLoadingToken } = useContractToken(
     subscription?.contract_id,
-    isTokenVisible
+    isTokenVisible,
   );
 
   const SubscriptionToken = () => {
@@ -90,35 +96,58 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
         : getPeriodDisplay(subscription.period),
   };
 
+  const copyContractToken = useCallback(() => {
+    if (!token?.contract_token) return;
+
+    navigator.clipboard?.writeText(token.contract_token)?.then(() => {
+      setNotification({
+        severity: "positive",
+        children: (
+          <span data-test="token-copy-notification">Token copied.</span>
+        ),
+        onDismiss: () => setNotification(null),
+        timeout: 7000,
+      });
+    });
+
+    sendAnalyticsEvent({
+      eventCategory: "Advantage",
+      eventAction: "subscription-token-click",
+      eventLabel: "Token copied",
+    });
+  }, [token?.contract_token]);
+
   const tokenBlock = token?.contract_token ? (
     <div className="u-sv4 u-no-margin--bottom p-code-snippet">
       <pre
-        className="p-code-snippet__block--icon is-url"
+        className="p-code-snippet__block--icon is-url p-code-snippet__block--hover"
         data-test="contract-token"
-        onClick={() => {
-          sendAnalyticsEvent({
-            eventCategory: "Advantage",
-            eventAction: "subscription-token-click",
-            eventLabel: "Token copied",
-          });
-        }}
+        onClick={copyContractToken}
       >
-        {token?.contract_token}
+        {token.contract_token}
       </pre>
       <p>
         Command to attach a machine: <br />
-        <code>sudo pro attach {token?.contract_token}</code>
+        <code>sudo pro attach {token.contract_token}</code>
       </p>
+      {notification ? <Notification {...notification} /> : null}
     </div>
   ) : null;
   return (
     <div>
       <Row className="u-sv4">
         {generateFeatures([
-          {
-            title: "Cost",
-            value: currencyFormatter.format((subscription.price ?? 0) / 100),
-          },
+          ...(subscription.type === UserSubscriptionType.Legacy
+            ? // Don't show the cost for legacy subscriptions.
+              []
+            : [
+                {
+                  title: "Cost",
+                  value: currencyFormatter.format(
+                    (subscription.price ?? 0) / 100,
+                  ),
+                },
+              ]),
           ...(subscription.type === UserSubscriptionType.Legacy
             ? // Don't show the billing column for legacy subscriptions.
               []
@@ -140,6 +169,7 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
                   title: "Active machines",
                   value: (
                     <React.Fragment>
+                      {subscription.max_tracking_reached ? "+" : ""}
                       {subscription.number_of_active_machines}
                       <Tooltip
                         tooltipClassName="p-subscriptions-tooltip"

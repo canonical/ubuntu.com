@@ -1,16 +1,15 @@
 import { ActionButton, Modal, Notification } from "@canonical/react-components";
-import React from "react";
 import { mount } from "enzyme";
 
 import * as contracts from "advantage/api/contracts";
 import SubscriptionCancel from "./SubscriptionCancel";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   lastPurchaseIdsFactory,
   userSubscriptionFactory,
 } from "advantage/tests/factories/api";
 import { LastPurchaseIds, UserSubscription } from "advantage/api/types";
-import { act } from "react-dom/test-utils";
+import { act } from "react";
 import { UserSubscriptionPeriod } from "advantage/api/enum";
 
 describe("SubscriptionCancel", () => {
@@ -30,10 +29,10 @@ describe("SubscriptionCancel", () => {
       period: UserSubscriptionPeriod.Monthly,
     });
     lastPurchaseIds = lastPurchaseIdsFactory.build();
-    queryClient.setQueryData("userSubscriptions", [subscription]);
+    queryClient.setQueryData(["userSubscriptions"], [subscription]);
     queryClient.setQueryData(
       ["lastPurchaseIds", subscription.account_id],
-      lastPurchaseIds
+      lastPurchaseIds,
     );
   });
 
@@ -50,7 +49,7 @@ describe("SubscriptionCancel", () => {
           onCancelSuccess={jest.fn()}
           onClose={onClose}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     await act(async () => {
       const close = wrapper.find(Modal).invoke("close");
@@ -60,8 +59,8 @@ describe("SubscriptionCancel", () => {
   });
 
   it("displays a spinner when loading the data", async () => {
-    queryClient.removeQueries("userSubscriptions");
-    queryClient.removeQueries("lastPurchaseIds");
+    queryClient.removeQueries({ queryKey: ["userSubscriptions"] });
+    queryClient.removeQueries({ queryKey: ["lastPurchaseIds"] });
     const onClose = jest.fn();
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -70,10 +69,10 @@ describe("SubscriptionCancel", () => {
           onCancelSuccess={jest.fn()}
           onClose={onClose}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("Spinner[data-test='form-loading']").exists()).toBe(
-      true
+      true,
     );
     expect(wrapper.find("SubscriptionCancelFields").exists()).toBe(false);
   });
@@ -86,11 +85,11 @@ describe("SubscriptionCancel", () => {
           onCancelSuccess={jest.fn()}
           onClose={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     await act(async () => {
       expect(wrapper.find("Spinner[data-test='form-loading']").exists()).toBe(
-        false
+        false,
       );
       expect(wrapper.find("Formik").exists()).toBe(true);
     });
@@ -104,7 +103,7 @@ describe("SubscriptionCancel", () => {
           onCancelSuccess={jest.fn()}
           onClose={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     await act(async () => {
       wrapper
@@ -123,7 +122,7 @@ describe("SubscriptionCancel", () => {
           onCancelSuccess={jest.fn()}
           onClose={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     await act(async () => {
       wrapper
@@ -141,7 +140,7 @@ describe("SubscriptionCancel", () => {
           onCancelSuccess={jest.fn()}
           onClose={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     await act(async () => {
       wrapper.find("Formik form").simulate("submit");
@@ -157,7 +156,7 @@ describe("SubscriptionCancel", () => {
           onCancelSuccess={jest.fn()}
           onClose={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     await act(async () => {
       wrapper
@@ -181,7 +180,7 @@ describe("SubscriptionCancel", () => {
           onCancelSuccess={onCancelSuccess}
           onClose={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     await act(async () => {
       wrapper
@@ -198,7 +197,7 @@ describe("SubscriptionCancel", () => {
 
   it("can display an error when the subscription is missing", async () => {
     cancelContractSpy.mockImplementation(() =>
-      Promise.resolve({ errors: "no monthly subscription" })
+      Promise.resolve({ errors: "no monthly subscription" }),
     );
     const onCancelSuccess = jest.fn();
     const wrapper = mount(
@@ -208,7 +207,7 @@ describe("SubscriptionCancel", () => {
           onCancelSuccess={onCancelSuccess}
           onClose={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     await act(async () => {
       wrapper
@@ -224,13 +223,13 @@ describe("SubscriptionCancel", () => {
     expect(notification.exists()).toBe(true);
     expect(notification.prop("data-test")).toBe("cancel-error");
     expect(notification.text().includes("you have a pending payment")).toBe(
-      true
+      true,
     );
   });
 
   it("can display an error when cancelling failed", async () => {
     cancelContractSpy.mockImplementation(() =>
-      Promise.resolve({ errors: "Uh oh" })
+      Promise.resolve({ errors: "Uh oh" }),
     );
     const onCancelSuccess = jest.fn();
     const wrapper = mount(
@@ -240,7 +239,7 @@ describe("SubscriptionCancel", () => {
           onCancelSuccess={onCancelSuccess}
           onClose={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     await act(async () => {
       wrapper
@@ -256,7 +255,7 @@ describe("SubscriptionCancel", () => {
     expect(notification.exists()).toBe(true);
     expect(notification.prop("data-test")).toBe("cancel-error");
     expect(notification.text().includes("you have a pending payment")).toBe(
-      false
+      false,
     );
   });
 
@@ -268,7 +267,7 @@ describe("SubscriptionCancel", () => {
           onCancelSuccess={jest.fn()}
           onClose={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     await act(async () => {
       wrapper
@@ -292,7 +291,7 @@ describe("SubscriptionCancel", () => {
           onClose={jest.fn()}
           isTrial
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     await act(async () => {
       wrapper

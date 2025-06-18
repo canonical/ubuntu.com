@@ -1,0 +1,25 @@
+version: 2
+percy:
+  useSystemProxy: false
+  skipBaseBuild: false
+snapshot:
+  widths:
+    - 375
+    - 1280
+  minHeight: 1024
+  percyCSS: ""
+  cliEnableJavaScript: true
+  disableShadowDOM: false
+  responsiveSnapshotCapture: false
+discovery:
+  allowedHostnames: []
+  disallowedHostnames: 
+    - ade.googlesyndication.com
+    - www.googletagmanager.com
+  networkIdleTimeout: 100
+  captureMockedServiceWorker: false
+  retry: false
+upload:
+  files: "**/*.{png,jpg,jpeg}"
+  ignore: ""
+  stripExtensions: false

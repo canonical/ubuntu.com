@@ -8,7 +8,7 @@ const UserSearch = ({
   const [searchInputValue, setSearchInputValue] = React.useState("");
 
   const handleSearchInputChange: React.ChangeEventHandler<HTMLInputElement> = (
-    event
+    event,
   ) => {
     setSearchInputValue(event?.currentTarget?.value);
   };

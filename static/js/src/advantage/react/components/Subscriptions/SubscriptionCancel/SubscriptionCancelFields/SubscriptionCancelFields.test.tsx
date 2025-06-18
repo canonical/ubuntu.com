@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import { Formik } from "formik";
 
@@ -10,7 +9,7 @@ describe("SubscriptionCancelFields", () => {
     const wrapper = mount(
       <Formik initialValues={{ cancel: "" }} onSubmit={jest.fn()}>
         <SubscriptionCancelFields setIsValid={setIsValid} />
-      </Formik>
+      </Formik>,
     );
     wrapper
       .find("input[name='cancel']")
@@ -22,7 +21,7 @@ describe("SubscriptionCancelFields", () => {
     const wrapper = mount(
       <Formik initialValues={{ cancel: "" }} onSubmit={jest.fn()}>
         <SubscriptionCancelFields setIsValid={setIsValid} />
-      </Formik>
+      </Formik>,
     );
     wrapper.find("If you cancel this subscription");
     expect(setIsValid).toHaveBeenCalledWith(true);
@@ -33,7 +32,7 @@ describe("SubscriptionCancelFields", () => {
     const wrapper = mount(
       <Formik initialValues={{ cancel: "" }} onSubmit={jest.fn()}>
         <SubscriptionCancelFields setIsValid={setIsValid} isTrial={isTrial} />
-      </Formik>
+      </Formik>,
     );
     wrapper.find("If you cancel this trial");
     expect(setIsValid).toHaveBeenCalledWith(true);

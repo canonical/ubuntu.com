@@ -1,7 +1,7 @@
 @mixin ubuntu-p-matrix {
   .p-matrix--two-col {
     .p-matrix__item {
-      @media (min-width: $breakpoint-medium) {
+      @media (min-width: $breakpoint-small) {
         width: 50%;
 
         &:nth-child(2n + 1) {

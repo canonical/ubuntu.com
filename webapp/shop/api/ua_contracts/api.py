@@ -1,3 +1,4 @@
+import logging
 from typing import List, Optional
 
 from requests.exceptions import HTTPError
@@ -11,6 +12,7 @@ class UAContractsAPI:
         token_type="Macaroon",
         api_url="https://contracts.canonical.com",
         is_for_view=False,
+        remote_addr=None,
     ):
         """
         Expects a Talisker session in most circumstances,
@@ -22,6 +24,7 @@ class UAContractsAPI:
         self.token_type = token_type
         self.api_url = api_url.rstrip("/")
         self.is_for_view = is_for_view
+        self.remote_addr = remote_addr
 
     def set_authentication_token(self, token):
         self.authentication_token = token
@@ -41,9 +44,16 @@ class UAContractsAPI:
         error_rules=None,
         headers={},
     ):
-        headers[
-            "Authorization"
-        ] = f"{self.token_type} {self.authentication_token}"
+        headers["Authorization"] = (
+            f"{self.token_type} {self.authentication_token}"
+        )
+
+        if self.remote_addr:
+            headers["X-Forwarded-For"] = self.remote_addr
+            logger = logging.getLogger("talisker.requests")
+            logger.info(
+                "remote address", extra={"remote_addr": self.remote_addr}
+            )
 
         response = self.session.request(
             method=method,
@@ -62,6 +72,15 @@ class UAContractsAPI:
             response.raise_for_status()
 
         return response
+
+    def get_attributes(self) -> dict:
+        return {
+            "authentication_token": self.authentication_token,
+            "token_type": self.token_type,
+            "api_url": self.api_url,
+            "is_for_view": self.is_for_view,
+            "remote_addr": self.remote_addr,
+        }
 
     def get_accounts(self, email: str = None) -> dict:
         return self._request(
@@ -361,8 +380,8 @@ class UAContractsAPI:
         starts_at,
         country_code,
     ) -> dict:
-        return self._request(
-            method="get",
+        req = self._request(
+            method="post",
             path="v1/cue/schedule",
             json={
                 "contractItemID": int(contract_item_id),
@@ -372,8 +391,9 @@ class UAContractsAPI:
                 "startsAt": starts_at,
                 "countryCode": country_code,
             },
-            error_rules=["default"],
+            error_rules=[],
         ).json()
+        return req
 
     def delete_assessment_reservation(self, contract_item_id) -> dict:
         self._request(
@@ -382,6 +402,29 @@ class UAContractsAPI:
             error_rules=["default"],
         )
         return {}
+
+    def get_cue_user_bans(self) -> dict:
+        return self._request(
+            method="get",
+            path="v1/cue/user-ban",
+            error_rules=["default"],
+        ).json()
+
+    def put_cue_user_ban(self, user_ban) -> dict:
+        response = self._request(
+            method="put",
+            path="v1/cue/user-ban",
+            json={
+                "email": user_ban["email"],
+                "reason": user_ban["reason"],
+                "expiresAt": user_ban["expiresAt"],
+                "blocked": user_ban["blocked"],
+            },
+            error_rules=["default"],
+        )
+        if response.status_code == 200:
+            return {}
+        return response.json()
 
     def post_magic_attach(self, request_body: dict, headers: dict) -> dict:
         self._request(
@@ -432,6 +475,13 @@ class UAContractsAPI:
 
         return {}
 
+    def get_activation_key_info(self, key_id: str) -> dict:
+        return self._request(
+            method="get",
+            path=f"v1/keys/{key_id}",
+            error_rules=["default"],
+        ).json()
+
     def get_annotated_contract_items(
         self, email: str = "", product_tags: List[str] = []
     ) -> List[dict]:
@@ -439,12 +489,15 @@ class UAContractsAPI:
 
         if product_tags:
             params["productTags"] = product_tags
+        error_rules = []
+        if "cue" not in product_tags:
+            error_rules = ["default"]
 
         return self._request(
             method="get",
             path="/web/annotated-contract-items",
             params=params,
-            error_rules=["default"],
+            error_rules=error_rules,
         ).json()
 
     def handle_error(self, error, error_rules=None):

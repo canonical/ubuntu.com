@@ -49,5 +49,9 @@ Other trademarks displayed on Canonical's websites are as set out below:
 - RUBY, copyright © 2016, Yukihiro Matsumoto
 - RUST, its trademarks are owned by the Mozilla Foundation
 - ROS and ROS2, its trademarks are owned by the Open Source Robotics Foundation
+- Apache®, Apache Spark, Spark®, and the Spark logo are either registered trademarks or trademarks of the Apache Software Foundation in the United States and/or other countries. 
+- Apache®, Apache Kafka, Kafka®, and the Kafka logo are either registered trademarks or trademarks of the Apache Software Foundation in the United States and/or other countries.
+- Apache®, Apache ZooKeeper, ZooKeeper®, and the ZooKeeper logo are either registered trademarks or trademarks of the Apache Software Foundation in the United States and/or other countries.
+- Apache®, Apache Kyuubi, Kyuubi®, and the Kyuubi logo are either registered trademarks or trademarks of the Apache Software Foundation in the United States and/or other countries.
 
 All other trademarks and copyrights are property of their respective owners and are only mentioned for informative purposes.

@@ -59,7 +59,7 @@ const ProductSummary = () => {
           <span>
             <strong>
               {currencyFormatter.format(
-                ((product?.price.value ?? 0) / 100) * quantity
+                ((product?.price.value ?? 0) / 100) * quantity,
               )}{" "}
               /{period === Periods.yearly ? "year" : "month"}
             </strong>

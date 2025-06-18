@@ -1,9 +1,10 @@
-import { FormValues, Product, UserInfo } from "./types";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
+import { FormValues, UserInfo } from "./types";
 
 export function getInitialFormValues(
-  product: Product,
-  canTrial: boolean,
-  userInfo?: UserInfo
+  marketplace: UserSubscriptionMarketplace,
+  canTrial?: boolean,
+  userInfo?: UserInfo,
 ): FormValues {
   const accountName = userInfo?.accountInfo?.name;
   const customerName = userInfo?.customerInfo.name;
@@ -27,19 +28,21 @@ export function getInitialFormValues(
     TermsAndConditions: false,
     MarketingOptIn: false,
     Description: false,
-    FreeTrial: canTrial && !window.currentPaymentId ? "useFreeTrial" : "payNow",
-    marketplace: product.marketplace,
+    marketplace: marketplace,
     isTaxSaved: !!userInfo?.customerInfo?.address?.country,
     isCardValid: !!userInfo?.customerInfo?.defaultPaymentMethod,
     isInfoSaved: !!userInfo?.customerInfo?.defaultPaymentMethod,
     TermsOfService: false,
     DataPrivacy: false,
+    ...(canTrial && {
+      FreeTrial: !window.currentPaymentId ? "useFreeTrial" : "payNow",
+    }),
   };
 }
 
 export const canBeTrialled = (
   productCanBeTrialled?: boolean,
-  userCanTrial?: boolean
+  userCanTrial?: boolean,
 ) => {
   if (productCanBeTrialled == undefined) {
     return false;
@@ -50,4 +53,21 @@ export const canBeTrialled = (
   }
 
   return userCanTrial && productCanBeTrialled;
+};
+
+const beforeUnloadHandler = (event: Event) => {
+  // Recommended
+  event.preventDefault();
+
+  // Included for legacy support, e.g. Chrome/Edge < 119
+  event.returnValue = true;
+};
+
+export const confirmNavigateListener = {
+  set: () => {
+    window.addEventListener("beforeunload", beforeUnloadHandler);
+  },
+  clear: () => {
+    window.removeEventListener("beforeunload", beforeUnloadHandler);
+  },
 };

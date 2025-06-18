@@ -1,141 +1,166 @@
 {% extends "core/base_core.html" %}
 
 {% block title %}Full disk encryption | Ubuntu Core{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1kekmNSjenq31imR4_HaJgkq51SptBjnIjVIpuj1mmX0/edit{% endblock meta_copydoc %}
 
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1kekmNSjenq31imR4_HaJgkq51SptBjnIjVIpuj1mmX0/edit
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
 
-<section class="p-strip--suru-topped">
-  <div class="row u-equal-height">
-    <div class="col-7">
-      <h1>Full disk encryption</h1>
-      <p class="p-heading--4">IoT data is sensitive</p>
-      <p>Industrial internet of things (IIoT) devices store sensitive data, configuration files, log files, authentication secrets and software intellectual property. Any compromise to the integrity of data stored on devices can have damaging consequences.</p>
-      <p>If bad actors gain physical access to a device, they can extract user data. To prevent such scenarios, cryptography is needed to protect data confidentiality.</p>
+  <section class="p-section--hero">
+    <div class="row--50-50 p-section--shallow">
+      <div class="col">
+        <h1>Full disk encryption</h1>
+      </div>
+      <div class="col">
+        <p class="p-heading--5">IoT data is sensitive</p>
+        <p>
+          Industrial internet of things (IIoT) devices store sensitive data, configuration files, log files, authentication secrets and software intellectual property. Any compromise to the integrity of data stored on devices can have damaging consequences.
+        </p>
+        <p>
+          If bad actors gain physical access to a device, they can extract user data. To prevent such scenarios, cryptography is needed to protect data confidentiality.
+        </p>
+      </div>
     </div>
-    <div class="col-5 u-hide--small u-vertically-center u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/1fbe51df-UC20_Full-disc-encryption.svg",
-        alt="",
-        width="170",
-        height="170",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
+    <div class="u-fixed-width">
+      <div class="p-image-container">
+        <img class="p-image-container__image"
+             src="https://assets.ubuntu.com/v1/99cc612a-full-width-hero.png"
+             alt="Diagram showing secure boot, encrypted data storage, and digital signature verification for software components." />
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip--light">
-  <div class="row u-align--center">
-    {{ image (
-      url="https://assets.ubuntu.com/v1/720e50fa-UC20_advanced_security_features.svg",
-      alt="Advanced security features",
-      width="900",
-      height="264",
-      hi_def=True,
-      loading="lazy"
-      ) | safe
-    }}
-  </div>
-</section>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Secure data at rest</h2>
+      </div>
+      <div class="col">
+        <p>
+          Data security and integrity can be achieved by storing the secrets in secure elements or Trusted Platform Modules (TPM), or by using specialised software-enabled stores that use symmetric key encryption.
+        </p>
+        <p>
+          The most reliable technique is to cryptographically ensure data integrity by using digital signatures. Private key based cryptographic signatures can attest to the actual data at the time of signing. The integrity of signed data can be validated, ensuring the integrity prior to applying software and firmware updates.
+        </p>
+        <p>
+          The same applies to validating configuration and log files. The signing operation is usually performed in a hardware trust root, such as a TPM, where the signing key can also be securely stored.
+        </p>
+      </div>
+    </div>
+  </section>
 
-<section class="p-strip">
-  <div class="row">
-    <h2>Secure data at rest</h2>
-    <p>Data security and integrity can be achieved by storing the secrets in secure elements or Trusted Platform Modules (TPM), or by using specialised software-enabled stores that use symmetric key encryption.</p>
-    <p>The most reliable technique is to cryptographically ensure data integrity by using digital signatures. Private key based cryptographic signatures can attest to the actual data at the time of signing. The integrity of signed data can be validated, ensuring the integrity prior to applying software and firmware updates.</p>
-    <p>The same applies to validating configuration and log files. The signing operation is usually performed in a hardware trust root, such as a TPM, where the signing key can also be securely stored.</p>
-  </div>
-</section>
+  <section class="p-section">
+    <div class="u-fixed-width p-section--shallow">
+      <hr class="p-rule" />
+      <h2>Full disk encryption on Ubuntu Core</h2>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">ARM and x86</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Ubuntu Core abstracts the root of trust implementation for full disk encryption. As a consequence, Ubuntu Core full disk encryption can be enabled for both ARM and x86 SoCs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<section class="p-strip--light">
-  <div class="row u-sv3">
-    <h2>Full disk encryption on Ubuntu Core</h2>
-  </div>
-  <div class="row u-vertically-center">
-    <div class="p-card col-6 u-vertically-center">
-      <h3 class="p-card__title">ARM and x86</h3>
-      <p class="p-card__content">Ubuntu Core abstracts the root of trust implementation for full disk encryption. As a consequence, Ubuntu Core full disk encryption can be enabled for both ARM and x86 SoCs.</p>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Free for pre-certified boards</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Full disk encryption is available out of the box on <a href="/certified/iot">certified devices</a>, with TPM support, at no additional cost. An enablement fee is required to fully certify Ubuntu Core on non-certified boards.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="p-card col-6 u-vertically-center">
-      <h3 class="p-card__title">Free for pre-certified boards</h3>
-      <p class="p-card__content">Full disk encryption is available out of the box on <a href="/certified/iot">certified devices</a>, with TPM support, at no additional cost. An enablement fee is required to fully certify Ubuntu Core on non-certified boards.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip">
-  <div class="row">
-    <h2>How it works</h2>
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h3>Digital signatures</h3>
-      <p>Ubuntu Core uses digital signatures to cryptographically ensure data integrity. Private key based cryptographic signatures can attest to the actual data at the time of signing. At any point in the workflow, the integrity of signed data can be validated, thereby ensuring the integrity prior to applying software and firmware updates.</p>
+  <section class="p-section">
+    <div class="u-fixed-width p-section--shallow">
+      <hr class="p-rule" />
+      <h2>How it works</h2>
     </div>
-    <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/2131b805-We+transfer+control.svg",
-          alt="Transfer control",
-          width="150",
-          height="150",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-        }}
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Digital signatures</h3>
+          </div>
+          <div class="col-6 col-medium-3 p-section--shallow">
+            <p>
+              Ubuntu Core uses digital signatures to cryptographically ensure data integrity. Private key based cryptographic signatures can attest to the actual data at the time of signing. At any point in the workflow, the integrity of signed data can be validated, thereby ensuring the integrity prior to applying software and firmware updates.
+            </p>
+            <img src="https://assets.ubuntu.com/v1/2131b805-We+transfer+control.svg"
+                 alt=""
+                 width="150" />
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="u-fixed-width">
-    <hr class="p-separator" />
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h3>Root of trust</h3>
-      <p>Data at Rest integrity can be achieved by securely storing the private key used for encryption in hardware/TPM, or by using specialised software-enabled stores which employ symmetric key encryption. Using this key sensitive endpoint data stored on the disk can be protected.</p>
+    <div class="row p-section--shallow">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Root of trust</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Data at Rest integrity can be achieved by securely storing the private key used for encryption in hardware/TPM, or by using specialised software-enabled stores which employ symmetric key encryption. Using this key sensitive endpoint data stored on the disk can be protected.
+            </p>
+            <img src="https://assets.ubuntu.com/v1/aec863e2-Off+the+shelf.svg"
+                 alt=""
+                 width="150" />
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/aec863e2-Off+the+shelf.svg",
-        alt="",
-        width="200",
-        height="114",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip--light is-deep">
-  <div class="row u-equal-height">
-    <div class="col-5 u-hide--medium u-hide--small u-align--center">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
-            alt="",
-            width="281",
-            height="200",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
+  <section class="p-section--deep">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Secure your devices</h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="p-image-container is-highlighted">
+            <img class="p-image-container__image"
+                 src="https://assets.ubuntu.com/v1/683e6225-Image.png"
+                 alt="" />
+          </div>
+        </div>
+        <p>Get in touch with a Ubuntu security expert to discuss the advanced security requirements of your application.</p>
+        <hr class="is--muted" />
+        <p>
+          <a href="/core/contact-us?product=core-full-disk-encryption"
+             class="p-button--positive js-invoke-modal">Get in touch</a>
+        </p>
+      </div>
     </div>
-    <div class="col-7">
-      <h2>Secure your devices</h2>
-      <p>Get in touch with a Ubuntu security expert to discuss the advanced security requirements of your application.</p>
-      <p>
-        <a href="/core/contact-us?product=core-full-disk-encryption" class="p-button--positive js-invoke-modal">Get in touch</a>
-      </p>
-    </div>
-  </div>
-</section>
+  </section>
 
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/internet-of-things" data-form-id="1266" data-lp-id="2166" data-return-url="https://ubuntu.com/core/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-  </div>
-
+  {{ load_form("/core/features") | safe }}
 
 {% endblock content %}

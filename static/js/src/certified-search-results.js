@@ -9,16 +9,27 @@ const showLessReleases = document.querySelector(".js-show-less-releases");
 const tabBtn2 = document.querySelector("#tab2");
 const tabBtn3 = document.querySelector("#tab3");
 
+const showExpandedVendorFilterOptions = document.querySelector(
+  ".js-show-expanded-vendor-filter-options",
+);
+const showExpandedReleaseFilterOptions = document.querySelector(
+  ".js-show-expanded-release-filter-options",
+);
+
 // Hide more/less links when tabs are collapsed
 tabBtn2.addEventListener("click", (e) => {
   if (tabBtn2.ariaExpanded === "true") {
-    showAllVendors.classList.add("u-hide");
-    showLessVendors.classList.add("u-hide");
+    showExpandedVendorFilterOptions.classList.add("u-hide");
+  } else {
+    showExpandedVendorFilterOptions.classList.remove("u-hide");
   }
+});
 
+tabBtn3.addEventListener("click", (e) => {
   if (tabBtn3.ariaExpanded === "true") {
-    showAllReleases.classList.add("u-hide");
-    showLessReleases.classList.add("u-hide");
+    showExpandedReleaseFilterOptions.classList.add("u-hide");
+  } else {
+    showExpandedReleaseFilterOptions.classList.remove("u-hide");
   }
 });
 
@@ -35,7 +46,7 @@ function loadFilters() {
  * @returns {object} current state of filters in a flat object
  *
  * This function is used as state management
- * It provides the current state of all filters (category, vendor and ralease)
+ * It provides the current state of all filters (category, vendor and release)
  */
 function retrieveSelectedFilters() {
   const url = new URL(window.location.href);
@@ -84,14 +95,14 @@ async function renderFilters(
   vendorLimit,
   releaseLimit,
   renderVendorFilters = true,
-  renderReleaseFilters = true
+  renderReleaseFilters = true,
 ) {
   const filters = await fetchFilters(
     categories,
     vendors,
     releases,
     vendorLimit,
-    releaseLimit
+    releaseLimit,
   );
   if (categories && categories.length > 0) {
     if (renderVendorFilters && filters.vendor_filters) {
@@ -104,7 +115,7 @@ async function renderFilters(
         filters.vendor_filters.data,
         filters.vendor_filters.total,
         showAllVendors,
-        showLessVendors
+        showLessVendors,
       );
     }
 
@@ -118,7 +129,7 @@ async function renderFilters(
         filters.release_filters.data,
         filters.release_filters.total,
         showAllReleases,
-        showLessReleases
+        showLessReleases,
       );
     }
   } else {
@@ -132,7 +143,7 @@ async function renderFilters(
         filters.vendor_filters.data,
         filters.vendor_filters.total,
         showAllVendors,
-        showLessVendors
+        showLessVendors,
       );
     }
 
@@ -146,7 +157,7 @@ async function renderFilters(
         filters.release_filters.data,
         filters.release_filters.total,
         showAllReleases,
-        showLessReleases
+        showLessReleases,
       );
     }
   }
@@ -196,7 +207,7 @@ async function fetchFilters(
   selectedVendors = [],
   selectedReleases = [],
   vendorLimit = filterLimit,
-  releaseLimit = filterLimit
+  releaseLimit = filterLimit,
 ) {
   let url = new URL(`${window.location.origin}/certified/filters.json`);
   if (categoriesList.length > 0) {
@@ -245,7 +256,7 @@ async function handleCategoryClick(e) {
 }
 
 function handleFilterClick(e) {
-  const { value, name, checked, dataset, id } = e;
+  const { value, name, checked, dataset, id } = e.target;
   let url = new URL(window.location.href);
   let urlParams = url.searchParams;
   const vendorParams = urlParams.getAll("vendor");
@@ -325,6 +336,7 @@ function toggleExpandFilters(e, element) {
   e.preventDefault();
   const { name, value } = element;
   const { category, vendor, release } = retrieveSelectedFilters();
+
   if (name === "vendor") {
     if (value === "true") {
       // Show all
@@ -338,7 +350,7 @@ function toggleExpandFilters(e, element) {
         filterLimit,
         filterLimit,
         true,
-        false
+        false,
       );
     }
   } else if (name === "release") {
@@ -354,7 +366,7 @@ function toggleExpandFilters(e, element) {
         filterLimit,
         filterLimit,
         false,
-        true
+        true,
       );
     }
   }

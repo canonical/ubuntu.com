@@ -50,33 +50,52 @@ export interface FormValues {
   MarketingOptIn: boolean;
   Description: boolean;
   marketplace: UserSubscriptionMarketplace;
-  FreeTrial: string;
+  FreeTrial?: string;
   isTaxSaved: boolean;
   isCardValid: boolean;
   isInfoSaved: boolean;
+  poNumber?: string | null;
 }
 
-export type marketplace = "canonical-ua" | "canonical-cube" | "blender";
+export type marketplace =
+  | "canonical-ua"
+  | "canonical-cube"
+  | "blender"
+  | "canonical-pro-channel";
 
 export const marketplaceDisplayName = {
   "canonical-ua": "Ubuntu Pro",
   "canonical-cube": "CUE",
   blender: "Blender",
   free: "Personal Subscription",
+  "canonical-pro-channel": "Pro Channel",
 };
 
 export interface Product {
   longId: string;
-  period: UserSubscriptionPeriod;
+  period?: UserSubscriptionPeriod;
+  periodQuantity?: number;
   marketplace: UserSubscriptionMarketplace;
   id: string;
   name: string;
   price: {
     value: number;
     discount?: null | number;
+    currency?: string;
   };
+  offerId?: string;
   canBeTrialled?: boolean;
 }
+
+export type Coupon = {
+  origin: string;
+  IDs: string[];
+};
+
+export type CheckoutProducts = {
+  product: Product;
+  quantity: number;
+};
 
 export type Cart = {
   items: Product[];
@@ -84,20 +103,22 @@ export type Cart = {
 
 export type Action = "purchase" | "resize" | "trial" | "offer" | "renewal";
 
+export type PaymentPayloadProducts = {
+  product_listing_id: string;
+  quantity: number;
+};
+
 export type PaymentPayload = {
   account_id?: string;
   marketplace: UserSubscriptionMarketplace;
   action: Action;
   previous_purchase_id?: string | null;
   captcha_value?: string | null;
-  products?: [
-    {
-      product_listing_id: string;
-      quantity: number;
-    }
-  ];
+  products?: PaymentPayloadProducts[];
   renewal_id?: string;
   offer_id?: string;
+  coupon?: Coupon;
+  metadata?: Array<{ key: string; value: string }>;
 };
 
 export type TaxInfo = {
@@ -115,4 +136,15 @@ export type LoginSession = {
     email: string;
     fullname: string;
   };
+};
+
+export type DisplayError = {
+  title?: string;
+  description: React.ReactNode;
+};
+
+export type ValidationError = {
+  type: "validation_error";
+  code: string;
+  message: string;
 };

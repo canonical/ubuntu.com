@@ -1,185 +1,173 @@
 {% extends "download/_base_download.html" %}
 
 {% block title %}Use Ubuntu in public clouds | Download{% endblock %}
-{% block meta_description %}How to use Ubuntu in the public cloud and where to find our customised cloud images for development.{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1kp7QQXst1EbCjZjzWZP3YZwfmG0EIXLfQoRUVaMEZng/edit{% endblock meta_copydoc %}
+
+{% block meta_description %}
+  How to use Ubuntu in the public cloud and where to find our customised cloud images for development.
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1kp7QQXst1EbCjZjzWZP3YZwfmG0EIXLfQoRUVaMEZng/edit
+{% endblock meta_copydoc %}
+
+{% block body_class %}is-paper{% endblock %}
 
 {% block content %}
-<section class="p-strip--suru-topped is-bordered">
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h1>Optimised Ubuntu on&nbsp;public&nbsp;clouds</h1>
-      <p>Ubuntu builds optimised and certified server images for partners like Amazon AWS, Microsoft Azure, Google Cloud Platform, IBM Cloud and Oracle. In addition, Canonical offers Ubuntu Pro, enterprise-grade commercial support, on these images.</p>
-    </div>
-    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/f0028afb-ubuntu-cloud.svg",
-          alt="ubuntu cloud illustration",
-          width="303",
-          height="198",
-          hi_def=True,
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-{% include "/shared/_ubuntu_pro_on_public_cloud.html" %}
-
-<section class="p-strip is-deep">
-  <div class="row">
-    <div class="col-10">
-      <h2>Use Ubuntu in the cloud</h2>
-      <p>Here are some shortcuts to get you up and running with Ubuntu on various public clouds. You can also use our <a href="https://cloud-images.ubuntu.com/locator/">Ubuntu Cloud image finder</a> to search for the ids of specific Ubuntu images on various public clouds by location, architecture, release and more.</p>
-    </div>
-  </div>
-  <div class="row u-equal-height">
-    <div class="p-card col-4">
-      <div class="p-card__content">
-        <h4>
-          <a class="u-align--center u-vertically-center" style="min-height:10rem;display: flex;" href="http://cloud-images.ubuntu.com/locator/ec2/">
-            {{
-              image(
-                  url="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg",
-                  alt="Amazon Web Services logo",
-                  width="84",
-                  height="50",
-                  hi_def=True,
-                  loading="lazy",
-                  attrs={"style": "align-self: center;max-height: 10rem; max-width:10rem;"},
-                ) | safe
-            }}
-          </a>
-        </h4>
-        <p>Amazon Web Services offers reliable, scalable, and inexpensive cloud computing services.</p>
+  <section class="p-section--hero">
+    <div class="row--50-50">
+      <div class="col p-section--shallow">
+        <h1>
+          Optimised Ubuntu
+          <br />
+          on public clouds
+        </h1>
       </div>
-      <ul class="p-list">
-        <li class="p-list__item u-no-margin--top"><a href="https://help.ubuntu.com/community/EC2StartersGuide">Ubuntu's guide to using EC2</a></li>
-        <li class="p-list__item"><a href="http://cloud-images.ubuntu.com/locator/ec2/">Amazon EC2 AMI Locator</a></li>
-        <li class="p-list__item"><a href="/aws/pro">Launch Ubuntu Pro for AWS&nbsp;&rsaquo;</a></li>
-      </ul>
-    </div>
-    <div class="p-card col-4">
-      <div class="p-card__content">
-        <h4>
-          <a class="u-align--center u-vertically-center" style="min-height:10rem;display: flex;" href="https://azuremarketplace.microsoft.com/en-gb/marketplace/apps?search=Canonical+linux+for+the+cloud+Ubuntu%20Server&page=1">
-            {{
-              image(
-                  url="https://assets.ubuntu.com/v1/22fd6473-MicrosoftAzure_logo.svg",
-                  alt="Microsoft Azure logo",
-                  width="130",
-                  height="38",
-                  hi_def=True,
-                  loading="lazy",
-                  attrs={"style": "align-self: center;max-height: 10rem; max-width:12rem;"},
-                ) | safe
-            }}
-          </a>
-        </h4>
-        <p>Microsoft Azure is an open, flexible, enterprise-grade cloud computing platform.</p>
+      <div class="col">
+        <p>
+          Ubuntu builds optimised and certified images of <a href="/server">Ubuntu Server</a> for partners like Amazon AWS, Microsoft Azure, Google Cloud, IBM Cloud and Oracle Cloud.
+        </p>
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">5 years of maintenance and security updates with Ubuntu LTS</li>
+          <li class="p-list__item is-ticked">Free from licence fees, regardless of how many images you run</li>
+        </ul>
       </div>
-      <ul class="p-list">
-        <li class="p-list__item u-no-margin--top"><a href="/azure">Ubuntu on Azure&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="https://azuremarketplace.microsoft.com/en-gb/marketplace/apps?search=Canonical+linux+for+the+cloud+Ubuntu%20Server&page=1" >Launch Ubuntu on Azure&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="/azure/pro">Launch Ubuntu Pro for Azure&nbsp;&rsaquo;</a></li>
-      </ul>
     </div>
-    <div class="p-card col-4">
-      <div class="p-card__content">
-        <h4>
-          <a class="u-align--center u-vertically-center" style="min-height:10rem;display: flex;" href="https://console.cloud.google.com/launcher/browse?q=ubuntu&filter=category:os&filter=price:free">
-            {{
-              image(
-                  url="https://assets.ubuntu.com/v1/e795fc84-Google_Cloud_Logo.svg",
-                  alt="Google Cloud Platform logo",
-                  width="259",
-                  height="40",
-                  hi_def=True,
-                  loading="lazy",
-                  attrs={"style": "align-self: center; max-height: 10rem;"},
-                ) | safe
-            }}
-          </a>
-        </h4>
-        <p>Google Cloud Platform lets you build and host applications and websites, store data, and analyze data on Google's scalable infrastructure.</p>
+    <div class="row">
+      <div class="col-start-large-4 col-9 ">
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h2>
+              <a href="/pro">
+                {{ image(url="https://assets.ubuntu.com/v1/2f32b5f5-Ubuntu-Pro-logo.svg",
+                                alt="Ubuntu Pro",
+                                width="170",
+                                height="42",
+                                hi_def=True,
+                                loading="auto") | safe
+                }}
+              </a>
+            </h2>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              <a href="/pro">Ubuntu Pro</a> expands Ubuntu Server to provide enterprise-grade support, security and compliance on top of Ubuntu LTS.
+            </p>
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked">10 years of maintenance and security updates for over 25,000 packages</li>
+              <li class="p-list__item is-ticked">
+                Kernel security updates applied without reboot with <a href="/security/livepatch">Livepatch</a>
+              </li>
+              <li class="p-list__item is-ticked">
+                FIPS certified components and <a href="/security/security-standards">compliance</a> profiles such as CIS and DISA-STIG
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <ul class="p-list">
-        <li class="p-list__item u-no-margin--top"><a href="https://cloud.google.com/sdk/docs/quickstart-debian-ubuntu">Guide to using GCP</a></li>
-        <li class="p-list__item"><a href="https://console.cloud.google.com/launcher/browse?q=ubuntu&filter=category:os&filter=price:free">Get started on GCP</a></li>
-        <li class="p-list__item"><a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-cloud/ubuntu-focal">Launch Ubuntu on GCP</a></li>
-        <li class="p-list__item"><a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-pro-cloud/ubuntu-pro-focal">Launch Ubuntu Pro on GCP</a></li>
-      </ul>
     </div>
-  </div>
-  <div class="row u-equal-height">
-    <div class="p-card col-4">
-      <div class="p-card__content">
-        <h4>
-          <a class="u-align--center u-vertically-center" style="min-height:10rem;display: flex;" href="https://www.ibm.com/cloud/">
-            {{
-             image(
-                 url="https://assets.ubuntu.com/v1/5e91ff73-ibm-cloud-logo.svg",
-                 alt="IBM Cloud",
-                 width="192",
-                 height="45",
-                 hi_def=True,
-                 loading="lazy",
-                 attrs={"style": "align-self: center;max-height: 10rem; max-width:12rem;"},
-               ) | safe
-            }}
-          </a>
-        </h4>
-      </div>
-      <ul class="p-list">
-        <li class="p-list__item u-no-margin--top"><a href="https://www.ibm.com/cloud/">Get started on IBM Cloud</a></li>
-      </ul>
-    </div>
-    <div class="p-card col-4">
-      <div class="p-card__content">
-        <h4>
-          <a class="u-align--center u-vertically-center" style="min-height:10rem;display: flex;" href="https://docs.oracle.com/en/cloud/get-started/index.html">
-            {{
-              image(
-                  url="https://assets.ubuntu.com/v1/08646a72-logo-oracle.svg",
-                  alt="Oracle",
-                  width="192",
-                  height="27",
-                  hi_def=True,
-                  loading="lazy",
-                  attrs={"style": "align-self: center;max-height: 10rem; max-width:12rem;"},
-                ) | safe
-            }}
-          </a>
-        </h4>
-      </div>
-      <ul class="p-list">
-        <li class="p-list__item u-no-margin--top"><a href="https://docs.oracle.com/en/cloud/get-started/index.html">Guide to using Oracle Cloud</a></li>
-      </ul>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip--light is-deep is-bordered">
-  <div class="row u-equal-height">
-    <div class="col-6 u-vertically-center u-hide--medium u-hide--small">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/cf5198aa-desktop-22.04-laptop-developers.png",
-        alt="",
-        width="826",
-        height="498",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
+  <section class="p-section">
+    <div class="row">
+      <hr class="p-rule" />
+      <div class="col-6 p-section--shallow">
+        <h2>
+          Select your
+          <br class="u-hide--large u-hide--medium" />
+          platform
+        </h2>
+      </div>
+      <div class="col-6">
+        <div class="p-segmented-control p-section--shallow js-tabbed-content u-hide--small">
+          <div class="p-segmented-control__list"
+               role="tablist"
+               aria-label="Ubuntu Cloud platform">
+            <button class="p-segmented-control__button"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="aws-tab"
+                    id="aws">AWS</button>
+            <button class="p-segmented-control__button"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="azure-tab"
+                    id="azure"
+                    tabindex="-1">Azure</button>
+            <button class="p-segmented-control__button"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="google-cloud-tab"
+                    id="google-cloud"
+                    tabindex="-1">Google Cloud</button>
+            <button class="p-segmented-control__button"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="ibm-cloud-tab"
+                    id="ibm-cloud"
+                    tabindex="-1">IBM Cloud</button>
+            <button class="p-segmented-control__button"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="oracle-cloud-tab"
+                    id="oracle-cloud"
+                    tabindex="-1">Oracle Cloud</button>
+          </div>
+        </div>
+        <form class="u-hide--large u-hide--medium">
+          <select name="boardSelect" id="boardSelect">
+            <option value="aws-tab" selected="">AWS</option>
+            <option value="azure-tab">Azure</option>
+            <option value="google-cloud-tab">Google Cloud</option>
+            <option value="ibm-cloud-tab">IBM</option>
+            <option value="oracle-cloud-tab">Oracle</option>
+          </select>
+        </form>
+      </div>
     </div>
-    <div class="col-6">
-      <h2>Develop with Ubuntu cloud images</h2>
-      <p>If you want to modify the standard images, develop locally with a specific public cloud image, or use an image on your private cloud, you can download them from  <a href="http://cloud-images.ubuntu.com/">cloud-images.ubuntu.com</a>.</p>
+    <div class="row">
+      <div class="col-start-large-4 col-9 col-medium-6">
+        <hr class="p-rule--muted" />
+        {% include "download/cloud/tabs/_aws.html" %}
+        {% include "download/cloud/tabs/_azure.html" %}
+        {% include "download/cloud/tabs/_google-cloud.html" %}
+        {% include "download/cloud/tabs/_ibm-cloud.html" %}
+        {% include "download/cloud/tabs/_oracle-cloud.html" %}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-{% with first_item="_download_cloud_ubuntu_advantage", second_item="_cloud_newsletter", third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+  <section class="p-section">
+    <div class="row">
+      <hr class="p-rule" />
+      <div class="col-3 col-medium-3 p-section--shallow">
+        <h2 class="p-text--small-caps">Resources</h2>
+      </div>
+      <div class="col-3 col-medium-3">
+        <h3 class="p-heading--5">
+          <a href="/server/docs">Ubuntu Server documentation</a>
+        </h3>
+        <p>The Ubuntu Server documentation, curated by community and Ubuntu developers.</p>
+      </div>
+      <div class="col-3 col-start-medium-4 col-medium-3">
+        <h3 class="p-heading--5">
+          <a href="https://askubuntu.com/">Ask Ubuntu</a>
+        </h3>
+        <p>Stuck somewhere? Get your Ubuntu questions answered by power users.</p>
+      </div>
+      <div class="col-3 col-start-medium-4 col-medium-3">
+        <h3 class="p-heading--5">
+          <a href="https://discourse.ubuntu.com/c/public-cloud/176">Community Discourse</a>
+        </h3>
+        <p>Jion the Ubuntu on Public Clouds community and make your voice heard.</p>
+      </div>
+    </div>
+  </section>
 
+  {% with title_link="/blog/tag/ubuntu-server", tag_id="1610" %}
+    {% include "download/shared/_latest-blogs_download.html" %}
+  {% endwith %}
+
+  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  
 {% endblock content %}

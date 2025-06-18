@@ -2,24 +2,31 @@
 
 {% block title %}Desktop{% endblock %}
 
-{% block meta_description %}All you need to know about the fast, free and user-friendly Ubuntu desktop operating system.{% endblock %}
+{% block meta_description %}
+  All you need to know about the fast, free and user-friendly Ubuntu desktop operating system.
+{% endblock %}
 
 {% block content %}
-  <section class="p-strip--suru-blog-header">
+  <section class="p-strip--suru-blog-header is-dark">
     <div class="u-fixed-width">
-      <h1>
-        Desktop
-      </h1>
-      <h2 class="p-heading--4">All you need to know about the fast, free and user <br class="u-hide u-show--large">friendly Ubuntu desktop operating system.</h2>
+      <h1>Desktop</h1>
+      <h2 class="p-heading--4">
+        All you need to know about the fast, free and user
+        <br class="u-hide u-show--large" />
+        friendly Ubuntu desktop operating system.
+      </h2>
       <p>
-        <a class="p-link--inverted" href="https://www.ubuntu.com/desktop">Learn more about Desktop</a>
+        <a href="https://www.ubuntu.com/desktop" class="p-link--inverted">Learn more about Desktop</a>
       </p>
       <div id="rtp-banner" class="rtp-banner"></div>
     </div>
   </section>
 
-  <section class="p-strip is-shallow{% if current_page and current_page == 1 and upcoming_events %} is-bordered{% endif %}" id="posts-list">
-    {% with topic="desktop" %}{% include "blog/filters.html" %}{% endwith %}
+  <section class="p-strip is-shallow{% if current_page and current_page == 1 and upcoming_events %} is-bordered{% endif %}"
+           id="posts-list">
+    {% with topic="desktop" %}
+      {% include "blog/filters.html" %}
+    {% endwith %}
     {% include 'blog/posts.html' %}
   </section>
 

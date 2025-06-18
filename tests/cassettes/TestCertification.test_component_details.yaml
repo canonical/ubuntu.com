@@ -9,42 +9,38 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.25.1
+      - python-requests/2.28.2
     method: GET
-    uri: https://certification.canonical.com/api/v1/componentsummaries/682/?format=json
+    uri: https://certification.canonical.com/api/v2/component-summaries/682/?format=json&pagination=limitoffset
   response:
     body:
-      string: '{"archived": false, "category": "", "hardware_vendor_make": "Intel",
-        "id": 682, "identifier": "8086:24fd", "lts_certified_releases": {}, "lts_releases":
-        {"20.04 LTS": [{"release": "20.04 LTS", "status": "certified", "third_party_driver":
-        false}]}, "machine_canonical_ids": ["202004-27860", "202004-27850", "202004-27850",
-        "202004-27840", "202004-27840", "202003-27789", "202003-27789"], "model":
-        "Intel 8265NGW", "note": "", "part_number": "8086:24fd", "resource_uri": "/api/v1/componentsummaries/682/",
-        "statuses": [{"certified_release": {"codename": "focal", "id": 144, "release":
-        "20.04 LTS", "release_date": "2020-04-23", "resource_uri": "/api/v1/releases/144/",
-        "supported_until": "2030-04-23"}, "created": "2020-08-22T01:43:33.056642",
-        "id": 91, "resource_uri": "/api/v1/componentreleases/91/", "status": "certified",
-        "third_party_driver": false, "updated": "2020-08-22T01:43:33.056670"}], "subsystem_identifier":
-        "8086:24fd", "vendor_make": "8265NGW", "vendor_name": "Intel Corp."}'
+      string: '{"archived":false,"category":"","hardware_vendor_make":"Intel","id":682,"identifier":"8086:24fd","lts_releases":{"20.04
+        LTS":[{"release":"20.04 LTS","third_party_driver":false,"status":"certified"}]},"machine_canonical_ids":["202004-27860","202004-27860","202004-27860","202004-27850","202004-27850","202004-27850","202004-27840","202004-27840","202004-27840","202003-27789","202003-27789","202003-27789"],"model":"8265NGW","note":"","part_number":"8086:24fd","statuses":[{"status":"certified","created":"2020-08-22T01:43:33.056642+01:00","updated":"2020-08-22T01:43:33.056670+01:00","third_party_driver":false,"certified_release":{"codename":"focal","release":"20.04
+        LTS","release_date":"2020-04-23","supported_until":"2030-04-23","i_version":2004}}],"subsystem_identifier":"8086:24fd","vendor_make":"Intel","vendor_name":"Intel
+        Corp."}'
     headers:
-      Cache-Control:
-      - no-cache
+      Allow:
+      - GET, HEAD, OPTIONS
       Connection:
-      - Keep-Alive
+      - keep-alive
       Content-Length:
-      - '988'
+      - '837'
       Content-Type:
       - application/json
       Date:
-      - Mon, 24 May 2021 15:00:28 GMT
-      Keep-Alive:
-      - timeout=5, max=100
-      Server:
-      - gunicorn/19.9.0
+      - Tue, 03 Sep 2024 15:26:39 GMT
       Strict-Transport-Security:
-      - max-age=2592000
+      - max-age=15724800; includeSubDomains
       Vary:
-      - Accept,Cookie
+      - Accept, Cookie
+      X-QueryInspect-Duplicate-SQL-Queries:
+      - '0'
+      X-QueryInspect-Num-SQL-Queries:
+      - '6'
+      X-QueryInspect-Total-Request-Time:
+      - 31 ms
+      X-QueryInspect-Total-SQL-Time:
+      - 19 ms
     status:
       code: 200
       message: OK
@@ -58,43 +54,43 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.25.1
+      - python-requests/2.28.2
     method: GET
-    uri: https://certification.canonical.com/api/v1/certifiedmodels/?format=json&limit=0&canonical_id__in=202004-27860&canonical_id__in=202004-27850&canonical_id__in=202004-27850&canonical_id__in=202004-27840&canonical_id__in=202004-27840&canonical_id__in=202003-27789&canonical_id__in=202003-27789
+    uri: https://certification.canonical.com/api/v2/certified-configurations/?format=json&limit=0&canonical_id__in=202004-27860%2C202004-27860%2C202004-27860%2C202004-27850%2C202004-27850%2C202004-27850%2C202004-27840%2C202004-27840%2C202004-27840%2C202003-27789%2C202003-27789%2C202003-27789&pagination=limitoffset
   response:
     body:
-      string: '{"meta": {"limit": 1000, "next": null, "offset": 0, "previous": null,
-        "total_count": 4}, "objects": [{"canonical_id": "202003-27789", "category":
-        "Desktop", "level": "Enabled", "major_release": "20.04 LTS", "make": "Lenovo",
-        "model": "ThinkStation P520", "release": "20.04 LTS", "resource_uri": "/api/v1/certifiedmodels/202003-27789/"},
-        {"canonical_id": "202004-27840", "category": "Desktop", "level": "Enabled",
-        "major_release": "20.04 LTS", "make": "Lenovo", "model": "ThinkStation P520c",
-        "release": "20.04 LTS", "resource_uri": "/api/v1/certifiedmodels/202004-27840/"},
-        {"canonical_id": "202004-27850", "category": "Desktop", "level": "Enabled",
-        "major_release": "20.04 LTS", "make": "Lenovo", "model": "ThinkStation P720",
-        "release": "20.04 LTS", "resource_uri": "/api/v1/certifiedmodels/202004-27850/"},
-        {"canonical_id": "202004-27860", "category": "Desktop", "level": "Enabled",
-        "major_release": "20.04 LTS", "make": "Lenovo", "model": "ThinkStation P920",
-        "release": "20.04 LTS", "resource_uri": "/api/v1/certifiedmodels/202004-27860/"}]}'
+      string: '{"count":4,"next":null,"previous":null,"results":[{"canonical_id":"202003-27789","make":"Lenovo","model":"ThinkStation
+        P520","level":"Certified Pre-Install","release":"20.04 LTS","category":"Desktop","major_release":"20.04
+        LTS","completed":"2020-08-24T21:00:41.663223+01:00","resource_uri":"/api/v2/certified-configurations/202003-27789"},{"canonical_id":"202004-27840","make":"Lenovo","model":"ThinkStation
+        P520c","level":"Certified Pre-Install","release":"20.04 LTS","category":"Desktop","major_release":"20.04
+        LTS","completed":"2020-08-24T20:45:31.532703+01:00","resource_uri":"/api/v2/certified-configurations/202004-27840"},{"canonical_id":"202004-27850","make":"Lenovo","model":"ThinkStation
+        P720","level":"Certified Pre-Install","release":"20.04 LTS","category":"Desktop","major_release":"20.04
+        LTS","completed":"2023-02-15T05:54:20.238176Z","resource_uri":"/api/v2/certified-configurations/202004-27850"},{"canonical_id":"202004-27860","make":"Lenovo","model":"ThinkStation
+        P920","level":"Certified Pre-Install","release":"20.04 LTS","category":"Desktop","major_release":"20.04
+        LTS","completed":"2020-08-22T01:37:35.793579+01:00","resource_uri":"/api/v2/certified-configurations/202004-27860"}]}'
     headers:
-      Cache-Control:
-      - no-cache
+      Allow:
+      - GET, HEAD, OPTIONS
       Connection:
-      - Keep-Alive
+      - keep-alive
       Content-Length:
-      - '1046'
+      - '1203'
       Content-Type:
       - application/json
       Date:
-      - Mon, 24 May 2021 15:00:28 GMT
-      Keep-Alive:
-      - timeout=5, max=99
-      Server:
-      - gunicorn/19.9.0
+      - Tue, 03 Sep 2024 15:26:39 GMT
       Strict-Transport-Security:
-      - max-age=2592000
+      - max-age=15724800; includeSubDomains
       Vary:
-      - Accept,Cookie
+      - Accept, Cookie
+      X-QueryInspect-Duplicate-SQL-Queries:
+      - '0'
+      X-QueryInspect-Num-SQL-Queries:
+      - '8'
+      X-QueryInspect-Total-Request-Time:
+      - 90 ms
+      X-QueryInspect-Total-SQL-Time:
+      - 65 ms
     status:
       code: 200
       message: OK

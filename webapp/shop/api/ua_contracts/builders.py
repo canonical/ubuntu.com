@@ -273,6 +273,7 @@ def build_final_user_subscriptions(
             period=listing.period if listing else None,
             renewal_id=renewal.id if renewal else None,
             statuses=statuses,
+            max_tracking_reached=contract.max_tracking_reached,
         )
 
         # Do not return expired user subscriptions after 90 days

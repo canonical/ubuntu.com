@@ -1,0 +1,23 @@
+# This workflow updates the Percy baseline on every push to main.
+# This allows pull requests to be compared against baseline test results.
+
+name: Update Percy Baseline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  snapshot:
+    name: Take Percy snapshots
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout SCM
+        uses: actions/checkout@v4
+
+      - uses: ./.github/actions/percy-snapshot
+        with:
+          branch_name: main
+          commitsh: ${{ github.sha }}
+          percy_token_write: ${{ secrets.PERCY_TOKEN_WRITE }}

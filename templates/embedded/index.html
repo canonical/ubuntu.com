@@ -1,866 +1,1069 @@
 {% extends "embedded/base_embedded.html" %}
 
-{% block title %}Ubuntu is the new standard for embedded Linux{% endblock %}
+{% block title %}Embedded{% endblock %}
 
-{% block meta_description %}Embedded Linux development is easy and secure on Ubuntu. Choose an enterprise app store or use the global Snap Store for reliable IoT package management. Start your embedded Linux project today. Get Ubuntu on your board with hardware certification and enablement.{% endblock meta_description %}
+{% block meta_description %}
+  Embedded Linux development is easy and secure on Ubuntu. Choose an enterprise app store or use the global Snap Store for reliable IoT package management. Start your embedded Linux project today. Get Ubuntu on your board with hardware certification and enablement.
+{% endblock meta_description %}
 
-{% block meta_image %}https://assets.ubuntu.com/v1/c75046c4-Smart+City.svg{% endblock meta_image %}
+{% block meta_image %}
+  https://assets.ubuntu.com/v1/c75046c4-Smart+City.svg
+{% endblock meta_image %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/15Tz87YRg4SnX4DWGOSl2TDTHLSStJoma879xHnF0nuo/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/15Tz87YRg4SnX4DWGOSl2TDTHLSStJoma879xHnF0nuo/edit
+{% endblock meta_copydoc %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
 
-<section class="p-strip--suru-half-and-half-reversed is-dark">
-  {% include "shared/_rt-kernel-ga-banner.html" %}
-
-  <div class="row u-equal-height u-vertically-center">
-    <div class="col-6">
-      <h1>Embedded Linux 2.0</h1>
-      <p class="p-heading--4">
-        It's time for a better developer experience.<br />
-        More reliable updates. Much better security.
-      </p>
-    </div>
-    <div class="col-6 u-hide--small u-align--right">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/6ec5c97f-embedded-linux_AW (1).svg",
-          alt="",
-          height="200",
-          width="350",
-          hi_def=True,
-          loading="auto"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<nav class="p-tabs p-sticky-nav">
-  <div class="u-fixed-width">
-    <ul class="p-tabs__list" role="tablist">
-      <li class="p-tabs__item" role="presentation">
-        <a class="p-tabs__link js-sticky-tab" href="#developers">Developers</a>
-      </li>
-      <li class="p-tabs__item" role="presentation">
-        <a class="p-tabs__link js-sticky-tab" href="#apps">Apps</a>
-      </li>
-      <li class="p-tabs__item" role="presentation">
-        <a class="p-tabs__link js-sticky-tab" href="#hardware">Hardware</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-<section class="p-strip u-no-padding--bottom">
-  <div class="row">
-    <div class="col-5 u-hide--small u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/fad662b3-faster+cheaper.svg",
-          alt="",
-          height="200",
-          width="350",
-          hi_def=True,
-          loading="auto"
-        ) | safe
-      }}
-    </div>
-    <div class="col-7">
-      <h2>Faster, cheaper, better. Pick any 3.</h2>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Reduce the time to design, develop and launch your devices.</li>
-        <li class="p-list__item is-ticked">Lower the cost of development and maintenance.</li>
-        <li class="p-list__item is-ticked">Raise the quality and security of every component.</li>
-      </ul>
-    </div>
-  </div>
-  <div class="u-fixed-width" style="margin-top: 3rem;">
-    <ul class="p-matrix">
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Save time</h4>
-          <p class="p-matrix__desc">Developers are much more productive on Ubuntu than handcrafted embedded Linux.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Save money</h4>
-          <p class="p-matrix__desc">Sharing a platform shares the cost. Licensing is cheaper, updates more tested and maintenance shared.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Raise quality</h4>
-          <p class="p-matrix__desc">Familiar and widely used Ubuntu means easy CI/CD, better tools, faster updates and better kernels.</p>
-        </div>
-      </li>
-
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Pre-enabled boards</h4>
-          <p class="p-matrix__desc">Linux is not a differentiator. Use pre-enabled boards and focus on software unique to your story.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Simplify operations</h4>
-          <p class="p-matrix__desc">Managing a familiar environment and platform is easier and cheaper than a specialist OS. Naturally.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">More talent</h4>
-          <p class="p-matrix__desc">More Linux developers choose Ubuntu, so the talent pool is deeper and broader.</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div class="u-fixed-width">
-    <p><a class="p-button--positive js-invoke-modal" href="/internet-of-things/contact-us">Get in touch</a></p>
-  </div>
-</section>
-
-{% with section_classes='p-strip--light', heading_topic='Embedded', tag_name='iot', tag_id='3633', limit='4' %}
-  {% include "shared/_latest_news_strip.html" %}
-{% endwith %}
-
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <h3>Explore what snaps bring to Embedded Linux</h3>
-  </div>
-
-  <div class="row p-divider">
-    <div class="col-4 p-divider__block">
-      <!-- rtp section left start -->
-      <div class='p-heading-icon--muted'>
-        <div class='p-heading-icon__header'>
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
-              alt="",
-              height="28",
-              width="32",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
-            ) | safe
-          }}
-          <h4 class='p-heading-icon__title'>Whitepaper</h4>
-        </div>
+  <section class="p-section--hero">
+    <div class="row--50-50">
+      {% include "shared/_20-04-eol-banner.html" %}
+      <div class="col">
+        <h1>Embedded Linux 2.0</h1>
       </div>
-      <h3 class='p-heading--4'><a href='/engage/embedded-linux-yocto-ubuntu-core-whitepaper' onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - left', 'eventLabel' : 'Whitepaper - Embedded Linux: Yocto or Ubuntu Core', 'eventValue' : '1' });"><span class="u-off-screen">Read the whitepaper </span>Embedded Linux: Yocto or Ubuntu Core?&nbsp;&rsaquo;</a></h3>
-      <!-- rtp section left end -->
-    </div>
-    <div class="col-4 p-divider__block">
-      <!-- rtp section center start -->
-      <div class='p-heading-icon--muted'>
-        <div class='p-heading-icon__header'>
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
-              alt="",
-              height="28",
-              width="32",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
-            ) | safe
-          }}
-          <h4 class='p-heading-icon__title'>Whitepaper</h4>
-        </div>
-      </div>
-      <h3 class='p-heading--4'><a href='/engage/iot-disk-encryption' onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - center', 'eventLabel' : 'Whitepaper - Securing IoT device data against physical access', 'eventValue' : '1' });"><span class="u-off-screen">Read the whitepaper </span>Securing IoT device data against physical access&nbsp;&rsaquo;</a></h3>
-      <!-- rtp section center end -->
-    </div>
-    <div class="col-4 p-divider__block">
-      <!-- rtp section right start -->
-      <div class='p-heading-icon--muted'>
-        <div class='p-heading-icon__header'>
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
-              alt="",
-              height="28",
-              width="32",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
-            ) | safe
-          }}
-          <h4 class='p-heading-icon__title'>Whitepaper</h4>
-        </div>
-      </div>
-      <h3 class='p-heading--4'><a href='/engage/embedded-linux-make-or-buy' onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - right', 'eventLabel' : 'Whitepaper - Embedded Linux: make or buy', 'eventValue' : '1' });"><span class="u-off-screen">Read the whitepaper </span>Embedded Linux: make or buy?&nbsp;&rsaquo;</a></h3>
-      <!-- rtp section right end -->
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--image p-banner-core" id="developers">
-  <div class="row u-vertically-center">
-    <div class="col-6">
-      <h2>Developers drive success</h2>
-      <p class="p-heading--4">Give them the platform they love.</p>
-    </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/f7c1457a-drive+success.svg",
-          alt="",
-          height="200",
-          width="350",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <ul class="p-matrix">
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">More developers</h4>
-          <p class="p-matrix__desc">Tap the biggest talent pool. Ubuntu is ahead of the pack by every measure.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">More packages</h4>
-          <p class="p-matrix__desc">Productivity starts with reuse. Accelerate developers with the world's largest package selection.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Better tools</h4>
-          <p class="p-matrix__desc">Every compiler and language developers use today is there, free, in Ubuntu.</p>
-        </div>
-      </li>
-
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Cloud compatible</h4>
-          <p class="p-matrix__desc">Developers use Ubuntu in the cloud for CI/CD and build systems &mdash; iterate faster, deliver sooner.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Latest software</h4>
-          <p class="p-matrix__desc">Ubuntu is renowned for being the place where you get the best and the latest bits.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Container friendly</h4>
-          <p class="p-matrix__desc">The people who drive docker hardest do it on Ubuntu. Make cloud-native things.</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator">
-  </div>
-
-  <div class="row u-vertically-center u-equal-height">
-    <div class="col-6">
-      <h3>Classic Ubuntu Server<br /> or new Ubuntu Core</h3>
-      <p>The popular Ubuntu Server is great for developers and system administrators.</p>
-      <p>The new Ubuntu Core is an appliance platform with immutable packages.</p>
-    </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/b3dca287-ubuntu+server+or+core.svg",
-          alt="",
-          height="200",
-          width="350",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-  <div class="row p-divider" style="margin-top: 3rem;">
-    <div class="col-6 p-divider__block">
-      <h4>Ubuntu Server</h4>
-      <p>The world's most popular Linux includes a huge range of debs with rich dependency handling, as well as the new snaps for transactional package updates.</p>
-      <p>Best for machines with high sysadmin touch.</p>
-      <p><a href="/server">Learn more about Ubuntu Server&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-6 p-divider__block">
-      <h4>Ubuntu Core</h4>
-      <p>The all-snap Ubuntu Core runs only strictly confined snaps and locks the entire appliance down with immutable images and signatures.</p>
-      <p>Best for appliances.</p>
-      <p><a href="/core">Learn more about Ubuntu Core&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator">
-  </div>
-
-  <div class="row u-equal-height">
-    <div class="col-6">
-      <h3>Security matters most</h3>
-      <p>Get 10 years of automatic security updates for every major CVE.</p>
-      <p>Any compromise of your device puts your reputation on the line.</p>
-    </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/aa1dc625-10+Year+shield+trio_AW.svg",
-          alt="",
-          height="200",
-          width="350",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-
-  <div class="u-fixed-width" style="margin-top: 3rem;">
-    <ul class="p-matrix">
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Fast fixes</h4>
-          <p class="p-matrix__desc">Canonical publishes security updates for Ubuntu every day. You choose when they get installed on your devices.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Binary package updates</h4>
-          <p class="p-matrix__desc">Canonical builds and tests binary package updates for Ubuntu. No need to integrate a mountain of source code patches every year.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">CVE tracking</h4>
-          <p class="p-matrix__desc">A database of fixes supports your customer compliance policy by making it clear which issue is addressed in any update.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Trusted Compute</h4>
-          <p class="p-matrix__desc">Ubuntu provides a verified boot sequence and full disk encryption with optional hardware keys.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Strict confinement</h4>
-          <p class="p-matrix__desc">Keep your custom software strictly confined as snaps to ensure any problem stays isolated.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">10 year maintenance</h4>
-          <p class="p-matrix__desc">No other embedded Linux comes close to Canonical's commitment to long term security.</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator">
-  </div>
-
-  <div class="row u-equal-height">
-    <div class="col-6">
-      <h2>Compliance</h2>
-      <p>Automatic tracking of Ubuntu component licenses and monitoring for  your packages help you and your customers meet obligations.</p>
-    </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/c7274075-compliance.svg",
-          alt="",
-          height="200",
-          width="350",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-
-  <div class="u-fixed-width" style="margin-top: 3rem;">
-    <ul class="p-matrix">
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Automatic source publication</h4>
-          <p class="p-matrix__desc">Meet GPL requirements automatically.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Annotations</h4>
-          <p class="p-matrix__desc">Know what licenses are used in each package.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Scanning</h4>
-          <p class="p-matrix__desc">Let us check for undocumented or unauthorised code combinations.</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section class="p-strip--image p-banner-core" id="apps">
-  <div class="row u-vertically-center">
-    <div class="col-6">
-      <h2>Apps</h2>
-      <p class="p-heading--4">Develop, deploy, iterate and improve. With Ubuntu and snaps, your teams run at cloud speeds.</p>
-    </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/22f88d02-apps.svg",
-          alt="",
-          height="200",
-          width="350",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip" id="appstores">
-  <div class="row p-divider">
-    <div class="col-6 p-divider__block">
-      <h3>Enterprise App Store</h3>
-      <p>The IoT App Store is designed for distributed devices. Control updates and versioning. Choose which apps you want your devices to see. Create exclusive, private snaps for your ecosystem. Manage app stores as a service for ODMs, resellers and integrators.</p>
-      <p>
-        <a href="https://assets.ubuntu.com/v1/d6d1d3fc-IoT+App+Store+Datasheet+v3.pdf">Read the datasheet&nbsp;&rsaquo;</a>
-      </p>
-      <p>
-        <a class="p-button--positive" href="/internet-of-things/appstore">Learn more about IoT App Stores</a>
-      </p>
-    </div>
-    <div class="col-6 p-divider__block">
-      <h3>Snap Store</h3>
-      <p>The global Snap Store delivers apps to millions of Linux machines every day. With automatic OTA updates and advanced software versioning, snaps are a perfect solution for IoT. Deploy your app to the Store to get global exposure. It integrates directly with GitHub and Travis, and best of all it’s free to use.
-      </p>
-      <p>
-        <a class="p-button--positive" href="https://snapcraft.io">Explore the Snap Store</a>
-      </p>
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator">
-  </div>
-
-  <div class="row u-equal-height">
-    <div class="col-6">
-      <h3>DevOps for devices</h3>
-      <p>Build, test and publish applications automatically. Bring CI/CD to your IoT appliances. Give your developers a pipeline to deliver updates to customers straight from their standard process. Empower customers to test beta and pre-release versions.</p>
-      <p>Whether you're using Git with Travis or Jenkins, automated snap creation is just a few steps away. For open source projects, we will even build your snap for ARM, x86, POWER and Z. Canary updates and automatic rollbacks let you go fast with confidence.</p>
-      <p><a href="https://snapcraft.io/build" class="p-button--positive">Build a snap</a></p>
-    </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/22007291-DevOps.svg",
-          alt="",
-          height="200",
-          width="350",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator">
-  </div>
-
-  <div class="row">
-    <div class="col-6">
-      <h3>All kinds of containers</h3>
-    </div>
-  </div>
-
-  <div class="row u-equal-height">
-    <div class="col-6 p-card">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/18f09ca7-snaps-logo-34.svg",
-          alt="Canonical snaps",
-          width="172",
-          height="33",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-card__thumbnail", "style": "border-radius: 0"}
-        ) | safe
-      }}
-      <hr class="u-sv1">
-      <p>App packages for desktop, cloud and IoT that are easy to install, secure, cross‐platform and dependency‐free. Snaps are discoverable and installable from the Snap Store, the app store for Linux with an audience of millions.</p>
-      <p><a href="https://snapcraft.io/first-snap">Build a snap</a></p>
-    </div>
-    <div class="col-6 p-card">
-      {{
-        image (
-        url="https://assets.ubuntu.com/v1/b1b3a3ee-horizontal-logo-monochromatic-white.png",
-        alt="Docker",
-        width="125",
-        height="33",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-      <hr class="u-sv1">
-      <p>Bring your cloud containers and CI/CD tooling to the edge.</p>
-      <p>Using apt and debs:</p>
-      <div class="p-code-snippet">
-        <pre class="p-code-snippet__block--icon"><code>apt install docker.io</code></pre>
-      </div>
-      <p>Using snaps:</p>
-      <div class="p-code-snippet">
-        <pre class="p-code-snippet__block--icon"><code>snap install docker</code></pre>
+      <div class="col">
+        <p class="p-heading--2">More reliable updates.</p>
+        <p class="p-heading--2">Much better security.</p>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="row u-equal-height">
-    <div class="col-6 p-card">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/9f8a8273-2018-logo-kubernetes+%282%29.svg",
-          alt="Kubernetes",
-          width="190",
-          height="33",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
-      <hr class="u-sv1">
-      <p>MicroK8s is the simplest production-grade upstream K8s. Lightweight and focused. Single command install on Linux, Windows and macOS. Made for devops, great for edge, appliances and IoT with full high availability Kubernetes and autonomous clusters.</p>
-      <p><a href="https://microk8s.io/">Explore MicroK8s</a></p>
+  <section class="p-section">
+    {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=false) -%}
+      {%- if slot == 'title' -%}
+
+        <div class="row">
+          <div class="p-section--shallow">
+            <h2>Faster, cheaper, better. Pick any 3.</h2>
+          </div>
+          <div class="col-start-large-4 col-9">
+            <div class="p-equal-height-row">
+              <div class="p-equal-height-row__col">
+                <div class="p-equal-height-row__item">
+                  <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                    {{ image(url="https://assets.ubuntu.com/v1/34afac8c-reduce-the-time.png",
+                                        alt="",
+                                        width="852",
+                                        height="1278",
+                                        hi_def=True,
+                                        loading="auto|lazy",
+                                        attrs={"class": "p-image-container__image"}) | safe
+                    }}
+                  </div>
+                </div>
+                <div class="p-equal-height-row__item">
+                  <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+                  <h3 class="p-heading--5">Reduce the time to design, develop and launch your devices.</h3>
+                </div>
+              </div>
+              <div class="p-equal-height-row__col">
+                <div class="p-equal-height-row__item">
+                  <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                    {{ image(url="https://assets.ubuntu.com/v1/c266a421-lower-cost.png",
+                                        alt="",
+                                        width="852",
+                                        height="1278",
+                                        hi_def=True,
+                                        loading="auto|lazy",
+                                        attrs={"class": "p-image-container__image"}) | safe
+                    }}
+                  </div>
+                </div>
+                <div class="p-equal-height-row__item">
+                  <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+                  <h3 class="p-heading--5">Lower the cost of development and maintenance.</h3>
+                </div>
+              </div>
+              <div class="p-equal-height-row__col">
+                <div class="p-equal-height-row__item">
+                  <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                    {{ image(url="https://assets.ubuntu.com/v1/a7c8cd4d-raise-quality.png",
+                                        alt="",
+                                        width="852",
+                                        height="1278",
+                                        hi_def=True,
+                                        loading="auto|lazy",
+                                        attrs={"class": "p-image-container__image"}) | safe
+                    }}
+                  </div>
+                </div>
+                <div class="p-equal-height-row__item">
+                  <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+                  <h3 class="p-heading--5">Raise the quality and security of every component.</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h4 class="p-heading--5">Save time</h4>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <p>Developers are much more productive on Ubuntu than handcrafted embedded Linux.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h4 class="p-heading--5">Save money</h4>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <p>Sharing a platform shares the cost. Licensing is cheaper, updates more tested and maintenance shared.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_3' -%}
+        <h4 class="p-heading--5">Raise quality</h4>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_3' -%}
+        <p>Familiar and widely used Ubuntu means easy CI/CD, better tools, faster updates and better kernels.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_4' -%}
+        <h4 class="p-heading--5">Pre-enabled boards</h4>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_4' -%}
+        <p>Linux is not a differentiator. Use pre-enabled boards and focus on software unique to your story.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_5' -%}
+        <h4 class="p-heading--5">Simplify operations</h4>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_5' -%}
+        <p>Managing a familiar environment and platform is easier and cheaper than a specialist OS. Naturally.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_6' -%}
+        <h4 class="p-heading--5">More talent</h4>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_6' -%}
+        <p>More Linux developers choose Ubuntu, so the talent pool is deeper and broader.</p>
+      {%- endif -%}
+
+      {%- if slot == 'cta' -%}
+        <a class="p-button--positive js-invoke-modal"
+           href="/internet-of-things/contact-us"
+           aria-controls="embedded-modal">Get in touch</a>
+      {%- endif -%}
+    {%- endcall -%}
+  </section>
+
+  <section class="p-section">
+    {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=false) -%}
+      {%- if slot == 'title' -%}
+        <hr class="p-rule u-hide--medium u-hide--large" />
+        <h2>Developers drive success. Give them the platform they love.</h2>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">More developers</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <p>Tap the biggest talent pool. Ubuntu is ahead of the pack by every measure.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">More packages</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <p>Productivity starts with reuse. Accelerate developers with the world’s largest package selection.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_3' -%}
+        <h3 class="p-heading--5">Better tools</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_3' -%}
+        <p>Every compiler and language developers use today is there, free, in Ubuntu.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_4' -%}
+        <h3 class="p-heading--5">Cloud compatible</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_4' -%}
+        <p>Developers use Ubuntu in the cloud for CI/CD and build systems - iterate faster, deliver sooner.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_5' -%}
+        <h3 class="p-heading--5">Latest software</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_5' -%}
+        <p>Ubuntu is renowned for being the place where you get the best and the latest bits.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_6' -%}
+        <h3 class="p-heading--5">Container friendly</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_6' -%}
+        <p>The people who drive docker hardest do it on Ubuntu. Make cloud-native things.</p>
+      {%- endif -%}
+    {%- endcall -%}
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h3>
+            Classic Ubuntu Server
+            <br class="u-hide--small" />
+            or new Ubuntu Core
+          </h3>
+        </div>
+        <div class="col">
+          <p>
+            The popular Ubuntu Server is great for developers and system administrators.
+            <br />
+            The new Ubuntu Core is an appliance platform with immutable packages.
+          </p>
+        </div>
+      </div>
     </div>
-    <div class="col-6 p-card">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/52b3819e-lxd-logo-34.svg",
-          alt="Canonical LXD",
-          width="154",
-          height="34",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-card__thumbnail", "style": "border-radius: 0"}
-        ) | safe
-      }}
-      <hr class="u-sv1">
-      <p>LXD is a next generation container and virtual machine manager, providing flexibility and scalability for various use cases. Includes support for different storage backends, network types and the ability to install on a range of hardware.</p>
-      <p><a href="/lxd">Learn more about LXD</a></p>
+    <div class="p-equal-height-row--wrap p-equal-height-row-50-50">
+      <div class="p-equal-height-row__col p-card--overlay u-no-padding">
+        <hr class="p-rule--highlight" />
+        <div class="p-card__inner u-no-padding--top u-no-padding--bottom p-equal-height-row__item">
+          <h4 class="p-heading--3">Ubuntu Server</h4>
+        </div>
+        <p class="p-card__inner u-no-padding--top u-no-padding--bottom p-equal-height-row__item">
+          The world’s most popular Linux includes a huge range of debs with rich dependency handling, as well as the new snaps for transactional package updates. Best for machines with high sysadmin touch.
+        </p>
+        <div class="p-card__inner u-no-padding--top u-no-padding--bottom p-equal-height-row__item">
+          <div class="p-cta-block">
+            <a href="/server" aria-label="Learn more about Ubuntu Server">Learn more about Ubuntu Server&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      </div>
+      <div class="p-equal-height-row__col p-card--overlay u-no-padding">
+        <hr class="p-rule--highlight" />
+        <div class="p-card__inner u-no-padding--top  p-equal-height-row__item">
+          <h4 class="p-heading--3">Ubuntu Core</h4>
+        </div>
+        <p class="p-card__inner u-no-padding--top u-no-padding--bottom p-equal-height-row__item">
+          The all-snap Ubuntu Core runs only strictly confined snaps and locks the entire appliance down with immutable images and signatures. Best for appliances.
+        </p>
+        <div class="p-card__inner u-no-padding--top  p-equal-height-row__item">
+          <div class="p-cta-block">
+            <a href="/core" aria-label="Learn more about Ubuntu Core">Learn more about Ubuntu Core&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="u-fixed-width">
-    <hr class="p-separator">
-  </div>
-
-  <div class="row u-equal-height u-vertically-center">
-    <div class="col-6">
-      <h3>Ultra-reliable updates</h3>
-      <a href="/core/features/ota-updates" class="p-button--positive">Learn more</a>
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h3>Security matters most</h3>
+        </div>
+        <div class="col">
+          <div class="p-section--shallow">
+            <div class="p-image-container is-cover is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/ab3a9883-security-matters.png",
+                            alt="",
+                            width="1800",
+                            height="1015",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
+            </div>
+          </div>
+          <p>
+            Get 12 years of automatic security updates for every major CVE.
+            <br />
+            Any compromise of your device puts your reputation on the line.
+          </p>
+        </div>
+      </div>
     </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/c711b814-reliable_updates.svg",
-          alt="",
-          height="200",
-          width="350",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
+    <div class="p-section--shallow">
+      <div class="row">
+        <div class="col-9 col-start-large-4">
+          <hr class="p-rule--muted" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-3 col-start-large-4">
+          <h4 class="p-heading--5">Fast fixes</h4>
+        </div>
+
+        <div class="col-6">
+          <p>Canonical publishes security updates for Ubuntu every day. You choose when they get installed on your devices.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-9 col-start-large-4">
+          <hr class="p-rule--muted" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-3 col-start-large-4">
+          <h4 class="p-heading--5">Binary package updates</h4>
+        </div>
+
+        <div class="col-6">
+          <p>
+            Canonical builds and tests binary package updates for Ubuntu. No need to integrate a mountain of source code patches every year.
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-9 col-start-large-4">
+          <hr class="p-rule--muted" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-3 col-start-large-4">
+          <h4 class="p-heading--5">CVE tracking</h4>
+        </div>
+
+        <div class="col-6">
+          <p>
+            A database of fixes supports your customer compliance policy by making it clear which issue is addressed in any update.
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-9 col-start-large-4">
+          <hr class="p-rule--muted" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-3 col-start-large-4">
+          <h4 class="p-heading--5">Trusted Compute</h4>
+        </div>
+
+        <div class="col-6">
+          <p>Ubuntu provides a verified boot sequence and full disk encryption with optional hardware keys.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-9 col-start-large-4">
+          <hr class="p-rule--muted" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-3 col-start-large-4">
+          <h4 class="p-heading--5">Strict confinement</h4>
+        </div>
+
+        <div class="col-6">
+          <p>Keep your custom software strictly confined as snaps to ensure any problem stays isolated.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-9 col-start-large-4">
+          <hr class="p-rule--muted" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-3 col-start-large-4">
+          <h4 class="p-heading--5">12 year maintenance</h4>
+        </div>
+
+        <div class="col-6">
+          <p>No other embedded Linux comes close to Canonical’s commitment to long term security.</p>
+        </div>
+      </div>
+
     </div>
-  </div>
+  </section>
 
-  <div class="u-fixed-width" style="margin-top: 3rem;">
-    <ul class="p-matrix">
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Transactional</h4>
-          <p class="p-matrix__desc">Failed updates roll back to the last working version automatically, allowing for rapid deployment.</p>
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h3>Improved compliance</h3>
         </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Auditable</h4>
-          <p class="p-matrix__desc">All snaps are digitally signed and can be verified at any time. On Ubuntu Core, the entire device is immutable and traceable.</p>
+        <div class="col">
+          Automatic tracking of Ubuntu component licenses and monitoring for  your packages help you and your customers meet obligations.
         </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Secured</h4>
-          <p class="p-matrix__desc">Every application is confined to its own area for heightened security. On Ubuntu Core, the OS is locked down too.</p>
-        </div>
-      </li>
-
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Snap deltas</h4>
-          <p class="p-matrix__desc">Binary deltas mean we transmit the least possible data per update, saving you time and money.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Snapshots</h4>
-          <p class="p-matrix__desc">Backup device data at any time. Integrate with your existing data management strategy.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Update control</h4>
-          <p class="p-matrix__desc">Schedule snap updates to align with planned maintenance windows.</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section class="p-strip--image p-banner-core" id="hardware">
-  <div class='row u-vertically-center'>
-    <div class="col-8">
-      <h2>Hardware? Easy.</h2>
-      <p class="p-heading--4 u-no-max-width">We certify the major platforms so you are ready to roll.<br />Fixed-price enablement and certification of related boards.</p>
+      </div>
     </div>
-    <div class="col-4 u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/ebac33ef-hardware_easy.svg",
-          alt="",
-          height="186",
-          width="350",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <div class="p-equal-height-row">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/0490440d-automatic-source-publication.png",
+                                alt="",
+                                width="852",
+                                height="1279",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h4 class="p-heading--5">Automatic source publication</h4>
+            </div>
+            <p class="p-equal-height-row__item">Meet GPL requirements automatically.</p>
+          </div>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/726d4be4-annotations.png",
+                                alt="",
+                                width="852",
+                                height="1279",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h4 class="p-heading--5">Annotations</h4>
+            </div>
+            <p class="p-equal-height-row__item">Know what licenses are used in each package.</p>
+          </div>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/31a53c6e-architectures.png",
+                                alt="",
+                                width="852",
+                                height="1279",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h4 class="p-heading--5">Scanning</h4>
+            </div>
+            <p class="p-equal-height-row__item">Let us check for undocumented or unauthorized code combinations.</p>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip">
-  <div class="row p-divider">
-    <div class="col-6 p-divider__block">
-      <h4>Reference platforms</h4>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Raspberry Pi</li>
-        <li class="p-list__item is-ticked">Intel NUC</li>
-        <li class="p-list__item is-ticked">Xilinx Evaluation Kits and SOMs</li>
-        <li class="p-list__item is-ticked">Qualcomm Dragonboard</li>
-      </ul>
-      <p><a class="p-button" href="/download/iot">Explore Ubuntu reference platforms</a></p>
+  <section class="p-section">
+    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
+      {%- if slot == 'title' -%}
+        <hr class="p-rule u-hide--medium u-hide--large" />
+        <h2>Apps</h2>
+      {%- endif -%}
+      {%- if slot == 'description' -%}
+        <p>Develop, deploy, iterate and improve. With Ubuntu and snaps, your teams run at cloud speeds.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">Enterprise App Store</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <div>
+          <p>
+            The IoT App Store is designed for distributed devices. Control updates and versioning. Choose which apps you want your devices to see. Create exclusive, private snaps for your ecosystem. Manage app stores as a service for ODMs, resellers and integrators.
+          </p>
+          <div class="p-cta-block">
+            <a class="p-button"
+               href="/internet-of-things/appstore"
+               aria-label="Learn more about IoT App Stores">Learn more about IoT App Stores</a>
+            <a href="https://assets.ubuntu.com/v1/d6d1d3fc-IoT+App+Store+Datasheet+v3.pdf">Read the datasheet&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">Snap Store</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <div>
+          <p>
+            The global Snap Store delivers apps to millions of Linux machines every day. With automatic OTA updates and advanced software versioning, snaps are a perfect solution for IoT. Deploy your app to the Store to get global exposure. It integrates directly with GitHub and Travis, and best of all it’s free to use.
+          </p>
+          <div class="p-cta-block">
+            <a class="p-button"
+               href="https://snapcraft.io"
+               aria-label="Explore the Snap Store">Explore the Snap Store</a>
+          </div>
+        </div>
+      {%- endif -%}
+
+    {%- endcall -%}
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h3>DevOps for devices</h3>
+        </div>
+        <div class="col">
+          <div class="p-section--shallow">
+            <div class="p-image-container is-cover is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/f8f1f33e-devops.png",
+                            alt="",
+                            width="1800",
+                            height="1014",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
+            </div>
+          </div>
+          <p>
+            Build, test and publish applications automatically. Bring CI/CD to your IoT appliances. Give your developers a pipeline to deliver updates to customers straight from their standard process. Empower customers to test beta and pre-release versions.
+          </p>
+          <p>
+            Whether you’re using Git with Travis or Jenkins, automated snap creation is just a few steps away. For open source projects, we will even build your snap for ARM, x86, POWER and Z. Canary updates and automatic rollbacks let you go fast with confidence.
+          </p>
+          <div class="p-cta-block">
+            <a href="https://snapcraft.io/build" class="p-button">Build a snap</a>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-6 p-divider__block">
-      <h4>Ubuntu enablement</h4>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Get Ubuntu on your preferred board</li>
-        <li class="p-list__item is-ticked">Activate standard and custom capabilities</li>
-        <li class="p-list__item is-ticked">Security updates for 10 years</li>
-        <li class="p-list__item is-ticked">Supported by Canonical</li>
-      </ul>
-      <p><a class="p-button--positive js-invoke-modal" href="/core/contact-us">Get in touch about certification</a></p>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <h3>All kinds of containers</h3>
+      </div>
     </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator">
-  </div>
-
-  <div class="row u-equal-height">
-    <div class="col-6">
-      <h3>Unleash your hardware</h3>
-      <p>Have a custom board? Let us deliver a standard Linux for your developers.</p>
+    <div class="p-equal-height-row--wrap">
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/02a31de7-snaps.png",
+                        alt="",
+                        width="852",
+                        height="1279",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+          <h4 class="p-heading--5">Snaps</h4>
+        </div>
+        <div class="p-equal-height-row__item">
+          <p>App packages for desktop, cloud and IoT that are easy to install, secure, cross‐platform and dependency‐free.</p>
+          <p>
+            Snaps are discoverable and installable from the Snap Store, the app store for Linux with an audience of millions.
+          </p>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--muted" />
+          <p>
+            <a href="https://snapcraft.io/first-snap">Build a snap</a>
+          </p>
+        </div>
+      </div>
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/5993b7a4-docker.png",
+                        alt="",
+                        width="852",
+                        height="1279",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+          <h4 class="p-heading--5">Docker</h4>
+        </div>
+        <div class="p-equal-height-row__item">
+          <p>Bring your cloud containers and CI/CD tooling to the edge.</p>
+          <p class="u-no-margin--bottom">Using apt and debs:</p>
+          <div class="p-code-snippet">
+            <pre class="p-code-snippet__block--icon"><code>apt install docker.io</code></pre>
+          </div>
+          <p class="u-no-margin--bottom">Using snaps:</p>
+          <div class="p-code-snippet">
+            <pre class="p-code-snippet__block--icon"><code>snap install docker</code></pre>
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--muted u-hide--large" />
+        </div>
+      </div>
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/3100e8ac-kubernetes.png",
+                        alt="",
+                        width="852",
+                        height="1279",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+          <h4 class="p-heading--5">Kubernetes</h4>
+        </div>
+        <div class="p-equal-height-row__item">
+          <p>
+            MicroK8s is the simplest production-grade upstream K8s. Lightweight and focused. Single command install on Linux, Windows and macOS.
+          </p>
+          <p>
+            Made for devops, great for edge, appliances and IoT with full high availability Kubernetes and autonomous clusters.
+          </p>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--muted" />
+          <p>
+            <a href="https://microk8s.io/">Explore MicroK8s</a>
+          </p>
+        </div>
+      </div>
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/65fdf491-lxd.png",
+                        alt="",
+                        width="852",
+                        height="1279",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+          <h4 class="p-heading--5">LXD</h4>
+        </div>
+        <div class="p-equal-height-row__item">
+          <p>
+            LXD is a next generation container and virtual machine manager, providing flexibility and scalability for various use cases.
+          </p>
+          <p>
+            Includes support for different storage backends, network types and the ability to install on a range of hardware.
+          </p>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--muted" />
+          <p>
+            <a href="/lxd" aria-label="Learn more about LXD">Learn more about LXD</a>
+          </p>
+        </div>
+      </div>
     </div>
-    <div class="col-6 u-align--center u-vertically-center u-hide--medium u-hide--small u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/642b4ee3-unleash_hardware.svg",
-          alt="",
-          height="200",
-          width="350",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
+  </section>
+
+  <section class="p-section">
+    {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=false) -%}
+      {%- if slot == 'title' -%}
+        <hr class="p-rule u-hide--medium u-hide--large" />
+        <h3>Ultra-reliable updates</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h4 class="p-heading--5">Transactional</h4>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <p>Failed updates roll back to the last working version automatically, allowing for rapid deployment.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h4 class="p-heading--5">Auditable</h4>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <p>
+          All snaps are digitally signed and can be verified at any time.
+          On Ubuntu Core, the entire device is immutable and traceable.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_3' -%}
+        <h4 class="p-heading--5">Secured</h4>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_3' -%}
+        <p>
+          Every application is confined to its own area for heightened security. On Ubuntu Core, the OS is locked down too.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_4' -%}
+        <h4 class="p-heading--5">Snap deltas</h4>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_4' -%}
+        <p>Binary deltas mean we transmit the least possible data per update, saving you time and money.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_5' -%}
+        <h4 class="p-heading--5">Snapshots</h4>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_5' -%}
+        <p>Backup device data at any time. Integrate with your existing data management strategy.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_6' -%}
+        <h4 class="p-heading--5">Update control</h4>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_6' -%}
+        <p>Schedule snap updates to align with planned maintenance windows.</p>
+      {%- endif -%}
+
+      {%- if slot == 'cta' -%}
+        <a href="/core/features/ota-updates"
+           class="p-button"
+           aria-label="Learn more about OTA updates">Learn more</a>
+      {%- endif -%}
+    {%- endcall -%}
+  </section>
+
+  <section class="p-section">
+    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
+      {%- if slot == 'title' -%}
+        <hr class="p-rule u-hide--medium u-hide--large" />
+        <h2>Hardware? Easy.</h2>
+      {%- endif -%}
+      {%- if slot == 'description' -%}
+        <p>
+          We certify the major platforms so you are ready to roll.
+          Fixed-price enablement and certification of related boards.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">Reference platforms</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">Raspberry Pi</li>
+          <li class="p-list__item is-ticked">Intel NUC</li>
+          <li class="p-list__item is-ticked">Xilinx Evaluation Kits and SOMs</li>
+          <li class="p-list__item is-ticked">Qualcomm Dragonboard</li>
+        </ul>
+        <div class="p-cta-block">
+          <a class="p-button"
+             href="/download/iot"
+             aria-label="Explore Ubuntu reference platforms">Explore Ubuntu reference platforms</a>
+        </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">Ubuntu enablement</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">Get Ubuntu on your preferred board</li>
+          <li class="p-list__item is-ticked">Activate standard and custom capabilities</li>
+          <li class="p-list__item is-ticked">Security updates for 10 years</li>
+          <li class="p-list__item is-ticked">Supported by Canonical</li>
+        </ul>
+        <div class="p-cta-block">
+          <a class="p-button js-invoke-modal"
+             href="/core/contact-us"
+             aria-controls="embedded-modal">Get in touch about certification</a>
+        </div>
+      {%- endif -%}
+
+    {%- endcall -%}
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h3>Unleash your hardware</h3>
+        </div>
+        <div class="col">Have a custom board? Let us deliver a standard Linux for your developers.</div>
+      </div>
     </div>
-  </div>
-
-  <div class="u-fixed-width" style="margin-top: 3rem;">
-    <ul class="p-matrix">
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Super connected</h4>
-          <p class="p-matrix__desc">Bluetooth, WiFi, LTE. It's all at your fingertips. Standard system services with long term maintenance included.</p>
+    <div class="row">
+      <div class="col-9 col-start-large-4 u-sv4">
+        <div class="p-equal-height-row">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/02bed49e-super-connected.png",
+                                alt="",
+                                width="852",
+                                height="1279",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h4 class="p-heading--5">Super connected</h4>
+            </div>
+            <p class="p-equal-height-row__item">
+              Bluetooth, WiFi, LTE. It’s all at your fingertips. Standard system services with long term maintenance included.
+            </p>
+          </div>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/f898e1a5-sensor-integration.png",
+                                alt="",
+                                width="852",
+                                height="1279",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h4 class="p-heading--5">Sensor integration</h4>
+            </div>
+            <p class="p-equal-height-row__item">
+              Get your real-world data streams flowing with the UPM and MRAA packages for Ubuntu.
+            </p>
+          </div>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/31a53c6e-architectures.png",
+                                alt="",
+                                width="852",
+                                height="1279",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h4 class="p-heading--5">Architectures</h4>
+            </div>
+            <p class="p-equal-height-row__item">
+              Our entire platform is certified on both x86 and ARM. Pick your favorite, or use both in a product family with little overhead.
+            </p>
+          </div>
         </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Sensor integration</h4>
-          <p class="p-matrix__desc">Get your real-world data streams flowing with the UPM and MRAA packages for Ubuntu.</p>
+      </div>
+      <div class="col-9 col-start-large-4 u-sv4">
+        <div class="p-equal-height-row">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/d9543cb4-right-size.png",
+                                alt="",
+                                width="852",
+                                height="1279",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h4 class="p-heading--5">Right size silicon</h4>
+            </div>
+            <p class="p-equal-height-row__item">
+              Start on Ubuntu and select the right silicon close to physical shipment, when your performance needs are better defined.
+            </p>
+          </div>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/48ada57b-performance-optimized.png",
+                                alt="",
+                                width="852",
+                                height="1279",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h4 class="p-heading--5">Performance optimized</h4>
+            </div>
+            <p class="p-equal-height-row__item">
+              Canonical works with the leading silicon providers to optimize the entire stack - from metal and kernel to computer vision and AI.
+            </p>
+          </div>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/5bbbbd0f-secure-appliances.png",
+                                alt="",
+                                width="852",
+                                height="1279",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h4 class="p-heading--5">Secure appliances</h4>
+            </div>
+            <p class="p-equal-height-row__item">
+              Full disk encryption, secure boot and hardware key management raise the bar for trusted computing at the edge.
+            </p>
+          </div>
         </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Architectures</h4>
-          <p class="p-matrix__desc">Our entire platform is certified on both x86 and ARM. Pick your favorite, or use both in a product family with little overhead.</p>
-        </div>
-      </li>
-
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Right size silicon</h4>
-          <p class="p-matrix__desc">Start on Ubuntu and select the right silicon close to physical shipment, when your performance needs are better defined.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Performance optimised</h4>
-          <p class="p-matrix__desc">Canonical works with the leading silicon providers to optimise the entire stack &mdash; from metal and kernel to computer vision and AI.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Secure appliances</h4>
-          <p class="p-matrix__desc">Full disk encryption, secure boot and hardware key management raise the bar for trusted computing at the edge.</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section class="p-strip--image p-banner-core">
-  <div class="row u-equal-height">
-    <div class="col-6">
-      <h2>Backed by Canonical</h2>
-      <p class="p-heading--4">Long term support, defined and delivered. We'll get you from POC to MVP and shipping in record time.</p>
+      </div>
     </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/60d9b81e-picto-canonical.svg",
-          alt="",
-          height="150",
-          width="150",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
+  </section>
+
+  <section class="p-section">
+    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop, is_list_full_width_on_tablet=false) -%}
+      {%- if slot == 'title' -%}
+        <hr class="p-rule u-hide--medium u-hide--large" />
+        <h3>Backed by Canonical</h3>
+      {%- endif -%}
+
+      {%- if slot == 'description' -%}
+        <p>Long term support, defined and delivered. We’ll get you from POC to MVP and shipping in record time.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h4 class="p-heading--5">Frictionless development</h4>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <p>Standard images of Ubuntu are free to download, get started with no friction.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h4 class="p-heading--5">FIPS, EAL, HIPAA</h4>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <p>We are trusted by the world’s most demanding institutions to deliver platforms for regulated services.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_3' -%}
+        <h4 class="p-heading--5">Managed maintenance</h4>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_3' -%}
+        <p>Updates and support from Canonical, for the life of your device.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_4' -%}
+        <h4 class="p-heading--5">Enterprise management</h4>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_4' -%}
+        <p>Thousands of companies manage Ubuntu every day. Your appliance will feel right at home.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_5' -%}
+        <h4 class="p-heading--5">Global support</h4>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_5' -%}
+        <p>No matter where you ship, no matter where your customers are, we can be there when you need us.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_6' -%}
+        <h4 class="p-heading--5">Edge pioneers</h4>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_6' -%}
+        <p>The intelligent edge is born on Ubuntu. From telco to retail, the trailblazers choose Canonical.</p>
+      {%- endif -%}
+
+      {%- if slot == 'cta' -%}
+        <a href="/internet-of-things/contact-us"
+           class="p-button--positive js-invoke-modal"
+           aria-controls="embedded-modal">Contact us</a>
+      {%- endif -%}
+    {%- endcall -%}
+  </section>
+
+  <section class="p-section">
+
+    <div class="row--50-50">
+      <hr class="p-rule--muted" />
+      <div class="col">
+        <h2>
+          Explore what snaps bring
+          <br class="u-hide--small" />
+          to Embedded Linux
+        </h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <a href="/engage/embedded-linux-yocto-ubuntu-core-whitepaper"
+             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - left', 'eventLabel' : 'Whitepaper - Embedded Linux: Yocto or Ubuntu Core', 'eventValue' : '1' });"><span class="u-off-screen">Read the whitepaper</span>Embedded Linux: Yocto or Ubuntu Core?&nbsp;&rsaquo;</a>
+        </div>
+        <div class="p-section--shallow">
+          <hr class="p-rule--muted" />
+          <a href="/engage/iot-disk-encryption"
+             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - center', 'eventLabel' : 'Whitepaper - Securing IoT device data against physical access', 'eventValue' : '1' });"><span class="u-off-screen">Read the whitepaper</span>Securing IoT device data against physical access&nbsp;&rsaquo;</a>
+        </div>
+        <div class="p-section--shallow">
+          <hr class="p-rule--muted" />
+          <a href="/engage/embedded-linux-make-or-buy"
+             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - right', 'eventLabel' : 'Whitepaper - Embedded Linux: make or buy', 'eventValue' : '1' });"><span class="u-off-screen">Read the whitepaper</span>Embedded Linux: make or buy?&nbsp;&rsaquo;</a>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <ul class="p-matrix">
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Frictionless development</h4>
-          <p class="p-matrix__desc">Standard images of Ubuntu are free to download, get started with no friction.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">FIPS, EAL, HIPAA</h4>
-          <p class="p-matrix__desc">We are trusted by the world's most demanding institutions to deliver platforms for regulated services.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Managed maintenance</h4>
-          <p class="p-matrix__desc">Updates and support from Canonical, for the life of your device.</p>
-        </div>
-      </li>
+  {% with section_classes='p-section--deep', title_link="/blog/tag/iot", tag_id='3633', limit='4', hide_date=True, tag_name='iot', link_image=True, show_image=True, show_excerpt=True, excerptLength=200, show_start_rule=True, is_title_link=True, heading_class="p-heading--2" %}
+    {% include "/shared/_latest_news_strip.html" %}
+  {% endwith %}
 
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Enterprise management</h4>
-          <p class="p-matrix__desc">Thousands of companies manage Ubuntu every day. Your appliance will feel right at home.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Global support</h4>
-          <p class="p-matrix__desc">No matter where you ship, no matter where your customers are, we can be there when you need us.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div>
-          <h4 class="p-matrix__title">Edge pioneers</h4>
-          <p class="p-matrix__desc">The intelligent edge is born on Ubuntu. From telco to retail, the trailblazers choose Canonical.</p>
-        </div>
-      </li>
-    </ul>
-    <p><a class="p-button--positive js-invoke-modal" href="/internet-of-things/contact-us">Get in touch</a></p>
-  </div>
-</section>
-
-
-<style>
-  @media only screen and (min-width: 461px) {
-    .p-banner-core-hero {
-      background-blend-mode: overlay;
-      background-image:
-      url("https://assets.ubuntu.com/v1/738ba272-suru-right-bottom.svg"),
-      url("https://assets.ubuntu.com/v1/3c2f1118-suru-right-top.svg"),
-      linear-gradient(225deg, #333333 0%, #111111 50%, #1D1D1D 100%);
-      background-position: bottom right;
-      background-repeat: no-repeat;
-      background-size: contain, cover;
-    }
-  }
-
-  @media only screen and (max-width: 460px) {
-    .p-banner-core-hero {
-      background-color: #333333;
-      background-image: linear-gradient(-225deg, #333333 0%, #111111 50%, #1D1D1D 100%);;
-    }
-  }
-
-  @media only screen and (min-width: 461px) {
-    .p-banner-core {
-      background-color: #f7f7f7;
-      background-image:
-      url('https://assets.ubuntu.com/v1/071af59b-suru-left-lightgrey.svg'),
-      url('https://assets.ubuntu.com/v1/7d893432-suru-right-lightgrey.svg');
-      background-position: bottom left, top right;
-      background-size: contain;
-      background-blend-mode: multiply;
-    }
-  }
-
-  @media only screen and (max-width: 460px) {
-    .p-banner-core {
-      background: #F7F7F7;
-    }
-  }
-
-  @media only screen and (min-width 460px) {
-    .u-margin--core {
-      margin-top: 2rem;
-    }
-  }
-</style>
-
-<script src="{{ versioned_static('js/dist/sticky-nav.js') }}"></script>
-
-{% with first_item="_core_learn_more", second_item="_core_contribute", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
-
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/embedded" data-form-id="1266" data-lp-id="2166" data-return-url="https://ubuntu.com/core/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
+  {{ load_form("/embedded") | safe }}
 
 {% endblock content %}
 

@@ -1,6 +1,7 @@
 {% extends "templates/base.html" %}
 
 {% block title %}Search results{% if query %} for "{{ query }}"{% endif %} | {{ title }} {% endblock %}
+{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 
 {% block outer_content %}
 
@@ -32,7 +33,7 @@
         <div class="p-strip is-shallow">
           <div class="row">
             <div class="col-12">
-              <h5><a href="{{ item.link }}" class="title-main">{{ item.htmlTitle | safe}}</a></h5>
+              <h5><a href="{{ item.link }}" class="title-main">{{ item.htmlTitle | safe }}</a></h5>
               <p>
                 {{ item.htmlSnippet | safe }}
               </p>

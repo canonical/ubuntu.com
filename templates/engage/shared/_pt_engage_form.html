@@ -4,43 +4,42 @@
     <legend class="u-off-screen">Informações de contato</legend>
     <ul class="p-list">
       <li>
-        <label for="firstName">Primeiro Nome:</label>
+        <label class="is-required" for="firstName">Primeiro Nome:</label>
         <input required id="firstName" name="firstName" maxlength="255" type="text"
-          aria-label="First Name">
+          aria-label="First Name" />
       </li>
       <li>
-        <label for="lastName">Último Nome:</label>
+        <label class="is-required" for="lastName">Último Nome:</label>
         <input required id="lastName" name="lastName" maxlength="255" type="text"
-          aria-label="Last Name">
+          aria-label="Last Name" />
       </li>
       <li>
-        <label for="email">Email do trabalho:</label>
+        <label class="is-required" for="email">Email do trabalho:</label>
         <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$"
-          aria-label="Email">
+          aria-label="Email" />
       </li>
       <li>
-        <label for="company">Nome da Empresa:</label>
+        <label class="is-required" for="company">Nome da Empresa:</label>
         <input required id="company" name="company" maxlength="255" type="text"
-          aria-label="Company Name">
+          aria-label="Company Name" />
       </li>
       <li>
-        <label for="title">Titulo do trabalho:</label>
-        <input required id="title" name="title" maxlength="255" type="text" aria-label="Job Title">
+        <label class="is-required" for="title">Titulo do trabalho:</label>
+        <input required id="title" name="title" maxlength="255" type="text" aria-label="Job Title" />
       </li>
       <li>
-        <label for="phone">Telemóvel:</label>
+        <label class="is-required" for="phone">Telemóvel:</label>
         <input required id="phone" name="phone" maxlength="255" type="tel"
-          aria-label="Phone Number">
+          aria-label="Phone Number" />
       </li>
       <li>
         <label class="p-checkbox">
-          <input class="p-checkbox__input" name="canonicalUpdatesOptIn" aria-labelledby="canonicalUpdatesOptIn" value="yes" type="checkbox">
+          <input class="p-checkbox__input" name="canonicalUpdatesOptIn" aria-labelledby="canonicalUpdatesOptIn" value="yes" type="checkbox" />
           <span class="p-checkbox__label" id="canonicalUpdatesOptIn">Concordo em receber informações sobre os produtos e serviços da Canonical.</span>
         </label>
       </li>
       <li>
         <p>Ao submeter este formulário, confirmo que li e concordo com o <a href="/legal/data-privacy/contact">Aviso de privacidade</a> e a <a href="/legal/data-privacy">Política de privacidade da Canonical</a>.
-          <input name="RichText" aria-label="RichText" type="hidden">
         </p>
       </li>
       {# These are honey pot fields to catch bots #}
@@ -54,17 +53,17 @@
       </li>
       {# End of honey pots #}
       <li>
-        <input name="Consent_to_Processing__c" aria-label="Consent" value="Yes" type="hidden">
+        <input name="Consent_to_Processing__c" aria-label="Consent" value="Yes" type="hidden" />
       </li>
       <li>
         <button type="submit" class="u-no-margin--bottom">{% if cta %}{{ cta }}{% else %}Descarregue o documento{% endif %}</button>
-        <input name="formid" aria-label="formid" value="{{ id }}" type="hidden">
+        <input name="formid" aria-label="formid" value="{{ id }}" type="hidden" />
         <input type="hidden" name="returnURL" aria-label="returnURL" value="{{ returnURL }}" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="{{utm_campaign}}" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="{{utm_medium}}" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="{{utm_source}}" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="{{utm_content}}" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="{{utm_term}}" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="{{ utm_campaign }}" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="{{ utm_medium }}" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="{{ utm_source }}" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="{{ utm_content }}" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="{{ utm_term }}" />
         <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
         <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
         <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />

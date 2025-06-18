@@ -1,5 +1,5 @@
 <div id="product-card">
-    {# Real-time Linux tag cards #}
+  {# Real-time Linux tag cards #}
   {% if article.tags and 4296 in article.tags %}
     {% include "blog/product-cards/_real-time_linux.html" %}
 
@@ -7,158 +7,131 @@
   {% elif article.tags and 2976 in article.tags %}
     {% include "blog/product-cards/_multi_cloud.html" %}
 
-    {# Ubuntu 18.04 tag cards #}
-  {% elif article.tags and 3486 in article.tags %}
-    {% include "blog/product-cards/_ubuntu_18.04_end_of_support.html" %}
+    {# AI/ML tag cards #}
+  {% elif article.tags and 4062 in article.tags %}
+    {% include "blog/product-cards/_ai-solutions.html" %}
+
+    {# OpenSearch tag cards #}
+  {% elif article.tags and 4353 in article.tags %}
+    {% include "blog/product-cards/_opensearch.html" %}
+
+    {# MongoDB tag cards #}
+  {% elif article.tags and 3949 in article.tags %}
+    {% include "blog/product-cards/_charmed_mongodb.html" %}
+
+    {# MicroCloud tag cards #}
+  {% elif article.tags and 4499 in article.tags %}
+    {% include "blog/product-cards/_microcloud.html" %}
+
+    {# OpenStack tag cards #}
+  {% elif article.tags and 1327 in article.tags %}
+    {% include "blog/product-cards/_openstack.html" %}
+
+    {# LXD tag cards #}
+  {% elif article.tags and 1743 in article.tags %}
+    {% include "blog/product-cards/_lxd.html" %}
+
+    {# Infrastructure tag cards #}
+  {% elif article.tags and 2554 in article.tags %}
+    {% include "blog/product-cards/_infrastructure_optimised-costs-across-any-cloud.html" %}
+    {% include "blog/product-cards/_infrastructure_maximise-your-cloud-infrastructure.html" %}
+
+    {# Ubuntu desktop tag cards #}
+  {% elif article.tags and 1920 in article.tags %}
+    {% include "blog/product-cards/_desktop_ubuntu-for-desktops.html" %}
+
+    {# Ubuntu Server tag cards #}
+  {% elif article.tags and 1610 in article.tags %}
+    {% include "blog/product-cards/_server_scale-out-with-ubuntu-server.html" %}
+
+    {# Ubuntu WSL tag cards #}
+  {% elif article.tags and 3332 in article.tags %}
+    {% include "blog/product-cards/_wsl_ubuntu-on-windows.html" %}
+
+    {# Identity Management tag cards #}
+  {% elif article.tags and 4195 in article.tags %}
+    {% include "blog/product-cards/_desktop_ubuntu-desktop-for-organisations.html" %}
 
     {# Hybrid-cloud tag cards #}
   {% elif article.tags and 3150 in article.tags %}
     {% include "blog/product-cards/_hybrid_cloud.html" %}
 
-   {# Private-cloud tag cards #}
+    {# Private-cloud tag cards #}
   {% elif article.tags and 1342 in article.tags %}
     {% include "blog/product-cards/_private_cloud.html" %}
-        
-   {# Public cloud tag cards #}
+
+    {# Public cloud tag cards #}
   {% elif article.tags and 1350 in article.tags %}
     {% include "blog/product-cards/_public_cloud.html" %}
 
-   {# Docker tag cards #}
+    {# Docker tag cards #}
   {% elif article.tags and 1567 in article.tags %}
     {% include "blog/product-cards/_docker-security.html" %}
 
-   {# Telco tag cards #}
+    {# Telco tag cards #}
   {% elif article.tags and 1377 in article.tags %}
     {% include "blog/product-cards/_telco.html" %}
 
-   {# IoT tag cards #}
+    {# IoT tag cards #}
   {% elif article.tags and 1665 in article.tags %}
     {% include "blog/product-cards/_services.html" %}
-    {% include "blog/product-cards/_IoT_appstore.html" %} 
-  
-  {# Finance tag cards #}
+    {% include "blog/product-cards/_IoT_appstore.html" %}
+
+    {# Finance tag cards #}
   {% elif article.tags and 1419 in article.tags %}
     {% include "blog/product-cards/_financialservices-awerness.html" %}
 
-  {# Rapsberry Pi tag cards #}
+    {# Rapsberry Pi tag cards #}
   {% elif article.tags and 1672 in article.tags %}
     {% include "blog/product-cards/_raspberry-pi_2010-livestream.html" %}
 
-  {# Kubeflow tag cards #}
+    {# Kubeflow tag cards #}
   {% elif article.tags and 2609 in article.tags %}
     {% include "blog/product-cards/_kubeflow_jaas-bundle.html" %}
     {% include "blog/product-cards/_kubeflow_what-is-kubeflow.html" %}
     {% include "blog/product-cards/_kubeflow_deploy-tutorial.html" %}
 
-  {# Bootstack tag cards #}
+    {# Bootstack tag cards #}
   {% elif article.tags and 1572 in article.tags %}
     {% include "blog/product-cards/_bootstack_managed-private-cloud.html" %}
 
-  {# Kubernetes tag cards #}
+    {# Kubernetes tag cards #}
   {% elif article.tags and 1833 in article.tags %}
-  {% include "blog/product-cards/_kubernetes_what-is-kubernetes.html" %}
+    {% include "blog/product-cards/_kubernetes_what-is-kubernetes.html" %}
+    {% include "blog/product-cards/_kubernetes.html" %}
 
-  {# Ceph tag cards #}
+    {# Ceph tag cards #}
   {% elif article.tags and 1780 in article.tags %}
     {% include "blog/product-cards/_ceph_what-is-ceph.html" %}
+    {% include "blog/product-cards/_ceph_optimise-storage-costs.html" %}
+    {% include "blog/product-cards/_ceph_guide-sds-for-ent.html" %}
+    {% include "blog/product-cards/_ceph.html" %}
 
-  {# Bosch tag cards #}
+    {# Bosch tag cards #}
   {% elif article.tags and 3680 in article.tags %}
     {% include "blog/product-cards/_bosch_ubuntu-for-iot.html" %}
-  
-  {# Legacy fallback content #}
-  {% elif article.group and article.group.slug == "kubernetes" %}
-  <div class="p-card" id="rtp-k8s">
-    <h3>
-      <a href="/kubernetes">
-        Multi-cloud Kubernetes on Ubuntu
-      </a>
-    </h3>
-    <p>
-      Deploy, scale and upgrade Kubernetes clusters across multiple physical or virtual machines with Charmed Kubernetes, with full support available.
-    </p>
-    <p><a href="/kubernetes">Get started with Charmed K8s&nbsp;&rsaquo;</a></p>
-  </div>
-  {% elif article.group and article.group.slug == "openstack" %}
-  <div class="p-card" id="rtp-openstack">
-    <h3>
-      <a href="/openstack">
-        OpenStack deployment made easy
-      </a>
-    </h3>
-    <p>
-      Ready to move from expensive, proprietary virtualisation to OpenStack? Canonical designs, builds, operates and supports OpenStack private clouds.
-    </p>
-    <p><a href="/openstack">Move to OpenStack&nbsp;&rsaquo;</a></p>
-  </div>
+
+    {# Legacy fallback content #}
   {% elif article.group and article.group.slug == "support" %}
-  <div class="p-card" id="rtp-support">
-    <h3>
-      <a href="/support">
-        Open source enterprise support
-      </a>
-    </h3>
-    <p>
-      UA Infrastructure is a single subscription for open source software, security and IaaS support, with OpenStack and Kubernetes included.
-    </p>
-    <p><a href="/support">Solve open source security and compliance&nbsp;&rsaquo;</a></p>
-  </div>
-  {% elif article.group and article.group.slug == "cloud-and-server" %}
-  <div class="p-card" id="rtp-cloud">
-    <h3>
-      <a href="/cloud">
-        Ubuntu cloud
-      </a>
-    </h3>
-    <p>
-      Ubuntu offers all the training, software infrastructure, tools,
-      services and support you need for your public and private clouds.
-    </p>
-  </div>
-  {% elif article.group and article.group.slug == "internet-of-things" %}
-  <div class="p-card" id="rtp-iot">
-    <h3>
-      <a href="/internet-of-things">
-        Internet of Things
-      </a>
-    </h3>
-    <p>
-      From home control to drones, robots and industrial systems, Ubuntu Core and Snaps provide robust security, app stores and reliable updates for all your IoT devices.
-    </p>
-  </div>
-  {% elif article.group and article.group.slug == "desktop" %}
-  <div class="p-card" id="rtp-desktop">
-    <h3>
-      <a href="/desktop">
-        Ubuntu desktop
-      </a>
-    </h3>
-    <p>
-      Learn how the Ubuntu desktop operating system powers millions of PCs and laptops around the world.
-    </p>
-  </div>
-  {% elif article.group and article.group.slug == "server" %}
-  <div class="p-card" id="rtp-server">
-    <h3>
-      <a href="/server">
-        Ubuntu Server
-      </a>
-    </h3>
-    <p>
-      The leading platform for scale-out computing, Ubuntu Server delivers the best value scale-out performance available.
-    </p>
-  </div>
+    <div class="p-card" id="rtp-support">
+      <h3>
+        <a href="/support">Enterprise support for your full open source stack</a>
+      </h3>
+      <p>
+        Build with confidence and operate at scale with enterprise support from Canonical.
+        Our global team of experts is available 24/7 to provide the best support experience for Ubuntu and your full open source stack, from infrastructure to applications.
+      </p>
+      <p>
+        <a href="/support">Learn more&nbsp;&rsaquo;</a>
+      </p>
+    </div>
   {% else %}
-  <div class="p-card" id="rtp-contact-us">
-    <h3>
-      <a href="/about/contact-us/form">
-        Talk to us today
-      </a>
-    </h3>
-    <p>
-      Interested in running Ubuntu in your organisation?
-    </p>
-  </div>
+    <div class="p-card" id="rtp-contact-us">
+      <h3>
+        <a href="/about/contact-us/form">Talk to us today</a>
+      </h3>
+      <p>Interested in running Ubuntu in your organisation?</p>
+    </div>
   {% endif %}
 </div>
 

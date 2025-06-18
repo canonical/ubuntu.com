@@ -1,7 +1,7 @@
 {% extends "security/base_security.html" %}
 
 {% block title %}Thank you | Security{% endblock %}
-{% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
+{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 {% block meta_description %}Ubuntu Advantage for Infrastructure provides a single subscription for security maintenance and support for your open source infrastructure, including OpenStack and Kubernetes.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1Vya-1Uq7bqJ7SFQ36j9-REp1iDT3rFENjYyCzuY02r4/edit{% endblock meta_copydoc %}
 
@@ -17,7 +17,7 @@
 
 {% elif product == 'esm' %}
 
-  {% with thanks_context="about Expanded Security Maintenance" %}{% include "shared/_thank_you.html" %}{% endwith %}
+  {% with thanks_context="contacting our team.", thanks_message="We will be in touch shortly." %}{% include "shared/_thank_you.html" %}{% endwith %}
 
 {% else %}
 

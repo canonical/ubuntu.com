@@ -1,7 +1,6 @@
 from requests.auth import HTTPBasicAuth
 from requests import Session
 from datetime import datetime, timezone
-from urllib.parse import quote_plus
 
 
 class CredlyAPI:
@@ -35,7 +34,6 @@ class CredlyAPI:
         uri = f"{self.base_url}{path}"
         headers["Content-type"] = "application/json"
         auth = HTTPBasicAuth(self.auth_token, "")
-        print(self.auth_token)
 
         response = self.session.request(
             method,
@@ -59,32 +57,52 @@ class CredlyAPI:
 
         return response
 
-    def get_issued_badges(self, filter: dict = {}):
-        print(filter)
-        filter_params = ""
-        for k, v in filter.items():
-            filter_params += f"{k}::{quote_plus(v)}"
+    def get_issued_badges(self, filter: dict = None, sort=None, page=None):
+        uri = f"/organizations/{self.org_id}/badges"
+        if filter or sort or page:
+            uri += "?"
+            if filter:
+                uri += f"filter={filter}"
+            if sort:
+                uri += f"sort={sort}"
+            if page:
+                uri += f"page={page}"
+
+        return self.make_request("GET", uri).json()
+
+    def get_issued_badges_bulk(self, filter: dict = None):
+        uri = f"/organizations/{self.org_id}/high_volume_issued_badge_search"
         if filter:
-            uri = f"/organizations/{self.org_id}/badges?filter={filter_params}"
-        else:
-            uri = f"/organizations/{self.org_id}/badges"
+            uri += "?"
+            if filter:
+                uri += f"filter={filter}"
+
         return self.make_request("GET", uri).json()
 
     def issue_new_badge(
         self,
-        email: str,
-        first_name: str,
-        last_name: str,
-        ability_screen_id: int,
+        badge_data: dict,
     ):
         uri = f"/organizations/{self.org_id}/badges"
+        required_fields = [
+            "recipient_email",
+            "issued_to_first_name",
+            "issued_to_last_name",
+            "badge_template_id",
+        ]
+        for field in required_fields:
+            if field not in badge_data:
+                raise ValueError(f"Missing required field: {field}")
+        clean_badge_data = {
+            "recipient_email": badge_data["recipient_email"],
+            "issued_to_first_name": badge_data["issued_to_first_name"],
+            "issued_to_last_name": badge_data["issued_to_last_name"],
+            "badge_template_id": badge_data["badge_template_id"],
+        }
         body = {
-            "recipient_email": email,
+            **clean_badge_data,
             "issued_at": datetime.now(timezone.utc).strftime(
                 "%Y-%m-%d %H:%M:%S %z"
             ),
-            "badge_template_id": self.badge_template_dict[ability_screen_id],
-            "issued_to_first_name": first_name,
-            "issued_to_last_name": last_name,
         }
         return self.make_request("POST", uri, json=body).json()

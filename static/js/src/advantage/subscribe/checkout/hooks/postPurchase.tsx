@@ -1,16 +1,24 @@
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { retryPurchase } from "advantage/api/contracts";
-import { Action, PaymentPayload, Product } from "../utils/types";
+import {
+  Action,
+  Coupon,
+  CheckoutProducts,
+  PaymentPayload,
+} from "../utils/types";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
+import { DISTRIBUTOR_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
 
 type Props = {
-  product: Product;
-  quantity: number;
+  products: CheckoutProducts[];
   action: Action;
+  coupon?: Coupon;
+  poNumber?: string | null;
 };
 
 const postPurchase = () => {
-  const mutation = useMutation<any, Error, Props>(
-    async ({ product, quantity, action }: Props) => {
+  const mutation = useMutation<any, Error, Props>({
+    mutationFn: async ({ products, action, coupon, poNumber }: Props) => {
       if (window.currentPaymentId) {
         await retryPurchase(window.currentPaymentId);
 
@@ -18,58 +26,95 @@ const postPurchase = () => {
         return window.currentPaymentId;
       }
 
-      let payload: PaymentPayload = {
-        account_id: window.accountId,
-        marketplace: product.marketplace,
-        action: action,
-        previous_purchase_id: window.previousPurchaseIds?.[product.period],
-      };
-
-      if (action === "purchase" || action === "trial") {
-        payload = {
-          ...payload,
-          products: [
-            {
-              product_listing_id: product.longId,
-              quantity: quantity,
-            },
-          ],
-        };
-      }
-
-      if (action === "renewal") {
-        payload = { ...payload, renewal_id: product.longId };
-      }
-
-      if (action === "offer") {
-        payload = { ...payload, offer_id: product.longId };
-      }
-
-      // preview
-      const previewReq = await fetch(
-        `/pro/purchase/preview${window.location.search}`,
-        {
-          method: "POST",
-          cache: "no-store",
-          credentials: "include",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        }
+      const marketplace = products[0].product.marketplace;
+      let payload: PaymentPayload;
+      const localTechnicalUserContact = localStorage.getItem(
+        DISTRIBUTOR_SELECTOR_KEYS.TECHNICAL_USER_CONTACT,
       );
-      const previewRes = await previewReq.json();
+      const technicalUserContact = localTechnicalUserContact
+        ? JSON.parse(localTechnicalUserContact)
+        : "";
 
-      if (previewRes.errors) {
-        if (
-          previewRes.errors != "no invoice would be issued for this purchase"
-        ) {
-          throw new Error(previewRes.errors);
+      if (marketplace !== UserSubscriptionMarketplace.CanonicalProChannel) {
+        const product = products[0].product;
+
+        payload = {
+          account_id: window.accountId,
+          marketplace: marketplace,
+          action: action,
+          coupon: coupon,
+        };
+
+        if (window.previousPurchaseIds !== undefined && product.period) {
+          payload.previous_purchase_id =
+            window.previousPurchaseIds?.[product.period];
+        }
+
+        if (action === "purchase" || action === "trial") {
+          payload = {
+            ...payload,
+            products: products.map((product) => {
+              return {
+                product_listing_id: product?.product?.longId,
+                quantity: product.quantity,
+              };
+            }),
+          };
+        }
+
+        if (products && products.length === 1) {
+          const product = products[0].product;
+          if (action === "renewal") {
+            payload = { ...payload, renewal_id: product.longId };
+          }
+
+          if (action === "offer") {
+            payload = { ...payload, offer_id: product.longId };
+          }
+        }
+      } else {
+        const product = products[0].product;
+
+        payload = {
+          account_id: window.accountId,
+          marketplace: marketplace,
+          action: action,
+          offer_id: product?.offerId,
+          products: products.map((product) => {
+            return {
+              product_listing_id: product?.product?.longId,
+              quantity: product.quantity,
+            };
+          }),
+        };
+
+        if (technicalUserContact || poNumber) {
+          const channelMetaData: Array<{ key: string; value: string }> = [];
+          if (technicalUserContact.name) {
+            channelMetaData.push({
+              key: "technicalContactEmail",
+              value: technicalUserContact.email,
+            });
+          }
+
+          if (technicalUserContact.email) {
+            channelMetaData.push({
+              key: "technicalContactName",
+              value: technicalUserContact.name,
+            });
+          }
+
+          if (poNumber) {
+            channelMetaData.push({
+              key: "poNumber",
+              value: poNumber,
+            });
+          }
+
+          payload.metadata = channelMetaData;
         }
       }
 
-      // purhcase
       const pruchaseReq = await fetch(
         `/pro/purchase${window.location.search}`,
         {
@@ -81,7 +126,7 @@ const postPurchase = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(payload),
-        }
+        },
       );
       const pruchaseRes = await pruchaseReq.json();
 
@@ -90,8 +135,8 @@ const postPurchase = () => {
       }
 
       return pruchaseRes.id;
-    }
-  );
+    },
+  });
 
   return mutation;
 };

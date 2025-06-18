@@ -1,3 +1,5 @@
+@use "sass:color";
+
 @mixin ubuntu-p-navigation-dropdown {
   $dropdown-border: 1px solid $colors--dark-theme--border-low-contrast;
 
@@ -13,6 +15,14 @@
 
     @media (max-width: $breakpoint-navigation-threshold - 1) {
       display: none !important;
+    }
+
+    .global-nav-dropdown .global-nav__row {
+      padding: 0 2rem;
+
+      .col-9 {
+        margin-left: 0.25rem;
+      }
     }
   }
 
@@ -31,7 +41,7 @@
     @include vf-animation(all, brisk, out);
 
     background-color: #262626;
-    box-shadow: 0 1px 32px 1px transparentize($color-dark, 0.8);
+    box-shadow: 0 1px 32px 1px color.adjust($color-dark, $alpha: -0.8);
     flex-direction: column;
     height: auto;
     max-height: calc(100vh - 3rem);
@@ -114,14 +124,16 @@
 
   .dropdown-window__main-panel,
   .dropdown-window__side-panel {
-    margin: 2.5rem 0 2.5rem -0.5rem;
+    margin: 2rem 0 2.5rem -0.5rem;
 
     .p-muted-heading {
       color: rgba(255, 255, 255, 0.6);
       padding-left: 0.5rem;
+      padding-top: 0.25rem;
     }
 
     .p-navigation__dropdown-item {
+      background-color: transparent;
       border-bottom: $dropdown-border;
       line-height: 1.5rem;
       margin: 0;
@@ -168,7 +180,7 @@
   }
 
   .dropdown-window__side-panel {
-    margin: 2.5rem 0;
+    margin: 2rem 0;
     padding: 0;
 
     .p-list {

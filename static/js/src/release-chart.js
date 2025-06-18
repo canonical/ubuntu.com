@@ -325,7 +325,7 @@ function buildChartKey(svg, chartSelector, taskStatus) {
     .attr(
       "height",
       rowHeight * taskStatusKeys.length +
-        extraChartHeight * taskStatusKeys.length
+        extraChartHeight * taskStatusKeys.length,
     );
 
   taskStatusKeys.forEach(function (key, i) {
@@ -334,7 +334,7 @@ function buildChartKey(svg, chartSelector, taskStatus) {
       .attr("class", "chart-key__row")
       .attr(
         "transform",
-        "translate(0, " + (rowHeight * i + extraChartHeight * i) + ")"
+        "translate(0, " + (rowHeight * i + extraChartHeight * i) + ")",
       )
       .attr("height", rectDimensions);
 
@@ -366,7 +366,7 @@ function buildChartKey(svg, chartSelector, taskStatus) {
 function getMaxNumberOfLines(svg, textList, width) {
   var tempSvg = (svg = document.createElementNS(
     "http://www.w3.org/2000/svg",
-    "svg"
+    "svg",
   ));
   svg.style.position = "absolute";
   svg.style.visibility = "hidden";
@@ -378,7 +378,7 @@ function getMaxNumberOfLines(svg, textList, width) {
   textList.forEach(function (key, i) {
     let textNode = document.createElementNS(
       "http://www.w3.org/2000/svg",
-      "text"
+      "text",
     );
     textNode.textContent = formatKeyLabel(key);
     svg.appendChild(textNode);
@@ -448,35 +448,39 @@ function formatKeyLabel(key) {
     keyLowerCase.charAt(0).toUpperCase() + keyLowerCase.substr(1);
   formattedKey = formattedKey.replace(
     "Lts",
-    "Ubuntu LTS release Standard Support"
+    "Ubuntu LTS release Standard Support",
   );
   formattedKey = formattedKey.replace(" openstack ", " OpenStack ");
   formattedKey = formattedKey.replace("kub", "Kub");
   formattedKey = formattedKey.replace(
     "Interim release",
-    "Interim release standard security maintenance (9 months)"
+    "Interim release standard security maintenance (9 months)",
   );
   formattedKey = formattedKey.replace(
     "Esm",
-    "LTS Expanded Security Maintenance (ESM) for Ubuntu Main (additional 5 years)"
+    "LTS Expanded Security Maintenance (ESM) for Ubuntu Main (additional 5 years)",
   );
   formattedKey = formattedKey.replace("Cve", "CVE/Critical fixes only");
   formattedKey = formattedKey.replace("Early", "Early preview");
   formattedKey = formattedKey.replace(
     "Hardware and maintenance updates",
-    "LTS standard security maintenance for Ubuntu Main (initial 5 years)"
+    "LTS standard security maintenance for Ubuntu Main (initial 5 years)",
   );
   formattedKey = formattedKey.replace(
     "Main universe",
-    "LTS Expanded Security Maintenance (ESM) for Ubuntu Universe (10 years)"
+    "Expanded Security Maintenance (ESM) for Ubuntu Universe (10 years)",
+  );
+  formattedKey = formattedKey.replace(
+    "Pro legacy support",
+    "Legacy support (years 11 and 12)",
   );
   formattedKey = formattedKey.replace(
     "Microstack esm",
-    "Expanded Security Maintenance (ESM)"
+    "Expanded Security Maintenance (ESM)",
   );
   formattedKey = formattedKey.replace(
     "Pro support",
-    "Ubuntu Pro + Support coverage"
+    "Ubuntu Pro + Support coverage",
   );
   return formattedKey;
 }
@@ -512,7 +516,7 @@ export function createReleaseChart(
   tasks,
   taskVersions,
   removePadding,
-  highlightVersion
+  highlightVersion,
 ) {
   var margin = {
     top: 12,
@@ -596,7 +600,7 @@ export function createReleaseChart(
     .attr("height", height)
     .attr(
       "transform",
-      "translate(" + chartTranslateX + ", " + margin.top + ")"
+      "translate(" + chartTranslateX + ", " + margin.top + ")",
     );
 
   addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion);

@@ -1,0 +1,69 @@
+{
+    "form": {
+      "/kubernetes": {
+        "templatePath": "/kubernetes/index.html",
+        "childrenPaths": [
+          "/kubernetes/install",
+          "/kubernetes/managed",
+          "/kubernetes/resources",
+          "/kubernetes/compare",
+          "/kubernetes/charmed-k8s/index",
+          "/kubernetes/what-is-kubernetes",
+          "/kubernetes/documentation"
+        ],
+        "isModal": true,
+        "modalId": "kubernetes-modal",
+        "formData": {
+          "title": "Talk to our Kubernetes experts",
+          "formId": "3897",
+          "returnUrl": "/kubernetes#contact-form-success",
+          "lpUrl": "https://ubuntu.com/kubernetes/contact-us",
+          "product": ""
+        },
+        "fieldsets": [
+          {
+            "title": "Tell us more about your Kubernetes use cases",
+            "id": "advice",
+            "fields": [
+              {
+                "type": "long-text",
+                "id": "advice",
+                "placeholder": "Anything you'd like to communicate about your needs or interests?",
+                "label": "Anything you'd like to communicate about your needs or interests?"
+              }
+            ]
+          },
+          {
+            "title": "How should we get in touch?",
+            "id": "about-you",
+            "noCommentsFromLead": true,
+            "fields": [
+              {
+                "type": "tel",
+                "id": "phone",
+                "label": "Phone number",
+                "isRequired": true
+              },
+              {
+                "type": "country",
+                "label": "Country",
+                "isRequired": false
+              },
+              {
+                "type": "text",
+                "id": "company",
+                "label": "Company",
+                "isRequired": true
+              },
+              {
+                "type": "text",
+                "id": "title",
+                "label": "Job title",
+                "isRequired": true
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }

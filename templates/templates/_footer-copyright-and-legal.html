@@ -1,20 +1,27 @@
-<p class="p-footer--secondary__content"><small>&copy; {{ current_year() }} Canonical Ltd. Ubuntu and Canonical are
-    registered trademarks of Canonical Ltd.</small></p>
-<nav class="p-footer--secondary__nav">
-  <ul class="p-inline-list--middot u-no-margin--bottom">
-    <li class="p-inline-list__item">
-      <a class="p-link--soft" accesskey="8" href="/legal"><small>Legal information</small></a>
-    </li>
-    <li class="p-inline-list__item">
-      <a class="p-link--soft" accesskey="9" href="/legal/data-privacy"><small>Data privacy</small></a>
-    </li>
-    <li class="p-inline-list__item">
-      <a href="" class="p-link--soft js-revoke-cookie-manager"><small>Manage your tracker settings</small></a>
-    </li>
-    <li class="p-inline-list__item">
-      <a class="p-link--soft" href="https://github.com/canonical/ubuntu.com/issues/new" id="report-a-bug">
-        <small>Report a bug on this site</small>
-      </a>
-    </li>
-  </ul>
-</nav>
+<div class="row">
+  <hr class="p-rule--muted" />
+  <div class="col-3 col-medium-2">
+    <p class="p-footer--secondary__content">&copy; {{ current_year() }} Canonical Ltd.</p>
+  </div>
+  <div class="col-9 col-medium-4">
+    <p>Ubuntu and Canonical are registered trademarks of Canonical Ltd.</p>
+    <hr class="p-rule--muted" />
+    <nav class="p-footer--secondary__nav">
+      <ul class="p-inline-list--inline u-responsive-realign u-no-margin--left u-no-padding--left">
+        <li class="p-inline-list__item">
+          <a accesskey="8" href="/legal">Legal information</a>
+        </li>
+        <li class="p-inline-list__item">
+          <a accesskey="9" href="/legal/data-privacy">Data privacy</a>
+        </li>
+        <li class="p-inline-list__item">
+          <a href="" class="js-revoke-cookie-manager">Manage your tracker settings</a>
+        </li>
+        <li class="p-inline-list__item">
+          <a href="https://github.com/canonical/ubuntu.com/issues/new?template=ISSUE_TEMPLATE.yaml"
+             id="report-a-bug">Report a bug on this site</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

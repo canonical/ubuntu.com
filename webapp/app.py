@@ -2,11 +2,14 @@
 A Flask application for ubuntu.com
 """
 
+import math
 import os
 
 import flask
 import requests
 import talisker.requests
+from jinja2 import ChoiceLoader, FileSystemLoader
+
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
     DiscourseAPI,
@@ -15,11 +18,23 @@ from canonicalwebteam.discourse import (
     EngagePages,
     TutorialParser,
     Tutorials,
+    CategoryParser,
+    Category,
 )
 from canonicalwebteam.flask_base.app import FlaskBase
+from pathlib import Path
+import canonicalwebteam.directory_parser as directory_parser
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam.templatefinder import TemplateFinder
+from canonicalwebteam.form_generator import FormGenerator
 
+from webapp.canonical_cla.views import (
+    canonical_cla_api_github_login,
+    canonical_cla_api_github_logout,
+    canonical_cla_api_launchpad_login,
+    canonical_cla_api_launchpad_logout,
+    canonical_cla_api_proxy,
+)
 from webapp.certified.views import certified_routes
 from webapp.handlers import init_handlers
 from webapp.login import login_handler, logout
@@ -49,7 +64,10 @@ from webapp.shop.advantage.views import (
     get_activate_view,
     get_advantage_offers,
     get_annotated_subscriptions,
+    get_channel_offers,
     get_contract_token,
+    get_distributor_thank_you_view,
+    get_distributor_view,
     get_renewal,
     get_user_subscriptions,
     magic_attach_view,
@@ -58,6 +76,7 @@ from webapp.shop.advantage.views import (
     post_auto_renewal_settings,
     post_offer,
     pro_activate_activation_key,
+    pro_get_request_attributes,
     pro_page_view,
     put_account_user_role,
     put_contract_entitlements,
@@ -68,25 +87,39 @@ from webapp.shop.cred.views import (
     cred_assessments,
     cred_beta_activation,
     cred_cancel_exam,
+    cred_dashboard,
+    cred_dashboard_upcoming_exams,
+    cred_dashboard_exam_results,
+    cred_dashboard_system_statuses,
     cred_exam,
     cred_home,
+    cred_manage_shop,
     cred_redeem_code,
     cred_schedule,
     cred_self_study,
     cred_shop,
+    cred_shop_keys,
     cred_shop_thank_you,
+    cred_shop_webhook_responses,
     cred_sign_up,
+    cred_thank_you,
     cred_submit_form,
     cred_syllabus_data,
     cred_your_exams,
+    get_activation_key_info,
+    cred_user_ban,
     get_activation_keys,
     get_cue_products,
-    get_filtered_webhook_responses,
     get_issued_badges,
+    get_issued_badges_bulk,
+    get_test_taker_stats,
+    issue_credly_badge,
+    get_cred_user_permissions,
     get_my_issued_badges,
     get_webhook_response,
     issue_badges,
     rotate_activation_key,
+    cancel_scheduled_exam,
 )
 from webapp.shop.views import (
     account_view,
@@ -116,7 +149,9 @@ from webapp.views import (
     BlogSitemapPage,
     account_query,
     appliance_install,
-    appliance_portfolio,
+    build_vulnerabilities,
+    build_vulnerabilities_list,
+    process_active_vulnerabilities,
     build_engage_index,
     build_engage_page,
     build_engage_pages_sitemap,
@@ -127,21 +162,21 @@ from webapp.views import (
     engage_thank_you,
     french_why_openstack,
     german_why_openstack,
-    get_user_country_by_ip,
+    get_user_country_by_tz,
     json_asset_query,
     marketo_submit,
     mirrors_query,
+    navigation_nojs,
     openstack_engage,
     openstack_install,
     releasenotes_redirect,
     show_template,
     sitemap_index,
-    sixteen_zero_four,
     spanish_why_openstack,
     subscription_centre,
     thank_you,
     unlisted_engage_page,
-    navigation_nojs,
+    build_sitemap_tree,
 )
 
 DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
@@ -149,6 +184,20 @@ DISCOURSE_API_USERNAME = os.getenv("DISCOURSE_API_USERNAME")
 
 CHARMHUB_DISCOURSE_API_KEY = os.getenv("CHARMHUB_DISCOURSE_API_KEY")
 CHARMHUB_DISCOURSE_API_USERNAME = os.getenv("CHARMHUB_DISCOURSE_API_USERNAME")
+
+# Sitemaps that are already generated and don't need to be updated.
+# Can be seen on sitemap_index.xml
+DYNAMIC_SITEMAPS = [
+    "templates",
+    "tutorials",
+    "engage",
+    "ceph/docs",
+    "blog",
+    "security/notices",
+    "security/cves",
+    "security/livepatch/docs",
+    "robotics/docs",
+]
 
 # Set up application
 # ===
@@ -161,6 +210,20 @@ app = FlaskBase(
     template_500="500.html",
     static_folder="../static",
 )
+
+# ChoiceLoader attempts loading templates from each path in successive order
+directory_parser_templates = (
+    Path(directory_parser.__file__).parent / "templates"
+)
+loader = ChoiceLoader(
+    [
+        FileSystemLoader("templates"),
+        FileSystemLoader("node_modules/vanilla-framework/templates"),
+        FileSystemLoader(str(directory_parser_templates)),
+    ]
+)
+
+app.jinja_loader = loader
 
 sentry = app.extensions["sentry"]
 session = talisker.requests.get_session()
@@ -188,6 +251,11 @@ search_engine_id = "adb2397a224a1fe55"
 
 init_handlers(app, sentry)
 
+# Prepare forms
+form_template_path = "shared/forms/form-template.html"
+form_loader = FormGenerator(app, form_template_path)
+form_loader.load_forms()
+
 # Routes
 # ===
 
@@ -214,6 +282,9 @@ app.add_url_rule(
     "/pro/contracts/<contract_id>/token", view_func=get_contract_token
 )
 app.add_url_rule("/pro/users", view_func=advantage_account_users_view)
+app.add_url_rule(
+    "/pro/distributor/users", view_func=advantage_account_users_view
+)
 app.add_url_rule("/pro/account-users", view_func=get_account_users)
 app.add_url_rule(
     "/pro/accounts/<account_id>/user",
@@ -276,6 +347,16 @@ app.add_url_rule(
     methods=["GET"],
 )
 
+app.add_url_rule("/pro/distributor", view_func=get_distributor_view)
+app.add_url_rule("/pro/distributor/shop", view_func=get_distributor_view)
+app.add_url_rule(
+    "/pro/distributor/thank-you", view_func=get_distributor_thank_you_view
+)
+app.add_url_rule(
+    "/pro/channel-offers.json",
+    view_func=get_channel_offers,
+    methods=["GET"],
+)
 app.add_url_rule(
     "/pro/attach", view_func=activate_magic_attach, methods=["POST"]
 )
@@ -294,6 +375,7 @@ app.add_url_rule(
     "/account/invoices",
     view_func=invoices_view,
 )
+app.add_url_rule("/pro/distributor/invoice", view_func=invoices_view)
 app.add_url_rule(
     "/account/invoices/download/<purchase_id>",
     view_func=download_invoice,
@@ -379,6 +461,11 @@ app.add_url_rule(
     view_func=maintenance_check,
     methods=["GET"],
 )
+app.add_url_rule(
+    "/pro/request/attributes",
+    view_func=pro_get_request_attributes,
+    methods=["GET"],
+)
 
 # end of shop
 
@@ -402,10 +489,10 @@ app.add_url_rule(
     "/search",
     "search",
     build_search_view(
+        app,
         session=session,
         template_path="search.html",
         search_engine_id=search_engine_id,
-        request_limit="2000/day",
     ),
 )
 
@@ -415,10 +502,6 @@ app.add_url_rule(
         "<regex('(raspberry-pi2?|intel-nuc|vm)'):device>"
     ),
     view_func=appliance_install,
-)
-app.add_url_rule(
-    "/appliance/portfolio",
-    view_func=appliance_portfolio,
 )
 
 # blog section
@@ -485,6 +568,40 @@ app.add_url_rule("/security/cves", view_func=cve_index)
 
 app.add_url_rule(
     r"/security/<regex('(cve-|CVE-)\d{4}-\d{4,7}'):cve_id>", view_func=cve
+)
+
+# Security vulnerabilities
+security_vulnerabilities = Category(
+    parser=CategoryParser(
+        api=discourse_api,
+        index_topic_id=53193,
+        url_prefix="/security/vulnerabilities",
+    ),
+    category_id=308,
+)
+
+app.add_url_rule(
+    "/security",
+    view_func=process_active_vulnerabilities(security_vulnerabilities),
+)
+
+app.add_url_rule(
+    "/security/vulnerabilities",
+    endpoint="vulnerabilities_list",
+    view_func=build_vulnerabilities_list(security_vulnerabilities),
+)
+
+app.add_url_rule(
+    "/security/vulnerabilities/view-all",
+    endpoint="vulnerabilities_list-all",
+    view_func=build_vulnerabilities_list(
+        security_vulnerabilities, "/view-all"
+    ),
+)
+
+app.add_url_rule(
+    "/security/vulnerabilities/<path:path>",
+    view_func=build_vulnerabilities(security_vulnerabilities),
 )
 
 # Login
@@ -563,72 +680,62 @@ app.add_url_rule(
     view_func=unlisted_engage_page,
 )
 
+app.add_url_rule(
+    "/legal/contributors/agreement/api",
+    methods=["POST", "GET"],
+    view_func=canonical_cla_api_proxy,
+)
+app.add_url_rule(
+    "/legal/contributors/agreement/api/github/logout",
+    view_func=canonical_cla_api_github_logout,
+)
+app.add_url_rule(
+    "/legal/contributors/agreement/api/github/login",
+    view_func=canonical_cla_api_github_login,
+)
+app.add_url_rule(
+    "/legal/contributors/agreement/api/launchpad/logout",
+    view_func=canonical_cla_api_launchpad_logout,
+)
+app.add_url_rule(
+    "/legal/contributors/agreement/api/launchpad/login",
+    view_func=canonical_cla_api_launchpad_login,
+)
+
 
 def takeovers_json():
     active_takeovers = discourse_takeovers.parse_active_takeovers()
-    takeovers = sorted(
-        active_takeovers,
-        key=lambda takeover: takeover["publish_date"],
-        reverse=True,
-    )
-    response = flask.jsonify(takeovers)
+    response = flask.jsonify(active_takeovers)
     response.cache_control.max_age = "300"
 
     return response
 
 
 def takeovers_index():
-    all_takeovers = discourse_takeovers.get_index()
-    all_takeovers.sort(
-        key=lambda takeover: takeover["active"] == "true", reverse=True
-    )
-    active_count = len(
-        [
-            takeover
-            for takeover in all_takeovers
-            if takeover["active"] == "true"
-        ]
-    )
+    page = flask.request.args.get("page", default=1, type=int)
+    limit = 50
+    offset = (page - 1) * limit
+    (
+        all_takeovers,
+        count,
+        active_count,
+        total_current,
+    ) = discourse_takeovers.get_index(limit=limit, offset=offset)
+    total_pages = math.ceil(count / limit)
 
     return flask.render_template(
         "takeovers/index.html",
         takeovers=all_takeovers,
         active_count=active_count,
+        total_count=total_current,
+        total_pages=total_pages,
+        current_page=page,
     )
 
 
-app.add_url_rule("/16-04", view_func=sixteen_zero_four)
 app.add_url_rule("/takeovers.json", view_func=takeovers_json)
 app.add_url_rule("/takeovers", view_func=takeovers_index)
-
-
-core_services_guide_url = "/core/services/guide"
-core_services_guide = Docs(
-    parser=DocParser(
-        api=discourse_api,
-        index_topic_id=27473,
-        url_prefix=core_services_guide_url,
-    ),
-    document_template="core/services/guide/document.html",
-    url_prefix=core_services_guide_url,
-    blueprint_name="core-services-guide",
-)
-
-app.add_url_rule(
-    "/core/services/guide/search",
-    "core-services-guide-search",
-    build_search_view(
-        session=session,
-        site="ubuntu.com/core/services/guide",
-        template_path="core/services/guide/search-results.html",
-        search_engine_id=search_engine_id,
-    ),
-)
-
-core_services_guide.init_app(app)
-
-
-app.add_url_rule("/user-country.json", view_func=get_user_country_by_ip)
+app.add_url_rule("/user-country-tz.json", view_func=get_user_country_by_tz)
 
 # All other routes
 template_finder_view = TemplateFinder.as_view("template_finder")
@@ -654,6 +761,7 @@ app.add_url_rule(
     "/server/docs/search",
     "server-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/server/docs",
         template_path="/server/docs/search-results.html",
@@ -681,11 +789,11 @@ app.add_url_rule(
     "/community/search",
     "community-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/community",
         template_path="/community/docs/search-results.html",
         search_engine_id=search_engine_id,
-        request_limit="2000/day",
     ),
 )
 
@@ -735,131 +843,24 @@ app.add_url_rule(
     "/ceph/docs/search",
     "ceph-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/ceph/docs",
         template_path="ceph/docs/search-results.html",
         search_engine_id=search_engine_id,
-        request_limit="2000/day",
     ),
 )
-
-# Core docs
-core_docs = Docs(
-    parser=DocParser(
-        api=discourse_api, index_topic_id=19764, url_prefix="/core/docs"
-    ),
-    document_template="/core/docs/document.html",
-    url_prefix="/core/docs",
-    blueprint_name="core",
-)
-# Core docs search
-app.add_url_rule(
-    "/core/docs/search",
-    "core-docs-search",
-    build_search_view(
-        session=session,
-        site="ubuntu.com/core/docs",
-        template_path="/core/docs/search-results.html",
-        search_engine_id=search_engine_id,
-        request_limit="2000/day",
-    ),
-)
-core_docs.init_app(app)
-
-# Core docs - Modem Manager
-core_modem_manager_docs = Docs(
-    parser=DocParser(
-        api=discourse_api,
-        index_topic_id=19901,
-        url_prefix="/core/docs/modem-manager",
-    ),
-    document_template="/core/docs/document.html",
-    url_prefix="/core/docs/modem-manager",
-    blueprint_name="modem-manager",
-)
-core_modem_manager_docs.init_app(app)
-
-# Core docs - Bluetooth (bluez) docs
-core_bluetooth_docs = Docs(
-    parser=DocParser(
-        api=discourse_api, index_topic_id=19971, url_prefix="/core/docs/bluez"
-    ),
-    document_template="/core/docs/document.html",
-    url_prefix="/core/docs/bluez",
-    blueprint_name="bluez",
-)
-core_bluetooth_docs.init_app(app)
-
-# Core docs - NetworkManager
-core_network_manager_docs = Docs(
-    parser=DocParser(
-        api=discourse_api,
-        index_topic_id=19917,
-        url_prefix="/core/docs/networkmanager",
-    ),
-    document_template="/core/docs/document.html",
-    url_prefix="/core/docs/networkmanager",
-    blueprint_name="networkmanager",
-)
-core_network_manager_docs.init_app(app)
-
-# Core docs - wp-supplicant
-core_wpa_supplicant_docs = Docs(
-    parser=DocParser(
-        api=discourse_api,
-        index_topic_id=19943,
-        url_prefix="/core/docs/wpa-supplicant",
-    ),
-    document_template="/core/docs/document.html",
-    url_prefix="/core/docs/wpa-supplicant",
-    blueprint_name="wpa-supplicant",
-)
-core_wpa_supplicant_docs.init_app(app)
-
-# Core docs - easy-openvpn
-core_easy_openvpn_docs = Docs(
-    parser=DocParser(
-        api=discourse_api,
-        index_topic_id=19950,
-        url_prefix="/core/docs/easy-openvpn",
-    ),
-    document_template="/core/docs/document.html",
-    url_prefix="/core/docs/easy-openvpn",
-    blueprint_name="easy-openvpn",
-)
-core_easy_openvpn_docs.init_app(app)
-
-# Core docs - wifi-ap
-core_wifi_ap_docs = Docs(
-    parser=DocParser(
-        api=discourse_api,
-        index_topic_id=19959,
-        url_prefix="/core/docs/wifi-ap",
-    ),
-    document_template="/core/docs/document.html",
-    url_prefix="/core/docs/wifi-ap",
-    blueprint_name="wifi-ap",
-)
-core_wifi_ap_docs.init_app(app)
-
-# Core docs - alsa-utils
-core_als_autils_docs = Docs(
-    parser=DocParser(
-        api=discourse_api,
-        index_topic_id=19995,
-        url_prefix="/core/docs/alsa-utils",
-    ),
-    document_template="/core/docs/document.html",
-    url_prefix="/core/docs/alsa-utils",
-    blueprint_name="alsa-utils",
-)
-core_als_autils_docs.init_app(app)
 
 # Credentials
 app.add_url_rule("/credentials", view_func=cred_home)
 app.add_url_rule("/credentials/self-study", view_func=cred_self_study)
-app.add_url_rule("/credentials/syllabus", view_func=cred_syllabus_data)
-app.add_url_rule("/credentials/sign-up", view_func=cred_sign_up)
+app.add_url_rule("/credentials/exam-content", view_func=cred_syllabus_data)
+app.add_url_rule(
+    "/credentials/sign-up", view_func=cred_sign_up, methods=["GET", "POST"]
+)
+app.add_url_rule(
+    "/credentials/thank-you", view_func=cred_thank_you, methods=["GET"]
+)
 app.add_url_rule(
     "/credentials/schedule",
     view_func=cred_schedule,
@@ -880,9 +881,17 @@ app.add_url_rule(
     methods=["GET", "POST"],
 )
 app.add_url_rule("/credentials/shop/", view_func=cred_shop)
+app.add_url_rule(
+    "/credentials/shop/manage/", view_func=cred_manage_shop, methods=["GET"]
+)
 app.add_url_rule("/credentials/shop/<p>", view_func=cred_shop)
+app.add_url_rule("/credentials/shop/keys", view_func=cred_shop_keys)
 app.add_url_rule(
     "/credentials/shop/order-thank-you", view_func=cred_shop_thank_you
+)
+app.add_url_rule(
+    "/credentials/shop/webhook_responses",
+    view_func=cred_shop_webhook_responses,
 )
 app.add_url_rule(
     "/credentials/redeem", view_func=cred_redeem_code, methods=["GET", "POST"]
@@ -908,14 +917,14 @@ app.add_url_rule(
     methods=["POST"],
 )
 app.add_url_rule(
+    "/credentials/keys/<key_id>",
+    view_func=get_activation_key_info,
+    methods=["GET"],
+)
+app.add_url_rule(
     "/credentials/beta/activation",
     view_func=cred_beta_activation,
     methods=["GET", "POST"],
-)
-app.add_url_rule(
-    "/credentials/get_filtered_webhook_responses",
-    view_func=get_filtered_webhook_responses,
-    methods=["GET"],
 )
 app.add_url_rule(
     "/credentials/get_webhook_response",
@@ -927,11 +936,66 @@ app.add_url_rule(
     view_func=issue_badges,
     methods=["POST"],
 )
-
 app.add_url_rule(
-    "/credentials/get_issued_badges",
+    "/credentials/dashboard",
+    view_func=cred_dashboard,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/dashboard/<path:path>",
+    view_func=cred_dashboard,
+    methods=["GET"],
+    defaults={"path": ""},
+)
+app.add_url_rule(
+    "/credentials/api/upcoming-exams",
+    view_func=cred_dashboard_upcoming_exams,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/exam-results",
+    view_func=cred_dashboard_exam_results,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/system-statuses",
+    view_func=cred_dashboard_system_statuses,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/issued-badges",
     view_func=get_issued_badges,
     methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/issued-badges-bulk",
+    view_func=get_issued_badges_bulk,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/test-taker-stats",
+    view_func=get_test_taker_stats,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/issue-credly-badge",
+    view_func=issue_credly_badge,
+    methods=["POST"],
+)
+app.add_url_rule(
+    "/credentials/api/user-permissions",
+    view_func=get_cred_user_permissions,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/cancel-scheduled-exam/<reservation_id>",
+    view_func=cancel_scheduled_exam,
+    methods=["DELETE"],
+)
+app.add_url_rule(
+    "/credentials/api/user-bans",
+    view_func=cred_user_ban,
+    methods=["GET", "PUT"],
 )
 
 app.add_url_rule(
@@ -945,7 +1009,6 @@ app.add_url_rule(
     view_func=confidentiality_agreement_webhook,
     methods=["POST"],
 )
-
 
 # Charmed OpenStack docs
 openstack_docs = Docs(
@@ -964,11 +1027,11 @@ app.add_url_rule(
     "/openstack/docs/search",
     "openstack-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/openstack/docs",
         template_path="openstack/docs/search-results.html",
         search_engine_id=search_engine_id,
-        request_limit="2000/day",
     ),
 )
 
@@ -991,11 +1054,11 @@ app.add_url_rule(
     "/security/livepatch/docs/search",
     "security-livepatch-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/security/livepatch/docs",
         template_path="/security/livepatch/docs/search-results.html",
         search_engine_id=search_engine_id,
-        request_limit="2000/day",
     ),
 )
 
@@ -1018,11 +1081,11 @@ app.add_url_rule(
     "/security/certifications/docs/search",
     "security-certs-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/security/certifications/docs",
         template_path="/security/certifications/docs/search-results.html",
         search_engine_id=search_engine_id,
-        request_limit="2000/day",
     ),
 )
 
@@ -1045,41 +1108,15 @@ app.add_url_rule(
     "/landscape/docs/search",
     "landscape-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/landscape/docs",
         template_path="/landscape/docs/search-results.html",
         search_engine_id=search_engine_id,
-        request_limit="2000/day",
     ),
 )
 
 landscape_docs.init_app(app)
-
-# Robotics docs
-robotics_docs = Docs(
-    parser=DocParser(
-        api=discourse_api,
-        index_topic_id=34683,
-        url_prefix="/robotics/docs",
-    ),
-    document_template="/robotics/docs/document.html",
-    url_prefix="/robotics/docs",
-    blueprint_name="robotics-docs",
-)
-
-# Robotics search
-app.add_url_rule(
-    "/robotics/docs/search",
-    "robotics-docs-search",
-    build_search_view(
-        session=session,
-        site="ubuntu.com/robotics/docs",
-        template_path="/robotics/docs/search-results.html",
-        search_engine_id=search_engine_id,
-    ),
-)
-
-robotics_docs.init_app(app)
 
 certified_routes(app)
 
@@ -1103,6 +1140,7 @@ def render_blogs():
         api=BlogAPI(
             session=session, thumbnail_width=555, thumbnail_height=311
         ),
+        excluded_tags=[3184, 3265, 3408, 3960, 4491, 3599],
         tag_ids=[4307],
         per_page=3,
         blog_title="HPE blogs",
@@ -1116,6 +1154,105 @@ def render_blogs():
 app.add_url_rule("/hpe", view_func=render_blogs)
 
 
+# Public-cloud blog section
+# tag_ids:
+# public-cloud - 1350, aws - 1205, azure - 1748, google-cloud - 4191,
+# ubuntu-on-aws - 4478, ubuntu-on-gcp - 4387, ubuntu-on-azure - 4540
+def render_public_cloud_blogs():
+    blogs = BlogViews(
+        api=BlogAPI(
+            session=session, thumbnail_width=1000, thumbnail_height=700
+        ),
+        excluded_tags=[3184, 3265, 3408, 3960, 4491, 3599],
+        tag_ids=[1205, 1350, 1748, 4191, 4478, 4540, 4387],
+        per_page=3,
+        blog_title="Public-cloud blogs",
+    )
+    public_cloud_articles = blogs.get_index()["articles"]
+    sorted_articles = sorted(public_cloud_articles, key=lambda x: x["date"])
+    return flask.render_template(
+        "/cloud/public-cloud.html", blogs=sorted_articles
+    )
+
+
+app.add_url_rule("/cloud/public-cloud", view_func=render_public_cloud_blogs)
+
+
+# Security standards resources blogs tab
+def render_security_standards_blogs():
+    blogs = BlogViews(
+        api=BlogAPI(
+            session=session, thumbnail_width=640, thumbnail_height=340
+        ),
+        tag_ids=[
+            3829,
+            2562,
+            4063,
+            3903,
+            4468,
+            4464,
+            4392,
+            1228,
+            4417,
+            4391,
+            3830,
+            4632,
+            4633,
+            4749,
+        ],
+        per_page=4,
+        blog_title="Security standards blogs",
+    )
+    sorted_articles = sorted(
+        blogs.get_index()["articles"], key=lambda x: x["date"]
+    )
+    return flask.render_template(
+        "/security/security-standards.html", blogs=sorted_articles
+    )
+
+
+app.add_url_rule(
+    "/security/security-standards", view_func=render_security_standards_blogs
+)
+
+
+# CMMC resources blogs tab
+def render_cmmc_blogs():
+    blogs = BlogViews(
+        api=BlogAPI(
+            session=session, thumbnail_width=640, thumbnail_height=340
+        ),
+        tag_ids=[
+            3829,
+            2562,
+            4063,
+            3903,
+            4468,
+            4464,
+            4392,
+            1228,
+            4417,
+            4391,
+            3830,
+            4632,
+            4633,
+            4749,
+        ],
+        excluded_tags=[3265],
+        per_page=4,
+        blog_title="CMMC blogs",
+    )
+    sorted_articles = sorted(
+        blogs.get_index()["articles"], key=lambda x: x["date"]
+    )
+    return flask.render_template(
+        "/security/cmmc/index.html", blogs=sorted_articles
+    )
+
+
+app.add_url_rule("/security/cmmc", view_func=render_cmmc_blogs)
+
+
 # Supermicro blog section
 def render_supermicro_blogs():
     blogs = BlogViews(
@@ -1123,6 +1260,7 @@ def render_supermicro_blogs():
             session=session, thumbnail_width=555, thumbnail_height=311
         ),
         tag_ids=[2247],
+        excluded_tags=[3184, 3265, 3408, 3960, 4491, 3599],
         per_page=3,
         blog_title="Supermicro blogs",
     )
@@ -1133,3 +1271,22 @@ def render_supermicro_blogs():
 
 
 app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
+
+
+# Endpoint for retrieving parsed directory tree
+def get_sitemaps_tree():
+    try:
+        tree = directory_parser.scan_directory(
+            os.getcwd() + "/templates", exclude_paths=DYNAMIC_SITEMAPS
+        )
+    except Exception as e:
+        return {"Error:": str(e)}, 500
+    return tree
+
+
+app.add_url_rule("/sitemap_parser", view_func=get_sitemaps_tree)
+app.add_url_rule(
+    "/sitemap_tree.xml",
+    view_func=build_sitemap_tree(DYNAMIC_SITEMAPS),
+    methods=["GET", "POST"],
+)

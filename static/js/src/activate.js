@@ -118,27 +118,27 @@ activation_key.addEventListener("keyup", validateKey);
   toggleModal(
     document.querySelector("#modal"),
     document.querySelector("[aria-controls=modal]"),
-    true
+    true,
   );
 })();
 
 // buying for input
 const shouldCreateAccount = document.querySelector(
-  "#create-purchase-account-form"
+  "#create-purchase-account-form",
 );
 if (shouldCreateAccount) {
   const organisationContainer = document.querySelector(
-    ".js-organisation-container"
+    ".js-organisation-container",
   );
   const radioMyself = organisationContainer.querySelector(".radio-myself");
   const radioOrganisation = organisationContainer.querySelector(
-    ".radio-organisation"
+    ".radio-organisation",
   );
   const organisationNameContainer = organisationContainer.querySelector(
-    ".js-organisation-name-container"
+    ".js-organisation-name-container",
   );
   const organisationNameInput = organisationNameContainer.querySelector(
-    'input[name="activate-organisation-name"]'
+    'input[name="activate-organisation-name"]',
   );
   radioOrganisation.addEventListener("change", function (e) {
     if (e.target.checked) {
@@ -155,19 +155,20 @@ if (shouldCreateAccount) {
   });
 
   const createPurchaseAccountForm = document.getElementById(
-    "create-purchase-account-form"
+    "create-purchase-account-form",
   );
 
   createPurchaseAccountForm.addEventListener("submit", function (event) {
     event.preventDefault();
     const selectedOption = document.querySelector(
-      'input[name="activate-buy-for"]:checked'
+      'input[name="activate-buy-for"]:checked',
     );
-    let accountName = document.querySelector('input[name="activate-name"]')
-      .value;
+    let accountName = document.querySelector(
+      'input[name="activate-name"]',
+    ).value;
     if (selectedOption.value == "organisation") {
       accountName = document.querySelector(
-        'input[name="activate-organisation-name"]'
+        'input[name="activate-organisation-name"]',
       ).value;
     }
 

@@ -15,6 +15,7 @@ from webapp.shop.api.ua_contracts.parsers import (
     parse_offers,
     parse_product_listing,
     parse_product_listings,
+    parse_channel_product_listings,
     parse_subscriptions,
     parse_users,
 )
@@ -105,10 +106,16 @@ class AdvantageMapper:
             marketplace, url_filters
         )
 
-        return parse_product_listings(
-            response.get("productListings", []),
-            response.get("products", []),
-        )
+        if marketplace == "canonical-pro-channel":
+            return parse_channel_product_listings(
+                response.get("productListings", []),
+                response.get("products", []),
+            )
+        else:
+            return parse_product_listings(
+                response.get("productListings", []),
+                response.get("products", []),
+            )
 
     def get_purchase_account(self, marketplace: str = "") -> Account:
         response = self.ua_contracts_api.get_purchase_account(marketplace)
@@ -275,7 +282,7 @@ class AdvantageMapper:
     def activate_magic_attach(
         self, user_code: str, contract_id: str, client_ip: int
     ):
-        headers = {} if client_ip else {"X-Forwarded-For": client_ip}
+        headers = {"X-Forwarded-For": client_ip} if client_ip else {}
         return self.ua_contracts_api.post_magic_attach(
             request_body={"userCode": user_code, "contractID": contract_id},
             headers=headers,

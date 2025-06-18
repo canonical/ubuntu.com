@@ -46,7 +46,7 @@ products:
       primary_links:
         - links:
             - title: Ubuntu Desktop
-              description: Secure enterprise Linux
+              description: Fast, modern and secure Linux
               url: /desktop
             - title: Ubuntu Server
               description: Scalable Linux for the cloud
@@ -58,11 +58,11 @@ products:
               description: App store for Linux
               url: https://snapcraft.io/
             - title: OpenStack
-              description: Private cloud provisioning
+              description: Enterprise-grade cloud platform
               url: /openstack
-            - title: Multipass
-              description: VMs for Windows, macOS & Linux
-              url: https://multipass.run/
+            - title: MicroCloud
+              description: Lightweight, automated clouds
+              url: https://canonical.com/microcloud
             - title: Ubuntu Pro
               description: Security & compliance subscription
               url: /pro
@@ -73,11 +73,11 @@ products:
               description: Stay patched and defer reboots
               url: /security/livepatch
             - title: Kubernetes
-              description: Containerised workloads
+              description: Containerized workloads
               url: /kubernetes
-            - title: Charmhub
-              description: Charmed Operators marketplace
-              url: https://charmhub.io/
+            - title: AI & MLOps
+              description: AI and machine learning on Ubuntu
+              url: /ai
             - title: Juju
               description: Orchestration engine for operators
               url: https://juju.is/
@@ -93,7 +93,7 @@ products:
       primary_links:
         - links:
             - title: Ubuntu Desktop
-              description: Secure enterprise Linux
+              description: Fast, modern and secure Linux
               url: /desktop
             - title: Ubuntu Server
               description: Scalable Linux for the cloud
@@ -109,10 +109,10 @@ products:
               url: /security/fips
             - title: WSL
               description: Windows Subsystem for Linux
-              url: /wsl
+              url: /desktop/wsl
             - title: Multipass
               description: VMs for Windows, macOS & Linux
-              url: https://multipass.run/
+              url: http://canonical.com/multipass
       secondary_links:
         - title: Quick links
           links:
@@ -133,14 +133,14 @@ products:
       primary_links:
         - links:
             - title: OpenStack
-              description: Enterprise private cloud
+              description: Enterprise-grade cloud platform
               url: /openstack
             - title: Ubuntu Server
               description: Scalable Linux for the cloud
               url: /server
             - title: Landscape
               description: Monitor and manage machines
-              url: https://landscape.canonical.com/
+              url: /landscape
             - title: MAAS
               description: Bare metal provisioning
               url: https://maas.io/
@@ -148,14 +148,17 @@ products:
               description: Open source storage
               url: /ceph
             - title: Anbox Cloud
-              description: Virtualised Android on demand
-              url: https://anbox-cloud.io/
+              description: Virtualized Android on demand
+              url: https://canonical.com/anbox-cloud
             - title: Juju
               description: Orchestrator engine for operators
               url: https://juju.is/
             - title: Private cloud build
               description: OpenStack implementation
               url: /openstack/consulting
+            - title: MicroStack
+              description: Cloud-native OpenStack
+              url: https://microstack.run/
             - title: MicroCloud
               description: Lightweight, automated clouds
               url: https://canonical.com/microcloud
@@ -168,7 +171,7 @@ products:
               url: https://maas.io/docs
             - title: MicroStack installation
               url: https://microstack.run/docs/single-node
-            - title: Data Centre Networking blog
+            - title: Data Center Networking blog
               url: /blog/data-centre-networking-what-is-sdn
             - title: OpenStack pricing
               url: /openstack/pricing-calculator
@@ -196,27 +199,27 @@ products:
               description: Virtual desktops on AWS
               url: /aws/workspaces
 
-    - title: Virtualisation
+    - title: Virtualization
       primary_links:
         - links:
             - title: Multipass
               description: VMs for Windows, macOS & Linux
-              url: https://multipass.run/
+              url: https://canonical.com/multipass
             - title: LXD
               description: Linux containers and VMs
               url: https://canonical.com/lxd
             - title: WSL
               description: Windows Subsystem for Linux
-              url: /wsl
+              url: /desktop/wsl
 
       secondary_links:
         - title: Quick links
           links:
-            - title: What is virtualisation?
+            - title: What is virtualization?
               url: https://snapcraft.io/blog/what-is-virtualisation-the-basics
             - title: Multipass documentation
-              url: https://multipass.run/docs
-            - title: Virtualisation docs in the server guide
+              url: https://canonical.com/multipass/docs
+            - title: Virtualization docs in the server guide
               url: /server/docs/virtualization-multipass
             - title: What is WSL?
               url: https://wiki.ubuntu.com/WSL
@@ -252,9 +255,15 @@ products:
             - title: Ubuntu Pro for GCP
               description: Google Cloud support
               url: /gcp/pro
-            - title: Certifications and hardening
+            - title: Security standards
               description: CIS, DISA-STIG, FIPS compliance
-              url: /security/certifications
+              url: /security/security-standards
+            - title: Confidential computing
+              description: Protect your data in use
+              url: /confidential-computing
+            - title: CMMC
+              description: Certification and hardening
+              url: /security/cmmc
 
       secondary_links:
         - title: Quick links
@@ -262,7 +271,7 @@ products:
             - title: Ubuntu Pro pricing
               url: /pricing/pro
             - title: Open infrastructure consulting
-              url: /pricing/consulting
+              url: https://canonical.com/consulting
             - title: Certified hardware
               url: /certified
             - title: CVE reports
@@ -274,7 +283,7 @@ products:
       primary_links:
         - links:
             - title: Kubernetes
-              description: Containerised workloads
+              description: Containerized workloads
               url: /kubernetes
             - title: MicroK8s
               description: Simplest way to get Kubernetes
@@ -290,9 +299,9 @@ products:
         - title: Quick links
           links:
             - title: Kubernetes documentation
-              url: /kubernetes/docs
+              url: /kubernetes/documentation
             - title: Getting started with Kubernetes
-              url: /kubernetes/docs/quickstart
+              url: /kubernetes/charmed-k8s/docs/quickstart
             - title: Distributions comparison
               url: /kubernetes/compare
             - title: Cloud native operations report
@@ -302,66 +311,53 @@ products:
             - title: Kubeflow installation tutorial
               url: https://charmed-kubeflow.io/docs/install
 
-    - title: Charmhub and Juju
+    - title: AI and data
       primary_links:
         - links:
-            - title: Charmhub
-              description: Store for Juju operators
-              url: https://charmhub.io/
-            - title: Juju
-              description: Orchestrator engine for operators
-              url: https://juju.is/
-            - title: JAAS
-              description: Auditing and compliance for Juju
-              url: https://jaas.ai/
+            - title: AI/ML
+              description: AI and machine learning on Ubuntu
+              url: /ai
+            - title: Kubeflow
+              description: End-to-end MLOps platform
+              url: https://charmed-kubeflow.io/
+            - title: MLflow
+              description: Lightweight ML platform
+              url: /ai/mlflow
+            - title: Data solutions
+              description: Enterprise data management at scale
+              url: https://canonical.com/data
+            - title: Kafka
+              description: Streaming data platform
+              url: https://canonical.com/data/kafka
+            - title: Spark
+              description: Big data processing
+              url: https://canonical.com/data/spark
+            - title: MongoDB
+              description: NoSQL database management
+              url: https://canonical.com/data/mongodb
+            - title: PostgreSQL
+              description: Relational database management
+              url: https://canonical.com/data/postgresql
+            - title: MySQL
+              description: Relational database management
+              url: https://canonical.com/data/mysql
+            - title: OpenSearch
+              description: Search and analytics suite
+              url: https://canonical.com/data/opensearch
 
       secondary_links:
         - title: Quick links
           links:
-            - title: Juju documentation
-              url: https://juju.is/docs
-            - title: Getting started with Juju
-              url: https://juju.is/tutorials
-            - title: Charmhub forum
-              url: https://discourse.charmhub.io/
-            - title: Juju blog
-              url: https://juju.is/blog
-            - title: Matrix community
-              url: https://matrix.to/#/#charmhub-juju:ubuntu.com
-            - title: Write your first charm
-              url: https://juju.is/tutorials/build-and-deploy-mini-charm
-
-    - title: Snapcraft
-      primary_links:
-        - links:
-            - title: Snap Store
-              description: App store for Linux
-              url: https://snapcraft.io/
-            - title: Snaps
-              description: Universal Linux packages
-              url: https://snapcraft.io/about
-            - title: Snapcraft
-              description: Build and publish your snaps
-              url: https://snapcraft.io/build
-            - title: IoT App Store
-              description: Private app store for Linux and IoT
-              url: /internet-of-things/appstore
-
-      secondary_links:
-        - title: Quick links
-          links:
-            - title: Getting started with snaps
-              url: http://snapcraft.io/docs/getting-started
-            - title: Snap documentation
-              url: https://snapcraft.io/docs
-            - title: "Tutorial: Create your first snap"
-              url: /tutorials/create-your-first-snap
-            - title: Snapcraft forum
-              url: https://forum.snapcraft.io/
-            - title: Snapcraft blog
-              url: https://snapcraft.io/blog
-            - title: Build from GitHub
-              url: https://snapcraft.io/build
+            - title: Kubeflow documentation
+              url: https://charmed-kubeflow.io/docs
+            - title: MLflow documentation
+              url: https://documentation.ubuntu.com/charmed-mlflow/en/latest/
+            - title: Data documentation
+              url: https://canonical.com/data/docs
+            - title: MLOps toolkit
+              url: /engage/mlops-toolkit/
+            - title: Guide to big data and AI
+              url: /engage/open-source-big-data-ai
 
     - title: Certified hardware
       primary_links:
@@ -373,7 +369,7 @@ products:
               description: Certified for Ubuntu
               url: /certified?q=&limit=20&category=Laptop&category=Desktop
             - title: Servers
-              description: Hardware for data centres
+              description: Hardware for data centers
               url: /certified/servers
             - title: IoT devices
               description: Stable and secure devices
@@ -399,7 +395,7 @@ products:
             - title: Why buy a preinstalled workstation?
               url: /blog/why-you-should-buy-a-pre-installed-ubuntu-workstation
 
-    - title: IoT and Edge
+    - title: IoT and edge
       primary_links:
         - links:
             - title: Ubuntu Core
@@ -411,12 +407,18 @@ products:
             - title: Device management
               description: Manage fleets of IoT devices
               url: /internet-of-things/management
+            - title: Cyber Resilience Act
+              description: Prepare for the CRA
+              url: https://canonical.com/solutions/open-source-security/cyber-resilience-act
             - title: Certified devices
               description: Hardware/OS compatibility
               url: /certified/devices
             - title: Ubuntu Frame
               description: Embedded graphical displays
               url: https://mir-server.io/ubuntu-frame
+            - title: Ubuntu Pro for Devices
+              description: Security maintenance for IoT
+              url: /pro/devices
             - title: ROS ESM
               description: Expanded security for robots
               url: /robotics/ros-esm
@@ -426,22 +428,61 @@ products:
             - title: IoT Professional Services
               description: Bring IoT devices to market
               url: /core/services
+            - title: Kernel
+              description: Ubuntu kernel on certified hardware
+              url: /kernel
 
       secondary_links:
         - title: Quick links
           links:
-            - title: Guide to IoT lifecycle management
-              url: /engage/a-practical-guide-to-iot-lifecycle-management
-            - title: Canonical joins the CSA
-              url: /blog/canonical-joins-the-connectivity-standards-alliance
-            - title: Pick the OS for your robots
-              url: /engage/robot-operating-system-choice
-            - title: "Embedded Linux: make or buy?"
-              url: /engage/embedded-linux-make-or-buy
-            - title: Try Ubuntu Core on Raspberry Pi
-              url: /download/raspberry-pi-core
-            - title: Industry 4.0 webinar
-              url: /engage/bridge-the-IT-OT-gap-Industry4
+            - title: Breakdown of the Cyber Resilience Act
+              url: /blog/a-cisos-comprehensive-breakdown-of-the-cyber-resilience-act
+            - title: Deploying AI at the edge with open source
+              url: /engage/guide-to-deploying-ai-at-the-edge
+            - title: Landscape for IoT device management
+              url: /engage/iot-management-landscape
+            - title: "Embedded Linux: Yocto or Ubuntu Core"
+              url: /engage/embedded-linux-yocto-ubuntu-core-whitepaper
+            - title: "Software-defined vehicles: recommendations"
+              url: /engage/software-defined-vehicles-whitepaper
+            - title: A CTO’s guide to real-time Linux
+              url: /engage/cto-guide-real-time-kernel
+
+    - title: Developer tools
+      primary_links:
+        - links:
+            - title: Snaps
+              description: Containerized applications for Linux
+              url: https://snapcraft.io/about
+            - title: Snapcraft
+              description: Build and publish your snaps
+              url: https://snapcraft.io/build
+            - title: Snap Store
+              description: App store for Linux
+              url: https://snapcraft.io
+            - title: Juju
+              description: Orchestrator engine for operators
+              url: https://juju.is/
+            - title: Charmhub
+              description: Software operators collection
+              url: https://charmhub.io/
+            - title: JAAS
+              description: Auditing and compliance for Juju
+              url: https://jaas.ai/
+
+      secondary_links:
+        - title: Quick links
+          links:
+            - title: Snap documentation
+              url: https://snapcraft.io/docs
+            - title: Create your first snap
+              url: /tutorials/create-your-first-snap
+            - title: Juju documentation
+              url: https://juju.is/docs
+            - title: Getting started with Juju
+              url: https://juju.is/docs/juju/tutorial
+            - title: Write your first charm
+              url: https://juju.is/docs/sdk/from-zero-to-hero-write-your-first-kubernetes-charm
 
 use_case:
   primary_links:
@@ -452,35 +493,29 @@ use_case:
           url: /ai
         - title: Compliance
           description: Certifications and hardening
-          url: /security/certifications
+          url: /security/security-standards
         - title: Confidential computing
           description: Protect your data in use
           url: /confidential-computing
         - title: Containers
           description: Ubuntu for container operations
           url: /containers
-        - title: Data fabric
-          description: Deploy and operate databases
+        - title: Data solutions
+          description: Enterprise data management at scale
           url: https://canonical.com/data
         - title: Edge computing
           description: Micro clouds
-          url: /edge-computing
+          url: https://canonical.com/edge-computing
         - title: HPC and supercomputing
           description: High-performance computing
           url: /hpc
         - title: IoT
           description: Internet of Things
           url: /internet-of-things
-        - title: Managed applications
-          description: Fully managed open source
-          url: /managed/apps
-        - title: Managed infrastructure
-          description: Managed IT services
+        - title: Managed IT services
+          description: Fully managed open source solutions
           url: /managed
-        - title: Observability
-          description: Monitoring tools
-          url: /observability
-        - title: Private cloud and data centre
+        - title: Private cloud and data center
           description: OpenStack implementation
           url: /openstack/consulting
         - title: Public cloud
@@ -492,6 +527,9 @@ use_case:
         - title: Signage
           description: Smart displays and kiosks
           url: /internet-of-things/smart-displays
+        - title: Storage
+          description: Scalable software-defined storage
+          url: /ceph
 
   highlighted_secondary_links:
     - title: By industry
@@ -501,7 +539,7 @@ use_case:
           url: /automotive
         - title: Financial services
           description: Innovate with open source
-          url: /financial-services
+          url: https://canonical.com/solutions/financial-services
         - title: Government
           description: Public sector and federal
           url: /gov
@@ -513,7 +551,7 @@ use_case:
           url: /robotics
         - title: Telco
           description: Carrier-grade solutions
-          url: /telco
+          url: https://canonical.com/solutions/telco
 
 support:
   side_nav_sections:
@@ -554,7 +592,7 @@ support:
             - title: Pricing
               url: /pricing/pro
             - title: Open infrastructure consulting
-              url: /pricing/consulting
+              url: https://canonical.com/consulting
 
     - title: Resources
       primary_links:
@@ -580,9 +618,9 @@ support:
             - title: About Ubuntu
               description: Introduction to the OS
               url: /about
-            - title: Ubuntu forums
+            - title: Ubuntu Discourse
               description: Discuss Ubuntu with other users
-              url: https://ubuntuforums.org/
+              url: https://discourse.ubuntu.com/
 
       secondary_links:
         - title: Quick links
@@ -590,7 +628,7 @@ support:
             - title: Webinars
               url: /engage?resource=webinar
             - title: Case studies
-              url: /engage?resource=case+study
+              url: https://canonical.com/case-study
             - title: Whitepapers
               url: /engage?resource=whitepaper
             - title: Become an Ubuntu-certified engineer
@@ -620,7 +658,7 @@ community:
               url: https://askubuntu.com/
             - title: Forums
               description: Discuss Ubuntu with other users
-              url: https://ubuntuforums.org/
+              url: https://discourse.ubuntu.com/
             - title: Ubuntu Masters
               description: Get inspired by IT practitioners
               url: /masters-conference
@@ -643,9 +681,6 @@ community:
             - title: Ask Ubuntu
               description: Q&A for users and developers
               url: https://askubuntu.com/
-            - title: Forums
-              description: Discuss Ubuntu with other users
-              url: https://ubuntuforums.org/
             - title: Chat on IRC
               description: Speak to Ubuntu users
               url: https://help.ubuntu.com/community/InternetRelayChat
@@ -657,18 +692,18 @@ community:
         - title: Quick links
           links:
             - title: "Forum: New to Ubuntu"
-              url: https://ubuntuforums.org/forumdisplay.php?f=125
-            - title: "Forum: Ubuntu Official Flavours Support"
-              url: https://ubuntuforums.org/forumdisplay.php?f=327
+              url: https://discourse.ubuntu.com/c/intro/101
+            - title: "Forum: Ubuntu Official Flavors Support"
+              url: https://discourse.ubuntu.com/c/flavors/22
             - title: "Forum: Ubuntu, Linux and OS Chat"
-              url: https://ubuntuforums.org/forumdisplay.php?f=434
+              url: https://discourse.ubuntu.com/c/project/307
             - title: Ubuntu Community on Discourse
               url: https://discourse.ubuntu.com/c/community/78
 
     - title: Contribute to Ubuntu
       primary_links:
         - links:
-            - title: Translate and localise
+            - title: Translate and localize
               description: Translate into your language
               url: /community/contribute/translation-localisation
             - title: QA and testing
@@ -677,9 +712,12 @@ community:
             - title: Report bugs
               description: Report bugs on Launchpad
               url: https://help.ubuntu.com/community/ReportingBugs
-            - title: Software development
+            - title: Ubuntu development
+              description: Help maintain Ubuntu OS
+              url: /community/contribute/ubuntu-development
+            - title: Application development
               description: Create and maintain software
-              url: /community/contribute/software-development
+              url: /community/contribute/application-development
             - title: Improve documentation
               description: Help write the docs
               url: https://wiki.ubuntu.com/DocumentationTeam/SystemDocumentation
@@ -746,6 +784,9 @@ community:
             - title: Teams
               description: The teams in the project
               url: /community/governance/teams
+            - title: Ubuntu Summit
+              description: Showcasing open source innovation
+              url: /summit
 
       secondary_links:
         - title: Quick links
@@ -758,20 +799,22 @@ community:
               url: https://twitter.com/ubuntu
             - title: YouTube
               url: https://www.youtube.com/c/UbuntuOS
+            - title: Instagram
+              url: https://www.instagram.com/ubuntu_os/
             - title: GitHub
               url: https://github.com/ubuntu
 
-get_ubuntu:
+download_ubuntu:
   side_nav_sections:
     - title: Desktop
       primary_links:
         - links:
             - title: Ubuntu Desktop
               description: Free and reliable desktop OS
-              url: /download/desktop
-              secondary_cta_title: Download 22.04 LTS
-              secondary_cta_url: /download/desktop/thank-you?version=22.04.3&architecture=amd64
-            - title: Ubuntu flavours
+              url: /desktop
+              secondary_cta_title: Download Ubuntu Desktop
+              secondary_cta_url: /download/desktop
+            - title: Ubuntu flavors
               description: Variations of Ubuntu OS
               url: /download/flavours
             - title: Ubuntu-ready PC and laptops
@@ -782,10 +825,8 @@ get_ubuntu:
           links:
             - title: Upgrade Ubuntu Desktop
               url: /tutorials/upgrading-ubuntu-desktop
-            - title: 22.04 desktop guide
-              url: https://help.ubuntu.com/lts/ubuntu-help/index.html
-            - title: 20.04 desktop guide
-              url: https://help.ubuntu.com/20.04/ubuntu-help/index.html
+            - title: Ubuntu Desktop guide
+              url: https://help.ubuntu.com
             - title: Installation tutorial
               url: /tutorials/install-ubuntu-desktop
             - title: Try before installing
@@ -813,7 +854,7 @@ get_ubuntu:
               url: /cloud/public-cloud
             - title: Multipass
               description: VMs for Windows, macOS & Linux
-              url: https://multipass.run/
+              url: https://canonical.com/multipass
       secondary_links:
         - title: Quick links
           links:
@@ -834,7 +875,7 @@ get_ubuntu:
         - links:
             - title: Ubuntu for Raspberry Pi
               description: Single board computer
-              url: /raspberry-pi
+              url: /download/raspberry-pi
               secondary_cta_title: Get Ubuntu for Raspberry Pi
               secondary_cta_url: /download/raspberry-pi
             - title: Ubuntu Core for Raspberry Pi
@@ -862,6 +903,8 @@ get_ubuntu:
             - title: Ubuntu Core
               description: Embedded Linux
               url: /core
+              secondary_cta_title: Get Ubuntu Core
+              secondary_cta_url: /download/core
             - title: Internet of Things
               description: Ubuntu for IoT
               url: /internet-of-things
@@ -880,25 +923,22 @@ get_ubuntu:
       secondary_links:
         - title: Quick links
           links:
-            - title: Ubuntu for Raspberry Pi
-              url: /raspberry-pi
+            - title: Install Ubuntu on Renesas IoT Platforms
+              url: /download/renesas-iot
+            - title: Install Ubuntu on Qualcomm IoT Platforms
+              url: /download/qualcomm-iot
+            - title: AMD Evaluation kits & SOMs
+              url: /download/xilinx
             - title: Intel IoT platforms
               url: /download/iot/intel-iotg
-            - title: Intel NUC
-              url: /download/intel-nuc
-            - title: KVM
-              url: /download/kvm
-            - title: Qualcomm Dragonboard 410c
-              url: /download/qualcomm-dragonboard-410c
-            - title: Intel IEI TANK 870
-              url: /download/intel-iei-tank-870
-            - title: AMD-Xilinx Evaluation kits & SOMs
-              url: /download/xilinx
             - title: Mediatek Genio
               url: /download/mediatek-genio
-      section_footer:
-        cta_title: Get Ubuntu for IoT
-        cta_url: /download/iot
+            - title: NVIDIA Jetson
+              url: /download/nvidia-jetson
+            - title: Raspberry Pi
+              url: /raspberry-pi
+            - title: RISC-V platforms
+              url: /download/risc-v
     - title: Develop on Ubuntu
       primary_links:
         - links:
@@ -924,11 +964,11 @@ get_ubuntu:
               url: /cloud/public-cloud
             - title: Minimal Ubuntu for containers
               url: /blog/minimal-ubuntu-released
-            - title: Customise cloud instances
+            - title: Customize cloud instances
               url: https://cloud-init.io/
             - title: Model driven operations
               url: /model-driven-operations
-            - title: Juju for standardised operations
+            - title: Juju for standardized operations
               url: https://jaas.ai/
             - title: Charmed Kubernetes
               url: /kubernetes
@@ -944,10 +984,10 @@ get_ubuntu:
         - links:
             - title: WSL
               description: Windows Subsystem for Linux
-              url: /wsl
+              url: /desktop/wsl
             - title: Multipass
               description: Ubuntu VMs for Windows and macOS
-              url: https://multipass.run/
+              url: https://canonical.com/multipass
       secondary_links:
         - title: Quick links
           links:

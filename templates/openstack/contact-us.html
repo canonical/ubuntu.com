@@ -11,7 +11,7 @@
   formid="1263",
   lpId="2163",
   returnURL="/openstack/thank-you?product=openstack-training" %}
-  {% include "shared/_cloud-contact-us-form.html" %}
+  {% include "shared/_default-contact-us-form.html" %}
 {% endwith %}
 
   {% elif product == 'openstack-training-classroom' %}
@@ -21,7 +21,7 @@
   formid="1261",
   lpId="2161",
   returnURL="/openstack/thank-you?product=openstack-training-classroom" %}
-  {% include "shared/_cloud-contact-us-form.html" %}
+  {% include "shared/_default-contact-us-form.html" %}
 {% endwith %}
 
   {% elif product == 'openstack-training-onsite' %}
@@ -31,7 +31,7 @@
   formid="1223",
   lpId="1973",
   returnURL="/openstack/thank-you?product=openstack-training-onsite" %}
-  {% include "shared/_cloud-contact-us-form.html" %}
+  {% include "shared/_default-contact-us-form.html" %}
 {% endwith %}
 
   {% elif product == 'openstack-training-server-admin' %}
@@ -41,7 +41,7 @@
   formid="1448",
   lpId="2661",
   returnURL="/openstack/thank-you?product=openstack-training-server-admin" %}
-  {% include "shared/_cloud-contact-us-form.html" %}
+  {% include "shared/_default-contact-us-form.html" %}
 {% endwith %}
 
   {% elif product == 'ubuntu-advantage-storage' %}
@@ -51,7 +51,7 @@
   formid="1233",
   lpId="2001",
   returnURL="/openstack/thank-you?product=ubuntu-advantage-storage" %}
-  {% include "shared/_cloud-contact-us-form.html" %}
+  {% include "shared/_default-contact-us-form.html" %}
 {% endwith %}
 
   {% elif product == 'openstack-managed-cloud' %}
@@ -61,7 +61,7 @@
   formid="1128",
   lpId="1646",
   returnURL="/openstack/thank-you?product=openstack-managed-cloud" %}
-  {% include "shared/_cloud-contact-us-form.html" %}
+  {% include "shared/_default-contact-us-form.html" %}
 {% endwith %}
 
     {% elif product == 'openstack-managed-cloud-demo' %}
@@ -71,7 +71,7 @@
   formid="1128",
   lpId="1646",
   returnURL="/openstack/thank-you?product=openstack-managed-cloud" %}
-  {% include "shared/_cloud-contact-us-form.html" %}
+  {% include "shared/_default-contact-us-form.html" %}
 {% endwith %}
 
   {% elif product == 'foundation-cloud' %}
@@ -81,12 +81,8 @@
   formid="1251",
   lpId="2086",
   returnURL="/openstack/thank-you?product=foundation-cloud" %}
-  {% include "shared/_cloud-contact-us-form.html" %}
+  {% include "shared/_openstack_contact_us.html" %}
 {% endwith %}
-
-  {% elif product == 'openstack-german' %}
-
-    {% include "shared/_cloud-contact-us-form-german.html" %}
 
   {% else %}
 
@@ -95,7 +91,7 @@
   formid="1251",
   lpId="2086",
   returnURL="/openstack/thank-you" %}
-  {% include "shared/_cloud-contact-us-form.html" %}
+  {% include "shared/_openstack_contact_us.html" %}
 {% endwith %}
 
   {% endif %}

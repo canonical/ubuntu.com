@@ -1,13 +1,17 @@
-import React, { PropsWithChildren } from "react";
-import { renderHook, WrapperComponent } from "@testing-library/react-hooks";
-import type { ReactNode } from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import React from "react";
+import { renderHook } from "@testing-library/react-hooks";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import * as useURLsModule from "./useURLs";
 
+const createWrapper = (queryClient: QueryClient) => {
+  return ({ children }: { children: React.ReactNode }) => (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
+};
+
 describe("useURLs", () => {
   let queryClient: QueryClient;
-  let wrapper: WrapperComponent<ReactNode>;
   let initialLocation: Location;
 
   beforeAll(() => {
@@ -17,10 +21,6 @@ describe("useURLs", () => {
   beforeEach(() => {
     jest.resetModules();
     queryClient = new QueryClient();
-    const Wrapper = ({ children }: PropsWithChildren<ReactNode>) => (
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    );
-    wrapper = Wrapper;
   });
 
   afterEach(() => {
@@ -32,6 +32,7 @@ describe("useURLs", () => {
   });
 
   it("can return the URLs without modification", () => {
+    const wrapper = createWrapper(queryClient);
     const { result } = renderHook(() => useURLsModule.useURLs(), { wrapper });
     expect(result.current).toStrictEqual(useURLsModule.APP_URLS);
   });

@@ -1,138 +1,234 @@
 {% extends "gcp/base_gcp.html" %}
 
 {% block title %}Ubuntu on Google Cloud{% endblock %}
-{% block meta_description %}Ubuntu is the operating system platform of choice for GCP, powering innovation on public cloud in environments ranging from dev/test to mission-critical production. Run Ubuntu on Google Cloud, benefit from our worldwide mirroring and publication and talk to Canonical about how we can help optimise your cloud workloads.{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1Gvt9tNFDZkqkBcP0k79C6ueTJCmNZvwoXQoU19WEa8E/edit{% endblock meta_copydoc %}
+
+{% block meta_description %}
+  Ubuntu is the operating system platform of choice for GCP, powering innovation on public cloud in environments ranging from dev/test to mission-critical production. Run Ubuntu on Google Cloud, benefit from our worldwide mirroring and publication and talk to Canonical about how we can help optimize your cloud workloads.
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1Gvt9tNFDZkqkBcP0k79C6ueTJCmNZvwoXQoU19WEa8E/edit
+{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip--suru-topped">
-  <div class="row u-equal-height">
-    <div class="col-7 col-medium-4">
-      <h1>
-        Ubuntu on Google Cloud
-      </h1>
-      <p>
-        With an optimised Ubuntu GCP kernel built in collaboration between Google and Canonical to deliver the very best performance on the Google Cloud hypervisor, Ubuntu is a popular Linux OS on GCP for virtual machine and container workloads.
-      </p>
-      <p>
-        Today, Ubuntu powers more mission-critical cloud workloads than any other operating system.
-      </p>
-      <a href="/gcp/contact-us" class="p-button--positive js-invoke-modal">Talk to us about Ubuntu on Google Cloud</a>
-    </div>
-    <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/6e176d9a-Google+Cloud+stacked.svg",
-          alt="",
-          width="250",
-          height="200",
-          hi_def=True,
-          loading="auto",
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<hr class="u-sv3">
-
-<section class="p-strip">
-  <div class="row">
-    <div class="col-6">
-      <h2>Choose the right Ubuntu for you</h2>
-      <p>Select between the standard Ubuntu Server and the Pro edition, which includes expanded security, compliance and GCP integration:</p>
-    </div>
-  </div>
-
-  <div class="row u-equal-height">
-    <div class="col-6 p-card">
-      <h3 class="p-card__title p-heading--4">Ubuntu LTS</h3>
-      <p class="p-heading--2">Free to use</p>
-      <hr class="u-sv1">
-      <div class="p-card__content">
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">GCP-optimised kernel and userspace components built from the latest releases</li>
-          <li class="p-list__item is-ticked">Broad set of open source application components available for development</li>
-          <li class="p-list__item is-ticked">Security patches for the kernel and key infrastructure components</li>
-          <li class="p-list__item is-ticked">Updates mirrored and images published in all GCP regions worldwide</li>
-          <li class="p-list__item is-ticked">5-year lifetime</li>
-        </ul>
-        <p>Run Ubuntu 20.04 LTS: <a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-cloud/ubuntu-focal?project=ubuntu-search-1530889417216&folder=&organizationId=">Standard</a></p>
+  <section class="p-section--hero">
+    <div class="row--50-50">
+      <div class="col">
+        <div class="p-section--shallow">
+          <h1>Ubuntu on Google Cloud</h1>
+        </div>
+        <div class="p-section--shallow">
+          <p>
+            With an optimized Ubuntu GCP kernel built in collaboration between Google and Canonical to deliver the very best performance on the Google Cloud hypervisor, Ubuntu is a popular Linux OS on GCP for virtual machine and container workloads.
+          </p>
+          <p>
+            Today, Ubuntu powers more mission-critical cloud workloads than any other operating system.
+          </p>
+        </div>
+        <hr class="p-rule--muted" />
+        <a href="/gcp/contact-us" class="p-button--positive js-invoke-modal">Talk to us about Ubuntu on Google Cloud</a>
+      </div>
+      <div class="col">
+        <div class="u-embedded-media">
+          <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/ybjCCu5nr6g?si=CZoIn6MtcNupEEU_" title="Secure Your Cloud Journey: Google Cloud & Ubuntu Pro for Enhanced Protection" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
       </div>
     </div>
-    <div class="col-6 p-card">
-      <h3 class="p-card__title p-heading--4">Ubuntu Pro for Google Cloud</h3>
-      <p class="p-heading--2">3-4.5% of an average instance cost</p>
-      <hr class="u-sv1">
-      <div class="p-card__content">
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Includes all Ubuntu optimisations and updates of the free version</li>
-          <li class="p-list__item is-ticked">Expanded security covering 28,000 additional application components delivered with Ubuntu</li>
-          <li class="p-list__item is-ticked">Kernel live patching for instant security and longer uptimes</li>
-          <li class="p-list__item is-ticked">FIPS 140-2 and CC-EAL certified components</li>
-          <li class="p-list__item is-ticked">Integration with GCP security and compliance features</li>
-          <li class="p-list__item is-ticked">10-year lifetime</li>
-        </ul>
-        <p><a class="p-button--positive u-no-margin--bottom" href="https://console.cloud.google.com/marketplace/product/canonical-public/ubuntu-pro-2204-jammy">Launch Ubuntu Pro 22.04 LTS</a></p>
-        <p><a href="/gcp/pro">More about Ubuntu Pro for GCP&nbsp;&rsaquo;</a></p>
+  </section>
+
+  <section class="p-section">
+    <div class="row">
+      <div class="p-notification--information u-no-margin--bottom">
+        <div class="p-notification__content">
+          <p class="p-notification__title p-heading--5">Discover the top open source security challenges facing 500+ organizations</p>
+          <p class="p-notification__message">
+            <a href="/engage/2025-state-of-software-supply-chain?utm_source=webbanner&utm_medium=organic&utm_campaign=701N100000UcKSjIAN">
+              Download the full report from IDC to learn more
+            </a>
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-12">
-      <h2>Features</h2>
-    </div>
-  </div>
-  <div class="row p-divider">
-    <div class="col-4">
-      <h3 class="p-heading--4">Optimised</h3>
-      <p>Ubuntu on GCP runs on an GCP-optimised kernel, which includes improved device drivers, and out of the box support for accelerators like GPUs. This means faster instance starts and better runtime performance for your workloads.</p>
-    </div>
-    <div class="col-4">
-      <h3 class="p-heading--4">Security built in</h3>
-      <p>Our security teams track alerts 24x7 and release patches to system components and applications continuously. Canonical operates a worldwide distribution network ensuring that package updates are delivered in-region quickly. Canonical also works with Google to provide the latest <a href="https://cloud.google.com/blog/products/identity-security/introducing-google-cloud-confidential-computing-with-confidential-vms">Confidential Computing</a> technology in Cloud.</p>
-    </div>
-    <div class="col-4">
-      <h3 class="p-heading--4">All the bits you need</h3>
-      <p>Ubuntu includes everything you need out of the box to build and operate cloud-native applications at scale. Supporting runtimes like Python, Node.js and Go, and server components like Apache Kafka, NGINX, MongoDB, Redis and PostgreSQL.</p>
-    </div>
-  </div>
-</section>
+  <section class="p-section">
+    <div class="row--50-50 p-section--shallow">
+      <hr class="p-rule--muted" />
+      <div class="col">
+        <h2>Choose the right Ubuntu for you</h2>
+      </div>
+      <div class="col">
+        <p>
+          Select between the standard Ubuntu Server and the Pro edition, which includes expanded security, compliance and GCP integration:
+        </p>
+      </div>
+    </div>    
 
-<section class="p-strip">
-  <div class="row">
-    <div class="col-12">
-      <h2>Get Ubuntu Pro on GCP</h2>
-    </div>
-  </div>
-  <div class="row p-divider">
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">20.04 LTS</h3>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">18.04 LTS</h3>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">16.04 LTS</h3>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <p class="u-no-margin--bottom"><a href="/gcp/pro">Read more about Ubuntu Pro&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-</section>
+    <div class="row--50-50">
+      <div class="col">
+        <hr class="p-rule--highlight" />
+        <div class="p-card--overlay u-no-padding--top" style="height: 95%; overflow: hidden;">
+          <div class="row p-section--shallow">
+            <h3>Ubuntu LTS</h3>
+            <p class="p-heading--4">Free to use</p>
+          </div>
+          <hr class="p-rule--muted" />
+          <ul class="p-list--divided p-section--shallow">
+            <li class="p-list__item is-ticked">GCP-optimized kernel and userspace components built from the latest releases</li>
+            <li class="p-list__item is-ticked">Broad set of open source application components available for development</li>
+            <li class="p-list__item is-ticked">Security patches for the kernel and key infrastructure components</li>
+            <li class="p-list__item is-ticked">Updates mirrored and images published in all GCP regions worldwide</li>
+            <li class="p-list__item is-ticked">5-year lifetime</li>
+          </ul>
+          <hr class="p-rule--muted" />
+          <p>
+            <a href="https://console.cloud.google.com/compute/instancesAdd?imageId=4629240575064276470&imageProjectId=ubuntu-os-cloud"
+                class="p-button u-no-margin--bottom">Launch Ubuntu Server 24.04 LTS</a>
+          </p>
+        </div>
+      </div>
 
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-8">
-      <h2>Optimise your cloud journey with Canonical</h2>
-      <p>Canonical works with the top enterprises and innovators in the world to define and execute their cloud journeys. Migration, application redesign, support and optimisation services are some of the ways in which we have helped customers make the most of Ubuntu and GCP together.</p>
-      <p><a href="/gcp/contact-us" class="p-button--positive js-invoke-modal u-no-margin--bottom">Talk to us about Ubuntu on GCP</a></p>
+      <div class="col">
+        <hr class="p-rule--highlight" />
+        <div class="p-card--overlay u-no-padding--top" style="height: 95%; overflow: hidden;">
+          <div class="row p-section--shallow">
+            <h3>Ubuntu Pro for Google Cloud</h3>
+            <p class="p-heading--4">3-4.5% of an average instance cost</p>
+          </div>
+          <hr class="p-rule--muted" />
+          <ul class="p-list--divided p-section--shallow">
+            <li class="p-list__item is-ticked">Includes all Ubuntu optimizations and updates of the free version</li>
+            <li class="p-list__item is-ticked">
+              Expanded security covering 28,000 additional application components delivered with Ubuntu
+            </li>
+            <li class="p-list__item is-ticked">Kernel live patching for instant security and longer uptimes</li>
+            <li class="p-list__item is-ticked">FIPS 140-2 and CC-EAL certified components</li>
+            <li class="p-list__item is-ticked">Integration with GCP security and compliance features</li>
+            <li class="p-list__item is-ticked">10-year lifetime</li>
+          </ul>
+          <hr class="p-rule--muted" />
+          <ul class="p-inline-list u-responsive-realign u-no-margin--bottom">
+            <li class="p-inline-list__item">
+              <a href="https://console.cloud.google.com/compute/instancesAdd?imageId=960077196939492817&imageProjectId=ubuntu-os-pro-cloud"
+                 class="p-button--positive u-no-margin--bottom">Launch Ubuntu Pro 24.04 LTS</a>
+            </li>
+            <li class="p-inline-list__item">
+              <p>
+                <a href="/gcp/pro">More about Ubuntu Pro for Google Cloud&nbsp;&rsaquo;</a>
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <section class="p-section">
+    <div class="row">
+      <hr class="p-rule--muted" />
+      <h2>Features</h2>      
+      <div class="row">
+        <div class="col-start-large-4 col-9">
+          <div class="p-equal-height-row u-no-padding--bottom p-section--shallow">
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <div class="p-media-container u-darker-background u-hide--small u-hide--medium">
+                  <img width="320" src="https://assets.ubuntu.com/v1/6035d339-all-the-bits-you-need.png" alt="" />
+                </div>
+                <div class="p-equal-height-row__item">
+                  <hr class="p-rule--highlight u-hide--medium u-hide--small is-muted" />
+                  <h3 class="p-heading--5">Optimized</h3>
+                </div>
+              </div>
+              <p class="p-equal-height-row__item">
+                Ubuntu on GCP runs on a GCP-optimized kernel, which includes improved device drivers, and out of the box support for accelerators like GPUs. This means faster instance starts and better runtime performance for your workloads.
+              </p>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <div class="p-media-container u-darker-background u-hide--small u-hide--medium">
+                  <img width="320" src="https://assets.ubuntu.com/v1/b5e17220-security-built-in.png" alt="" />
+                </div>
+                <div class="p-equal-height-row__item">
+                  <hr class="p-rule--highlight u-hide--medium u-hide--small is-muted" />
+                  <h3 class="p-heading--5">Security built in</h3>
+                </div>
+              </div>
+              <p class="p-equal-height-row__item">
+                Our security teams track alerts 24/7 and release patches to system components and applications continuously. Canonical operates a worldwide distribution network ensuring that package updates are delivered in-region quickly. Canonical also works with Google to provide the latest <a href="https://cloud.google.com/blog/products/identity-security/introducing-google-cloud-confidential-computing-with-confidential-vms">Confidential Computing</a> technology in Cloud.
+              </p>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <div class="p-media-container u-darker-background u-hide--small u-hide--medium">
+                  <img width="320" src="https://assets.ubuntu.com/v1/b9be1d88-optimised.png" alt="" />
+                </div>
+                <div class="p-equal-height-row__item">
+                  <hr class="p-rule--highlight u-hide--medium u-hide--small is-muted" />
+                  <h3 class="p-heading--5">All the bits you need</h3>
+                </div>
+              </div>
+              <p class="p-equal-height-row__item">
+                Ubuntu includes everything you need out of the box to build and operate cloud-native applications at scale. Supporting runtimes like Python, Node.js and Go, and server components like Apache Kafka, NGINX, MongoDB, Redis and PostgreSQL.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule--muted" />
+      <div class="col">
+        <h2>Get Ubuntu Pro on Google Cloud</h2>
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col-3">
+            <ul class="p-list--divided">
+              <li class="p-list__item">
+                <a href="https://console.cloud.google.com/compute/instancesAdd?imageId=4629240575064276470&imageProjectId=ubuntu-os-cloud">24.04 LTS</a>
+              </li>
+              <li class="p-list__item">
+                <a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-cloud/ubuntu-jammy">22.04 LTS</a>
+              </li>
+              <li class="p-list__item">
+                <a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-cloud/ubuntu-focal">20.04 LTS</a>
+              </li>
+              <li class="p-list__item">
+                <a href="https://console.cloud.google.com/compute/instancesAdd?imageId=5888154029922191724&imageProjectId=ubuntu-os-cloud">18.04 LTS</a>
+              </li>
+              <li class="p-list__item">
+                <a href="https://console.cloud.google.com/compute/instancesAdd?imageId=1548661323355716045&imageProjectId=ubuntu-os-cloud">16.04 LTS</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-3">
+            <p>
+              <a href="/gcp/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section--deep">
+    <div class="row--50-50">
+      <hr class="p-rule--muted" />
+      <div class="col">
+        <h2>Optimize your cloud journey with Canonical</h2>
+      </div>
+      <div class="col">
+        <p>
+          Canonical works with the top enterprises and innovators in the world to define and execute their cloud journeys. Migration, application redesign, support and optimization services are some of the ways in which we have helped customers make the most of Ubuntu and GCP together.
+        </p>
+        <hr class="p-rule--muted" />
+        <a href="/gcp/contact-us" class="p-button--positive js-invoke-modal u-no-margin--bottom">Talk to us about Ubuntu on GCP</a>
+      </div>
+    </div>
+  </section>
+
 {% endblock content %}

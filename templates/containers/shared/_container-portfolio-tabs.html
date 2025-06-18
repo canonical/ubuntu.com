@@ -1,0 +1,173 @@
+<div class="p-section--shallow">
+  <nav class="p-tabs js-tabbed-content">
+    <ul class="p-tabs__list u-no-margin--bottom" role="tablist">
+      <li class="p-tabs__item" role="presentation">
+        <a href="#base-images"
+           class="p-tabs__link"
+           id="base-images-tab"
+           role="tab"
+           aria-controls="base-images"
+           aria-selected="true">Base images</a>
+      </li>
+      <li class="p-tabs__item" role="presentation">
+        <a href="#ready-to-use-apps"
+           class="p-tabs__link"
+           id="ready-to-use-apps-tab"
+           role="tab"
+           aria-controls="ready-to-use-apps">Ready-to-use apps</a>
+      </li>
+      <li class="p-tabs__item" role="presentation">
+        <a href="#build-your-own"
+           class="p-tabs__link"
+           id="build-your-own-tab"
+           role="tab"
+           aria-controls="build-your-own">Build your own</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<div class="p-tabs__content"
+     id="base-images"
+     role="tabpanel"
+     aria-labelledby="base-images-tab">
+  <h3>Build on a solid foundation</h3>
+  <p>
+    Use the stability and security of Ubuntu as the foundation for your containers. Ubuntu-base images provide a robust and trusted starting point for building and deploying your containers, ensuring compatibility, performance, and long-term support. Experience Ubuntu's consistent performance across cloud, desktop, and server &ndash; and bring that same reliability to your containers.
+  </p>
+  <div class="p-cta-block">
+    <a href="https://hub.docker.com/_/ubuntu">Try one of our base images&nbsp;&rsaquo;</a>
+  </div>
+</div>
+
+<div class="p-tabs__content"
+     id="ready-to-use-apps"
+     role="tabpanel"
+     aria-labelledby="ready-to-use-apps-tab">
+  <h3>Off-the-shelf Docker images</h3>
+  <p>
+    Save time and resources with pre-configured applications. Focus on your core business while we handle the heavy lifting.
+  </p>
+  <div class="row">
+    <div class="col-3">
+      <a href="https://hub.docker.com/r/ubuntu/postgres"
+         aria-label="Learn more about Postgres Docker Images">
+        <div class="p-image-container--16-9">
+          {{ image(url="https://assets.ubuntu.com/v1/9f66473e-postgre-sql.png",
+                    alt="",
+                    width="852",
+                    height="480",
+                    hi_def=True,
+                    loading="auto|lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
+        </div>
+        <hr class="p-rule--muted" />
+        <p>Learn more&nbsp;&rsaquo;</p>
+      </a>
+    </div>
+    <div class="col-3">
+      <a href="https://hub.docker.com/r/ubuntu/mysql"
+         aria-label="Learn more about MySQL Docker Images">
+        <div class="p-image-container--16-9">
+          {{ image(url="https://assets.ubuntu.com/v1/e09b1582-mysql-logo.png",
+                    alt="",
+                    width="852",
+                    height="480",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
+        </div>
+        <hr class="p-rule--muted" />
+        <p>Learn more&nbsp;&rsaquo;</p>
+      </a>
+    </div>
+    <div class="col-3">
+      <a href="https://hub.docker.com/r/ubuntu/kafka"
+         aria-label="Learn more about Kafka Docker Images">
+        <div class="p-image-container--16-9">
+          {{ image(url="https://assets.ubuntu.com/v1/6257aa52-kafka-logo.png",
+                    alt="",
+                    width="852",
+                    height="480",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
+        </div>
+        <hr class="p-rule--muted" />
+        <p>Learn more&nbsp;&rsaquo;</p>
+      </a>
+    </div>
+    <div class="col-3">
+      <a href="https://hub.docker.com/r/ubuntu/mlflow"
+         aria-label="Learn more about MLFlow Docker Images">
+        <div class="p-image-container--16-9">
+          {{ image(url="https://assets.ubuntu.com/v1/0f1691a1-mlflow-logo.png",
+                    alt="",
+                    width="852",
+                    height="480",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
+        </div>
+        <hr class="p-rule--muted" />
+        <p>Learn more&nbsp;&rsaquo;</p>
+      </a>
+    </div>
+    <div class="col-3">
+      <a href="https://hub.docker.com/r/ubuntu/nginx"
+         aria-label="Learn more about Nginx Docker Images">
+        <div class="p-image-container--16-9">
+          {{ image(url="https://assets.ubuntu.com/v1/a5516258-nginx-logo.png",
+                    alt="",
+                    width="852",
+                    height="480",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
+        </div>
+        <hr class="p-rule--muted" />
+        <p>Learn more&nbsp;&rsaquo;</p>
+      </a>
+    </div>
+    <div class="col-3">
+      <a href="https://hub.docker.com/r/ubuntu/squid"
+         aria-label="Learn more about Squid Docker Images">
+        <div class="p-image-container--16-9">
+          {{ image(url="https://assets.ubuntu.com/v1/ba567096-squid-logo.png",
+                    alt="",
+                    width="852",
+                    height="480",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
+        </div>
+        <hr class="p-rule--muted" />
+        <p>Learn more&nbsp;&rsaquo;</p>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="p-tabs__content"
+     id="build-your-own"
+     role="tabpanel"
+     aria-labelledby="build-your-own-tab">
+  <h3>Code to container in one step</h3>
+  <p>
+    Focus on your code, not containers. We automate the entire process, from dependency management to image building, letting you deploy your applications quickly and easily.
+  </p>
+  <p>
+    Create a complete development environment for web apps (Django, Flask), APIs (FastAPI), or backend services (Go, Spring) in one command.
+  </p>
+  <div class="p-cta-block">
+    <a href="https://ubuntu.com/blog/how-we-used-flask-and-12-factor-charms-to-simplify-canonical-com-development">Learn more about our 12-factor charms&nbsp;&rsaquo;</a>
+  </div>
+</div>
+
+<script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>

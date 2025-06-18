@@ -1,9 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
 import * as Sentry from "@sentry/react";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { Integrations } from "@sentry/tracing";
-import { ReactQueryDevtools } from "react-query/devtools";
+import { createRoot } from "react-dom/client";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
@@ -26,11 +24,7 @@ const queryClient = new QueryClient({
 
 Sentry.init({
   dsn: "https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13",
-  integrations: [
-    new Integrations.BrowserTracing({
-      tracingOrigins: ["ubuntu.com"],
-    }),
-  ],
+  integrations: [Sentry.browserTracingIntegration()],
   allowUrls: ["ubuntu.com"],
 });
 
@@ -47,4 +41,4 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.getElementById("advantage-offers-app"));
+createRoot(document.getElementById("react-root")!).render(<App />);

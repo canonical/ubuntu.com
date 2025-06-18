@@ -3,11 +3,9 @@ wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Privacy notice – Contact us and enquiries"
   description: "This privacy notice tells you about the information we collect from you when you submit your information to us via an enquiry or contact us form on our website."
+  update_date: "July 2023"
   copydoc: https://docs.google.com/document/d/1MSwPrKMFgcKKjnBfcudlnca0wa4I58vQdM8VroKSno0/edit#
 ---
-
-<h4 class="p-muted-heading">Version - July 2023</h4>
-<hr style="margin-bottom: 2rem;" />
 
 # Privacy notice - Contact us and enquiries
 
@@ -15,7 +13,7 @@ This privacy notice tells you about the information we collect from you when you
 
 ## Who are we?
 
-We are Canonical Group Limited. Our address is 5 New Street Square, London, EC4A 3TW, United Kingdom. You can contact us by post at the address  set out in the “right to complain” section, below or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
+We are Canonical Group Limited. Our address is 5 New Street Square, London, EC4A 3TW, United Kingdom. You can contact us by post at the address set out in the “right to complain” section, below or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
 
 We are not required to have a data protection officer, so any enquiries about our use of your personal data should be addressed to the contact details above.
 

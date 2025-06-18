@@ -69,7 +69,7 @@ function getUserInfoFromVariables(data: Data, variables: FormValues): UserInfo {
 
 function getInitialFormValues(
   userInfo: UserInfo,
-  accountId?: string
+  accountId?: string,
 ): FormValues {
   return {
     email: userInfo?.customerInfo?.email ?? "",
@@ -128,14 +128,15 @@ export enum PublicClouds {
   gcp = "gcp",
   oracle = "oracle",
   ibm = "ibm",
+  other = "other",
 }
 
 export enum LTSVersions {
+  noble = "24.04",
   jammy = "22.04",
   focal = "20.04",
   bionic = "18.04",
   xenial = "16.04",
-  trusty = "14.04",
 }
 
 export enum Support {
@@ -161,7 +162,8 @@ export enum Periods {
 }
 
 // export type ProductIDs = `${Features}-${Support}-${ProductTypes}-${Periods}`;
-export type ProductIDs = `${ProductTypes}-${Features}-${Support}-${SLA}-${Periods}`;
+export type ProductIDs =
+  `${ProductTypes}-${Features}-${Support}-${SLA}-${Periods}`;
 
 export type ValidProducts =
   | "uai-essential-physical-yearly"
@@ -225,7 +227,7 @@ export const getProduct = (
   feature: Features,
   support: Support,
   sla: SLA,
-  period: Periods
+  period: Periods,
 ): ValidProducts => {
   const productKey = `${productType}-${feature}-${support}-${sla}-${period}`;
   switch (productKey) {
@@ -286,7 +288,7 @@ export const getProduct = (
 
 export const getLabel = (
   toFind: string,
-  array: { label: string; value: string }[]
+  array: { label: string; value: string }[],
 ) => {
   return array.find((element) => element.value === toFind)?.label;
 };

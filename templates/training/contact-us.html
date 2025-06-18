@@ -11,7 +11,7 @@
   formid="1263",
   lpId="2163",
   returnURL="/training/thank-you?product=openstack-training" %}
-  {% include "shared/_cloud-contact-us-form.html" %}
+  {% include "shared/_default-contact-us-form.html" %}
 {% endwith %}
 
   {% elif product == 'openstack-training-classroom' %}
@@ -21,7 +21,7 @@
   formid="1261",
   lpId="2161",
   returnURL="/training/thank-you?product=openstack-training-classroom" %}
-  {% include "shared/_cloud-contact-us-form.html" %}
+  {% include "shared/_default-contact-us-form.html" %}
 {% endwith %}
 
   {% elif product == 'openstack-training-onsite' %}
@@ -31,7 +31,7 @@
   formid="1223",
   lpId="1973",
   returnURL="/training/thank-you?product=openstack-training-onsite" %}
-  {% include "shared/_cloud-contact-us-form.html" %}
+  {% include "shared/_default-contact-us-form.html" %}
 {% endwith %}
 
   {% elif product == 'openstack-training-server-admin' %}
@@ -41,7 +41,7 @@
   formid="1448",
   lpId="2661",
   returnURL="/training/thank-you?product=openstack-training-server-admin" %}
-  {% include "shared/_cloud-contact-us-form.html" %}
+  {% include "shared/_default-contact-us-form.html" %}
 {% endwith %}
 
 {% elif product == 'kubeflow-training-onsite' %}
@@ -51,7 +51,7 @@ intro_text="Fill in your details below and a member of our training team will be
 formid="1448",
 lpId="2661",
 returnURL="/training/thank-you?product=kubeflow-training-onsite" %}
-{% include "shared/_cloud-contact-us-form.html" %}
+{% include "shared/_default-contact-us-form.html" %}
 {% endwith %}
 
 {% elif product == 'maas-training-onsite' %}
@@ -61,7 +61,7 @@ intro_text="Fill in your details below and a member of our training team will be
 formid="1448",
 lpId="2661",
 returnURL="/training/thank-you?product=maas-training-onsite" %}
-{% include "shared/_cloud-contact-us-form.html" %}
+{% include "shared/_default-contact-us-form.html" %}
 {% endwith %}
 
 {% elif product == 'landscape-training-onsite' %}
@@ -71,7 +71,7 @@ intro_text="Fill in your details below and a member of our training team will be
 formid="1448",
 lpId="2661",
 returnURL="/training/thank-you?product=landscape-training-onsite" %}
-{% include "shared/_cloud-contact-us-form.html" %}
+{% include "shared/_default-contact-us-form.html" %}
 {% endwith %}
 
 {% elif product == 'juju-administrator-training-onsite' %}
@@ -81,7 +81,7 @@ intro_text="Fill in your details below and a member of our training team will be
 formid="1448",
 lpId="2661",
 returnURL="/training/thank-you?product=juju-administrator-training-onsite" %}
-{% include "shared/_cloud-contact-us-form.html" %}
+{% include "shared/_default-contact-us-form.html" %}
 {% endwith %}
 
 {% elif product == 'charm-developer-training-onsite' %}
@@ -91,7 +91,7 @@ intro_text="Fill in your details below and a member of our training team will be
 formid="1448",
 lpId="2661",
 returnURL="/training/thank-you?product=charm-developer-training-onsite" %}
-{% include "shared/_cloud-contact-us-form.html" %}
+{% include "shared/_default-contact-us-form.html" %}
 {% endwith %}
 
 {% elif product == 'snapcraft-101' %}
@@ -101,9 +101,8 @@ intro_text="Fill in your details below and a member of our training team will be
 formid="4843",
 lpId="2661",
 returnURL="/training/thank-you?product=snapcraft-101" %}
-{% include "shared/_cloud-contact-us-form.html" %}
+{% include "shared/_default-contact-us-form.html" %}
 {% endwith %}
-
 
   {% else %}
 
@@ -112,7 +111,7 @@ returnURL="/training/thank-you?product=snapcraft-101" %}
   formid="1251",
   lpId="2086",
   returnURL="/training/thank-you" %}
-  {% include "shared/_cloud-contact-us-form.html" %}
+  {% include "shared/_openstack_contact_us.html" %}
 {% endwith %}
 
   {% endif %}

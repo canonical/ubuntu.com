@@ -1,3 +1,4 @@
+from typing import List
 from urllib.parse import urlencode
 from requests import Session
 
@@ -24,7 +25,7 @@ class TrueAbilityAPI:
         allow_redirects: bool = True,
     ):
         uri = f"{self.base_url}{path}"
-        headers["X-API_KEY"] = f"{self.api_key}"
+        headers["X-API-KEY"] = f"{self.api_key}"
 
         response = self.session.request(
             method,
@@ -34,7 +35,6 @@ class TrueAbilityAPI:
             json=json,
             allow_redirects=allow_redirects,
         )
-
         if retry and response.status_code == 401:
             response = self.make_request(
                 method,
@@ -70,19 +70,36 @@ class TrueAbilityAPI:
         pass
 
     def get_assessment_reservation(self, uuid: str = ""):
-        uri = f"/api/v1//assessment_reservations/{uuid}"
+        uri = f"/api/v1/assessment_reservations/{uuid}"
         return self.make_request("GET", uri).json()
 
     def get_assessment_reservations(
-        self, ability_screen_id: int = None, page: int = 1, per_page: int = 500
+        self,
+        ability_screen_id: int = None,
+        page: int = 1,
+        per_page: int = 50,
+        sort: str = None,
+        group: str = None,
+        state: List[str] = None,
+        assessment_state: str = None,
+        email: str = None,
+        reservation_ids: List[str] = None,
     ):
         params = {
             "ability_screen_id": ability_screen_id,
             "page": page,
             "per_page": per_page,
+            "sort": sort,
+            "group": group,
+            "state[]": state,
+            "assessment_state[]": assessment_state,
+            "email": email,
+            "id[]": reservation_ids,
         }
         filtered_params = {k: v for k, v in params.items() if v is not None}
-        uri = "/api/v1/assessment_reservations?" + urlencode(filtered_params)
+        uri = "/api/v1/assessment_reservations?" + urlencode(
+            filtered_params, True
+        )
         return self.make_request("GET", uri).json()
 
     def post_assessment_reservation(
@@ -164,8 +181,21 @@ class TrueAbilityAPI:
 
         return None
 
-    def get_results(self, id: int = None):
-        uri = "/api/v1/results" + (f"/{id}" if id else "")
+    def get_results(
+        self,
+        page: int = 1,
+        per_page: int = 50,
+        state: str = None,
+        ability_screen_id: list = None,
+    ):
+        params = {
+            "state": state,
+            "page": page,
+            "per_page": per_page,
+            "ability_screen_id[]": ability_screen_id,
+        }
+        filtered_params = {k: v for k, v in params.items() if v is not None}
+        uri = "/api/v1/results?" + urlencode(filtered_params)
         return self.make_request("GET", uri).json()
 
     def get_candidate_access_token_status(self, id: int):
@@ -232,7 +262,7 @@ class TrueAbilityAPI:
             f"?ability_screen_id={ability_screen_id}"
             f"&page={page}"
         )
-        headers = {"X-API_KEY": self.api_key}
+        headers = {"X-API-KEY": self.api_key}
         response = self.session.request(
             method="GET", url=uri, headers=headers
         ).json()

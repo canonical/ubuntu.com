@@ -1,22 +1,22 @@
 const ANIMATION_DELAY = 200;
-const MOBILE_VIEW_BREAKPOINT = 1281;
+const MOBILE_VIEW_BREAKPOINT = 1228;
 const dropdownWindow = document.querySelector(".dropdown-window");
 const dropdownWindowOverlay = document.querySelector(
-  ".dropdown-window-overlay"
+  ".dropdown-window-overlay",
 );
 const searchOverlay = document.querySelector(".p-navigation__search-overlay");
 const secondaryNav = document.querySelector(".p-navigation.is-secondary");
 const navigation = document.querySelector(".p-navigation--sliding");
 const topLevelNavDropdowns = Array.from(
   document.querySelectorAll(
-    ".p-navigation__item--dropdown-toggle:not(.global-nav__dropdown-toggle):not(.js-back)"
-  )
+    ".p-navigation__item--dropdown-toggle:not(.global-nav__dropdown-toggle):not(.js-back)",
+  ),
 );
 const nav = navigation.querySelector(".js-show-nav");
 const menuButtons = document.querySelectorAll(".js-menu-button");
 let dropdowns = [];
 const mainList = document.querySelector(
-  "nav.p-navigation__nav > .p-navigation__items"
+  "nav.p-navigation__nav > .p-navigation__items",
 );
 // Get the navigations initial height for use in 'updateWindowHeight'
 const navEle = document.querySelector(".p-navigation__nav");
@@ -43,7 +43,7 @@ function addClassesToElements(elements, classes) {
 
 function removeClassesFromElements(elements, classes) {
   elements.forEach((element, index) =>
-    element.classList.remove(classes[index])
+    element.classList.remove(classes[index]),
   );
 }
 
@@ -66,6 +66,8 @@ mainList.addEventListener("click", function (e) {
       goBackOneLevel(e, target);
     } else {
       handleDropdownClick(e.target.parentNode);
+      // This is a temporary fix until we migrate to use the vanilla meganav
+      closeNotifications();
     }
   } else if (
     target.classList.contains("p-navigation__dropdown-item") ||
@@ -77,6 +79,12 @@ mainList.addEventListener("click", function (e) {
     }
   }
 });
+
+// The current set up of the meganav doesn't work well with notifications. The simplest fix for this is to close all notifications when a dropdown is clicked. Can be removed on migration to vanilla meganav.
+function closeNotifications() {
+  const notification = document.querySelector(".p-popup-notification:target");
+  notification.style.display = "none";
+}
 
 let wasBelowSpecificWidth = window.innerWidth < MOBILE_VIEW_BREAKPOINT;
 window.addEventListener("resize", function () {
@@ -102,7 +110,7 @@ secondaryNav
 document.addEventListener("global-nav-opened", () => {
   addClassesToElements(
     [dropdownWindow, dropdownWindowOverlay],
-    ["slide-animation", "fade-animation"]
+    ["slide-animation", "fade-animation"],
   );
   topLevelNavDropdowns.forEach((dropdown) => updateNavMenu(dropdown, false));
 });
@@ -112,7 +120,7 @@ document.addEventListener("global-nav-opened", () => {
 function toggleSecondaryMobileNavDropdown(e) {
   const mobileNavDropdown = secondaryNav.querySelector(".p-navigation__nav");
   const mobileNavDropdownToggle = secondaryNav.querySelector(
-    ".p-navigation__toggle--open"
+    ".p-navigation__toggle--open",
   );
   let isDropdownOpen;
   if (e && e.type == "click") {
@@ -136,13 +144,13 @@ function updateUrlHash(id, open) {
     window.history.pushState(
       null,
       document.title,
-      window.location.pathname + window.location.search + `#${id}`
+      window.location.pathname + window.location.search + `#${id}`,
     );
   } else {
     window.history.pushState(
       null,
       document.title,
-      window.location.pathname + window.location.search
+      window.location.pathname + window.location.search,
     );
   }
 }
@@ -219,7 +227,7 @@ function toggleSection(e) {
 function updateNavMenu(dropdown, show) {
   let dropdownContent = document.getElementById(dropdown.id + "-content");
   let dropdownContentMobile = document.getElementById(
-    dropdown.id + "-content-mobile"
+    dropdown.id + "-content-mobile",
   );
   let isAccountDropdown = dropdown.classList.contains("js-account");
 
@@ -255,7 +263,7 @@ function updateNavMenu(dropdown, show) {
 
 function updateDropdownStates(dropdown, show, delay) {
   let isNested = dropdown.parentNode.classList.contains(
-    "p-navigation__dropdown"
+    "p-navigation__dropdown",
   );
   if (!isNested && show) {
     topLevelNavDropdowns
@@ -283,7 +291,7 @@ function updateDesktopDropdownStates(dropdown, show, delay) {
 
 function updateMobileDropdownState(dropdown, show, isNested) {
   let dropdownContentMobile = document.getElementById(
-    dropdown.id + "-content-mobile"
+    dropdown.id + "-content-mobile",
   );
   if (dropdownContentMobile) {
     dropdownContentMobile.setAttribute("aria-hidden", !show);
@@ -312,7 +320,7 @@ function showDesktopDropdown(show) {
 function toggleGlobalNavVisibility(dropdown, show, delay) {
   const globalNavContent = dropdown.querySelector(".global-nav-dropdown");
   const globalNavInnerContent = dropdown.querySelector(
-    ".global-nav-dropdown__content"
+    ".global-nav-dropdown__content",
   );
   if (show) {
     globalNavInnerContent.classList.remove("u-hide");
@@ -383,18 +391,18 @@ function fetchDropdown(url, id) {
     makeRequest(url, function () {
       const desktopContent = convertHTMLToNode(
         this.responseText,
-        ".desktop-dropdown-content"
+        ".desktop-dropdown-content",
       );
       desktopContainer.appendChild(desktopContent);
 
       const mobileContent = convertHTMLToNode(
         this.responseText,
-        ".dropdown-content-mobile"
+        ".dropdown-content-mobile",
       );
       mobileContainer.appendChild(mobileContent);
 
       const targetDropdowns = mobileContent.querySelectorAll(
-        "ul.p-navigation__dropdown"
+        "ul.p-navigation__dropdown",
       );
       dropdowns = [...dropdowns, ...targetDropdowns];
 
@@ -433,7 +441,7 @@ function setTabIndex(target) {
   // When none are active, set them all to tabindex 0
   if (window.innerWidth > MOBILE_VIEW_BREAKPOINT) {
     const currActiveNavItem = navigation.querySelector(
-      ".p-navigation__item--dropdown-toggle.is-active"
+      ".p-navigation__item--dropdown-toggle.is-active",
     );
     if (currActiveNavItem) {
       currActiveNavItem.children[0].setAttribute("tabindex", "0");
@@ -470,22 +478,23 @@ function handleEscapeKey(e) {
   // If '.dropdown-window__sidenav-content' exists we are in the
   // dropdown window so we want to move up to the side-tabs
   const targetTabId = e.target.closest(
-    ".dropdown-window__sidenav-content.is-active"
+    ".dropdown-window__sidenav-content.is-active",
   )?.id;
   if (targetTabId) {
     const targetTab = document.querySelector(
-      `.p-side-navigation__link[aria-controls="${targetTabId}"]`
+      `.p-side-navigation__link[aria-controls="${targetTabId}"]`,
     );
     targetTab?.focus();
     return;
   }
 
   // Else check if we are in the side-tabs so want to move up to the nav bar items
-  const targetDropdownToggleId = e.target.closest(".dropdown-content-desktop")
-    ?.id;
+  const targetDropdownToggleId = e.target.closest(
+    ".dropdown-content-desktop",
+  )?.id;
   if (targetDropdownToggleId) {
     const targetNavItem = document.querySelector(
-      `.p-navigation__link[aria-controls="${targetDropdownToggleId}"]`
+      `.p-navigation__link[aria-controls="${targetDropdownToggleId}"]`,
     );
     targetNavItem?.focus();
     closeAll();
@@ -499,12 +508,12 @@ function handleTabKey(e) {
   if (mobileDropdownPanel && isLastMobileLinkFocused(e, mobileDropdownPanel)) {
     e.preventDefault();
     const canonicalLogo = navigation.querySelector(
-      ".p-navigation__tagged-logo > a"
+      ".p-navigation__tagged-logo > a",
     );
     canonicalLogo.focus();
   } else if (dropdownPanel && isLastLinkFocused(e, dropdownPanel)) {
     const currDropdownToggle = mainList.querySelector(
-      ":scope > .p-navigation__item--dropdown-toggle.is-active"
+      ":scope > .p-navigation__item--dropdown-toggle.is-active",
     );
     const nextDropdownToggleLink =
       currDropdownToggle.nextElementSibling.children[0];
@@ -523,7 +532,7 @@ function handleShiftTabKey(e) {
   ) {
     const parentContainer = dropdownPanel.closest(".dropdown-window__content");
     const targetTab = parentContainer.querySelector(
-      ".p-side-navigation__item .p-side-navigation__link.is-active"
+      ".p-side-navigation__item .p-side-navigation__link.is-active",
     );
     if (targetTab) {
       e.preventDefault();
@@ -543,10 +552,10 @@ function isLastLinkFocused(e, dropdownPanel) {
 function isLastMobileLinkFocused(e, dropdownPanel) {
   // Find what level of the navigation we are in, 'menuItems' being the top level
   const listOfMenuItems = dropdownPanel?.querySelectorAll(
-    "li[role='menuitem']"
+    "li[role='menuitem']",
   );
   const listOfLinks = Array.from(
-    dropdownPanel?.querySelectorAll(":scope > li")
+    dropdownPanel?.querySelectorAll(":scope > li"),
   );
   if (listOfMenuItems?.length > 0) {
     const lastLink = Array.from(listOfMenuItems).pop();
@@ -639,11 +648,11 @@ function closeDesktopDropdown() {
 
 function closeMobileDropdown() {
   const dropdownElements = getAllElements(
-    ".p-navigation__item--dropdown-toggle"
+    ".p-navigation__item--dropdown-toggle",
   );
   removeClassesFromElements(
     [navigation, mainList],
-    ["has-menu-open", "is-active"]
+    ["has-menu-open", "is-active"],
   );
   if (secondaryNav) {
     toggleSecondaryMobileNavDropdown();
@@ -682,14 +691,14 @@ function openMenu(e) {
 // Setup and functions for navigation search
 function initNavigationSearch() {
   searchButtons.forEach((searchButton) =>
-    searchButton.addEventListener("click", toggleSearch)
+    searchButton.addEventListener("click", toggleSearch),
   );
 
   searchOverlay.addEventListener("click", toggleSearch);
 
   if (menuButtons) {
     menuButtons.forEach((menuButton) =>
-      menuButton.addEventListener("click", toggleMenu)
+      menuButton.addEventListener("click", toggleMenu),
     );
   }
 }
@@ -710,11 +719,7 @@ function openSearch(e) {
   Array.from(searchButtons).forEach((searchButton) => {
     searchButton.setAttribute("aria-pressed", true);
   });
-
   addClassesToElements([navigation], ["has-search-open"]);
-  if (secondaryNav) {
-    addClassesToElements([secondaryNav], ["u-hide"]);
-  }
   searchInput.focus();
   document.addEventListener("keyup", escKeyPressHandler);
 }
@@ -723,13 +728,7 @@ function closeSearch() {
   searchButtons.forEach((searchButton) => {
     searchButton.removeAttribute("aria-pressed");
   });
-
   navigation.classList.remove("has-search-open");
-
-  if (secondaryNav) {
-    secondaryNav.classList.remove("u-hide");
-  }
-
   document.removeEventListener("keyup", escKeyPressHandler);
 }
 
@@ -745,7 +744,7 @@ function setUpGlobalNav() {
   globalNavMainTab.classList.replace("u-hide", "dropdown-content-mobile");
   globalNavMainTab.classList.replace(
     "p-navigation__items",
-    "p-navigation__dropdown"
+    "p-navigation__dropdown",
   );
 
   globalNavMainTab.setAttribute("id", "all-canonical-content-mobile");
@@ -755,7 +754,7 @@ function setUpGlobalNav() {
     .forEach((dropdown) => {
       dropdown.setAttribute("aria-hidden", "true");
       const dropdownToggle = dropdown.closest(
-        ".p-navigation__item--dropdown-toggle"
+        ".p-navigation__item--dropdown-toggle",
       );
       if (dropdownToggle.getAttribute("role") != "menuitem") {
         const newDropdownId = `all-canonical-${dropdown.id}`;
@@ -822,7 +821,7 @@ addGANavEvents("#canonical-login", "www.ubuntu.com-nav-0-login");
 addGANavEvents("#use-case", "www.ubuntu.com-nav-1-use-case");
 addGANavEvents("#support", "www.ubuntu.com-nav-1-support");
 addGANavEvents("#community", "www.ubuntu.com-nav-1-community");
-addGANavEvents("#get-ubuntu", "www.ubuntu.com-nav-1-get-ubuntu");
+addGANavEvents("#download-ubuntu", "www.ubuntu.com-nav-1-download-ubuntu");
 addGANavEvents(".p-navigation.is-secondary", "www.ubuntu.com-nav-2");
 addGANavEvents(".p-contextual-footer", "www.ubuntu.com-footer-contextual");
 addGANavEvents(".p-footer__nav", "www.ubuntu.com-nav-footer-0");

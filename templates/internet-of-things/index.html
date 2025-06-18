@@ -1,521 +1,656 @@
 {% extends "internet-of-things/base_things.html" %}
 
-
 {% block title %}Ubuntu for the Internet of Things{% endblock %}
-{% block meta_description %}Ubuntu is the standard for embedded Linux development, from smart home to robotics. Try Ubuntu Core, the most secure operating system for devices.{% endblock meta_description %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1nBx1SP3Y10gXX0rZPDaz1Gudy-hWP4XRMUcETyPBldI/edit{% endblock meta_copydoc %}
+
+{% block meta_description %}
+  Ubuntu is the standard for IoT and embedded Linux development, from smart home to robotics. Try Ubuntu Core, the most secure operating system for devices.
+{% endblock meta_description %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1nBx1SP3Y10gXX0rZPDaz1Gudy-hWP4XRMUcETyPBldI/edit
+{% endblock meta_copydoc %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
 
-<section class="p-strip--suru is-dark">
-  {% include "shared/_rt-kernel-ga-banner.html" %}
+  <section class="p-strip is-shallow u-no-padding--bottom">
+    {% include "shared/_20-04-eol-banner.html" %}
+  </section>
 
-  <div class="row u-vertically-center">
-    <div class="col-6">
-      <h1>Ubuntu for the Internet&nbsp;of&nbsp;Things</h1>
-      <p>Whether you are using classic Ubuntu or our optimised version for IoT and edge, we have a trusted operating system that enables you to speed up time to market and scale your business with confidence.</p>
+  {% call(slot) vf_hero(
+    title_text="Ubuntu for the<br /> Internet of Things",
+    layout='50/50-full-width-image',
+    ) -%}
+    {%- if slot == "description" -%}
       <p>
-        <a href="/core/services" class="p-button--positive">Discover IoT Professional Services</a>
-        <a href="/download/iot" class="p-button">Download Ubuntu for IoT</a>
+        Whether you are using classic Ubuntu or our optimized version for IoT and edge, we have a trusted operating system that enables you to speed up time to market and scale your business with confidence.
       </p>
-    </div>
-    <div class="col-5 col-start-large-8 u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/79356618-ubuntu+core+18+circular+white.svg",
-          alt="",
-          width="350",
-          height="350",
-          hi_def=True,
-          loading="auto"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
+    {%- endif -%}
+    {%- if slot == "cta" -%}
+      <a href="/internet-of-things#get-in-touch" class="p-button--positive">Get in touch</a>
+      <a href="/download/iot" class="p-button">Download Ubuntu for IoT</a>
+    {%- endif -%}
+    {%- if slot == "image" -%}
+      <div class="p-image-container is-highlighted is-cover u-hide--small">
+        {{ image(url="https://assets.ubuntu.com/v1/7b0d858b-hero-img-iot-2.png",
+                alt="",
+                width="3696",
+                height="1541",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image"},) | safe
+        }}
+      </div>
+    {%- endif -%}
+  {% endcall -%}
 
-<section class="p-strip is-deep u-no-padding--bottom">
-  <div class="p-section">
-    <div class="row u-equal-height">
-      <div class="col-6 p-divider__block">
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
         <h2>Why Ubuntu?</h2>
       </div>
-      <div class="col-6 p-divider__block">
-        <ul class="p-list">
+      <div class="col">
+        <ul class="p-list--divided">
           <li class="p-list__item is-ticked">10 years of security updates as the standard</li>
-          <li class="p-list__item is-ticked">Real-time optimised or low latency kernel</li>
+          <li class="p-list__item is-ticked">Real-time optimized or low latency kernel</li>
           <li class="p-list__item is-ticked">Robust OTA update infrastructure for global scalability</li>
           <li class="p-list__item is-ticked">Optimised custom commercial images for the edge</li>
           <li class="p-list__item is-ticked">Secure boot and full disk encryption</li>
         </ul>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<hr class="is-fixed-width">
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="u-fixed-width">
+        <hr class="p-rule" />
+        <h2>Discover Ubuntu IoT in your industry</h2>
+      </div>
+    </div>
+    <div class="p-section--shallow">
+      <div class="row">
+        <div class="col-start-large-4 col-9">
+          <div class="p-equal-height-row has-divider-3">
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                  {{ image(url="https://assets.ubuntu.com/v1/f92ba3c0-industrial.png",
+                                    alt="",
+                                    width="852",
+                                    height="1279",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-image-container__image"},) | safe
+                  }}
+                </div>
+                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              </div>
 
-<section class="p-strip u-no-padding--bottom">
-  <div class="p-section row">
-    <h2>Discover Ubuntu IoT in your industry</h2>
-  </div>
-  <div class="p-section">
+              <div class="p-equal-height-row__item">
+                <h3 class="p-heading--5">
+                  <a href="/industrial">Industrial</a>
+                </h3>
+              </div>
+
+              <p class="p-equal-height-row__item">
+                Ubuntu Core runs in multiple industrial environments today, from factory floors to healthcare appliances and food production.
+              </p>
+
+              <div class="p-equal-height-row__item">
+                <a href="/engage/realtime-webinar-ga">How real-time Linux accelerates industrial transformation&nbsp;&nbsp;&rsaquo;</a>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                  {{ image(url="https://assets.ubuntu.com/v1/db47732b-smart home.png",
+                                    alt="",
+                                    width="852",
+                                    height="1279",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-image-container__image"},) | safe
+                  }}
+                </div>
+                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              </div>
+
+              <div class="p-equal-height-row__item">
+                <h3 class="p-heading--5">
+                  <a href="/internet-of-things/smart-home">Smart home</a>
+                </h3>
+              </div>
+
+              <p class="p-equal-height-row__item">
+                Supporting the Matter standard as a member of the CSA. Explore smart home applications available on the Snap Store to build your next smart home project.
+              </p>
+
+              <div class="p-equal-height-row__item">
+                <a href="/blog/matter-on-ubuntu-getting-started">
+                  Matter on Ubuntu: get started with the standard for smart home devices&nbsp;&nbsp;&rsaquo;
+                </a>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                  {{ image(url="https://assets.ubuntu.com/v1/6e82d484-digital%20signage.png",
+                                    alt="",
+                                    width="852",
+                                    height="1279",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-image-container__image"},) | safe
+                  }}
+                </div>
+                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              </div>
+
+              <div class="p-equal-height-row__item">
+                <h3 class="p-heading--5">
+                  <a href="/internet-of-things/smart-displays">Digital signage</a>
+                </h3>
+              </div>
+
+              <p class="p-equal-height-row__item">
+                A small footprint and full OpenGL make Ubuntu Core the perfect platform for digital signs designed with security in mind. Try Ubuntu Frame, a display server for embedded Linux devices with long term support.
+              </p>
+
+              <div class="p-equal-height-row__item">
+                <a href="/engage/Embedding_IoT_GUI_with_Ubuntu_Frame">Guide to developing GUIs for IoT&nbsp;&nbsp;&rsaquo;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="row">
-      <div class="col-6 p-tile">
-        <div class="row p-tile__row">
-          <div class="col-3 col-medium-3 u-hide--small">
-            <div class="u-align--center">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/ce4156dd-MobileRobots04+%282%29.png",
-              alt="",
-              width="1686",
-              height="1120",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-              }}
-            </div>
-          </div>
-          <div class="col-3 col-medium-3">
-            <h3 class="p-heading--3"><a href="/industrial">Industrial&nbsp;&rsaquo;</a></h3>
-            <p>Ubuntu Core runs in multiple industrial environments today, from factory floors to healthcare appliances
-              and food production.</p>
-            <p><a href="/engage/realtime-webinar-ga">How real-time Linux accelerates industrial
-                transformation&nbsp;&rsaquo;</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 p-tile">
-        <div class="row p-tile__row">
-          <div class="col-3 col-medium-3 u-hide--small">
-            <div class="u-align--center">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/32675035-smart-home.png",
-              alt="",
-              width="1810",
-              height="1204",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-              }}
-            </div>
-          </div>
-          <div class="col-3 col-medium-3">
-            <h3 class="p-heading--3"><a href="/internet-of-things/smart-home">Smart home&nbsp;&rsaquo;</a></h3>
-            <p>Supporting the Matter standard as a member of the CSA. Explore smart home applications available on the
-              Snap Store to build your next smart home project.</p>
-            <p><a href="/blog/matter-on-ubuntu-getting-started">Matter on Ubuntu: get started with the standard for
-                smart home devices&nbsp;&rsaquo;</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="p-section">
-    <div class="row">
-      <div class="col-6 p-tile">
-        <div class="row p-tile__row">
-          <div class="col-3 col-medium-3 u-hide--small">
-            <div class="u-align--center">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/33007e71-Internet+of+Things_digital-screens.svg",
+      <div class="col-start-large-4 col-9">
+        <div class="p-equal-height-row has-divider-3">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                {{ image (
+                url="https://assets.ubuntu.com/v1/1451ae8d-automotive.png",
                 alt="",
-                width="217",
-                height="150",
+                width="852",
+                height="1279",
                 hi_def=True,
-                loading="lazy"
+                loading="lazy",
+                attrs={"class": "p-image-container__image"},
                 ) | safe
-              }}
+                }}
+              </div>
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+            </div>
+
+            <div class="p-equal-height-row__item">
+              <h3 class="p-heading--5">
+                <a href="/automotive">Automotive</a>
+              </h3>
+            </div>
+
+            <p class="p-equal-height-row__item">
+              Trusted by major automotive companies, Canonical delivers a full suite of open source solutions and services to deliver security, safety and innovation for digital transformation in automotive.
+            </p>
+
+            <div class="p-equal-height-row__item">
+              <a href="/engage/software-defined-vehicles-whitepaper">
+                A CTO's guide to software-defined vehicles&nbsp;&nbsp;&rsaquo;
+              </a>
             </div>
           </div>
-          <div class="col-3 col-medium-3">
-            <h3 class="p-heading--3"><a href="/internet-of-things/digital-signage">Digital signage&nbsp;&rsaquo;</a></h3>
-            <p>A small footprint and full OpenGL make Ubuntu Core the perfect platform for secure digital signs. Try Ubuntu Frame, a reliable and secure display server for embedded Linux devices with long term support.</p>
-            <p><a href="/engage/Embedding_IoT_GUI_with_Ubuntu_Frame">Guide to developing GUIs for IoT&nbsp;&rsaquo;</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 p-tile">
-        <div class="row p-tile__row">
-          <div class="col-3 col-medium-3 u-hide--small">
-            <div class="u-align--center">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/42bfe763-Automotive-car-chassi.svg",
-                alt="",
-                width="711",
-                height="480",
-                hi_def=True,
-                loading="lazy"
-                ) | safe
-              }}
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/15ad6c73-smart-city.png",
+                                alt="",
+                                width="852",
+                                height="1279",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"},) | safe
+                }}
+              </div>
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+            </div>
+
+            <div class="p-equal-height-row__item">
+              <h3 class="p-heading--5">
+                <a href="/internet-of-things/smart-city">Smart city</a>
+              </h3>
+            </div>
+
+            <p class="p-equal-height-row__item">
+              Canonical has a wide portfolio of products. Each of them play a role in bringing open source technologies to the cities of the future.
+            </p>
+
+            <div class="p-equal-height-row__item">
+              <a href="/engage/top-five-iot-challenges">A guide on how to solve the top 5 IoT challenges&nbsp;&nbsp;&rsaquo;</a>
             </div>
           </div>
-          <div class="col-3 col-medium-3">
-            <h3 class="p-heading--3"><a href="/automotive">Automotive&nbsp;&rsaquo;</a></h3>
-            <p>Trusted by major automotive companies, Canonical delivers a full suite of open source solutions and services to deliver security, safety and innovation for digital transformation in automotive.</p>
-            <p><a href="/engage/software-defined-vehicles-whitepaper">A CTO's guide to software-defined vehicles&nbsp;&rsaquo;</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-6 p-tile">
-      <div class="row p-tile__row">
-        <div class="col-3 col-medium-3 u-hide--small">
-          <div class="u-align--center">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/c75046c4-Smart+City.svg",
-              alt="",
-              width="300",
-              height="222",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-        </div>
-        <div class="col-3 col-medium-3">
-          <h3 class="p-heading--3"><a href="/internet-of-things/smart-city">Smart city&nbsp;&rsaquo;</a></h3>
-          <p>Canonical has a wide portfolio of products. Each of them play a role in bringing open source technologies to the cities of the future.</p>
-          <p><a href="/engage/top-five-iot-challenges">A guide on how to solve the top 5 IoT challenges&nbsp;&rsaquo;</a></p>
-        </div>
-      </div>
-    </div>
-    <div class="col-6 p-tile">
-      <div class="row p-tile__row">
-        <div class="col-3 col-medium-3 u-hide--small">
-          <div class="u-align--center">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/c68f7292-Ubuntu_Robotics_MedicalRobot.png",
-              alt="",
-              width="1674",
-              height="1252",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-        </div>
-        <div class="col-3 col-medium-3">
-          <h3 class="p-heading--3"><a href="/robotics">Robotics&nbsp;&rsaquo;</a></h3>
-          <p>Develop, deploy and maintain your fleet of robots with Ubuntu and ROS. We work with a wide range of robotics institutions, from education to manufacturing.</p>
-          <p><a href="/engage/robot-operating-system-choice">Choose the right OS for your robot&nbsp;&rsaquo;</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/0eef89bd-robotics.png",
+                                alt="",
+                                width="852",
+                                height="1279",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"},) | safe
+                }}
+              </div>
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+            </div>
 
-<section class="p-strip--light">
-  <div class="u-fixed-width">
-    <div class="p-logo-section">
-      <h2 class="p-text--small-caps">Trusted by</h2>
-      <div class="p-logo-section__items u-no-margin--bottom">
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/0066964b-rigado-logo.png",
-            alt="rigado logo",
-            width="505",
-            height="512",
+            <div class="p-equal-height-row__item">
+              <h3 class="p-heading--5">
+                <a href="/robotics">Robotics</a>
+              </h3>
+            </div>
+
+            <p class="p-equal-height-row__item">
+              Develop, deploy and maintain your fleet of robots with Ubuntu and ROS. We work with a wide range of robotics institutions, from education to manufacturing.
+            </p>
+
+            <div class="p-equal-height-row__item">
+              <a href="/engage/robot-operating-system-choice">Choose the right OS for your robot&nbsp;&nbsp;&rsaquo;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Trusted by</h2>
+      </div>
+      <div class="col">
+        <div class="p-logo-section">
+          <div class="p-logo-section__items u-no-margin--bottom">
+            <div class="p-logo-section__item">
+              <a href="/engage/case-study-rigado">
+                {{ image(url="https://assets.ubuntu.com/v1/abd768d6-Rigado-logo.png",
+                                alt="Rigado",
+                                width="356",
+                                height="313",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"},) | safe
+                }}
+              </a>
+            </div>
+            <div class="p-logo-section__item">
+              <a href="https://developer.community.boschrexroth.com/t5/Store-and-How-to/ctrlX-AUTOMATION-Ubuntu-Core/ba-p/16388">
+                {{ image(url="https://assets.ubuntu.com/v1/9f3d47a3-rexroth-logo.png",
+                                alt="Rexroth",
+                                width="214",
+                                height="313",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"},) | safe
+                }}
+              </a>
+            </div>
+            <div class="p-logo-section__item">
+              <a href="/engage/secure-digital-signage-screenly">
+                {{ image(url="https://assets.ubuntu.com/v1/a85bb8d1-Screenly-logo.png",
+                                alt="Screenly",
+                                width="223",
+                                height="313",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"},) | safe
+                }}
+              </a>
+            </div>
+            <div class="p-logo-section__item">
+              <a href="/blog/elektrobit-partners-with-canonical">
+                {{ image(url="https://assets.ubuntu.com/v1/f7569195-elektrobit.png",
+                                alt="Elektrobit",
+                                width="293",
+                                height="313",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"},) | safe
+                }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>Our products</h2>
+        </div>
+        <div class="col">
+          <p>
+            Building your IoT business is a journey, develop your application with the Ubuntu you know and love, package your application using Snaps, deploy your devices using Ubuntu Core, manage them with a dedicated Snap Store and certify your hardware to ensure maximum reliability.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="p-section--shallow">
+      <div class="row">
+        <div class="col-6">
+          <hr class="p-rule--highlight u-no-margin--bottom" />
+          <div class="p-card--overlay u-no-padding--top"
+               style="padding: 1.5rem;
+                      height: 95%;
+                      overflow: hidden">
+            <div class="p-section--shallow">
+              <h3 class="u-no-margin--bottom">Ubuntu</h3>
+            </div>
+            <hr class="p-rule--muted" />
+            <div class="p-section--shallow u-responsive-cta">
+              <p>
+                <a href="/desktop">Ubuntu</a> is a solid foundation for all software development and the OS of choice for developers. Ubuntu Pro is a comprehensive subscription on top of Ubuntu that gives you confidence in your full open source stack.
+              </p>
+              <p>
+                Benefit from 10 years of security maintenance with automated security patches at scale, access real time capabilities optimised for embedded devices, and ensure uptime and minimal time to remediation.
+              </p>
+            </div>
+            <div class="p-cta-block">
+              <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <hr class="p-rule--highlight u-no-margin--bottom" />
+          <div class="p-card--overlay u-no-padding--top"
+               style="padding: 1.5rem;
+                      height: 95%;
+                      overflow: hidden">
+            <div class="p-section--shallow">
+              <h3 class="u-no-margin--bottom">Ubuntu Core</h3>
+            </div>
+            <hr class="p-rule--muted" />
+            <div class="p-section--shallow u-responsive-cta">
+              <p>
+                Ubuntu Core is our open source operating system designed for IoT and edge, with the strong security model you've come to expect from Ubuntu. Core is used by IoT start-ups and large enterprises, with huge fleets of devices in the field today.
+              </p>
+              <p>
+                Ubuntu Core uses the same kernel, libraries, and system software as classic Ubuntu, resulting in a smooth transition to production, and includes Ubuntu Pro as the standard.
+              </p>
+
+            </div>
+            <div class="p-cta-block ">
+              <a href="/core">Learn more about Ubuntu Core&nbsp;&rsaquo;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-section--shallow">
+      <div class="u-fixed-width">
+        <hr class="p-rule" />
+        <h3 class="p-text--small-caps">Additional services</h3>
+      </div>
+    </div>
+    <div class="p-equal-height-row">
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <h3 class="p-heading--5 u-no-margin--bottom">Smart start</h3>
+          <p class="u-text--muted u-no-padding--top p-heading--5">Ensure the success of your application packaging on Ubuntu</p>
+        </div>
+        <p class="p-equal-height-row__item">
+          Enjoy Snapcraft 101 training, snap store services, device fees and support for one year for up to 1,000 devices and much more as part of our smart start service. Learn <a href="/pricing/devices">what's included with Smart Start</a>.
+        </p>
+      </div>
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <h3 class="p-heading--5 u-no-margin--bottom">Device Enablement</h3>
+          <p class="u-text--muted u-no-padding--top p-heading--5">
+            Your own production-grade image in our testing infrastructure
+          </p>
+        </div>
+        <p class="p-equal-height-row__item">
+          Our <a href="/core/services">Enablement services</a> allow you to get a production-grade Ubuntu image for your device, while our Maintenance services guarantee that any security update won't break your device.
+        </p>
+      </div>
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <h3 class="p-heading--5 u-no-margin--bottom">Dedicated Snap Store</h3>
+          <p class="u-text--muted u-no-padding--top p-heading--5">Develop your applications privately in an enterprise Store</p>
+        </div>
+        <p class="p-equal-height-row__item">
+          Canonical's <a href="/internet-of-things/appstore">IoT App Store</a> enables you to host and manage software updates for your devices. It provides a trusted update infrastructure, including reliable over-the-air updates, secure authentication, CI/CD integration, and more.
+        </p>
+      </div>
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <h3 class="p-heading--5 u-no-margin--bottom">Certified Hardware</h3>
+          <p class="u-text--muted u-no-padding--top p-heading--5">Certify your hardware for guaranteed support</p>
+        </div>
+        <p class="p-equal-height-row__item">
+          Canonical enables hundreds of devices every year, offering <a href="/certified">certified hardware</a> to users. Bring Ubuntu to your device and ensure every component will be supported by future Ubuntu releases.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="p-rule is-fixed-width" />
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <h2>Let's discuss your business and help you find the right product.</h2>
+      <a href="/internet-of-things#get-in-touch"
+         class="p-heading--2 js-invoke-modal">Get in touch&nbsp;&rsaquo;</a>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Learn more about IoT</h2>
+      </div>
+      <div class="col">
+        <ul class="p-list--divided">
+          <li class="p-list__item">
+            <a href="/engage/embedded-linux-make-or-buy">Embedded Linux: Make or buy?</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/engage/top-five-iot-challenges">Top 5 IoT challenges and how to solve them</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/engage/a-practical-guide-to-iot-lifecycle-management">A practical guide to IoT lifecycle management</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>
+            From prototype to production
+            <br />
+            on all major platforms
+          </h2>
+        </div>
+        <div class="col-6">
+          <p>
+            Ubuntu Certified devices are tested for reliability and performance, ensuring you have the best out-of-the-box Ubuntu experience.
+          </p>
+          <p>
+            We perform regular testing directly on the hardware throughout the lifecycle of the Ubuntu release for which it has been certified. We work directly with a number of silicon partners to ensure the best hardware certification.
+          </p>
+          <div class="p-cta-block">
+            <a href="/certified" class="p-button--positive">Discover all certified hardware</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="u-fixed-width">
+      <div class="p-logo-section">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/d1b356e2-amd-logo.png",
+                        alt="AMD",
+                        width="225",
+                        height="313",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"},) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/fdbc1be5-arm-logo-no-cutoff.png",
+                        alt="ARM",
+                        width="154",
+                        height="313",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"},) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/931165b5-intel-new-logo.png",
+                        alt="Intel",
+                        width="162",
+                        height="313",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"},) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/16a400a7-mediatek-logo.png",
+                        alt="Mediatek",
+                        width="249",
+                        height="313",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"},) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/753902ac-nvidia-logo.png",
+                        alt="Nvidia",
+                        width="309",
+                        height="313",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"},) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/115e104b-qualcom-logo.png",
+                        alt="Qaualcomm",
+                        width="311",
+                        height="313",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"},) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/cbf6ee3c-raspberry-pi-logo.png",
+                        alt="Raspberry Pi",
+                        width="502",
+                        height="313",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"},) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/a97046e2-risc-v-logo.png",
+                        alt="Risc-v",
+                        width="285",
+                        height="313",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"},) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/6e12ae75-renesas-logo.png",
+                        alt="Renesas",
+                        width="285",
+                        height="313",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"},) | safe
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>IoT professional services</h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="p-image-container is-highlighted">
+            {{ image (
+            url="https://assets.ubuntu.com/v1/1bc4dc14-iot-professional-services.png",
+            alt="",
+            width="1800",
+            height="1015",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
+            attrs={"class": "p-image-container__image"},
             ) | safe
-          }}
+            }}
+          </div>
         </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/1468ce5f-rexroth-logo.png",
-            alt="rexroth logo",
-            width="350",
-            height="512",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/ee3c6ba7-Screenly-logo.png",
-            alt="Screenly logo",
-            width="366",
-            height="512",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/459e8ddd-elektrobit.png",
-            alt="elektrobit logo",
-            width="480",
-            height="512",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
+        <p>
+          Our expert technical teams offer full enablement, customisation and development to ensure that taking your devices to market is fast, scalable and seamless. You can focus on your applications, we handle the rest, including full support and technical workshops.
+        </p>
+        <div class="p-cta-block">
+          <a href="/pricing/devices" class="p-button--positive">Pricing and packages</a>
+          <a href="/core/services">Learn more about IoT Professional Services&nbsp;&rsaquo;</a>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip u-no-padding--bottom">
-  <div class="p-section u-fixed-width">
-    <h2>Our products</h2>
-    <p>Building your IoT business is a journey, develop your application with the Ubuntu you know and love, package your application using Snaps, deploy your devices using Ubuntu Core, manage them with a dedicated Snap Store and certify your hardware to ensure maximum reliability.</p>
-  </div>
-  <div class="p-section row u-equal-height">
-    <div class="col-6">
-      <hr>
-      <h3>Ubuntu</h3>
-      <div class="u-hide--small" style="margin-bottom: 1rem;">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/0532297f-Developer.svg",
-          alt="",
-          width="200",
-          height="125",
-          hi_def=True,
-          loading="lazy",
-          ) | safe
-        }}
+  <section class="p-section--deep">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Ready to innovate?</h2>
       </div>
-      <p><a href="/desktop">Ubuntu</a> is a solid foundation for all software development and the OS of choice for developers.</p>
-      <p>Ubuntu Pro is a comprehensive subscription on top of Ubuntu that gives you confidence in your full open source stack. Benefit from 10 years of security maintenance with automated security patches at scale, access real time capabilities optimised for embedded devices, and ensure uptime and minimal time to remediation.</p>
-      <a href="/pro" class="p-button">Learn more about Ubuntu Pro</a>
-    </div>
-    <div class="col-6">
-      <hr>
-      <h3>Ubuntu Core</h3>
-      <div class="u-hide--small" style="margin-bottom: 1rem;">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/5da98122-Chip.svg",
-          alt="",
-          width="160",
-          height="125",
-          hi_def=True,
-          loading="lazy",
-          ) | safe
-        }}
-      </div>
-      <p>Ubuntu Core is our open source operating system designed for IoT and edge, with the strong security model you've come to expect from Ubuntu. Core is used by IoT start-ups and large enterprises, with huge fleets of devices in the field today.</p>
-      <p>Ubuntu Core uses the same kernel, libraries, and system software as classic Ubuntu, resulting in a smooth transition to production, and includes Ubuntu Pro as the standard.</p>
-      <p><a href="/core" class="p-button">Learn more about Ubuntu Core</a></p>
-    </div>
-  </div>
-  <div class="p-section row u-equal-height">
-    <div class="col-3">
-      <hr>
-      <h3>Smart Start</h3>
-      <p class="p-heading--4">Ensure the success of your application packaging on Ubuntu</p>
-      <p>Enjoy Snapcraft 101 training, snap store services, device fees and support for one year for up to 1,000 devices and much more as part of our smart start service. Find out more about <a href="/pricing/devices">what's included here</a>.</p>
-    </div>
-    <div class="col-3">
-      <hr>
-      <h3>Device Enablement</h3>
-      <p class="p-heading--4">Your own production-grade image in our testing infrastructure</p>
-      <p><a href="/core/services">Our Enablement services</a> allow you to get a production-grade Ubuntu image for your device, while our Maintenance services guarantee that any security update won't break your device.</p>
-    </div>
-    <div class="col-3">
-      <hr>
-      <h3>Dedicated Snap Store</h3>
-      <p class="p-heading--4">Develop your applications privately in an enterprise Store</p>
-      <p>Canonical's <a href="/internet-of-things/appstore">IoT App Store</a> enables you to host and manage software updates for your devices. It provides a trusted update infrastructure, including reliable over-the-air updates, secure authentication, CI/CD integration, and more.</p>
-    </div>
-    <div class="col-3">
-      <hr>
-      <h3>Certified Hardware</h3>
-      <p class="p-heading--4">Certify your hardware for guaranteed support</p>
-      <p>Canonical enables hundreds of devices every year, offering <a href="/certified">certified hardware</a> to users. Bring Ubuntu to your device and ensure every component will be supported by future Ubuntu releases.</p>
-    </div>
-  </div>
-  <div class="p-section u-fixed-width">
-    <p>Ready to find out more? Get in touch with our sales team to discuss your business and help us find the right product for you.</p>
-    <a href="/internet-of-things#get-in-touch" class="p-button--positive js-invoke-modal">Get in touch</a>
-  </div>
-</section>
-
-<section class="p-strip--light is-deep">
-  <div class="row">
-    <div class="col-6 p-divider__block">
-      <h2>Learn more about IoT</h2>
-    </div>
-    <div class="col-6 p-divider__block">
-      <p>
-        <a href="/engage/embedded-linux-make-or-buy">Embedded Linux: Make or buy?</a>
-      </p>
-      <p>
-        <a href="/engage/top-five-iot-challenges">Top 5 IoT challenges and how to solve them</a>
-      </p>
-      <p>
-        <a href="/engage/a-practical-guide-to-iot-lifecycle-management">A practical guide to IoT lifecycle management</a>
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row">
-    <div class="col-6">
-      <h2>From prototype to production on all major platforms</h2>
-      <p>Ubuntu Certified devices are tested for reliability and performance, ensuring you have the best out-of-the-box Ubuntu experience.</p>
-      <p>We perform regular testing directly on the hardware throughout the lifecycle of the Ubuntu release for which it has been certified. We work directly with a number of silicon partners to ensure the best hardware certification.</p>
-      <a href="/certified" class="p-button--positive">Discover all certified hardware</a>
-    </div>
-    <div class="col-6">
-      <div class="p-logo-section has-misaligned-images">
-        <div class="p-logo-section__items u-align--center">
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/6079d02b-amd-logo.png",
-              alt="amd logo",
-              width="288",
-              height="288",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"},
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/d9d05f49-arm-logo.png",
-              alt="arm logo",
-              width="183",
-              height="372",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"},
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/834d57ab-intel-logo.png",
-              alt="intel logo",
-              width="149",
-              height="288",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"},
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/49a1df89-qualcommLOGO.png",
-              alt="qualcomm logo",
-              width="475",
-              height="106",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"},
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/4d5b8d51-riscv-color.svg",
-              alt="risc v logo",
-              width="300",
-              height="48",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"},
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/0ebb345c-MediaTek_logo.svg",
-              alt="mediatek logo",
-              width="1024",
-              height="268",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"},
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/24e12cca-logo-nvidia.svg",
-              alt="nvidia logo",
-              width="296",
-              height="144",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"},
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/e3a042a7-raspberrypi-card.png",
-              alt="raspberry pi logo",
-              width="444",
-              height="123",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"},
-              ) | safe
-            }}            
-          </div>
+      <div class="col">
+        <p>
+          Whether you are a startup bringing your concept to market or already  have large fleets of devices deployed in the field, we have the expertise and infrastructure to launch and support you.
+        </p>
+        <div class="p-cta-block">
+          <a href="/internet-of-things/contact-us"
+             class="js-invoke-modal p-button--positive"
+             aria-controls="iot-modal">Contact our team</a>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<hr class="is-fixed-width">
-
-<section class="p-strip">
-  <div class="row">
-    <div class="col-6">
-      <h2>IoT professional services</h2>
-      <p>Our expert technical teams offer full enablement, customisation and development to ensure that taking your devices to market is fast, scalable and seamless. You can focus on your applications, we handle the rest, including full support and technical workshops.</p>
-      <p>
-        <a href="/pricing/devices" class="p-button--positive">Pricing and packages</a>
-        <a href="/core/services">Learn more about IoT Professional Services&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-    <div class="col-6">
-      <div class="u-vertically-center u-align--center u-hide--medium u-hide--small">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/21e3c907-Smart+Start+Illustrations_1.svg",
-          alt="",
-          width="500",
-          height="305",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-        }}
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light is-deep">
-  <div class="row">
-    <div class="col-6">
-      <h2>Ready to innovate?</h2>
-    </div>
-    <div class="col-6">
-      <p>Whether you are a startup bringing your concept to market or already  have large fleets of devices deployed in the field, we have the expertise and infrastructure to launch and support you.</p>
-      <a href="/internet-of-things#get-in-touch" class="js-invoke-modal p-button--positive">Contact our team</a>
-    </div>
-  </div>
-</section>
-
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/internet-of-things" data-form-id="1266" data-lp-id="2551" data-return-url="https://ubuntu.com/internet-of-things/thank-you?product=iot" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
-
-
+  {{ load_form("/internet-of-things") | safe }}
 
 {% endblock content %}

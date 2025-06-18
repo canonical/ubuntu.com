@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List, Dict, Optional
 
 from webapp.shop.api.ua_contracts.primitives import (
     Contract,
@@ -10,7 +10,10 @@ from webapp.shop.api.ua_contracts.primitives import (
     User,
 )
 from webapp.shop.api.ua_contracts.models import (
+    Metadata,
+    ExternalID,
     Listing,
+    ChannelListing,
     Product,
     OfferItem,
     Offer,
@@ -47,6 +50,30 @@ def parse_product_listing(
     )
 
 
+def parse_channel_product_listing(
+    raw_product_listing: Dict, raw_products: List[Dict] = None
+) -> ChannelListing:
+    product = None
+    raw_products = raw_products or []
+    for raw_product in raw_products:
+        if raw_product.get("id") == raw_product_listing.get("productID"):
+            product = parse_product(raw_product)
+            break
+
+    return ChannelListing(
+        id=raw_product_listing.get("id"),
+        name=raw_product_listing.get("name"),
+        marketplace=raw_product_listing.get("marketplace"),
+        product=product,
+        price=raw_product_listing.get("price").get("value"),
+        currency=raw_product_listing.get("price").get("currency"),
+        status=raw_product_listing.get("status"),
+        metadata=raw_product_listing.get("metadata"),
+        exclusion_group=raw_product_listing.get("exclusionGroup", ""),
+        effective_days=raw_product_listing.get("effectiveDays"),
+    )
+
+
 def parse_product_listings(
     raw_product_listings: List[Dict] = None,
     raw_products: List[Dict] = None,
@@ -55,6 +82,20 @@ def parse_product_listings(
 
     return {
         product_listing.get("id"): parse_product_listing(
+            product_listing, raw_products
+        )
+        for product_listing in raw_product_listings
+    }
+
+
+def parse_channel_product_listings(
+    raw_product_listings: List[Dict] = None,
+    raw_products: List[Dict] = None,
+) -> Dict[str, ChannelListing]:
+    raw_product_listings = raw_product_listings or {}
+
+    return {
+        product_listing.get("id"): parse_channel_product_listing(
             product_listing, raw_products
         )
         for product_listing in raw_product_listings
@@ -152,9 +193,15 @@ def parse_contract(raw_contract: Dict) -> Contract:
     items = parse_contract_items(raw_items)
 
     number_of_active_machines = 0
+    max_tracking_reached = False
     if "activeMachines" in contract_info:
         active_machines = contract_info["activeMachines"]
         number_of_active_machines = active_machines["activeMachines"]
+        max_tracking_reached = (
+            active_machines["maximumTrackingReached"]
+            if "maximumTrackingReached" in active_machines
+            else False
+        )
 
     return Contract(
         id=contract_info.get("id"),
@@ -164,6 +211,7 @@ def parse_contract(raw_contract: Dict) -> Contract:
         entitlements=entitlements,
         number_of_active_machines=number_of_active_machines,
         items=items,
+        max_tracking_reached=max_tracking_reached,
     )
 
 
@@ -238,6 +286,22 @@ def parse_users(raw_users: List) -> List[User]:
     return [parse_user(raw_user) for raw_user in raw_users]
 
 
+def parse_metadata(metadata: List[Dict[str, str]]) -> List[Metadata]:
+    return [Metadata(item["key"], item["value"]) for item in metadata]
+
+
+def parse_external_ids(raw_external_ids: List[Dict]) -> List[ExternalID]:
+    external_ids: List[ExternalID] = []
+    for raw_external_id in raw_external_ids:
+        external_ids.append(
+            ExternalID(
+                origin=raw_external_id["origin"],
+                ids=raw_external_id["IDs"],
+            )
+        )
+    return external_ids
+
+
 def parse_offer_items(
     raw_offer_items: List, raw_product_listings: List
 ) -> List[OfferItem]:
@@ -250,9 +314,25 @@ def parse_offer_items(
             for product_listing in raw_product_listings
             if product_listing.get("id") == item_listing
         ]
-
         allowance = raw_offer_item.get("value")
+        # total price ( price * quantity )
         price = product_listing[0].get("price").get("value") * allowance
+
+        is_channel_offer = (
+            product_listing[0].get("marketplace") == "canonical-pro-channel"
+        )
+
+        channel_item_fields = {}
+
+        if is_channel_offer:
+            channel_item_fields = {
+                "currency": product_listing[0]
+                .get("price", {})
+                .get("currency"),
+                "effectiveDays": product_listing[0].get("effectiveDays"),
+                "productID": product_listing[0].get("productID"),
+                "productName": product_listing[0].get("productName"),
+            }
 
         offer_items.append(
             OfferItem(
@@ -260,27 +340,99 @@ def parse_offer_items(
                 name=product_listing[0].get("name"),
                 price=price,
                 allowance=allowance,
+                **channel_item_fields,
             )
         )
 
     return offer_items
 
 
-def parse_offer(raw_offer: Offer) -> Offer:
-    items = parse_offer_items(raw_offer["items"], raw_offer["productListings"])
-    discount = raw_offer.get("discount", None)
-
-    return Offer(
-        id=raw_offer["id"],
-        account_id=raw_offer["accountID"],
-        marketplace=raw_offer["marketplace"],
-        created_at=raw_offer["createdAt"],
-        actionable=raw_offer["actionable"],
-        total=sum(item.price for item in items),
-        items=items,
-        discount=discount,
+def parse_offer(raw_offer: Dict) -> Offer:
+    items = parse_offer_items(
+        raw_offer.get("items", []), raw_offer.get("productListings", [])
     )
+    external_ids = (
+        parse_external_ids(raw_offer["externalIDs"])
+        if raw_offer.get("activationAccountID") is not None
+        and raw_offer["externalIDs"] is not None
+        else None
+    )
+
+    metadata = (
+        parse_metadata(raw_offer.get("metadata", []))
+        if raw_offer.get("activationAccountID")
+        else None
+    )
+    exclusion_group = raw_offer.get("exclusionGroup", "")
+
+    purchase = "purchase" in raw_offer
+
+    # Always included fields
+    offer_data = {
+        "id": raw_offer["id"],
+        "account_id": raw_offer["accountID"],
+        "marketplace": raw_offer["marketplace"],
+        "created_at": raw_offer["createdAt"],
+        "actionable": raw_offer["actionable"],
+        "purchase": purchase,
+        "total": sum(item.price for item in items),
+        "items": items,
+        "discount": raw_offer.get("discount"),
+    }
+
+    # Conditionally include fields related to activation_account_id
+    if raw_offer.get("activationAccountID"):
+        if metadata:
+            channel_deal_creator_name = get_metadata_value(
+                metadata, "channelDealCreatorName"
+            )
+            distributor_account_name = get_metadata_value(
+                metadata, "distributorAccountName"
+            )
+            end_user_account_name = get_metadata_value(
+                metadata, "endUserAccountName"
+            )
+            reseller_account_name = get_metadata_value(
+                metadata, "resellerAccountName"
+            )
+            technical_contact_email = get_metadata_value(
+                metadata, "technicalContactEmail"
+            )
+            technical_contact_name = get_metadata_value(
+                metadata, "technicalContactName"
+            )
+            opportunity_number = get_metadata_value(
+                metadata, "opportunityNumber"
+            )
+
+        offer_data.update(
+            {
+                "activation_account_id": raw_offer.get("activationAccountID"),
+                "can_change_items": raw_offer.get("canChangeItems"),
+                "external_ids": external_ids,
+                "channel_deal_creator_name": channel_deal_creator_name,
+                "distributor_account_name": distributor_account_name,
+                "reseller_account_name": reseller_account_name,
+                "end_user_account_name": end_user_account_name,
+                "technical_contact_email": technical_contact_email,
+                "technical_contact_name": technical_contact_name,
+                "opportunity_number": opportunity_number,
+                "exclusion_group": exclusion_group,
+            }
+        )
+
+    return Offer(**offer_data)
 
 
 def parse_offers(raw_offers: List) -> List[Offer]:
     return [parse_offer(raw_offer) for raw_offer in raw_offers]
+
+
+def get_metadata_value(
+    metadata: Optional[List[Metadata]], key: str
+) -> Optional[str]:
+    if metadata is not None:
+        for metadata in metadata:
+            if metadata.key == key:
+                return metadata.value
+    return None

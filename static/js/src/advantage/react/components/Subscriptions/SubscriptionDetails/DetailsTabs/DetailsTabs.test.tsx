@@ -12,7 +12,7 @@ import { EntitlementType } from "advantage/api/enum";
 import { getQueryClientWrapper } from "advantage/tests/utils";
 
 const mount = (Component: React.ReactElement) =>
-  enzymeMount(Component, {
+  enzymeMount(Component as JSX.Element, {
     wrappingComponent: getQueryClientWrapper(),
   });
 
@@ -35,7 +35,7 @@ describe("DetailsTabs", () => {
       <DetailsTabs
         subscription={subscription}
         setHasUnsavedChanges={jest.fn()}
-      />
+      />,
     );
     expect(wrapper.find("[data-test='docs-content']").exists()).toBe(true);
   });
@@ -46,10 +46,10 @@ describe("DetailsTabs", () => {
       <DetailsTabs
         subscription={subscription}
         setHasUnsavedChanges={jest.fn()}
-      />
+      />,
     );
     expect(wrapper.find("[data-testid='features-content']").exists()).toBe(
-      false
+      false,
     );
   });
 
@@ -58,7 +58,7 @@ describe("DetailsTabs", () => {
       <DetailsTabs
         subscription={subscription}
         setHasUnsavedChanges={jest.fn()}
-      />
+      />,
     );
     expect(wrapper.find("[data-test='docs-content']").exists()).toBe(true);
     wrapper.find("[data-test='features-tab']").simulate("click");
@@ -83,13 +83,13 @@ describe("DetailsTabs", () => {
       <DetailsTabs
         subscription={subscription}
         setHasUnsavedChanges={jest.fn()}
-      />
+      />,
     );
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");
     const docsLinks = wrapper.find("[data-test='doc-link']");
-    expect(docsLinks.length).toBe(11);
-    expect(docsLinks.at(0).text()).toBe("Knowledge Base");
+    expect(docsLinks.length).toBe(12);
+    expect(docsLinks.at(0).text()).toBe("Ubuntu Pro documentation");
   });
 
   it("only displays one link to ESM docs", () => {
@@ -109,13 +109,13 @@ describe("DetailsTabs", () => {
       <DetailsTabs
         subscription={subscription}
         setHasUnsavedChanges={jest.fn()}
-      />
+      />,
     );
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");
     const docsLinks = wrapper.find("[data-test='doc-link']");
-    expect(docsLinks.length).toBe(11);
-    expect(docsLinks.at(0).text()).toBe("Knowledge Base");
+    expect(docsLinks.length).toBe(12);
+    expect(docsLinks.at(0).text()).toBe("Ubuntu Pro documentation");
   });
 
   it("reorders FIPS, CC-EAL, and CIS to the end", () => {
@@ -147,16 +147,17 @@ describe("DetailsTabs", () => {
       <DetailsTabs
         subscription={subscription}
         setHasUnsavedChanges={jest.fn()}
-      />
+      />,
     );
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");
     const docsLinks = wrapper.find("[data-test='doc-link']");
-    expect(docsLinks.at(0).text()).toBe("Knowledge Base");
-    expect(docsLinks.at(1).text()).toBe("Ubuntu Assurance Program");
-    expect(docsLinks.at(2).text()).toBe("Ubuntu Pro network requirements");
-    expect(docsLinks.at(3).text()).toBe("ESM");
-    expect(docsLinks.at(4).text()).toBe("USG ");
+    expect(docsLinks.at(0).text()).toBe("Ubuntu Pro documentation");
+    expect(docsLinks.at(1).text()).toBe("Knowledge Base");
+    expect(docsLinks.at(2).text()).toBe("Ubuntu Assurance Program");
+    expect(docsLinks.at(3).text()).toBe("Ubuntu Pro network requirements");
+    expect(docsLinks.at(4).text()).toBe("ESM");
+    expect(docsLinks.at(5).text()).toBe("USG ");
   });
 
   it("Display tutorial link for the free subscription", () => {
@@ -164,7 +165,7 @@ describe("DetailsTabs", () => {
       <DetailsTabs
         subscription={freeSubscriptionFactory.build()}
         setHasUnsavedChanges={jest.fn()}
-      />
+      />,
     );
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");

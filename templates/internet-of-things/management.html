@@ -1,273 +1,500 @@
 {% extends "internet-of-things/base_things.html" %}
 
-{% block title %}IoT Management - Manage Ubuntu Core devices{% endblock %}
+{% block title %}IoT Device Management{% endblock %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1C-1ywVzBHkc4I3f-G7Rpy-epaXdbPisbolHUC1Jb7cE/edit#{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1C-1ywVzBHkc4I3f-G7Rpy-epaXdbPisbolHUC1Jb7cE/edit#
+{% endblock meta_copydoc %}
 
-{% block meta_description %}Manage your Ubuntu Core powered IoT edge devices in a secure and reliable way. We provide solutions covering the whole project lifecycle from prototyping to deploying and maintaining your entire fleet.{% endblock %}
+{% block meta_description %}
+  Securely and reliable deploy, manage and scale your embedded Ubuntu devices. Get low-touch and custom workflows for any solution.
+{% endblock %}
 
-{% block outer_content %}
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block content %}
 
-<section class="p-strip--suru-topped is-dark">
-  <div class="row u-vertically-center">
-    <div class="col-7">
-      <h1>IoT Device Management</h1>
-      <p>Simplify and automate the management of your Internet of Things (IoT) devices. Leverage the power of Ubuntu Core and your IoT app store to deliver long lasting projects. We provide the technology and infrastructure to securely manage and maintain your fleet.</p>
-      <p>Whether you need to manage a globally distributed deployment or devices in a strictly controlled environment, we have a solution for you.</p>
-      <p>
-        <a href="/internet-of-things/contact-us?product=management" class="p-button--positive">Get in touch</a>
-      </p>
-    </div>
-    <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/46f1b890-IoT_field_updates_from_Cloud.svg",
-        alt="",
-        width="328",
-        height="200",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-        }}
-    </div>
-  </div>
-</section>
-<section class="p-strip--light is-deep">
-  <div class="row">
-    <div class="col-8">
-      <h2>Securely manage your IoT fleet</h2>
-    </div>
-  </div>
-  <div class="row u-equal-height">
-    <ul class="p-matrix p-matrix--two-col u-clearfix">
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3>Onboard new devices</h3>
-          <div class="p-matrix__desc">
-            <p>Securely authenticate and add new devices to your managed IoT fleet. Connect them to your private app store with built in cryptographic protection. Control the access to your edge data and interfaces for all of your devices.</p>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3>Reliable over-the-air (OTA) updates</h3>
-          <div class="p-matrix__desc">
-            <p>Benefit from over-the-air updates that are transactional, allowing devices to roll back to a stable state if a failure occurs. Deliver application and operating system updates as deltas, minimising bandwidth consumption and associated costs.</p>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3>Organise your fleet</h3>
-          <div class="p-matrix__desc">
-            <p>Use device groups to control application workloads by hardware and device function. Curate software bundles for different scenarios. Roll out updates on your terms.</p>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3>Integrate with cloud solutions</h3>
-          <div class="p-matrix__desc">
-            <p>Deploy and manage your workloads from a public or private cloud of your choice. Reduce the complexity of your stack and optimise your IoT pipeline.</p>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </div>
-</section>
-<section class="p-strip--suru">
-  <div class="row">
-    <h2 class="u-sv1">Learn more about enterprise device management </h2>
-  </div>
-  <div class="row p-divider is-dark">
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header">
-          {{ 
-            image (
-            url="https://assets.ubuntu.com/v1/4ab8ff35-Whitepaper+-+white.svg",
-            alt="",
-            width="32",
-            height="28",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-            ) | safe
-          }}
-          <h3 class="p-heading-icon__title p-heading--4">Whitepaper</h3>
-        </div>
-      </div>
-      <p><a class="p-link--inverted" href="/engage/iot-device-management-whitepaper?_ga=2.90790234.1537229770.1638375570-1154790289.1626446765">Secure IoT device management&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header"> 
-          {{ 
-            image (
-            url="https://assets.ubuntu.com/v1/816ae23b-Webinar+-+white.svg",
-            alt="",
-            width="32",
-            height="28",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-            ) | safe
-          }}
-          <h3 class="p-heading-icon__title p-heading--4">Webinar</h3>
-        </div>
-      </div>
-      <p><a class="p-link--inverted" href="/engage/snap-store-proxy-intro-webinar">A technical introduction to the Snap Store Proxy&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header">
-          {{ 
-            image (
-            url="https://assets.ubuntu.com/v1/4ab8ff35-Whitepaper+-+white.svg",
-            alt="",
-            width="32",
-            height="28",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-            ) | safe
-          }}
-          <h3 class="p-heading-icon__title p-heading--4">Whitepaper</h3>
-        </div>
-      </div>
-      <p><a href="/engage/enterprise-snap-management" class="p-link--inverted">Enterprise snap management&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-</section>
-<section class="p-strip">
-  <div class="row">
-    <div class="col-6">
-      <h2>Ubuntu Core</h2>
-      <p>Ubuntu Core is an all-snap version of Ubuntu engineered for IoT and mission critical applications. It is optimised for security and reliable updates. With a significantly reduced attack surface, Ubuntu Core is tamper resistant and hardened against corruption. It is easy to deploy and manage, allowing you to run your workloads consistently across a wide range of hardware.</p>
-      <p><a href="/core/docs/getting-started" class="p-button--positive">Get started</a></p>
-      <p><a href="/core">Find out more&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-6 p-divider__block u-align--center u-vertically-center u-hide--medium u-hide--small">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/97a11612-ubuntu-core-new.svg",
-        alt="",
-        width="386",
-        height="55",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-<section class="p-strip">
-  <div class="row">
-    <div class="col-6">
-      <h2>IoT App Store</h2>
-      <p>The IoT app store is a dedicated, private, and customisable platform for your applications. It’s enterprise-ready and primed for efficient software distribution. It lets you utilise a huge range of our existing apps or build your own. Having a managed app store gives you role-based access controls, application versioning, OTA updates, controlled software rollouts, and much more.</p>
-      <p><a href="https://snapcraft.io/docs/getting-started" class="p-button--positive">Get started</a></p>
-      <p><a href="/internet-of-things/appstore">Find out more&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-6 p-divider__block u-align--center u-vertically-center u-hide--medium u-hide--small">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/c5ec2040-snapcraft-logo.svg",
-        alt="",
-        width="338",
-        height="56",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-<section class="p-strip--suru">
-  <div class="row">
-    <h2 class="u-sv1">Learn about our IoT portfolio</h2>
-  </div>
-  <div class="row p-divider is-dark">
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header">
-          {{ 
-            image (
-            url="https://assets.ubuntu.com/v1/4ab8ff35-Whitepaper+-+white.svg",
-            alt="",
-            width="32",
-            height="28",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-            ) | safe
-          }}
-          <h3 class="p-heading-icon__title p-heading--4">Whitepaper</h3>
-        </div>
-      </div>
-      <p><a class="p-link--inverted" href="/engage/smart-start-whitepaper">Accelerating IoT device time to market&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header"> 
-          {{ 
-            image (
-            url="https://assets.ubuntu.com/v1/816ae23b-Webinar+-+white.svg",
-            alt="",
-            width="32",
-            height="28",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-            ) | safe
-          }}
-          <h3 class="p-heading-icon__title p-heading--4">Webinar</h3>
-        </div>
-      </div>
-      <p><a class="p-link--inverted" href="/engage/ubuntu-core-20-webinar">An introduction to Ubuntu Core 20&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header">
-          {{ 
-            image (
-            url="https://assets.ubuntu.com/v1/4ab8ff35-Whitepaper+-+white.svg",
-            alt="",
-            width="32",
-            height="28",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-            ) | safe
-          }}
-          <h3 class="p-heading-icon__title p-heading--4">Whitepaper</h3>
-        </div>
-      </div>
-      <p><a href="/engage/snapd-whitepaper" class="p-link--inverted">Solving the software update challenge for IoT device&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-</section>
+  {% call(slot) vf_hero(
+    title_text='IoT Device Management',
+    layout='50/50',
+    is_split_on_medium=true
+    ) -%}
 
-<section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-4 u-hide--medium u-hide--small u-align--left">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
-          alt="",
-          width="280",
-          height="280",
-          hi_def=True,
-        ) | safe
-      }}
+    {%- if slot == 'description' -%}
+      <p>
+        Automate the management of your IoT devices and guarantee security, up-time and visibility. Whether you need to manage a globally distributed deployment or devices in a strictly controlled environment, we have
+        a solution for you.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'cta' -%}
+      <a href="/internet-of-things/contact-us?product=management"
+         class="p-button--positive js-invoke-modal"
+         aria-controls="iot-modal">Get in touch</a>
+      <a href="/engage/a-practical-guide-to-iot-lifecycle-management">Discover best practices to manage IoT devices&nbsp;&rsaquo;</a>
+    {%- endif -%}
+
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--3-2 is-cover is-highlighted">
+        {{ image(url="https://assets.ubuntu.com/v1/70a6572e-iot-device-management-hero.png",
+                alt="",
+                width="1800",
+                height="1128",
+                hi_def=True,
+                loading="auto|lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    {%- endif -%}
+
+  {% endcall %}
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>
+          Solve your
+          <br class="u-hide-small" />
+          management challenges
+        </h2>
+      </div>
+      <div class="col">
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">Convenient shrink-wrapped device management solution with Landscape.</li>
+          <li class="p-list__item is-ticked">Manage all variants of Ubuntu, scalable to thousands of devices.</li>
+          <li class="p-list__item is-ticked">Zero-touch deployment options available.</li>
+          <li class="p-list__item is-ticked">Minimal over-the-air delta updates available from the edge.</li>
+          <li class="p-list__item is-ticked">Full API for custom workflows and integration.</li>
+        </ul>
+      </div>
     </div>
-    <div class="col-8 u-vertically-center">
-      <div>
-        <h2>Let’s work together</h2>
-        <p>We work closely with our customers to solve complex problems together. Our talented engineers are experts in IoT and are well-qualified to provide guidance to both smaller businesses and larger enterprises. Share your story with us and let’s work together.</p>
-        <p><a href="/internet-of-things/contact-us?product=management" class="p-button--positive">Get in touch</a></p>
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>
+            A complete set of tools
+            <br class="u-hide-small" />
+            to scale your fleet
+          </h2>
+        </div>
+        <div class="col">
+          <p>
+            Whatever lifecycle stage your device is at, we have tools to support you as you deploy, manage and scale your
+            fleets of embedded devices.
+          </p>
+          <hr class="p-rule--muted" />
+          <p>
+            <a href="/internet-of-things/contact-us?product=management"
+               class="js-invoke-modal"
+               aria-controls="iot-modal">Get in touch to discuss your device management needs&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-equal-height-row">
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/c43ec46c-onboard-new-devices.png",
+                        alt="",
+                        width="852",
+                        height="1279",
+                        hi_def=True,
+                        loading="auto|lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+          <h3 class="p-heading--5">Onboard new devices</h3>
+        </div>
+        <div class="p-equal-height-row__item">
+          <p>
+            Securely authenticate and add new devices to your managed IoT fleet. Connect them to your private app store
+            with built in cryptographic protection. Control the access to your edge data and interfaces for all of your
+            devices.
+          </p>
+        </div>
+      </div>
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/166662b7-reliable-ota-updates.png",
+                        alt="",
+                        width="852",
+                        height="1279",
+                        hi_def=True,
+                        loading="auto|lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+          <h3 class="p-heading--5">Reliable over-the-air (OTA) updates</h3>
+        </div>
+        <div class="p-equal-height-row__item">
+          <p>
+            Benefit from OTA updates that are transactional, allowing devices to roll back to a stable state if a failure
+            occurs. Deliver application and operating system updates as deltas, minimizing bandwidth consumption and
+            associated costs.
+          </p>
+        </div>
+      </div>
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/a6fc8f4d-organize-your-fleet.png",
+                        alt="",
+                        width="852",
+                        height="1279",
+                        hi_def=True,
+                        loading="auto|lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+          <h3 class="p-heading--5">Organise your fleet</h3>
+        </div>
+        <div class="p-equal-height-row__item">
+          <p>
+            Use device groups to control application workloads by hardware and device function. Curate software bundles
+            for different scenarios. Roll out updates on your terms.
+          </p>
+        </div>
+      </div>
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/79509554-integrate-with-cloud-solutions.png",
+                        alt="",
+                        width="852",
+                        height="1279",
+                        hi_def=True,
+                        loading="auto|lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+          <h3 class="p-heading--5">Integrate with cloud solutions</h3>
+        </div>
+        <div class="p-equal-height-row__item">
+          <p>
+            Deploy and manage your workloads from a public or private cloud of your choice. Reduce the complexity of your
+            stack and optimize your IoT pipeline.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row u-hide--medium u-hide--large">
+      <hr class="p-rule" />
+    </div>
+    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
+      {%- if slot == 'title' -%}
+        <h2>
+          Enterprise-grade solutions
+          <br />
+          for every scenario
+        </h2>
+      {%- endif -%}
+
+      {%- if slot == 'description' -%}
+        <div class="p-section--shallow">
+          <p>
+            We know that everyone’s needs are different. That’s why we have multiple solutions available for you to use to manage your devices.
+          </p>
+          <hr class="p-rule--muted" />
+          <a href="/internet-of-things/contact-us?product=management"
+             class="js-invoke-modal"
+             aria-controls="iot-modal">Get in touch to discuss the best solution for you&nbsp;&rsaquo;</a>
+        </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <div>
+          {{ image(url="https://assets.ubuntu.com/v1/82c0167f-Canonical%20Landscape.png?h=60",
+                    alt="Landscape",
+                    width="150",
+                    height="39",
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
+        </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <div class="p-section--shallow">
+          <p>
+            Landscape from Canonical offers you the fine-grained control you need. Managed installed snaps, updates
+            and snap configurations effortlessly over your entire estate, a group, or even an individual device from a
+            centralized remote portal. With role-based access controls, zero-touch enablement, health monitoring and
+            remote debugging/scripting capabilities, you can rest at`ease knowing everything is secure and up to
+            date.
+          </p>
+          <hr class="p-rule--muted" />
+          <a href="/landscape">Learn more about Landscape&nbsp;&rsaquo;</a>
+        </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <div class="p-section--shallow">
+          {{ image(url="https://assets.ubuntu.com/v1/440c2169-Canonical%20Snapcraft.png",
+                    alt="Snap store",
+                    width="150",
+                    height="39",
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
+        </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <div class="p-section--shallow">
+          <p>
+            The Dedicated Snap Store is a private, and customisable platform for your applications. It’s
+            enterprise-ready and primed for efficient software distribution. It lets you utilise a huge range of our
+            existing apps or build your own. Having a managed app store gives you role-based access controls,
+            application versioning, OTA updates, controlled software rollouts, and much more.
+          </p>
+          <hr class="p-rule--muted" />
+          <a href="/internet-of-things/appstore">Learn more about the Snap Store&nbsp;&rsaquo;</a>
+        </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_3' -%}
+        <div>
+          {{ image(url="https://assets.ubuntu.com/v1/dc17f4fd-microsoft-azure.png",
+                    alt="Microsoft Azure",
+                    width="132",
+                    height="38",
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
+        </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_3' -%}
+        <div>
+          <p>
+            With Azure IoT Edge, Microsoft allows you to bring the power of the cloud down to the edge of your
+            network. Seamlessly integrate all this power with your estate of Ubuntu devices using the Azure supported
+            snap agents, giving you the capability to manage, deploy, and monitor your edge workloads directly from
+            your Azure IoT Hub as well as see your device data appear instantly in your Azure services.
+          </p>
+          <hr class="p-rule--muted" />
+          <a href="/blog/getting-started-with-azure-iot-edge-on-ubuntu-core">Get started with Azure IoT Edge&nbsp;&rsaquo;</a>
+        </div>
+      {%- endif -%}
+
+    {%- endcall -%}
+  </section>
+
+  <div class="p-section">
+    <div class="p-section--shallow">
+      <hr class="p-rule--highlight is-fixed-width" />
+      <div class="row">
+        <div class="col">
+          <h2 class="p-muted-heading">
+            We are making Device Management
+            <br />
+            simple and flexible
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 col-medium-2">
+        <div class="p-section--shallow">
+          {{ image(url="https://assets.ubuntu.com/v1/dc17f4fd-microsoft-azure.png",
+                    alt="Microsoft Azure Logo",
+                    width="114",
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
+        </div>
+      </div>
+      <div class="col-9 col-start-large-4 col-medium-4 col-start-medium-3">
+        <hr class="p-rule--muted" />
+
+        <div class="row">
+          <div class="col-6">
+            <div class="p-section--shallow">
+              <p class="p-heading--6">
+                <i>
+                  “In collaboration with Canonical, we are making it simpler to reliably connect devices to Microsoft Azure IoT services. Snap support in Azure IoT Edge helps ensure consistent performance, enhanced security, and efficient updates across Linux distributions that support Snaps.”
+                </i>
+              </p>
+            </div>
+          </div>
+          <div class="col-3">
+            <hr class="p-rule--muted u-hide--large" />
+            <p>
+              <strong>Kam VedBrat</strong>
+              <br />
+              <span class="u-text--muted">GM, Azure IoT</span>
+            </p>
+
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</section>
+
+  <section class="p-section">
+    <div class="row u-hide--medium u-hide--large">
+      <hr class="p-rule" />
+    </div>
+    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
+      {%- if slot == 'title' -%}
+        <h2>FAQ’s: Landscape for Device Management</h2>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">Can I manage all my devices?</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <p>With Landscape you can manage all Ubuntu devices from a single portal.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">Will I have full control over how and when my devices get updates?</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <p>
+          Landscape allows you to take complete control over your devices. Restrict automatic updates, schedule deployments or use groups to create a coordinated roll-out strategy.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_3' -%}
+        <h3 class="p-heading--5">Are my devices secure and healthy?</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_3' -%}
+        <p>
+          Track security vulnerabilities, USNS, CVEs and updates applicable to your devices from within Landscape. You can use Landscape’s monitoring features to keep an eye on their health and be notified when devices appear to be struggling, and its scripting interface allows you to interrogate and debug devices remotely with minimal effort.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_4' -%}
+        <h3 class="p-heading--5">Can I group my devices for easy administration?</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_4' -%}
+        <p>Yes. With Landscape you can group by tags or custom searches and apply actions as appropriate to those groups.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_5' -%}
+        <h3 class="p-heading--5">Can I bring my updates to the edge?</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_5' -%}
+        <p>
+          Yes, Landscape offers the ability to mirror a repository locally or interact with a dedicated snap store to bring
+          your latest updates closer to your fleet and ensure quick, efficient update delivery to all your fleet.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_6' -%}
+        <h3 class="p-heading--5">What else can I do?</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_6' -%}
+        <p>
+          With the Landscape API, you have full access to your fleet and can incorporate Landscape in your own bespoke tools
+          and workflows with ease.
+        </p>
+      {%- endif -%}
+    {%- endcall -%}
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Resources</h2>
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col-2 col-medium-3">
+            <h3 class="p-heading--5">Whitepaper</h3>
+          </div>
+          <div class="col-4 col-medium-3">
+            <p>
+              <a href="/engage/iot-management-landscape">How to ensure security and uptime during OTA
+              updates&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-2 col-medium-3">
+            <h3 class="p-heading--5">Webinar</h3>
+          </div>
+          <div class="col-4 col-medium-3">
+            <p>
+              <a href="/engage/introduction-core-24">Discover what's new with Ubuntu Core 24&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-2 col-medium-3">
+            <h3 class="p-heading--5">Blog</h3>
+          </div>
+          <div class="col-4 col-medium-3">
+            <p>
+              <a href="/blog/getting-started-with-azure-iot-edge-on-ubuntu-core">
+                Get started with Azure IoT Edge to manage Ubuntu devices&nbsp;&rsaquo;
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section--deep">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Let's work together</h2>
+      </div>
+      <div class="col">
+        <p>
+          We work closely with our customers to solve complex problems together. Our talented engineers are
+          experts in IoT and are well-qualified to provide guidance to both smaller businesses and larger enterprises.
+          Share your story with us and let’s work together.
+        </p>
+        <hr class="p-rule--muted" />
+        <a href="/internet-of-things/contact-us?product=management"
+           class="p-button--positive js-invoke-modal"
+           aria-controls="iot-modal">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  {{ load_form('/internet-of-things', 4296) | safe }}
 
 {% endblock content %}
-{% endblock outer_content %}

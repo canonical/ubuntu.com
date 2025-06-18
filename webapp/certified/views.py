@@ -16,12 +16,12 @@ from requests import Session
 from webapp.certified.api import CertificationAPI, PartnersAPI
 from urllib.parse import urlencode
 
-from webapp.certified.helpers import get_download_url
+from webapp.certified.helpers import _get_category_pathname, get_download_url
 
 session = Session()
 talisker.requests.configure(session)
 api = CertificationAPI(
-    base_url="https://certification.canonical.com/api/v1", session=session
+    base_url="https://certification.canonical.com/api/v2", session=session
 )
 partners_api = PartnersAPI(session=session)
 
@@ -36,6 +36,14 @@ def certified_routes(app):
     """
 
     app.add_url_rule("/certified", view_func=certified_home)
+    app.add_url_rule(
+        "/certified/platforms/<platform_id>",
+        view_func=certified_platform_details,
+    )
+    app.add_url_rule(
+        "/certified/platforms/<platform_id>/<release>",
+        view_func=certified_platform_details_by_release,
+    )
     app.add_url_rule(
         "/certified/<canonical_id>",
         view_func=certified_model_details,
@@ -150,6 +158,60 @@ def _parse_query_params(all_releases, all_vendors):
         return new_query_params
 
 
+def certified_platform_details(platform_id):
+    platform = api.certified_platform_details(platform_id)
+
+    # Get the set of all releases available for this platform
+    releases = set(
+        release
+        for _, certificate in platform["certificates"].items()
+        for release in certificate["releases"]
+    )
+    return render_template(
+        "certified/platforms/platform-details.html",
+        category_pathname=_get_category_pathname(platform["category"]),
+        platform=platform,
+        releases=releases,
+        selected_release=None,
+    )
+
+
+def certified_platform_details_by_release(platform_id, release):
+    platform = api.certified_platform_details(platform_id)
+
+    # Get the set of all releases available for this platform
+    releases = set(
+        release
+        for _, certificate in platform["certificates"].items()
+        for release in certificate["releases"]
+    )
+
+    # If the release specified in the URL is not available for this platform,
+    # render the page for all releases
+    if release not in releases:
+        return render_template(
+            "certified/platforms/platform-details.html",
+            category_pathname=_get_category_pathname(platform["category"]),
+            platform=platform,
+            releases=releases,
+            selected_release=None,
+        )
+
+    # Filter only certificates for the release specified in the URL
+    platform["certificates"] = {
+        canonical_id: certificate
+        for canonical_id, certificate in platform["certificates"].items()
+        if release in certificate["releases"]
+    }
+    return render_template(
+        "certified/platforms/platform-details.html",
+        category_pathname=_get_category_pathname(platform["category"]),
+        platform=platform,
+        releases=releases,
+        selected_release=release,
+    )
+
+
 def get_vendors_releases_filters():
     categories = request.args.getlist("category")
     selected_vendors = request.args.getlist("vendor")
@@ -157,8 +219,8 @@ def get_vendors_releases_filters():
     releases_limit = request.args.get("releases_limit", default=4, type=int)
     vendors_limit = request.args.get("vendors_limit", default=4, type=int)
 
-    certified_releases = api.certified_releases(limit="0")["objects"]
-    certified_makes = api.certified_makes(limit="0")["objects"]
+    certified_releases = api.certified_releases(limit="0")["results"]
+    certified_makes = api.certified_vendors(limit="0")["results"]
 
     (
         laptop_releases,
@@ -176,7 +238,6 @@ def get_vendors_releases_filters():
         vendors,
         releases,
     ) = get_filters(request.args)
-
     new_certified_params = _parse_query_params(vendors, releases)
     if not new_certified_params:
         vendor_filters = []
@@ -210,6 +271,8 @@ def get_vendors_releases_filters():
                 cat = "soc"
 
             for vendor in certified_makes:
+                if vendor["make"] == "nVidia":
+                    vendor["make"] = "NVIDIA"
                 make = vendor["make"]
 
                 if (
@@ -261,8 +324,8 @@ def get_vendors_releases_filters():
 
 
 def get_filters(request_args=None, json: bool = False):
-    certified_releases = api.certified_releases(limit="0")["objects"]
-    certified_makes = api.certified_makes(limit="0")["objects"]
+    certified_releases = api.certified_releases(limit="0")["results"]
+    certified_makes = api.certified_vendors(limit="0")["results"]
 
     # Laptop filters
     laptop_releases = []
@@ -409,12 +472,12 @@ def certified_component_details(component_id):
             current_app.extensions["sentry"].captureException()
             abort(500)
 
-    models_response = api.certified_models(
+    models_response = api.certified_configurations(
         canonical_id__in=component["machine_canonical_ids"],
         limit=0,
     )
 
-    all_machines = models_response["objects"]
+    all_machines = models_response["results"]
 
     machines_by_id = {}
     for machine in all_machines:
@@ -423,7 +486,7 @@ def certified_component_details(component_id):
     machines = machines_by_id.values()
 
     return render_template(
-        "certified/component-details.html",
+        "certified/components/component-details.html",
         component=component,
         machines=sorted(
             machines, key=lambda machine: machine["canonical_id"], reverse=True
@@ -432,16 +495,16 @@ def certified_component_details(component_id):
 
 
 def certified_hardware_details(canonical_id, release):
-    models = api.certified_models(canonical_id=canonical_id)["objects"]
+    models = api.certified_configurations(canonical_id=canonical_id)["results"]
 
     if not models or len(models) == 0:
         abort(404)
 
     models = models[0]
 
-    model_releases = api.certified_model_details(
+    model_releases = api.certified_configuration_details(
         canonical_id=canonical_id, limit="0"
-    )["objects"]
+    )["results"]
 
     # Release section
     release_details = next(
@@ -455,16 +518,16 @@ def certified_hardware_details(canonical_id, release):
     if not release_details:
         abort(404)
 
-    model_devices = api.certified_model_devices(
+    model_devices = api.certified_configuration_devices(
         canonical_id=canonical_id, limit="0"
-    )["objects"]
+    )["results"]
 
     hardware_details = {}
     for device in model_devices:
         device_info = {
             "name": (
                 f"{device['make']} {device['name']}"
-                f" {device['subproduct_name']}"
+                f" {device['subproduct_name'] or ''}"
             ),
             "bus": device["bus"],
             "identifier": device["identifier"],
@@ -481,7 +544,8 @@ def certified_hardware_details(canonical_id, release):
         hardware_details[category].append(device_info)
 
     return render_template(
-        "certified/hardware-details.html",
+        "certified/hardware-details/hardware-details.html",
+        category_pathname=_get_category_pathname(models["category"]),
         canonical_id=canonical_id,
         model_name=models["model"],
         form=models["category"],
@@ -493,15 +557,15 @@ def certified_hardware_details(canonical_id, release):
 
 
 def certified_model_details(canonical_id):
-    model_releases = api.certified_model_details(canonical_id=canonical_id)[
-        "objects"
-    ]
+    model_releases = api.certified_configuration_details(
+        canonical_id=canonical_id
+    )["results"]
 
     if not model_releases:
         abort(404)
 
     component_summaries = api.component_summaries(canonical_id=canonical_id)[
-        "objects"
+        "results"
     ]
 
     release_details = {"components": {}, "releases": []}
@@ -563,8 +627,14 @@ def certified_model_details(canonical_id):
         canonical_id=canonical_id,
         name=model_release["model"],
         category=model_release["category"],
+        category_pathname=_get_category_pathname(model_release["category"]),
         form_factor=form_factor,
         vendor=model_release["make"],
+        platform_name=model_release["platform_name"],
+        platform_id=model_release["platform_id"],
+        platform_certified_configuration_count=model_release[
+            "platform_certified_configuration_count"
+        ],
         major_release=model_release["certified_release"],
         release_details=release_details,
         has_enabled_releases=has_enabled_releases,
@@ -650,7 +720,7 @@ def certified_home():
             else None
         )
 
-        models_response = api.certified_models(
+        models_response = api.certified_configurations(
             category__in=categories,
             major_release__in=releases,
             vendor=vendors,
@@ -659,7 +729,7 @@ def certified_home():
             limit=limit,
         )
 
-        results = models_response["objects"]
+        results = models_response["results"]
 
         # UX improvement: selected filter on top
         vendor_filters.extend(all_vendors)
@@ -671,7 +741,7 @@ def certified_home():
                 results[index]["category"] = "Device"
 
         # Pagination
-        total_results = models_response["meta"]["total_count"]
+        total_results = models_response["count"]
 
         return render_template(
             "certified/search-results.html",
@@ -719,39 +789,41 @@ def create_category_views(category, template_path):
     if category == "Desktop":
         certified_releases = api.certified_releases(
             limit="0", desktops__gte=1
-        )["objects"]
-        certified_makes = api.certified_makes(limit="0", desktops__gte=1)[
-            "objects"
+        )["results"]
+        certified_makes = api.certified_vendors(limit="0", desktops__gte=1)[
+            "results"
         ]
     elif category == "Laptop":
         certified_releases = api.certified_releases(limit="0", laptops__gte=1)[
-            "objects"
+            "results"
         ]
-        certified_makes = api.certified_makes(limit="0", laptops__gte=1)[
-            "objects"
+        certified_makes = api.certified_vendors(limit="0", laptops__gte=1)[
+            "results"
         ]
     elif category == "Server SoC":
         certified_releases = api.certified_releases(limit="0", soc__gte=1)[
-            "objects"
+            "results"
         ]
-        certified_makes = api.certified_makes(limit="0", soc__gte=1)["objects"]
+        certified_makes = api.certified_vendors(limit="0", soc__gte=1)[
+            "results"
+        ]
     elif category == "Ubuntu Core":
         certified_releases = api.certified_releases(
             limit="0", smart_core__gte=1
-        )["objects"]
-        certified_makes = api.certified_makes(limit="0", smart_core__gte=1)[
-            "objects"
+        )["results"]
+        certified_makes = api.certified_vendors(limit="0", smart_core__gte=1)[
+            "results"
         ]
     elif category == "Server":
         certified_releases = api.certified_releases(limit="0", servers__gte=1)[
-            "objects"
+            "results"
         ]
-        certified_makes = api.certified_makes(limit="0", servers__gte=1)[
-            "objects"
+        certified_makes = api.certified_vendors(limit="0", servers__gte=1)[
+            "results"
         ]
     else:
-        certified_releases = api.certified_releases(limit="0")["objects"]
-        certified_makes = api.certified_makes(limit="0")["objects"]
+        certified_releases = api.certified_releases(limit="0")["results"]
+        certified_makes = api.certified_vendors(limit="0")["results"]
 
     # Search results filters
     all_releases = []
@@ -801,7 +873,7 @@ def create_category_views(category, template_path):
         else None
     )
 
-    models_response = api.certified_models(
+    models_response = api.certified_configurations(
         category__in=category,
         major_release__in=releases,
         vendor=vendors,
@@ -810,7 +882,7 @@ def create_category_views(category, template_path):
         limit=limit,
     )
 
-    results = models_response["objects"]
+    results = models_response["results"]
 
     # UX improvement: selected filter on top
     vendor_filters.extend(all_vendors)
@@ -822,7 +894,7 @@ def create_category_views(category, template_path):
             results[index]["category"] = "Device"
 
     # Pagination
-    total_results = models_response["meta"]["total_count"]
+    total_results = models_response["count"]
 
     return render_template(
         template_path,
@@ -884,7 +956,7 @@ def certified_vendors(vendor):
     offset = request.args.get("offset", default=0, type=int)
 
     release_filters = []
-    certified_releases = api.certified_releases(limit="0")["objects"]
+    certified_releases = api.certified_releases(limit="0")["results"]
 
     for release in certified_releases:
         version = release["release"]
@@ -917,7 +989,7 @@ def certified_vendors(vendor):
 
         return redirect(f"/certified?{urlencode(parameters)}", 301)
 
-    models = api.certified_models(
+    models = api.certified_configurations(
         vendor=vendor,
         category__in=categories,
         limit=limit,
@@ -926,13 +998,17 @@ def certified_vendors(vendor):
         major_release__in=releases,
     )
 
-    results = models["objects"]
+    results = models["results"]
     for index, model in enumerate(results):
         # Replace "Ubuntu Core" with "Device"
         if model["category"] == "Ubuntu Core":
             results[index]["category"] = "Device"
 
-    total_results = models["meta"]["total_count"]
+        # Replace "nVidia" with "NVIDIA"
+        if model["make"] == "nVidia":
+            model["make"] = "NVIDIA"
+
+    total_results = models["count"]
 
     return render_template(
         "certified/vendors/vendor.html",

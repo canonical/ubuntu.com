@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useStripe } from "@stripe/react-stripe-js";
 import { getPurchase } from "advantage/api/contracts";
 
@@ -7,9 +7,9 @@ const usePollPurchaseStatus = () => {
   const [pendingPurchaseID, setPendingPurchaseID] = useState("");
   const stripe = useStripe();
 
-  const { isLoading, isError, isSuccess, data, error } = useQuery(
-    ["pendingPurchase", pendingPurchaseID],
-    async () => {
+  const { isLoading, isError, isSuccess, data, error } = useQuery({
+    queryKey: ["pendingPurchase", pendingPurchaseID],
+    queryFn: async () => {
       const purchase = await getPurchase(pendingPurchaseID);
 
       if (purchase.status === "done") {
@@ -56,16 +56,14 @@ const usePollPurchaseStatus = () => {
         throw new Error("Keep looping");
       }
     },
-    {
-      enabled: !!pendingPurchaseID,
-      retry: (
-        _failureCount,
-        error: { message: string; code: string; dontRetry: boolean }
-      ) => {
-        return !error.dontRetry;
-      },
-    }
-  );
+    enabled: !!pendingPurchaseID,
+    retry: (
+      _failureCount,
+      error: { message: string; code: string; dontRetry: boolean },
+    ) => {
+      return !error.dontRetry;
+    },
+  });
 
   return {
     setPendingPurchaseID: setPendingPurchaseID,

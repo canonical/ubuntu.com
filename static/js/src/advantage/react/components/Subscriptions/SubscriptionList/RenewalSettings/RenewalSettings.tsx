@@ -1,4 +1,4 @@
-import React, { ReactNode, RefObject, useCallback, useState } from "react";
+import { ReactNode, RefObject, useCallback, useState } from "react";
 import { Formik } from "formik";
 import {
   ContextualMenu,
@@ -39,7 +39,7 @@ const AutoRenewalLabel = ({
     forHowLong = <strong>for the next year</strong>;
     next = (
       <>
-        The renewal will happen on <strong>{date}</strong>
+        The renewal will happen on <strong>{date.toString()}</strong>
       </>
     );
   } else if (period === "monthly") {
@@ -47,7 +47,7 @@ const AutoRenewalLabel = ({
     forHowLong = <strong>every month</strong>;
     next = (
       <>
-        The next renewal will be on <strong>{date}</strong>
+        The next renewal will be on <strong>{date.toString()}</strong>
       </>
     );
   }
@@ -89,9 +89,7 @@ const AutoRenewalLabel = ({
   );
 };
 
-function generateAutoRenewalToggles(
-  billingSubscriptions: UserSubscription[]
-): {
+function generateAutoRenewalToggles(billingSubscriptions: UserSubscription[]): {
   toggles: ReactNode[];
   initialValues: { [key: string]: boolean };
 } {
@@ -102,14 +100,14 @@ function generateAutoRenewalToggles(
   [UserSubscriptionPeriod.Yearly, UserSubscriptionPeriod.Monthly].forEach(
     (period) => {
       const filteredBillingSubscriptions = billingSubscriptions.filter(
-        (subscription) => subscription.period === period
+        (subscription) => subscription.period === period,
       );
       if (filteredBillingSubscriptions.length === 0) {
         return;
       }
 
       let total = 0;
-      let date: Date | null = null;
+      let date: string | null = null;
       const products: string[] = [];
 
       filteredBillingSubscriptions.forEach((subscription) => {
@@ -118,7 +116,7 @@ function generateAutoRenewalToggles(
             subscription.current_number_of_machines) /
           (100 * subscription.number_of_machines);
         products.push(
-          `${subscription.current_number_of_machines}x ${subscription.product_name}`
+          `${subscription.current_number_of_machines}x ${subscription.product_name}`,
         );
         if (!date) {
           date = subscription.end_date;
@@ -138,11 +136,11 @@ function generateAutoRenewalToggles(
           labelClassName="u-no-margin--bottom"
           name={filteredBillingSubscriptions[0].subscription_id ?? ""}
           type="checkbox"
-        />
+        />,
       );
       initialValues[filteredBillingSubscriptions[0].subscription_id ?? ""] =
         filteredBillingSubscriptions[0].statuses.is_subscription_auto_renewing;
-    }
+    },
   );
 
   return { toggles, initialValues };
@@ -188,7 +186,7 @@ export const RenewalSettings = ({
     );
   } else {
     const { toggles, initialValues } = generateAutoRenewalToggles(
-      renewableSubscriptions
+      renewableSubscriptions,
     );
     content = (
       <Formik
@@ -213,7 +211,7 @@ export const RenewalSettings = ({
             </Notification>
           ) : null}
           <RenewalSettingsForm
-            loading={setAutoRenew.isLoading}
+            loading={setAutoRenew.isPending}
             success={setAutoRenew.isSuccess}
             onCloseMenu={onCloseMenu}
           >

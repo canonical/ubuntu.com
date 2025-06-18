@@ -1,218 +1,197 @@
 {% extends "core/base_core.html" %}
 
 {% block title %}OTA updates | Ubuntu Core{% endblock %}
-{% block meta_description %}Over-the-air updates for Linux devices are reliable and efficient with Ubuntu Core on a wide range of ARM or x86 boards.{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1CftibGyQdcto7E-tUnpwZOXMJsvOegAqk0FyoL3kQEA/edit#{% endblock meta_copydoc %}
 
+{% block meta_description %}
+  Over-the-air updates for Linux devices are reliable and efficient with Ubuntu Core on a wide range of ARM or x86 boards.
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1CftibGyQdcto7E-tUnpwZOXMJsvOegAqk0FyoL3kQEA/edit#
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
 
-<section class="p-strip--suru-bottomed">
-  <div class="row u-equal-height u-vertically-center">
-    <div class="col-7">
-    <h1>Over-the-air updates for Linux, done right</h1>
-    <p>Ubuntu Core sets a new standard for Linux device updates, covering  the kernel, the OS and applications.</p>
-    <p>Transactional updates for reliability. Deltas minimize network traffic. Digital signatures guarantee integrity and provenance.</p>
-    <p class="u-sv3">This is the future of smart things.</p>
-    <p>
-      <a class="p-button--positive" href="/internet-of-things/appstore"> Get an IoT app store</a>
-    </p>
-    <p>
-      <a href="/engage/snapd-whitepaper">OTA updates whitepaper&nbsp;&rsaquo;</a>
-    </p>
+  <section class="p-section--hero">
+    <div class="u-fixed-width p-section--shallow">
+      <h1 class="u-no-margin--bottom">Over-the-air updates for Linux, done right</h1>
+      <h2>Ubuntu Core sets a new standard for Linux device updates, covering  the kernel, the OS and applications.</h2>
     </div>
-    <div class="col-5 u-hide--medium u-hide--small u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/fc3ca86d-bullet+proof.svg",
-        alt="",
-        width="230",
-        height="230",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
+    <div class="row--50-50">
+      <div class="col">
+        <p>
+          Transactional updates for reliability. Deltas minimize network traffic. Digital signatures guarantee integrity and provenance.
+        </p>
+        <div class="p-section--shallow">
+          <p>This is the future of smart things.</p> 
+        </div>
+        <hr class="p-rule--muted" />
+        <a class="p-button--positive" href="/internet-of-things/appstore">Get an IoT app store</a>
+        <a href="/engage/snapd-whitepaper">OTA updates whitepaper&nbsp;&rsaquo;</a>
+      </div>
+      <div class="col u-hide--small">
+        <div class="p-image-container--3-2 is-highlighted">
+          <img class="p-image-container__image"
+               src="https://assets.ubuntu.com/v1/46f1b890-IoT_field_updates_from_Cloud.svg"
+               alt="Iot field updates from cloud"
+               width="550" />
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip">
-  <div class="row">
-    <div class="col-12 u-align--center u-vertically-center">
-    {{ image (
-      url="https://assets.ubuntu.com/v1/46f1b890-IoT_field_updates_from_Cloud.svg",
-      alt="Iot field updates from cloud",
-      width="609",
-      height="364",
-      hi_def=True,
-      loading="auto"
-      ) | safe
-    }}
+  <section class="p-section">
+    <div class="u-fixed-width p-section--shallow">
+      <hr class="p-rule" />
+      <h2>Reliability</h2>
     </div>
-  </div>
-</section>
+    <div class="row--25-75-on-large">
+      <div class="col">
+        <div class="p-equal-height-row">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--2-3 is-highlighted">
+                <img class="p-image-container__image"
+                     src="https://assets.ubuntu.com/v1/6c90dd33-OTA-GIF_5_Transparent.gif"
+                     alt="Safely move forwards and backwards GIF"
+                     style="padding-top: 2rem" />
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h3 class="p-heading--5">Safely move forwards and backwards</h3>
+            </div>
+            <p class="p-equal-height-row__item">
+              Every update preserves the previous version of code and data, so you can safely move applications forwards and backwards in their version history.
+            </p>
+          </div>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--2-3 is-highlighted">
+                <img class="p-image-container__image"
+                     src="https://assets.ubuntu.com/v1/bb60ec1a-OTA-GIF_1_Transparent.gif"
+                     alt="Update streams GIF" />
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h3 class="p-heading--5">Update streams from channels</h3>
+            </div>
+            <div class="p-equal-height-row__item">
+              <p>
+                Every snap can offer multiple streams of updates &mdash; called  channels &mdash; including the version and maturity -edge, beta, stable- of the snap . Switch to ‘3.2/stable’ and you know what you’ll be getting on that machine.
+              </p>
+              <p>
+                That means you can go closer to the edge to see what features are coming, experiment with various versions to see which one suits you best, or stick to the recommended stable branch.
+              </p>
+            </div>
+          </div>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--2-3 is-highlighted">
+                <img class="p-image-container__image"
+                     src="https://assets.ubuntu.com/v1/a015f4cb-OTA-GIF_2_Transparent.gif"
+                     alt="Error handling GIF" />
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h3 class="p-heading--5">Graceful error handling and automatic recovery</h3>
+            </div>
+            <p class="p-equal-height-row__item">
+              Things don’t always work as we want, but snaps have automatic recovery mechanisms. If an error happens at any point during an update, Ubuntu Core will stop and revert to the previous working version of the application.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section class="p-strip--light">
-  <div class="row">
-    <h2 class="u-sv2">Reliability</h2>
-  </div>
-  <div class="row u-equal-height u-vertically-center">
-    <div class="col-7">
-      <p class="p-heading--4">Safely move forwards and backwards</p> 
-      <p>Every update preserves the previous version of code and data, so you can safely move applications forwards and backwards in their version history.</p>
+  <section class="p-section">
+    <div class="u-fixed-width p-section--shallow">
+      <hr class="p-rule" />
+      <h2>Efficiency</h2>
     </div>
-    <div class="col-5 u-hide--medium u-hide--small u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/6c90dd33-OTA-GIF_5_Transparent.gif",
-        alt="Safely move forwards and backwards GIF",
-        width="300",
-        height="100",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
+    <div class="row--25-75-on-large">
+      <div class="col">
+        <div class="p-equal-height-row">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--2-3 is-highlighted">
+                <img class="p-image-container__image"
+                     src="https://assets.ubuntu.com/v1/034e8cc9-ota%20gif%204.gif"
+                     alt="Delta updates GIF" />
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h3 class="p-heading--5">Delta updates</h3>
+            </div>
+            <p class="p-equal-height-row__item">
+              When you make a small change in a large component, snaps will automatically calculate a binary delta to minimize the traffic and time required to distribute that update.
+            </p>
+          </div>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--2-3 is-highlighted">
+                <img class="p-image-container__image"
+                     src="https://assets.ubuntu.com/v1/9209d68b-ota%20gif%203.gif"
+                     alt="Compressed and read only GIF" />
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h3 class="p-heading--5">Compressed and read-only</h3>
+            </div>
+            <p class="p-equal-height-row__item">
+              The content that ships inside snaps is compressed and remains compressed and read-only through the whole life time of the snap, even during normal use after installation. This means the original package digest and signature is never touched.
+            </p>
+          </div>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--2-3 is-highlighted">
+                <img class="p-image-container__image"
+                     src="https://assets.ubuntu.com/v1/b2b8d9b4-ota-stack-case-with-padding.png"
+                     alt="Safe operating system updates" />
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h3 class="p-heading--5">Safe operating system updates</h3>
+            </div>
+            <div class="p-equal-height-row__item">
+              <p>Resilience and flexibility all the way down.</p>
+              <p>
+                The kernel and base operating system are handled as snaps as well, so all the benefits that apply to applications also apply to the system foundation. This means not only benefitting from fast and consistent updates to the core, but also graceful error handling with automatic rollbacks on improperly updated kernels.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="u-fixed-width">
-    <hr class="p-separator"/>
-  </div>
+  <section class="p-section--deep">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Get an IoT app store <br /> for OTA updates</h2>
+      </div>
+      <div class="col">
+        <p>Get your own infrastructure for secure management and seamless software updates for your fleet of devices.</p>
+        <hr class="p-rule--muted" />
+        <p>
+          <a href="/core/contact-us?product=core-ota-updates"
+             class="p-button--positive js-invoke-modal">Get in touch</a>
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <div class="row u-equal-height u-vertically-center">
-    <div class="col-5 u-hide--medium u-hide--small u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/bb60ec1a-OTA-GIF_1_Transparent.gif",
-        alt="Update streams GIF",
-        width="300",
-        height="100",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-    <div class="col-7">
-      <p class="p-heading--4">Update streams from channels</p>
-      <p>Every snap can offer multiple streams of updates - called  channels - including the version and maturity -edge, beta, stable- of the snap . Switch to ‘3.2/stable’ and you know what you’ll be getting on that machine.</p>
-      <p>That means you can go closer to the edge to see what features are coming, experiment with various versions to see which one suits you best, or stick to the recommended stable branch.</p>
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator"/>
-  </div>
-
-  <div class="row u-equal-height u-vertically-center">
-    <div class="col-7">
-      <p class="p-heading--4">Graceful error handling and automatic recovery</p> 
-      <p>Things don’t always work as we want, but snaps have automatic recovery mechanisms. If an error happens at any point during an update, Ubuntu Core will stop and revert to the previous working version of the application.</p>
-    </div>
-    <div class="col-5 u-hide--medium u-hide--small u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/a015f4cb-OTA-GIF_2_Transparent.gif",
-        alt="Error handling GIF",
-        width="300",
-        height="100",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-<div class="row">
-    <h2 class="u-sv2">Efficiency</h2>
-  </div>
-  <div class="row u-equal-height u-vertically-center">
-    <div class="col-7">
-      <p class="p-heading--4">Delta updates</p> 
-      <p>When you make a small change in a large component, snaps will automatically calculate a binary delta to minimize the traffic and time required to distribute that update.</p>
-    </div>
-    <div class="col-5 u-hide--medium u-hide--small u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/8247250c-OTA-GIF_4_WHT.gif",
-        alt="Delta updates GIF",
-        width="300",
-        height="100",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator"/>
-  </div>
-
-  <div class="row u-equal-height u-vertically-center">
-    <div class="col-5 u-hide--medium u-hide--small u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/454d7467-OTA-GIF_3_WHT.gif",
-        alt="Compressed and read only GIF",
-        width="300",
-        height="100",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-    <div class="col-7">
-      <p class="p-heading--4">Compressed and read-only</p>
-      <p>The content that ships inside snaps is compressed and remains compressed and read-only through the whole life time of the snap, even during normal use after installation. This means the original package digest and signature is never touched.</p>
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator"/>
-  </div>
-
-  <div class="row u-equal-height u-vertically-center">
-    <div class="col-7">
-      <p class="p-heading--4">Safe operating system updates</p>
-      <p class="p-heading--5">Resilience and flexibility all the way down.</p> 
-      <p>The kernel and base operating system are handled as snaps as well, so all the benefits that apply to applications also apply to the system foundation. This means not only benefitting from fast and consistent updates to the core, but also graceful error handling with automatic rollbacks on improperly updated kernels.</p>
-    </div>
-    <div class="col-5 u-hide--medium u-hide--small u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/714e4c31-OTA_Stack_Case.svg",
-        alt="Safe operating system updates",
-        width="300",
-        height="130",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-5 u-hide--medium u-hide--small u-align--center">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
-            alt="Get in touch",
-            width="281",
-            height="200",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-    </div>
-    <div class="col-7">
-      <h2>Get an IoT app store for OTA updates</h2>
-      <p>Get your own infrastructure for secure management and seamless software updates for your fleet of devices.</p>
-      <p>
-        <a href="/core/contact-us?product=core-ota-updates" class="p-button--positive js-invoke-modal">Get in touch</a>
-      </p>
-    </div>
-  </div>
-</section>
-
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/internet-of-things" data-form-id="1266" data-lp-id="2166" data-return-url="https://ubuntu.com/core/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-  </div>
-
+  {{ load_form("/core/features") | safe }}
 
 {% endblock content %}

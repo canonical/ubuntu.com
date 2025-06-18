@@ -1,234 +1,249 @@
 {% extends "robotics/base_robotics.html" %}
 
 {% block title %}What is ROS?{% endblock %}
-{% block meta_description %}With hundreds of thousands of drones and robots deployed the world over, Ubuntu Core is the perfect robust, reliable and secure OS for the robotics sector. {% endblock meta_description %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1yX2Ikcn1fgIKX3el8fKWQt7SGxSwY633TfW5V1lwUuc/edit{% endblock meta_copydoc %}
+
+{% block meta_description %}
+  With hundreds of thousands of drones and robots deployed the world over, Ubuntu Core is the perfect robust, reliable and secure OS for the robotics sector.
+{% endblock meta_description %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1yX2Ikcn1fgIKX3el8fKWQt7SGxSwY633TfW5V1lwUuc/edit
+{% endblock meta_copydoc %}
 
 {% block content %}
 
-<section class="p-strip--suru-topped">
-  {% with product = "robotics company" %}
-    {% include "shared/_18-04-eol-banner.html" %}
-  {% endwith %}
+  <section class="p-strip--suru-topped">
+    {% include "shared/_20-04-eol-banner.html" %}
 
-  <div class="row u-equal-height">
-    <div class="col-6">
-      <h1>What is ROS</h1>
-      <p class="p-heading--4">ROS is powering the future of robotics in industry, in the enterprise and for developers</p>
-      <p>Ubuntu has been the primary platform for ROS from the very beginning, thanks to its flexibility and user-friendliness.</p>
-      <p>ROS is led by Open Robotics, similar to how Canonical supports Ubuntu; Open Robotics steers the ship but it is driven by the community.</p>
-      <p>As the robotics industry grows, companies and developers continue turning to Open Robotics and Canonical to help make their vision a reality.</p>
-      <p>
-        <a class="p-button--positive" href="https://wiki.ros.org/ROS/Tutorials">
-          Get started with ROS
-        </a>
-      </p>
-      <p>
-        <a href="/engage/Deploying-ros-applications-Developer-guide">
-          Discover how to deploy ROS applications with snaps&nbsp;&rsaquo;
-        </a>
-      </p>
+    <div class="row u-equal-height">
+      <div class="col-6">
+        <h1>What is ROS</h1>
+        <p class="p-heading--4">ROS is powering the future of robotics in industry, in the enterprise and for developers</p>
+        <p>
+          Ubuntu has been the primary platform for ROS from the very beginning, thanks to its flexibility and user-friendliness.
+        </p>
+        <p>
+          ROS is led by Open Robotics, similar to how Canonical supports Ubuntu; Open Robotics steers the ship but it is driven by the community.
+        </p>
+        <p>
+          As the robotics industry grows, companies and developers continue turning to Open Robotics and Canonical to help make their vision a reality.
+        </p>
+        <p>
+          <a class="p-button--positive" href="https://wiki.ros.org/ROS/Tutorials">Get started with ROS</a>
+        </p>
+        <p>
+          <a href="/engage/deploying-ros-applications-developer-guide">
+            Discover how to deploy ROS applications with snaps&nbsp;&rsaquo;
+          </a>
+        </p>
+      </div>
+      <div class="col-6 u-hide--small u-hide--medium u-vertically-center u-align--center">
+        <div>
+          {{ image(url="https://assets.ubuntu.com/v1/610cb685-canonical+open_robotics.svg",
+                    alt="Canonical + Open Robotics",
+                    height="273",
+                    width="277",
+                    hi_def=True,
+                    loading="auto") | safe
+          }}
+        </div>
+      </div>
     </div>
-    <div class="col-6 u-hide--small u-hide--medium u-vertically-center u-align--center">
-      <div>
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/610cb685-canonical+open_robotics.svg",
-            alt="Canonical + Open Robotics",
-            height="273",
-            width="277",
-            hi_def=True,
-            loading="auto",
-          ) | safe
+  </section>
+
+  <section class="p-strip--light is-deep">
+    <div class="row u-equal-height">
+      <div class="col-8">
+        <h2>What is ROS?</h2>
+        <p>
+          The Robot Operating System (ROS) is an open-source framework that helps researchers and developers build and reuse code between robotics applications. ROS is also a global open-source community of engineers, developers and hobbyists who contribute to making robots better, more accessible and available to everyone.
+        </p>
+      </div>
+      <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
+        {{ image(url="https://assets.ubuntu.com/v1/11f0740f-partner-logo-ros.png",
+                alt="",
+                height="57",
+                width="214",
+                hi_def=True,
+                attrs={"class": ""},
+                loading="lazy") | safe
         }}
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip--light is-deep">
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h2>What is ROS?</h2>
-      <p>The Robot Operating System (ROS) is an open-source framework that helps researchers and developers build and reuse code between robotics applications. ROS is also a global open-source community of engineers, developers and hobbyists who contribute to making robots better, more accessible and available to everyone.</p>
+  <section class="p-strip">
+    <div class="row u-equal-height u-vertically-center">
+      <div class="col-5 u-embedded-media u-hide--small">
+        <iframe title="Getting started with ROS"
+                class="u-embedded-media__element"
+                src="https://www.youtube.com/embed/videoseries?list=PL_2PosskAdC0lfoecAPKBV4GJ0oZv7W_X"
+                allowfullscreen=""></iframe>
+      </div>
+      <div class="col-6 col-start-large-7">
+        {{ image(url="https://assets.ubuntu.com/v1/9b32c9a4-3979232.png",
+                alt="",
+                height="50",
+                width="50",
+                hi_def=True,
+                attrs={"class": ""},
+                loading="lazy") | safe
+        }}
+        <h2>What is ROS 2?</h2>
+        <p>
+          ROS 2 is a complete re-design of the framework, tackling the shortcomings of the first generation, effectively bringing it to industry needs and standards. ROS 2 contains new sets of packages that can be installed alongside ROS 1 to ease migration to a more secure platform. ROS 2 takes advantage of new technologies and newly updated APIs asked for by the community.
+        </p>
+        <p>
+          <a class="p-button--positive"
+             href="https://docs.ros.org/en/humble/Tutorials.html">Get started with ROS 2</a>
+        </p>
+      </div>
     </div>
-    <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/11f0740f-partner-logo-ros.png",
-          alt="",
-          height="57",
-          width="214",
-          hi_def=True,
-          attrs={"class": ""},
-          loading="lazy",
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip">
-  <div class="row u-equal-height u-vertically-center">
-    <div class="col-5 u-embedded-media u-hide--small">
-        <iframe title="Getting started with ROS" class="u-embedded-media__element" src="https://www.youtube.com/embed/videoseries?list=PL_2PosskAdC0lfoecAPKBV4GJ0oZv7W_X" allowfullscreen=""></iframe>
-    </div>
-    <div class="col-6 col-start-large-7">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/9b32c9a4-3979232.png",
-          alt="",
-          height="50",
-          width="50",
-          hi_def=True,
-          attrs={"class": ""},
-          loading="lazy",
-        ) | safe
-      }}
-      <h2>What is ROS 2?</h2>
-      <p>ROS 2 is a complete re-design of the framework, tackling the shortcomings of the first generation, effectively bringing it to industry needs and standards. ROS 2 contains new sets of packages that can be installed alongside ROS 1 to ease migration to a more secure platform. ROS 2 takes advantage of new technologies and newly updated APIs asked for by the community.</p>
-      <p><a class="p-button--positive" href="https://docs.ros.org/en/humble/Tutorials.html">Get started with ROS 2</a></p>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h2>Who uses ROS?</h2>
-      <p>ROS has been adopted into some of the biggest names in robotics. The majority of organisations are either using ROS as it can be installed by anyone or a fork of ROS in some form.</p>
-      <p>And the use-cases are still growing. ROS is used across numerous industries from agriculture to medical devices to vacuum cleaners but is spreading to include all kinds of automation and software-defined dynamic use-cases.</p>
-      <p>These are some of the companies openly using ROS today and the list only grows and diversifies as time progresses.</p>
-    </div>
-    <div class="col-4 u-vertically-center">
-      <div class="p-logo-section has-misaligned-images">
-        <div class="p-logo-section__items">
-          <div class="p-logo-section__item">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/06243b53-otto-logo.svg",
-                alt="OTTO Motors",
-                height="35",
-                width="90",
-                hi_def=True,
-                attrs={"class": "p-logo-section__logo"}, 
-                loading="lazy",
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/255a3171-abb-logo.svg",
-                alt="ABB",
-                height="40",
-                width="80",
-                hi_def=True,
-                attrs={"class": "p-logo-section__logo"}, 
-                loading="lazy",
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/0952e178-doosan-logo.svg",
-                alt="Doosan",
-                height="47",
-                width="100",
-                hi_def=True,
-                attrs={"class": "p-logo-section__logo"}, 
-                loading="lazy",
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/9f8bc8e5-Fetch-2019-Horizontal-331x120.png",
-                alt="Fetch robotics",
-                height="36",
-                width="100",
-                hi_def=True,
-                attrs={"class": "p-logo-section__logo"}, 
-                loading="lazy",
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/59e48f9c-irobot.png",
-                alt="iRobot",
-                height="28",
-                width="100",
-                hi_def=True,
-                attrs={"class": "p-logo-section__logo"}, 
-                loading="lazy",
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/255f733c-robotis_logo.png",
-                alt="Robotis",
-                height="20",
-                width="100",
-                hi_def=True,
-                attrs={"class": "p-logo-section__logo"}, 
-                loading="lazy",
-              ) | safe
-            }}
+  <section class="p-strip--light">
+    <div class="row u-equal-height">
+      <div class="col-8">
+        <h2>Who uses ROS?</h2>
+        <p>
+          ROS has been adopted into some of the biggest names in robotics. The majority of organisations are either using ROS as it can be installed by anyone or a fork of ROS in some form.
+        </p>
+        <p>
+          And the use-cases are still growing. ROS is used across numerous industries from agriculture to medical devices to vacuum cleaners but is spreading to include all kinds of automation and software-defined dynamic use-cases.
+        </p>
+        <p>
+          These are some of the companies openly using ROS today and the list only grows and diversifies as time progresses.
+        </p>
+      </div>
+      <div class="col-4 u-vertically-center">
+        <div class="p-logo-section has-misaligned-images">
+          <div class="p-logo-section__items">
+            <div class="p-logo-section__item">
+              {{ image(url="https://assets.ubuntu.com/v1/06243b53-otto-logo.svg",
+                            alt="OTTO Motors",
+                            height="35",
+                            width="90",
+                            hi_def=True,
+                            attrs={"class": "p-logo-section__logo"},
+                            loading="lazy") | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image(url="https://assets.ubuntu.com/v1/255a3171-abb-logo.svg",
+                            alt="ABB",
+                            height="40",
+                            width="80",
+                            hi_def=True,
+                            attrs={"class": "p-logo-section__logo"},
+                            loading="lazy") | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image(url="https://assets.ubuntu.com/v1/0952e178-doosan-logo.svg",
+                            alt="Doosan",
+                            height="47",
+                            width="100",
+                            hi_def=True,
+                            attrs={"class": "p-logo-section__logo"},
+                            loading="lazy") | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image(url="https://assets.ubuntu.com/v1/9f8bc8e5-Fetch-2019-Horizontal-331x120.png",
+                            alt="Fetch robotics",
+                            height="36",
+                            width="100",
+                            hi_def=True,
+                            attrs={"class": "p-logo-section__logo"},
+                            loading="lazy") | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image(url="https://assets.ubuntu.com/v1/59e48f9c-irobot.png",
+                            alt="iRobot",
+                            height="28",
+                            width="100",
+                            hi_def=True,
+                            attrs={"class": "p-logo-section__logo"},
+                            loading="lazy") | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image(url="https://assets.ubuntu.com/v1/255f733c-robotis_logo.png",
+                            alt="Robotis",
+                            height="20",
+                            width="100",
+                            hi_def=True,
+                            attrs={"class": "p-logo-section__logo"},
+                            loading="lazy") | safe
+              }}
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip">
-  <div class="row u-equal-height">
-    <h2 class="u-sv2">Why use ROS?</h2>
-    <div class="col-6">
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">ROS was built with cross-collaboration in mind. The base code and knowledge can be applied across all robotics platforms (arms, drones, mobile bases, etc.) You'll be able to reuse what you already know and stop reinventing the wheel.</li>
-        <li class="p-list__item is-ticked">It can be built into your product. Most of the core ROS 1 packages are under a BSD license and ROS 2 packages are under Apache. This license allows for the modification of code for commercial purposes without having to release your code with an open-source license.</li>
-        <li class="p-list__item is-ticked">ROS robots can speak any language. You can communicate easily between Python and C++ nodes, get libraries to allow you to use most other languages or install rosbridge and use any language that can speak JSON.  </li>
-      </ul>
+  <section class="p-strip">
+    <div class="row u-equal-height">
+      <h2 class="u-sv2">Why use ROS?</h2>
+      <div class="col-6">
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">
+            ROS was built with cross-collaboration in mind. The base code and knowledge can be applied across all robotics platforms (arms, drones, mobile bases, etc.) You'll be able to reuse what you already know and stop reinventing the wheel.
+          </li>
+          <li class="p-list__item is-ticked">
+            It can be built into your product. Most of the core ROS 1 packages are under a BSD license and ROS 2 packages are under Apache. This license allows for the modification of code for commercial purposes without having to release your code with an open-source license.
+          </li>
+          <li class="p-list__item is-ticked">
+            ROS robots can speak any language. You can communicate easily between Python and C++ nodes, get libraries to allow you to use most other languages or install rosbridge and use any language that can speak JSON.
+          </li>
+        </ul>
+      </div>
+      <div class="col-6">
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">
+            ROS is here to stay. ROS and the community around it have been growing since 2007 thanks to contributions from an incredibly smart and open community. With the market share ROS has acquired and the ongoing development of ROS2, robots will be the future.
+          </li>
+          <li class="p-list__item is-ticked">
+            There is a package for everything. Whether you want to compute trajectory, conduct SLAM algorithms or implement remote control, there's a ROS package for that.
+          </li>
+          <li class="p-list__item is-ticked">
+            Digital twinning. ROS allows developers to easily simulate their robot in any environment, before deploying anything in the real world. Tools like Gazebo even allow you to create simulations with robots you don't possess.
+          </li>
+          <li class="p-list__item is-ticked">
+            It's open-source. ROS has contributors all over the world using ROS for countless different purposes. Every contribution feeds into continuously developing, leading stack that ROS is.
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="col-6">
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">ROS is here to stay. ROS and the community around it have been growing since 2007 thanks to contributions from an incredibly smart and open community. With the market share ROS has acquired and the ongoing development of ROS2, robots will be the future.</li>
-        <li class="p-list__item is-ticked">There is a package for everything. Whether you want to compute trajectory, conduct SLAM algorithms or implement remote control, there's a ROS package for that.</li>
-        <li class="p-list__item is-ticked">Digital twinning. ROS allows developers to easily simulate their robot in any environment, before deploying anything in the real world. Tools like Gazebo even allow you to create simulations with robots you don't possess.</li>
-        <li class="p-list__item is-ticked">It's open-source. ROS has contributors all over the world using ROS for countless different purposes. Every contribution feeds into continuously developing, leading stack that ROS is.</li>
-      </ul>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip--light">
-  <div class="row u-vertically-center u-align--center">
-    <div class="col-8">
-      <h2>Join the community</h2>
-      <p>ROS is more than 10 years old, and in that time has grown to be the biggest robotics developer community on the planet. There are annual ROSCon events where developers and robot enthusiasts of all kinds come together to learn new things, present their projects and network with each other. There are even several official national events you can attend such as ROSCon Japan or ROSCon France.</p>
-      <p><a class="p-button--positive" href="https://roscon.ros.org/2020/">Come to ROSCon</a></p>
-      <p><a href="/robotics/community">Learn more about the community&nbsp;&rsaquo;</a></p>
+  <section class="p-strip--light">
+    <div class="row u-vertically-center u-align--center">
+      <div class="col-8">
+        <h2>Join the community</h2>
+        <p>
+          ROS is more than 10 years old, and in that time has grown to be the biggest robotics developer community on the planet. There are annual ROSCon events where developers and robot enthusiasts of all kinds come together to learn new things, present their projects and network with each other. There are even several official national events you can attend such as ROSCon Japan or ROSCon France.
+        </p>
+        <p>
+          <a class="p-button--positive" href="https://roscon.ros.org/2020/">Come to ROSCon</a>
+        </p>
+        <p>
+          <a href="/robotics/community">Learn more about the community&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+      <div class="col-4 u-hide--medium u-hide--small">
+        {{ image(url="https://assets.ubuntu.com/v1/69237fec-ROS-10-years.png",
+                alt="ROS 10 years",
+                height="155",
+                width="260",
+                hi_def=True,
+                attrs={"class": ""},
+                loading="lazy") | safe
+        }}
+      </div>
     </div>
-    <div class="col-4 u-hide--medium u-hide--small">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/69237fec-ROS-10-years.png",
-          alt="ROS 10 years",
-          height="155",
-          width="260",
-          hi_def=True,
-          attrs={"class": ""},
-          loading="lazy",
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
+  </section>
 
 {% endblock content %}

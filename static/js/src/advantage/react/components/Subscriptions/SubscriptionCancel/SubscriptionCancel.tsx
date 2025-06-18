@@ -6,7 +6,7 @@ import {
   Spinner,
 } from "@canonical/react-components";
 import type { ModalProps } from "@canonical/react-components";
-import React, { useState } from "react";
+import { useState } from "react";
 import * as Yup from "yup";
 import {
   useCancelContract,
@@ -37,7 +37,7 @@ const CancelSchema = Yup.object().shape({
     .test(
       "confirmationText",
       "You must enter the correct confirmation text",
-      (item) => item?.toLowerCase() === "cancel"
+      (item) => item?.toLowerCase() === "cancel",
     )
     .required("The confirmation text is required"),
 });
@@ -84,7 +84,7 @@ const SubscriptionCancel = ({
                 setError(
                   error.message.includes("no monthly subscription")
                     ? CancelError.SubscriptionMissing
-                    : CancelError.Failed
+                    : CancelError.Failed,
                 ),
               onSuccess: () => {
                 onCancelSuccess();
@@ -107,6 +107,7 @@ const SubscriptionCancel = ({
               },
             });
           }
+          window.usabilla_live("trigger", "cancel popup survey");
         }}
         validateOnMount
         validationSchema={CancelSchema}
@@ -118,7 +119,7 @@ const SubscriptionCancel = ({
                 appearance={ButtonAppearance.NEGATIVE}
                 className="u-no-margin--bottom"
                 disabled={!isValid}
-                loading={cancelContract.isLoading}
+                loading={cancelContract.isPending}
                 success={cancelContract.isSuccess}
                 onClick={() => handleSubmit()}
                 type="button"

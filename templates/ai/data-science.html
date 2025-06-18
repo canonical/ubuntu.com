@@ -1,0 +1,499 @@
+{% extends "ai/base_ai.html" %}
+
+{% block title %}Data science on Ubuntu made easy{% endblock %}
+
+{% block meta_description %}
+  Set up ML environments with ease on your AI workstation with an out-of-the-box solution for data science on Ubuntu
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1GdVmQD9EDf_ksN6r1qWTYSwvdynCzAE8wtKaEdtzDo8/edit
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+
+  <section class="p-strip is-shallow u-no-padding--bottom">
+    <div class="row">
+      <div class="col-start-large-4 col-9">
+        <div class="p-section--shallow">
+          <h1>Data Science Stack on Ubuntu</h1>
+        </div>
+        <div class="p-section--shallow">
+          <p>Set up ML environments with ease on your AI workstation using an out-of-the-box solution for data science.</p>
+        </div>
+        <hr class="p-rule" />
+        <a class="p-button--positive"
+           href="https://documentation.ubuntu.com/data-science-stack/en/latest/tutorial/">Try it out</a>
+        <a href="/engage/data-science-stack">Watch the webinar to learn more&nbsp;&rsaquo;</a>
+      </div>
+    </div>
+    <div class="u-fixed-width u-no-padding u-hide--small u-hide--medium">
+      <img src="https://assets.ubuntu.com/v1/7f34ade9-website_suru_25.jpg"
+           alt=""
+           style="aspect-ratio: 5.1775700934579;
+                  width: 100%" />
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+      <h2 class="p-text--small-caps">Get started with data science on your workstation or public cloud</h2>
+    </div>
+    <div class="u-fixed-width">
+      <div class="p-logo-section">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/928e43c9-google-cloud-logo.png",
+                        alt="Google Cloud",
+                        width="382",
+                        height="312",
+                        hi_def=True,
+                        loading="auto",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/daf5ad79-lenovo-logo.png",
+                        alt="Lenovo",
+                        width="203",
+                        height="312",
+                        hi_def=True,
+                        loading="auto",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/6bdb9d14-microsoft-azure-2021.png",
+                        alt="Microsoft Azure",
+                        width="95",
+                        height="312",
+                        hi_def=True,
+                        loading="auto",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/18492406-aws-logo.png",
+                        alt="AWS",
+                        width="152",
+                        height="312",
+                        hi_def=True,
+                        loading="auto",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/34dacc75-hp-logo.png",
+                        alt="HP",
+                        width="134",
+                        height="312",
+                        hi_def=True,
+                        loading="auto",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/43635925-dell-technologies-logo.png",
+                        alt="Dell",
+                        width="172",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/5fdeba6f-nvidia-logo.png",
+                        alt="Nvidia",
+                        width="310",
+                        height="312",
+                        hi_def=True,
+                        loading="auto",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <div class="p-section--shallow">
+          <h2>Why choose Ubuntu for Data Science?</h2>
+        </div>
+      </div>
+      <div class="col">
+        <ul class="p-list--divided u-no-margin--bottom">
+          <li class="p-list__item has-bullet">
+            Get started on your workstation to develop models. Scale as you upskill and deploy in production when needed using an MLOps platform.
+          </li>
+          <li class="p-list__item has-bullet">
+            Benefit from long-term support (LTS), which is released every 2 years, with 5 years of standard support extended up to 12 years with an Ubuntu Pro Desktop subscription.
+          </li>
+          <li class="p-list__item has-bullet">
+            Access secure and supporting data science and ML packages such as Python, Tensorflow, PyTorch or MLflow.
+          </li>
+          <li class="p-list__item has-bullet">
+            Ubuntu is the target platform for NVIDIA AI Workbench and Canonical Data Science Stack. It enables accelerated data science workloads to run locally from multiple GPU silicon vendors, including NVIDIA or Intel.
+          </li>
+        </ul>
+        <p>
+          <a href="/blog/ubuntu-ai-ml-projects">Top 5 reasons to use Ubuntu for your AI/ML projects&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+      <h2>Get leading open source ML tools seamlessly integrated</h2>
+    </div>
+    <div class="u-fixed-width">
+      <div class="p-logo-section">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/1235cc46-jupyter-logo.png",
+                        alt="Jupyter",
+                        width="156",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/44682455-apache-spark-logo.png",
+                        alt="Apache Spark",
+                        width="240",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/d26cee62-kubeflow-logo.png",
+                        alt="Kubeflow",
+                        width="308",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/c81b8267-grafana-logo.png",
+                        alt="Grafana",
+                        width="140",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/cf310214-prometheus logo.png",
+                        alt="Prometheus",
+                        width="102",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/729e2469-juju-logo.png",
+                        alt="Juju",
+                        width="187",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/8aa72b35-mlflow-logo.png",
+                        alt="MLFlow",
+                        width="222",
+                        height="312",
+                        hi_def=True,
+                        loading="auto",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/c2d27381-kafka.png",
+                        alt="Kafka",
+                        width="228",
+                        height="256",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/ddbc4d23-kserve-logo.png",
+                        alt="Kserve",
+                        width="133",
+                        height="384",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/82b6515d-keras-logo.png",
+                        alt="Keras",
+                        width="225",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/ed1d71a2-knative-logo.png",
+                        alt="Knative",
+                        width="125",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/0ee7c9ab-nvidia-triton-server-logo.png",
+                        alt="Nvidia Triton Server",
+                        width="202",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/3e821f3a-onnx logo.png",
+                        alt="ONNX",
+                        width="283",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/79e66821-opensearch-logo.png",
+                        alt="Open Search",
+                        width="103",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/cd3035af-pachyderm-logo.png",
+                        alt="Pachyderm",
+                        width="305",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/072c8b63-pytorch-logo.png",
+                        alt="PyTorch",
+                        width="272",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/35b15da5-seldon-logo.png",
+                        alt="Seldon",
+                        width="304",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/95889c36-tensorflow-logo.png",
+                        alt="TensorFlow",
+                        width="208",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <div class="p-section--shallow">
+          <h2>What is Data Science Stack?</h2>
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <p>Get started with data science using a few commands.</p>
+          <hr class="p-rule--muted" />
+          <ul class="p-list--divided u-no-margin--bottom">
+            <li class="p-list__item has-bullet">Get an ML environment ready within minutes on any Linux distribution</li>
+            <li class="p-list__item has-bullet">
+              Streamline the complexity of GPU configuration and quickly attach it run containerised workloads
+            </li>
+            <li class="p-list__item has-bullet">Manage multiple machine-learning environments with an intuitive CLI and UI</li>
+            <li class="p-list__item has-bullet">Access leading open source ML tooling such as Jupyter Notebook or MLflow</li>
+          </ul>
+        </div>
+        <p>
+          <a class="p-button--positive js-invoke-modal" href="/ai/contact-us">Contact us <span class="u-off-screen">about data science stack</span></a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <div class="p-section--shallow">
+          <h2>What's inside Data Science Stack?</h2>
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+
+          <p>Data science stack includes tools that will help you get started easily:</p>
+          <hr class="p-rule--muted" />
+          <ul class="p-list--divided u-no-margin--bottom">
+            <li class="p-list__item is-ticked">JupyterLab for ETL, model training and experimentation</li>
+            <li class="p-list__item is-ticked">MLFlow for experiment tracking and model registry</li>
+            <li class="p-list__item is-ticked">ML frameworks by default, include PyTorch or TensorFlow</li>
+            <li class="p-list__item is-ticked">GPU support for different types and easy enablement</li>
+          </ul>
+          <hr class="p-rule--muted" />
+          <p>Fully configure your chosen stack to your specific needs.</p>
+        </div>
+        <p>
+          <a class="p-button--positive"
+             href="https://documentation.ubuntu.com/data-science-stack/en/latest/">Try <span aria-hidden="true">it</span><span class="u-off-screen">data science stack</span> now</a>
+          <a href="https://assets.ubuntu.com/v1/cda5172b-Data%20Science%20Stack%20Datasheet.pdf">Learn more with our datasheet&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--25-75-on-large">
+      <hr class="p-rule" />
+      <div class="col">
+        <div class="p-section--shallow">
+          <h2 class="p-text--small-caps">
+            Why choose
+            <br />
+            Data Science Stack?
+          </h2>
+        </div>
+      </div>
+      <div class="col">
+        <p class="p-heading--2">Improve developer productivity</p>
+        <hr class="p-rule--muted" />
+        <p class="p-heading--2">Easy to use on any AI workstation</p>
+        <hr class="p-rule--muted" />
+        <p class="p-heading--2">Run your ML workloads in a secure environment</p>
+        <hr class="p-rule--muted" />
+        <p class="p-heading--2">Begin your AI journey on Ubuntu</p>
+        <hr class="p-rule--muted" />
+        <p class="p-heading--2">One vendor to support your AI stack</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <div class="p-section--shallow">
+          <h2>Scale your AI workloads with an MLOps platform</h2>
+        </div>
+      </div>
+      <div class="col">
+        <p>
+          Machine learning operations (<a href="/blog/what-is-mlops">MLOps</a>) is a practice that enables data scientists and ML engineers to develop and deploy models in a reproducible and repeatable manner.
+        </p>
+        <p>
+          Charmed Kubeflow is an MLOps platform that covers the entire ML lifecycle. It is a cloud-native application that runs anywhere, whether in a private or public cloud, supporting even hybrid or multi-cloud scenarios.
+        </p>
+        <hr class="p-rule--muted" />
+        <a href="/engage/mlops-guide" class="p-button">Download the <span class="u-off-screen">MLOps</span> guide</a>
+        <a href="/ai/what-is-kubeflow">What is Kubeflow?</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <div class="p-section--shallow">
+          <h2>Open source AI resources</h2>
+        </div>
+      </div>
+      <div class="col">
+        <a class="p-heading--5" href="/engage/data-science-tools">Data science tools</a>
+        <p>Learn how to select your data science tools and quickly get your environment ready on Ubuntu.</p>
+        <hr class="p-rule--muted" />
+        <a class="p-heading--5"
+           href="/blog/upgrade-data-science-workflows-ubuntu-wsl">Upgrade your data science workflows with Ubuntu WSL</a>
+        <p>Learn how to upgrade your data science workflows with WSL.</p>
+        <hr class="p-rule--muted" />
+        <a class="p-heading--5" href="/engage/kubeflow-vs-mlflow">Kubeflow vs MLFlow</a>
+        <p>
+          Choosing a suitable machine learning tool can often be challenging. Understand the differences between the most famous open source solutions.
+        </p>
+        <hr class="p-rule--muted" />
+        <a class="p-heading--5" href="/blog/machine-learning-security-risks">An overview of machine learning security risks</a>
+        <p>Be on top of the security risks for machine learning projects and learn how to mitigate them.</p>
+        <div>
+          <hr class="p-rule--muted" />
+          <a class="p-heading--5"
+             href="/engage/guide-to-managed-ai-infrastructure">Guide to Managed AI Infrastructure</a>
+          <p>
+            Discover how managed AI infrastructure can accelerate deployments and increase security in our latest executive guide.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide"
+       id="contact-form-container"
+       data-form-location="/shared/forms/interactive/ai-data-science"
+       data-form-id="5917"
+       data-lp-id="6279"
+       data-return-url="https://ubuntu.com/ai/thank-you?product=ai-data-science"
+       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+
+{% endblock content %}

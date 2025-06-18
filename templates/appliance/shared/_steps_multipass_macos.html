@@ -1,7 +1,5 @@
 <li class="p-stepped-list__item">
-  <h4 class="p-stepped-list__title">
-    Install Multipass
-  </h4>
+  <h4 class="p-stepped-list__title">Install Multipass</h4>
   <div class="p-stepped-list__content">
     <ol>
       <li>
@@ -10,24 +8,17 @@
         </p>
       </li>
       <li>
-        <p>
-          Activate the downloaded installer in an account with Administrator privileges.
-        </p>
-        {{
-          image (
-          url="https://assets.ubuntu.com/v1/ac6f638d-multipass-macos-install-screen.png",
-          alt="",
-          width="658",
-          height="475",
-          hi_def=True,
-          loading="lazy",
-          ) | safe
+        <p>Activate the downloaded installer in an account with Administrator privileges.</p>
+        {{ image(url="https://assets.ubuntu.com/v1/e16fba1a-vm-macos.png",
+                alt="",
+                width="1656",
+                height="1196",
+                hi_def=True,
+                loading="lazy") | safe
         }}
       </li>
       <li>
-        <p>
-          To start Multipass with VirtualBox use this Terminal app command:
-        </p>
+        <p>To start Multipass with VirtualBox use this Terminal app command:</p>
         <pre><code>sudo multipass set local.driver=virtualbox</code></pre>
       </li>
     </ol>

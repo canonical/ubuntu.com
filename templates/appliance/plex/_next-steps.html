@@ -1,26 +1,35 @@
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-6">
+<section class="p-section--deep">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
       <h2>
-        Start using your {{ appliance.name }} Ubuntu Appliance
+        Start using your Plex
+        <br />
+        Ubuntu Appliance
       </h2>
+    </div>
+    <div class="col">
+      <div class="p-section--shallow">
+        <div class="p-image-container is-highlighted">
+          {{ image(url="https://assets.ubuntu.com/v1/fdf9ef8d-bottom-plex.png",
+                    alt="",
+                    width="1800",
+                    height="1200",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
+        </div>
+      </div>
       <p>
         When you start Plex Media Server for the first time you make an account and go through some initial configuration. To do so, open a browser and go to:
       </p>
+      {# djlint:off #}
       <pre><code>http://&lt;IP-of-your-appliance&gt;:32400/web</code></pre>
+      {# djlint:on #}
       <p>
         Then just follow the instructions on the screen. For more information or more <a href="https://support.plex.tv/articles/">documentation</a>, the <a href="https://www.plex.tv/">Plex Media Server website</a> is the best place to go next.
       </p>
     </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{  image(
-        url="https://assets.ubuntu.com/v1/5765e231-plex-first-screen.png",
-        alt="Plex welcome screen",
-        width="717",
-        height="480",
-        hi_def=True,
-        loading="lazy",
-        ) | safe}}
-      </div>
-    </div>
-  </section>
+  </div>
+</section>

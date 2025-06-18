@@ -1,5 +1,5 @@
 export const makeInteractiveProps = <E = HTMLDivElement>(
-  onInteraction: (...args: unknown[]) => unknown
+  onInteraction: (...args: unknown[]) => unknown,
 ) => {
   return {
     onClick: onInteraction,

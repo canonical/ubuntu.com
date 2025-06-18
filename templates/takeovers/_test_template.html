@@ -1,0 +1,24 @@
+<section class="p-section--hero js-takeover">
+  <div class="row--50-50 p-section--shallow">
+    <div class="col">
+      <h1 class="u-no-margin--bottom">
+        {{ title_1 }}
+        <br />
+        {{ title_2 }}
+      </h1>
+    </div>
+    <div class="col">
+      <div class="p-section--shallow u-no-padding--top">
+        <h2>{{ subtitle }}</h2>
+      </div>
+      <hr class="p-rule--muted" />
+      {% if button_url %}<a href="{{ button_url }}" class="p-button--positive">{{ button_text }}</a>{% endif %}
+    </div>
+  </div>
+  <div class="u-align--center">
+    <img src="{{ img_url }}"
+         alt=""
+         width="{{ img_width }}"
+         height="{{ img_height }}" />
+  </div>
+</section>

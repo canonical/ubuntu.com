@@ -1,0 +1,94 @@
+<h2 class="p-muted-heading">Filters</h2>
+<a href="#drawer"
+    class="p-side-navigation__toggle js-drawer-toggle"
+    aria-controls="drawer">Toggle filters</a>
+<div class="p-side-navigation__overlay" aria-controls="drawer"></div>
+<nav class="p-side-navigation__drawer" aria-label="Filter list">
+  <div class="p-side-navigation__drawer-header">
+    <a href="#"
+        class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
+        aria-controls="drawer"
+        id="toggle-filters">Toggle filters</a>
+  </div>
+  <div>
+    <aside class="p-accordion js-filter-count" data-multiple-expanded="true">
+      <ul class="p-accordion__list">
+        <li class="p-accordion__group">
+          <div role="heading" aria-level="2">
+            <button type="button"
+                    class="p-accordion__tab u-no-padding--right"
+                    id="tab1"
+                    aria-controls="tab1-section"
+                    aria-expanded="true">
+              <span class="p-heading--5">Category</span>
+            </button>
+          </div>
+          {% include "/certified/search/_category-filters.html" %}
+        </li>
+        <li class="p-accordion__group" id="vendor-section">
+          <div role="heading" aria-level="2">
+            <button type="button"
+                    class="p-accordion__tab u-no-padding--right"
+                    id="tab2"
+                    aria-controls="tab2-section"
+                    aria-expanded="true">
+              <span class="p-heading--5">Vendor</span>
+            </button>
+          </div>
+          <section class="p-accordion__panel is-dense"
+                    id="tab2-section"
+                    aria-hidden="false"
+                    aria-labelledby="tab2">
+          </section>
+          <div class="js-show-expanded-vendor-filter-options">
+            <button class="p-button--link js-vendor-count p-reveal-vendors is-dense js-show-all-vendors"
+                    name="vendor"
+                    onclick="toggleExpandFilters(event, this)"
+                    value="true">Show all vendors</button>
+            <button class="p-button--link p-reveal-vendors is-dense js-show-less-vendors u-hide"
+                    name="vendor"
+                    onclick="toggleExpandFilters(event, this)"
+                    value="false">Show fewer</button>
+          </div>
+        </li>
+        <li class="p-accordion__group" id="version-section">
+          <div role="heading" aria-level="2">
+            <button type="button"
+                    class="p-accordion__tab u-no-padding--right"
+                    aria-controls="tab3-section"
+                    id="tab3"
+                    aria-expanded="true">
+              <span class="p-heading--5">Certified ubuntu release</span>
+            </button>
+          </div>
+          <section class="p-accordion__panel is-dense"
+                    id="tab3-section"
+                    aria-hidden="false"
+                    aria-labelledby="tab3">
+          </section>
+          <div class="js-show-expanded-release-filter-options">
+            <button class="p-button--link p-reveal-versions is-dense js-show-all-releases"
+                    name="release"
+                    onclick="toggleExpandFilters(event, this)"
+                    value="true">Show all versions</button>
+            <button class="p-button--link p-reveal-versions is-dense js-show-less-releases u-hide"
+                    name="release"
+                    onclick="toggleExpandFilters(event, this)"
+                    value="false">Show fewer</button>
+          </div>
+        </li>
+      </ul>
+    </aside>
+    <div class="certified-filters-footer">
+      <div class="certified-filters-footer-buttons p-cta-block">
+        <button class="p-button--positive"
+                onclick="return submitFilters()">Apply filters</button>
+        <button class="p-button"
+                onclick="return clearFilters()">Clear all filters</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script type="text/javascript"
+        src="/static/js/src/side-navigation.js"></script>

@@ -1,100 +1,121 @@
-import React from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Field, useFormikContext } from "formik";
 import { CheckboxInput, Col, Input, Row } from "@canonical/react-components";
-import { Action, FormValues, Product } from "../../utils/types";
+import {
+  Action,
+  CheckoutProducts,
+  FormValues,
+  Product,
+} from "../../utils/types";
 
 type Props = {
-  product: Product;
+  products: CheckoutProducts[];
   action: Action;
 };
 
-const ConfirmAndBuy = ({ product, action }: Props) => {
-  const {
-    values,
-    touched,
-    errors,
-    setFieldValue,
-  } = useFormikContext<FormValues>();
+const ConfirmAndBuy = ({ products, action }: Props) => {
+  const { touched, errors, setFieldValue } = useFormikContext<FormValues>();
   const onCaptchaChange = (value: string | null) => {
     window.captcha = value;
     setFieldValue("captchaValue", window.captcha);
   };
+  const product = products[0].product;
 
   const { termsLabel, descriptionLabel, marketingLabel } = getLabels(
     product,
-    action
+    action,
   );
+
+  const ReCAPTCHAComponent = ReCAPTCHA as unknown as React.ComponentType<any>;
+
+  const validateCheckbox = (value: boolean) => {
+    if (!value) {
+      return "This field is required.";
+    }
+    return undefined;
+  };
 
   return (
     <Row>
       <Col size={12}>
-        <Field
-          as={CheckboxInput}
-          name="TermsAndConditions"
-          label={termsLabel}
-          checked={values.TermsAndConditions}
-          defaultChecked={false}
-          validate={(value: string) => {
-            if (!value) {
-              return "This field is required.";
-            }
-            return;
-          }}
-          required
-          error={touched?.TermsAndConditions && errors?.TermsAndConditions}
-        />
-        {touched?.TermsAndConditions && errors?.TermsAndConditions && (
-          <div className="p-form-validation is-error">
-            <div
-              className="p-form-validation__message"
-              id="exampleInputErrorMessage"
-              style={{ marginTop: "0.5rem" }}
-            >
-              <strong>Error:</strong> This field is required.
-            </div>
-          </div>
-        )}
+        <Field name="TermsAndConditions" validate={validateCheckbox}>
+          {({ field, form }: any) => (
+            <>
+              <CheckboxInput
+                {...field}
+                id="TermsAndConditions"
+                checked={field.value}
+                onChange={() =>
+                  form.setFieldValue("TermsAndConditions", !field.value)
+                }
+                label={termsLabel}
+                validate={(value: string) => {
+                  if (!value) {
+                    return "This field is required.";
+                  }
+                  return;
+                }}
+                required
+              />
+              {touched?.TermsAndConditions && errors?.TermsAndConditions && (
+                <div className="p-form-validation is-error">
+                  <div
+                    className="p-form-validation__message"
+                    id="exampleInputErrorMessage"
+                    style={{ marginTop: "0.5rem" }}
+                  >
+                    <strong>Error:</strong> This field is required.
+                  </div>
+                </div>
+              )}
+            </>
+          )}
+        </Field>
       </Col>
       <Col size={12}>
-        <Field
-          as={CheckboxInput}
-          name="Description"
-          label={descriptionLabel}
-          checked={values.Description}
-          defaultChecked={false}
-          validate={(value: string) => {
-            if (!value) {
-              return "This field is required.";
-            }
-            return;
-          }}
-          required
-          error={touched?.Description && errors?.Description}
-        />
-        {touched?.Description && errors?.Description && (
-          <div className="p-form-validation is-error">
-            <div
-              className="p-form-validation__message"
-              id="exampleInputErrorMessage"
-              style={{ marginTop: "0.5rem" }}
-            >
-              <strong>Error:</strong> This field is required.
-            </div>
-          </div>
-        )}
+        <Field name="Description" validate={validateCheckbox}>
+          {({ field, form }: any) => (
+            <>
+              <CheckboxInput
+                {...field}
+                id="Description"
+                checked={field.value}
+                onChange={() => form.setFieldValue("Description", !field.value)}
+                label={descriptionLabel}
+                required
+              />
+              {touched?.Description && errors?.Description && (
+                <div className="p-form-validation is-error">
+                  <div
+                    className="p-form-validation__message"
+                    id="exampleInputErrorMessage"
+                    style={{ marginTop: "0.5rem" }}
+                  >
+                    <strong>Error:</strong> This field is required.
+                  </div>
+                </div>
+              )}
+            </>
+          )}
+        </Field>
       </Col>
       <Col size={12}>
-        <Field
-          as={CheckboxInput}
-          name="MarketingOptIn"
-          id="MarketingOptIn"
-          label={marketingLabel}
-          defaultChecked={false}
-        />
+        <Field name="MarketingOptIn">
+          {({ field, form }: any) => (
+            <CheckboxInput
+              {...field}
+              id="MarketingOptIn"
+              checked={field.value}
+              onChange={() =>
+                form.setFieldValue("MarketingOptIn", !field.value)
+              }
+              label={marketingLabel}
+            />
+          )}
+        </Field>
       </Col>
       <div className="p-strip is-shallow u-no-padding--top">
-        <ReCAPTCHA
+        <ReCAPTCHAComponent
           sitekey={process.env.CAPTCHA_TESTING_API_KEY ?? ""}
           onChange={onCaptchaChange}
         />

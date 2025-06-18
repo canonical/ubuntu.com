@@ -1,5 +1,4 @@
-import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { mount } from "enzyme";
 import { Notification } from "@canonical/react-components";
 import { UserSubscriptionType } from "advantage/api/enum";
@@ -22,7 +21,7 @@ describe("SubscriptionDetails", () => {
     // Mock the pending purchases hook so that stripe does not need to be set up.
     const usePollPurchaseStatusSpy: jest.SpyInstance = jest.spyOn(
       usePollPurchaseStatus,
-      "default"
+      "default",
     );
     usePollPurchaseStatusSpy.mockImplementation(() => ({
       setPendingPurchaseID: jest.fn(),
@@ -32,7 +31,7 @@ describe("SubscriptionDetails", () => {
         is_upsizeable: true,
       }),
     });
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
   });
 
   it("initially shows the content", () => {
@@ -43,7 +42,7 @@ describe("SubscriptionDetails", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("DetailsContent").exists()).toBe(true);
     expect(wrapper.find("SubscriptionEdit").exists()).toBe(false);
@@ -57,7 +56,7 @@ describe("SubscriptionDetails", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     wrapper.find("Button[data-test='edit-button']").simulate("click");
     expect(wrapper.find("SubscriptionEdit").exists()).toBe(true);
@@ -72,10 +71,10 @@ describe("SubscriptionDetails", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("Button[data-test='support-button']").exists()).toBe(
-      true
+      true,
     );
   });
 
@@ -86,7 +85,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
 
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -95,10 +94,10 @@ describe("SubscriptionDetails", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("Button[data-test='support-button']").exists()).toBe(
-      false
+      false,
     );
   });
 
@@ -110,7 +109,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
 
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -119,10 +118,10 @@ describe("SubscriptionDetails", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("Button[data-test='renewal-button']").exists()).toBe(
-      true
+      true,
     );
   });
 
@@ -154,7 +153,7 @@ describe("SubscriptionDetails", () => {
       }),
     ];
 
-    queryClient.setQueryData("userSubscriptions", contracts);
+    queryClient.setQueryData(["userSubscriptions"], contracts);
 
     contracts.forEach((contract) => {
       const wrapper = mount(
@@ -164,7 +163,7 @@ describe("SubscriptionDetails", () => {
             selectedId={contract.id}
             setHasUnsavedChanges={jest.fn()}
           />
-        </QueryClientProvider>
+        </QueryClientProvider>,
       );
 
       const button = wrapper
@@ -207,26 +206,26 @@ describe("SubscriptionDetails", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(
-      wrapper.find("Button[data-test='edit-button']").prop("disabled")
+      wrapper.find("Button[data-test='edit-button']").prop("disabled"),
     ).toBe(false);
     expect(
-      wrapper.find("Button[data-test='support-button']").prop("disabled")
+      wrapper.find("Button[data-test='support-button']").prop("disabled"),
     ).toBe(false);
     wrapper.find("Button[data-test='edit-button']").simulate("click");
     expect(
-      wrapper.find("Button[data-test='edit-button']").prop("disabled")
+      wrapper.find("Button[data-test='edit-button']").prop("disabled"),
     ).toBe(true);
     expect(
-      wrapper.find("Button[data-test='support-button']").prop("disabled")
+      wrapper.find("Button[data-test='support-button']").prop("disabled"),
     ).toBe(true);
   });
 
   it("does not display the buttons for a free contract", () => {
     const account = freeSubscriptionFactory.build();
-    queryClient.setQueryData("userSubscriptions", [account]);
+    queryClient.setQueryData(["userSubscriptions"], [account]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -234,10 +233,10 @@ describe("SubscriptionDetails", () => {
           selectedId={account.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("Button[data-test='edit-button']").exists()).toBe(
-      false
+      false,
     );
     expect(wrapper.find("[data-test='support-button']").exists()).toBe(false);
     expect(wrapper.find("DetailsContent").exists()).toBe(true);
@@ -245,7 +244,7 @@ describe("SubscriptionDetails", () => {
 
   it("can close the modal", () => {
     const account = freeSubscriptionFactory.build();
-    queryClient.setQueryData("userSubscriptions", [account]);
+    queryClient.setQueryData(["userSubscriptions"], [account]);
     const onCloseModal = jest.fn();
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -254,7 +253,7 @@ describe("SubscriptionDetails", () => {
           selectedId={account.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     wrapper.find(".p-modal__close").simulate("click");
     expect(onCloseModal).toHaveBeenCalled();
@@ -270,16 +269,16 @@ describe("SubscriptionDetails", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     // Open the edit form:
     wrapper.find("Button[data-test='edit-button']").simulate("click");
     expect(
-      wrapper.find(".p-subscriptions__details").hasClass("is-active")
+      wrapper.find(".p-subscriptions__details").hasClass("is-active"),
     ).toBe(true);
     wrapper.find(SubscriptionEdit).invoke("setShowingCancel")(true);
     expect(
-      wrapper.find(".p-subscriptions__details").hasClass("is-active")
+      wrapper.find(".p-subscriptions__details").hasClass("is-active"),
     ).toBe(false);
   });
 
@@ -291,7 +290,7 @@ describe("SubscriptionDetails", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     // Open the edit form:
     wrapper.find("Button[data-test='edit-button']").simulate("click");
@@ -309,7 +308,7 @@ describe("SubscriptionDetails", () => {
       number_of_machines: 20,
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -317,14 +316,14 @@ describe("SubscriptionDetails", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     const notification = wrapper.find(Notification);
     expect(notification.exists()).toBe(true);
     expect(notification.prop("severity")).toBe("caution");
     expect(wrapper.find(".p-notification__message").text()).toBe(
-      "The machine entitlement below will update to 15 at the next billing cycle on 10 Jul 2022."
+      "The machine entitlement below will update to 15 at the next billing cycle on 10 Jul 2022.",
     );
   });
 
@@ -335,7 +334,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
 
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -344,10 +343,10 @@ describe("SubscriptionDetails", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(
-      wrapper.find("Button[data-test='cancel-trial-button']").exists()
+      wrapper.find("Button[data-test='cancel-trial-button']").exists(),
     ).toBe(true);
   });
 
@@ -359,7 +358,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -367,7 +366,7 @@ describe("SubscriptionDetails", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(wrapper.find(".p-chip__value").text()).toBe("Expired");
@@ -383,7 +382,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -391,7 +390,7 @@ describe("SubscriptionDetails", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(wrapper.find(".p-chip__value").text()).toBe("Not renewed");
@@ -407,7 +406,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -415,7 +414,7 @@ describe("SubscriptionDetails", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(wrapper.find(".p-chip__value").exists()).toBe(false);
@@ -429,7 +428,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -437,7 +436,7 @@ describe("SubscriptionDetails", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(wrapper.find(".p-chip__value").text()).toBe("Renewed");
@@ -452,7 +451,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -460,7 +459,7 @@ describe("SubscriptionDetails", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(wrapper.find(".p-chip__value").exists()).toBe(false);
@@ -476,7 +475,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -484,7 +483,7 @@ describe("SubscriptionDetails", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(wrapper.find(".p-chip__value").text()).toBe("Auto-renewal on");
@@ -499,7 +498,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -507,7 +506,7 @@ describe("SubscriptionDetails", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(wrapper.find(".p-chip__value").text()).toBe("Auto-renewal off");
@@ -522,7 +521,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -530,7 +529,7 @@ describe("SubscriptionDetails", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(wrapper.find(".p-chip__value").text()).toBe("Cancelled");
@@ -545,7 +544,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -553,7 +552,7 @@ describe("SubscriptionDetails", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(wrapper.find(".p-chip__value").text()).toBe("Cancelled");
@@ -569,7 +568,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -577,7 +576,7 @@ describe("SubscriptionDetails", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(wrapper.find(".p-chip__value").text()).toBe("Auto-renewal on");
@@ -593,7 +592,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -601,7 +600,7 @@ describe("SubscriptionDetails", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(wrapper.find(".p-chip__value").exists()).toBe(false);

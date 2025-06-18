@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useQueryClient } from "react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { Field, useFormikContext } from "formik";
 import {
   ActionButton,
@@ -17,15 +17,16 @@ import {
 } from "advantage/countries-and-states";
 import { getLabel } from "advantage/subscribe/react/utils/utils";
 import postCustomerTaxInfo from "../../hooks/postCustomerTaxInfo";
-import { FormValues, Product } from "../../utils/types";
+import { CheckoutProducts, FormValues } from "../../utils/types";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
+import type { DisplayError } from "../../utils/types";
 
 type TaxesProps = {
-  product: Product;
-  quantity: number;
-  setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+  products: CheckoutProducts[];
+  setError: React.Dispatch<React.SetStateAction<DisplayError | null>>;
 };
 
-const Taxes = ({ setError }: TaxesProps) => {
+const Taxes = ({ products, setError }: TaxesProps) => {
   const {
     values,
     initialValues,
@@ -35,8 +36,15 @@ const Taxes = ({ setError }: TaxesProps) => {
     setFieldTouched,
     setErrors: setFormikErrors,
   } = useFormikContext<FormValues>();
-  const [isEditing, setIsEditing] = useState(!initialValues.country);
   const queryClient = useQueryClient();
+  const isNewUser = !window.accountId || !initialValues.country;
+  const isChannelUser =
+    values.marketplace === UserSubscriptionMarketplace.CanonicalProChannel;
+  const [isEditing, setIsEditing] = useState(isNewUser || !isChannelUser);
+  const postCustomerTaxInfoMutation = postCustomerTaxInfo();
+  const hasZeroPriceValue = products.some(
+    (item) => item.product.price.value === 0,
+  );
 
   useEffect(() => {
     if (errors.VATNumber) {
@@ -54,13 +62,11 @@ const Taxes = ({ setError }: TaxesProps) => {
     }
   }, [initialValues]);
 
-  const postCustomerTaxInfoMutation = postCustomerTaxInfo();
-
   const onSaveClick = () => {
     setIsEditing(false);
     setFieldTouched("isTaxSaved", false);
     if (!window.accountId) {
-      queryClient.invalidateQueries("calculate");
+      queryClient.invalidateQueries({ queryKey: ["calculate"] });
       setFieldValue("isTaxSaved", true);
     } else {
       postCustomerTaxInfoMutation.mutate(
@@ -69,8 +75,8 @@ const Taxes = ({ setError }: TaxesProps) => {
         },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries("preview");
-            queryClient.invalidateQueries("customerInfo");
+            queryClient.invalidateQueries({ queryKey: ["preview"] });
+            queryClient.invalidateQueries({ queryKey: ["customerInfo"] });
           },
           onError: (error) => {
             setFieldValue("Description", false);
@@ -83,31 +89,37 @@ const Taxes = ({ setError }: TaxesProps) => {
                   VATNumber:
                     "That VAT number is invalid. Check the number and try again.",
                 });
-                setError(
-                  <>
-                    That VAT number is invalid. Check the number and try again.
-                  </>
-                );
+                setError({
+                  title: "Invalid VAT number",
+                  description: (
+                    <>
+                      The VAT number entered is invalid: check the number and
+                      try again.
+                    </>
+                  ),
+                });
               } else if (error.message.includes("tax_id_cannot_be_validated")) {
                 setFormikErrors({
                   VATNumber:
                     "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists.",
                 });
-                setError(
-                  <>
-                    VAT number could not be validated at this time, please try
-                    again later or contact
-                    <a href="mailto:customersuccess@canonical.com">
-                      customer success
-                    </a>{" "}
-                    if the problem persists.
-                  </>
-                );
+                setError({
+                  description: (
+                    <>
+                      VAT number could not be validated at this time, please try
+                      again later or contact
+                      <a href="mailto:customersuccess@canonical.com">
+                        customer success
+                      </a>{" "}
+                      if the problem persists.
+                    </>
+                  ),
+                });
               } else {
-                setError(<>VAT could not be applied.</>);
+                setError({ description: <>VAT could not be applied.</> });
               }
           },
-        }
+        },
       );
       setFieldValue("isTaxSaved", true);
     }
@@ -190,7 +202,7 @@ const Taxes = ({ setError }: TaxesProps) => {
           </Row>
         </>
       ) : null}
-      {vatCountries.includes(values.country ?? "") ? (
+      {vatCountries.includes(values.country ?? "") && !hasZeroPriceValue ? (
         <>
           <hr />
           <Row>
@@ -252,7 +264,7 @@ const Taxes = ({ setError }: TaxesProps) => {
           error={touched?.caProvince && errors?.caProvince}
         />
       )}
-      {vatCountries.includes(values.country ?? "") && (
+      {vatCountries.includes(values.country ?? "") && !hasZeroPriceValue && (
         <Field
           data-testid="field-vat-number"
           as={Input}
@@ -289,43 +301,53 @@ const Taxes = ({ setError }: TaxesProps) => {
             error={touched?.isTaxSaved && errors?.isTaxSaved}
           />
         </Col>
-        <hr />
-        <div
-          className="u-align--right"
-          style={{ marginTop: "calc(.5rem - 1.5px)" }}
-        >
-          {isEditing ? (
-            <>
-              {window.accountId && !!initialValues.country ? (
+        {(!isChannelUser || isNewUser) && (
+          <>
+            <hr />
+            <div
+              className="u-align--right"
+              style={{ marginTop: "calc(.5rem - 1.5px)" }}
+            >
+              {isEditing ? (
+                <>
+                  {window.accountId && !!initialValues.country && (
+                    // if both exist, show cancel button, or only show save button
+                    <ActionButton
+                      onClick={() => {
+                        setFieldValue("country", initialValues.country);
+                        setFieldValue("usState", initialValues.usState);
+                        setFieldValue("caProvince", initialValues.caProvince);
+                        setFieldValue("VATNumber", initialValues.VATNumber);
+                        setIsEditing(false);
+                        setFieldValue("isTaxSaved", true);
+                        setFieldTouched("isTaxSaved", false);
+                      }}
+                    >
+                      Cancel
+                    </ActionButton>
+                  )}
+                  <ActionButton
+                    onClick={onSaveClick}
+                    disabled={
+                      !values.country ||
+                      (values.country === "US" && !values.usState) ||
+                      (values.country === "CA" && !values.caProvince)
+                    }
+                  >
+                    Save
+                  </ActionButton>
+                </>
+              ) : (
                 <ActionButton
-                  onClick={() => {
-                    setFieldValue("country", initialValues.country);
-                    setFieldValue("usState", initialValues.usState);
-                    setFieldValue("caProvince", initialValues.caProvince);
-                    setFieldValue("VATNumber", initialValues.VATNumber);
-                    setIsEditing(false);
-                    setFieldValue("isTaxSaved", true);
-                    setFieldTouched("isTaxSaved", false);
-                  }}
+                  onClick={onEditClick}
+                  data-testid="tax-edit-button"
                 >
-                  Cancel
+                  Edit
                 </ActionButton>
-              ) : null}
-              <ActionButton
-                onClick={onSaveClick}
-                disabled={
-                  !values.country ||
-                  (values.country === "US" && !values.usState) ||
-                  (values.country === "CA" && !values.caProvince)
-                }
-              >
-                Save
-              </ActionButton>
-            </>
-          ) : (
-            <ActionButton onClick={onEditClick}>Edit</ActionButton>
-          )}
-        </div>
+              )}
+            </div>
+          </>
+        )}
       </Row>
     </>
   );

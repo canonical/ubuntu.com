@@ -2,92 +2,81 @@
 
 {% block title %}Strips | ubuntu.com documentation{% endblock %}
 
-{% block head_extra %}
-<meta name="robots" content="noindex, nofollow">
-{% endblock %}
+{% block head_extra %}<meta name="robots" content="noindex, nofollow" />{% endblock %}
+
 {% block content %}
 
-<section class="p-strip--light is-shallow">
-  <div class="row">
-    <div class="col-8">
-      <h1>Suru strips</h1>
+  <section class="p-strip--light is-shallow">
+    <div class="row">
+      <div class="col-8">
+        <h1>Suru strips</h1>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- p-strip--suru -->
-<section class="p-strip--suru is-dark is-deep">
-  <div class="row u-vertically-center">
-    <div class="col-6">
-      <h1>p-strip--suru</h1>
-      <p>This strip should only be used on overview/main pages and is meant to have an illustration on the right side.</p>
+  <!-- p-strip--suru -->
+  <section class="p-strip--suru is-dark is-deep">
+    <div class="row u-vertically-center">
+      <div class="col-6">
+        <h1>p-strip--suru</h1>
+        <p>This strip should only be used on overview/main pages and is meant to have an illustration on the right side.</p>
+      </div>
+      <div class="col-5 col-start-large-8 u-hide--medium u-hide--small u-align--center">
+        {{ image(url="https://assets.ubuntu.com/v1/27b51b01-IOT_Ubuntu_devices_inforgrapic.svg",
+                alt="",
+                height="285",
+                width="415",
+                hi_def=True,
+                loading="auto") | safe
+        }}
+      </div>
     </div>
-    <div class="col-5 col-start-large-8 u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/27b51b01-IOT_Ubuntu_devices_inforgrapic.svg",
-          alt="",
-          height="285",
-          width="415",
-          hi_def=True,
-          loading="auto"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-<section class="p-strip">
-  <div class="row">
-    <div class="col-8">
-      <div class="row"> <div class="col-8"> <pre><code>&lt;section class="p-strip--suru is-dark is-deep">
+  </section>
+  <section class="p-strip">
+    <div class="row">
+      <div class="col-8">
+        <pre><code>&lt;section class="p-strip--suru is-dark is-deep">
   &lt;div class="row u-vertically-center">
     &lt;div class="col-6">
       &lt;h1>
         &lt;!-- title -->
-      &lt;/h1>
-      &lt;p>
-        &lt;!-- text -->
-      &lt;/p>
-    &lt;/div>
-    &lt;div class="col-5 col-start-large-8 u-hide--medium u-hide--small u-align--center">
-      &lt;!-- img -->
-    &lt;/div>
-  &lt;/div>
-&lt;/section></code></pre>
-      </div>
+                              &lt;/h1>
+                              &lt;p>
+                                &lt;!-- text -->
+                              &lt;/p>
+                            &lt;/div>
+                            &lt;div class="col-5 col-start-large-8 u-hide--medium u-hide--small u-align--center">
+                              &lt;!-- img -->
+                            &lt;/div>
+                          &lt;/div>
+                  &lt;/section></code></pre>
     </div>
+  </div>
 </section>
 
 <!-- p-strip-suru-half-top -->
 <section class="p-strip-suru-half-top">
   <div class="row">
     <div class="col-12">
-      <h1>
-        p-strip-suru-half-top
-      </h1>
+      <h1>p-strip-suru-half-top</h1>
     </div>
   </div>
 </section>
 <section class="p-strip--light u-no-padding--top">
-  <div class="row u-vertically-center" style="position: relative; top: -2rem;" >
+  <div class="row u-vertically-center"
+       style="position: relative;
+              top: -2rem">
     <div class="col-6">
-      <h2>
-        Second strip heading
-      </h2>
-      <p>
-        This strip should only be used on overview/main pages and is meant to be followed by a light-grey section.
-      </p>
+      <h2>Second strip heading</h2>
+      <p>This strip should only be used on overview/main pages and is meant to be followed by a light-grey section.</p>
     </div>
     <div class="col-6 u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/6c0f3ca0-disco-dingo.svg",
-          alt="",
-          height="256",
-          width="216",
-          hi_def=True,
-          loading="auto"
-        ) | safe
+      {{ image(url="https://assets.ubuntu.com/v1/6c0f3ca0-disco-dingo.svg",
+            alt="",
+            height="256",
+            width="216",
+            hi_def=True,
+            loading="auto") | safe
       }}
     </div>
   </div>
@@ -95,34 +84,34 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-8">
-      <div class="row"> <div class="col-8"> <pre><code>
+      <pre><code>
 &lt;section class="p-strip-suru-half-top">
   &lt;div class="row">
     &lt;div class="col-12">
       &lt;h1>
         &lt;-- first heading -->
-      &lt;/h1>
-    &lt;/div>
-  &lt;/div>
-&lt;/section>
-&lt;section class="p-strip--light u-no-padding--top">
-  &lt;div class="row u-vertically-center" style="position: relative; top: -2rem;" >
-    &lt;div class="col-6">
-      &lt;h2>
-        &lt;-- second heading -->
-      &lt;/h2>
-      &lt;p>
-        &lt;-- text -->
-      &lt;/p>
-    &lt;/div>
-    &lt;div class="col-6 u-hide--medium u-hide--small u-align--center">
-      &lt;-- img -->
-    &lt;/div>
-  &lt;/div>
-&lt;/section>
-      </code></pre>
-      </div>
-    </div>
+                            &lt;/h1>
+                          &lt;/div>
+                        &lt;/div>
+                      &lt;/section>
+                      &lt;section class="p-strip--light u-no-padding--top">
+                        &lt;div class="row u-vertically-center" style="position: relative; top: -2rem;" >
+                          &lt;div class="col-6">
+                            &lt;h2>
+                              &lt;-- second heading -->
+                            &lt;/h2>
+                            &lt;p>
+                              &lt;-- text -->
+                            &lt;/p>
+                          &lt;/div>
+                          &lt;div class="col-6 u-hide--medium u-hide--small u-align--center">
+                            &lt;-- img -->
+                          &lt;/div>
+                        &lt;/div>
+                      &lt;/section>
+                      </code></pre>
+  </div>
+</div>
 </section>
 
 <!-- p-strip--suru-background -->
@@ -130,12 +119,8 @@
   <div class="p-strip--suru-background">
     <div class="row">
       <div class="col-6">
-        <h1>
-          p-strip--suru-background
-        </h1>
-        <p>
-          This strip should only be used on overview/main pages and expects the use of a background image.
-        </p>
+        <h1>p-strip--suru-background</h1>
+        <p>This strip should only be used on overview/main pages and expects the use of a background image.</p>
         <p>
           <a href="#" class="p-button--positive">CTA</a>
         </p>
@@ -146,29 +131,28 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-8">
-      <div class="row"> <div class="col-8"> <pre><code>
+      <pre><code>
 &lt;section class="p-strip--image is-dark is-deep u-no-padding--top u-no-padding--bottom desktop-hero">
   &lt;div class="p-strip--suru-background">
     &lt;div class="row">
       &lt;div class="col-6">
         &lt;h1>
           &lt;-- title -->
-        &lt;/h1>
-        &lt;p>
-          &lt;-- text -->
-        &lt;/p>
-        &lt;p>
-          &lt;a href="#" class="p-button--positive">&lt;-- CTA -->&lt;/a>
-        &lt;/p>
-      &lt;/div>
-    &lt;/div>
-  &lt;/div>
-&lt;/section>
-      </code></pre>
-      </div>
-    </div>
+                                &lt;/h1>
+                                &lt;p>
+                                  &lt;-- text -->
+                                &lt;/p>
+                                &lt;p>
+                                  &lt;a href="#" class="p-button--positive">&lt;-- CTA -->&lt;/a>
+                                &lt;/p>
+                              &lt;/div>
+                            &lt;/div>
+                          &lt;/div>
+                        &lt;/section>
+                        </code></pre>
+  </div>
+</div>
 </section>
-
 
 <!-- p-strip--suru-topped -->
 <section class="p-strip is-bordered u-no-padding--top u-no-padding--bottom">
@@ -176,7 +160,9 @@
     <div class="row">
       <div class="col-8">
         <h1>p-strip--suru-topped</h1>
-        <p>This strip should be followed by a light-grey section or at least have a border to indicate a separation between the heading and the next section.</p>
+        <p>
+          This strip should be followed by a light-grey section or at least have a border to indicate a separation between the heading and the next section.
+        </p>
       </div>
     </div>
   </div>
@@ -184,47 +170,39 @@
 <section class="p-strip--light">
   <div class="row">
     <div class="col-8">
-      <div class="row"> <div class="col-8"> <pre><code>&lt;section class="p-strip is-bordered u-no-padding--top u-no-padding--bottom">
+      <pre><code>&lt;section class="p-strip is-bordered u-no-padding--top u-no-padding--bottom">
   &lt;div class="p-strip--suru-topped">
     &lt;div class="row">
       &lt;div class="col-8">
         &lt;h1>
           &lt;!-- title -->
-        &lt;/h1>
-      &lt;/div>
-    &lt;/div>
-  &lt;/div>
-&lt;/section></code></pre>
-      </div>
-    </div>
+                                  &lt;/h1>
+                                &lt;/div>
+                              &lt;/div>
+                            &lt;/div>
+                    &lt;/section></code></pre>
+  </div>
+</div>
 </section>
-
 
 <!-- p-strip--suru-bottomed -->
 <section class="p-strip--suru-bottomed">
   <div class="row u-equal-height">
     <div class="col-7 u-vertically-center">
-      <h1>
-        p-strip--suru-bottomed
-      </h1>
-      <h4
-      >Here the gradiant is on the bottom.
-    </h4>
+      <h1>p-strip--suru-bottomed</h1>
+      <h4>Here the gradiant is on the bottom.</h4>
+      <p>It can handle a fair bit of text.</p>
       <p>
-        It can handle a fair bit of text.
+        <a href="/" class="p-button--positive u-no-margin--bottom">And CTAs</a>
       </p>
-      <p><a href="/" class="p-button--positive u-no-margin--bottom">And CTAs</a></p>
     </div>
     <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/68703716-robot.svg",
-          alt="",
-          height="222",
-          width="138",
-          hi_def=True,
-          loading="auto"
-        ) | safe
+      {{ image(url="https://assets.ubuntu.com/v1/68703716-robot.svg",
+            alt="",
+            height="222",
+            width="138",
+            hi_def=True,
+            loading="auto") | safe
       }}
     </div>
   </div>
@@ -232,31 +210,31 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-8">
-      <div class="row"> <div class="col-8"> <pre><code>
+      <pre><code>
 &lt;section class="p-strip--suru-bottomed">
   &lt;div class="row u-equal-height">
     &lt;div class="col-7 u-vertically-center">
       &lt;h1>
         &lt;!-- title -->
-      &lt;/h1>
-      &lt;h4>
-        &lt;!-- sub-title -->
-      &lt;/h4>
-      &lt;p>
-        &lt;!-- text -->
-      &lt;/p>
-      &lt;p>
-        &lt;a href="/" class="p-button--positive u-no-margin--bottom">&lt;!-- CTA -->&lt;/a>
-      &lt;/p>
-    &lt;/div>
-    &lt;div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
-      &lt;!-- img -->
-    &lt;/div>
-  &lt;/div>
-&lt;/section>
-      </code></pre>
-      </div>
-    </div>
+                                      &lt;/h1>
+                                      &lt;h4>
+                                        &lt;!-- sub-title -->
+                                      &lt;/h4>
+                                      &lt;p>
+                                        &lt;!-- text -->
+                                      &lt;/p>
+                                      &lt;p>
+                                        &lt;a href="/" class="p-button--positive u-no-margin--bottom">&lt;!-- CTA -->&lt;/a>
+                                      &lt;/p>
+                                    &lt;/div>
+                                    &lt;div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
+                                      &lt;!-- img -->
+                                    &lt;/div>
+                                  &lt;/div>
+                                &lt;/section>
+                                </code></pre>
+  </div>
+</div>
 </section>
 
 <!-- p-strip--suru-half-and-half -->
@@ -264,23 +242,16 @@
   <div class="p-strip--suru-half-and-half">
     <div class="row u-equal-height">
       <div class="col-7">
-        <h1>
-          p-strip--suru-half-and-half
-        </h1>
-        <p>
-          This strip can have an illustration on the right.
-        </p>
+        <h1>p-strip--suru-half-and-half</h1>
+        <p>This strip can have an illustration on the right.</p>
       </div>
       <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/c3b8a9dd-Snap_Store_shopping_icon.svg",
-            alt="",
-            height="218",
-            width="250",
-            hi_def=True,
-            loading="auto"
-          ) | safe
+        {{ image(url="https://assets.ubuntu.com/v1/c3b8a9dd-Snap_Store_shopping_icon.svg",
+                alt="",
+                height="218",
+                width="250",
+                hi_def=True,
+                loading="auto") | safe
         }}
       </div>
     </div>
@@ -289,27 +260,27 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-8">
-      <div class="row"> <div class="col-8"> <pre><code>
+      <pre><code>
 &lt;section class="p-strip u-no-padding--top u-no-padding--bottom">
   &lt;div class="p-strip--suru-half-and-half">
     &lt;div class="row u-equal-height">
       &lt;div class="col-7">
         &lt;h1>
           &lt;-- title -->
-        &lt;/h1>
-        &lt;p>
-          &lt;-- text -->
-        &lt;/p>
-      &lt;/div>
-      &lt;div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
-        &lt;-- img -->
-      &lt;/div>
-    &lt;/div>
-  &lt;/div>
-&lt;/section>
-      </code></pre>
-      </div>
-    </div>
+                                            &lt;/h1>
+                                            &lt;p>
+                                              &lt;-- text -->
+                                            &lt;/p>
+                                          &lt;/div>
+                                          &lt;div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
+                                            &lt;-- img -->
+                                          &lt;/div>
+                                        &lt;/div>
+                                      &lt;/div>
+                                    &lt;/section>
+                                    </code></pre>
+  </div>
+</div>
 </section>
 
 <!-- p-strip--suru-half-and-half-reversed -->
@@ -318,11 +289,13 @@
     <div class="row u-equal-height u-vertically-center">
       <div class="col-6">
         <h1>p-strip--suru-half-and-half-reversed - image</h1>
+        <p>This strip has room for an image or an illustration.</p>
         <p>
-          This strip has room for an image or an illustration.
+          <a class="p-button--positive js-invoke-modal" href="/desktop/contact-us">Contact us</a>
         </p>
-        <p><a class="p-button--positive js-invoke-modal" href="/desktop/contact-us">Contact us</a></p>
-        <p><a href="/pro" class="p-link--inverted">CTA&nbsp;›</a></p>
+        <p>
+          <a href="/pro" class="p-link--inverted">CTA&nbsp;›</a>
+        </p>
       </div>
     </div>
   </div>
@@ -331,20 +304,15 @@
   <div class="row u-equal-height u-vertically-center">
     <div class="col-6">
       <h1>p-strip--suru-half-and-half-reversed - illustration</h1>
-      <p class="p-heading--4">
-        This strip has room for an image or an illustration.
-      </p>
+      <p class="p-heading--4">This strip has room for an image or an illustration.</p>
     </div>
     <div class="col-6 u-hide--small u-align--right">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/4e2131b0-3B-Embedded+Linux.svg",
-          alt="",
-          height="200",
-          width="335",
-          hi_def=True,
-          loading="auto"
-        ) | safe
+      {{ image(url="https://assets.ubuntu.com/v1/4e2131b0-3B-Embedded+Linux.svg",
+            alt="",
+            height="200",
+            width="335",
+            hi_def=True,
+            loading="auto") | safe
       }}
     </div>
   </div>
@@ -352,25 +320,25 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-8">
-      <div class="row"> <div class="col-8"> <pre><code>
+      <pre><code>
 &ltsection class="p-strip--suru-half-and-half-reversed is-dark">
   &ltdiv class="row u-equal-height u-vertically-center">
     &ltdiv class="col-6">
       &lth1>
         &lt;!-- title -->
-      &lt/h1>
-      &ltp class="p-heading--4">
-        &lt;!-- sub-title -->
-      &lt/p>
-    &lt/div>
-    &ltdiv class="col-6 u-hide--small u-align--right">
-      &lt;!-- img -->
-    &lt/div>
-  &lt/div>
-&lt/section>
-      </code></pre>
-      </div>
-    </div>
+                                              &lt/h1>
+                                              &ltp class="p-heading--4">
+                                                &lt;!-- sub-title -->
+                                              &lt/p>
+                                            &lt/div>
+                                            &ltdiv class="col-6 u-hide--small u-align--right">
+                                              &lt;!-- img -->
+                                            &lt/div>
+                                          &lt/div>
+                                        &lt/section>
+                                        </code></pre>
+  </div>
+</div>
 </section>
 
 <!-- p-strip--suru-image -->
@@ -378,23 +346,16 @@
   <div class="p-strip--suru-image">
     <div class="row u-equal-height">
       <div class="col-7">
-        <h1>
-          p-strip--suru-image
-        </h1>
-        <p>
-          An image or illustration can be used on the right. It also requires a fair bit of height to look correct.
-        </p>
+        <h1>p-strip--suru-image</h1>
+        <p>An image or illustration can be used on the right. It also requires a fair bit of height to look correct.</p>
       </div>
       <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/2c3ad93c-digital-signage-2.png",
-            alt="",
-            height="262",
-            width="415",
-            hi_def=True,
-            loading="auto"
-          ) | safe
+        {{ image(url="https://assets.ubuntu.com/v1/2c3ad93c-digital-signage-2.png",
+                alt="",
+                height="262",
+                width="415",
+                hi_def=True,
+                loading="auto") | safe
         }}
       </div>
     </div>
@@ -403,90 +364,85 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-8">
-      <div class="row"> <div class="col-8"> <pre><code>
+      <pre><code>
 &lt;section class="p-strip is-deep is-bordered u-no-padding--top u-no-padding--bottom">
   &lt;div class="p-strip--suru-image">
     &lt;div class="row u-equal-height">
       &lt;div class="col-7">
         &lt;h1>
           &lt;-- title -->
-        &lt;/h1>
-        &lt;p>
-          &lt;-- text -->
-        &lt;/p>
-      &lt;/div>
-      &lt;div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
-        &lt;-- img -->
-      &lt;/div>
-    &lt;/div>
-  &lt;/div>
-&lt;/section>
-      </code></pre>
-      </div>
-    </div>
+                                                    &lt;/h1>
+                                                    &lt;p>
+                                                      &lt;-- text -->
+                                                    &lt;/p>
+                                                  &lt;/div>
+                                                  &lt;div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
+                                                    &lt;-- img -->
+                                                  &lt;/div>
+                                                &lt;/div>
+                                              &lt;/div>
+                                            &lt;/section>
+                                            </code></pre>
+  </div>
+</div>
 </section>
 
 <!-- p-strip--suru-blog-hero -->
 <section class="p-strip is-deep is-bordered u-no-padding--top u-no-padding--bottom">
   <div class="p-strip--suru-blog-hero is-dark">
     <div class="u-fixed-width">
-      <h1>
-        p-strip--suru-blog-hero
-      </h1>
+      <h1>p-strip--suru-blog-hero</h1>
       <p>
         This strip should only be used on blog indexes, when attention needs to be drawn to featured posts. It expects the child elements to be reasonably tall in order to look correct.
       </p>
     </div>
     <div class="row u-equal-height">
       <div class="col-4 p-card">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/dca2e4c4-raspberry-logo.png",
-            alt="",
-            height="32",
-            width="96",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-card__thumbnail"}
-          ) | safe
+        {{ image(url="https://assets.ubuntu.com/v1/dca2e4c4-raspberry-logo.png",
+                alt="",
+                height="32",
+                width="96",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-card__thumbnail"}) | safe
         }}
-        <hr class="u-sv1">
+        <hr class="p-rule--muted" />
         <h3 class="p-card__title">Raspberry Pi2 and Pi3</h3>
-        <p class="p-card__content">For fun, for education and for profit, the RPi makes device development personal and entertaining. With support for both the Pi2 and the new Pi3, Ubuntu Core supports the world's most beloved board.</p>
+        <p class="p-card__content">
+          For fun, for education and for profit, the RPi makes device development personal and entertaining. With support for both the Pi2 and the new Pi3, Ubuntu Core supports the world's most beloved board.
+        </p>
       </div>
 
       <div class="col-4 p-card">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/dca2e4c4-raspberry-logo.png",
-            alt="",
-            height="32",
-            width="96",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-card__thumbnail"}
-          ) | safe
+        {{ image(url="https://assets.ubuntu.com/v1/dca2e4c4-raspberry-logo.png",
+                alt="",
+                height="32",
+                width="96",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-card__thumbnail"}) | safe
         }}
-        <hr class="u-sv1">
+        <hr class="p-rule--muted" />
         <h3 class="p-card__title">Raspberry Pi2 and Pi3</h3>
-        <p class="p-card__content">For fun, for education and for profit, the RPi makes device development personal and entertaining. With support for both the Pi2 and the new Pi3, Ubuntu Core supports the world's most beloved board.</p>
+        <p class="p-card__content">
+          For fun, for education and for profit, the RPi makes device development personal and entertaining. With support for both the Pi2 and the new Pi3, Ubuntu Core supports the world's most beloved board.
+        </p>
       </div>
 
       <div class="col-4 p-card">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/dca2e4c4-raspberry-logo.png",
-            alt="",
-            height="32",
-            width="96",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-card__thumbnail"}
-          ) | safe
+        {{ image(url="https://assets.ubuntu.com/v1/dca2e4c4-raspberry-logo.png",
+                alt="",
+                height="32",
+                width="96",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-card__thumbnail"}) | safe
         }}
-        <hr class="u-sv1">
+        <hr class="p-rule--muted" />
         <h3 class="p-card__title">Raspberry Pi2 and Pi3</h3>
-        <p class="p-card__content">For fun, for education and for profit, the RPi makes device development personal and entertaining. With support for both the Pi2 and the new Pi3, Ubuntu Core supports the world's most beloved board.</p>
+        <p class="p-card__content">
+          For fun, for education and for profit, the RPi makes device development personal and entertaining. With support for both the Pi2 and the new Pi3, Ubuntu Core supports the world's most beloved board.
+        </p>
       </div>
     </div>
   </div>
@@ -494,11 +450,11 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-8">
-      <div class="row"> <div class="col-8"> <pre><code>&lt;section class="p-strip--suru-blog-hero is-dark"&gt;
+      <pre><code>&lt;section class="p-strip--suru-blog-hero is-dark"&gt;
   &lt;div class="row u-equal-height"&gt;
     &lt;div class="col-4 p-card"&gt;
       &lt;-- img --&gt;
-      &lt;hr class="u-sv1"&gt;
+      &lt;hr class="p-rule--muted"&gt;
       &lt;h3 class="p-card__title"&gt;
         &lt;-- title --&gt;
       &lt;/h3&gt;
@@ -509,7 +465,7 @@
 
     &lt;div class="col-4 p-card"&gt;
       &lt;-- img --&gt;
-      &lt;hr class="u-sv1"&gt;
+      &lt;hr class="p-rule--muted"&gt;
       &lt;h3 class="p-card__title"&gt;
         &lt;-- title --&gt;
       &lt;/h3&gt;
@@ -520,7 +476,7 @@
 
     &lt;div class="col-4 p-card"&gt;
       &lt;-- img --&gt;
-      &lt;hr class="u-sv1"&gt;
+      &lt;hr class="p-rule--muted"&gt;
       &lt;h3 class="p-card__title"&gt;
         &lt;-- title --&gt;
       &lt;/h3&gt;
@@ -531,8 +487,8 @@
   &lt;/div&gt;
 &lt;/section&gt;
       </code></pre>
-      </div>
     </div>
+  </div>
 </section>
 
 <!-- p-strip--suru-blog-hero -->
@@ -540,24 +496,17 @@
   <div class="p-strip--suru-blog-header is-dark">
     <div class="row">
       <div class="col-7">
-        <h1>
-          p-strip--suru-blog-header
-        </h1>
-        <p>
-          This strip should be used on blog indexes that don't have featured posts.
-        </p>
+        <h1>p-strip--suru-blog-header</h1>
+        <p>This strip should be used on blog indexes that don't have featured posts.</p>
       </div>
       <div class="col-5 u-align--center u-vertically-center">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/5ee71af0-Robot+arm+-+white.svg",
-            alt="",
-            height="201",
-            width="200",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "u-hide--small"}
-          ) | safe
+        {{ image(url="https://assets.ubuntu.com/v1/5ee71af0-Robot+arm+-+white.svg",
+                alt="",
+                height="201",
+                width="200",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "u-hide--small"}) | safe
         }}
       </div>
     </div>
@@ -566,7 +515,7 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-8">
-      <div class="row"> <div class="col-8"> <pre><code>&lt;section class="p-strip--suru-blog-hero is-dark"&gt;
+      <pre><code>&lt;section class="p-strip--suru-blog-hero is-dark"&gt;
   &lt;div class="row"&gt;
     &lt;div class="col-7"&gt;
       &lt;h1&gt;
@@ -583,8 +532,8 @@
   &lt;/div&gt;
 &lt;/section&gt;
       </code></pre>
-      </div>
     </div>
+  </div>
 </section>
 
 {% endblock content %}

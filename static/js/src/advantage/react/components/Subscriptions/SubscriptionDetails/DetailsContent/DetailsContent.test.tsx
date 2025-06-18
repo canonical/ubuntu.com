@@ -1,5 +1,4 @@
-import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { mount } from "enzyme";
 import {
   UserSubscriptionMarketplace,
@@ -12,6 +11,7 @@ import {
   userSubscriptionStatusesFactory,
 } from "advantage/tests/factories/api";
 import DetailsContent from "./DetailsContent";
+import { act } from "react";
 
 describe("DetailsContent", () => {
   let queryClient: QueryClient;
@@ -22,50 +22,50 @@ describe("DetailsContent", () => {
 
   it("displays free token specific details", () => {
     const contract = freeSubscriptionFactory.build();
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <DetailsContent
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='billing-col']").text()).toBe("None");
   });
 
   it("displays ua subscription specific details", () => {
     const contract = userSubscriptionFactory.build({
-      end_date: new Date("2022-07-09T07:21:21Z"),
+      end_date: "2022-07-09T07:21:21Z",
       number_of_machines: 2,
       period: UserSubscriptionPeriod.Yearly,
       price: 150000,
     });
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <DetailsContent
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='billing-col']").text()).toBe("Yearly");
   });
 
   it("displays a spinner while loading the contract token", () => {
     const contract = userSubscriptionFactory.build();
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <DetailsContent
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='token-spinner'] Spinner").exists()).toBe(
-      true
+      true,
     );
   });
 
@@ -76,27 +76,27 @@ describe("DetailsContent", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <DetailsContent
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='token-spinner'] Spinner").exists()).toBe(
-      false
+      false,
     );
   });
 
   it("can display the contract token", () => {
     const contract = userSubscriptionFactory.build();
     const contractToken = contractTokenFactory.build();
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     queryClient.setQueryData(
       ["contractToken", contract.contract_id],
-      contractToken
+      contractToken,
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -104,11 +104,38 @@ describe("DetailsContent", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find(".p-code-snippet").exists()).toBe(true);
     expect(wrapper.find("pre.p-code-snippet__block--icon").text()).toBe(
-      contractToken.contract_token
+      contractToken.contract_token,
+    );
+  });
+
+  it("can display the token copied notification", async () => {
+    const contract = userSubscriptionFactory.build();
+    const contractToken = contractTokenFactory.build();
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
+    queryClient.setQueryData(
+      ["contractToken", contract.contract_id],
+      contractToken,
+    );
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <DetailsContent
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
+      </QueryClientProvider>,
+    );
+
+    act(() => {
+      wrapper.find("[data-test='contract-token']").simulate("click");
+    });
+    wrapper.update();
+
+    expect(wrapper.find("[data-test='token-copy-notification']").exists()).toBe(
+      !!navigator.clipboard,
     );
   });
 
@@ -116,14 +143,14 @@ describe("DetailsContent", () => {
     const contract = userSubscriptionFactory.build({
       marketplace: UserSubscriptionMarketplace.Blender,
     });
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <DetailsContent
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='machine-type-col']").exists()).toBe(false);
     expect(wrapper.find("CodeSnippet").exists()).toBe(false);

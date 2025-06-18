@@ -1,216 +1,214 @@
 {% extends "appliance/_base-appliance.html" %}
 
-{% block title %}Ubuntu Appliance Community - Governance and Policies{% endblock %}
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 
-{% block meta_description %}Join the Ubuntu community by developing, discussing or even simply downloading one of the Ubuntu Appliances. Anyone can create an Ubuntu Appliance. Have your project benefit from all of the goodness that goes into Ubuntu.{% endblock %}
+{% block title %}Community | Appliance{% endblock %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1DpU0AzAJ4gBa_au4gELBUD3vLz8l-FnAwFdERBHlvwc/edit{% endblock meta_copydoc %}
+{% block meta_description %}
+  Join the Ubuntu community by developing, discussing or even simply downloading one of the Ubuntu appliances. Anyone can create an Ubuntu appliance. Have your project benefit from all of the goodness that goes into Ubuntu.
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1DpU0AzAJ4gBa_au4gELBUD3vLz8l-FnAwFdERBHlvwc/edit
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
-<section class="p-strip--suru-topped">
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h1>
-        Welcome to our Ubuntu Appliance community
-      </h1>
-      <p>
-        Whether you are a power user, a developer, a member of the Ubuntu project or a new contributor to Ubuntu Appliances, we invite you to join our Ubuntu Appliance Discourse and make your voice heard.
-      </p>
-      <p>
-        <a href="https://discourse.ubuntu.com/c/appliance">Join the Ubuntu Appliance Discourse</a>
-      </p>
-    </div>
-    <div class="col-4 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/107e2c69-Community-header.svg",
-        alt="",
-        width="254",
-        height="254",
-        hi_def=True,
-        loading="auto",
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
 
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-8">
-      <h2>
-        New Ubuntu Appliance ideas and proposals
-      </h2>
+  {% call(slot) vf_hero(
+    title_text='Welcome to our<br class="u-hide--small" /> Ubuntu appliance community',
+    layout='50/50'
+    ) -%}
+    {%- if slot == 'description' -%}
       <p>
-        To suggest a new Ubuntu Appliance:
+        Whether you are a power user, a developer, a member of the Ubuntu project or a new contributor to Ubuntu appliances, we invite you to join our Ubuntu appliance Discourse and make your voice heard.
       </p>
-      <ol class="p-stepped-list">
-        <li class="p-stepped-list__item" style="padding-bottom: 0;">
-          <p class="p-stepped-list__title">
-            <a href="https://discourse.ubuntu.com/c/appliance">Share your idea</a> with a <a href="https://discourse.ubuntu.com/c/appliance/proposed-new-appliances">Proposed New Appliance</a> topic to get community feedback
-          </p>
-        </li>
-        <li class="p-stepped-list__item" style="padding-bottom: 0;">
-          <p class="p-stepped-list__title">
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="https://discourse.ubuntu.com/c/project/appliance/45">Join our Ubuntu appliance Discourse&nbsp;&rsaquo;</a>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--3-2 is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/da070994-hero image.png",
+                alt="",
+                width="1800",
+                height="1128",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image"},) | safe
+        }}
+      </div>
+    {%- endif -%}
+  {% endcall -%}
+
+  <section class="p-section">
+    <hr class="is-fixed-width p-rule" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>
+          New Ubuntu appliance ideas
+          <br class="u-hide--small" />
+          and proposals
+        </h2>
+      </div>
+      <div class="col">
+        <p>To suggest a new Ubuntu appliance:</p>
+        <hr class="p-rule--muted u-no-margin--bottom" />
+        <ol class="p-list--divided u-no-margin--bottom">
+          <li class="p-list__item">
+            <a href="https://discourse.ubuntu.com/c/project/appliance/45">Share your idea</a> by mentioning &quot;Proposed New appliance&quot; in the topic to get community feedback
+          </li>
+          <li class="p-list__item">
             Publish your appliance software at <a href="https://snapcraft.io/docs/getting-started">snapcraft.io</a>
+          </li>
+          <li class="p-list__item">
+            Test on a <a href="/download/intel-nuc">PC</a> or <a href="/download/raspberry-pi-core">Raspberry Pi</a> with a <a href="/core/docs/try-pre-built-images">pre-built Ubuntu Core image</a>
+          </li>
+          <li class="p-list__item">Optimize your appliance images for devices you want to support</li>
+        </ol>
+        <p>Your Proposed New appliance topic is where we coordinate image creation and inclusion.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+      {%- if slot == 'title' -%}
+        <h2>Compliance information</h2>
+      {%- endif -%}
+
+      {%- if slot == 'description' -%}
+        <div class="p-section--shallow">
+          <div class="p-image-container">
+            {{ image(url="https://assets.ubuntu.com/v1/5d7eafaf-compliance-information.png",
+                        alt="",
+                        width="1800",
+                        height="1013",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">Privacy Policy</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <p>
+          Ubuntu appliances must comply with the <a href="https://gdpr-info.eu/">EU GDPR</a> and / or <a href="https://oag.ca.gov/privacy/ccpa">California Consumer Privacy Act</a>. Each Ubuntu appliance must link to its privacy policy to clarify if any information is collected and who has access to it. We review your privacy policies and data handling on the appliance during appliance optimization. The <a href="/legal/data-privacy">Canonical privacy policy for Ubuntu</a> applies to Ubuntu appliances.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">Licensing</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <p>
+          Each Ubuntu appliance contains apps and content under its own license. Publishers must have the necessary rights to make that content available. Open source code must take advantage of the secure Ubuntu build infrastructure, while commercial content must come from the official source of those materials together with its standard maintenance commitment.
+        </p>
+      {%- endif -%}
+    {%- endcall -%}
+  </section>
+
+  <section class="p-section">
+    <hr class="is-fixed-width p-rule" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>
+          Updates
+          <br />
+          and security maintenance
+        </h2>
+      </div>
+      <div class="col">
+        <p>
+          Ubuntu is famous for its <a href="/about/release-cycle">security updates, release cadence and maintenance commitment</a>. All of those strengths apply to every Ubuntu appliance. In addition, Ubuntu appliances are built on Ubuntu Core, with transactional updates and rollback. A fully containerized platform improves security and makes updates much more reliable.
+        </p>
+        <p>
+          Updates for system components of Ubuntu Core are published immediately for critical security fixes. We roll less critical fixes into an update approximately every two weeks. Your appliance can be set to receive updates less frequently based on the needs of the publisher. Software components on the appliance are updated by the publisher on their own schedule. Canonical will notify publishers of any known security issues in Ubuntu appliance components to help them publish updates quickly.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="is-fixed-width p-rule" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>
+          Certified, maintained,
+          <br />
+          and experimental appliances
+        </h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <p>
+            A <i>certified</i> Ubuntu appliance gets continuous testing by Canonical on all certified hardware. Canonical works with publishers to make sure their Ubuntu appliance ‘just works’ from first boot, and will continue to work whenever Ubuntu Core receives an update.
           </p>
-        </li>
-        <li class="p-stepped-list__item" style="padding-bottom: 0;">
-          <p class="p-stepped-list__title">
-            Test on a <a href="/download/intel-nuc">PC</a> or <a href="/download/raspberry-pi-core">Raspberry Pi</a> with vanilla Ubuntu Core
+          <p>
+            Both <i>certified</i> and <i>maintained</i> Ubuntu appliances have a commitment from the appliance maintainers to update the underlying snaps for a declared period, and to test if their Ubuntu appliance image works on their recommended hardware. Certified Ubuntu appliances have a commitment until the underlying Ubuntu Core is 5 or 10 years old. For example, an Ubuntu appliance built on Ubuntu Core 20 is certified until 2025 or 2030 at the publisher's discretion.
           </p>
-        </li>
-        <li class="p-stepped-list__item" style="padding-bottom: 0;">
-          <p class="p-stepped-list__title">
-            Optimise your appliance images for devices you want to support
+          <p>
+            An <i>experimental</i> Ubuntu appliance does not yet have a maintenance commitment. Either the appliance itself is still being finalized, or the software components don’t have someone standing behind them for a guaranteed maintenance period.
           </p>
-        </li>
-      </ol>
-      <p>
-        Your Proposed New Appliance topic is where we coordinate image creation and inclusion.
-      </p>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+    <div class="u-fixed-width">
+      <div class="p-image-container--cinematic is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/b84e6a75-image-Certified,%20maintained%20%20and%20experimental%20appliances.png",
+                alt="",
+                width="2464",
+                height="1028",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    </div>
+  </section>
 
-<section class="p-strip">
-  <div class="row">
-    <div class="col-6">
-      <h2>
-        Privacy Policy
-      </h2>
-      <p>
-        Ubuntu Appliances must comply with the <a href="https://gdpr-info.eu/">European GDPR</a> and/or <a href="https://en.wikipedia.org/wiki/California_Consumer_Privacy_Act">California CCPA laws</a>.Each Ubuntu Appliance must link to its privacy policy to clarify if any information is collected and who has access to it. We review your privacy policies and data handling on the appliance during appliance optimisation. The <a href="/legal/data-privacy">Canonical privacy policy for Ubuntu</a> applies to Ubuntu Appliances.
-      </p>
+  <section class="p-section">
+    <hr class="is-fixed-width p-rule" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Hardware compatibility</h2>
+      </div>
+      <div class="col">
+        <p>
+          Ubuntu Core is guaranteed to work on any <a href="https://certification.ubuntu.com/">Ubuntu certified hardware</a>. We recommend the Raspberry Pi or Intel NUCs for your development and testing. We recommend that you work with Canonical to certify any other hardware that is particularly relevant for your appliance. Certification means that every update, bug fix or security patch is tested on these boards in Canonical’s testing lab to minimize regressions.
+        </p>
+      </div>
     </div>
-    <div class="col-6">
-      <h2>
-        Licensing
-      </h2>
-      <p>
-        Each Ubuntu Appliance contains apps and content under its own licence. Publishers must have the necessary rights to make that content available. Open source code must take advantage of the secure Ubuntu build infrastructure, while commercial content must come from the official source of those materials together with its standard maintenance commitment.
-      </p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h2>
-        Updates and security maintenance
-      </h2>
-      <p>
-        Ubuntu is famous for its <a href="/about/release-cycle">security updates, release cadence and maintenance commitment</a>. All of those strengths apply to every Ubuntu Appliance. In addition, Ubuntu Appliances are built on Ubuntu Core, with transactional updates and rollback. A fully containerised platform improves security and makes updates much more reliable.
-      </p>
-      <p>
-        Updates for system components of Ubuntu Core are published immediately for critical security fixes. We roll less critical fixes into an update approximately every two weeks. Your appliance can be set to receive updates less frequently based on the needs of the publisher. Software components on the appliance are updated by the publisher on their own schedule. Canonical will notify publishers of any known security issues in Ubuntu Appliance components to help them publish updates quickly.
-      </p>
+  <section class="p-section--deep">
+    <hr class="is-fixed-width p-rule" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Governance</h2>
+      </div>
+      <div class="col">
+        <p>
+          Any healthy and large community will have to manage tensions and conflicting member goals, even though we have a strong shared interest. Here, multiple open source communities and commercial vendors collaborate and create Ubuntu appliances. Governance ensures that any stress is resolved productively.
+        </p>
+        <p>
+          We lean towards ownership over committee, because doing the work earns the right to decide how best it should be done. Where there are significant questions that touch multiple contributors, we encourage them to work out a constructive common ground, and we offer an escalation path to resolve matters that do not reach quick consensus.
+        </p>
+        <p>
+          Any developer can lead an Ubuntu appliance. To be hosted on this site, the person or team behind the Ubuntu appliance publisher must demonstrate that they follow the Ubuntu Code of Conduct.  Before we publish it as a maintained or certified Ubuntu appliance, we make sure that there is a credible commitment to the maintenance of its software.
+        </p>
+      </div>
     </div>
-    <div class="col-4 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/69d31769-updates-security-maintenance.svg",
-        alt="",
-        width="238",
-        height="236",
-        hi_def=True,
-        loading="lazy",
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-4 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/57d2e0de-Certified.svg",
-        alt="",
-        width="171",
-        height="229",
-        hi_def=True,
-        loading="lazy",
-        ) | safe
-      }}
-    </div>
-    <div class="col-8">
-      <h2>
-        Certified, maintained and experimental appliances
-      </h2>
-      <p>
-        A <em>certified</em> Ubuntu Appliance gets continuous testing by Canonical on all certified hardware. Canonical works with publishers to make sure their Ubuntu Appliance 'just works' from first boot, and will continue to work whenever Ubuntu Core receives an update.
-      </p>
-      <p>
-        Both <em>certified</em> and <em>maintained</em> Ubuntu Appliances have a commitment from the appliance maintainers to update the underlying snaps for a declared period, and to test their Ubuntu Appliance image works on their recommended hardware. Certified Ubuntu Appliances have a commitment until the underlying Ubuntu Core is 5 or 10 years old. For example, an Ubuntu Appliance built on Ubuntu Core 20 is certified until 2025 or 2030 at the publisher's discretion.
-      </p>
-      <p>
-        An <em>experimental</em> Ubuntu Appliance does not yet have a maintenance commitment. Either the appliance itself is still being finalised, or the software components don't have someone standing behind them for a guaranteed maintenance period.
-      </p>
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator" />
-  </div>
-
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h2>
-        Hardware compatibility
-      </h2>
-      <p>
-        Ubuntu Core is guaranteed to work on any <a href="/certified/">Ubuntu certified hardware</a>. We recommend the Raspberry Pi or Intel NUCs for your development and testing. We recommend that you work with Canonical to certify any other hardware that is particularly relevant for your appliance. Certification means that every update, bug fix or security patch is tested on these boards in Canonical's testing lab to minimise regressions.
-      </p>
-    </div>
-    <div class="col-4 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/7fd75134-hardware-compatibility.svg",
-        alt="",
-        width="287",
-        height="180",
-        hi_def=True,
-        loading="lazy",
-        ) | safe
-      }}
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator" />
-  </div>
-
-  <div class="row u-equal-height">
-    <div class="col-4 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/1144fd09-governance.svg",
-        alt="",
-        width="271",
-        height="180",
-        hi_def=True,
-        loading="lazy",
-        ) | safe
-      }}
-    </div>
-    <div class="col-8">
-      <h2>
-        Governance
-      </h2>
-      <p>
-        Any healthy and large community will have to manage tensions and conflicting member goals, even though we have a strong shared interest. Here, multiple open source communities and commercial vendors collaborate and create Ubuntu Appliances. Governance ensures that any stress is resolved productively.
-      </p>
-      <p>
-        We lean towards ownership over committee, because doing the work earns the right to decide how best it should be done. Where there are significant questions that touch multiple contributors, we encourage them to work out a constructive common ground, and we offer an escalation path to resolve matters that do not reach quick consensus.
-      </p>
-      <p>
-        Any developer can lead an Ubuntu Appliance. To be hosted on this site, the person or team behind the Ubuntu Appliance publisher must demonstrate that they follow the Ubuntu Code of Conduct.  Before we publish it as a maintained or certified Ubuntu Appliance, we make sure that there is a credible commitment to the maintenance of its software.
-      </p>
-    </div>
-  </div>
-</section>
+  </section>
 
 {% endblock content %}

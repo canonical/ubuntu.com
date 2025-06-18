@@ -1,5 +1,4 @@
-import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { add, format } from "date-fns";
 import { Formik } from "formik";
 import { Elements } from "@stripe/react-stripe-js";
@@ -7,7 +6,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { render, screen } from "@testing-library/react";
 import * as useCalculate from "../../hooks/useCalculate";
 import * as usePreview from "../../hooks/usePreview";
-import { taxInfo, UAProduct } from "../../utils/test/Mocks";
+import { CUEProduct, taxInfo, UAProduct } from "../../utils/test/Mocks";
 import Summary from "./Summary";
 
 const DATE_FORMAT = "dd MMMM yyyy";
@@ -43,7 +42,7 @@ describe("Summary", () => {
         data: undefined,
         isError: false,
         isSuccess: true,
-        error: undefined,
+        error: null,
         isFetching: false,
       };
     });
@@ -54,38 +53,44 @@ describe("Summary", () => {
         data: undefined,
         isError: false,
         isSuccess: true,
-        error: undefined,
+        error: null,
         isFetching: false,
       };
     });
-
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 3,
+      },
+    ];
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
             <Summary
-              quantity={3}
-              product={UAProduct}
+              products={products}
               action={"purchase"}
               setError={jest.fn()}
+              setErrorType={jest.fn()}
+              coupon={{ origin: "", IDs: [] }}
             />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(screen.getByText("Ubuntu Pro")).toBeInTheDocument();
     expect(screen.getByText("3 x $500.00")).toBeInTheDocument();
     expect(screen.getByTestId("start-date")).toHaveTextContent(
-      format(new Date(), DATE_FORMAT)
+      format(new Date(), DATE_FORMAT),
     );
     expect(screen.getByTestId("end-date")).toHaveTextContent(
       format(
         add(new Date(), {
           years: 1,
         }),
-        DATE_FORMAT
-      )
+        DATE_FORMAT,
+      ),
     );
 
     expect(screen.getByTestId("subtotal")).toHaveTextContent("$1,500.00");
@@ -102,23 +107,30 @@ describe("Summary", () => {
         },
         isError: false,
         isSuccess: true,
-        error: undefined,
+        error: null,
         isFetching: false,
       };
     });
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 3,
+      },
+    ];
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
             <Summary
-              quantity={3}
-              product={UAProduct}
+              products={products}
               action={"purchase"}
               setError={jest.fn()}
+              setErrorType={jest.fn()}
+              coupon={{ origin: "", IDs: [] }}
             />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(screen.getByTestId("tax")).toHaveTextContent("$9.99");
@@ -137,28 +149,35 @@ describe("Summary", () => {
         },
         isError: false,
         isSuccess: true,
-        error: undefined,
+        error: null,
         isFetching: false,
       };
     });
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 3,
+      },
+    ];
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
             <Summary
-              quantity={3}
-              product={UAProduct}
+              products={products}
               action={"purchase"}
               setError={jest.fn()}
+              setErrorType={jest.fn()}
+              coupon={{ origin: "", IDs: [] }}
             />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(screen.getByTestId("for-this-period")).toHaveTextContent("$200.00");
     expect(screen.getByTestId("end-date")).toHaveTextContent(
-      "03 February 2042"
+      "03 February 2042",
     );
   });
 
@@ -174,23 +193,30 @@ describe("Summary", () => {
         },
         isError: true,
         isSuccess: true,
-        error: { message: "error" },
+        error: { name: "", message: "error" },
         isFetching: false,
       };
     });
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 3,
+      },
+    ];
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
             <Summary
-              quantity={3}
-              product={UAProduct}
+              products={products}
               action={"purchase"}
               setError={jest.fn()}
+              setErrorType={jest.fn()}
+              coupon={{ origin: "", IDs: [] }}
             />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     screen.getByText("Purchase error");
@@ -209,33 +235,42 @@ describe("Summary", () => {
         isError: true,
         isSuccess: false,
         error: new Error(
-          "cannot make a purchase while subscription is in trial"
+          "cannot make a purchase while subscription is in trial",
         ),
         isFetching: false,
       };
     });
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 3,
+      },
+    ];
     const setError = jest.fn();
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
             <Summary
-              quantity={3}
-              product={UAProduct}
+              products={products}
               action={"purchase"}
               setError={setError}
+              setErrorType={jest.fn()}
+              coupon={{ origin: "", IDs: [] }}
             />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
-    const message = (
-      <>
-        You cannot make a purchase during the trial period. To make a new
-        purchase, cancel your current trial subscription.
-      </>
-    );
+    const message = {
+      description: (
+        <>
+          You cannot make a purchase during the trial period. To make a new
+          purchase, cancel your current trial subscription.
+        </>
+      ),
+    };
 
     expect(setError).toHaveBeenCalledWith(message);
   });
@@ -256,28 +291,90 @@ describe("Summary", () => {
         isFetching: false,
       };
     });
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 3,
+      },
+    ];
     const setError = jest.fn();
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
             <Summary
-              quantity={3}
-              product={UAProduct}
+              products={products}
               action={"purchase"}
               setError={setError}
+              setErrorType={jest.fn()}
+              coupon={{ origin: "", IDs: [] }}
             />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
-    const message = (
-      <>
-        You already have a pending purchase. Please go to{" "}
-        <a href="/account/payment-methods">payment methods</a> to retry.
-      </>
+    const message = {
+      description: (
+        <>
+          You already have a pending purchase. Please go to{" "}
+          <a href="/account/payment-methods">payment methods</a> to retry.
+        </>
+      ),
+    };
+
+    expect(setError).toHaveBeenCalledWith(message);
+  });
+
+  it("renders cue banned user purchase error", () => {
+    jest.spyOn(usePreview, "default").mockImplementation(() => {
+      return {
+        isLoading: false,
+        data: {
+          ...taxInfo,
+          tax: 10000,
+          total: 30000,
+          end_of_cycle: "2042-02-03T16:32:54Z",
+        },
+        isError: true,
+        isSuccess: false,
+        error: new Error(
+          "invalid purchase: user has been banned from purchasing products in the canonical-cube marketplace",
+        ),
+        isFetching: false,
+      };
+    });
+    const products = [
+      {
+        product: CUEProduct,
+        quantity: 1,
+      },
+    ];
+    const setError = jest.fn();
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Formik initialValues={{}} onSubmit={jest.fn()}>
+          <Elements stripe={stripePromise}>
+            <Summary
+              products={products}
+              action={"purchase"}
+              setError={setError}
+              setErrorType={jest.fn()}
+              coupon={{ origin: "", IDs: [] }}
+            />
+          </Elements>
+        </Formik>
+      </QueryClientProvider>,
     );
+
+    const message = {
+      description: (
+        <>
+          You cannot make this purchase as your account has been banned from
+          purchasing CUE exams.
+        </>
+      ),
+    };
 
     expect(setError).toHaveBeenCalledWith(message);
   });
@@ -298,23 +395,32 @@ describe("Summary", () => {
         isFetching: false,
       };
     });
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 3,
+      },
+    ];
     const setError = jest.fn();
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
             <Summary
-              quantity={3}
-              product={UAProduct}
+              products={products}
               action={"purchase"}
               setError={setError}
+              setErrorType={jest.fn()}
+              coupon={{ origin: "", IDs: [] }}
             />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
-    const message = <>Sorry, there was an unknown error with your purchase.</>;
+    const message = {
+      description: <>Sorry, there was an unknown error with your purchase.</>,
+    };
 
     expect(setError).toHaveBeenCalledWith(message);
   });

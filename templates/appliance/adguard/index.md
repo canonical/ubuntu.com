@@ -8,6 +8,7 @@ context:
   logo: "https://assets.ubuntu.com/v1/1ec45573-AdGuard.png"
   category: "Security"
   meta_description: "AdGuard Home is a network-wide software for blocking and tracking ads. After you set it up, it'll cover ALL your home devices, and you don't need any client-side software for that."
+  meta_copydoc: https://docs.google.com/document/d/1-OETrr26H36YpewFgSlCxOaSXSf3QoWpKZV5lc8ONbs/edit
   downloads:
     raspberrypi: True
     pc: True
@@ -47,8 +48,9 @@ context:
       published_date: "15 May 2020"
 ---
 
-#### Network-wide ads and trackers blocking DNS server</h2>
+<h2>Network-wide ads and trackers blocking DNS server</h2>
 
+<br />
 AdGuard Home is a network-wide software for blocking and tracking ads. After you set it up, it'll cover ALL your home devices, and you don't need any client-side software for that.
 
 It operates as a DNS server that re-routes tracking domains to a "black hole", thus preventing your devices from connecting to those servers. It's based on software we use for our public AdGuard DNS servers &mdash; both share a lot of common code.

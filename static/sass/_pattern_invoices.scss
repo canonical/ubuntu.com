@@ -1,0 +1,7 @@
+@mixin ubuntu-p-invoices {
+  #edit-billing-modal > [role="dialog"] {
+    @media only screen and (min-width: $breakpoint-large) {
+      min-width: 38rem;
+    }
+  }
+}

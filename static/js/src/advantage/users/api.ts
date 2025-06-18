@@ -1,7 +1,7 @@
 import { AccountUsersApiResponse, AccountUsersData, UserRole } from "./types";
 
 const parseAccountsResponse = (
-  response: AccountUsersApiResponse
+  response: AccountUsersApiResponse,
 ): AccountUsersData => ({
   accountId: response.account_id,
   organisationName: response.name,
@@ -17,7 +17,7 @@ const requestAccountUsers = (): Promise<AccountUsersData> =>
   fetchJSON(`/pro/account-users${window.location.search}`, {
     cache: "no-store",
   }).then((response) =>
-    parseAccountsResponse(response as AccountUsersApiResponse)
+    parseAccountsResponse(response as AccountUsersApiResponse),
   );
 
 const accountUserRequestInit: RequestInit = {
@@ -41,7 +41,7 @@ const handleResponse = async (response: Response): Promise<unknown> => {
 
   if (!response.ok) {
     const error: FetchError = new Error(
-      responseJson.error || responseJson.errors || response.statusText
+      responseJson.error || responseJson.errors || response.statusText,
     );
     error.response = response;
     throw error;

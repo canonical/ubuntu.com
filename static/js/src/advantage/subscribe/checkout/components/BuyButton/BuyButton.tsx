@@ -1,28 +1,49 @@
-import React, { useEffect, useState } from "react";
-import { useQueryClient } from "react-query";
+import React, { useEffect, useState, useMemo } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { useFormikContext } from "formik";
 import { getSessionData } from "utils/getSessionData";
 import { ActionButton } from "@canonical/react-components";
-import * as Sentry from "@sentry/react";
 import { vatCountries } from "advantage/countries-and-states";
 import { purchaseEvent } from "advantage/ecom-events";
-import { getErrorMessage } from "advantage/error-handler";
+import { getNotificationMessage } from "../../utils/translateErrors";
 import postCustomerInfo from "../../hooks/postCustomerInfo";
 import postPurchase from "../../hooks/postPurchase";
 import postPurchaseAccount from "../../hooks/postPurchaseAccount";
 import useCustomerInfo from "../../hooks/useCustomerInfo";
 import usePollPurchaseStatus from "../../hooks/usePollPurchaseStatus";
-import { Action, FormValues, Product } from "../../utils/types";
+import {
+  Action,
+  Coupon,
+  CheckoutProducts,
+  FormValues,
+} from "../../utils/types";
+import {
+  DISTRIBUTOR_SELECTOR_KEYS,
+  PRO_SELECTOR_KEYS,
+} from "advantage/distributor/utils/utils";
+import { confirmNavigateListener } from "../../utils/helpers";
+import type { DisplayError } from "../../utils/types";
 
 type Props = {
-  setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
-  quantity: number;
-  product: Product;
+  setError: React.Dispatch<React.SetStateAction<DisplayError | null>>;
+  products: CheckoutProducts[];
   action: Action;
+  coupon?: Coupon;
+  errorType: string;
 };
 
-const BuyButton = ({ setError, quantity, product, action }: Props) => {
+const BuyButton = ({
+  setError,
+  products,
+  action,
+  coupon,
+  errorType,
+}: Props) => {
   const [isLoading, setIsLoading] = useState(false);
+
+  const isBuyButtonDisabled = useMemo(() => {
+    return isLoading || errorType === "cue-banned";
+  }, [isLoading, errorType]);
 
   const {
     values,
@@ -38,6 +59,7 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
   const postPurchaseMutation = postPurchase();
   const buyAction = values.FreeTrial === "useFreeTrial" ? "trial" : action;
   const queryClient = useQueryClient();
+  const poNumber = values.poNumber || null;
 
   const sessionData = {
     gclid: getSessionData("gclid"),
@@ -65,21 +87,29 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
   }, [values.country]);
 
   const onPayClick = async () => {
+    if (errorType === "cue-banned") return;
+    setIsLoading(true);
+    confirmNavigateListener.set();
     validateForm().then((errors) => {
       const possibleErrors = Object.keys(errors);
-
       possibleErrors.forEach((error) => {
         setFieldTouched(error, true);
       });
 
       if (!(possibleErrors.length === 0)) {
-        setError(<>Please make sure all fields are filled in correctly.</>);
+        setError({
+          description: (
+            <>Please make sure all fields are filled in correctly.</>
+          ),
+        });
         document.querySelector("h1")?.scrollIntoView();
+        setIsLoading(false);
         return;
       }
     });
 
     if (!(Object.keys(errors).length === 0)) {
+      setIsLoading(false);
       return;
     }
 
@@ -102,34 +132,38 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
           onError: (error) => {
             handleError(error);
           },
-        }
+        },
       );
     }
 
     // Update customer information
-    if (!values.defaultPaymentMethod) {
+    const hasZeroPriceValue = products.some(
+      (item) => item.product.price.value === 0,
+    );
+    if (!values.defaultPaymentMethod && !hasZeroPriceValue) {
       await postCustomerInfoMutation.mutateAsync(
         { formData: values },
         {
           onError: (error) => {
             handleError(error);
           },
-        }
+        },
       );
     }
 
     // Attempt or re-attempt the purchase
     await postPurchaseMutation.mutateAsync(
       {
-        product,
-        quantity,
+        products,
         action: buyAction,
+        coupon,
+        poNumber,
       },
       {
         onSuccess: (purchaseId: string) => {
           //start polling
           if (window.currentPaymentId) {
-            queryClient.invalidateQueries("pendingPurchase");
+            queryClient.invalidateQueries({ queryKey: ["pendingPurchase"] });
           } else {
             setPendingPurchaseID(purchaseId);
             window.currentPaymentId = purchaseId;
@@ -138,86 +172,96 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
         onError: (error) => {
           handleError(error);
         },
-      }
+      },
     );
   };
 
   const handleError = (error: Error) => {
+    confirmNavigateListener.clear();
     setIsLoading(false);
     setFieldValue("Description", false);
     setFieldValue("TermsAndConditions", false);
     document.querySelector("h1")?.scrollIntoView();
 
     if (error.message.includes("can only make one purchase at a time")) {
-      setError(
-        <>
-          You already have a pending purchase. Please go to{" "}
-          <a href="/account/payment-methods">payment methods</a> to retry.
-        </>
-      );
+      setError({
+        description: (
+          <>
+            You already have a pending purchase. Please go to{" "}
+            <a href="/account/payment-methods">payment methods</a> to retry.
+          </>
+        ),
+      });
     } else if (
       error.message.includes("purchase while subscription is in trial")
     ) {
-      setError(
-        <>
-          You cannot make a purchase during the trial period. To make a new
-          purchase, cancel your current trial subscription.
-        </>
-      );
+      setError({
+        description: (
+          <>
+            You cannot make a purchase during the trial period. To make a new
+            purchase, cancel your current trial subscription.
+          </>
+        ),
+      });
     } else if (error.message.includes("tax_id_invalid")) {
       setFieldError(
         "VATNumber",
-        "That VAT number is invalid. Check the number and try again."
+        "That VAT number is invalid. Check the number and try again.",
       );
-      setError(
-        <>That VAT number is invalid. Check the number and try again.</>
-      );
+      setError({
+        description: (
+          <>That VAT number is invalid. Check the number and try again.</>
+        ),
+      });
     } else if (error.message.includes("tax_id_cannot_be_validated")) {
       setFieldError(
         "VATNumber",
-        "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists."
+        "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists.",
       );
-      setError(
-        <>
-          VAT number could not be validated at this time, please try again later
-          or contact
-          <a href="mailto:customersuccess@canonical.com">customer success</a> if
-          the problem persists.
-        </>
-      );
+      setError({
+        description: (
+          <>
+            VAT number could not be validated at this time, please try again
+            later or contact
+            <a href="mailto:customersuccess@canonical.com">
+              customer success
+            </a>{" "}
+            if the problem persists.
+          </>
+        ),
+      });
     } else if (
       error.message.includes(
-        "We are unable to authenticate your payment method"
+        "We are unable to authenticate your payment method",
       )
     ) {
-      setError(
-        <>
-          We were unable to verify your credit card. Check the details and try
-          again. Contact{" "}
-          <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
-          problem persists.
-        </>
-      );
-    } else {
-      const knownErrorMessage = getErrorMessage({
-        message: "",
-        code: error.message,
-      });
-
-      // Tries to match the error with a known error code and defaults to a generic error if it fails
-      if (knownErrorMessage) {
-        setError(knownErrorMessage);
-      } else {
-        Sentry.captureException(error);
-        setError(
+      setError({
+        description: (
           <>
-            Sorry, there was an unknown error with your credit card. Check the
-            details and try again. Contact{" "}
+            We were unable to verify your credit card. Check the details and try
+            again. Contact{" "}
             <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
             problem persists.
           </>
-        );
-      }
+        ),
+      });
+    } else if (
+      error.message.includes(
+        "missing one-off product listing for renewal product",
+      )
+    ) {
+      setError({
+        description: (
+          <>
+            The chosen product cannot be renewed as it has been deprecated.
+            Contact <a href="https://ubuntu.com/contact-us">Canonical sales </a>
+            to choose a substitute offering.
+          </>
+        ),
+      });
+    } else {
+      const knownErrorMessage = getNotificationMessage(error);
+      setError(knownErrorMessage);
     }
   };
 
@@ -225,7 +269,7 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
     // the initial call was successful but it returned an error while polling the purchase status
     if (purchaseError) {
       if (window.accountId) {
-        queryClient.invalidateQueries("customerInfo");
+        queryClient.invalidateQueries({ queryKey: ["customerInfo"] });
       }
       setIsLoading(false);
       setFieldValue("Description", false);
@@ -256,22 +300,29 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
       // the default values pre-selected instead of what they just bought.
       localStorage.removeItem("ua-subscribe-state");
 
-      const proSelectorStates = [
-        "pro-selector-productType",
-        "pro-selector-version",
-        "pro-selector-quantity",
-        "pro-selector-feature",
-        "pro-selector-support",
-        "pro-selector-sla",
-        "pro-selector-period",
-        "pro-selector-publicCloud",
-      ];
+      const proSelectorKeysArray = Object.values(PRO_SELECTOR_KEYS);
+      const distributorSelectorKeysArray = Object.values(
+        DISTRIBUTOR_SELECTOR_KEYS,
+      );
 
-      proSelectorStates.forEach((state) => localStorage.removeItem(state));
+      proSelectorKeysArray.forEach((key) => {
+        localStorage.removeItem(key);
+      });
 
-      const address = userInfo
-        ? `${userInfo?.customerInfo?.address?.line1} ${userInfo?.customerInfo?.address?.line2} ${userInfo?.customerInfo?.address?.city} ${userInfo?.customerInfo?.address?.postal_code} ${userInfo?.customerInfo?.address?.state} ${userInfo?.customerInfo?.address?.country}`
-        : `${values?.address} ${values?.postalCode} ${values?.city} ${values?.usState} ${values?.caProvince} ${values?.country}`;
+      distributorSelectorKeysArray.forEach((key) => {
+        localStorage.removeItem(key);
+      });
+
+      const address = [
+        values?.address,
+        values?.postalCode,
+        values?.city,
+        values?.usState,
+        values?.caProvince,
+        values?.country,
+      ]
+        .filter(Boolean)
+        .join(" ");
 
       const getName = () => {
         const name = userInfo?.customerInfo?.name || values?.name;
@@ -290,13 +341,15 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
       getName();
       formData.append(
         "email",
-        (userInfo?.customerInfo?.email || values.email) ?? ""
+        (userInfo?.customerInfo?.email || values.email) ?? "",
       );
       formData.append(
         "company",
-        (userInfo?.accountInfo?.name || values?.organisationName) ?? ""
+        (userInfo?.accountInfo?.name || values?.organisationName) ?? "",
       );
-      formData.append("street", address ?? "");
+      if (address) {
+        formData.append("street", address ?? "");
+      }
       formData.append("Consent_to_Processing__c", "yes");
       formData.append("GCLID__c", sessionData?.gclid || "");
       formData.append("utm_campaign", sessionData?.utm_campaign || "");
@@ -305,7 +358,7 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
       formData.append("store_name__c", "ua");
       formData.append(
         "canonicalUpdatesOptIn",
-        values.MarketingOptIn ? "yes" : "no"
+        values.MarketingOptIn ? "yes" : "no",
       );
 
       request.open("POST", "/marketo/submit");
@@ -313,11 +366,20 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
 
       request.onreadystatechange = () => {
         if (request.readyState === 4) {
+          confirmNavigateListener.clear();
           localStorage.removeItem("shop-checkout-data");
+          const product = products[0].product;
+          const quantity = products[0].quantity;
           if (product.marketplace == "canonical-cube") {
-            location.href = `/credentials/shop/order-thank-you?productName=${encodeURIComponent(
-              product.name
-            )}&quantity=${quantity}`;
+            if (product.name === "cue-linux-essentials-free") {
+              location.href = `/credentials/shop/order-thank-you?productName=${encodeURIComponent(
+                "CUE.01 Linux",
+              )}&quantity=${quantity}`;
+            } else {
+              location.href = `/credentials/shop/order-thank-you?productName=${encodeURIComponent(
+                product.name,
+              )}&quantity=${quantity}`;
+            }
           } else if (!window.loginSession) {
             const email = userInfo?.customerInfo?.email || values.email || "";
             let urlBase = "/pro/subscribe";
@@ -325,7 +387,13 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
               urlBase = "/pro/subscribe/blender";
             }
             location.href = `${urlBase}/thank-you?email=${encodeURIComponent(
-              email
+              email,
+            )}`;
+          } else if (product.marketplace === "canonical-pro-channel") {
+            const email = userInfo?.customerInfo?.email || values.email || "";
+            const urlBase = "/pro/distributor";
+            location.href = `${urlBase}/thank-you?email=${encodeURIComponent(
+              email,
             )}`;
           } else {
             location.href = "/pro/dashboard";
@@ -343,6 +411,7 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
       style={{ marginTop: "calc(.5rem - 1.5px)" }}
       onClick={onPayClick}
       loading={isLoading}
+      disabled={isBuyButtonDisabled}
     >
       Buy now
     </ActionButton>

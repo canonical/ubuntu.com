@@ -1,0 +1,67 @@
+<section class="p-section">
+  <div class="row--25-75">
+    <div class="col">
+      <h2 class="p-muted-heading">Component details</h2>
+    </div>
+    <div class="col">
+      <table aria-label="Component details table">
+        <tbody>
+          {% if component.vendor_name %}
+            <tr>
+              <th colspan="3" class="u-text--muted">Vendor</th>
+              <td colspan="6">{{ component.vendor_name }}</td>
+            </tr>
+          {% endif %}
+          {% if component.model %}
+            <tr>
+              <th colspan="3" class="u-text--muted">Model name</th>
+              <td colspan="6">{{ component.model }}</td>
+            </tr>
+          {% endif %}
+          {% if component.identifier %}
+            <tr>
+              <th colspan="3" class="u-text--muted">Identifier</th>
+              <td colspan="6">{{ component.identifier }}</td>
+            </tr>
+          {% endif %}
+          {% if component.subsystem_identifier %}
+            <tr>
+              <th colspan="3" class="u-text--muted">Subsystem Identifier</th>
+              <td colspan="6">{{ component.subsystem_identifier }}</td>
+            </tr>
+          {% endif %}
+          {% if component.hardware_vendor_make %}
+            <tr>
+              <th colspan="3" class="u-text--muted">Hardware Vendor make</th>
+              <td colspan="6">{{ component.hardware_vendor_make }}</td>
+            </tr>
+          {% endif %}
+          {% if component.vendor_make %}
+            <tr>
+              <th colspan="3" class="u-text--muted">Vendor make</th>
+              <td colspan="6">{{ component.vendor_make }}</td>
+            </tr>
+          {% endif %}
+          {% if component.part_number %}
+            <tr>
+              <th colspan="3" class="u-text--muted">Part number</th>
+              <td colspan="6">{{ component.part_number }}</td>
+            </tr>
+          {% endif %}
+          {% if component.category %}
+            <tr>
+              <th colspan="3" class="u-text--muted">Device category</th>
+              <td colspan="6">{{ component.category }}</td>
+            </tr>
+          {% endif %}
+          {% if component.note %}
+            <tr>
+              <th colspan="3" class="u-text--muted">Note</th>
+              <td colspan="6">{{ component.note }}</td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

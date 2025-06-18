@@ -1,41 +1,49 @@
 {% extends "support/base_support.html" %}
 
 {% block title %}Thank you | Support{% endblock %}
-{% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
-{% block meta_description %}Ubuntu Advantage for Infrastructure provides a single subscription for security maintenance and support for your open source infrastructure, including OpenStack and Kubernetes.{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1Vya-1Uq7bqJ7SFQ36j9-REp1iDT3rFENjYyCzuY02r4/edit{% endblock meta_copydoc %}
+
+{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
+
+{% block meta_description %}
+  Ubuntu Advantage for Infrastructure provides a single subscription for security maintenance and support for your open source infrastructure, including OpenStack and Kubernetes.
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1Vya-1Uq7bqJ7SFQ36j9-REp1iDT3rFENjYyCzuY02r4/edit
+{% endblock meta_copydoc %}
 
 {% block content %}
-
-
-{% if product == 'education-discount' %}
-
-  {% with thanks_context="contacting us about discounts for education and research" %}{% include "shared/_thank_you.html" %}{% endwith %}
-
-{% else %}
-
-  {% with thanks_context="contacting us about Ubuntu Advantage" %}{% include "shared/_thank_you.html" %}{% endwith %}
-
-{% endif %}
-
+  {% if product == 'education-discount' %}
+    {% with thanks_context="contacting us about discounts for education and research" %}
+      {% include "shared/_thank_you.html" %}
+    {% endwith %}
+  {% else %}
+    {% with thanks_context="contacting our team.", thanks_message="We will be in touch shortly." %}
+      {% include "shared/_thank_you.html" %}
+    {% endwith %}
+  {% endif %}
 {% endblock content %}
+
 {% block footer_extra %}
-<!-- Google Code for Services Canonical &mdash; contact us Conversion Page -->
-<script>
-  /* <![CDATA[ */
-  var google_conversion_id = 1012391776;
-  var google_conversion_language = "en";
-  var google_conversion_format = "3";
-  var google_conversion_color = "ffffff";
-  var google_conversion_label = "utP4CMDOwQMQ4L7f4gM";
-  var google_conversion_value = 0;
-  /* ]]> */
-</script>
-<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
-</script>
-<noscript>
-  <div style="display:inline;">
-    <img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/1012391776/?value=0&amp;label=utP4CMDOwQMQ4L7f4gM&amp;guid=ON&amp;script=0"/>
-  </div>
-</noscript>
+  <!-- Google Code for Services Canonical &mdash; contact us Conversion Page -->
+  <script>
+    /* <![CDATA[ */
+    var google_conversion_id = 1012391776;
+    var google_conversion_language = "en";
+    var google_conversion_format = "3";
+    var google_conversion_color = "ffffff";
+    var google_conversion_label = "utP4CMDOwQMQ4L7f4gM";
+    var google_conversion_value = 0;
+    /* ]]> */
+  </script>
+  <script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js"></script>
+  <noscript>
+    <div style="display:inline;">
+      <img height="1"
+           width="1"
+           style="border-style:none"
+           alt=""
+           src="https://www.googleadservices.com/pagead/conversion/1012391776/?value=0&amp;label=utP4CMDOwQMQ4L7f4gM&amp;guid=ON&amp;script=0" />
+    </div>
+  </noscript>
 {% endblock footer_extra %}

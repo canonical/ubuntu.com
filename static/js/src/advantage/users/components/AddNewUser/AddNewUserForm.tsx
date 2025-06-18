@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Button,
   ActionButton,
@@ -25,10 +25,8 @@ export const AddNewUserForm = ({
   handleClose: () => void;
   handleSubmit: HandleNewUserSubmit;
 }) => {
-  const [
-    formSubmissionError,
-    setFormSubmissionError,
-  ] = useState<SubmissionErrorMessage | null>(null);
+  const [formSubmissionError, setFormSubmissionError] =
+    useState<SubmissionErrorMessage | null>(null);
   const initialValues: NewUserValues = {
     name: "",
     email: "",
@@ -69,6 +67,7 @@ export const AddNewUserForm = ({
               as={Input}
               name="name"
               id="user-name"
+              data-testid="user-name-input"
               type="text"
               label="Name"
               validate={validateRequired}
@@ -78,6 +77,7 @@ export const AddNewUserForm = ({
               as={Input}
               name="email"
               id="user-email"
+              data-testid="user-email-input"
               type="text"
               label="Users’ email address"
               validate={validateEmail}
@@ -87,6 +87,7 @@ export const AddNewUserForm = ({
               as={Select}
               name="role"
               id="user-role"
+              data-testid="user-role-select"
               label="Role"
               aria-describedby="add-new-user-roles-roles-description"
               options={userRoleOptions}

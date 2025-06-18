@@ -230,7 +230,7 @@ function addYAxisHorizontalLines(svg, yAxis, width, margin) {
       posY - 2,
       posY - 2,
       "#D9D9D9",
-      1
+      1,
     );
   });
 
@@ -241,7 +241,7 @@ function addYAxisHorizontalLines(svg, yAxis, width, margin) {
     tickPositions[0] - 2,
     tickPositions[0] - 2,
     "#D9D9D9",
-    2
+    2,
   );
 }
 
@@ -357,14 +357,14 @@ function buildCharts() {
     createDeveloperChart(
       "#hackerearth-chart",
       hackerEarthData.labels,
-      hackerEarthData.tasks
+      hackerEarthData.tasks,
     );
   }
   if (document.querySelector("#opensource-chart")) {
     createDeveloperChart(
       "#opensource-chart",
       openSourceData.labels,
-      openSourceData.tasks
+      openSourceData.tasks,
     );
   }
 }
@@ -400,5 +400,5 @@ window.addEventListener(
       clearCharts();
       buildCharts();
     }
-  }, 250)
+  }, 250),
 );

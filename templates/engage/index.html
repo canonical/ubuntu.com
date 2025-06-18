@@ -29,7 +29,7 @@
     <div class="col-3">
       <div class="p-form__group">
         <label for="language-selector">Select language:</label>
-        <select name="language-selector" id="language-selector" class="u-no-margin--bottom">
+        <select name="language-selector" class="js-language-selector u-no-margin--bottom">
           <option value="all">All languages</option>
           <option value="zh-TW">Chinese (Traditional)</option>
           <option value="de">Deutsch</option>
@@ -37,8 +37,10 @@
           <option value="es">Espa&ntilde;ol</option>
           <option value="fr">Fran&ccedil;ais</option>
           <option value="it">Italiano</option>
+          <option value="kr">Korean</option>
           <option value="pt">Portugu&ecirc;s</option>
           <option value="ru">Русс&#1082;&#1080;&#1081;</option>
+          <option value="tr">T&uuml;rk&ccedil;e</option>
         </select>
       </div>
     </div>
@@ -46,15 +48,11 @@
     <div class="col-3">
       <div class="p-form__group">
         <label for="resource-selector">Select resource type:</label>
-        <select name="resource-selector" id="resource-selector" class="u-no-margin--bottom">
+        <select name="resource-selector" class="js-resource-selector u-no-margin--bottom">
           <option value="all">All resource types</option>
-          <option value="blog">Blog</option>
-          <option value="case study">Case study</option>
-          <option value="ebook">Ebook</option>
-          <option value="event">Event</option>
-          <option value="form">Form</option>
-          <option value="webinar">Webinar</option>
-          <option value="whitepaper">Whitepaper</option>
+          {% for type in resource_types %}
+            <option value="{{ type | lower }}">{{ type }}</option>
+          {% endfor %}
         </select>
       </div>
     </div>
@@ -63,10 +61,10 @@
     <div class="col-3">
       <div class="p-form__group">
         <label for="tag-selector">Select tag:</label>
-        <select name="tag-selector" id="tag-selector" class="u-no-margin--bottom">
+        <select name="tag-selector" class="js-tag-selector u-no-margin--bottom">
           <option value="all">All tags</option>
           {% for tag in tags %}
-            <option value="{{ tag }}">{{ tag }}</option>
+            <option {% if tag == "" %}disabled{% endif %} value="{{ tag }}">{% if tag == "" %}-{% else %}{{ tag }}{% endif %}</option>
           {% endfor %}
         </select>
       </div>
@@ -76,7 +74,8 @@
       <div class="u-hide u-show--small" >
         <br /><br />
       </div>
-      <button id="clear-filters" class="u-no-margin--bottom" onclick="clearFilters()" type="reset" disabled>Clear filters</button>
+      <button class="js-apply-filters p-button--positive u-no-margin--bottom">Apply filters</button>
+      <button class="js-clear-filters u-no-margin--bottom" onclick="clearFilters()" type="reset" disabled>Clear filters</button>
     </div>
   </div>
   </form>
@@ -86,7 +85,7 @@
   {% if metadata | length > 0 %}
   <div class="row u-equal-height">
     {% for item in metadata %}
-      {% with 
+      {% with
         title=item.topic_name,
         title_link=item.path,
         description=item.subtitle,
@@ -99,6 +98,13 @@
       {% endwith %}
     {% endfor %}
   </div>
+  <section class="p-strip is-shallow">
+    {% with %}
+      {% set total_pages = total_pages %}
+      {% set current_page = current_page %}
+      {% include "shared/_pagination.html" %}
+    {% endwith %}
+  </section>
   {% else %}
   <div class="u-fixed-width">
     <h3>No results &mdash; why not try widening your search?</h3>
@@ -108,47 +114,54 @@
 </section>
 <script>
 function clearFilters() {
-  const clearFiltersButton = document.getElementById("clear-filters");
+  const clearFiltersButton = document.querySelector(".js-clear-filters");
   window.location.assign("/engage");
 }
 (function() {
-  const languageSelector = document.getElementById("language-selector");
-  const resourceSelector = document.getElementById("resource-selector");
-  const tagSelector = document.getElementById("tag-selector");
-  const clearFiltersButton = document.getElementById("clear-filters");
+  const languageSelector = document.querySelector(".js-language-selector");
+  const resourceSelector = document.querySelector(".js-resource-selector");
+  const tagSelector = document.querySelector(".js-tag-selector");
+
+  const applyFiltersButton = document.querySelector(".js-apply-filters");
+  const clearFiltersButton = document.querySelector(".js-clear-filters");
   const urlObj = new URL(window.location);
 
   if (urlObj.search !== "") {
     clearFiltersButton.removeAttribute("disabled");
   }
 
-  function handleFilter(key, el, url) {
-    if (!el) {
+  function setFiltersDropdown(key, selector) {
+    if (!selector) {
       return;
     }
-
-    if (url.searchParams.has(key)) {
-      el.value = url.searchParams.get(key);
+    if (urlObj.searchParams.has(key)) {
+      selector.value = urlObj.searchParams.get(key);
     }
-
-    el.addEventListener("change", function(e) {
-      const value = e.target.value;
-      const selectFields = document.querySelectorAll("select:checked")
-      
-      if (url.searchParams.has(key)) {
-        url.searchParams.delete(key);
-      }
-      if (value !== "all") {
-        url.searchParams.append(key, value);
-      }
-      
-      window.location = url;
-    });
   }
 
-  handleFilter("language", languageSelector, urlObj);
-  handleFilter("resource", resourceSelector, urlObj);
-  handleFilter("tag", tagSelector, urlObj);
+  setFiltersDropdown("language", languageSelector);
+  setFiltersDropdown("resource", resourceSelector);
+  setFiltersDropdown("tag", tagSelector);  
+
+  function setFilters(key, selector) {
+    if (selector.value != "all") {
+      urlObj.searchParams.set(key, selector.value);
+    } else {
+      urlObj.searchParams.delete(key);
+    }
+  }
+
+  function applyFilters(event) {
+    event.preventDefault();
+
+    setFilters("language", languageSelector);
+    setFilters("resource", resourceSelector);
+    setFilters("tag", tagSelector);
+
+    urlObj.searchParams.delete("page");
+    window.location = urlObj.href;
+}
+  applyFiltersButton.addEventListener("click", applyFilters);
 })()
 </script>
 {% endblock content %}

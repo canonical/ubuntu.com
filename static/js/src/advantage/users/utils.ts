@@ -27,7 +27,7 @@ export const _getErrorMessage = (error: Error): SubmissionErrorMessage => {
   return (
     errorMessages[
       Object.keys(errorMessages).find((message) =>
-        error.message.includes?.(message)
+        error.message.includes?.(message),
       ) as SubmissionErrorMessageKey
     ] || errorMessages.unknown
   );
@@ -41,6 +41,6 @@ export const validateRequired = (value: string): string | undefined =>
 
 export const validateEmail = (value: string): string | undefined =>
   validateRequired(value) ||
-  !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
+  !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
     ? "Must be a valid email."
     : undefined;

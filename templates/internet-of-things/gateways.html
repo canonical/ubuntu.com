@@ -1,387 +1,667 @@
 {% extends "internet-of-things/base_things.html" %}
 
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
 {% block title %}Ubuntu on Edge and Industrial Gateways{% endblock %}
 
-{% block meta_description %}Leveraging virtualisation on industrial gateways at the edge is easiest with Ubuntu. Orchestrate any type of application containers the most secure way with Ubuntu.{% endblock meta_description %}
+{% block meta_description %}
+  Leveraging virtualization on industrial gateways at the edge is easiest with Ubuntu. Orchestrate any type of application containers the most secure way with Ubuntu.
+{% endblock meta_description %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/18ffTcNolrtJS9AvjMfa8KW94uLfC0KzmHtTe-jMYmlo/edit#{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/18ffTcNolrtJS9AvjMfa8KW94uLfC0KzmHtTe-jMYmlo/edit#
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
 
-<section class="p-strip is-deep u-no-padding--top u-no-padding--bottom">
-  <div class="p-strip--suru-topped">
-    <div class="row u-vertically-center">
-      <div class="col-6">
-        <h1>Virtualisation on edge gateways</h1>
-        <p class="p-heading--4">Edge gateways provide key infrastructure for the digital transformation industrial operations</p>
-        <p class="u-sv3">Ubuntu delivers long-term security, along with the flexibility to deploy various types of applications, platforms and protocols to the edge though virtualisation.</p>
-      </div>
-      <div class="u-vertically-center col-5 col-start-large-8 u-hide--medium u-hide--small u-align--center">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/d40fc8b9-Internet+of+Things_digital-gateways.svg",
-          alt="",
-          height="280",
-          width="300",
-          hi_def=True,
-          attrs={"class": "row-hero__image"},
-          ) | safe
+  {% call(slot) vf_hero(
+    title_text='Virtualization on edge gateways',
+    layout='50/50',
+    is_split_on_medium=true
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Edge gateways provide key infrastructure for the digital transformation of industrial operations. Ubuntu delivers long-term security, along with the flexibility to deploy various types of applications, platforms and protocols to the edge through virtualization.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="/smartstart" class="p-button--positive">Build an IoT gateway with Smart Start</a>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--3-2 is-highlighted is-cover u-hide--small">
+        {{ image(url="https://assets.ubuntu.com/v1/97eefc45-edge-gateways-hero.png",
+                alt="",
+                width="1800",
+                height="1128",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image"}) | safe
         }}
       </div>
-    </div>
-  </div>
-</section>
+    {%- endif -%}
+  {% endcall -%}
 
-<section class="p-strip--light">
-  <div class="u-fixed-width">
-    {% with title="Companies that have built their gateways on Ubuntu", json_feed_url="http://partners.ubuntu.com/partners.json?technology__name=Edge%20Gateway", feed_item_limit=10 %}{% include "shared/_partner-logos.html" %}{% endwith %}
-    <p class="u-align--center"><a href="http://partners.ubuntu.com/find-a-partner?technology=edge-gateway">See all of our gateway partners</a></p>
-  </div>
-</section>
-
-<section class="p-strip u-no-padding--bottom">
-  <div class="row">
-    <div class="col-8">
-      <p class="p-heading--2">State of the art security for business critical equipment</p>
-      <p>Several layers of security are stacked in Ubuntu Core to keep potential surfaces of attack as low as reasonably possible for autonomous robots deployed in field of operations.</p>
-      <a href="/engage/core18-security">Ubuntu Core is the most secure choice for IoT, find out why&nbsp;&rsaquo;</a>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row">
-    <div class="col-6">
-      <p class="p-heading--3">Full encryption, disk and network</p>
-      <p>Only software packages from trusted developers and vendors will be installed to your gateways. Installed software will be immutable and application data fully encrypted. Furthermore, messages exchanged over the network will be encrypted. It will neither be possible to install malicious software nor to eavesdrop your network communications.</p>
-    </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
-        alt="",
-        height="200",
-        width="350",
-        hi_def=True,
-        ) | safe
-      }}
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator" />
-  </div>
-
-  <div class="row">
-    <div class="col-6 u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/9c80823b-confinement.svg",
-        alt="",
-        height="200",
-        width="350",
-        hi_def=True,
-        ) | safe
-      }}
-    </div>
-    <div class="col-6">
-      <p class="p-heading--3">Self-confined containers</p>
-      <p>Applications running on your gateways will be virtualised and confined to their own environments. This adds an additional layer of security, preventing anomalies from spreading through the system. The full isolation of processes and their associated data makes localisation and resolution of anomalies easy.</p>
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator" />
-  </div>
-
-  <div class="row">
-    <div class="col-6">
-      <p class="p-heading--3">Zero security debt</p>
-      <p>We introduce continuous upgrades without machine downtime to the manufacturing sector.Security patches will be delivered to your gateways as soon as vulnerabilities are become known. Our expanded security maintenance offering for Ubuntu Core is active for ten years. You will not have to worry about CVEs. We will keep your security debt at zero.</p>
-    </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/a43d61ae-update+control.svg",
-        alt="",
-        height="185",
-        width="185",
-        hi_def=True,
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="u-fixed-width">
-    <blockquote class="p-pull-quote">
-      <p class="p-pull-quote__quote">As companies continue to embrace Internet of Things (IoT) solutions, security and quick, easy system updates are critical</p>
-      <cite class="p-pull-quote__citation">Jason Shepherd, Director of Strategy and Partnerships, IoT, Dell.</cite>
-    </blockquote>
-  </div>
-</section>
-
-<section class="p-strip u-no-padding--bottom">
-  <div class="row">
-    <div class="col-8">
-      <p class="p-heading--2">Leverage the strongest developers community</p>
-      <p>80% of Linux developers choose Ubuntu. Find talents and technical support will be easiest with Ubuntu.</p>
-      <a href="https://iot.eclipse.org/community/resources/iot-surveys/assets/iot-developer-survey-2019.pdf">#1 Linux distribution for IoT</a>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row p-divider">
-    <div class="col-6 p-divider__block">
-      <p class="p-heading--3">Largest pool of talent</p>
-      <p>Developers love Ubuntu. By adopting the most popular Linux distribution, you can leverage the strong community of developers, vendors and system integrators familiar Ubuntu.</p>
-    </div>
-
-    <div class="col-6 p-divider__block">
-      <p class="p-heading--3">Open source software</p>
-      <p>Complex software is increasingly collaborative and open source. This was our philosophy from the beginning.  Harness the power of our open source software and build on top of contributions from the community. Build on your own, or seek our help. We will support you.</p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light u-no-padding--bottom">
-  <div class="u-fixed-width">
-    <p class="p-heading--2">Gateways for new business models</p>
-    <p>Build an ecosystem around your hardware: partner with developers, vendors and system integrator.</p>
-    <a href="https://www.brighttalk.com/webcast/6793/290087">Watch the app store for Linux webinar</a>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-6">
-      <p class="p-heading--3">Enabling platform ecosystems</p>
-      <p>Our brand stores will allow you to commercialise your gateways in a way that was not possible before. You will tie in multiple suppliers and distributors to your product ecosystem.</p>
-      <a href="/internet-of-things/appstore">Learn more about the Snap store&nbsp;&rsaquo;</a>
-    </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/3089fff7-one+platform.svg",
-        alt="",
-        height="200",
-        width="350",
-        hi_def=True,
-        ) | safe
-      }}
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator" />
-  </div>
-
-  <div class="row">
-    <div class="col-6 u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/fad662b3-faster+cheaper.svg",
-        alt="",
-        height="200",
-        width="350",
-        hi_def=True,
-        ) | safe
-      }}
-    </div>
-    <div class="col-6">
-      <p class="p-heading--3">Software-defined monetisation</p>
-      <p>Public and private app stores unlock new avenues for monetisation. Earn recurring revenue, upsell add-ons to your users, distribute software from other vendors, or create platform ecosystems around your robots.</p>
-      <a href="/engage/iot-business-model">Learn more about brand stores&nbsp;&rsaquo;</a>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip u-no-padding--bottom">
-  <div class="u-fixed-width">
-    <p class="p-heading--2">Optimised for industry 4.0</p>
-    <p>The complexity of deploying industrial protocols and making them interoperable is drastically reduced with Ubuntu.</p>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <p class="p-heading--3">Bespoke for the edge</p>
-  </div>
-
-  <div class="row p-divider u-equal-height">
-    <div class="col-4 p-divider__block">
-      <h4>Light footprint</h4>
-      <p>Ubuntu can be streamlined to meet the exact requirement of underlying hardware and applications, thereby optimising footprint.</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h4>Cloud integration</h4>
-      <p>Ubuntu provides native tools and APIs for controlling and monitoring remote devices securely through the cloud.</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h4>Modular architecture</h4>
-      <p>Snap packages enable a containerised architecture for IoT stacks. Software components can easily be orchestrated to create smart applications at the edge.</p>
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <p class="p-heading--3">Container-friendly</p>
-  </div>
-
-  <div class="row u-equal-height p-divider">
-    <div class="col-4 p-divider__block">
-      <h4>Snaps</h4>
-      <p>Snaps facilitate system integration thanks to their portability and reusability. Transactionally updated packages enable cost-effective maintenance for complex installations.</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h4>Docker</h4>
-      <p>Docker containers complement snap packages to deliver full flexibility in the development and deployment of applications at the edge.</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h4>Kubernetes</h4>
-      <p>Single node Kubernetes packaged in a snap, can be deployed to edge gateways in order to orchestrate containers running a variety of IoT services.</p>
-    </div>
-  </div>
-
-  <div class="u-fixed-width u-sv3">
-    <a href="https://www.brighttalk.com/webcast/6793/362200">Watch the 'Using Kubernetes at the edge' webinar</a>
-  </div>
-
-  <div class="u-fixed-width">
-    <p class="p-heading--3">Connectivity out of the box</p>
-  </div>
-
-  <div class="row p-divider">
-    <div class="col-6 p-divider__block">
-      <h4>Short range</h4>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Bluetooth</li>
-        <li class="p-list__item is-ticked">Wifi</li>
-        <li class="p-list__item is-ticked">Zigbee</li>
-      </ul>
-    </div>
-    <div class="col-6 p-divider__block">
-      <h4>Long range</h4>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Cellular (2G, 3G, LTE, 5G)</li>
-        <li class="p-list__item is-ticked">LoRa</li>
-        <li class="p-list__item is-ticked">Sigfox</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="u-fixed-width u-sv3">
-    <a href="/core/docs">Visit Ubuntu Core docs&nbsp;&rsaquo;</a>
-  </div>
-</section>
-
-<section class="p-strip--light is-bordered">
-  <div class="u-fixed-width u-sv3">
-    <p class="p-heading--2">For all types of platforms</p>
-    <p>Ubuntu gives full flexibility to deploy IoT platforms of your choice in a snap. </p>
-  </div>
-
-  <div class="row">
-    <div class="col-6">
-      <p class="p-heading--3">AWS Greengrass</p>
-      <p>AWS IoT Greengrass seamlessly extends AWS to edge devices so they can act locally on the data they generate, while still using the cloud for management, analytics, and durable storage.</p>
-      <a href="https://snapcraft.io/aws-iot-greengrass">AWS Greengrass in the Snap store</a>
-    </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-          url="https://dashboard.snapcraft.io/site_media/appmedia/2019/04/product-icon_AWS-Greengrass_icon_squid_ink_125.png",
-          alt="",
-          height="120",
-          width="120",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator" />
-  </div>
-
-  <div class="row">
-    <div class="col-6 u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-          url="https://dashboard.snapcraft.io/site_media/appmedia/2018/07/icon_8BAXEYq.png",
-          alt="",
-          height="120",
-          width="120",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
-    </div>
-    <div class="col-6">
-      <p class="p-heading--3">Eclipse Kura</p>
-      <p>Eclipse Kura™ is an OSGi-based Application Framework for M2M Service Gateways.</p>
-      <a href="https://snapcraft.io/kura">Kura in the Snap store</a>
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator" />
-  </div>
-
-  <div class="row">
-    <div class="col-6">
-      <p class="p-heading--3">EdgeX Foundry</p>
-      <p>EdgeX Foundry is a vendor-neutral open source project hosted by The Linux Foundation building a common open framework for IoT edge computing. </p>
-      <a href="https://snapcraft.io/edgexfoundry">EdgeX in the Snap store</a>
-    </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-          url="https://dashboard.snapcraft.io/site_media/appmedia/2018/12/icon_Hx6IyH0.png",
-          alt="",
-          height="120",
-          width="120",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-4 u-hide--medium u-hide--small u-align--left">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
-        alt="",
-        height="280",
-        width="280",
-        hi_def=True,
-        ) | safe
-      }}
-    </div>
-    <div class="col-8 u-vertically-center">
-      <div>
-        <h2>Get in touch!<br />We are innovators, just like you.</h2>
-        <p>Our team will help you build secure and flexible gateways for the industrial edge.</p>
-        <p><a class="p-button--positive js-invoke-modal" href="/internet-of-things/contact-us?product=gateways">Get in touch</a></p>
+  <div class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule--muted" />
+      <h3 class="p-heading--5 p-text--small-caps">These companies have built innovative gateways on Ubuntu</h3>
+      <div class="p-logo-section--dense">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/c98e92ee-dell-logo .png",
+                        alt="Dell",
+                        width="145",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/fdf513d8-Rigado-logo.png",
+                        alt="Rigado",
+                        width="356",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</section>
 
-{% with current="gateways", strip_class="p-strip--light" %}
-  {% include "internet-of-things/shared/_links.html" %}
-{% endwith %}
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>
+            State of the art security
+            <br class="u-hide--small" />
+            for business critical equipment
+          </h2>
+        </div>
+        <div class="col">
+          <p>
+            Several layers of security are stacked in Ubuntu Core to keep potential attack surfaces to a minimum for devices, robots and equipment deployed in the field.
+          </p>
+          <div class="p-cta-block">
+            <a href="/engage/core18-security">Ubuntu Core is the most secure choice for IoT. Find out why&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-section">
 
-{% with first_item="_iot_developers", second_item="_iot_newsletter_signup", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+      <div class="row">
+        <div class="col-9 col-start-large-4">
+          <div class="p-equal-height-row">
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item u-hide--small u-hide--medium">
+                <div class="p-image-container is-highlighted">
+                  {{ image(url="https://assets.ubuntu.com/v1/54c56418-full-encryption.png",
+                                    alt="",
+                                    width="852",
+                                    height="1279",
+                                    hi_def=True,
+                                    attrs={"class": "p-image-container__image"},
+                                    loading="lazy") | safe
+                  }}
+                </div>
+              </div>
+              <div class="p-equal-height-row__item">
+                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+                <h3 class="p-heading--5">Full encryption, disk and network</h3>
+              </div>
+              <p class="p-equal-height-row__item">
+                Only software packages from trusted developers and vendors will be installed on your gateways. Installed software will be immutable and application data fully encrypted. Furthermore, messages exchanged over the network will be encrypted. It will neither be possible to install malicious software nor to eavesdrop your network communications.
+              </p>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item u-hide--small u-hide--medium">
+                <div class="p-image-container is-highlighted">
+                  {{ image(url="https://assets.ubuntu.com/v1/6851e4dd-self-contained-containers.png",
+                                    alt="",
+                                    width="852",
+                                    height="1279",
+                                    hi_def=True,
+                                    attrs={"class": "p-image-container__image"},
+                                    loading="lazy") | safe
+                  }}
+                </div>
+              </div>
+              <div class="p-equal-height-row__item">
+                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+                <h3 class="p-heading--5">Self-confined containers</h3>
+              </div>
+              <p class="p-equal-height-row__item">
+                Applications running on your gateways will be virtualized and confined to their own environments. This adds an additional layer of security, preventing anomalies from spreading through the system. The full isolation of processes and their associated data makes localization and resolution of anomalies easy.
+              </p>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item u-hide--small u-hide--medium">
+                <div class="p-image-container is-highlighted">
+                  {{ image(url="https://assets.ubuntu.com/v1/2364dc4b-zero-security-debt.png",
+                                    alt="",
+                                    width="852",
+                                    height="1279",
+                                    hi_def=True,
+                                    attrs={"class": "p-image-container__image"},
+                                    loading="lazy") | safe
+                  }}
+                </div>
+              </div>
+              <div class="p-equal-height-row__item">
+                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+                <h3 class="p-heading--5">Zero security debt</h3>
+              </div>
+              <p class="p-equal-height-row__item">
+                We introduce continuous upgrades without machine downtime to the industrial sector. Security patches will be delivered to your gateways as soon as vulnerabilities become known. Our Extended Security Maintenance (ESM) offering for Ubuntu Core is active for ten years. You will not have to worry about CVEs. We will keep your security debt at zero.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% call(slot) vf_quote_wrapper(
+      title_text="What our customers say",
+      quote_size="small",
+      quote_text="As companies continue to embrace Internet of Things (IoT) solutions, security and quick, easy system updates are critical.",
+      citation_source_name_text="Jason Shepherd",
+      citation_source_title_text="Director of Strategy and Partnerships,",
+      citation_source_organisation_text="IoT, Dell",
+      is_shallow=true
+      ) -%}
+      {%- if slot == 'signpost_image' -%}
+        {{ image(url="https://assets.ubuntu.com/v1/83a3ad0a-dell-updated.png",
+                alt="Dell",
+                width="314",
+                height="116",
+                hi_def=True,
+                loading="auto|lazy") | safe
+        }}
+      {%- endif -%}
 
-<!-- Set default Marketo information for contact form below -->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/internet-of-things" data-form-id="1663" data-lp-id="3143" data-return-url="https://ubuntu.com/internet-of-things/thank-you?product=gateways" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
+    {% endcall -%}
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>Optimized for industry 4.0</h2>
+        </div>
+        <div class="col">
+          <p>
+            The complexity of deploying industrial protocols and making them interoperable is drastically reduced with Ubuntu.
+
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-medium-6 col-start-large-4">
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-text--small-caps">Bespoke for the edge</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <ul class="p-list--divided">
+              <li class="p-list__item">
+                <b>Minimal Light footprint</b>
+                <p>
+                  Ubuntu can be streamlined to meet the exact requirement of your underlying hardware and applications, thereby optimizing footprint.
+                </p>
+              </li>
+              <li class="p-list__item">
+                <b>Cloud integration</b>
+                <p>
+                  Ubuntu provides a native tools and APIs for controlling and monitoring remote devices securely through the cloud.
+                </p>
+              </li>
+              <li class="p-list__item">
+                <b>Modular architecture</b>
+                <p>
+                  Snap packages enable a containerized architecture for IoT stacks. Software components can easily be orchestrated to create smart applications at the edge.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-text--small-caps">Container-friendly</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <ul class="p-list--divided">
+              <li class="p-list__item">
+                <b>Snaps</b>
+                <p>
+                  Snaps facilitate system integration thanks to their portability and reusability. Transactionally updated packages enable cost-effective maintenance for complex installations.
+                </p>
+              </li>
+              <li class="p-list__item">
+                <b>Docker</b>
+                <p>
+                  Docker containers complement snap packages to deliver full flexibility in the development and deployment of applications at the edge.
+                </p>
+              </li>
+              <li class="p-list__item">
+                <b>Kubernetes</b>
+                <p>
+                  <a href="https://microk8s.io/">Single node Kubernetes</a> packaged in a snap, can be deployed to edge gateways in order to orchestrate containers running a variety of IoT services.
+                </p>
+                <div class="p-cta-block">
+                  <a href="https://www.brighttalk.com/webcast/6793/362200">Watch the 'Using Kubernetes at the edge' webinar &nbsp;&rsaquo;</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-text--small-caps u-no-padding--top">Connectivity out of the box</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <div class="row">
+              <div class="col-3 col-medium-3">
+                <h4 class="p-heading--5">Short range</h4>
+                <hr class="p-rule--muted" />
+                <ul class="p-list--divided">
+                  <li class="p-list__item is-ticked">Bluetooth</li>
+                  <li class="p-list__item is-ticked">Wifi</li>
+                  <li class="p-list__item is-ticked">Zigbee</li>
+                </ul>
+
+              </div>
+              <div class="col-3 col-medium-3">
+                <h4 class="p-heading--5">Long range</h4>
+                <hr class="p-rule--muted" />
+                <ul class="p-list--divided">
+                  <li class="p-list__item is-ticked">Cellular (2G, 3G, LTE, 5G)</li>
+                  <li class="p-list__item is-ticked">LoRa</li>
+                  <li class="p-list__item is-ticked">Sigfox</li>
+                </ul>
+              </div>
+            </div>
+            <div class="p-cta-block">
+              <a href="/core/docs">Visit<span class="u-off-screen">Ubuntu Core docs</span> Ubuntu Core docs
+              &nbsp;&rsaquo;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>Leverage the strongest developers community</h2>
+        </div>
+        <div class="col">
+          <p>
+            80% of Linux developers choose Ubuntu. Therefore finding talents and technical support will be easiest with Ubuntu.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-medium-6 col-start-large-4">
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">Largest pool of talent</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <div class="p-section--shallow">
+              <p>
+                Developers love Ubuntu. By adopting the most popular Linux distribution, you can leverage the strong community of developers, vendors and system integrators familiar with Ubuntu.
+              </p>
+            </div>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">Open source software</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <div class="p-section--shallow">
+              <p>
+                Complex software is increasingly collaborative and open source. This was our philosophy from the beginning. Harness the power of our open source software and build on top of contributions from the community. Build on your own, or seek our help. We will support you.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>
+            Gateways
+            <br class="u-hide--small" />
+            for new business models
+          </h2>
+        </div>
+        <div class="col">
+          <p>Build an ecosystem around your hardware: partner with developers, vendors and system integrator.</p>
+          <div class="p-cta-block">
+            <a href="https://www.brighttalk.com/webcast/6793/290087">Watch the app store for Linux webinar&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 col-medium-6 col-start-large-7">
+        <div class="p-equal-height-row p-equal-height-row-50-50">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h3 class="p-heading--5">Enabling platform ecosystems</h3>
+            </div>
+            <div class="p-equal-height-row__item">
+              <p>
+                Brand stores will allow you to commercialize your gateways in a way that was not possible before. You will tie in multiple suppliers and distributors to your product ecosystem.
+              </p>
+            </div>
+            <div class="p-equal-height-row__item">
+              <div class="p-cta-block">
+                <a href="/internet-of-things/appstore">Learn more about the Snap store&nbsp;&rsaquo;</a>
+              </div>
+            </div>
+          </div>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h3 class="p-heading--5">Software-defined monetization</h3>
+            </div>
+            <div class="p-equal-height-row__item">
+              <p>
+                Public and private app stores unlock new avenues for monetization. Earn recurring revenue, upsell add-ons to your users, distribute software from other vendors, or create platform ecosystems around your gateways.
+              </p>
+            </div>
+            <div class="p-equal-height-row__item">
+              <div class="p-cta-block">
+                <a href="/engage/iot-business-model">Learn more about brand stores&nbsp;&rsaquo;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>For all types of platforms</h2>
+        </div>
+        <div class="col">
+          <p>Ubuntu gives full flexibility to deploy IoT platforms of your choice in a snap.</p>
+        </div>
+      </div>
+    </div>
+    <div class="p-section">
+      <div class="row">
+        <div class="col-9 col-start-large-4">
+          <div class="p-equal-height-row has-divider-2">
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item u-hide--small u-hide--medium">
+                <div class="p-image-container is-highlighted">
+                  {{ image(url="https://assets.ubuntu.com/v1/fd0cf29a-aws-iot-greengrass.png",
+                                    alt="AWS IoT Greengrass",
+                                    width="852",
+                                    height="1278",
+                                    hi_def=True,
+                                    attrs={"class": "p-image-container__image"},
+                                    loading="lazy") | safe
+                  }}
+                </div>
+              </div>
+              <div class="p-equal-height-row__item">
+                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+                <p>
+                  AWS IoT Greengrass seamlessly extends AWS to edge devices so they can act locally on the data they generate, while still using the cloud
+                  for management, analytics, and
+                  durable storage.
+                </p>
+              </div>
+              <div class="p-equal-height-row__item">
+                <hr class="p-rule--muted  u-hide--medium u-hide--large" />
+                <p>
+                  <a href="https://snapcraft.io/aws-iot-greengrass">AWS Greengrass in the Snap store</a>
+                </p>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item u-hide--small u-hide--medium">
+                <div class="p-image-container is-highlighted">
+                  {{ image(url="https://assets.ubuntu.com/v1/e7956fe2-kura.png",
+                                    alt="Kura",
+                                    width="852",
+                                    height="1278",
+                                    hi_def=True,
+                                    attrs={"class": "p-image-container__image"},
+                                    loading="lazy") | safe
+                  }}
+                </div>
+              </div>
+              <div class="p-equal-height-row__item">
+                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+                <p>Eclipse Kura™ is an OSGi-based Application Framework for M2M Service Gateways.</p>
+              </div>
+              <div class="p-equal-height-row__item">
+                <hr class="p-rule--muted u-hide--medium u-hide--large" />
+                <p>
+                  <a href="https://snapcraft.io/kura">Kura in the Snap store</a>
+                </p>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item u-hide--small u-hide--medium">
+                <div class="p-image-container is-highlighted">
+                  {{ image(url="https://assets.ubuntu.com/v1/72f66eea-edgex-foundry.png",
+                                    alt="EdgeX Foundry",
+                                    width="852",
+                                    height="1278",
+                                    hi_def=True,
+                                    attrs={"class": "p-image-container__image"},
+                                    loading="lazy") | safe
+                  }}
+                </div>
+              </div>
+              <div class="p-equal-height-row__item">
+                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+                <p>
+                  EdgeX Foundry is a vendor-neutral open source project hosted by The Linux Foundation building a common open framework for IoT edge computing.
+                </p>
+              </div>
+              <div class="p-equal-height-row__item">
+                <hr class="p-rule--muted u-hide--medium u-hide--large" />
+                <p>
+                  <a href="https://snapcraft.io/edgexfoundry">EdgeX in the Snap store</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>
+            Get in touch.
+            <br />
+            We are innovators, just like you.
+          </h2>
+        </div>
+        <div class="col">
+          <p>Our team will help you build secure and flexible gateways for the industrial edge.</p>
+          <div class="p-cta-block">
+            <a class="p-button--positive js-invoke-modal"
+               href="/internet-of-things/contact-us?product=gateways"
+               aria-controls="iot-modal">Get in touch</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <h2>Explore the use cases</h2>
+      </div>
+      <div class="p-equal-height-row has-divider-3 ">
+        <div class="p-equal-height-row__col">
+          <div class="p-equal-height-row__item">
+            <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/91536e06-signage.png",
+                            alt="",
+                            width="1136",
+                            height="1704",
+                            hi_def=True,
+                            attrs={"class": "p-image-container__image"},
+                            loading="lazy") | safe
+              }}
+            </div>
+          </div>
+          <div class="p-equal-height-row__item">
+            <hr class="p-rule--highlight u-hide--medium" />
+            <h3 class="p-heading--5">Signage</h3>
+          </div>
+          <p class="p-equal-height-row__item">
+            A small footprint and full OpenGL make Ubuntu Core the perfect platform for secure digital signs.
+          </p>
+          <div class="p-equal-height-row__item">
+            <p>
+              <a href="/internet-of-things/smart-displays"
+                 aria-label="Learn more about smart displays">Learn more&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+        </div>
+        <div class="p-equal-height-row__col">
+          <div class="p-equal-height-row__item ">
+            <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/a71738d1-automotive.png",
+                            alt="",
+                            width="1136",
+                            height="1704",
+                            hi_def=True,
+                            attrs={"class": "p-image-container__image"},
+                            loading="lazy") | safe
+              }}
+            </div>
+          </div>
+          <div class="p-equal-height-row__item">
+            <hr class="p-rule--highlight u-hide--medium" />
+            <h3 class="p-heading--5">Automotive</h3>
+          </div>
+          <p class="p-equal-height-row__item">Reinvent the automobile with Ubuntu, designed for critical embedded systems.</p>
+          <div class="p-equal-height-row__item">
+            <p>
+              <a href="/automotive" aria-label="Learn more about automotive">Learn more&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+        </div>
+        <div class="p-equal-height-row__col">
+          <div class="p-equal-height-row__item ">
+            <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/15dae4aa-networking.png",
+                            alt="",
+                            width="1136",
+                            height="1704",
+                            hi_def=True,
+                            attrs={"class": "p-image-container__image"},
+                            loading="lazy") | safe
+              }}
+            </div>
+          </div>
+          <div class="p-equal-height-row__item">
+            <hr class="p-rule--highlight u-hide--medium" />
+            <h3 class="p-heading--5">Networking</h3>
+          </div>
+          <p class="p-equal-height-row__item">Build secure SmartNICs and operate them at scale on Ubuntu.</p>
+          <div class="p-equal-height-row__item">
+            <p>
+              <a href="/internet-of-things/networking"
+                 aria-label="Learn more about IoT networking">Learn more&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+        </div>
+        <div class="p-equal-height-row__col">
+          <div class="p-equal-height-row__item">
+            <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/ec2864ba-smart-city.png",
+                            alt="",
+                            width="1136",
+                            height="1704",
+                            hi_def=True,
+                            attrs={"class": "p-image-container__image"},
+                            loading="lazy") | safe
+              }}
+            </div>
+          </div>
+          <div class="p-equal-height-row__item">
+            <hr class="p-rule--highlight u-hide--medium" />
+            <h3 class="p-heading--5">Smart City</h3>
+          </div>
+          <p class="p-equal-height-row__item">
+            Harness the power of Ubuntu Core to keep distributed devices connected and secure.
+          </p>
+          <div class="p-equal-height-row__item">
+            <p>
+              <a href="/internet-of-things/smart-city"
+                 aria-label="Learn more about IoT smart-city">Learn more&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% include "internet-of-things/shared/_try-ubuntu-core.html" %}
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Sign up for our IoT newsletter</h2>
+      </div>
+      <div class="col">{% include "shared/contextual_footers/_iot_newsletter_signup.html" %}</div>
+    </div>
+  </section>
+
+  {% with title_link="/blog/internet-of-things", groupId="1666" %}
+    {% include "internet-of-things/shared/_latest-news-iot.html" %}
+  {% endwith %}
+
+  {{ load_form('/internet-of-things', 1663) | safe }}
 
 {% endblock content %}

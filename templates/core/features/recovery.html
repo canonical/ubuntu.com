@@ -1,141 +1,167 @@
 {% extends "core/base_core.html" %}
 
 {% block title %}Recovery | Ubuntu Core{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1VpsLUf-cODyuKe7xqxW27cDIGorQHgWd95tFqMnClsg/edit{% endblock meta_copydoc %}
 
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1VpsLUf-cODyuKe7xqxW27cDIGorQHgWd95tFqMnClsg/edit
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
 
-<section class="p-strip--suru-topped">
-  <div class="row u-equal-height">
-    <div class="col-7">
-    <h1>Device recovery</h1>
-    <p class="p-heading--4">Field repair is costly</p>
-      <p>Having to manually repair an IoT device in the field often can exceed the cost of the device itself. Dispatching an operator to a remote location to perform maintenance or an intervention may incur significant costs, depending on distance to the site and accessibility of devices. Furthermore, the resulting downtime may cause additional losses, even more so if the device is mission critical. A reliable device recovery system is essential to help avoid these costs and annoyances.</p>
+  <section class="p-section--hero">
+    <div class="row--50-50">
+      <div class="col">
+        <h1>Device recovery</h1>
+        <p class="p-heading--5">Field repair is costly</p>
+        <p>
+          Having to manually repair an IoT device in the field often can exceed the cost of the device itself. Dispatching an operator to a remote location to perform maintenance or an intervention may incur significant costs, depending on distance to the site and accessibility of devices. Furthermore, the resulting downtime may cause additional losses, even more so if the device is mission critical. A reliable device recovery system is essential to help avoid these costs and annoyances.
+        </p>
+      </div>
+      <div class="col u-hide--small">
+        <div class="p-image-container--16-9 is-highlighted">
+          <img class="p-image-container__image"
+               src="https://assets.ubuntu.com/v1/3bbf268f-UC20_Device_Recovery.svg"
+               alt="" />
+        </div>
+      </div>
     </div>
-    <div class="col-5 u-hide--small u-vertically-center u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/3bbf268f-UC20_Device_Recovery.svg",
-        alt="",
-        width="200",
-        height="246",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip--light">
-  <div class="row">
-    <h2>Low touch device maintenance</h2>
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-7">
-      <p>Device recovery in the field should be low touch. IoT devices may be deployed at a very large scale, with hundreds or even thousands of devices in a fleet. At this scale, maintenance operations become a significant driver of costs. Automation and remote access are key for low touch maintenance. Basic and repetitive maintenance actions can be performed autonomously by the operating system. This frees up device operators from performing simple maintenance tasks, repeatedly on a large number of devices, which saves a lot of time.</p>
-      <p>In doing this, only complex maintenance actions need to be escalated to device operators. Empowering device operators with remote access to perform complex software-related maintenance actions, avoids substantial costs and allows all devices in the field to be maintained centrally - reducing the risks.</p>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Low touch device maintenance</h2>
+      </div>
+      <div class="col">
+        <p>
+          Device recovery in the field should be low touch. IoT devices may be deployed at a very large scale, with hundreds or even thousands of devices in a fleet. At this scale, maintenance operations become a significant driver of costs. Automation and remote access are key for low touch maintenance. Basic and repetitive maintenance actions can be performed autonomously by the operating system. This frees up device operators from performing simple maintenance tasks, repeatedly on a large number of devices, which saves a lot of time.
+        </p>
+        <p class="p-section--shallow">
+          In doing this, only complex maintenance actions need to be escalated to device operators. Empowering device operators with remote access to perform complex software-related maintenance actions, avoids substantial costs and allows all devices in the field to be maintained centrally - reducing the risks.
+        </p>
+        <div class="p-image-container u-hide--small">
+          <img class="p-image-container__image"
+               src="https://assets.ubuntu.com/v1/08abf309-low-touch-device-maintenance.png"
+               alt="" />
+        </div>
+      </div>
     </div>
-    <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/0adaa000-recovery+copy.jpg",
-        alt="",
-        width="400",
-        height="212",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip">
-  <div class="row u-sv3">
-    <h2>Device recovery on Ubuntu Core</h2>
-  </div>
-  <div class="row u-vertically-center">
-    <div class="p-card col-6 u-vertically-center">
-      <h3 class="p-card__title">ARM and x86</h3>
-      <p class="p-card__content">Ubuntu Core provides a robust device recovery system on both ARM and x86 SoCs. Devices can be recovered manually or remotely via a REST API.</p>
+  <section class="p-section">
+    <div class="u-fixed-width p-section--shallow">
+      <hr class="p-rule" />
+      <h2>Device recovery on Ubuntu Core</h2>
     </div>
-    <div class="p-card col-6 u-vertically-center">
-      <h3 class="p-card__title">Free for pre-certified boards</h3>
-      <p class="p-card__content">Recovery mode is available out of the box on <a href="/certified/iot">certified devices</a>, like the Raspberry Pi, at no additional cost. An enablement fee is required to fully certify Ubuntu Core on non-certified boards. </p>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">ARM and x86</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Ubuntu Core provides a robust device recovery system on both ARM and x86 SoCs. Devices can be recovered manually or remotely via a REST API.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Free for pre-certified boards</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Recovery mode is available out of the box on <a href="/certified/iot">certified devices</a>, like the Raspberry Pi, at no additional cost. An enablement fee is required to fully certify Ubuntu Core on non-certified boards.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section class="p-strip--light">
-  <div class="row u-sv3">
-    <h2>How it works</h2>
-    <p class="p-heading--4">Ubuntu Core 20 introduces a secure recovery system.</p>
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h3>Recovery mode</h3>
-      <p>Ubuntu Core offers a recovery mode that can be activated manually when booting, or remotely via API call. In recovery mode, Ubuntu Core presents a UI for users to enter recovery options. The operating system then proceeds to fetch the configuration files and snaps associated with a given configuration profile.</p>
+  <section class="p-section">
+    <div class="row--50-50 p-section--shallow">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>How it works</h2>
+      </div>
+      <div class="col">
+        <p>Ubuntu Core 20 introduces a secure recovery system.</p>
+      </div>
     </div>
-    <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/f880a3bd-Enterprise+support.svg",
-        alt="",
-        width="150",
-        height="150",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Recovery mode</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Ubuntu Core offers a recovery mode that can be activated manually when booting, or remotely via API call. In recovery mode, Ubuntu Core presents a UI for users to enter recovery options. The operating system then proceeds to fetch the configuration files and snaps associated with a given configuration profile.
+            </p>
+            <img src="https://assets.ubuntu.com/v1/86773655-recovery-mode.png"
+                 alt=""
+                 width="300" />
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="u-fixed-width">
-    <hr class="p-separator" />
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h3>Snapshots</h3>
-      <p>Multiple snapshots for the same device can be backed up in the recovery system. These snapshots reflect both configuration settings and the collection of snaps installed on the system. Device operators can create, name and save such snapshots in the recovery system. This enables a swift recovery of a desired system state when needed. Recovery can happen manually through a dedicated UI or remotely via an API call.</p>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Snapshots</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Multiple snapshots for the same device can be backed up in the recovery system. These snapshots reflect both configuration settings and the collection of snaps installed on the system. Device operators can create, name and save such snapshots in the recovery system. This enables a swift recovery of a desired system state when needed. Recovery can happen manually through a dedicated UI or remotely via an API call.
+            </p>
+            <img src="https://assets.ubuntu.com/v1/69d7736d-snapshots.png"
+                 alt=""
+                 width="300" />
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/7de21966-snapshot.svg",
-        alt="",
-        width="150",
-        height="150",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip is-deep">
-  <div class="row u-equal-height">
-    <div class="col-5 u-hide--medium u-hide--small u-align--center">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
-            alt="",
-            width="281",
-            height="200",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
+  <section class="p-section--deep">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Low touch recovery <br /> for your devices</h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="p-image-container is-highlighted">
+            <img class="p-image-container__image"
+                 src="https://assets.ubuntu.com/v1/683e6225-Image.png"
+                 alt="" />
+          </div>
+        </div>
+        <p>Get in touch with an Ubuntu security expert to discuss the advanced security requirements of your application.</p>
+        <hr class="p-rule--muted" />
+        <p>
+          <a href="/core/contact-us"
+             class="p-button--positive js-invoke-modal">Get in touch</a>
+        </p>
+      </div>
     </div>
-    <div class="col-7">
-      <h2>Low touch recovery for your devices</h2>
-      <p>Get in touch with an Ubuntu security expert to discuss the advanced security requirements of your application.</p>
-      <p>
-        <a href="/core/contact-us?product=core-recovery" class="p-button--positive js-invoke-modal">Get in touch</a>
-      </p>
-    </div>
-  </div>
-</section>
+  </section>
 
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/internet-of-things" data-form-id="1266" data-lp-id="2166" data-return-url="https://ubuntu.com/core/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-  </div>
-
+  {{ load_form("/core/features") | safe }}
 
 {% endblock content %}

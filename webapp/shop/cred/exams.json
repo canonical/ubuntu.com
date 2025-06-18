@@ -1,0 +1,74 @@
+[
+  {
+    "id": "cue-01-linux",
+    "name": "CUE.01 Linux",
+    "displayName": "CUE.01 Linux",
+    "price": {
+      "value": 10000,
+      "currency": "USD"
+    },
+    "metadata": [
+      {
+        "key": "description",
+        "value":
+          "Prove your basic operational knowledge of Linux by demonstrating your ability to secure, operate and maintain basic system resources. Topics include user and group management, file and filesystem navigation, and logs and installation tasks related to system maintenance."
+      },
+      {
+        "originalPrice": "100.00",
+        "currency": "$"
+      }
+    ],
+    "openTo": {
+      "production": true,
+      "staging": true
+    }
+  },
+  {
+    "id": "cue-02-desktop",
+    "name": "CUE.02 Desktop",
+    "displayName": "CUE.02 Desktop",
+    "price": {
+      "value": 10000,
+      "currency": "USD"
+    },
+    "coupon": {
+      "origin": "Stripe",
+      "IDs": [
+        "SMkl9ZHl"
+      ]
+    },
+    "metadata": [
+      {
+        "key": "description",
+        "value":
+          "Demonstrate your knowledge of Ubuntu Desktop administrative essentials. Topics include package management, system installation, data gathering, and managing printing and displays."
+      },
+      {
+        "originalPrice": "100.00",
+        "discountPrice": "0.00",
+        "currency": "$"
+      }
+    ],
+    "openTo": {
+      "production": true,
+      "staging": true
+    }
+  },
+  {
+    "id": "cue-03-server",
+    "name": "CUE.03 Server",
+    "displayName": "CUE.03 Server",
+    "metadata": [
+      {
+        "key": "description",
+        "value":
+          "Illustrate your knowledge of common Ubuntu Server administrative tasks and troubleshooting. Topics include job control, performance tuning, services management, and Bash scripting."
+      },
+      {}
+    ],
+    "openTo": {
+      "production": false,
+      "staging": false
+    }
+  }
+]

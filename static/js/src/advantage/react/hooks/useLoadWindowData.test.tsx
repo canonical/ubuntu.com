@@ -1,6 +1,5 @@
-import React from "react";
 import type { ReactNode } from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { renderHook } from "@testing-library/react-hooks";
 
 import { useLoadWindowData } from "./useLoadWindowData";
@@ -22,6 +21,6 @@ describe("useLoadWindowData", () => {
     renderHook(() => useLoadWindowData(queryClient), {
       wrapper,
     });
-    expect(queryClient.getQueryData("stripePublishableKey")).toBe("12345");
+    expect(queryClient.getQueryData(["stripePublishableKey"])).toBe("12345");
   });
 });

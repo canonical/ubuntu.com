@@ -10,7 +10,7 @@ const renderTutorials = (topic) => {
         const tutorials = data;
         const tutorialStrip = document.querySelector("#tutorial-strip");
         const tutorialContainer = document.querySelector(
-          "#tutorials-container"
+          "#tutorials-container",
         );
         const tutorialTemplate = document.querySelector("#tutorial-template");
 

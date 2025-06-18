@@ -111,6 +111,7 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
 
     return flask.render_template(
         "account/invoices/index.html",
+        account_id=account.id,
         invoices=payments[start_page:end_page],
         marketplace=marketplace,
         total_pages=(len(payments) // per_page) + 1,
@@ -337,6 +338,7 @@ def support(**kwargs):
 
 @shop_decorator(area="account", permission="user", response="html")
 def checkout(advantage_mapper, **kwargs):
+    title = flask.request.args.get("title", "Buy Ubuntu Pro")
     try:
         advantage_mapper.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount:
@@ -347,6 +349,7 @@ def checkout(advantage_mapper, **kwargs):
         )
     return flask.render_template(
         "account/checkout.html",
+        title=title,
     )
 
 

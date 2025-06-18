@@ -14,6 +14,7 @@ import {
   kernelReleasesLTS,
   openStackReleases,
   kubernetesReleases,
+  kubernetesReleasesLTS,
   microStackReleases,
   desktopServerStatus,
   kernelStatus,
@@ -22,6 +23,7 @@ import {
   kernelStatusALL,
   openStackStatus,
   kubernetesStatus,
+  kubernetesStatusLTS,
   microStackStatus,
   desktopServerReleaseNames,
   kernelReleaseNames,
@@ -36,6 +38,7 @@ import {
   kernelReleaseNamesALL,
   openStackReleaseNames,
   kubernetesReleaseNames,
+  kubernetesReleaseNamesLTS,
   microStackReleaseNames,
 } from "./chart-data.js";
 
@@ -47,7 +50,7 @@ function buildCharts() {
       "#server-desktop-eol-key",
       desktopServerReleaseNames,
       desktopServerStatus,
-      serverAndDesktopReleases
+      serverAndDesktopReleases,
     );
   }
   if (document.querySelector("#server-desktop-eol-old")) {
@@ -56,7 +59,7 @@ function buildCharts() {
       "#server-desktop-eol-old",
       desktopServerReleaseNames,
       desktopServerStatus,
-      serverAndDesktopReleases
+      serverAndDesktopReleases,
     );
   }
   if (document.querySelector("#eol-1604")) {
@@ -68,7 +71,7 @@ function buildCharts() {
       serverAndDesktopReleases,
       false,
       [],
-      "16.04"
+      "16.04",
     );
   }
   if (document.querySelector("#kernel-eol")) {
@@ -77,7 +80,7 @@ function buildCharts() {
       kernelReleaseNames,
       kernelStatus,
       kernelReleases,
-      kernelVersionNames
+      kernelVersionNames,
     );
   }
   if (document.querySelector("#kernel2204")) {
@@ -85,7 +88,7 @@ function buildCharts() {
       "#kernel2204",
       kernelReleaseNames2204,
       kernelStatus,
-      kernelReleases2204
+      kernelReleases2204,
     );
   }
   if (document.querySelector("#kernel2004")) {
@@ -93,7 +96,7 @@ function buildCharts() {
       "#kernel2004",
       kernelReleaseNames2004,
       kernelStatus,
-      kernelReleases2004
+      kernelReleases2004,
     );
   }
   if (document.querySelector("#kernel1804")) {
@@ -101,7 +104,7 @@ function buildCharts() {
       "#kernel1804",
       kernelReleaseNames1804,
       kernelStatus,
-      kernelReleases1804
+      kernelReleases1804,
     );
   }
   if (document.querySelector("#kernel1604")) {
@@ -109,7 +112,7 @@ function buildCharts() {
       "#kernel1604",
       kernelReleaseNames1604,
       kernelStatus,
-      kernelReleases1604
+      kernelReleases1604,
     );
   }
   if (document.querySelector("#kernel1404")) {
@@ -117,7 +120,7 @@ function buildCharts() {
       "#kernel1404",
       kernelReleaseNames1404,
       kernelStatus,
-      kernelReleases1404
+      kernelReleases1404,
     );
   }
   if (document.querySelector("#kernellts")) {
@@ -125,7 +128,7 @@ function buildCharts() {
       "#kernellts",
       kernelReleaseNamesLTS,
       kernelStatusLTS,
-      kernelReleasesLTS
+      kernelReleasesLTS,
     );
   }
   if (document.querySelector("#kernelall")) {
@@ -133,7 +136,7 @@ function buildCharts() {
       "#kernelall",
       kernelReleaseNamesALL,
       kernelStatusALL,
-      kernelReleasesALL
+      kernelReleasesALL,
     );
   }
   if (document.querySelector("#openstack-eol")) {
@@ -141,7 +144,7 @@ function buildCharts() {
       "#openstack-eol",
       openStackReleaseNames,
       openStackStatus,
-      openStackReleases
+      openStackReleases,
     );
   }
   if (document.querySelector("#kubernetes-eol")) {
@@ -151,7 +154,15 @@ function buildCharts() {
       kubernetesStatus,
       kubernetesReleases,
       false,
-      true
+      true,
+    );
+  }
+  if (document.querySelector("#kubernetes-lts")) {
+    createReleaseChartOld(
+      "#kubernetes-lts",
+      kubernetesReleaseNamesLTS,
+      kubernetesStatusLTS,
+      kubernetesReleasesLTS,
     );
   }
   if (document.querySelector("#kernel-schedule")) {
@@ -159,15 +170,7 @@ function buildCharts() {
       "#kernel-schedule",
       kernelReleaseScheduleNames,
       kernelReleaseScheduleStatus,
-      kernelReleaseSchedule
-    );
-  }
-  if (document.querySelector("#microstack-eol")) {
-    createReleaseChartOld(
-      "#microstack-eol",
-      microStackReleaseNames,
-      microStackStatus,
-      microStackReleases
+      kernelReleaseSchedule,
     );
   }
 }
@@ -229,6 +232,10 @@ function clearCharts() {
   if (kubernetesEol) {
     kubernetesEol.innerHTML = "";
   }
+  const kubernetesLTS = document.querySelector("#kubernetes-lts");
+  if (kubernetesLTS) {
+    kubernetesLTS.innerHTML = "";
+  }
   const kernelSchedule = document.querySelector("#kernel-schedule");
   if (kernelSchedule) {
     kernelSchedule.innerHTML = "";
@@ -259,5 +266,5 @@ window.addEventListener(
       clearCharts();
       buildCharts();
     }
-  }, 250)
+  }, 250),
 );

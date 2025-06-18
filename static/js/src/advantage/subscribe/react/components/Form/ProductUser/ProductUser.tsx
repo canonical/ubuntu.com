@@ -2,17 +2,18 @@ import React, { useContext } from "react";
 import { Col, RadioInput, Row } from "@canonical/react-components";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 import { ProductUsers } from "advantage/subscribe/react/utils/utils";
+import { PRO_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
 
 const ProductUser = () => {
   const { productUser, setProductUser } = useContext(FormContext);
 
   const handleProductUserChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setProductUser(event.target.value as ProductUsers);
     localStorage.setItem(
-      "pro-selector-productUser",
-      JSON.stringify(event.target.value as ProductUsers)
+      PRO_SELECTOR_KEYS.PRODUCT_USER,
+      JSON.stringify(event.target.value as ProductUsers),
     );
   };
 
@@ -29,7 +30,10 @@ const ProductUser = () => {
           />
         </Col>
         <Col size={12} style={{ marginLeft: "35px" }}>
-          <p>Enterprise subscriptions for commercial use</p>
+          <p>
+            Enterprise subscriptions for commercial use. 30-day free trial
+            available on checkout.
+          </p>
         </Col>
         <Col size={12}>
           <RadioInput

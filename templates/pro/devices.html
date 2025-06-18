@@ -1,0 +1,579 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Ubuntu Pro for Devices{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1i_3nPkSpCQJ4jfOwN380sdfuTxaiDuDIgDfk01wVPqo/edit
+{% endblock
+meta_copydoc %}
+
+{% block meta_description %}
+  Ubuntu Pro for devices is a straightforward solution for IoT security which allows customers with embedded IoT devices to upgrade their desktop or server images to Pro to ESM, application updates and device management with landscape.
+{% endblock meta_description %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block outer_content %}
+
+  {% block content %}
+    <section class="p-strip p-suru">
+      <div class="row">
+        <div class="col-medium-6 col-9 col-start-large-4">
+          <h1>IoT security with Ubuntu Pro for Devices</h1>
+          <h2>
+            Pay a one&ndash;time&ndash;fee per device and
+            <br />
+            get 10 years of security maintenance.
+          </h2>
+          <p>In a single subscription, benefit from patching for over 25,000 packages, and harness automation tools for compliance with multiple standards, including the Cyber Resilience Act.</p>
+          <a href="/pro/devices#get-in-touch" class="p-button--positive">Contact us</a>
+        </div>
+      </div>
+    </section>
+    <section class="p-section">
+      <div class="row">
+        <hr class="p-rule--muted" />
+        <div class="col-6 col-medium-3">
+          <h2>Why Ubuntu Pro for Devices?</h2>
+        </div>
+        <div class="col-6 col-medium-3">
+          <ul class="p-list--divided">
+            <li class="p-list__item is-ticked">Get fixes for critical vulnerabilities in under 24 hours</li>
+            <li class="p-list__item is-ticked">Make your compliance efforts faster and easier</li>
+            <li class="p-list__item is-ticked">Device management and patching automation included</li>
+            <li class="p-list__item is-ticked">Long-term maintenance for real-time kernel and ROS</li>
+            <li class="p-list__item is-ticked">A single subscription for fleet-wide IoT security</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-section">
+      <div class="row">
+        <hr class="p-rule--muted" />
+      </div>
+      <div class="row--50-50">
+        <div class="col">
+          <h2>For secure and compliant IoT device deployments</h2>
+        </div>
+        <div class="col">
+          <div class="p-section--shallow">
+            <div>
+              <p>
+                Security in IoT is a widespread concern, and with good reason. 89% of IoT companies say that their devices have been hit by a cyber attack, with cyber crime costing roughly 5.5 million a year on a global scale. With Ubuntu Pro you have:
+              </p>
+              <div>
+                <div class="row">
+                  <div class="col-2 p-heading--2">
+                    <strong>1,800+</strong>
+                  </div>
+                  <div class="col-4">
+                    <p>
+                      additional high and critical patches
+                      <br />
+                      only available with Ubuntu&nbsp;Pro
+                    </p>
+                  </div>
+                </div>
+                <hr class="p-rule--muted" />
+                <div class="row">
+                  <div class="col-2 p-heading--2">
+                    <strong>10 years</strong>
+                  </div>
+                  <div class="col-4">
+                    <p>
+                      of maintenance
+                      <br />
+                      for the whole stack
+                    </p>
+                  </div>
+                </div>
+                <hr class="p-rule--muted" />
+                <div class="row">
+                  <div class="col-2 p-heading--2">
+                    <strong>24/7</strong>
+                  </div>
+                  <div class="col-4">
+                    <p>
+                      optional enterprise-grade
+                      <br />
+                      support
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <hr class="p-rule--muted" />
+              <p>
+                Security updates are critical to comply with key device regulations such as the Cyber Resilience Act. Ensure compliance with Ubuntu Pro.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="u-fixed-width u-align--center">
+        <div class="u-embedded-media">
+          <iframe class="u-embedded-media__element"
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/tNECRG5r2sg"
+                  title="Ubuntu Pro explained in 2 minutes"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-section">
+      <div class="row">
+        <hr class="p-rule--muted" />
+        <div class="col-9">
+          <h2>Pull all your software from a secure source</h2>
+        </div>
+      </div>
+      <div class="u-fixed-width">
+        <p>
+          Access 25,000+ open source applications, already built into your development environment and benefit from updates and security patches for the applications you use on your device. It's secure IoT, as standard.
+        </p>
+        <div class="p-logo-section--dense">
+          <div class="p-logo-section__items">
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/f59d6ec6-ros-logo.png",
+              alt="ros logo",
+              width="100",
+              height="100",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/880b97f2-python-logo.png",
+              alt="python logo",
+              width="92",
+              height="100",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/fa78f5b4-openjdk%20logo.png",
+              alt="openjdk logo",
+              width="100",
+              height="100",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/56d8741e-node-logo.png",
+              alt="node logo",
+              width="77",
+              height="100",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/5dbf023e-docker%20logo.png",
+              alt="docker logo",
+              width="100",
+              height="100",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/cd765ccc-nvidia-logo.png",
+              alt="nvidia logo",
+              width="100",
+              height="100",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/a11eb1de-tensor-flow-logo.png",
+              alt="tensorflow logo",
+              width="100",
+              height="100",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/81bb28f1-mqtt-logo.png",
+              alt="mqtt logo",
+              width="100",
+              height="100",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/2440746d-go-logo.png",
+              alt="go logo",
+              width="50",
+              height="100",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/86fdc1d7-openssl-logo.png",
+              alt="openssl logo",
+              width="68",
+              height="100",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/d540aea5-OpenCV-logo.png",
+              alt="OpenCV logo",
+              width="80",
+              height="80",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+              }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="p-section">
+      <div class="row">
+        <hr class="p-rule--muted" />
+        <div class="col-6">
+          <h2>Develop at speed with the Ubuntu ecosystem</h2>
+          <p>
+            Use Ubuntu Pro on certified hardware from
+            <br />
+            our vast ecosystem of partners and benefit
+            <br />
+            from:
+          </p>
+        </div>
+        <div class="col-6">
+          <ul class="p-list--ticked">
+            <li class="p-list__item">
+              <p class="p-heading--5 u-no-margin--bottom">Optimized Ubuntu images</p>
+              <p>
+                Certified devices have optimized Ubuntu images and are tested for reliability and performance, ensuring you have the best out-of-the-box experience.
+              </p>
+            </li>
+            <li class="p-list__item">
+              <p class="p-heading--5 u-no-margin--bottom">Lower costs</p>
+              <p>
+                Simplify the implementation of your solutions by choosing reliable, certified hardware. Reduce operating system development and support costs.
+              </p>
+            </li>
+            <li class="p-list__item">
+              <p class="p-heading--5 u-no-margin--bottom">Speed up go-to-market</p>
+              <p>Build on the combined expertise of Canonical and hardware partners to get your solution to market faster.</p>
+            </li>
+          </ul>
+          <p>
+            <a href="/certified/iot">Discover certified hardware&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="p-section">
+      <div class="row">
+        <hr class="p-rule--muted" />
+        <div class="col-6">
+          <h2>Meet your compliance requirements faster</h2>
+        </div>
+        <div class="col-6">
+          <p>
+            Ubuntu Pro includes automation tooling and  packages for FIPS 140, CIS and DISA-STIG hardening. Canonical is also committed to compliance with the Cyber Resilience Act.
+          </p>
+          <p>
+            Ubuntu has an EAL2 certification recognized by EU members of SOGIS, a platform that harmonizes security certification across Europe.
+          </p>
+          <p>Meet the most rigorous standards:</p>
+          <ul class="p-list--ticked--small">
+            <li class="p-list__item is-ticked">Defense Information Systems Agency (DISA-STIG)</li>
+            <li class="p-list__item is-ticked">FedRamp</li>
+            <li class="p-list__item is-ticked">NIST</li>
+            <li class="p-list__item is-ticked">HIPAA</li>
+            <li class="p-list__item is-ticked">FISMA</li>
+            <li class="p-list__item is-ticked">Center for Internet Security (CIS)</li>
+            <li class="p-list__item is-ticked">FIPS 140</li>
+            <li class="p-list__item is-ticked">Cyber Essentials</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="p-section">
+      <div class="row p-section--shallow">
+        <hr class="p-rule--muted" />
+        <p class="p-text--small-caps u-no-margin--bottom">Device management included</p>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <h2>
+            Manage, deploy, monitor, and
+            <br />
+            scale your fleet with Landscape
+          </h2>
+        </div>
+        <div class="col-6">
+          <p>Remotely monitor, update and manage IoT devices with a clearly defined rollout policy.</p>
+          <p>Landscape reduces the cost of managing open source and enables you to proactively manage security for your IoT devices:</p>
+          <ul class="p-list--ticked--small">
+            <li class="p-list__item is-ticked">
+              Get a single pane of glass for managing any Ubuntu instances including system containers, virtual machines, and physical nodes.
+            </li>
+            <li class="p-list__item is-ticked">
+              Scan packages automatically for vulnerable versions, and create reports for any cross-section of your Ubuntu estate.
+            </li>
+            <li class="p-list__item is-ticked">Perform hardening and auditing at scale in air-gapped environments.</li>
+          </ul>
+          <p>
+            <a href="/landscape">Discover Landscape&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </section>
+    <div class="row">
+      <hr class="p-rule--muted" />
+    </div>
+    <div class="p-strip u-no-padding--top">
+      <div class="row">
+        <div class="col-3">
+          <h2 class="p-text--small-caps">Backed by leading ODMs</h2>
+        </div>
+        <div class="col-9">
+          <div class="row">
+            <div class="col-3">
+              <div style="padding-top:1rem;">
+                {{ image (
+                url="https://assets.ubuntu.com/v1/9c8bfd51-Aaeon-Logo.png",
+                alt="AAEON logo",
+                width="138",
+                height="36",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+                }}
+              </div>
+              <div>
+                <p>
+                  <span>Jason Huang</span>
+                  <br />
+                  <span class="u-text--muted">Director of AAEON's UP Division</span>
+                </p>
+              </div>
+            </div>
+            <div class="col-6">
+              <p>
+                <i>
+                  &ldquo;Many of our customers from across different sectors are using computer vision software that requires regulatory approval.
+                  <br />
+                  <br />
+                  In particular, the latest US regulation makes it important to provide timely CVE fixes for all of the components used in our products. Thanks to Ubuntu Pro for Devices, this is now covered.&rdquo;
+                </i>
+              </p>
+            </div>
+          </div>
+          <hr class="p-rule--muted is-fixed-width" />
+          <div class="row">
+            <div class="col-3">
+              <div style="padding-top:1rem;">
+                {{ image (
+                url="https://assets.ubuntu.com/v1/4ed674b0-advantech-logo.png",
+                alt="advantech logo",
+                width="176",
+                height="36",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+                }}
+              </div>
+              <div>
+                <p>
+                  <span>Joe Chen</span>
+                  <br />
+                  <span class="u-text--muted">Director at Advantech</span>
+                </p>
+              </div>
+            </div>
+            <div class="col-6 u-vertically-center">
+              <p>
+                <i>
+                  &ldquo;Ubuntu is the most popular Linux distribution. Many of our public sector customers in the US need FIPS compliance, and Ubuntu Pro for Devices is a perfect solution for them.&rdquo;
+                </i>
+              </p>
+            </div>
+          </div>
+          <hr class="p-rule--muted is-fixed-width" />
+          <div class="row">
+            <div class="col-3">
+              <div style="padding-top:1rem;">
+                {{ image (
+                url="https://assets.ubuntu.com/v1/8b7059c4-DFI-logo.png",
+                alt="DFI logo",
+                width="73",
+                height="36",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+                }}
+              </div>
+              <div>
+                <p>
+                  <span>Jarry Chang</span>
+                  <br />
+                  <span class="u-text--muted">DFI Product Center General Manager</span>
+                </p>
+              </div>
+            </div>
+            <div class="col-6">
+              <p>
+                <i>
+                  &ldquo;DFI leverages virtualization technology to introduce a robust Workload Consolidation platform integrated with our embedded solutions for EV charging stations and other cutting-edge industrial applications.
+                  <br />
+                  <br />
+                  With the ability to use Landscape to manage devices built with DFI boards, we can now provide more reliable solutions to our customers with 10 years of security updates and streamlined fleet maintenance.&rdquo;
+                </i>
+              </p>
+            </div>
+          </div>
+          <hr class="p-rule--muted is-fixed-width" />
+          <div class="row">
+            <div class="col-3">
+              <div style="padding-top:1rem;">
+                {{ image (
+                url="https://assets.ubuntu.com/v1/0ed224e1-adlink-logo.png",
+                alt="adlink logo",
+                width="165",
+                height="36",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+                }}
+              </div>
+              <div>
+                <p>
+                  <span>Ethan Chen</span>
+                  <br />
+                  <span class="u-text--muted">General Manager of the Edge Computing Platforms BU at ADLINK</span>
+                </p>
+              </div>
+            </div>
+            <div class="col-6 u-vertically-center">
+              <p>
+                <i>
+                  &ldquo;As new legislation is introduced for IoT embedded devices, it is crucial that our customers have a means to securely maintain the operating system along with commonly used applications and dependencies.&rdquo;
+                </i>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <hr class="p-rule--muted" />
+    </div>
+    <div class="p-strip is-deep">
+      <div class="row u-vertically-center">
+        <div class="col-10">
+          <h2>
+            <a href="/pro/devices#get-in-touch">Get a decade of peace of mind. Contact our team&nbsp;&rsaquo;</a>
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <hr class="p-rule--muted" />
+    </div>
+    <section class="p-section">
+      <div class="row--50-50">
+        <div class="col">
+          <h2 class="u-no-padding--top">Resources</h2>
+        </div>
+        <div class="col">
+          <div class="p-section--shallow">
+            <div>
+              <p>Check out the press release to discover more about Pro for Devices and our launch partners.</p>
+              <p class="p-heading--3 u-no-padding--top">
+                <a href="https://canonical.com/blog/ubuntu-pro-for-devices">Announcing Ubuntu Pro for Devices&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <hr class="p-rule--muted" />
+            <div>
+              <p>Get a comprehensive guide to understanding the new global compliance landscape for IoT devices and manufacturers, and meet compliance in every regional market with our Ubuntu blueprint for secure devices.</p>
+              <p class="p-heading--3 u-no-padding--top">
+                <a href="/engage/iot-compliance-in-the-global-market-a-guide-for-iot-device-manufacturers">Understand IoT security and IoT compliance across global markets&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <hr class="p-rule--muted" />
+            <div>
+              <p>
+                On average, organisations developing IoT products will spend 50% more resources on software than hardware. Read our whitepaper to get ahead of costs and design your device, software first.
+              </p>
+              <p class="p-heading--3 u-no-padding--top">
+                <a href="/engage/software-defined-iot">Software defined IoT&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <hr class="p-rule--muted" />
+            <div>
+              <p>
+                30% of the world's data will need real-time processing by 2025, discover what this means for your business in our guide.
+              </p>
+              <p class="p-heading--3 u-no-padding--top">
+                <a href="/engage/cto-guide-real-time-kernel">Introduction to real-time kernel&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <hr class="p-rule--muted" />
+            <div>
+              <p>
+                AI is breaking out of the data centre and moving to the edge. From self-driving cars to industrial assembly lines, the ability to deploy machine learning models on embedded devices and generate real-time, AI-driven insight out in the field offers tremendous potential.
+              </p>
+              <p class="p-heading--3 u-no-padding--top">
+                <a href="/engage/guide-to-deploying-ai-at-the-edge">Discover AI at the Edge&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <hr class="p-rule--muted" />
+          </div>
+
+          <p>Need to discuss your need with our experts?</p>
+          <a href="/pro/devices#get-in-touch" class="p-button--positive">Contact us</a>
+        </div>
+      </div>
+    </section>
+    <!-- Set default Marketo information for contact form below-->
+    <div class="u-hide"
+         id="contact-form-container"
+         data-form-location="/shared/forms/interactive/pro-devices"
+         data-form-id="5893"
+         data-lp-id="1409"
+         data-return-url="/pro/thank-you"
+         data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+  {% endblock content %}
+{% endblock outer_content %}

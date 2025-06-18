@@ -31,7 +31,7 @@ const CostCalculations = ({
     const requiredNumberCloudNodesBasedOnRam = Math.ceil(
       requiredAmountOfRam /
         (TCO_CONSTANTS.storage.amountOfRamPerNode -
-          TCO_CONSTANTS.storage.reservedAmountOfRamPerNode)
+          TCO_CONSTANTS.storage.reservedAmountOfRamPerNode),
     );
     return requiredNumberCloudNodesBasedOnRam;
   };
@@ -52,7 +52,7 @@ const CostCalculations = ({
         TCO_CONSTANTS.counts.reservedNumberOfThreadsPerNode);
 
     const requiredNumberCloudNodesBasedOnCpu = Math.ceil(
-      requiredNoOfCpus / TCO_CONSTANTS.counts.numberOfCpusPerNode
+      requiredNoOfCpus / TCO_CONSTANTS.counts.numberOfCpusPerNode,
     );
     return requiredNumberCloudNodesBasedOnCpu;
   };
@@ -68,7 +68,7 @@ const CostCalculations = ({
     const requiredNumberCloudNodesBasedOnES = Math.ceil(
       requiredAmountOfES /
         (TCO_CONSTANTS.storage.amountOfEphemeralStoragePerNode * 1024 -
-          TCO_CONSTANTS.storage.reservedAmountOfEphemeralStoragePerNode)
+          TCO_CONSTANTS.storage.reservedAmountOfEphemeralStoragePerNode),
     );
     return requiredNumberCloudNodesBasedOnES;
   };
@@ -88,7 +88,7 @@ const CostCalculations = ({
       ? (requiredNumberCloudNodesBasedOnPS = Math.ceil(
           requiredAmountOfPS /
             1024 /
-            TCO_CONSTANTS.storage.amountOfPersistentStoragePerNode
+            TCO_CONSTANTS.storage.amountOfPersistentStoragePerNode,
         ))
       : (requiredNumberCloudNodesBasedOnPS =
           TCO_CONSTANTS.storage.amountOfPersistentStoragePerNode);
@@ -102,12 +102,12 @@ const CostCalculations = ({
       calculateRequiredNumberCloudNodesBasedOnCpu(),
       calculateRequiredNumberCloudNodesBasedOnRam(),
       calculateRequiredNumberCloudNodesBasedOnES(),
-      calculateRequiredNumberCloudNodesBasedOnPS()
+      calculateRequiredNumberCloudNodesBasedOnPS(),
     );
 
     const numberOfCloudNodes = Math.max(
       requiredNumberOfCloudNodes,
-      TCO_CONSTANTS.counts.minimumNumberOfCloudNodes
+      TCO_CONSTANTS.counts.minimumNumberOfCloudNodes,
     );
     return numberOfCloudNodes;
   };
@@ -119,22 +119,22 @@ const CostCalculations = ({
   const numberOfRacks = Math.ceil(
     Math.max(
       numberOfCloudNodes / TCO_CONSTANTS.counts.maximumNumberOfCloudNodesInRack,
-      TCO_CONSTANTS.counts.minimumNumberOfRacks
-    )
+      TCO_CONSTANTS.counts.minimumNumberOfRacks,
+    ),
   );
 
   const numberOfRackControllerNodes =
     numberOfRacks * TCO_CONSTANTS.counts.numberOfRackControllerNodesInRack;
 
   const numberOfSpineSwitches = Math.ceil(
-    numberOfRacks / TCO_CONSTANTS.counts.numberOfRacksPerSpineSwitch
+    numberOfRacks / TCO_CONSTANTS.counts.numberOfRacksPerSpineSwitch,
   );
 
   const numberOfLeafSwitches =
     numberOfRacks * TCO_CONSTANTS.counts.numberOfLeafSwitchesInRack;
 
   const numberOfManagementSwitches = Math.ceil(
-    numberOfRacks / TCO_CONSTANTS.counts.numberOfRacksPerManagementSwitch
+    numberOfRacks / TCO_CONSTANTS.counts.numberOfRacksPerManagementSwitch,
   );
 
   const numberOfNodes =
@@ -151,32 +151,32 @@ const CostCalculations = ({
 
     const cloudNodesCost = calculatePriceOfNodes(
       numberOfCloudNodes,
-      TCO_CONSTANTS.price.pricePerCloudNode
+      TCO_CONSTANTS.price.pricePerCloudNode,
     );
 
     const infraNodesCost = calculatePriceOfNodes(
       TCO_CONSTANTS.counts.numberOfInfraNodes,
-      TCO_CONSTANTS.price.pricePerInfraNode
+      TCO_CONSTANTS.price.pricePerInfraNode,
     );
 
     const rackControllerNodesCost = calculatePriceOfNodes(
       numberOfRackControllerNodes,
-      TCO_CONSTANTS.price.pricePerRackController
+      TCO_CONSTANTS.price.pricePerRackController,
     );
 
     const spineSwitchesCost = calculatePriceOfNodes(
       numberOfSpineSwitches,
-      TCO_CONSTANTS.price.pricePerSpineSwitch
+      TCO_CONSTANTS.price.pricePerSpineSwitch,
     );
 
     const leafSwitchesCost = calculatePriceOfNodes(
       numberOfLeafSwitches,
-      TCO_CONSTANTS.price.pricePerLeafSwitch
+      TCO_CONSTANTS.price.pricePerLeafSwitch,
     );
 
     const managementSwitchesCost = calculatePriceOfNodes(
       numberOfManagementSwitches,
-      TCO_CONSTANTS.price.pricePerManagementSwitch
+      TCO_CONSTANTS.price.pricePerManagementSwitch,
     );
 
     const totalHardwareCost =
@@ -251,37 +251,37 @@ const CostCalculations = ({
 
     const numberOfAwsEc2VmsBasedOnCpu = calculateNumberOfAwsVMs(
       numberOfVcpusInCloud,
-      TCO_CONSTANTS.storage.awsEc2InstanceVcpus
+      TCO_CONSTANTS.storage.awsEc2InstanceVcpus,
     );
 
     const numberOfAwsEc2VmsBasedOnRam = calculateNumberOfAwsVMs(
       amountOfRamInCloud,
-      TCO_CONSTANTS.storage.awsEc2InstanceRam
+      TCO_CONSTANTS.storage.awsEc2InstanceRam,
     );
 
     const numberOfAwsEc2VmsBasedOnES = calculateNumberOfAwsVMs(
       amountOfESInCloud,
-      TCO_CONSTANTS.storage.awsEc2InstanceEphemeralStorage
+      TCO_CONSTANTS.storage.awsEc2InstanceEphemeralStorage,
     );
 
     const numberOfAwsEc2VmsBasedOnPS = calculateNumberOfAwsVMs(
       amountOfPSInCloud,
-      TCO_CONSTANTS.storage.awsEc2InstancePersistentStorage
+      TCO_CONSTANTS.storage.awsEc2InstancePersistentStorage,
     );
 
     const numberOfAwsEc2Vms = Math.max(
       numberOfAwsEc2VmsBasedOnCpu,
       numberOfAwsEc2VmsBasedOnRam,
       numberOfAwsEc2VmsBasedOnES,
-      numberOfAwsEc2VmsBasedOnPS
+      numberOfAwsEc2VmsBasedOnPS,
     );
 
     const awsTco = Math.floor(
       Math.floor(
         numberOfAwsEc2Vms *
           8760 *
-          TCO_CONSTANTS.price.awsEc2T3aLargeHourlyInstanceCost
-      ) * TCO_CONSTANTS.operations.hardWareRenewalPeriod
+          TCO_CONSTANTS.price.awsEc2T3aLargeHourlyInstanceCost,
+      ) * TCO_CONSTANTS.operations.hardWareRenewalPeriod,
     );
 
     return awsTco;

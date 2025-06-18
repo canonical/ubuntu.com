@@ -1,0 +1,236 @@
+{% extends 'security/base_security.html' %}
+
+{% from '_macros/vf_hero.jinja' import vf_hero %}
+{% from "_macros/vf_rich-vertical-list.jinja" import vf_rich_vertical_list %}
+
+{% block title %}Track vulnerability data in OSV format | Open Source Vulnerabilities{% endblock %}
+
+{% block meta_description %}
+  Learn how Ubuntu vulnerability data in OSV format can help you enhance and simplify your vulnerability management.
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1pWZXod5oXtI5In9FHnM0gBs1OY8g7J_3ioeivBZ6KZA/edit?tab=t.0
+{% endblock %}
+
+{% block content %}
+  <section>
+    <div class="row--50-50">
+      <nav class="p-breadcrumbs" aria-label="Breadcrumbs">
+        <ol class="p-breadcrumbs__items">
+          <li class="p-breadcrumbs__item">
+            <a href="/security">SECURITY</a>
+          </li>
+          <li class="p-breadcrumbs__item">Ubuntu OSV data feed</li>
+        </ol>
+      </nav>
+      <hr class="p-rule" />
+    </div>
+  </section>
+
+  {% call(slot) vf_hero(
+    title_text='Ubuntu OSV data feed',
+    layout='50/50'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Consume vulnerability data in OSV format to get a structured, human, and machine-readable description of known vulnerabilities and available security patches for <a href="/about/release-cycle">all supported Ubuntu releases</a>.
+      </p>
+    {%- endif -%}
+
+  {% endcall -%}
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2 id="osv-open-format-vuln-management">OSV &mdash; an open format for vulnerability management</h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="p-image-container--3-2 is-cover is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/dc01a986-osv.png",
+                        alt="OSV",
+                        width="1200",
+                        height="800",
+                        hi_def=True,
+                        loading="auto") | safe
+            }}
+          </div>
+        </div>
+        <p>
+          Open Source Vulnerabilities (OSV) is a <a href="https://ossf.github.io/osv-schema/"
+    aria-label="OSV JSON schema">JSON schema</a> that provides a human and machine readable data format to describe vulnerabilities in a way that precisely maps to open source package versions. This schema is developed and maintained by the Open Source Security Foundation (OSSF). OSV also consists of a reference infrastructure and tooling (OSV-Scanner).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="p-image-container is-cover u-hide--small">
+            {{ image(url="https://assets.ubuntu.com/v1/783924cf-when-to-use-updated.png",
+                        alt="",
+                        width="1200",
+                        height="1800",
+                        hi_def=True,
+                        loading="lazy") | safe
+            }}
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <h2>When to use OSV?</h2>
+        </div>
+        <p>OSV helps with:</p>
+        <hr class="p-rule--muted" />
+        <ul class="p-list--divided">
+
+          <li class="p-list__item is-ticked">
+            <strong>Vulnerability management:</strong> Consolidating vulnerability data into a centralized database, which makes it easier to find and resolve issues in deployments.
+          </li>
+
+          <li class="p-list__item is-ticked">
+            <strong>Automated alerts:</strong> Developers and organizations can receive automated alerts when vulnerabilities are found in the open source software they use.
+          </li>
+
+          <li class="p-list__item is-ticked">
+            <strong>Integration with tools:</strong> OSV can integrate with other tools, such as dependency management tools, to identify affected packages automatically.
+          </li>
+        </ul>
+        <hr class="p-rule--muted" />
+        <p>
+          In summary, OSV is an initiative focused on helping manage vulnerabilities in open source software to improve security.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>What types of Ubuntu OSV data are available?</h2>
+      </div>
+      <div class="col">
+        <p>Currently, Ubuntu’s Security Team produces OSV data for three different types of vulnerability data:</p>
+        <hr class="p-rule--muted" />
+        <ul class="p-list--divided">
+          <li class="p-list__item has-bullet">
+            <a href="/security/notices">Ubuntu Security Notices:</a> Announcements about fixed vulnerabilities in Ubuntu.
+          </li>
+
+          <li class="p-list__item has-bullet">
+            <a href="/security/cves">Ubuntu CVEs:</a> Vulnerabilities that affect packages in the Ubuntu archive.
+          </li>
+
+          <li class="p-list__item has-bullet">
+            Livepatch Security Notices: announcements about fixed vulnerabilities available through <a href="/security/livepatch">Livepatch</a>.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Where can I get OSV data?</h2>
+      </div>
+      <div class="col">
+        <p>Ubuntu OSV data is available through:</p>
+        <hr class="p-rule--muted" />
+        <ul class="p-list--divided">
+          <li class="p-list__item has-bullet">
+            <a href="https://security-metadata.canonical.com/osv/index.html">Canonical's metadata page</a>
+          </li>
+
+          <li class="p-list__item has-bullet">
+            <a href="https://github.com/canonical/ubuntu-security-notices">Canonical's GitHub repository</a>
+          </li>
+
+          <li class="p-list__item has-bullet">
+            <a href="https://osv.dev/list?q=&ecosystem=Ubuntu">osv.dev</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>
+          Which tools and APIs
+          <br class="u-hide--small" />
+          are available for OSV data?
+        </h2>
+      </div>
+      <div class="col">
+        <p>
+          Currently, the osv.dev database provides an <a href="https://osv.dev/#use-the-api" aria-label="OSV API">API</a> to query OSV data.
+        </p>
+        <p>
+          For tools, there's the official <a href="https://google.github.io/osv-scanner/">osv-scanner</a>, as well as some additional community maintained <a href="https://google.github.io/osv.dev/third-party/">tools</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>
+          Is severity classification
+          <br class="u-hide--small" />
+          available in OSV?
+        </h2>
+      </div>
+      <div class="col">
+        <p>
+          Yes,  Ubuntu includes both NVD’s CVSS scores as well as <a href="/security/cves/about#priority"
+    aria-label="Read about CVE priority levels">Ubuntu’s priority.</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section--deep">
+    <div class="row--25-75">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>More resources</h2>
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col-3">
+            <p>
+              <a href="/security/cves">Ubuntu CVE reports</a>
+            </p>
+          </div>
+          <div class="col-4">
+            <p>Access an overview of common vulnerabilities and exposures.</p>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3">
+            <p>
+              <a href="/security">Security features in Ubuntu</a>
+            </p>
+          </div>
+          <div class="col-4">
+            <p>Learn more about Ubuntu security maintenance and platform security features.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

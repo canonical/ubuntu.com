@@ -1,4 +1,4 @@
-name: docs links on ubuntu.com/kubernetes/docs
+name: docs links on ubuntu.com/kubernetes/charmed-k8s/docs
 
 on:
   schedule:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install linkchecker
         run: sudo pip install LinkChecker
@@ -45,7 +45,7 @@ jobs:
       - name: Run linkchecker
         continue-on-error: true
         run: |
-          linkchecker https://ubuntu.com/kubernetes/docs > ~/.linkchecker/kubernetesdocs-out.txt
+          linkchecker https://ubuntu.com/kubernetes/charmed-k8s/docs > ~/.linkchecker/kubernetesdocs-out.txt
 
       - name: Parse linkchecker output
         run: |

@@ -1,78 +1,102 @@
 {% extends "hpe/_base_hpe.html" %}
 
-{% block title %}HPE{% endblock title %}
+{% block title %}
+  HPE
+{% endblock title %}
 
-{% block meta_description %}Forged on the strengths of Ubuntu, the HPE and Canonical partnership has expanded to successfully deliver open source deployment, management and support services for the entire stack.{% endblock meta_description %}
+{% block meta_description %}
+  Forged on the strengths of Ubuntu, the HPE and Canonical partnership has expanded to successfully deliver open source deployment, management and support services for the entire stack.
+{% endblock meta_description %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1A2__NxIU6jFKprs5thPNtIPfOc7E9VhZEoPFu01lT_8/edit{% endblock meta_copydoc %}
-{% block body_class %}is-paper{% endblock body_class %}
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1A2__NxIU6jFKprs5thPNtIPfOc7E9VhZEoPFu01lT_8/edit
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block content %}
 
-<section class="p-strip">
-  <div class="row">
-    <div class="col-3 col-medium-2">
-      {{
-        image (
+  <section class="p-strip">
+    <div class="row">
+      <div class="col-3 col-medium-2">
+        {{
+        image(
         url="https://assets.ubuntu.com/v1/0ad256cf-hpe_pri_grn_pos_rgb.png",
         alt="",
         width="157",
         height="66",
         hi_def=True,
         loading="auto",
-        attrs={"class": "u-aspect-ratio--2-3"}
         ) | safe
-      }}
-    </div>
-    <div class="col-9 col-medium-4">
-      <h1><strong>Hewlett Packard Enterprise and Canonical</strong></h1>
-      <p>Hewlett Packard Enterprise (HPE) and Canonical have joined forces to offer comprehensive open source solutions that span from infrastructure to cutting-edge, secure, cloud-native MLOps platforms. Together, we help customers cut costs, streamline operations, and boost performance, all while ensuring top-notch security for both physical and virtual environments.</p>
-      <p>
-        <a href="/contact-us#get-in-touch" class="p-button--positive js-invoke-modal">Get in touch</a>
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip is-deep u-no-padding--top">
-  <div class="u-fixed-width">
-    <hr class="p-rule">
-  </div>
-  <div class="row">
-    <div class="col-6 col-medium-6">
-      <div class="p-block">
-        <h2>A single point of contact for technical expertise</h2>
+        }}
+      </div>
+      <div class="col-9 col-medium-4">
+        <h1>
+          <strong>Hewlett Packard Enterprise and Canonical</strong>
+        </h1>
+        <p>
+          Hewlett Packard Enterprise (HPE) and Canonical have joined forces to offer comprehensive open source solutions that span from infrastructure to cutting-edge, secure, cloud-native MLOps platforms. Together, we help customers cut costs, streamline operations, and boost performance, all while ensuring top-notch security for both physical and virtual environments.
+        </p>
+        <p>
+          <a href="/contact-us#get-in-touch"
+             class="p-button--positive js-invoke-modal">Get in touch</a>
+        </p>
       </div>
     </div>
-    <div class="col-6 col-medium-4 col-start-medium-3">
-      <p>HPE and Canonical have created reference designs and established centers of excellence to build and deploy OpenStack, Kubernetes, Ceph, and AI/ML solutions.</p>
-      <p>This partnership means customers get:</p>
-      <ul class="p-list--divided">
-        <li class="p-list__item has-bullet">a single point of contact for the entire scope of their project.</li>
-        <li class="p-list__item has-bullet">the combined expertise from HPE and Canonical throughout the project lifecycle.</li>
-      </ul>
-      <p>As an active member of the HPE Technology Partner Program, Canonical participates in <a href="#events">HPE events</a> to share joint solutions.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-section">
-  <hr class="is-fixed-width p-rule">
-  <div class="row">
-    <div class="col-6 col-medium-6">
-      <div class="p-block">
-        <h2>Ubuntu: Tier1 operating <br /> system on HPE hardware</h2>
+  <section class="p-strip is-deep u-no-padding--top">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+    </div>
+    <div class="row">
+      <div class="col-6 col-medium-6">
+        <div class="p-block">
+          <h2>A single point of contact for technical expertise</h2>
+        </div>
+      </div>
+      <div class="col-6 col-medium-4 col-start-medium-3">
+        <p>
+          HPE and Canonical have created reference designs and established centers of excellence to build and deploy OpenStack, Kubernetes, Ceph, and AI/ML solutions.
+        </p>
+        <p>This partnership means customers get:</p>
+        <ul class="p-list--divided">
+          <li class="p-list__item has-bullet">a single point of contact for the entire scope of their project.</li>
+          <li class="p-list__item has-bullet">
+            the combined expertise from HPE and Canonical throughout the project lifecycle.
+          </li>
+        </ul>
+        <p>
+          As an active member of the HPE Technology Partner Program, Canonical participates in <a href="#events">HPE events</a> to share joint solutions.
+        </p>
       </div>
     </div>
-    <div class="col-6 col-medium-4 col-start-medium-3">
-      <p>HPE and Canonical work together to certify Ubuntu as a Tier1 operating system for HPE hardware.</p>
-      <p>
-        <a href="/certified/servers?vendor=HPE">See all Ubuntu-certified HPE servers&nbsp;&rsaquo;</a>
-      </p>
+  </section>
+
+  <section class="p-section">
+    <hr class="is-fixed-width p-rule" />
+    <div class="row">
+      <div class="col-6 col-medium-6">
+        <div class="p-block">
+          <h2>
+            Ubuntu: Tier1 operating
+            <br />
+            system on HPE hardware
+          </h2>
+        </div>
+      </div>
+      <div class="col-6 col-medium-4 col-start-medium-3">
+        <p>HPE and Canonical work together to certify Ubuntu as a Tier1 operating system for HPE hardware.</p>
+        <p>
+          <a href="/certified/servers?vendor=HPE">See all Ubuntu-certified HPE servers&nbsp;&rsaquo;</a>
+        </p>
+      </div>
     </div>
-  </div>
-  <div class="u-fixed-width">
-    {{
-      image (
+    <div class="u-fixed-width">
+      {{
+      image(
       url="https://assets.ubuntu.com/v1/93b54e0a-Rectangle 558.png",
       alt="",
       width="2438",
@@ -80,328 +104,480 @@
       hi_def=True,
       loading="lazy"
       ) | safe
-    }}
-  </div>
-</section>
+      }}
+    </div>
+  </section>
 
-<section class="p-section">
-  <div class="u-fixed-width">
-    <hr class="p-rule">
-  </div>
-  <div class="row">
-    <div class="col-6 u-hide--medium u-hide--small">
-      <div class="u-image-separation">
-      {{
-        image (
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+    </div>
+    <div class="row">
+      <div class="col-6 u-hide--medium u-hide--small">
+        <div class="u-image-separation">
+          {{
+          image(
           url="https://assets.ubuntu.com/v1/07620fe2-image-on-paper.png",
           alt="",
           width="1614",
           height="1076",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "u-aspect-ratio--2-3"}
           ) | safe
-       }}
+          }}
+        </div>
+      </div>
+      <div class="col-6 col-medium-6">
+        <div class="p-block">
+          <h2>
+            Reliable solutions
+            <br class="u-hide--medium u-hide--small" />
+            for projects of any size
+          </h2>
+        </div>
+        <p>We deliver projects of all sizes, from small-scale implementations to large-scale data centers.</p>
+        <p>
+          Canonical and HPE are proud to have the trust of a large public entity in India for their highly demanding cloud of +1000 servers. This successful engagement shows we can meet the highest standards of performance, security, and reliability.
+        </p>
       </div>
     </div>
-    <div class="col-6 col-medium-6">
-      <div class="p-block">
-        <h2>Reliable solutions <br class="u-hide--medium u-hide--small">for projects of any size</h2>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+    </div>
+    <div class="row">
+      <div class="col-6 col-medium-2">
+        <h2>Telco validated designs</h2>
       </div>
-      <p>We deliver projects of all sizes, from small-scale implementations to large-scale data centers.</p>
-      <p>Canonical and HPE are proud to have the trust of a large public entity in India for their highly demanding cloud of +1000 servers. This successful engagement shows we can meet the highest standards of performance, security, and reliability.</p>
-    </div>
-  </div>
-</section>
-
-
-<section class="p-section">
-  <div class="u-fixed-width">
-    <hr class="p-rule">
-  </div>
-  <div class="row">
-    <div class="col-6 col-medium-2">
-      <h2>Telco validated designs</h2>
-    </div>
-    <div class="col-6 col-medium-4">
-      <div class="u-image-separation">
-      {{
-        image (
+      <div class="col-6 col-medium-4">
+        <div class="u-image-separation">
+          {{
+          image(
           url="https://assets.ubuntu.com/v1/941754b0-dell server image1.png",
           alt="",
           width="1614",
           height="1076",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "u-aspect-ratio--2-3"}
           ) | safe
-      }}
-      <p>Canonical and HPE have collaborated to develop Telco Validated Designs. These powerful solutions for the telecommunications industry include:</p>
-      <ul class="p-list--divided">
-        <li class="p-list__item has-bullet">Kubernetes, providing an integrated cloud-native platform that deploys Kubernetes clusters on dedicated physical servers.</li>
-        <li class="p-list__item has-bullet">OpenStack to allow multiple and isolated applications to run on a single OS on top of the HPE ProLiant server family.</li>
-        <li class="p-list__item has-bullet">Anbox Cloud Appliance, which lets you securely stream mobile apps, at any scale, to any device.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="p-section">
-  <div class="u-fixed-width">
-    <hr class="p-rule">
-  </div>
-  <div class="u-fixed-width">
-    <h2>Proven results from collaborative solutions</h2>
-  </div>
-  <div class="row">
-    <div class="col-6">
-      <p>Canonical and HPE collaborate to offer proven open-source solutions that have benefited numerous global clients.</p>
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <div class="p-logo-section">
-      <div class="p-logo-section__items">
-        <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/6cd78b57-at%26t-logo.png" alt=""></div>
-        <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/a3bb7ca4-mercedes-benz-group-logo.png" alt=""></div>
-        <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/1459d379-tmn_logo.png" alt=""></div>
-        <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/1dc7af1e-panasonic-logo.png" alt=""></div>
-        <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/4af3ad39-barclays-logo.png" alt=""></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-section">
-  <hr class="p-rule is-fixed-width">
-  <div class="row">
-    <div class="col-6 col-medium-2">
-      <div class="p-block">
-        <h2 id="events">Events</h2>
-      </div>
-    </div>
-    <div class="col-6 col-medium-4">
-      <div class="p-block">
-      <div class="u-embedded-media">
-        <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/iUwyJvFM5w4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-        <p>Canonical participates in international events with HPE to show the partnership's value and the offerings we provide, from private cloud to edge, to AI/ML, to open source applications security.</p>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-9 col-start-large-4 col-medium-4 col-start-medium-3">
-      <hr class="p-rule is-fixed-width">
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <div class="p-block">
-            <h2 class="p-text--small-caps">Recent events</h2>
-          </div>
+          }}
+          <p>
+            Canonical and HPE have collaborated to develop Telco Validated Designs. These powerful solutions for the telecommunications industry include:
+          </p>
+          <ul class="p-list--divided">
+            <li class="p-list__item has-bullet">
+              Kubernetes, providing an integrated cloud-native platform that deploys Kubernetes clusters on dedicated physical servers.
+            </li>
+            <li class="p-list__item has-bullet">
+              OpenStack to allow multiple and isolated applications to run on a single OS on top of the HPE ProLiant server family.
+            </li>
+            <li class="p-list__item has-bullet">
+              Anbox Cloud Appliance, which lets you securely stream mobile apps, at any scale, to any device.
+            </li>
+          </ul>
         </div>
-        <div class="col-6 col-medium-4">
-          <div class="p-block">
-            <h5><a href="https://www.hpe.com/us/en/discover.html">HPE Discover 2023</a></h5>
-            <p>HPE Discover is the best place to stay ahead of the trends and technologies that will move your business forward, faster.</p>
-            <p>Visit our booth and see how Canonical and HPE ​can offer a more cost-effective, better performing and secure pure upstream open source stack.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+    </div>
+    <div class="u-fixed-width">
+      <h2>Proven results from collaborative solutions</h2>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <p>Canonical and HPE collaborate to offer proven open-source solutions that have benefited numerous global clients.</p>
+      </div>
+    </div>
+    <div class="u-fixed-width">
+      <div class="p-logo-section">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            <img class="p-logo-section__logo"
+                  src="https://assets.ubuntu.com/v1/6cd78b57-at%26t-logo.png"
+                  alt="" />
           </div>
-          <div class="p-block">
-            <hr class="p-rule is-fixed-width">
-            <h5><a href="/blog/canonical-at-hpe-apac-outcome-based-solutions-2023">HPE OBSS APAC 2023</a></h5>
-            <p>Canonical is sponsoring the Outcome-Based Solutions Summit (OBSS) with HPE. OBSS is an annual knowledge transfer event for the HPE and Partner technology community in Asia Pacific, India, and Japan.</p>
+          <div class="p-logo-section__item">
+            <img class="p-logo-section__logo"
+                  src="https://assets.ubuntu.com/v1/a3bb7ca4-mercedes-benz-group-logo.png"
+                  alt="" />
+          </div>
+          <div class="p-logo-section__item">
+            <img class="p-logo-section__logo"
+                  src="https://assets.ubuntu.com/v1/d6df40cd-tmn_logo.png"
+                  alt="" />
+          </div>
+          <div class="p-logo-section__item">
+            <img class="p-logo-section__logo"
+                  src="https://assets.ubuntu.com/v1/1dc7af1e-panasonic-logo.png"
+                  alt="" />
+          </div>
+          <div class="p-logo-section__item">
+            <img class="p-logo-section__logo"
+                  src="https://assets.ubuntu.com/v1/4af3ad39-barclays-logo.png"
+                  alt="" />
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-<section class="p-section">
-  <div class="u-fixed-width">
-    <hr class="p-rule">
-  </div>
-  <div class="row">
-    <div class="col-6 col-medium-3">
-      <div class="p-block">
-        <h2 class="p-text--small-caps">Joint webinar</h2>
-        <h3 class="p-heading--2"><a href="/engage/telco-cloud-implementation">Telco cloud implementation: <br />Build carrier-grade infrastructure using open source</a></h3>
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row">
+      <div class="col-6 col-medium-2">
+        <div class="p-block">
+          <h2 id="events">Events</h2>
+        </div>
+      </div>
+      <div class="col-6 col-medium-4">
+        <div class="p-block">
+          <div class="u-embedded-media">
+            <iframe class="u-embedded-media__element"
+                    width="560"
+                    height="315"
+                    src="https://www.youtube.com/embed/iUwyJvFM5w4"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+          </div>
+          <p>
+            Canonical participates in international events with HPE to show the partnership's value and the offerings we provide, from private cloud to edge, to AI/ML, to open source applications security.
+          </p>
+        </div>
       </div>
     </div>
-    <div class="col-6 col-medium-3">
-      <div class="u-embedded-media">
-        <a href="/engage/telco-cloud-implementation">
-          <img class="u-embedded-media__element" src="https://cdn.brighttalk.com/ams/california/images/communication/582711/image_917101.png" alt="">
-        </a>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-4 col-start-medium-3">
+        <hr class="p-rule is-fixed-width" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <div class="p-block">
+              <h2 class="p-text--small-caps">Recent events</h2>
+            </div>
+          </div>
+          <div class="col-6 col-medium-4">
+            <div class="p-block">
+              <h5>
+                <a href="https://www.hpe.com/us/en/discover.html">HPE Discover 2023</a>
+              </h5>
+              <p>
+                HPE Discover is the best place to stay ahead of the trends and technologies that will move your business forward, faster.
+              </p>
+              <p>
+                Visit our booth and see how Canonical and HPE ​can offer a more cost-effective, better performing and secure pure upstream open source stack.
+              </p>
+            </div>
+            <div class="p-block">
+              <hr class="p-rule is-fixed-width" />
+              <h5>
+                <a href="/blog/canonical-at-hpe-apac-outcome-based-solutions-2023">HPE OBSS APAC 2023</a>
+              </h5>
+              <p>
+                Canonical is sponsoring the Outcome-Based Solutions Summit (OBSS) with HPE. OBSS is an annual knowledge transfer event for the HPE and Partner technology community in Asia Pacific, India, and Japan.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-      <p>Service providers need cloud infrastructure everywhere, from 5G and 6G network functions running in the network core to AI/ML jobs running on the edge.</p>
-      <p>Join this webinar to learn how to build carrier-grade infrastructure using open-source solutions from Canonical and HPE.</p>
     </div>
-  </div>
-</section>
+  </section>
 
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+    </div>
+    <div class="row">
+      <div class="col-6 col-medium-3">
+        <div class="p-block">
+          <h2 class="p-text--small-caps">Joint webinar</h2>
+          <h3 class="p-heading--2">
+            <a href="/engage/telco-cloud-implementation">Telco cloud implementation:
+              <br />
+            Build carrier-grade infrastructure using open source</a>
+          </h3>
+        </div>
+      </div>
+      <div class="col-6 col-medium-3">
+        <div class="u-embedded-media">
+          <a href="/engage/telco-cloud-implementation">
+            <img class="u-embedded-media__element"
+                  src="https://cdn.brighttalk.com/ams/california/images/communication/582711/image_917101.png"
+                  alt="" />
+          </a>
+        </div>
+        <p>
+          Service providers need cloud infrastructure everywhere, from 5G and 6G network functions running in the network core to AI/ML jobs running on the edge.
+        </p>
+        <p>
+          Join this webinar to learn how to build carrier-grade infrastructure using open-source solutions from Canonical and HPE.
+        </p>
+      </div>
+    </div>
+  </section>
 
-<section class="p-section">
-  <div class="u-fixed-width p-block">
-    <hr class="p-rule" />
-    <h5 class="p-text--x-small-capitalised">Resources</h5>
-  </div>
-  <div class="u-fixed-width">
-    <div class="u-vertically-center u-align--center" style="background-color: #fff;">
-      {{
-        image (
+  <section class="p-section">
+    <div class="u-fixed-width p-block">
+      <hr class="p-rule" />
+      <h5 class="p-text--x-small-capitalised">Resources</h5>
+    </div>
+    <div class="u-fixed-width">
+      <div class="u-vertically-center u-align--center"
+            style="background-color: #fff">
+        {{
+        image(
         url="https://assets.ubuntu.com/v1/5b5a466c-dell server image-2.png",
         alt="",
         width="2438",
         height="840",
         hi_def=True,
         loading="lazy",
-        attrs={"class": "u-aspect-ratio--2-3"}
         ) | safe
-      }}
+        }}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-section">
-  <div class="row">
-		<hr class="is-fixed-width p-rule" />
-		<div class="col-6 col-medium-2">
-			<h2>Certified hardware</h2>
-		</div>
-		<div class="col-6 col-medium-4">
-      <p>Ubuntu certified hardware has passed an extensive testing and review process, ensuring that Ubuntu runs perfectly out of the box.</p>
-      <p>We work closely with HPE to make Ubuntu available on a wide range of HPE hardware and on the most recent versions.</p>
-      <ul class="p-inline-list--middot">
-        <li class="p-inline-list__item">
-          <a href="/certified/servers?vendor=HPE">HPE certified servers</a>
-        </li>
-        <li class="p-inline-list__item">
-          <a href="https://techlibrary.hpe.com/us/en/enterprise/servers/supportmatrix/ubuntu.aspx">HPE Certification Matrix</a>
-        </li>
-      </ul>
-		</div>
-	</div>
-</section>
+  <section class="p-section">
+    <div class="row">
 
-<section class="p-section">
-  <div class="row u-no-padding--top">
-    <hr class="p-rule" />
-    <div class="col-6 col-medium-2">
-      <h2>Reference design</h2>
+      <hr class="is-fixed-width p-rule" />
+
+      <div class="col-6 col-medium-2">
+
+        <h2>Certified hardware</h2>
+
+      </div>
+
+      <div class="col-6 col-medium-4">
+        <p>
+          Ubuntu certified hardware has passed an extensive testing and review process, ensuring that Ubuntu runs perfectly out of the box.
+        </p>
+        <p>
+          We work closely with HPE to make Ubuntu available on a wide range of HPE hardware and on the most recent versions.
+        </p>
+        <ul class="p-inline-list--middot">
+          <li class="p-inline-list__item">
+            <a href="/certified/servers?vendor=HPE">HPE certified servers</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="https://techlibrary.hpe.com/us/en/enterprise/servers/supportmatrix/ubuntu.aspx">HPE Certification Matrix</a>
+          </li>
+        </ul>
+
+      </div>
+
     </div>
-    <div class="col-6 col-medium-4">
-      <div class="u-image-separation">
-        {{
-          image (
+  </section>
+
+  <section class="p-section">
+    <div class="row u-no-padding--top">
+      <hr class="p-rule" />
+      <div class="col-6 col-medium-2">
+        <h2>Reference designs</h2>
+      </div>
+      <div class="col-6 col-medium-4">
+        <div class="u-image-separation">
+          {{
+          image(
           url="https://assets.ubuntu.com/v1/62b49438-Rectangle 558-1.png",
           alt="",
           width="1184",
           height="711",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "u-aspect-ratio--2-3"}
           ) | safe
-        }}
+          }}
+        </div>
+        <p>
+          Learn how these HPE and Canonical components complement each other to create an entire solution for Telecom
+          Service Providers.
+        </p>
       </div>
-      <p>Learn how these HPE and Canonical components complement each other to create an entire solution for Telecom Service Providers.</p>
-      <ul class="p-list--divided">
-        <li class="p-list__item has-bullet"><a href="/engage/hpe-telco-validated-design-with-canonical-anbox">Anbox Reference Design</a></li>
-        <li class="p-list__item has-bullet"><a href="/engage/hpe-telco-validated-design-with-canonical-kubernetes">Kubernetes Reference Design</a></li>
-        <li class="p-list__item has-bullet"><a href="/engage/hpe-telco-validated-design-with-canonical-microcloud">MicroCloud Reference Design</a></li>
-        <li class="p-list__item has-bullet"><a href="/engage/hpe-telco-validated-design-with-canonical-openstack">OpenStack Reference Design</a></li>
-      </ul>
     </div>
-  </div>
-</section>
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <hr class="is-fixed-width p-rule--muted" />
+        <div class="row">
+          <div class="col-3">
+            <p class="p-heading--5">Solutions</p>
+          </div>
+          <div class="col-6">
+            <ul class="p-list--divided">
+              <li class="p-list__item has-bullet">
+                <a href="/engage/hpe-vdi-solution-hp-anyware-canonical-microcloud">MicroCloud for HPE VDI</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <hr class="is-fixed-width p-rule--muted" />
+        <div class="row">
+          <div class="col-3">
+            <p class="p-heading--5">Servers</p>
+          </div>
+          <div class="col-6">
+            <ul class="p-list--divided">
+              <li class="p-list__item has-bullet">
+                <a href="/engage/hpe-telco-validated-design-with-canonical-anbox">Anbox
+                Reference Design</a>
+              </li>
+              <li class="p-list__item has-bullet">
+                <a href="/engage/hpe-telco-validated-design-with-canonical-kubernetes">Kubernetes Reference Design</a>
+              </li>
+              <li class="p-list__item has-bullet">
+                <a href="/engage/hpe-telco-validated-design-with-canonical-microcloud">MicroCloud Reference Design</a>
+              </li>
+              <li class="p-list__item has-bullet">
+                <a href="/engage/hpe-telco-validated-design-with-canonical-openstack">OpenStack Reference Design</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <hr class="is-fixed-width p-rule--muted" />
+        <div class="row">
+          <div class="col-3">
+            <p class="p-heading--5">Storage</p>
+          </div>
+          <div class="col-6">
+            <ul class="p-list--divided">
+              <li class="p-list__item has-bullet">
+                <a href="/engage/hpe-charmed-openstack-integration-hpe-greenlake-block-storage-mp">OpenStack
+                integration with HPE GreenLake</a>
+              </li>
+              <li class="p-list__item has-bullet">
+                <a href="/engage/hpe-alletra-6000-validated-design-openstack">OpenStack
+                for HPE Alletra Storage 6000</a>
+              </li>
+              <li class="p-list__item has-bullet">
+                <a href="/engage/hpe-alletra-9000-validated-design-openstack">OpenStack
+                for HPE Alletra Storage 9000</a>
+              </li>
+              <li class="p-list__item has-bullet">
+                <a href="/engage/hpe-charmed-openstack-integration-hpe-greenlake-block-storage-mp">Kubernetes
+                integration with HPE GreenLake</a>
+              </li>
+              <li class="p-list__item has-bullet">
+                <a href="/engage/hpe-alletra-6000-validated-design-kubernetes">Kubernetes for HPE Alletra Storage 6000</a>
+              </li>
+              <li class="p-list__item has-bullet">
+                <a href="/engage/hpe-alletra-9000-validated-design-kubernetes">Kubernetes for HPE Alletra Storage 9000</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section class="p-section">
-  <div class="row u-no-padding--top">
-    <hr class="p-rule" />
-    <div class="col-6 col-medium-2">
-      <h2>Canonical at a glance: <br />A brochure for HPE sales teams</h2>
-    </div>
-    <div class="col-6 col-medium-4">
-      <div class="u-image-separation">
-        {{
-          image (
+  <section class="p-section">
+    <div class="row u-no-padding--top">
+      <hr class="p-rule" />
+      <div class="col-6 col-medium-2">
+        <h2>
+          Canonical at a glance:
+          <br />
+          A brochure for HPE sales teams
+        </h2>
+      </div>
+      <div class="col-6 col-medium-4">
+        <div class="u-image-separation">
+          {{
+          image(
           url="https://assets.ubuntu.com/v1/bf7d0182-Rectangle 558-2.png",
           alt="",
           width="1184",
           height="709",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "u-aspect-ratio--2-3"}
           ) | safe
-        }}
-      </div>
-      <p>With our combined strengths, help your customers cut costs, reduce complexity, and drive innovation.</p>
-      <a href="/engage/hpe-battle-card" class="p-button">Download portfolio&nbsp;<i class="p-icon--begin-downloading"></i></a>
-      </ul>
+          }}
+        </div>
+        <p>With our combined strengths, help your customers cut costs, reduce complexity, and drive innovation.</p>
+        <a href="/engage/hpe-battle-card" class="p-button">Download portfolio&nbsp;<i class="p-icon--begin-downloading"></i></a>
     </div>
   </div>
-</section>
+  </section>
 
-<section class="p-section">
-  <div class="u-fixed-width">
-    <hr class="p-rule">
-  </div>
-  <div class="row">
-    <div class="col-3 col-medium-2">
-      <h5 class="p-muted-heading">From our blog</h5>
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
     </div>
-    <div class="col-9 col-medium-4">
-      {% for article in blogs %}
-        {% if loop.index <= 3 %}
-          {% if loop.index > 0 %}
-          <hr class="is-fixed-width p-rule">
+    <div class="row">
+      <div class="col-3 col-medium-2">
+        <h5 class="p-muted-heading">From our blog</h5>
+      </div>
+      <div class="col-9 col-medium-4">
+        {% for article in blogs %}
+          {% if loop.index <= 3 %}
+            {% if loop.index > 0 %}<hr class="is-fixed-width p-rule" />{% endif %}
+            <div class="p-block">
+              <h2>
+                <a href="/blog/{{ article.slug }}">{{ article.title.rendered | safe }}</a>
+              </h2>
+              <p>
+                {% if 4307 in article.tags %}
+                  <a class="p-chip--information" href="/blog/tag/hpe">
+                    <span class="p-chip__value">HPE</span>
+                  </a>
+                {% endif %}
+                {% if 1419 in article.tags %}
+                  <a class="p-chip--information" href="/blog/tag/event">
+                    <span class="p-chip__value">Event</span>
+                  </a>
+                {% endif %}
+                {% if 1377 in article.tags %}
+                  <a class="p-chip--information" href="/blog/tag/telco">
+                    <span class="p-chip__value">Telco</span>
+                  </a>
+                {% endif %}
+              </p>
+            </div>
           {% endif %}
-          <div class="p-block">
-            <h2><a href="/blog/{{ article.slug }}">{{ article.title.rendered }}</a></h2>
-            <p>
-              {% if 4307 in article.tags %}
-              <button class="p-chip--information" onclick="location.href='/blog/tag/hpe'">
-                <span class="p-chip__value">HPE</span>
-              </button>
-              {% endif %}
-              {% if 1419 in article.tags %}
-              <button class="p-chip--information" onclick="location.href='/blog/tag/event'">
-                <span class="p-chip__value">Event</span>
-              </button>
-              {% endif %}
-              {% if 1377 in article.tags %}
-              <button class="p-chip--information" onclick="location.href='/blog/tag/telco'">
-                <span class="p-chip__value">Telco</span>
-              </button>
-              {% endif %}
-            </p>
-          </div>
-        {% endif %}
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-
-<section class="p-section">
-  <div class="u-fixed-width">
-    <hr class="p-rule" />
-  </div>
-  <div class="row">
-    <div class="col-3 col-medium-2">
-      <h5 class="p-muted-heading">Contact</h5>
-    </div>
-    <div class="col-9 col-medium-4">
-      <p>Contact us for more information about the Canonical and HPE partnership or how to purchase our joint solutions.</p>
-      <div class="p-strip">
-        <h3 class="p-heading--2">
-          <a href="/contact-us#get-in-touch" class="js-invoke-modal">Send us a message&nbsp;&rsaquo;</a>
-        </h3>
+        {% endfor %}
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/hpe" data-form-id="4563" data-lp-id="" data-return-url="/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+    </div>
+    <div class="row">
+      <div class="col-3 col-medium-2">
+        <h5 class="p-muted-heading">Contact</h5>
+      </div>
+      <div class="col-9 col-medium-4">
+        <p>Contact us for more information about the Canonical and HPE partnership or how to purchase our joint solutions.</p>
+        <div class="p-strip">
+          <h3 class="p-heading--2">
+            <a href="/contact-us#get-in-touch" class="js-invoke-modal">Send us a message&nbsp;&rsaquo;</a>
+          </h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide"
+       id="contact-form-container"
+       data-form-location="/shared/forms/interactive/hpe"
+       data-form-id="4563"
+       data-lp-id=""
+       data-return-url="/thank-you"
+       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
 
 {% endblock content %}

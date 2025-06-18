@@ -70,6 +70,7 @@ class Contract:
         entitlements: List[Entitlement],
         number_of_active_machines: int,
         items: List[ContractItem] = None,
+        max_tracking_reached: bool = False,
     ):
         self.id = id
         self.account_id = account_id
@@ -78,6 +79,7 @@ class Contract:
         self.entitlements = entitlements
         self.number_of_active_machines = number_of_active_machines
         self.items = items
+        self.max_tracking_reached = max_tracking_reached
 
 
 class SubscriptionItem:
@@ -128,12 +130,14 @@ class Account:
         type: str = None,
         role: str = None,
         token: str = None,
+        hasChannelStoreAccess: bool = False,
     ):
         self.id = id
         self.name = name
         self.type = type
         self.role = role
         self.token = token
+        self.hasChannelStoreAccess = hasChannelStoreAccess
 
 
 class User:

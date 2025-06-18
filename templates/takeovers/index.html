@@ -4,6 +4,8 @@
 
 {% block title %}Takeover index | Ubuntu{% endblock %}
 
+{% block body_class %}is-dark{% endblock body_class %}
+
 {% block content %}
 
 <section class="p-strip is-shallow">
@@ -13,33 +15,46 @@
         Active takeovers: <strong>{{ active_count }}</strong>
       </li>
       <li class="p-inline-list__item">
-        Hidden takeovers: <strong>{{ (takeovers | length) - (active_count) }}</strong>
+        Hidden takeovers: <strong>{{ total_count }}</strong>
       </li>
     </ul>
   </div>
 </section>
+{% if takeovers | length > 0 %}
+  {% for takeover in takeovers %}
+    {% with
+      title=takeover['title'],
+      subtitle=takeover['subtitle'],
+      class="p-takeover--" + takeover['class'],
+      header_image=takeover['image'],
+      image_width=takeover['image_width'],
+      image_height=takeover['image_height'],
+      image_hide_small="true",
+      primary_url=takeover['primary_url'],
+      primary_cta=takeover['primary_cta'],
+      primary_cta_class="",
+      secondary_cta=takeover['secondary_cta'],
+      secondary_url=takeover['secondary_url'],
+      lang=takeover['lang'],
+      lang_skip=takeover['lang_skip'],
+      active=takeover['active']
+      %}
+      {% include "takeovers/_template.html" %}
+    {% endwith %}
+  {% endfor %}
 
-{% for takeover in takeovers %}
-  {% with
-    title=takeover['title'],
-    subtitle=takeover['subtitle'],
-    class="p-takeover--" + takeover['class'],
-    header_image=takeover['image'],
-    image_width=takeover['image_width'],
-    image_height=takeover['image_height'],
-    image_hide_small="true",
-    primary_url=takeover['primary_url'],
-    primary_cta=takeover['primary_cta'],
-    primary_cta_class="",
-    secondary_cta=takeover['secondary_cta'],
-    secondary_url=takeover['secondary_url'],
-    lang=takeover['lang'],
-    lang_skip=takeover['lang_skip'],
-    active=takeover['active']
-    %}
-    {% include "takeovers/_template.html" %}
-  {% endwith %}
-{% endfor %}
+  <section class="p-strip is-shallow">
+    {% with %}
+      {% set total_pages = total_pages %}
+      {% set current_page = current_page %}
+      {% include "shared/_pagination.html" %}
+    {% endwith %}
+  </section>
+{% else %}
+  <div class="u-fixed-width">
+    <h3>No takeovers found &mdash; why not try widening your search?</h3>
+  </div>
+{% endif %}
 
 <style>
   .is-active::after {
@@ -47,8 +62,8 @@
     content: "Active";
     padding: .5rem 1rem;
     position: absolute;
-    right: 1rem;
-    top: 1rem;
+    right: 15rem;
+    top: 5rem;
   }
 </style>
 

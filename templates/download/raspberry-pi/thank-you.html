@@ -2,218 +2,178 @@
 
 {% block title %}Thank you for downloading Ubuntu Server for Raspberry Pi{% endblock %}
 
-{% block meta_image %}https://assets.ubuntu.com/v1/f60f86c4-Embedded+social+media+banner+.jpg{% endblock meta_image %}
+{% block meta_image %}
+  https://assets.ubuntu.com/v1/f60f86c4-Embedded+social+media+banner+.jpg
+{% endblock meta_image %}
 
-{% block meta_description %}Ubuntu is an open-source operating system for cross platform development, there's no better place to get started than with Ubuntu on a Raspberry Pi.{% endblock meta_description %}
+{% block meta_description %}
+  Ubuntu is an open-source operating system for cross platform development, there's no better place to get started than with Ubuntu on a Raspberry Pi.
+{% endblock meta_description %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1RXsLbMB-LJVwiG0gAi0HgVEJvZ9_GIU3ESLJ6KmBb54{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1RXsLbMB-LJVwiG0gAi0HgVEJvZ9_GIU3ESLJ6KmBb54
+{% endblock meta_copydoc %}
 
-{% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
+{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
+
+{% block body_class %}is-paper{% endblock %}
 
 {% block content %}
 
-{% if version %}
-  <meta http-equiv="refresh" content="3;url={% if version==releases.latest.core_version %}https://cdimage.ubuntu.com/ubuntu-core/{{ version }}/stable/current/ubuntu-{{ architecture }}.img.xz{% else %}https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz{% endif %}">
+  {% if version %}
+    <meta http-equiv="refresh"
+          content="3;url={% if version==releases.latest.core_version %}https://cdimage.ubuntu.com/ubuntu-core/{{ version }}/stable/current/ubuntu-{{ architecture }}.img.xz{% else %}https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz{% endif %}" />
+  {% endif %}
 
-
-{% endif %}
-
-<section class="p-strip--suru-topped" style="overflow: visible;">
-  <div class="row u-vertically-center">
-    <div class="col-7">
-      {% if version %}
-      <h1>Thank you for downloading<br />
-        Ubuntu {% if version==releases.latest.core_version %}Core {% endif %}{{ version }}<br />
-        for Raspberry Pi</h1>
-        <p>Your download should start automatically. If it doesn't, <a href="{% if version==releases.latest.core_version %}https://cdimage.ubuntu.com/ubuntu-core/{{ version }}/stable/current/ubuntu-{{ architecture }}.img.xz{% else %}https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz{% endif %}">download now</a>.</p>
-        {% with version=version, system=architecture, architecture=architecture %}
-        {% include "download/shared/_verify-checksums.html" %}
-        {% endwith %}
+  <section class="p-strip is-shallow u-no-padding--bottom">
+    <div class="row--50-50">
+      <div class="col">
+        {% if version %}
+          <h1>
+            Thank you for downloading
+            <br class="u-hide--small" />
+            Ubuntu
+            {% if version==releases.latest.core_version %}Core{% endif %}
+            {{ version }}
+            <br />
+            for Raspberry Pi
+          </h1>
+          <p>
+            Your download should start automatically. If it doesn't,
+            <a href="{% if version==releases.latest.core_version %}https://cdimage.ubuntu.com/ubuntu-core/{{ version }}/stable/current/ubuntu-{{ architecture }}.img.xz{% else %}https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz{% endif %}">download now</a>.
+            <br />
+            {% with version=version, system=architecture, architecture=architecture %}
+              {% include "download/shared/_verify-checksums.html" %}
+            {% endwith %}
+          </p>
         {% else %}
-        <h1>Thank you</h1>
-        <h4>However, you have not selected an image to download.</h4>
-        <p>Go to the <a href="/download/raspberry-pi">download page</a> to select an image.</p>
+          <h1>You have not selected an image to download</h1>
+          <p>
+            Please <a href="/download/raspberry-pi">select an image</a> to download.
+          </p>
         {% endif %}
       </div>
-      <div class="col-5 u-hide--medium u-hide--small u-align--center">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/9f09965f-1+-+Download+and+install+Ubuntu+Server+on+Raspberry+Pi.svg",
-          alt="",
-          height="227",
-          width="350",
-          hi_def=True,
-          loading="auto"
-          ) | safe
-        }}
+      <div class="col">
+        {% with returnUrl="/download/raspberry-pi", ga_event_title="Raspberry Pi download" %}
+          {% include 'shared/_download-newsletter.html' %}
+        {% endwith %}
       </div>
     </div>
   </section>
 
-  <section class="p-strip--light">
-    <div class="row">
-      <div class="col-8">
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50 p-section--shallow">
+      <div class="col">
         <h2>Installation instructions</h2>
-        <p>The simplest way to install Ubuntu is to use the <a href="https://www.raspberrypi.com/software/">Raspberry Pi Imager</a> which enables you to select an Ubuntu image during installation. Follow our tutorials below to learn how.</p>
+      </div>
+      <div class="col">
+        <p>
+          The simplest way to install Ubuntu is to use the <a href="https://www.raspberrypi.com/software/">Raspberry Pi Imager</a> which enables you to select an Ubuntu image during installation. Follow our tutorials below to learn how.
+        </p>
       </div>
     </div>
-    <div class="row p-divider">
-      {% if version == releases.latest.core_version %}
-      <div class="col-4 blog-p-card--post">
-        <header class="blog-p-card__header--tutorial">
-          <p class="p-muted-heading u-no-margin--bottom">
-            core, UC20
-          </p>
-        </header>
-        <div class="blog-p-card__content">
-          <h3 class="p-heading--3 u-no-margin--top u-no-margin--bottom">
-            <a class="p-link--soft" href="/core/docs/uc20/install-raspberry-pi">Installing Ubuntu Core 20 on a Raspberry Pi</a>
-          </h3>
-          <p class="u-sv3">A complete guide to installing Ubuntu Core on a Raspberry Pi 4 (4GB or 8GB).</p>
+    <div class="row">
+      <div class="col-12 col-medium-6 col-start-large-4">
+        <hr class="p-rule is-fixed-width" />
+        <div class="row">
+          {% if version == releases.latest.core_version %}
+            <div class="col-4 col-medium-2">
+              <h3 class="p-heading--5">
+                <a href="/core/docs/uc20/install-raspberry-pi">Installing Ubuntu Core 20 on a Raspberry Pi</a>
+              </h3>
+              <p>A complete guide to installing Ubuntu Core on a Raspberry Pi 4 (4GB or 8GB).</p>
+            </div>
+          {% else %}
+            <div class="col-4 col-medium-2">
+              <h3 class="p-heading--5">
+                <a href="/tutorials/how-to-install-ubuntu-desktop-on-raspberry-pi-4">How to install Ubuntu Desktop on Raspberry Pi 4</a>
+              </h3>
+              <p>A complete guide to installing Ubuntu Desktop on a Raspberry Pi 4 (2GB or above).</p>
+            </div>
+          {% endif %}
+          <div class="col-4 col-medium-2">
+            <h3 class="p-heading--5">
+              <a href="/tutorials/how-to-install-ubuntu-on-your-raspberry-pi">How to install Ubuntu Server on your Raspberry Pi</a>
+            </h3>
+            <p>
+              A complete guide to installing Ubuntu Server on your Raspberry Pi 4, 3 or 2 in a couple minutes. In a headless setup or with a screen and with a Wi-Fi or ethernet connection.
+            </p>
+          </div>
+          <div class="col-4 col-medium-2">
+            <h3 class="p-heading--5">
+              <a href="/download/raspberry-pi-core">Install Ubuntu Core on a Raspberry Pi</a>
+            </h3>
+            <p>
+              Walk through the steps of flashing Ubuntu Core on a Raspberry Pi 4, 3, 2 or CM4. At the end of this process, you will have a board ready for production or testing snaps.
+            </p>
+          </div>
         </div>
-        <footer class="blog-p-card__footer">
-          Difficulty: <span class="l-tutorials-meter l-tutorials-meter--2">2 out of 5</span>
-        </footer>
-      </div>
-      {% else %}
-      <div class="col-4 blog-p-card--post">
-        <header class="blog-p-card__header--tutorial">
-          <p class="p-muted-heading u-no-margin--bottom">
-            iot, desktop
-          </p>
-        </header>
-        <div class="blog-p-card__content">
-          <h3 class="p-heading--3 u-no-margin--top u-no-margin--bottom">
-            <a class="p-link--soft" href="/tutorials/how-to-install-ubuntu-desktop-on-raspberry-pi-4">How to install Ubuntu Desktop on Raspberry Pi 4</a>
-          </h3>
-          <p class="u-sv3">A complete guide to installing Ubuntu Desktop on a Raspberry Pi 4 (2GB or above).</p>
-        </div>
-        <footer class="blog-p-card__footer">
-          Difficulty: <span class="l-tutorials-meter l-tutorials-meter--1">1 out of 5</span>
-        </footer>
-      </div>
-      {% endif %}
-      <div class="col-4 blog-p-card--post p-divider__block">
-        <header class="blog-p-card__header--tutorial">
-          <h5 class="p-muted-heading u-no-margin--bottom">
-            iot, server
-          </h5>
-        </header>
-        <div class="blog-p-card__content">
-          <h3 class="p-heading--3 u-no-margin--top u-no-margin--bottom">
-            <a class="p-link--soft" href="/tutorials/how-to-install-ubuntu-on-your-raspberry-pi">How to install Ubuntu Server on your Raspberry Pi</a>
-          </h3>
-          <p class="u-sv3">A complete guide to installing Ubuntu Server on your Raspberry Pi 4, 3 or 2 in a couple minutes. In a headless setup or with a screen and with a Wi-Fi or ethernet connection.</p>
-        </div>
-        <footer class="blog-p-card__footer">
-          Difficulty: <span class="l-tutorials-meter l-tutorials-meter--2">2 out of 5</span>
-        </footer>
-      </div>
-      <div class="col-4 blog-p-card--post p-divider__block">
-        <header class="blog-p-card__header--tutorial">
-          <h5 class="p-muted-heading u-no-margin--bottom">
-            iot, core
-          </h5>
-        </header>
-        <div class="blog-p-card__content">
-          <h3 class="p-heading--3 u-no-margin--top u-no-margin--bottom">
-            <a class="p-link--soft" href="/download/raspberry-pi-core">Install Ubuntu Core on a Raspberry Pi</a>
-          </h3>
-          <p class="u-sv3">Walk through the steps of flashing Ubuntu Core on a Raspberry Pi 2, 3, 4 or CM4. At the end of this process, you will have a board ready for production or testing snaps.</p>
-        </div>
-        <footer class="blog-p-card__footer">
-          Difficulty: <span class="l-tutorials-meter l-tutorials-meter--3">3 out of 5</span>
-        </footer>
       </div>
     </div>
   </section>
 
-  <section class="p-strip">
-  <div class="u-fixed-width">
-    <h2>Make something great today</h2>
-    <p>Check out these project ideas to help you get started.</p>
-  </div>
-  <div class="row p-divider">
-    <div class="col-3 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
-            alt="",
-            width="231",
-            height="150",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
-            ) | safe
-          }}
-          <h4 class="p-heading-icon__title">Tutorial</h4>
-        </div>
-        <h3 class="p-heading--4"><a href="/blog/linux-gaming-tutorial-raspberry-pi-minecraft-server-on-ubuntu-desktop">Raspberry Pi Tutorial: Host a Minecraft
-            server on Ubuntu Desktop</a></h3>
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row">
+      <div class="col-6">
+        <h2>Make something great today</h2>
+      </div>
+      <div class="col-6">
+        <ul class="p-list--divided">
+          <li class="p-list__item">
+            <a href="/blog/linux-gaming-tutorial-raspberry-pi-minecraft-server-on-ubuntu-desktop">Raspberry Pi Tutorial: Host a Minecraft server on Ubuntu Desktop</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/blog/common-sense-using-the-raspberry-pi-sense-hat-on-ubuntu-impish-indri">Common Sense &mdash; using the Raspberry Pi Sense HAT on Ubuntu Impish Indri</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/blog/homelab-clusters-lxd-micro-cloud-on-raspberry-pi">Homelab clusters: LXD micro cloud on Raspberry Pi</a>
+          </li>
+          <li class="p-list__item">
+            <a href="https://maas.io/tutorials/build-your-own-bare-metal-cloud-using-a-raspberry-pi-cluster-with-maas#1-overview">Build your own bare metal cloud using a Raspberry Pi cluster with MAAS</a>
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="col-3 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
-            alt="",
-            width="231",
-            height="150",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
-            ) | safe
-          }}
-          <h4 class="p-heading-icon__title">Tutorial</h4>
-        </div>
-        <h3 class="p-heading--4"><a href="/blog/common-sense-using-the-raspberry-pi-sense-hat-on-ubuntu-impish-indri">Common Sense &mdash; using the Raspberry
-            Pi Sense HAT on Ubuntu Impish Indri</a></h3>
-      </div>
-    </div>
-    <div class="col-3 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
-            alt="",
-            width="231",
-            height="150",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
-            ) | safe
-          }}
-          <h4 class="p-heading-icon__title">Tutorial</h4>
-        </div>
-        <h3 class="p-heading--4"><a href="/blog/homelab-clusters-lxd-micro-cloud-on-raspberry-pi">Homelab clusters: LXD micro cloud on Raspberry Pi</a></h3>
-      </div>
-    </div>
-    <div class="col-3 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
-            alt="",
-            width="231",
-            height="150",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
-            ) | safe
-          }}
-          <h4 class="p-heading-icon__title">Tutorial</h4>
-        </div>
-        <h3 class="p-heading--4"><a href="https://maas.io/tutorials/build-your-own-bare-metal-cloud-using-a-raspberry-pi-cluster-with-maas#1-overview">Build
-            your own bare metal cloud using a Raspberry Pi cluster with MAAS</a></h3>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-{% with section_classes='p-strip--light is-bordered', heading_topic='Raspberry Pi', tag_name='raspberry-pi', tag_id='1672', limit='4' %}
-  {% include "shared/_latest_news_strip.html" %}
-{% endwith %}
+  <section class="p-section--deep">
+    <div class="row">
+      <hr class="p-rule" />
+      <div class="col-3 col-medium-6">
+        <div class="p-section--shallow">
+          <h2 class="p-text--small-caps">
+            <a href="/blog/tag/raspberry-pi">Latest from&nbsp;our&nbsp;blog&nbsp;&rsaquo;</a>
+          </h2>
+        </div>
+      </div>
+      <div class="col-9 col-medium-6">
+        <div class="row p-section--shallow" id="blog-latest"></div>
+      </div>
+    </div>
+
+    <template style="display:none" id="blog-template">
+      <div class="col-3 col-medium-2">
+        <div class="article-image u-blog-thumbnails p-image-wrapper"></div>
+        <h3 class="p-heading--5">
+          <a class="article-link article-title"></a>
+        </h3>
+        <p class="article-excerpt"></p>
+      </div>
+    </template>
+  </section>
+
+  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script>
+    canonicalLatestNews.fetchLatestNews({
+      articlesContainerSelector: "#blog-latest",
+      articleTemplateSelector: "#blog-template",
+      excerptLength: 200,
+      tagId: 1672,
+      limit: 3,
+      linkImage: true,
+    })
+  </script>
 
 {% endblock %}

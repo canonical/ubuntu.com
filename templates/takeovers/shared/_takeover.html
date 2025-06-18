@@ -1,41 +1,34 @@
-<section class="{% if class %}{{ class }}{% else %}p-strip--dark js-takeover{% endif %}">
+<section class="{% if class %}{{ class }}{% else %}p-strip js-takeover{% endif %}">
   <div class="row u-clearfix u-vertically-center">
 
     <div class="{% if image %}col-8 {% else %}col-8{% endif %}">
-      <h1>
-        {{ title }}
-      </h1>
-      {% if subtitle %}<h4 class="{% if subtitleClass %}{{ subtitleClass }}{% else %}{% endif %}">
-        {{ subtitle }}
-      </h4>{% endif %}
+      <h1>{{ title }}</h1>
+      {% if subtitle %}
+        <h4 class="{% if subtitleClass %}{{ subtitleClass }}{% else %}{% endif %}">{{ subtitle }}</h4>
+      {% endif %}
       {% if ctaBtn or ctaLink %}
-      <ul class="p-inline-list u-hide--small">
+        <ul class="p-inline-list u-hide--small">
           {% if ctaBtn %}
-          <li class="p-inline-list__item">
-            <a
-              href="{{ ctaBtnURL }}"
-              class="{% if ctaBtnClass %}{{ ctaBtnClass }}{% else %}p-button{% endif %}"
-              ><span>{{ ctaBtn }}</span></a
-            >
-          </li>
+            <li class="p-inline-list__item">
+              <a href="{{ ctaBtnURL }}"
+                 class="{% if ctaBtnClass %}{{ ctaBtnClass }}{% else %}p-button{% endif %}"><span>{{ ctaBtn }}</span></a>
+            </li>
           {% endif %}
           {% if ctaLink %}
-          <li class="p-inline-list__item">
-            <a
-              href="{{ ctaLinkURL }}"
-              class="{% if ctaLinkClass %}{{ ctaLinkClass }}{% else %}p-link--inverted{% endif %}"
-              >{{ ctaLink }}</a
-            >
-          </li>
+            <li class="p-inline-list__item">
+              <a href="{{ ctaLinkURL }}"
+                 class="{% if ctaLinkClass %}{{ ctaLinkClass }}{% else %}p-link--inverted{% endif %}">{{ ctaLink }}</a>
+            </li>
           {% endif %}
         </ul>
-        {% endif %}
+      {% endif %}
     </div>
 
     {% if image %}
       <div class="col-4">
         <p class="{% if imageClass %}{{ imageClass }}{% else %}u-hide-small u-align-text--center u-vertically-center{% endif %}">
-          <img src="{% if 'http' not in image %}https://assets.ubuntu.com/v1/{% endif %}{{ image }}" alt="" >
+          <img src="{% if 'http' not in image %}https://assets.ubuntu.com/v1/{% endif %}{{ image }}"
+               alt="" />
         </p>
       </div>
     {% endif %}

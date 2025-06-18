@@ -23,13 +23,15 @@ FROM yarn-dependencies AS build-js
 ADD static/js static/js
 ADD build.js build.js
 ADD babel.config.js .
+ADD scripts scripts
 RUN yarn run build-js
 
 
 # Build stage: Run "yarn run build-css"
 # ===
 FROM yarn-dependencies AS build-css
-ADD static/sass static/sass
+ADD . .
+COPY --from=build-js /srv/static/js /srv/static/js
 RUN yarn run build-css
 
 
@@ -38,7 +40,7 @@ RUN yarn run build-css
 FROM ubuntu:jammy
 
 # Install python and import python dependencies
-RUN apt-get update && apt-get install --no-install-recommends --yes python3-setuptools python3-lib2to3 python3-pkg-resources ca-certificates libsodium-dev gpg
+RUN apt-get update && apt-get install --no-install-recommends --yes python3-setuptools python3-lib2to3 python3-pkg-resources ca-certificates libsodium-dev gpg git
 COPY --from=python-dependencies /root/.local/lib/python3.10/site-packages /root/.local/lib/python3.10/site-packages
 COPY --from=python-dependencies /root/.local/bin /root/.local/bin
 ENV PATH="/root/.local/bin:${PATH}"
@@ -51,6 +53,7 @@ WORKDIR /srv
 ADD . .
 RUN rm -rf package.json yarn.lock babel.config.js webpack.config.js
 COPY --from=build-js /srv/static/js static/js
+COPY --from=build-js /srv/node_modules/vanilla-framework/templates node_modules/vanilla-framework/templates
 COPY --from=build-css /srv/static/css static/css
 ADD http://launchpad.net/ubuntu/+cdmirrors-rss etc/ubuntu-mirrors-rss.xml
 

@@ -92,10 +92,18 @@
         linear-gradient(-89deg, #e95420 0%, #772953 38%, #2c001e 85%);
     }
 
-    background-position: 0% 0%, top right, right 0 bottom 4rem, right bottom,
+    background-position:
+      0% 0%,
+      top right,
+      right 0 bottom 4rem,
+      right bottom,
       0% 0%;
     background-repeat: no-repeat;
-    background-size: 100% calc(100% - 4rem), 50% 100%, 100% 4rem, 100% 4rem,
+    background-size:
+      100% calc(100% - 4rem),
+      50% 100%,
+      100% 4rem,
+      100% 4rem,
       auto;
     margin-bottom: -4rem;
     overflow: hidden;
@@ -113,20 +121,36 @@
     &.is-deep {
       $padding: 3rem;
 
-      background-position: 0% 0%, top right, right 0 bottom $padding,
-        right bottom, 0% 0%;
-      background-size: 100% calc(100% - #{$padding}), 100% 100%, 100% $padding,
-        100% $padding, auto;
+      background-position:
+        0% 0%,
+        top right,
+        right 0 bottom $padding,
+        right bottom,
+        0% 0%;
+      background-size:
+        100% calc(100% - #{$padding}),
+        100% 100%,
+        100% $padding,
+        100% $padding,
+        auto;
       margin-bottom: -$padding;
       padding-bottom: ($padding * 3) !important;
 
       @media (min-width: $breakpoint-medium) {
         $padding: 6rem;
 
-        background-position: 0% 0%, top right, right 0 bottom $padding,
-          right bottom, 0% 0%;
-        background-size: 100% calc(100% - #{$padding}), 50% 100%, 100% $padding,
-          100% $padding, auto;
+        background-position:
+          0% 0%,
+          top right,
+          right 0 bottom $padding,
+          right bottom,
+          0% 0%;
+        background-size:
+          100% calc(100% - #{$padding}),
+          50% 100%,
+          100% $padding,
+          100% $padding,
+          auto;
         margin-bottom: -$padding;
         padding-bottom: ($padding * 3) !important;
       }
@@ -184,9 +208,17 @@
         linear-gradient(-89deg, #e95420 0%, #772953 38%, #2c001e 85%);
     }
 
-    background-position: 0% 0%, top right, right bottom, 0% 0%;
+    background-position:
+      0% 0%,
+      top right,
+      right bottom,
+      0% 0%;
     background-repeat: no-repeat;
-    background-size: 100% 100%, 50% 100%, 100% 4rem, auto;
+    background-size:
+      100% 100%,
+      50% 100%,
+      100% 4rem,
+      auto;
     color: $color-x-light;
     padding-bottom: 6rem;
   }
@@ -224,9 +256,17 @@
         rgba(119, 41, 83, 1) 50%,
         rgba(233, 84, 32, 1) 88%
       );
-    background-position: top right, top right, top left, top left;
+    background-position:
+      top right,
+      top right,
+      top left,
+      top left;
     background-repeat: no-repeat;
-    background-size: 39.4% 6rem, 54% 4rem, 63% 4rem, 62.6% 4rem;
+    background-size:
+      39.4% 6rem,
+      54% 4rem,
+      63% 4rem,
+      62.6% 4rem;
     padding-bottom: 4rem;
     padding-top: 6rem;
   }
@@ -264,9 +304,17 @@
         rgba(119, 41, 83, 1) 50%,
         rgba(233, 84, 32, 1) 88%
       );
-    background-position: top right, top right, top left, top left;
+    background-position:
+      top right,
+      top right,
+      top left,
+      top left;
     background-repeat: no-repeat;
-    background-size: 39.4% 6rem, 54% 4rem, 63% 4rem, 62.6% 4rem;
+    background-size:
+      39.4% 6rem,
+      54% 4rem,
+      63% 4rem,
+      62.6% 4rem;
     padding-bottom: 4rem;
     padding-top: 6rem;
   }
@@ -304,9 +352,17 @@
         rgb(119, 41, 83) 38%,
         rgb(44, 0, 30) 85%
       );
-    background-position: left bottom, left bottom, right bottom, right bottom;
+    background-position:
+      left bottom,
+      left bottom,
+      right bottom,
+      right bottom;
     background-repeat: no-repeat;
-    background-size: 42% 12rem, 65.2% 8rem, 73.7% 8rem, 73.7% 8rem;
+    background-size:
+      42% 12rem,
+      65.2% 8rem,
+      73.7% 8rem,
+      73.7% 8rem;
     padding-bottom: 8rem;
   }
 }
@@ -373,10 +429,17 @@
         );
     }
 
-    background-position: right top, right top, right top, right top;
+    background-position:
+      right top,
+      right top,
+      right top,
+      right top;
     background-repeat: no-repeat;
-    background-size: 37.7% calc(100% - 6rem), 42.1% calc(100% - 151px),
-      49.2% calc(100% - 12rem), 49.2% calc(100% - 12rem);
+    background-size:
+      37.7% calc(100% - 6rem),
+      42.1% calc(100% - 151px),
+      49.2% calc(100% - 12rem),
+      49.2% calc(100% - 12rem);
     padding-bottom: 4rem;
     padding-top: 4rem;
 
@@ -430,9 +493,15 @@
         #772953 63%,
         #2c001e 100%
       );
-    background-position: top 60% left, top left, center right;
+    background-position:
+      top 60% left,
+      top left,
+      center right;
     background-repeat: no-repeat;
-    background-size: 90% 100%, 100% 100%, cover;
+    background-size:
+      90% 100%,
+      100% 100%,
+      cover;
 
     @media (max-width: $breakpoint-medium) {
       background-image: linear-gradient(
@@ -517,9 +586,17 @@
         );
     }
 
-    background-position: right top, right top, 71.5% top, right top;
+    background-position:
+      right top,
+      right top,
+      71.5% top,
+      right top;
     background-repeat: no-repeat;
-    background-size: 46.2% 68.6%, 38.4% 100%, 16.8% 100%, 40.5% 100%;
+    background-size:
+      46.2% 68.6%,
+      38.4% 100%,
+      16.8% 100%,
+      40.5% 100%;
 
     @media only screen and (max-width: $breakpoint-small) {
       background-blend-mode: normal;
@@ -563,9 +640,15 @@
         rgba(192, 82, 58, 1) 49.3%,
         transparent 49.4%
       );
-    background-position: left top, left bottom, left center;
+    background-position:
+      left top,
+      left bottom,
+      left center;
     background-repeat: no-repeat;
-    background-size: 100% 100%, 100% 6rem, 100% 100%;
+    background-size:
+      100% 100%,
+      100% 6rem,
+      100% 100%;
     padding-bottom: 174px;
     padding-top: 6rem;
 
@@ -626,9 +709,17 @@
         linear-gradient(251deg, #e95422 0%, #772953 49.5%, #2c001e 100%);
     }
 
-    background-position: top left, top right, center 66.5%, left top;
+    background-position:
+      top left,
+      top right,
+      center 66.5%,
+      left top;
     background-repeat: no-repeat;
-    background-size: 63% 97%, 100% 66%, 100% 31%, 100% 76.5%;
+    background-size:
+      63% 97%,
+      100% 66%,
+      100% 31%,
+      100% 76.5%;
     color: $color-light;
     padding-bottom: 10rem;
     padding-top: 6rem;
@@ -704,11 +795,19 @@
         linear-gradient(-89deg, #e95420 0%, #772953 38%, #2c001e 85%);
     }
 
-    background-position: bottom 4rem left, bottom 0 right, left 0 bottom 10.5rem,
-      right bottom, 0% 0%;
+    background-position:
+      bottom 4rem left,
+      bottom 0 right,
+      left 0 bottom 10.5rem,
+      right bottom,
+      0% 0%;
     background-repeat: no-repeat;
-    background-size: 100% calc(100% - 4rem), 100% 100%, 101% 5.5rem,
-      102% 10.5rem, auto;
+    background-size:
+      100% calc(100% - 4rem),
+      100% 100%,
+      101% 5.5rem,
+      102% 10.5rem,
+      auto;
     margin: 0;
     overflow: hidden;
     padding-bottom: 0;
@@ -742,10 +841,18 @@
           rgba(255, 255, 255, 1) 100%
         ),
         linear-gradient(-89deg, #e95420 0%, #772953 38%, #2c001e 85%);
-      background-position: 0% 0%, top right, left 0 bottom 6.45rem, right bottom,
+      background-position:
+        0% 0%,
+        top right,
+        left 0 bottom 6.45rem,
+        right bottom,
         0% 0%;
-      background-size: 100% calc(100% - 7rem), 67% calc(100% - 1.5rem),
-        101% 5.5rem, 102% 6.5rem, auto;
+      background-size:
+        100% calc(100% - 7rem),
+        67% calc(100% - 1.5rem),
+        101% 5.5rem,
+        102% 6.5rem,
+        auto;
     }
 
     &.is-dark {
@@ -792,9 +899,15 @@
         linear-gradient(-89deg, #e95420 0%, #772953 42%, #2c001e 94%);
     }
 
-    background-position: bottom left, bottom 0 right, 0% 0%;
+    background-position:
+      bottom left,
+      bottom 0 right,
+      0% 0%;
     background-repeat: no-repeat;
-    background-size: 100% 100%, 60% 100%, auto;
+    background-size:
+      100% 100%,
+      60% 100%,
+      auto;
     color: $color-x-light;
     overflow: hidden;
     position: relative;
@@ -845,9 +958,17 @@
         rgba(247, 247, 247, 0) 100%
       ),
       linear-gradient(-20deg, #e95420 0%, #772953 38%, #2c001e 85%);
-    background-position: top right, top left, right bottom -1px, left top;
+    background-position:
+      top right,
+      top left,
+      right bottom -1px,
+      left top;
     background-repeat: no-repeat;
-    background-size: 74% 99.83%, 98% 91%, 192.8% 23.26%, 100% 99.8%;
+    background-size:
+      74% 99.83%,
+      98% 91%,
+      192.8% 23.26%,
+      100% 99.8%;
     color: $color-x-light;
     margin: 0;
     padding-bottom: 6rem;
@@ -877,9 +998,17 @@
     }
 
     @media (max-width: $breakpoint-medium) {
-      background-position: top right, top left, right bottom -1px, left top;
+      background-position:
+        top right,
+        top left,
+        right bottom -1px,
+        left top;
       background-repeat: no-repeat;
-      background-size: 74% 99.83%, 148% 83%, 119% 13%, 100% 99.83%;
+      background-size:
+        74% 99.83%,
+        148% 83%,
+        119% 13%,
+        100% 99.83%;
       padding-bottom: 8rem;
       padding-top: 4rem;
     }
@@ -905,9 +1034,15 @@
         transparent 50%
       ),
       linear-gradient(201deg, #4e4e4e 0%, #333 46%, #111 90%);
-    background-position: top right, top left, left top;
+    background-position:
+      top right,
+      top left,
+      left top;
     background-repeat: no-repeat;
-    background-size: 77% 115%, 71% 104%, 100% 99.8%;
+    background-size:
+      77% 115%,
+      71% 104%,
+      100% 99.8%;
     color: $color-x-light;
   }
 }
@@ -933,9 +1068,15 @@
           transparent 50%
         ),
         linear-gradient(201deg, #f7f7f7 30%, #e5e5e5 90%);
-      background-position: top right, top left, left top;
+      background-position:
+        top right,
+        top left,
+        left top;
       background-repeat: no-repeat;
-      background-size: 86% 125%, 77% 57%, 100% 99.8%;
+      background-size:
+        86% 125%,
+        77% 57%,
+        100% 99.8%;
     }
   }
 }
@@ -961,9 +1102,15 @@
         rgba(228, 228, 228, 0) 100%
       ),
       linear-gradient(-89deg, #e95420 0%, #772953 38%, #2c001e 85%);
-    background-position: top right, top left, left top;
+    background-position:
+      top right,
+      top left,
+      left top;
     background-repeat: no-repeat;
-    background-size: 86% 105%, 67% 152%, 100% 99.9%;
+    background-size:
+      86% 105%,
+      67% 152%,
+      100% 99.9%;
     color: $color-x-light;
   }
 }

@@ -1,27 +1,23 @@
-import { useQuery } from "react-query";
-import { UserSubscriptionMarketplace } from "advantage/api/enum";
-import { TaxInfo } from "../utils/types";
+import { useQuery } from "@tanstack/react-query";
+import { CheckoutProducts, TaxInfo } from "../utils/types";
 
 type useCalculateProps = {
-  marketplace: UserSubscriptionMarketplace;
-  productListingId: string;
-  quantity: number;
+  products: CheckoutProducts[];
   isTaxSaved: boolean;
   country?: string;
   VATNumber?: string;
 };
 
 const useCalculate = ({
-  quantity,
-  marketplace,
-  productListingId,
+  products,
   country,
   VATNumber,
   isTaxSaved,
 }: useCalculateProps) => {
-  const { isLoading, isError, isSuccess, data, error, isFetching } = useQuery(
-    ["calculate"],
-    async () => {
+  const { isLoading, isError, isSuccess, data, error, isFetching } = useQuery({
+    queryKey: ["calculate"],
+    queryFn: async () => {
+      const marketplace = products[0].product.marketplace;
       const response = await fetch(
         `/account/${marketplace}/purchase/calculate${window.location.search}`,
         {
@@ -34,15 +30,15 @@ const useCalculate = ({
           },
           body: JSON.stringify({
             country: country,
-            products: [
-              {
-                product_listing_id: productListingId,
-                quantity: quantity,
-              },
-            ],
+            products: products?.map((product) => {
+              return {
+                product_listing_id: product.product?.longId,
+                quantity: product.quantity,
+              };
+            }),
             has_tax: !!VATNumber,
           }),
-        }
+        },
       );
 
       const res = await response.json();
@@ -54,11 +50,9 @@ const useCalculate = ({
       const data: TaxInfo = res;
       return data;
     },
-    {
-      retry: false,
-      enabled: !!isTaxSaved && !!country && !window.accountId,
-    }
-  );
+    retry: false,
+    enabled: !!isTaxSaved && !!country && !window.accountId,
+  });
 
   return {
     isLoading: isLoading,

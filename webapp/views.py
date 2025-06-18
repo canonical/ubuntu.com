@@ -1,35 +1,30 @@
 # Standard library
+import html
+import json
 import math
 import os
 import re
-import html
-import datetime
+import logging
+from urllib.parse import quote, unquote, urlparse
+from datetime import datetime
 
 # Packages
 import dateutil
 import feedparser
 import flask
+import jinja2
 import talisker.requests
 import yaml
-import jinja2
-from ubuntu_release_info.data import Data
+from bs4 import BeautifulSoup
+from canonicalwebteam.discourse import DiscourseAPI, DocParser, Docs
+from canonicalwebteam.search.models import get_search_results
+from canonicalwebteam.search.views import NoAPIKeyError
+from canonicalwebteam.directory_parser import generate_sitemap
 from geolite2 import geolite2
 from requests import Session
 from requests.exceptions import HTTPError
-from urllib.parse import quote
-
-from canonicalwebteam.search.models import get_search_results
-from canonicalwebteam.search.views import NoAPIKeyError
-from bs4 import BeautifulSoup
+from ubuntu_release_info.data import Data
 from werkzeug.exceptions import BadRequest
-from canonicalwebteam.discourse import (
-    DiscourseAPI,
-    Docs,
-    DocParser,
-)
-
-from google.oauth2 import service_account
-from googleapiclient.discovery import build
 
 # Local
 from webapp.login import user_info
@@ -48,7 +43,7 @@ marketo_api = MarketoAPI(
 )
 
 
-def _build_mirror_list(local=False):
+def _build_mirror_list(local=False, country_code=None):
     # Build mirror list
     mirrors = []
     mirror_list = []
@@ -58,10 +53,6 @@ def _build_mirror_list(local=False):
             mirrors = feedparser.parse(rss.read()).entries
     except IOError:
         pass
-
-    ip_location = ip_reader.get(
-        flask.request.headers.get("X-Real-IP", flask.request.remote_addr)
-    )
 
     # get all mirrors
     if not local:
@@ -75,9 +66,7 @@ def _build_mirror_list(local=False):
         return mirror_list
 
     # get local mirrors based on IP location
-    if ip_location and "country" in ip_location:
-        country_code = ip_location["country"]["iso_code"]
-
+    if country_code:
         for mirror in mirrors:
             is_local_mirror = mirror["mirror_countrycode"] == country_code
             is_https = mirror["link"].startswith("https")
@@ -91,44 +80,6 @@ def _build_mirror_list(local=False):
                 )
 
     return mirror_list
-
-
-def sixteen_zero_four():
-    total_notices_issued = "0"
-    latest_notices = []
-
-    try:
-        response = session.request(
-            method="GET",
-            url=(
-                "https://ubuntu.com/security/"
-                "notices.json?release=xenial&limit=5"
-            ),
-        )
-
-        total_notices_issued = response.json().get("total_results")
-        latest_notices = [
-            {
-                "id": notice.get("id"),
-                "title": notice.get("title"),
-                "date": dateutil.parser.parse(
-                    notice.get("published")
-                ).strftime("%d %B %Y"),
-                "summary": notice.get("summary"),
-            }
-            for notice in response.json().get("notices")
-        ]
-    except HTTPError:
-        flask.current_app.extensions["sentry"].captureException()
-
-    # Can only assume there were 1477 notices before ESM
-    notices_since_esm = total_notices_issued - 1477
-    context = {
-        "latest_notices": latest_notices,
-        "notices_since_esm": notices_since_esm,
-    }
-
-    return flask.render_template("16-04/index.html", **context)
 
 
 def show_template(filename):
@@ -146,9 +97,8 @@ def show_template(filename):
 def download_server_steps():
     templates = {
         "server": "download/server/manual.html",
-        "multipass": "download/server/multipass.html",
-        "choose": "download/server/choose.html",
-        "download": "download/server/download.html",
+        "multipass": "download/server/_multipass.html",
+        "choose": "download/server/_choose.html",
     }
     context = {}
     step = flask.request.form.get("next-step") or "server"
@@ -156,20 +106,13 @@ def download_server_steps():
     if step not in templates:
         flask.abort(400)
 
-    if step == "download":
-        version = flask.request.form.get("version")
-
-        if not version:
-            flask.abort(400)
-
-        context = {"version": version}
-
     return flask.render_template(templates[step], **context)
 
 
 def download_thank_you(category):
     version = flask.request.args.get("version", "")
     architecture = flask.request.args.get("architecture", "").replace(" ", "+")
+    lts = flask.request.args.get("lts", "")
 
     if version and not architecture:
         flask.abort(400)
@@ -179,6 +122,7 @@ def download_thank_you(category):
             f"download/{category}/thank-you.html",
             version=version,
             architecture=architecture,
+            lts=lts,
         ),
         {"Cache-Control": "no-cache"},
     )
@@ -192,17 +136,6 @@ def appliance_install(appliance, device):
         f"appliance/{appliance}/{device}.html",
         http_host=flask.request.host,
         appliance=appliances["appliances"][appliance],
-    )
-
-
-def appliance_portfolio():
-    with open("appliances.yaml") as appliances:
-        appliances = yaml.load(appliances, Loader=yaml.FullLoader)
-
-    return flask.render_template(
-        "appliance/portfolio.html",
-        http_host=flask.request.host,
-        appliances=appliances["appliances"],
     )
 
 
@@ -263,6 +196,7 @@ def mirrors_query():
     A JSON endpoint to request list of Ubuntu mirrors
     """
     local = flask.request.args.get("local", default=False)
+    country = flask.request.args.get("country_code", default=None)
 
     if not local or local.lower() != "true":
         local = False
@@ -270,7 +204,7 @@ def mirrors_query():
         local = True
 
     return (
-        flask.jsonify(_build_mirror_list(local)),
+        flask.jsonify(_build_mirror_list(local, country)),
         {"Cache-Control": "private"},
     )
 
@@ -389,57 +323,46 @@ def build_engage_index(engage_docs):
         language = flask.request.args.get("language", default=None, type=str)
         resource = flask.request.args.get("resource", default=None, type=str)
         tag = flask.request.args.get("tag", default=None, type=str)
-        posts_per_page = 15
-        metadata = engage_docs.get_index()
+        limit = 21  # adjust as needed
+        offset = (page - 1) * limit
 
-        resource_types = []
-        tags_list = set()
-        for item in metadata:
-            if "type" in item and item["type"] not in resource_types:
-                resource_types.append(item["type"])
-            if "tags" in item and item["tags"] != "":
-                # Join 2 lists of tags without duplicates
-                tags_list = tags_list | set(
-                    item["tags"].replace(" ", "").split(",")
-                )
+        if tag or resource or language:
+            (
+                metadata,
+                count,
+                active_count,
+                current_total,
+            ) = engage_docs.get_index(
+                limit,
+                offset,
+                tag_value=tag,
+                key="type",
+                value=resource,
+                second_key="language",
+                second_value=language,
+            )
+        else:
+            (
+                metadata,
+                count,
+                active_count,
+                current_total,
+            ) = engage_docs.get_index(
+                limit, offset, key="is_static", value=None
+            )
 
-        tags_list = sorted(list(tags_list))
-
-        if preview is None:
-            metadata = [
-                item
-                for item in metadata
-                if "active" in item and item["active"] == "true"
-            ]
-
-        if language:
-            new_metadata = []
-            for item in metadata:
-                if "language" in item:
-                    if item["language"] == language:
-                        new_metadata.append(item)
-                    elif language == "en" and item["language"] == "":
-                        new_metadata.append(item)
-                else:
-                    break
-            metadata = new_metadata
-
-        if resource:
-            metadata = [
-                item
-                for item in metadata
-                if "type" in item and item["type"] == resource
-            ]
-
-        if tag:
-            metadata = [
-                element
-                for element in metadata
-                if "tags" in element
-                and tag in element["tags"].replace(" ", "").split(",")
-            ]
-
-        total_pages = math.ceil(len(metadata) / posts_per_page)
+        # Fixed so that engage page authors don't create random resource types
+        resource_types = [
+            "Blog",
+            "Case Study",
+            "Webinar",
+            "Whitepaper",
+            "Form",
+            "Event",
+        ]
+        tags_list = engage_docs.get_engage_pages_tags()
+        tags_list = sorted(set(tags_list), key=str.lower)
+        total_pages = math.ceil(current_total / limit)
 
         return flask.render_template(
             "engage/index.html",
@@ -451,8 +374,9 @@ def build_engage_index(engage_docs):
             resource=resource,
             resource_types=sorted(resource_types),
             tags=tags_list,
-            posts_per_page=posts_per_page,
+            posts_per_page=limit,
             total_pages=total_pages,
+            current_page=page,
         )
 
     return engage_index
@@ -468,12 +392,25 @@ def build_engage_page(engage_pages):
         if not metadata:
             flask.abort(404)
         else:
+            related_pages_metadata = []
+            if "related_urls" in metadata:
+                if metadata["related_urls"].strip() != "":
+                    related_urls = metadata["related_urls"].split(",")
+                    # Only show maximum of 3 related pages
+                    for url in related_urls[:3]:
+                        page_metadata = engage_pages.get_engage_page(
+                            url.strip()
+                        )
+                        if page_metadata is not None:
+                            related_pages_metadata.append(page_metadata)
+
             return flask.render_template(
                 "engage/base.html",
                 forum_url=engage_pages.api.base_url,
                 metadata=metadata,
                 language=metadata["language"],
                 resource=metadata["type"],
+                related_pages_metadata=related_pages_metadata,
             )
 
     return engage_page
@@ -518,7 +455,7 @@ def engage_thank_you(engage_pages):
             "resource_url" not in metadata or metadata["resource_url"] == ""
         ) and (
             "contact_form_only" not in metadata
-            or metadata["contact_form_only"] == "true"
+            or metadata["contact_form_only"] != "true"
         ):
             return flask.abort(404)
 
@@ -563,7 +500,13 @@ def build_engage_pages_sitemap(engage_pages):
 
     def ep_sitemap():
         links = []
-        metadata = engage_pages.get_index()
+        (
+            metadata,
+            count,
+            active_count,
+            current_total,
+        ) = engage_pages.get_index()
+
         if len(metadata) == 0:
             flask.abort(404)
 
@@ -637,7 +580,12 @@ def openstack_install():
 
 def openstack_engage(engage_pages):
     def openstack_resource_data():
-        metadata = engage_pages.get_index()
+        (
+            metadata,
+            count,
+            active_count,
+            current_total,
+        ) = engage_pages.get_index()
 
         resource_tags = [
             "openstack",
@@ -752,7 +700,7 @@ class BlogRedirects(BlogView):
             context["article"]["date_gmt"]
         ), dateutil.parser.parse(context["article"]["modified_gmt"])
 
-        date_now = datetime.datetime.now()
+        date_now = datetime.now()
 
         created_at_difference = dateutil.relativedelta.relativedelta(
             date_now, created_at
@@ -885,7 +833,6 @@ def marketo_submit():
     honeypots = {}
     honeypots["name"] = flask.request.form.get("name")
     honeypots["website"] = flask.request.form.get("website")
-
     # There is logically difference between None and empty string here.
     # 1. The first if check, we are working with a form that contains honeypots
     # or the legacy ones using recaptcha.
@@ -914,7 +861,11 @@ def marketo_submit():
     visitor_data = {
         "userAgentString": flask.request.headers.get("User-Agent"),
     }
-    referrer = flask.request.referrer
+    referrer = (
+        flask.request.referrer
+        if flask.request.referrer
+        else "https://ubuntu.com"
+    )
     client_ip = flask.request.headers.get(
         "X-Real-IP", flask.request.remote_addr
     )
@@ -922,7 +873,7 @@ def marketo_submit():
     if client_ip and ":" not in client_ip:
         visitor_data["leadClientIpAddress"] = client_ip
 
-    enrichment_fields = None
+    enrichment_fields = {}
 
     # Enrichment data for global enrichment form (id:4198)
     if "email" in form_fields:
@@ -948,6 +899,17 @@ def marketo_submit():
         enrichment_fields["country"] = form_fields["country"]
         form_fields.pop("country")
 
+    user_id = flask.request.cookies.get("user_id")
+    if user_id:
+        enrichment_fields["Google_Analytics_User_ID__c"] = user_id
+
+    consent_info = flask.request.cookies.get("consent_info")
+    if consent_info:
+        enrichment_fields["Google_Consent_Mode__c"] = consent_info
+
+    original_form_id = form_fields.get("formid", 4198)
+    enrichment_fields["original_form_id"] = original_form_id
+
     payload = {
         "formId": form_fields.pop("formid"),
         "input": [
@@ -958,6 +920,23 @@ def marketo_submit():
             }
         ],
     }
+
+    encoded_utms = flask.request.cookies.get("utms")
+    if encoded_utms:
+        utms = unquote(encoded_utms)
+        utm_dict = dict(i.split(":", 1) for i in utms.split("&"))
+        approved_utms = [
+            "utm_source",
+            "utm_medium",
+            "utm_campaign",
+            "utm_content",
+            "utm_term",
+        ]
+        for k, v in utm_dict.items():
+            if k in approved_utms:
+                if k == "utm_content":
+                    k = "utmcontent"
+                enrichment_fields[k] = v
 
     try:
         ip_location = ip_reader.get(client_ip)
@@ -1007,44 +986,6 @@ def marketo_submit():
             400,
         )
 
-    if payload["formId"] == "3801":
-        service_account_info = {
-            "token_uri": "https://oauth2.googleapis.com/token",
-            "client_email": os.getenv("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
-            "private_key": os.getenv(
-                "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY"
-            ).replace("\\n", "\n"),
-            "scopes": [
-                "https://www.googleapis.com/auth/spreadsheets.readonly"
-            ],
-        }
-
-        credentials = service_account.Credentials.from_service_account_info(
-            service_account_info,
-        )
-
-        service = build("sheets", "v4", credentials=credentials)
-
-        sheet = service.spreadsheets()
-        sheet.values().append(
-            spreadsheetId="1i9dT558_YYxxdPpDTG5VYewezb5gRUziMG77BtdUZGU",
-            range="Sheet1",
-            valueInputOption="RAW",
-            body={
-                "values": [
-                    [
-                        form_fields.get("firstName"),
-                        form_fields.get("lastName"),
-                        form_fields.get("email"),
-                        form_fields.get("Job_Role__c"),
-                        form_fields.get("title"),
-                        form_fields.get("Comments_from_lead__c"),
-                        form_fields.get("canonicalUpdatesOptIn"),
-                    ]
-                ]
-            },
-        ).execute()
-
     # Send enrichment data
     try:
         marketo_api.submit_form(enriched_payload).json()
@@ -1057,12 +998,25 @@ def marketo_submit():
             "name": flask.request.form.get("firstName"),
             "email": flask.request.form.get("email"),
         }
+
+        if return_url.startswith("http://") or return_url.startswith(
+            "https://"
+        ):
+            return flask.redirect(return_url)
+
+        if referrer:
+            parsed_referer = urlparse(referrer)
+            return flask.redirect(
+                f"{parsed_referer.scheme}://"
+                f"{parsed_referer.netloc}{return_url}"
+            )
+
         return flask.redirect(return_url)
 
     if referrer:
         return flask.redirect(f"/thank-you?referrer={referrer}")
-    else:
-        return flask.redirect("/thank-you")
+
+    return flask.redirect("/thank-you")
 
 
 def thank_you():
@@ -1071,33 +1025,54 @@ def thank_you():
     )
 
 
-def get_user_country_by_ip():
-    client_ip = flask.request.headers.get(
-        "X-Real-IP", flask.request.remote_addr
-    )
-    ip_location = ip_reader.get(client_ip)
+def get_user_country_by_tz():
+    """
+    Get user country by timezone using ISO 3166 country codes.
+    We store the country codes and timezones as static JSON files in the
+    static/files directory.
 
+    Eventually we plan to merge this function with the one below, once we
+    are confident that takeovers won't be broken.
+    """
+    APP_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    timezone = flask.request.args.get("tz")
+
+    with open(
+        os.path.join(APP_ROOT, "static/files/timezones.json"), "r"
+    ) as file:
+        timezones = json.load(file)
+
+    with open(
+        os.path.join(APP_ROOT, "static/files/countries.json"), "r"
+    ) as file:
+        countries = json.load(file)
+
+    # Fallback to GB if timezone is invalid
     try:
-        country_code = ip_location["country"]["iso_code"]
+        country_tz = timezones[timezone]
     except KeyError:
-        # geolite2 can't identify IP address
-        country_code = None
-    except Exception as error:
-        # Errors not documented in the geolite2 module
-        country_code = None
-        flask.current_app.extensions["sentry"].captureException(
-            extra={"ip_location object": ip_location, "error": error}
-        )
+        country_tz = timezones["Europe/London"]
 
-    response = flask.jsonify(
+    # Check timezone of country alias if country code not found
+    try:
+        _country = country_tz["c"][0]
+        country = countries[_country]
+    except KeyError:
+        try:
+            alias = country_tz["a"]
+            alias_tz = timezones[alias]
+            _country = alias_tz["c"][0]
+            country = countries[_country]
+        except KeyError:
+            country = "United Kingdom"
+            _country = "GB"
+
+    return flask.jsonify(
         {
-            "client_ip": client_ip,
-            "country_code": country_code,
+            "country": country,
+            "country_code": _country,
         }
     )
-    response.cache_control.private = True
-
-    return response
 
 
 def subscription_centre():
@@ -1170,3 +1145,193 @@ def subscription_centre_submit(sfdcLeadId, unsubscribe):
 
 def navigation_nojs():
     return flask.render_template("templates/meganav/navigation-nojs.html")
+
+
+def process_active_vulnerabilities(security_vulnerabilities):
+    """
+    Takes a list of security vulnerabilities and filters out the ones where
+    the 'Display until' date is in the past.
+    """
+
+    def security_index():
+        try:
+            vulnerabilities_metadata = (
+                security_vulnerabilities.get_category_index_metadata(
+                    "vulnerabilities"
+                )
+            )
+            vulnerability_topics = (
+                security_vulnerabilities.get_topics_in_category()
+            )
+            current_date = datetime.now()
+
+            # Filter out vulnerabilities that should not be displayed
+            filtered_vulnerabilities = [
+                {
+                    **vulnerability,
+                    "slug": vulnerability_topics.get(vulnerability["id"]),
+                }
+                for vulnerability in vulnerabilities_metadata
+                if vulnerability.get("display-until")
+                and datetime.strptime(
+                    vulnerability["display-until"], "%d/%m/%Y"
+                )
+                > current_date
+            ]
+
+            return flask.render_template(
+                "security/index.html",
+                active_vulnerabilities=filtered_vulnerabilities,
+            )
+        except (HTTPError, TypeError) as e:
+            flask.current_app.extensions["sentry"].captureException(
+                f"Error processing vulnerabilities: {e}"
+            )
+            return flask.render_template(
+                "security/index.html",
+                active_vulnerabilities=[],
+            )
+
+    return security_index
+
+
+def build_vulnerabilities_list(security_vulnerabilities, path=None):
+    def vulnerabilities_list():
+        try:
+            template_path = "security/vulnerabilities/view-all.html"
+            topics = security_vulnerabilities.get_topics_in_category()
+            vulnerabilities = (
+                security_vulnerabilities.get_category_index_metadata(
+                    "vulnerabilities"
+                )
+            )
+
+            for vuln in vulnerabilities:
+                # Add slug
+                vuln_id = vuln["id"]
+                if vuln_id in topics:
+                    vuln["slug"] = topics[vuln_id]
+                # Add year
+                dt = datetime.strptime(vuln["published"], "%d/%m/%Y")
+                vuln["year"] = dt.year
+
+            # Make sure they are in order of published date
+            vulnerabilities.sort(
+                key=lambda item: datetime.strptime(
+                    item["published"], "%d/%m/%Y"
+                ),
+                reverse=True,
+            )
+
+            # If not /view-all we only need the most recent 3 years
+            if path != "/view-all":
+                template_path = "security/vulnerabilities/index.html"
+                unique_years = {v["year"] for v in vulnerabilities}
+                sorted_years = sorted(unique_years, reverse=True)
+                top_years = sorted_years[:3]
+                vulnerabilities = [
+                    v for v in vulnerabilities if v["year"] in top_years
+                ]
+
+            return flask.render_template(
+                template_path,
+                topics=topics,
+                vulnerabilities=vulnerabilities,
+            )
+        except HTTPError as e:
+            flask.current_app.extensions["sentry"].captureException(
+                f"Error fetching vulnerabilities: {e}"
+            )
+
+    return vulnerabilities_list
+
+
+def build_vulnerabilities(security_vulnerabilities):
+    def vulnerability(path):
+        try:
+            document = security_vulnerabilities.get_topic(path)
+            metadata_table = (
+                security_vulnerabilities.get_category_index_metadata(
+                    "vulnerabilities"
+                )
+            )
+
+            for item in metadata_table:
+                if str(item["id"]) == str(document["topic_id"]):
+                    document_metadata = item
+                    break
+
+            return flask.render_template(
+                "security/vulnerabilities/vulnerability-detailed.html",
+                metadata=document_metadata,
+                document=document,
+            )
+        except HTTPError as e:
+            flask.current_app.extensions["sentry"].captureException(
+                f"Error fetching vulnerabilities: {e}"
+            )
+
+    return vulnerability
+
+
+def build_sitemap_tree(exclude_paths=None):
+    def create_sitemap(sitemap_path):
+        directory_path = os.getcwd() + "/templates"
+        base_url = "https://ubuntu.com"
+        try:
+            xml_sitemap = generate_sitemap(
+                directory_path, base_url, exclude_paths=exclude_paths
+            )
+            if xml_sitemap:
+                with open(sitemap_path, "w") as f:
+                    f.write(xml_sitemap)
+                logging.info(f"Sitemap saved to {sitemap_path}")
+
+                return xml_sitemap
+            else:
+                logging.warning("Sitemap is empty")
+                return {"error:", "Sitemap is empty"}, 400
+
+        except Exception as e:
+            logging.error(f"Error generating sitemap: {e}")
+            return f"Generate_sitemap error: {e}", 500
+
+    def serve_sitemap():
+        """
+        Generate and serve the sitemap_tree.xml file.
+        This sitemap tracks changes in the template files and is generated
+        dynamically on every new push to main.
+        """
+        sitemap_path = os.getcwd() + "/templates/sitemap_tree.xml"
+
+        # Validate the secret if its a POST request
+        if flask.request.method == "POST":
+            expected_secret = os.getenv("SITEMAP_SECRET")
+            provided_secret = flask.request.headers.get(
+                "Authorization", ""
+            ).replace("Bearer ", "")
+
+            if provided_secret != expected_secret:
+                logging.warning("Invalid secret provided")
+                return {"error": "Unauthorized"}, 401
+
+            xml_sitemap = create_sitemap(sitemap_path)
+            return {
+                "message": (
+                    f"Sitemap successfully generated at {sitemap_path}"
+                )
+            }, 200
+
+        # Generate sitemap if update request or if it doesn't exist
+        if not os.path.exists(sitemap_path):
+            xml_sitemap = create_sitemap(sitemap_path)
+
+        # Serve the existing sitemap
+        with open(sitemap_path, "r") as f:
+            xml_sitemap = f.read()
+
+        response = flask.make_response(xml_sitemap)
+        response.headers["Content-Type"] = "application/xml"
+        return response
+
+    return serve_sitemap

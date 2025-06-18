@@ -1,12 +1,14 @@
 from requests import Session
 
+from webapp.certified.helpers import _get_clean_in_filter
+
 
 class CertificationAPI:
     """
     Method names and properties to describe and map directly
     onto the Certification API
     (at the time of writing, this API is available at
-    https://certification.canonical.com/api/v1)
+    https://certification.canonical.com/api/v2)
     """
 
     def __init__(self, base_url: str, session: Session):
@@ -18,6 +20,7 @@ class CertificationAPI:
         params = {
             key: value for key, value in params.items() if value is not None
         }
+        params["pagination"] = "limitoffset"
 
         # Get the JSON data
         response = self.session.get(
@@ -30,7 +33,21 @@ class CertificationAPI:
 
         return response
 
-    def certified_makes(
+    def certified_platform_details(
+        self,
+        platform_id,
+        limit=None,
+        offset=None,
+    ):
+        return self._get(
+            f"certified-platforms/{platform_id}",
+            params={
+                "limit": limit,
+                "offset": offset,
+            },
+        ).json()
+
+    def certified_vendors(
         self,
         limit=None,
         offset=None,
@@ -42,7 +59,7 @@ class CertificationAPI:
         make__iexact=None,
     ):
         return self._get(
-            "certifiedmakes",
+            "certified-vendors",
             params={
                 "limit": limit,
                 "offset": offset,
@@ -55,7 +72,7 @@ class CertificationAPI:
             },
         ).json()
 
-    def certified_models(
+    def certified_configurations(
         self,
         limit=None,
         offset=None,
@@ -75,21 +92,21 @@ class CertificationAPI:
         device_vendor_id=None,
     ):
         response = self._get(
-            "certifiedmodels",
+            "certified-configurations",
             params={
                 "limit": limit,
                 "offset": offset,
                 "level": level,
-                "major_release__in": major_release__in,
+                "major_release__in": _get_clean_in_filter(major_release__in),
                 # If vendor is a list, requests will tranform into
                 # &vendor=item&vendor=item
                 "vendor": vendor,
                 "make__iexact": make__iexact,
                 "query": query,
                 "canonical_id": canonical_id,
-                "canonical_id__in": canonical_id__in,
+                "canonical_id__in": _get_clean_in_filter(canonical_id__in),
                 "category": category,
-                "category__in": category__in,
+                "category__in": _get_clean_in_filter(category__in),
                 "order_by": order_by,
                 "device_identifier": device_identifier,
                 "device_bus": device_bus,
@@ -101,11 +118,11 @@ class CertificationAPI:
 
         return response.json()
 
-    def certified_model_details(
+    def certified_configuration_details(
         self, limit=None, offset=None, canonical_id=None
     ):
         return self._get(
-            "certifiedmodeldetails",
+            "certified-configuration-details",
             params={
                 "limit": limit,
                 "offset": offset,
@@ -113,7 +130,7 @@ class CertificationAPI:
             },
         ).json()
 
-    def certified_model_devices(
+    def certified_configuration_devices(
         self,
         limit=None,
         offset=None,
@@ -129,7 +146,7 @@ class CertificationAPI:
         vendor_id=None,
     ):
         return self._get(
-            "certifiedmodeldevices",
+            "certified-configuration-devices",
             params={
                 "limit": limit,
                 "offset": offset,
@@ -157,7 +174,7 @@ class CertificationAPI:
         servers__gte=None,
     ):
         return self._get(
-            "certifiedreleases",
+            "certified-releases",
             params={
                 "limit": limit,
                 "offset": offset,
@@ -180,7 +197,7 @@ class CertificationAPI:
         category__iexact=None,
     ):
         return self._get(
-            "componentsummaries",
+            "component-summaries",
             params={
                 "limit": limit,
                 "offset": offset,
@@ -193,7 +210,7 @@ class CertificationAPI:
         ).json()
 
     def component_summary(self, id):
-        return self._get(f"componentsummaries/{id}").json()
+        return self._get(f"component-summaries/{id}").json()
 
     def device_categories(self, limit=None, offset=None):
         return self._get(

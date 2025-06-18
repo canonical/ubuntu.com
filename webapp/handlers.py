@@ -1,14 +1,18 @@
 import os
+from typing import List
 
 import flask
 from canonicalwebteam import image_template
+from slugify import slugify
 
 from webapp.context import (
     current_year,
     date_has_passed,
     descending_years,
     format_date,
+    format_to_id,
     get_json_feed,
+    get_meganav,
     get_navigation,
     modify_query,
     month_name,
@@ -16,9 +20,7 @@ from webapp.context import (
     releases,
     schedule_banner,
     sort_by_key_and_ordered_list,
-    get_meganav,
     split_list,
-    format_to_id,
 )
 from webapp.login import empty_session, user_info
 from webapp.security.api import SecurityAPIError
@@ -29,6 +31,142 @@ from webapp.shop.api.ua_contracts.api import (
     UnauthorizedErrorView,
 )
 from webapp.shop.flaskparser import UAContractsValidationError
+from webapp.certified.helpers import convert_markdown_to_html
+
+CSP = {
+    "default-src": ["'self'"],
+    "img-src": [
+        "data: blob:",
+        # This is needed to allow images from
+        # https://www.google.*/ads/ga-audiences to load.
+        "*",
+    ],
+    "script-src-elem": [
+        "'self'",
+        "assets.ubuntu.com",
+        "www.google-analytics.com",
+        "www.googletagmanager.com",
+        "dev.visualwebsiteoptimizer.com",
+        "www.youtube.com",
+        "asciinema.org",
+        "player.vimeo.com",
+        "script.crazyegg.com",
+        "w.usabilla.com",
+        "munchkin.marketo.net",
+        "serve.nrich.ai",
+        "ml314.com",
+        "scout-cdn.salesloft.com",
+        "snippet.maze.co",
+        "www.googleadservices.com",
+        "js.zi-scripts.com",
+        "*.g.doubleclick.net",
+        "www.google.com",
+        "www.gstatic.com",
+        "*.googlesyndication.com",
+        "js.stripe.com",
+        "d3js.org",
+        "www.brighttalk.com",
+        "cdnjs.cloudflare.com",
+        "static.ads-twitter.com",
+        "*.cdn.digitaloceanspaces.com",
+        "www.redditstatic.com",
+        "snap.licdn.com",
+        "connect.facebook.net",
+        "jspm.dev",
+        "cdn.livechatinc.com",
+        "api.livechatinc.com",
+        "secure.livechatinc.com",
+        "www.tfaforms.com",
+        "api.usabilla.com",
+        "*.cloudfront.net",
+        "cdn.jsdelivr.net",
+        # This is necessary for Google Tag Manager to function properly.
+        "'unsafe-inline'",
+    ],
+    "font-src": [
+        "'self'",
+        "assets.ubuntu.com",
+        "cdn.livechatinc.com",
+        "secure.livechatinc.com",
+        "fonts.google.com",
+    ],
+    "script-src": [
+        "'self'",
+        "blob:",
+        "'unsafe-eval'",
+        "'unsafe-hashes'",
+        "'unsafe-inline'",
+    ],
+    "connect-src": [
+        "'self'",
+        "*.googlesyndication.com",
+        "www.google.com",
+        "ubuntu.com",
+        "analytics.google.com",
+        "www.googletagmanager.com",
+        "sentry.is.canonical.com",
+        "www.google-analytics.com",
+        "*.crazyegg.com",
+        "scout.salesloft.com",
+        "*.g.doubleclick.net",
+        "js.zi-scripts.com",
+        "*.mktoresp.com",
+        "prompts.maze.co",
+        "*.google-analytics.com",
+        "pixel-config.reddit.com",
+        "www.redditstatic.com",
+        "conversions-config.reddit.com",
+        "px.ads.linkedin.com",
+        "ws.zoominfo.com",
+        "api.livechatinc.com",
+        "cdn.livechatinc.com",
+        "secure.livechatinc.com",
+        "youtube.com",
+        "google.com",
+        "fonts.google.com",
+        "api.text.com",
+    ],
+    "frame-src": [
+        "'self'",
+        "*.doubleclick.net",
+        "www.youtube.com/",
+        "asciinema.org",
+        "player.vimeo.com",
+        "js.stripe.com",
+        "www.googletagmanager.com",
+        "www.google.com",
+        "www.brighttalk.com",
+        "cdn.livechatinc.com",
+        "secure.livechatinc.com",
+        "cdn.livechat-static.com",
+        "*.cloudfront.net",
+        "app3.trueability.com",
+        "app.trueability.com",
+    ],
+    "style-src": [
+        "*.cloudfront.net",
+        "cdn.jsdelivr.net",
+        "'self'",
+        "'unsafe-inline'",
+    ],
+    "media-src": [
+        "'self'",
+        "res.cloudinary.com",
+        "cdn.livechatinc.com",
+        "secure.livechatinc.com",
+        "cdn.livechat-static.com",
+    ],
+    "child-src": [
+        "api.livechatinc.com",
+        "cdn.livechatinc.com",
+        "secure.livechatinc.com",
+        "youtube.com",
+        "google.com",
+        "fonts.google.com",
+        "'self'",
+        "blob:",
+    ],
+}
 
 
 def init_handlers(app, sentry):
@@ -183,12 +321,70 @@ def init_handlers(app, sentry):
             "get_meganav": get_meganav,
             "split_list": split_list,
             "format_to_id": format_to_id,
+            "canonical_cla_api_url": os.getenv("CANONICAL_CLA_API_URL"),
         }
+
+    def get_countries_list() -> List[dict]:
+        """
+        Get a list of countries in a standard format
+        """
+        from pycountry import countries
+
+        countries = [
+            {"alpha2": country.alpha_2, "name": country.name}
+            for country in list(countries)
+        ]
+        return sorted(countries, key=lambda x: x["name"])
 
     @app.context_processor
     def utility_processor():
-        return {"image": image_template}
+        return {
+            "image": image_template,
+            "get_countries_list": get_countries_list,
+        }
+
+    @app.after_request
+    def add_headers(response):
+        """
+        Generic rules for headers to add to all requests
+        - Content-Security-Policy: Restrict resources (e.g., JavaScript, CSS,
+        Images) and URLs
+        - Referrer-Policy: Limit referrer data for security while preserving
+        full referrer for same-origin requests
+        - Cross-Origin-Embedder-Policy: allows embedding cross-origin
+        resources
+        - Cross-Origin-Opener-Policy: enable the page to open pop-ups while
+        maintaining same-origin policy
+        - Cross-Origin-Resource-Policy: allowing cross-origin requests to
+        access the resource
+        - X-Permitted-Cross-Domain-Policies: disallows cross-domain access to
+        resources.
+        """
+
+        def get_csp_as_str(csp={}):
+            csp_str = ""
+            for key, values in csp.items():
+                csp_value = " ".join(values)
+                csp_str += f"{key} {csp_value}; "
+            return csp_str.strip()
+
+        response.headers["Content-Security-Policy"] = get_csp_as_str(CSP)
+
+        response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+        response.headers["Cross-Origin-Embedder-Policy"] = "unsafe-none"
+        response.headers["Cross-Origin-Opener-Policy"] = (
+            "same-origin-allow-popups"
+        )
+        response.headers["Cross-Origin-Resource-Policy"] = "cross-origin"
+        response.headers["X-Permitted-Cross-Domain-Policies"] = "none"
+        return response
 
     app.add_template_filter(date_has_passed)
 
     app.add_template_filter(sort_by_key_and_ordered_list)
+
+    app.add_template_filter(convert_markdown_to_html)
+
+    @app.template_filter()
+    def slug(text):
+        return slugify(text)

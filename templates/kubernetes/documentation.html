@@ -1,0 +1,165 @@
+{% extends "kubernetes/base_kubernetes.html" %}
+
+{% block title %}Canonical Kubernetes documentation{% endblock %}
+
+{% block meta_description %}
+  Documentation for Canonical Kubernetes, as well as MicroK8s and Charmed Kubernetes
+{% endblock meta_description %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1oBsYFMqGY1sRMUeuy7ue_oDSHpHqYaua-Z33fGRxx8Y/edit?tab=t.0
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+  <section class="p-section--hero">
+    <div class="row--50-50">
+      <div class="col">
+        <h1>
+          Learn Kubernetes:
+          <br class="u-hide--small" />
+          Documentation
+        </h1>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <p>Explore and learn how to deploy and operate Canonical Kubernetes distributions.</p>
+        </div>
+        <div class="p-cta-block">
+          <a href="/kubernetes/contact-us"
+             class="js-invoke-modal p-button--positive"
+             aria-controls="kubernetes-modal">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Canonical Kubernetes</h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="p-image-container--16-9 is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/3ecee606-kubernetes-img.png",
+                        alt="Canonical Kubernetes",
+                        width="1800",
+                        height="1200",
+                        hi_def=True,
+                        loading="auto",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
+        </div>
+        <p>
+          Built on experience we gained since 2015, our new Kubernetes distribution offers hassle-free maintenance, single-line installation process, and more control over your upgrade cadence. It's secure by default and comes with 12-year Long Term Support under Ubuntu Pro.
+        </p>
+        <div class="p-cta-block">
+          <a href="https://documentation.ubuntu.com/canonical-kubernetes/latest/">Read the Canonical Kubernetes documentation&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="u-fixed-width">
+      <div class="p-section--shallow">
+        <h2>Other distributions</h2>
+      </div>
+    </div>
+    <div class="row--25-75">
+      <div class="col">
+        <hr class="p-rule--muted" />
+        <div class="p-section--shallow">
+          <div class="row">
+            <div class="col-3 col-medium-3">
+              <h3 class="p-heading--5">MicroK8s</h3>
+            </div>
+            <div class="col-6 col-medium-3">
+              <p>
+                Lightweight, low-touch Kubernetes for cloud, edge and IoT. It brings all Kubernetes services and the most popular addons in a single package, and requires minimal ops for easy clustering, self-healing HA and simpler upgrades. Secure by default and CNCF conformant.
+              </p>
+              <div class="p-cta-block">
+                <a href="https://microk8s.io/docs">Read the MicroK8s documentation&nbsp;&rsaquo;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">Charmed Kubernetes</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Composable, operator-based Kubernetes for the enterprise, with full life-cycle management for host and in-cluster with <a href="https://juju.is/">Juju</a>. It provides carrier-grade and hardware acceleration features, and support for third-party components and services. It gives you fully customizable deployments, with pluggable CNI, CSI, CRI and monitoring components. Secure by default and CNCF conformant.
+            </p>
+            <div class="p-cta-block">
+              <a href="/kubernetes/charmed-k8s/docs">Read the Charmed Kubernetes documentation&nbsp;&rsaquo;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <div class="p-section--shallow">
+          <h2>
+            Learn more
+            <br class="u-hide--small" />
+            about Canonical Kubernetes
+          </h2>
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <p>
+            <a href="https://canonical.com/case-study/esa">The European Space Agency modernized its infrastructure with Canonical Kubernetes</a>
+          </p>
+          <p>
+            Find out why ESA chose Canonical to implement a new, dynamic platform for efficient, automated, and fast deployment of systems across their missions.
+          </p>
+          <hr class="p-rule--muted u-no-margin--bottom" />
+          <p>
+            <a href="/engage/optimise-ml-workloads-on-kubernetes">Optimize your ML workloads on Kubernetes</a>
+          </p>
+          <p>
+            Leverage your existing computing power to accelerate model training in order to move your ML projects to production.
+          </p>
+          <hr class="p-rule--muted u-no-margin--bottom" />
+          <p>
+            <a href="/engage/bare-metal-kubernetes">How to run workloads on bare metal Kubernetes with MAAS</a>
+          </p>
+          <p>Understand bare metal Kubernetes and how it compares to virtual machines.</p>
+        </div>
+        <div class="p-cta-block">
+          <a href="/kubernetes/resources"
+             class="p-button"
+             aria-label="Find more Canonical Kubernetes resources">Find more resources</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="p-rule is-fixed-width" />
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <h2 class="u-no-margin--bottom u-sv1">Get your K8s questions answered today</h2>
+      <a href="/kubernetes/contact-us"
+         class="js-invoke-modal p-heading--2"
+         aria-controls="kubernetes-modal">Contact us</a>
+    </div>
+  </section>
+  {{ load_form("/kubernetes") | safe }}
+
+{% endblock content %}

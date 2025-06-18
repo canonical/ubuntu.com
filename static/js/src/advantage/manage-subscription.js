@@ -128,24 +128,20 @@ const requiresAuthentication = (invoice) => {
 
 const handleUpdateClick = (id, VPSize) => {
   const resizeField = document.querySelector(
-    `#resize-input--${id}[data-viewport="${VPSize}"]`
+    `#resize-input--${id}[data-viewport="${VPSize}"]`,
   );
   const updateButton = document.querySelector(
-    `#save-changes--${id}[data-viewport="${VPSize}"]`
+    `#save-changes--${id}[data-viewport="${VPSize}"]`,
   );
 
-  const {
-    accountId,
-    productListingId,
-    previousPurchaseId,
-    billingPeriod,
-  } = updateButton.dataset;
+  const { accountId, productListingId, previousPurchaseId, billingPeriod } =
+    updateButton.dataset;
 
   const successNotificationElements = document.querySelectorAll(
-    `.success-${id}`
+    `.success-${id}`,
   );
   const cautionNotificationElements = document.querySelectorAll(
-    `.caution-${id}`
+    `.caution-${id}`,
   );
 
   const elements = {
@@ -175,7 +171,7 @@ const handleUpdateClick = (id, VPSize) => {
     previousPurchaseId,
     productListingId,
     resizeField.value,
-    billingPeriod
+    billingPeriod,
   ).then((data) => {
     if (data.errors) {
       if (data.errors.includes("can only make one purchase")) {
@@ -195,20 +191,17 @@ const handleUpdateClick = (id, VPSize) => {
 
 const cancelSubscription = (id, VPSize) => {
   const cancelSubscriptionButton = document.querySelector(
-    `#cancel-subscription--${id}[data-viewport="${VPSize}"]`
+    `#cancel-subscription--${id}[data-viewport="${VPSize}"]`,
   );
-  const {
-    accountId,
-    productListingId,
-    previousPurchaseId,
-  } = cancelSubscriptionButton.dataset;
+  const { accountId, productListingId, previousPurchaseId } =
+    cancelSubscriptionButton.dataset;
   const confirmCancelButton = document.querySelector(`#confirmCancelButton`);
 
   const successNotificationElements = document.querySelectorAll(
-    `.success-${id}`
+    `.success-${id}`,
   );
   const cautionNotificationElements = document.querySelectorAll(
-    `.caution-${id}`
+    `.caution-${id}`,
   );
 
   const elements = {
@@ -244,13 +237,13 @@ const cancelSubscription = (id, VPSize) => {
       } else {
         handleSuccess(elements, "cancelling_subscription_success");
       }
-    }
+    },
   );
 };
 
 const createModal = (id, VPSize) => {
   const cancelSubscriptionButton = document.querySelector(
-    `#cancel-subscription--${id}[data-viewport="${VPSize}"]`
+    `#cancel-subscription--${id}[data-viewport="${VPSize}"]`,
   );
 
   const { contractName, machineCount } = cancelSubscriptionButton.dataset;
@@ -324,28 +317,28 @@ const createModal = (id, VPSize) => {
 const handleCancelChangesClick = (id, VPSize) => {
   // Hide edit options
   const previewSection = document.querySelector(
-    `#view-mode--${id}[data-viewport="${VPSize}"]`
+    `#view-mode--${id}[data-viewport="${VPSize}"]`,
   );
   const editSection = document.querySelector(
-    `#edit-mode--${id}[data-viewport="${VPSize}"]`
+    `#edit-mode--${id}[data-viewport="${VPSize}"]`,
   );
   previewSection.classList.remove("u-hide");
   editSection.classList.add("u-hide");
 
   // Reset input and help text
   const resizeField = document.querySelector(
-    `#resize-input--${id}[data-viewport="${VPSize}"]`
+    `#resize-input--${id}[data-viewport="${VPSize}"]`,
   );
   resizeField.oninput = () => {};
   resizeField.value = resizeField.defaultValue;
   const resizeSummary = document.querySelector(
-    `#resize-summary--${id}[data-viewport="${VPSize}"]`
+    `#resize-summary--${id}[data-viewport="${VPSize}"]`,
   );
   const newPayment = document.querySelector(
-    `#new-payment--${id}[data-viewport="${VPSize}"]`
+    `#new-payment--${id}[data-viewport="${VPSize}"]`,
   );
   const updateButton = document.querySelector(
-    `#save-changes--${id}[data-viewport="${VPSize}"]`
+    `#save-changes--${id}[data-viewport="${VPSize}"]`,
   );
   resizeSummary.classList.add("u-hide");
   newPayment.classList.add("u-hide");
@@ -353,17 +346,17 @@ const handleCancelChangesClick = (id, VPSize) => {
 
   // Remove buttons handlers
   const cancelSubscriptionButton = document.querySelector(
-    `#cancel-subscription--${id}[data-viewport="${VPSize}"]`
+    `#cancel-subscription--${id}[data-viewport="${VPSize}"]`,
   );
   const cancelChangesButton = document.querySelector(
-    `#cancel-changes--${id}[data-viewport="${VPSize}"]`
+    `#cancel-changes--${id}[data-viewport="${VPSize}"]`,
   );
   updateButton.onclick = () => {};
   cancelChangesButton.onclick = () => {};
   if (cancelSubscriptionButton) cancelSubscriptionButton.onclick = () => {};
 
   const cautionNotificationElements = document.querySelectorAll(
-    `.caution-${id}`
+    `.caution-${id}`,
   );
 
   cautionNotificationElements.forEach((element) => {
@@ -378,7 +371,7 @@ const handleChange = (e, id, VPSize) => {
 
   const unitPrice = Number.parseFloat(e.target.dataset.unitPrice / 100);
   const nextPayment = Number.parseFloat(
-    e.target.dataset.nextPayment.split(" ")[0]
+    e.target.dataset.nextPayment.split(" ")[0],
   );
   const billingPeriod = e.target.dataset.billingPeriod;
 
@@ -388,13 +381,13 @@ const handleChange = (e, id, VPSize) => {
   });
 
   const resizeSummary = document.querySelector(
-    `#resize-summary--${id}[data-viewport="${VPSize}"]`
+    `#resize-summary--${id}[data-viewport="${VPSize}"]`,
   );
   const newPayment = document.querySelector(
-    `#new-payment--${id}[data-viewport="${VPSize}"]`
+    `#new-payment--${id}[data-viewport="${VPSize}"]`,
   );
   const updateButton = document.querySelector(
-    `#save-changes--${id}[data-viewport="${VPSize}"]`
+    `#save-changes--${id}[data-viewport="${VPSize}"]`,
   );
 
   const { min, max } = e.target;
@@ -411,14 +404,14 @@ const handleChange = (e, id, VPSize) => {
     if (deltaMachines > 0) {
       resizeSummary.innerHTML = `Your changes will add UA for ${deltaMachines} machines`;
       newPayment.innerHTML = `Your ${billingPeriod} payment will be <strong>increased by ${formatter.format(
-        unitPrice * deltaMachines
+        unitPrice * deltaMachines,
       )}${
         billingPeriod === "monthly"
           ? `, to ${formatter.format(
-              unitPrice * deltaMachines + nextPayment
+              unitPrice * deltaMachines + nextPayment,
             )} per month</strong>.`
           : ` per year</strong>. <br/>A payment of ${formatter.format(
-              unitPrice * deltaMachines
+              unitPrice * deltaMachines,
             )} will be charged immediately`
       }`;
     } else {
@@ -427,9 +420,9 @@ const handleChange = (e, id, VPSize) => {
         deltaMachines * -1
       } machines`;
       newPayment.innerHTML = `Your monthly payment will be <strong>reduced by ${formatter.format(
-        unitPrice * (deltaMachines * -1)
+        unitPrice * (deltaMachines * -1),
       )}, to ${formatter.format(
-        unitPrice * deltaMachines + nextPayment
+        unitPrice * deltaMachines + nextPayment,
       )} per month</strong>. <br/>Unused credit will be applied to next month’s invoice.`;
     }
   } else {
@@ -466,24 +459,24 @@ function handleChangeClick() {
   const id = this.dataset.id;
   const VPSize = this.dataset.viewport;
   const updateButton = document.querySelector(
-    `#save-changes--${id}[data-viewport="${VPSize}"]`
+    `#save-changes--${id}[data-viewport="${VPSize}"]`,
   );
   const cancelChangesButton = document.querySelector(
-    `#cancel-changes--${id}[data-viewport="${VPSize}"]`
+    `#cancel-changes--${id}[data-viewport="${VPSize}"]`,
   );
   const cancelSubscriptionButton = document.querySelector(
-    `#cancel-subscription--${id}[data-viewport="${VPSize}"]`
+    `#cancel-subscription--${id}[data-viewport="${VPSize}"]`,
   );
   const resizeField = document.querySelector(
-    `#resize-input--${id}[data-viewport="${VPSize}"]`
+    `#resize-input--${id}[data-viewport="${VPSize}"]`,
   );
 
   // Show edit options
   const previewSection = document.querySelector(
-    `#view-mode--${id}[data-viewport="${VPSize}"]`
+    `#view-mode--${id}[data-viewport="${VPSize}"]`,
   );
   const editSection = document.querySelector(
-    `#edit-mode--${id}[data-viewport="${VPSize}"]`
+    `#edit-mode--${id}[data-viewport="${VPSize}"]`,
   );
   previewSection.classList.add("u-hide");
   editSection.classList.remove("u-hide");
@@ -507,7 +500,7 @@ function handleChangeClick() {
   if (cancelSubscriptionButton) {
     cancelSubscriptionButton.onclick = () => {
       const cautionNotificationElements = document.querySelectorAll(
-        `.caution-${id}`
+        `.caution-${id}`,
       );
 
       cautionNotificationElements.forEach((element) => {

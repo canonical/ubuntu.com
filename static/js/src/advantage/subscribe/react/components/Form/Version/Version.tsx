@@ -8,6 +8,7 @@ import {
   LTSVersions,
   ProductTypes,
 } from "advantage/subscribe/react/utils/utils";
+import { PRO_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
 
 const livepatch =
   "Kernel Livepatch to apply kernel patches at run time without the need for an immediate reboot";
@@ -19,18 +20,16 @@ const CISBenchmark =
   "Certified CIS benchmark tooling and DISA-STIG configuration guide";
 const CISBenchmarkAndAutomation =
   "Ubuntu Security Guide (USG) for certified CIS benchmark tooling and DISA-STIG tooling & automation";
-const FIPS =
+const FIPS_140_2 =
   "FIPS 140-2 Level 1 cryptographic packages for FedRAMP, HIPAA and PCI-DSS compliance";
-const FIPSComingSoon = (
-  <>
-    FIPS 140-3 Level 1 cryptographic packages for FedRAMP, HIPAA and PCI-DSS
-    compliance
-    <StatusLabel appearance="positive">Coming soon</StatusLabel>
-  </>
-);
-const CIS = (
+const FIPS_140_3 =
+  "FIPS 140-3 Level 1 cryptographic packages for FedRAMP, HIPAA and PCI-DSS compliance";
+const CIS =
+  "Ubuntu Security Guide (USG) for CIS and DISA STIG benchmark tooling & automation";
+const CISComingSoon = (
   <>
     Ubuntu Security Guide (USG) for certified CIS benchmark tooling & automation
+    <StatusLabel appearance="positive">Coming soon</StatusLabel>
   </>
 );
 const CommonCriteria = "Common Criteria EAL2";
@@ -44,10 +43,19 @@ const AAD =
 const PhysicalServerVersionDetails: {
   [key in LTSVersions]: Array<React.ReactNode>;
 } = {
+  [LTSVersions.noble]: [
+    `${ESMEndDate} 2034`,
+    livepatch,
+    CISComingSoon,
+    KVMDrivers,
+    landscape,
+    knowledgeBase,
+    realtimeKernel,
+  ],
   [LTSVersions.jammy]: [
     `${ESMEndDate} 2032`,
     livepatch,
-    FIPSComingSoon,
+    FIPS_140_3,
     CIS,
     KVMDrivers,
     landscape,
@@ -57,7 +65,7 @@ const PhysicalServerVersionDetails: {
   [LTSVersions.focal]: [
     `${ESMEndDate} 2030`,
     livepatch,
-    FIPS,
+    FIPS_140_2,
     CISBenchmarkAndAutomation,
     KVMDrivers,
     landscape,
@@ -66,7 +74,7 @@ const PhysicalServerVersionDetails: {
   [LTSVersions.bionic]: [
     `${ESMEndDate} 2028`,
     livepatch,
-    FIPS,
+    FIPS_140_2,
     CISBenchmark,
     CommonCriteria,
     KVMDrivers,
@@ -76,16 +84,9 @@ const PhysicalServerVersionDetails: {
   [LTSVersions.xenial]: [
     `${ESMEndDate} 2026`,
     livepatch,
-    FIPS,
+    FIPS_140_2,
     CISBenchmark,
     CommonCriteria,
-    KVMDrivers,
-    landscape,
-    knowledgeBase,
-  ],
-  [LTSVersions.trusty]: [
-    `${ESMEndDate} 2024`,
-    livepatch,
     KVMDrivers,
     landscape,
     knowledgeBase,
@@ -95,11 +96,20 @@ const PhysicalServerVersionDetails: {
 const DesktopVersionDetails: {
   [key in LTSVersions]: Array<React.ReactNode>;
 } = {
+  [LTSVersions.noble]: [
+    `${DesktopESMEndDate} 2034`,
+    AAD,
+    livepatch,
+    CISComingSoon,
+    landscape,
+    knowledgeBase,
+    realtimeKernel,
+  ],
   [LTSVersions.jammy]: [
     `${DesktopESMEndDate} 2032`,
     AAD,
     livepatch,
-    FIPSComingSoon,
+    FIPS_140_3,
     CIS,
     landscape,
     knowledgeBase,
@@ -109,7 +119,7 @@ const DesktopVersionDetails: {
     `${DesktopESMEndDate} 2030`,
     AAD,
     livepatch,
-    FIPS,
+    FIPS_140_2,
     CISBenchmarkAndAutomation,
     landscape,
     knowledgeBase,
@@ -117,7 +127,7 @@ const DesktopVersionDetails: {
   [LTSVersions.bionic]: [
     `${DesktopESMEndDate} 2028`,
     livepatch,
-    FIPS,
+    FIPS_140_2,
     CISBenchmark,
     CommonCriteria,
     landscape,
@@ -126,15 +136,9 @@ const DesktopVersionDetails: {
   [LTSVersions.xenial]: [
     `${DesktopESMEndDate} 2026`,
     livepatch,
-    FIPS,
+    FIPS_140_2,
     CISBenchmark,
     CommonCriteria,
-    landscape,
-    knowledgeBase,
-  ],
-  [LTSVersions.trusty]: [
-    `${ESMEndDate} 2024`,
-    livepatch,
     landscape,
     knowledgeBase,
   ],
@@ -168,8 +172,8 @@ const Version = () => {
                 e.preventDefault();
                 setVersion(key as LTSVersions);
                 localStorage.setItem(
-                  "pro-selector-version",
-                  JSON.stringify(key as LTSVersions)
+                  PRO_SELECTOR_KEYS.VERSION,
+                  JSON.stringify(key as LTSVersions),
                 );
               }}
             >

@@ -1,213 +1,705 @@
 {% extends "download/_base_download.html" %}
 
 {% block title %}Get Ubuntu Server | Download{% endblock %}
-{% block meta_description %}Get Ubuntu Server one of three ways; by using Multipass on your desktop, using MAAS to provision machines in your data centre or installing it directly on a server.{% endblock meta_description %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1Qob4Ni_y1ffIdSWqaw2xH0dxiHZQmkRGP5nuoBhIfyM/edit{% endblock meta_copydoc %}
+
+{% block meta_description %}
+  Get Ubuntu Server one of three ways; by using Multipass on your desktop, using MAAS to provision machines in your data centre or installing it directly on a server.
+{% endblock meta_description %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1Qob4Ni_y1ffIdSWqaw2xH0dxiHZQmkRGP5nuoBhIfyM/edit
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
-
-<section class="p-strip--suru-topped">
-  <div class="row u-equal-height">
-    <div class="col-7">
-      <h1>Get Ubuntu Server</h1>
-      <h2 class="js-download-option">
-        Option 1: Manual server installation
-      </h2>
-      <p>
-        USB or DVD image based physical install
-      </p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">OS security guaranteed until April 2027</li>
-        <li class="p-list__item is-ticked">Expanded security maintenance until April 2032</li>
-        <li class="p-list__item is-ticked">Commercial support for enterprise customers</li>
-      </ul>
+  <section class="p-strip is-shallow u-no-padding--bottom">
+    <div class=" p-section u-fixed-width">
+      <h1 class="js-download-option">Get Ubuntu Server</h1>
     </div>
-    <div class="col-4 col-start-large-8 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/b743f1ee-jj-in-circle.png",
-        alt="",
-        width="250",
-        height="250",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <ul class="p-inline-list u-no-margin--bottom">
-        <li class="p-inline-list__item">
-          <form action="/download/server" method="post" class="p-inline-list__item" style="display: inline">
-            <input type="hidden" name="version" value="{{ releases.lts.full_version }}">
-            <input type="hidden" name="architecture" value="amd64">
-            <input type="hidden" name="next-step" value="download">
-            <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });">Download Ubuntu Server {{ releases.lts.full_version }} LTS</button>
-        </form>
-        </li>
-        <li class="p-inline-list__item"><a href="#downloads">Alternative downloads&nbsp;&rsaquo;</a></li>
-        <li class="p-inline-list__item"><a href="#architectures">Alternative architectures&nbsp;&rsaquo;</a></li>
-      </ul>
-      <p class="u-sv3">
-        <a href="{{ releases.lts.release_notes_url }}">
-          Read the Ubuntu Server {{ releases.lts.short_version }} LTS release notes&nbsp;&rsaquo;
-        </a>
-      </p>
-    </div>
-
-  </div>
-  <div class="row">
-    <div class="col-12" style="display:flex; flex-wrap: wrap;">
-      <button disabled class="p-button">
-        Option 1 - Manual server installation
-      </button>
-      <form action="/download/server" method="post">
-        <input type="hidden" name="next-step" value="multipass">
-        <button type="submit" class="p-button" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });" style="margin-right: 1rem">
-          Option 2 - Instant Ubuntu VMs
-        </button>
-      </form>
-      <form action="/download/server" method="post">
-        <input type="hidden" name="next-step" value="choose">
-        <button type="submit" class="p-button" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 3', 'eventValue' : undefined });">
-          Option 3 - Automated server provisioning
-        </button>
-      </form>
-    </div>
-  </div>
-  {% if releases.latest.short_version > releases.lts.short_version %}
-  <div class="p-strip is-shallow">
+  </section>
+  <section class="p-section--shallow">
     <div class="u-fixed-width">
-      <hr>
+      <nav class="p-tabs js-tabbed-content" data-maintain-hash="true">
+        <ul class="p-tabs__list u-no-margin--bottom" role="tablist">
+          <li class="p-tabs__item">
+            <a class="p-tabs__link"
+               role="tab"
+               aria-selected="true"
+               id="manual-install-tab"
+               href="#manual-install"
+               aria-controls="manual-install">Manual installation</a>
+          </li>
+          <li class="p-tabs__item">
+            <a class="p-tabs__link"
+               role="tab"
+               aria-selected="false"
+               id="instant-vms-tab"
+               href="#instant-vms"
+               aria-controls="instant-vms"
+               tabindex="-1">Instant VMs</a>
+          </li>
+          <li class="p-tabs__item">
+            <a class="p-tabs__link"
+               role="tab"
+               aria-selected="false"
+               id="automated-provisioning-tab"
+               href="#automated-provisioning"
+               aria-controls="automated-provisioning"
+               tabindex="-1">Automated provisioning</a>
+          </li>
+        </ul>
+      </nav>
     </div>
-  </div>
-  <div class="row u-equal-height" id="releases">
-    <div class="col-6">
-      <h2>Alternative releases</h2>
-      <h3>
-        Ubuntu Server {{ releases.latest.full_version }}
-      </h3>
-      <p>
-        The latest version of Ubuntu Server, including nine months of security and maintenance updates, until {{ releases.latest.eol }}.
-      </p>
-      <form action="/download/server" method="post" style="display: inline">
-        <input type="hidden" name="version" value="{{ releases.latest.full_version }}">
-        <input type="hidden" name="architecture" value="amd64">
-        <input type="hidden" name="next-step" value="download">
-        <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });">Download Ubuntu Server {{ releases.latest.full_version }}</button>
-      </form>
-      <p>
-        <a href="{{ releases.latest.release_notes_url }}">
-          Read the Ubuntu Server {{ releases.latest.short_version }} release notes&nbsp;&rsaquo;
-        </a>
-      </p>
-    </div>
-    <div class="col-4 col-start-large-8 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/57a36cad-Minotaur_circular.png",
-        alt="",
-        width="260",
-        height="260",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-  {% endif %}
-</section>
+  </section>
 
-<section class="p-strip--light u-no-padding--bottom" id="downloads">
-  <div class="row">
-    <div class="col-10">
-      <h2>Alternative downloads</h2>
-    </div>
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-4 p-card">
-      <h3 class="p-card__title">BitTorrents</h3>
-      <p>BitTorrent sometimes enables higher download speeds and more reliable downloads of large files.</p>
-      <ul class="p-list u-no-margin--bottom">
-        <li class="p-list__item">
-          <a class="download-torrent p-button u-no-margin--bottom" href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-live-server-amd64.iso.torrent">
-            Ubuntu Server {{ releases.lts.full_version }} LTS
-          </a>
-        </li>
-        <li class="p-list__item">
-          <a class="download-torrent p-button u-no-margin--bottom" href="https://releases.ubuntu.com/{{ releases.latest.short_version }}/ubuntu-{{ releases.latest.full_version }}-live-server-amd64.iso.torrent">
-            Ubuntu Server {{ releases.latest.full_version }}
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div class="col-4 p-card">
-      <h3 class="p-card__title">
-        Ubuntu Server {{ releases.previous_lts.short_version }} LTS
-      </h3>
-      <p>
-        The previous long-term support version of Ubuntu Server, including support guaranteed until {{ releases.previous_lts.eol }}.
-      </p>
-      <form action="/download/server" method="post" style="display: inline">
-        <input type="hidden" name="version" value="{{ releases.previous_lts.full_version }}">
-        <input type="hidden" name="architecture" value="amd64">
-        <input type="hidden" name="next-step" value="download">
-        <button type="submit" class="p-button" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.previous_lts.full_version }}', 'eventValue' : undefined });">Get Ubuntu Server {{ releases.previous_lts.full_version }} LTS</button>
-      </form>
-    </div>
-    <div class="col-4 p-card">
-      <h3 class="p-card__title">Other versions</h3>
-      <p>Other versions of Ubuntu Server including torrents, the network installer, a list of local mirrors and past releases.</p>
-      <p><a href="/download/alternative-downloads">See alternative downloads&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-</section>
+  <section class="p-tabs__content p-section"
+           id="manual-install"
+           role="tabpanel"
+           aria-labelledby="manual-install-tab">
+    <div class="row--50-50">
+      <div class="col">
+        <div class="p-section">
+          <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
+        </div>
+        <div class="p-image-wrapper u-hide--small">
+          {{ image(url="https://assets.ubuntu.com/v1/3b5fa561-mascot-numbat@2x.png",
+                    alt="Noble Numbat",
+                    width="182",
+                    height="135",
+                    hi_def=True,
+                    loading="auto") | safe
+          }}
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <p>
+            The latest <abbr title="Long-term support">LTS</abbr> version of Ubuntu Server. LTS stands for long-term support &mdash; which means five years of free security and maintenance updates, extended to 10 years with <a href="/pro">Ubuntu Pro</a>.
+          </p>
+          <hr class="p-rule" />
+          <p class="u-responsive-realign">
+            <a class="p-button--positive"
+               href="/download/server/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64&amp;lts=true"
+               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });">Download {{ releases.lts.full_version }} LTS
+            </a>
+            {% if releases.lts.server_iso_size %}<span class="u-text--muted">{{ releases.lts.server_iso_size }}</span>{% endif %}
+          </p>
+          <p>
+            <a href="/download/alternative-downloads">Alternative downloads&nbsp;&rsaquo;</a>
+          </p>
+          <p>
+            <a href="#architectures">Alternative architectures&nbsp;&rsaquo;</a>
+          </p>
+        </div>
 
-<section class="p-strip--light" id="architectures">
-  <div class="row">
-    <div class="col-10">
-      <h2>Alternative architectures</h2>
-    </div>
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-3 p-card">
-      <h3 class="p-card__title">Ubuntu Server for ARM</h3>
-      <p>
-        Optimised for hyperscale deployments and certified on ARM chipsets &mdash; Ubuntu Server for ARM includes the 64-bit ARMv7 and ARMv8 platforms.
-      </p>
-      <p>
-        <a href="/download/server/arm">Get Ubuntu Server for ARM&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-    <div class="col-3 p-card">
-      <h3 class="p-card__title">Ubuntu for POWER</h3>
-      <p>
-        Ubuntu is available on the IBM POWER platform, bringing the entire Ubuntu ecosystem to IBM POWER.
-      </p>
-      <p>
-        <a href="/download/server/power">Get Ubuntu Server for POWER&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-    <div class="col-3 p-card">
-      <h3 class="p-card__title">Ubuntu for IBM Z (s390x)</h3>
-      <p>
-        IBM Z and LinuxONE leverage open technology solutions to meet the demands of the new application economy. Ubuntu is now available on those platforms with Multipass, MicroK8s and more.
-      </p>
-      <p>
-        <a href="/download/server/s390x">Get Ubuntu Server for IBM Z&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-    <div class="col-3 p-card">
-      <h3 class="p-card__title">Ubuntu for RISC-V</h3>
-      <p>
-        Ubuntu - now available for multiple RISC-V platforms to accelerate innovation.
-      </p>
-      <p>
-        <a href="/download/risc-v">Get Ubuntu Server for SiFive Unmatched, StarFive VisionFive and Allwinner Nezha&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-  </div>
-</section>
+        <nav class="p-tabs js-tabbed-content"
+             id="first-child-tab"
+             data-maintain-hash="true">
+          <ul class="p-tabs__list u-no-margin--bottom" role="tablist">
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="true"
+                 id="release-notes-tab-lts"
+                 href="#release-notes-lts"
+                 aria-controls="release-notes-lts">What's new</a>
+            </li>
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="false"
+                 id="system-requirements-tab-lts"
+                 href="#system-requirements-lts"
+                 aria-controls="system-requirements-lts"
+                 tabindex="-1">System requirements</a>
+            </li>
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="false"
+                 id="how-to-install-tab-lts"
+                 href="#how-to-install-lts"
+                 aria-controls="how-to-install-lts"
+                 tabindex="-1">How to install</a>
+            </li>
+          </ul>
+        </nav>
 
-{% with first_item="_download_server_installation", second_item="_download_server_guide", third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+        <div class="p-tabs__content p-section"
+             id="release-notes-lts"
+             role="tabpanel"
+             aria-labelledby="release-notes-tab-lts">
+          <ul class="p-list--divided">
+            <li class="p-list__item is-ticked">Linux 6.8 kernel with low latency kernel features enabled by default</li>
+            <li class="p-list__item is-ticked">
+              Frame pointers enabled by default for the majority of packages on x86 architectures
+            </li>
+            <li class="p-list__item is-ticked">
+              Rust 1.75, .NET 8 and OpenJDK 21 with TCK certification in addition to other toolchain upgrades
+            </li>
+            <li class="p-list__item is-ticked">64-bit time_t by default on armhf to address the year 2038 issue</li>
+            <li class="p-list__item is-ticked">AppArmor-enforced unprivileged user namespaces restricted by default</li>
+          </ul>
+          <hr class="p-rule" />
+          <p>
+            <a href="{{ releases.lts.release_notes_url }}"
+               aria-label="{{ releases.lts.short_version }} LTS release notes">Release notes&nbsp;&rsaquo;</a>
+          </p>
+        </div>
 
-{% endblock content %}
+        <div class="p-tabs__content p-section"
+             id="system-requirements-lts"
+             role="tabpanel"
+             aria-labelledby="system-requirements-tab-lts">
+          <ul class="p-list--divided">
+            <li class="p-list__item is-ticked">1 GHz processor or better</li>
+            <li class="p-list__item is-ticked">1 GB system memory</li>
+            <li class="p-list__item is-ticked">5 GB of free hard drive space</li>
+            <li class="p-list__item is-ticked">Either a USB port or a DVD drive for the installer media</li>
+          </ul>
+          <hr class="p-rule" />
+          <p>
+            <a href="https://documentation.ubuntu.com/server/reference/installation/system-requirements/">Detailed system requirements&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+
+        <div class="p-tabs__content p-section"
+             id="how-to-install-lts"
+             role="tabpanel"
+             aria-labelledby="how-to-install-tab-lts">
+          <p>To install Ubuntu Server:</p>
+          <ol class="p-list--divided">
+            <li class="p-list__item">Download the ISO image</li>
+            <li class="p-list__item">
+              Create a bootable USB flash drive with <a href="https://etcher.balena.io/">balenaEtcher</a> or similar
+            </li>
+            <li class="p-list__item">Boot from the USB flash drive</li>
+          </ol>
+          <hr class="p-rule" />
+          <p>
+            <a href="/tutorials/install-ubuntu-server">Follow the step-by-step tutorial&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <hr class="p-rule" />
+    </div>
+
+    <div class="row--50-50 p-section">
+      <div class="col">
+        <div class="p-section">
+          <h2>Ubuntu {{ releases.latest.full_version }}</h2>
+        </div>
+        <div class="p-image-wrapper u-hide--small">
+          {{ image(url="https://assets.ubuntu.com/v1/ce1666ec-pp-master-orange-hex.svg",
+                    alt="Plucky Puffin",
+                    width="182",
+                    height="192",
+                    hi_def=True,
+                    loading="auto") | safe
+          }}
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <p>
+            The latest version of Ubuntu Server, including nine months of security and maintenance updates until {{ releases.latest.eol }}.
+          </p>
+          <hr />
+          <p class="u-responsive-realign">
+            <a class="p-button--positive"
+               href="/download/server/thank-you?version={{ releases.latest.full_version }}&amp;architecture=amd64"
+               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });">Download {{ releases.latest.full_version }}
+            </a>
+            {% if releases.latest.server_iso_size %}
+              <span class="u-text--muted">{{ releases.latest.server_iso_size }}</span>
+            {% endif %}
+          </p>
+        </div>
+
+        <nav class="p-tabs js-tabbed-content"
+             id="second-child-tab"
+             data-maintain-hash="true">
+          <ul class="p-tabs__list u-no-margin--bottom" role="tablist">
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="true"
+                 id="release-notes-tab-latest"
+                 href="#release-notes-latest"
+                 aria-controls="release-notes-latest">What's new</a>
+            </li>
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="false"
+                 id="system-requirements-tab-latest"
+                 href="#system-requirements-latest"
+                 aria-controls="system-requirements-latest"
+                 tabindex="-1">System requirements</a>
+            </li>
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="false"
+                 id="how-to-install-tab-latest"
+                 href="#how-to-install-latest"
+                 aria-controls="how-to-install-latest"
+                 tabindex="-1">How to install</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="p-tabs__content p-section"
+             id="release-notes-latest"
+             role="tabpanel"
+             aria-labelledby="release-notes-tab-latest">
+          <ul class="p-list--divided">
+            <li class="p-list__item is-ticked">Linux 6.14 kernel</li>
+            <li class="p-list__item is-ticked">Updates to new Database versions including MySQL 8.4 and Postgresql 17</li>
+            <li class="p-list__item is-ticked">Updated Virtualization stack based on QEMU 9.2 and libvirt 11.0</li>
+            <li class="p-list__item is-ticked">Chrony as NTP client using the secure NTS by default</li>
+          </ul>
+          <hr class="p-rule" />
+          <ul class="u-responsive-realign p-inline-list">
+            <li class="p-inline-list__item">
+              <a href="/blog/canonical-releases-ubuntu-25-04-plucky-puffin"
+                 aria-label="{{ releases.latest.short_version }} Press Release">Press release&nbsp;&rsaquo;</a>
+            </li>
+            <li class="p-inline-list__item">
+              <a href="{{ releases.latest.release_notes_url }}"
+                 aria-label="{{ releases.latest.short_version }} release notes">Release notes&nbsp;&rsaquo;</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="p-tabs__content p-section"
+             id="system-requirements-latest"
+             role="tabpanel"
+             aria-labelledby="system-requirements-tab-latest">
+          <ul class="p-list--divided">
+            <li class="p-list__item is-ticked">1 GHz processor or better</li>
+            <li class="p-list__item is-ticked">1 GB system memory</li>
+            <li class="p-list__item is-ticked">2.5 GB of free hard drive space</li>
+            <li class="p-list__item is-ticked">Either a USB port or a DVD drive for the installer media</li>
+          </ul>
+          <hr class="p-rule" />
+          <p>
+            <a href="https://documentation.ubuntu.com/server/reference/installation/system-requirements/">Detailed system requirements&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+
+        <div class="p-tabs__content p-section"
+             id="how-to-install-latest"
+             role="tabpanel"
+             aria-labelledby="how-to-install-tab-latest">
+          <p>To install Ubuntu Server:</p>
+          <ol class="p-list--divided">
+            <li class="p-list__item">Download the ISO image</li>
+            <li class="p-list__item">
+              Create a bootable USB flash drive with <a href="https://etcher.balena.io/">balenaEtcher</a> or similar
+            </li>
+            <li class="p-list__item">Boot from the USB flash drive</li>
+          </ol>
+          <hr class="p-rule" />
+          <p>
+            <a href="/tutorials/install-ubuntu-server">Follow the step-by-step tutorial&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <section class="p-section">
+      <div class="row">
+        <hr class="p-rule" />
+        <div class="col-3 p-section--shallow">
+          <h3 class="p-text--small-caps">Alternative downloads</h3>
+        </div>
+        <div class="col-9 col-medium-6">
+          <div class="row p-section--shallow">
+            <div class="col-3 col-medium-3">
+              <h4 class="p-heading--5">BitTorrent</h4>
+            </div>
+            <div class="col-6 col-medium-3">
+              <p>BitTorrent sometimes enables higher download speeds and more reliable downloads of large files.</p>
+              <hr class="p-rule" />
+              <a class="p-button"
+                 href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-live-server-amd64.iso.torrent">Torrent for {{ releases.lts.full_version }} LTS</a>
+              <a class="p-button"
+                 href="https://releases.ubuntu.com/{{ releases.latest.short_version }}/ubuntu-{{ releases.latest.full_version }}-live-server-amd64.iso.torrent">Torrent for {{ releases.latest.full_version }}</a>
+            </div>
+          </div>
+          <hr class="p-rule" />
+          <div class="row p-section--shallow">
+            <div class="col-3 col-medium-3">
+              <h4 class="p-heading--5">Previous releases</h4>
+            </div>
+            <div class="col-6 col-medium-3">
+              <p>Previous long-term support versions of Ubuntu Server, still supported.</p>
+              <hr class="p-rule" />
+              <a class="p-button"
+                 href="/download/server/thank-you?version={{ releases.previous_lts.full_version }}&amp;architecture=amd64&amp;lts=true"
+                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.previous_lts.full_version }}', 'eventValue' : undefined });">Download {{ releases.previous_lts.full_version }} LTS
+              </a>
+              <a class="p-button"
+                 href="/download/server/thank-you?version={{ releases.previous_previous_lts.full_version }}&amp;architecture=amd64&amp;lts=true"
+                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.previous_previous_lts.full_version }}', 'eventValue' : undefined });">Download {{ releases.previous_previous_lts.full_version }} LTS
+              </a>
+            </div>
+          </div>
+          <hr class="p-rule" />
+          <div class="row p-section--shallow">
+            <div class="col-3 col-medium-3">
+              <h4 class="p-heading--5">
+                <a href="/download/alternative-downloads">Other versions&nbsp;&rsaquo;</a>
+              </h4>
+            </div>
+            <div class="col-6 col-medium-3">
+              <p>
+                Other versions of Ubuntu Server including torrents, the network installer, a list of local mirrors and past releases.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-section"
+             id="architectures"
+             style="scroll-margin-top: 3.4rem">
+      <div class="row">
+        <hr class="p-rule" />
+        <div class="col-3 p-section--shallow">
+          <h3 class="p-text--small-caps">Alternative architectures</h3>
+        </div>
+        <div class="col-9 col-medium-6">
+          <div class="row p-section--shallow">
+            <div class="col-3 col-medium-3">
+              <h4 class="p-heading--5">
+                <a href="/download/server/arm">ARM&nbsp;&rsaquo;</a>
+              </h4>
+            </div>
+            <div class="col-6 col-medium-3">
+              <p>
+                Optimised for hyperscale deployments and certified on ARM chipsets &mdash; Ubuntu Server for ARM includes the 64-bit ARMv7 and ARMv8 platforms.
+              </p>
+            </div>
+          </div>
+          <hr class="p-rule" />
+          <div class="row p-section--shallow">
+            <div class="col-3 col-medium-3">
+              <h4 class="p-heading--5">
+                <a href="/download/server/power">IBM POWER&nbsp;&rsaquo;</a>
+              </h4>
+            </div>
+            <div class="col-6 col-medium-3">
+              <p>Ubuntu is available on the IBM POWER platform, bringing the entire Ubuntu ecosystem to IBM POWER.</p>
+            </div>
+          </div>
+          <hr class="p-rule" />
+          <div class="row p-section--shallow">
+            <div class="col-3 col-medium-3">
+              <h4 class="p-heading--5">
+                <a href="/download/server/s390x">IBM Z (s390x)&nbsp;&rsaquo;</a>
+              </h4>
+            </div>
+            <div class="col-6 col-medium-3">
+              <p>
+                IBM Z and LinuxONE leverage open technology solutions to meet the demands of the new application economy. Ubuntu is now available on those platforms with Multipass, MicroK8s and more.
+              </p>
+            </div>
+          </div>
+          <hr class="p-rule" />
+          <div class="row p-section--shallow">
+            <div class="col-3 col-medium-3">
+              <h4 class="p-heading--5">
+                <a href="/download/risc-v">RISC-V&nbsp;&rsaquo;</a>
+              </h4>
+            </div>
+            <div class="col-6 col-medium-3">
+              <p>Ubuntu &mdash; now available for multiple RISC-V platforms to accelerate innovation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% include 'shared/_download-ubuntu-thank-you-pro-section.html' %}
+
+    <section class="p-section">
+      <div class="p-section--shallow u-fixed-width">
+        <hr class="p-rule" />
+        <h2 class="p-muted-heading">More from Canonical</h2>
+      </div>
+      <div class="row">
+        <div class="col-3 col-medium-6">
+          <div class="row">
+            <div class="col-6 col-medium-2">
+              <h3>
+                <a href="https://maas.io/?_gl=1*1y3394w*_gcl_au*Mzg2MjE3ODk3LjE3MDI0NjY1NDY.&_ga=2.256850242.873815666.1709630805-805571671.1709630804">
+                  {{ image(url="https://assets.ubuntu.com/v1/d3039f38-MAAS-logo.svg",
+                                    alt="MAAS",
+                                    width="104",
+                                    height="42",
+                                    hi_def=True,
+                                    loading="auto") | safe
+                  }}
+                </a>
+              </h3>
+            </div>
+            <div class="col-6 col-medium-4">
+              <p>Build a bare metal cloud with super fast server provisioning.</p>
+              <hr class="p-rule" />
+              <p>
+                <a href="https://maas.io/">Learn more about MAAS&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 col-medium-6">
+          <div class="row">
+            <div class="col-6 col-medium-2">
+              <h3>
+                <a href="https://canonical.com/lxd">
+                  {{ image(url="https://assets.ubuntu.com/v1/84ed7eb1-LXD-logo.svg",
+                                    alt="LXD",
+                                    width="80",
+                                    height="42",
+                                    hi_def=True,
+                                    loading="auto") | safe
+                  }}
+                </a>
+              </h3>
+            </div>
+            <div class="col-6 col-medium-4">
+              <p>Fast, dense, and secure container and VM management at any scale.</p>
+              <hr class="p-rule" />
+              <p>
+                <a href="https://canonical.com/lxd">Learn more about LXD&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 col-medium-6">
+          <div class="row">
+            <div class="col-6 col-medium-2">
+              <h3>
+                <a href="https://juju.is/">
+                  {{ image(url="https://assets.ubuntu.com/v1/35f593dd-Juju-logo.svg",
+                                    alt="Juju",
+                                    width="79",
+                                    height="42",
+                                    hi_def=True,
+                                    loading="auto") | safe
+                  }}
+                </a>
+              </h3>
+            </div>
+            <div class="col-6 col-medium-4">
+              <p>Design and deploy entire workloads in just a few clicks.</p>
+              <hr class="p-rule" />
+              <p>
+                <a href="https://juju.is/">Learn more about Juju&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 col-medium-6">
+          <div class="row">
+            <div class="col-6 col-medium-2">
+              <h3>
+                <a href="https://multipass.run/">
+                  {{ image(url="https://assets.ubuntu.com/v1/ede1a596-Multipass-logo.svg",
+                                    alt="Multipass",
+                                    width="141",
+                                    height="42",
+                                    hi_def=True,
+                                    loading="auto") | safe
+                  }}
+                </a>
+              </h3>
+            </div>
+            <div class="col-6 col-medium-4">
+              <p>Spin up Ubuntu VMs on Windows, Mac and Linux.</p>
+              <hr class="p-rule" />
+              <p>
+                <a href="https://multipass.run/">Learn more about Multipass&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-section">
+      <hr class="p-rule is-fixed-width" />
+      <div class="row">
+        <div class="col-3 col-medium-2">
+          <div class="p-section">
+            <h2 class="p-muted-heading">Resources</h2>
+          </div>
+        </div>
+        <div class="col-9">
+          <div class="row">
+            <div class="col-3 col-medium-2">
+              <h3 class="p-heading--5">
+                <a href="/server/docs">Ubuntu Server documentation</a>
+              </h3>
+              <p>The Ubuntu Server documentation, curated by community and Ubuntu developers.</p>
+            </div>
+            <div class="col-3 col-medium-2">
+              <h3 class="p-heading--5">
+                <a href="https://askubuntu.com/">Ask Ubuntu</a>
+              </h3>
+              <p>Stuck somewhere? Get your Ubuntu questions answered by power users.</p>
+            </div>
+            <div class="col-3 col-medium-2">
+              <h3 class="p-heading--5">
+                <a href="https://discourse.ubuntu.com/">Community Discourse</a>
+              </h3>
+              <p>Discuss with Ubuntu developers and make your voice heard.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  {% include 'download/server/_multipass.html' %}
+
+  {% include 'download/server/_choose.html' %}
+
+  <section class="p-section--deep">
+    <div class="row">
+      <hr class="p-rule" />
+      <div class="col-3 col-medium-6">
+        <div class="p-section--shallow">
+          <h2 class="p-text--small-caps">
+            <a href="/blog/tag/ubuntu-server">Latest from&nbsp;our&nbsp;blog&nbsp;&rsaquo;</a>
+          </h2>
+        </div>
+      </div>
+      <div class="col-9 col-medium-6">
+        <div class="row p-section--shallow" id="ubuntu-server-latest"></div>
+      </div>
+    </div>
+
+    <template style="display:none" id="ubuntu-server-template">
+      <div class="col-3 col-medium-2">
+        <div class="u-crop--16-9">
+          <div class="article-image p-image-wrapper"></div>
+        </div>
+        <h3 class="p-heading--5">
+          <a class="article-link article-title"></a>
+        </h3>
+        <p class="article-excerpt"></p>
+      </div>
+    </template>
+  </section>
+
+  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script>
+    canonicalLatestNews.fetchLatestNews({
+      articlesContainerSelector: "#ubuntu-server-latest",
+      articleTemplateSelector: "#ubuntu-server-template",
+      excerptLength: 200,
+      tagId: 1610,
+      limit: 3
+    })
+
+    function showTab(tabId, contentId, isSelected) {
+      const tab = document.getElementById(tabId);
+      const content = document.getElementById(contentId);
+
+      tab.setAttribute("aria-selected", isSelected);
+      content.classList.toggle("u-hide", !isSelected);
+    }
+
+    function handleTab(tabContainerId, targetTabId, targetContentId) {
+      const tabContainer = document.getElementById(tabContainerId);
+      Array.from(tabContainer.querySelectorAll(".p-tabs__link")).forEach(tab => {
+        const tabId = tab.getAttribute("id");
+        const isSelected = tabId === targetTabId;
+        tab.setAttribute("aria-selected", isSelected);
+        const contentId = tabId.replace("-tab", "");
+        document.getElementById(contentId)?.classList.toggle("u-hide", !isSelected);
+      });
+    }
+
+    // This page has a nested tab section, this script will show 
+    // the default parent tab when the page is loaded if the hash is a child tab
+    function showParentTab() {
+      const currentHash = window.location.hash;
+      const activeTab = document.querySelector(
+        ".p-tabs__link[href='" + currentHash + "']"
+      );
+      const targetIds = ["release-notes-lts", "system-requirements-lts", "how-to-install-lts", "release-notes-latest", "system-requirements-latest", "how-to-install-latest"];
+
+      if (activeTab && targetIds.includes(activeTab.getAttribute("aria-controls"))) {
+        showTab("manual-install-tab", "manual-install", true);
+      }
+
+      const ltsTabs = ["#release-notes-lts", "#system-requirements-lts", "#how-to-install-lts"];
+      const latestTabs = ["#release-notes-latest", "#system-requirements-latest", "#how-to-install-latest"];
+
+      if (ltsTabs.includes(currentHash)) {
+        const isSelected = Array.from(document.getElementById("second-child-tab").querySelectorAll(".p-tabs__link"))
+          .some(tab => tab.getAttribute("aria-selected") === "true");
+        if (!isSelected) showTab("release-notes-tab-latest", "release-notes-latest", true);
+      }
+
+      if (latestTabs.includes(currentHash)) {
+        const isSelected = Array.from(document.getElementById("first-child-tab").querySelectorAll(".p-tabs__link"))
+          .some(tab => tab.getAttribute("aria-selected") === "true");
+        if (!isSelected) showTab("release-notes-tab-lts", "release-notes-lts", true);
+      }
+
+      if (currentHash === "#manual-install") {
+        handleTab("first-child-tab", "release-notes-tab-lts", "release-notes-lts");
+        handleTab("second-child-tab", "release-notes-tab-latest", "release-notes-latest");
+      }
+    }
+
+    // Prevents non-tab hash links from hiding the tab content
+    function handleNonTabHashClick() {
+      const currentHash = window.location.hash;
+      const activeTab = document.querySelector(
+        ".p-tabs__link[href='#release-note-lts']"
+      );
+      const targetControl = activeTab?.getAttribute("aria-controls");
+      const tabContentContainers = document.querySelectorAll(".p-tabs__content");
+
+      if (currentHash && currentHash == "#architectures") {
+        tabContentContainers.forEach(container => {
+          if (container.id !== targetControl && container.id !== "manual-install") {
+            container.classList.add("u-hide")
+          }
+        })
+      }
+    }
+
+    // Show release notes tab when the manual install tab is clicked
+    function showBaseNestedTab() {
+      const targetTab = document.querySelector(".p-tabs__link[href='#manual-install']");
+
+      targetTab.addEventListener("click", () => {
+        handleTab("first-child-tab", "release-notes-tab-lts", "release-notes-lts");
+        handleTab("second-child-tab", "release-notes-tab-latest", "release-notes-latest");
+      });
+    }
+
+
+    addEventListener("DOMContentLoaded", () => {
+      handleNonTabHashClick();
+      showParentTab();
+      showBaseNestedTab();
+    });
+  </script>
+
+{% endblock %}

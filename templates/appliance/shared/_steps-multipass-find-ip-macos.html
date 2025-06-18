@@ -1,12 +1,9 @@
 <li class="p-stepped-list__item">
-  <h4 class="p-stepped-list__title">
-    Find your appliance
-  </h4>
+  <h4 class="p-stepped-list__title">Find your appliance</h4>
   <div class="p-stepped-list__content">
-    <p>
-      To use VirtualBox's port forwarding run:
-    </p>
-    <pre><code>sudo VBoxManage controlvm "&lt;instance name&gt;" --natpf1 "{{ appliance.alias }},tcp,,{{ appliance.port }},,{{ appliance.port }}"</code></pre>
+    <p>To use VirtualBox's port forwarding run:</p>
+    <pre><code>sudo VBoxManage controlvm "&lt;instance name&gt;" --natpf1
+"{{ appliance.alias }},tcp,,{{ appliance.port }},,{{ appliance.port }}"</code></pre>
     <p>
       You can find more information about what this command means in the <a href="https://multipass.run/docs/using-virtualbox-in-multipass-macos#port-forwarding">Multipass documentation</a>.
     </p>

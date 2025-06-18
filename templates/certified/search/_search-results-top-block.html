@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-4 col-medium-3">
+    <p class="p-heading--5">
+        {% if total_results %}
+          {% if total_results and total_results > 1 %}
+            {{ offset + 1 }}
+            &ndash;
+            {% if offset + limit > total_results %}
+              {{ total_results }}
+            {% else %}
+              {{ offset + limit }}
+            {% endif %}
+            of
+          {% endif %}
+          {{ total_results }} result
+          {%- if total_results != 1 -%}s{% endif %}
+        {% endif %}
+    </p>
+  </div>
+  <div class="col-5 col-medium-3 u-align--right">
+    {% with total_results=total_results, limit=limit, page_position="top" %}
+      {% include "certified/search/_result-count-selector.html" %}
+    {% endwith %}
+  </div>
+</div>

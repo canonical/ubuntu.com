@@ -43,7 +43,7 @@ export const FormProvider = ({
 
   useEffect(() => {
     setProduct(
-      window.blenderProductList[`blender-support-${support}-${period}`] ?? null
+      window.blenderProductList[`blender-support-${support}-${period}`] ?? null,
     );
   }, [support, period]);
 

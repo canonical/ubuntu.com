@@ -1,8 +1,10 @@
 // placeholders that need to be moved to vanilla
 
 $nudge--small: 0.55rem;
-$p-small-lh-diff: map-get($line-heights, default-text) -
-  map-get($line-heights, small);
+$p-small-lh-diff: map-get($line-heights, default-text) - map-get(
+    $line-heights,
+    small
+  );
 
 %small-text-base {
   font-size: math.div(1rem, pow($ms-ratio, 1));

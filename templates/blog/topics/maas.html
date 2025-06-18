@@ -2,25 +2,28 @@
 
 {% block title %}MAAS{% endblock %}
 
-{% block meta_description %}All the latest news on MAAS (Metal as a Service) - the smartest way to manage bare metal.{% endblock %}
+{% block meta_description %}
+  All the latest news on MAAS (Metal as a Service) - the smartest way to manage bare metal.
+{% endblock %}
 
 {% block content %}
 
-  <section class="p-strip--suru-blog-header">
+  <section class="p-strip--suru-blog-header is-dark">
     <div class="u-fixed-width">
       <h1>
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/4fac1d52-MAAS-Logo.svg",
-            alt="MAAS",
-            height="50",
-            width="200",
-            hi_def=True,
-            loading="auto"
-          ) | safe
+        {{ image(url="https://assets.ubuntu.com/v1/4fac1d52-MAAS-Logo.svg",
+                alt="MAAS",
+                height="50",
+                width="200",
+                hi_def=True,
+                loading="auto") | safe
         }}
       </h1>
-      <h2 class="p-heading--4">All the latest news on MAAS<br>&ndash; the smartest way to manage bare metal.</h2>
+      <h2 class="p-heading--4">
+        All the latest news on MAAS
+        <br />
+        &ndash; the smartest way to manage bare metal.
+      </h2>
       <p>
         <a class="p-link--inverted" href="https://maas.io">Learn more about MAAS</a>
       </p>

@@ -17,7 +17,7 @@ describe("Hourly cost and total savings calculations", function () {
         ram={{ value: 8, error: "" }}
         persistentStorage={{ value: 80, error: "" }}
         supportLevel="fully-managed"
-      />
+      />,
     );
   });
 
@@ -28,7 +28,7 @@ describe("Hourly cost and total savings calculations", function () {
   it("checks totals are correct with default values", () => {
     expect(calculationsWrapper.find("#hourly-cost").text()).toEqual("$0.0407");
     expect(calculationsWrapper.find("#total-savings").text()).toEqual(
-      "$907,656"
+      "$907,656",
     );
   });
 
@@ -41,11 +41,11 @@ describe("Hourly cost and total savings calculations", function () {
         ram={{ value: 8, error: "" }}
         persistentStorage={{ value: 80, error: "" }}
         supportLevel="fully-managed"
-      />
+      />,
     );
     expect(calculationsWrapper.find("#hourly-cost").text()).toEqual("$0.0243");
     expect(calculationsWrapper.find("#total-savings").text()).toEqual(
-      "$2,675,637"
+      "$2,675,637",
     );
   });
 
@@ -58,11 +58,11 @@ describe("Hourly cost and total savings calculations", function () {
         ram={{ value: 8, error: "" }}
         persistentStorage={{ value: 80, error: "" }}
         supportLevel="fully-managed"
-      />
+      />,
     );
     expect(calculationsWrapper.find("#hourly-cost").text()).toEqual("$0.0792");
     expect(calculationsWrapper.find("#total-savings").text()).toEqual(
-      "$5,824,474"
+      "$5,824,474",
     );
   });
 
@@ -75,11 +75,11 @@ describe("Hourly cost and total savings calculations", function () {
         ram={{ value: 8, error: "" }}
         persistentStorage={{ value: 80, error: "" }}
         supportLevel="fully-managed"
-      />
+      />,
     );
     expect(calculationsWrapper.find("#hourly-cost").text()).toEqual("$0.0407");
     expect(calculationsWrapper.find("#total-savings").text()).toEqual(
-      "$2,883,912"
+      "$2,883,912",
     );
   });
 
@@ -92,11 +92,11 @@ describe("Hourly cost and total savings calculations", function () {
         ram={{ value: 32, error: "" }}
         persistentStorage={{ value: 80, error: "" }}
         supportLevel="fully-managed"
-      />
+      />,
     );
     expect(calculationsWrapper.find("#hourly-cost").text()).toEqual("$0.0818");
     expect(calculationsWrapper.find("#total-savings").text()).toEqual(
-      "$5,755,049"
+      "$5,755,049",
     );
   });
 
@@ -109,11 +109,11 @@ describe("Hourly cost and total savings calculations", function () {
         ram={{ value: 8, error: "" }}
         persistentStorage={{ value: 210, error: "" }}
         supportLevel="fully-managed"
-      />
+      />,
     );
     expect(calculationsWrapper.find("#hourly-cost").text()).toEqual("$0.0486");
     expect(calculationsWrapper.find("#total-savings").text()).toEqual(
-      "$699,381"
+      "$699,381",
     );
   });
 
@@ -126,7 +126,7 @@ describe("Hourly cost and total savings calculations", function () {
         ram={{ value: 8, error: "" }}
         persistentStorage={{ value: 80, error: "" }}
         supportLevel="supported"
-      />
+      />,
     );
     expect(calculationsWrapper.find("#hourly-cost").text()).toEqual("$0.2064");
     expect(calculationsWrapper.find("#total-savings").text()).toEqual("$0");
@@ -141,7 +141,7 @@ describe("Hourly cost and total savings calculations", function () {
         ram={{ value: 8, error: "" }}
         persistentStorage={{ value: 210, error: "" }}
         supportLevel="fully-managed"
-      />
+      />,
     );
     expect(calculationsWrapper.find("#hourly-cost").text()).toEqual("-");
     expect(calculationsWrapper.find("#total-savings").text()).toEqual("-");

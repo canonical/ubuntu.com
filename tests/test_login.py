@@ -15,11 +15,11 @@ class LogoutRedirects(unittest.TestCase):
 
         self.assertEqual(302, response.status_code)
 
-        self.assertEqual("http://localhost/", response.location)
+        self.assertEqual("/", response.location)
 
     def test_logout_with_return(self):
         response = self.client.get("/logout?return_to=/pro")
 
         self.assertEqual(302, response.status_code)
 
-        self.assertEqual("http://localhost/pro", response.location)
+        self.assertEqual("/pro", response.location)

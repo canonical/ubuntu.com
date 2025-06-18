@@ -1,0 +1,125 @@
+<div>
+  <h2>Sign up for our newsletter</h2>
+  <p>Get the latest Ubuntu news and updates in your inbox.</p>
+</div>
+
+<form action="/marketo/submit"
+      method="post"
+      id="mktoForm_5883"
+      onsubmit="stringifyCustomFields(); ga('send', 'Newsletter', 'Signup', '{{ ga_event_title }} newsletter signup');">
+  <label class="is-required" for="email">Email:</label>
+  <input required
+         id="email"
+         name="email"
+         maxlength="255"
+         type="email"
+         pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
+  {% if request.path == '/download/desktop/thank-you' %}
+    <textarea class="u-hide"
+              id="ubuntu_desktop_usage"
+              name="UbuntuDesktopPlannedUsage"
+              maxlength="2000"></textarea>
+    <label for="ubuntu_desktop_usage_fields" id="ubuntu_desktop_usage">How do you plan to use Ubuntu Desktop?</label>
+    <div class="p-section--shallow" id="ubuntu_desktop_usage_fields" style="display: flex; align-items: center; gap: 24px;">
+        <label class="p-checkbox js-checkbox u-no-margin">
+          <input type="checkbox" aria-labelledby="work" class="p-checkbox__input" />
+          <span class="p-checkbox__label" id="work">Work</span>
+        </label>
+        <label class="p-checkbox js-checkbox u-no-margin">
+          <input type="checkbox" aria-labelledby="education" class="p-checkbox__input" />
+          <span class="p-checkbox__label" id="education">Education</span>
+        </label>
+        <label class="p-checkbox js-checkbox u-no-margin">
+          <input type="checkbox" aria-labelledby="personal" class="p-checkbox__input" />
+          <span class="p-checkbox__label" id="personal">Personal use</span>
+        </label>
+    </div>
+    <hr class="p-rule" />
+  {% endif %}
+  <div class="p-section--shallow">
+    <label class="p-checkbox">
+      <input required
+             class="p-checkbox__input"
+             value="yes"
+             aria-labelledby="canonicalUpdatesOptIn"
+             name="canonicalUpdatesOptIn"
+             type="checkbox" />
+      <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+    </label>
+    <p>
+      By submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
+    </p>
+    <hr class="p-rule" />
+    <button type="submit" class="p-button--positive">Subscribe now</button>
+  </div>
+
+  <div class="p-section--shallow">
+    <input value="5883" name="formid" type="hidden" />
+    <input type="hidden" name="Consent_to_Processing__c" value="yes" />
+    <input type="hidden"
+           aria-hidden="true"
+           aria-label="hidden field"
+           name="returnURL"
+           value="{{ returnUrl }}#newsletter-signup" />
+    <input type="hidden"
+           aria-hidden="true"
+           aria-label="hidden field"
+           name="utm_campaign"
+           id="utm_campaign"
+           value="" />
+    <input type="hidden"
+           aria-hidden="true"
+           aria-label="hidden field"
+           name="utm_medium"
+           id="utm_medium"
+           value="" />
+    <input type="hidden"
+           aria-hidden="true"
+           aria-label="hidden field"
+           name="utm_source"
+           id="utm_source"
+           value="" />
+    <input type="hidden"
+           aria-hidden="true"
+           aria-label="hidden field"
+           name="utm_content"
+           id="utm_content"
+           value="" />
+    <input type="hidden"
+           aria-hidden="true"
+           aria-label="hidden field"
+           name="utm_term"
+           id="utm_term"
+           value="" />
+    <input type="hidden"
+           aria-hidden="true"
+           aria-label="hidden field"
+           id="preferredLanguage"
+           name="preferredLanguage"
+           maxlength="255"
+           value="" />
+    <input type="hidden" name="thankyoumessage" value="Thank you for signing up for our newsletter!
+      <br/>
+      In these regular emails you will find the latest updates from Ubuntu and upcoming events where you can meet our team." />
+    </div>
+  </form>
+
+  <script>
+    function stringifyCustomFields() {
+      const checkboxes = document.querySelectorAll(".js-checkbox");
+      const textarea = document.getElementById("ubuntu_desktop_usage");
+      textarea.value = "";
+      let usageOptions = [];
+
+      checkboxes.forEach(function(checkbox) {
+        if (checkbox.children[0].checked) {
+          const text = checkbox.children[1].id;
+          usageOptions.push(text);
+        }
+      });
+
+      if (usageOptions.length) {
+        textarea.value += usageOptions.join(', ').toLowerCase();
+      }
+    }
+  </script>

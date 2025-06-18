@@ -1,4 +1,3 @@
-import React from "react";
 import { mount, shallow } from "enzyme";
 
 import ListCard from "./ListCard";
@@ -33,15 +32,15 @@ describe("ListCard", () => {
       start_date: "2021-07-09T07:14:56Z",
     });
     const wrapper = mount(
-      <ListCard subscription={freeSubscription} onClick={jest.fn()} />
+      <ListCard subscription={freeSubscription} onClick={jest.fn()} />,
     );
     expect(wrapper.find("[data-test='card-title']").text()).toBe(
-      "Free Personal Token"
+      "Free Personal Token",
     );
     expect(wrapper.find("[data-test='card-type']").exists()).toBeFalsy();
     expect(wrapper.find("[data-test='card-machines']").text()).toBe("2");
     expect(wrapper.find("[data-test='card-start-date']").text()).toBe(
-      "09 Jul 2021"
+      "09 Jul 2021",
     );
     expect(wrapper.find("[data-test='card-end-date']").text()).toBe("Never");
   });
@@ -52,7 +51,7 @@ describe("ListCard", () => {
         subscription={freeSubscription}
         isSelected={true}
         onClick={jest.fn()}
-      />
+      />,
     );
     expect(wrapper.find("Card").hasClass("is-active")).toBe(true);
   });
@@ -60,7 +59,7 @@ describe("ListCard", () => {
   it("calls the onclick function when the card is clicked", () => {
     const onClick = jest.fn();
     const wrapper = shallow(
-      <ListCard subscription={freeSubscription} onClick={onClick} />
+      <ListCard subscription={freeSubscription} onClick={onClick} />,
     );
     wrapper.find("Card").simulate("click");
     expect(onClick).toHaveBeenCalled();
@@ -73,13 +72,13 @@ describe("ListCard", () => {
       }),
     });
     const wrapper = shallow(
-      <ListCard subscription={subscription} onClick={jest.fn()} />
+      <ListCard subscription={subscription} onClick={jest.fn()} />,
     );
     expect(wrapper.find("ExpiryNotification").exists()).toBe(true);
     expect(
       wrapper
         .find("[data-test='subscription-card-content']")
-        .hasClass("u-no-padding--top")
+        .hasClass("u-no-padding--top"),
     ).toBe(true);
   });
 
@@ -92,13 +91,13 @@ describe("ListCard", () => {
       }),
     });
     const wrapper = shallow(
-      <ListCard subscription={subscription} onClick={jest.fn()} />
+      <ListCard subscription={subscription} onClick={jest.fn()} />,
     );
     expect(wrapper.find("ExpiryNotification").exists()).toBe(false);
     expect(
       wrapper
         .find("[data-test='subscription-card-content']")
-        .hasClass("u-no-padding--top")
+        .hasClass("u-no-padding--top"),
     ).toBe(false);
   });
 });

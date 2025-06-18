@@ -1,5 +1,4 @@
-import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, screen } from "@testing-library/react";
 import { userInfo } from "../../../utils/test/Mocks";
 import PaymentMethodSummary from "./PaymentMethodSummary";
@@ -12,12 +11,12 @@ describe("PaymentMethodSummary", () => {
   });
 
   it("renders correctly", () => {
-    queryClient.setQueryData("customerInfo", userInfo);
+    queryClient.setQueryData(["customerInfo"], userInfo);
 
     render(
       <QueryClientProvider client={queryClient}>
         <PaymentMethodSummary />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     screen.getByText("ending in 4444");
     expect(screen.getByText("mastercard")).toBeInTheDocument();

@@ -1,3 +1,5 @@
+@use "sass:color";
+
 @mixin ubuntu-p-lists {
   @include ubuntu-p-inline-list-icons;
   @include ubuntu-p-is-trisected;
@@ -11,12 +13,15 @@
   @include ubuntu-p-list-ticked;
   @include ubuntu-p-list-horizontal-divided;
   @include ubuntu-p-faq-stepped-list--detailed;
+  @include ubuntu-p-detailed-list;
+  @include vf-list-item-divided;
 }
 
 @mixin ubuntu-p-inline-list-icons {
   $color-twitter: #111;
   $color-google: #dc4e41;
   $color-linkedin: #0274b3;
+  $color-instagram: #111;
   $color-facebook: #3b5898;
   $color-rss: #ea781a;
 
@@ -64,6 +69,14 @@
 
         &:hover .linkedin-icon {
           fill: $color-linkedin;
+        }
+      }
+
+      &--instagram {
+        @extend %list-link;
+
+        &:hover .instagram-icon {
+          fill: $color-instagram;
         }
       }
 
@@ -245,7 +258,7 @@
           padding-bottom: 0.25rem;
 
           &::after {
-            background-color: transparentize($color-mid-light, 0.5);
+            background-color: color.adjust($color-mid-light, $alpha: -0.5);
           }
         }
       }
@@ -303,14 +316,15 @@
 }
 
 @mixin ubuntu-p-list-ticked {
-  .p-list--ticked {
+  .p-list--ticked,
+  .p-list--ticked--small {
     @extend %vf-clearfix;
     @extend %vf-list;
 
     .p-list__item {
       @extend %vf-list-item;
 
-      border-bottom: 1px solid $colors--light-theme--border-default;
+      border-bottom: 1px solid $colors--theme--border-low-contrast;
       padding-left: 2rem;
       position: relative;
 
@@ -321,13 +335,20 @@
         content: "";
         left: 0;
         position: absolute;
-        top: 0.9rem;
       }
 
       &:last-child {
         border-bottom: 0;
       }
     }
+  }
+
+  .p-list--ticked .p-list__item::before {
+    top: 0.9rem;
+  }
+
+  .p-list--ticked--small .p-list__item::before {
+    top: 0.5rem;
   }
 }
 
@@ -339,13 +360,13 @@
 
     .p-list__item {
       align-items: center;
-      border-bottom: 1px solid $colors--light-theme--border-default;
+      border-bottom: 1px solid $colors--theme--border-low-contrast;
       display: flex;
       padding: 1rem 0;
 
       @media only screen and (min-width: $breakpoint-medium) {
         border-bottom: 0;
-        border-right: 1px solid $colors--light-theme--border-default;
+        border-right: 1px solid $colors--theme--border-low-contrast;
         display: inline-flex;
         padding: 0 2rem;
       }
@@ -401,6 +422,30 @@
     .u-default-max-width {
       display: inline-block;
       max-width: $text-max-width;
+    }
+  }
+}
+
+// XXX: MPT: Can be removed once this is upstreamed in Vanilla
+// https://github.com/canonical/vanilla-framework/issues/5293
+@mixin vf-list-item-divided {
+  .p-list--divided.is-homepage > .p-list__item:first-child {
+    box-shadow: inset 0 1px 0 0 $colors--theme--border-low-contrast;
+  }
+}
+
+@mixin ubuntu-p-detailed-list {
+  .p-stepped-list--detailed {
+    .p-stepped-list__item {
+      @media screen and (width < $breakpoint-large) {
+        border-top: 1px solid $colors--theme--border-low-contrast;
+      }
+
+      .p-stepped-list__content {
+        .p-code-snippet {
+          margin-top: $spv--small;
+        }
+      }
     }
   }
 }

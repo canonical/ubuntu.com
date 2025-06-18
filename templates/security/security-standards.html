@@ -1,0 +1,506 @@
+{% extends "security/base_security.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "macros/_vf_rich-horizontal-list.jinja" import vf_rich_horizontal_list %}
+{% from "macros/_macros-resource.jinja" import resource_section %}
+
+{% block title %}Security standards{% endblock %}
+
+{% block meta_description %}
+  Automate hardening for critical workloads and meet cybersecurity standards like NIST 800-53, FedRAMP, CMMC, and CRA with Ubuntu Pro.
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/13RcVvHBAoywfk3o5Dy-16F3KrMytL9-2v6wWbW444Ko/edit
+{% endblock meta_copydoc %}
+
+{% block body_class %}is-paper{% endblock %}
+
+{% block content %}
+
+  <section class="p-section--hero">
+    <div class="row--50-50-on-large">
+      <div class="col">
+        <div class="p-section--shallow">
+          <h1>Security standards</h1>
+        </div>
+        <div class="p-section--shallow">
+          <p>
+            <strong>Run Ubuntu in high-security environments</strong>. Confidently deploy critical workloads while meeting rigorous cybersecurity standards like NIST 800-53, FedRAMP, and CMMC with Ubuntu Pro. As the publishers of Ubuntu, we’ve also developed automated hardening solutions enabling you to run Ubuntu in any environment.
+          </p>
+        </div>
+        <div class="p-cta-block">
+          <p>
+            <a class="p-button--positive js-invoke-modal"
+               href="/security/certifications#get-in-touch">Contact us</a>
+            <a href="/pro">Learn more about Pro&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="u-embedded-media">
+          <iframe title="Navigating Compliance and Agility | LaunchDarkly's FedRAMP Journey with Ubuntu Pro FIPS"
+                  class="u-embedded-media__element"
+                  src="https://www.youtube.com/embed/3pGy8KIt78k?si=b6cEk2OZek1p91LC"
+                  allowfullscreen=""
+                  frameborder="0"></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="u-fixed-width">
+      <div class="p-notification--information is-light">
+        <div class="p-notification__content">
+          <div class="p-notification__message">
+            FIPS 140-3 is now available for Ubuntu 22.04 LTS. Learn more <a href="/blog/fips-140-3-for-ubuntu-22-04lts"
+    aria-label="Learn more about FIPS 140-3 for Ubuntu 22.04 LTS">here</a>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="u-fixed-width">
+    <hr class="p-rule" />
+  </div>
+
+  {% call(slot) vf_rich_horizontal_list(
+    title_text='Supported standards'
+    ) -%}
+    {%- if slot == 'list_item_1' -%}
+      <h3 id="fips" class="p-heading--6 p-heading--bold u-no-padding--top">
+        <a href="/security/fips">FIPS</a>
+      </h3>
+      <p class="u-no-padding--top">FIPS 140-2 & 140-3 certified modules are available for Ubuntu.</p>
+    {%- endif -%}
+    {%- if slot == 'list_item_2' -%}
+      <h3 id="stig" class="p-heading--6 p-heading--bold u-no-padding--top">
+        <a href="/security/disa-stig">DISA-STIG</a>
+      </h3>
+      <p class="u-no-padding--top">
+        Simplify your DISA-STIG hardening process by taking advantage of the automation available with Ubuntu Security Guide (USG).
+      </p>
+    {%- endif -%}
+    {%- if slot == 'list_item_3' -%}
+      <h3 id="cis" class="p-heading--6 p-heading--bold u-no-padding--top">
+        <a href="/security/cis">CIS</a>
+      </h3>
+      <p class="u-no-padding--top">
+        Harden your systems to CIS benchmark standards using the automation available with Ubuntu Security Guide (USG).
+      </p>
+    {%- endif -%}
+    {%- if slot == 'list_item_4' -%}
+      <h3 id="cra" class="p-heading--6 p-heading--bold u-no-padding--top">
+        <a href="https://canonical.com/solutions/open-source-security/cyber-resilience-act">CRA</a>
+      </h3>
+      <p class="u-no-padding--top">
+        Learn how Canonical’s security vulnerability management program enables you to comply with the requirements of the Cyber Resilience Act.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'list_item_5' -%}
+      <h3 id="nist" class="p-heading--6 p-heading--bold u-no-padding--top">NIST 800-53</h3>
+      <p class="u-no-padding--top">
+        Canonical provides hardening and compliance tools to help you meet NIST 800-53 requirements.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'list_item_6' -%}
+      <h3 id="cmmc" class="p-heading--6 p-heading--bold u-no-padding--top">
+        <a href="/security/cmmc"
+           aria-label="Read more about CMMC compliance with Ubuntu Pro">CMMC</a>
+      </h3>
+      <p class="u-no-padding--top">
+        Canonical provides hardening tools, FIPS 140 certified cryptographic modules, and timely vulnerability patching that enable CMMC compliance.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'list_item_7' -%}
+      <h3 id="fedramp" class="p-heading--6 p-heading--bold u-no-padding--top">
+        <a href="/security/fedramp">FedRAMP</a>
+      </h3>
+      <p class="u-no-padding--top">Find security tools to help you achieve FedRAMP Authority To Operate.</p>
+    {%- endif -%}
+    {%- if slot == 'list_item_8' -%}
+      <h3 id="pci-dss" class="p-heading--6 p-heading--bold u-no-padding--top">
+        <a href="/blog/how-canonical-enables-pci-dss-compliance">PCI-DSS</a>
+      </h3>
+      <p class="u-no-padding--top">
+        Gain extra security and compliance guarantees needed to deploy applications in line with PCI-DSS requirements.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'list_item_9' -%}
+      <h3 id="hipaa" class="p-heading--6 p-heading--bold u-no-padding--top">HIPAA</h3>
+      <p class="u-no-padding--top">Canonical supports your path towards HIPAA compliance.</p>
+    {%- endif -%}
+    {%- if slot == 'list_item_10' -%}
+      <h3 id="nis2" class="p-heading--6 p-heading--bold u-no-padding--top">
+        <a href="/blog/a-comprehensive-guide-to-nis2-compliance-part-3-setting-the-roadmap-and-demonstrating-nis2-compliance">NIS2</a>
+      </h3>
+      <p class="u-no-padding--top">Canonical can help you with your compliance needs related to EU NIS2.</p>
+    {%- endif -%}
+    {%- if slot == 'list_item_11' -%}
+      <h3 id="uk-cyber-essentials"
+          class="p-heading--6 p-heading--bold u-no-padding--top">
+        <a href="/blog/meet-cyber-essentials-requirements-with-ubuntu-pro">UK Cyber Essentials</a>
+      </h3>
+      <p class="u-no-padding--top">Achieve Cyber Essentials through our robust security patching and hardening tools.</p>
+    {%- endif -%}
+  {% endcall -%}
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Security compliance in action</h2>
+      </div>
+      <div class="col">
+        <nav class="p-tabs js-tabbed-content">
+          <ul class="p-tabs__list u-no-margin--bottom"
+              role="tablist"
+              data-maintain-hash="true">
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="true"
+                 id="security-compliance-tab-lucid"
+                 href="#security-compliance-lucid"
+                 aria-controls="security-compliance-lucid">Lucid</a>
+            </li>
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="false"
+                 id="security-compliance-tab-launchdarky"
+                 href="#security-compliance-launchdarky"
+                 aria-controls="security-compliance-launchdarky"
+                 tabindex="-1">LaunchDarkly</a>
+            </li>
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="false"
+                 id="security-compliance-tab-new-mexico"
+                 href="#security-compliance-new-mexico"
+                 aria-controls="security-compliance-new-mexico"
+                 tabindex="-1">New Mexico State University</a>
+            </li>
+          </ul>
+        </nav>
+        <div id="security-compliance-lucid"
+             class="p-tabs__content"
+             role="tabpanel"
+             aria-labelledby="security-compliance-tab-lucid">
+          <div class="p-strip is-shallow">
+            <div class="p-strip is-shallow">
+              {{ image(url="https://assets.ubuntu.com/v1/38004c36-lucid-logo.svg",
+                            alt="Lucid Software",
+                            width="89",
+                            height="22",
+                            hi_def=True,
+                            fmt="svg",
+                            loading="lazy") | safe
+              }}
+            </div>
+            <h3>Ubuntu Pro helps Lucid Software meet FedRAMP compliance for government contracts</h3>
+            <p>
+              By deploying Ubuntu Pro, Lucid acquired AWS-compatible and FIPS 140-2 certified packages and became FedRAMP compliant.
+            </p>
+            <hr class="p-rule--muted" />
+            <a href="https://canonical.com/case-study/lucid-aws-fedramp-compliance-case-study"
+               aria-label="Read the case study about Lucid Software">Read the case study&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+        <div id="security-compliance-launchdarky"
+             class="p-tabs__content"
+             role="tabpanel"
+             aria-labelledby="security-compliance-tab-launchdarky">
+          <div class="p-strip is-shallow">
+            <div class="p-strip is-shallow">
+              {{ image(url="https://assets.ubuntu.com/v1/358661f9-launchdarkly-logo.svg",
+                            alt="LaunchDarkly",
+                            width="201",
+                            height="30",
+                            hi_def=True,
+                            fmt="svg",
+                            loading="lazy") | safe
+              }}
+            </div>
+            <h3>LaunchDarkly becomes the first FedRAMP-authorized feature management platform thanks to Ubuntu Pro</h3>
+            <p>Learn how a SaaS provider achieved effortless FIPS compliance on AWS.</p>
+            <hr class="p-rule--muted" />
+            <a href="https://assets.ubuntu.com/v1/b97b2df6-AWS%20LaunchDarkly%20Case%20Study%20v3%203.6.2024.pdf"
+               aria-label="Read the case study about LaunchDarkly">Read the case study&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+        <div id="security-compliance-new-mexico"
+             class="p-tabs__content"
+             role="tabpanel"
+             aria-labelledby="security-compliance-tab-new-mexico">
+          <div class="p-strip is-shallow">
+            <div class="p-strip is-shallow">
+              {{ image(url="https://assets.ubuntu.com/v1/b0ee8fee-nmsu-logo.svg",
+                            alt="New Mexico State University",
+                            width="45",
+                            height="50",
+                            hi_def=True,
+                            fmt="svg",
+                            loading="lazy") | safe
+              }}
+            </div>
+            <h3>How New Mexico State University accelerates compliant federal research with Ubuntu</h3>
+            <p>
+              When the stakes are high and national security is on the line, every decision matters. Just ask the team at New Mexico State University’s Physical Science Laboratory (PSL).
+            </p>
+            <hr class="p-rule--muted" />
+            <a href="/blog/how-new-mexico-state-university-accelerates-compliant-federal-research-with-ubuntu"
+               aria-label="Read the case study about New Mexico State University">Read the case study&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+      {%- if slot == 'title' -%}
+        <h2>Compliance everywhere</h2>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">On-prem</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <p>
+          <a href="/pro">Ubuntu Pro</a> enables compliance on Ubuntu desktops and servers in private clouds, Virtual Machines, and air-gapped environments.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">In the cloud</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <p>Get pre-hardened and compliant Ubuntu Pro images in the public cloud.</p>
+        <div class="p-section--shallow">
+          <hr class="p-rule--muted u-hide--small" />
+          <div class="row">
+            <div class="col-2 col-medium-2">
+              <hr class="p-rule--muted u-hide--medium u-hide--large" />
+              <div class="p-strip is-shallow">
+                <div class="p-section--shallow">
+                  {{ image(url="https://assets.ubuntu.com/v1/1241741b-AWS.juju.is.svg",
+                                    alt="Amazon Web Services",
+                                    width="50",
+                                    height="31",
+                                    hi_def=True,
+                                    fmt="svg",
+                                    loading="lazy") | safe
+                  }}
+                </div>
+                <hr class="p-rule--muted u-hide--small" />
+                <a href="/aws" aria-label="Learn more about Ubuntu on AWS">Learn more &nbsp;&rsaquo;</a>
+              </div>
+            </div>
+            <div class="col-2 col-medium-2">
+              <hr class="p-rule--muted u-hide--medium u-hide--large" />
+              <div class="p-strip is-shallow">
+                <div class="p-section--shallow">
+                  {{ image(url="https://assets.ubuntu.com/v1/d81fe524-2021-Microsoft+Azure.svg",
+                                    alt="Microsoft Azure",
+                                    width="104",
+                                    height="31",
+                                    hi_def=True,
+                                    fmt="svg",
+                                    loading="lazy") | safe
+                  }}
+                </div>
+                <hr class="p-rule--muted u-hide--small" />
+                <a href="/azure" aria-label="Learn more about Ubuntu on Azure">Learn more &nbsp;&rsaquo;</a>
+              </div>
+            </div>
+            <div class="col-2 col-medium-2">
+              <hr class="p-rule--muted u-hide--medium u-hide--large" />
+              <div class="p-strip is-shallow">
+                <div class="p-section--shallow">
+                  {{ image(url="https://assets.ubuntu.com/v1/2c479064-cloud-logo%201.svg",
+                                    alt="Google Cloud Platform",
+                                    width="167",
+                                    height="31",
+                                    hi_def=True,
+                                    fmt="svg",
+                                    loading="lazy") | safe
+                  }}
+                </div>
+                <hr class="p-rule--muted u-hide--small" />
+                <a href="/gcp"
+                   aria-label="Learn more about Ubuntu on Google Cloud Platform">Learn more &nbsp;&rsaquo;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_3' -%}
+        <h3 class="p-heading--5">On the Edge</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_3' -%}
+        <p>
+          Take advantage of Ubuntu Core, our new immutable Ubuntu designed for IoT and Edge deployments with <a href="https://ubuntu.com/pro/devices">Ubuntu Pro for Devices</a>.
+        </p>
+      {%- endif -%}
+    {%- endcall -%}
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+      <h2>Resources</h2>
+    </div>
+    <div class="u-fixed-width">
+      <nav class="p-tabs js-tabbed-content">
+        <ul class="p-tabs__list"
+            role="tablist"
+            aria-label="Resources"
+            data-maintain-hash="true">
+          <li class="p-tabs__item">
+            <a href="#resources-blogs"
+               class="p-tabs__link"
+               role="tab"
+               aria-selected="true"
+               aria-controls="resources-blogs-tab"
+               id="resources-blogs">Blogs</a>
+          </li>
+          <li class="p-tabs__item">
+            <a href="#resources-whitepapers"
+               class="p-tabs__link"
+               role="tab"
+               aria-selected="false"
+               aria-controls="resources-whitepapers-tab"
+               id="resources-whitepapers"
+               tabindex="-1">Whitepapers</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="p-tabs__content"
+           tabindex="0"
+           role="tabpanel"
+           id="resources-blogs-tab"
+           aria-labelledby="resources-blogs">
+        <div class="row">
+          {% for article in blogs %}
+            <div class="col-3 col-medium-2 u-equal-height-items">
+              <div class="u-crop--16-9">
+                <div class="p-image-wrapper">
+                  <a href="/blog/{{ article.slug }}">
+                    <img src="{{ article.image.source_url }}"
+                         alt="{{ article.title.rendered }}"
+                         class="p-image-container__image" />
+                  </a>
+                </div>
+              </div>
+              <h3 class="p-text--default">
+                <a href="/blog/{{ article.slug }}">{{ article.title.rendered | safe }}</a>
+              </h3>
+              <p>{{ article.excerpt.rendered | truncate(200) | safe }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="p-tabs__content u-hide"
+           tabindex="0"
+           role="tabpanel"
+           id="resources-whitepapers-tab"
+           aria-labelledby="resources-whitepapers">
+        <div class="row">
+          <div class="col-3 col-medium-2 u-equal-height-items">
+            <div class="u-crop--16-9">
+              <div class="p-image-wrapper">
+                {{ image(url="https://assets.ubuntu.com/v1/f930f8ec-wp1.jpg",
+                                alt="",
+                                width="568",
+                                height="380",
+                                hi_def=True,
+                                loading="lazy") | safe
+                }}
+              </div>
+            </div>
+            <a href="/engage/a-guide-to-infrastructure-hardening">A guide to Infrastructure Hardening</a>
+          </div>
+          <div class="col-3 col-medium-2 u-equal-height-items">
+            <div class="u-crop--16-9">
+              <div class="p-image-wrapper">
+                {{ image(url="https://assets.ubuntu.com/v1/f2312d7a-wp2.jpg",
+                                alt="",
+                                width="568",
+                                height="380",
+                                hi_def=True,
+                                loading="lazy") | safe
+                }}
+              </div>
+            </div>
+            <a href="/engage/security-compliance-US-public-sector-FIPS-DISASTIG">Ubuntu compliance guide for US public sector</a>
+          </div>
+          <div class="col-3 col-medium-2 u-equal-height-items">
+            <div class="u-crop--16-9">
+              <div class="p-image-wrapper">
+                {{ image(url="https://assets.ubuntu.com/v1/e8776be5-wp3.jpg",
+                                alt="",
+                                width="568",
+                                height="380",
+                                hi_def=True,
+                                loading="lazy") | safe
+                }}
+              </div>
+            </div>
+            <a href="/engage/iot-compliance-in-the-global-market-a-guide-for-iot-device-manufacturers">Understand IoT security and IoT compliance across global markets</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section--deep" id="compliance-profiles">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>
+            Easily comply with the most
+            <br class="u-hide--small u-hide--medium" />
+            stringent security standards
+            <br class="u-hide--small u-hide--medium" />
+            with Ubuntu Pro
+          </h2>
+        </div>
+        <div class="col">
+          <div class="p-section--shallow">
+            {{ image(url="https://assets.ubuntu.com/v1/d9d72c0e-easily-comply-with.jpg",
+                        alt="",
+                        width="1200",
+                        height="676",
+                        hi_def=True,
+                        loading="lazy") | safe
+            }}
+          </div>
+          <p>
+            Ubuntu Pro provides an easy pathway to compliance. It delivers CVE patching for Ubuntu OS and Applications covering 36,000 packages, along with automated, unattended, and restartless updates, and the best tools to secure and manage your Ubuntu infrastructure developed by the publisher of Ubuntu.
+          </p>
+          <hr class="p-rule--muted" />
+          <p>
+            <a class="p-button--positive js-invoke-modal"
+               href="/security/contact-us">Contact us</a>
+            <a href="/pro">Learn more about Pro&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+
+  {{ load_form("/security") | safe }}
+
+{% endblock content %}

@@ -1,4 +1,3 @@
-import React from "react";
 import { Textarea } from "@canonical/react-components";
 import { mount } from "enzyme";
 import { Formik } from "formik";
@@ -17,7 +16,7 @@ describe("FormikField", () => {
           required={true}
           type="text"
         />
-      </Formik>
+      </Formik>,
     );
     const input = wrapper.find("Input");
     expect(input.exists()).toBe(true);
@@ -29,7 +28,7 @@ describe("FormikField", () => {
     const wrapper = mount(
       <Formik initialValues={{}} onSubmit={jest.fn()}>
         <FormikField component={Textarea} name="username" />
-      </Formik>
+      </Formik>,
     );
     expect(wrapper.find("Textarea").exists()).toBe(true);
   });

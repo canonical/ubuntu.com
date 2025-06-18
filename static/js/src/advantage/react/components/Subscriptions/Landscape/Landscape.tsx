@@ -1,4 +1,3 @@
-import React from "react";
 import { Button, Col, Row } from "@canonical/react-components";
 
 const Landscape = () => {
@@ -20,9 +19,9 @@ const Landscape = () => {
             </Button>
             <Button
               element="a"
-              href="https://ubuntu.com/contact-us/form?product=landscape"
+              href="https://landscape.canonical.com/create-new-account"
             >
-              Request a Landscape SaaS account
+              Get a Landscape SaaS account
             </Button>
           </p>
           <hr />

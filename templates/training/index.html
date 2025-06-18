@@ -2,527 +2,877 @@
 
 {% block title %}Training{% endblock %}
 
-{% block meta_description %}Canonical run OpenStack, Kubernetes, MAAS and Ubuntu training programmes to suit all environments and all levels of experience.{% endblock meta_description %}
+{% block meta_description %}
+  Canonical run OpenStack, Kubernetes, MAAS and Ubuntu training programmes to suit all environments and all levels of experience.
+{% endblock meta_description %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1gyxy75qXC5Ta08o6Vnm13yK6aeN4qOnsETB2gZ4e0ZY/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1gyxy75qXC5Ta08o6Vnm13yK6aeN4qOnsETB2gZ4e0ZY/edit
+{% endblock meta_copydoc %}
 
-{% block outer_content %}
 {% block content %}
+  <div class="p-section--hero is-paper">
+    <div class="row--25-75">
+      <div class="col">
+        <div class="p-section">
+          <h1>Train with Ubuntu</h1>
+          <p>
+            Train your sysadmins and devops engineers to become experts in developing and operating open source software. Canonical runs training programs to suit all environments and all levels of experience. Explore, prototype and design with cloud technologies so you can get the most out of your environment. All classes and materials are provided in English. They can be performed either remotely or on your premises at extra cost.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <button class="p-toggle--sticky js-drawer-toggle"
+              aria-controls="drawer"
+              href="#"
+              aria-expanded="false">Open side navigation</button>
+      <div class="col-3">
+        <nav class="p-side-navigation--raw-html is-single-page js-dynamic-toc"
+             id="drawer">
+          <div class="p-side-navigation__overlay js-drawer-toggle"
+               aria-controls="drawer"></div>
+          <div class="p-side-navigation__drawer"
+               aria-label="documentation side navigation">
+            <div class="p-side-navigation__drawer-header">
+              <button href="#"
+                      class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
+                      aria-controls="drawer"
+                      aria-expanded="false">Close side navigation</button>
+            </div>
+            <ul>
+              <li class="p-side-navigation__item">
+                <a class="highlight-link is-active" href="#mongodb">MongoDB</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="highlight-link" href="#openstack-fundamentals">OpenStack Fundamentals</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="highlight-link" href="#openstack-operations">OpenStack Operations</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="highlight-link" href="#ubuntu-server-administration">Ubuntu Server Administration</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="highlight-link" href="#kubernetes-explorer">Kubernetes Explorer</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="highlight-link" href="#mlops">MLOps</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="highlight-link" href="#maas">Metal as a Service (MAAS)</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="highlight-link" href="#ceph-operations">Ceph Operations</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="highlight-link" href="#landscape">Landscape</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="highlight-link" href="#juju-administrator">Juju Administrator</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="highlight-link" href="#charm-developer">Charm Developer</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="highlight-link" href="#snapcraft-101">Snapcraft 101</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="col-9">
+        <hr class="p-rule" />
+        <section class="p-section">
+          <h2 class="p-text--small-caps section-heading u-no-margin--bottom"
+              id="mongodb">MongoDB</h2>
+          <div class="row">
+            <div class="col-6" itemscope itemtype="https://schema.org/Product">
+              <h3 class="p-heading--2" itemprop="name">Deployment and Operations training</h3>
+              <p itemprop="description" class="u-sv3">
+                A three-day hands-on course for up to 15 people that focuses on MongoDB. The aim of this training is to educate users on MongoDB, practice deployment, perform operations and optimizations as well as troubleshooting.
+              </p>
+              <p class="u-hide--medium u-hide--small">
+                <a class="p-button--positive" href="/contact-us">Contact us to book</a>
+                <a href="https://assets.ubuntu.com/v1/5dcac162-Charmed%20MongoDB%20Training_Public%20Module.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <div class="col-3">
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <strong>Duration:</strong> 3 days
+                </li>
+                <li class="p-list__item">
+                  <strong>Cost:</strong> USD $23,500 up to 15 attendees, remote delivery
+                </li>
+                <li class="p-list__item">
+                  <strong>Location:</strong> Remote or your premises at extra cost
+                </li>
+                <li class="p-list__item">
+                  <strong>Availability:</strong> Private groups only
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row u-hide--large">
+            <div class="col-6">
+              <p class="training-cta--stacked">
+                <a class="p-button--positive" href="/contact-us">Contact us to book</a>
+                <a href="https://assets.ubuntu.com/v1/5dcac162-Charmed%20MongoDB%20Training_Public%20Module.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+        </section>
+        <hr class="p-rule" />
+        <section class="p-section">
+          <h2 class="p-text--small-caps section-heading u-no-margin--bottom"
+              id="openstack-fundamentals">OpenStack Fundamentals</h2>
+          <div class="row">
+            <div class="col-6" itemscope itemtype="https://schema.org/Product">
+              <h3 class="p-heading--2" itemprop="name">OpenStack cloud training</h3>
+              <p itemprop="description" class="u-sv3">
+                A three-day hands-on course for up to 15 people that will give you the best introduction for setting up and running your own Charmed OpenStack cloud.
+              </p>
+              <p class="u-hide--medium u-hide--small">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=openstack-training-onsite">Contact us to book</a>
+                <a href="https://assets.ubuntu.com/v1/8408628d-OpenStack+Fundamentals+Training+Curriculum.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <div class="col-3">
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <strong>Duration:</strong> 3 days
+                </li>
+                <li class="p-list__item">
+                  <strong>Cost:</strong> USD $23,500 up to 15 attendees, remote delivery
+                </li>
+                <li class="p-list__item">
+                  <strong>Location:</strong> Remote or your premises at extra cost
+                </li>
+                <li class="p-list__item">
+                  <strong>Availability:</strong> Private groups only
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row u-hide--large">
+            <div class="col-6">
+              <p class="training-cta--stacked">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=openstack-training-onsite">Contact us to book</a>
+                <a href="https://assets.ubuntu.com/v1/8408628d-OpenStack+Fundamentals+Training+Curriculum.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+        </section>
+        <hr class="p-rule" />
+        <section class="p-section">
+          <h2 class="p-text--small-caps section-heading u-no-margin--bottom"
+              id="openstack-operations">OpenStack Operations</h2>
+          <div class="row">
+            <div class="col-6" itemscope itemtype="https://schema.org/Product">
+              <h3 class="p-heading--2" itemprop="name">How to operate Charmed OpenStack</h3>
+              <p itemprop="description" class="u-sv3">
+                A five-day hands-on course for up to 15 people that guides you through all aspects of performing effective operations on your Charmed OpenStack cloud. A follow-up course to OpenStack Fundamentals, it guides you through operational tasks such as monitoring, troubleshooting, patching, scaling, and upgrading, while keeping your cloud available and performing.
+              </p>
+              <p class="u-hide--medium u-hide--small">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=openstack-training-onsite">Contact us to book</a>
+                <a href="https://assets.ubuntu.com/v1/30545172-Canonical_training-Openstack_operations.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <div class="col-3">
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <strong>Duration:</strong> 5 days
+                </li>
+                <li class="p-list__item">
+                  <strong>Cost:</strong> USD $35,500 up to 15 attendees, remote delivery
+                </li>
+                <li class="p-list__item">
+                  <strong>Location:</strong> Remote or your premises at extra cost
+                </li>
+                <li class="p-list__item">
+                  <strong>Availability:</strong> Private groups only
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row u-hide--large">
+            <div class="col-6">
+              <p class="training-cta--stacked">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=openstack-training-onsite">Contact us to book</a>
+                <a href="https://assets.ubuntu.com/v1/30545172-Canonical_training-Openstack_operations.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+        </section>
+        <hr class="p-rule" />
+        <section class="p-section--is-shallow">
+          <h2 class="p-text--small-caps section-heading u-no-margin--bottom"
+              id="ubuntu-server-administration">Ubuntu Server Administration</h2>
+          <div class="row">
+            <div class="col-6" itemscope itemtype="https://schema.org/Product">
+              <h3 class="p-heading--2" itemprop="name">Basic Ubuntu Server training</h3>
+              <div class="u-sv3">
+                <div class="p-tabs">
+                  <div class="p-tabs__list"
+                       role="tablist"
+                       aria-label="Basic Ubuntu Server training">
+                    <div class="p-tabs__item">
+                      <button class="p-tabs__link"
+                              role="tab"
+                              aria-selected="true"
+                              aria-controls="basic-overview-tab"
+                              id="basic-overview">Overview</button>
+                    </div>
+                    <div class="p-tabs__item">
+                      <button class="p-tabs__link"
+                              role="tab"
+                              aria-selected="false"
+                              aria-controls="basic-course-outline-tab"
+                              id="basic-course-outline"
+                              tabindex="-1">Course outline</button>
+                    </div>
+                  </div>
 
-<section class="p-strip--suru-bottomed u-image-position">
-  <div class="row">
-    <h1>Train with Ubuntu</h1>
+                  <div tabindex="0"
+                       role="tabpanel"
+                       id="basic-overview-tab"
+                       aria-labelledby="basic-overview">
+                    <p>
+                      If you're new to Linux, then build up your competence with Ubuntu - the world's favorite Linux operating system - with this practical open source training course.
+                    </p>
+                    <p>
+                      Take this three-day  hands-on course for up to 15 students, which teaches you how to install and administer Ubuntu Server!
+                    </p>
+                    <p>
+                      Starting from the basics of using the command line, you will quickly learn to manage software, files and processes. Further, you will understand key concepts such as networking, storage and much more.
+                    </p>
+                  </div>
+
+                  <div tabindex="0"
+                       role="tabpanel"
+                       id="basic-course-outline-tab"
+                       aria-labelledby="basic-course-outline"
+                       hidden="hidden">
+                    <ol class="p-stepped-list">
+                      <li class="p-stepped-list__item">
+                        <p class="p-stepped-list__title">What is Ubuntu</p>
+                      </li>
+                      <li class="p-stepped-list__item">
+                        <p class="p-stepped-list__title">CLI Environment</p>
+                      </li>
+                      <li class="p-stepped-list__item">
+                        <p class="p-stepped-list__title">Linux filesystem hierarchy</p>
+                      </li>
+                      <li class="p-stepped-list__item">
+                        <p class="p-stepped-list__title">Identity and ownership</p>
+                      </li>
+                      <li class="p-stepped-list__item">
+                        <p class="p-stepped-list__title">Logging and initialization</p>
+                      </li>
+                      <li class="p-stepped-list__item">
+                        <p class="p-stepped-list__title">Storage</p>
+                      </li>
+                      <li class="p-stepped-list__item">
+                        <p class="p-stepped-list__title">Networking</p>
+                      </li>
+                      <li class="p-stepped-list__item">
+                        <p class="p-stepped-list__title">Process management</p>
+                      </li>
+                      <li class="p-stepped-list__item">
+                        <p class="p-stepped-list__title">Backup and recovery</p>
+                      </li>
+                      <li class="p-stepped-list__item">
+                        <p class="p-stepped-list__title">Software management</p>
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+              <p class="u-hide--medium u-hide--small">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=openstack-training-server-admin">Contact us to book</a>
+              </p>
+            </div>
+            <div class="col-3">
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <strong>Duration:</strong> 3 days
+                </li>
+                <li class="p-list__item">
+                  <strong>Cost:</strong> USD $17,500 up to 15 attendees, remote delivery
+                </li>
+                <li class="p-list__item">
+                  <strong>Level required:</strong> Basic understanding of Linux/Unix
+                </li>
+                <li class="p-list__item">
+                  <strong>Format:</strong> All sessions are a combination of instruction and lab work
+                </li>
+                <li class="p-list__item">
+                  <strong>Location:</strong> Remote or your premises at extra cost
+                </li>
+                <li class="p-list__item">
+                  <strong>Availability:</strong> Private groups only
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row u-hide--large">
+            <div class="col-6">
+              <a class="p-button--positive"
+                 href="/training/contact-us?product=openstack-training-server-admin">Contact us to book</a>
+            </div>
+          </div>
+        </section>
+        <hr class="p-rule is-muted" />
+        <section class="p-section">
+          <div class="row">
+            <div class="col-6" itemscope itemtype="https://schema.org/Product">
+              <h3 class="p-heading--2" itemprop="name">Advanced Ubuntu Server training</h3>
+              <div class="u-sv3">
+                <div class="p-tabs">
+                  <div class="p-tabs__list"
+                       role="tablist"
+                       aria-label="Advanced Ubuntu Server training">
+                    <div class="p-tabs__item">
+                      <button class="p-tabs__link"
+                              role="tab"
+                              aria-selected="true"
+                              aria-controls="advanced-overview-tab"
+                              id="advanced-overview">Overview</button>
+                    </div>
+                    <div class="p-tabs__item">
+                      <button class="p-tabs__link"
+                              role="tab"
+                              aria-selected="false"
+                              aria-controls="advanced-course-outline-tab"
+                              id="advanced-course-outline"
+                              tabindex="-1">Course outline</button>
+                    </div>
+                  </div>
+
+                  <div tabindex="0"
+                       role="tabpanel"
+                       id="advanced-overview-tab"
+                       aria-labelledby="advanced-overview">
+                    <p>
+                      Have you been using Linux operating systems for a while or completed the basic Ubuntu Server training and want to grow your skills?
+                    </p>
+                    <p>
+                      Our Advanced Ubuntu Server training is an intensive three-day hands-on course in which you will learn and use advanced techniques, including security, virtualization, systems management and much more.
+                    </p>
+                  </div>
+
+                  <div tabindex="0"
+                       role="tabpanel"
+                       id="advanced-course-outline-tab"
+                       aria-labelledby="advanced-course-outline"
+                       hidden="hidden">
+                    <ol class="p-stepped-list">
+                      <li class="p-stepped-list__item">
+                        <p class="p-stepped-list__title">Virtualization</p>
+                      </li>
+                      <li class="p-stepped-list__item">
+                        <p class="p-stepped-list__title">LXD</p>
+                      </li>
+                      <li class="p-stepped-list__item">
+                        <p class="p-stepped-list__title">OpenSSH</p>
+                      </li>
+                      <li class="p-stepped-list__item">
+                        <p class="p-stepped-list__title">System initialization</p>
+                      </li>
+                      <li class="p-stepped-list__item">
+                        <p class="p-stepped-list__title">Advanced storage</p>
+                      </li>
+                      <li class="p-stepped-list__item">
+                        <p class="p-stepped-list__title">Advanced filesystem</p>
+                      </li>
+                      <li class="p-stepped-list__item">
+                        <p class="p-stepped-list__title">ZFS</p>
+                      </li>
+                      <li class="p-stepped-list__item">
+                        <p class="p-stepped-list__title">Advanced networking</p>
+                      </li>
+                      <li class="p-stepped-list__item">
+                        <p class="p-stepped-list__title">Security</p>
+                      </li>
+                      <li class="p-stepped-list__item">
+                        <p class="p-stepped-list__title">Snaps</p>
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+              <p class="u-hide--medium u-hide--small">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=openstack-training-server-admin">Contact us to book</a>
+              </p>
+            </div>
+            <div class="col-3">
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <strong>Duration:</strong> 3 days
+                </li>
+                <li class="p-list__item">
+                  <strong>Cost:</strong> USD $17,500 up to 15 attendees, remote delivery
+                </li>
+                <li class="p-list__item">
+                  <strong>Level required:</strong> Basic understanding of Linux/Unix
+                </li>
+                <li class="p-list__item">
+                  <strong>Format:</strong> All sessions are a combination of instruction and lab work
+                </li>
+                <li class="p-list__item">
+                  <strong>Location:</strong> Remote or your premises at extra cost
+                </li>
+                <li class="p-list__item">
+                  <strong>Availability:</strong> Private groups only
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row u-hide--large">
+            <div class="col-6">
+              <a class="p-button--positive"
+                 href="/training/contact-us?product=openstack-training-server-admin">Contact us to book</a>
+            </div>
+          </div>
+        </section>
+        <hr class="p-rule" />
+        <section class="p-section--is-shallow">
+          <h2 class="p-text--small-caps section-heading u-no-margin--bottom"
+              id="kubernetes-explorer">Kubernetes Explorer</h2>
+          <div class="row">
+            <div class="col-6" itemscope itemtype="https://schema.org/Product">
+              <h3 class="p-heading--2" itemprop="name">Kubernetes training</h3>
+              <p itemprop="description" class="u-sv3">
+                A three-day hands-on course for up to 15 people that guides you through Charmed Kubernetes. You will learn about Kubernetes, how to deploy it and configure it, as well as how to perform operational actions such as live upgrades.
+              </p>
+              <p class="u-hide--medium u-hide--small">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=kubernetes-training-onsite">Contact us to book</a>
+                <a href="https://assets.ubuntu.com/v1/bdff2205-Kubernetes+Training+Curriculum.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <div class="col-3">
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <strong>Duration:</strong> 3 days
+                </li>
+                <li class="p-list__item">
+                  <strong>Cost:</strong> USD $23,500 up to 15 attendees, remote delivery
+                </li>
+                <li class="p-list__item">
+                  <strong>Location:</strong> Remote or your premises at extra cost
+                </li>
+                <li class="p-list__item">
+                  <strong>Availability:</strong> Private groups only
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row u-hide--large">
+            <div class="col-6">
+              <p class="training-cta--stacked">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=kubernetes-training-onsite">Contact us to book</a>
+                <a href="https://assets.ubuntu.com/v1/bdff2205-Kubernetes+Training+Curriculum.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+        </section>
+        <hr class="p-rule is-muted" />
+        <section class="p-section">
+          <div class="row">
+            <div class="col-6" itemscope itemtype="https://schema.org/Product">
+              <h3 class="p-heading--2" itemprop="name">Bare Metal add-on training</h3>
+              <p itemprop="description" class="u-sv3">
+                This is an add-on course that is offered as an extension to the Kubernetes Explorer. It focuses on managing your bare metal in an automated way with MAAS so that you can deploy Kubernetes easily and effortlessly. It takes place at your premises for up to 15 students.
+              </p>
+              <p class="u-hide--medium u-hide--small">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=/training/contact-us?product=kubernetes-training-onsite">Contact us to book</a>
+              </p>
+            </div>
+            <div class="col-3">
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <strong>Duration:</strong> 1 day
+                </li>
+                <li class="p-list__item">
+                  <strong>Cost:</strong> USD $8,000 up to 15 attendees, remote delivery
+                </li>
+                <li class="p-list__item">
+                  <strong>Location:</strong> Remote or your premises at extra cost
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row u-hide--large">
+            <div class="col-6">
+              <a class="p-button--positive"
+                 href="/training/contact-us?product=/training/contact-us?product=kubernetes-training-onsite">Contact us to book</a>
+            </div>
+          </div>
+        </section>
+        <hr class="p-rule" />
+        <section class="p-section">
+          <h2 class="p-text--small-caps section-heading u-no-margin--bottom"
+              id="mlops">MLOps</h2>
+          <div class="row">
+            <div class="col-6" itemscope itemtype="https://schema.org/Product">
+              <h3 class="p-heading--2" itemprop="name">Modelling and Operations training</h3>
+              <p itemprop="description" class="u-sv3">
+                A four-day workshop-like course for up to 15 people that guides you through all aspects of performing effective Machine Learning and Deep Learning automation on your Kubeflow cluster. A follow-up course to Kubernetes Explorer, it guides you through common tasks such as creating Pipelines, working with Notebooks, training models, visualizing results, model serving, and troubleshooting, as well as introducing MLOps practices for streamlined data science using containerized frameworks and infrastructure.
+              </p>
+              <p class="u-hide--medium u-hide--small">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=kubeflow-training-onsite">Contact us to book</a>
+                <a href="https://assets.ubuntu.com/v1/ee5a96f3-Kubeflow+Training+Curriculum.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <div class="col-3">
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <strong>Duration:</strong> 4 days
+                </li>
+                <li class="p-list__item">
+                  <strong>Cost:</strong> USD $35,500 up to 15 attendees, remote delivery
+                </li>
+                <li class="p-list__item">
+                  <strong>Location:</strong> Remote or your premises at extra cost
+                </li>
+                <li class="p-list__item">
+                  <strong>Availability:</strong> Private groups only
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row u-hide--large">
+            <div class="col-6">
+              <p class="training-cta--stacked">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=kubeflow-training-onsite">Contact us to book</a>
+                <a href="https://assets.ubuntu.com/v1/ee5a96f3-Kubeflow+Training+Curriculum.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+        </section>
+        <hr class="p-rule" />
+        <section class="p-section">
+          <h2 class="p-text--small-caps section-heading u-no-margin--bottom"
+              id="maas">Metal As A Service (MAAS)</h2>
+          <div class="row">
+            <div class="col-6" itemscope itemtype="https://schema.org/Product">
+              <h3 class="p-heading--2" itemprop="name">Deployment and Operations training</h3>
+              <p itemprop="description" class="u-sv3">
+                A two-day hands-on course for up to 15 people that guides you through MAAS and how to treat your bare metal estate as a cloud. The aim of this training is to help users understand MAAS components, installing and configuring them, as well on-going MAAS operations for physical and virtual machines (KVM), network configuration and image management.
+              </p>
+              <p class="u-hide--medium u-hide--small">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=maas-training-onsite">Contact us to book</a>
+                <a href="https://assets.ubuntu.com/v1/dc6e1ec3-Canonical_training-MAAS_Deployment_and_Operations.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <div class="col-3">
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <strong>Duration:</strong> 2 days
+                </li>
+                <li class="p-list__item">
+                  <strong>Cost:</strong> USD $17,500 up to 15 attendees, remote delivery
+                </li>
+                <li class="p-list__item">
+                  <strong>Location:</strong> Remote or your premises at extra cost
+                </li>
+                <li class="p-list__item">
+                  <strong>Availability:</strong> Private groups only
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row u-hide--large">
+            <div class="col-6">
+              <p class="training-cta--stacked">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=maas-training-onsite">Contact us to book</a>
+                <a href="https://assets.ubuntu.com/v1/dc6e1ec3-Canonical_training-MAAS_Deployment_and_Operations.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+        </section>
+        <hr class="p-rule" />
+        <section class="p-section">
+          <h2 class="p-text--small-caps section-heading u-no-margin--bottom"
+              id="ceph-operations">Ceph Operations</h2>
+          <div class="row">
+            <div class="col-6" itemscope itemtype="https://schema.org/Product">
+              <h3 class="p-heading--2" itemprop="name">Deployment and Operations training</h3>
+              <p itemprop="description" class="u-sv3">
+                A three-day hands-on course for up to 15 people that focuses on Ceph storage. The aim of this training is to educate users on Ceph, practice deployment, perform operations and optimizations of Ceph storage, as well as troubleshooting.
+              </p>
+              <p class="u-hide--medium u-hide--small">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=ceph-training-onsite">Contact us to book</a>
+                <a href="https://assets.ubuntu.com/v1/28ca49c8-Ceph+Operations+Training+Curriculum.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <div class="col-3">
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <strong>Duration:</strong> 3 days
+                </li>
+                <li class="p-list__item">
+                  <strong>Cost:</strong> USD $23,500 up to 15 attendees, remote delivery
+                </li>
+                <li class="p-list__item">
+                  <strong>Location:</strong> Remote or your premises at extra cost
+                </li>
+                <li class="p-list__item">
+                  <strong>Availability:</strong> Private groups only
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row u-hide--large">
+            <div class="col-6">
+              <p class="training-cta--stacked">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=ceph-training-onsite">Contact us to book</a>
+                <a href="https://assets.ubuntu.com/v1/28ca49c8-Ceph+Operations+Training+Curriculum.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+        </section>
+        <hr class="p-rule" />
+        <section class="p-section">
+          <h2 class="p-text--small-caps section-heading u-no-margin--bottom"
+              id="landscape">Landscape</h2>
+          <div class="row">
+            <div class="col-6" itemscope itemtype="https://schema.org/Product">
+              <h3 class="p-heading--2" itemprop="name">Deployment and Operations training</h3>
+              <p itemprop="description" class="u-sv3">
+                A two-day hands-on course for up to 15 people that focuses on Landscape. The aim of this training is to educate users on the deployment, administration and operation of Landscape. Each section contains a theory session presented by the instructor, followed by a practical lab.
+              </p>
+              <p class="u-hide--medium u-hide--small">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=landscape-training-onsite">Contact us to book</a>
+                <a href="https://assets.ubuntu.com/v1/d55c5afe-Landscape+Deployment+and+Operations+Canonical+Training.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <div class="col-3">
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <strong>Duration:</strong> 2 days
+                </li>
+                <li class="p-list__item">
+                  <strong>Cost:</strong> USD $17,500 up to 15 attendees, remote delivery
+                </li>
+                <li class="p-list__item">
+                  <strong>Location:</strong> Remote or your premises at extra cost
+                </li>
+                <li class="p-list__item">
+                  <strong>Availability:</strong> Private groups only
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row u-hide--large">
+            <div class="col-6">
+              <p class="training-cta--stacked">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=landscape-training-onsite">Contact us to book</a>
+                <a href="https://assets.ubuntu.com/v1/d55c5afe-Landscape+Deployment+and+Operations+Canonical+Training.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+        </section>
+        <hr class="p-rule" />
+        <section class="p-section">
+          <div class="row">
+            <div class="col-6" itemscope itemtype="https://schema.org/Product">
+              <h2 class="section-heading" itemprop="name" id="juju-administrator">Juju Administrator</h2>
+              <p itemprop="description" class="u-sv3">
+                A three-day hands-on course for up to 15 people that focuses on Juju. The course is designed to enable administrators to quickly become proficient at managing Juju and deploying, configuring and integrating applications across computing substrates. The course is a blend of theory sessions and hands-on practical labs which see attendees deploying charmed applications on VMs, containers and Kubernetes clusters.
+              </p>
+              <p class="u-hide--medium u-hide--small">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=juju-administrator-training-onsite">Contact us to book</a>
+                <a href="https://assets.ubuntu.com/v1/79354a32-Juju+Administrator+Training.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <div class="col-3">
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <strong>Duration:</strong> 3 days
+                </li>
+                <li class="p-list__item">
+                  <strong>Cost:</strong> USD $23,500 up to 15 attendees, remote delivery
+                </li>
+                <li class="p-list__item">
+                  <strong>Location:</strong> Remote or your premises at extra cost
+                </li>
+                <li class="p-list__item">
+                  <strong>Availability:</strong> Private groups only
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row u-hide--large">
+            <div class="col-6">
+              <p class="training-cta--stacked">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=juju-administrator-training-onsite">Contact us to book</a>
+                <a href="https://assets.ubuntu.com/v1/79354a32-Juju+Administrator+Training.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+        </section>
+        <hr class="p-rule" />
+        <section class="p-section">
+          <div class="row">
+            <div class="col-6" itemscope itemtype="https://schema.org/Product">
+              <h2 class="section-heading" itemprop="name" id="charm-developer">Charm Developer</h2>
+              <p itemprop="description" class="u-sv3">
+                A two-day hands-on course for up to 15 people that focuses on Charms. This course is an introduction to charmed operator development and covers the development, testing and release of charmed operators for both machines and Kubernetes. The course is delivered as a blend of theory lessons and hands-on practical labs. Upon completion, attendees will feel comfortable developing charms that can manage applications throughout their life, and integrate seamlessly with other applications across computing substrates.
+              </p>
+              <p class="u-hide--medium u-hide--small">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=charm-developer-training-onsite">Contact us to book</a>
+                <a href="https://assets.ubuntu.com/v1/fda645b1-Charm+Developer+Training.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <div class="col-3">
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <strong>Duration:</strong> 2 days
+                </li>
+                <li class="p-list__item">
+                  <strong>Cost:</strong> USD $17,500 up to 15 attendees, remote delivery
+                </li>
+                <li class="p-list__item">
+                  <strong>Location:</strong> Remote or your premises at extra cost
+                </li>
+                <li class="p-list__item">
+                  <strong>Availability:</strong> Private groups only
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row u-hide--large">
+            <div class="col-6">
+              <p class="training-cta--stacked">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=charm-developer-training-onsite">Contact us to book</a>
+                <a href="https://assets.ubuntu.com/v1/fda645b1-Charm+Developer+Training.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+        </section>
+        <hr class="p-rule" />
+        <section class="p-section">
+          <div class="row">
+            <div class="col-6" itemscope itemtype="https://schema.org/Product">
+              <h2 class="section-heading" itemprop="name" id="snapcraft-101">Snapcraft 101</h2>
+              <p itemprop="description" class="u-sv3">
+                A hands-on workshop to learn how to create, build, publish and maintain your own snaps using Snapcraft and deploy them on Ubuntu Core. The workshop alternates short instructor-led discussions with task-focused practical labs. At the end of the two day workshop, your development team will be fully capable of deploying and maintaining your own snaps.
+              </p>
+              <p class="u-hide--medium u-hide--small">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=snapcraft-101">Contact us to book</a>
+                <a href="https://assets.ubuntu.com/v1/f44d287e-Snapcraft 101 Outline.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <div class="col-3">
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <strong>Duration:</strong> 2 days
+                </li>
+                <li class="p-list__item">
+                  <strong>Cost:</strong> USD $5,000 up to 15 attendees, remote delivery
+                </li>
+                <li class="p-list__item">
+                  <strong>Location:</strong> Remote or your premises at extra cost
+                </li>
+                <li class="p-list__item">
+                  <strong>Availability:</strong> Private groups only
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row u-hide--large">
+            <div class="col-6">
+              <p class="training-cta--stacked">
+                <a class="p-button--positive"
+                   href="/training/contact-us?product=snapcraft-101">Contact us to book</a>
+
+                <a href="https://assets.ubuntu.com/v1/f44d287e-Snapcraft 101 Outline.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
   </div>
-  <div class="row u-equal-height">
-    <div class="col-7">
-      <div>
-        <p>Train your sysadmins and devops engineers to become <a href="/openstack">Charmed OpenStack</a> or Charmed Kubernetes experts. Canonical runs training programmes to suit all environments and all levels of experience. Explore, prototype and design with cloud technologies so you can get the most out of your environment. All classes and materials are provided in English.</p>
-      </div>
-    </div>
-    <div class="col-5 u-hide--small u-hide--medium">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/de99fe54-ubuntu-juju-k8s-medals.svg",
-        alt="",
-        width="401",
-        height="237",
-        hi_def=True,
-        loading="auto",
-        attrs={"class": "u-image-position--top"}
-        ) | safe
-      }}
-    </div>
-  </div>
-  <div class="row">
-    <div class="p-notification--caution is-inline col-6" style="position: relative;">
-      <div class="p-notification__content" role="status">
-        <span class="p-notification__title">PLEASE NOTE:</span>
-        <p class="p-notification__message">Due to current circumstances linked to the COVID-19 pandemic, all training programmes mentioned in this page are performed remotely. All training content and labs will remain the same. We aim to return to an on-site delivery model as soon as the circumstances permit.</p>
-      </div>
-    </div>
-  </div>
-</section>
+  <!-- Set default Marketo information for contact form below -->
+  <div class="u-hide"
+       id="contact-form-container"
+       data-form-location="/shared/forms/interactive/openstack"
+       data-form-id="1263"
+       data-lp-id="2163"
+       data-return-url="https://ubuntu.com/training/thank-you"
+       data-lp-url="https://ubuntu.com/training/thank-you"></div>
+  <!-- twitter tracking code -->
+  <script src="https://platform.twitter.com/oct.js"></script>
+  <script src="{{ versioned_static('js/dist/dynamic-toc.js') }}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabGroups = document.querySelectorAll('.p-tabs');
 
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-7">
-      <h2>OpenStack Fundamentals</h2>
-    </div>
-  </div>
-  <div itemscope itemtype="https://schema.org/Product">
-    <div class="u-fixed-width">
-      <hr />
-      <h3 itemprop="name">On-site OpenStack cloud training</h3>
-    </div>
-    <div class="row p-divider">
-      <div class="col-7 p-divider__block">
-        <p itemprop="description">A three-day hands-on course at your premises for up to 15 people that will give you the best introduction for setting up and running your own Charmed OpenStack cloud.</p>
-        <p><a href="https://assets.ubuntu.com/v1/8408628d-OpenStack+Fundamentals+Training+Curriculum.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="col-5 p-divider__block">
-        <dl class="p-inline-definition-list">
-          <dt class="p-inline-definition-list__title">Duration</dt>
-          <dd class="p-inline-definition-list__item">3 days</dd>
-          <dt class="p-inline-definition-list__title">Cost</dt>
-          <dd class="p-inline-definition-list__item" itemprop="offers" itemscope itemtype="https://schema.org/Offer">USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="23500">23,500</span> up to 15 attendees</dd>
-          <dt class="p-inline-definition-list__title">Location</dt>
-          <dd class="p-inline-definition-list__item">Remote or your premises</dd>
-          <dt class="p-inline-definition-list__title">Availability</dt>
-          <dd class="p-inline-definition-list__item">Private groups only</dd>
-        </dl>
-        <p><a href="/training/contact-us?product=openstack-training-onsite">Contact us to book yours&nbsp;&rsaquo;</a></p>
-      </div>
-    </div>
-  </div>
+      tabGroups.forEach(group => {
+        const tabs = group.querySelectorAll('.p-tabs__link');
+        const panels = group.querySelectorAll('[role="tabpanel"]');
 
-  <div itemscope itemtype="https://schema.org/Product">
-    <div class="u-fixed-width">
-      <hr />
-      <h3 itemprop="name">High Availability Architecture add-on training</h3>
-    </div>
-    <div class="row p-divider">
-      <div class="col-7 p-divider__block">
-        <p itemprop="description">This half day add-on course is bundled with our OpenStack Fundamentals training. It provides key instruction on High Availability for OpenStack for up to 15 students at your premises.</p>
-      </div>
-      <div class="col-5 p-divider__block">
-        <dl class="p-inline-definition-list">
-          <dt class="p-inline-definition-list__title">Duration</dt>
-          <dd class="p-inline-definition-list__item">4.5 hrs (half day)</dd>
-          <dt class="p-inline-definition-list__title">Cost</dt>
-          <dd class="p-inline-definition-list__item" itemprop="offers" itemscope itemtype="https://schema.org/Offer">USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="2500">2,500 </span> up to 15 attendees</dd>
-          <dt class="p-inline-definition-list__title">Location</dt>
-          <dd class="p-inline-definition-list__item">Remote or your premises</dd>
-        </dl>
-        <p><a href="/training/contact-us?product=openstack-training-onsite">Contact us to book yours&nbsp;&rsaquo;</a></p>
-      </div>
-    </div>
-  </div>
-</section>
+        tabs.forEach(tab => {
+          tab.addEventListener('click', function(e) {
+            e.preventDefault();
 
-<section class="p-strip is-bordered">
-  <div class="row">
-    <div class="col-7">
-      <h2>OpenStack Operations</h2>
-    </div>
-  </div>
-  <div itemscope itemtype="https://schema.org/Product">
-    <div class="u-fixed-width">
-      <hr />
-      <h3 itemprop="name">On-site training: how to operate Charmed OpenStack</h3>
-    </div>
-    <div class="row p-divider">
-      <div class="col-7 p-divider__block">
-        <p itemprop="description">A five-day hands-on course at your premises for up to 15 people that guides you through all aspects of performing effective operations on your Charmed OpenStack cloud. A follow-up course to OpenStack Fundamentals, it guides you through operational tasks such as monitoring, troubleshooting, patching, scaling, and upgrading, while keeping your cloud available and performing.</p>
-        <p><a href="https://assets.ubuntu.com/v1/30545172-Canonical_training-Openstack_operations.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="col-5 p-divider__block">
-        <dl class="p-inline-definition-list">
-          <dt class="p-inline-definition-list__title">Duration</dt>
-          <dd class="p-inline-definition-list__item">5 days</dd>
-          <dt class="p-inline-definition-list__title">Cost</dt>
-          <dd class="p-inline-definition-list__item" itemprop="offers" itemscope itemtype="https://schema.org/Offer">USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="35500">35,500</span> up to 15 attendees</dd>
-          <dt class="p-inline-definition-list__title">Location</dt>
-          <dd class="p-inline-definition-list__item">Remote or your premises</dd>
-          <dt class="p-inline-definition-list__title">Availability</dt>
-          <dd class="p-inline-definition-list__item">Private groups only</dd>
-        </dl>
-        <p><a href="/training/contact-us?product=openstack-training-onsite">Contact us to book yours&nbsp;&rsaquo;</a></p>
-      </div>
-    </div>
-  </div>
-</section>
+            tabs.forEach(t => {
+              t.setAttribute('aria-selected', 'false');
+              t.setAttribute('tabindex', '-1');
+            });
 
-<section class="p-strip--light is-bordered">
-  <div itemscope itemtype="https://schema.org/Product">
-    <div class="u-fixed-width">
-      <h2>Ubuntu Server Administration</h2>
-      <h3 itemprop="name">Basic on-site Ubuntu Server training</h3>
-    </div>
-    <div class="row p-divider">
-      <div class="col-7 p-divider__block">
-        <p itemprop="description">A three-day hands-on course at your premises for up to 15 students, that teaches you how to install and administer Ubuntu Server.</p>
-        <p><a href="https://assets.ubuntu.com/v1/f2dbacb1-Training_basic-Ubuntu-server-administration.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="col-5 p-divider__block">
-        <dl class="p-inline-definition-list">
-          <dt class="p-inline-definition-list__title">Duration</dt>
-          <dd class="p-inline-definition-list__item">3 days</dd>
-          <dt class="p-inline-definition-list__title">Cost</dt>
-          <dd class="p-inline-definition-list__item" itemprop="offers" itemscope itemtype="https://schema.org/Offer">USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="17500">17,500</span> up to 15 attendees</dd>
-          <dt class="p-inline-definition-list__title">Location</dt>
-          <dd class="p-inline-definition-list__item">Remote or your premises</dd>
-          <dt class="p-inline-definition-list__title">Availability</dt>
-          <dd class="p-inline-definition-list__item">Private groups only</dd>
-        </dl>
-        <p><a href="/training/contact-us?product=openstack-training-server-admin">Contact us to book yours&nbsp;&rsaquo;</a></p>
-      </div>
-    </div>
-  </div>
-  <div itemscope itemtype="https://schema.org/Product">
-    <div class="u-fixed-width">
-      <hr />
-      <h3 itemprop="name">Advanced on-site Ubuntu Server training</h3>
-    </div>
-    <div class="row p-divider">
-      <div class="col-7 p-divider__block">
-        <p itemprop="description">You've been using Ubuntu Server for a while and want to advance your skills. The Ubuntu Advanced Server course is an intensive three-day hands-on course in which you will learn and use advanced techniques.</p>
-        <p><a href="https://assets.ubuntu.com/v1/bb64a38e-Training_Advanced-server-administration_02.17.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="col-5 p-divider__block">
-        <dl class="p-inline-definition-list">
-          <dt class="p-inline-definition-list__title">Duration</dt>
-          <dd class="p-inline-definition-list__item">3 days</dd>
-          <dt class="p-inline-definition-list__title">Cost</dt>
-          <dd class="p-inline-definition-list__item" itemprop="offers" itemscope itemtype="https://schema.org/Offer">USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="17500">17,500</span> up to 15 attendees</dd>
-          <dt class="p-inline-definition-list__title">Location</dt>
-          <dd class="p-inline-definition-list__item">Remote or your premises</dd>
-          <dt class="p-inline-definition-list__title">Availability</dt>
-          <dd class="p-inline-definition-list__item">Private groups only</dd>
-        </dl>
-        <p><a href="/training/contact-us?product=openstack-training-server-admin">Contact us to book yours&nbsp;&rsaquo;</a></p>
-      </div>
-    </div>
-  </div>
-</section>
+            panels.forEach(panel => {
+              panel.setAttribute('hidden', 'hidden');
+            });
 
-<section class="p-strip is-bordered">
-  <div class="row">
-    <div class="col-7">
-      <h2>Kubernetes Explorer</h2>
-    </div>
-  </div>
+            this.setAttribute('aria-selected', 'true');
+            this.setAttribute('tabindex', '0');
 
-  <div itemscope itemtype="https://schema.org/Product">
-    <div class="u-fixed-width">
-      <hr />
-      <h3 itemprop="name">On-site training</h3>
-    </div>
-
-    <div class="row p-divider">
-      <div class="col-7 p-divider__block">
-        <p itemprop="description">A three-day hands-on course at your premises for up to 15 people that guides you through Charmed Kubernetes. You will learn about Kubernetes, how to deploy it and configure it, as well as how to perform operational actions such as live upgrades.</p>
-        <p><a href="https://assets.ubuntu.com/v1/bdff2205-Kubernetes+Training+Curriculum.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="col-5 p-divider__block">
-        <dl class="p-inline-definition-list">
-          <dt class="p-inline-definition-list__title">Duration</dt>
-          <dd class="p-inline-definition-list__item">3 days</dd>
-          <dt class="p-inline-definition-list__title">Cost</dt>
-          <dd class="p-inline-definition-list__item" itemprop="offers" itemscope itemtype="https://schema.org/Offer">USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="23500">23,500</span> up to 15 attendees</dd>
-          <dt class="p-inline-definition-list__title">Location</dt>
-          <dd class="p-inline-definition-list__item">Remote or your premises</dd>
-          <dt class="p-inline-definition-list__title">Availability</dt>
-          <dd class="p-inline-definition-list__item">Private groups only</dd>
-        </dl>
-        <p><a href="/training/contact-us?product=kubernetes-training-onsite">Contact us to book yours&nbsp;&rsaquo;</a></p>
-      </div>
-    </div>
-  </div>
-
-  <div itemscope itemtype="https://schema.org/Product">
-    <div class="u-fixed-width">
-      <hr />
-      <h3 itemprop="name">Bare Metal add-on training</h3>
-    </div>
-
-    <div class="row p-divider">
-      <div class="col-7 p-divider__block">
-        <p itemprop="description">This is an add-on course that is offered as an extension to the Kubernetes Explorer. It focuses on managing your bare metal in an automated way with MAAS so that you can deploy Kubernetes easily and effortlessly. It takes place at your premises for up to 15 students.</p>
-      </div>
-      <div class="col-5 p-divider__block">
-        <dl class="p-inline-definition-list">
-          <dt class="p-inline-definition-list__title">Duration</dt>
-          <dd class="p-inline-definition-list__item">1 day</dd>
-          <dt class="p-inline-definition-list__title">Cost</dt>
-          <dd class="p-inline-definition-list__item" itemprop="offers" itemscope itemtype="https://schema.org/Offer">USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="8000">8,000</span> up to 15 attendees</dd>
-          <dt class="p-inline-definition-list__title">Location</dt>
-          <dd class="p-inline-definition-list__item">Remote or your premises</dd>
-        </dl>
-        <p><a href="/training/contact-us?product=/training/contact-us?product=kubernetes-training-onsite">Contact us to book yours&nbsp;&rsaquo;</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-7">
-      <h2>Kubeflow</h2>
-    </div>
-  </div>
-
-  <div itemscope itemtype="https://schema.org/Product">
-    <div class="u-fixed-width">
-      <hr />
-      <h3 itemprop="name">Modelling and Operations training</h3>
-    </div>
-
-    <div class="row p-divider">
-      <div class="col-7 p-divider__block">
-        <p itemprop="description">A four-day workshop-like course at your premises for up to 15 people that guides you through all aspects of performing effective Machine Learning and Deep Learning automation on your Kubeflow cluster. A follow-up course to Kubernetes Explorer, it guides you through common tasks such as creating Pipelines, working with Notebooks, training models, visualizing results, model serving, and troubleshooting, as well as introducing MLOps practices for streamlined data science using containerized frameworks and infrastructure.</p>
-        <p><a href="https://assets.ubuntu.com/v1/ee5a96f3-Kubeflow+Training+Curriculum.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="col-5 p-divider__block">
-        <dl class="p-inline-definition-list">
-          <dt class="p-inline-definition-list__title">Duration</dt>
-          <dd class="p-inline-definition-list__item">4 days</dd>
-          <dt class="p-inline-definition-list__title">Cost</dt>
-          <dd class="p-inline-definition-list__item" itemprop="offers" itemscope itemtype="https://schema.org/Offer">USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="35500">35,500</span> up to 15 attendees</dd>
-          <dt class="p-inline-definition-list__title">Location</dt>
-          <dd class="p-inline-definition-list__item">Remote or your premises</dd>
-          <dt class="p-inline-definition-list__title">Availability</dt>
-          <dd class="p-inline-definition-list__item">Private groups only</dd>
-        </dl>
-        <p><a href="/training/contact-us?product=kubeflow-training-onsite">Contact us to book yours&nbsp;&rsaquo;</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip is-bordered">
-  <div class="row">
-    <div class="col-7">
-      <h2>Metal as a Service (MAAS)</h2>
-    </div>
-  </div>
-
-  <div itemscope itemtype="https://schema.org/Product">
-    <div class="u-fixed-width">
-      <hr />
-      <h3 itemprop="name">Deployment and Operations training</h3>
-    </div>
-
-    <div class="row p-divider">
-      <div class="col-7 p-divider__block">
-        <p itemprop="description">A two-day hands-on course at your premises for up to 15 people that guides you through MAAS and how to treat your bare metal estate as a cloud. The aim of this training is to help users understand MAAS components, installing and configuring them, as well on-going MAAS operations for physical and virtual machines (KVM), network configuration and image management.</p>
-        <p><a href="https://assets.ubuntu.com/v1/dc6e1ec3-Canonical_training-MAAS_Deployment_and_Operations.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="col-5 p-divider__block">
-        <dl class="p-inline-definition-list">
-          <dt class="p-inline-definition-list__title">Duration</dt>
-          <dd class="p-inline-definition-list__item">2 days</dd>
-          <dt class="p-inline-definition-list__title">Cost</dt>
-          <dd class="p-inline-definition-list__item" itemprop="offers" itemscope itemtype="https://schema.org/Offer">USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="17500">17,500</span> up to 15 attendees</dd>
-          <dt class="p-inline-definition-list__title">Location</dt>
-          <dd class="p-inline-definition-list__item">Remote or your premises</dd>
-          <dt class="p-inline-definition-list__title">Availability</dt>
-          <dd class="p-inline-definition-list__item">Private groups only</dd>
-        </dl>
-        <p><a href="/training/contact-us?product=maas-training-onsite">Contact us to book yours&nbsp;&rsaquo;</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-7">
-      <h2>Ceph Operations</h2>
-    </div>
-  </div>
-
-  <div itemscope itemtype="https://schema.org/Product">
-    <div class="u-fixed-width">
-      <hr />
-      <h3 itemprop="name">Deployment and Operations training</h3>
-    </div>
-
-    <div class="row p-divider">
-      <div class="col-7 p-divider__block">
-        <p itemprop="description">A three-day hands-on course at your premises for up to 15 people that focuses on Ceph storage. The aim of this training is to educate users on Ceph, practice deployment, perform operations and optimisations of Ceph storage, as well as troubleshooting.</p>
-        <p><a href="https://assets.ubuntu.com/v1/28ca49c8-Ceph+Operations+Training+Curriculum.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="col-5 p-divider__block">
-        <dl class="p-inline-definition-list">
-          <dt class="p-inline-definition-list__title">Duration</dt>
-          <dd class="p-inline-definition-list__item">3 days</dd>
-          <dt class="p-inline-definition-list__title">Cost</dt>
-          <dd class="p-inline-definition-list__item" itemprop="offers" itemscope itemtype="https://schema.org/Offer">USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="23500">23,500</span> up to 15 attendees</dd>
-          <dt class="p-inline-definition-list__title">Location</dt>
-          <dd class="p-inline-definition-list__item">Remote or your premises</dd>
-          <dt class="p-inline-definition-list__title">Availability</dt>
-          <dd class="p-inline-definition-list__item">Private groups only</dd>
-        </dl>
-        <p><a href="/training/contact-us?product=ceph-training-onsite">Contact us to book yours&nbsp;&rsaquo;</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip is-bordered">
-  <div class="row">
-    <div class="col-7">
-      <h2>Landscape</h2>
-    </div>
-  </div>
-
-  <div itemscope itemtype="https://schema.org/Product">
-    <div class="u-fixed-width">
-      <hr />
-      <h3 itemprop="name">Deployment and Operations training</h3>
-    </div>
-
-    <div class="row p-divider">
-      <div class="col-7 p-divider__block">
-        <p itemprop="description">A two-day hands-on course at your premises for up to 15 people that focuses on Landscape. The aim of this training is to educate users on the deployment, administration and operation of Landscape. Each section contains a theory session presented by the instructor, followed by a practical lab.</p>
-        <p><a href="https://assets.ubuntu.com/v1/d55c5afe-Landscape+Deployment+and+Operations+Canonical+Training.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="col-5 p-divider__block">
-        <dl class="p-inline-definition-list">
-          <dt class="p-inline-definition-list__title">Duration</dt>
-          <dd class="p-inline-definition-list__item">2 days</dd>
-          <dt class="p-inline-definition-list__title">Cost</dt>
-          <dd class="p-inline-definition-list__item" itemprop="offers" itemscope itemtype="https://schema.org/Offer">USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="17500">17,500</span> up to 15 attendees</dd>
-          <dt class="p-inline-definition-list__title">Location</dt>
-          <dd class="p-inline-definition-list__item">Remote or your premises</dd>
-          <dt class="p-inline-definition-list__title">Availability</dt>
-          <dd class="p-inline-definition-list__item">Private groups only</dd>
-        </dl>
-        <p><a href="/training/contact-us?product=landscape-training-onsite">Contact us to book yours&nbsp;&rsaquo;</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light is-bordered" itemscope itemtype="https://schema.org/Product">
-  <div class="row">
-    <div class="col-7">
-      <h2 itemprop="name">Juju Administrator</h2>
-    </div>
-  </div>
-
-  <div>
-    <div class="u-fixed-width">
-      <hr />
-    </div>
-
-    <div class="row p-divider">
-      <div class="col-7 p-divider__block">
-        <p itemprop="description">A three-day hands-on course at your premises for up to 15 people that focuses on Juju. The course is designed to enable administrators to quickly become proficient at managing Juju and deploying, configuring and integrating applications across computing substrates. The course is a blend of theory sessions and hands-on practical labs which see attendees deploying charmed applications on VMs, containers and Kubernetes clusters.</p>
-        <p><a href="https://assets.ubuntu.com/v1/79354a32-Juju+Administrator+Training.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="col-5 p-divider__block">
-        <dl class="p-inline-definition-list">
-          <dt class="p-inline-definition-list__title">Duration</dt>
-          <dd class="p-inline-definition-list__item">3 days</dd>
-          <dt class="p-inline-definition-list__title">Cost</dt>
-          <dd class="p-inline-definition-list__item" itemprop="offers" itemscope itemtype="https://schema.org/Offer">USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="23500">23,500</span> up to 15 attendees</dd>
-          <dt class="p-inline-definition-list__title">Location</dt>
-          <dd class="p-inline-definition-list__item">Remote or your premises</dd>
-          <dt class="p-inline-definition-list__title">Availability</dt>
-          <dd class="p-inline-definition-list__item">Private groups only</dd>
-        </dl>
-        <p><a href="/training/contact-us?product=juju-administrator-training-onsite">Contact us to book yours&nbsp;&rsaquo;</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip is-bordered" itemscope itemtype="https://schema.org/Product">
-  <div class="row">
-    <div class="col-7">
-      <h2 itemprop="name">Charm Developer</h2>
-    </div>
-  </div>
-
-  <div>
-    <div class="u-fixed-width">
-      <hr />
-    </div>
-
-    <div class="row p-divider">
-      <div class="col-7 p-divider__block">
-        <p itemprop="description">A two-day hands-on course at your premises for up to 15 people that focuses on Charms. This course is an introduction to charmed operator development and covers the development, testing and release of charmed operators for both machines and Kubernetes. The course is delivered as a blend of theory lessons and hands-on practical labs. Upon completion, attendees will feel comfortable developing charms that can manage applications throughout their life, and integrate seamlessly with other applications across computing substrates.</p>
-        <p><a href="https://assets.ubuntu.com/v1/fda645b1-Charm+Developer+Training.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="col-5 p-divider__block">
-        <dl class="p-inline-definition-list">
-          <dt class="p-inline-definition-list__title">Duration</dt>
-          <dd class="p-inline-definition-list__item">2 days</dd>
-          <dt class="p-inline-definition-list__title">Cost</dt>
-          <dd class="p-inline-definition-list__item" itemprop="offers" itemscope itemtype="https://schema.org/Offer">USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="17500">17,500</span> up to 15 attendees</dd>
-          <dt class="p-inline-definition-list__title">Location</dt>
-          <dd class="p-inline-definition-list__item">Remote or your premises</dd>
-          <dt class="p-inline-definition-list__title">Availability</dt>
-          <dd class="p-inline-definition-list__item">Private groups only</dd>
-        </dl>
-        <p><a href="/training/contact-us?product=charm-developer-training-onsite">Contact us to book yours&nbsp;&rsaquo;</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light is-bordered" itemscope itemtype="https://schema.org/Product">
-  <div class="row">
-    <div class="col-7">
-      <h2 itemprop="name">Snapcraft 101</h2>
-    </div>
-  </div>
-
-  <div>
-    <div class="u-fixed-width">
-      <hr />
-    </div>
-
-    <div class="row p-divider">
-      <div class="col-7 p-divider__block">
-        <p itemprop="description">A hands-on workshop to learn how to create, build, publish and maintain your own snaps using Snapcraft and deploy them on Ubuntu Core. The workshop alternates short instructor-led discussions with task-focused practical labs. At the end of the two day workshop, your development team will be fully capable of deploying and maintaining your own snaps.</p>
-        <p><a href="https://assets.ubuntu.com/v1/f44d287e-Snapcraft 101 Outline.pdf">Read the course outline (PDF)&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="col-5 p-divider__block">
-        <dl class="p-inline-definition-list">
-          <dt class="p-inline-definition-list__title">Duration</dt>
-          <dd class="p-inline-definition-list__item">2 days</dd>
-          <dt class="p-inline-definition-list__title">Cost</dt>
-          <dd class="p-inline-definition-list__item" itemprop="offers" itemscope itemtype="https://schema.org/Offer">USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="5000">5,000</span> up to 15 attendees</dd>
-          <dt class="p-inline-definition-list__title">Location</dt>
-          <dd class="p-inline-definition-list__item">Remote</dd>
-          <dt class="p-inline-definition-list__title">Availability</dt>
-          <dd class="p-inline-definition-list__item">Private groups only</dd>
-        </dl>
-        <p><a href="/training/contact-us?product=snapcraft-101">Contact us to book yours&nbsp;&rsaquo;</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-7">
-      <h2>Questions about training?</h2>
-      <p>If you have a question about OpenStack training or want to register your interest for future training.</p>
-      <p><a href="/training/contact-us?product=openstack-training" data-form-location="/shared/forms/interactive/support-openstack" data-form-id="1263" data-lp-id="2163" data-return-url="https://ubuntu.com/training/thank-you?product=openstack-training" data-lp-url="https://ubuntu.com/training/thank-you?product=openstack-training">Contact us&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/0e5f4269-questions.svg",
-        alt="",
-        width="200",
-        height="200",
-        hi_def=True,
-        loading="lazy",
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<!-- Set default Marketo information for contact form below -->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/openstack" data-form-id="1263" data-lp-id="2163" data-return-url="https://ubuntu.com/training/thank-you" data-lp-url="https://ubuntu.com/training/thank-you">
-</div>
-
-
-
+            const panel = group.querySelector(`#${this.getAttribute('aria-controls')}`);
+            panel.removeAttribute('hidden');
+          });
+        });
+      });
+    });
+  </script>
+  <script>
+    twttr.conversion.trackPid('l4pwm');
+  </script>
+  <noscript>
+    <img height="1"
+         width="1"
+         style="display:none"
+         alt=""
+         src="https://analytics.twitter.com/i/adsct?txn_id=l4pwm&amp;p_id=Twitter" />
+    <img height="1"
+         width="1"
+         style="display:none"
+         alt=""
+         src="https://t.co/i/adsct?txn_id=l4pwm&amp;p_id=Twitter" />
+  </noscript>
 {% endblock content %}
-{% endblock outer_content %}
-
-{% block footer_extra %}
-<!-- twitter tracking code -->
-<script src="https://platform.twitter.com/oct.js"></script>
-<script>twttr.conversion.trackPid('l4pwm');</script>
-<noscript>
-  <img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=l4pwm&amp;p_id=Twitter" />
-  <img height="1" width="1" style="display:none;" alt="" src="https://t.co/i/adsct?txn_id=l4pwm&amp;p_id=Twitter" />
-</noscript>
-{% endblock footer_extra %}

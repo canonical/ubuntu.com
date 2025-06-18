@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
@@ -15,7 +14,7 @@ test("Should not display step 2,3,4,5,6 when 'myself' is selected in the first s
   render(
     <FormProvider>
       <ProductUser />
-    </FormProvider>
+    </FormProvider>,
   );
 
   await userEvent.click(screen.getByText("Myself"));
@@ -23,12 +22,12 @@ test("Should not display step 2,3,4,5,6 when 'myself' is selected in the first s
   expect(screen.queryByText(/What are you setting up/)).not.toBeInTheDocument();
   expect(screen.queryByText(/For how many machines/)).not.toBeInTheDocument();
   expect(
-    screen.queryByText(/What Ubuntu LTS version are you running/)
+    screen.queryByText(/What Ubuntu LTS version are you running/),
   ).not.toBeInTheDocument();
   expect(
-    screen.queryByText(/What security coverage do you need/)
+    screen.queryByText(/What security coverage do you need/),
   ).not.toBeInTheDocument();
   expect(
-    screen.queryByText(/Do you also need phone and ticket support/)
+    screen.queryByText(/Do you also need phone and ticket support/),
   ).not.toBeInTheDocument();
 });

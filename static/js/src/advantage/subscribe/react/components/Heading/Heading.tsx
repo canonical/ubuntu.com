@@ -1,4 +1,3 @@
-import React from "react";
 import { onLoginClick } from "advantage/ecom-events";
 import useCustomerInfo from "advantage/subscribe/checkout/hooks/useCustomerInfo";
 import { getIsFreeTrialEnabled } from "../../utils/utils";

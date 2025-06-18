@@ -1,0 +1,72 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.2
+    method: GET
+    uri: https://certification.canonical.com/api/v2/certified-platforms/14169/?format=json&pagination=limitoffset
+  response:
+    body:
+      string: '{"id":14169,"name":"G15 5530","vendor":"Dell","certificates":{"202212-31027":{"canonical_id":"202212-31027","releases":["22.04
+        LTS"],"date":"26 June 2023","video":[{"name":"GN21-X4","make":"NVIDIA","bus":"pci","identifier":"10de:28e0","subsystem":"1028:0bf7","subproduct_name":"","vendor_id":4353,"subvendor_id":4755,"category":"VIDEO"},{"name":"Alder
+        Lake-HX GT1 [UHD Graphics 770]","make":"Intel Corp.","bus":"pci","identifier":"8086:4688","subsystem":"1028:0bf7","subproduct_name":"","vendor_id":4103,"subvendor_id":4755,"category":"VIDEO"}],"network":[{"name":"RTL8111/8168/8411
+        PCI Express Gigabit Ethernet Controller","make":"Realtek Semiconductor Co.,
+        Ltd.","bus":"pci","identifier":"10ec:8168","subsystem":"10ec:0123","subproduct_name":"","vendor_id":286,"subvendor_id":286,"category":"NETWORK"}],"processor":[{"name":"13th
+        Gen Intel(R) Core(TM) i7-13700HX","make":"Intel Corp.","bus":"dmi","identifier":"dmi:13thGenIntel(R)Core(TM)i7-13700HX","subsystem":"","subproduct_name":"","vendor_id":4103,"subvendor_id":"","category":"PROCESSOR"}],"wireless":[{"name":"Raptor
+        Lake-S PCH CNVi WiFi","make":"Intel Corp.","bus":"pci","identifier":"8086:7a70","subsystem":"8086:4090","subproduct_name":"","vendor_id":4103,"subvendor_id":4103,"category":"WIRELESS"}],"name":"G15
+        5530 (Core i7-13700HX, RTX 4060)"},"202212-31028":{"canonical_id":"202212-31028","releases":["22.04
+        LTS"],"date":"26 June 2023","video":[{"name":"GN21-X4","make":"NVIDIA","bus":"pci","identifier":"10de:28e0","subsystem":"1028:0bf7","subproduct_name":"","vendor_id":4353,"subvendor_id":4755,"category":"VIDEO"},{"name":"Raptor
+        Lake-S UHD Graphics","make":"Intel Corp.","bus":"pci","identifier":"8086:a78b","subsystem":"1028:0bf7","subproduct_name":"","vendor_id":4103,"subvendor_id":4755,"category":"VIDEO"}],"network":[{"name":"RTL8111/8168/8411
+        PCI Express Gigabit Ethernet Controller","make":"Realtek Semiconductor Co.,
+        Ltd.","bus":"pci","identifier":"10ec:8168","subsystem":"10ec:0123","subproduct_name":"","vendor_id":286,"subvendor_id":286,"category":"NETWORK"}],"processor":[{"name":"13th
+        Gen Intel(R) Core(TM) i7-13650HX","make":"Intel Corp.","bus":"dmi","identifier":"dmi:13thGenIntel(R)Core(TM)i7-13650HX","subsystem":"","subproduct_name":"","vendor_id":4103,"subvendor_id":"","category":"PROCESSOR"}],"wireless":[{"name":"Raptor
+        Lake-S PCH CNVi WiFi","make":"Intel Corp.","bus":"pci","identifier":"8086:7a70","subsystem":"1a56:1652","subproduct_name":"","vendor_id":4103,"subvendor_id":1746,"category":"WIRELESS"}],"name":"G15
+        5530 (Core i7-13650HX, RTX 4060)"},"202212-31031":{"canonical_id":"202212-31031","releases":["22.04
+        LTS"],"date":"26 June 2023","video":[{"name":"GN20-P0-R-K2","make":"NVIDIA","bus":"pci","identifier":"10de:25ec","subsystem":"1028:0bf8","subproduct_name":"","vendor_id":4353,"subvendor_id":4755,"category":"VIDEO"},{"name":"Raptor
+        Lake-S UHD Graphics","make":"Intel Corp.","bus":"pci","identifier":"8086:a78b","subsystem":"1028:0bf8","subproduct_name":"","vendor_id":4103,"subvendor_id":4755,"category":"VIDEO"}],"network":[{"name":"RTL8111/8168/8411
+        PCI Express Gigabit Ethernet Controller","make":"Realtek Semiconductor Co.,
+        Ltd.","bus":"pci","identifier":"10ec:8168","subsystem":"10ec:0123","subproduct_name":"","vendor_id":286,"subvendor_id":286,"category":"NETWORK"}],"processor":[{"name":"13th
+        Gen Intel(R) Core(TM) i5-13450HX","make":"Intel Corp.","bus":"dmi","identifier":"dmi:13thGenIntel(R)Core(TM)i5-13450HX","subsystem":"","subproduct_name":"","vendor_id":4103,"subvendor_id":"","category":"PROCESSOR"}],"wireless":[{"name":"Raptor
+        Lake-S PCH CNVi WiFi","make":"Intel Corp.","bus":"pci","identifier":"8086:7a70","subsystem":"8086:4070","subproduct_name":"","vendor_id":4103,"subvendor_id":4103,"category":"WIRELESS"}],"name":"G15
+        5530 (Core i5-13450HX, RTX 3050)"},"202212-31025":{"canonical_id":"202212-31025","releases":["22.04
+        LTS"],"date":"26 June 2023","video":[{"name":"GN21-X2","make":"NVIDIA","bus":"pci","identifier":"10de:28e1","subsystem":"1028:0bf7","subproduct_name":"","vendor_id":4353,"subvendor_id":4755,"category":"VIDEO"},{"name":"Raptor
+        Lake-S UHD Graphics","make":"Intel Corp.","bus":"pci","identifier":"8086:a78b","subsystem":"1028:0bf7","subproduct_name":"","vendor_id":4103,"subvendor_id":4755,"category":"VIDEO"}],"network":[{"name":"RTL8111/8168/8411
+        PCI Express Gigabit Ethernet Controller","make":"Realtek Semiconductor Co.,
+        Ltd.","bus":"pci","identifier":"10ec:8168","subsystem":"1028:0bf7","subproduct_name":"","vendor_id":286,"subvendor_id":4755,"category":"NETWORK"}],"processor":[{"name":"13th
+        Gen Intel(R) Core(TM) i7-13650HX","make":"Intel Corp.","bus":"dmi","identifier":"dmi:13thGenIntel(R)Core(TM)i7-13650HX","subsystem":"","subproduct_name":"","vendor_id":4103,"subvendor_id":"","category":"PROCESSOR"}],"wireless":[{"name":"Raptor
+        Lake-S PCH CNVi WiFi","make":"Intel Corp.","bus":"pci","identifier":"8086:7a70","subsystem":"8086:4070","subproduct_name":"","vendor_id":4103,"subvendor_id":4103,"category":"WIRELESS"}],"name":"G15
+        5530 (Core i7-13650HX , RTX 4050)"}},"category":"Laptop"}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '5048'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 03 Sep 2024 15:26:44 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Vary:
+      - Accept, Cookie
+      X-QueryInspect-Duplicate-SQL-Queries:
+      - '0'
+      X-QueryInspect-Num-SQL-Queries:
+      - '10'
+      X-QueryInspect-Total-Request-Time:
+      - 140 ms
+      X-QueryInspect-Total-SQL-Time:
+      - 80 ms
+    status:
+      code: 200
+      message: OK
+version: 1

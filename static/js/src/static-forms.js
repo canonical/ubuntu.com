@@ -20,25 +20,25 @@ function setUpStaticForms(form, formId) {
 
     Array.prototype.forEach.call(otherContainers, function (otherContainer) {
       const otherInput = otherContainer.querySelector(
-        ".js-other-container__other-toggle"
+        ".js-other-container__other-toggle",
       );
       const textInput = otherContainer.querySelector(
-        ".js-other-container__input"
+        ".js-other-container__input",
       );
 
       if (otherInput.type === "radio") {
         const radioGroupName = otherInput.name;
         const radioGroup = Array.from(
-          document.querySelectorAll(`input[name="${radioGroupName}"]`)
+          document.querySelectorAll(`input[name="${radioGroupName}"]`),
         );
         radioGroup.forEach((radio) => {
           radio.addEventListener("change", () =>
-            updateOtherInputVisibility(otherInput, textInput)
+            updateOtherInputVisibility(otherInput, textInput),
           );
         });
       } else if (otherInput.type === "checkbox") {
         otherInput.addEventListener("change", () =>
-          updateOtherInputVisibility(otherInput, textInput)
+          updateOtherInputVisibility(otherInput, textInput),
         );
       }
     });
@@ -80,7 +80,7 @@ function setUpStaticForms(form, formId) {
    * Builds a message from the form fields and populates the
    * Comments from Lead field
    */
-  function buildCommentsForLead(formId) {
+  function buildCommentsForLead() {
     var message = "";
 
     form?.addEventListener("submit", (e) => {
@@ -89,53 +89,64 @@ function setUpStaticForms(form, formId) {
       var formFields = document.querySelectorAll(".js-formfield");
       formFields.forEach(function (formField) {
         var comma = ",";
-        var colon = ": ";
-        var fieldTitle = formField.querySelector(".p-heading--3");
-        var inputs = formField.querySelectorAll("input, textarea");
+        var fieldTitle = formField.querySelector(".js-formfield-title");
+        var inputs = formField.querySelectorAll("input, textarea, select");
         if (fieldTitle) {
           message += fieldTitle.innerText + "\r\n";
         }
 
         inputs.forEach(function (input) {
-          var question = input.name.split("-").join(" ");
           switch (input.type) {
+            case "select-one":
+              message +=
+                input.options[input.selectedIndex]?.textContent + comma + " ";
+              break;
             case "radio":
               if (input.checked) {
-                message += question + colon + input.value + comma + "\r\n\r\n";
+                message += input.value + comma + " ";
               }
               break;
             case "checkbox":
               if (input.checked) {
-                message += question + colon + input.value + comma + "\r\n\r\n";
+                message += input.value + comma + " ";
               }
               break;
             case "text":
-              if (input.value !== "") {
-                message += question + colon + input.value + comma + "\r\n\r\n";
-              }
-              break;
             case "number":
-              if (input.value !== "") {
-                message += question + colon + input.value + comma + "\r\n\r\n";
-              }
-              break;
             case "textarea":
               if (input.value !== "") {
-                message += question + colon + input.value + comma + "\r\n\r\n";
+                message += input.value + comma + " ";
               }
               break;
           }
-          input.removeAttribute("name");
         });
+        message += "\r\n\r\n";
       });
 
-      commentsFromLead.value = message;
+      const radioFieldsets = document.querySelectorAll(
+        ".js-remove-radio-names",
+      );
+      if (radioFieldsets.length > 0) {
+        radioFieldsets.forEach((radioFieldset) => {
+          const radioInputs = radioFieldset.querySelectorAll(
+            "input[type='radio']",
+          );
+          radioInputs.forEach((radioInput) => {
+            radioInput.removeAttribute("name");
+          });
+        });
+      }
+
+      if (formFields.length) {
+        commentsFromLead.value = message;
+      }
+
       return message;
     });
   }
   const commentsFromLead = document.querySelector("#Comments_from_lead__c");
   if (commentsFromLead) {
-    buildCommentsForLead(formId);
+    buildCommentsForLead();
   }
 
   /**
@@ -146,8 +157,13 @@ function setUpStaticForms(form, formId) {
    * form submission
    */
   function attachLoadingSpinner(submitButton) {
+    let spinnerClassName = "p-icon--spinner u-animation--spin";
+    if (submitButton.classList.contains("p-button--positive")) {
+      spinnerClassName += " is-light";
+    }
+
     const spinnerIcon = document.createElement("i");
-    spinnerIcon.className = "p-icon--spinner u-animation--spin is-light";
+    spinnerIcon.className = spinnerClassName;
     const buttonRect = submitButton.getBoundingClientRect();
     submitButton.style.width = buttonRect.width + "px";
     submitButton.style.height = buttonRect.height + "px";
@@ -156,10 +172,37 @@ function setUpStaticForms(form, formId) {
     submitButton.innerText = "";
     submitButton.appendChild(spinnerIcon);
   }
+
   const submitButton = form.querySelector('button[type="submit"]');
-  if (submitButton) {
+  // Exclude forms that don't need loader
+  const cancelLoader = submitButton.classList.contains("no-loader");
+
+  if (submitButton && !cancelLoader) {
+    // Save the state of the button to get around bfcache
+    const originalButtonHTML = submitButton.innerHTML;
+    const originalDisabled = submitButton.disabled;
+
+    const resetSubmitButton = () => {
+      submitButton.classList.remove("is-processing");
+      submitButton.disabled = originalDisabled;
+      submitButton.style.width = "";
+      submitButton.style.height = "";
+      submitButton.innerHTML = originalButtonHTML;
+    };
+
+    // Reset button when loaded from cache to avoid stuck loading spinner
+    window.addEventListener("pageshow", (event) => {
+      if (event.persisted) {
+        resetSubmitButton();
+      }
+    });
+
     form.addEventListener("submit", () => attachLoadingSpinner(submitButton));
   }
+
+  form.addEventListener("submit", function (e) {
+    setDataLayerConsentInfo();
+  });
 }
 
 /**
@@ -175,7 +218,118 @@ function extractMarketoID(str) {
   return null;
 }
 
-const forms = document.querySelectorAll("form[action='/marketo/submit']");
+const forms = document.querySelectorAll(
+  "form[action='/marketo/submit']:not(.js-modal-form)",
+);
 if (forms.length) {
   forms.forEach((form) => setUpStaticForms(form, extractMarketoID(form.id)));
+}
+
+/**
+ *
+ * @param {*} fieldset
+ * @param {*} checklistItem
+ *
+ * Disable & enable checklist visibility based on user selection
+ * - When any visible checkbox is checked, it will disable the .js-checkbox-visibility__other checkboxes
+ * - Can only check one __other item at a time
+ * - When all visible checkboxes or any __other checkbox is unchecked, all checkboxes will be enabled
+ */
+function toggleCheckboxVisibility(fieldset, checklistItem) {
+  const checkboxes = fieldset.querySelectorAll(".js-checkbox-visibility");
+  const otherCheckboxes = fieldset.querySelectorAll(
+    ".js-checkbox-visibility__other",
+  );
+  const isVisible = checklistItem.classList.contains("js-checkbox-visibility");
+  if (checklistItem.checked) {
+    if (isVisible) {
+      otherCheckboxes.forEach((checkbox) => {
+        checkbox.disabled = true;
+      });
+    } else {
+      checkboxes.forEach((checkbox) => {
+        checkbox.disabled = true;
+      });
+      otherCheckboxes.forEach((checkbox) => {
+        checklistItem == checkbox ? null : (checkbox.disabled = true);
+      });
+    }
+  } else {
+    if (isVisible) {
+      var uncheck = true;
+      checkboxes.forEach((checkbox) => {
+        checkbox.checked ? (uncheck = false) : null;
+      });
+      if (uncheck) {
+        otherCheckboxes.forEach((checkbox) => {
+          checkbox.disabled = false;
+        });
+      }
+    } else {
+      checkboxes.forEach((checkbox) => {
+        checkbox.disabled = false;
+      });
+      otherCheckboxes.forEach((checkbox) => {
+        checkbox.disabled = false;
+      });
+    }
+  }
+}
+const ubuntuVersionCheckboxes = document.querySelector(
+  "fieldset.js-toggle-checkbox-visibility",
+);
+
+ubuntuVersionCheckboxes?.addEventListener("change", function (event) {
+  toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
+});
+
+/**
+ *
+ * @param {*} fieldset
+ * @param {*} target
+ * Disables submit button for required checkboxes field
+ */
+function requiredCheckbox(fieldset, target) {
+  const submitButton = document.querySelector(".js-submit-button");
+  const checkboxes = fieldset.querySelectorAll("input[type='checkbox']");
+  if (target.checked) {
+    submitButton.disabled = false;
+  } else {
+    var disableSubmit = true;
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked ? (disableSubmit = false) : null;
+    });
+    submitButton.disabled = disableSubmit;
+  }
+}
+
+const requiredFieldset = document.querySelectorAll(
+  "fieldset.js-required-checkbox",
+);
+requiredFieldset?.forEach((fieldset) => {
+  document.querySelector(".js-submit-button").disabled = true;
+  fieldset.addEventListener("change", function (event) {
+    requiredCheckbox(fieldset, event.target);
+  });
+});
+
+function setDataLayerConsentInfo() {
+  const dataLayer = window.dataLayer || [];
+  const latestConsentUpdateElements = dataLayer
+    .slice()
+    .reverse()
+    .filter(
+      (item) =>
+        typeof item === "object" &&
+        item !== null &&
+        item[0] === "consent" &&
+        item[1] === "update",
+    )[0]?.[2];
+
+  if (latestConsentUpdateElements) {
+    document.cookie =
+      "consent_info=" +
+      JSON.stringify(latestConsentUpdateElements) +
+      ";max-age=31536000;";
+  }
 }

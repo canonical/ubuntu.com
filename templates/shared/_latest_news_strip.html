@@ -1,3 +1,4 @@
+{# djlint: off #}
 <noscript>
   <section class="{% if section_classes %}{{ section_classes }}{% else %}p-strip{% endif %}">
     <div class="row">
@@ -7,46 +8,76 @@
 </noscript>
 
 <section class="u-hide {% if section_classes %}{{ section_classes }}{% else %}p-strip{% endif %}" data-js="latest-news">
-  <div class="row">
-    <h3>
-      {% if request.path == "/observability" %}
-        More about {{ heading_topic }} in
-      {% else %}
+  {% if show_start_rule %}
+    <hr class="p-rule is-fixed-width" />
+  {% endif %}
+  <div class="row p-section--shallow">
+    {% if request.path == "/" %}
+      <h2 class="p-heading--1">
+    {% else %}
+      <h2 class="{% if heading_class %}{{ heading_class }}{% else %}p-heading--3{% endif %}">
+    {% endif %}
+    {% if not is_title_link %}
         Latest {{ heading_topic }} news from
-      {% endif %}
-        <a href="/blog{% if tag_name %}/tag/{{ tag_name }}{% endif %}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com{% if tag_name %}/{{ tag_name }}{% else %} homepage{% endif %}', 'eventValue' : undefined });">
-          our blog&nbsp;&rsaquo;
-        </a>
-    </h3>
+    {% endif %}
+    <a href="/blog{% if tag_name %}/tag/{{ tag_name }}{% endif %}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com{% if tag_name %}/{{ tag_name }}{% else %} homepage{% endif %}', 'eventValue' : undefined });">{% if is_title_link %}Latest {{ heading_topic }} news from {% endif %}our blog&nbsp;&rsaquo;</a>
+    </h2>
   </div>
-  <div class="row p-divider">
+  <div class="row">
     <div class="{% if spotlight %}col-9{% else %}col-12{% endif %}">
-      <div id="horizontal-latest-articles" class="row">
+      <div id="horizontal-latest-articles" class="p-equal-height-row--wrap">
         <div style="min-height: 9.1rem"><i class="p-icon--spinner u-animation--spin">Loading...</i></div>
       </div>
     </div>
     {% if spotlight %}
-    <div id="spotlight" class="col-3 p-divider__block">
+    <div id="spotlight" class="col-3">
     </div>
     {% endif %}
   </div>
 
   <template style="display:none" id="horizontal-articles-template">
-    <div class="col-3">
-      <p class="u-no-margin--bottom p-muted-heading"><time datetime="" class="article-time"></time></p>
-      <h2 class="p-heading--5"><a class="article-link article-title"></a></h2>
+    <div class="p-equal-height-row__col">
+      {% if not hide_date %}
+        <div class="p-equal-height-row__item">
+          <p class="u-no-margin--bottom p-muted-heading">
+            <time datetime="" class="article-time"></time>
+          </p>
+        </div>
+      {% endif %}
+      {% if show_image %}
+        <div class="p-equal-height-row__item">
+          <div class="u-crop--16-9">
+            <div class="article-image p-image-wrapper"></div>
+          </div>
+        </div>
+      {% endif %}
+      <div class="p-equal-height-row__item">
+        <h3 class="p-heading--5">
+          <a class="article-link article-title"></a>
+        </h3>
+      </div>
+      {% if show_excerpt %}
+        <div class="p-equal-height-row__item">
+          <p class="article-excerpt"></p>
+        </div>
+      {% endif %}
     </div>
   </template>
 
   {% if spotlight %}
   <template style="display:none" id="spotlight-template">
-    <div>
-      <p class="u-no-margin--bottom p-muted-heading">
-        Spotlight
-      </p>
-      <h2 class="p-heading--5">
-        <a class="article-link article-title"></a>
-      </h2>
+    <hr class="p-rule--muted u-hide--large" />
+    <div class="row">
+      <div class="col-medium-2 col-small-4 col-3">
+        <p class="u-no-margin--bottom p-muted-heading">
+          Spotlight
+        </p>
+      </div>
+      <div class="col-medium-4 col-small-4 col-3">
+        <h3 class="p-heading--5">
+          <a class="article-link article-title"></a>
+        </h3>
+      </div>
     </div>
   </template>
   {% endif %}
@@ -54,15 +85,18 @@
   <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
   <script>
     canonicalLatestNews.fetchLatestNews(
-    {
-      articlesContainerSelector: "#horizontal-latest-articles",
-      articleTemplateSelector: "#horizontal-articles-template",
-      {% if spotlight %}spotlightContainerSelector: "#spotlight",
-      spotlightTemplateSelector: "#spotlight-template",{% endif %}
-      gtmEventLabel: "ubuntu.com{% if tag_name %}/{{ tag_name }}{% else %} homepage{% endif %}",
-      {% if tag_name %}tagId: "{{ tag_id }}",{% endif %}
-      {% if limit %}limit: "{{ limit }}",{% endif %}
-    }
+      {
+        articlesContainerSelector: "#horizontal-latest-articles",
+        articleTemplateSelector: "#horizontal-articles-template",
+        {% if spotlight %}spotlightContainerSelector: "#spotlight",
+        spotlightTemplateSelector: "#spotlight-template",{% endif %}
+        gtmEventLabel: "ubuntu.com{% if tag_name %}/{{ tag_name }}{% else %} homepage{% endif %}",
+        {% if tag_id %}tagId: "{{ tag_id }}",{% endif %}
+        {% if tag_name %}tag_name: "{{ tag_name }}",{% endif %}
+        {% if limit %}limit: "{{ limit }}",{% endif %}
+        {% if link_image %}linkImage: true,{% endif %}
+        {% if excerptLength %}excerptLength: "{{ excerptLength }}",{% endif %}
+      }
     )
-  </script>
+</script>
 </section>

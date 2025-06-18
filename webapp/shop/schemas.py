@@ -46,11 +46,21 @@ class CustomerInfo(Schema):
     tax_id = Nested(TaxIdSchema())
 
 
+class Metadata(Schema):
+    key = String()
+    value = String()
+
+
 class PurchaseTotalSchema(Schema):
     currency = String(required=True)
     subtotal = Int(required=True)
     tax = Int()
     total = Int(required=True)
+
+
+class CouponSchema(Schema):
+    origin = String()
+    IDs = List(String())
 
 
 account_purhcase = {
@@ -61,7 +71,14 @@ account_purhcase = {
     "previous_purchase_id": String(allow_none=True),
     "captcha_value": String(allow_none=True),
     "marketplace": String(
-        validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender"]),
+        validate=validate.OneOf(
+            [
+                "canonical-ua",
+                "canonical-cube",
+                "blender",
+                "canonical-pro-channel",
+            ]
+        ),
         required=True,
     ),
     "action": String(
@@ -69,6 +86,8 @@ account_purhcase = {
             ["purchase", "resize", "trial", "offer", "renewal"]
         )
     ),
+    "coupon": Nested(CouponSchema),
+    "metadata": List(Nested(Metadata), allow_none=True),
 }
 
 
@@ -87,7 +106,14 @@ cancel_advantage_subscriptions = {
     "previous_purchase_id": String(required=True),
     "product_listing_id": String(required=True),
     "marketplace": String(
-        validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender"]),
+        validate=validate.OneOf(
+            [
+                "canonical-ua",
+                "canonical-cube",
+                "blender",
+                "canonical-pro-channel",
+            ]
+        ),
         required=True,
     ),
 }
@@ -96,7 +122,14 @@ post_offer_schema = {
     "account_id": String(),
     "offer_id": String(),
     "marketplace": String(
-        validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender"])
+        validate=validate.OneOf(
+            [
+                "canonical-ua",
+                "canonical-cube",
+                "blender",
+                "canonical-pro-channel",
+            ]
+        )
     ),
 }
 
@@ -113,7 +146,7 @@ post_payment_methods = {
 }
 
 post_customer_info = {
-    "payment_method_id": String(required=True),
+    "payment_method_id": String(),
     "account_id": String(required=True),
     "name": String(),
     "tax_id": Nested(TaxIdSchema, allow_none=True),
@@ -130,7 +163,13 @@ ensure_purchase_account = {
 get_purchase_account_status = {
     "marketplace": String(
         validate=validate.OneOf(
-            ["", "canonical-ua", "canonical-cube", "blender"]
+            [
+                "",
+                "canonical-ua",
+                "canonical-cube",
+                "blender",
+                "canonical-pro-channel",
+            ]
         )
     ),
 }
@@ -138,7 +177,13 @@ get_purchase_account_status = {
 invoice_view = {
     "marketplace": String(
         validate=validate.OneOf(
-            ["", "canonical-ua", "canonical-cube", "blender"]
+            [
+                "",
+                "canonical-ua",
+                "canonical-cube",
+                "blender",
+                "canonical-pro-channel",
+            ]
         )
     ),
     "page": Int(),

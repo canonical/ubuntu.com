@@ -1,49 +1,201 @@
 {% extends "about/base_about.html" %}
 
+{% from "macros/_vf-latest-news.jinja" import vf_latest_news with context %}
+
 {% block title %}About the Ubuntu project{% endblock %}
-{% block meta_description %}Learn about the Ubuntu project's history, release schedule, support, and governance.{% endblock meta_description %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1NvYOhOJzdY5ypifTPs73vH5Nb7rFABRWMzjXyDUQt_U/edit{% endblock meta_copydoc %}
+
+{% block meta_description %}
+  Learn about the Ubuntu project's history, release schedule, support, and governance.
+{% endblock meta_description %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1NvYOhOJzdY5ypifTPs73vH5Nb7rFABRWMzjXyDUQt_U/edit
+{% endblock meta_copydoc %}
 
 {% block content %}
 
-<section class="p-strip is-deep">
-  <div class="row">
-    <div class="col-8">
-      <h1>The story of Ubuntu</h1>
+  <section class="p-strip">
+    <div class="u-fixed-width">
+      <h1 class="p-heading--display">The story of Ubuntu</h1>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <h3>ubuntu |oǒ'boǒntoō|</h3>
-      <p>Ubuntu is an ancient African word meaning 'humanity to others'. It is often described as reminding us that 'I am what I am because of who we all are'. We bring the spirit of Ubuntu to the world of computers and software. The Ubuntu distribution represents the best of what the world's software community has shared with the world.</p>
-      <h3>Where did it all begin?</h3>
-      <p>Linux was already established in 2004, but it was fragmented into proprietary and unsupported community editions, and free software was not a part of everyday life for most computer users. That's when Mark Shuttleworth gathered a small team of Debian developers who together founded Canonical and set out to create an easy-to-use Linux desktop called Ubuntu.</p>
-      <p>The <a href="/community/mission">mission</a> for Ubuntu is both social and economic. First, we deliver the world's free software, freely, to everybody on the same terms. Whether you are a student in India or a global bank, you can download and use Ubuntu free of charge. Second, we aim to cut the cost of professional services - support, management, maintenance, operations - for people who use Ubuntu at scale, through a portfolio of services provided by Canonical which ultimately fund the improvement of the platform.</p>
-      <h3>Ubuntu releases</h3>
-      <p>Ubuntu was the first operating system to commit to scheduled releases on a predictable cadence, every six months, starting in October 2004. In 2006 we decided that every fourth release, made every two years, would receive long-term support for large-scale deployments. This is the origin of the term LTS for stable, maintained releases.</p>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <div class="col">
+          <h2>ubuntu |oǒ'boǒntoō|</h2>
+        </div>
+        <div class="col">
+          <p>
+            Ubuntu is an ancient African word meaning 'humanity to others'. It is often described as reminding us that 'I am what I am because of who we all are'. We bring the spirit of Ubuntu to the world of computers and software. The Ubuntu distribution represents the best of what the world's software community has shared with the world.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="u-fixed-width">
+      <div class="p-image-container is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/1ce22427-hero-img.jpg",
+                alt="",
+                width="2464",
+                height="1027",
+                hi_def=True,
+                fmt="webp",
+                loading="auto",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Where did it all begin?</h2>
+      </div>
+      <div class="col">
+        <p>Linux was already established in 2004, but it was fragmented into proprietary and unsupported community editions, and free software was not a part of everyday life for most computer users. That's when Mark Shuttleworth gathered a small team of Debian developers who together founded Canonical and set out to create an easy-to-use Linux desktop called Ubuntu.</p>
+        <p>The <a href="/community/mission">mission for Ubuntu</a> is both social and economic. First, we deliver the worlds free software, freely, to everybody on the same terms. Whether you are a student in India or a global bank, you can download and use Ubuntu free of charge. Second, we aim to cut the cost of professional services - support, management, maintenance, operations - for people who use Ubuntu at scale, through a portfolio of services provided by Canonical which ultimately fund the improvement of the platform.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <div class="col">
+          <h2>Ubuntu releases</h2>
+        </div>
+        <div class="col">
+          <p>
+            Ubuntu was the first operating system to commit to scheduled releases on a predictable cadence, every six months, starting in October 2004. In 2006 we decided that every fourth release, made every two years, would receive long-term support for large-scale deployments. This is the origin of the term LTS for stable, maintained releases.
+          </p>
+          <p>
+            The commercial and community teams collaborate to produce a single, high-quality release, which receives ongoing maintenance for a defined period. Both the release and ongoing updates for core packages are freely available to all users.
+          </p>
+          <p>
+            Commercial users engage with Canonical to gain access to support, consulting, management tools, managed services and extended security maintenance.
+          </p>
+          <div class="p-cta-block">
+            <a href="/about/release-cycle">Find out more about the Ubuntu lifecycle&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="u-fixed-width">
+      <!-- Release cycle chart -->
+      <div class="u-hide--small"
+           id="server-desktop-eol-old"
+           style="margin-left:1.25rem;
+                  margin-right:1.25rem"></div>
+      <!-- Release cycle table -->
+
+      <div class="u-table-scroll--small">
+        {% include "about/release_cycles/releases-table.html" %}
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Governance</h2>
+      </div>
+      <div class="col">
+        <p>
+          Canonical is the publisher of Ubuntu. Members of the Canonical team lead aspects of Ubuntu such as the kernel, default desktop, foundations, security, Openstack, and Kubernetes.
+        </p>
+        <p>
+          However, the <a href="/community/governance">governance of Ubuntu</a> is somewhat independent of Canonical, with volunteer leaders from around the world taking responsibility for many critical elements of the project. Mark Shuttleworth, as project founder, short-lists public nominees as candidates for the Community Council and Technical Board, and they in turn screen and nominate candidates for a wide range of boards, councils and teams that take responsibility for aspects of the project.
+        </p>
+        <p>
+          It remains a key tenet of the Ubuntu Project that Ubuntu is a shared work between Canonical, other companies, and the thousands of volunteers who bring their expertise to bear on making it a world-class platform for anyone to use.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Ubuntu today</h2>
+      </div>
+      <div class="col">
+        <p>
+          The first official Ubuntu release &ndash; Version 4.10, codenamed the 'Warty Warthog' &ndash; was launched in October 2004, and sparked dramatic global interest as thousands of free software enthusiasts and experts joined the Ubuntu community.
+        </p>
+        <p>
+          Ubuntu today has <a href="/desktop/flavours">many flavors</a> and <a href="https://wiki.ubuntu.com/DerivativeTeam/Derivatives">dozens of specialized derivatives</a>. There are also special editions for servers, OpenStack clouds, and connected devices. All editions share common infrastructure and software, making Ubuntu a unique single platform that scales from consumer electronics to the desktop and up into the cloud for enterprise computing.
+        </p>
+        <p>
+          The Ubuntu desktop is by far the world's most widely used Linux workstation platform, powering the work of engineers across the globe. Ubuntu Core sets the standard for tiny, transactional operating systems for highly secure connected devices. Ubuntu Server is the reference operating system for the OpenStack project, and a hugely popular guest OS on AWS, Azure and Google Cloud. Ubuntu is pre-installed on computers from Dell, HP, Asus, Lenovo and other global vendors.
+        </p>
+        <p>
+          We hope Ubuntu will bring something wonderful to your computing &ndash; and we hope that you'll join us in helping to shape and build the future of free software together.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>
+          Want a fully managed
+          <br />
+          private cloud?
+        </h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="p-image-container">
+            {{ image(url="https://assets.ubuntu.com/v1/37601211-want-a-fully-managed.jpg",
+                        alt="",
+                        width="1200",
+                        height="801",
+                        hi_def=True,
+                        fmt="webp",
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
+        </div>
+        <p>
+          Did you know Ubuntu is the OS of choice for over 50% of OpenStack deployments? Run your private cloud on Ubuntu.
+        </p>
+        <div class="p-cta-block u-no-padding--bottom">
+          <a href="/openstack/managed" class="p-button--positive">Learn more</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="p-rule is-fixed-width" />
+  <div class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <div class="p-section--shallow">
+        <p class="p-heading--2">
+          The open source software platform that runs everywhere from the smartphone, the tablet and the PC to the server and the cloud.
+        </p>
+      </div>
+      <p class="p-heading--2">
+        <a href="/download">Download Ubuntu&nbsp;&rsaquo;</a>
+      </p>
     </div>
   </div>
 
-  {% include "/about/release_cycles/ubuntu-small-eol.html" %}
+  {{ vf_latest_news(title_text='Latest from our blog&nbsp;&rsaquo;',
+    tag_name="ubuntu",
+    tag_id="1564") }}
 
-  <div class="row">
-    <div class="col-8">
-      <p>The commercial and community teams collaborate to produce a single, high-quality release, which receives ongoing maintenance for a defined period. Both the release and ongoing updates for core packages are freely available to all users.</p>
-      <p>Commercial users engage with Canonical to gain access to support, consulting, management tools, managed services and expanded security maintenance.</p>
-      <p><a href="/about/release-cycle">Find out more about the Ubuntu lifecycle&nbsp;&rsaquo;</a></p>
-      <h3>Governance</h3>
-      <p>Canonical is the publisher of Ubuntu. Members of the Canonical team lead aspects of Ubuntu such as the kernel, default desktop, foundations, security, OpenStack, and Kubernetes.</p>
-      <p>However, the <a href="/community/governance">governance of Ubuntu</a> is somewhat independent of Canonical, with volunteer leaders from around the world taking responsibility for many critical elements of the project. Mark Shuttleworth, as project founder, short-lists public nominees as candidates for the Community Council and Technical Board, and they in turn screen and nominate candidates for a wide range of boards, councils and teams that take responsibility for aspects of the project.</p>
-      <p>It remains a key tenet of the Ubuntu Project that Ubuntu is a shared work between Canonical, other companies, and the thousands of volunteers who bring their expertise to bear on making it a world-class platform for anyone to use.</p>
-      <h3>Ubuntu today</h3>
-      <p>The first official Ubuntu release &mdash; Version 4.10, codenamed the 'Warty Warthog' &mdash; was launched in October 2004, and sparked dramatic global interest as thousands of free software enthusiasts and experts joined the Ubuntu community.</p>
-      <p>Ubuntu today has <a href="https://wiki.ubuntu.com/UbuntuFlavors">many flavours</a> and <a href="https://wiki.ubuntu.com/DerivativeTeam/Derivatives">dozens of specialised derivatives</a>. There are also special editions for servers, OpenStack clouds, and connected devices. All editions share common infrastructure and software, making Ubuntu a unique single platform that scales from consumer electronics to the desktop and up into the cloud for enterprise computing.</p>
-      <p>The Ubuntu desktop is by far the world's most widely used Linux workstation platform, powering the work of engineers across the globe. Ubuntu Core sets the standard for tiny, transactional operating systems for highly secure connected devices. Ubuntu Server is the reference operating system for the OpenStack project, and a hugely popular guest OS on AWS, Azure and Google Cloud. Ubuntu is pre-installed on computers from Dell, HP, Asus, Lenovo and other global vendors.</p>
-      <p>We hope Ubuntu will bring something wonderful to your computing &mdash; and we hope that you'll join us in helping to shape and build the future of free software together.</p>
-    </div>
-  </div>
-</section>
+  <script src="https://assets.ubuntu.com/v1/6d64bd2f-d3.min.js" defer></script>
+  <script src="{{ versioned_static('js/dist/release-chart-manager.js') }}"
+          defer></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.2/d3.min.js" defer></script>
-<script src="{{ versioned_static('js/dist/release-chart-manager.js') }}" defer></script>
 {% endblock content %}

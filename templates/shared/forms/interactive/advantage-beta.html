@@ -2,7 +2,7 @@
   <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
     <header class="p-modal__header" style="display: block; border-bottom: 0;">
       <button class="p-modal__close js-close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
-      <h2 class="p-modal__title  u-sv1" id="modal-title">Ubuntu Pro<br><span class="u-text--muted">Free trial for Ubuntu Advantage for Infrastructure customers</span></h2>
+      <h2 class="p-modal__title  u-sv1" id="modal-title">Ubuntu Pro<br /><span class="u-text--muted">Free trial for Ubuntu Advantage for Infrastructure customers</span></h2>
     </header>
 
     <div class="js-pagination js-pagination--1">
@@ -14,21 +14,21 @@
           <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form">
             <ul class="p-list">
               <li class="p-list__item">
-                <label for="firstName">First name:</label>
+                <label class="is-required" for="firstName">First name:</label>
                 {% if user_info %}
                   {% set first_name = user_info.fullname.split(' ')[0] %}
                   {% set last_name = user_info.fullname | replace(first_name + " ", "") %}
                   <input required id="firstName" name="firstName" maxlength="255" type="text" required="required" value="{{ first_name }}" />
                 {% else %}
-                  <input required id="firstName" name="firstName" maxlength="255" type="text" required="required" />
+                  <input required id="firstName" name="firstName" maxlength="255" type="text" />
                 {% endif %}
               </li>
               <li class="p-list__item">
-                <label for="lastName">Last name:</label>
+                <label class="is-required" for="lastName">Last name:</label>
                 {% if user_info %}
                   <input required id="lastName" name="lastName" maxlength="255" type="text" required="required" value="{{ last_name }}" />
                 {% else %}
-                  <input required id="lastName" name="lastName" maxlength="255" type="text" required="required" />
+                  <input required id="lastName" name="lastName" maxlength="255" type="text" />
                 {% endif %}
               </li>
               <li class="p-list__item">
@@ -36,12 +36,12 @@
                 {% if user_info %}
                   <input required id="email_disabled" name="email_disabled" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" value="{{ user_info.email }}" disabled/>
                 {% else %}
-                  <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
+                  <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
                 {% endif %}
               </li>
               <li class="p-list__item">
                 <label class="p-checkbox">
-                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
                   <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
                 </label>
               </li>
@@ -79,7 +79,7 @@
               <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="productContext" id="product-context" value="{{ product }}" />
               {% if user_info %}
-                <input type="hidden" id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" value="{{ user_info.email }}" />
+                <input type="hidden" id="email" name="email" maxlength="255" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" value="{{ user_info.email }}" />
               {% endif %}
             </div>
 
@@ -97,7 +97,7 @@
         <div class="col-7">
           <h3 class="p-heading--2">Thank you</h3>
           <p>Your request has been received. We will be in touch with you as soon as possible. </p>
-          <p>Questions? Visit our <a href="https://discourse.ubuntu.com/c/ubuntu-pro/">discourse channel</a></p>
+          <p>Questions? Visit our <a href="https://discourse.ubuntu.com/c/project/ubuntu-pro/116/">discourse channel</a></p>
         </div>
         <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
           {{

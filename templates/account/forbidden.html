@@ -2,9 +2,7 @@
 
 {% block title %}Your account{% endblock %}
 
-{% block head_extra %}
-  <meta name="robots" content="noindex, nofollow">
-{% endblock %}
+{% block head_extra %}<meta name="robots" content="noindex, nofollow" />{% endblock %}
 
 {% block outer_content %}
 
@@ -12,12 +10,21 @@
     <div class="row">
       <div class="col-12">
         <h1>Access Forbidden</h1>
-        {% if reason=="is_not_admin" %}	
+        {% if reason=="is_not_admin" %}
+
           <p>You need administrator rights to the account to access this feature.</p>
         {% elif reason=="is_technical" %}
-          <p>You have "Technical" user access to this account. "Technical" users are denied access to some features. Contact your account administrator for more information.</p>
+          <p>
+            You have "Technical" user access to this account. "Technical" users are denied access to some features. Contact your account administrator for more information.
+          </p>
         {% elif reason=="is_only_personal" %}
           <p>This feature is accessible only by users with enterprise subscriptions for commercial use.</p>
+        {% elif reason=="channel_account" %}
+          <p>
+            You are a channel account user. Channel users are not allowed to access this page. <br/> Please contact your account administrator for more information, or go to <a href="/pro/distributor">the distributor's home page.</a>
+          </p>
+        {% else %}
+          <p>You need administrator rights to the account to access this feature.</p>
         {% endif %}
       </div>
     </div>

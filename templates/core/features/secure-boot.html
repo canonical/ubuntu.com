@@ -1,150 +1,192 @@
 {% extends "core/base_core.html" %}
 
 {% block title %}Secure boot | Ubuntu Core{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1ltH7T2boIJ7VcUni4Kmc0XGlmmxWAf5u82LEwkEGP24/edit#{% endblock meta_copydoc %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1ltH7T2boIJ7VcUni4Kmc0XGlmmxWAf5u82LEwkEGP24/edit#
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
+  <section class="p-section--hero">
+    <div class="row--50-50 p-section--shallow">
+      <div class="col">
+        <h1>Secure boot</h1>
+      </div>
+      <div class="col">
+        <p class="p-heading--5">Protect against vulnerabilities at boot time</p>
+        <p>
+          Computers are vulnerable during the boot process if they are not secured. The kernel, hardware peripherals and user space processes are all initiated at boot and any vulnerability in the boot firmware can have cascading effects on the entire system.
+        </p>
+        <p>
+          In the case of an attack on boot firmware, damages are so profound that often hardware replacement is the only fix. In an industrial IoT scenario, this means considerable downtime, manual maintenance, possibly at several locations and CapEx for hardware replacement. An utterly undesirable outcome.
+        </p>
+        <hr class="p-rule--muted" />
+        <p>
+          <a href="/core/docs/security-and-sandboxing">Learn about security and sandboxing in Ubuntu Core &nbsp;&rsaquo;</a>
+        </p>
+      </div>
+    </div>
+    <div class="u-fixed-width">
+      <div class="p-image-container">
+        <img class="p-image-container__image"
+             src="https://assets.ubuntu.com/v1/99cc612a-full-width-hero.png"
+             alt="Advanced security features" />
+      </div>
+    </div>
+  </section>
 
-<section class="p-strip--suru-topped">
-  <div class="row u-equal-height">
-    <div class="col-7">
-      <h1>Secure boot</h1>
-      <p class="p-heading--4">Protect against vulnerabilities at boot time</p>
-      <p>Computers are vulnerable during the boot process if they are not secured. The kernel, hardware peripherals and user space processes are all initiated at boot and any vulnerability in the boot firmware can have cascading effects on the entire system.</p>
-      <p>In the case of an attack on boot firmware, damages are so profound that often hardware replacement is the only fix. In an industrial IoT scenario, this means considerable downtime, manual maintenance, possibly at several locations and CapEx for hardware replacement. An utterly undesirable outcome.</p>
-      <p>
-        <a href="/core/docs/security-and-sandboxing"><span class="x x-first x-last">Learn about </span>security <span class="x x-first x-last">and sandboxing in </span>Ubuntu <span class="x x-first x-last">Core ›</span></a>
-      </p>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Integrity verification</h2>
+      </div>
+      <div class="col">
+        <p>
+          The integrity of the boot firmware must be proven before trust is established in user space processes. This requires a secure mechanism to establish integrity.
+        </p>
+        <p>
+          Such a mechanism should be implemented into low level computer initialisation firmware like UEFI, as validating the boot process integrity at this low level assures that a device has started up in a secure state.
+        </p>
+        <p>
+          Standard requirements and recommendations for boot integrity measurement are following (<a href="https://csrc.nist.gov/publications/detail/sp/800-155/draft">NIST 800-155</a>):
+        </p>
+        <hr class="p-rule--muted" />
+        <ul class="p-list--divided u-no-margin--bottom">
+          <li class="p-list__item is-ticked">
+            Enable endpoints to measure the integrity of all executables and configuration metadata at boot time
+          </li>
+          <li class="p-list__item is-ticked">Securely transmit measurements of integrity</li>
+          <li class="p-list__item is-ticked">
+            Provide the hardware support necessary to implement credible root of trust for integrity measurements
+          </li>
+        </ul>
+        <hr class="p-rule--muted" />
+        <p>
+          The root of trust is the most critical element for integrity determination. It can be implemented in hardware through secure elements or Trusted Platform Module (TPM) or coded in software using cryptographic libraries (Trusted Execution Environment).
+        </p>
+      </div>
     </div>
-    <div class="col-5 u-hide--small u-vertically-center u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/6ed19d21-UC20_Secure_boot.svg",
-        alt="Secure boot",
-        width="190",
-        height="190",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip--light">
-  <div class="row u-align--center">
-    {{ image (
-      url="https://assets.ubuntu.com/v1/720e50fa-UC20_advanced_security_features.svg",
-      alt="Advanced security features",
-      width="900",
-      height="264",
-      hi_def=True,
-      loading="lazy"
-      ) | safe
-    }}
-  </div>
-</section>
+  <section class="p-section">
+    <div class="u-fixed-width p-section--shallow">
+      <hr class="p-rule" />
+      <h2>Secure boot on Ubuntu Core</h2>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="p-rule is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">ARM and x86</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Ubuntu Core abstracts the root of trust implementation for its secure boot process. As a consequence, Ubuntu Core secure boot can be enabled for both ARM and x86 SoCs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="p-rule is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Free for pre-certified boards</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Secure boot is available out of the box on <a href="/certified/iot">certified devices</a> at no additional cost. An enablement fee is required to fully certify Ubuntu Core on non-certified boards.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section class="p-strip">
-  <div class="row">
-    <h2>Integrity verification</h2>
-    <p>The integrity of the boot firmware must be proven before trust is established in user space processes. This requires a secure mechanism to establish integrity.</p>
-    <p>Such a mechanism should be implemented into low level computer initialisation firmware like UEFI, as validating the boot process integrity at this low level assures that a device has started up in a secure state.</p>
-    <p>Standard requirements and recommendations for boot integrity measurement are following (<a href="https://csrc.nist.gov/publications/detail/sp/800-155/draft">NIST 800-155</a>):</p>
-    <ul class="p-list">
-      <li class="p-list__item is-ticked">Enable endpoints to measure the integrity of all executables and configuration metadata at boot time</li>
-      <li class="p-list__item is-ticked">Securely transmit measurements of integrity</li>
-      <li class="p-list__item is-ticked">Provide the hardware support necessary to implement credible root of trust for integrity measurements</li>
-    </ul>
-    <p>The root of trust is the most critical element for integrity determination. It can be implemented in hardware through secure elements or Trusted Platform Module (TPM) or coded in software using cryptographic libraries (Trusted Execution Environment).</p>
-  </div>
-</section>
+  <section class="p-section">
+    <div class="row--50-50 p-section--shallow">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>How it works</h2>
+      </div>
+      <div class="col">
+        <p>
+          Since Ubuntu Core 20, the boot process is authenticated by default. Authentication is based on the verification of digital signatures.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="p-rule is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Chain of Trust</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Each component in the boot sequence cryptographically validates the authenticity of the subsequent component in the boot sequence. Every component is measured before it is loaded in the runtime memory space. If an improper or unsigned component is detected, the boot process is stopped.
+            </p>
+            {{ image(url="https://assets.ubuntu.com/v1/93fde248-chain-of-trust.png",
+                            alt="",
+                            width="300",
+                            hi_def=True,
+                            loading="lazy") | safe
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="p-rule is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Digital keys</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Ubuntu Core supports both hardware and software root of trust for secure boot. Security admins can create and store the digital keys used to validate the boot sequence in either a secure element, a TPM device or a software TEE.
+            </p>
+            <img src="https://assets.ubuntu.com/v1/3d9b8c06-digital-keys.png"
+                alt="Digital keys"
+                width="300" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section class="p-strip--light">
-  <div class="row u-sv3">
-    <h2>Secure boot on Ubuntu Core</h2>
-  </div>
-  <div class="row u-vertically-center">
-    <div class="p-card col-6 u-vertically-center">
-      <h3 class="p-card__title">ARM and x86</h3>
-      <p class="p-card__content">Ubuntu Core abstracts the root of trust implementation for its secure boot process. As a consequence, Ubuntu Core secure boot can be enabled for both ARM and x86 SoCs.</p>
+  <section class="p-section--deep">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Secure your devices</h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="p-image-container is-highlighted">
+            <img class="p-image-container__image"
+                 src="https://assets.ubuntu.com/v1/683e6225-Image.png"
+                 alt="" />
+          </div>
+        </div>
+        <p>Get in touch with a Ubuntu security expert to discuss the advanced security requirements of your application.</p>
+        <hr class="p-rule--muted" />
+        <p>
+          <a href="/core/contact-us?product=core-secure-boot"
+             class="p-button--positive js-invoke-modal">Get in touch</a>
+        </p>
+      </div>
     </div>
-    <div class="p-card col-6 u-vertically-center">
-      <h3 class="p-card__title">Free for pre-certified boards</h3>
-      <p class="p-card__content">Secure boot is available out of the box on <a href="/certified/iot">certified devices</a> at no additional cost. An enablement fee is required to fully certify Ubuntu Core on non-certified boards.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip">
-  <div class="row">
-    <h2>How it works</h2>
-    <p>Since Ubuntu Core 20, the boot process is authenticated by default. Authentication is based on the verification of digital signatures.</p>
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h3>Chain of Trust</h3>
-      <p>Each component in the boot sequence cryptographically validates the authenticity of the subsequent component in the boot sequence. Every component is measured before it is loaded in the runtime memory space. If an improper or unsigned component is detected, the boot process is stopped.</p>
-    </div>
-    <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/146a6eba-2+assessment_AW.svg",
-        alt="Assessment",
-        width="263",
-        height="150",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <hr class="p-separator" />
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h3>Digital keys</h3>
-      <p>Ubuntu Core supports both hardware and software root of trust for secure boot. Security admins can create and store the digital keys used to validate the boot sequence in either a secure element, a TPM device or a software TEE</p>
-    </div>
-    <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/2131b805-We+transfer+control.svg",
-        alt="Transfer control",
-        width="150",
-        height="150",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-5 u-hide--medium u-hide--small u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
-        alt="",
-        width="281",
-        height="200",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-    <div class="col-7">
-      <h2>Secure your devices</h2>
-      <p>Get in touch with a Ubuntu security expert to discuss the advanced security requirements of your application.</p>
-      <p>
-        <a href="/core/contact-us?product=core-secure-boot" class="p-button--positive js-invoke-modal">Get in touch</a>
-      </p>
-    </div>
-  </div>
-</section>
-
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/internet-of-things" data-form-id="1266" data-lp-id="2166" data-return-url="https://ubuntu.com/core/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-  </div>
-
+  {{ load_form("/core/features") | safe }}
 
 {% endblock content %}

@@ -2,7 +2,7 @@ import { UserSubscriptionMachineType } from "advantage/api/enum";
 import { UserSubscription } from "advantage/api/types";
 
 export const getMachineTypeDisplay = (
-  machineType: UserSubscription["machine_type"]
+  machineType: UserSubscription["machine_type"],
 ) => {
   switch (machineType) {
     case UserSubscriptionMachineType.Virtual:

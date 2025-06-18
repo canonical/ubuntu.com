@@ -1,4 +1,3 @@
-import React from "react";
 import { format } from "date-fns";
 import CSS from "csstype";
 import { Formik, Field } from "formik";

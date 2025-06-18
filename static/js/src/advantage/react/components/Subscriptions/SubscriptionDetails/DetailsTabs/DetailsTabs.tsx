@@ -51,7 +51,7 @@ export const generateList = (title: React.ReactNode, items: ListItem[]) => (
 
 const getSupportLevel = (subscription: UserSubscription) => {
   const features: EntitlementsStore = filterAndFormatEntitlements(
-    subscription.entitlements
+    subscription.entitlements,
   );
 
   if (features.byLabel["24/5 Support"]) {
@@ -69,14 +69,14 @@ const DetailsTabs = ({
   ...wrapperProps
 }: Props) => {
   const featuresDisplay = filterAndFormatEntitlements(
-    subscription.entitlements
+    subscription.entitlements,
   );
 
   const isBlender = isBlenderSubscription(subscription);
   const isFree = isFreeSubscription(subscription);
 
   const [activeTab, setActiveTab] = useState<ActiveTab>(
-    ActiveTab.DOCUMENTATION
+    ActiveTab.DOCUMENTATION,
   );
 
   let content: ReactNode | null;
@@ -110,6 +110,14 @@ const DetailsTabs = ({
                 </tr>
               </thead>
               <tbody>
+                <tr>
+                  <td data-test="doc-link">Ubuntu Pro documentation</td>
+                  <td>
+                    <a href="https://documentation.ubuntu.com/pro">
+                      Ubuntu Pro documentation
+                    </a>
+                  </td>
+                </tr>
                 <tr>
                   <td data-test="doc-link">Knowledge Base</td>
                   <td>

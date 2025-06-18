@@ -1,265 +1,225 @@
 {% extends "security/base_security.html" %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
 {% block title %}Ubuntu Oval | Security{% endblock %}
 
-{% block meta_description %}Parameters and methods for consuming Ubuntu OVAL data. OVAL is used by the Ubuntu Security Team for CVE tracking and management.{% endblock %}
+{% block meta_description %}
+  Parameters and methods for consuming Ubuntu OVAL data. OVAL is used by the Ubuntu Security Team for CVE tracking and management.
+{% endblock %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1hBG6NIfBIrixIV753fsOiEymmeuFIF-KOhiDkV68PRY/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1hBG6NIfBIrixIV753fsOiEymmeuFIF-KOhiDkV68PRY/edit
+{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip--suru-bottomed">
-  <div class="row u-equal-height">
-    <div class="col-7 u-vertically-center">
-      <h1>
-        Ubuntu OVAL data
-      </h1>
+
+  {% call(slot) vf_hero(
+    title_text='Ubuntu OVAL data',
+    layout='25/75'
+    ) -%}
+    {%- if slot == 'description' -%}
       <p>
         Canonical's Security Team produces Ubuntu OVAL, a structured, machine-readable dataset for all <a href="/about/release-cycle">supported Ubuntu releases</a>.  It can be used to evaluate and manage security risks related to any existing Ubuntu components. It is based on the Open Vulnerability and Assessment Language (OVAL).
       </p>
-    </div>
-    <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/eb653b8e-oval_logo.png",
-        alt="",
-        width="250",
-        height="164",
-        hi_def=True,
-        loading="auto",
-        ) | safe
+    {%- endif -%}
+    {%- if slot =='signpost_image' -%}
+        {{ image(url="https://assets.ubuntu.com/v1/97cb005e-oval-logo.png",
+                alt="Oval logo",
+                width="858",
+                height="333",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "u-hide--small u-hide--medium"}) | safe
       }}
-    </div>
-  </div>
-</section>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--cinematic is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/7761320f-hero.png",
+                alt="",
+                width="2464",
+                height="1027",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    {% endif -%}
+  {% endcall -%}
 
-<section class="p-strip--light">
-  <div class="row u-vertically-center">
-    <div class="col-7">
-      <h2>
-        How we use Ubuntu OVAL
-      </h2>
-      <p>
-        Ubuntu OVAL uses the OVAL vulnerability and patch definitions to enable auditing for Common Vulnerabilities and Exposures (CVEs) and to determine whether a particular patch, via an Ubuntu Security Notice (USN), is appropriate for the local system.
-      </p>
-      <p>
-        Ubuntu OVAL also allows for any third-party Security Content Automation Protocol (SCAP) compliant tools to accurately scan an Ubuntu system or an official Ubuntu OCI image for vulnerabilities.
-      </p>
-      <a class="p-button" href="/security/notices">See the Ubuntu Security Notices</a>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2 id="how-we-use-oval">How we use Ubuntu OVAL</h2>
+      </div>
+      <div class="col">
+        <p>
+          Ubuntu OVAL uses the OVAL vulnerability and patch definitions to enable auditing for Common Vulnerabilities and Exposures (CVEs) and to determine whether a particular patch, via an Ubuntu Security Notice (USN), is appropriate for the local system.
+        </p>
+        <p>
+          Ubuntu OVAL also allows for any third-party Security Content Automation Protocol (SCAP) compliant tools to accurately scan an Ubuntu system or an official Ubuntu cloud image for vulnerabilities.
+        </p>
+        <div class="p-cta-block">          
+          <a class="p-button" href="/security/notices">See the Ubuntu Security Notices</a>
+        </div>
+      </div>
     </div>
-    <div class="col-5 u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/f880a3bd-Enterprise+support.svg",
-        alt="",
-        width="200",
-        height="200",
-        hi_def=True,
-        loading="lazy",
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip is-deep" id="instructions">
-  <div class="u-fixed-width">
-    <h2>
-      Using Ubuntu's OVAL data
-    </h2>
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <ol class="p-stepped-list">
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">
-            Using OpenSCAP
-          </h3>
-          <div class="p-stepped-list__content">
-            <p>
-              Download the compressed XML:
-            </p>
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <h2 id="using-oval-data">Using Ubuntu's OVAL data</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <hr class="p-rule--muted" />
+      </div>
+    </div>
+    <ol class="p-stepped-list">
+      <li class="p-stepped-list__item">
+        <div class="row">
+          <div class="col-3 col-start-large-4">
+            <h3 class="p-heading--5 p-stepped-list__title">Using OpenSCAP</h3>
+          </div>
+          <div class="col-6 p-stepped-list__content">
+            <p>Download the compressed XML:</p>
             <pre><code>wget https://security-metadata.canonical.com/oval/com.ubuntu.$(lsb_release -cs).usn.oval.xml.bz2</code></pre>
-            <p>
-              Uncompress the data:
-            </p>
+            <hr class="p-rule--muted" />
+            <p>Uncompress the data:</p>
             <pre><code>bunzip2 com.ubuntu.$(lsb_release -cs).usn.oval.xml.bz2</code></pre>
-            <p>
-              Use OpenSCAP to evaluate the OVAL and generate an html report:
-            </p>
+            <hr class="p-rule--muted" />
+            <p>Use OpenSCAP to evaluate the OVAL and generate an html report:</p>
             <pre><code>oscap oval eval --report report.html com.ubuntu.$(lsb_release -cs).usn.oval.xml</code></pre>
+            <hr class="p-rule--muted" />
             <p>
-              The output is generated in the file report.html, open it using your browser:
+              The output is generated in the file <code>report.html</code>, open it using your browser:
             </p>
             <pre><code>xdg-open report.html</code></pre>
-            <p>
-              File naming convention:
-            </p>
+            <hr class="p-rule--muted" />
+            <p>File naming convention:</p>
             <pre><code>com.ubuntu.&lt;example release name&gt;.usn.oval.xml.bz2</code></pre>
-            </div>
-          </li>
-          <li class="p-stepped-list__item">
-            <h3 class="p-stepped-list__title">
-              Scanning an OCI Image
-            </h3>
-            <div class="p-stepped-list__content">
-              <p>
-                To scan an <a href="https://cloud-images.ubuntu.com">Ubuntu Official Cloud Image</a> for known vulnerabilities, the manifest file and xml data can be used together. Unlike above where we were able to use the <code>lsb_release</code> command, you will need to manually enter the URL for the OVAL data.
-              </p>
-              <p>
-                <i class="p-icon--information">Note:</i> In the example below we are using focal/20.04, you would replace 'focal' with the version you are inspecting.
-              </p>
-              <pre><code>wget https://security-metadata.canonical.com/oval/oci.com.ubuntu.focal.usn.oval.xml.bz2
-bunzip2 oci.com.ubuntu.focal.usn.oval.xml.bz2</code></pre>
-                <p>
-                  Download the manifest file for the image
-                </p>
-                <pre><code>wget -O manifest https://cloud-images.ubuntu.com/releases/focal/release/ubuntu-20.04-server-cloudimg-amd64-root.manifest</code></pre>
-                <p>
-                  Use OpenSCAP to evaluate the OVAL and generate an html report
-                </p>
-                <pre><code>oscap oval eval --report report.html oci.com.ubuntu.focal.usn.oval.xml</code></pre>
-                <p>
-                  The output is generated in the file <code>report.html</code>, open it using your browser
-                </p>
-                <pre><code>xdg-open report.html</code></pre>
-                <p>
-                  File naming convention:
-                </p>
-                <pre><code>oci.com.ubuntu.&lt;example release name&gt;.usn.oval.xml.bz2</code></pre>
-              </div>
-            </li>
-          </ol>
+          </div>
         </div>
-        <div class="col-4 u-hide--small">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/2670bd16-OpenScap-logo.svg",
-            alt="",
-            width="210",
-            height="46",
-            hi_def=True,
-            loading="lazy",
-            ) | safe
-          }}
+      </li>
+      <li class="p-stepped-list__item">
+        <div class="row">
+          <div class="col-9 col-start-large-4">
+            <hr class="p-rule--muted" />
+          </div>
         </div>
-      </div>
-    </section>
+        <div class="row">
+          <div class="col-3 col-start-large-4">
+            <h3 class="p-heading--5 p-stepped-list__title">Scanning an <br class="u-hide--medium u-hide--small" />Official Cloud Image</h3>
+          </div>
+          <div class="col-6 p-stepped-list__content">
+            <p>
+              To scan an <a href="https://cloud-images.ubuntu.com">Ubuntu Official Cloud Image</a> for known vulnerabilities, the manifest file and xml data can be used together. Unlike above where we were able to use the <code>lsb_release</code> command, you will need to manually enter the URL for the OVAL data.
+            </p>
+            <p>In the example below we are using focal/20.04, you would replace 'focal' with the version you are inspecting.</p>
+            <pre><code>wget https://security-metadata.canonical.com/oval/oci.com.ubuntu.focal.usn.oval.xml.bz2<br />bunzip2 oci.com.ubuntu.focal.usn.oval.xml.bz2</code></pre>
+            <hr class="p-rule--muted" />
+            <p>Download the manifest file for the image</p>
+            <pre><code>wget -O manifest https://cloud-images.ubuntu.com/releases/focal/release/ubuntu-20.04-server-cloudimg-amd64-root.manifest</code></pre>
+            <hr class="p-rule--muted" />
+            <p>Use OpenSCAP to evaluate the OVAL and generate an html report</p>
+            <pre><code>oscap oval eval --report report.html oci.com.ubuntu.focal.usn.oval.xml</code></pre>
+            <hr class="p-rule--muted" />
+            <p>
+              The output is generated in the file <code>report.html</code>, open it using your browser
+            </p>
+            <pre><code>xdg-open report.html</code></pre>
+            <hr class="p-rule--muted" />
+            <p>File naming convention:</p>
+            <pre><code>oci.com.ubuntu.&lt;example release name&gt;.usn.oval.xml.bz2</code></pre>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </section>
 
-    <section class="p-strip--light">
-      <div class="row">
-        <div class="col-7">
-          <h2>
-            Ubuntu OVAL data parameters
-          </h2>
-          <table>
-            <thead>
-              <tr>
-                <th scope="col" style="width: 33%;">
-                  Parameter
-                </th>
-                <th scope="col">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  CVE_ID
-                </td>
-                <td>
-                  CVE number as reported by MITRE
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  USN
-                </td>
-                <td>
-                  Corresponding Ubuntu Security Notice
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Description
-                </td>
-                <td>
-                  A short description of the security risk addressed
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Severity
-                </td>
-                <td>
-                  CVE or USN severity as defined by the Ubuntu Security team
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Affected Platform
-                </td>
-                <td>
-                  Affected Ubuntu release(s), incl ESM
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Title
-                </td>
-                <td>
-                  CVE number, affected Ubuntu release(s), and Severity
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Public date
-                </td>
-                <td>
-                  The date on which a CVE was publicly announced
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Public date of USN
-                </td>
-                <td>
-                  The date on which a USN was published
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Reference
-                </td>
-                <td>
-                  Links to more information about the issue
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  BugReport
-                </td>
-                <td>
-                  Link to bugreport about the issue
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p>
-            <small>
-              <i class="p-icon--information">Note:</i> The above parameters are included in the OVAL xml file, but not all are shown in the resulting generated OpenSCAP report.
-            </small>
-          </p>
-        </div>
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <h2 id="oval-data-parameters">Ubuntu OVAL data parameters</h2>
       </div>
-    </section>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col" style="width: 33%;">Parameter</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CVE_ID</td>
+              <td>CVE number as reported by MITRE</td>
+            </tr>
+            <tr>
+              <td>USN</td>
+              <td>Corresponding Ubuntu Security Notice</td>
+            </tr>
+            <tr>
+              <td>Description</td>
+              <td>A short description of the security risk addressed</td>
+            </tr>
+            <tr>
+              <td>Severity</td>
+              <td>CVE or USN severity as defined by the Ubuntu Security team</td>
+            </tr>
+            <tr>
+              <td>Affected Platform</td>
+              <td>Affected Ubuntu release(s), incl ESM</td>
+            </tr>
+            <tr>
+              <td>Title</td>
+              <td>CVE number, affected Ubuntu release(s), and Severity</td>
+            </tr>
+            <tr>
+              <td>Public date</td>
+              <td>The date on which a CVE was publicly announced</td>
+            </tr>
+            <tr>
+              <td>Public date of USN</td>
+              <td>The date on which a USN was published</td>
+            </tr>
+            <tr>
+              <td>Reference</td>
+              <td>Links to more information about the issue</td>
+            </tr>
+            <tr>
+              <td>BugReport</td>
+              <td>Link to bugreport about the issue</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <small class="u-text--muted"><i>
+                  Note: The above parameters are included in the OVAL xml file, but not all are shown in the resulting generated OpenSCAP report.
+                </i></small>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
 
-    <section class="p-strip">
-      <div class="row">
-        <div class="col-7">
-          <h2>
-            How Ubuntu OVAL data works
-          </h2>
+  <section class="p-section--deep">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2 id="how-oval-works">How Ubuntu OVAL data works</h2>
+        </div>
+        <div class="col">
           <p>
             As software vulnerabilities are discovered, they are assigned CVE identifiers by MITRE and other organizations. Canonical triages these CVEs to determine whether the vulnerabilities affect software distributed within Ubuntu. The results of this triage are then used to generate the CVE OVAL. The CVE OVAL can be used to assess the local system for vulnerabilities.
           </p>
@@ -268,19 +228,19 @@ bunzip2 oci.com.ubuntu.focal.usn.oval.xml.bz2</code></pre>
           </p>
         </div>
       </div>
-      <div class="u-fixed-width">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/ce2c3422-how-OVAL-data-works-diagram.svg",
-          alt="",
-          width="682",
-          height="290",
-          hi_def=True,
-          loading="lazy",
-
-          ) | safe
+    </div>
+    <div class="u-fixed-width">
+      <div class="p-image-container--cinematic is-highlighted">
+        {{ image(url="https://assets.ubuntu.com/v1/4745474d-how-ubuntu-oval.png",
+                    alt="",
+                    width="3696",
+                    height="1541",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
         }}
       </div>
-    </section>
+    </div>
+  </section>
 
-    {% endblock content %}
+{% endblock content %}

@@ -1,6 +1,11 @@
+import os
 from requests import Session
 from requests.exceptions import HTTPError
 from urllib.parse import urlencode
+
+SECURITY_API_URL = os.getenv(
+    "SECURITY_API_URL", "https://ubuntu.com/security/"
+)
 
 
 class SecurityAPIError(HTTPError):
@@ -12,7 +17,7 @@ class SecurityAPI:
     def __init__(
         self,
         session: Session,
-        base_url: str,
+        base_url=SECURITY_API_URL,
     ):
         self.session = session
         self.base_url = base_url
@@ -80,34 +85,37 @@ class SecurityAPI:
 
         return notice_response.json()
 
-    def get_notices(
+    def get_page_notices(
         self,
         limit: int,
         offset: int,
         details: str,
-        release: str,
+        releases: list,
         order: str,
     ):
         """
-        Makes request for all releases with ongoing support,
-        returns json object if found
+        Makes request for all notices with ongoing support,
+        returns json object if found.
+        Note that these notices are missing the 'cves' fields.
         """
 
         parameters = {
             "limit": limit,
             "offset": offset,
             "details": details,
-            "release": release,
+            "release": releases,
             "order": order,
         }
 
         # Remove falsey items from dictionary
         parameters = {k: v for k, v in parameters.items() if v}
 
-        filtered_parameters = urlencode(parameters)
+        filtered_parameters = urlencode(parameters, doseq=True)
 
         try:
-            notices_response = self._get(f"notices.json?{filtered_parameters}")
+            notices_response = self._get(
+                f"page/notices.json?{filtered_parameters}"
+            )
         except HTTPError as error:
             raise SecurityAPIError(error)
 
@@ -116,13 +124,14 @@ class SecurityAPI:
     def get_cves(
         self,
         query: str,
-        priority: str,
+        priority: list,
         package: str,
         limit: int,
         offset: int,
         component: str,
         versions: list,
         statuses: list,
+        order: str,
     ):
         parameters = {
             "q": query,
@@ -133,6 +142,7 @@ class SecurityAPI:
             "component": component,
             "version": versions,
             "status": statuses,
+            "order": order,
         }
 
         # Remove falsey items from dictionary

@@ -4,6 +4,7 @@ const margin = {
   right: 40,
   bottom: 20,
 };
+const kernelVersionWidth = 50;
 
 /**
  *
@@ -33,7 +34,15 @@ function sortTasks(tasks) {
  *
  * Add bars to chart using supplied data
  */
-function addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion) {
+function addBarsToChart(
+  svg,
+  tasks,
+  taskStatus,
+  x,
+  y,
+  highlightVersion,
+  chartSelector,
+) {
   svg
     .selectAll(".chart")
     .data(tasks, function (d) {
@@ -53,12 +62,17 @@ function addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion) {
       }
 
       className += " " + taskStatus[d.status];
-
       return className;
     })
     .attr("y", 0)
     .attr("transform", function (d) {
-      if (d.status === "MAIN_UNIVERSE" || d.status === "PRO_SUPPORT") {
+      if (
+        d.status === "MAIN_UNIVERSE" ||
+        d.status === "PRO_SUPPORT" ||
+        (d.status === "PRO_LEGACY_SUPPORT" &&
+          d.taskName !== "14.04 LTS (Trusty Tahr)" &&
+          chartSelector !== "#kernel-eol")
+      ) {
         return (
           "translate(" +
           x(d.startDate) +
@@ -69,12 +83,79 @@ function addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion) {
       }
       return "translate(" + x(d.startDate) + "," + y(d.taskName) + ")";
     })
-    .attr("height", function () {
+    .attr("height", function (d) {
+      if (
+        d.status === "PRO_LEGACY_SUPPORT" &&
+        d.taskName !== "14.04 LTS (Trusty Tahr)" &&
+        chartSelector !== "#kernel-eol"
+      ) {
+        return y.bandwidth() * 2;
+      }
       return y.bandwidth();
     })
     .attr("width", function (d) {
       return x(d.endDate) - x(d.startDate);
     });
+}
+
+/**
+ * @param {*} svg
+ *
+ * Adds tooltip to bars
+ */
+function addTooltipToBars(svg) {
+  const tooltip = createTooltip();
+
+  svg
+    .selectAll(".chart rect")
+    .on("mouseover", function (e, d) {
+      const tooltipStatus = formatTooltip(d.status);
+      const dateRange = `${formatDate(d.startDate)} - ${formatDate(d.endDate)}`;
+      const tooltipContent = tooltipStatus
+        ? `${tooltipStatus}: ${dateRange}`
+        : dateRange;
+      tooltip.select(".p-tooltip__message").text(tooltipContent);
+      tooltip.classed("u-hide", false);
+    })
+    .on("mousemove", function (e) {
+      tooltip
+        .style("left", e.pageX + 2 + "px")
+        .style("top", e.pageY - 3 + "px");
+    })
+    .on("mouseout", function () {
+      tooltip.classed("u-hide", true);
+    });
+}
+
+/**
+ * Creates a tooltip and appends it to the page body
+ */
+function createTooltip() {
+  let tooltip = d3.select("body").select(".p-tooltip--top-center.is-detached");
+  if (tooltip.empty()) {
+    tooltip = d3
+      .select("body")
+      .append("div")
+      .attr("class", "p-tooltip--top-center is-detached u-hide")
+      .attr("style", "pointer-events: none;");
+    tooltip
+      .append("span")
+      .attr("class", "p-tooltip__message")
+      .attr("role", "tooltip");
+  }
+
+  return tooltip;
+}
+
+/**
+ *
+ * @param {String} date
+ *
+ * Parse the date to be more readable
+ */
+function formatDate(date) {
+  var formatDate = d3.timeFormat("%b %Y");
+  return formatDate(date);
 }
 
 /**
@@ -91,7 +172,7 @@ function addXAxis(svg, height, xAxis) {
     .attr("class", "x axis")
     .attr(
       "transform",
-      "translate(0, " + (height - margin.top - margin.bottom) + ")"
+      "translate(0, " + (height - margin.top - margin.bottom) + ")",
     )
     .transition()
     .call(xAxis);
@@ -104,8 +185,13 @@ function addXAxis(svg, height, xAxis) {
  *
  * Add y axis to chart
  */
-function addYAxis(svg, yAxis) {
-  svg.append("g").attr("class", "y axis").transition().call(yAxis);
+function addYAxis(svg, yAxis, taskVersions) {
+  svg
+    .append("g")
+    .attr("class", "y axis")
+    .attr("x", taskVersions ? -margin.left / 1.6 : -margin.left)
+    .transition()
+    .call(yAxis);
 }
 
 /**
@@ -115,8 +201,29 @@ function addYAxis(svg, yAxis) {
  *
  * Add version axis to chart
  */
-function addVersionAxis(svg, versionAxis) {
-  svg.append("g").attr("class", "version axis").call(versionAxis);
+function addVersionAxis(svg, taskVersions) {
+  svg.selectAll(".y.axis .tick").each(function (d, i) {
+    const existingText = d3.select(this).select("text");
+    d3.select(this)
+      .append("text")
+      .text(taskVersions[i])
+      .attr("x", -margin.left)
+      .attr("dy", existingText.attr("dy"))
+      .attr("fill", "currentColor")
+      .attr("class", "chart__kernel-version")
+      .attr("text-anchor", "start");
+  });
+}
+
+/**
+ * Adjusts the position of the Ubuntu version labels
+ */
+function adjustUbuntuVersionLabels(svg) {
+  svg
+    .selectAll(".y.axis .tick text:not(.chart__kernel-version)")
+    .each(function () {
+      d3.select(this).attr("transform", `translate(${kernelVersionWidth}, 0)`);
+    });
 }
 
 /**
@@ -129,11 +236,11 @@ function cleanUpChart(svg) {
   svg.selectAll(".domain").remove();
 }
 
-/* @param {*} svg
+/**
+ * @param {*} svg
+ * @param {*} yScale
  *
- * Embolden LTS labels on y axis**
- *
-
+ * Embolden LTS labels on y axis
  */
 function emboldenLTSLabels(svg, yScale) {
   const domain = yScale.domain();
@@ -175,16 +282,6 @@ function highlightChartRow(svg, scale, highlightVersion) {
 /**
  *
  * @param {*} svg
- */
-function setVersionAxisLabels(svg, taskVersions) {
-  svg.selectAll(".version .tick text").select(function (tickLabel, index) {
-    this.textContent = taskVersions[index];
-  });
-}
-
-/**
- *
- * @param {*} svg
  * @param {Int} height
  *
  * Adds vertical lines to the x axis
@@ -201,7 +298,7 @@ function addXAxisVerticalLines(svg, height) {
  * Adds vertical lines to the x axis
  */
 function addYAxisVerticalLines(svg, width) {
-  svg.selectAll(".y.axis .tick line").attr("x1", width);
+  svg.selectAll(".y.axis .tick line").attr("x1", width + margin.right);
 }
 
 /**
@@ -237,52 +334,87 @@ function buildChartKey(chartSelector, taskStatus) {
 
     keyRow
       .append("text")
-      .text(formatKeyLabel(key))
+      .text(formatLabel(key))
       .attr("class", "chart-key__label")
       .attr("x", 24)
       .attr("y", 13);
   });
 }
 
+function formatTooltip(label) {
+  return formatLabel(label, true);
+}
+
+/**
+ *
+ * @param {String} label
+ *
+ * Formats tooltip label into readable string
+ */
+function formatLabel(label, isTooltip = false) {
+  const standardisedLabel = label.toLowerCase().trim();
+  switch (standardisedLabel) {
+    case "lts":
+      return `Standard support${!isTooltip ? " (4-5 years)" : ""}`;
+    case "openstack":
+      return "Openstack";
+    case "kub":
+      return "Kub";
+    case "esm":
+      return `Expanded Security Maintenance${
+        !isTooltip ? " (extra 5 years)" : ""
+      }`;
+    case "interim_release":
+      return `Interim release standard security maintenance${
+        !isTooltip ? " (9 months)" : ""
+      }`;
+    case "early":
+      return "Early preview";
+    case "cve":
+      return "CVE/Critical fixes only";
+    case "main_universe":
+      return `LTS Expanded Security Maintenance (ESM) for Ubuntu Universe${
+        !isTooltip ? " (initial 5 years)" : ""
+      }`;
+    case "hardware_and_maintenance_updates":
+      return "LTS standard security maintenance for Ubuntu Main";
+    case "matching_openstack_release_support":
+      return "Matching OpenStack release support";
+    case "extended_support_for_customers":
+      return "Extended support for customers";
+    case "canonical_kubernetes_expanded_security_maintenance":
+      return "Canonical Kubernetes Expanded Security Maintenance";
+    case "canonical_kubernetes_support":
+      return "Canonical Kubernetes support";
+    case "pro_legacy_support":
+      return `Legacy support${!isTooltip ? " (years 11 and 12)" : ""}`;
+    case "microstack_esm":
+      return "Expanded Security Maintenance (ESM)";
+    case "pro_support":
+      return "Ubuntu Pro + Support coverage";
+    case "canonical_kubernetes_legacy_support":
+      return "Canonical Kubernetes Legacy Support";
+
+    default:
+      return null;
+  }
+}
+
 /**
  *
  * @param {String} key
  *
- * Formats key into readable string
+ * Formats label key into readable string
  */
 function formatKeyLabel(key) {
   var keyLowerCase = key.toLowerCase().replace(/_/g, " ");
   var formattedKey =
     keyLowerCase.charAt(0).toUpperCase() + keyLowerCase.substr(1);
-  formattedKey = formattedKey.replace("Lts", "Standard support (4-5 years)");
-  formattedKey = formattedKey.replace(" openstack ", " OpenStack ");
-  formattedKey = formattedKey.replace("kub", "Kub");
-  formattedKey = formattedKey.replace(
-    "Interim release",
-    "Interim release standard security maintenance (9 months)"
-  );
-  formattedKey = formattedKey.replace(
-    "Esm",
-    "Expanded Security Maintenance (extra 5 years)"
-  );
-  formattedKey = formattedKey.replace("Cve", "CVE/Critical fixes only");
-  formattedKey = formattedKey.replace("Early", "Early preview");
-  formattedKey = formattedKey.replace(
-    "Hardware and maintenance updates",
-    "LTS standard security maintenance for Ubuntu Main (initial 5 years)"
-  );
   formattedKey = formattedKey.replace(
     "Main universe",
-    "LTS Expanded Security Maintenance (ESM) for Ubuntu Universe (10 years)"
+    "Expanded Security Maintenance (ESM) for Ubuntu Universe (10 years)",
   );
-  formattedKey = formattedKey.replace(
-    "Microstack esm",
-    "Expanded Security Maintenance (ESM)"
-  );
-  formattedKey = formattedKey.replace(
-    "Pro support",
-    "Ubuntu Pro + Support coverage"
-  );
+  formattedKey = formattedKey.replace("Hwe", "HWE: Hardware Enablement");
   return formattedKey;
 }
 
@@ -292,7 +424,7 @@ function formatKeyLabel(key) {
  *
  * Calculate the longest Y-Axis label
  */
-function calculateYAxisWidth(YAxisLabels) {
+function calculateLongestLabelWidth(YAxisLabels) {
   var YAxisLabelsCopy = YAxisLabels.slice();
   var longestLabel = YAxisLabelsCopy.sort(function (a, b) {
     return b.length - a.length;
@@ -316,9 +448,14 @@ export function createReleaseChartOld(
   tasks,
   taskVersions,
   removePadding,
-  highlightVersion
+  highlightVersion,
 ) {
-  margin.left = calculateYAxisWidth(taskTypes);
+  var longestLabelWidth = calculateLongestLabelWidth(taskTypes);
+  if (taskVersions) {
+    margin.left = longestLabelWidth + kernelVersionWidth;
+  } else {
+    margin.left = longestLabelWidth;
+  }
   var timeDomainStart;
   var timeDomainEnd;
   var earliestStartDate = d3.min(tasks, (d) => d.startDate);
@@ -340,11 +477,9 @@ export function createReleaseChartOld(
     if (closestCol.clientWidth <= 0) {
       return;
     }
-
-    containerWidth = closestCol.clientWidth - margin.left;
+    containerWidth = closestCol.clientWidth;
   }
-  var width = containerWidth - margin.right - margin.left;
-
+  var width = containerWidth - margin.left - margin.right;
   var x = d3
     .scaleTime()
     .domain([timeDomainStart, timeDomainEnd])
@@ -369,15 +504,6 @@ export function createReleaseChartOld(
 
   var chartTranslateX = margin.left;
 
-  if (taskVersions) {
-    var versionAxis = d3
-      .axisRight(version)
-      .tickPadding(-margin.left * 1.6)
-      .tickSize(0);
-
-    chartTranslateX = margin.left * 1.6;
-  }
-
   sortTasks(tasks);
 
   // Build initial chart body
@@ -385,32 +511,34 @@ export function createReleaseChartOld(
     .select(chartSelector)
     .append("svg")
     .attr("class", "chart")
-    .attr("width", width + margin.left + margin.right)
+    .attr("width", containerWidth)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("class", "gantt-chart")
-    .attr("width", width + margin.left + margin.right)
+    .attr("width", containerWidth - margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .attr(
       "transform",
-      "translate(" + chartTranslateX + ", " + margin.top + ")"
+      "translate(" + chartTranslateX + ", " + margin.top + ")",
     );
 
   addXAxis(svg, height, xAxis);
   addXAxisVerticalLines(svg, height);
 
-  addYAxis(svg, yAxis);
+  addYAxis(svg, yAxis, taskVersions);
   addYAxisVerticalLines(svg, width);
 
-  addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion);
-
-  if (taskVersions) {
-    addVersionAxis(svg, versionAxis);
-    setVersionAxisLabels(svg, taskVersions);
-  }
+  addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion, chartSelector);
+  addTooltipToBars(svg);
 
   emboldenLTSLabels(svg, y);
   highlightChartRow(svg, y, highlightVersion);
+
+  if (taskVersions) {
+    addVersionAxis(svg, taskVersions);
+    adjustUbuntuVersionLabels(svg);
+    taskStatus["HWE"] = "chart__hwe-key";
+  }
 
   cleanUpChart(svg);
   buildChartKey(chartSelector, taskStatus);
@@ -435,7 +563,7 @@ export function createChartWithTitles(
   taskStatus,
   tasks,
   taskVersions,
-  taskVersionsTitle
+  taskVersionsTitle,
 ) {
   if (!taskTypesTitle || !taskVersionsTitle) return;
 
@@ -445,11 +573,11 @@ export function createChartWithTitles(
     taskTypes,
     taskStatus,
     tasks,
-    taskVersions
+    taskVersions,
   );
 
   // adjust chart height to fit titles
-  margin.left = calculateYAxisWidth(taskTypes);
+  margin.left = calculateLongestLabelWidth(taskTypes);
   const svg = d3.select(chartSelector).select(".chart");
   const height = taskTypes.length * rowHeight;
   const newHeight = height + 30;

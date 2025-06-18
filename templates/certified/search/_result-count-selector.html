@@ -1,0 +1,18 @@
+{% if total_results > 0 %}
+<label for="page-size-{{ page_position }}">Results per page</label>
+<select id="page-size-{{ page_position }}"
+        class="p-results-per-page"
+        aria-label="Results per page"
+        name="limit"
+        data-limit="{{ limit }}">
+  <option value="20" {% if limit == 20 %}selected{% endif %}>20</option>
+  {% if total_results > 20 %}
+    <option value="40" {% if limit == 40 %}selected{% endif %}>40</option>
+  {% endif %}
+  {% if total_results > 40 %}
+    <option value="60" {% if limit == 60 %}selected{% endif %}>60</option>
+  {% endif %}
+  <option value="{{ total_results }}"
+          {% if limit == total_results %}selected{% endif %}>All</option>
+</select>
+{% endif %}

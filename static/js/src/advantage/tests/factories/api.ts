@@ -16,26 +16,24 @@ import {
   SupportLevel,
 } from "advantage/api/enum";
 
-export const userSubscriptionEntitlementFactory = Factory.define<UserSubscriptionEntitlement>(
-  () => ({
+export const userSubscriptionEntitlementFactory =
+  Factory.define<UserSubscriptionEntitlement>(() => ({
     enabled_by_default: true,
     is_in_beta: false,
     is_available: true,
     is_editable: true,
     support_level: null,
     type: EntitlementType.EsmApps,
-  })
-);
+  }));
 
-export const userSubscriptionEntitlementUpdateFactory = Factory.define<UserSubscriptionEntitlementUpdate>(
-  () => ({
+export const userSubscriptionEntitlementUpdateFactory =
+  Factory.define<UserSubscriptionEntitlementUpdate>(() => ({
     is_enabled: true,
     type: EntitlementType.EsmApps,
-  })
-);
+  }));
 
-export const userSubscriptionStatusesFactory = Factory.define<UserSubscriptionStatuses>(
-  () => ({
+export const userSubscriptionStatusesFactory =
+  Factory.define<UserSubscriptionStatuses>(() => ({
     has_pending_purchases: false,
     is_cancellable: false,
     is_cancelled: false,
@@ -53,8 +51,7 @@ export const userSubscriptionStatusesFactory = Factory.define<UserSubscriptionSt
     has_access_to_support: true,
     has_access_to_token: true,
     is_renewed: true,
-  })
-);
+  }));
 
 export const userSubscriptionFactory = Factory.define<UserSubscription>(
   ({ sequence }) => ({
@@ -62,7 +59,7 @@ export const userSubscriptionFactory = Factory.define<UserSubscription>(
     account_id: `aBWF0x8vv5S684ZTeXMnJmUuVO7AyCYZzvjY3J${sequence}`,
     contract_id: `mUuVO7AyCYZzvjY3JaBWF0x8vv5S684ZTeXMnJ${sequence}`,
     currency: "USD",
-    end_date: new Date("2022-07-09T07:21:21Z"),
+    end_date: "2022-07-09T07:21:21Z",
     entitlements: [],
     listing_id: `lADzAkHCZRIASpBZ8YiAiCT2XbDpBSyER7j9vj${sequence}`,
     machine_type: UserSubscriptionMachineType.Physical,
@@ -74,11 +71,12 @@ export const userSubscriptionFactory = Factory.define<UserSubscription>(
     price: 150000,
     product_name: "UA Applications - Standard (Physical)",
     renewal_id: `jY3JaBWF0x8vv5S68mUuVO7AyCYZzv4ZTeXMnJ${sequence}`,
-    start_date: new Date("2021-08-11T02:56:54Z"),
+    start_date: "2021-08-11T02:56:54Z",
     statuses: userSubscriptionStatusesFactory.build(),
     subscription_id: `VO7AyCYZzvjY3JaBWF0xmUu8vv5S684ZTeXMnJ${sequence}`,
     type: UserSubscriptionType.Yearly,
-  })
+    max_tracking_reached: false,
+  }),
 );
 
 export const freeSubscriptionFactory = Factory.define<UserSubscription>(
@@ -108,17 +106,18 @@ export const freeSubscriptionFactory = Factory.define<UserSubscription>(
     price: null,
     product_name: null,
     renewal_id: null,
-    start_date: new Date("2021-07-09T07:14:56Z"),
+    start_date: "2021-07-09T07:14:56Z",
     statuses: userSubscriptionStatusesFactory.build(),
     subscription_id: null,
     type: UserSubscriptionType.Free,
-  })
+    max_tracking_reached: false,
+  }),
 );
 
 export const contractTokenFactory = Factory.define<ContractToken>(
   ({ sequence }) => ({
     contract_token: `zPyaGE9Z4DF9sf54ZfJt59AMwynub${sequence}`,
-  })
+  }),
 );
 
 export const lastPurchaseIdsFactory = Factory.define<LastPurchaseIds>(
@@ -131,5 +130,5 @@ export const lastPurchaseIdsFactory = Factory.define<LastPurchaseIds>(
       monthly: `Jt59AzPyaGE9Z4DF9sf54ZfMwynub${sequence}`,
       yearly: `54ZfJ9AMwyzPyaGE9Z4DF9sf5tnub${sequence}`,
     },
-  })
+  }),
 );

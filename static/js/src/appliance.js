@@ -2,7 +2,7 @@ import lightbox from "./lightbox";
 
 function initLightbox() {
   const lightboxElements = Array.from(
-    document.getElementsByClassName("js-lightbox-item")
+    document.getElementsByClassName("js-lightbox-item"),
   );
 
   let images = lightboxElements.map(function (element) {
@@ -24,7 +24,7 @@ function initLightbox() {
           lightboxClosure(e, currentElement, images);
         };
       })(lightboxElement, images),
-      false
+      false,
     );
   });
 }

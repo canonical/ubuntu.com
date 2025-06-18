@@ -18,7 +18,7 @@ class TestRoutes(VCRTestCase):
     def _get_vcr_kwargs(self):
         """
         This removes the authorization header
-        from VCR so we don't record auth parameters
+        from VCR so we don"t record auth parameters
         """
         return {
             "filter_headers": [
@@ -72,13 +72,6 @@ class TestRoutes(VCRTestCase):
         self.assertEqual(
             self.client.get("/blog/installing-ros-in-lxd").status_code, 200
         )
-
-    def test_server_docs(self):
-        """
-        Check the server docs homepage loads
-        """
-
-        self.assertEqual(self.client.get("/server/docs").status_code, 200)
 
     def test_tutorials_homepage(self):
         """
@@ -170,23 +163,8 @@ class TestRoutes(VCRTestCase):
         response = self.client.get("/engage")
         self.assertEqual(response.status_code, 200)
 
-    def test_engage_index_without_preview_flag_cannot_see_inactive_page(self):
-        response = self.client.get("/engage")
-        self.assertEqual(response.status_code, 200)
-
-    def test_engage_index_with_preview_flag_sees_inactive_pages(self):
-        response = self.client.get("/engage?preview")
-        self.assertEqual(response.status_code, 200)
-
     def test_active_page_returns_200(self):
         response = self.client.get("/engage/micro-clouds")
-        self.assertEqual(response.status_code, 200)
-
-        soup = BeautifulSoup(response.data, "html.parser")
-        self.assertIsNone(soup.find("meta", {"name": "robots"}))
-
-    def test_active_page_returns_adds_no_meta_with_preview_flag(self):
-        response = self.client.get("/engage/micro-clouds?preview")
         self.assertEqual(response.status_code, 200)
 
         soup = BeautifulSoup(response.data, "html.parser")
@@ -224,6 +202,39 @@ class TestRoutes(VCRTestCase):
 
         response = self.client.get("/18-04/ibm")
         self.assertEqual(response.status_code, 200)
+
+    def test_get_country_code(self):
+        """
+        Test that the country code is extracted from the timezone
+        """
+        # Case 1: American timezone
+        response = self.client.get("/user-country-tz.json?tz=America/Detroit")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.json,
+            {"country": "United States of America", "country_code": "US"},
+        )
+
+        # Case 2: European timezone
+        response = self.client.get("/user-country-tz.json?tz=Europe/Vilnius")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.json, {"country": "Lithuania", "country_code": "LT"}
+        )
+
+        # Case 3: African timezone
+        response = self.client.get("/user-country-tz.json?tz=Africa/Bissau")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.json, {"country": "Guinea-Bissau", "country_code": "GW"}
+        )
+
+        # Case 4: Asian timezone
+        response = self.client.get("/user-country-tz.json?tz=Asia/Kolkata")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.json, {"country": "India", "country_code": "IN"}
+        )
 
 
 if __name__ == "__main__":

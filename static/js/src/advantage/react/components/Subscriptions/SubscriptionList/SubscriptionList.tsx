@@ -8,11 +8,11 @@ import {
 } from "advantage/react/hooks/useUserSubscriptions";
 import { sortSubscriptionsByStartDate } from "advantage/react/utils";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
-import React from "react";
 import { SelectedId } from "../Content/types";
 
 import ListCard from "./ListCard";
 import ListGroup from "./ListGroup";
+import { UserSubscription } from "advantage/api/types";
 
 type Props = {
   selectedId?: SelectedId;
@@ -20,32 +20,25 @@ type Props = {
 };
 
 const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
-  const {
-    data: freeSubscription,
-    isLoading: isLoadingFree,
-  } = useUserSubscriptions({
-    select: selectFreeSubscription,
-  });
-  const {
-    data: uaSubscriptionsData = [],
-    isLoading: isLoadingUA,
-  } = useUserSubscriptions({
-    select: selectUASubscriptions,
-  });
-  const {
-    data: blenderSubscriptionsData = [],
-    isLoading: isLoadingBlender,
-  } = useUserSubscriptions({
-    select: selectBlenderSubscriptions,
-  });
+  const { data: freeSubscription, isLoading: isLoadingFree } =
+    useUserSubscriptions({
+      select: selectFreeSubscription,
+    });
+  const { data: uaSubscriptionsData = [], isLoading: isLoadingUA } =
+    useUserSubscriptions({
+      select: selectUASubscriptions,
+    });
+  const { data: blenderSubscriptionsData = [], isLoading: isLoadingBlender } =
+    useUserSubscriptions({
+      select: selectBlenderSubscriptions,
+    });
 
   if (isLoadingFree || isLoadingUA || isLoadingBlender) {
     return <Spinner />;
   }
   // Sort the subscriptions so that the most recently started subscription is first.
-  const sortedUASubscriptions = sortSubscriptionsByStartDate(
-    uaSubscriptionsData
-  );
+  const sortedUASubscriptions =
+    sortSubscriptionsByStartDate(uaSubscriptionsData);
   const uaSubscriptions = sortedUASubscriptions.map((subscription) => (
     <ListCard
       data-test="ua-subscription"
@@ -64,7 +57,7 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
   ));
 
   const sortedBlenderSubscriptions = sortSubscriptionsByStartDate(
-    blenderSubscriptionsData
+    blenderSubscriptionsData,
   );
 
   const blenderSubscriptions = sortedBlenderSubscriptions.map(
@@ -83,8 +76,22 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
         }}
         subscription={subscription}
       />
-    )
+    ),
   );
+
+  const hasActiveSubscription = (subscriptions: UserSubscription[]) => {
+    const now = Date.now();
+    return subscriptions.some(({ start_date, end_date }) => {
+      if (start_date && end_date) {
+        const startDate = new Date(start_date).getTime();
+        const endDate = new Date(end_date).getTime();
+        return startDate <= now && endDate >= now;
+      }
+      return false;
+    });
+  };
+
+  const showFreeSubscription = !hasActiveSubscription(sortedUASubscriptions);
 
   return (
     <div className="p-subscriptions__list p-card" style={{ overflow: "unset" }}>
@@ -108,7 +115,7 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
         </ListGroup>
       ) : null}
 
-      {freeSubscription ? (
+      {freeSubscription && showFreeSubscription ? (
         <ListGroup
           title="Free personal token"
           marketplace={UserSubscriptionMarketplace.Free}

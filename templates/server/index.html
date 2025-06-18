@@ -1,490 +1,527 @@
 {% extends "server/base_server.html" %}
 
 {% block title %}Ubuntu Server - for scale out workloads{% endblock %}
-{% block meta_description %}Secure, fast and economically scalable, Ubuntu helps you make the most of your infrastructure. Whether you want to deploy a cloud or a web farm, Ubuntu Server supports the most popular hardware and software.{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1vxLhtbjgPs9PCNEhr7fbhEoErCPMXYFfU4UTKH7Kbq4/edit{% endblock meta_copydoc %}
 
-{% block body_class %}is-paper{% endblock body_class %}
+{% block meta_description %}
+  Secure, fast and economically scalable, Ubuntu helps you make the most of your infrastructure. Whether you want to deploy a cloud or a web farm, Ubuntu Server supports the most popular hardware and software.
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1vxLhtbjgPs9PCNEhr7fbhEoErCPMXYFfU4UTKH7Kbq4/edit
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
 
-<section class="p-strip is-shallow u-no-padding--bottom">
-  <div class="row--50-50 p-section">
-    <div class="col">
-      <h1>Scale out with&nbsp;Ubuntu&nbsp;Server</h1>
-    </div>
-    <div class="col">
-      <p>Ubuntu Server brings economic and technical scalability to your data centre, public or private cloud. Whether you want to deploy an OpenStack cloud, a Kubernetes cluster or a 50,000-node render farm, Ubuntu Server delivers the best value scale-out performance available.</p>
-      <a href="/download/server" class="p-button--positive">Download Ubuntu Server</a>
-    </div>
-  </div>
-  <div class="u-fixed-width p-section--shallow u-hide--small">
-    {{ image (
-      url="https://assets.ubuntu.com/v1/e55cc8c0-wide-server.png",
-      alt="",
-      width="4096",
-      height="1377",
-      hi_def=True,
-      loading="auto"
-      ) | safe
-    }}
-  </div>
-</section>
-
-<section class="p-section">
-  <div class="row--50-50">
-    <hr class="p-rule" />
-    <div class="col">
-      <h2>Performance and versatility</h2>
-    </div>
-    <div class="col">
-      <p class="p-heading--5">Agile, secure, deploy-anywhere technology for fast-moving companies</p>
-      <p>It doesn't matter whether you want to deploy a NoSQL database, web farm or cloud. Certified by leading hardware OEMs and with comprehensive deployment tools, so you can get the most from your infrastructure.</p>
-      <p>Our regular release cycle means access to the latest and most performant open source. A lean initial installation along with integrated deployment and application modelling technologies make Ubuntu Server a great solution for simple deployment and management at scale.</p>
-    </div>
-  </div>
-</section>
-
-<section class="p-section">
-  <div class="row--50-50 p-section--shallow">
-    <hr class="p-rule" />
-    <div class="col">
-      <h2 class="p-text--small-caps u-no-margin--bottom">Works with all your hardware</h2>
-    </div>
-    <div class="col">
-      <p class="u-align-text--left"><a href="/certified">Explore all certified hardware partners&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <div class="p-logo-section">
-      <div class="p-logo-section__items">
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/a34e318a-lenovo-logo.svg",
-            alt="Lenovo",
-            width="105",
-            height="144",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/fe17c507-dell-logo.svg",
-            alt="Dell",
-            width="71",
-            height="144",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/c8792945-ibm-logo.png",
-            alt="IBM",
-            width="141",
-            height="288",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/136e7089-hp-enterprise-logo.svg",
-            alt="Hewlett Packard Enterprise",
-            width="118",
-            height="144",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/834d57ab-intel-logo.png",
-            alt="Intel",
-            width="149",
-            height="288",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/3d30864c-cisco-logo.png",
-            alt="Cisco",
-            width="174",
-            height="288",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/dac5c9d7-amd-logo.png",
-            alt="AMD",
-            width="186",
-            height="257",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/d9d05f49-arm-logo.png",
-            alt="Arm",
-            width="183",
-            height="372",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
+  <section class="p-strip is-shallow u-no-padding--bottom">
+    <div class="row--50-50 p-section">
+      <div class="col">
+        <h1>Scale out with&nbsp;Ubuntu&nbsp;Server</h1>
+      </div>
+      <div class="col">
+        <p>
+          Ubuntu Server brings economic and technical scalability to your data centre, public or private cloud. Whether you want to deploy an OpenStack cloud, a Kubernetes cluster or a 50,000-node render farm, Ubuntu Server delivers the best value scale-out performance available.
+        </p>
+        <a href="/download/server" class="p-button--positive">Download Ubuntu Server</a>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="p-section">
-  <div class="row--50-50 p-section--shallow">
-    <hr class="p-rule" />
-    <div class="col">
-      <h2 class="p-text--small-caps u-no-margin--bottom">Works with all your software</h2>
-    </div>
-    <div class="col">
-      <p class="u-align-text--left"><a href="https://partners.ubuntu.com/programmes/software?_ga=2.95723230.315987579.1706516745-1396260062.1706111894">Explore all certified software partners&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <div class="p-logo-section">
-      <div class="p-logo-section__items">
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/d784fe44-centrify-logo.png",
-            alt="Centrify",
-            width="288",
-            height="288",
+    <div class="u-fixed-width p-section--shallow u-hide--small">
+      {{ image(url="https://assets.ubuntu.com/v1/e55cc8c0-wide-server.png",
+            alt="",
+            width="4096",
+            height="1377",
             hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/4648a4a4-openstack-logo.png",
-            alt="Openstack",
-            width="509",
-            height="384",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/ae513503-likewise-logo.png",
-            alt="Likewise",
-            width="288",
-            height="288",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/1ebe929e-openbravo-logo.png",
-            alt="Openbravo",
-            width="288",
-            height="288",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-      </div>
+            loading="auto") | safe
+      }}
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-section">
-  <div class="row--50-50">
-    <hr class="p-rule" />
-    <div class="col">
-      <h2>A release schedule<br class="u-hide--medium u-hide--small" /> you can depend on</h2>
-    </div>
-    <div class="col">
-      <p class="p-heading--5">Stay up-to-date with regular updates and upgrades</p>
-      <p>Long-term support (LTS) releases of Ubuntu Server receive standard security updates for around 2,500 packages in the Ubuntu Main repository for five years by default. Every six months, interim releases bring new features, while hardware enablement updates add support for the latest machines to all supported LTS releases.</p>
-      <p><a href="/pro">Ubuntu Pro</a> subscriptions expand security maintenance to over 30,000 packages for 10 years and provide optional, enterprise-grade phone and ticket support by Canonical.</p>
-    </div>
-  </div>
-</section>
-
-
-<div class="p-section">
-  <div class="u-fixed-width p-section--shallow">
-    <hr class="p-rule" />
-    <h2>Security support for Ubuntu releases</h2>
-  </div>
-  <div class="row">
-    <div class="col-10" style="overflow: auto;">
-      <div class="u-hide--small" id="server-desktop-eol"></div>
-      <table class="u-hide--medium u-hide--large" style="width: auto;">
-        <thead>
-          <tr>
-            <td>&nbsp;</td>
-            <th scope="col">Released</th>
-            <th scope="col">End of Life</th>
-            <th scope="col">Expanded security maintenance</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Ubuntu 22.04 LTS</strong></td>
-            <td>April 2022</td>
-            <td>April 2027</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Ubuntu 21.10</td>
-            <td>October 2021</td>
-            <td>July 2022</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Ubuntu 21.04</td>
-            <td>April 2021</td>
-            <td>January 2022</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Ubuntu 20.10</td>
-            <td>October 2020</td>
-            <td>July 2021</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td><strong>Ubuntu 20.04 LTS</strong></td>
-            <td>April 2020</td>
-            <td>April 2025</td>
-            <td>April 2030</td>
-          </tr>
-          <tr>
-            <td>Ubuntu 19.10</td>
-            <td>October 2019</td>
-            <td>July 2020</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Ubuntu 19.04</td>
-            <td>April 2019</td>
-            <td>January 2020</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Ubuntu 18.10</td>
-            <td>October 2018</td>
-            <td>July 2019</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td><strong>Ubuntu 18.04 LTS</strong></td>
-            <td>April 2018</td>
-            <td>April 2023</td>
-            <td>April 2028</td>
-          </tr>
-          <tr>
-            <td><strong>Ubuntu 16.04 LTS</strong></td>
-            <td>April 2016</td>
-            <td>April 2021</td>
-            <td>April 2024</td>
-          </tr>
-          <tr>
-            <td><strong>Ubuntu 14.04 LTS</strong></td>
-            <td>April 2014</td>
-            <td>April 2019</td>
-            <td>April 2022</td>
-          </tr>
-          <tr>
-            <td><strong>Ubuntu 12.04 LTS</strong></td>
-            <td>April 2012</td>
-            <td>April 2017</td>
-            <td>April 2019</td>
-          </tr>
-          <tr>
-            <td><strong>Ubuntu 10.04 LTS</strong></td>
-            <td>April 2010</td>
-            <td>April 2015</td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.2/d3.min.js"></script>
-<script src="{{ versioned_static('js/dist/release-chart.js') }}"></script>
-
-<div class="p-section">
-  <div class="row--50-50">
-    <hr class="p-rule" />
-    <div class="col">
-      <h2>Infrastructure<br class="u-hide--medium u-hide--small" /> and applications foundation</h2>
-    </div>
-    <div class="col">
-      <p class="p-heading--5">From public clouds to data centres to devices</p>
-      <p>Ubuntu is the most popular guest operating system on public clouds, the foundation for private cloud implementation and the platform of choice of developers according to the <a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf">2020 HackerEarth Developer Survey</a>.</p>
-      <hr class="is-muted">
-      <a href="/engage/from-vmware-to-open-source">Watch a webinar - “From VMware to Open Source”&nbsp;&rsaquo;</a>
-    </div>
-  </div>
-</div>
-
-<div class="p-section">
-  <div class="u-fixed-width p-section--shallow">
-    <hr class="p-rule" />
-    <h2>Use it with other Canonical products</h2>
-  </div>
-  <div class="row">
-    <div class="col-9 col-medium-5 col-start-large-4 col-start-medium-2 p-section--shallow">
+  <section class="p-section">
+    <div class="row--50-50">
       <hr class="p-rule" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/ef4ac9e1-juju-tagged-logo.png",
-            alt="Juju",
-            width="60",
-            height="32",
-            hi_def=False,
-            loading="lazy"
-            ) | safe
-          }}
-        </div>
-        <div class="col-6 col-medium-3">
-          <p class="p-heading--5">Multi-cloud orchestration</p>
-          <p>With the option of a command line or browser-based interface, Juju enables you to design and deploy entire workloads in just a few clicks. It works on public clouds like AWS and Microsoft Azure, private clouds built on OpenStack and even directly on bare metal, via MAAS.</p>
-          <hr />
-          <a href="https://jujucharms.com/">Learn more about Juju&nbsp;&rsaquo;</a>
-        </div>
+      <div class="col">
+        <h2>Performance and versatility</h2>
+      </div>
+      <div class="col">
+        <p class="p-heading--5">Agile, secure, deploy-anywhere technology for fast-moving companies</p>
+        <p>
+          It doesn't matter whether you want to deploy a NoSQL database, web farm or cloud. Certified by leading hardware OEMs and with comprehensive deployment tools, so you can get the most from your infrastructure.
+        </p>
+        <p>
+          Our regular release cycle means access to the latest and most performant open source. A lean initial installation along with integrated deployment and application modelling technologies make Ubuntu Server a great solution for simple deployment and management at scale.
+        </p>
       </div>
     </div>
-  </div>
-  <div class="row p-section--shallow">
-    <div class="col-9 col-medium-5 col-start-large-4 col-start-medium-2">
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50 p-section--shallow">
       <hr class="p-rule" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/444371de-maas-tagged-logo.png",
-            alt="Maas",
-            width="79",
-            height="32",
-            hi_def=False,
-            loading="lazy"
-            ) | safe
-          }}
-        </div>
-        <div class="col-6 col-medium-3">
-          <p class="p-heading--5">Bare metal provisioning</p>
-          <p>MAAS is a time-saving provisioning system that makes it quick and easy to set up the physical hardware to deploy complex services, like Ubuntu's OpenStack cloud infrastructure. Just plug in your servers, connect them to the network and let MAAS do the rest.</p>
-          <hr />
-          <a href="https://maas.io/">Learn more about MAAS&nbsp;&rsaquo;</a>
+      <div class="col">
+        <h2 class="p-text--small-caps u-no-margin--bottom">Works with all your hardware</h2>
+      </div>
+      <div class="col">
+        <p class="u-align-text--left">
+          <a href="/certified">Explore all certified hardware partners&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+    </div>
+    <div class="u-fixed-width">
+      <div class="p-logo-section">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/a34e318a-lenovo-logo.svg",
+                        alt="Lenovo",
+                        width="105",
+                        height="144",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/43635925-dell-technologies-logo.png",
+                        alt="Dell",
+                        width="172",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/c8792945-ibm-logo.png",
+                        alt="IBM",
+                        width="141",
+                        height="288",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/136e7089-hp-enterprise-logo.svg",
+                        alt="Hewlett Packard Enterprise",
+                        width="118",
+                        height="144",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/834d57ab-intel-logo.png",
+                        alt="Intel",
+                        width="149",
+                        height="288",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/3d30864c-cisco-logo.png",
+                        alt="Cisco",
+                        width="174",
+                        height="288",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/dac5c9d7-amd-logo.png",
+                        alt="AMD",
+                        width="186",
+                        height="257",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/d9d05f49-arm-logo.png",
+                        alt="Arm",
+                        width="183",
+                        height="372",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row p-section--shallow">
-    <div class="col-9 col-medium-5 col-start-large-4 col-start-medium-2">
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50 p-section--shallow">
       <hr class="p-rule" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/e3805af7-lxd-tagged-logo.png",
-            alt="LXD",
-            width="61",
-            height="32",
-            hi_def=False,
-            loading="lazy"
-            ) | safe
-          }}
+      <div class="col">
+        <h2 class="p-text--small-caps u-no-margin--bottom">Works with all your software</h2>
+      </div>
+      <div class="col">
+        <p class="u-align-text--left">
+          <a href="https://partners.ubuntu.com/programmes/software?_ga=2.95723230.315987579.1706516745-1396260062.1706111894">Explore all certified software partners&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+    </div>
+    <div class="u-fixed-width">
+      <div class="p-logo-section">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/d784fe44-centrify-logo.png",
+                        alt="Centrify",
+                        width="288",
+                        height="288",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/4648a4a4-openstack-logo.png",
+                        alt="Openstack",
+                        width="509",
+                        height="384",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/ae513503-likewise-logo.png",
+                        alt="Likewise",
+                        width="288",
+                        height="288",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/1ebe929e-openbravo-logo.png",
+                        alt="Openbravo",
+                        width="288",
+                        height="288",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
         </div>
-        <div class="col-6 col-medium-3">
-          <p class="p-heading--5">Machine containers</p>
-          <p>Economics are directly tied to compute density. LXD, the Linux container hypervisor, merges the speed and density of containers with the manageability and security of traditional virtual machines.</p>
-          <hr />
-          <a href="/lxd">Learn more about LXD&nbsp;&rsaquo;</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>
+          A release schedule
+          <br class="u-hide--medium u-hide--small" />
+          you can depend on
+        </h2>
+      </div>
+      <div class="col">
+        <p class="p-heading--5">Stay up-to-date with regular updates and upgrades</p>
+        <p>
+          Long-term support (LTS) releases of Ubuntu Server receive standard security updates for around 2,500 packages in the Ubuntu Main repository for five years by default. Every six months, interim releases bring new features, while hardware enablement updates add support for the latest machines to all supported LTS releases.
+        </p>
+        <p>
+          <a href="/pro">Ubuntu Pro</a> subscriptions expands security maintenance to over 30,000 packages for 10 years and provides optional, enterprise-grade phone and ticket support by Canonical.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="p-section">
+    <div class="u-fixed-width p-section--shallow">
+      <hr class="p-rule" />
+      <h2>Security support for Ubuntu releases</h2>
+    </div>
+    <div class="row">
+      <div class="col-10" style="overflow: auto;">
+        <div class="u-hide--small" id="server-desktop-eol-old"></div>
+        <table class="u-hide--medium u-hide--large" style="width: auto;">
+          <thead>
+            <tr>
+              <td>&nbsp;</td>
+              <th scope="col">Released</th>
+              <th scope="col">End of Life</th>
+              <th scope="col">Expanded security maintenance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <strong>24.04 LTS</strong>
+              </td>
+              <td>Apr 2024</td>
+              <td>Apr 2034</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Ubuntu 22.04 LTS</strong>
+              </td>
+              <td>April 2022</td>
+              <td>April 2027</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Ubuntu 21.10</td>
+              <td>October 2021</td>
+              <td>July 2022</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Ubuntu 21.04</td>
+              <td>April 2021</td>
+              <td>January 2022</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Ubuntu 20.10</td>
+              <td>October 2020</td>
+              <td>July 2021</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Ubuntu 20.04 LTS</strong>
+              </td>
+              <td>April 2020</td>
+              <td>April 2025</td>
+              <td>April 2030</td>
+            </tr>
+            <tr>
+              <td>Ubuntu 19.10</td>
+              <td>October 2019</td>
+              <td>July 2020</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Ubuntu 19.04</td>
+              <td>April 2019</td>
+              <td>January 2020</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Ubuntu 18.10</td>
+              <td>October 2018</td>
+              <td>July 2019</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Ubuntu 18.04 LTS</strong>
+              </td>
+              <td>April 2018</td>
+              <td>April 2023</td>
+              <td>April 2028</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Ubuntu 16.04 LTS</strong>
+              </td>
+              <td>April 2016</td>
+              <td>April 2021</td>
+              <td>April 2024</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Ubuntu 14.04 LTS</strong>
+              </td>
+              <td>April 2014</td>
+              <td>April 2019</td>
+              <td>April 2022</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Ubuntu 12.04 LTS</strong>
+              </td>
+              <td>April 2012</td>
+              <td>April 2017</td>
+              <td>April 2019</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Ubuntu 10.04 LTS</strong>
+              </td>
+              <td>April 2010</td>
+              <td>April 2015</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script src="https://assets.ubuntu.com/v1/6d64bd2f-d3.min.js"></script>
+  <script src="{{ versioned_static('js/dist/release-chart-manager.js') }}"></script>
+
+  <div class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>
+          Infrastructure
+          <br class="u-hide--medium u-hide--small" />
+          and applications foundation
+        </h2>
+      </div>
+      <div class="col">
+        <p class="p-heading--5">From public clouds to data centres to devices</p>
+        <p>
+          Ubuntu is the most popular guest operating system on public clouds, the foundation for private cloud implementation and the platform of choice of developers according to the <a href="https://www.hackerearth.com/recruit/developer-survey">2020 HackerEarth Developer Survey</a>.
+        </p>
+        <hr class="p-rule--muted" />
+        <a href="/engage/from-vmware-to-open-source">Watch a webinar - “From VMware to Open Source”&nbsp;&rsaquo;</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-section">
+    <div class="u-fixed-width p-section--shallow">
+      <hr class="p-rule" />
+      <h2>Use it with other Canonical products</h2>
+    </div>
+    <div class="row">
+      <div class="col-9 col-medium-5 col-start-large-4 col-start-medium-2 p-section--shallow">
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            {{ image(url="https://assets.ubuntu.com/v1/ef4ac9e1-juju-tagged-logo.png",
+                        alt="Juju",
+                        width="60",
+                        height="32",
+                        hi_def=False,
+                        loading="lazy") | safe
+            }}
+          </div>
+          <div class="col-6 col-medium-3">
+            <p class="p-heading--5">Multi-cloud orchestration</p>
+            <p>
+              With the option of a command line or browser-based interface, Juju enables you to design and deploy entire workloads in just a few clicks. It works on public clouds like AWS and Microsoft Azure, private clouds built on OpenStack and even directly on bare metal, via MAAS.
+            </p>
+            <hr class="p-rule" />
+            <a href="https://jujucharms.com/">Learn more about Juju&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row p-section--shallow">
+      <div class="col-9 col-medium-5 col-start-large-4 col-start-medium-2">
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            {{ image(url="https://assets.ubuntu.com/v1/444371de-maas-tagged-logo.png",
+                        alt="Maas",
+                        width="79",
+                        height="32",
+                        hi_def=False,
+                        loading="lazy") | safe
+            }}
+          </div>
+          <div class="col-6 col-medium-3">
+            <p class="p-heading--5">Bare metal provisioning</p>
+            <p>
+              MAAS is a time-saving provisioning system that makes it quick and easy to set up the physical hardware to deploy complex services, like Ubuntu's OpenStack cloud infrastructure. Just plug in your servers, connect them to the network and let MAAS do the rest.
+            </p>
+            <hr class="p-rule" />
+            <a href="https://maas.io/">Learn more about MAAS&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row p-section--shallow">
+      <div class="col-9 col-medium-5 col-start-large-4 col-start-medium-2">
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            {{ image(url="https://assets.ubuntu.com/v1/e3805af7-lxd-tagged-logo.png",
+                        alt="LXD",
+                        width="61",
+                        height="32",
+                        hi_def=False,
+                        loading="lazy") | safe
+            }}
+          </div>
+          <div class="col-6 col-medium-3">
+            <p class="p-heading--5">Machine containers</p>
+            <p>
+              Economics are directly tied to compute density. LXD, the Linux container hypervisor, merges the speed and density of containers with the manageability and security of traditional virtual machines.
+            </p>
+            <hr class="p-rule" />
+            <a href="/lxd">Learn more about LXD&nbsp;&rsaquo;</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="p-section">
-  <div class="row--50-50">
-    <hr class="p-rule" />
-    <div class="col">
-      <h2>Ubuntu Pro</h2>
-    </div>
-    <div class="col">
-      <p>Ubuntu Pro offers a single, per-node packaging of the most comprehensive software, hardening and security in the industry. With the Base OS, OpenStack, Kubernetes and Applications security maintanance included, Ubuntu Pro delivers everything you need to future-proof your data centre.</p>
-      <p>Furthermore, you can add support for the Base OS, Infrastructure and Applications.</p>
-      <hr />
-      <a href="/pricing/infra">Learn more about Canonical support&nbsp;&rsaquo;</a>
+  <div class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Ubuntu Pro</h2>
+      </div>
+      <div class="col">
+        <p>
+          Ubuntu Pro offers a single, per-node packaging of the most comprehensive software, hardening and security in the industry. With the Base OS, OpenStack, Kubernetes and Applications security maintenance included, Ubuntu Pro delivers everything you need to future-proof your data centre.
+        </p>
+        <p>Furthermore, you can add support for the Base OS, Infrastructure and Applications.</p>
+        <hr class="p-rule" />
+        <a href="/pricing/infra">Learn more about Canonical support&nbsp;&rsaquo;</a>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="p-section">
-  <div class="row--50-50">
-    <hr class="p-rule" />
-    <div class="col">
-      <h2>Get in touch</h2>
-    </div>
-    <div class="col">
-      <p>Speak to our technical support team about your support requirements.</p>
-      <hr />
-      <a href="/server/contact-us?product=server-overview" class="p-button--positive" class="js-invoke-modal">Contact us</a>
-    </div>
-  </div>
-</div>
-
-<div class="p-section">
-  <div class="row--50-50">
-    <hr class="p-rule" />
-    <div class="col">
-      <h2>A thriving community</h2>
-    </div>
-    <div class="col">
-      <p>Exchange expertise and ideas with thousands of other IT professionals.</p>
-      <p>Want to talk to other Ubuntu users straightaway? Share ideas and get advice and help from our large, active community of IT professionals. As a community, we set high standards for friendliness and tolerance, we welcome your questions and contributions!</p>
-      <hr />
-      <a href="/community">Join the community&nbsp;&rsaquo;</a>
+  <div class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Get in touch</h2>
+      </div>
+      <div class="col">
+        <p>Speak to our technical support team about your support requirements.</p>
+        <hr class="p-rule" />
+        <a href="/server/contact-us?product=server-overview"
+           class="p-button--positive js-invoke-modal">Contact us</a>
+      </div>
     </div>
   </div>
-</div>
 
-{% include "server/partial/_server-footer.html" %}
+  <div class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>A thriving community</h2>
+      </div>
+      <div class="col">
+        <p>Exchange expertise and ideas with thousands of other IT professionals.</p>
+        <p>
+          Want to talk to other Ubuntu users straightaway? Share ideas and get advice and help from our large, active community of IT professionals. As a community, we set high standards for friendliness and tolerance, we welcome your questions and contributions!
+        </p>
+        <hr class="p-rule" />
+        <a href="/community">Join the community&nbsp;&rsaquo;</a>
+      </div>
+    </div>
+  </div>
 
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/support" data-form-id="1254" data-lp-id="2152"
-     data-return-url="https://ubuntu.com/server/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div> {% endblock content %}
+  {% include "server/partial/_server-footer.html" %}
+
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide"
+       id="contact-form-container"
+       data-form-location="/shared/forms/interactive/support"
+       data-form-id="1254"
+       data-lp-id="2152"
+       data-return-url="https://ubuntu.com/server/thank-you"
+       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+{% endblock content %}

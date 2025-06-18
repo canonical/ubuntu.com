@@ -7,11 +7,19 @@ function initImageDownload(imagePath, GAlabel) {
     eventValue: undefined,
   });
 
-  fetch("/mirrors.json?local=True")
+  // Get the user's timezone and use this to find the country_code before fetching the mirrors
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  fetch(`/user-country-tz.json?tz=${timezone}`)
     .then((response) => response.json())
-    .then((mirrors) => {
-      startDownload(mirrors, imagePath);
-    })
+    .then((userData) =>
+      fetch(
+        `/mirrors.json?local=${!!userData?.country_code}&country_code=${
+          userData?.country_code || ""
+        }`,
+      ),
+    )
+    .then((response) => response.json())
+    .then((mirrors) => startDownload(mirrors, imagePath))
     .catch(() => {
       // in case of error just download the default image
       startDownload([], imagePath);
@@ -30,7 +38,6 @@ function startDownload(mirrors, imagePath) {
   }
 
   var downloadLink = downloadLocation + imagePath;
-
   // Start download
   delayStartDownload(downloadLink, 3000);
 }

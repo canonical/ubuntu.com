@@ -1,0 +1,242 @@
+{% extends "download/iot/_base_iot.html" %}
+
+{% block title %}Download Ubuntu for IoT boards | Download{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1Sxdl5cGGe1wbHmKB2eL2zQLfVW3KBea02a2FIGx3VdQ/edit
+{% endblock
+meta_copydoc %}
+
+{% block body_class %}is-paper{% endblock %}
+
+{% block content %}
+  <section class="p-strip is-shallow u-no-margin--bottom">
+    <div class="row--50-50">
+      <div class="col">
+        <h1>Download Ubuntu Core</h1>
+      </div>
+      <div class="col">
+        <p>
+          Ubuntu Core is a strictly confined and immutable embedded Linux OS. Get ready to deploy your application by building your customised Ubuntu Core production image, optimised for performance and security.
+        </p>
+        <hr class="p-rule" />
+        <p class="u-responsive-realign">
+          <a href="/core" class="p-button">Discover Ubuntu Core</a>
+          <a href="/core/docs/getting-started">Read the documentation&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <div class="p-section">
+          <h2>Ubuntu Core {{ releases.core_lts.version }}</h2>
+        </div>
+        <div class="p-image-wrapper u-hide--small u-hide--medium">
+          {{ image(url="https://assets.ubuntu.com/v1/3b5fa561-mascot-numbat@2x.png",
+                    alt="Noble Numbat",
+                    width="182",
+                    height="135",
+                    hi_def=True,
+                    loading="auto") | safe
+          }}
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <p>Build your Ubuntu Core image for your application and targeted hardware.</p>
+          <p>
+            Ubuntu Core {{ releases.core_lts.version }} is the latest LTS version of Ubuntu for deployment on embedded devices and edge systems. LTS stands for long-term support &mdash; which means 10 years of security and maintenance updates guaranteed until {{ releases.core_lts.eol }}.
+          </p>
+          <hr class="p-rule" />
+          <p>
+            <a class="p-button--positive" href="/core/docs/getting-started">Build your Core {{ releases.core_lts.version }}</a>
+          </p>
+        </div>
+        <!-- Start tab container -->
+        <nav class="p-tabs js-tabbed-content">
+          <ul class="p-tabs__list u-no-margin--bottom"
+              role="tablist"
+              data-maintain-hash="true">
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="true"
+                 id="release-notes-tab"
+                 href="#release-notes"
+                 aria-controls="release-notes">What's new</a>
+            </li>
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="false"
+                 id="system-requirements-tab"
+                 href="#system-requirements"
+                 aria-controls="system-requirements"
+                 tabindex="-1">System requirements</a>
+            </li>
+          </ul>
+        </nav>
+        <!-- End tab container -->
+        <!-- tab 1 -->
+        <div id="release-notes"
+             class="p-tabs__content"
+             role="tabpanel"
+             aria-labelledby="release-notes-tab">
+          <ul class="p-list--divided">
+            <li class="p-list__item is-ticked">Optimised factory installation</li>
+            <li class="p-list__item is-ticked">Improvements to image builds</li>
+            <li class="p-list__item is-ticked">Enhanced GPU operations</li>
+            <li class="p-list__item is-ticked">Open device management</li>
+          </ul>
+          <hr class="p-rule is-muted" />
+          <p>
+            <a href="/core/docs/uc24">Core 24 release notes&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+        <!-- tab 2 -->
+        <div class="p-tabs__content"
+             id="system-requirements"
+             role="tabpanel"
+             aria-labelledby="system-requirements-tab">
+          <ul class="p-list--divided">
+            <li class="p-list__item is-ticked">Minimum 512 MB of RAM</li>
+            <li class="p-list__item is-ticked">Minimum 1 GB of storage</li>
+            <li class="p-list__item is-ticked">amd64, arm64 & arm32, and riscv architectures</li>
+            <li class="p-list__item is-ticked">TPM 2.0 on x86, or OP-TEE on ARM for full disk encryption</li>
+            <li class="p-list__item is-ticked">Supports NVME, SSD, and eMMC storage</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip u-no-padding--top">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row">
+      <div class="col-6 col-medium-3">
+        <h2>Try pre-built Ubuntu Core images</h2>
+      </div>
+      <div class="col-6 col-medium-3 p-section--shallow">
+        <p>
+          Our pre-built Ubuntu Core images are an ideal way to experiment with Ubuntu Core. They are built for specific hardware platforms, but you can also test them within virtual environments.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <hr class="p-rule is-fixed-width" />
+        <div class="row">
+          <div class="col-3 col-medium-2 col-start-medium-2">
+            <h3 class="p-heading--5">Option 1: On a virtual machine</h3>
+          </div>
+          <div class="col-6 col-medium-3 col-start-large-4">
+            <p>Try pre-built Ubuntu Core images with Multipass in Ubuntu, Windows or macOS.</p>
+            <hr class="p-rule" />
+            <p>
+              <a class="p-button" href="/core/docs/install-on-a-vm">Install on a VM</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <hr class="p-rule is-fixed-width" />
+        <div class="row">
+          <div class="col-3 col-medium-2 col-start-medium-2">
+            <h3 class="p-heading--5">Option 2: On a device</h3>
+          </div>
+          <div class="col-6 col-medium-3 col-start-medium-4">
+            <p>Try the pre-built Ubuntu Core images on a range of x86 and ARM devices.</p>
+            <hr class="p-rule" />
+            <p>
+              <a class="p-button" href="/core/docs/install-on-a-device">Install on a board</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col-6">
+        <h2>Certified on hundreds of devices</h2>
+      </div>
+      <div class="col-6">
+        <p>
+          Ubuntu works alongside silicon vendors and manufacturers to enable and certify Ubuntu on a wide range of hardware. The certified hardware passes our extensive testing and review process in our labs, ensuring that Ubuntu runs well out of the box, and regression tests are performed before every system update is delivered.
+        </p>
+        <hr class="p-rule" />
+        <p>
+          <a href="/certified">Learn more about certified hardware&nbsp;&rsaquo;</a>
+        </p>
+
+        <div class="p-logo-section--dense p-section--shallow">
+          <div class="p-logo-section__items u-align-last--logo">
+            <div class="p-logo-section__item">
+              {{ image(url="https://assets.ubuntu.com/v1/d9c2c5bf-ubuntu_certified.png",
+                            alt="Ubuntu Certified hardware",
+                            width="90",
+                            height="128",
+                            hi_def=True,
+                            loading="lazy") | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{
+              image (
+              url="https://assets.ubuntu.com/v1/dac5c9d7-amd-logo.png",
+              alt="AMD",
+              width="92",
+              height="128",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image(url="https://assets.ubuntu.com/v1/a9ebb31c-dfi-logo.png",
+                            alt="DFI",
+                            width="38",
+                            height="128",
+                            hi_def=True,
+                            loading="lazy") | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image(url="https://assets.ubuntu.com/v1/d7829629-nvidia-logo.svg",
+                            alt="Nvidia",
+                            width="127",
+                            height="128",
+                            hi_def=True,
+                            loading="lazy") | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image(url="https://assets.ubuntu.com/v1/834d57ab-intel-logo.png",
+                            alt="Intel",
+                            width="66",
+                            height="128",
+                            hi_def=True,
+                            loading="lazy") | safe
+              }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% with title_link="/blog/tag/ubuntu-core", tag_id=1626 %}
+    {% include "download/shared/_latest-blogs_download.html" %}
+  {% endwith %}
+
+  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+
+{% endblock content %}

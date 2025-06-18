@@ -1,0 +1,70 @@
+# Params
+# data: Date the resource was published
+# description: Description of the resource
+# hr: Whether to show a hr above, defaults to true
+
+{%- macro resource_section(date, hr=True, title_header=None) -%}
+  <div class="p-section--shallow">
+    {%- if hr -%}
+      <hr class="p-rule--muted" />
+    {%- endif -%}
+    <div class="row">
+      <div class="col-3 col-medium-3">
+        {%- set author_links = caller("author_links") -%}
+        {%- if author_links|trim|length > 0 -%}
+          <p class="p-heading--5 u-no-margin--bottom u-hide--medium u-hide--small">
+            {{ author_links | safe }}
+          </p>
+        {%- endif -%}
+
+        {%- if date -%}
+          <p class="u-hide--medium u-hide--small">{{ date }}</p>
+        {%- endif -%}
+
+        {%- set title_link = caller("title_link") -%}
+        {%- if title_link|trim|length > 0 -%}
+          <h2 class="p-heading--4 u-hide--large u-hide--small u-no-padding--top">
+            {{ title_link | safe }}
+          </h2>
+        {%- endif -%}
+      </div>
+
+      <div class="col-6 col-medium-3">
+        {%- if title_link|trim|length > 0 -%}
+          {%- if title_header == "h3" -%}
+            <h3 class="p-heading--4 u-hide--medium" style="padding-top: 0.275rem;">
+              {{ title_link | safe }}
+            </h3>
+          {%- else -%}
+            <h2 class="p-heading--4 u-hide--medium" style="padding-top: 0.275rem;">
+              {{ title_link | safe }}
+            </h2>
+          {%- endif -%}
+        {%- endif -%}
+
+        {%- set description = caller("description") -%}
+        {%- if description -%}
+          <p>{{ description }}</p>
+        {%- endif -%}
+
+        {%- if author_links|trim|length > 0 -%}
+          <hr class="p-rule--muted u-hide--large u-hide--small" />
+          <p class="p-heading--5 u-no-margin--bottom u-hide--large">
+            {{ author_links | safe }}
+          </p>
+        {%- endif -%}
+
+        {%- if date -%}
+          <p class="u-hide--large">{{ date }}</p>
+        {%- endif -%}
+      </div>
+
+      <div class="col-3 u-hide--medium u-hide--small">
+        {%- set image = caller("image") -%}
+        {%- if image|trim|length > 0 -%}
+          <div class="p-image-container--16-9 is-cover">{{ image | safe }}</div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endmacro -%}

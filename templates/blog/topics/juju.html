@@ -2,26 +2,29 @@
 
 {% block title %}Juju and JAAS{% endblock %}
 
-{% block meta_description %}Operate big software at scale on any cloud. All the latest news on Juju – the open source application modelling tool for public and private clouds.{% endblock %}
+{% block meta_description %}
+  Operate big software at scale on any cloud. All the latest news on Juju – the open source application modelling tool for public and private clouds.
+{% endblock %}
 
 {% block content %}
 
-  <section class="p-strip--suru-blog-header">
+  <section class="p-strip--suru-blog-header is-dark">
     <div class="u-fixed-width">
       <p>
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/67057b2c-product-page-juju-logo.svg",
-            alt="",
-            height="50",
-            width="140",
-            hi_def=True,
-            loading="auto",
-            attrs={"class": "p-blog-heading__icon", "style": "height: 50px;"}
-          ) | safe
+        {{ image(url="https://assets.ubuntu.com/v1/67057b2c-product-page-juju-logo.svg",
+                alt="",
+                height="50",
+                width="140",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-blog-heading__icon", "style": "height: 50px;"}) | safe
         }}
       </p>
-      <h2 class="p-heading--4">All the latest news on Juju &ndash; the open source application <br class="u-hide u-show--large" />modelling tool for public and private clouds.</h2>
+      <h2 class="p-heading--4">
+        All the latest news on Juju &ndash; the open source application
+        <br class="u-hide u-show--large" />
+        modelling tool for public and private clouds.
+      </h2>
       <p>
         <a class="p-link--inverted" href="https://jaas.ai">Learn more about Juju</a>
       </p>

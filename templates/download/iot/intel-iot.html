@@ -1,426 +1,1090 @@
 {% extends "download/iot/_base_iot.html" %}
 
 {% block title %}Download Ubuntu for Intel IoT platforms | Download{% endblock %}
-{% block meta_description %}Canonical and Intel have partnered to provide Ubuntu Desktop and Ubuntu Core on Intel's IoT platforms: Atom&reg; X6000E Series, Intel&reg; Pentium&reg; and Celeron&reg; N and J Series and 11th Gen Intel&reg; Core&trade; processors.{% endblock meta_description %}
+
+{% block meta_description %}
+  Canonical and Intel have partnered to provide Ubuntu Desktop and Ubuntu Core on Intel's IoT platforms: Atom&reg; X6000E
+  Series, Intel&reg; Pentium&reg; and Celeron&reg; N and J Series and 11th Gen Intel&reg; Core&trade; processors.
+{% endblock meta_description %}
+
 {% block meta_image %}https://assets.ubuntu.com/v1/fc79371c-__++_++_+grad+_+en+_+800x418.jpeg{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1hxKzPs6e6JQaa9tBqfZ55GAXrVnEryEWBja8HlXy-lc/edit{% endblock meta_copydoc %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1hxKzPs6e6JQaa9tBqfZ55GAXrVnEryEWBja8HlXy-lc/edit
+{% endblock meta_copydoc %}
 
 {% block content %}
 
-<section class="p-strip--suru-topped">
-  <div class="row u-vertically-center">
-    <div class="col-7">
-      <h1>Download Ubuntu for Intel IoT platforms</h1>
-      <p class="p-heading--4">Accelerate industrial compute with Ubuntu on Intel processors</p>
-      <p>The entire family of industrial-grade Ubuntu images optimised for Intel IoT hardware, from Core to Desktop and Server, are available for download across a wide range of Intel platforms.</p>
-    </div>
-    <div class="col-5 u-hide--medium u-hide--small u-align--center">
-      {{
-        image (
-        url="https://assets.ubuntu.com/v1/efca8490-intel-logo-0.png",
-        alt="",
-        width="300",
-        height="300",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="row u-sv4">
-    <div class="col-6 col-medium-3">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/bcf36072-Ubuntu+Deep+tech+-+dark.svg",
-        alt="",
-        width="73",
-        height="50",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-      <h2 class="p-heading--3">Turnkey solutions</h2>
-      <p>Ubuntu images that work out-of-the-box</p>
-    </div>
-    <div class="col-6 col-medium-3">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/fc2757dd-ubuntu-cloud-1.svg",
-        alt="",
-        width="77",
-        height="50",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-      <h2 class="p-heading--3">Optimised for Intel </h2>
-      <p>Optimised Linux with unique Intel features</p>
-    </div>
-    <div class="col-6 col-medium-3">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/ceb481d1-10+years.svg",
-        alt="",
-        width="50",
-        height="50",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-      <h2 class="p-heading--3">Maintained for long life</h2>
-      <p>10+ years of security maintenance and support</p>
-    </div>
-    <div class="col-6 col-medium-3">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/dbd97444-partner-with-us.svg",
-        alt="",
-        width="68",
-        height="50",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-      <h2 class="p-heading--3">Backed by Intel's partner ecosystem</h2>
-      <p>Support from leading ODMs and hardware partners</p>
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <p><strong>Are you working on a commercial project?</strong> Canonical partners with silicon vendors, board manufacturers and ODMs to shorten enterprises' time-to-market. Reach out to our team for custom board enablement, commercial distribution, long-term support or security maintenance.</p>
-    <p>
-      <a href="/download/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
-    </p>
-    <p><a href="/engage/iot-adoption-intel-and-ubuntu">Watch the joint webinar by Intel and Canonical on how optimised Ubuntu on next-gen SoCs accelerates IoT adoption&nbsp;&rsaquo;</a></p>
-  </div>
-</section>
-
-<section class="p-strip is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h2>Real-time Ubuntu optimised for Intel SoCs</h2>
-      <p>Optimised <a href="/real-time">Real-time Ubuntu</a> is now production-ready on 12th Gen Intel&reg; Core&trade; processors (code name Alder Lake S). More platforms will be announced shortly.</p>
-      <p>Coupled with Intel&reg; Time Coordinated Computing (Intel&reg; TCC) and Time Sensitive Networking (IEEE TSN), the real-time Ubuntu kernel delivers industrial-grade performance to the time-bound workloads of industrial enterprises.</p>
-      <p><a href="/engage/realtime-webinar-ga">Watch the joint webinar by Canonical and Intel on how real-time Ubuntu on Intel accelerates industrial transformation</a></p>
-      <p>Real-time Ubuntu on Intel SoCs is available via <a href="/pro">Ubuntu Pro</a>, Canonical's enterprise security and compliance subscription, covering all aspects of open infrastructure. With an <a href="/pro/dashboard">Ubuntu Pro subscription</a>, launching the kernel is as easy as:</p>
-      <div class="p-code-snippet">
-        <pre class="p-code-snippet__block--icon"><code>pro attach &lt;token&gt;</code></pre>
-        <pre class="p-code-snippet__block--icon"><code>pro enable realtime-kernel --variant intel-iotg</code></pre>
+  <section class="p-strip is-shallow u-no-padding--bottom">
+    <div class="row--50-50">
+      <div class="col">
+        <h1 class="p-section">Download Ubuntu for Intel IoT platforms</h1>
+        {{ image(url="https://assets.ubuntu.com/v1/c6a46f74-logo.jpg",
+                alt="Intel",
+                width="76",
+                hi_def=True,
+                loading="lazy") | safe
+        }}
       </div>
-      <p>Are you interested in running real-time Ubuntu on Intel SoCs?</p>
-      <p><a href="/kernel/real-time/contact-us" class="p-button--positive">Get in touch</a></p>
+      <div class="col">
+        <p class="p-heading--5">Accelerate industrial compute with Ubuntu on Intel processors</p>
+        <p>
+          The entire family of industrial-grade Ubuntu images optimized for Intel IoT hardware, from Core to Desktop and
+          Server, are available for download across a wide range of Intel platforms.
+        </p>
+        <hr class="p-rule--muted" />
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">
+            <p class="p-heading--5 u-no-padding--top u-no-margin--bottom">Turnkey solutions</p>
+            <p class="u-no-padding u-no-margin">Ubuntu images that work out-of-the-box</p>
+          </li>
+          <li class="p-list__item is-ticked">
+            <p class="p-heading--5 u-no-padding--top u-no-margin--bottom">Optimized for Intel</p>
+            <p class="u-no-padding u-no-margin">Optimized Linux with unique Intel features</p>
+          </li>
+          <li class="p-list__item is-ticked">
+            <p class="p-heading--5 u-no-padding--top u-no-margin--bottom">Maintained for long life</p>
+            <p class="u-no-padding u-no-margin">10+ years of security maintenance and support</p>
+          </li>
+          <li class="p-list__item is-ticked">
+            <p class="p-heading--5 u-no-padding--top u-no-margin--bottom">Backed by Intel’s partner ecosystem</p>
+            <p class="u-no-padding u-no-margin">Support from leading ODMs and hardware partners</p>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip is-bordered">
-  <div class="u-fixed-width u-sv3">
-    <h2>Ubuntu optimised for next-gen Intel SoCs</h2>
-    <p>Intel's portfolio of edge-ready compute and connectivity technologies make it easy to deploy edge applications quickly. Enhanced for IoT, they enable processing at the edge to get critical insights and business value from your data with compute resources where you need them most.</p>
-    <p><strong>Download Ubuntu for your Intel hardware.</strong> Below you will find links for the production-grade family of Ubuntu images, along with release notes and installation instructions.</p>
-    <p>
-      <a href="https://assets.ubuntu.com/v1/66ac0a18-LookoutCanyon_ReleaseNotes_22.04_230330_V1.1.pdf">
-        Release notes for Ubuntu 22.04&nbsp;&rsaquo;
-      </a>
-    </p>
-    <p>
-      <a href="https://assets.ubuntu.com/v1/fd2fa325-LookoutCanyon_ReleaseNotes_20.04_221115_V1.1.pdf">
-        Release notes for Ubuntu Desktop and Server 20.04&nbsp;&rsaquo;
-      </a>
-    </p>
-    <p>
-      <a href="https://assets.ubuntu.com/v1/c657029e-LookoutCanyon_ReleaseNotes_UC20_221130.pdf">
-        Release notes for Ubuntu Core 20&nbsp;&rsaquo;
-      </a>
-    </p>
-    <table class="p-table--mobile-card" aria-label="Ubuntu 22.04 for intel downloads">
-      <thead>
-        <tr>
-          <th><span class="u-off-screen">Hardware type</span></th>
-          <th class="u-align--center">Ubuntu Core 22 <p class="u-no-margin--bottom"><a href="https://assets.ubuntu.com/v1/82c977a8-Installation+Instructions+Core+Image+Intel+IoT+Platforms.pdf">Instructions</a><p></p></th>
-          <th class="u-align--center">Ubuntu Desktop 22.04 <p class="u-no-margin--bottom"><a href="https://assets.ubuntu.com/v1/2715b851-Installation+Instructions+Desktop+Image+Intel+IoT+Platforms.pdf">Instructions</a><p></th>
-          <th class="u-align--center">Ubuntu Server 22.04 <p class="u-no-margin--bottom"><a href="https://assets.ubuntu.com/v1/a0b71e1e-Installation+Instructions+Server+Image+Intel+IoT+Platforms.pdf">Instructions</a><p></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>13th Gen Intel&reg; Core&trade; processors (former codename Raptor Lake S, Raptor Lake P, PS)</th>
-          <td class="u-align--center" data-heading="Ubuntu Core 22">-</td>
-          <td class="u-align--center" data-heading="Ubuntu Desktop 22.04">
+  <section class="p-section">
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
             <p>
-              <a href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-desktop-amd64+intel-iot.iso" class="p-button is-dense">
-                Download
-              </a>
+              <strong>Are you working on a commercial project?</strong>
             </p>
-          </td>
-          <td class="u-align--center" data-heading="Ubuntu Server 22.04">
+          </div>
+          <div class="col-6 col-medium-3">
             <p>
-              <a href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-live-server-amd64+intel-iot.iso" class="p-button is-dense">
-                Download
-              </a>
+              Canonical partners with silicon vendors, board manufacturers and ODMs to shorten enterprises'
+              time-to-market. Reach out to our team for custom board enablement, commercial distribution, long-term
+              support or security maintenance.
             </p>
-          </td>
-        </tr>
-        <tr>
-          <th>
-            Intel Atom&reg; X6000E Series Processors (former codename Elkhart Lake)
-          </th>
-          <td class="u-align--center" data-heading="Ubuntu Core 22">
+            <hr class="p-rule--muted" />
             <p>
-              <a href="http://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-core-22-amd64+intel-iot.img.xz" class="p-button is-dense">
-                Download
-              </a>
+              <a href="/download/iot/intel-iotg#get-in-touch"
+                 class="p-button--positive js-invoke-modal">Get in touch</a>
             </p>
-          </td>
-          <td class="u-align--center" data-heading="Ubuntu Desktop 22.04">
             <p>
-              <a href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-desktop-amd64+intel-iot.iso" class="p-button is-dense">
-                Download
-              </a>
+              <a href="/engage/iot-adoption-intel-and-ubuntu">Watch the joint webinar by Intel and Canonical on how
+              optimized Ubuntu on next-gen SoCs accelerates IoT adoption&nbsp;&rsaquo;</a>
             </p>
-          </td>
-          <td class="u-align--center" data-heading="Ubuntu Server 22.04">
-            <p>
-              <a href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-live-server-amd64+intel-iot.iso" class="p-button is-dense">
-                Download
-              </a>
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <th>
-            Intel Atom® X7000E Series Processors (former codename Alder Lake N)
-          </th>
-          <td class="u-align--center" data-heading="Ubuntu Core 22">
-            <p>
-              <a href="http://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-core-22-amd64+intel-iot.img.xz" class="p-button is-dense">
-                Download
-              </a>
-            </p>
-          </td>
-          <td class="u-align--center" data-heading="Ubuntu Desktop 22.04">
-            <p>
-              <a href="http://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-desktop-amd64+intel-iot.iso" class="p-button is-dense">
-                Download
-              </a>
-            </p>
-          </td>
-          <td class="u-align--center" data-heading="Ubuntu Server 22.04">
-            <p>
-              <a href="http://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-live-server-amd64+intel-iot.iso" class="p-button is-dense">
-                Download
-              </a>
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <th>11th Gen Intel® Core™ processors <br/>(former codename Tiger Lake-UP3)</th>
-          <td class="u-align--center" data-heading="Ubuntu Core 22">
-            <p>
-              <a href="http://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-core-22-amd64+intel-iot.img.xz" class="p-button is-dense">
-                Download
-              </a>
-            </p>
-          </td>
-          <td class="u-align--center" data-heading="Ubuntu Desktop 22.04">
-            <p>
-              <a href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-desktop-amd64+intel-iot.iso" class="p-button is-dense">
-                Download
-              </a>
-            </p>
-          </td>
-          <td class="u-align--center" data-heading="Ubuntu Server 22.04">
-            <p>
-              <a href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-live-server-amd64+intel-iot.iso" class="p-button is-dense">
-                Download
-              </a>
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <th>12th Gen Intel® Core™ processors <br/>(former codename Alder Lake S, P, PS)</th>
-          <td class="u-align--center" data-heading="Ubuntu Core 22">
-            <p>
-              <a href="http://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-core-22-amd64+intel-iot.img.xz" class="p-button is-dense">
-                Download
-              </a>
-            </p>
-          </td>
-          <td class="u-align--center" data-heading="Ubuntu Desktop 22.04">
-            <p>
-              <a href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-desktop-amd64+intel-iot.iso" class="p-button is-dense">
-                Download
-              </a>
-            </p>
-          </td>
-          <td class="u-align--center" data-heading="Ubuntu Server 22.04">
-            <p>
-              <a href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-live-server-amd64+intel-iot.iso" class="p-button is-dense">
-                Download
-              </a>
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <th>Intel&reg; Xeon® D processors <br/>(former codename Ice Lake-D)</th>
-          <td class="u-align--center" data-heading="Ubuntu Core 22">-</td>
-          <td class="u-align--center" data-heading="Ubuntu Desktop 22.04">
-            <p>
-              <a href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-desktop-amd64+intel-iot.iso" class="p-button is-dense">
-                Download
-              </a>
-            </p>
-          </td>
-          <td class="u-align--center" data-heading="Ubuntu Server 22.04">
-            <p>
-              <a href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-live-server-amd64+intel-iot.iso" class="p-button is-dense">
-                Download
-              </a>
-            </p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <table class="p-table--mobile-card" aria-label="Ubuntu 20.04 for intel downloads">
-      <thead>
-        <tr>
-          <th><span class="u-off-screen">Hardware type</span></th>
-          <th class="u-align--center">Ubuntu Core 20</th>
-          <th class="u-align--center">Ubuntu Desktop 20.04</th>
-          <th class="u-align--center">Ubuntu Server 20.04</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>
-            Intel Atom&reg; X6000E Series Processors <br/>(former codename Elkhart Lake)
-          </th>
-          <td class="u-align--center" data-heading="Ubuntu Core 20">
-            <p>
-              <a href="https://cdimage.ubuntu.com/releases/focal/release/inteliotg/ubuntu-core-20-amd64+intel-iot.img.xz" class="p-button is-dense">
-                Download
-              </a>
-            </p>
-          </td>
-          <td class="u-align--center" data-heading="Ubuntu Desktop 20.04">
-            <p>
-              <a href="https://cdimage.ubuntu.com/releases/focal/release/inteliotg/ubuntu-20.04-desktop-amd64+intel-iot.iso" class="p-button is-dense">
-                Download
-              </a>
-            </p>
-          </td>
-          <td class="u-align--center" data-heading="Ubuntu Server 20.04">
-            <p>
-              <a href="https://cdimage.ubuntu.com/releases/focal/release/inteliotg/ubuntu-20.04-live-server-amd64+intel-iot.iso" class="p-button is-dense">
-                Download
-              </a>
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <th>11th Gen Intel® Core™ processors <br/>(former codename Tiger Lake-UP3)</th>
-          <td class="u-align--center" data-heading="Ubuntu Core 20">
-            <p>
-              <a href="https://cdimage.ubuntu.com/releases/focal/release/inteliotg/ubuntu-core-20-amd64+intel-iot.img.xz" class="p-button is-dense">
-                Download
-              </a>
-            </p>
-          </td>
-          <td class="u-align--center" data-heading="Ubuntu Desktop 20.04">
-            <p>
-              <a href="https://cdimage.ubuntu.com/releases/focal/release/inteliotg/ubuntu-20.04-desktop-amd64+intel-iot.iso" class="p-button is-dense">
-                Download
-              </a>
-            </p>
-          </td>
-          <td class="u-align--center" data-heading="Ubuntu Server 20.04">
-            <p>
-              <a href="https://cdimage.ubuntu.com/releases/focal/release/inteliotg/ubuntu-20.04-live-server-amd64+intel-iot.iso" class="p-button is-dense">
-                Download
-              </a>
-            </p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <h2>Learn more about Ubuntu Core</h2>
-    <p>Ubuntu Core is a version of the Ubuntu operating system designed and engineered for IoT and embedded systems.</p>
-    <p>Built on snaps packages, Ubuntu Core automatically updates itself and its applications to create a confined and transaction-based system ideal for embedded devices.</p>
-    <a href="/core/docs">Read the documentation for Ubuntu Core&nbsp;&rsaquo;</a>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator">
-  </div>
-
-  <div class="u-fixed-width">
-    <h2>Learn more about Ubuntu Desktop</h2>
-    <p>The Ubuntu Desktop operating system powers millions of PCs and laptops around the world and is certified on hundreds of laptops and workstations from the top OEM vendors. Modern and performant, users benefit from a rich ecosystem of development and productivity applications. Ubuntu Desktop combines enterprise-grade support, security and functionality with the best of open source.</p>
-    <a href="/desktop/developers">Learn more about Ubuntu Desktop for Linux developers&nbsp;&rsaquo;</a>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator">
-  </div>
-
-  <div class="u-fixed-width">
-    <h2>Learn more about Ubuntu Server</h2>
-    <p>Ubuntu Server is a version of the Ubuntu operating system designed and engineered as a backbone for the internet.</p>
-    <p>Ubuntu Server brings economic and technical scalability to your datacentre, public or private. Whether you want to deploy an OpenStack cloud, a Kubernetes cluster or a 50,000-node render farm, Ubuntu Server delivers the best value scale-out performance available.</p>
-    <a href="/server/docs">Read the documentation for Ubuntu Server&nbsp;&rsaquo;</a>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-8">
-      <h2>Learn more about Intel Atomc X6000E Series and Intel&reg; Pentium&reg; and Celeron&reg; N and J Series Processors</h2>
-      <p>To support the next generation of IoT edge devices, Intel has developed a new line of processors enhanced for IoT—The Intel Atom x6000E Series, Intel Pentium, and Intel Celeron N and J Series processors (formerly known as Elkhart Lake &mdash; EHL). These processors build on new levels of CPU, and graphics performances with integrated IoT features, real-time performance, manageability, security, and functional safety.</p>
-      <a href="https://www.intel.com/content/www/us/en/products/docs/processors/embedded/enhanced-for-iot-platform-brief.html">Read the platform brief&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="u-fixed-width">
-    <hr class="p-separator">
-  </div>
-
-  <div class="row">
-    <div class="col-8">
-      <h2>Learn more about Intel 11th Gen Intel&reg; Core&trade; processors</h2>
-      <p>11th Gen Intel&reg; Core&trade; processors (formerly known as Tiger Lake &mdash; TGL) deliver a balance of performance and responsiveness in a low-power platform built on our third-generation 10nm process technology. Engineered to deliver for IoT markets, these processors can support low-latency and time-sensitive applications, and have the power to run multiple workloads including AI and deep learning applications on a single platform.</p>
-      <a href="https://www.intel.com/content/www/us/en/products/docs/processors/core/11th-gen-core-enhanced-for-iot-brief.html">Read the platform brief&nbsp;&rsaquo;</a>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Real-time Ubuntu optimized for Intel SoCs</h2>
+      </div>
+      <div class="col">
+        <p>
+          Optimized <a href="/real-time">Real-time Ubuntu</a> is now production-ready on:
+        </p>
+        <ul class="p-list">
+          <li class="p-list__item has-bullet">Intel Atom&reg; X6000E Series Processors (codename Elkhart Lake)</li>
+          <li class="p-list__item has-bullet">11th Gen Intel&reg; Core&trade; processors (codename Tiger Lake)</li>
+          <li class="p-list__item has-bullet">
+            12th Gen Intel&reg; Core&trade; processors (codename Alder Lake S and Alder Lake N)
+          </li>
+          <li class="p-list__item has-bullet">
+            13th Gen Intel&reg; Core&trade; processors (codename Raptor Lake S and Raptor Lake P)
+          </li>
+        </ul>
+        <p>
+          Coupled with Intel&reg; Time Coordinated Computing (Intel&reg; TCC) and Time Sensitive Networking (IEEE TSN),
+          the real-time Ubuntu kernel delivers industrial-grade performance to the time-bound workloads of industrial
+          enterprises.
+        </p>
+        <p>
+          <a href="/engage/realtime-webinar-ga">Watch the joint webinar by Canonical and Intel on how real-time Ubuntu on
+          Intel accelerates industrial transformation&nbsp;&rsaquo;</a>
+        </p>
+        <p>
+          Long-term security updates for real-time Ubuntu on Intel SoCs are available via <a href="/pro">Ubuntu Pro</a>,
+          Canonical's enterprise security and compliance subscription, covering all aspects of open infrastructure.
+        </p>
+        <p>Are you interested in running real-time Ubuntu on Intel SoCs?</p>
+        <p>
+          <a href="/kernel/real-time/contact-us" class="p-button--positive">Get in touch</a>
+        </p>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="u-fixed-width">
-    <hr class="p-separator">
-  </div>
-
-  <div class="row">
-    <div class="col-8">
-      <h2>Learn more about Intel 12th Gen Intel&reg; Core&trade; processors</h2>
-      <p>As the first Intel&reg; Core™ processors to feature performance hybrid architecture, the 12th Gen Intel&reg; Core™ processors (codename &mdash; Alder Lake) are designed for workload optimization, accelerated AI performance and immersive video experience. The platform offers flexibility and scalability &mdash; with its comprehensive lineup of desktop and mobile processor choices, each with differentiated key features, performance levels and graphical capabilities. One of Intel's latest and most innovative platforms to launch this year for IOT , the 12th Gen Intel&reg; Core™ processors are created to enable deployment success and drive more value in many sectors including smart retail, industrial manufacturing, healthcare, video and security.</p>
-      <a href="https://www.intel.com/content/www/us/en/products/docs/processors/embedded/12th-gen-core-iot-product-brief.html?wapkw=12th%20gen%20intel%20core%20processors">Read the platform brief&nbsp;&rsaquo;</a>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Download Ubuntu for your Intel hardware</h2>
+      </div>
+      <div class="col">
+        <p>
+          Intel's portfolio of edge-ready compute and connectivity technologies make it easy to deploy edge applications
+          quickly. Enhanced for IoT, they enable processing at the edge to get critical insights and business value from
+          your data with compute resources where you need them most.
+        </p>
+        <p>
+          Below you will find links for the production-grade family of Ubuntu images optimized for Intel processors, along
+          with installation instructions.
+        </p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip is-bordered">
-  <div class="u-fixed-width">
-    <h2>Hardware Certification Program</h2>
-    <p>Canonical partners with leading device manufacturers to validate the same Ubuntu image across a wide variety of boards offering a great out-of-the-box experience for your customised needs. Stay tuned for more features coming soon!</p>
-    <a href="/certified/iot">Further information on Ubuntu certified devices&nbsp;&rsaquo;</a>
-  </div>
-</section>
+  <section class="p-section">
+    <div class="row">
+      <hr class="p-rule" />
+      <div class="col-3 col-medium-2">
+        <div class="p-strip is-shallow u-no-padding--top">
+          <h2 class="p-text--small-caps">Select processor</h2>
+        </div>
+        <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small"
+            role="tablist"
+            aria-label="processors">
+          <li>
+            <button class="p-tabs__item"
+                    id="atom-x7000"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="atom-x7000-tab">
+              Intel&reg; Atom&reg; Processor X7000 Series
+              <br />
+              <span class="u-text--muted u-no-margin--bottom">Amston Lake</span>
+            </button>
+          </li>
+          <li>
+            <button class="p-tabs__item"
+                    id="core-ultra"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="core-ultra-tab">
+              Intel&reg; Core&trade; Ultra
+              <br />
+              <span class="u-text--muted u-no-margin--bottom">Meteor Lake, Meteor Lake PS</span>
+            </button>
+          </li>
+          <li>
+            <button class="p-tabs__item"
+                    id="atom"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="atom-tab">
+              Intel&reg; Atom&reg; X7000E Processors Series
+              <br />
+              <span class="u-text--muted u-no-margin--bottom">Alder Lake N</span>
+            </button>
+          </li>
+          <li>
+            <button class="p-tabs__item"
+                    id="thirteen-gen"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="thirteen-gen-tab">
+              13th Gen Intel&reg; Core&trade;
+              <br />
+              <span class="u-text--muted u-no-margin--bottom">Raptor Lake, Raptor Lake PS</span>
+            </button>
+          </li>
+          <li>
+            <button class="p-tabs__item"
+                    id="twelve-gen"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="twelve-gen-tab">
+              12th Gen Intel&reg; Core&trade;
+              <br />
+              <span class="u-text--muted u-no-margin--bottom">Alder Lake, Alder Lake PS</span>
+            </button>
+          </li>
+          <li>
+            <button class="p-tabs__item"
+                    id="xeon"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="xeon-tab">
+              Intel&reg; Xeon&reg; D Series
+              <br />
+              <span class="u-text--muted u-no-margin--bottom">Ice Lake D</span>
+            </button>
+          </li>
+          <li>
+            <button class="p-tabs__item"
+                    id="atom-next"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="atom-next-tab">
+              Intel&reg; Atom&reg; X6000E Series
+              <br />
+              <span class="u-text--muted u-no-margin--bottom">Elkhart Lake</span>
+            </button>
+          </li>
+          <li>
+            <button class="p-tabs__item"
+                    id="eleven-gen"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="eleven-gen-tab">
+              11th Gen Intel&reg; Core&trade;
+              <br />
+              <span class="u-text--muted u-no-margin--bottom">Tiger Lake UP3</span>
+            </button>
+          </li>
+        </ul>
+        <form class="u-hide--large u-hide--medium">
+          <select name="boardSelect" id="boardSelect">
+            <option value="atom-x7000-tab" selected="">Intel&reg; Atom&reg; Processor X7000 Series (Amston Lake)</option>
+            <option value="core-ultra-tab" selected="">Intel&reg; Core&trade; Ultra (Meteor Lake, Meteor Lake PS)</option>
+            <option value="atom-tab">Intel&reg; Atom&reg; X7000E Series (Alder Lake N)</option>
+            <option value="thirteen-gen-tab">13th Gen Intel&reg; Core&trade; (Raptor Lake, Raptor Lake PS)</option>
+            <option value="twelve-gen-tab">12th Gen Intel&reg; Core&trade; (Alder Lake, Alder Lake PS)</option>
+            <option value="xeon-tab">Intel&reg; Xeon&reg; D Series (Ice Lake D)</option>
+            <option value="atom-next-tab">Intel&reg; Atom&reg; X6000E Series (Elkhart Lake)</option>
+            <option value="eleven-gen-tab">11th Gen Intel&reg; Core&trade; (Tiger Lake UP3)</option>
+          </select>
+        </form>
+      </div>
 
-{% with first_item="_download_iot_iotg_newsletter", no_shadow="true" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+      <div class="col-9 col-medium-4">
+        <div tabindex="0"
+             role="tabpanel"
+             id="atom-x7000-tab"
+             aria-labelledby="atom-x7000"
+             aria-hidden="true">
+          <div class="p-section--shallow">
+            <h3 class="p-heading--2">Intel&reg; Atom&reg; Processor X7000 Series</h3>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="col">
+            <p>
+              The Intel Atom&reg; x7000 processor series offers power-efficient, rugged performance with up to eight E-cores,
+              32 execution units, and built-in AI capabilities. Tuned for deep learning, it's designed for harsh environments
+              and latency-sensitive Industry 4.0 applications, delivering efficient performance where it's needed most.
+            </p>
+            <a href="https://www.intel.com/content/www/us/en/products/details/embedded-processors/atom/atomx7000re.html">Read
+            about the x7000RE Series&nbsp;&rsaquo;</a>
+            <br />
+            <a href="https://www.intel.com/content/www/us/en/content-details/820013/intel-atom-processors-x7000c-series-for-networking-product-brief.html?DocID=820013">Read
+            about the x7000C Series for Networking&nbsp;&rsaquo;</a>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="p-equal-height-row">
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Core</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Immutable Linux OS optimized for IoT and edge embedded systems.</p>
+                <p>
+                  <a class="p-button--positive"
+                     href="/download/core"
+                     aria-label="Download Ubuntu Desktop Core 24">Download
+                  Core 24</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Docs for Ubuntu Core" href="/core/docs/uc24">Docs&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Desktop</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Modern and performant, with a rich ecosystem of applications.</p>
+                <p>
+                  <a class="p-button--positive"
+                     href="/download/desktop"
+                     aria-label="Download Ubuntu Desktop 24.04 LTS">Download
+                  24.04 LTS</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Learn more about Ubuntu Desktop"
+                       href="/desktop/developers">Learn
+                    more&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://discourse.ubuntu.com/t/ubuntu-24-04-lts-noble-numbat-release-notes/39890">Release notes for 24.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Server</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Designed and engineered as a backbone for the internet</p>
+                <p>
+                  <a class="p-button--positive"
+                     href="/download/server"
+                     aria-label="Download Ubuntu Server 24.04 LTS">Download
+                  24.04 LTS</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Docs for Ubuntu Server" href="/server/docs">Docs&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://discourse.ubuntu.com/t/ubuntu-24-04-lts-noble-numbat-release-notes/39890">Release
+                      notes for
+                    24.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div tabindex="0"
+             role="tabpanel"
+             id="core-ultra-tab"
+             aria-labelledby="core-ultra"
+             aria-hidden="true">
+          <div class="p-section--shallow">
+            <h3 class="p-heading--2">Intel&reg; Core&trade; Ultra</h3>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="col">
+            <p>
+              The PS Series Intel&reg; Core&trade; Ultra processors boost edge AI with multiple compute engines, an Intel&reg;
+              Arc&trade; GPU, and Intel&reg; AI Boost NPU. A versatile LGA socket SoC delivers full performance at 65W,
+              driving AI and graphics across industries—from generative AI in retail to AI-assisted workflows in healthcare.
+            </p>
+            <a href="https://www.intel.com/content/www/us/en/products/docs/embedded-processors/core-ultra/product-brief.html?wapkw=METEOR%20LAKE%20PRODUCT%20BRIEF"
+               aria-label="Read the product brief for MTL-UH">Read the product brief&nbsp;&rsaquo;</a>
+            <br />
+            <a href="https://www.intel.com/content/www/us/en/products/docs/embedded-processors/core-ultra/ps-product-brief.html?wapkw=METEOR%20LAKE%20PS%20PRODUCT%20BRIEF"
+               aria-label="Read the PS Series product brief">Read the PS Series product brief&nbsp;&rsaquo;</a>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="p-equal-height-row">
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Desktop</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Modern and performant, with a rich ecosystem of applications.</p>
+                <p>
+                  <a class="p-button--positive"
+                     href="/download/desktop"
+                     aria-label="Download Ubuntu Desktop 24.04 LTS">Download
+                  24.04 LTS</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Instructions for Ubuntu Desktop"
+                       href="https://assets.ubuntu.com/v1/2715b851-Installation+Instructions+Desktop+Image+Intel+IoT+Platforms.pdf">Instructions&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a aria-label="Learn more about Ubuntu Desktop"
+                       href="/desktop/developers">Learn
+                    more&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://discourse.ubuntu.com/t/ubuntu-24-04-lts-noble-numbat-release-notes/39890">Release notes for 24.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Server</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Designed and engineered as a backbone for the internet</p>
+                <p>
+                  <a class="p-button--positive"
+                     href="/download/server"
+                     aria-label="Download Ubuntu Server 24.04 LTS">Download
+                  24.04 LTS</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Instructions for Ubuntu Server"
+                       href="https://assets.ubuntu.com/v1/a0b71e1e-Installation+Instructions+Server+Image+Intel+IoT+Platforms.pdf">Instructions&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a aria-label="Docs for Ubuntu Server" href="/server/docs">Docs&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://discourse.ubuntu.com/t/ubuntu-24-04-lts-noble-numbat-release-notes/39890">Release
+                      notes for
+                    24.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div tabindex="0"
+             role="tabpanel"
+             id="atom-tab"
+             aria-labelledby="atom"
+             aria-hidden="true">
+          <div class="p-section--shallow">
+            <h3 class="p-heading--2">Intel&reg; Atom&reg; X7000E Processors Series</h3>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="col">
+            <p>
+              Intel's Alder Lake-N series SoCs, based on Tremont architecture, feature up to 8 CPU cores, Wi-Fi 6E, GNA 3.0
+              noise suppression, and integrated IPU and MIPI camera support. With Wi-Fi 6E (Gig+), they offer fast, reliable
+              connectivity for smooth streaming and video calls. Designed for low power, they excel in efficiency for budget
+              notebooks and desktops.
+            </p>
+            <a href="https://www.intel.com/content/www/us/en/products/docs/processors/embedded/atomx7000e-product-brief.html"
+               aria-label="Read the product brief for x7000E">Read the product brief&nbsp;&rsaquo;</a>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="p-equal-height-row">
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Core</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Immutable Linux OS optimized for IoT and edge embedded systems</p>
+                <p>
+                  <a class="p-button--positive"
+                     href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-core-22-amd64+intel-iot.img.xz">Download
+                  Core 22</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Instructions for Ubuntu Core"
+                       href="https://assets.ubuntu.com/v1/82c977a8-Installation+Instructions+Core+Image+Intel+IoT+Platforms.pdf">Instructions&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a aria-label="Docs for Ubuntu Core" href="/core/docs">Docs&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/66ac0a18-LookoutCanyon_ReleaseNotes_22.04_230330_V1.1.pdf">Release notes for Core 22&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Desktop</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Modern and performant, with a rich ecosystem of applications.</p>
+                <p>
+                  <a class="p-button--positive"
+                     aria-label="Download Ubuntu Desktop 22.04 LTS"
+                     href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-desktop-amd64+intel-iot.iso">Download
+                  22.04 LTS</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Instructions for Ubuntu Desktop"
+                       href="https://assets.ubuntu.com/v1/2715b851-Installation+Instructions+Desktop+Image+Intel+IoT+Platforms.pdf">Instructions&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a aria-label="Learn more abbout Ubuntu Desktop"
+                       href="/desktop/developers">Learn
+                    more&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/66ac0a18-LookoutCanyon_ReleaseNotes_22.04_230330_V1.1.pdf">Release notes for 22.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Server</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Designed and engineered as a backbone for the internet.</p>
+                <p>
+                  <a class="p-button--positive"
+                     aria-label="Download Ubuntu Server 22.04 LTS"
+                     href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-live-server-amd64+intel-iot.iso">Download
+                  22.04 LTS</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Instructions for Ubuntu Server"
+                       href="https://assets.ubuntu.com/v1/a0b71e1e-Installation+Instructions+Server+Image+Intel+IoT+Platforms.pdf">Instructions&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a aria-label="Docs for Ubuntu Server" href="/server/docs">Docs&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/66ac0a18-LookoutCanyon_ReleaseNotes_22.04_230330_V1.1.pdf">Release notes for 22.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div tabindex="0"
+             role="tabpanel"
+             id="thirteen-gen-tab"
+             aria-labelledby="thirteen-gen"
+             aria-hidden="true">
+          <div class="p-section--shallow">
+            <h3 class="p-heading--2">13th Gen Intel&reg; Core&trade;</h3>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="col">
+            <p>
+              The 13th Gen Intel&reg; Core&trade; desktop processors offer up to 24 cores (8 P-cores, 16 E-cores) and 32 threads,
+              reaching 5.8 GHz with Intel&reg; Thermal Velocity Boost. With PCIe 5.0, DDR5 up to 5600 MT/s, and overclocking
+              support, they deliver faster performance. Backward compatibility with Intel 600/700 series chipsets ensures
+              flexible upgrades.
+            </p>
+            <a href="https://www.intel.com/content/www/us/en/content-details/843363/intel-core-processors-series-2-product-brief.html?wapkw=raptor%20lake%20PRODUCT%20BRIEF"
+               aria-label="Read the product brief for RPL">Read the product brief&nbsp;&rsaquo;</a>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="p-equal-height-row">
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Desktop</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Modern and performant, with a rich ecosystem of applications.</p>
+                <p>
+                  <a class="p-button--positive"
+                     aria-label="Download Ubuntu Desktop 22.04 LTS"
+                     href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-desktop-amd64+intel-iot.iso">Download
+                  22.04 LTS</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Instructions for Ubuntu Desktop"
+                       href="https://assets.ubuntu.com/v1/2715b851-Installation+Instructions+Desktop+Image+Intel+IoT+Platforms.pdf">Instructions&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a aria-label="Learn more abbout Ubuntu Desktop"
+                       href="/desktop/developers">Learn
+                    more&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/66ac0a18-LookoutCanyon_ReleaseNotes_22.04_230330_V1.1.pdf">Release notes for 22.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Server</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Designed and engineered as a backbone for the internet.</p>
+                <p>
+                  <a class="p-button--positive"
+                     aria-label="Download Ubuntu Server 22.04 LTS"
+                     href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-live-server-amd64+intel-iot.iso">Download
+                  22.04 LTS</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Instructions for Ubuntu Server"
+                       href="https://assets.ubuntu.com/v1/a0b71e1e-Installation+Instructions+Server+Image+Intel+IoT+Platforms.pdf">Instructions&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a aria-label="Docs for Ubuntu Server" href="/server/docs">Docs&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/66ac0a18-LookoutCanyon_ReleaseNotes_22.04_230330_V1.1.pdf">Release notes for 22.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div tabindex="0"
+             role="tabpanel"
+             id="twelve-gen-tab"
+             aria-labelledby="twelve-gen"
+             aria-hidden="true">
+          <div class="p-section--shallow">
+            <h3 class="p-heading--2">12th Gen Intel&reg; Core&trade;</h3>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="col">
+            <p>
+              The 12th Gen Intel&reg; Core&trade; processors (Alder Lake) are the first to feature performance hybrid
+              architecture, optimizing workloads, AI, and video. With a flexible lineup of desktop and mobile options,
+              they enable deployment success and drive value across IoT sectors like smart retail, manufacturing,
+              healthcare, and security.
+            </p>
+            <a href="https://www.intel.com/content/www/us/en/products/docs/processors/embedded/12th-gen-core-iot-product-brief.html?wapkw=12th%20gen%20intel%20core%20processors"
+               aria-label="Read the platform brief for 12th Gen Core">Read the platform brief&nbsp;&rsaquo;</a>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="p-equal-height-row">
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Core</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Immutable Linux OS optimized for IoT and edge embedded systems</p>
+                <p>
+                  <a class="p-button--positive"
+                     href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-core-22-amd64+intel-iot.img.xz">Download
+                  Core 22</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Instructions for Ubuntu Core"
+                       href="https://assets.ubuntu.com/v1/82c977a8-Installation+Instructions+Core+Image+Intel+IoT+Platforms.pdf">Instructions&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a aria-label="Docs for Ubuntu Core" href="/core/docs">Docs&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/66ac0a18-LookoutCanyon_ReleaseNotes_22.04_230330_V1.1.pdf">Release notes for Core 22&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Desktop</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Modern and performant, with a rich ecosystem of applications.</p>
+                <p>
+                  <a class="p-button--positive"
+                     aria-label="Download Ubuntu Desktop 22.04 LTS"
+                     href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-desktop-amd64+intel-iot.iso">Download
+                  22.04 LTS</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Instructions for Ubuntu Desktop"
+                       href="https://assets.ubuntu.com/v1/2715b851-Installation+Instructions+Desktop+Image+Intel+IoT+Platforms.pdf">Instructions&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a aria-label="Learn more abbout Ubuntu Desktop"
+                       href="/desktop/developers">Learn
+                    more&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/66ac0a18-LookoutCanyon_ReleaseNotes_22.04_230330_V1.1.pdf">Release notes for 22.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Server</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Designed and engineered as a backbone for the internet.</p>
+                <p>
+                  <a class="p-button--positive"
+                     aria-label="Download Ubuntu Server 22.04 LTS"
+                     href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-live-server-amd64+intel-iot.iso">Download
+                  22.04 LTS</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Instructions for Ubuntu Server"
+                       href="https://assets.ubuntu.com/v1/a0b71e1e-Installation+Instructions+Server+Image+Intel+IoT+Platforms.pdf">Instructions&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a aria-label="Docs for Ubuntu Server" href="/server/docs">Docs&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/66ac0a18-LookoutCanyon_ReleaseNotes_22.04_230330_V1.1.pdf">Release notes for 22.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div tabindex="0"
+             role="tabpanel"
+             id="xeon-tab"
+             aria-labelledby="xeon"
+             aria-hidden="true">
+          <div class="p-section--shallow">
+            <h3 class="p-heading--2">Intel&reg; Xeon&reg; D Series</h3>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="col">
+            <p>
+              As edge computing advances, demand for high-performance, IoT-focused processors grows. Intel&reg; Xeon&reg;
+              D-1700 and D-2700 deliver server-class computing, security, and high bandwidth. With integrated Ethernet,
+              AI acceleration, and real-time support, they're built for IoT and edge applications.
+            </p>
+            <a href="https://www.intel.com/content/www/us/en/products/docs/processors/xeon-d/intelligent-iot-edge-product-brief.html?wapkw=icelake-D"
+               aria-label="Read the platform brief for Xeon D">Read the platform brief&nbsp;&rsaquo;</a>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="p-equal-height-row">
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Desktop</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Modern and performant, with a rich ecosystem of applications.</p>
+                <p>
+                  <a class="p-button--positive"
+                     aria-label="Download Ubuntu Desktop 22.04 LTS"
+                     href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-desktop-amd64+intel-iot.iso">Download
+                  22.04 LTS</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Instructions for Ubuntu Desktop"
+                       href="https://assets.ubuntu.com/v1/2715b851-Installation+Instructions+Desktop+Image+Intel+IoT+Platforms.pdf">Instructions&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a aria-label="Learn more abbout Ubuntu Desktop"
+                       href="/desktop/developers">Learn
+                    more&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/66ac0a18-LookoutCanyon_ReleaseNotes_22.04_230330_V1.1.pdf">Release notes for 22.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Server</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Designed and engineered as a backbone for the internet.</p>
+                <p>
+                  <a class="p-button--positive"
+                     aria-label="Download Ubuntu Server 22.04 LTS"
+                     href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-live-server-amd64+intel-iot.iso">Download
+                  22.04 LTS</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Instructions for Ubuntu Server"
+                       href="https://assets.ubuntu.com/v1/a0b71e1e-Installation+Instructions+Server+Image+Intel+IoT+Platforms.pdf">Instructions&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a aria-label="Docs for Ubuntu Server" href="/server/docs">Docs&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/66ac0a18-LookoutCanyon_ReleaseNotes_22.04_230330_V1.1.pdf">Release notes for 22.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div tabindex="0"
+             role="tabpanel"
+             id="atom-next-tab"
+             aria-labelledby="atom"
+             aria-hidden="true">
+          <div class="p-section--shallow">
+            <h3 class="p-heading--2">Intel&reg; Atom&reg; X6000E Series</h3>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="col">
+            <p>
+              To support the next generation of IoT edge devices, Intel has developed a new line of processors enhanced for
+              IoT—The Intel Atom x6000E Series, Intel&reg; Pentium&reg;, and Intel&reg; Celeron&reg; N and J Series processors
+              (formerly known as Elkhart Lake). These processors build on new levels of CPU, and graphics performances with
+              integrated IoT features, real-time performance, manageability, security, and functional safety.
+            </p>
+            <a href="https://www.intel.com/content/www/us/en/products/docs/processors/embedded/enhanced-for-iot-platform-brief.html">Read
+            the platform brief&nbsp;&rsaquo;</a>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="p-equal-height-row">
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Core</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Immutable Linux OS optimized for IoT and edge embedded systems</p>
+                <p>
+                  <a class="p-button--positive"
+                     href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-core-22-amd64+intel-iot.img.xz">Download
+                  Core 22</a>
+                  <a class="p-button"
+                     href="https://cdimage.ubuntu.com/releases/focal/release/inteliotg/ubuntu-core-20-amd64+intel-iot.img.xz">Download
+                  Core 20</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Instructions for Ubuntu Core"
+                       href="https://assets.ubuntu.com/v1/82c977a8-Installation+Instructions+Core+Image+Intel+IoT+Platforms.pdf">Instructions&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a aria-label="Docs for Ubuntu Core" href="/core/docs">Docs&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/66ac0a18-LookoutCanyon_ReleaseNotes_22.04_230330_V1.1.pdf">Release notes for Core 22&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/c657029e-LookoutCanyon_ReleaseNotes_UC20_221130.pdf">Release notes for Core 20&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Desktop</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Modern and performant, with a rich ecosystem of applications.</p>
+                <p>
+                  <a class="p-button--positive"
+                     aria-label="Download Ubuntu Desktop 22.04 LTS"
+                     href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-desktop-amd64+intel-iot.iso">Download
+                  22.04 LTS</a>
+                  <a class="p-button"
+                     aria-label="Download Ubuntu Desktop 20.04 LTS"
+                     href="https://cdimage.ubuntu.com/releases/focal/release/inteliotg/ubuntu-20.04-desktop-amd64+intel-iot.iso">Download
+                  20.04 LTS</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Instructions for Ubuntu Desktop"
+                       href="https://assets.ubuntu.com/v1/2715b851-Installation+Instructions+Desktop+Image+Intel+IoT+Platforms.pdf">Instructions&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a aria-label="Learn more about Ubuntu Desktop"
+                       href="/desktop/developers">Learn
+                    more&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/66ac0a18-LookoutCanyon_ReleaseNotes_22.04_230330_V1.1.pdf">Release notes for 22.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/fd2fa325-LookoutCanyon_ReleaseNotes_20.04_221115_V1.1.pdf">Release notes for 20.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Server</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Designed and engineered as a backbone for the internet.</p>
+                <p>
+                  <a class="p-button--positive"
+                     aria-label="Download Ubuntu Server 22.04 LTS"
+                     href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-live-server-amd64+intel-iot.iso">Download
+                  22.04 LTS</a>
+                  <a class="p-button"
+                     aria-label="Download Ubuntu Server 20.04 LTS"
+                     href="https://cdimage.ubuntu.com/releases/focal/release/inteliotg/ubuntu-20.04-live-server-amd64+intel-iot.iso">Download
+                  20.04 LTS</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Instructions for Ubuntu Server"
+                       href="https://assets.ubuntu.com/v1/a0b71e1e-Installation+Instructions+Server+Image+Intel+IoT+Platforms.pdf">Instructions&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a aria-label="Docs for Ubuntu Server" href="/server/docs">Docs&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/66ac0a18-LookoutCanyon_ReleaseNotes_22.04_230330_V1.1.pdf">Release notes for 22.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/fd2fa325-LookoutCanyon_ReleaseNotes_20.04_221115_V1.1.pdf">Release notes for 20.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div tabindex="0"
+             role="tabpanel"
+             id="eleven-gen-tab"
+             aria-labelledby="eleven-gen"
+             aria-hidden="true">
+          <div class="p-section--shallow">
+            <h3 class="p-heading--2">11th Gen Intel&reg; Core&trade;</h3>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="col">
+            <p>
+              11th Gen Intel&reg; Core&trade; processors deliver a balance of
+              performance and responsiveness in a low-power platform built on Intel's third-generation 10nm process technology.
+              Engineered to deliver for IoT markets, these processors can support low-latency and time-sensitive applications,
+              and have the power to run multiple workloads including AI and deep learning applications on a single platform.
+            </p>
+            <a href="https://www.intel.com/content/www/us/en/products/platforms/details/tiger-lake-up3.html?wapkw=tiger%20lake%20up3"
+               aria-label="Read the platform brief for Tiger Lake UP3">Read the platform brief&nbsp;&rsaquo;</a>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="p-equal-height-row">
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Core</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Immutable Linux OS optimized for IoT and edge embedded systems</p>
+                <p>
+                  <a class="p-button--positive"
+                     href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-core-22-amd64+intel-iot.img.xz">Download
+                  Core 22</a>
+                  <a class="p-button"
+                     href="https://cdimage.ubuntu.com/releases/focal/release/inteliotg/ubuntu-core-20-amd64+intel-iot.img.xz">Download
+                  Core 20</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Instructions for Ubuntu Core"
+                       href="https://assets.ubuntu.com/v1/82c977a8-Installation+Instructions+Core+Image+Intel+IoT+Platforms.pdf">Instructions&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a aria-label="Docs for Ubuntu Core" href="/core/docs">Docs&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/66ac0a18-LookoutCanyon_ReleaseNotes_22.04_230330_V1.1.pdf">Release notes for Core 22&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/c657029e-LookoutCanyon_ReleaseNotes_UC20_221130.pdf">Release notes for Core 20&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Desktop</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Modern and performant, with a rich ecosystem of applications.</p>
+                <p>
+                  <a class="p-button--positive"
+                     aria-label="Download Ubuntu Desktop 22.04 LTS"
+                     href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-desktop-amd64+intel-iot.iso">Download
+                  22.04 LTS</a>
+                  <a class="p-button"
+                     aria-label="Download Ubuntu Desktop 20.04 LTS"
+                     href="https://cdimage.ubuntu.com/releases/focal/release/inteliotg/ubuntu-20.04-desktop-amd64+intel-iot.iso">Download
+                  20.04 LTS</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Instructions for Ubuntu Desktop"
+                       href="https://assets.ubuntu.com/v1/2715b851-Installation+Instructions+Desktop+Image+Intel+IoT+Platforms.pdf">Instructions&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a aria-label="Learn more about Ubuntu Desktop"
+                       href="/desktop/developers">Learn more&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/66ac0a18-LookoutCanyon_ReleaseNotes_22.04_230330_V1.1.pdf">Release notes for 22.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/fd2fa325-LookoutCanyon_ReleaseNotes_20.04_221115_V1.1.pdf">Release notes for 20.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Server</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Designed and engineered as a backbone for the internet.</p>
+                <p>
+                  <a class="p-button--positive"
+                     aria-label="Download Ubuntu Server 22.04 LTS"
+                     href="https://cdimage.ubuntu.com/releases/jammy/release/inteliot/ubuntu-22.04-live-server-amd64+intel-iot.iso">Download
+                  22.04 LTS</a>
+                  <a class="p-button"
+                     aria-label="Download Ubuntu Server 20.04 LTS"
+                     href="https://cdimage.ubuntu.com/releases/focal/release/inteliotg/ubuntu-20.04-live-server-amd64+intel-iot.iso">Download
+                  20.04 LTS</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Instructions for Ubuntu Server"
+                       href="https://assets.ubuntu.com/v1/a0b71e1e-Installation+Instructions+Server+Image+Intel+IoT+Platforms.pdf">Instructions&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a aria-label="Docs for Ubuntu Server" href="/server/docs">Docs&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/66ac0a18-LookoutCanyon_ReleaseNotes_22.04_230330_V1.1.pdf">Release notes for 22.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://assets.ubuntu.com/v1/fd2fa325-LookoutCanyon_ReleaseNotes_20.04_221115_V1.1.pdf">Release notes for 20.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/intel-iot.html" data-form-id="4205" data-lp-id="2065" data-return-url="https://ubuntu.com/pricing/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
+  <section class="p-section--deep">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Hardware Certification Program</h2>
+      </div>
+      <div class="col">
+        <p>
+          Canonical partners with leading device manufacturers to validate the same Ubuntu image across a wide variety of
+          boards offering a great out-of-the-box experience for your customized needs.
+        </p>
+        <hr class="p-rule--muted" />
+        <a href="/certified">Learn more about Ubuntu certified devices&nbsp;&rsaquo;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide"
+       id="contact-form-container"
+       data-form-location="/shared/forms/interactive/intel-iot.html"
+       data-form-id="4205"
+       data-lp-id="2065"
+       data-return-url="https://ubuntu.com/pricing/thank-you"
+       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+
+  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
 {% endblock content %}

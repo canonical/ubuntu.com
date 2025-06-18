@@ -1,14 +1,14 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 const useGetOffersList = () => {
-  const { isLoading, isError, isSuccess, data, error } = useQuery(
-    ["Offers"],
-    async () => {
+  const { isLoading, isError, isSuccess, data, error } = useQuery({
+    queryKey: ["Offers"],
+    queryFn: async () => {
       const response = await fetch(
         `/pro/offers.json${window.location.search}`,
         {
           cache: "no-store",
-        }
+        },
       );
       const res = await response.json();
 
@@ -20,8 +20,8 @@ const useGetOffersList = () => {
       }
 
       return res;
-    }
-  );
+    },
+  });
 
   return {
     isLoading: isLoading,

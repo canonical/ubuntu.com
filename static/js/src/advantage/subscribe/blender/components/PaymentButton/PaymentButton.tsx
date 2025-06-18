@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Button } from "@canonical/react-components";
 import { FormContext } from "../../utils/FormContext";
 
@@ -6,8 +6,12 @@ export default function PaymentButton() {
   const { quantity, product } = useContext(FormContext);
 
   const shopCheckoutData = {
-    product: product,
-    quantity: Number(quantity) ?? 0,
+    products: [
+      {
+        product: product,
+        quantity: Number(quantity) ?? 0,
+      },
+    ],
     action: "purchase",
   };
 
@@ -19,7 +23,7 @@ export default function PaymentButton() {
           e.preventDefault();
           localStorage.setItem(
             "shop-checkout-data",
-            JSON.stringify(shopCheckoutData)
+            JSON.stringify(shopCheckoutData),
           );
           location.href = "/account/checkout";
         }}

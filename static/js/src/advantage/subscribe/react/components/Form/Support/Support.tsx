@@ -9,35 +9,25 @@ import {
   LTSVersions,
 } from "advantage/subscribe/react/utils/utils";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
+import { PRO_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
 
 const Support = () => {
-  const {
-    feature,
-    sla,
-    setSLA,
-    support,
-    setSupport,
-    productType,
-    version,
-  } = useContext(FormContext);
+  const { feature, sla, setSLA, support, setSupport, productType, version } =
+    useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSupport(event.target.value as SupportEnum);
     localStorage.setItem(
-      "pro-selector-support",
-      JSON.stringify(event.target.value as SupportEnum)
+      PRO_SELECTOR_KEYS.SUPPORT,
+      JSON.stringify(event.target.value as SupportEnum),
     );
   };
 
   const isInfraOnlyDisabled =
-    productType === ProductTypes.desktop ||
-    version === LTSVersions.trusty ||
-    version === LTSVersions.xenial;
+    productType === ProductTypes.desktop || version === LTSVersions.xenial;
 
   const isFullSupportDisabled =
-    feature === Features.infra ||
-    version === LTSVersions.trusty ||
-    version === LTSVersions.xenial;
+    feature === Features.infra || version === LTSVersions.xenial;
 
   return (
     <div
@@ -212,8 +202,8 @@ const Support = () => {
           onClick={() => {
             setSupport(SupportEnum.none);
             localStorage.setItem(
-              "pro-selector-support",
-              JSON.stringify(SupportEnum.none)
+              PRO_SELECTOR_KEYS.SUPPORT,
+              JSON.stringify(SupportEnum.none),
             );
           }}
         >
@@ -253,8 +243,8 @@ const Support = () => {
           onClick={() => {
             setSupport(SupportEnum.infra);
             localStorage.setItem(
-              "pro-selector-support",
-              JSON.stringify(SupportEnum.infra)
+              PRO_SELECTOR_KEYS.SUPPORT,
+              JSON.stringify(SupportEnum.infra),
             );
           }}
         >
@@ -291,8 +281,8 @@ const Support = () => {
           onClick={() => {
             setSupport(SupportEnum.full);
             localStorage.setItem(
-              "pro-selector-support",
-              JSON.stringify(SupportEnum.full)
+              PRO_SELECTOR_KEYS.SUPPORT,
+              JSON.stringify(SupportEnum.full),
             );
           }}
         >
@@ -345,8 +335,8 @@ const Support = () => {
                     e.preventDefault();
                     setSLA(SLA.weekday);
                     localStorage.setItem(
-                      "pro-selector-sla",
-                      JSON.stringify(SLA.weekday)
+                      PRO_SELECTOR_KEYS.SLA,
+                      JSON.stringify(SLA.weekday),
                     );
                   }}
                   style={{ textAlign: "justify" }}
@@ -366,8 +356,8 @@ const Support = () => {
                     e.preventDefault();
                     setSLA(SLA.everyday);
                     localStorage.setItem(
-                      "pro-selector-sla",
-                      JSON.stringify(SLA.everyday)
+                      PRO_SELECTOR_KEYS.SLA,
+                      JSON.stringify(SLA.everyday),
                     );
                   }}
                   style={{ textAlign: "justify" }}

@@ -1,346 +1,371 @@
 {% extends "landscape/base_landscape.html" %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+
 {% block title %}Landscape{% endblock %}
-{% block meta_description %}Landscape is the leading management and administration tool for all versions of Ubuntu, anywhere.{% endblock meta_description %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1Q5KPVOn3yaexgSbkZHmXHmWzT5WG3ocYAPthweMwDz4/edit{% endblock meta_copydoc %}
-{% block meta_image %}https://assets.ubuntu.com/v1/6b9a0b06-landscape-metatag.svg{% endblock meta_image %}
+
+{% block meta_description %}
+  Landscape is the leading management and administration tool for all versions of Ubuntu, anywhere.
+{% endblock meta_description %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1Q5KPVOn3yaexgSbkZHmXHmWzT5WG3ocYAPthweMwDz4/edit
+{% endblock meta_copydoc %}
+
+{% block meta_image %}
+  https://assets.ubuntu.com/v1/6b9a0b06-landscape-metatag.svg
+{% endblock meta_image %}
 
 {% block content %}
-
-<section class="p-strip--suru-topped is-bordered">
-  <div class="row u-vertically-center">
-    <div class="col-6">
-      <h1>Take control of your infrastructure</h1>
-      <p>Landscape automates security patching, auditing, access management and compliance tasks across your Ubuntu estate. Use it in well-connected or airgapped environments: at sea, in space and everywhere in between.
-        Landscape is available with an <a href="https://ubuntu.com/pro">Ubuntu Pro</a> subscription.</p>
+  {% call(slot) vf_hero(
+    title_text='Take control <br />of your infrastructure',
+    subtitle_text='',
+    layout='50/50-full-width-image'
+    ) -%}
+    {%- if slot == 'description' -%}
       <p>
-        <a class="p-button--positive" href="/landscape/pricing">Get Landscape</a>
-        <a class="p-button js-invoke-modal" href="/landscape#get-in-touch">Contact us</a>
+        Landscape is a systems management tool that can be used as a web based service or through an API. Landscape Server is available through Canonical either as a managed solution or Software-as-a-Service model, or it can be self-hosted. Landscape Client is installed on Ubuntu to enroll with Landscape Server.
       </p>
-    </div>
-    <div class="col-6 u-hide--small u-hide--medium u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/ad670ab4-canonical-landscape-illustration.svg",
-        alt="",
-        width="600",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="u-fixed-width u-sv3">
-    <h2 class="u-sv3">Save time and improve security at scale</h2>
-    <ul class="p-list is-split u-sv3">
-      <li class="p-list__item is-ticked">Automation for security, hardening, and compliance</li>
-      <li class="p-list__item is-ticked">Receive alerts to update machines you specify</li>
-      <li class="p-list__item is-ticked">Keep secure with the latest security patches</li>
-      <li class="p-list__item is-ticked">Insights about your entire Ubuntu estate, anywhere, through a single pane of glass</li>
-      <li class="p-list__item is-ticked">Create your own software repositories</li>
-      <li class="p-list__item is-ticked">Extend and customise Landscape via our API</li>
-    </ul>
-  </div>
-  <div class="u-fixed-width">
-    <p>
+      <p>
+        Landscape automates security patching, auditing, access management and compliance tasks across your Ubuntu estate. Use it in well-connected or airgapped environments: at sea, in space and everywhere in between.
+      </p>
+      <p>
+        Landscape is available with an <a href="/pro">Ubuntu Pro</a> subscription.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
       <a href="/landscape/pricing" class="p-button--positive">Get Landscape</a>
-    </p>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row">
-    <div class="col-4">
-      <div class='p-heading-icon--muted'>
-        <div class='p-heading-icon__header'>
-          {{
-          image(
-          url="https://assets.ubuntu.com/v1/6e184942-Webinar.svg",
-          alt="",
-          height="28",
-          width="32",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
-          ) | safe
-          }}
-          <h4 class='p-heading-icon__title'>Webinars</h4>
-        </div>
+      <a href="/contact-us" class="p-button js-invoke-modal" aria-controls="landscape-modal">Contact us</a>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--cinematic is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/8776d218-hero-img-iot.png",
+                alt="",
+                width="3696",
+                height="1541",
+                hi_def=True,
+                loading="auto|lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
       </div>
-      <h3 class='p-heading--4'><a href='https://www.linkedin.com/events/6991037067392618497/comments/'>Adopting Linux in
-          a Windows-centric enterprise&nbsp;&rsaquo;</a></h3>
-    </div>
-    <div class="col-4 p-divider__block">
-      <div class='p-heading-icon--muted'>
-        <div class='p-heading-icon__header'>
-          {{
-          image(
-          url="https://assets.ubuntu.com/v1/6e184942-Webinar.svg",
-          alt="",
-          height="28",
-          width="32",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
-          ) | safe
-          }}
-          <h4 class='p-heading-icon__title'>Webinar</h4>
-        </div>
-      </div>
-      <h3 class='p-heading--4'><a href='https://www.linkedin.com/video/event/urn:li:ugcPost:7009200843417677824/'>Linux
-          security patches: how to ensure uptime and security&nbsp;&rsaquo;</a></h3>
-    </div>
-    <div class="col-4 p-divider__block">
-      <div class='p-heading-icon--muted'>
-        <div class='p-heading-icon__header'>
-          {{
-          image(
-          url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
-          alt="",
-          height="28",
-          width="32",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
-          ) | safe
-          }}
-          <h4 class='p-heading-icon__title'>Whitepaper</h4>
-        </div>
-      </div>
-      <h3 class='p-heading--4'><a
-          href='https://ubuntu.com/engage/ensure-security-and-uptime-when-patching-linux-vulnerabilities'>Linux security
-          patches: best practices for risk-mitigation and uptime&nbsp;&rsaquo;</a></h3>
-    </div>
-  </div>
-</section>
+    {% endif -%}
+  {% endcall -%}
 
-<section class="p-strip">
-  <div class="u-fixed-width u-sv3">
-    <h2 class="u-sv3">How does Landscape work?</h2>
-    <ul class="p-list is-split">
-      <li class="p-list__item is-ticked">Landscape monitors your systems through a management agent installed on each machine</li>
-      <li class="p-list__item is-ticked">The agent communicates with the Landscape server to update an automatically selected set of essential health metrics</li>
-      <li class="p-list__item is-ticked">Data is securely collected and stored in the Landscape database and allows for the collection of custom metrics</li>
-      <li class="p-list__item is-ticked">It also allows you to remotely update and upgrade machines and manage users and permissions</li>
-    </ul>
-    <p>
-      <a href="/landscape/features">
-        Learn about Landscape's features&nbsp;&rsaquo;
-      </a>
-    </p>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-9">
-      <h2>Landscape could save a thousand-desktop firm over $200,000 in just three years</h2>
-      <p>
-        <a href="https://insights.ubuntu.com/2014/06/12/enterprise-class-ubuntu-management-with-canonical-landscape/">Read the case study&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-4">
-      <div class="p-card--highlighted">
-        <h3 class="p-heading--1">1,121%</h3>
-        <p>ROI over five years</p>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Save time and improve security</h2>
       </div>
-    </div>
-    <div class="col-4">
-      <div class="p-card--highlighted">
-        <h3 class="p-heading--1">$688k</h3>
-        <p>Savings every year</p>
-      </div>
-    </div>
-    <div class="col-4">
-      <div class="p-card--highlighted">
-        <h3 class="p-heading--1">2 months</h3>
-        <p>Investment payback period</p>
-      </div>
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <p class="u-align-text--right">Figures based on a deployment of 1000 desktops.</p>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row">
-    <div class="col-4 u-hide--small u-hide--medium u-vertically-center u-align--center">
-      {{
-        image (
-        url="https://assets.ubuntu.com/v1/db86a8d0-Capgemini_logo.svg",
-        alt="",
-        width="430",
-        height="95",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-    <div class="col-8">
-      <blockquote class="p-pull-quote--large">
-        <p class="p-pull-quote__quote">Canonical helps us to eliminate the business impact with rapid response and resolution of outstanding issues, and make sure our devices deliver optimum performance.</p>
-        <span class="p-pull-quote__citation">Capgemini, Senior IT Innovation Consultant, Paweł Zięba</span>
-      </blockquote>
-      <p>
-        <a href="https://insights.ubuntu.com/2012/09/06/capgemini-bpo-deploys-hybrid-thin-client-solution-with-ubuntu-advantage/">Read the case study&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-8">
-      <h2>Landscape is available through Ubuntu Pro</h2>
-      <p>Access Landscape with an Ubuntu Pro subscription:</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">24/7 phone, portal and email support</li>
-        <li class="p-list__item is-ticked">Option of a dedicated Canonical support engineer on your premises</li>
-        <li class="p-list__item is-ticked">Access to our world class technical team and knowledge base</li>
-        <li class="p-list__item is-ticked">IP legal assurance</li>
-        <li class="p-list__item is-ticked">Kernel Livepatching for all your machines</li>
-      </ul>
-      <p>
-        <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-    <div class="col-4 u-hide--small u-hide--medium u-vertically-center u-align--center">
-      {{
-        image (
-        url="https://assets.ubuntu.com/v1/c391f52d-ubuntu-pro-linear.svg",
-        alt="",
-        width="393",
-        height="200",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <p class="p-muted-heading">
-      A selection of Ubuntu Pro customers
-    </p>
-    <div class="p-logo-section has-misaligned-images">
-      <div class="p-logo-section__items">
-        <div class="p-logo-section__item">
-          {{
-            image (
-            url="https://assets.ubuntu.com/v1/b637b55f-logo-bloomberg.png",
-            alt="Bloomberg",
-            width="189",
-            height="70",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
-            image (
-            url="https://assets.ubuntu.com/v1/e7dd8cc4-logo-at%26t.png",
-            alt="AT&T",
-            width="399",
-            height="399",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
-            image (
-            url="https://assets.ubuntu.com/v1/c6e197c4-deutsche-telekom-logo.png",
-            alt="Deutsche Telekom",
-            width="288",
-            height="288",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
-            image (
-            url="https://assets.ubuntu.com/v1/d7356bae-ebay-logo.png",
-            alt="Ebay",
-            width="288",
-            height="288",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
-            image (
-            url="https://assets.ubuntu.com/v1/4a09336c-logo-cisco.png",
-            alt="Cisco",
-            width="95",
-            height="70",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
-            image (
-            url="https://assets.ubuntu.com/v1/673fa219-logo-ntt.png",
-            alt="NTT",
-            width="399",
-            height="399",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
-            image (
-            url="https://assets.ubuntu.com/v1/698f7a58-best-buy-logo.png",
-            alt="Best Buy",
-            width="288",
-            height="288",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
+      <div class="col">
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">Automation for security, hardening, and compliance</li>
+          <li class="p-list__item is-ticked">Receive alerts to update machines you specify</li>
+          <li class="p-list__item is-ticked">Keep secure with the latest security patches</li>
+          <li class="p-list__item is-ticked">Insights about your entire Ubuntu estate through a single pane of glass</li>
+          <li class="p-list__item is-ticked">Create your own software repositories</li>
+          <li class="p-list__item is-ticked">Extend and customize Landscape via our API</li>
+        </ul>
+        <div class="p-cta-block">
+          <a href="/landscape/pricing" class="p-button--positive">Get Landscape</a>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-8">
-      <h2 class="p-heading--2 u-sv3">Outstanding system administration at scale for all versions of Ubuntu, anywhere</h2>
-      <p>
-        <a class="p-button--positive" href="/landscape/pricing">Get Landscape</a>
-      </p>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>How does Landscape work?</h2>
+      </div>
+      <div class="col">
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">
+            Landscape monitors your systems through a management agent installed on each machine
+          </li>
+          <li class="p-list__item is-ticked">
+            The agent communicates with the Landscape server to update an automatically selected set of essential health metrics
+          </li>
+          <li class="p-list__item is-ticked">
+            Data is securely collected and stored in the Landscape database and allows for the collection of custom metrics
+          </li>
+          <li class="p-list__item is-ticked">
+            It also allows you to remotely update and upgrade machines and manage users and permissions
+          </li>
+        </ul>
+        <div class="p-cta-block">
+          <a href="/landscape/features">Learn about Landscape's features&nbsp;&rsaquo;</a>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/landscape" data-form-id="4473" data-lp-id="" data-return-url="/landscape" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>
+          Cost savings
+          <br class="u-hide--small" />
+          with Landscape
+        </h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <p>Landscape could save a thousand-desktop firm over $200,000 in just three years</p>
+          <div class="p-cta-block">
+            <a href="https://insights.ubuntu.com/2014/06/12/enterprise-class-ubuntu-management-with-canonical-landscape/">Read the case study&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-medium-6 col-start-large-4">
+        <div class="p-section">
+          <div class="row">
+            <div class="col-3 col-medium-2">
+              <hr class="p-rule--highlight" />
+              <p class="p-heading--1 u-no-margin--bottom">1,121%</p>
+              <p>ROI over five years</p>
+            </div>
+            <div class="col-3 col-medium-2">
+              <hr class="p-rule--highlight" />
+              <p class="p-heading--1 u-no-margin--bottom">$688k</p>
+              <p>Savings every year</p>
+            </div>
+            <div class="col-3 col-medium-2">
+              <hr class="p-rule--highlight" />
+              <p class="p-heading--1 u-no-margin--bottom">2 months</p>
+              <p>Investment payback period</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-9 col-start-large-4">
+        <hr class="p-rule--muted" />
+        <p class="u-text--muted">
+          <i>Figures based on a deployment of 1000 desktops.</i>
+        </p>
+      </div>
+    </div>
+  </section>
 
-<script src="/static/js/src/landscape-form.js"></script>
+  {% call(slot) vf_quote_wrapper(
+    title_text="What our customers say",
+    quote_size="small",
+    quote_text="Canonical helps us to eliminate the business impact with rapid response and resolution of outstanding issues, and make sure our devices deliver optimum performance.",
+    citation_source_name_text="Paweł Zięba,",
+    citation_source_title_text="Senior IT Innovation Consultant,",
+    citation_source_organisation_text="Capgemini"
+    ) -%}
+
+    {%- if slot == 'signpost_image' -%}
+      <img src="https://assets.ubuntu.com/v1/4bc68c0d-capgemini-logo.png"
+           width="852"
+           alt="Capgemini" />
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="https://insights.ubuntu.com/2012/09/06/capgemini-bpo-deploys-hybrid-thin-client-solution-with-ubuntu-advantage/"
+         aria-label="Client case study Capgemini">Read the case study&nbsp;&rsaquo;</a>
+    {%- endif -%}
+
+  {% endcall -%}
+
+  <section class="p-section">
+    <div class="p-section">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>
+            Get Landscape
+            <br />
+            with an Ubuntu Pro subscription
+          </h2>
+        </div>
+        <div class="col">
+          <div class="p-section--shallow">
+            <div class="p-image-container is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/65c0e352-get landscape.png",
+                            alt="",
+                            width="1800",
+                            height="1201",
+                            hi_def=True,
+                            loading="auto",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
+            </div>
+          </div>
+          <p>An Ubuntu Pro subscription includes:</p>
+          <hr class="p-rule--muted" />
+          <ul class="p-list--divided">
+            <li class="p-list__item is-ticked">24/7 phone, portal and email support</li>
+            <li class="p-list__item is-ticked">Option of a dedicated Canonical support engineer on your premises</li>
+            <li class="p-list__item is-ticked">Access to our world class technical team and knowledge base</li>
+            <li class="p-list__item is-ticked">IP legal assurance</li>
+            <li class="p-list__item is-ticked">Kernel Livepatching for all your machines</li>
+          </ul>
+          <div class="p-cta-block">
+            <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="u-fixed-width">
+      <hr class="p-rule--muted" />
+      <h2 class="p-heading--5 p-text--small-caps">Ubuntu Pro customers include</h2>
+      <div class="p-logo-section--dense">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/43095e11-Bloomberg-Logo.png",
+                        alt="Bloomberg",
+                        width="313",
+                        height="313",
+                        hi_def=True,
+                        attrs={"class": "p-logo-section__logo"},
+                        loading="lazy") | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/1ebdf7ea-AT&T-Logo.png",
+                        alt="AT&T",
+                        width="290",
+                        height="313",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/b6ba6d69-Walmart-logo.png",
+                        alt="Walmart",
+                        width="355",
+                        height="313",
+                        hi_def=True,
+                        attrs={"class": "p-logo-section__logo"},
+                        loading="lazy") | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/1fad8ca7-deutsche-telekom.png",
+                        alt="Deutsche Telekom",
+                        width="313",
+                        height="313",
+                        hi_def=True,
+                        attrs={"class": "p-logo-section__logo"},
+                        loading="lazy") | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/14bd7913-ebay-logo.png",
+                        alt="Ebay",
+                        width="232",
+                        height="313",
+                        hi_def=True,
+                        attrs={"class": "p-logo-section__logo"},
+                        loading="lazy") | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/9752f428-cisco-logo.png",
+                        alt="Cisco",
+                        width="189",
+                        height="313",
+                        hi_def=True,
+                        attrs={"class": "p-logo-section__logo"},
+                        loading="lazy") | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/62464cc4-NTT-logo.png",
+                        alt="NTT",
+                        width="254",
+                        height="313",
+                        hi_def=True,
+                        attrs={"class": "p-logo-section__logo"},
+                        loading="lazy") | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/55bc7680-bestbuy-logo.png",
+                        alt="Best Buy",
+                        width="140",
+                        height="313",
+                        hi_def=True,
+                        attrs={"class": "p-logo-section__logo"},
+                        loading="lazy") | safe
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>
+          Discover Landscape
+          <br class="u-hide--small" />
+          for IoT device management
+        </h2>
+      </div>
+      <div class="col">
+        <p>Did you know you can use Landscape to manage all the devices in your Ubuntu estate, including embedded devices?</p>
+        <p>
+          Manage installed snaps, updates and snap configurations effortlessly over your entire estate - from a single device to thousands - all from a centralized remote portal.
+        </p>
+        <p>
+          With role-based access controls, zero-touch enablement, health monitoring and remote debugging/scripting capabilities &mdash; you can rest easy.
+        </p>
+        <div class="p-cta-block">
+          <a href="/internet-of-things/management" class="p-button--positive">Explore IoT device management</a>
+          <a href="/engage/iot-management-landscape">Access whitepaper on patching IoT devices&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Learn more</h2>
+      </div>
+      <div class="col">
+        <ul class="p-list--divided">
+          <li class="p-list__item">
+            <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/Landscape%20DS%20v3%205.4.2024.pdf?version=0">Overview of Landscape 24.04 LTS</a>
+          </li>
+          <li class="p-list__item">
+            <a href="https://www.linkedin.com/video/event/urn:li:ugcPost:7009200843417677824/">Linux security patches: how to ensure uptime and security</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/engage/ensure-security-and-uptime-when-patching-linux-vulnerabilities">Linux security patches: best practices for risk-mitigation and uptime</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="p-rule is-fixed-width" />
+
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <h2>
+        Outstanding system administration at scale
+        <br class="u-hide--small" />
+        for all versions of Ubuntu.
+      </h2>
+      <br />
+      <h2>
+        <a href="/landscape/pricing">Get Landscape&nbsp;&rsaquo;</a>
+      </h2>
+    </div>
+  </section>
+
+  {{ load_form("/landscape") | safe }}
 
 {% endblock content %}

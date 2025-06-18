@@ -1,12 +1,11 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { UserSubscriptionPeriod } from "advantage/api/enum";
 import { userSubscriptionFactory } from "advantage/tests/factories/api";
 import RenewalButton from "./RenewalButton";
 
 describe("RenewalButton", () => {
-  it("cannot submit if editing", () => {
+  it("cannot submit if editing", async () => {
     Object.defineProperty(window, "location", {
       value: {
         href: "/old/url",
@@ -26,20 +25,21 @@ describe("RenewalButton", () => {
         subscription={subscription}
         action={action}
         editing={editing}
-      ></RenewalButton>
+      ></RenewalButton>,
     );
 
     const renewButton = screen.getByRole("button") as HTMLInputElement;
-
     expect(renewButton).toBeInTheDocument();
-    expect(renewButton.disabled).toEqual(true);
+    expect(renewButton).toHaveAttribute("aria-disabled", "true");
 
     userEvent.click(renewButton);
-
-    expect(window.location.href).toBe("/old/url");
-    expect(localStorage.getItem("shop-checkout-data")).toBe(null);
+    await waitFor(() => {
+      expect(window.location.href).toBe("/old/url");
+      expect(localStorage.getItem("shop-checkout-data")).toBe(null);
+    });
   });
-  it("sets session and redirects for renewing", () => {
+
+  it("sets session and redirects for renewing", async () => {
     Object.defineProperty(window, "location", {
       value: {
         href: "/old/url",
@@ -59,28 +59,28 @@ describe("RenewalButton", () => {
         subscription={subscription}
         action={action}
         editing={editing}
-      ></RenewalButton>
+      ></RenewalButton>,
     );
 
     const renewButton = screen.getByRole("button") as HTMLInputElement;
-
     expect(renewButton).toBeInTheDocument();
 
     userEvent.click(renewButton);
-
-    expect(window.location.href).toBe("/account/checkout");
-    expect(localStorage.getItem("shop-checkout-data")).toBeDefined();
-
-    expect(window.dataLayer).toStrictEqual([
-      {
-        event: "GAEvent",
-        eventCategory: "Advantage",
-        eventAction: "subscription-renewal-modal",
-        eventLabel: "subscription renewal modal opened",
-      },
-    ]);
+    await waitFor(() => {
+      expect(window.location.href).toBe("/account/checkout");
+      expect(localStorage.getItem("shop-checkout-data")).toBeDefined();
+      expect(window.dataLayer).toStrictEqual([
+        {
+          event: "GAEvent",
+          eventCategory: "Advantage",
+          eventAction: "subscription-renewal-modal",
+          eventLabel: "subscription renewal modal opened",
+        },
+      ]);
+    });
   });
-  it("sets session and redirects for rebuying", () => {
+
+  it("sets session and redirects for rebuying", async () => {
     Object.defineProperty(window, "location", {
       value: {
         href: "/old/url",
@@ -92,7 +92,6 @@ describe("RenewalButton", () => {
     });
 
     const subscription = userSubscriptionFactory.build();
-
     const action = "purchase";
     const editing = false;
 
@@ -101,28 +100,28 @@ describe("RenewalButton", () => {
         subscription={subscription}
         action={action}
         editing={editing}
-      ></RenewalButton>
+      ></RenewalButton>,
     );
 
     const renewButton = screen.getByRole("button") as HTMLInputElement;
-
     expect(renewButton).toBeInTheDocument();
 
     userEvent.click(renewButton);
-
-    expect(window.location.href).toBe("/account/checkout");
-    expect(localStorage.getItem("shop-checkout-data")).toBeDefined();
-
-    expect(window.dataLayer).toStrictEqual([
-      {
-        event: "GAEvent",
-        eventCategory: "Advantage",
-        eventAction: "subscription-rebuy-expired-modal",
-        eventLabel: "subscription rebuy expired modal opened",
-      },
-    ]);
+    await waitFor(() => {
+      expect(window.location.href).toBe("/account/checkout");
+      expect(localStorage.getItem("shop-checkout-data")).toBeDefined();
+      expect(window.dataLayer).toStrictEqual([
+        {
+          event: "GAEvent",
+          eventCategory: "Advantage",
+          eventAction: "subscription-rebuy-expired-modal",
+          eventLabel: "subscription rebuy expired modal opened",
+        },
+      ]);
+    });
   });
-  it("sets session and redirects for rebuying for monthly", () => {
+
+  it("sets session and redirects for rebuying for monthly", async () => {
     Object.defineProperty(window, "location", {
       value: {
         href: "/old/url",
@@ -144,25 +143,24 @@ describe("RenewalButton", () => {
         subscription={subscription}
         action={action}
         editing={editing}
-      ></RenewalButton>
+      ></RenewalButton>,
     );
 
     const renewButton = screen.getByRole("button") as HTMLInputElement;
-
     expect(renewButton).toBeInTheDocument();
 
     userEvent.click(renewButton);
-
-    expect(window.location.href).toBe("/account/checkout");
-    expect(localStorage.getItem("shop-checkout-data")).toBeDefined();
-
-    expect(window.dataLayer).toStrictEqual([
-      {
-        event: "GAEvent",
-        eventCategory: "Advantage",
-        eventAction: "subscription-rebuy-expired-modal",
-        eventLabel: "subscription rebuy expired modal opened",
-      },
-    ]);
+    await waitFor(() => {
+      expect(window.location.href).toBe("/account/checkout");
+      expect(localStorage.getItem("shop-checkout-data")).toBeDefined();
+      expect(window.dataLayer).toStrictEqual([
+        {
+          event: "GAEvent",
+          eventCategory: "Advantage",
+          eventAction: "subscription-rebuy-expired-modal",
+          eventLabel: "subscription rebuy expired modal opened",
+        },
+      ]);
+    });
   });
 });

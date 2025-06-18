@@ -1,21 +1,34 @@
+/**
+ * This script is used to load dynamic contact forms on the website.
+ * Important notes about using dynamic forms:
+ * - Form fields that should be in the payload must have "name" attribute for the input fields.
+ * - "js-formfield" class should be used to encapsulate fields that do not have "name" attributes. These fields will be consolidated and added to the "Comments_from_lead__c" payload.
+ * - "Comments_from_lead__c" must be a hidden field.
+ */
 import "infer-preferred-language.js";
-import setupIntlTelInput from "./intlTelInput.js";
+import { prepareInputFields } from "./prepare-form-inputs.js";
 
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
     const triggeringHash = "#get-in-touch";
     const formContainer = document.getElementById("contact-form-container");
     const contactButtons = document.querySelectorAll(".js-invoke-modal");
-    const contactForm = document.getElementById("contact-form-container");
-    const returnData = window.location.pathname + "#success";
-    const contactModalSelector = "contact-modal";
+    let returnData = window.location.pathname + "#success";
+    let modalTrigger = document.activeElement || document.body;
+    const modalAlreadyExists = document.querySelector(".js-modal-ready");
+    // If the modal contains the class "js-modal-ready", it means we are using the form generator
+    // And each form will have a unique ID
+    let contactModalSelector = modalAlreadyExists
+      ? modalAlreadyExists.id
+      : "contact-modal";
 
     contactButtons.forEach(function (contactButton) {
       contactButton.addEventListener("click", function (e) {
         e.preventDefault();
         if (window.location.pathname) {
-          contactForm.setAttribute("data-return-url", returnData);
+          formContainer.setAttribute("data-return-url", returnData);
         }
+
         if (contactButton.dataset.formLocation) {
           fetchForm(contactButton.dataset, contactButton);
         } else {
@@ -28,7 +41,7 @@ import setupIntlTelInput from "./intlTelInput.js";
     // recaptcha submitCallback
     window.CaptchaCallback = function () {
       let recaptchas = [].slice.call(
-        document.querySelectorAll("div[class^=g-recaptcha]")
+        document.querySelectorAll("div[class^=g-recaptcha]"),
       );
       recaptchas.forEach(function (field) {
         if (!field.hasAttribute("data-widget-id")) {
@@ -43,37 +56,47 @@ import setupIntlTelInput from "./intlTelInput.js";
 
     // Fetch, load and initialise form
     function fetchForm(formData, contactButton) {
-      fetch(formData.formLocation)
-        .then(function (response) {
-          return response.text();
-        })
-        .then(function (text) {
-          formContainer.classList.remove("u-hide");
-          formContainer.innerHTML = text
-            .replace(/%% formid %%/g, formData.formId)
-            .replace(/%% returnURL %%/g, formData.returnUrl);
+      // check if the modal already exists on the page and if so, skip the fetch and initialise it
+      if (modalAlreadyExists) {
+        returnData = formContainer.dataset.returnUrl;
+        initialiseFormData(formContainer.dataset, contactButton);
+      } else {
+        fetch(formData.formLocation)
+          .then(function (response) {
+            return response.text();
+          })
+          .then(function (text) {
+            formContainer.innerHTML = text
+              .replace(/%% formid %%/g, formData.formId)
+              .replace(/%% returnURL %%/g, formData.returnUrl);
 
-          if (formData.title) {
-            const title = document.getElementById("modal-title");
-            title.innerHTML = formData.title;
-          }
-          setProductContext(contactButton);
-          setUTMs(formData.formId);
-          setGclid();
-          setFBclid();
-          loadCaptchaScript();
-          initialiseForm();
-          setFocus();
-        })
-        .catch(function (error) {
-          console.log("Request failed", error);
-        });
+            if (formData.title) {
+              const title = document.getElementById("modal-title");
+              title.innerHTML = formData.title;
+            }
+            initialiseFormData(formData, contactButton);
+          })
+          .catch(function (error) {
+            console.log("Request failed", error);
+          });
+      }
+    }
+
+    function initialiseFormData(formData, contactButton) {
+      formContainer.classList.remove("u-hide");
+      setProductContext(contactButton);
+      setUTMs(formData.formId);
+      setGclid();
+      setFBclid();
+      loadCaptchaScript();
+      initialiseForm();
+      setFocus();
     }
 
     // Load the google recaptcha noscript
     function loadCaptchaScript() {
-      var head = document.head;
-      var script = document.createElement("script");
+      const head = document.head;
+      const script = document.createElement("script");
       script.type = "text/javascript";
       script.src =
         "https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit";
@@ -82,25 +105,25 @@ import setupIntlTelInput from "./intlTelInput.js";
 
     // Open the contact us modal
     function open() {
+      if (modalTrigger && modalTrigger !== document.body)
+        modalTrigger.setAttribute("aria-expanded", "true");
       updateHash(triggeringHash);
-      ga(
-        "send",
-        "event",
-        "interactive-forms",
-        "open",
-        window.location.pathname
-      );
+      dataLayer.push({
+        event: "interactive-forms",
+        action: "open",
+        path: window.location.pathname,
+      });
     }
 
     // Removes the triggering hash
     function updateHash(hash) {
-      var location = window.location;
+      const location = window.location;
       if (location.hash !== hash || hash === "") {
         if ("pushState" in history) {
           history.pushState(
             "",
             document.title,
-            location.pathname + location.search + hash
+            location.pathname + location.search + hash,
           );
         } else {
           location.hash = hash;
@@ -112,7 +135,7 @@ import setupIntlTelInput from "./intlTelInput.js";
       // Capture current path and stringify
       // eg. /kubernetes/install -> kubernetes-install
       // fallbacks to "global"
-      var product =
+      let product =
         window.location.pathname.split("/").slice(1).join("-") || "global";
       // If present, override with product parameter from button URL
       if (contactButton) {
@@ -124,32 +147,32 @@ import setupIntlTelInput from "./intlTelInput.js";
       }
 
       // Set product in form field
-      var productContext = document.getElementById("product-context");
+      const productContext = document.getElementById("product-context");
       if (productContext) {
         productContext.value = product;
       }
     }
 
     function setUTMs(formId) {
-      var params = new URLSearchParams(window.location.search);
-      var targetForm = document.getElementById(`mktoForm_${formId}`);
-      var utm_campaign = targetForm.querySelector("#utm_campaign");
+      const params = new URLSearchParams(window.location.search);
+      const targetForm = document.getElementById(`mktoForm_${formId}`);
+      const utm_campaign = targetForm.querySelector("#utm_campaign");
       if (utm_campaign) {
         utm_campaign.value = params.get("utm_campaign");
       }
-      var utm_source = targetForm.querySelector("#utm_source");
+      const utm_source = targetForm.querySelector("#utm_source");
       if (utm_source) {
         utm_source.value = params.get("utm_source");
       }
-      var utm_medium = targetForm.querySelector("#utm_medium");
+      const utm_medium = targetForm.querySelector("#utm_medium");
       if (utm_medium) {
         utm_medium.value = params.get("utm_medium");
       }
-      var utm_content = targetForm.querySelector("#utm_content");
+      const utm_content = targetForm.querySelector("#utm_content");
       if (utm_content) {
         utm_content.value = params.get("utm_content");
       }
-      var utm_term = targetForm.querySelector("#utm_term");
+      const utm_term = targetForm.querySelector("#utm_term");
       if (utm_term) {
         utm_term.value = params.get("utm_term");
       }
@@ -157,9 +180,9 @@ import setupIntlTelInput from "./intlTelInput.js";
 
     function setGclid() {
       if (localStorage.getItem("gclid")) {
-        var gclidField = document.getElementById("GCLID__c");
-        var gclid = JSON.parse(localStorage.getItem("gclid"));
-        var isGclidValid = new Date().getTime() < gclid.expiryDate;
+        const gclidField = document.getElementById("GCLID__c");
+        const gclid = JSON.parse(localStorage.getItem("gclid"));
+        const isGclidValid = new Date().getTime() < gclid.expiryDate;
         if (gclid && isGclidValid && gclidField) {
           gclidField.value = gclid.value;
         }
@@ -168,29 +191,53 @@ import setupIntlTelInput from "./intlTelInput.js";
 
     function setFBclid() {
       if (localStorage.getItem("fbclid")) {
-        var fbclidField = document.getElementById("Facebook_Click_ID__c");
-        var fbclid = JSON.parse(localStorage.getItem("fbclid"));
-        var fbclidIsValid = new Date().getTime() < fbclid.expiryDate;
+        const fbclidField = document.getElementById("Facebook_Click_ID__c");
+        const fbclid = JSON.parse(localStorage.getItem("fbclid"));
+        const fbclidIsValid = new Date().getTime() < fbclid.expiryDate;
         if (fbclid && fbclidIsValid && fbclidField) {
           fbclidField.value = fbclid.value;
         }
       }
     }
 
+    function setDataLayerConsentInfo() {
+      const dataLayer = window.dataLayer || [];
+      const latestConsentUpdateElements = dataLayer
+        .slice()
+        .reverse()
+        .filter(
+          (item) =>
+            typeof item === "object" &&
+            item !== null &&
+            item[0] === "consent" &&
+            item[1] === "update",
+        )[0]?.[2];
+
+      if (latestConsentUpdateElements) {
+        document.cookie =
+          "consent_info=" +
+          JSON.stringify(latestConsentUpdateElements) +
+          ";max-age=31536000;";
+      }
+    }
+
     function initialiseForm() {
-      var contactIndex = 1;
+      let contactIndex = 1;
       const contactModal = document.getElementById(contactModalSelector);
-      var closeModal = document.querySelector(".p-modal__close");
-      var closeModalButton = document.querySelector(".js-close");
-      var modalPaginationButtons = contactModal.querySelectorAll(
-        ".pagination a"
-      );
-      var paginationContent = contactModal.querySelectorAll(".js-pagination");
-      var submitButton = contactModal.querySelector('button[type="submit"]');
-      var comment = contactModal.querySelector("#Comments_from_lead__c");
-      var otherContainers = document.querySelectorAll(".js-other-container");
-      var phoneInput = document.querySelector("#phone");
-      var modalTrigger = document.activeElement || document.body;
+      const closeModal = document.querySelector(".p-modal__close");
+      const closeModalButton = document.querySelector(".js-close");
+      const modalPaginationButtons =
+        contactModal.querySelectorAll(".pagination a");
+      const paginationContent = contactModal.querySelectorAll(".js-pagination");
+      const submitButton = contactModal.querySelector('button[type="submit"]');
+      const comment = contactModal.querySelector("#Comments_from_lead__c");
+      const otherContainers = document.querySelectorAll(".js-other-container");
+      const phoneNumberInput = document.querySelector("#phone");
+      const countryInput = document.querySelector("#country");
+      modalTrigger = document.activeElement || document.body;
+      const isMultipage =
+        contactModal.querySelector(".js-pagination")?.length > 1;
+      let isClickStartedInside = false;
 
       document.onkeydown = function (evt) {
         evt = evt || window.event;
@@ -199,130 +246,63 @@ import setupIntlTelInput from "./intlTelInput.js";
         }
       };
 
+      contactModal.addEventListener("submit", submitForm);
+
       if (closeModal) {
-        closeModal.addEventListener("click", function (e) {
-          e.preventDefault();
-          close();
-        });
+        closeModal.addEventListener("click", hideModal);
       }
 
       if (closeModalButton) {
-        closeModalButton.addEventListener("click", function (e) {
-          e.preventDefault();
-          close();
-        });
+        closeModalButton.addEventListener("click", hideModal);
       }
 
       if (contactModal) {
-        let isClickStartedInside = false;
-        contactModal.addEventListener("mousedown", function (e) {
-          isClickStartedInside = e.target.id !== contactModalSelector;
-        });
-        contactModal.addEventListener("mouseup", function (e) {
-          if (!isClickStartedInside && e.target.id === contactModalSelector) {
-            e.preventDefault();
-            close();
-          }
-        });
+        contactModal.addEventListener("mousedown", handleModalMouseDown);
+        contactModal.addEventListener("mouseup", handleModalMouseUp);
       }
 
       modalPaginationButtons.forEach(function (modalPaginationButton) {
         modalPaginationButton.addEventListener("click", function (e) {
           e.preventDefault();
-          var button = e.target.closest("a");
-          var index = contactIndex;
+          const button = e.target.closest("a");
+          let index = contactIndex;
           if (button.classList.contains("pagination__link--previous")) {
             index = index - 1;
             setState(index);
-            ga(
-              "send",
-              "event",
-              "interactive-forms",
-              "goto:" + index,
-              window.location.pathname
-            );
+            dataLayer.push({
+              event: "interactive-forms",
+              action: "goto:" + index,
+              path: window.location.pathname,
+            });
           } else {
-            var valid = true;
-
-            if (button.classList.contains("js-validate-form")) {
-              var form = button.closest("form");
-
-              valid = validateForm(form);
-            }
-
-            if (valid) {
-              index = index + 1;
-              setState(index);
-              ga(
-                "send",
-                "event",
-                "interactive-forms",
-                "goto:" + index,
-                window.location.pathname
-              );
-            }
+            index = index + 1;
+            setState(index);
+            dataLayer.push({
+              event: "interactive-forms",
+              action: "goto:" + index,
+              path: window.location.pathname,
+            });
           }
         });
       });
 
       otherContainers.forEach(function (otherContainer) {
-        var checkbox = otherContainer.querySelector(
-          ".js-other-container__checkbox"
+        const checkbox = otherContainer.querySelector(
+          ".js-other-container__checkbox",
         );
-        var input = otherContainer.querySelector(".js-other-container__input");
-        checkbox.addEventListener("change", function (e) {
+        const input = otherContainer.querySelector(
+          ".js-other-container__input",
+        );
+        checkbox?.addEventListener("change", function (e) {
           if (e.target.checked) {
-            input.style.opacity = 1;
+            input.style.display = "block";
             input.focus();
           } else {
-            input.style.opacity = 0;
+            input.style.display = "none";
             input.value = "";
           }
         });
       });
-
-      // Checks additional required fields to see whether a value has been set
-      function validateForm(form) {
-        var fields = form.querySelectorAll("[required]");
-        var validStates = [];
-
-        fields.forEach((field) => {
-          var fieldName = field.getAttribute("name");
-          var inputs = form.querySelectorAll(`[name="${fieldName}"]`);
-          var validationMessage = document.querySelector(
-            `.js-validation-${fieldName}`
-          );
-          var inputValid = false;
-
-          inputs.forEach((input) => {
-            if (input.type === "checkbox" && input.checked) {
-              inputValid = true;
-            }
-
-            if (input.type === "radio" && input.checked) {
-              inputValid = true;
-            }
-
-            if (input.type === "text" && input.value) {
-              inputValid = true;
-            }
-
-            if (input.type === "textarea" && input.value) {
-              inputValid = true;
-            }
-          });
-
-          if (!inputValid) {
-            validationMessage.classList.remove("u-hide");
-          } else {
-            validationMessage.classList.add("u-hide");
-          }
-
-          validStates.push(inputValid);
-        });
-
-        return !validStates.includes(false);
-      }
 
       // Updates the index and renders the changes
       function setState(index) {
@@ -334,104 +314,154 @@ import setupIntlTelInput from "./intlTelInput.js";
       function close() {
         setState(1);
         formContainer.classList.add("u-hide");
-        formContainer.removeChild(contactModal);
+        if (modalTrigger && modalTrigger !== document.body)
+          modalTrigger.setAttribute("aria-expanded", "false");
         modalTrigger.focus();
         updateHash("");
-        ga(
-          "send",
-          "event",
-          "interactive-forms",
-          "close",
-          window.location.pathname
-        );
+        dataLayer.push({
+          event: "interactive-forms",
+          action: "close",
+          path: window.location.pathname,
+        });
+
+        // clean up event listeners when the modal is closed
+        if (contactModal) {
+          contactModal.removeEventListener("submit", submitForm);
+          contactModal.removeEventListener("mousedown", handleModalMouseDown);
+          contactModal.removeEventListener("mouseup", handleModalMouseUp);
+        }
+        if (closeModal) closeModal.removeEventListener("click", hideModal);
+        if (closeModalButton)
+          closeModalButton.removeEventListener("click", hideModal);
       }
 
       // Update the content of the modal based on the current index
       function render() {
-        comment.value = createMessage();
+        comment.value = createMessage(false);
 
-        var currentContent = contactModal.querySelector(
-          ".js-pagination--" + contactIndex
-        );
-        paginationContent.forEach(function (content) {
-          content.classList.add("u-hide");
-        });
-        currentContent.classList.remove("u-hide");
+        if (paginationContent.length) {
+          const currentContent = contactModal.querySelector(
+            ".js-pagination--" + contactIndex,
+          );
+          paginationContent.forEach(function (content) {
+            content.classList.add("u-hide");
+          });
+          currentContent.classList.remove("u-hide");
+        }
       }
 
       // Concatinate the options selected into a string
-      function createMessage() {
-        var message = "";
+      function createMessage(submit) {
+        const contactModal = document.getElementById(contactModalSelector);
+        let message = "";
+        if (contactModal) {
+          const formFields = contactModal.querySelectorAll(".js-formfield");
+          formFields.forEach(function (formField) {
+            const comma = ",";
+            const fieldsetForm = formField.querySelector(".js-formfield-title");
+            let fieldTitle = "";
+            if (fieldsetForm) {
+              fieldTitle = fieldsetForm;
+            } else {
+              fieldTitle =
+                formField.querySelector(".p-heading--5") ??
+                formField.querySelector(".p-modal__question-heading");
+            }
+            const inputs = formField.querySelectorAll("input, textarea");
+            if (fieldTitle) {
+              message += fieldTitle.innerText + "\r\n";
+            }
 
-        var formFields = contactModal.querySelectorAll(".js-formfield");
-        formFields.forEach(function (formField) {
-          var comma = "";
-          var fieldTitle = formField.querySelector(".p-heading--5");
-          var inputs = formField.querySelectorAll("input, textarea");
-          if (fieldTitle) {
-            message += fieldTitle.innerText + "\r\n";
+            inputs.forEach(function (input) {
+              switch (input.type) {
+                case "select-one":
+                  message +=
+                    input.options[input.selectedIndex]?.textContent +
+                    comma +
+                    " ";
+                  break;
+                case "radio":
+                  if (input.checked) {
+                    message += input.value + comma + " ";
+                  }
+                  break;
+                case "checkbox":
+                  if (input.checked) {
+                    if (fieldsetForm) {
+                      message += input.value + comma + " ";
+                    } else {
+                      // Forms that have column separation
+                      let subSectionText = "";
+                      if (
+                        input.closest('[class*="col-"]') &&
+                        input
+                          .closest('[class*="col-"]')
+                          .querySelector(".js-sub-section")
+                      ) {
+                        let subSection = input
+                          .closest('[class*="col-"]')
+                          .querySelector(".js-sub-section");
+                        subSectionText = subSection.innerText + ": ";
+                      }
+
+                      let label = formField.querySelector(
+                        "span#" + input.getAttribute("aria-labelledby"),
+                      );
+
+                      if (label) {
+                        label = subSectionText + label.innerText;
+                      } else {
+                        label = input.getAttribute("aria-labelledby");
+                      }
+                      message += label + comma + "\r\n\r\n";
+                    }
+                  }
+                  break;
+                case "text":
+                case "number":
+                case "textarea":
+                  if (
+                    input.value !== "" &&
+                    !input.classList.contains("js-other-input")
+                  ) {
+                    message += input.value + comma + " ";
+                  }
+                  break;
+              }
+            });
+            message += "\r\n\r\n";
+          });
+
+          const radioFieldsets = document.querySelectorAll(
+            ".js-remove-radio-names",
+          );
+          if (radioFieldsets.length > 0) {
+            radioFieldsets.forEach((radioFieldset) => {
+              const radioInputs = radioFieldset.querySelectorAll(
+                "input[type='radio']",
+              );
+              radioInputs.forEach((radioInput) => {
+                radioInput.removeAttribute("name");
+              });
+            });
           }
 
-          inputs.forEach(function (input) {
-            switch (input.type) {
-              case "radio":
-                if (input.checked) {
-                  message += comma + input.value + "\r\n\r\n";
-                  comma = ", ";
-                }
-                break;
-              case "checkbox":
-                if (input.checked) {
-                  var subSectionText = "";
+          const checkboxFieldsets = document.querySelectorAll(
+            ".js-remove-checkbox-names",
+          );
+          if (checkboxFieldsets.length > 0) {
+            checkboxFieldsets.forEach((checkboxFieldset) => {
+              const checkboxInputs = checkboxFieldset.querySelectorAll(
+                "input[type='checkbox']",
+              );
+              checkboxInputs.forEach((checkboxInput) => {
+                checkboxInput.removeAttribute("name");
+              });
+            });
+          }
 
-                  // Forms that have column separation
-                  if (
-                    input.closest('[class*="col-"]') &&
-                    input
-                      .closest('[class*="col-"]')
-                      .querySelector(".js-sub-section")
-                  ) {
-                    var subSection = input
-                      .closest('[class*="col-"]')
-                      .querySelector(".js-sub-section");
-                    subSectionText = subSection.innerText + ": ";
-                  }
-
-                  var label = formField.querySelector(
-                    "span#" + input.getAttribute("aria-labelledby")
-                  );
-
-                  if (label) {
-                    label = subSectionText + label.innerText;
-                  } else {
-                    label = input.getAttribute("aria-labelledby");
-                  }
-                  message += comma + label + "\r\n\r\n";
-                  comma = ", ";
-                }
-                break;
-              case "text":
-                if (input.value !== "") {
-                  message += comma + input.value + "\r\n\r\n";
-                  comma = ", ";
-                }
-                break;
-              case "number":
-                if (input.value !== "") {
-                  message += comma + input.value + "\r\n\r\n";
-                  comma = ", ";
-                }
-                break;
-              case "textarea":
-                if (input.value !== "") {
-                  message += comma + input.value + "\r\n\r\n";
-                  comma = ", ";
-                }
-                break;
-            }
-          });
-        });
-        return message;
+          return message;
+        }
       }
 
       // Toggles the description textarea field for radio buttons
@@ -442,11 +472,11 @@ import setupIntlTelInput from "./intlTelInput.js";
           const radioButtons = radioGroup.querySelectorAll("[type='radio']");
 
           const descriptionToggle = radioGroup.querySelector(
-            ".js-toggle-description-field"
+            ".js-toggle-description-field",
           );
 
           const descriptionField = document.getElementById(
-            descriptionToggle.dataset.descriptionFieldId
+            descriptionToggle.dataset.descriptionFieldId,
           );
 
           radioButtons.forEach((radioButton) => {
@@ -468,9 +498,8 @@ import setupIntlTelInput from "./intlTelInput.js";
 
       // Sets a limit of checkboxes and disables remaining fields
       function setCheckboxLimit() {
-        const choiceLimitContainers = document.querySelectorAll(
-          ".js-choice-limit"
-        );
+        const choiceLimitContainers =
+          document.querySelectorAll(".js-choice-limit");
 
         const checkedChoices = (choices) => {
           return Array.from(choices).filter((choice) => {
@@ -486,9 +515,8 @@ import setupIntlTelInput from "./intlTelInput.js";
 
         const handleChoiceLimitContainer = (choiceLimitContainer) => {
           const choiceLimit = choiceLimitContainer.dataset.choiceLimit;
-          const choices = choiceLimitContainer.querySelectorAll(
-            "[type='checkbox']"
-          );
+          const choices =
+            choiceLimitContainer.querySelectorAll("[type='checkbox']");
 
           choices.forEach((choice) => {
             choice.addEventListener("change", () => {
@@ -510,16 +538,18 @@ import setupIntlTelInput from "./intlTelInput.js";
 
       setCheckboxLimit();
 
-      // Setup dial code dropdown options (intlTelInput.js)
-      setupIntlTelInput(phoneInput);
+      // Sets up dial code dropdown options aka. intlTelInput.js
+      // and pre fills the country field
+      // Prepares input fields for opened modal if it has not been initialised
+      if (!modalAlreadyExists) {
+        prepareInputFields(phoneNumberInput, countryInput);
+      }
 
       // Set preferredLanguage hidden input
       function setpreferredLanguage() {
-        // eslint-disable-next-line
         const preferredLanguage = getPrimaryParentLanguage();
-        const preferredLanguageInput = contactModal.querySelector(
-          "#preferredLanguage"
-        );
+        const preferredLanguageInput =
+          contactModal.querySelector("#preferredLanguage");
 
         if (preferredLanguageInput) {
           preferredLanguageInput.value = preferredLanguage || "";
@@ -529,30 +559,42 @@ import setupIntlTelInput from "./intlTelInput.js";
       setpreferredLanguage();
 
       // Disables submit button and adds visual queue when it is submitted
-      function setupSubmitButton() {
+      function addLoadingSpinner() {
         const modalForm = formContainer.querySelector("form");
         const spinnerIcon = document.createElement("i");
         spinnerIcon.className = "p-icon--spinner u-animation--spin is-light";
-        modalForm.addEventListener("submit", function (e) {
-          const buttonRect = submitButton.getBoundingClientRect();
-          submitButton.style.width = buttonRect.width + "px";
-          submitButton.style.height = buttonRect.height + "px";
-          submitButton.disabled = true;
-          submitButton.innerText = "";
-          submitButton.appendChild(spinnerIcon);
-        });
+        const buttonRect = submitButton.getBoundingClientRect();
+        submitButton.style.width = buttonRect.width + "px";
+        submitButton.style.height = buttonRect.height + "px";
+        submitButton.disabled = true;
+        submitButton.innerText = "";
+        submitButton.appendChild(spinnerIcon);
       }
 
-      setupSubmitButton();
-
       function fireLoadedEvent() {
-        var event = new CustomEvent("contactModalLoaded");
+        const event = new CustomEvent("contactModalLoaded");
         document.dispatchEvent(event);
       }
 
       fireLoadedEvent();
 
-      comment.value = createMessage();
+      // Add event listeners to toggle checkbox visibility
+      const ubuntuVersionCheckboxes = document.querySelector(
+        "fieldset.js-toggle-checkbox-visibility",
+      );
+      ubuntuVersionCheckboxes?.addEventListener("change", function (event) {
+        toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
+      });
+
+      // Add event listeners to required fieldset
+      const requiredFieldset = document.querySelectorAll(
+        "fieldset.js-required-checkbox",
+      );
+      requiredFieldset?.forEach((fieldset) => {
+        fieldset.addEventListener("change", function (event) {
+          requiredCheckbox(fieldset, event.target);
+        });
+      });
 
       // Prefill user names and email address if they are logged in
       if (window.accountJSONRes) {
@@ -575,14 +617,38 @@ import setupIntlTelInput from "./intlTelInput.js";
           field.value = lastName;
         });
       }
+
+      function submitForm(e) {
+        addLoadingSpinner();
+        setDataLayerConsentInfo();
+        if (!isMultipage) {
+          comment.value = createMessage(true);
+        }
+      }
+
+      function hideModal(e) {
+        e.preventDefault();
+        close();
+      }
+
+      function handleModalMouseDown(e) {
+        isClickStartedInside = e.target.id !== contactModalSelector;
+      }
+
+      function handleModalMouseUp(e) {
+        if (!isClickStartedInside && e.target.id === contactModalSelector) {
+          e.preventDefault();
+          close();
+        }
+      }
     }
 
     // Sets the focus inside the modal and trap it
     function setFocus() {
-      var modalTrigger = document.activeElement || document.body;
-      var modal = document.querySelector(".p-modal");
-      var firstFocusableEle = modal.querySelector(
-        "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])"
+      modalTrigger = document.activeElement || document.body;
+      const modal = document.querySelector(".p-modal");
+      const firstFocusableEle = modal.querySelector(
+        "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])",
       );
 
       // set initial focus inside the modal
@@ -592,16 +658,16 @@ import setupIntlTelInput from "./intlTelInput.js";
       firstFocusableEle.addEventListener("keydown", function (e) {
         if (e.shiftKey && e.key === "Tab") {
           e.preventDefault();
-          var targetPage = modal.querySelector(".js-pagination:not(.u-hide)");
-          var targetEle = targetPage.querySelector(".pagination__link--next");
+          const targetPage = modal.querySelector(".js-pagination:not(.u-hide)");
+          const targetEle = targetPage.querySelector(".pagination__link--next");
           targetEle.focus();
         }
       });
 
-      var modalPages = modal.querySelectorAll(".js-pagination");
+      const modalPages = modal.querySelectorAll(".js-pagination");
 
       modalPages.forEach(function (page, index) {
-        var lastFocusEle = page.querySelector(".pagination__link--next");
+        const lastFocusEle = page.querySelector(".pagination__link--next");
         if (lastFocusEle) {
           lastFocusEle.addEventListener("keydown", function (e) {
             if (!e.shiftKey && e.key === "Tab") {
@@ -627,5 +693,79 @@ import setupIntlTelInput from "./intlTelInput.js";
       }
     }
     window.onhashchange = locationHashChanged;
+
+    /**
+     *
+     * @param {*} fieldset
+     * @param {*} checklistItem
+     *
+     * Disable & enable checklist visibility based on user selection
+     * - When any visible checkbox is checked, it will disable the .js-checkbox-visibility__other checkboxes
+     * - Can only check one __other item at a time
+     * - When all visible checkboxes or any __other checkbox is unchecked, all checkboxes will be enabled
+     */
+    function toggleCheckboxVisibility(fieldset, checklistItem) {
+      const checkboxes = fieldset.querySelectorAll(".js-checkbox-visibility");
+      const otherCheckboxes = fieldset.querySelectorAll(
+        ".js-checkbox-visibility__other",
+      );
+      const isVisible = checklistItem.classList.contains(
+        "js-checkbox-visibility",
+      );
+
+      if (checklistItem.checked) {
+        if (isVisible) {
+          otherCheckboxes.forEach((checkbox) => {
+            checkbox.disabled = true;
+          });
+        } else {
+          checkboxes.forEach((checkbox) => {
+            checkbox.disabled = true;
+          });
+          otherCheckboxes.forEach((checkbox) => {
+            checklistItem == checkbox ? null : (checkbox.disabled = true);
+          });
+        }
+      } else {
+        if (isVisible) {
+          let uncheck = true;
+          checkboxes.forEach((checkbox) => {
+            checkbox.checked ? (uncheck = false) : null;
+          });
+          if (uncheck) {
+            otherCheckboxes.forEach((checkbox) => {
+              checkbox.disabled = false;
+            });
+          }
+        } else {
+          checkboxes.forEach((checkbox) => {
+            checkbox.disabled = false;
+          });
+          otherCheckboxes.forEach((checkbox) => {
+            checkbox.disabled = false;
+          });
+        }
+      }
+    }
+
+    /**
+     *
+     * @param {*} fieldset
+     * @param {*} target
+     * Disables submit button for required checkboxes field
+     */
+    function requiredCheckbox(fieldset, target) {
+      const submitButton = document.querySelector(".js-submit-button");
+      const checkboxes = fieldset.querySelectorAll("input[type='checkbox']");
+      if (target.checked) {
+        submitButton.disabled = false;
+      } else {
+        let disableSubmit = true;
+        checkboxes.forEach((checkbox) => {
+          checkbox.checked ? (disableSubmit = false) : null;
+        });
+        submitButton.disabled = disableSubmit;
+      }
+    }
   });
 })();

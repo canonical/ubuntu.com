@@ -1,0 +1,30 @@
+<section class="p-section">
+  <div class="row">
+    <div class="col-9 col-medium-4 col-start-large-4 col-start-medium-3">
+      <table aria-label="Components certified in ubuntu releases">
+        <thead>
+          <tr>
+            <th>Ubuntu Release</th>
+            <th>Status</th>
+            <th>Third-party driver</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for name, details in lts_releases.items() %}
+            <tr>
+              <td class="u-text--muted">{{ details.0.release }}</td>
+              <td class="u-text--muted">{{ details.0.status.title() }}</td>
+              <td class="u-text--muted">
+                {% if details.0.third_party_driver != True %}
+                  No
+                {% else %}
+                  Yes
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

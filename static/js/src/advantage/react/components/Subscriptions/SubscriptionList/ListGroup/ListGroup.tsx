@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { selectAutoRenewableSubscriptionsByMarketplace } from "advantage/react/hooks/useUserSubscriptions";
 import { useUserSubscriptions } from "advantage/react/hooks";
@@ -33,7 +33,7 @@ const ListGroup = ({ children, title, marketplace }: Props): JSX.Element => {
         <span className="p-text--small-caps u-align-text--small-to-default u-no-margin--bottom">
           {title}
         </span>
-        {renewableSubscriptions?.length ?? 0 > 0 ? (
+        {(renewableSubscriptions?.length ?? 0 > 0) ? (
           <RenewalSettings
             positionNodeRef={positionNode}
             marketplace={marketplace}

@@ -1,8 +1,7 @@
-# ![ubuntu](https://assets.ubuntu.com/v1/9f61b97f-logo-ubuntu.svg "Ubuntu").com codebase
+# ubuntu.com codebase
 
 [![Code coverage](https://codecov.io/gh/canonical-web-and-design/ubuntu.com/branch/master/graph/badge.svg)](https://codecov.io/gh/canonical-web-and-design/ubuntu.com)
 [![Cypress checks](https://github.com/canonical-web-and-design/ubuntu.com/workflows/Cypress%20checks/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions?query=workflow%3A%22Cypress+checks%22)
-[![Cypress checks / main](https://github.com/canonical-web-and-design/ubuntu.com/workflows/Cypress%20main%20checks/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions/workflows/cypress-main.yaml?query=workflow%3A%22Cypress+checks%22)
 
 Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things. [Ubuntu.com](https://ubuntu.com) is the website that helps people learn about, download and get started with Ubuntu. This repo is the codebase and content for the [ubuntu.com](https://ubuntu.com) website.
 
@@ -33,6 +32,8 @@ PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 ```
 
 Once the server has started, you can visit <http://127.0.0.1:8001> in your browser.
+
+For more information on how to work with ubuntu.com project please refer to [HACKING.md](HACKING.md).
 
 # Deploy
 

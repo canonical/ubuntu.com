@@ -1,4 +1,5 @@
 @mixin ubuntu-p-contact-modal {
+  .p-modal--generated,
   #contact-modal {
     &.p-modal {
       align-items: start;
@@ -17,6 +18,11 @@
       .p-modal__header {
         border-bottom: 1px solid $color-mid-light;
         margin-bottom: $spv--medium;
+
+        &::after {
+          // Remove the bottom border from the title.
+          display: none;
+        }
       }
 
       .p-modal__title {
@@ -24,12 +30,20 @@
       }
 
       &.thank-you {
+        /* stylelint-disable-next-line no-descending-specificity */
         .p-modal__title {
           opacity: 0;
         }
 
+        /* stylelint-disable-next-line no-descending-specificity */
         .p-modal__header {
           border-bottom: 0;
+
+          /* stylelint-disable-next-line no-descending-specificity */
+          &::after {
+            // Remove the bottom border from the title.
+            display: none;
+          }
         }
       }
 

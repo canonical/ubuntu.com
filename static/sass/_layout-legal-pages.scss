@@ -39,6 +39,10 @@
       padding-top: $spv--small;
     }
 
+    ol > li > p:first-child {
+      display: contents;
+    }
+
     ol > li > h3,
     ol > li > h4,
     ol > li > h5 {
@@ -58,6 +62,10 @@
     ol > li > h3:first-child,
     ol > li > h4:first-child {
       display: inline;
+    }
+
+    :target {
+      scroll-margin-top: 4.5rem; // 4.5rem is the height of the sticky header
     }
   }
 }

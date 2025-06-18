@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import { Notification } from "@canonical/react-components";
 import { UserSubscriptionType } from "advantage/api/enum";
@@ -16,12 +15,12 @@ describe("ExpiryNotification", () => {
       <ExpiryNotification
         size={ExpiryNotificationSize.Large}
         statuses={statuses}
-      />
+      />,
     );
     expect(wrapper.find("[data-test='is_expiring-large']").exists()).toBe(true);
     expect(wrapper.find(Notification).prop("borderless")).toBe(false);
     expect(wrapper.find(Notification).prop("title")).toBe(
-      "Your subscription is about to expire."
+      "Your subscription is about to expire.",
     );
   });
 
@@ -33,12 +32,12 @@ describe("ExpiryNotification", () => {
       <ExpiryNotification
         size={ExpiryNotificationSize.Large}
         statuses={statuses}
-      />
+      />,
     );
     expect(wrapper.find("[data-test='is_expired-large']").exists()).toBe(true);
     expect(wrapper.find(Notification).prop("borderless")).toBe(false);
     expect(wrapper.find(Notification).prop("title")).toBe(
-      "Your subscription has expired."
+      "Your subscription has expired.",
     );
   });
 
@@ -50,14 +49,14 @@ describe("ExpiryNotification", () => {
       <ExpiryNotification
         size={ExpiryNotificationSize.Large}
         statuses={statuses}
-      />
+      />,
     );
     expect(
-      wrapper.find("[data-test='is_in_grace_period-large']").exists()
+      wrapper.find("[data-test='is_in_grace_period-large']").exists(),
     ).toBe(true);
     expect(wrapper.find(Notification).prop("borderless")).toBe(false);
     expect(wrapper.find(Notification).prop("title")).toBe(
-      "Your subscription has expired."
+      "Your subscription has expired.",
     );
   });
 
@@ -72,14 +71,14 @@ describe("ExpiryNotification", () => {
         showMultiple
         size={ExpiryNotificationSize.Large}
         statuses={statuses}
-      />
+      />,
     );
     expect(
-      wrapper.find("[data-test='is_in_grace_period-large']").exists()
+      wrapper.find("[data-test='is_in_grace_period-large']").exists(),
     ).toBe(true);
     expect(wrapper.find("[data-test='is_expired-large']").exists()).toBe(true);
     expect(wrapper.find("[data-test='is_expiring-large']").exists()).toBe(
-      false
+      false,
     );
   });
 
@@ -93,14 +92,14 @@ describe("ExpiryNotification", () => {
       <ExpiryNotification
         size={ExpiryNotificationSize.Large}
         statuses={statuses}
-      />
+      />,
     );
     expect(wrapper.find("[data-test='is_expired-large']").exists()).toBe(true);
     expect(
-      wrapper.find("[data-test='is_in_grace_period-large']").exists()
+      wrapper.find("[data-test='is_in_grace_period-large']").exists(),
     ).toBe(false);
     expect(wrapper.find("[data-test='is_expiring-large']").exists()).toBe(
-      false
+      false,
     );
   });
 
@@ -112,7 +111,7 @@ describe("ExpiryNotification", () => {
       <ExpiryNotification
         size={ExpiryNotificationSize.Small}
         statuses={statuses}
-      />
+      />,
     );
     expect(wrapper.find("[data-test='is_expired-small']").exists()).toBe(true);
     expect(wrapper.find(Notification).prop("title")).toBeNull();
@@ -129,7 +128,7 @@ describe("ExpiryNotification", () => {
         size={ExpiryNotificationSize.Small}
         statuses={statuses}
         onDismiss={onDismiss}
-      />
+      />,
     );
     expect(wrapper.find(Notification).prop("onDismiss")).toBe(onDismiss);
   });
@@ -145,14 +144,14 @@ describe("ExpiryNotification", () => {
         subscriptionType={UserSubscriptionType.Monthly}
         statuses={statuses}
         onDismiss={onDismiss}
-      />
+      />,
     );
     expect(wrapper.find("[data-test='is_expiring-large']").exists()).toBe(true);
     expect(wrapper.find(Notification).prop("title")).toBe(
-      "Your subscription is about to expire."
+      "Your subscription is about to expire.",
     );
     expect(wrapper.find(Notification).prop("children")).toBe(
-      "Enable auto-renewals via the renewal settings menu to ensure service continuity."
+      "Enable auto-renewals via the renewal settings menu to ensure service continuity.",
     );
   });
 
@@ -167,14 +166,14 @@ describe("ExpiryNotification", () => {
         subscriptionType={UserSubscriptionType.Free}
         statuses={statuses}
         onDismiss={onDismiss}
-      />
+      />,
     );
     expect(wrapper.find("[data-test='is_expiring-large']").exists()).toBe(true);
     expect(wrapper.find(Notification).prop("title")).toBe(
-      "Your subscription is about to expire."
+      "Your subscription is about to expire.",
     );
     expect(wrapper.find(Notification).prop("children")).toBe(
-      "Check the subscription errors below for more information."
+      "Check the subscription errors below for more information.",
     );
   });
 
@@ -190,14 +189,14 @@ describe("ExpiryNotification", () => {
         subscriptionType={UserSubscriptionType.Legacy}
         statuses={statuses}
         onDismiss={onDismiss}
-      />
+      />,
     );
     expect(wrapper.find("[data-test='is_expiring-large']").exists()).toBe(true);
     expect(wrapper.find(Notification).prop("title")).toBe(
-      "Your subscription is about to expire."
+      "Your subscription is about to expire.",
     );
     expect(wrapper.find(Notification).prop("children")).toBe(
-      "Click on Renew subscription to to ensure service continuity."
+      "Click on Renew subscription to ensure service continuity.",
     );
   });
   it("is expiring shows not legacy message if not actionable", () => {
@@ -212,11 +211,11 @@ describe("ExpiryNotification", () => {
         subscriptionType={UserSubscriptionType.Legacy}
         statuses={statuses}
         onDismiss={onDismiss}
-      />
+      />,
     );
     expect(wrapper.find("[data-test='is_expiring-large']").exists()).toBe(true);
     expect(wrapper.find(Notification).prop("title")).toBe(
-      "Your subscription is about to expire."
+      "Your subscription is about to expire.",
     );
     expect(wrapper.find(Notification).prop("children")).toBe("");
   });
@@ -233,16 +232,16 @@ describe("ExpiryNotification", () => {
         subscriptionType={UserSubscriptionType.Legacy}
         statuses={statuses}
         onDismiss={onDismiss}
-      />
+      />,
     );
     expect(
-      wrapper.find("[data-test='is_in_grace_period-large']").exists()
+      wrapper.find("[data-test='is_in_grace_period-large']").exists(),
     ).toBe(true);
     expect(wrapper.find(Notification).prop("title")).toBe(
-      "Your subscription has expired."
+      "Your subscription has expired.",
     );
     expect(wrapper.find(Notification).prop("children")).toBe(
-      "Click on Renew subscription to to ensure service continuity."
+      "Click on Renew subscription to ensure service continuity.",
     );
   });
 
@@ -258,13 +257,13 @@ describe("ExpiryNotification", () => {
         subscriptionType={UserSubscriptionType.Legacy}
         statuses={statuses}
         onDismiss={onDismiss}
-      />
+      />,
     );
     expect(
-      wrapper.find("[data-test='is_in_grace_period-large']").exists()
+      wrapper.find("[data-test='is_in_grace_period-large']").exists(),
     ).toBe(true);
     expect(wrapper.find(Notification).prop("title")).toBe(
-      "Your subscription has expired."
+      "Your subscription has expired.",
     );
     expect(wrapper.find(Notification).prop("children")).toBe("");
   });
@@ -281,14 +280,14 @@ describe("ExpiryNotification", () => {
         subscriptionType={UserSubscriptionType.Legacy}
         statuses={statuses}
         onDismiss={onDismiss}
-      />
+      />,
     );
     expect(wrapper.find("[data-test='is_expired-large']").exists()).toBe(true);
     expect(wrapper.find(Notification).prop("title")).toBe(
-      "Your subscription has expired."
+      "Your subscription has expired.",
     );
     expect(wrapper.find(Notification).prop("children")).toBe(
-      "Click on Renew subscription to to ensure service continuity."
+      "Click on Renew subscription to ensure service continuity.",
     );
   });
 
@@ -304,11 +303,11 @@ describe("ExpiryNotification", () => {
         subscriptionType={UserSubscriptionType.Legacy}
         statuses={statuses}
         onDismiss={onDismiss}
-      />
+      />,
     );
     expect(wrapper.find("[data-test='is_expired-large']").exists()).toBe(true);
     expect(wrapper.find(Notification).prop("title")).toBe(
-      "Your subscription has expired."
+      "Your subscription has expired.",
     );
     expect(wrapper.find(Notification).prop("children")).toBe("");
   });
@@ -324,16 +323,16 @@ describe("ExpiryNotification", () => {
         subscriptionType={UserSubscriptionType.Trial}
         statuses={statuses}
         onDismiss={onDismiss}
-      />
+      />,
     );
     expect(wrapper.find("[data-test='is_expiring-large']").exists()).toBe(true);
     expect(wrapper.find(Notification).prop("title")).toBe(
-      "Your subscription is about to expire."
+      "Your subscription is about to expire.",
     );
     expect(wrapper.find(Notification).prop("children")).toBe(
       "You have cancelled your Ubuntu Pro trial. " +
         "At the end of the trial period, this subscription " +
-        "will disappear and you will no longer have access to Pro services."
+        "will disappear and you will no longer have access to Pro services.",
     );
   });
 
@@ -348,17 +347,17 @@ describe("ExpiryNotification", () => {
         subscriptionType={UserSubscriptionType.Trial}
         statuses={statuses}
         onDismiss={onDismiss}
-      />
+      />,
     );
     expect(
-      wrapper.find("[data-test='is_in_grace_period-large']").exists()
+      wrapper.find("[data-test='is_in_grace_period-large']").exists(),
     ).toBe(true);
     expect(wrapper.find(Notification).prop("title")).toBe(
-      "Your subscription has expired."
+      "Your subscription has expired.",
     );
     expect(wrapper.find(Notification).prop("children")).toBe(
       "Your trial has expired. " +
-        "This subscription will disappear from your dashboard soon."
+        "This subscription will disappear from your dashboard soon.",
     );
   });
 
@@ -373,15 +372,15 @@ describe("ExpiryNotification", () => {
         subscriptionType={UserSubscriptionType.Trial}
         statuses={statuses}
         onDismiss={onDismiss}
-      />
+      />,
     );
     expect(wrapper.find("[data-test='is_expired-large']").exists()).toBe(true);
     expect(wrapper.find(Notification).prop("title")).toBe(
-      "Your subscription has expired."
+      "Your subscription has expired.",
     );
     expect(wrapper.find(Notification).prop("children")).toBe(
       "Your trial has expired. " +
-        "This subscription will disappear from your dashboard soon."
+        "This subscription will disappear from your dashboard soon.",
     );
   });
 });

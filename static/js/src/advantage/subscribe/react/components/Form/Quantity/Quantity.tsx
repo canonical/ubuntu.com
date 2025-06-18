@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Col, Input, Row } from "@canonical/react-components";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
+import { PRO_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
 
 const Quantity = () => {
   const { quantity, setQuantity } = useContext(FormContext);
@@ -9,8 +10,8 @@ const Quantity = () => {
     if (Number(event.target.value) > 0) {
       setQuantity(Number(event.target.value));
       localStorage.setItem(
-        "pro-selector-quantity",
-        JSON.stringify(Number(event.target.value))
+        PRO_SELECTOR_KEYS.QUANTITY,
+        JSON.stringify(Number(event.target.value)),
       );
     } else {
       setQuantity("");

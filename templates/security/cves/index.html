@@ -1,0 +1,61 @@
+{% extends "security/cves/base_cve.html" %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block title %}
+  {% if query or package or component or priority or versions or statuses %}
+    CVE search results
+  {% else %}
+    CVEs
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+  <section class="p-strip is-shallow u-no-padding--bottom">
+    <div class="row p-section">
+      <div class="col-start-large-4 col-9">
+        {% if request.args %}
+          <div class="p-section--shallow">
+            <h1>Search CVE reports</h1>
+          </div>
+          {% include "security/cves/_cve-search.html" %}
+        {% else %}
+          <h1>CVE reports</h1>
+          <p>
+            The Common Vulnerabilities and Exposures (CVE) system is used to identify, define, and catalog publicly disclosed cybersecurity vulnerabilities. Canonical keeps track of all CVEs affecting Ubuntu, and releases a <a href="/security/notices">security notice</a> when an issue is fixed. You can find additional guidance for high-profile vulnerabilities in the <a href="/security/vulnerabilities">Ubuntu Vulnerability Knowledge Base</a> section
+          </p>
+          <ul class="p-inline-list u-responsive-realign">
+            <li class="p-inline-list__item">
+              <a href="/security/cves/about">Learn more about CVEs</a>
+            </li>
+            <li class="p-inline-list__item">
+              <a href="/security/oval">OVAL data</a>
+            </li>
+            <li class="p-inline-list__item">
+              <a href="/security/api/docs">Security API</a>
+            </li>
+          </ul>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  {% if request.args %}
+    {% include "security/cves/_cve-search-results.html" %}
+  {% else %}
+    {% include "security/cves/_cve-landing.html" %}
+  {% endif %}
+
+  {# djlint:off #}
+  <script type="text/javascript">
+    const maintainedReleasesObj = {{maintained_releases | tojson | safe}};
+    const ltsReleasesObj = {{lts_releases | tojson | safe}};
+    const unmaintainedReleasesObj = {{unmaintained_releases | tojson | safe}};
+  </script>
+  {# djlint:off #}
+  <script src="{{ versioned_static('js/dist/cve.js') }}" defer></script>
+
+{% endblock %}

@@ -7,10 +7,19 @@ env:
     value: true
 
   - name: STORE_MAINTENANCE_START
-    value: 2023-10-02T03:00:00Z
+    value: 2024-03-27T03:00:00Z
 
   - name: STORE_MAINTENANCE_END
-    value: 2023-10-02T06:00:00Z
+    value: 2024-03-27T05:00:00Z
+
+  - name: CRED_MAINTENANCE
+    value: true
+
+  - name: CRED_MAINTENANCE_START
+    value: 2024-09-28T11:00:00Z
+
+  - name: CRED_MAINTENANCE_END
+    value: 2024-09-28T15:00:00Z
 
   - name: SEARCH_API_KEY
     secretKeyRef:
@@ -111,11 +120,17 @@ env:
   - name: BADGR_ISSUER
     value: eTedPNzMTuqy1SMWJ05UbA
 
+  - name: CANONICAL_CLA_API_URL
+    value: https://cla.canonical.com
+
   - name: CERTIFIED_BADGE
     value: hs8gVorCRgyO2mNUfeXaLw
 
   - name: CONTRACTS_API_URL
     value: https://contracts.canonical.com/
+
+  - name: SECURITY_API_URL
+    value: https://ubuntu.com/security/
 
   - name: STRIPE_PUBLISHABLE_KEY
     value: pk_live_68aXqowUeX574aGsVck8eiIE
@@ -127,6 +142,25 @@ env:
     secretKeyRef:
       key: api-key
       name: trueability
+
+  - name: PROCTOR360_BASE_URL
+    value: https://prod1ext.proctor360.com
+
+  - name: PROCTOR360_APP_SECRET
+    secretKeyRef:
+      key: app-secret
+      name: proctor360
+      
+  - name: PROCTOR360_APP_ID
+    secretKeyRef:
+      key: app-id
+      name: proctor360
+
+  - name: SITEMAP_SECRET
+    secretKeyRef:
+      key: secret
+      name: sitemaps
+
 
 memoryLimit: 512Mi
 
@@ -179,6 +213,15 @@ production:
       replicas: 5
       memoryLimit: 512Mi
       env:
+        - name: HTTPS_PROXY
+          value: http://squid.ps6.internal:3128
+        
+        - name: HTTP_PROXY
+          value: http://squid.ps6.internal:3128
+
+        - name: NO_PROXY
+          value: "10.24.0.132,10.24.0.23,.internal,ubuntu.com,.ubuntu.com,snapcraft.io,.snapcraft.io,jujucharms.com,.jujucharms.com,maas.io,.maas.io,conjure-up.io,.conjure-up.io,netplan.io,.netplan.io,canonical.com,.canonical.com,launchpad.net,.launchpad.net,linuxcontainers.org,.linuxcontainers.org,cloud-init.io,.cloud-init.io,vanillaframework.io,.vanillaframework.io,anbox-cloud.io,.anbox-cloud.io,juju.is,.juju.is,dqlite.io,.dqlite.io,charmhub.io,.charmhub.io,canonical.design,.canonical.design"
+
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -208,6 +251,9 @@ production:
 
         - name: CONTRACTS_API_URL
           value: https://contracts.canonical.com/
+
+        - name: SECURITY_API_URL
+          value: https://ubuntu.com/security/
 
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_live_68aXqowUeX574aGsVck8eiIE
@@ -241,7 +287,7 @@ production:
             name: ubuntu-google-datastore
 
         - name: CREDENTIALS_CONFIDENTIALITY_ENABLED
-          value: false
+          value: true
 
         - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME
           secretKeyRef:
@@ -260,6 +306,51 @@ production:
           secretKeyRef:
             key: api-key
             name: trueability
+        
+        - name: PROCTOR360_BASE_URL
+          value: https://prod1ext.proctor360.com
+
+        - name: PROCTOR360_APP_SECRET
+          secretKeyRef:
+            key: app-secret
+            name: proctor360
+            
+        - name: PROCTOR360_APP_ID
+          secretKeyRef:
+            key: app-id
+            name: proctor360
+            
+        - name: MARKETO_API_CLIENT
+          secretKeyRef:
+            key: api_client
+            name: marketo
+
+        - name: MARKETO_API_SECRET
+          secretKeyRef:
+            key: api_secret
+            name: marketo
+
+        - name: CREDLY_URL
+          value: https://api.credly.com/v1
+
+        - name: CREDLY_TOKEN
+          secretKeyRef:
+            key: token
+            name: credly
+
+        - name: CREDLY_ORGANIZATION_ID
+          secretKeyRef:
+            key: organization
+            name: credly
+
+        - name: CRED_MAINTENANCE
+          value: true
+
+        - name: CRED_MAINTENANCE_START
+          value: 2024-09-28T11:00:00Z
+
+        - name: CRED_MAINTENANCE_END
+          value: 2024-09-28T15:00:00Z
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
@@ -290,7 +381,6 @@ production:
         [
           /server/docs,
           /ceph/docs,
-          /core/docs,
           /openstack/docs,
           /engage,
           /takeovers\.json,
@@ -325,13 +415,24 @@ production:
         [
           /security/cves\.json,
           /security/cves/.*\.json,
-          /security/notices\.json,
-          /security/notices/.*\.json,
           /security/releases\.json,
           /security/releases/.*\.json,
           /security/api/.*,
+          /security/page/.*\.json,
         ]
       service_name: ubuntu-com-security-api
+
+    - paths:
+        [
+          /security/notices\.json,
+          /security/notices/.*\.json,
+        ]
+      service_name: ubuntu-com-security-api-notices
+
+    - paths: [/security/updates/.*]
+      service_name: ubuntu-com-security-api-updates
+      replicas: 2
+      memoryLimit: 1Gi
 
     - paths: [/security]
       name: ubuntu-com-security
@@ -369,10 +470,10 @@ production:
           value: true
 
         - name: STORE_MAINTENANCE_START
-          value: 2023-10-02T03:00:00Z
+          value: 2024-03-27T03:00:00Z
 
         - name: STORE_MAINTENANCE_END
-          value: 2023-10-02T06:00:00Z
+          value: 2024-03-27T05:00:00Z
 
         - name: SEARCH_API_KEY
           secretKeyRef:
@@ -456,6 +557,9 @@ production:
     if ($uri = '/blog/latest-news') {
       add_header 'Access-Control-Allow-Origin' '*';
     }
+    if ($uri = '/index.php') {
+      rewrite ^/index.php$ https://ubuntu.com/? permanent;
+    }
 
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
 
@@ -479,10 +583,19 @@ staging:
       value: true
 
     - name: STORE_MAINTENANCE_START
-      value: 2023-10-02T03:00:00Z
+      value: 2024-03-27T03:00:00Z
 
     - name: STORE_MAINTENANCE_END
-      value: 2023-10-02T06:00:00Z
+      value: 2024-03-27T05:00:00Z
+
+    - name: CRED_MAINTENANCE
+      value: true
+
+    - name: CRED_MAINTENANCE_START
+      value: 2024-09-28T11:00:00Z
+
+    - name: CRED_MAINTENANCE_END
+      value: 2024-09-28T15:00:00Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:
@@ -589,6 +702,9 @@ staging:
     - name: CONTRACTS_API_URL
       value: https://contracts.staging.canonical.com/
 
+    - name: SECURITY_API_URL
+      value: https://staging.ubuntu.com/security/
+
     - name: STRIPE_PUBLISHABLE_KEY
       value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
 
@@ -599,6 +715,19 @@ staging:
       secretKeyRef:
         key: api-key
         name: trueability
+
+    - name: PROCTOR360_BASE_URL
+      value: https://prod1ext.proctor360.com
+
+    - name: PROCTOR360_APP_SECRET
+      secretKeyRef:
+        key: app-secret
+        name: proctor360
+        
+    - name: PROCTOR360_APP_ID
+      secretKeyRef:
+        key: app-id
+        name: proctor360
 
     - name: TA_WEBHOOK_API_KEY
       secretKeyRef:
@@ -652,8 +781,18 @@ staging:
       app_name: ubuntu.com-credentials
       image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
       replicas: 3
+      useProxy: false
       memoryLimit: 512Mi
       env:
+        - name: HTTPS_PROXY
+          value: http://squid.ps6.internal:3128
+        
+        - name: HTTP_PROXY
+          value: http://squid.ps6.internal:3128
+
+        - name: NO_PROXY
+          value: "10.24.0.132,10.24.0.23,.internal,ubuntu.com,.ubuntu.com,snapcraft.io,.snapcraft.io,jujucharms.com,.jujucharms.com,maas.io,.maas.io,conjure-up.io,.conjure-up.io,netplan.io,.netplan.io,canonical.com,.canonical.com,launchpad.net,.launchpad.net,linuxcontainers.org,.linuxcontainers.org,cloud-init.io,.cloud-init.io,vanillaframework.io,.vanillaframework.io,anbox-cloud.io,.anbox-cloud.io,juju.is,.juju.is,dqlite.io,.dqlite.io,charmhub.io,.charmhub.io,canonical.design,.canonical.design"
+        
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -716,7 +855,7 @@ staging:
             name: ubuntu-google-datastore
 
         - name: CREDENTIALS_CONFIDENTIALITY_ENABLED
-          value: false
+          value: true
 
         - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME
           secretKeyRef:
@@ -736,6 +875,19 @@ staging:
             key: api-key
             name: trueability
 
+        - name: PROCTOR360_BASE_URL
+          value: https://prod1ext.proctor360.com
+
+        - name: PROCTOR360_APP_SECRET
+          secretKeyRef:
+            key: app-secret
+            name: proctor360
+            
+        - name: PROCTOR360_APP_ID
+          secretKeyRef:
+            key: app-id
+            name: proctor360
+
         - name: TA_WEBHOOK_API_KEY
           secretKeyRef:
             key: webhook-secret
@@ -753,6 +905,25 @@ staging:
           secretKeyRef:
             key: organization
             name: credly
+
+        - name: MARKETO_API_CLIENT
+          secretKeyRef:
+            key: api_client
+            name: marketo
+
+        - name: MARKETO_API_SECRET
+          secretKeyRef:
+            key: api_secret
+            name: marketo
+
+        - name: CRED_MAINTENANCE
+          value: true
+
+        - name: CRED_MAINTENANCE_START
+          value: 2024-09-28T11:00:00Z
+
+        - name: CRED_MAINTENANCE_END
+          value: 2024-09-28T15:00:00Z
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
@@ -783,7 +954,6 @@ staging:
         [
           /server/docs,
           /ceph/docs,
-          /core/docs,
           /openstack/docs,
           /engage,
           /takeovers\.json,
@@ -818,13 +988,20 @@ staging:
         [
           /security/cves\.json,
           /security/cves/.*\.json,
-          /security/notices\.json,
-          /security/notices/.*\.json,
           /security/releases\.json,
           /security/releases/.*\.json,
           /security/api/.*,
+          /security/page/.*\.json,
+          /security/updates/.*,
         ]
       service_name: ubuntu-com-security-api
+    
+    - paths:
+       [
+          /security/notices\.json,
+          /security/notices/.*\.json,
+       ]
+      service_name: ubuntu-com-security-api-notices
 
     - paths: [/security]
       name: ubuntu-com-security
@@ -851,6 +1028,9 @@ staging:
         - name: SENTRY_DSN
           value: https://08dea8b1d0414fb89b28844cdb1e16a0@sentry.is.canonical.com//53
 
+        - name: SECURITY_API_URL
+          value: https://staging.ubuntu.com/security/
+
     - paths: [/advantage, /account, /pro]
       name: ubuntu-com-advantage
       app_name: ubuntu.com-advantage
@@ -862,10 +1042,10 @@ staging:
           value: true
 
         - name: STORE_MAINTENANCE_START
-          value: 2023-10-02T03:00:00Z
+          value: 2024-03-27T03:00:00Z
 
         - name: STORE_MAINTENANCE_END
-          value: 2023-10-02T06:00:00Z
+          value: 2024-03-27T05:00:00Z
 
         - name: SEARCH_API_KEY
           secretKeyRef:
@@ -887,6 +1067,9 @@ staging:
 
         - name: CONTRACTS_API_URL
           value: https://contracts.staging.canonical.com/
+
+        - name: SECURITY_API_URL
+          value: https://staging.ubuntu.com/security/
 
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
@@ -919,6 +1102,9 @@ staging:
     if ($uri = '/blog/latest-news') {
       add_header 'Access-Control-Allow-Origin' '*';
     }
+    if ($uri = '/index.php') {
+      rewrite ^/index.php$ https://staging.ubuntu.com/? permanent;
+    }
     more_set_headers "X-Robots-Tag: noindex";
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
 
@@ -931,7 +1117,20 @@ staging:
     }
 
 demo:
+  useProxy: false
   env:
+    - name: HTTP_PROXY
+      value: http://squid.ps6.internal:3128
+
+    - name: HTTPS_PROXY
+      value: http://squid.ps6.internal:3128
+
+    - name: NO_PROXY
+      value: "10.24.0.132,10.24.0.23,.internal,ubuntu.com,.ubuntu.com,snapcraft.io,.snapcraft.io,jujucharms.com,.jujucharms.com,maas.io,.maas.io,conjure-up.io,.conjure-up.io,netplan.io,.netplan.io,canonical.com,.canonical.com,launchpad.net,.launchpad.net,linuxcontainers.org,.linuxcontainers.org,cloud-init.io,.cloud-init.io,vanillaframework.io,.vanillaframework.io,anbox-cloud.io,.anbox-cloud.io,juju.is,.juju.is,dqlite.io,.dqlite.io,charmhub.io,.charmhub.io,canonical.design,.canonical.design"
+
+    - name: CREDENTIALS_CONFIDENTIALITY_ENABLED
+      value: false
+
     - name: GOOGLE_CLOUD_DISABLE_GRPC
       value: true
 
@@ -939,10 +1138,19 @@ demo:
       value: true
 
     - name: STORE_MAINTENANCE_START
-      value: 2023-10-02T03:00:00Z
+      value: 2024-03-27T03:00:00Z
 
     - name: STORE_MAINTENANCE_END
-      value: 2023-10-02T06:00:00Z
+      value: 2024-03-27T05:00:00Z
+
+    - name: CRED_MAINTENANCE
+      value: true
+
+    - name: CRED_MAINTENANCE_START
+      value: 2024-09-28T11:00:00Z
+
+    - name: CRED_MAINTENANCE_END
+      value: 2024-09-28T15:00:00Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:
@@ -1014,6 +1222,9 @@ demo:
     - name: CONTRACTS_API_URL
       value: https://contracts.staging.canonical.com/
 
+    - name: SECURITY_API_URL
+      value: https://staging.ubuntu.com/security/
+
     - name: STRIPE_PUBLISHABLE_KEY
       value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
 
@@ -1024,6 +1235,19 @@ demo:
       secretKeyRef:
         key: api-key
         name: trueability
+
+    - name: PROCTOR360_BASE_URL
+      value: https://prod1ext.proctor360.com
+
+    - name: PROCTOR360_APP_SECRET
+      secretKeyRef:
+        key: app-secret
+        name: proctor360
+        
+    - name: PROCTOR360_APP_ID
+      secretKeyRef:
+        key: app-id
+        name: proctor360
 
     - name: CANONICAL_LOGIN_URL
       value: https://login.ubuntu.com/
@@ -1037,3 +1261,6 @@ demo:
       secretKeyRef:
         key: charmhub-api-username
         name: discourse-api
+
+    - name: CANONICAL_CLA_API_URL
+      value: https://cla.staging.canonical.com

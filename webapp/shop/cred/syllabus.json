@@ -1,6 +1,6 @@
 [
   {
-    "exam_name": "CUE.01: Linux",
+    "exam_name": "CUE.01 Linux",
     "exam_description": "Prove your basic operational knowledge of Linux by demonstrating your ability to secure, operate and maintain basic system resources. Topics include user and group management, file and filesystem navigation, and logs and installation tasks related to system maintenance.",
     "syllabus": [
       {
@@ -20,7 +20,7 @@
         "chapter_sections": [
           "Create, read, move, delete, copy, and convert files",
           "Search the contents of a file using regular expressions",
-          "Modify file contents in multiple ways: appending, replacing, terminal editing, sorting, without opening the file, etc.",
+          "Modify file contents in multiple ways: appending, replacing, terminal editing, sorting, without opening the file, etc",
           "Compare the contents of two files",
           "Understand and navigate Linux file systems effectively",
           "Understand filesystem operation and maintenance, including quotas, and disk capacity",
@@ -34,16 +34,14 @@
           "Read and interpret log data and be able to use commands like tail and grep to troubleshoot a problem",
           "Understand basic usage of disk partitioning tools such as fdisk, cfdisk and similar",
           "Understand basics of installing extra device drivers such as GPU and Wifi",
-          "Configure and resize LVM-based filesystems on a server or desktop",
-          "Identify processes which are consuming too many resources",
           "Add and modify scheduled tasks in pre-defined schedules in a crontab"
         ]
       }
     ]
   },
   {
-    "exam_name": "CUE.02: Desktop",
-    "exam_description": "Demonstrate your knowledge of Ubuntu Desktop administrative essentials. Focus on package management, system installation, data gathering, and managing printing and displays.",
+    "exam_name": "CUE.02 Desktop",
+    "exam_description": "Demonstrate your knowledge of Ubuntu Desktop administrative essentials. Focus on package management, system installation, data gathering, troubleshooting and interfacing with external security policies.",
     "syllabus": [
       {
         "chapter_title": "Be Acquainted with the Ubuntu Community and its Conventions",
@@ -56,112 +54,95 @@
       {
         "chapter_title": "Install and Operate Ubuntu on Your System",
         "chapter_sections": [
-          "Install Ubuntu via ISO",
-          "Identify installation styles",
-          "Back up data to remote locations",
-          "Configure automatic upgrades",
-          "Synchronise time",
-          "Manage locales",
-          "Work with GRUB 2",
-          "Manage users, groups, and passwords"
+          "Create an Ubuntu bootable USB",
+          "Configure and resize LVM-based filesystems",
+          "Install custom OEM kernels",
+          "Install proprietary drivers using Ubuntu specific tools",
+          "Upgrade the operating system from one LTS release to another"
+        ]
+      },
+      {
+        "chapter_title": "Maintain and Optimize Your System",
+        "chapter_sections": [
+          "Identify processes using significant system resource",
+          "Collect and inspect logs",
+          "Fix boot issues involving components such as GRUB2 and Initramfs",
+          "Install operating system security and bugfix updates"
         ]
       },
       {
         "chapter_title": "Manage Packages on an Ubuntu System",
         "chapter_sections": [
-          "Install packages, including from PPA repositories",
-          "Identify the packages installed on your system",
-          "Check your system for specific packages",
+          "Identify and upgrade existing packages",
+          "Install packages from multiple sources and custom PPA repositories",
           "Read package descriptions",
-          "Identify dependencies",
-          "Download package information from all configured sources",
-          "Install snaps"
+          "Install and manage snaps",
+          "Demonstrate differences in the use of packages vs snaps",
+          "Determine whether a command is provided by a snap or a package"
         ]
       },
       {
-        "chapter_title": "Gather Important System Information",
+        "chapter_title": "Integrate with Managed Security Systems",
         "chapter_sections": [
-          "Display and record your current Ubuntu distribution",
-          "Display and record CPU capabilities",
-          "Set up remote system journaling",
-          "Obtain and interpret kernel information"
-        ]
-      },
-      {
-        "chapter_title": "Manage Files and Permissions",
-        "chapter_sections": [
-          "Check file permissions",
-          "Grant and revoke permissions",
-          "Interpret permission attribute strings",
-          "Create and manage partitions",
-          "Work with common file editors"
-        ]
-      },
-      {
-        "chapter_title": "Configure and Manage Displays and Other Desktop Hardware",
-        "chapter_sections": [
-          "Enable and disable devices from the command line",
-          "Distinguish between desktop and server environments",
-          "Set a monitor’s resolution from the command line",
-          "Configure multiple monitors",
-          "Understand the differences between X and Wayland"
+          "Demonstrate an understanding of PKI components and their roles",
+          "Configure and connect to an Active Directory realm"
         ]
       },
       {
         "chapter_title": "Configure Networking Capabilities",
         "chapter_sections": [
-          "Configure and use SSH",
-          "Copy files and directories with rsync",
-          "Identify MAC addresses",
-          "Set static IPs",
-          "Configure DHCP"
+          "Configure a Wifi Network Connection",
+          "Interact with basic L2 and L3 network configuration"
         ]
       }
     ]
   },
   {
-    "exam_name": "CUE.03: Server",
-    "exam_description": "Illustrate your knowledge of common Ubuntu Server administrative tasks and troubleshooting. Topics include job control, performance tuning, services management, and Bash scripting.",
+    "exam_name": "CUE.03 Server",
+    "exam_description": "Illustrate your knowledge of common Ubuntu Server administrative tasks and troubleshooting. Topics include job control, basic networking, services management, server security, service setup and Bash scripting.",
     "syllabus": [
       {
-        "chapter_title": "Perform Common Administrative Tasks",
+        "chapter_title":"Deploy New Systems",
         "chapter_sections": [
-          "Manage users, groups, and permissions",
-          "Configure local storage",
-          "Manage partitions and filesystems",
-          "Keep systems secure",
-          "Configure network interfaces",
-          "Back up data to remote locations",
-          "Encrypt disks"
+          "Install Ubuntu Server on a new system",
+          "Gather data for deployment requirements",
+          "Establish server baseline security"
         ]
       },
       {
-        "chapter_title": "Troubleshoot Issues",
-        "chapter_sections": [
-          "Obtain diagnostic information about disks, services, ports, and connections",
-          "Find and interpret log files",
-          "Identify and interpret system performance metrics",
-          "Understand the purpose and functions of virtual filesystems",
-          "Take appropriate precautions before attempting irreversible operations"
+        "chapter_title": "Configure the Network",
+        "chapter_sections":[
+          "Setup a network using basic L2 and L3 networking concepts.",
+          "Convert between TCP and UDP connections.",
+          "Troubleshoot simple network connections"
         ]
       },
       {
-        "chapter_title": "Configure and Control Automated Tasks",
+        "chapter_title": "Control and Automate Processes",
         "chapter_sections": [
-          "Write and interpret Bash scripts",
-          "Manage cron jobs",
-          "Configure system logging rules, including rotation"
+          "Control server services",
+          "List systemd units",
+          "Handle rogue services",
+          "Boot the system into single user mode"
         ]
       },
       {
-        "chapter_title": "Tune Your System for Greater Performance",
-        "chapter_sections": [
-          "Configure GRUB 2",
-          "Modify kernel parameters",
-          "Queue commands",
-          "Monitor resources",
-          "Manage system services",
-          "Configure service recovery"
+        "chapter_title": "Secure System Access",
+        "chapter_sections":[
+          "Setup remote SSH access",
+          "Control user login",
+          "Install and configure the firewall",
+          "Assign user permissions to a directory using ACL attributes",
+          "Characterize the installation steps of a new certificate authority"
+        ]
+      },
+      {
+        "chapter_title": "Run Application Processes",
+        "chapter_sections":[
+          "Setup a basic web server",
+          "Setup a file server for NFS or Samba protocols",
+          "Back-up data to remote locations",
+          "Configure a software RAID"
         ]
       }
     ]
