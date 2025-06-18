@@ -6,42 +6,80 @@ context:
   copydoc: https://docs.google.com/document/d/19yTLYWu7rEErPrO0xDsqMeN8tcWKBjHuarw0tjxRlhY/edit
 ---
 
-# Legal terms and conditions
+<section class="p-section">
+<h1>Legal terms and conditions</h1>
+<p>We have a number of legal agreements to protect your personal data and the contributions you make to the projects we manage. We also have agreements that enable us to share intellectual property (which includes our trademarks and content as well as code), plus legal descriptions of exactly what our support services cover.</p>
 
-We have a number of legal agreements to protect your personal data and the contributions you make to the projects we manage. We also have agreements that enable us to share intellectual property (which includes our trademarks and content as well as code), plus legal descriptions of exactly what our support services cover.
+</section>
 
-### [Terms and policies ›](/legal/terms-and-policies)
+<section class="p-section--shallow">
+  <hr class="p-rule">
+  <h3>Terms and policies</h3>
+  <p>The main terms governing use of our software and websites, including links to privacy, intellectual property and copyright information.</p>
+  <hr class="p-rule--muted">
+  [View our terms and policies&nbsp;&rsaquo;](/legal/terms-and-policies)
+</section>
 
-The main terms governing use of our software and websites, including links to privacy, intellectual property and copyright information.
+<section class="p-section--shallow">
+  <hr class="p-rule--muted">
+  <h3>Data privacy</h3>
+  <p>Information about how we collect and process personal data, including links to privacy notices.</p>
+  <hr class="p-rule--muted">
+  [View our data privacy&nbsp;&rsaquo;](/legal/data-privacy)
+</section>
 
-### [Data privacy ›](/legal/data-privacy)
+<section class="p-section--shallow">
+  <hr class="p-rule--muted">
+  <h3>Trademarks</h3>
+  <p>A list of trademarks used by Canonical.</p>
+  <hr class="p-rule--muted">
+  [View our trademarks&nbsp;&rsaquo;](/legal/trademarks)
+</section>
 
-Information about how we collect and process personal data, including links to privacy notices.
+<section class="p-section--shallow">
+  <hr class="p-rule--muted">
+  <h3>Contributor agreement</h3>
+  <p>Details of the agreement you need to send to us before you begin contributing to projects at Canonical.</p>
+  <hr class="p-rule--muted">
+  [View our contributors&nbsp;&rsaquo;](/legal/contributors)
+</section>
 
-### [Trademarks ›](/legal/trademarks)
+<section class="p-section--shallow">
+  <hr class="p-rule--muted">
+  <h3>Ubuntu Pro terms</h3>
+  <p>A legal description of the services included in the Ubuntu Pro support package.</p>
+  <hr class="p-rule--muted">
+  [View our Ubuntu Pro terms&nbsp;&rsaquo;](/legal/ubuntu-pro)
+</section>
 
-A list of trademarks used by Canonical.
+<section class="p-section--shallow">
+  <hr class="p-rule--muted">
+  <h3>Modern slavery statement</h3>
+  <p>This is Canonical's modern slavery statement.</p>
+  <hr class="p-rule--muted">
+  [View our modern slavery statement&nbsp;&rsaquo;](/legal/modern-slavery-statement)
+</section>
 
-### [Contributor agreement ›](/legal/contributors)
+<section class="p-section--shallow">
+  <hr class="p-rule--muted">
+  <h3>Service terms</h3>
+  <p>This agreement sets out Canonical's standard service terms for both Ubuntu Pro and Managed Services customers.</p>
+  <hr class="p-rule--muted">
+  [View our Canonical's standard service terms&nbsp;&rsaquo;](/legal/ubuntu-pro-service-terms)
+</section>
 
-Details of the agreement you need to send to us before you begin contributing to projects at Canonical.
+<section class="p-section--shallow">
+  <hr class="p-rule--muted">
+  <h3>Solution support</h3>
+  <p>A description of benefits and services support customers are entitled to.</p>
+  <hr class="p-rule--muted">
+  [View our services support&nbsp;&rsaquo;](/legal/solution-support)
+</section>
 
-### [Ubuntu Pro terms ›](/legal/ubuntu-pro)
-
-A legal description of the services included in the Ubuntu Pro support package.
-
-### [Modern slavery statement](/legal/modern-slavery-statement)
-
-This is Canonical's modern slavery statement.
-
-### [Service terms ›](/legal/ubuntu-pro-service-terms)
-
-This agreement sets out Canonical's standard service terms for both Ubuntu Pro and Managed Services customers.
-
-### [Solution support ›](/legal/solution-support)
-
-A description of benefits and services Solution support customers are entitled to.
-
-### [Equal employment opportunity commitment ›](/legal/equal-employment-opportunity-commitment)
-
-This is Canonical's equal employment opportunity commitment.
+<section class="p-section--shallow">
+  <hr class="p-rule--muted">
+  <h3>Equal employment opportunity commitment</h3>
+  <p>This is Canonical's equal employment opportunity commitment.</p>
+  <hr class="p-rule--muted">
+  [View our Canonical's equal employment opportunity commitment&nbsp;&rsaquo;](/legal/equal-employment-opportunity-commitment)
+</section>
