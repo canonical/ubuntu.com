@@ -23,7 +23,7 @@ const ProContent = ({
   cveData,
   selectedRelease,
   changeSelectedRelease,
-  packageFilter
+  packageFilter,
 }: Props) => {
   const [selectedPackages, setSelectedPackages] = useState<string[]>([]);
 
@@ -32,8 +32,8 @@ const ProContent = ({
     if (!sections || sections.length === 0) {
       return [];
     }
-    if(packageFilter){
-      sections=[packageFilter];
+    if (packageFilter) {
+      sections = [packageFilter];
     }
     sections.sort();
     const items: SearchAndFilterData[] = sections.map((section, index) => ({
@@ -108,7 +108,13 @@ const ProContent = ({
           <Col size={7}>
             <div className="p-section--shallow">
               {selectedPackages.map((pkg) => (
-                <Chip key={pkg} lead={undefined} quoteValue={false} value={pkg} appearance="positive" />
+                <Chip
+                  key={pkg}
+                  lead={undefined}
+                  quoteValue={false}
+                  value={pkg}
+                  appearance="positive"
+                />
               ))}
             </div>
             <p>
