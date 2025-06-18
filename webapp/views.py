@@ -1406,12 +1406,24 @@ def process_local_communities(local_communities):
 
     return display_local_communities
 
-def process_community_calendar(community_calendar):
-    def display_community_calendar():
-        events = community_calendar.get_events()
+
+def process_community_calendar(community_events):
+    def display_community_events():
+        events = community_events.get_events()
         return flask.render_template(
             "community/events.html",
             events=events,
         )
 
-    return display_community_calendar
+    return display_community_events
+
+
+def community_landing_page(community_events, local_communities):
+    def display_community_landing_page():
+        featured_events = community_events.get_featured_events("events")
+        return flask.render_template(
+            "community/index.html",
+            featured_events=featured_events,
+        )
+
+    return display_community_landing_page
