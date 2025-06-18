@@ -18,4 +18,11 @@ meta_copydoc %}
 
 {% block content %}
   <h1>Community landing page</h1>
+
+  <ol>
+    {% for event in featured_events %}
+      <li>{{event}}</li>
+    {% endfor %}
+
+  </ol>
 {% endblock content %}
