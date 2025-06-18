@@ -20,9 +20,8 @@ const Notifications = () => {
   const { data: offers } = useGetOffersList();
   const { data: accountUsers, isSuccess: isAccountUsersSuccess } =
     useRequestAccountUsers();
-  const { data: hasPaymentMethod, isSuccess: isHasPaymentMethodSuccess } = useHasPaymentMethod(
-    accountUsers?.accountId ?? null,
-  );
+  const { data: hasPaymentMethod, isSuccess: isHasPaymentMethodSuccess } =
+    useHasPaymentMethod(accountUsers?.accountId ?? null);
 
   const [isShowingOnboardingNotification, setIsShowingOnboardingNotification] =
     React.useState(
