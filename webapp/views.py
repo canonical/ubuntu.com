@@ -912,8 +912,12 @@ def marketo_submit():
 
     if "formid" not in form_fields:
         flask.flash(
-            "There was an issue with the missing form ID. ",
+            "There was a problem submitting your form.",
             "contact-form-fail",
+        )
+        flask.current_app.extensions["sentry"].captureMessage(
+            "Marketo form ID missing",
+            extra={"enrichment_fields": enrichment_fields},
         )
         return flask.redirect(f"{referrer}#contact-form-fail")
 
@@ -1053,7 +1057,11 @@ def marketo_submit():
         elif payload_status == "skipped":
             flask.current_app.extensions["sentry"].captureMessage(
                 f"Marketo form {payload['formId']} payload failed to submit",
-                extra={"payload": payload, "response": data},
+                extra={
+                    "payload": payload,
+                    "response": data,
+                    "enrichment_fields": enrichment_fields,
+                },
             )
             flask.flash(
                 "There was an issue submitting the form payload.",
