@@ -8,8 +8,78 @@
 {% endblock %}
 
 {% block content %}
+  <div class="p-section--hero">
+    <div class="p-section--shallow u-fixed-width">
+      {% if query %}
+        <h1>Search results for "{{ query }}"</h1>
+      {% else %}
+        <h1>Search Ubuntu and Canonical sites</h1>
+      {% endif %}
+    </div>
+    {# search form #}
+    <div class="u-fixed-width">
+      <form class="p-search-box" action="/search">
+        <label for="search-input" class="u-off-screen">Search</label>
+        <!-- honeypot search input -->
+        <input type="search"
+              id="search"
+              class="p-search-box__input u-hide "
+              name="search"
+              placeholder="Search our sites"
+              aria-label="Search our sites"
+              value="" />
+        <!-- end of honeypot search input -->
+        <input class="p-search-box__input"
+              name="q"
+              id="search-input"
+              type="search"
+              {% if query %}value="{{ query }}"{% endif %}
+              placeholder="e.g. juju" />
+        {% if siteSearch %}<input name="siteSearch" type="hidden" value="{{ siteSearch }}" />{% endif %}
+        <button type="submit" alt="search" class="p-search-box__button" alt="search">
+          <i class="p-icon--search">Submit</i>
+        </button>
+      </form>
+    </div>
+  </div>
 
-  <div class="p-strip is-shallow">
+  {% if not query %}
+    {% set featured_section = featured["products"]["side_nav_sections"][0] %}
+    {% if featured_section %}
+      <section class="p-section">
+        <div class="p-section--shallow u-fixed-width">
+          <hr class="p-rule" />
+          <h2>{{ featured_section["title"] }}</h2>
+        </div>
+        <div class="p-list--horizontal-section-wrapper">
+          <ul class="p-list--horizontal-section">
+            {% for section in featured_section["primary_links"][0]["links"] %}
+            <li class="p-list__item">
+              <div class="col-3 col-medium-2">
+                <h5 class="u-no-margin--bottom"><a href="{{ section["url"] }}">{{ section["title"] }}</a></h5>
+                <p>{{ section["description"]}}</p>
+              </div>
+            </li>
+          {% endfor %}
+          </ul>
+        </div>
+      </section>
+      <hr class="p-rule is-fixed-width" />
+      <section class="p-strip is-deep">
+        <div class="u-fixed-width">
+          <p class="p-heading--2">
+            <a href="/contact-us">Get in touch&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </section>
+    {% endif %}
+  {% else %}
+
+  {% endif %}
+
+
+
+  <div class="p-section">
     <div class="u-fixed-width">
       {% if query %}
         {% if estimatedTotal == 0 %}
@@ -31,32 +101,6 @@
         <h1>Search Ubuntu and Canonical sites</h1>
       {% endif %}
     </div>
-  </div>
-
-  {# search form #}
-  <div class="u-fixed-width">
-    <form class="p-search-box" action="/search">
-      <label for="search-input" class="u-off-screen">Search</label>
-      <!-- honeypot search input -->
-      <input type="search"
-             id="search"
-             class="p-search-box__input u-hide "
-             name="search"
-             placeholder="Search our sites"
-             aria-label="Search our sites"
-             value="" />
-      <!-- end of honeypot search input -->
-      <input class="p-search-box__input"
-             name="q"
-             id="search-input"
-             type="search"
-             {% if query %}value="{{ query }}"{% endif %}
-             placeholder="e.g. juju" />
-      {% if siteSearch %}<input name="siteSearch" type="hidden" value="{{ siteSearch }}" />{% endif %}
-      <button type="submit" alt="search" class="p-search-box__button" alt="search">
-        <i class="p-icon--search">Submit</i>
-      </button>
-    </form>
   </div>
 
   {% if results %}
