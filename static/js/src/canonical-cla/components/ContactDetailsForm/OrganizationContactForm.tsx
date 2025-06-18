@@ -3,11 +3,11 @@ import {
   FormikField,
   Input,
   Select,
-  Textarea,
 } from "@canonical/react-components";
 import { useMutation } from "@tanstack/react-query";
 import { useSignForm } from "canonical-cla/contexts/SignForm";
 import usePersistedForm from "canonical-cla/hooks/usePersistedForm";
+import { formatAddress } from "canonical-cla/utils/address";
 import { postOrganizationSignForm } from "canonical-cla/utils/api";
 import { OrganizationSignForm } from "canonical-cla/utils/constants";
 import { Form, Formik } from "formik";
@@ -16,8 +16,15 @@ import GithubEmailSelector from "../GithubEmailSelector";
 import LaunchpadEmailSelector from "../LaunchpadEmailSelector";
 
 const OrganizationFormSchema = Yup.object<
-  Omit<OrganizationSignForm, "agreement_type">
->({
+  Omit<OrganizationSignForm, "agreement_type" | "address"> & {
+    street_address: string;
+    city: string;
+    state_province?: string;
+    postal_code: string;
+    github_email?: string;
+    launchpad_email?: string;
+  }
+>().shape({
   name: Yup.string().max(100).required().label("Organization name"),
   contact_name: Yup.string().max(100).required().label("Contact name"),
   contact_email: Yup.string()
@@ -26,9 +33,11 @@ const OrganizationFormSchema = Yup.object<
     .required()
     .label("Contact email"),
   phone_number: Yup.string().max(20).required().label("Phone number"),
-  address: Yup.string().max(400).required().label("Address"),
+  street_address: Yup.string().max(200).required().label("Street address"),
+  city: Yup.string().max(100).required().label("City"),
+  state_province: Yup.string().max(100).label("State/Province"),
+  postal_code: Yup.string().max(20).required().label("Postal/ZIP code"),
   country: Yup.string().required().label("Country"),
-
   email_domain: Yup.string().max(100).required().label("Email domain"),
   // used to choose the email domain and removed before submitting the form
   github_email: Yup.string().label("GitHub email"),
@@ -37,12 +46,10 @@ const OrganizationFormSchema = Yup.object<
 
 const OrganizationContactForm = () => {
   const { changeStep } = useSignForm();
-  const [storedValues, setStoredValues, resetStoredValues] = usePersistedForm<
-    OrganizationSignForm & {
-      github_email?: string;
-      launchpad_email?: string;
-    }
-  >("organization-form");
+  const [storedValues, setStoredValues, resetStoredValues] =
+    usePersistedForm<Yup.InferType<typeof OrganizationFormSchema>>(
+      "organization-form",
+    );
   const submitSignForm = useMutation({
     mutationFn: postOrganizationSignForm,
     onSuccess: () => {
@@ -51,13 +58,27 @@ const OrganizationContactForm = () => {
       window.location.hash = "main-content";
     },
   });
-  const handleSubmit = (values: OrganizationSignForm) => {
-    const submitData = {
-      ...values,
-      github_email: undefined,
-      launchpad_email: undefined,
+  const handleSubmit = (
+    values: Yup.InferType<typeof OrganizationFormSchema>,
+  ) => {
+    const address = formatAddress({
+      street_address: values.street_address,
+      city: values.city,
+      state_province: values.state_province,
+      postal_code: values.postal_code,
+      country: values.country,
+    });
+    const formData: OrganizationSignForm = {
+      agreement_type: "organization",
+      name: values.name,
+      contact_name: values.contact_name,
+      contact_email: values.contact_email,
+      phone_number: values.phone_number,
+      address,
+      country: values.country,
+      email_domain: values.email_domain,
     };
-    submitSignForm.mutate(submitData);
+    submitSignForm.mutate(formData);
   };
 
   const getEmailDomain = (email?: string): string => {
@@ -121,11 +142,37 @@ const OrganizationContactForm = () => {
               maxLength={20}
             />
             <FormikField
-              component={Textarea}
-              name="address"
-              label="Address"
-              maxLength={400}
+              component={Input}
+              name="street_address"
+              label="Street address"
               required
+              type="text"
+              maxLength={200}
+            />
+
+            <FormikField
+              component={Input}
+              name="city"
+              label="City"
+              required
+              type="text"
+              maxLength={100}
+            />
+
+            <FormikField
+              component={Input}
+              name="state_province"
+              label="State/Province"
+              type="text"
+              maxLength={100}
+            />
+            <FormikField
+              component={Input}
+              name="postal_code"
+              label="Postal/ZIP code"
+              required
+              type="text"
+              maxLength={20}
             />
             <FormikField
               component={Select}
