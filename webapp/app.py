@@ -21,6 +21,8 @@ from canonicalwebteam.discourse import (
     Tutorials,
     CategoryParser,
     Category,
+    EventsParser,
+    Events,
 )
 from canonicalwebteam.flask_base.app import FlaskBase
 from pathlib import Path
@@ -155,6 +157,7 @@ from webapp.views import (
     process_active_vulnerabilities,
     process_local_communities,
     process_community_calendar,
+    community_landing_page,
     build_engage_index,
     build_engage_page,
     build_engage_pages_sitemap,
@@ -817,12 +820,8 @@ local_communities = Category(
     category_id=129,
 )
 
-community_calendar = Category(
-    parser=CategoryParser(
-        api=discourse_api,
-        index_topic_id=60,
-        url_prefix="/community",
-    ),
+community_events = Events(
+    parser=EventsParser(api=discourse_api),
     category_id=11,
 )
 
@@ -833,7 +832,12 @@ app.add_url_rule(
 
 app.add_url_rule(
     "/community/events",
-    view_func=process_community_calendar(community_calendar),
+    view_func=process_community_calendar(community_events),
+)
+
+app.add_url_rule(
+    "/community",
+    view_func=community_landing_page(community_events, local_communities),
 )
 
 # Allow templates to be queried from discourse.ubuntu.com
