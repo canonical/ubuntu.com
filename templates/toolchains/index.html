@@ -1,1 +1,315 @@
 {% extends "toolchains/base_toolchains.html" %}
+
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/18RIA7sr9oR11g3t2i8sJ3DphOUx7kuh2KsdPFAHta6U/edit?tab=t.0{% endblock %}
+
+{% block title %}Ubuntu development framework and toolchains collection{% endblock %}
+
+{% block meta_description %}
+  Build with your favourite toolchain and framework on Ubuntu: long term supported builds, minimal base containers, and packaging / dev environment setup automation
+{% endblock %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+  <section class="p-section--hero">
+    <div class="row--50-50">
+      <div class="col">
+        <h1>Build apps with your favorite frameworks and toolchains on Ubuntu</h1>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <p>
+            <strong>Rapid releases, long term security and automation for efficient dev workflows.</strong>
+            <br>
+            Ubuntu offers native support for the most popular development framework and toolchains, with rapid release cycles, long term security support, compliance certification, minimal base containers, and additional automation for software builds and development environment setup.
+          </p>
+        </div>
+        <hr class="p-rule--muted">
+        <a href="https://documentation.ubuntu.com/ubuntu-for-developers/" class="p-button--positive">Ubuntu for developers docs</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule">
+    </div>
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Supported frameworks and toolchains</h2>
+      </div>
+      <div class="col">
+        <div class="p-section"
+          <p>From development environments to mission critical production systems, millions of developers trust Ubuntu as the base OS for their software projects. Discover the security, compliance, developer experience and automation features available on Ubuntu.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-start-large-4">
+        <div class="row">
+          <div class="col-4 col-medium-2">
+            <div class="p-image-container--16-9 is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/d2e26e84-openjdk-logo.png",
+                alt="OpenJDK",
+                width="286",
+                height="480",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+              }}
+            </div>
+            <hr class="p-rule--muted">
+            <div class="p-section--shallow">
+              <a href="/toolchains/java" aria-label="Learn more about OpenJDK">Learn more&nbsp;&rsaquo;</a>
+            </div>
+          </div>
+          <div class="col-4 col-medium-2">
+            <div class="p-image-container--16-9 is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/8a49006d-python-logo.png",
+                alt="Python",
+                width="376",
+                height="480",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+              }}
+            </div>
+            <hr class="p-rule--muted">
+            <div class="p-section--shallow">
+              <a href="https://documentation.ubuntu.com/ubuntu-for-developers/" aria-label="Learn more about Python">Learn more&nbsp;&rsaquo;</a>
+            </div>
+          </div>
+          <div class="col-4 col-medium-2">
+            <div class="p-image-container--16-9 is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/02087632-go-logo.png",
+                alt="Go",
+                width="196",
+                height="480",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+              }}
+            </div>
+            <hr class="p-rule--muted">
+            <div class="p-section--shallow">
+              <a href="https://documentation.ubuntu.com/ubuntu-for-developers/" aria-label="Learn more about Go">Learn more&nbsp;&rsaquo;</a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4 col-medium-2">
+              <div class="p-image-container--16-9 is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/73752f34-r-logo.png",
+                  alt="Rust",
+                  width="144",
+                  height="480",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+              <hr class="p-rule--muted">
+              <div class="p-section--shallow">
+                <a href="https://documentation.ubuntu.com/ubuntu-for-developers/" aria-label="Learn more about Rust">Learn more&nbsp;&rsaquo;</a>
+              </div>
+            </div>
+            <div class="col-4 col-medium-2">
+              <div class="p-image-container--16-9 is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/f694c5d1-net-logo.png",
+                  alt=".Net",
+                  width="160",
+                  height="480",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+              <hr class="p-rule--muted">
+              <div class="p-section--shallow">
+                <a href="https://documentation.ubuntu.com/ubuntu-for-developers/" aria-label="Learn more about .NET">Learn more&nbsp;&rsaquo;</a>
+              </div>
+            </div>
+            <div class="col-4 col-medium-2">
+              <div class="p-image-container--16-9 is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/add256b2-spring-logo.png",
+                  alt="Spring",
+                  width="240",
+                  height="480",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+              <hr class="p-rule--muted">
+              <div class="p-section--shallow">
+                <a href="/toolchains/spring" aria-label="Learn more about Spring">Learn more&nbsp;&rsaquo;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule">
+    </div>
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Receive up to 12 years of security patching and maintenance</h2>
+      </div>
+      <div class="col">
+        <p>Extend the security and support period for your builds to an industry-leading 12 years through Ubuntu Pro — Canonical’s comprehensive subscription for open source security.</p>
+        <p>Gain freedom to focus on making impactful applications that deliver for customers with expanded security maintenance for the latest framework releases running until 2034.</p>
+        <hr class="p-rule--muted">
+        <a href="https://ubuntu.com/pricing/pro" class="p-button">Get support with Ubuntu Pro</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule">
+    </div>
+    <div class="row--50-50">
+      <div class="col">
+        <h2>
+          Secure, minimal<br class="u-hide--small">
+          runtime containers
+        </h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/b23ccc24-secure-minimal-runtime.png",
+              alt="",
+              width="1800",
+              height="1200",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
+        </div>
+        <p>Canonical provides chiseled containers for popular runtimes, providing a significant reduction in size, without compromising performance.</p>
+        <p>The images are available for both AMD64 and ARM64 architectures, and benefit from up to 12 years of security support with Ubuntu Pro.</p>
+        <hr class="p-rule--muted">
+        <a href="https://hub.docker.com/u/ubuntu" class="p-button">Discover our runtime images</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section u-no-padding--bottom">
+    {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=false) -%}
+      {%- if slot == 'title' -%}
+          <div class="row--50-50">
+            <div class="col">
+              <h2>Build production grade containers for 12-factor applications</h2>
+            </div>
+            <div class="col">
+              <p>Thanks to the profile extension for Rockcraft, in just one command you can build Rocks, which are production-grade OCI containers for your 12 factor applications.</p>
+            </div>
+          </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">Ideal for production environments</h3> 
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <p>Rocks are production-grade by design. Rockcraft enables you to build dependable, secure, and stable container images for various deployment scenarios, especially within Kubernetes.</p> 
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">No knowledge of image building required Rockcraft</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <p>Rockcraft handles all the boilerplate steps involved in creating production-grade container images. This allows developers to focus on the actual content and logic of their applications.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_3' -%}
+        <h3 class="p-heading--5">Built on Ubuntu</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_3' -%}
+        <p>Rocks leverage the stability, security, and predictable release cadence of Ubuntu, along with its extensive package ecosystem.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_4' -%}
+        <h3 class="p-heading--5">Opinionated and consistent design</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_4' -%}
+        <div class="p-section--shallow">
+          <p>Rocks follow the same design, aiming to minimise your full-stack disparity and adoption overhead. Pebble is the official entry point, providing a predictable and powerful abstraction between users and the container application.</p>
+        </div>
+        <hr class="p-rule--muted">
+        <a href="https://documentation.ubuntu.com/rockcraft/en/latest/tutorial/" class="p-button">Build a Rock for a 12-factor application</a>
+      {%- endif -%}
+
+    {%- endcall -%}
+  </section>
+
+  <section class="p-section u-no-padding--bottom">
+    {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=false) -%}
+      {%- if slot == 'title' -%}
+        <div class="row--50-50">
+          <div class="col">
+            <h2>Create a Kubernetes operator for your applications</h2>
+          </div>
+          <div class="col">
+            <p>Using the Charmcraft profile plugins you can package your 12 factor application as a charm in a single command. Charms are universal software operators for lifecycle management, and through the Spring plugin, you can unlock the benefits of the entire charm ecosystem.</p>
+            <p>This enables connections to services like HA Postgres databases, monitoring through Grafana, and easy integration with ingress, among other features.</p>
+            <p>Here are the details:</p>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">Full application lifecycle management</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <p>Charms operate across all aspects of application lifecycle management, with an emphasis on day 2 operations.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">Support for all Kubernetes distributions</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <p>Your app can be deployed and orchestrated on all major on prem and cloud Kubernetes distributions.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_3' -%}
+        <h3 class="p-heading--5">Benefit from Canonical’s charm ecosystem</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_3' -%}
+        <div class="p-section--shallow">
+          <p>Every charm benefits from a set of prebuilt integrations including databases, observability, ingress, authentication and much more.</p>
+        </div>
+        <hr class="p-rule--muted">
+        <a href="https://canonical-charmcraft.readthedocs-hosted.com/en/stable/tutorial/" class="p-button">Use Charmcraft profile plugin</a>
+      {%- endif -%}
+    {%- endcall -%}
+  </section>
+
+  <div class="u-fixed-width">
+    <hr class="p-rule">
+  </div>
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+<h2><a href="/contact-us" class="js-invoke-modal" aria-controls="toolchains-modal">Talk to us about running your workloads on Ubuntu&nbsp;&rsaquo;</a></h2>
+    </div>
+  </section>
+
+  {{ load_form("/toolchains") | safe }}
+
+{% endblock %}
+
