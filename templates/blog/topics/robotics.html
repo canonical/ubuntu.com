@@ -14,16 +14,18 @@
     {% include 'blog/shared/_topic-header.html' %}
   {% endwith %}
 
-  <section class="p-strip is-shallow">
-    {% include 'blog/posts.html' %}
+  <section class="p-section" id="posts-list">
+    <div class="row">
+      {% for article in articles %}
+        {% include 'blog/blog-card.html' %}
+      {% endfor %}
+    </div>
   </section>
 
-  <section class="p-strip is-shallow">
-    {% with %}
-      {% set total_pages = total_pages %}
-      {% set current_page = current_page %}
-      {% include "blog/shared/_pagination.html" %}
-    {% endwith %}
-  </section>
+  {% with %}
+    {% set total_pages = total_pages %}
+    {% set current_page = current_page %}
+    {% include "blog/shared/_pagination.html" %}
+  {% endwith %}
 
 {% endblock %}

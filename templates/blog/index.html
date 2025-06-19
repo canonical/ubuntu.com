@@ -1,7 +1,5 @@
 {% extends "templates/one-column.html" %}
 
-{% from "_macros/vf_hero.jinja" import vf_hero %}
-
 {% block title %}Ubuntu Blog{% endblock %}
 
 {% block extra_metatags %}
@@ -17,14 +15,13 @@
 
 {% block content %}
 
-  {% call(slot) vf_hero(
-    title_text='Blog',
-    layout='25/75'
-    ) -%}
-    {%- if slot == 'signpost_image' -%}
-      <div class="u-hide"></div>
-    {%- endif -%}
-  {%- endcall -%}
+  <div class="p-strip">
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-4 col-start-medium-3">
+        <h1>Blog</h1>
+      </div>
+    </div>
+  </div>
 
   {% if current_page and current_page == 1 %}
     {% if featured_articles %}
