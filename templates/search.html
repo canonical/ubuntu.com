@@ -7,11 +7,27 @@
   {% if query %}for '{{ query }}'{% endif %}
 {% endblock %}
 
+<!-- TODO: What does siteSearch return? -->
+
 {% block content %}
   <div class="p-section--hero">
     <div class="p-section--shallow u-fixed-width">
       {% if query %}
-        <h1>Search results for "{{ query }}"</h1>
+        {% if estimatedTotal == 0 %}
+          <h1>Sorry we couldn't find "{{ query }}"</h1>
+          {% if siteSearch %}
+            <h3>
+              on <a href="https://{{ siteSearch }}">{{ siteSearch }}</a>
+            </h3>
+          {% endif %}
+        {% else %}
+          <h1>Search results for "{{ query }}"</h1>
+          {% if siteSearch %}
+            <h3>
+              on <a href="https://{{ siteSearch }}">{{ siteSearch }}</a>
+            </h3>
+          {% endif %}
+        {% endif %}
       {% else %}
         <h1>Search Ubuntu and Canonical sites</h1>
       {% endif %}
@@ -42,7 +58,6 @@
       </form>
     </div>
   </div>
-
   {% if not query %}
     {% set featured_section = featured["products"]["side_nav_sections"][0] %}
     {% if featured_section %}
@@ -73,35 +88,9 @@
         </div>
       </section>
     {% endif %}
-  {% else %}
-
   {% endif %}
 
 
-
-  <div class="p-section">
-    <div class="u-fixed-width">
-      {% if query %}
-        {% if estimatedTotal == 0 %}
-          <h1 class="p-heading--2">Sorry we couldn't find "{{ query }}"</h1>
-          {% if siteSearch %}
-            <h3>
-              on <a href="https://{{ siteSearch }}">{{ siteSearch }}</a>
-            </h3>
-          {% endif %}
-        {% else %}
-          <h1 class="p-heading--2">Search results for "{{ query }}"</h1>
-          {% if siteSearch %}
-            <h3>
-              on <a href="https://{{ siteSearch }}">{{ siteSearch }}</a>
-            </h3>
-          {% endif %}
-        {% endif %}
-      {% else %}
-        <h1>Search Ubuntu and Canonical sites</h1>
-      {% endif %}
-    </div>
-  </div>
 
   {% if results %}
     {% if results.entries %}
@@ -135,27 +124,42 @@
         </div>
       </div>
     {% else %}
-      <div class="p-strip">
+      <div class="p-section--deep">
         <div class="row">
-          <div class="col-6">
-            <h3>Why not try widening your search?</h3>
-            <p>You can do this by:</p>
+          <div class="p-notification--negative">
+            <div class="p-notification__content">
+              <h5 class="p-notification__title">Your search "{{ query }}" did not match any notices.</h5>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 col-medium-3">
+            <div class="p-heading--4">
+              Why not try widening your search?<br> You can do this by:
+            </div>
+          </div>
+          <div class="col-4 col-medium-3">
             <ul class="p-list">
               <li class="p-list__item is-ticked">Adding alternative words or phrases</li>
               <li class="p-list__item is-ticked">Using individual words instead of phrases</li>
               <li class="p-list__item is-ticked">Trying a different spelling</li>
             </ul>
           </div>
-          <div class="col-6">
-            <h3>Still no luck?</h3>
-            <ul class="p-list">
-              <li class="p-list__item is-ticked">
-                <a href="/">Visit the Ubuntu homepage</a>
-              </li>
-              <li class="p-list__item is-ticked">
-                <a href="/desktop/contact-us?product=search-page">Contact us</a>
-              </li>
-            </ul>
+        </div>
+        <div class="u-fixed-width">
+          <hr>
+        </div>
+        <div class="row">
+          <div class="col-4 col-medium-3">
+            <div class="p-heading--4">Still no luck?</div>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p class="u-no-margin--bottom">
+              <a href="/">Visit the Ubuntu homepage</a>
+            </p>
+            <p class="u-no-margin--bottom">
+              <a href="/desktop/contact-us?product=search-page">Contact us</a>
+            </p>
           </div>
         </div>
       </div>
