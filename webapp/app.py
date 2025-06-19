@@ -1298,4 +1298,4 @@ def test_flask_base():
     return os.environ["TEST_ENV"]
 
 
-app.add_url_rule("/sitemap_parser", view_func=get_sitemaps_tree)
+app.add_url_rule("/testflaskbase", view_func=test_flask_base)
