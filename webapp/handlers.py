@@ -333,7 +333,7 @@ def init_handlers(app, sentry):
         countries = [
             {
                 "alpha2": country.alpha_2,
-                "name": getattr(country, "common_name", country.name)
+                "name": getattr(country, "common_name", country.name),
             }
             for country in list(countries)
         ]
