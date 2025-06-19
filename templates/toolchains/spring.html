@@ -1,5 +1,7 @@
 {% extends "toolchains/base_toolchains.html" %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
 {% block meta_copydoc %}
   https://docs.google.com/document/d/10fYN_fRpN08qYpZx1H2SbKBpQb5hRqQ4nniibMqPmIk/
 {% endblock meta_copydoc %}
@@ -15,43 +17,25 @@
 {% endblock body_class %}
 
 {% block content %}
-  <section class="p-section--hero">
-    <div class="row--25-75">
-      <div class="col">
-        {{ image(url="https://assets.ubuntu.com/v1/96e1b28e-spring-logo-signpost.png",
-          alt="Spring",
-          width="852",
-          height="204",
-          hi_def=True,
-          loading="auto|lazy"
-          ) | safe
-        }}
-      </div>
-      <div class="col">
-        <div class="p-section--shallow">
-          <h1>Build with Spring on Ubuntu</h1>
-          <p class="p-heading--2">
-            Simplify app development
-            <br class="u-hide-small u-hide-medium" />
-            with Canonical's automation for Spring
-          </p>
-        </div>
-        <div class="p-section--shallow">
-          <p>
-            Harness the features of Spring Boot and move seamlessly from development to deployment. Set up, maintain and publish Spring artefacts with ease through Canonical’s Devpack for Spring. Go further with Spring Boot extensions that empower you to create production-grade containers and Kubernetes operators for your Spring applications. All within the Ubuntu ecosystem.
-          </p>
-        </div>
-        <div class="p-cta-block u-no-padding--bottom">
-          <a class="p-button--positive u-no-margin--bottom" href="https://snapcraft.io/devpack-for-spring">
-            Install Devpack for Spring
-          </a>
-          <a class="p-button u-no-margin--bottom" href="https://documentation.ubuntu.com/rockcraft/en/latest/tutorial/springboot/">
-            Containerize your application
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+  {% call(slot) vf_hero(
+    title_text='Build with Spring on Ubuntu',
+    subtitle_text='Simplify app development <br class="u-hide-small u-hide-medium" />with Canonical’s automation for Spring' | safe,
+    layout='25/75'
+  ) -%}
+  {%- if slot == 'signpost_image' -%}
+  <img src="https://assets.ubuntu.com/v1/96e1b28e-spring-logo-signpost.png" alt="Spring">
+  {%- endif -%}
+  {%- if slot == 'description' -%}
+  <p>
+    Harness the features of Spring Boot and move seamlessly from development to deployment. Set up, maintain and publish Spring artefacts with ease through Canonical’s Devpack for Spring. 
+    Go further with Spring Boot extensions that empower you to create production-grade containers and Kubernetes operators for your Spring applications. All within the Ubuntu ecosystem.
+  </p>
+  {%- endif -%}
+  {%- if slot == 'cta' -%}
+  <a href="https://snapcraft.io/devpack-for-spring" class="p-button--positive u-no-margin--bottom">Install Devpack for Spring</a>
+  <a href="https://documentation.ubuntu.com/rockcraft/en/latest/tutorial/springboot/" class="p-button u-no-margin--bottom">Containerize your application</a>
+  {%- endif -%}
+  {%- endcall -%}
   <section class="p-section">
     <hr class="p-rule is-fixed-width" />
     <div class="row--50-50">
