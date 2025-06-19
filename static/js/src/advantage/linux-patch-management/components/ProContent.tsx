@@ -46,7 +46,7 @@ const ProContent = ({
         })),
       id: index,
     }));
-    return items;
+    return items.filter((item) => item.chips?.length || 0 > 0);
   }, [cveData, packageFilter]);
 
   const packagePocketMap = useMemo(() => {
