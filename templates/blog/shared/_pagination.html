@@ -1,0 +1,106 @@
+<section class="p-section">
+  <div class="row">
+    <div class="col-9 col-start-large-4 col-medium-4 col-start-medium-3">
+      <hr class="p-rule--muted" />
+      {% if current_page and total_pages and total_pages > 1 %}
+        <ol class="p-pagination">
+          <li class="p-pagination__item">
+            {% if current_page > 1 %}
+              <a href="?{{ modify_query({'page': current_page - 1}) }}"
+                 class="p-pagination__link--previous">
+                <i class="p-icon--chevron-down">Previous page</i>
+              </a>
+            {% else %}
+              <span class="p-pagination__link--previous is-disabled">
+                <i class="p-icon--chevron-down">Previous page</i>
+              </span>
+            {% endif %}
+          </li>
+
+          {# always show 5 pages in pagination #}
+          {% if current_page > 4 and current_page == total_pages %}
+            <li class="p-pagination__item">
+              <a href="?{{ modify_query({'page': current_page - 4}) }}"
+                 class="p-pagination__link">{{ current_page - 4 }}</a>
+            </li>
+          {% endif %}
+
+          {% if current_page > 3 and current_page == total_pages %}
+            <li class="p-pagination__item">
+              <a href="?{{ modify_query({'page': current_page - 3}) }}"
+                 class="p-pagination__link">{{ current_page - 3 }}</a>
+            </li>
+          {% endif %}
+
+          {% if current_page > 2 %}
+            <li class="p-pagination__item">
+              <a href="?{{ modify_query({'page': current_page - 2}) }}"
+                 class="p-pagination__link">{{ current_page - 2 }}</a>
+            </li>
+          {% endif %}
+
+          {% if current_page > 1 %}
+            <li class="p-pagination__item">
+              <a href="?{{ modify_query({'page': current_page - 1}) }}"
+                 class="p-pagination__link">{{ current_page - 1 }}</a>
+            </li>
+          {% endif %}
+
+          {# current current_page #}
+          <li class="p-pagination__item">
+            <a href="?{{ modify_query({'page': current_page }) }}"
+               class="p-pagination__link is-active">{{ current_page }}</a>
+          </li>
+
+          {% if current_page < total_pages %}
+            <li class="p-pagination__item">
+              <a href="?{{ modify_query({'page': current_page + 1}) }}"
+                 class="p-pagination__link">{{ current_page + 1 }}</a>
+            </li>
+          {% endif %}
+
+          {% if current_page < total_pages - 1 %}
+            <li class="p-pagination__item">
+              <a href="?{{ modify_query({'page': current_page + 2}) }}"
+                 class="p-pagination__link">{{ current_page + 2 }}</a>
+            </li>
+          {% endif %}
+
+          {% if current_page < total_pages - 2 and current_page == 1 %}
+            <li class="p-pagination__item">
+              <a href="?{{ modify_query({'page': current_page + 3}) }}"
+                 class="p-pagination__link">{{ current_page + 3 }}</a>
+            </li>
+          {% endif %}
+
+          {% if current_page < total_pages - 3 and current_page == 1 %}
+            <li class="p-pagination__item">
+              <a href="?{{ modify_query({'page': current_page + 4}) }}"
+                 class="p-pagination__link">{{ current_page + 4 }}</a>
+            </li>
+          {% endif %}
+
+          {% if current_page < total_pages - 3 and current_page == 2 %}
+            <li class="p-pagination__item">
+              <a href="?{{ modify_query({'page': current_page + 3}) }}"
+                 class="p-pagination__link">{{ current_page + 3 }}</a>
+            </li>
+          {% endif %}
+
+          <li class="p-pagination__item">
+            {% if current_page != total_pages %}
+              <a href="?{{ modify_query({'page': current_page + 1}) }}"
+                 class="p-pagination__link--next">
+                <i class="p-icon--chevron-down">Next page</i>
+              </a>
+            {% else %}
+              <span class="p-pagination__link--next is-disabled">
+                <i class="p-icon--chevron-down">Next page</i>
+              </span>
+            {% endif %}
+          </li>
+        </ol>
+      {% endif %}
+    </div>
+  </div>
+</section>
