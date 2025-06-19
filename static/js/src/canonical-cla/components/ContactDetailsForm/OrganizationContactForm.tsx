@@ -177,11 +177,11 @@ const OrganizationContactForm = () => {
             <FormikField
               component={Select}
               required
-              label="Country"
+              label="Country/Region"
               name="country"
               defaultValue={""}
               options={[
-                { label: "Choose a country", value: "", disabled: true },
+                { label: "Choose a country/region", value: "", disabled: true },
                 ...window.COUNTRIES_LIST.map((country) => ({
                   label: country.name,
                   value: country.alpha2,
