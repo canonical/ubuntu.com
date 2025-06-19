@@ -10,22 +10,22 @@
 
 {% block content %}
 
-  {% with title="Robotics", subtitle="Whether you're starting in the lab or already in production, Canonical can help manage the complexity of the open source software underpinning your robot's brains and personality.", cta_link="/internet-of-things/robotics", cta_text="Learn more about robotics from Canonical" %}
-    {% include 'blog/shared/_topic-header.html' %}
-  {% endwith %}
+  {% with title="Robotics", subtitle="Whether you're starting in the lab or already in production,<br /> Canonical can help manage the complexity of the open source software<br /> underpinning your robot's brains and personality.", cta_link="/internet-of-things/robotics", cta_text="Learn more about robotics from Canonical" %}
+  {% include 'blog/shared/_topic-header.html' %}
+{% endwith %}
 
-  <section class="p-section" id="posts-list">
-    <div class="row">
-      {% for article in articles %}
-        {% include 'blog/blog-card.html' %}
-      {% endfor %}
-    </div>
-  </section>
+<section class="p-section" id="posts-list">
+  <div class="row">
+    {% for article in articles %}
+      {% include 'blog/blog-card.html' %}
+    {% endfor %}
+  </div>
+</section>
 
-  {% with %}
-    {% set total_pages = total_pages %}
-    {% set current_page = current_page %}
-    {% include "blog/shared/_pagination.html" %}
-  {% endwith %}
+{% with %}
+  {% set total_pages = total_pages %}
+  {% set current_page = current_page %}
+  {% include "blog/shared/_pagination.html" %}
+{% endwith %}
 
 {% endblock %}

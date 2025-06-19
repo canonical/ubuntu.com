@@ -3,7 +3,7 @@
 {% block title %}Desktop{% endblock %}
 
 {% block meta_description %}
-  All you need to know about the fast, free and user-friendly Ubuntu desktop operating system.
+  All you need to know about the fast, free, and user-friendly Ubuntu desktop operating system.
 {% endblock %}
 
 {% block body_class %}
@@ -12,21 +12,21 @@
 
 {% block content %}
 
-  {% with title="Desktop", subtitle="All you need to know about the fast, free and user friendly Ubuntu desktop operating system.", cta_link="/desktop", cta_text="Learn more about Desktop" %}
-    {% include 'blog/shared/_topic-header.html' %}
-  {% endwith %}
+  {% with title="Desktop", subtitle="All you need to know about the fast, free, and user friendly<br /> Ubuntu desktop operating system.", cta_link="/desktop", cta_text="Learn more about Desktop" %}
+  {% include 'blog/shared/_topic-header.html' %}
+{% endwith %}
 
-  <section class="p-section" id="posts-list">
-    <div class="row">
-      {% for article in articles %}
-        {% include 'blog/blog-card.html' %}
-      {% endfor %}
-    </div>
-  </section>
+<section class="p-section" id="posts-list">
+  <div class="row">
+    {% for article in articles %}
+      {% include 'blog/blog-card.html' %}
+    {% endfor %}
+  </div>
+</section>
 
-  {% with %}
-    {% set total_pages = total_pages %}
-    {% set current_page = current_page %}
-    {% include "blog/shared/_pagination.html" %}
-  {% endwith %}
+{% with %}
+  {% set total_pages = total_pages %}
+  {% set current_page = current_page %}
+  {% include "blog/shared/_pagination.html" %}
+{% endwith %}
 {% endblock %}

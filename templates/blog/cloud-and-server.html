@@ -3,7 +3,7 @@
 {% block title %}Cloud and Server{% endblock %}
 
 {% block meta_description %}
-  All you need to know about designing, building and managing your OpenStack private cloud, Kubernetes cluster or Ubuntu Server scale‑out deployment.
+  All you need to know about designing, building, and managing your OpenStack private cloud, Kubernetes cluster or Ubuntu Server scale‑out deployment.
 {% endblock %}
 
 {% block body_class %}
@@ -12,21 +12,21 @@
 
 {% block content %}
 
-  {% with title="Cloud and Server", subtitle="All you need to know about designing, building and managing your OpenStack private cloud, Kubernetes cluster or Ubuntu Server scale-out deployment.", cta_link="/cloud", cta_text="Learn more about Cloud and Server" %}
-    {% include 'blog/shared/_topic-header.html' %}
-  {% endwith %}
+  {% with title="Cloud and Server", subtitle="All you need to know about designing, building, and managing your<br /> OpenStack private cloud, Kubernetes cluster or Ubuntu Server scale-out deployment.", cta_link="/cloud", cta_text="Learn more about Cloud and Server" %}
+  {% include 'blog/shared/_topic-header.html' %}
+{% endwith %}
 
-  <section class="p-section" id="posts-list">
-    <div class="row">
-      {% for article in articles %}
-        {% include 'blog/blog-card.html' %}
-      {% endfor %}
-    </div>
-  </section>
+<section class="p-section" id="posts-list">
+  <div class="row">
+    {% for article in articles %}
+      {% include 'blog/blog-card.html' %}
+    {% endfor %}
+  </div>
+</section>
 
-  {% with %}
-    {% set total_pages = total_pages %}
-    {% set current_page = current_page %}
-    {% include "blog/shared/_pagination.html" %}
-  {% endwith %}
+{% with %}
+  {% set total_pages = total_pages %}
+  {% set current_page = current_page %}
+  {% include "blog/shared/_pagination.html" %}
+{% endwith %}
 {% endblock %}
