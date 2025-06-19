@@ -2,6 +2,10 @@
 
 {% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block title %}
   Search results
   {% if query %}for '{{ query }}'{% endif %}
@@ -10,7 +14,7 @@
 <!-- TODO: What does siteSearch return? -->
 
 {% block content %}
-  <div class="p-section--hero">
+  <div class="p-strip is-shallow">
     <div class="p-section--shallow u-fixed-width">
       {% if query %}
         {% if estimatedTotal == 0 %}
@@ -33,29 +37,31 @@
       {% endif %}
     </div>
     {# search form #}
-    <div class="u-fixed-width">
-      <form class="p-search-box" action="/search">
-        <label for="search-input" class="u-off-screen">Search</label>
-        <!-- honeypot search input -->
-        <input type="search"
-              id="search"
-              class="p-search-box__input u-hide "
-              name="search"
-              placeholder="Search our sites"
-              aria-label="Search our sites"
-              value="" />
-        <!-- end of honeypot search input -->
-        <input class="p-search-box__input"
-              name="q"
-              id="search-input"
-              type="search"
-              {% if query %}value="{{ query }}"{% endif %}
-              placeholder="e.g. juju" />
-        {% if siteSearch %}<input name="siteSearch" type="hidden" value="{{ siteSearch }}" />{% endif %}
-        <button type="submit" alt="search" class="p-search-box__button" alt="search">
-          <i class="p-icon--search">Submit</i>
-        </button>
-      </form>
+    <div class="p-section--shallow">
+      <div class="u-fixed-width">
+        <form class="p-search-box" action="/search">
+          <label for="search-input" class="u-off-screen">Search</label>
+          <!-- honeypot search input -->
+          <input type="search"
+                id="search"
+                class="p-search-box__input u-hide "
+                name="search"
+                placeholder="Search our sites"
+                aria-label="Search our sites"
+                value="" />
+          <!-- end of honeypot search input -->
+          <input class="p-search-box__input"
+                name="q"
+                id="search-input"
+                type="search"
+                {% if query %}value="{{ query }}"{% endif %}
+                placeholder="e.g. juju" />
+          {% if siteSearch %}<input name="siteSearch" type="hidden" value="{{ siteSearch }}" />{% endif %}
+          <button type="submit" alt="search" class="p-search-box__button" alt="search">
+            <i class="p-icon--search">Submit</i>
+          </button>
+        </form>
+      </div>
     </div>
   </div>
   {% if not query %}
@@ -72,7 +78,7 @@
             <li class="p-list__item">
               <div class="col-3 col-medium-2">
                 <h5 class="u-no-margin--bottom"><a href="{{ section["url"] }}">{{ section["title"] }}</a></h5>
-                <p>{{ section["description"]}}</p>
+                <p>{{ section["description"] }}</p>
               </div>
             </li>
           {% endfor %}
@@ -90,19 +96,20 @@
     {% endif %}
   {% endif %}
 
-
-
   {% if results %}
     {% if results.entries %}
       {% for item in results.entries %}
-        <div class="p-strip is-shallow">
+        <div class="p-section--shallow">
           <div class="row">
-            <div class="col-12">
-              <h5>
-                <a href="{{ item.link }}" class="title-main">{{ item.htmlTitle | safe }}</a>
-              </h5>
+            {% if not loop.first %}
+            <hr class="p-rule--muted u-no-margin--bottom" />
+            {% endif %}
+            <div class="col">
+              <p class="p-heading--3 u-no-margin--bottom">
+                <a href="{{ item.link }}">{{ item.htmlTitle | safe }}</a>
+              </p>
+              <p class="u-no-margin--bottom"><a href="{{ item.link }}" class="u-text--muted">{{ item.htmlFormattedUrl | safe }}</a></p>
               <p>{{ item.htmlSnippet | safe }}</p>
-              <small><a href="{{ item.link }}">{{ item.htmlFormattedUrl | safe }}</a></small>
             </div>
           </div>
         </div>
@@ -135,7 +142,7 @@
         <div class="row">
           <div class="col-4 col-medium-3">
             <div class="p-heading--4">
-              Why not try widening your search?<br> You can do this by:
+              Why not try widening your search? You can do this by:
             </div>
           </div>
           <div class="col-4 col-medium-3">
@@ -147,7 +154,7 @@
           </div>
         </div>
         <div class="u-fixed-width">
-          <hr>
+          <hr class="p-rule" />
         </div>
         <div class="row">
           <div class="col-4 col-medium-3">
