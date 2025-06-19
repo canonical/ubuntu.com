@@ -1,0 +1,16 @@
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
+<div class="p-strip">
+  <div class="row">
+    <div class="col-9 col-start-large-4 col-medium-4 col-start-medium-3">
+      <h1 class="u-sv3">{{ title }}</h1>
+      <h2 class="p-heading--4">{{ subtitle|safe }}</h2>
+      <p>{{ description }}</p>
+      {%- if cta_link and cta_text -%}
+        <div class="p-cta-block">
+          <a href="{{ cta_url }}">{{ cta_text }}&nbsp;&rsaquo;</a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>

@@ -4,22 +4,15 @@
 
 {% block meta_description %}All the latest news on the design and web team at Canonical.{% endblock %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block content %}
 
-  <section class="p-strip--suru is-dark">
-    <div class="row">
-      <div class="col-10">
-        <h1>Web engineering and design team</h1>
-        <p class="p-heading--4">Discover the latest news and work from the web and design team</p>
-        <p>
-          The Web and design team at Canonical pride themselves on building things properly, not quickly. Always looking for creative ways to push the bounderies of the web.
-        </p>
-        <p class="u-no-margin--bottom">
-          <a class="p-link--inverted" href="https://webteam.canonical.com/">Learn more from the web and design team portal&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-    </div>
-  </section>
+  {% with title="Web engineering and design team", subtitle="Discover the latest news and work from the web and design team", description="The Web and design team at Canonical pride themselves on building things properly, not quickly. Always looking for creative ways to push the boundaries of the web.", cta_link="https://webteam.canonical.com/", cta_text="Learn more from the web and design Portal" %}
+    {% include 'blog/shared/_topic-header.html' %}
+  {% endwith %}
 
   <section class="p-strip is-shallow">
     {% include 'blog/posts.html' %}
@@ -29,7 +22,7 @@
     {% with %}
       {% set total_pages = total_pages %}
       {% set current_page = current_page %}
-      {% include "shared/_pagination.html" %}
+      {% include "blog/shared/_pagination.html" %}
     {% endwith %}
   </section>
 {% endblock %}

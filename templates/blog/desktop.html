@@ -6,27 +6,18 @@
   All you need to know about the fast, free and user-friendly Ubuntu desktop operating system.
 {% endblock %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block content %}
-  <section class="p-strip--suru-blog-header is-dark">
-    <div class="u-fixed-width">
-      <h1>Desktop</h1>
-      <h2 class="p-heading--4">
-        All you need to know about the fast, free and user
-        <br class="u-hide u-show--large" />
-        friendly Ubuntu desktop operating system.
-      </h2>
-      <p>
-        <a href="https://www.ubuntu.com/desktop" class="p-link--inverted">Learn more about Desktop</a>
-      </p>
-      <div id="rtp-banner" class="rtp-banner"></div>
-    </div>
-  </section>
+
+  {% with title="Desktop", subtitle="All you need to know about the fast, free and user friendly Ubuntu desktop operating system.", cta_link="/desktop", cta_text="Learn more about Desktop" %}
+    {% include 'blog/shared/_topic-header.html' %}
+  {% endwith %}
 
   <section class="p-strip is-shallow{% if current_page and current_page == 1 and upcoming_events %} is-bordered{% endif %}"
            id="posts-list">
-    {% with topic="desktop" %}
-      {% include "blog/filters.html" %}
-    {% endwith %}
     {% include 'blog/posts.html' %}
   </section>
 
@@ -34,7 +25,7 @@
     {% with %}
       {% set total_pages = total_pages %}
       {% set current_page = current_page %}
-      {% include "shared/_pagination.html" %}
+      {% include "blog/shared/_pagination.html" %}
     {% endwith %}
   </section>
 {% endblock %}
