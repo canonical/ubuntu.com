@@ -101,7 +101,7 @@ export default function useCVETable(
           expanded: selectedPackage === pkg.package_name,
           expandedContent: (
             <Row>
-              <Col size={9} emptyMedium={3} emptyLarge={3}>
+              <Col size={6} emptyMedium={4} emptyLarge={4}>
                 <table>
                   <thead>
                     <tr>
