@@ -331,7 +331,10 @@ def init_handlers(app, sentry):
         from pycountry import countries
 
         countries = [
-            {"alpha2": country.alpha_2, "name": country.name}
+            {
+                "alpha2": country.alpha_2,
+                "name": getattr(country, "common_name", country.name),
+            }
             for country in list(countries)
         ]
         return sorted(countries, key=lambda x: x["name"])
