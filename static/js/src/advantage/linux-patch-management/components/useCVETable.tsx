@@ -114,11 +114,13 @@ export default function useCVETable(
                       pkg.high_cves.map((cve) => (
                         <tr key={cve.name}>
                           <td>
-                            <p>{cve.name}</p>
+                            <a target="_blank" href={"/security/"+cve.name} rel="noreferrer">{cve.name}</a>
                           </td>
                           <td>
                             {cve.related_usns.map((usn: string) => (
-                              <p key={usn}>{usn}</p>
+                              <p key={usn}>
+                                <a target="_blank" href={"/security/notices/"+usn} rel="noreferrer">{usn}</a>
+                              </p>
                             ))}
                           </td>
                         </tr>
@@ -127,11 +129,11 @@ export default function useCVETable(
                       pkg.critical_cves.map((cve) => (
                         <tr key={cve.name}>
                           <td>
-                            <p>{cve.name}</p>
+                            <a target="_blank" href={"/security/"+cve.name} rel="noreferrer">{cve.name}</a>
                           </td>
                           <td>
                             {cve.related_usns.map((usn: string) => (
-                              <p key={usn}>{usn}</p>
+                              <p key={usn}><a target="_blank" href={"/security/notices/"+usn} rel="noreferrer">{usn}</a></p>
                             ))}
                           </td>
                         </tr>

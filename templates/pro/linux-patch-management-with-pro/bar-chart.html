@@ -1,4 +1,24 @@
+<style>
+  .chart-legend-lts::before, .chart-legend-pro::before {
+    content:"";
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
+  .chart-legend-pro::before {
+    background-color: #e95420;
+  }
+  .chart-legend-lts::before {
+    background-color: #656565;
+  }
+</style>
+
 <canvas id="myChart"></canvas>
+<div class="chart-legend">
+  <p class="chart-legend-lts"><span class="p-heading--5">Packages covered with LTS</span><br/>Standard security maintenance, packages with CVE fixes available for 5 years</p>
+  <p class="chart-legend-pro"><span class="p-heading--5">Packages covered with Ubuntu Pro</span><br/>ESM, packages with CVE fixes available for up to 12 years</p>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
@@ -23,7 +43,7 @@
       },
       plugins: {
         legend: {
-          position: 'bottom',
+          display: false,
         },
         labels:{
           font: {
