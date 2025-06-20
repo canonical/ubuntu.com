@@ -25,9 +25,17 @@ type Props = {
   setError: React.Dispatch<React.SetStateAction<DisplayError | null>>;
   setErrorType: React.Dispatch<React.SetStateAction<string>>;
   coupon: Coupon;
+  setIsTotalLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-function Summary({ products, action, coupon, setError, setErrorType }: Props) {
+function Summary({
+  products,
+  action,
+  coupon,
+  setError,
+  setErrorType,
+  setIsTotalLoading,
+}: Props) {
   const { values } = useFormikContext<FormValues>();
 
   const { data: calculate, isFetching: isCalculateFetching } = useCalculate({
@@ -158,6 +166,10 @@ function Summary({ products, action, coupon, setError, setErrorType }: Props) {
       return;
     }
   }, [error]);
+
+  useEffect(() => {
+    setIsTotalLoading?.(isSummaryLoading);
+  }, [isSummaryLoading]);
 
   let totalSection = (
     <>

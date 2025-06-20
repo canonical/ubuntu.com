@@ -36,6 +36,8 @@ type Props = {
 const Checkout = ({ products, action, coupon }: Props) => {
   const [error, setError] = useState<DisplayError | null>(null);
   const [errorType, setErrorType] = useState<string>("");
+  const [isTotalLoading, setIsTotalLoading] = useState<boolean>(true);
+
   const { data: userInfo, isLoading: isUserInfoLoading } = useCustomerInfo();
   const userCanTrial = window.canTrial;
   const marketplace = products[0].product.marketplace;
@@ -95,85 +97,101 @@ const Checkout = ({ products, action, coupon }: Props) => {
                   action === "purchase")
               }
             >
-              <>
-                <Col emptyLarge={7} size={6}>
-                  <p>* indicates a mandatory field</p>
-                </Col>
-                <List
-                  stepped
-                  detailed
-                  items={[
-                    {
-                      title: "Region and taxes",
-                      content: (
-                        <Taxes products={products} setError={setError} />
-                      ),
-                    },
-                    {
-                      title: "Your purchase",
-                      content: (
-                        <Summary
-                          products={products}
-                          action={action}
-                          coupon={coupon}
-                          setError={setError}
-                          setErrorType={setErrorType}
-                        />
-                      ),
-                    },
-                    ...(product?.price?.value == 0
-                      ? []
-                      : [
-                          {
-                            title: "Your information",
-                            content: <UserInfoForm setError={setError} />,
-                          },
-                        ]),
-                    ...(canTrial
-                      ? [
-                          {
-                            title: "Free trial",
-                            content: (
-                              <FreeTrial products={products} action={action} />
-                            ),
-                          },
-                        ]
-                      : []),
-                    ...(marketplace ===
-                    UserSubscriptionMarketplace.CanonicalProChannel
-                      ? [
-                          {
-                            title: "Additional notes",
-                            content: (
-                              <Strip className="u-no-padding--top">
-                                <AdditionalNotes />
-                              </Strip>
-                            ),
-                          },
-                        ]
-                      : []),
-                    {
-                      title: "Confirm and buy",
-                      content: (
-                        <>
-                          <ConfirmAndBuy products={products} action={action} />
-                          <Row>
-                            <Col emptyLarge={7} size={6}>
-                              <BuyButton
-                                products={products}
-                                action={action}
-                                setError={setError}
-                                coupon={coupon}
-                                errorType={errorType}
-                              />
-                            </Col>
-                          </Row>
-                        </>
-                      ),
-                    },
-                  ]}
-                />
-              </>
+              {({ values }) => (
+                <>
+                  <Col emptyLarge={7} size={6}>
+                    <p>* indicates a mandatory field</p>
+                  </Col>
+                  <List
+                    stepped
+                    detailed
+                    items={[
+                      {
+                        title: "Region and taxes",
+                        content: (
+                          <Taxes products={products} setError={setError} />
+                        ),
+                      },
+                      {
+                        title: "Your purchase",
+                        content: (
+                          <Summary
+                            products={products}
+                            action={action}
+                            coupon={coupon}
+                            setError={setError}
+                            setErrorType={setErrorType}
+                            setIsTotalLoading={setIsTotalLoading}
+                          />
+                        ),
+                      },
+                      ...(product?.price?.value == 0
+                        ? []
+                        : [
+                            {
+                              title: "Your information",
+                              content: <UserInfoForm setError={setError} />,
+                            },
+                          ]),
+                      ...(canTrial
+                        ? [
+                            {
+                              title: "Free trial",
+                              content: (
+                                <FreeTrial
+                                  products={products}
+                                  action={action}
+                                />
+                              ),
+                            },
+                          ]
+                        : []),
+                      ...(marketplace ===
+                      UserSubscriptionMarketplace.CanonicalProChannel
+                        ? [
+                            {
+                              title: "Additional notes",
+                              content: (
+                                <Strip className="u-no-padding--top">
+                                  <AdditionalNotes />
+                                </Strip>
+                              ),
+                            },
+                          ]
+                        : []),
+                      {
+                        title: "Confirm and buy",
+                        content: (
+                          <>
+                            <ConfirmAndBuy
+                              products={products}
+                              action={action}
+                            />
+                            <Row>
+                              <Col emptyLarge={7} size={6}>
+                                <BuyButton
+                                  products={products}
+                                  action={action}
+                                  setError={setError}
+                                  coupon={coupon}
+                                  errorType={errorType}
+                                  isDisabled={
+                                    !(
+                                      values.TermsAndConditions &&
+                                      values.Description &&
+                                      values.captchaValue
+                                    ) || isTotalLoading
+                                  }
+                                />
+                              </Col>
+                            </Row>
+                          </>
+                        ),
+                      },
+                    ]}
+                  />
+                </>
+              )}
             </Formik>
           )}
         </Row>
