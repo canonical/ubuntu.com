@@ -1,0 +1,25 @@
+interactions:
+- request:
+    body: null
+    headers: {}
+    method: GET
+    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/tags?_embed=true&slug=design
+  response:
+    body:
+      string: '<html><body><h1>403 Forbidden</h1>
+
+        Request forbidden by administrative rules.
+
+        </body></html>
+
+
+        '
+    headers:
+      cache-control:
+      - no-cache
+      content-type:
+      - text/html
+    status:
+      code: 403
+      message: Forbidden
+version: 1
