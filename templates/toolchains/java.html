@@ -6,10 +6,13 @@
   https://docs.google.com/document/d/1ShgZyjn6pBG-L5iVd-MEIwc1JRVhaSeUFoImo5iWO-k
 {% endblock meta_copydoc %}
 
-{% block title %}Java support - Canonical builds of OpenJDK for Ubuntu{% endblock %}
+{% block title %}
+  Java support - Canonical builds of OpenJDK for Ubuntu
+{% endblock %}
 
 {% block meta_description %}
-  Explore Canonical’s Java support offering - long term supported builds of OpenJDK, minimal JRE containers and Spring Boot automation
+  Explore Canonical’s Java support offering - long term supported builds of
+  OpenJDK, minimal JRE containers and Spring Boot automation
 {% endblock %}
 
 {% block body_class %}
@@ -21,7 +24,7 @@
 
   {% call(slot) vf_hero(
     title_text='Canonical’s build of OpenJDK for Ubuntu',
-    subtitle_text='Canonical certified builds of OpenJDK with up to 12 years of security maintenance' | safe,
+    subtitle_text='Canonical certified builds of OpenJDK <br class="u-hide--small u-hide--medium" > with up to 12 years of security maintenance' | safe,
     layout='25/75'
   ) -%}
   {%- if slot == 'signpost_image' -%}
@@ -106,7 +109,11 @@
     <div class="row--50-50">
       <div class="col">
         <div class="p-section--shallow">
-          <h2>Predictable OpenJDK release cadence on Ubuntu</h2>
+          <h2>
+            Predictable OpenJDK
+            <br class="u-hide--small u-hide--medium" />
+            release cadence on Ubuntu
+          </h2>
         </div>
       </div>
       <div class="col">
@@ -144,7 +151,7 @@
         </div>
       </div>
       <div class="col">
-        <div class="p-image-container is-highlighted">
+        <div class="p-section--shallow p-image-container is-highlighted">
             {{ image(url="https://assets.ubuntu.com/v1/f4335ae3-security-patching-java.png",
               alt="security patching",
               width="1800",
@@ -253,7 +260,7 @@
       </div>
       <div class="row">
         <div class="col-3 col-start-large-4">
-          <h3 class="p-heading--5">Chiselled Ubuntu for OpenJRE 17</h3>
+          <h3 class="p-heading--5">Chiselled Ubuntu for OpenJRE 21</h3>
         </div>
         <div class="col-6">
           <ul class="p-list--divided">
@@ -327,7 +334,9 @@
       </div>
       <div class="row">
         <div class="col-3 col-start-large-4">
-          <h3 class="p-heading--5">CRaC (Coordinated Restore at Checkpoint)</h3>
+          <h3 class="p-heading--5">
+            CRaC (Coordinated Restore at Checkpoint)
+          </h3>
         </div>
         <div class="col-6">
           <p>
@@ -395,8 +404,7 @@
           <p>
             Canonical is working on a dedicated
             <a href="https://github.com/canonical/openssl-fips-java">
-              OpenSSL-FIPS Java provider
-            </a>,
+              OpenSSL-FIPS Java provider</a>,
             which is undergoing FIPS 140-3 certification process.
           </p>
           <div class="p-cta-block">
