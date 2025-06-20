@@ -50,7 +50,7 @@ jobs:
           status=0
           warnings=0
           ignoreerrors=
-            ^http?s://.* ^.*(471|500|503|504|400)
+            ^http?s://.* ^.*(471|500|503|504|400|403|401)
           EOF
 
       - name: Run linkchecker for 404 errors only
