@@ -2,35 +2,31 @@
 
 {% block title %}Cloud and Server{% endblock %}
 
-{% block meta_description %}All you need to know about designing, building and managing your Openstack private cloud, Kubernetes cluster or Ubuntu Server scale‑out deployment.{% endblock %}
+{% block meta_description %}
+  All you need to know about designing, building, and managing your OpenStack private cloud, Kubernetes cluster or Ubuntu Server scale‑out deployment.
+{% endblock %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
-  <section class="p-strip--suru-blog-header is-dark">
-    <div class="row u-equal-height u-vertically-center">
-      <div class="col-7">
-        <h1 class="p-heading--1">Cloud and Server</h1>
-        <p class="p-heading--4">
-          All you need to know about designing, building and managing your Openstack private cloud, Kubernetes cluster or Ubuntu Server scale‑out deployment.
-        </p>
-        <p>
-          <a class="p-link--inverted" href="/cloud">Learn more about Cloud and Server&nbsp;&rsaquo;</a>
-        </p>
-      </div>
 
-      <div id="rtp-banner" class="rtp-banner"></div>
-    </div>
-  </section>
+  {% with title="Cloud and Server", subtitle="All you need to know about designing, building, and managing your<br /> OpenStack private cloud, Kubernetes cluster or Ubuntu Server scale-out deployment.", cta_link="/cloud", cta_text="Learn more about Cloud and Server" %}
+  {% include 'blog/shared/_topic-header.html' %}
+{% endwith %}
 
-  <section class="p-strip is-shallow{% if current_page and current_page == 1 and upcoming_events %} is-bordered{% endif %}" id="posts-list">
-    {% with topic="cloud-and-server" %}{% include "blog/filters.html" %}{% endwith %}
-    {% include "blog/posts.html" %}
-  </section>
+<section class="p-section" id="posts-list">
+  <div class="row">
+    {% for article in articles %}
+      {% include 'blog/blog-card.html' %}
+    {% endfor %}
+  </div>
+</section>
 
-  <section class="p-strip is-shallow">
-    {% with %}
-      {% set total_pages = total_pages %}
-      {% set current_page = current_page %}
-      {% include "shared/_pagination.html" %}
-    {% endwith %}
-  </section>
+{% with %}
+  {% set total_pages = total_pages %}
+  {% set current_page = current_page %}
+  {% include "blog/shared/_pagination.html" %}
+{% endwith %}
 {% endblock %}

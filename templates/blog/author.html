@@ -1,73 +1,70 @@
 {% extends "templates/one-column.html" %}
 
-{% block title %}{{ author.name }}{% endblock %}
+{% block title %}Blog posts written by {{ author.name }}{% endblock %}
 
-{% block description %}{% if author.id == 217 %}Canonical produces Ubuntu, provides commercial services for Ubuntu's users, and works with hardware manufacturers, software vendors and cloud partners to certify Ubuntu.{% else %}{{ author.description|safe }}{% endif %}{% endblock %}
+{% block description %}
+  {% if author.id == 217 %}
+    Canonical produces Ubuntu, provides commercial services for Ubuntu's users, and works with hardware manufacturers, software vendors and cloud partners to certify Ubuntu.
+  {% else %}
+    {{ author.description|safe }}
+  {% endif %}
+{% endblock %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
-<div class="p-strip">
-  <div class="row">
-    <div class="col-8">
-      <div class="p-media-object u-no-margin--bottom">
-        {% if author.id == 217 %}
-          <img src="https://assets.ubuntu.com/v1/f16c40d0-Favicon+-+CoF.svg" class="p-media-object__image" alt="">
-        {% else %}
-          <img src="{{ author.avatar_urls['96'] }}" class="p-media-object__image is-round" alt="">
-        {% endif %}
-        <div class="p-media-object__details">
-          <h1 class="p-media-object__title">
-            {{ author.name }}
-          </h1>
-          {% if author.user_job_title %}
-            <p class="p-media-object__content"><em>{{ author.user_job_title }}</em></p>
-          {% endif %}
 
-          {% if author.id == 217 %}
-            <p class="p-media-object__content" style="margin-top: 1rem;">Canonical produces Ubuntu, provides commercial services for Ubuntu's users, and works with hardware manufacturers, software vendors and cloud partners to certify Ubuntu.</p>
-          {% elif author.description %}
-            <p class="p-media-object__content" style="margin-top: 1rem;">{{ author.description | safe }}</p>
-          {% endif %}
-
-          <ul class="p-inline-list u-no-margin--bottom">
-            {% if author.user_twitter %}
-              <li class="p-inline-list__item">
-                <a href="https://twitter.com/{{ author.user_twitter }}"><i class="p-icon--twitter"></i></a>
-              </li>
-            {% endif %}
-
-            {% if author.user_facebook %}
-              <li class="p-inline-list__item">
-                <a href="https://www.facebook.com/{{ author.user_facebook }}"><i class="p-icon--facebook"></i></a>
-              </li>
-            {% endif %}
-          </ul>
+  <section class="p-strip">
+    <div class="row p-section">
+      <div class="col-3 col-medium-2 u-hide--small">
+        <div class="p-image-wrapper">
+          {% if author.id != 217 %}<img src="{{ author.avatar_urls['96'] }}" alt="{{ author.name }}" />{% endif %}
         </div>
       </div>
+      <div class="col-6 col-start-large-4 col-medium-4 col-start-medium-3 col-small-4">
+        <h1>{{ author.name }}</h1>
+        <p class="p-muted-heading">{{ total_posts }} posts</p>
+
+        {% if author.user_job_title %}<h2>{{ author.user_job_title }}</h2>{% endif %}
+
+        {% if author.id == 217 %}
+          <p>
+            Canonical produces Ubuntu, provides commercial services for Ubuntu's users, and works with hardware manufacturers, software vendors and cloud partners to certify Ubuntu.
+          </p>
+        {% elif author.description %}
+          <p>{{ author.description | safe }}</p>
+        {% endif %}
+
+        <ul class="p-inline-list u-no-margin--bottom">
+          {% if author.user_twitter %}
+            <li class="p-inline-list__item">
+              <a href="https://twitter.com/{{ author.user_twitter }}"><i class="p-icon--twitter"></i></a>
+            </li>
+          {% endif %}
+
+          {% if author.user_facebook %}
+            <li class="p-inline-list__item">
+              <a href="https://www.facebook.com/{{ author.user_facebook }}"><i class="p-icon--facebook"></i></a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
     </div>
-  </div>
-</div>
-
-<div class="p-strip--light">
-  <div class="u-fixed-width">
-    <h3 class="p-heading--5">{{ total_posts }} posts by {{ author.name }}</h3>
-  </div>
-
-  <div class="row u-equal-height u-clearfix">
-    {% for article in articles %}
-      {% if (loop.index - 1) % 3 == 0 and loop.index > 1 %}
-        </div>
-        <div class="row u-equal-height u-clearfix">
-      {% endif %}
-
-      {% include 'blog/blog-card.html' %}
-    {% endfor %}
-  </div>
-  <section class="p-strip is-shallow">
-    {% with %}
-      {% set total_pages = total_pages %}
-      {% set current_page = current_page %}
-      {% include "shared/_pagination.html" %}
-    {% endwith %}
   </section>
-</div>
+  <section class="p-section" id="posts-list">
+    <div class="row">
+      {% for article in articles %}
+        {% include 'blog/blog-card.html' %}
+      {% endfor %}
+    </div>
+  </section>
+
+  {% with %}
+    {% set total_pages = total_pages %}
+    {% set current_page = current_page %}
+    {% include "blog/shared/_pagination.html" %}
+  {% endwith %}
+
 {% endblock %}
