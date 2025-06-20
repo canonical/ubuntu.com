@@ -182,7 +182,7 @@ const ProContent = ({
           <Col size={7}>
             <div className="p-section--shallow">
               <p>Package covered with LTS</p>
-              {selectedPackages.filter((pkg)=>packagePocketMap.get(pkg)?.startsWith("esm")).map((pkg) => (
+              {selectedPackages.filter((pkg)=>!packagePocketMap.get(pkg)?.startsWith("esm")).map((pkg) => (
                 <Chip
                 key={pkg}
                 value={pkg}
@@ -190,7 +190,7 @@ const ProContent = ({
                 />
               ))}
               <p>Package needing ESM to receive security fixes</p>
-              {selectedPackages.filter((pkg)=>!packagePocketMap.get(pkg)?.startsWith("esm")).map((pkg) => (
+              {selectedPackages.filter((pkg)=>packagePocketMap.get(pkg)?.startsWith("esm")).map((pkg) => (
                 <Chip
                   key={pkg}
                   value={pkg}
