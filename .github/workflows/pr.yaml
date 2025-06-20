@@ -87,7 +87,7 @@ jobs:
         run: dotrun lint-python
 
   lint-jinja:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
@@ -167,7 +167,7 @@ jobs:
           SEARCH_API_KEY: fake-key
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: python
@@ -193,7 +193,7 @@ jobs:
           yarn test-js --coverage
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           flags: javascript
           commit_parent: ${{ github.event.pull_request.base.sha || github.event.before }}
