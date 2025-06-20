@@ -125,6 +125,7 @@ CSP = {
         "google.com",
         "fonts.google.com",
         "api.text.com",
+        "raw.githubusercontent.com",
     ],
     "frame-src": [
         "'self'",
