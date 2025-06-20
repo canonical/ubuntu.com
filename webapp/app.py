@@ -155,6 +155,7 @@ from webapp.views import (
     build_engage_index,
     build_engage_page,
     build_engage_pages_sitemap,
+    build_engage_pages_metadata,
     build_tutorials_index,
     build_tutorials_query,
     download_server_steps,
@@ -636,6 +637,11 @@ engage_pages = EngagePages(
 app.add_url_rule(
     "/engage/sitemap.xml",
     view_func=build_engage_pages_sitemap(engage_pages),
+)
+
+app.add_url_rule(
+    "/engage/metadata.json",
+    view_func=build_engage_pages_metadata(engage_pages),
 )
 
 app.add_url_rule(
