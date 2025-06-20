@@ -107,6 +107,7 @@ const ProContent = ({
           </Col>
           <Col size={7}>
             <div className="p-section--shallow">
+              <p>Package covered with Ubuntu Pro</p>
               {selectedPackages.map((pkg) => (
                 <Chip
                   key={pkg}
@@ -164,6 +165,10 @@ const ProContent = ({
                 </>,
               ]}
             />
+            <div className="p-cta-block">
+              <a className="p-button--positive" href="/pro/subscribe">Start a 30-day free trial</a>
+              <a href="/pro/free-trial">Learn more about the free trial for enterprises &rsaquo;</a>
+            </div>
           </Col>
         </Row>
       </div>
@@ -176,15 +181,20 @@ const ProContent = ({
           </Col>
           <Col size={7}>
             <div className="p-section--shallow">
-              {selectedPackages.map((pkg) => (
+              <p>Package covered with LTS</p>
+              {selectedPackages.filter((pkg)=>packagePocketMap.get(pkg)?.startsWith("esm")).map((pkg) => (
+                <Chip
+                key={pkg}
+                value={pkg}
+                appearance="positive"
+                />
+              ))}
+              <p>Package needing ESM to receive security fixes</p>
+              {selectedPackages.filter((pkg)=>!packagePocketMap.get(pkg)?.startsWith("esm")).map((pkg) => (
                 <Chip
                   key={pkg}
                   value={pkg}
-                  appearance={
-                    packagePocketMap.get(pkg)?.startsWith("esm")
-                      ? "negative"
-                      : "positive"
-                  }
+                  appearance="negative"
                 />
               ))}
             </div>
