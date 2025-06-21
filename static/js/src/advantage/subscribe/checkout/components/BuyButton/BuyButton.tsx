@@ -30,6 +30,7 @@ type Props = {
   action: Action;
   coupon?: Coupon;
   errorType: string;
+  isDisabled: boolean;
 };
 
 const BuyButton = ({
@@ -38,12 +39,13 @@ const BuyButton = ({
   action,
   coupon,
   errorType,
+  isDisabled,
 }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const isBuyButtonDisabled = useMemo(() => {
-    return isLoading || errorType === "cue-banned";
-  }, [isLoading, errorType]);
+    return isLoading || errorType === "cue-banned" || isDisabled;
+  }, [isLoading, errorType, isDisabled]);
 
   const {
     values,
