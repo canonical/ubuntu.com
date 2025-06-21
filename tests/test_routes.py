@@ -18,7 +18,7 @@ class TestRoutes(VCRTestCase):
     def _get_vcr_kwargs(self):
         """
         This removes the authorization header
-        from VCR so we don"t record auth parameters
+        from VCR so we don't record auth parameters
         """
         return {
             "filter_headers": [
@@ -55,23 +55,33 @@ class TestRoutes(VCRTestCase):
 
         self.assertEqual(self.client.get("/mirrors.json").status_code, 200)
 
-    def test_blog(self):
+    def test_blog_index_page(self):
         """
-        Check blog pages work.
-        This checks that the blog module is correctly
-        integrated.
+        Check the main blog index page loads correctly.
         """
+        response = self.client.get("/blog")
+        self.assertEqual(response.status_code, 200)
 
-        self.assertEqual(self.client.get("/blog").status_code, 200)
-        self.assertEqual(
-            self.client.get("/blog/topics/design").status_code, 200
-        )
-        self.assertEqual(
-            self.client.get("/blog/internet-of-things").status_code, 200
-        )
-        self.assertEqual(
-            self.client.get("/blog/installing-ros-in-lxd").status_code, 200
-        )
+    def test_blog_topic_design_page(self):
+        """
+        Check the 'design' topic page loads correctly.
+        """
+        response = self.client.get("/blog/topics/design")
+        self.assertEqual(response.status_code, 200)
+
+    def test_blog_category_iot_page(self):
+        """
+        Check the 'internet-of-things' category page loads correctly.
+        """
+        response = self.client.get("/blog/internet-of-things")
+        self.assertEqual(response.status_code, 200)
+
+    def test_blog_post_lxd_page(self):
+        """
+        Check a specific blog post page loads correctly.
+        """
+        response = self.client.get("/blog/installing-ros-in-lxd")
+        self.assertEqual(response.status_code, 200)
 
     def test_tutorials_homepage(self):
         """
