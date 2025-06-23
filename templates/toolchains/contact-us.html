@@ -1,0 +1,16 @@
+{% extends "toolchains/base_toolchains.html" %}
+
+{% block title %}Contact Canonical{% endblock %}
+
+{% block content %}
+
+  {% with h1='Contact us – Toolchains',
+    intro_text="",
+    formid="6296",
+    lpId="",
+    returnURL="/toolchains#contact-form-success",
+    howManyVM=True %}
+    {% include "shared/_default-contact-us-form.html" %}
+  {% endwith %}
+
+{% endblock content %}
