@@ -12,7 +12,11 @@ import {
   SearchAndFilterData,
 } from "@canonical/react-components/dist/components/SearchAndFilter/types";
 import { LTSReleases } from "../utils/constants";
-import { releaseToLTSEndYear, releaseToProEndYear } from "../utils/helpers";
+import {
+  mapOriginToCoverage,
+  releaseToLTSEndYear,
+  releaseToProEndYear,
+} from "../utils/helpers";
 
 type Props = {
   cveData: CVEDataType;
@@ -53,12 +57,13 @@ const ProContent = ({
   const packagePocketMap = useMemo(() => {
     const map = new Map<string, string>();
     cveData.packages.forEach((pkg) => {
-      if (pkg.pocket) {
-        map.set(pkg.package_name, pkg.pocket);
-      }
+      map.set(
+        pkg.package_name,
+        mapOriginToCoverage(selectedRelease, pkg.pocket),
+      );
     });
     return map;
-  }, [cveData.packages]);
+  }, [cveData]);
 
   const handleUpdate = (searchData: SearchAndFilterChip[]) => {
     if (searchData.length === 0) {
@@ -66,6 +71,7 @@ const ProContent = ({
     } else {
       setSelectedPackages(searchData.map((chip) => chip.value));
     }
+    console.log("packagePocketMap:", packagePocketMap);
   };
   return (
     <>
@@ -128,7 +134,8 @@ const ProContent = ({
               ticked
               items={[
                 <>
-                  Expanded security maintenance until {releaseToProEndYear(selectedRelease)}
+                  Expanded security maintenance until{" "}
+                  {releaseToProEndYear(selectedRelease)}
                   <br />{" "}
                   <span className="u-text--muted">
                     CVE fixes availablefor all packages
@@ -166,8 +173,12 @@ const ProContent = ({
               ]}
             />
             <div className="p-cta-block">
-              <a className="p-button--positive" href="/pro/subscribe">Start a 30-day free trial</a>
-              <a href="/pro/free-trial">Learn more about the free trial for enterprises &rsaquo;</a>
+              <a className="p-button--positive" href="/pro/subscribe">
+                Start a 30-day free trial
+              </a>
+              <a href="/pro/free-trial">
+                Learn more about the free trial for enterprises &rsaquo;
+              </a>
             </div>
           </Col>
         </Row>
@@ -181,22 +192,24 @@ const ProContent = ({
           </Col>
           <Col size={7}>
             <div className="p-section--shallow">
-              <p>Package covered with LTS</p>
-              {selectedPackages.filter((pkg)=>!packagePocketMap.get(pkg)?.startsWith("esm")).map((pkg) => (
-                <Chip
-                key={pkg}
-                value={pkg}
-                appearance="positive"
-                />
-              ))}
-              <p>Package needing ESM to receive security fixes</p>
-              {selectedPackages.filter((pkg)=>packagePocketMap.get(pkg)?.startsWith("esm")).map((pkg) => (
-                <Chip
-                  key={pkg}
-                  value={pkg}
-                  appearance="negative"
-                />
-              ))}
+              {selectedPackages.filter(
+                (pkg) => packagePocketMap.get(pkg) === "LTS",
+              ).length > 0 && <p>Package covered with LTS</p>}
+              {selectedPackages
+                .filter((pkg) => packagePocketMap.get(pkg) === "LTS")
+                .map((pkg) => (
+                  <Chip key={pkg} value={pkg} appearance="positive" />
+                ))}
+              {selectedPackages.filter(
+                (pkg) => packagePocketMap.get(pkg) === "Ubuntu Pro",
+              ).length > 0 && (
+                <p>Package needing ESM to receive security fixes</p>
+              )}
+              {selectedPackages
+                .filter((pkg) => packagePocketMap.get(pkg) === "Ubuntu Pro")
+                .map((pkg) => (
+                  <Chip key={pkg} value={pkg} appearance="negative" />
+                ))}
             </div>
             <p>
               Out-the-box security coverage that comes standard with
@@ -208,7 +221,8 @@ const ProContent = ({
               ticked
               items={[
                 <>
-                  Standard security maintenance until {releaseToLTSEndYear(selectedRelease)}
+                  Standard security maintenance until{" "}
+                  {releaseToLTSEndYear(selectedRelease)}
                   <br />{" "}
                   <span className="u-text--muted">
                     CVE fixes available for some packages
@@ -219,8 +233,8 @@ const ProContent = ({
                   <br />{" "}
                   <span className="u-text--muted">
                     {selectedPackages
-                      .filter((pkg) =>
-                        packagePocketMap.get(pkg)?.startsWith("esm"),
+                      .filter(
+                        (pkg) => packagePocketMap.get(pkg) === "Ubuntu Pro",
                       )
                       .map((pkg) => (
                         <p key={pkg}>{pkg}</p>

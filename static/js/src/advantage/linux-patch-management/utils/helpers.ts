@@ -53,7 +53,10 @@ export const releaseToProEndYear = (release: string): string => {
   }
 };
 
-export const mapOriginToCoverage = (release: string, origin: string): string => {
+export const mapOriginToCoverage = (
+  release: string,
+  origin: string,
+): string => {
   const LTSEndYear = releaseToLTSEndYear(release);
   const thisYear = new Date().getFullYear();
   if (thisYear >= LTSEndYear) {

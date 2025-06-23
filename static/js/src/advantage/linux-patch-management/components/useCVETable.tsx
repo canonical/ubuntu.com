@@ -109,12 +109,24 @@ export default function useCVETable(
                       pkg.high_cves.map((cve) => (
                         <tr key={cve.name}>
                           <td>
-                            <a target="_blank" href={"/security/"+cve.name} rel="noreferrer">{cve.name}</a>
+                            <a
+                              target="_blank"
+                              href={"/security/" + cve.name}
+                              rel="noreferrer"
+                            >
+                              {cve.name}
+                            </a>
                           </td>
                           <td>
                             {cve.related_usns.map((usn: string) => (
                               <p key={usn}>
-                                <a target="_blank" href={"/security/notices/"+usn} rel="noreferrer">{usn}</a>
+                                <a
+                                  target="_blank"
+                                  href={"/security/notices/" + usn}
+                                  rel="noreferrer"
+                                >
+                                  {usn}
+                                </a>
                               </p>
                             ))}
                           </td>
@@ -124,11 +136,25 @@ export default function useCVETable(
                       pkg.critical_cves.map((cve) => (
                         <tr key={cve.name}>
                           <td>
-                            <a target="_blank" href={"/security/"+cve.name} rel="noreferrer">{cve.name}</a>
+                            <a
+                              target="_blank"
+                              href={"/security/" + cve.name}
+                              rel="noreferrer"
+                            >
+                              {cve.name}
+                            </a>
                           </td>
                           <td>
                             {cve.related_usns.map((usn: string) => (
-                              <p key={usn}><a target="_blank" href={"/security/notices/"+usn} rel="noreferrer">{usn}</a></p>
+                              <p key={usn}>
+                                <a
+                                  target="_blank"
+                                  href={"/security/notices/" + usn}
+                                  rel="noreferrer"
+                                >
+                                  {usn}
+                                </a>
+                              </p>
                             ))}
                           </td>
                         </tr>
