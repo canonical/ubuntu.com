@@ -2,26 +2,27 @@
 
 {% block title %}People and culture{% endblock %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block content %}
 
-  <section class="p-strip--suru-blog-header">
-    <div class="u-fixed-width">
-      <h1>People and culture</h1>
-      <p class="p-heading--4">
-        Read about our people led initiatives that define our culture.
-      </p>
+  {% with title="People and culture", subtitle="Read about our people led initiatives that define our culture." %}
+    {% include 'blog/shared/_topic-header.html' %}
+  {% endwith %}
+
+  <section class="p-section" id="posts-list">
+    <div class="row">
+      {% for article in articles %}
+        {% include 'blog/blog-card.html' %}
+      {% endfor %}
     </div>
   </section>
 
-  <section class="p-strip is-shallow">
-    {% include 'blog/posts.html' %}
-  </section>
-
-  <section class="p-strip is-shallow">
-    {% with %}
-      {% set total_pages = total_pages %}
-      {% set current_page = current_page %}
-      {% include "shared/_pagination.html" %}
-    {% endwith %}
-  </section>
+  {% with %}
+    {% set total_pages = total_pages %}
+    {% set current_page = current_page %}
+    {% include "blog/shared/_pagination.html" %}
+  {% endwith %}
 {% endblock %}
