@@ -29,7 +29,7 @@
   {% if not is_grouped %}
     <section class="p-section--deep">
       <div class="row">
-        <div class="col-9 col-start-large-4 col-medium-4 col-start-medium-3">
+        <div class="col-9 col-start-large-4">
           <div class="u-fixed-width" style="display: flex; gap: 2rem;">
             <h2 class="p-text--small-caps u-no-margin">Year</h2>
             <h2 class="p-text--small-caps">Month</h2>
@@ -38,11 +38,14 @@
           <ul class="p-list--divided">
             {% for year in descending_years(2006) %}
               <li class="p-list__item">
-                <div class="u-fixed-width" style="display: flex; gap: 2rem;">
-                  <div>
+                <div class="u-fixed-width"
+                     style="display: flex;
+                            gap: 2rem;
+                            align-items: center">
+                  <h3 class="p-heading--6 u-no-padding u-no-margin">
                     <a aria-label="See blogs from {{ year }}"
                        href="/blog/archives?year={{ year }}">{{ year }}</a>
-                  </div>
+                  </h3>
                   <div>
                     {% for month in months_list(year) %}
                       <a aria-label="See blogs from {{ month.name }}{{ year }}"
