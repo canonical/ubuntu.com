@@ -52,3 +52,15 @@ export const releaseToProEndYear = (release: string): string => {
       throw new Error(`Unknown release: ${release}`);
   }
 };
+
+export const mapOriginToCoverage = (release: string, origin: string): string => {
+  const LTSEndYear = releaseToLTSEndYear(release);
+  const thisYear = new Date().getFullYear();
+  if (thisYear >= LTSEndYear) {
+    return "Ubuntu Pro";
+  }
+  if (origin === "universe") {
+    return "Ubuntu Pro";
+  }
+  return "LTS";
+};

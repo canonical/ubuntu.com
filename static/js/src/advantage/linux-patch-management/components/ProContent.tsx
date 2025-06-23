@@ -61,7 +61,6 @@ const ProContent = ({
   }, [cveData.packages]);
 
   const handleUpdate = (searchData: SearchAndFilterChip[]) => {
-    console.log("Search data:", searchData);
     if (searchData.length === 0) {
       setSelectedPackages([]);
     } else {

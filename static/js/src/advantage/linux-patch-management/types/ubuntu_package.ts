@@ -5,15 +5,10 @@ export type UbuntuPackage = {
   version: string;
   high_cves: {
     name: string;
-    published_at: string;
-    fixed_at: string;
     related_usns: string[];
   }[];
   critical_cves: {
     name: string;
-    cvss_severity: string;
-    published_at: string;
-    fixed_at: string;
     related_usns: string[];
   }[];
 };

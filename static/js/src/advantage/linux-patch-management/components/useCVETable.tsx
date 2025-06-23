@@ -2,10 +2,12 @@ import { MainTableRow } from "@canonical/react-components/dist/components/MainTa
 import { useMemo } from "react";
 import { UbuntuPackage } from "../types/ubuntu_package";
 import { Button, Col, Icon, Row } from "@canonical/react-components";
+import { mapOriginToCoverage } from "../utils/helpers";
 
 export default function useCVETable(
   cveData: UbuntuPackage[] = [],
   packageFilter: string = "",
+  selectedRelease: string = "jammy",
   selectedPackage: string = "",
   setSelectedPackage: (pkg: string) => void = () => {},
   selectedSeverity: string = "",
@@ -20,13 +22,6 @@ export default function useCVETable(
     setSelectedPackage(pkg.package_name);
     setSelectedSeverity(severity);
   };
-
-  const mapPocketToCoverage = new Map<string, string>();
-  mapPocketToCoverage.set("release", "LTS");
-  mapPocketToCoverage.set("updates", "LTS");
-  mapPocketToCoverage.set("esm-apps", "Ubuntu Pro");
-  mapPocketToCoverage.set("esm-infra", "Ubuntu Pro");
-  mapPocketToCoverage.set("security", "Ubuntu Pro");
 
   const rows = useMemo<MainTableRow[]>((): MainTableRow[] => {
     if (!cveData || cveData.length === 0) {
@@ -94,7 +89,7 @@ export default function useCVETable(
             },
             {
               content: (
-                <p>{mapPocketToCoverage.get(pkg.pocket) || pkg.pocket}</p>
+                <p>{mapOriginToCoverage(selectedRelease, pkg.pocket)}</p>
               ),
             },
           ],

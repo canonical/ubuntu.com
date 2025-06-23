@@ -16,6 +16,7 @@ const CVETable = () => {
   const tableData = useCVETable(
     cveData?.packages || [],
     packageFilter,
+    selectedRelease,
     selectedPackage,
     setSelectedPackage,
     selectedSeverity,
