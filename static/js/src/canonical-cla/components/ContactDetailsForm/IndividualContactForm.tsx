@@ -3,7 +3,6 @@ import {
   FormikField,
   Input,
   Select,
-  Textarea,
 } from "@canonical/react-components";
 import { useMutation } from "@tanstack/react-query";
 import { useSignForm } from "canonical-cla/contexts/SignForm";
@@ -14,6 +13,7 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import GithubEmailSelector from "../GithubEmailSelector";
 import LaunchpadEmailSelector from "../LaunchpadEmailSelector";
+import { formatAddress } from "canonical-cla/utils/address";
 
 const IndividualFormSchema = Yup.object<
   Omit<IndividualSignForm, "agreement_type">
@@ -22,8 +22,10 @@ const IndividualFormSchema = Yup.object<
     first_name: Yup.string().max(50).required().label("First name"),
     last_name: Yup.string().max(50).required().label("Last name"),
     phone_number: Yup.string().max(20).required().label("Phone number"),
-
-    address: Yup.string().max(400).required().label("Address"),
+    street_address: Yup.string().max(200).required().label("Street address"),
+    city: Yup.string().max(100).required().label("City"),
+    state_province: Yup.string().max(100).label("State/Province"),
+    postal_code: Yup.string().max(20).required().label("Postal/ZIP code"),
     country: Yup.string().required().label("Country"),
     github_email: Yup.string().max(100).nullable().label("GitHub email"),
     launchpad_email: Yup.string().max(100).nullable().label("Launchpad email"),
@@ -41,7 +43,9 @@ const IndividualFormSchema = Yup.object<
 const IndividualContactForm = () => {
   const { changeStep } = useSignForm();
   const [storedValues, setStoredValues, resetStoredValues] =
-    usePersistedForm<IndividualSignForm>("individual-form");
+    usePersistedForm<Yup.InferType<typeof IndividualFormSchema>>(
+      "individual-form",
+    );
   const submitSignForm = useMutation({
     mutationFn: postIndividualSignForm,
     onSuccess: () => {
@@ -52,8 +56,25 @@ const IndividualContactForm = () => {
     },
   });
 
-  const handleSubmit = (values: IndividualSignForm) => {
-    submitSignForm.mutate(values);
+  const handleSubmit = (values: Yup.InferType<typeof IndividualFormSchema>) => {
+    const address = formatAddress({
+      street_address: values.street_address,
+      city: values.city,
+      state_province: values.state_province,
+      postal_code: values.postal_code,
+      country: values.country,
+    });
+    const formData: IndividualSignForm = {
+      agreement_type: "individual",
+      first_name: values.first_name,
+      last_name: values.last_name,
+      phone_number: values.phone_number,
+      address,
+      country: values.country,
+      github_email: values.github_email || undefined,
+      launchpad_email: values.launchpad_email || undefined,
+    };
+    submitSignForm.mutate(formData);
   };
   return (
     <Formik
@@ -91,19 +112,43 @@ const IndividualContactForm = () => {
               maxLength={20}
             />
             <FormikField
-              component={Textarea}
-              name="address"
-              label="Address"
+              component={Input}
+              name="street_address"
+              label="Street address"
               required
-              maxLength={400}
+              type="text"
+              maxLength={200}
+            />
+            <FormikField
+              component={Input}
+              name="city"
+              label="City"
+              required
+              type="text"
+              maxLength={100}
+            />
+            <FormikField
+              component={Input}
+              name="state_province"
+              label="State/Province"
+              type="text"
+              maxLength={100}
+            />
+            <FormikField
+              component={Input}
+              name="postal_code"
+              label="Postal/ZIP code"
+              required
+              type="text"
+              maxLength={20}
             />
             <FormikField
               component={Select}
-              label="Country"
+              label="Country/Region"
               name="country"
               defaultValue={""}
               options={[
-                { label: "Choose a country", value: "", disabled: true },
+                { label: "Choose a country/region", value: "", disabled: true },
                 ...window.COUNTRIES_LIST.map((country) => ({
                   label: country.name,
                   value: country.alpha2,
@@ -111,7 +156,6 @@ const IndividualContactForm = () => {
               ]}
               required
             />
-
             <h5 id="choose-emails">* Choose at least one email address:</h5>
             <p className="p-form-help-text">
               Contributors may use either their chosen email address or their

@@ -1617,10 +1617,21 @@ ol.p-list--divided .p-list__item::before {
   row-gap: 0.5rem;
 }
 
-@media screen and (max-width: #{ $breakpoint-large - 1 }) {
-  .u-table-horizontal-scroll {
+@media screen and ((max-width: #{ $breakpoint-large - 1 }) and (min-width: $breakpoint-medium)) {
+  .u-table-scroll--medium {
     overflow-x: hidden;
-    .u-table-horizontal-scroll__table {
+    table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }
+}
+
+@media screen and (max-width: #{ $breakpoint-medium - 1 }) {
+  .u-table-scroll--small {
+    overflow-x: hidden;
+    table {
       display: block;
       overflow-x: auto;
       white-space: nowrap;

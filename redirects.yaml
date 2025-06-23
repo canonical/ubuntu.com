@@ -62,6 +62,10 @@ appliance/tutorials/?: "https://documentation.ubuntu.com/core/tutorials/build-yo
 appliance/portfolio/?: "/appliance"
 appliance/vm/?: "/appliance/hardware#vm"
 assesment-terms/?: "/legal"
+automotive/?: "https://canonical.com/solutions/automotive"
+automotive/developers/?: "https://canonical.com/solutions/automotive"
+automotive/resources/?: "https://canonical.com/solutions/automotive"
+automotive/buyers-guide/?: "https://canonical.com/solutions/automotive/buyers-guide"
 cloud/openstack/?: "/openstack"
 bigdata/?: "/server#built-for-big-data"
 blog/topic/?: "/blog"
@@ -269,6 +273,7 @@ community/participate/?:  "https://discourse.ubuntu.com/t/contribute/26"
 /community/ubuntustory/licensing?:  "https://help.ubuntu.com/community/License"
 /community/ubuntustory(/.*)?/?:  "/community"
 contact/CDDistributor/?: "/download/desktop"
+contact-us/form/thank-you/?: "/contact-us/thank-you"
 contact/marketplace/?: "https://partner-portal.canonical.com/"
 contact/trademark/?: "/legal/terms-and-policies/contact-us"
 contact/trademarkviolation/?: "/legal/terms-and-policies/contact-us"
@@ -609,7 +614,9 @@ kubernetes/partners/?: "/kubernetes"
 kubernetes/cloud-native-kubernetes-usage-report-2021/?: "https://juju.is/cloud-native-kubernetes-usage-report-2021"
 kubernetes/kubernetes-operations-survey/?: "/kubernetes"
 landscape/pricing: "/landscape/compare"
-landscape/install: "/landscape/docs/quickstart-deployment"
+landscape/install: "https://documentation.ubuntu.com/landscape/how-to-guides/landscape-installation-and-set-up/quickstart-installation/"
+landscape/docs(?P<path>.*)/?: "https://documentation.ubuntu.com/landscape/{path}"
+landscape/docs/?: "https://documentation.ubuntu.com/landscape/"
 legal/bootstack/?:  "/legal/managed-services"
 legal/dataprivacy(?P<page>.*)/?: "/legal/data-privacy{page}"
 legal/data-privacy-enquiry/?: "/legal/data-privacy/enquiry"
@@ -1033,6 +1040,8 @@ tutorials/microstack-get-started? : /openstack/tutorials
 tutorials/install-openstack-with-conjure-up? : /openstack/tutorials
 tutorials/electron-kiosk/?: https://mir-server.io/docs/make-a-secure-ubuntu-web-kiosk
 tutorials/get-started-with-edgex-as-snaps?: /internet-of-things
+tutorials/how-to-install-adguard-home-raspberry-pi/?: /appliance/adguard/raspberry-pi
+tutorials/how-to-use-the-nextcloud-ubuntu-appliance-with-collabora-online-on-intel-nuc/?: /appliance/nextcloud/intel-nuc
 
 # Image builder
 build: /core/build
