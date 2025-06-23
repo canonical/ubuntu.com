@@ -1,58 +1,52 @@
-{% extends "advantage/base_advantage.html" %}
+{% extends "advantage/base_advantage.html" %} {% block title %}{% if user_info
+%}Ubuntu Pro Dashboard{% else %}Ubuntu Pro{% endif %}{% endblock %} {% block
+meta_description %}Ubuntu Pro offers a single, per-node packaging of the most
+comprehensive software, security and IaaS support in the industry, with
+OpenStack support, Kubernetes support included, and Livepatch, Landscape and
+Expanded Security Maintenance to address security and compliance concerns.{%
+endblock %} {% block meta_copydoc
+%}https://docs.google.com/document/d/1So3n5HEpBX39xxEkkChnve09gKSr9TgYUcbfdOTCevk/edit{%
+endblock meta_copydoc %} 
 
-{% block title %}{% if user_info %}Ubuntu Pro Dashboard{% else %}Ubuntu Pro{% endif %}{% endblock %}
-{% block meta_description %}Ubuntu Pro offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry, with OpenStack support, Kubernetes support included, and Livepatch, Landscape and Expanded Security Maintenance to address security and compliance concerns.{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1So3n5HEpBX39xxEkkChnve09gKSr9TgYUcbfdOTCevk/edit{% endblock meta_copydoc %}
-
-{% block content %}
+{% block content %} 
 
 {% if user_info %}
+  {% if is_in_maintenance %}
   <section class="p-strip--suru-topped u-no-padding--bottom">
-    {% if is_in_maintenance %}
     <div class="row">
       <div class="col-12">
         <div class="p-notification--caution">
           <div class="p-notification__content">
-            <h5 class="p-notification__title">Ubuntu Pro store is in maintenance</h5>
-            <p class="p-notification__message">Subscriptions cannot be edited online until maintenance completes. Please retry shortly.</p>
+            <h5 class="p-notification__title">
+              Ubuntu Pro store is in maintenance
+            </h5>
+            <p class="p-notification__message">
+              Subscriptions cannot be edited online until maintenance completes.
+              Please retry shortly.
+            </p>
           </div>
         </div>
       </div>
-    </div>
-    {% endif %}
-
-    <script>
-      dataLayer.push({
-        'event' : 'GAEvent',
-        'eventCategory' : 'Advantage',
-        'eventAction' : 'Authentication',
-        'eventLabel' : 'Logged in',
-        'eventValue' : undefined
-      });
-    </script>
-
-    <div class="row u-equal-height u-sv3">
-      <div class="col-5 u-vertically-center">
-        <h1 class="p-subscriptions__header-title">Your subscriptions</h1>
-      </div>
-      {% if not is_technical %}
-        <div class="col-7 u-vertically-center u-align--right">
-          <div>
-            {% if not is_in_maintenance %}
-              <a class="p-button--positive" href="/pro/subscribe">Buy new subscription</a>
-            {% endif %}
-            <a class="p-button" href="/account/invoices">Invoices</a>
-            <a class="p-button" href="/account/payment-methods">Payment methods</a>
-          </div>
-        </div>
-      {% endif %}
     </div>
   </section>
+  {% endif %}
+
+  <script>
+    dataLayer.push({
+      event: "GAEvent",
+      eventCategory: "Advantage",
+      eventAction: "Authentication",
+      eventLabel: "Logged in",
+      eventValue: undefined,
+    });
+  </script>
 
   <div id="react-root">
     <section class="p-strip u-no-padding--top">
       <div class="row">
-        <div class="col-12 u-no-margin--bottom p-card"><i class="p-icon--spinner u-animation--spin"></i> Loading&hellip;</div>
+        <div class="col-12 u-no-margin--bottom p-card">
+          <i class="p-icon--spinner u-animation--spin"></i> Loading&hellip;
+        </div>
       </div>
     </section>
   </div>
@@ -60,6 +54,8 @@
 
 <script>
   window.stripePublishableKey = "{{ get_stripe_publishable_key }}";
+  localStorage.setItem("isTechnical", {{ is_technical|lower }});
+  localStorage.setItem("isInMaintenance", {{ is_in_maintenance|lower }});
 </script>
 
 <script
@@ -68,6 +64,7 @@
   defer
 ></script>
 
-{% with first_item="_ua_got_questions", second_item="_ua_legal", third_item="_ua_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
-
-{% endblock content %}
+{% with first_item="_ua_got_questions", second_item="_ua_legal",
+third_item="_ua_further_reading" %}{% include
+"shared/contextual_footers/_contextual_footer.html" %}{% endwith %} {% endblock
+content %}

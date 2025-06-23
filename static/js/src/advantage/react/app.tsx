@@ -8,6 +8,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useLoadWindowData } from "./hooks";
 import Subscriptions from "./components/Subscriptions";
 import { StripePublishableKey } from "advantage/api/types";
+import HeaderStrip from "./components/Subscriptions/HeaderStrip";
 
 declare global {
   interface Window {
@@ -44,6 +45,7 @@ export const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <Elements stripe={stripePromise}>
+        <HeaderStrip />
         <Subscriptions />
       </Elements>
       <ReactQueryDevtools initialIsOpen={false} />
