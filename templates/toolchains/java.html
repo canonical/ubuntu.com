@@ -1,0 +1,437 @@
+{% extends "toolchains/base_toolchains.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1ShgZyjn6pBG-L5iVd-MEIwc1JRVhaSeUFoImo5iWO-k
+{% endblock meta_copydoc %}
+
+{% block title %}
+  Java support - Canonical builds of OpenJDK for Ubuntu
+{% endblock %}
+
+{% block meta_description %}
+  Explore Canonical’s Java support offering - long term supported builds of
+  OpenJDK, minimal JRE containers and Spring Boot automation
+{% endblock %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+
+
+  {% call(slot) vf_hero(
+    title_text='Canonical’s build of OpenJDK for Ubuntu',
+    subtitle_text='Canonical certified builds of OpenJDK <br class="u-hide--small u-hide--medium" > with up to 12 years of security maintenance' | safe,
+    layout='25/75'
+  ) -%}
+  {%- if slot == 'signpost_image' -%}
+  <img src="https://assets.ubuntu.com/v1/4551cb49-openjdk-signpost-logo.png" alt="OpenJDK">
+  {%- endif -%}
+  {%- if slot == 'description' -%}
+  <p>
+    Innovate with Java and run your preferred build of OpenJDK on Ubuntu. Bring
+    stability to your Java environment with up to 12 years of long-term support
+    for all OpenJDK LTS releases, through Ubuntu Pro. Put stability and
+    compliance at the heart of your applications with rigorous TCK validation,
+    minimal runtime containers and FIPS-certified cryptographic modules.
+  </p>
+  {%- endif -%}
+  {%- if slot == 'cta' -%}
+  <a 
+    href="https://documentation.ubuntu.com/ubuntu-for-developers/howto/java-setup/#install-java"
+    class="p-button--positive u-no-margin--bottom"
+  >
+    Use OpenJDK on Ubuntu
+  </a>
+  <a 
+    href="https://pages.ubuntu.com/rs/066-EOV-335/images/Canonical%20Java%20Datasheet_Oct%202024.pdf?version=0&_gl=1*dc53fo*_gcl_au*MjEwNjk5MDg3Ni4xNzQ4MjUwNDgy"
+    class="p-button u-no-margin--bottom"
+  >
+    Download the datasheet
+  </a>
+  {%- endif -%}
+  {%- endcall -%}
+
+  <div class="p-section u-fixed-width">
+    <hr class="p-rule" />
+    <div class="row">
+      <div class="p-section--shallow">
+        <h2>Canonical OpenJDK releases</h2>
+      </div>
+    </div>
+    <div class="row--25-75">
+      <div class="col">
+        <table aria-label="Vanilla framework table example">
+          <thead>
+            <tr>
+              <th>OpenJDK release</th>
+              <th>GA date</th>
+              <th>Ubuntu LTS version availability</th>
+              <th>LTS support until</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>8 (LTS)</td>
+              <td>2014</td>
+              <td>24.04, 22.04, 20.04, 18.04</td>
+              <td>At least 2034</td>
+            </tr>
+            <tr>
+              <td>11 (LTS)</td>
+              <td>2018</td>
+              <td>24.04, 22.04, 20.04, 18.04</td>
+              <td>At least 2034</td>
+            </tr>
+            <tr>
+              <td>17 (LTS)</td>
+              <td>2021</td>
+              <td>24.04, 22.04, 20.04, 18.04</td>
+              <td>At least 2034</td>
+            </tr>
+            <tr>
+              <td>21 (LTS)</td>
+              <td>2023</td>
+              <td>24.04, 22.04, 20.04</td>
+              <td>At least 2034</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <section class="p-section u-fixed-width">
+    <hr class="p-rule" />
+    <div class="row--50-50">
+      <div class="col">
+        <div class="p-section--shallow">
+          <h2>
+            Predictable OpenJDK
+            <br class="u-hide--small u-hide--medium" />
+            release cadence on Ubuntu
+          </h2>
+        </div>
+      </div>
+      <div class="col">
+        <p>
+          Bring stability and predictability by running Java on Ubuntu. Ubuntu
+          releases follow an established, reliable cadence that offers you both
+          the latest features of Ubuntu, and support for the newest LTS
+          versions of Open JDK.
+        </p>
+        <p>
+          Here are the details:
+        </p>
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">
+            Starting with Ubuntu 24.04, every new Ubuntu LTS release will ship
+            with the latest OpenJDK LTS release.
+          </li>
+          <li class="p-list__item is-ticked">
+            Likewise, each new interim Ubuntu release will include features
+            from the latest interim OpenJDK releases. This makes it simple for
+            developers to experiment with the latest versions as soon as
+            possible.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section u-fixed-width">
+    <hr class="p-rule" />
+    <div class="row--50-50">
+      <div class="col">
+        <div class="p-section--shallow">
+          <h2>Receive up to 12 years of security patching and maintenance</h2>
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/f4335ae3-security-patching-java.png",
+              alt="security patching",
+              width="1800",
+              height="1200",
+              hi_def=True,
+              loading="auto|lazy"
+              ) | safe
+            }}
+        </div>
+        <p>
+          Extend the security support period for your OpenJDK LTS build to up
+          to 12 years, through Ubuntu Pro – Canonical’s comprehensive
+          subscription for open source security.
+        </p>
+        <p>
+          Using OpenJDK on Ubuntu gives developers the freedom to focus on
+          making impactful applications that deliver for customers with
+          expanded security maintenance for the latest OpenJDK LTS releases
+          running until 2034.
+        </p>
+        <div class="p-cta-block">
+          <a class="p-button" href="https://ubuntu.com/pricing/pro">Get support with Ubuntu Pro</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="p-section u-fixed-width">
+    <hr class="p-rule">
+    <div class="row">
+      <div class="col-6">
+        <div class="p-section--shallow">
+          <h2>Secure, minimal containers for OpenJRE</h2>
+        </div>
+      </div>
+      <div class="col-6">
+        <p>
+          Canonical provides chiseled containers for OpenJRE (Open Java Runtime
+          Environment), coming from the OpenJDK project.
+        </p>
+        <p>
+          These containers provide a significant reduction in size compared to
+          Apache Temurin, without presenting any throughput or startup
+          performance degradation.
+        </p>
+        <p>
+          The images are available for both AMD64 and ARM64 architectures, and
+          benefit from up to 12 years of security support with Ubuntu Pro
+        </p>
+        <div class="p-cta-block">
+          <a class="p-button" href="https://hub.docker.com/r/ubuntu/jre">
+            Download on Dockerhub
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="p-section--shallow">
+      <div class="row">
+        <div class="col-9 col-start-large-4">
+          <hr class="is-muted">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3 col-start-large-4">
+          <h3 class="p-heading--5">Chiselled Ubuntu for OpenJRE 8</h3>
+        </div>
+        <div class="col-6">
+          <ul class="p-list--divided">
+            <li class="p-list__item has-bullet">37MB AMD64 compressed image size</li>
+            <li class="p-list__item has-bullet">38MB ARM64 compressed image size</li>
+            <li class="p-list__item has-bullet">~52% smaller than Apache Temurin</li>
+            <li class="p-list__item">
+              <a href="https://github.com/rockcrafters/chiselled-jre/tree/channels/8/edge">
+                View the GitHub repo ›
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-9 col-start-large-4">
+          <hr class="is-muted">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3 col-start-large-4">
+          <h3 class="p-heading--5">Chiselled Ubuntu for OpenJRE 17</h3>
+        </div>
+        <div class="col-6">
+          <ul class="p-list--divided">
+            <li class="p-list__item has-bullet">44MB AMD64 compressed image size</li>
+            <li class="p-list__item has-bullet">42MB ARM64 compressed image size</li>
+            <li class="p-list__item has-bullet">~51% smaller than Apache Temurin</li>
+            <li class="p-list__item">
+              <a href="https://github.com/rockcrafters/chiselled-jre/tree/channels/17/edge">
+                View the GitHub repo ›
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-9 col-start-large-4">
+          <hr class="is-muted">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3 col-start-large-4">
+          <h3 class="p-heading--5">Chiselled Ubuntu for OpenJRE 21</h3>
+        </div>
+        <div class="col-6">
+          <ul class="p-list--divided">
+            <li class="p-list__item has-bullet">50MB AMD64 compressed image size</li>
+            <li class="p-list__item has-bullet">51MB ARM64 compressed image size</li>
+            <li class="p-list__item has-bullet">~56% smaller than Apache Temurin</li>
+            <li class="p-list__item">
+              <a href="https://github.com/canonical/jre-rock/tree/channels/21/edge">
+                View the GitHub repo ›
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-section u-fixed-width">
+    <hr class="p-rule">
+    <div class="row">
+      <div class="col-6">
+        <div class="p-section--shallow">
+          <h2>Improved Java application startup with GraalVM and CRaC</h2>
+        </div>
+      </div>
+      <div class="col-6">
+        <p>
+          Java apps have strong runtime performance, but experience slow
+          startup times due to JVM initialization and just-in-time compilation.
+        </p>
+        <p>
+          GraalVM and CRaC are two projects that tackle this challenge – which
+          is why we’re packaging and delivering long term security maintenance
+          to both – ensuring developers can build modern, Java-based
+          microservice architectures.
+        </p>
+      </div>
+    </div>
+    <div class="p-section--shallow">
+      <div class="row">
+        <div class="col-9 col-start-large-4">
+          <hr class="is-muted">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3 col-start-large-4">
+          <h3 class="p-heading--5">GraalVM snap</h3>
+        </div>
+        <div class="col-6">
+          <p>
+            GraalVM is an
+            <a href="https://github.com/oracle/graal">Oracle project</a>
+            bringing advanced JDK with ahead-of-time Native Image compilation
+            to solve  Java's slow startup problem.
+          </p>
+          <p>
+            We have created a snap to make it easier for developers to access
+            the latest GraalVM features and build smaller, faster applications.
+          </p>
+          <div class="p-cta-block">
+            <a class="p-button" href="https://snapcraft.io/graalvm-jdk">
+              Install the GraalVM snap
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-9 col-start-large-4">
+          <hr class="is-muted">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3 col-start-large-4">
+          <h3 class="p-heading--5">
+            CRaC (Coordinated Restore at Checkpoint)
+          </h3>
+        </div>
+        <div class="col-6">
+          <p>
+            CRaC is designed to address Java slow startup time by taking a
+            snapshot (checkpoint) of a running, warmed-up JVM instance,
+            including the application state.
+          </p>
+          <p>
+            We provide CRaC-enabled versions of OpenJDK in the archive, making
+            it easier for developers to adopt the technology and receive up to
+            12 years of security updates.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-section u-fixed-width">
+    <hr class="p-rule">
+    <div class="row">
+      <div class="p-section--shallow">
+        <h2>Correctness and cryptographic compliance</h2>
+      </div>
+    </div>
+    <div class="p-section--shallow">
+      <div class="row">
+        <div class="col-9 col-start-large-4">
+          <hr class="is-muted">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3 col-start-large-4">
+          <h3 class="p-heading--5">TCK validation</h3>
+        </div>
+        <div class="col-6">
+          <p>
+            Canonical OpenJDK 17 and 21 distributions are verified using using
+            the <a href="https://adoptium.net/aqavit/">Eclipse AQAvit by
+            Adoptium</a> testing framework on Ubuntu 24.04 on the following
+            architectures:
+          </p>
+          <ul class="p-list--divided">
+            <li class="p-list__item has-bullet">AMD64</li>
+            <li class="p-list__item has-bullet">ARM64</li>
+            <li class="p-list__item has-bullet">s390x</li>
+            <li class="p-list__item has-bullet">Ppc64el</li>
+            <li class="p-list__item has-bullet">RISC-V</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-9 col-start-large-4">
+          <hr class="is-muted">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3 col-start-large-4">
+          <h3 class="p-heading--5">FIPS compliance</h3>
+        </div>
+        <div class="col-6">
+          <p>
+            With Ubuntu Pro, you can get access to <b>openjdk-11-fips</b>, which
+            bundles FIPS 140-2 certified BouncyCastle with openjdk-11.
+          </p>
+          <p>
+            Canonical is working on a dedicated
+            <a href="https://github.com/canonical/openssl-fips-java">
+              OpenSSL-FIPS Java provider</a>,
+            which is undergoing FIPS 140-3 certification process.
+          </p>
+          <div class="p-cta-block">
+            <a class="p-button" href="https://github.com/canonical/openssl-fips-java">
+              Learn more
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="p-rule is-fixed-width" />
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <h2>
+        <a 
+          href="/toolchains/contact-us"
+          class="js-invoke-modal"
+          aria-controls="toolchains-modal"
+        >
+          Talk to us about your Java workloads on Ubuntu ›
+        </a>
+      </h2>
+    </div>
+  </section>
+
+  {{ load_form("/toolchains") | safe }}
+
+{% endblock content %}

@@ -7,6 +7,7 @@ import json
 import os
 import html
 from webapp.shop.api.ua_contracts.api import (
+    AccessForbiddenError,
     UAContractsAPIErrorView,
     UAContractsUserHasNoAccount,
 )
@@ -847,26 +848,36 @@ def cred_your_exams(
         else:
             exam_contracts = []
 
-    is_banned = True
-    account = None
-    try:
-        account = advantage_mapper.get_purchase_account("canonical-ua")
-    except UAContractsUserHasNoAccount:
-        flask.render_template(
-            "credentials/your-exams.html",
-            agreement_notification=agreement_notification,
-            exams=[],
-            show_cred_maintenance_alert=show_cred_maintenance_alert,
-            cred_is_in_maintenance=cred_is_in_maintenance,
-            cred_maintenance_start=cred_maintenance_start,
-            cred_maintenance_end=cred_maintenance_end,
-        )
     cue_products = get_cue_products(type="exam").get_json()
     productListingID = None
     if cue_products and len(cue_products) > 0:
         productListingID = cue_products[0]["longId"]
     else:
         flask.abort(404)
+
+    account = None
+    try:
+        account = advantage_mapper.ensure_purchase_account(
+            "canonical-cube", user["email"]
+        )
+    except UAContractsUserHasNoAccount:
+        flask.current_app.extensions["sentry"].captureException(
+            extra={
+                "user_info": user_info(flask.session),
+                "request_url": flask.request.url,
+                "request_headers": flask.request.headers,
+            }
+        )
+        return flask.jsonify({}), 404
+    except AccessForbiddenError:
+        flask.current_app.extensions["sentry"].captureException(
+            extra={
+                "user_info": user_info(flask.session),
+                "request_url": flask.request.url,
+                "request_headers": flask.request.headers,
+            }
+        )
+        return flask.jsonify({"error": "access forbidden"}), 403
 
     purchase_request = {
         "accountID": account.id,
@@ -881,6 +892,7 @@ def cred_your_exams(
         "coupon": None,
     }
 
+    is_banned = True
     banned_error = (
         "invalid purchase: user has been banned "
         + "from purchasing products in the canonical-cube marketplace"
@@ -1451,9 +1463,6 @@ def cred_submit_form(**_):
 
 @shop_decorator(area="cube", permission="user", response="html")
 def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
-    is_staging = "staging" in os.getenv(
-        "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
-    )
     exam_index = 0
     try:
         exam_index = int(flask.request.args.get("exam_index", 0))
@@ -1470,12 +1479,26 @@ def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
             "account/forbidden.html", reason="channel_account"
         )
 
+    is_staging = "staging" in os.getenv(
+        "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
+    )
+    is_production = not is_staging
     exams_file = open("webapp/shop/cred/exams.json", "r")
     exams = json.load(exams_file)
-    if not is_staging:
-        old_metadata = exams[1]["metadata"]
-        exams[1]["metadata"] = [old_metadata[0]]
     cue_products = get_cue_products(type="exam").json
+    user = user_info(flask.session)
+    for exam in exams:
+        exam_open_to = exam.get(
+            "openTo", {"production": False, "staging": False}
+        )
+        is_disabled = (is_staging and not exam_open_to["staging"]) or (
+            is_production and not exam_open_to["production"]
+        )
+        is_internal_user = user.get("email", "").endswith("@canonical.com")
+        exam["disabled"] = is_disabled
+        if exam["id"] == "cue-02-desktop" and not is_internal_user:
+            exam["disabled"] = True
+
     for product in cue_products:
         for exam in exams:
             if product["id"] == exam["id"]:
@@ -1487,8 +1510,6 @@ def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
                 exam["marketplace"] = product["marketplace"]
                 exam["name"] = product["name"]
                 exam["periodQuantity"] = product["effectiveDays"]
-
-    # purchase account required for purchasing from marketplace
 
     return flask.render_template(
         "credentials/shop/index.html",

@@ -10,6 +10,7 @@ env:
 
 jobs:
   perf-checks:
+    if: github.repository == 'canonical/ubuntu.com'
     runs-on: ubuntu-latest
 
     steps:
