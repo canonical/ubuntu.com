@@ -1173,6 +1173,7 @@ def render_security_standards_blogs():
             4633,
             4749,
         ],
+        excluded_tags=[3184, 3265],
         per_page=4,
         blog_title="Security standards blogs",
     )
