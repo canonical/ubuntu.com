@@ -4,45 +4,28 @@
 
 {% block meta_description %}All the latest news on robotics from Canonical.{% endblock %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block content %}
 
-  <section class="p-strip--suru-blog-header is-dark">
-    <div class="row u-equal-height">
-      <div class="col-7">
-        <h1>Robotics</h1>
+  {% with title="Robotics", subtitle="Whether you're starting in the lab or already in production,<br /> Canonical can help manage the complexity of the open source software<br /> underpinning your robot's brains and personality.", cta_link="/internet-of-things/robotics", cta_text="Learn more about robotics from Canonical" %}
+  {% include 'blog/shared/_topic-header.html' %}
+{% endwith %}
 
-        <p class="p-heading--4">
-          Whether you're starting in the lab or already in production, Canonical can help manage the complexity of the open-source software underpinning your robot's brains and personality.
-        </p>
+<section class="p-section" id="posts-list">
+  <div class="row">
+    {% for article in articles %}
+      {% include 'blog/blog-card.html' %}
+    {% endfor %}
+  </div>
+</section>
 
-        <p>
-          <a class="p-link--inverted" href="/internet-of-things/robotics">Learn more about robotics from Canonical&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-
-      <div class="col-5 u-align--center u-vertically-center">
-        {{ image(url="https://assets.ubuntu.com/v1/5ee71af0-Robot+arm+-+white.svg",
-                alt="",
-                height="201",
-                width="200",
-                hi_def=True,
-                loading="auto",
-                attrs={"class": "u-hide--small"}) | safe
-        }}
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip is-shallow">
-    {% include 'blog/posts.html' %}
-  </section>
-
-  <section class="p-strip is-shallow">
-    {% with %}
-      {% set total_pages = total_pages %}
-      {% set current_page = current_page %}
-      {% include "shared/_pagination.html" %}
-    {% endwith %}
-  </section>
+{% with %}
+  {% set total_pages = total_pages %}
+  {% set current_page = current_page %}
+  {% include "blog/shared/_pagination.html" %}
+{% endwith %}
 
 {% endblock %}

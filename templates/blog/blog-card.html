@@ -1,33 +1,53 @@
-<div class="col-4 col-medium-2 blog-p-card--post">
-  {% include "blog/blog-card-header.html" %}
-
-  <div class="blog-p-card__content">
-
-    {% if article.image and article.image.source_url %}
-    <div class="u-crop--16-9">
-      <a href="/blog/{{ article.slug }}" aria-hidden="true" tabindex="-1">
-        {{ article.image.rendered|safe }}
-      </a>
+<div class="p-section--shallow">
+  <div class="row">
+    {% if is_featured %}<h2 class="p-text--small-caps">Featured</h2>{% endif %}
+    <hr class="p-rule" />
+    <div class="aside col-3 col-medium-2 u-hide--small">
+      <p>
+        <a href="/blog/author/{{ article.author.slug }}">{{ article.author.name }}</a>
+        <br />
+        {{ article.date }}
+      </p>
     </div>
-    {% endif %}
-
-    <h3 class="p-heading--4">
-      <a href="/blog/{{ article.slug }}">{{ article.title.rendered|safe }}</a>
-    </h3>
-
-    <p>
-      <em>by
-        <a href="/blog/author/{{article.author.slug}}">{{ article.author.name }}</a>
-        on {{ article.date }}</em>
-    </p>
-
-      {% if summary_visible or not article.image.source_url %}
-      <p class="{% if summary_visible %}u-hide--small{% endif %}" style="padding-top:1rem;">{{ article.excerpt.raw.replace("[…]", "")|truncate(162) }}</p>
+    <div class="col-6 col-medium-4">
+      <h3 class="p-heading--4">
+        <a href="/blog/{{ article.slug }}">{{ article.title.rendered|safe }}</a>
+      </h3>
+      <span class="p-chip--information">
+        <span class="p-chip__value">{% include 'blog/singular-category.html' %}</span>
+      </span>
+      <span class="p-chip--information">
+        <span class="p-chip__value">
+          {% if request.path == "topic/blog/cloud-and-server" %}
+            Cloud and Server
+          {% elif request.path == "topic/blog/desktop" %}
+            Desktop
+          {% elif request.path == "topic/blog/internet-of-things" %}
+            Internet of Things
+          {% else %}
+            {% if article.group %}
+              {{ article.group.name }}
+            {% else %}
+              Ubuntu
+            {% endif %}
+          {% endif %}
+        </span>
+      </span>
+      <p class="p-blog_excerpt u-hide--small u-hide--medium">{{ article.excerpt.raw.replace('[…]', '') |truncate(325) }}</p>
+    </div>
+    <div class="col-3 u-hide--small u-hide--medium">
+      {% if article.image and article.image.source_url %}
+        <a href="/blog/{{ article.slug }}" aria-hidden="true" tabindex="-1">
+          <div class="p-image-wrapper">{{ article.image.rendered|safe }}</div>
+        </a>
       {% endif %}
+    </div>
+    <div class="aside col-3 col-medium-2 u-hide--medium u-hide--large">
+      <p>
+        <a href="/blog/author/{{ article.author.slug }}">{{ article.author.name }}</a>
+        <br />
+        {{ article.date }}
+      </p>
+    </div>
   </div>
-
-  <p class="blog-p-card__footer">
-    {% include 'blog/singular-category.html' %}
-  </p>
 </div>
-
