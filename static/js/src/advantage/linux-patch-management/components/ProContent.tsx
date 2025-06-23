@@ -12,6 +12,7 @@ import {
   SearchAndFilterData,
 } from "@canonical/react-components/dist/components/SearchAndFilter/types";
 import { LTSReleases } from "../utils/constants";
+import { releaseToLTSEndYear, releaseToProEndYear } from "../utils/helpers";
 
 type Props = {
   cveData: CVEDataType;
@@ -128,7 +129,7 @@ const ProContent = ({
               ticked
               items={[
                 <>
-                  Expanded security maintenance until XXXX
+                  Expanded security maintenance until {releaseToProEndYear(selectedRelease)}
                   <br />{" "}
                   <span className="u-text--muted">
                     CVE fixes availablefor all packages
@@ -208,7 +209,7 @@ const ProContent = ({
               ticked
               items={[
                 <>
-                  Standard security maintenance until XXXX
+                  Standard security maintenance until {releaseToLTSEndYear(selectedRelease)}
                   <br />{" "}
                   <span className="u-text--muted">
                     CVE fixes available for some packages
