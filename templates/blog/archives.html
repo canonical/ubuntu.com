@@ -11,7 +11,7 @@
 
   <section class="p-strip">
     <div class="row {{ 'p-section' if is_grouped else '' }}">
-      <div class="col-9 col-start-large-4 col-medium-4 col-start-medium-3">
+      <div class="col-9 col-start-large-4">
         {% if is_grouped %}
           <h1>
             {% if request.args.month %}{{ month_name(request.args.month) }}{% endif %}
