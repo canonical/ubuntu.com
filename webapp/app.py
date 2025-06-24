@@ -1264,3 +1264,12 @@ app.add_url_rule(
     view_func=build_sitemap_tree(DYNAMIC_SITEMAPS),
     methods=["GET", "POST"],
 )
+
+
+def test_flask_base():
+    import os
+
+    return os.environ["TEST_ENV"]
+
+
+app.add_url_rule("/testflaskbase", view_func=test_flask_base)
