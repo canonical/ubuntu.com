@@ -1,4 +1,4 @@
-import { Col, Row } from "@canonical/react-components";
+import { Col, ContextualMenu, Row } from "@canonical/react-components";
 
 const HeaderStrip = () => {
   const isTechnical = localStorage.getItem("isTechnical") === "true";
@@ -17,12 +17,31 @@ const HeaderStrip = () => {
                   Buy new subscription
                 </a>
               )}
-              <a className="p-button" href="/account/invoices">
-                Invoices
-              </a>
-              <a className="p-button" href="/account/payment-methods">
-                Payment methods
-              </a>
+              <ContextualMenu
+                hasToggleIcon
+                position={"left"}
+                toggleLabel="Billing and users"
+                links={[
+                  {
+                    children: "Invoices",
+                    onClick: () => {
+                      window.location.href = "/account/invoices";
+                    }
+                  },
+                  {
+                    children: "Payment methods",
+                    onClick: () => {
+                      window.location.href = "/account/payment-methods";
+                    }
+                  },
+                  {
+                    children: "Users",
+                    onClick: () => {
+                      window.location.href = "/pro/users";
+                    }
+                  },
+                ]}
+              />
             </div>
           </Col>
         )}
