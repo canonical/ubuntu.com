@@ -224,7 +224,7 @@ const BuyButton = ({
         description: (
           <>
             VAT number could not be validated at this time, please try again
-            later or contact
+            later or contact{" "}
             <a href="mailto:customersuccess@canonical.com">
               customer success
             </a>{" "}
