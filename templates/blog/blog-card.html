@@ -13,10 +13,10 @@
       <h3 class="p-heading--4">
         <a href="/blog/{{ article.slug }}">{{ article.title.rendered|safe }}</a>
       </h3>
-      <span class="p-chip--information">
+      <span class="p-chip">
         <span class="p-chip__value">{% include 'blog/singular-category.html' %}</span>
       </span>
-      <span class="p-chip--information">
+      <span class="p-chip">
         <span class="p-chip__value">
           {% if request.path == "topic/blog/cloud-and-server" %}
             Cloud and Server
