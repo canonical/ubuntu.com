@@ -49,3 +49,22 @@
     </div>
   </div>
 </div>
+<div id="contact-form-fail" class="p-popup-notification">
+  <div class="p-notification--negative u-no-margin--bottom">
+    <div class="p-notification__content">
+      <p class="p-notification__message">
+        {% with messages = get_flashed_messages(with_categories=True) %}
+          {% for category, message in messages %}
+            {% if category == "contact-form-fail" %}{{ message }}{% endif %}
+          {% endfor %}
+          {% if not messages %}
+            An error occurred while submitting your form.
+          {% endif %}
+          Please try again or 
+          <a href="https://github.com/canonical/ubuntu.com/issues/new?template=ISSUE_TEMPLATE.yaml">file a bug report.</a>
+        {% endwith %}
+        <a href="#" onclick="location.href = document.referrer; return false;"><i class="p-notification__close">Close</i></a>
+      </p>
+    </div>
+  </div>
+</div>

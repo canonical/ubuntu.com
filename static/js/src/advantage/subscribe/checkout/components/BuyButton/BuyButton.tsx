@@ -224,10 +224,8 @@ const BuyButton = ({
         description: (
           <>
             VAT number could not be validated at this time, please try again
-            later or contact
-            <a href="mailto:customersuccess@canonical.com">
-              customer success
-            </a>{" "}
+            later or contact{" "}
+            <a href="mailto:customersuccess@canonical.com">customer success</a>{" "}
             if the problem persists.
           </>
         ),

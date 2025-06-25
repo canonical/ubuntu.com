@@ -910,6 +910,17 @@ def marketo_submit():
     original_form_id = form_fields.get("formid", 4198)
     enrichment_fields["original_form_id"] = original_form_id
 
+    if "formid" not in form_fields:
+        flask.flash(
+            "There was a problem submitting your form.",
+            "contact-form-fail",
+        )
+        flask.current_app.extensions["sentry"].captureMessage(
+            "Marketo form ID missing",
+            extra={"enrichment_fields": enrichment_fields},
+        )
+        return flask.redirect(f"{referrer}#contact-form-fail")
+
     payload = {
         "formId": form_fields.pop("formid"),
         "input": [
@@ -988,30 +999,78 @@ def marketo_submit():
 
     # Send enrichment data
     try:
-        marketo_api.submit_form(enriched_payload).json()
+        enrichment_submission = marketo_api.submit_form(
+            enriched_payload
+        ).json()
     except Exception:
         pass
 
-    if return_url:
-        # Personalize thank-you page
-        flask.session["form_details"] = {
-            "name": flask.request.form.get("firstName"),
-            "email": flask.request.form.get("email"),
-        }
+    # Redirect to success page only if both submissions were successful
+    payload_status = data["result"][0]["status"]
+    if (
+        enrichment_submission["success"] is True
+        and payload_status == "updated"
+    ):
+        if return_url:
+            # Personalize thank-you page
+            flask.session["form_details"] = {
+                "name": flask.request.form.get("firstName"),
+                "email": flask.request.form.get("email"),
+            }
 
-        if return_url.startswith("http://") or return_url.startswith(
-            "https://"
-        ):
+            if return_url.startswith("http://") or return_url.startswith(
+                "https://"
+            ):
+                return flask.redirect(return_url)
+
+            if referrer:
+                parsed_referer = urlparse(referrer)
+                return flask.redirect(
+                    f"{parsed_referer.scheme}://"
+                    f"{parsed_referer.netloc}{return_url}"
+                )
+
             return flask.redirect(return_url)
-
-        if referrer:
-            parsed_referer = urlparse(referrer)
-            return flask.redirect(
-                f"{parsed_referer.scheme}://"
-                f"{parsed_referer.netloc}{return_url}"
+    else:
+        # Log failed form submissions to Sentry and display error notification
+        if (
+            payload_status == "skipped"
+            and enrichment_submission["success"] is False
+        ):
+            flask.current_app.extensions["sentry"].captureMessage(
+                (
+                    f"Marketo form {payload['formId']} and enrichment payload "
+                    "failed to submit"
+                ),
+                extra={
+                    "payload": payload,
+                    "enriched_payload": enriched_payload,
+                },
+            )
+            flask.flash(
+                (
+                    "There was an issue submitting the form contact details "
+                    "and payload."
+                ),
+                "contact-form-fail",
+            )
+        elif payload_status == "skipped":
+            flask.current_app.extensions["sentry"].captureMessage(
+                f"Marketo form {payload['formId']} payload failed to submit",
+                extra={
+                    "payload": payload,
+                    "response": data,
+                    "enrichment_fields": enrichment_fields,
+                },
+            )
+            flask.flash(
+                "There was an issue submitting the form payload.",
+                "contact-form-fail",
             )
 
-        return flask.redirect(return_url)
+        if return_url:
+            return flask.redirect(f"{return_url}#contact-form-fail")
+        return flask.redirect("/#contact-form-fail")
 
     if referrer:
         return flask.redirect(f"/thank-you?referrer={referrer}")

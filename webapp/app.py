@@ -9,6 +9,7 @@ import flask
 import requests
 import talisker.requests
 from jinja2 import ChoiceLoader, FileSystemLoader
+import yaml
 
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
@@ -485,6 +486,9 @@ app.add_url_rule(
 )
 
 app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
+with open("meganav.yaml") as meganav_file:
+    meganav = yaml.load(meganav_file.read(), Loader=yaml.FullLoader)
+
 app.add_url_rule(
     "/search",
     "search",
@@ -493,6 +497,7 @@ app.add_url_rule(
         session=session,
         template_path="search.html",
         search_engine_id=search_engine_id,
+        featured=meganav,
     ),
 )
 
@@ -1173,6 +1178,7 @@ def render_security_standards_blogs():
             4633,
             4749,
         ],
+        excluded_tags=[3184, 3265],
         per_page=4,
         blog_title="Security standards blogs",
     )
