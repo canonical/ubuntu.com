@@ -143,7 +143,7 @@ const ProContent = ({
                   {releaseToProEndYear(selectedRelease)}
                   <br />{" "}
                   <span className="u-text--muted">
-                    CVE fixes availablefor all packages
+                    CVE fixes available for all packages
                   </span>
                 </>,
                 <>
