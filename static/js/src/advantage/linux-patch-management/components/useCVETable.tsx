@@ -7,7 +7,7 @@ import { mapOriginToCoverage } from "../utils/helpers";
 export default function useCVETable(
   cveData: UbuntuPackage[] = [],
   packageFilter: string = "",
-  selectedRelease: string = "jammy",
+  selectedRelease: string = "focal",
   selectedPackage: string = "",
   setSelectedPackage: (pkg: string) => void = () => {},
   selectedSeverity: string = "",

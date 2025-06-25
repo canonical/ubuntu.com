@@ -7,7 +7,7 @@ import { createPortal } from "react-dom";
 import ProContent from "./ProContent";
 
 const CVETable = () => {
-  const [selectedRelease, changeSelectedRelease] = useState("jammy");
+  const [selectedRelease, changeSelectedRelease] = useState("focal");
   const [packageFilter, setPackageFilter] = useState("");
   const { data: cveData, isLoading } = useFetchCVEData(selectedRelease);
   const [selectedPackage, setSelectedPackage] = useState<string>("");

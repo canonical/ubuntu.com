@@ -203,7 +203,7 @@ const ProContent = ({
               {selectedPackages.filter(
                 (pkg) => packagePocketMap.get(pkg) === "Ubuntu Pro",
               ).length > 0 && (
-                <p>Package needing ESM to receive security fixes</p>
+                <p>Package needing Ubuntu Pro to receive security fixes</p>
               )}
               {selectedPackages
                 .filter((pkg) => packagePocketMap.get(pkg) === "Ubuntu Pro")
