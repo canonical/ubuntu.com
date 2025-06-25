@@ -2,25 +2,28 @@
 
 {% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block title %}
   Search results
   {% if query %}for '{{ query }}'{% endif %}
 {% endblock %}
 
 {% block content %}
-
   <div class="p-strip is-shallow">
-    <div class="u-fixed-width">
+    <div class="p-section--shallow u-fixed-width">
       {% if query %}
         {% if estimatedTotal == 0 %}
-          <h1 class="p-heading--2">Sorry we couldn't find "{{ query }}"</h1>
+          <h1>Sorry we couldn't find "{{ query }}"</h1>
           {% if siteSearch %}
             <h3>
               on <a href="https://{{ siteSearch }}">{{ siteSearch }}</a>
             </h3>
           {% endif %}
         {% else %}
-          <h1 class="p-heading--2">Search results for "{{ query }}"</h1>
+          <h1>Search results for "{{ query }}"</h1>
           {% if siteSearch %}
             <h3>
               on <a href="https://{{ siteSearch }}">{{ siteSearch }}</a>
@@ -31,45 +34,80 @@
         <h1>Search Ubuntu and Canonical sites</h1>
       {% endif %}
     </div>
+    {# search form #}
+    <div class="p-section--shallow">
+      <div class="u-fixed-width">
+        <form class="p-search-box" action="/search">
+          <label for="search-input" class="u-off-screen">Search</label>
+          <!-- honeypot search input -->
+          <input type="search"
+                id="search"
+                class="p-search-box__input u-hide "
+                name="search"
+                placeholder="Search our sites"
+                aria-label="Search our sites"
+                value="" />
+          <!-- end of honeypot search input -->
+          <input class="p-search-box__input"
+                name="q"
+                id="search-input"
+                type="search"
+                {% if query %}value="{{ query }}"{% endif %}
+                placeholder="e.g. juju" />
+          {% if siteSearch %}<input name="siteSearch" type="hidden" value="{{ siteSearch }}" />{% endif %}
+          <button type="submit" alt="search" class="p-search-box__button" alt="search">
+            <i class="p-icon--search">Submit</i>
+          </button>
+        </form>
+      </div>
+    </div>
   </div>
-
-  {# search form #}
-  <div class="u-fixed-width">
-    <form class="p-search-box" action="/search">
-      <label for="search-input" class="u-off-screen">Search</label>
-      <!-- honeypot search input -->
-      <input type="search"
-             id="search"
-             class="p-search-box__input u-hide "
-             name="search"
-             placeholder="Search our sites"
-             aria-label="Search our sites"
-             value="" />
-      <!-- end of honeypot search input -->
-      <input class="p-search-box__input"
-             name="q"
-             id="search-input"
-             type="search"
-             {% if query %}value="{{ query }}"{% endif %}
-             placeholder="e.g. juju" />
-      {% if siteSearch %}<input name="siteSearch" type="hidden" value="{{ siteSearch }}" />{% endif %}
-      <button type="submit" alt="search" class="p-search-box__button" alt="search">
-        <i class="p-icon--search">Submit</i>
-      </button>
-    </form>
-  </div>
+  {% if not query %}
+    {% set featured_section = featured["products"]["side_nav_sections"][0] %}
+    {% if featured_section %}
+      <section class="p-section">
+        <div class="p-section--shallow u-fixed-width">
+          <hr class="p-rule" />
+          <h2>{{ featured_section["title"] }}</h2>
+        </div>
+        <div class="p-list--horizontal-section-wrapper">
+          <ul class="p-list--horizontal-section">
+            {% for section in featured_section["primary_links"][0]["links"] %}
+            <li class="p-list__item">
+              <div class="col-3 col-medium-2">
+                <h3 class="p-heading--5 u-no-margin--bottom"><a href="{{ section["url"] }}">{{ section["title"] }}</a></h3>
+                <p>{{ section["description"] }}</p>
+              </div>
+            </li>
+          {% endfor %}
+          </ul>
+        </div>
+      </section>
+      <hr class="p-rule is-fixed-width" />
+      <section class="p-strip is-deep">
+        <div class="u-fixed-width">
+          <p class="p-heading--2">
+            <a href="/contact-us">Get in touch&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </section>
+    {% endif %}
+  {% endif %}
 
   {% if results %}
     {% if results.entries %}
       {% for item in results.entries %}
-        <div class="p-strip is-shallow">
+        <div class="p-section--shallow">
           <div class="row">
-            <div class="col-12">
-              <h5>
-                <a href="{{ item.link }}" class="title-main">{{ item.htmlTitle | safe }}</a>
-              </h5>
+            {% if not loop.first %}
+            <hr class="p-rule--muted u-no-margin--bottom" />
+            {% endif %}
+            <div class="col">
+              <h2 class="p-heading--3 u-no-margin--bottom">
+                <a href="{{ item.link }}">{{ item.htmlTitle | safe }}</a>
+              </h2>
+              <p class="u-no-margin--bottom"><a href="{{ item.link }}" class="u-text--muted">{{ item.htmlFormattedUrl | safe }}</a></p>
               <p>{{ item.htmlSnippet | safe }}</p>
-              <small><a href="{{ item.link }}">{{ item.htmlFormattedUrl | safe }}</a></small>
             </div>
           </div>
         </div>
@@ -91,27 +129,42 @@
         </div>
       </div>
     {% else %}
-      <div class="p-strip">
+      <div class="p-section--deep">
         <div class="row">
-          <div class="col-6">
-            <h3>Why not try widening your search?</h3>
-            <p>You can do this by:</p>
+          <div class="p-notification--negative">
+            <div class="p-notification__content">
+              <h5 class="p-notification__title">Your search "{{ query }}" did not match any notices.</h5>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 col-medium-3">
+            <h2 class="p-heading--4">
+            Why not try widening your search? You can do this by:
+            </h2>
+          </div>
+          <div class="col-4 col-medium-3">
             <ul class="p-list">
               <li class="p-list__item is-ticked">Adding alternative words or phrases</li>
               <li class="p-list__item is-ticked">Using individual words instead of phrases</li>
               <li class="p-list__item is-ticked">Trying a different spelling</li>
             </ul>
           </div>
-          <div class="col-6">
-            <h3>Still no luck?</h3>
-            <ul class="p-list">
-              <li class="p-list__item is-ticked">
-                <a href="/">Visit the Ubuntu homepage</a>
-              </li>
-              <li class="p-list__item is-ticked">
-                <a href="/desktop/contact-us?product=search-page">Contact us</a>
-              </li>
-            </ul>
+        </div>
+        <div class="u-fixed-width">
+          <hr class="p-rule" />
+        </div>
+        <div class="row">
+          <div class="col-4 col-medium-3">
+            <h2 class="p-heading--4">Still no luck?</h2>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p class="u-no-margin--bottom">
+              <a href="/">Visit the Ubuntu homepage</a>
+            </p>
+            <p class="u-no-margin--bottom">
+              <a href="/desktop/contact-us?product=search-page">Contact us</a>
+            </p>
           </div>
         </div>
       </div>
