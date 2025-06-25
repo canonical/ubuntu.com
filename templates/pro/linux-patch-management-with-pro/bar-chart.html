@@ -5,6 +5,7 @@
     width: 24px;
     height: 24px;
     margin-right: 8px;
+    margin-bottom: -0.25em;
   }
   .chart-legend-pro::before {
     background-color: #e95420;
@@ -26,6 +27,7 @@
 
 <script>
   const ctx = document.getElementById('myChart');
+  Chart.defaults.font.family = "Ubuntu";
   new Chart(ctx, {
     options: {
       responsive: true,
@@ -48,11 +50,6 @@
         legend: {
           display: false,
         },
-        labels:{
-          font: {
-            family: 'Ubuntu, sans-serif',
-          },
-        }
       },
     },
     type: 'bar',
