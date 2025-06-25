@@ -566,6 +566,8 @@ def build_engage_pages_metadata(engage_pages):
                                 page.get("author", "")
                             ),  # Author doesn't exist yet
                             "active": str(page.get("active", "")),
+                            "tags": str(page.get("tags", "")),
+                            "type": str(page.get("type", "")),
                         }
                         all_pages.append(sanitized_page)
 
