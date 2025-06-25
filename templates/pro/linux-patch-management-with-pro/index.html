@@ -1,3 +1,6 @@
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+
 {% extends "advantage/base_advantage.html" %}
 
 {% block title %}Linux patch management, solved{% endblock %}
@@ -7,9 +10,6 @@
 {% endblock %}
 
 {% block content %}
-
-  {% from "_macros/vf_hero.jinja" import vf_hero %}
-  {% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
 
   {% call(slot) vf_hero(
     title_text='Linux patch management, solved',
