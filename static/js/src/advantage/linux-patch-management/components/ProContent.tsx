@@ -188,69 +188,71 @@ const ProContent = ({
           </Col>
         </Row>
       </div>
-      {!isEndOfLife(selectedRelease) && <div className="p-section--shallow">
-        <Row>
-          <hr className="p-rule is-muted" />
-          <Col size={2}>
-            <h4>Ubuntu LTS</h4>
-            <h5>(No additional setup needed in your LTS)</h5>
-          </Col>
-          <Col size={7}>
-            <div className="p-section--shallow">
-              {selectedPackages.filter(
-                (pkg) => packagePocketMap.get(pkg) === "LTS",
-              ).length > 0 && <p>Package covered with LTS</p>}
-              {selectedPackages
-                .filter((pkg) => packagePocketMap.get(pkg) === "LTS")
-                .map((pkg) => (
-                  <Chip key={pkg} value={pkg} appearance="positive" />
-                ))}
-              {selectedPackages.filter(
-                (pkg) => packagePocketMap.get(pkg) === "Ubuntu Pro",
-              ).length > 0 && (
-                <p>Package needing Ubuntu Pro to receive security fixes</p>
-              )}
-              {selectedPackages
-                .filter((pkg) => packagePocketMap.get(pkg) === "Ubuntu Pro")
-                .map((pkg) => (
-                  <Chip key={pkg} value={pkg} appearance="negative" />
-                ))}
-            </div>
-            <p>
-              Out-the-box security coverage that comes standard with
-              enterprise-grade Ubuntu releases.
-            </p>
+      {!isEndOfLife(selectedRelease) && (
+        <div className="p-section--shallow">
+          <Row>
             <hr className="p-rule is-muted" />
-            <List
-              divided
-              ticked
-              items={[
-                <>
-                  Standard security maintenance until{" "}
-                  {releaseToLTSEndYear(selectedRelease)}
-                  <br />{" "}
-                  <span className="u-text--muted">
-                    CVE fixes available for some packages
-                  </span>
-                </>,
-                <>
-                  Packages needing ESM to receive security fixes
-                  <br />{" "}
-                  <span className="u-text--muted">
-                    {selectedPackages
-                      .filter(
-                        (pkg) => packagePocketMap.get(pkg) === "Ubuntu Pro",
-                      )
-                      .map((pkg) => (
-                        <p key={pkg}>{pkg}</p>
-                      ))}
-                  </span>
-                </>,
-              ]}
-            />
-          </Col>
-        </Row>
-      </div>}
+            <Col size={2}>
+              <h4>Ubuntu LTS</h4>
+              <h5>(No additional setup needed in your LTS)</h5>
+            </Col>
+            <Col size={7}>
+              <div className="p-section--shallow">
+                {selectedPackages.filter(
+                  (pkg) => packagePocketMap.get(pkg) === "LTS",
+                ).length > 0 && <p>Package covered with LTS</p>}
+                {selectedPackages
+                  .filter((pkg) => packagePocketMap.get(pkg) === "LTS")
+                  .map((pkg) => (
+                    <Chip key={pkg} value={pkg} appearance="positive" />
+                  ))}
+                {selectedPackages.filter(
+                  (pkg) => packagePocketMap.get(pkg) === "Ubuntu Pro",
+                ).length > 0 && (
+                  <p>Package needing Ubuntu Pro to receive security fixes</p>
+                )}
+                {selectedPackages
+                  .filter((pkg) => packagePocketMap.get(pkg) === "Ubuntu Pro")
+                  .map((pkg) => (
+                    <Chip key={pkg} value={pkg} appearance="negative" />
+                  ))}
+              </div>
+              <p>
+                Out-the-box security coverage that comes standard with
+                enterprise-grade Ubuntu releases.
+              </p>
+              <hr className="p-rule is-muted" />
+              <List
+                divided
+                ticked
+                items={[
+                  <>
+                    Standard security maintenance until{" "}
+                    {releaseToLTSEndYear(selectedRelease)}
+                    <br />{" "}
+                    <span className="u-text--muted">
+                      CVE fixes available for some packages
+                    </span>
+                  </>,
+                  <>
+                    Packages needing ESM to receive security fixes
+                    <br />{" "}
+                    <span className="u-text--muted">
+                      {selectedPackages
+                        .filter(
+                          (pkg) => packagePocketMap.get(pkg) === "Ubuntu Pro",
+                        )
+                        .map((pkg) => (
+                          <p key={pkg}>{pkg}</p>
+                        ))}
+                    </span>
+                  </>,
+                ]}
+              />
+            </Col>
+          </Row>
+        </div>
+      )}
     </>
   );
 };
