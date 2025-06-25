@@ -13,6 +13,7 @@ import {
 } from "@canonical/react-components/dist/components/SearchAndFilter/types";
 import { LTSReleases } from "../utils/constants";
 import {
+  isEndOfLife,
   mapOriginToCoverage,
   releaseToLTSEndYear,
   releaseToProEndYear,
@@ -76,33 +77,37 @@ const ProContent = ({
   return (
     <>
       <div className="p-section--shallow">
-        <form className="p-form p-form--inline u-align--right">
-          <div className="p-form__group">
+        <Row>
+          <Col size={5}>
             <SearchAndFilter
               filterPanelData={items}
               returnSearchData={handleUpdate}
             />
-          </div>
-          <div className="p-form__group">
-            <label className="p-form__label" htmlFor="statusFilter">
-              Release
-            </label>
-            <select
-              aria-label="Filter by status"
-              name="statusFilter"
-              id="statusFilter"
-              defaultValue={selectedRelease}
-              onChange={(e) => changeSelectedRelease(e.target.value)}
-              data-testid="quote-status-filter"
-            >
-              {LTSReleases.map((release) => (
-                <option key={release.value} value={release.value}>
-                  {release.label}
-                </option>
-              ))}
-            </select>
-          </div>
-        </form>
+          </Col>
+          <Col size={4}>
+            <form className="p-form p-form--inline u-align--right">
+              <div className="p-form__group">
+                <label className="p-form__label" htmlFor="statusFilter">
+                  Release
+                </label>
+                <select
+                  aria-label="Filter by status"
+                  name="statusFilter"
+                  id="statusFilter"
+                  defaultValue={selectedRelease}
+                  onChange={(e) => changeSelectedRelease(e.target.value)}
+                  data-testid="quote-status-filter"
+                >
+                  {LTSReleases.map((release) => (
+                    <option key={release.value} value={release.value}>
+                      {release.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </form>
+          </Col>
+        </Row>
         <hr className="p-rule is-muted" />
       </div>
       <div className="p-section--shallow">
@@ -183,9 +188,9 @@ const ProContent = ({
           </Col>
         </Row>
       </div>
-      <hr className="p-rule is-muted" />
-      <div className="p-section--shallow">
+      {!isEndOfLife(selectedRelease) && <div className="p-section--shallow">
         <Row>
+          <hr className="p-rule is-muted" />
           <Col size={2}>
             <h4>Ubuntu LTS</h4>
             <h5>(No additional setup needed in your LTS)</h5>
@@ -245,7 +250,7 @@ const ProContent = ({
             />
           </Col>
         </Row>
-      </div>
+      </div>}
     </>
   );
 };

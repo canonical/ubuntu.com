@@ -59,11 +59,27 @@ export const mapOriginToCoverage = (
 ): string => {
   const LTSEndYear = releaseToLTSEndYear(release);
   const thisYear = new Date().getFullYear();
-  if (thisYear >= LTSEndYear) {
+  const thisMonth = new Date().getMonth();
+  if (thisYear >= LTSEndYear && thisMonth > 4) {
     return "Ubuntu Pro";
   }
   if (origin === "universe") {
     return "Ubuntu Pro";
   }
   return "LTS";
+};
+
+export const isEndOfLife = (release: string): boolean => {
+  const endYear = releaseToLTSEndYear(release);
+  const thisYear = new Date().getFullYear();
+  const thisMonth = new Date().getMonth();
+  // If the current year is after the end year, we consider it EOL
+  if (thisYear > endYear) {
+    return true;
+  }
+  // If the current month is after May, we consider it EOL for the next year
+  if (thisYear === endYear && thisMonth > 4) {
+    return true;
+  }
+  return false;
 };
