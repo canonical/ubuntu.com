@@ -185,7 +185,7 @@
                         </span>
                       </span>
                     </li>
-                  {% elif child.path != '/blog/archives' and child.path != '/blog/upcoming' %}
+                  {% elif child.path != '/blog/archives' %}
                     {% set has_access = not child.login_required or child.login_required and user_info %}
                     {% if has_access %}
                       {% if breadcrumbs.section.title == "Ubuntu Pro Distributor" and child.title == "Docs" or child.title == "Discourse" %}
