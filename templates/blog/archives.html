@@ -2,76 +2,79 @@
 
 {% block title %}Archives{% endblock %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block content %}
-  <section class="p-strip--accent is-dark is-deep" style="background-color: #333;">
-    <div class="row u-equal-height u-vertically-center">
-      <div class="col-10">
-        <h1>
-          {% if group %}
-            {{group.name}} archives
-          {% else %}
-            Archives
-          {% endif %}
-        </h1>
+  {% set is_grouped = request.args.month or request.args.year %}
 
-        <p>
-          {{ total_posts }} posts
+  <section class="p-strip">
+    <div class="row {{ 'p-section' if is_grouped else '' }}">
+      <div class="col-9 col-start-large-4">
+        {% if is_grouped %}
+          <h1>
+            {% if request.args.month %}{{ month_name(request.args.month) }}{% endif %}
 
-          {% if request.args.month or request.args.year %} from{% endif %}
-
-          {% if request.args.month %} {{ month_name(request.args.month) }}{% endif %}
-
-          {% if request.args.year %} {{ request.args.year }}{% endif %}
-        </p>
+            {% if request.args.year %}{{ request.args.year }}{% endif %}
+          </h1>
+          <p class="p-text--small-caps">{{ total_posts }} posts</p>
+        {% else %}
+          <h1>Archives</h1>
+        {% endif %}
       </div>
     </div>
   </section>
 
-  <section class="p-strip is-shallow{% if current_page %} is-bordered{% endif %}" id="posts-list">
-    <div class="row">
-      <div class="col-8">
-        {% for article in articles %}
-          <div class="p-media-object">
-            <div class="p-media-object__details">
-              <h3 class="p-media-object__title">
-                <a href="/blog/{{ article.slug }}">{{ article.title.rendered|safe }}</a>
-              </h3>
-              <div class="p-media-object__content">
-                <p>By <a href="/blog/author/{{article.author.slug}}" title="More about {{ article.author.name }}">{{ article.author.name }}</a>, {{ article.date }}</p>
-
-                <p>{{ article.excerpt.raw.replace("[…]", "")|truncate(162) }}</p>
-              </div>
-            </div>
+  {% if not is_grouped %}
+    <section class="p-section--deep">
+      <div class="row">
+        <div class="col-9 col-start-large-4">
+          <div class="u-fixed-width" style="display: flex; gap: 2rem;">
+            <h2 class="p-text--small-caps u-no-margin">Year</h2>
+            <h2 class="p-text--small-caps">Month</h2>
           </div>
+          <hr class="p-rule--muted is-fixed-width" />
+          <ul class="p-list--divided">
+            {% for year in descending_years(2006) %}
+              <li class="p-list__item">
+                <div class="u-fixed-width"
+                     style="display: flex;
+                            gap: 2rem;
+                            align-items: center">
+                  <h3 class="p-heading--6 u-no-padding u-no-margin">
+                    <a aria-label="See blogs from {{ year }}"
+                       href="/blog/archives?year={{ year }}">{{ year }}</a>
+                  </h3>
+                  <div>
+                    {% for month in months_list(year) %}
+                      <a aria-label="See blogs from {{ month.name }}{{ year }}"
+                         href="/blog/archives?year={{ year }}&amp;month={{ month.number }}{% if group %}&group={{ group.slug }}{% endif %}">{{ month.name }}</a>
+                      {% if not loop.last %}|{% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  {% else %}
+    <section class="p-section" id="posts-list">
+      <div class="row">
+        {% for article in articles %}
+          {% include 'blog/blog-card.html' %}
         {% endfor %}
       </div>
+    </section>
 
-      <div class="col-4">
-        <h3>Archives</h3>
-
-        <ul class="p-list">
-          {% for year in descending_years(2006) %}
-            <li class="p-list__item">
-              <h5><a class="p-link--soft" href="/blog/archives?year={{year}}">{{year}}</a></h5>
-
-              <ul class="p-inline-list--middot">
-                {% for month in months_list(year) %}
-                  <li class="p-inline-list__item"><a class="p-link--soft" href="/blog/archives?year={{year}}&amp;month={{month.number}}{% if group %}&group={{group.slug}}{% endif %}">{{ month.name }}</a></li>
-                {% endfor %}
-              </ul>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip is-shallow">
     {% with %}
       {% set total_pages = total_pages %}
       {% set current_page = current_page %}
-      {% include "shared/_pagination.html" %}
+      {% include "blog/shared/_pagination.html" %}
     {% endwith %}
-  </section>
-</section>
+  {% endif %}
+
 {% endblock %}
