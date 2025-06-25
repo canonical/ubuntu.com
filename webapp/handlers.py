@@ -166,6 +166,7 @@ CSP = {
         "'self'",
         "blob:",
     ],
+    "frame-ancestors": ["'none'"],
 }
 
 
