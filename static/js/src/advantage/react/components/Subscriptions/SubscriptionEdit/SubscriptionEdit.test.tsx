@@ -46,6 +46,10 @@ describe("SubscriptionEdit", () => {
       ["lastPurchaseIds", subscription.account_id],
       lastPurchaseIds,
     );
+    queryClient.setQueryData(
+      ["hasPaymentMethod", subscription.account_id],
+      true,
+    );
   });
 
   it("shows a cancel link if the subscription is cancellable", async () => {
@@ -315,6 +319,27 @@ describe("SubscriptionEdit", () => {
     });
     wrapper.update();
     expect(wrapper.find("[data-test='payment-error']").exists()).toBe(true);
+  });
+
+  it("cannot be edited if there is no payment method", async () => {
+    queryClient.setQueryData(
+      ["hasPaymentMethod", subscription.account_id],
+      false,
+    );
+    mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionEdit
+          onClose={jest.fn()}
+          selectedId={subscription.id}
+          setNotification={jest.fn()}
+          setShowingCancel={jest.fn()}
+        />
+      </QueryClientProvider>,
+    );
+    await act(async () => {});
+    waitFor(() => {
+      expect(screen.getByTestId("resize-submit-button")).toBeDisabled();
+    });
   });
 
   describe("generateSchema", () => {
