@@ -3,12 +3,14 @@
     title_text(string) (required): The title of the section, which also links to the main blog page.
     tag_name (string) (required): The URL-friendly slug of a tag to filter the articles by.
     tag_id (string) (required): The ID of a tag to filter the articles by.
+    items (int) (optional): The number of articles to display. Default is 4.
 #}
 
 {% macro vf_latest_news(
   title_text,
   tag_name="",
-  tag_id=""
+  tag_id="",
+  items=4
   ) -%}
 
   {% set heading_url = "/blog" %}
@@ -21,6 +23,10 @@
     {% set gtm_event_label = gtm_event_label + "/" + tag_name %}
   {% else %}
     {% set gtm_event_label = gtm_event_label + " homepage" %}
+  {% endif %}
+
+  {% if items != 4 %}
+    {% set items = 3 %}
   {% endif %}
 
   <noscript>
@@ -41,10 +47,11 @@
            onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : '{{ gtm_event_label }}', 'eventValue' : undefined });">{{ title_text }}</a>
       </h2>
     </div>
+
     <div class="row">
-      <div class="col-12">
+      <div class="{% if items == 4 %}col-12 {% else %}col-9 col-start-large-4{% endif %}">
         <div id="latest-articles-container" class="p-equal-height-row--wrap">
-          <div style="min-height: 9.1rem">
+          <div class="u-vertically-center u-align--center" style="min-height: 9.1rem">
             <i class="p-icon--spinner u-animation--spin">Loading...</i>
           </div>
         </div>
@@ -85,7 +92,7 @@
           tagName: "{{ tag_name }}",
           {% endif %}
           excerptLength: "200",
-          limit: "4",
+          limit: "{{ items}}",
           linkImage: true,
         }
       )
