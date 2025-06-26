@@ -1,6 +1,10 @@
 {% extends "robotics/base_robotics.html" %}
 
-{% block title %}Join the ROS and Ubuntu community{% endblock %}
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+
+{% block title %}How to join the ROS and Ubuntu community{% endblock %}
 
 {% block meta_description %}
   ROS exists because of contributions from tens of thousands of developers.  Learn about Canonical's role in ROS and how you can join the community.
@@ -12,301 +16,243 @@
 
 {% block meta_image %}https://assets.ubuntu.com/v1/bc3e1be4-robotics-community-banner.png{% endblock %}
 
+{% block body_class %}is-paper{% endblock %}
+
+{% block extra_metatags %}
+  <script type="module"
+          src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"></script>
+{% endblock extra_metatags %}
+
 {% block content %}
-  <section class="p-strip--suru-half-and-half-reversed is-dark">
-    <div class="row u-equal-height u-vertically-center">
-      <div class="col-6">
-        <h1>How to join the ROS and Ubuntu community</h1>
-        <p>
-          ROS exists because of contributions from tens of thousands of developers. It started in Stanford, went on to be used in Universities around the world and is now a global community of roboticists who talk, code and meet-up every year.
-        </p>
-        <p>
-          <a class="p-button--positive" href="https://discourse.ros.org/"><span>ROS Discourse</span></a>
-          <a class="p-button--positive is-inline"
-             href="https://discourse.ubuntu.com/"><span>Ubuntu Discourse</span></a>
-        </p>
-        <p>
-          Read the whitepaper “<a href="/engage/dockerandros" class="p-link--inverted">Docker &amp; ROS: When all you have is a hammer, everything looks like a nail</a>”
-        </p>
+
+  {% call(slot) vf_hero(
+    title_text='How to join the ROS<br class="u-hide--small u-hide--medium" /> and Ubuntu community',
+    layout='50/50',
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        ROS exists because of contributions from tens of thousands of developers. It started in Stanford, went on to be used in Universities around the world and is now a global community of roboticists who talk, code and meet-up every year.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a class="p-button--positive" href="https://discourse.ros.org/">ROS Discourse</a>
+      <a class="p-button" href="https://discourse.ubuntu.com/">Ubuntu Discourse</a>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="u-hide--medium u-hide--small">
+        <div class="p-image-container--3-2 is-cover is-highlighted">
+          {{ image(url="https://assets.ubuntu.com/v1/26497450-hero.png",
+                    alt="",
+                    width="1800",
+                    height="1128",
+                    hi_def=True,
+                    loading="auto",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
+        </div>
       </div>
-      <div class="col-6 u-hide--small u-align--right">
-        {{ image(url="https://assets.ubuntu.com/v1/198ee41e-ROS+Ubuntu.svg",
-                alt="",
-                width="400",
-                height="81",
-                hi_def=True,
-                loading="auto",) | safe
-        }}
+    {%- endif -%}
+  {% endcall -%}
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Read the whitepaper</h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/3483df7c-whitepaper.png",
+                        alt="",
+                        width="1800",
+                        height="1014",
+                        hi_def=True,
+                        loading="auto",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
+        </div>
+        <p>Docker & ROS: When all you have is a hammer, everything looks like a nail.</p>
+        <div class="p-cta-block">
+          <a href="/engage/dockerandros" class="p-button--positive">Get the whitepaper</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="p-strip">
-    <div class="row">
-      <div class="col-7">
+  <!-- Hidden section for now, as per copydoc -->
+  <section class="p-section u-hide">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
         <h2>Keep up on the State of Robotics</h2>
+      </div>
+      <div class="col">
+
+        <div class="u-embedded-media">
+          <lite-youtube videoid="Lkqz13V5WCk" width="560" height="315" posterquality="maxresdefault" videotitle="The State of Robotics - News from December 2021" class="u-embedded-media__element">
+          <a href="https://www.youtube.com/embed/Lkqz13V5WCk?rel=0"
+             title="Play Video">
+            <span class="lyt-visually-hidden">The State of Robotics - News from December 2021</span>
+          </a>
+          </lite-youtube>
+        </div>
         <p>
           Every week the Ubuntu robotics team contributes to the future of security in robotics. And every week there are countless new projects started and improved by the community that go under the radar. The State of Robotics is a monthly blog series produced by the Canonical team to highlight the work and advancements happening in the robotics ecosystem. Why not have a read or get in touch to talk about your project?
         </p>
       </div>
-      <div class="col-5 u-embedded-media u-hide--small">
-        <iframe title="The State of Robotics - News from January 2022"
-                class="u-embedded-media__element"
-                src="https://www.youtube.com/embed/xutEEZ_8_v0"
-                allowfullscreen=""></iframe>
-      </div>
     </div>
   </section>
 
-  <section class="p-strip u-no-padding--top">
-    <div class="row p-divider">
-      <div class="col-12">
-        <h4>Recent news</h4>
-        <div id="robot-articles" class="row p-divider">
-          <div>
-            <i class="p-icon--spinner u-animation--spin">Loading...</i>
+  {% with title_link="/blog/topics/robotics", groupId="3281" %}
+    {% include "internet-of-things/shared/_latest-news-iot.html" %}
+  {% endwith %}
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Where to start with ROS?</h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/20da410a-where to start with ROS_.png",
+                        alt="",
+                        width="1800",
+                        height="1015",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
           </div>
         </div>
         <p>
-          <a href="/blog/topics/robotics">Read more articles&nbsp;&rsaquo;</a>
+          The best place to start is in the <a href="https://discourse.ros.org/">ROS Discourse</a> where thousands of roboticists go to talk. If you have specific questions there's the <a href="https://robotics.stackexchange.com/">Robotics Stack Exchange</a> with over 13,000 questions to date. And for more context, you can read the <a href="https://wiki.ros.org/">ROS wiki</a> or the ROS 2 docs that have been worked on by almost 3,500 people.
         </p>
-      </div>
-    </div>
-
-    <template style="display:none" id="robot-template">
-      <div class="col-3 p-divider__block">
-        <div class="article-image u-hide--small"></div>
-        <p>
-          <strong><a class="article-link article-title"></a></strong>
-        </p>
-        <p class="u-no-padding--top">
-          <em><time datetime="" class="article-time"></time></em>
-        </p>
-      </div>
-    </template>
-
-    <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-    <script>
-      canonicalLatestNews.fetchLatestNews({
-        articlesContainerSelector: "#robot-articles",
-        articleTemplateSelector: "#robot-template",
-        gtmEventLabel: "ubuntu.com robotics community page",
-        limit: "4",
-        tagId: "1721",
-      })
-    </script>
-  </section>
-
-  <section class="p-strip--light" style="overflow: hidden;">
-    <div class="row">
-      <div class="col-7">
-        <h2>Where to start with ROS?</h2>
-        <p>
-          The best place to start is in the <a href="https://discourse.ros.org/">ROS Discourse</a> where thousands of roboticists go to talk. If you have specific questions there's the <a href="https://robotics.stackexchange.com/">Robotics Stack Exchange</a> with over 13,000 questions to date. And for more context, you can read the <a href="https://wiki.ros.org/">ROS Wiki</a> or the ROS 2 docs that have been worked on by almost 3,500 people.
-        </p>
-        <p>
-          <a class="p-button" href="https://discourse.ros.org/"><span>Get started on ROS Discourse</span></a>
-        </p>
-      </div>
-      <div class="col-5 u-alight--center u-hide--small">
-        {{ image(url="https://assets.ubuntu.com/v1/b205bd6f-ROS_discource.png",
-                alt="ROS Discourse",
-                width="465",
-                height="274",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "u-image-position--bottom p-image--shadowed", "style": "float: left;"},) | safe
-        }}
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip">
-    <div class="row">
-      <div class="col-9">
-        <h2>Why join the community?</h2>
-      </div>
-    </div>
-    <div class="row p-divider u-no-padding--bottom">
-      <div class="col-6 p-divider__block">
-        {{ image(url="https://assets.ubuntu.com/v1/3d44acdd-Robotics_icon.svg",
-                alt="",
-                width="150",
-                height="150",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "u-hide--small", "style": "padding-top: 2rem;"},) | safe
-        }}
-        <h4>Shape the future of robotics</h4>
-        <p class="u-sv3">
-          Your contributions will help make robotics better and more accessible to developers and non-developers alike.
-        </p>
-      </div>
-      <div class="col-6 p-divider__block">
-        {{ image(url="https://assets.ubuntu.com/v1/0b82c071-World_icon.svg",
-                alt="",
-                width="150",
-                height="150",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "u-hide--small", "style": "padding-top: 2rem;"},) | safe
-        }}
-        <h4>Work with the best in the world</h4>
-        <p class="u-sv3">
-          Thousands of roboticists from across the world use ROS. Contribute code to projects that change the future of robotics.
-        </p>
-      </div>
-    </div>
-    <div class="u-fixed-width">
-      <hr class="p-rule" />
-    </div>
-    <div class="row p-divider">
-      <div class="col-6 p-divider__block">
-        {{ image(url="https://assets.ubuntu.com/v1/9fe99d88-Collaborate_icon.svg",
-                alt="",
-                width="150",
-                height="150",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "u-hide--small", "style": "padding-top: 2rem;"},) | safe
-        }}
-        <h4>Grow your skills and help others</h4>
-        <p class="u-sv3">
-          Whatever your level, working on open-source software is a great way to learn and give back to the community.
-        </p>
-      </div>
-      <div class="col-6 p-divider__block">
-        {{ image(url="https://assets.ubuntu.com/v1/032a5b2a-Trending_icon.svg",
-                alt="",
-                width="150",
-                height="150",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "u-hide--small", "style": "padding-top: 2rem;"},) | safe
-        }}
-        <h4>Join the revolution</h4>
-        <p class="u-sv3">
-          Everyday more robots are finding their way out of the warehouse, into everyday life and the growing majority are built, in some part, using ROS
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip--light">
-    <div class="row">
-      <div class="col-7">
-        <h2>ROSCon</h2>
-        <p>
-          ROS is not just an online community. ROSCon is an annual global meetup where the entire community is invited to join in a few days of talks, workshops and exhibitions. Every year the event is held in a different location to encourage members of the community from across the globe to participate. No matter your level of experience with ROS, ROSCon is the place to network and learn from the community.
-        </p>
-        <p>
-          <a class="p-button" href="https://roscon.ros.org/2020/"><span>Learn more about ROSCon2020</span></a>
-        </p>
-      </div>
-      <div class="col-5 u-vertically-align u-hide--medium u-hide--small u-align--center">
-        {{ image(url="https://assets.ubuntu.com/v1/1ea9d453-ROSCon2020.svg",
-                alt="",
-                width="187",
-                height="250",
-                hi_def=True,
-                loading="lazy",) | safe
-        }}
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip">
-    <div class="row u-equal-height">
-      <div class="col-7">
-        <h2>The ROS 2 technical steering committee</h2>
-        <p>
-          Ubuntu is playing a significant role in the future of ROS. Canonical sits on the Technical Steering Committee (TSC) for ROS 2, to guide the future of robotics towards staying on the collaborative, accessible path it is on today. To aid in this, Canonical is also the Chair of the ROS 2 Security working group. Just as we ensure Ubuntu's security and reliability for users, we are instilling the same ideals into ROS&nbsp;2.
-        </p>
-        <p>
-          <a class="p-button--positive"
-             href="https://ubuntu.com/blog/topics/robotics">Learn more</a>
-        </p>
-        <p>
-          <a href="https://docs.ros.org/en/rolling/The-ROS2-Project/Governance.html">More info about the TSC</a>
-        </p>
-      </div>
-      <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
-        {{ image(url="https://assets.ubuntu.com/v1/60d9b81e-picto-canonical.svg",
-                alt="",
-                width="150",
-                height="150",
-                hi_def=True,
-                loading="lazy",) | safe
-        }}
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip">
-    <div class="row">
-      <div class="col-8">
-        <h2>What the community can do for the enterprise</h2>
-        <h3>Connect with the largest pool of talent</h3>
-        <p>
-          Developers love Ubuntu. By adopting the most popular Linux distribution, you can leverage the strong community of developers and roboticists using Ubuntu. Start new projects with like-minded developers or speak and work with passionate potential hires before they are looking for a job.
-        </p>
-        <p>
-          <a href="/engage/small-robot-company">Read the Small Robot Company case study&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-      <div class="col-4">
-        <blockquote class="p-pull-quote--small">
-          <p class="p-pull-quote__quote">
-            Ubuntu is used so much everywhere that you can get drivers for everything, and there's a great community. It's ease-of-use makes everything faster, and not just for those of us who are already familiar with it. Even engineers without a software background can work on Ubuntu without issue.
-          </p>
-          <cite class="p-pull-quote__citation">Sam Watson Jones - CEO, Small Robot Company</cite>
-        </blockquote>
-      </div>
-    </div>
-    <div class="u-fixed-width">
-      <hr class="p-rule" />
-    </div>
-    <div class="row">
-      <div class="col-8">
-        <h3>Leverage open-source software</h3>
-        <p>
-          Complex software is increasingly collaborative and open source. This has been our philosophy and Open Robotics' philosophy from the beginning.  Harness the power of our open-source software and build on top of contributions from both communities. Build on your own, or seek our help. The community will support you.
-        </p>
-        <p>
-          <a href="/engage/northstar">Read the Northstar Robotics case study&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-      <div class="col-4">
-        <blockquote class="p-pull-quote--small">
-          <p class="p-pull-quote__quote">We needed an operating system that was open, easy to modify, and reliable.</p>
-          <cite class="p-pull-quote__citation">CEO, Northstar Robotics</cite>
-        </blockquote>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip--light">
-    <div class="row u-equal-height">
-      <div class="col-4 u-hide--medium u-hide--small u-align--left">
-        {{ image(url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
-                alt="",
-                width="280",
-                height="280",
-                hi_def=True,) | safe
-        }}
-      </div>
-      <div class="col-8 u-vertically-center">
-        <div>
-          <h2>Become part of the future</h2>
-          <p>
-            The robotics industry is predicted to be worth tens of billions of dollars in the next five years. ROS is the only robotics platform agile enough and big enough to scale at the rate the market is growing. Becoming part of the community and contributing to ROS now will mean you are part of developing the future of robotics, today.
-          </p>
-          <p>
-            <a class="p-button--positive js-invoke-modal"
-               href="/internet-of-things/contact-us?product=robotics">Talk to us about your robotics</a>
-          </p>
+        <div class="p-cta-block">
+          <a href="https://discourse.ros.org/">Get started on ROS Discourse&nbsp;&rsaquo;</a>
         </div>
       </div>
     </div>
   </section>
+
+  <section class="p-section">
+    {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=false) -%}
+      {%- if slot == 'title' -%}
+        <h2>Why join the community?</h2>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">Shape the future of robotics</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <p>Your contributions will help make robotics better and more accessible to developers and non-developers alike.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">Work with the best in the world</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <p>
+          Thousands of roboticists from across the world use ROS. Contribute code to projects that change the future of robotics.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_3' -%}
+        <h3 class="p-heading--5">Grow your skills and help others</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_3' -%}
+        <p>Whatever your level, working on open-source software is a great way to learn and give back to the community.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_4' -%}
+        <h3 class="p-heading--5">Join the revolution</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_4' -%}
+        <p>
+          Everyday more robots are finding their way out of the warehouse, into everyday life and the growing majority are built, in some part, using ROS.
+        </p>
+      {%- endif -%}
+
+    {%- endcall -%}
+  </section>
+
+  <section class="p-section">
+    {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=false) -%}
+      {%- if slot == 'title' -%}
+        <h2>What the community can do for the enterprise</h2>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">Connect with the largest pool of talent</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <p>
+          Developers love Ubuntu. By adopting the most popular Linux distribution, you can leverage the strong community of developers <i>and</i> roboticists using Ubuntu. Start new projects with like-minded developers or speak and work with passionate potential hires before they are looking for a job.
+        </p>
+        <div class="p-cta-block">
+          <a href="/engage/small-robot-company">Read the Small Robot Company case study&nbsp;&rsaquo;</a>
+        </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">Leverage open-source software</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <p>
+          Complex software is increasingly collaborative and open source. This has been our philosophy and Open Robotics’ philosophy from the beginning.  Harness the power of our open-source software and build on top of contributions from both communities. Build on your own, or seek our help. The community will support you.
+        </p>
+        <div class="p-cta-block">
+          <a href="/engage/northstar">Read the Northstar Robotics case study&nbsp;&rsaquo;</a>
+        </div>
+      {%- endif -%}
+
+    {%- endcall -%}
+  </section>
+
+  <section class="p-section">
+    {% call(slot) vf_quote_wrapper(
+      title_text="Hear from our community",
+      quote_size="small",
+      quote_text="Ubuntu is used so much everywhere that you can get drivers for everything, and there's a great community. It's ease-of-use makes everything faster, and not just for those of us who are already familiar with it. Even engineers without a software background can work on Ubuntu without issue",
+      citation_source_name_text="Sam Watson Jones",
+      citation_source_title_text="CEO, Small Robot Company",
+      ) -%}
+
+    {% endcall -%}
+    {% call(slot) vf_quote_wrapper(
+      quote_size="small",
+      quote_text="We needed an operating system that was open, easy to modify, and reliable.",
+      citation_source_title_text="CEO, Northstar Robotics",
+      ) -%}
+
+    {% endcall -%}
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Become part of the future</h2>
+      </div>
+      <div class="col">
+        <p>
+          The robotics industry is predicted to be worth tens of billions of dollars in the next five years. ROS is the only robotics platform agile enough and big enough to scale at the rate the market is growing. Becoming part of the community and contributing to ROS now will mean you are part of developing the future of robotics, today.
+        </p>
+        <div class="p-cta-block">
+          <a class="p-button--positive js-invoke-modal"
+             href="/internet-of-things/contact-us?product=robotics">Talk to us about your robotics</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ load_form("/robotics") | safe }}
 {% endblock content %}

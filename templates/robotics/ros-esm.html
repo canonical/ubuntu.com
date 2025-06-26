@@ -38,8 +38,10 @@ from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
       </h2>
     {%- endif -%}
     {%- if slot == 'cta' -%}
-      <a href="/robotics#get-in-touch"
-         class="js-invoke-modal p-button--positive">Get in touch</a>
+      <a href="/internet-of-things/contact-us?product=robotics"
+         class="js-invoke-modal p-button--positive"
+         aria-controls="robotics-modal"
+         aria-expanded="false">Get in touch</a>
       <a href="https://assets.ubuntu.com/v1/4dedff79-ROS%20ESM%20datasheet.pdf">Read the datasheet&nbsp;&rsaquo;</a>
     {%- endif -%}
     {%- if slot == 'image' -%}
@@ -512,7 +514,9 @@ from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
       </p>
       <hr class="p-rule--muted" />
       <a class="p-button--positive js-invoke-modal"
-         href="/internet-of-things/contact-us?product=robotics">Get in touch</a>
+         href="/internet-of-things/contact-us?product=robotics"
+         aria-controls="robotics-modal"
+         aria-expanded="false">Get in touch</a>
     {%- endif -%}
 
     {%- if slot == 'list_item_title_3' -%}
@@ -542,7 +546,10 @@ from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
           Read our
           <a href="/blog/ros-enterprise-support-15-things-you-need-to-know">FAQ about ROS ESM</a>
           or
-          <a class="js-invoke-modal" href="/robotics#get-in-touch">contact us</a>
+          <a class="js-invoke-modal"
+             href="/internet-of-things/contact-us?product=robotics"
+             aria-controls="robotics-modal"
+             aria-expanded="false">contact us</a>
         </p>
       </div>
     </div>
@@ -582,5 +589,5 @@ from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
       </div>
     </div>
   </section>
-
+  {{ load_form("/robotics") | safe }}
 {% endblock content %}
