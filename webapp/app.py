@@ -830,6 +830,15 @@ community_events = Events(
     category_id=11,
 )
 
+ubuntu_weekly_newsletter = Category(
+    parser=CategoryParser(
+        api=discourse_api,
+        index_topic_id=35624,
+        url_prefix="/community",
+    ),
+    category_id=124,
+)
+
 app.add_url_rule(
     "/community/local-communities",
     view_func=process_local_communities(local_communities),
@@ -842,7 +851,9 @@ app.add_url_rule(
 
 app.add_url_rule(
     "/community",
-    view_func=community_landing_page(community_events, local_communities),
+    view_func=community_landing_page(
+        community_events, local_communities, ubuntu_weekly_newsletter
+    ),
 )
 
 # Allow templates to be queried from discourse.ubuntu.com
