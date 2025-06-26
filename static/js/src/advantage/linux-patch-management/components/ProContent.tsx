@@ -78,13 +78,16 @@ const ProContent = ({
     <>
       <div className="p-section--shallow">
         <Row>
-          <Col size={5}>
+          <Col size={2}>
+            <p className="u-align--right">Seach packages</p>
+          </Col>
+          <Col size={4}>
             <SearchAndFilter
               filterPanelData={items}
               returnSearchData={handleUpdate}
             />
           </Col>
-          <Col size={4}>
+          <Col size={3}>
             <form className="p-form p-form--inline u-align--right">
               <div className="p-form__group">
                 <label className="p-form__label" htmlFor="statusFilter">
