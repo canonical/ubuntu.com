@@ -1435,12 +1435,24 @@ def process_community_calendar(community_events):
     return display_community_events
 
 
-def community_landing_page(community_events, local_communities):
+def community_landing_page(
+    community_events, local_communities, ubuntu_weekly_newsletter
+):
     def display_community_landing_page():
-        featured_events = community_events.get_featured_events("events")
+        events_data = community_events.get_events()
+        communities_data = local_communities.get_category_index_metadata(
+            "locos"
+        )
+        newsletter_data = (
+            ubuntu_weekly_newsletter.parser.api.get_topic_list_by_category(
+                ubuntu_weekly_newsletter.category_id
+            )
+        )
         return flask.render_template(
             "community/index.html",
-            featured_events=featured_events,
+            events=events_data,
+            communities=communities_data,
+            newsletters=newsletter_data,
         )
 
     return display_community_landing_page
