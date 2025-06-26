@@ -898,6 +898,15 @@ def marketo_submit():
     if "country" in form_fields:
         enrichment_fields["country"] = form_fields["country"]
         form_fields.pop("country")
+    else:
+        try:
+            ip_location = ip_reader.get(client_ip)
+            if ip_location and "country" in ip_location:
+                enrichment_fields["country"] = ip_location["country"][
+                    "iso_code"
+                ]
+        except Exception:
+            pass
 
     user_id = flask.request.cookies.get("user_id")
     if user_id:
@@ -948,13 +957,6 @@ def marketo_submit():
                 if k == "utm_content":
                     k = "utmcontent"
                 enrichment_fields[k] = v
-
-    try:
-        ip_location = ip_reader.get(client_ip)
-        if ip_location and "country" in ip_location:
-            enrichment_fields["country"] = ip_location["country"]["iso_code"]
-    except Exception:
-        pass
 
     enriched_payload = {
         "formId": "4198",
