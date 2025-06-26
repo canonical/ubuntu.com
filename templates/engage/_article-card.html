@@ -1,4 +1,4 @@
-<article class="col-4 blog-p-card--post">
+<!-- <article class="col-4 blog-p-card--post">
   <header class="blog-p-card__header{% if 'whitepaper' in type %}--internet-of-things{% elif 'webinar' in type %}--desktop{% elif 'case study' in type %}--cloud-and-server{% endif %}">
     <h5 class="p-muted-heading u-no-margin--bottom">
       {% if type %}
@@ -17,5 +17,47 @@
   <footer class="blog-p-card__footer">
     {{ tags }}
   </footer>
-</article>
+</article> -->
 
+<div class="p-section--shallow">
+  <div class="row">
+    <hr class="p-rule" />
+    <div class="aside col-3 col-medium-2 u-hide--small">
+      <p>
+        {% if type %}
+          {{ type }}
+        {% else %}
+          Post
+        {% endif %}
+      </p>
+    </div>
+    <div class="col-6 col-medium-4">
+      <h3 class="p-heading--4">
+        <a href="{% if active == 'false' and preview != None %}{{ title_link }}?preview{% else %}{{ title_link }}{% endif %}">{{ title | safe }}</a>
+      </h3>
+      <!-- {% for tag in tags %}
+        <span class="p-chip--information p-chip--read-only">
+          <span class="p-chip__value">{{ tag }}</span>
+        </span>
+        {% endfor %} -->
+      <span class="p-chip--information p-chip--read-only">
+        <span class="p-chip__value">{{ tags }}</span>
+      </span>
+      <p class="p-blog_excerpt u-hide--small u-hide--medium">{{ description | safe }}</p>
+    </div>
+    <!-- <div class="col-3 u-hide--small u-hide--medium">
+      {% if article.image and article.image.source_url %}
+        <a href="/blog/{{ article.slug }}" aria-hidden="true" tabindex="-1">
+          <div class="p-image-wrapper">{{ article.image.rendered|safe }}</div>
+        </a>
+      {% endif %}
+    </div>
+    <div class="aside col-3 col-medium-2 u-hide--medium u-hide--large">
+      <p>
+        <a href="/blog/author/{{ article.author.slug }}">{{ article.author.name }}</a>
+        <br />
+        {{ article.date }}
+      </p>
+    </div> -->
+  </div>
+</div>
