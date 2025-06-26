@@ -1872,3 +1872,13 @@ ol.p-stepped-list.no-full-stop
   display: flex;
   flex-wrap: wrap;
 }
+
+// Truncates text to two lines with ellipsis
+.u-clamp--two-lines {
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
