@@ -23,7 +23,7 @@
     <div class="row">
       <div class="col-9 col-start-large-4">
         <h1>Engage pages</h1>
-        <h2>Ubuntu case studies, whitepapers, and webinars. </h2>
+        <h2>Ubuntu case studies, whitepapers, and webinars.</h2>
       </div>
     </div>
   </div>
@@ -34,8 +34,7 @@
         <div class="col-3">
           <div class="p-form__group">
             <label for="language-selector">Select language:</label>
-            <select name="language-selector"
-                    class="js-language-selector">
+            <select name="language-selector" class="js-language-selector">
               <option value="all">All languages</option>
               <option value="zh-TW">Chinese (Traditional)</option>
               <option value="de">Deutsch</option>
@@ -54,8 +53,7 @@
           <div class="col-3">
             <div class="p-form__group">
               <label for="resource-selector">Select resource type:</label>
-              <select name="resource-selector"
-                      class="js-resource-selector">
+              <select name="resource-selector" class="js-resource-selector">
                 <option value="all">All resource types</option>
                 {% for type in resource_types %}<option value="{{ type | lower }}">{{ type }}</option>{% endfor %}
               </select>
@@ -117,17 +115,23 @@
           {% endwith %}
         {% endfor %}
       </div>
-      <section class="p-strip is-shallow">
-        {% with %}
-          {% set total_pages = total_pages %}
-          {% set current_page = current_page %}
-          {% include "shared/_pagination.html" %}
-        {% endwith %}
-      </section>
+      <div class="row p-section">
+        <div class="col-9 col-start-large-4">
+          <hr class="p-rule--muted" />
+          {% with %}
+            {% set total_pages = total_pages %}
+            {% set current_page = current_page %}
+            {% set align = "u-align--left" %}
+            {% include "shared/_pagination.html" %}
+          {% endwith %}
+        </div>
+      </div>
     {% else %}
       <div class="u-fixed-width p-section--deep">
         <hr class="p-rule" />
-        <p class="p-heading--4">No results &ndash; Why not try widening your search? You can do this by clearing and selecting new filters.</p>
+        <p class="p-heading--4">
+          No results &ndash; Why not try widening your search? You can do this by clearing and selecting new filters.
+        </p>
       </div>
     {% endif %}
   </section>
