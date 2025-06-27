@@ -1,6 +1,6 @@
 <div class="p-section--shallow">
   <div class="row">
-    <hr class="p-rule" />
+    <hr class="p-rule--muted" />
     <div class="aside col-3 col-medium-2">
       <p class="p-text--small-caps">
         {% if type %}
@@ -17,7 +17,7 @@
       </h3>
       {% for tag in tags.split(',') if tag.strip() %}
         <span class="p-chip--information p-chip--read-only">
-          <span class="p-chip__value">{{ tag.strip() | capitalize }}</span>
+          <span class="p-chip__value">{{ tag.strip() }}</span>
         </span>
       {% endfor %}
       <p class="p-blog_excerpt u-hide--small u-hide--medium">{{ description | safe }}</p>
@@ -25,13 +25,14 @@
 
     <div class="col-3 u-hide--small u-hide--medium">
       <a href="{{ article_link }}" aria-hidden="true" tabindex="-1">
-        <div class="p-image-wrapper">
+        <div class="p-image-container--16-9">
           {{ image(url=thumbnail or "https://assets.ubuntu.com/v1/1199af9d-fallback-thumbnail-dark.jpg",
                     alt=title if thumbnail else "",
-                    width="284",
-                    height="160",
+                    width="320",
+                    height="180",
                     hi_def=True,
-                    loading="lazy") | safe }}
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe }}
         </div>
       </a>
     </div>

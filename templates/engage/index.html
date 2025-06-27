@@ -23,7 +23,7 @@
     <div class="row">
       <div class="col-9 col-start-large-4">
         <h1>Engage pages</h1>
-        <h2>Ubuntu case studies, whitepapers and webinars.</h2>
+        <h2>Ubuntu case studies, whitepapers, and webinars. </h2>
       </div>
     </div>
   </div>
@@ -101,7 +101,7 @@
 
   <section id="posts-list">
     {% if metadata | length > 0 %}
-      <div class="row u-equal-height">
+      <div class="row u-equal-height p-section">
         {% for item in metadata %}
           {% with
             title=item.topic_name,
@@ -127,7 +127,7 @@
     {% else %}
       <div class="u-fixed-width p-section--deep">
         <hr class="p-rule" />
-        <p class="p-heading--4">No results &mdash; Why not try widening your search? You can do this by clearing and selecting new filters.</p>
+        <p class="p-heading--4">No results &ndash; Why not try widening your search? You can do this by clearing and selecting new filters.</p>
       </div>
     {% endif %}
   </section>
