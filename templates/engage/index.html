@@ -21,7 +21,7 @@
 {% block content %}
   <div class="p-strip is-shallow u-no-padding--bottom">
     <div class="row">
-      <div class="col-9 col-start-large-4 col-medium-4 col-start-medium-3">
+      <div class="col-9 col-start-large-4">
         <h1>Engage pages</h1>
         <h2>Ubuntu case studies, whitepapers and webinars.</h2>
       </div>
@@ -35,7 +35,7 @@
           <div class="p-form__group">
             <label for="language-selector">Select language:</label>
             <select name="language-selector"
-                    class="js-language-selector u-no-margin--bottom">
+                    class="js-language-selector">
               <option value="all">All languages</option>
               <option value="zh-TW">Chinese (Traditional)</option>
               <option value="de">Deutsch</option>
@@ -55,7 +55,7 @@
             <div class="p-form__group">
               <label for="resource-selector">Select resource type:</label>
               <select name="resource-selector"
-                      class="js-resource-selector u-no-margin--bottom">
+                      class="js-resource-selector">
                 <option value="all">All resource types</option>
                 {% for type in resource_types %}<option value="{{ type | lower }}">{{ type }}</option>{% endfor %}
               </select>
@@ -66,7 +66,7 @@
           <div class="col-3">
             <div class="p-form__group">
               <label for="tag-selector">Select tag:</label>
-              <select name="tag-selector" class="js-tag-selector u-no-margin--bottom">
+              <select name="tag-selector" class="js-tag-selector">
                 <option value="all">All tags</option>
                 {% for tag in tags %}
                   <option {% if tag == "" %}disabled{% endif %} value="{{ tag }}">
@@ -89,8 +89,8 @@
             <br />
             <br />
           </div>
-          <button class="js-apply-filters p-button--positive u-no-margin--bottom">Apply filters</button>
-          <button class="js-clear-filters u-no-margin--bottom"
+          <button class="js-apply-filters p-button--positive">Apply filters</button>
+          <button class="js-clear-filters"
                   onclick="clearFilters()"
                   type="reset"
                   disabled>Clear filters</button>
