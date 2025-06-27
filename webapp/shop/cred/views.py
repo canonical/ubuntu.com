@@ -855,20 +855,30 @@ def cred_your_exams(
     else:
         flask.abort(404)
 
+    template_data = {
+        "agreement_notification": agreement_notification,
+        "show_cred_maintenance_alert": show_cred_maintenance_alert,
+        "cred_is_in_maintenance": cred_is_in_maintenance,
+        "cred_maintenance_start": cred_maintenance_start,
+        "cred_maintenance_end": cred_maintenance_end,
+    }
     account = None
     try:
-        account = advantage_mapper.ensure_purchase_account(
-            "canonical-cube", user["email"]
-        )
+        account = advantage_mapper.get_purchase_account("canonical-cube")
     except UAContractsUserHasNoAccount:
-        flask.current_app.extensions["sentry"].captureException(
-            extra={
-                "user_info": user_info(flask.session),
-                "request_url": flask.request.url,
-                "request_headers": flask.request.headers,
-            }
+        response = flask.make_response(
+            flask.render_template(
+                "credentials/your-exams.html",
+                **template_data,
+                exams=[],
+                is_banned=False,
+            )
         )
-        return flask.jsonify({}), 404
+        response.headers["Cache-Control"] = (
+            "no-cache, no-store, must-revalidate"
+        )
+        response.headers["Pragma"] = "no-cache"
+        return response
     except AccessForbiddenError:
         flask.current_app.extensions["sentry"].captureException(
             extra={
@@ -1145,12 +1155,8 @@ def cred_your_exams(
     response = flask.make_response(
         flask.render_template(
             "credentials/your-exams.html",
-            agreement_notification=agreement_notification,
+            **template_data,
             exams=exams,
-            show_cred_maintenance_alert=show_cred_maintenance_alert,
-            cred_is_in_maintenance=cred_is_in_maintenance,
-            cred_maintenance_start=cred_maintenance_start,
-            cred_maintenance_end=cred_maintenance_end,
             is_banned=is_banned,
         )
     )
