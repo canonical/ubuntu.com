@@ -1,20 +1,27 @@
 {
     "form": {
-      "/cmmc": {
-        "templatePath": "/cmmc/index.html",
+      "/security-standards": {
+        "templatePath": "/security/standards/index.html",
+        "childrenPaths": [
+          "/security/fips",
+          "/security/disa-stig",
+          "/security/cis",
+          "/security/cmmc",
+          "/security/fedramp"
+        ],
         "isModal": true,
-        "modalId": "cmmc-modal",
+        "modalId": "security-standards-modal",
         "formData": {
-          "title": "Contact Canonical about Ubuntu Pro + Support",
-          "introText": "Considering an Ubuntu based stack for your infrastructure and applications? Just fill in the form below and a member of our team will be in touch.",
-          "formId": "1240",
-          "returnUrl": "/support/thank-you",
-          "lpUrl": "https://ubuntu.com/support/contact-us",
+          "title": "Contact us about compliance with Ubuntu Pro",
+          "introText": "",
+          "formId": "6304",
+          "returnUrl": "/security/standards/#contact-form-success",
+          "lpUrl": "https://ubuntu.com/security/contact-us",
           "product": ""
         },
         "fieldsets": [
           {
-            "title": "Tell us about your project",
+            "title": "Tell us about your project and what support you're looking for",
             "id": "about-your-project",
             "noCommentsFromLead": true,
             "fields": [
@@ -33,12 +40,6 @@
               {
                 "fieldTitle": "LTS within standard support",
                 "options": [
-                  {
-                    "type": "checkbox",
-                    "id": "24-04",
-                    "value": "24.04 LTS",
-                    "label": "24.04 LTS"
-                  },
                   {
                     "type": "checkbox",
                     "id": "22-04",
@@ -113,83 +114,6 @@
             ]
           },
           {
-            "title": "What kind of device are you using?",
-            "id": "kind-of-device",
-            "isRequired": true,
-            "inputType": "checkbox",
-            "fields": [
-              {
-                "type": "checkbox",
-                "id": "desktop-workstation",
-                "value": "desktop/workstation",
-                "label": "Desktop workstation"
-              },
-              {
-                "type": "checkbox",
-                "id": "physical-server",
-                "value": "physical/server",
-                "label": "Physical server"
-              },
-              {
-                "type": "checkbox",
-                "id": "public-cloud",
-                "value": "public/cloud",
-                "label": "Public cloud"
-              },
-              {
-                "type": "checkbox",
-                "id": "virtual-machine",
-                "value": "virtual/machine",
-                "label": "Virtual machine"
-              },
-              {
-                "type": "checkbox",
-                "id": "iot-edge-device",
-                "value": "iot/edge device",
-                "label": "IoT/Edge device"
-              }
-            ]
-          },
-          {
-            "title": "How many devices?",
-            "id": "how-many-machines",
-            "inputName": "how-many-machines-do-you-have",
-            "inputType": "radio",
-            "isRequired": true,
-            "fields": [
-              {
-                "type": "radio",
-                "id": "less-5-machines",
-                "value": "less than 5",
-                "label": "< 5 machines"
-              },
-              {
-                "type": "radio",
-                "id": "5-to-15-machines",
-                "value": "5 to 15 machines",
-                "label": "5 - 15 machines"
-              },
-              {
-                "type": "radio",
-                "id": "15-to-50-machines",
-                "value": "15 to 50 machines",
-                "label": "15 - 50 machines"
-              },
-              {
-                "type": "radio",
-                "id": "50-to-100-machines",
-                "value": "50 to 100 machines",
-                "label": "50 - 100 machines"
-              },
-              {
-                "type": "radio",
-                "id": "greater-than-100",
-                "value": "greater than 100",
-                "label": "> 100 machines"
-              }
-            ]
-          },
-          {
             "title": "How do you consume open source?",
             "id": "how-do-you-consume-open-source",
             "inputType": "checkbox",
@@ -227,33 +151,27 @@
             "fields": [
               {
                 "type": "checkbox",
-                "id": "pci",
-                "value": "PCI-DSS",
-                "label": "PCI-DSS"
+                "id": "cis-benchmark",
+                "value": "CIS Benchmark",
+                "label": "CIS Benchmark"
               },
               {
                 "type": "checkbox",
-                "id": "hipaa",
-                "value": "HIPAA",
-                "label": "HIPAA"
+                "id": "cmmc",
+                "value": "CMMC",
+                "label": "CMMC"
               },
               {
                 "type": "checkbox",
-                "id": "fisma",
-                "value": "FISMA",
-                "label": "FISMA"
+                "id": "cra",
+                "value": "CRA",
+                "label": "CRA"
               },
               {
                 "type": "checkbox",
-                "id": "fips-140",
-                "value": "FIPS 140",
-                "label": "FIPS 140"
-              },
-              {
-                "type": "checkbox",
-                "id": "ncsc",
-                "value": "NCSC",
-                "label": "NCSC"
+                "id": "cyber-essentials",
+                "value": "Cyber Essentials",
+                "label": "Cyber Essentials"
               },
               {
                 "type": "checkbox",
@@ -269,9 +187,45 @@
               },
               {
                 "type": "checkbox",
-                "id": "cis-benchmark",
-                "value": "CIS Benchmark",
-                "label": "CIS Benchmark"
+                "id": "fips-140",
+                "value": "FIPS 140",
+                "label": "FIPS 140"
+              },
+              {
+                "type": "checkbox",
+                "id": "fisma",
+                "value": "FISMA",
+                "label": "FISMA"
+              },
+              {
+                "type": "checkbox",
+                "id": "hipaa",
+                "value": "HIPAA",
+                "label": "HIPAA"
+              },
+              {
+                "type": "checkbox",
+                "id": "ncsc",
+                "value": "NCSC",
+                "label": "NCSC"
+              },
+              {
+                "type": "checkbox",
+                "id": "nis2",
+                "value": "NIS2",
+                "label": "NIS2"
+              },
+              {
+                "type": "checkbox",
+                "id": "nist-800-53",
+                "value": "NIST 800-53",
+                "label": "NIST 800-53"
+              },              
+              {
+                "type": "checkbox",
+                "id": "pci",
+                "value": "PCI-DSS",
+                "label": "PCI-DSS"
               }
             ]
           },
@@ -307,14 +261,14 @@
             ]
           },
           {
-            "title": "What advice are you looking for?",
-            "id": "advice",
+            "title": "Where have you heard about us?",
+            "id": "heard-about",
             "noCommentsFromLead": true,
             "fields": [
               {
                 "type": "long-text",
-                "id": "advice",
-                "label": "Tell us about your challenges and your goals"
+                "id": "heard-about",
+                "label": ""
               }
             ]
           },
@@ -324,27 +278,27 @@
             "noCommentsFromLead": true,
             "fields": [
               {
-                "type": "text",
-                "id": "company",
-                "label": "Company",
-                "isRequired": true
-              },
-              {
-                "type": "text",
-                "id": "title",
-                "label": "Job title",
-                "isRequired": true
-              },
-              {
                 "type": "tel",
                 "id": "phone",
-                "label": "Mobile/cell phone number",
-                "isRequired": true
+                "label": "Phone number",
+                "isRequired": false
               },
               {
                 "type": "country",
                 "id": "country",
                 "label": "Country",
+                "isRequired": true
+              },
+              {
+                "type": "text",
+                "id": "company",
+                "label": "Company",
+                "isRequired": false
+              },
+              {
+                "type": "text",
+                "id": "jobTitle",
+                "label": "Job title",
                 "isRequired": false
               }
             ]
