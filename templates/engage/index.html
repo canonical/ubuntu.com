@@ -1,167 +1,190 @@
 {% set hide_nav = False %}
+
 {% extends "engage/base_engage.html" %}
 
 {% block title %}Ubuntu case studies, whitepapers and webinars{% endblock %}
 
 {% block meta_description %}Resources from across Ubuntu and Canonical combined into a single portal{% endblock %}
 
-{% block meta_copydoc %}https://docs.google.com/spreadsheets/d/1UdExqv3PMnejaCISed340IehIhUmpKL-0AK5kumFk2M/edit#gid=0{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+  https://docs.google.com/spreadsheets/d/1UdExqv3PMnejaCISed340IehIhUmpKL-0AK5kumFk2M/edit#gid=0
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block head_extra %}
-  {% if preview != None %}
-    <meta name="robots" content="noindex" />
-  {% endif %}
+  {% if preview != None %}<meta name="robots" content="noindex" />{% endif %}
 {% endblock %}
 
 {% block content %}
-<section class="p-strip--suru-blog-header is-dark">
-  <div class="row">
-    <div class="col-6">
-      <h1>Engage pages</h1>
-      <p>Ubuntu case studies, whitepapers and webinars.</p>
+  <div class="p-strip is-shallow u-no-padding--bottom">
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <h1>Engage pages</h1>
+        <h2>Ubuntu case studies, whitepapers, and webinars.</h2>
+      </div>
     </div>
   </div>
-</section>
 
-<section class="p-strip is-shallow">
-  <form action="/">
-  <div class="row">
-    <div class="col-3">
-      <div class="p-form__group">
-        <label for="language-selector">Select language:</label>
-        <select name="language-selector" class="js-language-selector u-no-margin--bottom">
-          <option value="all">All languages</option>
-          <option value="zh-TW">Chinese (Traditional)</option>
-          <option value="de">Deutsch</option>
-          <option value="en">English</option>
-          <option value="es">Espa&ntilde;ol</option>
-          <option value="fr">Fran&ccedil;ais</option>
-          <option value="it">Italiano</option>
-          <option value="kr">Korean</option>
-          <option value="pt">Portugu&ecirc;s</option>
-          <option value="ru">Русс&#1082;&#1080;&#1081;</option>
-          <option value="tr">T&uuml;rk&ccedil;e</option>
-        </select>
+  <section class="p-strip">
+    <form action="/">
+      <div class="row">
+        <div class="col-3">
+          <div class="p-form__group">
+            <label for="language-selector">Select language:</label>
+            <select name="language-selector" class="js-language-selector">
+              <option value="all">All languages</option>
+              <option value="zh-TW">Chinese (Traditional)</option>
+              <option value="de">Deutsch</option>
+              <option value="en">English</option>
+              <option value="es">Espa&ntilde;ol</option>
+              <option value="fr">Fran&ccedil;ais</option>
+              <option value="it">Italiano</option>
+              <option value="kr">Korean</option>
+              <option value="pt">Portugu&ecirc;s</option>
+              <option value="ru">Русс&#1082;&#1080;&#1081;</option>
+              <option value="tr">T&uuml;rk&ccedil;e</option>
+            </select>
+          </div>
+        </div>
+        {% if resource_types %}
+          <div class="col-3">
+            <div class="p-form__group">
+              <label for="resource-selector">Select resource type:</label>
+              <select name="resource-selector" class="js-resource-selector">
+                <option value="all">All resource types</option>
+                {% for type in resource_types %}<option value="{{ type | lower }}">{{ type }}</option>{% endfor %}
+              </select>
+            </div>
+          </div>
+        {% endif %}
+        {% if tags %}
+          <div class="col-3">
+            <div class="p-form__group">
+              <label for="tag-selector">Select tag:</label>
+              <select name="tag-selector" class="js-tag-selector">
+                <option value="all">All tags</option>
+                {% for tag in tags %}
+                  <option {% if tag == "" %}disabled{% endif %} value="{{ tag }}">
+                    {% if tag == "" %}
+                      -
+                    {% else %}
+                      {{ tag }}
+                    {% endif %}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        {% endif %}
+        <div class="col-3"
+             style="display: flex;
+                    align-items: flex-end;
+                    justify-content: flex-end">
+          <div class="u-hide u-show--small">
+            <br />
+            <br />
+          </div>
+          <button class="js-apply-filters p-button--positive">Apply filters</button>
+          <button class="js-clear-filters"
+                  onclick="clearFilters()"
+                  type="reset"
+                  disabled>Clear filters</button>
+        </div>
       </div>
-    </div>
-    {% if resource_types %}
-    <div class="col-3">
-      <div class="p-form__group">
-        <label for="resource-selector">Select resource type:</label>
-        <select name="resource-selector" class="js-resource-selector u-no-margin--bottom">
-          <option value="all">All resource types</option>
-          {% for type in resource_types %}
-            <option value="{{ type | lower }}">{{ type }}</option>
-          {% endfor %}
-        </select>
-      </div>
-    </div>
-    {% endif %}
-    {% if tags %}
-    <div class="col-3">
-      <div class="p-form__group">
-        <label for="tag-selector">Select tag:</label>
-        <select name="tag-selector" class="js-tag-selector u-no-margin--bottom">
-          <option value="all">All tags</option>
-          {% for tag in tags %}
-            <option {% if tag == "" %}disabled{% endif %} value="{{ tag }}">{% if tag == "" %}-{% else %}{{ tag }}{% endif %}</option>
-          {% endfor %}
-        </select>
-      </div>
-    </div>
-    {% endif %}
-    <div class="col-3" style="display: flex; align-items: flex-end; justify-content: flex-end;">
-      <div class="u-hide u-show--small" >
-        <br /><br />
-      </div>
-      <button class="js-apply-filters p-button--positive u-no-margin--bottom">Apply filters</button>
-      <button class="js-clear-filters u-no-margin--bottom" onclick="clearFilters()" type="reset" disabled>Clear filters</button>
-    </div>
-  </div>
-  </form>
-</section>
-
-<section class="p-strip is-shallow" id="posts-list">
-  {% if metadata | length > 0 %}
-  <div class="row u-equal-height">
-    {% for item in metadata %}
-      {% with
-        title=item.topic_name,
-        title_link=item.path,
-        description=item.subtitle,
-        type=item.type,
-        preview=preview,
-        active=item.active,
-        tags=item.tags
-      %}
-      {% include "engage/_article-card.html" %}
-      {% endwith %}
-    {% endfor %}
-  </div>
-  <section class="p-strip is-shallow">
-    {% with %}
-      {% set total_pages = total_pages %}
-      {% set current_page = current_page %}
-      {% include "shared/_pagination.html" %}
-    {% endwith %}
+    </form>
   </section>
-  {% else %}
-  <div class="u-fixed-width">
-    <h3>No results &mdash; why not try widening your search?</h3>
-    <p>You can do this by clearing and selecting new filters.</p>
-  </div>
-  {% endif %}
-</section>
-<script>
-function clearFilters() {
-  const clearFiltersButton = document.querySelector(".js-clear-filters");
-  window.location.assign("/engage");
-}
-(function() {
-  const languageSelector = document.querySelector(".js-language-selector");
-  const resourceSelector = document.querySelector(".js-resource-selector");
-  const tagSelector = document.querySelector(".js-tag-selector");
 
-  const applyFiltersButton = document.querySelector(".js-apply-filters");
-  const clearFiltersButton = document.querySelector(".js-clear-filters");
-  const urlObj = new URL(window.location);
-
-  if (urlObj.search !== "") {
-    clearFiltersButton.removeAttribute("disabled");
-  }
-
-  function setFiltersDropdown(key, selector) {
-    if (!selector) {
-      return;
+  <section id="posts-list">
+    {% if metadata | length > 0 %}
+      <div class="row u-equal-height p-section">
+        {% for item in metadata %}
+          {% with
+            title=item.topic_name,
+            title_link=item.path,
+            description=item.subtitle,
+            type=item.type,
+            thumbnail=item.meta_image,
+            preview=preview,
+            active=item.active,
+            tags=item.tags
+            %}
+            {% include "engage/_article-card.html" %}
+          {% endwith %}
+        {% endfor %}
+      </div>
+      <div class="row p-section">
+        <div class="col-9 col-start-large-4">
+          <hr class="p-rule--muted" />
+          {% with %}
+            {% set total_pages = total_pages %}
+            {% set current_page = current_page %}
+            {% set align = "u-align--left" %}
+            {% include "shared/_pagination.html" %}
+          {% endwith %}
+        </div>
+      </div>
+    {% else %}
+      <div class="u-fixed-width p-section--deep">
+        <hr class="p-rule" />
+        <p class="p-heading--4">
+          No results &ndash; Why not try widening your search? You can do this by clearing and selecting new filters.
+        </p>
+      </div>
+    {% endif %}
+  </section>
+  <script>
+    function clearFilters() {
+      const clearFiltersButton = document.querySelector(".js-clear-filters");
+      window.location.assign("/engage");
     }
-    if (urlObj.searchParams.has(key)) {
-      selector.value = urlObj.searchParams.get(key);
-    }
-  }
+    (function() {
+      const languageSelector = document.querySelector(".js-language-selector");
+      const resourceSelector = document.querySelector(".js-resource-selector");
+      const tagSelector = document.querySelector(".js-tag-selector");
 
-  setFiltersDropdown("language", languageSelector);
-  setFiltersDropdown("resource", resourceSelector);
-  setFiltersDropdown("tag", tagSelector);  
+      const applyFiltersButton = document.querySelector(".js-apply-filters");
+      const clearFiltersButton = document.querySelector(".js-clear-filters");
+      const urlObj = new URL(window.location);
 
-  function setFilters(key, selector) {
-    if (selector.value != "all") {
-      urlObj.searchParams.set(key, selector.value);
-    } else {
-      urlObj.searchParams.delete(key);
-    }
-  }
+      if (urlObj.search !== "") {
+        clearFiltersButton.removeAttribute("disabled");
+      }
 
-  function applyFilters(event) {
-    event.preventDefault();
+      function setFiltersDropdown(key, selector) {
+        if (!selector) {
+          return;
+        }
+        if (urlObj.searchParams.has(key)) {
+          selector.value = urlObj.searchParams.get(key);
+        }
+      }
 
-    setFilters("language", languageSelector);
-    setFilters("resource", resourceSelector);
-    setFilters("tag", tagSelector);
+      setFiltersDropdown("language", languageSelector);
+      setFiltersDropdown("resource", resourceSelector);
+      setFiltersDropdown("tag", tagSelector);
 
-    urlObj.searchParams.delete("page");
-    window.location = urlObj.href;
-}
-  applyFiltersButton.addEventListener("click", applyFilters);
-})()
-</script>
+      function setFilters(key, selector) {
+        if (selector.value != "all") {
+          urlObj.searchParams.set(key, selector.value);
+        } else {
+          urlObj.searchParams.delete(key);
+        }
+      }
+
+      function applyFilters(event) {
+        event.preventDefault();
+
+        setFilters("language", languageSelector);
+        setFilters("resource", resourceSelector);
+        setFilters("tag", tagSelector);
+
+        urlObj.searchParams.delete("page");
+        window.location = urlObj.href;
+      }
+      applyFiltersButton.addEventListener("click", applyFilters);
+    })()
+  </script>
 {% endblock content %}
