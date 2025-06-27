@@ -83,8 +83,8 @@ const CVETable = () => {
         severity="information"
       >
         <>
-          We have made available {cveFixCount[0] + cveFixCount[1]} fixes for
-          vulnerabilities rated High ({cveFixCount[0]})/Critical({cveFixCount[1]})
+          We have made available {(cveFixCount[0] + cveFixCount[1]).toLocaleString()} fixes for
+          vulnerabilities rated High ({cveFixCount[0].toLocaleString()}) / Critical ({cveFixCount[1].toLocaleString()})
           for {LTSReleasesFromName(selectedRelease)}
         </>
       </Notification>
