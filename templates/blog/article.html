@@ -61,7 +61,7 @@
   <article class="p-section--shallow">
     <section class="p-strip">
       <header class="row">
-        <div class="aside col-3 col-medium-2">
+        <aside class="col-3 col-medium-2">
           <div class="p-media-object">
             {% if article.author %}
               {% if article.author and article.author.id == 217 %}
@@ -90,7 +90,7 @@
               </p>
             </div>
           </div>
-        </div>
+        </aside>
         <div class="col-9 col-medium-4">
           <div class="p-section--shallow">
             <h1>{{ article.title.rendered|safe }}</h1>
@@ -112,6 +112,7 @@
             <li class="p-inline-list__item">Share on:</li>
             <li class="p-inline-list__item">
               <a class="p-icon--facebook"
+                 aria-label="Share on Facebook"
                  title="Share on Facebook"
                  href="https://www.facebook.com/sharer/sharer.php?u=https://www.canonical.com/blog/{{ article.slug }}">
                 Facebook
@@ -119,7 +120,7 @@
             </li>
             <li class="p-inline-list__item">
               <a class="p-icon--twitter"
-                 aria-label="X (formerly Twitter)"
+                 aria-label="Share on X (formerly Twitter)"
                  title="Share on X (formerly Twitter)"
                  href="https://twitter.com/share?text={{ article.title.rendered|safe|urlencode }}&amp;url=https://www.canonical.com/blog/{{ article.slug }}&amp;hashtags=ubuntu">
                 X (formerly Twitter)
@@ -127,6 +128,7 @@
             </li>
             <li class="p-inline-list__item">
               <a class="p-icon--linkedin"
+                 aria-label="Share on LinkedIn"
                  title="Share on LinkedIn"
                  href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.canonical.com/blog/{{ article.slug }}&amp;title={{ article.title.rendered|safe|urlencode }}">
                 LinkedIn
@@ -159,7 +161,7 @@
         {{ article.content.rendered|safe }}
       </section>
     </div>
-    <div class="row p-section">
+    <aside class="row p-section">
       <hr class="p-rule" />
       <div class="col-3 col-medium-2">
         <h2>
@@ -170,7 +172,7 @@
       </div>
 
       <div class="col-9 col-medium-4">{% include 'blog/newsletter-form.html' %}</div>
-    </div>
+    </aside>
   </article>
 
   {% for tag in tags %}
