@@ -982,6 +982,12 @@ blog/canonical-announces-ubuntu-22-04-lts-support-for-flexran-reference-software
 blog/intel-compute-stick-now-comes-with-ubuntu: /download/iot/intel-iot
 /blog/cups-remote-code-execution: /blog/cups-remote-code-execution-vulnerability-fix-available
 
+# Copied from https://github.com/canonical-web-and-design/blog.ubuntu.com/blob/master/redirects.yaml
+
+# Wordpress CMS pages & resources
+blog/admin(?P<page>(/.*)?): https://admin.insights.ubuntu.com/admin{page}
+blog/wp-(?P<page>.+): https://admin.insights.ubuntu.com/wp-{page}
+
 # Archive pages
 blog/page/(?P<page>[0-9]+)/?: /blog/archives?page={page}
 
