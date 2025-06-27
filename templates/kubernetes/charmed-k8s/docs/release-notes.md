@@ -13,6 +13,92 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+# 1.33
+
+### June 23, 2025 - `charmed-kubernetes --channel 1.33/stable`
+
+The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.33/bundle.yaml).
+
+## What's new
+
+* Most charms now support only Jammy and Noble (dropping support for Focal)
+* Support for Terraform deployment of many charms for interoperability with Canonical Kubernetes
+
+### calico
+
+* Updates Calico version to v3.29.3
+
+### ceph-csi
+
+* Detect and block on Kubernetes resource collisions
+* Support formatters for cluster role and cluster role binding names
+* Support for N Ceph clusters to ensure both are read/writable
+
+### cilium
+* Update Cilium version to 1.16.10
+* Adds an option to support geneve tunneling protocol
+* Sets non-default VXLAN destination port when Cilium uses VXLAN as tunnel protocol
+* Add enable-session-affinity config to config-map
+
+### easyrsa
+* Test with EasyRSA v3.0.9
+
+### kube-ovn
+* Update kubeovn version to v1.12.30
+
+### kubernetes-control-plane
+* Update CPU usage Prometheus rule
+* [LP#2097158](https://launchpad.net/bugs/2097158) user create action ensures groups is a list of groups
+* Add charm config to ignore missing CNI, and block when CNI is missing
+* Validate allow-privileged configuration
+
+### kubernetes-worker
+* [LP#2059912](https://launchpad.net/bugs/2059912) config: Add proxy-real-ip-cidr charm config
+* Add charm config to ignore missing CNI, and block when CNI is missing
+* Setup the None CNI if ignore-missing-cni is true
+* Port the cis-benchmark to the ops worker charm
+
+### openstack-cloud-controller
+* Restart CCM DaemonSet when config hash changes
+
+## Component Versions
+
+### Charm/Addons pinned versions
+- kube-ovn 1.12.30
+- calico 3.29.3
+- cephcsi 3.13.0
+- cinder-csi-plugin 1.27.1
+- coredns 1.11.1
+- ingress-nginx 1.11.5
+- k8s-keystone-auth 1.30.0
+- kube-state-metrics 2.10.1
+- kubernetes-dashboard 2.7.0
+
+### Charm default versions
+- openstack-cloud-controller-manager 1.30.0
+- cloud-provider-vsphere 1.31
+- vsphere-csi-driver 3.3.1
+- cloud-provider-azure 1.31.0
+- azuredisk-csi-driver 1.31.2
+- cloud-provider-aws 1.26.1
+- aws-ebs-csi-driver 1.32.0
+- gcp-compute-persistent-disk-csi-driver 1.17.8
+
+
+## Fixes
+
+A list of bug fixes and other minor feature updates in this release can be found at
+[the launchpad milestone page for 1.33](https://launchpad.net/charmed-kubernetes/+milestone/1.33).
+
+
+## Deprecations and API changes
+
+For details of other deprecation notices and API changes for Kubernetes 1.33, please see the
+relevant sections of the [upstream release notes][upstream-changelog-1.33].
+
+[upstream-changelog-1.33]: https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.33.md#deprecation
+
+
 # 1.32+ck2
 
 ### May 8, 2025 - `charmed-kubernetes --channel 1.32/stable`

@@ -24,8 +24,13 @@ transparent network security and traffic monitoring features.
 <div class="p-notification--information is-inline">
   <div class="p-notification__content">
     <span class="p-notification__title">Note:</span>
-    <p class="p-notification__message">If you are deploying Charmed Kubernetes + Cilium on AWS or OpenStack, please set the following model configurations to disable FAN networking, as this conflicts with the network interfaces created by Cilium: `juju model-config container-networking-method=local fan-config=`
+    <p class="p-notification__message">If you are deploying Charmed Kubernetes + Cilium on AWS or OpenStack, please set the following model configurations to disable FAN networking, as this conflicts with the network interfaces created by Cilium: 
+    <pre><code>
+    juju model-config container-networking-method=local fan-config=
+    </code></pre>
     </p>
+    Alternatively, you can set another VXLAN destination port for Cilium to avoid possible 
+    collisions with other tools that make use of VXLAN.
   </div>
 </div>
 
@@ -57,26 +62,28 @@ App                       Version Status  Scale  Charm                     Chann
 cilium                    1.12.5  active      5  cilium                    latest/stable   29  no       Ready
 ```
 
-Upgrading will require changing the `release` config of the charm with `juju config cilium release=<version>`, but choosing
-which version requires seeing what the charm currently supports.
+Upgrading will require changing the `release` config of the charm with `juju config cilium release=<version>`, but choosing which version requires seeing what the charm currently supports.
 
 ```sh
 juju run cilium/leader list-versions
-cilium-versions: |
-   1.12.5
-   1.13.16
-   1.14.11
+cilium-versions: |-
+  1.16.10
+  1.15.17
+  1.14.11
+  1.13.16
+  1.12.5
 hubble-versions: |-
-   1.12.5
-   1.13.16
-   1.14.11
+  1.16.10
+  1.15.17
+  1.14.11
+  1.13.16
+  1.12.5
 ```
 
-If the units are all at `1.12.5`, The next available step would be to `1.13.16`.  Cilium recommends the cni be upgrading through each
-minor release.  To get to the latest current supported charm, follow the following steps.
+Cilium instructs upgrading through each minor release sequentially. The only tested upgrade and rollback path supported by Cilium is between consecutive minor versions. Suppose you currently have version `1.n.x` of Cilium installed and want to upgrade to version `1.m.z`, where `m > n`, and `x` and `z` are patch versions. In this case, you must first upgrade to the next minor version in the list, `1.n+1.y`, before proceeding further. Follow these steps for the upgrade:
 
 ```sh
-juju config cilium release=1.13.16
+juju config cilium release=1.n+1.y
 juju-wait
 kubectl get pods -A
 # ensuring that all cilium pods restart on the new image versions
@@ -84,7 +91,7 @@ juju exec cilium/leader -- cilium status
 # ensure that cilium reflects a successful deployment
 ```
 
-Then repeat the steps with `1.14.11`.
+Repeat these steps incrementally from `1.n+1` to `1.n+2` and so on until you reach your target version.
 
 ## Cilium configuration options
 
@@ -111,6 +118,22 @@ juju config cilium port-forward-hubble=true
 
 The configuration settings that require further explanation are 
 provided below.
+
+## Configuring encapsulation protocol and port
+
+Cilium supports both `VXLAN` and `Geneve` tunnel encapsulation protocol. While the charm uses 
+`VXLAN` by default, you can change it to `Geneve` via the following command:
+
+```bash
+juju config cilium tunnel-protocol=geneve
+```
+
+You can also change the default tunnel port (`8472` for `VXLAN` and `6081` for `Geneve`) for your encapsulation protocol of choice:
+
+```bash
+juju config cilium tunnel-port=8473
+```
+
 
 ## Configuring the default Cluster Pool CIDR
 
