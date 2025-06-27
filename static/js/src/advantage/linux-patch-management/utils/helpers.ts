@@ -15,6 +15,25 @@ export const useFetchCVEData = (release: string) => {
   });
 };
 
+export const LTSReleasesFromName = (release: string): string => {
+  switch (release) {
+    case "noble":
+      return "24.04";
+    case "jammy":
+      return "22.04";
+    case "focal":
+      return "20.04";
+    case "bionic":
+      return "18.04";
+    case "xenial":
+      return "16.04";
+    case "trusty":
+      return "14.04";
+    default:
+      throw new Error(`Unknown release: ${release}`);
+  }
+};
+
 export const releaseToLTSEndYear = (release: string): number => {
   switch (release) {
     case "noble":
