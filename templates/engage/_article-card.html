@@ -22,8 +22,8 @@
 <div class="p-section--shallow">
   <div class="row">
     <hr class="p-rule" />
-    <div class="aside col-3 col-medium-2 u-hide--small">
-      <p>
+    <div class="aside col-3 col-medium-2">
+      <p class="p-text--small-caps">
         {% if type %}
           {{ type }}
         {% else %}
@@ -31,14 +31,32 @@
         {% endif %}
       </p>
     </div>
+    {% set article_link = title_link ~ "?preview" if active == 'false' and preview != None else title_link %}
     <div class="col-6 col-medium-4">
       <h3 class="p-heading--4">
-        <a href="{% if active == 'false' and preview != None %}{{ title_link }}?preview{% else %}{{ title_link }}{% endif %}">{{ title | safe }}</a>
+        <a href="{{ article_link }}">{{ title | safe }}</a>
       </h3>
-      <span class="p-chip--information p-chip--read-only">
-        <span class="p-chip__value">{{ tags }}</span>
-      </span>
+      {% for tag in tags.split(',') if tag.strip() %}
+        <span class="p-chip--information p-chip--read-only">
+          <span class="p-chip__value">{{ tag.strip() | capitalize }}</span>
+        </span>
+      {% endfor %}
       <p class="p-blog_excerpt u-hide--small u-hide--medium">{{ description | safe }}</p>
+    </div>
+
+    <div class="col-3 u-hide--small u-hide--medium">
+      <a href="{{ article_link }}" aria-hidden="true" tabindex="-1">
+        <div class="p-image-wrapper">
+          {{ image(url=thumbnail or "https://assets.ubuntu.com/v1/1199af9d-fallback-thumbnail-dark.jpg",
+                    alt=title if thumbnail else "",
+                    width="284",
+                    height="160",
+                    hi_def=True,
+                    loading="lazy") | safe }}
+        </div>
+      </a>
     </div>
   </div>
 </div>
+
+<!-- p-image-container__image -->
