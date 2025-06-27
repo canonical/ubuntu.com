@@ -79,13 +79,13 @@ const CVETable = () => {
         selectedRelease={selectedRelease}
         changeSelectedRelease={changeSelectedRelease}
       />
-      <Notification
-        severity="information"
-      >
+      <Notification severity="information">
         <>
-          We have made available {(cveFixCount[0] + cveFixCount[1]).toLocaleString()} fixes for
-          vulnerabilities rated High ({cveFixCount[0].toLocaleString()}) / Critical ({cveFixCount[1].toLocaleString()})
-          for {LTSReleasesFromName(selectedRelease)}
+          We have made available{" "}
+          {(cveFixCount[0] + cveFixCount[1]).toLocaleString()} fixes for
+          vulnerabilities rated High ({cveFixCount[0].toLocaleString()}) /
+          Critical ({cveFixCount[1].toLocaleString()}) for{" "}
+          {LTSReleasesFromName(selectedRelease)}
         </>
       </Notification>
       <MainTable
