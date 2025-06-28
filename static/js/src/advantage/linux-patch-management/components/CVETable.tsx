@@ -1,11 +1,10 @@
 import { MainTable, Notification, Spinner } from "@canonical/react-components";
 import { LTSReleasesFromName, useFetchCVEData } from "../utils/helpers";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import useCVETable from "./useCVETable";
 import CVESelector from "./CVESelector";
 import { createPortal } from "react-dom";
 import ProContent from "./ProContent";
-import { UbuntuPackage } from "../types/ubuntu_package";
 
 const CVETable = () => {
   const [selectedRelease, changeSelectedRelease] = useState("focal");
@@ -23,25 +22,6 @@ const CVETable = () => {
     selectedSeverity,
     setSelectedSeverity,
   );
-
-  const cveFixCount = useMemo(() => {
-    if (!cveData || !cveData.packages) {
-      return [0, 0];
-    }
-    const high_cves_count = cveData.packages.reduce(
-      (count: number, pkg: UbuntuPackage) => {
-        return count + pkg.high_cves.length;
-      },
-      0,
-    );
-    const critical_cves_count = cveData.packages.reduce(
-      (count: number, pkg: UbuntuPackage) => {
-        return count + pkg.critical_cves.length;
-      },
-      0,
-    );
-    return [high_cves_count, critical_cves_count];
-  }, [cveData]);
 
   const headers = [
     {
@@ -82,9 +62,9 @@ const CVETable = () => {
       <Notification severity="information">
         <>
           We have made available{" "}
-          {(cveFixCount[0] + cveFixCount[1]).toLocaleString()} fixes for
-          vulnerabilities rated High ({cveFixCount[0].toLocaleString()}) /
-          Critical ({cveFixCount[1].toLocaleString()}) for{" "}
+          {(cveData["total_cves"]).toLocaleString()} fixes for
+          vulnerabilities rated High ({cveData["high_cves"].toLocaleString()}) /
+          Critical ({cveData["critical_cves"].toLocaleString()}) for{" "}
           {LTSReleasesFromName(selectedRelease)}
         </>
       </Notification>
