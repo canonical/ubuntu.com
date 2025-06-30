@@ -10,164 +10,191 @@
   https://docs.google.com/document/d/1V99KwimN8Hla8L_CikNc6I0amqj99cSrBsVlAjIkBqE/edit#
 {% endblock meta_copydoc %}
 
-{% block content %}
-  <section class="p-strip--suru-topped">
-    <div class="row u-vertically-center">
-      <div class="col-7">
-        <h1>Secure Ubuntu 16.04 LTS on Azure</h1>
-        <p>
-          Ubuntu 16.04 LTS (Xenial) will reach the end of its free initial five-year security maintenance period on April, 30 2021. It is supported until 2026 through Expanded Security Maintenance (ESM) with either an Ubuntu Pro premium image or by attaching a UA subscription.
-        </p>
-        <p>
-          <a class="p-button--positive"
-             href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-xenial">
-            Launch new workloads on Ubuntu Pro 16.04 LTS
-          </a>
-        </p>
-        <p>
-          <a class="js-invoke-modal" href="/azure/contact-us">
-            Contact us to add  ESM to existing Ubuntu 16.04 virtual machines&nbsp;&rsaquo;
-          </a>
-        </p>
-      </div>
-      <div class="col-5 u-hide--medium u-hide--small u-align--center">
-        {{ image (
-        url="https://assets.ubuntu.com/v1/41cb88c9-xerus_orange_hex.svg",
-        alt="",
-        width="200",
-        height="203",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-        }}
-        <div style="margin: auto; width: 70%;">
-          <hr class="p-rule--muted" />
-          <p class="p-muted-heading hero-muted-heading u-align--left">
-            out of standard support,
-            <br />
-            upgrade to esm support
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 
-  <section class="p-strip--light">
-    <div class="row">
-      <div class="col-7">
-        <h2>Keep your Azure Ubuntu 16.04 LTS systems secure</h2>
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block extra_metatags %}
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"></script>
+{% endblock extra_metatags %}
+
+{% block content %}
+  {% call(slot) vf_hero(
+    title_text='Secure Ubuntu 16.04 LTS<br class="u-hide--small" /> on Azure',
+    layout='50/50'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Ubuntu 16.04 LTS (Xenial) will reach the end of its free initial five-year security maintenance period on April 30, 2021. It is supported until 2026 through Expanded Security Maintenance (ESM) with Ubuntu Pro.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a class="p-button--positive"
+        href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-xenial">
+        Launch new workloads on Ubuntu Pro 16.04 LTS
+      </a>
+      <a class="js-invoke-modal" href="/azure/contact-us">
+        Contact us to add  ESM to existing Ubuntu 16.04 virtual machines&nbsp;&rsaquo;
+      </a>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--3-2 is-highlighted">
+
+        {{ image(url="https://assets.ubuntu.com/v1/55780cd0-hero-img.png",
+                alt="",
+                width="1200",
+                height="800",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image"},) | safe
+        }}
+      </div>
+      <p class="u-text--muted">Out of standard support, upgrade to ESM support.</p>
+    {%- endif -%}
+  {% endcall -%}
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule--muted" />
+    <div class="col">
+      <h2>Keep your Azure<br class="u-hide--small" /> Ubuntu 16.04 LTS systems secure</h2>
+    </div>
+    <div class="col">
         <p>
           You should <a href="https://info.microsoft.com/ww-ondemand-expert-tips-to-easily-migrate-your-ubuntu-stack-to-azure.html">evaluate if you can easily move your instances</a> to either Ubuntu 20.04 LTS or Ubuntu 18.04 LTS before April 30, 2021.
         </p>
         <p>
-          If you would like to keep using Ubuntu 16.04 LTS, Canonical is delighted to offer at least five-additional years of Expanded Security Maintenance (ESM) available with the <a href="https://azuremarketplace.microsoft.com/en-gb/marketplace/apps/canonical.0001-com-ubuntu-pro-xenial">Ubuntu Pro 16.04 LTS premium image</a> or through an <a href="/pro">Ubuntu Advantage  subscription</a>.
+          If you would like to keep using Ubuntu 16.04 LTS, Canonical is delighted to offer at least five-additional years of Expanded Security Maintenance (ESM) available with the <a href="https://azuremarketplace.microsoft.com/en-gb/marketplace/apps/canonical.0001-com-ubuntu-pro-xenial">Ubuntu Pro 16.04 LTS premium image</a>.
         </p>
         <p>
           <a href="/tutorials/purchasing-and-applying-16-04-esm-from-the-azure-marketplace#2-find-the-subscriptions-containing-1604-with-azure-resource-graph-explorer">Find Ubuntu 16.04 instances with Azure Resource Graph Explorer&nbsp;&rsaquo;</a>
         </p>
         <p>
-          Ubuntu Pro 16.04 is priced at 3.0-4.5% of your average compute cost of your existing 16.04 LTS instances with hourly billing, or alternatively you can get an Ubuntu Advantage subscription starting at $75 per VM per year.
+          Ubuntu Pro 16.04 is priced at 3.0-4.5% of your average compute cost of your existing 16.04 LTS instances with hourly billing.
         </p>
-      </div>
-      <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
-        {{ image(url="https://assets.ubuntu.com/v1/da9a1344-Microsoft-Azure-logo_stacked_transparent.png",
-                alt="",
-                width="350",
-                height="100",
-                hi_def=True,
-                loading="auto",) | safe
-        }}
-      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="p-strip">
-    <div class="row">
-      <div class="col-8">
-        <h2>Upgrading Ubuntu 16.04 LTS on Azure to Ubuntu Pro</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-7">
-        <h4>New or redeployed instances</h4>
-        <p>
-          For fresh Ubuntu 16.04 instances, or if you are able to redeploy your workload, we recommend using Ubuntu Pro images. <a href="/azure/pro">Ubuntu Pro for Azure</a> is a premium image, optimised for Azure with security and compliance features built in, and optimised for the public cloud.
-        </p>
-        <p>
-          Ubuntu Pro includes security coverage for the entire collection of software packages shipped with Ubuntu, tracking high and critical CVEs. It is ideal for companies that have embraced open source for their new products.
-        </p>
-        <p>
-          <a class="p-button--positive"
-             href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-xenial">Launch Ubuntu Pro 16.04 LTS on Azure</a>
-        </p>
-      </div>
-      <div class="col-5">
-        <h4>Upgrading existing instances</h4>
-        <p>
-          If you are looking to upgrade your existing Ubuntu 16.04 LTS Azure instances you can <a href="https://azuremarketplace.microsoft.com/uk-ua/marketplace/apps/Canonical.UbuntuAdvantageSupport">enable the Ubuntu Advantage subscription directly from the Azure marketplace</a>.
-        </p>
-        <p>
-          <a href="/tutorials/purchasing-and-applying-16-04-esm-from-the-azure-marketplace">See a tutorial for this process</a>. Please note that this will enable Ubuntu Advantage for all Ubuntu instances under the selected subscription.
-        </p>
-      </div>
-    </div>
-  </section>
+{%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=false) -%}
+{%- if slot == 'title' -%}
+  <div class="p-section--shallow">
+    <h2>Upgrading Ubuntu 16.04 LTS on Azure to Ubuntu Pro</h2>
+  </div>
+{%- endif -%}
 
-  <section class="p-strip--light">
-    <div class="row">
-      <div class="col-8">
+{%- if slot == 'list_item_title_1' -%}
+  <h3 class="p-heading--5">New or redeployed instances</h3>
+{%- endif -%}
+
+{%- if slot == 'list_item_description_1' -%}
+  <p>
+    For fresh Ubuntu 16.04 instances, or if you are able to redeploy your workload, we recommend using Ubuntu Pro images. <a href="/azure/pro">Ubuntu Pro for Azure</a> is a premium image, optimised for Azure with security and compliance features built in, and optimised for the public cloud.
+  </p>
+  <p>
+    Ubuntu Pro includes security coverage for the entire collection of software packages shipped with Ubuntu, tracking high and critical CVEs. It is ideal for companies that have embraced open source for their new products.
+  </p>
+{%- endif -%}
+
+{%- if slot == 'list_item_title_2' -%}
+  <h3 class="p-heading--5">Upgrading existing instances</h3>
+{%- endif -%}
+
+{%- if slot == 'list_item_description_2' -%}
+  <p>
+    If you are looking to upgrade your existing Ubuntu 16.04 LTS Azure instances you can <a href="https://learn.microsoft.com/en-us/azure/virtual-machines/workloads/canonical/ubuntu-pro-in-place-upgrade">upgrade your existing Ubuntu instances to Ubuntu Pro</a>.
+  </p>
+  <div class="p-cta-block">
+    <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-xenial" class="p-button">Launch Ubuntu Pro 16.04 LTS on Azure</a>
+  </div>
+{%- endif -%}
+{%- endcall -%}
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
         <h2>Ubuntu 16.04 LTS support lifecycle</h2>
       </div>
-    </div>
-    {% include "16-04/_release-chart-1604.html" %}
-  </section>
-
-  <section class="p-strip">
-    <div class="row u-vertically-center">
-      <div class="col-6">
-        <div class="u-embedded-media">
-          <iframe title="Ubuntu LTS migration strategies"
-                  class="u-embedded-media__element"
-                  src="https://player.vimeo.com/video/542151047"
-                  allowfullscreen=""></iframe>
-        </div>
-      </div>
-      <div class="col-6">
-        <h3>Microsoft and Canonical joint webinar on 16.04 migration strategies and options</h3>
-        <p>
-          Microsoft and Canonical partnered on a <a href="https://info.microsoft.com/ww-ondemand-expert-tips-to-easily-migrate-your-ubuntu-stack-to-azure.html">joint webinar</a> to help you through this evaluation process. The webinar covers the following topics:
-        </p>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">The benefits and risks of an in place upgrade from LTS-LTS</li>
-          <li class="p-list__item is-ticked">
-            Redeployment and migration of workloads to later LTS releases if they support it
-          </li>
-          <li class="p-list__item is-ticked">
-            Application version differences between Ubuntu 16.04 and later LTS releases and the impacts this may have on migration
-          </li>
-          <li class="p-list__item is-ticked">Backup strategies before migration</li>
-          <li class="p-list__item is-ticked">Easy migration of Azure pipelines from Ubuntu 16.04 to 18.04</li>
-          <li class="p-list__item is-ticked">Commercial options for remaining on Ubuntu 16.04 with security maintenance</li>
-        </ul>
-        <a class="p-button"
-           href="https://info.microsoft.com/ww-ondemand-expert-tips-to-easily-migrate-your-ubuntu-stack-to-azure.html">Watch the full webinar</a>
-      </div>
+      {% include "16-04/_release-chart-1604.html" %}
     </div>
   </section>
 
-  <section class="p-strip--light">
-    <div class="row">
-      <div class="col-8">
-        <p class="u-embedded-media">
-          <iframe title="Ubuntu on Azure"
-                  class="u-embedded-media__element"
-                  src="https://www.youtube.com/embed/SIwIqiJ6FcE"
-                  allowfullscreen=""
-                  frameborder="0"></iframe>
-        </p>
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Webinar on 16.04 migration strategies and options</h2>
+    </div>
+    <div class="col">
+      <div class="u-embedded-media">
+        <iframe title="Ubuntu LTS migration strategies"
+                class="u-embedded-media__element"
+                src="https://player.vimeo.com/video/542151047"
+                allowfullscreen=""></iframe>
+      </div>
+      <p>The webinar covers the following topics:</p>
+    </div>
+  </div>
+  
+  <div class="p-list--horizontal-section-wrapper">
+    <ul class="p-list--horizontal-section is-25-75">
+      <li class="p-list__item is-ticked">
+        10 year security maintenance and CVE Patching
+      </li>
+      <li class="p-list__item is-ticked">
+        Redeployment and migration of workloads to later LTS releases if they support it
+      </li>
+      <li class="p-list__item is-ticked">
+        Application version differences between Ubuntu 16.04 and later LTS releases and the impacts this may have on migration
+      </li>
+      <li class="p-list__item is-ticked">
+        Backup strategies before migration
+      </li>
+      <li class="p-list__item is-ticked">
+        Easy migration of Azure pipelines from Ubuntu 16.04 to 18.04
+      </li>
+      <li class="p-list__item is-ticked">
+        Commercial options for remaining on Ubuntu 16.04 with security maintenance
+      </li>
+    </ul>
+  </div>
+  <div class="row">
+    <div class="col-start-large-7 col-6">
+      <div class="p-cta-block">
+        <a href="https://info.microsoft.com/ww-ondemand-expert-tips-to-easily-migrate-your-ubuntu-stack-to-azure.html" class="p-button">Watch the full webinar</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<section class="p-section--deep">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Learn more about Ubuntu on Azure</h2>
+    </div>
+    <div class="col">
+      <div class="u-embedded-media">
+        <lite-youtube videoid="SIwIqiJ6FcE"
+          width="560"
+          height="315"
+          posterquality="maxresdefault"
+          videotitle="Ubuntu on Azure"
+          class="u-embedded-media__element"
+        >
+        <a href="https://www.youtube.com/watch?v=SIwIqiJ6FcE" title="Play Video">
+            <span class="lyt-visually-hidden">Ubuntu on Azure</span>
+        </a>
+        </lite-youtube>
+      </div>
+    </div>
+  </div>
+</section>
+
 
   <!-- Set default Marketo information for contact form below-->
   <div class="u-hide"
