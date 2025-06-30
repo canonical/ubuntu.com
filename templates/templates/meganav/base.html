@@ -17,8 +17,8 @@
 
       <div class="col u-no-padding">
         {% for side_nav_section in sections.side_nav_sections %}
-          <div class="dropdown-window__sidenav-content" {% if loop.index != 1 %}hidden="true"{% endif %} id="{{id}}-{{format_to_id(side_nav_section.title)}}-tab-content" tabindex="-1" role="tabpanel" aria-labelledby="{{id}}-{{format_to_id(side_nav_section.title)}}-tab" >
-            <div class="row u-no-padding"> 
+          <div class="dropdown-window__sidenav-content" {% if loop.index != 1 %}hidden="true"{% endif %} id="{{id}}-{{format_to_id(side_nav_section.title)}}-tab-content" tabindex="-1" role="tabpanel" aria-labelledby="{{id}}-{{format_to_id(side_nav_section.title)}}-tab">
+            <div class="row u-no-padding">
               <div class="col-{% if side_nav_section.secondary_links %}6{% else %}9{% endif %} dropdown-window__main-panel">
                 {% for links_section in side_nav_section.primary_links %}
                   {% if links_section.title %}
@@ -35,12 +35,12 @@
                     <div class="{% if side_nav_section.secondary_links %}col-4{% else %}col-3{% endif %}">
                       <ul class="p-list">
                         {% for link in split_links_list[0] %}
-                          {% with 
-                            url = link.url, 
-                            title = link.title, 
+                          {% with
+                            url = link.url,
+                            title = link.title,
                             description = link.description,
                             secondary_cta_url = link.secondary_cta_url,
-                            secondary_cta_title = link.secondary_cta_title 
+                            secondary_cta_title = link.secondary_cta_title
                           %}
                             {% include "templates/meganav/_list-item.html" %}
                           {% endwith %}
@@ -51,10 +51,10 @@
                     <div class="{% if side_nav_section.secondary_links %}col-4{% else %}col-3{% endif %}">
                       <ul class="p-list">
                         {% for link in split_links_list[1] %}
-                          {% with 
-                            url = link.url, 
-                            title = link.title, 
-                            description = link.description 
+                          {% with
+                            url = link.url,
+                            title = link.title,
+                            description = link.description
                           %}
                             {% include "templates/meganav/_list-item.html" %}
                           {% endwith %}
@@ -66,10 +66,10 @@
                       <div class="col-3">
                         <ul class="p-list">
                           {% for link in split_links_list[2] %}
-                            {% with 
-                              url = link.url, 
-                              title = link.title, 
-                              description = link.description 
+                            {% with
+                              url = link.url,
+                              title = link.title,
+                              description = link.description
                             %}
                               {% include "templates/meganav/_list-item.html" %}
                             {% endwith %}
@@ -79,7 +79,7 @@
                     {% endif %}
                   </div>
                 {% endfor %}
-              </div>      
+              </div>
 
               {% if side_nav_section.secondary_links %}
               <div class="col-3 dropdown-window__side-panel">
@@ -111,7 +111,7 @@
         {% endfor %}
       </div>
     {% elif "primary_links" in sections %}
-      <div class="row u-no-padding"> 
+      <div class="row u-no-padding">
         <div class="col-9 dropdown-window__main-panel">
           {% for links_section in sections.primary_links %}
             {% if links_section.title %}
@@ -124,12 +124,12 @@
               <div class="col-3">
                 <ul class="p-list">
                   {% for link in split_links_list[0] %}
-                    {% with 
-                      url = link.url, 
-                      title = link.title, 
+                    {% with
+                      url = link.url,
+                      title = link.title,
                       description = link.description,
                       secondary_cta_url = link.secondary_cta_url,
-                      secondary_cta_title = link.secondary_cta_title 
+                      secondary_cta_title = link.secondary_cta_title
                     %}
                       {% include "templates/meganav/_list-item.html" %}
                     {% endwith %}
@@ -140,10 +140,10 @@
               <div class="col-3">
                 <ul class="p-list">
                   {% for link in split_links_list[1] %}
-                    {% with 
-                      url = link.url, 
-                      title = link.title, 
-                      description = link.description 
+                    {% with
+                      url = link.url,
+                      title = link.title,
+                      description = link.description
                     %}
                       {% include "templates/meganav/_list-item.html" %}
                     {% endwith %}
@@ -154,10 +154,10 @@
               <div class="col-3">
                 <ul class="p-list">
                   {% for link in split_links_list[2] %}
-                    {% with 
-                      url = link.url, 
-                      title = link.title, 
-                      description = link.description 
+                    {% with
+                      url = link.url,
+                      title = link.title,
+                      description = link.description
                     %}
                       {% include "templates/meganav/_list-item.html" %}
                     {% endwith %}
@@ -166,7 +166,7 @@
               </div>
             </div>
           {% endfor %}
-        </div>      
+        </div>
 
         <div class="col-3 dropdown-window__side-panel">
           {% if sections.secondary_links %}
@@ -186,10 +186,10 @@
               <p class="p-muted-heading" style="padding-left:0.5rem;">{{ links_section.title }}</p>
               <ul class="p-list">
                 {% for link in links_section.links %}
-                  {% with 
-                    url = link.url, 
-                    title = link.title, 
-                    description = link.description 
+                  {% with
+                    url = link.url,
+                    title = link.title,
+                    description = link.description
                   %}
                     {% include "templates/meganav/_list-item.html" %}
                   {% endwith %}
@@ -226,9 +226,9 @@
           <p class="p-muted-heading is-muted u-no-padding--top">{{ links_section.title }}</p>
           {% endif %}
           {% for link in links_section.links %}
-            {% with 
-              url = link.url, 
-              title = link.title, 
+            {% with
+              url = link.url,
+              title = link.title,
               description = link.description,
               secondary_cta_url = link.secondary_cta_url,
               secondary_cta_title = link.secondary_cta_title,
@@ -259,9 +259,9 @@
       <p class="p-muted-heading is-muted u-no-padding--top">{{ links_section.title }}</p>
       {% endif %}
       {% for link in links_section.links %}
-        {% with 
-          url = link.url, 
-          title = link.title, 
+        {% with
+          url = link.url,
+          title = link.title,
           description = link.description,
           secondary_cta_url = link.secondary_cta_url,
           secondary_cta_title = link.secondary_cta_title,
@@ -277,9 +277,9 @@
         <p class="p-muted-heading is-muted" style="padding-top: 1rem;">{{ links_section.title }}</p>
         {% endif %}
         {% for link in links_section.links %}
-          {% with 
-            url = link.url, 
-            title = link.title, 
+          {% with
+            url = link.url,
+            title = link.title,
             description = link.description,
             secondary_cta_url = link.secondary_cta_url,
             secondary_cta_title = link.secondary_cta_title,

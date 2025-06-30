@@ -47,7 +47,7 @@
                   {% elif invoice.marketplace == "blender" %}
                     Blender Support
                   {% elif invoice.marketplace == "canonical-cube" %}
-                    Canonical CUBE 
+                    Canonical CUBE
                   {% endif %}{% if invoice.period %} ({{ invoice.period }}){% endif %}</td>
                 <td aria-label="Date">{{ invoice.get_formatted_date() }}</td>
                 <td aria-label="Status">

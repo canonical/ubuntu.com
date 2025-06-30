@@ -91,7 +91,7 @@
 
             {% if cvssV3 %}
               <div>
-                <h2 class="p-text--small-caps"  style="margin-bottom: 0.5rem;">Cvss 3 Severity Score</h2>
+                <h2 class="p-text--small-caps" style="margin-bottom: 0.5rem;">Cvss 3 Severity Score</h2>
                 <div class="p-heading-icon--small">
                   <div class="p-heading-icon__header">
                     {% set baseScore = cvssV3.baseScore %}
@@ -276,7 +276,7 @@
                           </td>
                           {# djlint: off #}
                           {% if status.icon %}
-                            <td style="overflow: visible; display: flex;" class="{% if status.maintained == False %} js-unmaintained-cell u-hide--cell{% endif %} cve-td-status" >
+                            <td style="overflow: visible; display: flex;" class="{% if status.maintained == False %} js-unmaintained-cell u-hide--cell{% endif %} cve-td-status">
                               <i class="p-icon--{{ status.icon }}" style="margin-top: .2rem; margin-right: 0.5rem;"></i>
                               <div style="display: block;">
                                 {{ status.name }} {% if status.name == "Fixed" %}<span class="u-text--muted">{{ status.description }} </span> {% endif %}
@@ -289,7 +289,7 @@
                                   </div>
                                 {% endif %}
                               </div>
-                            </td>     
+                            </td>
                           {% else %}
                             <td class="{% if status.maintained == False %}js-unmaintained-cell u-hide--cell{% endif %} cve-td-status {% if status.status == 'DNE' %}u-text--muted{% endif %}" style="padding-left: 2rem;">
                               {{ status.name }} {% if status.status == "ignored" %} <span class="u-text--muted">{{ status.description }} </span> {% endif %}
@@ -544,7 +544,7 @@
       const maintainedReleasesSwitch = document.querySelector(".js-toggle-maintained");
       const hiddenCells = document.querySelectorAll(".js-unmaintained-cell");
 
-      // When the CVE does not include statuses for maintained releases or if it only has upstream statuses, 
+      // When the CVE does not include statuses for maintained releases or if it only has upstream statuses,
       // the switch is disabled and checked
       if (maintainedCount === 0 || isOnlyUpstream) {
 

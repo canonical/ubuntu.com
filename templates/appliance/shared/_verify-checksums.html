@@ -2,7 +2,7 @@
   <span class="p-contextual-menu--left">
     <a href="#" class="p-contextual-menu__toggle js-checksum-toggle" data-trigger="click" aria-controls="menu-4" aria-expanded="false" aria-haspopup="true"><i class="p-icon--information"></i>&nbsp;&nbsp;&nbsp;How to verify your download</a>
     <span class="p-contextual-menu__dropdown js-checksum-dropdown" id="menu-4" aria-hidden="true" aria-label="Verification instructions:" style="width: 600px; max-width: 70vw; padding: 1rem; z-index: 10;">
-      <span  class="p-contextual-menu__group">
+      <span class="p-contextual-menu__group">
         <small>Run this command in your terminal in the directory the iso was downloaded to verify the SHA256 checksum:</small><br />
         <code style="display: block; margin-top: 1rem;">echo {% if "raspberry-pi" in request.path %} "{{ appliance.checksum.raspberrypi }}" {% else %} "{{ appliance.checksum.pc }}" {% endif %} | shasum -a 256 --check</code><br />
         <small>You should get the following output:</small><br />

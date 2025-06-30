@@ -55,7 +55,7 @@
       <p class="u-no-margin--bottom" id="search-label">USN ID, name, description or CVE ID contains</p>
       <form class="js-notice-form p-search-box" aria-describedby="search-label">
         <label class="u-off-screen" for="details">Search</label>
-        <input class="p-search-box__input js-details" type="search" name="details" id="details" placeholder="Search listings" required="" autocomplete="on" value="{{ request.args.get('details', '') }}" >
+        <input class="p-search-box__input js-details" type="search" name="details" id="details" placeholder="Search listings" required="" autocomplete="on" value="{{ request.args.get('details', '') }}">
         <button type="reset" class="p-search-box__reset"><i class="p-icon--close">Close</i></button>
         <button type="submit" class="p-search-box__button js-submit"><i class="p-icon--search">Search</i></button>
       </form>
@@ -90,7 +90,7 @@
         {% endwith %}
       </div>
     </div>
-  </section>              
+  </section>
 
   <!-- footer sections -->
   <section class="p-section">

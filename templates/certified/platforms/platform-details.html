@@ -72,9 +72,9 @@
         {% for canonical_id, certificate in platform.certificates.items() %}
         <td>
           <ul class="p-list u-no-margin--bottom">
-          {% for release in certificate.releases|sort|reverse %} 
+          {% for release in certificate.releases|sort|reverse %}
             <li class="p-list__item u-no-padding--top">
-            {{ release }} 
+            {{ release }}
             </li>
           {% endfor %}
           </ul>
@@ -128,7 +128,7 @@
     </tbody>
   </table>
 
-  <hr style="margin-top: 25px;" class="p-rule"/>
+  <hr style="margin-top: 25px;" class="p-rule" />
 
   <div style="display:flex; align-items: center; justify-content: right;">
     <i id="downButton" class="p-icon--chevron-left"></i>

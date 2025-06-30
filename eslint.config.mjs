@@ -1,12 +1,12 @@
 import eslint from "@eslint/js";
 import reactPlugin from "eslint-plugin-react";
-import tsParser from '@typescript-eslint/parser'
+import tsParser from '@typescript-eslint/parser';
 import globals from "globals";
+import html from '@html-eslint/eslint-plugin';
 
 const config = [
-  eslint.configs.recommended,
-  reactPlugin.configs.flat.recommended,
   {
+    extends: [eslint.configs.recommended, reactPlugin.configs.flat.recommended],
     languageOptions: {
       globals: {
         Atomics: "readonly",
@@ -58,6 +58,26 @@ const config = [
       }
     }
   },
+  {
+    files: ["**/*.html"],
+    plugins: {
+        html,
+    },
+    languageOptions: {
+      // This tells the parser to treat {{ ... }} as template syntax,
+      // so it won’t try to parse contents inside as regular HTML
+      templateEngineSyntax: {
+          "{{": "}}",
+          "{%": "%}",
+      },
+  },
+    language: "html/html",
+    rules: {
+        "html/no-duplicate-class": "error",
+        "html/no-extra-spacing-attrs": ["error", {enforceBeforeSelfClose: true}],
+        "html/no-trailing-spaces": "error",
+    }
+  }
 ];
 
 export default config;

@@ -109,7 +109,7 @@
               {% endfor %}
             </ul>
             <ul class="p-list js-description-all u-hide">
-              {% for package_name, package_title in notice.package_descriptions.items() %}                    
+              {% for package_name, package_title in notice.package_descriptions.items() %}
                 <li class="p-list__item has-bullet">
                   <strong>{{ package_name }}</strong>&nbsp;&ndash;&nbsp;{{ package_title }}
                 </li>
@@ -174,7 +174,7 @@
                 {% endfor %}
               </tbody>
             </table>
-          </div>        
+          </div>
         </div>
 
         {% if notice.cves_and_references %}
@@ -182,10 +182,10 @@
           {% if notice.cves_and_references | length > 29 %}
             <form action="/security/notices/{{ notice.id }}#references" method="GET" class="p-search-box js-cve-form">
               <label class="u-off-screen" for="search">Search</label>
-              <input type="search" 
-                    id="cve" 
+              <input type="search"
+                    id="cve"
                     class="p-search-box__input"
-                    name="cve" 
+                    name="cve"
                     placeholder="Search by CVE ID" />
               <button type="reset" class="p-search-box__reset u-hide"><i class="p-icon--close">Close</i></button>
               <button type="submit" class="p-search-box__button"><i class="p-icon--search">Search</i></button>

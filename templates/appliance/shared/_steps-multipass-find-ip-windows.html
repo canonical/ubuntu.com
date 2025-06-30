@@ -7,7 +7,7 @@
     <h5>VirtualBox instructions</h5>
     <p>On VirtualBox, forward the appliance port to the outside world with this command in an Administrator PowerShell:</p>
     <pre><code>env:USERPROFILE\Downloads\PSTools\PsExec.exe -s
-$env:VBOX_MSI_INSTALL_PATH\VBoxManage.exe controlvm "&lt;instance 
+$env:VBOX_MSI_INSTALL_PATH\VBoxManage.exe controlvm "&lt;instance
 name&gt;" --natpf1 "{{ appliance.alias }},tcp,,{{ appliance.port}},,{{ appliance.port}}"</code></pre>
     <p>
       For more information about this command see the <a href="https://multipass.run/docs/using-virtualbox-in-multipass-windows#port-forwarding">Multipass documentation</a>.
