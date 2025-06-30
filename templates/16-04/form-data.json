@@ -1,0 +1,75 @@
+{
+  "form": {
+    "/16-04/azure": {
+      "templatePath": "/16-04/azure.html",
+      "isModal": true,
+      "modalId": "1604-azure-modal",
+      "formData": {
+        "title": "Canonical - the \"Ubuntu on Azure\" experts",
+        "formId": "3870",
+        "returnUrl": "/16-04/azure#success",
+        "product": ""
+      },
+      "fieldsets": [
+        {
+          "title": "Tell us more about your 16.04 instances",
+          "inputType": "checkbox",
+          "fields": [
+            { "type": "checkbox", "label": "< 50 VMs" },
+            { "type": "checkbox", "label": "<500 VMs" },
+            { "type": "checkbox", "label": ">500 VMs" },
+            { "type": "checkbox", "label": "Containers" },
+            { "type": "checkbox", "label": "Azure only VMs" },
+            { "type": "checkbox", "label": "Azure only AKS" },
+            { "type": "checkbox", "label": "Multiple public clouds" },
+            { "type": "checkbox", "label": "Private or edge cloud" },
+            { "type": "checkbox", "label": "Development and CI/CD" },
+            { "type": "checkbox", "label": "Standard Production" },
+            { "type": "checkbox", "label": "Mission-critical Production" },
+            { "type": "checkbox", "label": "Regulated workloads" }
+          ]
+        },
+        {
+          "title": "Which of the following topics are important to you?",
+          "inputType": "checkbox",
+          "fields": [
+            { "type": "checkbox", "label": "Ubuntu security patching" },
+            { "type": "checkbox", "label": "10-year lifetime" },
+            { "type": "checkbox", "label": "Regulatory compliance" },
+            { "type": "checkbox", "label": "Certification" },
+            { "type": "checkbox", "label": "CC-EAL" },
+            { "type": "checkbox", "label": "FIPS" },
+            { "type": "checkbox", "label": "Containers (AKS)" },
+            { "type": "checkbox", "label": "Compute (Azure VM)" },
+            { "type": "checkbox", "label": "Image size" },
+            { "type": "checkbox", "label": "Kernel livepatch" },
+            { "type": "checkbox", "label": "Support" },
+            { "type": "checkbox", "label": "Performance" },
+            { "type": "checkbox", "label": "Open Source security" },
+            { "type": "checkbox", "label": "Apache Kafka" },
+            { "type": "checkbox", "label": "RabbitMQ" },
+            { "type": "checkbox", "label": "Redis" },
+            { "type": "checkbox", "label": "MongoDB" },
+            { "type": "checkbox", "label": "NodeJS" }
+          ]
+        },
+        {
+          "title": "Can you summarize in a few words your estate and what assistance you're looking for?",
+          "id": "open-question",
+          "isRequired": false,
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "open-question"
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true
+        }
+      ]
+    }
+  }
+}
