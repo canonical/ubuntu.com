@@ -62,7 +62,7 @@ const CVETable = () => {
       <Notification severity="information">
         <>
           We have made available{" "}
-          {(cveData["total_cves"]).toLocaleString()} fixes for
+          {(cveData["critical_cves"]+cveData["high_cves"]).toLocaleString()} fixes for
           vulnerabilities rated High ({cveData["high_cves"].toLocaleString()}) /
           Critical ({cveData["critical_cves"].toLocaleString()}) for{" "}
           {LTSReleasesFromName(selectedRelease)}
