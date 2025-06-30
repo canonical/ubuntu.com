@@ -61,8 +61,8 @@ const CVETable = () => {
       />
       <Notification severity="information">
         <>
-          We have made available{" "}
-          {(cveData["critical_cves"]+cveData["high_cves"]).toLocaleString()} fixes for
+          Our experts patched{" "}
+          {(cveData["critical_cves"]+cveData["high_cves"]).toLocaleString()}{" "}
           vulnerabilities rated High ({cveData["high_cves"].toLocaleString()}) /
           Critical ({cveData["critical_cves"].toLocaleString()}) for{" "}
           {LTSReleasesFromName(selectedRelease)}

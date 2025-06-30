@@ -252,6 +252,11 @@ const ProContent = ({
                   </>,
                 ]}
               />
+              <div className="p-cta-block">
+                <a href="/security/vulnerability-management">
+                  Read more about vulnerability management &rsaquo;
+                </a>
+              </div>
             </Col>
           </Row>
         </div>
