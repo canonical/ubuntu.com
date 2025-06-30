@@ -21,7 +21,7 @@
 {% block content %}
 
   {% call(slot) vf_hero(
-    title_text='Ubuntu 16.04 LTS<br class="u-hide--small" /> (Xenial Xerus)',
+    title_text='Ubuntu 16.04 LTS<br class="u-hide--small u-hide--medium" /> (Xenial Xerus)',
     layout='50/50'
     ) -%}
     {%- if slot == 'description' -%}
@@ -30,7 +30,7 @@
       </p>
     {%- endif -%}
     {%- if slot == 'image' -%}
-      <div class="p-image-container--3-2 is-highlighted">
+      <div class="p-image-container--3-2 is-highlighted u-hide--medium">
 
         {{ image(url="https://assets.ubuntu.com/v1/55780cd0-hero-img.png",
                 alt="",
@@ -52,7 +52,7 @@
         <div class="col">
           <h2>
             Is Ubuntu 16.04 LTS
-            <br />
+            <br class="u-hide--small u-hide--medium" />
             still supported?
           </h2>
         </div>
@@ -64,7 +64,7 @@
           </div>
           <div class="p-cta-block">
             <a href="/pro" class="p-button--positive">Get started with ESM for Ubuntu 16.04 LTS</a>
-            <a href="/16-04#esm-public-cloud">Learn more about ESM on public clouds&nbsp;&rsaquo;</a>
+            <a href="#esm-public-cloud">Learn more about ESM on public clouds&nbsp;&rsaquo;</a>
           </div>
         </div>
       </div>
@@ -80,13 +80,13 @@
         <div class="col">
           <h2>
             Ubuntu 16.04 LTS
-            <br />
+            <br class="u-hide--small u-hide--medium" />
             security updates
           </h2>
         </div>
         <div class="col">
           <p>
-            Yes, Ubuntu 16.04 LTS is supported until 2026 through Canonical's Expanded Security Maintenance (ESM) product. Xenial entered the ESM period in April 2021, with security patches for five additional years, beyond the five years of standard support.
+            The Ubuntu Security Team continues its dedication to providing security updates for Ubuntu 16.04 LTS beyond the five-year standard support with Expanded Security Maintenance (ESM).
           </p>
         </div>
       </div>
@@ -123,12 +123,12 @@
       <div class="col">
         <h2>
           Ubuntu 16.04 LTS Expanded
-          <br />
+          <br class="u-hide--small u-hide--medium" />
           Security Maintenance (ESM)
         </h2>
       </div>
       <div class="col-6">
-        <div class="p-section--shallow">
+        <div class="p-section--shallow u-hide--medium">
           {{ image(url="https://assets.ubuntu.com/v1/429bc100-ubuntu-1604-lts.jpg",
                     alt="",
                     width="1200",
@@ -137,7 +137,7 @@
                     loading="lazy") | safe
           }}
         </div>
-        <h3 class="p-heading--5 u-no-padding--top">What is ESM?</h3>
+        <h3 class="p-heading--5 u-no-padding--top">What is Ubuntu ESM?</h3>
         <p>
           <a href="/security/esm">Expanded Security Maintenance</a> (ESM) provides expanded Linux kernel and open-source security updates for the Ubuntu base OS, key infrastructure components, like Ceph, OpenStack and Kubernetes, as well as open-source applications, like PostgreSQL and NGINX.
         </p>
@@ -155,7 +155,7 @@
     {%- if slot == 'title' -%}
       <h2>
         What is covered
-        <br />
+        <br class="u-hide--small u-hide--medium" />
         by Ubuntu 16.04 ESM?
       </h2>
     {%- endif -%}
@@ -246,7 +246,7 @@
     {%- endif -%}
   {%- endcall -%}
 
-  <section class="p-section" id="esm-public-cloud">
+  <section class="p-section" id="esm-public-cloud" style="scroll-margin-top: 3rem;">
     <div class="row">
       <hr class="p-rule" />
       <div class="col-3">
@@ -258,7 +258,7 @@
           <div class="col-3 col-medium-3">
             <h3 class="p-heading--5">
               How can I get ESM for
-              <br />
+              <br class="u-hide--small u-hide--medium" />
               Ubuntu 16.04 LTS on a Public Cloud?
             </h3>
           </div>
@@ -279,7 +279,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              ESM for Ubuntu 16.04 LTS is available for free for personal use on up to three machines, or through paid subscriptions on the public cloud with Ubuntu Pro premium images.
+              ESM for Ubuntu 16.04 LTS is available, free for personal use (you need to set up an UbuntuOne account) on up to three machines or through an <a href="/pro">Ubuntu Pro subscription</a>.
             </p>
           </div>
         </div>
@@ -364,7 +364,7 @@
 
     {%- if slot == 'list_item_description_3' -%}
       <p>
-        If you are looking to upgrade your Ubuntu 16.04 LTS public cloud instance, it is recommended to launch new, Ubuntu Pro images. Ubuntu Pro for <a href="/azure/pro">Azure</a> and <a href="/aws/pro">AWS</a> are premium images with security and compliance features built-in, and optimised for the public cloud.
+        If you are looking to upgrade your Ubuntu 16.04 LTS public cloud instance, it is recommended to launch new, Ubuntu Pro images. Ubuntu Pro for <a href="/azure/pro">Azure</a> and <a href="/aws/pro">AWS</a> are premium images with security and compliance features built-in, and optimized for the public cloud.
       </p>
       <p>
         Ubuntu Pro includes security coverage for the entire collection of software packages shipped with Ubuntu, tracking high and critical CVEs. Ideal for companies that have embraced open source for their new products.
@@ -387,7 +387,7 @@
       <div class="col">
         <h2>
           Watch the
-          <br />
+          <br class="u-hide--small u-hide--medium" />
           20.04 migration webinar
         </h2>
       </div>
