@@ -1,7 +1,6 @@
 import { render } from "@testing-library/react";
 import CVETable from "./CVETable";
 import { useFetchCVEData } from "../utils/helpers";
-import exp from "constants";
 
 jest.mock("../utils/helpers", () => ({
   ...jest.requireActual("../utils/helpers"),
