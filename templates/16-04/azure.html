@@ -36,7 +36,7 @@
         href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-xenial">
         Launch new workloads on Ubuntu Pro 16.04 LTS
       </a>
-      <a class="js-invoke-modal" href="/azure/contact-us">
+      <a class="js-invoke-modal" aria-controls="1604-azure-modal" href="/azure/contact-us">
         Contact us to add  ESM to existing Ubuntu 16.04 virtual machines&nbsp;&rsaquo;
       </a>
     {%- endif -%}
@@ -92,7 +92,7 @@
 
 {%- if slot == 'list_item_description_1' -%}
   <p>
-    For fresh Ubuntu 16.04 instances, or if you are able to redeploy your workload, we recommend using Ubuntu Pro images. <a href="/azure/pro">Ubuntu Pro for Azure</a> is a premium image, optimised for Azure with security and compliance features built in, and optimised for the public cloud.
+    For fresh Ubuntu 16.04 instances, or if you are able to redeploy your workload, we recommend using Ubuntu Pro images. <a href="/azure/pro">Ubuntu Pro for Azure</a> is a premium image, optimized for Azure with security and compliance features built in, and optimized for the public cloud.
   </p>
   <p>
     Ubuntu Pro includes security coverage for the entire collection of software packages shipped with Ubuntu, tracking high and critical CVEs. It is ideal for companies that have embraced open source for their new products.
@@ -143,7 +143,7 @@
   <div class="p-list--horizontal-section-wrapper">
     <ul class="p-list--horizontal-section is-25-75">
       <li class="p-list__item is-ticked">
-        10 year security maintenance and CVE Patching
+        The benefits and risks of an in place upgrade from LTS-LTS
       </li>
       <li class="p-list__item is-ticked">
         Redeployment and migration of workloads to later LTS releases if they support it
@@ -165,7 +165,7 @@
   <div class="row">
     <div class="col-start-large-7 col-6">
       <div class="p-cta-block">
-        <a href="https://info.microsoft.com/ww-ondemand-expert-tips-to-easily-migrate-your-ubuntu-stack-to-azure.html" class="p-button">Watch the full webinar</a>
+        <a href="/engage/16-04-ESM-webinar" class="p-button">Watch the full webinar</a>
       </div>
     </div>
   </div>
@@ -196,12 +196,6 @@
 </section>
 
 
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/azure-1604"
-       data-form-id="3870"
-       data-lp-id=""
-       data-return-url="https://ubuntu.com/azure/thank-you"
-       data-lp-url="https://ubuntu.com/azure/contact-us"></div>
+{{ load_form('/16-04/azure') | safe }}
+
 {% endblock content %}
