@@ -96,6 +96,15 @@ you can run `juju models` to see a list of available models):
 juju switch <charmed-kubernetes-model>
 ```
 
+Ensure `tokens` relation between `kubernetes-worker` and
+`kubernetes-control-plane` applications exist. This grants the `grafana-agent`
+on the worker nodes access to metrics from the node's `kubelet`. Repeat the
+following command for every application of the charm type `kubernetes-worker`.
+
+```
+juju integrate kubernetes-control-plane:tokens kubernetes-worker
+```
+
 Consume the COS Lite endpoints:
 
 ```
