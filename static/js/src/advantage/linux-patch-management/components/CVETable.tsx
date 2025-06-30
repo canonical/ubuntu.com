@@ -62,7 +62,7 @@ const CVETable = () => {
       <Notification severity="information">
         <>
           Our experts patched{" "}
-          {(cveData["critical_cves"]+cveData["high_cves"]).toLocaleString()}{" "}
+          {(cveData["critical_cves"] + cveData["high_cves"]).toLocaleString()}{" "}
           vulnerabilities rated High ({cveData["high_cves"].toLocaleString()}) /
           Critical ({cveData["critical_cves"].toLocaleString()}) for{" "}
           {LTSReleasesFromName(selectedRelease)}
@@ -99,7 +99,7 @@ const CVETable = () => {
         rows={tableData}
         expanding={true}
         paginate={10}
-        id="cve-table"
+        title="cve-table"
         emptyStateMsg="No packages found for this release and filter."
       />
 

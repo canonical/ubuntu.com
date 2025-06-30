@@ -68,11 +68,11 @@ const ProContent = ({
 
   const handleUpdate = (searchData: SearchAndFilterChip[]) => {
     if (searchData.length === 0) {
-      setSelectedPackages([]);
+      return [];
     } else {
       setSelectedPackages(searchData.map((chip) => chip.value));
+      return selectedPackages;
     }
-    console.log("packagePocketMap:", packagePocketMap);
   };
   return (
     <>
@@ -99,7 +99,7 @@ const ProContent = ({
                   id="statusFilter"
                   defaultValue={selectedRelease}
                   onChange={(e) => changeSelectedRelease(e.target.value)}
-                  data-testid="quote-status-filter"
+                  data-testid="content-status-filter"
                 >
                   {LTSReleases.map((release) => (
                     <option key={release.value} value={release.value}>

@@ -30,7 +30,7 @@ const CVESelector = ({
             id="statusFilter"
             defaultValue={selectedRelease}
             onChange={(e) => changeSelectedRelease(e.target.value)}
-            data-testid="quote-status-filter"
+            data-testid="table-status-filter"
           >
             {LTSReleases.map((release) => (
               <option key={release.value} value={release.value}>
@@ -50,7 +50,7 @@ const CVESelector = ({
             defaultValue={packageFilter}
             value={packageFilter}
             onChange={(e) => setPackageFilter(e.target.value)}
-            data-testid="quote-package-filter"
+            data-testid="table-package-filter"
           >
             <option value="">All Packages</option>
             {cveData?.sections &&
