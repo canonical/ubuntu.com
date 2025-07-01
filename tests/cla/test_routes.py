@@ -1,5 +1,6 @@
 import unittest
 from unittest.mock import patch, MagicMock
+import base64
 from webapp.app import app
 
 
@@ -15,10 +16,12 @@ class TestCLARoutes(unittest.TestCase):
         mock_response.headers = {"Content-Type": "application/json"}
         mock_response.status_code = 200
         mock_request.return_value = mock_response
-        # https://example.com/api -> aHR0cHM6Ly9leGFtcGxlLmNvbS9hcGk=
+        # /github/profile -> L2dpdGh1Yi9wcm9maWxl
+        github_profile_endpoint = base64.b64encode(b"/github/profile").decode(
+            "utf-8"
+        )
         response = self.client.get(
-            """/legal/contributors/agreement/api
-?request_url=aHR0cHM6Ly9leGFtcGxlLmNvbS9hcGk="""
+            f"/legal/contributors/agreement/api?request_url={github_profile_endpoint}"
         )
 
         self.assertEqual(response.status_code, 200)
@@ -41,9 +44,12 @@ class TestCLARoutes(unittest.TestCase):
         mock_response.headers = {"Content-Type": "text/html"}
         mock_response.status_code = 502
         mock_request.return_value = mock_response
+        # /github/profile -> L2dpdGh1Yi9wcm9maWxl
+        github_profile_endpoint = base64.b64encode(b"/github/profile").decode(
+            "utf-8"
+        )
         response = self.client.get(
-            """/legal/contributors/agreement/api
-?request_url=aHR0cHM6Ly9leGFtcGxlLmNvbS9hcGk="""
+            f"/legal/contributors/agreement/api?request_url={github_profile_endpoint}"
         )
 
         self.assertEqual(response.status_code, 500)
@@ -53,6 +59,26 @@ class TestCLARoutes(unittest.TestCase):
             response.get_json(),
             {
                 "detail": "Internal server error",
+            },
+        )
+
+    def test_canonical_cla_api_proxy_disallowed_endpoint(self):
+        # Test that disallowed endpoints return 403
+        # /api/malicious -> L2FwaS9tYWxpY2lvdXM=
+        malicious_endpoint = base64.b64encode(b"/api/malicious").decode(
+            "utf-8"
+        )
+        response = self.client.get(
+            f"/legal/contributors/agreement/api?request_url={malicious_endpoint}"
+        )
+
+        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.headers["Content-Type"], "application/json")
+        self.assertEqual(response.headers["Cache-Control"], "no-store")
+        self.assertEqual(
+            response.get_json(),
+            {
+                "detail": "Endpoint not allowed",
             },
         )
 

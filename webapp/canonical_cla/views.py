@@ -7,6 +7,17 @@ import flask
 
 CANONICAL_CLA_API_URL = os.getenv("CANONICAL_CLA_API_URL")
 
+ALLOWED_ENDPOINTS = [
+    "/github/login",
+    "/github/logout",
+    "/github/profile",
+    "/launchpad/login",
+    "/launchpad/logout",
+    "/launchpad/profile",
+    "/cla/individual/sign",
+    "/cla/organization/sign",
+]
+
 
 def get_query_param(url, key, is_base64=False) -> Optional[str]:
     url_parts = list(urlparse.urlparse(url))
@@ -125,6 +136,21 @@ def canonical_cla_api_proxy():
     if encoded_request_url is None:
         return flask.abort(400)
     request_url = base64.b64decode(encoded_request_url).decode("utf-8")
+
+    # Security check: Validate that the request_url is in the allowed endpoints list
+    # Parse the URL to extract just the path for validation
+    parsed_url = urlparse.urlparse(request_url)
+    request_path = parsed_url.path
+
+    if request_path not in ALLOWED_ENDPOINTS:
+        error_response = flask.make_response(
+            {"detail": "Endpoint not allowed"}
+        )
+        error_response.headers["Content-Type"] = "application/json"
+        error_response.status_code = 403
+        error_response.cache_control.no_store = True
+        return error_response
+
     client_ip = flask.request.headers.get(
         "X-Real-IP", flask.request.remote_addr
     )
