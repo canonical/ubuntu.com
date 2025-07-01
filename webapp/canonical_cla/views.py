@@ -1,9 +1,10 @@
 import base64
 import os
-from typing import Optional
 import urllib.parse as urlparse
-import requests
+from typing import Optional
+
 import flask
+import requests
 
 CANONICAL_CLA_API_URL = os.getenv("CANONICAL_CLA_API_URL")
 
@@ -39,6 +40,29 @@ def update_query_params(url: str, **params) -> str:
     return urlparse.urlunparse(url_parts)
 
 
+def validate_agreement_url(url: str) -> str:
+    """
+    Validate and sanitize agreement_url to prevent open redirect vulnerabilities.
+    Only allow relative URLs or URLs with the same hostname as the current request.
+    Returns the validated URL or defaults to "/legal/contributors/agreement".
+    """
+    fallback_url = "/legal/contributors/agreement"
+    if not url:
+        return fallback_url
+
+    parsed = urlparse.urlparse(url)
+
+    # Allow relative URLs
+    if not parsed.scheme and not parsed.netloc:
+        return fallback_url
+
+    # Allow URLs with the same hostname as the current request
+    if parsed.hostname and flask.request.host.lower() != parsed.netloc.lower():
+        return fallback_url
+
+    return url
+
+
 def canonical_cla_api_github_login():
     """
     The Canonical CLA API will redirect the user to
@@ -47,8 +71,7 @@ def canonical_cla_api_github_login():
     agreement_url = get_query_param(
         flask.request.url, "agreement_url", is_base64=True
     )
-    if not agreement_url:
-        return flask.redirect("/legal/contributors/agreement")
+    agreement_url = validate_agreement_url(agreement_url)
 
     access_token = get_query_param(flask.request.url, "access_token")
     github_error = get_query_param(flask.request.url, "github_error")
@@ -72,10 +95,10 @@ def canonical_cla_api_github_logout():
     The Canonical CLA API will redirect the user
     to this view once the cookie session is cleared.
     """
-    agreement_url = (
-        get_query_param(flask.request.url, "agreement_url", is_base64=True)
-        or "/legal/contributors/agreement"
+    agreement_url = get_query_param(
+        flask.request.url, "agreement_url", is_base64=True
     )
+    agreement_url = validate_agreement_url(agreement_url)
     response = flask.redirect(agreement_url)
     response.delete_cookie("github_oauth2_session", httponly=True)
     response.cache_control.no_store = True
@@ -90,8 +113,7 @@ def canonical_cla_api_launchpad_login():
     agreement_url = get_query_param(
         flask.request.url, "agreement_url", is_base64=True
     )
-    if not agreement_url:
-        return flask.redirect("/legal/contributors/agreement")
+    agreement_url = validate_agreement_url(agreement_url)
 
     response = flask.redirect(agreement_url)
 
@@ -117,10 +139,10 @@ def canonical_cla_api_launchpad_logout():
     The Canonical CLA API will redirect the user
     to this view once the cookie session is cleared.
     """
-    agreement_url = (
-        get_query_param(flask.request.url, "agreement_url", is_base64=True)
-        or "/legal/contributors/agreement"
+    agreement_url = get_query_param(
+        flask.request.url, "agreement_url", is_base64=True
     )
+    agreement_url = validate_agreement_url(agreement_url)
     response = flask.redirect(agreement_url)
     response.delete_cookie("launchpad_oauth_session", httponly=True)
     response.cache_control.no_store = True
