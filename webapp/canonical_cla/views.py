@@ -42,8 +42,10 @@ def update_query_params(url: str, **params) -> str:
 
 def validate_agreement_url(url: str) -> str:
     """
-    Validate and sanitize agreement_url to prevent open redirect vulnerabilities.
-    Only allow relative URLs or URLs with the same hostname as the current request.
+    Validate and sanitize agreement_url to prevent open redirect
+    vulnerabilities.
+    Only allow relative URLs or URLs with the same hostname as
+    the current request.
     Returns the validated URL or defaults to "/legal/contributors/agreement".
     """
     fallback_url = "/legal/contributors/agreement"
@@ -159,7 +161,8 @@ def canonical_cla_api_proxy():
         return flask.abort(400)
     request_url = base64.b64decode(encoded_request_url).decode("utf-8")
 
-    # Security check: Validate that the request_url is in the allowed endpoints list
+    # Security check: Validate that the request_url
+    # is in the allowed endpoints list
     # Parse the URL to extract just the path for validation
     parsed_url = urlparse.urlparse(request_url)
     request_path = parsed_url.path
