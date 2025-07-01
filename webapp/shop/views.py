@@ -115,6 +115,7 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
             else:
                 flask.current_app.extensions["sentry"].captureException()
                 return
+
     if account:
         account_purchases = advantage_mapper.get_account_purchases(
             account_id=account.id,
@@ -122,10 +123,12 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
         )
         threads = []
         for purchase in account_purchases:
-            threads.append(threading.Thread(
-                target=add_to_payments,
-                args=(purchase,),
-            ))
+            threads.append(
+                threading.Thread(
+                    target=add_to_payments,
+                    args=(purchase,),
+                )
+            )
         for thread in threads:
             thread.start()
         for thread in threads:
