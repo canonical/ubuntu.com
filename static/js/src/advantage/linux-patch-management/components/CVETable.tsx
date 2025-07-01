@@ -10,7 +10,7 @@ const CVETable = () => {
   const [selectedRelease, changeSelectedRelease] = useState("focal");
   const [packageFilter, setPackageFilter] = useState("");
   const { data: cveData, isLoading } = useFetchCVEData(selectedRelease);
-  const [selectedPackage, setSelectedPackage] = useState<string>("");
+  const [selectedPackage, setSelectedPackage] = useState("");
   const [selectedSeverity, setSelectedSeverity] = useState("");
 
   const tableData = useCVETable(
@@ -35,6 +35,29 @@ const CVETable = () => {
     },
     {
       content: "Coverage Needed",
+    },
+  ];
+
+  const rows = [
+    {
+      columns: [
+        {
+          content: null,
+          role: "columnheader",
+        },
+        {
+          content: <p>High</p>,
+          role: "columnheader",
+        },
+        {
+          content: <p>Critical</p>,
+          role: "columnheader",
+        },
+        {
+          content: null,
+          role: "columnheader",
+        },
+      ],
     },
   ];
 
@@ -68,32 +91,7 @@ const CVETable = () => {
           {LTSReleasesFromName(selectedRelease)}
         </>
       </Notification>
-      <MainTable
-        headers={headers}
-        rows={[
-          {
-            columns: [
-              {
-                content: null,
-                role: "columnheader",
-              },
-              {
-                content: <p>Critical</p>,
-                role: "columnheader",
-              },
-              {
-                content: <p>High</p>,
-                role: "columnheader",
-              },
-              {
-                content: null,
-                role: "columnheader",
-              },
-            ],
-          },
-        ]}
-        className="u-no-margin--bottom"
-      />
+      <MainTable headers={headers} rows={rows} className="u-no-margin--bottom" />
       <hr className="p-rule is-muted" />
       <MainTable
         rows={tableData}

@@ -76,13 +76,13 @@ export const mapOriginToCoverage = (
   release: string,
   origin: string,
 ): string => {
+  if (origin === "universe") {
+    return "Ubuntu Pro";
+  }
   const LTSEndYear = releaseToLTSEndYear(release);
   const thisYear = new Date().getFullYear();
   const thisMonth = new Date().getMonth();
   if (thisYear >= LTSEndYear && thisMonth > 4) {
-    return "Ubuntu Pro";
-  }
-  if (origin === "universe") {
     return "Ubuntu Pro";
   }
   return "LTS";

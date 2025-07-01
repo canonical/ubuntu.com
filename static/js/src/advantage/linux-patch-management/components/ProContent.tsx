@@ -66,6 +66,18 @@ const ProContent = ({
     return map;
   }, [cveData]);
 
+  const LTSPackages = useMemo(
+    () => selectedPackages.filter((pkg) => packagePocketMap.get(pkg) === "LTS"),
+    [selectedPackages, packagePocketMap],
+  );
+  const ProPackages = useMemo(
+    () =>
+      selectedPackages.filter(
+        (pkg) => packagePocketMap.get(pkg) === "Ubuntu Pro",
+      ),
+    [selectedPackages, packagePocketMap],
+  );
+
   const handleUpdate = (searchData: SearchAndFilterChip[]) => {
     if (searchData.length === 0) {
       return [];
@@ -167,8 +179,9 @@ const ProContent = ({
                   Break and bug-fix support optional
                   <br />{" "}
                   <span className="u-text--muted">
-                    Canonical engineers at your side, always on Not included in
-                    the 30-day free trial
+                    Canonical engineers at your side, always on
+                    <br />
+                    Not included in the 30-day free trial
                   </span>
                 </>,
                 <>
@@ -201,24 +214,16 @@ const ProContent = ({
             </Col>
             <Col size={7}>
               <div className="p-section--shallow">
-                {selectedPackages.filter(
-                  (pkg) => packagePocketMap.get(pkg) === "LTS",
-                ).length > 0 && <p>Package covered with LTS</p>}
-                {selectedPackages
-                  .filter((pkg) => packagePocketMap.get(pkg) === "LTS")
-                  .map((pkg) => (
-                    <Chip key={pkg} value={pkg} appearance="positive" />
-                  ))}
-                {selectedPackages.filter(
-                  (pkg) => packagePocketMap.get(pkg) === "Ubuntu Pro",
-                ).length > 0 && (
+                {LTSPackages.length > 0 && <p>Package covered with LTS</p>}
+                {LTSPackages.map((pkg) => (
+                  <Chip key={pkg} value={pkg} appearance="positive" />
+                ))}
+                {ProPackages.length > 0 && (
                   <p>Package needing Ubuntu Pro to receive security fixes</p>
                 )}
-                {selectedPackages
-                  .filter((pkg) => packagePocketMap.get(pkg) === "Ubuntu Pro")
-                  .map((pkg) => (
-                    <Chip key={pkg} value={pkg} appearance="negative" />
-                  ))}
+                {ProPackages.map((pkg) => (
+                  <Chip key={pkg} value={pkg} appearance="negative" />
+                ))}
               </div>
               <p>
                 Out-the-box security coverage that comes standard with
@@ -241,13 +246,9 @@ const ProContent = ({
                     Packages needing ESM to receive security fixes
                     <br />{" "}
                     <span className="u-text--muted">
-                      {selectedPackages
-                        .filter(
-                          (pkg) => packagePocketMap.get(pkg) === "Ubuntu Pro",
-                        )
-                        .map((pkg) => (
-                          <p key={pkg}>{pkg}</p>
-                        ))}
+                      {ProPackages.map((pkg) => (
+                        <p key={pkg}>{pkg}</p>
+                      ))}
                     </span>
                   </>,
                 ]}

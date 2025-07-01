@@ -33,9 +33,9 @@ export default function useCVETable(
       return packageFilter === "" || pkg.section === packageFilter;
     });
 
-    let tableData: MainTableRow[] = cveDataFiltered.map(
+    const tableData: MainTableRow[] = cveDataFiltered.map(
       (pkg: UbuntuPackage) => {
-        let tableRow: MainTableRow = {
+        const tableRow: MainTableRow = {
           columns: [
             {
               content: pkg.package_name,

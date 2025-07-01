@@ -13,13 +13,13 @@
 
   {% call(slot) vf_hero(
     title_text='Linux patch management, solved',
-    subtitle_text='Use our tool to see which packages Ubuntu Pro supports',
+    subtitle_text='Use our tool to see which packages Ubuntu Pro supports.',
     layout='50/50'
     ) -%}
     
     {%- if slot == 'cta' -%}
-      <a href="#" class="p-button--positive">Get in touch</a>
-      <a href="#">Start a 30-day free trial &rsaquo;</a>
+      <a href="/contact-us/form?product=pro" class="p-button--positive">Get in touch</a>
+      <a href="/pro/subscribe">Start a 30-day free trial &rsaquo;</a>
     {%- endif -%}
   {% endcall -%}
 
@@ -218,7 +218,7 @@
       </div>
       <div class="row">
         <div class="col-3 col-start-medium-4 col-start-large-4">
-          <h5>Number of packages covered per release</h5>
+          <h5>Number of packages covered per release - Pro vs LTS</h5>
         </div>
         <div class="col-6">
           <p>Hover your mouse over the graph to explore how many packages get security updates across different Ubuntu LTS releases.</p>
