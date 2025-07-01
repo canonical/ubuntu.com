@@ -99,20 +99,20 @@
               <hr class="p-rule--highlight" />
               <p class="p-heading--1">900&plus;</p>
               <p class="u-no-padding--top">
-                <a href="/security/notices?release=xenial">Security notices</a> issued<sup aria-describedby="os-footnote">*</sup>
+                <a href="/security/notices?release=xenial">Security notices</a> issued* <span class="u-off-screen">Since the start of the ESM phase</span>
               </p>
             </div>
             <div class="col-3 col-medium-3">
               <hr class="p-rule--highlight" />
               <p class="p-heading--1">300&plus;</p>
               <p class="u-no-padding--top">
-                <a href="/security/cves?version=xenial">CVES</a> addressed<sup aria-describedby="os-footnote">*</sup>
+                <a href="/security/cves?version=xenial">CVES</a> addressed* <span class="u-off-screen">Since the start of the ESM phase</span>
               </p>
             </div>
           </div>
         </div>
         <hr class="p-rule--muted u-no-margin--bottom" />
-        <p id="os-footnote" class="u-text--muted">* Since the start of the ESM phase</p>
+        <p aria-hidden="true" class="u-text--muted">* Since the start of the ESM phase</p>
       </div>
     </div>
   </section>
@@ -331,9 +331,6 @@
         <li class="p-list__item">
           <a href="https://releases.ubuntu.com/xenial/">releases.ubuntu</a>
         </li>
-        <li class="p-list__item">
-          <a href="#">Install journeys</a>
-        </li>
       </ul>
     {%- endif -%}
 
@@ -375,7 +372,7 @@
           <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-xenial">Launch Ubuntu Pro 16.04 LTS on Azure</a>
         </li>
         <li class="p-list__item">
-          <a href="https://aws.amazon.com/marketplace/pp/B0821WW873">Launch Ubuntu Pro 16.04 LTS on AWS</a>
+          <a href="https://aws.amazon.com/marketplace/pp/prodview-vmuff4yhmwfna">Launch Ubuntu Pro 16.04 LTS on AWS</a>
         </li>
       </ul>
     {%- endif -%}
@@ -455,13 +452,5 @@ hwe-16.04</code></pre>
     tag_name="ubuntu-16-04",
     tag_id="2563") }}
 
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/gcp"
-       data-form-id="3860"
-       data-lp-id=""
-       data-return-url="https://ubuntu.com/gcp/thank-you"
-       data-lp-url="https://ubuntu.com/gcp/contact-us"></div>
 
 {% endblock content %}
