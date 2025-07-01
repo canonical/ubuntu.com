@@ -99,10 +99,29 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
 
     payments = []
     if account:
-        payments = advantage_mapper.get_account_purchases(
+        account_purchases = advantage_mapper.get_account_purchases(
             account_id=account.id,
             filters={"marketplace": marketplace} if marketplace else None,
         )
+        for purchase in account_purchases:
+            try:
+                if purchase.invoice:
+                    purchase_info = advantage_mapper.get_purchase(
+                            purchase.id
+                        )
+                    print(purchase_info.invoice)
+                    if purchase_info.invoice:
+                        purchase.invoice = purchase_info.invoice
+                    payments.append(purchase)
+            except HTTPError as error:
+                if error.response.status_code == 404:
+                    # Purchase not found, skip it
+                    continue
+                else:
+                    flask.current_app.extensions["sentry"].captureException()
+                    continue
+
+    print(payments)
 
     per_page = 10
 

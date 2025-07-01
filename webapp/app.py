@@ -498,7 +498,7 @@ app.add_url_rule(
         session=session,
         template_path="search.html",
         search_engine_id=search_engine_id,
-        featured=meganav,
+        # featured=meganav,
     ),
 )
 
