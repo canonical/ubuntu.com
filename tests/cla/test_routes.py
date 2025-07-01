@@ -22,7 +22,8 @@ class TestCLARoutes(unittest.TestCase):
             "utf-8"
         )
         response = self.client.get(
-            f"/legal/contributors/agreement/api?request_url={github_profile_endpoint}"
+            f"/legal/contributors/agreement/api"
+            f"?request_url={github_profile_endpoint}"
         )
 
         self.assertEqual(response.status_code, 200)
@@ -50,7 +51,8 @@ class TestCLARoutes(unittest.TestCase):
             "utf-8"
         )
         response = self.client.get(
-            f"/legal/contributors/agreement/api?request_url={github_profile_endpoint}"
+            f"/legal/contributors/agreement/api"
+            f"?request_url={github_profile_endpoint}"
         )
 
         self.assertEqual(response.status_code, 500)
@@ -70,7 +72,8 @@ class TestCLARoutes(unittest.TestCase):
             "utf-8"
         )
         response = self.client.get(
-            f"/legal/contributors/agreement/api?request_url={malicious_endpoint}"
+            f"/legal/contributors/agreement/api"
+            f"?request_url={malicious_endpoint}"
         )
 
         self.assertEqual(response.status_code, 403)
