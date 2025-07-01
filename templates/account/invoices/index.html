@@ -78,9 +78,7 @@
                   </td>
                   <td aria-label="Download PDF">
                     {% if invoice.invoice %}
-                      <button class="p-button--link"
-                              aria-controls="view-invoice-modal"
-                              onclick="setIframURL('{{ invoice.invoice.receipt_url }}')">View</button>
+                      <a target="_blank" href="{{ invoice.invoice.receipt_url }}">View</a>
                     {% else %}
                       No invoice available
                     {% endif %}
@@ -102,7 +100,6 @@
       </div>
     </div>
   </section>
-  {% include "account/invoices/_view_invoices.html" %}
   {% include "account/invoices/_edit_billing_modal.html" %}
 
   <script>

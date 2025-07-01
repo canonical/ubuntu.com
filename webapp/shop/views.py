@@ -3,6 +3,7 @@ import os
 from datetime import datetime
 from distutils.util import strtobool
 
+import threading
 import flask
 import pytz
 from dateutil.parser import parse
@@ -98,30 +99,37 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
         )
 
     payments = []
+
+    def add_to_payments(purchase):
+        print(f"Processing purchase {purchase.id}")
+        try:
+            if purchase.invoice:
+                purchase_info = advantage_mapper.get_purchase(purchase.id)
+                if purchase_info.invoice:
+                    purchase.invoice = purchase_info.invoice
+            payments.append(purchase)
+        except HTTPError as error:
+            if error.response.status_code == 404:
+                # Purchase not found, skip it
+                return
+            else:
+                flask.current_app.extensions["sentry"].captureException()
+                return
     if account:
         account_purchases = advantage_mapper.get_account_purchases(
             account_id=account.id,
             filters={"marketplace": marketplace} if marketplace else None,
         )
+        threads = []
         for purchase in account_purchases:
-            try:
-                if purchase.invoice:
-                    purchase_info = advantage_mapper.get_purchase(
-                            purchase.id
-                        )
-                    print(purchase_info.invoice)
-                    if purchase_info.invoice:
-                        purchase.invoice = purchase_info.invoice
-                    payments.append(purchase)
-            except HTTPError as error:
-                if error.response.status_code == 404:
-                    # Purchase not found, skip it
-                    continue
-                else:
-                    flask.current_app.extensions["sentry"].captureException()
-                    continue
-
-    print(payments)
+            threads.append(threading.Thread(
+                target=add_to_payments,
+                args=(purchase,),
+            ))
+        for thread in threads:
+            thread.start()
+        for thread in threads:
+            thread.join()
 
     per_page = 10
 
