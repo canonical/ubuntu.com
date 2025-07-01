@@ -757,6 +757,16 @@ staging:
         key: charmhub-api-username
         name: discourse-api
 
+    - name: MAAS_DISCOURSE_API_KEY
+      secretKeyRef:
+        key: maas-api-key
+        name: discourse-api
+
+    - name: MAAS_DISCOURSE_API_USERNAME
+      secretKeyRef:
+        key: maas-api-username
+        name: discourse-api
+
   routes:
     - paths: [/blog]
       name: ubuntu-com-blog
@@ -1254,6 +1264,16 @@ demo:
     - name: CHARMHUB_DISCOURSE_API_USERNAME
       secretKeyRef:
         key: charmhub-api-username
+        name: discourse-api
+
+    - name: MAAS_DISCOURSE_API_KEY
+      secretKeyRef:
+        key: maas-api-key
+        name: discourse-api
+
+    - name: MAAS_DISCOURSE_API_USERNAME
+      secretKeyRef:
+        key: maas-api-username
         name: discourse-api
 
     - name: CANONICAL_CLA_API_URL
