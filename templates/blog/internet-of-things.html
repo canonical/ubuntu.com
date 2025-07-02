@@ -2,31 +2,50 @@
 
 {% block title %}Internet of Things{% endblock %}
 
-{% block meta_description %}
-  All you need to know about building and managing IoT and embedded devices using Ubuntu.
-{% endblock %}
-
-{% block body_class %}
-  is-paper
-{% endblock body_class %}
+{% block meta_description %}All you need to know about building and managing IoT and embedded devices using Ubuntu.{% endblock %}
 
 {% block content %}
 
-  {% with title="Internet of Things", subtitle="All you need to know about building and managing IoT and embedded devices using Ubuntu.", cta_link="/internet-of-things", cta_text="Learn more about Internet of Things" %}
-    {% include 'blog/shared/_topic-header.html' %}
-  {% endwith %}
+  <section class="p-strip--suru-blog-header is-dark">
+    <div class="row u-equal-height u-vertically-center">
+      <div class="col-7">
+        <h1>Internet of Things</h1>
+        <p class="p-heading--4">
+          All you need to know about building and managing IoT and embedded devices using Ubuntu.
+        </p>
+        <p>
+          <a class="p-link--inverted" href="/internet-of-things">Learn more about Internet of Things&nbsp;&rsaquo;</a>
+        </p>
+      </div>
 
-  <section class="p-section" id="posts-list">
-    <div class="row">
-      {% for article in articles %}
-        {% include 'blog/blog-card.html' %}
-      {% endfor %}
+      <div class="col-5 u-align--center u-vertically-center">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/a3c4eaae-Internet+of+Things_digital-drone-white.svg",
+            alt="",
+            height="166",
+            width="200",
+            hi_def=True,
+            loading="auto",
+            attrs={"class": "u-hide--small"}
+          ) | safe
+        }}
+      </div>
+
+      <div id="rtp-banner" class="rtp-banner"></div>
     </div>
   </section>
 
-  {% with %}
-    {% set total_pages = total_pages %}
-    {% set current_page = current_page %}
-    {% include "blog/shared/_pagination.html" %}
-  {% endwith %}
+  <section class="p-strip is-shallow{% if current_page and current_page == 1 and upcoming_events %} is-bordered{% endif %}" id="posts-list">
+    {% with topic="internet-of-things" %}{% include "blog/filters.html" %}{% endwith %}
+    {% include 'blog/posts.html' %}
+  </section>
+
+  <section class="p-strip is-shallow">
+    {% with %}
+      {% set total_pages = total_pages %}
+      {% set current_page = current_page %}
+      {% include "shared/_pagination.html" %}
+    {% endwith %}
+  </section>
 {% endblock %}
