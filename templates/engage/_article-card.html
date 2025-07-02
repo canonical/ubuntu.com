@@ -16,7 +16,7 @@
         <a href="{{ article_link }}">{{ title | safe }}</a>
       </h3>
       {% for tag in tags.split(',') if tag.strip() %}
-        <span class="p-chip--information p-chip--read-only">
+        <span class="p-chip--information p-chip--read-only is-inline">
           <span class="p-chip__value">{{ tag.strip() }}</span>
         </span>
       {% endfor %}

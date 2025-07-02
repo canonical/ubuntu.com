@@ -28,12 +28,7 @@
 @mixin ubuntu-p-engage-banner {
   @include p-engage-banner("grad") {
     background-color: #772953;
-    background-image: linear-gradient(
-      -89deg,
-      #e95420 0%,
-      #772953 42%,
-      #2c001e 94%
-    );
+    background-image: linear-gradient(-89deg, #e95420 0%, #772953 42%, #2c001e 94%);
     color: $color-x-light;
   }
 
@@ -44,8 +39,7 @@
   }
 
   @include p-engage-banner("dark") {
-    background-color: #111;
-    background-image: linear-gradient(201deg, #4e4e4e 0%, #333 46%, #111 90%);
+    background-color: #262626;
     color: $color-x-light;
   }
 
@@ -57,12 +51,7 @@
 
   @include p-engage-banner("aqua") {
     background-color: #2b585d;
-    background-image: linear-gradient(
-      246deg,
-      #47919a 0%,
-      #47919a 53%,
-      #2b585d 100%
-    );
+    background-image: linear-gradient(246deg, #47919a 0%, #47919a 53%, #2b585d 100%);
     color: $color-x-light;
   }
 }
