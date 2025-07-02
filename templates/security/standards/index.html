@@ -32,8 +32,8 @@
         </div>
         <div class="p-cta-block">
           <p>
-            <a class="p-button--positive js-invoke-modal"
-               href="/security/certifications#get-in-touch">Contact us</a>
+            <a href="/security/security-standards#get-in-touch"
+               class="p-button--positive" aria-controls="security-standards-modal">Contact us</a>
             <a href="/pro">Learn more about Pro&nbsp;&rsaquo;</a>
           </p>
         </div>
@@ -490,7 +490,7 @@
           <hr class="p-rule--muted" />
           <p>
             <a class="p-button--positive js-invoke-modal"
-               href="/security/contact-us">Contact us</a>
+               href="/security/contact-us" aria-controls="security-standards-modal">Contact us</a>
             <a href="/pro">Learn more about Pro&nbsp;&rsaquo;</a>
           </p>
         </div>
@@ -501,6 +501,6 @@
   <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
   <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
 
-  {{ load_form("/security-standards", 6304) | safe }}
+  {{ load_form("/security-standards") | safe }}
 
 {% endblock content %}

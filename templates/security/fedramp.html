@@ -33,7 +33,8 @@
     {%- endif -%}
     {%- if slot == 'cta' -%}
       <a href="/security/security-standards#get-in-touch"
-             class="p-button--positive">Contact us</a>
+         class="p-button--positive js-invoke-modal" 
+         aria-controls="security-standards-modal">Contact us</a>
       <a href="/pro/subscribe" class="p-button">Get Ubuntu Pro</a>
     {%- endif -%}
     {%- if slot == 'image' -%}`
@@ -308,8 +309,9 @@
         </p>
         <hr class="p-rule--muted" />
         <p>
-          <a href="/support/contact-us?product=support-overview"
-             class="p-button--positive">Contact us</a>
+          <a href="/security/security-standards#get-in-touch"
+             class="p-button--positive js-invoke-modal"
+             aria-controls="security-standards-modal">Contact us</a>
           <a href="/pro/subscribe" class="p-button">Get Ubuntu Pro</a>
         </p>
       </div>
