@@ -361,7 +361,7 @@ def build_engage_index(engage_docs):
             "Event",
         ]
         tags_list = engage_docs.get_engage_pages_tags()
-        tags_list = sorted(set(tags_list), key=str.lower)
+        tags_list = sorted({tag.strip().lower() for tag in tags_list})
         total_pages = math.ceil(current_total / limit)
 
         return flask.render_template(
@@ -389,6 +389,7 @@ def build_engage_page(engage_pages):
         else:
             path = f"/engage/{page}"
         metadata = engage_pages.get_engage_page(path)
+        print("metadata:", metadata)
         if not metadata:
             flask.abort(404)
         else:
