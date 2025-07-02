@@ -2,8 +2,8 @@
 import os
 from datetime import datetime
 from distutils.util import strtobool
+import concurrent.futures
 
-import threading
 import flask
 import pytz
 from dateutil.parser import parse
@@ -121,18 +121,9 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
             account_id=account.id,
             filters={"marketplace": marketplace} if marketplace else None,
         )
-        threads = []
-        for purchase in account_purchases:
-            threads.append(
-                threading.Thread(
-                    target=add_to_payments,
-                    args=(purchase,),
-                )
-            )
-        for thread in threads:
-            thread.start()
-        for thread in threads:
-            thread.join()
+        with concurrent.futures.ThreadPoolExecutor(max_workers=9) as executor:
+            for purchase in account_purchases:
+                executor.submit(add_to_payments, purchase)
 
     per_page = 10
 
