@@ -1,20 +1,42 @@
-<article class="col-4 blog-p-card--post">
-  <header class="blog-p-card__header{% if 'whitepaper' in type %}--internet-of-things{% elif 'webinar' in type %}--desktop{% elif 'case study' in type %}--cloud-and-server{% endif %}">
-    <h5 class="p-muted-heading u-no-margin--bottom">
-      {% if type %}
-        {{ type }}
-      {% else %}
-        Post
+<div class="p-section--shallow">
+  <div class="row">
+    <hr class="p-rule--muted" />
+    <div class="aside col-3 col-medium-2">
+      <p class="p-text--small-caps">
+        {% if type %}
+          {{ type }}
+        {% else %}
+          Post
+        {% endif %}
+      </p>
+    </div>
+    {% set article_link = title_link ~ "?preview" if active == 'false' and preview != None else title_link %}
+    <div class="col-6 col-medium-4">
+      <h3 class="p-heading--4">
+        <a href="{{ article_link }}">{{ title | safe }}</a>
+      </h3>
+      {% if tags %}
+        {% for tag in tags.split(',') if tag.strip() %}
+          <span class="p-chip--information p-chip--read-only is-inline">
+            <span class="p-chip__value">{{ tag.strip() }}</span>
+          </span>
+        {% endfor %}
       {% endif %}
-    </h5>
-  </header>
-  <div class="blog-p-card__content">
-    <h4>
-      <a href="{% if active == 'false' and preview != None %}{{ title_link }}?preview{% else %}{{ title_link }}{% endif %}">{{ title | safe }}</a>
-    </h4>
-    <p class="u-no-padding--bottom u-hide--small">{{ description | safe }}</p>
+      <p class="p-blog_excerpt u-hide--small u-hide--medium">{{ description | safe }}</p>
+    </div>
+
+    <div class="col-3 u-hide--small u-hide--medium">
+      <a href="{{ article_link }}" aria-hidden="true" tabindex="-1">
+        <div class="p-image-container--16-9">
+          {{ image(url=thumbnail or "https://assets.ubuntu.com/v1/1199af9d-fallback-thumbnail-dark.jpg",
+                    alt=title if thumbnail else "",
+                    width="320",
+                    height="180",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe }}
+        </div>
+      </a>
+    </div>
   </div>
-  <footer class="blog-p-card__footer">
-    {{ tags }}
-  </footer>
-</article>
+</div>

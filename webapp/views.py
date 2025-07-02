@@ -361,7 +361,10 @@ def build_engage_index(engage_docs):
             "Event",
         ]
         tags_list = engage_docs.get_engage_pages_tags()
+        # tags_list = sorted({tag.title() for tag in tags_list})
         tags_list = sorted(set(tags_list), key=str.lower)
+        print("tags length:", len(tags_list))
+        # tags_list = sorted({tag.strip().lower() for tag in tags_list})
         total_pages = math.ceil(current_total / limit)
 
         return flask.render_template(
@@ -389,6 +392,7 @@ def build_engage_page(engage_pages):
         else:
             path = f"/engage/{page}"
         metadata = engage_pages.get_engage_page(path)
+        print("metadata:", metadata)
         if not metadata:
             flask.abort(404)
         else:
@@ -529,6 +533,64 @@ def build_engage_pages_sitemap(engage_pages):
         return response
 
     return ep_sitemap
+
+
+def build_engage_pages_metadata(engage_pages):
+    """
+    Retrieve a all engage pages metadata as a single JSON structure.
+    The data is cached and refreshed once per day.
+    """
+    _cache = {"data": None, "last_update_date": None}
+
+    def get_metadata():
+        today = datetime.now().replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
+
+        if _cache["last_update_date"] != today or _cache["data"] is None:
+            all_pages = []
+            limit = 100
+            offset = 0
+            current_total = 1
+
+            while offset < current_total:
+                pages_list, total_count, active_count, current_total = (
+                    engage_pages.get_index(limit=limit, offset=offset)
+                )
+
+                for page in pages_list:
+                    if "path" in page and page["path"]:
+                        sanitized_page = {
+                            "topic_name": str(page.get("topic_name", "")),
+                            "path": str(page.get("path", "")),
+                            "form_id": str(page.get("form_id", "")),
+                            "webinar_code": str(page.get("webinar_code", "")),
+                            "resource_url": str(page.get("resource_url", "")),
+                            "author": str(
+                                page.get("author", "")
+                            ),  # Author doesn't exist yet
+                            "active": str(page.get("active", "")),
+                            "tags": str(page.get("tags", "")),
+                            "type": str(page.get("type", "")),
+                        }
+                        all_pages.append(sanitized_page)
+
+                offset += limit
+
+            all_pages_metadata = {
+                "total_count": total_count,
+                "pages": all_pages,
+            }
+
+            _cache["data"] = all_pages_metadata
+            _cache["last_update_date"] = today
+
+        response = flask.jsonify(_cache["data"])
+        response.headers["Cache-Control"] = "public, max-age=86400"
+
+        return response
+
+    return get_metadata
 
 
 def openstack_install():
@@ -898,6 +960,15 @@ def marketo_submit():
     if "country" in form_fields:
         enrichment_fields["country"] = form_fields["country"]
         form_fields.pop("country")
+    else:
+        try:
+            ip_location = ip_reader.get(client_ip)
+            if ip_location and "country" in ip_location:
+                enrichment_fields["country"] = ip_location["country"][
+                    "iso_code"
+                ]
+        except Exception:
+            pass
 
     user_id = flask.request.cookies.get("user_id")
     if user_id:
@@ -948,13 +1019,6 @@ def marketo_submit():
                 if k == "utm_content":
                     k = "utmcontent"
                 enrichment_fields[k] = v
-
-    try:
-        ip_location = ip_reader.get(client_ip)
-        if ip_location and "country" in ip_location:
-            enrichment_fields["country"] = ip_location["country"]["iso_code"]
-    except Exception:
-        pass
 
     enriched_payload = {
         "formId": "4198",

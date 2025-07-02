@@ -59,7 +59,7 @@
                   {% if field.id %}
                     {% set field_id = field.id %}
                   {% elif field.fieldTitle is not defined %}
-                    {% set field_id = fieldset_id + '-' + field.label %}
+                    {% set field_id = fieldset_id + '-' + field.label|slug %}
                   {% endif %}
 
                   {% if field.value %}
