@@ -64,7 +64,7 @@
         <select name="tag-selector" class="js-tag-selector u-no-margin--bottom">
           <option value="all">All tags</option>
           {% for tag in tags %}
-            <option {% if tag == "" %}disabled{% endif %} value="{{ tag }}">{% if tag == "" %}-{% else %}{{ tag }}{% endif %}</option>
+            <option {% if tag == "" %}disabled{% endif %} value="{{ tag }}">{% if tag == "" %}-{% else %}{{ tag | capitalize }}{% endif %}</option>
           {% endfor %}
         </select>
       </div>
