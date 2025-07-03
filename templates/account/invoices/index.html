@@ -77,7 +77,7 @@
                     {% endif %}
                   </td>
                   <td aria-label="Download PDF">
-                    {% if invoice.invoice %}
+                    {% if invoice.invoice and invoice.invoice.receipt_url %}
                       <a target="_blank" href="{{ invoice.invoice.receipt_url }}">View</a>
                     {% else %}
                       -
@@ -124,7 +124,7 @@
       window.location.replace(href);
     })
   </script>
-  
+
   <script>
     window.accountId = "{{ account_id }}";
   </script>

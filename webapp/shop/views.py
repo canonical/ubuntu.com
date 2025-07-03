@@ -121,7 +121,7 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
             account_id=account.id,
             filters={"marketplace": marketplace} if marketplace else None,
         )
-        with concurrent.futures.ThreadPoolExecutor(max_workers=9) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
             for purchase in account_purchases:
                 executor.submit(add_to_payments, purchase)
 
