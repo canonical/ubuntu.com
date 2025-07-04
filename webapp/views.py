@@ -1454,3 +1454,48 @@ def build_sitemap_tree(exclude_paths=None):
         return response
 
     return serve_sitemap
+
+
+def process_local_communities(local_communities):
+    def display_local_communities():
+        metadata_table = local_communities.get_category_index_metadata("locos")
+        return flask.render_template(
+            "community/local-communities.html",
+            metadata=metadata_table,
+        )
+
+    return display_local_communities
+
+
+def process_community_calendar(community_events):
+    def display_community_events():
+        events = community_events.get_events()
+        return flask.render_template(
+            "community/events.html",
+            events=events,
+        )
+
+    return display_community_events
+
+
+def community_landing_page(
+    community_events, local_communities, ubuntu_weekly_newsletter
+):
+    def display_community_landing_page():
+        events_data = community_events.get_events()
+        communities_data = local_communities.get_category_index_metadata(
+            "locos"
+        )
+        newsletter_data = (
+            ubuntu_weekly_newsletter.parser.api.get_topic_list_by_category(
+                ubuntu_weekly_newsletter.category_id
+            )
+        )
+        return flask.render_template(
+            "community/index.html",
+            events=events_data,
+            communities=communities_data,
+            newsletters=newsletter_data,
+        )
+
+    return display_community_landing_page
