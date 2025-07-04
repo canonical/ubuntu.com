@@ -2,28 +2,44 @@
 
 {% block title %}{{ tag.name }}{% endblock %}
 
-{% block body_class %}
-  is-paper
-{% endblock body_class %}
-
 {% block content %}
-
-  {% with title=tag.name, total_posts=total_posts %}
-    {% include 'blog/shared/_tag-header.html' %}
-  {% endwith %}
-
-  <section class="p-section" id="posts-list">
+  <div class="p-strip--light is-shallow">
     <div class="row">
-      {% for article in articles %}
-        {% include 'blog/blog-card.html' %}
-      {% endfor %}
+      <div class="col-8">
+        <h1 class="u-no-margin--bottom">{{ tag.name }}</h1>
+        <div id="rtp-banner" class="rtp-banner"></div>
+      </div>
     </div>
+    {% if tag.slug in ["20-04-lts", "20-04", "18-04-lts", "18-04", "16-04"] %}
+      <div class="u-fixed-width p-strip is-shallow u-no-padding--bottom">
+        <div class="p-notification--information u-no-margin--bottom">
+          <div class="p-notification__content">
+            <h5 class="p-notification__title">Stay secure and supported with Ubuntu Pro.</h5>
+            <p class="p-notification__message">
+              {% if tag.slug in ["20-04-lts", "20-04"] %}
+                Enjoy 5 extra years of peace of mind with enhanced security, compliance, and rebootless patching until 2030.
+              {% elif tag.slug in ["18-04-lts", "18-04"] %}
+                Enjoy 5 extra years of peace of mind with enhanced security, compliance, and rebootless patching until 2028.
+              {% else %}
+                Enjoy 5 extra years of peace of mind with enhanced security, compliance, and rebootless patching until 2026.
+              {% endif %}
+              <a href="/pro">Subscribe to Ubuntu Pro now!</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  <section class="p-strip is-shallow" id="posts-list">
+    {% include "blog/posts.html" %}
   </section>
 
-  {% with %}
-    {% set total_pages = total_pages %}
-    {% set current_page = current_page %}
-    {% include "blog/shared/_pagination.html" %}
-  {% endwith %}
-
+  <section class="p-strip is-shallow">
+    {% with %}
+      {% set total_pages = total_pages %}
+      {% set current_page = current_page %}
+      {% include "shared/_pagination.html" %}
+    {% endwith %}
+  </section>
 {% endblock %}
