@@ -13,44 +13,196 @@
       "fieldsets": [
         {
           "title": "Tell us more about your 16.04 instances",
+          "id": "instance-details",
           "inputType": "checkbox",
           "fields": [
-            { "type": "checkbox", "label": "< 50 VMs" },
-            { "type": "checkbox", "label": "<500 VMs" },
-            { "type": "checkbox", "label": ">500 VMs" },
-            { "type": "checkbox", "label": "Containers" },
-            { "type": "checkbox", "label": "Azure only VMs" },
-            { "type": "checkbox", "label": "Azure only AKS" },
-            { "type": "checkbox", "label": "Multiple public clouds" },
-            { "type": "checkbox", "label": "Private or edge cloud" },
-            { "type": "checkbox", "label": "Development and CI/CD" },
-            { "type": "checkbox", "label": "Standard Production" },
-            { "type": "checkbox", "label": "Mission-critical Production" },
-            { "type": "checkbox", "label": "Regulated workloads" }
+            {
+              "type": "checkbox",
+              "id": "less-than-50-vms",
+              "value": "< 50 VMs",
+              "label": "< 50 VMs"
+            },
+            {
+              "type": "checkbox",
+              "id": "less-than-500-vms",
+              "value": "<500 VMs",
+              "label": "<500 VMs"
+            },
+            {
+              "type": "checkbox",
+              "id": "greater-than-500-vms",
+              "value": ">500 VMs",
+              "label": ">500 VMs"
+            },
+            {
+              "type": "checkbox",
+              "id": "containers",
+              "value": "Containers",
+              "label": "Containers"
+            },
+            {
+              "type": "checkbox",
+              "id": "azure-only-vms",
+              "value": "Azure only VMs",
+              "label": "Azure only VMs"
+            },
+            {
+              "type": "checkbox",
+              "id": "azure-only-aks",
+              "value": "Azure only AKS",
+              "label": "Azure only AKS"
+            },
+            {
+              "type": "checkbox",
+              "id": "multiple-public-clouds",
+              "value": "Multiple public clouds",
+              "label": "Multiple public clouds"
+            },
+            {
+              "type": "checkbox",
+              "id": "private-or-edge-cloud",
+              "value": "Private or edge cloud",
+              "label": "Private or edge cloud"
+            },
+            {
+              "type": "checkbox",
+              "id": "development-and-ci-cd",
+              "value": "Development and CI/CD",
+              "label": "Development and CI/CD"
+            },
+            {
+              "type": "checkbox",
+              "id": "standard-production",
+              "value": "Standard Production",
+              "label": "Standard Production"
+            },
+            {
+              "type": "checkbox",
+              "id": "mission-critical-production",
+              "value": "Mission-critical Production",
+              "label": "Mission-critical Production"
+            },
+            {
+              "type": "checkbox",
+              "id": "regulated-workloads",
+              "value": "Regulated workloads",
+              "label": "Regulated workloads"
+            }
           ]
         },
         {
           "title": "Which of the following topics are important to you?",
+          "id": "topics-of-interest",
           "inputType": "checkbox",
           "fields": [
-            { "type": "checkbox", "label": "Ubuntu security patching" },
-            { "type": "checkbox", "label": "10-year lifetime" },
-            { "type": "checkbox", "label": "Regulatory compliance" },
-            { "type": "checkbox", "label": "Certification" },
-            { "type": "checkbox", "label": "CC-EAL" },
-            { "type": "checkbox", "label": "FIPS" },
-            { "type": "checkbox", "label": "Containers (AKS)" },
-            { "type": "checkbox", "label": "Compute (Azure VM)" },
-            { "type": "checkbox", "label": "Image size" },
-            { "type": "checkbox", "label": "Kernel livepatch" },
-            { "type": "checkbox", "label": "Support" },
-            { "type": "checkbox", "label": "Performance" },
-            { "type": "checkbox", "label": "Open Source security" },
-            { "type": "checkbox", "label": "Apache Kafka" },
-            { "type": "checkbox", "label": "RabbitMQ" },
-            { "type": "checkbox", "label": "Redis" },
-            { "type": "checkbox", "label": "MongoDB" },
-            { "type": "checkbox", "label": "NodeJS" }
+            {
+              "type": "checkbox",
+              "id": "ubuntu-security-patching",
+              "value": "Ubuntu security patching",
+              "label": "Ubuntu security patching"
+            },
+            {
+              "type": "checkbox",
+              "id": "10-year-lifetime",
+              "value": "10-year lifetime",
+              "label": "10-year lifetime"
+            },
+            {
+              "type": "checkbox",
+              "id": "regulatory-compliance",
+              "value": "Regulatory compliance",
+              "label": "Regulatory compliance"
+            },
+            {
+              "type": "checkbox",
+              "id": "certification",
+              "value": "Certification",
+              "label": "Certification"
+            },
+            {
+              "type": "checkbox",
+              "id": "cc-eal",
+              "value": "CC-EAL",
+              "label": "CC-EAL"
+            },
+            {
+              "type": "checkbox",
+              "id": "fips",
+              "value": "FIPS",
+              "label": "FIPS"
+            },
+            {
+              "type": "checkbox",
+              "id": "containers-aks",
+              "value": "Containers (AKS)",
+              "label": "Containers (AKS)"
+            },
+            {
+              "type": "checkbox",
+              "id": "compute-azure-vm",
+              "value": "Compute (Azure VM)",
+              "label": "Compute (Azure VM)"
+            },
+            {
+              "type": "checkbox",
+              "id": "image-size",
+              "value": "Image size",
+              "label": "Image size"
+            },
+            {
+              "type": "checkbox",
+              "id": "kernel-livepatch",
+              "value": "Kernel livepatch",
+              "label": "Kernel livepatch"
+            },
+            {
+              "type": "checkbox",
+              "id": "support",
+              "value": "Support",
+              "label": "Support"
+            },
+            {
+              "type": "checkbox",
+              "id": "performance",
+              "value": "Performance",
+              "label": "Performance"
+            },
+            {
+              "type": "checkbox",
+              "id": "open-source-security",
+              "value": "Open Source security",
+              "label": "Open Source security"
+            },
+            {
+              "type": "checkbox",
+              "id": "apache-kafka",
+              "value": "Apache Kafka",
+              "label": "Apache Kafka"
+            },
+            {
+              "type": "checkbox",
+              "id": "rabbitmq",
+              "value": "RabbitMQ",
+              "label": "RabbitMQ"
+            },
+            {
+              "type": "checkbox",
+              "id": "redis",
+              "value": "Redis",
+              "label": "Redis"
+            },
+            {
+              "type": "checkbox",
+              "id": "mongodb",
+              "value": "MongoDB",
+              "label": "MongoDB"
+            },
+            {
+              "type": "checkbox",
+              "id": "nodejs",
+              "value": "NodeJS",
+              "label": "NodeJS"
+            }
           ]
         },
         {
