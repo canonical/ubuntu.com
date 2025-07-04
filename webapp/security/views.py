@@ -271,7 +271,7 @@ def notices_feed(feed_type):
         return entry
 
     notices = security_api.get_page_notices(
-        limit=10, offset="", details="", releases="", order=""
+        limit=10, offset=0, details="", releases=[], order=""
     ).get("notices")
 
     for notice in notices:
@@ -286,10 +286,10 @@ def notices_feed(feed_type):
 def single_notices_sitemap(offset):
     # max limit is 100
     notices = security_api.get_page_notices(
-        limit="100",
+        limit=100,
         offset=offset,
         details="",
-        release="",
+        releases=[],
         order="",
     ).get("notices")
 
@@ -322,24 +322,26 @@ def single_notices_sitemap(offset):
 
 def notices_sitemap():
     notices_response = security_api.get_page_notices(
-        limit="", offset="", details="", release="", order=""
+        limit=0, offset=0, details="", releases=[], order=""
     )
-
-    notices_count = notices_response.get("total_results")
-
+    notices_count = notices_response.get("total_results", 0)
     base_url = "https://ubuntu.com/security/notices"
 
-    xml_sitemap = flask.render_template(
-        "sitemap_index_template.xml",
-        base_url=base_url,
-        links=[
+    if notices_count == 0:
+        links = []
+    else:
+        links = [
             {
                 "url": f"{base_url}/sitemap-{link * 100}.xml",
             }
             for link in range(ceil(notices_count / 100))
-        ],
-    )
+        ]
 
+    xml_sitemap = flask.render_template(
+        "sitemap_index_template.xml",
+        base_url=base_url,
+        links=links,
+    )
     response = flask.make_response(xml_sitemap)
     response.headers["Content-Type"] = "application/xml"
     response.headers["Cache-Control"] = "public, max-age=43200"
@@ -734,13 +736,14 @@ def cve(cve_id):
 def single_cves_sitemap(offset):
     cves = security_api.get_cves(
         query="",
-        priority="",
+        priority=[],
         package="",
         limit=100,
         offset=offset,
         component="",
-        versions="",
-        statuses="",
+        versions=[],
+        statuses=[],
+        order="",
     ).get("cves")
 
     links = []
@@ -771,28 +774,34 @@ def single_cves_sitemap(offset):
 def cves_sitemap():
     cves_response = security_api.get_cves(
         query="",
-        priority="",
+        priority=[],
         package="",
-        limit="",
-        offset="",
+        limit=0,
+        offset=0,
         component="",
-        versions="",
-        statuses="",
+        versions=[],
+        statuses=[],
+        order="",
     )
 
-    cves_count = cves_response.get("total_results")
+    cves_count = cves_response.get("total_results", 0)
 
     base_url = "https://ubuntu.com/security/cves"
 
-    xml_sitemap = flask.render_template(
-        "sitemap_index_template.xml",
-        base_url=base_url,
-        links=[
+    if cves_count == 0:
+        links = []
+    else:
+        links = [
             {
                 "url": f"{base_url}/sitemap-{link * 100}.xml",
             }
             for link in range(ceil(cves_count / 100))
-        ],
+        ]
+
+    xml_sitemap = flask.render_template(
+        "sitemap_index_template.xml",
+        base_url=base_url,
+        links=links,
     )
 
     response = flask.make_response(xml_sitemap)
