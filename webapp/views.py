@@ -881,6 +881,9 @@ def shorten_acquisition_url(acquisition_url):
 def marketo_submit():
     form_fields = {}
     for key in flask.request.form:
+        # Skip keys that start with '_radio_' to avoid marketo errors
+        if key.startswith("_radio_"):
+            continue
         values = flask.request.form.getlist(key)
         value = ", ".join(values)
         if value:
