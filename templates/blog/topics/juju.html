@@ -3,30 +3,43 @@
 {% block title %}Juju and JAAS{% endblock %}
 
 {% block meta_description %}
-  Operate big software at scale on any cloud. All the latest news on Juju – the open source application modeling tool for public and private clouds.
+  Operate big software at scale on any cloud. All the latest news on Juju – the open source application modelling tool for public and private clouds.
 {% endblock %}
-
-{% block body_class %}
-  is-paper
-{% endblock body_class %}
 
 {% block content %}
 
-  {% with title="Juju", subtitle='All the latest news on Juju<br /> &ndash; the open source application modeling tool for public and private clouds.', cta_link="https://jaas.ai", cta_text="Learn more about Juju" %}
-  {% include 'blog/shared/_topic-header.html' %}
-{% endwith %}
-
-  <section class="p-section" id="posts-list">
-    <div class="row">
-      {% for article in articles %}
-        {% include 'blog/blog-card.html' %}
-      {% endfor %}
+  <section class="p-strip--suru-blog-header is-dark">
+    <div class="u-fixed-width">
+      <p>
+        {{ image(url="https://assets.ubuntu.com/v1/67057b2c-product-page-juju-logo.svg",
+                alt="",
+                height="50",
+                width="140",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-blog-heading__icon", "style": "height: 50px;"}) | safe
+        }}
+      </p>
+      <h2 class="p-heading--4">
+        All the latest news on Juju &ndash; the open source application
+        <br class="u-hide u-show--large" />
+        modelling tool for public and private clouds.
+      </h2>
+      <p>
+        <a class="p-link--inverted" href="https://jaas.ai">Learn more about Juju</a>
+      </p>
     </div>
   </section>
 
-  {% with %}
-    {% set total_pages = total_pages %}
-    {% set current_page = current_page %}
-    {% include "blog/shared/_pagination.html" %}
-  {% endwith %}
+  <section class="p-strip is-shallow">
+    {% include 'blog/posts.html' %}
+  </section>
+
+  <section class="p-strip is-shallow">
+    {% with %}
+      {% set total_pages = total_pages %}
+      {% set current_page = current_page %}
+      {% include "shared/_pagination.html" %}
+    {% endwith %}
+  </section>
 {% endblock %}
