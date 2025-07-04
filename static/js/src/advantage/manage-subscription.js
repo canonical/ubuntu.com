@@ -14,13 +14,13 @@ const getMessage = (code, default_message) => {
     cancelling_subscription_success:
       "Your subscription was cancelled, the page will reload.",
     resizing_machines_fail:
-      "<strong>Payment method:</strong> There was problem with your payment. Please <a href='/account/payment-methods'>update your payment methods</a> to retry.",
+      "<strong>Payment method:</strong> There was problem with your payment. Please <a href='/account/payment-methods'>update your payment method</a> to retry.",
     subscription_missing:
       "<strong>Could not cancel subscription:</strong> It could be that you have a pending payment that is blocking this action. Contact <a href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.",
     cancelling_subscription_failed:
       "<strong>Could not cancel subscription:</strong> Contact <a href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.",
     pending_purchase:
-      "<strong>Error:</strong> You already have a pending purchase. Please go to <a href='/account/payment-methods'>payment methods</a> to retry.",
+      "<strong>Error:</strong> You already have a pending purchase. Please go to <a href='/account/payment-methods'>payment method</a> to retry.",
     unknown_error:
       "<strong>Unknown error:</strong> Contact <a href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.",
   };
