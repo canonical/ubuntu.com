@@ -79,6 +79,20 @@
     <section class="p-section">
       {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
         {%- if slot == 'title' -%}
+          <h2>AMD SEV SNP is available for both the hos and guest</h2>
+        {%- endif -%}
+
+        {%- if slot == 'description' -%}
+          <div class="col">
+            <p>Ubuntu now supports AMD SEV-SNP on virtualization hosts, thanks to its  kernel 6.14 and QEMU 9.2. This will be key to enable enterprises to deploy confidential VMs in on-premise data centers using Ubuntu as both the host and guest operating system.</p>
+          </div>
+        {%- endif -%}
+      {%- endcall -%}
+    </section>
+
+    <section class="p-section">
+      {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+        {%- if slot == 'title' -%}
           <h2>Intel TDX is available on Ubuntu for both the host and guest</h2>
         {%- endif -%}
 
@@ -102,7 +116,7 @@
         {%- endif -%}
 
         {%- if slot == 'list_item_title_1' -%}
-          <h3 class="p-heading--5">Private preview available on Ubuntu 24.04</h3>
+          <h3 class="p-heading--5">Private preview available on Ubuntu 25.04</h3>
         {%- endif -%}
 
         {%- if slot == 'list_item_description_1' -%}
@@ -114,7 +128,7 @@
         {%- endif -%}
 
         {%- if slot == 'list_item_description_2' -%}
-          <p>We support a 6.8 kernel, derived from the 24.04 generic kernel, and offer essential user space components accessible through PPAs, such as Libvirt 9.6, and QEMU 8.0. We also offer a set of user-friendly scripts to simplify the creation of confidential environments with just a few commands.</p>
+          <p>We support a 6.8 kernel, derived from the 25.04 generic kernel, and offer essential user space components accessible through PPAs, QEMU 9.0. We also offer a set of user-friendly scripts to simplify the creation of confidential environments with just a few commands.</p>
         {%- endif -%}
 
         {%- if slot == 'list_item_title_3' -%}
