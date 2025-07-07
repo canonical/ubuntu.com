@@ -37,7 +37,9 @@
         </div>
         <div class="p-cta-block">
           <p>
-            <a class="p-button--positive js-invoke-modal" href="/security/contact-us">Contact us</a>
+            <a href="/security/contact-us"
+             class="p-button--positive js-invoke-modal"
+             aria-controls="security-standards-modal">Contact us</a>
             <a class="p-button" href="/pro/subscribe">Get Ubuntu Pro</a>
           </p>
         </div>
@@ -370,7 +372,8 @@
           <hr class="p-rule--muted" />
           <p>
             <a class="p-button--positive js-invoke-modal"
-               href="/support/contact-us">Contact us</a>
+               href="/security/contact-us"
+               aria-controls="security-standards-modal">Contact us</a>
             <a class="p-button" href="/pro/subscribe">Access a free trial</a>
           </p>
         </div>
@@ -381,6 +384,6 @@
   <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
   <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
 
-  {{ load_form("/cmmc") | safe }}
+  {{ load_form("/security-standards", 6310) | safe }}
 
 {% endblock content %}
