@@ -1192,7 +1192,7 @@ def render_security_standards_blogs():
         blogs.get_index()["articles"], key=lambda x: x["date"]
     )
     return flask.render_template(
-        "/security/security-standards.html", blogs=sorted_articles
+        "/security/standards/index.html", blogs=sorted_articles
     )
 
 
