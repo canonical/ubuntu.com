@@ -969,18 +969,16 @@ def marketo_submit():
         except Exception:
             pass
 
-    user_id = (
-        flask.request.cookies.get("user_id") or
-        flask.request.form.get("user_id")
+    user_id = flask.request.cookies.get("user_id") or flask.request.form.get(
+        "user_id"
     )
     if user_id:
         enrichment_fields["Google_Analytics_User_ID__c"] = user_id
         form_fields.pop("user_id", None)
 
-    consent_info = (
-        flask.request.cookies.get("consent_info") or
-        flask.request.form.get("consent_info")
-    )
+    consent_info = flask.request.cookies.get(
+        "consent_info"
+    ) or flask.request.form.get("consent_info")
     if consent_info:
         enrichment_fields["Google_Consent_Mode__c"] = consent_info
         form_fields.pop("consent_info", None)
@@ -1010,9 +1008,8 @@ def marketo_submit():
         ],
     }
 
-    encoded_utms = (
-        flask.request.cookies.get("utms") or
-        flask.request.form.get("utms")
+    encoded_utms = flask.request.cookies.get("utms") or flask.request.form.get(
+        "utms"
     )
     if encoded_utms:
         form_fields.pop("utms", None)
