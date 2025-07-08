@@ -7,14 +7,14 @@ type: charm
 
 bases:
   - build-on:
-    - name: ubuntu
-      channel: "22.04"
+      - name: ubuntu
+        channel: "22.04"
     run-on:
-    - name: ubuntu
-      channel: "22.04"
+      - name: ubuntu
+        channel: "22.04"
 
 # (Required)
-summary: Ubuntu website https://ubuntu.com 
+summary: Ubuntu website https://ubuntu.com
 
 # (Required)
 description: |
@@ -41,7 +41,7 @@ config:
       default: "2024-03-27 05:00:00+00:00"
     cred-maintenance:
       type: boolean
-      default: True 
+      default: True
     cred-maintenance-start:
       type: string
       default: "2024-09-28 11:00:00+00:00"
@@ -51,89 +51,24 @@ config:
     google-api:
       type: secret
       description: "Google Search API"
-    # search-api-key:
-    #   type: string
-    #   description: "Search API key"
-    #   default: "search_api_key"
     discourse-api:
       type: secret
       description: "Discourse API"
-    # discourse-api-key:
-    #   description: "Discourse API key"
-    #   default: "discourse_api_key"
-    #   source: default
-    #   type: string
-    # discourse-api-username:
-    #   type: string
-    #   description: "Discourse API username"
-    #   default: "discourse_api_username"
-    launchpad-imagebuild: 
+    launchpad-imagebuild:
       type: secret
       description: "Launchpad image build credentials"
-    # launchpad-image-build-user:
-    #   type: string
-    #   description: "Launchpad image build user"
-    #   default: "launchpad_image_build_user"
-    # launchpad-image-build-token:
-    #   type: string
-    #   description: "Launchpad image build token"
-    #   default: "launchpad_image_build_token"
-    # launchpad-image-build-secret:
-    #   type: string
-    #   description: "Launchpad image build secret"
-    #   default: "launchpad_image_build_secret"
-    # launchpad-image-build-auth-consumer:
-    #   type: string
-    #   description: "Launchpad image build auth consumer"
-    #   default: "launchpad_image_build_auth_consumer"
     marketo:
       type: secret
       description: "Marketo API credentials"
-    # marketo-api-client:
-    #   type: string
-    #   description: "Marketo API client"
-    #   default: "marketo_api_client"
-    # marketo-api-secret:
-    #   type: string
-    #   description: "Marketo API secret"
-    #   default: "marketo_api_secret"
     google-service-account:
       type: secret
       description: "Google service account credentials"
-    # google-service-account-email:
-    #   type: string
-    #   description: "Google service account email"
-    #   default: "google_service_account_email"
-    # google-service-account-private-key:
-    #   type: string
-    #   description: "Google service account private key"
-    #   default: "google_service_account_private_key"
     ubuntu-google-datastore:
       type: secret
       description: "Google Datastore credentials for Ubuntu"
-    # google-datastore-project-id:
-    #   type: string
-    #   description: "Google Datastore project ID"
-    #   default: "google_datastore_project_id"
-    # google-datastore-email:
-    #   type: string
-    #   description: "Google Datastore email"
-    #   default: "google_datastore_email"
-    # google-datastore-private-key:
-    #   type: string
-    #   description: "Google Datastore private key"
-    #   default: "google_datastore_private_key"
     confidentiality-webhook:
       type: secret
       description: "Confidentiality agreement webhook credentials"
-    # confidentiality-agreement-webhook-username:
-    #   type: string
-    #   description: "Confidentiality agreement webhook username"
-    #   default: "confidentiality_agreement_webhook_username"
-    # confidentiality-agreement-webhook-password:
-    #   type: string
-    #   description: "Confidentiality agreement webhook password"
-    #   default: "confidentiality_agreement_webhook_password"
     sentry-dsn:
       type: string
       description: "Sentry DSN for error tracking"
@@ -145,14 +80,6 @@ config:
     badgr:
       type: secret
       description: "Badgr credentials for badge management"
-    # bagdr-user:
-    #   type: string
-    #   description: "Badgr user for badge management"
-    #   default: "badgr_user"
-    # badgr-password:
-    #   type: string
-    #   description: "Badgr password for badge management"
-    #   default: "badgr_password"
     badgr-issuer:
       type: string
       description: "Badgr issuer for badge management"
@@ -172,7 +99,7 @@ config:
     security-api-url:
       type: string
       description: "Security API URL"
-      default: "https://ubuntu.com/security/"  
+      default: "https://ubuntu.com/security/"
     stripe-publishable-key:
       type: string
       description: "Stripe publishable key for payment processing"
@@ -184,10 +111,6 @@ config:
     trueability:
       type: secret
       description: "TrueAbility credentials for assessment management"
-    # trueability-api-key:
-    #   type: string
-    #   description: "TrueAbility API key for assessment management"
-    #   default: "true"
     proctor360-base-url:
       type: string
       description: "Proctor360 base URL for proctoring services"
@@ -195,64 +118,17 @@ config:
     proctor360:
       type: secret
       description: "Proctor360 credentials for proctoring services"
-    # proctor360-app-secret:
-    #   type: string
-    #   description: "Proctor360 app secret for authentication"
-    #   default: "proctor360_app_secret"
-    # proctor360-app-id:
-    #   type: string
-    #   description: "Proctor360 app ID for authentication"
-    #   default: "proctor360_app_id"
     sitemaps:
       type: secret
       description: "Sitemaps credentials for sitemap generation"
-    # sitemap-secret:
-    #   type: string
-    #   description: "Sitemap access secret"
-    #   default: "sitemap_secret"
-
-
-# Uncomment the integrations used by your application
-# Integrations set to "optional: false" will block the charm
-# until the applications are integrated.
-# requires:
-#   mysql:
-#     interface: mysql_client
-#     optional: false
-#     limit: 1
-#   postgresql:
-#     interface: postgresql_client
-#     optional: false
-#     limit: 1
-#   mongodb:
-#     interface: mongodb_client
-#     optional: false
-#     limit: 1
-#   redis:
-#     interface: redis
-#     optional: false
-#     limit: 1
-#   s3:
-#     interface: s3
-#     optional: false
-#     limit: 1
-#   saml:
-#     interface: saml
-#     optional: false
-#     limit: 1
-#   rabbitmq:
-#     interface: rabbitmq
-#     optional: false
-#     limit: 1
-#   tracing:
-#     interface: tracing
-#     optional: true
-#     limit: 1
-#   smtp:
-#     interface: smtp
-#     optional: false
-#     limit: 1
-#   openfga:
-#     interface: openfga
-#     optional: false
-#     limit: 1
+    credly-url:
+      type: string
+      description: "Credly URL for credential management"
+      default: "https://api.credly.com/v1"
+    credly:
+      type: secret
+      description: "Credly credentials for credential management"
+    canonical-login-url:
+      type: string
+      description: "Canonical login URL for authentication"
+      default: "https://login.ubuntu.com/"

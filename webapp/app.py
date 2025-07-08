@@ -213,6 +213,8 @@ app = FlaskBase(
     static_folder="../static",
 )
 
+app.config.from_pyfile(filename="settings.py")
+
 # ChoiceLoader attempts loading templates from each path in successive order
 directory_parser_templates = (
     Path(directory_parser.__file__).parent / "templates"
