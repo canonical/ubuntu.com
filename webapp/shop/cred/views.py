@@ -862,7 +862,7 @@ def cred_your_exams(
         "cred_maintenance_start": cred_maintenance_start,
         "cred_maintenance_end": cred_maintenance_end,
     }
-    is_banned = False
+    is_banned = True
     purchased_contracts = list(
         filter(
             lambda c: c["contractItem"]["reason"] == "purchase_made",
@@ -870,7 +870,7 @@ def cred_your_exams(
         )
     )
 
-    if len(purchased_contracts) > 0:
+    if purchased_contracts:
         account_id = purchased_contracts[0]["accountContext"]["accountID"]
         preview_purchase_request = {
             "accountID": account_id,
@@ -901,6 +901,8 @@ def cred_your_exams(
                 error = e.response.json().get("message", "Unknown error")
                 if error != banned_error:
                     is_banned = False
+    else:
+        is_banned = False
 
     exams_in_progress = []
     exams_scheduled = []
