@@ -863,48 +863,17 @@ def cred_your_exams(
         "cred_maintenance_end": cred_maintenance_end,
     }
     is_banned = False
-    has_purchase_contract = (
-        len(
-            list(
-                filter(
-                    lambda c: c["contractItem"]["reason"] == "purchase_made",
-                    exam_contracts,
-                )
-            )
+    purchased_contracts = list(
+        filter(
+            lambda c: c["contractItem"]["reason"] == "purchase_made",
+            exam_contracts,
         )
-        > 0
     )
 
-    if has_purchase_contract:
-        account = None
-        try:
-            account = advantage_mapper.get_purchase_account("canonical-cube")
-        except UAContractsUserHasNoAccount:
-            response = flask.make_response(
-                flask.render_template(
-                    "credentials/your-exams.html",
-                    **template_data,
-                    exams=[],
-                    is_banned=False,
-                )
-            )
-            response.headers["Cache-Control"] = (
-                "no-cache, no-store, must-revalidate"
-            )
-            response.headers["Pragma"] = "no-cache"
-            return response
-        except AccessForbiddenError:
-            flask.current_app.extensions["sentry"].captureException(
-                extra={
-                    "user_info": user_info(flask.session),
-                    "request_url": flask.request.url,
-                    "request_headers": flask.request.headers,
-                }
-            )
-            return flask.jsonify({"error": "access forbidden"}), 403
-
-        purchase_request = {
-            "accountID": account.id,
+    if len(purchased_contracts) > 0:
+        account_id = purchased_contracts[0]["accountContext"]["accountID"]
+        preview_purchase_request = {
+            "accountID": account_id,
             "purchaseItems": [
                 {
                     "productListingID": productListingID,
@@ -923,7 +892,7 @@ def cred_your_exams(
         try:
             response = advantage_mapper.purchase_from_marketplace(
                 marketplace="canonical-cube",
-                purchase_request=purchase_request,
+                preview_purchase_request=preview_purchase_request,
                 preview=True,
             )
             is_banned = False
