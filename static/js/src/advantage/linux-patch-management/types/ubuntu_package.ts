@@ -1,6 +1,7 @@
 export type UbuntuPackage = {
   package_name: string;
   section: string;
+  origin: string;
   pocket: string;
   version: string;
   high_cves: {

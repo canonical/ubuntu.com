@@ -29,7 +29,10 @@ export default function useCVETable(
         { columns: [{ content: "No data available" }] },
       ] as MainTableRow[];
     }
-    const cveDataFiltered = cveData.filter((pkg: UbuntuPackage) => {
+    const cveDataSorted = cveData.sort((a, b) => {
+      return a.package_name.localeCompare(b.package_name);
+    });
+    const cveDataFiltered = cveDataSorted.filter((pkg: UbuntuPackage) => {
       return packageFilter === "" || pkg.section === packageFilter;
     });
 
@@ -89,7 +92,7 @@ export default function useCVETable(
             },
             {
               content: (
-                <p>{mapOriginToCoverage(selectedRelease, pkg.pocket)}</p>
+                <p>{mapOriginToCoverage(selectedRelease, pkg.origin)}</p>
               ),
             },
           ],

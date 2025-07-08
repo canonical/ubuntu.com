@@ -60,7 +60,7 @@ const ProContent = ({
     cveData.packages.forEach((pkg) => {
       map.set(
         pkg.package_name,
-        mapOriginToCoverage(selectedRelease, pkg.pocket),
+        mapOriginToCoverage(selectedRelease, pkg.origin),
       );
     });
     return map;
