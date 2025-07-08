@@ -862,63 +862,76 @@ def cred_your_exams(
         "cred_maintenance_start": cred_maintenance_start,
         "cred_maintenance_end": cred_maintenance_end,
     }
-    account = None
-    try:
-        account = advantage_mapper.get_purchase_account("canonical-cube")
-    except UAContractsUserHasNoAccount:
-        response = flask.make_response(
-            flask.render_template(
-                "credentials/your-exams.html",
-                **template_data,
-                exams=[],
-                is_banned=False,
+    is_banned = False
+    has_purchase_contract = (
+        len(
+            list(
+                filter(
+                    lambda c: c["contractItem"]["reason"] == "purchase_made",
+                    exam_contracts,
+                )
             )
         )
-        response.headers["Cache-Control"] = (
-            "no-cache, no-store, must-revalidate"
-        )
-        response.headers["Pragma"] = "no-cache"
-        return response
-    except AccessForbiddenError:
-        flask.current_app.extensions["sentry"].captureException(
-            extra={
-                "user_info": user_info(flask.session),
-                "request_url": flask.request.url,
-                "request_headers": flask.request.headers,
-            }
-        )
-        return flask.jsonify({"error": "access forbidden"}), 403
-
-    purchase_request = {
-        "accountID": account.id,
-        "purchaseItems": [
-            {
-                "productListingID": productListingID,
-                "metric": "active-machines",
-                "value": 1,
-            }
-        ],
-        "previousPurchaseID": "",
-        "coupon": None,
-    }
-
-    is_banned = True
-    banned_error = (
-        "invalid purchase: user has been banned "
-        + "from purchasing products in the canonical-cube marketplace"
+        > 0
     )
-    try:
-        response = advantage_mapper.purchase_from_marketplace(
-            marketplace="canonical-cube",
-            purchase_request=purchase_request,
-            preview=True,
+
+    if has_purchase_contract:
+        account = None
+        try:
+            account = advantage_mapper.get_purchase_account("canonical-cube")
+        except UAContractsUserHasNoAccount:
+            response = flask.make_response(
+                flask.render_template(
+                    "credentials/your-exams.html",
+                    **template_data,
+                    exams=[],
+                    is_banned=False,
+                )
+            )
+            response.headers["Cache-Control"] = (
+                "no-cache, no-store, must-revalidate"
+            )
+            response.headers["Pragma"] = "no-cache"
+            return response
+        except AccessForbiddenError:
+            flask.current_app.extensions["sentry"].captureException(
+                extra={
+                    "user_info": user_info(flask.session),
+                    "request_url": flask.request.url,
+                    "request_headers": flask.request.headers,
+                }
+            )
+            return flask.jsonify({"error": "access forbidden"}), 403
+
+        purchase_request = {
+            "accountID": account.id,
+            "purchaseItems": [
+                {
+                    "productListingID": productListingID,
+                    "metric": "active-machines",
+                    "value": 1,
+                }
+            ],
+            "previousPurchaseID": "",
+            "coupon": None,
+        }
+
+        banned_error = (
+            "invalid purchase: user has been banned "
+            + "from purchasing products in the canonical-cube marketplace"
         )
-        is_banned = False
-    except Exception as e:
-        if hasattr(e, "response") and e.response is not None:
-            error = e.response.json().get("message", "Unknown error")
-            if error != banned_error:
-                is_banned = False
+        try:
+            response = advantage_mapper.purchase_from_marketplace(
+                marketplace="canonical-cube",
+                purchase_request=purchase_request,
+                preview=True,
+            )
+            is_banned = False
+        except Exception as e:
+            if hasattr(e, "response") and e.response is not None:
+                error = e.response.json().get("message", "Unknown error")
+                if error != banned_error:
+                    is_banned = False
 
     exams_in_progress = []
     exams_scheduled = []
