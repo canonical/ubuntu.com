@@ -85,6 +85,7 @@ export interface Product {
   };
   offerId?: string;
   canBeTrialled?: boolean;
+  isFree?: boolean;
 }
 
 export type Coupon = {
