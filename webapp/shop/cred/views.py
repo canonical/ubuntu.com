@@ -847,6 +847,7 @@ def cred_your_exams(
         else:
             exam_contracts = []
 
+    exam_contracts = exam_contracts if exam_contracts is not None else []
     cue_products = get_cue_products(type="exam").get_json()
     productListingID = None
     if cue_products and len(cue_products) > 0:
