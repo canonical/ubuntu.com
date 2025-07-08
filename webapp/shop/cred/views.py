@@ -892,7 +892,7 @@ def cred_your_exams(
         try:
             response = advantage_mapper.purchase_from_marketplace(
                 marketplace="canonical-cube",
-                preview_purchase_request=preview_purchase_request,
+                purchase_request=preview_purchase_request,
                 preview=True,
             )
             is_banned = False
