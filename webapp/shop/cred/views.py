@@ -7,7 +7,6 @@ import json
 import os
 import html
 from webapp.shop.api.ua_contracts.api import (
-    AccessForbiddenError,
     UAContractsAPIErrorView,
     UAContractsUserHasNoAccount,
 )
