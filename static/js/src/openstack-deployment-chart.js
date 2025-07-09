@@ -9,7 +9,7 @@ fetch("/static/js/data/openstack-deployment-stats.json")
 const drawChart = (data) => {
   const piedata = d3.pie().value((d) => d.percentage)(data);
 
-  const arc = d3.arc().innerRadius(60).outerRadius(120);
+  const arc = d3.arc().innerRadius(55).outerRadius(110);
 
   const colors = d3.scaleOrdinal([
     "#E95420",
@@ -86,7 +86,7 @@ const drawChart = (data) => {
     .data(piedata)
     .enter()
     .append("text")
-    .attr("x", 380)
+    .attr("x", 360)
     .attr("y", function (d, i) {
       return -95 + i * 30;
     })
