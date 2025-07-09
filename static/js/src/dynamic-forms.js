@@ -586,13 +586,13 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
       });
 
-      // Add event listeners to required fieldset
-      const requiredFieldset = document.querySelectorAll(
-        "fieldset.js-required-checkbox",
+      // Add event listeners to required fieldsets
+      const requiredFieldsets = document.querySelectorAll(
+        "fieldset.js-required-checkbox, fieldset.js-toggle-checkbox-visibility-required",
       );
-      requiredFieldset?.forEach((fieldset) => {
+      requiredFieldsets?.forEach((fieldset) => {
         fieldset.addEventListener("change", function (event) {
-          requiredCheckbox(fieldset, event.target);
+          checkAllRequiredFieldsets();
         });
       });
 
@@ -749,23 +749,31 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     }
 
     /**
-     *
-     * @param {*} fieldset
-     * @param {*} target
-     * Disables submit button for required checkboxes field
+     * 
+     * Check all required fieldsets and enable/disable submit button accordingly
+     * Submit button is only enabled when ALL required fieldsets have at least one checkbox checked
      */
-    function requiredCheckbox(fieldset, target) {
+    function checkAllRequiredFieldsets() {
       const submitButton = document.querySelector(".js-submit-button");
-      const checkboxes = fieldset.querySelectorAll("input[type='checkbox']");
-      if (target.checked) {
-        submitButton.disabled = false;
-      } else {
-        let disableSubmit = true;
+      const allRequiredFieldsets = document.querySelectorAll(
+        "fieldset.js-required-checkbox, fieldset.js-toggle-checkbox-visibility-required"
+      );      
+      let allFieldsetsValid = true;
+
+      allRequiredFieldsets.forEach((fieldset) => {
+        const checkboxes = fieldset.querySelectorAll("input[type='checkbox']");
+        let hasCheckedCheckbox = false;
+
         checkboxes.forEach((checkbox) => {
-          checkbox.checked ? (disableSubmit = false) : null;
+          if (checkbox.checked) {
+            hasCheckedCheckbox = true;
+          }
         });
-        submitButton.disabled = disableSubmit;
-      }
+        if (!hasCheckedCheckbox) {
+          allFieldsetsValid = false;
+        }
+      });
+      submitButton.disabled = !allFieldsetsValid;
     }
   });
 })();
