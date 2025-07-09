@@ -1,0 +1,38 @@
+name: ubuntu-com
+base: ubuntu@22.04
+version: "0.1"
+summary: Ubuntu website https://ubuntu.com 
+description: |
+  Ubuntu.com is the official website of Ubuntu, a popular Linux distribution.
+  It provides information about Ubuntu, its features, and how to download and use it.
+  It also serves as a platform for the Ubuntu community to share news, updates, and resources related to Ubuntu.
+  The website is built using Flask, a lightweight web framework for Python, and is designed to
+  be fast, secure, and easy to navigate. It includes various sections such as documentation,
+  support, community, and more, making it a comprehensive resource for Ubuntu users and enthusiasts.
+platforms:
+  amd64:
+
+extensions:
+  - flask-framework
+# uncomment the sections you need and adjust according to your requirements.
+parts:  # you need to uncomment this line to add or update any part.
+
+  flask-framework/install-app:
+    prime:
+      # by default, only the files in app/, templates/, static/, migrate, migrate.sh,
+      # migrate.py and app.py are copied into the image. You can modify the list
+      # below to override the default list and include or exclude specific
+      # files/directories in your project.
+      # note: prefix each entry with "flask/app/" followed by the local path.
+      - flask/app/.env
+      - flask/app/app.py
+      - flask/app/webapp
+      - flask/app/templates
+      - flask/app/static
+      - flask/app/scripts
+      - flask/app/redirects.yaml
+      - flask/app/releases.yaml
+      - flask/app/meganav.yaml
+      - flask/app/navigation.yaml
+      - flask/app/appliances.yaml
+      - flask/app/subscriptions.yaml

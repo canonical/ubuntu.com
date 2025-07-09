@@ -213,6 +213,8 @@ app = FlaskBase(
     static_folder="../static",
 )
 
+app.config.from_pyfile(filename="settings.py")
+
 # ChoiceLoader attempts loading templates from each path in successive order
 directory_parser_templates = (
     Path(directory_parser.__file__).parent / "templates"
@@ -220,7 +222,8 @@ directory_parser_templates = (
 loader = ChoiceLoader(
     [
         FileSystemLoader("templates"),
-        FileSystemLoader("node_modules/vanilla-framework/templates"),
+        FileSystemLoader("node_modules/vanilla-framework/templates/"),
+        FileSystemLoader("static/js/dist/vanilla-framework/"),
         FileSystemLoader(str(directory_parser_templates)),
     ]
 )
