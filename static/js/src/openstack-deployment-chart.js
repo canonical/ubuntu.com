@@ -27,7 +27,7 @@ const drawChart = (data) => {
   const svg = d3
     .select("#openstack-pie-chart")
     .append("svg")
-    .attr("width", 630)
+    .attr("width", 510)
     .attr("height", 395)
     .append("g")
     .attr("transform", "translate(120,180)");

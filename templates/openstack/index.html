@@ -269,15 +269,18 @@
           </p>
         </div>
       </div>
-      <div class="row--25-75-on-large">
+      <div class="row--25-75-on-large p-section--shallow">
         <div class="col">
-          {{ image(url="https://assets.ubuntu.com/v1/03c555de-price-performance-guaranteed.png",
-                    alt="",
-                    width="2748",
-                    height="1833",
-                    hi_def=True,
-                    loading="lazy") | safe
-          }}
+          <div class="p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/03c555de-price-performance-guaranteed.png",
+                      alt="",
+                      width="2748",
+                      height="1833",
+                      hi_def=True,
+                      loading="lazy",
+                      attrs={"class": "p-image-container__image"}) | safe
+            }}
+            </div>
         </div>
       </div>
       <div class="grid-row">
@@ -530,13 +533,16 @@
       </div>
       <div class="grid-col-4">
         <div class="p-section--shallow">
-          {{ image(url="https://assets.ubuntu.com/v1/404b3c72-cost-effective-cloud-infra.png",
+          <div class="p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/404b3c72-cost-effective-cloud-infra.png",
                     alt="",
                     width="1800",
                     height="1014",
                     hi_def=True,
-                    loading="lazy") | safe
-          }}
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
         </div>
         <p class="p-heading--5 u-no-margin--bottom">For private clouds and public clouds.</p>
         <p>
@@ -649,14 +655,16 @@
       </div>
       <div class="row--25-75-on-large">
         <div class="col">
-
-          {{ image(url="https://assets.ubuntu.com/v1/84c7fb7d-bottom-up-automation.png",
-                    alt="",
-                    width="2748",
-                    height="1832",
-                    hi_def=True,
-                    loading="lazy") | safe
-          }}
+          <div class="p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/84c7fb7d-bottom-up-automation.png",
+                        alt="",
+                        width="2748",
+                        height="1832",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
         </div>
       </div>
     </div>
@@ -681,13 +689,17 @@
       </div>
       <div class="grid-row">
         <div class="grid-col-4 grid-col-start-large-5">
-          {{ image(url="https://assets.ubuntu.com/v1/c2403382-extendbale-containers-layer.png",
-                    alt="",
-                    width="1800",
-                    height="1201",
-                    hi_def=True,
-                    loading="lazy") | safe
-          }}
+          <div class="p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/c2403382-extendbale-containers-layer.png",
+                        alt="",
+                        width="1800",
+                        height="1201",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
+
         </div>
       </div>
     </div>
@@ -809,7 +821,7 @@
           </div>
 
           <div class="row">
-            <div class="u-hide--small col-6 u-align--center">
+            <div class="u-hide--small col-6 u-align--center p-image-container is-highlighted">
               <div id="openstack-pie-chart"></div>
             </div>
             <div class="u-hide--medium u-hide--large col-6">
