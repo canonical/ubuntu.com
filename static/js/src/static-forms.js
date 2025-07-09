@@ -283,36 +283,48 @@ ubuntuVersionCheckboxes?.addEventListener("change", function (event) {
   toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
 });
 
-/**
- *
- * @param {*} fieldset
- * @param {*} target
- * Disables submit button for required checkboxes field
- */
-function requiredCheckbox(fieldset, target) {
-  const submitButton = document.querySelector(".js-submit-button");
-  const checkboxes = fieldset.querySelectorAll("input[type='checkbox']");
-  if (target.checked) {
-    submitButton.disabled = false;
-  } else {
-    var disableSubmit = true;
-    checkboxes.forEach((checkbox) => {
-      checkbox.checked ? (disableSubmit = false) : null;
-    });
-    submitButton.disabled = disableSubmit;
-  }
-}
 
-const requiredFieldset = document.querySelectorAll(
-  "fieldset.js-required-checkbox",
+// Add event listeners to required fieldsets
+const requiredFieldsets = document.querySelectorAll(
+  "fieldset.js-required-checkbox, fieldset.js-toggle-checkbox-visibility-required",
 );
-requiredFieldset?.forEach((fieldset) => {
-  document.querySelector(".js-submit-button").disabled = true;
+requiredFieldsets?.forEach((fieldset) => {
   fieldset.addEventListener("change", function (event) {
-    requiredCheckbox(fieldset, event.target);
+    checkAllRequiredFieldsets();
   });
 });
 
+/**
+ * Check all required fieldsets and enable/disable submit button accordingly
+ * Submit button is only enabled when ALL required fieldsets have at least one checkbox checked
+ */
+function checkAllRequiredFieldsets() {
+  const submitButton = document.querySelector(".js-submit-button");
+  const allRequiredFieldsets = document.querySelectorAll(
+    "fieldset.js-required-checkbox, fieldset.js-toggle-checkbox-visibility-required"
+  );      
+  let allFieldsetsValid = true;
+
+  allRequiredFieldsets.forEach((fieldset) => {
+    const checkboxes = fieldset.querySelectorAll("input[type='checkbox']");
+    let hasCheckedCheckbox = false;
+
+    checkboxes.forEach((checkbox) => {
+      if (checkbox.checked) {
+        hasCheckedCheckbox = true;
+      }
+    });
+    if (!hasCheckedCheckbox) {
+      allFieldsetsValid = false;
+    }
+  });
+  submitButton.disabled = !allFieldsetsValid;
+}
+
+
+/**
+ * Sets the consent info from the data layer into the consent_info cookie
+ */
 function setDataLayerConsentInfo() {
   const dataLayer = window.dataLayer || [];
   const latestConsentUpdateElements = dataLayer
