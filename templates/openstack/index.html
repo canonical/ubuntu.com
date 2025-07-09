@@ -22,9 +22,7 @@
   <style>
     .bar-chart-container {
       display: flex;
-      /* justify-content: space-between; */
       position: relative;
-      /* to position separator */
     }
 
     .bar-chart {
@@ -33,8 +31,6 @@
     }
 
     .bars {
-      /* display: flex; */
-      /* justify-content: space-between; */
       align-items: flex-end;
       height: 150px;
       margin: 1rem;
@@ -45,7 +41,6 @@
     }
 
     .bar {
-      /* width: 50px; */
       height: 150px;
       transform: scaleY(1);
       transform-origin: bottom;
@@ -54,13 +49,9 @@
     .bar.ex-bar {
       border: 2px solid #E95420;
       background: #FDE8DA;
-      /*  background-color: #bdcddd;
-      border: 1px solid #3d6c6c; */
     }
 
     .bar.tco-bar {
-      /* background-color: #b6dabc;
-      border: 1px solid #64b070; */
       border: 2px solid #0E8420;
       background: rgba(14, 132, 32, 0.10);
     }
@@ -75,20 +66,11 @@
       margin-top: 0.1rem;
     }
 
-    .js-cloud-price-slider::before {
-      content: "Low";
-      position: absolute;
-      left: 10px;
-      top: 18px;
-      font-size: 16px;
-    }
-
-    .js-cloud-price-slider::after {
-      content: "High";
-      position: absolute;
-      right: 10px;
-      top: 18px;
-      font-size: 16px;
+    .js-cloud-price-slider__range {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
     }
   </style>
 
@@ -355,13 +337,17 @@
               </div>
             </div>
             <div class="js-cloud-price-slider u-align--center">
-              <input type="range"
-                     id="hours__range"
-                     min="1"
-                     max="150"
-                     value="96"
-                     step="1"
-                     aria-label="Cost of public cloud versus private cloud" />
+              <div class="js-cloud-price-slider__range">
+                <p class="u-no-margin--bottom">Low</p>
+                <input type="range"
+                       id="hours__range"
+                       min="1"
+                       max="150"
+                       value="96"
+                       step="1"
+                       aria-label="Cost of public cloud versus private cloud" />
+                <p class="u-no-margin--bottom">High</p>
+              </div>
               <div>VM hours</div>
             </div>
           </div>
@@ -915,8 +901,7 @@
             Discover how we can assist you on your OpenStack migration journey. Our team of cloud experts is happy to answer any questions you might have.
           </p>
           <div class="p-cta-block">
-            <a class="p-button"
-               href="/openstack/contact-us?product=openstack">Contact us</a>
+            <a class="p-button" href="/openstack/contact-us?product=openstack">Contact us</a>
           </div>
         </div>
       </div>
