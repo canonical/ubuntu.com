@@ -28,7 +28,7 @@ const drawChart = (data) => {
     .select("#openstack-pie-chart")
     .append("svg")
     .attr("width", 630)
-    .attr("height", 360)
+    .attr("height", 395)
     .append("g")
     .attr("transform", "translate(120,180)");
 
@@ -46,18 +46,19 @@ const drawChart = (data) => {
     .style("padding", "0.5rem 1rem");
 
   svg
-    .selectAll("ledgend-dots")
-    .data(piedata)
-    .enter()
-    .append("circle")
-    .attr("cx", 140)
-    .attr("cy", function (d, i) {
-      return -95 + i * 30;
-    })
-    .attr("r", 7)
-    .style("fill", function (d, i) {
-      return colors(i);
-    });
+  .selectAll("legend-squares")
+  .data(piedata)
+  .enter()
+  .append("rect")
+  .attr("x", 140)
+  .attr("y", function (d, i) {
+    return -102 + i * 30; // Adjust for vertical centering with text
+  })
+  .attr("width", 14)
+  .attr("height", 14)
+  .style("fill", function (d, i) {
+    return colors(i);
+  });
 
   svg
     .selectAll("ledgend-label-names")
@@ -75,7 +76,8 @@ const drawChart = (data) => {
       return d.data.name;
     })
     .attr("text-anchor", "left")
-    .attr("font-size", "14px")
+    .attr("font-size", "12px")
+    .attr("font-weight", "500")
     .attr("width", "10px")
     .style("alignment-baseline", "middle");
 
@@ -94,7 +96,8 @@ const drawChart = (data) => {
     .text(function (d) {
       return d.data.percentage + `%`;
     })
-    .attr("font-size", "14px")
+    .attr("font-size", "12px")
+    .style("font-weight", "500")
     .style("text-anchor", "end")
     .style("alignment-baseline", "middle");
 
