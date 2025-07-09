@@ -71,7 +71,7 @@
 
     .js-cloud-price-slider {
       position: relative;
-      padding: 1rem;
+      padding: 1.5rem;
       margin-top: 0.1rem;
     }
 
@@ -80,7 +80,7 @@
       position: absolute;
       left: 10px;
       top: 18px;
-      font-size: 12px;
+      font-size: 16px;
     }
 
     .js-cloud-price-slider::after {
@@ -88,7 +88,7 @@
       position: absolute;
       right: 10px;
       top: 18px;
-      font-size: 12px;
+      font-size: 16px;
     }
   </style>
 
@@ -922,12 +922,8 @@
       </div>
     </div>
   </section>
-  <hr class="is-fixed-width p-rule" />
-  <script src="{{ versioned_static('js/dist/cloud-price-slider.js') }}" defer></script>
 
-  {% with first_item="_openstack_next_step", second_item="_openstack_documentation", third_item="_openstack_further_reading" %}
-    {% include "shared/contextual_footers/_contextual_footer.html" %}
-  {% endwith %}
+  <script src="{{ versioned_static('js/dist/cloud-price-slider.js') }}" defer></script>
 
   <!-- Set default Marketo information for contact form below-->
   <div class="u-hide"

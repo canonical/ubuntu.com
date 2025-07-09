@@ -10,7 +10,7 @@ function renderSlider(slider) {
     slider.style.backgroundImage =
       "-webkit-gradient(linear, left top, right top, color-stop(" +
       value +
-      ", #06c), color-stop(" +
+      ", #E95420), color-stop(" +
       value +
       ", #fff))";
   }
