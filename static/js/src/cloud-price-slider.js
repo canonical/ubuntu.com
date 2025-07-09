@@ -42,11 +42,16 @@ window.addEventListener("DOMContentLoaded", () => {
   var privateTcoValue = privateCapexValue + privateOpexValue;
   privateTcoElm.style.transform = "scaleY(" + privateTcoValue / 250 + ")";
 
-  privateTcoElm.style.backgroundColor = "#b6dabc";
-  privateTcoElm.style.border = "1px solid #64b070";
+  const destructiveBorderStyle = "2px solid #C7162B";
+  const destructiveBackgroundColor = "rgba(199, 22, 43, 0.10)";
+  const successBorderStyle = "2px solid #0E8420";
+  const successBackgroundColor = "rgba(14, 132, 32, 0.10)";
 
-  publicTcoElm.style.backgroundColor = "#eeb9bf";
-  publicTcoElm.style.border = "1px solid #d04052";
+  privateTcoElm.style.backgroundColor = successBackgroundColor;
+  privateTcoElm.style.border = successBorderStyle;
+
+  publicTcoElm.style.backgroundColor = destructiveBackgroundColor;
+  publicTcoElm.style.border = destructiveBorderStyle;
 
   if (sliderElm) {
     var hrsRange = sliderElm.querySelector("#hours__range");
@@ -64,17 +69,17 @@ window.addEventListener("DOMContentLoaded", () => {
       publicTcoElm.style.transform = "scaleY(" + publicTcoValue / 200 + ")";
 
       if (publicTcoValue < privateTcoValue) {
-        privateTcoElm.style.backgroundColor = "#eeb9bf";
-        privateTcoElm.style.border = "1px solid #d04052";
+        privateTcoElm.style.backgroundColor = destructiveBackgroundColor;
+        privateTcoElm.style.border = destructiveBorderStyle;
 
-        publicTcoElm.style.backgroundColor = "#b6dabc";
-        publicTcoElm.style.border = "1px solid #64b070";
+        publicTcoElm.style.backgroundColor = successBackgroundColor;
+        publicTcoElm.style.border = successBorderStyle;
       } else {
-        privateTcoElm.style.backgroundColor = "#b6dabc";
-        privateTcoElm.style.border = "1px solid #64b070";
+        privateTcoElm.style.backgroundColor = successBackgroundColor;
+        privateTcoElm.style.border = successBorderStyle;
 
-        publicTcoElm.style.backgroundColor = "#eeb9bf";
-        publicTcoElm.style.border = "1px solid #d04052";
+        publicTcoElm.style.backgroundColor = destructiveBackgroundColor;
+        publicTcoElm.style.border = destructiveBorderStyle;
       }
     });
   }
