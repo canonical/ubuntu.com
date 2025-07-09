@@ -46,8 +46,12 @@ LAUNCHPAD_IMAGE_BUILD_AUTH_CONSUMER = get_flask_env(
     "LAUNCHPAD_IMAGEBUILD_AUTH_CONSUMER"
 )  # launchpad-imagebuild is secret name
 
-MARKETO_API_CLIENT = get_flask_env("MARKETO_API_CLIENT")  # marketo-api is secret name
-MARKETO_API_SECRET = get_flask_env("MARKETO_API_SECRET")  # marketo-api is secret name
+MARKETO_API_CLIENT = get_flask_env(
+    "MARKETO_API_CLIENT"
+)  # marketo-api is secret name
+MARKETO_API_SECRET = get_flask_env(
+    "MARKETO_API_SECRET"
+)  # marketo-api is secret name
 
 GOOGLE_SERVICE_ACCOUNT_EMAIL = get_flask_env(
     "GOOGLE_SERVICE_ACCOUNT_EMAIL"
@@ -55,7 +59,6 @@ GOOGLE_SERVICE_ACCOUNT_EMAIL = get_flask_env(
 GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY = get_flask_env(
     "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY"
 )  # google-service-account is secret name
-# TODO: Gotta check if private key should be stored as base64/ retrieved as bas64 or not
 
 GOOGLE_DATASTORE_PROJECT_ID = get_flask_env(
     "UBUNTU_GOOGLE_DATASTORE_PROJECT_ID"
@@ -75,7 +78,8 @@ CONFIDENTIALITY_AGREEMENT_WEBHOOK_PASSWORD = get_flask_env(
 )  # confidentiality-webhook is secret name
 
 SENTRY_DSN = get_flask_env(
-    "SENTRY_DSN", "https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13"
+    "SENTRY_DSN",
+    "https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13",
 )
 
 BADGR_URL = get_flask_env("BADGR_URL", "https://api.eu.badgr.io")
@@ -92,25 +96,37 @@ CERTIFIED_BADGE = get_flask_env("CERTIFIED_BADGE", "certified_badge")
 CONTRACTS_API_URL = get_flask_env(
     "CONTRACTS_API_URL", "https://contracts.canonical.com/"
 )
-SECURITY_API_URL = get_flask_env("SECURITY_API_URL", "https://ubuntu.com/security/")
+SECURITY_API_URL = get_flask_env(
+    "SECURITY_API_URL", "https://ubuntu.com/security/"
+)
 STRIPE_PUBLISHABLE_KEY = get_flask_env("STRIPE_PUBLISHABLE_KEY")
-TRUEABILITY_URL = get_flask_env("TRUEABILITY_URL", "https://app.trueability.com")
-TRUEABILITY_API_KEY = get_flask_env("TRUEABILITY_API_KEY")  # trueability is secret name
+TRUEABILITY_URL = get_flask_env(
+    "TRUEABILITY_URL", "https://app.trueability.com"
+)
+TRUEABILITY_API_KEY = get_flask_env(
+    "TRUEABILITY_API_KEY"
+)  # trueability is secret name
 PROCTOR360_BASE_URL = get_flask_env(
     "PROCTOR360_BASE_URL", "https://prod1ext.proctor360.com"
 )
 PROCTOR360_APP_SECRET = get_flask_env(
     "PROCTOR360_APP_SECRET"
 )  # proctor360 is secret name
-PROCTOR360_APP_ID = get_flask_env("PROCTOR360_APP_ID")  # proctor360 is secret name
+PROCTOR360_APP_ID = get_flask_env(
+    "PROCTOR360_APP_ID"
+)  # proctor360 is secret name
 
 TA_WEBHOOK_API_KEY = get_flask_env(
     "TRUEABILITY_WEBHOOK_SECRET"
 )  # trueability is secret name
 CREDLY_URL = get_flask_env("CREDLY_URL", "https://api.credly.com/v1")
 CREDLY_TOKEN = get_flask_env("CREDLY_TOKEN")  # credly is secret name
-CREDLY_ORGANIZATION_ID = get_flask_env("CREDLY_ORGANIZATION")  # credly is secret name
-CANONICAL_LOGIN_URL = get_flask_env("CANONICAL_LOGIN_URL", "https://login.ubuntu.com/")
+CREDLY_ORGANIZATION_ID = get_flask_env(
+    "CREDLY_ORGANIZATION"
+)  # credly is secret name
+CANONICAL_LOGIN_URL = get_flask_env(
+    "CANONICAL_LOGIN_URL", "https://login.ubuntu.com/"
+)
 CHARMHUB_DISCOURSE_API_KEY = get_flask_env(
     "DISCOURSE_API_CHARMHUB_API_KEY"
 )  # discourse-api is secret name
