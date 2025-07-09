@@ -145,6 +145,10 @@ post_payment_methods = {
     "payment_method_id": String(required=True),
 }
 
+delete_payment_method = {
+    "account_id": String(required=True),
+}
+
 post_customer_info = {
     "payment_method_id": String(),
     "account_id": String(required=True),

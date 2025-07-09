@@ -19,6 +19,7 @@ import {
   usePreviewResizeContract,
   useResizeContract,
   useUserSubscriptions,
+  useHasPaymentMethod,
 } from "advantage/react/hooks";
 import { PreviewResizeContractResponse } from "advantage/react/hooks/usePreviewResizeContract";
 import { ResizeContractResponse } from "advantage/react/hooks/useResizeContract";
@@ -75,7 +76,7 @@ const generateError = (error: Error | null) => {
     return (
       <span data-test="has-pending-purchase-error">
         You already have a pending purchase. Please go to{" "}
-        <a href="/account/payment-methods">payment methods</a> to retry.
+        <a href="/account/payment-methods">payment method</a> to retry.
       </span>
     );
   }
@@ -315,7 +316,11 @@ const SubscriptionEdit = ({
     setPreviewQuantityDebounced(e.target.value);
   };
 
+  const { data: hasPaymentMethod } = useHasPaymentMethod(
+    subscription.account_id,
+  );
   const ResizeSchema = generateSchema(subscription, unitName);
+
   return (
     <>
       <Formik
@@ -375,6 +380,7 @@ const SubscriptionEdit = ({
                   name="size"
                   type="number"
                   wrapperClassName="u-sv3"
+                  disabled={!hasPaymentMethod}
                 />
                 <ResizeSummary
                   oldNumberOfMachines={subscription.number_of_machines}
