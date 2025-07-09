@@ -46,19 +46,19 @@ const drawChart = (data) => {
     .style("padding", "0.5rem 1rem");
 
   svg
-  .selectAll("legend-squares")
-  .data(piedata)
-  .enter()
-  .append("rect")
-  .attr("x", 140)
-  .attr("y", function (d, i) {
-    return -102 + i * 30; // Adjust for vertical centering with text
-  })
-  .attr("width", 14)
-  .attr("height", 14)
-  .style("fill", function (d, i) {
-    return colors(i);
-  });
+    .selectAll("legend-squares")
+    .data(piedata)
+    .enter()
+    .append("rect")
+    .attr("x", 140)
+    .attr("y", function (d, i) {
+      return -102 + i * 30; // Adjust for vertical centering with text
+    })
+    .attr("width", 14)
+    .attr("height", 14)
+    .style("fill", function (d, i) {
+      return colors(i);
+    });
 
   svg
     .selectAll("ledgend-label-names")
