@@ -1,469 +1,499 @@
 {% extends "openstack/_base_openstack.html" %}
 
-{% block title %}Enterprise private cloud - Ubuntu{% endblock %}
+{% block title %}Enterprise private cloud{% endblock %}
 
 {% block meta_description %}
   Build an enterprise private cloud on Ubuntu and benefit from total automation, ten years of security, enterprise support and fully-managed services.
 {% endblock meta_description %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 
 {% block meta_copydoc %}
   https://docs.google.com/document/d/1odFXuFtN1GjuZvgd8tW48HB4J9PjZJtP3w6wY0xlmog/edit
 {% endblock meta_copydoc %}
 
 {% block content %}
-  <section class="p-strip--suru-image is-deep">
-    <div class="row">
-      <div class="col-8">
-        <h1>Enterprise private cloud</h1>
-        <h2 class="p-heading--3">
-          Total automation. Flexible technology choices.
-          <br class="u-hide--small" />
-          Enterprise features. Stability and security above all.
+
+  {% call(slot) vf_hero(
+    title_text='Enterprise private cloud',
+    layout='50/50-full-width-image'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p class="p-heading--5">Total automation. Flexible technology choices.</p>
+      <p class="p-heading--5">Enterprise features. Stability and security above all.</p>
+      <p>Everything you need for your mission-critical workloads.</p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="/engage/openstack-deployment-guide" class="p-button--positive">Build your own production-grade cloud</a>
+      <a href="/engage/nvidia-vgpu">Watch the webinar: "Open infrastructure for data science"&nbsp;&rsaquo;</a>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--cinematic is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/97ac948d-hero.jpg",
+                alt="",
+                width="2464",
+                height="1027",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    {% endif -%}
+  {% endcall -%}
+
+  {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=false) -%}
+    {%- if slot == 'title' -%}
+      <h2>Supported architecture</h2>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">General purpose architecture</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+      <p>For organizations of any type looking for a high performance enterprise private cloud at a low cost.</p>
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">The best price-performance guaranteed</li>
+        <li class="p-list__item is-ticked">Fully automated day-2 operations</li>
+        <li class="p-list__item is-ticked">Hyper-converged and other architectures</li>
+        <li class="p-list__item is-ticked">Interoperability across various platforms</li>
+        <li class="p-list__item is-ticked">Integrated observability stack</li>
+      </ul>
+
+      <div class="p-cta-block">
+        <a href="/openstack">See the benefits of Charmed OpenStack&nbsp;&rsaquo;</a>
+      </div>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">Public cloud architecture</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+      <p>For service providers looking for a cost-effective alternative to hyperscalers.</p>
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">Fully automated scale out capabilities</li>
+        <li class="p-list__item is-ticked">IaC and CI/CD integration</li>
+        <li class="p-list__item is-ticked">Extendable containers layer with K8s</li>
+        <li class="p-list__item is-ticked">Various storage platforms supported</li>
+        <li class="p-list__item is-ticked">Ubuntu and third-party workloads</li>
+      </ul>
+      <div class="p-cta-block">
+        <a href="/engage/nayatel-casestudy-charmed-openstack">Read how Nayatel built public cloud with Charmed OpenStack&nbsp;&rsaquo;</a>
+      </div>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_3' -%}
+      <h3 class="p-heading--5">Telco NFV architecture</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_3' -%}
+      <p>For telcos looking for a network function virtualization infrastructure.</p>
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">100 Gbps networking with hardware offload</li>
+        <li class="p-list__item is-ticked">Numerous performance extensions included</li>
+        <li class="p-list__item is-ticked">All major SDN controllers supported</li>
+        <li class="p-list__item is-ticked">Data encryption and data protection</li>
+        <li class="p-list__item is-ticked">Tenant-level IPv6 support</li>
+      </ul>
+
+      <div class="p-cta-block">
+        <a href="https://canonical.com/solutions/telco?_gl=1*azgia5*_gcl_au*MjE4NzI4NTUwLjE3NDk4Mjc1NDQ.*_ga*MTQ0NjY2MDkwNi4xNzQ5ODI1OTE4*_ga_5LTL1CNEJM*czE3NTEwMjYxNDckbzckZzAkdDE3NTEwMjYxOTYkajExJGwwJGgw">How service providers leverage OpenStack&nbsp;&rsaquo;</a>
+      </div>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_4' -%}
+      <h3 class="p-heading--5">
+        Finance and government
+        <br />
+        architecture
+      </h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_4' -%}
+      <p>For institutions that value stability and security above all else.</p>
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">Predictable release cadence and upgrade path</li>
+        <li class="p-list__item is-ticked">Up to 10 years of security updates</li>
+        <li class="p-list__item is-ticked">US and EU compliance programmes</li>
+        <li class="p-list__item is-ticked">OS, OpenStack and K8s hardening</li>
+        <li class="p-list__item is-ticked">Containerized control plane</li>
+      </ul>
+      <div class="p-section--shallow">
+        <div class="p-cta-block">
+          <a href="/financial-services">Why financial institutions use Ubuntu&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+
+      <hr class="p-rule--muted u-no-margin--bottom" />
+      <p class="u-no-margin--bottom">Need an architecture tailored to your needs?</p>
+      <a href="/openstack#get-in-touch" class="js-invoke-modal p-button">Talk to us about your plans</a>
+    {%- endif -%}
+  {%- endcall -%}
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <div class="p-image-container">
+        {{ image(url="https://assets.ubuntu.com/v1/ea45fd30-image-2.jpg",
+                alt="",
+                width="2464",
+                height="1027",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>
+          Better enterprise
+          <br />
+          private cloud platform
         </h2>
-        <p>Everything you need for your mission&ndash;critical workloads.</p>
+      </div>
+      <div class="col">
         <p>
-          <a href="/engage/openstack-deployment-guide" class="p-button--positive">Build your own production-grade cloud</a>
-        </p>
-        <p>
-          <a href="/engage/nvidia-vgpu">Watch the webinar: "Open infrastructure for data science"&nbsp;&rsaquo;</a>
+          No two cloud platforms are the same. Have a look at the table below to see how Canonical's Charmed OpenStack differs from other enterprise private cloud platforms.
         </p>
       </div>
-    </div>
-  </section>
-
-  <section class="p-strip--light">
-    <div class="row u-equal-height">
-      <article class="col-6 p-card">
-        <h3 class="p-card__image p-heading--4">General purpose architecture</h3>
-        <hr class="p-rule--muted" />
-        <p>For organisations of any type looking for a high performance enterprise private cloud at a low cost.</p>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">The best price&ndash;performance guaranteed</li>
-          <li class="p-list__item is-ticked">Fully automated day&ndash;2 operations</li>
-          <li class="p-list__item is-ticked">Hyper&ndash;converged and other architectures</li>
-          <li class="p-list__item is-ticked">Interoperability across various platforms</li>
-          <li class="p-list__item is-ticked">Integrated observability stack</li>
-        </ul>
-        <p>
-          <a href="/openstack">See the benefits of Charmed OpenStack&nbsp;&rsaquo;</a>
-        </p>
-      </article>
-      <article class="col-6 p-card">
-        <h3 class="p-card__image p-heading--4">Public cloud architecture</h3>
-        <hr class="p-rule--muted" />
-        <p>For service providers looking for a cost&ndash;effective alternative to hyperscalers.</p>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Fully automated scale out capabilities</li>
-          <li class="p-list__item is-ticked">IaC and CI/CD integration</li>
-          <li class="p-list__item is-ticked">Extendable containers layer with K8s</li>
-          <li class="p-list__item is-ticked">Various storage platforms supported</li>
-          <li class="p-list__item is-ticked">Ubuntu and third&ndash;party workloads</li>
-        </ul>
-        <p>
-          <a href="/engage/nayatel-casestudy-charmed-openstack">Read how Nayatel built public cloud with Charmed OpenStack&nbsp;&rsaquo;</a>
-        </p>
-      </article>
-    </div>
-    <div class="row u-equal-height">
-      <article class="col-6 p-card">
-        <h3 class="p-card__image p-heading--4">Telco NFV architecture</h3>
-        <hr class="p-rule--muted" />
-        <p>For telcos looking for a network function virtualisation infrastructure.</p>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">100 Gbps networking with hardware offload</li>
-          <li class="p-list__item is-ticked">Numerous performance extensions included</li>
-          <li class="p-list__item is-ticked">All major SDN controllers supported</li>
-          <li class="p-list__item is-ticked">Data encryption and data protection</li>
-          <li class="p-list__item is-ticked">Tenant&ndash;level IPv6 support</li>
-        </ul>
-        <p>
-          <a href="https://canonical.com/solutions/telco">How service providers leverage OpenStack&nbsp;&rsaquo;</a>
-        </p>
-      </article>
-      <article class="col-6 p-card">
-        <h3 class="p-card__image p-heading--4">Finance and government architecture</h3>
-        <hr class="p-rule--muted" />
-        <p>For institutions that value stability and security above all else.</p>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Predictable release cadence and upgrade path</li>
-          <li class="p-list__item is-ticked">Up to 10 years of security updates</li>
-          <li class="p-list__item is-ticked">US and EU compliance programmes</li>
-          <li class="p-list__item is-ticked">OS, OpenStack and K8s hardening</li>
-          <li class="p-list__item is-ticked">Containerised control plane</li>
-        </ul>
-        <p>
-          <a href="https://canonical.com/solutions/financial-services">Why financial institutions use Ubuntu&nbsp;&rsaquo;</a>
-        </p>
-      </article>
     </div>
     <div class="row">
-      <div class="col-8">
-        <p>Need an architecture tailored to your needs?</p>
-        <p>
-          <a href="/openstack#get-in-touch" class="js-invoke-modal p-button">Talk to us about your plans</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip">
-    <div class="row">
-      <div class="col-8">
-        <h2>Better enterprise private cloud platform</h2>
-        <p>
-          No two cloud platforms are the same. Have a look at the table below to see how Canonical&rsquo;s Charmed OpenStack differs from other enterprise private cloud platforms.
-        </p>
-      </div>
-    </div>
-    <div class="row u-equal-height">
-      <div class="col-12">
-        <table class="p-table--mobile-card"aria-label="Private cloud platform table">
+      <div class="col-start-large-4 col-9">
+        <table class="p-table"aria-label="Private cloud platform table">
           <thead>
             <tr>
-              <th></th>
-              <th class="u-align--center">Charmed OpenStack</th>
-              <th class="u-align--center">VMware</th>
-              <th class="u-align--center">AWS Outposts</th>
-              <th class="u-align--center">Azure Stack</th>
+              <th style="width: 34%;"></th>
+              <th>
+                Charmed
+                <br />
+                OpenStack
+              </th>
+              <th>VMware</th>
+              <th>AWS Outposts</th>
+              <th>Azure Stack</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th>No mandatory subscription</th>
-              <td class="u-align--center" data-heading="Charmed OpenStack">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
+              <td data-heading="Charmed OpenStack">
+                <i class="p-icon--success-grey">Yes</i>
               </td>
-              <td class="u-align--center" data-heading="VMware">
+              <td data-heading="VMware">
                 <span aria-label="No">&ndash;</span>
               </td>
-              <td class="u-align--center" data-heading="AWS Outposts">
+              <td data-heading="AWS Outposts">
                 <span aria-label="No">&ndash;</span>
               </td>
-              <td class="u-align--center" data-heading="Azure Stack">
+              <td data-heading="Azure Stack">
                 <span aria-label="No">&ndash;</span>
               </td>
             </tr>
             <tr>
               <th>Full automation</th>
-              <td class="u-align--center" data-heading="Charmed OpenStack">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
+              <td data-heading="Charmed OpenStack">
+                <i class="p-icon--success-grey">Yes</i>
               </td>
-              <td class="u-align--center" data-heading="AWS Outposts">
+              <td data-heading="AWS Outposts">
                 <span aria-label="No">&ndash;</span>
               </td>
-              <td class="u-align--center" data-heading="Charmed OpenStack">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
+              <td data-heading="Charmed OpenStack">
+                <i class="p-icon--success-grey">Yes</i>
               </td>
-              <td class="u-align--center" data-heading="Azure Stack">
+              <td data-heading="Azure Stack">
                 <span aria-label="No">&ndash;</span>
               </td>
             </tr>
             <tr>
               <th aria-label="">Region freedom</th>
-              <td class="u-align--center" data-heading="Charmed OpenStack">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
+              <td data-heading="Charmed OpenStack">
+                <i class="p-icon--success-grey">Yes</i>
               </td>
-              <td class="u-align--center" data-heading="VMware">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
+              <td data-heading="VMware">
+                <i class="p-icon--success-grey">Yes</i>
               </td>
-              <td class="u-align--center" data-heading="AWS Outposts">
+              <td data-heading="AWS Outposts">
                 <span aria-label="No">&ndash;</span>
               </td>
-              <td class="u-align--center" data-heading="Azure Stack">
+              <td data-heading="Azure Stack">
                 <span aria-label="No">&ndash;</span>
               </td>
             </tr>
             <tr>
               <th>Technology freedom</th>
-              <td class="u-align--center" data-heading="Charmed OpenStack">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
+              <td data-heading="Charmed OpenStack">
+                <i class="p-icon--success-grey">Yes</i>
               </td>
-              <td class="u-align--center" data-heading="VMware">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
+              <td data-heading="VMware">
+                <i class="p-icon--success-grey">Yes</i>
               </td>
-              <td class="u-align--center" data-heading="AWS Outposts">
+              <td data-heading="AWS Outposts">
                 <span aria-label="No">&ndash;</span>
               </td>
-              <td class="u-align--center" data-heading="Azure Stack">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
+              <td data-heading="Azure Stack">
+                <i class="p-icon--success-grey">Yes</i>
               </td>
             </tr>
             <tr>
               <th>Professional services</th>
-              <td class="u-align--center" data-heading="Charmed OpenStack">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
+              <td data-heading="Charmed OpenStack">
+                <i class="p-icon--success-grey">Yes</i>
               </td>
-              <td class="u-align--center" data-heading="VMware">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
+              <td data-heading="VMware">
+                <i class="p-icon--success-grey">Yes</i>
               </td>
-              <td class="u-align--center" data-heading="AWS Outposts">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
+              <td data-heading="AWS Outposts">
+                <i class="p-icon--success-grey">Yes</i>
               </td>
-              <td class="u-align--center" data-heading="Azure Stack">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
+              <td data-heading="Azure Stack">
+                <i class="p-icon--success-grey">Yes</i>
               </td>
             </tr>
             <tr>
               <th>Enterprise support</th>
-              <td class="u-align--center" data-heading="Charmed OpenStack">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
+              <td data-heading="Charmed OpenStack">
+                <i class="p-icon--success-grey">Yes</i>
               </td>
-              <td class="u-align--center" data-heading="VMware">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
+              <td data-heading="VMware">
+                <i class="p-icon--success-grey">Yes</i>
               </td>
-              <td class="u-align--center" data-heading="AWS Outposts">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
+              <td data-heading="AWS Outposts">
+                <i class="p-icon--success-grey">Yes</i>
               </td>
-              <td class="u-align--center" data-heading="Azure Stack">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
-              </td>
-            </tr>
-            <tr>
-              <th>Self&ndash;managed option</th>
-              <td class="u-align--center" data-heading="Charmed OpenStack">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
-              </td>
-              <td class="u-align--center" data-heading="VMware">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
-              </td>
-              <td class="u-align--center" data-heading="AWS Outposts">
-                <span aria-label="No">&ndash;</span>
-              </td>
-              <td class="u-align--center" data-heading="Azure Stack">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
+              <td data-heading="Azure Stack">
+                <i class="p-icon--success-grey">Yes</i>
               </td>
             </tr>
             <tr>
-              <th>Fully&ndash;managed option</th>
-              <td class="u-align--center" data-heading="Charmed OpenStack">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
+              <th>Self-managed option</th>
+              <td data-heading="Charmed OpenStack">
+                <i class="p-icon--success-grey">Yes</i>
               </td>
-              <td class="u-align--center" data-heading="VMware">
+              <td data-heading="VMware">
+                <i class="p-icon--success-grey">Yes</i>
+              </td>
+              <td data-heading="AWS Outposts">
                 <span aria-label="No">&ndash;</span>
               </td>
-              <td class="u-align--center" data-heading="AWS Outposts">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
+              <td data-heading="Azure Stack">
+                <i class="p-icon--success-grey">Yes</i>
               </td>
-              <td class="u-align--center" data-heading="Azure Stack">
+            </tr>
+            <tr>
+              <th>Fully-managed option</th>
+              <td data-heading="Charmed OpenStack">
+                <i class="p-icon--success-grey">Yes</i>
+              </td>
+              <td data-heading="VMware">
+                <span aria-label="No">&ndash;</span>
+              </td>
+              <td data-heading="AWS Outposts">
+                <i class="p-icon--success-grey">Yes</i>
+              </td>
+              <td data-heading="Azure Stack">
                 <span aria-label="No">&ndash;</span>
               </td>
             </tr>
             <tr>
               <th>Stable release cadence</th>
-              <td class="u-align--center" data-heading="Charmed OpenStack">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
+              <td data-heading="Charmed OpenStack">
+                <i class="p-icon--success-grey">Yes</i>
               </td>
-              <td class="u-align--center" data-heading="VMware">
+              <td data-heading="VMware">
                 <span aria-label="No">&ndash;</span>
               </td>
-              <td class="u-align--center" data-heading="AWS Outposts">
+              <td data-heading="AWS Outposts">
                 <span aria-label="No">&ndash;</span>
               </td>
-              <td class="u-align--center" data-heading="Azure Stack">
+              <td data-heading="Azure Stack">
                 <span aria-label="No">&ndash;</span>
               </td>
             </tr>
             <tr>
               <th>Open source</th>
-              <td class="u-align--center" data-heading="Charmed OpenStack">
-                {{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}
+              <td data-heading="Charmed OpenStack">
+                <i class="p-icon--success-grey">Yes</i>
               </td>
-              <td class="u-align--center" data-heading="VMware">
+              <td data-heading="VMware">
                 <span aria-label="No">&ndash;</span>
               </td>
-              <td class="u-align--center" data-heading="AWS Outposts">
+              <td data-heading="AWS Outposts">
                 <span aria-label="No">&ndash;</span>
               </td>
-              <td class="u-align--center" data-heading="Azure Stack">
+              <td data-heading="Azure Stack">
                 <span aria-label="No">&ndash;</span>
               </td>
             </tr>
           </tbody>
         </table>
-        <a href="/openstack/compare">Check other OpenStack distributions&nbsp;&rsaquo;</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-start-large-7 col-6">
+        <div class="p-cta-block">
+          <a href="/openstack/compare">Check other OpenStack distributions&nbsp;&rsaquo;</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="p-strip--light">
-    <div class="row u-equal-height">
-      <div class="col-8">
-        <div>
-          <h2>Move to Charmed OpenStack</h2>
-          <h3 class="p-heading--4">Wherever you are coming from, Canonical offers hussle&ndash;free migration</h3>
-        </div>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Move to Charmed OpenStack</h2>
+      </div>
+      <div class="col">
+        <p class="p-heading--5">Wherever you are coming from, Canonical offers hussle-free migration</p>
         <p>
           The main driver for most OpenStack deployments is the cost benefit of using a leaner and more open IaaS. Canonical's Charmed OpenStack also offers a range of cloud services, and compatibility with hybrid cloud and multi-cloud operations tools. While legacy virtualisation continues to be important, the future is cloud APIs and container-based operations, which Charmed OpenStack delivers.
         </p>
         <p>
           Canonical provides workload analysis and migration services from VMware and other cloud types. Not every workload is best run on a cloud, but 80-90% of enterprise workloads can move to OpenStack easily, and are much more cost-efficient to run there.
         </p>
-        <p>
+        <div class="p-cta-block">
           <a href="/engage/from-vmware-to-openstack">Move from VMware to OpenStack&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-      <div class="col-4 u-hide--medium u-hide--small u-align--center u-vertically-center">
-        {{ image(url="https://assets.ubuntu.com/v1/0714f018-VMware-migration.svg",
-                alt="",
-                height="234",
-                width="234",
-                hi_def=True,
-                loading="lazy",) | safe
-        }}
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="p-strip">
-    <div class="row">
-      <div class="col-8">
-        <h2>Total automation</h2>
-        <p class="u-sv3">
-          The biggest challenge of OpenStack is everyday operations automation, year after year, while OpenStack continues to evolve rapidly. Canonical solves this problem with total automation that decouples architectural choices from the operations codebase that supports upgrades, scaling, integration and bare metal provisioning.
-        </p>
-      </div>
-    </div>
-    <div class="row u-vertically-center">
-      <div class="col-6">
-        <h3>OpenStack Charms package cloud operations</h3>
-        <p>
-          In traditional automation environments based on Ansible, Chef or Puppet, architectural choices are hard-coded in the configuration management system. That means the operations code cannot be shared across various architectures, organisations and market sectors. Every cloud becomes its own unique snowflake. This approach does not scale and results in significant costs.
-        </p>
-      </div>
-      <div class="col-6 u-hide--medium u-hide--small u-align--center">
-        {{ image (
-        url="https://assets.ubuntu.com/v1/c4596e41-openstack-charm-diagram.png",
-        alt="",
-        width="295",
-        height="233",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-        }}
-      </div>
-    </div>
-    <div class="row u-equal-height u-vertically-center">
-      <div class="col-12">
-        <h4>
-          <a href="https://charmhub.io/">With OpenStack Charms</a>:
-        </h4>
-        <ul class="p-list--divided is-split">
-          <li class="p-list__item is-ticked">
-            OpenStack operations code is packaged for reusability across different architectures, organisations and industries
-          </li>
-          <li class="p-list__item is-ticked">Upgrades are guaranteed between consecutive OpenStack versions</li>
-          <li class="p-list__item is-ticked">
-            Daily operations, such as cluster scale out or database backups, are fully automated
-          </li>
-          <li class="p-list__item is-ticked">OpenStack complexity gets abstracted in favour of model-driven operations</li>
-          <li class="p-list__item is-ticked">Security and quality improves for every deployment at the same time</li>
-        </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-6">
-        <p>
-          You don't need to hire a large operations team that follows every aspect of OpenStack development. Just focus on high-level operations and your business workloads.
-        </p>
-        <p>
-          <a href="https://pages.ubuntu.com/stuckstack_webinar_upgrades_register.html?utm_source=Insights&utm_medium=link&utm_campaign=FY18_Cloud_StuckStack_WBN&">Watch our OpenStack upgrade webinar</a>
-        </p>
-      </div>
-    </div>
-  </section>
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+    {%- if slot == 'title' -%}
+      <h2>Total automation</h2>
+    {%- endif -%}
 
-  <section class="p-strip u-no-padding--top">
-    <div class="row">
-      <div class="col-6">
-        <h3>MAAS turns a data centre into a bare metal cloud</h3>
-        <p>
-          Running private clouds requires setting up and maintaining the underlying physical infrastructure. Before organisations can even start deploying the cloud, all machines have to be racked, powered, cabled and the base OS has to be installed on them. Performing all of these tasks manually becomes expensive as the number of machines grows.
-        </p>
-      </div>
-      <div class="col-6 u-align--center u-vertically-center u-hide--medium u-hide--small">
-        {{
-        image (
-        url="https://assets.ubuntu.com/v1/c23db0f1-maas_banners_leaderboard.svg",
-        alt="MAAS banners leaderboard",
-        width="346",
-        height="187",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-        }}
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <h4>
-          <a href="https://maas.io">With MAAS</a>:
-        </h4>
-        <ul class="p-list--divided is-split">
-          <li class="p-list__item is-ticked">A data centre turns into a bare metal cloud</li>
-          <li class="p-list__item is-ticked">
-            All machines in the data centre are automatically discovered and analysed for their base resources
-          </li>
-          <li class="p-list__item is-ticked">
-            Organisations can automatically provision physical machines for the purpose of running their cloud services
-          </li>
-          <li class="p-list__item is-ticked">
-            Hardware inventory and IP Address Management (IPAM) solution become an integrated part of the cloud platform
-          </li>
-          <li class="p-list__item is-ticked">
-            OpenStack cluster can be scaled out in minutes when the demand for workloads increases
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-6">
-        <p>
-          You no longer need to focus on physical infrastructure operations. Just set up your data centre and let MAAS discover your machines and provision them for you on-demand.
-        </p>
-        <p>
-          <a href="/engage/ebook-maas" class="p-button"><span>Read our MAAS ebook</span></a>
-        </p>
-      </div>
-    </div>
-  </section>
+    {%- if slot == 'description' -%}
+      <p>
+        The biggest challenge of OpenStack is everyday operations automation, year after year, while OpenStack continues to evolve rapidly. Canonical solves this problem with total automation that decouples architectural choices from the operations codebase that supports upgrades, scaling, integration and bare metal provisioning.
+      </p>
+    {%- endif -%}
 
-  <section class="p-strip--light">
-    <div class="row u-vertically-center">
-      <div class="col-7">
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">
+        OpenStack Charms
+        <br />
+        package cloud operations
+      </h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+      <p>
+        Resell the full range of Canonical's portfolio of private and public
+        cloud products: OpenStack, Kubernetes, IoT, support, security and
+        compliance for Ubuntu.
+      </p>
+
+      <p>
+        <a href="https://charmhub.io/">With OpenStack Charms:</a>
+      </p>
+
+      <hr class="p-rule--muted u-no-margin--bottom" />
+      <ul class="p-list--divided u-no-margin--bottom">
+        <li class="p-list__item is-ticked">
+          OpenStack operations code is packaged for reusability across different architectures, organizations and industries
+        </li>
+        <li class="p-list__item is-ticked">Upgrades are guaranteed between consecutive OpenStack versions</li>
+        <li class="p-list__item is-ticked">
+          Daily operations, such as cluster scale out or database backups, are fully automated
+        </li>
+        <li class="p-list__item is-ticked">OpenStack complexity gets abstracted in favour of model-driven operations</li>
+        <li class="p-list__item is-ticked">Security and quality improves for every deployment at the same time</li>
+      </ul>
+
+      <p>
+        You don't need to hire a large operations team that follows every aspect of OpenStack development. Just focus on high-level operations and your business workloads.
+      </p>
+
+      <div class="p-cta-block">
+        <a href="https://pages.ubuntu.com/stuckstack_webinar_upgrades_register.html?utm_source=Insights&utm_medium=link&utm_campaign=FY18_Cloud_StuckStack_WBN&">Watch our OpenStack upgrade webinar&nbsp;&rsaquo;</a>
+      </div>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">
+        MAAS turns a data center
+        <br />
+        into a bare metal cloud
+      </h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+      <p>
+        Running private clouds requires setting up and maintaining the underlying physical infrastructure. Before organizations can even start deploying the cloud, all machines have to be racked, powered, cabled and the base OS has to be installed on them. Performing all of these tasks manually becomes expensive as the number of machines grows.
+      </p>
+
+      <p>
+        <a href="https://maas.io">With MAAS:</a>
+      </p>
+
+      <hr class="p-rule--muted u-no-margin--bottom" />
+      <ul class="p-list--divided u-no-margin--bottom">
+        <li class="p-list__item is-ticked">A data center turns into a bare metal cloud</li>
+        <li class="p-list__item is-ticked">
+          All machines in the data center are automatically discovered and analyzed for their base resources
+        </li>
+        <li class="p-list__item is-ticked">
+          Organizations can automatically provision physical machines for the purpose of running their cloud services
+        </li>
+        <li class="p-list__item is-ticked">
+          Hardware inventory and IP Address Management (IPAM) solution become an integrated part of the cloud platform
+        </li>
+        <li class="p-list__item is-ticked">
+          OpenStack cluster can be scaled out in minutes when the demand for workloads increases
+        </li>
+      </ul>
+
+      <p>
+        You no longer need to focus on physical infrastructure operations. Just set up your data center and let MAAS discover your machines and provision them for you on-demand.
+      </p>
+
+      <div class="p-cta-block">
+        <a href="/engage/ebook-maas" class="p-button">Read our MAAS ebook</a>
+      </div>
+    {%- endif -%}
+  {%- endcall -%}
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
         <h2>Managed OpenStack</h2>
-        <p>
-          OpenStack is a complex system consisting of various interconnected components. Therefore, its operations are challenging even in a fully automated environment. We recognise that and offer fully managed services for organisations who do not have sufficient OpenStack knowledge, but want to go to market fast. With Canonical's Managed OpenStack our customers get 24x7 cloud monitoring, daily maintenance, regular software updates, OpenStack upgrades and more. Managed OpenStack is also a more economical option up to 300 nodes.
-        </p>
-        <a href="/openstack/managed">Learn more about Managed OpenStack&nbsp;&rsaquo;</a>
       </div>
-      <div class="col-5 u-hide--medium u-hide--small u-align--center">
-        {{ image (
-        url="https://assets.ubuntu.com/v1/81e3bf86-We+operate+your+Kubernetes.svg",
-        alt="",
-        width="150",
-        height="150",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-        }}
+      <div class="col">
+        <p>
+          OpenStack is a complex system consisting of various interconnected components. Therefore, its operations are challenging even in a fully automated environment. We recognize that and offer fully managed services for organizations who do not have sufficient OpenStack knowledge, but want to go to market fast. With Canonical's Managed OpenStack our customers get 24x7 cloud monitoring, daily maintenance, regular software updates, OpenStack upgrades and more. Managed OpenStack is also a more economical option up to 300 nodes.
+        </p>
+        <div class="p-cta-block">
+          <a href="/openstack/managed">Learn more about Managed OpenStack&nbsp;&rsaquo;</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="p-strip">
-    <div class="row">
-      <div class="col-8">
-        <h2>Hyper-Converged or other architectures</h2>
-        <p>
-          Designing the cloud for the best price-performance starts with making an architecture choice. Although the Hyper-Converged architecture is the most often chosen by organisations, Canonical supports other architectures as well to meet customers' needs.
-        </p>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>
+          Hyper-Converged
+          <br />
+          or other architectures
+        </h2>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-8">
+      <div class="col">
+        <p>
+          Designing the cloud for the best price-performance starts with making an architecture choice. Although the Hyper-Converged architecture is the most often chosen by organizations, Canonical supports other architectures as well to meet customers' needs.
+        </p>
         <ul class="p-list">
           <li class="p-list__item is-ticked">
-            <strong>Hyper-Converged</strong> architecture puts guest VMs, storage and OpenStack control services on every node in the cloud, using modern kernel quality of service (QoS) capabilities to defend the performance of critical services while reducing the number of overhead nodes required to service the cloud. Such an approach allows standardisation of hardware configuration and enables maximum resource utilisation, leading to the best price-performance.
+            <strong>Hyper-Converged</strong> architecture puts guest VMs, storage and OpenStack control services on every node in the cloud, using modern kernel quality of service (QoS) capabilities to defend the performance of critical services while reducing the number of overhead nodes required to service the cloud. Such an approach allows standardization of hardware configuration and enables maximum resource utilisation, leading to the best price-performance.
           </li>
           <li class="p-list__item is-ticked">
             <strong>Converged</strong> architecture puts guest VMs and storage on every node in the cloud, but isolates OpenStack control services. Since three units of each OpenStack control service are needed for HA, the converged architecture requires three additional nodes. In order to isolate control services even more, each of them is running inside of a dedicated container which increases the overall security level.
@@ -476,248 +506,231 @@
     </div>
   </section>
 
-  <section class="p-strip--light">
-    <div class="row u-vertically-center">
-      <div class="col-6">
-        <h2>Compute</h2>
-        <p>
-          The biggest challenge when building a private cloud is to maximise performance of workloads, utilisation of data centre resources and cost efficiency at the same time. This is challenging as multiple factors shape this multidimensional curve, from cloud architecture to hardware choices.
-        </p>
-        <p>
-          Canonical partners with leading silicon and hardware vendors to ensure the latest improvements in the compute space are tested and validated on Ubuntu. This enables us to design a cloud architecture that answers the performance needs. We also assist with workload analysis to make sure that the cloud we build has an optimal capacity. In order to guarantee the maximum cost efficiency, we run a bidding process with leading hardware vendors on behalf of our customers.
-        </p>
-        <p>With Canonical's Charmed OpenStack you get:</p>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Access to the latest technologies, including GPUs, FPGA and other accelerators</li>
-          <li class="p-list__item is-ticked">Architecture and hardware guidance</li>
-          <li class="p-list__item is-ticked">Workload analysis and cloud capacity assessment</li>
-          <li class="p-list__item is-ticked">Total cost of ownership (TCO) per VM estimates</li>
-          <li class="p-list__item is-ticked">Performance benchmarks</li>
-        </ul>
-      </div>
-
-      <div class="col-5 col-start-large-8">
-        <div class="p-card">
-          <h3 class="p-card__image">Virtual machines</h3>
-          <hr class="p-rule--muted" />
-          <p>
-            OpenStack leverages the leading virtualisation stack based on QEMU/KVM/libvirt to provide the best user experience for virtual machines management.
-          </p>
-          <p>
-            <a href="/server/docs/virtualization-introduction">Open virtualization stack&nbsp;&rsaquo;</a>
-          </p>
-          {{ image (
-          url="https://assets.ubuntu.com/v1/314085ad-openstack.svg",
-          alt="OpenStack",
-          width="150",
-          height="39",
-          hi_def=True,
-          attrs={"class": "u-hide--small"},
-          loading="lazy"
-          ) | safe
-          }}
-        </div>
-        <div class="p-card">
-          <h3 class="p-card__image">Containers</h3>
-          <hr class="p-rule--muted" />
-          <p>
-            Kubernetes provides a cloud-native containers layer on top of OpenStack with automated scheduling, rolling updates and autoscaling support.
-          </p>
-          <p>
-            <a href="/kubernetes">Enterprise multi-cloud Kubernetes&nbsp;&rsaquo;</a>
-          </p>
-          {{ image (
-          url="https://assets.ubuntu.com/v1/9f8a8273-2018-logo-kubernetes+%282%29.svg",
-          alt="Kubernetes",
-          width="178",
-          height="30",
-          hi_def=True,
-          attrs={"class": "u-hide--small"},
-          loading="lazy"
-          ) | safe
-          }}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip">
+  <section class="p-section">
     <div class="u-fixed-width">
-      <h2 class="u-sv3">Networking</h2>
-    </div>
-    <div class="row">
-      <div class="col-6">
-        <p>
-          Network is an essential component in every data centre. A poorly designed network can significantly affect the overall performance of the cloud and become a bottleneck in the traffic flow. On the other hand, network improvements should always be driven by economics so as not to affect the overall budget.
-        </p>
-        <p>
-          Canonical's partnership with hyperscale public clouds ensures that we have deep insight into the dynamics of cloud network performance and security best practices for large-scale multi-tenanted operations. Moreover, our experience with telcos for NFV and edge clouds ensures that our solution works well in complex environments where latency and security are critical.
-        </p>
-        <p>With Canonical's Charmed OpenStack you get:</p>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Up to 100 Gbps tenant-level performance</li>
-          <li class="p-list__item is-ticked">Underlay network architecture and security design</li>
-          <li class="p-list__item is-ticked">Hardware offloading and other acceleration technologies</li>
-          <li class="p-list__item is-ticked">SR-IOV, DPDK and other performance extensions</li>
-          <li class="p-list__item is-ticked">Access to a wide range of SDN platforms</li>
-        </ul>
-      </div>
-      <div class="col-5 col-start-large-8">
-        <div class="p-card">
-          <h3 class="p-card__image">Open source SDN</h3>
-          <hr class="p-rule--muted" />
-          <p>
-            Open Virtual Network (OVN) and Open vSwitch (OVS) are a foundation of an open source SDN which is gaining popularity, especially in general-purpose OpenStack deployments.
-          </p>
-          <p>
-            <a href="https://www.youtube.com/watch?v=TpSTDQnoIRM&ab_channel=OpenInfrastructureFoundation">How to migrate from OVS to OVN</a>
-          </p>
-          <div class="u-hide--small" style="display: inline-block;">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/da0469aa-ovn-logo.png",
-            alt="Open Virtual Network",
-            width="65",
-            height="77",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-          <div class="u-hide--small"
-               style="display: inline-block;
-                      margin-left: 1rem">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/9a58cde9-Open_vSwitch_Logo.png",
-            alt="Open vSwitch",
-            width="72",
-            height="47",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-        </div>
-        <div class="p-card">
-          <h3 class="p-card__image">Proprietary SDN</h3>
-          <hr class="p-rule--muted" />
-          <p>
-            Many organisations are still tied to their existing vendors. We recognise that and partner with leading network equipment providers (NEPs) to ensure their SDN platforms are tested and validated with Charmed OpenStack.
-          </p>
-          <p>
-            <a href="/blog/deploying-juniper-contrail-sdn-on-ubuntu-openstack">Deploying SDN on OpenStack&nbsp;&rsaquo;</a>
-          </p>
-          <div class="u-hide--small" style="display: inline-block;">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/a2a68c52-logo-juniper-160.png",
-            alt="Juniper",
-            width="90",
-            height="45",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-          <div class="u-hide--small"
-               style="display: inline-block;
-                      margin-left: 1rem">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/4d6054f9-logo-cisco.svg",
-            alt="Cisco",
-            width="96",
-            height="50",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip--light">
-    <div class="u-fixed-width">
-      <h2>Storage</h2>
-    </div>
-    <div class="row">
-      <div class="col-6">
-        <p>
-          Storage is one of the most tricky components when architecting a cloud. Storage costs per TB vary by several orders of magnitude depending on the storage types and technologies used. Thus, making careful selections when designing storage architecture is essential from a price-performance point of view.
-        </p>
-        <p>
-          Canonical's approach towards storage architecture optimisation leverages multiple storage tiers. While big, cheap, low performance disks are used as ultimate storage devices, several smaller, more expensive, high performance devices serve as a cache in front. This approach ensures the required performance of the entire cloud, while not affecting hardware costs significantly.
-        </p>
-        <p>With Canonical's Charmed OpenStack you get:</p>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Up to 384TB raw storage per node</li>
-          <li class="p-list__item is-ticked">Data encryption in transit and at rest</li>
-          <li class="p-list__item is-ticked">Data protection and data durability</li>
-          <li class="p-list__item is-ticked">A mix of block and object storage based on personal requirements</li>
-          <li class="p-list__item is-ticked">Multi-tier cloud-native storage based on Ceph or other technologies</li>
-        </ul>
-      </div>
-      <div class="col-5 col-start-large-8">
-        <div class="p-card">
-          <h3 class="p-card__image">Ceph</h3>
-          <hr class="p-rule--muted" />
-          <p>
-            Ceph is an open source distributed software-defined storage platform, providing a flexible storage option for OpenStack, Kubernetes and standalone storage clusters.
-          </p>
-          <p>
-            <a href="/ceph">Ceph storage on Ubuntu&nbsp;&rsaquo;</a>
-          </p>
-          {{ image (
-          url="https://assets.ubuntu.com/v1/e0461e14-ceph-dark.svg",
-          alt="Ceph",
-          width="108",
-          height="44",
-          hi_def=True,
-          attrs={"class": "u-hide--small"},
-          loading="lazy"
-          ) | safe
-          }}
-        </div>
-        <div class="p-card">
-          <h3 class="p-card__image">Other platforms</h3>
-          <hr class="p-rule--muted" />
-          <p>
-            While Ceph provides the best price-performance rate, it is not always an option. Therefore, Canonical's Charmed OpenStack provides support for various other storage platforms including Swift, iSCSI and more.
-          </p>
-          <p>
-            <a href="https://charmhub.io/?q=swift">Explore other storage options</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip">
-    <div class="row u-vertically-center">
-      <div class="col-7">
-        <h2>OpenStack consulting</h2>
-        <p>
-          Designing an enterprise private cloud is a non-trivial task. Making wrong architectural choices results in an increased TCO and a lot of rework on the next states of the cloud journey. We understand that and offer consulting services to help our customers choose the right mix of features to find the best cloud architecture for their needs. Moreover, our experienced team of cloud experts also deploys the cloud according to the requirements. All of that at a fixed price.
-        </p>
-        <a href="/openstack/consulting">Learn more about our OpenStack consulting&nbsp;&rsaquo;</a>
-      </div>
-      <div class="col-5 u-hide--medium u-hide--small u-align--center">
-        {{ image (
-        url="https://assets.ubuntu.com/v1/f5d56df2-OpenStack-consulting+design.svg",
-        alt="",
-        width="233",
-        height="150",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
+      <div class="p-image-container">
+        {{ image(url="https://assets.ubuntu.com/v1/0f1e8959-image-3.jpg",
+                alt="",
+                width="2464",
+                height="1028",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-image-container__image"},) | safe
         }}
       </div>
     </div>
   </section>
 
-  <section class="p-strip--light">
-    <div class="row u-vertically-center">
-      <div class="col-7">
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <h2>Core functions</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-start-large-4 col-9">
+        <div class="row">
+          <div class="col-3">
+            <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small"
+                role="tablist"
+                aria-label="Dev to deployment">
+              <li>
+                <button class="p-tabs__item"
+                        id="compute"
+                        role="tab"
+                        aria-selected="true"
+                        aria-controls="compute-tab">Compute</button>
+              </li>
+              <li>
+                <button class="p-tabs__item"
+                        id="networking"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="networking-tab">Networking</button>
+              </li>
+              <li>
+                <button class="p-tabs__item"
+                        id="storage"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="storage-tab">Storage</button>
+              </li>
+            </ul>
+            <form class="u-hide--large u-hide--medium">
+              <select name="boardSelect" id="boardSelect">
+                <option value="compute-tab" selected="">Compute</option>
+                <option value="networking-tab">Networking</option>
+                <option value="storage-tab">Storage</option>
+              </select>
+            </form>
+          </div>
+          <div class="col-6">
+            <!-- tab 1 -->
+            <div tabindex="0"
+                 role="tabpanel"
+                 id="compute-tab"
+                 aria-labelledby="compute"
+                 aria-hidden="false">
+              <p>
+                The biggest challenge when building a private cloud is to maximize performance of workloads, utilization of data centrer resources and cost efficiency at the same time. This is challenging as multiple factors shape this multidimensional curve, from cloud architecture to hardware choices.
+              </p>
+              <p>
+                Canonical partners with leading silicon and hardware vendors to ensure the latest improvements in the compute space are tested and validated on Ubuntu. This enables us to design a cloud architecture that answers the performance needs. We also assist with workload analysis to make sure that the cloud we build has an optimal capacity. In order to guarantee the maximum cost efficiency, we run a bidding process with leading hardware vendors on behalf of our customers.
+              </p>
+              <p>With Canonical's Charmed OpenStack you get:</p>
+              <div class="p-section--shallow">
+                <hr class="p-rule--muted u-no-margin--bottom" />
+                <ul class="p-list--divided u-no-margin--bottom">
+                  <li class="p-list__item is-ticked">Access to the latest technologies, including GPUs, FPGA and other accelerators</li>
+                  <li class="p-list__item is-ticked">Architecture and hardware guidance</li>
+                  <li class="p-list__item is-ticked">Workload analysis and cloud capacity assessment</li>
+                  <li class="p-list__item is-ticked">Total cost of ownership (TCO) per VM estimates</li>
+                  <li class="p-list__item is-ticked">Performance benchmarks</li>
+                </ul>
+              </div>
+              <div class="p-section--shallow">
+                <p class="p-heading--5">Virtual machines</p>
+                <p>
+                  OpenStack leverages the leading virtualization stack based on QEMU/KVM/libvirt to provide the best user experience for virtual machines management.
+                </p>
+                <div class="p-cta-block">
+                  <a href="/server/docs/virtualization-introduction">Open virtualization stack&nbsp;&rsaquo;</a>
+                </div>
+              </div>
+              <p class="p-heading--5">Containers</p>
+              <p>
+                Kubernetes provides a cloud-native containers layer on top of OpenStack with automated scheduling, rolling updates and autoscaling support.
+              </p>
+              <div class="p-cta-block">
+                <a href="/kubernetes">Enterprise multi-cloud Kubernetesk&nbsp;&rsaquo;</a>
+              </div>
+            </div>
+            <!-- tab 2 -->
+            <div tabindex="0"
+                 role="tabpanel"
+                 id="networking-tab"
+                 aria-labelledby="networking"
+                 aria-hidden="false">
+              <p>
+                Network is an essential component in every data centrer. A poorly designed network can significantly affect the overall performance of the cloud and become a bottleneck in the traffic flow. On the other hand, network improvements should always be driven by economics so as not to affect the overall budget.
+              </p>
+              <p>
+                Canonical's partnership with hyperscale public clouds ensures that we have deep insight into the dynamics of cloud network performance and security best practices for large-scale multi-tenanted operations. Moreover, our experience with telcos for NFV and edge clouds ensures that our solution works well in complex environments where latency and security are critical.
+              </p>
+              <p>With Canonical's Charmed OpenStack you get:</p>
+              <div class="p-section--shallow">
+                <hr class="p-rule--muted u-no-margin--bottom" />
+                <ul class="p-list--divided u-no-margin--bottom">
+                  <li class="p-list__item is-ticked">Up to 100 Gbps tenant-level performance</li>
+                  <li class="p-list__item is-ticked">Underlay network architecture and security design</li>
+                  <li class="p-list__item is-ticked">Hardware offloading and other acceleration technologies</li>
+                  <li class="p-list__item is-ticked">SR-IOV, DPDK and other performance extensions</li>
+                  <li class="p-list__item is-ticked">Access to a wide range of SDN platforms</li>
+                </ul>
+              </div>
+              <div class="p-section--shallow">
+                <p class="p-heading--5">Open source SDN</p>
+                <p>
+                  Open Virtual Network (OVN) and Open vSwitch (OVS) are a foundation of an open source SDN which is gaining popularity, especially in general-purpose OpenStack deployments.
+                </p>
+                <div class="p-cta-block">
+                  <a href="https://www.youtube.com/watch?v=TpSTDQnoIRM&ab_channel=OpenInfrastructureFoundation">How to migrate from OVS to OVN&nbsp;&rsaquo;</a>
+                </div>
+              </div>
+              <p class="p-heading--5">Proprietary SDN</p>
+              <p>
+                Many organizations are still tied to their existing vendors. We recognizse that and partner with leading network equipment providers (NEPs) to ensure their SDN platforms are tested and validated with Charmed OpenStack.
+              </p>
+              <div class="p-cta-block">
+                <a href="/blog/deploying-juniper-contrail-sdn-on-ubuntu-openstack">Deploying SDN on OpenStack&nbsp;&rsaquo;</a>
+              </div>
+            </div>
+            <!-- tab 3 -->
+            <div tabindex="0"
+                 role="tabpanel"
+                 id="storage-tab"
+                 aria-labelledby="storage"
+                 aria-hidden="false">
+              <p>
+                Storage is one of the most tricky components when architecting a cloud. Storage costs per TB vary by several orders of magnitude depending on the storage types and technologies used. Thus, making careful selections when designing storage architecture is essential from a price-performance point of view.
+              </p>
+              <p>
+                Canonical's approach towards storage architecture optimization leverages multiple storage tiers. While big, cheap, low performance disks are used as ultimate storage devices, several smaller, more expensive, high performance devices serve as a cache in front. This approach ensures the required performance of the entire cloud, while not affecting hardware costs significantly.
+              </p>
+              <p>With Canonical's Charmed OpenStack you get:</p>
+              <div class="p-section--shallow">
+                <hr class="p-rule--muted u-no-margin--bottom" />
+                <ul class="p-list--divided u-no-margin--bottom">
+                  <li class="p-list__item is-ticked">Up to 384TB raw storage per node</li>
+                  <li class="p-list__item is-ticked">Data encryption in transit and at rest</li>
+                  <li class="p-list__item is-ticked">Data protection and data durability</li>
+                  <li class="p-list__item is-ticked">A mix of block and object storage based on personal requirements</li>
+                  <li class="p-list__item is-ticked">Multi-tier cloud-native storage based on Ceph or other technologies</li>
+                </ul>
+              </div>
+              <div class="p-section--shallow">
+                <p class="p-heading--5">Ceph</p>
+                <p>
+                  Ceph is an open source distributed software-defined storage platform, providing a flexible storage option for OpenStack, Kubernetes and standalone storage clusters.
+                </p>
+                <div class="p-cta-block">
+                  <a href="/ceph">Ceph storage on Ubuntu&nbsp;&rsaquo;</a>
+                </div>
+              </div>
+              <p class="p-heading--5">Other platforms</p>
+              <p>
+                While Ceph provides the best price-performance rate, it is not always an option. Therefore, Canonical's Charmed OpenStack provides support for various other storage platforms including Swift, iSCSI and more.
+              </p>
+              <div class="p-cta-block">
+                <a href="https://charmhub.io/?q=swift">Explore other storage options&nbsp;&rsaquo;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <div class="p-image-container">
+        {{ image(url="https://assets.ubuntu.com/v1/0ae9ef8b-image-4.jpg",
+                alt="",
+                width="2464",
+                height="1027",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>OpenStack consulting</h2>
+      </div>
+      <div class="col">
+        <p>
+          Designing an enterprise private cloud is a non-trivial task. Making wrong architectural choices results in an increased TCO and a lot of rework on the next states of the cloud journey. We understand that and offer consulting services to help our customers choose the right mix of features to find the best cloud architecture for their needs. Moreover, our experienced team of cloud experts also deploys the cloud according to the requirements. All of that at a fixed price.
+        </p>
+        <div class="p-cta-block">
+          <a href="/openstack/consulting">Learn more about OpenStack consulting&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
         <h2>Security and compliance</h2>
+      </div>
+      <div class="col">
         <p>
           Building an enterprise private cloud entails additional security and compliance challenges. While in the public cloud, these activities are handled by the cloud service provider out of the box, when deploying an on-premises infrastructure, all must be undertaken by internal teams.
         </p>
@@ -730,82 +743,74 @@
           <li class="p-list__item is-ticked">CSEC and GDPR certification</li>
           <li class="p-list__item is-ticked">HIPAA for health care institutions</li>
         </ul>
-        <a href="/engage/openstack-security-whitepaper">Read a whitepaper about private cloud security&nbsp;&rsaquo;</a>
-      </div>
-      <div class="col-5 u-hide--medium u-hide--small u-align--center">
-        <div class="p-logo-section has-misaligned-images">
+        <div class="p-logo-section">
           <div class="p-logo-section__items">
             <div class="p-logo-section__item">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/06ff193a-GDPR-cropped.png",
-              alt="GDPR logo",
-              width="70",
-              height="67",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy"
-              ) | safe
+              {{ image(url="https://assets.ubuntu.com/v1/68e8637c-gdpr-logo.png",
+                            alt="GDPR",
+                            width="167",
+                            height="313",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"},) | safe
               }}
             </div>
             <div class="p-logo-section__item">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/1dafeb51-Hipaa_Logo_HQ_small-transparent.png",
-              alt="HIPAA compliant logo",
-              width="144",
-              height="84",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy"
-              ) | safe
+              {{ image(url="https://assets.ubuntu.com/v1/3dbe01dd-hipaa-logo.png",
+                            alt="HIPAA",
+                            width="202",
+                            height="313",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"},) | safe
               }}
             </div>
             <div class="p-logo-section__item">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/961a1ad1-csec-logo-removebg-preview.png",
-              alt="CSEC logo",
-              width="210",
-              height="240",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy"
-              ) | safe
+              {{ image(url="https://assets.ubuntu.com/v1/da5c8e98-csec-logo.png",
+                            alt="CSEC",
+                            width="133",
+                            height="313",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"},) | safe
               }}
             </div>
             <div class="p-logo-section__item">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/ef01809f-DISA-logo-transparent.png",
-              alt="DISA logo",
-              width="720",
-              height="264",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy"
-              ) | safe
+              {{ image(url="https://assets.ubuntu.com/v1/de759e70-DISA-logo.png",
+                            alt="",
+                            width="229",
+                            height="313",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"},) | safe
               }}
             </div>
             <div class="p-logo-section__item">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/df72b154-CIS_Benchmarks-cropped.png",
-              alt="CIS Benchmarks",
-              width="229",
-              height="32",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
+              {{ image(url="https://assets.ubuntu.com/v1/4c995c00-CIS-benchmark-logo.png",
+                            alt="",
+                            width="346",
+                            height="313",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"},) | safe
               }}
             </div>
           </div>
+        </div>
+        <div class="p-cta-block">
+          <a href="/openstack/security">Learn more about security and compliance&nbsp;&rsaquo;</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="p-strip">
-    <div class="u-fixed-width">
-      <h2 class="u-sv2">NVIDIA vGPU technology</h2>
-    </div>
-    <div class="row u-vertically-center">
-      <div class="col-6">
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>NVIDIA vGPU technology</h2>
+      </div>
+      <div class="col">
         <p>
           GPU devices serve as a foundation for modern compute-intensive workloads, including data analytics, data visualisation and high performance computing (HPC). However, dedicating the entire device to a single workload may lead to sub-optimal resource consumption.
         </p>
@@ -813,37 +818,29 @@
           NVIDIA vGPU software democratises those contstraints, making highly performant GPU resources available on demand for all OpenStack users.
         </p>
         <p>What's included:</p>
-        <ul class="p-list">
+        <ul class="p-list--divided">
           <li class="p-list__item is-ticked">Native host and guest drivers for NVIDIA vGPU Software</li>
           <li class="p-list__item is-ticked">
             Automated deployment and operations of Charmed OpenStack with NVIDIA vGPU technology
           </li>
           <li class="p-list__item is-ticked">Joint commercial support by Canonical and NVIDIA</li>
         </ul>
-        <a href="/engage/nvidia-vgpu">Build open infrastructure for data science&nbsp;&rsaquo;</a>
-      </div>
-      <div class="col-6 u-align--center u-hide--small">
-        {{ image (
-        url="https://assets.ubuntu.com/v1/5422668b-vgpu-aem-web-vgpu-ecosystem-diagram-r8_407X315-2.png",
-        alt="NVidia vGPU diagram",
-        width="640",
-        height="495",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-        }}
+        <div class="p-cta-block">
+          <a href="/engage/nvidia-vgpu">Build open infrastructure for data science&nbsp;&rsaquo;</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="p-strip--light">
-    <div class="u-fixed-width">
-      <h2 class="u-sv2">OVN hardware offloading</h2>
-    </div>
-    <div class="row u-vertically-center">
-      <div class="col-6">
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>OVN hardware offloading</h2>
+      </div>
+      <div class="col">
         <p>
-          In high-speed network topologies, such as those using 100 Gbps connections, network operations become a dominant factor. This creates high pressure on hypervisors' central processing units (CPUs).
+          In high-speed network topologies, such as those using 100 Gbps connections, network operations become a dominant factor. This creates high pressure on hypervisors'  central processing units (CPUs).
         </p>
         <p>
           With OVN hardware offloading all those computationally-expensive operations can be moved to SmartNICs and data processing units (DPUs). This frees up CPU cycles for the workloads and accelerates data plane network traffic.
@@ -856,28 +853,20 @@
           </li>
           <li class="p-list__item is-ticked">Joint commercial support by Canonical and NVIDIA</li>
         </ul>
-        <a href="https://docs.nvidia.com/networking/display/public/SOL/RDG+for+Canonical+Charmed+OpenStack+with+NVIDIA+Networking+and+Accelerated+OVN+for+High+Performance+Workloads">Read NVIDIA's reference implementation&nbsp;&rsaquo;</a>
-      </div>
-      <div class="col-6 u-align--center u-vertically-center u-hide--small">
-        {{ image (
-        url="https://assets.ubuntu.com/v1/aec863e2-Off+the+shelf.svg",
-        alt="",
-        width="395",
-        height="225",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-        }}
+        <div class="p-cta-block">
+          <a href="https://docs.nvidia.com/networking/display/public/SOL/RDG+for+Canonical+Charmed+OpenStack+with+NVIDIA+Networking+and+Accelerated+OVN+for+High+Performance+Workloads">Read NVIDIA's reference implementatione&nbsp;&rsaquo;</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="p-strip">
-    <div class="u-fixed-width">
-      <h2 class="u-sv2">Observability stack</h2>
-    </div>
-    <div class="row u-vertically-center">
-      <div class="col-6">
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2 class="u-sv2">Observability stack</h2>
+      </div>
+      <div class="col">
         <p>
           Operations in highly coherent large-scale distributed clusters require a new level of observability. Cloud operations teams have to be able to check cluster health, monitor cloud capacity and investigate individual server logs from a centralised operations dashboard.
         </p>
@@ -885,7 +874,8 @@
           Canonical delivers an integrated observability stack for logging, monitoring and alerting based on established open source technologies with every deployed infrastructure component, including Charmed OpenStack.
         </p>
         <p>What's included:</p>
-        <ul class="p-list">
+        <hr class="p-rule--muted u-no-margin--bottom" />
+        <ul class="p-list--divided">
           <li class="p-list__item is-ticked">Filebeat for log forwarding</li>
           <li class="p-list__item is-ticked">Graylog for log aggregation</li>
           <li class="p-list__item is-ticked">Elasticsearch for log analysis</li>
@@ -894,52 +884,83 @@
           <li class="p-list__item is-ticked">Grafana for metrics visualisation</li>
           <li class="p-list__item is-ticked">Nagios for alerting</li>
         </ul>
-      </div>
-      <div class="col-6 u-align--center u-hide--small">
-        {{ image (
-        url="https://assets.ubuntu.com/v1/e6934269-grafana-1.png",
-        alt="Grafana",
-        width="640",
-        height="650",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-        }}
+        <div class="p-image-container is-highlighted">
+          {{ image(url="https://assets.ubuntu.com/v1/2f9623d0-observability-stack.png",
+                    alt="",
+                    width="1800",
+                    height="1201",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"},) | safe
+          }}
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="p-strip--light">
-    <div class="row u-vertically-center">
-      <div class="col-7">
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
         <h2>OpenStack support</h2>
-        <p>
-          Since OpenStack is open source, enterprise customers rely on the vendor to provide ongoing support for their infrastructure. Canonical provides full-stack commercial support under the Ubuntu Pro + support subscription which includes phone and ticket support, production-grade SLAs, ten years of security updates and security and compliance programmes. The subscription is charged per node and covers all layers of the open infrastructure stack: from bare metal to microservices.
-        </p>
-        <p>
-          <a href="/openstack/contact-us"
-             class="p-button--positive u-no-margin--bottom js-invoke-modal">Get support</a>
-        </p>
       </div>
-      <div class="col-5 u-hide--medium u-hide--small u-align--center">
-        {{ image (
-        url="https://assets.ubuntu.com/v1/e9d3cf66-We+support+your+operations.svg",
-        alt="",
-        width="200",
-        height="200",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-        }}
+      <div class="col">
+        <p>
+          Since OpenStack is open source, enterprise customers rely on the vendor to provide ongoing support for their infrastructure. Canonical provides full-stack commercial support under the Ubuntu Pro + support subscription which includes phone and ticket support, production-grade SLAs, ten years of security updates and security and compliance programs. The subscription is charged per node and covers all layers of the open infrastructure stack: from bare metal to microservices.
+        </p>
+        <div class="p-cta-block">
+          <a href="/openstack/contact-us"
+             class="p-button u-no-margin--bottom js-invoke-modal">Get support</a>
+        </div>
       </div>
     </div>
   </section>
 
-  {% with first_item="_openstack_delivery", second_item="_openstack_documentation", third_item="_openstack_further_reading" %}
-    {% include "shared/contextual_footers/_contextual_footer.html" %}
-  {% endwith %}
+  <div class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Detailed documentation</h2>
+      </div>
+      <div class="col">
+        <ul class="p-list--divided">
+          <li class="p-list__item">
+            <a href="https://canonical.com/microstack">MicroStack website</a>
+          </li>
+          <li class="p-list__item">
+            <a href="https://docs.openstack.org/charm-guide/latest/">OpenStack Charms documentation</a>
+          </li>
+          <li class="p-list__item">
+            <a href="https://jaas.ai/openstack">Charmed OpenStack</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-  <!-- Set default Marketo information for contact form below-->
+  <div class="p-section--deep">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Further reading</h2>
+      </div>
+      <div class="col">
+        <ul class="p-list--divided" id="latest-articles">
+          <li>
+            <i class="p-icon--spinner u-animation--spin">Loading...</i>
+          </li>
+        </ul>
+
+        <template style="display:none" id="article-template">
+          <li class="p-list__item">
+            <a class="article-link article-title"></a>
+          </li>
+        </template>
+      </div>
+    </div>
+  </div>
+
+  Set default Marketo information for contact form below
   <div class="u-hide"
        id="contact-form-container"
        data-form-location="/shared/forms/interactive/openstack"
@@ -947,5 +968,16 @@
        data-lp-id="2086"
        data-return-url="https://ubuntu.com/openstack/thank-you"
        data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+
+  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script>
+    canonicalLatestNews.fetchLatestNews({
+      articlesContainerSelector: "#latest-articles",
+      articleTemplateSelector: "#article-template",
+      limit: "5",
+      tagId: "1959, 4138, 3741, 3739",
+    })
+  </script>
+  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
 {% endblock content %}
