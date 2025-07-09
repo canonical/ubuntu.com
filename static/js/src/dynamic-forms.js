@@ -200,6 +200,9 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       }
     }
 
+    /**
+     * Sets the consent info from the data layer into the consent_info cookie
+     */
     function setDataLayerConsentInfo() {
       const dataLayer = window.dataLayer || [];
       const latestConsentUpdateElements = dataLayer
@@ -749,7 +752,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     }
 
     /**
-     * 
      * Check all required fieldsets and enable/disable submit button accordingly
      * Submit button is only enabled when ALL required fieldsets have at least one checkbox checked
      */
