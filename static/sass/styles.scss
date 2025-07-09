@@ -1639,6 +1639,17 @@ ol.p-list--divided .p-list__item::before {
   }
 }
 
+@media screen and (width < $breakpoint-small) {
+  .u-table-scroll--x-small {
+    overflow-x: hidden;
+    table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }
+}
+
 .u-align-last--logo {
   @media screen and (max-width: $breakpoint-large - 1) {
     .p-logo-section__item {
@@ -1861,3 +1872,5 @@ ol.p-stepped-list.no-full-stop
   display: flex;
   flex-wrap: wrap;
 }
+
+// Set horizontal scroll for tables on small screens 

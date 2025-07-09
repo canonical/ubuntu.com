@@ -44,7 +44,7 @@
 
   {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=false) -%}
     {%- if slot == 'title' -%}
-      <h2>Supported architecture</h2>
+      <h2>Supported architectures</h2>
     {%- endif -%}
 
     {%- if slot == 'list_item_title_1' -%}
@@ -128,7 +128,7 @@
 
       <hr class="p-rule--muted u-no-margin--bottom" />
       <p class="u-no-margin--bottom">Need an architecture tailored to your needs?</p>
-      <a href="/openstack#get-in-touch" class="js-invoke-modal p-button">Talk to us about your plans</a>
+      <a href="/openstack#get-in-touch" class="js-invoke-modal" aria-controls="openstack-modal">Talk to us about your plans&nbsp;&rsaquo;</a>
     {%- endif -%}
   {%- endcall -%}
 
@@ -164,7 +164,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-start-large-4 col-9">
+      <div class="col-start-large-4 col-9 u-table-scroll--x-small">
         <table class="p-table"aria-label="Private cloud platform table">
           <thead>
             <tr>
@@ -364,7 +364,7 @@
     </div>
   </section>
 
-  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
     {%- if slot == 'title' -%}
       <h2>Total automation</h2>
     {%- endif -%}
@@ -385,16 +385,13 @@
 
     {%- if slot == 'list_item_description_1' -%}
       <p>
-        Resell the full range of Canonical's portfolio of private and public
-        cloud products: OpenStack, Kubernetes, IoT, support, security and
-        compliance for Ubuntu.
+        In traditional automation environments based on Ansible, Chef or Puppet, architectural choices are hard-coded in the configuration management system. That means the operations code cannot be shared across various architectures, organizsations and market sectors. Every cloud becomes its own unique snowflake. This approach does not scale and results in significant costs.
       </p>
 
       <p>
         <a href="https://charmhub.io/">With OpenStack Charms:</a>
       </p>
 
-      <hr class="p-rule--muted u-no-margin--bottom" />
       <ul class="p-list--divided u-no-margin--bottom">
         <li class="p-list__item is-ticked">
           OpenStack operations code is packaged for reusability across different architectures, organizations and industries
@@ -433,7 +430,6 @@
         <a href="https://maas.io">With MAAS:</a>
       </p>
 
-      <hr class="p-rule--muted u-no-margin--bottom" />
       <ul class="p-list--divided u-no-margin--bottom">
         <li class="p-list__item is-ticked">A data center turns into a bare metal cloud</li>
         <li class="p-list__item is-ticked">
@@ -491,9 +487,9 @@
         <p>
           Designing the cloud for the best price-performance starts with making an architecture choice. Although the Hyper-Converged architecture is the most often chosen by organizations, Canonical supports other architectures as well to meet customers' needs.
         </p>
-        <ul class="p-list">
+        <ul class="p-list--divided">
           <li class="p-list__item is-ticked">
-            <strong>Hyper-Converged</strong> architecture puts guest VMs, storage and OpenStack control services on every node in the cloud, using modern kernel quality of service (QoS) capabilities to defend the performance of critical services while reducing the number of overhead nodes required to service the cloud. Such an approach allows standardization of hardware configuration and enables maximum resource utilisation, leading to the best price-performance.
+            <strong>Hyper-Converged</strong> architecture puts guest VMs, storage and OpenStack control services on every node in the cloud, using modern kernel quality of service (QoS) capabilities to defend the performance of critical services while reducing the number of overhead nodes required to service the cloud. Such an approach allows standardization of hardware configuration and enables maximum resource utilization, leading to the best price-performance.
           </li>
           <li class="p-list__item is-ticked">
             <strong>Converged</strong> architecture puts guest VMs and storage on every node in the cloud, but isolates OpenStack control services. Since three units of each OpenStack control service are needed for HA, the converged architecture requires three additional nodes. In order to isolate control services even more, each of them is running inside of a dedicated container which increases the overall security level.
@@ -522,172 +518,177 @@
   </section>
 
   <section class="p-section">
-    <div class="u-fixed-width">
+    <div class="row">
       <hr class="p-rule" />
-      <div class="p-section--shallow">
-        <h2>Core functions</h2>
+      <div class="col-3">
+        <div class="p-section--shallow">
+          <h2>Core functions</h2>
+        </div>
+      </div>
+      <div class="col-3 col-medium-3">
+        <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small"
+            role="tablist"
+            aria-label="Dev to deployment">
+          <li>
+            <button class="p-tabs__item u-no-margin--right"
+                    id="compute"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="compute-tab">Compute</button>
+          </li>
+          <li>
+            <button class="p-tabs__item u-no-margin--right"
+                    id="networking"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="networking-tab">Networking</button>
+          </li>
+          <li>
+            <button class="p-tabs__item u-no-margin--right"
+                    id="storage"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="storage-tab">Storage</button>
+          </li>
+        </ul>
+        <form class="u-hide--large u-hide--medium">
+          <select name="boardSelect" id="boardSelect">
+            <option value="compute-tab" selected="">Compute</option>
+            <option value="networking-tab">Networking</option>
+            <option value="storage-tab">Storage</option>
+          </select>
+        </form>
+      </div>
+      <div class="col-6 col-medium-3">
+        <!-- tab 1 -->
+        <div tabindex="0"
+             role="tabpanel"
+             id="compute-tab"
+             aria-labelledby="compute"
+             aria-hidden="false">
+          <p>
+            The biggest challenge when building a private cloud is to maximize performance of workloads, utilization of data centrer resources and cost efficiency at the same time. This is challenging as multiple factors shape this multidimensional curve, from cloud architecture to hardware choices.
+          </p>
+          <p>
+            Canonical partners with leading silicon and hardware vendors to ensure the latest improvements in the compute space are tested and validated on Ubuntu. This enables us to design a cloud architecture that answers the performance needs. We also assist with workload analysis to make sure that the cloud we build has an optimal capacity. In order to guarantee the maximum cost efficiency, we run a bidding process with leading hardware vendors on behalf of our customers.
+          </p>
+          <p>With Canonical's Charmed OpenStack you get:</p>
+          <div class="p-section--shallow">
+            <ul class="p-list--divided u-no-margin--bottom">
+              <li class="p-list__item is-ticked">Access to the latest technologies, including GPUs, FPGA and other accelerators</li>
+              <li class="p-list__item is-ticked">Architecture and hardware guidance</li>
+              <li class="p-list__item is-ticked">Workload analysis and cloud capacity assessment</li>
+              <li class="p-list__item is-ticked">Total cost of ownership (TCO) per VM estimates</li>
+              <li class="p-list__item is-ticked">Performance benchmarks</li>
+            </ul>
+          </div>
+          <hr class="p-rule--muted u-no-margin--bottom" />
+          <div class="p-section--shallow">
+            <p class="p-heading--5">Virtual machines</p>
+            <p>
+              OpenStack leverages the leading virtualization stack based on QEMU/KVM/libvirt to provide the best user experience for virtual machines management.
+            </p>
+            <div class="p-cta-block">
+              <a href="/server/docs/virtualization-introduction">Open virtualization stack&nbsp;&rsaquo;</a>
+            </div>
+          </div>
+          <hr class="p-rule--muted u-no-margin--bottom" />
+          <p class="p-heading--5">Containers</p>
+          <p>
+            Kubernetes provides a cloud-native containers layer on top of OpenStack with automated scheduling, rolling updates and autoscaling support.
+          </p>
+          <div class="p-cta-block">
+            <a href="/kubernetes">Enterprise multi-cloud Kubernetesk&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+        <!-- tab 2 -->
+        <div tabindex="0"
+             role="tabpanel"
+             id="networking-tab"
+             aria-labelledby="networking"
+             aria-hidden="false">
+          <p>
+            Network is an essential component in every data centrer. A poorly designed network can significantly affect the overall performance of the cloud and become a bottleneck in the traffic flow. On the other hand, network improvements should always be driven by economics so as not to affect the overall budget.
+          </p>
+          <p>
+            Canonical's partnership with hyperscale public clouds ensures that we have deep insight into the dynamics of cloud network performance and security best practices for large-scale multi-tenanted operations. Moreover, our experience with telcos for NFV and edge clouds ensures that our solution works well in complex environments where latency and security are critical.
+          </p>
+          <p>With Canonical's Charmed OpenStack you get:</p>
+          <div class="p-section--shallow">
+            <ul class="p-list--divided u-no-margin--bottom">
+              <li class="p-list__item is-ticked">Up to 100 Gbps tenant-level performance</li>
+              <li class="p-list__item is-ticked">Underlay network architecture and security design</li>
+              <li class="p-list__item is-ticked">Hardware offloading and other acceleration technologies</li>
+              <li class="p-list__item is-ticked">SR-IOV, DPDK and other performance extensions</li>
+              <li class="p-list__item is-ticked">Access to a wide range of SDN platforms</li>
+            </ul>
+          </div>
+          <div class="p-section--shallow">
+            <hr class="p-rule--muted u-no-margin--bottom" />
+            <p class="p-heading--5">Open source SDN</p>
+            <p>
+              Open Virtual Network (OVN) and Open vSwitch (OVS) are a foundation of an open source SDN which is gaining popularity, especially in general-purpose OpenStack deployments.
+            </p>
+            <div class="p-cta-block">
+              <a href="https://www.youtube.com/watch?v=TpSTDQnoIRM&ab_channel=OpenInfrastructureFoundation">How to migrate from OVS to OVN&nbsp;&rsaquo;</a>
+            </div>
+          </div>
+          <hr class="p-rule--muted u-no-margin--bottom" />
+          <p class="p-heading--5">Proprietary SDN</p>
+          <p>
+            Many organizations are still tied to their existing vendors. We recognizse that and partner with leading network equipment providers (NEPs) to ensure their SDN platforms are tested and validated with Charmed OpenStack.
+          </p>
+          <div class="p-cta-block">
+            <a href="/blog/deploying-juniper-contrail-sdn-on-ubuntu-openstack">Deploying SDN on OpenStack&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+        <!-- tab 3 -->
+        <div tabindex="0"
+             role="tabpanel"
+             id="storage-tab"
+             aria-labelledby="storage"
+             aria-hidden="false">
+          <p>
+            Storage is one of the most tricky components when architecting a cloud. Storage costs per TB vary by several orders of magnitude depending on the storage types and technologies used. Thus, making careful selections when designing storage architecture is essential from a price-performance point of view.
+          </p>
+          <p>
+            Canonical's approach towards storage architecture optimization leverages multiple storage tiers. While big, cheap, low performance disks are used as ultimate storage devices, several smaller, more expensive, high performance devices serve as a cache in front. This approach ensures the required performance of the entire cloud, while not affecting hardware costs significantly.
+          </p>
+          <p>With Canonical's Charmed OpenStack you get:</p>
+          <div class="p-section--shallow">
+            <ul class="p-list--divided u-no-margin--bottom">
+              <li class="p-list__item is-ticked">Up to 384TB raw storage per node</li>
+              <li class="p-list__item is-ticked">Data encryption in transit and at rest</li>
+              <li class="p-list__item is-ticked">Data protection and data durability</li>
+              <li class="p-list__item is-ticked">A mix of block and object storage based on personal requirements</li>
+              <li class="p-list__item is-ticked">Multi-tier cloud-native storage based on Ceph or other technologies</li>
+            </ul>
+          </div>
+          <div class="p-section--shallow">
+            <hr class="p-rule--muted u-no-margin--bottom" />
+            <p class="p-heading--5">Ceph</p>
+            <p>
+              Ceph is an open source distributed software-defined storage platform, providing a flexible storage option for OpenStack, Kubernetes and standalone storage clusters.
+            </p>
+            <div class="p-cta-block">
+              <a href="/ceph">Ceph storage on Ubuntu&nbsp;&rsaquo;</a>
+            </div>
+          </div>
+          <hr class="p-rule--muted u-no-margin--bottom" />
+          <p class="p-heading--5">Other platforms</p>
+          <p>
+            While Ceph provides the best price-performance rate, it is not always an option. Therefore, Canonical's Charmed OpenStack provides support for various other storage platforms including Swift, iSCSI and more.
+          </p>
+          <div class="p-cta-block">
+            <a href="https://charmhub.io/?q=swift">Explore other storage options&nbsp;&rsaquo;</a>
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">
+      <div class="p-section--shallow">
+      </div>
       <div class="col-start-large-4 col-9">
-        <div class="row">
-          <div class="col-3">
-            <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small"
-                role="tablist"
-                aria-label="Dev to deployment">
-              <li>
-                <button class="p-tabs__item"
-                        id="compute"
-                        role="tab"
-                        aria-selected="true"
-                        aria-controls="compute-tab">Compute</button>
-              </li>
-              <li>
-                <button class="p-tabs__item"
-                        id="networking"
-                        role="tab"
-                        aria-selected="false"
-                        aria-controls="networking-tab">Networking</button>
-              </li>
-              <li>
-                <button class="p-tabs__item"
-                        id="storage"
-                        role="tab"
-                        aria-selected="false"
-                        aria-controls="storage-tab">Storage</button>
-              </li>
-            </ul>
-            <form class="u-hide--large u-hide--medium">
-              <select name="boardSelect" id="boardSelect">
-                <option value="compute-tab" selected="">Compute</option>
-                <option value="networking-tab">Networking</option>
-                <option value="storage-tab">Storage</option>
-              </select>
-            </form>
-          </div>
-          <div class="col-6">
-            <!-- tab 1 -->
-            <div tabindex="0"
-                 role="tabpanel"
-                 id="compute-tab"
-                 aria-labelledby="compute"
-                 aria-hidden="false">
-              <p>
-                The biggest challenge when building a private cloud is to maximize performance of workloads, utilization of data centrer resources and cost efficiency at the same time. This is challenging as multiple factors shape this multidimensional curve, from cloud architecture to hardware choices.
-              </p>
-              <p>
-                Canonical partners with leading silicon and hardware vendors to ensure the latest improvements in the compute space are tested and validated on Ubuntu. This enables us to design a cloud architecture that answers the performance needs. We also assist with workload analysis to make sure that the cloud we build has an optimal capacity. In order to guarantee the maximum cost efficiency, we run a bidding process with leading hardware vendors on behalf of our customers.
-              </p>
-              <p>With Canonical's Charmed OpenStack you get:</p>
-              <div class="p-section--shallow">
-                <hr class="p-rule--muted u-no-margin--bottom" />
-                <ul class="p-list--divided u-no-margin--bottom">
-                  <li class="p-list__item is-ticked">Access to the latest technologies, including GPUs, FPGA and other accelerators</li>
-                  <li class="p-list__item is-ticked">Architecture and hardware guidance</li>
-                  <li class="p-list__item is-ticked">Workload analysis and cloud capacity assessment</li>
-                  <li class="p-list__item is-ticked">Total cost of ownership (TCO) per VM estimates</li>
-                  <li class="p-list__item is-ticked">Performance benchmarks</li>
-                </ul>
-              </div>
-              <div class="p-section--shallow">
-                <p class="p-heading--5">Virtual machines</p>
-                <p>
-                  OpenStack leverages the leading virtualization stack based on QEMU/KVM/libvirt to provide the best user experience for virtual machines management.
-                </p>
-                <div class="p-cta-block">
-                  <a href="/server/docs/virtualization-introduction">Open virtualization stack&nbsp;&rsaquo;</a>
-                </div>
-              </div>
-              <p class="p-heading--5">Containers</p>
-              <p>
-                Kubernetes provides a cloud-native containers layer on top of OpenStack with automated scheduling, rolling updates and autoscaling support.
-              </p>
-              <div class="p-cta-block">
-                <a href="/kubernetes">Enterprise multi-cloud Kubernetesk&nbsp;&rsaquo;</a>
-              </div>
-            </div>
-            <!-- tab 2 -->
-            <div tabindex="0"
-                 role="tabpanel"
-                 id="networking-tab"
-                 aria-labelledby="networking"
-                 aria-hidden="false">
-              <p>
-                Network is an essential component in every data centrer. A poorly designed network can significantly affect the overall performance of the cloud and become a bottleneck in the traffic flow. On the other hand, network improvements should always be driven by economics so as not to affect the overall budget.
-              </p>
-              <p>
-                Canonical's partnership with hyperscale public clouds ensures that we have deep insight into the dynamics of cloud network performance and security best practices for large-scale multi-tenanted operations. Moreover, our experience with telcos for NFV and edge clouds ensures that our solution works well in complex environments where latency and security are critical.
-              </p>
-              <p>With Canonical's Charmed OpenStack you get:</p>
-              <div class="p-section--shallow">
-                <hr class="p-rule--muted u-no-margin--bottom" />
-                <ul class="p-list--divided u-no-margin--bottom">
-                  <li class="p-list__item is-ticked">Up to 100 Gbps tenant-level performance</li>
-                  <li class="p-list__item is-ticked">Underlay network architecture and security design</li>
-                  <li class="p-list__item is-ticked">Hardware offloading and other acceleration technologies</li>
-                  <li class="p-list__item is-ticked">SR-IOV, DPDK and other performance extensions</li>
-                  <li class="p-list__item is-ticked">Access to a wide range of SDN platforms</li>
-                </ul>
-              </div>
-              <div class="p-section--shallow">
-                <p class="p-heading--5">Open source SDN</p>
-                <p>
-                  Open Virtual Network (OVN) and Open vSwitch (OVS) are a foundation of an open source SDN which is gaining popularity, especially in general-purpose OpenStack deployments.
-                </p>
-                <div class="p-cta-block">
-                  <a href="https://www.youtube.com/watch?v=TpSTDQnoIRM&ab_channel=OpenInfrastructureFoundation">How to migrate from OVS to OVN&nbsp;&rsaquo;</a>
-                </div>
-              </div>
-              <p class="p-heading--5">Proprietary SDN</p>
-              <p>
-                Many organizations are still tied to their existing vendors. We recognizse that and partner with leading network equipment providers (NEPs) to ensure their SDN platforms are tested and validated with Charmed OpenStack.
-              </p>
-              <div class="p-cta-block">
-                <a href="/blog/deploying-juniper-contrail-sdn-on-ubuntu-openstack">Deploying SDN on OpenStack&nbsp;&rsaquo;</a>
-              </div>
-            </div>
-            <!-- tab 3 -->
-            <div tabindex="0"
-                 role="tabpanel"
-                 id="storage-tab"
-                 aria-labelledby="storage"
-                 aria-hidden="false">
-              <p>
-                Storage is one of the most tricky components when architecting a cloud. Storage costs per TB vary by several orders of magnitude depending on the storage types and technologies used. Thus, making careful selections when designing storage architecture is essential from a price-performance point of view.
-              </p>
-              <p>
-                Canonical's approach towards storage architecture optimization leverages multiple storage tiers. While big, cheap, low performance disks are used as ultimate storage devices, several smaller, more expensive, high performance devices serve as a cache in front. This approach ensures the required performance of the entire cloud, while not affecting hardware costs significantly.
-              </p>
-              <p>With Canonical's Charmed OpenStack you get:</p>
-              <div class="p-section--shallow">
-                <hr class="p-rule--muted u-no-margin--bottom" />
-                <ul class="p-list--divided u-no-margin--bottom">
-                  <li class="p-list__item is-ticked">Up to 384TB raw storage per node</li>
-                  <li class="p-list__item is-ticked">Data encryption in transit and at rest</li>
-                  <li class="p-list__item is-ticked">Data protection and data durability</li>
-                  <li class="p-list__item is-ticked">A mix of block and object storage based on personal requirements</li>
-                  <li class="p-list__item is-ticked">Multi-tier cloud-native storage based on Ceph or other technologies</li>
-                </ul>
-              </div>
-              <div class="p-section--shallow">
-                <p class="p-heading--5">Ceph</p>
-                <p>
-                  Ceph is an open source distributed software-defined storage platform, providing a flexible storage option for OpenStack, Kubernetes and standalone storage clusters.
-                </p>
-                <div class="p-cta-block">
-                  <a href="/ceph">Ceph storage on Ubuntu&nbsp;&rsaquo;</a>
-                </div>
-              </div>
-              <p class="p-heading--5">Other platforms</p>
-              <p>
-                While Ceph provides the best price-performance rate, it is not always an option. Therefore, Canonical's Charmed OpenStack provides support for various other storage platforms including Swift, iSCSI and more.
-              </p>
-              <div class="p-cta-block">
-                <a href="https://charmhub.io/?q=swift">Explore other storage options&nbsp;&rsaquo;</a>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -738,7 +739,7 @@
           Canonical's Charmed OpenStack includes up to ten years of security updates, cloud hardening options according to common security benchmarks and compliance programmes to meet local US and EU regulations for enterprise customers.
         </p>
         <p>What's included:</p>
-        <ul class="p-list">
+        <ul class="p-list--divided">
           <li class="p-list__item is-ticked">CIS and DISA benchmarks</li>
           <li class="p-list__item is-ticked">CSEC and GDPR certification</li>
           <li class="p-list__item is-ticked">HIPAA for health care institutions</li>
@@ -777,7 +778,7 @@
             </div>
             <div class="p-logo-section__item">
               {{ image(url="https://assets.ubuntu.com/v1/de759e70-DISA-logo.png",
-                            alt="",
+                            alt="DISA",
                             width="229",
                             height="313",
                             hi_def=True,
@@ -787,7 +788,7 @@
             </div>
             <div class="p-logo-section__item">
               {{ image(url="https://assets.ubuntu.com/v1/4c995c00-CIS-benchmark-logo.png",
-                            alt="",
+                            alt="CIS Benchmark",
                             width="346",
                             height="313",
                             hi_def=True,
@@ -798,7 +799,7 @@
           </div>
         </div>
         <div class="p-cta-block">
-          <a href="/openstack/security">Learn more about security and compliance&nbsp;&rsaquo;</a>
+          <a href="/engage/openstack-security-whitepaper">Read a whitepaper about private cloud security&nbsp;&rsaquo;</a>
         </div>
       </div>
     </div>
@@ -815,7 +816,7 @@
           GPU devices serve as a foundation for modern compute-intensive workloads, including data analytics, data visualisation and high performance computing (HPC). However, dedicating the entire device to a single workload may lead to sub-optimal resource consumption.
         </p>
         <p>
-          NVIDIA vGPU software democratises those contstraints, making highly performant GPU resources available on demand for all OpenStack users.
+          NVIDIA vGPU software democratizes those contstraints, making highly performant GPU resources available on demand for all OpenStack users.
         </p>
         <p>What's included:</p>
         <ul class="p-list--divided">
@@ -846,7 +847,7 @@
           With OVN hardware offloading all those computationally-expensive operations can be moved to SmartNICs and data processing units (DPUs). This frees up CPU cycles for the workloads and accelerates data plane network traffic.
         </p>
         <p>What's included:</p>
-        <ul class="p-list">
+        <ul class="p-list--divided">
           <li class="p-list__item is-ticked">Fast path and slow path hardware offloading</li>
           <li class="p-list__item is-ticked">
             Automated deployment and operations of Charmed OpenStack with OVN offloading capabilities to SmartNICs and DPUs
@@ -868,13 +869,12 @@
       </div>
       <div class="col">
         <p>
-          Operations in highly coherent large-scale distributed clusters require a new level of observability. Cloud operations teams have to be able to check cluster health, monitor cloud capacity and investigate individual server logs from a centralised operations dashboard.
+          Operations in highly coherent large-scale distributed clusters require a new level of observability. Cloud operations teams have to be able to check cluster health, monitor cloud capacity and investigate individual server logs from a centralized operations dashboard.
         </p>
         <p>
           Canonical delivers an integrated observability stack for logging, monitoring and alerting based on established open source technologies with every deployed infrastructure component, including Charmed OpenStack.
         </p>
         <p>What's included:</p>
-        <hr class="p-rule--muted u-no-margin--bottom" />
         <ul class="p-list--divided">
           <li class="p-list__item is-ticked">Filebeat for log forwarding</li>
           <li class="p-list__item is-ticked">Graylog for log aggregation</li>
@@ -910,7 +910,7 @@
         </p>
         <div class="p-cta-block">
           <a href="/openstack/contact-us"
-             class="p-button u-no-margin--bottom js-invoke-modal">Get support</a>
+             class="p-button u-no-margin--bottom js-invoke-modal" aria-controls="openstack-modal">Get support</a>
         </div>
       </div>
     </div>
@@ -960,14 +960,7 @@
     </div>
   </div>
 
-  Set default Marketo information for contact form below
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/openstack"
-       data-form-id="1251"
-       data-lp-id="2086"
-       data-return-url="https://ubuntu.com/openstack/thank-you"
-       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+  {{ load_form('/openstack') | safe }}
 
   <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
   <script>
