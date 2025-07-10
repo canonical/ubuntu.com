@@ -591,11 +591,11 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       // Add event listeners to required fieldsets
       const requiredFieldsets = document.querySelectorAll(
-        "fieldset.js-required-checkbox, fieldset.js-toggle-checkbox-visibility-required",
+        "fieldset.js-required-checkbox",
       );
       requiredFieldsets?.forEach((fieldset) => {
         fieldset.addEventListener("change", function (event) {
-          checkAllRequiredFieldsets();
+          checkRequiredCheckboxes();
         });
       });
 
@@ -755,18 +755,18 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
      * Check all required fieldsets and enable/disable submit button accordingly
      * Submit button is only enabled when ALL required fieldsets have at least one checkbox checked
      */
-    function checkAllRequiredFieldsets() {
+    function checkRequiredCheckboxes() {
       const submitButton = document.querySelector(".js-submit-button");
       const allRequiredFieldsets = document.querySelectorAll(
-        "fieldset.js-required-checkbox, fieldset.js-toggle-checkbox-visibility-required"
-      );      
+        "fieldset.js-required-checkbox"
+      );
       let allFieldsetsValid = true;
 
-      allRequiredFieldsets.forEach((fieldset) => {
+      allRequiredFieldsets?.forEach((fieldset) => {
         const checkboxes = fieldset.querySelectorAll("input[type='checkbox']");
         let hasCheckedCheckbox = false;
 
-        checkboxes.forEach((checkbox) => {
+        checkboxes?.forEach((checkbox) => {
           if (checkbox.checked) {
             hasCheckedCheckbox = true;
           }
