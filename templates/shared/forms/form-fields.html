@@ -19,7 +19,7 @@
 
       <div class="{% if loop.index != fieldsets|length %}p-section{% endif %}">
         <hr class="p-rule is-fixed-width" />
-        <fieldset class="p-fieldset-section{% if fieldset.inputType == 'checkbox-visibility' %} js-toggle-checkbox-visibility{% elif fieldset.isRequired and fieldset.inputType == 'checkbox' %} js-required-checkbox{% elif fieldset.inputType == 'radio' %} js-remove-radio-names{% endif %} {% if fieldset.inputType == 'checkbox' or fieldset.inputType == 'checkbox-visibility' %}js-remove-checkbox-names{% endif %}"
+        <fieldset class="p-fieldset-section{% if fieldset.inputType == 'checkbox' or fieldset.inputType == 'checkbox-visibility' %} js-remove-checkbox-names{% if fieldset.isRequired %} js-required-checkbox{% endif %}{% if fieldset.inputType == 'checkbox-visibility' %} js-toggle-checkbox-visibility{% endif %}{% elif fieldset.inputType == 'radio' %} js-remove-radio-names{% endif %}"
                   id="{{ fieldset.id }}"
                   aria-labelledby="{{ fieldset.id }}">
           <div class="row--50-50 {% if not fieldset.noCommentsFromLead %}js-formfield{% endif %}">
