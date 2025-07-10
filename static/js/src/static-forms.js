@@ -282,7 +282,6 @@ ubuntuVersionCheckboxes?.addEventListener("change", function (event) {
   toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
 });
 
-
 // Add event listeners to required fieldsets
 const requiredFieldsets = document.querySelectorAll(
   "fieldset.js-required-checkbox",
@@ -300,7 +299,7 @@ requiredFieldsets?.forEach((fieldset) => {
 function checkRequiredCheckboxes() {
   const submitButton = document.querySelector(".js-submit-button");
   const allRequiredFieldsets = document.querySelectorAll(
-    "fieldset.js-required-checkbox"
+    "fieldset.js-required-checkbox",
   );
   let allFieldsetsValid = true;
 
@@ -319,7 +318,6 @@ function checkRequiredCheckboxes() {
   });
   submitButton.disabled = !allFieldsetsValid;
 }
-
 
 /**
  * Sets the consent info from the data layer into the consent_info cookie

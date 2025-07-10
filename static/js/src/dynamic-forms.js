@@ -763,7 +763,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     function checkRequiredCheckboxes() {
       const submitButton = document.querySelector(".js-submit-button");
       const allRequiredFieldsets = document.querySelectorAll(
-        "fieldset.js-required-checkbox"
+        "fieldset.js-required-checkbox",
       );
       let allFieldsetsValid = true;
 
