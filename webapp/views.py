@@ -29,6 +29,7 @@ from werkzeug.exceptions import BadRequest
 # Local
 from webapp.login import user_info
 from webapp.marketo import MarketoAPI
+from webapp.utils import format_community_event_time
 
 ip_reader = geolite2.reader()
 session = talisker.requests.get_session()
@@ -1530,11 +1531,43 @@ def process_local_communities(local_communities):
     return display_local_communities
 
 
-def process_community_calendar(community_events):
+def process_community_events(community_events):
     def display_community_events():
+        featured_events = community_events.get_featured_events()[:2]
+
+        for event in featured_events:
+            # Get the event description from the topic
+            full_event = community_events.parser.api.get_topic(
+                event["post"]["topic"]["id"]
+            )
+            pasrsed_event = community_events.parser.parse_topic(full_event)
+            event["description"] = pasrsed_event["sections"][0]["content"]
+            # Format the event time
+            format_community_event_time(event)
+
         events = community_events.get_events()
+
+        # Format time for all events
+        for event in events:
+            format_community_event_time(event)
+
+        # Duplicate events for testing
+        number_of_events = 100
+        if len(events) < number_of_events:
+            multiplier = (number_of_events // len(events)) + 1
+            duplicated = []
+            for i in range(multiplier):
+                for e in events:
+                    new_event = e.copy()
+                    new_event["id"] = f"{e['id']}_{i}"
+                    duplicated.append(new_event)
+            events = duplicated[:number_of_events]
+
+        events.sort(key=lambda x: x.get("starts_at", ""))
+
         return flask.render_template(
             "community/events.html",
+            featured_events=featured_events,
             events=events,
         )
 
@@ -1545,7 +1578,31 @@ def community_landing_page(
     community_events, local_communities, ubuntu_weekly_newsletter
 ):
     def display_community_landing_page():
-        events_data = community_events.get_events()
+        featured_events = community_events.get_featured_events()
+        events_to_display = []
+
+        # If there are less than 4 featured events,
+        # fill the rest with regular events
+        if len(featured_events) < 4:
+            events_data = community_events.get_events()
+            needed_events = 4 - len(featured_events)
+            events_to_display.extend(featured_events)
+
+            featured_event_ids = {event.get("id") for event in featured_events}
+            regular_events = [
+                event
+                for event in events_data
+                if event.get("id") not in featured_event_ids
+            ]
+
+            events_to_display.extend(regular_events[:needed_events])
+            events_to_display.sort(key=lambda x: x.get("starts_at", ""))
+        else:
+            events_to_display = featured_events[:4]
+
+        for event in events_to_display:
+            format_community_event_time(event)
+
         communities_data = local_communities.get_category_index_metadata(
             "locos"
         )
@@ -1554,9 +1611,10 @@ def community_landing_page(
                 ubuntu_weekly_newsletter.category_id
             )
         )
+
         return flask.render_template(
             "community/index.html",
-            events=events_data,
+            featured_events=events_to_display,
             communities=communities_data,
             newsletters=newsletter_data,
         )
