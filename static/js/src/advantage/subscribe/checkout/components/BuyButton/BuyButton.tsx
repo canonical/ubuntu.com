@@ -140,7 +140,7 @@ const BuyButton = ({
 
     // Update customer information
     const hasZeroPriceValue = products.some(
-      (item) => item.product.price.value === 0,
+      (item) => item.product.price.value === 0 || item.product.isFree,
     );
     if (!values.defaultPaymentMethod && !hasZeroPriceValue) {
       await postCustomerInfoMutation.mutateAsync(
