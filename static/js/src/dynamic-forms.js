@@ -593,6 +593,11 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       const requiredFieldsets = document.querySelectorAll(
         "fieldset.js-required-checkbox",
       );
+      // Check if there are any required fieldsets
+      if (requiredFieldsets.length > 0) {
+        const submitButton = document.querySelector(".js-submit-button");
+        submitButton.disabled = true;
+      }
       requiredFieldsets?.forEach((fieldset) => {
         fieldset.addEventListener("change", function (event) {
           checkRequiredCheckboxes();
