@@ -87,13 +87,13 @@ meta_copydoc %}
     </div>
     <hr class="p-rule--muted is-fixed-width" />
     <div class="p-equal-height-row--wrap">
-      {% for event in events[:4] %}
+      {% for event in featured_events[:4] %}
         <div class="p-equal-height-row__col is-borderless">
           <div class="p-equal-height-row__item">
             <h3 class="u-clamp--two-lines">{{ event.post.topic.title }}</h3>
           </div>
           <div class="p-equal-height-row__item">
-            <p class="u-text--muted u-no-margin--bottom u-no-padding--top">{{ format_date(event.starts_at) }}
+            <p class="u-text--muted u-no-margin--bottom u-no-padding--top">{{ event.formatted_time }}
             </p>
             <p>
               <a href="https://discourse.ubuntu.com/u/{{ event.creator.username }}">{{ event.creator.name }}</a>
