@@ -22,7 +22,7 @@ class TestCLARoutes(unittest.TestCase):
             "utf-8"
         )
         response = self.client.get(
-            f"/legal/contributors/agreement/api"
+            f"https://canonical.com/legal/contributors/agreement/api"
             f"?request_url={github_profile_endpoint}"
         )
 
@@ -51,7 +51,7 @@ class TestCLARoutes(unittest.TestCase):
             "utf-8"
         )
         response = self.client.get(
-            f"/legal/contributors/agreement/api"
+            f"https://canonical.com/legal/contributors/agreement/api"
             f"?request_url={github_profile_endpoint}"
         )
 
@@ -72,7 +72,7 @@ class TestCLARoutes(unittest.TestCase):
             "utf-8"
         )
         response = self.client.get(
-            f"/legal/contributors/agreement/api"
+            f"https://canonical.com/legal/contributors/agreement/api"
             f"?request_url={malicious_endpoint}"
         )
 
@@ -88,11 +88,11 @@ class TestCLARoutes(unittest.TestCase):
 
     def test_canonical_cla_api_github_logout(self):
         response = self.client.get(
-            "/legal/contributors/agreement/api/github/logout"
+            "https://canonical.com/legal/contributors/agreement/api/github/logout"
         )
 
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.location, "/legal/contributors/agreement")
+        self.assertEqual(response.location, "https://canonical.com/legal/contributors/agreement")
         self.assertIn("github_oauth2_session", response.headers["Set-Cookie"])
         self.assertEqual(response.headers["Cache-Control"], "no-store")
 
@@ -100,29 +100,29 @@ class TestCLARoutes(unittest.TestCase):
     def test_canonical_cla_api_github_login(self, mock_get_query_param):
         mock_get_query_param.side_effect = [
             # agreement_url (valid internal)
-            "/legal/contributors/agreement",
+            "https://canonical.com/legal/contributors/agreement",
             "test_access_token",  # access_token
             None,  # github_error
         ]
 
         response = self.client.get(
-            "/legal/contributors/agreement/api/github/login"
+            "https://canonical.com/legal/contributors/agreement/api/github/login"
         )
 
         self.assertEqual(response.status_code, 302)
         self.assertEqual(
-            response.location, "/legal/contributors/agreement?github_error="
+            response.location, "https://canonical.com/legal/contributors/agreement?github_error="
         )
         self.assertIn("github_oauth2_session", response.headers["Set-Cookie"])
         self.assertEqual(response.headers["Cache-Control"], "no-store")
 
     def test_canonical_cla_api_launchpad_logout(self):
         response = self.client.get(
-            "/legal/contributors/agreement/api/launchpad/logout"
+            "https://canonical.com/legal/contributors/agreement/api/launchpad/logout"
         )
 
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.location, "/legal/contributors/agreement")
+        self.assertEqual(response.location, "https://canonical.com/legal/contributors/agreement")
         self.assertIn(
             "launchpad_oauth_session", response.headers["Set-Cookie"]
         )
@@ -132,18 +132,18 @@ class TestCLARoutes(unittest.TestCase):
     def test_canonical_cla_api_launchpad_login(self, mock_get_query_param):
         mock_get_query_param.side_effect = [
             # agreement_url (valid internal)
-            "/legal/contributors/agreement?",
+            "https://canonical.com/legal/contributors/agreement?",
             "test_access_token",  # access_token
             None,  # launchpad_error
         ]
 
         response = self.client.get(
-            "/legal/contributors/agreement/api/launchpad/login"
+            "https://canonical.com/legal/contributors/agreement/api/launchpad/login"
         )
 
         self.assertEqual(response.status_code, 302)
         self.assertEqual(
-            response.location, "/legal/contributors/agreement?launchpad_error="
+            response.location, "https://canonical.com/legal/contributors/agreement?launchpad_error="
         )
         self.assertIn(
             "launchpad_oauth_session", response.headers["Set-Cookie"]
@@ -153,8 +153,8 @@ class TestCLARoutes(unittest.TestCase):
     def test_validate_agreement_url_valid_path(self):
         """Test that valid internal paths are allowed"""
         with app.test_request_context("/", base_url="https://ubuntu.com"):
-            result = validate_agreement_url("/legal/contributors/agreement")
-            self.assertEqual(result, "/legal/contributors/agreement")
+            result = validate_agreement_url("https://canonical.com/legal/contributors/agreement")
+            self.assertEqual(result, "https://canonical.com/legal/contributors/agreement")
 
     def test_validate_agreement_url_same_hostname_allowed(self):
         """Test that URLs with same hostname are allowed"""
@@ -170,12 +170,12 @@ class TestCLARoutes(unittest.TestCase):
         """Test that URLs with different hostname are blocked"""
         with app.test_request_context("/", base_url="https://ubuntu.com"):
             result = validate_agreement_url("https://example.com/malicious")
-            self.assertEqual(result, "/legal/contributors/agreement")
+            self.assertEqual(result, "https://canonical.com/legal/contributors/agreement")
 
     def test_validate_agreement_url_empty_returns_default(self):
         """Test that empty URLs return default"""
         result = validate_agreement_url(None)
-        self.assertEqual(result, "/legal/contributors/agreement")
+        self.assertEqual(result, "https://canonical.com/legal/contributors/agreement")
 
 
 if __name__ == "__main__":

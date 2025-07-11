@@ -146,21 +146,24 @@ const getLabels = (product: Product, action: Action) => {
         <>
           I agree to the{" "}
           <a
-            href="/legal/ubuntu-advantage-service-terms"
+            href="https://canonical.com/legal/ubuntu-advantage-service-terms"
             target="_blank"
             rel="noopener norefferer"
           >
             Ubuntu Pro terms
           </a>
           , which apply to the{" "}
-          <a href="/legal/solution-support">Solution Support</a> service.
+          <a href="https://canonical.com/legal/solution-support">
+            Solution Support
+          </a>{" "}
+          service.
         </>
       ),
       descriptionLabel: (
         <>
           I agree to the{" "}
           <a
-            href="/legal/ubuntu-pro-description"
+            href="https://canonical.com/legal/ubuntu-pro-description"
             target="_blank"
             rel="noopener norefferer"
           >
@@ -182,7 +185,7 @@ const getLabels = (product: Product, action: Action) => {
         <>
           I agree to the{" "}
           <a
-            href="/legal/terms-and-policies/credentials-terms"
+            href="https://canonical.com/legal/terms-and-policies/credentials-terms"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -194,7 +197,7 @@ const getLabels = (product: Product, action: Action) => {
         <>
           I have read the{" "}
           <a
-            href="/legal/data-privacy/credentials"
+            href="https://canonical.com/legal/data-privacy/credentials"
             target="_blank"
             rel="noopener norefferer"
           >
@@ -215,7 +218,7 @@ const getLabels = (product: Product, action: Action) => {
       <>
         I agree to the{" "}
         <a
-          href="/legal/ubuntu-advantage-service-terms"
+          href="https://canonical.com/legal/ubuntu-advantage-service-terms"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -227,7 +230,7 @@ const getLabels = (product: Product, action: Action) => {
       <>
         I agree to the{" "}
         <a
-          href="/legal/ubuntu-pro-description"
+          href="https://canonical.com/legal/ubuntu-pro-description"
           target="_blank"
           rel="noopener noreferrer"
         >
