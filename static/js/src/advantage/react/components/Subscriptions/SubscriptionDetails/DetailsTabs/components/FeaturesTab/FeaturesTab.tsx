@@ -296,7 +296,7 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
             specific features turned off by default, please run:
             <code>$ sudo pro enable &lt;services&gt;</code>
           </p>
-          <a href="/legal/ubuntu-pro-description">
+          <a href="https://canonical.com/legal/ubuntu-pro-description">
             Service description &rsaquo;
           </a>
         </Col>

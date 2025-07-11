@@ -46,9 +46,9 @@ def validate_agreement_url(url: str) -> str:
     vulnerabilities.
     Only allow relative URLs or URLs with the same hostname as
     the current request.
-    Returns the validated URL or defaults to "/legal/contributors/agreement".
+    Returns the validated URL or defaults to "https://canonical.com/legal/contributors/agreement".
     """
-    fallback_url = "/legal/contributors/agreement"
+    fallback_url = "https://canonical.com/legal/contributors/agreement"
     if not url:
         return fallback_url
 

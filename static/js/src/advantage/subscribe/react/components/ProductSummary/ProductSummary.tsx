@@ -59,11 +59,11 @@ const ProductSummary = () => {
                 : product?.name}
             </p>
             {productUser === ProductUsers.myself ? (
-              <a href="/legal/ubuntu-pro/personal">
+              <a href="https://canonical.com/legal/ubuntu-pro/personal">
                 See personal subscription <br /> terms of service
               </a>
             ) : (
-              <a href="/legal/ubuntu-pro-description">
+              <a href="https://canonical.com/legal/ubuntu-pro-description">
                 See full service description
               </a>
             )}
@@ -188,13 +188,13 @@ const ProductSummary = () => {
             </p>
             {productUser === ProductUsers.myself ? (
               <a
-                href="/legal/ubuntu-pro/personal"
+                href="https://canonical.com/legal/ubuntu-pro/personal"
                 data-testid="personal-subscription"
               >
                 See personal subscription <br /> terms of service
               </a>
             ) : (
-              <a href="/legal/ubuntu-pro-description">
+              <a href="https://canonical.com/legal/ubuntu-pro-description">
                 See full service description
               </a>
             )}

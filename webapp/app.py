@@ -703,24 +703,24 @@ app.add_url_rule(
 )
 
 app.add_url_rule(
-    "/legal/contributors/agreement/api",
+    "https://canonical.com/legal/contributors/agreement/api",
     methods=["POST", "GET"],
     view_func=canonical_cla_api_proxy,
 )
 app.add_url_rule(
-    "/legal/contributors/agreement/api/github/logout",
+    "https://canonical.com/legal/contributors/agreement/api/github/logout",
     view_func=canonical_cla_api_github_logout,
 )
 app.add_url_rule(
-    "/legal/contributors/agreement/api/github/login",
+    "https://canonical.com/legal/contributors/agreement/api/github/login",
     view_func=canonical_cla_api_github_login,
 )
 app.add_url_rule(
-    "/legal/contributors/agreement/api/launchpad/logout",
+    "https://canonical.com/legal/contributors/agreement/api/launchpad/logout",
     view_func=canonical_cla_api_launchpad_logout,
 )
 app.add_url_rule(
-    "/legal/contributors/agreement/api/launchpad/login",
+    "https://canonical.com/legal/contributors/agreement/api/launchpad/login",
     view_func=canonical_cla_api_launchpad_login,
 )
 
