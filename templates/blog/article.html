@@ -95,6 +95,7 @@
 
             <li class="p-inline-list__item">
               <a class="p-icon--facebook"
+                 aria-label="Share on Facebook"
                  title="Share on Facebook"
                  href="https://www.facebook.com/sharer/sharer.php?u=https://www.ubuntu.com/blog/{{ article.slug }}">
                 Facebook
@@ -111,6 +112,7 @@
 
             <li class="p-inline-list__item">
               <a class="p-icon--linkedin"
+                 aria-label="Share on LinkedIn"
                  title="Share on LinkedIn"
                  href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.ubuntu.com/blog/{{ article.slug }}&amp;title={{ article.title.rendered|safe|urlencode }}">
                 LinkedIn
@@ -142,15 +144,15 @@
               <div class="p-notification__content">
                 <p class="p-notification__message u-text--muted" id="date-notice">
                   {% if blog_notice.updated %}
-                    This article was last updated <strong>{{ blog_notice.difference_in_years }} year
-                    {% if blog_notice.difference_in_years > 1 %}s{% endif %}
-                    ago</strong>.
-                  {% else %}
-                    This article is more than <strong>{{ blog_notice.difference_in_years }} year
-                    {% if blog_notice.difference_in_years > 1 %}s{% endif %}
-                    old</strong>.
-                  {% endif %}
-                </p>
+                  This article was last updated <strong>{{ blog_notice.difference_in_years }} year
+                  {%- if blog_notice.difference_in_years > 1 -%}s{%- endif %}
+                  ago</strong>.
+                {% else %}
+                  This article is more than <strong>{{ blog_notice.difference_in_years }} year
+                  {%- if blog_notice.difference_in_years > 1 -%}s{%- endif %}
+                  old</strong>.
+                {% endif %}
+              </p>
               </div>
             </div>
             <hr class="p-rule--muted" />

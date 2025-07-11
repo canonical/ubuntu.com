@@ -153,6 +153,13 @@ export var serverAndDesktopReleases = [
 
 export var kernelReleases = [
   {
+    startDate: new Date("2025-08-01T00:00:00"),
+    endDate: new Date("2026-01-01T00:00:00"),
+    taskName: "24.04.3 LTS (HWE)",
+    taskVersion: "6.14 kernel",
+    status: "INTERIM_RELEASE",
+  },
+  {
     startDate: new Date("2025-04-01T00:00:00"),
     endDate: new Date("2026-01-01T00:00:00"),
     taskName: "25.04",
@@ -1266,6 +1273,7 @@ export var desktopServerReleaseNames = [
 ];
 
 export var kernelReleaseNames = [
+  "24.04.3 LTS (HWE)",
   "25.04",
   "24.04.2 LTS (HWE)",
   "24.10",
@@ -1284,6 +1292,7 @@ export var kernelReleaseNames = [
 
 export var kernelVersionNames = [
   "6.14",
+  "",
   "6.11",
   "",
   "6.8",

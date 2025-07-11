@@ -9,6 +9,7 @@ import flask
 import requests
 import talisker.requests
 from jinja2 import ChoiceLoader, FileSystemLoader
+import yaml
 
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
@@ -155,6 +156,7 @@ from webapp.views import (
     build_engage_index,
     build_engage_page,
     build_engage_pages_sitemap,
+    build_engage_pages_metadata,
     build_tutorials_index,
     build_tutorials_query,
     download_server_steps,
@@ -485,6 +487,9 @@ app.add_url_rule(
 )
 
 app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
+with open("meganav.yaml") as meganav_file:
+    meganav = yaml.load(meganav_file.read(), Loader=yaml.FullLoader)
+
 app.add_url_rule(
     "/search",
     "search",
@@ -493,6 +498,7 @@ app.add_url_rule(
         session=session,
         template_path="search.html",
         search_engine_id=search_engine_id,
+        featured=meganav,
     ),
 )
 
@@ -636,6 +642,11 @@ engage_pages = EngagePages(
 app.add_url_rule(
     "/engage/sitemap.xml",
     view_func=build_engage_pages_sitemap(engage_pages),
+)
+
+app.add_url_rule(
+    "/engage/metadata.json",
+    view_func=build_engage_pages_metadata(engage_pages),
 )
 
 app.add_url_rule(
@@ -1181,7 +1192,7 @@ def render_security_standards_blogs():
         blogs.get_index()["articles"], key=lambda x: x["date"]
     )
     return flask.render_template(
-        "/security/security-standards.html", blogs=sorted_articles
+        "/security/standards/index.html", blogs=sorted_articles
     )
 
 

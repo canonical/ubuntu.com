@@ -64,7 +64,7 @@
       <hr class="p-rule is-fixed-width" />
       <div class="row--50-50">
         <div class="col">
-          <h2>Benefits of Ubuntu<br class="u-hide--medium"/> for confidential computing</h2>
+          <h2>AMD SEV SNP is available<br class="u-hide--medium"/> for both the host and guest</h2>
         </div>
         <div class="col">
           <ul class="p-list--divided">
@@ -72,6 +72,18 @@
             <li class="p-list__item is-ticked">Secure your workloads in untrusted environments</li>
             <li class="p-list__item is-ticked">Build data clean rooms for collaborative AI analytics</li>
           </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-section">
+      <hr class="p-rule is-fixed-width" />
+      <div class="row--50-50">
+        <div class="col">
+          <h2>Benefits of Ubuntu<br class="u-hide--medium"/> for confidential computing</h2>
+        </div>
+        <div class="col">
+          <p>Ubuntu now supports AMD SEV-SNP on virtualization hosts, thanks to its  kernel 6.14 and QEMU 9.2. This will be key to enable enterprises to deploy confidential VMs in on-premise data centers using Ubuntu as both the host and guest operating system.</p>
         </div>
       </div>
     </section>
@@ -102,7 +114,7 @@
         {%- endif -%}
 
         {%- if slot == 'list_item_title_1' -%}
-          <h3 class="p-heading--5">Private preview available on Ubuntu 24.04</h3>
+          <h3 class="p-heading--5">Private preview available on Ubuntu 25.04</h3>
         {%- endif -%}
 
         {%- if slot == 'list_item_description_1' -%}
@@ -114,7 +126,7 @@
         {%- endif -%}
 
         {%- if slot == 'list_item_description_2' -%}
-          <p>We support a 6.8 kernel, derived from the 24.04 generic kernel, and offer essential user space components accessible through PPAs, such as Libvirt 9.6, and QEMU 8.0. We also offer a set of user-friendly scripts to simplify the creation of confidential environments with just a few commands.</p>
+          <p>We support a 6.8 kernel, derived from the 25.04 generic kernel, and offer essential user space components accessible through PPAs, QEMU 9.0. We also offer a set of user-friendly scripts to simplify the creation of confidential environments with just a few commands.</p>
         {%- endif -%}
 
         {%- if slot == 'list_item_title_3' -%}

@@ -68,7 +68,7 @@ class TestBlogNotice(VCRTestCase):
             )
             self.assertTrue(
                 re.search(
-                    r"last\s+updated\s+3\s+year\s+s\s+ago",
+                    r"last\s+updated\s+3\s+years\s+ago",
                     three_years_old_notice.text,
                 )
             )

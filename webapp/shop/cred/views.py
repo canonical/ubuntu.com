@@ -7,7 +7,6 @@ import json
 import os
 import html
 from webapp.shop.api.ua_contracts.api import (
-    AccessForbiddenError,
     UAContractsAPIErrorView,
     UAContractsUserHasNoAccount,
 )
@@ -848,6 +847,7 @@ def cred_your_exams(
         else:
             exam_contracts = []
 
+    exam_contracts = exam_contracts if exam_contracts is not None else []
     cue_products = get_cue_products(type="exam").get_json()
     productListingID = None
     if cue_products and len(cue_products) > 0:
@@ -855,60 +855,54 @@ def cred_your_exams(
     else:
         flask.abort(404)
 
-    account = None
-    try:
-        account = advantage_mapper.ensure_purchase_account(
-            "canonical-cube", user["email"]
-        )
-    except UAContractsUserHasNoAccount:
-        flask.current_app.extensions["sentry"].captureException(
-            extra={
-                "user_info": user_info(flask.session),
-                "request_url": flask.request.url,
-                "request_headers": flask.request.headers,
-            }
-        )
-        return flask.jsonify({}), 404
-    except AccessForbiddenError:
-        flask.current_app.extensions["sentry"].captureException(
-            extra={
-                "user_info": user_info(flask.session),
-                "request_url": flask.request.url,
-                "request_headers": flask.request.headers,
-            }
-        )
-        return flask.jsonify({"error": "access forbidden"}), 403
-
-    purchase_request = {
-        "accountID": account.id,
-        "purchaseItems": [
-            {
-                "productListingID": productListingID,
-                "metric": "active-machines",
-                "value": 1,
-            }
-        ],
-        "previousPurchaseID": "",
-        "coupon": None,
+    template_data = {
+        "agreement_notification": agreement_notification,
+        "show_cred_maintenance_alert": show_cred_maintenance_alert,
+        "cred_is_in_maintenance": cred_is_in_maintenance,
+        "cred_maintenance_start": cred_maintenance_start,
+        "cred_maintenance_end": cred_maintenance_end,
     }
-
     is_banned = True
-    banned_error = (
-        "invalid purchase: user has been banned "
-        + "from purchasing products in the canonical-cube marketplace"
-    )
-    try:
-        response = advantage_mapper.purchase_from_marketplace(
-            marketplace="canonical-cube",
-            purchase_request=purchase_request,
-            preview=True,
+    purchased_contracts = list(
+        filter(
+            lambda c: c["contractItem"]["reason"] == "purchase_made",
+            exam_contracts,
         )
+    )
+
+    if purchased_contracts:
+        account_id = purchased_contracts[0]["accountContext"]["accountID"]
+        preview_purchase_request = {
+            "accountID": account_id,
+            "purchaseItems": [
+                {
+                    "productListingID": productListingID,
+                    "metric": "active-machines",
+                    "value": 1,
+                }
+            ],
+            "previousPurchaseID": "",
+            "coupon": None,
+        }
+
+        banned_error = (
+            "invalid purchase: user has been banned "
+            + "from purchasing products in the canonical-cube marketplace"
+        )
+        try:
+            response = advantage_mapper.purchase_from_marketplace(
+                marketplace="canonical-cube",
+                purchase_request=preview_purchase_request,
+                preview=True,
+            )
+            is_banned = False
+        except Exception as e:
+            if hasattr(e, "response") and e.response is not None:
+                error = e.response.json().get("message", "Unknown error")
+                if error != banned_error:
+                    is_banned = False
+    else:
         is_banned = False
-    except Exception as e:
-        if hasattr(e, "response") and e.response is not None:
-            error = e.response.json().get("message", "Unknown error")
-            if error != banned_error:
-                is_banned = False
 
     exams_in_progress = []
     exams_scheduled = []
@@ -1145,12 +1139,8 @@ def cred_your_exams(
     response = flask.make_response(
         flask.render_template(
             "credentials/your-exams.html",
-            agreement_notification=agreement_notification,
+            **template_data,
             exams=exams,
-            show_cred_maintenance_alert=show_cred_maintenance_alert,
-            cred_is_in_maintenance=cred_is_in_maintenance,
-            cred_maintenance_start=cred_maintenance_start,
-            cred_maintenance_end=cred_maintenance_end,
             is_banned=is_banned,
         )
     )

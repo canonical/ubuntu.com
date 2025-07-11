@@ -1,11 +1,23 @@
 import base64
 import os
-from typing import Optional
 import urllib.parse as urlparse
-import requests
+from typing import Optional
+
 import flask
+import requests
 
 CANONICAL_CLA_API_URL = os.getenv("CANONICAL_CLA_API_URL")
+
+ALLOWED_ENDPOINTS = [
+    "/github/login",
+    "/github/logout",
+    "/github/profile",
+    "/launchpad/login",
+    "/launchpad/logout",
+    "/launchpad/profile",
+    "/cla/individual/sign",
+    "/cla/organization/sign",
+]
 
 
 def get_query_param(url, key, is_base64=False) -> Optional[str]:
@@ -28,6 +40,31 @@ def update_query_params(url: str, **params) -> str:
     return urlparse.urlunparse(url_parts)
 
 
+def validate_agreement_url(url: str) -> str:
+    """
+    Validate and sanitize agreement_url to prevent open redirect
+    vulnerabilities.
+    Only allow relative URLs or URLs with the same hostname as
+    the current request.
+    Returns the validated URL or defaults to "/legal/contributors/agreement".
+    """
+    fallback_url = "/legal/contributors/agreement"
+    if not url:
+        return fallback_url
+
+    parsed = urlparse.urlparse(url)
+
+    # Allow relative URLs
+    if not parsed.scheme and not parsed.netloc:
+        return fallback_url
+
+    # Allow URLs with the same hostname as the current request
+    if parsed.hostname and flask.request.host.lower() != parsed.netloc.lower():
+        return fallback_url
+
+    return url
+
+
 def canonical_cla_api_github_login():
     """
     The Canonical CLA API will redirect the user to
@@ -36,8 +73,7 @@ def canonical_cla_api_github_login():
     agreement_url = get_query_param(
         flask.request.url, "agreement_url", is_base64=True
     )
-    if not agreement_url:
-        return flask.redirect("/legal/contributors/agreement")
+    agreement_url = validate_agreement_url(agreement_url)
 
     access_token = get_query_param(flask.request.url, "access_token")
     github_error = get_query_param(flask.request.url, "github_error")
@@ -61,10 +97,10 @@ def canonical_cla_api_github_logout():
     The Canonical CLA API will redirect the user
     to this view once the cookie session is cleared.
     """
-    agreement_url = (
-        get_query_param(flask.request.url, "agreement_url", is_base64=True)
-        or "/legal/contributors/agreement"
+    agreement_url = get_query_param(
+        flask.request.url, "agreement_url", is_base64=True
     )
+    agreement_url = validate_agreement_url(agreement_url)
     response = flask.redirect(agreement_url)
     response.delete_cookie("github_oauth2_session", httponly=True)
     response.cache_control.no_store = True
@@ -79,8 +115,7 @@ def canonical_cla_api_launchpad_login():
     agreement_url = get_query_param(
         flask.request.url, "agreement_url", is_base64=True
     )
-    if not agreement_url:
-        return flask.redirect("/legal/contributors/agreement")
+    agreement_url = validate_agreement_url(agreement_url)
 
     response = flask.redirect(agreement_url)
 
@@ -106,10 +141,10 @@ def canonical_cla_api_launchpad_logout():
     The Canonical CLA API will redirect the user
     to this view once the cookie session is cleared.
     """
-    agreement_url = (
-        get_query_param(flask.request.url, "agreement_url", is_base64=True)
-        or "/legal/contributors/agreement"
+    agreement_url = get_query_param(
+        flask.request.url, "agreement_url", is_base64=True
     )
+    agreement_url = validate_agreement_url(agreement_url)
     response = flask.redirect(agreement_url)
     response.delete_cookie("launchpad_oauth_session", httponly=True)
     response.cache_control.no_store = True
@@ -125,6 +160,22 @@ def canonical_cla_api_proxy():
     if encoded_request_url is None:
         return flask.abort(400)
     request_url = base64.b64decode(encoded_request_url).decode("utf-8")
+
+    # Security check: Validate that the request_url
+    # is in the allowed endpoints list
+    # Parse the URL to extract just the path for validation
+    parsed_url = urlparse.urlparse(request_url)
+    request_path = parsed_url.path
+
+    if request_path not in ALLOWED_ENDPOINTS:
+        error_response = flask.make_response(
+            {"detail": "Endpoint not allowed"}
+        )
+        error_response.headers["Content-Type"] = "application/json"
+        error_response.status_code = 403
+        error_response.cache_control.no_store = True
+        return error_response
+
     client_ip = flask.request.headers.get(
         "X-Real-IP", flask.request.remote_addr
     )

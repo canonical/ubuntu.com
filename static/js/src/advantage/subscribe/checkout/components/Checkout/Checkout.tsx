@@ -125,7 +125,7 @@ const Checkout = ({ products, action, coupon }: Props) => {
                           />
                         ),
                       },
-                      ...(product?.price?.value == 0
+                      ...(product?.price?.value == 0 || product?.isFree
                         ? []
                         : [
                             {
