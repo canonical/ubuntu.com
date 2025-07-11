@@ -19,6 +19,10 @@
 
 {% block content %}
   <style>
+    [id] {
+      scroll-margin-top: 3.5rem;
+    }
+
     .bar-chart-container {
       display: flex;
       position: relative;
@@ -306,8 +310,7 @@
         </div>
         <div class="col">
           <div>
-
-            <div class="bar-chart-container" style="overflow-x:auto;">
+            <div class="bar-chart-container">
               <div class="bar-chart">
                 <h3 class="p-heading--5">Public Cloud</h3>
                 <div class="bars">
@@ -927,13 +930,14 @@
             Discover how we can assist you on your OpenStack migration journey. Our team of cloud experts is happy to answer any questions you might have.
           </p>
           <div class="p-cta-block">
-            <a class="p-button js-invoke-modal" href="/openstack/contact-us?product=openstack">Contact us</a>
+            <a class="p-button js-invoke-modal"
+               href="/openstack/contact-us?product=openstack">Contact us</a>
           </div>
         </div>
       </div>
     </div>
   </section>
- 
+
   <script src="{{ versioned_static('js/dist/cloud-price-slider.js') }}" defer></script>
 
   <!-- Set default Marketo information for contact form below-->
