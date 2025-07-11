@@ -12,13 +12,13 @@ As a Robot Operating System (ROS) Expanded Security Maintenance (ESM) customer, 
 
 ROS scope is included in Ubuntu Pro. As an Essential, Standard or Advanced customer, you are also entitled to the benefits and services for ROS as described below.
 
-## ROS ESM Service and ROS Support Scope
+## ROS ESM Service Scope
 
 1. ROS ESM Service
 
    1. ROS ESM Service provides:
 
-      1. Available High and Critical CVE fixes for a number of core ROS packages for ROS 1 Kinetic and Melodic, and ROS 2 Foxy. This includes packages in the [REP-142](https://www.ros.org/reps/rep-0142.html) '[ros_base](https://www.ros.org/reps/rep-0142.html#ros-base)' and a majority of the '[desktop](https://www.ros.org/reps/rep-0142.html#desktop-variants)' metapackages for each ROS distribution.
+      1. Available High and Critical CVE fixes for a number of core ROS packages for ROS 1 Kinetic, Melodic and Noetic, and ROS 2 Foxy. This includes packages in the [REP-142](https://www.ros.org/reps/rep-0142.html) '[ros_base](https://www.ros.org/reps/rep-0142.html#ros-base)' and a majority of the '[desktop](https://www.ros.org/reps/rep-0142.html#desktop-variants)' metapackages for each ROS distribution.
 
    2. ROS ESM Service expressly excludes:
 
