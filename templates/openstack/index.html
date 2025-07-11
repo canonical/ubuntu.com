@@ -25,7 +25,6 @@
     }
 
     .bar-chart {
-      width: 200px;
       width: 100%;
     }
 
@@ -70,6 +69,10 @@
       justify-content: space-between;
       align-items: center;
       gap: 0.5rem;
+    }
+
+    .vm-table {
+      min-width: 24rem;
     }
   </style>
 
@@ -304,7 +307,7 @@
         <div class="col">
           <div>
 
-            <div class="bar-chart-container">
+            <div class="bar-chart-container" style="overflow-x:auto;">
               <div class="bar-chart">
                 <h3 class="p-heading--5">Public Cloud</h3>
                 <div class="bars">
@@ -393,8 +396,8 @@
         </div>
       </div>
       <div class="row--25-75-on-large">
-        <div class="col u-align--center">
-          <table aria-label="Comparison table for pricing of VMs" class="has-overflow">
+        <div class="col u-align--center" style="overflow-x:auto;">
+          <table aria-label="Comparison table for pricing of VMs" class="vm-table">
             <thead>
               <tr>
                 <th>VM flavour</th>
