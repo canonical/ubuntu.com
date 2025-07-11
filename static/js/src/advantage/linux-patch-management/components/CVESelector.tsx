@@ -41,7 +41,7 @@ const CVESelector = ({
         </div>
         <div className="p-form__group">
           <label className="p-form__label" htmlFor="packageFilter">
-            Package
+            Package category
           </label>
           <select
             aria-label="Filter by package"
