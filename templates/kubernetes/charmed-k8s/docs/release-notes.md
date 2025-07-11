@@ -13,6 +13,22 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+# 1.33+ck1
+
+### July 8, 2025 - `charmed-kubernetes --channel 1.33/stable`
+
+## Notable Fixes
+
+The following charms can now control whether or not they ignore Juju's model
+config `juju-*-proxy` based on the charm config `web-proxy-enable` on each charm.
+* `openstack-integrator`
+* `openstack-cloud-controller`
+* `cinder-csi`
+
+### Openstack Integrator
+* [LP#2110221](https://launchpad.net/bugs/2110221) Adjustment to charm config or
+cloud credentials will trigger a relation changed events on the `openstack` interface.
+
 # 1.33
 
 ### June 23, 2025 - `charmed-kubernetes --channel 1.33/stable`
