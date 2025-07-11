@@ -156,6 +156,7 @@ from webapp.views import (
     build_engage_index,
     build_engage_page,
     build_engage_pages_sitemap,
+    build_engage_pages_metadata,
     build_tutorials_index,
     build_tutorials_query,
     download_server_steps,
@@ -514,7 +515,7 @@ app.add_url_rule(
 blog_views = BlogViews(
     api=BlogAPI(session=session, thumbnail_width=555, thumbnail_height=311),
     excluded_tags=[3184, 3265, 3408, 3960, 4491],
-    per_page=14,
+    per_page=11,
     blog_title="Ubuntu blog",
 )
 app.add_url_rule(
@@ -641,6 +642,11 @@ engage_pages = EngagePages(
 app.add_url_rule(
     "/engage/sitemap.xml",
     view_func=build_engage_pages_sitemap(engage_pages),
+)
+
+app.add_url_rule(
+    "/engage/metadata.json",
+    view_func=build_engage_pages_metadata(engage_pages),
 )
 
 app.add_url_rule(
@@ -1186,7 +1192,7 @@ def render_security_standards_blogs():
         blogs.get_index()["articles"], key=lambda x: x["date"]
     )
     return flask.render_template(
-        "/security/security-standards.html", blogs=sorted_articles
+        "/security/standards/index.html", blogs=sorted_articles
     )
 
 

@@ -6,27 +6,39 @@
   All the latest news on MAAS (Metal as a Service) - the smartest way to manage bare metal.
 {% endblock %}
 
-{% block body_class %}
-  is-paper
-{% endblock body_class %}
-
 {% block content %}
 
-  {% with title="MAAS", subtitle='All the latest news on MAAS<br /> &ndash; the smartest way to manage bare metal.', cta_link="https://maas.io", cta_text="Learn more about MAAS" %}
-  {% include 'blog/shared/_topic-header.html' %}
-{% endwith %}
-
-  <section class="p-section" id="posts-list">
-    <div class="row">
-      {% for article in articles %}
-        {% include 'blog/blog-card.html' %}
-      {% endfor %}
+  <section class="p-strip--suru-blog-header is-dark">
+    <div class="u-fixed-width">
+      <h1>
+        {{ image(url="https://assets.ubuntu.com/v1/4fac1d52-MAAS-Logo.svg",
+                alt="MAAS",
+                height="50",
+                width="200",
+                hi_def=True,
+                loading="auto") | safe
+        }}
+      </h1>
+      <h2 class="p-heading--4">
+        All the latest news on MAAS
+        <br />
+        &ndash; the smartest way to manage bare metal.
+      </h2>
+      <p>
+        <a class="p-link--inverted" href="https://maas.io">Learn more about MAAS</a>
+      </p>
     </div>
   </section>
 
-  {% with %}
-    {% set total_pages = total_pages %}
-    {% set current_page = current_page %}
-    {% include "blog/shared/_pagination.html" %}
-  {% endwith %}
+  <section class="p-strip is-shallow" id="posts-list">
+    {% include 'blog/posts.html' %}
+  </section>
+
+  <section class="p-strip is-shallow">
+    {% with %}
+      {% set total_pages = total_pages %}
+      {% set current_page = current_page %}
+      {% include "shared/_pagination.html" %}
+    {% endwith %}
+  </section>
 {% endblock %}

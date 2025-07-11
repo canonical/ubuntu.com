@@ -1,57 +1,64 @@
 {% extends "templates/one-column.html" %}
-
 {% block title %}Ubuntu Blog{% endblock %}
 
 {% block extra_metatags %}
-  <link rel="alternate"
-        type="application/rss+xml"
-        href="/blog/feed"
-        title="Ubuntu.com's Blog RSS feed" />
+  <link rel="alternate" type="application/rss+xml"  href="/blog/feed" title="Ubuntu.com's Blog RSS feed">
 {% endblock %}
 
-{% block body_class %}
-  is-paper
-{% endblock body_class %}
+{% block content%}
 
-{% block content %}
+{% if current_page and current_page == 1 and featured_articles %}
+  {% include "blog/featured-articles.html" %}
+{% endif %}
 
-  <div class="p-strip">
-    <div class="row">
-      <div class="col-9 col-start-large-4 col-medium-4 col-start-medium-3">
-        <h1>Blog</h1>
+  <section class="p-strip is-shallow" id="posts-list">
+    {% with topic="" %}{% include "blog/filters.html" %}{% endwith %}
+    <div class="row u-equal-height u-clearfix">
+    {% for article in articles %}
+      {% if loop.index in [1,2] %}
+        {% with summary_visible=True %}{% include "blog/blog-card.html" %}{% endwith %}
+      {% elif loop.index == 3 %}
+        <div class="col-4 col-4 col-medium-2">
+          {% include 'blog/newsletter-form.html' %}
+        </div>
       </div>
-    </div>
-  </div>
-
-  {% if current_page and current_page == 1 %}
-    {% if featured_articles %}
-      {% include "blog/featured-articles.html" %}
-    {% endif %}
-    <div class="row p-section">
-      <hr class="p-rule" />
-      <div class="col-3 col-medium-2">
-        <h2>
-          Newsletter
-          <br class="u-hide--small" />
-          signup
-        </h2>
-      </div>
-
-      <div class="col-9 col-medium-4">{% include 'blog/newsletter-form.html' %}</div>
-    </div>
-  {% endif %}
-  <section class="p-section" id="posts-list">
-    <div class="row">
-      {% for article in articles %}
+      <div class="row u-equal-height u-clearfix">
         {% include 'blog/blog-card.html' %}
-      {% endfor %}
+      {% elif (loop.index +1) % 3 == 0 and loop.index > 3 %}
+        {% include 'blog/blog-card.html' %}
+        </div>
+        <div class="row u-equal-height u-clearfix">
+      {% else %}
+        {% include 'blog/blog-card.html' %}
+      {% endif %}
+    {% endfor %}
     </div>
   </section>
 
-  {% with %}
-    {% set total_pages = total_pages %}
-    {% set current_page = current_page %}
-    {% include "blog/shared/_pagination.html" %}
-  {% endwith %}
+  {% if current_page and current_page == 1 and upcoming %}
+    <section class="p-strip--light">
+      <div class="u-fixed-width">
+        <h4>Events and webinars</h4>
+      </div>
+
+      <div class="row u-equal-height u-clearfix">
+        {% for article in upcoming %}
+          {% include 'blog/blog-card-upcoming.html' %}
+        {% endfor %}
+      </div>
+
+      <div class="u-fixed-width">
+        <p><a href="/blog/upcoming">See more&nbsp;&rsaquo;</a></p>
+      </div>
+    </section>
+  {% endif %}
+
+  <section class="p-strip is-shallow">
+    {% with %}
+      {% set total_pages = total_pages %}
+      {% set current_page = current_page %}
+      {% include "shared/_pagination.html" %}
+    {% endwith %}
+  </section>
 
 {% endblock content %}

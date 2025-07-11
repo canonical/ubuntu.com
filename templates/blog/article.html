@@ -8,9 +8,7 @@
 
 {# Change canonical URL for "snapcraft.io" articles (2996 is the ID of the "snapcraft.io" tag) #}
 
-{% block body_class %}
-  is-paper blog-article
-{% endblock body_class %}
+{% block body_class %}blog-article{% endblock %}
 
 {%- block canonical_url -%}
   {%- if article.author and article.author.id == 217 -%}
@@ -45,8 +43,7 @@
       }
       "image": "{{ article.image.source_url }}",
       {
-        %
-        endif %
+        % endif %
       }
       "url": "{{ request.url }}",
       "publisher": {
@@ -58,119 +55,118 @@
 {% endblock %}
 
 {% block content %}
-  <article class="p-section--shallow">
-    <section class="p-strip">
-      <header class="row">
-        <div class="aside col-3 col-medium-2">
+  <article>
+    <header class="p-strip--image is-shallow"
+            style="background-image: url(https://assets.ubuntu.com/v1/f8a323a7-image-background-paper.png)">
+      <div class="row">
+        <div class="col-8">
+          <h1>{{ article.title.rendered|safe }}</h1>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-8">
           <div class="p-media-object">
-            {% if article.author %}
-              {% if article.author and article.author.id == 217 %}
-                <img src="https://assets.ubuntu.com/v1/f16c40d0-Favicon+-+CoF.svg"
-                     class="p-media-object__image"
-                     alt=""
-                     style="align-self: center" />
-              {% else %}
-                <img src="{{ article.author.avatar_urls['96'] }}"
-                     class="p-media-object__image is-round"
-                     alt=""
-                     style="align-self: center" />
-              {% endif %}
+            {% if article.author and article.author.id == 217 %}
+              <img src="https://assets.ubuntu.com/v1/f16c40d0-Favicon+-+CoF.svg"
+                   class="p-media-object__image"
+                   alt="" />
+            {% else %}
+              <img src="{{ article.author.avatar_urls['96'] }}"
+                   class="p-media-object__image is-round"
+                   alt="" />
             {% endif %}
 
             <div class="p-media-object__details">
-              <p class="u-no-margin--bottom">
-                {% if article.author %}
-                  <span class="p-heading--5">
-                    <a href="/blog/author/{{ article.author.slug }}"
-                       title="More about {{ article.author.name }}">{{ article.author.name }}</a>
-                  </span>
-                  <br />
-                {% endif %}
-                <span>on {{ article.date }}</span>
-              </p>
+              {% if article.author %}
+                <h3 class="p-media-object__title">
+                  <a href="/blog/author/{{ article.author.slug }}"
+                     title="More about {{ article.author.name }}">{{ article.author.name }}</a>
+                </h3>
+              {% endif %}
+              <p class="p-media-object__content">on {{ article.date }}</p>
             </div>
           </div>
         </div>
-        <div class="col-9 col-medium-4">
-          <div class="p-section--shallow">
-            <h1>{{ article.title.rendered|safe }}</h1>
-          </div>
 
-          {% if tags %}
-            <div class="p-section--shallow">
-              {% for tag in tags %}
-                <a class="p-chip--information" href="/blog/tag/{{ tag.slug }}">
-                  <span class="p-chip__value">{{ tag.name }}</span>
-                </a>
-              {% endfor %}
-            </div>
-          {% endif %}
-
-          <ul class="p-inline-list u-no-margin--bottom"
-              style="display: flex;
-                     align-items: start">
+        <div class="col-4">
+          <ul class="p-inline-list-icons u-no-padding--left u-no-margin--left">
             <li class="p-inline-list__item">Share on:</li>
+
             <li class="p-inline-list__item">
               <a class="p-icon--facebook"
+                 aria-label="Share on Facebook"
                  title="Share on Facebook"
-                 href="https://www.facebook.com/sharer/sharer.php?u=https://www.canonical.com/blog/{{ article.slug }}">
+                 href="https://www.facebook.com/sharer/sharer.php?u=https://www.ubuntu.com/blog/{{ article.slug }}">
                 Facebook
               </a>
             </li>
+
             <li class="p-inline-list__item">
               <a class="p-icon--twitter"
-                 aria-label="X (formerly Twitter)"
-                 title="Share on X (formerly Twitter)"
-                 href="https://twitter.com/share?text={{ article.title.rendered|safe|urlencode }}&amp;url=https://www.canonical.com/blog/{{ article.slug }}&amp;hashtags=ubuntu">
-                X (formerly Twitter)
+                 title="Share on Twitter"
+                 href="https://twitter.com/share?text={{ article.title.rendered|safe|urlencode }}&amp;url=https://www.ubuntu.com/blog/{{ article.slug }}&amp;hashtags=ubuntu">
+                Twitter
               </a>
             </li>
+
             <li class="p-inline-list__item">
               <a class="p-icon--linkedin"
+                 aria-label="Share on LinkedIn"
                  title="Share on LinkedIn"
-                 href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.canonical.com/blog/{{ article.slug }}&amp;title={{ article.title.rendered|safe|urlencode }}">
+                 href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.ubuntu.com/blog/{{ article.slug }}&amp;title={{ article.title.rendered|safe|urlencode }}">
                 LinkedIn
               </a>
             </li>
           </ul>
         </div>
-      </header>
-    </section>
-    <hr class="p-rule is-fixed-width" />
-    <div class="row">
-      <section class="p-section col-9 col-start-large-4">
-        {% if 'difference_in_years' in blog_notice %}
-          <div class="p-notification--information">
-            <div class="p-notification__content">
-              <p class="p-notification__message" id="date-notice">
-                {% if blog_notice.updated %}
+      </div>
+      {% if tags %}
+        <div class="row">
+          <div class="col-10">
+            <p>
+              <strong>Tags:</strong>
+              {% for tag in tags %}
+                <a href="/blog/tag/{{ tag.slug }}">{{ tag.name }}</a>
+                {% if not loop.last %},{% endif %}
+              {% endfor %}
+            </p>
+          </div>
+        </div>
+      {% endif %}
+    </header>
+
+    <section class="p-strip is-shallow" style="overflow-x: initial;">
+      <div class="row u-equal-height">
+        <div class="col-8">
+          {% if 'difference_in_years' in blog_notice %}
+            <div class="p-notification--information is-borderless is-inline u-no-margin--bottom">
+              <div class="p-notification__content">
+                <p class="p-notification__message u-text--muted" id="date-notice">
+                  {% if blog_notice.updated %}
                   This article was last updated <strong>{{ blog_notice.difference_in_years }} year
-                  {% if blog_notice.difference_in_years > 1 %}s{% endif %}
+                  {%- if blog_notice.difference_in_years > 1 -%}s{%- endif %}
                   ago</strong>.
                 {% else %}
                   This article is more than <strong>{{ blog_notice.difference_in_years }} year
-                  {% if blog_notice.difference_in_years > 1 %}s{% endif %}
+                  {%- if blog_notice.difference_in_years > 1 -%}s{%- endif %}
                   old</strong>.
                 {% endif %}
               </p>
+              </div>
             </div>
+            <hr class="p-rule--muted" />
+          {% endif %}
+          <div class="p-post__content">{{ article.content.rendered|safe }}</div>
+        </div>
+        {% if article.slug != 'canonical-standing-with-ukraine' %}
+          <div class="col-4">
+            {% include 'blog/product-cards.html' %}
+            <div>{% include 'blog/newsletter-form.html' %}</div>
           </div>
         {% endif %}
-        {{ article.content.rendered|safe }}
-      </section>
-    </div>
-    <div class="row p-section">
-      <hr class="p-rule" />
-      <div class="col-3 col-medium-2">
-        <h2>
-          Newsletter
-          <br class="u-hide--small" />
-          signup
-        </h2>
       </div>
-
-      <div class="col-9 col-medium-4">{% include 'blog/newsletter-form.html' %}</div>
-    </div>
+    </section>
   </article>
 
   {% for tag in tags %}
@@ -201,15 +197,23 @@
   {% endfor %}
 
   {% if related_articles %}
-
-    <section class="p-section--deep" id="posts-list">
+    <section class="p-strip--light is-shallow">
       <div class="row">
-        <h3 class="p-text--small-caps">Related posts</h3>
-        {% for article in related_articles %}
-          {% include 'blog/blog-card.html' %}
+        <div class="col-8">
+          <h3>Related posts</h3>
+        </div>
+      </div>
+
+      <div class="row p-divider">
+        {% for related_article in related_articles %}
+          <div class="col-4 p-divider__block">
+            <h4>
+              <a href="/blog/{{ related_article.slug }}">{{ related_article.title.rendered|safe }}</a>
+            </h4>
+            <p>{{ related_article.excerpt.raw.replace('[…]', '') |truncate(162) }}</p>
+          </div>
         {% endfor %}
       </div>
     </section>
-
   {% endif %}
 {% endblock %}

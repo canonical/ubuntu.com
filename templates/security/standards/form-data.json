@@ -1,0 +1,342 @@
+{
+    "form": {
+      "/security-standards": {
+        "templatePath": "/security/standards/index.html",
+        "childrenPaths": [
+          "/security/fips",
+          "/security/disa-stig",
+          "/security/cis",
+          "/security/cmmc",
+          "/security/fedramp"
+        ],
+        "isModal": true,
+        "modalId": "security-standards-modal",
+        "formData": {
+          "title": "Contact us about compliance with Ubuntu Pro",
+          "introText": "",
+          "formId": "6304",
+          "returnUrl": "/security/standards#contact-form-success",
+          "lpUrl": "https://ubuntu.com/security/contact-us",
+          "product": ""
+        },
+        "fieldsets": [
+          {
+            "title": "Tell us about your project and what support you're looking for",
+            "id": "about-your-project",
+            "isRequired": true,
+            "fields": [
+              {
+                "type": "long-text",
+                "id": "about-your-project",
+                "label": "About your project"
+              }
+            ]
+          },
+          {
+            "title": "If you use Ubuntu, which version(s) are you using?",
+            "id": "ubuntu-versions",
+            "inputType": "checkbox-visibility",
+            "isRequired": true,
+            "fields": [
+              {
+                "fieldTitle": "LTS within standard support",
+                "options": [
+                  {
+                    "type": "checkbox",
+                    "id": "22-04",
+                    "value": "22.04 LTS",
+                    "label": "22.04 LTS"
+                  },
+                  {
+                    "type": "checkbox",
+                    "id": "20-04",
+                    "value": "20.04 LTS",
+                    "label": "20.04 LTS"
+                  }
+                ]
+              },
+              {
+                "fieldTitle": "LTS out of standard support",
+                "options": [
+                  {
+                    "type": "checkbox",
+                    "id": "18-04",
+                    "value": "18.04 LTS",
+                    "label": "18.04 LTS"
+                  },
+                  {
+                    "type": "checkbox",
+                    "id": "16-04",
+                    "value": "16.04 LTS",
+                    "label": "16.04 LTS"
+                  },
+                  {
+                    "type": "checkbox",
+                    "id": "14-04",
+                    "value": "14.04 LTS",
+                    "label": "14.04 LTS"
+                  }
+                ]
+              },
+              {
+                "fieldTitle": "Outdated or non-LTS releases",
+                "options": [
+                  {
+                    "type": "checkbox",
+                    "id": "22-10",
+                    "value": "22.10",
+                    "label": "non-LTS release"
+                  },
+                  {
+                    "type": "checkbox",
+                    "id": "12-04",
+                    "value": "12.04 LTS",
+                    "label": "12.04 LTS"
+                  }
+                ]
+              },
+              {
+                "fieldTitle": "Other",
+                "options": [
+                  {
+                    "type": "checkbox",
+                    "id": "dont-use-ubuntu-today",
+                    "value": "I don't use Ubuntu today",
+                    "label": "I don't use Ubuntu today"
+                  },
+                  {
+                    "type": "checkbox",
+                    "id": "i-dont'know",
+                    "value": "I don't know",
+                    "label": "I don't know"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "How many devices?",
+            "id": "how-many-machines",
+            "inputName": "how-many-machines-do-you-have",
+            "inputType": "radio",
+            "isRequired": true,
+            "fields": [
+              {
+                "type": "radio",
+                "id": "less-5-machines",
+                "value": "less than 5",
+                "label": "< 5 machines"
+              },
+              {
+                "type": "radio",
+                "id": "5-to-15-machines",
+                "value": "5 to 15 machines",
+                "label": "5 - 15 machines"
+              },
+              {
+                "type": "radio",
+                "id": "15-to-50-machines",
+                "value": "15 to 50 machines",
+                "label": "15 - 50 machines"
+              },
+              {
+                "type": "radio",
+                "id": "50-to-100-machines",
+                "value": "50 to 100 machines",
+                "label": "50 - 100 machines"
+              },
+              {
+                "type": "radio",
+                "id": "greater-than-100",
+                "value": "greater than 100",
+                "label": "> 100 machines"
+              }
+            ]
+          },
+          {
+            "title": "How do you consume open source?",
+            "id": "how-do-you-consume-open-source",
+            "inputType": "checkbox",
+            "fields": [
+              {
+                "type": "checkbox",
+                "id": "ubuntu-repositories",
+                "value": "Ubuntu repositories",
+                "label": "Ubuntu repositories"
+              },
+              {
+                "type": "checkbox",
+                "id": "github-upstream",
+                "value": "GitHub/Upstream",
+                "label": "GitHub/Upstream"
+              },
+              {
+                "type": "checkbox",
+                "id": "internally-approved-repository",
+                "value": "Internally approved repository",
+                "label": "Internally approved repository"
+              },
+              {
+                "type": "checkbox",
+                "id": "i-dont-know",
+                "value": "I don't know",
+                "label": "I don't know"
+              }
+            ]
+          },
+          {
+            "title": "Do you have specific compliance or hardening requirements?",
+            "id": "hardening-requirements",
+            "inputType": "checkbox",
+            "fields": [
+              {
+                "type": "checkbox",
+                "id": "cis-benchmark",
+                "value": "CIS Benchmark",
+                "label": "CIS Benchmark"
+              },
+              {
+                "type": "checkbox",
+                "id": "cmmc",
+                "value": "CMMC",
+                "label": "CMMC"
+              },
+              {
+                "type": "checkbox",
+                "id": "cra",
+                "value": "CRA",
+                "label": "CRA"
+              },
+              {
+                "type": "checkbox",
+                "id": "cyber-essentials",
+                "value": "Cyber Essentials",
+                "label": "Cyber Essentials"
+              },
+              {
+                "type": "checkbox",
+                "id": "disa-stig",
+                "value": "DISA-STIG",
+                "label": "DISA-STIG"
+              },
+              {
+                "type": "checkbox",
+                "id": "fedramp",
+                "value": "FedRAMP",
+                "label": "FedRAMP"
+              },
+              {
+                "type": "checkbox",
+                "id": "fips-140",
+                "value": "FIPS 140",
+                "label": "FIPS 140"
+              },
+              {
+                "type": "checkbox",
+                "id": "fisma",
+                "value": "FISMA",
+                "label": "FISMA"
+              },
+              {
+                "type": "checkbox",
+                "id": "hipaa",
+                "value": "HIPAA",
+                "label": "HIPAA"
+              },
+              {
+                "type": "checkbox",
+                "id": "ncsc",
+                "value": "NCSC",
+                "label": "NCSC"
+              },
+              {
+                "type": "checkbox",
+                "id": "nis2",
+                "value": "NIS2",
+                "label": "NIS2"
+              },
+              {
+                "type": "checkbox",
+                "id": "nist-800-53",
+                "value": "NIST 800-53",
+                "label": "NIST 800-53"
+              },              
+              {
+                "type": "checkbox",
+                "id": "pci",
+                "value": "PCI-DSS",
+                "label": "PCI-DSS"
+              }
+            ]
+          },
+          {
+            "title": "Who is responsible for tracking, testing and applying CVE patches in a timely manner?",
+            "id": "responsible-for-tracking",
+            "inputType": "checkbox",
+            "fields": [
+              {
+                "type": "checkbox",
+                "id": "individual-developers",
+                "value": "Individual developers",
+                "label": "Individual developers"
+              },
+              {
+                "type": "checkbox",
+                "id": "project-team",
+                "value": "The project team",
+                "label": "The project team"
+              },
+              {
+                "type": "checkbox",
+                "id": "third-party-vendor",
+                "value": "Third-party vendor",
+                "label": "Third-party vendor"
+              },
+              {
+                "type": "checkbox",
+                "id": "i-dont-know",
+                "value": "I don't know",
+                "label": "I don't know"
+              }
+            ]
+          },
+          {
+            "title": "Where have you heard about us?",
+            "id": "heard-about",
+            "fields": [
+              {
+                "type": "long-text",
+                "id": "heard-about",
+                "label": ""
+              }
+            ]
+          },
+          {
+            "title": "How should we get in touch?",
+            "id": "about-you",
+            "noCommentsFromLead": true,
+            "fields": [
+              {
+                "type": "tel",
+                "id": "phone",
+                "label": "Phone number",
+                "isRequired": false
+              },
+              {
+                "type": "text",
+                "id": "company",
+                "label": "Company",
+                "isRequired": true
+              },
+              {
+                "type": "text",
+                "id": "title",
+                "label": "Job title",
+                "isRequired": true
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }

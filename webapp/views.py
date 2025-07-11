@@ -531,6 +531,64 @@ def build_engage_pages_sitemap(engage_pages):
     return ep_sitemap
 
 
+def build_engage_pages_metadata(engage_pages):
+    """
+    Retrieve a all engage pages metadata as a single JSON structure.
+    The data is cached and refreshed once per day.
+    """
+    _cache = {"data": None, "last_update_date": None}
+
+    def get_metadata():
+        today = datetime.now().replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
+
+        if _cache["last_update_date"] != today or _cache["data"] is None:
+            all_pages = []
+            limit = 100
+            offset = 0
+            current_total = 1
+
+            while offset < current_total:
+                pages_list, total_count, active_count, current_total = (
+                    engage_pages.get_index(limit=limit, offset=offset)
+                )
+
+                for page in pages_list:
+                    if "path" in page and page["path"]:
+                        sanitized_page = {
+                            "topic_name": str(page.get("topic_name", "")),
+                            "path": str(page.get("path", "")),
+                            "form_id": str(page.get("form_id", "")),
+                            "webinar_code": str(page.get("webinar_code", "")),
+                            "resource_url": str(page.get("resource_url", "")),
+                            "author": str(
+                                page.get("author", "")
+                            ),  # Author doesn't exist yet
+                            "active": str(page.get("active", "")),
+                            "tags": str(page.get("tags", "")),
+                            "type": str(page.get("type", "")),
+                        }
+                        all_pages.append(sanitized_page)
+
+                offset += limit
+
+            all_pages_metadata = {
+                "total_count": total_count,
+                "pages": all_pages,
+            }
+
+            _cache["data"] = all_pages_metadata
+            _cache["last_update_date"] = today
+
+        response = flask.jsonify(_cache["data"])
+        response.headers["Cache-Control"] = "public, max-age=86400"
+
+        return response
+
+    return get_metadata
+
+
 def openstack_install():
     """
     OpenStack install docs
@@ -823,6 +881,9 @@ def shorten_acquisition_url(acquisition_url):
 def marketo_submit():
     form_fields = {}
     for key in flask.request.form:
+        # Skip keys that start with '_radio_' to avoid marketo errors
+        if key.startswith("_radio_"):
+            continue
         values = flask.request.form.getlist(key)
         value = ", ".join(values)
         if value:
@@ -898,14 +959,29 @@ def marketo_submit():
     if "country" in form_fields:
         enrichment_fields["country"] = form_fields["country"]
         form_fields.pop("country")
+    else:
+        try:
+            ip_location = ip_reader.get(client_ip)
+            if ip_location and "country" in ip_location:
+                enrichment_fields["country"] = ip_location["country"][
+                    "iso_code"
+                ]
+        except Exception:
+            pass
 
-    user_id = flask.request.cookies.get("user_id")
+    user_id = flask.request.cookies.get("user_id") or flask.request.form.get(
+        "user_id"
+    )
     if user_id:
         enrichment_fields["Google_Analytics_User_ID__c"] = user_id
+        form_fields.pop("user_id", None)
 
-    consent_info = flask.request.cookies.get("consent_info")
+    consent_info = flask.request.cookies.get(
+        "consent_info"
+    ) or flask.request.form.get("consent_info")
     if consent_info:
         enrichment_fields["Google_Consent_Mode__c"] = consent_info
+        form_fields.pop("consent_info", None)
 
     original_form_id = form_fields.get("formid", 4198)
     enrichment_fields["original_form_id"] = original_form_id
@@ -932,8 +1008,11 @@ def marketo_submit():
         ],
     }
 
-    encoded_utms = flask.request.cookies.get("utms")
+    encoded_utms = flask.request.cookies.get("utms") or flask.request.form.get(
+        "utms"
+    )
     if encoded_utms:
+        form_fields.pop("utms", None)
         utms = unquote(encoded_utms)
         utm_dict = dict(i.split(":", 1) for i in utms.split("&"))
         approved_utms = [
@@ -948,13 +1027,6 @@ def marketo_submit():
                 if k == "utm_content":
                     k = "utmcontent"
                 enrichment_fields[k] = v
-
-    try:
-        ip_location = ip_reader.get(client_ip)
-        if ip_location and "country" in ip_location:
-            enrichment_fields["country"] = ip_location["country"]["iso_code"]
-    except Exception:
-        pass
 
     enriched_payload = {
         "formId": "4198",
@@ -1069,7 +1141,9 @@ def marketo_submit():
             )
 
         if return_url:
-            return flask.redirect(f"{return_url}#contact-form-fail")
+            # Remove anchor from url
+            plain_url = return_url.split("#")[0]
+            return flask.redirect(f"{plain_url}#contact-form-fail")
         return flask.redirect("/#contact-form-fail")
 
     if referrer:

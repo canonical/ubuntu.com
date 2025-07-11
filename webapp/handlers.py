@@ -227,10 +227,17 @@ def init_handlers(app, sentry):
 
     @app.errorhandler(SecurityAPIError)
     def security_api_error(error):
+        message = "An error occurred while fetching security data"
+        try:
+            response_data = error.response.json()
+            message = response_data.get("message", message)
+        except (ValueError, AttributeError):
+            pass
+
         return (
             flask.render_template(
                 "security-error-500.html",
-                message=error.response.json().get("message"),
+                message=message,
             ),
             500,
         )
