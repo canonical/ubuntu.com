@@ -47,6 +47,9 @@ $colors--light-theme--border-low-contrast: rgba(
 // import flickity
 @import "flickity/dist/flickity";
 
+// import leaflet
+@import "leaflet/dist/leaflet";
+
 $color-shadow: rgba(0, 0, 0, 0.5) !default;
 
 // import site specific patterns and overrides
@@ -208,6 +211,10 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 .iti {
   margin-bottom: $input-margin-bottom;
   width: 100%;
+}
+
+.leaflet-control-attribution {
+  display: none;
 }
 
 // Bug fixes
