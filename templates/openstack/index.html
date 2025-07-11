@@ -394,7 +394,7 @@
       </div>
       <div class="row--25-75-on-large">
         <div class="col u-align--center">
-          <table aria-label="Comparison table for pricing of VMs">
+          <table aria-label="Comparison table for pricing of VMs" class="has-overflow">
             <thead>
               <tr>
                 <th>VM flavour</th>
@@ -410,7 +410,7 @@
                       <li class="p-accordion__group">
                         <div role="heading" aria-level="3" class="p-accordion__heading">
                           <button type="button"
-                                  class="p-accordion__tab"
+                                  class="p-accordion__tab u-fixed-width"
                                   id="tab1"
                                   aria-controls="tab1-section"
                                   aria-expanded="false">c.small</button>
@@ -439,7 +439,7 @@
                       <li class="p-accordion__group">
                         <div role="heading" aria-level="3" class="p-accordion__heading">
                           <button type="button"
-                                  class="p-accordion__tab"
+                                  class="p-accordion__tab u-fixed-width"
                                   id="tab2"
                                   aria-controls="tab2-section"
                                   aria-expanded="false">c.medium</button>
@@ -468,7 +468,7 @@
                       <li class="p-accordion__group">
                         <div role="heading" aria-level="3" class="p-accordion__heading">
                           <button type="button"
-                                  class="p-accordion__tab"
+                                  class="p-accordion__tab u-fixed-width"
                                   id="tab3"
                                   aria-controls="tab3-section"
                                   aria-expanded="false">c.large</button>
@@ -497,7 +497,7 @@
                       <li class="p-accordion__group">
                         <div role="heading" aria-level="4" class="p-accordion__heading">
                           <button type="button"
-                                  class="p-accordion__tab"
+                                  class="p-accordion__tab u-fixed-width"
                                   id="tab4"
                                   aria-controls="tab4-section"
                                   aria-expanded="false">c.xlarge</button>
@@ -556,129 +556,99 @@
     </div>
   </section>
 
-  <section class="p-section--shallow" id="get-your-openstack">
-    <div class="p-section u-fixed-width">
-      <hr class="p-rule" />
+  <section class="p-section" id="get-your-openstack">
+    <hr class="p-rule" />
 
-      <div class="u-fixed-width">
-        <div class="p-section--shallow">
-          <h2>Get your OpenStack</h2>
-        </div>
+    <div class="u-fixed-width">
+      <div class="p-section--shallow">
+        <h2>Get your OpenStack</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6 col-start-large-7">
+        <p>
+          Find the option that suits you best: <b>Who will manage your OpenStack?</b>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <hr class="is-muted" />
+      </div>
+    </div>
+
+    <div class="row p-section--shallow">
+      <div class="col-3 col-start-large-4">
+        <h3 class="p-heading--5 p-text--small-caps">
+          Canonical-managed
+          <br />
+          OpenStack
+        </h3>
       </div>
 
-      <div class="row">
-        <div class="col-6 col-start-large-7">
-          <p>
-            Find the option that suits you best: <b>Who will manage your OpenStack?</b>
-          </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-9 col-start-large-4">
-          <hr class="is-muted" />
-        </div>
-      </div>
+      <div class="col-6">
+        <p>
+          We deploy OpenStack for you and manage it 24/7. This includes typical daily maintenance tasks, incident and problem resolution, recurring upgrades and more. You will rest assured that your cloud is in good hands and benefit from a public cloud-like experience.
+        </p>
+        <p class="u-no-margin--bottom">
 
-      <div class="row p-section--shallow">
-        <div class="col-3 col-start-large-4">
-          <h3 class="p-heading--5 p-text--small-caps">
-            Canonical-managed
-            <br />
-            OpenStack
-          </h3>
-        </div>
-
-        <div class="col-6">
-          <p>
-            We deploy OpenStack for you and manage it 24/7. This includes typical daily maintenance tasks, incident and problem resolution, recurring upgrades and more. You will rest assured that your cloud is in good hands and benefit from a public cloud-like experience.
-          </p>
-          <p class="u-no-margin--bottom">
-
-            <a class="p-button" href="/openstack/contact-us">Order Canonical-managed OpenStack</a>
-          </p>
-          <p>
-            <a href="/openstack/managed">Learn more about Canonical-managed OpenStack&nbsp;›</a>
-          </p>
-        </div>
+          <a class="p-button js-invoke-modal" href="/openstack/contact-us">Order Canonical-managed OpenStack</a>
+        </p>
+        <p>
+          <a href="/openstack/managed">Learn more about Canonical-managed OpenStack&nbsp;›</a>
+        </p>
       </div>
-      <div class="row">
-        <div class="col-9 col-start-large-4">
-          <hr class="is-muted" />
-        </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <hr class="is-muted" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3 col-start-large-4">
+        <h3 class="p-heading--5 p-text--small-caps">
+          Self-managed
+          <br />
+          OpenStack
+        </h3>
       </div>
 
-      <div class="row">
-        <div class="col-3 col-start-large-4">
-          <h3 class="p-heading--5 p-text--small-caps">
-            Self-managed
-            <br />
-            OpenStack
-          </h3>
-        </div>
+      <div class="col-6">
+        <p>
+          You manage OpenStack yourself. We can still assist you with the design, help you make the right hardware choices, deploy OpenStack for you, provide full commercial support and get your team up to speed with professional training courses.
+        </p>
+        <div>
+          <h4 class="p-heading--5">Who will deploy your OpenStack?</h4>
 
-        <div class="col-6">
-          <p>
-            You manage OpenStack yourself. We can still assist you with the design, help you make the right hardware choices, deploy OpenStack for you, provide full commercial support and get your team up to speed with professional training courses.
-          </p>
-          <div>
-            <h4 class="p-heading--5">Who will deploy your OpenStack?</h4>
-            <ul class="p-list--divided">
-              <li class="p-list__item p-section--shallow">
-                <p class="p-text--small-caps">Canonical-deployed OpenStack</p>
-                <p>
-                  We deploy OpenStack for you. Together, we find the design that suits your use case best. We will share our best practices and reference hardware specifications. We will only hand over the cloud to you once we ensure the deployment process is fully automated and repeatable.
-                </p>
-                <p class="u-no-margin--bottom">
-                  <a class="p-button" href="/openstack/contact-us">Order Canonical-deployed OpenStack</a>
-                </p>
-                <p>
-                  <a href="/openstack/consulting">Learn more about Canonical-deployed OpenStack&nbsp;›</a>
-                </p>
-              </li>
-              <li class="p-list__item">
-                <p class="p-text--small-caps">Self-deployed OpenStack</p>
-                <p>
-                  You deploy OpenStack yourself. You will rely on public-facing materials only, such as product documentation, whitepapers, etc. Self-deployed clouds based on <a href="https://canonical.com/microstack">MicroStack</a> also qualify for full commercial support under any <a href="/pro">Ubuntu Pro + Support subscription</a>.
-                </p>
-                <p>
-                  <a class="p-button" href="/openstack/install">Deploy OpenStack yourself</a>
-                </p>
-                <p>
-                  Need something else?
-                  <br />
-                  Visit our <a href="/openstack/support">OpenStack support page</a> for other possible options and plans.
-                </p>
-              </li>
-            </ul>
-
-            <div class="p-section--shallow">
-              <hr class="p-rule--muted" />
-              <p class="p-text--small-caps">Canonical-deployed OpenStack</p>
-              <p>
-                We deploy OpenStack for you. Together, we find the design that suits your use case best. We will share our best practices and reference hardware specifications. We will only hand over the cloud to you once we ensure the deployment process is fully automated and repeatable.
-              </p>
-              <p class="u-no-margin--bottom">
-                <a class="p-button" href="/openstack/contact-us">Order Canonical-deployed OpenStack</a>
-              </p>
-              <p>
-                <a href="/openstack/consulting">Learn more about Canonical-deployed OpenStack&nbsp;›</a>
-              </p>
-            </div>
-            <div>
-              <hr class="p-rule--muted" />
-              <p class="p-text--small-caps">Self-deployed OpenStack</p>
-              <p>
-                You deploy OpenStack yourself. You will rely on public-facing materials only, such as product documentation, whitepapers, etc. Self-deployed clouds based on <a href="https://canonical.com/microstack">MicroStack</a> also qualify for full commercial support under any <a href="/pro">Ubuntu Pro + Support subscription</a>.
-              </p>
-              <p>
-                <a class="p-button" href="/openstack/install">Deploy OpenStack yourself</a>
-              </p>
-              <p>
-                Need something else?
-                <br />
-                Visit our <a href="/openstack/support">OpenStack support page</a> for other possible options and plans.
-              </p>
-            </div>
+          <div class="p-section--shallow p-list--divided">
+            <br class="u-hide" />
+            <p class="p-text--small-caps p-list__item">Canonical-deployed OpenStack</p>
+            <p>
+              We deploy OpenStack for you. Together, we find the design that suits your use case best. We will share our best practices and reference hardware specifications. We will only hand over the cloud to you once we ensure the deployment process is fully automated and repeatable.
+            </p>
+            <p class="u-no-margin--bottom">
+              <a class="p-button js-invoke-modal" href="/openstack/contact-us">Order Canonical-deployed OpenStack</a>
+            </p>
+            <p>
+              <a href="/openstack/consulting">Learn more about Canonical-deployed OpenStack&nbsp;›</a>
+            </p>
+          </div>
+          <div class="p-list--divided">
+            <br class="u-hide" />
+            <p class="p-text--small-caps p-list__item">Self-deployed OpenStack</p>
+            <p>
+              You deploy OpenStack yourself. You will rely on public-facing materials only, such as product documentation, whitepapers, etc. Self-deployed clouds based on <a href="https://canonical.com/microstack">MicroStack</a> also qualify for full commercial support under any <a href="/pro">Ubuntu Pro + Support subscription</a>.
+            </p>
+            <p>
+              <a class="p-button" href="/openstack/install">Deploy OpenStack yourself</a>
+            </p>
+            <p>
+              Need something else?
+              <br />
+              Visit our <a href="/openstack/support">OpenStack support page</a> for other possible options and plans.
+            </p>
           </div>
         </div>
       </div>
@@ -954,13 +924,13 @@
             Discover how we can assist you on your OpenStack migration journey. Our team of cloud experts is happy to answer any questions you might have.
           </p>
           <div class="p-cta-block">
-            <a class="p-button" href="/openstack/contact-us?product=openstack">Contact us</a>
+            <a class="p-button js-invoke-modal" href="/openstack/contact-us?product=openstack">Contact us</a>
           </div>
         </div>
       </div>
     </div>
   </section>
-
+ 
   <script src="{{ versioned_static('js/dist/cloud-price-slider.js') }}" defer></script>
 
   <!-- Set default Marketo information for contact form below-->
