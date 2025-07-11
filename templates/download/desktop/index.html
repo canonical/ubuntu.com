@@ -26,25 +26,25 @@
       </div>
     </div>
   </section>
-  <section class="p-section">
+  <article class="p-section">
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
-        <div class="p-section">
+        <header class="p-section">
           <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
-        </div>
+        </header>
         <div class="p-image-wrapper u-hide--small">
           {{ image(url="https://assets.ubuntu.com/v1/3b5fa561-mascot-numbat@2x.png",
                     alt="Noble Numbat",
                     width="182",
                     height="135",
                     hi_def=True,
-                    loading="auto") | safe
+                    loading="lazy") | safe
           }}
         </div>
       </div>
       <div class="col">
-        <div class="p-section--shallow">
+        <section class="p-section--shallow">
           <p>
             The latest <abbr title="Long-term support">LTS</abbr> version of Ubuntu, for desktop
             PCs and laptops. LTS stands for long-term support &mdash; which means five years of free security and
@@ -74,106 +74,69 @@
           <p class="p-text--small">
             For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors and past releases <a href="/download/alternative-downloads">check out our alternative downloads</a>.
           </p>
-        </div>
-        <!-- Start tab container -->
-        <nav class="p-tabs js-tabbed-content">
-          <ul class="p-tabs__list u-no-margin--bottom"
-              role="tablist"
-              data-maintain-hash="true">
-            <li class="p-tabs__item">
-              <a class="p-tabs__link"
-                 role="tab"
-                 aria-selected="true"
-                 id="release-notes-tab-{{ releases.lts.slug }}"
-                 href="#release-notes-{{ releases.lts.slug }}"
-                 aria-controls="release-notes-{{ releases.lts.slug }}">What's new</a>
-            </li>
-            <li class="p-tabs__item">
-              <a class="p-tabs__link"
-                 role="tab"
-                 aria-selected="false"
-                 id="system-requirements-tab-{{ releases.lts.slug }}"
-                 href="#system-requirements-{{ releases.lts.slug }}"
-                 aria-controls="system-requirements-{{ releases.lts.slug }}"
-                 tabindex="-1">System requirements</a>
-            </li>
-            <li class="p-tabs__item">
-              <a class="p-tabs__link"
-                 role="tab"
-                 aria-selected="false"
-                 id="how-to-install-tab-{{ releases.lts.slug }}"
-                 href="#how-to-install-{{ releases.lts.slug }}"
-                 aria-controls="how-to-install-{{ releases.lts.slug }}"
-                 tabindex="-1">How to install</a>
-            </li>
-          </ul>
-        </nav>
-        <!-- End tab container -->
-        <!-- tab 1 -->
-        <div id="release-notes-{{ releases.lts.slug }}"
-             class="p-tabs__content"
-             role="tabpanel"
-             aria-labelledby="release-notes-tab-{{ releases.lts.slug }}">
-          <ul class="p-list--divided">
-            <li class="p-list__item is-ticked">New Desktop installer with support for autoinstall</li>
-            <li class="p-list__item is-ticked">New App Center and Firmware Updater applications</li>
-            <li class="p-list__item is-ticked">GNOME 46 with support for quarter screen tiling</li>
-            <li class="p-list__item is-ticked">Advanced Active Directory Group Policy Object support for Ubuntu Pro users</li>
-            <li class="p-list__item is-ticked">Experimental support for TPM-backed Full Disc Encryption and ZFS encryption</li>
-          </ul>
-          <hr class="p-rule--muted" />
-          <ul class="u-responsive-realign p-inline-list">
-            <li class="p-inline-list__item">
-              <a href="/blog/ubuntu-desktop-24-04-noble-numbat-deep-dive"
-                 aria-label="{{ releases.lts.full_version }} LTS deep dive">Deep dive&nbsp;&rsaquo;</a>
-            </li>
-            <li class="p-inline-list__item">
-              <a href="https://discourse.ubuntu.com/t/noble-numbat-release-notes/39890"
-                 aria-label="{{ releases.lts.full_version }} LTS release notes">Release notes&nbsp;&rsaquo;</a>
-            </li>
-          </ul>
-        </div>
-        <!-- tab 2 -->
-        <div id="system-requirements-{{ releases.lts.slug }}"
-             class="p-tabs__content"
-             role="tabpanel"
-             aria-labelledby="system-requirements-tab-{{ releases.lts.slug }}">
-          <ul class="p-list--divided">
-            <li class="p-list__item is-ticked">2 GHz dual-core processor or better</li>
-            <li class="p-list__item is-ticked">4 GB system memory</li>
-            <li class="p-list__item is-ticked">25 GB of free hard drive space</li>
-            <li class="p-list__item is-ticked">Either a USB port or a DVD drive for the installer media</li>
-            <li class="p-list__item is-ticked">Internet access is helpful</li>
-          </ul>
-        </div>
-        <!-- tab 3 -->
-        <div id="how-to-install-{{ releases.lts.slug }}"
-             class="p-tabs__content"
-             role="tabpanel"
-             aria-labelledby="how-to-install-tab-{{ releases.lts.slug }}">
-          <p>To install or try Ubuntu Desktop:</p>
-          <ol class="p-list--divided">
-            <li class="p-list__item">Download the ISO image</li>
-            <li class="p-list__item">
-              Create a bootable USB flash drive with <a href="https://etcher.balena.io/">balenaEtcher</a> or similar
-            </li>
-            <li class="p-list__item">Boot your laptop or PC from the USB flash drive</li>
-          </ol>
-          <hr class="p-rule--muted" />
-          <p>
-            <a href="/tutorials/install-ubuntu-desktop">Follow the step-by-step tutorial&nbsp;&rsaquo;</a>
-          </p>
-        </div>
+        </section>
+        <details class="p-strip--light">
+          <summary class="p-strip__summary">What's new in {{ releases.lts.full_version }} LTS</summary>
+          <div class="p-strip__content">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked">New Desktop installer with support for autoinstall</li>
+              <li class="p-list__item is-ticked">New App Center and Firmware Updater applications</li>
+              <li class="p-list__item is-ticked">GNOME 46 with support for quarter screen tiling</li>
+              <li class="p-list__item is-ticked">Advanced Active Directory Group Policy Object support for Ubuntu Pro users</li>
+              <li class="p-list__item is-ticked">Experimental support for TPM-backed Full Disc Encryption and ZFS encryption</li>
+            </ul>
+            <hr class="p-rule--muted" />
+            <ul class="u-responsive-realign p-inline-list">
+              <li class="p-inline-list__item">
+                <a href="/blog/ubuntu-desktop-24-04-noble-numbat-deep-dive"
+                   aria-label="{{ releases.lts.full_version }} LTS deep dive">Deep dive&nbsp;&rsaquo;</a>
+              </li>
+              <li class="p-inline-list__item">
+                <a href="https://discourse.ubuntu.com/t/noble-numbat-release-notes/39890"
+                   aria-label="{{ releases.lts.full_version }} LTS release notes">Release notes&nbsp;&rsaquo;</a>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <details class="p-strip--light">
+          <summary class="p-strip__summary">System requirements for {{ releases.lts.full_version }} LTS</summary>
+          <div class="p-strip__content">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked">2 GHz dual-core processor or better</li>
+              <li class="p-list__item is-ticked">4 GB system memory</li>
+              <li class="p-list__item is-ticked">25 GB of free hard drive space</li>
+              <li class="p-list__item is-ticked">Either a USB port or a DVD drive for the installer media</li>
+              <li class="p-list__item is-ticked">Internet access is helpful</li>
+            </ul>
+          </div>
+        </details>
+        <details class="p-strip--light">
+          <summary class="p-strip__summary">How to install {{ releases.lts.full_version }} LTS</summary>
+          <div class="p-strip__content">
+            <p>To install or try Ubuntu Desktop:</p>
+            <ol class="p-list--divided">
+              <li class="p-list__item">Download the ISO image</li>
+              <li class="p-list__item">
+                Create a bootable USB flash drive with <a href="https://etcher.balena.io/">balenaEtcher</a> or similar
+              </li>
+              <li class="p-list__item">Boot your laptop or PC from the USB flash drive</li>
+            </ol>
+            <hr class="p-rule--muted" />
+            <p>
+              <a href="/tutorials/install-ubuntu-desktop">Follow the step-by-step tutorial&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+        </details>
       </div>
     </div>
-  </section>
-  <section class="p-section">
+  </article>
+  <article class="p-section">
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
-        <div class="p-section">
+        <header class="p-section">
           <h2>Ubuntu {{ releases.latest.full_version }}</h2>
-        </div>
+        </header>
         <div class="p-image-wrapper u-hide--small">
           {{ image(url="https://assets.ubuntu.com/v1/d7d087e4-600x600%20-%20PNG.png",
                     alt="Plucky Puffin",
@@ -185,7 +148,7 @@
         </div>
       </div>
       <div class="col">
-        <div class="p-section--shallow">
+        <section class="p-section--shallow">
           <p>
             The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu 25.04 comes with nine months of security and maintenance updates, until January 2026.
           </p>
@@ -231,101 +194,64 @@
           <p class="p-text--small">
             For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors and past releases <a href="/download/alternative-downloads">check out our alternative downloads</a>.
           </p>
-        </div>
-        <!-- Start tab container -->
-        <nav class="p-tabs js-tabbed-content">
-          <ul class="p-tabs__list u-no-margin--bottom"
-              role="tablist"
-              data-maintain-hash="true">
-            <li class="p-tabs__item">
-              <a class="p-tabs__link"
-                 role="tab"
-                 aria-selected="true"
-                 id="release-notes-tab-{{ releases.latest.slug }}"
-                 href="#release-notes-{{ releases.latest.slug }}"
-                 aria-controls="release-notes-{{ releases.latest.slug }}">What's new</a>
-            </li>
-            <li class="p-tabs__item">
-              <a class="p-tabs__link"
-                 role="tab"
-                 aria-selected="false"
-                 id="system-requirements-tab-{{ releases.latest.slug }}"
-                 href="#system-requirements-{{ releases.latest.slug }}"
-                 aria-controls="system-requirements-{{ releases.latest.slug }}"
-                 tabindex="-1">System requirements</a>
-            </li>
-            <li class="p-tabs__item">
-              <a class="p-tabs__link"
-                 role="tab"
-                 aria-selected="false"
-                 id="how-to-install-tab-{{ releases.latest.slug }}"
-                 href="#how-to-install-{{ releases.latest.slug }}"
-                 aria-controls="how-to-install-{{ releases.latest.slug }}"
-                 tabindex="-1">How to install</a>
-            </li>
-          </ul>
-        </nav>
-        <!-- End tab container -->
-        <!-- tab 1 -->
-        <div id="release-notes-{{ releases.latest.slug }}"
-             class="p-tabs__content"
-             role="tabpanel"
-             aria-labelledby="release-notes-tab-{{ releases.latest.slug }}">
-          <ul class="p-list--divided">
-            <li class="p-list__item is-ticked">Linux Kernel 6.14 with support for the latest hardware</li>
-            <li class="p-list__item is-ticked">GNOME 48 desktop environment with new Preserve battery mode and Wellbeing panel</li>
-            <li class="p-list__item is-ticked">Papers as its default new PDF reader</li>
-            <li class="p-list__item is-ticked">BeaconDB as its new geolocation provider</li>
-            <li class="p-list__item is-ticked">
-              Enhanced installer with improved encryption options and interaction with BitLocker Windows installations
-            </li>
-          </ul>
-          <hr class="p-rule--muted" />
-          <ul class="u-responsive-realign p-inline-list">
-            <li class="p-inline-list__item">
-              <a href="/blog/canonical-releases-ubuntu-25-04-plucky-puffin"
-                 aria-label="{{ releases.lts.full_version }} LTS deep dive">Press release&nbsp;&rsaquo;</a>
-            </li>
-            <li class="p-inline-list__item">
-              <a href="https://discourse.ubuntu.com/t/plucky-puffin-release-notes/48687"
-                 aria-label="{{ releases.latest.full_version }} release notes">Release notes&nbsp;&rsaquo;</a>
-            </li>
-          </ul>
-        </div>
-        <!-- tab 2 -->
-        <div id="system-requirements-{{ releases.latest.slug }}"
-             class="p-tabs__content"
-             role="tabpanel"
-             aria-labelledby="system-requirements-tab-{{ releases.latest.slug }}">
-          <ul class="p-list--divided">
-            <li class="p-list__item is-ticked">2 GHz dual-core processor or better</li>
-            <li class="p-list__item is-ticked">4 GB system memory</li>
-            <li class="p-list__item is-ticked">25 GB of free hard drive space</li>
-            <li class="p-list__item is-ticked">Either a USB port or a DVD drive for the installer media</li>
-            <li class="p-list__item is-ticked">Internet access is helpful</li>
-          </ul>
-        </div>
-        <!-- tab 3 -->
-        <div id="how-to-install-{{ releases.latest.slug }}"
-             class="p-tabs__content"
-             role="tabpanel"
-             aria-labelledby="how-to-install-tab-{{ releases.latest.slug }}">
-          <p>To install or try Ubuntu Desktop:</p>
-          <ol class="p-list--divided">
-            <li class="p-list__item">Download the ISO image</li>
-            <li class="p-list__item">
-              Create a bootable USB flash drive with <a href="https://etcher.balena.io/">balenaEtcher</a> or similar
-            </li>
-            <li class="p-list__item">Boot your laptop or PC from the USB flash drive</li>
-          </ol>
-          <hr class="p-rule--muted" />
-          <p>
-            <a href="/tutorials/install-ubuntu-desktop">Follow the step-by-step tutorial&nbsp;&rsaquo;</a>
-          </p>
-        </div>
+        </section>
+        <details class="p-strip--light">
+          <summary class="p-strip__summary">What's new in {{ releases.latest.full_version }}</summary>
+          <div class="p-strip__content">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked">Linux Kernel 6.14 with support for the latest hardware</li>
+              <li class="p-list__item is-ticked">GNOME 48 desktop environment with new Preserve battery mode and Wellbeing panel</li>
+              <li class="p-list__item is-ticked">Papers as its default new PDF reader</li>
+              <li class="p-list__item is-ticked">BeaconDB as its new geolocation provider</li>
+              <li class="p-list__item is-ticked">
+                Enhanced installer with improved encryption options and interaction with BitLocker Windows installations
+              </li>
+            </ul>
+            <hr class="p-rule--muted" />
+            <ul class="u-responsive-realign p-inline-list">
+              <li class="p-inline-list__item">
+                <a href="/blog/canonical-releases-ubuntu-25-04-plucky-puffin"
+                   aria-label="{{ releases.lts.full_version }} LTS deep dive">Press release&nbsp;&rsaquo;</a>
+              </li>
+              <li class="p-inline-list__item">
+                <a href="https://discourse.ubuntu.com/t/plucky-puffin-release-notes/48687"
+                   aria-label="{{ releases.latest.full_version }} release notes">Release notes&nbsp;&rsaquo;</a>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <details class="p-strip--light">
+          <summary class="p-strip__summary">System requirements for {{ releases.latest.full_version }}</summary>
+          <div class="p-strip__content">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked">2 GHz dual-core processor or better</li>
+              <li class="p-list__item is-ticked">4 GB system memory</li>
+              <li class="p-list__item is-ticked">25 GB of free hard drive space</li>
+              <li class="p-list__item is-ticked">Either a USB port or a DVD drive for the installer media</li>
+              <li class="p-list__item is-ticked">Internet access is helpful</li>
+            </ul>
+          </div>
+        </details>
+        <details class="p-strip--light">
+          <summary class="p-strip__summary">How to install {{ releases.latest.full_version }}</summary>
+          <div class="p-strip__content">
+            <p>To install or try Ubuntu Desktop:</p>
+            <ol class="p-list--divided">
+              <li class="p-list__item">Download the ISO image</li>
+              <li class="p-list__item">
+                Create a bootable USB flash drive with <a href="https://etcher.balena.io/">balenaEtcher</a> or similar
+              </li>
+              <li class="p-list__item">Boot your laptop or PC from the USB flash drive</li>
+            </ol>
+            <hr class="p-rule--muted" />
+            <p>
+              <a href="/tutorials/install-ubuntu-desktop">Follow the step-by-step tutorial&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+        </details>
       </div>
     </div>
-  </section>
+  </article>
   {% include "download/shared/_downloads-resources.html" %}
   <section class="p-section">
     <div class="row--50-50">
