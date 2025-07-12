@@ -91,7 +91,11 @@ const CVETable = () => {
           {LTSReleasesFromName(selectedRelease)}
         </>
       </Notification>
-      <MainTable headers={headers} rows={rows} className="u-no-margin--bottom" />
+      <MainTable
+        headers={headers}
+        rows={rows}
+        className="u-no-margin--bottom"
+      />
       <hr className="p-rule is-muted" />
       <MainTable
         rows={tableData}
