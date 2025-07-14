@@ -221,7 +221,6 @@ loader = ChoiceLoader(
     [
         FileSystemLoader("templates"),
         FileSystemLoader("node_modules/vanilla-framework/templates/"),
-        FileSystemLoader("static/js/dist/vanilla-framework/"),
         FileSystemLoader(str(directory_parser_templates)),
     ]
 )
