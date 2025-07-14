@@ -17,7 +17,8 @@
 
   {% call(slot) vf_hero(
     title_text='Enterprise private cloud',
-    layout='50/50-full-width-image'
+    layout='50/50-full-width-image',
+      is_split_on_medium=true
     ) -%}
     {%- if slot == 'description' -%}
       <p class="p-heading--5">Total automation. Flexible technology choices.</p>
@@ -370,9 +371,11 @@
     {%- endif -%}
 
     {%- if slot == 'description' -%}
+    <div class="p-section--shallow">
       <p>
         The biggest challenge of OpenStack is everyday operations automation, year after year, while OpenStack continues to evolve rapidly. Canonical solves this problem with total automation that decouples architectural choices from the operations codebase that supports upgrades, scaling, integration and bare metal provisioning.
       </p>
+    </div>
     {%- endif -%}
 
     {%- if slot == 'list_item_title_1' -%}
@@ -881,7 +884,7 @@
           <li class="p-list__item is-ticked">Elasticsearch for log analysis</li>
           <li class="p-list__item is-ticked">Prometheus for cloud monitoring</li>
           <li class="p-list__item is-ticked">Telegraf for metrics collection</li>
-          <li class="p-list__item is-ticked">Grafana for metrics visualisation</li>
+          <li class="p-list__item is-ticked">Grafana for metrics visualization</li>
           <li class="p-list__item is-ticked">Nagios for alerting</li>
         </ul>
         <div class="p-image-container is-highlighted">
@@ -910,7 +913,7 @@
         </p>
         <div class="p-cta-block">
           <a href="/openstack/contact-us"
-             class="p-button u-no-margin--bottom js-invoke-modal" aria-controls="openstack-modal">Get support</a>
+             class="p-button--positive u-no-margin--bottom js-invoke-modal" aria-controls="openstack-modal">Get support</a>
         </div>
       </div>
     </div>
