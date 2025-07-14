@@ -38,10 +38,13 @@ const ProContent = ({
     if (!sections || sections.length === 0) {
       return [];
     }
+    sections.sort();
     if (packageFilter) {
       sections = [packageFilter];
+      sections.push(...cveData.sections.filter(
+        (section) => section !== packageFilter,
+      ));
     }
-    sections.sort();
     const items: SearchAndFilterData[] = sections.map((section, index) => ({
       heading: section,
       chips: cveData.packages
