@@ -30,15 +30,17 @@
         </div>
       </div>
       <div class="col">
-        <p>
-          <b>
-            One package, multiple benefits.
-          </b>
-          Subscribe to Ubuntu Pro and benefit from expanded security, certified compliance and 24/7 phone/ticket support.
-        </p>
+        <div class="p-section--shallow">
+          <p>
+            <b>
+              One package, multiple benefits.
+            </b>
+            Subscribe to Ubuntu Pro and benefit from expanded security, certified compliance and 24/7 phone/ticket support.
+          </p>
+        </div>
         <div class="p-cta-block">
           <a href="#openstack-support" class="p-button--positive">Get OpenStack support</a>
-          <a href="https://ubuntu.com/engage/redhat-openstack-comparison-whitepaper">Read a Red Hat OpenStack comparison whitepaper&nbsp;&rsaquo;</a>
+          <a href="/engage/redhat-openstack-comparison-whitepaper">Read a Red Hat OpenStack comparison whitepaper&nbsp;&rsaquo;</a>
         </div>
       </div>
       <div class="p-image-container--cinematic is-cover">
@@ -57,7 +59,7 @@
   <section class="p-section">
     <div class="u-fixed-width">
       <hr class="p-rule" />
-      <h3 class="p-text--small-caps">WITH ENTERPRISE SUPPORT FROM CANONICAL</h3>
+      <h3 class="p-text--small-caps">With enterprise support from Canonical</h3>
       <div class="p-logo-section">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
@@ -147,9 +149,8 @@
       <p>
         Canonical addresses all those challenges, providing enterprise OpenStack support subscription for OpenStack clouds deployed on Ubuntu.
       </p>
-      <div class="p-cta-block">
-        <a href="/openstack/pricing-calculator">Get cost estimates for OpenStack support&nbsp;&rsaquo;</a>
-      </div>
+      <hr class="p-rule--muted" />
+      <a href="/openstack/pricing-calculator">Get cost estimates for OpenStack support&nbsp;&rsaquo;</a>
     {%- endif -%}
     {%- if slot == 'image' -%}
       <div class="p-image-container--2-3 p-image-container--3-2-on-medium p-image-container--16-9-on-small is-cover">
@@ -402,9 +403,11 @@
     {%- endif -%}
 
     {%- if slot == 'list_item_description_1' -%}
-      <p>
-        Together, we design the cloud according to your needs. We guide you through the hardware specification process to maximize price-performance and tailor cloud architecture to meet your capacity, workload, security, regulatory and integration requirements.
-      </p>
+      <div class="p-section--shallow">
+        <p>
+          Together, we design the cloud according to your needs. We guide you through the hardware specification process to maximize price-performance and tailor cloud architecture to meet your capacity, workload, security, regulatory and integration requirements.
+        </p>
+      </div>
     {%- endif -%}
 
     {%- if slot == 'list_item_title_2' -%}
@@ -412,9 +415,11 @@
     {%- endif -%}
 
     {%- if slot == 'list_item_description_2' -%}
-      <p>
-        Once the design step is completed, we translate all design decisions into a model that is reusable across various environments. Modelling guarantees repeatable deployments and enables integration with infrastructure-as-code (IaC) and continuous integration continuous delivery (CICD) systems.
-      </p>
+      <div class="p-section--shallow">
+        <p>
+          Once the design step is completed, we translate all design decisions into a model that is reusable across various environments. Modelling guarantees repeatable deployments and enables integration with infrastructure-as-code (IaC) and continuous integration continuous delivery (CICD) systems.
+        </p>
+      </div>
     {%- endif -%}
 
     {%- if slot == 'list_item_title_3' -%}
@@ -422,9 +427,11 @@
     {%- endif -%}
 
     {%- if slot == 'list_item_description_3' -%}
-      <p>
-        We deploy the cloud for you on your premises or in one of our partners’ data centres. We validate it post-deployment and benchmark its performance. At the end, we provide you with the deployment guide which outlines all the steps required to re-deploy the cloud if needed.
-      </p>
+      <div class="p-section--shallow">
+        <p>
+          We deploy the cloud for you on your premises or in one of our partners’ data centres. We validate it post-deployment and benchmark its performance. At the end, we provide you with the deployment guide which outlines all the steps required to re-deploy the cloud if needed.
+        </p>
+      </div>
     {%- endif -%}
 
     {%- if slot == 'list_item_title_4' -%}
@@ -432,9 +439,11 @@
     {%- endif -%}
 
     {%- if slot == 'list_item_description_4' -%}
-      <p>
-        After day-1, day-2 comes in. The cloud can either be managed by you or by our team of cloud experts. In both cases, we provide 24/7 enterprise-grade support, including security updates, phone and ticket support, local regulatory compliance programs, and the like.
-      </p>
+      <div class="p-section--shallow">
+        <p>
+          After day-1, day-2 comes in. The cloud can either be managed by you or by our team of cloud experts. In both cases, we provide 24/7 enterprise-grade support, including security updates, phone and ticket support, local regulatory compliance programs, and the like.
+        </p>
+      </div>
     {%- endif -%}
 
     {%- if slot == 'list_item_title_5' -%}
@@ -442,9 +451,11 @@
     {%- endif -%}
 
     {%- if slot == 'list_item_description_5' -%}
-      <p>
-        Some customers choose to extend their support with fully managed service. On request, we transfer control over your cloud back to your organization. We train your personnel, make sure you are able to operate the cloud yourself moving forward and perform a formal handover process. We continue providing commercial support to make sure your cloud receives security updates and you receive help if needed.
-      </p>
+      <div class="p-section--shallow">
+        <p>
+          Some customers choose to extend their support with fully managed service. On request, we transfer control over your cloud back to your organization. We train your personnel, make sure you are able to operate the cloud yourself moving forward and perform a formal handover process. We continue providing commercial support to make sure your cloud receives security updates and you receive help if needed.
+        </p>
+      </div>
     {%- endif -%}
   {%- endcall -%}
 
@@ -528,15 +539,6 @@
     {% include "internet-of-things/shared/_latest-news-iot.html" %}
   {% endwith %}
 
-  <!-- TODO: Add modal form import once modal form is added to feature branch  -->
-
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/openstack"
-       data-form-id="1251"
-       data-lp-id="2086"
-       data-return-url="https://ubuntu.com/openstack/thank-you?product=foundation-cloud"
-       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+  {{ load_form("/openstack") | safe }}
 
 {% endblock %}
