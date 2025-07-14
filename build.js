@@ -38,6 +38,7 @@ let entries = {
     "./static/js/src/advantage/credentials/dashboard/app.tsx",
   "canonical-cla": "./static/js/src/canonical-cla/app.tsx",
   "table-of-contents": "./static/js/src/table-of-contents.js",
+  "linux-patch-management": "./static/js/src/advantage/linux-patch-management/app.tsx",
   prism: "./static/js/src/prism.js",
 };
 

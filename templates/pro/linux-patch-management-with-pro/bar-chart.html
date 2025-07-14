@@ -1,0 +1,72 @@
+<style>
+  .chart-legend-lts::before, .chart-legend-pro::before {
+    content:"";
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    margin-bottom: -0.25em;
+  }
+  .chart-legend-pro::before {
+    background-color: #e95420;
+  }
+  .chart-legend-lts::before {
+    background-color: #656565;
+  }
+  .chart-legend-subtext{
+    margin-left: 32px;
+  }
+</style>
+
+<canvas id="myChart"></canvas>
+<div class="chart-legend">
+  <p class="chart-legend-lts"><span class="p-heading--5">Packages covered with LTS</span><br/><span class="chart-legend-subtext">Standard security maintenance, packages with CVE fixes available for 5 years</span></p>
+  <p class="chart-legend-pro"><span class="p-heading--5">Packages covered with Ubuntu Pro</span><br/><span class="chart-legend-subtext">ESM and Legacy, packages with CVE fixes available for 10+2 years</span></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+  Chart.defaults.font.family = "Ubuntu";
+  new Chart(ctx, {
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: false,
+          ticks:{
+            callback: (value, index, values) => {
+              return value%1000 === 0 ? value : null;
+            }
+          }
+        },
+        x: {
+          grid: {
+            display: false,
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
+    },
+    type: 'bar',
+    data: {
+      labels: ['14.04','16.04 LTS', '18.04 LTS', '20.04 LTS', '22.04 LTS', '24.04 LTS'],
+      datasets: [
+        {
+          label: 'Packages covered with LTS',
+          data: [3171, 2470, 2323, 2371, 2372, 2390],
+          backgroundColor: '#656565',
+        },
+        {
+          label: 'Packages covered with Ubuntu Pro',
+          data: [18510, 22593, 26217, 27916, 31356, 34387],
+          backgroundColor: '#e95420',
+        }
+      ]
+    }
+  });
+</script>
