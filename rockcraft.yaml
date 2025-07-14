@@ -1,7 +1,7 @@
 name: ubuntu-com
 base: ubuntu@22.04
 version: "0.1"
-summary: Ubuntu website https://ubuntu.com 
+summary: Ubuntu website https://ubuntu.com
 description: |
   Ubuntu.com is the official website of Ubuntu, a popular Linux distribution.
   It provides information about Ubuntu, its features, and how to download and use it.
@@ -14,9 +14,23 @@ platforms:
 
 extensions:
   - flask-framework
-# uncomment the sections you need and adjust according to your requirements.
-parts:  # you need to uncomment this line to add or update any part.
 
+parts:
+  build-ui:
+    plugin: nil
+    source: .
+    source-type: local
+    build-snaps:
+      - node/22/stable
+    override-build: |
+      set -eux
+      # install dependencies
+      npm install -g yarn
+      yarn install
+      # build the UI
+      yarn run build
+      mkdir -p "$CRAFT_PART_INSTALL/flask/app"
+      cp -r static "$CRAFT_PART_INSTALL/flask/app/"
   flask-framework/install-app:
     prime:
       # by default, only the files in app/, templates/, static/, migrate, migrate.sh,
