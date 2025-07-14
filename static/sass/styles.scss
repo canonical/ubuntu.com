@@ -1878,3 +1878,21 @@ ol.p-stepped-list.no-full-stop
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+@container (width >= 100ch) {
+  .p-list--horizontal-section-wrapper
+    .p-list--horizontal-section:is(.is-50-50-on-large) {
+    --columns: 2;
+  }
+  .p-list--horizontal-section-wrapper
+    .p-list--horizontal-section:is(.is-50-50-on-large)
+    .p-list__item:nth-child(2n + 1)::after {
+    background: var(--vf-color-border-low-contrast);
+    content: "";
+    height: 1px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: calc(100% * 2 + 1 * 2rem);
+  }
+}
