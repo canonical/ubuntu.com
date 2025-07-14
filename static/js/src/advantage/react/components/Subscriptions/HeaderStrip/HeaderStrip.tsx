@@ -26,19 +26,19 @@ const HeaderStrip = () => {
                     children: "Invoices",
                     onClick: () => {
                       window.location.href = "/account/invoices";
-                    }
+                    },
                   },
                   {
                     children: "Payment methods",
                     onClick: () => {
                       window.location.href = "/account/payment-methods";
-                    }
+                    },
                   },
                   {
                     children: "Users",
                     onClick: () => {
                       window.location.href = "/pro/users";
-                    }
+                    },
                   },
                 ]}
               />
