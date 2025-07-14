@@ -41,9 +41,9 @@ const ProContent = ({
     sections.sort();
     if (packageFilter) {
       sections = [packageFilter];
-      sections.push(...cveData.sections.filter(
-        (section) => section !== packageFilter,
-      ));
+      sections.push(
+        ...cveData.sections.filter((section) => section !== packageFilter),
+      );
     }
     const items: SearchAndFilterData[] = sections.map((section, index) => ({
       heading: section,
