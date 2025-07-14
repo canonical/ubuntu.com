@@ -149,5 +149,5 @@ class RedisProvides(Object):
         return self.app.name
 
     def _get_master_ip(self) -> str:
-        """Gets the ip of the current redis master."""
+        """Gets the ip of the current redis main."""
         return socket.gethostbyname(self._charm.current_master)
