@@ -200,6 +200,14 @@ function setUpStaticForms(form, formId) {
     form.addEventListener("submit", () => attachLoadingSpinner(submitButton));
   }
 
+  // Disable submit button if there are required checkboxes
+  const requiredCheckboxes = document.querySelectorAll(
+    "fieldset.js-required-checkbox",
+  );
+  if (requiredCheckboxes.length) {
+    submitButton.disabled = true;
+  };
+
   form.addEventListener("submit", function (e) {
     setDataLayerConsentInfo();
   });
