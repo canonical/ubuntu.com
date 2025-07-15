@@ -29,16 +29,15 @@
     {%- endif -%}
     {%- if slot == 'image' -%}
       <div class="p-image-container--cinematic is-cover">
-          {{ image(url="https://assets.ubuntu.com/v1/90fc531d-community-event-cover.png",
-            alt="",
-            width="4096",
-            height="2732",
-            hi_def=True,
-            fmt="webp",
-            loading="auto",
-            attrs={"class": "p-image-container__image"}
-            ) | safe
-          }}
+        {{ image(url="https://assets.ubuntu.com/v1/90fc531d-community-event-cover.png",
+                alt="",
+                width="4096",
+                height="2732",
+                hi_def=True,
+                fmt="webp",
+                loading="auto",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
       </div>
     {% endif -%}
   {% endcall -%}
@@ -60,18 +59,18 @@
         {% for event in featured_events %}
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
-              <h3 class="u-clamp--two-lines">{{ event.post.topic.title }}</h3>
-            </div>
-            <div class="p-equal-height-row__item">
+              <h3>{{ event.post.topic.title }}</h3>
               <p class="u-text--muted u-no-margin--bottom u-no-padding--top">{{ event.formatted_time }}</p>
               <p>
                 <a href="https://discourse.ubuntu.com/u/{{ event.creator.username }}">{{ event.creator.name }}</a>
               </p>
             </div>
-            <div class="p-equal-height-row__item">{{ event.description | safe }}</div>
+            <div class="p-equal-height-row__item u-clamp--five-lines">{{ event.description | safe }}</div>
             <div class="p-equal-height-row__item">
-              <a href="https://discourse.ubuntu.com/{{ event.post.url }}"
-                 class="p-button">Learn more</a>
+              <div style="padding-top:2.5rem;">
+                <a href="https://discourse.ubuntu.com/{{ event.post.url }}"
+                   class="p-button">Learn more</a>
+              </div>
             </div>
           </div>
         {% endfor %}
@@ -121,13 +120,14 @@
           <li class="p-pagination__item">
             <button class="p-pagination__link--previous js-previous-page"
                     href="#previous"
-                    title="Previous page">
+                    title="Previous page"
+                    disabled>
               <i class="p-icon--chevron-down">Previous page</i>
             </button>
           </li>
           {% set total_pages = (events|length // 12) + (1 if events|length % 12 else 0) %}
           {% for page in range(1, total_pages + 1) %}
-            <li class="p-pagination__item">
+            <li class="p-pagination__item js-pagination-item" data-page="{{ page }}">
               <button class="p-pagination__link js-select-page{% if page == 1 %} is-active{% endif %}"
                       {% if page == 1 %}aria-current="page"{% endif %}
                       href="#{{ page }}"
@@ -163,13 +163,51 @@
       const perPage = 12;
       const sectionsPerPage = perPage / 4;
       const pagination = document.querySelector('.js-events-pagination');
+      const paginationPages = document.querySelectorAll('.js-pagination-item');
       let currentPage = 1;
       const totalPages = Math.ceil(sections.length / sectionsPerPage);
 
+      function getMaxVisiblePages() {
+        return window.innerWidth < 620 ? 3 : 5;
+      }
+
+      function updatePaginationVisibility(currentPage, totalPages) {
+        const maxVisiblePages = getMaxVisiblePages();
+        let startPage, endPage;
+
+        if (totalPages <= maxVisiblePages) {
+          startPage = 1;
+          endPage = totalPages;
+        } else {
+          const halfVisible = Math.floor(maxVisiblePages / 2);
+          if (currentPage <= halfVisible) {
+            startPage = 1;
+            endPage = maxVisiblePages;
+          } else if (currentPage + halfVisible >= totalPages) {
+            startPage = totalPages - maxVisiblePages + 1;
+            endPage = totalPages;
+          } else {
+            startPage = currentPage - halfVisible;
+            endPage = currentPage + halfVisible;
+          }
+        }
+
+        paginationPages.forEach(pageItem => {
+          pageItem.classList.add('u-hide');
+        });
+
+        paginationPages.forEach(pageItem => {
+          const pageNumber = parseInt(pageItem.dataset.page);
+          if (pageNumber >= startPage && pageNumber <= endPage) {
+            pageItem.classList.remove('u-hide');
+          }
+        });
+      }
+
       function showPage(page) {
         currentPage = page;
-        sections.forEach((section, idx) => {
-          if (idx >= (page - 1) * sectionsPerPage && idx < page * sectionsPerPage) {
+        sections.forEach((section, index) => {
+          if (index >= (page - 1) * sectionsPerPage && index < page * sectionsPerPage) {
             section.classList.remove('u-hide');
           } else {
             section.classList.add('u-hide');
@@ -186,10 +224,24 @@
             link.removeAttribute('aria-current');
           }
         });
+
+        // Disable previous/next buttons if on first/last page
+        const previousButton = pagination.querySelector('.js-previous-page');
+        const nextButton = pagination.querySelector('.js-next-page');
+        if (previousButton) {
+          previousButton.disabled = (page === 1);
+        }
+        if (nextButton) {
+          nextButton.disabled = (page === totalPages);
+        }
+
+        updatePaginationVisibility(currentPage, totalPages);
       }
 
-      // Initial display
-      showPage(1);
+      // Handle window resize to update pagination visibility
+      window.addEventListener('resize', function() {
+        updatePaginationVisibility(currentPage, totalPages);
+      });
 
       // Handle pagination clicks
       pagination.addEventListener('click', function(e) {
@@ -205,6 +257,9 @@
           if (!isNaN(page)) showPage(page);
         }
       });
+
+      // Initial display
+      showPage(1);
     });
   </script>
 {% endblock content %}

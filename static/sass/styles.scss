@@ -1881,6 +1881,16 @@ ol.p-stepped-list.no-full-stop
   text-overflow: ellipsis;
 }
 
+// Truncates text to five lines with ellipsis
+.u-clamp--five-lines {
+  display: -webkit-box;
+  line-clamp: 5;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 // XXX: Can be removed once (if) the below issue is resolved in Vanilla
 // https://github.com/canonical/vanilla-framework/issues/5583
 @container (width >= 100ch) {
