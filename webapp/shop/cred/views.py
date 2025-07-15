@@ -1498,7 +1498,7 @@ def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
                 else:
                     exam["period"] = product["period"]
                 exam["marketplace"] = product["marketplace"]
-                exam["name"] = product["name"]
+                # exam["name"] = product["name"]
                 exam["periodQuantity"] = product["effectiveDays"]
 
     return flask.render_template(
