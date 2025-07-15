@@ -284,14 +284,29 @@ def notices_feed(feed_type):
 # USN API
 # ===
 def single_notices_sitemap(offset):
-    # max limit is 100
-    notices = security_api.get_page_notices(
-        limit=100,
-        offset=offset,
-        details="",
-        releases=[],
-        order="",
-    ).get("notices")
+    notices = []
+    max_items = 100
+    api_limit = 10
+    offset = int(offset)  # Convert offset to int
+
+    # max limit is 10, so we need to make multiple requests up to 100
+    for batch_offset in range(offset, offset + max_items, api_limit):
+        batch_response = security_api.get_page_notices(
+            limit=api_limit,
+            offset=batch_offset,
+            details="",
+            releases=[],
+            order="",
+        )
+        batch_notices = batch_response.get("notices", [])
+
+        if not batch_notices:
+            break
+
+        notices.extend(batch_notices)
+
+        if len(batch_notices) < api_limit:
+            break
 
     links = []
     for notice in notices:
@@ -734,17 +749,32 @@ def cve(cve_id):
 # CVE API
 # ===
 def single_cves_sitemap(offset):
-    cves = security_api.get_cves(
-        query="",
-        priority=[],
-        package="",
-        limit=100,
-        offset=offset,
-        component="",
-        versions=[],
-        statuses=[],
-        order="",
-    ).get("cves")
+    cves = []
+    max_items = 100
+    api_limit = 10
+    offset = int(offset)  # Convert offset to int
+
+    # max limit is 10, so we need to make multiple requests up to 100
+    for batch_offset in range(offset, offset + max_items, api_limit):
+        batch_response = security_api.get_cves(
+            query="",
+            priority=[],
+            package="",
+            limit=api_limit,
+            offset=batch_offset,
+            component="",
+            versions=[],
+            statuses=[],
+            order="",
+        )
+        batch_cves = batch_response.get("cves", [])
+        if not batch_cves:
+            break
+
+        cves.extend(batch_cves)
+
+        if len(batch_cves) < api_limit:
+            break
 
     links = []
     for cve in cves:
