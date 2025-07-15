@@ -587,7 +587,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       );
       if (requiredFieldsets.length) {
         submitButton.disabled = true;
-      };      
+      }
 
       // Add event listeners to toggle checkbox visibility
       const ubuntuVersionCheckboxes = document.querySelector(

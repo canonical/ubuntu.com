@@ -206,7 +206,7 @@ function setUpStaticForms(form, formId) {
   );
   if (requiredCheckboxes.length) {
     submitButton.disabled = true;
-  };
+  }
 
   form.addEventListener("submit", function (e) {
     setDataLayerConsentInfo();

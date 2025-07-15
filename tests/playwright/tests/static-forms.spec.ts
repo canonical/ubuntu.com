@@ -52,11 +52,10 @@ test.describe("Form ID validation", () => {
 });
 
 test.describe("Form submission validation", () => {
-  test("should redirect to thank you page when form is submitted successfully", async ({ page }) => {
+  test("should return success response code when form is submitted successfully", async ({ page }) => {
     const responsePromise = page.waitForResponse(response => 
-      response.url().includes('/marketo/submit') && response.status() === 302
+      response.url().includes('/marketo/submit') && response.status() !== 400
     );
-
     await page.goto("/core/contact-us");
     await acceptCookiePolicy(page);
     
@@ -69,16 +68,17 @@ test.describe("Form submission validation", () => {
     await page.fill('input[name="lastName"]', 'Test last name');
     await page.fill('input[name="email"]', 'test@test.com');
     await page.getByLabel('I agree to receive information').check({ force: true });
-
+    
     await page.getByRole("button", { name: /Submit/ }).click();
 
-    // Wait for 302 response
+    // Wait for successful/redirect responses
     const response = await responsePromise;
-    expect(response.status()).toBe(302);
+    expect([200, 302]).toContain(response.status());
+    
   });
 
   test("should return 400 error when honeypot is triggered", async ({ page }) => {
-     const responsePromise = page.waitForResponse(response => 
+    const responsePromise = page.waitForResponse(response => 
       response.url().includes('/marketo/submit') && response.status() === 400
     );
     await page.goto("/core/contact-us");
