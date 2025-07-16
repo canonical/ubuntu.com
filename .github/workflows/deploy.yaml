@@ -39,9 +39,6 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-
       - name: Setup LXD
         uses: canonical/setup-lxd@main
 
