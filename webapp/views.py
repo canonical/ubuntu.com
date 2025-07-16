@@ -1515,8 +1515,10 @@ def process_local_communities(local_communities):
                             "name": community.get("name", ""),
                         }
                     )
-                except (ValueError, AttributeError):
-                    pass
+                except (ValueError, AttributeError) as e:
+                    logging.error(
+                        f"Error parsing coordinates '{community['coordinates']}': {e}"
+                    )
 
         return flask.render_template(
             "community/local-communities.html",

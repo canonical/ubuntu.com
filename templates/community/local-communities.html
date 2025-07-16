@@ -213,13 +213,13 @@ meta_copydoc %}
     </div>
   </noscript>
 
-  {{ vf_highlighted_cta(cta_text="Are you stuck and need help? <br /> <a href='https://ubuntu.com/community/support'>Take a look at how our community can support you.</a>") }}
+  {{ vf_highlighted_cta(cta_text="Are you stuck and need help? <br /> <a href='https://ubuntu.com/community/support'>Take a look at how our community can support you.</a>") | safe }}
 
   <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
   <script src="{{ versioned_static('js/dist/leaflet.js') }}"></script>
   {# djlint:off #}
   <script>
-    var mapMarker = {{ map_markers | tojson | safe }}
+    var mapMarker = {{ map_markers | tojson | e }}
 
     function initMap(mapSelector) {
       const mapElement = document.getElementById(mapSelector);
