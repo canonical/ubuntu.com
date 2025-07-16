@@ -1,9 +1,9 @@
 from requests import Session
-import os
 import datetime
 from urllib.parse import urlencode
 import flask
 from canonicalwebteam.flask_base.env import get_flask_env
+
 
 class Proctor360API:
     def __init__(

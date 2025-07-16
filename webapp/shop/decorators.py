@@ -1,5 +1,3 @@
-import os
-
 from distutils.util import strtobool
 from functools import wraps
 from datetime import datetime
@@ -88,7 +86,9 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                     flask.session[metadata_key] = value
 
             # shop under maintenance
-            maintenance = strtobool(get_flask_env("STORE_MAINTENANCE", "false"))
+            maintenance = strtobool(
+                get_flask_env("STORE_MAINTENANCE", "false")
+            )
             cred_maintenance = strtobool(
                 get_flask_env("CRED_MAINTENANCE", "False")
             )
@@ -100,7 +100,9 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
             cred_maintenance_end = get_flask_env("CRED_MAINTENANCE_END")
 
             if store_maintenance_start and store_maintenance_end:
-                maintenance_start = parse(get_flask_env("STORE_MAINTENANCE_START"))
+                maintenance_start = parse(
+                    get_flask_env("STORE_MAINTENANCE_START")
+                )
                 maintenance_end = parse(get_flask_env("STORE_MAINTENANCE_END"))
                 time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
                 is_store_maintenance_in_timeframe = (
@@ -108,7 +110,9 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 )
 
             if cred_maintenance_start and cred_maintenance_end:
-                _maintenance_start = parse(get_flask_env("CRED_MAINTENANCE_START"))
+                _maintenance_start = parse(
+                    get_flask_env("CRED_MAINTENANCE_START")
+                )
                 _maintenance_end = parse(get_flask_env("CRED_MAINTENANCE_END"))
                 _time_now = datetime.now(pytz.utc)
                 is_cred_maintenance_in_timeframe = (
@@ -328,7 +332,9 @@ def get_credly_api_instance(area, credly_session) -> CredlyAPI:
         return None
 
     return CredlyAPI(
-        base_url=get_flask_env("CREDLY_URL", "https://sandbox-api.credly.com/v1"),
+        base_url=get_flask_env(
+            "CREDLY_URL", "https://sandbox-api.credly.com/v1"
+        ),
         auth_token=get_flask_env("CREDLY_TOKEN", ""),
         org_id=get_flask_env(
             "CREDLY_ORGANIZATION_ID", "30dfd771-5079-4000-9865-8c3aeb4545b6"

@@ -186,7 +186,9 @@ DISCOURSE_API_KEY = get_flask_env("DISCOURSE_API_KEY")
 DISCOURSE_API_USERNAME = get_flask_env("DISCOURSE_API_USERNAME")
 
 CHARMHUB_DISCOURSE_API_KEY = get_flask_env("CHARMHUB_DISCOURSE_API_KEY")
-CHARMHUB_DISCOURSE_API_USERNAME = get_flask_env("CHARMHUB_DISCOURSE_API_USERNAME")
+CHARMHUB_DISCOURSE_API_USERNAME = get_flask_env(
+    "CHARMHUB_DISCOURSE_API_USERNAME"
+)
 
 # Sitemaps that are already generated and don't need to be updated.
 # Can be seen on sitemap_index.xml

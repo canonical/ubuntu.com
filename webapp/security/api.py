@@ -1,4 +1,3 @@
-import os
 from requests import Session
 from requests.exceptions import HTTPError
 from urllib.parse import urlencode

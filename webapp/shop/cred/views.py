@@ -4,7 +4,6 @@ import math
 import pytz
 import flask
 import json
-import os
 import html
 from webapp.shop.api.ua_contracts.api import (
     UAContractsAPIErrorView,
@@ -221,9 +220,9 @@ def cred_sign_up(**_):
     service_account_info = {
         "token_uri": "https://oauth2.googleapis.com/token",
         "client_email": get_flask_env("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
-        "private_key": get_flask_env("GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY").replace(
-            "\\n", "\n"
-        ),
+        "private_key": get_flask_env(
+            "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY"
+        ).replace("\\n", "\n"),
         "scopes": ["https://www.googleapis.com/auth/spreadsheets.readonly"],
     }
 
@@ -1432,9 +1431,9 @@ def cred_submit_form(**_):
     service_account_info = {
         "token_uri": "https://oauth2.googleapis.com/token",
         "client_email": get_flask_env("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
-        "private_key": get_flask_env("GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY").replace(
-            "\\n", "\n"
-        ),
+        "private_key": get_flask_env(
+            "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY"
+        ).replace("\\n", "\n"),
         "scopes": ["https://www.googleapis.com/auth/spreadsheets.readonly"],
     }
 
