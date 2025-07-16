@@ -10,219 +10,216 @@
   https://docs.google.com/document/d/1eQ16jzv6YRGzG_k_C-tUnhM06k6_Ic6fZM-x_ARMzuc/edit
 {% endblock meta_copydoc %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block content %}
-  <section class="p-strip--suru-bottomed is-bordered">
-    <div class="row u-equal-height u-vertically-center spaced-bottom">
-      <div class="col-7">
-        <h1>Install OpenStack yourself</h1>
-        <p>
-          Try OpenStack in five simple steps. Set up a small-scale cloud or deploy a large cluster across hundreds of physical machines. Use <a href="https://microstack.run/">MicroStack</a> or <a href="/openstack">Charmed OpenStack</a> depending on your use case.
-        </p>
-        <p>
-          If you need OpenStack consulting or a fully managed service, <a href="/openstack/contact-us">talk to an expert.</a>
-        </p>
-        <p>
-          <a href="#single-multi-large-cluster" class="p-button--positive">Install OpenStack</a>
-        </p>
-        <p>
-          <a href="/engage/openstack-ebook-beginners">Download guide to OpenStack for Beginners&nbsp;&rsaquo;</a>
-        </p>
+  <section class="p-section--hero">
+    <div class="row--50-50-on-large">
+      <div class="col">
+        <div class="p-section--shallow">
+          <h1>Install OpenStack yourself</h1>
+        </div>
       </div>
-      <div class="col-5 u-hide--medium u-hide--small u-align--center">
-        {{ image(url="https://assets.ubuntu.com/v1/2b03a6b4-Install+Openstack.svg",
-                alt="",
-                height="200",
-                width="290",
-                hi_def=True,
-                loading="auto",) | safe
-        }}
+      <div class="col">
+        <div class="p-section--shallow">
+          <p>
+            Try OpenStack in five simple steps. Set up a small-scale cloud or deploy a large cluster across hundreds of physical machines.
+          </p>
+          <p>
+            If you need OpenStack consulting or a fully managed service, <a href="/openstack/contact-us">talk to an expert.</a>
+          </p>
+        </div>
+        <div class="p-cta-block">
+          <a href="#single-multi-large-cluster" class="p-button--positive">Install OpenStack</a>
+          <a href="/engage/openstack-ebook-beginners">Download guide to OpenStack for Beginners&nbsp;&rsaquo;</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="single-multi-large-cluster" class="p-strip u-no-padding--bottom">
+  <section class="p-section" id="single-multi-large-cluster">
+    <hr class="p-rule is-fixed-width" />
     <div class="u-fixed-width">
       <h2>Single-node, multi-node or large-scale cluster?</h2>
-      <p>
-        <strong>Choose the option that suits you best:</strong>
-      </p>
-      <div class="p-tabs">
-        <div class="p-tabs__list js-tabbed-content"
-             role="tablist"
-             aria-label="openstack-deployment">
-          <div class="p-tabs__item">
-            <button style="background-color: transparent"
-                    class="p-tabs__link"
-                    role="tab"
-                    aria-selected="true"
-                    aria-controls="single-node-mode"
-                    id="single-node-mode-tab">Single&dash;node mode</button>
+    </div>
+    <div class="grid-row">
+      <div class="grid-col-start-large-5">
+        <div class="p-tabs">
+          <div class="p-tabs__list js-tabbed-content"
+               role="tablist"
+               aria-label="openstack-deployment">
+            <div class="p-tabs__item">
+              <button style="background-color: transparent"
+                      class="p-tabs__link"
+                      role="tab"
+                      aria-selected="true"
+                      aria-controls="single-node-mode"
+                      id="single-node-mode-tab">Single&dash;node</button>
+            </div>
+            <div class="p-tabs__item">
+              <button style="background-color: transparent"
+                      class="p-tabs__link"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="multi-node-mode"
+                      id="multi-node-mode-tab"
+                      tabindex="-1">Multi&dash;node</button>
+            </div>
+            <div class="p-tabs__item">
+              <button style="background-color: transparent"
+                      class="p-tabs__link"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="multi-node-mode-with-bare-metal-automation"
+                      id="multi-node-mode-with-bare-metal-automation-tab"
+                      tabindex="-1">Multi&dash;node mode with bare metal automation</button>
+            </div>
           </div>
-          <div class="p-tabs__item">
-            <button style="background-color: transparent"
-                    class="p-tabs__link"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="multi-node-mode"
-                    id="multi-node-mode-tab"
-                    tabindex="-1">Multi&dash;node mode</button>
+        </div>
+
+        <div tabindex="0"
+             role="tabpanel"
+             id="single-node-mode"
+             aria-labelledby="single-node-mode-tab">
+          <div class="p-strip is-shallow u-no-padding--top">
+            <h2>Single-node</h2>
+            <ul class="p-list">
+              <li class="p-list__item is-ticked">Uses Sunbeam</li>
+              <li class="p-list__item is-ticked">Works on machines with limited hardware resources</li>
+              <li class="p-list__item is-ticked">Suitable for testing and development</li>
+            </ul>
           </div>
-          <div class="p-tabs__item">
-            <button style="background-color: transparent"
-                    class="p-tabs__link"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="multi-node-mode-with-bare-metal-automation"
-                    id="multi-node-mode-with-bare-metal-automation-tab"
-                    tabindex="-1">Multi&dash;node mode with bare metal automation</button>
+          {{ single_node | safe }}
+        </div>
+        <div tabindex="0"
+             role="tabpanel"
+             id="multi-node-mode"
+             aria-hidden="true"
+             aria-labelledby="multi-node-mode-tab">
+          <div class="p-strip is-shallow u-no-padding--top">
+            <h2>Multi-node mode</h2>
+            <ul class="p-list">
+              <li class="p-list__item is-ticked">Uses Sunbeam</li>
+              <li class="p-list__item is-ticked">OpenStack clusters with full HA</li>
+              <li class="p-list__item is-ticked">Suitable for small-scale production environments</li>
+            </ul>
           </div>
+          {{ multi_node | safe }}
+        </div>
+        <div tabindex="0"
+             role="tabpanel"
+             id="multi-node-mode-with-bare-metal-automation"
+             aria-labelledby="multi-node-mode-with-bare-metal-automation-tab"
+             aria-hidden="hidden">
+          <div class="p-strip is-shallow u-no-padding--top">
+            <div class="row">
+              <h2>Multi-node mode with bare metal automation</h2>
+              <ul class="p-list">
+                <li class="p-list__item is-ticked">Uses Sunbeam</li>
+                <li class="p-list__item is-ticked">
+                  Uses <a href="https://maas.io">MAAS</a> for bare metal automation
+                </li>
+                <li class="p-list__item is-ticked">Suitable for large-scale production environments</li>
+              </ul>
+            </div>
+          </div>
+          <p>
+            In order to install OpenStack in a multi-node mode with bare metal automation, refer to the <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/how-to/install/install-canonical-openstack-using-canonical-maas/">product documentation</a>.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <section tabindex="0"
-           role="tabpanel"
-           id="single-node-mode"
-           aria-labelledby="single-node-mode-tab">
-    <div class="p-strip is-shallow u-no-padding--top">
-      <div class="row">
-        <h2>Single-node mode</h2>
-        <div class="col-6">
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">Uses MicroStack</li>
-            <li class="p-list__item is-ticked">Works on machines with limited hardware resources</li>
-            <li class="p-list__item is-ticked">Suitable for testing and development</li>
-          </ul>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Take the next step</h2>
+      </div>
+      <div class="col">
+        <div class="row">
+          <p class="p-heading--5">
+            <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/tutorial/">Check our tutorials&nbsp;&rsaquo;</a>
+          </p>
+          <p>
+            Learn OpenStack through a series of tutorials. Starting with just a single machine, learn how to use OpenStack for cloud infrastructure implementation purposes, from a single-node installation to large-scale clusters.
+          </p>
+        </div>
+        <div class="row">
+          <hr class="p-rule--muted" />
+          <p class="p-heading--5">
+            <a href="https://www.openstack.org/user-survey/survey-2024/landing">Fill in the survey&nbsp;&rsaquo;</a>
+          </p>
+          <p>
+            The OpenStack User Survey provides users an opportunity to influence the community and software direction. By sharing information about your configuration and requirements, the Open Infrastructure Foundation User Committee will be able to advocate on your behalf.
+          </p>
+        </div>
+        <div class="row">
+          <hr class="p-rule--muted" />
+          <p class="p-heading--5">
+            <a href="/pro">Get commercial support&nbsp;&rsaquo;</a>
+          </p>
+          <p>
+            Canonical provides full commercial support for OpenStack clouds deployed with Sunbeam. Simply get any Ubuntu Pro subscription with Support, attach it to all nodes in your cluster and benefit from phone and ticket support.
+          </p>
+        </div>
+        <div class="row">
+          <hr class="p-rule--muted" />
+          <p class="p-heading--5">
+            <a href="/openstack/managed">Get fully-managed cloud&nbsp;&rsaquo;</a>
+          </p>
+          <p>
+            Liked OpenStack but don't want to manage it yourself? Don't worry - Canonical can design, build and operate the cloud for you. Offload OpenStack operations to our team of cloud experts and benefit from public cloud -like experience.
+          </p>
         </div>
       </div>
     </div>
-    <div class="p-strip u-no-padding--top">
-      <div class="row">{{ single_node | safe }}</div>
-    </div>
   </section>
 
-  <section tabindex="0"
-           role="tabpanel"
-           id="multi-node-mode"
-           aria-hidden="true"
-           aria-labelledby="multi-node-mode-tab">
-    <div class="p-strip is-shallow u-no-padding--top">
-      <div class="row">
-        <h2>Multi-node mode</h2>
-        <div class="col-6">
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">Uses MicroStack</li>
-            <li class="p-list__item is-ticked">OpenStack clusters with full HA</li>
-            <li class="p-list__item is-ticked">Suitable for small-scale production environments</li>
-          </ul>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>How about Managed OpenStack?</h2>
+      </div>
+      <div class="col">
+        <p>No need to design and install OpenStack. Canonical can build and operate the cloud for you.</p>
+        <div class="p-cta-block">
+          <a class="p-button" href="/openstack/contact-us?product=openstack">Contact us</a>
         </div>
       </div>
     </div>
-    <div class="p-strip u-no-padding--top">
-      <div class="row">{{ multi_node | safe }}</div>
-    </div>
   </section>
 
-  <section tabindex="0"
-           role="tabpanel"
-           id="multi-node-mode-with-bare-metal-automation"
-           aria-labelledby="multi-node-mode-with-bare-metal-automation-tab"
-           aria-hidden="hidden">
-    <div class="p-strip is-shallow u-no-padding--top">
-      <div class="row">
-        <h2>Multi-node mode with bare metal automation</h2>
-        <div class="col-6">
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">Uses OpenStack Charms</li>
-            <li class="p-list__item is-ticked">
-              Uses <a href="https://maas.io">MAAS</a> for bare metal automation
-            </li>
-            <li class="p-list__item is-ticked">Suitable for large-scale production environments</li>
-          </ul>
-        </div>
+  {% include "shared/contextual_footers/_cloud_newsletter.html" %}
+
+  <section class="p-section--deep">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Documentation</h2>
       </div>
-    </div>
-    <div class="p-strip u-no-padding--top">
-      <div class="row">
-        <p>
-          Check the <a href="https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/">OpenStack Charms Deployment Guide</a> for detailed instructions on how to set up OpenStack in multi-node mode with bare metal automation using OpenStack Charms.
-        </p>
+      <div class="col">
+        <ul class="p-list--divided">
+          <li class="p-list__item">
+            <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/"
+                class="p-heading--5"
+                onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'openstack documentation', 'eventLabel' : 'MicroStack', 'eventValue' : undefined });">Canonical OpenStack documentation</a>
+          </li>
+          <li class="p-list__item">
+            <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/tutorial/"
+                class="p-heading--5"
+                onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'openstack documentation', 'eventLabel' : 'OpenStack tutorials', 'eventValue' : undefined });">OpenStack tutorials</a>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <section class="p-strip is-bordered u-no-padding--top">
-    <div class="u-fixed-width">
-      <h2>Take the next step</h2>
-      <p>Is your OpenStack already up and running? If so, we hope you liked it and are now ready to take the next step.</p>
-    </div>
-
-    <div class="row">
-      <div class="col-6 p-card">
-        <img class="p-card__thumbnail--large"
-             src="https://assets.ubuntu.com/v1/3a4d4155-Training.svg"
-             alt="" />
-        <hr class="p-rule--muted" />
-        <p>
-          <a href="/openstack/tutorials">Check our tutorials&nbsp;&rsaquo;</a>
-        </p>
-        <p class="p-card__content">
-          Learn OpenStack through a series of tutorials. Starting with just a single machine, learn how to use OpenStack for cloud infrastructure implementation purposes, from a single-node installation to large-scale clusters.
-        </p>
-      </div>
-      <div class="col-6 p-card">
-        <img class="p-card__thumbnail--large"
-             src="https://assets.ubuntu.com/v1/67d90042-compliance-icon-no-padding.svg"
-             alt="" />
-        <hr class="p-rule--muted" />
-        <p>
-          <a href="https://www.openstack.org/user-survey/survey-2024/landing">Fill in the survey&nbsp;&rsaquo;</a>
-        </p>
-        <p class="p-card__content">
-          The OpenStack User Survey provides users an opportunity to influence the community and software direction. By sharing information about your configuration and requirements, the Open Infrastructure Foundation User Committee will be able to advocate on your behalf.
-        </p>
-      </div>
-      <div class="col-6 p-card">
-        <img class="p-card__thumbnail--large"
-             src="https://assets.ubuntu.com/v1/b0af9ede-UA_24-7_Support.svg"
-             alt="" />
-        <hr class="p-rule--muted" />
-        <p>
-          <a href="/pro">Get commercial support&nbsp;&rsaquo;</a>
-        </p>
-        <p class="p-card__content">
-          Canonical provides full commercial support for OpenStack clouds deployed with MicroStack. Simply get any Ubuntu Pro subscription with Support, attach it to all nodes in your cluster and benefit from phone and ticket support.
-        </p>
-      </div>
-      <div class="col-6 p-card">
-        <img class="p-card__thumbnail--large"
-             src="https://assets.ubuntu.com/v1/81e3bf86-We+operate+your+Kubernetes.svg"
-             alt="" />
-        <hr class="p-rule--muted" />
-        <p>
-          <a href="/openstack/managed">Get fully-managed cloud&nbsp;&rsaquo;</a>
-        </p>
-        <p class="p-card__content">
-          Liked OpenStack but don't want to manage it yourself? Don't worry - Canonical can design, build and operate the cloud for you. Offload OpenStack operations to our team of cloud experts and benefit from public cloud -like experience.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  {% with first_item="_openstack_install", second_item="_openstack_install_newsletter", third_item="_openstack_install_documentation" %}
-    {% include "shared/contextual_footers/_contextual_footer.html" %}
-  {% endwith %}
-
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/openstack"
-       data-form-id="1251"
-       data-lp-id="2086"
-       data-return-url="https://ubuntu.com/openstack/thank-you"
-       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
-
+  
   <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
-{% endblock content %}
+  {% endblock content %}
