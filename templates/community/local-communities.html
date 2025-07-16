@@ -1,13 +1,11 @@
 {% extends "community/_base_community.html" %}
 
-{% from "_macros/vf_hero.jinja" import vf_hero %}
-{% from "_macros/vf_rich-horizontal-list.jinja" import vf_rich_horizontal_list %}
 {% from "macros/_vf_highlighted-cta.jinja" import vf_highlighted_cta %}
 
-{% block title %}Ubuntu Community{% endblock %}
+{% block title %}Ubuntu Local Communities{% endblock %}
 
 {% block meta_description %}
-
+  Ubuntu is powered by a collection of passionate grassroots communities. Find, join or start a local community in your region.
 {% endblock
 meta_description %}
 
@@ -26,11 +24,11 @@ meta_copydoc %}
     <div class="p-section--shallow">
       <div class="row--50-50">
         <div class="col">
-          <h1>Community events</h1>
+          <h1>Ubuntu local communities</h1>
         </div>
         <div class="col">
           <p>
-            Whether it's in person or virtual, there are always things happening in the Ubuntu world. Come make some new friends, share your knowledge and join in the fun!
+            Ubuntu Local Communities, often shortened to LoCos, are regional teams that help advocate, promote, translate, develop, and otherwise improve Ubuntu. Find a Local Community in your region or <a href="/community/docs/locos/create">start your own</a>.
           </p>
         </div>
       </div>
@@ -73,34 +71,19 @@ meta_copydoc %}
     <hr class="p-rule is-fixed-width" />
     <div class="u-fixed-width">
       <div class="p-section--shallow">
-        <h2>Join a Ubuntu Local Community</h2>
+        <h2>Join an Ubuntu Local Community</h2>
       </div>
-      <figure>
+      <figure class="js-show-map" style="visibility:hidden;margin:0;">
         <div id="locations-map"></div>
         <div class="row">
           <figcaption class="col-6 col-medium-3 col-start-medium-4 col-start-large-7 u-text--muted"
-                      style="font-style: normal">Map of Ubuntu Local Community Locations</figcaption>
+                      style="font-style:normal;
+                             padding-top:6px">Map of Ubuntu Local Community Locations</figcaption>
         </div>
       </figure>
-      <noscript>
-        <div class="p-strip is-shallow u-no-padding--top">
-          <div class="row">
-            <div class="col-6 col-medium-3">
-              <h2>Join a Ubuntu Local Community</h2>
-            </div>
-            <div class="col-6 col-medium-3">
-              <ul class="p-list--travel">
-                {% for marker in map_markers %}<li class="p-list__item">{{ map_markers.name }}</li>{% endfor %}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </noscript>
     </div>
-  </div>
 
-  <div class="p-section">
-    <div class="u-fixed-width">
+    <div class="u-fixed-width js-show-tabs u-hide">
       <div class="p-tabs js-tabbed-content">
         <nav class="p-tabs__list"
              role="tablist"
@@ -151,17 +134,59 @@ meta_copydoc %}
              aria-labelledby="historic-locos">
           <div class="row--50-50">
             <div class="col">
-              <h3>Historic/ Inactive LoCo teams</h3>
+              <h2>Historic/ Inactive LoCo teams</h2>
             </div>
             <div class="col">
-              <p>
-                If you are interested in restarting one of the LoCo Teams, please see the <a href="/community/locos/faq">Ubuntu LoCo FAQ</a>.
-              </p>
+              <p>Don't see a Local Community in your region?</p>
+              <div class="p-cta-block">
+                <a href="/community/docs/locos/create" class="p-button">Consider starting one</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <noscript>
+      {% for continent in communities_by_continent %}
+        <div class="p-section--shallow">
+          <hr class="p-rule--muted is-fixed-width" />
+          <div class="row--25-75">
+            <div class="col">
+              <h3>{{ continent }}</h3>
+            </div>
+            <div class="col">
+              <div class="row">
+                {% for community in communities_by_continent[continent] %}
+                  <div class="col-3 col-medium-2">
+                    <div class="p-image-container--16-9 is-cover">
+                      <img class="p-image-container__image"
+                           src="{{ community.image.url if community.image and community.image.url else 'https://assets.ubuntu.com/v1/37387afc-loco-thumbnail.png' }}"
+                           alt="" />
+                    </div>
+                    <hr class="p-rule--highlight" />
+                    <p class="p-heading--5">
+                      <a href="{{ community.link.url }}">{{ community.name }}</a>
+                    </p>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      <hr class="p-rule--muted is-fixed-width" />
+      <div class="row--25-75">
+        <div class="col">
+          <h3>Historic/ Inactive LoCo teams</h3>
+        </div>
+        <div class="col">
+          <p>Don't see a Local Community in your region?</p>
+          <div class="p-cta-block">
+            <a href="/community/docs/locos/create" class="p-button">Consider starting one</a>
+          </div>
+        </div>
+      </div>
+    </noscript>
   </div>
 
   {{ vf_highlighted_cta(cta_text="Are you stuck and need help? <br /> <a href='https://ubuntu.com/community/support'>Take a look at how our community can support you.</a>") }}
@@ -186,7 +211,9 @@ meta_copydoc %}
         minZoom: 2, // Prevents zooming out too far
         maxBounds: [[-75, -180], [80, 180]], // Restricts panning
         maxBoundsViscosity: 1.0
-      }).setView([31.505, -0.09], 2);
+      });
+      map.on('load', onMapLoad);
+      map.setView([31.505, -0.09], 2);
 
       // Set up the tile layer with grey canvas (using CartoDB Positron without labels)
       L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png').addTo(map);
@@ -210,9 +237,15 @@ meta_copydoc %}
       });
     }
 
-    window.addEventListener('load', function() {
-      initMap("locations-map");
-    });
+    function onMapLoad() {
+      locosMap = document.querySelector(".js-show-map");
+      locosMap.style.visibility = "visible";
+      locosMap.style.marginTop = "1rem";
+      locosMap.style.marginBottom = "1.5rem";
+      document.querySelector(".js-show-tabs").classList.remove("u-hide");
+    }
+
+    initMap("locations-map");
 </script>
   {# djlint:on #}
 {% endblock content %}
