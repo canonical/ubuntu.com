@@ -94,7 +94,9 @@
     </div>
     <div class="p-section">
       {% for event in events %}
-        {% if loop.index0 % 4 == 0 %}<div class="p-equal-height-row--wrap has-divider-0 u-hide">{% endif %}
+        {% if loop.index0 % 4 == 0 %}
+          <div class="p-equal-height-row--wrap has-divider-0{% if loop.index0 >= 12 %} u-hide{% endif %}">
+          {% endif %}
           <div class="p-equal-height-row__col js-event-card"
                data-index="{{ loop.index0 }}">
             <div class="p-equal-height-row__item" style="padding-top:0.5rem;">
@@ -114,35 +116,42 @@
           {% if loop.index0 % 4 == 3 or loop.last %}</div>{% endif %}
       {% endfor %}
     </div>
-    <div class="u-fixed-width u-align--centre">
-      <nav class="p-pagination js-events-pagination" aria-label="Pagination">
-        <ol class="p-pagination__items" style="justify-content:center;">
-          <li class="p-pagination__item">
-            <button class="p-pagination__link--previous js-previous-page"
-                    href="#previous"
-                    title="Previous page"
-                    disabled>
-              <i class="p-icon--chevron-down">Previous page</i>
-            </button>
-          </li>
-          {% set total_pages = (events|length // 12) + (1 if events|length % 12 else 0) %}
-          {% for page in range(1, total_pages + 1) %}
-            <li class="p-pagination__item js-pagination-item" data-page="{{ page }}">
-              <button class="p-pagination__link js-select-page{% if page == 1 %} is-active{% endif %}"
-                      {% if page == 1 %}aria-current="page"{% endif %}
-                      href="#{{ page }}"
-                      aria-label="Page {{ page }}">{{ page }}</button>
+    <noscript>
+      <div class="u-fixed-width">
+        <a class="p-button" href="https://discourse.ubuntu.com/c/events/11">See all event</a>
+      </div>
+    </noscript>
+    <div class="js-show-pagination u-hide">
+      <div class="u-fixed-width u-align--centre">
+        <nav class="p-pagination js-events-pagination" aria-label="Pagination">
+          <ol class="p-pagination__items" style="justify-content:center;">
+            <li class="p-pagination__item">
+              <button class="p-pagination__link--previous js-previous-page"
+                      href="#previous"
+                      title="Previous page"
+                      disabled>
+                <i class="p-icon--chevron-down">Previous page</i>
+              </button>
             </li>
-          {% endfor %}
-          <li class="p-pagination__item">
-            <button class="p-pagination__link--next js-next-page"
-                    href="#next"
-                    title="Next page">
-              <i class="p-icon--chevron-down">Next page</i>
-            </button>
-          </li>
-        </ol>
-      </nav>
+            {% set total_pages = (events|length // 12) + (1 if events|length % 12 else 0) %}
+            {% for page in range(1, total_pages + 1) %}
+              <li class="p-pagination__item js-pagination-item" data-page="{{ page }}">
+                <button class="p-pagination__link js-select-page{% if page == 1 %} is-active{% endif %}"
+                        {% if page == 1 %}aria-current="page"{% endif %}
+                        href="#{{ page }}"
+                        aria-label="Page {{ page }}">{{ page }}</button>
+              </li>
+            {% endfor %}
+            <li class="p-pagination__item">
+              <button class="p-pagination__link--next js-next-page"
+                      href="#next"
+                      title="Next page">
+                <i class="p-icon--chevron-down">Next page</i>
+              </button>
+            </li>
+          </ol>
+        </nav>
+      </div>
     </div>
   </section>
 
@@ -166,6 +175,11 @@
       const paginationPages = document.querySelectorAll('.js-pagination-item');
       let currentPage = 1;
       const totalPages = Math.ceil(sections.length / sectionsPerPage);
+
+      // Only show pagination if there are multiple pages
+      if (totalPages > 1) {
+        document.querySelector(".js-show-pagination").classList.remove("u-hide");
+      }
 
       function getMaxVisiblePages() {
         return window.innerWidth < 620 ? 3 : 5;
@@ -257,9 +271,6 @@
           if (!isNaN(page)) showPage(page);
         }
       });
-
-      // Initial display
-      showPage(1);
     });
   </script>
 {% endblock content %}
