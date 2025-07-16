@@ -355,9 +355,9 @@ def checkout(advantage_mapper, **kwargs):
 
 @shop_decorator(area="account", response="html")
 def get_shop_status_page(**kwargs):
-    maintenance = strtobool(os.getenv("STORE_MAINTENANCE", "false"))
-    start_date = parse(os.getenv("STORE_MAINTENANCE_START"))
-    end_date = parse(os.getenv("STORE_MAINTENANCE_END"))
+    maintenance = strtobool(os.getenv("FLASK_STORE_MAINTENANCE", "false"))
+    start_date = parse(os.getenv("FLASK_STORE_MAINTENANCE_START"))
+    end_date = parse(os.getenv("FLASK_STORE_MAINTENANCE_END"))
     time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
     is_in_timeframe = start_date <= time_now < end_date
 
