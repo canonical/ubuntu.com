@@ -17,9 +17,15 @@
 
   {% call(slot) vf_hero(
     title_text='Linux patch management, solved',
-    subtitle_text='Use our tool to see which packages Ubuntu Pro supports.',
+    subtitle_text='See which packages Ubuntu Pro supports.',
     layout='50/50'
     ) -%}
+    
+    {%- if slot == 'description' -%}
+      <p>
+        Ubuntu Pro provides comprehensive coverage for the OS and all your open source.
+      </p>
+    {%- endif -%}
     
     {%- if slot == 'cta' -%}
       <a href="/contact-us/form?product=pro" class="p-button--positive">Get in touch</a>
