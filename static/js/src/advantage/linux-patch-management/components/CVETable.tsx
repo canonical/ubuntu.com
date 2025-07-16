@@ -23,44 +23,6 @@ const CVETable = () => {
     setSelectedSeverity,
   );
 
-  const headers = [
-    {
-      content: "Packages",
-    },
-    {
-      content: "Severity",
-    },
-    {
-      content: null,
-    },
-    {
-      content: "Coverage Needed",
-    },
-  ];
-
-  const rows = [
-    {
-      columns: [
-        {
-          content: null,
-          role: "columnheader",
-        },
-        {
-          content: <p>High</p>,
-          role: "columnheader",
-        },
-        {
-          content: <p>Critical</p>,
-          role: "columnheader",
-        },
-        {
-          content: null,
-          role: "columnheader",
-        },
-      ],
-    },
-  ];
-
   if (isLoading) {
     return (
       <>
@@ -117,4 +79,42 @@ const CVETable = () => {
     </>
   );
 };
+
+const headers = [
+  {
+    content: "Packages",
+  },
+  {
+    content: "Severity",
+  },
+  {
+    content: null,
+  },
+  {
+    content: "Coverage Needed",
+  },
+];
+
+const rows = [
+  {
+    columns: [
+      {
+        content: null,
+        role: "columnheader",
+      },
+      {
+        content: <p>High</p>,
+        role: "columnheader",
+      },
+      {
+        content: <p>Critical</p>,
+        role: "columnheader",
+      },
+      {
+        content: null,
+        role: "columnheader",
+      },
+    ],
+  },
+];
 export default CVETable;
