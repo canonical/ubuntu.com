@@ -1540,8 +1540,8 @@ def process_community_events(community_events):
             full_event = community_events.parser.api.get_topic(
                 event["post"]["topic"]["id"]
             )
-            pasrsed_event = community_events.parser.parse_topic(full_event)
-            event["description"] = pasrsed_event["sections"][0]["content"]
+            parsed_event = community_events.parser.parse_topic(full_event)
+            event["description"] = parsed_event["sections"][0]["content"]
             # Format the event time
             format_community_event_time(event)
 
