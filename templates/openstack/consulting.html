@@ -3,6 +3,7 @@
 {% from "_macros/vf_rich-vertical-list.jinja" import vf_rich_vertical_list %}
 {% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_macros/vf_pricing-block.jinja" import vf_pricing_block %}
 
 {% block title %}Private cloud consulting - OpenStack implementation{% endblock %}
 
@@ -46,118 +47,6 @@
       </div>
     </div>
   </section>
-
-  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
-    {%- if slot == 'title' -%}
-      <h2>
-        Straightforward Charmed
-        <br />
-        OpenStack implementation
-      </h2>
-    {%- endif -%}
-
-    {%- if slot == 'description' -%}
-      <p>Build future-proof private clouds in a few weeks with these five simple steps.</p>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_title_1' -%}
-      <h3 class="p-heading--5">1.&nbsp;&nbsp;Design</h3>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_description_1' -%}
-      <div class="p-section--shallow">
-        <p>
-          Together, we design the cloud according to your needs. We guide you through the hardware specification process to maximize price-performance and tailor cloud architecture to meet your capacity, workload, security, regulatory and integration requirements.
-        </p>
-      </div>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_title_2' -%}
-      <h3 class="p-heading--5">2.&nbsp;&nbsp;Model</h3>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_description_2' -%}
-      <div class="p-section--shallow">
-        <p>
-          Once the design step is completed, we translate all design decisions into a model that is reusable across various environments. Modelling guarantees repeatable deployments and enables integration with infrastructure-as-code (IaC) and continuous integration continuous delivery (CICD) systems.
-        </p>
-      </div>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_title_3' -%}
-      <h3 class="p-heading--5">3.&nbsp;&nbsp;Deploy</h3>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_description_3' -%}
-      <div class="p-section--shallow">
-        <p>
-          We deploy the cloud for you on your premises or in one of our partners’ data centres. We validate it post-deployment and benchmark its performance. At the end, we provide you with the deployment guide which outlines all the steps required to re-deploy the cloud if needed.
-        </p>
-      </div>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_title_4' -%}
-      <h3 class="p-heading--5">4.&nbsp;&nbsp;Operate</h3>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_description_4' -%}
-      <div class="p-section--shallow">
-        <p>
-          After day-1, day-2 comes in. The cloud can either be managed by you or by our team of cloud experts. In both cases, we provide 24/7 enterprise-grade support, including security updates, phone and ticket support, local regulatory compliance programs, and the like.
-        </p>
-      </div>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_title_5' -%}
-      <h3 class="p-heading--5">5.&nbsp;&nbsp;Transfer</h3>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_description_5' -%}
-      <div class="p-section--shallow">
-        <p>
-          Some customers choose to extend their support with fully managed service. On request, we transfer control over your cloud back to your organization. We train your personnel, make sure you are able to operate the cloud yourself moving forward and perform a formal handover process. We continue providing commercial support to make sure your cloud receives security updates and you receive help if needed.
-        </p>
-      </div>
-    {%- endif -%}
-  {%- endcall -%}
-
-  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=true, is_list_full_width_on_tablet=true) -%}
-    {%- if slot == 'title' -%}
-      <h2 id="openstack-support" style="scroll-margin: 5rem;">Get OpenStack support from Canonical</h2>
-    {%- endif -%}
-
-    {%- if slot == 'description' -%}
-      <p>Choose the OpenStack product you are interested in purchasing support for:</p>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_title_1' -%}
-      <h3 class="p-heading--5">Charmed OpenStack</h3>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_description_1' -%}
-      <p>
-        Canonical fully supports Charmed OpenStack clouds deployed through the <a href="/openstack/consulting">Private Cloud Build</a> consulting engagement. Our team of cloud experts designs the cloud according to Canonical’s best practices, builds it for you and operates it if needed.
-      </p>
-      <div class="p-cta-block">
-        <a href="/openstack/contact-us"
-           class="p-button js-invoke-modal"
-           aria-controls="openstack-modal">Order Private Cloud Build</a>
-      </div>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_title_2' -%}
-      <h3 class="p-heading--5">MicroStack</h3>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_description_2' -%}
-      <p>
-        Canonical fully supports OpenStack clouds deployed with <a href="https://canonical.com/microstack">MicroStack</a>. Simply get any Ubuntu Pro subscription with Support, attach it to all nodes in your cluster and benefit from phone and ticket support.
-        <div class="p-cta-block">
-          <a href="/pro/subscribe" class="p-button">Get Ubuntu Pro</a>
-        </div>
-      </p>
-    {%- endif -%}
-  {%- endcall -%}
 
   <section class="u-fixed-width p-section">
     <hr class="p-rule" />
@@ -520,118 +409,86 @@
     </div>
   </section>
 
-  <section class="p-strip--light">
-    <div class="u-fixed-width">
-      <h2>Straightforward path to OpenStack implementation</h2>
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+    {%- if slot == 'title' -%}
+      <h2>
+        Straightforward path
+        <br class="u-hide--small" />
+        to OpenStack implementation
+      </h2>
+    {%- endif -%}
+
+    {%- if slot == 'description' -%}
       <p>Build an enterprise private cloud in a few weeks with these five simple steps.</p>
-      <ol class="p-stepped-list">
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">Design</h3>
-          <div class="row u-no-padding p-stepped-list__content">
-            <div class="col-8">
-              <p>
-                Together, we design the cloud according to your needs. We guide you through the hardware specification process to maximize price-performance and tailor cloud architecture to meet your capacity, workload, security, regulatory and integration requirements.
-              </p>
-            </div>
-            <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/f5d56df2-OpenStack-consulting+design.svg",
-              alt="",
-              width="117",
-              height="75",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-              }}
-            </div>
-          </div>
-        </li>
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">Model</h3>
-          <div class="row u-no-padding p-stepped-list__content">
-            <div class="col-8">
-              <p>
-                Once the design step is completed, we translate all design decisions into a model that is reusable across various environments. Modeling guarantees repeatable deployments and enables integration with infrastructure-as-code (IaC) and continuous integration continuous delivery (CICD) systems.
-              </p>
-            </div>
-            <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/46439b10-2.+model_AW.svg",
-              alt="",
-              width="114",
-              height="75",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-              }}
-            </div>
-          </div>
-        </li>
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">Deploy</h3>
-          <div class="row u-no-padding p-stepped-list__content">
-            <div class="col-8">
-              <p>
-                We deploy the cloud for you on your premises or in one of our partners' data centers. We validate it post-deployment and benchmark its performance. At the end, we provide you with the deployment guide which outlines all the steps required to re-deploy the cloud if needed.
-              </p>
-            </div>
-            <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/0cfe6c2d-build.svg",
-              alt="",
-              width="114",
-              height="75",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-              }}
-            </div>
-          </div>
-        </li>
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">Operate</h3>
-          <div class="row u-no-padding p-stepped-list__content">
-            <div class="col-8">
-              <p>
-                After day-1, day-2 comes in. The cloud can either be managed by you or <a href="/openstack/managed">by our team of cloud experts</a>. In both cases we provide <a href="/openstack/support">24x7 commercial support</a>, including security updates, phone and ticket support, local regulatory compliance programs, etc.
-              </p>
-            </div>
-            <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/81e3bf86-We+operate+your+Kubernetes.svg",
-              alt="",
-              width="75",
-              height="75",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-              }}
-            </div>
-          </div>
-        </li>
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">Transfer</h3>
-          <div class="row u-no-padding p-stepped-list__content">
-            <div class="col-8">
-              <p>
-                On request, we transfer control over your cloud back to your organization. We train your personnel, make sure you are able to operate the cloud yourself moving forward and perform a formal handover process. We continue providing commercial support to make sure your cloud receives security updates and you receive help if needed.
-              </p>
-            </div>
-            <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/2131b805-We+transfer+control.svg",
-              alt="",
-              width="75",
-              height="75",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-              }}
-            </div>
-          </div>
-        </li>
-      </ol>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">1.&nbsp;&nbsp;Design</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+      <div class="p-section--shallow">
+        <p>
+          Together, we design the cloud according to your needs. We guide you through the hardware specification process to maximize price-performance and tailor cloud architecture to meet your capacity, workload, security, regulatory and integration requirements.
+        </p>
+      </div>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">2.&nbsp;&nbsp;Model</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+      <div class="p-section--shallow">
+        <p>
+          Once the design step is completed, we translate all design decisions into a model that is reusable across various environments. Modeling guarantees repeatable deployments and enables integration with infrastructure-as-code (IaC) and continuous integration continuous delivery (CICD) systems.
+        </p>
+      </div>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_3' -%}
+      <h3 class="p-heading--5">3.&nbsp;&nbsp;Deploy</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_3' -%}
+      <div class="p-section--shallow">
+        <p>
+          We deploy the cloud for you on your premises or in one of our partners&#39; data centers. We validate it post-deployment and benchmark its performance. At the end, we provide you with the deployment guide which outlines all the steps required to re-deploy the cloud if needed.
+        </p>
+      </div>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_4' -%}
+      <h3 class="p-heading--5">4.&nbsp;&nbsp;Operate</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_4' -%}
+      <div class="p-section--shallow">
+        <p>
+          After day-1, day-2 comes in. The cloud can either be managed by you or <a href="/openstack/managed">by our team of cloud experts</a>. In both cases we provide <a href="/openstack/support">24x7 commercial support</a>, including security updates, phone and ticket support, local regulatory compliance programs, etc.
+        </p>
+      </div>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_5' -%}
+      <h3 class="p-heading--5">5.&nbsp;&nbsp;Transfer</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_5' -%}
+      <div class="p-section--shallow">
+        <p>
+          On request, we transfer control over your cloud back to your organization. We train your personnel, make sure you are able to operate the cloud yourself moving forward and perform a formal handover process. We continue providing commercial support to make sure your cloud receives security updates and you receive help if needed.
+        </p>
+      </div>
+    {%- endif -%}
+  {%- endcall -%}
+
+  <section class="p-section">
+    <div class="row">
+    <hr class="p-rule" />
+      <h2>Private Cloud Build services</h2>
     </div>
+    <div class="col">{% include "shared/pricing/_openstack-packages.html" %}</div>
   </section>
 
   <section class="p-strip is-bordered">
@@ -744,8 +601,11 @@
     </div>
   </section>
 
-  {% with first_item="_openstack_managed", second_item="_cloud_newsletter", third_item="_cloud_engage_further_reading" %}
-    {% include "shared/contextual_footers/_contextual_footer.html" %}
+  {% include "shared/contextual_footers/_openstack_managed.html" %}
+  {% include "shared/contextual_footers/_cloud_newsletter.html" %}
+
+  {% with title_link="/blog/tag/openstack", title_text="Further reading", groupId="3422" %}
+    {% include "internet-of-things/shared/_latest-news-iot.html" %}
   {% endwith %}
 
   <!-- Set default Marketo information for contact form below-->
