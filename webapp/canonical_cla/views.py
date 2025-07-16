@@ -5,8 +5,9 @@ from typing import Optional
 
 import flask
 import requests
+from canonicalwebteam.flask_base.env import get_flask_env
 
-CANONICAL_CLA_API_URL = os.getenv("FLASK_CANONICAL_CLA_API_URL")
+CANONICAL_CLA_API_URL = get_flask_env("CANONICAL_CLA_API_URL")
 
 ALLOWED_ENDPOINTS = [
     "/github/login",
