@@ -1,6 +1,6 @@
 {% extends "openstack/_base_openstack.html" %}
 
-{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+{% from "macros/_vf_quote-wrapper.jinja" import vf_quote_wrapper %}
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 
 {% block title %}Charmed OpenStack{% endblock %}
@@ -35,7 +35,7 @@
     .bars {
       align-items: flex-end;
       height: 150px;
-      margin: 1rem;
+      margin: 1rem 0.25rem;
 
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -588,7 +588,7 @@
       <div class="col-3 col-start-large-4">
         <h3 class="p-heading--5 p-text--small-caps">
           Canonical-managed
-          <br />
+          <br class="u-hide--small u-hide--medium" />
           OpenStack
         </h3>
       </div>
@@ -616,7 +616,7 @@
       <div class="col-3 col-start-large-4">
         <h3 class="p-heading--5 p-text--small-caps">
           Self-managed
-          <br />
+          <br class="u-hide--small u-hide--medium" />
           OpenStack
         </h3>
       </div>
