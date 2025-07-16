@@ -1331,6 +1331,8 @@ def cred_syllabus_data(**_):
     exam_name = flask.request.args.get("exam")
     syllabus_file = open("webapp/shop/cred/syllabus.json", "r")
     syllabus_data = json.load(syllabus_file)
+    if not any(exam_name == e["exam_name"] for e in syllabus_data):
+        exam_name = syllabus_data[0]["exam_name"]
     return flask.render_template(
         "credentials/syllabus.html",
         syllabus_data=syllabus_data,
@@ -1498,7 +1500,6 @@ def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
                 else:
                     exam["period"] = product["period"]
                 exam["marketplace"] = product["marketplace"]
-                # exam["name"] = product["name"]
                 exam["periodQuantity"] = product["effectiveDays"]
 
     return flask.render_template(
