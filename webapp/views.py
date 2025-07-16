@@ -37,8 +37,8 @@ marketo_session = Session()
 talisker.requests.configure(marketo_session)
 marketo_api = MarketoAPI(
     "https://066-EOV-335.mktorest.com",
-    os.getenv("MARKETO_API_CLIENT"),
-    os.getenv("MARKETO_API_SECRET"),
+    os.getenv("FLASK_MARKETO_API_CLIENT"),
+    os.getenv("FLASK_MARKETO_API_SECRET"),
     marketo_session,
 )
 
@@ -225,7 +225,7 @@ def build_tutorials_index(session, tutorials_docs):
         search_engine_id = "adb2397a224a1fe55"
 
         # API key should always be provided as an environment variable
-        search_api_key = os.getenv("SEARCH_API_KEY")
+        search_api_key = os.getenv("FLASK_SEARCH_API_KEY")
 
         if query and not search_api_key:
             raise NoAPIKeyError("Unable to search: No API key provided")
@@ -1439,7 +1439,7 @@ def build_sitemap_tree(exclude_paths=None):
 
         # Validate the secret if its a POST request
         if flask.request.method == "POST":
-            expected_secret = os.getenv("SITEMAP_SECRET")
+            expected_secret = os.getenv("FLASK_SITEMAP_SECRET")
             provided_secret = flask.request.headers.get(
                 "Authorization", ""
             ).replace("Bearer ", "")

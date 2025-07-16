@@ -310,7 +310,7 @@ def init_handlers(app, sentry):
             "months_list": months_list,
             "get_navigation": get_navigation,
             "get_stripe_publishable_key": os.getenv(
-                "STRIPE_PUBLISHABLE_KEY",
+                "FLASK_STRIPE_PUBLISHABLE_KEY",
                 "pk_live_68aXqowUeX574aGsVck8eiIE",
             ),
             "product": flask.request.args.get("product", ""),
@@ -322,7 +322,7 @@ def init_handlers(app, sentry):
             "utm_medium": flask.request.args.get("utm_medium", ""),
             "utm_source": flask.request.args.get("utm_source", ""),
             "CAPTCHA_TESTING_API_KEY": os.getenv(
-                "CAPTCHA_TESTING_API_KEY",
+                "FLASK_CAPTCHA_TESTING_API_KEY",
                 "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if",
             ),
             "http_host": flask.request.host,
@@ -330,7 +330,7 @@ def init_handlers(app, sentry):
             "get_meganav": get_meganav,
             "split_list": split_list,
             "format_to_id": format_to_id,
-            "canonical_cla_api_url": os.getenv("CANONICAL_CLA_API_URL"),
+            "canonical_cla_api_url": os.getenv("FLASK_CANONICAL_CLA_API_URL"),
         }
 
     def get_countries_list() -> List[dict]:

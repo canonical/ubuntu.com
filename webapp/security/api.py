@@ -4,7 +4,7 @@ from requests.exceptions import HTTPError
 from urllib.parse import urlencode
 
 SECURITY_API_URL = os.getenv(
-    "SECURITY_API_URL", "https://ubuntu.com/security/"
+    "FLASK_SECURITY_API_URL", "https://ubuntu.com/security/"
 )
 
 

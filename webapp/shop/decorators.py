@@ -88,28 +88,28 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                     flask.session[metadata_key] = value
 
             # shop under maintenance
-            maintenance = strtobool(os.getenv("STORE_MAINTENANCE", "false"))
+            maintenance = strtobool(os.getenv("FLASK_STORE_MAINTENANCE", "false"))
             cred_maintenance = strtobool(
-                os.getenv("CRED_MAINTENANCE", "False")
+                os.getenv("FLASK_CRED_MAINTENANCE", "False")
             )
             is_store_maintenance_in_timeframe = False
             is_cred_maintenance_in_timeframe = False
-            store_maintenance_start = os.getenv("STORE_MAINTENANCE_START")
-            store_maintenance_end = os.getenv("STORE_MAINTENANCE_END")
-            cred_maintenance_start = os.getenv("CRED_MAINTENANCE_START")
-            cred_maintenance_end = os.getenv("CRED_MAINTENANCE_END")
+            store_maintenance_start = os.getenv("FLASK_STORE_MAINTENANCE_START")
+            store_maintenance_end = os.getenv("FLASK_STORE_MAINTENANCE_END")
+            cred_maintenance_start = os.getenv("FLASK_CRED_MAINTENANCE_START")
+            cred_maintenance_end = os.getenv("FLASK_CRED_MAINTENANCE_END")
 
             if store_maintenance_start and store_maintenance_end:
-                maintenance_start = parse(os.getenv("STORE_MAINTENANCE_START"))
-                maintenance_end = parse(os.getenv("STORE_MAINTENANCE_END"))
+                maintenance_start = parse(os.getenv("FLASK_STORE_MAINTENANCE_START"))
+                maintenance_end = parse(os.getenv("FLASK_STORE_MAINTENANCE_END"))
                 time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
                 is_store_maintenance_in_timeframe = (
                     maintenance_start <= time_now < maintenance_end
                 )
 
             if cred_maintenance_start and cred_maintenance_end:
-                _maintenance_start = parse(os.getenv("CRED_MAINTENANCE_START"))
-                _maintenance_end = parse(os.getenv("CRED_MAINTENANCE_END"))
+                _maintenance_start = parse(os.getenv("FLASK_CRED_MAINTENANCE_START"))
+                _maintenance_end = parse(os.getenv("FLASK_CRED_MAINTENANCE_END"))
                 _time_now = datetime.now(pytz.utc)
                 is_cred_maintenance_in_timeframe = (
                     _maintenance_start <= _time_now <= _maintenance_end
@@ -174,10 +174,10 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
 
             return func(
                 badgr_issuer=os.getenv(
-                    "BADGR_ISSUER", "eTedPNzMTuqy1SMWJ05UbA"
+                    "FLASK_BADGR_ISSUER", "eTedPNzMTuqy1SMWJ05UbA"
                 ),
                 badge_certification=os.getenv(
-                    "CERTIFIED_BADGE", "hs8gVorCRgyO2mNUfeXaLw"
+                    "FLASK_CERTIFIED_BADGE", "hs8gVorCRgyO2mNUfeXaLw"
                 ),
                 ua_contracts_api=ua_contracts_api,
                 advantage_mapper=advantage_mapper,
@@ -316,9 +316,9 @@ def get_badgr_api_instance(area, badgr_session) -> BadgrAPI:
         return None
 
     return BadgrAPI(
-        os.getenv("BADGR_URL", "https://api.eu.badgr.io"),
-        os.getenv("BAGDR_USER"),
-        os.getenv("BADGR_PASSWORD"),
+        os.getenv("FLASK_BADGR_URL", "https://api.eu.badgr.io"),
+        os.getenv("FLASK_BAGDR_USER"),
+        os.getenv("FLASK_BADGR_PASSWORD"),
         badgr_session,
     )
 
@@ -328,10 +328,10 @@ def get_credly_api_instance(area, credly_session) -> CredlyAPI:
         return None
 
     return CredlyAPI(
-        base_url=os.getenv("CREDLY_URL", "https://sandbox-api.credly.com/v1"),
-        auth_token=os.getenv("CREDLY_TOKEN", ""),
+        base_url=os.getenv("FLASK_CREDLY_URL", "https://sandbox-api.credly.com/v1"),
+        auth_token=os.getenv("FLASK_CREDLY_TOKEN", ""),
         org_id=os.getenv(
-            "CREDLY_ORGANIZATION_ID", "30dfd771-5079-4000-9865-8c3aeb4545b6"
+            "FLASK_CREDLY_ORGANIZATION_ID", "30dfd771-5079-4000-9865-8c3aeb4545b6"
         ),
         session=credly_session,
     )
@@ -342,8 +342,8 @@ def get_trueability_api_instance(area, trueability_session) -> TrueAbilityAPI:
         return None
 
     return TrueAbilityAPI(
-        os.getenv("TRUEABILITY_URL", "https://app3.trueability.com"),
-        os.getenv("TRUEABILITY_API_KEY", ""),
+        os.getenv("FLASK_TRUEABILITY_URL", "https://app3.trueability.com"),
+        os.getenv("FLASK_TRUEABILITY_API_KEY", ""),
         trueability_session,
     )
 
@@ -366,7 +366,7 @@ def get_ua_contracts_api_instance(
         authentication_token=user_token,
         token_type="Macaroon",
         api_url=os.getenv(
-            "CONTRACTS_API_URL", "https://contracts.canonical.com"
+            "FLASK_CONTRACTS_API_URL", "https://contracts.canonical.com"
         ),
         remote_addr=remote_addr,
     )
