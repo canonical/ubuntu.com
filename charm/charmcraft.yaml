@@ -48,25 +48,31 @@ config:
     cred-maintenance-end:
       type: string
       default: "2024-09-28 15:00:00+00:00"
-    google-api:
+    search-api:
       type: secret
       description: "Google Search API"
     discourse-api:
       type: secret
       description: "Discourse API"
-    launchpad-imagebuild:
+    charmhub-discourse-api:
+      type: secret
+      description: "Charmhub Discourse API"
+    maas-discourse-api:
+      type: secret
+      description: "MAAS Discourse API"
+    launchpad-image-build:
       type: secret
       description: "Launchpad image build credentials"
-    marketo:
+    marketo-api:
       type: secret
       description: "Marketo API credentials"
     google-service-account:
       type: secret
       description: "Google service account credentials"
-    ubuntu-google-datastore:
+    google-datastore:
       type: secret
       description: "Google Datastore credentials for Ubuntu"
-    confidentiality-webhook:
+    confidentiality-agreement-webhook:
       type: secret
       description: "Confidentiality agreement webhook credentials"
     sentry-dsn:
@@ -108,9 +114,12 @@ config:
       type: string
       description: "TrueAbility URL for assessment management"
       default: "https://app.trueability.com"
-    trueability:
+    trueability-api:
       type: secret
       description: "TrueAbility credentials for assessment management"
+    ta-webhook-api:
+      type: secret
+      description: "TrueAbility webhook API credentials"
     proctor360-base-url:
       type: string
       description: "Proctor360 base URL for proctoring services"
@@ -118,7 +127,7 @@ config:
     proctor360:
       type: secret
       description: "Proctor360 credentials for proctoring services"
-    sitemaps:
+    sitemap:
       type: secret
       description: "Sitemaps credentials for sitemap generation"
     credly-url:
