@@ -137,6 +137,18 @@ meta_copydoc %}
               <h2>Historic/ Inactive LoCo teams</h2>
             </div>
             <div class="col">
+              <div class="p-section--shallow">
+                <div class="p-image-container is-cover">
+                  {{ image(url="https://assets.ubuntu.com/v1/c71d8fa6-new-community.png",
+                                    alt="",
+                                    width="566",
+                                    height="380",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-image-container__image"}) | safe
+                  }}
+                </div>
+              </div>
               <p>Don't see a Local Community in your region?</p>
               <div class="p-cta-block">
                 <a href="/community/docs/locos/create" class="p-button">Consider starting one</a>
@@ -146,48 +158,60 @@ meta_copydoc %}
         </div>
       </div>
     </div>
-    <noscript>
-      {% for continent in communities_by_continent %}
-        <div class="p-section--shallow">
-          <hr class="p-rule--muted is-fixed-width" />
-          <div class="row--25-75">
-            <div class="col">
-              <h3>{{ continent }}</h3>
-            </div>
-            <div class="col">
-              <div class="row">
-                {% for community in communities_by_continent[continent] %}
-                  <div class="col-3 col-medium-2">
-                    <div class="p-image-container--16-9 is-cover">
-                      <img class="p-image-container__image"
-                           src="{{ community.image.url if community.image and community.image.url else 'https://assets.ubuntu.com/v1/37387afc-loco-thumbnail.png' }}"
-                           alt="" />
-                    </div>
-                    <hr class="p-rule--highlight" />
-                    <p class="p-heading--5">
-                      <a href="{{ community.link.url }}">{{ community.name }}</a>
-                    </p>
-                  </div>
-                {% endfor %}
-              </div>
-            </div>
+  </div>
+  <noscript>
+    {% for continent in communities_by_continent %}
+      <div class="p-section--shallow">
+        <hr class="p-rule--muted is-fixed-width" />
+        <div class="row--25-75">
+          <div class="col">
+            <h3>{{ continent }}</h3>
           </div>
-        </div>
-      {% endfor %}
-      <hr class="p-rule--muted is-fixed-width" />
-      <div class="row--25-75">
-        <div class="col">
-          <h3>Historic/ Inactive LoCo teams</h3>
-        </div>
-        <div class="col">
-          <p>Don't see a Local Community in your region?</p>
-          <div class="p-cta-block">
-            <a href="/community/docs/locos/create" class="p-button">Consider starting one</a>
+          <div class="col">
+            <div class="row">
+              {% for community in communities_by_continent[continent] %}
+                <div class="col-3 col-medium-2">
+                  <div class="p-image-container--16-9 is-cover">
+                    <img class="p-image-container__image"
+                         src="{{ community.image.url if community.image and community.image.url else 'https://assets.ubuntu.com/v1/37387afc-loco-thumbnail.png' }}"
+                         alt="" />
+                  </div>
+                  <hr class="p-rule--highlight" />
+                  <p class="p-heading--5">
+                    <a href="{{ community.link.url }}">{{ community.name }}</a>
+                  </p>
+                </div>
+              {% endfor %}
+            </div>
           </div>
         </div>
       </div>
-    </noscript>
-  </div>
+    {% endfor %}
+    <hr class="p-rule--muted is-fixed-width" />
+    <div class="row--25-75">
+      <div class="col">
+        <h3>Historic/ Inactive LoCo teams</h3>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="p-image-container is-cover">
+            {{ image(url="https://assets.ubuntu.com/v1/c71d8fa6-new-community.png",
+                        alt="",
+                        width="566",
+                        height="380",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
+        </div>
+        <p>Don't see a Local Community in your region?</p>
+        <div class="p-cta-block">
+          <a href="/community/docs/locos/create" class="p-button">Consider starting one</a>
+        </div>
+      </div>
+    </div>
+  </noscript>
 
   {{ vf_highlighted_cta(cta_text="Are you stuck and need help? <br /> <a href='https://ubuntu.com/community/support'>Take a look at how our community can support you.</a>") }}
 
