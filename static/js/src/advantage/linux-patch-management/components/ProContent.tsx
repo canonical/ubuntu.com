@@ -118,7 +118,7 @@ const ProContent = ({
                 >
                   {LTSReleases.map((release) => (
                     <option key={release.value} value={release.value}>
-                      {release.label}
+                      {`${release.label} LTS`}
                     </option>
                   ))}
                 </select>
