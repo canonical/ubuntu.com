@@ -9,7 +9,7 @@ fetch("/static/js/data/openstack-deployment-stats.json")
 const drawChart = (data) => {
   const piedata = d3.pie().value((d) => d.percentage)(data);
 
-  const arc = d3.arc().innerRadius(60).outerRadius(120);
+  const arc = d3.arc().innerRadius(55).outerRadius(110);
 
   const colors = d3.scaleOrdinal([
     "#E95420",
@@ -27,8 +27,8 @@ const drawChart = (data) => {
   const svg = d3
     .select("#openstack-pie-chart")
     .append("svg")
-    .attr("width", 630)
-    .attr("height", 360)
+    .attr("width", 510)
+    .attr("height", 395)
     .append("g")
     .attr("transform", "translate(120,180)");
 
@@ -46,15 +46,16 @@ const drawChart = (data) => {
     .style("padding", "0.5rem 1rem");
 
   svg
-    .selectAll("ledgend-dots")
+    .selectAll("legend-squares")
     .data(piedata)
     .enter()
-    .append("circle")
-    .attr("cx", 140)
-    .attr("cy", function (d, i) {
-      return -95 + i * 30;
+    .append("rect")
+    .attr("x", 140)
+    .attr("y", function (d, i) {
+      return -102 + i * 30; // Adjust for vertical centering with text
     })
-    .attr("r", 7)
+    .attr("width", 14)
+    .attr("height", 14)
     .style("fill", function (d, i) {
       return colors(i);
     });
@@ -75,7 +76,8 @@ const drawChart = (data) => {
       return d.data.name;
     })
     .attr("text-anchor", "left")
-    .attr("font-size", "14px")
+    .attr("font-size", "12px")
+    .attr("font-weight", "500")
     .attr("width", "10px")
     .style("alignment-baseline", "middle");
 
@@ -84,7 +86,7 @@ const drawChart = (data) => {
     .data(piedata)
     .enter()
     .append("text")
-    .attr("x", 380)
+    .attr("x", 360)
     .attr("y", function (d, i) {
       return -95 + i * 30;
     })
@@ -94,7 +96,8 @@ const drawChart = (data) => {
     .text(function (d) {
       return d.data.percentage + `%`;
     })
-    .attr("font-size", "14px")
+    .attr("font-size", "12px")
+    .style("font-weight", "500")
     .style("text-anchor", "end")
     .style("alignment-baseline", "middle");
 
