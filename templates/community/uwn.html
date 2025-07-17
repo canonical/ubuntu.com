@@ -1,0 +1,106 @@
+{% extends "community/_base_community.html" %}
+
+{% block title %}The Ubuntu Weekly Newsletter{% endblock %}
+
+{% block meta_description %}
+  Ubuntu Weekly Newsletter - Collecting Ubuntu News from around the community and around the world to bring readers a weekly dose of Ubuntu articles.
+{% endblock meta_description %}
+
+{% block body_class %}
+  {% if not(no_dark == True) %}is-dark{% endif %}
+{% endblock body_class %}
+
+{% block content %}
+  <div class="p-strip is-shallow">
+    <div class="row">
+      <aside class="col-3">
+        <div class="p-side-navigation" id="drawer">
+          <button class="p-side-navigation__toggle js-drawer-toggle u-hide"
+                  aria-controls="drawer">Toggle side navigation</button>
+
+          <div class="p-side-navigation__overlay js-drawer-toggle"
+               aria-controls="drawer"></div>
+
+          <nav class="p-side-navigation__drawer" aria-label="Toggle side navigation">
+            <div class="p-side-navigation__drawer-header">
+              <button class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
+                      aria-controls="drawer">Toggle side navigation</button>
+            </div>
+            <ul class="p-side-navigation__list">
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link"
+                   {% if request.path == "/community/uwn" %}aria-current="page"{% endif %}
+                   href="/community/uwn"
+                   style="color:#FFFFFF"><strong>Ubuntu Weekly Newsletter</strong></a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link"
+                   {% if request.path == "/community/uwn/ubuntu-weekly-newsletter" %}aria-current="page"{% endif %}
+                   href="/community/uwn/ubuntu-weekly-newsletter"
+                   style="color:#FFFFFF">Introduction</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link"
+                   {% if request.path == "/community/uwn/joining-the-ubuntu-weekly-newsletter-team" %}aria-current="page"{% endif %}
+                   href="/community/uwn/joining-the-ubuntu-weekly-newsletter-team"
+                   style="color:#FFFFFF">Joining the Ubuntu Weekly Newsletter Team</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link"
+                   {% if request.path == "/community/uwn/ubuntu-weekly-newsletter-editing-policies" %}aria-current="page"{% endif %}
+                   href="/community/uwn/ubuntu-weekly-newsletter-editing-policies"
+                   style="color:#FFFFFF">UWN / Editing Policies</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link"
+                   {% if request.path == "/community/uwn/ubuntu-weekly-newsletter-style-guidelines" %}aria-current="page"{% endif %}
+                   href="/community/uwn/ubuntu-weekly-newsletter-style-guidelines"
+                   style="color:#FFFFFF">UWN / Style guides</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link"
+                   {% if request.path == "/community/uwn/ubuntu-weekly-newsletter-link-suggestions" %}aria-current="page"{% endif %}
+                   href="/community/uwn/ubuntu-weekly-newsletter-link-suggestions"
+                   style="color:#FFFFFF">UWN / Link suggestions</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link"
+                   {% if request.path == "/community/uwn/ubuntu-weekly-newsletter-ideas" %}aria-current="page"{% endif %}
+                   href="/community/uwn/ubuntu-weekly-newsletter-ideas"
+                   style="color:#FFFFFF">UWN Idea</a>
+              </li>
+            </ul>
+
+            <h3 class="p-side-navigation__heading">Newsletters</h3>
+            <ul class="p-side-navigation__list">
+              {% for newsletter in newsletters_list %}
+                <li class="p-side-navigation__item">
+                  <a class="p-side-navigation__link"
+                     {% if request.path == "/community/uwn/" + newsletter.slug %}aria-current="page"{% endif %}
+                     href="/community/uwn/{{ newsletter.slug }}"
+                     style="color:#FFFFFF">{{ newsletter.title }}</a>
+                </li>
+              {% endfor %}
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link"
+                   href="https://discourse.ubuntu.com/c/uwn/124"
+                   style="color:#FFFFFF">See all...</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+
+      <main class="col-9">
+        {{ newsletter_data.body_html | safe }}
+      </main>
+    </div>
+  </div>
+
+  <script src="{{ versioned_static('js/dist/side-navigation.js') }}" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelector(".js-drawer-toggle").classList.remove("u-hide");
+    })
+  </script>
+{% endblock content %}
