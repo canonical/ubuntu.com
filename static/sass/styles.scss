@@ -1879,6 +1879,8 @@ ol.p-stepped-list.no-full-stop
   text-overflow: ellipsis;
 }
 
+// XXX: Can be removed once (if) the below issue is resolved in Vanilla
+// https://github.com/canonical/vanilla-framework/issues/5583
 @container (width >= 100ch) {
   .p-list--horizontal-section-wrapper
     .p-list--horizontal-section:is(.is-50-50-on-large) {

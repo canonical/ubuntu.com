@@ -1517,7 +1517,8 @@ def process_local_communities(local_communities):
                     )
                 except (ValueError, AttributeError) as e:
                     logging.error(
-                        f"Error parsing coordinates '{community['coordinates']}': {e}"
+                        f"Error parsing coordinates "
+                        f"'{community['coordinates']}': {e}"
                     )
 
         return flask.render_template(
