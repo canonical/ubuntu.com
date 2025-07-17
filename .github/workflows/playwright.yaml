@@ -51,4 +51,5 @@ jobs:
       env:
         PLAYWRIGHT_USER_ID: ${{ secrets.PLAYWRIGHT_USER_ID }}
         PLAYWRIGHT_USER_PASSWORD : ${{ secrets.PLAYWRIGHT_USER_PASSWORD }}
-      run: yarn playwright test --grep "should return success response"
+        TESTING: true
+      run: yarn playwright test

@@ -1,5 +1,11 @@
 import { test, expect } from "@playwright/test";
-import { acceptCookiePolicy } from "../helpers/commands";
+import { fillExistingFields, acceptCookiePolicy } from "../helpers/commands";
+import { formTextFields, formCheckboxFields } from "../helpers/form-fields.ts";
+
+export const staticContactUsPages = [
+  "/tests/_static-client-form",
+  "/tests/_static-default-form",
+]
 
 test.describe("Form ID validation", () => {
   /**
@@ -32,11 +38,7 @@ test.describe("Form ID validation", () => {
     for (const url of contactUsPages) {
       await test.step(`Validating form on ${url}`, async () => {
         await page.goto(url);
-
-        // Only accept cookie policy if it exists
-        if (await page.locator('#cookie-policy-button-accept').isVisible()) {
-          await acceptCookiePolicy(page);
-        }
+        await acceptCookiePolicy(page);
 
         // Check that formid and mktoForm input fields are present
         const formIdInput = page.locator('input[name="formid"]');
@@ -52,59 +54,46 @@ test.describe("Form ID validation", () => {
 });
 
 test.describe("Form submission validation", () => {
-  test("should return success response code when form is submitted successfully", async ({ page }) => {
-    const responsePromise = page.waitForResponse(response => 
-      response.url().includes('/marketo/submit') && response.status() !== 400
-    );
-    await page.goto("/core/contact-us");
-    await acceptCookiePolicy(page);
-    
-    // Fill required fields
-    await page.fill('input[name="company"]', 'Test Company');
-    await page.fill('input[name="title"]', 'Test Title');
-    await page.fill('textarea[id="comments"]', 'Test comments');
-    await page.getByLabel("< 5 machines").check({ force: true });
-    await page.fill('input[name="firstName"]', 'Test first name');
-    await page.fill('input[name="lastName"]', 'Test last name');
-    await page.fill('input[name="email"]', 'test@test.com');
-    await page.getByLabel('I agree to receive information').check({ force: true });
-    
-    await page.getByRole("button", { name: /Submit/ }).click();
+  test("should redirect to marketo submission endpoint", async ({ page }) => {
+    for (const url of staticContactUsPages) {
+      await test.step(`Testing form on ${url}`, async () => {
+        await page.goto(url);
+        await acceptCookiePolicy(page);
+        await fillExistingFields(page, formTextFields, formCheckboxFields);
 
-    // Wait for successful/redirect responses
-    const response = await responsePromise;
-    expect([200, 302]).toContain(response.status());
-    
+        await page.getByRole("button", { name: /Submit/ }).click();
+        await page.waitForURL(/\/marketo\/submit/, { timeout: 10000 });
+        await expect(page).toHaveURL('/marketo/submit');
+
+      });
+    };
   });
 
   test("should return 400 error when honeypot is triggered", async ({ page }) => {
-    const responsePromise = page.waitForResponse(response => 
-      response.url().includes('/marketo/submit') && response.status() === 400
-    );
-    await page.goto("/core/contact-us");
-    await acceptCookiePolicy(page);    
+    for (const url of staticContactUsPages) {
+      await test.step(`Testing form on ${url}`, async () => {
+        const responsePromise = page.waitForResponse(response => 
+          response.url().includes('/marketo/submit') && response.status() === 400
+        );
+        await page.goto(url);
+        await acceptCookiePolicy(page);
+        await fillExistingFields(page, formTextFields, formCheckboxFields);
+    
+        // Honeypot fields
+        await page.fill('input[name="website"]', 'test');
+        await page.fill('input[name="name"]', 'test');
+        await page.getByRole("button", { name: /Submit/ }).click();
+    
+        // Wait for 400 response
+        const response = await responsePromise;
+        expect(response.status()).toBe(400);
 
-    await page.fill('input[name="company"]', 'Test Company');
-    await page.fill('input[name="title"]', 'Test Title');
-    await page.fill('textarea[id="comments"]', 'Test comments');
-    await page.getByLabel("< 5 machines").check({ force: true });
-    await page.fill('input[name="firstName"]', 'Test first name');
-    await page.fill('input[name="lastName"]', 'Test last name');
-    await page.fill('input[name="email"]', 'test@test.com');
-    await page.getByLabel('I agree to receive information').check({ force: true });
-
-    // Honeypot fields
-    await page.fill('input[name="website"]', 'test');
-    await page.fill('input[name="name"]', 'test');
-    await page.getByRole("button", { name: /Submit/ }).click();
-
-    // Wait for 400 response
-    const response = await responsePromise;
-    expect(response.status()).toBe(400);
+      });
+    }
   });
 
-  test("should focus to required field if missing required fields", async ({ page }) => {
-    await page.goto("/core/contact-us");
+  test("should focus on required field if missing required fields", async ({ page }) => {
+    await page.goto("/tests/_static-client-form");
     await acceptCookiePolicy(page);    
     await page.getByRole("button", { name: /Submit/ }).click();
 
@@ -156,26 +145,31 @@ test.describe("Email validation", () => {
 
 test.describe("Radio field handling", () => {
   test("radio fields should have appropriate js hooks classnames", async ({ page }) => {
-    await page.goto("/core/contact-us");
-    await acceptCookiePolicy(page);
-
-    // Check that radio has js hooks classnames
-    const radioFieldset = page.locator('fieldset.js-remove-radio-names');
-    await expect(radioFieldset).toBeVisible();
-
-    // Check that radio buttons are present
-    const radioButtons = radioFieldset.locator('input[type="radio"]');
-    await expect(radioButtons.first()).toBeVisible();
+    for (const url of staticContactUsPages) {
+      await test.step(`Testing form on ${url}`, async () => {
+        await page.goto(url);
+        await acceptCookiePolicy(page);
     
-    // Check that radio buttons have names starting with _radio_
-    const radioName = await radioButtons.first().getAttribute('name');
-    expect(radioName).toMatch(/^_radio_/);
+        // Check that radio has js hooks classnames
+        const radioFieldset = page.locator('fieldset.js-remove-radio-names');
+        await expect(radioFieldset).toBeVisible();
+    
+        // Check that radio buttons are present
+        const radioButtons = radioFieldset.locator('input[type="radio"]');
+        await expect(radioButtons.first()).toBeVisible();
+        
+        // Check that radio buttons have names starting with _radio_
+        const radioName = await radioButtons.first().getAttribute('name');
+        expect(radioName).toMatch(/^_radio_/);
+      });
+    }
+    
   });
 });
 
 test.describe("Required checkbox validation", () => {
-  test("should disable submit button when required checkbox is not checked", async ({ page }) => {
-    await page.goto("/ai/contact-us");
+  test("should disable submit button when required checkbox is not checked", async ({ page }) => {    
+    await page.goto("/tests/_static-default-form");
     await acceptCookiePolicy(page);
 
     // Check that submit button is disabled
@@ -184,7 +178,7 @@ test.describe("Required checkbox validation", () => {
   });
 
   test("should enable submit button when required checkbox is checked", async ({ page }) => {
-    await page.goto("/ai/contact-us");
+    await page.goto("/tests/_static-default-form");
     await acceptCookiePolicy(page);
 
     // Check the required checkbox
