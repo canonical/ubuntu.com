@@ -1275,3 +1275,30 @@ app.add_url_rule(
     view_func=build_sitemap_tree(DYNAMIC_SITEMAPS),
     methods=["GET", "POST"],
 )
+
+
+# Create endpoints for testing environment only
+if app.config.get('TESTING') or os.getenv('TESTING') or app.debug:
+    @app.route('/marketo/submit', methods=['POST'])
+    def mock_marketo_submit():
+        print("Mock Marketo submission received")
+        if flask.request.form.get('website') or flask.request.form.get('name'):
+            print("Honeypot triggered!")
+            return flask.jsonify({'error': 'Invalid submission'}), 400
+
+        # Simulate validation errors
+        required_fields = ['firstName', 'lastName', 'email']
+        for field in required_fields:
+            if not flask.request.form.get(field):
+                return flask.jsonify({'error': f'Missing {field}'}), 400
+
+        # Simulate successful submission
+        return_url = flask.request.form.get('returnURL', '/tests/_thank-you')
+        return flask.redirect(return_url)
+
+    @app.route("/tests/<path:subpath>")
+    def tests(subpath):
+        """
+        Expose all routes under templates/tests if in development/testing mode.
+        """
+        return flask.render_template(f"tests/{subpath}.html")
