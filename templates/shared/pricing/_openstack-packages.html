@@ -6,11 +6,11 @@
         <h3 class="p-heading--4">Private Cloud Build</h3>
       </div>
       <p>Fixed price design and deployment of a baseline OpenStack cloud based on the reference architecture.</p>
-      <p class="p-text--muted">
+      <p class="u-text--muted">
         What's included: <sup><a href="#os-footnote">*</a></sup>
       </p>
       <hr class="p-rule--muted" />
-      <ul class="p-list">
+      <ul class="p-list--divided">
         <li class="p-list__item is-ticked">Hardware guidance and sizing</li>
         <li class="p-list__item is-ticked">Reference architecture</li>
         <li class="p-list__item is-ticked">Simplified networking</li>
@@ -20,6 +20,8 @@
         <li class="p-list__item is-ticked">Block and object storage</li>
         <li class="p-list__item is-ticked">High availability</li>
       </ul>
+      <hr class="p-rule--muted" />
+      <p>Design and delivery on certified hardware.</p>
     </div>
   </div>
   <div class="col-6">
@@ -31,12 +33,12 @@
       <p>
         Fixed price design and deployment of a carrier-grade, feature-rich OpenStack cloud based on a custom architecture.
       </p>
-      <p class="p-text--muted">
+      <p class="u-text--muted">
         What's included: <sup><a href="#os-footnote">*</a></sup>
       </p>
       <p>Everything in Private Cloud Build, plus:</p>
       <hr class="p-rule--muted" />
-      <ul class="p-list">
+      <ul class="p-list--divided">
         <li class="p-list__item is-ticked">Custom architecture</li>
         <li class="p-list__item is-ticked">Containerized or isolated control plane</li>
         <li class="p-list__item is-ticked">Complex networking</li>
@@ -48,156 +50,19 @@
         <li class="p-list__item is-ticked">Layer&ndash;7 load balancer</li>
         <li class="p-list__item is-ticked">Secrets management</li>
       </ul>
+      <hr class="p-rule--muted" />
       <p>Workshops determine the optimal architecture for your workloads and integration requirements.</p>
     </div>
   </div>
-</div>
+  <hr class="p-rule--muted" />
 
-{% call(slot) vf_pricing_block(
-  title_text='Private Cloud Build services',
-  tiers=[
-  {
-  'tier_name_text': 'Private Cloud Build',
-  'tier_description_html': '<p>Fixed price design and deployment of a baseline OpenStack cloud based on the reference architecture.</p>',
-  'tier_label_text': 'What\'s included: <sup><a href="#os-footnote">*</a></sup>',
-  'tier_offerings': [
-  {
-  'list_item_style': 'ticked',
-  'list_item_content_html': 'Hardware guidance and sizing'
-  },
-  {
-  'list_item_style': 'ticked',
-  'list_item_content_html': 'Reference architecture'
-  },
-  {
-  'list_item_style': 'ticked',
-  'list_item_content_html': 'Simplified networking'
-  },
-  {
-  'list_item_style': 'ticked',
-  'list_item_content_html': 'Hyper-converged or Converged'
-  },
-  {
-  'list_item_style': 'ticked',
-  'list_item_content_html': 'Containerized control plane'
-  },
-  {
-  'list_item_style': 'ticked',
-  'list_item_content_html': 'Observability stack'
-  },
-  {
-  'list_item_style': 'ticked',
-  'list_item_content_html': 'Block and object storage'
-  },
-  {
-  'list_item_style': 'ticked',
-  'list_item_content_html': 'High availability'
-  }
-  ],
-  'cta_html': 'Design and delivery on certified hardware.'
-  },
-  {
-  'tier_name_text': 'Kubernetes Explorer',
-  'tier_price_text': '$3099',
-  'tier_price_explanation': 'per year, per VM',
-  'tier_description_html': '<p>Three-day Kubernetes training to ramp up your team\'s skills. Three-day Kubernetes training to ramp up your team\'s skills.</p>',
-  'tier_label_text': 'What\'s included',
-  'tier_offerings': [
-  {
-  'list_item_style': 'ticked',
-  'list_item_content_html': 'Custom architecture'
-  },
-  {
-  'list_item_style': 'ticked',
-  'list_item_content_html': 'Containerized or isolated control plane'
-  },
-  {
-  'list_item_style': 'ticked',
-  'list_item_content_html': 'Complex networking'
-  },
-  {
-  'list_item_style': 'ticked',
-  'list_item_content_html': 'LDAP or Active Directory integration'
-  },
-  {
-  'list_item_style': 'ticked',
-  'list_item_content_html': 'Regulatory compliance'
-  },
-  {
-  'list_item_style': 'ticked',
-  'list_item_content_html': 'Encryption in flight and at rest'
-  },
-  {
-  'list_item_style': 'ticked',
-  'list_item_content_html': 'EPA tuning options'
-  },
-  {
-  'list_item_style': 'ticked',
-  'list_item_content_html': 'Block, object and file storage'
-  },
-  {
-  'list_item_style': 'ticked',
-  'list_item_content_html': 'Layer&ndash;7 load balancer'
-  },
-  {
-  'list_item_style': 'ticked',
-  'list_item_content_html': 'Secrets management'
-  }
-  ],
-  'cta_html': '<p>Workshops determine the optimal architecture for your workloads and integration requirements.</p>'
-  }
-  ]
-  ) -%}
-{% endcall %}
-
-<div class="row">
-  <div class="col-6 p-card">
-    <h2 class="p-heading--4">Private Cloud Build</h2>
-    <hr class="p-rule--muted" />
-    <p>Fixed price design and deployment of a baseline OpenStack cloud based on the reference architecture.</p>
-    <p>
-      What's included: <sup><a href="#os-footnote">*</a></sup>
-    </p>
-    <ul class="p-list">
-      <li class="p-list__item is-ticked">Hardware guidance and sizing</li>
-      <li class="p-list__item is-ticked">Reference architecture</li>
-      <li class="p-list__item is-ticked">Simplified networking</li>
-      <li class="p-list__item is-ticked">Hyper-converged or Converged</li>
-      <li class="p-list__item is-ticked">Containerized control plane</li>
-      <li class="p-list__item is-ticked">Observability stack</li>
-      <li class="p-list__item is-ticked">Block and object storage</li>
-      <li class="p-list__item is-ticked">High availability</li>
-    </ul>
-    <p>Design and delivery on certified hardware.</p>
+  <div class="grid-row">
+    <div class="grid-col-4 grid-col-start-large-5">
+      <p id="os-footnote" class="u-text--muted">
+        * Additional features, functionality and integrations are available via add-ons
+      </p>
+      <hr class="p-rule--muted" />
+      <a href="/openstack/contact-us" class="p-button">Ask for a quote</a>
+    </div>
   </div>
-  <div class="col-6 p-card">
-    <h2 class="p-heading--4">Private Cloud Build Plus</h2>
-    <hr class="p-rule--muted" />
-    <p>
-      Fixed price design and deployment of a carrier-grade, feature-rich OpenStack cloud based on a custom architecture.
-    </p>
-    <p>
-      What's included: <sup><a href="#os-footnote">*</a></sup>
-    </p>
-    <p>Everything in Private Cloud Build, plus:</p>
-    <ul class="p-list">
-      <li class="p-list__item is-ticked">Custom architecture</li>
-      <li class="p-list__item is-ticked">Containerized or isolated control plane</li>
-      <li class="p-list__item is-ticked">Complex networking</li>
-      <li class="p-list__item is-ticked">LDAP or Active Directory integration</li>
-      <li class="p-list__item is-ticked">Regulatory compliance</li>
-      <li class="p-list__item is-ticked">Encryption in flight and at rest</li>
-      <li class="p-list__item is-ticked">EPA tuning options</li>
-      <li class="p-list__item is-ticked">Block, object and file storage</li>
-      <li class="p-list__item is-ticked">Layer&ndash;7 load balancer</li>
-      <li class="p-list__item is-ticked">Secrets management</li>
-    </ul>
-    <p>Workshops determine the optimal architecture for your workloads and integration requirements.</p>
-  </div>
-</div>
-<div class="u-fixed-width">
-  <p id="os-footnote">* Additional features, functionality and integrations are available via add-ons</p>
-</div>
-<div class="u-fixed-width">
-  <a href="/openstack/contact-us" class="p-button--positive">Ask for a quote</a>
 </div>
