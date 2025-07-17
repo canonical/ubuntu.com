@@ -69,6 +69,7 @@
             <div class="p-equal-height-row__item">
               <div style="padding-top:2.5rem;">
                 <a href="https://discourse.ubuntu.com/{{ event.post.url }}"
+                   aria-label="Learn more about {{ event.post.topic.title }}"
                    class="p-button">Learn more</a>
               </div>
             </div>
@@ -110,6 +111,7 @@
             </div>
             <div class="p-equal-height-row__item">
               <a href="https://discourse.ubuntu.com/{{ event.post.url }}"
+                 aria-label="Learn more about {{ event.post.topic.title }}"
                  class="p-button">Learn more</a>
             </div>
           </div>
@@ -271,6 +273,8 @@
           if (!isNaN(page)) showPage(page);
         }
       });
+
+      showPage(1)
     });
   </script>
 {% endblock content %}
