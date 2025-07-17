@@ -1294,16 +1294,22 @@ def process_active_vulnerabilities(security_vulnerabilities):
                     "vulnerabilities"
                 )
             )
-            vulnerability_topics = (
+            vulnerability_topics_array = (
                 security_vulnerabilities.get_topics_in_category()
             )
+
+            # Convert array of topic objects to dict for quick lookup
+            vulnerability_topics = {
+                str(topic["id"]): topic["slug"]
+                for topic in vulnerability_topics_array
+            }
             current_date = datetime.now()
 
             # Filter out vulnerabilities that should not be displayed
             filtered_vulnerabilities = [
                 {
                     **vulnerability,
-                    "slug": vulnerability_topics.get(vulnerability["id"]),
+                    "slug": vulnerability_topics.get(str(vulnerability["id"])),
                 }
                 for vulnerability in vulnerabilities_metadata
                 if vulnerability.get("display-until")
@@ -1312,7 +1318,6 @@ def process_active_vulnerabilities(security_vulnerabilities):
                 )
                 > current_date
             ]
-
             return flask.render_template(
                 "security/index.html",
                 active_vulnerabilities=filtered_vulnerabilities,
@@ -1333,16 +1338,19 @@ def build_vulnerabilities_list(security_vulnerabilities, path=None):
     def vulnerabilities_list():
         try:
             template_path = "security/vulnerabilities/view-all.html"
-            topics = security_vulnerabilities.get_topics_in_category()
+            topics_array = security_vulnerabilities.get_topics_in_category()
+            # Convert array of topic objects to dict for quick lookup
+            topics = {
+                str(topic["id"]): topic["slug"] for topic in topics_array
+            }
             vulnerabilities = (
                 security_vulnerabilities.get_category_index_metadata(
                     "vulnerabilities"
                 )
             )
-
             for vuln in vulnerabilities:
                 # Add slug
-                vuln_id = vuln["id"]
+                vuln_id = str(vuln["id"])
                 if vuln_id in topics:
                     vuln["slug"] = topics[vuln_id]
                 # Add year
@@ -1608,3 +1616,37 @@ def community_landing_page(
         )
 
     return display_community_landing_page
+
+
+def build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter):
+    def display_ubuntu_weekly_newsletter(path=None):
+        """
+        Display the Ubuntu Weekly Newsletter.
+        """
+        newsletter_list = ubuntu_weekly_newsletter.get_topics_in_category()
+
+        if path is None:
+            path = "/"
+        target_page = ubuntu_weekly_newsletter.get_topic(path)
+
+        # Clean up newsletter titles and filter out non UWN issues
+        filtered_newsletters = []
+        for newsletter in newsletter_list:
+            if newsletter.get("title", "").startswith(
+                "Ubuntu Weekly Newsletter Issue"
+            ):
+                modified_newsletter = {
+                    **newsletter,
+                    "title": newsletter["title"]
+                    .replace("Ubuntu Weekly Newsletter", "UWN", 1)
+                    .strip(),
+                }
+                filtered_newsletters.append(modified_newsletter)
+
+        return flask.render_template(
+            "community/uwn.html",
+            newsletters_list=filtered_newsletters,
+            newsletter_data=target_page,
+        )
+
+    return display_ubuntu_weekly_newsletter

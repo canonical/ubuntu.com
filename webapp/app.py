@@ -158,6 +158,7 @@ from webapp.views import (
     process_local_communities,
     process_community_events,
     community_landing_page,
+    build_ubuntu_weekly_newsletter,
     build_engage_index,
     build_engage_page,
     build_engage_pages_sitemap,
@@ -857,6 +858,19 @@ app.add_url_rule(
         community_events, local_communities, ubuntu_weekly_newsletter
     ),
 )
+
+app.add_url_rule(
+    "/community/uwn",
+    view_func=build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter),
+    endpoint="uwn_index",
+)
+
+app.add_url_rule(
+    "/community/uwn/<path:path>",
+    view_func=build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter),
+    endpoint="uwn_page",
+)
+
 
 # Allow templates to be queried from discourse.ubuntu.com
 app.add_url_rule(
