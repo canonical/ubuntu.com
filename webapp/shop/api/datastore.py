@@ -1,18 +1,18 @@
-import os
 from typing import Callable
 
 from google.cloud import datastore
+from canonicalwebteam.flask_base.env import get_flask_env
 
 
 def get_datastore_client() -> datastore.Client:
     return datastore.Client.from_service_account_info(
         {
             "token_uri": "https://oauth2.googleapis.com/token",
-            "project_id": os.getenv("GOOGLE_DATASTORE_PROJECT_ID"),
-            "private_key": os.getenv("GOOGLE_DATASTORE_PRIVATE_KEY").replace(
-                "\\n", "\n"
-            ),
-            "client_email": os.getenv("GOOGLE_DATASTORE_EMAIL"),
+            "project_id": get_flask_env("GOOGLE_DATASTORE_PROJECT_ID"),
+            "private_key": get_flask_env(
+                "GOOGLE_DATASTORE_PRIVATE_KEY"
+            ).replace("\\n", "\n"),
+            "client_email": get_flask_env("GOOGLE_DATASTORE_EMAIL"),
         }
     )
 

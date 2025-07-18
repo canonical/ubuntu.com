@@ -1,5 +1,3 @@
-import os
-
 # Packages
 import flask
 import flask_openid
@@ -12,12 +10,13 @@ from webapp.macaroons import (
     MacaroonRequest,
     MacaroonResponse,
 )
+from canonicalwebteam.flask_base.env import get_flask_env
 
 COMMUNITY_TEAM = "ubuntumembers"
 CREDENTIALS_TEAM = "canonical-credentials"
 CREDENTIALS_SUPPORT = "canonical-credentials-support"
 
-login_url = os.getenv("CANONICAL_LOGIN_URL", "https://login.ubuntu.com")
+login_url = get_flask_env("CANONICAL_LOGIN_URL", "https://login.ubuntu.com")
 
 open_id = flask_openid.OpenID(
     store_factory=lambda: None,
@@ -70,7 +69,9 @@ def empty_session(user_session):
 
 @open_id.loginhandler
 def login_handler():
-    api_url = os.getenv("CONTRACTS_API_URL", "https://contracts.canonical.com")
+    api_url = get_flask_env(
+        "CONTRACTS_API_URL", "https://contracts.canonical.com"
+    )
 
     if user_info(flask.session):
         return flask.redirect(open_id.get_next_url())

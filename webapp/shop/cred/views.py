@@ -4,7 +4,6 @@ import math
 import pytz
 import flask
 import json
-import os
 import html
 from webapp.shop.api.ua_contracts.api import (
     UAContractsAPIErrorView,
@@ -38,6 +37,7 @@ from googleapiclient.discovery import build
 from werkzeug.exceptions import BadRequest
 
 from ...views import marketo_api
+from canonicalwebteam.flask_base.env import get_flask_env
 
 
 TIMEZONE_COUNTRIES = {
@@ -74,8 +74,8 @@ RESERVATION_STATES = {
 
 
 def confidentiality_agreement_webhook():
-    username = os.getenv("CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME")
-    password = os.getenv("CONFIDENTIALITY_AGREEMENT_WEBHOOK_PASSWORD")
+    username = get_flask_env("CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME")
+    password = get_flask_env("CONFIDENTIALITY_AGREEMENT_WEBHOOK_PASSWORD")
     authorization = flask.request.authorization
     if (
         not authorization
@@ -171,7 +171,7 @@ def cred_sign_up(**_):
     if client_ip and ":" not in client_ip:
         visitor_data["leadClientIpAddress"] = client_ip
 
-    is_staging = "staging" in os.getenv(
+    is_staging = "staging" in get_flask_env(
         "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
     )
     marketo_form_id = 6254 if is_staging else 3801
@@ -219,10 +219,10 @@ def cred_sign_up(**_):
 
     service_account_info = {
         "token_uri": "https://oauth2.googleapis.com/token",
-        "client_email": os.getenv("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
-        "private_key": os.getenv("GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY").replace(
-            "\\n", "\n"
-        ),
+        "client_email": get_flask_env("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
+        "private_key": get_flask_env(
+            "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY"
+        ).replace("\\n", "\n"),
         "scopes": ["https://www.googleapis.com/auth/spreadsheets.readonly"],
     }
 
@@ -267,7 +267,7 @@ def cred_sign_up(**_):
     range = (
         "Production"
         if "staging"
-        not in os.getenv(
+        not in get_flask_env(
             "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
         )
         else "Staging"
@@ -474,7 +474,7 @@ def cred_schedule(
         "%Y-%m-%dT%H:%M:%SZ",
     ).strftime("%Y-%m-%d")
 
-    is_staging = "staging" in os.getenv(
+    is_staging = "staging" in get_flask_env(
         "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
     )
     time_buffer = 0.5 if is_staging else 3
@@ -812,13 +812,13 @@ def cred_your_exams(
     user = user_info(flask.session)
     if not email:
         email = user["email"]
-    is_staging = "staging" in os.getenv(
+    is_staging = "staging" in get_flask_env(
         "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
     )
 
     agreement_notification = False
     confidentiality_agreement_enabled = strtobool(
-        os.getenv("CREDENTIALS_CONFIDENTIALITY_ENABLED", "false")
+        get_flask_env("CREDENTIALS_CONFIDENTIALITY_ENABLED", "false")
     )
     if (
         confidentiality_agreement_enabled
@@ -1207,9 +1207,9 @@ def cred_exam(trueability_api, proctor_api, **_):
     user = user_info(flask.session)
     first_name, last_name = get_user_first_last_name()
     confidentiality_agreement_enabled = strtobool(
-        os.getenv("CREDENTIALS_CONFIDENTIALITY_ENABLED", "false")
+        get_flask_env("CREDENTIALS_CONFIDENTIALITY_ENABLED", "false")
     )
-    is_staging = "staging" in os.getenv(
+    is_staging = "staging" in get_flask_env(
         "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
     )
     ta_exam = flask.request.args.get("ta_exam", "")
@@ -1430,10 +1430,10 @@ def cred_submit_form(**_):
 
     service_account_info = {
         "token_uri": "https://oauth2.googleapis.com/token",
-        "client_email": os.getenv("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
-        "private_key": os.getenv("GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY").replace(
-            "\\n", "\n"
-        ),
+        "client_email": get_flask_env("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
+        "private_key": get_flask_env(
+            "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY"
+        ).replace("\\n", "\n"),
         "scopes": ["https://www.googleapis.com/auth/spreadsheets.readonly"],
     }
 
@@ -1471,7 +1471,7 @@ def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
             "account/forbidden.html", reason="channel_account"
         )
 
-    is_staging = "staging" in os.getenv(
+    is_staging = "staging" in get_flask_env(
         "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
     )
     is_production = not is_staging
@@ -1883,7 +1883,7 @@ def get_my_issued_badges(credly_api, **kwargs):
 def issue_badges(trueability_api, credly_api, **kwargs):
     webhook_response = flask.request.json
     api_key = flask.request.headers.get("X-API-KEY")
-    if not api_key or api_key != os.getenv("TA_WEBHOOK_API_KEY"):
+    if not api_key or api_key != get_flask_env("TA_WEBHOOK_API_KEY"):
         return flask.jsonify({"status": "Invalid API Key"}), 401
     assessment_score = webhook_response["assessment"]["score"]
     cutoff_score = webhook_response["assessment"]["ability_screen"][

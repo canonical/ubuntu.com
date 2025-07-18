@@ -1,8 +1,8 @@
 from requests import Session
-import os
 import datetime
 from urllib.parse import urlencode
 import flask
+from canonicalwebteam.flask_base.env import get_flask_env
 
 
 class Proctor360API:
@@ -10,11 +10,11 @@ class Proctor360API:
         self,
         session: Session,
     ):
-        self.base_url = os.getenv(
+        self.base_url = get_flask_env(
             "PROCTOR360_BASE_URL", "https://prod1ext.proctor360.com"
         )
-        self.app_id = os.getenv("PROCTOR360_APP_ID", "")
-        self.app_secret = os.getenv("PROCTOR360_APP_SECRET", "")
+        self.app_id = get_flask_env("PROCTOR360_APP_ID", "")
+        self.app_secret = get_flask_env("PROCTOR360_APP_SECRET", "")
         self.session = session
         self.organisation_id = 132
         self.time_zone_ids = []

@@ -1,4 +1,3 @@
-import os
 from typing import List
 
 import flask
@@ -32,6 +31,7 @@ from webapp.shop.api.ua_contracts.api import (
 )
 from webapp.shop.flaskparser import UAContractsValidationError
 from webapp.certified.helpers import convert_markdown_to_html
+from canonicalwebteam.flask_base.env import get_flask_env
 
 CSP = {
     "default-src": ["'self'"],
@@ -309,7 +309,7 @@ def init_handlers(app, sentry):
             "month_name": month_name,
             "months_list": months_list,
             "get_navigation": get_navigation,
-            "get_stripe_publishable_key": os.getenv(
+            "get_stripe_publishable_key": get_flask_env(
                 "STRIPE_PUBLISHABLE_KEY",
                 "pk_live_68aXqowUeX574aGsVck8eiIE",
             ),
@@ -321,7 +321,7 @@ def init_handlers(app, sentry):
             "utm_content": flask.request.args.get("utm_content", ""),
             "utm_medium": flask.request.args.get("utm_medium", ""),
             "utm_source": flask.request.args.get("utm_source", ""),
-            "CAPTCHA_TESTING_API_KEY": os.getenv(
+            "CAPTCHA_TESTING_API_KEY": get_flask_env(
                 "CAPTCHA_TESTING_API_KEY",
                 "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if",
             ),
@@ -330,7 +330,7 @@ def init_handlers(app, sentry):
             "get_meganav": get_meganav,
             "split_list": split_list,
             "format_to_id": format_to_id,
-            "canonical_cla_api_url": os.getenv("CANONICAL_CLA_API_URL"),
+            "canonical_cla_api_url": get_flask_env("CANONICAL_CLA_API_URL"),
         }
 
     def get_countries_list() -> List[dict]:
