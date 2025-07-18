@@ -29,9 +29,9 @@
           <p>Design a cost-effective OpenStack architecture and build your future-proof private cloud in weeks.</p>
         </div>
         <div class="p-cta-block">
-          <a href="#get-your-openstack"
+          <a href="/openstack/contact-us"
              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Engage Canonical exports', 'eventLabel' : 'Engage Canonical exports - Top CTA', 'eventValue' : undefined });"
-             class="p-button--positive">Engage Canonical experts</a>
+             class="p-button--positive js-invoke-modal">Engage Canonical experts</a>
           <a href="/engage/charmed-openstack-adoption-whitepaper">Read the whitepaper - "OpenStack deployment guide" &rsaquo;</a>
         </div>
       </div>
@@ -530,7 +530,7 @@
           <li class="p-list__item">
             <div class="row--25-75">
               <div class="col">
-                <h3 class="p-heading--5 u-no-margin--bottom">Docs</h3>
+                <h3 class="p-heading--5 u-no-margin--bottom">Whitepaper</h3>
               </div>
               <div class="col">
                 <p class="u-no-margin--bottom">
@@ -554,7 +554,7 @@
           <li class="p-list__item">
             <div class="row--25-75">
               <div class="col">
-                <h3 class="p-heading--5 u-no-margin--bottom">Whitepaper</h3>
+                <h3 class="p-heading--5 u-no-margin--bottom">Case study</h3>
               </div>
               <div class="col">
                 <p class="u-no-margin--bottom">
@@ -575,13 +575,6 @@
     {% include "internet-of-things/shared/_latest-news-iot.html" %}
   {% endwith %}
 
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/openstack"
-       data-form-id="1251"
-       data-lp-id="2086"
-       data-return-url="https://ubuntu.com/openstack/thank-you?product=foundation-cloud"
-       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+  {{ load_form("/openstack") | safe }}
 
 {% endblock content %}
