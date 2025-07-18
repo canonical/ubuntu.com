@@ -35,7 +35,7 @@ const drawChart = (data) => {
   const tooltip = d3
     .select("body")
     .append("div")
-    .style("visibility", "hidden")
+    .style("display", "none")
     .style("position", "absolute")
     .style("z-index", "11")
     .style("pointer-events", "none")
@@ -111,16 +111,18 @@ const drawChart = (data) => {
     .attr("stroke", "white")
     .on("mouseover", (e, d) => {
       tooltip
-        .style("visibility", "visible")
+        .style("display", "block")
         .text(`${d.data.name}:` + " " + `${d.data.percentage}%`);
     })
     .on("mousemove", (e, d) => {
       tooltip
         .style("top", e.pageY - 50 + "px")
+        .style("display", "block")
         .style("left", e.pageX - 100 + "px");
     })
     .on("mouseout", () => {
-      tooltip.style("visibility", "hidden");
+      tooltip
+        .style("display", "none");
     });
 };
 
