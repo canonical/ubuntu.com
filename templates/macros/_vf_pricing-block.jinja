@@ -2,6 +2,7 @@
 {#
   Params
   - title_text (string) (optional): The text to be displayed as the heading
+  - include_hr (boolean) (optional): Whether to include a horizontal rule above the title
   - tiers (Array<{
       tier_name_text: String,
       tier_price_text: String,
@@ -19,6 +20,7 @@
 #}
 {%- macro vf_pricing_block(
   title_text="",
+  include_hr=true,
   tiers=[]
   ) -%}
   {% set section_description = caller('section_description') %}
@@ -52,17 +54,29 @@
   {%- endmacro -%}
 
   <div class="p-section">
-    {% if title_text %}
+    {% if title_text or section_description %}
       <div class="p-section--shallow">
-        <hr class="p-rule--highlight is-fixed-width" />
-        <div class="grid-row">
+        {% if include_hr %}
+          {% if tiers|length == 1 %}
+            <hr class="p-rule--highlight" />
+          {% else %}
+            <hr class="p-rule--highlight is-fixed-width" />
+            <div class="grid-row">
+          {% endif %}
+        {% endif %}
+
+        {% if title_text  %}
           <div class="grid-col-4 grid-col-medium-4 grid-col-small-4">
             <h2>{{ title_text }}</h2>
           </div>
-          {%- if section_description -%}
-            <div class="grid-col-4 grid-col-medium-4 grid-col-small-4">{{ section_description }}</div>
-          {%- endif -%}
-        </div>
+        {% endif %}
+        
+        {%- if section_description -%}
+          <div class="grid-col-4 grid-col-medium-4 grid-col-small-4">{{ section_description }}</div>
+        {%- endif -%}
+        {% if tiers|length > 1 %}
+          </div>
+        {% endif %}
       </div>
     {% endif %}
 
