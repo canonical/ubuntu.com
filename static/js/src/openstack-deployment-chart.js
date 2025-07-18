@@ -131,7 +131,6 @@ const drawTable = (data) => {
   <thead>
     <tr>
       <th>Company</th>
-      <th colspan="1"></th>
       <th class="u-align--right">OpenStack coverage</th>
     </tr>
   </thead>`;
@@ -139,7 +138,6 @@ const drawTable = (data) => {
   data.forEach((d) => {
     tableContent += `<tr>
         <td>${d.name}</td>
-        <td colspan="1"></td>
         <td class="u-align--right">${d.percentage}</td>
       </tr>`;
   });
