@@ -156,7 +156,7 @@ from webapp.views import (
     build_vulnerabilities_list,
     process_active_vulnerabilities,
     process_local_communities,
-    process_community_calendar,
+    process_community_events,
     community_landing_page,
     build_engage_index,
     build_engage_page,
@@ -848,7 +848,7 @@ app.add_url_rule(
 
 app.add_url_rule(
     "/community/events",
-    view_func=process_community_calendar(community_events),
+    view_func=process_community_events(community_events),
 )
 
 app.add_url_rule(

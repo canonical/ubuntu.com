@@ -110,6 +110,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_dell";
 @import "pattern_modals";
 @import "pattern_tube-line";
+@import "pattern_equal-height-row";
 @import "utility_animations";
 @import "utility_crop";
 @import "utility_vertically-center";
@@ -178,6 +179,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include vf-p-icon-units;
 @include vf-p-icon-plans;
 @include openstack-carousel;
+@include vf-p-equal-height-row;
 
 // Layouts:
 @import "layout-legal-pages";
@@ -1712,7 +1714,7 @@ legend {
   margin-top: $spv--small;
 }
 
-.p-equal-height-row-50-50 {
+.p-equal-height-row--50-50 {
   .p-equal-height-row__col {
     grid-column: span 6;
     padding-top: 0.5rem;
@@ -1874,6 +1876,16 @@ ol.p-stepped-list.no-full-stop
   display: -webkit-box;
   line-clamp: 2;
   -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Truncates text to five lines with ellipsis
+.u-clamp--five-lines {
+  display: -webkit-box;
+  line-clamp: 5;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
