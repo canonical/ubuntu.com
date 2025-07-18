@@ -39,6 +39,7 @@
   </div>
   <div class="col">
     {% call(slot) vf_pricing_block(
+        include_hr=false,
         tiers=[
         {
           "tier_name_text": 'Managed OpenStack pricing',
