@@ -1551,18 +1551,6 @@ def process_community_events(community_events):
         for event in events:
             format_community_event_time(event)
 
-        # Duplicate events for testing
-        number_of_events = 100
-        if len(events) < number_of_events:
-            multiplier = (number_of_events // len(events)) + 1
-            duplicated = []
-            for i in range(multiplier):
-                for e in events:
-                    new_event = e.copy()
-                    new_event["id"] = f"{e['id']}_{i}"
-                    duplicated.append(new_event)
-            events = duplicated[:number_of_events]
-
         events.sort(key=lambda x: x.get("starts_at", ""))
 
         return flask.render_template(
