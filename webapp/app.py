@@ -821,7 +821,9 @@ local_communities = Category(
 )
 
 community_events = Events(
-    parser=EventsParser(api=discourse_api),
+    parser=EventsParser(
+        api=discourse_api, index_topic_id=60, url_prefix="/community/events"
+    ),
     category_id=11,
 )
 

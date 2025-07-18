@@ -1,43 +1,275 @@
 {% extends "community/_base_community.html" %}
 
-{% block title %}Ubuntu Community{% endblock %}
+{% from "macros/_vf_highlighted-cta.jinja" import vf_highlighted_cta %}
+
+{% block title %}Ubuntu Local Communities{% endblock %}
 
 {% block meta_description %}
-
+  Ubuntu is powered by a collection of passionate grassroots communities. Find, join or start a local community in your region.
 {% endblock
 meta_description %}
 
 {% block meta_copydoc %}
-
+  https://docs.google.com/document/d/13WuLYW4ht7FwBgc1_OYbnDGTYETWXnS6O7RanEizvN0/edit?tab=t.0
 {% endblock
 meta_copydoc %}
 
 {% block body_class %}
-  is-paper
+  {% if not(no_dark == True) %}is-dark{% endif %}
 {% endblock body_class %}
 
 {% block content %}
-  <div class="u-fixed-width">
-    <h1>Local communities</h1>
-  </div>
 
-  <div class="u-fixed-width">
-    <ol>
-      {% for loco in metadata %}
-        <li>
-          <div class="row">
-            <div class="col-1 col-medium-1 col-small-1">
-              <img src="{{ loco.image.url }}" alt="" style="max-height:40px;" />
+  <section class="p-section--hero u-no-padding--bottom">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <div class="col">
+          <h1>Ubuntu local communities</h1>
+        </div>
+        <div class="col">
+          <p>
+            Ubuntu Local Communities, often shortened to LoCos, are regional teams that help advocate, promote, translate, develop, and otherwise improve Ubuntu. Find a Local Community in your region or <a href="/community/docs/locos/create">start your own</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="u-fixed-width">
+      <div class="p-image-container--cinematic is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/9244575c-local-communities-cover.png",
+                alt="",
+                width="1232",
+                height="514",
+                hi_def=True,
+                fmt="webp",
+                loading="auto",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <div class="p-section--shallow">
+        <h2>What are the perks of being in an Ubuntu Local Community?</h2>
+      </div>
+      <div class="p-list--horizontal-section-wrapper">
+        <ul class="p-list--horizontal-section is-50-50-on-large">
+          <li class="p-list__item is-ticked">Network with other Ubuntu enthusiasts in your region</li>
+          <li class="p-list__item is-ticked">Access to exclusive Ubuntu Merch Packs and swag</li>
+          <li class="p-list__item is-ticked">Future event sponsorship opportunities</li>
+          <li class="p-list__item is-ticked">
+            Participation may lead to future <a href="https://ubuntu.com/community/membership">Ubuntu Membership</a>
+          </li>
+          <li class="p-list__item is-ticked">Help spread the mission of free and open source software around the world</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="u-fixed-width">
+      <div class="p-section--shallow">
+        <h2>Join an Ubuntu Local Community</h2>
+      </div>
+      <figure class="js-show-map" style="visibility:hidden;margin:0;">
+        <div id="locations-map"></div>
+        <div class="row">
+          <figcaption class="col-6 col-medium-3 col-start-medium-4 col-start-large-7 u-text--muted"
+                      style="font-style:normal;
+                             padding-top:6px">Map of Ubuntu Local Community Locations</figcaption>
+        </div>
+      </figure>
+    </div>
+
+    <div class="u-fixed-width js-show-tabs u-hide">
+      <div class="p-tabs js-tabbed-content">
+        <nav class="p-tabs__list"
+             role="tablist"
+             aria-label="Ubuntu Local Communities">
+          {% for continent in communities_by_continent %}
+            <div class="p-tabs__item">
+              <button class="p-tabs__link"
+                      role="tab"
+                      aria-controls="{{ continent | slug }}-tab"
+                      id="{{ continent | slug }}">{{ continent }}</button>
             </div>
-            <div class="col-10 col-medium-5 col-small-3">
-              <p class="u-no-margin--bottom">
-                {{ loco.name }} - <a href="{{ loco.link.url }}">{{ loco.link.url }}</a>
-              </p>
-              <p>{{ loco.continent }} / {{ loco.coordinates }} / {{ loco.status }}</p>
+          {% endfor %}
+          <div class="p-tabs__item">
+            <button class="p-tabs__link"
+                    role="tab"
+                    aria-controls="historic-locos-tab"
+                    id="historic-locos">Historic/ Inactive LoCo Teams</button>
+          </div>
+        </nav>
+
+        {% for continent in communities_by_continent %}
+          <div tabindex="0"
+               class="u-hide"
+               role="tabpanel"
+               id="{{ continent | slug }}-tab"
+               aria-labelledby="{{ continent | slug }}">
+            <div class="row--25-25-25-25">
+              {% for community in communities_by_continent[continent] %}
+                <div class="col">
+                  <div class="p-image-container--16-9 is-cover">
+                    <img class="p-image-container__image"
+                         src="{{ community.image.url if community.image and community.image.url else 'https://assets.ubuntu.com/v1/37387afc-loco-thumbnail.png' }}"
+                         alt="" />
+                  </div>
+                  <hr class="p-rule--highlight" />
+                  <p class="p-heading--5">
+                    <a href="{{ community.link.url }}">{{ community.name }}</a>
+                  </p>
+                </div>
+              {% endfor %}
             </div>
           </div>
-        </li>
-      {% endfor %}
-    </ol>
+        {% endfor %}
+        <div tabindex="0"
+             class="u-hide"
+             role="tabpanel"
+             id="historic-locos-tab"
+             aria-labelledby="historic-locos">
+          <div class="row--50-50">
+            <div class="col">
+              <h2>Historic/ Inactive LoCo teams</h2>
+            </div>
+            <div class="col">
+              <div class="p-section--shallow">
+                <div class="p-image-container is-cover">
+                  {{ image(url="https://assets.ubuntu.com/v1/c71d8fa6-new-community.png",
+                                    alt="",
+                                    width="566",
+                                    height="380",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-image-container__image"}) | safe
+                  }}
+                </div>
+              </div>
+              <p>Don't see a Local Community in your region?</p>
+              <div class="p-cta-block">
+                <a href="/community/docs/locos/create" class="p-button">Consider starting one</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  <noscript>
+    {% for continent in communities_by_continent %}
+      <div class="p-section--shallow">
+        <hr class="p-rule--muted is-fixed-width" />
+        <div class="row--25-75">
+          <div class="col">
+            <h3>{{ continent }}</h3>
+          </div>
+          <div class="col">
+            <div class="row">
+              {% for community in communities_by_continent[continent] %}
+                <div class="col-3 col-medium-2">
+                  <div class="p-image-container--16-9 is-cover">
+                    <img class="p-image-container__image"
+                         src="{{ community.image.url if community.image and community.image.url else 'https://assets.ubuntu.com/v1/37387afc-loco-thumbnail.png' }}"
+                         alt="" />
+                  </div>
+                  <hr class="p-rule--highlight" />
+                  <p class="p-heading--5">
+                    <a href="{{ community.link.url }}">{{ community.name }}</a>
+                  </p>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    <hr class="p-rule--muted is-fixed-width" />
+    <div class="row--25-75">
+      <div class="col">
+        <h3>Historic/ Inactive LoCo teams</h3>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="p-image-container is-cover">
+            {{ image(url="https://assets.ubuntu.com/v1/c71d8fa6-new-community.png",
+                        alt="",
+                        width="566",
+                        height="380",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
+        </div>
+        <p>Don't see a Local Community in your region?</p>
+        <div class="p-cta-block">
+          <a href="/community/docs/locos/create" class="p-button">Consider starting one</a>
+        </div>
+      </div>
+    </div>
+  </noscript>
+
+  {{ vf_highlighted_cta(cta_text="Are you stuck and need help? <br /> <a href='https://ubuntu.com/community/support'>Take a look at how our community can support you.</a>") | safe }}
+
+  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script src="{{ versioned_static('js/dist/leaflet.js') }}"></script>
+  {# djlint:off #}
+  <script>
+    var mapMarker = {{ map_markers | tojson | e }}
+
+    function initMap(mapSelector) {
+      const mapElement = document.getElementById(mapSelector);
+
+      if (!mapElement) {
+        return;
+      }
+
+      mapElement.style.height = "400px";
+      mapElement.style.zIndex = "1";
+
+      const map = L.map(mapSelector, {
+        minZoom: 2, // Prevents zooming out too far
+        maxBounds: [[-75, -180], [80, 180]], // Restricts panning
+        maxBoundsViscosity: 1.0
+      });
+      map.on('load', onMapLoad);
+      map.setView([31.505, -0.09], 2);
+
+      // Set up the tile layer with grey canvas (using CartoDB Positron without labels)
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+
+      const customIcon = L.icon({
+        iconUrl: "https://assets.ubuntu.com/v1/ea30540d-marker-icon.png",
+        iconRetinaUrl: "https://assets.ubuntu.com/v1/ed796590-marker-icon-2x.png",
+        iconSize: [20, 32.8],
+        iconAnchor: [10, 32.8],
+        popupAnchor: [0, -32.8]
+      });
+
+      mapMarker.forEach(function(marker) {
+        if (marker.lat && marker.lon) {
+          L.marker([marker.lat, marker.lon], {
+              icon: customIcon
+            })
+            .bindPopup(marker.name)
+            .addTo(map);
+        }
+      });
+    }
+
+    function onMapLoad() {
+      locosMap = document.querySelector(".js-show-map");
+      locosMap.style.visibility = "visible";
+      locosMap.style.marginTop = "1rem";
+      locosMap.style.marginBottom = "1.5rem";
+      document.querySelector(".js-show-tabs").classList.remove("u-hide");
+    }
+
+    initMap("locations-map");
+</script>
+  {# djlint:on #}
 {% endblock content %}

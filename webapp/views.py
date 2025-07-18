@@ -1416,9 +1416,58 @@ def build_sitemap_tree(exclude_paths=None):
 def process_local_communities(local_communities):
     def display_local_communities():
         metadata_table = local_communities.get_category_index_metadata("locos")
+
+        # Group communities by continent
+        valid_continents = [
+            "africa",
+            "asia",
+            "europe",
+            "north america",
+            "south america",
+            "oceania",
+        ]
+        communities_by_continent = {}
+        for community in metadata_table:
+            continent = community.get("continent")
+            if continent and continent.lower() in valid_continents:
+                if continent not in communities_by_continent:
+                    communities_by_continent[continent] = []
+                communities_by_continent[continent].append(community)
+        communities_by_continent = dict(
+            sorted(communities_by_continent.items())
+        )
+
+        # Extract lat/lon from coordinates string for each community
+        map_markers = []
+        for community in metadata_table:
+            community["lat"] = None
+            community["lon"] = None
+
+            if "coordinates" in community and community["coordinates"]:
+                try:
+                    lat_str, lon_str = community["coordinates"].split(",")
+                    lat = float(lat_str.strip())
+                    lon = float(lon_str.strip())
+                    community["lat"] = lat
+                    community["lon"] = lon
+
+                    map_markers.append(
+                        {
+                            "lat": lat,
+                            "lon": lon,
+                            "name": community.get("name", ""),
+                        }
+                    )
+                except (ValueError, AttributeError) as e:
+                    logging.error(
+                        f"Error parsing coordinates "
+                        f"'{community['coordinates']}': {e}"
+                    )
+
         return flask.render_template(
             "community/local-communities.html",
-            metadata=metadata_table,
+            communities_by_continent=communities_by_continent,
+            map_markers=map_markers,
         )
 
     return display_local_communities
