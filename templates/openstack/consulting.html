@@ -191,15 +191,15 @@
             </p>
           </div>
 
-          <div class="row">
+          <div class="row" style="position:relative;">
             <div class="u-hide--small col-6 u-align--center p-image-container is-highlighted">
               <div id="openstack-pie-chart"></div>
             </div>
             <div class="u-hide--medium u-hide--large col-6">
               <div id="openstack-table"></div>
             </div>
-            <script src="https://d3js.org/d3.v6.min.js"></script>
-            <script src="{{ versioned_static('js/dist/openstackDeploymentChart.js') }}"></script>
+            <!-- <script src="https://d3js.org/d3.v7.min.js"></script>
+            <script src="{{ versioned_static('js/dist/openstackDeploymentChart.js') }}"></script> -->
           </div>
         </div>
       </div>
@@ -576,5 +576,8 @@
   {% endwith %}
 
   {{ load_form("/openstack") | safe }}
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+            <script src="{{ versioned_static('js/dist/openstackDeploymentChart.js') }}"></script>
 
 {% endblock content %}
