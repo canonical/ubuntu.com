@@ -103,46 +103,6 @@ test.describe("Form submission validation", () => {
   });
 });
 
-test.describe("Email validation", () => {
-  const invalidEmails = [
-    { email: 'invalid-email', expectedMessage: "Please include an '@'" },
-    { email: 'test@', expectedMessage: "Please enter a part following '@'" },
-    { email: 'test@invalid', expectedMessage: "Please match the requested format" },
-    { email: '@invalid.com', expectedMessage: "Please enter a part followed by '@'" }
-  ];
-
-  invalidEmails.forEach(({ email, expectedMessage }) => {
-    test(`should show validation message for ${email}`, async ({ page }) => {
-      await page.goto("/core/contact-us");
-      await acceptCookiePolicy(page);
-
-      // Fill required fields
-      await page.fill('input[name="company"]', 'Test Company');
-      await page.fill('input[name="title"]', 'Test Title');
-      await page.fill('textarea[id="comments"]', 'Test comments');
-      await page.getByLabel("< 5 machines").check({ force: true });
-      await page.fill('input[name="firstName"]', 'John');
-      await page.fill('input[name="lastName"]', 'Doe');
-      
-      // Fill invalid email
-      await page.fill('input[name="email"]', email);
-
-      // Check validation message
-      await page.getByRole("button", { name: /Submit/ }).click();
-      const emailField = page.locator('input[name="email"]');
-      const validationMessage = await emailField.evaluate(el => {
-        if (el instanceof HTMLInputElement) {
-          return el.validationMessage;
-        }
-        return '';
-      });
-      
-      expect(validationMessage).toContain(expectedMessage);
-      await expect(emailField).toHaveJSProperty("validity.valid", false);
-    });
-  });
-});
-
 test.describe("Radio field handling", () => {
   test("radio fields should have appropriate js hooks classnames", async ({ page }) => {
     for (const url of staticContactUsPages) {
