@@ -47,6 +47,9 @@ $colors--light-theme--border-low-contrast: rgba(
 // import flickity
 @import "flickity/dist/flickity";
 
+// import leaflet
+@import "leaflet/dist/leaflet";
+
 $color-shadow: rgba(0, 0, 0, 0.5) !default;
 
 // import site specific patterns and overrides
@@ -208,6 +211,10 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 .iti {
   margin-bottom: $input-margin-bottom;
   width: 100%;
+}
+
+.leaflet-control-attribution {
+  display: none;
 }
 
 // Bug fixes
@@ -1870,4 +1877,24 @@ ol.p-stepped-list.no-full-stop
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+// XXX: Can be removed once (if) the below issue is resolved in Vanilla
+// https://github.com/canonical/vanilla-framework/issues/5583
+@container (width >= 100ch) {
+  .p-list--horizontal-section-wrapper
+    .p-list--horizontal-section:is(.is-50-50-on-large) {
+    --columns: 2;
+  }
+  .p-list--horizontal-section-wrapper
+    .p-list--horizontal-section:is(.is-50-50-on-large)
+    .p-list__item:nth-child(2n + 1)::after {
+    background: var(--vf-color-border-low-contrast);
+    content: "";
+    height: 1px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: calc(100% * 2 + 1 * 2rem);
+  }
 }

@@ -129,7 +129,7 @@ meta_copydoc %}
           <div class="col">
             <div class="p-image-container--16-9 is-cover">
               <img class="p-image-container__image"
-                   src="{{ community.image.url }}"
+                   src="{{ community.image.url if community.image and community.image.url else 'https://assets.ubuntu.com/v1/37387afc-loco-thumbnail.png' }}"
                    alt="" />
             </div>
             <hr class="p-rule--highlight" />

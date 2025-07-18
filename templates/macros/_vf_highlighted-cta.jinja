@@ -1,0 +1,13 @@
+# Params
+# cta_text (string) (required): Content of the CTA
+
+{% macro vf_highlighted_cta(
+  cta_text
+) -%}
+<hr class="p-rule is-fixed-width" />
+<div class="p-strip is-deep">
+  <div class="u-fixed-width">
+    <h2>{{ cta_text }}</h2>
+  </div>
+</div>
+{%- endmacro %}
