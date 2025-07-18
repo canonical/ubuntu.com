@@ -121,8 +121,7 @@ const drawChart = (data) => {
         .style("left", e.pageX - 100 + "px");
     })
     .on("mouseout", () => {
-      tooltip
-        .style("display", "none");
+      tooltip.style("display", "none");
     });
 };
 
