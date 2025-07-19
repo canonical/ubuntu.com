@@ -29,6 +29,7 @@ from werkzeug.exceptions import BadRequest
 # Local
 from webapp.login import user_info
 from webapp.marketo import MarketoAPI
+from webapp.utils import format_community_event_time
 
 ip_reader = geolite2.reader()
 session = talisker.requests.get_session()
@@ -1468,3 +1469,142 @@ def build_sitemap_tree(exclude_paths=None):
         return response
 
     return serve_sitemap
+
+
+def process_local_communities(local_communities):
+    def display_local_communities():
+        metadata_table = local_communities.get_category_index_metadata("locos")
+
+        # Group communities by continent
+        valid_continents = [
+            "africa",
+            "asia",
+            "europe",
+            "north america",
+            "south america",
+            "oceania",
+        ]
+        communities_by_continent = {}
+        for community in metadata_table:
+            continent = community.get("continent")
+            if continent and continent.lower() in valid_continents:
+                if continent not in communities_by_continent:
+                    communities_by_continent[continent] = []
+                communities_by_continent[continent].append(community)
+        communities_by_continent = dict(
+            sorted(communities_by_continent.items())
+        )
+
+        # Extract lat/lon from coordinates string for each community
+        map_markers = []
+        for community in metadata_table:
+            community["lat"] = None
+            community["lon"] = None
+
+            if "coordinates" in community and community["coordinates"]:
+                try:
+                    lat_str, lon_str = community["coordinates"].split(",")
+                    lat = float(lat_str.strip())
+                    lon = float(lon_str.strip())
+                    community["lat"] = lat
+                    community["lon"] = lon
+
+                    map_markers.append(
+                        {
+                            "lat": lat,
+                            "lon": lon,
+                            "name": community.get("name", ""),
+                        }
+                    )
+                except (ValueError, AttributeError) as e:
+                    logging.error(
+                        f"Error parsing coordinates "
+                        f"'{community['coordinates']}': {e}"
+                    )
+
+        return flask.render_template(
+            "community/local-communities.html",
+            communities_by_continent=communities_by_continent,
+            map_markers=map_markers,
+        )
+
+    return display_local_communities
+
+
+def process_community_events(community_events):
+    def display_community_events():
+        featured_events = community_events.get_featured_events()[:2]
+
+        for event in featured_events:
+            # Get the event description from the topic
+            full_event = community_events.parser.api.get_topic(
+                event["post"]["topic"]["id"]
+            )
+            parsed_event = community_events.parser.parse_topic(full_event)
+            event["description"] = parsed_event["sections"][0]["content"]
+            # Format the event time
+            format_community_event_time(event)
+
+        events = community_events.get_events()
+
+        # Format time for all events
+        for event in events:
+            format_community_event_time(event)
+
+        events.sort(key=lambda x: x.get("starts_at", ""))
+
+        return flask.render_template(
+            "community/events.html",
+            featured_events=featured_events,
+            events=events,
+        )
+
+    return display_community_events
+
+
+def community_landing_page(
+    community_events, local_communities, ubuntu_weekly_newsletter
+):
+    def display_community_landing_page():
+        featured_events = community_events.get_featured_events()
+        events_to_display = []
+
+        # If there are less than 4 featured events,
+        # fill the rest with regular events
+        if len(featured_events) < 4:
+            events_data = community_events.get_events()
+            needed_events = 4 - len(featured_events)
+            events_to_display.extend(featured_events)
+
+            featured_event_ids = {event.get("id") for event in featured_events}
+            regular_events = [
+                event
+                for event in events_data
+                if event.get("id") not in featured_event_ids
+            ]
+
+            events_to_display.extend(regular_events[:needed_events])
+            events_to_display.sort(key=lambda x: x.get("starts_at", ""))
+        else:
+            events_to_display = featured_events[:4]
+
+        for event in events_to_display:
+            format_community_event_time(event)
+
+        communities_data = local_communities.get_category_index_metadata(
+            "locos"
+        )
+        newsletter_data = (
+            ubuntu_weekly_newsletter.parser.api.get_topic_list_by_category(
+                ubuntu_weekly_newsletter.category_id
+            )
+        )
+
+        return flask.render_template(
+            "community/index.html",
+            featured_events=events_to_display,
+            communities=communities_data,
+            newsletters=newsletter_data,
+        )
+
+    return display_community_landing_page
