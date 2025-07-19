@@ -1,0 +1,18 @@
+{% extends "base_index.html" %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+{% block title %}Test _default-contact-us.html static form template{% endblock %}
+
+{% block content %}
+  {% with h1="Test Static Contact Form",
+    intro_text="This is a test form for _default-contact-us.html static form template.",
+    formid="9999",
+    lpId="9999",
+    returnURL="/tests/_thank-you",
+    howManyVM=True %}
+    {% include "shared/_default-contact-us-form.html" %}
+  {% endwith %}
+
+{% endblock content %}

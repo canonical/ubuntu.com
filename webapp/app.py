@@ -1268,3 +1268,14 @@ app.add_url_rule(
     view_func=build_sitemap_tree(DYNAMIC_SITEMAPS),
     methods=["GET", "POST"],
 )
+
+
+# Create endpoints for testing environment only
+if app.config.get("TESTING") or os.getenv("TESTING") or app.debug:
+
+    @app.route("/tests/<path:subpath>")
+    def tests(subpath):
+        """
+        Expose all routes under templates/tests if in development/testing mode.
+        """
+        return flask.render_template(f"tests/{subpath}.html")
