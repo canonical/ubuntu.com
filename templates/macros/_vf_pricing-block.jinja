@@ -52,20 +52,19 @@
       {% endfor -%}
     </ul>
   {%- endmacro -%}
-
+  
   <div class="p-section">
+    {% if include_hr %}
+      <div class="grid-row">
+        <hr class="p-rule--highlight" />
+      </div>
+    {% endif %}
     {% if title_text or section_description %}
       <div class="p-section--shallow">
-        {% if include_hr %}
-          {% if tiers|length == 1 %}
-            <hr class="p-rule--highlight" />
-          {% else %}
-            <hr class="p-rule--highlight is-fixed-width" />
-            <div class="grid-row">
-          {% endif %}
+        {% if tiers|length > 1 %}
+          <div class="grid-row">
         {% endif %}
-
-        {% if title_text  %}
+        {% if title_text %}
           <div class="grid-col-4 grid-col-medium-4 grid-col-small-4">
             <h2>{{ title_text }}</h2>
           </div>
