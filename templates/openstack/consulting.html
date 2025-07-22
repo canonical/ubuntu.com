@@ -4,6 +4,7 @@
 {% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 {% from "_macros/vf_pricing-block.jinja" import vf_pricing_block %}
+{% from "macros/_vf-latest-news.jinja" import vf_latest_news with context %}
 
 {% block title %}Private cloud consulting - OpenStack implementation{% endblock %}
 
@@ -571,9 +572,10 @@
   {% include "shared/contextual_footers/_openstack_managed.html" %}
   {% include "shared/contextual_footers/_cloud_newsletter.html" %}
 
-  {% with title_link="/blog/tag/openstack", title_text="Further reading", groupId="3422" %}
-    {% include "internet-of-things/shared/_latest-news-iot.html" %}
-  {% endwith %}
+
+  {{ vf_latest_news(title_text='Further reading',
+    tag_name="openstack",
+    group_id="3422") }}
 
   {{ load_form("/openstack") | safe }}
 
