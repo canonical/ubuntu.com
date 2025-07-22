@@ -53,7 +53,7 @@
   <section class="p-section">
     <div class="u-fixed-width">
       <hr class="p-rule" />
-      <h2 class="p-text--small-caps p-heading--3">Advancing on managed OpenStack</h2>
+      <h2 class="p-text--small-caps">Advancing on managed OpenStack</h2>
       <div class="p-logo-section">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
@@ -149,8 +149,8 @@
             </li>
             <li class="p-list__item is-ticked">You have no facilities to host a private cloud?</li>
           </ul>
+          <hr class="p-rule--muted" />
           <p>
-            <hr class="p-rule--muted" />
             Canonical’s Managed OpenStack solves all those challenges, providing the fastest and the most cost-effective path to an OpenStack private cloud.
           </p>
         </div>
@@ -175,7 +175,7 @@
         <hr class="p-rule--muted" />
       </div>
       <div class="col-6 col-start-large-7">
-        <a href="/openstack/tco-calculator">Get cost estimates for Managed OpenStack&nbsp;&rsaquo;</a>
+        <a href="/openstack/pricing-calculator">Get cost estimates for Managed OpenStack&nbsp;&rsaquo;</a>
       </div>
     </div>
   </section>
@@ -191,11 +191,9 @@
         </h2>
       </div>
       <div class="col">
-        <div class="p-section--shallow">
-          <p>
-            The decision of whether to run applications in the public or private cloud should always be driven by economics. In the <a href="/engage/cloud-economics">451 Research analysis of cloud economics from 2017</a>, Canonical’s Managed OpenStack stands out for cost efficiency against VMware and other OpenStack distributions.
-          </p>
-        </div>
+        <p>
+          The decision of whether to run applications in the public or private cloud should always be driven by economics. In the <a href="/engage/cloud-economics">451 Research analysis of cloud economics from 2017</a>, Canonical’s Managed OpenStack stands out for cost efficiency against VMware and other OpenStack distributions.
+        </p>
         <p>Key findings:</p>
         <div class="p-section--shallow">
           <hr class="p-rule--muted" />
@@ -207,22 +205,22 @@
             <li class="p-list__item is-ticked">High availability architecture underpins production-grade SLAs</li>
             <li class="p-list__item is-ticked">Lift-and-shift migration helps to move from VMware or other platforms</li>
           </ul>
-          <div class="p-image-container u-align--left">
-            {{ image(url="https://assets.ubuntu.com/v1/d297cd9f-451 research.jpg",
-                        alt="",
-                        width="300",
-                        height="162",
-                        hi_def=True,
-                        attrs={
-                        "class": "p-image-container__image",
-                        },
-                        loading="lazy") | safe
-            }}
-          </div>
-          <p class="u-text--muted">Independent report</p>
-          <hr class="p-rule--muted" />
+        </div>
+        <div class="p-image-container u-align--left">
+          {{ image(url="https://assets.ubuntu.com/v1/d297cd9f-451 research.jpg",
+                    alt="",
+                    width="300",
+                    height="162",
+                    hi_def=True,
+                    attrs={
+                    "class": "p-image-container__image",
+                    },
+                    loading="lazy") | safe
+          }}
+        </div>
+        <p class="u-text--muted">Independent report</p>
+        <div class="p-cta-block">
           <a href="/engage/cloud-economics">Busting the myth of private cloud economics&nbsp;&rsaquo;</a>
-
         </div>
       </div>
     </div>
@@ -237,7 +235,7 @@
         </div>
         <div class="col">
           <p>
-            Managed OpenStack is a fully-managed service for <a href="/openstack/managed">Charmed OpenStack</a> provided by Canonical. We build the cloud and we manage it for you. From 24x7 monitoring, through daily maintenance tasks to regular upgrades. We focus on your cloud, you focus on your business.
+            Managed OpenStack is a fully-managed service for Charmed OpenStack provided by Canonical. We build the cloud and we manage it for you. From 24x7 monitoring, through daily maintenance tasks to regular upgrades. We focus on your cloud, you focus on your business.
           </p>
         </div>
       </div>
@@ -394,14 +392,14 @@
         <li class="p-list__item">
           <h3 class="p-heading--5">Hardening programs</h3>
           <p>
-            Cloud hardening ensures the highest level of security in the telecom and financial sectors. Managed OpenStack provides cloud hardening programs according to <a href="/security/certifications">common benchmarks such as CIS</a>.
+            Cloud hardening ensures the highest level of security in the telecom and financial sectors. Managed OpenStack provides cloud hardening programs according to <a href="/security/security-standards">common benchmarks such as CIS</a>.
 
           </p>
         </li>
         <li class="p-list__item">
           <h3 class="p-heading--5">Local regulatory compliance</h3>
           <p>
-            Included in the service pricing are local regulatory compliance programs. Managed OpenStack is <a href="/security/certifications">GDPR, CSEC and HIPAA compliant</a>.
+            Included in the service pricing are local regulatory compliance programs. Managed OpenStack is <a href="/security/security-standards">GDPR, CSEC and HIPAA compliant</a>.
           </p>
         </li>
         <li class="p-list__item">
@@ -514,11 +512,9 @@
     {%- endif -%}
 
     {%- if slot == 'list_item_description_5' -%}
-      <div class="p-section--shallow">
-        <p>
-          On request, we transfer control over your cloud back to your organisation. We train your personnel, make sure you are able to operate the cloud yourself moving forward and perform a formal handover process. We continue providing commercial support to make sure your cloud receives security updates and you receive help if needed.
-        </p>
-      </div>
+      <p>
+        On request, we transfer control over your cloud back to your organization. We train your personnel, make sure you are able to operate the cloud yourself moving forward and perform a formal handover process. We continue providing commercial support to make sure your cloud receives security updates and you receive help if needed.
+      </p>
     {%- endif -%}
   {%- endcall -%}
 
@@ -663,7 +659,21 @@
     </div>
   </section>
 
-  {% include "shared/contextual_footers/_more_than_openstack.html" %}
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Need more than OpenStack?</h2>
+      </div>
+      <div class="col">
+        <p>Canonical provides managed cloud services for Kubernetes and leading open source applications.</p>
+        <div class="p-cta-block">
+          <a href="/managed" class="p-button">Check other products</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   {% include "shared/contextual_footers/_cloud_newsletter.html" %}
 
   {% with title_link="/blog/tag/openstack", title_text="Further reading", tagIds="1959,4138,3739,4382" %}
