@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
-import { fillExistingFields, acceptCookiePolicy } from "../helpers/commands";
-import { formTextFields, formCheckboxFields } from "../helpers/form-fields.ts";
+import { fillExistingFields, acceptCookiePolicy } from "../../helpers/commands.ts";
+import { formTextFields, formCheckboxFields } from "../../helpers/form-fields.ts";
 
 export const staticContactUsPages = [
   "/tests/_static-client-form",
