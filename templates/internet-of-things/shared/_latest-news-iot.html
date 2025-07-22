@@ -30,6 +30,7 @@
 </section>
 
 <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+
 {# djlint:off #}
 <script>
   canonicalLatestNews.fetchLatestNews(
@@ -42,6 +43,9 @@
       {% endif %}
       {% if tagId %}
         tagId: {{ tagId }},
+      {% endif %}
+      {% if tagIds %}
+        tagIds: "{{ tagIds }}",
       {% endif %}
       linkImage: true,
       limit: 4
