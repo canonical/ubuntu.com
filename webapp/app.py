@@ -836,10 +836,10 @@ community_events = Events(
 ubuntu_weekly_newsletter = Category(
     parser=CategoryParser(
         api=discourse_api,
-        index_topic_id=35624,
+        index_topic_id=40911,
         url_prefix="/community",
     ),
-    category_id=124,
+    category_id=419,
 )
 
 app.add_url_rule(

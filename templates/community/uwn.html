@@ -12,8 +12,8 @@
 
 {% block content %}
   <div class="p-strip is-shallow">
-    <div class="row">
-      <aside class="col-3">
+    <div class="grid-row">
+      <aside class="grid-col-2">
         <div class="p-side-navigation" id="drawer">
           <button class="p-side-navigation__toggle js-drawer-toggle u-hide"
                   aria-controls="drawer">Toggle side navigation</button>
@@ -31,12 +31,6 @@
                 <a class="p-side-navigation__link"
                    {% if request.path == "/community/uwn" %}aria-current="page"{% endif %}
                    href="/community/uwn"
-                   style="color:#FFFFFF"><strong>Ubuntu Weekly Newsletter</strong></a>
-              </li>
-              <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link"
-                   {% if request.path == "/community/uwn/ubuntu-weekly-newsletter" %}aria-current="page"{% endif %}
-                   href="/community/uwn/ubuntu-weekly-newsletter"
                    style="color:#FFFFFF">Introduction</a>
               </li>
               <li class="p-side-navigation__item">
@@ -47,27 +41,9 @@
               </li>
               <li class="p-side-navigation__item">
                 <a class="p-side-navigation__link"
-                   {% if request.path == "/community/uwn/ubuntu-weekly-newsletter-editing-policies" %}aria-current="page"{% endif %}
-                   href="/community/uwn/ubuntu-weekly-newsletter-editing-policies"
-                   style="color:#FFFFFF">UWN / Editing Policies</a>
-              </li>
-              <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link"
-                   {% if request.path == "/community/uwn/ubuntu-weekly-newsletter-style-guidelines" %}aria-current="page"{% endif %}
-                   href="/community/uwn/ubuntu-weekly-newsletter-style-guidelines"
-                   style="color:#FFFFFF">UWN / Style guides</a>
-              </li>
-              <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link"
-                   {% if request.path == "/community/uwn/ubuntu-weekly-newsletter-link-suggestions" %}aria-current="page"{% endif %}
-                   href="/community/uwn/ubuntu-weekly-newsletter-link-suggestions"
-                   style="color:#FFFFFF">UWN / Link suggestions</a>
-              </li>
-              <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link"
                    {% if request.path == "/community/uwn/ubuntu-weekly-newsletter-ideas" %}aria-current="page"{% endif %}
                    href="/community/uwn/ubuntu-weekly-newsletter-ideas"
-                   style="color:#FFFFFF">UWN Idea</a>
+                   style="color:#FFFFFF">Send in your Ubuntu story</a>
               </li>
             </ul>
 
@@ -90,9 +66,18 @@
           </nav>
         </div>
       </aside>
-
-      <main class="col-9">
-        {{ newsletter_data.body_html | safe }}
+      <main class="grid-col-6">
+        <div class="p-section">{{ newsletter_data.body_html | safe }}</div>
+        <hr class="p-rule--muted" />
+        <div class="p-strip is-shallow">
+          <div class="p-notification--information">
+            <div class="p-notification__content">
+              <p class="p-notification__message">
+                <a href="https://discourse.ubuntu.com/t/{{ newsletter_data.topic_id }}">Help improve this document in the forum</a>.
+              </p>
+            </div>
+          </div>
+        </div>
       </main>
     </div>
   </div>

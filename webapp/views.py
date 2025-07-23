@@ -1602,17 +1602,13 @@ def community_landing_page(
         communities_data = local_communities.get_category_index_metadata(
             "locos"
         )
-        newsletter_data = (
-            ubuntu_weekly_newsletter.parser.api.get_topic_list_by_category(
-                ubuntu_weekly_newsletter.category_id
-            )
-        )
-
+        newsletter_data = ubuntu_weekly_newsletter.get_topics_in_category()
+        
         return flask.render_template(
             "community/index.html",
             featured_events=events_to_display,
             communities=communities_data,
-            newsletters=newsletter_data,
+            newsletters=newsletter_data[:3],
         )
 
     return display_community_landing_page
@@ -1628,7 +1624,7 @@ def build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter):
         if path is None:
             path = "/"
         target_page = ubuntu_weekly_newsletter.get_topic(path)
-
+        
         # Clean up newsletter titles and filter out non UWN issues
         filtered_newsletters = []
         for newsletter in newsletter_list:
@@ -1645,7 +1641,7 @@ def build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter):
 
         return flask.render_template(
             "community/uwn.html",
-            newsletters_list=filtered_newsletters,
+            newsletters_list=filtered_newsletters[:20],
             newsletter_data=target_page,
         )
 
