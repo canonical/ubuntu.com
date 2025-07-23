@@ -1,5 +1,10 @@
 import { Page } from "@playwright/test";
 
+export const isExistingField = async (page, fieldName) => {
+  const field = page.locator(fieldName);
+  return await field.count() > 0;
+};
+
 export const login = async (page: Page) => {
   // TODO: mocking Login (To intercept "https://login.ubuntu.com/*/+login", proper mock responses are needed)
   
@@ -29,7 +34,9 @@ export const selectProducts = async (
 export const acceptCookiePolicy = async (
   page: Page,
 ) => {
-  await page.locator('#cookie-policy-button-accept').click();
+  if (await isExistingField(page, '#cookie-policy-button-accept')) {
+    await page.locator('#cookie-policy-button-accept').click();
+  }
 };
 
 export const acceptTerms = async (page: Page) => {
@@ -39,4 +46,21 @@ export const acceptTerms = async (page: Page) => {
 
 export const clickRecaptcha = async (page: Page) => {
   await page.frameLocator('[title="reCAPTCHA"]').getByRole('checkbox', { name: 'I\'m not a robot' }).click({force: true});
+}
+
+// Forms testing helpers
+export const fillExistingFields = async (page, testTextFields, testCheckboxFields) => {
+  // Fill text fields
+  for (const { field, value } of testTextFields) {
+    if (await isExistingField(page, field)) {
+      await page.fill(field, value);
+    }
+  }
+
+  // Fill radio fields
+  for (const { field, value } of testCheckboxFields) {
+    if (await isExistingField(page, field)) {
+      await page.getByLabel(value).check({ force: true });
+    }
+  }
 }

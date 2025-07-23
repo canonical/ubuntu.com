@@ -581,6 +581,14 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       fireLoadedEvent();
 
+      // Disable submit button if there are required checkboxes
+      const requiredFieldsets = document.querySelectorAll(
+        "fieldset.js-required-checkbox",
+      );
+      if (requiredFieldsets.length) {
+        submitButton.disabled = true;
+      }
+
       // Add event listeners to toggle checkbox visibility
       const ubuntuVersionCheckboxes = document.querySelector(
         "fieldset.js-toggle-checkbox-visibility",
@@ -589,11 +597,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
       });
 
-      // Add event listeners to required fieldsets
-      const requiredFieldsets = document.querySelectorAll(
-        "fieldset.js-required-checkbox",
-      );
-      // Check if there are any required fieldsets
+      // Add event listeners if there are required fieldsets present
       if (requiredFieldsets.length > 0) {
         const submitButton = document.querySelector(".js-submit-button");
         submitButton.disabled = true;
