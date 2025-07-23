@@ -148,9 +148,10 @@
                           <label class="p-checkbox">
                             <input class="p-checkbox__input js-checkbox-visibility{% if field.fieldTitle=="Other" %}__other{% endif %}"
                                     type="checkbox"
-                                    aria-labelledby="{{ option.label }}"
+                                    id="{{ option.id }}"
+                                    aria-labelledby="{{ option.id }}"
                                     value="{{ option.value }}" />
-                            <span class="p-checkbox__label" id="{{ option.id }}">{{ option.label }}</span>
+                            <span class="p-checkbox__label">{{ option.label }}</span>
                           </label>
                         {% endfor %}
                       </div>
@@ -179,10 +180,10 @@
             <label class="p-checkbox">
               <input class="p-checkbox__input js-checkbox-visibility"
                      value="yes"
-                     aria-labelledby="canonicalUpdatesOptIn"
+                     id="canonicalUpdatesOptIn"
                      name="canonicalUpdatesOptIn"
                      type="checkbox" />
-              <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive
+              <span class="p-checkbox__label">I agree to receive
                 information about
               Canonical's products and services.</span>
             </label>

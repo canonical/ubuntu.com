@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { fillExistingFields, acceptCookiePolicy } from "../../helpers/commands.ts";
+import { formTextFields, formCheckboxFields } from "../../helpers/form-fields.ts";
 
 const openModal = async (page) => {
   await page.goto("/tests/_form-generator");
@@ -11,23 +12,59 @@ const openModal = async (page) => {
   await expect(modal).toBeVisible();
 }
 
-test.describe("Form generator dummy modal tests", () => {
+test.describe("Modal interaction tests", () => {
   test("should open the form generator modal", async ({ page }) => {
     await openModal(page);    
   });
 
-  test("should close the form generator modal", async ({ page }) => {
+  test("should close the modal with close button", async ({ page }) => {
     await openModal(page);
-
-    // Close modal
     const modal = page.locator("#contact-modal");
     await expect(modal).toBeVisible();
+
+    // Close modal with close button
     const closeButton = modal.locator('button[aria-label="Close active modal"]');
     await expect(closeButton).toBeVisible();
     await closeButton.click();
     await expect(modal).not.toBeVisible();
   });
-  
+
+  test("should close modal with escape key", async ({ page }) => {
+    await openModal(page);
+    const modal = page.locator("#contact-modal");
+    await expect(modal).toBeVisible();
+
+    // Close modal with escape key
+    await page.keyboard.press('Escape');
+    await expect(modal).not.toBeVisible();
+  });
+
+  test("should close modal when clicking outside", async ({ page }) => {
+    await openModal(page);
+    const modal = page.locator("#contact-modal");
+    await expect(modal).toBeVisible();
+
+    // Close modal when clicking outside
+    await page.click('body', { position: { x: 10, y: 10 } });
+    await expect(modal).not.toBeVisible();
+  });
+
+  test("should restore focus to trigger element after closing", async ({ page }) => {
+    await openModal(page);
+    const modal = page.locator("#contact-modal");
+    await expect(modal).toBeVisible();
+    
+    // Close modal
+    const closeButton = modal.locator('button[aria-label="Close active modal"]');
+    await closeButton.click();
+    
+    // Check focus returned to trigger
+    const contactUsLink = page.locator('a[aria-controls="contact-modal"]');
+    await expect(contactUsLink).toBeFocused();
+  });
+});
+
+test.describe("Modal validation tests", () => {
   test("should have the correct form ID", async ({ page }) => {
     await openModal(page);
   
@@ -41,11 +78,49 @@ test.describe("Form generator dummy modal tests", () => {
     await expect(formIdInput).toHaveValue("9999");
     const mktoForm = modal.locator('form[id="mktoForm_9999"]');
     await expect(mktoForm).toBeVisible();
+  });  
+
+  test("should disable submit button when required checkbox is not checked", async ({ page }) => {    
+    await openModal(page);
+
+    // Check that submit button is disabled
+    const submitButton = page.getByRole("button", { name: /Submit/ });
+    await expect(submitButton).toBeDisabled();
   });
 
-  // Test that the form fields behave as expected
+  test("should enable submit button when required checkbox is checked", async ({ page }) => {
+    await openModal(page);
+
+    // Check the required checkbox
+    await page.locator('input#physical-server').check({ force: true });
+
+    const submitButton = page.getByRole("button", { name: /Submit/ });
+    await expect(submitButton).toBeEnabled();
+  });
+
+  test("should fill and redirect to marketo submission endpoint", async ({ page }) => {
+    await openModal(page);    
+    await fillExistingFields(page, formTextFields, formCheckboxFields);
+
+    await page.getByRole("button", { name: /Submit/ }).click();
+    await page.waitForURL(/\/marketo\/submit/, { timeout: 10000 });
+    await expect(page).toHaveURL('/marketo/submit');
+  });
+
+  test("should return 400 error when honeypot is triggered", async ({ page }) => {
+    const responsePromise = page.waitForResponse(response =>
+      response.url().includes('/marketo/submit') && response.status() === 400
+    );
+    await openModal(page);
+    await fillExistingFields(page, formTextFields, formCheckboxFields);
+
+    // Honeypot fields
+    await page.fill('input[name="website"]', 'test');
+    await page.fill('input[name="name"]', 'test');
+    await page.getByRole("button", { name: /Submit/ }).click();
+
+    // Wait for 400 response
+    const response = await responsePromise;
+    expect(response.status()).toBe(400);
+  });
 });
-
-
-
-// Check all form-data.json files, check that the modal opens

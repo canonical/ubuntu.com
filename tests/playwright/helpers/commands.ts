@@ -48,16 +48,18 @@ export const clickRecaptcha = async (page: Page) => {
   await page.frameLocator('[title="reCAPTCHA"]').getByRole('checkbox', { name: 'I\'m not a robot' }).click({force: true});
 }
 
-// Forms testing helpers
+/**
+ * Fills existing fields in the form
+ * @param page Current page
+ * @param testTextFields List of text fields to fill
+ * @param testCheckboxFields List of checkbox/radio fields to fill
+ */
 export const fillExistingFields = async (page, testTextFields, testCheckboxFields) => {
-  // Fill text fields
   for (const { field, value } of testTextFields) {
     if (await isExistingField(page, field)) {
       await page.fill(field, value);
     }
   }
-
-  // Fill radio fields
   for (const { field, value } of testCheckboxFields) {
     if (await isExistingField(page, field)) {
       await page.locator(field).check({ force: true });

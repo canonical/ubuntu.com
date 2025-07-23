@@ -53,7 +53,7 @@ test.describe("Form ID validation", () => {
 });
 
 test.describe("Form submission validation", () => {
-  test("should redirect to marketo submission endpoint", async ({ page }) => {
+  test("should fill and redirect to marketo submission endpoint", async ({ page }) => {
     for (const url of staticContactUsPages) {
       await test.step(`Testing form on ${url}`, async () => {
         await page.goto(url);
