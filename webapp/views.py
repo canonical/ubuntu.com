@@ -1621,10 +1621,6 @@ def build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter):
         """
         newsletter_list = ubuntu_weekly_newsletter.get_topics_in_category()
 
-        if path is None:
-            path = "/"
-        target_page = ubuntu_weekly_newsletter.get_topic(path)
-        
         # Clean up newsletter titles and filter out non UWN issues
         filtered_newsletters = []
         for newsletter in newsletter_list:
@@ -1639,9 +1635,21 @@ def build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter):
                 }
                 filtered_newsletters.append(modified_newsletter)
 
+        # Handle the landing page
+        if path is None:
+            path = "/"
+        
+        # Handle pages from different categories
+        # We hardcode the topic ID as the path e.g. /t/12345
+        if path.startswith("t/"):
+            topic_id = path.split("t/")[1]
+            target_page = ubuntu_weekly_newsletter.get_topic_by_id(topic_id)
+        else:
+            target_page = ubuntu_weekly_newsletter.get_topic(path)
+
         return flask.render_template(
             "community/uwn.html",
-            newsletters_list=filtered_newsletters[:20],
+            newsletters_list=filtered_newsletters,
             newsletter_data=target_page,
         )
 
