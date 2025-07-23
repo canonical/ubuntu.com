@@ -66,10 +66,16 @@
           </nav>
         </div>
       </aside>
+
       <main class="grid-col-6">
-        <div class="p-section">{{ newsletter_data.body_html | safe }}</div>
-        <hr class="p-rule--muted" />
-        <div class="p-strip is-shallow">
+        {% for section in newsletter_data.sections %}
+          <div class="p-section">
+            <h2>{{ section.title }}</h2>
+            {{ section.content | safe }}
+          </div>
+          <hr class="p-rule" />
+        {% endfor %}
+        <div class="p-strip">
           <div class="p-notification--information">
             <div class="p-notification__content">
               <p class="p-notification__message">
