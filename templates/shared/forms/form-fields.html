@@ -36,6 +36,7 @@
                           id="firstName"
                           name="firstName"
                           maxlength="255"
+                          autocomplete="given-name"
                           type="text" />                              
                   <label class="is-required"
                           for="lastName">Last name:</label>
@@ -43,6 +44,7 @@
                           id="lastName"
                           name="lastName"
                           maxlength="255"
+                          autocomplete="family-name"
                           type="text" />
                   <label class="is-required"
                             for="email">Email:</label>
@@ -50,6 +52,7 @@
                           id="email"
                           name="email"
                           maxlength="255"
+                          autocomplete="email"
                           type="email"
                           pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$"/>
                   <label class="is-required" 
@@ -58,6 +61,7 @@
                           id="company" 
                           name="company" 
                           maxlength="255"
+                          autocomplete="organization"
                           type="text" />
                   <label class="is-required" 
                           for="title">Job Title:</label>
@@ -65,6 +69,7 @@
                           id="title" 
                           name="title" 
                           maxlength="255" 
+                          autocomplete="organization-title"
                           type="text" />
                   
                   {% with required = true %}
@@ -95,6 +100,7 @@
                               id="{{ field.id }}"
                               name="{{ field.id }}"
                               maxlength="255"
+                              autocomplete="{% if field.type == 'tel' %}tel{% elif field.type == 'email' %}email{% endif %}"
                               type="{{ field.type }}" />
                     {% elif field.type == "long-text" %}
                       <textarea {% if fieldset.isRequired %}required{% endif %}
