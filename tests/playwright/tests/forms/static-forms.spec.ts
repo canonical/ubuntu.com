@@ -45,8 +45,7 @@ test.describe("Form ID validation", () => {
         await expect(formIdInput).not.toBeEmpty();        
         const form = page.locator('form[id^="mktoForm_"]');
         await expect(form).toBeVisible();
-
-        await page.waitForTimeout(1000);        
+        await page.waitForTimeout(1000);
       
       });
     }
@@ -142,7 +141,7 @@ test.describe("Required checkbox validation", () => {
     await acceptCookiePolicy(page);
 
     // Check the required checkbox
-    await page.getByLabel('Physical server').check({ force: true });
+    await page.locator('input#physical-server').check({ force: true });
 
     const submitButton = page.getByRole("button", { name: /Submit/ });
     await expect(submitButton).toBeEnabled();
