@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 
 export const isExistingField = async (page, fieldName) => {
   const field = page.locator(fieldName);
-  return await field.count() > 0;
+  return await field.isVisible();
 };
 
 export const login = async (page: Page) => {
@@ -60,7 +60,7 @@ export const fillExistingFields = async (page, testTextFields, testCheckboxField
   // Fill radio fields
   for (const { field, value } of testCheckboxFields) {
     if (await isExistingField(page, field)) {
-      await page.getByLabel(value).check({ force: true });
+      await page.locator(field).check({ force: true });
     }
   }
-}
+};
