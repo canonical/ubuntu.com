@@ -1649,7 +1649,7 @@ def build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter):
 
         return flask.render_template(
             "community/uwn.html",
-            newsletters_list=filtered_newsletters,
+            newsletters_list=filtered_newsletters[:20],
             newsletter_data=target_page,
         )
 
