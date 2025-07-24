@@ -80,7 +80,7 @@ Content may be hosted in a Personal Package Archive ("PPA") on Launchpad if it i
 - [OSI Approved](http://opensource.org/licenses/category)
 - [FSF Approved](http://www.fsf.org/licensing/licenses/)
 - [DFSG Compliant](http://www.debian.org/social_contract#guidelines)
-- [Ubuntu "main" and "restricted" Component license Policy Compliant](#licensing)
+- [Ubuntu "main" and "restricted" Component license Policy Compliant](#ubuntu-“main”-and-“restricted”-component-license-policy-complaint)
 - Select Creative Commons Licenses
   - [CC PD](https://creativecommons.org/licenses/publicdomain/)
   - [CC-BY](https://creativecommons.org/licenses/by/3.0/)
@@ -96,6 +96,109 @@ Canonical reserves the right (but shall have no obligation) to pre-screen, revie
 Canonical reserves the right to enforce quotas on the Launchpad service, including (but not limited to) disk space, CPU time, and bandwidth usage.
 
 You may not sell, resell, or exploit any portion of the Launchpad service, use of the Launchpad service, or access to the Launchpad service.
+
+## Privacy Policy and Data Retention Statement
+
+Privacy Policy and Data Retention Statement for Launchpad.net
+
+This web site is operated by Canonical Ltd.
+
+Our postal address is
+
+One Circular Road<br/>Douglas, Isle of Man, IM1 1AF
+
+The statement explains to contributors to projects hosted by Launchpad the steps that Launchpad and Canonical take to ensure the security of the data submitted and used by Launchpad.
+
+### Launchpad Overview
+
+Launchpad stores and processes contributions to open source software and information about the contributors of that data. This Privacy Policy and Data Retention Statement explains Launchpad’s data processing practices and the principles Launchpad seeks to follow in relation to the security and retention of this data.
+
+If you feel that Launchpad fails to follow this Privacy Policy and Data Retention Statement or if you wish to give feedback on it, please contact us at feedback@launchpad.net.
+
+### Launchpad Accounts
+
+You may have a Launchpad account, which you use to log into Launchpad and other associated services. You can use your Launchpad account to add information about yourself to Launchpad. You may use this account to subscribe to receive notifications of changes to bugs, projects, teams, etc.. Data you add to your personal page (e.g. `https://launchpad.net/~<you>`) using your Launchpad Account can be changed or removed by you by using the same mechanism used to add it originally.
+
+Information added to personal pages is accessible to other users of Launchpad. Users should ensure that personal information is not added to personal pages if such information should not be accessible to other Launchpad users.
+
+You can close your Launchpad account and no longer be shown as a Launchpad user. You will no longer receive notifications from Launchpad. However, Launchpad will continue to store and show information about public contributions that you have made.
+
+### Sources of data
+
+#### Submitted data
+
+Launchpad users may add information about themselves via their Launchpad accounts and or their personal pages. This information may assist Launchpad in providing services to the contributor such as email notifications of changes to bugs, projects, teams, etc.
+
+Your Launchpad account has the option to store a location for you and to display it on your profile page. Until you set that location yourself, other registered Launchpad users can set it on your behalf. Once your location is set, you can hide it from other users.
+
+#### Other Collected Data
+
+Launchpad does collect other data that is not displayed publicly. We record what and when pages are visited as well as where the pages were visited from (e.g. IP address).
+
+Information about users of Launchpad may be mirrored from publicly available sources, often by automated processes.
+
+We use cookies to identify you when you visit this website, as well as to allow you to customize how certain Launchpad pages are displayed to you.
+
+Most browsers allow you to choose not to accept cookies, and to remove existing cookies from your system. If you want to know how to do this please look at the help menu on your browser. However, note that you need to accept cookies from our website in order to use all its features.
+
+### Data Security
+
+#### Physical Data Security
+
+We have appropriate security measures in place in our physical facilities to protect against the loss, misuse or alteration of information that we have collected from you.
+
+#### Data Usage
+
+We process data collected via this website for the purposes of:
+
+- Monitoring and improving the quality of the Launchpad service.
+- Dealing with your inquiries and requests.
+- Maintaining information as a reference tool or general resource.
+- Providing you with information about products and services.
+
+#### Unanticipated Usage
+
+From time to time, we may use visitor information for new, unanticipated uses not previously disclosed in this policy. If our information practices change at some time in the future we will post the policy changes to our web site to notify you of these changes. If you are concerned about how your information is used, you should check back at our web site periodically. We will also announce these changes on the Launchpad Users mailing list and on http://blog.launchpad.net.
+
+### Data retention
+
+#### General Data Retention Statement
+
+Launchpad retains all data submitted by users permanently.
+
+Except in the circumstances listed below, Launchpad will only delete data if required to do so by law or if data (including files, PPA submissions, bug reports, bug comments, bug attachments, and translations) is inappropriate. Canonical reserves the right to determine whether data is inappropriate. Spam, malicious code, and defamation are considered inappropriate. Where data is deleted, it will be removed from the Launchpad database but it may continue to exist in backup archives which are maintained by Canonical.
+
+#### Projects and Project Groups
+
+Projects and project groups may be deleted at the project owner's request.
+
+As part of Launchpad’s normal housekeeping, we periodically inspect projects and project groups. We will delete projects or project groups that appear to be abandoned or where no activity has occurred (e.g. a test project or a project containing only spam). In cases where the status of a project/project group is unknown, we may contact the project registrant for clarification prior to deleting it.
+
+#### File Downloads and Personal Package Archives (PPA)
+
+We provide a mechanism for users to delete their own PPA submissions as well as for project administrators to delete files being offered as downloads.
+
+Once a PPA package has been deleted by the user, or superseded by another package, it will remain on our servers for up to 30 days. After 30 days we will remove the package from our servers.
+
+#### Bugs
+
+Bugs and bug comments cannot be deleted by users. Maintainers of a project can mark that a bug does not apply to that project.
+
+#### Branches
+
+We provide a mechanism for users to delete branches.
+
+#### Questions
+
+Questions and answers cannot be deleted or hidden by users.
+
+#### Blueprints
+
+Although blueprints cannot be deleted, it is possible to mark a blueprint as "obsolete". Obsolete blueprints are not listed in a project's blueprint listing, but remain accessible via their unique URL.
+
+#### Translations
+
+An incorrect translation may be corrected by translators approved by the relevant project.
 
 ## Ubuntu "main" and "restricted" Component license Policy Complaint
 
