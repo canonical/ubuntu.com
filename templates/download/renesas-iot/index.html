@@ -69,16 +69,34 @@
                     aria-selected="true"
                     aria-controls="renesas-rz-g2l-tab">RZ/G2L</button>
           </li>
+          <li>
+            <button class="p-tabs__item"
+                    id="renesas-rz-g2lc"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="renesas-rz-g2lc-tab">RZ/G2LC</button>
+          </li>
+          <li>
+            <button class="p-tabs__item"
+                    id="renesas-rz-g2ul"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="renesas-rz-g2ul-tab">RZ/G2UL</button>
+          </li>
         </ul>
         <!-- form dropdown for smaller screens -->
         <form class="u-hide--large u-hide--medium">
           <select name="boardSelect" id="boardSelect">
             <option value="renesas-rz-g2l-tab" selected="">RZ/G2L</option>
+            <option value="renesas-rz-g2lc-tab" selected="">RZ/G2LC</option>
+            <option value="renesas-rz-g2ul-tab" selected="">RZ/G2UL</option>
           </select>
         </form>
       </div>
       <div class="col-9 col-medium-4">
         {% include "download/renesas-iot/tab-1-renesas-rz-g2l.html" %}
+        {% include "download/renesas-iot/tab-2-renesas-rz-g2lc.html" %}
+        {% include "download/renesas-iot/tab-3-renesas-rz-g2ul.html" %}
       </div>
     </div>
   </section>
