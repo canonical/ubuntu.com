@@ -80,7 +80,7 @@ Content may be hosted in a Personal Package Archive ("PPA") on Launchpad if it i
 - [OSI Approved](http://opensource.org/licenses/category)
 - [FSF Approved](http://www.fsf.org/licensing/licenses/)
 - [DFSG Compliant](http://www.debian.org/social_contract#guidelines)
-- [Ubuntu "main" and "restricted" Component license Policy Compliant](#licensing)
+- [Ubuntu "main" and "restricted" Component license Policy Compliant](#ubuntu-“main”-and-“restricted”-component-license-policy-complaint)
 - Select Creative Commons Licenses
   - [CC PD](https://creativecommons.org/licenses/publicdomain/)
   - [CC-BY](https://creativecommons.org/licenses/by/3.0/)
