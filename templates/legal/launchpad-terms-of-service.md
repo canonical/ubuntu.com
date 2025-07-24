@@ -160,7 +160,9 @@ We process data collected via this website for the purposes of:
 
 From time to time, we may use visitor information for new, unanticipated uses not previously disclosed in this policy. If our information practices change at some time in the future we will post the policy changes to our web site to notify you of these changes. If you are concerned about how your information is used, you should check back at our web site periodically. We will also announce these changes on the Launchpad Users mailing list and on http://blog.launchpad.net.
 
-### General Data Retention Statement
+### Data retention
+
+#### General Data Retention Statement
 
 Launchpad retains all data submitted by users permanently.
 
