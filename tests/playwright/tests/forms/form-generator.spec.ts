@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { fillExistingFields, acceptCookiePolicy } from "../../helpers/commands.ts";
+import { fillExistingFields, acceptCookiePolicy, extractAllFormUrls } from "../../helpers/commands.ts";
 import { formTextFields, formCheckboxFields } from "../../helpers/form-fields.ts";
 
 const openModal = async (page) => {
@@ -123,4 +123,41 @@ test.describe("Modal validation tests", () => {
     const response = await responsePromise;
     expect(response.status()).toBe(400);
   });
+
+  test("should show textbox when 'Other' checkbox is checked", async ({ page }) => {
+    await openModal(page);
+    
+    // Check the 'Other' checkbox
+    const otherCheckbox = page.locator('input#other');
+    await otherCheckbox.check({ force: true });
+
+    // Check that the textarea is visible
+    const otherTextarea = page.locator('textarea#other-textarea');
+    await expect(otherTextarea).toBeVisible();
+  });
+});
+
+test("should retain form data when modal is closed and reopened", async ({ page }) => {
+  await openModal(page);
+
+  // Fill some fields
+  const testFields = [
+    { field: 'input[name="company"]', value: 'Test Company' },
+    { field: 'input[name="title"]', value: 'Test Title' }
+  ]
+  for (const { field, value } of testFields) {
+    await page.fill(field, value);
+  }
+
+  // Close and reopen the modal
+  await page.keyboard.press('Escape');
+  const contactUsLink = page.locator('a[aria-controls="contact-modal"]');
+  await expect(contactUsLink).toBeVisible();
+  await contactUsLink.click();
+  
+  // Check that the fields still have the values
+  for (const { field, value } of testFields) {
+    const input = page.locator(field);    
+    await expect(input).toHaveValue(value);
+  }
 });
