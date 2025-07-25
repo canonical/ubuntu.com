@@ -1,0 +1,95 @@
+{% extends "community/_base_community.html" %}
+
+{% block title %}The Ubuntu Weekly Newsletter{% endblock %}
+
+{% block meta_description %}
+  Ubuntu Weekly Newsletter - Collecting Ubuntu News from around the community and around the world to bring readers a weekly dose of Ubuntu articles.
+{% endblock meta_description %}
+
+{% block body_class %}
+  {% if not(no_dark == True) %}is-dark{% endif %}
+{% endblock body_class %}
+
+{% block content %}
+  <div class="p-strip is-shallow">
+    <div class="grid-row">
+      <aside class="grid-col-2">
+        <div class="p-side-navigation" id="drawer">
+          <button class="p-side-navigation__toggle js-drawer-toggle u-hide"
+                  aria-controls="drawer">Toggle side navigation</button>
+
+          <div class="p-side-navigation__overlay js-drawer-toggle"
+               aria-controls="drawer"></div>
+
+          <nav class="p-side-navigation__drawer" aria-label="Toggle side navigation">
+            <div class="p-side-navigation__drawer-header">
+              <button class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
+                      aria-controls="drawer">Toggle side navigation</button>
+            </div>
+            <ul class="p-side-navigation__list">
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link"
+                   {% if request.path == "/community/uwn" %}aria-current="page"{% endif %}
+                   href="/community/uwn"
+                   style="color:#FFFFFF">Introduction</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link"
+                   {% if request.path == "/community/uwn/joining-the-ubuntu-weekly-newsletter-team" %}aria-current="page"{% endif %}
+                   href="/community/uwn/t/40929"
+                   style="color:#FFFFFF">Joining the Ubuntu Weekly Newsletter Team</a>
+              </li>
+            </ul>
+
+            <h3 class="p-side-navigation__heading">Newsletters</h3>
+            <ul class="p-side-navigation__list">
+              {% for newsletter in newsletters_list %}
+                <li class="p-side-navigation__item">
+                  <a class="p-side-navigation__link"
+                     {% if request.path == "/community/uwn/" + newsletter.slug %}aria-current="page"{% endif %}
+                     href="/community/uwn/{{ newsletter.slug }}"
+                     style="color:#FFFFFF">{{ newsletter.title }}</a>
+                </li>
+              {% endfor %}
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link"
+                   href="https://discourse.ubuntu.com/c/uwn/124"
+                   style="color:#FFFFFF">See all...</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+
+      <main class="grid-col-6" style="overflow-wrap: break-word;">
+        {% if "sections" in newsletter_data and newsletter_data.sections %}
+          {% for section in newsletter_data.sections %}
+            <div class="p-section">
+              <h2>{{ section.title }}</h2>
+              {{ section.content | safe }}
+            </div>
+            <hr class="p-rule" />
+          {% endfor %}
+        {% else %}
+          {{ newsletter_data.body_html | safe }}
+        {% endif %}
+        <div class="p-strip">
+          <div class="p-notification--information">
+            <div class="p-notification__content">
+              <p class="p-notification__message">
+                <a href="https://discourse.ubuntu.com/t/{{ newsletter_data.topic_id }}">Help improve this document in the forum</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="{{ versioned_static('js/dist/side-navigation.js') }}" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelector(".js-drawer-toggle").classList.remove("u-hide");
+    })
+  </script>
+{% endblock content %}
