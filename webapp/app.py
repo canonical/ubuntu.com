@@ -158,6 +158,7 @@ from webapp.views import (
     process_local_communities,
     process_community_events,
     community_landing_page,
+    build_ubuntu_weekly_newsletter,
     build_engage_index,
     build_engage_page,
     build_engage_pages_sitemap,
@@ -830,10 +831,10 @@ community_events = Events(
 ubuntu_weekly_newsletter = Category(
     parser=CategoryParser(
         api=discourse_api,
-        index_topic_id=35624,
+        index_topic_id=40911,
         url_prefix="/community",
     ),
-    category_id=124,
+    category_id=419,
 )
 
 app.add_url_rule(
@@ -852,6 +853,19 @@ app.add_url_rule(
         community_events, local_communities, ubuntu_weekly_newsletter
     ),
 )
+
+app.add_url_rule(
+    "/community/uwn",
+    view_func=build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter),
+    endpoint="uwn_index",
+)
+
+app.add_url_rule(
+    "/community/uwn/<path:path>",
+    view_func=build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter),
+    endpoint="uwn_page",
+)
+
 
 # Allow templates to be queried from discourse.ubuntu.com
 app.add_url_rule(

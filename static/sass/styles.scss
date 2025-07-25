@@ -1921,3 +1921,9 @@ ol.p-stepped-list.no-full-stop
     width: calc(100% * 2 + 1 * 2rem);
   }
 }
+
+// Maintain dark theme styles for anchor headings
+.is-dark .inner-wrapper a.p-link--anchor-heading,
+.is-dark .inner-wrapper a.p-link--anchor-heading:visited {
+  color: $colors--dark-theme--text-default;
+}

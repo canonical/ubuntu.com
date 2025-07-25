@@ -1237,16 +1237,22 @@ def process_active_vulnerabilities(security_vulnerabilities):
                     "vulnerabilities"
                 )
             )
-            vulnerability_topics = (
+            vulnerability_topics_array = (
                 security_vulnerabilities.get_topics_in_category()
             )
+
+            # Convert array of topic objects to dict for quick lookup
+            vulnerability_topics = {
+                str(topic["id"]): topic["slug"]
+                for topic in vulnerability_topics_array
+            }
             current_date = datetime.now()
 
             # Filter out vulnerabilities that should not be displayed
             filtered_vulnerabilities = [
                 {
                     **vulnerability,
-                    "slug": vulnerability_topics.get(vulnerability["id"]),
+                    "slug": vulnerability_topics.get(str(vulnerability["id"])),
                 }
                 for vulnerability in vulnerabilities_metadata
                 if vulnerability.get("display-until")
@@ -1255,7 +1261,6 @@ def process_active_vulnerabilities(security_vulnerabilities):
                 )
                 > current_date
             ]
-
             return flask.render_template(
                 "security/index.html",
                 active_vulnerabilities=filtered_vulnerabilities,
@@ -1276,16 +1281,19 @@ def build_vulnerabilities_list(security_vulnerabilities, path=None):
     def vulnerabilities_list():
         try:
             template_path = "security/vulnerabilities/view-all.html"
-            topics = security_vulnerabilities.get_topics_in_category()
+            topics_array = security_vulnerabilities.get_topics_in_category()
+            # Convert array of topic objects to dict for quick lookup
+            topics = {
+                str(topic["id"]): topic["slug"] for topic in topics_array
+            }
             vulnerabilities = (
                 security_vulnerabilities.get_category_index_metadata(
                     "vulnerabilities"
                 )
             )
-
             for vuln in vulnerabilities:
                 # Add slug
-                vuln_id = vuln["id"]
+                vuln_id = str(vuln["id"])
                 if vuln_id in topics:
                     vuln["slug"] = topics[vuln_id]
                 # Add year
@@ -1476,21 +1484,23 @@ def process_local_communities(local_communities):
 
 def process_community_events(community_events):
     def display_community_events():
-        featured_events = community_events.get_featured_events()[:2]
+        featured_events = community_events.get_featured_events()
 
+        filtered_events = []
         for event in featured_events:
-            # Get the event description from the topic
             full_event = community_events.parser.api.get_topic(
                 event["post"]["topic"]["id"]
             )
             parsed_event = community_events.parser.parse_topic(full_event)
-            event["description"] = parsed_event["sections"][0]["content"]
-            # Format the event time
-            format_community_event_time(event)
 
+            if len(parsed_event["sections"]) > 0:
+                event["description"] = parsed_event["sections"][0]["content"]
+                format_community_event_time(event)
+                filtered_events.append(event)
+
+        # Get all events
         events = community_events.get_events()
 
-        # Format time for all events
         for event in events:
             format_community_event_time(event)
 
@@ -1498,7 +1508,7 @@ def process_community_events(community_events):
 
         return flask.render_template(
             "community/events.html",
-            featured_events=featured_events,
+            featured_events=filtered_events[:2],  # Limit to 2 featured events
             events=events,
         )
 
@@ -1537,17 +1547,57 @@ def community_landing_page(
         communities_data = local_communities.get_category_index_metadata(
             "locos"
         )
-        newsletter_data = (
-            ubuntu_weekly_newsletter.parser.api.get_topic_list_by_category(
-                ubuntu_weekly_newsletter.category_id
-            )
-        )
+        newsletter_data = ubuntu_weekly_newsletter.get_topics_in_category()
 
         return flask.render_template(
             "community/index.html",
             featured_events=events_to_display,
             communities=communities_data,
-            newsletters=newsletter_data,
+            newsletters=newsletter_data[:3],  # Limit to 3 newsletters
         )
 
     return display_community_landing_page
+
+
+def build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter):
+    def display_ubuntu_weekly_newsletter(path=None):
+        """
+        Display the Ubuntu Weekly Newsletter.
+        """
+        newsletter_list = ubuntu_weekly_newsletter.get_topics_in_category()
+
+        # Clean up newsletter titles and filter out non UWN issues
+        filtered_newsletters = []
+        for newsletter in newsletter_list:
+            if newsletter.get("title", "").startswith(
+                "Ubuntu Weekly Newsletter Issue"
+            ):
+                modified_newsletter = {
+                    **newsletter,
+                    "title": newsletter["title"]
+                    .replace("Ubuntu Weekly Newsletter", "UWN", 1)
+                    .strip(),
+                }
+                filtered_newsletters.append(modified_newsletter)
+
+        # Handle the landing page
+        if path is None:
+            path = "/"
+
+        # Handle pages from different categories
+        # We hardcode the topic ID as the path e.g. /t/12345
+        if path.startswith("t/"):
+            topic_id = path.split("t/")[1]
+            target_page = ubuntu_weekly_newsletter.get_topic_by_id(topic_id)
+        else:
+            target_page = ubuntu_weekly_newsletter.get_topic(path)
+
+        return flask.render_template(
+            "community/uwn.html",
+            newsletters_list=filtered_newsletters[
+                :20
+            ],  # Limit to 20 newsletters
+            newsletter_data=target_page,
+        )
+
+    return display_ubuntu_weekly_newsletter
