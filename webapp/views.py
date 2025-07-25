@@ -1541,21 +1541,23 @@ def process_local_communities(local_communities):
 
 def process_community_events(community_events):
     def display_community_events():
-        featured_events = community_events.get_featured_events()[:2]
-
+        featured_events = community_events.get_featured_events()
+        
+        filtered_events = []
         for event in featured_events:
-            # Get the event description from the topic
             full_event = community_events.parser.api.get_topic(
                 event["post"]["topic"]["id"]
             )
             parsed_event = community_events.parser.parse_topic(full_event)
-            event["description"] = parsed_event["sections"][0]["content"]
-            # Format the event time
-            format_community_event_time(event)
 
+            if len(parsed_event["sections"]) > 0:
+                event["description"] = parsed_event["sections"][0]["content"]
+                format_community_event_time(event)
+                filtered_events.append(event)
+
+        # Get all events
         events = community_events.get_events()
 
-        # Format time for all events
         for event in events:
             format_community_event_time(event)
 
@@ -1563,7 +1565,7 @@ def process_community_events(community_events):
 
         return flask.render_template(
             "community/events.html",
-            featured_events=featured_events,
+            featured_events=filtered_events[:2],
             events=events,
         )
 
