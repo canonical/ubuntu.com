@@ -39,12 +39,6 @@
                    href="/community/uwn/t/40929"
                    style="color:#FFFFFF">Joining the Ubuntu Weekly Newsletter Team</a>
               </li>
-              <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link"
-                   {% if request.path == "/community/uwn/ubuntu-weekly-newsletter-ideas" %}aria-current="page"{% endif %}
-                   href="/community/uwn/t/40053"
-                   style="color:#FFFFFF">Send in your Ubuntu story</a>
-              </li>
             </ul>
 
             <h3 class="p-side-navigation__heading">Newsletters</h3>
@@ -67,7 +61,7 @@
         </div>
       </aside>
 
-      <main class="grid-col-6 style="overflow-wrap: break-word;">
+      <main class="grid-col-6">
         {% if "sections" in newsletter_data and newsletter_data.sections %}
           {% for section in newsletter_data.sections %}
             <div class="p-section">
