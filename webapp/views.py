@@ -1542,7 +1542,7 @@ def process_local_communities(local_communities):
 def process_community_events(community_events):
     def display_community_events():
         featured_events = community_events.get_featured_events()
-        
+
         filtered_events = []
         for event in featured_events:
             full_event = community_events.parser.api.get_topic(
@@ -1565,7 +1565,7 @@ def process_community_events(community_events):
 
         return flask.render_template(
             "community/events.html",
-            featured_events=filtered_events[:2],
+            featured_events=filtered_events[:2],  # Limit to 2 featured events
             events=events,
         )
 
@@ -1605,12 +1605,12 @@ def community_landing_page(
             "locos"
         )
         newsletter_data = ubuntu_weekly_newsletter.get_topics_in_category()
-        
+
         return flask.render_template(
             "community/index.html",
             featured_events=events_to_display,
             communities=communities_data,
-            newsletters=newsletter_data[:3],
+            newsletters=newsletter_data[:3],  # Limit to 3 newsletters
         )
 
     return display_community_landing_page
@@ -1640,7 +1640,7 @@ def build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter):
         # Handle the landing page
         if path is None:
             path = "/"
-        
+
         # Handle pages from different categories
         # We hardcode the topic ID as the path e.g. /t/12345
         if path.startswith("t/"):
@@ -1651,7 +1651,9 @@ def build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter):
 
         return flask.render_template(
             "community/uwn.html",
-            newsletters_list=filtered_newsletters[:20],
+            newsletters_list=filtered_newsletters[
+                :20
+            ],  # Limit to 20 newsletters
             newsletter_data=target_page,
         )
 
