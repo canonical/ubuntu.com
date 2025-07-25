@@ -111,7 +111,7 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
 
     return flask.render_template(
         "account/invoices/index.html",
-        account_id=account.id,
+        account_id=account.id if account else None,
         invoices=payments[start_page:end_page],
         marketplace=marketplace,
         total_pages=(len(payments) // per_page) + 1,
