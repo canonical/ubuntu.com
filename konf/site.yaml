@@ -419,6 +419,7 @@ production:
           /security/releases/.*\.json,
           /security/api/.*,
           /security/page/.*\.json,
+          /security/flat/notices\.json,
         ]
       service_name: ubuntu-com-security-api
 
@@ -1000,6 +1001,7 @@ staging:
           /security/api/.*,
           /security/page/.*\.json,
           /security/updates/.*,
+          /security/flat/notices\.json,
         ]
       service_name: ubuntu-com-security-api
     
