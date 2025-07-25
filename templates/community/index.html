@@ -196,9 +196,9 @@ meta_copydoc %}
       </div>
       <div class="col">
         <ul class="p-list--divided">
-          {% for newsletter in newsletters[:3] %}
+          {% for newsletter in newsletters %}
             <li class="p-list__item">
-              <a href="https://discourse.ubuntu.com/t/{{ newsletter[0] }}">{{ newsletter[1] }}</a>
+              <a href="community/uwn/{{ newsletter.slug }}">{{ newsletter.title }}</a>
             </li>
           {% endfor %}
         </ul>
