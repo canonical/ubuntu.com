@@ -10,11 +10,11 @@ export const formTextFields = [
 ]
 
 export const formCheckboxFields = [
-  { field: 'input[name="_radio_how-many-machines-do-you-have"]', value: '< 5 machines' },
-  { field: 'input[aria-labelledby="24-04"]', value: '24.04 LTS' },
-  { field: 'input[aria-labelledby="physical-server"]', value: 'Physical server' },
-  { field: 'input[aria-labelledby="ubuntu-repositories"]', value: 'Ubuntu repositories' },
-  { field: 'input[aria-labelledby="pci"]', value: 'PCI-DSS' },
-  { field: 'input[aria-labelledby="individual-developers"]', value: 'Individual developers' },
-  { field: 'input[name="canonicalUpdatesOptIn"]', value: 'I agree to receive information' }
+  { field: 'input[aria-labelledby="24-04"]'},
+  { field: 'input#physical-server' }, 
+  { field: 'input#less-5-machines'},
+  { field: 'input#ubuntu-repositories' },
+  { field: 'input#pci' },
+  { field: 'input#individual-developers' },
+  { field: 'input#canonicalUpdatesOptIn' }
 ]

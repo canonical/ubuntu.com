@@ -108,6 +108,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       if (modalTrigger && modalTrigger !== document.body)
         modalTrigger.setAttribute("aria-expanded", "true");
       updateHash(triggeringHash);
+      checkRequiredCheckboxes();
       dataLayer.push({
         event: "interactive-forms",
         action: "open",

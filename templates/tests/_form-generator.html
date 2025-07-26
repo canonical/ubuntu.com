@@ -1,0 +1,26 @@
+{% extends "base_index.html" %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+{% block title %}Form generator test{% endblock %}
+
+{% block content %}
+  <section class="p-strip">
+    <div class="p-section--shallow">
+      <div class="row">
+        <div class="col-9 col-medium-4 col-start-large-4 col-start-medium-3">
+          <h1>Form generator - modal test</h1>
+          <p>
+            <a href="/contact-us"
+               aria-controls="contact-modal"
+               class="js-invoke-modal p-button">Contact us button</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{ load_form("/tests/_form-generator") | safe }}
+
+  {% endblock content %}
