@@ -1,5 +1,7 @@
 {% extends "openstack/_base_openstack.html" %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
 {% block title %}Install OpenStack yourself on Ubuntu.{% endblock %}
 
 {% block meta_description %}
@@ -15,29 +17,23 @@
 {% endblock body_class %}
 
 {% block content %}
-  <section class="p-section--hero">
-    <div class="row--50-50-on-large">
-      <div class="col">
-        <div class="p-section--shallow">
-          <h1>Install OpenStack yourself</h1>
-        </div>
-      </div>
-      <div class="col">
-        <div class="p-section--shallow">
-          <p>
-            Try OpenStack in five simple steps. Set up a small-scale cloud or deploy a large cluster across hundreds of physical machines. Use <a href="https://microstack.run/">MicroStack</a> or <a href="/openstack">Charmed OpenStack</a> depending on your use case.
-          </p>
-          <p>
-            If you need OpenStack consulting or a fully managed service, <a class="js-invoke-modal" href="/openstack/contact-us">talk to an expert.</a>
-          </p>
-        </div>
-        <div class="p-cta-block">
-          <a href="#single-multi-large-cluster" class="p-button--positive">Install OpenStack</a>
-          <a href="/engage/openstack-ebook-beginners">Download guide to OpenStack for Beginners&nbsp;&rsaquo;</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  {% call(slot) vf_hero(
+    title_text='Install OpenStack yourself',
+    layout='50/50'
+  ) -%}
+  {%- if slot == 'description' -%}
+    <p>
+      Try OpenStack in five simple steps. Set up a small-scale cloud or deploy a large cluster across hundreds of physical machines. Use <a href="https://microstack.run/">MicroStack</a> or <a href="/openstack">Charmed OpenStack</a> depending on your use case.
+    </p>
+    <p>
+      If you need OpenStack consulting or a fully managed service, <a class="js-invoke-modal" href="/openstack/contact-us">talk to an expert.</a>
+    </p>
+  {%- endif -%}
+  {%- if slot == 'cta' -%}
+    <a href="#single-multi-large-cluster" class="p-button--positive">Install OpenStack</a>
+    <a href="/engage/openstack-ebook-beginners">Download guide to OpenStack for Beginners&nbsp;&rsaquo;</a>
+  {%- endif -%}
+  {% endcall -%}
 
   <section class="p-section" id="single-multi-large-cluster">
     <hr class="p-rule is-fixed-width" />
