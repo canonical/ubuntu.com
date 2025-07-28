@@ -11,10 +11,10 @@ export const formTextFields = [
 
 export const formCheckboxFields = [
   { field: 'input[aria-labelledby="24-04"]'},
-  { field: 'input#physical-server' }, 
-  { field: 'input#less-5-machines'},
-  { field: 'input#ubuntu-repositories' },
-  { field: 'input#pci' },
-  { field: 'input#individual-developers' },
-  { field: 'input#canonicalUpdatesOptIn' }
+  { field: 'input[aria-labelledby="physical-server"]' }, 
+  { field: 'input[aria-labelledby="less-5-machines"]'},
+  { field: 'input[aria-labelledby="ubuntu-repositories"]' },
+  { field: 'input[aria-labelledby="pci"]' },
+  { field: 'input[aria-labelledby="individual-developers"]' },
+  { field: 'input[aria-labelledby="canonicalUpdatesOptIn"]' }
 ]

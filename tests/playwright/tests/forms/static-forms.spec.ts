@@ -141,7 +141,7 @@ test.describe("Required checkbox validation", () => {
     await acceptCookiePolicy(page);
 
     // Check the required checkbox
-    await page.locator('input#physical-server').check({ force: true });
+    await page.locator('input[aria-labelledby="physical-server"]').check({ force: true });
 
     const submitButton = page.getByRole("button", { name: /Submit/ });
     await expect(submitButton).toBeEnabled();
