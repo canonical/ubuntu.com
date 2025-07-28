@@ -28,7 +28,7 @@
     layout='25/75'
   ) -%}
   {%- if slot == 'signpost_image' -%}
-  <img src="https://assets.ubuntu.com/v1/8b0a474a-Microsoft_.NET_logo.svg" alt=".NET on Ubuntu">
+  <img src="https://assets.ubuntu.com/v1/8b0a474a-Microsoft_.NET_logo.svg" width="76" height="76" alt=".NET on Ubuntu">
   {%- endif -%}
   {%- if slot == 'description' -%}
   <p>
@@ -55,7 +55,7 @@
         <h2>Canonical .NET LTS packages</h2>
       </div>
     </div>
-    <div class="row--25-75">
+    <div class="row">
       <div class="col">
         <table aria-label="Canonical .NET LTS packages table">
           <thead>
@@ -97,9 +97,7 @@
       <div class="col">
         <div class="p-section--shallow">
           <h2>
-            Predictable .NET
-            <br class="u-hide--small u-hide--medium" />
-            release cadence on Ubuntu
+            Predictable .NET release cadence on Ubuntu
           </h2>
         </div>
       </div>
@@ -157,9 +155,9 @@
       </div>
       <div class="col">
         <div class="p-section--shallow p-image-container is-highlighted">
-            {{ image(url="https://assets.ubuntu.com/v1/1d8eb40a-12%20years%20circle.png",
-              alt="12 Years",
-              width="1200",
+            {{ image(url="https://assets.ubuntu.com/v1/62db3057-security-patching-maintenance.png",
+              alt="security patching",
+              width="1600",
               height="1200",
               hi_def=True,
               loading="auto|lazy"
@@ -206,14 +204,14 @@
           and benefit from up to 12 years of security support with Ubuntu Pro.
         </p>
         <div class="p-cta-block">
-          <a class="p-button" href="https://hub.docker.com/r/ubuntu/dotnet-aspnet">
+          <a class="p-button--positive u-no-margin--bottom" href="https://hub.docker.com/r/ubuntu/dotnet-aspnet">
             Download ASP.NET Core Runtime
           </a>
           <a class="p-button" href="https://hub.docker.com/r/ubuntu/dotnet-runtime">
             Download .NET Runtime
           </a>
-          <a class="p-button" href="https://ubuntu.com/containers/chiseled/dotnet">
-            Learn about chiselled .NET
+          <a href="https://ubuntu.com/containers/chiseled/dotnet">
+            Learn about chiselled .NET >
           </a>
         </div>
       </div>
@@ -268,11 +266,9 @@
           runtimes and SDK. They share .NET runtimes and SDK across multiple .NET 
           application snaps, saving storage space and reducing installation times.
         </p>
-        <div class="p-cta-block">
-          <a class="p-button" href="https://snapcraft.io/dotnet">
-            Install the .NET snap
-          </a>
-        </div>
+        <a class="p-button" href="https://snapcraft.io/dotnet">
+          Install the .NET snap
+        </a>
       </div>
     </div>
   </div>
@@ -296,11 +292,9 @@
           MSBuild through custom flag attributes and it leverages the native .NET 
           content snaps.
         </p>
-        <div class="p-cta-block">
-          <a class="p-button" href="https://canonical-craft-parts.readthedocs-hosted.com/latest/common/craft-parts/reference/plugins/dotnet_v2_plugin/">
-            Use the Snapcraft Plugin
-          </a>
-        </div>
+        <a class="p-button" href="https://canonical-craft-parts.readthedocs-hosted.com/latest/common/craft-parts/reference/plugins/dotnet_v2_plugin/">
+          Use the Snapcraft Plugin
+        </a>
       </div>
     </div>
   </div>
