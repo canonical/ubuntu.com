@@ -92,7 +92,6 @@
             <li class="p-stepped-list__item">
               <h3 class="p-heading--5 p-stepped-list__title">Developer-friendly platform</h3>
               <p class="p-stepped-list__content">
-                Developer-friendly platform
                 Support your developers with a platform that they know and love. Use Ubuntu in development, testing, and production environments for a seamless development journey.
               </p>
             </li>
@@ -100,7 +99,8 @@
               <hr class="p-rule--muted" />
               <h3 class="p-heading--5 p-stepped-list__title">Open source compliance without proprietary vendor lock-in</h3>
               <p class="p-stepped-list__content">
-                When a confidential VM is launched, its integrity is verified and its initial code and data are measured by a hardware root of trust. This ensures they have not been tampered with. The measurement is cryptographically signed and can be attested to a remote verifier.
+
+                Access all the security compliance tooling and features you need within a single ecosystem. Canonical has been building the Ubuntu platform for over 20 years, and our compliance portfolio keeps on growing, with major frameworks like FIPS-140, DISA STIG, and the EU Cyber Resilience Act.
               </p>
             </li>
             <li class="p-stepped-list__item">
@@ -130,19 +130,19 @@
             <li class="p-tabs__item">
               <a class="p-tabs__link"
                  role="tab"
-                 aria-selected="true"
-                 id="security-compliance-tab-lucid"
-                 href="#security-compliance-lucid"
-                 aria-controls="security-compliance-lucid">Lucid</a>
-            </li>
-            <li class="p-tabs__item">
-              <a class="p-tabs__link"
-                 role="tab"
                  aria-selected="false"
                  id="security-compliance-tab-launchdarky"
                  href="#security-compliance-launchdarky"
                  aria-controls="security-compliance-launchdarky"
                  tabindex="-1">LaunchDarkly</a>
+            </li>
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="true"
+                 id="security-compliance-tab-lucid"
+                 href="#security-compliance-lucid"
+                 aria-controls="security-compliance-lucid">Lucid</a>
             </li>
             <li class="p-tabs__item">
               <a class="p-tabs__link"
@@ -155,6 +155,28 @@
             </li>
           </ul>
         </nav>
+        <div id="security-compliance-launchdarky"
+             class="p-tabs__content"
+             role="tabpanel"
+             aria-labelledby="security-compliance-tab-launchdarky">
+          <div class="p-strip is-shallow">
+            <div class="p-strip is-shallow">
+              {{ image(url="https://assets.ubuntu.com/v1/358661f9-launchdarkly-logo.svg",
+                            alt="LaunchDarkly",
+                            width="201",
+                            height="30",
+                            hi_def=True,
+                            fmt="svg",
+                            loading="lazy") | safe
+              }}
+            </div>
+            <h3>LaunchDarkly becomes the first FedRAMP-authorized feature management platform thanks to Ubuntu Pro</h3>
+            <p>Learn how a SaaS provider achieved effortless FIPS compliance on AWS.</p>
+            <hr class="p-rule--muted" />
+            <a href="https://assets.ubuntu.com/v1/b97b2df6-AWS%20LaunchDarkly%20Case%20Study%20v3%203.6.2024.pdf"
+               aria-label="Read the case study about LaunchDarkly">Read the case study&nbsp;&rsaquo;</a>
+          </div>
+        </div>
         <div id="security-compliance-lucid"
              class="p-tabs__content"
              role="tabpanel"
@@ -177,28 +199,6 @@
             <hr class="p-rule--muted" />
             <a href="https://canonical.com/case-study/lucid-aws-fedramp-compliance-case-study"
                aria-label="Read the case study about Lucid Software">Read the case study&nbsp;&rsaquo;</a>
-          </div>
-        </div>
-        <div id="security-compliance-launchdarky"
-             class="p-tabs__content"
-             role="tabpanel"
-             aria-labelledby="security-compliance-tab-launchdarky">
-          <div class="p-strip is-shallow">
-            <div class="p-strip is-shallow">
-              {{ image(url="https://assets.ubuntu.com/v1/358661f9-launchdarkly-logo.svg",
-                            alt="LaunchDarkly",
-                            width="201",
-                            height="30",
-                            hi_def=True,
-                            fmt="svg",
-                            loading="lazy") | safe
-              }}
-            </div>
-            <h3>LaunchDarkly becomes the first FedRAMP-authorized feature management platform thanks to Ubuntu Pro</h3>
-            <p>Learn how a SaaS provider achieved effortless FIPS compliance on AWS.</p>
-            <hr class="p-rule--muted" />
-            <a href="https://assets.ubuntu.com/v1/b97b2df6-AWS%20LaunchDarkly%20Case%20Study%20v3%203.6.2024.pdf"
-               aria-label="Read the case study about LaunchDarkly">Read the case study&nbsp;&rsaquo;</a>
           </div>
         </div>
         <div id="security-compliance-new-mexico"
@@ -305,20 +305,9 @@
               </div>
             </div>
             <a href="/engage/a-guide-to-infrastructure-hardening">A guide to Infrastructure Hardening</a>
-          </div>
-          <div class="col-3 col-medium-2 u-equal-height-items">
-            <div class="u-crop--16-9">
-              <div class="p-image-wrapper">
-                {{ image(url="https://assets.ubuntu.com/v1/f2312d7a-wp2.jpg",
-                                alt="",
-                                width="568",
-                                height="380",
-                                hi_def=True,
-                                loading="lazy") | safe
-                }}
-              </div>
-            </div>
-            <a href="/engage/security-compliance-US-public-sector-FIPS-DISASTIG">Ubuntu compliance guide for US public sector</a>
+            <p>
+              Access the whitepaper for best practices to improve the security posture of your Linux-based infrastructure deployments.
+            </p>
           </div>
           <div class="col-3 col-medium-2 u-equal-height-items">
             <div class="u-crop--16-9">
@@ -333,6 +322,9 @@
               </div>
             </div>
             <a href="/engage/iot-compliance-in-the-global-market-a-guide-for-iot-device-manufacturers">Understand IoT security and IoT compliance across global markets</a>
+            <p>
+              Discover how compliance regulations are reshaping IoT compliance and meet compliance in every regional market with our Ubuntu blueprint for secure devices.
+            </p>
           </div>
         </div>
       </div>
@@ -374,5 +366,5 @@
 
   <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
   <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
-  {{ load_form("/security", formId=6363) | safe }}
+  {{ load_form("/security-standards", formId=6363) | safe }}
 {% endblock %}

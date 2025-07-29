@@ -1224,7 +1224,7 @@ def render_security_pci_dds_blogs():
         blogs.get_index()["articles"], key=lambda x: x["date"]
     )
     return flask.render_template(
-        "/security/pci-dss.html", blogs=sorted_articles
+        "/security/standards/pci-dss.html", blogs=sorted_articles
     )
 
 
