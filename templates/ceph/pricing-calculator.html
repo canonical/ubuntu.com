@@ -104,7 +104,7 @@
                        aria-label="Choose the maximum amount of storage you need" />
                 <input class="p-slider__input"
                        type="text"
-                       maxlength="2"
+                       maxlength="4"
                        id="storage-slider-input"
                        tabindex="0"
                        disabled />
@@ -269,7 +269,7 @@
           equaliseValues(input, slider);
           input.addEventListener('input', function() {
             if (!input.value) {
-              input.value = 0;
+              input.value = slider.min;
             }
             equaliseValues(slider, input);
             renderSlider(slider);
@@ -376,7 +376,7 @@
       calculateCosts();
     });
 
-    initializeSliders()
+    initializeSliders();
   </script>
 
 {% endblock content %}
