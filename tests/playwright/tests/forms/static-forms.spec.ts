@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { fillExistingFields, acceptCookiePolicy } from "../../helpers/commands.ts";
-import { formTextFields, formCheckboxFields } from "../../helpers/form-fields.ts";
+import { formTextFields, formCheckboxFields, formRadioFields } from "../../helpers/form-fields.ts";
 
 export const staticContactUsPages = [
   "/tests/_static-client-form",
@@ -58,7 +58,7 @@ test.describe("Form submission validation", () => {
       await test.step(`Testing form on ${url}`, async () => {
         await page.goto(url);
         await acceptCookiePolicy(page);
-        await fillExistingFields(page, formTextFields, formCheckboxFields);
+        await fillExistingFields(page, formTextFields, formCheckboxFields, formRadioFields);
 
         await page.getByRole("button", { name: /Submit/ }).click();
         await page.waitForURL(/\/marketo\/submit/, { timeout: 10000 });
@@ -76,7 +76,7 @@ test.describe("Form submission validation", () => {
         );
         await page.goto(url);
         await acceptCookiePolicy(page);
-        await fillExistingFields(page, formTextFields, formCheckboxFields);
+        await fillExistingFields(page, formTextFields, formCheckboxFields, formRadioFields);
     
         // Honeypot fields
         await page.fill('input[name="website"]', 'test');
