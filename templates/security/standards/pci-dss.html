@@ -286,79 +286,90 @@
         </div>
       </div>
 
-      <div class="p-tabs__content u-hide--small"
+      <div class="p-tabs__content"
            tabindex="0"
            role="tabpanel"
            id="resources-whitepapers-tab"
            aria-labelledby="resources-whitepapers">
-        <div class="row">
-          <div class="col-3 col-medium-2 u-equal-height-items">
-            <div class="u-crop--16-9">
-              <div class="p-image-wrapper">
-                {{ image(url="https://assets.ubuntu.com/v1/f930f8ec-wp1.jpg",
-                                alt="",
-                                width="568",
-                                height="380",
-                                hi_def=True,
-                                loading="lazy") | safe
-                }}
+        <div class="p-equal-height-row--wrap">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="u-crop--16-9">
+                <div class="p-image-wrapper">
+                  {{ image(url="https://assets.ubuntu.com/v1/f930f8ec-wp1.jpg",
+                                    alt="",
+                                    width="568",
+                                    height="380",
+                                    hi_def=True,
+                                    loading="lazy") | safe
+                  }}
+                </div>
               </div>
             </div>
-            <a href="/engage/a-guide-to-infrastructure-hardening">A guide to Infrastructure Hardening</a>
-            <p>
-              Access the whitepaper for best practices to improve the security posture of your Linux-based infrastructure deployments.
-            </p>
+            <div class="p-equal-height-row__item">
+              <a href="/engage/a-guide-to-infrastructure-hardening">A guide to Infrastructure Hardening</a>
+            </div>
+            <div class="p-equal-height-row__item">
+
+              <p>
+                Access the whitepaper for best practices to improve the security posture of your Linux-based infrastructure deployments.
+              </p>
+            </div>
           </div>
-          <div class="col-3 col-medium-2 u-equal-height-items">
-            <div class="u-crop--16-9">
-              <div class="p-image-wrapper">
-                {{ image(url="https://assets.ubuntu.com/v1/e8776be5-wp3.jpg",
-                                alt="",
-                                width="568",
-                                height="380",
-                                hi_def=True,
-                                loading="lazy") | safe
-                }}
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="u-crop--16-9">
+                <div class="p-image-wrapper">
+                  {{ image(url="https://assets.ubuntu.com/v1/e8776be5-wp3.jpg",
+                                    alt="",
+                                    width="568",
+                                    height="380",
+                                    hi_def=True,
+                                    loading="lazy") | safe
+                  }}
+                </div>
               </div>
             </div>
-            <a href="/engage/iot-compliance-in-the-global-market-a-guide-for-iot-device-manufacturers">Understand IoT security and IoT compliance across global markets</a>
-            <p>
-              Discover how compliance regulations are reshaping IoT compliance and meet compliance in every regional market with our Ubuntu blueprint for secure devices.
-            </p>
+            <div class="p-equal-height-row__item">
+              <a href="/engage/iot-compliance-in-the-global-market-a-guide-for-iot-device-manufacturers">Understand IoT security and IoT compliance across global markets</a>
+            </div>
+            <div class="p-equal-height-row__item">
+              <p>
+                Discover how compliance regulations are reshaping IoT compliance and meet compliance in every regional market with our Ubuntu blueprint for secure devices.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="p-section">
-    <div class="p-section--shallow">
-      <div class="row--50-50">
-        <hr class="p-rule" />
-        <div class="col">
-          <div class="p-section--shallow">
-            <h2>
-              Take the next step toward
-              <br class="u-hide--small" />
-              PCI-DSS compliance
-            </h2>
-          </div>
+  <section class="p-section--deep">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <div class="p-section--shallow">
+          <h2>
+            Take the next step toward
+            <br class="u-hide--small" />
+            PCI-DSS compliance
+          </h2>
         </div>
-        <div class="col">
-          <ul class="p-list--divided">
-            <li class="p-list__item">
-              <a href="/pricing/pro">Find the right Ubuntu Pro subscription for your needs</a>
-            </li>
-            <li class="p-list__item">
-              <a href="/security/security-standards">Learn about all of Canonical’s security certifications</a>
-            </li>
-          </ul>
+      </div>
+      <div class="col">
+        <ul class="p-list--divided">
+          <li class="p-list__item">
+            <a href="/pricing/pro">Find the right Ubuntu Pro subscription for your needs</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/security/security-standards">Learn about all of Canonical’s security certifications</a>
+          </li>
+        </ul>
 
-          <div class="p-cta-block">
-            <a href="/security/contact-us"
-               class="p-button--positive js-invoke-modal">Contact us</a>
-            <a href="/pro/free-trial">Access a 30-day free trial</a>
-          </div>
+        <div class="p-cta-block">
+          <a href="/security/contact-us"
+             class="p-button--positive js-invoke-modal">Contact us</a>
+          <a href="/pro/free-trial">Access a free trial</a>
         </div>
       </div>
     </div>
