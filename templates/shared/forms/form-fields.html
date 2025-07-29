@@ -95,16 +95,16 @@
                   <li class="p-list__item">
                     {% if field.type == "text" or field.type == "tel" or field.type == "email" %}
                       <label {% if field.isRequired %}class="is-required"{% endif %}
-                              for="{{ field.id }}">{{ field.label }}:</label>
+                              for="{{ field_id }}">{{ field.label }}:</label>
                       <input {% if field.isRequired %}required{% endif %}
-                              id="{{ field.id }}"
-                              name="{{ field.id }}"
+                              id="{{ field_id }}"
+                              name="{{ field_id }}"
                               maxlength="255"
                               autocomplete="{% if field.type == 'tel' %}tel{% elif field.type == 'email' %}email{% endif %}"
                               type="{{ field.type }}" />
                     {% elif field.type == "long-text" %}
                       <textarea {% if fieldset.isRequired %}required{% endif %}
-                                id="{{field.id}}"
+                                id="{{ field_id }}"
                                 rows="5"
                                 maxlength="2000"
                                 {% if field.placeholder %}placeholder="{{ field.placeholder }}"{% endif %}></textarea>
@@ -114,12 +114,11 @@
                                 class="p-radio__input"
                                 id="{{ field_id }}"
                                 type="radio"
-                                id="{{ field.id }}"
                                 name="_radio_{{ fieldset_inputName }}"
-                                aria-labelledby="{{ field.id }}"
-                                value="{{ field.value }}"
+                                aria-labelledby="{{ field_id }}"
+                                value="{{ field_value }}"
                                 {% if field.isSelected %}checked{% endif %} />
-                        <span class="p-radio__label">{{ field.label }}</span>
+                        <span class="p-radio__label" id="{{ field_id }}">{{ field.label }}</span>
                       </label>
                       {% if field.hasTextarea %}
                         <textarea class="js-other-input u-hide"
@@ -130,12 +129,12 @@
                       <label class="p-checkbox">
                         <input class="p-checkbox__input js-checkbox-visibility"
                                 type="checkbox"
-                                id="{{ field.id }}"
+                                id="{{ field_id }}"
                                 name="{{ fieldset_inputName }}"
-                                aria-labelledby="{{ field.label }}"
-                                value="{{ field.value }}"
+                                aria-labelledby="{{ field_id }}"
+                                value="{{ field_value }}"
                                 {% if field.isSelected %}checked{% endif %} />
-                        <span class="p-checkbox__label">{{ field.label }}</span>
+                        <span class="p-checkbox__label" id="{{ field_id }}">{{ field.label }}</span>
                       </label>
                       {% if field.hasTextarea %}
                         <textarea class="js-other-input u-hide"
@@ -149,7 +148,7 @@
                           <label class="p-checkbox">
                             <input class="p-checkbox__input js-checkbox-visibility{% if field.fieldTitle=="Other" %}__other{% endif %}"
                                     type="checkbox"
-                                    aria-labelledby="{{ option.label }}"
+                                    aria-labelledby="{{ option.id }}"
                                     value="{{ option.value }}" />
                             <span class="p-checkbox__label" id="{{ option.id }}">{{ option.label }}</span>
                           </label>
@@ -157,8 +156,8 @@
                       </div>
                     {% elif field.type == "select" %}
                       <label {% if fieldset.isRequired %}class="is-required"{% endif %}
-                              for="{{ field.id }}">{{ field.label }}:</label>
-                      <select id="{{ field.id }}" {% if field.isRequired %}required{% endif %}>
+                              for="{{ field_id }}">{{ field.label }}:</label>
+                      <select id="{{ field_id }}" {% if field.isRequired %}required{% endif %}>
                         {% for option in field.options %}<option value="{{ option.value }}">{{ option.label }}</option>{% endfor %}
                       </select>
                     {% endif %}

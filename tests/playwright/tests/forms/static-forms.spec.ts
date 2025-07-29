@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
-import { fillExistingFields, acceptCookiePolicy } from "../helpers/commands";
-import { formTextFields, formCheckboxFields } from "../helpers/form-fields.ts";
+import { fillExistingFields, acceptCookiePolicy } from "../../helpers/commands.ts";
+import { formTextFields, formCheckboxFields } from "../../helpers/form-fields.ts";
 
 export const staticContactUsPages = [
   "/tests/_static-client-form",
@@ -45,8 +45,7 @@ test.describe("Form ID validation", () => {
         await expect(formIdInput).not.toBeEmpty();        
         const form = page.locator('form[id^="mktoForm_"]');
         await expect(form).toBeVisible();
-
-        await page.waitForTimeout(1000);        
+        await page.waitForTimeout(1000);
       
       });
     }
@@ -54,7 +53,7 @@ test.describe("Form ID validation", () => {
 });
 
 test.describe("Form submission validation", () => {
-  test("should redirect to marketo submission endpoint", async ({ page }) => {
+  test("should fill and redirect to marketo submission endpoint", async ({ page }) => {
     for (const url of staticContactUsPages) {
       await test.step(`Testing form on ${url}`, async () => {
         await page.goto(url);
@@ -142,7 +141,7 @@ test.describe("Required checkbox validation", () => {
     await acceptCookiePolicy(page);
 
     // Check the required checkbox
-    await page.getByLabel('Physical server').check({ force: true });
+    await page.locator('input[aria-labelledby="physical-server"]').check({ force: true });
 
     const submitButton = page.getByRole("button", { name: /Submit/ });
     await expect(submitButton).toBeEnabled();
