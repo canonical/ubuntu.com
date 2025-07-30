@@ -3,8 +3,8 @@ name: Pack and Deploy
 on:
   push:
     branches:
-      - charm
-      - WD-21036-add-ci-cd
+      - feat-ps6-migration
+      - fix-pack-charm
       # - main
 
 env:
@@ -25,13 +25,15 @@ jobs:
         run: sudo snap install charmcraft --classic --channel=latest/edge
 
       - name: Pack charm
-        run: charmcraft pack -v --project-dir ./charm
+        run: |
+          cd charm
+          charmcraft pack -v --project-dir ./
 
       - name: Upload charm
         uses: actions/upload-artifact@v4
         with:
           name: ${{ vars.CHARM_NAME }}-charm
-          path: ./*.charm
+          path: ./charm/*.charm
 
   pack-rock:
     runs-on: ubuntu-latest
