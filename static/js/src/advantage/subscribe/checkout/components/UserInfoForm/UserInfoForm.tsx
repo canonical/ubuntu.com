@@ -387,7 +387,10 @@ const UserInfoForm = ({ setError, isCardSaving, setIsCardSaving }: Props) => {
           />
         </>
       )}
-      <p>We will save your card information. You can change it in your Ubuntu account </p>
+      <p>
+        We will save your card information. You can change it in your Ubuntu
+        account{" "}
+      </p>
     </>
   );
 

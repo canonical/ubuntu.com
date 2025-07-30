@@ -132,7 +132,13 @@ const Checkout = ({ products, action, coupon }: Props) => {
                         : [
                             {
                               title: "Your information",
-                              content: <UserInfoForm setError={setError} isCardSaving={isCardSaving} setIsCardSaving={setIsCardSaving} />,
+                              content: (
+                                <UserInfoForm
+                                  setError={setError}
+                                  isCardSaving={isCardSaving}
+                                  setIsCardSaving={setIsCardSaving}
+                                />
+                              ),
                             },
                           ]),
                       ...(canTrial
