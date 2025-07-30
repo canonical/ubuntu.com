@@ -1194,6 +1194,43 @@ app.add_url_rule(
 )
 
 
+def render_security_pci_dds_blogs():
+    blogs = BlogViews(
+        api=BlogAPI(
+            session=session, thumbnail_width=640, thumbnail_height=340
+        ),
+        tag_ids=[
+            4787,
+            3829,
+            2562,
+            4063,
+            3903,
+            4468,
+            4464,
+            4392,
+            1228,
+            4417,
+            4391,
+            3830,
+            4632,
+            4633,
+            4749,
+        ],
+        excluded_tags=[3184, 3265],
+        per_page=4,
+        blog_title="Security standards blogs",
+    )
+    sorted_articles = sorted(
+        blogs.get_index()["articles"], key=lambda x: x["date"]
+    )
+    return flask.render_template(
+        "/security/standards/pci-dss.html", blogs=sorted_articles
+    )
+
+
+app.add_url_rule("/security/pci-dss", view_func=render_security_pci_dds_blogs)
+
+
 # CMMC resources blogs tab
 def render_cmmc_blogs():
     blogs = BlogViews(
