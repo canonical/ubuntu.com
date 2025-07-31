@@ -3,7 +3,7 @@
     <hr class="p-rule" />
     <div class="p-section--shallow">
       <h2>
-        <a href="{{ title_link }}">Latest news from&nbsp;our&nbsp;blog&nbsp;&rsaquo;</a>
+        <a href="{{ title_link }}">{% if title_text %}{{ title_text }}{% else %}Latest news from&nbsp;our&nbsp;blog&nbsp;&rsaquo;{% endif %}</a>
       </h2>
     </div>
   </div>
@@ -30,6 +30,7 @@
 </section>
 
 <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+
 {# djlint:off #}
 <script>
   canonicalLatestNews.fetchLatestNews(
@@ -42,6 +43,9 @@
       {% endif %}
       {% if tagId %}
         tagId: {{ tagId }},
+      {% endif %}
+      {% if tagIds %}
+        tagIds: "{{ tagIds }}",
       {% endif %}
       linkImage: true,
       limit: 4

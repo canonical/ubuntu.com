@@ -169,7 +169,6 @@ from webapp.views import (
     marketo_submit,
     mirrors_query,
     navigation_nojs,
-    openstack_engage,
     releasenotes_redirect,
     show_template,
     sitemap_index,
@@ -648,9 +647,6 @@ app.add_url_rule(
     view_func=build_engage_pages_metadata(engage_pages),
 )
 
-app.add_url_rule(
-    "/openstack/resources", view_func=openstack_engage(engage_pages)
-)
 # Custom engage page in German
 app.add_url_rule(
     "/engage/de/warum-openstack",

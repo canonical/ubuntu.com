@@ -2,13 +2,15 @@
   Params:
     title_text(string) (required): The title of the section, which also links to the main blog page.
     tag_name (string) (required): The URL-friendly slug of a tag to filter the articles by.
-    tag_id (string) (required): The ID of a tag to filter the articles by.
+    tag_id (string) (optional): The ID of a tag to filter the articles by.
+    group_id (string) (optional): The ID of a group to filter the articles by.
 #}
 
 {% macro vf_latest_news(
   title_text,
   tag_name="",
-  tag_id=""
+  tag_id="",
+  group_id=""
   ) -%}
 
   {% set heading_url = "/blog" %}
@@ -80,6 +82,9 @@
           gtmEventLabel: "{{ gtm_event_label }}",
           {% if tag_id %}
           tagId: "{{ tag_id }}",
+          {% endif %}
+          {% if group_id %}
+          groupId: "{{ group_id }}",
           {% endif %}
           {% if tag_name %}
           tagName: "{{ tag_name }}",
