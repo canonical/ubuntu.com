@@ -1927,3 +1927,15 @@ ol.p-stepped-list.no-full-stop
 .is-dark .inner-wrapper a.p-link--anchor-heading:visited {
   color: $colors--dark-theme--text-default;
 }
+
+// Custom styling for slider component
+// used in templates/ceph/pricing-calculator.html
+.p-slider__wrapper {
+  .p-slider__min-value {
+    padding-right: 1rem;
+  }
+
+  .p-slider__max-value {
+    padding-left: 1rem;
+  }
+}
