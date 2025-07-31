@@ -28,7 +28,7 @@
     layout='25/75'
   ) -%}
   {%- if slot == 'signpost_image' -%}
-  <img src="https://assets.ubuntu.com/v1/8b0a474a-Microsoft_.NET_logo.svg" width="76" height="76" alt=".NET on Ubuntu">
+  <img src="https://assets.ubuntu.com/v1/8b0a474a-Microsoft_.NET_logo.svg" width="76" height="76" alt=".NET">
   {%- endif -%}
   {%- if slot == 'description' -%}
   <p>
@@ -56,8 +56,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">
-        <table aria-label="Canonical .NET LTS packages table">
+      <div class="col" style="overflow: auto;">
+        <table aria-label="Canonical .NET LTS packages table" style="min-width: 726px;">
           <thead>
             <tr>
               <th>.NET</th>
@@ -152,15 +152,17 @@
         </div>
       </div>
       <div class="col">
-        <div class="p-section--shallow p-image-container is-highlighted">
-          {{ image(url="https://assets.ubuntu.com/v1/62db3057-security-patching-maintenance.png",
-            alt="security patching",
-            width="1200",
-            height="800",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
+        <div class="p-section--shallow">
+          <div class="p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/62db3057-security-patching-maintenance.png",
+              alt="",
+              width="1200",
+              height="800",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
         </div>
         <p>
           Extend the security support period for your .NET applications to up 
@@ -200,7 +202,7 @@
           and benefit from up to 12 years of security support with Ubuntu Pro.
         </p>
         <div class="p-cta-block is-borderless">
-          <a class="p-button--positive u-no-margin--bottom" href="https://hub.docker.com/r/ubuntu/dotnet-aspnet">
+          <a class="p-button--positive" href="https://hub.docker.com/r/ubuntu/dotnet-aspnet">
             Download ASP.NET Core Runtime
           </a>
           <a class="p-button" href="https://hub.docker.com/r/ubuntu/dotnet-runtime">
@@ -208,12 +210,12 @@
           </a>
           <br>
           <a href="https://ubuntu.com/containers/chiseled/dotnet">
-            Learn about chiselled .NET >
+            Learn about chiselled .NET&nbsp;&rsaquo;
           </a>
         </div>
       </div>
     </div>
-    <div class="p-section--shallow">
+    <div class="row">
       <div class="row">
         <div class="col-9 col-start-large-4">
           <hr class="is-muted">
@@ -249,19 +251,18 @@
         </div>
       </div>
       <div class="col-6">
-
-
-        
-        <div class="p-section--shallow p-image-container is-highlighted">
-          {{ image(url="https://assets.ubuntu.com/v1/9dfa2145-imrpoved-dev-env.png",
-            alt="",
-            width="1200",
-            height="800",
-            hi_def=True,
-            loading="auto|lazy",
-            fmt="png"
-            ) | safe
-          }}
+        <div class="p-section--shallow">
+          <div class="p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/9dfa2145-imrpoved-dev-env.png",
+              alt="",
+              width="1200",
+              height="800",
+              hi_def=True,
+              loading="lazy",
+              fmt="png"
+              ) | safe
+            }}
+          </div>
         </div>
         <p>
           The .NET snap simplifies the .NET installation process on Ubuntu. The 
