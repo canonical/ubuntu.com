@@ -365,9 +365,8 @@
           }}
         </div>
         <div class="p-logo-section__item">
-
           {{ image(url="https://assets.ubuntu.com/v1/df601fad-hp-enterprise-logo-@4x.png",
-            alt="",
+            alt="HP Enterprise",
             width="348",
             height="417",
             hi_def=True,
@@ -449,7 +448,7 @@
     </div>
   </section>
 
-  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
     {%- if slot == 'title' -%}
       <h2>Who uses OpenStack?</h2>
     {%- endif -%}
@@ -560,25 +559,9 @@
         </div>
       </div>
     </div>
-
-    <div class="row u-hide--small u-hide--medium">
-      <div class="col-8">
-      </div>
-    </div>
-    <div class="row u-hide u-show--small">
-      <div class="col-8">
-        {{ image(url="https://assets.ubuntu.com/v1/0ed9d1ff-Statista_figure1.svg",
-                alt="Current usage of private cloud platform services running applications worldwide from 2017 to 2020, by service",
-                width="768",
-                height="617",
-                hi_def=True,
-                loading="lazy") |
-        safe }}
-      </div>
-    </div>
   </section>
 
-  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
     {%- if slot == 'title' -%}
       <h2>What can I do with OpenStack?</h2>
     {%- endif -%}
@@ -719,7 +702,7 @@
     </div>
 
     <div class="grid-row">
-      <div class="grid-col-start-large-5 grid-col-4 grid-col-start-medium-3 grid-col-medium-2">
+      <div class="grid-col-start-large-5 grid-col-4">
         <div class="p-cta-block">
           <a href="/openstack">Continue reading&nbsp;&rsaquo;</a>
         </div>
@@ -794,7 +777,7 @@
     </div>
   </section>
 
-  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
     {%- if slot == 'title' -%}
       <h2>All the pieces you need to start using OpenStack</h2>
     {%- endif -%}
