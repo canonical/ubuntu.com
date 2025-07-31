@@ -17,8 +17,7 @@
     </div>
   </section>
 
-  <form>
-
+  <form id="compare-costs-form">
     <section class="p-section">
       <div class="row--50-50">
         <hr class="p-rule" />
@@ -72,9 +71,16 @@
             <span class="p-slider__max-value">60</span>
             <input class="p-slider__input"
                    type="text"
-                   maxlength="2"
+                   maxlength="5"
                    id="month-slider-input"
                    tabindex="0" />
+          </div>
+          <div class="p-notification--information is-borderless u-no-margin--bottom u-hide js-invalid-notification js-invalid-month-notification">
+            <div class="p-notification__content">
+              <p class="p-notification__message">
+                The inputted value "<span class="js-notification-value"></span>" was corrected to the nearest allowed input
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -91,29 +97,32 @@
           </h3>
         </div>
         <div class="col">
-
-          <div class="col">
-            <div class="p-slider">
-              <div class="p-slider__wrapper">
-                <span class="p-slider__min-value">2.25</span>
-                <input type="range"
-                       name="storage"
-                       min="2.25"
-                       max="18"
-                       value="2.25"
-                       step="2.25"
-                       id="storage-slider"
-                       aria-label="Choose the maximum amount of storage you need" />
-                <span class="p-slider__max-value">18</span>
-                <input class="p-slider__input"
-                       type="text"
-                       maxlength="4"
-                       id="storage-slider-input"
-                       tabindex="0" />
-              </div>
+          <div class="p-slider">
+            <div class="p-slider__wrapper">
+              <span class="p-slider__min-value">2.25</span>
+              <input type="range"
+                     name="storage"
+                     min="2.25"
+                     max="18"
+                     value="2.25"
+                     step="2.25"
+                     id="storage-slider"
+                     aria-label="Choose the maximum amount of storage you need" />
+              <span class="p-slider__max-value">18</span>
+              <input class="p-slider__input"
+                     type="text"
+                     maxlength="5"
+                     id="storage-slider-input"
+                     tabindex="0" />
             </div>
           </div>
-
+          <div class="p-notification--information is-borderless u-no-margin--bottom u-hide js-invalid-notification js-invalid-storage-notification">
+            <div class="p-notification__content">
+              <p class="p-notification__message">
+                The inputted value "<span class="js-notification-value"></span>" was corrected to the nearest allowed input
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -237,8 +246,8 @@
       var isWebkit =
         /Chrome/i.test(navigator.userAgent) || /Safari/i.test(navigator.userAgent);
 
-      var PROGRESS_COLOUR = '#06c';
-      var EMPTY_COLOUR = '#D9D9D9';
+      var PROGRESS_COLOUR = "#06c";
+      var EMPTY_COLOUR = "#D9D9D9";
 
       /**
       Renders gradient to fake progress color in webkit browsers.
@@ -248,9 +257,9 @@
         if (isWebkit) {
           var value = (slider.value - slider.min) / (slider.max - slider.min);
           slider.style.backgroundImage = (
-            '-webkit-gradient(linear, left top, right top, color-stop(' +
-            value + ', ' + PROGRESS_COLOUR + '), color-stop(' +
-            value + ', ' + EMPTY_COLOUR + '))'
+            "-webkit-gradient(linear, left top, right top, color-stop(" +
+            value + ", " + PROGRESS_COLOUR + "), color-stop(" +
+            value + ", " + EMPTY_COLOUR + "))"
           );
         }
       }
@@ -260,18 +269,42 @@
         give.value = receive.value;
       }
 
+      function hideNotifications() {
+        const notifications = document.querySelectorAll(".js-invalid-notification");
+        notifications.forEach(notification => {
+          notification.classList.add("u-hide");
+        })
+      }
+
+      function showNotification(sliderId, value) {
+        let notification;
+        if (sliderId === "month-slider") {
+          notification = document.querySelector(".js-invalid-month-notification");
+        } else if (sliderId === "storage-slider") {
+          notification = document.querySelector(".js-invalid-storage-notification");
+        }
+
+        if (notification) {
+          notification.classList.remove("u-hide");
+          const notificationValue = document.querySelector(".js-notification-value");
+          notificationValue.innerHTML = value;
+        }
+      }
+
       /**
         Attaches change listener to sliders to update their background color.
         @param {HTMLElement} slider Slider element to render background on.
       */
       function initSlider(slider) {
-        var input = document.getElementById(slider.id + '-input');
+        var input = document.getElementById(slider.id + "-input");
         renderSlider(slider);
 
         if (input) {
           equaliseValues(input, slider);
-          
+
           function validateAndCorrect() {
+            hideNotifications();
+
             if (!input.value) {
               input.value = slider.min;
             }
@@ -280,35 +313,34 @@
             const min = parseFloat(slider.min);
             const max = parseFloat(slider.max);
             const step = parseFloat(slider.step);
-            
+
             let correctedValue;
-            if (value < min) {
-              correctedValue = min;
-            } else if (value > max) {
+            if (value > max) {
               correctedValue = max;
             } else {
               // Round up to the next value
               const steps = Math.ceil((value - min) / step);
               correctedValue = min + (steps * step);
-              if (correctedValue > max) {
-                correctedValue = max;
-              }
             }
-            
+
+            const valueWasCorrected = value !== correctedValue;
+            if (valueWasCorrected) {
+              showNotification(slider.id, value);
+            }
+
             input.value = correctedValue;
             equaliseValues(slider, input);
             renderSlider(slider);
-            
+
             // Trigger an update
-            slider.dispatchEvent(new Event('input'));
+            slider.dispatchEvent(new Event("input"));
           }
-          
-          // Only apply the input value when leaving the input or clicking 'enter'
-          input.addEventListener('blur', validateAndCorrect);
-          input.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
+
+          // Only apply the input value when leaving the input or clicking "enter"
+          input.addEventListener("blur", validateAndCorrect);
+          input.addEventListener("keydown", function(e) {
+            if (e.key === "Enter") {
               validateAndCorrect();
-              input.blur();
             }
           });
         }
@@ -321,8 +353,14 @@
         });
       }
 
+      const compareCostsForm = document.querySelector("#compare-costs-form");
+      compareCostsForm.addEventListener("click", function(e) {
+        if (e.target.tagName === "INPUT") {
+          hideNotifications();
+        }
+      })
       // Setup all sliders on the page.
-      var sliders = document.querySelectorAll('input[type=range]');
+      var sliders = document.querySelectorAll("input[type=range]");
 
       for (var i = 0, l = sliders.length; i < l; i++) {
         initSlider(sliders[i]);
@@ -394,6 +432,7 @@
       }
 
       monthsInput.addEventListener("input", function() {
+        console.log("test")
         selectedMonths = parseInt(this.value, 10);
         calculateCosts();
       });
