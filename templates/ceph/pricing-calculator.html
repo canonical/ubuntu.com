@@ -60,6 +60,7 @@
         </div>
         <div class="col">
           <div class="p-slider__wrapper">
+            <span class="p-slider__min-value">12</span>
             <input type="range"
                    name="months"
                    min="12"
@@ -68,12 +69,12 @@
                    step="12"
                    id="month-slider"
                    aria-label="How many months do you expect to store this data?" />
+            <span class="p-slider__max-value">60</span>
             <input class="p-slider__input"
                    type="text"
                    maxlength="2"
                    id="month-slider-input"
-                   tabindex="0"
-                   disabled />
+                   tabindex="0" />
           </div>
         </div>
       </div>
@@ -94,6 +95,7 @@
           <div class="col">
             <div class="p-slider">
               <div class="p-slider__wrapper">
+                <span class="p-slider__min-value">2.25</span>
                 <input type="range"
                        name="storage"
                        min="2.25"
@@ -102,12 +104,12 @@
                        step="2.25"
                        id="storage-slider"
                        aria-label="Choose the maximum amount of storage you need" />
+                <span class="p-slider__max-value">18</span>
                 <input class="p-slider__input"
                        type="text"
                        maxlength="4"
                        id="storage-slider-input"
-                       tabindex="0"
-                       disabled />
+                       tabindex="0" />
               </div>
             </div>
           </div>
@@ -149,9 +151,11 @@
                 </div>
                 <div class="col-3">
                   <p id="ceph-deployment-price" aria-describedby="ceph-deployment-label">$0</p>
-                  <p id="hardware-maintenance-price" aria-describedby="hardware-maintenance-label">$0</p>
+                  <p id="hardware-maintenance-price"
+                     aria-describedby="hardware-maintenance-label">$0</p>
                   <p id="ubuntu-pro-price" aria-describedby="ubuntu-pro-label">$0</p>
-                  <p id="additional-storage-price" aria-describedby="additional-storage-label">$0</p>
+                  <p id="additional-storage-price"
+                     aria-describedby="additional-storage-label">$0</p>
                   <p id="hardware-price" aria-describedby="hardware-label">$0</p>
                 </div>
               </div>
@@ -265,14 +269,47 @@
         renderSlider(slider);
 
         if (input) {
-          // Synchronise values of input and slider
           equaliseValues(input, slider);
-          input.addEventListener('input', function() {
+          
+          function validateAndCorrect() {
             if (!input.value) {
               input.value = slider.min;
             }
+            // Find the next biggest available step value
+            const value = parseFloat(input.value);
+            const min = parseFloat(slider.min);
+            const max = parseFloat(slider.max);
+            const step = parseFloat(slider.step);
+            
+            let correctedValue;
+            if (value < min) {
+              correctedValue = min;
+            } else if (value > max) {
+              correctedValue = max;
+            } else {
+              // Round up to the next value
+              const steps = Math.ceil((value - min) / step);
+              correctedValue = min + (steps * step);
+              if (correctedValue > max) {
+                correctedValue = max;
+              }
+            }
+            
+            input.value = correctedValue;
             equaliseValues(slider, input);
             renderSlider(slider);
+            
+            // Trigger an update
+            slider.dispatchEvent(new Event('input'));
+          }
+          
+          // Only apply the input value when leaving the input or clicking 'enter'
+          input.addEventListener('blur', validateAndCorrect);
+          input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+              validateAndCorrect();
+              input.blur();
+            }
           });
         }
 
