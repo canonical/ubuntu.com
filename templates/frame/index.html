@@ -144,12 +144,11 @@
         </h2>
       </div>
       <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
-        <video autoplay=""
-               loop=""
-               muted=""
-               class="p-section--shallow u-no-margin--bottom">
-          <source src="https://images.zenhubusercontent.com/138038838/29ab4d93-f46f-4d7a-a71a-bb57d6480cc8/ubuntu_all_animations_v5.mp4" />
-        </video>
+        <div class="p-section--shallow">
+          <video autoplay="" loop="" muted="" class="u-no-margin--bottom">
+            <source src="https://images.zenhubusercontent.com/138038838/29ab4d93-f46f-4d7a-a71a-bb57d6480cc8/ubuntu_all_animations_v5.mp4" />
+          </video>
+        </div>
         <p>
           Besides keyboard and mouse input, Ubuntu Frame also automatically enables all the functionality that end-users expect while interacting with digital displays. This includes a wide range of touch gestures such as: multi-finger support, swipe, zoom in and out, touch to focus, and more. It also comes with its own on-screen keyboard.
         </p>
@@ -224,7 +223,7 @@
           <li class="p-list__item is-ticked">Tutorials</li>
           <li class="p-list__item is-ticked">Answers to frequently asked questions</li>
         </ul>
-        <div class="p-cta-block">
+        <div class="p-cta-block u-no-padding--bottom">
           <a href="/engage/Embedding_IoT_GUI_with_Ubuntu_Frame"
              class="p-button--positive">Download the Developer Guide</a>
         </div>
@@ -281,7 +280,7 @@
 
       {%- if slot == 'list_item_description_4' -%}
         <p>
-          <a href="https://canonical.com/Mir">Mir</a> is an open source system-level library that can be used to create high-performing display servers for IoT devices and traditional Desktops. It replaces the X window server system, commonly used on Linux desktop devices. Mir allows device makers and desktop users to have a well-defined, efficient, flexible, and secure platform for their graphical environment.
+          <a href="https://canonical.com/mir">Mir</a> is an open source system-level library that can be used to create high-performing display servers for IoT devices and traditional Desktops. It replaces the X window server system, commonly used on Linux desktop devices. Mir allows device makers and desktop users to have a well-defined, efficient, flexible, and secure platform for their graphical environment.
         </p>
       {%- endif -%}
 
@@ -336,7 +335,7 @@
 
   <section class="p-section">
     <hr class="p-rule is-fixed-width" />
-    <div class="grid-row">
+    <div class="grid-row p-section--shallow">
       <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
         <h2>Ready for all boards, frameworks and applications</h2>
       </div>
@@ -443,6 +442,7 @@
         Need help? Let’s get your device faster to market
         <br />
         <a href="/internet-of-things/smart-displays#get-in-touch"
+           aria-controls="frame-modal"
            class="js-invoke-modal">Contact us</a>
       </h2>
     </div>
