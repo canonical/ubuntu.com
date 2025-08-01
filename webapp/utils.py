@@ -8,16 +8,29 @@ def format_community_event_time(event):
     ex. 25 Jan, 10:00 AM - 12:00 PM (UTC)
     """
     start_dt = dateutil.parser.parse(event["starts_at"])
-    end_dt = dateutil.parser.parse(event["ends_at"])
+    end_dt = (
+        dateutil.parser.parse(event["ends_at"])
+        if event.get("ends_at")
+        else None
+    )
     timezone_name = event.get("timezone", "")
 
     try:
         tz = pytz.timezone(timezone_name)
         start_dt = start_dt.astimezone(tz)
-        end_dt = end_dt.astimezone(tz)
+        if end_dt:
+            end_dt = end_dt.astimezone(tz)
         tz_abbr = start_dt.strftime("%Z")
     except pytz.UnknownTimeZoneError:
         tz_abbr = timezone_name
+
+    if not end_dt:
+        start_time = start_dt.strftime("%d %b, %I:%M%p").lstrip("0")
+        start_time = start_time.replace(
+            start_dt.strftime("%b"), start_dt.strftime("%b").capitalize()
+        )
+        event["formatted_time"] = f"{start_time} ({tz_abbr})"
+        return
 
     # If same date, only show date once
     if start_dt.date() == end_dt.date():
