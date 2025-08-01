@@ -12,22 +12,31 @@
 
 {% block content %}
   <section class="p-section--hero">
-    <div class="u-fixed-width">
-      <h1>Calculate your storage costs</h1>
+    <div class="grid-row">
+      <div class="grid-col-4">
+        <h1>Calculate your storage costs</h1>
+      </div>
+      <div class="grid-col-4">
+        <p>
+          Cloud storage can make up a significant proportion of public cloud hosting costs, for some data sets it can be more cost effective to store them in a self-hosted storage system.
+        </p>
+        <p>
+          Learn more in our <a href="/engage/optimize-cloud-storage-costs">white paper</a>, and explore potential savings with the calculator below.
+        </p>
+      </div>
     </div>
   </section>
 
   <form id="compare-costs-form">
     <section class="p-section--shallow">
-      <div class="row--50-50">
+      <div class="grid-row">
         <hr class="p-rule" />
-        <div class="col">
+        <div class="grid-col-4">
           <h2 class="p-heading--4">
             Self-managed, or <a href="/ceph/managed">managed</a> by Canonical experts?
           </h2>
         </div>
-        <div class="col">
-
+        <div class="grid-col-4">
           <label class="p-radio">
             <input type="radio"
                    class="p-radio__input"
@@ -37,7 +46,6 @@
                    checked="" />
             <span class="p-radio__label" id="managed">Managed</span>
           </label>
-
           <label class="p-radio">
             <input type="radio"
                    class="p-radio__input"
@@ -46,18 +54,17 @@
                    aria-labelledby="self-managed" />
             <span class="p-radio__label" id="self-managed">Self-managed</span>
           </label>
-
         </div>
       </div>
     </section>
 
     <section class="p-section--shallow">
-      <div class="row--50-50">
+      <div class="grid-row">
         <hr class="p-rule" />
-        <div class="col">
+        <div class="grid-col-4">
           <h2 class="p-heading--4">How many months do you expect to store this data?</h2>
         </div>
-        <div class="col">
+        <div class="grid-col-4">
           <div class="p-slider__wrapper">
             <span class="p-slider__min-value">12</span>
             <input type="range"
@@ -87,16 +94,16 @@
     </section>
 
     <section class="p-section--shallow">
-      <div class="row--50-50">
+      <div class="grid-row">
         <hr class="p-rule" />
-        <div class="col">
+        <div class="grid-col-4">
           <h2 class="p-heading--4">
             Choose the maximum amount of storage you need:
             <br />
             <span class="p-heading--4">(Petabytes (PB))</span>
           </h2>
         </div>
-        <div class="col">
+        <div class="grid-col-4">
           <div class="p-slider">
             <div class="p-slider__wrapper">
               <span class="p-slider__min-value">2.25</span>
@@ -193,7 +200,6 @@
           </p>
         </div>
       </div>
-
     </div>
   </section>
 
