@@ -114,7 +114,14 @@ jobs:
         run: |
           export JUJU_MODEL=admin/${{ vars.JUJU_MODEL_NAME }}
           export CHARM_NAME=${{ vars.CHARM_NAME }}
-          juju refresh $CHARM_NAME --path ./*.charm --resource flask-app-image=${{ needs.publish-image.outputs.image_url }}
+
+          if juju status --color --relations | grep -q "^$CHARM_NAME\\s"; then
+            echo "Application '$CHARM_NAME' exists. Running juju refresh..."
+            juju refresh $CHARM_NAME --path ./*.charm --resource flask-app-image=${{ needs.publish-image.outputs.image_url }}
+          else
+            echo "Application '$CHARM_NAME' not found. Running juju deploy..."
+            juju deploy ./*.charm $CHARM_NAME --resource flask-app-image=${{ needs.publish-image.outputs.image_url }}
+          fi
           juju wait-for application $CHARM_NAME --query="name=='$CHARM_NAME' && (status=='active' || status=='idle')"
 
   deploy-production:
@@ -157,5 +164,12 @@ jobs:
         run: |
           export JUJU_MODEL=admin/${{ vars.JUJU_MODEL_NAME }}
           export CHARM_NAME=${{ vars.CHARM_NAME }}
-          juju refresh $CHARM_NAME --path ./*.charm --resource flask-app-image=${{ needs.publish-image.outputs.image_url }}
+
+          if juju status --color --relations | grep -q "^$CHARM_NAME\\s"; then
+            echo "Application '$CHARM_NAME' exists. Running juju refresh..."
+            juju refresh $CHARM_NAME --path ./*.charm --resource flask-app-image=${{ needs.publish-image.outputs.image_url }}
+          else
+            echo "Application '$CHARM_NAME' not found. Running juju deploy..."
+            juju deploy ./*.charm $CHARM_NAME --resource flask-app-image=${{ needs.publish-image.outputs.image_url }}
+          fi
           juju wait-for application $CHARM_NAME --query="name=='$CHARM_NAME' && (status=='active' || status=='idle')"
