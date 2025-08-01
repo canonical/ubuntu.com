@@ -13,19 +13,18 @@
 {% block content %}
   <section class="p-section--hero">
     <div class="u-fixed-width">
-      <h2>Calculate your storage costs</h2>
+      <h1>Calculate your storage costs</h1>
     </div>
   </section>
 
-  <form>
-
-    <section class="p-section">
+  <form id="compare-costs-form">
+    <section class="p-section--shallow">
       <div class="row--50-50">
         <hr class="p-rule" />
         <div class="col">
-          <h3>
+          <h2 class="p-heading--4">
             Self-managed, or <a href="/ceph/managed">managed</a> by Canonical experts?
-          </h3>
+          </h2>
         </div>
         <div class="col">
 
@@ -52,145 +51,78 @@
       </div>
     </section>
 
-    <section class="p-section">
+    <section class="p-section--shallow">
       <div class="row--50-50">
         <hr class="p-rule" />
         <div class="col">
-          <h3>How many months do you expect to store this data?</h3>
+          <h2 class="p-heading--4">How many months do you expect to store this data?</h2>
         </div>
         <div class="col">
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
+          <div class="p-slider__wrapper">
+            <span class="p-slider__min-value">12</span>
+            <input type="range"
                    name="months"
+                   min="12"
+                   max="60"
                    value="12"
-                   aria-labelledby="12months"
-                   checked="" />
-            <span class="p-radio__label" id="12months">12</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="months"
-                   value="24"
-                   aria-labelledby="24months" />
-            <span class="p-radio__label" id="24months">24</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="months"
-                   value="36"
-                   aria-labelledby="36months" />
-            <span class="p-radio__label" id="36months">36</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="months"
-                   value="48"
-                   aria-labelledby="48months" />
-            <span class="p-radio__label" id="48months">48</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="months"
-                   value="60"
-                   aria-labelledby="60months" />
-            <span class="p-radio__label" id="60months">60</span>
-          </label>
-
+                   step="12"
+                   id="month-slider"
+                   aria-label="How many months do you expect to store this data?" />
+            <span class="p-slider__max-value">60</span>
+            <input class="p-slider__input"
+                   type="text"
+                   maxlength="5"
+                   id="month-slider-input"
+                   tabindex="0" />
+          </div>
+          <div class="p-notification--information is-borderless u-no-margin--bottom u-hide js-invalid-notification js-invalid-month-notification">
+            <div class="p-notification__content">
+              <p class="p-notification__message">
+                The inputted value "<span class="js-notification-value"></span>" was corrected to the nearest allowed input
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="p-section">
+    <section class="p-section--shallow">
       <div class="row--50-50">
         <hr class="p-rule" />
         <div class="col">
-          <h3>Choose the maximum amount of storage you need:</h3>
+          <h2 class="p-heading--4">
+            Choose the maximum amount of storage you need:
+            <br />
+            <span class="p-heading--4">(Petabytes (PB))</span>
+          </h2>
         </div>
         <div class="col">
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="storage"
-                   aria-labelledby="2.25pb"
-                   value="2.25"
-                   checked="" />
-            <span class="p-radio__label" id="2.25pb">2.25 PB</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="storage"
-                   value="4.5"
-                   aria-labelledby="4.5pb" />
-            <span class="p-radio__label" id="4.5pb">4.5 PB</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="storage"
-                   value="6.75"
-                   aria-labelledby="6.75pb" />
-            <span class="p-radio__label" id="6.75pb">6.75 PB</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="storage"
-                   value="9"
-                   aria-labelledby="9pb" />
-            <span class="p-radio__label" id="9pb">9 PB</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="storage"
-                   value="11.25"
-                   aria-labelledby="11.25pb" />
-            <span class="p-radio__label" id="11.25pb">11.25 PB</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="storage"
-                   value="13.5"
-                   aria-labelledby="13.5pb" />
-            <span class="p-radio__label" id="13.5pb">13.5 PB</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="storage"
-                   value="15.75"
-                   aria-labelledby="15.75pb" />
-            <span class="p-radio__label" id="15.75pb">15.75 PB</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="storage"
-                   value="18"
-                   aria-labelledby="18pb" />
-            <span class="p-radio__label" id="18pb">18 PB</span>
-          </label>
-
+          <div class="p-slider">
+            <div class="p-slider__wrapper">
+              <span class="p-slider__min-value">2.25</span>
+              <input type="range"
+                     name="storage"
+                     min="2.25"
+                     max="18"
+                     value="2.25"
+                     step="2.25"
+                     id="storage-slider"
+                     aria-label="Choose the maximum amount of storage you need" />
+              <span class="p-slider__max-value">18</span>
+              <input class="p-slider__input"
+                     type="text"
+                     maxlength="5"
+                     id="storage-slider-input"
+                     tabindex="0" />
+            </div>
+          </div>
+          <div class="p-notification--information is-borderless u-no-margin--bottom u-hide js-invalid-notification js-invalid-storage-notification">
+            <div class="p-notification__content">
+              <p class="p-notification__message">
+                The inputted value "<span class="js-notification-value"></span>" was corrected to the nearest allowed input
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -202,49 +134,53 @@
       <div class="p-section--shallow">
         <h2>Compare your costs</h2>
       </div>
-      <div class="p-pricing-block--50-50">
-        <div class="p-pricing-block__tier">
-          <div class="p-pricing-block__section">
-            <hr class="p-rule--highlight u-no-margin--bottom" />
-            <div class="p-section--shallow">
-              <h3 class="p-heading--4">
-                Ceph self hosted cost
-                <br />
-                <strong id="ceph-cost">$0</strong>
-                <span class="u-text--muted">for <span id="ceph-months">0</span> months</span>
-              </h3>
-            </div>
-          </div>
-          <div class="p-pricing-block__section">
-            <p class="u-text--muted">What's included</p>
-            <div class="row">
-              <div class="col-8">
-                <p>Ceph Deployment</p>
-                <p>Hardware install and maintenance</p>
-                <p>Ubuntu Pro (managed or infra-Only)</p>
-                <p>Ubuntu Pro (additional storage)</p>
-                <p>Hardware</p>
-              </div>
-              <div class="col-3">
-                <p id="ceph-deployment-price">$0</p>
-                <p id="hardware-maintenance-price">$0</p>
-                <p id="ubuntu-pro-price">$0</p>
-                <p id="additional-storage-price">$0</p>
-                <p id="hardware-price">$0</p>
+      <div class="p-section--shallow">
+        <div class="p-pricing-block--50-50">
+          <div class="p-pricing-block__tier">
+            <div class="p-pricing-block__section">
+              <hr class="p-rule--highlight u-no-margin--bottom" />
+              <div class="p-section--shallow">
+                <h3 class="p-heading--4">
+                  Ceph self hosted cost
+                  <br />
+                  <strong id="ceph-cost">$0</strong>
+                  <span class="u-text--muted">for <span id="ceph-months">0</span> months</span>
+                </h3>
               </div>
             </div>
+            <div class="p-pricing-block__section">
+              <p class="u-text--muted">What's included</p>
+              <div class="row">
+                <div class="col-8">
+                  <p id="ceph-deployment-label">Ceph Deployment</p>
+                  <p id="hardware-maintenance-label">Hardware install and maintenance</p>
+                  <p id="ubuntu-pro-label">Ubuntu Pro (managed or infra-Only)</p>
+                  <p id="additional-storage-label">Ubuntu Pro (additional storage)</p>
+                  <p id="hardware-label">Hardware</p>
+                </div>
+                <div class="col-3">
+                  <p id="ceph-deployment-price" aria-describedby="ceph-deployment-label">$0</p>
+                  <p id="hardware-maintenance-price"
+                     aria-describedby="hardware-maintenance-label">$0</p>
+                  <p id="ubuntu-pro-price" aria-describedby="ubuntu-pro-label">$0</p>
+                  <p id="additional-storage-price"
+                     aria-describedby="additional-storage-label">$0</p>
+                  <p id="hardware-price" aria-describedby="hardware-label">$0</p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="p-pricing-block__tier">
-          <div class="p-pricing-block__section">
-            <hr class="p-rule--highlight u-no-margin--bottom" />
-            <div class="p-section--shallow">
-              <h3 class="p-heading--4">
-                Public cloud provider cost
-                <br />
-                <strong id="public-cloud-cost">$0</strong>
-                <span class="u-text--muted">for <span id="cloud-months">0</span> months</span>
-              </h3>
+          <div class="p-pricing-block__tier">
+            <div class="p-pricing-block__section">
+              <hr class="p-rule--highlight u-no-margin--bottom" />
+              <div class="p-section--shallow">
+                <h3 class="p-heading--4">
+                  Public cloud provider cost
+                  <br />
+                  <strong id="public-cloud-cost">$0</strong>
+                  <span class="u-text--muted">for <span id="cloud-months">0</span> months</span>
+                </h3>
+              </div>
             </div>
           </div>
         </div>
@@ -306,19 +242,149 @@
       switches: 6
     }, ];
 
+    function initializeSliders() {
+      var isWebkit =
+        /Chrome/i.test(navigator.userAgent) || /Safari/i.test(navigator.userAgent);
+
+      var PROGRESS_COLOUR = "#06c";
+      var EMPTY_COLOUR = "#D9D9D9";
+
+      /**
+      Renders gradient to fake progress color in webkit browsers.
+      @param {HTMLElement} slider Slider element to render background on.
+      */
+      function renderSlider(slider) {
+        if (isWebkit) {
+          var value = (slider.value - slider.min) / (slider.max - slider.min);
+          slider.style.backgroundImage = (
+            "-webkit-gradient(linear, left top, right top, color-stop(" +
+            value + ", " + PROGRESS_COLOUR + "), color-stop(" +
+            value + ", " + EMPTY_COLOUR + "))"
+          );
+        }
+      }
+
+      function equaliseValues(receive, give) {
+        receive.value = give.value;
+        give.value = receive.value;
+      }
+
+      function hideNotifications() {
+        const notifications = document.querySelectorAll(".js-invalid-notification");
+        notifications.forEach(notification => {
+          notification.classList.add("u-hide");
+        })
+      }
+
+      function showNotification(sliderId, value) {
+        let notification;
+        if (sliderId === "month-slider") {
+          notification = document.querySelector(".js-invalid-month-notification");
+        } else if (sliderId === "storage-slider") {
+          notification = document.querySelector(".js-invalid-storage-notification");
+        }
+
+        if (notification) {
+          notification.classList.remove("u-hide");
+          const notificationValue = document.querySelector(".js-notification-value");
+          notificationValue.innerHTML = value;
+        }
+      }
+
+      /**
+        Attaches change listener to sliders to update their background color.
+        @param {HTMLElement} slider Slider element to render background on.
+      */
+      function initSlider(slider) {
+        var input = document.getElementById(slider.id + "-input");
+        renderSlider(slider);
+
+        if (input) {
+          equaliseValues(input, slider);
+
+          function validateAndCorrect() {
+            hideNotifications();
+
+            if (!input.value) {
+              input.value = slider.min;
+            }
+            // Find the next biggest available step value
+            const value = parseFloat(input.value);
+            const min = parseFloat(slider.min);
+            const max = parseFloat(slider.max);
+            const step = parseFloat(slider.step);
+
+            let correctedValue;
+            if (value > max) {
+              correctedValue = max;
+            } else {
+              // Round up to the next value
+              const steps = Math.ceil((value - min) / step);
+              correctedValue = min + (steps * step);
+            }
+
+            const valueWasCorrected = value !== correctedValue;
+            if (valueWasCorrected) {
+              showNotification(slider.id, value);
+            }
+
+            input.value = correctedValue;
+            equaliseValues(slider, input);
+            renderSlider(slider);
+
+            // Trigger an update
+            slider.dispatchEvent(new Event("input"));
+          }
+
+          // Only apply the input value when leaving the input or clicking "enter"
+          input.addEventListener("blur", validateAndCorrect);
+          input.addEventListener("keydown", function(e) {
+            if (e.key === "Enter") {
+              validateAndCorrect();
+            }
+          });
+        }
+
+        slider.addEventListener('input', function() {
+          if (input) {
+            equaliseValues(input, slider);
+          }
+          renderSlider(slider);
+        });
+      }
+
+      const compareCostsForm = document.querySelector("#compare-costs-form");
+      compareCostsForm.addEventListener("click", function(e) {
+        if (e.target.tagName === "INPUT") {
+          hideNotifications();
+        }
+      })
+      // Setup all sliders on the page.
+      var sliders = document.querySelectorAll("input[type=range]");
+
+      for (var i = 0, l = sliders.length; i < l; i++) {
+        initSlider(sliders[i]);
+      }
+    }
+
     document.addEventListener("DOMContentLoaded", function() {
 
-      const monthsInput = document.querySelectorAll("input[name='months']");
-      const storageInput = document.querySelectorAll("input[name='storage']");
-      const managedInput = document.querySelectorAll("input[name='managed']");
+      const monthsInput = document.querySelector("input[name='months']");
+      const storageInput = document.querySelector("input[name='storage']");
+      const managedInputs = document.querySelectorAll("input[name='managed']");
 
       let selectedMonths = parseInt(
-        document.querySelector("input[name='months']:checked").value, 10
+        monthsInput.value, 10
       );
       let selectedStorage = parseFloat(
-        document.querySelector("input[name='storage']:checked").value
+        storageInput.value
       );
-      let isManaged = document.querySelector("input[name='managed']:checked").value === "managed";
+      let isManaged;
+      managedInputs.forEach(input => {
+        if (input.checked) {
+          isManaged = input.value === "managed";
+        }
+      });
 
 
       function calculateCosts() {
@@ -328,9 +394,10 @@
         const switches = capacitySpecs.switches;
 
         // Ceph self-hosted cost, see the formula in the spreadsheet copydoc
+        // https://docs.google.com/spreadsheets/d/1cn5daIlWGpKF5557ERFY4Ok4_0IlJKTDbZjRXcXyhjk/edit?
         const ubuntuProCost = isManaged ?
-          nodes + 3 * managedCephPerNodePerYear * (selectedMonths / 12) :
-          nodes + 3 * infraOnlyPerNodePerYear * (selectedMonths / 12);
+          (nodes + 3) * managedCephPerNodePerYear * (selectedMonths / 12) :
+          (nodes + 3) * infraOnlyPerNodePerYear * (selectedMonths / 12);
 
         const additionalStorageCost = nodes * additionalStoragePerYear * (selectedMonths / 12);
 
@@ -364,22 +431,19 @@
         document.getElementById("hardware-price").textContent = formatCurrency(hardwareCost);
       }
 
-      monthsInput.forEach((input) => {
-        input.addEventListener("change", function() {
-          selectedMonths = parseInt(this.value, 10);
-          calculateCosts();
-        });
+      monthsInput.addEventListener("input", function() {
+        console.log("test")
+        selectedMonths = parseInt(this.value, 10);
+        calculateCosts();
       });
 
-      storageInput.forEach((input) => {
-        input.addEventListener("change", function() {
-          selectedStorage = parseFloat(this.value);
-          calculateCosts();
-        });
+      storageInput.addEventListener("input", function() {
+        selectedStorage = parseFloat(this.value);
+        calculateCosts();
       });
 
-      managedInput.forEach((input) => {
-        input.addEventListener("change", function(event) {
+      managedInputs.forEach(input => {
+        input.addEventListener("change", function() {
           isManaged = this.value === "managed";
           calculateCosts();
         });
@@ -387,6 +451,8 @@
 
       calculateCosts();
     });
+
+    initializeSliders();
   </script>
 
 {% endblock content %}
