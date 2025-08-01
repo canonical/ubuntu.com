@@ -835,6 +835,7 @@ ubuntu_weekly_newsletter = Category(
         url_prefix="/community",
     ),
     category_id=419,
+    exclude_topics=[64651],
 )
 
 app.add_url_rule(
