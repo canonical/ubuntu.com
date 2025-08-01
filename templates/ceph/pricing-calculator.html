@@ -13,18 +13,18 @@
 {% block content %}
   <section class="p-section--hero">
     <div class="u-fixed-width">
-      <h2>Calculate your storage costs</h2>
+      <h1>Calculate your storage costs</h1>
     </div>
   </section>
 
   <form id="compare-costs-form">
-    <section class="p-section">
+    <section class="p-section--shallow">
       <div class="row--50-50">
         <hr class="p-rule" />
         <div class="col">
-          <h3>
+          <h2 class="p-heading--4">
             Self-managed, or <a href="/ceph/managed">managed</a> by Canonical experts?
-          </h3>
+          </h2>
         </div>
         <div class="col">
 
@@ -51,11 +51,11 @@
       </div>
     </section>
 
-    <section class="p-section">
+    <section class="p-section--shallow">
       <div class="row--50-50">
         <hr class="p-rule" />
         <div class="col">
-          <h3>How many months do you expect to store this data?</h3>
+          <h2 class="p-heading--4">How many months do you expect to store this data?</h2>
         </div>
         <div class="col">
           <div class="p-slider__wrapper">
@@ -86,15 +86,15 @@
       </div>
     </section>
 
-    <section class="p-section">
+    <section class="p-section--shallow">
       <div class="row--50-50">
         <hr class="p-rule" />
         <div class="col">
-          <h3>
+          <h2 class="p-heading--4">
             Choose the maximum amount of storage you need:
             <br />
             <span class="p-heading--4">(Petabytes (PB))</span>
-          </h3>
+          </h2>
         </div>
         <div class="col">
           <div class="p-slider">
@@ -396,8 +396,8 @@
         // Ceph self-hosted cost, see the formula in the spreadsheet copydoc
         // https://docs.google.com/spreadsheets/d/1cn5daIlWGpKF5557ERFY4Ok4_0IlJKTDbZjRXcXyhjk/edit?
         const ubuntuProCost = isManaged ?
-          nodes + 3 * managedCephPerNodePerYear * (selectedMonths / 12) :
-          nodes + 3 * infraOnlyPerNodePerYear * (selectedMonths / 12);
+          (nodes + 3) * managedCephPerNodePerYear * (selectedMonths / 12) :
+          (nodes + 3) * infraOnlyPerNodePerYear * (selectedMonths / 12);
 
         const additionalStorageCost = nodes * additionalStoragePerYear * (selectedMonths / 12);
 
