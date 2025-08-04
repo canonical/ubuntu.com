@@ -292,7 +292,7 @@
 
         if (notification) {
           notification.classList.remove("u-hide");
-          const notificationValue = document.querySelector(".js-notification-value");
+          const notificationValue = notification.querySelector(".js-notification-value");
           notificationValue.innerHTML = value;
         }
       }
@@ -438,7 +438,6 @@
       }
 
       monthsInput.addEventListener("input", function() {
-        console.log("test")
         selectedMonths = parseInt(this.value, 10);
         calculateCosts();
       });
