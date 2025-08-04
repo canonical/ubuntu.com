@@ -21,20 +21,23 @@
     title_text='Build with Spring on Ubuntu',
     subtitle_text='Simplify app development <br class="u-hide-small u-hide-medium" />with Canonical’s automation for Spring' | safe,
     layout='25/75'
-  ) -%}
-  {%- if slot == 'signpost_image' -%}
-  <img src="https://assets.ubuntu.com/v1/96e1b28e-spring-logo-signpost.png" alt="Spring">
-  {%- endif -%}
-  {%- if slot == 'description' -%}
-  <p>
-    Harness the features of Spring Boot and move seamlessly from development to deployment. Set up, maintain and publish Spring artefacts with ease through Canonical’s Devpack for Spring. 
-    Go further with Spring Boot extensions that empower you to create production-grade containers and Kubernetes operators for your Spring applications. All within the Ubuntu ecosystem.
-  </p>
-  {%- endif -%}
-  {%- if slot == 'cta' -%}
-  <a href="https://snapcraft.io/devpack-for-spring" class="p-button--positive u-no-margin--bottom">Install Devpack for Spring</a>
-  <a href="https://documentation.ubuntu.com/rockcraft/en/latest/tutorial/springboot/" class="p-button u-no-margin--bottom">Containerize your application</a>
-  {%- endif -%}
+    ) -%}
+    {%- if slot == 'signpost_image' -%}
+      <img src="https://assets.ubuntu.com/v1/96e1b28e-spring-logo-signpost.png"
+           alt="Spring" />
+    {%- endif -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Harness the features of Spring Boot and move seamlessly from development to deployment. Set up, maintain and publish Spring artefacts with ease through Canonical’s Devpack for Spring.
+        Go further with Spring Boot extensions that empower you to create production-grade containers and Kubernetes operators for your Spring applications. All within the Ubuntu ecosystem.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="https://snapcraft.io/devpack-for-spring"
+         class="p-button--positive u-no-margin--bottom">Install Devpack for Spring</a>
+      <a href="https://documentation.ubuntu.com/rockcraft/en/latest/tutorial/springboot/"
+         class="p-button u-no-margin--bottom">Containerize your application</a>
+    {%- endif -%}
   {%- endcall -%}
   <section class="p-section">
     <hr class="p-rule is-fixed-width" />
@@ -51,9 +54,7 @@
         <p>
           The <a href="https://snapcraft.io/devpack-for-spring">devpack for Spring</a> packages Spring CLI and brings it to Ubuntu.
         </p>
-        <p>
-          In addition to the upstream functionality, devpack for Spring offers the following additional features:
-        </p>
+        <p>In addition to the upstream functionality, devpack for Spring offers the following additional features:</p>
         <ul class="p-list--divided">
           <li class="p-list__item is-ticked">
             <h3 class="p-heading--5 u-no-padding--top u-no-margin--bottom">Offline installation of Spring project libraries</h3>
@@ -69,9 +70,7 @@
           </li>
         </ul>
         <div class="p-cta-block">
-          <a class="p-button" href="https://snapcraft.io/devpack-for-spring">
-            Get the devpack for Spring
-          </a>
+          <a class="p-button" href="https://snapcraft.io/devpack-for-spring">Get the devpack for Spring</a>
         </div>
       </div>
     </div>
@@ -107,7 +106,9 @@
             <h3 class="p-heading--5">No knowledge of image building required</h3>
           </div>
           <div class="col-6 col-medium-3">
-            <p>Rockcraft handles all the boilerplate steps involved in creating production-grade container images. This allows developers to focus on the actual content and logic of their applications.</p>
+            <p>
+              Rockcraft handles all the boilerplate steps involved in creating production-grade container images. This allows developers to focus on the actual content and logic of their applications.
+            </p>
           </div>
         </div>
         <hr class="p-rule--muted" />
@@ -139,7 +140,8 @@
     <div class="row--50-50">
       <div class="col"></div>
       <div class="col p-cta-block">
-        <a class="p-button" href="https://documentation.ubuntu.com/rockcraft/en/latest/tutorial/springboot/">
+        <a class="p-button"
+           href="https://documentation.ubuntu.com/rockcraft/en/latest/tutorial/springboot/">
           Build a Rock for a Spring application
         </a>
       </div>
@@ -179,7 +181,8 @@
           </li>
         </ul>
         <div class="p-cta-block">
-          <a class="p-button" href="https://canonical-charmcraft.readthedocs-hosted.com/en/stable/tutorial/">
+          <a class="p-button"
+             href="https://canonical-charmcraft.readthedocs-hosted.com/en/stable/tutorial/">
             Use Charmcraft Spring plugin
           </a>
         </div>
@@ -196,14 +199,14 @@
       </div>
       <div class="col">
         <div class="p-image-container is-highlighted">
-            {{ image(url="https://assets.ubuntu.com/v1/f4335ae3-security-patching.png",
-              alt="security patching",
-              width="1800",
-              height="1200",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
+          {{ image(url="https://assets.ubuntu.com/v1/f4335ae3-security-patching.png",
+                    alt="security patching",
+                    width="1800",
+                    height="1200",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
         </div>
         <p>
           Extend the security support period for your builds to up to 12 years, through Ubuntu Pro – Canonical’s comprehensive subscription for open source security.
@@ -221,7 +224,9 @@
   <section class="p-strip is-deep">
     <div class="u-fixed-width">
       <h2>
-        <a href="/toolchains/contact-us" class="js-invoke-modal" aria-controls="toolchains-modal">Talk to us about your Spring workloads on Ubuntu&nbsp;&rsaquo;</a>
+        <a href="/toolchains/contact-us"
+           class="js-invoke-modal"
+           aria-controls="toolchains-modal">Talk to us about your Spring workloads on Ubuntu&nbsp;&rsaquo;</a>
       </h2>
     </div>
   </section>
