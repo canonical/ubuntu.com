@@ -1196,12 +1196,32 @@ def render_security_standards_blogs():
         blogs.get_index()["articles"], key=lambda x: x["date"]
     )
     return flask.render_template(
-        "/security/standards/index.html", blogs=sorted_articles
+        "/security/standards/index.html",
+        blogs=sorted_articles,
     )
 
 
 app.add_url_rule(
-    "/security/security-standards", view_func=render_security_standards_blogs
+    "/security/security-standards",
+    view_func=render_security_standards_blogs,
+)
+
+
+def test_proctor():
+    """Checks proctor endpoint creds."""
+    get_flask_env(
+        "PROCTOR360_BASE_URL",
+        "https://prod1ext.proctor360.com",
+        error=True,
+    )
+    get_flask_env("PROCTOR360_APP_ID", "", error=True)
+    get_flask_env("PROCTOR360_APP_SECRET", "", error=True)
+    return "", 200
+
+
+app.add_url_rule(
+    "/test/proctor",
+    view_func=test_proctor,
 )
 
 
