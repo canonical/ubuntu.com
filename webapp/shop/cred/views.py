@@ -969,6 +969,9 @@ def cred_your_exams(
                 r = reservation
                 timezone = r["user"]["time_zone"]
                 tz_info = pytz.timezone(timezone)
+                starts_at_utc = datetime.strptime(
+                    r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ"
+                ).replace(tzinfo=pytz.timezone("UTC"))
                 starts_at = (
                     datetime.strptime(r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ")
                     .replace(tzinfo=pytz.timezone("UTC"))
@@ -979,7 +982,7 @@ def cred_your_exams(
                 actions = []
                 utc = pytz.timezone("UTC")
                 now = utc.localize(datetime.utcnow())
-                end = starts_at + timedelta(minutes=75)
+                ends_at_utc = starts_at_utc + timedelta(minutes=75)
                 if assessment_id:
                     state = RESERVATION_STATES.get(
                         r["assessment"]["state"], r["state"]
@@ -999,9 +1002,11 @@ def cred_your_exams(
 
                 # if assessment is provisioned
                 if assessment_id:
-                    is_in_window = (now > starts_at and now < end) or (
-                        now < starts_at
-                        and now > starts_at - timedelta(minutes=30)
+                    is_in_window = (
+                        now > starts_at_utc and now < ends_at_utc
+                    ) or (
+                        now < starts_at_utc
+                        and now > starts_at_utc - timedelta(minutes=30)
                     )
                     provisioned_but_not_taken = is_in_window and state in [
                         RESERVATION_STATES["notified"],
@@ -1254,8 +1259,9 @@ def cred_exam(trueability_api, proctor_api, **_):
 
     assessment = assessment["assessment"]
     assessment_reservation = assessment.get("assessment_reservation", None)
+    timezone = assessment_reservation.get("user", {}).get("time_zone", None)
 
-    if is_staging:
+    if is_staging and is_proctoring_enabled(ta_exam):
         student_session = None
         ext_exam_id = None
         exam_date_time = None
@@ -1287,6 +1293,7 @@ def cred_exam(trueability_api, proctor_api, **_):
                 base_url
                 + "credentials/exam?uuid="
                 + f"{assessment_reservation.get('uuid', '')}"
+                + f"&ta_exam={ta_exam}"
             )
             student_session_response = proctor_api.create_student_session(
                 {
@@ -1297,6 +1304,8 @@ def cred_exam(trueability_api, proctor_api, **_):
                     "client_exam_id": proc_exam,
                     "ext_exam_id": ext_exam_id,
                     "exam_link": exam_link,
+                    "timezone": timezone,
+                    "ai_enabled": "1",
                 }
             )
             student_session = student_session_response.get("data", None)
