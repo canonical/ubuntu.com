@@ -587,7 +587,8 @@
                         width="1132",
                         height="726",
                         hi_def=True,
-                        loading="lazy") | safe
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
             }}
           </div>
         </div>
@@ -751,7 +752,8 @@
                         width="1200",
                         height="983",
                         hi_def=True,
-                        loading="lazy") | safe
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
             }}
           </div>
         </div>
@@ -853,14 +855,15 @@
 
     <section class="p-section ">
       <div class="u-fixed-width ">
-        <div class="u-align--center u-vertically-center u-no-padding--bottom p-image-container--cinematic">
+        <div class="u-align--center u-no-padding--bottom p-image-container--cinematic is-cover">
           {{ image(url="https://assets.ubuntu.com/v1/bb296524-Dell pcs.jpg",
                     alt="",
                     width="2464",
                     height="1028",
                     hi_def=True,
                     loading="lazy",
-                    fmt="jpg",) | safe
+                    fmt="jpg",
+                    attrs={"class": "p-image-container__image"}) | safe
           }}
         </div>
         <hr class="p-rule" />
@@ -996,14 +999,15 @@
     <section class="p-section">
       <div class="u-fixed-width"></div>
       <div class="u-fixed-width">
-        <div class="p-image-container--cinematic">
+        <div class="p-image-container--cinematic is-cover">
           {{ image(url="https://assets.ubuntu.com/v1/39667d98-Open source security.jpg",
                     alt="",
                     width="2464",
                     height="1054",
                     hi_def=True,
                     loading="lazy",
-                    fmt="jpg",) | safe
+                    fmt="jpg",
+                    attrs={"class": "p-image-container__image"}) | safe
           }}
         </div>
         <hr class="p-rule" />
@@ -1142,14 +1146,15 @@
 
     <section class="p-section">
       <div class="u-fixed-width">
-        <div class="p-image-container--cinematic">
+        <div class="p-image-container--cinematic is-cover">
           {{ image(url="https://assets.ubuntu.com/v1/465d1258-Smart robots of all shapes and sizes.jpg",
                     alt="",
                     width="2464",
                     height="1027",
                     hi_def=True,
                     loading="lazy",
-                    fmt="jpg",) | safe
+                    fmt="jpg",
+                    attrs={"class": "p-image-container__image"}) | safe
           }}
         </div>
         <hr class="p-rule" />
@@ -1272,7 +1277,7 @@
 
     <section class="p-section--deep">
       <div class="u-fixed-width">
-        <div class="u-vertically-center u-align--center p-image-container--cinematic"
+        <div class="u-align--center p-image-container--cinematic is-cover"
              style="background: rgba(0, 0, 0, 0.15)">
           {{ image(url="https://assets.ubuntu.com/v1/6d657910-Multi-cloud%20Applications%C2%A0%C2%A0Beyond%20PAAS.png",
                     alt="",
