@@ -47,6 +47,9 @@ $colors--light-theme--border-low-contrast: rgba(
 // import flickity
 @import "flickity/dist/flickity";
 
+// import leaflet
+@import "leaflet/dist/leaflet";
+
 $color-shadow: rgba(0, 0, 0, 0.5) !default;
 
 // import site specific patterns and overrides
@@ -107,6 +110,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_dell";
 @import "pattern_modals";
 @import "pattern_tube-line";
+@import "pattern_equal-height-row";
 @import "utility_animations";
 @import "utility_crop";
 @import "utility_vertically-center";
@@ -175,6 +179,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include vf-p-icon-units;
 @include vf-p-icon-plans;
 @include openstack-carousel;
+@include vf-p-equal-height-row;
 
 // Layouts:
 @import "layout-legal-pages";
@@ -208,6 +213,10 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 .iti {
   margin-bottom: $input-margin-bottom;
   width: 100%;
+}
+
+.leaflet-control-attribution {
+  display: none;
 }
 
 // Bug fixes
@@ -1639,6 +1648,17 @@ ol.p-list--divided .p-list__item::before {
   }
 }
 
+@media screen and (width < $breakpoint-small) {
+  .u-table-scroll--x-small {
+    overflow-x: hidden;
+    table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }
+}
+
 .u-align-last--logo {
   @media screen and (max-width: $breakpoint-large - 1) {
     .p-logo-section__item {
@@ -1705,7 +1725,7 @@ legend {
   margin-top: $spv--small;
 }
 
-.p-equal-height-row-50-50 {
+.p-equal-height-row--50-50 {
   .p-equal-height-row__col {
     grid-column: span 6;
     padding-top: 0.5rem;
@@ -1860,4 +1880,50 @@ ol.p-stepped-list.no-full-stop
 .training-cta--stacked {
   display: flex;
   flex-wrap: wrap;
+}
+
+// Truncates text to two lines with ellipsis
+.u-clamp--two-lines {
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Truncates text to five lines with ellipsis
+.u-clamp--five-lines {
+  display: -webkit-box;
+  line-clamp: 5;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// XXX: Can be removed once (if) the below issue is resolved in Vanilla
+// https://github.com/canonical/vanilla-framework/issues/5583
+@container (width >= 100ch) {
+  .p-list--horizontal-section-wrapper
+    .p-list--horizontal-section:is(.is-50-50-on-large) {
+    --columns: 2;
+  }
+  .p-list--horizontal-section-wrapper
+    .p-list--horizontal-section:is(.is-50-50-on-large)
+    .p-list__item:nth-child(2n + 1)::after {
+    background: var(--vf-color-border-low-contrast);
+    content: "";
+    height: 1px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: calc(100% * 2 + 1 * 2rem);
+  }
+}
+
+// Maintain dark theme styles for anchor headings
+.is-dark .inner-wrapper a.p-link--anchor-heading,
+.is-dark .inner-wrapper a.p-link--anchor-heading:visited {
+  color: $colors--dark-theme--text-default;
 }

@@ -182,10 +182,10 @@
       {%- if slot == 'signpost_image' -%}
         {{ image(url="https://assets.ubuntu.com/v1/83a3ad0a-dell-updated.png",
                 alt="Dell",
-                width="314",
-                height="116",
+                width="138",
+                height="51",
                 hi_def=True,
-                loading="auto|lazy") | safe
+                loading="lazy") | safe
         }}
       {%- endif -%}
 
@@ -372,7 +372,7 @@
     </div>
     <div class="row">
       <div class="col-6 col-medium-6 col-start-large-7">
-        <div class="p-equal-height-row p-equal-height-row-50-50">
+        <div class="p-equal-height-row p-equal-height-row--50-50">
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
               <hr class="p-rule--highlight u-hide--medium u-hide--small" />
@@ -586,7 +586,8 @@
           <p class="p-equal-height-row__item">Reinvent the automobile with Ubuntu, designed for critical embedded systems.</p>
           <div class="p-equal-height-row__item">
             <p>
-              <a href="https://canonical.com/solutions/automotive" aria-label="Learn more about automotive">Learn more&nbsp;&rsaquo;</a>
+              <a href="https://canonical.com/solutions/automotive"
+                 aria-label="Learn more about automotive">Learn more&nbsp;&rsaquo;</a>
             </p>
           </div>
         </div>

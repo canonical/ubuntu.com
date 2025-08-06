@@ -1,8 +1,7 @@
 {
   "form": {
     "/kernel": {
-      "templatePath": "/kernel/index.html",
-      "childrenPaths": ["/kernel/lifecycle", "/kernel/variants"],
+      "templatePath": "/kernel/variants.html",
       "isModal": true,
       "modalId": "kernel-modal",
       "formData": {
@@ -406,26 +405,9 @@
           "noCommentsFromLead": true,
           "fields": [
             {
-              "type": "text",
-              "id": "company",
-              "label": "Company name",
-              "isRequired": true
-            },
-            {
-              "type": "text",
-              "id": "title",
-              "label": "Job title",
-              "isRequired": true
-            },
-            {
               "type": "tel",
               "id": "phone",
               "label": "Mobile/cell phone number"
-            },
-            {
-              "type": "country",
-              "label": "Country",
-              "isRequired": true
             }
           ]
         }

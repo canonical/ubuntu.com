@@ -39,7 +39,11 @@ describe("UserInfoFormTests", () => {
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={initialValues} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <UserInfoForm setError={jest.fn()} />
+            <UserInfoForm
+              setError={jest.fn()}
+              isCardSaving={false}
+              setIsCardSaving={jest.fn()}
+            />
           </Elements>
         </Formik>
       </QueryClientProvider>,
@@ -103,7 +107,11 @@ describe("UserInfoFormTests", () => {
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={initialValues} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <UserInfoForm setError={jest.fn()} />
+            <UserInfoForm
+              setError={jest.fn()}
+              isCardSaving={false}
+              setIsCardSaving={jest.fn()}
+            />
           </Elements>
         </Formik>
       </QueryClientProvider>,
@@ -146,7 +154,11 @@ describe("UserInfoFormTests", () => {
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={initialValues} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <UserInfoForm setError={jest.fn()} />
+            <UserInfoForm
+              setError={jest.fn()}
+              isCardSaving={false}
+              setIsCardSaving={jest.fn()}
+            />
           </Elements>
         </Formik>
       </QueryClientProvider>,
