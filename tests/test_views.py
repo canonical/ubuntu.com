@@ -49,7 +49,9 @@ class TestViewsFunctions(TestCase):
             "J440OjNsdU2s6-a0urWDolTPSE0nv3SYoY3jU"
         )
 
-        second_url_check = "https://ubuntu.com/engage/secure-kubernetes-at-the-edge"
+        second_url_check = (
+            "https://ubuntu.com/engage/secure-kubernetes-at-the-edge"
+        )
 
         # this url should not be shortened
         third_url = (
@@ -110,6 +112,8 @@ class TestViewsFunctions(TestCase):
         self.assertEqual(len(map_markers), 2)
 
         # Verify Unicode minus sign was handled correctly
-        africa_marker = next(m for m in map_markers if m["name"] == "Ubuntu Africa")
+        africa_marker = next(
+            m for m in map_markers if m["name"] == "Ubuntu Africa"
+        )
         self.assertEqual(africa_marker["lat"], 4.71111)
         self.assertEqual(africa_marker["lon"], -74.07222)
