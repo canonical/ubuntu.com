@@ -21,12 +21,14 @@
           Cloud storage can make up a significant proportion of public cloud hosting costs, for some data sets it can be more cost effective to store them in a self-hosted storage system.
         </p>
         <p>
-          Learn more in our <a href="/engage/optimize-cloud-storage-costs">white paper</a>, and explore potential savings with the calculator below.
+          Learn more in our <a href="/engage/optimize-cloud-storage-costs">white paper</a>, <span class="u-hide js-show">and explore potential savings with the calculator below.</span>
+          <noscript>and <a href="https://ubuntu.com/contact-us/form">get in touch with our team</a> for cost estimations.</noscript>
         </p>
       </div>
     </div>
   </section>
 
+  <div class="u-hide js-show">
   <form id="compare-costs-form">
     <section class="p-section--shallow">
       <div class="grid-row">
@@ -226,7 +228,7 @@
       </div>
     </div>
   </section>
-
+</div>
   <script src="{{versioned_static('js/src/ceph-pricing-calculator.js')}}"></script>
 
 {% endblock content %}

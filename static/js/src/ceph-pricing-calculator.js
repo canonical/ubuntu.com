@@ -273,4 +273,8 @@ document.addEventListener("DOMContentLoaded", function () {
   calculateCosts();
 });
 
+// We initially hide the JS reliant content, so need to show it now that JS is loaded
+document.querySelectorAll(".js-show").forEach((ele) => {
+  ele.classList.remove("u-hide");
+});
 initializeSliders();
