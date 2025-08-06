@@ -1087,7 +1087,11 @@ def marketo_submit():
         if return_url:
             # Remove anchor from url
             plain_url = return_url.split("#")[0]
-            return flask.redirect(f"{plain_url}#contact-form-fail")
+            parsed_referrer = urlparse(referrer)
+            return flask.redirect(
+                f"{parsed_referrer.scheme}://"
+                f"{parsed_referrer.netloc}{plain_url}#contact-form-fail"
+            )
         return flask.redirect("/#contact-form-fail")
 
     if referrer:
