@@ -1003,10 +1003,9 @@ def cred_your_exams(
                 # if assessment is provisioned
                 if assessment_id:
                     is_in_window = (
-                        now > starts_at_utc and now < ends_at_utc
-                    ) or (
-                        now < starts_at_utc
-                        and now > starts_at_utc - timedelta(minutes=30)
+                        starts_at_utc - timedelta(minutes=30)
+                        < now
+                        < ends_at_utc
                     )
                     provisioned_but_not_taken = is_in_window and state in [
                         RESERVATION_STATES["notified"],
