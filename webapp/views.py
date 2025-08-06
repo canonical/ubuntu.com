@@ -1454,7 +1454,9 @@ def process_local_communities(local_communities):
 
             if "coordinates" in community and community["coordinates"]:
                 try:
-                    lat_str, lon_str = community["coordinates"].split(",")
+                    # Replace Unicode minus sign (−) with ASCII hyphen (-)
+                    coordinates = community["coordinates"].replace("−", "-")
+                    lat_str, lon_str = coordinates.split(",")
                     lat = float(lat_str.strip())
                     lon = float(lon_str.strip())
                     community["lat"] = lat
