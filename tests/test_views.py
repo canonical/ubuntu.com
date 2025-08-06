@@ -49,9 +49,7 @@ class TestViewsFunctions(TestCase):
             "J440OjNsdU2s6-a0urWDolTPSE0nv3SYoY3jU"
         )
 
-        second_url_check = (
-            "https://ubuntu.com/engage/secure-kubernetes-at-the-edge"
-        )
+        second_url_check = "https://ubuntu.com/engage/secure-kubernetes-at-the-edge"
 
         # this url should not be shortened
         third_url = (
@@ -75,7 +73,7 @@ class TestViewsFunctions(TestCase):
         self.assertEqual(shorten_acquisition_url(third_url), third_url)
         self.assertLess(len(shorten_acquisition_url(third_url)), 255)
 
-    @patch('flask.render_template')
+    @patch("flask.render_template")
     def test_process_local_communities_coordinate_parsing(self, mock_render):
         """
         Mini test for process_local_communities focusing on Unicode parsing
@@ -86,13 +84,13 @@ class TestViewsFunctions(TestCase):
             {
                 "name": "Ubuntu Africa",
                 "continent": "africa",
-                "coordinates": "4.71111, −74.07222"  # Unicode minus sign
+                "coordinates": "4.71111, −74.07222",  # Unicode minus sign
             },
             {
                 "name": "Ubuntu Europe",
                 "continent": "europe",
-                "coordinates": "52.5200, 13.4050"  # Normal coordinates
-            }
+                "coordinates": "52.5200, 13.4050",  # Normal coordinates
+            },
         ]
 
         # Get the function
@@ -108,12 +106,10 @@ class TestViewsFunctions(TestCase):
         args, kwargs = mock_render.call_args
 
         # Check that map_markers were created correctly
-        map_markers = kwargs['map_markers']
+        map_markers = kwargs["map_markers"]
         self.assertEqual(len(map_markers), 2)
 
         # Verify Unicode minus sign was handled correctly
-        africa_marker = next(
-            m for m in map_markers if m['name'] == 'Ubuntu Africa'
-        )
-        self.assertEqual(africa_marker['lat'], 4.71111)
-        self.assertEqual(africa_marker['lon'], -74.07222)
+        africa_marker = next(m for m in map_markers if m["name"] == "Ubuntu Africa")
+        self.assertEqual(africa_marker["lat"], 4.71111)
+        self.assertEqual(africa_marker["lon"], -74.07222)
