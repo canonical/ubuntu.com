@@ -78,14 +78,14 @@ class TestViewsFunctions(TestCase):
     @patch('flask.render_template')
     def test_process_local_communities_coordinate_parsing(self, mock_render):
         """
-        Mini test for process_local_communities focusing on Unicode coordinate parsing
+        Mini test for process_local_communities focusing on Unicode parsing
         """
         # Mock local_communities object
         mock_local_communities = Mock()
         mock_local_communities.get_category_index_metadata.return_value = [
             {
                 "name": "Ubuntu Africa",
-                "continent": "africa", 
+                "continent": "africa",
                 "coordinates": "4.71111, −74.07222"  # Unicode minus sign
             },
             {
@@ -94,24 +94,26 @@ class TestViewsFunctions(TestCase):
                 "coordinates": "52.5200, 13.4050"  # Normal coordinates
             }
         ]
-        
+
         # Get the function
         display_func = process_local_communities(mock_local_communities)
-        
+
         # Call the function
         display_func()
-        
+
         # Verify render_template was called
         mock_render.assert_called_once()
-        
+
         # Get the arguments passed to render_template
         args, kwargs = mock_render.call_args
-        
+
         # Check that map_markers were created correctly
         map_markers = kwargs['map_markers']
         self.assertEqual(len(map_markers), 2)
-        
+
         # Verify Unicode minus sign was handled correctly
-        africa_marker = next(m for m in map_markers if m['name'] == 'Ubuntu Africa')
+        africa_marker = next(
+            m for m in map_markers if m['name'] == 'Ubuntu Africa'
+        )
         self.assertEqual(africa_marker['lat'], 4.71111)
-        self.assertEqual(africa_marker['lon'], -74.07222)  # Should be negative float
+        self.assertEqual(africa_marker['lon'], -74.07222)
