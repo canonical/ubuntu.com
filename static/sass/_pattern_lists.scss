@@ -24,6 +24,8 @@
   $color-instagram: #111;
   $color-facebook: #3b5898;
   $color-rss: #ea781a;
+  $color-youtube: #ff0000;
+  $color-tiktok: #000;
 
   %list-link {
     display: block;
@@ -85,6 +87,22 @@
 
         &:hover .rss-icon {
           fill: $color-rss;
+        }
+      }
+
+      &--youtube {
+        @extend %list-link;
+
+        &:hover .youtube-icon {
+          fill: $color-youtube;
+        }
+      }
+
+      &--tiktok {
+        @extend %list-link;
+
+        &:hover .tiktok-icon {
+          fill: $color-tiktok;
         }
       }
     }
