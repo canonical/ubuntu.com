@@ -25,7 +25,7 @@ In order for this charm to be useful, it should be deployed with its companion
 charm kubernetes-master and linked with an SDN-Plugin and a container runtime
 such as containerd.
 
-This charm is part of the [Charmed Kubernetes bundle](https://jaas.ai/charmed-kubernetes/bundle) bundle which can be deployed with a single command::
+This charm is part of the [Charmed Kubernetes bundle](https://canonical.com/jaas/charmed-kubernetes/bundle) bundle which can be deployed with a single command::
 
 ```bash
 juju deploy charmed-kubernetes
