@@ -338,4 +338,4 @@ recommended approach.  If not set, will use the upstream default.
 
 
 [interface]: https://github.com/juju-solutions/interface-openstack-integration
-[Charmed Kubernetes]: https://jaas.ai/charmed-kubernetes
+[Charmed Kubernetes]: https://canonical.com/jaas/charmed-kubernetes

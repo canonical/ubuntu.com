@@ -225,5 +225,5 @@ EOY
 ```
 
 [interface]: https://github.com/juju-solutions/interface-vsphere-integration
-[Charmed Kubernetes]: https://jaas.ai/charmed-kubernetes
+[Charmed Kubernetes]: https://canonical.com/jaas/charmed-kubernetes
 [vmware documentation]: https://vmware.github.io/vsphere-storage-for-kubernetes/documentation/existing.html
