@@ -33,8 +33,8 @@ jobs:
         run: |
           sudo chmod -R 777 .
           dotrun install
-          dotrun > dotrun.log & sleep 3
-          cat dotrun.log
+          dotrun exec yarn start & sleep 3
+          
           curl --head --fail --retry-delay 1 --retry 30 --retry-connrefused http://localhost:8001
 
   lint-scss:
