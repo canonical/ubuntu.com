@@ -24,7 +24,6 @@ context:
 *   [errors.ubuntu.com](https://errors.ubuntu.com)
 *   [fridge.ubuntu.com](https://fridge.ubuntu.com)
 *   [help.ubuntu.com](https://help.ubuntu.com)
-*   [jaas.ai](https://jaas.ai)
 *   [jp.ubuntu.com](https://jp.ubuntu.com)
 *   [juju.is](https://juju.is)
 *   [kubeflow-news.com](https://kubeflow-news.com)

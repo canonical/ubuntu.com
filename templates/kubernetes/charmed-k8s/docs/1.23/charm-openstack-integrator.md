@@ -364,4 +364,4 @@ recommended approach.  If not set, will use the upstream default.
 
 [asset-openstack-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/openstack-overlay.yaml
 [interface]: https://github.com/juju-solutions/interface-openstack-integration
-[Charmed Kubernetes]: https://jaas.ai/charmed-kubernetes
+[Charmed Kubernetes]: https://canonical.com/jaas/charmed-kubernetes

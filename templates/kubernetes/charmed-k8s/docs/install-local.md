@@ -330,7 +330,7 @@ juju config calico ignore-loose-rpf=true
 [calico]: /kubernetes/charmed-k8s/docs/cni-calico
 [cilium]: /kubernetes/charmed-k8s/docs/cni-cilium
 [cni-overview]: /kubernetes/charmed-k8s/docs/cni-overview
-[Juju]: https://jaas.ai
+[Juju]: https://canonical.com/jaas
 [snap]: https://snapcraft.io/docs/installing-snapd
 [install]: /kubernetes/charmed-k8s/docs/install-manual
 [operations]: /kubernetes/charmed-k8s/docs/operations
