@@ -33,6 +33,10 @@
           <td data-heading="18.04 LTS">
             <i class="p-icon--success">Supported</i>
           </td>
+          {% elif component.lts_releases['18.04 LTS'][0].status == 'unsupported' %}
+          <td data-heading="18.04 LTS">
+            <i class="p-icon--error">Unsupported</i>
+          </td>
           {% endif %}
           {% else %}
           <td data-heading="18.04 LTS"></td>
@@ -49,6 +53,10 @@
           {% elif component.lts_releases['20.04 LTS'][0].status == 'certified' %}
           <td data-heading="20.04 LTS">
             <i class="p-icon--success">Supported</i>
+          </td>
+          {% elif component.lts_releases['20.04 LTS'][0].status == 'unsupported' %}
+          <td data-heading="20.04 LTS">
+            <i class="p-icon--error">Unsupported</i>
           </td>
           {% endif %}
           {% else %}
@@ -67,10 +75,13 @@
           <td data-heading="22.04 LTS">
             <i class="p-icon--success">Supported</i>
           </td>
+          {% elif component.lts_releases['22.04 LTS'][0].status == 'unsupported' %}
+          <td data-heading="22.04 LTS">
+            <i class="p-icon--error">Unsupported</i>
+          </td>
           {% endif %}
           {% else %}
           <td data-heading="22.04 LTS">
-            <i class="p-icon--error"></i>
           </td>
           {% endif %}
           {% if '24.04 LTS' in component.lts_releases %}
@@ -86,10 +97,13 @@
           <td data-heading="24.04 LTS">
             <i class="p-icon--success">Supported</i>
           </td>
+          {% elif component.lts_releases['24.04 LTS'][0].status == 'unsupported' %}
+          <td data-heading="24.04 LTS">
+            <i class="p-icon--error">Unsupported</i>
+          </td>
           {% endif %}
           {% else %}
           <td data-heading="24.04 LTS">
-            <i class="p-icon--error"></i>
           </td>
           {% endif %}
           <td data-heading="Comments">{{ component.note }}</td>
@@ -102,11 +116,14 @@
         <i class="p-icon--success"></i> <small class="p-">Supported</small>
       </li>
       <li class="p-inline-list__item">
-        <img src="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg" alt="" />
+        <img src="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg" alt="May require third-party driver" />
         <small>May require 3rd-party driver</small>
       </li>
       <li class="p-inline-list__item">
         <i class="p-icon--help"></i> <small>In progress</small>
+      </li>
+      <li class="p-inline-list__item">
+        <i class="p-icon--error"></i> <small>Unsupported</small>
       </li>
     </ul>
   </div>
