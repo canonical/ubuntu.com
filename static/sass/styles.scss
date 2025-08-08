@@ -198,6 +198,11 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 
 @include layout-whitepapers;
 
+// Set a min-height for the inner wrapper so the footer is always at the bottom
+.inner-wrapper {
+  min-height: 1080px;
+}
+
 // Overide the path to flags for dial codes
 .iti__flag {
   background-image: url("#{$assets-path}685bc1a3-flags.png");
@@ -1926,4 +1931,16 @@ ol.p-stepped-list.no-full-stop
 .is-dark .inner-wrapper a.p-link--anchor-heading,
 .is-dark .inner-wrapper a.p-link--anchor-heading:visited {
   color: $colors--dark-theme--text-default;
+}
+
+// Custom styling for slider component
+// used in templates/ceph/pricing-calculator.html
+.p-slider__wrapper {
+  .p-slider__min-value {
+    padding-right: 1rem;
+  }
+
+  .p-slider__max-value {
+    padding-left: 1rem;
+  }
 }
