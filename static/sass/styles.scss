@@ -198,6 +198,11 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 
 @include layout-whitepapers;
 
+// Set a min-height for the inner wrapper so the footer is always at the bottom
+.inner-wrapper {
+  min-height: 1080px;
+}
+
 // Overide the path to flags for dial codes
 .iti__flag {
   background-image: url("#{$assets-path}685bc1a3-flags.png");
