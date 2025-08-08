@@ -236,6 +236,19 @@ def notices_feed(feed_type):
 
     url_root = flask.request.url_root
     base_url = flask.request.base_url
+    description_suffix = query_params = ""
+
+    releases = flask.request.args.getlist("release", type=str)
+    if releases:
+        # Check if the provided releases exist, and fail if they don't match 
+        formatted_releases = get_formatted_releases(security_api, releases)
+        selected_releases = [release.get('codename') for release in formatted_releases["selected_releases"]]
+
+        if sorted(releases) != sorted(selected_releases):
+            flask.abort(404)
+
+        description_suffix = f" for releases {', '.join(releases)}"
+        query_params = f"?release={'&release='.join(releases)}"
 
     feed = FeedGenerator()
     feed.generator("Feedgen")
@@ -246,8 +259,8 @@ def notices_feed(feed_type):
         "Ubuntu and Canonical are registered trademarks of Canonical Ltd."
     )
     feed.title("Ubuntu security notices")
-    feed.description("Recent content on Ubuntu security notices")
-    feed.link(href=base_url, rel="self")
+    feed.description(f"Recent content on Ubuntu security notices{description_suffix}")
+    feed.link(href=base_url + query_params, rel="self")
 
     def feed_entry(notice, url_root):
         _id = notice["id"]
@@ -271,7 +284,7 @@ def notices_feed(feed_type):
         return entry
 
     notices = security_api.get_page_notices(
-        limit=10, offset=0, details="", releases=[], order=""
+        limit=10, offset=0, details="", releases=releases, order=""
     ).get("notices")
 
     for notice in notices:
