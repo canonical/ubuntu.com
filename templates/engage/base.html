@@ -149,7 +149,7 @@
   <section class="p-strip--light is-shallow">
     <div class="row">
       <div class="col-8">
-        <h2 class="p-heading--3">Additional Resources</h2>
+        <h2 class="p-heading--3">{% if metadata['language'] == 'es' %}Recursos adicionales{% elif metadata['language'] == 'fr' %}Ressources supplémentaires{% elif metadata['language'] == 'pt' %}Recursos adicionais{% elif metadata['language'] == 'de' %}Zusätzliche Ressourcen{% else %}Additional Resources{% endif %}</h2>
       </div>
     </div>
 
