@@ -8,7 +8,7 @@
 
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 {% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
-{% from "macros/_vf_pricing-block.jinja" import vf_pricing_block %}
+{% from "_macros/vf_pricing-block.jinja" import vf_pricing_block %}
 
 {% block meta_copydoc %}
   https://docs.google.com/document/d/1g38PPPhEP0Z66eM_gezfUyUwAr5e9vGfTHJDWV8gZlE/edit?tab=t.0
@@ -517,64 +517,56 @@
     {%- endif -%}
   {%- endcall -%}
 
-  <div class="row--50-50">
-    <hr class="p-rule" />
-    <div class="col">
-      <h2>Managed OpenStack pricing</h2>
-    </div>
-    <div class="col">
-      {% call(slot) vf_pricing_block(
-        include_hr=false,
-        tiers=[
-        {
-        "tier_name_text": 'Managed OpenStack pricing',
-        "tier_price_text": '$15',
-        "tier_price_explanation": 'per server per day',
-        "tier_label_text": "What\'s included",
-        "tier_offerings": [
-        {
-        "list_item_style": "ticked",
-        "list_item_content_html": "Logging, monitoring, and alerting"
-        },
-        {
-        "list_item_style": "ticked",
-        "list_item_content_html": "24x7 operations with fully staffed NOC"
-        },
-        {
-        "list_item_style": "ticked",
-        "list_item_content_html": "Proactive cloud management"
-        },
-        {
-        "list_item_style": "ticked",
-        "list_item_content_html": "Incident and problem resolution"
-        },
-        {
-        "list_item_style": "ticked",
-        "list_item_content_html": "Software updates and OpenStack upgrades"
-        },
-        {
-        "list_item_style": "ticked",
-        "list_item_content_html": "SLA and regular independent audits"
-        },
-        {
-        "list_item_style": "ticked",
-        "list_item_content_html": "Most cost-effective approach up to 300 nodes"
-        },
-        {
-        "list_item_style": "ticked",
-        "list_item_content_html": "Optional Managed Kubernetes service on top"
-        },
-        {
-        "list_item_style": "ticked",
-        "list_item_content_html": "EU and US regulatory compliance options"
-        },
-        ],
-        },
-        ]
-        ) -%}
-      {% endcall %}
-    </div>
-  </div>
+  {% call(slot) vf_pricing_block(
+    top_rule_variant="default",
+    title_text='Managed OpenStack pricing',
+    tiers=[
+    {
+    "tier_price_text": '$15',
+    "tier_price_explanation": 'per server per day',
+    "tier_label_text": "What\'s included",
+    "tier_offerings": [
+    {
+    "list_item_style": "ticked",
+    "list_item_content_html": "Logging, monitoring and alerting"
+    },
+    {
+    "list_item_style": "ticked",
+    "list_item_content_html": "24x7 operations with fully staffed NOC"
+    },
+    {
+    "list_item_style": "ticked",
+    "list_item_content_html": "Proactive cloud management"
+    },
+    {
+    "list_item_style": "ticked",
+    "list_item_content_html": "Incident and problem resolution"
+    },
+    {
+    "list_item_style": "ticked",
+    "list_item_content_html": "Software updates and OpenStack upgrades"
+    },
+    {
+    "list_item_style": "ticked",
+    "list_item_content_html": "SLA and regular independent audits"
+    },
+    {
+    "list_item_style": "ticked",
+    "list_item_content_html": "Most cost-effective approach up to 300 nodes"
+    },
+    {
+    "list_item_style": "ticked",
+    "list_item_content_html": "Optional Managed Kubernetes service on top"
+    },
+    {
+    "list_item_style": "ticked",
+    "list_item_content_html": "EU and US regulatory compliance options"
+    },
+    ],
+    },
+    ]
+    ) -%}
+  {% endcall %}
 
   <section class="p-section">
     <div class="row--50-50">
