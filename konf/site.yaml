@@ -1332,4 +1332,15 @@ demo:
     - name: FLASK_ENV
       value: "demo"    
 
-    
+    - name: WORDPRESS_APPLICATION_PASSWORD
+      secretKeyRef:
+        key: wordpress-application-password
+        name: wordpress-api
+
+    - name: WORDPRESS_USERNAME
+      secretKeyRef:
+        key: wordpress-username
+        name: wordpress-api
+
+    - name: CANONICAL_CLA_API_URL
+      value: https://cla.staging.canonical.com
