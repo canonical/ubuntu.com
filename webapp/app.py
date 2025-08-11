@@ -9,6 +9,7 @@ import flask
 import requests
 import talisker.requests
 from jinja2 import ChoiceLoader, FileSystemLoader
+import yaml
 
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
@@ -20,6 +21,8 @@ from canonicalwebteam.discourse import (
     Tutorials,
     CategoryParser,
     Category,
+    EventsParser,
+    Events,
 )
 from canonicalwebteam.flask_base.app import FlaskBase
 from pathlib import Path
@@ -153,9 +156,14 @@ from webapp.views import (
     build_vulnerabilities,
     build_vulnerabilities_list,
     process_active_vulnerabilities,
+    process_local_communities,
+    process_community_events,
+    community_landing_page,
+    build_ubuntu_weekly_newsletter,
     build_engage_index,
     build_engage_page,
     build_engage_pages_sitemap,
+    build_engage_pages_metadata,
     build_tutorials_index,
     build_tutorials_query,
     download_server_steps,
@@ -168,8 +176,6 @@ from webapp.views import (
     marketo_submit,
     mirrors_query,
     navigation_nojs,
-    openstack_engage,
-    openstack_install,
     releasenotes_redirect,
     show_template,
     sitemap_index,
@@ -491,6 +497,9 @@ app.add_url_rule(
 )
 
 app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
+with open("meganav.yaml") as meganav_file:
+    meganav = yaml.load(meganav_file.read(), Loader=yaml.FullLoader)
+
 app.add_url_rule(
     "/search",
     "search",
@@ -499,6 +508,7 @@ app.add_url_rule(
         session=session,
         template_path="search.html",
         search_engine_id=search_engine_id,
+        featured=meganav,
     ),
 )
 
@@ -645,8 +655,10 @@ app.add_url_rule(
 )
 
 app.add_url_rule(
-    "/openstack/resources", view_func=openstack_engage(engage_pages)
+    "/engage/metadata.json",
+    view_func=build_engage_pages_metadata(engage_pages),
 )
+
 # Custom engage page in German
 app.add_url_rule(
     "/engage/de/warum-openstack",
@@ -778,7 +790,7 @@ app.add_url_rule(
 server_docs.init_app(app)
 
 # Community docs
-url_prefix = "/community"
+url_prefix = "/community/docs"
 community_docs = Docs(
     parser=DocParser(
         api=discourse_api,
@@ -804,6 +816,63 @@ app.add_url_rule(
 )
 
 community_docs.init_app(app)
+
+# Community Portal
+local_communities = Category(
+    parser=CategoryParser(
+        api=discourse_api,
+        index_topic_id=62344,
+        url_prefix="/community",
+    ),
+    category_id=129,
+)
+
+community_events = Events(
+    parser=EventsParser(
+        api=discourse_api, index_topic_id=60, url_prefix="/community/events"
+    ),
+    category_id=11,
+)
+
+ubuntu_weekly_newsletter = Category(
+    parser=CategoryParser(
+        api=discourse_api,
+        index_topic_id=40911,
+        url_prefix="/community",
+    ),
+    category_id=419,
+    exclude_topics=[64651],
+)
+
+app.add_url_rule(
+    "/community/local-communities",
+    view_func=process_local_communities(local_communities),
+)
+
+app.add_url_rule(
+    "/community/events",
+    view_func=process_community_events(community_events),
+)
+
+app.add_url_rule(
+    "/community",
+    view_func=community_landing_page(
+        community_events, local_communities, ubuntu_weekly_newsletter
+    ),
+)
+
+app.add_url_rule(
+    "/community/uwn",
+    view_func=build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter),
+    endpoint="uwn_index",
+)
+
+app.add_url_rule(
+    "/community/uwn/<path:path>",
+    view_func=build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter),
+    endpoint="uwn_page",
+)
+
 
 # Allow templates to be queried from discourse.ubuntu.com
 app.add_url_rule(
@@ -1097,40 +1166,7 @@ app.add_url_rule(
 
 security_certs_docs.init_app(app)
 
-# Landscape docs
-landscape_docs = Docs(
-    parser=DocParser(
-        api=discourse_api,
-        index_topic_id=23070,
-        url_prefix="/landscape/docs",
-    ),
-    document_template="/landscape/docs/document.html",
-    url_prefix="/landscape/docs",
-    blueprint_name="landscape-docs",
-)
-
-# Landscape search
-app.add_url_rule(
-    "/landscape/docs/search",
-    "landscape-docs-search",
-    build_search_view(
-        app,
-        session=session,
-        site="ubuntu.com/landscape/docs",
-        template_path="/landscape/docs/search-results.html",
-        search_engine_id=search_engine_id,
-    ),
-)
-
-landscape_docs.init_app(app)
-
 certified_routes(app)
-
-# Override openstack/install
-app.add_url_rule(
-    "/openstack/install",
-    view_func=openstack_install,
-)
 
 # Subscription centre
 app.add_url_rule(
@@ -1206,6 +1242,7 @@ def render_security_standards_blogs():
             4633,
             4749,
         ],
+        excluded_tags=[3184, 3265],
         per_page=4,
         blog_title="Security standards blogs",
     )
@@ -1213,13 +1250,50 @@ def render_security_standards_blogs():
         blogs.get_index()["articles"], key=lambda x: x["date"]
     )
     return flask.render_template(
-        "/security/security-standards.html", blogs=sorted_articles
+        "/security/standards/index.html", blogs=sorted_articles
     )
 
 
 app.add_url_rule(
     "/security/security-standards", view_func=render_security_standards_blogs
 )
+
+
+def render_security_pci_dds_blogs():
+    blogs = BlogViews(
+        api=BlogAPI(
+            session=session, thumbnail_width=640, thumbnail_height=340
+        ),
+        tag_ids=[
+            4787,
+            3829,
+            2562,
+            4063,
+            3903,
+            4468,
+            4464,
+            4392,
+            1228,
+            4417,
+            4391,
+            3830,
+            4632,
+            4633,
+            4749,
+        ],
+        excluded_tags=[3184, 3265],
+        per_page=4,
+        blog_title="Security standards blogs",
+    )
+    sorted_articles = sorted(
+        blogs.get_index()["articles"], key=lambda x: x["date"]
+    )
+    return flask.render_template(
+        "/security/standards/pci-dss.html", blogs=sorted_articles
+    )
+
+
+app.add_url_rule("/security/pci-dss", view_func=render_security_pci_dds_blogs)
 
 
 # CMMC resources blogs tab
@@ -1296,3 +1370,14 @@ app.add_url_rule(
     view_func=build_sitemap_tree(DYNAMIC_SITEMAPS),
     methods=["GET", "POST"],
 )
+
+
+# Create endpoints for testing environment only
+if app.config.get("TESTING") or os.getenv("TESTING") or app.debug:
+
+    @app.route("/tests/<path:subpath>")
+    def tests(subpath):
+        """
+        Expose all routes under templates/tests if in development/testing mode.
+        """
+        return flask.render_template(f"tests/{subpath}.html")

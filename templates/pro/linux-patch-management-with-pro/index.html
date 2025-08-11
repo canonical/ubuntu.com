@@ -1,0 +1,266 @@
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+
+{% extends "advantage/base_advantage.html" %}
+
+{% block title %}Linux patch management, solved{% endblock %}
+
+{% block meta_description %}
+  See how Ubuntu Pro can help you streamline Linux patch management. Get timely security patches for packages that are important to you.
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1_skjOWBJk_9tehlDW6N5_BVlw-8opAybqDjR7Ya-p1I/edit
+{% endblock meta_copydoc %}
+
+{% block content %}
+
+  {% call(slot) vf_hero(
+    title_text='Linux patch management, solved',
+    subtitle_text='See which packages Ubuntu Pro supports',
+    layout='50/50'
+    ) -%}
+    
+    {%- if slot == 'description' -%}
+      <p class="u-no-margin--bottom">
+        Ubuntu Pro provides comprehensive coverage for the OS and all your open source.
+      </p>
+    {%- endif -%}
+    
+    {%- if slot == 'cta' -%}
+      <a href="/contact-us/form?product=pro" class="p-button--positive u-no-margin--bottom">Get in touch</a>
+      <a href="/pro/subscribe">Start a 30-day free trial &rsaquo;</a>
+    {%- endif -%}
+  {% endcall -%}
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+    </div>
+
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <div class="col">
+          <h2>Full-stack security isn't an afterthought, it's built in</h2>
+        </div>
+        <div class="col">
+          <p>
+            Ubuntu Pro patches are not just automatically pulled from upstream, they're retrieved, evaluated, curated, tested, and backported by Canonical's dedicated security team to ensure production reliability. Each fix is traceable and published in our CVE Tracker.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-9 col-start-medium-4 col-start-large-4">
+        <hr class="p-rule is-muted" />
+      </div>
+    </div>
+
+    <div class="p-section--shallow">
+      <div class="row">
+        <div class="col-3 col-start-medium-4 col-start-large-4">
+          <h5>Total number of fixes provided per package per release</h5>
+        </div>
+        <div class="col-6">
+          <p>
+            Select a package category and an Ubuntu LTS release to understand the true scope of vulnerabilities fixed by Canonical. See how many CVEs we have patched over the past year across the open source ecosystem, including packages that are not covered under standard security maintenance.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="u-fixed-width">
+      <div id="cve-table-root"></div>
+    </div>
+
+    <div class="p-section--shallow">
+      <div class="row">
+        <div class="col-6 col-start-medium-7 col-start-large-7">
+          <hr class="p-rule is-muted" />
+          <h5>Can't find the packages you are looking for?</h5>
+          <p>
+            You can access the full list of the packages you are using and see which ones need ESM to receive security patches by running this command <code>pro security-status</code>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+    </div>
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <div class="col">
+          <h2>
+            Focus on building,
+            <br />
+            not patching
+          </h2>
+        </div>
+        <div class="col">
+          <p>
+            Securing modern infrastructure means protecting not just the OS but all layers above it, including runtimes, ML frameworks, and application stacks, by managing thousands of CVEs and complex dependencies. 
+          </p>
+          <p>
+            Ubuntu Pro handles this complexity with Canonical's expert, proactive remediation, minimizing risk, cutting overhead, and ensuring compliance cost-effectively.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="p-section--shallow">
+      <div class="row">
+        <div class="col-3 col-start-medium-4 col-start-large-4">
+          <h5>Timely remediation for all your dependencies</h5>
+        </div>
+        <div class="col-6">
+          <p>
+            From <a href="https://launchpad.net/ubuntu/+source/0ad">0ad</a> to <a href="https://launchpad.net/ubuntu/+source/zzuf">zzuf</a>, we track and prioritize 19000+ active CVEs across 7 LTS releases to provide you with the best, most secure open source experience possible.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="p-section--shallow">
+      <div class="row">
+        <div class="col-3">
+          <h5 class="p-text--small-caps">In 2024 we patched</h5>
+        </div>
+        <div class="col-3">
+          <hr class="p-rule--highlight" />
+          <h2>
+            <strong>319</strong>
+          </h2>
+          <p>Source packages</p>
+        </div>
+        <div class="col-3">
+          <hr class="p-rule--highlight" />
+          <h2>
+            <strong>3366</strong>
+          </h2>
+          <p>Binary packages</p>
+        </div>
+        <div class="col-3">
+          <hr class="p-rule--highlight" />
+          <h2>
+            <strong>1476</strong>
+          </h2>
+          <p>Unique CVE fixes</p>
+        </div>
+      </div>
+      <div class="row--50-50">
+        <div class="col"></div>
+        <div class="col">
+          <div class="p-cta-block">
+            <a href="https://ubuntu.com/contact-us/form?product=pro">Get in touch for a deep dive into your open source dependencies &rsaquo; </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+    </div>
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <div class="col">
+          <h2>Find the coverage that fits</h2>
+        </div>
+        <div class="col">
+          <p>
+            Ubuntu Pro supports the full spectrum of modern development, from individual contributors and agile teams to enterprises with complex uptime and compliance needs. Whether you're securing a handful of systems or managing infrastructure across regions, Pro delivers production-grade security, long-term maintenance, and full-stack coverage that scales with your environment.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="p-section--shallow">
+      <div class="row">
+        <div class="col-9 col-start-medium-4 col-start-large-4">
+          <hr class="p-rule is-muted" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3 col-start-medium-4 col-start-large-4">
+          <h5>Find the right tier and secure your stack end to end</h5>
+        </div>
+        <div class="col-6">
+          <p>
+            Select the packages you want security maintenance for and an Ubuntu LTS release to understand which are covered under standard security maintenance and which require an Ubuntu Pro subscription.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-medium-4 col-start-large-4">
+        <div id="cve-selector-root"></div>
+      </div>
+    </div>
+    
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+    </div>
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <div class="col">
+          <h2>Expanding the scope of open source support</h2>
+        </div>
+        <div class="col">
+          <p>
+            Ubuntu Pro secures your entire open source stack with enterprise-grade CVE patching, compliance tooling, and 12 years of long term support - 10 of Expanded Security Maintenance (ESM) and 2 additional years of “Legacy” add-on.
+          </p>
+          <div class="p-cta-block">
+            <a href="/blog/how-can-you-personalize-your-ubuntu-pro-subscription">Discover the tools available with Ubuntu Pro and how to tailor your subscription &rsaquo; </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-section--shallow">
+      <div class="row">
+        <div class="col-9 col-start-medium-4 col-start-large-4">
+          <hr class="p-rule is-muted" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3 col-start-medium-4 col-start-large-4">
+          <h5>Number of packages covered per release - Pro vs LTS</h5>
+        </div>
+        <div class="col-6">
+          <p>Hover your mouse over the graph to explore how many packages get security updates across different Ubuntu LTS releases.</p>
+        </div>
+      </div>
+    </div>
+    <div class="p-section--shallow">
+      <div class="row">
+        <div class="col-6 col-start-medium-7 col-start-large-7">
+          {% include "/pro/linux-patch-management-with-pro/bar-chart.html" %}
+          <div class="p-cta-block">
+            <a href="/about/release-cycle">Learn more about release cycles and end of standard security maintenance &rsaquo;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% call(slot) vf_quote_wrapper(
+      title_text="",
+      quote_size="small",
+      quote_text="Keeping all software maintained is expensive, and hiring new developers with proficiency in older versions of PHP can be very expensive and difficult. We had considered Ubuntu Pro before. Once it became clear that Ubuntu Pro's per-server cost included hypervisors with unlimited VMs, we did our cost analysis and it ended up being the go-to solution.",
+      citation_source_name_text="A large games publisher",
+      ) -%}
+      {%- if slot == 'cta' -%}
+        <a href="https://canonical.com/case-study/ubuntu-pro-support-for-games-developer">Read the case study &rsaquo;</a>
+      {%- endif -%}
+    {% endcall -%}
+
+  <script src="{{ versioned_static('js/dist/linux-patch-management.js') }}"
+          type="module"
+          defer></script>
+
+  
+{% endblock %}

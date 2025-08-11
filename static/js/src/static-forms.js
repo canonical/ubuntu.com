@@ -200,6 +200,14 @@ function setUpStaticForms(form, formId) {
     form.addEventListener("submit", () => attachLoadingSpinner(submitButton));
   }
 
+  // Disable submit button if there are required checkboxes
+  const requiredCheckboxes = document.querySelectorAll(
+    "fieldset.js-required-checkbox",
+  );
+  if (requiredCheckboxes.length) {
+    submitButton.disabled = true;
+  }
+
   form.addEventListener("submit", function (e) {
     setDataLayerConsentInfo();
   });
@@ -278,41 +286,50 @@ function toggleCheckboxVisibility(fieldset, checklistItem) {
 const ubuntuVersionCheckboxes = document.querySelector(
   "fieldset.js-toggle-checkbox-visibility",
 );
-
 ubuntuVersionCheckboxes?.addEventListener("change", function (event) {
   toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
 });
 
-/**
- *
- * @param {*} fieldset
- * @param {*} target
- * Disables submit button for required checkboxes field
- */
-function requiredCheckbox(fieldset, target) {
-  const submitButton = document.querySelector(".js-submit-button");
-  const checkboxes = fieldset.querySelectorAll("input[type='checkbox']");
-  if (target.checked) {
-    submitButton.disabled = false;
-  } else {
-    var disableSubmit = true;
-    checkboxes.forEach((checkbox) => {
-      checkbox.checked ? (disableSubmit = false) : null;
-    });
-    submitButton.disabled = disableSubmit;
-  }
-}
-
-const requiredFieldset = document.querySelectorAll(
+// Add event listeners to required fieldsets
+const requiredFieldsets = document.querySelectorAll(
   "fieldset.js-required-checkbox",
 );
-requiredFieldset?.forEach((fieldset) => {
-  document.querySelector(".js-submit-button").disabled = true;
+requiredFieldsets?.forEach((fieldset) => {
   fieldset.addEventListener("change", function (event) {
-    requiredCheckbox(fieldset, event.target);
+    checkRequiredCheckboxes();
   });
 });
 
+/**
+ * Check all required fieldsets and enable/disable submit button accordingly
+ * Submit button is only enabled when ALL required fieldsets have at least one checkbox checked
+ */
+function checkRequiredCheckboxes() {
+  const submitButton = document.querySelector(".js-submit-button");
+  const allRequiredFieldsets = document.querySelectorAll(
+    "fieldset.js-required-checkbox",
+  );
+  let allFieldsetsValid = true;
+
+  allRequiredFieldsets.forEach((fieldset) => {
+    const checkboxes = fieldset.querySelectorAll("input[type='checkbox']");
+    let hasCheckedCheckbox = false;
+
+    checkboxes.forEach((checkbox) => {
+      if (checkbox.checked) {
+        hasCheckedCheckbox = true;
+      }
+    });
+    if (!hasCheckedCheckbox) {
+      allFieldsetsValid = false;
+    }
+  });
+  submitButton.disabled = !allFieldsetsValid;
+}
+
+/**
+ * Sets the consent info from the data layer into the consent_info cookie
+ */
 function setDataLayerConsentInfo() {
   const dataLayer = window.dataLayer || [];
   const latestConsentUpdateElements = dataLayer

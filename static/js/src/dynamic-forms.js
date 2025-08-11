@@ -108,6 +108,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       if (modalTrigger && modalTrigger !== document.body)
         modalTrigger.setAttribute("aria-expanded", "true");
       updateHash(triggeringHash);
+      checkRequiredCheckboxes();
       dataLayer.push({
         event: "interactive-forms",
         action: "open",
@@ -200,6 +201,9 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       }
     }
 
+    /**
+     * Sets the consent info from the data layer into the consent_info cookie
+     */
     function setDataLayerConsentInfo() {
       const dataLayer = window.dataLayer || [];
       const latestConsentUpdateElements = dataLayer
@@ -578,6 +582,14 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       fireLoadedEvent();
 
+      // Disable submit button if there are required checkboxes
+      const requiredFieldsets = document.querySelectorAll(
+        "fieldset.js-required-checkbox",
+      );
+      if (requiredFieldsets.length) {
+        submitButton.disabled = true;
+      }
+
       // Add event listeners to toggle checkbox visibility
       const ubuntuVersionCheckboxes = document.querySelector(
         "fieldset.js-toggle-checkbox-visibility",
@@ -586,13 +598,14 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
       });
 
-      // Add event listeners to required fieldset
-      const requiredFieldset = document.querySelectorAll(
-        "fieldset.js-required-checkbox",
-      );
-      requiredFieldset?.forEach((fieldset) => {
+      // Add event listeners if there are required fieldsets present
+      if (requiredFieldsets.length > 0) {
+        const submitButton = document.querySelector(".js-submit-button");
+        submitButton.disabled = true;
+      }
+      requiredFieldsets?.forEach((fieldset) => {
         fieldset.addEventListener("change", function (event) {
-          requiredCheckbox(fieldset, event.target);
+          checkRequiredCheckboxes();
         });
       });
 
@@ -749,23 +762,30 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     }
 
     /**
-     *
-     * @param {*} fieldset
-     * @param {*} target
-     * Disables submit button for required checkboxes field
+     * Check all required fieldsets and enable/disable submit button accordingly
+     * Submit button is only enabled when ALL required fieldsets have at least one checkbox checked
      */
-    function requiredCheckbox(fieldset, target) {
+    function checkRequiredCheckboxes() {
       const submitButton = document.querySelector(".js-submit-button");
-      const checkboxes = fieldset.querySelectorAll("input[type='checkbox']");
-      if (target.checked) {
-        submitButton.disabled = false;
-      } else {
-        let disableSubmit = true;
-        checkboxes.forEach((checkbox) => {
-          checkbox.checked ? (disableSubmit = false) : null;
+      const allRequiredFieldsets = document.querySelectorAll(
+        "fieldset.js-required-checkbox",
+      );
+      let allFieldsetsValid = true;
+
+      allRequiredFieldsets?.forEach((fieldset) => {
+        const checkboxes = fieldset.querySelectorAll("input[type='checkbox']");
+        let hasCheckedCheckbox = false;
+
+        checkboxes?.forEach((checkbox) => {
+          if (checkbox.checked) {
+            hasCheckedCheckbox = true;
+          }
         });
-        submitButton.disabled = disableSubmit;
-      }
+        if (!hasCheckedCheckbox) {
+          allFieldsetsValid = false;
+        }
+      });
+      submitButton.disabled = !allFieldsetsValid;
     }
   });
 })();

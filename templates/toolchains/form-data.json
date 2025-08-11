@@ -1,0 +1,118 @@
+{
+  "form": {
+    "/toolchains": {
+      "templatePath": "/toolchains/index.html",
+      "childrenPaths": ["/toolchains/spring", "/toolchains/java"],
+      "isModal": true,
+      "modalId": "toolchains-modal",
+      "formData": {
+        "title": "Contact us – Toolchains",
+        "formId": "6296",
+        "returnUrl": "/toolchains#contact-form-success",
+        "lpUrl": "https://ubuntu.com/toolchains/contact-us",
+        "product": ""
+      },
+      "fieldsets": [
+        {
+          "title": "Which toolchains or frameworks are you interested in?",
+          "id": "toolchains-interest-info",
+          "inputType": "checkbox",
+          "fields": [
+            {
+              "type": "checkbox",
+              "id": "java",
+              "value": "java",
+              "label": "Java"
+            },
+            {
+              "type": "checkbox",
+              "id": "python",
+              "value": "python",
+              "label": "Python"
+            },
+            {
+              "type": "checkbox",
+              "id": "dotnet",
+              "value": "dotnet",
+              "label": ".NET"
+            },
+            {
+              "type": "checkbox",
+              "id": "golang",
+              "value": "golang",
+              "label": "Golang"
+            },
+            {
+              "type": "checkbox",
+              "id": "rust",
+              "value": "rust",
+              "label": "Rust"
+            },
+            {
+              "type": "checkbox",
+              "id": "gcc",
+              "value": "gcc",
+              "label": "GCC"
+            },
+            {
+              "type": "checkbox",
+              "id": "other",
+              "value": "other",
+              "label": "Other"
+            }
+          ]
+        },
+        {
+          "title": "How will you deploy them?",
+          "id": "how-will-you-deploy",
+          "inputType": "checkbox",
+          "fields": [
+            {
+              "type": "checkbox",
+              "id": "server",
+              "value": "server",
+              "label": "Server"
+            },
+            {
+              "type": "checkbox",
+              "id": "kubernetes",
+              "value": "kubernetes",
+              "label": "Kubernetes"
+            },
+            {
+              "type": "checkbox",
+              "id": "other",
+              "value": "other",
+              "label": "Other"
+            }
+          ]
+        },
+        {
+          "title": "Tell us about your project",
+          "id": "about-your-project",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "about-your-project",
+              "label": "Abour your project"
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

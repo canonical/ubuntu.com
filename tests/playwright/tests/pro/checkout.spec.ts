@@ -178,7 +178,7 @@ test.describe("Checkout - Region and taxes", () => {
   });
 });
 
-test.describe("Checkout - Your inforamtion", () => {
+test.describe("Checkout - Your information", () => {
   test("Click cancel should reset field", async ({ page }) => {
     await page.goto("/pro/subscribe");
     await acceptCookiePolicy(page);

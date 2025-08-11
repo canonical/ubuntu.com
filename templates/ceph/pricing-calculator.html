@@ -12,381 +12,234 @@
 
 {% block content %}
   <section class="p-section--hero">
-    <div class="u-fixed-width">
-      <h2>Calculate your storage costs</h2>
+    <div class="grid-row">
+      <div class="grid-col-4">
+        <h1>Calculate your storage costs</h1>
+      </div>
+      <div class="grid-col-4">
+        <p>
+          Cloud storage can make up a significant proportion of public cloud hosting costs, for some data sets it can be more cost effective to store them in a self-hosted storage system.
+        </p>
+        <p>
+          Learn more in our <a href="/engage/optimize-cloud-storage-costs">white paper</a>, <span class="u-hide js-show">and explore potential savings with the calculator below.</span>
+          <noscript>and <a href="/contact-us/form">get in touch with our team</a> for cost estimations.</noscript>
+        </p>
+      </div>
     </div>
   </section>
 
-  <form>
-
-    <section class="p-section">
-      <div class="row--50-50">
-        <hr class="p-rule" />
-        <div class="col">
-          <h3>
-            Self-managed, or <a href="/ceph/managed">managed</a> by Canonical experts?
-          </h3>
-        </div>
-        <div class="col">
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="managed"
-                   aria-labelledby="managed"
-                   value="managed"
-                   checked="" />
-            <span class="p-radio__label" id="managed">Managed</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="managed"
-                   value="self-managed"
-                   aria-labelledby="self-managed" />
-            <span class="p-radio__label" id="self-managed">Self-managed</span>
-          </label>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="p-section">
-      <div class="row--50-50">
-        <hr class="p-rule" />
-        <div class="col">
-          <h3>How many months do you expect to store this data?</h3>
-        </div>
-        <div class="col">
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="months"
-                   value="12"
-                   aria-labelledby="12months"
-                   checked="" />
-            <span class="p-radio__label" id="12months">12</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="months"
-                   value="24"
-                   aria-labelledby="24months" />
-            <span class="p-radio__label" id="24months">24</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="months"
-                   value="36"
-                   aria-labelledby="36months" />
-            <span class="p-radio__label" id="36months">36</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="months"
-                   value="48"
-                   aria-labelledby="48months" />
-            <span class="p-radio__label" id="48months">48</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="months"
-                   value="60"
-                   aria-labelledby="60months" />
-            <span class="p-radio__label" id="60months">60</span>
-          </label>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="p-section">
-      <div class="row--50-50">
-        <hr class="p-rule" />
-        <div class="col">
-          <h3>Choose the maximum amount of storage you need:</h3>
-        </div>
-        <div class="col">
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="storage"
-                   aria-labelledby="2.25pb"
-                   value="2.25"
-                   checked="" />
-            <span class="p-radio__label" id="2.25pb">2.25 PB</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="storage"
-                   value="4.5"
-                   aria-labelledby="4.5pb" />
-            <span class="p-radio__label" id="4.5pb">4.5 PB</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="storage"
-                   value="6.75"
-                   aria-labelledby="6.75pb" />
-            <span class="p-radio__label" id="6.75pb">6.75 PB</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="storage"
-                   value="9"
-                   aria-labelledby="9pb" />
-            <span class="p-radio__label" id="9pb">9 PB</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="storage"
-                   value="11.25"
-                   aria-labelledby="11.25pb" />
-            <span class="p-radio__label" id="11.25pb">11.25 PB</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="storage"
-                   value="13.5"
-                   aria-labelledby="13.5pb" />
-            <span class="p-radio__label" id="13.5pb">13.5 PB</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="storage"
-                   value="15.75"
-                   aria-labelledby="15.75pb" />
-            <span class="p-radio__label" id="15.75pb">15.75 PB</span>
-          </label>
-
-          <label class="p-radio">
-            <input type="radio"
-                   class="p-radio__input"
-                   name="storage"
-                   value="18"
-                   aria-labelledby="18pb" />
-            <span class="p-radio__label" id="18pb">18 PB</span>
-          </label>
-
-        </div>
-      </div>
-    </section>
-  </form>
-
-  <section class="p-section--deep">
+  <noscript>
     <div class="u-fixed-width">
-      <hr class="p-rule" />
-      <div class="p-section--shallow">
-        <h2>Compare your costs</h2>
-      </div>
-      <div class="p-pricing-block--50-50">
-        <div class="p-pricing-block__tier">
-          <div class="p-pricing-block__section">
-            <hr class="p-rule--highlight u-no-margin--bottom" />
-            <div class="p-section--shallow">
-              <h3 class="p-heading--4">
-                Ceph self hosted cost
-                <br />
-                <strong id="ceph-cost">$0</strong>
-                <span class="u-text--muted">for <span id="ceph-months">0</span> months</span>
-              </h3>
-            </div>
-          </div>
-          <div class="p-pricing-block__section">
-            <p class="u-text--muted">What's included</p>
-            <div class="row">
-              <div class="col-8">
-                <p>Ceph Deployment</p>
-                <p>Hardware install and maintenance</p>
-                <p>Ubuntu Pro (managed or infra-Only)</p>
-                <p>Ubuntu Pro (additional storage)</p>
-                <p>Hardware</p>
-              </div>
-              <div class="col-3">
-                <p id="ceph-deployment-price">$0</p>
-                <p id="hardware-maintenance-price">$0</p>
-                <p id="ubuntu-pro-price">$0</p>
-                <p id="additional-storage-price">$0</p>
-                <p id="hardware-price">$0</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="p-pricing-block__tier">
-          <div class="p-pricing-block__section">
-            <hr class="p-rule--highlight u-no-margin--bottom" />
-            <div class="p-section--shallow">
-              <h3 class="p-heading--4">
-                Public cloud provider cost
-                <br />
-                <strong id="public-cloud-cost">$0</strong>
-                <span class="u-text--muted">for <span id="cloud-months">0</span> months</span>
-              </h3>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="p-notification--information is-light">
+      <div class="p-notification--information">
         <div class="p-notification__content">
-          <h5 class="p-notification__title">The cloud storage pricing calculator is for informational purposes only</h5>
-          <p class="p-notification__message">
-            Exact prices may vary depending on your specific requirements, performance needs and local cost conditions. The total costs include all CapEx and OpEx costs over the period selected, including reference hardware, hardware installation and maintenance, solution delivery, and support subscriptions. The total savings are calculated compared to reference pricing from a leading public cloud provider. In case of any questions, get in touch with our experts.
-          </p>
+          <h2 class="p-notification__title p-heading--5">This page requires JavaScript for full functionality</h2>
+          <p class="p-notification__message">Please enable it in your browser to use the pricing calculator.</p>
         </div>
       </div>
-
     </div>
-  </section>
+  </noscript>
 
-  <script>
-    const managedCephPerNodePerYear = 3485.0;
-    const additionalStoragePerYear = 6050.0;
-    const infraOnlyPerNodePerYear = 1500.0;
-    const storageNodeCost = 86221.94;
-    const managementNodeCost = 9801.89;
-    const switchCost = 11308.0;
+  <div class="u-hide js-show">
+    <form id="compare-costs-form">
+      <section class="p-section--shallow">
+        <div class="grid-row">
+          <hr class="p-rule" />
+          <div class="grid-col-4">
+            <h2 class="p-heading--4">
+              Self-managed, or <a href="/ceph/managed">managed</a> by Canonical experts?
+            </h2>
+          </div>
+          <div class="grid-col-4">
+            <label class="p-radio">
+              <input type="radio"
+                     class="p-radio__input"
+                     name="managed"
+                     aria-labelledby="managed"
+                     value="managed"
+                     checked="" />
+              <span class="p-radio__label" id="managed">Managed</span>
+            </label>
+            <label class="p-radio">
+              <input type="radio"
+                     class="p-radio__input"
+                     name="managed"
+                     value="self-managed"
+                     aria-labelledby="self-managed" />
+              <span class="p-radio__label" id="self-managed">Self-managed</span>
+            </label>
+          </div>
+        </div>
+      </section>
 
-    const cephDeploymentCost = 50000;
-    const hardwareMaintenanceCost = 25000;
+      <section class="p-section--shallow">
+        <div class="grid-row">
+          <hr class="p-rule" />
+          <div class="grid-col-4">
+            <h2 class="p-heading--4">How many months do you expect to store this data?</h2>
+          </div>
+          <div class="grid-col-4">
+            <div class="p-slider__wrapper">
+              <span class="p-slider__min-value">12</span>
+              <input type="range"
+                     name="months"
+                     min="12"
+                     max="60"
+                     value="12"
+                     step="12"
+                     id="month-slider"
+                     aria-label="How many months do you expect to store this data?" />
+              <span class="p-slider__max-value">60</span>
+              <input class="p-slider__input"
+                     type="text"
+                     maxlength="5"
+                     id="month-slider-input"
+                     tabindex="0" />
+            </div>
+            <div class="p-notification--information is-borderless u-no-margin--bottom u-hide js-invalid-notification js-invalid-month-notification">
+              <div class="p-notification__content">
+                <p class="p-notification__message">
+                  The inputted value "<span class="js-notification-value"></span>" was corrected to the nearest allowed input
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    const capacityTable = [{
-      capacity: 2.25,
-      nodes: 6,
-      switches: 3
-    }, {
-      capacity: 4.5,
-      nodes: 12,
-      switches: 3
-    }, {
-      capacity: 6.75,
-      nodes: 18,
-      switches: 3
-    }, {
-      capacity: 9,
-      nodes: 24,
-      switches: 3
-    }, {
-      capacity: 11.25,
-      nodes: 30,
-      switches: 6
-    }, {
-      capacity: 13.5,
-      nodes: 36,
-      switches: 6
-    }, {
-      capacity: 15.75,
-      nodes: 42,
-      switches: 6
-    }, {
-      capacity: 18,
-      nodes: 48,
-      switches: 6
-    }, ];
+      <section class="p-section--shallow">
+        <div class="grid-row">
+          <hr class="p-rule" />
+          <div class="grid-col-4">
+            <h2 class="p-heading--4">
+              Choose the maximum amount of storage you need:
+              <br />
+              <span class="p-heading--4">(Petabytes (PB))</span>
+            </h2>
+          </div>
+          <div class="grid-col-4">
+            <div class="p-slider">
+              <div class="p-slider__wrapper">
+                <span class="p-slider__min-value">2.25</span>
+                <input type="range"
+                       name="storage"
+                       min="2.25"
+                       max="18"
+                       value="2.25"
+                       step="2.25"
+                       id="storage-slider"
+                       aria-label="Choose the maximum amount of storage you need" />
+                <span class="p-slider__max-value">18</span>
+                <input class="p-slider__input"
+                       type="text"
+                       maxlength="5"
+                       id="storage-slider-input"
+                       tabindex="0" />
+              </div>
+            </div>
+            <div class="p-notification--information is-borderless u-no-margin--bottom u-hide js-invalid-notification js-invalid-storage-notification">
+              <div class="p-notification__content">
+                <p class="p-notification__message">
+                  The inputted value "<span class="js-notification-value"></span>" was corrected to the nearest allowed input
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </form>
 
-    document.addEventListener("DOMContentLoaded", function() {
-
-      const monthsInput = document.querySelectorAll("input[name='months']");
-      const storageInput = document.querySelectorAll("input[name='storage']");
-      const managedInput = document.querySelectorAll("input[name='managed']");
-
-      let selectedMonths = parseInt(
-        document.querySelector("input[name='months']:checked").value, 10
-      );
-      let selectedStorage = parseFloat(
-        document.querySelector("input[name='storage']:checked").value
-      );
-      let isManaged = document.querySelector("input[name='managed']:checked").value === "managed";
-
-
-      function calculateCosts() {
-        const capacitySpecs = capacityTable.find((row) => row.capacity === selectedStorage) || {};
-
-        const nodes = capacitySpecs.nodes;
-        const switches = capacitySpecs.switches;
-
-        // Ceph self-hosted cost, see the formula in the spreadsheet copydoc
-        const ubuntuProCost = isManaged ?
-          nodes + 3 * managedCephPerNodePerYear * (selectedMonths / 12) :
-          nodes + 3 * infraOnlyPerNodePerYear * (selectedMonths / 12);
-
-        const additionalStorageCost = nodes * additionalStoragePerYear * (selectedMonths / 12);
-
-        const hardwareCost =
-          nodes * storageNodeCost +
-          managementNodeCost * 3 +
-          switches * switchCost;
-
-        const cephTotalCost = cephDeploymentCost + hardwareMaintenanceCost + ubuntuProCost + additionalStorageCost + hardwareCost;
-
-        // Public cloud cost, see the formula in the spreadsheet copydoc
-        const publicCloudCost =
-          ((50 * 1024 * 0.023) +
-            (450 * 1024 * 0.022) +
-            ((selectedStorage * 1024 * 1024 - 500) * 0.021)) *
-          selectedMonths;
-
-        function formatCurrency(value) {
-          return `$${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-        }
-
-        document.getElementById("ceph-cost").textContent = formatCurrency(cephTotalCost);
-        document.getElementById("ceph-months").textContent = selectedMonths;
-        document.getElementById("public-cloud-cost").textContent = formatCurrency(publicCloudCost);
-        document.getElementById("cloud-months").textContent = selectedMonths;
-
-        document.getElementById("ceph-deployment-price").textContent = formatCurrency(cephDeploymentCost);
-        document.getElementById("hardware-maintenance-price").textContent = formatCurrency(hardwareMaintenanceCost);
-        document.getElementById("ubuntu-pro-price").textContent = formatCurrency(ubuntuProCost);
-        document.getElementById("additional-storage-price").textContent = formatCurrency(additionalStorageCost);
-        document.getElementById("hardware-price").textContent = formatCurrency(hardwareCost);
-      }
-
-      monthsInput.forEach((input) => {
-        input.addEventListener("change", function() {
-          selectedMonths = parseInt(this.value, 10);
-          calculateCosts();
-        });
-      });
-
-      storageInput.forEach((input) => {
-        input.addEventListener("change", function() {
-          selectedStorage = parseFloat(this.value);
-          calculateCosts();
-        });
-      });
-
-      managedInput.forEach((input) => {
-        input.addEventListener("change", function(event) {
-          isManaged = this.value === "managed";
-          calculateCosts();
-        });
-      });
-
-      calculateCosts();
-    });
-  </script>
+    <section class="p-section--deep">
+      <div class="u-fixed-width">
+        <hr class="p-rule" />
+        <div class="p-section--shallow">
+          <h2>Compare your costs</h2>
+        </div>
+        <div class="p-section--shallow">
+          <div class="p-pricing-block--50-50">
+            <div class="p-pricing-block__tier">
+              <div class="p-pricing-block__section">
+                <hr class="p-rule--highlight u-no-margin--bottom" />
+                <div class="p-section--shallow">
+                  <h3 class="p-heading--4">
+                    Ceph self hosted cost
+                    <br />
+                    <strong id="ceph-cost">$0</strong>
+                    <span class="u-text--muted">for <span id="ceph-months">0</span> months</span>
+                  </h3>
+                </div>
+              </div>
+              <div class="p-pricing-block__section">
+                <p class="u-text--muted">What's included</p>
+                <div class="grid-row">
+                  <div class="grid-col-4 grid-col-medium-2 grid-col-small-2">
+                    <p id="ceph-deployment-label">Ceph Deployment</p>
+                  </div>
+                  <div class="grid-col-4 grid-col-medium-2 grid-col-small-2 u-align--right">
+                    <p id="ceph-deployment-price" aria-describedby="ceph-deployment-label">$0</p>
+                  </div>
+                </div>
+                <div class="grid-row">
+                  <div class="grid-col-4 grid-col-medium-2 grid-col-small-2">
+                    <p id="hardware-maintenance-label">Hardware install and maintenance</p>
+                  </div>
+                  <div class="grid-col-4 grid-col-medium-2 grid-col-small-2 u-align--right">
+                    <p id="hardware-maintenance-price"
+                       aria-describedby="hardware-maintenance-label">$0</p>
+                  </div>
+                </div>
+                <div class="grid-row">
+                  <div class="grid-col-4 grid-col-medium-2 grid-col-small-2">
+                    <p id="ubuntu-pro-label">Ubuntu Pro (managed or infra-Only)</p>
+                  </div>
+                  <div class="grid-col-4 grid-col-medium-2 grid-col-small-2 u-align--right">
+                    <p id="ubuntu-pro-price" aria-describedby="ubuntu-pro-label">$0</p>
+                  </div>
+                </div>
+                <div class="grid-row">
+                  <div class="grid-col-4 grid-col-medium-2 grid-col-small-2">
+                    <p id="additional-storage-label">Ubuntu Pro (additional storage)</p>
+                  </div>
+                  <div class="grid-col-4 grid-col-medium-2 grid-col-small-2 u-align--right">
+                    <p id="additional-storage-price"
+                       aria-describedby="additional-storage-label">$0</p>
+                  </div>
+                </div>
+                <div class="grid-row">
+                  <div class="grid-col-4 grid-col-medium-2 grid-col-small-2">
+                    <p id="hardware-label">Hardware</p>
+                  </div>
+                  <div class="grid-col-4 grid-col-medium-2 grid-col-small-2 u-align--right">
+                    <p id="hardware-price" aria-describedby="hardware-label">$0</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-pricing-block__tier">
+              <div class="p-pricing-block__section">
+                <hr class="p-rule--highlight u-no-margin--bottom" />
+                <div class="p-section--shallow">
+                  <h3 class="p-heading--4">
+                    Public cloud provider cost
+                    <br />
+                    <strong id="public-cloud-cost">$0</strong>
+                    <span class="u-text--muted">for <span id="cloud-months">0</span> months</span>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-notification--information is-light">
+          <div class="p-notification__content">
+            <h5 class="p-notification__title">The cloud storage pricing calculator is for informational purposes only</h5>
+            <p class="p-notification__message">
+              Exact prices may vary depending on your specific requirements, performance needs and local cost conditions. The total costs include all CapEx and OpEx costs over the period selected, including reference hardware, hardware installation and maintenance, solution delivery, and support subscriptions. The total savings are calculated compared to reference pricing from a leading public cloud provider. In case of any questions, get in touch with our experts.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="{{ versioned_static('js/src/ceph-pricing-calculator.js') }}"></script>
 
 {% endblock content %}

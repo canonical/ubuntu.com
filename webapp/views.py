@@ -29,6 +29,7 @@ from werkzeug.exceptions import BadRequest
 # Local
 from webapp.login import user_info
 from webapp.marketo import MarketoAPI
+from webapp.utils import format_community_event_time
 
 ip_reader = geolite2.reader()
 session = talisker.requests.get_session()
@@ -531,6 +532,64 @@ def build_engage_pages_sitemap(engage_pages):
     return ep_sitemap
 
 
+def build_engage_pages_metadata(engage_pages):
+    """
+    Retrieve a all engage pages metadata as a single JSON structure.
+    The data is cached and refreshed once per day.
+    """
+    _cache = {"data": None, "last_update_date": None}
+
+    def get_metadata():
+        today = datetime.now().replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
+
+        if _cache["last_update_date"] != today or _cache["data"] is None:
+            all_pages = []
+            limit = 100
+            offset = 0
+            current_total = 1
+
+            while offset < current_total:
+                pages_list, total_count, active_count, current_total = (
+                    engage_pages.get_index(limit=limit, offset=offset)
+                )
+
+                for page in pages_list:
+                    if "path" in page and page["path"]:
+                        sanitized_page = {
+                            "topic_name": str(page.get("topic_name", "")),
+                            "path": str(page.get("path", "")),
+                            "form_id": str(page.get("form_id", "")),
+                            "webinar_code": str(page.get("webinar_code", "")),
+                            "resource_url": str(page.get("resource_url", "")),
+                            "author": str(
+                                page.get("author", "")
+                            ),  # Author doesn't exist yet
+                            "active": str(page.get("active", "")),
+                            "tags": str(page.get("tags", "")),
+                            "type": str(page.get("type", "")),
+                        }
+                        all_pages.append(sanitized_page)
+
+                offset += limit
+
+            all_pages_metadata = {
+                "total_count": total_count,
+                "pages": all_pages,
+            }
+
+            _cache["data"] = all_pages_metadata
+            _cache["last_update_date"] = today
+
+        response = flask.jsonify(_cache["data"])
+        response.headers["Cache-Control"] = "public, max-age=86400"
+
+        return response
+
+    return get_metadata
+
+
 def openstack_install():
     """
     OpenStack install docs
@@ -576,63 +635,6 @@ def openstack_install():
         single_node=str(singlenode_content),
         multi_node=str(multinode_content),
     )
-
-
-def openstack_engage(engage_pages):
-    def openstack_resource_data():
-        (
-            metadata,
-            count,
-            active_count,
-            current_total,
-        ) = engage_pages.get_index()
-
-        resource_tags = [
-            "openstack",
-            "OpenStack",
-            "Openstack",
-            "charmedopenstack",
-            "privatecloud",
-        ]
-
-        # filter for language, tags, publish_date
-        filtered_metadata = []
-        for item in metadata:
-            if (
-                "tags" in item
-                and any(tag in item["tags"] for tag in resource_tags)
-                and "en" in item["language"]
-                and item["publish_date"] != ""
-            ):
-                filtered_metadata.append(item)
-
-        # filter and seperate by type
-        whitepapers_metadata = []
-        webinars_metadata = []
-        casestudies_metadata = []
-
-        for item in filtered_metadata:
-            if "whitepaper" in item["type"]:
-                whitepapers_metadata.append(item)
-            elif "webinar" in item["type"]:
-                webinars_metadata.append(item)
-            elif "case study" in item["type"]:
-                casestudies_metadata.append(item)
-
-        # only show the latest three
-        whitepapers_metadata = whitepapers_metadata[:3]
-        webinars_metadata = webinars_metadata[:3]
-        casestudies_metadata = casestudies_metadata[:3]
-
-        return flask.render_template(
-            "openstack/resources.html",
-            metadata=metadata,
-            whitepapers_metadata=whitepapers_metadata,
-            webinars_metadata=webinars_metadata,
-            casestudies_metadata=casestudies_metadata,
-        )
-
-    return openstack_resource_data
 
 
 def german_why_openstack():
@@ -823,6 +825,9 @@ def shorten_acquisition_url(acquisition_url):
 def marketo_submit():
     form_fields = {}
     for key in flask.request.form:
+        # Skip keys that start with '_radio_' to avoid marketo errors
+        if key.startswith("_radio_"):
+            continue
         values = flask.request.form.getlist(key)
         value = ", ".join(values)
         if value:
@@ -898,17 +903,43 @@ def marketo_submit():
     if "country" in form_fields:
         enrichment_fields["country"] = form_fields["country"]
         form_fields.pop("country")
+    else:
+        try:
+            ip_location = ip_reader.get(client_ip)
+            if ip_location and "country" in ip_location:
+                enrichment_fields["country"] = ip_location["country"][
+                    "iso_code"
+                ]
+        except Exception:
+            pass
 
-    user_id = flask.request.cookies.get("user_id")
+    user_id = flask.request.cookies.get("user_id") or flask.request.form.get(
+        "user_id"
+    )
     if user_id:
         enrichment_fields["Google_Analytics_User_ID__c"] = user_id
+        form_fields.pop("user_id", None)
 
-    consent_info = flask.request.cookies.get("consent_info")
+    consent_info = flask.request.cookies.get(
+        "consent_info"
+    ) or flask.request.form.get("consent_info")
     if consent_info:
         enrichment_fields["Google_Consent_Mode__c"] = consent_info
+        form_fields.pop("consent_info", None)
 
     original_form_id = form_fields.get("formid", 4198)
     enrichment_fields["original_form_id"] = original_form_id
+
+    if "formid" not in form_fields:
+        flask.flash(
+            "There was a problem submitting your form.",
+            "contact-form-fail",
+        )
+        flask.current_app.extensions["sentry"].captureMessage(
+            "Marketo form ID missing",
+            extra={"enrichment_fields": enrichment_fields},
+        )
+        return flask.redirect(f"{referrer}#contact-form-fail")
 
     payload = {
         "formId": form_fields.pop("formid"),
@@ -921,8 +952,11 @@ def marketo_submit():
         ],
     }
 
-    encoded_utms = flask.request.cookies.get("utms")
+    encoded_utms = flask.request.cookies.get("utms") or flask.request.form.get(
+        "utms"
+    )
     if encoded_utms:
+        form_fields.pop("utms", None)
         utms = unquote(encoded_utms)
         utm_dict = dict(i.split(":", 1) for i in utms.split("&"))
         approved_utms = [
@@ -937,13 +971,6 @@ def marketo_submit():
                 if k == "utm_content":
                     k = "utmcontent"
                 enrichment_fields[k] = v
-
-    try:
-        ip_location = ip_reader.get(client_ip)
-        if ip_location and "country" in ip_location:
-            enrichment_fields["country"] = ip_location["country"]["iso_code"]
-    except Exception:
-        pass
 
     enriched_payload = {
         "formId": "4198",
@@ -988,30 +1015,85 @@ def marketo_submit():
 
     # Send enrichment data
     try:
-        marketo_api.submit_form(enriched_payload).json()
+        enrichment_submission = marketo_api.submit_form(
+            enriched_payload
+        ).json()
     except Exception:
         pass
 
-    if return_url:
-        # Personalize thank-you page
-        flask.session["form_details"] = {
-            "name": flask.request.form.get("firstName"),
-            "email": flask.request.form.get("email"),
-        }
+    # Redirect to success page only if both submissions were successful
+    payload_status = data["result"][0]["status"]
+    if (
+        enrichment_submission["success"] is True
+        and payload_status == "updated"
+    ):
+        if return_url:
+            # Personalize thank-you page
+            flask.session["form_details"] = {
+                "name": flask.request.form.get("firstName"),
+                "email": flask.request.form.get("email"),
+            }
 
-        if return_url.startswith("http://") or return_url.startswith(
-            "https://"
-        ):
+            if return_url.startswith("http://") or return_url.startswith(
+                "https://"
+            ):
+                return flask.redirect(return_url)
+
+            if referrer:
+                parsed_return_url = urlparse(return_url)
+                parsed_referrer = urlparse(referrer)
+                return flask.redirect(
+                    f"{parsed_referrer.scheme}://"
+                    f"{parsed_referrer.netloc}{parsed_return_url.path}"
+                )
+
             return flask.redirect(return_url)
-
-        if referrer:
-            parsed_referer = urlparse(referrer)
-            return flask.redirect(
-                f"{parsed_referer.scheme}://"
-                f"{parsed_referer.netloc}{return_url}"
+    else:
+        # Log failed form submissions to Sentry and display error notification
+        if (
+            payload_status == "skipped"
+            and enrichment_submission["success"] is False
+        ):
+            flask.current_app.extensions["sentry"].captureMessage(
+                (
+                    f"Marketo form {payload['formId']} and enrichment payload "
+                    "failed to submit"
+                ),
+                extra={
+                    "payload": payload,
+                    "enriched_payload": enriched_payload,
+                },
+            )
+            flask.flash(
+                (
+                    "There was an issue submitting the form contact details "
+                    "and payload."
+                ),
+                "contact-form-fail",
+            )
+        elif payload_status == "skipped":
+            flask.current_app.extensions["sentry"].captureMessage(
+                f"Marketo form {payload['formId']} payload failed to submit",
+                extra={
+                    "payload": payload,
+                    "response": data,
+                    "enrichment_fields": enrichment_fields,
+                },
+            )
+            flask.flash(
+                "There was an issue submitting the form payload.",
+                "contact-form-fail",
             )
 
-        return flask.redirect(return_url)
+        if return_url:
+            # Remove anchor from url
+            parsed_return_url = urlparse(return_url)
+            parsed_referrer = urlparse(referrer)
+            return flask.redirect(
+                f"{parsed_referrer.scheme}://{parsed_referrer.netloc}"
+                f"{parsed_return_url.path}#contact-form-fail"
+            )
+        return flask.redirect("/#contact-form-fail")
 
     if referrer:
         return flask.redirect(f"/thank-you?referrer={referrer}")
@@ -1160,16 +1242,22 @@ def process_active_vulnerabilities(security_vulnerabilities):
                     "vulnerabilities"
                 )
             )
-            vulnerability_topics = (
+            vulnerability_topics_array = (
                 security_vulnerabilities.get_topics_in_category()
             )
+
+            # Convert array of topic objects to dict for quick lookup
+            vulnerability_topics = {
+                str(topic["id"]): topic["slug"]
+                for topic in vulnerability_topics_array
+            }
             current_date = datetime.now()
 
             # Filter out vulnerabilities that should not be displayed
             filtered_vulnerabilities = [
                 {
                     **vulnerability,
-                    "slug": vulnerability_topics.get(vulnerability["id"]),
+                    "slug": vulnerability_topics.get(str(vulnerability["id"])),
                 }
                 for vulnerability in vulnerabilities_metadata
                 if vulnerability.get("display-until")
@@ -1178,7 +1266,6 @@ def process_active_vulnerabilities(security_vulnerabilities):
                 )
                 > current_date
             ]
-
             return flask.render_template(
                 "security/index.html",
                 active_vulnerabilities=filtered_vulnerabilities,
@@ -1199,16 +1286,19 @@ def build_vulnerabilities_list(security_vulnerabilities, path=None):
     def vulnerabilities_list():
         try:
             template_path = "security/vulnerabilities/view-all.html"
-            topics = security_vulnerabilities.get_topics_in_category()
+            topics_array = security_vulnerabilities.get_topics_in_category()
+            # Convert array of topic objects to dict for quick lookup
+            topics = {
+                str(topic["id"]): topic["slug"] for topic in topics_array
+            }
             vulnerabilities = (
                 security_vulnerabilities.get_category_index_metadata(
                     "vulnerabilities"
                 )
             )
-
             for vuln in vulnerabilities:
                 # Add slug
-                vuln_id = vuln["id"]
+                vuln_id = str(vuln["id"])
                 if vuln_id in topics:
                     vuln["slug"] = topics[vuln_id]
                 # Add year
@@ -1335,3 +1425,186 @@ def build_sitemap_tree(exclude_paths=None):
         return response
 
     return serve_sitemap
+
+
+def process_local_communities(local_communities):
+    def display_local_communities():
+        metadata_table = local_communities.get_category_index_metadata("locos")
+
+        # Group communities by continent
+        valid_continents = [
+            "africa",
+            "asia",
+            "europe",
+            "north america",
+            "south america",
+            "oceania",
+        ]
+        communities_by_continent = {}
+        for community in metadata_table:
+            continent = community.get("continent")
+            if continent and continent.lower() in valid_continents:
+                if continent not in communities_by_continent:
+                    communities_by_continent[continent] = []
+                communities_by_continent[continent].append(community)
+        communities_by_continent = dict(
+            sorted(communities_by_continent.items())
+        )
+
+        # Extract lat/lon from coordinates string for each community
+        map_markers = []
+        for community in metadata_table:
+            community["lat"] = None
+            community["lon"] = None
+
+            if "coordinates" in community and community["coordinates"]:
+                try:
+                    # Replace Unicode minus sign (−) with ASCII hyphen (-)
+                    coordinates = community["coordinates"].replace("−", "-")
+                    lat_str, lon_str = coordinates.split(",")
+                    lat = float(lat_str.strip())
+                    lon = float(lon_str.strip())
+                    community["lat"] = lat
+                    community["lon"] = lon
+
+                    map_markers.append(
+                        {
+                            "lat": lat,
+                            "lon": lon,
+                            "name": community.get("name", ""),
+                        }
+                    )
+                except (ValueError, AttributeError) as e:
+                    logging.error(
+                        f"Error parsing coordinates "
+                        f"'{community['coordinates']}': {e}"
+                    )
+
+        return flask.render_template(
+            "community/local-communities.html",
+            communities_by_continent=communities_by_continent,
+            map_markers=map_markers,
+        )
+
+    return display_local_communities
+
+
+def process_community_events(community_events):
+    def display_community_events():
+        featured_events = community_events.get_featured_events()
+
+        filtered_events = []
+        for event in featured_events:
+            full_event = community_events.parser.api.get_topic(
+                event["post"]["topic"]["id"]
+            )
+            parsed_event = community_events.parser.parse_topic(full_event)
+
+            if len(parsed_event["sections"]) > 0:
+                event["description"] = parsed_event["sections"][0]["content"]
+                format_community_event_time(event)
+                filtered_events.append(event)
+
+        # Get all events
+        events = community_events.get_events()
+
+        for event in events:
+            format_community_event_time(event)
+
+        events.sort(key=lambda x: x.get("starts_at", ""))
+
+        return flask.render_template(
+            "community/events.html",
+            featured_events=filtered_events[:2],  # Limit to 2 featured events
+            events=events,
+        )
+
+    return display_community_events
+
+
+def community_landing_page(
+    community_events, local_communities, ubuntu_weekly_newsletter
+):
+    def display_community_landing_page():
+        featured_events = community_events.get_featured_events()
+        events_to_display = []
+
+        # If there are less than 4 featured events,
+        # fill the rest with regular events
+        if len(featured_events) < 4:
+            events_data = community_events.get_events()
+            needed_events = 4 - len(featured_events)
+            events_to_display.extend(featured_events)
+
+            featured_event_ids = {event.get("id") for event in featured_events}
+            regular_events = [
+                event
+                for event in events_data
+                if event.get("id") not in featured_event_ids
+            ]
+
+            events_to_display.extend(regular_events[:needed_events])
+            events_to_display.sort(key=lambda x: x.get("starts_at", ""))
+        else:
+            events_to_display = featured_events[:4]
+
+        for event in events_to_display:
+            format_community_event_time(event)
+
+        communities_data = local_communities.get_category_index_metadata(
+            "locos"
+        )
+        newsletter_data = ubuntu_weekly_newsletter.get_topics_in_category()
+
+        return flask.render_template(
+            "community/index.html",
+            featured_events=events_to_display,
+            communities=communities_data,
+            newsletters=newsletter_data[:3],  # Limit to 3 newsletters
+        )
+
+    return display_community_landing_page
+
+
+def build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter):
+    def display_ubuntu_weekly_newsletter(path=None):
+        """
+        Display the Ubuntu Weekly Newsletter.
+        """
+        newsletter_list = ubuntu_weekly_newsletter.get_topics_in_category()
+
+        # Clean up newsletter titles and filter out non UWN issues
+        filtered_newsletters = []
+        for newsletter in newsletter_list:
+            if newsletter.get("title", "").startswith(
+                "Ubuntu Weekly Newsletter Issue"
+            ):
+                modified_newsletter = {
+                    **newsletter,
+                    "title": newsletter["title"]
+                    .replace("Ubuntu Weekly Newsletter", "UWN", 1)
+                    .strip(),
+                }
+                filtered_newsletters.append(modified_newsletter)
+
+        # Handle the landing page
+        if path is None:
+            path = "/"
+
+        # Handle pages from different categories
+        # We hardcode the topic ID as the path e.g. /t/12345
+        if path.startswith("t/"):
+            topic_id = path.split("t/")[1]
+            target_page = ubuntu_weekly_newsletter.get_topic_by_id(topic_id)
+        else:
+            target_page = ubuntu_weekly_newsletter.get_topic(path)
+
+        return flask.render_template(
+            "community/uwn.html",
+            newsletters_list=filtered_newsletters[
+                :20
+            ],  # Limit to 20 newsletters
+            newsletter_data=target_page,
+        )
+
+    return display_ubuntu_weekly_newsletter

@@ -36,13 +36,10 @@ jobs:
         sudo chmod -R 777 .
         dotrun install
 
-    - name: Build assets
-      run: dotrun build
-
-    - name: Run dotrun
+    - name: Build assets and run dotrun
       run: |
-        dotrun &
-        curl --head --fail --retry-delay 1 --retry 30 --retry-connrefused http://localhost:8001
+        dotrun & sleep 5
+          curl --head --fail --retry-delay 2 --retry 30 --retry-connrefused http://localhost:8001
 
     - name: Install Playwright Browsers
       run: yarn playwright install --with-deps
@@ -51,4 +48,5 @@ jobs:
       env:
         PLAYWRIGHT_USER_ID: ${{ secrets.PLAYWRIGHT_USER_ID }}
         PLAYWRIGHT_USER_PASSWORD : ${{ secrets.PLAYWRIGHT_USER_PASSWORD }}
+        TESTING: true
       run: yarn playwright test

@@ -72,6 +72,7 @@ describe("Summary", () => {
               action={"purchase"}
               setError={jest.fn()}
               setErrorType={jest.fn()}
+              setIsTotalLoading={jest.fn()}
               coupon={{ origin: "", IDs: [] }}
             />
           </Elements>
@@ -126,6 +127,7 @@ describe("Summary", () => {
               action={"purchase"}
               setError={jest.fn()}
               setErrorType={jest.fn()}
+              setIsTotalLoading={jest.fn()}
               coupon={{ origin: "", IDs: [] }}
             />
           </Elements>
@@ -168,6 +170,7 @@ describe("Summary", () => {
               action={"purchase"}
               setError={jest.fn()}
               setErrorType={jest.fn()}
+              setIsTotalLoading={jest.fn()}
               coupon={{ origin: "", IDs: [] }}
             />
           </Elements>
@@ -212,6 +215,7 @@ describe("Summary", () => {
               action={"purchase"}
               setError={jest.fn()}
               setErrorType={jest.fn()}
+              setIsTotalLoading={jest.fn()}
               coupon={{ origin: "", IDs: [] }}
             />
           </Elements>
@@ -256,6 +260,7 @@ describe("Summary", () => {
               action={"purchase"}
               setError={setError}
               setErrorType={jest.fn()}
+              setIsTotalLoading={jest.fn()}
               coupon={{ origin: "", IDs: [] }}
             />
           </Elements>
@@ -307,6 +312,7 @@ describe("Summary", () => {
               action={"purchase"}
               setError={setError}
               setErrorType={jest.fn()}
+              setIsTotalLoading={jest.fn()}
               coupon={{ origin: "", IDs: [] }}
             />
           </Elements>
@@ -360,6 +366,7 @@ describe("Summary", () => {
               action={"purchase"}
               setError={setError}
               setErrorType={jest.fn()}
+              setIsTotalLoading={jest.fn()}
               coupon={{ origin: "", IDs: [] }}
             />
           </Elements>
@@ -411,6 +418,7 @@ describe("Summary", () => {
               action={"purchase"}
               setError={setError}
               setErrorType={jest.fn()}
+              setIsTotalLoading={jest.fn()}
               coupon={{ origin: "", IDs: [] }}
             />
           </Elements>

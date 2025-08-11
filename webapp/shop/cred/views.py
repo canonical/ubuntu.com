@@ -7,7 +7,6 @@ import json
 import os
 import html
 from webapp.shop.api.ua_contracts.api import (
-    AccessForbiddenError,
     UAContractsAPIErrorView,
     UAContractsUserHasNoAccount,
 )
@@ -848,6 +847,7 @@ def cred_your_exams(
         else:
             exam_contracts = []
 
+    exam_contracts = exam_contracts if exam_contracts is not None else []
     cue_products = get_cue_products(type="exam").get_json()
     productListingID = None
     if cue_products and len(cue_products) > 0:
@@ -855,60 +855,54 @@ def cred_your_exams(
     else:
         flask.abort(404)
 
-    account = None
-    try:
-        account = advantage_mapper.ensure_purchase_account(
-            "canonical-cube", user["email"]
-        )
-    except UAContractsUserHasNoAccount:
-        flask.current_app.extensions["sentry"].captureException(
-            extra={
-                "user_info": user_info(flask.session),
-                "request_url": flask.request.url,
-                "request_headers": flask.request.headers,
-            }
-        )
-        return flask.jsonify({}), 404
-    except AccessForbiddenError:
-        flask.current_app.extensions["sentry"].captureException(
-            extra={
-                "user_info": user_info(flask.session),
-                "request_url": flask.request.url,
-                "request_headers": flask.request.headers,
-            }
-        )
-        return flask.jsonify({"error": "access forbidden"}), 403
-
-    purchase_request = {
-        "accountID": account.id,
-        "purchaseItems": [
-            {
-                "productListingID": productListingID,
-                "metric": "active-machines",
-                "value": 1,
-            }
-        ],
-        "previousPurchaseID": "",
-        "coupon": None,
+    template_data = {
+        "agreement_notification": agreement_notification,
+        "show_cred_maintenance_alert": show_cred_maintenance_alert,
+        "cred_is_in_maintenance": cred_is_in_maintenance,
+        "cred_maintenance_start": cred_maintenance_start,
+        "cred_maintenance_end": cred_maintenance_end,
     }
-
     is_banned = True
-    banned_error = (
-        "invalid purchase: user has been banned "
-        + "from purchasing products in the canonical-cube marketplace"
-    )
-    try:
-        response = advantage_mapper.purchase_from_marketplace(
-            marketplace="canonical-cube",
-            purchase_request=purchase_request,
-            preview=True,
+    purchased_contracts = list(
+        filter(
+            lambda c: c["contractItem"]["reason"] == "purchase_made",
+            exam_contracts,
         )
+    )
+
+    if purchased_contracts:
+        account_id = purchased_contracts[0]["accountContext"]["accountID"]
+        preview_purchase_request = {
+            "accountID": account_id,
+            "purchaseItems": [
+                {
+                    "productListingID": productListingID,
+                    "metric": "active-machines",
+                    "value": 1,
+                }
+            ],
+            "previousPurchaseID": "",
+            "coupon": None,
+        }
+
+        banned_error = (
+            "invalid purchase: user has been banned "
+            + "from purchasing products in the canonical-cube marketplace"
+        )
+        try:
+            response = advantage_mapper.purchase_from_marketplace(
+                marketplace="canonical-cube",
+                purchase_request=preview_purchase_request,
+                preview=True,
+            )
+            is_banned = False
+        except Exception as e:
+            if hasattr(e, "response") and e.response is not None:
+                error = e.response.json().get("message", "Unknown error")
+                if error != banned_error:
+                    is_banned = False
+    else:
         is_banned = False
-    except Exception as e:
-        if hasattr(e, "response") and e.response is not None:
-            error = e.response.json().get("message", "Unknown error")
-            if error != banned_error:
-                is_banned = False
 
     exams_in_progress = []
     exams_scheduled = []
@@ -975,6 +969,9 @@ def cred_your_exams(
                 r = reservation
                 timezone = r["user"]["time_zone"]
                 tz_info = pytz.timezone(timezone)
+                starts_at_utc = datetime.strptime(
+                    r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ"
+                ).replace(tzinfo=pytz.timezone("UTC"))
                 starts_at = (
                     datetime.strptime(r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ")
                     .replace(tzinfo=pytz.timezone("UTC"))
@@ -985,7 +982,7 @@ def cred_your_exams(
                 actions = []
                 utc = pytz.timezone("UTC")
                 now = utc.localize(datetime.utcnow())
-                end = starts_at + timedelta(minutes=75)
+                ends_at_utc = starts_at_utc + timedelta(minutes=75)
                 if assessment_id:
                     state = RESERVATION_STATES.get(
                         r["assessment"]["state"], r["state"]
@@ -1005,9 +1002,10 @@ def cred_your_exams(
 
                 # if assessment is provisioned
                 if assessment_id:
-                    is_in_window = (now > starts_at and now < end) or (
-                        now < starts_at
-                        and now > starts_at - timedelta(minutes=30)
+                    is_in_window = (
+                        starts_at_utc - timedelta(minutes=30)
+                        < now
+                        < ends_at_utc
                     )
                     provisioned_but_not_taken = is_in_window and state in [
                         RESERVATION_STATES["notified"],
@@ -1145,12 +1143,8 @@ def cred_your_exams(
     response = flask.make_response(
         flask.render_template(
             "credentials/your-exams.html",
-            agreement_notification=agreement_notification,
+            **template_data,
             exams=exams,
-            show_cred_maintenance_alert=show_cred_maintenance_alert,
-            cred_is_in_maintenance=cred_is_in_maintenance,
-            cred_maintenance_start=cred_maintenance_start,
-            cred_maintenance_end=cred_maintenance_end,
             is_banned=is_banned,
         )
     )
@@ -1264,8 +1258,9 @@ def cred_exam(trueability_api, proctor_api, **_):
 
     assessment = assessment["assessment"]
     assessment_reservation = assessment.get("assessment_reservation", None)
+    timezone = assessment_reservation.get("user", {}).get("time_zone", None)
 
-    if is_staging:
+    if is_staging and is_proctoring_enabled(ta_exam):
         student_session = None
         ext_exam_id = None
         exam_date_time = None
@@ -1297,6 +1292,7 @@ def cred_exam(trueability_api, proctor_api, **_):
                 base_url
                 + "credentials/exam?uuid="
                 + f"{assessment_reservation.get('uuid', '')}"
+                + f"&ta_exam={ta_exam}"
             )
             student_session_response = proctor_api.create_student_session(
                 {
@@ -1307,6 +1303,8 @@ def cred_exam(trueability_api, proctor_api, **_):
                     "client_exam_id": proc_exam,
                     "ext_exam_id": ext_exam_id,
                     "exam_link": exam_link,
+                    "timezone": timezone,
+                    "ai_enabled": "1",
                 }
             )
             student_session = student_session_response.get("data", None)
@@ -1341,6 +1339,8 @@ def cred_syllabus_data(**_):
     exam_name = flask.request.args.get("exam")
     syllabus_file = open("webapp/shop/cred/syllabus.json", "r")
     syllabus_data = json.load(syllabus_file)
+    if not any(exam_name == e["exam_name"] for e in syllabus_data):
+        exam_name = syllabus_data[0]["exam_name"]
     return flask.render_template(
         "credentials/syllabus.html",
         syllabus_data=syllabus_data,
@@ -1508,7 +1508,6 @@ def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
                 else:
                     exam["period"] = product["period"]
                 exam["marketplace"] = product["marketplace"]
-                exam["name"] = product["name"]
                 exam["periodQuantity"] = product["effectiveDays"]
 
     return flask.render_template(

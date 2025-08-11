@@ -25,9 +25,11 @@ import { UserSubscriptionMarketplace } from "advantage/api/enum";
 
 type Props = {
   setError: React.Dispatch<React.SetStateAction<DisplayError | null>>;
+  isCardSaving: boolean;
+  setIsCardSaving: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const UserInfoForm = ({ setError }: Props) => {
+const UserInfoForm = ({ setError, isCardSaving, setIsCardSaving }: Props) => {
   const {
     errors,
     touched,
@@ -35,7 +37,6 @@ const UserInfoForm = ({ setError }: Props) => {
     initialValues,
     setFieldTouched,
     setFieldValue,
-    isSubmitting,
   } = useFormikContext<FormValues>();
   const queryClient = useQueryClient();
   const paymentMethodMutation = registerPaymentMethod();
@@ -85,6 +86,7 @@ const UserInfoForm = ({ setError }: Props) => {
     setFieldTouched("isInfoSaved", false);
     setIsButtonDisabled(true);
     setFieldValue("isInfoSaved", true);
+    setIsCardSaving(true);
 
     paymentMethodMutation.mutate(
       { formData: values },
@@ -94,11 +96,13 @@ const UserInfoForm = ({ setError }: Props) => {
           queryClient.invalidateQueries({ queryKey: ["preview"] });
           setIsButtonDisabled(false);
           setIsEditing(false);
+          setIsCardSaving(false);
         },
         onError: (error) => {
           setFieldValue("Description", false);
           setFieldValue("TermsAndConditions", false);
           setIsButtonDisabled(false);
+          setIsCardSaving(false);
           document.querySelector("h1")?.scrollIntoView();
 
           if (error instanceof Error) {
@@ -387,6 +391,10 @@ const UserInfoForm = ({ setError }: Props) => {
           </p>
         </>
       )}
+      <p>
+        We will save your card information. You can change it in your Ubuntu
+        account{" "}
+      </p>
     </>
   );
 
@@ -439,7 +447,7 @@ const UserInfoForm = ({ setError }: Props) => {
             )}
             <ActionButton
               onClick={toggleEditing}
-              loading={isSubmitting}
+              loading={isCardSaving}
               disabled={isButtonDisabled}
               data-testid="user-info-save-button"
             >

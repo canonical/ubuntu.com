@@ -1,3 +1,4 @@
+
 ---
 wrapper_template: templates/docs/markdown.html
 markdown_includes:
@@ -16,6 +17,20 @@ layout:
 toc: False
 
 ---
+
+# 1.31+ck4
+
+### August 6, 2025 - `charmed-kubernetes --channel 1.31/stable`
+
+## Notable Fixes
+
+### Kubernetes Control Plane Charm
+* [LP#2109614](https://bugs.launchpad.net/charm-kubernetes-worker/+bug/2109614) Fetch `kube-control` address bindings
+and include them in the Subject Alternative Names (SANs).
+
+### Kubernetes Worker Charm
+* [LP#2109614](https://bugs.launchpad.net/charm-kubernetes-worker/+bug/2109614) Fetch `kube-control` address bindings
+and include them in the Subject Alternative Names (SANs).
 
 # 1.31+ck3
 

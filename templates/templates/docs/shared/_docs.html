@@ -3,6 +3,10 @@
 {% block title %}{{ document.title }}{% endblock %}
 {% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 
+{% block body_class %}
+  {% if custom_body_class %}{{ custom_body_class }}{% endif %}
+{% endblock body_class %}
+
 {% macro create_navigation(nav_items, expandable=False, expanded=False) %}
   <ul class="p-side-navigation__list">
     {% for element in nav_items %}
@@ -169,6 +173,8 @@
       </main>
     </div>
   </div>
+
+  <script src="{{ versioned_static('js/dist/prism.js') }}"></script>
 
   <script>
     // Allows the 'onchange' listener to be used on a select field, while still being accessible.

@@ -30,6 +30,7 @@ type Props = {
   action: Action;
   coupon?: Coupon;
   errorType: string;
+  isDisabled: boolean;
 };
 
 const BuyButton = ({
@@ -38,12 +39,13 @@ const BuyButton = ({
   action,
   coupon,
   errorType,
+  isDisabled,
 }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const isBuyButtonDisabled = useMemo(() => {
-    return isLoading || errorType === "cue-banned";
-  }, [isLoading, errorType]);
+    return isLoading || errorType === "cue-banned" || isDisabled;
+  }, [isLoading, errorType, isDisabled]);
 
   const {
     values,
@@ -138,7 +140,7 @@ const BuyButton = ({
 
     // Update customer information
     const hasZeroPriceValue = products.some(
-      (item) => item.product.price.value === 0,
+      (item) => item.product.price.value === 0 || item.product.isFree,
     );
     if (!values.defaultPaymentMethod && !hasZeroPriceValue) {
       await postCustomerInfoMutation.mutateAsync(
@@ -222,10 +224,8 @@ const BuyButton = ({
         description: (
           <>
             VAT number could not be validated at this time, please try again
-            later or contact
-            <a href="mailto:customersuccess@canonical.com">
-              customer success
-            </a>{" "}
+            later or contact{" "}
+            <a href="mailto:customersuccess@canonical.com">customer success</a>{" "}
             if the problem persists.
           </>
         ),

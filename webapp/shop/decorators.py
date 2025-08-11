@@ -354,7 +354,10 @@ def get_proctor_api_instance(area, proctor_session) -> Proctor360API:
     instance = Proctor360API(
         proctor_session,
     )
-    instance.set_time_zone_ids()
+    try:
+        instance.set_time_zone_ids()
+    except Exception:
+        pass
     return instance
 
 

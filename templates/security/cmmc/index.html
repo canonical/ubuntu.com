@@ -1,8 +1,6 @@
 {% extends "security/base_security.html" %}
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
-{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
-{% from "_macros/vf_rich-horizontal-list.jinja" import vf_rich_horizontal_list %}
 {% from "macros/_macros-resource.jinja" import resource_section %}
 
 {% block title %}Enable CMMC compliance with Ubuntu Pro{% endblock %}
@@ -37,7 +35,9 @@
         </div>
         <div class="p-cta-block">
           <p>
-            <a class="p-button--positive js-invoke-modal" href="/security/contact-us">Contact us</a>
+            <a href="/security/contact-us"
+             class="p-button--positive js-invoke-modal"
+             aria-controls="security-standards-modal">Contact us</a>
             <a class="p-button" href="/pro/subscribe">Get Ubuntu Pro</a>
           </p>
         </div>
@@ -136,6 +136,15 @@
               <li class="p-tabs__item">
                 <a class="p-tabs__link"
                    role="tab"
+                   aria-selected="false"
+                   id="security-compliance-tab-new-mexico"
+                   href="#security-compliance-new-mexico"
+                   aria-controls="security-compliance-new-mexico"
+                   tabindex="-1">New Mexico State University</a>
+              </li>
+              <li class="p-tabs__item">
+                <a class="p-tabs__link"
+                   role="tab"
                    aria-selected="true"
                    id="security-compliance-tab-lucid"
                    href="#security-compliance-lucid"
@@ -150,17 +159,30 @@
                    aria-controls="security-compliance-launchdarky"
                    tabindex="-1">LaunchDarkly</a>
               </li>
-              <li class="p-tabs__item">
-                <a class="p-tabs__link"
-                   role="tab"
-                   aria-selected="false"
-                   id="security-compliance-tab-new-mexico"
-                   href="#security-compliance-new-mexico"
-                   aria-controls="security-compliance-new-mexico"
-                   tabindex="-1">New Mexico State University</a>
-              </li>
             </ul>
           </nav>
+        <div id="security-compliance-new-mexico"
+             class="p-tabs__content"
+             role="tabpanel"
+             aria-labelledby="security-compliance-tab-new-mexico">
+          <div class="p-strip is-shallow">
+            <div class="p-strip is-shallow">
+              {{ image(url="https://assets.ubuntu.com/v1/b0ee8fee-nmsu-logo.svg",
+              alt="New Mexico State University",
+              width="45",
+              height="50",
+              hi_def=True,
+              fmt="svg",
+              loading="lazy"
+              ) | safe
+              }}
+            </div>
+            <h3>How New Mexico State University accelerates compliant federal research with Ubuntu</h3>
+            <p>When the stakes are high and national security is on the line, every decision matters. Just ask the team at New Mexico State University’s Physical Science Laboratory (PSL). Explore PSLs path towards CMMC.</p>
+            <hr class="p-rule--muted" />
+            <a href="/blog/how-new-mexico-state-university-accelerates-compliant-federal-research-with-ubuntu" aria-label="Read the case study about New Mexico State University">Read the case study&nbsp;&rsaquo;</a>
+          </div>
+        </div>
         <div id="security-compliance-lucid"
              class="p-tabs__content"
              role="tabpanel"
@@ -203,28 +225,6 @@
             <p>Learn how a SaaS provider achieved effortless FIPS compliance on AWS.</p>
             <hr class="p-rule--muted" />
             <a href="https://assets.ubuntu.com/v1/b97b2df6-AWS%20LaunchDarkly%20Case%20Study%20v3%203.6.2024.pdf" aria-label="Read the case study about LaunchDarkly">Read the case study&nbsp;&rsaquo;</a>
-          </div>
-        </div>
-        <div id="security-compliance-new-mexico"
-             class="p-tabs__content"
-             role="tabpanel"
-             aria-labelledby="security-compliance-tab-new-mexico">
-          <div class="p-strip is-shallow">
-            <div class="p-strip is-shallow">
-              {{ image(url="https://assets.ubuntu.com/v1/b0ee8fee-nmsu-logo.svg",
-                            alt="New Mexico State University",
-                            width="45",
-                            height="50",
-                            hi_def=True,
-                            fmt="svg",
-                            loading="lazy"
-                      ) | safe
-              }}
-            </div>
-            <h3>How New Mexico State University accelerates compliant federal research with Ubuntu</h3>
-            <p>When the stakes are high and national security is on the line, every decision matters. Just ask the team at New Mexico State University’s Physical Science Laboratory (PSL). Explore PSLs path towards CMMC.</p>
-            <hr class="p-rule--muted" />
-            <a href="/blog/how-new-mexico-state-university-accelerates-compliant-federal-research-with-ubuntu" aria-label="Read the case study about New Mexico State University">Read the case study&nbsp;&rsaquo;</a>
           </div>
         </div>
       </div>
@@ -294,7 +294,7 @@
          id="resources-whitepapers-tab"
          aria-labelledby="resources-whitepapers">
         <div class="row">
-          <div class="col-3 col-medium-2 u-equal-height-items">
+          <div class="col-3 col-medium-3 u-equal-height-items">
             <div class="u-crop--16-9">
               <div class="p-image-wrapper">
                 {{ image(url="https://assets.ubuntu.com/v1/f930f8ec-wp1.jpg",
@@ -309,7 +309,7 @@
             </div>
             <a href="/engage/a-guide-to-infrastructure-hardening">A guide to Infrastructure Hardening</a>
           </div>
-          <div class="col-3 col-medium-2 u-equal-height-items">
+          <div class="col-3 col-medium-3 u-equal-height-items">
             <div class="u-crop--16-9">
               <div class="p-image-wrapper">
                 {{ image(url="https://assets.ubuntu.com/v1/f2312d7a-wp2.jpg",
@@ -324,7 +324,7 @@
             </div>
             <a href="/engage/security-compliance-US-public-sector-FIPS-DISASTIG">Ubuntu compliance guide for US public sector</a>
           </div>
-          <div class="col-3 col-medium-2 u-equal-height-items">
+          <div class="col-3 col-medium-3 u-equal-height-items">
             <div class="u-crop--16-9">
               <div class="p-image-wrapper">
                 {{ image(url="https://assets.ubuntu.com/v1/e8776be5-wp3.jpg",
@@ -338,6 +338,21 @@
               </div>
             </div>
             <a href="/engage/iot-compliance-in-the-global-market-a-guide-for-iot-device-manufacturers">Understand IoT security and IoT compliance across global markets</a>
+          </div>
+          <div class="col-3 col-medium-3 u-equal-height-items">
+            <div class="u-crop--16-9">
+              <div class="p-image-wrapper">
+                {{ image(url="https://assets.ubuntu.com/v1/de8359fc-os-vulnerability-management.png",
+                              alt="",
+                              width="568",
+                              height="380",
+                              hi_def=True,
+                              loading="lazy"
+                              ) | safe
+                }}
+              </div>
+            </div>
+            <a href="/engage/vulnerability-management">A guide to open source vulnerability management</a>
           </div>
         </div>
       </div>
@@ -370,7 +385,8 @@
           <hr class="p-rule--muted" />
           <p>
             <a class="p-button--positive js-invoke-modal"
-               href="/support/contact-us">Contact us</a>
+               href="/security/contact-us"
+               aria-controls="security-standards-modal">Contact us</a>
             <a class="p-button" href="/pro/subscribe">Access a free trial</a>
           </p>
         </div>
@@ -381,6 +397,6 @@
   <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
   <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
 
-  {{ load_form("/cmmc") | safe }}
+  {{ load_form("/security-standards", 6310) | safe }}
 
 {% endblock content %}

@@ -54,7 +54,8 @@
                         width="1200",
                         height="800",
                         hi_def=True,
-                        loading="auto") | safe
+                        loading="auto",
+                        attrs={"class": "p-image-container__image"}) | safe
             }}
           </div>
         </div>
@@ -71,13 +72,15 @@
       <hr class="p-rule" />
       <div class="col">
         <div class="p-section--shallow">
-          <div class="p-image-container is-cover u-hide--small">
+          <div class="p-image-container--2-3 is-cover u-hide--small">
             {{ image(url="https://assets.ubuntu.com/v1/783924cf-when-to-use-updated.png",
                         alt="",
                         width="1200",
                         height="1800",
                         hi_def=True,
-                        loading="lazy") | safe
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}
+              ) | safe
             }}
           </div>
         </div>

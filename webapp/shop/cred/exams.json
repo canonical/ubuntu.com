@@ -1,8 +1,8 @@
 [
   {
     "id": "cue-01-linux",
-    "name": "CUE.01 Linux",
-    "displayName": "CUE.01 Linux",
+    "name": "Using Linux Terminal",
+    "displayName": "Using Linux Terminal",
     "price": {
       "value": 10000,
       "currency": "USD"
@@ -21,12 +21,13 @@
     "openTo": {
       "production": true,
       "staging": true
-    }
+    },
+    "isFree": false
   },
   {
     "id": "cue-02-desktop",
-    "name": "CUE.02 Desktop",
-    "displayName": "CUE.02 Desktop",
+    "name": "Using Ubuntu Desktop",
+    "displayName": "Using Ubuntu Desktop",
     "price": {
       "value": 10000,
       "currency": "USD"
@@ -52,12 +53,13 @@
     "openTo": {
       "production": true,
       "staging": true
-    }
+    },
+    "isFree": true
   },
   {
     "id": "cue-03-server",
-    "name": "CUE.03 Server",
-    "displayName": "CUE.03 Server",
+    "name": "Using Ubuntu Server",
+    "displayName": "Using Ubuntu Server",
     "metadata": [
       {
         "key": "description",
@@ -69,6 +71,7 @@
     "openTo": {
       "production": false,
       "staging": false
-    }
+    },
+    "isFree": false
   }
 ]

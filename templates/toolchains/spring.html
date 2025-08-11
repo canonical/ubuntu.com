@@ -1,0 +1,236 @@
+{% extends "toolchains/base_toolchains.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/10fYN_fRpN08qYpZx1H2SbKBpQb5hRqQ4nniibMqPmIk/
+{% endblock meta_copydoc %}
+
+{% block title %}Spring Boot on Ubuntu{% endblock %}
+
+{% block meta_description %}
+  Explore  Spring on Ubuntu and build robust, modern Java applications. Learn about long-term security support, dev environment automation and automated container packaging.
+{% endblock %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+  {% call(slot) vf_hero(
+    title_text='Build with Spring on Ubuntu',
+    subtitle_text='Simplify app development <br class="u-hide-small u-hide-medium" />with Canonical’s automation for Spring' | safe,
+    layout='25/75'
+    ) -%}
+    {%- if slot == 'signpost_image' -%}
+      <img src="https://assets.ubuntu.com/v1/96e1b28e-spring-logo-signpost.png"
+           alt="Spring" />
+    {%- endif -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Harness the features of Spring Boot and move seamlessly from development to deployment. Set up, maintain and publish Spring artefacts with ease through Canonical’s Devpack for Spring.
+        Go further with Spring Boot extensions that empower you to create production-grade containers and Kubernetes operators for your Spring applications. All within the Ubuntu ecosystem.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="https://snapcraft.io/devpack-for-spring"
+         class="p-button--positive u-no-margin--bottom">Install Devpack for Spring</a>
+      <a href="https://documentation.ubuntu.com/rockcraft/en/latest/tutorial/springboot/"
+         class="p-button u-no-margin--bottom">Containerize your application</a>
+    {%- endif -%}
+  {%- endcall -%}
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <div class="p-section">
+          <h2>A smooth dev environment setup process</h2>
+        </div>
+      </div>
+      <div class="col">
+        <p>
+          Devpacks are snaps with collections of tools that assist in setting up, maintaining, and publishing software projects.
+        </p>
+        <p>
+          The <a href="https://snapcraft.io/devpack-for-spring">devpack for Spring</a> packages Spring CLI and brings it to Ubuntu.
+        </p>
+        <p>In addition to the upstream functionality, devpack for Spring offers the following additional features:</p>
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">
+            <h3 class="p-heading--5 u-no-padding--top u-no-margin--bottom">Offline installation of Spring project libraries</h3>
+            Work at pace and reduce your initial build time.  Work with a consistent set of dependencies and simplify the set up of offline builds.
+          </li>
+          <li class="p-list__item is-ticked">
+            <h3 class="p-heading--5 u-no-padding--top u-no-margin--bottom">Pre-configured plugins for Maven and Gradle</h3>
+            Benefit from a consistent set of defaults across the organisation for source code formatting, static analysis and other best practices and policies.
+          </li>
+          <li class="p-list__item is-ticked">
+            <h3 class="p-heading--5 u-no-padding--top u-no-margin--bottom">Reduced project boilerplate</h3>
+            With less boilerplate code, you can minimize repetitive and time-consuming tasks and carry out central upgrades of defaults without updating every project.
+          </li>
+        </ul>
+        <div class="p-cta-block">
+          <a class="p-button" href="https://snapcraft.io/devpack-for-spring">Get the devpack for Spring</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Build production grade containers for your Spring applications</h2>
+      </div>
+      <div class="col">
+        <p>
+          Thanks to the Spring Boot extension for Rockcraft, in just one command you can build Rocks, which are production-grade OCI containers for your application.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-start-large-4 col-9 col-medium-6">
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">Ideal for production environments</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Rocks are production-grade by design. Rockcraft enables you to build dependable, secure, and stable container images for various deployment scenarios, especially within Kubernetes.
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">No knowledge of image building required</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Rockcraft handles all the boilerplate steps involved in creating production-grade container images. This allows developers to focus on the actual content and logic of their applications.
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">Built on Ubuntu</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Rocks leverage the stability, security, and predictable release cadence of Ubuntu, along with its extensive package ecosystem.
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">Opinionated and consistent design</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Rocks follow the same design, aiming to minimise your full-stack disparity and adoption overhead. Pebble is the official entry point, providing a predictable and powerful abstraction between users and the container application.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="p-section">
+    <div class="row--50-50">
+      <div class="col"></div>
+      <div class="col p-cta-block">
+        <a class="p-button"
+           href="https://documentation.ubuntu.com/rockcraft/en/latest/tutorial/springboot/">
+          Build a Rock for a Spring application
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <div class="p-section">
+          <h2>
+            Create a Kubernetes operator
+            <br class="u-hide-small u-hide-medium" />
+            for your spring applications
+          </h2>
+        </div>
+      </div>
+      <div class="col">
+        <p>
+          Using the Charmcraft Spring plugin,  you can package your Spring Boot application as a charm in a single command. Charms are universal software operators for lifecycle management, and through the Spring plugin, you can unlock the benefits of the entire charm ecosystem.
+        </p>
+        <p>
+          This enables connections to services like HA Postgres databases, monitoring through Grafana, and easy integration with ingress, among other features.
+        </p>
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">
+            <h3 class="p-heading--5 u-no-padding--top u-no-margin--bottom">Full application lifecycle management</h3>
+            Charms operate across all aspects of application lifecycle management, with an emphasis on day 2 operations.
+          </li>
+          <li class="p-list__item is-ticked">
+            <h3 class="p-heading--5 u-no-padding--top u-no-margin--bottom">Support for all Kubernetes distributions</h3>
+            Your app can be deployed and orchestrated on all major on prem and cloud Kubernetes distributions.
+          </li>
+          <li class="p-list__item is-ticked">
+            <h3 class="p-heading--5 u-no-padding--top u-no-margin--bottom">Benefit from Canonical’s charm ecosystem</h3>
+            Every charm benefits from a set of prebuilt integrations including databases, observability, ingress, authentication and much more.
+          </li>
+        </ul>
+        <div class="p-cta-block">
+          <a class="p-button"
+             href="https://canonical-charmcraft.readthedocs-hosted.com/en/stable/tutorial/">
+            Use Charmcraft Spring plugin
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <div class="p-section--shallow">
+          <h2>Receive up to 12 years of security patching and maintenance</h2>
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-image-container is-highlighted">
+          {{ image(url="https://assets.ubuntu.com/v1/f4335ae3-security-patching.png",
+                    alt="security patching",
+                    width="1800",
+                    height="1200",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
+        </div>
+        <p>
+          Extend the security support period for your builds to up to 12 years, through Ubuntu Pro – Canonical’s comprehensive subscription for open source security.
+        </p>
+        <p>
+          Give developers the freedom to focus on making impactful applications that deliver for customers with expanded security maintenance for the latest OpenJDK LTS releases running until 2034.
+        </p>
+        <div class="p-cta-block">
+          <a class="p-button" href="https://ubuntu.com/pricing/pro">Get support with Ubuntu Pro</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="p-rule is-fixed-width" />
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <h2>
+        <a href="/toolchains/contact-us"
+           class="js-invoke-modal"
+           aria-controls="toolchains-modal">Talk to us about your Spring workloads on Ubuntu&nbsp;&rsaquo;</a>
+      </h2>
+    </div>
+  </section>
+
+  {{ load_form("/toolchains") | safe }}
+
+{% endblock content %}

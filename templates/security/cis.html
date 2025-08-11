@@ -37,7 +37,8 @@
     {%- endif -%}
     {%- if slot == 'cta' -%}
       <a href="/security/contact-us"
-         class="p-button--positive js-invoke-modal">Contact us</a>
+         class="p-button--positive js-invoke-modal"
+         aria-controls="security-standards-modal">Contact us</a>
       <a href="/pro">Get Ubuntu Pro&nbsp;&rsaquo;</a>
     {%- endif -%}
   {%- endcall -%}
@@ -288,12 +289,12 @@
   <section class="p-strip is-deep">
     <div class="u-fixed-width">
       <h2>
-        <a href="/security/security-standards#get-in-touch"
-           class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
+        <a href="/security/contact-us"
+           class="js-invoke-modal" aria-controls="security-standards-modal">Contact us&nbsp;&rsaquo;</a>
       </h2>
     </div>
   </section>
 
-  {{ load_form('/security') | safe }}
+  {{ load_form("/security-standards", 6308) | safe }}
 
 {% endblock content %}
