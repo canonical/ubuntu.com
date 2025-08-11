@@ -1202,9 +1202,7 @@ app.add_url_rule("/hpe", view_func=render_blogs)
 
 
 draft_blogs = BlogViews(
-    api=BlogAPI(
-        session=session, thumbnail_width=555, thumbnail_height=311
-    ),
+    api=BlogAPI(session=session, thumbnail_width=555, thumbnail_height=311),
     excluded_tags=[],
     tag_ids=[4794],
     per_page=3,
@@ -1212,8 +1210,10 @@ draft_blogs = BlogViews(
     status="draft",
 )
 
-# Create draft blogs blueprint with login protection and apply to all routes
+
 draft_blogs_blueprint = build_blueprint(draft_blogs)
+
+
 @draft_blogs_blueprint.before_request
 def require_login():
     if not user_info(flask.session):
@@ -1228,7 +1228,9 @@ def render_draft_blogs():
     )
 
 
-app.register_blueprint(draft_blogs_blueprint, url_prefix="/blog/draft-blogs", name="draft_blogs")
+app.register_blueprint(
+    draft_blogs_blueprint, url_prefix="/blog/draft-blogs", name="draft_blogs"
+)
 app.add_url_rule("/blog/draft-blogs", view_func=render_draft_blogs)
 
 
