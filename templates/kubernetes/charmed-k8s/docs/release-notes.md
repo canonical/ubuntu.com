@@ -13,6 +13,20 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+# 1.33+ck2
+
+### August 6, 2025 - `charmed-kubernetes --channel 1.33/stable`
+
+## Notable Fixes
+
+### Kubernetes Control Plane Charm
+* [LP#2109614](https://bugs.launchpad.net/charm-kubernetes-worker/+bug/2109614) Fetch `kube-control` address bindings
+and include them in the Subject Alternative Names (SANs).
+
+### Kubernetes Worker Charm
+* [LP#2109614](https://bugs.launchpad.net/charm-kubernetes-worker/+bug/2109614) Fetch `kube-control` address bindings
+and include them in the Subject Alternative Names (SANs).
+
 # 1.33+ck1
 
 ### July 8, 2025 - `charmed-kubernetes --channel 1.33/stable`
@@ -114,6 +128,19 @@ relevant sections of the [upstream release notes][upstream-changelog-1.33].
 
 [upstream-changelog-1.33]: https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.33.md#deprecation
 
+# 1.32+ck3
+
+### August 6, 2025 - `charmed-kubernetes --channel 1.32/stable`
+
+## Notable Fixes
+
+### Kubernetes Control Plane Charm
+* [LP#2109614](https://bugs.launchpad.net/charm-kubernetes-worker/+bug/2109614) Fetch `kube-control` address bindings
+and include them in the Subject Alternative Names (SANs).
+
+### Kubernetes Worker Charm
+* [LP#2109614](https://bugs.launchpad.net/charm-kubernetes-worker/+bug/2109614) Fetch `kube-control` address bindings
+and include them in the Subject Alternative Names (SANs).
 
 # 1.32+ck2
 
@@ -248,6 +275,20 @@ please see the relevant sections of the
 <!--LINKS-->
 
 [rel]: /kubernetes/docs/release-notes
+
+# 1.31+ck4
+
+### August 6, 2025 - `charmed-kubernetes --channel 1.31/stable`
+
+## Notable Fixes
+
+### Kubernetes Control Plane Charm
+* [LP#2109614](https://bugs.launchpad.net/charm-kubernetes-worker/+bug/2109614) Fetch `kube-control` address bindings
+and include them in the Subject Alternative Names (SANs).
+
+### Kubernetes Worker Charm
+* [LP#2109614](https://bugs.launchpad.net/charm-kubernetes-worker/+bug/2109614) Fetch `kube-control` address bindings
+and include them in the Subject Alternative Names (SANs).
 
 # 1.31+ck3
 

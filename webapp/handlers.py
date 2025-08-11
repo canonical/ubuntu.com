@@ -80,6 +80,7 @@ CSP = {
         "api.usabilla.com",
         "*.cloudfront.net",
         "cdn.jsdelivr.net",
+        "*.g.doubleclick.net",
         # This is necessary for Google Tag Manager to function properly.
         "'unsafe-inline'",
     ],
@@ -126,6 +127,10 @@ CSP = {
         "fonts.google.com",
         "api.text.com",
         "raw.githubusercontent.com",
+        "*.analytics.google.com",
+        "*.g.doubleclick.net",
+        "ad.doubleclick.net",
+        "www.googleadservices.com",
     ],
     "frame-src": [
         "'self'",
@@ -156,6 +161,8 @@ CSP = {
         "cdn.livechatinc.com",
         "secure.livechatinc.com",
         "cdn.livechat-static.com",
+        "images.zenhubusercontent.com",
+        "assets.ubuntu.com",
     ],
     "child-src": [
         "api.livechatinc.com",

@@ -17,6 +17,20 @@ layout:
 toc: False
 ---
 
+# 1.32+ck3
+
+### August 6, 2025 - `charmed-kubernetes --channel 1.32/stable`
+
+## Notable Fixes
+
+### Kubernetes Control Plane Charm
+* [LP#2109614](https://bugs.launchpad.net/charm-kubernetes-worker/+bug/2109614) Fetch `kube-control` address bindings
+and include them in the Subject Alternative Names (SANs).
+
+### Kubernetes Worker Charm
+* [LP#2109614](https://bugs.launchpad.net/charm-kubernetes-worker/+bug/2109614) Fetch `kube-control` address bindings
+and include them in the Subject Alternative Names (SANs).
+
 # 1.32+ck2
 
 ### May 8, 2025 - `charmed-kubernetes --channel 1.32/stable`

@@ -1041,10 +1041,11 @@ def marketo_submit():
                 return flask.redirect(return_url)
 
             if referrer:
-                parsed_referer = urlparse(referrer)
+                parsed_return_url = urlparse(return_url)
+                parsed_referrer = urlparse(referrer)
                 return flask.redirect(
-                    f"{parsed_referer.scheme}://"
-                    f"{parsed_referer.netloc}{return_url}"
+                    f"{parsed_referrer.scheme}://"
+                    f"{parsed_referrer.netloc}{parsed_return_url.path}"
                 )
 
             return flask.redirect(return_url)
@@ -1087,8 +1088,12 @@ def marketo_submit():
 
         if return_url:
             # Remove anchor from url
-            plain_url = return_url.split("#")[0]
-            return flask.redirect(f"{plain_url}#contact-form-fail")
+            parsed_return_url = urlparse(return_url)
+            parsed_referrer = urlparse(referrer)
+            return flask.redirect(
+                f"{parsed_referrer.scheme}://{parsed_referrer.netloc}"
+                f"{parsed_return_url.path}#contact-form-fail"
+            )
         return flask.redirect("/#contact-form-fail")
 
     if referrer:
@@ -1455,7 +1460,9 @@ def process_local_communities(local_communities):
 
             if "coordinates" in community and community["coordinates"]:
                 try:
-                    lat_str, lon_str = community["coordinates"].split(",")
+                    # Replace Unicode minus sign (−) with ASCII hyphen (-)
+                    coordinates = community["coordinates"].replace("−", "-")
+                    lat_str, lon_str = coordinates.split(",")
                     lat = float(lat_str.strip())
                     lon = float(lon_str.strip())
                     community["lat"] = lat
