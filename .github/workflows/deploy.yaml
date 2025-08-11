@@ -80,7 +80,7 @@ jobs:
     needs: [pack-charm, publish-image]
     environment:
       name: staging
-      url: https://staging-test.ubuntu.com
+      url: https://staging.ubuntu.com
     steps:
       - name: Install Dependencies
         run: |
@@ -130,7 +130,7 @@ jobs:
     needs: [pack-charm, publish-image]
     environment:
       name: production
-      url: https://prod-test.ubuntu.com
+      url: https://ubuntu.com
     steps:
       - name: Install Dependencies
         run: |
