@@ -1,0 +1,43 @@
+{% extends "templates/one-column.html" %}
+
+{% block title %}Draft blogs{% endblock %}
+
+{% block content %}
+  <div class="row u-equal-height u-clearfix">
+    {% for article in articles %}
+      {% if (loop.index - 1) % 3 == 0 and loop.index > 1 %}
+      </div>
+      <div class="row u-equal-height u-clearfix">
+      {% endif %}
+      <div class="col-4 col-medium-2 blog-p-card--post">
+        {% include "blog/blog-card-header.html" %}
+
+        <div class="blog-p-card__content">
+
+          {% if article.image and article.image.source_url %}
+            <div class="u-crop--16-9">
+              <a href="/blog/draft-blogs/{{ article.slug }}" aria-hidden="true" tabindex="-1">{{ article.image.rendered|safe }}</a>
+            </div>
+          {% endif %}
+
+          <h3 class="p-heading--4">
+            <a href="/blog/draft-blogs/{{ article.slug }}">{{ article.title.rendered|safe }}</a>
+          </h3>
+
+          <p>
+            <em>by
+              <a href="/blog/author/{{ article.author.slug }}">{{ article.author.name }}</a>
+            on {{ article.date }}</em>
+          </p>
+
+          {% if summary_visible or not article.image.source_url %}
+            <p class="{% if summary_visible %}u-hide--small{% endif %}"
+               style="padding-top:1rem">{{ article.excerpt.raw.replace('[…]', '') |truncate(162) }}</p>
+          {% endif %}
+        </div>
+
+        <p class="blog-p-card__footer">{% include 'blog/singular-category.html' %}</p>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock content %}
