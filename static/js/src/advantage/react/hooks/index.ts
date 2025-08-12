@@ -10,3 +10,4 @@ export { useURLs } from "./useURLs";
 export { useUserSubscriptions } from "./useUserSubscriptions";
 export { useCancelTrial } from "./useCancelTrail";
 export { useUpdateContractEntitlementsMutation } from "./useUpdateContractEntitlementsMutation";
+export { useHasPaymentMethod } from "./useHasPaymentMethod";

@@ -385,6 +385,10 @@ const UserInfoForm = ({ setError, isCardSaving, setIsCardSaving }: Props) => {
             validate={validateRequired}
             error={touched?.postalCode && errors?.postalCode}
           />
+          <p>
+            We will save your card information. You can change it in your Ubuntu
+            Pro Dashboard.
+          </p>
         </>
       )}
       <p>
