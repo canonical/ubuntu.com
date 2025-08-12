@@ -134,3 +134,37 @@ describe("Account users Notification", () => {
     );
   });
 });
+
+describe("Payment method notification", () => {
+  let queryClient: QueryClient;
+
+  beforeEach(() => {
+    queryClient = new QueryClient();
+    queryClient.setQueryData(["accountUsers"], {
+      accountId: "123",
+      users: [{ name: "blip" }],
+    });
+  });
+
+  it("displays a notification if there is no payment method", () => {
+    queryClient.setQueryData(["hasPaymentMethod", "123"], false);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <Notifications />
+      </QueryClientProvider>,
+    );
+    expect(wrapper.find("[data-test='no-payment-method']").exists()).toBe(true);
+  });
+
+  it("does not display a notification if there is a payment method", () => {
+    queryClient.setQueryData(["hasPaymentMethod", "123"], true);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <Notifications />
+      </QueryClientProvider>,
+    );
+    expect(wrapper.find("[data-test='no-payment-method']").exists()).toBe(
+      false,
+    );
+  });
+});
