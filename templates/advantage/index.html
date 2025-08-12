@@ -58,11 +58,9 @@ endblock meta_copydoc %}
   localStorage.setItem("isInMaintenance", {{ is_in_maintenance|lower }});
 </script>
 
-<script
-  src="{{ versioned_static('js/dist/uaSubscriptions.js') }}"
-  type="module"
-  defer
-></script>
+  <script src="{{ versioned_static('js/dist/uaSubscriptions.js') }}"
+          type="module"
+          defer></script>
 
 {% with first_item="_ua_got_questions", second_item="_ua_legal",
 third_item="_ua_further_reading" %}{% include

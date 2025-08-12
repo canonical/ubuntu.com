@@ -14,7 +14,6 @@ import {
 } from "advantage/api/enum";
 import * as contracts from "advantage/api/contracts";
 import { act } from "react";
-import { Notification } from "@canonical/react-components";
 
 describe("RenewalSettings", () => {
   let queryClient: QueryClient;
@@ -39,6 +38,10 @@ describe("RenewalSettings", () => {
       period: UserSubscriptionPeriod.Monthly,
     });
     queryClient.setQueryData(["userSubscriptions"], [sub]);
+    queryClient.setQueryData(["accountUsers"], {
+      accountId: "123",
+    });
+    queryClient.setQueryData(["hasPaymentMethod", "123"], true);
     getUserSubscriptionsSpy = jest.spyOn(contracts, "getUserSubscriptions");
     setAutoRenewalSpy = jest.spyOn(contracts, "setAutoRenewal");
     setAutoRenewalSpy.mockImplementation(() => Promise.resolve({}));
@@ -313,9 +316,8 @@ describe("RenewalSettings", () => {
       wrapper.find("Formik form").simulate("submit");
     });
     wrapper.update();
-    const notification = wrapper.find(Notification);
+    const notification = wrapper.find("Notification[data-test='update-error']");
     expect(notification.exists()).toBe(true);
-    expect(notification.prop("data-test")).toBe("update-error");
     expect(notification.text().includes("Uh oh")).toBe(true);
   });
 
@@ -364,5 +366,34 @@ describe("RenewalSettings", () => {
     expect(
       wrapper.find("Notification[data-test='update-error']").exists(),
     ).toBe(false);
+  });
+
+  it("cannot be edited if there is no payment method", async () => {
+    queryClient.setQueryData(
+      ["userSubscriptions"],
+      [
+        userSubscriptionFactory.build({
+          period: UserSubscriptionPeriod.Monthly,
+          subscription_id: subscriptionID,
+          statuses: userSubscriptionStatusesFactory.build({
+            should_present_auto_renewal: true,
+            is_subscription_auto_renewing: true,
+          }),
+        }),
+      ],
+    );
+    queryClient.setQueryData(["hasPaymentMethod", "123"], false);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <RenewalSettings
+          positionNodeRef={{ current: null }}
+          marketplace={UserSubscriptionMarketplace.CanonicalUA}
+        />
+      </QueryClientProvider>,
+    );
+
+    wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
+    await act(async () => {});
+    expect(wrapper.find("input[type='checkbox']").prop("disabled")).toBe(true);
   });
 });

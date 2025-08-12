@@ -127,6 +127,7 @@ from webapp.shop.cred.views import (
 from webapp.shop.views import (
     account_view,
     checkout,
+    delete_payment_method,
     download_invoice,
     ensure_purchase_account,
     get_customer_info,
@@ -394,6 +395,11 @@ app.add_url_rule(
     "/account/payment-methods",
     view_func=post_payment_methods,
     methods=["POST"],
+)
+app.add_url_rule(
+    "/account/payment-methods",
+    view_func=delete_payment_method,
+    methods=["DELETE"],
 )
 app.add_url_rule(
     "/account/purchase-account",
