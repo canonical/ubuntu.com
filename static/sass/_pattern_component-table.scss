@@ -1,52 +1,25 @@
 .p-table-component-devices {
-  th,
-  td {
+  & {
+    min-width: 38rem;
+  }
+
+  th {
+    text-align: left;
+
     &:nth-child(1) {
       width: 35%;
     }
 
     &:nth-child(2) {
-      width: 10%;
-      @media only screen and (min-width: $breakpoint-medium) {
-        justify-content: center;
-        text-align: center;
-      }
+      width: 20%;
     }
 
     &:nth-child(3) {
-      width: 10%;
-      @media only screen and (min-width: $breakpoint-medium) {
-        justify-content: center;
-        text-align: center;
-      }
+      width: 35%;
     }
 
     &:nth-child(4) {
       width: 10%;
-      @media only screen and (min-width: $breakpoint-medium) {
-        justify-content: center;
-        text-align: center;
-      }
-    }
-
-    &:nth-child(5) {
-      width: 10%;
-      @media only screen and (min-width: $breakpoint-medium) {
-        justify-content: center;
-        text-align: center;
-      }
-    }
-
-    &:nth-child(6) {
-      width: 10%;
-      @media only screen and (min-width: $breakpoint-medium) {
-        justify-content: center;
-        text-align: center;
-      }
-    }
-
-    &:nth-child(7) {
-      width: 25%;
     }
   }
 }
