@@ -1322,7 +1322,7 @@ def render_cmmc_blogs():
             4633,
             4749,
         ],
-        excluded_tags=[3265],
+        excluded_tags=[3184, 3265],
         per_page=4,
         blog_title="CMMC blogs",
     )
