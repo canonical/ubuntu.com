@@ -378,6 +378,7 @@ def init_handlers(app, sentry):
         access the resource
         - X-Permitted-Cross-Domain-Policies: disallows cross-domain access to
         resources.
+        - X-Robots-Tag: prevents search engines from indexing the page
         """
 
         def get_csp_as_str(csp={}):
@@ -396,6 +397,8 @@ def init_handlers(app, sentry):
         )
         response.headers["Cross-Origin-Resource-Policy"] = "cross-origin"
         response.headers["X-Permitted-Cross-Domain-Policies"] = "none"
+        if get_flask_env("FLASK_ENV", "production") == "staging":
+            response.headers["X-Robots-Tag"] = "none"
         return response
 
     app.add_template_filter(date_has_passed)
