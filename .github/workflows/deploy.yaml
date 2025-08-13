@@ -3,7 +3,7 @@ name: Pack and Deploy
 on:
   push:
     branches:
-      - main
+      - abhi-test-login
 
 env:
   CHARMCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS: true
@@ -102,56 +102,6 @@ jobs:
           export VAULT_SECRET_PATH_ROLE=secret/prodstack6/roles/${MODEL_NAME}
           export VAULT_SECRET_PATH_COMMON=secret/prodstack6/juju/common
           export VAULT_TOKEN=$(vault write -f -field=token auth/approle/login role_id="$VAULT_ROLE_ID" secret_id="$VAULT_SECRET_ID") 
-          mkdir -p ~/.local/share/juju
-          vault read -field=controller_config "${VAULT_SECRET_PATH_COMMON}/controllers/${CONTROLLER_NAME}" | base64 -d > ~/.local/share/juju/controllers.yaml
-          USERNAME=$(vault read -field=username "${VAULT_SECRET_PATH_ROLE}/juju")
-          PASSWORD=$(vault read -field=password "${VAULT_SECRET_PATH_ROLE}/juju")
-          printf "controllers:\n  %s:\n    user: %s\n    password: %s\n" "$CONTROLLER_NAME" "$USERNAME" "$PASSWORD" > ~/.local/share/juju/accounts.yaml
-
-      - name: Deploy Application
-        run: |
-          export JUJU_MODEL=admin/${{ vars.JUJU_MODEL_NAME }}
-          export CHARM_NAME=${{ vars.CHARM_NAME }}
-
-          if juju status --color --relations | grep -q "^$CHARM_NAME\\s"; then
-            echo "Application '$CHARM_NAME' exists. Running juju refresh..."
-            juju refresh $CHARM_NAME --path ./*.charm --resource flask-app-image=${{ needs.publish-image.outputs.image_url }}
-          else
-            echo "Application '$CHARM_NAME' not found. Running juju deploy..."
-            juju deploy ./*.charm $CHARM_NAME --resource flask-app-image=${{ needs.publish-image.outputs.image_url }}
-          fi
-          juju wait-for application $CHARM_NAME --query="name=='$CHARM_NAME' && (status=='active' || status=='idle')"
-
-  deploy-production:
-    runs-on:
-      [self-hosted, self-hosted-linux-amd64-jammy-private-endpoint-medium]
-    needs: [pack-charm, publish-image]
-    environment:
-      name: production
-      url: https://ubuntu.com
-    steps:
-      - name: Install Dependencies
-        run: |
-          sudo snap install juju --classic
-          sudo snap install vault --classic
-
-      - name: Download Charm Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: ${{ vars.CHARM_NAME }}-charm
-
-      - name: Configure Vault and Juju
-        env:
-          VAULT_ADDR: "https://vault.admin.canonical.com:8200"
-          VAULT_ROLE_ID: ${{ secrets.VAULT_APPROLE_ROLE_ID }}
-          VAULT_SECRET_ID: ${{ secrets.VAULT_APPROLE_SECRET_ID }}
-        run: |
-          set -e
-          export CONTROLLER_NAME=${{ vars.JUJU_CONTROLLER_NAME }}
-          export MODEL_NAME=${{ vars.JUJU_MODEL_NAME }}
-          export VAULT_SECRET_PATH_ROLE=secret/prodstack6/roles/${MODEL_NAME}
-          export VAULT_SECRET_PATH_COMMON=secret/prodstack6/juju/common
-          export VAULT_TOKEN=$(vault write -f -field=token auth/approle/login role_id="$VAULT_ROLE_ID" secret_id="$VAULT_SECRET_ID")
           mkdir -p ~/.local/share/juju
           vault read -field=controller_config "${VAULT_SECRET_PATH_COMMON}/controllers/${CONTROLLER_NAME}" | base64 -d > ~/.local/share/juju/controllers.yaml
           USERNAME=$(vault read -field=username "${VAULT_SECRET_PATH_ROLE}/juju")
