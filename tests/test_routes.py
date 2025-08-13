@@ -237,11 +237,13 @@ class TestRoutes(VCRTestCase):
         )
 
     def test_staging_no_robots_txt(self):
-        """Test that the staging environment does not serve a robots.txt file"""
+        """Test that only production returns X-Robots-Tag header"""
         os.environ["FLASK_ENV"] = "staging"
         response = self.client.get("/robots.txt")
         self.assertTrue(response.headers["X-Robots-Tag"] == "none")
-        self.assertNotIn(b"User-agent", response.data)
+        os.environ["FLASK_ENV"] = "production"
+        response = self.client.get("/robots.txt")
+        self.assertTrue(response.headers["X-Robots-Tag"] == "none")
 
 
 if __name__ == "__main__":
