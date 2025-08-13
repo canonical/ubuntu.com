@@ -79,7 +79,7 @@ def login_handler():
     response = session.request(
         method="get", url=f"{api_url}/v1/canonical-sso-macaroon"
     )
-    print(response)
+    print(response.json())
     flask.session["macaroon_root"] = response.json()["macaroon"]
 
     for caveat in Macaroon.deserialize(
@@ -110,6 +110,7 @@ def login_handler():
 
 @open_id.after_login
 def after_login(resp):
+    print("after login")
     try:
         root = Macaroon.deserialize(flask.session.pop("macaroon_root"))
     except KeyError:
