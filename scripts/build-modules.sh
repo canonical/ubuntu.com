@@ -21,3 +21,6 @@ mkdir -p static/js/dist/prism-components && cp -r node_modules/prismjs/component
 
 # Build leaflet
 cp node_modules/leaflet/dist/leaflet.js static/js/dist/
+
+# Build vanilla
+yarn run build-vanilla-framework

@@ -12,6 +12,7 @@
     "test-links": "./entrypoint 0.0.0.0:${PORT} && sleep 2 && linkchecker --threads 2 --ignore-url /usn --ignore-url /search --ignore-url /server/docs --no-warnings http://127.0.0.1:8000",
     "build-css": "sass static/sass:static/css --load-path=node_modules --style=compressed --quiet-deps && postcss --replace 'static/css/**/*.css' --no-map",
     "build-js": "node build.js && ./scripts/build-modules.sh",
+    "build-vanilla-framework": "mkdir -p static/js/modules/vanilla-framework && cp -r node_modules/vanilla-framework/templates/_macros/ static/js/modules/vanilla-framework",
     "build": "yarn run build-css && yarn run build-js",
     "watch": "concurrently --kill-others --raw 'yarn run watch-css' 'yarn run watch-js'",
     "watch-css": "watch -p 'static/sass/**/*.scss' -p 'node_modules/vanilla-framework/scss/**/*.scss' -c 'yarn run build-css'",

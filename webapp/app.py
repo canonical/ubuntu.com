@@ -25,6 +25,7 @@ from canonicalwebteam.discourse import (
     Events,
 )
 from canonicalwebteam.flask_base.app import FlaskBase
+from canonicalwebteam.flask_base.env import get_flask_env
 from pathlib import Path
 import canonicalwebteam.directory_parser as directory_parser
 from canonicalwebteam.search import build_search_view
@@ -186,11 +187,13 @@ from webapp.views import (
     build_sitemap_tree,
 )
 
-DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
-DISCOURSE_API_USERNAME = os.getenv("DISCOURSE_API_USERNAME")
+DISCOURSE_API_KEY = get_flask_env("DISCOURSE_API_KEY")
+DISCOURSE_API_USERNAME = get_flask_env("DISCOURSE_API_USERNAME")
 
-CHARMHUB_DISCOURSE_API_KEY = os.getenv("CHARMHUB_DISCOURSE_API_KEY")
-CHARMHUB_DISCOURSE_API_USERNAME = os.getenv("CHARMHUB_DISCOURSE_API_USERNAME")
+CHARMHUB_DISCOURSE_API_KEY = get_flask_env("CHARMHUB_DISCOURSE_API_KEY")
+CHARMHUB_DISCOURSE_API_USERNAME = get_flask_env(
+    "CHARMHUB_DISCOURSE_API_USERNAME"
+)
 
 # Sitemaps that are already generated and don't need to be updated.
 # Can be seen on sitemap_index.xml
@@ -225,7 +228,8 @@ directory_parser_templates = (
 loader = ChoiceLoader(
     [
         FileSystemLoader("templates"),
-        FileSystemLoader("node_modules/vanilla-framework/templates"),
+        FileSystemLoader("node_modules/vanilla-framework/templates/"),
+        FileSystemLoader("static/js/modules/vanilla-framework/"),
         FileSystemLoader(str(directory_parser_templates)),
     ]
 )
