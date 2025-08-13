@@ -3,9 +3,7 @@ name: Pack and Deploy
 on:
   push:
     branches:
-      - feat-ps6-migration
-      - deploy-or-refresh-charm
-      # - main
+      - main
 
 env:
   CHARMCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS: true
