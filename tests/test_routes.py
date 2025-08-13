@@ -1,6 +1,7 @@
 # Standard library
-import unittest
 import logging
+import os
+import unittest
 
 # Packages
 from bs4 import BeautifulSoup
@@ -8,7 +9,6 @@ from vcr_unittest import VCRTestCase
 
 # Local
 from webapp.app import app
-
 
 # Suppress talisker warnings, that get annoying
 logging.getLogger("talisker.context").disabled = True
@@ -235,6 +235,18 @@ class TestRoutes(VCRTestCase):
         self.assertEqual(
             response.json, {"country": "India", "country_code": "IN"}
         )
+
+    def test_staging_no_robots_header(self):
+        """Test that staging does not return a X-Robots-Tag header"""
+        os.environ["FLASK_ENV"] = "staging"
+        response = self.client.get("/robots.txt")
+        self.assertTrue(response.headers["X-Robots-Tag"] == "none")
+
+    def test_production_robots_header(self):
+        """Test only production returns X-Robots-Tag header"""
+        os.environ["FLASK_ENV"] = "production"
+        response = self.client.get("/robots.txt")
+        self.assertTrue(response.headers.get("X-Robots-Tag") != "none")
 
 
 if __name__ == "__main__":

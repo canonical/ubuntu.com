@@ -189,7 +189,9 @@ extraHosts:
 # Overrides for production
 production:
   replicas: 9
-
+  env:
+    - name: FLASK_ENV
+      value: "production"
   routes:
     - paths: [/blog]
       name: ubuntu-com-blog
@@ -776,6 +778,9 @@ staging:
         key: maas-api-username
         name: discourse-api
 
+    - name: FLASK_ENV
+      value: "staging"
+
   routes:
     - paths: [/blog]
       name: ubuntu-com-blog
@@ -1296,3 +1301,6 @@ demo:
 
     - name: CANONICAL_CLA_API_URL
       value: https://cla.staging.canonical.com
+
+    - name: FLASK_ENV
+      value: "demo"
