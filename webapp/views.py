@@ -1042,9 +1042,10 @@ def marketo_submit():
             if referrer:
                 parsed_return_url = urlparse(return_url)
                 parsed_referrer = urlparse(referrer)
+
                 return flask.redirect(
-                    f"{parsed_referrer.scheme}://"
-                    f"{parsed_referrer.netloc}{parsed_return_url.path}"
+                    f"{parsed_referrer.scheme}://{parsed_referrer.netloc}"
+                    f"{parsed_return_url.path}#{parsed_return_url.fragment}"
                 )
 
             return flask.redirect(return_url)
