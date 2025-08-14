@@ -63,14 +63,21 @@
                     id="rb3-gen2"
                     role="tab"
                     aria-selected="true"
-                    aria-controls="rb3-gen2-tab">Qualcomm RB3 Gen 2 Vision Kit (QCS6490)</button>
+                    aria-controls="rb3-gen2-tab">Qualcomm Dragonwing™ RB3 Gen 2 Vision Development Kit (QCS6490)</button>
           </li>
           <li>
             <button class="p-tabs__item"
                     id="rb3-gen2-lite"
                     role="tab"
                     aria-selected="false"
-                    aria-controls="rb3-gen2-lite-tab">Qualcomm RB3 Gen 2 Lite Vision Kit (QCS5430)</button>
+                    aria-controls="rb3-gen2-lite-tab">Qualcomm Dragonwing™ RB3 Gen 2 Lite Vision Development Kit (QCS5430)</button>
+          </li>
+          <li>
+            <button class="p-tabs__item"
+                    id="evaluation-kit"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="evaluation-kit-tab">Qualcomm Dragonwing™ IQ-9075 Evaluation Kit (EVK)</button>
           </li>
         </ul>
         <!-- form dropdown for smaller screens -->
@@ -78,12 +85,14 @@
           <select name="boardSelect" id="boardSelect">
             <option value="rb3-gen2-tab" selected="">Qualcomm RB3 Gen 2 Vision Kit (QCS6490)</option>
             <option value="rb3-gen2-lite-tab">Qualcomm RB3 Gen 2 Lite Vision Kit (QCS5430)</option>
+            <option value="evaluation-kit-tab">Qualcomm Dragonwing™ IQ-9075 Evaluation Kit (EVK)</option>
           </select>
         </form>
       </div>
       <div class="col-9 col-medium-4">
         {% include "download/qualcomm-iot/tabs/rb3-gen2-tab.html" %}
         {% include "download/qualcomm-iot/tabs/rb3-gen2-lite-tab.html" %}
+        {% include "download/qualcomm-iot/tabs/evaluation-kit-tab.html" %}
       </div>
     </div>
   </section>
