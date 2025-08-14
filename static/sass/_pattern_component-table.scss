@@ -1,23 +1,40 @@
 .p-table-component-devices {
   min-width: 38rem;
+  word-wrap: break-word;
+
+  @media only screen and (max-width: $breakpoint-medium) {
+    min-width: 38rem;
+  }
+
+  @media only screen and (max-width: $breakpoint-small) {
+    min-width: 27rem;
+  }
 
   th {
     text-align: left;
 
     &:nth-child(1) {
-      width: 35%;
+      @media only screen and (max-width: $breakpoint-small) {
+        width: 22%;
+      }
     }
 
     &:nth-child(2) {
-      width: 20%;
+      @media only screen and (max-width: $breakpoint-small) {
+        width: 16%;
+      }
     }
 
     &:nth-child(3) {
-      width: 35%;
+      @media only screen and (max-width: $breakpoint-small) {
+        width: 26%;
+      }
     }
 
     &:nth-child(4) {
-      width: 10%;
+      @media only screen and (max-width: $breakpoint-small) {
+        // width: 40%;
+      }
     }
   }
 }
