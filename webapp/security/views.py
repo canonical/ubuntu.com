@@ -750,7 +750,6 @@ def cve(cve_id):
 # ===
 def single_cves_sitemap(offset):
     offset = int(offset)
-    
     # Base request
     response = security_api.get_sitemap_cves(limit=100, offset=offset)
     cves = response.get("cves", [])
