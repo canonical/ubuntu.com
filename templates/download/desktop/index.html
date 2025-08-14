@@ -128,7 +128,7 @@
                  aria-label="{{ releases.lts.full_version }} LTS deep dive">Deep dive&nbsp;&rsaquo;</a>
             </li>
             <li class="p-inline-list__item">
-              <a href="https://discourse.ubuntu.com/t/noble-numbat-release-notes/39890"
+              <a href="{{ releases.lts.release_notes_url }}"
                  aria-label="{{ releases.lts.full_version }} LTS release notes">Release notes&nbsp;&rsaquo;</a>
             </li>
           </ul>
@@ -187,7 +187,7 @@
       <div class="col">
         <div class="p-section--shallow">
           <p>
-            The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu 25.04 comes with nine months of security and maintenance updates, until January 2026.
+            The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{ releases.latest.full_version }} comes with nine months of security and maintenance updates, until {{ releases.latest.eol }}.
           </p>
           <hr class="p-rule--muted" />
 
@@ -198,10 +198,10 @@
             <div class="col-3">
               <a class="p-button--positive"
                  href="/download/desktop/thank-you?version={{ releases.latest.full_version }}&amp;architecture=amd64"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });"
-                 aria-label="Download Ubuntu 25.04 amd64">Download</a>
-              {% if releases.lts.iso_download_size %}
-                <span class="u-text--muted">{{ releases.lts.iso_download_size }}</span>
+                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });"
+                 aria-label="Download Ubuntu {{ releases.latest.full_version }} amd64">Download</a>
+              {% if releases.latest.iso_download_size %}
+                <span class="u-text--muted">{{ releases.latest.iso_download_size }}</span>
               {% endif %}
 
               <script>
@@ -217,8 +217,8 @@
             <div class="col-3">
               <a class="p-button"
                  href="https://cdimage.ubuntu.com/releases/{{ releases.latest.full_version }}/release/ubuntu-{{ releases.latest.full_version }}-desktop-arm64.iso"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });"
-                 aria-label="Download Ubuntu 25.04 arm64">Download</a>
+                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });"
+                 aria-label="Download Ubuntu {{ releases.latest.full_version }} arm64">Download</a>
               {% if releases.latest.arm_iso_download_size %}
                 <span class="u-text--muted">{{ releases.latest.arm_iso_download_size }}</span>
               {% endif %}
@@ -287,7 +287,7 @@
                  aria-label="{{ releases.lts.full_version }} LTS deep dive">Press release&nbsp;&rsaquo;</a>
             </li>
             <li class="p-inline-list__item">
-              <a href="https://discourse.ubuntu.com/t/plucky-puffin-release-notes/48687"
+              <a href="{{ releases.latest.release_notes_url }}"
                  aria-label="{{ releases.latest.full_version }} release notes">Release notes&nbsp;&rsaquo;</a>
             </li>
           </ul>
