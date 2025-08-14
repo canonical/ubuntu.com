@@ -240,9 +240,13 @@ def notices_feed(feed_type):
 
     releases = flask.request.args.getlist("release", type=str)
     if releases:
-        # Check if the provided releases exist, and fail if they don't match 
+        # Check if the provided releases exist,
+        # and fail if they don't match
         formatted_releases = get_formatted_releases(security_api, releases)
-        selected_releases = [release.get('codename') for release in formatted_releases["selected_releases"]]
+
+        selected_releases = []
+        for release in formatted_releases["selected_releases"]:
+            selected_releases.append(release.get("codename"))
 
         if sorted(releases) != sorted(selected_releases):
             flask.abort(404)
@@ -259,7 +263,9 @@ def notices_feed(feed_type):
         "Ubuntu and Canonical are registered trademarks of Canonical Ltd."
     )
     feed.title("Ubuntu security notices")
-    feed.description(f"Recent content on Ubuntu security notices{description_suffix}")
+    feed.description(
+        f"Recent content on Ubuntu security notices{description_suffix}"
+    )
     feed.link(href=base_url + query_params, rel="self")
 
     def feed_entry(notice, url_root):
