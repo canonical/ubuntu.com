@@ -27,7 +27,9 @@ meta_copydoc %}
             <br />
             get 10 years of security maintenance.
           </h2>
-          <p>In a single subscription, benefit from patching for over 25,000 packages, and harness automation tools for compliance with multiple standards, including the Cyber Resilience Act.</p>
+          <p>
+            In a single subscription, benefit from patching for over 25,000 packages, and harness automation tools for compliance with multiple standards, including the Cyber Resilience Act.
+          </p>
           <a href="/pro/devices#get-in-touch" class="p-button--positive">Contact us</a>
         </div>
       </div>
@@ -344,7 +346,9 @@ meta_copydoc %}
         </div>
         <div class="col-6">
           <p>Remotely monitor, update and manage IoT devices with a clearly defined rollout policy.</p>
-          <p>Landscape reduces the cost of managing open source and enables you to proactively manage security for your IoT devices:</p>
+          <p>
+            Landscape reduces the cost of managing open source and enables you to proactively manage security for your IoT devices:
+          </p>
           <ul class="p-list--ticked--small">
             <li class="p-list__item is-ticked">
               Get a single pane of glass for managing any Ubuntu instances including system containers, virtual machines, and physical nodes.
@@ -527,7 +531,9 @@ meta_copydoc %}
             </div>
             <hr class="p-rule--muted" />
             <div>
-              <p>Get a comprehensive guide to understanding the new global compliance landscape for IoT devices and manufacturers, and meet compliance in every regional market with our Ubuntu blueprint for secure devices.</p>
+              <p>
+                Get a comprehensive guide to understanding the new global compliance landscape for IoT devices and manufacturers, and meet compliance in every regional market with our Ubuntu blueprint for secure devices.
+              </p>
               <p class="p-heading--3 u-no-padding--top">
                 <a href="/engage/iot-compliance-in-the-global-market-a-guide-for-iot-device-manufacturers">Understand IoT security and IoT compliance across global markets&nbsp;&rsaquo;</a>
               </p>
@@ -567,13 +573,7 @@ meta_copydoc %}
         </div>
       </div>
     </section>
-    <!-- Set default Marketo information for contact form below-->
-    <div class="u-hide"
-         id="contact-form-container"
-         data-form-location="/shared/forms/interactive/pro-devices"
-         data-form-id="5893"
-         data-lp-id="1409"
-         data-return-url="/pro/thank-you"
-         data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+    <!-- Set default Marketo information for contact form below --> 
+    {{ load_form("/pro/devices") | safe }}
   {% endblock content %}
 {% endblock outer_content %}
