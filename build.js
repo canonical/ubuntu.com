@@ -12,7 +12,6 @@ let entries = {
   "release-chart-manager": "./static/js/src/release-chart-manager.js",
   "developer-chart": "./static/js/src/developer-chart.js",
   appliance: "./static/js/src/appliance.js",
-  costCalculator: "./static/js/src/openstack/react/app.jsx",
   "ua-payment-methods": "./static/js/src/ua-payment-methods.js",
   "account-billing": "./static/js/src/account-billing.js",
   cve: "./static/js/src/cve/cve.js",
