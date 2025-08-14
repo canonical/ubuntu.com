@@ -90,7 +90,7 @@ def login_handler():
             break
     print("openid_macaroon:", openid_macaroon)
     print("login_url:", login_url)
-    return open_id.try_login(
+    try_login = open_id.try_login(
         login_url,
         ask_for=["email", "nickname", "image"],
         ask_for_optional=["fullname"],
@@ -106,6 +106,8 @@ def login_handler():
             ),
         ],
     )
+    print("try_login:", try_login.body)
+    return try_login
 
 
 @open_id.after_login
