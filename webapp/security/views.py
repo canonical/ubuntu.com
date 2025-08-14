@@ -749,46 +749,19 @@ def cve(cve_id):
 # CVE API
 # ===
 def single_cves_sitemap(offset):
-    cves = []
-    max_items = 100
-    api_limit = 10
-    offset = int(offset)  # Convert offset to int
+    offset = int(offset)
+    # Base request
+    response = security_api.get_sitemap_cves(limit=100, offset=offset)
+    cves = response.get("cves", [])
 
-    # max limit is 10, so we need to make multiple requests up to 100
-    for batch_offset in range(offset, offset + max_items, api_limit):
-        batch_response = security_api.get_cves(
-            query="",
-            priority=[],
-            package="",
-            limit=api_limit,
-            offset=batch_offset,
-            component="",
-            versions=[],
-            statuses=[],
-            order="",
-        )
-        batch_cves = batch_response.get("cves", [])
-        if not batch_cves:
-            break
-
-        cves.extend(batch_cves)
-
-        if len(batch_cves) < api_limit:
-            break
-
+    # Build links for the XML template
     links = []
     for cve in cves:
-        cve_id = cve["id"]
-
-        if cve.get("published"):
-            cve["published"] = dateutil.parser.parse(
-                cve["published"]
-            ).strftime("%-d %B %Y")
-
         links.append(
             {
-                "url": f"https://ubuntu.com/security/{cve_id}",
-                "last_updated": (cve["published"] if cve["published"] else ""),
+                "url": f"https://ubuntu.com/security/{cve['id']}",
+                # Keep ISO 8601 for <lastmod>
+                "last_updated": cve.get("published") or "",
             }
         )
 
@@ -802,16 +775,9 @@ def single_cves_sitemap(offset):
 
 
 def cves_sitemap():
-    cves_response = security_api.get_cves(
-        query="",
-        priority=[],
-        package="",
-        limit=0,
+    cves_response = security_api.get_sitemap_cves(
+        limit=100,
         offset=0,
-        component="",
-        versions=[],
-        statuses=[],
-        order="",
     )
 
     cves_count = cves_response.get("total_results", 0)
