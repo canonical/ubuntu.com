@@ -100,7 +100,7 @@ const request = async <M extends HttpMethod, E extends EndpointForMethod<M>>(
     requestUrl = `${endpoint}?${params.toString()}`;
   }
   const encodedRequestUrl = btoa(requestUrl);
-  const url = `/legal/contributors/agreement/api?request_url=${encodedRequestUrl}`;
+  const url = `https://canonical.com/legal/contributors/agreement/api?request_url=${encodedRequestUrl}`;
   const response = await fetch(url, {
     method,
     headers: {
@@ -152,7 +152,7 @@ export const postOrganizationSignForm = async (
 
 export const loginWithGithub = () => {
   const url = new URL("/github/login", window.CANONICAL_CLA_API_URL);
-  // /legal/contributors/agreement/api/github/login?agreement_url=base64(window.location.href)
+  // https://canonical.com/legal/contributors/agreement/api/github/login?agreement_url=base64(window.location.href)
   const redirectUrl = new URL(
     "https://canonical.com/legal/contributors/agreement/api/github/login",
     window.location.origin,
@@ -165,7 +165,7 @@ export const loginWithGithub = () => {
 
 export const logoutFromGithub = () => {
   const url = new URL("/github/logout", window.CANONICAL_CLA_API_URL);
-  // /legal/contributors/agreement/api/github/logout?agreement_url=base64(window.location.href)
+  // https://canonical.com/legal/contributors/agreement/api/github/logout?agreement_url=base64(window.location.href)
   const redirectUrl = new URL(
     "https://canonical.com/legal/contributors/agreement/api/github/logout",
     window.location.origin,
@@ -187,7 +187,7 @@ export const getLaunchpadProfile = async () => {
 
 export const loginWithLaunchpad = () => {
   const url = new URL("/launchpad/login", window.CANONICAL_CLA_API_URL);
-  // /legal/contributors/agreement/api/launchpad/login?agreement_url=base64(window.location.href)
+  // https://canonical.com/legal/contributors/agreement/api/launchpad/login?agreement_url=base64(window.location.href)
   const redirectUrl = new URL(
     "https://canonical.com/legal/contributors/agreement/api/launchpad/login",
     window.location.origin,
@@ -201,7 +201,7 @@ export const loginWithLaunchpad = () => {
 export const logoutFromLaunchpad = () => {
   const url = new URL("/launchpad/logout", window.CANONICAL_CLA_API_URL);
 
-  // /legal/contributors/agreement/api/launchpad/logout?agreement_url=base64(window.location.href)
+  // https://canonical.com/legal/contributors/agreement/api/launchpad/logout?agreement_url=base64(window.location.href)
   const redirectUrl = new URL(
     "https://canonical.com/legal/contributors/agreement/api/launchpad/logout",
     window.location.origin,
