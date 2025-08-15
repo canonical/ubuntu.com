@@ -39,8 +39,8 @@ marketo_session = Session()
 talisker.requests.configure(marketo_session)
 marketo_api = MarketoAPI(
     "https://066-EOV-335.mktorest.com",
-    get_flask_env("MARKETO_API_CLIENT"),
-    get_flask_env("MARKETO_API_SECRET"),
+    os.getenv("MARKETO_API_CLIENT"),
+    os.getenv("MARKETO_API_SECRET"),
     marketo_session,
 )
 
@@ -991,7 +991,7 @@ def marketo_submit():
 
             return (
                 flask.jsonify(
-                    {"error": "There was an issue submitting the form."}
+                    {"error": f"There was an issue submitting the form. {data}"}
                 ),
                 400,
             )
