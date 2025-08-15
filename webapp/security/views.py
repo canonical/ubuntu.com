@@ -242,13 +242,10 @@ def notices_feed(feed_type):
     if releases:
         # Check if the provided releases exist,
         # and fail if they don't match
-        formatted_releases = get_formatted_releases(security_api, releases)
+        releases_json = security_api.get_releases()
+        valid_releases = {r.get("codename") for r in releases_json}
 
-        selected_releases = []
-        for release in formatted_releases["selected_releases"]:
-            selected_releases.append(release.get("codename"))
-
-        if sorted(releases) != sorted(selected_releases):
+        if any(r not in valid_releases for r in releases):
             flask.abort(404)
 
         description_suffix = f" for releases {', '.join(releases)}"
