@@ -5,5 +5,7 @@
 {% block outer_content %}
   {% block content %}{% endblock %}
 
-  {{ load_form("/gcp") | safe }}
+  {% if request.path != "/gcp/contact-us" %}
+    {{ load_form("/gcp") | safe }}
+  {% endif %}
 {% endblock %}
