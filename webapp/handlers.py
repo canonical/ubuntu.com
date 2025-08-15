@@ -163,6 +163,7 @@ CSP = {
         "cdn.livechat-static.com",
         "images.zenhubusercontent.com",
         "assets.ubuntu.com",
+        "ubuntu.com",
     ],
     "child-src": [
         "api.livechatinc.com",

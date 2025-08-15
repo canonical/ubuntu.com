@@ -161,6 +161,16 @@ env:
       key: secret
       name: sitemaps
 
+  - name: WORDPRESS_APPLICATION_PASSWORD
+    secretKeyRef:
+      key: wordpress-application-password
+      name: wordpress-api
+
+  - name: WORDPRESS_USERNAME
+    secretKeyRef:
+      key: wordpress-username
+      name: wordpress-api
+
 
 memoryLimit: 512Mi
 
@@ -1302,6 +1312,16 @@ demo:
       secretKeyRef:
         key: maas-api-username
         name: discourse-api
+
+    - name: WORDPRESS_APPLICATION_PASSWORD
+      secretKeyRef:
+        key: wordpress-application-password
+        name: wordpress-api
+
+    - name: WORDPRESS_USERNAME
+      secretKeyRef:
+        key: wordpress-username
+        name: wordpress-api
 
     - name: CANONICAL_CLA_API_URL
       value: https://cla.staging.canonical.com
