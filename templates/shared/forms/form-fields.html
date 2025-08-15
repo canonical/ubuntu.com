@@ -36,8 +36,12 @@
                           id="firstName"
                           name="firstName"
                           maxlength="255"
+<<<<<<< HEAD
                           autocomplete="given-name"
                           type="text" />                              
+=======
+                          type="text" />
+>>>>>>> 993906454 (Update legal links across the site)
                   <label class="is-required"
                           for="lastName">Last name:</label>
                   <input required
@@ -77,7 +81,7 @@
                   {% endwith %}
 
                 {% endif %}
-                
+
                 {% for field in fieldset.fields %}
 
                   {% if field.id %}
@@ -188,7 +192,7 @@
             </label>
           </li>
           <li class="p-list__item u-sv3">
-            By submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
+            By submitting this form, I confirm that I have read and agree to <a href="https://canonical.com/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="https://canonical.com/legal/data-privacy">Privacy Policy</a>.
           </li>
           {# These are honey pot fields to catch bots #}
           <li class="u-off-screen">
