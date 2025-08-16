@@ -1,6 +1,7 @@
 # Packages
 from datetime import datetime
 from distutils.util import strtobool
+import concurrent.futures
 
 import flask
 import pytz
@@ -100,11 +101,31 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
         )
 
     payments = []
+
+    def add_to_payments(purchase):
+        print(f"Processing purchase {purchase.id}")
+        try:
+            if purchase.invoice:
+                purchase_info = advantage_mapper.get_purchase(purchase.id)
+                if purchase_info.invoice:
+                    purchase.invoice = purchase_info.invoice
+            payments.append(purchase)
+        except HTTPError as error:
+            if error.response.status_code == 404:
+                # Purchase not found, skip it
+                return
+            else:
+                flask.current_app.extensions["sentry"].captureException()
+                return
+
     if account:
-        payments = advantage_mapper.get_account_purchases(
+        account_purchases = advantage_mapper.get_account_purchases(
             account_id=account.id,
             filters={"marketplace": marketplace} if marketplace else None,
         )
+        with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+            for purchase in account_purchases:
+                executor.submit(add_to_payments, purchase)
 
     per_page = 10
 
