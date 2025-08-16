@@ -69,16 +69,17 @@ def empty_session(user_session):
 
 @open_id.loginhandler
 def login_handler():
+    print("attempt to login")
     api_url = get_flask_env(
-        "CONTRACTS_API_URL", "https://contracts.canonical.com"
+        "CONTRACTS_API_URL", "https://contracts.staging.canonical.com"
     )
-
     if user_info(flask.session):
         return flask.redirect(open_id.get_next_url())
 
     response = session.request(
         method="get", url=f"{api_url}/v1/canonical-sso-macaroon"
     )
+    print(response.json())
     flask.session["macaroon_root"] = response.json()["macaroon"]
 
     for caveat in Macaroon.deserialize(
@@ -87,8 +88,9 @@ def login_handler():
         if caveat.location == "login.ubuntu.com":
             openid_macaroon = MacaroonRequest(caveat_id=caveat.caveat_id)
             break
-
-    return open_id.try_login(
+    print("openid_macaroon:", openid_macaroon)
+    print("login_url:", login_url)
+    try_login = open_id.try_login(
         login_url,
         ask_for=["email", "nickname", "image"],
         ask_for_optional=["fullname"],
@@ -104,10 +106,13 @@ def login_handler():
             ),
         ],
     )
+    print("try_login:", try_login.body)
+    return try_login
 
 
 @open_id.after_login
 def after_login(resp):
+    print("after login")
     try:
         root = Macaroon.deserialize(flask.session.pop("macaroon_root"))
     except KeyError:
