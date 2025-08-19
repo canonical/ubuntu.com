@@ -120,9 +120,6 @@ env:
   - name: BADGR_ISSUER
     value: eTedPNzMTuqy1SMWJ05UbA
 
-  - name: CANONICAL_CLA_API_URL
-    value: https://cla.canonical.com
-
   - name: CERTIFIED_BADGE
     value: hs8gVorCRgyO2mNUfeXaLw
 
@@ -1302,9 +1299,6 @@ demo:
       secretKeyRef:
         key: maas-api-username
         name: discourse-api
-
-    - name: CANONICAL_CLA_API_URL
-      value: https://cla.staging.canonical.com
 
     - name: FLASK_ENV
       value: "demo"
