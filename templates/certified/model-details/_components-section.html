@@ -3,73 +3,71 @@
   <div>
     <h2>Components certified with this system</h2>
     <div style="overflow-x: auto;">
-    <table class="p-table--mobile-car p-table-component-devices"
-           aria-label="Component Devices table">
-      <colgroup>
-        <col class="col-component" />
-        <col class="col-release" />
-        <col class="col-status" />
-        <col class="col-comments" />
-      </colgroup>
+      <table class="p-table--mobile-car p-table-component-devices"
+             aria-label="Component Devices table">
+        <colgroup>
+          <col class="col-component" />
+          <col class="col-release" />
+          <col class="col-status" />
+          <col class="col-comments" />
+        </colgroup>
 
-      <thead>
-        <tr>
-          <th scope="col">Component</th>
-          <th scope="col">Ubuntu release</th>
-          <th scope="col">Status</th>
-          <th scope="col">Comments</th>
-        </tr>
-      </thead>
+        <thead>
+          <tr>
+            <th scope="col">Component</th>
+            <th scope="col">Ubuntu release</th>
+            <th scope="col">Status</th>
+            <th scope="col">Comments</th>
+          </tr>
+        </thead>
 
-      <tbody>
-        {% set releases = ['24.04 LTS', '22.04 LTS', '20.04 LTS', '18.04 LTS'] %}
-        {% for component in components %}
-          {% for i in range(releases|length) %}
-            {% set release = releases[i] %}
-            <tr>
-              {% if i == 0 %}
-                <th scope="rowgroup" rowspan="{{ releases|length }}">
-                  <a href="/certified/component/{{ component.id }}">{{ component.vendor_name }} {{ component.model }}</a>
-                </th>
-              {% endif %}
-              <td>{{ release }}</td>
-              {% if release in component.lts_releases %}
-                {% set rel_data = component.lts_releases[release][0] %}
-                {% if rel_data.third_party_driver %}
-                  <td data-heading="{{ release }}">
-                    {{ image(url="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg", alt="May require third-party driver", width="21", fmt="svg", height="14", hi_def=True, loading="lazy") | safe }}
-                    <span>May require 3rd-party driver</span>
-                  </td>
-                {% elif rel_data.status == 'inprogress' %}
-                  <td data-heading="{{ release.split(' ')[0] }} ESM" class="p-inline">
-                    <i class="p-icon--help">In progress</i>
-                    <span>In progress</span>
-                  </td>
-                {% elif rel_data.status == 'certified' %}
-                  <td data-heading="{{ release }}" class="p-inline">
-                    <i class="p-icon--success">Supported</i>
-                    <span>Supported</span>
-                  </td>
+        <tbody>
+          {% set releases = ["24.04 LTS", "22.04 LTS", "20.04 LTS", "CORE 20", "18.04 LTS", "CORE 18"] %}
+          {% for component in components %}
+            {% for i in range(releases|length) %}
+              {% set release = releases[i] %}
+              <tr>
+                {% if i == 0 %}
+                  <th scope="rowgroup" rowspan="{{ releases|length }}">
+                    <a href="/certified/component/{{ component.id }}">{{ component.vendor_name }} {{ component.model }}</a>
+                  </th>
                 {% endif %}
-              {% else %}
-                {% if release in ['24.04 LTS', '22.04 LTS'] %}
-                  <td data-heading="{{ release }}" class="p-inline">
-                    <i class="p-icon--error"></i>
-                    <span>Unsupported</span>
-                  </td>
+                <td>{{ release }}</td>
+                {% if release in component.lts_releases %}
+                  {% set rel_data = component.lts_releases[release][0] %}
+                  {% if rel_data.status == 'inprogress' %}
+                    <td data-heading="{{ release.split(" ")[0] }} ESM" class="p-inline">
+                      <i class="p-icon--help">In progress</i>
+                      <span>In progress</span>
+                      {% if rel_data.third_party_driver %}<span>- may require 3rd-party driver</span>{% endif %}
+                    </td>
+                  {% elif rel_data.status == 'certified' %}
+                    <td data-heading="{{ release }}" class="p-inline">
+                      <i class="p-icon--success">Supported</i>
+                      <span>Supported</span>
+                      {% if rel_data.third_party_driver %}<span>- may require 3rd-party driver</span>{% endif %}
+                    </td>
+                  {% elif rel_data.status == 'unsupported' %}
+                    <td data-heading="{{ release }}" class="p-inline">
+                      <i class="p-icon--error"></i>
+                      <span>Unsupported</span>
+                      {% if rel_data.third_party_driver %}<span>- may require 3rd-party driver</span>{% endif %}
+                    </td>
+                  {% endif %}
                 {% else %}
                   <td data-heading="{{ release }}">–</td>
                 {% endif %}
-              {% endif %}
-              {% if i == 0 %}
-                <td data-heading="Comments" scope="rowgroup" rowspan="{{ releases|length }}">{{ component.note }}</td>
-              {% endif %}
-            </tr>
+                {% if i == 0 %}
+                  <td data-heading="Comments"
+                      scope="rowgroup"
+                      rowspan="{{ releases|length }}">{{ component.note }}</td>
+                {% endif %}
+              </tr>
+            {% endfor %}
           {% endfor %}
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
+        </tbody>
+      </table>
+    </div>
     <div>
       <hr class="p-rule" />
       <p class="u-text--muted">*LTS releases with a blank status have not been tested</p>
@@ -77,10 +75,6 @@
     <ul class="p-inline-list u-hide--medium u-hide--large">
       <li class="p-inline-list__item">
         <i class="p-icon--success"></i> <small class="p-">Supported</small>
-      </li>
-      <li class="p-inline-list__item">
-        <img src="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg" alt="" />
-        <small>May require 3rd-party driver</small>
       </li>
       <li class="p-inline-list__item">
         <i class="p-icon--help"></i> <small>In progress</small>
