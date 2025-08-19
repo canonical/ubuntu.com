@@ -31,13 +31,20 @@
         <hr class="is-muted" />
         <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/microsoftsqlserver.sql2019-ubuntupro2004?tab=Overview"
            class="p-button--positive">Launch now</a>
-        <a href="/azure#get-in-touch">Contact us to learn more&nbsp;&rsaquo;</a>
+        <a href="/azure/contact-us"
+           class="js-invoke-modal"
+           aria-controls="azure-modal">Contact us to learn more&nbsp;&rsaquo;</a>
       </div>
       <div class="col-6">
         <div class="p-image-container--3-2 u-hide--small u-hide--medium">
-          <img class="p-image-container__image"
-               src="https://assets.ubuntu.com/v1/a5487809-Image%20container.png"
-               alt="" />
+          {{ image(url="https://assets.ubuntu.com/v1/a5487809-Image container.png",
+                    alt="",
+                    width="600",
+                    height="408",
+                    hi_def=True,
+                    loading="auto",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
         </div>
       </div>
     </div>
@@ -56,9 +63,7 @@
             <div class="list-matrix">
               <div class="list-matrix-container">
                 <p class="p-heading--5">24/7 support</p>
-                <p>
-                  Enterprise-grade combined support available via your existing Microsoft support agreement.
-                </p>
+                <p>Enterprise-grade combined support available via your existing Microsoft support agreement.</p>
               </div>
             </div>
           </div>
@@ -67,7 +72,9 @@
             <div class="list-matrix">
               <div class="list-matrix-container">
                 <p class="p-heading--5">The right SQL Server for you</p>
-                <p> Four flavours of SQL Server 2019 are available &ndash; Enterprise, Standard, Web and Developer editions are ready to launch today. </p>
+                <p>
+                  Four flavours of SQL Server 2019 are available &ndash; Enterprise, Standard, Web and Developer editions are ready to launch today.
+                </p>
               </div>
             </div>
           </div>
@@ -115,7 +122,9 @@
             <div class="list-matrix">
               <div class="list-matrix-container">
                 <p class="p-heading--5">CIS STIG</p>
-                <p>For companies looking to leverage industry benchmarks for hardening, Ubuntu Pro makes two leading implementation guides available.</p>
+                <p>
+                  For companies looking to leverage industry benchmarks for hardening, Ubuntu Pro makes two leading implementation guides available.
+                </p>
               </div>
             </div>
           </div>
@@ -150,7 +159,9 @@
             <div class="list-matrix">
               <div class="list-matrix-container">
                 <p class="p-heading--5">Kernel Livepatch</p>
-                <p>Ubuntu kernel updates are regularly issued. With our Livepatch service, kernel patches are delivered immediately, without the need to reboot your VMs.</p>
+                <p>
+                  Ubuntu kernel updates are regularly issued. With our Livepatch service, kernel patches are delivered immediately, without the need to reboot your VMs.
+                </p>
               </div>
             </div>
           </div>

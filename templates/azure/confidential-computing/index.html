@@ -82,7 +82,7 @@
         </ul>
         <hr class="p-rule--muted" />
         <p>
-          <a href="/azure/confidential-computing#get-in-touch">Don’t see what you’re looking for? Contact us to learn more&nbsp;&rsaquo;</a>
+          <a href="/azure/contact-us" class="js-invoke-modal" aria-controls="azure-confidential-computing-modal">Don’t see what you’re looking for? Contact us to learn more&nbsp;&rsaquo;</a>
         </p>
       </div>
     </div>
@@ -181,8 +181,11 @@
   <section class="p-strip is-deep">
     <div class="u-fixed-width">
       <h2>
-        <a href="/azure/confidential-computing#get-in-touch">Contact us to discuss your use case&nbsp;&rsaquo;</a>
+        <a href="/azure/contact-us" class="js-invoke-modal" aria-controls="azure-confidential-computing-modal">Contact us to discuss your use case&nbsp;&rsaquo;</a>
       </h2>
     </div>
   </section>
+
+  {{ load_form("/azure/confidential-computing") | safe }}
+
 {% endblock content %}
