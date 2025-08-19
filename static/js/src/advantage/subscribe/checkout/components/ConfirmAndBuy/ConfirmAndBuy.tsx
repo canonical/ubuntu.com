@@ -148,7 +148,7 @@ const getLabels = (product: Product, action: Action) => {
           <a
             href="https://canonical.com/legal/ubuntu-advantage-service-terms"
             target="_blank"
-            rel="noopener norefferer"
+            rel="noopener noreferrer"
           >
             Ubuntu Pro terms
           </a>
@@ -165,7 +165,7 @@ const getLabels = (product: Product, action: Action) => {
           <a
             href="https://canonical.com/legal/ubuntu-pro-description"
             target="_blank"
-            rel="noopener norefferer"
+            rel="noopener noreferrer"
           >
             Ubuntu Pro description
           </a>
@@ -199,7 +199,7 @@ const getLabels = (product: Product, action: Action) => {
           <a
             href="https://canonical.com/legal/data-privacy/credentials"
             target="_blank"
-            rel="noopener norefferer"
+            rel="noopener noreferrer"
           >
             Data Privacy Notice
           </a>
