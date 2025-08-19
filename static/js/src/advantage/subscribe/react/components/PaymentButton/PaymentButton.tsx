@@ -5,7 +5,8 @@ import { ProductUsers } from "../../utils/utils";
 
 export default function PaymentButton() {
   const { quantity, product, productUser } = useContext(FormContext);
-
+  let params = new URLSearchParams(document.location.search);
+  let referral_id =  params.get("referral_id") || "";
   const shopCheckoutData = {
     products: [
       {
@@ -13,6 +14,7 @@ export default function PaymentButton() {
         quantity: Number(quantity) ?? 0,
       },
     ],
+    metadata: [{"key": "referralID", "value": referral_id}],
     action: "purchase",
   };
 
