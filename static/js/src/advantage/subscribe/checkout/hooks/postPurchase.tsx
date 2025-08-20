@@ -37,13 +37,11 @@ const postPurchase = () => {
 
       if (marketplace !== UserSubscriptionMarketplace.CanonicalProChannel) {
         const product = products[0].product;
-        const metadata = localStorage.getItem("metadata") || "";
         payload = {
           account_id: window.accountId,
           marketplace: marketplace,
           action: action,
           coupon: coupon,
-          metadata: JSON.parse(metadata),
         };
 
         if (window.previousPurchaseIds !== undefined && product.period) {

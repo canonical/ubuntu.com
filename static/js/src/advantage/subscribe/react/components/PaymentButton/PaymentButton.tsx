@@ -14,8 +14,8 @@ export default function PaymentButton() {
         quantity: Number(quantity) ?? 0,
       },
     ],
-    metadata: [{"key": "referralID", "value": referral_id}],
     action: "purchase",
+    metadata: [{"key": "referralID", "value": referral_id}],
   };
 
   return (
