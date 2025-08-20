@@ -106,7 +106,6 @@ def login_handler():
             ),
         ],
     )
-    print("try_login:", try_login.body)
     return try_login
 
 
