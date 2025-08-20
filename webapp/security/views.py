@@ -329,11 +329,11 @@ def single_notices_sitemap(offset):
 
 
 def notices_sitemap():
-    notices_response = security_api.get_sitemap_cves(
+    notices_response = security_api.get_sitemap_notices(
         limit=100,
         offset=0,
     )
-    
+
     notices_count = notices_response.get("total_results", 0)
     base_url = "https://ubuntu.com/security/notices"
 
