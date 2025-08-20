@@ -1232,7 +1232,7 @@ def subscription_centre_submit(sfdcLeadId, unsubscribe):
 
 
 def navigation_nojs():
-    return flask.render_template("templates/meganav/navigation-nojs.html")
+    return flask.render_template("templates/navigation/navigation-nojs.html")
 
 
 def process_active_vulnerabilities(security_vulnerabilities):

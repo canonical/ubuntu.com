@@ -1,4 +1,4 @@
-{% set nav = get_meganav("all") %}
+{% set nav = get_navigation("all") %}
 
 {% extends "templates/base.html" %}
 
@@ -6,12 +6,12 @@
 
 {% block outer_content %}
 
-  <div class="p-strip nojs-meganav is-dark">
+  <div class="p-strip nojs-navigation is-dark">
     {% for section in nav %}
       <hr class="is-dark is-fixed-width p-rule--muted" />
       <nav class="dropdown-window__content-container desktop-dropdown-content">
         <div class="dropdown-window__content row">
-          {% include "templates/meganav/_section-heading.html" %}
+          {% include "templates/navigation/_section-heading.html" %}
           {% if "side_nav_sections" in nav[section] %}
             <div class="dropdown-window__tab-panel col-3">
               <div class="p-side-navigation is-dark">
@@ -56,7 +56,7 @@
                                   secondary_cta_url = link.secondary_cta_url,
                                   secondary_cta_title = link.secondary_cta_title
                                   %}
-                                  {% include "templates/meganav/_list-item.html" %}
+                                  {% include "templates/navigation/_list-item.html" %}
                                 {% endwith %}
                               {% endfor %}
                             </ul>
@@ -70,7 +70,7 @@
                                   title = link.title,
                                   description = link.description
                                   %}
-                                  {% include "templates/meganav/_list-item.html" %}
+                                  {% include "templates/navigation/_list-item.html" %}
                                 {% endwith %}
                               {% endfor %}
                             </ul>
@@ -85,7 +85,7 @@
                                     title = link.title,
                                     description = link.description
                                     %}
-                                    {% include "templates/meganav/_list-item.html" %}
+                                    {% include "templates/navigation/_list-item.html" %}
                                   {% endwith %}
                                 {% endfor %}
                               </ul>
@@ -142,7 +142,7 @@
                             secondary_cta_url = link.secondary_cta_url,
                             secondary_cta_title = link.secondary_cta_title
                             %}
-                            {% include "templates/meganav/_list-item.html" %}
+                            {% include "templates/navigation/_list-item.html" %}
                           {% endwith %}
                         {% endfor %}
                       </ul>
@@ -156,7 +156,7 @@
                             title = link.title,
                             description = link.description
                             %}
-                            {% include "templates/meganav/_list-item.html" %}
+                            {% include "templates/navigation/_list-item.html" %}
                           {% endwith %}
                         {% endfor %}
                       </ul>
@@ -170,7 +170,7 @@
                             title = link.title,
                             description = link.description
                             %}
-                            {% include "templates/meganav/_list-item.html" %}
+                            {% include "templates/navigation/_list-item.html" %}
                           {% endwith %}
                         {% endfor %}
                       </ul>
@@ -202,7 +202,7 @@
                           title = link.title,
                           description = link.description
                           %}
-                          {% include "templates/meganav/_list-item.html" %}
+                          {% include "templates/navigation/_list-item.html" %}
                         {% endwith %}
                       {% endfor %}
                     </ul>
