@@ -14,8 +14,9 @@ from webapp.views import (
     _build_mirror_list,
     download_thank_you,
     account_query,
+    build_tutorials_query,
+    match_tags,
 )
-
 
 class BaseViewTestCase(TestCase):
     """Base test case providing the Flask app."""
@@ -23,7 +24,6 @@ class BaseViewTestCase(TestCase):
     def setUp(self):
         self.app = app
         self.app.testing = True
-
 
 class TestShortenAcquisitionURL(BaseViewTestCase):
     """Tests for shorten_acquisition_url."""
@@ -59,7 +59,9 @@ class TestShortenAcquisitionURL(BaseViewTestCase):
             "psIqn0_aem_AbSMY4GVnRtIgih_p0mTaKvNZH6T3Qy73plm8KSqnZJXAsol_n1"
             "J440OjNsdU2s6-a0urWDolTPSE0nv3SYoY3jU"
         )
-        second_url_check = "https://ubuntu.com/engage/secure-kubernetes-at-the-edge"
+        second_url_check = (
+            "https://ubuntu.com/engage/secure-kubernetes-at-the-edge"
+        )
 
         third_url = (
             "https://ubuntu.com/engage/secure-kubernetes-at-the-edge?"
@@ -75,7 +77,6 @@ class TestShortenAcquisitionURL(BaseViewTestCase):
 
         self.assertEqual(shorten_acquisition_url(third_url), third_url)
         self.assertLess(len(shorten_acquisition_url(third_url)), 255)
-
 
 class TestProcessLocalCommunities(BaseViewTestCase):
     """Tests for process_local_communities."""
@@ -102,10 +103,11 @@ class TestProcessLocalCommunities(BaseViewTestCase):
         mock_render.assert_called_once()
         map_markers = mock_render.call_args.kwargs["map_markers"]
         self.assertEqual(len(map_markers), 2)
-        africa_marker = next(m for m in map_markers if m["name"] == "Ubuntu Africa")
+        africa_marker = next(
+            m for m in map_markers if m["name"] == "Ubuntu Africa"
+        )
         self.assertEqual(africa_marker["lat"], 4.71111)
         self.assertEqual(africa_marker["lon"], -74.07222)
-
 
 class TestBuildMirrorList(BaseViewTestCase):
     """Tests for _build_mirror_list."""
@@ -113,7 +115,9 @@ class TestBuildMirrorList(BaseViewTestCase):
     @patch("webapp.views.feedparser.parse")
     @patch("builtins.open")
     def test_all(self, mock_open, mock_parse):
-        mock_open.return_value.__enter__.return_value.read.return_value = "<xml/>"
+        mock_open.return_value.__enter__.return_value.read.return_value = (
+            "<xml/>"
+        )
         mirrors = [
             {
                 "link": "http://mirror1.example.com/ubuntu/",
@@ -129,15 +133,23 @@ class TestBuildMirrorList(BaseViewTestCase):
         mock_parse.return_value = type("F", (), {"entries": mirrors})()
         result = _build_mirror_list()
         expected = [
-            {"link": mirrors[0]["link"], "bandwidth": mirrors[0]["mirror_bandwidth"]},
-            {"link": mirrors[1]["link"], "bandwidth": mirrors[1]["mirror_bandwidth"]},
+            {
+                "link": mirrors[0]["link"],
+                "bandwidth": mirrors[0]["mirror_bandwidth"],
+            },
+            {
+                "link": mirrors[1]["link"],
+                "bandwidth": mirrors[1]["mirror_bandwidth"],
+            },
         ]
         self.assertEqual(result, expected)
 
     @patch("webapp.views.feedparser.parse")
     @patch("builtins.open")
     def test_local_filters(self, mock_open, mock_parse):
-        mock_open.return_value.__enter__.return_value.read.return_value = "<xml/>"
+        mock_open.return_value.__enter__.return_value.read.return_value = (
+            "<xml/>"
+        )
         mirrors = [
             {
                 "link": "https://us-secure.example.com/ubuntu/",
@@ -170,7 +182,9 @@ class TestBuildMirrorList(BaseViewTestCase):
     @patch("webapp.views.feedparser.parse")
     @patch("builtins.open")
     def test_local_no_country(self, mock_open, mock_parse):
-        mock_open.return_value.__enter__.return_value.read.return_value = "<xml/>"
+        mock_open.return_value.__enter__.return_value.read.return_value = (
+            "<xml/>"
+        )
         mock_parse.return_value = type(
             "F",
             (),
@@ -192,7 +206,6 @@ class TestBuildMirrorList(BaseViewTestCase):
     def test_file_not_found(self, mock_open, mock_parse):
         mock_parse.return_value = type("F", (), {"entries": []})()
         self.assertEqual(_build_mirror_list(), [])
-
 
 class TestDownloadThankYou(BaseViewTestCase):
     """Tests for download_thank_you."""
@@ -216,9 +229,13 @@ class TestDownloadThankYou(BaseViewTestCase):
     @patch("flask.render_template")
     def test_space_in_architecture(self, mock_render):
         mock_render.return_value = "ok"
-        with self.app.test_request_context("/?version=22.04&architecture=amd 64"):
+        with self.app.test_request_context(
+            "/?version=22.04&architecture=amd 64"
+        ):
             download_thank_you("server")
-        self.assertEqual(mock_render.call_args.kwargs["architecture"], "amd+64")
+        self.assertEqual(
+            mock_render.call_args.kwargs["architecture"], "amd+64"
+        )
 
     def test_missing_architecture_aborts(self):
         from werkzeug.exceptions import HTTPException
@@ -275,3 +292,124 @@ class TestAccountQuery(BaseViewTestCase):
             resp = account_query()
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.get_json(), {"account": None})
+
+class TestBuildingTutorialsQuery(BaseViewTestCase):
+    def _make_tutorials_docs(self, tutorials):
+        class DummyAPI:
+            base_url = "https://discourse.example.com"
+
+        class DummyParser:
+            def __init__(self, tutorials):
+                self.tutorials = tutorials
+                self.index_topic = 999
+                self.api = DummyAPI()
+
+            def parse(self):
+                pass
+
+            def parse_topic(self, topic):
+                pass
+
+        class DummyDocs:
+            def __init__(self, tutorials):
+                self.parser = DummyParser(tutorials)
+
+        return DummyDocs(tutorials)
+
+    def test_building_tutorials_query(self):
+        tutorials = [
+            {
+                "title": "Tutorial 1",
+                "slug": "tutorial-1",
+                "categories": ["c1", "c2"],
+                "author": "Author 1",
+                "difficulty": 3,
+                "created_at": "2023-01-01T00:00:00Z",
+            },
+            {
+                "title": "Tutorial 2",
+                "slug": "tutorial-2",
+                "categories": ["c2"],
+                "author": "Author 2",
+                "difficulty": 2,
+                "created_at": "2023-02-01T00:00:00Z",
+            },
+            {
+                "title": "Tutorial 3",
+                "slug": "tutorial-3",
+                "categories": ["c1"],
+                "author": "Author 3",
+                "difficulty": 1,
+                "created_at": "2023-03-01T00:00:00Z",
+            },
+        ]
+        docs = self._make_tutorials_docs(tutorials)
+
+        with self.app.test_request_context("/tutorials?topic=c2"):
+            view = build_tutorials_query(tutorials_docs=docs)
+            resp = view()  # Flask Response
+            data = resp.get_json()  # directly parse JSON
+        self.assertEqual(len(data), 2)
+        self.assertEqual(data[0]["title"], "Tutorial 1")
+        self.assertEqual(data[1]["title"], "Tutorial 2")
+
+        # Check that the created_at field is parsed correctly
+        self.assertEqual(data[0]["created_at"], "2023-01-01T00:00:00Z")
+        self.assertEqual(data[1]["created_at"], "2023-02-01T00:00:00Z")
+        self.assertEqual([d["difficulty"] for d in data], [3, 2])
+
+    def test_building_tutorials_query_no_topic(self):
+        tutorials = [
+            {
+                "title": "Tutorial 1",
+                "slug": "tutorial-1",
+                "categories": ["c1", "c2"],
+                "author": "Author 1",
+                "difficulty": 3,
+                "created_at": "2023-01-01T00:00:00Z",
+            },
+            {
+                "title": "Tutorial 2",
+                "slug": "tutorial-2",
+                "categories": ["c2"],
+                "author": "Author 2",
+                "difficulty": 2,
+                "created_at": "2023-02-01T00:00:00Z",
+            },
+            {
+                "title": "Tutorial 3",
+                "slug": "tutorial-3",
+                "categories": ["c1"],
+                "author": "Author 3",
+                "difficulty": 1,
+                "created_at": "2023-03-01T00:00:00Z",
+            },
+        ]
+        docs = self._make_tutorials_docs(tutorials)
+
+        with self.app.test_request_context("/tutorials"):
+            view = build_tutorials_query(tutorials_docs=docs)
+            resp = view()  # Flask Response
+            data = resp.get_json()  # directly parse JSON
+        self.assertEqual(len(data), 0)
+
+class TestMatchTags(TestCase):
+    def test_match_true_case_insensitive_whitespace(self):
+        self.assertTrue(
+            match_tags([" Cloud ", "DevOps"], ["devops", "security"])
+        )
+
+    def test_match_false_no_overlap(self):
+        self.assertFalse(
+            match_tags(["cloud", "data"], ["ai", "ml", "security"])
+        )
+
+    def test_empty_lists(self):
+        self.assertFalse(match_tags([], []))
+
+    def test_partial_empty(self):
+        self.assertFalse(match_tags(["cloud"], []))
+        self.assertFalse(match_tags([], ["cloud"]))
+
+    def test_exact_match(self):
+        self.assertTrue(match_tags(["cloud"], ["cloud"]))
