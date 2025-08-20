@@ -300,42 +300,19 @@ def notices_feed(feed_type):
 # USN API
 # ===
 def single_notices_sitemap(offset):
-    notices = []
-    max_items = 100
-    api_limit = 10
     offset = int(offset)  # Convert offset to int
 
     # max limit is 10, so we need to make multiple requests up to 100
-    for batch_offset in range(offset, offset + max_items, api_limit):
-        batch_response = security_api.get_page_notices(
-            limit=api_limit,
-            offset=batch_offset,
-            details="",
-            releases=[],
-            order="",
-        )
-        batch_notices = batch_response.get("notices", [])
-
-        if not batch_notices:
-            break
-
-        notices.extend(batch_notices)
-
-        if len(batch_notices) < api_limit:
-            break
+    response = security_api.get_sitemap_notices(limit=100, offset=offset)
+    notices = response.get("notices", [])
 
     links = []
     for notice in notices:
-        notice_id = notice["id"]
-
-        if notice.get("published"):
-            notice["published"] = dateutil.parser.parse(
-                notice["published"]
-            ).strftime("%-d %B %Y")
 
         links.append(
             {
-                "url": f"https://ubuntu.com/security/notices/{notice_id}",
+                "url": f"https://ubuntu.com/security/notices/{notice['id']}",
+                # Keep ISO 8601 for <lastmod>
                 "last_updated": (
                     notice["published"] if notice["published"] else ""
                 ),
@@ -352,9 +329,11 @@ def single_notices_sitemap(offset):
 
 
 def notices_sitemap():
-    notices_response = security_api.get_page_notices(
-        limit=0, offset=0, details="", releases=[], order=""
+    notices_response = security_api.get_sitemap_cves(
+        limit=100,
+        offset=0,
     )
+    
     notices_count = notices_response.get("total_results", 0)
     base_url = "https://ubuntu.com/security/notices"
 
