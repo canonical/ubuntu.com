@@ -66,7 +66,7 @@ mainList.addEventListener("click", function (e) {
       goBackOneLevel(e, target);
     } else {
       handleDropdownClick(e.target.parentNode);
-      // This is a temporary fix until we migrate to use the vanilla meganav
+      // This is a temporary fix until we migrate to use the vanilla navigation
       closeNotifications();
     }
   } else if (
@@ -80,10 +80,10 @@ mainList.addEventListener("click", function (e) {
   }
 });
 
-// The current set up of the meganav doesn't work well with notifications. The simplest fix for this is to close all notifications when a dropdown is clicked. Can be removed on migration to vanilla meganav.
+// The current set up of the navigation doesn't work well with notifications. The simplest fix for this is to close all notifications when a dropdown is clicked. Can be removed on migration to vanilla navigation.
 function closeNotifications() {
   const notification = document.querySelector(".p-popup-notification:target");
-  notification.style.display = "none";
+  if (notification) notification.style.display = "none";
 }
 
 let wasBelowSpecificWidth = window.innerWidth < MOBILE_VIEW_BREAKPOINT;
@@ -165,7 +165,10 @@ function handleUrlHash() {
       const menuToggle = navigation.querySelector(".js-menu-button");
       menuToggle?.click();
     }
-    fetchDropdown("/templates/meganav/" + targetDropdown.id, targetDropdown.id);
+    fetchDropdown(
+      "/templates/navigation/" + targetDropdown.id,
+      targetDropdown.id,
+    );
     handleDropdownClick(targetDropdown);
   }
 }
@@ -426,15 +429,18 @@ function setTabIndex(target) {
     });
   });
 
-  const targetLiItems = target.querySelectorAll("li");
-  targetLiItems.forEach((element, index) => {
-    if (
-      element.parentNode === target ||
-      element.parentNode.parentNode === target
-    ) {
-      element.children[0].setAttribute("tabindex", "0");
-    }
-  });
+  // In some cases there is no target so we don't need to update the tab index
+  if (target) {
+    const targetLiItems = target.querySelectorAll("li");
+    targetLiItems.forEach((element, index) => {
+      if (
+        element.parentNode === target ||
+        element.parentNode.parentNode === target
+      ) {
+        element.children[0].setAttribute("tabindex", "0");
+      }
+    });
+  }
 
   // If on desktop, update the nav items tab index.
   // Keep the active nav item at tabindex 0

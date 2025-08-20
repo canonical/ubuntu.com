@@ -24,7 +24,8 @@ Merging a pull request (PR) into the `main` branch will automatically trigger a 
 - [`./entrypoint`](entrypoint): The commands for running the application with Gunicorn. This is used within `Dockerfile` for running the production site.
 - [`./Dockerfile`](Dockerfile): Used by the [production Jenkins job](https://jenkins.canonical.com/webteam/job/ubuntu.com) for building the production docker image. See [our standard deployment flow](https://discourse.canonical.com/t/how-the-standard-website-deployment-flow-is-set-up-in-github-jenkins-and-kubernetes/2112).
 - [`./releases.yaml`](releases.yaml): For defining releases of Ubuntu, which get displayed on ubuntu.com/download etc.
-- [`./navigation.yaml`](navigation.yaml): Navigation sections within ubuntu.com.
+- [`./navigation.yaml`](navigation.yaml): The main navigation structure.
+- [`./secondary-navigation.yaml`](secondary-navigation.yaml): Secondary navigation structures, specific to product groups.
 - [`./appliances.yaml`](appliances.yaml): Appliance metadata for displaying on ubuntu.com/appliance
 - [`./requirements.txt`](requirements.txt): Python dependencies for the project
 - [`./webapp/`](webapp/): The Python application files:
