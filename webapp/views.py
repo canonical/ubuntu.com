@@ -1028,6 +1028,10 @@ def marketo_submit():
         enrichment_submission["success"] is True
         and payload_status == "updated"
     ):
+        flask.flash(
+            "Your form was submitted successfully.", "contact-form-success"
+        )
+
         if return_url:
             # Personalize thank-you page
             flask.session["form_details"] = {
