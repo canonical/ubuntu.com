@@ -65,3 +65,6 @@ class MarketoAPI:
             "input": leads,
         }
         return self.request("POST", "/rest/v1/leads.json", json=data)
+
+    def get_form_fields(self, id):
+        return self.request("GET", f"/rest/asset/v1/form/{id}/fields.json")
