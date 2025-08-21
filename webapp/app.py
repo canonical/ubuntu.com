@@ -255,10 +255,29 @@ search_engine_id = "adb2397a224a1fe55"
 
 init_handlers(app, sentry)
 
+
 # Prepare forms
-form_template_path = "shared/forms/form-template.html"
-form_loader = FormGenerator(app, form_template_path)
-form_loader.load_forms()
+def init_forms():
+    form_template_path = "shared/forms/form-template.html"
+
+    try:
+        template_full_path = (
+            Path(app.root_path).parent / "templates" / form_template_path
+        )
+        if not template_full_path.exists():
+            raise FileNotFoundError(
+                f"Form template not found: {template_full_path}"
+            )
+
+        form_loader = FormGenerator(app, form_template_path)
+        form_loader.load_forms()
+
+    except Exception as e:
+        print(f"There was an error loading forms: {e}")
+        raise e
+
+
+init_forms()
 
 # Routes
 # ===
