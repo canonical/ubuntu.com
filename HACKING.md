@@ -108,7 +108,7 @@ On mobile we have a pattern of showing the section title next to the logo, e.g.
 
 ![Section title example](https://assets.ubuntu.com/v1/bb50217a-Screenshot+from+2020-02-04+15-29-36.png)
 
-For the most part this will happen automatically as long as the subpages (https://canonical.com/mlops) are in `navigtation.yml` as children. In some cases this isn't possible due to dynamically created content such as tutorials. In this case you can set the `section_title` and `section_path` variables in the template e.g.
+For the most part this will happen automatically as long as the subpages (/appliance/community) are in `navigtation.yml` as children. In some cases this isn't possible due to dynamically created content such as tutorials. In this case you can set the `section_title` and `section_path` variables in the template e.g.
 
 ```
 {% set section_title="Tutorials" %}
