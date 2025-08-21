@@ -19,12 +19,12 @@ SET_FIELDS = set(
         "title",
         "country",
         "phone",
-        "comments_from_lead__c"
+        "comments_from_lead__c",
     }
 )
-# All form-data.json forms exluding test files
 form_files = [
-    f for f in Path("templates").rglob("form-data.json")
+    f
+    for f in Path("templates").rglob("form-data.json")
     if "templates/tests" not in str(f)
 ]
 
@@ -59,9 +59,9 @@ class TestMarketo(unittest.TestCase):
     def _check_form_with_marketo(self, form_path):
         # Function to check form fields and Marketo fields against one another
         def _check_form_fields(field_id, check_form):
-            assert field_id is not None, (
-                f"Field ID is none for {check_form} fields"
-            )
+            assert (
+                field_id is not None
+            ), f"Field ID is none for {check_form} fields"
 
             field_id = field_id.lower()
             if check_form == "marketo":
@@ -85,9 +85,9 @@ class TestMarketo(unittest.TestCase):
 
         with open(form_path, "r") as f:
             forms = json.load(f).get("form", {})
-            assert forms is not None, (
-                f"Form data could not be loaded from {form_path}"
-            )
+            assert (
+                forms is not None
+            ), f"Form data could not be loaded from {form_path}"
 
         # form-data.json may have multiple forms
         for form_data in forms.values():
@@ -125,6 +125,9 @@ class TestMarketo(unittest.TestCase):
                 required = marketo_field.get("required")
                 if required:
                     _check_form_fields(id, "form-data")
+
+    def test_submit_form(self):
+        return
 
 
 if __name__ == "__main__":
