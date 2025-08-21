@@ -14,11 +14,12 @@ type Props = {
   action: Action;
   coupon?: Coupon;
   poNumber?: string | null;
+  referral_id?: string;
 };
 
 const postPurchase = () => {
   const mutation = useMutation<any, Error, Props>({
-    mutationFn: async ({ products, action, coupon, poNumber }: Props) => {
+    mutationFn: async ({ products, action, coupon, referral_id, poNumber }: Props) => {
       if (window.currentPaymentId) {
         await retryPurchase(window.currentPaymentId);
 
@@ -43,6 +44,12 @@ const postPurchase = () => {
           action: action,
           coupon: coupon,
         };
+        if (referral_id) {
+          payload.metadata = [{
+            "key": "referralID",
+            "value": referral_id
+          }];
+        }
 
         if (window.previousPurchaseIds !== undefined && product.period) {
           payload.previous_purchase_id =
