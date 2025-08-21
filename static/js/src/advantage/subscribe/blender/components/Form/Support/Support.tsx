@@ -55,7 +55,7 @@ const Support = () => {
         <Col size={12}>
           <p>
             <a
-              href="/legal/solution-support"
+              href="https://canonical.com/legal/solution-support"
               target="_blank"
               rel="noopener noreferrer"
             >

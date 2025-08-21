@@ -32,13 +32,6 @@ from canonicalwebteam.search import build_search_view
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.form_generator import FormGenerator
 
-from webapp.canonical_cla.views import (
-    canonical_cla_api_github_login,
-    canonical_cla_api_github_logout,
-    canonical_cla_api_launchpad_login,
-    canonical_cla_api_launchpad_logout,
-    canonical_cla_api_proxy,
-)
 from webapp.certified.views import certified_routes
 from webapp.handlers import init_handlers
 from webapp.login import login_handler, logout
@@ -700,28 +693,6 @@ app.add_url_rule(
 app.add_url_rule(
     "/engage/unlisted/<slug>",
     view_func=unlisted_engage_page,
-)
-
-app.add_url_rule(
-    "/legal/contributors/agreement/api",
-    methods=["POST", "GET"],
-    view_func=canonical_cla_api_proxy,
-)
-app.add_url_rule(
-    "/legal/contributors/agreement/api/github/logout",
-    view_func=canonical_cla_api_github_logout,
-)
-app.add_url_rule(
-    "/legal/contributors/agreement/api/github/login",
-    view_func=canonical_cla_api_github_login,
-)
-app.add_url_rule(
-    "/legal/contributors/agreement/api/launchpad/logout",
-    view_func=canonical_cla_api_launchpad_logout,
-)
-app.add_url_rule(
-    "/legal/contributors/agreement/api/launchpad/login",
-    view_func=canonical_cla_api_launchpad_login,
 )
 
 

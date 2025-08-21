@@ -139,7 +139,7 @@ const DetailsTabs = ({
                 <tr>
                   <td data-test="doc-link">Ubuntu Assurance Program</td>
                   <td>
-                    <a href="https://ubuntu.com/legal/ubuntu-pro-assurance">
+                    <a href="https://canonical.com/legal/ubuntu-pro-assurance">
                       Protecting your business from IP infringement
                     </a>
                   </td>
