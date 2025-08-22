@@ -22,7 +22,7 @@
         </thead>
 
         <tbody>
-          {% set releases = ["24.04 LTS", "22.04 LTS", "20.04 LTS", "CORE 20", "18.04 LTS", "CORE 18"] %}
+          {% set releases = ["24.04 LTS", "Core 24", "22.04 LTS", "Core 22", "20.04 LTS", "Core 20", "18.04 LTS", "Core 18"] %}
           {% for component in components %}
             {% for i in range(releases|length) %}
               {% set release = releases[i] %}
@@ -70,7 +70,7 @@
     </div>
     <div>
       <hr class="p-rule" />
-      <p class="u-text--muted">*LTS releases with a blank status have not been tested</p>
+      <p class="u-text--muted">*Releases with a blank status have not been tested</p>
     </div>
     <!-- <ul class="p-inline-list u-hide--medium u-hide--large">
       <li class="p-inline-list__item">

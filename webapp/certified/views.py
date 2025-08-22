@@ -627,7 +627,9 @@ def certified_model_details(canonical_id):
         '20.04 LTS': [{'release': '20.04 LTS', 'third_party_driver': True, 'status': 'certified'}],
         '22.04 LTS': [{'release': '22.04 LTS', 'third_party_driver': False, 'status': 'inprogress'}],
         '18.04 LTS': [{'release': '18.04 LTS', 'third_party_driver': False, 'status': 'certified'}],
-        'CORE 18': [{'release': '18.04 LTS', 'third_party_driver': True, 'status': 'unsupported'}]
+        'Core 18': [{'release': 'Core 18', 'third_party_driver': True, 'status': 'unsupported'}],
+        'Core 24': [{'release': 'Core 24', 'third_party_driver': False, 'status': 'unsupported'}],
+        'Core 20': [{'release': 'Core 20', 'third_party_driver': True, 'status': 'inprogress'}]
     }
 
     return render_template(
