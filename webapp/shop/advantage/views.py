@@ -3,6 +3,7 @@ import json
 from typing import List
 
 import flask
+from webargs.fields import String
 
 from webapp.login import user_info
 from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
