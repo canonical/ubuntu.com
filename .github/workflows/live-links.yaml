@@ -3,6 +3,12 @@ name: Links on ubuntu.com live
 on:
   schedule:
     - cron: "20 7 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - test-web-bot
+    paths:
+      - '.github/workflows/live-links.yaml'
 
 jobs:
   check-links:
