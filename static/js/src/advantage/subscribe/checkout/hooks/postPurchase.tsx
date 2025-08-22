@@ -43,13 +43,8 @@ const postPurchase = () => {
           marketplace: marketplace,
           action: action,
           coupon: coupon,
+          referral_id: referral_id,
         };
-        if (referral_id) {
-          payload.metadata = [{
-            "key": "referralID",
-            "value": referral_id
-          }];
-        }
 
         if (window.previousPurchaseIds !== undefined && product.period) {
           payload.previous_purchase_id =

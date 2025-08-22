@@ -15,7 +15,6 @@ export default function PaymentButton() {
       },
     ],
     action: "purchase",
-    metadata: [{"key": "referralID", "value": referral_id}],
   };
 
   return (
@@ -39,6 +38,7 @@ export default function PaymentButton() {
               "shop-checkout-data",
               JSON.stringify(shopCheckoutData),
             );
+            localStorage.setItem("referral_id", referral_id);
             location.href = "/account/checkout";
           }}
         >

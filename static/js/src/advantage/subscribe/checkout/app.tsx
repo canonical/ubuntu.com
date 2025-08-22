@@ -50,7 +50,6 @@ declare global {
 
 const checkoutData = localStorage.getItem("shop-checkout-data") || "";
 const parsedCheckoutData = JSON.parse(checkoutData);
-console.log(parsedCheckoutData);
 const stripePromise = loadStripe(window.stripePublishableKey || "");
 const parsedCheckoutProducts: CheckoutProducts[] = parsedCheckoutData?.products;
 
@@ -64,7 +63,7 @@ const products = parsedCheckoutProducts.map((product) => {
 const action: Action = parsedCheckoutData?.action;
 const coupon: Coupon = parsedCheckoutData?.coupon || undefined;
 const marketplace = products[0].product.marketplace;
-const referral_id = parsedCheckoutData?.metadata?.find((item) => item.key === "referralID")?.value;
+const referral_id = localStorage.getItem("referral_id") || undefined;
 
 window.marketplace = marketplace;
 window.canTrial = undefined;
