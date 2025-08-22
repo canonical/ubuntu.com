@@ -22,7 +22,7 @@
         </thead>
 
         <tbody>
-          {% set releases = ["24.04 LTS", "Core 24", "22.04 LTS", "Core 22", "20.04 LTS", "Core 20", "18.04 LTS", "Core 18"] %}
+          {% set releases = ["24.04 LTS", "22.04 LTS", "20.04 LTS", "18.04 LTS", "Core 24", "Core 22", "Core 20", "Core 18"] %}
           {% for component in components %}
             {% for i in range(releases|length) %}
               {% set release = releases[i] %}
