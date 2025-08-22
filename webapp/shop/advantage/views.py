@@ -3,7 +3,6 @@ import json
 from typing import List
 
 import flask
-from webargs.fields import String
 
 from webapp.login import user_info
 from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
@@ -274,7 +273,6 @@ def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
     action = kwargs.get("action", "purchase")
     coupon = kwargs.get("coupon")
     referral_id = kwargs.get("referral_id")
-    print(referral_id)
 
     subscribed_quantities = {}
     if action == "purchase":
@@ -341,10 +339,7 @@ def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
         if flask.session.get(metadata_key)
     ]
     if referral_id:
-        metadata.append({
-            "key": "referralID",
-            "value": referral_id
-        })
+        metadata.append({"key": "referralID", "value": referral_id})
 
     if marketplace == "canonical-pro-channel":
         channel_metadata = kwargs.get("metadata")

@@ -183,7 +183,6 @@ class AdvantageMapper:
     def purchase_from_marketplace(
         self, marketplace: str, purchase_request: dict, preview=True
     ) -> Union[Invoice, Purchase]:
-        print(purchase_request)
         if preview:
             invoice = self.ua_contracts_api.preview_purchase_from_marketplace(
                 marketplace=marketplace, purchase_request=purchase_request
