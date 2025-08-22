@@ -1,6 +1,6 @@
 $row-margin-medium: 1.5rem;
 $row-margin-small: 1rem;
-$meganav-height: 3rem;
+$navigation-height: 3rem;
 
 @mixin ubuntu-p-navigation {
   #control-height {
@@ -79,7 +79,7 @@ $meganav-height: 3rem;
       }
 
       .p-navigation__dropdown {
-        height: calc(100vh - $meganav-height);
+        height: calc(100vh - $navigation-height);
         overflow: hidden;
 
         &[aria-hidden="false"] {
@@ -380,7 +380,7 @@ $meganav-height: 3rem;
       }
 
       .p-navigation__banner {
-        height: $meganav-height;
+        height: $navigation-height;
         padding-left: $row-margin-medium;
       }
     }
@@ -663,7 +663,7 @@ $meganav-height: 3rem;
 }
 
 @mixin ubuntu-p-nojs-navigation {
-  .nojs-meganav {
+  .nojs-navigation {
     background: #262626;
     overflow-x: unset !important;
 
