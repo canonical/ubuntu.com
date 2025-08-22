@@ -5,7 +5,8 @@ import { ProductUsers } from "../../utils/utils";
 
 export default function PaymentButton() {
   const { quantity, product, productUser } = useContext(FormContext);
-
+  let params = new URLSearchParams(document.location.search);
+  let referral_id = params.get("referral_id") || "";
   const shopCheckoutData = {
     products: [
       {
@@ -37,6 +38,7 @@ export default function PaymentButton() {
               "shop-checkout-data",
               JSON.stringify(shopCheckoutData),
             );
+            localStorage.setItem("referral_id", referral_id);
             location.href = "/account/checkout";
           }}
         >

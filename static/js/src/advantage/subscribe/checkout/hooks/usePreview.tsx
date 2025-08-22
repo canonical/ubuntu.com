@@ -32,7 +32,6 @@ const usePreview = ({ products, action, coupon }: Props) => {
 
       if (marketplace !== UserSubscriptionMarketplace.CanonicalProChannel) {
         const product = products[0].product;
-
         payload = {
           account_id: window.accountId,
           marketplace: marketplace,

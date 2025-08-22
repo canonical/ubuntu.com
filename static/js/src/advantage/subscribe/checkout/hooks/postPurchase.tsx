@@ -14,11 +14,18 @@ type Props = {
   action: Action;
   coupon?: Coupon;
   poNumber?: string | null;
+  referral_id?: string;
 };
 
 const postPurchase = () => {
   const mutation = useMutation<any, Error, Props>({
-    mutationFn: async ({ products, action, coupon, poNumber }: Props) => {
+    mutationFn: async ({
+      products,
+      action,
+      coupon,
+      referral_id,
+      poNumber,
+    }: Props) => {
       if (window.currentPaymentId) {
         await retryPurchase(window.currentPaymentId);
 
@@ -37,12 +44,12 @@ const postPurchase = () => {
 
       if (marketplace !== UserSubscriptionMarketplace.CanonicalProChannel) {
         const product = products[0].product;
-
         payload = {
           account_id: window.accountId,
           marketplace: marketplace,
           action: action,
           coupon: coupon,
+          referral_id: referral_id,
         };
 
         if (window.previousPurchaseIds !== undefined && product.period) {

@@ -31,9 +31,10 @@ type Props = {
   products: CheckoutProducts[];
   action: Action;
   coupon: Coupon;
+  referral_id: string | undefined;
 };
 
-const Checkout = ({ products, action, coupon }: Props) => {
+const Checkout = ({ products, action, coupon, referral_id }: Props) => {
   const [error, setError] = useState<DisplayError | null>(null);
   const [errorType, setErrorType] = useState<string>("");
   const [isTotalLoading, setIsTotalLoading] = useState<boolean>(true);
@@ -182,6 +183,7 @@ const Checkout = ({ products, action, coupon }: Props) => {
                                   action={action}
                                   setError={setError}
                                   coupon={coupon}
+                                  referral_id={referral_id}
                                   errorType={errorType}
                                   isDisabled={
                                     !(
