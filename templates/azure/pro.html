@@ -78,7 +78,7 @@
            href="https://portal.azure.com/#create/canonical.ubuntu-24_04-ltsubuntu-pro">Launch Ubuntu Pro 24.04 LTS</a>
         <hr class="p-rule--muted" />
         <p>
-          <a href="/azure/get-in-touch" class="js-invoke-modal">Contact us to discuss Ubuntu Pro with support&nbsp;&rsaquo;</a>
+          <a href="/azure/contact-us" class="js-invoke-modal">Contact us to discuss Ubuntu Pro with support&nbsp;&rsaquo;</a>
         </p>
       </div>
     </div>
@@ -315,5 +315,7 @@
   {% endwith %}
 
   <script src="{{ versioned_static('js/dist/utmInheritance.js') }}"></script>
+
+  {{ load_form("/azure") | safe }}
 
 {% endblock content %}

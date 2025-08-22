@@ -31,7 +31,7 @@
         <hr class="is-muted" />
         <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/microsoftsqlserver.sql2019-ubuntupro2004?tab=Overview"
            class="p-button--positive">Launch now</a>
-        <a href="/azure#get-in-touch">Contact us to learn more&nbsp;&rsaquo;</a>
+        <a class="js-invoke-modal" href="/azure/contact-us">Contact us to learn more&nbsp;&rsaquo;</a>
       </div>
       <div class="col-6">
         <div class="p-image-container--3-2 u-hide--small u-hide--medium">
@@ -245,4 +245,6 @@
       </div>
     </div>
   </section>
+
+  {{ load_form("/azure") | safe }}
 {% endblock content %}

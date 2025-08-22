@@ -300,6 +300,8 @@
     </div>
   </template>
 
+  {{ load_form("/azure") | safe }}
+
   <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
   <script>
     canonicalLatestNews.fetchLatestNews({
