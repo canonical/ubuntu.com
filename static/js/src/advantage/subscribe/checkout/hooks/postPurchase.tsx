@@ -19,7 +19,13 @@ type Props = {
 
 const postPurchase = () => {
   const mutation = useMutation<any, Error, Props>({
-    mutationFn: async ({ products, action, coupon, referral_id, poNumber }: Props) => {
+    mutationFn: async ({
+      products,
+      action,
+      coupon,
+      referral_id,
+      poNumber,
+    }: Props) => {
       if (window.currentPaymentId) {
         await retryPurchase(window.currentPaymentId);
 

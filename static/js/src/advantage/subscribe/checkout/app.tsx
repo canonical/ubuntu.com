@@ -96,7 +96,12 @@ const App = () => {
     <Sentry.ErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <Elements stripe={stripePromise}>
-          <Checkout products={products} action={action} coupon={coupon} referral_id={referral_id} />
+          <Checkout
+            products={products}
+            action={action}
+            coupon={coupon}
+            referral_id={referral_id}
+          />
         </Elements>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
