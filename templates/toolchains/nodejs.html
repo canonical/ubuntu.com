@@ -1,0 +1,269 @@
+{% extends "toolchains/base_toolchains.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1ShgZyjn6pBG-L5iVd-MEIwc1JRVhaSeUFoImo5iWO-k
+{% endblock meta_copydoc %}
+
+{% block title %}
+  Extended Node.js support and security patching on Ubuntu LTS
+{% endblock %}
+
+{% block meta_description %}
+  Install Node.js and NPM on Ubuntu for a secure developer and production environment beyond upstream end-of-life.
+{% endblock %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+
+
+  {% call(slot) vf_hero(
+    title_text='Canonical packages Node.js for Ubuntu',
+    subtitle_text='Install Node.js and npm on Ubuntu LTS with up to 12 years of security maintenance' | safe,
+    layout='25/75'
+  ) -%}
+  {%- if slot == 'signpost_image' -%}
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js">
+  {%- endif -%}
+  {%- if slot == 'description' -%}
+  <p class="p-code-snippet__block--icon"><code>sudo apt install nodejs npm</code></p>
+  <p>
+    Build and deploy long-lived Node.js projects on Ubuntu LTS. Canonical packages Node.js and npm with every Ubuntu release, 
+    but Ubuntu LTS releases include 10 years of long-term support, security, and stability with an Ubuntu Pro subscription. 
+    Ubuntu Pro also secures all the tangential dependencies of your Node.js application, such as databases, Python, nginx, 
+    OpenSSL, and more. Choosing Ubuntu enables teams to have development environments that are identical to production 
+    environments, and facilitates seamless deployment.
+  </p>
+  {%- endif -%}
+  {%- endcall -%}
+
+  <div class="p-section u-fixed-width">
+    <hr class="p-rule" />
+    <div class="row">
+      <div class="p-section--shallow">
+        <h2>Canonical's Node.js releases</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col" style="overflow: auto;">
+        <table aria-label="Canonical Node.js LTS packages table">
+          <thead>
+            <tr>
+              <th>Node.js release</th>
+              <th>GA date</th>
+              <th>Ubuntu LTS version availability</th>
+              <th>Ubuntu Pro Legacy security and support until</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>0.10.25</td>
+              <td>2014</td>
+              <td>14.04</td>
+              <td>At least 2026</td>
+            </tr>
+            <tr>
+              <td>4.2.6 LTS</td>
+              <td>2016</td>
+              <td>16.04</td>
+              <td>At least 2028</td>
+            </tr>
+            <tr>
+              <td>8.10.0 LTS</td>
+              <td>2018</td>
+              <td>18.04</td>
+              <td>At least 2030</td>
+            </tr>
+            <tr>
+              <td>10.19.0 LTS</td>
+              <td>2020</td>
+              <td>20.04</td>
+              <td>At least 2032</td>
+            </tr>
+            <tr>
+              <td>12.22.9 LTS</td>
+              <td>2022</td>
+              <td>22.04</td>
+              <td>At least 2034</td>
+            </tr>
+            <tr>
+              <td>18.19.1 LTS</td>
+              <td>2024</td>
+              <td>24.04</td>
+              <td>At least 2036</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <section class="p-section u-fixed-width">
+    <hr class="p-rule" />
+    <div class="row--50-50">
+      <div class="col">
+        <div class="p-section--shallow">
+          <h2>
+            Predictable NodeJS
+            <br class="u-hide--small u-hide--medium" />
+            release cadence on Ubuntu
+          </h2>
+        </div>
+      </div>
+      <div class="col">
+        <p>
+          Ubuntu's predictable release cadence makes it the ideal platform for 
+          building and running Node.js applications. Each Ubuntu LTS release 
+          includes a Canonical-maintained Node.js LTS version, giving you access 
+          to the latest features while ensuring long-term security and stability.
+        </p>
+        <p>
+          Here's how it works:
+        </p>
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">
+            Starting with Ubuntu 14.04, every Ubuntu LTS release has included a 
+            Canonical-maintained Node.js LTS version.
+          </li>
+          <li class="p-list__item is-ticked">
+            Each Node.js version receives security updates through Ubuntu Pro, 
+            offering at least 10 years of coverage. This extends beyond the 
+            upstream Node.js maintenance window from the OpenJS Foundation.
+          </li>
+          <li class="p-list__item is-ticked">
+            Developers benefit from consistent, production-grade environments 
+            that match their local setups. This removes surprises at 
+            deployment time.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section u-fixed-width">
+    <hr class="p-rule" />
+    <div class="row--50-50">
+      <div class="col">
+        <div class="p-section--shallow">
+          <h2>Receive up to 12 years of security patching and maintenance</h2>
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/1d8eb40a-12%20years%20circle.png",
+              alt="security patching",
+              width="1800",
+              height="1200",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+        </div>
+        <p>
+          Extend the security lifecycle of your Node.js LTS build to up to 10 years with 
+          Canonical's comprehensive subscription for open source security: Ubuntu Pro. 
+          An additional 2 years can be added with Ubuntu Pro Legacy.
+        </p>
+        <p>
+          Running Node.js on Ubuntu gives developers the confidence to build resilient and 
+          long-running applications with extended security maintenance and support for each 
+          Node.js LTS release, commercially supported by Canonical through at least 2036.
+        </p>
+        <div class="p-cta-block">
+          <a class="p-button" href="https://ubuntu.com/pricing/pro">Get support with Ubuntu Pro</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="p-section u-fixed-width">
+    <hr class="p-rule">
+    <div class="row">
+      <div class="col-6">
+        <div class="p-section--shallow">
+          <h2>Security through confinement, when installing Node.js as a snap package</h2>
+        </div>
+      </div>
+      <div class="col-6">
+        <p>
+          Using the Node.js snap gives you:
+        </p>
+        <ul class="p-list">
+          <li class="p-list__item has-bullet">
+            The ability to install multiple Node.js versions in parallel, without conflicts
+          </li>
+          <li class="p-list__item has-bullet">
+            Isolated, sandboxed execution for better security
+          </li>
+          <li class="p-list__item has-bullet">
+            Automatic background updates with rollback support
+          </li>
+          <li class="p-list__item has-bullet">
+            Granular control over updating the snap package through Landscape
+          </li>
+        </ul>
+        <p>
+          The Node.js snap is packaged and published by the OpenJS Foundation. It is trusted, 
+          up-to-date, and secured by OpenJS - but does not get 12 years of security coverage 
+          through Ubuntu Pro.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-section u-fixed-width">
+    <hr class="p-rule">
+    <div class="row">
+      <div class="p-section--shallow">
+        <h2>FIPS compliant cryptography in certified Node.js builds</h2>
+      </div>
+    </div>
+    <div class="p-section--shallow">
+      <div class="row">
+        <div class="col-9 col-start-large-4">
+          <hr class="is-muted">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3 col-start-large-4">
+          <h3 class="p-heading--5">FIPS compliance</h3>
+        </div>
+        <div class="col-6">
+          <p>
+            Organizations in need of a Node.js binary with FIPS-compliant cryptography 
+            will never need to compile Node.js with these capabilities from source. 
+            Canonical publishes a FIPS-compliant Node.js binary for customers who enable 
+            FIPS on Ubuntu. The option to enable FIPS in 1 command is included with 
+            Ubuntu Pro.
+          </p>
+          <p>
+            If FIPS has been enabled in Ubuntu through the Ubuntu Pro Client, the 
+            FIPS-compliant version of the Node.js package will be installed automatically.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="p-rule is-fixed-width" />
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <h2>
+        <a 
+          href="/toolchains/contact-us"
+          class="js-invoke-modal"
+          aria-controls="toolchains-modal"
+        >
+          Talk to us about your Node.js workloads on Ubuntu ›
+        </a>
+      </h2>
+    </div>
+  </section>
+
+  {{ load_form("/toolchains") | safe }}
+
+{% endblock content %}
