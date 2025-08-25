@@ -269,7 +269,7 @@ the setting of conntrack-max-per-core vs nf_conntrack_max.
 ## Actions
 
 The kubernetes-worker charm models a few one time operations called
-[Juju actions](https://canonical.com/jaas/docs/working-with-actions) that can be run by
+[Juju actions](https://documentation.ubuntu.com/jaas/latest/) that can be run by
 Juju users.
 
 ### Pause

@@ -646,7 +646,7 @@ You can now proceed with the rest of the upgrade.
 [etcd-upgrade]: https://etcd.io/docs/v3.5/upgrades/upgrade_3_0/
 [script]: https://raw.githubusercontent.com/juju-solutions/cdk-etcd-2to3/master/migrate
 [dns-provider-config]: https://github.com/juju-solutions/kubernetes/blob/5f4868af82705a0636680a38d7f3ea760d35dadb/cluster/juju/layers/kubernetes-master/config.yaml#L58-L67
-[docker-page]: https://canonical.com/jaas/u/containers/docker#configuration
+[docker-page]: https://charmhub.io/containers-docker#configuration
 [inclusive-naming]: /kubernetes/charmed-k8s/docs/inclusive-naming
 [LP#2044219]: https://bugs.launchpad.net/charm-kubernetes-master/+bug/2044219
 [cos]: kubernetes/charmed-k8s/docs/how-to-cos-lite
