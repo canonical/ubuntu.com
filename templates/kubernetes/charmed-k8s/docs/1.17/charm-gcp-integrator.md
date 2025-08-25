@@ -206,5 +206,5 @@ How often snapd handles updates for installed snaps. The default (an empty strin
 
 [interface]: https://github.com/juju-solutions/interface-gcp-integration
 [api-doc]: https://github.com/juju-solutions/interface-gcp-integration/blob/master/docs/requires.md
-[Charmed Kubernetes]: https://jaas.ai/charmed-kubernetes
+[Charmed Kubernetes]: https://charmhub.io/charmed-kubernetes
 [iam-api]: https://console.developers.google.com/apis/api/iam.googleapis.com/overview

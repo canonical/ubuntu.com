@@ -281,7 +281,7 @@ between calls.
 <!-- LINKS -->
 
 [asset-aws-iam-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/aws-overlay.yaml
-[aws-iam-charm]: https://jaas.ai/u/containers/aws-iam
+[aws-iam-charm]: https://charmhub.io/containers-aws-iam
 [aws-iam-authenticator-github]: https://github.com/kubernetes-sigs/aws-iam-authenticator
 [k8s-crd-docs]: https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/
 [k8s-rbac-docs]: https://kubernetes.io/docs/reference/access-authn-authz/rbac/
