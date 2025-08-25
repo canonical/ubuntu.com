@@ -238,85 +238,85 @@ These charms are frequently used with Charmed Kubernetes.
 <tr>
   <td> apache2 </td>
   <td> Apache HTTP Server metapackage </td>
-  <td> <a href="https://canonical.com/jaas/apache2">docs</a> </td>
+  <td> <a href="https://charmhub.io/apache2">docs</a> </td>
   <td>  </td>
 </tr>
 <tr>
   <td> ceph-osd </td>
   <td> Highly scalable distributed storage - Ceph OSD storage </td>
-  <td> <a href="https://canonical.com/jaas/ceph-osd">docs</a> </td>
+  <td> <a href="https://charmhub.io/ceph-osd">docs</a> </td>
   <td>  </td>
 </tr>
 <tr>
   <td> elasticsearch </td>
   <td> Open Source, Distributed, RESTful, Search Engine built on Apache Lucene </td>
-  <td> <a href="https://canonical.com/jaas/elasticsearch">docs</a> </td>
+  <td> <a href="https://charmhub.io/elasticsearch">docs</a> </td>
   <td>  </td>
 </tr>
 <tr>
   <td> filebeat </td>
   <td> Filebeat is a lightweight, open source shipper for log file data. </td>
-  <td> <a href="https://canonical.com/jaas/filebeat">docs</a> </td>
+  <td> <a href="https://charmhub.io/filebeat">docs</a> </td>
   <td>  </td>
 </tr>
 <tr>
   <td> grafana </td>
   <td> Graph and Dashboard builder </td>
-  <td> <a href="https://canonical.com/jaas/grafana">docs</a> </td>
+  <td> <a href="https://charmhub.io/grafana">docs</a> </td>
   <td>  </td>
 </tr>
 <tr>
   <td> graylog </td>
   <td> Graylog log management system </td>
-  <td> <a href="https://canonical.com/jaas/graylog">docs</a> </td>
+  <td> <a href="https://charmhub.io/graylog">docs</a> </td>
   <td>  </td>
 </tr>
 <tr>
   <td> hacluster </td>
   <td> Corosync Cluster Engine - membership, messaging and quorum </td>
-  <td> <a href="https://canonical.com/jaas/hacluster">docs</a> </td>
+  <td> <a href="https://charmhub.io/hacluster">docs</a> </td>
   <td>  </td>
 </tr>
 <tr>
   <td> mongodb </td>
   <td> An open-source document database, and the leading NoSQL database </td>
-  <td> <a href="https://canonical.com/jaas/mongodb">docs</a> </td>
+  <td> <a href="https://charmhub.io/mongodb">docs</a> </td>
   <td>  </td>
 </tr>
 <tr>
   <td> nagios </td>
   <td> Nagios Core 3 monitoring. </td>
-  <td> <a href="https://canonical.com/jaas/nagios">docs</a> </td>
+  <td> <a href="https://charmhub.io/nagios">docs</a> </td>
   <td>  </td>
 </tr>
 <tr>
   <td> nfs </td>
   <td> NFS server </td>
-  <td> <a href="https://canonical.com/jaas/nfs">docs</a> </td>
+  <td> <a href="https://charmhub.io/nfs">docs</a> </td>
   <td>  </td>
 </tr>
 <tr>
   <td> nrpe </td>
   <td> Nagios Remote Plugin Executor Server </td>
-  <td> <a href="https://canonical.com/jaas/nrpe">docs</a> </td>
+  <td> <a href="https://charmhub.io/nrpe">docs</a> </td>
   <td>  </td>
 </tr>
 <tr>
   <td> prometheus2 </td>
   <td> Monitoring system and timeseries database. v2.0 and later only </td>
-  <td> <a href="https://canonical.com/jaas/prometheus2">docs</a> </td>
+  <td> <a href="https://charmhub.io/prometheus2">docs</a> </td>
   <td>  </td>
 </tr>
 <tr>
   <td> telegraf </td>
   <td> The plugin-driven server agent for collecting & reporting metrics. </td>
-  <td> <a href="https://canonical.com/jaas/telegraf">docs</a> </td>
+  <td> <a href="https://charmhub.io/telegraf">docs</a> </td>
   <td>  </td>
 </tr>
 <tr>
   <td> vault </td>
   <td> a tool for managing secrets </td>
-  <td> <a href="https://canonical.com/jaas/vault">docs</a> </td>
+  <td> <a href="https://charmhub.io/vault">docs</a> </td>
   <td>  </td>
 </tr>
 
