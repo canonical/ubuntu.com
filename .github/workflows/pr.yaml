@@ -164,6 +164,7 @@ jobs:
           SEARCH_API_KEY: fake-key
           MARKETO_API_CLIENT: ${{ secrets.MARKETO_API_CLIENT }}
           MARKETO_API_SECRET: ${{ secrets.MARKETO_API_SECRET }}
+          SITEMAP_SECRET: ${{ secrets.SITEMAP_SECRET }}
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
