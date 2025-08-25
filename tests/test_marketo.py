@@ -39,8 +39,12 @@ class TestMarketo(unittest.TestCase):
         app.testing = True
         self.client = app.test_client()
 
-        assert get_flask_env("MARKETO_API_CLIENT") is not None
-        assert get_flask_env("MARKETO_API_SECRET") is not None
+        marketo_client = get_flask_env("MARKETO_API_CLIENT")
+        marketo_secret = get_flask_env("MARKETO_API_SECRET")
+        assert marketo_client is not None
+        assert marketo_secret is not None
+        assert len(marketo_client) > 10, "MARKETO_API_CLIENT is not valid"
+        assert len(marketo_secret) > 10, "MARKETO_API_SECRET is not valid"
 
         marketo_session = Session()
         talisker.requests.configure(marketo_session)

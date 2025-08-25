@@ -23,6 +23,9 @@ class MarketoAPI:
             f"client_id={self.client_id}&client_secret={self.client_secret}"
         )
         request = self.session.get(auth_url)
+        response = request.json()
+        if "access_token" not in response:
+            raise ValueError(f"No access_token in response: {response}")
         self.token = request.json()["access_token"]
 
     def request(self, method, url, url_args={}, json=None):
