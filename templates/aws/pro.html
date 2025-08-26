@@ -29,10 +29,15 @@
       </div>
       <div class="col u-hide--small">
         <div class="p-image-container--16-9 is-highlighted">
-          <img class="p-image-container__image"
-               src="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg"
-               alt="AWS logo"
-               width="20%" />
+          {{ image(url="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg",
+                    alt="AWS logo",
+                    width="302",
+                    height="180",
+                    fmt="svg",
+                    hi_def=True,
+                    loading="auto",
+                    attrs={"class":"p-image-container__image", "style":"width:20%"}) | safe
+          }}
         </div>
       </div>
     </div>
@@ -116,7 +121,9 @@
                 </div>
               </li>
             </ul>
-            <a href="/aws/contact-us" class="js-invoke-modal" aria-controls="aws-modal">Contact us to discuss Ubuntu Pro with
+            <a href="/aws/contact-us"
+               class="js-invoke-modal"
+               aria-controls="aws-modal">Contact us to discuss Ubuntu Pro with
             support&nbsp;&rsaquo;</a>
           </div>
         </div>
@@ -335,9 +342,14 @@
       <div class="col">
         <div class="p-section--shallow" style="padding-top: 1rem;">
           <div class="p-image-container--16-9">
-            <img class="p-image-container__image"
-                 src="https://assets.ubuntu.com/v1/7fc99412-Ubuntu%20Pro%20for%20AWS%20-%20Webinar.png"
-                 alt="Ubuntu Pro for AWS webinar" />
+            {{ image(url="https://assets.ubuntu.com/v1/7fc99412-Ubuntu%20Pro%20for%20AWS%20-%20Webinar.png",
+                        alt="Ubuntu Pro for AWS webinar",
+                        width="675",
+                        height="380",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class":"p-image-container__image"}) | safe
+            }}
           </div>
         </div>
         <p>
@@ -370,9 +382,14 @@
       <div class="col">
         <div class="p-section--shallow">
           <div class="p-image-container--16-9 is-highlighted">
-            <img class="p-image-container__image"
-                 src="https://assets.ubuntu.com/v1/683e6225-Image.png"
-                 alt="" />
+            {{ image(url="https://assets.ubuntu.com/v1/683e6225-Image.png",
+                        alt="",
+                        width="1200",
+                        height="800",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class":"p-image-container__image"}) | safe
+            }}
           </div>
         </div>
       </div>
