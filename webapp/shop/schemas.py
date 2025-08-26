@@ -88,6 +88,7 @@ account_purhcase = {
     ),
     "coupon": Nested(CouponSchema),
     "metadata": List(Nested(Metadata), allow_none=True),
+    "referral_id": String(allow_none=True),
 }
 
 

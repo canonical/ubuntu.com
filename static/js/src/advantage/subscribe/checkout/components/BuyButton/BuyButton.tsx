@@ -29,6 +29,7 @@ type Props = {
   products: CheckoutProducts[];
   action: Action;
   coupon?: Coupon;
+  referral_id: string | undefined;
   errorType: string;
   isDisabled: boolean;
 };
@@ -38,6 +39,7 @@ const BuyButton = ({
   products,
   action,
   coupon,
+  referral_id,
   errorType,
   isDisabled,
 }: Props) => {
@@ -160,6 +162,7 @@ const BuyButton = ({
         action: buyAction,
         coupon,
         poNumber,
+        referral_id,
       },
       {
         onSuccess: (purchaseId: string) => {
