@@ -300,7 +300,7 @@ def notices_feed(feed_type):
 # USN API
 # ===
 def single_notices_sitemap(offset):
-    offset = int(offset)  
+    offset = int(offset)
 
     response = security_api.get_sitemap_notices(limit=100, offset=offset)
     notices = response.get("notices", [])
