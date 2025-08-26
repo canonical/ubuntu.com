@@ -300,9 +300,8 @@ def notices_feed(feed_type):
 # USN API
 # ===
 def single_notices_sitemap(offset):
-    offset = int(offset)  # Convert offset to int
+    offset = int(offset)  
 
-    # max limit is 10, so we need to make multiple requests up to 100
     response = security_api.get_sitemap_notices(limit=100, offset=offset)
     notices = response.get("notices", [])
 
@@ -330,7 +329,6 @@ def single_notices_sitemap(offset):
 
 def notices_sitemap():
     notices_response = security_api.get_sitemap_notices(
-        limit=100,
         offset=0,
     )
 

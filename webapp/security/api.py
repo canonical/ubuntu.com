@@ -181,11 +181,14 @@ class SecurityAPI:
 
         return sitemap_response.json()
 
-    def get_sitemap_notices(self, limit, offset):
+    def get_sitemap_notices(self, offset, limit=100):
 
-        parameters = {"limit": int(limit), "offset": int(offset)}
+        parameters = {}
 
-        parameters = {k: v for k, v in parameters.items() if v is not None}
+        if limit is not None:
+            parameters["limit"] = int(limit)
+        if offset is not None:
+            parameters["offset"] = int(offset)
 
         filtered_parameters = urlencode(parameters, doseq=True)
 
