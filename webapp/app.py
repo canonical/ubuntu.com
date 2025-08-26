@@ -513,8 +513,8 @@ app.add_url_rule(
 )
 
 app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
-with open("meganav.yaml") as meganav_file:
-    meganav = yaml.load(meganav_file.read(), Loader=yaml.FullLoader)
+with open("navigation.yaml") as navigation_file:
+    navigation = yaml.load(navigation_file.read(), Loader=yaml.FullLoader)
 
 app.add_url_rule(
     "/search",
@@ -524,7 +524,7 @@ app.add_url_rule(
         session=session,
         template_path="search.html",
         search_engine_id=search_engine_id,
-        featured=meganav,
+        featured=navigation,
     ),
 )
 

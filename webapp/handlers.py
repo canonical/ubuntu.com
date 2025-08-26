@@ -11,8 +11,8 @@ from webapp.context import (
     format_date,
     format_to_id,
     get_json_feed,
-    get_meganav,
     get_navigation,
+    get_secondary_navigation,
     modify_query,
     month_name,
     months_list,
@@ -315,7 +315,7 @@ def init_handlers(app, sentry):
             "modify_query": modify_query,
             "month_name": month_name,
             "months_list": months_list,
-            "get_navigation": get_navigation,
+            "get_secondary_navigation": get_secondary_navigation,
             "get_stripe_publishable_key": get_flask_env(
                 "STRIPE_PUBLISHABLE_KEY",
                 "pk_live_68aXqowUeX574aGsVck8eiIE",
@@ -334,7 +334,7 @@ def init_handlers(app, sentry):
             ),
             "http_host": flask.request.host,
             "schedule_banner": schedule_banner,
-            "get_meganav": get_meganav,
+            "get_navigation": get_navigation,
             "split_list": split_list,
             "format_to_id": format_to_id,
         }

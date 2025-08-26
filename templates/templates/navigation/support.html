@@ -1,0 +1,5 @@
+{% set nav = get_navigation("support") %}
+
+{% with sections = nav.sections, key = "support", id = "support" %}
+  {% include "templates/navigation/base.html" %}
+{% endwith %}
