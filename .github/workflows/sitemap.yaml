@@ -16,10 +16,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Call sitemap generation endpoint
+        env:
+          SITEMAP_SECRET: ${{ secrets.SITEMAP_SECRET }}
         run: |
           curl --fail-with-body -X POST "https://ubuntu.com/sitemap_tree.xml" \
-          -H "Authorization: Bearer ${{ secrets.SITEMAP_SECRET }}"
+          -H "Authorization: Bearer $SITEMAP_SECRET"
 
       - name: Send message on failure
+        env:
+          BOT_URL: ${{ secrets.BOT_URL }}
         if: failure()
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=web-design
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" $BOT_URL?room=web-design
