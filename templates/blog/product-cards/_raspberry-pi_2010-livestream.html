@@ -1,7 +1,12 @@
 <div class="p-card js-product-card u-hide">
-  <img class="p-card__thumbnail"
-       src="https://assets.ubuntu.com/v1/77642675-partner-logo-raspberry-pi.png"
-       alt="Rapsberry Pi" />
+  {{ image(url="https://assets.ubuntu.com/v1/77642675-partner-logo-raspberry-pi.png",
+    alt="Rapsberry Pi",
+    width="300",
+    height="362",
+    hi_def=True,
+    loading="auto",
+    attrs={"class":"p-card__thumbnail"}) | safe
+  }}
   <hr class="p-rule--muted" />
   <h3>
     <a href="/engage/raspberry-pi-livestream">Ubuntu Desktop for Raspberry Pi</a>
