@@ -36,15 +36,13 @@
   {%- endcall -%}
 
   <section class="p-section">
-    <div class="u-fixed-width">
-      <hr class="p-rule" />
-    </div>
-    <div class="grid-row--50-50">
-      <div class="grid-col">
-        <h2>Supported frameworks and toolchains</h2>
-      </div>
-      <div class="grid-col">
-        <div class="p-section">
+    <div class="p-strip is-shallow">
+      <div class="grid-row--50-50">
+        <hr class="p-rule" />
+        <div class="grid-col">
+          <h2>Supported frameworks and toolchains</h2>
+        </div>
+        <div class="grid-col">
           <p>
             From development environments to mission critical production systems, millions of developers trust Ubuntu as the base OS for their software projects. Discover the security, compliance, developer experience and automation features available on Ubuntu.
           </p>
@@ -53,26 +51,16 @@
     </div>
     {{ vf_linked_logo_section(
       layout="25/75",
+      padding="none",
       top_rule_variant="none",
       links=[
         {
-          "href": "/toolchains/nodejs",
-          "text": "Learn more &rsaquo;",
-          "label": "NodeJS",
-          "image_attrs": {
-            "src": "https://assets.ubuntu.com/v1/7a8e3f56-node%20logo.png",
-            "alt": "NodeJS",
-            "width": "130",
-            "height": "100"
-          }
-        },
-        {
           "href": "/toolchains/java",
           "text": "Learn more &rsaquo;",
-          "label": "Java",
+          "label": "Learn more about OpenJDK",
           "image_attrs": {
             "src": "https://assets.ubuntu.com/v1/d2e26e84-openjdk-logo.png",
-            "alt": "Java",
+            "alt": "OpenJDK",
             "width": "286",
             "height": "480"
           }
@@ -80,7 +68,7 @@
         {
           "href": "https://documentation.ubuntu.com/ubuntu-for-developers",
           "text": "Learn more &rsaquo;",
-          "label": "Python",
+          "label": "Learn more about Python",
           "image_attrs": {
             "src": "https://assets.ubuntu.com/v1/8a49006d-python-logo.png",
             "alt": "Python",
@@ -91,7 +79,7 @@
         {
           "href": "https://documentation.ubuntu.com/ubuntu-for-developers",
           "text": "Learn more &rsaquo;",
-          "label": "Go",
+          "label": "Learn more about Go",
           "image_attrs": {
             "src": "https://assets.ubuntu.com/v1/02087632-go-logo.png",
             "alt": "Go",
@@ -102,7 +90,7 @@
         {
           "href": "https://documentation.ubuntu.com/ubuntu-for-developers",
           "text": "Learn more &rsaquo;",
-          "label": "Rust",
+          "label": "Learn more about Rust",
           "image_attrs": {
             "src": "https://assets.ubuntu.com/v1/73752f34-r-logo.png",
             "alt": "Rust",
@@ -113,7 +101,7 @@
         {
           "href": "https://documentation.ubuntu.com/ubuntu-for-developers",
           "text": "Learn more &rsaquo;",
-          "label": ".NET",
+          "label": "Learn more about .NET",
           "image_attrs": {
             "src": "https://assets.ubuntu.com/v1/f694c5d1-net-logo.png",
             "alt": ".NET",
@@ -124,7 +112,7 @@
         {
           "href": "/toolchains/spring",
           "text": "Learn more &rsaquo;",
-          "label": "Spring",
+          "label": "Learn more about Spring",
           "image_attrs": {
             "src": "https://assets.ubuntu.com/v1/add256b2-spring-logo.png",
             "alt": "Spring",
@@ -143,7 +131,7 @@
         "type": "description",
         "item": {
           "type": "text",
-          "content": "Extend the security and support period for your builds to an industry-leading 12 years through Ubuntu Pro — Canonical’s comprehensive subscription for open source security."
+          "content": "Extend the security and support period for your builds to an industry-leading 12 years through Ubuntu Pro &ndash; Canonical’s comprehensive subscription for open source security."
         }
       },
       {
@@ -214,19 +202,16 @@
     ]
   ) }}
 
-  {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=false) -%}
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
     {%- if slot == 'title' -%}
-      <div class="grid-row--50-50">
-        <div class="grid-col">
-          <h2>Build production grade containers for 12-factor applications</h2>
-        </div>
-        <div class="grid-col">
-          <p>
-            Thanks to the profile extension for Rockcraft, in just one command you can build Rocks, which are production-grade OCI containers for your 12 factor applications.
-          </p>
-        </div>
-      </div>
+      <h2>Build production grade containers for 12-factor applications</h2>
     {%- endif -%}
+
+    {% if slot == 'description' -%}
+      <p>
+        Thanks to the profile extension for Rockcraft, in just one command you can build Rocks, which are production-grade OCI containers for your 12 factor applications.
+      </p>
+    {% endif -%}
 
     {%- if slot == 'list_item_title_1' -%}
       <h3 class="p-heading--5">Ideal for production environments</h3>
@@ -263,34 +248,31 @@
     {%- endif -%}
 
     {%- if slot == 'list_item_description_4' -%}
-      <div class="p-section--shallow">
-        <p>
-          Rocks follow the same design, aiming to minimise your full-stack disparity and adoption overhead. Pebble is the official entry point, providing a predictable and powerful abstraction between users and the container application.
-        </p>
-      </div>
-      <hr class="p-rule--muted" />
+      <p>
+        Rocks follow the same design, aiming to minimise your full-stack disparity and adoption overhead. Pebble is the official entry point, providing a predictable and powerful abstraction between users and the container application.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'cta' -%}
       <a href="https://documentation.ubuntu.com/rockcraft/en/latest/tutorial/"
           class="p-button">Build a Rock for a 12-factor application</a>
     {%- endif -%}
 
   {%- endcall -%}
 
-  {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=false) -%}
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
     {%- if slot == 'title' -%}
-      <div class="grid-row--50-50">
-        <div class="grid-col">
-          <h2>Create a Kubernetes operator for your applications</h2>
-        </div>
-        <div class="grid-col">
-          <p>
-            Using the Charmcraft profile plugins you can package your 12 factor application as a charm in a single command. Charms are universal software operators for lifecycle management, and through the Spring plugin, you can unlock the benefits of the entire charm ecosystem.
-          </p>
-          <p>
-            This enables connections to services like HA Postgres databases, monitoring through Grafana, and easy integration with ingress, among other features.
-          </p>
-          <p>Here are the details:</p>
-        </div>
-      </div>
+      <h2>Create a Kubernetes operator for your applications</h2>
+    {%- endif -%}
+
+    {%- if slot == 'description' -%}
+      <p>
+        Using the Charmcraft profile plugins you can package your 12 factor application as a charm in a single command. Charms are universal software operators for lifecycle management, and through the Spring plugin, you can unlock the benefits of the entire charm ecosystem.
+      </p>
+      <p>
+        This enables connections to services like HA Postgres databases, monitoring through Grafana, and easy integration with ingress, among other features.
+      </p>
+      <p>Here are the details:</p>
     {%- endif -%}
 
     {%- if slot == 'list_item_title_1' -%}
@@ -314,12 +296,12 @@
     {%- endif -%}
 
     {%- if slot == 'list_item_description_3' -%}
-      <div class="p-section--shallow">
-        <p>
-          Every charm benefits from a set of prebuilt integrations including databases, observability, ingress, authentication and much more.
-        </p>
-      </div>
-      <hr class="p-rule--muted" />
+      <p>
+        Every charm benefits from a set of prebuilt integrations including databases, observability, ingress, authentication and much more.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'cta' -%}
       <a href="https://canonical-charmcraft.readthedocs-hosted.com/en/stable/tutorial/"
           class="p-button">Use Charmcraft profile plugin</a>
     {%- endif -%}
