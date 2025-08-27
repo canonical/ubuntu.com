@@ -32,11 +32,11 @@ charms to model a complete Kubernetes cluster. A Kubernetes cluster needs a
 distributed key value store such as [Etcd](https://coreos.com/etcd/) and the
 kubernetes-worker charm which delivers the Kubernetes node services. A cluster
 requires a Software Defined Network (SDN), a Container Runtime such as
-[containerd](https://jaas.ai/u/containers/containerd), and Transport Layer
+[containerd](https://canonical.com/jaas/u/containers/containerd), and Transport Layer
 Security (TLS) so the components in a cluster communicate securely.
 
-Please take a look at the [Charmed Kubernetes]( https://jaas.ai/charmed-kubernetes)
-or the [Kubernetes core](https://jaas.ai/kubernetes-core) bundles for
+Please take a look at the [Charmed Kubernetes]( https://canonical.com/jaas/charmed-kubernetes)
+or the [Kubernetes core](https://canonical.com/jaas/kubernetes-core) bundles for
 examples of complete models of Kubernetes clusters.
 
 # Resources
@@ -579,7 +579,7 @@ from the [Kubernetes DNS admin guide](http://kubernetes.io/docs/admin/dns/).
 # Actions
 
 The kubernetes-master charm models a few one time operations called
-[Juju actions](https://jaas.ai/docs/working-with-actions) that can be run by
+[Juju actions](https://canonical.com/jaas/docs/working-with-actions) that can be run by
 Juju users.
 
 #### create-rbd-pv

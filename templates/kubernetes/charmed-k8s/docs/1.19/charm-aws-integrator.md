@@ -260,4 +260,4 @@ https://forum.snapcraft.io/t/system-options/87
 
 [interface]: https://github.com/juju-solutions/interface-aws-integration
 [api-doc]: https://github.com/juju-solutions/interface-aws-integration/blob/master/docs/requires.md
-[charmed kubernetes]: https://jaas.ai/charmed-kubernetes
+[charmed kubernetes]: https://canonical.com/jaas/charmed-kubernetes

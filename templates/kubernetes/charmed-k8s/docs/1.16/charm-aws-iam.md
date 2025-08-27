@@ -25,7 +25,7 @@ user or group maps to an RBAC user.
 ## Usage
 
 The AWS IAM charm is subordinate to the [`kubernetes-master`]
-(https://jaas.ai/u/containers/kubernetes-master)
+(https://canonical.com/jaas/u/containers/kubernetes-master)
 charm and needs to be related to it. It will then set the Kubernetes API server
 to authenticate through the AWS IAM pod deployed inside the cluster.
 
