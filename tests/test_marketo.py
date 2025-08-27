@@ -106,7 +106,7 @@ class TestMarketo(unittest.TestCase):
             self.assertEqual(marketo_response.status_code, 200)
             self.assertIsNotNone(
                 marketo_response,
-                f"Marketo fields should not be None, form {form_path}"
+                f"Marketo fields should not be None, form {form_path}",
             )
             marketo_fields = marketo_response.json().get("result", [])
 
