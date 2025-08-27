@@ -26,9 +26,9 @@ class TestSitemap(unittest.TestCase):
         """
 
         response = self.client.get("/sitemap_tree.xml")
-        assert response.status_code == 200
-        assert response.headers["Content-Type"] == "application/xml"
-        assert "<urlset" in response.data.decode("utf-8")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.headers["Content-Type"], "application/xml")
+        self.assertIn("<urlset", response.data.decode("utf-8"))
 
     def test_sitemap_parser(self):
         """
@@ -36,8 +36,8 @@ class TestSitemap(unittest.TestCase):
         """
 
         response = self.client.get("/sitemap_parser")
-        assert response.status_code == 200
-        assert response.headers["Content-Type"] == "application/json"
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.headers["Content-Type"], "application/json")
 
     def test_sitemap_sites(self):
         """
@@ -51,8 +51,8 @@ class TestSitemap(unittest.TestCase):
             if urls is None:
                 urls = {}
 
-            assert "name" in data
-            assert "last_modified" in data
+            self.assertIn("name", data)
+            self.assertIn("last_modified", data)
             if "sitemap_exclude" not in data:
                 urls[data["name"]] = data["last_modified"]
 
@@ -62,7 +62,7 @@ class TestSitemap(unittest.TestCase):
             return urls
 
         xml_response = self.client.get("/sitemap_tree.xml")
-        assert xml_response.status_code == 200
+        self.assertEqual(xml_response.status_code, 200)
         root = ET.fromstring(xml_response.data.decode("utf-8"))
 
         xml_urls = set()
@@ -70,21 +70,33 @@ class TestSitemap(unittest.TestCase):
             url = node[0].text
             path = re.sub(r"https://ubuntu.com", "", url)
             xml_urls.add(path)
-        assert len(xml_urls) > 0, "No URLs found in sitemap_tree.xml"
+
+        self.assertGreater(
+            len(xml_urls), 0, "No URLs found in sitemap_tree.xml"
+        )
 
         parser_response = self.client.get("/sitemap_parser")
-        assert parser_response.status_code == 200
+        self.assertEqual(parser_response.status_code, 200)
 
         parser_data = parser_response.get_json()
         parser_urls = extract_urls(parser_data)
 
-        assert len(parser_urls) > 0, "No URLs found in sitemap_parser"
-        assert len(parser_urls) == len(
-            xml_urls
-        ), "Number of URLs in sitemap_tree.xml and sitemap_parser do not match"
+        self.assertGreater(
+            len(parser_urls), 0, "No URLs found in sitemap_parser"
+        )
+        self.assertEqual(
+            len(parser_urls),
+            len(xml_urls),
+            (
+                "Number of URLs in sitemap_tree.xml and "
+                "sitemap_parser do not match"
+            ),
+        )
 
         for url in parser_urls:
-            assert url in xml_urls, f"URL {url} not found in sitemap_tree.xml"
+            self.assertIn(
+                url, xml_urls, f"URL {url} not found in sitemap_tree.xml"
+            )
 
     def test_sitemap_post_unauthorized(self):
         """
@@ -94,8 +106,8 @@ class TestSitemap(unittest.TestCase):
             "/sitemap_tree.xml",
             headers={"Authorization": "Bearer unauthorized-secret"},
         )
-        assert response.status_code == 401
-        assert b"Unauthorized" in response.data
+        self.assertEqual(response.status_code, 401)
+        self.assertIn(b"Unauthorized", response.data)
 
     def test_sitemap_post_authorized(self):
         """
@@ -106,8 +118,8 @@ class TestSitemap(unittest.TestCase):
             "/sitemap_tree.xml",
             headers={"Authorization": "Bearer test-secret"},
         )
-        assert response.status_code == 200
-        assert b"Sitemap successfully generated" in response.data
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"Sitemap successfully generated", response.data)
 
     @patch("webapp.views.generate_sitemap", return_value="")
     @patch("builtins.open")
