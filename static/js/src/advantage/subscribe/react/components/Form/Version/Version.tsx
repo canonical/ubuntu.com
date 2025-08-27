@@ -29,7 +29,6 @@ const CIS =
 const CISComingSoon = (
   <>
     Ubuntu Security Guide (USG) for certified CIS benchmark tooling & automation
-    <StatusLabel appearance="positive">Coming soon</StatusLabel>
   </>
 );
 const CommonCriteria = "Common Criteria EAL2";
