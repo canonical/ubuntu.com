@@ -41,7 +41,7 @@ class TestMarketo(unittest.TestCase):
         marketo_session = Session()
         talisker.requests.configure(marketo_session)
         self.marketo_api = MarketoAPI(
-            "https://066-EOV-335.mktorest.com",
+            get_flask_env("MARKETO_API_URL"),
             get_flask_env("MARKETO_API_CLIENT"),
             get_flask_env("MARKETO_API_SECRET"),
             marketo_session,
@@ -50,7 +50,7 @@ class TestMarketo(unittest.TestCase):
         return super().setUp()
 
     def test_marketo_api(self):
-        assert self.marketo_api.token is not None
+        self.assertIsNotNone(self.marketo_api.token)
 
     def test_forms_with_marketo(self):
         for form in form_files:
@@ -59,35 +59,43 @@ class TestMarketo(unittest.TestCase):
     def _check_form_with_marketo(self, form_path):
         # Function to check form fields and Marketo fields against one another
         def _check_form_fields(field_id, check_form):
-            assert (
-                field_id is not None
-            ), f"Field ID is none for {check_form} fields"
+            self.assertIsNotNone(
+                field_id,
+                f"Field ID is None for {check_form} fields in {form_path}",
+            )
 
             field_id = field_id.lower()
             if check_form == "marketo":
-                assert field_id in [
-                    f.get("id").lower() for f in marketo_fields
-                ], (
+                marketo_field_ids = [
+                    f.get("id", "").lower() for f in marketo_fields
+                ]
+                self.assertIn(
+                    field_id,
+                    marketo_field_ids,
                     f"Field {field_id} is not present in "
                     f"{check_form} fields"
-                    f" for form {form_path}"
+                    f" for form {form_path}",
                 )
 
             elif check_form == "form-data":
                 if field_id not in SET_FIELDS:
-                    assert field_id in [
-                        f.get("id").lower() for f in form_fields
-                    ], (
+                    form_field_ids = [
+                        f.get("id", "").lower() for f in form_fields
+                    ]
+                    self.assertIn(
+                        field_id,
+                        form_field_ids,
                         f"Field {field_id} is not present in "
                         f"{check_form} fields"
-                        f" for form {form_path}"
+                        f" for form {form_path}",
                     )
 
         with open(form_path, "r") as f:
             forms = json.load(f).get("form", {})
-            assert (
-                forms is not None
-            ), f"Form data could not be loaded from {form_path}"
+            self.assertIsNotNone(
+                forms,
+                f"Form data could not be loaded from {form_path}",
+            )
 
         # form-data.json may have multiple forms
         for form_data in forms.values():
@@ -95,10 +103,11 @@ class TestMarketo(unittest.TestCase):
 
             # Check that marketo form exists
             marketo_response = self.marketo_api.get_form_fields(form_id)
-            assert marketo_response.status_code == 200
-            assert (
-                marketo_response is not None
-            ), "Marketo fields should not be None"
+            self.assertEqual(marketo_response.status_code, 200)
+            self.assertIsNotNone(
+                marketo_response,
+                f"Marketo fields should not be None, form {form_path}"
+            )
             marketo_fields = marketo_response.json().get("result", [])
 
             # Check that form fields match Marketo fields
