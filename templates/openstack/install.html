@@ -37,95 +37,109 @@
     {%- endif -%}
   {% endcall -%}
 
-  <section class="p-section" id="single-multi-large-cluster">
-    <hr class="p-rule is-fixed-width" />
-    <div class="u-fixed-width">
-      <h2>Single-node, multi-node or large-scale cluster?</h2>
-    </div>
-    <div class="grid-row">
-      <div class="grid-col-start-large-5">
+  <section class="p-section">
+    <div class="grid-row--50-50-on-large">
+      <hr class="p-rule">
+      <div class="grid-col">
+        <h2>Choose an option<br /> that suits you best</h2>
+      </div>
+      <div class="grid-col">
         <div class="p-tabs">
-          <div class="p-tabs__list js-tabbed-content"
-               role="tablist"
-               aria-label="openstack-deployment">
+          <div class="p-tabs__list p-tabs__list js-tabbed-content" role="tablist" aria-label="Juju technology">
             <div class="p-tabs__item">
-              <button style="background-color: transparent"
-                      class="p-tabs__link"
-                      role="tab"
-                      aria-selected="true"
-                      aria-controls="single-node-mode"
-                      id="single-node-mode-tab">Single&dash;node</button>
+              <button class="p-tabs__link" role="tab" aria-selected="true" aria-controls="single-node-mode" id="single-node-mode-tab">Single&dash;node</button>
             </div>
             <div class="p-tabs__item">
-              <button style="background-color: transparent"
-                      class="p-tabs__link"
-                      role="tab"
-                      aria-selected="false"
-                      aria-controls="multi-node-mode"
-                      id="multi-node-mode-tab"
-                      tabindex="-1">Multi&dash;node</button>
+              <button class="p-tabs__link" role="tab" aria-selected="flase" aria-controls="multi-node-mode" id="multi-node-mode-tab" tabindex="-1">Multi&dash;node</button>
             </div>
             <div class="p-tabs__item">
-              <button style="background-color: transparent"
-                      class="p-tabs__link"
-                      role="tab"
-                      aria-selected="false"
-                      aria-controls="multi-node-mode-with-bare-metal-automation"
-                      id="multi-node-mode-with-bare-metal-automation-tab"
-                      tabindex="-1">Multi&dash;node mode with bare metal automation</button>
+              <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="large-scale-tab" id="large-scale" tabindex="-1">Large&dash;scale</button>
             </div>
           </div>
-        </div>
 
-        <div tabindex="0"
-             role="tabpanel"
-             id="single-node-mode"
-             aria-labelledby="single-node-mode-tab">
-          <div class="p-strip is-shallow u-no-padding--top">
-            <h2>Single-node</h2>
-            <ul class="p-list">
-              <li class="p-list__item is-ticked">Uses MicroStack</li>
-              <li class="p-list__item is-ticked">Works on machines with limited hardware resources</li>
-              <li class="p-list__item is-ticked">Suitable for testing and development</li>
-            </ul>
-          </div>
-          {{ single_node | safe }}
-        </div>
-        <div tabindex="0"
-             role="tabpanel"
-             id="multi-node-mode"
-             aria-hidden="true"
-             aria-labelledby="multi-node-mode-tab">
-          <div class="p-strip is-shallow u-no-padding--top">
-            <h2>Multi-node mode</h2>
-            <ul class="p-list">
-              <li class="p-list__item is-ticked">Uses MicroStack</li>
-              <li class="p-list__item is-ticked">OpenStack clusters with full HA</li>
-              <li class="p-list__item is-ticked">Suitable for small-scale production environments</li>
-            </ul>
-          </div>
-          {{ multi_node | safe }}
-        </div>
-        <div tabindex="0"
-             role="tabpanel"
-             id="multi-node-mode-with-bare-metal-automation"
-             aria-labelledby="multi-node-mode-with-bare-metal-automation-tab"
-             aria-hidden="hidden">
-          <div class="p-strip is-shallow u-no-padding--top">
-            <div class="row">
-              <h2>Multi-node mode with bare metal automation</h2>
-              <ul class="p-list">
-                <li class="p-list__item is-ticked">Uses MicroStack</li>
-                <li class="p-list__item is-ticked">
-                  Uses <a href="https://maas.io">MAAS</a> for bare metal automation
-                </li>
-                <li class="p-list__item is-ticked">Suitable for large-scale production environments</li>
-              </ul>
+          <div tabindex="0" role="tabpanel" id="single-node-mode" aria-labelledby="single-node-mode-tab">
+            <p>Install OpenStack with Sunbeam on one physical machine. Start small and scale it out later to improve cluster’s resilience and add more resources.</p>
+            <div class="p-notification--information">
+              <div class="p-notification__content">
+                <h5 class="p-notification__title">Disclaimer</h5>
+                <p class="p-notification__message">
+                  For the most up-to-date installation instructions and minimum hardware requirements always refer to the Canonical OpenStack product documentation.
+                </p>
+              </div>
+            </div>
+            <p>
+              <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/tutorial/get-started-with-openstack/">
+                Read the docs to learn more ›
+              </a>
+            </p>
+            <hr class="p-rule">
+            <p class="p-heading--5">1. Install the openstack snap</p>
+            <div class="p-code-snippet">
+              <pre class="p-code-snippet__block"><code>sudo snap install openstack</code></pre>
+            </div>
+
+            <hr class="p-rule">
+            <p class="p-heading--5">2. Prepare the machine</p>
+            <div class="p-code-snippet">
+              <pre class="p-code-snippet__block"><code>sunbeam prepare-node-script --bootstrap | bash -x &amp;&amp; newgrp snap_daemon</code></pre>
+            </div>
+
+            <hr class="p-rule">
+            <p class="p-heading--5">3. Bootstrap the OpenStack cloud</p>
+            <div class="p-code-snippet">
+              <pre class="p-code-snippet__block"><code>sunbeam cluster bootstrap --accept-defaults --role control,compute,storage</code></pre>
+            </div>
+
+            <hr class="p-rule">
+            <p class="p-heading--5">4. Configure the OpenStack cloud</p>
+            <div class="p-code-snippet">
+              <pre class="p-code-snippet__block"><code>sunbeam configure --accept-defaults --openrc demo-openrc</code></pre>
+            </div>
+
+            <hr class="p-rule">
+            <p class="p-heading--5">5. Start using OpenStack</p>
+            <div class="p-code-snippet">
+              <pre class="p-code-snippet__block"><code>sunbeam launch ubuntu --name test</code></pre>
             </div>
           </div>
-          <p>
-            Check the <a href="https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/">OpenStack Charms Deployment Guide</a> for detailed instructions on how to set up OpenStack in multi-node mode with bare metal automation using OpenStack Charms.
-          </p>
+
+          <div tabindex="0" role="tabpanel" id="multi-node-mode" aria-labelledby="multi-node-mode-tab">
+            <p>
+              Install OpenStack with Sunbeam on more than one physical machine. Set up a highly available cluster that is perfectly suitable for small-scale production environments.
+            </p>
+            <div class="p-notification--information">
+              <div class="p-notification__content">
+                <h5 class="p-notification__title">Disclaimer</h5>
+                <p class="p-notification__message">
+                  For the most up-to-date installation instructions and minimum hardware requirements always refer to the Canonical OpenStack product documentation.
+                </p>
+              </div>
+            </div>
+            <p>
+              <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/how-to/install/install-canonical-openstack-using-the-manual-bare-metal-provider/">
+                Read the docs to learn more ›
+              </a>
+            </p>
+          </div>
+
+          <div tabindex="0" role="tabpanel" id="large-scale-tab" aria-labelledby="large-scale">
+            <p>
+              Install OpenStack with Sunbeam and hardware automation as provided by MAAS. Set up a cluster that is perfectly suitable for large-scale production environments.
+            </p>
+            <div class="p-notification--information">
+              <div class="p-notification__content">
+                <h5 class="p-notification__title">Disclaimer</h5>
+                <p class="p-notification__message">
+                  For the most up-to-date installation instructions and minimum hardware requirements always refer to the Canonical OpenStack product documentation.
+                </p>
+              </div>
+            </div>
+            <p>
+              <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/how-to/install/install-canonical-openstack-using-canonical-maas/">
+                Read the docs to learn more ›
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </div>
