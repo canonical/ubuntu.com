@@ -18,21 +18,23 @@
 
 {% block content %}
   {% call(slot) vf_hero(
-    title_text='Install OpenStack yourself',
+    title_text='Install OpenStack',
     layout='50/50'
   ) -%}
-  {%- if slot == 'description' -%}
-    <p>
-      Try OpenStack in five simple steps. Set up a small-scale cloud or deploy a large cluster across hundreds of physical machines. Use <a href="https://microstack.run/">MicroStack</a> or <a href="/openstack">Charmed OpenStack</a> depending on your use case.
-    </p>
-    <p>
-      If you need OpenStack consulting or a fully managed service, <a class="js-invoke-modal" href="/openstack/contact-us">talk to an expert.</a>
-    </p>
-  {%- endif -%}
-  {%- if slot == 'cta' -%}
-    <a href="#single-multi-large-cluster" class="p-button--positive">Install OpenStack</a>
-    <a href="/engage/openstack-ebook-beginners">Download guide to OpenStack for Beginners&nbsp;&rsaquo;</a>
-  {%- endif -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Install OpenStack on Ubuntu in a few simple steps. Use the same tool regardless of the scale: from a simple, single-node installation to a large-scale cluster of thousands of nodes. You will only need one physical machine to get started.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/tutorial/get-started-with-openstack/" class="p-button--positive">Read the docs</a>
+      <a href="https://ubuntu.com/engage/openstack-ebook-beginners">Get OpenStack e-book for beginners ›</a>
+      {%- endif -%}
+      {%- if slot == 'image' -%}
+      <div class="p-image-container--3-2 is-highlighted">
+        <img class="p-image-container__image" src="https://assets.ubuntu.com/v1/3f22e6f2-hero.png" alt="">
+      </div>
+    {%- endif -%}
   {% endcall -%}
 
   <section class="p-section" id="single-multi-large-cluster">
