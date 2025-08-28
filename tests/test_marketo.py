@@ -4,8 +4,6 @@ import json
 from requests import Session
 from pathlib import Path
 
-import logging
-
 from canonicalwebteam.flask_base.env import get_flask_env
 
 from webapp.app import app
@@ -38,10 +36,8 @@ class TestMarketo(unittest.TestCase):
         changed_forms = get_flask_env("CHANGED_FORMS")
 
         if changed_forms:
-            logging.info(f"Changed forms: {changed_forms}")
             self.form_files = changed_forms.strip().split()
         else:
-            logging.info("No form files")
             self.form_files = [
                 f
                 for f in Path("templates").rglob("form-data.json")
