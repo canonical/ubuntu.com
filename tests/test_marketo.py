@@ -135,9 +135,6 @@ class TestMarketo(unittest.TestCase):
                 if required:
                     _check_form_fields(id, "form-data")
 
-    def test_submit_form(self):
-        return
-
 
 if __name__ == "__main__":
     unittest.main()
