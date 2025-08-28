@@ -17,7 +17,8 @@ meta_copydoc %}
 {% endblock body_class %}
 
 {% block extra_metatags %}
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"></script>
+  <script type="module"
+          src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"></script>
 {% endblock extra_metatags %}
 
 {% block content %}
@@ -47,13 +48,8 @@ meta_copydoc %}
       </div>
       <div class="col">
         <div class="p-hero-video-container u-embedded-media">
-          <lite-youtube
-            aria-label="What is Ubuntu Core"
-            videoid="3C3Y0xVf8zw"
-            videotitle="What is Ubuntu Core"
-            class="u-embedded-media__element"
-          >
-            {{ image(url="https://assets.ubuntu.com/v1/3a0f24b8-video-thumbnail-suru-bg.png",
+          <lite-youtube aria-label="What is Ubuntu Core" videoid="3C3Y0xVf8zw" videotitle="What is Ubuntu Core" class="u-embedded-media__element">
+          {{ image(url="https://assets.ubuntu.com/v1/3a0f24b8-video-thumbnail-suru-bg.png",
                     alt="What is Ubuntu Core",
                     width="600",
                     height="376",
@@ -88,10 +84,14 @@ meta_copydoc %}
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
           <div class="p-media-container u-darker-background u-hide--small u-hide--medium">
-            <img width="320"
-                 src="https://assets.ubuntu.com/v1/f1888c9c-Kernelt%20industries-80%201.png"
-                 loading="auto"
-                 alt="" />
+            {{ image(url="https://assets.ubuntu.com/v1/f1888c9c-Kernelt%20industries-80%201.png",
+                        alt="",
+                        width="568",
+                        height="932",
+                        hi_def=True,
+                        loading="auto",
+                        attrs={"class": "p-image-container__image", "style": "width:320px"}) | safe
+            }}
           </div>
           <div class="p-equal-height-row__item">
             <hr class="p-rule--highlight u-hide--medium u-hide--small" />
@@ -112,10 +112,14 @@ meta_copydoc %}
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
           <div class="p-media-container u-darker-background u-hide--small u-hide--medium">
-            <img width="320"
-                 src="https://assets.ubuntu.com/v1/3493be78-Kernelt%20industries-80%201-1.png"
-                 loading="lazy"
-                 alt="" />
+            {{ image(url="https://assets.ubuntu.com/v1/3493be78-Kernelt%20industries-80%201-1.png",
+                        alt="",
+                        width="568",
+                        height="932",
+                        hi_def=True,
+                        loading="auto",
+                        attrs={"class": "p-image-container__image", "style": "width:320px"}) | safe
+            }}
           </div>
           <div class="p-equal-height-row__item">
             <hr class="p-rule--highlight u-hide--medium u-hide--small" />
@@ -136,10 +140,14 @@ meta_copydoc %}
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
           <div class="p-media-container u-darker-background u-hide--small u-hide--medium">
-            <img width="320"
-                 src="https://assets.ubuntu.com/v1/97807e18-Kernelt%20industries-80%201-2.png"
-                 loading="lazy"
-                 alt="" />
+            {{ image(url="https://assets.ubuntu.com/v1/97807e18-Kernelt%20industries-80%201-2.png",
+                        alt="",
+                        width="568",
+                        height="932",
+                        hi_def=True,
+                        loading="auto",
+                        attrs={"class": "p-image-container__image", "style": "width:320px"}) | safe
+            }}
           </div>
           <div class="p-equal-height-row__item">
             <hr class="p-rule--highlight u-hide--medium u-hide--small" />
@@ -160,10 +168,14 @@ meta_copydoc %}
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
           <div class="p-media-container u-darker-background u-hide--small u-hide--medium">
-            <img width="320"
-                 src="https://assets.ubuntu.com/v1/d5a229cb-Kernelt%20industries-80%201-3.png"
-                 loading="lazy"
-                 alt="" />
+            {{ image(url="https://assets.ubuntu.com/v1/d5a229cb-Kernelt%20industries-80%201-3.png",
+                        alt="",
+                        width="568",
+                        height="932",
+                        hi_def=True,
+                        loading="auto",
+                        attrs={"class": "p-image-container__image", "style": "width:320px"}) | safe
+            }}
           </div>
           <div class="p-equal-height-row__item">
             <hr class="p-rule--highlight u-hide--medium u-hide--small" />
@@ -285,10 +297,14 @@ meta_copydoc %}
             <a href="https://canonical.com/solutions/automotive">
               <h3 class="p-heading--5">Automotive</h3>
               <div class="p-image-container">
-                <img class="p-image-container__image"
-                     src="https://assets.ubuntu.com/v1/f867c883-For-smart-use-cases__Automotivew.png"
-                     loading="lazy"
-                     alt="" />
+                {{ image(url="https://assets.ubuntu.com/v1/f867c883-For-smart-use-cases__Automotivew.png",
+                                alt="",
+                                width="852",
+                                height="480",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
               </div>
             </a>
           </div>
@@ -296,10 +312,14 @@ meta_copydoc %}
             <a href="https://canonical.com/solutions/industrial">
               <h3 class="p-heading--5">Industrial</h3>
               <div class="p-image-container">
-                <img class="p-image-container__image"
-                     src="https://assets.ubuntu.com/v1/0162bc71-For-smart-use-cases__Industrial.png"
-                     loading="lazy"
-                     alt="" />
+                {{ image(url="https://assets.ubuntu.com/v1/0162bc71-For-smart-use-cases__Industrial.png",
+                                alt="",
+                                width="852",
+                                height="480",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
               </div>
             </a>
           </div>
@@ -307,10 +327,14 @@ meta_copydoc %}
             <a href="/robotics">
               <h3 class="p-heading--5">Robotics</h3>
               <div class="p-image-container">
-                <img class="p-image-container__image"
-                     src="https://assets.ubuntu.com/v1/aeeeb32d-For-smart-use-cases__Robotics.png"
-                     loading="lazy"
-                     alt="" />
+                {{ image(url="https://assets.ubuntu.com/v1/aeeeb32d-For-smart-use-cases__Robotics.png",
+                                alt="",
+                                width="852",
+                                height="480",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
               </div>
             </a>
           </div>
@@ -325,10 +349,14 @@ meta_copydoc %}
             <a href="/internet-of-things/smart-displays">
               <h3 class="p-heading--5">Signage</h3>
               <div class="p-image-container">
-                <img class="p-image-container__image"
-                     src="https://assets.ubuntu.com/v1/9db3f004-For-smart-use-cases__Signage.png"
-                     loading="lazy"
-                     alt="" />
+                {{ image(url="https://assets.ubuntu.com/v1/9db3f004-For-smart-use-cases__Signage.png",
+                                alt="",
+                                width="852",
+                                height="480",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
               </div>
             </a>
           </div>
@@ -336,10 +364,14 @@ meta_copydoc %}
             <a href="/internet-of-things/smart-city">
               <h3 class="p-heading--5">Smart cities</h3>
               <div class="p-image-container">
-                <img class="p-image-container__image"
-                     src="https://assets.ubuntu.com/v1/8dd2f04d-For-smart-use-cases__Smart-cities.png"
-                     loading="lazy"
-                     alt="" />
+                {{ image(url="https://assets.ubuntu.com/v1/8dd2f04d-For-smart-use-cases__Smart-cities.png",
+                                alt="",
+                                width="852",
+                                height="480",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
               </div>
             </a>
           </div>
@@ -412,7 +444,7 @@ meta_copydoc %}
                         width="284",
                         height="70",
                         hi_def=True,
-                        loading="auto",) | safe
+                        loading="lazy",) | safe
             }}
           </div>
           <div class="col-9 col-medium-4 u-no-margin--top">
@@ -429,10 +461,14 @@ meta_copydoc %}
               </div>
             </div>
             <div class="p-image-container">
-              <img class="p-image-container__image"
-                   src="https://assets.ubuntu.com/v1/2d152c25-rexroth-testimonial-image.jpg"
-                   loading="lazy"
-                   alt="" />
+              {{ image(url="https://assets.ubuntu.com/v1/2d152c25-rexroth-testimonial-image.jpg",
+                            alt="Rexroth",
+                            width="2748",
+                            height="1048",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
             </div>
           </div>
         </div>
@@ -449,7 +485,7 @@ meta_copydoc %}
                         width="125",
                         height="56",
                         hi_def=True,
-                        loading="auto",) | safe
+                        loading="lazy",) | safe
             }}
           </div>
           <div class="col-9 col-medium-4 u-no-margin--top">
@@ -466,10 +502,14 @@ meta_copydoc %}
               </div>
             </div>
             <div class="p-image-container">
-              <img class="p-image-container__image"
-                   src="https://assets.ubuntu.com/v1/576c8402-pudo-testimonial-image.jpg"
-                   loading="lazy"
-                   alt="" />
+              {{ image(url="https://assets.ubuntu.com/v1/576c8402-pudo-testimonial-image.jpg",
+                            alt="",
+                            width="2748",
+                            height="1177",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
             </div>
           </div>
         </div>
@@ -481,7 +521,7 @@ meta_copydoc %}
            aria-hidden="hidden">
         <div class="row u-no-margin--bottom">
           <div class="col-3 col-medium-2">
-            {{ image(url="https://assets.ubuntu.com/v1/80f5af45-rigado-testimonial-logo.png", alt="Rigado", width="217", height="51", hi_def=True, loading="auto",) | safe }}
+            {{ image(url="https://assets.ubuntu.com/v1/80f5af45-rigado-testimonial-logo.png", alt="Rigado", width="217", height="51", hi_def=True, loading="lazy",) | safe }}
           </div>
           <div class="col-9 col-medium-4 u-no-margin--top">
             <div class="row">
@@ -497,10 +537,14 @@ meta_copydoc %}
               </div>
             </div>
             <div class="p-image-container">
-              <img class="p-image-container__image"
-                   src="https://assets.ubuntu.com/v1/297369c0-rigado--testimonial-image.jpg"
-                   loading="lazy"
-                   alt="" />
+              {{ image(url="https://assets.ubuntu.com/v1/297369c0-rigado--testimonial-image.jpg",
+                            alt="",
+                            width="2748",
+                            height="1177",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
             </div>
           </div>
         </div>
@@ -517,7 +561,7 @@ meta_copydoc %}
                         width="190",
                         height="58",
                         hi_def=True,
-                        loading="auto",) | safe
+                        loading="lazy",) | safe
             }}
           </div>
           <div class="col-9 col-medium-4 u-no-margin--top">
@@ -536,10 +580,14 @@ meta_copydoc %}
               </div>
             </div>
             <div class="p-image-container">
-              <img class="p-image-container__image"
-                   src="https://assets.ubuntu.com/v1/534be2a2-ibm-leadspace.jpg"
-                   loading="lazy"
-                   alt="" />
+              {{ image(url="https://assets.ubuntu.com/v1/534be2a2-ibm-leadspace.jpg",
+                            alt="",
+                            width="1585",
+                            height="633",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
             </div>
           </div>
         </div>
@@ -555,31 +603,31 @@ meta_copydoc %}
       <div class="p-logo-section--dense">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/59996fad-intel-new-logo.png", alt="Intel", width="50", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="auto",) | safe }}
+            {{ image(url="https://assets.ubuntu.com/v1/59996fad-intel-new-logo.png", alt="Intel", width="50", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="lazy",) | safe }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/4bf8a9bc-amd-logo.png", alt="AMD", width="69", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="auto",) | safe }}
+            {{ image(url="https://assets.ubuntu.com/v1/4bf8a9bc-amd-logo.png", alt="AMD", width="69", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="lazy",) | safe }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/e7b81879-nvidia-logo.png", alt="Nvidia", width="94", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="auto",) | safe }}
+            {{ image(url="https://assets.ubuntu.com/v1/e7b81879-nvidia-logo.png", alt="Nvidia", width="94", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="lazy",) | safe }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/9a25ec68-arm-logo.png", alt="ARM", width="47", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="auto",) | safe }}
+            {{ image(url="https://assets.ubuntu.com/v1/9a25ec68-arm-logo.png", alt="ARM", width="47", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="lazy",) | safe }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/31b259ec-qualcom-logo.png", alt="Qualcom", width="96", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="auto",) | safe }}
+            {{ image(url="https://assets.ubuntu.com/v1/31b259ec-qualcom-logo.png", alt="Qualcom", width="96", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="lazy",) | safe }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/d65da7f3-advantech-logo.png", alt="Advantech", width="95", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="auto",) | safe }}
+            {{ image(url="https://assets.ubuntu.com/v1/d65da7f3-advantech-logo.png", alt="Advantech", width="95", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="lazy",) | safe }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/6eff0263-adlink-logo.png", alt="Adlink", width="101", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="auto",) | safe }}
+            {{ image(url="https://assets.ubuntu.com/v1/6eff0263-adlink-logo.png", alt="Adlink", width="101", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="lazy",) | safe }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/be8db080-nxp-logo.png", alt="NXP", width="41", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="auto",) | safe }}
+            {{ image(url="https://assets.ubuntu.com/v1/be8db080-nxp-logo.png", alt="NXP", width="41", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="lazy",) | safe }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/96d65ee2-mediatek-logo.png", alt="MediaTeK", width="77", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="auto",) | safe }}
+            {{ image(url="https://assets.ubuntu.com/v1/96d65ee2-mediatek-logo.png", alt="MediaTeK", width="77", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="lazy",) | safe }}
           </div>
         </div>
       </div>
