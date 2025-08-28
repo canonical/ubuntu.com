@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Col, List, Row, StatusLabel } from "@canonical/react-components";
+import { Col, List, Row } from "@canonical/react-components";
 import {
   defaultValues,
   FormContext,
