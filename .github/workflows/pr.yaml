@@ -157,6 +157,20 @@ jobs:
           pip install -r requirements.txt
           pip install coverage
 
+      - name: Get changed form-data.json files
+        id: changed-files
+        run: |
+          MERGE_BASE=$(git merge-base origin/main HEAD)
+          CHANGED_FORM_FILES=$(git diff --diff-filter=ACMRd --name-only $MERGE_BASE..HEAD -- 'templates/**/form-data.json' ':!templates/tests/**' | tr '\n' ' ')
+          
+          echo "Changed files: $CHANGED_FORM_FILES"
+          echo "CHANGED_FORM_FILES=$CHANGED_FORM_FILES" >> $GITHUB_ENV
+
+      #  TODO: Uncomment once dependent PR is merged
+      #    TARGET_SHA=$(git rev-parse $GITHUB_BASE_REF)
+      #     CHANGED_FORM_FILES=$(git diff --diff-filter=ACMRd --name-only $TARGET_SHA $GITHUB_SHA -- 'templates/**/form-data.json' ':!templates/tests/**' | tr '\n' ' ')
+      #     echo "CHANGED_FORM_FILES=$CHANGED_FORM_FILES" >> $GITHUB_ENV
+
       - name: Run tests and generate coverage report
         run: |
           coverage run --source=. -m unittest discover tests
