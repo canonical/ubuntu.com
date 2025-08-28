@@ -4,6 +4,8 @@ import json
 from requests import Session
 from pathlib import Path
 
+import logging
+
 from canonicalwebteam.flask_base.env import get_flask_env
 
 from webapp.app import app
@@ -22,11 +24,6 @@ SET_FIELDS = set(
         "comments_from_lead__c",
     }
 )
-form_files = [
-    f
-    for f in Path("templates").rglob("form-data.json")
-    if "templates/tests" not in str(f)
-]
 
 
 class TestMarketo(unittest.TestCase):
@@ -37,6 +34,19 @@ class TestMarketo(unittest.TestCase):
 
         app.testing = True
         self.client = app.test_client()
+
+        changed_forms = get_flask_env("CHANGED_FORMS").strip().split()
+
+        if changed_forms:
+            logging.info(f"Changed forms: {changed_forms}")
+            self.form_files = changed_forms
+        else:
+            logging.info("No form files")
+            self.form_files = [
+                f
+                for f in Path("templates").rglob("form-data.json")
+                if "templates/tests" not in str(f)
+            ]
 
         marketo_session = Session()
         talisker.requests.configure(marketo_session)
@@ -49,11 +59,16 @@ class TestMarketo(unittest.TestCase):
         self.marketo_api._authenticate()
         return super().setUp()
 
+    def test_changed_forms(self):
+        for form_path in self.test_changed_forms:
+            with self.subTest(form=form_path):
+                self._check_form_with_marketo(form_path)
+
     def test_marketo_api(self):
         self.assertIsNotNone(self.marketo_api.token)
 
     def test_forms_with_marketo(self):
-        for form in form_files:
+        for form in self.form_files:
             self._check_form_with_marketo(form)
 
     def _check_form_with_marketo(self, form_path):
