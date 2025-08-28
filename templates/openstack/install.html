@@ -1,536 +1,372 @@
-{% extends "openstack/_base_openstack.html" %} {% from "_macros/vf_hero.jinja"
-import vf_hero %} {% block title %}Install OpenStack{% endblock %} {% block
-meta_description %} Install OpenStack on Ubuntu in a few simple steps. You only
-need one physical machine to get started. {% endblock %} {% block meta_copydoc
-%}
-https://docs.google.com/document/d/1ZR008v3k1M0fpUwMDjBPkeyxaVj9B1QlRxqsTPZN3CA/edit
-{% endblock meta_copydoc %} {% block body_class %} is-paper {% endblock
-body_class %} {% block content %} {% call(slot) vf_hero( title_text='Install
-OpenStack', layout='50/50' ) -%} {%- if slot == 'description' -%}
-<p>
-  Install OpenStack on Ubuntu in a few simple steps. Use the same tool
-  regardless of the scale: from a simple, single-node installation to a
-  large-scale cluster of thousands of nodes. You will only need one physical
-  machine to get started.
-</p>
-{%- endif -%} {%- if slot == 'cta' -%}
-<a
-  href="https://canonical-openstack.readthedocs-hosted.com/en/latest/tutorial/get-started-with-openstack/"
-  class="p-button--positive"
-  >Read the docs</a
->
-<a href="https://ubuntu.com/engage/openstack-ebook-beginners"
-  >Get OpenStack e-book for beginners ›</a
->
-{%- endif -%} {%- if slot == 'image' -%}
-<div class="p-image-container--3-2 is-highlighted">
-  <img
-    class="p-image-container__image"
-    src="https://assets.ubuntu.com/v1/3f22e6f2-hero.png"
-    alt=""
-  />
-</div>
-{%- endif -%} {% endcall -%}
+{% extends "openstack/_base_openstack.html" %}
 
-<section class="p-section">
-  <div class="grid-row--50-50-on-large">
-    <hr class="p-rule" />
-    <div class="grid-col">
-      <h2>
-        Choose an option<br />
-        that suits you best
-      </h2>
-    </div>
-    <div class="grid-col">
-      <div class="p-tabs">
-        <div
-          class="p-tabs__list p-tabs__list js-tabbed-content"
-          role="tablist"
-          aria-label="Juju technology"
-        >
-          <div class="p-tabs__item">
-            <button
-              class="p-tabs__link"
-              role="tab"
-              aria-selected="true"
-              aria-controls="single-node-mode"
-              id="single-node-mode-tab"
-            >
-              Single&dash;node
-            </button>
-          </div>
-          <div class="p-tabs__item">
-            <button
-              class="p-tabs__link"
-              role="tab"
-              aria-selected="flase"
-              aria-controls="multi-node-mode"
-              id="multi-node-mode-tab"
-              tabindex="-1"
-            >
-              Multi&dash;node
-            </button>
-          </div>
-          <div class="p-tabs__item">
-            <button
-              class="p-tabs__link"
-              role="tab"
-              aria-selected="false"
-              aria-controls="large-scale-tab"
-              id="large-scale"
-              tabindex="-1"
-            >
-              Large&dash;scale
-            </button>
-          </div>
-        </div>
+{% from "_macros/vf_hero.jinja" import vf_hero %}
 
-        <div
-          tabindex="0"
-          role="tabpanel"
-          id="single-node-mode"
-          aria-labelledby="single-node-mode-tab"
-        >
-          <p>
-            Install OpenStack with Sunbeam on one physical machine. Start small
-            and scale it out later to improve cluster’s resilience and add more
-            resources.
-          </p>
-          <div class="p-notification--information">
-            <div class="p-notification__content">
-              <h5 class="p-notification__title">Disclaimer</h5>
-              <p class="p-notification__message">
-                For the most up-to-date installation instructions and minimum
-                hardware requirements always refer to the Canonical OpenStack
-                product documentation.
-              </p>
+{% block title %}Install OpenStack{% endblock %}
+
+{% block meta_description %}
+  Install OpenStack on Ubuntu in a few simple steps. You only need one physical machine to get started.
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1ZR008v3k1M0fpUwMDjBPkeyxaVj9B1QlRxqsTPZN3CA/edit
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+  {% call(slot) vf_hero(
+    title_text='Install OpenStack',
+    layout='50/50'
+  ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Install OpenStack on Ubuntu in a few simple steps. Use the same tool regardless of the scale: from a simple, single-node installation to a large-scale cluster of thousands of nodes. You will only need one physical machine to get started.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/tutorial/get-started-with-openstack/" class="p-button--positive">Read the docs</a>
+      <a href="/engage/openstack-ebook-beginners">Get OpenStack e-book for beginners ›</a>
+      {%- endif -%}
+      {%- if slot == 'image' -%}
+      <div class="p-image-container--3-2 is-highlighted">
+        <img class="p-image-container__image" src="https://assets.ubuntu.com/v1/3f22e6f2-hero.png" alt="">
+      </div>
+    {%- endif -%}
+  {% endcall -%}
+
+  <section class="p-section">
+    <div class="grid-row--50-50-on-large">
+      <hr class="p-rule">
+      <div class="grid-col">
+        <h2>Choose an option<br /> that suits you best</h2>
+      </div>
+      <div class="grid-col">
+        <div class="p-tabs">
+          <div class="p-tabs__list p-tabs__list js-tabbed-content" role="tablist" aria-label="Juju technology">
+            <div class="p-tabs__item">
+              <button class="p-tabs__link" role="tab" aria-selected="true" aria-controls="single-node-mode" id="single-node-mode-tab">Single&dash;node</button>
+            </div>
+            <div class="p-tabs__item">
+              <button class="p-tabs__link" role="tab" aria-selected="flase" aria-controls="multi-node-mode" id="multi-node-mode-tab" tabindex="-1">Multi&dash;node</button>
+            </div>
+            <div class="p-tabs__item">
+              <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="large-scale-tab" id="large-scale" tabindex="-1">Large&dash;scale</button>
             </div>
           </div>
-          <p>
-            <a
-              href="https://canonical-openstack.readthedocs-hosted.com/en/latest/tutorial/get-started-with-openstack/"
-            >
-              Read the docs to learn more ›
-            </a>
-          </p>
-          <hr class="p-rule--muted" />
-          <h3 class="p-heading--5">1. Install the OpenStack snap</h3>
-          <div class="p-code-snippet">
-            <pre
-              class="p-code-snippet__block"
-            ><code>sudo snap install openstack</code></pre>
-          </div>
 
-          <hr class="p-rule--muted" />
-          <h3 class="p-heading--5">2. Prepare the machine</h3>
-          <div class="p-code-snippet">
-            <pre
-              class="p-code-snippet__block"
-            ><code>sunbeam prepare-node-script --bootstrap | bash -x &amp;&amp; newgrp snap_daemon</code></pre>
-          </div>
+          <div tabindex="0" role="tabpanel" id="single-node-mode" aria-labelledby="single-node-mode-tab">
+            <p>Install OpenStack with Sunbeam on one physical machine. Start small and scale it out later to improve cluster’s resilience and add more resources.</p>
+            <div class="p-notification--information">
+              <div class="p-notification__content">
+                <h5 class="p-notification__title">Disclaimer</h5>
+                <p class="p-notification__message">
+                  For the most up-to-date installation instructions and minimum hardware requirements always refer to the Canonical OpenStack product documentation.
+                </p>
+              </div>
+            </div>
+            <p>
+              <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/tutorial/get-started-with-openstack/">
+                Read the docs to learn more ›
+              </a>
+            </p>
+            <hr class="p-rule--muted">
+            <h3 class="p-heading--5">1. Install the OpenStack snap</h3>
+            <div class="p-code-snippet">
+              <pre class="p-code-snippet__block"><code>sudo snap install openstack</code></pre>
+            </div>
 
-          <hr class="p-rule--muted" />
-          <h3 class="p-heading--5">3. Bootstrap the OpenStack cloud</h3>
-          <div class="p-code-snippet">
-            <pre
-              class="p-code-snippet__block"
-            ><code>sunbeam cluster bootstrap --accept-defaults --role control,compute,storage</code></pre>
-          </div>
+            <hr class="p-rule--muted">
+            <h3 class="p-heading--5">2. Prepare the machine</h3>
+            <div class="p-code-snippet">
+              <pre class="p-code-snippet__block"><code>sunbeam prepare-node-script --bootstrap | bash -x &amp;&amp; newgrp snap_daemon</code></pre>
+            </div>
 
-          <hr class="p-rule--muted" />
-          <h3 class="p-heading--5">4. Configure the OpenStack cloud</h3>
-          <div class="p-code-snippet">
-            <pre
-              class="p-code-snippet__block"
-            ><code>sunbeam configure --accept-defaults --openrc demo-openrc</code></pre>
-          </div>
+            <hr class="p-rule--muted">
+            <h3 class="p-heading--5">3. Bootstrap the OpenStack cloud</h3>
+            <div class="p-code-snippet">
+              <pre class="p-code-snippet__block"><code>sunbeam cluster bootstrap --accept-defaults --role control,compute,storage</code></pre>
+            </div>
 
-          <hr class="p-rule--muted" />
-          <h3 class="p-heading--5">5. Start using OpenStack</h3>
-          <div class="p-code-snippet">
-            <pre
-              class="p-code-snippet__block"
-            ><code>sunbeam launch ubuntu --name test</code></pre>
-          </div>
-        </div>
+            <hr class="p-rule--muted">
+            <h3 class="p-heading--5">4. Configure the OpenStack cloud</h3>
+            <div class="p-code-snippet">
+              <pre class="p-code-snippet__block"><code>sunbeam configure --accept-defaults --openrc demo-openrc</code></pre>
+            </div>
 
-        <div
-          tabindex="0"
-          role="tabpanel"
-          id="multi-node-mode"
-          aria-labelledby="multi-node-mode-tab"
-        >
-          <p>
-            Install OpenStack with Sunbeam on more than one physical machine.
-            Set up a highly available cluster that is perfectly suitable for
-            small-scale production environments.
-          </p>
-          <div class="p-notification--information">
-            <div class="p-notification__content">
-              <h5 class="p-notification__title">Disclaimer</h5>
-              <p class="p-notification__message">
-                For the most up-to-date installation instructions and minimum
-                hardware requirements always refer to the Canonical OpenStack
-                product documentation.
-              </p>
+            <hr class="p-rule--muted">
+            <h3 class="p-heading--5">5. Start using OpenStack</h3>
+            <div class="p-code-snippet">
+              <pre class="p-code-snippet__block"><code>sunbeam launch ubuntu --name test</code></pre>
             </div>
           </div>
-          <p>
-            <a
-              href="https://canonical-openstack.readthedocs-hosted.com/en/latest/how-to/install/install-canonical-openstack-using-the-manual-bare-metal-provider/"
-            >
-              Read the docs to learn more ›
-            </a>
-          </p>
-        </div>
 
-        <div
-          tabindex="0"
-          role="tabpanel"
-          id="large-scale-tab"
-          aria-labelledby="large-scale"
-        >
-          <p>
-            Install OpenStack with Sunbeam and hardware automation as provided
-            by MAAS. Set up a cluster that is perfectly suitable for large-scale
-            production environments.
-          </p>
-          <div class="p-notification--information">
-            <div class="p-notification__content">
-              <h5 class="p-notification__title">Disclaimer</h5>
-              <p class="p-notification__message">
-                For the most up-to-date installation instructions and minimum
-                hardware requirements always refer to the Canonical OpenStack
-                product documentation.
-              </p>
+          <div tabindex="0" role="tabpanel" id="multi-node-mode" aria-labelledby="multi-node-mode-tab">
+            <p>
+              Install OpenStack with Sunbeam on more than one physical machine. Set up a highly available cluster that is perfectly suitable for small-scale production environments.
+            </p>
+            <div class="p-notification--information">
+              <div class="p-notification__content">
+                <h5 class="p-notification__title">Disclaimer</h5>
+                <p class="p-notification__message">
+                  For the most up-to-date installation instructions and minimum hardware requirements always refer to the Canonical OpenStack product documentation.
+                </p>
+              </div>
             </div>
+            <p>
+              <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/how-to/install/install-canonical-openstack-using-the-manual-bare-metal-provider/">
+                Read the docs to learn more ›
+              </a>
+            </p>
           </div>
-          <p>
-            <a
-              href="https://canonical-openstack.readthedocs-hosted.com/en/latest/how-to/install/install-canonical-openstack-using-canonical-maas/"
-            >
-              Read the docs to learn more ›
-            </a>
-          </p>
+
+          <div tabindex="0" role="tabpanel" id="large-scale-tab" aria-labelledby="large-scale">
+            <p>
+              Install OpenStack with Sunbeam and hardware automation as provided by MAAS. Set up a cluster that is perfectly suitable for large-scale production environments.
+            </p>
+            <div class="p-notification--information">
+              <div class="p-notification__content">
+                <h5 class="p-notification__title">Disclaimer</h5>
+                <p class="p-notification__message">
+                  For the most up-to-date installation instructions and minimum hardware requirements always refer to the Canonical OpenStack product documentation.
+                </p>
+              </div>
+            </div>
+            <p>
+              <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/how-to/install/install-canonical-openstack-using-canonical-maas/">
+                Read the docs to learn more ›
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-section">
-  <div class="grid-row--50-50-on-large">
-    <hr class="p-rule" />
-    <div class="grid-col">
-      <h2>Any issues? Get community help.</h2>
-    </div>
-    <div class="grid-col">
-      <h3 class="p-heading--5">Community chat</h3>
-      <p>
-        Join our public chat and benefit from community collaboration and
-        knowledge sharing. Ask your questions and get community help directly
-        from Canonical’s OpenStack engineering team.
-      </p>
-      <p>
-        <a href="https://matrix.to/#/#openstack-sunbeam:ubuntu.com">
-          Ask your question ›
-        </a>
-      </p>
-      <hr class="p-rule--muted" />
-      <h3 class="p-heading--5">Bug tracking system</h3>
-      <p>
-        Something went wrong? We’re sorry to hear that, but don’t give up,
-        please, and report it. We are constantly monitoring newly created bugs
-        and are committed to improving OpenStack’s stability and quality.
-      </p>
-      <p>
-        <a href="https://bugs.launchpad.net/snap-openstack/+filebug">
-          Report a bug ›
-        </a>
-      </p>
-      <hr class="p-rule--muted" />
-      <h3 class="p-heading--5">Product documentation</h3>
-      <p>
-        Need more information? Get straight to the product documentation
-        instead. Explore the most comprehensive set of how-to guides and
-        technical information about the product.
-      </p>
-      <p>
-        <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/">
-          Read the docs ›
-        </a>
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="p-section">
-  <div class="grid-row--50-50-on-large">
-    <hr class="p-rule" />
-    <div class="grid-col">
-      <h2>Got it working? Take the survey.</h2>
-    </div>
-    <div class="grid-col">
-      <div class="p-image-container--3-2 u-sv3">
-        <img
-          class="p-image-container__image"
-          src="https://assets.ubuntu.com/v1/b7dbdab1-Chart.png"
-          alt=""
-        />
+  <section class="p-section">
+    <div class="grid-row--50-50-on-large">
+      <hr class="p-rule">
+      <div class="grid-col">
+        <h2>Any issues? Get community help.</h2>
       </div>
-      <p>
-        Got it working? We are really glad to hear that. Now that your OpenStack
-        installation is up and running, please take a few minutes to share those
-        news with the rest of the world. Your feedback helps us make OpenStack
-        even better.
-      </p>
-      <p>
-        <a
-          href="https://www.openstack.org/user-survey/survey-2025/landing?BackURL=/user-survey/survey-2025/"
-          class="p-button--positive"
-        >
-          Take the survey
-        </a>
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="p-section">
-  <div class="grid-row--50-50-on-large">
-    <hr class="p-rule" />
-    <div class="grid-col">
-      <h2>What is Sunbeam <br />and Canonical OpenStack?</h2>
-    </div>
-    <div class="grid-col">
-      <p>
-        Sunbeam is an upstream OpenStack project hosted under the governance of
-        the OpenInfra Foundation. It aims to lower the barrier to entry for
-        people with no previous background in OpenStack and fully revolutionize
-        its operational experience by adopting cloud-native architecture
-        underneath.
-      </p>
-      <p>
-        Canonical OpenStack is an enterprise-grade product that is tailored to
-        the most demanding market needs. By using Sunbeam, it effectively
-        distills the maturity and comprehensiveness of the upstream OpenStack
-        project, while ensuring long-term stability and support at the same time
-        under Ubuntu Pro.
-      </p>
-      <p>
-        <a href="https://canonical.com/openstack">
-          Discover Canonical OpenStack ›
-        </a>
-      </p>
-    </div>
-  </div>
-</section>
-
-<div class="p-section">
-  <hr class="p-rule is-fixed-width" />
-  <div class="p-section--shallow">
-    <div class="row--50-50-on-large">
-      <div class="col">
-        <h2>Install OpenStack with Canonical</h2>
-      </div>
-      <div class="col">
+      <div class="grid-col">
+        <h3 class="p-heading--5">
+          Community chat
+        </h3>
         <p>
-          Tired of doing everything on your own? Let our experts install
-          OpenStack for you. From the initial design to post-deployment
-          operations, Canonical offers a broad range of commercial services as
-          required by the most demanding customers.
+          Join our public chat and benefit from community collaboration and knowledge sharing. Ask your questions and get community help directly from Canonical’s OpenStack engineering team.
+        </p>
+        <p>
+          <a href="https://matrix.to/#/#openstack-sunbeam:ubuntu.com">
+            Ask your question ›
+          </a>
+        </p>
+        <hr class="p-rule--muted" />
+        <h3 class="p-heading--5">
+          Bug tracking system
+        </h3>
+        <p>
+          Something went wrong? We’re sorry to hear that, but don’t give up, please, and report it. We are constantly monitoring newly created bugs and are committed to improving OpenStack’s stability and quality.
+        </p>
+        <p>
+          <a href="https://bugs.launchpad.net/snap-openstack/+filebug">
+            Report a bug ›
+          </a>
+        </p>
+        <hr class="p-rule--muted" />
+        <h3 class="p-heading--5">
+          Product documentation
+        </h3>
+        <p>
+          Need more information? Get straight to the product documentation instead. Explore the most comprehensive set of how-to guides and technical information about the product.
+        </p>
+        <p>
+          <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/">
+            Read the docs ›
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="grid-row--50-50-on-large">
+      <hr class="p-rule">
+      <div class="grid-col">
+        <h2>Got it working? Take the survey.</h2>
+      </div>
+      <div class="grid-col">
+        <div class="p-image-container--3-2 u-sv3">
+          <img class="p-image-container__image" src="https://assets.ubuntu.com/v1/b7dbdab1-Chart.png" alt="">
+        </div>
+        <p>
+          Got it working? We are really glad to hear that. Now that your OpenStack installation is up and running, please take a few minutes to share those news with the rest of the world. Your feedback helps us make OpenStack even better.
+        </p>
+        <p>
+          <a href="https://www.openstack.org/user-survey/survey-2025/landing?BackURL=/user-survey/survey-2025/" class="p-button--positive">
+            Take the survey
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="grid-row--50-50-on-large">
+      <hr class="p-rule">
+      <div class="grid-col">
+        <h2>What is Sunbeam <br />and Canonical OpenStack?</h2>
+      </div>
+      <div class="grid-col">
+        <p>
+          Sunbeam is an upstream OpenStack project hosted under the governance of the OpenInfra Foundation. It aims to lower the barrier to entry for people with no previous background in OpenStack and fully revolutionize its operational experience by adopting cloud-native architecture underneath.
+        </p>
+        <p>
+          Canonical OpenStack is an enterprise-grade product that is tailored to the most demanding market needs. By using Sunbeam, it effectively distills the maturity and comprehensiveness of the upstream OpenStack project, while ensuring long-term stability and support at the same time under Ubuntu Pro.
+        </p>
+        <p>
+          <a href="https://canonical.com/openstack">
+            Discover Canonical OpenStack ›
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="p-section">
+    <hr class="p-rule is-fixed-width">
+    <div class="p-section--shallow">
+      <div class="row--50-50-on-large">
+        <div class="col">
+          <h2>Install OpenStack with Canonical</h2>
+        </div>
+        <div class="col">
+          <p>
+            Tired of doing everything on your own? Let our experts install OpenStack for you. From the initial design to post-deployment operations, Canonical offers a broad range of commercial services as required by the most demanding customers.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="p-equal-height-row--wrap">
+          <div class="p-equal-height-row__col is-borderless">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--square-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-cover">
+                <img src="https://assets.ubuntu.com/v1/680b1193-let-us-build.jpg" class="p-image-container__image" width="284" height="426" alt="">
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <h3 class="p-heading--5">Let us build the cloud</h3>
+            </div>
+            <div class="p-equal-height-row__item">
+              <p>Together we will work on the design that best suits your requirements, objectives, and use case. Our expert will later build the cloud for you and hand it over to your teams.</p>
+            </div>
+          </div>
+
+          <div class="p-equal-height-row__col is-borderless">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--square-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-cover">
+                <img src="https://assets.ubuntu.com/v1/8154e172-train-educate.jpg" class="p-image-container__image" width="284" height="426">
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <h3 class="p-heading--5">Train and educate your staff</h3>
+            </div>
+            <div class="p-equal-height-row__item">
+              <p>We will train and educate your teams through a series of professional training courses. They will gain all the necessary knowledge to use and operate OpenStack post-deployment.</p>
+            </div>
+          </div>
+
+          <div class="p-equal-height-row__col is-borderless">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--square-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-cover">
+                <img src="https://assets.ubuntu.com/v1/a169d7a4-get-support.jpg" class="p-image-container__image" width="284" height="426">
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <h3 class="p-heading--5">Get support with guaranteed SLAs</h3>
+            </div>
+            <div class="p-equal-height-row__item">
+              <p>Our support team will stand behind your environment providing enterprise-class services. You won’t be alone on your journey. If something happens, you will simply raise a ticket and they will help.</p>
+            </div>
+          </div>
+
+          <div class="p-equal-height-row__col is-borderless">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--square-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-cover">
+                <img src="https://assets.ubuntu.com/v1/dc337fa4-fully-outsource.jpg" class="p-image-container__image" width="284" height="426">
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <h3 class="p-heading--5">Fully outsource your OpenStack operations</h3>
+            </div>
+            <div class="p-equal-height-row__item">
+              <p>Alternatively, our experts will take care of everything, including OpenStack operations. We will monitor your cloud 24/7, resolve any incidents that might occur and perform regular maintenance tasks, while you will simply benefit from a public-cloud-like experience.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <hr class="p-rule--muted">
+      <div class="col-6 col-medium-3 col-start-large-7 col-start-medium-4">
+        <p>
+          <a href="https://canonical.com/openstack/support" class="p-button--positive">
+            Explore Canonical's services
+          </a>
         </p>
       </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col">
-      <div class="p-equal-height-row--wrap">
-        <div class="p-equal-height-row__col is-borderless">
-          <div class="p-equal-height-row__item">
-            <div
-              class="p-image-container--square-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-cover"
-            >
-              <img
-                src="https://assets.ubuntu.com/v1/680b1193-let-us-build.jpg"
-                class="p-image-container__image"
-                width="284"
-                height="426"
-                alt=""
-              />
-            </div>
-          </div>
-          <div class="p-equal-height-row__item">
-            <h3 class="p-heading--5">Let us build the cloud</h3>
-          </div>
-          <div class="p-equal-height-row__item">
-            <p>
-              Together we will work on the design that best suits your
-              requirements, objectives, and use case. Our expert will later
-              build the cloud for you and hand it over to your teams.
-            </p>
-          </div>
-        </div>
-
-        <div class="p-equal-height-row__col is-borderless">
-          <div class="p-equal-height-row__item">
-            <div
-              class="p-image-container--square-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-cover"
-            >
-              <img
-                src="https://assets.ubuntu.com/v1/8154e172-train-educate.jpg"
-                class="p-image-container__image"
-                width="284"
-                height="426"
-              />
-            </div>
-          </div>
-          <div class="p-equal-height-row__item">
-            <h3 class="p-heading--5">Train and educate your staff</h3>
-          </div>
-          <div class="p-equal-height-row__item">
-            <p>
-              We will train and educate your teams through a series of
-              professional training courses. They will gain all the necessary
-              knowledge to use and operate OpenStack post-deployment.
-            </p>
-          </div>
-        </div>
-
-        <div class="p-equal-height-row__col is-borderless">
-          <div class="p-equal-height-row__item">
-            <div
-              class="p-image-container--square-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-cover"
-            >
-              <img
-                src="https://assets.ubuntu.com/v1/a169d7a4-get-support.jpg"
-                class="p-image-container__image"
-                width="284"
-                height="426"
-              />
-            </div>
-          </div>
-          <div class="p-equal-height-row__item">
-            <h3 class="p-heading--5">Get support with guaranteed SLAs</h3>
-          </div>
-          <div class="p-equal-height-row__item">
-            <p>
-              Our support team will stand behind your environment providing
-              enterprise-class services. You won’t be alone on your journey. If
-              something happens, you will simply raise a ticket and they will
-              help.
-            </p>
-          </div>
-        </div>
-
-        <div class="p-equal-height-row__col is-borderless">
-          <div class="p-equal-height-row__item">
-            <div
-              class="p-image-container--square-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-cover"
-            >
-              <img
-                src="https://assets.ubuntu.com/v1/dc337fa4-fully-outsource.jpg"
-                class="p-image-container__image"
-                width="284"
-                height="426"
-              />
-            </div>
-          </div>
-          <div class="p-equal-height-row__item">
-            <h3 class="p-heading--5">
-              Fully outsource your OpenStack operations
+  <section class="p-section--deep">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Additional resources</h2>
+      </div>
+      <div class="col">
+        <ul class="p-list--divided">
+          <li class="p-list__item">
+            <h3 class="p-heading--6">
+              <a href="/openstack/tutorials" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'openstack documentation', 'eventLabel' : 'OpenStack tutorials for beginners', 'eventValue' : undefined });">
+                OpenStack tutorials for beginners
+              </a>
             </h3>
-          </div>
-          <div class="p-equal-height-row__item">
             <p>
-              Alternatively, our experts will take care of everything, including
-              OpenStack operations. We will monitor your cloud 24/7, resolve any
-              incidents that might occur and perform regular maintenance tasks,
-              while you will simply benefit from a public-cloud-like experience.
+              Get familiar with OpenStack through a series of tutorials for beginners. Starting from some very basic concepts, learn how to design, deploy, and use OpenStack in production environments.
             </p>
-          </div>
-        </div>
+          </li>
+          <li class="p-list__item">
+            <h3 class="p-heading--6">
+              <a href="/engage/openstack-ebook-beginners" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'openstack documentation', 'eventLabel' : 'OpenStack e-book for beginners', 'eventValue' : undefined });">
+                OpenStack e-book for beginners
+              </a>
+            </h3>
+            <p>
+             OpenStack adoption has always been a challenge. Hence we wrote this e-book to help you understand OpenStack in a very simple way and at the same time understand the newest upstream project Sunbeam, which makes OpenStack installation even easier!
+            </p>
+          </li>
+          <li class="p-list__item">
+            <h3 class="p-heading--6">
+              <a href="/engage/canonical-openstack-reference-architecture" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'openstack documentation', 'eventLabel' : 'Canonical OpenStack reference architecture', 'eventValue' : undefined });">
+                Canonical OpenStack reference architecture
+              </a>
+            </h3>
+            <p>
+              Designing cloud environments is hard. This is why the best recipe for a successful deployment is to follow a proven design guide. The reference architecture for Canonical OpenStack distills our expert knowledge gained through more than a decade of experience in the OpenStack domain.
+            </p>
+          </li>
+        </ul>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <hr class="p-rule--muted" />
-    <div class="col-6 col-medium-3 col-start-large-7 col-start-medium-4">
-      <p>
-        <a
-          href="https://canonical.com/openstack/support"
-          class="p-button--positive"
-        >
-          Explore Canonical's services
-        </a>
-      </p>
-    </div>
-  </div>
-</div>
+  </section>
 
-<section class="p-section--deep">
-  <div class="row--50-50">
-    <hr class="p-rule" />
-    <div class="col">
-      <h2>Additional resources</h2>
-    </div>
-    <div class="col">
-      <ul class="p-list--divided">
-        <li class="p-list__item">
-          <h3 class="p-heading--6">
-            <a
-              href="https://ubuntu.com/openstack/tutorials"
-              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'openstack documentation', 'eventLabel' : 'OpenStack tutorials for beginners', 'eventValue' : undefined });"
-            >
-              OpenStack tutorials for beginners
-            </a>
-          </h3>
-          <p>
-            Get familiar with OpenStack through a series of tutorials for
-            beginners. Starting from some very basic concepts, learn how to
-            design, deploy, and use OpenStack in production environments.
-          </p>
-        </li>
-        <li class="p-list__item">
-          <h3 class="p-heading--6">
-            <a
-              href="https://ubuntu.com/engage/openstack-ebook-beginners"
-              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'openstack documentation', 'eventLabel' : 'OpenStack e-book for beginners', 'eventValue' : undefined });"
-            >
-              OpenStack e-book for beginners
-            </a>
-          </h3>
-          <p>
-            OpenStack adoption has always been a challenge. Hence we wrote this
-            e-book to help you understand OpenStack in a very simple way and at
-            the same time understand the newest upstream project Sunbeam, which
-            makes OpenStack installation even easier!
-          </p>
-        </li>
-        <li class="p-list__item">
-          <h3 class="p-heading--6">
-            <a
-              href="https://ubuntu.com/engage/canonical-openstack-reference-architecture"
-              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'openstack documentation', 'eventLabel' : 'Canonical OpenStack reference architecture', 'eventValue' : undefined });"
-            >
-              Canonical OpenStack reference architecture
-            </a>
-          </h3>
-          <p>
-            Designing cloud environments is hard. This is why the best recipe
-            for a successful deployment is to follow a proven design guide. The
-            reference architecture for Canonical OpenStack distills our expert
-            knowledge gained through more than a decade of experience in the
-            OpenStack domain.
-          </p>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-{{ load_form("/openstack") | safe }}
-<script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  {{ load_form("/openstack") | safe }}
+  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
 {% endblock content %}
