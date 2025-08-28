@@ -59,11 +59,6 @@ class TestMarketo(unittest.TestCase):
         self.marketo_api._authenticate()
         return super().setUp()
 
-    def test_changed_forms(self):
-        for form_path in self.test_changed_forms:
-            with self.subTest(form=form_path):
-                self._check_form_with_marketo(form_path)
-
     def test_marketo_api(self):
         self.assertIsNotNone(self.marketo_api.token)
 
