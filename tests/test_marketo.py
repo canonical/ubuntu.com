@@ -35,11 +35,11 @@ class TestMarketo(unittest.TestCase):
         app.testing = True
         self.client = app.test_client()
 
-        changed_forms = get_flask_env("CHANGED_FORMS").strip().split()
+        changed_forms = get_flask_env("CHANGED_FORMS")
 
         if changed_forms:
             logging.info(f"Changed forms: {changed_forms}")
-            self.form_files = changed_forms
+            self.form_files = changed_forms.strip().split()
         else:
             logging.info("No form files")
             self.form_files = [
