@@ -289,11 +289,14 @@
                   <div class="u-crop--16-9">
                     <div class="article-image p-image-container">
                       <a href="/blog/{{ article.slug }}">
-                        <img src="{{ article.image.source_url }}"
-                             alt="{{ article.title.rendered }}"
-                             width="400"
-                             height="400"
-                             class="p-image-container__image" />
+                        {{ image(url=article.image.source_url,
+                                                alt=article.title.rendered,
+                                                width="400",
+                                                height="400",
+                                                hi_def=True,
+                                                loading="lazy",
+                                                attrs={"class":"p-image-container__image"}) | safe
+                        }}
                       </a>
                     </div>
                   </div>
