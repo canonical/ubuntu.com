@@ -27,7 +27,7 @@
           Transactional updates for reliability. Deltas minimize network traffic. Digital signatures guarantee integrity and provenance.
         </p>
         <div class="p-section--shallow">
-          <p>This is the future of smart things.</p> 
+          <p>This is the future of smart things.</p>
         </div>
         <hr class="p-rule--muted" />
         <a class="p-button--positive" href="/internet-of-things/appstore">Get an IoT app store</a>
@@ -35,10 +35,15 @@
       </div>
       <div class="col u-hide--small">
         <div class="p-image-container--3-2 is-highlighted">
-          <img class="p-image-container__image"
-               src="https://assets.ubuntu.com/v1/46f1b890-IoT_field_updates_from_Cloud.svg"
-               alt="Iot field updates from cloud"
-               width="550" />
+          {{ image(url="https://assets.ubuntu.com/v1/46f1b890-IoT_field_updates_from_Cloud.svg",
+                    alt="",
+                    fmt="svg",
+                    width="904",
+                    height="551",
+                    hi_def=True,
+                    loading="auto",
+                    attrs={"class": "p-image-container__image", "style":"width:550px"}) | safe
+          }}
         </div>
       </div>
     </div>
@@ -179,7 +184,11 @@
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
-        <h2>Get an IoT app store <br /> for OTA updates</h2>
+        <h2>
+          Get an IoT app store
+          <br />
+          for OTA updates
+        </h2>
       </div>
       <div class="col">
         <p>Get your own infrastructure for secure management and seamless software updates for your fleet of devices.</p>
