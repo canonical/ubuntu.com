@@ -62,6 +62,7 @@ jobs:
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
+          pip install -r requirements.txt
           
       - name: Get changed form-data.json files
         id: changed-files
@@ -72,10 +73,7 @@ jobs:
           echo "Changed files: $CHANGED_FORM_FILES"
           echo "CHANGED_FORM_FILES=$CHANGED_FORM_FILES" >> $GITHUB_ENV
 
-      # - name: Get changed form-data.json files in the templates folder
-      #   id: changed-files
-      #   run: |
-      #     TARGET_SHA=$(git rev-parse $GITHUB_BASE_REF)
+      #    TARGET_SHA=$(git rev-parse $GITHUB_BASE_REF)
       #     CHANGED_FORM_FILES=$(git diff --diff-filter=ACMRd --name-only $TARGET_SHA $GITHUB_SHA -- 'templates/**/form-data.json' ':!templates/tests/**' | tr '\n' ' ')
       #     echo "CHANGED_FORM_FILES=$CHANGED_FORM_FILES" >> $GITHUB_ENV
 
@@ -85,6 +83,7 @@ jobs:
           MARKETO_API_URL: "https://066-EOV-335.mktorest.com"
           MARKETO_API_CLIENT: ${{ secrets.MARKETO_API_CLIENT }}
           MARKETO_API_SECRET: ${{ secrets.MARKETO_API_SECRET }}
+          CHANGED_FORMS: ${{ env.CHANGED_FORM_FILES }}
         run: |
           echo "The following files have changed: $CHANGED_FORM_FILES"
           python -m unittest tests.test_marketo
