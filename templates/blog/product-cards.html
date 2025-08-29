@@ -4,23 +4,43 @@
     {% include "blog/product-cards/_real-time_linux.html" %}
 
     {# Multi-cloud tag cards #}
-  {% elif article.tags and 2976 in article.tags %}
+  {% elif article.tags and 4378 in article.tags %}
     {% include "blog/product-cards/_multi_cloud.html" %}
 
     {# AI/ML tag cards #}
-  {% elif article.tags and 4062 in article.tags %}
+  {% elif article.tags and (1912 in article.tags or 4062 in article.tags or 4786 in article.tags) %}
     {% include "blog/product-cards/_ai-solutions.html" %}
+
+    {# AI infrastructure tag cards #}
+  {% elif article.tags and 4787 in article.tags %}
+    {% include "blog/product-cards/_ai-infrastructure.html" %}
+
+    {# Soverign clouds tag cards #}
+  {% elif article.tags and 4579 in article.tags %}
+    {% include "blog/product-cards/_soverign-clouds.html" %}
+
+    {# life at canonical tag cards #}
+  {% elif article.tags and 4530 in article.tags %}
+    {% include "blog/product-cards/_life-at-canonical.html" %}
+
+    {# community tag cards #}
+  {% elif article.tags and 1227 in article.tags %}
+    {% include "blog/product-cards/_community.html" %}
+
+    {# cyber resilience act tag cards #}
+  {% elif article.tags and (4632 in article.tags or 1665 in article.tags) %}
+    {% include "blog/product-cards/_community.html" %}
 
     {# OpenSearch tag cards #}
   {% elif article.tags and 4353 in article.tags %}
     {% include "blog/product-cards/_opensearch.html" %}
 
     {# MongoDB tag cards #}
-  {% elif article.tags and 3949 in article.tags %}
+  {% elif article.tags and (3949 in article.tags or 3951 in article.tags) %}
     {% include "blog/product-cards/_charmed_mongodb.html" %}
 
     {# MicroCloud tag cards #}
-  {% elif article.tags and 4499 in article.tags %}
+  {% elif article.tags and (1397 in article.tags or 1342 in article.tags or 2544 in article.tags) %}
     {% include "blog/product-cards/_microcloud.html" %}
 
     {# OpenStack tag cards #}
@@ -28,17 +48,18 @@
     {% include "blog/product-cards/_openstack.html" %}
 
     {# LXD tag cards #}
-  {% elif article.tags and 1743 in article.tags %}
+  {% elif article.tags and (1397 in article.tags or 1743 in article.tags) %}
     {% include "blog/product-cards/_lxd.html" %}
 
     {# Infrastructure tag cards #}
-  {% elif article.tags and 2554 in article.tags %}
+  {% elif article.tags and 1342 in article.tags %}
     {% include "blog/product-cards/_infrastructure_optimised-costs-across-any-cloud.html" %}
     {% include "blog/product-cards/_infrastructure_maximise-your-cloud-infrastructure.html" %}
 
     {# Ubuntu desktop tag cards #}
   {% elif article.tags and 1920 in article.tags %}
     {% include "blog/product-cards/_desktop_ubuntu-for-desktops.html" %}
+    {% include "blog/product-cards/_desktop_ubuntu-desktop-for-organisations.html" %}
 
     {# Ubuntu Server tag cards #}
   {% elif article.tags and 1610 in article.tags %}
@@ -48,16 +69,8 @@
   {% elif article.tags and 3332 in article.tags %}
     {% include "blog/product-cards/_wsl_ubuntu-on-windows.html" %}
 
-    {# Identity Management tag cards #}
-  {% elif article.tags and 4195 in article.tags %}
-    {% include "blog/product-cards/_desktop_ubuntu-desktop-for-organisations.html" %}
-
-    {# Hybrid-cloud tag cards #}
-  {% elif article.tags and 3150 in article.tags %}
-    {% include "blog/product-cards/_hybrid_cloud.html" %}
-
     {# Private-cloud tag cards #}
-  {% elif article.tags and 1342 in article.tags %}
+  {% elif article.tags and (1327 in article.tags or 1342 in article.tags) %}
     {% include "blog/product-cards/_private_cloud.html" %}
 
     {# Public cloud tag cards #}
@@ -65,7 +78,7 @@
     {% include "blog/product-cards/_public_cloud.html" %}
 
     {# Docker tag cards #}
-  {% elif article.tags and 1567 in article.tags %}
+  {% elif article.tags and (1695 in article.tags or 1567 in article.tags) %}
     {% include "blog/product-cards/_docker-security.html" %}
 
     {# Telco tag cards #}
@@ -78,21 +91,16 @@
     {% include "blog/product-cards/_IoT_appstore.html" %}
 
     {# Finance tag cards #}
-  {% elif article.tags and 1419 in article.tags %}
+  {% elif article.tags and 3955 in article.tags %}
     {% include "blog/product-cards/_financialservices-awerness.html" %}
 
-    {# Rapsberry Pi tag cards #}
-  {% elif article.tags and 1672 in article.tags %}
-    {% include "blog/product-cards/_raspberry-pi_2010-livestream.html" %}
-
     {# Kubeflow tag cards #}
-  {% elif article.tags and 2609 in article.tags %}
-    {% include "blog/product-cards/_kubeflow_jaas-bundle.html" %}
+  {% elif article.tags and (2609 in article.tags or 4018 in article.tags or 4062 in article.tags or 2067 in article.tags) %}
     {% include "blog/product-cards/_kubeflow_what-is-kubeflow.html" %}
     {% include "blog/product-cards/_kubeflow_deploy-tutorial.html" %}
 
     {# Bootstack tag cards #}
-  {% elif article.tags and 1572 in article.tags %}
+  {% elif article.tags and (1327 in article.tags or 4315 in article.tags) %}
     {% include "blog/product-cards/_bootstack_managed-private-cloud.html" %}
 
     {# Kubernetes tag cards #}
@@ -101,15 +109,20 @@
     {% include "blog/product-cards/_kubernetes.html" %}
 
     {# Ceph tag cards #}
-  {% elif article.tags and 1780 in article.tags %}
+  {% elif article.tags and (1780 in article.tags or 1774 in article.tags) %}
     {% include "blog/product-cards/_ceph_what-is-ceph.html" %}
     {% include "blog/product-cards/_ceph_optimise-storage-costs.html" %}
     {% include "blog/product-cards/_ceph_guide-sds-for-ent.html" %}
     {% include "blog/product-cards/_ceph.html" %}
 
     {# Bosch tag cards #}
-  {% elif article.tags and 3680 in article.tags %}
+  {% elif article.tags and 1665 in article.tags %}
     {% include "blog/product-cards/_bosch_ubuntu-for-iot.html" %}
+
+    {# end of support tag cards #}
+  {% elif article.tags and (3178 in article.tags or 3335 in article.tags) %}
+    {% include "blog/product-cards/_ubuntu_18.04_end_of_support.html" %}
+    {% include "blog/product-cards/_ubuntu_20.04_end_of_support.html" %}
 
     {# Legacy fallback content #}
   {% elif article.group and article.group.slug == "support" %}
