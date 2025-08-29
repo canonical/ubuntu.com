@@ -20,14 +20,11 @@ jobs:
       with:
         node-version: 20
 
-    - name: Install dependencies
-      run: yarn install --immutablee
-
-    - name: Install dependencies
-      run: npm install -g yarn && yarn
+    - name: Install yarn
+      run: yarn install --immutable
 
     - name: Install dotrun
-      run: sudo pip3 install dotrun requests==2.31.0 # requests version is pinned to avoid breaking changes, can be removed once issue is resolved: https://github.com/docker/docker-py/issues/3256resolved: https://github.com/docker/docker-py/issues/3256
+      run: sudo pip3 install dotrun
 
     - name: Install dependencies
       run: |
@@ -76,6 +73,5 @@ jobs:
           MARKETO_API_URL: "https://066-EOV-335.mktorest.com"
           MARKETO_API_CLIENT: ${{ secrets.MARKETO_API_CLIENT }}
           MARKETO_API_SECRET: ${{ secrets.MARKETO_API_SECRET }}
-          CHANGED_FORMS: ${{ env.CHANGED_FORM_FILES }}
         run: |
           python -m unittest tests.test_marketo
