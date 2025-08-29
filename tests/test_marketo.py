@@ -33,21 +33,11 @@ class TestMarketo(unittest.TestCase):
         app.testing = True
         self.client = app.test_client()
 
-        changed_forms = get_flask_env("CHANGED_FORMS")
-
-        if changed_forms:
-            form_files = changed_forms.strip().split()
-            self.form_files = [
-                f
-                for f in form_files
-                if "templates/tests/form-data.json" not in f
-            ]
-        else:
-            self.form_files = [
-                f
-                for f in Path("templates").rglob("form-data.json")
-                if "templates/tests" not in str(f)
-            ]
+        self.form_files = [
+            f
+            for f in Path("templates").rglob("form-data.json")
+            if "templates/tests" not in str(f)
+        ]
 
         marketo_session = Session()
         talisker.requests.configure(marketo_session)
