@@ -40,7 +40,14 @@
         </div>
       </div>
       <div class="p-media-container u-darker-background col-3 u-align--center u-vertically-center u-hide--small u-hide--medium">
-        <img src="https://assets.ubuntu.com/v1/0b0cef3c-hero.png" alt="" />
+        {{ image(url="https://assets.ubuntu.com/v1/0b0cef3c-hero.png",
+                alt="",
+                width="852",
+                height="1278",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
       </div>
     </div>
   </section>
@@ -119,9 +126,14 @@
       <div class="p-logo-section">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
-            <img class="p-logo-section__logo"
-                 src="https://assets.ubuntu.com/v1/59fd3874-k8s-docker.png"
-                 alt="" />
+            {{ image(url="https://assets.ubuntu.com/v1/59fd3874-k8s-docker.png",
+                        alt="",
+                        width="884",
+                        height="312",
+                        hi_def=True,
+                        loading="auto",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
           </div>
         </div>
       </div>
@@ -162,10 +174,14 @@
     </div>
     <div class="u-fixed-width">
       <div class="p-media-container p-strip is-shallow u-darker-background col-3 u-align--center u-vertically-center">
-        <img width="834"
-             src="https://assets.ubuntu.com/v1/a09a1433-diagram%202.png"
-             alt=""
-             loading="lazy" />
+        {{ image(url="https://assets.ubuntu.com/v1/a09a1433-diagram%202.png",
+                alt="",
+                width="2433",
+                height="1461",
+                hi_def=True,
+                loading="lazy",
+                attrs={"style": "width:834px"}) | safe
+        }}
       </div>
     </div>
   </section>
@@ -184,10 +200,14 @@
     </div>
     <div class="u-fixed-width">
       <div class="p-media-container p-strip is-shallow u-darker-background col-3 u-align--center u-vertically-center">
-        <img width="834"
-             src="https://assets.ubuntu.com/v1/2e35a691-diagram%201.png"
-             alt=""
-             loading="lazy" />
+        {{ image(url="https://assets.ubuntu.com/v1/2e35a691-diagram%201.png",
+                alt="",
+                width="2433",
+                height="1368",
+                hi_def=True,
+                loading="lazy",
+                attrs={"style": "width:834px"}) | safe
+        }}
       </div>
       <div class="p-strip is-shallow row u-no-padding--bottom">
         <div class="col-6 col-start-large-7 col-start-medium-4 col-medium-3">
@@ -220,9 +240,13 @@
       </div>
       <div class="col">
         <div class="p-media-container p-strip is-shallow u-darker-background col-3 u-align--center u-vertically-center">
-          <img src="https://assets.ubuntu.com/v1/ecbc6997-How%20to%20secure%20container%20images.png"
-               alt=""
-               loading="lazy" />
+          {{ image(url="https://assets.ubuntu.com/v1/ecbc6997-How%20to%20secure%20container%20images.png",
+                    alt="",
+                    width="1200",
+                    height="800",
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
         </div>
         <div>
           <p>

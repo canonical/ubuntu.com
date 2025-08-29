@@ -35,10 +35,14 @@
     </div>
     <div class="row">
       <div class="p-image-container--cinematic u-hide--small is-highlighted">
-        <img class="p-image-container__image p-strip is-shallow"
-             src="https://assets.ubuntu.com/v1/667fa185-Artboard%20150@3x.png"
-             alt=""
-             width="800px" />
+        {{ image(url="https://assets.ubuntu.com/v1/667fa185-Artboard%20150@3x.png",
+                alt="",
+                width="1600",
+                height="1026",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image p-strip is-shallow"}) | safe
+        }}
       </div>
     </div>
   </section>
@@ -491,7 +495,7 @@
             <a href="/engage/dell-openstack-reference-architecture">Which architecture to follow?</a>
           </li>
         </ul>
-        <hr class="is-muted"/>
+        <hr class="is-muted" />
         <p>
           Those are just examples of questions organisations have to ask themselves at the beginning of their private cloud journey. Fortunately, there are <a href="https://microstack.run">tools that enable single-node private cloud installation</a> for testing purposes or, in the case of more complex environments, private cloud providers like Canonical offer <a href="/openstack/consulting">consulting services for private cloud deployment</a>. Those usually include existing workloads assessment, architecture guidance, TCO prediction, cloud deployment and workloads migration.
         </p>
