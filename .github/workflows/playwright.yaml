@@ -23,13 +23,10 @@ jobs:
         node-version: 20
 
     - name: Install dependencies
-      run: yarn install --immutablee
-
-    - name: Install dependencies
-      run: npm install -g yarn && yarn
+      run: yarn install --immutable
 
     - name: Install dotrun
-      run: sudo pip3 install dotrun requests==2.31.0 # requests version is pinned to avoid breaking changes, can be removed once issue is resolved: https://github.com/docker/docker-py/issues/3256resolved: https://github.com/docker/docker-py/issues/3256
+      run: sudo pip3 install dotrun
 
     - name: Install dependencies
       run: |
