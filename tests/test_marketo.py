@@ -36,7 +36,12 @@ class TestMarketo(unittest.TestCase):
         changed_forms = get_flask_env("CHANGED_FORMS")
 
         if changed_forms:
-            self.form_files = changed_forms.strip().split()
+            form_files = changed_forms.strip().split()
+            self.form_files = [
+                f
+                for f in form_files
+                if "templates/tests/form-data.json" not in f
+            ]
         else:
             self.form_files = [
                 f

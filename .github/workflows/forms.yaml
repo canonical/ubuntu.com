@@ -1,10 +1,7 @@
 name: Form tests
-# Run on push/pull request for QA purposes
-on: [push, pull_request]
-
-# on:
-#   schedule:
-#     - cron: "20 7 * * *"
+on:
+  schedule:
+    - cron: "20 7 * * *"
 env:
   SECRET_KEY: insecure_test_key
 
