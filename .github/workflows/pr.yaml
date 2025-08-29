@@ -161,7 +161,7 @@ jobs:
         id: changed-files
         run: |
           TARGET_SHA=$(git rev-parse $GITHUB_BASE_REF)
-          CHANGED_FORM_FILES=$(git diff --diff-filter=ACMRd --name-only $TARGET_SHA $GITHUB_SHA -- 'templates/**/form-data.json' ':!templates/tests/**' | tr '\n' ' ')
+          CHANGED_FORM_FILES=$(git diff --diff-filter=ACMRd --name-only $TARGET_SHA $GITHUB_SHA -- 'templates/**/form-data.json' | tr '\n' ' ')
           echo "CHANGED_FORM_FILES=$CHANGED_FORM_FILES" >> $GITHUB_ENV
 
       - name: Run tests and generate coverage report
