@@ -21,7 +21,8 @@
     "start": "yarn run build && concurrently --kill-others --raw 'yarn run watch-css' 'yarn run watch-js' 'yarn run serve'",
     "check-prettier": "prettier -c 'static/js/src/**/*.{js,jsx,ts,tsx}' 'static/sass/**/*.scss'",
     "format-prettier": "prettier -w 'static/js/src/**/*.{js,jsx,ts,tsx}' 'static/sass/**/*.scss'",
-    "percy-snapshot": "percy snapshot snapshots.js"
+    "percy-snapshot": "percy snapshot snapshots.js",
+    "test-marketo": "python3 -m unittest tests.test_marketo"
   },
   "keywords": [
     "website",
