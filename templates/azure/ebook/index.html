@@ -27,9 +27,14 @@
       </div>
       <div class="col">
         <div class="p-image-container u-hide--small">
-          <img class="p-image-container__image"
-               src="https://assets.ubuntu.com/v1/d5af1f9f-ebook-azure.png"
-               alt="Ubuntu Pro and Azure logo" />
+          {{ image(url="https://assets.ubuntu.com/v1/d5af1f9f-ebook-azure.png",
+                    alt="Ubuntu Pro and Azure logo",
+                    width="1200",
+                    height="675",
+                    hi_def=True,
+                    loading="auto",
+                    attrs={"class":"p-image-container__image"}) | safe
+          }}
         </div>
       </div>
     </div>
@@ -73,10 +78,15 @@
       <div class="col">
         <div class="p-section--shallow">
           <div class="p-image-container--3-2 is-highlighted u-hide--small">
-            <img class="p-image-container__image p-strip is-shallow"
-                 style="width: 30%"
-                 src="https://assets.ubuntu.com/v1/71fe6a11-private-offer-shield.svg"
-                 alt="" />
+            {{ image(url="https://assets.ubuntu.com/v1/71fe6a11-private-offer-shield.svg",
+                        alt="",
+                        width="128",
+                        height="150",
+                        hi_def=True,
+                        fmt="svg",
+                        loading="lazy",
+                        attrs={"class":"p-image-container__image p-strip is-shallow", "style":"width: 30%"}) | safe
+            }}
           </div>
         </div>
         <p>Already running Ubuntu on Microsoft Azure, or planning a migration to the public cloud?</p>

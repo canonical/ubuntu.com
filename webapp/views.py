@@ -38,7 +38,7 @@ session = talisker.requests.get_session()
 marketo_session = Session()
 talisker.requests.configure(marketo_session)
 marketo_api = MarketoAPI(
-    "https://066-EOV-335.mktorest.com",
+    get_flask_env("MARKETO_API_URL"),
     get_flask_env("MARKETO_API_CLIENT"),
     get_flask_env("MARKETO_API_SECRET"),
     marketo_session,

@@ -65,6 +65,9 @@ env:
     secretKeyRef:
       key: api_secret
       name: marketo
+  
+  - name: MARKETO_API_URL
+    value: https://066-EOV-335.mktorest.com
 
   - name: GOOGLE_SERVICE_ACCOUNT_EMAIL
     secretKeyRef:
@@ -328,6 +331,9 @@ production:
           secretKeyRef:
             key: api_secret
             name: marketo
+      
+        - name: MARKETO_API_URL
+          value: https://066-EOV-335.mktorest.com
 
         - name: CREDLY_URL
           value: https://api.credly.com/v1
@@ -648,6 +654,9 @@ staging:
       secretKeyRef:
         key: api_secret
         name: marketo
+  
+    - name: MARKETO_API_URL
+      value: https://066-EOV-335.mktorest.com
 
     - name: GOOGLE_SERVICE_ACCOUNT_EMAIL
       secretKeyRef:
@@ -935,6 +944,9 @@ staging:
           secretKeyRef:
             key: api_secret
             name: marketo
+
+        - name: MARKETO_API_URL
+          value: https://066-EOV-335.mktorest.com
 
         - name: CRED_MAINTENANCE
           value: true
@@ -1224,6 +1236,9 @@ demo:
       secretKeyRef:
         key: api_secret
         name: marketo
+
+    - name: MARKETO_API_URL
+      value: https://066-EOV-335.mktorest.com
 
     - name: SENTRY_DSN
       value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
