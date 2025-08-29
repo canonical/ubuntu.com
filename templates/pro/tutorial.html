@@ -258,11 +258,14 @@ Choose: [S]ubscribe at ubuntu.com [A]ttach existing token [C]ancel</pre>
                   which is free of charge for personal use on up to 5 machines. For enterprise use-cases go to <a href="/pro/subscribe">ubuntu.com/pro/subscribe</a> or <a href="/contact-us/form?product=pro">contact
                 us.</a>
               </p>
-              <img class="has-shadow"
-                   src="https://assets.ubuntu.com/v1/3acd405b-login.ubuntu.com_+login+%281%29.jpg"
-                   alt=""
-                   style="width: 100%;
-                          max-width: 35rem" />
+              {{ image(url="https://assets.ubuntu.com/v1/3acd405b-login.ubuntu.com_+login+%281%29.jpg",
+                            alt="",
+                            width="1118",
+                            height="2052",
+                            hi_def=True,
+                            loading="lazy", attrs={"class":"has-shadow", "style": "width: 100%;
+                            max-width: 35rem"}) | safe
+              }}
             </div>
           </li>
           <li class="p-list__item">
@@ -310,11 +313,14 @@ Choose: [S]ubscribe at ubuntu.com [A]ttach existing token [C]ancel</pre>
                   Your Ubuntu Pro token will be listed under 'Free Personal Token'
                 </p>
               </div>
-              <img class="has-shadow"
-                   src="https://assets.ubuntu.com/v1/3b5ebbf2-UA+scr+3.jpg"
-                   alt=""
-                   style="width: 100%;
-                          max-width: 81rem" />
+              {{ image(url="https://assets.ubuntu.com/v1/3b5ebbf2-UA+scr+3.jpg",
+                            alt="",
+                            width="2274",
+                            height="1436",
+                            hi_def=True,
+                            loading="lazy", attrs={"class":"has-shadow", "style": "width: 100%;
+                            max-width: 81rem"}) | safe
+              }}
             </div>
           </li>
         </ol>
@@ -374,96 +380,105 @@ Subscription: Ubuntu Pro - free personal subscription</pre>
           available on Ubuntu 22.04 LTS.
         </p>
         <p>For Ubuntu Desktop, you can go to “Software & Updates” and open the "Ubuntu Pro" tab.</p>
-        <img class="has-shadow"
-             src="https://assets.ubuntu.com/v1/9319d303-software_updates_pro.png"
-             alt=""
-             style="width: 100%;
-                    max-width: 81rem" />
+        {{ image(url="https://assets.ubuntu.com/v1/9319d303-software_updates_pro.png",
+                alt="",
+                width="1104",
+                height="663",
+                hi_def=True,
+                loading="lazy", attrs={"class":"has-shadow", "style": "width: 100%;
+                max-width: 81rem"}) | safe
+        }}
         <p>Then you can click the “Enable Ubuntu Pro” button. You can then copy paste the token into “add token manually”.</p>
-        <img class="has-shadow"
-             src="https://assets.ubuntu.com/v1/8c3fd6d1-magic_attach_visual_aid_desktop.png"
-             alt=""
-             style="width: 100%;
-                    max-width: 81rem" />
+        {{ image(url="https://assets.ubuntu.com/v1/8c3fd6d1-magic_attach_visual_aid_desktop.png",
+                alt="",
+                width="1111",
+                height="662",
+                hi_def=True,
+                loading="lazy", attrs={"class":"has-shadow", "style": "width: 100%;
+                max-width: 81rem"}) | safe
+        }}
         <p>
           Alternatively, you can pick the code displayed and paste it on <a href="/pro/attach">ubuntu.com/pro/attach</a>
         </p>
-        <img class="has-shadow"
-             src="https://assets.ubuntu.com/v1/582bec22-magic_attach_web.png"
-             alt=""
-             style="width: 100%;
-                    max-width: 81rem" />
+        {{ image(url="https://assets.ubuntu.com/v1/582bec22-magic_attach_web.png",
+                alt="",
+                width="1283",
+                height="805",
+                hi_def=True,
+                loading="lazy", attrs={"class":"has-shadow", "style": "width: 100%;
+                max-width: 81rem"}) | safe
+        }}
       </div>
     </div>
-</section>
+  </section>
 
-<section class="p-strip u-no-padding--top">
-  <hr class="is-fixed-width p-rule" />
-  <div class="row">
-    <div class="col-3">
-      <p class="p-step-counter">5</p>
+  <section class="p-strip u-no-padding--top">
+    <hr class="is-fixed-width p-rule" />
+    <div class="row">
+      <div class="col-3">
+        <p class="p-step-counter">5</p>
+      </div>
+      <div class="col-9">
+        <h2>Congratulations - your machine is now upgraded to Ubuntu Pro</h2>
+
+        <p>
+          Well done! Your machine now has access to Ubuntu Pro repositories. That means that every time you update
+          your software, you will be pulling from the Ubuntu Pro’s Expanded Security Maintenance repositories. You can get
+          it through all the usual paths; nothing new to learn. You can use unattended-upgrades, the Software Updater on
+          the Desktop, or <code>apt upgrade</code> command in the CLI.
+        </p>
+
+        <p>
+          To ensure that all available CVE fixes are applied, run:
+          <pre><code> $ sudo apt update && sudo apt upgrade</code></pre>
+        </p>
+      </div>
     </div>
-    <div class="col-9">
-      <h2>Congratulations - your machine is now upgraded to Ubuntu Pro</h2>
+  </section>
 
-      <p>
-        Well done! Your machine now has access to Ubuntu Pro repositories. That means that every time you update
-        your software, you will be pulling from the Ubuntu Pro’s Expanded Security Maintenance repositories. You can get
-        it through all the usual paths; nothing new to learn. You can use unattended-upgrades, the Software Updater on
-        the Desktop, or <code>apt upgrade</code> command in the CLI.
-      </p>
+  <section class="p-strip u-no-padding--top">
+    <hr class="is-fixed-width p-rule" />
+    <div class="row">
+      <div class="col-3">
+        <p class="p-step-counter">6</p>
+      </div>
+      <div class="col-9">
+        <h2>What else can you use your Ubuntu Pro subscription for?</h2>
 
-      <p>
-        To ensure that all available CVE fixes are applied, run:
-        <pre><code> $ sudo apt update && sudo apt upgrade</code></pre>
-      </p>
+        <p>
+          For users running in regulated environments, we have a set of FIPS-certified crypto-modules and hardening
+          scripts available. To enable them, consider enabling other Pro services you are entitled to, such as the Ubuntu
+          Security Guide.
+        </p>
+
+        <p>
+          <pre><code>$ sudo pro enable usg</code></pre>
+        </p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip u-no-padding--top">
-  <hr class="is-fixed-width p-rule" />
-  <div class="row">
-    <div class="col-3">
-      <p class="p-step-counter">6</p>
+  <section class="p-strip u-no-padding--top">
+    <hr class="is-fixed-width p-rule" />
+    <div class="row">
+      <div class="col-3">
+        <p class="p-step-counter">7</p>
+      </div>
+      <div class="col-9">
+        <h2>That's all, folks</h2>
+
+        <p>
+          Good job, you made it! You should now know how to access and use Ubuntu Pro, as well as understand all the
+          great benefits Ubuntu Pro has to offer.
+        </p>
+
+        <h3 class="p-heading--5">Next steps:</h3>
+
+        <p>
+          Still hungry to learn more about Ubuntu Pro? <a href="/contact-us/form?product=pro">Talk to the Canonical team</a> or head on over to <a href="https://discourse.ubuntu.com/c/project/ubuntu-pro/116/">Ubuntu Pro Discourse</a>.
+        </p>
+      </div>
     </div>
-    <div class="col-9">
-      <h2>What else can you use your Ubuntu Pro subscription for?</h2>
-
-      <p>
-        For users running in regulated environments, we have a set of FIPS-certified crypto-modules and hardening
-        scripts available. To enable them, consider enabling other Pro services you are entitled to, such as the Ubuntu
-        Security Guide.
-      </p>
-
-      <p>
-        <pre><code>$ sudo pro enable usg</code></pre>
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip u-no-padding--top">
-  <hr class="is-fixed-width p-rule" />
-  <div class="row">
-    <div class="col-3">
-      <p class="p-step-counter">7</p>
-    </div>
-    <div class="col-9">
-      <h2>That's all, folks</h2>
-
-      <p>
-        Good job, you made it! You should now know how to access and use Ubuntu Pro, as well as understand all the
-        great benefits Ubuntu Pro has to offer.
-      </p>
-
-      <h3 class="p-heading--5">Next steps:</h3>
-
-      <p>
-        Still hungry to learn more about Ubuntu Pro? <a href="/contact-us/form?product=pro">Talk to the Canonical team</a> or head on over to <a href="https://discourse.ubuntu.com/c/project/ubuntu-pro/116/">Ubuntu Pro Discourse</a>.
-      </p>
-    </div>
-  </div>
-</section>
+  </section>
 {% endblock %}
 {% endblock %}

@@ -89,6 +89,7 @@ meta_copydoc %}
                 <div class="p-heading-icon__header">
                   <img class="p-heading-icon__img"
                        src="https://assets.ubuntu.com/v1/21efb2ec-desktop.svg"
+                       loading="lazy"
                        alt="" />
                   <p class="p-heading-icon__title u-vertically-center u-no-margin--bottom">Desktop</p>
                 </div>
@@ -99,6 +100,7 @@ meta_copydoc %}
                 <div class="p-heading-icon__header">
                   <img class="p-heading-icon__img"
                        src="https://assets.ubuntu.com/v1/a3694a61-Public+Cloud.svg"
+                       loading="lazy"
                        alt="" />
                   <p class="p-heading-icon__title u-vertically-center u-no-margin--bottom">Public Cloud</p>
                 </div>
@@ -109,6 +111,7 @@ meta_copydoc %}
                 <div class="p-heading-icon__header">
                   <img class="p-heading-icon__img"
                        src="https://assets.ubuntu.com/v1/fdf83d49-Server.svg"
+                       loading="lazy"
                        alt="" />
                   <p class="p-heading-icon__title u-vertically-center u-no-margin--bottom">Servers</p>
                 </div>
@@ -117,9 +120,14 @@ meta_copydoc %}
             <div class="col-3 p-divider__block">
               <div class="p-heading-icon">
                 <div class="p-heading-icon__header">
-                  <img class="p-heading-icon__img"
-                       src="https://assets.ubuntu.com/v1/f9f8ace9-gateway.svg"
-                       alt="" />
+                  {{ image(url="https://assets.ubuntu.com/v1/f9f8ace9-gateway.svg",
+                                    alt="",
+                                    width="185",
+                                    height="200",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-heading-icon__img"}) | safe
+                  }}
                   <p class="p-heading-icon__title u-vertically-center u-no-margin--bottom">IoT</p>
                 </div>
               </div>
