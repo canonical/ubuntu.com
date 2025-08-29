@@ -1,5 +1,10 @@
-name: Form tests
+name: Form e2e integration tests
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "templates/**"
   schedule:
     - cron: "20 7 * * *"
 env:
@@ -41,7 +46,7 @@ jobs:
         PLAYWRIGHT_USER_ID: ${{ secrets.PLAYWRIGHT_USER_ID }}
         PLAYWRIGHT_USER_PASSWORD : ${{ secrets.PLAYWRIGHT_USER_PASSWORD }}
         TESTING: true
-      run: yarn playwright test forms/form-generator.spec.ts
+      run: yarn playwright test forms
 
   test-marketo:
     runs-on: ubuntu-latest
