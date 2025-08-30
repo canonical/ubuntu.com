@@ -22,7 +22,7 @@ const ProductUser = () => {
       <Row>
         <Col size={12}>
           <RadioInput
-            label="My organisation"
+            label="My organization"
             name="user"
             value={ProductUsers.organisation}
             onChange={handleProductUserChange}
@@ -50,7 +50,7 @@ const ProductUser = () => {
             you own, or 50 machines for active{" "}
             <a href="/community/membership">Ubuntu Community members</a>. If you
             need phone support or need to cover more than 5 machines, please
-            select &quot;My organisation&quot;
+            select &quot;My organization&quot;
           </p>
         </Col>
       </Row>
