@@ -1,52 +1,34 @@
 .p-table-component-devices {
-  th,
-  td {
+  min-width: 38rem;
+  word-wrap: break-word;
+
+  @media only screen and (max-width: $breakpoint-medium) {
+    min-width: 38rem;
+  }
+
+  @media only screen and (max-width: $breakpoint-small) {
+    min-width: 27rem;
+  }
+
+  th {
+    text-align: left;
+
     &:nth-child(1) {
-      width: 35%;
+      @media only screen and (max-width: $breakpoint-small) {
+        width: 22%;
+      }
     }
 
     &:nth-child(2) {
-      width: 10%;
-      @media only screen and (min-width: $breakpoint-medium) {
-        justify-content: center;
-        text-align: center;
+      @media only screen and (max-width: $breakpoint-small) {
+        width: 16%;
       }
     }
 
     &:nth-child(3) {
-      width: 10%;
-      @media only screen and (min-width: $breakpoint-medium) {
-        justify-content: center;
-        text-align: center;
+      @media only screen and (max-width: $breakpoint-small) {
+        width: 24%;
       }
-    }
-
-    &:nth-child(4) {
-      width: 10%;
-      @media only screen and (min-width: $breakpoint-medium) {
-        justify-content: center;
-        text-align: center;
-      }
-    }
-
-    &:nth-child(5) {
-      width: 10%;
-      @media only screen and (min-width: $breakpoint-medium) {
-        justify-content: center;
-        text-align: center;
-      }
-    }
-
-    &:nth-child(6) {
-      width: 10%;
-      @media only screen and (min-width: $breakpoint-medium) {
-        justify-content: center;
-        text-align: center;
-      }
-    }
-
-    &:nth-child(7) {
-      width: 25%;
     }
   }
 }
