@@ -230,28 +230,30 @@
     ]
   ) }}
 
-
-  <section class="p-section">
-    <div class="grid-row--50-50-on-large">
-      <hr class="p-rule">
-      <div class="grid-col">
-        <h2>What is Sunbeam <br />and Canonical OpenStack?</h2>
-      </div>
-      <div class="grid-col">
-        <p>
-          Sunbeam is an upstream OpenStack project hosted under the governance of the OpenInfra Foundation. It aims to lower the barrier to entry for people with no previous background in OpenStack and fully revolutionize its operational experience by adopting cloud-native architecture underneath.
-        </p>
-        <p>
-          Canonical OpenStack is an enterprise-grade product that is tailored to the most demanding market needs. By using Sunbeam, it effectively distills the maturity and comprehensiveness of the upstream OpenStack project, while ensuring long-term stability and support at the same time under Ubuntu Pro.
-        </p>
-        <p>
-          <a href="https://canonical.com/openstack">
-            Discover Canonical OpenStack ›
-          </a>
-        </p>
-      </div>
-    </div>
-  </section>
+  {{ vf_basic_section(
+    title={"text": "What is Sunbeam <br />and Canonical OpenStack?"},
+    items=[
+      {
+        "type": "description",
+        "item": {
+          "type": "html",
+          "content": "
+            <p>
+              Sunbeam is an upstream OpenStack project hosted under the governance of the OpenInfra Foundation. It aims to lower the barrier to entry for people with no previous background in OpenStack and fully revolutionize its operational experience by adopting cloud-native architecture underneath.
+            </p>
+            <p>
+              Canonical OpenStack is an enterprise-grade product that is tailored to the most demanding market needs. By using Sunbeam, it effectively distills the maturity and comprehensiveness of the upstream OpenStack project, while ensuring long-term stability and support at the same time under Ubuntu Pro.
+            </p>
+            <p>
+              <a href='https://canonical.com/openstack'>
+                Discover Canonical OpenStack ›
+              </a>
+            </p>
+          "
+        }
+      }
+    ]
+  ) }}
 
   {% call(slot) vf_equal_heights(
     title_text="Install OpenStack with Canonical",
