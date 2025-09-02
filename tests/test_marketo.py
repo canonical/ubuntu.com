@@ -22,11 +22,6 @@ SET_FIELDS = set(
         "comments_from_lead__c",
     }
 )
-form_files = [
-    f
-    for f in Path("templates").rglob("form-data.json")
-    if "templates/tests" not in str(f)
-]
 
 
 class TestMarketo(unittest.TestCase):
@@ -37,6 +32,12 @@ class TestMarketo(unittest.TestCase):
 
         app.testing = True
         self.client = app.test_client()
+
+        self.form_files = [
+            f
+            for f in Path("templates").rglob("form-data.json")
+            if "templates/tests" not in str(f)
+        ]
 
         marketo_session = Session()
         talisker.requests.configure(marketo_session)
@@ -53,7 +54,7 @@ class TestMarketo(unittest.TestCase):
         self.assertIsNotNone(self.marketo_api.token)
 
     def test_forms_with_marketo(self):
-        for form in form_files:
+        for form in self.form_files:
             self._check_form_with_marketo(form)
 
     def _check_form_with_marketo(self, form_path):
