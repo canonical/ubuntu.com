@@ -1,0 +1,240 @@
+{
+  "form": {
+    "/gcp": {
+      "templatePath": "/gcp/index.html",
+      "childrenPaths": ["/gcp/pro"],
+      "isModal": true,
+      "modalId": "gcp-modal",
+      "formData": {
+        "title": "Canonical — the \"Ubuntu on GCP\" experts",
+        "introText": "Already running Ubuntu on Google Cloud, or planning a migration to the public cloud? Canonical has the expertise to assist you in your project, whether it involves application architecture, optimisation or streamlining operations at scale. Share some details about your project with us and let's get started.",
+        "formId": 3860,
+        "returnUrl": "/gcp/thank-you",
+        "lpUrl": "https://ubuntu.com/gcp/contact-us",
+        "product": "gcp"
+      },
+      "fieldsets": [
+        {
+          "title": "Tell us more about your cloud project:",
+          "id": "project-details",
+          "inputType": "checkbox",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "checkbox",
+              "id": "project-less-than-50-VMs",
+              "value": "< 50 VMs",
+              "label": "< 50 VMs"
+            },
+            {
+              "type": "checkbox",
+              "id": "project-project-less-than-500-VMs",
+              "value": "< 500 VMs",
+              "label": "< 500 VMs"
+            },
+            {
+              "type": "checkbox",
+              "id": "project-greater-than-500-VMs",
+              "value": "> 500 VMs",
+              "label": "> 500 VMs"
+            },
+            {
+              "type": "checkbox",
+              "id": "project-containers",
+              "value": "Containers",
+              "label": "Containers"
+            },
+            {
+              "type": "checkbox",
+              "id": "project-gcp-vms",
+              "value": "GCP only VMs",
+              "label": "GCP only VMs"
+            },
+            {
+              "type": "checkbox",
+              "id": "project-gcp-aks",
+              "value": "GCP only GKE",
+              "label": "GCP only GKE"
+            },
+            {
+              "type": "checkbox",
+              "id": "project-multiple-public-clouds",
+              "value": "Multiple public clouds",
+              "label": "Multiple public clouds"
+            },
+            {
+              "type": "checkbox",
+              "id": "project-private-or-edge-cloud",
+              "value": "Private or edge cloud",
+              "label": "Private or edge cloud"
+            },
+            {
+              "type": "checkbox",
+              "id": "project-development-and-CI-CD",
+              "value": "Development and CI/CD",
+              "label": "Development and CI/CD"
+            },
+            {
+              "type": "checkbox",
+              "id": "project-standard-production",
+              "value": "Standard Production",
+              "label": "Standard Production"
+            },
+            {
+              "type": "checkbox",
+              "id": "project-mission-critical-production",
+              "value": "Mission-critical Production",
+              "label": "Mission-critical Production"
+            },
+            {
+              "type": "checkbox",
+              "id": "project-mission-regulated-workloads",
+              "value": "Regulated workloads",
+              "label": "Regulated workloads"
+            }
+          ]
+        },
+        {
+          "title": "Which of the below topics are important to you?",
+          "id": "important-topics",
+          "inputType": "checkbox",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "checkbox",
+              "id": "important-Ubuntu-security-patching",
+              "value": "Ubuntu security patching",
+              "label": "Ubuntu security patching"
+            },
+            {
+              "type": "checkbox",
+              "id": "important-10-year-lifetime",
+              "value": "10-year lifetime",
+              "label": "10-year lifetime"
+            },
+            {
+              "type": "checkbox",
+              "id": "important-Regulatory-compliance",
+              "value": "Regulatory compliance",
+              "label": "Regulatory compliance"
+            },
+            {
+              "type": "checkbox",
+              "id": "important-Certification",
+              "value": "Certification",
+              "label": "Certification"
+            },
+            {
+              "type": "checkbox",
+              "id": "important-CC-EAL",
+              "value": "CC-EAL",
+              "label": "CC-EAL"
+            },
+            {
+              "type": "checkbox",
+              "id": "important-FIPS",
+              "value": "FIPS",
+              "label": "FIPS"
+            },
+            {
+              "type": "checkbox",
+              "id": "important-Containers-GKE",
+              "value": "Containers (GKE)",
+              "label": "Containers (GKE)"
+            },
+            {
+              "type": "checkbox",
+              "id": "important-Compute-gcp-VM",
+              "value": "Compute (GCP VM)",
+              "label": "Compute (GCP VM)"
+            },
+            {
+              "type": "checkbox",
+              "id": "important-Image-size",
+              "value": "Image size",
+              "label": "Image size"
+            },
+            {
+              "type": "checkbox",
+              "id": "important-Kernel-livepatch",
+              "value": "Kernel livepatch",
+              "label": "Kernel livepatch"
+            },
+            {
+              "type": "checkbox",
+              "id": "important-Support",
+              "value": "Support",
+              "label": "Support"
+            },
+            {
+              "type": "checkbox",
+              "id": "important-Performance",
+              "value": "Performance",
+              "label": "Performance"
+            },
+            {
+              "type": "checkbox",
+              "id": "important-Open-Source-security",
+              "value": "Open Source security",
+              "label": "Open Source security"
+            },
+            {
+              "type": "checkbox",
+              "id": "important-Apache-Kafka",
+              "value": "Apache Kafka",
+              "label": "Apache Kafka"
+            },
+            {
+              "type": "checkbox",
+              "id": "important-RabbitMQ",
+              "value": "RabbitMQ",
+              "label": "RabbitMQ"
+            },
+            {
+              "type": "checkbox",
+              "id": "important-Redis",
+              "value": "Redis",
+              "label": "Redis"
+            },
+            {
+              "type": "checkbox",
+              "id": "important-MongoDB",
+              "value": "MongoDB",
+              "label": "MongoDB"
+            },
+            {
+              "type": "checkbox",
+              "id": "important-NodeJS",
+              "value": "NodeJS",
+              "label": "NodeJS"
+            }
+          ]
+        },
+        {
+          "title": "Can you summarize in a few words your project and what assistance you're looking for?",
+          "id": "summarize-your-project-title",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "summarize-your-project",
+              "label": "Can you summarize in a few words your project and what assistance you're looking for?"
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Phone number",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
