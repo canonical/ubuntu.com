@@ -1,17 +1,22 @@
 <div class="p-card js-product-card u-hide">
-  <img class="p-card__thumbnail"
-       src="https://assets.ubuntu.com/v1/e0461e14-ceph-dark.svg"
-       alt="Ceph" />
+  {{ image(url="https://assets.ubuntu.com/v1/e0461e14-ceph-dark.svg",
+    alt="Ceph",
+    width="270",
+    height="110",
+    hi_def=True,
+    loading="auto",
+    attrs={"class": "p-card__thumbnail", "style": "width: 90px;"}) | safe
+  }}
   <hr class="p-rule--muted" />
   <h3>
     <a href="/ceph/what-is-ceph">What is Ceph?</a>
   </h3>
   <p>
     Ceph is a software-defined storage (SDS) solution designed to address the object, block, and file storage needs of
-    both small and large data centres.
+    both small and large data centers.
   </p>
   <p>
-    It's an optimised and easy-to-integrate solution for companies adopting open source as the new norm for high-growth
+    It's an optimized and easy-to-integrate solution for companies adopting open source as the new norm for high-growth
     block storage, object stores and data lakes.
   </p>
   <p>
