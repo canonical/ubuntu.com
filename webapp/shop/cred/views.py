@@ -108,8 +108,18 @@ def cred_home(
 
 
 @shop_decorator(area="cred", response="html")
-def cred_self_study(**_):
-    return flask.render_template("credentials/self-study.html")
+def cred_self_study(
+    show_cred_maintenance_alert,
+    cred_maintenance_start,
+    cred_maintenance_end,
+    **_,
+):
+    return flask.render_template(
+        "credentials/self-study.html",
+        show_cred_maintenance_alert=show_cred_maintenance_alert,
+        cred_maintenance_start=cred_maintenance_start,
+        cred_maintenance_end=cred_maintenance_end,
+    )
 
 
 @shop_decorator(area="cred", permission="user", response="html")
@@ -1335,7 +1345,12 @@ def cred_exam(trueability_api, proctor_api, **_):
 
 
 @shop_decorator(area="cred", response="html")
-def cred_syllabus_data(**_):
+def cred_syllabus_data(
+    show_cred_maintenance_alert,
+    cred_maintenance_start,
+    cred_maintenance_end,
+    **_,
+):
     exam_name = flask.request.args.get("exam")
     syllabus_file = open("webapp/shop/cred/syllabus.json", "r")
     syllabus_data = json.load(syllabus_file)
@@ -1345,6 +1360,24 @@ def cred_syllabus_data(**_):
         "credentials/syllabus.html",
         syllabus_data=syllabus_data,
         exam_name=exam_name,
+        show_cred_maintenance_alert=show_cred_maintenance_alert,
+        cred_maintenance_start=cred_maintenance_start,
+        cred_maintenance_end=cred_maintenance_end,
+    )
+
+
+@shop_decorator(area="cred", response="html")
+def cred_faq(
+    show_cred_maintenance_alert,
+    cred_maintenance_start,
+    cred_maintenance_end,
+    **_,
+):
+    return flask.render_template(
+        "credentials/faq.html",
+        show_cred_maintenance_alert=show_cred_maintenance_alert,
+        cred_maintenance_start=cred_maintenance_start,
+        cred_maintenance_end=cred_maintenance_end,
     )
 
 
