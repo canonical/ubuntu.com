@@ -21,15 +21,12 @@
   <section class="p-strip">
     <div class="row">
       <div class="col-3 col-medium-2">
-        {{
-        image(
-        url="https://assets.ubuntu.com/v1/0ad256cf-hpe_pri_grn_pos_rgb.png",
-        alt="",
-        width="157",
-        height="66",
-        hi_def=True,
-        loading="auto",
-        ) | safe
+        {{ image(url="https://assets.ubuntu.com/v1/0ad256cf-hpe_pri_grn_pos_rgb.png",
+                alt="",
+                width="157",
+                height="66",
+                hi_def=True,
+                loading="auto",) | safe
         }}
       </div>
       <div class="col-9 col-medium-4">
@@ -95,15 +92,12 @@
       </div>
     </div>
     <div class="u-fixed-width">
-      {{
-      image(
-      url="https://assets.ubuntu.com/v1/93b54e0a-Rectangle 558.png",
-      alt="",
-      width="2438",
-      height="861",
-      hi_def=True,
-      loading="lazy"
-      ) | safe
+      {{ image(url="https://assets.ubuntu.com/v1/93b54e0a-Rectangle 558.png",
+            alt="",
+            width="2438",
+            height="861",
+            hi_def=True,
+            loading="lazy") | safe
       }}
     </div>
   </section>
@@ -115,15 +109,12 @@
     <div class="row">
       <div class="col-6 u-hide--medium u-hide--small">
         <div class="u-image-separation">
-          {{
-          image(
-          url="https://assets.ubuntu.com/v1/07620fe2-image-on-paper.png",
-          alt="",
-          width="1614",
-          height="1076",
-          hi_def=True,
-          loading="lazy",
-          ) | safe
+          {{ image(url="https://assets.ubuntu.com/v1/07620fe2-image-on-paper.png",
+                    alt="",
+                    width="1614",
+                    height="1076",
+                    hi_def=True,
+                    loading="lazy",) | safe
           }}
         </div>
       </div>
@@ -153,15 +144,12 @@
       </div>
       <div class="col-6 col-medium-4">
         <div class="u-image-separation">
-          {{
-          image(
-          url="https://assets.ubuntu.com/v1/941754b0-dell server image1.png",
-          alt="",
-          width="1614",
-          height="1076",
-          hi_def=True,
-          loading="lazy",
-          ) | safe
+          {{ image(url="https://assets.ubuntu.com/v1/941754b0-dell server image1.png",
+                    alt="",
+                    width="1614",
+                    height="1076",
+                    hi_def=True,
+                    loading="lazy",) | safe
           }}
           <p>
             Canonical and HPE have collaborated to develop Telco Validated Designs. These powerful solutions for the telecommunications industry include:
@@ -198,29 +186,53 @@
       <div class="p-logo-section">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
-            <img class="p-logo-section__logo"
-                  src="https://assets.ubuntu.com/v1/6cd78b57-at%26t-logo.png"
-                  alt="" />
+            {{ image(url="https://assets.ubuntu.com/v1/6cd78b57-at%26t-logo.png",
+                        alt="AT&T",
+                        width="288",
+                        height="288",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
           </div>
           <div class="p-logo-section__item">
-            <img class="p-logo-section__logo"
-                  src="https://assets.ubuntu.com/v1/a3bb7ca4-mercedes-benz-group-logo.png"
-                  alt="" />
+            {{ image(url="https://assets.ubuntu.com/v1/a3bb7ca4-mercedes-benz-group-logo.png",
+                        alt="Mercedes-Benz",
+                        width="288",
+                        height="288",
+                        hi_def=True, loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
           </div>
           <div class="p-logo-section__item">
-            <img class="p-logo-section__logo"
-                  src="https://assets.ubuntu.com/v1/d6df40cd-tmn_logo.png"
-                  alt="" />
+            {{ image(url="https://assets.ubuntu.com/v1/d6df40cd-tmn_logo.png",
+                        alt="TMN",
+                        width="874",
+                        height="611",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
           </div>
           <div class="p-logo-section__item">
-            <img class="p-logo-section__logo"
-                  src="https://assets.ubuntu.com/v1/1dc7af1e-panasonic-logo.png"
-                  alt="" />
+            {{ image(url="https://assets.ubuntu.com/v1/1dc7af1e-panasonic-logo.png",
+                        alt="Panasonic",
+                        width="288",
+                        height="288",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
           </div>
           <div class="p-logo-section__item">
-            <img class="p-logo-section__logo"
-                  src="https://assets.ubuntu.com/v1/4af3ad39-barclays-logo.png"
-                  alt="" />
+            {{ image(url="https://assets.ubuntu.com/v1/4af3ad39-barclays-logo.png",
+                        alt="Barclays",
+                        width="288",
+                        height="288",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
           </div>
         </div>
       </div>
@@ -307,9 +319,14 @@
       <div class="col-6 col-medium-3">
         <div class="u-embedded-media">
           <a href="/engage/telco-cloud-implementation">
-            <img class="u-embedded-media__element"
-                  src="https://cdn.brighttalk.com/ams/california/images/communication/582711/image_917101.png"
-                  alt="" />
+            {{ image(url="https://cdn.brighttalk.com/ams/california/images/communication/582711/image_917101.png",
+                        alt="",
+                        width="640",
+                        height="360",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "u-embedded-media__element"}) | safe
+            }}
           </a>
         </div>
         <p>
@@ -329,16 +346,13 @@
     </div>
     <div class="u-fixed-width">
       <div class="u-vertically-center u-align--center"
-            style="background-color: #fff">
-        {{
-        image(
-        url="https://assets.ubuntu.com/v1/5b5a466c-dell server image-2.png",
-        alt="",
-        width="2438",
-        height="840",
-        hi_def=True,
-        loading="lazy",
-        ) | safe
+           style="background-color: #fff">
+        {{ image(url="https://assets.ubuntu.com/v1/5b5a466c-dell server image-2.png",
+                alt="",
+                width="2438",
+                height="840",
+                hi_def=True,
+                loading="lazy",) | safe
         }}
       </div>
     </div>
@@ -384,15 +398,12 @@
       </div>
       <div class="col-6 col-medium-4">
         <div class="u-image-separation">
-          {{
-          image(
-          url="https://assets.ubuntu.com/v1/62b49438-Rectangle 558-1.png",
-          alt="",
-          width="1184",
-          height="711",
-          hi_def=True,
-          loading="lazy",
-          ) | safe
+          {{ image(url="https://assets.ubuntu.com/v1/62b49438-Rectangle 558-1.png",
+                    alt="",
+                    width="1184",
+                    height="711",
+                    hi_def=True,
+                    loading="lazy",) | safe
           }}
         </div>
         <p>
@@ -495,21 +506,18 @@
       </div>
       <div class="col-6 col-medium-4">
         <div class="u-image-separation">
-          {{
-          image(
-          url="https://assets.ubuntu.com/v1/bf7d0182-Rectangle 558-2.png",
-          alt="",
-          width="1184",
-          height="709",
-          hi_def=True,
-          loading="lazy",
-          ) | safe
+          {{ image(url="https://assets.ubuntu.com/v1/bf7d0182-Rectangle 558-2.png",
+                    alt="",
+                    width="1184",
+                    height="709",
+                    hi_def=True,
+                    loading="lazy",) | safe
           }}
         </div>
         <p>With our combined strengths, help your customers cut costs, reduce complexity, and drive innovation.</p>
         <a href="/engage/hpe-battle-card" class="p-button">Download portfolio&nbsp;<i class="p-icon--begin-downloading"></i></a>
+      </div>
     </div>
-  </div>
   </section>
 
   <section class="p-section">

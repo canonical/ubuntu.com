@@ -36,7 +36,9 @@
     {%- endif -%}
     {%- if slot == 'cta' -%}
       <a href="/landscape/pricing" class="p-button--positive">Get Landscape</a>
-      <a href="/contact-us" class="p-button js-invoke-modal" aria-controls="landscape-modal">Contact us</a>
+      <a href="/contact-us"
+         class="p-button js-invoke-modal"
+         aria-controls="landscape-modal">Contact us</a>
     {%- endif -%}
     {%- if slot == 'image' -%}
       <div class="p-image-container--cinematic is-cover">
@@ -162,9 +164,13 @@
     ) -%}
 
     {%- if slot == 'signpost_image' -%}
-      <img src="https://assets.ubuntu.com/v1/4bc68c0d-capgemini-logo.png"
-           width="852"
-           alt="Capgemini" />
+      {{ image(url="https://assets.ubuntu.com/v1/4bc68c0d-capgemini-logo.png",
+            alt="Capgemini",
+            width="852",
+            height="313",
+            hi_def=True,
+            loading="lazy") | safe
+      }}
     {%- endif -%}
     {%- if slot == 'cta' -%}
       <a href="https://insights.ubuntu.com/2012/09/06/capgemini-bpo-deploys-hybrid-thin-client-solution-with-ubuntu-advantage/"
