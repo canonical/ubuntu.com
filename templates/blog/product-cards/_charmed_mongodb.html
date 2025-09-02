@@ -1,7 +1,14 @@
 <div class="p-card js-product-card u-hide">
-  <img class="p-card__thumbnail"
-       src="https://assets.ubuntu.com/v1/6e5ed992-The%20architects%20guide%20to%20picking%20the%20right%20database.png"
-       alt="MongoDB support" />
+  {{ image(url="https://assets.ubuntu.com/v1/04218044-database.svg",
+    alt="",
+    width="135",
+    height="150",
+    hi_def=True,
+    loading="auto",
+    attrs={
+    "class": "p-card__thumbnail",
+    }) | safe
+  }}
   <hr class="p-rule--muted" />
   <h3>
     <a href="/engage/mongodb-enterprise-data-management">Looking for MongoDB support?</a>

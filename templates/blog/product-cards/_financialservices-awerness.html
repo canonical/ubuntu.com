@@ -1,6 +1,14 @@
 <div class="p-card js-product-card u-hide">
-  <img src="https://assets.ubuntu.com/v1/1cbb17af-Multi-cloud%20Kubernetes%20%20and%20containers.png"
-       alt="" />
+  {{ image(url="https://assets.ubuntu.com/v1/0eb97f78-financial-service-page-multicloud-aw.svg",
+    alt="",
+    width="259",
+    height="150",
+    hi_def=True,
+    loading="auto",
+    attrs={
+    "class": "p-card__thumbnail",
+    }) | safe
+  }}
   <hr class="p-rule--muted" />
   <h3>
     <a href="/engage/finance">Adopt open source with confidence in financial services</a>

@@ -1,7 +1,14 @@
 <div class="p-card js-product-card u-hide">
-  <img class="p-card__thumbnail"
-       src="https://assets.ubuntu.com/v1/f8dde6f0-opensearch-logo.png"
-       alt="Canonical Charmed Opensearch" />
+  {{ image(url="https://assets.ubuntu.com/v1/98213acc-_opensearch.html.png",
+    alt="Canonical Charmed Opensearch",
+    width="800",
+    height="142",
+    hi_def=True,
+    loading="auto",
+    attrs={
+    "class": "p-card__thumbnail",
+    }) | safe
+  }}
   <hr class="p-rule--muted" />
   <h3>
     <a href="https://canonical.com/data/opensearch/what-is-opensearch">What is OpenSearch?</a>

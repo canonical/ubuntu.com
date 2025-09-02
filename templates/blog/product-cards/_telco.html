@@ -1,7 +1,14 @@
 <div class="p-card js-product-card u-hide">
-  <img class="p-card__thumbnail"
-       src="https://assets.ubuntu.com/v1/29a3e891-Hero-Img-Telco-Illustration-01.png"
-       alt="Telco" />
+  {{ image(url="https://assets.ubuntu.com/v1/d2387483-telecommunications-grey.svg",
+    alt="",
+    width="154",
+    height="150",
+    hi_def=True,
+    loading="auto",
+    attrs={
+    "class": "p-card__thumbnail",
+    }) | safe
+  }}
   <hr class="p-rule--muted" />
   <h3>
     <a href="https://canonical.com/solutions/telco/5g-core">Scalable telco clouds start here</a>
