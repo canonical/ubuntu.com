@@ -278,7 +278,7 @@
       </div>
       <div class="col">
         <p>Ubuntu Pro is a comprehensive subscription delivering enterprise-grade security, management tooling, and extended support for developers and enterprises.</p>
-        <hr class="p-rule" />
+        <hr class="p-rule--muted" />
         <ul class="p-list--divided">
           <li class="p-list__item has-bullet">Security updates for the <a href="/esm">full open source stack</a></li>
           <li class="p-list__item has-bullet">Monitoring and management for your entire estate <a href="/landscape">with Landscape</a></li>
@@ -477,8 +477,7 @@
             <h3>Explore how Roblox migrated servers from Windows to Ubuntu in a seven-day timeframe</h3>
             <div class="u-embedded-media">
               <iframe
-                width="600"
-                height="337"
+                class="u-embedded-media__element"
                 src="https://www.youtube.com/embed/SwlU4U-BWRo"
                 title="How Roblox went from Windows to Ubuntu in 7 days for edge compute nodes"
                 frameborder="0"
@@ -539,7 +538,7 @@
 
   {% call(slot) vf_equal_heights(
       title_text="Use it with other Canonical products",
-      highlight_images=True,
+      highlight_images=False,
       image_aspect_ratio_large="16-9",
       items=[
       {
