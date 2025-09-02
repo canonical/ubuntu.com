@@ -460,7 +460,13 @@
             <p class="p-heading--4">A member of staff will get back to you within one working day.</p>
           </div>
           <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
-            <img src="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg" alt="smile" width="200" height="200" loading="auto">
+            {{ image(url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",
+                        alt="",
+                        width="200",
+                        height="200",
+                        hi_def=True,
+                        loading="auto") | safe
+            }}
           </div>
         </div>
       </div>
