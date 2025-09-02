@@ -1,7 +1,12 @@
 <div class="p-card js-product-card u-hide">
-  <img class="p-card__thumbnail"
-       src="https://assets.ubuntu.com/v1/e0461e14-ceph-dark.svg"
-       alt="Ceph" />
+  {{ image(url="https://assets.ubuntu.com/v1/e0461e14-ceph-dark.svg",
+    alt="Ceph",
+    width="270",
+    height="110",
+    hi_def=True,
+    loading="auto",
+    attrs={"class": "p-card__thumbnail", "style": "width: 90px;"}) | safe
+  }}
   <hr class="p-rule--muted" />
   <h3>
     <a href="/engage/software-defined-storage-for-enterprises">A guide to software-defined storage for enterprises</a>

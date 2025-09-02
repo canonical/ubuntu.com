@@ -1,7 +1,11 @@
 <div class="p-card js-product-card u-hide">
-  <img class="p-card__thumbnail"
-       src="https://assets.ubuntu.com/v1/04d70172-Multi-Cloud.svg"
-       alt="Multi-Cloud" />
+  {{ image(url="https://assets.ubuntu.com/v1/04d70172-Multi-Cloud.svg",
+    alt="",
+    width="263",
+    height="150",
+    hi_def=True,
+    loading="auto") | safe
+  }}
   <hr class="p-rule--muted" />
   <h3>
     <a href="/cloud/multi-cloud">What is a multi-cloud?</a>
