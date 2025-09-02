@@ -23,8 +23,13 @@
     layout='25/75'
     ) -%}
     {%- if slot == 'signpost_image' -%}
-      <img src="https://assets.ubuntu.com/v1/96e1b28e-spring-logo-signpost.png"
-           alt="Spring" />
+      {{ image(url="https://assets.ubuntu.com/v1/96e1b28e-spring-logo-signpost.png",
+            alt="Spring",
+            width="278",
+            height="67",
+            hi_def=True,
+            loading="auto") | safe
+      }}
     {%- endif -%}
     {%- if slot == 'description' -%}
       <p>

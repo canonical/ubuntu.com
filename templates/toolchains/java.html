@@ -25,7 +25,13 @@
     layout='25/75'
     ) -%}
     {%- if slot == 'signpost_image' -%}
-  <img src="https://assets.ubuntu.com/v1/5a101b58-openjdk%20logo.png" alt="OpenJDK">
+      {{ image(url="https://assets.ubuntu.com/v1/4551cb49-openjdk-signpost-logo.png",
+            alt="OpenJDK",
+            width="278",
+            height="66",
+            hi_def=True,
+            loading="auto") | safe
+      }}
     {%- endif -%}
     {%- if slot == 'description' -%}
       <p>
@@ -39,6 +45,8 @@
     {%- if slot == 'cta' -%}
       <a href="https://documentation.ubuntu.com/ubuntu-for-developers/howto/java-setup/#install-java"
          class="p-button--positive u-no-margin--bottom">Use OpenJDK on Ubuntu</a>
+      <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/Canonical%20Java%20Datasheet_Oct%202024.pdf?version=0&_gl=1*dc53fo*_gcl_au*MjEwNjk5MDg3Ni4xNzQ4MjUwNDgy"
+         class="p-button u-no-margin--bottom">Download the datasheet</a>
     {%- endif -%}
   {%- endcall -%}
 
