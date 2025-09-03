@@ -37,7 +37,7 @@
   {%- endif -%}
   {%- if slot == 'image' -%}
   <div class="p-image-container--3-2 is-cover">
-    <img class="p-image-container__image" src="https://assets.ubuntu.com/v1/a1dd867d-hero.jpg" alt="IT infrastructure - server">
+    <img class="p-image-container__image" src="https://assets.ubuntu.com/v1/a1dd867d-hero.jpg" alt="">
   </div>
   {%- endif -%}
   {% endcall -%}
@@ -55,7 +55,7 @@
   <p>Ubuntu Server is certified by leading hardware OEMs, 
     carries a lean initial deployment, and includes 
     integrated deployment and application modeling tools, 
-    so you can get the most from your infrastructure - whether 
+    so you can get the most from your infrastructure – whether 
     you're deploying NoSQL databases, web farms, or the cloud.</p>
   {%- endif -%}
 
@@ -64,7 +64,7 @@
   {%- endif -%}
 
   {%- if slot == 'list_item_description_2' -%}
-  <p>Long-term support (LTS) releases of Ubuntu Server receive standard security updates 
+  <p>Long term support (LTS) releases of Ubuntu Server receive standard security updates 
     for around 2,500 packages in the Ubuntu Main repository for five years by default. 
     Interim releases every six months bring new features, while hardware enablement updates 
     add support for the latest machines to all supported LTS releases. </p>
@@ -77,7 +77,9 @@
   {%- if slot == 'list_item_description_3' -%}
   <p>Ubuntu is the foundation for private cloud implementation and the most-used Linux distribution 
     in the world (for the third year in a row) according to the 
-    <a href="/about/release-cycle">OpenLogic 2025 State of Open Source report</a>.</p>
+    <a href="https://www.openlogic.com/system/files/2025-05/report-openlogic-2025-state-of-open-source-support.pdf">
+      OpenLogic 2025 State of Open Source report
+    </a>.</p>
   {%- endif -%}
   {%- endcall -%}
 
@@ -257,7 +259,7 @@
   <section class="p-section--shallow u-no-padding--bottom">
     <div class="u-fixed-width">
       {{ image(url="https://assets.ubuntu.com/v1/9c29c336-Digital-Light-Theme-Canonical%2520Ubuntu%2520Pro%2520logo.svg",
-        alt="",
+        alt="Ubuntu Pro",
         width="180",
         height="51",
         hi_def=True,
@@ -282,14 +284,14 @@
         <ul class="p-list--divided">
           <li class="p-list__item has-bullet">Security updates for the <a href="/esm">full open source stack</a></li>
           <li class="p-list__item has-bullet">Monitoring and management for your entire estate <a href="/landscape">with Landscape</a></li>
-          <li class="p-list__item has-bullet"><a href="/security/certifications">FIPS 140, CIS hardening, STIG, PCI-DSS and more</a></li>
+          <li class="p-list__item has-bullet"><a href="/security/security-standards">FIPS 140, CIS hardening, STIG, PCI-DSS and more</a></li>
           <li class="p-list__item has-bullet">Minimize rolling reboots with <a href="/livepatch">Kernel Livepatch</a></li>
           <li class="p-list__item has-bullet">Optional weekday or 24/7 support tiers</li>
         </ul>
         <hr class="p-rule--muted" />
         <div class="p-cta-block">
           <a href="/pro" class="p-button--positive">Get Ubuntu Pro</a>
-          <a href="/engage/vulnerability-management" class="p-button">Start a 30-day free trial</a>
+          <a href="/pro/free-trial" class="p-button">Start a 30-day free trial</a>
         </div>
       </div>
     </div>
@@ -421,7 +423,7 @@
   <script src="https://assets.ubuntu.com/v1/6d64bd2f-d3.min.js"></script>
   <script src="{{ versioned_static('js/dist/release-chart-manager.js') }}"></script>
 
-  <section class="p-section--shallow">
+  <section class="p-section">
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
@@ -544,7 +546,7 @@
       {
       "title_text": "Multi-cloud orchestration",
       "image_html":  image(url="https://assets.ubuntu.com/v1/11b77504-multi_cloud.svg",
-            alt="",
+            alt="Canonical Juju",
             width="284",
             height="161",
             hi_def=True,
@@ -557,7 +559,7 @@
       {
       "title_text": "Bare metal provisioning",
       "image_html":  image(url="https://assets.ubuntu.com/v1/8cb84a41-bare_metal.svg",
-            alt="",
+            alt="Canonical MAAS",
             width="284",
             height="161",
             hi_def=True,
@@ -570,7 +572,7 @@
       {
       "title_text": "Machine containers",
       "image_html":  image(url="https://assets.ubuntu.com/v1/44ac6a9f-machine_containers.svg",
-            alt="",
+            alt="Canonical LXD",
             width="284",
             height="161",
             hi_def=True,
@@ -590,7 +592,7 @@
           layout='25-75',
           ) -%}
   {%- if slot == 'cta' -%}
-  <a href="https://ubuntu.com/server/contact-us?product=server-overview"> Speak to our technical support team about your support requirements&nbsp;&rsaquo;</a>
+  <a href="/server/contact-us?product=server-overview" class="js-invoke-modal" aria-controls="contact-modal"> Speak to our technical support team about your support requirements&nbsp;&rsaquo;</a>
   {%- endif -%}
   {% endcall -%}
 
@@ -663,7 +665,7 @@
                 Get the latest security updates and support for Ubuntu Server from Canonical.
               </p>
               <a href="/pro" class="p-button">Explore Ubuntu Pro</a>
-              <a href="/server/contact-us?product=contextual-footer-ua">Get in touch&nbsp;&rsaquo;</a>
+              <a href="/server/contact-us?product=contextual-footer-ua" class="js-invoke-modal" aria-controls="contact-modal">Get in touch&nbsp;&rsaquo;</a>
             </div>
           </div>
         </div>
