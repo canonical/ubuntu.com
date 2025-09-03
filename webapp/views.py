@@ -849,12 +849,10 @@ def marketo_submit():
         if honeypots["name"] != "" and honeypots["website"] != "":
             raise BadRequest("Unexpected honeypot fields (name, website)")
         else:
-            form_fields["grecaptcharesponse"] = "no-recaptcha"
             form_fields.pop("website", None)
             form_fields.pop("name", None)
 
     form_fields.pop("thankyoumessage", None)
-    form_fields.pop("g-recaptcha-response", None)
     return_url = form_fields.pop("returnURL", None)
 
     encode_lead_comments = (
