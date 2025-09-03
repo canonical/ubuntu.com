@@ -28,7 +28,7 @@
   ) -%}
   {%- if slot == 'description' -%}
   <p>
-    Ubuntu Server brings economic and technical scalability to your data center, public or private cloud. Whether you want to deploy an OpenStack cloud, a Kubernetes cluster or a 50,000-node render farm, Ubuntu Server delivers the best value scale-out performance available.
+    Ubuntu Server brings economic and technical scalability to your data center, public or private cloud. Whether you want to deploy an OpenStack cloud, a Kubernetes cluster, or a 50,000-node render farm, Ubuntu Server delivers the best value scale-out performance available.
   </p>
   {%- endif -%}
   {%- if slot == 'cta' -%}
@@ -105,7 +105,7 @@
                         width="96",
                         height="104",
                         hi_def=True,
-                        loading="auto|lazy",
+                        loading="lazy",
                         fmt="svg"
                         ) | safe
             }}
@@ -116,7 +116,7 @@
                         width="184",
                         height="104",
                         hi_def=True,
-                        loading="auto|lazy",
+                        loading="lazy",
                         fmt="svg"
                         ) | safe
             }}
@@ -127,7 +127,7 @@
                         width="50",
                         height="104",
                         hi_def=True,
-                        loading="auto|lazy",
+                        loading="lazy",
                         fmt="svg"
                         ) | safe
             }}
@@ -138,7 +138,7 @@
                         width="44",
                         height="104",
                         hi_def=True,
-                        loading="auto|lazy",
+                        loading="lazy",
                         fmt="svg"
                         ) | safe
             }}
@@ -149,7 +149,7 @@
                         width="53",
                         height="104",
                         hi_def=True,
-                        loading="auto|lazy",
+                        loading="lazy",
                         fmt="svg"
                         ) | safe
             }}
@@ -160,7 +160,7 @@
                         width="77",
                         height="104",
                         hi_def=True,
-                        loading="auto|lazy",
+                        loading="lazy",
                         fmt="svg"
                         ) | safe
             }}
@@ -171,7 +171,7 @@
                         width="75",
                         height="104",
                         hi_def=True,
-                        loading="auto|lazy",
+                        loading="lazy",
                         fmt="svg"
                         ) | safe
             }}
@@ -182,7 +182,7 @@
                         width="51",
                         height="104",
                         hi_def=True,
-                        loading="auto|lazy",
+                        loading="lazy",
                         fmt="svg"
                         ) | safe
             }}
@@ -213,7 +213,7 @@
                         width="104",
                         height="104",
                         hi_def=True,
-                        loading="auto|lazy",
+                        loading="lazy",
                         fmt="svg"
                         ) | safe
             }}
@@ -224,7 +224,7 @@
                         width="128",
                         height="104",
                         hi_def=True,
-                        loading="auto|lazy",
+                        loading="lazy",
                         fmt="svg"
                         ) | safe
             }}
@@ -235,7 +235,7 @@
                         width="62",
                         height="104",
                         hi_def=True,
-                        loading="auto|lazy",
+                        loading="lazy",
                         fmt="svg"
                         ) | safe
             }}
@@ -246,7 +246,7 @@
                         width="104",
                         height="104",
                         hi_def=True,
-                        loading="auto|lazy",
+                        loading="lazy",
                         fmt="svg"
                         ) | safe
             }}
@@ -263,7 +263,7 @@
         width="180",
         height="51",
         hi_def=True,
-        loading="auto|lazy",
+        loading="lazy",
         fmt="svg"
         ) | safe
       }}
@@ -472,7 +472,7 @@
               width="58",
               height="104",
               hi_def=True,
-              loading="auto|lazy",
+              loading="lazy",
               fmt="svg"
               ) | safe
             }}
@@ -539,48 +539,54 @@
   </section>
 
   {% call(slot) vf_equal_heights(
-      title_text="Use it with other Canonical products",
-      highlight_images=False,
-      image_aspect_ratio_large="16-9",
-      items=[
+    title_text="Use it with other Canonical products",
+    highlight_images=False,
+    image_aspect_ratio_large="16-9",
+    items=[
       {
-      "title_text": "Multi-cloud orchestration",
-      "image_html":  image(url="https://assets.ubuntu.com/v1/11b77504-multi_cloud.svg",
-            alt="Canonical Juju",
-            width="284",
-            height="161",
-            hi_def=True,
-            loading="auto|lazy",
-            fmt="svg",
-            attrs={"class": "p-image-container__image"}) | safe,
-      "description_html": "<p>With the option of a command line or browser-based interface, Juju enables you to design and deploy entire workloads in just a few clicks. It works on public clouds like AWS and Microsoft Azure, private clouds built on OpenStack and even directly on bare metal, via MAAS.</p>",
-      "cta_html": "<a href='https://jujucharms.com/'>Learn more about Juju&nbsp;&rsaquo;</a>"
+        "title_text": "Multi-cloud orchestration",
+        "image_html": image(url="https://assets.ubuntu.com/v1/11b77504-multi_cloud.svg",
+        alt="Canonical Juju",
+        width="284",
+        height="161",
+        hi_def=True,
+        loading="lazy",
+        fmt="svg",
+        attrs={
+          "class": "p-image-container__image"
+        })|safe,
+        "description_html": "<p>With the option of a command line or browser-based interface, Juju enables you to design and deploy entire workloads in just a few clicks. It works on public clouds like AWS and Microsoft Azure, private clouds built on OpenStack and even directly on bare metal, via MAAS.</p>",
+        "cta_html": "<a href='https://charmhub.io/'>Learn more about Juju&nbsp;&rsaquo;</a>"
       },
       {
-      "title_text": "Bare metal provisioning",
-      "image_html":  image(url="https://assets.ubuntu.com/v1/8cb84a41-bare_metal.svg",
-            alt="Canonical MAAS",
-            width="284",
-            height="161",
-            hi_def=True,
-            loading="auto|lazy",
-            fmt="svg",
-            attrs={"class": "p-image-container__image"}) | safe,
-      "description_html": "<p>MAAS is a time-saving provisioning system that makes it quick and easy to set up the physical hardware needed to deploy complex services, like Ubuntu's OpenStack cloud infrastructure. Just plug in your servers, connect them to the network and let MAAS do the rest.</p>",
-      "cta_html": "<a href='https://maas.io/'>Learn more about MAAS&nbsp;&rsaquo;</a>"
+        "title_text": "Bare metal provisioning",
+        "image_html": image(url="https://assets.ubuntu.com/v1/8cb84a41-bare_metal.svg",
+        alt="Canonical MAAS",
+        width="284",
+        height="161",
+        hi_def=True,
+        loading="lazy",
+        fmt="svg",
+        attrs={
+          "class": "p-image-container__image"
+        })|safe,
+        "description_html": "<p>MAAS is a time-saving provisioning system that makes it quick and easy to set up the physical hardware needed to deploy complex services, like Ubuntu's OpenStack cloud infrastructure. Just plug in your servers, connect them to the network and let MAAS do the rest.</p>",
+        "cta_html": "<a href='https://canonical.com/maas'>Learn more about MAAS&nbsp;&rsaquo;</a>"
       },
       {
-      "title_text": "Machine containers",
-      "image_html":  image(url="https://assets.ubuntu.com/v1/44ac6a9f-machine_containers.svg",
-            alt="Canonical LXD",
-            width="284",
-            height="161",
-            hi_def=True,
-            loading="auto|lazy",
-            fmt="svg",
-            attrs={"class": "p-image-container__image"}) | safe,
-      "description_html": "<p>Economics are directly tied to compute density. LXD, the Linux container hypervisor, merges the speed and density of containers with the manageability and security of traditional virtual machines.</p>",
-      "cta_html": "<a href='/lxd'>Learn more about LXD&nbsp;&rsaquo;</a>"
+        "title_text": "Machine containers",
+        "image_html": image(url="https://assets.ubuntu.com/v1/44ac6a9f-machine_containers.svg",
+        alt="Canonical LXD",
+        width="284",
+        height="161",
+        hi_def=True,
+        loading="lazy",
+        fmt="svg",
+        attrs={
+          "class": "p-image-container__image"
+        })|safe,
+        "description_html": "<p>Economics are directly tied to compute density. LXD, the Linux container hypervisor, merges the speed and density of containers with the manageability and security of traditional virtual machines.</p>",
+        "cta_html": "<a href='/lxd'>Learn more about LXD&nbsp;&rsaquo;</a>"
       }
       ]
       ) %}
