@@ -23,9 +23,14 @@
       </div>
       <div class="col u-hide--small">
         <div class="p-image-container--16-9 is-highlighted">
-          <img class="p-image-container__image"
-               src="https://assets.ubuntu.com/v1/3bbf268f-UC20_Device_Recovery.svg"
-               alt="" />
+          {{ image(url="https://assets.ubuntu.com/v1/3bbf268f-UC20_Device_Recovery.svg",
+                    alt="",
+                    width="215",
+                    height="259",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
         </div>
       </div>
     </div>

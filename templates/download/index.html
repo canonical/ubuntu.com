@@ -73,11 +73,15 @@ meta_copydoc %}
               <hr class="p-rule" />
               <div class="p-heading-icon--small p-section--shallow">
                 <div class="p-heading-icon__header">
-                  <img alt="Windows logo"
-                       class="p-heading-icon__img"
-                       src="https://assets.ubuntu.com/v1/183c7231-windows_logo.svg"
-                       style="width: 2.2rem;
-                              height: 2.2rem" />
+                  {{ image(url="https://assets.ubuntu.com/v1/183c7231-windows_logo.svg",
+                                    alt="Windows logo",
+                                    width="4875",
+                                    height="4875",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-heading-icon__img", "style":"width: 2.2rem;
+                                    height: 2.2rem"}) | safe
+                  }}
                   <span class="p-heading-icon__title">
                     Use the Ubuntu terminal and run Linux applications on Windows.
                     <br />
