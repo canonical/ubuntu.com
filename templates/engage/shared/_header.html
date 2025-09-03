@@ -1,77 +1,72 @@
-<section {% if lang %}lang="{{ lang }}"{% endif %} class="{% if class %}p-strip {{ class }}{% else %}p-strip--light{% endif %}">
+<section {% if lang %}lang="{{ lang }}"{% endif %}
+         class="{% if class %}p-strip {{ class }}{% else %}p-strip--light{% endif %}">
   {% if class %}
-  <div class="u-fixed-width navigation-logo-engage">
-    <a href="/">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/f263d9c4-logo-ubuntu-white.svg",
-          alt="Ubuntu",
-          height="32",
-          width="143",
-          hi_def=True,
-          loading="auto"
-        ) | safe
-      }}
-    </a>
-  </div>
+    <div class="u-fixed-width navigation-logo-engage">
+      <a href="/">
+        {{ image(url="https://assets.ubuntu.com/v1/f263d9c4-logo-ubuntu-white.svg",
+                alt="Ubuntu",
+                height="32",
+                width="143",
+                hi_def=True,
+                loading="auto") | safe
+        }}
+      </a>
+    </div>
   {% else %}
-  <div class="u-fixed-width navigation-logo-engage">
-    <a href="/">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/04115a7e-ubuntu_black-orange_hex.svg",
-          alt="Ubuntu",
-          height="32",
-          width="143",
-          hi_def=True,
-          loading="auto"
-        ) | safe
-      }}
-    </a>
-  </div>
+    <div class="u-fixed-width navigation-logo-engage">
+      <a href="/">
+        {{ image(url="https://assets.ubuntu.com/v1/04115a7e-ubuntu_black-orange_hex.svg",
+                alt="Ubuntu",
+                height="32",
+                width="143",
+                hi_def=True,
+                loading="auto") | safe
+        }}
+      </a>
+    </div>
   {% endif %}
   <div class="row u-equal-height">
     <div class="{% if image %}col-7 {% else %}col-8{% endif %} u-vertically-center">
       <div>
-      <h1 {% if subtitle is none and date is none %}class="u-no-margin--bottom"{% endif %}>
-        {{ title | safe}}
-      </h1>
-      {% if subtitle %}<h4>
-        {{ subtitle |safe }}
-      </h4>{% endif %}
-      {% if date %}<p>
-        {{ date }}
-      </p>{% endif %}
-      {% if cta %}<br class="u-hide--medium u-hide--large" />
-      <p class="u-hide--medium u-hide--large">
-        <a href="{{ url }}" class="p-button">
-          {{ cta }}
-        </a>
-      </p>{% endif %}
+        <h1 {% if subtitle is none and date is none %}class="u-no-margin--bottom"{% endif %}>{{ title | safe }}</h1>
+        {% if subtitle %}<h4>{{ subtitle |safe }}</h4>{% endif %}
+        {% if date %}<p>{{ date }}</p>{% endif %}
+        {% if cta %}
+          <br class="u-hide--medium u-hide--large" />
+          <p class="u-hide--medium u-hide--large">
+            <a href="{{ url }}" class="p-button">{{ cta }}</a>
+          </p>
+        {% endif %}
       </div>
     </div>
-    {% if header_image %}<div class="col-5 u-hide--medium u-hide--small u-align--center u-vertically-center">
+    {% if header_image %}
+      <div class="col-5 u-hide--medium u-hide--small u-align--center u-vertically-center">
 
-      {% if 'http' not in header_image %}
-        {% set image_url = "https://assets.ubuntu.com/v1/" + header_image %}
-      {% else %}
-        {% set image_url = header_image %}
-      {% endif %}
+        {% if 'http' not in header_image %}
+          {% set image_url = "https://assets.ubuntu.com/v1/" + header_image %}
+        {% else %}
+          {% set image_url = header_image %}
+        {% endif %}
 
-      {% if header_image_width %}
-        {{
-          image(
-            url=image_url,
-            alt="",
-            height=header_image_height,
-            width=header_image_width,
-            hi_def=True,
-            loading="auto"
-          ) | safe
-        }}
-      {% else %}
-        <img src="{{ image_url }}" width="413" style="max-height: 410px; max-width: 250px;" alt="" >
-      {% endif %}
-    </div>{% endif %}
+        {% if header_image_width %}
+          {{ image(url=image_url,
+                    alt="",
+                    height=header_image_height,
+                    width=header_image_width,
+                    hi_def=True,
+                    loading="auto") | safe
+          }}
+        {% else %}
+          {{ image(url=image_url,
+                    alt="",
+                    width="413",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"style": "max-height: 410px;
+                    max-width: 250px"}) | safe
+          }}
+        {% endif %}
+      </div>
+    {% endif %}
   </div>
 </section>
