@@ -16,10 +16,10 @@ env:
     value: true
 
   - name: CRED_MAINTENANCE_START
-    value: 2024-09-28T11:00:00Z
+    value: 2025-09-05T00:00:00Z
 
   - name: CRED_MAINTENANCE_END
-    value: 2024-09-28T15:00:00Z
+    value: 2025-09-19T23:59:59Z
 
   - name: SEARCH_API_KEY
     secretKeyRef:
@@ -332,9 +332,6 @@ production:
             key: api_secret
             name: marketo
       
-        - name: MARKETO_API_URL
-          value: https://066-EOV-335.mktorest.com
-
         - name: CREDLY_URL
           value: https://api.credly.com/v1
 
@@ -352,10 +349,10 @@ production:
           value: true
 
         - name: CRED_MAINTENANCE_START
-          value: 2024-09-28T11:00:00Z
+          value: 2025-09-05T00:00:00Z
 
         - name: CRED_MAINTENANCE_END
-          value: 2024-09-28T15:00:00Z
+          value: 2025-09-19T23:59:59Z
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
@@ -424,6 +421,8 @@ production:
           /security/released/cves/.*\.json,
           /security/sitemap/cves\.json,
           /security/sitemap/cves/.*\.json,
+          /security/sitemap/notices\.json,
+          /security/sitemap/notices/.*\.json,
           /security/releases\.json,
           /security/releases/.*\.json,
           /security/api/.*,
@@ -605,10 +604,10 @@ staging:
       value: true
 
     - name: CRED_MAINTENANCE_START
-      value: 2024-09-28T11:00:00Z
+      value: 2025-09-05T00:00:00Z
 
     - name: CRED_MAINTENANCE_END
-      value: 2024-09-28T15:00:00Z
+      value: 2025-09-19T23:59:59Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:
@@ -654,9 +653,6 @@ staging:
       secretKeyRef:
         key: api_secret
         name: marketo
-  
-    - name: MARKETO_API_URL
-      value: https://066-EOV-335.mktorest.com
 
     - name: GOOGLE_SERVICE_ACCOUNT_EMAIL
       secretKeyRef:
@@ -945,17 +941,14 @@ staging:
             key: api_secret
             name: marketo
 
-        - name: MARKETO_API_URL
-          value: https://066-EOV-335.mktorest.com
-
         - name: CRED_MAINTENANCE
           value: true
 
         - name: CRED_MAINTENANCE_START
-          value: 2024-09-28T11:00:00Z
+          value: 2025-09-05T00:00:00Z
 
         - name: CRED_MAINTENANCE_END
-          value: 2024-09-28T15:00:00Z
+          value: 2025-09-19T23:59:59Z
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
@@ -1024,6 +1017,8 @@ staging:
           /security/released/cves/.*\.json,
           /security/sitemap/cves\.json,
           /security/sitemap/cves/.*\.json,
+          /security/sitemap/notices\.json,
+          /security/sitemap/notices/.*\.json,
           /security/releases\.json,
           /security/releases/.*\.json,
           /security/api/.*,
@@ -1187,10 +1182,10 @@ demo:
       value: true
 
     - name: CRED_MAINTENANCE_START
-      value: 2024-09-28T11:00:00Z
+      value: 2025-09-05T00:00:00Z
 
     - name: CRED_MAINTENANCE_END
-      value: 2024-09-28T15:00:00Z
+      value: 2025-09-19T23:59:59Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:
@@ -1236,9 +1231,6 @@ demo:
       secretKeyRef:
         key: api_secret
         name: marketo
-
-    - name: MARKETO_API_URL
-      value: https://066-EOV-335.mktorest.com
 
     - name: SENTRY_DSN
       value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
@@ -1316,4 +1308,7 @@ demo:
         name: discourse-api
 
     - name: FLASK_ENV
-      value: "demo"
+      value: "demo"    
+
+    - name: MARKETO_API_URL
+      value: https://066-EOV-335.mktorest.com

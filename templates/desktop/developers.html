@@ -493,10 +493,13 @@
 
 <section class="p-strip--white u-no-padding--top">
   <div class="u-fixed-width p-section--shallow">
-    <img src="https://assets.ubuntu.com/v1/db0c14a8-Ubuntu Pro.svg"
-         alt=""
-         width="161"
-         height="42" />
+    {{ image(url="https://assets.ubuntu.com/v1/db0c14a8-Ubuntu%20Pro.svg",
+        alt="",
+        width="161",
+        height="42",
+        hi_def=True,
+        loading="lazy") | safe
+    }}
   </div>
   <div class="p-section--shallow">
     <div class="row--50-50">

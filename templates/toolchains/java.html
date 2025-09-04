@@ -6,9 +6,7 @@
   https://docs.google.com/document/d/1ShgZyjn6pBG-L5iVd-MEIwc1JRVhaSeUFoImo5iWO-k
 {% endblock meta_copydoc %}
 
-{% block title %}
-  Java support - Canonical builds of OpenJDK for Ubuntu
-{% endblock %}
+{% block title %}Java support - Canonical builds of OpenJDK for Ubuntu{% endblock %}
 
 {% block meta_description %}
   Explore Canonical’s Java support offering - long term supported builds of
@@ -21,38 +19,27 @@
 
 {% block content %}
 
-
   {% call(slot) vf_hero(
     title_text='Canonical’s build of OpenJDK for Ubuntu',
-    subtitle_text='Canonical certified builds of OpenJDK <br class="u-hide--small u-hide--medium" > with up to 12 years of security maintenance' | safe,
+    subtitle_text='Canonical certified builds of OpenJDK <br class="u-hide--small u-hide--medium" /> with up to 12 years of security maintenance' | safe,
     layout='25/75'
-  ) -%}
-  {%- if slot == 'signpost_image' -%}
-  <img src="https://assets.ubuntu.com/v1/4551cb49-openjdk-signpost-logo.png" alt="OpenJDK">
-  {%- endif -%}
-  {%- if slot == 'description' -%}
-  <p>
-    Innovate with Java and run your preferred build of OpenJDK on Ubuntu. Bring
-    stability to your Java environment with up to 12 years of long-term support
-    for all OpenJDK LTS releases, through Ubuntu Pro. Put stability and
-    compliance at the heart of your applications with rigorous TCK validation,
-    minimal runtime containers and FIPS-certified cryptographic modules.
-  </p>
-  {%- endif -%}
-  {%- if slot == 'cta' -%}
-  <a 
-    href="https://documentation.ubuntu.com/ubuntu-for-developers/howto/java-setup/#install-java"
-    class="p-button--positive u-no-margin--bottom"
-  >
-    Use OpenJDK on Ubuntu
-  </a>
-  <a 
-    href="https://pages.ubuntu.com/rs/066-EOV-335/images/Canonical%20Java%20Datasheet_Oct%202024.pdf?version=0&_gl=1*dc53fo*_gcl_au*MjEwNjk5MDg3Ni4xNzQ4MjUwNDgy"
-    class="p-button u-no-margin--bottom"
-  >
-    Download the datasheet
-  </a>
-  {%- endif -%}
+    ) -%}
+    {%- if slot == 'signpost_image' -%}
+  <img src="https://assets.ubuntu.com/v1/5a101b58-openjdk%20logo.png" alt="OpenJDK">
+    {%- endif -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Innovate with Java and run your preferred build of OpenJDK on Ubuntu. Bring
+        stability to your Java environment with up to 12 years of long-term support
+        for all OpenJDK LTS releases, through Ubuntu Pro. Put stability and
+        compliance at the heart of your applications with rigorous TCK validation,
+        minimal runtime containers and FIPS-certified cryptographic modules.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="https://documentation.ubuntu.com/ubuntu-for-developers/howto/java-setup/#install-java"
+         class="p-button--positive u-no-margin--bottom">Use OpenJDK on Ubuntu</a>
+    {%- endif -%}
   {%- endcall -%}
 
   <div class="p-section u-fixed-width">
@@ -123,9 +110,7 @@
           the latest features of Ubuntu, and support for the newest LTS
           versions of Open JDK.
         </p>
-        <p>
-          Here are the details:
-        </p>
+        <p>Here are the details:</p>
         <ul class="p-list--divided">
           <li class="p-list__item is-ticked">
             Starting with Ubuntu 24.04, every new Ubuntu LTS release will ship
@@ -152,14 +137,13 @@
       </div>
       <div class="col">
         <div class="p-section--shallow p-image-container is-highlighted">
-            {{ image(url="https://assets.ubuntu.com/v1/f4335ae3-security-patching-java.png",
-              alt="security patching",
-              width="1800",
-              height="1200",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
+          {{ image(url="https://assets.ubuntu.com/v1/f4335ae3-security-patching-java.png",
+                    alt="security patching",
+                    width="1800",
+                    height="1200",
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
         </div>
         <p>
           Extend the security support period for your OpenJDK LTS build to up
@@ -180,7 +164,7 @@
   </section>
 
   <div class="p-section u-fixed-width">
-    <hr class="p-rule">
+    <hr class="p-rule" />
     <div class="row">
       <div class="col-6">
         <div class="p-section--shallow">
@@ -202,16 +186,14 @@
           benefit from up to 12 years of security support with Ubuntu Pro
         </p>
         <div class="p-cta-block">
-          <a class="p-button" href="https://hub.docker.com/r/ubuntu/jre">
-            Download on Dockerhub
-          </a>
+          <a class="p-button" href="https://hub.docker.com/r/ubuntu/jre">Download on Dockerhub</a>
         </div>
       </div>
     </div>
     <div class="p-section--shallow">
       <div class="row">
         <div class="col-9 col-start-large-4">
-          <hr class="is-muted">
+          <hr class="is-muted" />
         </div>
       </div>
       <div class="row">
@@ -224,16 +206,14 @@
             <li class="p-list__item has-bullet">38MB ARM64 compressed image size</li>
             <li class="p-list__item has-bullet">~52% smaller than Apache Temurin</li>
             <li class="p-list__item">
-              <a href="https://github.com/rockcrafters/chiselled-jre/tree/channels/8/edge">
-                View the GitHub repo ›
-              </a>
+              <a href="https://github.com/rockcrafters/chiselled-jre/tree/channels/8/edge">View the GitHub repo ›</a>
             </li>
           </ul>
         </div>
       </div>
       <div class="row">
         <div class="col-9 col-start-large-4">
-          <hr class="is-muted">
+          <hr class="is-muted" />
         </div>
       </div>
       <div class="row">
@@ -246,16 +226,14 @@
             <li class="p-list__item has-bullet">42MB ARM64 compressed image size</li>
             <li class="p-list__item has-bullet">~51% smaller than Apache Temurin</li>
             <li class="p-list__item">
-              <a href="https://github.com/rockcrafters/chiselled-jre/tree/channels/17/edge">
-                View the GitHub repo ›
-              </a>
+              <a href="https://github.com/rockcrafters/chiselled-jre/tree/channels/17/edge">View the GitHub repo ›</a>
             </li>
           </ul>
         </div>
       </div>
       <div class="row">
         <div class="col-9 col-start-large-4">
-          <hr class="is-muted">
+          <hr class="is-muted" />
         </div>
       </div>
       <div class="row">
@@ -268,9 +246,7 @@
             <li class="p-list__item has-bullet">51MB ARM64 compressed image size</li>
             <li class="p-list__item has-bullet">~56% smaller than Apache Temurin</li>
             <li class="p-list__item">
-              <a href="https://github.com/canonical/jre-rock/tree/channels/21/edge">
-                View the GitHub repo ›
-              </a>
+              <a href="https://github.com/canonical/jre-rock/tree/channels/21/edge">View the GitHub repo ›</a>
             </li>
           </ul>
         </div>
@@ -279,7 +255,7 @@
   </div>
 
   <div class="p-section u-fixed-width">
-    <hr class="p-rule">
+    <hr class="p-rule" />
     <div class="row">
       <div class="col-6">
         <div class="p-section--shallow">
@@ -302,7 +278,7 @@
     <div class="p-section--shallow">
       <div class="row">
         <div class="col-9 col-start-large-4">
-          <hr class="is-muted">
+          <hr class="is-muted" />
         </div>
       </div>
       <div class="row">
@@ -321,22 +297,18 @@
             the latest GraalVM features and build smaller, faster applications.
           </p>
           <div class="p-cta-block">
-            <a class="p-button" href="https://snapcraft.io/graalvm-jdk">
-              Install the GraalVM snap
-            </a>
+            <a class="p-button" href="https://snapcraft.io/graalvm-jdk">Install the GraalVM snap</a>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-9 col-start-large-4">
-          <hr class="is-muted">
+          <hr class="is-muted" />
         </div>
       </div>
       <div class="row">
         <div class="col-3 col-start-large-4">
-          <h3 class="p-heading--5">
-            CRaC (Coordinated Restore at Checkpoint)
-          </h3>
+          <h3 class="p-heading--5">CRaC (Coordinated Restore at Checkpoint)</h3>
         </div>
         <div class="col-6">
           <p>
@@ -355,7 +327,7 @@
   </div>
 
   <div class="p-section u-fixed-width">
-    <hr class="p-rule">
+    <hr class="p-rule" />
     <div class="row">
       <div class="p-section--shallow">
         <h2>Correctness and cryptographic compliance</h2>
@@ -364,7 +336,7 @@
     <div class="p-section--shallow">
       <div class="row">
         <div class="col-9 col-start-large-4">
-          <hr class="is-muted">
+          <hr class="is-muted" />
         </div>
       </div>
       <div class="row">
@@ -389,7 +361,7 @@
       </div>
       <div class="row">
         <div class="col-9 col-start-large-4">
-          <hr class="is-muted">
+          <hr class="is-muted" />
         </div>
       </div>
       <div class="row">
@@ -403,35 +375,29 @@
           </p>
           <p>
             Canonical is working on a dedicated
-            <a href="https://github.com/canonical/openssl-fips-java">
-              OpenSSL-FIPS Java provider</a>,
-            which is undergoing FIPS 140-3 certification process.
-          </p>
-          <div class="p-cta-block">
-            <a class="p-button" href="https://github.com/canonical/openssl-fips-java">
-              Learn more
-            </a>
+            <a href="https://github.com/canonical/openssl-fips-java">OpenSSL-FIPS Java provider</a>,
+              which is undergoing FIPS 140-3 certification process.
+            </p>
+            <div class="p-cta-block">
+              <a class="p-button"
+                 href="https://github.com/canonical/openssl-fips-java">Learn more</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <hr class="p-rule is-fixed-width" />
-  <section class="p-strip is-deep">
-    <div class="u-fixed-width">
-      <h2>
-        <a 
-          href="/toolchains/contact-us"
-          class="js-invoke-modal"
-          aria-controls="toolchains-modal"
-        >
-          Talk to us about your Java workloads on Ubuntu ›
-        </a>
-      </h2>
-    </div>
-  </section>
+    <hr class="p-rule is-fixed-width" />
+    <section class="p-strip is-deep">
+      <div class="u-fixed-width">
+        <h2>
+          <a href="/toolchains/contact-us"
+             class="js-invoke-modal"
+             aria-controls="toolchains-modal">Talk to us about your Java workloads on Ubuntu ›</a>
+        </h2>
+      </div>
+    </section>
 
-  {{ load_form("/toolchains") | safe }}
+    {{ load_form("/toolchains") | safe }}
 
-{% endblock content %}
+  {% endblock content %}

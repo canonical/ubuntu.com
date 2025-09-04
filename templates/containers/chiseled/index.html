@@ -87,10 +87,14 @@
   <section class="p-strip">
     <div class="row">
       <div class="u-align--center">
-        <img src="https://assets.ubuntu.com/v1/ab013cd7-Frame%203373.png"
-             style="height: auto;
-                    width: 100%"
-             alt="An image that demonstrates how chiseled Ubuntu works" />
+        {{ image(url="https://assets.ubuntu.com/v1/ab013cd7-Frame%203373.png",
+                alt="",
+                width="3696",
+                height="1568",
+                hi_def=True,
+                loading="lazy",
+                attrs={"style":"height: auto; width: 100%"}) | safe
+        }}
       </div>
     </div>
   </section>

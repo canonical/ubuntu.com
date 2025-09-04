@@ -1,17 +1,19 @@
 <div class="p-card js-product-card u-hide">
-  <img class="p-card__thumbnail"
-       src="https://assets.ubuntu.com/v1/a3694a61-Public+Cloud.svg"
-       alt="Public cloud" />
+  {{ image(url="https://assets.ubuntu.com/v1/a3694a61-Public+Cloud.svg",
+    alt="",
+    width="221",
+    height="150",
+    hi_def=True,
+    loading="auto") | safe
+  }}
   <hr class="p-rule--muted" />
   <h3>
-    <a href="/cloud/public-cloud">Ubuntu on public clouds</a>
+    <a href="/cloud/public-cloud">Looking to run Linux on public clouds?</a>
   </h3>
   <p>
-    There is no one size fits all cloud architecture.
-    <br />
-    Developing the optimum cloud strategy requires evaluating your business needs and aligning them with the different solutions available.
+    Did you know Ubuntu is the world’s most popular Linux operating system across public clouds? Canonical publishes official images on Amazon AWS, Microsoft Azure, Google Cloud, IBM Cloud and Oracle Cloud. Learn about the available features and our support commitment
   </p>
   <p>
-    <a href="/cloud/public-cloud">Find out which cloud suits you best&nbsp;&rsaquo;</a>
+    <a href="/cloud/public-cloud">Run your public cloud workloads on Ubuntu&nbsp;&rsaquo;</a>
   </p>
 </div>

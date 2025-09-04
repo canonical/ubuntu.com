@@ -1,14 +1,21 @@
 <div class="p-card js-product-card u-hide">
-  <img class="p-card__thumbnail"
-       src="https://assets.ubuntu.com/v1/9e27d14a-Ubuntu%20logo@2x.png"
-       alt="Ubuntu" />
+  {{ image(url="https://assets.ubuntu.com/v1/9e27d14a-Ubuntu%20logo@2x.png",
+    alt="Ubuntu",
+    width="270",
+    height="96",
+    hi_def=True,
+    loading="auto",
+    attrs={
+    "class": "p-card__thumbnail", "style":"width: 90px;"
+    }) | safe
+  }}
   <hr class="p-rule--muted" />
   <h3>
-    <a href="/desktop">Ubuntu for desktops</a>
+    <a href="/desktop">An enterprise Linux for everyone</a>
   </h3>
-  <p>The open source Ubuntu desktop operating system powers millions of PCs and laptops around the world.</p>
+  <p>Ubuntu powers millions of PCs and laptops around the world.</p>
   <p>
-    Ubuntu is fast, modern, secure and it comes with everything you need to run your organisation, school, home or enterprise.
+    Ubuntu brings security, usability and stability together, offering you a platform for innovation, combined with the freedom that transparent, open source code offers.
   </p>
   <p>
     <a href="/desktop">Explore Ubuntu Desktop&nbsp;&rsaquo;</a>

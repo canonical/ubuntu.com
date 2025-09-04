@@ -35,10 +35,14 @@
     </div>
     <div class="row">
       <div class="p-image-container--cinematic u-hide--small is-highlighted">
-        <img class="p-image-container__image p-strip is-shallow"
-             src="https://assets.ubuntu.com/v1/667fa185-Artboard%20150@3x.png"
-             alt="MultiCloud"
-             width="800px" />
+        {{ image(url="https://assets.ubuntu.com/v1/667fa185-Artboard 150@3x.png",
+                alt="MultiCloud",
+                width="800",
+                height="513",
+                hi_def=True,
+                loading="auto",
+                attrs={"class":"p-image-container__image p-strip is-shallow",}) | safe
+        }}
       </div>
     </div>
   </section>

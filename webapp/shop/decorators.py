@@ -118,7 +118,8 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 is_cred_maintenance_in_timeframe = (
                     _maintenance_start <= _time_now <= _maintenance_end
                 )
-                if _time_now > _maintenance_end:
+                # if maintenance window is in past, then hide the banner
+                if _maintenance_end < _time_now:
                     cred_maintenance = False
 
             is_in_maintenance = (

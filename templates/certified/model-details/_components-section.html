@@ -1,113 +1,76 @@
 <section class="u-fixed-width p-section--deep">
-  <hr class="p-rule"/>
+  <hr class="p-rule" />
   <div>
     <h2>Components certified with this system</h2>
-    <table class="p-table--mobile-card p-table-component-devices"
-           aria-label="Component Devices table">
-      <thead>
-        <tr>
-          <th>Component</th>
-          <th class="u-align--center">18.04 LTS</th>
-          <th class="u-align--center">20.04 LTS</th>
-          <th class="u-align--center">22.04 LTS</th>
-          <th class="u-align--center">24.04 LTS</th>
-          <th>Comments</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for component in components %}
-        <tr>
-          <th aria-label="Component">
-            <a href="/certified/component/{{ component.id }}">{{ component.vendor_name }} {{ component.model }}</a>
-          </th>
-          {% if '18.04 LTS' in component.lts_releases %}
-          {% if component.lts_releases['18.04 LTS'][0].third_party_driver %}
-          <td data-heading="18.04 LTS">
-            {{ image(url="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg", alt="May require third-party driver", width="21", height="14", hi_def=True, attrs={"style":"margin-left: 0.45rem;"}, loading="lazy") | safe }}
-          </td>
-          {% elif component.lts_releases['18.04 LTS'][0].status == 'inprogress' %}
-          <td data-heading="18.04 ESM">
-            <i class="p-icon--help">In progress</i>
-          </td>
-          {% elif component.lts_releases['18.04 LTS'][0].status == 'certified' %}
-          <td data-heading="18.04 LTS">
-            <i class="p-icon--success">Supported</i>
-          </td>
-          {% endif %}
-          {% else %}
-          <td data-heading="18.04 LTS"></td>
-          {% endif %}
-          {% if '20.04 LTS' in component.lts_releases %}
-          {% if component.lts_releases['20.04 LTS'][0].third_party_driver %}
-          <td data-heading="20.04 LTS">
-            {{ image(url="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg",alt="May require third-party driver",width="21",height="14",hi_def=True,attrs={"style":"margin-left: 0.45rem;"},loading="lazy") | safe }}
-          </td>
-          {% elif component.lts_releases['20.04 LTS'][0].status == 'inprogress' %}
-          <td data-heading="20.04 ESM">
-            <i class="p-icon--help">In progress</i>
-          </td>
-          {% elif component.lts_releases['20.04 LTS'][0].status == 'certified' %}
-          <td data-heading="20.04 LTS">
-            <i class="p-icon--success">Supported</i>
-          </td>
-          {% endif %}
-          {% else %}
-          <td data-heading="20.04 LTS"></td>
-          {% endif %}
-          {% if '22.04 LTS' in component.lts_releases %}
-          {% if component.lts_releases['22.04 LTS'][0].third_party_driver %}
-          <td data-heading="22.04 LTS">
-            {{ image(url="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg", alt="May require third-party driver", width="21", height="14", hi_def=True, attrs={"style":"margin-left: 0.45rem;"}, loading="lazy") | safe }}
-          </td>
-          {% elif component.lts_releases['22.04 LTS'][0].status == 'inprogress' %}
-          <td data-heading="22.04 ESM">
-            <i class="p-icon--help">In progress</i>
-          </td>
-          {% elif component.lts_releases['22.04 LTS'][0].status == 'certified' %}
-          <td data-heading="22.04 LTS">
-            <i class="p-icon--success">Supported</i>
-          </td>
-          {% endif %}
-          {% else %}
-          <td data-heading="22.04 LTS">
-            <i class="p-icon--error"></i>
-          </td>
-          {% endif %}
-          {% if '24.04 LTS' in component.lts_releases %}
-          {% if component.lts_releases['24.04 LTS'][0].third_party_driver %}
-          <td data-heading="24.04 LTS">
-            {{ image(url="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg", alt="May require third-party driver", width="21", height="14", hi_def=True, attrs={"style":"margin-left: 0.45rem;"}, loading="lazy") | safe }}
-          </td>
-          {% elif component.lts_releases['24.04 LTS'][0].status == 'inprogress' %}
-          <td data-heading="24.04 ESM">
-            <i class="p-icon--help">In progress</i>
-          </td>
-          {% elif component.lts_releases['24.04 LTS'][0].status == 'certified' %}
-          <td data-heading="24.04 LTS">
-            <i class="p-icon--success">Supported</i>
-          </td>
-          {% endif %}
-          {% else %}
-          <td data-heading="24.04 LTS">
-            <i class="p-icon--error"></i>
-          </td>
-          {% endif %}
-          <td data-heading="Comments">{{ component.note }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <ul class="p-inline-list" style="margin-left:0.5rem;">
-      <li class="p-inline-list__item">
-        <i class="p-icon--success"></i> <small class="p-">Supported</small>
-      </li>
-      <li class="p-inline-list__item">
-        <img src="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg" alt="" />
-        <small>May require 3rd-party driver</small>
-      </li>
-      <li class="p-inline-list__item">
-        <i class="p-icon--help"></i> <small>In progress</small>
-      </li>
-    </ul>
+    <div style="overflow-x: auto;">
+      <table class="p-table--mobile-car p-table-component-devices"
+             aria-label="Component Devices table">
+        <colgroup>
+          <col class="col-component" />
+          <col class="col-release" />
+          <col class="col-status" />
+          <col class="col-comments" />
+        </colgroup>
+
+        <thead>
+          <tr>
+            <th scope="col">Component</th>
+            <th scope="col">Ubuntu release</th>
+            <th scope="col">Status</th>
+            <th scope="col">Comments</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% set releases = ["24.04 LTS", "22.04 LTS", "20.04 LTS", "18.04 LTS", "Core 24", "Core 22", "Core 20", "Core 18"] %}
+          {% for component in components %}
+            {% for i in range(releases|length) %}
+              {% set release = releases[i] %}
+              <tr>
+                {% if i == 0 %}
+                  <th scope="rowgroup" rowspan="{{ releases|length }}">
+                    <a href="/certified/component/{{ component.id }}">{{ component.vendor_name }} {{ component.model }}</a>
+                  </th>
+                {% endif %}
+                <td>{{ release }}</td>
+                {% if release in component.lts_releases %}
+                  {% set rel_data = component.lts_releases[release][0] %}
+                  {% if rel_data.status == 'inprogress' %}
+                    <td data-heading="{{ release.split(" ")[0] }} ESM" class="p-inline">
+                      <i class="p-icon--help">In progress</i>
+                      <span>In progress</span>
+                      {% if rel_data.third_party_driver %}<span>- may require 3rd-party driver</span>{% endif %}
+                    </td>
+                  {% elif rel_data.status == 'certified' %}
+                    <td data-heading="{{ release }}" class="p-inline">
+                      <i class="p-icon--success">Supported</i>
+                      <span>Supported</span>
+                      {% if rel_data.third_party_driver %}<span>- may require 3rd-party driver</span>{% endif %}
+                    </td>
+                  {% elif rel_data.status == 'unsupported' %}
+                    <td data-heading="{{ release }}" class="p-inline">
+                      <i class="p-icon--error"></i>
+                      <span>Unsupported</span>
+                      {% if rel_data.third_party_driver %}<span>- may require 3rd-party driver</span>{% endif %}
+                    </td>
+                  {% endif %}
+                {% else %}
+                  <td data-heading="{{ release }}">–</td>
+                {% endif %}
+                {% if i == 0 %}
+                  <td data-heading="Comments"
+                      scope="rowgroup"
+                      rowspan="{{ releases|length }}">{{ component.note }}</td>
+                {% endif %}
+              </tr>
+            {% endfor %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <hr class="p-rule" />
+      <p class="u-text--muted">*Releases with a blank status have not been tested</p>
+    </div>
   </div>
 </section>

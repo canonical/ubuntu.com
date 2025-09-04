@@ -1,7 +1,14 @@
 <div class="p-card js-product-card u-hide">
-  <img class="p-card__thumbnail"
-       src="https://assets.ubuntu.com/v1/9e27d14a-Ubuntu%20logo@2x.png"
-       alt="Ubuntu" />
+  {{ image(url="https://assets.ubuntu.com/v1/9e27d14a-Ubuntu%20logo@2x.png",
+    alt="Ubuntu",
+    width="2244",
+    height="800",
+    hi_def=True,
+    loading="auto",
+    attrs={
+    "class": "p-card__thumbnail", "style":"width: 90px;"
+    }) | safe
+  }}
   <hr class="p-rule--muted" />
   <h3>
     <a href="/desktop/organizations">Bring Ubuntu to your organization</a>
