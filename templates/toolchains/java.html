@@ -25,7 +25,14 @@
     layout='25/75'
     ) -%}
     {%- if slot == 'signpost_image' -%}
-  <img src="https://assets.ubuntu.com/v1/5a101b58-openjdk%20logo.png" alt="OpenJDK">
+      {{ image(url="https://assets.ubuntu.com/v1/5a101b58-openjdk%20logo.png",
+            alt="OpenJDK",
+            width="220",
+            height="312",
+            hi_def=True,
+            loading="auto",
+            attrs={"style": "width: 100%;"}) | safe
+      }}
     {%- endif -%}
     {%- if slot == 'description' -%}
       <p>
@@ -376,28 +383,28 @@
           <p>
             Canonical is working on a dedicated
             <a href="https://github.com/canonical/openssl-fips-java">OpenSSL-FIPS Java provider</a>,
-              which is undergoing FIPS 140-3 certification process.
-            </p>
-            <div class="p-cta-block">
-              <a class="p-button"
-                 href="https://github.com/canonical/openssl-fips-java">Learn more</a>
-            </div>
+            which is undergoing FIPS 140-3 certification process.
+          </p>
+          <div class="p-cta-block">
+            <a class="p-button"
+               href="https://github.com/canonical/openssl-fips-java">Learn more</a>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <hr class="p-rule is-fixed-width" />
-    <section class="p-strip is-deep">
-      <div class="u-fixed-width">
-        <h2>
-          <a href="/toolchains/contact-us"
-             class="js-invoke-modal"
-             aria-controls="toolchains-modal">Talk to us about your Java workloads on Ubuntu ›</a>
-        </h2>
-      </div>
-    </section>
+  <hr class="p-rule is-fixed-width" />
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <h2>
+        <a href="/toolchains/contact-us"
+           class="js-invoke-modal"
+           aria-controls="toolchains-modal">Talk to us about your Java workloads on Ubuntu ›</a>
+      </h2>
+    </div>
+  </section>
 
-    {{ load_form("/toolchains") | safe }}
+  {{ load_form("/toolchains") | safe }}
 
-  {% endblock content %}
+{% endblock content %}

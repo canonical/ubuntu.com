@@ -62,10 +62,13 @@
             <hr class="p-rule--highlight" />
             <div class="row">
               <div class="p-image-wrapper col-small-1">
-                <img src="https://assets.ubuntu.com/v1/3f7601a8-cof.png"
-                     alt=""
-                     width="64"
-                     height="128" />
+                {{ image(url="https://assets.ubuntu.com/v1/3f7601a8-cof.png",
+                                alt="",
+                                width="64",
+                                height="128",
+                                hi_def=True,
+                                loading="lazy") | safe
+                }}
               </div>
               <div class="col-small-3">
                 <h4>One support vendor for everything open source</h4>
@@ -79,10 +82,13 @@
             <hr class="p-rule--highlight" />
             <div class="row">
               <div class="p-image-wrapper col-small-1">
-                <img src="https://assets.ubuntu.com/v1/706e2877-support icon.png"
-                     alt=""
-                     width="76"
-                     height="128" />
+                {{ image(url="https://assets.ubuntu.com/v1/706e2877-support icon.png",
+                                alt="",
+                                width="76",
+                                height="128",
+                                hi_def=True,
+                                loading="lazy") | safe
+                }}
               </div>
               <div class="col-small-3">
                 <h4>
@@ -101,10 +107,13 @@
 
             <div class="row">
               <div class="p-image-wrapper col-small-1">
-                <img src="https://assets.ubuntu.com/v1/d25cbd99-Frame 25.png"
-                     alt=""
-                     width="57"
-                     height="128" />
+                {{ image(url="https://assets.ubuntu.com/v1/d25cbd99-Frame 25.png",
+                                alt="",
+                                width="57",
+                                height="128",
+                                hi_def=True,
+                                loading="lazy") | safe
+                }}
               </div>
               <div class="col-small-3">
                 <h4>Available everywhere, from the public cloud to devices</h4>
@@ -982,7 +991,7 @@
           </tr>
           <tr>
             <td>
-              <strong>Severity 1 - </strong>Production service down. Critical impact on core functionality in a production environment
+              <strong>Severity 1 -</strong>Production service down. Critical impact on core functionality in a production environment
             </td>
             <td>N/A</td>
             <td>4 business hours</td>
@@ -992,7 +1001,7 @@
           </tr>
           <tr>
             <td>
-              <strong>Severity 2 - </strong>Core functionality severely degraded in a production environment.
+              <strong>Severity 2 -</strong>Core functionality severely degraded in a production environment.
             </td>
             <td>N/A</td>
             <td>8 business hours</td>
@@ -1002,7 +1011,7 @@
           </tr>
           <tr>
             <td>
-              <strong>Severity 3 - </strong>Issues have a medium to low impact in a production environment.
+              <strong>Severity 3 -</strong>Issues have a medium to low impact in a production environment.
             </td>
             <td>N/A</td>
             <td>12 business hours</td>
@@ -1012,7 +1021,7 @@
           </tr>
           <tr>
             <td>
-              <strong>Severity 4 - </strong>Non-urgent requests with low to no impact on production environments.
+              <strong>Severity 4 -</strong>Non-urgent requests with low to no impact on production environments.
             </td>
             <td>N/A</td>
             <td>24 business hours</td>
