@@ -114,9 +114,14 @@ meta_copydoc %}
               {% for community in communities_by_continent[continent] %}
                 <div class="col">
                   <div class="p-image-container--16-9 is-cover">
-                    <img class="p-image-container__image"
-                         src="{{ community.image.url if community.image and community.image.url else 'https://assets.ubuntu.com/v1/37387afc-loco-thumbnail.png' }}"
-                         alt="" />
+                    {{ image(url=community.image.url if community.image and community.image.url else 'https://assets.ubuntu.com/v1/37387afc-loco-thumbnail.png',
+                                        alt="",
+                                        width="600",
+                                        height="300",
+                                        hi_def=True,
+                                        loading="lazy",
+                                        attrs={"class": "p-image-container__image"}) | safe
+                    }}
                   </div>
                   <hr class="p-rule--highlight" />
                   <p class="p-heading--5">
@@ -172,9 +177,14 @@ meta_copydoc %}
               {% for community in communities_by_continent[continent] %}
                 <div class="col-3 col-medium-2">
                   <div class="p-image-container--16-9 is-cover">
-                    <img class="p-image-container__image"
-                         src="{{ community.image.url if community.image and community.image.url else 'https://assets.ubuntu.com/v1/37387afc-loco-thumbnail.png' }}"
-                         alt="" />
+                    {{ image(url=community.image.url if community.image and community.image.url else 'https://assets.ubuntu.com/v1/37387afc-loco-thumbnail.png',
+                                        alt="",
+                                        width="600",
+                                        height="300",
+                                        hi_def=True,
+                                        loading="lazy",
+                                        attrs={"class": "p-image-container__image"}) | safe
+                    }}
                   </div>
                   <hr class="p-rule--highlight" />
                   <p class="p-heading--5">

@@ -61,8 +61,13 @@
           And follow our <a href="/tutorials/how-to-install-ubuntu-desktop-on-raspberry-pi-4#1-overview">Desktop</a>, <a href="/tutorials/how-to-install-ubuntu-on-your-raspberry-pi#1-overview">Server</a> and <a href="/download/raspberry-pi-core">Core</a> tutorials to get started.
         </p>
         <div class="p-image--wrapper p-section--shallow">
-          <img src="https://assets.ubuntu.com/v1/e24d92fc-raspberry-pi-imager-2024.png"
-               alt="Screenshot of the Raspberry Pi Imager, with three buttons letting you choose the Raspberry Pi device, operating system and storage where to write the image" />
+          {{ image(url="https://assets.ubuntu.com/v1/e24d92fc-raspberry-pi-imager-2024.png",
+                    alt="Screenshot of the Raspberry Pi Imager, with three buttons letting you choose the Raspberry Pi device, operating system and storage where to write the image",
+                    width="1416",
+                    height="972",
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
         </div>
       </div>
     </div>
@@ -158,7 +163,9 @@
         <p>Build your Ubuntu Core image for your application and targeted hardware.</p>
         <a class="p-button--positive" href="/core/docs/build-an-image">Build your Core 24</a>
         <hr class="p-rule" />
-        <p>Or try a pre-built Ubuntu Core image for the Raspberry Pi. Our pre-built Ubuntu Core images are an ideal way to experiment with Ubuntu Core.</p>
+        <p>
+          Or try a pre-built Ubuntu Core image for the Raspberry Pi. Our pre-built Ubuntu Core images are an ideal way to experiment with Ubuntu Core.
+        </p>
         <p class="u-responsive-realign">
           <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.core_version }}&amp;architecture=core-24-arm64+raspi"
              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Core', 'eventLabel' : '{{ releases.latest.core_version }}', 'eventValue' : undefined });"
@@ -204,12 +211,8 @@
               <th style="width: 18%">
                 Ubuntu {{ releases.lts.short_version }} <abbr title="Long-term support">LTS</abbr>
               </th>
-              <th style="width: 15%">
-                Ubuntu {{ releases.latest.short_version }}
-              </th>
-              <th style="width: 15%">
-                Ubuntu Core {{ releases.latest.core_version }}
-              </th>
+              <th style="width: 15%">Ubuntu {{ releases.latest.short_version }}</th>
+              <th style="width: 15%">Ubuntu Core {{ releases.latest.core_version }}</th>
             </tr>
           </thead>
           <tbody>
