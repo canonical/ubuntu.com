@@ -1308,4 +1308,9 @@ demo:
         name: discourse-api
 
     - name: FLASK_ENV
-      value: "demo"
+      value: "demo"    
+
+    - name: MARKETO_API_CLIENT
+      secretKeyRef:
+        key: api_client
+        name: marketo
