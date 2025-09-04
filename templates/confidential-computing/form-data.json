@@ -14,18 +14,6 @@
       },
       "fieldsets": [
         {
-          "title": "What would you like to talk to us about?",
-          "id": "comments",
-          "noCommentsFromLead": false,
-          "fields": [
-            {
-              "type": "long-text",
-              "id": "comments",
-              "label": "comments"
-            }
-          ]
-        },
-        {
           "title": "How should we get in touch?",
           "id": "about-you",
           "noCommentsFromLead": true,
@@ -33,7 +21,20 @@
             {
               "type": "tel",
               "id": "phone",
-              "label": "Phone number",
+              "label": "Phone number"
+            }
+          ]
+        },
+        {
+          "title": "Tell us about your project. Are you using a private or public cloud?",
+          "id": "comments",
+          "noCommentsFromLead": false,
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "comments",
+              "label": "comments",
               "isRequired": true
             }
           ]
