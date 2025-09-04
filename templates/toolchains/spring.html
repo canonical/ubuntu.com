@@ -25,10 +25,11 @@
     {%- if slot == 'signpost_image' -%}
       {{ image(url="https://assets.ubuntu.com/v1/96e1b28e-spring-logo-signpost.png",
             alt="Spring",
-            width="278",
-            height="67",
+            width="852",
+            height="204",
             hi_def=True,
-            loading="auto") | safe
+            loading="auto",
+            attrs={"style": "width: 100%;"}) | safe
       }}
     {%- endif -%}
     {%- if slot == 'description' -%}
