@@ -1310,7 +1310,5 @@ demo:
     - name: FLASK_ENV
       value: "demo"    
 
-    - name: MARKETO_API_CLIENT
-      secretKeyRef:
-        key: api_client
-        name: marketo
+    - name: MARKETO_API_URL
+      value: https://066-EOV-335.mktorest.com
