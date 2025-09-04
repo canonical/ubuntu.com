@@ -87,10 +87,14 @@ meta_copydoc %}
             <div class="col-3 p-divider__block no-divider">
               <div class="p-heading-icon">
                 <div class="p-heading-icon__header">
-                  <img class="p-heading-icon__img"
-                       src="https://assets.ubuntu.com/v1/21efb2ec-desktop.svg"
-                       loading="lazy"
-                       alt="" />
+                  {{ image(url="https://assets.ubuntu.com/v1/21efb2ec-desktop.svg",
+                                    alt="",
+                                    width="186",
+                                    height="125",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-heading-icon__img"}) | safe
+                  }}
                   <p class="p-heading-icon__title u-vertically-center u-no-margin--bottom">Desktop</p>
                 </div>
               </div>
@@ -98,10 +102,14 @@ meta_copydoc %}
             <div class="col-3 p-divider__block">
               <div class="p-heading-icon">
                 <div class="p-heading-icon__header">
-                  <img class="p-heading-icon__img"
-                       src="https://assets.ubuntu.com/v1/a3694a61-Public+Cloud.svg"
-                       loading="lazy"
-                       alt="" />
+                  {{ image(url="https://assets.ubuntu.com/v1/a3694a61-Public+Cloud.svg",
+                                    alt="",
+                                    width="294",
+                                    height="200",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-heading-icon__img"}) | safe
+                  }}
                   <p class="p-heading-icon__title u-vertically-center u-no-margin--bottom">Public Cloud</p>
                 </div>
               </div>
@@ -109,10 +117,14 @@ meta_copydoc %}
             <div class="col-3 p-divider__block">
               <div class="p-heading-icon">
                 <div class="p-heading-icon__header">
-                  <img class="p-heading-icon__img"
-                       src="https://assets.ubuntu.com/v1/fdf83d49-Server.svg"
-                       loading="lazy"
-                       alt="" />
+                  {{ image(url="https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
+                                    alt="",
+                                    width="40",
+                                    height="48",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-heading-icon__img"}) | safe
+                  }}
                   <p class="p-heading-icon__title u-vertically-center u-no-margin--bottom">Servers</p>
                 </div>
               </div>

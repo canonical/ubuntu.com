@@ -59,9 +59,14 @@
       <div class="col">
         <div class="p-section--shallow">
           <div class="p-image-container is-highlighted" style="margin-top: 0.55rem;">
-            <img class="p-image-container__image"
-                 src="https://assets.ubuntu.com/v1/bee89574-azure-logo-updated.png"
-                 alt="" />
+            {{ image(url="https://assets.ubuntu.com/v1/bee89574-azure-logo-updated.png",
+                        alt="",
+                        width="1200",
+                        height="676",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
           </div>
         </div>
 
@@ -82,7 +87,9 @@
         </ul>
         <hr class="p-rule--muted" />
         <p>
-          <a href="/azure/contact-us" class="js-invoke-modal" aria-controls="azure-confidential-computing-modal">Don’t see what you’re looking for? Contact us to learn more&nbsp;&rsaquo;</a>
+          <a href="/azure/contact-us"
+             class="js-invoke-modal"
+             aria-controls="azure-confidential-computing-modal">Don’t see what you’re looking for? Contact us to learn more&nbsp;&rsaquo;</a>
         </p>
       </div>
     </div>
@@ -129,9 +136,14 @@
     <div class="row--50-50">
       <div class="col">
         <div class="p-image-container is-highlighted">
-          <img class="p-image-container__image"
-               src="https://assets.ubuntu.com/v1/472acf08-chart.png"
-               alt="Ubuntu confidential VMs establish a secure encrypted communication channel with Nvidia H100 GPUs" />
+          {{ image(url="https://assets.ubuntu.com/v1/472acf08-chart.png",
+                    alt="Ubuntu confidential VMs establish a secure encrypted communication channel with Nvidia H100 GPUs",
+                    width="1200",
+                    height="677",
+                    hi_def=True,
+                    loading="auto",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
         </div>
       </div>
       <div class="col">
@@ -181,7 +193,9 @@
   <section class="p-strip is-deep">
     <div class="u-fixed-width">
       <h2>
-        <a href="/azure/contact-us" class="js-invoke-modal" aria-controls="azure-confidential-computing-modal">Contact us to discuss your use case&nbsp;&rsaquo;</a>
+        <a href="/azure/contact-us"
+           class="js-invoke-modal"
+           aria-controls="azure-confidential-computing-modal">Contact us to discuss your use case&nbsp;&rsaquo;</a>
       </h2>
     </div>
   </section>
