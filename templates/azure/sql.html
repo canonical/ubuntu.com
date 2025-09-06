@@ -183,9 +183,14 @@
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
           <div class="p-image-container u-hide--small">
-            <img class="p-image-container__image p-strip is-shallow u-no-padding--top"
-                 src="https://assets.ubuntu.com/v1/3bd7c68b-Image.png"
-                 alt="" />
+            {{ image(url="https://assets.ubuntu.com/v1/3bd7c68b-Image.png",
+                        alt="",
+                        width="600",
+                        height="339",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image p-strip is-shallow u-no-padding--top"}) | safe
+            }}
           </div>
         </div>
         <div class="p-equal-height-row__item">
@@ -204,9 +209,14 @@
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
           <div class="p-image-container u-hide--small">
-            <img class="p-image-container__image p-strip is-shallow u-no-padding--top"
-                 src="https://assets.ubuntu.com/v1/e6cadf87-Image.png"
-                 alt="" />
+            {{ image(url="https://assets.ubuntu.com/v1/e6cadf87-Image.png",
+                        alt="",
+                        width="600",
+                        height="339",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image p-strip is-shallow u-no-padding--top"}) | safe
+            }}
           </div>
         </div>
         <div class="p-equal-height-row__item">

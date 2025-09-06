@@ -14,8 +14,13 @@
   <section class="p-strip">
     <div class="row">
       <div class="col-5 u-hide--small u-hide--medium">
-        <img src="https://assets.ubuntu.com/v1/bb580eec-Bionic+Beaver_18.04.svg"
-             alt="" />
+        {{ image(url="https://assets.ubuntu.com/v1/bb580eec-Bionic+Beaver_18.04.svg",
+                alt="",
+                width="793",
+                height="443",
+                hi_def=True,
+                loading="auto") | safe
+        }}
       </div>
       <div class="col-6 col-start-large-7">
         <h1 class="p-heading--2">

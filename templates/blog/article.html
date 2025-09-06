@@ -43,7 +43,8 @@
       }
       "image": "{{ article.image.source_url }}",
       {
-        % endif %
+        %
+        endif %
       }
       "url": "{{ request.url }}",
       "publisher": {
@@ -68,9 +69,14 @@
         <div class="col-8">
           <div class="p-media-object">
             {% if article.author and article.author.id == 217 %}
-              <img src="https://assets.ubuntu.com/v1/f16c40d0-Favicon+-+CoF.svg"
-                   class="p-media-object__image"
-                   alt="" />
+              {{ image(url="https://assets.ubuntu.com/v1/f16c40d0-Favicon+-+CoF.svg",
+                            alt="",
+                            width="16",
+                            height="16",
+                            hi_def=True,
+                            loading="auto",
+                            attrs={"class": "p-media-object__image"}) | safe
+              }}
             {% else %}
               <img src="{{ article.author.avatar_urls['96'] }}"
                    class="p-media-object__image is-round"
@@ -144,76 +150,76 @@
               <div class="p-notification__content">
                 <p class="p-notification__message u-text--muted" id="date-notice">
                   {% if blog_notice.updated %}
-                  This article was last updated <strong>{{ blog_notice.difference_in_years }} year
-                  {%- if blog_notice.difference_in_years > 1 -%}s{%- endif %}
-                  ago</strong>.
-                {% else %}
-                  This article is more than <strong>{{ blog_notice.difference_in_years }} year
-                  {%- if blog_notice.difference_in_years > 1 -%}s{%- endif %}
-                  old</strong>.
-                {% endif %}
-              </p>
+                    This article was last updated <strong>{{ blog_notice.difference_in_years }} year
+                    {%- if blog_notice.difference_in_years > 1 -%}s{%- endif %}
+                      ago</strong>.
+                    {% else %}
+                      This article is more than <strong>{{ blog_notice.difference_in_years }} year
+                      {%- if blog_notice.difference_in_years > 1 -%}s{%- endif %}
+                        old</strong>.
+                      {% endif %}
+                    </p>
+                  </div>
+                </div>
+                <hr class="p-rule--muted" />
+              {% endif %}
+              <div class="p-post__content">{{ article.content.rendered|safe }}</div>
+            </div>
+            {% if article.slug != 'canonical-standing-with-ukraine' %}
+              <div class="col-4">
+                {% include 'blog/product-cards.html' %}
+                <div>{% include 'blog/newsletter-form.html' %}</div>
+              </div>
+            {% endif %}
+          </div>
+        </section>
+      </article>
+
+      {% for tag in tags %}
+        {% if tag.name == 'robotics' %}
+          <section class="p-strip--image is-dark"
+                   style="background-image: linear-gradient(44deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%)">
+            <div class="row">
+              <div class="col-8">
+                <h3>Are you building a robot on top of Ubuntu and looking for a partner? Talk to us!</h3>
+                <p>
+                  <a href="/internet-of-things/contact-us?product=robotics"
+                     class="p-button--positive">Contact Us</a>
+                </p>
+              </div>
+
+              <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
+                {{ image(url="https://assets.ubuntu.com/v1/39ebd977-robot.svg",
+                                alt="",
+                                height="157",
+                                width="100",
+                                hi_def=True,
+                                loading="lazy") | safe
+                }}
               </div>
             </div>
-            <hr class="p-rule--muted" />
-          {% endif %}
-          <div class="p-post__content">{{ article.content.rendered|safe }}</div>
-        </div>
-        {% if article.slug != 'canonical-standing-with-ukraine' %}
-          <div class="col-4">
-            {% include 'blog/product-cards.html' %}
-            <div>{% include 'blog/newsletter-form.html' %}</div>
-          </div>
+          </section>
         {% endif %}
-      </div>
-    </section>
-  </article>
+      {% endfor %}
 
-  {% for tag in tags %}
-    {% if tag.name == 'robotics' %}
-      <section class="p-strip--image is-dark"
-               style="background-image: linear-gradient(44deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%)">
-        <div class="row">
-          <div class="col-8">
-            <h3>Are you building a robot on top of Ubuntu and looking for a partner? Talk to us!</h3>
-            <p>
-              <a href="/internet-of-things/contact-us?product=robotics"
-                 class="p-button--positive">Contact Us</a>
-            </p>
+      {% if related_articles %}
+        <section class="p-strip--light is-shallow">
+          <div class="row">
+            <div class="col-8">
+              <h3>Related posts</h3>
+            </div>
           </div>
 
-          <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
-            {{ image(url="https://assets.ubuntu.com/v1/39ebd977-robot.svg",
-                        alt="",
-                        height="157",
-                        width="100",
-                        hi_def=True,
-                        loading="lazy") | safe
-            }}
+          <div class="row p-divider">
+            {% for related_article in related_articles %}
+              <div class="col-4 p-divider__block">
+                <h4>
+                  <a href="/blog/{{ related_article.slug }}">{{ related_article.title.rendered|safe }}</a>
+                </h4>
+                <p>{{ related_article.excerpt.raw.replace('[…]', '') |truncate(162) }}</p>
+              </div>
+            {% endfor %}
           </div>
-        </div>
-      </section>
-    {% endif %}
-  {% endfor %}
-
-  {% if related_articles %}
-    <section class="p-strip--light is-shallow">
-      <div class="row">
-        <div class="col-8">
-          <h3>Related posts</h3>
-        </div>
-      </div>
-
-      <div class="row p-divider">
-        {% for related_article in related_articles %}
-          <div class="col-4 p-divider__block">
-            <h4>
-              <a href="/blog/{{ related_article.slug }}">{{ related_article.title.rendered|safe }}</a>
-            </h4>
-            <p>{{ related_article.excerpt.raw.replace('[…]', '') |truncate(162) }}</p>
-          </div>
-        {% endfor %}
-      </div>
-    </section>
-  {% endif %}
-{% endblock %}
+        </section>
+      {% endif %}
+    {% endblock %}
