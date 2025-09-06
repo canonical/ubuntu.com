@@ -23,6 +23,27 @@
               href="https://canonical.com/legal/dataprivacy" target="_blank">Canonical's Privacy Policy</a>.</p>
         </div>
 
+        {# These are honey pot fields to catch bots #}
+          <div class="u-off-screen">
+            <label class="website" for="website">Website:</label>
+            <input name="website"
+                   type="text"
+                   class="website"
+                   autocomplete="off"
+                   value=""
+                   id="website"
+                   tabindex="-1" />
+            <label class="name" for="name">Name:</label>
+            <input name="name"
+                   type="text"
+                   class="name"
+                   autocomplete="off"
+                   value=""
+                   id="name"
+                   tabindex="-1" />
+            {# End of honey pots #}
+          </div>
+
         <div>
           <span class="p-card--content">
             <button type="submit" class="u-no-margin--bottom">Sign up</button>
