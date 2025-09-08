@@ -846,12 +846,8 @@ def marketo_submit():
     honeypot_website = flask.request.form.get("website")
 
     if honeypot_name is not None and honeypot_website is not None:
-        if honeypot_name != "" and honeypot_website != "":
+        if honeypot_name != "" or honeypot_website != "":
             raise BadRequest("Unexpected honeypot fields (name, website)")
-        elif honeypot_name != "":
-            raise BadRequest("Unexpected honeypot fields (name)")
-        if honeypot_website != "":
-            raise BadRequest("Unexpected honeypot fields (website)")
         else:
             form_fields.pop("website", None)
             form_fields.pop("name", None)
