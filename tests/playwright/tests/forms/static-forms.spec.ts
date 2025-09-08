@@ -9,28 +9,28 @@ export const staticContactUsPages = [
 
 test.describe("Form ID validation", () => {
   /**
-   * Discover all static contact us pages from the sitemap
+   * Discover all static contact us pages from the sitemap parser
    * @param page The Playwright page object
    * @returns An array of contact us page URLs
    */
+
   async function discoverContactUsPages(page) {
-    const contactUsPages: string[] = [];
-    await page.goto('https://ubuntu.com/sitemap_tree.xml');
+    await page.goto('/sitemap_parser');
     const sitemapContent = await page.textContent('body');
-    const contactUsRegex = /<loc>([^<]+\/contact-us[^<]*)<\/loc>/g;
-    let match;
+    const sitemap = JSON.parse(sitemapContent);
 
-    while ((match = contactUsRegex.exec(sitemapContent)) !== null) {
-      const fullPath = match[1];
-
-      const path = new URL(fullPath);
-      const pathname = path.pathname;
-      if (pathname != '/contact-us') {
-        contactUsPages.push(pathname);
+    // Recursive function to retrieve all /contact-us pages, excluding the root /contact-us
+    function collectContactUsPages(node, results: string[] = []) {
+      if (node.name && node.name !== "/contact-us" && node.name.endsWith("/contact-us")) {
+        results.push(node.name);
       }
+      if (Array.isArray(node.children)) {
+        node.children.forEach(child => collectContactUsPages(child, results));
+      }
+      return results;
     }
 
-    return contactUsPages.length > 0 ? contactUsPages : [];
+    return collectContactUsPages(sitemap);
   }
 
   test("should discover and validate all static /contact-us pages", async ({ page }) => {
