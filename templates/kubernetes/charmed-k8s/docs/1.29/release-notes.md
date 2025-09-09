@@ -13,6 +13,15 @@ layout: [base, ubuntu-com]
 toc: false
 ---
 
+# 1.29+ck6
+
+### Sep 5, 2025 - `charmed-kubernetes --channel 1.29/stable`
+
+## Notable Fixes
+
+### Kubernetes Control Plane | Worker Charm
+* [LP#2009525](https://bugs.launchpad.net/bugs/2009525) Add `ignore-missing-cni` configuration option.
+
 # 1.29+ck5
 
 ### Mar 31, 2025 - `charmed-kubernetes --channel 1.29/stable`
@@ -35,16 +44,17 @@ toc: false
   * `cephfs-storage-class-parameters`
   * `ceph-xfs-storage-class-parameters`
   * `ceph-ext4-storage-class-parameters`
-  
+
   Provides a charm action which aids in remove storage-classes if they prevent
     the charm from creating with the existing storage-class parameters.
   * `delete-storage-class`
+
 
 # 1.29+ck3
 
 ### Jun 14, 2024 - `charmed-kubernetes --channel 1.29/stable`
 
-The release bundle can also be 
+The release bundle can also be
 [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.29/bundle.yaml).
 
 ## Notable Fixes
@@ -60,7 +70,7 @@ The release bundle can also be
 
 ### May 30, 2024 - `charmed-kubernetes --channel 1.29/stable`
 
-The release bundle can also be 
+The release bundle can also be
 [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.29/bundle.yaml).
 
 ## What's new
@@ -212,7 +222,7 @@ default Calico CNI.
 
 ## Fixes
 
-All bug fixes and other feature updates in this release can be found at 
+All bug fixes and other feature updates in this release can be found at
 [the launchpad milestone page for 1.29](https://launchpad.net/charmed-kubernetes/+milestone/1.29).
 
 <a id="notes-issues"> </a>

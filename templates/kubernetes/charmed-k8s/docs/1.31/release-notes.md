@@ -18,6 +18,15 @@ toc: False
 
 ---
 
+# 1.31+ck5
+
+### Sep 5, 2025 - `charmed-kubernetes --channel 1.31/stable`
+
+## Notable Fixes
+
+### Kubernetes Control Plane | Worker Charm
+* [LP#2009525](https://bugs.launchpad.net/bugs/2009525) Add `ignore-missing-cni` configuration option.
+
 # 1.31+ck4
 
 ### August 6, 2025 - `charmed-kubernetes --channel 1.31/stable`
