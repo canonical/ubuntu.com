@@ -60,6 +60,9 @@ SERVICES = {
 MAINTENANCE_URLS = [
     "/pro/subscribe",
     "/pro/maintenance-check",
+]
+
+CRED_MAINTENANCE_URLS = [
     "/credentials/shop",
 ]
 
@@ -133,7 +136,7 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 return flask.render_template("advantage/maintenance.html")
 
             if (
-                flask.request.path in MAINTENANCE_URLS
+                flask.request.path in CRED_MAINTENANCE_URLS
                 and cred_is_in_maintenance
             ):
                 return flask.render_template(
