@@ -835,26 +835,24 @@ def marketo_submit():
             form_fields[key] = value
             if "utm_content" in form_fields:
                 form_fields["utmcontent"] = form_fields.pop("utm_content")
+
     # Check honeypot values are not set
-    honeypots = {}
-    honeypots["name"] = flask.request.form.get("name")
-    honeypots["website"] = flask.request.form.get("website")
     # There is logically difference between None and empty string here.
     # 1. The first if check, we are working with a form that contains honeypots
-    # or the legacy ones using recaptcha.
     # 2. The second that checks for empty string is actually testing if the
     # honeypots have been triggered
 
-    if honeypots["name"] is not None and honeypots["website"] is not None:
-        if honeypots["name"] != "" and honeypots["website"] != "":
+    honeypot_name = flask.request.form.get("name")
+    honeypot_website = flask.request.form.get("website")
+
+    if honeypot_name is not None and honeypot_website is not None:
+        if honeypot_name != "" or honeypot_website != "":
             raise BadRequest("Unexpected honeypot fields (name, website)")
         else:
-            form_fields["grecaptcharesponse"] = "no-recaptcha"
             form_fields.pop("website", None)
             form_fields.pop("name", None)
 
     form_fields.pop("thankyoumessage", None)
-    form_fields.pop("g-recaptcha-response", None)
     return_url = form_fields.pop("returnURL", None)
 
     encode_lead_comments = (
