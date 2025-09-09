@@ -1462,12 +1462,7 @@ def cred_submit_form(**_):
     form_fields.pop("thankyoumessage", None)
     form_fields.pop("g-recaptcha-response", None)
 
-    encode_lead_comments = (
-        form_fields.pop("Encode_Comments_from_lead__c", "yes") == "yes"
-    )
-    if encode_lead_comments and "Comments_from_lead__c" in form_fields:
-        encoded_comment = html.escape(form_fields["Comments_from_lead__c"])
-        form_fields["Comments_from_lead__c"] = encoded_comment
+    form_fields["exitSurveyResponseJson"] = json.dumps(form_fields)
 
     service_account_info = {
         "token_uri": "https://oauth2.googleapis.com/token",
@@ -1491,6 +1486,55 @@ def cred_submit_form(**_):
         valueInputOption="RAW",
         body={"values": [row]},
     ).execute()
+
+    marketo_form_fields = {
+        "firstName": form_fields.get("firstName", ""),
+        "lastName": form_fields.get("lastName", ""),
+        "email": form_fields.get("email", ""),
+        "original_form_id": 4777,
+        "Consent_to_Processing__c": form_fields.get(
+            "Consent_to_Processing__c", ""
+        ),
+        "grecaptcharesponse": form_fields.get("grecaptcharesponse", ""),
+        "exitSurveyResponseJson": form_fields.get(
+            "exitSurveyResponseJson", ""
+        ),
+    }
+    visitor_data = {
+        "userAgentString": flask.request.headers.get("User-Agent"),
+    }
+    # post data to marketo
+    payload = {
+        "formId": 4777,
+        "input": [
+            {
+                "leadFormFields": marketo_form_fields,
+                "visitorData": visitor_data,
+                "cookie": flask.request.args.get("mkt"),
+            }
+        ],
+    }
+
+    try:
+        response = marketo_api.submit_form(payload).json()
+        if response and response.get("result"):
+            result = response["result"][0]
+            if result.get("status") == "skipped" or (
+                response.get("success") is False
+            ):
+                return (
+                    flask.jsonify(
+                        {
+                            "status": "error",
+                        }
+                    ),
+                    400,
+                )
+    except Exception:
+        flask.current_app.extensions["sentry"].captureException(
+            extra={"payload": payload}
+        )
+
     return flask.redirect("/thank-you")
 
 
