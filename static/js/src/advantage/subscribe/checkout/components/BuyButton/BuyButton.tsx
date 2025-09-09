@@ -55,7 +55,6 @@ const BuyButton = ({
     setFieldTouched,
     setFieldError,
     validateForm,
-    errors,
   } = useFormikContext<FormValues>();
   const { data: userInfo } = useCustomerInfo();
   const postPurchaseAccountMutation = postPurchaseAccount();
@@ -92,27 +91,22 @@ const BuyButton = ({
 
   const onPayClick = async () => {
     if (errorType === "cue-banned") return;
+
+    if (isLoading) return;
+
     setIsLoading(true);
+
     confirmNavigateListener.set();
-    validateForm().then((errors) => {
-      const possibleErrors = Object.keys(errors);
-      possibleErrors.forEach((error) => {
-        setFieldTouched(error, true);
+
+    const validationErrors = await validateForm();
+    const possibleErrors = Object.keys(validationErrors);
+    possibleErrors.forEach((field) => setFieldTouched(field, true));
+
+    if (possibleErrors.length > 0) {
+      setError({
+        description: <>Please make sure all fields are filled in correctly.</>,
       });
-
-      if (!(possibleErrors.length === 0)) {
-        setError({
-          description: (
-            <>Please make sure all fields are filled in correctly.</>
-          ),
-        });
-        document.querySelector("h1")?.scrollIntoView();
-        setIsLoading(false);
-        return;
-      }
-    });
-
-    if (!(Object.keys(errors).length === 0)) {
+      document.querySelector("h1")?.scrollIntoView();
       setIsLoading(false);
       return;
     }
@@ -121,7 +115,6 @@ const BuyButton = ({
     // after the user chooses to make a purchase
     // to prevent page refreshes from causing accidental double purchasing
     localStorage.removeItem("ua-subscribe-state");
-    setIsLoading(true);
 
     // Ensure the account exists
     if (!window.accountId) {
