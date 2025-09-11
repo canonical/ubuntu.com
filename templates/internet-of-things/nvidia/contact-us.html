@@ -37,13 +37,14 @@
       <div class="col-8">
         <form action="/marketo/submit" method="post" id="mktoForm_4953">
           <fieldset class="u-no-margin--bottom">
-            <div class="js-formfield">
-              <div role="group" aria-labelledby="which-nvidia-orin-platforms">
-                <h2 class="p-heading--5 js-formfield-title" id="which-nvidia-orin-platforms">Which NVIDIA platforms are you interested in?</h2>
+            <div class="js-formfield js-remove-checkbox-names">
+              <div role="group" aria-labelledby="which-nvidia-orin-platforms-legend">
+                <h2 class="p-heading--5 js-formfield-title" id="which-nvidia-orin-platforms-legend">Which NVIDIA platforms are you interested in?</h2>
                 <label class="p-checkbox">
                   <input class="p-checkbox__input"
                          type="checkbox"
                          aria-labelledby="xavier"
+                         name="which-nvidia-orin-platforms"
                          value="Xavier" />
                   <span class="p-checkbox__label" id="drive-orin">Xavier</span>
                 </label>
@@ -51,6 +52,7 @@
                   <input class="p-checkbox__input"
                          type="checkbox"
                          aria-labelledby="drive-orin"
+                         name="which-nvidia-orin-platforms"
                          value="DRIVE Orin" />
                   <span class="p-checkbox__label" id="drive-orin">DRIVE Orin</span>
                 </label>
@@ -58,6 +60,7 @@
                   <input class="p-checkbox__input"
                          type="checkbox"
                          aria-labelledby="igx-orin"
+                         name="which-nvidia-orin-platforms"
                          value="IGX Orin" />
                   <span class="p-checkbox__label" id="igx-orin">IGX Orin</span>
                 </label>
@@ -65,6 +68,7 @@
                   <input class="p-checkbox__input"
                          type="checkbox"
                          aria-labelledby="jetson-agx-orin"
+                         name="which-nvidia-orin-platforms"
                          value="Jetson AGX Orin" />
                   <span class="p-checkbox__label" id="jetson-agx-orin">Jetson AGX Orin</span>
                 </label>
@@ -72,6 +76,7 @@
                   <input class="p-checkbox__input"
                          type="checkbox"
                          aria-labelledby="jetson-orin-nx"
+                         name="which-nvidia-orin-platforms"
                          value="Jetson Orin NX" />
                   <span class="p-checkbox__label" id="jetson-orin-nx">Jetson Orin NX</span>
                 </label>
@@ -79,6 +84,7 @@
                   <input class="p-checkbox__input"
                          type="checkbox"
                          aria-labelledby="jetson-orin-nano"
+                         name="which-nvidia-orin-platforms"
                          value="Jetson Orin Nano" />
                   <span class="p-checkbox__label" id="jetson-orin-nano">Jetson Orin Nano</span>
                 </label>
