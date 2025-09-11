@@ -381,6 +381,7 @@ class TestBuildingTutorialsQuery(BaseViewTestCase):
       • The `created_at` field is returned unchanged and
         difficulty levels match the input.
       • When no topic parameter is supplied, an empty list is returned.
+      • When tutorials are missing expected keys like `categories`
     """
 
     def _make_tutorials_docs(self, tutorials):
@@ -481,6 +482,51 @@ class TestBuildingTutorialsQuery(BaseViewTestCase):
             resp = view()  # Flask Response
             data = resp.get_json()  # directly parse JSON
         self.assertEqual(len(data), 0)
+
+    def test_building_tutorials_query_missing_keys(self):
+        tutorials = [
+            {
+                "title": "Tutorial 1",
+                "slug": "tutorial-1",
+                "author": "Author 1",  # missing categories
+                "difficulty": 3,
+                "created_at": "2023-01-01T00:00:00Z",
+            },
+            {
+                "title": "Tutorial 2",
+                "slug": "tutorial-2",
+                "categories": ["c2"],
+                "author": "Author 2",  # missing difficulty
+                "created_at": "2023-02-01T00:00:00Z",
+            },
+            {
+                "title": "Tutorial 3",
+                "slug": "tutorial-3",
+                "author": "Author 3",  # missing categories and difficulty
+                "created_at": "2023-03-01T00:00:00Z",
+            },
+            {
+                "title": "Tutorial 4",
+                "slug": "tutorial-4",
+                "categories": ["c2"],
+                "author": "Author 4",
+                "difficulty": 2,
+                "created_at": "2024-02-01T00:00:00Z",
+            },
+        ]
+        docs = self._make_tutorials_docs(tutorials)
+
+        with self.app.test_request_context("/tutorials?topic=c2"):
+            view = build_tutorials_query(tutorials_docs=docs)
+            resp = view()  # Flask Response
+            data = resp.get_json()  # directly parse JSON
+        self.assertEqual(len(data), 2)
+        self.assertEqual(data[0]["title"], "Tutorial 4")
+        self.assertEqual(data[1]["title"], "Tutorial 2")
+
+        # Check that the created_at field is parsed correctly
+        self.assertEqual(data[0]["created_at"], "2024-02-01T00:00:00Z")
+        self.assertEqual(data[1]["created_at"], "2023-02-01T00:00:00Z")
 
 
 class TestMatchTags(TestCase):
