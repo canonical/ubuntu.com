@@ -18,6 +18,7 @@ from webapp.views import (
     match_tags,
 )
 
+
 class BaseViewTestCase(TestCase):
     """Base test case providing the Flask app."""
 
@@ -25,8 +26,19 @@ class BaseViewTestCase(TestCase):
         self.app = app
         self.app.testing = True
 
+
 class TestShortenAcquisitionURL(BaseViewTestCase):
-    """Tests for shorten_acquisition_url."""
+    """
+    Unit tests for `webapp.views.shorten_acquisition_url`.
+
+    Verifies that:
+      • UTM parameters `utm_source`, `utm_medium`, `utm_campaign`
+        are preserved, while long tracking params like fbclid/gclid
+        are stripped.
+      • Overly long query strings are shortened to under 255 chars.
+      • URLs without extraneous parameters are returned untouched.
+
+    """
 
     def test_shorten_acquisition_url(self):
         first_url = (
@@ -78,8 +90,18 @@ class TestShortenAcquisitionURL(BaseViewTestCase):
         self.assertEqual(shorten_acquisition_url(third_url), third_url)
         self.assertLess(len(shorten_acquisition_url(third_url)), 255)
 
+
 class TestProcessLocalCommunities(BaseViewTestCase):
-    """Tests for process_local_communities."""
+    """
+    Unit tests for `webapp.views.process_local_communities`.
+
+    This view builds map markers from local community metadata.
+    These tests:
+    • Patch `flask.render_template` to capture template arguments.
+    • Feed in sample metadata with name, continent and coordinates.
+    • Ensure coordinates (including negative longitude) are parsed
+        to floats correctly and passed to the template.
+    """
 
     @patch("flask.render_template")
     def test_coordinate_parsing(self, mock_render):
@@ -109,8 +131,21 @@ class TestProcessLocalCommunities(BaseViewTestCase):
         self.assertEqual(africa_marker["lat"], 4.71111)
         self.assertEqual(africa_marker["lon"], -74.07222)
 
+
 class TestBuildMirrorList(BaseViewTestCase):
-    """Tests for _build_mirror_list."""
+    """
+    Unit tests for the internal helper `_build_mirror_list`.
+
+    `_build_mirror_list` reads an XML feed of Ubuntu mirrors,
+    parses it with `feedparser` and returns a list of dictionaries.
+
+    Covered behaviours:
+      • Normal case – all mirrors returned with `link` and `bandwidth`.
+      • Local filtering – only secure HTTPS mirrors for a given
+        `country_code` are returned when `local=True`.
+      • No country code – returns an empty list.
+      • File not found / IO error – returns an empty list gracefully.
+    """
 
     @patch("webapp.views.feedparser.parse")
     @patch("builtins.open")
@@ -130,7 +165,7 @@ class TestBuildMirrorList(BaseViewTestCase):
                 "mirror_countrycode": "US",
             },
         ]
-        mock_parse.return_value = type("F", (), {"entries": mirrors})()
+        mock_parse.return_value = Mock(entries=mirrors)
         result = _build_mirror_list()
         expected = [
             {
@@ -167,7 +202,7 @@ class TestBuildMirrorList(BaseViewTestCase):
                 "mirror_countrycode": "DE",
             },
         ]
-        mock_parse.return_value = type("F", (), {"entries": mirrors})()
+        mock_parse.return_value = Mock(entries=mirrors)
         result = _build_mirror_list(local=True, country_code="US")
         self.assertEqual(
             result,
@@ -185,30 +220,41 @@ class TestBuildMirrorList(BaseViewTestCase):
         mock_open.return_value.__enter__.return_value.read.return_value = (
             "<xml/>"
         )
-        mock_parse.return_value = type(
-            "F",
-            (),
-            {
-                "entries": [
-                    {
-                        "link": "https://any.example.com/ubuntu/",
-                        "mirror_bandwidth": "1234",
-                        "mirror_countrycode": "FR",
-                    }
-                ]
-            },
-        )()
+        mock_parse.return_value = Mock(
+            entries=[
+                {
+                    "link": "https://any.example.com/ubuntu/",
+                    "mirror_bandwidth": "1234",
+                    "mirror_countrycode": "FR",
+                }
+            ]
+        )
         result = _build_mirror_list(local=True, country_code=None)
         self.assertEqual(result, [])
 
     @patch("webapp.views.feedparser.parse")
     @patch("builtins.open", side_effect=IOError)
     def test_file_not_found(self, mock_open, mock_parse):
-        mock_parse.return_value = type("F", (), {"entries": []})()
+        mock_parse.return_value = Mock(entries=[])
         self.assertEqual(_build_mirror_list(), [])
 
+
 class TestDownloadThankYou(BaseViewTestCase):
-    """Tests for download_thank_you."""
+    """
+    Unit tests for the download thank-you page view `download_thank_you`.
+
+    This view renders a template based on the product (desktop/server)
+    and query parameters in the request URL.
+
+    Validated behaviours:
+      • All parameters present – correct template and parameters passed.
+      • Space in `architecture` is normalised to `+`.
+      • Missing required parameters aborts with HTTP 400.
+      • No parameters – template still renders with empty values.
+      • Version missing but architecture present – still renders.
+      • Always returns 'no-cache' header in the response.
+
+    """
 
     @patch("flask.render_template")
     def test_basic(self, mock_render):
@@ -256,10 +302,38 @@ class TestDownloadThankYou(BaseViewTestCase):
             architecture="",
             lts="",
         )
+        self.assertEqual(body, "ok")
+        self.assertEqual(headers.get("Cache-Control"), "no-cache")
+
+    @patch("flask.render_template")
+    def test_no_version(self, mock_render):
+        mock_render.return_value = "ok"
+        with self.app.test_request_context("/?architecture=amd64"):
+            body, headers = download_thank_you("desktop")
+        mock_render.assert_called_once_with(
+            "download/desktop/thank-you.html",
+            version="",
+            architecture="amd64",
+            lts="",
+        )
+        self.assertEqual(body, "ok")
+        self.assertEqual(headers.get("Cache-Control"), "no-cache")
 
 
 class TestAccountQuery(BaseViewTestCase):
-    """Tests for account_query without mocking user_info."""
+    """
+    Unit tests for the JSON API view `account_query`.
+
+    This view returns information about the currently logged-in user
+    from `flask.session`.
+
+    Tests ensure:
+      • When `openid` and `authentication_token` exist in session,
+        the response JSON contains all expected fields with defaults
+        for flags.
+      • When no user session is present, JSON contains
+        `{"account": None}` with status 200.
+    """
 
     def test_account_query_with_user(self):
         import flask
@@ -293,16 +367,31 @@ class TestAccountQuery(BaseViewTestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.get_json(), {"account": None})
 
+
 class TestBuildingTutorialsQuery(BaseViewTestCase):
+    """
+    Unit tests for `build_tutorials_query`.
+
+    `build_tutorials_query` returns a Flask view function that filters
+    a tutorials index (coming from a discourse parser) by query params.
+
+    Tests ensure:
+      • With `topic` parameter in the request, only tutorials whose
+        categories include that topic are returned, preserving order.
+      • The `created_at` field is returned unchanged and
+        difficulty levels match the input.
+      • When no topic parameter is supplied, an empty list is returned.
+    """
+
     def _make_tutorials_docs(self, tutorials):
-        class DummyAPI:
+        class PlaceholderAPI:
             base_url = "https://discourse.example.com"
 
-        class DummyParser:
+        class PlaceholderParser:
             def __init__(self, tutorials):
                 self.tutorials = tutorials
                 self.index_topic = 999
-                self.api = DummyAPI()
+                self.api = PlaceholderAPI()
 
             def parse(self):
                 pass
@@ -310,11 +399,11 @@ class TestBuildingTutorialsQuery(BaseViewTestCase):
             def parse_topic(self, topic):
                 pass
 
-        class DummyDocs:
+        class PlaceholderDocs:
             def __init__(self, tutorials):
-                self.parser = DummyParser(tutorials)
+                self.parser = PlaceholderParser(tutorials)
 
-        return DummyDocs(tutorials)
+        return PlaceholderDocs(tutorials)
 
     def test_building_tutorials_query(self):
         tutorials = [
@@ -393,7 +482,21 @@ class TestBuildingTutorialsQuery(BaseViewTestCase):
             data = resp.get_json()  # directly parse JSON
         self.assertEqual(len(data), 0)
 
+
 class TestMatchTags(TestCase):
+    """
+    Unit tests for the helper `match_tags`.
+
+    `match_tags` checks if two lists of tags overlap,
+    ignoring case and surrounding whitespace.
+
+    Covered behaviours:
+      • True when overlap exists, even with different case/whitespace.
+      • False when there is no overlap at all.
+      • False when either list is empty.
+      • True for exact matches.
+    """
+
     def test_match_true_case_insensitive_whitespace(self):
         self.assertTrue(
             match_tags([" Cloud ", "DevOps"], ["devops", "security"])
