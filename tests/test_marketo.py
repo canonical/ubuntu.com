@@ -29,15 +29,13 @@ class TestMarketo(unittest.TestCase):
         """
         Set up Flask app for testing
         """
-
         app.testing = True
         self.client = app.test_client()
 
-        self.form_files = [
-            f
-            for f in Path("templates").rglob("form-data.json")
-            if "templates/tests" not in str(f)
-        ]
+        # Get all form files
+        self.form_gen_files = self._get_form_gen_files()
+        self.contact_us_files = self._get_contact_us_files()
+        self.modal_files = self._get_modal_files()
 
         marketo_session = Session()
         talisker.requests.configure(marketo_session)
@@ -51,14 +49,71 @@ class TestMarketo(unittest.TestCase):
         return super().setUp()
 
     def test_marketo_api(self):
+        """
+        Test Marketo API authentication
+        """
         self.assertIsNotNone(self.marketo_api.token)
 
-    def test_forms_with_marketo(self):
-        for form in self.form_files:
-            self._check_form_with_marketo(form)
+    def test_form_gen_files(self):
+        """
+        Test form generator files are discovered
+        """
+        self.assertGreater(len(self.form_gen_files), 0)
 
-    def _check_form_with_marketo(self, form_path):
-        # Function to check form fields and Marketo fields against one another
+    def test_contact_us_files(self):
+        """
+        Test contact us files are discovered
+        """
+        self.assertGreater(len(self.contact_us_files), 0)
+
+    def test_modal_files(self):
+        """
+        Test modal files are discovered
+        """
+        self.assertGreater(len(self.modal_files), 0)
+
+    def test_form_gen_files_with_marketo(self):
+        """
+        Test form generator files against Marketo fields.
+        """
+        for form in self.form_gen_files:
+            self._check_form_gen_with_marketo(form)
+
+    # Helper methods
+    def _get_form_gen_files(self):
+        """
+        Helper function to get form generator files.
+        """
+        return [
+            f
+            for f in Path("templates").rglob("form-data.json")
+            if "templates/tests" not in str(f)
+        ]
+
+    def _get_contact_us_files(self):
+        """
+        Helper function to get static contact us form files.
+        """
+        response = self.client.get("/sitemap_parser")
+        sitemap = json.loads(response.data)
+        return self._discover_contact_us_pages(sitemap)
+
+    def _get_modal_files(self):
+        """
+        Helper function to get shared interactive modal files.
+        """
+        return [
+            f
+            for f in Path("templates").rglob("*.html")
+            if "shared/forms/interactive" in str(f)
+            and "templates/tests" not in str(f)
+        ]
+
+    def _check_form_gen_with_marketo(self, form_path):
+        """
+        Helper function to check form generator files against Marketo fields.
+        """
+
         def _check_form_fields(field_id, check_form):
             self.assertIsNotNone(
                 field_id,
@@ -135,6 +190,22 @@ class TestMarketo(unittest.TestCase):
                 required = marketo_field.get("required")
                 if required:
                     _check_form_fields(id, "form-data")
+
+    def _discover_contact_us_pages(self, sitemap):
+        """
+        Discover all /contact-us pages in the sitemap recursively.
+        """
+        results = []
+
+        def collect(node):
+            name = node.get("name")
+            if name and name != "/contact-us" and name.endswith("/contact-us"):
+                results.append(name)
+            for child in node.get("children", []):
+                collect(child)
+
+        collect(sitemap)
+        return results
 
 
 if __name__ == "__main__":
