@@ -137,6 +137,20 @@ function setUpStaticForms(form, formId) {
         });
       }
 
+      const checkboxFieldsets = document.querySelectorAll(
+        ".js-remove-checkbox-names",
+      );
+      if (checkboxFieldsets.length > 0) {
+        checkboxFieldsets.forEach((checkboxFieldset) => {
+          const checkboxInputs = checkboxFieldset.querySelectorAll(
+            "input[type='checkbox']",
+          );
+          checkboxInputs.forEach((checkboxInput) => {
+            checkboxInput.removeAttribute("name");
+          });
+        });
+      }
+
       if (formFields.length) {
         commentsFromLead.value = message;
       }
