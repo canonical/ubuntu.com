@@ -406,6 +406,24 @@ def build_engage_page(engage_pages):
                         if page_metadata is not None:
                             related_pages_metadata.append(page_metadata)
 
+            # Compute translated UI strings for template (keep Discourse content unchanged)
+            lang_raw = (metadata.get("language") or "en").strip()
+            lang_base = lang_raw.split("-")[0].lower() if lang_raw else "en"
+            _translations = {
+                "additional_resources": {
+                    "en": "Additional Resources",
+                    "es": "Recursos adicionales",
+                    "fr": "Ressources supplémentaires",
+                    "pt": "Recursos adicionais",
+                    "de": "Zusätzliche Ressourcen",
+                    "tr": "Ek Kaynaklar",
+                    "it": "Risorse aggiuntive",
+                }
+            }
+            additional_resources_text = _translations["additional_resources"].get(
+                lang_base, _translations["additional_resources"]["en"]
+            )
+
             return flask.render_template(
                 "engage/base.html",
                 forum_url=engage_pages.api.base_url,
@@ -413,6 +431,7 @@ def build_engage_page(engage_pages):
                 language=metadata["language"],
                 resource=metadata["type"],
                 related_pages_metadata=related_pages_metadata,
+                additional_resources_text=additional_resources_text,
             )
 
     return engage_page
