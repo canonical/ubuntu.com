@@ -660,11 +660,13 @@ def build_tutorials_query(tutorials_docs):
         tutorials = [
             doc
             for doc in tutorials_docs.parser.tutorials
-            if topic in doc["categories"]
+            if topic in doc.get("categories", [])
         ]
 
         tutorials = sorted(
-            tutorials, key=lambda k: k["difficulty"], reverse=True
+            tutorials,
+            key=lambda k: k.get("difficulty", 1),
+            reverse=True,
         )
 
         return flask.jsonify(tutorials)
