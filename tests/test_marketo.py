@@ -265,22 +265,21 @@ class TestStaticContactForms(MarketoFormTestCase):
                 # Get shared template and form_id
                 extracted = self._extract_formid_from_template(template_path)
 
-                print("\ntemplate path:", template_path)
                 for template, form_id in extracted:
                     # Check if template is in contact_us_template_fields
                     if template in self.contact_us_template_fields:
-                        print("checking", template, form_id)
                         fields = self.contact_us_template_fields[template]
                         marketo_fields = self._get_marketo_fields(form_id)
 
                         self._check_marketo_and_form_fields(
                             form_id, marketo_fields, fields, template_path
                         )
-                    else:
-                        print(
-                            "Template not found in contact_us_template_fields:",
-                            template,
-                        )
+                    # TODO: Uncomment once https://warthogs.atlassian.net/browse/WD-26789 is resolved
+                    # else:
+                    #     self.fail(
+                    #         "Template not found in contact_us_template_fields:"
+                    #         + template
+                    #     )
 
     def _get_contact_us_files(self):
         """
@@ -432,7 +431,7 @@ class TestStaticContactForms(MarketoFormTestCase):
                     id,
                     form_fields["unprocessed"],
                     f"Required field {id} is not in unprocessed fields "
-                    f"for template {template_path} form ID {form_id}. "
+                    f"for template {template_path} form ID {form_id}. ",
                 )
 
         # Check that unprocessed fields are in mkto fields
