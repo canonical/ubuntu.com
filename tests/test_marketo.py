@@ -274,11 +274,12 @@ class TestStaticContactForms(MarketoFormTestCase):
                         self._check_marketo_and_form_fields(
                             form_id, marketo_fields, fields, template_path
                         )
-                    # TODO: Uncomment once https://warthogs.atlassian.net/browse/WD-26789 is resolved
+                    # TODO: Uncomment when resolved
+                    # https://warthogs.atlassian.net/browse/WD-26789
                     # else:
                     #     self.fail(
-                    #         "Template not found in contact_us_template_fields:"
-                    #         + template
+                    #         "Template not found in "
+                    #         "contact_us_template_fields: " + template,
                     #     )
 
     def _get_contact_us_files(self):
