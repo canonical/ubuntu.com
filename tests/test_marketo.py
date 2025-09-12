@@ -17,7 +17,7 @@ from bs4 import BeautifulSoup
 class MarketoFormTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        # Fields that are already allowed to be passed to Marketo
+        # Fields that are allowed in payload
         cls.SET_FIELDS = set(
             {
                 "firstname",
@@ -53,7 +53,13 @@ class MarketoFormTestCase(unittest.TestCase):
         cls.marketo_api._authenticate()
 
     def _check_form_fields(
-        self, field_id, check_form, marketo_fields, form_fields, form_path
+        self,
+        field_id,
+        form_id,
+        check_form,
+        marketo_fields,
+        form_fields,
+        form_path,
     ):
         self.assertIsNotNone(
             field_id,
@@ -73,7 +79,7 @@ class MarketoFormTestCase(unittest.TestCase):
                 marketo_field_ids,
                 f"Field {field_id} is not present in "
                 f"{check_form} fields"
-                f" for form {form_path}",
+                f" for form {form_path} ID {form_id}",
             )
 
         elif check_form == "form-data":
@@ -169,6 +175,7 @@ class TestFormGenerator(MarketoFormTestCase):
                     if field_id != "about-you":
                         self._check_form_fields(
                             field_id,
+                            form_id,
                             "marketo",
                             marketo_fields,
                             form_fields,
@@ -180,6 +187,7 @@ class TestFormGenerator(MarketoFormTestCase):
                         for contact_field in contact_fields:
                             self._check_form_fields(
                                 contact_field.get("id"),
+                                form_id,
                                 "marketo",
                                 marketo_fields,
                                 form_fields,
@@ -192,7 +200,12 @@ class TestFormGenerator(MarketoFormTestCase):
                 required = marketo_field.get("required")
                 if required:
                     self._check_form_fields(
-                        id, "form-data", marketo_fields, form_fields, form_path
+                        id,
+                        form_id,
+                        "form-data",
+                        marketo_fields,
+                        form_fields,
+                        form_path,
                     )
 
 
@@ -264,7 +277,10 @@ class TestStaticContactForms(MarketoFormTestCase):
                             form_id, marketo_fields, fields, template_path
                         )
                     else:
-                        print("Template not found in contact_us_template_fields:", template)
+                        print(
+                            "Template not found in contact_us_template_fields:",
+                            template,
+                        )
 
     def _get_contact_us_files(self):
         """
@@ -334,6 +350,7 @@ class TestStaticContactForms(MarketoFormTestCase):
             # Get formid from form tag
             form_id_tag = soup.find("input", attrs={"name": "formid"})
             # Check that formid value is numerical
+            form_id = None
             if form_id_tag and "value" in form_id_tag.attrs:
                 form_id_value = form_id_tag["value"]
                 if form_id_value.isdigit():
@@ -341,10 +358,21 @@ class TestStaticContactForms(MarketoFormTestCase):
 
             # Create a set of input fields that have name attributes and
             # are not in processed_field_names
-            input_fields = soup.find_all("input", attrs={"name": True})
+            input_fields = soup.find_all(
+                ["input", "textarea"], attrs={"name": True}
+            )
             input_field_names = set(
                 input_field["name"].lower() for input_field in input_fields
             )
+
+            # Add "country" to input_field_names if there is an import
+            # {% include "shared/forms/_country.html" %}
+            if soup.find(
+                string=re.compile(
+                    r'{%\s*include\s*"shared/forms/_country.html"\s*%}'
+                )
+            ):
+                input_field_names.add("country")
 
             # Discard fields that are not submitted to Marketo
             # note: preferredlanguage is submitted to engagement form
@@ -387,85 +415,36 @@ class TestStaticContactForms(MarketoFormTestCase):
         return list(unique_formid_template)
 
     def _check_marketo_and_form_fields(
-            self, formid, marketo_fields, form_fields, template_path
+        self, form_id, marketo_fields, form_fields, template_path
     ):
         """
         Helper function to check form fields and marketo fields
         against each other.
         """
-        marketo_fields = self._get_marketo_fields(formid)
+        marketo_fields = self._get_marketo_fields(form_id)
 
         # Check mkto expected fields are in unprocessed
         for field in marketo_fields:
             id = field.get("id").lower()
             required = field.get("required")
             if required:
-                print("Current form_fields:", form_fields)
                 self.assertIn(
-                    id, form_fields["unprocessed"],
+                    id,
+                    form_fields["unprocessed"],
                     f"Required field {id} is not in unprocessed fields "
-                    f"for template {template_path}"
+                    f"for template {template_path} form ID {form_id}. "
                 )
 
         # Check that unprocessed fields are in mkto fields
         for field in form_fields["unprocessed"]:
             self._check_form_fields(
                 field,
+                form_id,
                 "marketo",
                 marketo_fields,
                 [],
                 template_path,
             )
-
-
-class TestModalFiles(MarketoFormTestCase):
-    def setUp(self):
-        """
-        Set up Flask app for testing
-        """
-        super().setUp()
-        app.testing = True
-        self.client = app.test_client()
-
-        # Get all modal files
-        self.modal_files = self._get_modal_files()
-
-    def test_modal_files(self):
-        """
-        Test modal files are discovered
-        """
-        self.assertGreater(len(self.modal_files), 0)
-
-    def _get_modal_files(self):
-        """
-        Helper function to get shared interactive modal files.
-        """
-        return [
-            f
-            for f in Path("templates").rglob("*.html")
-            if "shared/forms/interactive" in str(f)
-            and "templates/tests" not in str(f)
-        ]
-
-    def _blocked_test_modal_files_with_marketo(self):
-        """
-        Test modal files against Marketo fields.
-
-        Issue: modal files are templates, they do not have form ID
-        - Have to check parent for form ID, and then check the template
-        """
-        # for modal in self.modal_files:
-        modal = self.modal_files[0]
-        with open(modal, "r") as f:
-            soup = BeautifulSoup(f, "html.parser")
-            js_formfields = soup.find_all(class_="js-formfield")
-
-            # Get all fields that have "name"
-            # and are not in SET_FIELDS
-            # Check that they are wrapped by js-formfield
-            print(js_formfields)
-            # content = f.read()
-            # print(content)
 
 
 if __name__ == "__main__":
