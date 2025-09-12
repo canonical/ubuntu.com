@@ -95,8 +95,6 @@ class MarketoFormTestCase(unittest.TestCase):
         else:
             self.fail(f"Unknown check_form: {check_form}")
 
-        # Add another check to parse processed_from_fields
-
     def _get_marketo_fields(self, form_id):
         marketo_response = self.marketo_api.get_form_fields(form_id)
         self.assertEqual(marketo_response.status_code, 200)
@@ -274,11 +272,12 @@ class TestStaticContactForms(MarketoFormTestCase):
                         self._check_marketo_and_form_fields(
                             form_id, marketo_fields, fields, template_path
                         )
-                    # TODO: Uncomment once https://warthogs.atlassian.net/browse/WD-26789 is resolved
+                    # TODO: Uncomment when resolved
+                    # https://warthogs.atlassian.net/browse/WD-26789
                     # else:
                     #     self.fail(
-                    #         "Template not found in contact_us_template_fields:"
-                    #         + template
+                    #         "Template not found in "
+                    #         "contact_us_template_fields: " + template,
                     #     )
 
     def _get_contact_us_files(self):
@@ -401,6 +400,7 @@ class TestStaticContactForms(MarketoFormTestCase):
             content = f.read()
         # Regex to find formid in {% with ... formid="xxxx" ... %}
         matches = re.findall(r'formid\s*=\s*"(\d+)"', content)
+
         # Regex to find included template in {% include "template-name" %}
         include_match = re.search(r'{%\s*include\s*"([^"]+)"\s*%}', content)
         included_template = include_match.group(1) if include_match else None
