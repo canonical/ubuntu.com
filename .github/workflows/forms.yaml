@@ -77,3 +77,9 @@ jobs:
           MARKETO_API_SECRET: ${{ secrets.MARKETO_API_SECRET }}
         run: |
           python -m unittest tests.test_marketo
+
+      - name: Send message on failure
+        env:
+          BOT_URL: ${{ secrets.BOT_URL }}
+        if: failure()
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" $BOT_URL?room=webge-forms
