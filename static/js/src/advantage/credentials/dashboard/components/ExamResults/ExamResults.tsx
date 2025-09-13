@@ -96,6 +96,12 @@ const ExamResults = () => {
                 href={props.row.original.result_url}
                 target="_blank"
                 rel="noopener noreferrer"
+                style={{
+                  color:
+                    props.row.original.score > props.row.original.cutOff
+                      ? "#fff"
+                      : "",
+                }}
               >
                 {props.value}
               </a>
@@ -106,6 +112,7 @@ const ExamResults = () => {
         Header: "First Name",
         accessor: "user.first_name",
         sortType: "basic",
+        Cell: (props: any) => <small>{props.value}</small>,
       },
       {
         Header: "User Email",
@@ -117,6 +124,11 @@ const ExamResults = () => {
           ) : (
             <small>{props.value}</small>
           ),
+      },
+      {
+        Header: "Variant",
+        accessor: "ability_screen_variant.name",
+        sortType: "basic",
       },
       {
         Header: "Score (%)",
