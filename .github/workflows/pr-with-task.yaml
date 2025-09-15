@@ -7,7 +7,6 @@ jobs:
   start:
     name: "Start Project"
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
 
@@ -16,20 +15,34 @@ jobs:
         with:
           version: 3.40.0
 
-      - name: Install dependencies
-        run: task install
+      - name: Start server
+        run: |
+          stdbuf -oL -eL task start > server.log 2>&1 &
+          echo $! > server.pid
 
-      - name: Task start
-        run: task start &
+      - name: Wait for server to start
+        run: |
+          timeout 120 bash -c 'tail -n0 -F server.log | grep -m1 "Listening at"'
 
-      - name: Check server is running
+      - name: Print server logs
+        if: always()
+        run: |
+          cat server.log || true
+
+      - name: Check server is returning 200
         run: |
           export PORT=$(grep '^\s*PORT:' taskfile.yaml | awk '{print $2}')
           curl --head --fail --retry-delay 1 --retry 30 --retry-connrefused http://localhost:${PORT}
+
+      - name: Stop server
+        run: |
+          if [ -f server.pid ]; then
+            kill $(cat server.pid) || true
+          fi
+
   build:
     name: "Build Project"
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
 
@@ -38,28 +51,12 @@ jobs:
         with:
           version: 3.40.0
 
-      - name: Task build
+      - name: Build project
         run: task build
-
-  lint:
-    name: "Lint Project Static Files"
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Taskfile
-        uses: arduino/setup-task@v2
-        with:
-          version: 3.40.0
-
-      - name: Task lint
-        run: task lint
 
   test:
     name: "Test Project"
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     steps:
       # TODO: Add codecov integration when this replaces the original PR.yaml workflow
       - uses: actions/checkout@v4
@@ -69,7 +66,21 @@ jobs:
         with:
           version: 3.40.0
 
-      - name: Task test
+      - name: Test project
         run: task test
+
+  lint:
+    name: "Lint Project"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Taskfile
+        uses: arduino/setup-task@v2
+        with:
+          version: 3.40.0
+
+      - name: Lint project
+        run: task lint
 
   # TODO: Include inclusive naming check, which is currently in the original PR.yaml workflow

@@ -12,11 +12,12 @@ env:
   NODE_VERSION: "20"
   PATH: "{{ .VENV_BIN }}:$PATH"
 
-dotenv: [".env", ".env.local"]
+dotenv: [".env.local", ".env"]
 
 # Available tasks:
 # - start (default)
 # - install
+# - shell
 # - clean
 # - test
 # - lint
@@ -28,35 +29,43 @@ tasks:
       - task: start
 
   start:
+    desc: "Start the project"
     deps:
-      - install-python
-      - install-yarn
+      - install
     cmds:
       - PATH="{{ .VENV_BIN }}:$PATH" yarn start
 
   install:
+    desc: "Install Python and Node.js binaries and their packages"
     deps:
       - install-python
       - install-yarn
     cmds:
       - echo "Installation complete"
 
+  shell:
+    desc: "Open a shell with the virtual environment activated"
+    deps:
+      - install
+    cmds:
+      - PATH="{{ .VENV_BIN }}:$PATH" $SHELL
+
   clean:
     cmds:
       - rm -rf static/css static/js/dist node_modules {{ .VENV_DIR }} .task
 
   test:
+    desc: "Run all project tests"
     deps:
-      - install-python
-      - install-yarn
+      - install
     cmds:
       - PATH="{{ .VENV_BIN }}:$PATH" coverage run --source=. -m unittest discover tests
       - PATH="{{ .VENV_BIN }}:$PATH" yarn test-js --coverage
 
   lint:
+    desc: "Run all project linting"
     deps:
-      - install-python
-      - install-yarn
+      - install
     cmds:
       - PATH="{{ .VENV_BIN }}:$PATH" yarn lint-python
       - PATH="{{ .VENV_BIN }}:$PATH" yarn lint-ts
@@ -64,18 +73,18 @@ tasks:
       - PATH="{{ .VENV_BIN }}:$PATH" yarn lint-scss
 
   format:
+    desc: "Run all project formatting"
     deps:
-      - install-python
-      - install-yarn
+      - install
     cmds:
       - PATH="{{ .VENV_BIN }}:$PATH" yarn format-python
       - PATH="{{ .VENV_BIN }}:$PATH" yarn format-prettier
       - npx stylelint --fix static/**/*.scss
 
   build:
+    desc: "Build the project static files"
     deps:
-      - install-python
-      - install-yarn
+      - install
     cmds:
       - PATH="{{ .VENV_BIN }}:$PATH" yarn build
 
@@ -90,11 +99,16 @@ tasks:
     cmds:
       - curl https://mise.run | sh
 
-  setup-tools:
+  setup-python:
     deps:
       - setup-mise
     cmds:
       - mise install python@{{ .PYTHON_VERSION }}
+
+  setup-node:
+    deps:
+      - setup-mise
+    cmds:
       - mise install node@{{ .NODE_VERSION }}
 
   # Python virtual environment
@@ -102,7 +116,7 @@ tasks:
     internal: true
     desc: "Setup python virtual environment"
     deps:
-      - setup-tools
+      - setup-python
     status:
       - ! -f {{ .PYTHON_BIN }}
     cmds:
@@ -126,7 +140,7 @@ tasks:
     internal: true
     desc: "Install yarn packages"
     deps:
-      - setup-tools
+      - setup-node
     status:
       - which yarn
       - which node
