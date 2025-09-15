@@ -8,17 +8,20 @@ vars:
 
 env:
   PORT: 8001
+  PYTHON_VERSION: "3.10"
+  NODE_VERSION: "20"
   PATH: "{{ .VENV_BIN }}:$PATH"
 
 dotenv: [".env", ".env.local"]
 
 # Available tasks:
 # - start (default)
+# - install
 # - clean
 # - test
 # - lint
 # - format
-
+# - build
 tasks:
   default:
     cmds:
@@ -30,6 +33,13 @@ tasks:
       - install-yarn
     cmds:
       - PATH="{{ .VENV_BIN }}:$PATH" yarn start
+
+  install:
+    deps:
+      - install-python
+      - install-yarn
+    cmds:
+      - echo "Installation complete"
 
   clean:
     cmds:
@@ -62,6 +72,13 @@ tasks:
       - PATH="{{ .VENV_BIN }}:$PATH" yarn format-prettier
       - npx stylelint --fix static/**/*.scss
 
+  build:
+    deps:
+      - install-python
+      - install-yarn
+    cmds:
+      - PATH="{{ .VENV_BIN }}:$PATH" yarn build
+
   # Custom tools versioning setup (mise, python, node, etc.)
   setup-mise:
     internal: true
@@ -77,7 +94,8 @@ tasks:
     deps:
       - setup-mise
     cmds:
-      - mise install
+      - mise install python@{{ .PYTHON_VERSION }}
+      - mise install node@{{ .NODE_VERSION }}
 
   # Python virtual environment
   venv:
@@ -88,7 +106,8 @@ tasks:
     status:
       - ! -f {{ .PYTHON_BIN }}
     cmds:
-      - python3 -m venv .venv
+      - mise exec python@{{ .PYTHON_VERSION }} -- python3 -m venv .venv
+      - echo "Using Python $({{ .PYTHON_BIN }} --version)"
 
   install-python:
     internal: true
