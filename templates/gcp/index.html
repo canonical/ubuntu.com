@@ -21,16 +21,22 @@
           <p>
             With an optimized Ubuntu GCP kernel built in collaboration between Google and Canonical to deliver the very best performance on the Google Cloud hypervisor, Ubuntu is a popular Linux OS on GCP for virtual machine and container workloads.
           </p>
-          <p>
-            Today, Ubuntu powers more mission-critical cloud workloads than any other operating system.
-          </p>
+          <p>Today, Ubuntu powers more mission-critical cloud workloads than any other operating system.</p>
         </div>
         <hr class="p-rule--muted" />
         <a href="/gcp/contact-us" class="p-button--positive js-invoke-modal">Talk to us about Ubuntu on Google Cloud</a>
       </div>
       <div class="col">
         <div class="u-embedded-media">
-          <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/ybjCCu5nr6g?si=CZoIn6MtcNupEEU_" title="Secure Your Cloud Journey: Google Cloud & Ubuntu Pro for Enhanced Protection" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <iframe class="u-embedded-media__element"
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/ybjCCu5nr6g?si=CZoIn6MtcNupEEU_"
+                  title="Secure Your Cloud Journey: Google Cloud & Ubuntu Pro for Enhanced Protection"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -40,7 +46,9 @@
     <div class="row">
       <div class="p-notification--information u-no-margin--bottom">
         <div class="p-notification__content">
-          <p class="p-notification__title p-heading--5">Discover the top open source security challenges facing 500+ organizations</p>
+          <p class="p-notification__title p-heading--5">
+            Discover the top open source security challenges facing 500+ organizations
+          </p>
           <p class="p-notification__message">
             <a href="/engage/2025-state-of-software-supply-chain?utm_source=webbanner&utm_medium=organic&utm_campaign=701N100000UcKSjIAN">
               Download the full report from IDC to learn more
@@ -62,12 +70,14 @@
           Select between the standard Ubuntu Server and the Pro edition, which includes expanded security, compliance and GCP integration:
         </p>
       </div>
-    </div>    
+    </div>
 
     <div class="row--50-50">
       <div class="col">
         <hr class="p-rule--highlight" />
-        <div class="p-card--overlay u-no-padding--top" style="height: 95%; overflow: hidden;">
+        <div class="p-card--overlay u-no-padding--top"
+             style="height: 95%;
+                    overflow: hidden">
           <div class="row p-section--shallow">
             <h3>Ubuntu LTS</h3>
             <p class="p-heading--4">Free to use</p>
@@ -83,14 +93,16 @@
           <hr class="p-rule--muted" />
           <p>
             <a href="https://console.cloud.google.com/compute/instancesAdd?imageId=4629240575064276470&imageProjectId=ubuntu-os-cloud"
-                class="p-button u-no-margin--bottom">Launch Ubuntu Server 24.04 LTS</a>
+               class="p-button u-no-margin--bottom">Launch Ubuntu Server 24.04 LTS</a>
           </p>
         </div>
       </div>
 
       <div class="col">
         <hr class="p-rule--highlight" />
-        <div class="p-card--overlay u-no-padding--top" style="height: 95%; overflow: hidden;">
+        <div class="p-card--overlay u-no-padding--top"
+             style="height: 95%;
+                    overflow: hidden">
           <div class="row p-section--shallow">
             <h3>Ubuntu Pro for Google Cloud</h3>
             <p class="p-heading--4">3-4.5% of an average instance cost</p>
@@ -126,14 +138,21 @@
   <section class="p-section">
     <div class="row">
       <hr class="p-rule--muted" />
-      <h2>Features</h2>      
+      <h2>Features</h2>
       <div class="row">
         <div class="col-start-large-4 col-9">
           <div class="p-equal-height-row u-no-padding--bottom p-section--shallow">
             <div class="p-equal-height-row__col">
               <div class="p-equal-height-row__item">
                 <div class="p-media-container u-darker-background u-hide--small u-hide--medium">
-                  <img width="320" src="https://assets.ubuntu.com/v1/6035d339-all-the-bits-you-need.png" alt="" />
+                  {{ image(url="https://assets.ubuntu.com/v1/6035d339-all-the-bits-you-need.png",
+                                    alt="",
+                                    width="568",
+                                    height="853",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"style": "width: 320px;"}) | safe
+                  }}
                 </div>
                 <div class="p-equal-height-row__item">
                   <hr class="p-rule--highlight u-hide--medium u-hide--small is-muted" />
@@ -147,7 +166,14 @@
             <div class="p-equal-height-row__col">
               <div class="p-equal-height-row__item">
                 <div class="p-media-container u-darker-background u-hide--small u-hide--medium">
-                  <img width="320" src="https://assets.ubuntu.com/v1/b5e17220-security-built-in.png" alt="" />
+                  {{ image(url="https://assets.ubuntu.com/v1/b5e17220-security-built-in.png",
+                                    alt="",
+                                    width="568",
+                                    height="853",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"style": "width: 320px;"}) | safe
+                  }}
                 </div>
                 <div class="p-equal-height-row__item">
                   <hr class="p-rule--highlight u-hide--medium u-hide--small is-muted" />
@@ -161,7 +187,14 @@
             <div class="p-equal-height-row__col">
               <div class="p-equal-height-row__item">
                 <div class="p-media-container u-darker-background u-hide--small u-hide--medium">
-                  <img width="320" src="https://assets.ubuntu.com/v1/b9be1d88-optimised.png" alt="" />
+                  {{ image(url="https://assets.ubuntu.com/v1/b9be1d88-optimised.png",
+                                    alt="",
+                                    width="568",
+                                    height="853",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"style": "width: 320px;"}) | safe
+                  }}
                 </div>
                 <div class="p-equal-height-row__item">
                   <hr class="p-rule--highlight u-hide--medium u-hide--small is-muted" />
@@ -226,7 +259,8 @@
           Canonical works with the top enterprises and innovators in the world to define and execute their cloud journeys. Migration, application redesign, support and optimization services are some of the ways in which we have helped customers make the most of Ubuntu and GCP together.
         </p>
         <hr class="p-rule--muted" />
-        <a href="/gcp/contact-us" class="p-button--positive js-invoke-modal u-no-margin--bottom">Talk to us about Ubuntu on GCP</a>
+        <a href="/gcp/contact-us"
+           class="p-button--positive js-invoke-modal u-no-margin--bottom">Talk to us about Ubuntu on GCP</a>
       </div>
     </div>
   </section>

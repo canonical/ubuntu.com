@@ -52,18 +52,18 @@
         <li>
           <label class="p-checkbox">
             <input class="p-checkbox__input" name="Partner_Marketing_Opt_in__c" aria-label="Partner Permission" value="true" type="checkbox" />
-            <span class="p-checkbox__label" id="Partner_Marketing_Opt_in__c">From time to time, Canonical or the identified co-host(s) may wish to contact you by email to provide you with information about events and other news or product updates that may be of interest to you. If you are happy to be contacted by Canonical or the identified co-host(s) for these purposes please select the check box. Further information on Canonical's processing of your personal data can be found in <a href="/legal/data-privacy/newsletter">Canonical's privacy notice</a>. If you choose to give your consent, you may withdraw it at any time by clicking "unsubscribe" at the bottom of any Canonical email. See Canonical's <a href="/legal/data-privacy">data privacy policy</a>.</span>
+            <span class="p-checkbox__label" id="Partner_Marketing_Opt_in__c">From time to time, Canonical or the identified co-host(s) may wish to contact you by email to provide you with information about events and other news or product updates that may be of interest to you. If you are happy to be contacted by Canonical or the identified co-host(s) for these purposes please select the check box. Further information on Canonical's processing of your personal data can be found in <a href="https://canonical.com/legal/data-privacy/newsletter">Canonical's privacy notice</a>. If you choose to give your consent, you may withdraw it at any time by clicking "unsubscribe" at the bottom of any Canonical email. See Canonical's <a href="https://canonical.com/legal/data-privacy">data privacy policy</a>.</span>
           </label>
         </li>
       {% endif %}
       <li>
-        <p>In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
+        <p>In submitting this form, I confirm that I have read and agree to <a href="https://canonical.com/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="https://canonical.com/legal/data-privacy">Privacy Policy</a>.
         </p>
       </li>
       <li>
         <button type="submit" class="u-no-margin--bottom {% if cta_class %}{{ cta_class }}{% endif %}" >{% if cta %}{{ cta }}{% else %}Download the whitepaper{% endif %}</button>
         <input name="formid" aria-label="formid" value="{{ id }}" type="hidden" />
-        <input type="hidden" name="returnURL" aria-label="returnURL" value="{{ returnURL }}" />
+        <input type="hidden" name="returnURL" aria-label="returnURL" value="{{ returnURL }}#contact-form-success" />
         <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="{{ utm_campaign }}" />
         <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="{{ utm_medium }}" />
         <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="{{ utm_source }}" />

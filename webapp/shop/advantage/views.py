@@ -273,6 +273,7 @@ def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
     marketplace = kwargs.get("marketplace")
     action = kwargs.get("action", "purchase")
     coupon = kwargs.get("coupon")
+    referral_id = kwargs.get("referral_id")
 
     subscribed_quantities = {}
     if action == "purchase":
@@ -338,6 +339,8 @@ def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
         for metadata_key in metadata_keys
         if flask.session.get(metadata_key)
     ]
+    if referral_id:
+        metadata.append({"key": "referralID", "value": referral_id})
 
     if marketplace == "canonical-pro-channel":
         channel_metadata = kwargs.get("metadata")

@@ -1,7 +1,14 @@
 <div class="p-card js-product-card u-hide">
-  <img class="p-card__thumbnail"
-       src="https://assets.ubuntu.com/v1/dba11aee-kubernetes.svg"
-       alt="Kubernetes" />
+  {{ image(url="https://assets.ubuntu.com/v1/dba11aee-kubernetes.svg",
+    alt="",
+    width="723",
+    height="702",
+    hi_def=True,
+    loading="auto",
+    attrs={
+      "class": "p-card__thumbnail", "style":"width: 40px;"
+    }) | safe
+  }}
   <hr class="p-rule--muted" />
   <h3>
     <a href="/kubernetes/what-is-kubernetes">What is Kubernetes?</a>

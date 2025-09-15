@@ -52,12 +52,6 @@ class MarketoAPI:
             "POST", "/rest/v1/leads/submitForm.json", json=data
         )
 
-    def describe_leads(self):
-        return self.request("GET", "/rest/v1/leads/describe.json")
-
-    def get_lead(self, id_):
-        return self.request("GET", f"/rest/v1/leads/{id_}.json")
-
     def update_leads(self, leads=None):
         data = {
             "action": "createOrUpdate",
@@ -65,3 +59,6 @@ class MarketoAPI:
             "input": leads,
         }
         return self.request("POST", "/rest/v1/leads.json", json=data)
+
+    def get_form_fields(self, id):
+        return self.request("GET", f"/rest/asset/v1/form/{id}/fields.json")

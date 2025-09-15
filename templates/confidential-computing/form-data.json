@@ -1,0 +1,45 @@
+{
+  "form": {
+    "/confidential-computing": {
+      "templatePath": "/confidential-computing/index.html",
+      "childrenPaths": [],
+      "isModal": true,
+      "modalId": "confidential-computing-modal",
+      "formData": {
+        "title": "Contact us",
+        "introText": "Discuss your confidential computing use case with our experts",
+        "formId": 5352,
+        "returnUrl": "/confidential-computing#contact-form-success",
+        "product": ""
+      },
+      "fieldsets": [
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Phone number"
+            }
+          ]
+        },
+        {
+          "title": "What would you like to talk to us about?",
+          "id": "comments",
+          "noCommentsFromLead": false,
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "comments",
+              "label": "comments",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

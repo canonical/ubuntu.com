@@ -1,89 +1,86 @@
 {% extends "engage/base_engage.html" %}
 
-{% block title %}다운로드 {{ resource_name }} {% endblock %}
+{% block title %}다운로드 {{ resource_name }}{% endblock %}
 
 {% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 
 {% block content %}
-<style>
-  .global-nav .global-nav__header-logo-anchor {
-    padding-left: 0 !important;
-  }
-</style>
-<section class="p-strip p-engage-banner--grad">
-  <div class="u-fixed-width navigation-logo-engage">
-    <a href="/">
-      {{
-        image(
-            url="https://assets.ubuntu.com/v1/f263d9c4-logo-ubuntu-white.svg",
-            alt="Ubuntu",
-            width="143",
-            height="32",
-            hi_def=True,
-            loading="auto",
-        ) | safe
-      }}
-    </a>
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <h1>
-        감사합니다
-      </h1>
+  <style>
+    .global-nav .global-nav__header-logo-anchor {
+      padding-left: 0 !important;
+    }
+  </style>
+  <section class="p-section p-engage-banner--grad">
+    <div class="grid-row">
+      <a href="/">
+        {{ image(url="https://assets.ubuntu.com/v1/b4f695ea-Canonical%20Ubuntu%20copy%202.svg",
+                alt="Canonical Ubuntu",
+                width="220",
+                height="40",
+                hi_def=True,
+                loading="auto",) | safe
+        }}
+      </a>
     </div>
-  </div>
-</section>
+    <div class="p-strip is-shallow">
+      <div class="grid-row">
+        <div class="grid-col-8">
+          <h1>감사합니다</h1>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section class="p-strip">
-  <div class="u-fixed-width">
-    {% if form_details and "access_to_content" in metadata and metadata.access_to_content == "true" %}
+  <section class="p-strip">
+    <div class="u-fixed-width">
+      {% if form_details and "access_to_content" in metadata and metadata.access_to_content == "true" %}
 
-      <h3>다음의 {{ resource_name }} 내용을 {{ form_details.email }}로 보내드렸습니다.</h3>
-      <p>
-        <a class="p-button--positive" href="{{ request_url }}">마지막 페이지로 돌아가기</a>
-        <a class="p-button" href="/contact-us">문의하기</a>
-      </p>
-      <p>
-        받지 못하셨나요? 스팸 폴더를 확인하고 올바른 이메일 주소를 사용했는지 확인하세요.
-      </p>
-      <p>
-        <a href="{{ request_url }}">아니면 다시 보내보세요</a>
-      </p>
+        <h3>다음의 {{ resource_name }} 내용을 {{ form_details.email }}로 보내드렸습니다.</h3>
+        <p>
+          <a class="p-button--positive" href="{{ request_url }}">마지막 페이지로 돌아가기</a>
+          <a class="p-button" href="/contact-us">문의하기</a>
+        </p>
+        <p>받지 못하셨나요? 스팸 폴더를 확인하고 올바른 이메일 주소를 사용했는지 확인하세요.</p>
+        <p>
+          <a href="{{ request_url }}">아니면 다시 보내보세요</a>
+        </p>
 
-    {% else %}
-      {% if "thank_you_text" in metadata %}
-        <p>{{ metadata["thank_you_text"] }}</p>
       {% else %}
-        <p>이제 {{ resources_name }}을(를) 다운로드할 준비가 되었습니다.</p>
-      {% endif %}
-      {% if "contact_form_only" not in metadata and metadata.contact_form_only != "true" or ("access_to_content" in metadata and metadata.access_to_content == "true") %}
-        {% if metadata.resource_url and metadata.resource_url != "" %}
-          <p>
-            <a class="p-button--positive" href="{{ resource_url }}">다운로드</a>
-          </p>
+        {% if "thank_you_text" in metadata %}
+          <p>{{ metadata["thank_you_text"] }}</p>
+        {% else %}
+          <p>이제 {{ resources_name }}을(를) 다운로드할 준비가 되었습니다.</p>
+        {% endif %}
+        {% if "contact_form_only" not in metadata and metadata.contact_form_only != "true" or ("access_to_content" in metadata and metadata.access_to_content == "true") %}
+          {% if metadata.resource_url and metadata.resource_url != "" %}
+            <p>
+              <a class="p-button--positive" href="{{ resource_url }}">다운로드</a>
+            </p>
+          {% endif %}
         {% endif %}
       {% endif %}
-    {% endif %}
-  </div>
-</section>
+    </div>
+  </section>
 
-{% if related | length > 0 %}
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-8">
-      <h2 class="p-heading--3">당신이 또 관심 있어야 할 주제는 다음과 같습니다.</h2>
-    </div>
-  </div>
-  <div class="row p-divider">
-    {% for page in related %}
-    <div class="col-4 p-divider__block">
-      <!-- THREE ADDITIONAL CTAs -->
-      <h4>{{ page["topic_name"] }}</h4>
-      <p>{{ page["subtitle"] }}</p>
-      <p><a href="{{ page['path'] }}">더보기&nbsp;&rsaquo;</a></p>
-    </div>
-    {% endfor %}
-  </div>
-</section>
-{% endif %}
+  {% if related | length > 0 %}
+    <section class="p-strip--highlighted">
+      <div class="grid-row">
+        <div class="grid-col-8">
+          <h2 class="p-heading--3">당신이 또 관심 있어야 할 주제는 다음과 같습니다.</h2>
+        </div>
+      </div>
+      <div class="grid-row p-divider">
+        {% for page in related %}
+          <div class="grid-col-4 p-divider__block">
+            <!-- THREE ADDITIONAL CTAs -->
+            <h4>{{ page["topic_name"] }}</h4>
+            <p>{{ page["subtitle"] }}</p>
+            <p>
+              <a href="{{ page['path'] }}">더보기&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
 {% endblock content %}

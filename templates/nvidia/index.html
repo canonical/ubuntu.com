@@ -383,10 +383,14 @@
 
         </p>
 
-        <img src="https://assets.ubuntu.com/v1/5b483842-cog_trimmed.svg"
-             alt=""
-             class="u-no-margin-bottom"
-             style="margin-bottom: -7px" />
+        {{ image(url="https://assets.ubuntu.com/v1/5b483842-cog_trimmed.svg",
+                alt="",
+                width="84",
+                height="65",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "u-no-margin-bottom", "style": "margin-bottom: -7px"}) | safe
+        }}
 
         <hr class="p-rule--muted u-no-margin-top" />
 
@@ -655,7 +659,7 @@
       <div class="col-6">
 
         <p>
-          Standardising operations using ML workflows can significantly improve time-to-market and reduce the costs associated with your AI solutions. <a href="https://charmed-kubeflow.io/">Charmed Kubeflow</a>, an open source machine learning platform built for Kubernetes, provides a unified environment where data scientists and data engineers can collaborate.
+          Standardising operations using ML workflows can significantly improve time-to-market and reduce the costs associated with your AI solutions. <a href="https://canonical.com/mlops/kubeflow">Charmed Kubeflow</a>, an open source machine learning platform built for Kubernetes, provides a unified environment where data scientists and data engineers can collaborate.
         </p>
 
         <p>
@@ -695,23 +699,23 @@
         <li class="p-list__item">
           Whitepaper: <a href="/engage/run-ai-at-scale">Run AI at Scale - Build Your Performant ML Stack with NVIDIA DGX and Kubeflow</a>
 
+        </li>
+
+        <li class="p-list__item">
+          Reference architecture: <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/EGX_MicroK8s_Kubeflow_Reference_Architecture.pdf">
+          Run AI at the Edge: Use MicroK8s with Charmed Kubeflow on NVIDIA EGX platform
+        </a>
+
       </li>
 
-      <li class="p-list__item">
-        Reference architecture: <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/EGX_MicroK8s_Kubeflow_Reference_Architecture.pdf">
-        Run AI at the Edge: Use MicroK8s with Charmed Kubeflow on NVIDIA EGX platform
-      </a>
+      <li class="p-list__item no-border">
+        Learn more about Kubeflow &mdash; <a href="https://canonical.com/mlops/kubeflow">the fully supported MLOps platform for any cloud</a>
 
-    </li>
+      </li>
 
-    <li class="p-list__item no-border">
-      Learn more about Kubeflow &mdash; <a href="https://charmed-kubeflow.io/">the fully supported MLOps platform for any cloud</a>
+    </ul>
 
-    </li>
-
-  </ul>
-
-</div>
+  </div>
 
 </div>
 </section>

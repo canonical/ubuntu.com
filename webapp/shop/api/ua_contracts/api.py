@@ -196,6 +196,16 @@ class UAContractsAPI:
             error_rules=["default"],
         ).json()
 
+    def delete_payment_method(self, account_id, payment_method_id) -> dict:
+        return self._request(
+            method="put",
+            path=f"v1/accounts/{account_id}/customer-info/stripe",
+            json={
+                "deletePaymentMethod": {"Id": payment_method_id},
+            },
+            error_rules=["default"],
+        ).json()
+
     def post_retry_purchase(self, purchase_id) -> dict:
         self._request(
             method="post",

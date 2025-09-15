@@ -236,6 +236,20 @@ def notices_feed(feed_type):
 
     url_root = flask.request.url_root
     base_url = flask.request.base_url
+    description_suffix = query_params = ""
+
+    releases = flask.request.args.getlist("release", type=str)
+    if releases:
+        # Check if the provided releases exist,
+        # and fail if they don't match
+        releases_json = security_api.get_releases()
+        valid_releases = {r.get("codename") for r in releases_json}
+
+        if any(r not in valid_releases for r in releases):
+            flask.abort(404)
+
+        description_suffix = f" for releases {', '.join(releases)}"
+        query_params = f"?release={'&release='.join(releases)}"
 
     feed = FeedGenerator()
     feed.generator("Feedgen")
@@ -246,8 +260,10 @@ def notices_feed(feed_type):
         "Ubuntu and Canonical are registered trademarks of Canonical Ltd."
     )
     feed.title("Ubuntu security notices")
-    feed.description("Recent content on Ubuntu security notices")
-    feed.link(href=base_url, rel="self")
+    feed.description(
+        f"Recent content on Ubuntu security notices{description_suffix}"
+    )
+    feed.link(href=base_url + query_params, rel="self")
 
     def feed_entry(notice, url_root):
         _id = notice["id"]
@@ -271,7 +287,7 @@ def notices_feed(feed_type):
         return entry
 
     notices = security_api.get_page_notices(
-        limit=10, offset=0, details="", releases=[], order=""
+        limit=10, offset=0, details="", releases=releases, order=""
     ).get("notices")
 
     for notice in notices:
@@ -284,42 +300,18 @@ def notices_feed(feed_type):
 # USN API
 # ===
 def single_notices_sitemap(offset):
-    notices = []
-    max_items = 100
-    api_limit = 10
-    offset = int(offset)  # Convert offset to int
+    offset = int(offset)
 
-    # max limit is 10, so we need to make multiple requests up to 100
-    for batch_offset in range(offset, offset + max_items, api_limit):
-        batch_response = security_api.get_page_notices(
-            limit=api_limit,
-            offset=batch_offset,
-            details="",
-            releases=[],
-            order="",
-        )
-        batch_notices = batch_response.get("notices", [])
-
-        if not batch_notices:
-            break
-
-        notices.extend(batch_notices)
-
-        if len(batch_notices) < api_limit:
-            break
+    response = security_api.get_sitemap_notices(limit=100, offset=offset)
+    notices = response.get("notices", [])
 
     links = []
     for notice in notices:
-        notice_id = notice["id"]
-
-        if notice.get("published"):
-            notice["published"] = dateutil.parser.parse(
-                notice["published"]
-            ).strftime("%-d %B %Y")
 
         links.append(
             {
-                "url": f"https://ubuntu.com/security/notices/{notice_id}",
+                "url": f"https://ubuntu.com/security/notices/{notice['id']}",
+                # Keep ISO 8601 for <lastmod>
                 "last_updated": (
                     notice["published"] if notice["published"] else ""
                 ),
@@ -336,9 +328,10 @@ def single_notices_sitemap(offset):
 
 
 def notices_sitemap():
-    notices_response = security_api.get_page_notices(
-        limit=0, offset=0, details="", releases=[], order=""
+    notices_response = security_api.get_sitemap_notices(
+        offset=0,
     )
+
     notices_count = notices_response.get("total_results", 0)
     base_url = "https://ubuntu.com/security/notices"
 
@@ -749,46 +742,19 @@ def cve(cve_id):
 # CVE API
 # ===
 def single_cves_sitemap(offset):
-    cves = []
-    max_items = 100
-    api_limit = 10
-    offset = int(offset)  # Convert offset to int
+    offset = int(offset)
+    # Base request
+    response = security_api.get_sitemap_cves(limit=100, offset=offset)
+    cves = response.get("cves", [])
 
-    # max limit is 10, so we need to make multiple requests up to 100
-    for batch_offset in range(offset, offset + max_items, api_limit):
-        batch_response = security_api.get_cves(
-            query="",
-            priority=[],
-            package="",
-            limit=api_limit,
-            offset=batch_offset,
-            component="",
-            versions=[],
-            statuses=[],
-            order="",
-        )
-        batch_cves = batch_response.get("cves", [])
-        if not batch_cves:
-            break
-
-        cves.extend(batch_cves)
-
-        if len(batch_cves) < api_limit:
-            break
-
+    # Build links for the XML template
     links = []
     for cve in cves:
-        cve_id = cve["id"]
-
-        if cve.get("published"):
-            cve["published"] = dateutil.parser.parse(
-                cve["published"]
-            ).strftime("%-d %B %Y")
-
         links.append(
             {
-                "url": f"https://ubuntu.com/security/{cve_id}",
-                "last_updated": (cve["published"] if cve["published"] else ""),
+                "url": f"https://ubuntu.com/security/{cve['id']}",
+                # Keep ISO 8601 for <lastmod>
+                "last_updated": cve.get("published") or "",
             }
         )
 
@@ -802,16 +768,9 @@ def single_cves_sitemap(offset):
 
 
 def cves_sitemap():
-    cves_response = security_api.get_cves(
-        query="",
-        priority=[],
-        package="",
-        limit=0,
+    cves_response = security_api.get_sitemap_cves(
+        limit=100,
         offset=0,
-        component="",
-        versions=[],
-        statuses=[],
-        order="",
     )
 
     cves_count = cves_response.get("total_results", 0)

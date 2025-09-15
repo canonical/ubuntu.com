@@ -1,0 +1,85 @@
+name: Form e2e integration tests
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "templates/**"
+  schedule:
+    - cron: "20 7 * * *"
+env:
+  SECRET_KEY: insecure_test_key
+
+jobs:
+  test-playwright-forms:
+    if: github.repository == 'canonical/ubuntu.com'
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    - name: Install yarn
+      run: yarn install --immutable
+
+    - name: Install dotrun
+      run: sudo pip3 install dotrun
+
+    - name: Install dependencies
+      run: |
+        sudo chmod -R 777 .
+        dotrun install
+
+    - name: Build assets and run dotrun
+      run: |
+        dotrun & sleep 5
+          curl --head --fail --retry-delay 2 --retry 30 --retry-connrefused http://localhost:8001
+
+    - name: Install Playwright Browsers
+      run: yarn playwright install --with-deps
+
+    - name: Run Playwright tests on modals
+      env:
+        PLAYWRIGHT_USER_ID: ${{ secrets.PLAYWRIGHT_USER_ID }}
+        PLAYWRIGHT_USER_PASSWORD : ${{ secrets.PLAYWRIGHT_USER_PASSWORD }}
+        TESTING: true
+      run: yarn playwright test forms
+
+  test-marketo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.base_ref }}
+
+      - name: Install node dependencies
+        run: yarn install --immutable
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Marketo tests
+        env:
+          MARKETO_API_URL: "https://066-EOV-335.mktorest.com"
+          MARKETO_API_CLIENT: ${{ secrets.MARKETO_API_CLIENT }}
+          MARKETO_API_SECRET: ${{ secrets.MARKETO_API_SECRET }}
+        run: |
+          python -m unittest tests.test_marketo
+
+      - name: Send message on failure
+        env:
+          BOT_URL: ${{ secrets.BOT_URL }}
+        if: failure()
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" $BOT_URL?room=webge-forms

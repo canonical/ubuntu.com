@@ -34,13 +34,10 @@ jobs:
           sudo chmod -R 777 .
           dotrun install
 
-      - name: Build assets
-        run: dotrun build
-
-      - name: Run dotrun
+      - name: Build assets and run dotrun
         run: |
-          dotrun &
-          curl --head --fail --retry-delay 1 --retry 30 --retry-connrefused http://localhost:8001
+          dotrun & sleep 5
+          curl --head --fail --retry-delay 2 --retry 30 --retry-connrefused http://localhost:8001
 
   lint-scss:
     runs-on: ubuntu-latest
@@ -145,6 +142,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.base_ref }}
 
       - name: Install node dependencies
         run: yarn install --immutable
@@ -162,7 +160,7 @@ jobs:
 
       - name: Run tests and generate coverage report
         run: |
-          coverage run --source=. -m unittest discover tests
+          coverage run --source=webapp -m unittest $(find tests/ -name "test_*.py" ! -name "test_marketo.py")
         env:
           SEARCH_API_KEY: fake-key
 

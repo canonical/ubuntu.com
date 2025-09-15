@@ -1,9 +1,9 @@
-import os
 from requests import Session
 from requests.exceptions import HTTPError
 from urllib.parse import urlencode
+from canonicalwebteam.flask_base.env import get_flask_env
 
-SECURITY_API_URL = os.getenv(
+SECURITY_API_URL = get_flask_env(
     "SECURITY_API_URL", "https://ubuntu.com/security/"
 )
 
@@ -161,3 +161,44 @@ class SecurityAPI:
             raise SecurityAPIError(error)
 
         return cves_response.json()
+
+    def get_sitemap_cves(self, limit, offset):
+
+        parameters = {"limit": int(limit), "offset": int(offset)}
+
+        parameters = {k: v for k, v in parameters.items() if v is not None}
+
+        filtered_parameters = urlencode(parameters, doseq=True)
+
+        try:
+            sitemap_response = self._get(
+                f"sitemap/cves.json?{filtered_parameters}"
+            )
+        except HTTPError as error:
+            if error.response.status_code == 404:
+                return None
+            raise SecurityAPIError(error)
+
+        return sitemap_response.json()
+
+    def get_sitemap_notices(self, offset, limit=100):
+
+        parameters = {}
+
+        if limit is not None:
+            parameters["limit"] = int(limit)
+        if offset is not None:
+            parameters["offset"] = int(offset)
+
+        filtered_parameters = urlencode(parameters, doseq=True)
+
+        try:
+            sitemap_response = self._get(
+                f"sitemap/notices.json?{filtered_parameters}"
+            )
+        except HTTPError as error:
+            if error.response.status_code == 404:
+                return None
+            raise SecurityAPIError(error)
+
+        return sitemap_response.json()

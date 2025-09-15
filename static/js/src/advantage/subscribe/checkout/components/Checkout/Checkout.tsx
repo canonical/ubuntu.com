@@ -31,12 +31,15 @@ type Props = {
   products: CheckoutProducts[];
   action: Action;
   coupon: Coupon;
+  referral_id: string | undefined;
 };
 
-const Checkout = ({ products, action, coupon }: Props) => {
+const Checkout = ({ products, action, coupon, referral_id }: Props) => {
   const [error, setError] = useState<DisplayError | null>(null);
   const [errorType, setErrorType] = useState<string>("");
   const [isTotalLoading, setIsTotalLoading] = useState<boolean>(true);
+  const [isCardSaving, setIsCardSaving] = useState<boolean>(false);
+  const isBuyButtonDisabled = isCardSaving || isTotalLoading;
 
   const { data: userInfo, isLoading: isUserInfoLoading } = useCustomerInfo();
   const userCanTrial = window.canTrial;
@@ -130,7 +133,13 @@ const Checkout = ({ products, action, coupon }: Props) => {
                         : [
                             {
                               title: "Your information",
-                              content: <UserInfoForm setError={setError} />,
+                              content: (
+                                <UserInfoForm
+                                  setError={setError}
+                                  isCardSaving={isCardSaving}
+                                  setIsCardSaving={setIsCardSaving}
+                                />
+                              ),
                             },
                           ]),
                       ...(canTrial
@@ -174,13 +183,14 @@ const Checkout = ({ products, action, coupon }: Props) => {
                                   action={action}
                                   setError={setError}
                                   coupon={coupon}
+                                  referral_id={referral_id}
                                   errorType={errorType}
                                   isDisabled={
                                     !(
                                       values.TermsAndConditions &&
                                       values.Description &&
                                       values.captchaValue
-                                    ) || isTotalLoading
+                                    ) || isBuyButtonDisabled
                                   }
                                 />
                               </Col>

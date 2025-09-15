@@ -21,21 +21,17 @@ from canonicalwebteam.discourse import (
     Tutorials,
     CategoryParser,
     Category,
+    EventsParser,
+    Events,
 )
 from canonicalwebteam.flask_base.app import FlaskBase
+from canonicalwebteam.flask_base.env import get_flask_env
 from pathlib import Path
 import canonicalwebteam.directory_parser as directory_parser
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.form_generator import FormGenerator
 
-from webapp.canonical_cla.views import (
-    canonical_cla_api_github_login,
-    canonical_cla_api_github_logout,
-    canonical_cla_api_launchpad_login,
-    canonical_cla_api_launchpad_logout,
-    canonical_cla_api_proxy,
-)
 from webapp.certified.views import certified_routes
 from webapp.handlers import init_handlers
 from webapp.login import login_handler, logout
@@ -125,6 +121,7 @@ from webapp.shop.cred.views import (
 from webapp.shop.views import (
     account_view,
     checkout,
+    delete_payment_method,
     download_invoice,
     ensure_purchase_account,
     get_customer_info,
@@ -153,6 +150,10 @@ from webapp.views import (
     build_vulnerabilities,
     build_vulnerabilities_list,
     process_active_vulnerabilities,
+    process_local_communities,
+    process_community_events,
+    community_landing_page,
+    build_ubuntu_weekly_newsletter,
     build_engage_index,
     build_engage_page,
     build_engage_pages_sitemap,
@@ -169,7 +170,6 @@ from webapp.views import (
     marketo_submit,
     mirrors_query,
     navigation_nojs,
-    openstack_engage,
     releasenotes_redirect,
     show_template,
     sitemap_index,
@@ -180,11 +180,13 @@ from webapp.views import (
     build_sitemap_tree,
 )
 
-DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
-DISCOURSE_API_USERNAME = os.getenv("DISCOURSE_API_USERNAME")
+DISCOURSE_API_KEY = get_flask_env("DISCOURSE_API_KEY")
+DISCOURSE_API_USERNAME = get_flask_env("DISCOURSE_API_USERNAME")
 
-CHARMHUB_DISCOURSE_API_KEY = os.getenv("CHARMHUB_DISCOURSE_API_KEY")
-CHARMHUB_DISCOURSE_API_USERNAME = os.getenv("CHARMHUB_DISCOURSE_API_USERNAME")
+CHARMHUB_DISCOURSE_API_KEY = get_flask_env("CHARMHUB_DISCOURSE_API_KEY")
+CHARMHUB_DISCOURSE_API_USERNAME = get_flask_env(
+    "CHARMHUB_DISCOURSE_API_USERNAME"
+)
 
 # Sitemaps that are already generated and don't need to be updated.
 # Can be seen on sitemap_index.xml
@@ -219,7 +221,8 @@ directory_parser_templates = (
 loader = ChoiceLoader(
     [
         FileSystemLoader("templates"),
-        FileSystemLoader("node_modules/vanilla-framework/templates"),
+        FileSystemLoader("node_modules/vanilla-framework/templates/"),
+        FileSystemLoader("static/js/modules/vanilla-framework/"),
         FileSystemLoader(str(directory_parser_templates)),
     ]
 )
@@ -252,10 +255,29 @@ search_engine_id = "adb2397a224a1fe55"
 
 init_handlers(app, sentry)
 
+
 # Prepare forms
-form_template_path = "shared/forms/form-template.html"
-form_loader = FormGenerator(app, form_template_path)
-form_loader.load_forms()
+def init_forms():
+    form_template_path = "shared/forms/form-template.html"
+
+    try:
+        template_full_path = (
+            Path(app.root_path).parent / "templates" / form_template_path
+        )
+        if not template_full_path.exists():
+            raise FileNotFoundError(
+                f"Form template not found: {template_full_path}"
+            )
+
+        form_loader = FormGenerator(app, form_template_path)
+        form_loader.load_forms()
+
+    except Exception as e:
+        print(f"There was an error loading forms: {e}")
+        raise e
+
+
+init_forms()
 
 # Routes
 # ===
@@ -391,6 +413,11 @@ app.add_url_rule(
     methods=["POST"],
 )
 app.add_url_rule(
+    "/account/payment-methods",
+    view_func=delete_payment_method,
+    methods=["DELETE"],
+)
+app.add_url_rule(
     "/account/purchase-account",
     view_func=ensure_purchase_account,
     methods=["POST"],
@@ -486,8 +513,8 @@ app.add_url_rule(
 )
 
 app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
-with open("meganav.yaml") as meganav_file:
-    meganav = yaml.load(meganav_file.read(), Loader=yaml.FullLoader)
+with open("navigation.yaml") as navigation_file:
+    navigation = yaml.load(navigation_file.read(), Loader=yaml.FullLoader)
 
 app.add_url_rule(
     "/search",
@@ -497,7 +524,7 @@ app.add_url_rule(
         session=session,
         template_path="search.html",
         search_engine_id=search_engine_id,
-        featured=meganav,
+        featured=navigation,
     ),
 )
 
@@ -648,9 +675,6 @@ app.add_url_rule(
     view_func=build_engage_pages_metadata(engage_pages),
 )
 
-app.add_url_rule(
-    "/openstack/resources", view_func=openstack_engage(engage_pages)
-)
 # Custom engage page in German
 app.add_url_rule(
     "/engage/de/warum-openstack",
@@ -688,28 +712,6 @@ app.add_url_rule(
 app.add_url_rule(
     "/engage/unlisted/<slug>",
     view_func=unlisted_engage_page,
-)
-
-app.add_url_rule(
-    "/legal/contributors/agreement/api",
-    methods=["POST", "GET"],
-    view_func=canonical_cla_api_proxy,
-)
-app.add_url_rule(
-    "/legal/contributors/agreement/api/github/logout",
-    view_func=canonical_cla_api_github_logout,
-)
-app.add_url_rule(
-    "/legal/contributors/agreement/api/github/login",
-    view_func=canonical_cla_api_github_login,
-)
-app.add_url_rule(
-    "/legal/contributors/agreement/api/launchpad/logout",
-    view_func=canonical_cla_api_launchpad_logout,
-)
-app.add_url_rule(
-    "/legal/contributors/agreement/api/launchpad/login",
-    view_func=canonical_cla_api_launchpad_login,
 )
 
 
@@ -782,7 +784,7 @@ app.add_url_rule(
 server_docs.init_app(app)
 
 # Community docs
-url_prefix = "/community"
+url_prefix = "/community/docs"
 community_docs = Docs(
     parser=DocParser(
         api=discourse_api,
@@ -808,6 +810,63 @@ app.add_url_rule(
 )
 
 community_docs.init_app(app)
+
+# Community Portal
+local_communities = Category(
+    parser=CategoryParser(
+        api=discourse_api,
+        index_topic_id=62344,
+        url_prefix="/community",
+    ),
+    category_id=129,
+)
+
+community_events = Events(
+    parser=EventsParser(
+        api=discourse_api, index_topic_id=60, url_prefix="/community/events"
+    ),
+    category_id=11,
+)
+
+ubuntu_weekly_newsletter = Category(
+    parser=CategoryParser(
+        api=discourse_api,
+        index_topic_id=40911,
+        url_prefix="/community",
+    ),
+    category_id=419,
+    exclude_topics=[64651],
+)
+
+app.add_url_rule(
+    "/community/local-communities",
+    view_func=process_local_communities(local_communities),
+)
+
+app.add_url_rule(
+    "/community/events",
+    view_func=process_community_events(community_events),
+)
+
+app.add_url_rule(
+    "/community",
+    view_func=community_landing_page(
+        community_events, local_communities, ubuntu_weekly_newsletter
+    ),
+)
+
+app.add_url_rule(
+    "/community/uwn",
+    view_func=build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter),
+    endpoint="uwn_index",
+)
+
+app.add_url_rule(
+    "/community/uwn/<path:path>",
+    view_func=build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter),
+    endpoint="uwn_page",
+)
+
 
 # Allow templates to be queried from discourse.ubuntu.com
 app.add_url_rule(
@@ -865,6 +924,7 @@ app.add_url_rule(
 app.add_url_rule("/credentials", view_func=cred_home)
 app.add_url_rule("/credentials/self-study", view_func=cred_self_study)
 app.add_url_rule("/credentials/exam-content", view_func=cred_syllabus_data)
+app.add_url_rule("/credentials/faq", view_func=cred_syllabus_data)
 app.add_url_rule(
     "/credentials/sign-up", view_func=cred_sign_up, methods=["GET", "POST"]
 )
@@ -1253,7 +1313,7 @@ def render_cmmc_blogs():
             4633,
             4749,
         ],
-        excluded_tags=[3265],
+        excluded_tags=[3184, 3265],
         per_page=4,
         blog_title="CMMC blogs",
     )

@@ -1,0 +1,82 @@
+{
+  "form": {
+    "/managed": {
+      "templatePath": "/managed/index.html",
+      "childrenPaths": ["/managed/firefighting-support", "/managed/apps"],
+      "isModal": true,
+      "modalId": "managed-form-modal",
+      "formData": {
+        "title": "You innovate, we operate!",
+        "introText": "",
+        "formId": 4053,
+        "returnUrl": "/managed/thank-you#contact-form-success",
+        "lpUrl": "https://pages.ubuntu.com/things-contact-us.html",
+        "product": "managed-services"
+      },
+      "fieldsets": [
+        {
+          "title": "What services can we help with?",
+          "id": "service",
+          "inputType": "checkbox",
+          "fields": [
+            {
+              "type": "checkbox",
+              "id": "openstack",
+              "value": "Openstack",
+              "label": "Openstack"
+            },
+            {
+              "type": "checkbox",
+              "id": "kubernetes",
+              "value": "Kubernetes",
+              "label": "Kubernetes"
+            },
+            {
+              "type": "checkbox",
+              "id": "ceph",
+              "value": "Ceph",
+              "label": "Ceph"
+            },
+            {
+              "type": "checkbox",
+              "id": "database-apps",
+              "value": "Database and Applications",
+              "label": "Database and Applications"
+            },
+            {
+              "type": "checkbox",
+              "id": "observability",
+              "value": "Observability",
+              "label": "Observability"
+            }
+          ]
+        },
+        {
+          "title": "Tell us more",
+          "id": "apps-using-other-info",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "apps-using-other-info",
+              "label": "What are you currently working on? What does your current infrastructure and services look like? Anything extra you’d like to communicate about your needs or interests?",
+              "placeholder": "What are you currently working on? What does your current infrastructure and services look like? Anything extra you’d like to communicate about your needs or interests?"
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

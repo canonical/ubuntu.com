@@ -20,13 +20,15 @@ logger = logging.getLogger(__name__)
 
 api_session = CachedSession(fallback_cache_duration=3600)
 
+# Read secondary-navigation.yaml
+with open("secondary-navigation.yaml") as secondary_navigation_file:
+    nav_sections = yaml.load(
+        secondary_navigation_file.read(), Loader=yaml.FullLoader
+    )
+
 # Read navigation.yaml
 with open("navigation.yaml") as navigation_file:
-    nav_sections = yaml.load(navigation_file.read(), Loader=yaml.FullLoader)
-
-# Read meganav.yaml
-with open("meganav.yaml") as meganav_file:
-    meganav = yaml.load(meganav_file.read(), Loader=yaml.FullLoader)
+    navigation = yaml.load(navigation_file.read(), Loader=yaml.FullLoader)
 
 
 # Process data from YAML files
@@ -44,24 +46,24 @@ def releases():
         return yaml.load(releases, Loader=yaml.FullLoader)
 
 
-def get_meganav(section):
+def get_navigation(section):
     """
-    Set "meganav_section" as global template variable
+    Set "navigation_section" as global template variable
     """
     sections = {}
-    meganav_sections = copy.deepcopy(meganav)
+    navigation_sections = copy.deepcopy(navigation)
 
     if section == "all":
-        return meganav_sections
+        return navigation_sections
 
-    for section_name, meganav_section in meganav_sections.items():
+    for section_name, navigation_section in navigation_sections.items():
         if section_name == section:
-            sections = meganav_section
+            sections = navigation_section
 
     return {"sections": sections}
 
 
-def get_navigation(path):
+def get_secondary_navigation(path):
     """
     Set "nav_sections" and "breadcrumbs" dictionaries
     as global template variables

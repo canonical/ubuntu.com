@@ -1,9 +1,11 @@
 <div class="p-card js-product-card u-hide">
-  <img class="p-card__thumbnail"
-       src="https://assets.ubuntu.com/v1/00633f99-ubuntu-cloud-2.svg"
-       alt="ubuntu for clouds logo"
-       style="width: 53px;
-              height: 32px" />
+  {{ image(url="https://assets.ubuntu.com/v1/1092c24f-_bootstack_managed-private-cloud.html.png",
+    alt="",
+    width="800",
+    height="268",
+    hi_def=True,
+    loading="auto") | safe
+  }}
   <hr class="p-rule--muted" />
   <h3>
     <a href="/openstack/managed">Looking for a fully managed private cloud?</a>

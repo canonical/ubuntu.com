@@ -1,7 +1,7 @@
 # Packages
-import os
 from datetime import datetime
 from distutils.util import strtobool
+import concurrent.futures
 
 import flask
 import pytz
@@ -19,11 +19,14 @@ from webapp.shop.api.ua_contracts.helpers import (
     to_dict,
 )
 
+from canonicalwebteam.flask_base.env import get_flask_env
+
 # Local
 from webapp.shop.decorators import SERVICES, shop_decorator
 from webapp.shop.flaskparser import use_kwargs
 from webapp.shop.schemas import (
     PurchaseTotalSchema,
+    delete_payment_method,
     ensure_purchase_account,
     get_purchase_account_status,
     invoice_view,
@@ -98,11 +101,31 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
         )
 
     payments = []
+
+    def add_to_payments(purchase):
+        print(f"Processing purchase {purchase.id}")
+        try:
+            if purchase.invoice:
+                purchase_info = advantage_mapper.get_purchase(purchase.id)
+                if purchase_info.invoice:
+                    purchase.invoice = purchase_info.invoice
+            payments.append(purchase)
+        except HTTPError as error:
+            if error.response.status_code == 404:
+                # Purchase not found, skip it
+                return
+            else:
+                flask.current_app.extensions["sentry"].captureException()
+                return
+
     if account:
-        payments = advantage_mapper.get_account_purchases(
+        account_purchases = advantage_mapper.get_account_purchases(
             account_id=account.id,
             filters={"marketplace": marketplace} if marketplace else None,
         )
+        with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+            for purchase in account_purchases:
+                executor.submit(add_to_payments, purchase)
 
     per_page = 10
 
@@ -192,6 +215,23 @@ def post_payment_methods(ua_contracts_api, **kwargs):
         response = ua_contracts_api.put_customer_info(
             account_id, payment_method_id, None, name, None
         )
+
+    return response
+
+
+@shop_decorator(area="account", permission="user", response="json")
+@use_kwargs(delete_payment_method, location="json")
+def delete_payment_method(ua_contracts_api, **kwargs):
+    account_id = kwargs.get("account_id")
+
+    account_info = ua_contracts_api.get_customer_info(account_id)
+    default_payment_method = account_info["customerInfo"][
+        "defaultPaymentMethod"
+    ]
+
+    response = ua_contracts_api.delete_payment_method(
+        account_id, default_payment_method["id"]
+    )
 
     return response
 
@@ -355,9 +395,9 @@ def checkout(advantage_mapper, **kwargs):
 
 @shop_decorator(area="account", response="html")
 def get_shop_status_page(**kwargs):
-    maintenance = strtobool(os.getenv("STORE_MAINTENANCE", "false"))
-    start_date = parse(os.getenv("STORE_MAINTENANCE_START"))
-    end_date = parse(os.getenv("STORE_MAINTENANCE_END"))
+    maintenance = strtobool(get_flask_env("STORE_MAINTENANCE", "false"))
+    start_date = parse(get_flask_env("STORE_MAINTENANCE_START"))
+    end_date = parse(get_flask_env("STORE_MAINTENANCE_END"))
     time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
     is_in_timeframe = start_date <= time_now < end_date
 

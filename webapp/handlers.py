@@ -1,4 +1,3 @@
-import os
 from typing import List
 
 import flask
@@ -12,8 +11,8 @@ from webapp.context import (
     format_date,
     format_to_id,
     get_json_feed,
-    get_meganav,
     get_navigation,
+    get_secondary_navigation,
     modify_query,
     month_name,
     months_list,
@@ -32,6 +31,7 @@ from webapp.shop.api.ua_contracts.api import (
 )
 from webapp.shop.flaskparser import UAContractsValidationError
 from webapp.certified.helpers import convert_markdown_to_html
+from canonicalwebteam.flask_base.env import get_flask_env
 
 CSP = {
     "default-src": ["'self'"],
@@ -80,6 +80,7 @@ CSP = {
         "api.usabilla.com",
         "*.cloudfront.net",
         "cdn.jsdelivr.net",
+        "*.g.doubleclick.net",
         # This is necessary for Google Tag Manager to function properly.
         "'unsafe-inline'",
     ],
@@ -126,6 +127,10 @@ CSP = {
         "fonts.google.com",
         "api.text.com",
         "raw.githubusercontent.com",
+        "*.analytics.google.com",
+        "*.g.doubleclick.net",
+        "ad.doubleclick.net",
+        "www.googleadservices.com",
     ],
     "frame-src": [
         "'self'",
@@ -143,6 +148,7 @@ CSP = {
         "*.cloudfront.net",
         "app3.trueability.com",
         "app.trueability.com",
+        "pay.stripe.com",
     ],
     "style-src": [
         "*.cloudfront.net",
@@ -156,6 +162,8 @@ CSP = {
         "cdn.livechatinc.com",
         "secure.livechatinc.com",
         "cdn.livechat-static.com",
+        "images.zenhubusercontent.com",
+        "assets.ubuntu.com",
     ],
     "child-src": [
         "api.livechatinc.com",
@@ -167,7 +175,27 @@ CSP = {
         "'self'",
         "blob:",
     ],
-    "frame-ancestors": ["'none'"],
+    "frame-ancestors": [
+        "https://edge-billing.stripe.com",
+        "https://edge-connect.stripe.com",
+        "https://edge-dashboard-admin.stripe.com",
+        "https://edge-dashboard.stripe.com",
+        "https://edge-docs.stripe.com",
+        "https://edge-marketplace.stripe.com",
+        "https://edge-support.stripe.com",
+        "https://billing.stripe.com",
+        "https://connect.stripe.com",
+        "https://dashboard-admin.stripe.com",
+        "https://dashboard.stripe.com",
+        "https://docs.stripe.com",
+        "https://edge-support-conversations.stripe.com",
+        "https://edge.stripe.com",
+        "https://marketplace.stripe.com",
+        "https://stripe.com",
+        "https://support-admin.corp.stripe.com",
+        "https://support-conversations.stripe.com",
+        "https://support.stripe.com",
+    ],
 }
 
 
@@ -308,8 +336,8 @@ def init_handlers(app, sentry):
             "modify_query": modify_query,
             "month_name": month_name,
             "months_list": months_list,
-            "get_navigation": get_navigation,
-            "get_stripe_publishable_key": os.getenv(
+            "get_secondary_navigation": get_secondary_navigation,
+            "get_stripe_publishable_key": get_flask_env(
                 "STRIPE_PUBLISHABLE_KEY",
                 "pk_live_68aXqowUeX574aGsVck8eiIE",
             ),
@@ -321,16 +349,15 @@ def init_handlers(app, sentry):
             "utm_content": flask.request.args.get("utm_content", ""),
             "utm_medium": flask.request.args.get("utm_medium", ""),
             "utm_source": flask.request.args.get("utm_source", ""),
-            "CAPTCHA_TESTING_API_KEY": os.getenv(
+            "CAPTCHA_TESTING_API_KEY": get_flask_env(
                 "CAPTCHA_TESTING_API_KEY",
                 "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if",
             ),
             "http_host": flask.request.host,
             "schedule_banner": schedule_banner,
-            "get_meganav": get_meganav,
+            "get_navigation": get_navigation,
             "split_list": split_list,
             "format_to_id": format_to_id,
-            "canonical_cla_api_url": os.getenv("CANONICAL_CLA_API_URL"),
         }
 
     def get_countries_list() -> List[dict]:
@@ -371,6 +398,7 @@ def init_handlers(app, sentry):
         access the resource
         - X-Permitted-Cross-Domain-Policies: disallows cross-domain access to
         resources.
+        - X-Robots-Tag: prevents search engines from indexing the page
         """
 
         def get_csp_as_str(csp={}):
@@ -389,6 +417,8 @@ def init_handlers(app, sentry):
         )
         response.headers["Cross-Origin-Resource-Policy"] = "cross-origin"
         response.headers["X-Permitted-Cross-Domain-Policies"] = "none"
+        if get_flask_env("FLASK_ENV", "production") != "production":
+            response.headers["X-Robots-Tag"] = "none"
         return response
 
     app.add_template_filter(date_has_passed)

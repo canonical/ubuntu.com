@@ -23,9 +23,14 @@
       </div>
       <div class="col u-hide--small">
         <div class="p-image-container--16-9 is-highlighted">
-          <img class="p-image-container__image"
-               src="https://assets.ubuntu.com/v1/3bbf268f-UC20_Device_Recovery.svg"
-               alt="" />
+          {{ image(url="https://assets.ubuntu.com/v1/3bbf268f-UC20_Device_Recovery.svg",
+                    alt="",
+                    width="215",
+                    height="259",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
         </div>
       </div>
     </div>
@@ -45,9 +50,14 @@
           In doing this, only complex maintenance actions need to be escalated to device operators. Empowering device operators with remote access to perform complex software-related maintenance actions, avoids substantial costs and allows all devices in the field to be maintained centrally - reducing the risks.
         </p>
         <div class="p-image-container u-hide--small">
-          <img class="p-image-container__image"
-               src="https://assets.ubuntu.com/v1/08abf309-low-touch-device-maintenance.png"
-               alt="" />
+          {{ image(url="https://assets.ubuntu.com/v1/08abf309-low-touch-device-maintenance.png",
+                    alt="",
+                    width="1800",
+                    height="955",
+                    hi_def=True,
+                    loading="auto",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
         </div>
       </div>
     </div>
@@ -111,9 +121,14 @@
             <p>
               Ubuntu Core offers a recovery mode that can be activated manually when booting, or remotely via API call. In recovery mode, Ubuntu Core presents a UI for users to enter recovery options. The operating system then proceeds to fetch the configuration files and snaps associated with a given configuration profile.
             </p>
-            <img src="https://assets.ubuntu.com/v1/86773655-recovery-mode.png"
-                 alt=""
-                 width="300" />
+            {{ image(url="https://assets.ubuntu.com/v1/86773655-recovery-mode.png",
+                        alt="",
+                        width="852",
+                        height="430",
+                        hi_def=True,
+                        loading="auto",
+                        attrs={"class": "p-image-container__image", "style":"width:300px"}) | safe
+            }}
           </div>
         </div>
       </div>
@@ -129,9 +144,14 @@
             <p>
               Multiple snapshots for the same device can be backed up in the recovery system. These snapshots reflect both configuration settings and the collection of snaps installed on the system. Device operators can create, name and save such snapshots in the recovery system. This enables a swift recovery of a desired system state when needed. Recovery can happen manually through a dedicated UI or remotely via an API call.
             </p>
-            <img src="https://assets.ubuntu.com/v1/69d7736d-snapshots.png"
-                 alt=""
-                 width="300" />
+            {{ image(url="https://assets.ubuntu.com/v1/69d7736d-snapshots.png",
+                        alt="",
+                        width="852",
+                        height="430",
+                        hi_def=True,
+                        loading="auto",
+                        attrs={"style":"width:300px"}) | safe
+            }}
           </div>
         </div>
       </div>
@@ -142,21 +162,29 @@
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
-        <h2>Low touch recovery <br /> for your devices</h2>
+        <h2>
+          Low touch recovery
+          <br />
+          for your devices
+        </h2>
       </div>
       <div class="col">
         <div class="p-section--shallow">
           <div class="p-image-container is-highlighted">
-            <img class="p-image-container__image"
-                 src="https://assets.ubuntu.com/v1/683e6225-Image.png"
-                 alt="" />
+            {{ image(url="https://assets.ubuntu.com/v1/683e6225-Image.png",
+                        alt="",
+                        width="1200",
+                        height="800",
+                        hi_def=True,
+                        loading="auto",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
           </div>
         </div>
         <p>Get in touch with an Ubuntu security expert to discuss the advanced security requirements of your application.</p>
         <hr class="p-rule--muted" />
         <p>
-          <a href="/core/contact-us"
-             class="p-button--positive js-invoke-modal">Get in touch</a>
+          <a href="/core/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
         </p>
       </div>
     </div>

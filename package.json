@@ -9,16 +9,10 @@
     "lint-js": "eslint static/js/src/**/*.{js,jsx,ts,tsx}",
     "lint-ts": "tsc --noEmit",
     "test-js": "TZ=UTC NODE_ICU_DATA=node_modules/full-icu jest",
-    "test-links": "./entrypoint 0.0.0.0:${PORT} && sleep 2 && linkchecker --threads 2 --ignore-url /usn --ignore-url /search --ignore-url /server/docs --no-warnings http://127.0.0.1:8000",
-    "build-cookie-policy": "cp node_modules/@canonical/cookie-policy/build/js/cookie-policy.js static/js/dist/",
-    "build-flickity": "cp node_modules/flickity/dist/flickity.pkgd.min.js static/js/dist",
-    "build-global-nav": "cp node_modules/@canonical/global-nav/dist/global-nav.js static/js/dist/",
-    "build-latest-news": "cp node_modules/@canonical/latest-news/dist/latest-news.js static/js/dist",
-    "build-intl-tel-input-utils": "cp node_modules/intl-tel-input/build/js/utils.js static/js/dist",
-    "build-prism": "mkdir -p static/js/dist/prism-components && cp -r node_modules/prismjs/components/*.min.js static/js/dist/prism-components/",
     "build-css": "sass static/sass:static/css --load-path=node_modules --style=compressed --quiet-deps && postcss --replace 'static/css/**/*.css' --no-map",
     "build-js": "node build.js && ./scripts/build-modules.sh",
-    "build": "yarn run build-css && yarn run build-js && yarn build-global-nav",
+    "build-vanilla-framework": "mkdir -p static/js/modules/vanilla-framework && cp -r node_modules/vanilla-framework/templates/_macros/ static/js/modules/vanilla-framework",
+    "build": "yarn run build-css && yarn run build-js",
     "watch": "concurrently --kill-others --raw 'yarn run watch-css' 'yarn run watch-js'",
     "watch-css": "watch -p 'static/sass/**/*.scss' -p 'node_modules/vanilla-framework/scss/**/*.scss' -c 'yarn run build-css'",
     "watch-js": "watch -p 'static/js/src/**/!(*.test)*.{js,jsx,ts,tsx}' -p 'static/js/data/**/*.js' -p 'static/js/third-party/**/*.js' -c 'yarn run build-js && tsc -noEmit'",
@@ -27,7 +21,8 @@
     "start": "yarn run build && concurrently --kill-others --raw 'yarn run watch-css' 'yarn run watch-js' 'yarn run serve'",
     "check-prettier": "prettier -c 'static/js/src/**/*.{js,jsx,ts,tsx}' 'static/sass/**/*.scss'",
     "format-prettier": "prettier -w 'static/js/src/**/*.{js,jsx,ts,tsx}' 'static/sass/**/*.scss'",
-    "percy-snapshot": "percy snapshot snapshots.js"
+    "percy-snapshot": "percy snapshot snapshots.js",
+    "test-marketo": "python3 -m unittest tests.test_marketo"
   },
   "keywords": [
     "website",
@@ -89,8 +84,8 @@
   "dependencies": {
     "@axe-core/playwright": "^4.8.5",
     "@canonical/cookie-policy": "^3.6.4",
-    "@canonical/global-nav": "3.6.4",
-    "@canonical/latest-news": "1.5.0",
+    "@canonical/global-nav": "3.7.2",
+    "@canonical/latest-news": "1.6.0",
     "@canonical/react-components": "^0.60.0",
     "@fullhuman/postcss-purgecss": "6",
     "@percy/cli": "^1.30.7",
@@ -111,6 +106,7 @@
     "formik": "2.4.6",
     "globals": "^15.8.0",
     "intl-tel-input": "24.3.5",
+    "leaflet": "1.9.4",
     "postcss": "8.4.40",
     "postcss-cli": "11.0.0",
     "prismjs": "1.30.0",
@@ -126,7 +122,7 @@
     "url-polyfill": "1.1.12",
     "url-search-params-polyfill": "8.2.5",
     "use-query-params": "^2.2.1",
-    "vanilla-framework": "4.24.1",
+    "vanilla-framework": "4.33.0",
     "yup": "1.4.0"
   },
   "resolutions": {

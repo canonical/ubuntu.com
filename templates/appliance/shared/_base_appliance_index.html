@@ -207,7 +207,14 @@
           <div class="grid-col-2">
             {% if downloads.raspberrypi %}
               <div class="p-image-container is-highlighted">
-                <img src="https://assets.ubuntu.com/v1/2560d6f8-pi-4-updated.png" alt="" />
+                {{ image(url="https://assets.ubuntu.com/v1/2560d6f8-pi-4-updated.png",
+                                alt="",
+                                width="852",
+                                height="480",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class":"p-image-container__image"}) | safe
+                }}
               </div>
               {% if downloads.pi2 %}
                 <p>
@@ -233,7 +240,14 @@
           <div class="grid-col-2">
             {% if downloads.intelnuc %}
               <div class="p-image-container is-highlighted">
-                <img src="https://assets.ubuntu.com/v1/abb2df0f-intel-nuc.png" alt="" />
+                {{ image(url="https://assets.ubuntu.com/v1/abb2df0f-intel-nuc.png",
+                                alt="",
+                                width="852",
+                                height="481",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class":"p-image-container__image"}) | safe
+                }}
               </div>
               <h3 class="p-heading--5">
                 <a href="/appliance/{{ short_name }}/intel-nuc">Install on an Intel NUC</a>

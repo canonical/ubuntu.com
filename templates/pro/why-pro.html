@@ -87,9 +87,14 @@ meta_copydoc %}
             <div class="col-3 p-divider__block no-divider">
               <div class="p-heading-icon">
                 <div class="p-heading-icon__header">
-                  <img class="p-heading-icon__img"
-                       src="https://assets.ubuntu.com/v1/21efb2ec-desktop.svg"
-                       alt="" />
+                  {{ image(url="https://assets.ubuntu.com/v1/21efb2ec-desktop.svg",
+                                    alt="",
+                                    width="186",
+                                    height="125",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-heading-icon__img"}) | safe
+                  }}
                   <p class="p-heading-icon__title u-vertically-center u-no-margin--bottom">Desktop</p>
                 </div>
               </div>
@@ -97,9 +102,14 @@ meta_copydoc %}
             <div class="col-3 p-divider__block">
               <div class="p-heading-icon">
                 <div class="p-heading-icon__header">
-                  <img class="p-heading-icon__img"
-                       src="https://assets.ubuntu.com/v1/a3694a61-Public+Cloud.svg"
-                       alt="" />
+                  {{ image(url="https://assets.ubuntu.com/v1/a3694a61-Public+Cloud.svg",
+                                    alt="",
+                                    width="294",
+                                    height="200",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-heading-icon__img"}) | safe
+                  }}
                   <p class="p-heading-icon__title u-vertically-center u-no-margin--bottom">Public Cloud</p>
                 </div>
               </div>
@@ -107,9 +117,14 @@ meta_copydoc %}
             <div class="col-3 p-divider__block">
               <div class="p-heading-icon">
                 <div class="p-heading-icon__header">
-                  <img class="p-heading-icon__img"
-                       src="https://assets.ubuntu.com/v1/fdf83d49-Server.svg"
-                       alt="" />
+                  {{ image(url="https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
+                                    alt="",
+                                    width="40",
+                                    height="48",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-heading-icon__img"}) | safe
+                  }}
                   <p class="p-heading-icon__title u-vertically-center u-no-margin--bottom">Servers</p>
                 </div>
               </div>
@@ -117,9 +132,14 @@ meta_copydoc %}
             <div class="col-3 p-divider__block">
               <div class="p-heading-icon">
                 <div class="p-heading-icon__header">
-                  <img class="p-heading-icon__img"
-                       src="https://assets.ubuntu.com/v1/f9f8ace9-gateway.svg"
-                       alt="" />
+                  {{ image(url="https://assets.ubuntu.com/v1/f9f8ace9-gateway.svg",
+                                    alt="",
+                                    width="185",
+                                    height="200",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-heading-icon__img"}) | safe
+                  }}
                   <p class="p-heading-icon__title u-vertically-center u-no-margin--bottom">IoT</p>
                 </div>
               </div>
@@ -161,7 +181,7 @@ meta_copydoc %}
                     <div class="p-logo-section__item">
                       {{ image (
                       url="https://assets.ubuntu.com/v1/a63fb3fc-pgbouncer-logo.png",
-                      alt="",
+                      alt="PgBouncer logo",
                       width="91",
                       height="100",
                       hi_def=True,
@@ -172,7 +192,7 @@ meta_copydoc %}
                     <div class="p-logo-section__item">
                       {{ image (
                       url="https://assets.ubuntu.com/v1/33072748-perl-logo.png",
-                      alt="",
+                      alt="Perl programming language logo",
                       width="37",
                       height="100",
                       hi_def=True,
@@ -183,7 +203,7 @@ meta_copydoc %}
                     <div class="p-logo-section__item">
                       {{ image (
                       url="https://assets.ubuntu.com/v1/880b97f2-python-logo.png",
-                      alt="",
+                      alt="Python programming language logo",
                       width="92",
                       height="100",
                       hi_def=True,
@@ -194,7 +214,7 @@ meta_copydoc %}
                     <div class="p-logo-section__item">
                       {{ image (
                       url="https://assets.ubuntu.com/v1/2440746d-go-logo.png",
-                      alt="",
+                      alt="Go programming language logo",
                       width="50",
                       height="100",
                       hi_def=True,
@@ -205,7 +225,7 @@ meta_copydoc %}
                     <div class="p-logo-section__item">
                       {{ image (
                       url="https://assets.ubuntu.com/v1/5ec3f5aa-power-dns-logo.png",
-                      alt="",
+                      alt="PowerDNS logo",
                       width="117",
                       height="100",
                       hi_def=True,
@@ -216,7 +236,7 @@ meta_copydoc %}
                     <div class="p-logo-section__item">
                       {{ image (
                       url="https://assets.ubuntu.com/v1/c3f21c3a-rails-logo.png",
-                      alt="",
+                      alt="Ruby on Rails framework logo",
                       width="69",
                       height="100",
                       hi_def=True,
@@ -227,7 +247,7 @@ meta_copydoc %}
                     <div class="p-logo-section__item">
                       {{ image (
                       url="https://assets.ubuntu.com/v1/8fd53f00-rust-logo.png",
-                      alt="",
+                      alt="Rust programming language logo",
                       width="49",
                       height="100",
                       hi_def=True,
@@ -238,7 +258,7 @@ meta_copydoc %}
                     <div class="p-logo-section__item">
                       {{ image (
                       url="https://assets.ubuntu.com/v1/012683d0-vagrant-logo.png",
-                      alt="",
+                      alt="Vagrant development environment logo",
                       width="90",
                       height="100",
                       hi_def=True,
@@ -249,7 +269,7 @@ meta_copydoc %}
                     <div class="p-logo-section__item">
                       {{ image (
                       url="https://assets.ubuntu.com/v1/4c33885a-wordpress-logo-blue.png",
-                      alt="",
+                      alt="WordPress CMS logo",
                       width="48",
                       height="100",
                       hi_def=True,
@@ -260,18 +280,18 @@ meta_copydoc %}
                     <div class="p-logo-section__item">
                       {{ image (
                       url="https://assets.ubuntu.com/v1/f75ca036-apache-zookeeper-logo.png",
-                      alt="",
+                      alt="Apache ZooKeeper logo",
                       width="84",
                       height="100",
                       hi_def=True,
-                      loading="auto|lazy"
+                      loading="lazy"
                       ) | safe
                       }}
                     </div>
                     <div class="p-logo-section__item">
                       {{ image (
                       url="https://assets.ubuntu.com/v1/e1b22248-puppet-logo.png",
-                      alt="",
+                      alt="Puppet automation tool logo",
                       width="98",
                       height="100",
                       hi_def=True,

@@ -27,6 +27,7 @@ let config = {
         "node_modules/@canonical/latest-news/dist/latest-news.js",
         "node_modules/intl-tel-input/build/js/utils.js",
         "node_modules/vanilla-framework/templates/**/*.jinja",
+        "node_modules/leaflet/dist/leaflet.js",
       ],
       defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
       extractors: [
@@ -48,6 +49,7 @@ let config = {
           /^u-/, // Utility classes
           /^is-/,
           /^js-/, // JavaScript-related classes
+          /^leaflet-/,
         ],
         greedy: [
           /^iti/,

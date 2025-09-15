@@ -69,38 +69,17 @@ Guides for making changes to the ubuntu.com codebase.
 
 The basic navigation structure of the site is listed in `navigation.yaml`. This file lists all the top-level section pages and their children and grandchildren. The top menu, footer menu and breadcrumb navigation are all built from this list.
 
-The file should be of the following format:
-
-```yaml
-{ section-identifier }:
-  title: { Section title }
-  url_path: /{section-url}
-
-  children:
-    - title: { Child title }
-      url_path: /{child-url}
-
-      children:
-        - title: { Grandchild }
-          url_path: /{grandchild-url}
-
-    - title: { Hidden child }
-      url_path: { child-url }
-      hidden: True
-```
+An example of the file structure can be found at the top of the [file](https://github.com/canonical/ubuntu.com/blob/main/navigation.yaml).
 
 If a child is "hidden", then it won't be displayed in the navigation menus, either in the top nav, the footer nav, or in the breadcrumb nav on other pages.
 
 #### How it works
 
-The `navigation.yaml` file is read [in `webapp/context.py`](https://github.com/canonical-web-and-design/ubuntu.com/blob/b0b1f1e8fe896166ee0a0a7a2328d1e85f22f84c/webapp/context.py#L53). A `navigation` object will be passed through to all templates.
+The `navigation.yaml` file is read [in `webapp/context.py`](https://github.com/canonical/ubuntu.com/blob/main/webapp/context.py). A function `get_navigation` is created and then made available to all Jinja templates.
 
-This is then used in `webapp.context_processors.navigation` in `webapp/context_processors.py` to add two items to the template context:
+For each dropdown window we use a separate file which individually calls the `get_navigation` script, passing the specific section of the navigation it wants to build. This allows us to load each dropdown, seen [here](https://github.com/canonical/ubuntu.com/tree/main/templates/templates/navigation), as needed and saves on initial load times.
 
-- `breadcrumbs`: Information about the current page, its siblings and its parents
-- `nav_sections`: A direct representation of the `NAV_SECTIONS` setting
-
-These are then used in the `templates/templates/base.html` and `templates/templates/footer.html` templates to build the markup for the top navigation, the breadcrumb navigation and the footer navigation.
+The navigation is supported by [navigation.js](https://github.com/canonical/ubuntu.com/blob/main/static/js/src/navigation.js) for its functionality. In the case where JS is not available we make a [static version](https://github.com/canonical/ubuntu.com/blob/main/templates/templates/navigation/navigation-nojs.html) under the `/navigation-nojs` endpoint.
 
 ### Mobile nav header
 
@@ -108,7 +87,7 @@ On mobile we have a pattern of showing the section title next to the logo, e.g.
 
 ![Section title example](https://assets.ubuntu.com/v1/bb50217a-Screenshot+from+2020-02-04+15-29-36.png)
 
-For the most part this will happen automatically as long as the subpages (/ai/what-is-kubeflow) are in `navigtation.yml` as children. In some cases this isn't possible due to dynamically created content such as tutorials. In this case you can set the `section_title` and `section_path` variables in the template e.g.
+For the most part this will happen automatically as long as the subpages (/appliance/community) are in `navigtation.yml` as children. In some cases this isn't possible due to dynamically created content such as tutorials. In this case you can set the `section_title` and `section_path` variables in the template e.g.
 
 ```
 {% set section_title="Tutorials" %}

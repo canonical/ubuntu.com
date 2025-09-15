@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 
 export const isExistingField = async (page, fieldName) => {
   const field = page.locator(fieldName);
-  return await field.count() > 0;
+  return await field.isVisible();
 };
 
 export const login = async (page: Page) => {
@@ -48,19 +48,27 @@ export const clickRecaptcha = async (page: Page) => {
   await page.frameLocator('[title="reCAPTCHA"]').getByRole('checkbox', { name: 'I\'m not a robot' }).click({force: true});
 }
 
-// Forms testing helpers
-export const fillExistingFields = async (page, testTextFields, testCheckboxFields) => {
-  // Fill text fields
+/**
+ * Fills existing fields in the form
+ * @param page Current page
+ * @param testTextFields List of text fields to fill
+ * @param testCheckboxFields List of checkbox fields to fill
+ * @param testRadioFields List of radio fields to fill
+ */
+export const fillExistingFields = async (page, testTextFields, testCheckboxFields, testRadioFields) => {
   for (const { field, value } of testTextFields) {
     if (await isExistingField(page, field)) {
       await page.fill(field, value);
     }
   }
-
-  // Fill radio fields
   for (const { field, value } of testCheckboxFields) {
     if (await isExistingField(page, field)) {
-      await page.getByLabel(value).check({ force: true });
+      await page.locator(field).check({ force: true });
     }
   }
-}
+  for (const { field, value } of testRadioFields) {
+    if (await isExistingField(page, field)) {
+      await page.locator(field).click({ force: true });
+    }
+  }
+};

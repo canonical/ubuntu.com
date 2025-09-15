@@ -16,10 +16,10 @@ env:
     value: true
 
   - name: CRED_MAINTENANCE_START
-    value: 2024-09-28T11:00:00Z
+    value: 2025-09-05T00:00:00Z
 
   - name: CRED_MAINTENANCE_END
-    value: 2024-09-28T15:00:00Z
+    value: 2025-09-19T23:59:59Z
 
   - name: SEARCH_API_KEY
     secretKeyRef:
@@ -65,6 +65,9 @@ env:
     secretKeyRef:
       key: api_secret
       name: marketo
+  
+  - name: MARKETO_API_URL
+    value: https://066-EOV-335.mktorest.com
 
   - name: GOOGLE_SERVICE_ACCOUNT_EMAIL
     secretKeyRef:
@@ -119,9 +122,6 @@ env:
 
   - name: BADGR_ISSUER
     value: eTedPNzMTuqy1SMWJ05UbA
-
-  - name: CANONICAL_CLA_API_URL
-    value: https://cla.canonical.com
 
   - name: CERTIFIED_BADGE
     value: hs8gVorCRgyO2mNUfeXaLw
@@ -189,7 +189,9 @@ extraHosts:
 # Overrides for production
 production:
   replicas: 9
-
+  env:
+    - name: FLASK_ENV
+      value: "production"
   routes:
     - paths: [/blog]
       name: ubuntu-com-blog
@@ -329,7 +331,7 @@ production:
           secretKeyRef:
             key: api_secret
             name: marketo
-
+      
         - name: CREDLY_URL
           value: https://api.credly.com/v1
 
@@ -347,10 +349,10 @@ production:
           value: true
 
         - name: CRED_MAINTENANCE_START
-          value: 2024-09-28T11:00:00Z
+          value: 2025-09-05T00:00:00Z
 
         - name: CRED_MAINTENANCE_END
-          value: 2024-09-28T15:00:00Z
+          value: 2025-09-19T23:59:59Z
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
@@ -415,6 +417,12 @@ production:
         [
           /security/cves\.json,
           /security/cves/.*\.json,
+          /security/released/cves\.json,
+          /security/released/cves/.*\.json,
+          /security/sitemap/cves\.json,
+          /security/sitemap/cves/.*\.json,
+          /security/sitemap/notices\.json,
+          /security/sitemap/notices/.*\.json,
           /security/releases\.json,
           /security/releases/.*\.json,
           /security/api/.*,
@@ -428,6 +436,13 @@ production:
           /security/notices/.*\.json,
         ]
       service_name: ubuntu-com-security-api-notices
+
+    - paths:
+        [
+          /security/flat/notices\.json,
+          /security/flat/notices/.*\.json,
+        ]
+      service_name: ubuntu-com-security-api-flat-notices
 
     - paths: [/security/updates/.*]
       service_name: ubuntu-com-security-api-updates
@@ -589,10 +604,10 @@ staging:
       value: true
 
     - name: CRED_MAINTENANCE_START
-      value: 2024-09-28T11:00:00Z
+      value: 2025-09-05T00:00:00Z
 
     - name: CRED_MAINTENANCE_END
-      value: 2024-09-28T15:00:00Z
+      value: 2025-09-19T23:59:59Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:
@@ -767,6 +782,9 @@ staging:
         key: maas-api-username
         name: discourse-api
 
+    - name: FLASK_ENV
+      value: "staging"
+
   routes:
     - paths: [/blog]
       name: ubuntu-com-blog
@@ -927,10 +945,10 @@ staging:
           value: true
 
         - name: CRED_MAINTENANCE_START
-          value: 2024-09-28T11:00:00Z
+          value: 2025-09-05T00:00:00Z
 
         - name: CRED_MAINTENANCE_END
-          value: 2024-09-28T15:00:00Z
+          value: 2025-09-19T23:59:59Z
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
@@ -995,6 +1013,12 @@ staging:
         [
           /security/cves\.json,
           /security/cves/.*\.json,
+          /security/released/cves\.json,
+          /security/released/cves/.*\.json,
+          /security/sitemap/cves\.json,
+          /security/sitemap/cves/.*\.json,
+          /security/sitemap/notices\.json,
+          /security/sitemap/notices/.*\.json,
           /security/releases\.json,
           /security/releases/.*\.json,
           /security/api/.*,
@@ -1009,6 +1033,13 @@ staging:
           /security/notices/.*\.json,
        ]
       service_name: ubuntu-com-security-api-notices
+
+    - paths:
+        [
+          /security/flat/notices\.json,
+          /security/flat/notices/.*\.json,
+        ]
+      service_name: ubuntu-com-security-api-flat-notices
 
     - paths: [/security]
       name: ubuntu-com-security
@@ -1151,10 +1182,10 @@ demo:
       value: true
 
     - name: CRED_MAINTENANCE_START
-      value: 2024-09-28T11:00:00Z
+      value: 2025-09-05T00:00:00Z
 
     - name: CRED_MAINTENANCE_END
-      value: 2024-09-28T15:00:00Z
+      value: 2025-09-19T23:59:59Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:
@@ -1276,5 +1307,8 @@ demo:
         key: maas-api-username
         name: discourse-api
 
-    - name: CANONICAL_CLA_API_URL
-      value: https://cla.staging.canonical.com
+    - name: FLASK_ENV
+      value: "demo"    
+
+    - name: MARKETO_API_URL
+      value: https://066-EOV-335.mktorest.com

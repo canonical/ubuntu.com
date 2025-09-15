@@ -27,138 +27,147 @@
         </div>
         <hr class="is-muted" />
         <p>
-          <a href="/contact-us" class="p-button--positive js-invoke-modal">Contact us</a>
+          <a href="/azure/contact-us"
+             class="p-button--positive js-invoke-modal"
+             aria-controls="azure-modal">Contact us</a>
         </p>
       </div>
       <div class="col">
         <div class="p-image-container u-hide--small">
-          <img class="p-image-container__image"
-               src="https://assets.ubuntu.com/v1/3ec9a6b0-ubuntu-pro-azure-@3x.png"
-               alt="Ubuntu pro and Azure logo" />
+          {{ image(url="https://assets.ubuntu.com/v1/3ec9a6b0-ubuntu-pro-azure-@3x.png",
+                    alt="Ubuntu pro and Azure logo",
+                    width="1800",
+                    height="1128",
+                    hi_def=True,
+                    loading="auto",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
         </div>
       </div>
     </div>
   </section>
 
-    <section class="p-section">
-      <div class="row--50-50">
-        <hr />
-        <div class="col">
-          <h2>Ubuntu Pro</h2>
-        </div>
-        <div class="col">
-          <p>
-            Ubuntu Pro for Azure is a premium image delivering the most comprehensive open source security and Azure compliance. Ubuntu Pro is suitable for small to large-scale Linux enterprise operations offering pay-as-you-go billing on your existing Azure invoice.
-          </p>
-          <p>
-            For more information about Ubuntu Pro on Azure, see <a href="/azure/pro">https://ubuntu.com/azure/pro</a>.
-          </p>
-        </div>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr />
+      <div class="col">
+        <h2>Ubuntu Pro</h2>
       </div>
-    </section>
-
-    <section class="p-section">
-      <div class="row--50-50">
-        <hr />
-        <div class="col">
-          <h2>Ubuntu Pro with 24x7 Support</h2>
-        </div>
-        <div class="col">
-          <p>
-            With 24x7 SLAed support and the widest open source security patching, teams can build on Ubuntu Pro with Support to secure their application's open source supply chain and receive expert assistance when they need it.
-          </p>
-          <p>
-            24x7 Support is available for the Ubuntu operating system (infrastructure) and can be extended to include application support for <a href="/support">key open source applications</a>.
-          </p>
-          <p>
-            See more details at <a href="/support">https://ubuntu.com/support</a>.
-          </p>
-          <p>
-            If you already purchase support from Azure, speak to us about adding and integrating Canonical's Support into your existing Azure support &mdash; ensuring you have vendor-backed, SLAed support above the hypervisor for your workloads, without having to make any changes to end user issue reporting.
-          </p>
-        </div>
+      <div class="col">
+        <p>
+          Ubuntu Pro for Azure is a premium image delivering the most comprehensive open source security and Azure compliance. Ubuntu Pro is suitable for small to large-scale Linux enterprise operations offering pay-as-you-go billing on your existing Azure invoice.
+        </p>
+        <p>
+          For more information about Ubuntu Pro on Azure, see <a href="/azure/pro">https://ubuntu.com/azure/pro</a>.
+        </p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="p-section--deep">
-      <div class="u-fixed-width">
-        <hr />
-        <div class="p-section--shallow">
-          <h2>Features</h2>
-        </div>
-        <table class="p-table">
-          <thead>
-            <tr>
-              <th style="width: 50%;">Feature</th>
-              <th>Ubuntu</th>
-              <th>Ubuntu Pro</th>
-              <th>Ubuntu Pro with Support</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Security patches for 2,300+ Ubuntu infrastructure packages</th>
-              <td>Yes</td>
-              <td>Yes</td>
-              <td>Yes</td>
-            </tr>
-            <tr>
-              <th>
-                Security patches for 28,000+ open source packages, including Apache Kafka, MongoDB, RabbitMQ, Redis and NodeJS and key language ecosystems including Java, Python, Ruby and Javascript/Node.js
-              </th>
-              <td>No</td>
-              <td>Yes</td>
-              <td>Yes</td>
-            </tr>
-            <tr>
-              <th>Livepatch for instant kernel security and higher uptimes</th>
-              <td>No</td>
-              <td>Yes</td>
-              <td>Yes</td>
-            </tr>
-            <tr>
-              <th>FIPS 140-2 and Common Criteria EAL2 certified components</th>
-              <td>No</td>
-              <td>Yes</td>
-              <td>Yes</td>
-            </tr>
-            <tr>
-              <th>
-                Hardening profiles, including CIS and DISA STIG, with CIS and other Shell security recommendations for production environments built into hardened images in the gallery
-              </th>
-              <td>No</td>
-              <td>Yes</td>
-              <td>Yes</td>
-            </tr>
-            <tr>
-              <th>Landscape fleet management</th>
-              <td>No</td>
-              <td>On request</td>
-              <td>On request</td>
-            </tr>
-            <tr>
-              <th>Maintenance period</th>
-              <td>5 years</td>
-              <td>10 years</td>
-              <td>10 years</td>
-            </tr>
-            <tr>
-              <th>Knowledge Base</th>
-              <td>No</td>
-              <td>No</td>
-              <td>Yes</td>
-            </tr>
-            <tr>
-              <th>
-                Canonical-backed 24x7 Support with enterprise grade SLA, with possibilities to integrate into existing Azure support workflows
-              </th>
-              <td>No</td>
-              <td>No</td>
-              <td>Yes</td>
-            </tr>
-          </tbody>
-        </table>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr />
+      <div class="col">
+        <h2>Ubuntu Pro with 24x7 Support</h2>
       </div>
-    </section>
+      <div class="col">
+        <p>
+          With 24x7 SLAed support and the widest open source security patching, teams can build on Ubuntu Pro with Support to secure their application's open source supply chain and receive expert assistance when they need it.
+        </p>
+        <p>
+          24x7 Support is available for the Ubuntu operating system (infrastructure) and can be extended to include application support for <a href="/support">key open source applications</a>.
+        </p>
+        <p>
+          See more details at <a href="/support">https://ubuntu.com/support</a>.
+        </p>
+        <p>
+          If you already purchase support from Azure, speak to us about adding and integrating Canonical's Support into your existing Azure support &mdash; ensuring you have vendor-backed, SLAed support above the hypervisor for your workloads, without having to make any changes to end user issue reporting.
+        </p>
+      </div>
+    </div>
+  </section>
 
-  {% endblock content %}
+  <section class="p-section--deep">
+    <div class="u-fixed-width">
+      <hr />
+      <div class="p-section--shallow">
+        <h2>Features</h2>
+      </div>
+      <table class="p-table">
+        <thead>
+          <tr>
+            <th style="width: 50%;">Feature</th>
+            <th>Ubuntu</th>
+            <th>Ubuntu Pro</th>
+            <th>Ubuntu Pro with Support</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Security patches for 2,300+ Ubuntu infrastructure packages</th>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <th>
+              Security patches for 28,000+ open source packages, including Apache Kafka, MongoDB, RabbitMQ, Redis and NodeJS and key language ecosystems including Java, Python, Ruby and Javascript/Node.js
+            </th>
+            <td>No</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <th>Livepatch for instant kernel security and higher uptimes</th>
+            <td>No</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <th>FIPS 140-2 and Common Criteria EAL2 certified components</th>
+            <td>No</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <th>
+              Hardening profiles, including CIS and DISA STIG, with CIS and other Shell security recommendations for production environments built into hardened images in the gallery
+            </th>
+            <td>No</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <th>Landscape fleet management</th>
+            <td>No</td>
+            <td>On request</td>
+            <td>On request</td>
+          </tr>
+          <tr>
+            <th>Maintenance period</th>
+            <td>5 years</td>
+            <td>10 years</td>
+            <td>10 years</td>
+          </tr>
+          <tr>
+            <th>Knowledge Base</th>
+            <td>No</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <th>
+              Canonical-backed 24x7 Support with enterprise grade SLA, with possibilities to integrate into existing Azure support workflows
+            </th>
+            <td>No</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  {{ load_form("/azure") | safe }}
+
+{% endblock content %}

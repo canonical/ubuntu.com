@@ -1,0 +1,143 @@
+# This file configures Charmcraft.
+# See https://juju.is/docs/sdk/charmcraft-config for guidance.
+
+name: ubuntu-com
+
+type: charm
+
+bases:
+  - build-on:
+      - name: ubuntu
+        channel: "22.04"
+    run-on:
+      - name: ubuntu
+        channel: "22.04"
+
+# (Required)
+summary: Ubuntu website https://ubuntu.com
+
+# (Required)
+description: |
+  Ubuntu.com is the official website of Ubuntu, a popular Linux distribution.
+  It provides information about Ubuntu, its features, and how to download and use it.
+  It also serves as a platform for the Ubuntu community to share news, updates, and resources related to Ubuntu.
+  The website is built using Flask, a lightweight web framework for Python, and is designed to
+  be fast, secure, and easy to navigate. It includes various sections such as documentation,
+  support, community, and more, making it a comprehensive resource for Ubuntu users and enthusiasts.
+
+extensions:
+  - flask-framework
+
+config:
+  options:
+    store-maintenance:
+      type: boolean
+      default: True
+    store-maintenance-start:
+      type: string
+      default: "2024-03-27 03:00:00+00:00"
+    store-maintenance-end:
+      type: string
+      default: "2024-03-27 05:00:00+00:00"
+    cred-maintenance:
+      type: boolean
+      default: True
+    cred-maintenance-start:
+      type: string
+      default: "2024-09-28 11:00:00+00:00"
+    cred-maintenance-end:
+      type: string
+      default: "2024-09-28 15:00:00+00:00"
+    search-api:
+      type: secret
+      description: "Google Search API"
+    discourse-api:
+      type: secret
+      description: "Discourse API"
+    charmhub-discourse-api:
+      type: secret
+      description: "Charmhub Discourse API"
+    maas-discourse-api:
+      type: secret
+      description: "MAAS Discourse API"
+    launchpad-image-build:
+      type: secret
+      description: "Launchpad image build credentials"
+    marketo-api:
+      type: secret
+      description: "Marketo API credentials"
+    google-service-account:
+      type: secret
+      description: "Google service account credentials"
+    google-datastore:
+      type: secret
+      description: "Google Datastore credentials for Ubuntu"
+    confidentiality-agreement-webhook:
+      type: secret
+      description: "Confidentiality agreement webhook credentials"
+    sentry-dsn:
+      type: string
+      description: "Sentry DSN for error tracking"
+      default: "https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13"
+    badgr-url:
+      type: string
+      description: "Badgr URL for badge management"
+      default: "https://api.eu.badgr.io"
+    badgr:
+      type: secret
+      description: "Badgr credentials for badge management"
+    badgr-issuer:
+      type: string
+      description: "Badgr issuer for badge management"
+      default: "badgr_issuer"
+    canonical-cla-api-url:
+      type: string
+      description: "Canonical CLA API URL"
+      default: "https://cla.canonical.com"
+    certified-badge:
+      type: string
+      description: "Certified badge for Canonical"
+      default: "certified_badge"
+    contracts-api-url:
+      type: string
+      description: "Contracts API URL"
+      default: "https://contracts.canonical.com/"
+    security-api-url:
+      type: string
+      description: "Security API URL"
+      default: "https://ubuntu.com/security/"
+    stripe-publishable-key:
+      type: string
+      description: "Stripe publishable key for payment processing"
+      default: "stripe_publishable_key"
+    trueability-url:
+      type: string
+      description: "TrueAbility URL for assessment management"
+      default: "https://app.trueability.com"
+    trueability-api:
+      type: secret
+      description: "TrueAbility credentials for assessment management"
+    ta-webhook-api:
+      type: secret
+      description: "TrueAbility webhook API credentials"
+    proctor360-base-url:
+      type: string
+      description: "Proctor360 base URL for proctoring services"
+      default: "https://prod1ext.proctor360.com"
+    proctor360:
+      type: secret
+      description: "Proctor360 credentials for proctoring services"
+    sitemap:
+      type: secret
+      description: "Sitemaps credentials for sitemap generation"
+    credly-url:
+      type: string
+      description: "Credly URL for credential management"
+      default: "https://api.credly.com/v1"
+    credly:
+      type: secret
+      description: "Credly credentials for credential management"
+    canonical-login-url:
+      type: string
+      description: "Canonical login URL for authentication"
+      default: "https://login.ubuntu.com/"

@@ -63,6 +63,7 @@ const products = parsedCheckoutProducts.map((product) => {
 const action: Action = parsedCheckoutData?.action;
 const coupon: Coupon = parsedCheckoutData?.coupon || undefined;
 const marketplace = products[0].product.marketplace;
+const referral_id = localStorage.getItem("referral_id") || undefined;
 
 window.marketplace = marketplace;
 window.canTrial = undefined;
@@ -95,7 +96,12 @@ const App = () => {
     <Sentry.ErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <Elements stripe={stripePromise}>
-          <Checkout products={products} action={action} coupon={coupon} />
+          <Checkout
+            products={products}
+            action={action}
+            coupon={coupon}
+            referral_id={referral_id}
+          />
         </Elements>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

@@ -176,7 +176,7 @@
               </li>
 
               {% include "shared/forms/_country.html" %}
-              
+
               <li class="p-list__item">
                 <label class="p-checkbox">
                   <input class="p-checkbox__input"
@@ -188,7 +188,7 @@
                 </label>
               </li>
               <li class="p-list__item">
-                In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
+                In submitting this form, I confirm that I have read and agree to <a href="https://canonical.com/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="https://canonical.com/legal/data-privacy">Privacy Policy</a>.
               </li>
               {# These are honey pot fields to catch bots #}
               <li class="u-off-screen">
@@ -310,11 +310,13 @@
             <p class="p-heading--4">A member of our team will be in touch within one working day.</p>
           </div>
           <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
-            <img src="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg"
-                 alt="smile"
-                 width="200"
-                 height="200"
-                 loading="auto" />
+            {{ image(url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",
+                        alt="",
+                        width="200",
+                        height="200",
+                        hi_def=True,
+                        loading="auto") | safe
+            }}
           </div>
         </div>
       </div>

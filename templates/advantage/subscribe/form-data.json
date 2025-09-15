@@ -16,12 +16,11 @@
         {
           "title": "Tell us about your project",
           "id": "about-your-project",
-          "noCommentsFromLead": true,
           "fields": [
             {
               "type": "long-text",
               "id": "about-your-project",
-              "label": "Abour your project"
+              "label": "About your project"
             }
           ]
         },
@@ -104,7 +103,7 @@
                 },
                 {
                   "type": "checkbox",
-                  "id": "i-dont'know",
+                  "id": "i-dont-know",
                   "value": "I don't know",
                   "label": "I don't know"
                 }
@@ -115,13 +114,12 @@
         {
           "title": "*What is the name of your cloud provider?",
           "id": "cloud-provider",
-          "noCommentsFromLead": true,
+          "isRequired": true,
           "fields": [
             {
               "type": "long-text",
               "id": "cloud-provider-name",
-              "label": "Cloud provider name",
-              "isRequired": true
+              "label": "Cloud provider name"
             }
           ]
         },
@@ -302,7 +300,6 @@
         {
           "title": "What advice are you looking for?",
           "id": "advice",
-          "noCommentsFromLead": true,
           "fields": [
             {
               "type": "long-text",

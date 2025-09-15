@@ -88,6 +88,7 @@ account_purhcase = {
     ),
     "coupon": Nested(CouponSchema),
     "metadata": List(Nested(Metadata), allow_none=True),
+    "referral_id": String(allow_none=True),
 }
 
 
@@ -143,6 +144,10 @@ post_anonymised_customer_info = {
 post_payment_methods = {
     "account_id": String(required=True),
     "payment_method_id": String(required=True),
+}
+
+delete_payment_method = {
+    "account_id": String(required=True),
 }
 
 post_customer_info = {

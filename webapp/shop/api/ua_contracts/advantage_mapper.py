@@ -177,7 +177,6 @@ class AdvantageMapper:
 
     def get_purchase(self, purchase_id) -> Purchase:
         response = self.ua_contracts_api.get_purchase(purchase_id)
-
         return PurchaseSchema().load(response)
 
     def purchase_from_marketplace(

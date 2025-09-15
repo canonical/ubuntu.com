@@ -32,6 +32,7 @@
     {%- endif -%}
     {%- if slot == 'cta' -%}
       <a href="/pro" class="p-button--positive">Get started with Ubuntu Pro for 20.04 LTS</a>
+      <a href="/pro/free-trial">Start a free trial&nbsp;&rsaquo;</a>
     {%- endif -%}
     {%- if slot == 'image' -%}
       <div class="p-image-container--3-2 is-cover is-highlighted">
@@ -40,7 +41,8 @@
                 width="1200",
                 height="800",
                 hi_def=True,
-                loading="auto") | safe
+                loading="auto",
+                attrs={"class": "p-image-container__image"}) | safe
         }}
       </div>
     {%- endif -%}

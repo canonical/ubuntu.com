@@ -120,6 +120,7 @@ export type PaymentPayload = {
   offer_id?: string;
   coupon?: Coupon;
   metadata?: Array<{ key: string; value: string }>;
+  referral_id?: string;
 };
 
 export type TaxInfo = {

@@ -38,6 +38,7 @@
     <div class="u-fixed-width u-no-padding u-hide--small u-hide--medium">
       <img src="https://assets.ubuntu.com/v1/7f34ade9-website_suru_25.jpg"
            alt=""
+           fetchpriority="high"
            style="aspect-ratio: 5.1775700934579;
                   width: 100%" />
     </div>
@@ -390,7 +391,7 @@
         <div class="p-section--shallow">
           <hr class="p-rule" />
           <p>
-            <a href="/ai/what-is-kubeflow">What is Kubeflow&nbsp;&rsaquo;</a>
+            <a href="https://canonical.com/mlops/kubeflow/what-is-kubeflow">What is Kubeflow&nbsp;&rsaquo;</a>
           </p>
         </div>
       </div>
@@ -657,6 +658,6 @@
     </div>
   </section>
 
-  {{ load_form('/ai') | safe }}
+  {{ load_form("/ai") | safe }}
 
-  {% endblock content %}
+{% endblock content %}

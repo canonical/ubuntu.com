@@ -1,89 +1,83 @@
 {% extends "engage/base_engage.html" %}
 
-{% block title %}Télécharger {{ resource_name }} {% endblock %}
+{% block title %}Télécharger {{ resource_name }}{% endblock %}
 
-{% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
+{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 
 {% block content %}
-<section class="p-strip p-engage-banner--grad">
-  <div class="u-fixed-width navigation-logo-engage">
-    <a href="/">
-      {{
-        image(
-            url="https://assets.ubuntu.com/v1/f263d9c4-logo-ubuntu-white.svg",
-            alt="Ubuntu",
-            width="143",
-            height="32",
-            hi_def=True,
-            loading="auto",
-        ) | safe
-      }}
-    </a>
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <h1>
-        Merci
-      </h1>
+  <section class="p-section p-engage-banner--grad">
+    <div class="grid-row">
+      <a href="/">
+        {{ image(url="https://assets.ubuntu.com/v1/b4f695ea-Canonical%20Ubuntu%20copy%202.svg",
+                alt="Canonical Ubuntu",
+                width="220",
+                height="40",
+                hi_def=True,
+                loading="auto",) | safe
+        }}
+      </a>
     </div>
-  </div>
-</section>
+    <div class="p-strip is-shallow">
+      <div class="grid-row">
+        <div class="grid-col-8">
+          <h1>Merci</h1>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section class="p-strip">
-  <div class="row">
-    <div class="col-8">
-      {% if form_details and "access_to_content" in metadata and metadata.access_to_content == "true" %}
+  <section class="p-strip">
+    <div class="grid-row">
+      <div class="grid-col-8">
+        {% if form_details and "access_to_content" in metadata and metadata.access_to_content == "true" %}
 
-
-      <h3>Nous avons envoyé une copie de {{ resource_name }} à {{ form_details.email }}</h3>
-      <p>
-        <a class="p-button--positive" href="{{ request_url }}">Retour à la dernière page</a>
-        <a class="p-button" href="/contact-us">Contactez-nous</a>
-      </p>          
-      <p>
-        Pas reçu? Vérifiez votre dossier spam et vérifiez que vous avez utilisé la bonne adresse e-mail.
-      </p>
-      <p>
-        <a href="{{ request_url }}">Ou essayez de le renvoyer</a>
-      </p>
-
-      {% else %}
-        {% if "thank_you_text" in metadata %}
-          <p>{{ metadata["thank_you_text"] }}</p>
-        {% else %}
-        <p>
-          La {{ resource_name }} est prête à être téléchargée.
-        </p>
-        {% endif %}
-        {% if "contact_form_only" not in metadata and metadata.contact_form_only != "true" or ("access_to_content" in metadata and metadata.access_to_content == "true") %}
-          {% if metadata.resource_url and metadata.resource_url != "" %}
+          <h3>Nous avons envoyé une copie de {{ resource_name }} à {{ form_details.email }}</h3>
           <p>
-            <a class="p-button--positive" href="{{ resource_url }}">Téléchargée</a>
+            <a class="p-button--positive" href="{{ request_url }}">Retour à la dernière page</a>
+            <a class="p-button" href="/contact-us">Contactez-nous</a>
           </p>
+          <p>Pas reçu? Vérifiez votre dossier spam et vérifiez que vous avez utilisé la bonne adresse e-mail.</p>
+          <p>
+            <a href="{{ request_url }}">Ou essayez de le renvoyer</a>
+          </p>
+
+        {% else %}
+          {% if "thank_you_text" in metadata %}
+            <p>{{ metadata["thank_you_text"] }}</p>
+          {% else %}
+            <p>La {{ resource_name }} est prête à être téléchargée.</p>
+          {% endif %}
+          {% if "contact_form_only" not in metadata and metadata.contact_form_only != "true" or ("access_to_content" in metadata and metadata.access_to_content == "true") %}
+            {% if metadata.resource_url and metadata.resource_url != "" %}
+              <p>
+                <a class="p-button--positive" href="{{ resource_url }}">Téléchargée</a>
+              </p>
+            {% endif %}
           {% endif %}
         {% endif %}
-      {% endif %}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-{% if related | length > 0 %}
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-8">
-      <h2 class="p-heading--3">Vous pourriez également être intéressé par &hellip;</h2>
-    </div>
-  </div>
-  <div class="row p-divider">
-    {% for page in related[0:3] %}
-    <div class="col-4 p-divider__block">
-      <!-- THREE ADDITIONAL CTAs -->
-      <h4>{{page["topic_name"]}}</h4>
-      <p>{{page["subtitle"]}}</p>
-      <p><a href="{{page['path']}}">En savoir plus&nbsp;&rsaquo;</a></p>
-    </div>
-    {% endfor %}
-  </div>
-</section>
-{% endif %}
+  {% if related | length > 0 %}
+    <section class="p-strip--highlighted">
+      <div class="grid-row">
+        <div class="grid-col-8">
+          <h2 class="p-heading--3">Vous pourriez également être intéressé par &hellip;</h2>
+        </div>
+      </div>
+      <div class="grid-row p-divider">
+        {% for page in related[0:3] %}
+          <div class="grid-col-4 p-divider__block">
+            <!-- THREE ADDITIONAL CTAs -->
+            <h4>{{ page["topic_name"] }}</h4>
+            <p>{{ page["subtitle"] }}</p>
+            <p>
+              <a href="{{ page['path'] }}">En savoir plus&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
 {% endblock content %}

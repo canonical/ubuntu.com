@@ -1,0 +1,453 @@
+{% extends "frame/base_frame.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+
+{% block title %}
+  Ubuntu Frame
+{% endblock title %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1P4xOahtq6VVY6llAAAmQ4cX7ip4zzNXxXciuZ9joxMw/edit#
+{% endblock meta_copydoc %}
+
+{% block meta_description %}
+  Ubuntu Frame is the foundation for any embedded graphical display implementation. Secured by design, tested in the field and long term supported by Canonical.
+{% endblock %}
+
+{% block body_class %}is-paper{% endblock %}
+
+{% block content %}
+  {% call(slot) vf_hero(
+    title_text='Simplify the development <br class="u-hide--small" /> of embedded displays',
+    layout='50/50',
+    is_split_on_medium=false
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Ubuntu Frame is a reliable and secure display server for embedded Linux devices with long term support. Simple to configure, simple to deploy.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="https://assets.ubuntu.com/v1/713b9224-Ubuntu.Frame.Datasheet.pdf"
+         class="p-button--positive">Get the Ubuntu Frame datasheet</a>
+      <a href="/engage/Embedding_IoT_GUI_with_Ubuntu_Frame">Learn how to develop GUIs for IoT with our developer guide&nbsp;&rsaquo;</a>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--3-2 is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/02ab917d-hero.jpg",
+                alt="",
+                width="1200",
+                height="800",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    {%- endif -%}
+  {% endcall -%}
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="grid-row">
+      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
+        <h2>The foundation for embedded graphical display implementations</h2>
+      </div>
+      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
+        <p>
+          Ubuntu Frame streamlines the building and development of products that need graphical output. Ubuntu Frame bundles communication protocols, input protocols, and security policies into a single kit, which can then be used in embedded devices. Whether you are building an interactive kiosk, a digital signage solution or any other product that requires a graphical output, Ubuntu Frame instantly allows your device to run your fullscreen application.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="is-fixed-width p-rule" />
+    <div class="row">
+      <h2 class="p-text--small-caps">COMPATIBLE WITH POPULAR GRAPHICAL TOOLKITS</h2>
+    </div>
+    <div class="u-fixed-width">
+      <div class="p-logo-section has-misaligned">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/971e619b-Qt-logo.png",
+                        alt="Qt logo",
+                        width="156",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/3fa92fbd-flutter-logo.png",
+                        alt="Flutter",
+                        width="138",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/f595e3d7-react-logo.png",
+                        alt="Electron",
+                        width="144",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/3bf2462f-GTK-logo.png",
+                        alt="GTK",
+                        width="252",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/f2f331ca-html5-logo.png",
+                        alt="HTML5",
+                        width="43",
+                        height="104",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/bcdedc4b-sdl-logo.png",
+                        alt="Simple Directmedia Layer",
+                        width="198",
+                        height="312",
+                        hi_def=True,
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="grid-row">
+      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
+        <h2>
+          One tool,
+          <br class="u-hide--small" />
+          all key interaction functionalities
+        </h2>
+      </div>
+      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
+        <div class="p-section--shallow">
+          <video autoplay="" loop="" muted="" class="u-no-margin--bottom">
+            <source src="https://images.zenhubusercontent.com/138038838/29ab4d93-f46f-4d7a-a71a-bb57d6480cc8/ubuntu_all_animations_v5.mp4" />
+          </video>
+        </div>
+        <p>
+          Besides keyboard and mouse input, Ubuntu Frame also automatically enables all the functionality that end-users expect while interacting with digital displays. This includes a wide range of touch gestures such as: multi-finger support, swipe, zoom in and out, touch to focus, and more. It also comes with its own on-screen keyboard.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="grid-row">
+      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
+        <h2>
+          How to get started with
+          <br class="u-hide--small" />
+          Ubuntu Frame
+        </h2>
+      </div>
+      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
+        <ol class="p-stepped-list u-no-margin--bottom">
+          <li class="p-stepped-list__item u-no-padding--bottom">
+            <p class="p-stepped-list__title p-heading--5">Setup your device</p>
+            <p>
+              You need either <a href="/core">Ubuntu Core</a> or a version of Linux supporting snaps
+            </p>
+            <hr class="p-rule--muted" />
+          </li>
+          <li class="p-stepped-list__item u-no-padding--bottom">
+            <p class="p-heading--5 p-stepped-list__title">Install Ubuntu Frame</p>
+            <div class="p-code-snippet u-no-margin--bottom p-section--shallow">
+              <pre class="p-code-snippet__block--icon"><code>sudo snap install ubuntu-frame</code></pre>
+            </div>
+            <hr class="p-rule--muted" />
+          </li>
+          <li class="p-stepped-list__item u-no-padding--bottom">
+            <p class="p-heading--5 p-stepped-list__title">Install your application</p>
+            <div class="p-code-snippet u-no-margin--bottom">
+              <pre class="p-code-snippet__block--icon"><code>sudo snap install [your-app]</code></pre>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="grid-row">
+      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
+        <h2>
+          Learn more about
+          <br class="u-hide--small u-hide--medium" />
+          Ubuntu Frame
+        </h2>
+      </div>
+      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
+        <div class="p-section--shallow">
+          <div class="p-image-container--3-2 is-cover is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/c75ab783-whitepaper.png",
+                        alt="",
+                        width="1200",
+                        height="801",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
+        </div>
+        <p>
+          <b>What&apos;s included in our datasheet:</b>
+        </p>
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">Detailed product overview</li>
+          <li class="p-list__item is-ticked">Tutorials</li>
+          <li class="p-list__item is-ticked">Answers to frequently asked questions</li>
+        </ul>
+        <div class="p-cta-block u-no-padding--bottom">
+          <a href="/engage/Embedding_IoT_GUI_with_Ubuntu_Frame"
+             class="p-button--positive">Download the Developer Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div>
+    {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=false) -%}
+      {%- if slot == 'title' -%}
+        <h2>
+          Ubuntu Frame: Focus on
+          <br class="u-hide--small" />
+          Innovation, Not Integration
+        </h2>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">More time for innovation</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <p>
+          Out-of-the-box, Ubuntu Frame automatically enables all that you need to deploy embedded graphical applications, including input modalities, window behaviours and dynamics, and secure client-server communication. Less integration and maintenance challenges, more time to work on your graphical application.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">Simplified development</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <p>
+          Stop adding a dedicated board and mobile OS just for your display. Reduce integration complexity, costs and security vulnerabilities with a solution that perfectly matches your underlying architecture. With Ubuntu Frame, installing the full graphical stack in your embedded Linux device is as simple as one single command.
+        </p>
+        <div class="p-cta-block">
+          <a href="/engage/Embedding_IoT_GUI_with_Ubuntu_Frame">Learn how to develop GUIs for IoT with our developer guide&nbsp;&rsaquo;</a>
+        </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_3' -%}
+        <h3 class="p-heading--5">A reliable graphical server</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_3' -%}
+        <p>
+          Ubuntu Frame reliability has been widely tested in the field. Its technology has been in development for over 7 years and in production for 5 years. As such, Ubuntu Frame is one of the most mature graphical servers available today for embedded devices.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_4' -%}
+        <h3 class="p-heading--5">Based on Mir</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_4' -%}
+        <p>
+          <a href="https://canonical.com/mir">Mir</a> is an open source system-level library that can be used to create high-performing display servers for IoT devices and traditional Desktops. It replaces the X window server system, commonly used on Linux desktop devices. Mir allows device makers and desktop users to have a well-defined, efficient, flexible, and secure platform for their graphical environment.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_5' -%}
+        <h3 class="p-heading--5">Supported for your device lifetime</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_5' -%}
+        <p>
+          When used in conjunction with Ubuntu Core, the OS tailored for IoT, Ubuntu Frame comes with 10 years of security updates.
+        </p>
+        <div class="p-cta-block">
+          <a href="/core">Learn more about Ubuntu Core&nbsp;&rsaquo;</a>
+        </div>
+      {%- endif -%}
+    {%- endcall -%}
+  </div>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="grid-row">
+      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
+        <h2>Designed for enhanced security</h2>
+      </div>
+      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
+        <div class="u-fixed-width u-hide--small">
+          <figure class="u-no-margin--bottom">
+            <div class="p-image-container is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/9de2c517-designed-for-security.png",
+                            alt="A figure showing how input events and screen contents are protected in the Ubuntu Frame ecosystem. A graphical application (example: a web app) only has access to the network and to Ubuntu Frame over a Wayland protocol socket, provided the operator grants those permissions by connecting the respective Snap interfaces. Only Ubuntu Frame has access to input and output hardware (Keyboard, Mouse, Screen) and mediates applications' access to sensitive data.",
+                            width="1200",
+                            height="676",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image",}) | safe
+              }}
+            </div>
+            <figcaption>
+              <p class="u-text--muted">Architecture that confines shell and app separately</p>
+            </figcaption>
+          </figure>
+        </div>
+        <p>
+          Thanks to Ubuntu Frame's own secure socket, applications can only talk exclusively to the Ubuntu Frame server. This reduces attack vectors since there is no inter-process communication to be snooped on by malicious code.
+        </p>
+        <div class="p-cta-block">
+          <a href="/engage/ubuntu-core-security-audit">Learn more about snaps security in this independent cybersecurity evaluation&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="grid-row p-section--shallow">
+      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
+        <h2>Ready for all boards, frameworks and applications</h2>
+      </div>
+      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
+        <p>Minimize your costs and time to market: Ubuntu Frame is compatible with the most popular frameworks and silicon.</p>
+      </div>
+    </div>
+    <div class="row p-section--shallow">
+      <div class="col-9 col-start-large-4">
+        <div class="p-equal-height-row--wrap">
+          <div class="p-equal-height-row__col is-borderless">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container">
+                {{ image(url="https://assets.ubuntu.com/v1/cae6a3ba-pi-4.png",
+                                alt="",
+                                width="852",
+                                height="569",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image",}) | safe
+                }}
+              </div>
+              <hr class="p-rule--muted" />
+            </div>
+            <div class="p-equal-height-row__item">
+              <h3 class="p-heading--5">Raspberry Pi</h3>
+              <div class="u-hide--large p-cta-block">
+                <a href="/download/raspberry-pi-core">Install Ubuntu Frame on Raspberry Pi&nbsp;&rsaquo;</a>
+              </div>
+            </div>
+          </div>
+          <div class="p-equal-height-row__col is-borderless">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container is-highlighted p-image-container--3-2">
+                {{ image(url="https://assets.ubuntu.com/v1/195fca60-NUC-board.png",
+                                alt="",
+                                width="198",
+                                height="140",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image",}) | safe
+                }}
+              </div>
+              <hr class="p-rule--muted" />
+            </div>
+            <div class="p-equal-height-row__item">
+              <h3 class="p-heading--5">Intel NUC</h3>
+              <div class="u-hide--large p-cta-block">
+                <a href="/download/intel-nuc">Install Ubuntu Frame on Intel NUC&nbsp;&rsaquo;</a>
+              </div>
+            </div>
+          </div>
+          <div class="p-equal-height-row__col is-borderless">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container">
+                {{ image(url="https://assets.ubuntu.com/v1/ef894f14-dragonboard.png",
+                                alt="",
+                                width="852",
+                                height="569",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+              <hr class="p-rule--muted" />
+            </div>
+            <div class="p-equal-height-row__item">
+              <h3 class="p-heading--5">Dragonboard</h3>
+              <div class="u-hide--large p-cta-block">
+                <a href="/download/qualcomm-dragonboard-410c">Install Ubuntu Frame on Dragonboard&nbsp;&rsaquo;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="p-rule--muted u-hide--small u-hide--medium" />
+      </div>
+      <div class="grid-row u-hide--small u-hide--medium">
+        <div class="grid-col-2 grid-col-start-large-3">
+          <a href="/download/raspberry-pi-core">Install Ubuntu Frame on Raspberry Pi&nbsp;&rsaquo;</a>
+        </div>
+        <div class="grid-col-2">
+          <a href="/download/intel-nuc">Install Ubuntu Frame on Intel NUC&nbsp;&rsaquo;</a>
+        </div>
+        <div class="grid-col-2">
+          <a href="/download/qualcomm-dragonboard-410c">Install Ubuntu Frame on Dragonboard&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-start-large-7 col-6">
+        <div class="p-cta-block">
+          <a href="https://discourse.ubuntu.com/t/where-does-ubuntu-frame-work/23193"
+             aria-label="Learn more information about Ubuntu Frame graphic support">More information about Ubuntu Frame graphic support&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="p-rule is-fixed-width" />
+
+  <section class="p-strip is-deep">
+    <div class="row">
+      <h2>
+        Need help? Let’s get your device faster to market
+        <br />
+        <a href="/internet-of-things/contact-us"
+           aria-controls="frame-modal"
+           class="js-invoke-modal">Contact us</a>
+      </h2>
+    </div>
+  </section>
+
+  {{ load_form("/frame") | safe }}
+{% endblock content %}

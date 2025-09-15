@@ -78,7 +78,9 @@
            href="https://portal.azure.com/#create/canonical.ubuntu-24_04-ltsubuntu-pro">Launch Ubuntu Pro 24.04 LTS</a>
         <hr class="p-rule--muted" />
         <p>
-          <a href="/azure/get-in-touch" class="js-invoke-modal">Contact us to discuss Ubuntu Pro with support&nbsp;&rsaquo;</a>
+          <a href="/azure/contact-us"
+             class="js-invoke-modal"
+             aria-controls="azure-modal">Contact us to discuss Ubuntu Pro with support&nbsp;&rsaquo;</a>
         </p>
       </div>
     </div>
@@ -272,7 +274,9 @@
       <hr class="p-rule--muted" />
       <div class="col-start-large-7 col-6">
         <p>
-          <a href="/azure/get-in-touch" class="js-invoke-modal">Let's talk Pro&nbsp;&rsaquo;</a>
+          <a href="/azure/contact-us"
+             class="js-invoke-modal"
+             aria-controls="azure-modal">Let's talk Pro&nbsp;&rsaquo;</a>
         </p>
       </div>
     </div>
@@ -288,15 +292,13 @@
         <div class="p-section">
           <div class="p-section--shallow">
             <div class="p-image-container">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/2db99b36-is-ubuntu-pro.png",
-              alt="",
-              width="1800",
-              height="805",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-image-container__image"}
-              ) | safe
+              {{ image(url="https://assets.ubuntu.com/v1/2db99b36-is-ubuntu-pro.png",
+                            alt="",
+                            width="1800",
+                            height="805",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
               }}
             </div>
           </div>
@@ -316,4 +318,6 @@
 
   <script src="{{ versioned_static('js/dist/utmInheritance.js') }}"></script>
 
+  {{ load_form("/azure") | safe }}
+  
 {% endblock content %}

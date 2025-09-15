@@ -1,0 +1,335 @@
+{% extends "toolchains/base_toolchains.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1ShgZyjn6pBG-L5iVd-MEIwc1JRVhaSeUFoImo5iWO-k
+{% endblock meta_copydoc %}
+
+{% block title %}.NET support - Canonical builds of .NET for Ubuntu{% endblock %}
+
+{% block meta_description %}
+  Explore Canonical’s .NET support offering - long term supported builds,
+  minimal containers, rapid releases and developer automation
+{% endblock %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+  {% call(slot) vf_hero(
+    title_text='Build with .NET on Ubuntu',
+    subtitle_text='Benefit from 12 years of security maintenance, timely releases, and minimal containers' | safe,
+    layout='25/75'
+    ) -%}
+    {%- if slot == 'signpost_image' -%}
+      {{ image(url="https://assets.ubuntu.com/v1/8b0a474a-Microsoft_.NET_logo.svg",
+            alt=".NET",
+            width="76",
+            height="76",
+            hi_def=True,
+            loading="auto") | safe
+      }}
+    {%- endif -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Bring stability to your .NET environment with up to 12 years of long-term support on all Ubuntu LTS releases,
+        through Ubuntu Pro. Put security and compliance at the heart of your Kubernetes applications with minimal
+        runtime containers. Innovate at speed with timely releases and simplify your development environment setup
+        thanks to the .NET snap.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="https://documentation.ubuntu.com/ubuntu-for-developers/howto/dotnet-setup/#"
+         class="p-button--positive u-no-margin--bottom">Use .NET on Ubuntu</a>
+    {%- endif -%}
+  {%- endcall -%}
+
+  <div class="p-section u-fixed-width">
+    <hr class="p-rule" />
+    <div class="row">
+      <div class="p-section--shallow">
+        <h2>Canonical .NET LTS packages</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col" style="overflow: auto;">
+        <table aria-label="Canonical .NET LTS packages table"
+               style="min-width: 726px">
+          <thead>
+            <tr>
+              <th>.NET</th>
+              <th>GA date</th>
+              <th>Ubuntu LTS version availability</th>
+              <th>LTS support until</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>10 (LTS)</td>
+              <td>2025 (November)</td>
+              <td>24.04</td>
+              <td>At least 2036</td>
+            </tr>
+            <tr>
+              <td>8 (LTS)</td>
+              <td>2023 (November)</td>
+              <td>24.04, 22.04</td>
+              <td>At least 2036</td>
+            </tr>
+            <tr>
+              <td>6 (LTS)</td>
+              <td>2021 (November)</td>
+              <td>22.04</td>
+              <td>At least 2034</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <section class="p-section u-fixed-width">
+    <hr class="p-rule" />
+    <div class="row--50-50">
+      <div class="col">
+        <div class="p-section--shallow">
+          <h2>Predictable .NET release cadence on Ubuntu</h2>
+        </div>
+      </div>
+      <div class="col">
+        <p>
+          Our partnership with Microsoft means that Ubuntu releases follow an
+          established, reliable cadence that offers you both the latest features
+          of Ubuntu, and support for the newest versions of .NET shortly after
+          release.
+        </p>
+        <p>Here are the details:</p>
+        <ul class="p-list--divided">
+          <li class="p-list__item has-bullet">
+            Starting with Ubuntu 22.04, every new Ubuntu LTS release ships with
+            the latest .NET release in the archive.
+          </li>
+          <li class="p-list__item has-bullet">
+            Each new interim Ubuntu release will include all supported .NET
+            releases.
+          </li>
+          <li class="p-list__item has-bullet">
+            Additional backports are available thanks to the
+            <a href="https://documentation.ubuntu.com/ubuntu-for-developers/reference/availability/dotnet/#backports-ppa">
+              .NET backports PPA
+            </a>.
+          </li>
+          <li class="p-list__item has-bullet">
+            Upcoming release previews are available thanks to the
+            <a href="https://documentation.ubuntu.com/ubuntu-for-developers/reference/availability/dotnet/#previews-ppa">
+              .NET Previews PPA
+            </a>.
+          </li>
+        </ul>
+        <p>
+          This makes it simple for developers to experiment with the latest versions
+          as soon as possible, while having assurance that their production workload
+          will be supported for a very long time.
+        </p>
+        <a class="p-button"
+           href="https://canonical.com/blog/install-dotnet-on-ubuntu">Read about the Microsoft partnership</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section u-fixed-width">
+    <hr class="p-rule" />
+    <div class="row--50-50">
+      <div class="col">
+        <div class="p-section--shallow">
+          <h2>Receive up to 12 years of security patching and maintenance</h2>
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/62db3057-security-patching-maintenance.png",
+                        alt="",
+                        width="1200",
+                        height="800",
+                        hi_def=True,
+                        loading="lazy") | safe
+            }}
+          </div>
+        </div>
+        <p>
+          Extend the security support period for your .NET applications to up
+          to 12 years, through Ubuntu Pro – Canonical’s comprehensive subscription
+          for open source security.
+        </p>
+        <p>
+          Using .NET on Ubuntu gives developers the freedom to focus on making
+          impactful applications that deliver for customers with expanded
+          security maintenance for the latest .NET LTS releases running until 2036.
+        </p>
+        <a class="p-button" href="https://ubuntu.com/pricing/pro">Get support with Ubuntu Pro</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="p-section u-fixed-width">
+    <hr class="p-rule" />
+    <div class="row">
+      <div class="col-6">
+        <div class="p-section--shallow">
+          <h2>Secure, minimal containers for .NET</h2>
+        </div>
+      </div>
+      <div class="col-6">
+        <p>
+          Canonical provides chiseled containers for the .NET runtime environment,
+          built in collaboration with Microsoft.
+        </p>
+        <p>
+          These containers provide a significant reduction in size and attack
+          surface, resulting in better performance, lower resource requirement,
+          and reduced security risks.
+        </p>
+        <p>
+          The images are available for AMD64, ARM64, S390X and PPC64EL architectures,
+          and benefit from up to 12 years of security support with Ubuntu Pro.
+        </p>
+        <div class="p-cta-block is-borderless">
+          <a class="p-button--positive"
+             href="https://hub.docker.com/r/ubuntu/dotnet-aspnet">Download ASP.NET Core Runtime</a>
+          <a class="p-button"
+             href="https://hub.docker.com/r/ubuntu/dotnet-runtime">Download .NET Runtime</a>
+          <br />
+          <a href="https://ubuntu.com/containers/chiseled/dotnet">Learn about chiselled .NET&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row">
+        <div class="col-9 col-start-large-4">
+          <hr class="is-muted" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3 col-start-large-4">
+          <h3 class="p-heading--5">Chiselled Ubuntu for .NET 8 Runtime</h3>
+        </div>
+        <div class="col-6">
+          <ul class="p-list--divided">
+            <li class="p-list__item has-bullet">49.92MB AMD64 compressed image size</li>
+            <li class="p-list__item has-bullet">47.66MB ARM64 compressed image size</li>
+            <li class="p-list__item has-bullet">31.65MB PPC64EL compressed image size</li>
+            <li class="p-list__item has-bullet">30.16MB S390X compressed image size</li>
+          </ul>
+          <div class="p-cta-block is-borderless">
+            <a href="https://github.com/rockcrafters/dotnet">View the GitHub repo ›</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-section u-fixed-width">
+    <hr class="p-rule" />
+    <div class="row">
+      <div class="col-6">
+        <div class="p-section--shallow">
+          <h2>Improved dev environment setup with the .NET snap</h2>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="p-section--shallow">
+          <div class="p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/9dfa2145-imrpoved-dev-env.png",
+                        alt="",
+                        width="1200",
+                        height="800",
+                        hi_def=True,
+                        loading="lazy",
+                        fmt="png") | safe
+            }}
+          </div>
+        </div>
+        <p>
+          The .NET snap simplifies the .NET installation process on Ubuntu. The
+          snap enables the simultaneous installation of various .NET SDKs and
+          runtimes, all using the same source-built binaries available from the
+          Ubuntu archive.
+        </p>
+        <p>
+          Additional
+          <a href="https://github.com/canonical/dotnet-content-snaps">.NET content snaps</a> are available for both the .NET and ASP.NET
+          runtimes and SDK. They share .NET runtimes and SDK across multiple .NET
+          application snaps, saving storage space and reducing installation times.
+        </p>
+        <a class="p-button" href="https://snapcraft.io/dotnet">Install the .NET snap</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-section u-fixed-width">
+    <hr class="p-rule" />
+    <div class="row">
+      <div class="col-6">
+        <div class="p-section--shallow">
+          <h2>Simplified application packaging with Snapcraft plugin</h2>
+        </div>
+      </div>
+      <div class="col-6">
+        <p>
+          The new .NET plugin enables you to automate, standardize and simplify the
+          process of building snaps for .NET applications by letting Snapcraft handle
+          all the language specific building logic.
+        </p>
+        <p>
+          Benefit from improved support for monorepo setups, it integrates better with
+          MSBuild through custom flag attributes and it leverages the native .NET
+          content snaps.
+        </p>
+        <a class="p-button"
+           href="https://canonical-craft-parts.readthedocs-hosted.com/latest/common/craft-parts/reference/plugins/dotnet_v2_plugin/">
+          Use the Snapcraft Plugin
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-section u-fixed-width">
+    <hr class="p-rule" />
+    <div class="row">
+      <div class="col-6">
+        <div class="p-section--shallow">
+          <h2>Wide architecture support</h2>
+        </div>
+      </div>
+      <div class="col-6">
+        <p>
+          We build and maintain packages for the following architectures, expanding
+          compatibility beyond Microsoft official packages:
+        </p>
+        <ul class="p-list--divided">
+          <li class="p-list__item has-bullet">AMD64</li>
+          <li class="p-list__item has-bullet">ARM64</li>
+          <li class="p-list__item has-bullet">S390X</li>
+          <li class="p-list__item has-bullet">PPC64EL</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="p-rule is-fixed-width" />
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <h2>
+        <a href="/toolchains/contact-us"
+           class="js-invoke-modal"
+           aria-controls="toolchains-modal">Talk to us about your .NET workloads on Ubuntu ›</a>
+      </h2>
+    </div>
+  </section>
+
+  {{ load_form("/toolchains") | safe }}
+
+{% endblock content %}

@@ -123,6 +123,7 @@
           </div>
           <p>
             <a class="p-button--positive" href="/pro">Get Ubuntu Pro</a>
+            <a href="/pro/free-trial">Access a 30-day free trial&nbsp;&rsaquo;</a>
           </p>
         </div>
         <div class="col-3 col-medium-2">
@@ -339,10 +340,10 @@
         <hr class="p-rule" />
         <div class="col">
           <div class="p-image-wrapper u-hide--medium">
-            {{ image(url="https://assets.ubuntu.com/v1/fbd123d4-Significant%20enterprise%20savings.jpg",
+            {{ image(url="https://assets.ubuntu.com/v1/c2e101d2-Significant%20enterprise%20savings.jpg",
                         alt="",
-                        width="1200",
-                        height="1801",
+                        width="900",
+                        height="1315",
                         hi_def=True,
                         loading="lazy",
                         fmt="jpg",
@@ -565,11 +566,11 @@
               Full stack support for <a href="/managed">apps</a>, <a href="/pricing/infra">Kubernetes</a> and <a href="/support">OS</a>
             </li>
             <li class="p-list__item is-ticked">
-              <a href="https://jaas.ai/canonical-kubernetes">K8s architecture and deployment consulting</a>
+              <a href="https://canonical.com/jaas/canonical-kubernetes">K8s architecture and deployment consulting</a>
             </li>
             <li class="p-list__item is-ticked">Cloud-native workload migration services</li>
             <li class="p-list__item is-ticked">
-              GPU enablement for <a href="https://charmed-kubeflow.io/">AI/ML workloads</a>
+              GPU enablement for <a href="https://canonical.com/mlops/kubeflow">AI/ML workloads</a>
             </li>
             <li class="p-list__item is-ticked">
               <a href="https://maas.io/">Bare metal</a>, <a href="/openstack">OpenStack</a> and VMware
@@ -587,7 +588,8 @@
                         width="1132",
                         height="726",
                         hi_def=True,
-                        loading="lazy") | safe
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
             }}
           </div>
         </div>
@@ -751,7 +753,8 @@
                         width="1200",
                         height="983",
                         hi_def=True,
-                        loading="lazy") | safe
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
             }}
           </div>
         </div>
@@ -853,14 +856,15 @@
 
     <section class="p-section ">
       <div class="u-fixed-width ">
-        <div class="u-align--center u-vertically-center u-no-padding--bottom p-image-container--cinematic">
-          {{ image(url="https://assets.ubuntu.com/v1/bb296524-Dell pcs.jpg",
+        <div class="u-align--center u-no-padding--bottom p-image-container--cinematic is-cover">
+          {{ image(url="https://assets.ubuntu.com/v1/f1f39b12-workstations-desktops.jpg",
                     alt="",
-                    width="2464",
-                    height="1028",
+                    width="1848",
+                    height="766",
                     hi_def=True,
                     loading="lazy",
-                    fmt="jpg",) | safe
+                    fmt="jpg",
+                    attrs={"class": "p-image-container__image"}) | safe
           }}
         </div>
         <hr class="p-rule" />
@@ -996,14 +1000,15 @@
     <section class="p-section">
       <div class="u-fixed-width"></div>
       <div class="u-fixed-width">
-        <div class="p-image-container--cinematic">
-          {{ image(url="https://assets.ubuntu.com/v1/39667d98-Open source security.jpg",
+        <div class="p-image-container--cinematic is-cover">
+          {{ image(url="https://assets.ubuntu.com/v1/b87d6e1f-Data%20centre%20automation.jpg",
                     alt="",
-                    width="2464",
-                    height="1054",
+                    width="1848",
+                    height="775",
                     hi_def=True,
                     loading="lazy",
-                    fmt="jpg",) | safe
+                    fmt="jpg",
+                    attrs={"class": "p-image-container__image"}) | safe
           }}
         </div>
         <hr class="p-rule" />
@@ -1142,14 +1147,15 @@
 
     <section class="p-section">
       <div class="u-fixed-width">
-        <div class="p-image-container--cinematic">
-          {{ image(url="https://assets.ubuntu.com/v1/465d1258-Smart robots of all shapes and sizes.jpg",
+        <div class="p-image-container--cinematic is-cover">
+          {{ image(url="https://assets.ubuntu.com/v1/242da2dc-Smart%20robots%20of%20all%20shapes%20and%20sizes.jpg",
                     alt="",
-                    width="2464",
-                    height="1027",
+                    width="1848",
+                    height="771",
                     hi_def=True,
                     loading="lazy",
-                    fmt="jpg",) | safe
+                    fmt="jpg",
+                    attrs={"class": "p-image-container__image"}) | safe
           }}
         </div>
         <hr class="p-rule" />
@@ -1272,7 +1278,7 @@
 
     <section class="p-section--deep">
       <div class="u-fixed-width">
-        <div class="u-vertically-center u-align--center p-image-container--cinematic"
+        <div class="u-align--center p-image-container--cinematic is-cover"
              style="background: rgba(0, 0, 0, 0.15)">
           {{ image(url="https://assets.ubuntu.com/v1/6d657910-Multi-cloud%20Applications%C2%A0%C2%A0Beyond%20PAAS.png",
                     alt="",
@@ -1287,7 +1293,7 @@
         <div class="p-section--shallow">
           <h2 class="p-heading--1 u-no-margin--bottom">Multi–cloud applications&nbsp;&ndash;&nbsp;beyond PAAS</h2>
           <p class="p-heading--2">
-            <a href="https://juju.is/">Universal model-driven operators for classic</a> and <a href="https://jaas.ai/kubernetes">Kubernetes estate</a>.
+            <a href="https://juju.is/">Universal model-driven operators for classic</a> and <a href="https://canonical.com/jaas/kubernetes">Kubernetes estate</a>.
           </p>
           <div class="p-logo-section--dense">
             <div class="p-logo-section__items landing-logos u-no-padding">
@@ -1356,7 +1362,7 @@
         </li>
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
-            <a href="https://jaas.ai/store">Open collection</a> of community-driven operators
+            <a href="https://canonical.com/jaas/store">Open collection</a> of community-driven operators
           </p>
         </li>
       </ul>
