@@ -17,15 +17,22 @@ If you have found a bug in the Ubuntu OS itself, please file it [here](https://b
 
 ## Local development
 
-The simplest way to run the site locally is using the [`dotrun`](https://github.com/canonical-web-and-design/dotrun/) snap. Please use the installation scripts [mentioned in the README](https://github.com/canonical-web-and-design/dotrun/blob/main/README.md#installation) to install `dotrun`.
+Recommended: use Taskfile
 
-Once it's installed, run the project with:
+Install Taskfile by following the official installation docs: [taskfile.dev/docs/installation](https://taskfile.dev/docs/installation).
+
+Run the project with:
 
 ```bash
-dotrun
+task
+# or
+# task start
 ```
 
-For Mac users, in case running `dotrun` returns an error related to Chromium, add the following line to your local `.env.local` file (create one if you don't have it):
+> [!WARNING]
+> Deprecated: dotrun
+
+Using the [`dotrun`](https://github.com/canonical-web-and-design/dotrun/) snap to run this project is now deprecated and will be removed in the future. If you still rely on it, please see the installation instructions in the dotrun README and run `dotrun` as before. On macOS, if `dotrun` errors due to Chromium, add the following to your local `.env.local` file:
 
 ```
 PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
