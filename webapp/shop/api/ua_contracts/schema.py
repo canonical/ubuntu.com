@@ -51,6 +51,7 @@ class InvoiceSchema(BaseSchema):
     subscriptionEndOfCycle = String(attribute="end_of_cycle")
     paymentStatus = Nested(PaymentStatusSchema, attribute="payment_status")
     lineItems = List(Nested(InvoiceItemSchema), attribute="items")
+    receiptURL = String(attribute="receipt_url")
 
     @post_load
     def make_invoice(self, data, **kwargs) -> Invoice:

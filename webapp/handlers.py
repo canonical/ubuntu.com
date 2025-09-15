@@ -148,6 +148,7 @@ CSP = {
         "*.cloudfront.net",
         "app3.trueability.com",
         "app.trueability.com",
+        "pay.stripe.com",
     ],
     "style-src": [
         "*.cloudfront.net",
@@ -174,7 +175,27 @@ CSP = {
         "'self'",
         "blob:",
     ],
-    "frame-ancestors": ["'none'"],
+    "frame-ancestors": [
+        "https://edge-billing.stripe.com",
+        "https://edge-connect.stripe.com",
+        "https://edge-dashboard-admin.stripe.com",
+        "https://edge-dashboard.stripe.com",
+        "https://edge-docs.stripe.com",
+        "https://edge-marketplace.stripe.com",
+        "https://edge-support.stripe.com",
+        "https://billing.stripe.com",
+        "https://connect.stripe.com",
+        "https://dashboard-admin.stripe.com",
+        "https://dashboard.stripe.com",
+        "https://docs.stripe.com",
+        "https://edge-support-conversations.stripe.com",
+        "https://edge.stripe.com",
+        "https://marketplace.stripe.com",
+        "https://stripe.com",
+        "https://support-admin.corp.stripe.com",
+        "https://support-conversations.stripe.com",
+        "https://support.stripe.com",
+    ],
 }
 
 

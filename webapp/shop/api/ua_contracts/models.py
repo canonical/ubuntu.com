@@ -236,6 +236,7 @@ class Invoice:
         tax_amount: int = None,
         payment_status: dict = None,
         url: str = None,
+        receipt_url: str = None,
     ):
         self.id = id
         self.currency = currency
@@ -248,6 +249,7 @@ class Invoice:
         self.end_of_cycle = end_of_cycle
         self.start_of_cycle = start_of_cycle
         self.items = items
+        self.receipt_url = receipt_url
 
 
 class PurchaseItem:
