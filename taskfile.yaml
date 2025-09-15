@@ -36,8 +36,12 @@ tasks:
       - rm -rf static/css static/js/dist node_modules {{ .VENV_DIR }} .task
 
   test:
+    deps:
+      - install-python
+      - install-yarn
     cmds:
-      - echo "No tests yet"
+      - PATH="{{ .VENV_BIN }}:$PATH" coverage run --source=. -m unittest discover tests
+      - PATH="{{ .VENV_BIN }}:$PATH" yarn test-js --coverage
 
   lint:
     deps:
