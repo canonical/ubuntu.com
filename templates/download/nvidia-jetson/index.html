@@ -30,7 +30,7 @@
       <div class="col">
         <h1>Install Ubuntu on NVIDIA Jetson</h1>
         <p>
-          Run Ubuntu on your NVIDIA&reg; Jetson&trade; Orin platforms to create breakthrough AI solutions across all industries, being available for all the enthusiasts for hands-on AI learning and making amazing projects and for enterprises delivering commercial solutions.
+          Run Ubuntu on your NVIDIA&reg; Jetson&trade; platforms to create breakthrough AI solutions across all industries, being available for all the enthusiasts for hands-on AI learning and making amazing projects and for enterprises delivering commercial solutions. Ubuntu images are now available for both the latest Jetson Thor and Jetson Orin platforms.
         </p>
         <p>
           Pick the OS image to match your hardware, flash it onto a USB or NVMe disk, load it onto your board and away you go.
@@ -76,12 +76,20 @@
                     aria-selected="false"
                     aria-controls="jetson-orin-nx-tab">Jetson Orin NX Series</button>
           </li>
+          <li>
+            <button class="p-tabs__item"
+                    id="jetson-agx-thor"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="jetson-agx-thor-tab">Jetson AGX Thor Series</button>
+          </li>
         </ul>
         <form class="u-hide--large u-hide--medium">
           <select name="boardSelect" id="boardSelect">
             <option value="jetson-agx-orin-tab" selected="">Jetson AGX Orin Series</option>
             <option value="jetson-orin-nano-tab">Jetson Orin Nano Series</option>
             <option value="jetson-orin-nx-tab">Jetson Orin NX Series</option>
+            <option value="jetson-agx-thor-tab">Jetson AGX Thor Series</option>
           </select>
         </form>
       </div>
@@ -89,6 +97,7 @@
         {% include "download/nvidia-jetson/tab-1-jetson-agx-orin.html" %}
         {% include "download/nvidia-jetson/tab-2-jetson-orin-nano.html" %}
         {% include "download/nvidia-jetson/tab-3-jetson-orin-nx.html" %}
+        {% include "download/nvidia-jetson/tab-4-jetson-agx-thor.html" %}
       </div>
     </div>
   </section>
