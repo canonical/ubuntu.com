@@ -420,8 +420,6 @@ class TestStaticContactForms(MarketoFormTestCase):
         Helper function to check form fields and marketo fields
         against each other.
         """
-        marketo_fields = self._get_marketo_fields(form_id)
-
         # Check mkto expected fields are in unprocessed
         for field in marketo_fields:
             id = field.get("id").lower()
