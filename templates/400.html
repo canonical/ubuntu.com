@@ -17,7 +17,7 @@
       <div class="col-6 u-vertically-center">
         <div>
           <h1>400: Bad request</h1>
-          <p class="p-heading--4">The server didn't understand the request.</p>
+          <p class="p-heading--4">{{ error_msg if error_msg else "The server didn't understand the request." }}</p>
         </div>
       </div>
     </div>
