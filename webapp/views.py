@@ -983,6 +983,12 @@ def marketo_submit():
         r = marketo_api.submit_form(payload)
         data = r.json()
 
+        if "errors" in data and data["errors"][0]["code"] == "609":
+            return flask.render_template(
+                "/400.html",
+                error_msg="Please ensure the form exists and try again.",
+            )
+
         if "result" not in data:
             flask.current_app.extensions["sentry"].captureMessage(
                 "Marketo form API Issue",
