@@ -6,7 +6,7 @@
 <form action="/marketo/submit"
       method="post"
       id="mktoForm_5883"
-      onsubmit="ga('send', 'Newsletter', 'Signup', '{{ ga_event_title }} newsletter signup');">
+      onsubmit="stringifyCustomFields(); ga('send', 'Newsletter', 'Signup', '{{ ga_event_title }} newsletter signup');">
   <label class="is-required" for="email">Email:</label>
   <input required
          id="email"
@@ -103,3 +103,23 @@
       In these regular emails you will find the latest updates from Ubuntu and upcoming events where you can meet our team." />
     </div>
   </form>
+
+  <script>
+    function stringifyCustomFields() {
+      const checkboxes = document.querySelectorAll(".js-checkbox");
+      const textarea = document.getElementById("ubuntu_desktop_usage");
+      textarea.value = "";
+      let usageOptions = [];
+
+      checkboxes.forEach(function(checkbox) {
+        if (checkbox.children[0].checked) {
+          const text = checkbox.children[1].id;
+          usageOptions.push(text);
+        }
+      });
+
+      if (usageOptions.length) {
+        textarea.value += usageOptions.join(', ').toLowerCase();
+      }
+    }
+  </script>
