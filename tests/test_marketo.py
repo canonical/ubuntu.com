@@ -1,5 +1,6 @@
 import unittest
 import os
+import json
 
 from webapp.app import app
 from tests.helpers import MarketoFormTestCase
@@ -31,8 +32,66 @@ class TestFormGenerator(MarketoFormTestCase):
         """
         Test form generator files against Marketo fields.
         """
-        for form in self.form_gen_files:
-            self._check_form_gen_with_marketo(form)
+        for form_path in self.form_gen_files:
+            # self._check_form_gen_with_marketo(form_path)
+
+            with open(form_path, "r") as f:
+                forms = json.load(f).get("form", {})
+                self.assertIsNotNone(
+                    forms,
+                    f"Form data could not be loaded from {form_path}",
+                )
+
+            # form-data.json may have multiple forms
+            for form_data in forms.values():
+                form_id = form_data.get("formData").get("formId")
+
+                # Check that marketo form exists
+                marketo_fields = self._get_marketo_fields(form_id)
+
+                # Check that form fields match Marketo fields
+                form_fields = form_data.get("fieldsets", [])
+                for field in form_fields:
+                    field_id = field.get("id")
+
+                    # Check that individual fields are all expected
+                    # in the Marketo fields
+                    if field.get("noCommentsFromLead"):
+                        if field_id != "about-you":
+                            self._check_form_fields(
+                                field_id,
+                                form_id,
+                                "marketo",
+                                marketo_fields,
+                                form_fields,
+                                form_path,
+                            )
+                        else:
+                            # Check enrichment fields separately
+                            contact_fields = field.get("fields", [])
+                            for contact_field in contact_fields:
+                                self._check_form_fields(
+                                    contact_field.get("id"),
+                                    form_id,
+                                    "marketo",
+                                    marketo_fields,
+                                    form_fields,
+                                    form_path,
+                                )
+
+                # Check that Marketo required fields are included in form
+                for marketo_field in marketo_fields:
+                    id = marketo_field.get("id")
+                    required = marketo_field.get("required")
+                    if required:
+                        self._check_form_fields(
+                            id,
+                            form_id,
+                            "form-data",
+                            marketo_fields,
+                            form_fields,
+                            form_path,
+                        )
 
 
 class TestStaticContactForms(MarketoFormTestCase):
