@@ -33,8 +33,6 @@ class TestFormGenerator(MarketoFormTestCase):
         Test form generator files against Marketo fields.
         """
         for form_path in self.form_gen_files:
-            # self._check_form_gen_with_marketo(form_path)
-
             with open(form_path, "r") as f:
                 forms = json.load(f).get("form", {})
                 self.assertIsNotNone(
@@ -58,25 +56,41 @@ class TestFormGenerator(MarketoFormTestCase):
                     # in the Marketo fields
                     if field.get("noCommentsFromLead"):
                         if field_id != "about-you":
-                            self._check_form_fields(
+                            self.assertIsNotNone(
                                 field_id,
-                                form_id,
-                                "marketo",
-                                marketo_fields,
-                                form_fields,
-                                form_path,
+                                f"Field ID is None for marketo "
+                                f"fields in {form_path}",
+                            )
+
+                            clean_field_id, marketo_field_ids = (
+                                self._process_form_fields(
+                                    "marketo", field_id, marketo_fields
+                                )
+                            )
+                            self.assertIn(
+                                clean_field_id,
+                                marketo_field_ids,
+                                f"Field {clean_field_id} is not present in "
+                                f"Marketo fields "
+                                f"for form {form_path} ID {form_id}",
                             )
                         else:
                             # Check enrichment fields separately
                             contact_fields = field.get("fields", [])
                             for contact_field in contact_fields:
-                                self._check_form_fields(
-                                    contact_field.get("id"),
-                                    form_id,
-                                    "marketo",
-                                    marketo_fields,
-                                    form_fields,
-                                    form_path,
+                                clean_field_id, marketo_field_ids = (
+                                    self._process_form_fields(
+                                        "marketo",
+                                        contact_field.get("id"),
+                                        marketo_fields
+                                    )
+                                )
+                                self.assertIn(
+                                    clean_field_id,
+                                    marketo_field_ids,
+                                    f"Field {clean_field_id} is not present "
+                                    f"in Marketo fields "
+                                    f"for form {form_path} ID {form_id}",
                                 )
 
                 # Check that Marketo required fields are included in form
@@ -84,14 +98,28 @@ class TestFormGenerator(MarketoFormTestCase):
                     id = marketo_field.get("id")
                     required = marketo_field.get("required")
                     if required:
-                        self._check_form_fields(
-                            id,
-                            form_id,
-                            "form-data",
-                            marketo_fields,
-                            form_fields,
-                            form_path,
+                        self.assertIsNotNone(
+                            field_id,
+                            f"Field ID is None for form-data.json "
+                            f"fields in {form_path}",
                         )
+
+                        clean_marketo_id, form_field_ids = (
+                            self._process_form_fields(
+                                "form-data",
+                                id,
+                                form_fields
+                            )
+                        )
+
+                        if clean_marketo_id and form_field_ids:
+                            self.assertIn(
+                                clean_marketo_id,
+                                form_field_ids,
+                                f"Field {clean_marketo_id} is not present in "
+                                f"form-data fields"
+                                f" for form {form_path}",
+                            )
 
 
 class TestStaticContactForms(MarketoFormTestCase):

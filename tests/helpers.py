@@ -1,6 +1,7 @@
 import unittest
 import talisker.requests
 import json
+import re
 from requests import Session
 from pathlib import Path
 from bs4 import BeautifulSoup
@@ -47,55 +48,38 @@ class MarketoFormTestCase(unittest.TestCase):
         )
         cls.marketo_api._authenticate()
 
-    def _check_form_fields(
-        self,
-        field_id,
-        form_id,
-        check_form,
-        marketo_fields,
-        form_fields,
-        form_path,
-    ):
-        self.assertIsNotNone(
-            field_id,
-            f"Field ID is None for {check_form} fields in {form_path}",
-        )
-
+    def _process_form_fields(self, check_form, field_id, fields):
+        """
+        Helper function to process form fields for checking.
+        """
         field_id = field_id.lower()
+
         if check_form == "marketo":
             if field_id == "utm_content":
                 field_id = "utmcontent"
 
-            marketo_field_ids = [
-                f.get("id", "").lower() for f in marketo_fields
-            ]
-            self.assertIn(
-                field_id,
-                marketo_field_ids,
-                f"Field {field_id} is not present in "
-                f"{check_form} fields"
-                f" for form {form_path} ID {form_id}",
-            )
+            marketo_field_ids = [f.get("id", "").lower() for f in fields]
+            return field_id, marketo_field_ids
 
         elif check_form == "form-data":
             if field_id not in self.SET_FIELDS:
-                form_field_ids = [f.get("id", "").lower() for f in form_fields]
-                self.assertIn(
-                    field_id,
-                    form_field_ids,
-                    f"Field {field_id} is not present in "
-                    f"{check_form} fields"
-                    f" for form {form_path}",
-                )
+                form_field_ids = [f.get("id", "").lower() for f in fields]
+                return field_id, form_field_ids
+            # Skip checking fields that are in SET_FIELDS
+            else:
+                return None, None
         else:
             self.fail(f"Unknown check_form: {check_form}")
 
     def _get_marketo_fields(self, form_id):
+        """
+        Helper function to get Marketo fields for a form ID.
+        """
         marketo_response = self.marketo_api.get_form_fields(form_id)
         self.assertEqual(marketo_response.status_code, 200)
         self.assertIsNotNone(
             marketo_response,
-            f"Marketo fields should not be None, form ID {form_id}",
+            f"Marketo response should not be None for form ID {form_id}",
         )
         return marketo_response.json().get("result", [])
 
@@ -108,69 +92,6 @@ class MarketoFormTestCase(unittest.TestCase):
             for f in Path("templates").rglob("form-data.json")
             if "templates/tests" not in str(f)
         ]
-
-    def _check_form_gen_with_marketo(self, form_path):
-        """
-        Helper function to check form generator files against Marketo fields.
-        """
-        with open(form_path, "r") as f:
-            forms = json.load(f).get("form", {})
-            self.assertIsNotNone(
-                forms,
-                f"Form data could not be loaded from {form_path}",
-            )
-
-        # form-data.json may have multiple forms
-        for form_data in forms.values():
-            form_id = form_data.get("formData").get("formId")
-
-            # Check that marketo form exists
-            marketo_fields = self._get_marketo_fields(form_id)
-
-            # Check that form fields match Marketo fields
-            form_fields = form_data.get("fieldsets", [])
-            for field in form_fields:
-                field_id = field.get("id")
-
-                # Check that individual fields are all expected
-                # in the Marketo fields
-                if field.get("noCommentsFromLead"):
-                    if field_id != "about-you":
-                        self._check_form_fields(
-                            field_id,
-                            form_id,
-                            "marketo",
-                            marketo_fields,
-                            form_fields,
-                            form_path,
-                        )
-                    else:
-                        # Check enrichment fields separately
-                        contact_fields = field.get("fields", [])
-                        for contact_field in contact_fields:
-                            self._check_form_fields(
-                                contact_field.get("id"),
-                                form_id,
-                                "marketo",
-                                marketo_fields,
-                                form_fields,
-                                form_path,
-                            )
-
-            # Check that Marketo required fields are included in form
-            for marketo_field in marketo_fields:
-                id = marketo_field.get("id")
-                required = marketo_field.get("required")
-                if required:
-                    self._check_form_fields(
-                        id,
-                        form_id,
-                        "form-data",
-                        marketo_fields,
-                        form_fields,
-                        form_path,
-                    )
-
 
     def _get_contact_us_files(self):
         """
@@ -326,11 +247,16 @@ class MarketoFormTestCase(unittest.TestCase):
 
         # Check that unprocessed fields are in mkto fields
         for field in form_fields["unprocessed"]:
-            self._check_form_fields(
-                field,
-                form_id,
-                "marketo",
-                marketo_fields,
-                [],
-                template_path,
+            clean_field_id, marketo_field_ids = (
+                self._process_form_fields(
+                    "marketo", field, marketo_fields
+                )
+            )
+
+            self.assertIn(
+                clean_field_id,
+                marketo_field_ids,
+                f"Field {clean_field_id} is not present in "
+                f"Marketo fields "
+                f"for form {template_path} ID {form_id}",
             )
