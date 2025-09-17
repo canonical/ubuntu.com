@@ -55,6 +55,9 @@ env:
     secretKeyRef:
       key: auth-consumer
       name: launchpad-imagebuild
+  
+  - name: MARKETO_API_URL
+    value: https://066-EOV-335.mktorest.com
 
   - name: MARKETO_API_CLIENT
     secretKeyRef:
@@ -65,9 +68,6 @@ env:
     secretKeyRef:
       key: api_secret
       name: marketo
-  
-  - name: MARKETO_API_URL
-    value: https://066-EOV-335.mktorest.com
 
   - name: GOOGLE_SERVICE_ACCOUNT_EMAIL
     secretKeyRef:
@@ -321,7 +321,10 @@ production:
           secretKeyRef:
             key: app-id
             name: proctor360
-            
+        
+        - name: MARKETO_API_URL
+          value: https://066-EOV-335.mktorest.com
+        
         - name: MARKETO_API_CLIENT
           secretKeyRef:
             key: api_client
@@ -644,6 +647,9 @@ staging:
         key: auth-consumer
         name: launchpad-imagebuild
 
+    - name: MARKETO_API_URL
+      value: https://066-EOV-335.mktorest.com
+
     - name: MARKETO_API_CLIENT
       secretKeyRef:
         key: api_client
@@ -930,6 +936,9 @@ staging:
           secretKeyRef:
             key: organization
             name: credly
+
+        - name: MARKETO_API_URL
+          value: https://066-EOV-335.mktorest.com
 
         - name: MARKETO_API_CLIENT
           secretKeyRef:
@@ -1221,6 +1230,9 @@ demo:
       secretKeyRef:
         key: auth-consumer
         name: launchpad-imagebuild
+    
+    - name: MARKETO_API_URL
+      value: https://066-EOV-335.mktorest.com
 
     - name: MARKETO_API_CLIENT
       secretKeyRef:
@@ -1310,5 +1322,4 @@ demo:
     - name: FLASK_ENV
       value: "demo"    
 
-    - name: MARKETO_API_URL
-      value: https://066-EOV-335.mktorest.com
+    
