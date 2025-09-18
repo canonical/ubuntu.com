@@ -1,5 +1,12 @@
 TAEXAM_PROC_STATE = {
-    "cue-01-linux": True,
+    "cue-01-linux": {
+        "enabled": True,
+        "open_to_public": True,
+    },
+    "cue-02-desktop": {
+        "enabled": True,
+        "open_to_public": False,
+    },
 }
 
 TAEXAM_PROC_EXAM_MAPPING = {

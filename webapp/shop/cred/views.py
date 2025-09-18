@@ -450,8 +450,14 @@ def get_taexam_to_procexam_mapping(ta_exam: str) -> int | None:
     return TAEXAM_PROC_EXAM_MAPPING.get(ta_exam)
 
 
-def is_proctoring_enabled(ta_exam: str) -> int | None:
-    return TAEXAM_PROC_STATE.get(ta_exam, False)
+def is_proctoring_enabled(ta_exam: str, is_cred_admin: bool) -> int | None:
+    state = TAEXAM_PROC_STATE.get(ta_exam, {
+        "enabled": False,
+        "open_to_public": False,
+    })
+    if not is_cred_admin and not state.get("open_to_public"):
+        return None
+    return state.get("enabled")
 
 
 @shop_decorator(area="cred", permission="user", response="html")
@@ -607,7 +613,7 @@ def cred_schedule(
                         error=error,
                         time_delay=time_delay,
                     )
-                if is_staging and is_proctoring_enabled(data["ta_exam"]):
+                if is_proctoring_enabled(data["ta_exam"], is_cred_admin):
                     student = proctor_api.get_student(user["email"])
                     student_sessions = proctor_api.get_student_sessions(
                         {
@@ -707,7 +713,7 @@ def cred_schedule(
                         time_delay=time_delay,
                     )
                 uuid = ""
-                if is_staging and is_proctoring_enabled(data["ta_exam"]):
+                if is_proctoring_enabled(data["ta_exam"], is_cred_admin):
                     uuid = response.get("reservation", {}).get("IDs", [])[-1]
                     student_session_data = {
                         "first_name": first_name,
@@ -1216,7 +1222,7 @@ def cred_assessments(trueability_api, **_):
 
 
 @shop_decorator(area="cred", permission="user", response="html")
-def cred_exam(trueability_api, proctor_api, **_):
+def cred_exam(trueability_api, proctor_api, is_cred_admin, **_):
     email = flask.session["openid"]["email"].lower()
     user = user_info(flask.session)
     first_name, last_name = get_user_first_last_name()
@@ -1270,7 +1276,7 @@ def cred_exam(trueability_api, proctor_api, **_):
     assessment_reservation = assessment.get("assessment_reservation", None)
     timezone = assessment_reservation.get("user", {}).get("time_zone", None)
 
-    if is_staging and is_proctoring_enabled(ta_exam):
+    if is_proctoring_enabled(ta_exam, is_cred_admin):
         student_session = None
         ext_exam_id = None
         exam_date_time = None
