@@ -31,6 +31,7 @@ from canonicalwebteam.flask_base.env import get_flask_env
 from webapp.login import user_info
 from webapp.marketo import MarketoAPI
 from webapp.utils import format_community_event_time
+from webapp.constants import ENGAGE_UI_TRANSLATIONS
 
 ip_reader = geolite2.reader()
 session = talisker.requests.get_session()
@@ -43,6 +44,7 @@ marketo_api = MarketoAPI(
     get_flask_env("MARKETO_API_SECRET"),
     marketo_session,
 )
+
 
 
 def _build_mirror_list(local=False, country_code=None):
@@ -408,19 +410,8 @@ def build_engage_page(engage_pages):
 
             # Generate translated UI strings for template
             lang_raw = (metadata.get("language") or "en").strip()
-            lang_base = lang_raw.split("-")[0].lower() if lang_raw else "en"
-            _translations = {
-                "additional_resources": {
-                    "en": "Additional Resources",
-                    "es": "Recursos adicionales",
-                    "fr": "Ressources supplémentaires",
-                    "pt": "Recursos adicionais",
-                    "de": "Zusätzliche Ressourcen",
-                    "tr": "Ek Kaynaklar",
-                    "it": "Risorse aggiuntive",
-                }
-            }
-            translations = _translations["additional_resources"]
+            lang_base = lang_raw.split("-")[0].lower()
+            translations = ENGAGE_UI_TRANSLATIONS["additional_resources"]
             additional_resources_text = translations.get(
                 lang_base, translations["en"]
             )

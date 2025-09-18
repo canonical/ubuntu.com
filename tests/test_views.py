@@ -569,7 +569,7 @@ class TestEngageTranslations(TestCase):
     def _make_mock_engage_pages(self, metadata):
         mock_engage_pages = Mock()
         mock_engage_pages.api = Mock()
-        mock_engage_pages.api.base_url = "https://discourse.example.com/"
+        mock_engage_pages.api.base_url = "https://ubuntu.discourse.com/"
         # Always return provided metadata regardless of path
         mock_engage_pages.get_engage_page.return_value = metadata
         return mock_engage_pages
