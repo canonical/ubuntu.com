@@ -7,7 +7,7 @@ Ubuntu is an open source software operating system that runs from the desktop, t
 
 The site is largely maintained by the [Web and Design team](https://ubuntu.com/blog/topics/design) at [Canonical](https://www.canonical.com). It is a simple, database-less, informational website project based on [Flask](https://flask.palletsprojects.com/en/1.1.x/) and hosted on a [Charmed Kubernetes](https://ubuntu.com/kubernetes) cluster.
 
-You can read more about the application's architecture [in ARCHITECTURE.md](ARCHITECTURE.md).
+You can read more about the application's architecture [in ARCHITECTURE.md](./docs/ARCHITECTURE.md).
 
 ## Bugs and issues
 
@@ -33,7 +33,7 @@ PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
 Once the server has started, you can visit <http://127.0.0.1:8001> in your browser.
 
-For more information on how to work with ubuntu.com project please refer to [HACKING.md](HACKING.md).
+For more information on how to work with ubuntu.com project please refer to [HACKING.md](./docs/HACKING.md).
 
 # Deploy
 
