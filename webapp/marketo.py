@@ -24,6 +24,7 @@ class MarketoAPI:
         )
         request = self.session.get(auth_url)
         self.token = request.json()["access_token"]
+        self.session.headers.update({"Authorization": f"Bearer {self.token}"})
 
     def request(self, method, url, url_args={}, json=None):
         if not self.token:
@@ -32,7 +33,7 @@ class MarketoAPI:
         params = urlencode(url_args)
         response = self.session.request(
             method=method,
-            url=f"{self.base_url}{url}?access_token={self.token}&{params}",
+            url=f"{self.base_url}{url}?{params}",
             json=json,
         )
 
@@ -41,7 +42,7 @@ class MarketoAPI:
             self._authenticate()
             response = self.session.request(
                 method=method,
-                url=f"{self.base_url}{url}?access_token={self.token}&{params}",
+                url=f"{self.base_url}{url}?{params}",
                 json=json,
             )
 
