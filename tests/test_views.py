@@ -16,7 +16,7 @@ from webapp.views import (
     account_query,
     build_tutorials_query,
     match_tags,
-    build_engage_page
+    build_engage_page,
 )
 
 
@@ -585,7 +585,8 @@ class TestEngageTranslations(TestCase):
         mock_render.assert_called_once()
         _, kwargs = mock_render.call_args
         self.assertEqual(
-            kwargs["additional_resources_text"], "Recursos adicionales")
+            kwargs["additional_resources_text"], "Recursos adicionales"
+        )
         self.assertEqual(kwargs["language"], "es")
 
     @patch("flask.render_template")
@@ -598,7 +599,8 @@ class TestEngageTranslations(TestCase):
         mock_render.assert_called_once()
         _, kwargs = mock_render.call_args
         self.assertEqual(
-            kwargs["additional_resources_text"], "Recursos adicionais")
+            kwargs["additional_resources_text"], "Recursos adicionais"
+        )
         self.assertEqual(kwargs["language"], "pt-BR")
 
     @patch("flask.render_template")
@@ -611,5 +613,6 @@ class TestEngageTranslations(TestCase):
         mock_render.assert_called_once()
         _, kwargs = mock_render.call_args
         self.assertEqual(
-            kwargs["additional_resources_text"], "Additional Resources")
+            kwargs["additional_resources_text"], "Additional Resources"
+        )
         self.assertEqual(kwargs["language"], "xx")

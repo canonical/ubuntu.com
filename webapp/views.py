@@ -46,7 +46,6 @@ marketo_api = MarketoAPI(
 )
 
 
-
 def _build_mirror_list(local=False, country_code=None):
     # Build mirror list
     mirrors = []
