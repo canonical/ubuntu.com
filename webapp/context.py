@@ -109,7 +109,7 @@ def current_year():
 
 def format_date(datestring):
     date = dateutil.parser.parse(datestring)
-    return date.strftime("%-d %B %Y")
+    return date.strftime("%Y %B %-d")
 
 
 def modify_query(params):
