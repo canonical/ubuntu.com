@@ -108,7 +108,7 @@ def current_year():
 
 
 def format_date(datestring):
-    date = dateutil.parser.parse(datestring)
+    date = dateutil.parser.parse(datestring, dayfirst=True)
     return date.strftime("%-d %B %Y")
 
 
