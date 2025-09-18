@@ -579,7 +579,8 @@ class TestEngageTranslations(TestCase):
         metadata = {"language": "es", "type": "whitepaper"}
         view = build_engage_page(self._make_mock_engage_pages(metadata))
 
-        # language parameter isn't used for translation, but include for path build
+        # language parameter isn't used for translation,
+        # but include for path build
         view(language="es", page="test-slug")
 
         mock_render.assert_called_once()
