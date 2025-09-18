@@ -798,3 +798,47 @@ def cves_sitemap():
     response.headers["Cache-Control"] = "public, max-age=43200"
 
     return response
+
+
+def vulnerabilities_sitemap(security_vulnerabilities):
+
+    def build_vulnerabilities_sitemap():
+        topics_array = security_vulnerabilities.get_topics_in_category()
+        # Convert array of topic objects to dict for quick lookup
+        topics = {str(topic["id"]): topic["slug"] for topic in topics_array}
+        vulnerabilities = security_vulnerabilities.get_category_index_metadata(
+            "vulnerabilities"
+        )
+        for vuln in vulnerabilities:
+            # Add slug
+            vuln_id = str(vuln["id"])
+            if vuln_id in topics:
+                vuln["slug"] = topics[vuln_id]
+            # Add year
+            dt = datetime.strptime(vuln["published"], "%d/%m/%Y")
+            vuln["published_dt"] = dt  # Store parsed date
+            vuln["year"] = dt.year
+
+        # Make sure they are in order of published date
+        vulnerabilities.sort(key=lambda v: v["published_dt"], reverse=True)
+
+        # Build links for the XML template
+        links = [
+            {
+                "url": (
+                    f"https://ubuntu.com/security/vulnerabilities/{v['slug']}"
+                ),
+                "last_updated": v["published_dt"].strftime("%Y/%m/%d"),
+            }
+            for v in vulnerabilities
+        ]
+
+        xml_sitemap = flask.render_template("sitemap.xml", links=links)
+
+        response = flask.make_response(xml_sitemap)
+        response.headers["Content-Type"] = "application/xml"
+        response.headers["Cache-Control"] = "public, max-age=43200"
+
+        return response
+
+    return build_vulnerabilities_sitemap

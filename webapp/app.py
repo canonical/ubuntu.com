@@ -45,6 +45,7 @@ from webapp.security.views import (
     notices_sitemap,
     single_cves_sitemap,
     single_notices_sitemap,
+    vulnerabilities_sitemap,
 )
 from webapp.shop.advantage.views import (
     accept_renewal,
@@ -198,6 +199,7 @@ DYNAMIC_SITEMAPS = [
     "blog",
     "security/notices",
     "security/cves",
+    "security/vulnerabilities",
     "security/livepatch/docs",
     "robotics/docs",
 ]
@@ -611,6 +613,12 @@ security_vulnerabilities = Category(
     ),
     category_id=308,
 )
+
+app.add_url_rule(
+    "/security/vulnerabilities/sitemap.xml",
+    view_func=vulnerabilities_sitemap(security_vulnerabilities),
+)
+
 
 app.add_url_rule(
     "/security",
