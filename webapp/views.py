@@ -406,7 +406,7 @@ def build_engage_page(engage_pages):
                         if page_metadata is not None:
                             related_pages_metadata.append(page_metadata)
 
-            # Compute translated UI strings for template (keep Discourse content unchanged)
+            # Generate translated UI strings for template
             lang_raw = (metadata.get("language") or "en").strip()
             lang_base = lang_raw.split("-")[0].lower() if lang_raw else "en"
             _translations = {
@@ -420,8 +420,9 @@ def build_engage_page(engage_pages):
                     "it": "Risorse aggiuntive",
                 }
             }
-            additional_resources_text = _translations["additional_resources"].get(
-                lang_base, _translations["additional_resources"]["en"]
+            translations = _translations["additional_resources"]
+            additional_resources_text = translations.get(
+                lang_base, translations["en"]
             )
 
             return flask.render_template(
