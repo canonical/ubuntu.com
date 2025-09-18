@@ -580,7 +580,7 @@ class TestEngageTranslations(TestCase):
         view = build_engage_page(self._make_mock_engage_pages(metadata))
 
         # language parameter isn't used for translation, but include for path build
-        view(language="es", page="dummy-slug")
+        view(language="es", page="test-slug")
 
         mock_render.assert_called_once()
         _, kwargs = mock_render.call_args
@@ -593,7 +593,7 @@ class TestEngageTranslations(TestCase):
         metadata = {"language": "pt-BR", "type": "blog"}
         view = build_engage_page(self._make_mock_engage_pages(metadata))
 
-        view(language="pt", page="dummy-slug")
+        view(language="pt", page="test-slug")
 
         mock_render.assert_called_once()
         _, kwargs = mock_render.call_args
@@ -606,7 +606,7 @@ class TestEngageTranslations(TestCase):
         metadata = {"language": "xx", "type": "event"}
         view = build_engage_page(self._make_mock_engage_pages(metadata))
 
-        view(language="xx", page="dummy-slug")
+        view(language="xx", page="test-slug")
 
         mock_render.assert_called_once()
         _, kwargs = mock_render.call_args
