@@ -450,7 +450,7 @@ def get_taexam_to_procexam_mapping(ta_exam: str) -> int | None:
     return TAEXAM_PROC_EXAM_MAPPING.get(ta_exam)
 
 
-def is_proctoring_enabled(ta_exam: str, is_cred_admin: bool) -> int | None:
+def is_proctoring_enabled(ta_exam: str, is_cred_admin: bool) -> bool | None:
     state = TAEXAM_PROC_STATE.get(ta_exam, {
         "enabled": False,
         "open_to_public": False,
