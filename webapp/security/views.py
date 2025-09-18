@@ -816,25 +816,22 @@ def vulnerabilities_sitemap(security_vulnerabilities):
                 vuln["slug"] = topics[vuln_id]
             # Add year
             dt = datetime.strptime(vuln["published"], "%d/%m/%Y")
+            vuln["published_dt"] = dt  # Store parsed date
             vuln["year"] = dt.year
 
         # Make sure they are in order of published date
-        vulnerabilities.sort(
-            key=lambda item: datetime.strptime(item["published"], "%d/%m/%Y"),
-            reverse=True,
-        )
+        vulnerabilities.sort(key=lambda v: v["published_dt"], reverse=True)
 
         # Build links for the XML template
-        links = []
-        for vulnerability in vulnerabilities:
-            links.append(
-                {
-                    "url": f"https://ubuntu.com/security/{vulnerability['slug']}",
-                    "last_updated": (
-                        vulnerability.get("published") or ""
-                    ),
-                }
-            )
+        links = [
+            {
+                "url": (
+                    f"https://ubuntu.com/security/vulnerabilities/{v['slug']}"
+                ),
+                "last_updated": v["published_dt"].strftime("%Y/%m/%d"),
+            }
+            for v in vulnerabilities
+        ]
 
         xml_sitemap = flask.render_template("sitemap.xml", links=links)
 
