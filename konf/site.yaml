@@ -19,7 +19,7 @@ env:
     value: 2025-09-05T00:00:00Z
 
   - name: CRED_MAINTENANCE_END
-    value: 2025-09-19T23:59:59Z
+    value: 2025-09-24T23:59:59Z
 
   - name: SEARCH_API_KEY
     secretKeyRef:
@@ -355,7 +355,7 @@ production:
           value: 2025-09-05T00:00:00Z
 
         - name: CRED_MAINTENANCE_END
-          value: 2025-09-19T23:59:59Z
+          value: 2025-09-24T23:59:59Z
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
@@ -610,7 +610,7 @@ staging:
       value: 2025-09-05T00:00:00Z
 
     - name: CRED_MAINTENANCE_END
-      value: 2025-09-19T23:59:59Z
+      value: 2025-09-24T23:59:59Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:
@@ -957,7 +957,7 @@ staging:
           value: 2025-09-05T00:00:00Z
 
         - name: CRED_MAINTENANCE_END
-          value: 2025-09-19T23:59:59Z
+          value: 2025-09-24T23:59:59Z
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
@@ -1194,7 +1194,7 @@ demo:
       value: 2025-09-05T00:00:00Z
 
     - name: CRED_MAINTENANCE_END
-      value: 2025-09-19T23:59:59Z
+      value: 2025-09-24T23:59:59Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:
