@@ -35,6 +35,7 @@ from canonicalwebteam.form_generator import FormGenerator
 from webapp.certified.views import certified_routes
 from webapp.handlers import init_handlers
 from webapp.login import login_handler, logout
+from webapp.search_limiter import limiter
 from webapp.security.views import (
     cve,
     cve_index,
@@ -516,17 +517,22 @@ app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
 with open("navigation.yaml") as navigation_file:
     navigation = yaml.load(navigation_file.read(), Loader=yaml.FullLoader)
 
-app.add_url_rule(
-    "/search",
-    "search",
-    build_search_view(
-        app,
-        session=session,
-        template_path="search.html",
-        search_engine_id=search_engine_id,
-        featured=navigation,
-    ),
+
+limiter.init_app(app)
+
+search_view = build_search_view(
+    app,
+    session=session,
+    template_path="search.html",
+    search_engine_id=search_engine_id,
+    featured=navigation,
 )
+
+# limit search
+search_view = limiter.limit("10 per minute")(search_view)
+
+app.add_url_rule("/search", "search", search_view)
+
 
 app.add_url_rule(
     (
