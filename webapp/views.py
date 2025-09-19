@@ -1030,10 +1030,10 @@ def marketo_submit():
 
     # Redirect to success page only if both submissions were successful
     payload_status = data["result"][0]["status"]
-    if (
-        enrichment_submission["success"] is True
-        and payload_status == "updated"
-    ):
+    if enrichment_submission["success"] is True and payload_status in [
+        "updated",
+        "created",
+    ]:
         flask.flash(
             "Your form was submitted successfully.", "contact-form-success"
         )
