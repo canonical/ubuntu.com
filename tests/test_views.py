@@ -16,6 +16,7 @@ from webapp.views import (
     account_query,
     build_tutorials_query,
     match_tags,
+    build_engage_page,
 )
 
 
@@ -562,3 +563,57 @@ class TestMatchTags(TestCase):
 
     def test_exact_match(self):
         self.assertTrue(match_tags(["cloud"], ["cloud"]))
+
+
+class TestEngageTranslations(TestCase):
+    def _make_mock_engage_pages(self, metadata):
+        mock_engage_pages = Mock()
+        mock_engage_pages.api = Mock()
+        mock_engage_pages.api.base_url = "https://ubuntu.discourse.com/"
+        # Always return provided metadata regardless of path
+        mock_engage_pages.get_engage_page.return_value = metadata
+        return mock_engage_pages
+
+    @patch("flask.render_template")
+    def test_additional_resources_spanish(self, mock_render):
+        metadata = {"language": "es", "type": "whitepaper"}
+        view = build_engage_page(self._make_mock_engage_pages(metadata))
+
+        # language parameter isn't used for translation,
+        # but include for path build
+        view(language="es", page="test-slug")
+
+        mock_render.assert_called_once()
+        _, kwargs = mock_render.call_args
+        self.assertEqual(
+            kwargs["additional_resources_text"], "Recursos adicionales"
+        )
+        self.assertEqual(kwargs["language"], "es")
+
+    @patch("flask.render_template")
+    def test_additional_resources_pt_br_normalization(self, mock_render):
+        metadata = {"language": "pt-BR", "type": "blog"}
+        view = build_engage_page(self._make_mock_engage_pages(metadata))
+
+        view(language="pt", page="test-slug")
+
+        mock_render.assert_called_once()
+        _, kwargs = mock_render.call_args
+        self.assertEqual(
+            kwargs["additional_resources_text"], "Recursos adicionais"
+        )
+        self.assertEqual(kwargs["language"], "pt-BR")
+
+    @patch("flask.render_template")
+    def test_additional_resources_fallback_to_english(self, mock_render):
+        metadata = {"language": "xx", "type": "event"}
+        view = build_engage_page(self._make_mock_engage_pages(metadata))
+
+        view(language="xx", page="test-slug")
+
+        mock_render.assert_called_once()
+        _, kwargs = mock_render.call_args
+        self.assertEqual(
+            kwargs["additional_resources_text"], "Additional Resources"
+        )
+        self.assertEqual(kwargs["language"], "xx")

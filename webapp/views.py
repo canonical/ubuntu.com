@@ -31,6 +31,7 @@ from canonicalwebteam.flask_base.env import get_flask_env
 from webapp.login import user_info
 from webapp.marketo import MarketoAPI
 from webapp.utils import format_community_event_time
+from webapp.constants import ENGAGE_UI_TRANSLATIONS
 
 ip_reader = geolite2.reader()
 session = talisker.requests.get_session()
@@ -406,6 +407,14 @@ def build_engage_page(engage_pages):
                         if page_metadata is not None:
                             related_pages_metadata.append(page_metadata)
 
+            # Generate translated UI strings for template
+            lang_raw = (metadata.get("language") or "en").strip()
+            lang_base = lang_raw.split("-")[0].lower()
+            translations = ENGAGE_UI_TRANSLATIONS["additional_resources"]
+            additional_resources_text = translations.get(
+                lang_base, translations["en"]
+            )
+
             return flask.render_template(
                 "engage/base.html",
                 forum_url=engage_pages.api.base_url,
@@ -413,6 +422,7 @@ def build_engage_page(engage_pages):
                 language=metadata["language"],
                 resource=metadata["type"],
                 related_pages_metadata=related_pages_metadata,
+                additional_resources_text=additional_resources_text,
             )
 
     return engage_page
