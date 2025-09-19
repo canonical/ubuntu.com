@@ -233,9 +233,7 @@ def cred_sign_up(**_):
         "private_key": get_flask_env(
             "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY"
         ).replace("\\n", "\n"),
-        "scopes": [
-            "https://www.googleapis.com/auth/spreadsheets.readonly"
-        ],
+        "scopes": ["https://www.googleapis.com/auth/spreadsheets.readonly"],
     }
 
     credentials = service_account.Credentials.from_service_account_info(
@@ -1483,9 +1481,7 @@ def cred_submit_form(**_):
         "private_key": get_flask_env(
             "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY"
         ).replace("\\n", "\n"),
-        "scopes": [
-            "https://www.googleapis.com/auth/spreadsheets.readonly"
-        ],
+        "scopes": ["https://www.googleapis.com/auth/spreadsheets.readonly"],
     }
 
     credentials = service_account.Credentials.from_service_account_info(
