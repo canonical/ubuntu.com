@@ -149,7 +149,7 @@
   <section class="p-strip--light is-shallow">
     <div class="row">
       <div class="col-8">
-        <h2 class="p-heading--3">{{ additional_resources_text }}</h2>
+        <h2 class="p-heading--3">{% if additional_resources_text %}{{ additional_resources_text }}{% else %}Additional Resources{% endif %}</h2>
       </div>
     </div>
 
