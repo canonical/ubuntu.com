@@ -451,10 +451,13 @@ def get_taexam_to_procexam_mapping(ta_exam: str) -> int | None:
 
 
 def is_proctoring_enabled(ta_exam: str, is_cred_admin: bool) -> bool | None:
-    state = TAEXAM_PROC_STATE.get(ta_exam, {
-        "enabled": False,
-        "open_to_public": False,
-    })
+    state = TAEXAM_PROC_STATE.get(
+        ta_exam,
+        {
+            "enabled": False,
+            "open_to_public": False,
+        },
+    )
     if not is_cred_admin and not state.get("open_to_public"):
         return None
     return state.get("enabled")
@@ -1228,9 +1231,6 @@ def cred_exam(trueability_api, proctor_api, is_cred_admin, **_):
     first_name, last_name = get_user_first_last_name()
     confidentiality_agreement_enabled = strtobool(
         get_flask_env("CREDENTIALS_CONFIDENTIALITY_ENABLED", "false")
-    )
-    is_staging = "staging" in get_flask_env(
-        "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
     )
     ta_exam = flask.request.args.get("ta_exam", "")
     if ta_exam == "":
