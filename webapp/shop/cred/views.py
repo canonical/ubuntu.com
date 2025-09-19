@@ -1468,8 +1468,8 @@ def cred_submit_form(**_):
         honeypots["website"] = flask.request.form.get("website")
 
         # There is logically difference between None and empty string here.
-        # 1. The first if check, we are working with a form that contains honeypots
-        # or the legacy ones using recaptcha.
+        # 1. The first if check, we are working with a form that contains
+        # honeypots or the legacy ones using recaptcha.
         # 2. The second that checks for empty string is actually testing if the
         # honeypots have been triggered
 
@@ -1497,7 +1497,9 @@ def cred_submit_form(**_):
             "private_key": get_flask_env(
                 "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY"
             ).replace("\\n", "\n"),
-            "scopes": ["https://www.googleapis.com/auth/spreadsheets.readonly"],
+            "scopes": [
+                "https://www.googleapis.com/auth/spreadsheets.readonly"
+            ],
         }
 
         credentials = service_account.Credentials.from_service_account_info(
@@ -1518,7 +1520,6 @@ def cred_submit_form(**_):
         print(e)
         flask.current_app.logger.error(f"Error in cred_sign_up: {e}")
         flask.current_app.extensions["sentry"].captureException()
-
 
 
 @shop_decorator(area="cube", permission="user", response="html")
