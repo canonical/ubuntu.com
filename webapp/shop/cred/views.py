@@ -125,252 +125,99 @@ def cred_self_study(
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_sign_up(**_):
     search_type = flask.request.args.get("type")
-    try:
-        if not search_type or (search_type not in ["tester", "sme"]):
-            return flask.redirect("/credentials/sign-up?type=tester")
+    if not search_type or (search_type not in ["tester", "sme"]):
+        return flask.redirect("/credentials/sign-up?type=tester")
 
-        if flask.request.method == "GET":
-            sign_up_open = True
-            return flask.render_template(
-                "credentials/sign-up.html",
-                sign_up_open=sign_up_open,
-                search_type=search_type,
-            )
-        form_fields = {}
-        for key in flask.request.form:
-            values = flask.request.form.getlist(key)
-            value = ", ".join(values)
-            if value:
-                form_fields[key] = value
-                if "utm_content" in form_fields:
-                    form_fields["utmcontent"] = form_fields.pop("utm_content")
-
-        # remove country field for marketo
-        if "country" in form_fields:
-            form_fields.pop("country")
-        # Check honeypot values are not set
-        honeypots = {}
-        honeypots["name"] = flask.request.form.get("name")
-        honeypots["website"] = flask.request.form.get("website")
-        if honeypots["name"] is not None and honeypots["website"] is not None:
-            if honeypots["name"] != "" and honeypots["website"] != "":
-                raise BadRequest("Unexpected honeypot fields (name, website)")
-            else:
-                form_fields["grecaptcharesponse"] = "no-recaptcha"
-                form_fields.pop("website", None)
-                form_fields.pop("name", None)
-
-        form_fields.pop("thankyoumessage", None)
-        form_fields.pop("g-recaptcha-response", None)
-        return_url = form_fields.pop("returnURL", None)
-
-        encode_lead_comments = (
-            form_fields.pop("Encode_Comments_from_lead__c", "yes") == "yes"
+    if flask.request.method == "GET":
+        sign_up_open = True
+        return flask.render_template(
+            "credentials/sign-up.html",
+            sign_up_open=sign_up_open,
+            search_type=search_type,
         )
-        if encode_lead_comments and "Comments_from_lead__c" in form_fields:
-            encoded_comment = html.escape(form_fields["Comments_from_lead__c"])
-            form_fields["Comments_from_lead__c"] = encoded_comment
+    form_fields = {}
+    for key in flask.request.form:
+        values = flask.request.form.getlist(key)
+        value = ", ".join(values)
+        if value:
+            form_fields[key] = value
+            if "utm_content" in form_fields:
+                form_fields["utmcontent"] = form_fields.pop("utm_content")
 
-        visitor_data = {
-            "userAgentString": flask.request.headers.get("User-Agent"),
-        }
-        referrer = flask.request.referrer
-        client_ip = flask.request.headers.get(
-            "X-Real-IP", flask.request.remote_addr
-        )
-
-        if client_ip and ":" not in client_ip:
-            visitor_data["leadClientIpAddress"] = client_ip
-
-        is_staging = "staging" in get_flask_env(
-            "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
-        )
-        marketo_form_id = 6254 if is_staging else 3801
-        form_fields.pop("formid")
-        payload = {
-            "formId": marketo_form_id,
-            "input": [
-                {
-                    "leadFormFields": form_fields,
-                    "visitorData": visitor_data,
-                    "cookie": flask.request.args.get("mkt"),
-                }
-            ],
-        }
-
-        try:
-            response = marketo_api.submit_form(payload).json()
-            if response and response.get("result"):
-                result = response["result"][0]
-                if (
-                    result.get("status") == "skipped"
-                    or response.get("success") is False
-                ):
-                    return (
-                        flask.render_template(
-                            "credentials/sign-up.html",
-                            error="Something went wrong",
-                            search_type=search_type,
-                        ),
-                        400,
-                    )
-        except Exception:
-            flask.current_app.extensions["sentry"].captureException(
-                extra={"payload": payload}
-            )
-
-            return (
-                flask.render_template(
-                    "credentials/sign-up.html",
-                    error="Something went wrong",
-                    search_type=search_type,
-                ),
-                400,
-            )
-
-        service_account_info = {
-            "token_uri": "https://oauth2.googleapis.com/token",
-            "client_email": get_flask_env("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
-            "private_key": get_flask_env(
-                "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY"
-            ).replace("\\n", "\n"),
-            "scopes": [
-                "https://www.googleapis.com/auth/spreadsheets.readonly"
-            ],
-        }
-
-        credentials = service_account.Credentials.from_service_account_info(
-            service_account_info,
-        )
-
-        service = build("sheets", "v4", credentials=credentials)
-
-        def extract_json_comment(obj):
-            fields = [
-                "NativeLanguage",
-                "Country",
-                "areaOfExpertise",
-                "HasFormalTechnicalDegree",
-                "HighestLevelOfFormalEducation",
-                "UbuntuLastProfessionalExperience",
-                "CUEMotivation",
-                "whyNotOtherCertifications",
-                "UbuntuLastAcademicExperience",
-                "whyOtherCertifications",
-                "trainingExperiences",
-                "otherCertifications",
-                "UbuntuOverallExperience",
-                "YearsTechnicalRole",
-            ]
-            row = []
-            for key in fields:
-                cell = obj.get(key, None)
-                if cell is not None:
-                    if isinstance(cell, dict):
-                        json_dict = json.dumps(cell)
-                        row.append(json_dict)
-                    else:
-                        row.append(cell)
-                else:
-                    row.append("")
-
-            return row
-
-        SHEET_ID = "1i9dT558_YYxxdPpDTG5VYewezb5gRUziMG77BtdUZGU"
-        range = (
-            "Production"
-            if "staging"
-            not in get_flask_env(
-                "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
-            )
-            else "Staging"
-        )
-
-        sheet = service.spreadsheets()
-        # add the header to the sheet if the sheet is empty initially
-        result = (
-            sheet.values()
-            .get(spreadsheetId=SHEET_ID, range=f"{range}!1:1")
-            .execute()
-        )
-        first_row = result.get("values", [])
-        if len(first_row) == 0:
-            header = [
-                "First Name",
-                "Last Name",
-                "Email",
-                "Job Role",
-                "Timestamp",
-                "Title",
-                "Comments",
-                "Canonical Updates Opt In",
-                "Exam Contributor Type",
-                "NativeLanguage",
-                "Country",
-                "Area Of Expertise",
-                "Has Formal Technical Degree",
-                "Highest Level Of Formal Education",
-                "Ubuntu Last Professional Experience",
-                "CUE Motivation",
-                "Why Not Other Certifications",
-                "Ubuntu Last Academic Experience",
-                "Why Other Certifications",
-                "Training Experiences",
-                "Other Certifications",
-                "Ubuntu Overall Experience",
-                "Years Technical Role",
-            ]
-            body = {"values": [header]}
-            sheet.values().append(
-                spreadsheetId=SHEET_ID,
-                range=f"{range}!A:A",
-                valueInputOption="RAW",
-                body=body,
-            ).execute()
-
-        body = {
-            "values": [
-                [
-                    form_fields.get("firstName"),
-                    form_fields.get("lastName"),
-                    form_fields.get("email"),
-                    form_fields.get("Job_Role__c"),
-                    datetime.now(pytz.UTC).strftime("%Y-%m-%d %H:%M:%S"),
-                    form_fields.get("title"),
-                    form_fields.get("Comments_from_lead__c"),
-                    form_fields.get("canonicalUpdatesOptIn"),
-                    form_fields.get("exam_contributor_type"),
-                    *extract_json_comment(
-                        json.loads(form_fields["Comments_from_lead__c"])
-                    ),
-                ]
-            ]
-        }
-        sheet.values().append(
-            spreadsheetId=SHEET_ID,
-            range=f"{range}!A:A",
-            valueInputOption="RAW",
-            body=body,
-        ).execute()
-
-        if return_url:
-            # Personalize thank-you page
-            flask.session["form_details"] = {
-                "name": flask.request.form.get("firstName"),
-                "email": flask.request.form.get("email"),
-            }
-            return flask.redirect(return_url)
-
-        if referrer:
-            return flask.redirect(
-                f"/thank-you?referrer={referrer}?type={search_type}"
-            )
+    # remove country field for marketo
+    if "country" in form_fields:
+        form_fields.pop("country")
+    # Check honeypot values are not set
+    honeypots = {}
+    honeypots["name"] = flask.request.form.get("name")
+    honeypots["website"] = flask.request.form.get("website")
+    if honeypots["name"] is not None and honeypots["website"] is not None:
+        if honeypots["name"] != "" and honeypots["website"] != "":
+            raise BadRequest("Unexpected honeypot fields (name, website)")
         else:
-            return flask.redirect(f"/thank-you?type={search_type}")
-    except Exception as e:
-        print(e)
-        flask.current_app.logger.error(f"Error in cred_sign_up: {e}")
-        flask.current_app.extensions["sentry"].captureException()
+            form_fields["grecaptcharesponse"] = "no-recaptcha"
+            form_fields.pop("website", None)
+            form_fields.pop("name", None)
+
+    form_fields.pop("thankyoumessage", None)
+    form_fields.pop("g-recaptcha-response", None)
+    return_url = form_fields.pop("returnURL", None)
+
+    encode_lead_comments = (
+        form_fields.pop("Encode_Comments_from_lead__c", "yes") == "yes"
+    )
+    if encode_lead_comments and "Comments_from_lead__c" in form_fields:
+        encoded_comment = html.escape(form_fields["Comments_from_lead__c"])
+        form_fields["Comments_from_lead__c"] = encoded_comment
+
+    visitor_data = {
+        "userAgentString": flask.request.headers.get("User-Agent"),
+    }
+    referrer = flask.request.referrer
+    client_ip = flask.request.headers.get(
+        "X-Real-IP", flask.request.remote_addr
+    )
+
+    if client_ip and ":" not in client_ip:
+        visitor_data["leadClientIpAddress"] = client_ip
+
+    is_staging = "staging" in get_flask_env(
+        "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
+    )
+    marketo_form_id = 6254 if is_staging else 3801
+    form_fields.pop("formid")
+    payload = {
+        "formId": marketo_form_id,
+        "input": [
+            {
+                "leadFormFields": form_fields,
+                "visitorData": visitor_data,
+                "cookie": flask.request.args.get("mkt"),
+            }
+        ],
+    }
+
+    try:
+        response = marketo_api.submit_form(payload).json()
+        if response and response.get("result"):
+            result = response["result"][0]
+            if (
+                result.get("status") == "skipped"
+                or response.get("success") is False
+            ):
+                return (
+                    flask.render_template(
+                        "credentials/sign-up.html",
+                        error="Something went wrong",
+                        search_type=search_type,
+                    ),
+                    400,
+                )
+    except Exception:
+        flask.current_app.extensions["sentry"].captureException(
+            extra={"payload": payload}
+        )
+
         return (
             flask.render_template(
                 "credentials/sign-up.html",
@@ -379,6 +226,146 @@ def cred_sign_up(**_):
             ),
             400,
         )
+
+    service_account_info = {
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "client_email": get_flask_env("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
+        "private_key": get_flask_env(
+            "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY"
+        ).replace("\\n", "\n"),
+        "scopes": [
+            "https://www.googleapis.com/auth/spreadsheets.readonly"
+        ],
+    }
+
+    credentials = service_account.Credentials.from_service_account_info(
+        service_account_info,
+    )
+
+    service = build("sheets", "v4", credentials=credentials)
+
+    def extract_json_comment(obj):
+        fields = [
+            "NativeLanguage",
+            "Country",
+            "areaOfExpertise",
+            "HasFormalTechnicalDegree",
+            "HighestLevelOfFormalEducation",
+            "UbuntuLastProfessionalExperience",
+            "CUEMotivation",
+            "whyNotOtherCertifications",
+            "UbuntuLastAcademicExperience",
+            "whyOtherCertifications",
+            "trainingExperiences",
+            "otherCertifications",
+            "UbuntuOverallExperience",
+            "YearsTechnicalRole",
+        ]
+        row = []
+        for key in fields:
+            cell = obj.get(key, None)
+            if cell is not None:
+                if isinstance(cell, dict):
+                    json_dict = json.dumps(cell)
+                    row.append(json_dict)
+                else:
+                    row.append(cell)
+            else:
+                row.append("")
+
+        return row
+
+    SHEET_ID = "1i9dT558_YYxxdPpDTG5VYewezb5gRUziMG77BtdUZGU"
+    range = (
+        "Production"
+        if "staging"
+        not in get_flask_env(
+            "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
+        )
+        else "Staging"
+    )
+
+    sheet = service.spreadsheets()
+    # add the header to the sheet if the sheet is empty initially
+    result = (
+        sheet.values()
+        .get(spreadsheetId=SHEET_ID, range=f"{range}!1:1")
+        .execute()
+    )
+    first_row = result.get("values", [])
+    if len(first_row) == 0:
+        header = [
+            "First Name",
+            "Last Name",
+            "Email",
+            "Job Role",
+            "Timestamp",
+            "Title",
+            "Comments",
+            "Canonical Updates Opt In",
+            "Exam Contributor Type",
+            "NativeLanguage",
+            "Country",
+            "Area Of Expertise",
+            "Has Formal Technical Degree",
+            "Highest Level Of Formal Education",
+            "Ubuntu Last Professional Experience",
+            "CUE Motivation",
+            "Why Not Other Certifications",
+            "Ubuntu Last Academic Experience",
+            "Why Other Certifications",
+            "Training Experiences",
+            "Other Certifications",
+            "Ubuntu Overall Experience",
+            "Years Technical Role",
+        ]
+        body = {"values": [header]}
+        sheet.values().append(
+            spreadsheetId=SHEET_ID,
+            range=f"{range}!A:A",
+            valueInputOption="RAW",
+            body=body,
+        ).execute()
+
+    body = {
+        "values": [
+            [
+                form_fields.get("firstName"),
+                form_fields.get("lastName"),
+                form_fields.get("email"),
+                form_fields.get("Job_Role__c"),
+                datetime.now(pytz.UTC).strftime("%Y-%m-%d %H:%M:%S"),
+                form_fields.get("title"),
+                form_fields.get("Comments_from_lead__c"),
+                form_fields.get("canonicalUpdatesOptIn"),
+                form_fields.get("exam_contributor_type"),
+                *extract_json_comment(
+                    json.loads(form_fields["Comments_from_lead__c"])
+                ),
+            ]
+        ]
+    }
+    sheet.values().append(
+        spreadsheetId=SHEET_ID,
+        range=f"{range}!A:A",
+        valueInputOption="RAW",
+        body=body,
+    ).execute()
+
+    if return_url:
+        # Personalize thank-you page
+        flask.session["form_details"] = {
+            "name": flask.request.form.get("firstName"),
+            "email": flask.request.form.get("email"),
+        }
+        return flask.redirect(return_url)
+
+    if referrer:
+        return flask.redirect(
+            f"/thank-you?referrer={referrer}?type={search_type}"
+        )
+    else:
+        return flask.redirect(f"/thank-you?type={search_type}")
 
 
 @shop_decorator(area="cred", response="html")
@@ -1404,123 +1391,117 @@ def cred_faq(
 
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_submit_form(**_):
-    try:
-        if flask.request.method == "GET":
-            return flask.render_template("credentials/exit-survey.html")
-
-        sso_user = user_info(flask.session)
-        email = sso_user["email"]
-        first_name, last_name = get_user_first_last_name()
-
-        form_fields = {
-            "firstName": first_name,
-            "lastName": last_name,
-            "email": email,
-            "ExitSurveyRelevanceofShortFormQuestions": "",
-            "ExitSurveyShortFormQuestionExpectation": "",
-            "ExitSurveyNumberOfShortFormQuestions": "",
-            "ExitSurveyShortFormDifficulty": "",
-            "ExitSurveyShortFormQuestionTimeAllocated": "",
-            "ExitSurveyRelevanceofLabQuestions": "",
-            "ExitSurveyLabCoverage": "",
-            "ExitSurveyNumberOfLabQuestions": "",
-            "ExitSurveyLabQuestionsDifficulty": "",
-            "ExitSurveyLabQuestionsTimeAllocated": "",
-            "ExitSurveyExamManagementExperience": "",
-            "ExitSurveyExamManagementNegatives": "",
-            "ExitSurveyExamEnvironmentExperience": "",
-            "ExitSurveyExamEnvironmentNegatives": "",
-            "ExitSurveyPlatformBestReasons": "",
-            "ExitSurveyPlatformWorstReasons": "",
-            "ExitSurveyValueKnowledge": "",
-            "ExitSurveyValueKnowledgeReason": "",
-            "ExitSurveyReasonablePrice": "",
-            "ExitSurveyMoreExams": "",
-            "ExitSurveyWhyPrice": "",
-            "ExitSurveyCompanyInterest": "",
-            "ExitSurveyBenchmarkPlatform": "",
-            "ExitSurveyBenchmarkContent": "",
-            "ExitSurveyOverallExperienceRating": "",
-            "ExitSurveyBestThingAboutExam": "",
-            "ExitSurveyWorstThingAboutExam": "",
-            "ExitSurveyDifferenceInExperience": "",
-            "ExitSurveyPromoterPeer": "5",
-            "ExitSurveyPromoterManager": "5",
-            "formid": "",
-            "returnURL": "",
-            "Consent_to_Processing__c": "",
-            "grecaptcharesponse": "",
-        }
-        for key in flask.request.form:
-            values = flask.request.form.getlist(key)
-            value = ", ".join(values)
-            if value:
-                form_fields[key] = value
-        form_fields["ExitSurveyPromoterManager"] = int(
-            form_fields["ExitSurveyPromoterManager"]
-        )
-        form_fields["ExitSurveyPromoterPeer"] = int(
-            form_fields["ExitSurveyPromoterPeer"]
-        )
-        # Check honeypot values are not set
-        honeypots = {}
-        honeypots["name"] = flask.request.form.get("name")
-        honeypots["website"] = flask.request.form.get("website")
-
-        # There is logically difference between None and empty string here.
-        # 1. The first if check, we are working with a form that contains
-        # honeypots or the legacy ones using recaptcha.
-        # 2. The second that checks for empty string is actually testing if the
-        # honeypots have been triggered
-
-        if honeypots["name"] is not None and honeypots["website"] is not None:
-            if honeypots["name"] != "" and honeypots["website"] != "":
-                raise BadRequest("Unexpected honeypot fields (name, website)")
-            else:
-                form_fields["grecaptcharesponse"] = "no-recaptcha"
-                form_fields.pop("website", None)
-                form_fields.pop("name", None)
-
-        form_fields.pop("thankyoumessage", None)
-        form_fields.pop("g-recaptcha-response", None)
-
-        encode_lead_comments = (
-            form_fields.pop("Encode_Comments_from_lead__c", "yes") == "yes"
-        )
-        if encode_lead_comments and "Comments_from_lead__c" in form_fields:
-            encoded_comment = html.escape(form_fields["Comments_from_lead__c"])
-            form_fields["Comments_from_lead__c"] = encoded_comment
-
-        service_account_info = {
-            "token_uri": "https://oauth2.googleapis.com/token",
-            "client_email": get_flask_env("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
-            "private_key": get_flask_env(
-                "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY"
-            ).replace("\\n", "\n"),
-            "scopes": [
-                "https://www.googleapis.com/auth/spreadsheets.readonly"
-            ],
-        }
-
-        credentials = service_account.Credentials.from_service_account_info(
-            service_account_info,
-        )
-
-        service = build("sheets", "v4", credentials=credentials)
-        row = list(form_fields.values())
-        sheet = service.spreadsheets()
-        sheet.values().append(
-            spreadsheetId="1MRqabZmRUH6DBSJofs5xWmdRAaS027nW8oO4stwyMNQ",
-            range="SignUps",
-            valueInputOption="RAW",
-            body={"values": [row]},
-        ).execute()
-        return flask.redirect("/thank-you")
-    except Exception as e:
-        print(e)
-        flask.current_app.logger.error(f"Error in cred_submit_form: {e}")
-        flask.current_app.extensions["sentry"].captureException()
+    if flask.request.method == "GET":
         return flask.render_template("credentials/exit-survey.html")
+
+    sso_user = user_info(flask.session)
+    email = sso_user["email"]
+    first_name, last_name = get_user_first_last_name()
+
+    form_fields = {
+        "firstName": first_name,
+        "lastName": last_name,
+        "email": email,
+        "ExitSurveyRelevanceofShortFormQuestions": "",
+        "ExitSurveyShortFormQuestionExpectation": "",
+        "ExitSurveyNumberOfShortFormQuestions": "",
+        "ExitSurveyShortFormDifficulty": "",
+        "ExitSurveyShortFormQuestionTimeAllocated": "",
+        "ExitSurveyRelevanceofLabQuestions": "",
+        "ExitSurveyLabCoverage": "",
+        "ExitSurveyNumberOfLabQuestions": "",
+        "ExitSurveyLabQuestionsDifficulty": "",
+        "ExitSurveyLabQuestionsTimeAllocated": "",
+        "ExitSurveyExamManagementExperience": "",
+        "ExitSurveyExamManagementNegatives": "",
+        "ExitSurveyExamEnvironmentExperience": "",
+        "ExitSurveyExamEnvironmentNegatives": "",
+        "ExitSurveyPlatformBestReasons": "",
+        "ExitSurveyPlatformWorstReasons": "",
+        "ExitSurveyValueKnowledge": "",
+        "ExitSurveyValueKnowledgeReason": "",
+        "ExitSurveyReasonablePrice": "",
+        "ExitSurveyMoreExams": "",
+        "ExitSurveyWhyPrice": "",
+        "ExitSurveyCompanyInterest": "",
+        "ExitSurveyBenchmarkPlatform": "",
+        "ExitSurveyBenchmarkContent": "",
+        "ExitSurveyOverallExperienceRating": "",
+        "ExitSurveyBestThingAboutExam": "",
+        "ExitSurveyWorstThingAboutExam": "",
+        "ExitSurveyDifferenceInExperience": "",
+        "ExitSurveyPromoterPeer": "5",
+        "ExitSurveyPromoterManager": "5",
+        "formid": "",
+        "returnURL": "",
+        "Consent_to_Processing__c": "",
+        "grecaptcharesponse": "",
+    }
+    for key in flask.request.form:
+        values = flask.request.form.getlist(key)
+        value = ", ".join(values)
+        if value:
+            form_fields[key] = value
+    form_fields["ExitSurveyPromoterManager"] = int(
+        form_fields["ExitSurveyPromoterManager"]
+    )
+    form_fields["ExitSurveyPromoterPeer"] = int(
+        form_fields["ExitSurveyPromoterPeer"]
+    )
+    # Check honeypot values are not set
+    honeypots = {}
+    honeypots["name"] = flask.request.form.get("name")
+    honeypots["website"] = flask.request.form.get("website")
+
+    # There is logically difference between None and empty string here.
+    # 1. The first if check, we are working with a form that contains
+    # honeypots or the legacy ones using recaptcha.
+    # 2. The second that checks for empty string is actually testing if the
+    # honeypots have been triggered
+
+    if honeypots["name"] is not None and honeypots["website"] is not None:
+        if honeypots["name"] != "" and honeypots["website"] != "":
+            raise BadRequest("Unexpected honeypot fields (name, website)")
+        else:
+            form_fields["grecaptcharesponse"] = "no-recaptcha"
+            form_fields.pop("website", None)
+            form_fields.pop("name", None)
+
+    form_fields.pop("thankyoumessage", None)
+    form_fields.pop("g-recaptcha-response", None)
+
+    encode_lead_comments = (
+        form_fields.pop("Encode_Comments_from_lead__c", "yes") == "yes"
+    )
+    if encode_lead_comments and "Comments_from_lead__c" in form_fields:
+        encoded_comment = html.escape(form_fields["Comments_from_lead__c"])
+        form_fields["Comments_from_lead__c"] = encoded_comment
+
+    service_account_info = {
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "client_email": get_flask_env("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
+        "private_key": get_flask_env(
+            "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY"
+        ).replace("\\n", "\n"),
+        "scopes": [
+            "https://www.googleapis.com/auth/spreadsheets.readonly"
+        ],
+    }
+
+    credentials = service_account.Credentials.from_service_account_info(
+        service_account_info,
+    )
+
+    service = build("sheets", "v4", credentials=credentials)
+    row = list(form_fields.values())
+    sheet = service.spreadsheets()
+    sheet.values().append(
+        spreadsheetId="1MRqabZmRUH6DBSJofs5xWmdRAaS027nW8oO4stwyMNQ",
+        range="SignUps",
+        valueInputOption="RAW",
+        body={"values": [row]},
+    ).execute()
+    return flask.redirect("/thank-you")
 
 
 @shop_decorator(area="cube", permission="user", response="html")
