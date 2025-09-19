@@ -1518,8 +1518,9 @@ def cred_submit_form(**_):
         return flask.redirect("/thank-you")
     except Exception as e:
         print(e)
-        flask.current_app.logger.error(f"Error in cred_sign_up: {e}")
+        flask.current_app.logger.error(f"Error in cred_submit_form: {e}")
         flask.current_app.extensions["sentry"].captureException()
+        return flask.render_template("credentials/exit-survey.html")
 
 
 @shop_decorator(area="cube", permission="user", response="html")
