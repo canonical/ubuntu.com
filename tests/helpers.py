@@ -247,10 +247,8 @@ class MarketoFormTestCase(unittest.TestCase):
 
         # Check that unprocessed fields are in mkto fields
         for field in form_fields["unprocessed"]:
-            clean_field_id, marketo_field_ids = (
-                self._process_form_fields(
-                    "marketo", field, marketo_fields
-                )
+            clean_field_id, marketo_field_ids = self._process_form_fields(
+                "marketo", field, marketo_fields
             )
 
             self.assertIn(

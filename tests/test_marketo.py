@@ -82,7 +82,7 @@ class TestFormGenerator(MarketoFormTestCase):
                                     self._process_form_fields(
                                         "marketo",
                                         contact_field.get("id"),
-                                        marketo_fields
+                                        marketo_fields,
                                     )
                                 )
                                 self.assertIn(
@@ -106,9 +106,7 @@ class TestFormGenerator(MarketoFormTestCase):
 
                         clean_marketo_id, form_field_ids = (
                             self._process_form_fields(
-                                "form-data",
-                                id,
-                                form_fields
+                                "form-data", id, form_fields
                             )
                         )
 
