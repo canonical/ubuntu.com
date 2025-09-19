@@ -948,7 +948,7 @@ def marketo_submit():
             {
                 "leadFormFields": form_fields,
                 "visitorData": visitor_data,
-                "cookie": flask.request.args.get("mkt"),
+                "cookie": flask.request.args.get("mkt", None),
             }
         ],
     }
@@ -1030,10 +1030,8 @@ def marketo_submit():
 
     # Redirect to success page only if both submissions were successful
     payload_status = data["result"][0]["status"]
-    if enrichment_submission["success"] is True and payload_status in [
-        "updated",
-        "created",
-    ]:
+
+    if enrichment_submission["success"] is True and data["success"] is True:
         flask.flash(
             "Your form was submitted successfully.", "contact-form-success"
         )
