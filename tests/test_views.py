@@ -18,6 +18,7 @@ from webapp.views import (
     match_tags,
     build_engage_page,
 )
+from webapp.certified.views import certified_platform_details_by_release
 
 
 class BaseViewTestCase(TestCase):
@@ -617,3 +618,106 @@ class TestEngageTranslations(TestCase):
             kwargs["additional_resources_text"], "Additional Resources"
         )
         self.assertEqual(kwargs["language"], "xx")
+
+
+class TestCertifiedPlatformDetailsByRelease(BaseViewTestCase):
+    """
+    Unit tests for
+    `webapp.certified.views.certified_platform_details_by_release`.
+
+    Tests the most important cases:
+    - Successful platform details retrieval with valid release
+    - Handling of invalid release (not available for platform)
+    - API 404 error handling
+    - General exception handling
+    """
+
+    @patch("webapp.certified.views.api.certified_platform_details")
+    @patch("webapp.certified.views.render_template")
+    def test_successful_platform_details_with_valid_release(
+        self, mock_render, mock_api
+    ):
+        """Test successful retrieval with valid release filters certificates
+        correctly"""
+        mock_platform_data = {
+            "id": "12345",
+            "category": "Desktop",
+            "certificates": {
+                "cert1": {"releases": ["20.04 LTS", "22.04 LTS"]},
+                "cert2": {"releases": ["22.04 LTS"]},
+            },
+        }
+        mock_api.return_value = mock_platform_data
+        mock_render.return_value = "rendered_template"
+
+        with self.app.app_context():
+            certified_platform_details_by_release("12345", "22.04 LTS")
+
+        mock_api.assert_called_once_with("12345")
+        call_args = mock_render.call_args
+        self.assertEqual(call_args[1]["selected_release"], "22.04 LTS")
+        # Both certificates should be included as they both have 22.04 LTS
+        self.assertEqual(len(call_args[1]["platform"]["certificates"]), 2)
+
+    @patch("webapp.certified.views.api.certified_platform_details")
+    @patch("webapp.certified.views.render_template")
+    def test_platform_details_with_invalid_release(
+        self, mock_render, mock_api
+    ):
+        """Test that invalid release renders page with selected_release=None"""
+        mock_platform_data = {
+            "id": "12345",
+            "category": "Laptop",
+            "certificates": {
+                "cert1": {"releases": ["20.04 LTS", "22.04 LTS"]}
+            },
+        }
+        mock_api.return_value = mock_platform_data
+        mock_render.return_value = "rendered_template"
+
+        with self.app.app_context():
+            certified_platform_details_by_release("12345", "18.04 LTS")
+
+        call_args = mock_render.call_args
+        self.assertEqual(call_args[1]["selected_release"], None)
+
+    @patch("webapp.certified.views.api.certified_platform_details")
+    @patch("webapp.certified.helpers.abort")
+    @patch("webapp.certified.views.abort")
+    def test_api_404_error_handling(
+        self, mock_views_abort, mock_helpers_abort, mock_api
+    ):
+        """Test that 404 from API properly aborts with 404"""
+        from unittest.mock import MagicMock
+        import requests
+
+        mock_response = MagicMock()
+        mock_response.status_code = 404
+        mock_error = requests.exceptions.HTTPError(response=mock_response)
+        mock_api.side_effect = mock_error
+
+        with self.app.app_context():
+            certified_platform_details_by_release("nonexistent", "22.04 LTS")
+
+        mock_helpers_abort.assert_called_once_with(404)
+
+    @patch("webapp.certified.views.api.certified_platform_details")
+    @patch("webapp.certified.helpers.abort")
+    @patch("webapp.certified.views.abort")
+    def test_general_exception_handling(
+        self, mock_views_abort, mock_helpers_abort, mock_api
+    ):
+        """Test that general exceptions are handled with 500 and Sentry
+        logging"""
+        mock_api.side_effect = Exception("Something went wrong")
+
+        # Mock Sentry extension
+        with self.app.app_context():
+            self.app.extensions = {"sentry": Mock()}
+            certified_platform_details_by_release("12345", "22.04 LTS")
+
+        # The abort call should happen in helpers.py for API errors
+        mock_helpers_abort.assert_called_once_with(500)
+        sentry_mock = self.app.extensions["sentry"]
+        # Sentry is called twice - once in helpers.py and once in views.py
+        self.assertEqual(sentry_mock.captureException.call_count, 2)

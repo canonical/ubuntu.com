@@ -16,7 +16,11 @@ from requests import Session
 from webapp.certified.api import CertificationAPI, PartnersAPI
 from urllib.parse import urlencode
 
-from webapp.certified.helpers import _get_category_pathname, get_download_url
+from webapp.certified.helpers import (
+    _get_category_pathname,
+    get_download_url,
+    handle_api_error,
+)
 
 session = Session()
 talisker.requests.configure(session)
@@ -159,19 +163,10 @@ def _parse_query_params(all_releases, all_vendors):
 
 
 def certified_platform_details(platform_id):
-    try:
-        # Get platform details from API
-        platform = api.certified_platform_details(platform_id)
-
-    except requests.exceptions.HTTPError as error:
-        if error.response.status_code == 404:
-            abort(404)
-        else:
-            current_app.extensions["sentry"].captureException()
-            abort(500)
-    except Exception as error:
-        current_app.extensions["sentry"].captureException()
-        abort(500)
+    # Get platform details from API with centralized error handling
+    platform = handle_api_error(
+        lambda: api.certified_platform_details(platform_id)
+    )
 
     # Get the set of all releases available for this platform
     releases = set(
@@ -189,19 +184,10 @@ def certified_platform_details(platform_id):
 
 
 def certified_platform_details_by_release(platform_id, release):
-    try:
-        # Get platform details from API
-        platform = api.certified_platform_details(platform_id)
-
-    except requests.exceptions.HTTPError as error:
-        if error.response.status_code == 404:
-            abort(404)
-        else:
-            current_app.extensions["sentry"].captureException()
-            abort(500)
-    except Exception as error:
-        current_app.extensions["sentry"].captureException()
-        abort(500)
+    # Get platform details from API with centralized error handling
+    platform = handle_api_error(
+        lambda: api.certified_platform_details(platform_id)
+    )
 
     try:
         # Get the set of all releases available for this platform
@@ -211,13 +197,15 @@ def certified_platform_details_by_release(platform_id, release):
             for release in certificate["releases"]
         )
 
-        # If the release specified in the URL is not available for this platform,
+        # If the release specified in the URL is not available for this
+        # platform, render the page with selected_release=None
         # render the page for all releases
         if release not in releases:
             return render_template(
                 "certified/platforms/platform-details.html",
                 category_pathname=_get_category_pathname(
-                    platform.get("category", "")),
+                    platform.get("category", "")
+                ),
                 platform=platform,
                 releases=releases,
                 selected_release=None,
@@ -233,13 +221,13 @@ def certified_platform_details_by_release(platform_id, release):
         return render_template(
             "certified/platforms/platform-details.html",
             category_pathname=_get_category_pathname(
-                platform.get("category", "")),
+                platform.get("category", "")
+            ),
             platform=platform,
             releases=releases,
             selected_release=release,
         )
-
-    except Exception as error:
+    except Exception:
         current_app.extensions["sentry"].captureException()
         abort(500)
 
