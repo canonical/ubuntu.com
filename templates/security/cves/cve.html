@@ -315,14 +315,14 @@
                             <span class="u-text--muted">{{ status.release_codename }}</span>
                             {% if status.pocket_desc and status.pocket_desc.label != "Ubuntu Pro" %}
                               &nbsp;
-                              <button class="p-chip p-tooltip--top-center"
-                                      aria-describedby="{{ status.pocket }}-tooltip"
-                                      style="vertical-align: unset">
+                              <a class="p-chip p-tooltip--top-center u-no-margin--bottom"
+                                 aria-describedby="{{ status.pocket }}-tooltip"
+                                 href="{{ status.pocket_desc.href }}">
                                 <span class="p-chip__value">{{ status.pocket_desc.label }}</span>
                                 <span class="p-tooltip__message cve-chip"
                                       role="tooltip"
                                       id="{{ status.pocket }}-tooltip">{{ status.pocket_desc.text | safe }}</span>
-                              </button>
+                              </a>
                             {% endif %}
                           </td>
                           {# djlint: off #}
@@ -333,10 +333,10 @@
                                 {{ status.name }} {% if status.name == "Fixed" %}<span class="u-text--muted">{{ status.description }} </span>{% endif %}
                                 {% if status.pocket_desc and status.pocket_desc.label == "Ubuntu Pro" %}
                                   <div>
-                                    <button class="p-chip p-tooltip--top-center u-no-margin--bottom" aria-describedby="{{ status.pocket }}-tooltip">
+                                    <a href="{{ status.pocket_desc.href }}" class="p-chip p-tooltip--top-center u-no-margin--bottom" aria-describedby="{{ status.pocket }}-tooltip">
                                       <span class="p-chip__value">{{ status.pocket_desc.label }}</span>
                                       <span class="p-tooltip__message cve-chip" role="tooltip" id="{{ status.pocket }}-tooltip">{{ status.pocket_desc.text | safe}}</span>
-                                    </button>
+                                    </a>
                                   </div>
                                 {% endif %}
                               </div>
