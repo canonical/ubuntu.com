@@ -103,7 +103,6 @@ CSP = {
         "'self'",
         "*.googlesyndication.com",
         "www.google.com",
-        "www.google.com.*",
         "ubuntu.com",
         "analytics.google.com",
         "www.googletagmanager.com",
