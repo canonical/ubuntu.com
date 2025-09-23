@@ -81,6 +81,7 @@ CSP = {
         "*.cloudfront.net",
         "cdn.jsdelivr.net",
         "*.g.doubleclick.net",
+        "extend.vimeocdn.com"
         # This is necessary for Google Tag Manager to function properly.
         "'unsafe-inline'",
     ],
@@ -102,6 +103,7 @@ CSP = {
         "'self'",
         "*.googlesyndication.com",
         "www.google.com",
+        "www.google.com.*",
         "ubuntu.com",
         "analytics.google.com",
         "www.googletagmanager.com",
@@ -131,6 +133,7 @@ CSP = {
         "*.g.doubleclick.net",
         "ad.doubleclick.net",
         "www.googleadservices.com",
+        "www.facebook.com",
     ],
     "frame-src": [
         "'self'",
