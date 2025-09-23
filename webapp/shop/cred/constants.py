@@ -11,5 +11,5 @@ TAEXAM_PROC_STATE = {
 
 TAEXAM_PROC_EXAM_MAPPING = {
     "cue-01-linux": 2,
-    "cue-02-desktop": 3,
+    "cue-02-desktop": 4,
 }
