@@ -1404,123 +1404,152 @@ def cred_faq(
 
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_submit_form(**_):
-    try:
-        if flask.request.method == "GET":
-            return flask.render_template("credentials/exit-survey.html")
-
-        sso_user = user_info(flask.session)
-        email = sso_user["email"]
-        first_name, last_name = get_user_first_last_name()
-
-        form_fields = {
-            "firstName": first_name,
-            "lastName": last_name,
-            "email": email,
-            "ExitSurveyRelevanceofShortFormQuestions": "",
-            "ExitSurveyShortFormQuestionExpectation": "",
-            "ExitSurveyNumberOfShortFormQuestions": "",
-            "ExitSurveyShortFormDifficulty": "",
-            "ExitSurveyShortFormQuestionTimeAllocated": "",
-            "ExitSurveyRelevanceofLabQuestions": "",
-            "ExitSurveyLabCoverage": "",
-            "ExitSurveyNumberOfLabQuestions": "",
-            "ExitSurveyLabQuestionsDifficulty": "",
-            "ExitSurveyLabQuestionsTimeAllocated": "",
-            "ExitSurveyExamManagementExperience": "",
-            "ExitSurveyExamManagementNegatives": "",
-            "ExitSurveyExamEnvironmentExperience": "",
-            "ExitSurveyExamEnvironmentNegatives": "",
-            "ExitSurveyPlatformBestReasons": "",
-            "ExitSurveyPlatformWorstReasons": "",
-            "ExitSurveyValueKnowledge": "",
-            "ExitSurveyValueKnowledgeReason": "",
-            "ExitSurveyReasonablePrice": "",
-            "ExitSurveyMoreExams": "",
-            "ExitSurveyWhyPrice": "",
-            "ExitSurveyCompanyInterest": "",
-            "ExitSurveyBenchmarkPlatform": "",
-            "ExitSurveyBenchmarkContent": "",
-            "ExitSurveyOverallExperienceRating": "",
-            "ExitSurveyBestThingAboutExam": "",
-            "ExitSurveyWorstThingAboutExam": "",
-            "ExitSurveyDifferenceInExperience": "",
-            "ExitSurveyPromoterPeer": "5",
-            "ExitSurveyPromoterManager": "5",
-            "formid": "",
-            "returnURL": "",
-            "Consent_to_Processing__c": "",
-            "grecaptcharesponse": "",
-        }
-        for key in flask.request.form:
-            values = flask.request.form.getlist(key)
-            value = ", ".join(values)
-            if value:
-                form_fields[key] = value
-        form_fields["ExitSurveyPromoterManager"] = int(
-            form_fields["ExitSurveyPromoterManager"]
-        )
-        form_fields["ExitSurveyPromoterPeer"] = int(
-            form_fields["ExitSurveyPromoterPeer"]
-        )
-        # Check honeypot values are not set
-        honeypots = {}
-        honeypots["name"] = flask.request.form.get("name")
-        honeypots["website"] = flask.request.form.get("website")
-
-        # There is logically difference between None and empty string here.
-        # 1. The first if check, we are working with a form that contains
-        # honeypots or the legacy ones using recaptcha.
-        # 2. The second that checks for empty string is actually testing if the
-        # honeypots have been triggered
-
-        if honeypots["name"] is not None and honeypots["website"] is not None:
-            if honeypots["name"] != "" and honeypots["website"] != "":
-                raise BadRequest("Unexpected honeypot fields (name, website)")
-            else:
-                form_fields["grecaptcharesponse"] = "no-recaptcha"
-                form_fields.pop("website", None)
-                form_fields.pop("name", None)
-
-        form_fields.pop("thankyoumessage", None)
-        form_fields.pop("g-recaptcha-response", None)
-
-        encode_lead_comments = (
-            form_fields.pop("Encode_Comments_from_lead__c", "yes") == "yes"
-        )
-        if encode_lead_comments and "Comments_from_lead__c" in form_fields:
-            encoded_comment = html.escape(form_fields["Comments_from_lead__c"])
-            form_fields["Comments_from_lead__c"] = encoded_comment
-
-        service_account_info = {
-            "token_uri": "https://oauth2.googleapis.com/token",
-            "client_email": get_flask_env("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
-            "private_key": get_flask_env(
-                "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY"
-            ).replace("\\n", "\n"),
-            "scopes": [
-                "https://www.googleapis.com/auth/spreadsheets.readonly"
-            ],
-        }
-
-        credentials = service_account.Credentials.from_service_account_info(
-            service_account_info,
-        )
-
-        service = build("sheets", "v4", credentials=credentials)
-        row = list(form_fields.values())
-        sheet = service.spreadsheets()
-        sheet.values().append(
-            spreadsheetId="1MRqabZmRUH6DBSJofs5xWmdRAaS027nW8oO4stwyMNQ",
-            range="SignUps",
-            valueInputOption="RAW",
-            body={"values": [row]},
-        ).execute()
-        return flask.redirect("/thank-you")
-    except Exception as e:
-        print(e)
-        flask.current_app.logger.error(f"Error in cred_submit_form: {e}")
-        flask.current_app.extensions["sentry"].captureException()
+    if flask.request.method == "GET":
         return flask.render_template("credentials/exit-survey.html")
+
+    sso_user = user_info(flask.session)
+    email = sso_user["email"]
+    first_name, last_name = get_user_first_last_name()
+
+    form_fields = {
+        "firstName": first_name,
+        "lastName": last_name,
+        "email": email,
+        "ExitSurveyRelevanceofShortFormQuestions": "",
+        "ExitSurveyShortFormQuestionExpectation": "",
+        "ExitSurveyNumberOfShortFormQuestions": "",
+        "ExitSurveyShortFormDifficulty": "",
+        "ExitSurveyShortFormQuestionTimeAllocated": "",
+        "ExitSurveyRelevanceofLabQuestions": "",
+        "ExitSurveyLabCoverage": "",
+        "ExitSurveyNumberOfLabQuestions": "",
+        "ExitSurveyLabQuestionsDifficulty": "",
+        "ExitSurveyLabQuestionsTimeAllocated": "",
+        "ExitSurveyExamManagementExperience": "",
+        "ExitSurveyExamManagementNegatives": "",
+        "ExitSurveyExamEnvironmentExperience": "",
+        "ExitSurveyExamEnvironmentNegatives": "",
+        "ExitSurveyPlatformBestReasons": "",
+        "ExitSurveyPlatformWorstReasons": "",
+        "ExitSurveyValueKnowledge": "",
+        "ExitSurveyValueKnowledgeReason": "",
+        "ExitSurveyReasonablePrice": "",
+        "ExitSurveyMoreExams": "",
+        "ExitSurveyWhyPrice": "",
+        "ExitSurveyCompanyInterest": "",
+        "ExitSurveyBenchmarkPlatform": "",
+        "ExitSurveyBenchmarkContent": "",
+        "ExitSurveyOverallExperienceRating": "",
+        "ExitSurveyBestThingAboutExam": "",
+        "ExitSurveyWorstThingAboutExam": "",
+        "ExitSurveyDifferenceInExperience": "",
+        "ExitSurveyPromoterPeer": "5",
+        "ExitSurveyPromoterManager": "5",
+        "formid": "",
+        "returnURL": "",
+        "Consent_to_Processing__c": "",
+        "grecaptcharesponse": "",
+    }
+    for key in flask.request.form:
+        values = flask.request.form.getlist(key)
+        value = ", ".join(values)
+        if value:
+            form_fields[key] = value
+    form_fields["ExitSurveyPromoterManager"] = int(
+        form_fields["ExitSurveyPromoterManager"]
+    )
+    form_fields["ExitSurveyPromoterPeer"] = int(
+        form_fields["ExitSurveyPromoterPeer"]
+    )
+    # Check honeypot values are not set
+    honeypots = {}
+    honeypots["name"] = flask.request.form.get("name")
+    honeypots["website"] = flask.request.form.get("website")
+
+    # There is logically difference between None and empty string here.
+    # 1. The first if check, we are working with a form that contains honeypots
+    # or the legacy ones using recaptcha.
+    # 2. The second that checks for empty string is actually testing if the
+    # honeypots have been triggered
+
+    if honeypots["name"] is not None and honeypots["website"] is not None:
+        if honeypots["name"] != "" and honeypots["website"] != "":
+            raise BadRequest("Unexpected honeypot fields (name, website)")
+        else:
+            form_fields["grecaptcharesponse"] = "no-recaptcha"
+            form_fields.pop("website", None)
+            form_fields.pop("name", None)
+
+    form_fields.pop("thankyoumessage", None)
+    form_fields.pop("g-recaptcha-response", None)
+
+    form_fields["exitSurveyResponseJson"] = json.dumps(form_fields)
+
+    # service_account_info = {
+    #     "token_uri": "https://oauth2.googleapis.com/token",
+    #     "client_email": get_flask_env("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
+    #     "private_key": get_flask_env(
+    #         "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY"
+    #     ).replace("\\n", "\n"),
+    #     "scopes": ["https://www.googleapis.com/auth/spreadsheets.readonly"],
+    # }
+
+    # credentials = service_account.Credentials.from_service_account_info(
+    #     service_account_info,
+    # )
+
+    # service = build("sheets", "v4", credentials=credentials)
+    # row = list(form_fields.values())
+    # sheet = service.spreadsheets()
+    # sheet.values().append(
+    #     spreadsheetId="1MRqabZmRUH6DBSJofs5xWmdRAaS027nW8oO4stwyMNQ",
+    #     range="SignUps",
+    #     valueInputOption="RAW",
+    #     body={"values": [row]},
+    # ).execute()
+
+    marketo_form_fields = {
+        "firstName": form_fields.get("firstName", ""),
+        "lastName": form_fields.get("lastName", ""),
+        "email": form_fields.get("email", ""),
+        "original_form_id": 4777,
+        "Consent_to_Processing__c": form_fields.get(
+            "Consent_to_Processing__c", ""
+        ),
+        "grecaptcharesponse": form_fields.get("grecaptcharesponse", ""),
+        "exitSurveyResponseJson": form_fields.get(
+            "exitSurveyResponseJson", ""
+        ),
+    }
+    visitor_data = {
+        "userAgentString": flask.request.headers.get("User-Agent"),
+    }
+    # post data to marketo
+    payload = {
+        "formId": 4777,
+        "input": [
+            {
+                "leadFormFields": marketo_form_fields,
+                "visitorData": visitor_data,
+                "cookie": flask.request.args.get("mkt"),
+            }
+        ],
+    }
+
+    try:
+        response = marketo_api.submit_form(payload).json()
+        if response and response.get("result"):
+            result = response["result"][0]
+            if result.get("status") == "skipped" or (
+                response.get("success") is False
+            ):
+                return flask.redirect("/thank-you")
+    except Exception:
+        flask.current_app.extensions["sentry"].captureException(
+            extra={"payload": payload}
+        )
+
+    return flask.redirect("/thank-you")
 
 
 @shop_decorator(area="cube", permission="user", response="html")
