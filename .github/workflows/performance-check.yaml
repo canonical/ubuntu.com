@@ -1,13 +1,12 @@
 name: Performance checks on ubuntu.com
 
 on:
-  [push]
-  # schedule:
-  #   - cron: "20 7 * * 1"
-  # workflow_dispatch:
+  schedule:
+    - cron: "20 7 * * 1"
+  workflow_dispatch:
 
 env:
-  THRESHOLD: 50
+  THRESHOLD: 70
 
 jobs:
   perf-checks:
@@ -187,4 +186,4 @@ jobs:
 
       - name: Send message on failure
         if: failure()
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" -F "failed_checks=${FAILED_CHECKS}" ${{ secrets.BOT_URL }}?room=web-design
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=web-design
