@@ -1,9 +1,7 @@
 import html
 import bleach
 import markdown
-import requests
 from markupsafe import Markup
-from flask import current_app, abort
 
 
 def get_download_url(model_details):
@@ -122,24 +120,3 @@ def _get_category_pathname(form_factor):
         return "socs"
     else:
         return form_factor.lower() + "s"
-
-
-def handle_api_error(api_call):
-    """
-    Centralized error handling for API calls in certified views.
-
-    :param api_call: A callable that makes the API request
-    :return: The result of the API call if successful
-    :raises: Aborts with appropriate HTTP status codes on error
-    """
-    try:
-        return api_call()
-    except requests.exceptions.HTTPError as error:
-        if error.response.status_code == 404:
-            abort(404)
-        else:
-            current_app.extensions["sentry"].captureException()
-            abort(500)
-    except Exception:
-        current_app.extensions["sentry"].captureException()
-        abort(500)
