@@ -3,15 +3,20 @@
 {% block title %}Ubuntu fips certifications | Security{% endblock %}
 
 {% block meta_description %}
-  Details on the Ubuntu FIPS security certification for Ubuntu Advantage and Ubuntu Pro subscribers.
+  Meet FIPS compliance with Ubuntu Pro. Get easy access to FIPS 140-2 and FIPS 140-3 certified modules on any cloud, on prem, and at the edge.
 {% endblock %}
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
 
 {% block body_class %}
   is-paper
 {% endblock body_class %}
+
+{% block extra_metatags %}
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"></script>
+{% endblock extra_metatags %}
 
 {% block meta_copydoc %}
   https://docs.google.com/document/d/1moTJCAtFXKD7ZXrxB-EB7GPVyZRTSIdkP-0BhPZl69M/edit#
@@ -19,31 +24,36 @@
 
 {% block content %}
   {% call(slot) vf_hero(
-    title_text='FIPS for Ubuntu',
-    subtitle_text='FIPS 140 validated cryptography for Linux workloads on Ubuntu',
+    title_text='FIPS for Enable FIPS compliance with Ubuntu Pro',
     layout='50/50'
     ) -%}
     {%- if slot == 'description' -%}
       <p>
-        Developing and running Linux workloads for U.S. government regulated and high-security environments requires a long and expensive validation process. Reduce your accreditation timeline and pass on your validation costs with the FIPS 140 certified cryptographic packages of <a href="/pro">Ubuntu Pro on-premise</a> or on <a href="/cloud/public-cloud">Public Clouds</a>.
+        Get easy access to FIPS 140-2 and FIPS 140-3 certified modules, required by U.S. federal standards. Run Ubuntu workloads in high-security environments on-prem, in the cloud, and at the edge. Enjoy 1-step access with an Ubuntu Pro subscription.
       </p>
     {%- endif -%}
     {%- if slot == 'cta' -%}
       <a href="/security/contact-us"
          class="p-button--positive js-invoke-modal"
          aria-controls="security-standards-modal">Contact us</a>
-      <a href="/pro" class="p-button">Get Ubuntu Pro</a>
+      <a href="/pro/free-trial" class="p-link">Access a 30-day free trial&nbsp;&rsaquo;</a>
     {%- endif -%}
     {%- if slot == 'image' -%}
-      <div class="p-image-container--3-2 is-cover is-highlighted u-hide--small u-hide--medium">
-        {{ image(url="https://assets.ubuntu.com/v1/b3df178b-hero-img.png",
-                alt="",
-                width="1800",
-                height="1200",
-                hi_def=True,
-                loading="auto",
-                attrs={"class": "p-image-container__image"},) | safe
-        }}
+      <div class="u-embedded-media">
+        <lite-youtube
+          videoid="vK0bC8jtz3o"
+          width="560"
+          height="315"
+          posterquality="maxresdefault"
+          videotitle="Bridging DevSecOps and compliance | Snyk's FedRAMP success with Canonical on AWS"
+          class="u-embedded-media__element"
+        >
+          <a href="https://www.youtube.com/watch?v=vK0bC8jtz3o" title="Play Video">
+            <span class="lyt-visually-hidden">
+              Bridging DevSecOps and compliance | Snyk's FedRAMP success with Canonical on AWS
+            </span>
+          </a>
+        </lite-youtube>
       </div>
     {%- endif -%}
   {% endcall -%}
@@ -54,40 +64,33 @@
     {%- endif -%}
 
     {%- if slot == 'list_item_title_1' -%}
-      <h3 class="p-heading--5">Run regulated workloads</h3>
+      <h3 class="p-heading--5">Disruption-free crypto compliance</h3>
     {%- endif -%}
 
     {%- if slot == 'list_item_description_1' -%}
       <p>
-        US federal agencies and anyone deploying systems and cloud services for Federal government agency use, whether directly or through contractors, are required to run workloads with FIPS 140 validated cryptography. FIPS 140 has also been adopted outside of the public sector in industries where data security is heavily regulated, such as financial services (PCI-DSS), healthcare (HIPAA), and other sectors. <a href="/pro">Ubuntu Pro</a> provides FIPS 140 certified cryptographic packages.
+        Deploy certified modules with one Ubuntu Pro command to enable FIPS mode for the whole system. Existing workloads can operate seamlessly in FIPS mode, as we provide FIPS compliance for your OS and any dependent applications on top.
       </p>
     {%- endif -%}
 
     {%- if slot == 'list_item_title_2' -%}
-      <h3 class="p-heading--5">Reduce your compliance costs</h3>
+      <h3 class="p-heading--5">Automated security patching included</h3>
     {%- endif -%}
 
     {%- if slot == 'list_item_description_2' -%}
       <p>
-        Developing applications that comply with FIPS 140 can be a challenging task. Validating the used cryptography in-house involves a long and expensive process that requires cryptography expertise and involves reviews from a 3rd party lab and NIST. All these introduce costs and complexity that may delay your launch. Ensure that you ship on time and reduce both validation costs and time by using the Ubuntu validated standard open source packages. The <a href="/pro">Ubuntu Pro</a> packages are validated on common CPU types and are also available for use on the <a href="/cloud/public-cloud">public cloud</a>.
+        Keeping up to date with the latest security patches is vital, especially in high-security environments. With the Ubuntu Pro subscription, you get up to 12 years of security maintenance for your Ubuntu systems. You can also automate patching at scale with Landscape, a fleet management tool included in Ubuntu Pro. 
       </p>
     {%- endif -%}
 
     {%- if slot == 'list_item_title_3' -%}
-      <h3 class="p-heading--5">Get NIST certified compliance</h3>
+      <h3 class="p-heading--5">Enabling other compliance requirements</h3>
     {%- endif -%}
 
     {%- if slot == 'list_item_description_3' -%}
       <p>
-        FIPS 140 ensures that cryptographic algorithms known to be secure are used for data protection, and they are thoroughly tested and attested by a laboratory accredited under the NIST’s Cryptographic and Security Testing (CST) <a href="https://www.nist.gov/nvlap/">Laboratory Accreditation Program (LAP)</a> in the US and <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program">CCCS’s Cryptographic Module Validation Program (CMVP)</a> in Canada. <a href="/pro">Ubuntu Pro</a> provides you with cryptographic packages that are tested and attested by atsec Information Security, a NIST accredited laboratory.
+        FIPS is often a prerequisite for wider compliance requirements including CMMC, FedRAMP, DISA STIG and others. With Ubuntu Pro, we enable the pieces you need to build a fully compliant environment. You get access to asset management and system hardening tools that enable easy audit and compliance automation for your entire fleet.
       </p>
-    {%- endif -%}
-
-    {%- if slot == 'cta' -%}
-      <a class="p-button js-invoke-modal"
-         href="/security/contact-us"
-         aria-controls="security-modal">Contact us</a>
-      <a href="/security/certifications/docs/fips">Read more about FIPS&nbsp;&rsaquo;</a>
     {%- endif -%}
   {%- endcall -%}
 
@@ -110,15 +113,111 @@
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
-        <h2>What is FIPS?</h2>
+        <h2>Security compliance in action</h2>
       </div>
       <div class="col">
-        <p>
-          FIPS 140 is a U.S. and Canada Government data protection standard. It defines security requirements related to the design and implementation of a cryptographic module. The reason for a data protection standard dedicated to cryptography is because cryptography today is omnipresent, and is very hard to get right in a constantly expanding threat model such as today’s Internet. The standard ensures that cryptographic algorithms known to be secure are used for data protection, and they are thoroughly tested and attested by a 3rd party. The testing and validation must be performed by a laboratory, which is accredited under the Cryptographic and Security Testing (CST) Laboratory Accreditation Program (LAP) and is part of NIST's   <a href="https://www.nist.gov/nvlap/">National Voluntary Laboratory Accreditation Program (NVLAP)</a> in the US and <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program">CCCS's Cryptographic Module Validation Program (CMVP)</a> in Canada.
-        </p>
-        <p>
-          FIPS 140-2 is required under multiple compliance regimes, such as the Federal Risk and Authorization Management Program (FedRAMP), the Federal Information Security Management Act of 2002 (FISMA) and the Health Information Technology for Economic and Clinical Health Act (HITECH).
-        </p>
+        <nav class="p-tabs js-tabbed-content">
+          <ul class="p-tabs__list u-no-margin--bottom"
+              role="tablist"
+              data-maintain-hash="true">
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="true"
+                 id="security-compliance-tab-lucid"
+                 href="#security-compliance-lucid"
+                 aria-controls="security-compliance-lucid">Lucid</a>
+            </li>
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="false"
+                 id="security-compliance-tab-launchdarky"
+                 href="#security-compliance-launchdarky"
+                 aria-controls="security-compliance-launchdarky"
+                 tabindex="-1">LaunchDarkly</a>
+            </li>
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="false"
+                 id="security-compliance-tab-new-mexico"
+                 href="#security-compliance-new-mexico"
+                 aria-controls="security-compliance-new-mexico"
+                 tabindex="-1">New Mexico State University</a>
+            </li>
+          </ul>
+        </nav>
+        <div id="security-compliance-lucid"
+             class="p-tabs__content"
+             role="tabpanel"
+             aria-labelledby="security-compliance-tab-lucid">
+          <div class="p-strip is-shallow">
+            <div class="p-strip is-shallow">
+              {{ image(url="https://assets.ubuntu.com/v1/38004c36-lucid-logo.svg",
+                            alt="Lucid Software",
+                            width="89",
+                            height="22",
+                            hi_def=True,
+                            fmt="svg",
+                            loading="lazy") | safe
+              }}
+            </div>
+            <h3>Ubuntu Pro helps Lucid Software meet FedRAMP compliance for government contracts</h3>
+            <p>
+              By deploying Ubuntu Pro, Lucid acquired AWS-compatible and FIPS 140-2 certified packages and became FedRAMP compliant.
+            </p>
+            <hr class="p-rule--muted" />
+            <a href="https://canonical.com/case-study/lucid-aws-fedramp-compliance-case-study"
+               aria-label="Read the case study about Lucid Software">Read the case study&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+        <div id="security-compliance-launchdarky"
+             class="p-tabs__content"
+             role="tabpanel"
+             aria-labelledby="security-compliance-tab-launchdarky">
+          <div class="p-strip is-shallow">
+            <div class="p-strip is-shallow">
+              {{ image(url="https://assets.ubuntu.com/v1/358661f9-launchdarkly-logo.svg",
+                            alt="LaunchDarkly",
+                            width="201",
+                            height="30",
+                            hi_def=True,
+                            fmt="svg",
+                            loading="lazy") | safe
+              }}
+            </div>
+            <h3>LaunchDarkly becomes the first FedRAMP-authorized feature management platform thanks to Ubuntu Pro</h3>
+            <p>Learn how a SaaS provider achieved effortless FIPS compliance on AWS.</p>
+            <hr class="p-rule--muted" />
+            <a href="https://assets.ubuntu.com/v1/b97b2df6-AWS%20LaunchDarkly%20Case%20Study%20v3%203.6.2024.pdf"
+               aria-label="Read the case study about LaunchDarkly">Read the case study&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+        <div id="security-compliance-new-mexico"
+             class="p-tabs__content"
+             role="tabpanel"
+             aria-labelledby="security-compliance-tab-new-mexico">
+          <div class="p-strip is-shallow">
+            <div class="p-strip is-shallow">
+              {{ image(url="https://assets.ubuntu.com/v1/b0ee8fee-nmsu-logo.svg",
+                            alt="New Mexico State University",
+                            width="45",
+                            height="50",
+                            hi_def=True,
+                            fmt="svg",
+                            loading="lazy") | safe
+              }}
+            </div>
+            <h3>How New Mexico State University accelerates compliant federal research with Ubuntu</h3>
+            <p>
+              When the stakes are high and national security is on the line, every decision matters. Just ask the team at New Mexico State University’s Physical Science Laboratory (PSL).
+            </p>
+            <hr class="p-rule--muted" />
+            <a href="/blog/how-new-mexico-state-university-accelerates-compliant-federal-research-with-ubuntu"
+               aria-label="Read the case study about New Mexico State University">Read the case study&nbsp;&rsaquo;</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -127,428 +226,109 @@
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
-        <h2>How Ubuntu enables your compliance with FedRAMP, FISMA, FIPS, and DISA-STIG</h2>
+        <h2>FIPS compliance everywhere</h2>
       </div>
       <div class="col">
         <div class="p-section--shallow">
-          <div class="p-image-container--16-9 is-cover">
-            {{ image(url="https://assets.ubuntu.com/v1/4d506669-how-ubuntu-webinar.png",
-                        alt="",
-                        width="1800",
-                        height="1013",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-image-container__image"},) | safe
-            }}
+          <h3 class="p-heading--5">On-prem</h3>
+          <p>
+            <a href="/pro">Ubuntu Pro</a> enables compliance on Ubuntu desktops and servers in private clouds, virtual machines, and air-gapped environments.
+          </p>
+        </div>
+
+        <hr class="p-rule--muted">
+
+        <div class="p-section--shallow">
+          <h3 class="p-heading--5">In the cloud</h3>
+          <p>Get FIPS pre-enabled Ubuntu Pro images in the public cloud</p>
+
+          <div class="p-section--shallow">
+            <div class="row">
+              <div class="col-3 col-medium-3">
+                <hr class="p-rule--muted u-hide--medium u-hide--large" />
+                <div class="p-strip is-shallow">
+                  <div class="p-image-container--16-9 is-highlighted">
+                    {{ image(url="https://assets.ubuntu.com/v1/1241741b-AWS.juju.is.svg",
+                                      attrs={"class": "p-image-container__image"},
+                                      alt="Amazon Web Services",
+                                      width="50",
+                                      height="31",
+                                      hi_def=True,
+                                      fmt="svg",
+                                      loading="lazy") | safe
+                    }}
+                  </div>
+                  <hr class="p-rule--muted u-hide--small" />
+                  <a href="/aws/fips" aria-label="Learn more about Ubuntu on AWS">Learn more &nbsp;&rsaquo;</a>
+                </div>
+              </div>
+              <div class="col-3 col-medium-3">
+                <hr class="p-rule--muted u-hide--medium u-hide--large" />
+                <div class="p-strip is-shallow">
+                  <div class="p-image-container--16-9 is-highlighted">
+                    {{ image(url="https://assets.ubuntu.com/v1/d81fe524-2021-Microsoft+Azure.svg",
+                                      attrs={"class": "p-image-container__image"},
+                                      alt="Microsoft Azure",
+                                      width="104",
+                                      height="31",
+                                      hi_def=True,
+                                      fmt="svg",
+                                      loading="lazy") | safe
+                    }}
+                  </div>
+                  <hr class="p-rule--muted u-hide--small" />
+                  <a href="/azure/fips" aria-label="Learn more about Ubuntu on Azure">Learn more &nbsp;&rsaquo;</a>
+                </div>
+              </div>
+              <div class="col-3 col-medium-3">
+                <hr class="p-rule--muted u-hide--medium u-hide--large" />
+                <div class="p-strip is-shallow u-no-padding--bottom">
+                  <div class="p-image-container--16-9 is-highlighted">
+                    {{ image(url="https://assets.ubuntu.com/v1/2c479064-cloud-logo%201.svg",
+                                      attrs={"class": "p-image-container__image"},
+                                      alt="Google Cloud Platform",
+                                      width="167",
+                                      height="31",
+                                      hi_def=True,
+                                      fmt="svg",
+                                      loading="lazy") | safe
+                    }}
+                  </div>
+                  <hr class="p-rule--muted u-hide--small" />
+                  <a href="/gcp/fips"
+                    aria-label="Learn more about Ubuntu on Google Cloud Platform">Learn more &nbsp;&rsaquo;</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
+        <hr class="p-rule--muted">
+
+        <div>
+          <h3 class="p-heading--5">On the edge</h3>
+          <p>
+            Enable FIPS compliance on your edge devices with Ubuntu Core, our immutable Ubuntu OS designed for IoT and edge deployments. Access FIPS with <a href="/pro/devices">Ubuntu Pro for Devices</a>. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>
+          What you need to know
+          <br />
+          about FIPS 140-3
+        </h2>
+      </div>
+      <div class="col">
         <p>
-          Learn about the US government security standards and the common challenges faced by organizations in their implementation. See how the Ubuntu Security Guide can transform systems compliance in a few minutes. Get to know how Ubuntu is a secure platform for government agencies and complying organizations to build, operate and innovate with open source applications and technologies.
+          FIPS 140-3 came into effect in 2020 and supersedes 140-2, which will be sunsetted in September 2026. From Ubuntu 22.04 onwards, we will enable compliance for FIPS 140-3. However, for previous Ubuntu LTS versions, certified for 140-2, it is acceptable to continue using them in existing installations. At Canonical, we are committed to continuing the security maintenance for those LTS versions for the lifetime of their support, with additional years offered with Ubuntu Pro. For more details, explore the release cycle details <a href="/about/release-cycle">here</a>.
         </p>
-        <div class="p-cta-block">
-          <a href="/security/contact-us"
-             class="p-button--positive js-invoke-modal" aria-controls="security-standards-modal">Contact us</a>
-          <a href="https://www.brighttalk.com/webcast/6793/591276">Watch the <span class="u-off-screen">How Ubuntu enables your compliance with FedRAMP, FISMA, FIPS, and DISA-STIG</span> webinar&nbsp;&rsaquo;</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-section">
-    <div class="p-section--shallow">
-      <div class="row--50-50">
-        <hr class="p-rule" />
-        <div class="col">
-          <h2 id="public-cloud">Access FIPS images on the public cloud</h2>
-        </div>
-        <div class="col">
-          <p>
-            FIPS can be enabled on Ubuntu Pro cloud images, while Ubuntu Pro FIPS cloud images simplify the experience as they come preconfigured with FIPS 140 certified packages optimized for the cloud. You can quickly navigate the marketplace to find the FIPS-enabled images below.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="p-section--shallow">
-      <div class="row">
-        <div class="col-start-large-4 col-9">
-          <h3 class="p-heading--5">Ubuntu Pro FIPS 16.04</h3>
-          <div class="p-section--shallow">
-            <div class="row">
-              <div class="col-3 col-medium-2">
-                <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-xenial-fips?tab=Overview"
-                   aria-label="Ubuntu Pro FIPS 16.04 on Microsoft Azure">
-                  <div class="p-image-container--16-9 is-highlighted">
-                    {{ image(url="https://assets.ubuntu.com/v1/6855a62e-azure.png",
-                                        alt="",
-                                        width="852",
-                                        height="481",
-                                        hi_def=True,
-                                        loading="lazy",
-                                        attrs={"class": "p-image-container__image"},) | safe
-                    }}
-                  </div>
-                  <p>Microsoft Azure</p>
-                </a>
-              </div>
-              <div class="col-3 col-medium-2">
-                <a href="https://aws.amazon.com/marketplace/pp/prodview-wzhyxs72ie52u"
-                   aria-label="Ubuntu Pro FIPS 16.04 on Amazon Web Services">
-                  <div class="p-image-container--16-9 is-highlighted">
-                    {{ image(url="https://assets.ubuntu.com/v1/8438f094-aws.png",
-                                        alt="",
-                                        width="852",
-                                        height="481",
-                                        hi_def=True,
-                                        loading="lazy",
-                                        attrs={"class": "p-image-container__image"},) | safe
-                    }}
-                  </div>
-                  <p>AWS</p>
-                </a>
-              </div>
-              <div class="col-3 col-medium-2">
-                <a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-pro-cloud/ubuntu-pro-xenial?project=acoustic-patrol-236621"
-                   aria-label="Ubuntu Pro FIPS 16.04 on Google Cloud Platform">
-                  <div class="p-image-container--16-9 is-highlighted">
-                    {{ image(url="https://assets.ubuntu.com/v1/1f69f2c2-gcp.png",
-                                        alt="",
-                                        width="852",
-                                        height="481",
-                                        hi_def=True,
-                                        loading="lazy",
-                                        attrs={"class": "p-image-container__image"},) | safe
-                    }}
-                  </div>
-                  <p>GCP</p>
-                </a>
-              </div>
-            </div>
-          </div>
-          <hr class="p-rule--muted" />
-          <h3 class="p-heading--5">Ubuntu Pro FIPS 18.04</h3>
-          <div class="p-section--shallow">
-            <div class="row">
-              <div class="col-3 col-medium-2">
-                <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-bionic-fips?tab=Overview"
-                   aria-label="Ubuntu Pro FIPS 18.04 on Microsoft Azure">
-                  <div class="p-image-container--16-9 is-highlighted">
-                    {{ image(url="https://assets.ubuntu.com/v1/6855a62e-azure.png",
-                                        alt="",
-                                        width="852",
-                                        height="481",
-                                        hi_def=True,
-                                        loading="lazy",
-                                        attrs={"class": "p-image-container__image"},) | safe
-                    }}
-                  </div>
-                  <p>Microsoft Azure</p>
-                </a>
-              </div>
-              <div class="col-3 col-medium-2">
-                <a href="https://aws.amazon.com/marketplace/pp/prodview-pfsgbblavhjc4"
-                   aria-label="Ubuntu Pro FIPS 18.04 on Amazon Web Services">
-                  <div class="p-image-container--16-9 is-highlighted">
-                    {{ image(url="https://assets.ubuntu.com/v1/8438f094-aws.png",
-                                        alt="",
-                                        width="852",
-                                        height="481",
-                                        hi_def=True,
-                                        loading="lazy",
-                                        attrs={"class": "p-image-container__image"},) | safe
-                    }}
-                  </div>
-                  <p>AWS</p>
-                </a>
-              </div>
-              <div class="col-3 col-medium-2">
-                <a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-pro-cloud/ubuntu-pro-bionic?project=acoustic-patrol-236621"
-                   aria-label="Ubuntu Pro FIPS 18.04 on Google Cloud Platform">
-                  <div class="p-image-container--16-9 is-highlighted">
-                    {{ image(url="https://assets.ubuntu.com/v1/1f69f2c2-gcp.png",
-                                        alt="",
-                                        width="852",
-                                        height="481",
-                                        hi_def=True,
-                                        loading="lazy",
-                                        attrs={"class": "p-image-container__image"},) | safe
-                    }}
-                  </div>
-                  <p>GCP</p>
-                </a>
-              </div>
-            </div>
-          </div>
-          <hr class="p-rule--muted" />
-          <h3 class="p-heading--5">Ubuntu Pro FIPS 20.04</h3>
-          <div class="row">
-            <div class="col-3 col-medium-2">
-              <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-focal-fips?tab=Overview"
-                 aria-label="Ubuntu Pro FIPS 20.04 on Microsoft Azure">
-                <div class="p-image-container--16-9 is-highlighted">
-                  {{ image(url="https://assets.ubuntu.com/v1/6855a62e-azure.png",
-                                    alt="",
-                                    width="852",
-                                    height="481",
-                                    hi_def=True,
-                                    loading="lazy",
-                                    attrs={"class": "p-image-container__image"},) | safe
-                  }}
-                </div>
-                <p>Microsoft Azure</p>
-              </a>
-            </div>
-            <div class="col-3 col-medium-2">
-              <a href="https://aws.amazon.com/marketplace/pp/prodview-l2hkkatnodedk?sr=0-1&ref_=beagle&applicationId=AWSMPContessa"
-                 aria-label="Ubuntu Pro FIPS 20.04 on Amazon Web Services">
-                <div class="p-image-container--16-9 is-highlighted">
-                  {{ image(url="https://assets.ubuntu.com/v1/8438f094-aws.png",
-                                    alt="",
-                                    width="852",
-                                    height="481",
-                                    hi_def=True,
-                                    loading="lazy",
-                                    attrs={"class": "p-image-container__image"},) | safe
-                  }}
-                </div>
-                <p>AWS</p>
-              </a>
-            </div>
-            <div class="col-3 col-medium-2">
-              <a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-pro-cloud/ubuntu-pro-focal?q=search&referrer=search&project=acoustic-patrol-236621"
-                 aria-label="Ubuntu Pro FIPS 20.04 on Google Cloud Platform">
-                <div class="p-image-container--16-9 is-highlighted">
-                  {{ image(url="https://assets.ubuntu.com/v1/1f69f2c2-gcp.png",
-                                    alt="",
-                                    width="852",
-                                    height="481",
-                                    hi_def=True,
-                                    loading="lazy",
-                                    attrs={"class": "p-image-container__image"},) | safe
-                  }}
-                </div>
-                <p>GCP</p>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-start-large-7 col-6">
-        <div class="p-cta-block">
-          <p>
-            Interested in FIPS for container images? <a href="/blog/fips-ubuntu-container-security-updates">Read more on this blog</a>.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-section">
-    <div class="p-section--shallow">
-      <div class="row--50-50">
-        <hr class="p-rule" />
-        <div class="col">
-          <h2 id="modules">
-            Certified packages
-            <br />
-            under FIPS 140-2
-          </h2>
-        </div>
-        <div class="col">
-          <p>
-            The following list contains the FIPS 140-2 validated components that are available with <a href="/pro">Ubuntu Pro</a>. The validated modules are API and ABI compatible with the default Ubuntu packages. The validation testing for Ubuntu was performed by atsec Information Security, a NIST accredited laboratory. Certifications under FIPS 140-2 will be moved to the historical list after September 2026 (although these products can still be purchased and used), and new products are expected to be certified <a href="https://csrc.nist.gov/Projects/cryptographic-module-validation-program/fips-140-3-standards">under FIPS 140-3</a>.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="p-section--shallow">
-      <div class="u-fixed-width">
-        <table class="p-table">
-          <thead>
-            <tr>
-              <th style="width: 26%;">&nbsp;</th>
-              <th>
-                Ubuntu 16.04 LTS
-                <br />
-                on x86-64, IBM Power8 and IBM Z
-              </th>
-              <th>
-                Ubuntu 18.04 LTS
-                <br />
-                on x86-64 and IBM Z
-              </th>
-              <th>
-                Ubuntu 20.04 LTS
-                <br />
-                on x86-64 and IBM Z
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Linux Kernel (GA) Crypto API</th>
-              <td>
-                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/2962">#2962</a>,
-                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3724">#3724</a>
-              </td>
-              <td>
-                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3647">#3647</a>, <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/4018">#4018</a>, <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/3664">#3664</a> (AWS),
-                <br />
-                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/3683">#3683</a> (Azure), <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/3954">#3954</a> (GCP)
-              </td>
-              <td>
-                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4366">#4366</a>, <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4132">#4132</a> (AWS), <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4126">#4126</a> (Azure), <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4127">#4127</a> (GCP)
-              </td>
-            </tr>
-            <tr>
-              <th>OpenSSH client</th>
-              <td>
-                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/2907">#2907</a>
-              </td>
-              <td>
-                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3633">#3633</a>
-              </td>
-              <td>
-                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4292">#4292</a>
-              </td>
-            </tr>
-            <tr>
-              <th>OpenSSL</th>
-              <td>
-                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/2888">#2888</a>,
-                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3725">#3725</a>
-              </td>
-              <td>
-                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3622">#3622</a>,
-                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3980">#3980</a>
-              </td>
-              <td>
-                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4292">#4292</a>
-              </td>
-            </tr>
-            <tr>
-              <th>OpenSSH server</th>
-              <td>
-                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/2906">#2906</a>
-              </td>
-              <td>
-                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3632">#3632</a>
-              </td>
-              <td>
-                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4292">#4292</a>
-              </td>
-            </tr>
-            <tr>
-              <th>libgcrypt</th>
-              <td aria-label="None">–</td>
-              <td>
-                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3748">#3748</a>
-              </td>
-              <td>
-                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3902">#3902</a>
-              </td>
-            </tr>
-            <tr>
-              <th>StrongSwan</th>
-              <td>
-                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/2978">#2978</a>
-              </td>
-              <td>
-                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3648">#3648</a>
-              </td>
-              <td>
-                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4046">#4046</a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-start-large-7 col-6">
-        <div class="p-cta-block">
-          <a class="p-button" href="/pro">Access the FIPS validated modules</a>
-          <a href="/security/certifications/docs/fips">Read more about FIPS&nbsp;&rsaquo;</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-section">
-    <div class="p-section--shallow">
-      <div class="row--50-50">
-        <hr class="p-rule" />
-        <div class="col">
-          <h2 id="modules">
-            Certified packages
-            <br />
-            under FIPS 140-3
-          </h2>
-        </div>
-        <div class="col">
-          <p>
-            FIPS 140-3 is a combined effort of NIST and ISO with the Security and Testing requirements for cryptographic modules being published as ISO/IEC 19790 and ISO/IEC 24759. The following list contains the FIPS 140-3 validated components that are available with <a href="/pro">Ubuntu Pro</a>. The validated modules are API and ABI compatible with the default Ubuntu packages. The validation testing for Ubuntu was performed by atsec Information Security, a NIST accredited laboratory.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="p-section--shallow">
-      <div class="row">
-        <div class="col-start-large-7 col-6">
-          <table class="p-table">
-            <thead>
-              <tr>
-                <th>&nbsp;</th>
-                <th>
-                  Ubuntu 22.04 LTS
-                  <br />
-                  on x86-64, ARM64 and IBM Z
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>Linux Kernel (GA) Crypto API</th>
-                <td>
-                  <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4894">#4894</a>
-                </td>
-              </tr>
-              <tr>
-                <th>GnuTLS</th>
-                <td>
-                  <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4855">#4855</a>
-                </td>
-              </tr>
-              <tr>
-                <th>OpenSSL</th>
-                <td>
-                  <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4794">#4794</a>
-                </td>
-              </tr>
-              <tr>
-                <th>libgcrypt</th>
-                <td>
-                  <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4793">#4793</a>
-                </td>
-              </tr>
-              <tr>
-                <th>StrongSwan</th>
-                <td>
-                  <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4911">#4911</a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-start-large-7 col-6">
-        <div class="p-cta-block">
-          <a class="p-button" href="/pro">Access the FIPS validated modules</a>
-          <a href="/security/certifications/docs/fips">Read more about FIPS&nbsp;&rsaquo;</a>
-        </div>
       </div>
     </div>
   </section>
@@ -566,14 +346,12 @@
         </div>
         <div class="col">
           <p>
-            Each FIPS 140 certificate is valid for 5 years. However, vulnerabilities happen, and it is our goal to publish fixed packages quickly, irrespective of their certification status. We therefore provide two alternative options. An option to remain with the certified cryptographic packages (called the 'fips' option), and an option to use the certified packages but include security fixes (called the 'fips-updates' option) when available. Check <a href="/security/certifications/docs/fips-enablement">our documentation pages on how to enable these options</a>.
-          </p>
-          <p>
-            We strongly recommend enabling the 'fips-updates' option that includes the security fixes. The packages from the 'fips-updates' option are updated to include high and critical security fixes during the whole product lifecycle including the <a href="/security/esm">Expanded Security Maintenance (ESM)</a> phase.
+            The NIST certification process can take months or even years, but new security vulnerabilities are constantly being discovered. The FIPS modules which NIST certifies are frozen in time from the point that they were submitted for assessment, and may contain unpatched vulnerabilities. In order to address this shortcoming, Canonical continuously patches the FIPS modules along with the rest of Ubuntu distribution, as security is more important than strict compliance. Whilst these FIPS modules are no longer the exact binary files that were submitted for validation, we ensure that the FIPS functionality is unchanged. This approach to security vs compliance is supported by <a href="https://www.fedramp.gov/assets/resources/documents/FedRAMP_Policy_for_Cryptographic_Module_Selection_v1.1.0.pdf">FedRAMP v5</a>.
           </p>
         </div>
       </div>
     </div>
+
     <div class="u-fixed-width">
       <div class="p-section--shallow">
         <div class="p-image-container--cinematic is-cover">
@@ -590,22 +368,172 @@
     </div>
   </section>
 
-  <section class="p-section--deep">
-    <div class="row--50-50">
+  <section class="p-section">
+    <div class="u-fixed-width">
       <hr class="p-rule" />
-      <div class="col">
-        <h2>Free for personal use</h2>
+      <h2>Resources</h2>
+    </div>
+    <div class="u-fixed-width">
+      <nav class="p-tabs js-tabbed-content">
+        <ul class="p-tabs__list"
+            role="tablist"
+            aria-label="Resources"
+            data-maintain-hash="true">
+          <li class="p-tabs__item">
+            <a href="#resources-blogs"
+               class="p-tabs__link"
+               role="tab"
+               aria-selected="true"
+               aria-controls="resources-blogs-tab"
+               id="resources-blogs">Blogs</a>
+          </li>
+          <li class="p-tabs__item">
+            <a href="#resources-whitepapers"
+               class="p-tabs__link"
+               role="tab"
+               aria-selected="false"
+               aria-controls="resources-whitepapers-tab"
+               id="resources-whitepapers"
+               tabindex="-1">Whitepapers</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="p-tabs__content"
+           tabindex="0"
+           role="tabpanel"
+           id="resources-blogs-tab"
+           aria-labelledby="resources-blogs">
+        <div class="row">
+          {% for article in blogs %}
+            <div class="col-3 col-medium-2 u-equal-height-items">
+              <div class="u-crop--16-9">
+                <div class="p-image-wrapper">
+                  <a href="/blog/{{ article.slug }}">
+                    {{ image(url=article.image.source_url,
+                                        alt=article.title.rendered,
+                                        width="568",
+                                        height="380",
+                                        hi_def=True,
+                                        loading="lazy",
+                                        attrs={"class": "p-image-container__image"}) | safe
+                    }}
+                  </a>
+                </div>
+              </div>
+              <h3 class="p-text--default">
+                <a href="/blog/{{ article.slug }}">{{ article.title.rendered | safe }}</a>
+              </h3>
+              <p>{{ article.excerpt.rendered | truncate(200) | safe }}</p>
+            </div>
+          {% endfor %}
+        </div>
       </div>
-      <div class="col">
-        <p>
-          Canonical provides Ubuntu Pro subscriptions, which include FIPS, free of charge for individuals on up to 5 machines. For our community of Ubuntu members, we will gladly increase that to 50 machines.
-        </p>
-        <div class="p-cta-block">
-          <a class="p-button" href="/pro">Get a free subscription</a>
+
+      <div class="p-tabs__content u-hide"
+           tabindex="0"
+           role="tabpanel"
+           id="resources-whitepapers-tab"
+           aria-labelledby="resources-whitepapers">
+        <div class="row">
+          <div class="col-3 col-medium-2 u-equal-height-items">
+            <div class="u-crop--16-9">
+              <div class="p-image-wrapper">
+                {{ image(url="https://assets.ubuntu.com/v1/f930f8ec-wp1.jpg",
+                                alt="",
+                                width="568",
+                                height="380",
+                                hi_def=True,
+                                loading="lazy") | safe
+                }}
+              </div>
+            </div>
+            <a href="/engage/a-guide-to-infrastructure-hardening">A guide to Infrastructure Hardening</a>
+          </div>
+          <div class="col-3 col-medium-2 u-equal-height-items">
+            <div class="u-crop--16-9">
+              <div class="p-image-wrapper">
+                {{ image(url="https://assets.ubuntu.com/v1/f2312d7a-wp2.jpg",
+                                alt="",
+                                width="568",
+                                height="380",
+                                hi_def=True,
+                                loading="lazy") | safe
+                }}
+              </div>
+            </div>
+            <a href="/engage/security-compliance-US-public-sector-FIPS-DISASTIG">Ubuntu compliance guide for US public sector</a>
+          </div>
+          <div class="col-3 col-medium-2 u-equal-height-items">
+            <div class="u-crop--16-9">
+              <div class="p-image-wrapper">
+                {{ image(url="https://assets.ubuntu.com/v1/e8776be5-wp3.jpg",
+                                alt="",
+                                width="568",
+                                height="380",
+                                hi_def=True,
+                                loading="lazy") | safe
+                }}
+              </div>
+            </div>
+            <a href="/engage/iot-compliance-in-the-global-market-a-guide-for-iot-device-manufacturers">Understand IoT security and IoT compliance across global markets</a>
+          </div>
+          <div class="col-3 col-medium-2 u-equal-height-items">
+            <div class="u-crop--16-9">
+              <div class="p-image-wrapper">
+                {{ image(url="https://assets.ubuntu.com/v1/de8359fc-os-vulnerability-management.png",
+                                alt="",
+                                width="568",
+                                height="380",
+                                hi_def=True,
+                                loading="lazy") | safe
+                }}
+              </div>
+            </div>
+            <a href="/engage/vulnerability-management">A guide to open source vulnerability management</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <section class="p-section--deep">
+    <div class="row--50-50">
+      <hr class="p-rule--muted" />
+      <div class="col">
+        <h2>
+          Take the next step towards FIPS compliance
+        </h2>
+      </div>
+      <div class="col">
+        <p>
+          <a href="/security/certifications">Learn about all our security certifications</a>
+        </p>
+
+        <p>
+          <a href="/pricing/pro">Explore pricing and find the right subscription for your needs</a>
+        </p>
+
+        <p>
+          <a href="https://documentation.ubuntu.com/security/docs/compliance/fips/fips-overview/">Read the documentation about FIPS for Ubuntu</a>
+        </p>
+
+        <hr class="p-rule--muted">
+
+        <p class="p-section--shallow">
+          Ubuntu Pro provides an easy pathway to FIPS compliance. It delivers CVE patching for Ubuntu OS and Applications covering 36,000 packages, along with automated, unattended, and restartless updates, and the best tools to secure and manage your Ubuntu infrastructure, developed by the publisher of Ubuntu. 
+        </p>
+
+        <a href="/security/contact-us"
+          class="p-button--positive js-invoke-modal"
+          aria-controls="security-standards-modal">Contact us</a>
+        <a href="/pro/free-trial" class="p-link">Access a free trial&nbsp;&rsaquo;</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
 
   {{ load_form("/security-standards", 6306) | safe }}
 
