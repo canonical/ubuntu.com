@@ -5,8 +5,12 @@ import re
 from requests import Session
 from pathlib import Path
 from bs4 import BeautifulSoup
+from unittest.mock import Mock, patch
+from requests.exceptions import HTTPError
 
+from webapp.app import app
 from webapp.marketo import MarketoAPI
+from webapp.decorators import handle_api_error
 from canonicalwebteam.flask_base.env import get_flask_env
 
 
@@ -258,3 +262,88 @@ class MarketoFormTestCase(unittest.TestCase):
                 f"Marketo fields "
                 f"for form {template_path} ID {form_id}",
             )
+
+
+class BaseViewTestCase(unittest.TestCase):
+    """Base test case for view tests with Flask app context"""
+
+    def setUp(self):
+        self.app = app
+        self.app.testing = True
+
+
+class TestHandleApiError(BaseViewTestCase):
+    """Test the centralized API error handling decorator"""
+
+    @patch("webapp.decorators.abort")
+    def test_successful_api_call(self, mock_abort):
+        """Test that successful API calls return the result"""
+
+        @handle_api_error
+        def mock_api_call():
+            return {"data": "success"}
+
+        with self.app.app_context():
+            result = mock_api_call()
+
+        self.assertEqual(result, {"data": "success"})
+        mock_abort.assert_not_called()
+
+    @patch("webapp.decorators.abort")
+    def test_http_404_error_handling(self, mock_abort):
+        """Test that HTTP 404 errors result in abort(404)"""
+
+        # Create a mock response with 404 status
+        mock_response = Mock()
+        mock_response.status_code = 404
+
+        http_error = HTTPError()
+        http_error.response = mock_response
+
+        @handle_api_error
+        def mock_api_call():
+            raise http_error
+
+        with self.app.app_context():
+            mock_api_call()
+
+        mock_abort.assert_called_once_with(404)
+
+    @patch("webapp.decorators.abort")
+    def test_http_500_error_handling(self, mock_abort):
+        """Test that HTTP 500 errors result in abort(500) and Sentry logging"""
+
+        # Create a mock response with 500 status
+        mock_response = Mock()
+        mock_response.status_code = 500
+
+        http_error = HTTPError()
+        http_error.response = mock_response
+
+        @handle_api_error
+        def mock_api_call():
+            raise http_error
+
+        with self.app.app_context():
+            self.app.extensions = {"sentry": Mock()}
+            mock_api_call()
+
+        mock_abort.assert_called_once_with(500)
+        self.app.extensions["sentry"].captureException.assert_called_once()
+
+    @patch("webapp.decorators.abort")
+    def test_general_exception_handling(self, mock_abort):
+        """Test that general exceptions result in abort(500) and Sentry
+        logging"""
+
+        @handle_api_error
+        def mock_api_call():
+            raise Exception("Something went wrong")
+
+        with self.app.app_context():
+            self.app.extensions = {"sentry": Mock()}
+            mock_api_call()
+
+        mock_abort.assert_called_once_with(500)
+        sentry_mock = self.app.extensions["sentry"]
+        sentry_mock.captureException.assert_called_once()
