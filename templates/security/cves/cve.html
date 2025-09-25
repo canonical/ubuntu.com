@@ -315,14 +315,14 @@
                             <span class="u-text--muted">{{ status.release_codename }}</span>
                             {% if status.pocket_desc and status.pocket_desc.label != "Ubuntu Pro" %}
                               &nbsp;
-                              <a class="p-chip p-tooltip--top-center u-no-margin--bottom"
+                              <button class="js-tooltip is-dense p-chip p-tooltip--top-center u-no-margin--bottom"
                                  aria-describedby="{{ status.pocket }}-tooltip"
-                                 href="{{ status.pocket_desc.href }}">
+                                 style="vertical-align: unset;">
                                 <span class="p-chip__value">{{ status.pocket_desc.label }}</span>
-                                <span class="p-tooltip__message cve-chip"
+                                <span class="p-tooltip__message cve-chip u-hide"
                                       role="tooltip"
                                       id="{{ status.pocket }}-tooltip">{{ status.pocket_desc.text | safe }}</span>
-                              </a>
+                              </button>
                             {% endif %}
                           </td>
                           {# djlint: off #}
@@ -333,10 +333,10 @@
                                 {{ status.name }} {% if status.name == "Fixed" %}<span class="u-text--muted">{{ status.description }} </span>{% endif %}
                                 {% if status.pocket_desc and status.pocket_desc.label == "Ubuntu Pro" %}
                                   <div>
-                                    <a href="{{ status.pocket_desc.href }}" class="p-chip p-tooltip--top-center u-no-margin--bottom" aria-describedby="{{ status.pocket }}-tooltip">
+                                    <button href="{{ status.pocket_desc.href }}" class="js-tooltip p-chip p-tooltip--top-center u-no-margin--bottom" aria-describedby="{{ status.pocket }}-tooltip">
                                       <span class="p-chip__value">{{ status.pocket_desc.label }}</span>
-                                      <span class="p-tooltip__message cve-chip" role="tooltip" id="{{ status.pocket }}-tooltip">{{ status.pocket_desc.text | safe}}</span>
-                                    </a>
+                                      <span class="p-tooltip__message cve-chip u-hide" role="tooltip" id="{{ status.pocket }}-tooltip">{{ status.pocket_desc.text | safe}}</span>
+                                    </button>
                                   </div>
                                 {% endif %}
                               </div>
@@ -703,6 +703,49 @@
       });
     };
     setUpDynamicSideNav();
+
+    function handleTooltips() {
+      const tooltipElements = document.querySelectorAll(".js-tooltip");
+
+      tooltipElements?.forEach(function (tooltip) {
+        const tooltipMessage = tooltip.querySelector(".p-tooltip__message");
+
+        tooltip.addEventListener("click", function (e) {
+          e.stopPropagation();
+
+          // Hide all tooltips when clicked
+          document
+            .querySelectorAll(".p-tooltip__message.u-show")
+            .forEach(function (otherMessage) {
+              if (otherMessage !== tooltipMessage) {
+                otherMessage.classList.remove("u-show");
+                otherMessage.classList.add("u-hide");
+              }
+            });
+
+          // Show the toggled tooltip
+          const isHidden = tooltipMessage.classList.contains("u-hide");
+          if (isHidden) {
+            tooltipMessage.classList.remove("u-hide");
+            tooltipMessage.classList.add("u-show");
+          } else {
+            tooltipMessage.classList.remove("u-show");
+            tooltipMessage.classList.add("u-hide");
+          }
+        });
+      });
+
+      // Hide all tooltips when clicked elsewhere on screen
+      document.addEventListener("click", function () {
+        document
+          .querySelectorAll(".p-tooltip__message.u-show")
+          .forEach(function (msg) {
+            msg.classList.remove("u-show");
+            msg.classList.add("u-hide");
+          });
+      });
+  }
+handleTooltips();
 </script>
   {# djlint: on #}
 

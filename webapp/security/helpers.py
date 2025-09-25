@@ -258,20 +258,21 @@ def does_not_include_base_url(link):
 def get_friendly_pockets(label):
     friendly_pockets = {
         "esm-infra": {
-            "text": "Fix available with Ubuntu Pro.",
+            "text": ("Fix available with <a href='/pro'>Ubuntu Pro</a>."),
             "label": "Ubuntu Pro",
             "href": "/pro",
         },
         "esm-infra-legacy": {
             "text": (
-                "Fix available with Ubuntu Pro via Legacy Support add-on."
+                "Fix available with <a href='/pro'>Ubuntu Pro</a> via "
+                "Legacy Support add-on."
             ),
             "label": "Ubuntu Pro",
             "href": "/pro",
         },
         "esm-apps": {
             "text": (
-                "Fix available with Ubuntu Pro via "
+                "Fix available with <a href='/pro'>Ubuntu Pro</a> via "
                 "ESM Apps. A community fix "
                 "might become publicly available "
                 "in the future. "
@@ -280,13 +281,16 @@ def get_friendly_pockets(label):
             "href": "/pro",
         },
         "fips": {
-            "text": "FIPS-140 certified package. Available with Ubuntu Pro.",
+            "text": (
+                "<a href='/security/fips'>FIPS-140</a> certified package. "
+                "Available with Ubuntu Pro. "
+            ),
             "label": "FIPS",
             "href": "/security/fips",
         },
         "fips-updates": {
             "text": (
-                "FIPS-140 certified package with "
+                "<a href='/security/fips'>FIPS-140</a> certified package with "
                 "security fixes. Available with "
                 "Ubuntu Pro."
             ),
@@ -294,7 +298,10 @@ def get_friendly_pockets(label):
             "href": "/security/fips",
         },
         "realtime": {
-            "text": "Real-time kernel available with Ubuntu Pro.",
+            "text": (
+                "<a href='/real-time'>Real-time</a> kernel available with "
+                "Ubuntu Pro. "
+            ),
             "label": "Real-time",
             "href": "/real-time",
         },
