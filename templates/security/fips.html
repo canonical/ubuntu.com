@@ -1,6 +1,6 @@
 {% extends "security/base_security.html" %}
 
-{% block title %}Ubuntu fips certifications | Security{% endblock %}
+{% block title %}Ubuntu FIPS certifications | Security{% endblock %}
 
 {% block meta_description %}
   Meet FIPS compliance with Ubuntu Pro. Get easy access to FIPS 140-2 and FIPS 140-3 certified modules on any cloud, on prem, and at the edge.
@@ -24,7 +24,7 @@
 
 {% block content %}
   {% call(slot) vf_hero(
-    title_text='FIPS for Enable FIPS compliance with Ubuntu Pro',
+    title_text='Enable FIPS compliance with Ubuntu Pro',
     layout='50/50'
     ) -%}
     {%- if slot == 'description' -%}
@@ -58,7 +58,7 @@
     {%- endif -%}
   {% endcall -%}
 
-  {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=true) -%}
+  {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=false) -%}
     {%- if slot == 'title' -%}
       <h2>The benefits of FIPS for Ubuntu</h2>
     {%- endif -%}
@@ -97,10 +97,10 @@
   <div class="p-section">
     <div class="u-fixed-width">
       <div class="p-image-container--cinematic">
-        {{ image(url="https://assets.ubuntu.com/v1/273c35bb-fips-140.png",
+        {{ image(url="https://assets.ubuntu.com/v1/d31941c2-benefits_of_fips.jpg",
                 alt="",
-                width="3696",
-                height="1540",
+                width="2464",
+                height="1027",
                 hi_def=True,
                 loading="lazy",
                 attrs={"class": "p-image-container__image"},) | safe
@@ -126,7 +126,7 @@
                  aria-selected="true"
                  id="security-compliance-tab-lucid"
                  href="#security-compliance-lucid"
-                 aria-controls="security-compliance-lucid">Lucid</a>
+                 aria-controls="security-compliance-lucid">Lucid software</a>
             </li>
             <li class="p-tabs__item">
               <a class="p-tabs__link"
@@ -222,98 +222,107 @@
     </div>
   </section>
 
-  <section class="p-section">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>FIPS compliance everywhere</h2>
-      </div>
-      <div class="col">
-        <div class="p-section--shallow">
-          <h3 class="p-heading--5">On-prem</h3>
-          <p>
-            <a href="/pro">Ubuntu Pro</a> enables compliance on Ubuntu desktops and servers in private clouds, virtual machines, and air-gapped environments.
-          </p>
-        </div>
-
-        <hr class="p-rule--muted">
-
-        <div class="p-section--shallow">
-          <h3 class="p-heading--5">In the cloud</h3>
-          <p>Get FIPS pre-enabled Ubuntu Pro images in the public cloud</p>
-
-          <div class="p-section--shallow">
-            <div class="row">
-              <div class="col-3 col-medium-3">
-                <hr class="p-rule--muted u-hide--medium u-hide--large" />
-                <div class="p-strip is-shallow">
-                  <div class="p-image-container--16-9 is-highlighted">
-                    {{ image(url="https://assets.ubuntu.com/v1/1241741b-AWS.juju.is.svg",
-                                      attrs={"class": "p-image-container__image"},
-                                      alt="Amazon Web Services",
-                                      width="50",
-                                      height="31",
-                                      hi_def=True,
-                                      fmt="svg",
-                                      loading="lazy") | safe
-                    }}
-                  </div>
-                  <hr class="p-rule--muted u-hide--small" />
-                  <a href="/aws/fips" aria-label="Learn more about Ubuntu on AWS">Learn more &nbsp;&rsaquo;</a>
-                </div>
-              </div>
-              <div class="col-3 col-medium-3">
-                <hr class="p-rule--muted u-hide--medium u-hide--large" />
-                <div class="p-strip is-shallow">
-                  <div class="p-image-container--16-9 is-highlighted">
-                    {{ image(url="https://assets.ubuntu.com/v1/d81fe524-2021-Microsoft+Azure.svg",
-                                      attrs={"class": "p-image-container__image"},
-                                      alt="Microsoft Azure",
-                                      width="104",
-                                      height="31",
-                                      hi_def=True,
-                                      fmt="svg",
-                                      loading="lazy") | safe
-                    }}
-                  </div>
-                  <hr class="p-rule--muted u-hide--small" />
-                  <a href="/azure/fips" aria-label="Learn more about Ubuntu on Azure">Learn more &nbsp;&rsaquo;</a>
-                </div>
-              </div>
-              <div class="col-3 col-medium-3">
-                <hr class="p-rule--muted u-hide--medium u-hide--large" />
-                <div class="p-strip is-shallow u-no-padding--bottom">
-                  <div class="p-image-container--16-9 is-highlighted">
-                    {{ image(url="https://assets.ubuntu.com/v1/2c479064-cloud-logo%201.svg",
-                                      attrs={"class": "p-image-container__image"},
-                                      alt="Google Cloud Platform",
-                                      width="167",
-                                      height="31",
-                                      hi_def=True,
-                                      fmt="svg",
-                                      loading="lazy") | safe
-                    }}
-                  </div>
-                  <hr class="p-rule--muted u-hide--small" />
-                  <a href="/gcp/fips"
-                    aria-label="Learn more about Ubuntu on Google Cloud Platform">Learn more &nbsp;&rsaquo;</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <hr class="p-rule--muted">
-
-        <div>
-          <h3 class="p-heading--5">On the edge</h3>
-          <p>
-            Enable FIPS compliance on your edge devices with Ubuntu Core, our immutable Ubuntu OS designed for IoT and edge deployments. Access FIPS with <a href="/pro/devices">Ubuntu Pro for Devices</a>. 
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+  {{ vf_basic_section(
+    title={"text": "FIPS compliance everywhere"},
+    items=[
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "html",
+          "content": '
+            <h3 class="p-heading--5">On-prem</h3>
+            <p>
+              <a href="/pro">Ubuntu Pro</a> enables compliance on Ubuntu desktops and servers in private clouds, virtual machines, and air-gapped environments.
+            </p>
+          '
+        }
+      },
+      {
+        "type": "description",
+        "item": {
+          "type": "html",
+          "content": '
+            <hr class="p-rule--muted">
+          '
+        }
+      },
+      {
+        "type": "description",
+        "item": {
+          "type": "html",
+          "content": '
+            <h3 class="p-heading--5">In the cloud</h3>
+            <p>
+              Get FIPS pre-enabled Ubuntu Pro images in the public cloud
+            </p>
+          '
+        }
+      },
+      {
+        "type": "linked-logo-block",
+        "padding": "shallow",
+        "item": {
+          "links": [
+            {
+              "href": "/aws/fips",
+              "text": "Learn more ›",
+              "label": "Learn more about Ubuntu on AWS",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/6c8c4fe3-aws_container.png",
+                "alt": "Amazon Web Services",
+                "width": "432",
+                "height": "481"
+              }
+            },
+            {
+              "href": "/azure/fips",
+              "text": "Learn more ›",
+              "label": "Learn more about Ubuntu on Azure",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/6cc183e9-azure_container.png",
+                "alt": "Microsoft Azure",
+                "width": "222",
+                "height": "481"
+              }
+            },
+            {
+              "href": "/gcp/fips",
+              "text": "Learn more ›",
+              "label": "Learn more about Ubuntu on Google Cloud Platform",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/be6717bf-gcp_container.png",
+                "alt": "Google Cloud Platform",
+                "width": "240",
+                "height": "481"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "description",
+        "item": {
+          "type": "html",
+          "content": '
+            <hr class="p-rule--muted">
+          '
+        }
+      },
+      {
+        "type": "description",
+        "item": {
+          "type": "html",
+          "content": '
+            <h3 class="p-heading--5">On the edge</h3>
+            <p>
+              Enable FIPS compliance on your edge devices with Ubuntu Core, our immutable Ubuntu OS designed for IoT and edge deployments. Access FIPS with <a href="/pro/devices">Ubuntu Pro for Devices</a>. 
+            </p>
+          '
+        }
+      },
+    ]
+  ) }}
 
   <section class="p-section">
     <div class="row--50-50">
@@ -353,17 +362,15 @@
     </div>
 
     <div class="u-fixed-width">
-      <div class="p-section--shallow">
-        <div class="p-image-container--cinematic is-cover">
-          {{ image(url="https://assets.ubuntu.com/v1/35204ee3-fips-packages.png",
-                    alt="",
-                    width="3696",
-                    height="1541",
-                    hi_def=True,
-                    loading="lazy",
-                    attrs={"class": "p-image-container__image"},) | safe
-          }}
-        </div>
+      <div class="p-image-container--cinematic is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/7f08d99d-fips_packages.jpg",
+                  alt="",
+                  width="2470",
+                  height="1029",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-image-container__image"},) | safe
+        }}
       </div>
     </div>
   </section>
@@ -439,7 +446,7 @@
           <div class="col-3 col-medium-2 u-equal-height-items">
             <div class="u-crop--16-9">
               <div class="p-image-wrapper">
-                {{ image(url="https://assets.ubuntu.com/v1/f930f8ec-wp1.jpg",
+                {{ image(url="https://assets.ubuntu.com/v1/25349932-a_guide_to.jpg",
                                 alt="",
                                 width="568",
                                 height="380",
@@ -448,12 +455,12 @@
                 }}
               </div>
             </div>
-            <a href="/engage/a-guide-to-infrastructure-hardening">A guide to Infrastructure Hardening</a>
+            <h3 class="p-text--default"><a href="/engage/a-guide-to-infrastructure-hardening">A guide to Infrastructure Hardening</a></h3>
           </div>
           <div class="col-3 col-medium-2 u-equal-height-items">
             <div class="u-crop--16-9">
               <div class="p-image-wrapper">
-                {{ image(url="https://assets.ubuntu.com/v1/f2312d7a-wp2.jpg",
+                {{ image(url="https://assets.ubuntu.com/v1/90df9fb3-ubuntu_compliance_us.jpg",
                                 alt="",
                                 width="568",
                                 height="380",
@@ -462,12 +469,12 @@
                 }}
               </div>
             </div>
-            <a href="/engage/security-compliance-US-public-sector-FIPS-DISASTIG">Ubuntu compliance guide for US public sector</a>
+            <h3 class="p-text--default"><a href="/engage/security-compliance-US-public-sector-FIPS-DISASTIG">Ubuntu compliance guide for US public sector</a></h3>
           </div>
           <div class="col-3 col-medium-2 u-equal-height-items">
             <div class="u-crop--16-9">
               <div class="p-image-wrapper">
-                {{ image(url="https://assets.ubuntu.com/v1/e8776be5-wp3.jpg",
+                {{ image(url="https://assets.ubuntu.com/v1/86ea43dc-understand_iot_security.jpg",
                                 alt="",
                                 width="568",
                                 height="380",
@@ -476,12 +483,12 @@
                 }}
               </div>
             </div>
-            <a href="/engage/iot-compliance-in-the-global-market-a-guide-for-iot-device-manufacturers">Understand IoT security and IoT compliance across global markets</a>
+            <h3 class="p-text--default"><a href="/engage/iot-compliance-in-the-global-market-a-guide-for-iot-device-manufacturers">Understand IoT security and IoT compliance across global markets</a></h3>
           </div>
           <div class="col-3 col-medium-2 u-equal-height-items">
             <div class="u-crop--16-9">
               <div class="p-image-wrapper">
-                {{ image(url="https://assets.ubuntu.com/v1/de8359fc-os-vulnerability-management.png",
+                {{ image(url="https://assets.ubuntu.com/v1/c8e40232-os_vulnerability_management.jpg",
                                 alt="",
                                 width="568",
                                 height="380",
@@ -490,7 +497,7 @@
                 }}
               </div>
             </div>
-            <a href="/engage/vulnerability-management">A guide to open source vulnerability management</a>
+            <h3 class="p-text--default"><a href="/engage/vulnerability-management">A guide to open source vulnerability management</a></h3>
           </div>
         </div>
       </div>
