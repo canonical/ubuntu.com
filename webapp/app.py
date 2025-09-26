@@ -118,6 +118,7 @@ from webapp.shop.cred.views import (
     issue_badges,
     rotate_activation_key,
     cancel_scheduled_exam,
+    cred_faq,
 )
 from webapp.shop.views import (
     account_view,
@@ -932,7 +933,7 @@ app.add_url_rule(
 app.add_url_rule("/credentials", view_func=cred_home)
 app.add_url_rule("/credentials/self-study", view_func=cred_self_study)
 app.add_url_rule("/credentials/exam-content", view_func=cred_syllabus_data)
-app.add_url_rule("/credentials/faq", view_func=cred_syllabus_data)
+app.add_url_rule("/credentials/faq", view_func=cred_faq)
 app.add_url_rule(
     "/credentials/sign-up", view_func=cred_sign_up, methods=["GET", "POST"]
 )
