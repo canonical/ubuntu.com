@@ -207,7 +207,7 @@
                       aria-controls="drawer">Toggle table of contents</button>
             </div>
             <ul>
-              {% if cve.description %}
+              {% if cve.description or cve.ubuntu_description%}
                 <li class="p-side-navigation__item">
                   <a class="highlight-link is-active" href="#description">Description</a>
                 </li>
@@ -244,7 +244,10 @@
 
       <main class="col-9">
         <div class="p-section">
-          <h2 id="description" class="section-heading">Description</h2>
+          {% if cve.description or cve.ubuntu_description %}
+            <h2 id="description" class="section-heading">Description</h2>
+          {% endif %}
+
           {% if cve.description %}<p>{{ cve.description }}</p>{% endif %}
 
           {% if cve.ubuntu_description %}
