@@ -136,45 +136,27 @@ jobs:
         run: |
           failed_checks=""
           
-          if [ "${{ steps.homepage.outcome }}" = "failure" ]; then
-            failed_checks="$failed_checks homepage"
-          fi
-          if [ "${{ steps.desktop.outcome }}" = "failure" ]; then
-            failed_checks="$failed_checks desktop"
-          fi
-          if [ "${{ steps.download.outcome }}" = "failure" ]; then
-            failed_checks="$failed_checks download"
-          fi
-          if [ "${{ steps.blog.outcome }}" = "failure" ]; then
-            failed_checks="$failed_checks blog"
-          fi
-          if [ "${{ steps.openstack.outcome }}" = "failure" ]; then
-            failed_checks="$failed_checks openstack"
-          fi
-          if [ "${{ steps.kubernetes.outcome }}" = "failure" ]; then
-            failed_checks="$failed_checks kubernetes"
-          fi
-          if [ "${{ steps.managed.outcome }}" = "failure" ]; then
-            failed_checks="$failed_checks managed"
-          fi
-          if [ "${{ steps.ai.outcome }}" = "failure" ]; then
-            failed_checks="$failed_checks ai"
-          fi
-          if [ "${{ steps.robotics.outcome }}" = "failure" ]; then
-            failed_checks="$failed_checks robotics"
-          fi
-          if [ "${{ steps.core.outcome }}" = "failure" ]; then
-            failed_checks="$failed_checks core"
-          fi
-          if [ "${{ steps.cloud.outcome }}" = "failure" ]; then
-            failed_checks="$failed_checks cloud"
-          fi
-          if [ "${{ steps.tutorials.outcome }}" = "failure" ]; then
-            failed_checks="$failed_checks tutorials"
-          fi
-          if [ "${{ steps.tutorial-example.outcome }}" = "failure" ]; then
-            failed_checks="$failed_checks tutorial-example"
-          fi
+          step_outcomes=(
+            "homepage:${{ steps.homepage.outcome }}"
+            "desktop:${{ steps.desktop.outcome }}"
+            "download:${{ steps.download.outcome }}"
+            "blog:${{ steps.blog.outcome }}"
+            "openstack:${{ steps.openstack.outcome }}"
+            "kubernetes:${{ steps.kubernetes.outcome }}"
+            "managed:${{ steps.managed.outcome }}"
+            "ai:${{ steps.ai.outcome }}"
+            "robotics:${{ steps.robotics.outcome }}"
+            "core:${{ steps.core.outcome }}"
+            "cloud:${{ steps.cloud.outcome }}"
+            "tutorials:${{ steps.tutorials.outcome }}"
+            "tutorial-example:${{ steps.tutorial-example.outcome }}"
+          )
+          
+          for step_outcome in "${step_outcomes[@]}"; do
+            step_name="${step_outcome%:*}"
+            outcome="${step_outcome#*:}"
+            [[ "$outcome" == "failure" ]] && failed_checks="$failed_checks $step_name"
+          done
           
           if [ -n "$failed_checks" ]; then
             echo "Performance checks failed for:$failed_checks"
