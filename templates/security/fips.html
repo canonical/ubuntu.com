@@ -416,7 +416,7 @@
             <div class="col-3 col-medium-2 u-equal-height-items">
               <div class="u-crop--16-9">
                 <div class="p-image-wrapper">
-                  <a href="/blog/{{ article.slug }}">
+                  <a href="/blog/{{ article.slug }}" tabindex="-1">
                     {{ image(url=article.image.source_url,
                                         alt=article.title.rendered,
                                         width="568",
@@ -446,13 +446,15 @@
           <div class="col-3 col-medium-2 u-equal-height-items">
             <div class="u-crop--16-9">
               <div class="p-image-wrapper">
-                {{ image(url="https://assets.ubuntu.com/v1/25349932-a_guide_to.jpg",
-                                alt="",
-                                width="568",
-                                height="380",
-                                hi_def=True,
-                                loading="lazy") | safe
-                }}
+                <a href="/engage/a-guide-to-infrastructure-hardening" tabindex="-1">
+                  {{ image(url="https://assets.ubuntu.com/v1/25349932-a_guide_to.jpg",
+                                  alt="",
+                                  width="568",
+                                  height="380",
+                                  hi_def=True,
+                                  loading="lazy") | safe
+                  }}
+                </a>
               </div>
             </div>
             <h3 class="p-text--default"><a href="/engage/a-guide-to-infrastructure-hardening">A guide to Infrastructure Hardening</a></h3>
@@ -460,13 +462,15 @@
           <div class="col-3 col-medium-2 u-equal-height-items">
             <div class="u-crop--16-9">
               <div class="p-image-wrapper">
-                {{ image(url="https://assets.ubuntu.com/v1/90df9fb3-ubuntu_compliance_us.jpg",
-                                alt="",
-                                width="568",
-                                height="380",
-                                hi_def=True,
-                                loading="lazy") | safe
-                }}
+                <a href="/engage/security-compliance-US-public-sector-FIPS-DISASTIG" tabindex="-1">
+                  {{ image(url="https://assets.ubuntu.com/v1/90df9fb3-ubuntu_compliance_us.jpg",
+                                  alt="",
+                                  width="568",
+                                  height="380",
+                                  hi_def=True,
+                                  loading="lazy") | safe
+                  }}
+                </a>
               </div>
             </div>
             <h3 class="p-text--default"><a href="/engage/security-compliance-US-public-sector-FIPS-DISASTIG">Ubuntu compliance guide for US public sector</a></h3>
@@ -474,13 +478,15 @@
           <div class="col-3 col-medium-2 u-equal-height-items">
             <div class="u-crop--16-9">
               <div class="p-image-wrapper">
-                {{ image(url="https://assets.ubuntu.com/v1/86ea43dc-understand_iot_security.jpg",
-                                alt="",
-                                width="568",
-                                height="380",
-                                hi_def=True,
-                                loading="lazy") | safe
-                }}
+                <a href="/engage/iot-compliance-in-the-global-market-a-guide-for-iot-device-manufacturers" tabindex="-1">
+                  {{ image(url="https://assets.ubuntu.com/v1/86ea43dc-understand_iot_security.jpg",
+                                  alt="",
+                                  width="568",
+                                  height="380",
+                                  hi_def=True,
+                                  loading="lazy") | safe
+                  }}
+                </a>
               </div>
             </div>
             <h3 class="p-text--default"><a href="/engage/iot-compliance-in-the-global-market-a-guide-for-iot-device-manufacturers">Understand IoT security and IoT compliance across global markets</a></h3>
@@ -488,13 +494,15 @@
           <div class="col-3 col-medium-2 u-equal-height-items">
             <div class="u-crop--16-9">
               <div class="p-image-wrapper">
-                {{ image(url="https://assets.ubuntu.com/v1/c8e40232-os_vulnerability_management.jpg",
-                                alt="",
-                                width="568",
-                                height="380",
-                                hi_def=True,
-                                loading="lazy") | safe
-                }}
+                <a href="/engage/vulnerability-management" tabindex="-1">
+                  {{ image(url="https://assets.ubuntu.com/v1/c8e40232-os_vulnerability_management.jpg",
+                                  alt="",
+                                  width="568",
+                                  height="380",
+                                  hi_def=True,
+                                  loading="lazy") | safe
+                  }}
+                </a>
               </div>
             </div>
             <h3 class="p-text--default"><a href="/engage/vulnerability-management">A guide to open source vulnerability management</a></h3>
