@@ -118,7 +118,7 @@ from webapp.shop.cred.views import (
     issue_badges,
     rotate_activation_key,
     cancel_scheduled_exam,
-    cred_faq
+    cred_faq,
 )
 from webapp.shop.views import (
     account_view,
