@@ -65,7 +65,7 @@ export type marketplace =
 
 export const marketplaceDisplayName = {
   "canonical-ua": "Ubuntu Pro",
-  "canonical-cube": "CUE",
+  "canonical-cube": "Academy",
   blender: "Blender",
   free: "Personal Subscription",
   "canonical-pro-channel": "Pro Channel",
