@@ -11,6 +11,7 @@ describe("handleFilter", () => {
     <select name="tutorials-topic" id="tutorials-topic" class="u-no-margin--bottom">
       <option value="">Any</option>
       <option value="cloud">Cloud</option>
+      <option value="openstack">Openstack</option>
     </select>
   `;
 
@@ -20,6 +21,22 @@ describe("handleFilter", () => {
     const url = new URL("http://localhost?topic=cloud");
     handleFilter("topic", topicEl, url);
     expect(topicEl.value).toBe("cloud");
+  });
+
+  it("sets the option value with case-insensitive matching", () => {
+    document.body.innerHTML = Filters;
+    const topicEl = document.querySelector("#tutorials-topic");
+    const url = new URL("http://localhost?topic=OpenStack");
+    handleFilter("topic", topicEl, url);
+    expect(topicEl.value).toBe("openstack");
+  });
+
+  it("sets the option value with uppercase case-insensitive matching", () => {
+    document.body.innerHTML = Filters;
+    const topicEl = document.querySelector("#tutorials-topic");
+    const url = new URL("http://localhost?topic=OPENSTACK");
+    handleFilter("topic", topicEl, url);
+    expect(topicEl.value).toBe("openstack");
   });
 
   it("removes the page parameter from the URL", () => {
