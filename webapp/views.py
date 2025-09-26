@@ -254,7 +254,7 @@ def build_tutorials_index(session, tutorials_docs):
             tutorials = [
                 doc
                 for doc in tutorials_docs.parser.tutorials
-                if topic.lower() in doc["categories"].lower()
+                if topic.lower() in doc["categories"]
             ]
 
         # Create list of topics
