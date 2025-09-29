@@ -200,14 +200,14 @@
                   aria-controls="drawer">Toggle side navigation</button>
           <div class="p-side-navigation__overlay js-drawer-toggle"
                aria-controls="drawer"></div>
-          <nav class="p-side-navigation__drawer"
+          <nav class="p-side-navigation__drawer js-dynamic-toc"
                aria-label="documentation side navigation">
             <div class="p-side-navigation__drawer-header">
               <button class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
                       aria-controls="drawer">Toggle table of contents</button>
             </div>
             <ul>
-              {% if cve.description %}
+              {% if cve.description or cve.ubuntu_description%}
                 <li class="p-side-navigation__item">
                   <a class="highlight-link is-active" href="#description">Description</a>
                 </li>
@@ -243,11 +243,15 @@
       </aside>
 
       <main class="col-9">
-        <div class="p-section section-heading" id="description">
-          {% if cve.description %}<p class=" u-no-padding--top">{{ cve.description }}</p>{% endif %}
+        <div class="p-section">
+          {% if cve.description or cve.ubuntu_description %}
+            <h2 id="description" class="section-heading">Description</h2>
+          {% endif %}
+
+          {% if cve.description %}<p>{{ cve.description }}</p>{% endif %}
 
           {% if cve.ubuntu_description %}
-            <h2 class="p-heading--3">From the Ubuntu Security Team</h2>
+            <h3>From the Ubuntu Security Team</h3>
             <p>{{ cve.ubuntu_description }}</p>
           {% endif %}
 
@@ -267,17 +271,17 @@
         </div>
 
         {% if cve.mitigation %}
-          <div class="p-section section-heading" id="mitigation">
-            <h2>Mitigation</h2>
+          <div class="p-section">
+            <h2 class="section-heading" id="mitigation">Mitigation</h2>
             <p>{{ cve.mitigation }}</p>
           </div>
         {% endif %}
 
-        <div class="p-section section-heading" id="status">
+        <div class="p-section">
           <div class="u-fixed-width p-section--shallow"
                style="display: flex;
                       justify-content: space-between">
-            <h2>Status</h2>
+            <h2 class="section-heading" id="status">Status</h2>
             <label class="p-switch" style="float: right;">
               <input type="checkbox"
                      class="p-switch__input js-toggle-maintained"
@@ -315,11 +319,11 @@
                             <span class="u-text--muted">{{ status.release_codename }}</span>
                             {% if status.pocket_desc and status.pocket_desc.label != "Ubuntu Pro" %}
                               &nbsp;
-                              <button class="p-chip p-tooltip--top-center"
-                                      aria-describedby="{{ status.pocket }}-tooltip"
-                                      style="vertical-align: unset">
+                              <button class="js-tooltip is-dense p-chip p-tooltip--top-center u-no-margin--bottom"
+                                 aria-describedby="{{ status.pocket }}-tooltip"
+                                 style="vertical-align: unset;">
                                 <span class="p-chip__value">{{ status.pocket_desc.label }}</span>
-                                <span class="p-tooltip__message cve-chip"
+                                <span class="p-tooltip__message cve-chip u-hide"
                                       role="tooltip"
                                       id="{{ status.pocket }}-tooltip">{{ status.pocket_desc.text | safe }}</span>
                               </button>
@@ -333,9 +337,9 @@
                                 {{ status.name }} {% if status.name == "Fixed" %}<span class="u-text--muted">{{ status.description }} </span>{% endif %}
                                 {% if status.pocket_desc and status.pocket_desc.label == "Ubuntu Pro" %}
                                   <div>
-                                    <button class="p-chip p-tooltip--top-center u-no-margin--bottom" aria-describedby="{{ status.pocket }}-tooltip">
+                                    <button href="{{ status.pocket_desc.href }}" class="js-tooltip p-chip p-tooltip--top-center u-no-margin--bottom" aria-describedby="{{ status.pocket }}-tooltip">
                                       <span class="p-chip__value">{{ status.pocket_desc.label }}</span>
-                                      <span class="p-tooltip__message cve-chip" role="tooltip" id="{{ status.pocket }}-tooltip">{{ status.pocket_desc.text | safe}}</span>
+                                      <span class="p-tooltip__message cve-chip u-hide" role="tooltip" id="{{ status.pocket }}-tooltip">{{ status.pocket_desc.text | safe}}</span>
                                     </button>
                                   </div>
                                 {% endif %}
@@ -385,8 +389,8 @@
         {% endif %}
 
         {% if cve.notes and only_priority_note == False %}
-          <div class="p-section section-heading" id="notes">
-            <h2>Notes</h2>
+          <div class="p-section" >
+            <h2 id="notes" class="section-heading">Notes</h2>
             <div class="row">
               <div class="col-6">
                 {% for note in cve.notes if "Priority reason" not in note.note %}
@@ -405,9 +409,8 @@
 
         {% if patches %}
           <div class="p-section"
-               id="patch-details"
                style="scroll-margin-top: 3.5rem">
-            <h3>Patch details</h3>
+            <h3 id="patch-details" class="section-heading">Patch details</h3>
             <div class="p-notification--information">
               <div class="p-notification__content">
                 <p class="p-notification__message">
@@ -460,9 +463,9 @@
           </div>
         {% endif %}
         {% if cvssV3 %}
-          <div class="p-section section-heading" id="impact-score">
+          <div class="p-section" >
             <div>
-              <h2>Severity score breakdown</h2>
+              <h2 id="impact-score" class="section-heading">Severity score breakdown</h2>
               <table>
                 <thead>
                   <tr>
@@ -560,8 +563,8 @@
           </div>
         {% endif %}
 
-        <div class="p-section section-heading" id="references">
-          <h2>References</h2>
+        <div class="p-section" >
+          <h2 id="references" class="section-heading">References</h2>
           <ul class="p-inline-list">
             <li class="p-inline-list__item">
               <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name={{ cve.id }}">MITRE</a>
@@ -609,6 +612,9 @@
 
   <!-- Linting is turned off as additional indentaion on view variables (maintainedCount, isOnlyUpstream) will break the rest of the script -->
   {# djlint: off #}
+  <script src="{{ versioned_static('js/dist/dynamic-toc.js') }}" defer></script>
+  <script src="{{ versioned_static('js/dist/notices.js') }}" defer></script>
+  
   <script>
     function handleHiddenReleasesSwitch() {
       const maintainedCount = {{ maintained_count | tojson | safe }};
@@ -672,38 +678,8 @@
         maintainedReleasesSwitch.setAttribute("aria-describedby", notification.id);
       }
     };
-
-    function setUpDynamicSideNav() {
-      const sections = Array.prototype.slice.call(
-        document.querySelectorAll(".section-heading")
-      );
-
-      const navigationLinks = Array.prototype.slice.call(
-        document.querySelectorAll(".highlight-link")
-      );
-
-      sections.forEach(function(section) {
-        const observer = new IntersectionObserver(function(entry) {
-          if (entry[0].isIntersecting) {
-            const sectionId = entry[0].target.id;
-            navigationLinks.forEach(function(link) {
-              if (link.getAttribute("href") === `#${sectionId}`) {
-                link.classList.add("is-active");
-              } else {
-                link.classList.remove("is-active");
-              }
-            });
-          }
-        }, {
-          rootMargin: "-200px 0px -400px",
-          threshold: 0.5,
-        });
-
-        observer.observe(section);
-      });
-    };
-    setUpDynamicSideNav();
 </script>
+
   {# djlint: on #}
 
 {% endblock %}
