@@ -189,7 +189,7 @@ const getLabels = (product: Product, action: Action) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Credentials Terms of Service
+            Academy Terms of Service
           </a>
         </>
       ),

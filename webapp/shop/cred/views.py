@@ -49,9 +49,9 @@ TIMEZONE_COUNTRIES["Asia/Calcutta"] = "IN"
 
 EXAM_NAMES = {
     "cue-test": "CUE Linux Beta",
-    "cue-linux-essentials": "CUE.01 Linux",
-    "cue-01-linux": "CUE.01 Linux",
-    "cue-02-desktop": "CUE.02 Desktop",
+    "cue-linux-essentials": "Using Linux Terminal",
+    "cue-01-linux": "Using Linux Terminal",
+    "cue-02-desktop": "Using Ubuntu Desktop",
 }
 
 RESERVATION_STATES = {
