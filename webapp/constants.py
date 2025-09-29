@@ -62,6 +62,7 @@ CSP = {
         "cdn.jsdelivr.net",
         "*.g.doubleclick.net",
         "extend.vimeocdn.com",
+        "tracking-api.g2.com",
         "'unsafe-inline'",
     ],
     "font-src": [
