@@ -207,107 +207,85 @@
     </div>
   </section>
 
-  {{ vf_basic_section(
-    title={"text": "FIPS compliance everywhere"},
-    items=[
-      {
-        "type": "description",
-        "padding": "shallow",
-        "item": {
-          "type": "html",
-          "content": '
-            <h3 class="p-heading--5">On-prem</h3>
-            <p>
-              <a href="/pro">Ubuntu Pro</a> enables compliance on Ubuntu desktops and servers in private clouds, virtual machines, and air-gapped environments.
-            </p>
-          '
-        }
-      },
-      {
-        "type": "description",
-        "item": {
-          "type": "html",
-          "content": '
-            <hr class="p-rule--muted">
-          '
-        }
-      },
-      {
-        "type": "description",
-        "item": {
-          "type": "html",
-          "content": '
-            <h3 class="p-heading--5">In the cloud</h3>
-            <p>
-              Get FIPS pre-enabled Ubuntu Pro images in the public cloud
-            </p>
-          '
-        }
-      },
-      {
-        "type": "linked-logo-block",
-        "padding": "shallow",
-        "item": {
-          "links": [
-            {
-              "href": "/aws/fips",
-              "text": "Learn more ›",
-              "label": "Learn more about Ubuntu on AWS",
-              "image_attrs": {
-                "src": "https://assets.ubuntu.com/v1/6c8c4fe3-aws_container.png",
-                "alt": "Amazon Web Services",
-                "width": "432",
-                "height": "481"
-              }
-            },
-            {
-              "href": "/azure/fips",
-              "text": "Learn more ›",
-              "label": "Learn more about Ubuntu on Azure",
-              "image_attrs": {
-                "src": "https://assets.ubuntu.com/v1/6cc183e9-azure_container.png",
-                "alt": "Microsoft Azure",
-                "width": "432",
-                "height": "481"
-              }
-            },
-            {
-              "href": "/gcp/fips",
-              "text": "Learn more ›",
-              "label": "Learn more about Ubuntu on Google Cloud Platform",
-              "image_attrs": {
-                "src": "https://assets.ubuntu.com/v1/be6717bf-gcp_container.png",
-                "alt": "Google Cloud Platform",
-                "width": "432",
-                "height": "481"
-              }
-            }
-          ]
-        }
-      },
-      {
-        "type": "description",
-        "item": {
-          "type": "html",
-          "content": '
-            <hr class="p-rule--muted">
-          '
-        }
-      },
-      {
-        "type": "description",
-        "item": {
-          "type": "html",
-          "content": '
-            <h3 class="p-heading--5">On the edge</h3>
-            <p>
-              Enable FIPS compliance on your edge devices with Ubuntu Core, our immutable Ubuntu OS designed for IoT and edge deployments. Access FIPS with <a href="/pro/devices">Ubuntu Pro for Devices</a>. 
-            </p>
-          '
-        }
-      },
-    ]
-  ) }}
+  <section class="p-section">
+    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+      {%- if slot == 'title' -%}
+        <h2>FIPS compliance everywhere</h2>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">On-prem</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <p>
+          <a href="/pro">Ubuntu Pro</a> enables FIPS compliance on Ubuntu desktops and servers in private clouds, virtual machines, and air-gapped environments.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">In the cloud</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <p>Get FIPS pre-enabled Ubuntu Pro images in the public cloud</p>
+        <div class="p-section--shallow">
+          <div class="row">
+            <div class="col-3 col-medium-2">
+              {{ image(url="https://assets.ubuntu.com/v1/3863e7af-aws_logo.png",
+                                alt="Amazon Web Services",
+                                width="54",
+                                height="104",
+                                hi_def=True,
+                                loading="lazy") | safe
+              }}
+              <hr class="p-rule--muted" />
+              <div class="p-section--shallow">
+                <a href="/aws" aria-label="Learn more about Ubuntu on AWS">Learn more &nbsp;&rsaquo;</a>
+              </div>
+            </div>
+            <div class="col-3 col-medium-2">
+              {{ image(url="https://assets.ubuntu.com/v1/d2063f02-microsoft_azure_logo.png",
+                                alt="Microsoft Azure",
+                                width="93",
+                                height="104",
+                                hi_def=True,
+                                loading="lazy") | safe
+              }}
+              <hr class="p-rule--muted" />
+              <div class="p-section--shallow">
+                <a href="/azure" aria-label="Learn more about Ubuntu on Azure">Learn more &nbsp;&rsaquo;</a>
+              </div>
+            </div>
+            <div class="col-3 col-medium-2">
+              {{ image(url="https://assets.ubuntu.com/v1/9eff127d-google_cloud_logo.png",
+                                alt="Google Cloud Platform",
+                                width="126",
+                                height="104",
+                                hi_def=True,
+                                loading="lazy") | safe
+              }}
+              <hr class="p-rule--muted" />
+              <div class="p-section--shallow">
+                <a href="/gcp"
+                    aria-label="Learn more about Ubuntu on Google Cloud Platform">Learn more &nbsp;&rsaquo;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_3' -%}
+        <h3 class="p-heading--5">On the edge</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_3' -%}
+        <p>
+          Enable FIPS compliance on your edge devices with Ubuntu Core, our immutable Ubuntu OS designed for IoT and edge deployments. Access FIPS with <a href="https://ubuntu.com/pro/devices">Ubuntu Pro for Devices</a>.
+        </p>
+      {%- endif -%}
+    {%- endcall -%}
+  </section>
 
   <section class="p-section">
     <div class="row--50-50">
