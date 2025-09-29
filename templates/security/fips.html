@@ -94,21 +94,6 @@
     {%- endif -%}
   {%- endcall -%}
 
-  <div class="p-section">
-    <div class="u-fixed-width">
-      <div class="p-image-container--cinematic">
-        {{ image(url="https://assets.ubuntu.com/v1/d31941c2-benefits_of_fips.jpg",
-                alt="",
-                width="2464",
-                height="1027",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-image-container__image"},) | safe
-        }}
-      </div>
-    </div>
-  </div>
-
   <section class="p-section">
     <div class="row--50-50">
       <hr class="p-rule" />
@@ -358,19 +343,6 @@
             The NIST certification process can take months or even years, but new security vulnerabilities are constantly being discovered. The FIPS modules which NIST certifies are frozen in time from the point that they were submitted for assessment, and may contain unpatched vulnerabilities. In order to address this shortcoming, Canonical continuously patches the FIPS modules along with the rest of Ubuntu distribution, as security is more important than strict compliance. Whilst these FIPS modules are no longer the exact binary files that were submitted for validation, we ensure that the FIPS functionality is unchanged. This approach to security vs compliance is supported by <a href="https://www.fedramp.gov/assets/resources/documents/FedRAMP_Policy_for_Cryptographic_Module_Selection_v1.1.0.pdf">FedRAMP v5</a>.
           </p>
         </div>
-      </div>
-    </div>
-
-    <div class="u-fixed-width">
-      <div class="p-image-container--cinematic is-cover">
-        {{ image(url="https://assets.ubuntu.com/v1/7f08d99d-fips_packages.jpg",
-                  alt="",
-                  width="2470",
-                  height="1029",
-                  hi_def=True,
-                  loading="lazy",
-                  attrs={"class": "p-image-container__image"},) | safe
-        }}
       </div>
     </div>
   </section>

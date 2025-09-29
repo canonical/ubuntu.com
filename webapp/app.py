@@ -1262,7 +1262,7 @@ app.add_url_rule(
 )
 
 
-# Security standards resources blogs tab
+# Security FIPS resources blogs tab
 def render_security_fips_blogs():
     blogs = BlogViews(
         api=BlogAPI(
