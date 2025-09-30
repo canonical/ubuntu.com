@@ -46,7 +46,7 @@ The output will be in the form of `version.number/risk`, e.g `1.XX/stable`. You 
 the `kubernetes-e2e` channel to the same value.
 
 ```
-juju config kubernetes-e2e channel=1.xx/stable
+juju config kubernetes-e2e channel=1.XX/stable
 ```
 
 Finally we relate the charm to `easyrsa` and `kubernetes-control-plane`:
