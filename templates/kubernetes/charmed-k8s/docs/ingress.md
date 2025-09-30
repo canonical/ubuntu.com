@@ -68,7 +68,7 @@ controllers may rely on annotations, such as Istio's
 [MetalLB]: metallb
 [worker charm]: charm-kubernetes-worker
 [ingress-resources]: https://kubernetes.io/docs/concepts/services-networking/ingress/
-[Istio bundle]: https://charmhub.io/istio
+[Istio bundle]: https://jaas.ai/istio
 [istio-traffic]: https://istio.io/latest/docs/concepts/traffic-management/
 [virt-svc]: https://istio.io/latest/docs/concepts/traffic-management/#virtual-services
 [istio-ingress]: https://istio.io/latest/docs/tasks/traffic-management/ingress/kubernetes-ingress/

@@ -26,7 +26,7 @@ Currently, multiple networks are only supported in Juju on MAAS.
 The rest of this document assumes you're familiar with the basics of MAAS and
 Juju. If you're not, you can familiarise yourself with them by reading the
 [MAAS documentation](https://maas.io/docs) and
-[Juju documentation](https://documentation.ubuntu.com/jaas/latest/).
+[Juju documentation](https://jaas.ai/docs).
 
 ## Configure MAAS
 

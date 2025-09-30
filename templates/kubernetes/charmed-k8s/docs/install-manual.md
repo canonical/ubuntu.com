@@ -456,7 +456,7 @@ Now you have a cluster up and running, check out the
 <!-- LINKS -->
 
 [latest-bundle-file]: https://charmhub.io/charmed-kubernetes
-[jaas]: https://canonical.com/jaas/
+[jaas]: https://jaas.ai/
 [juju-docs]: https://documentation.ubuntu.com/juju/3.6/tutorial/
 [credentials]: https://documentation.ubuntu.com/juju/3.6/reference/juju-cli/list-of-juju-cli-commands/credentials/
 [quickstart]: /kubernetes/charmed-k8s/docs/quickstart
