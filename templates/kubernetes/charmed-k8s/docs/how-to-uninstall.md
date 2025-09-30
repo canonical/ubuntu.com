@@ -27,7 +27,7 @@ If your model has a different name other than `charmed-kubernetes`, substitute i
 ```bash
 juju destroy-model charmed-kubernetes --yes --destroy-storage --force
 ```
-Be cautiuos about using these options. See [Removing Things][removing-things] for more information on force removal.
+Be cautious about using these options. See [Removing Things][removing-things] for more information on force removal.
 
 If you want to retain the persistent storage maintained by your model you can use the following flag in the command:
 ```bash
