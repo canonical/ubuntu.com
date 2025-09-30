@@ -54,7 +54,7 @@ You should also make sure:
 -   Your Juju client and controller/models are running the same, stable version of Juju (see the [Juju docs][juju-controller-upgrade]).
 -   You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from.
 -   You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster.
--   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.34.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.34 which may impact your workloads.
+-   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/release-1.34/CHANGELOG/CHANGELOG-1.34.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.34 which may impact your workloads.
 
 It is also important to understand that **Charmed Kubernetes** will only upgrade
 and if necessary migrate, components relating specifically to elements of
@@ -218,7 +218,7 @@ For most use cases, it is strongly recommended to use the 'stable' version of ch
 ### Upgrading the **kube-api-loadbalancer**
 
 A core part of **Charmed Kubernetes** is the kubeapi-load-balancer component. To ensure API service
-continuity this upgrade should precede any upgrades to the **Kubernetes** master and
+continuity this upgrade should precede any upgrades to the **Kubernetes** control-plane and
 worker units.
 
 ```bash
@@ -231,12 +231,13 @@ is no need to set a specific channel or version for this charm.
 
 ### Upgrading the **kubernetes-control-plane** units
 
-**Note**: Older versions of Charmed-Kubernetes used `kubernetes-master` as the charm name. This has been updated
-to `kubernetes-control-plane`. However, it is not possible to rename a deployed application. If you
-originally installed version 1.23 or before, your units will follow the old naming scheme and you should
-substitute `kubernetes-control-plane`for `kubernetes-master`in the following commands.
+<!-- wokeignore:rule=master -->
+**Note**: Older versions of Charmed-Kubernetes used `kubernetes-master` as the charm name. This is updated
+to `kubernetes-control-plane`. It is not possible to rename a deployed application. If your
+deployment still uses the old application name, you must substitute `kubernetes-control-plane`
+with your deployed charm name in all subsequent commands and instructions below.
 
-To start upgrading the Kubernetes master units, first upgrade the charm:
+To start upgrading the Kubernetes control-plane units, first upgrade the charm:
 
 ```bash
 juju refresh kubernetes-control-plane --channel=1.34/stable
@@ -259,7 +260,7 @@ currently active version of Kubernetes.
   </p>
 </div>
 
-Once the desired version has been configured, the upgrades should be performed. This is done by running the `upgrade` action on each master unit in the cluster:
+Once the desired version has been configured, the upgrades should be performed. This is done by running the `upgrade` action on each control-plane unit in the cluster:
 
 ```bash
 juju run-action kubernetes-control-plane/0 upgrade
@@ -293,7 +294,7 @@ To begin, upgrade the kubernetes-worker charm itself:
 juju refresh kubernetes-worker --channel=1.34/stable
 ```
 
-Next, run the command to configure the workers for the version of Kubernetes you wish to run (as you did previously for the master units). For example:
+Next, run the command to configure the workers for the version of Kubernetes you wish to run (as you did previously for the control-plane units). For example:
 
 ```bash
 juju config kubernetes-worker channel=1.34/stable
@@ -345,7 +346,7 @@ To proceed with an in-place upgrade, first upgrade the charm itself:
 juju refresh kubernetes-worker --channel=1.34/stable
 ```
 
-Next, run the command to configure the workers for the version of **Kubernetes** you wish to run (as you did previously for the master units). For example:
+Next, run the command to configure the workers for the version of **Kubernetes** you wish to run (as you did previously for the control-plane units). For example:
 
 ```bash
 juju config kubernetes-worker channel=1.34/stable
