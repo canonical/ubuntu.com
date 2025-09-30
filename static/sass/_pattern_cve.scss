@@ -14,6 +14,10 @@
       }
     }
 
+    th.cve-table-packages {
+      padding-left: 2.1rem;
+    }
+
     tr:not(:first-child) {
       border-top: 1px solid #d9d9d9;
     }
@@ -22,7 +26,14 @@
       border-top: none !important;
       position: relative;
       word-wrap: break-word;
+      
     }
+
+    td.p-text--small {
+      padding-top: 0.5rem;
+    }
+
+
   }
 
   .p-tooltip__message.cve-chip {
