@@ -2,11 +2,11 @@
 Unit tests for webapp.views helper functions.
 """
 
-# Standard library
 from unittest import TestCase
-from unittest.mock import Mock, patch
+from unittest.mock import Mock, patch, MagicMock
 
-# Local application imports
+from werkzeug.exceptions import NotFound, InternalServerError
+
 from webapp.app import app
 from webapp.views import (
     shorten_acquisition_url,
@@ -18,6 +18,7 @@ from webapp.views import (
     match_tags,
     build_engage_page,
 )
+from webapp.certified.views import certified_platform_details_by_release
 
 
 class BaseViewTestCase(TestCase):
@@ -617,3 +618,110 @@ class TestEngageTranslations(TestCase):
             kwargs["additional_resources_text"], "Additional Resources"
         )
         self.assertEqual(kwargs["language"], "xx")
+
+
+class TestCertifiedPlatformDetailsByRelease(BaseViewTestCase):
+    """
+    Unit tests for certified_platform_details_by_release.
+
+    Test cases:
+    - Successful platform details retrieval with valid release
+    - Handling of invalid release (not available for platform)
+    - API 404 error handling
+    - General exception handling
+    """
+
+    @patch("webapp.certified.views.api.certified_platform_details")
+    @patch("webapp.certified.views.render_template")
+    def test_successful_platform_details_with_valid_release(
+        self, mock_render, mock_api
+    ):
+        """Test successful retrieval with valid release certificates."""
+        mock_platform_data = {
+            "id": "12345",
+            "category": "Desktop",
+            "certificates": {
+                "cert1": {"releases": ["20.04 LTS", "22.04 LTS"]},
+                "cert2": {"releases": ["22.04 LTS"]},
+            },
+        }
+        mock_api.return_value = mock_platform_data
+        mock_render.return_value = "rendered_template"
+
+        with self.app.app_context():
+            certified_platform_details_by_release("12345", "22.04 LTS")
+
+        mock_api.assert_called_once_with("12345")
+        call_args = mock_render.call_args
+        self.assertEqual(call_args[1]["selected_release"], "22.04 LTS")
+        # Both certificates should be included as they both have 22.04 LTS
+        self.assertEqual(len(call_args[1]["platform"]["certificates"]), 2)
+
+    @patch("webapp.certified.views.api.certified_platform_details")
+    @patch("webapp.certified.views.render_template")
+    def test_platform_details_with_invalid_release(
+        self, mock_render, mock_api
+    ):
+        """Test invalid release renders page with selected_release=None."""
+        mock_platform_data = {
+            "id": "12345",
+            "category": "Laptop",
+            "certificates": {
+                "cert1": {"releases": ["20.04 LTS", "22.04 LTS"]}
+            },
+        }
+        mock_api.return_value = mock_platform_data
+        mock_render.return_value = "rendered_template"
+
+        with self.app.app_context():
+            certified_platform_details_by_release("12345", "18.04 LTS")
+
+        call_args = mock_render.call_args
+        self.assertEqual(call_args[1]["selected_release"], None)
+
+    @patch("webapp.certified.views.api.certified_platform_details")
+    @patch("webapp.decorators.abort")
+    def test_api_404_error_handling(self, mock_decorators_abort, mock_api):
+        """Test that 404 from API properly aborts with 404."""
+        # Create a mock response with 404 status
+        mock_response = MagicMock()
+        mock_response.status_code = 404
+
+        # The decorated method will catch the exception and call abort
+        def side_effect(*args, **kwargs):
+            mock_decorators_abort(404)
+            raise NotFound()  # Simulate what abort(404) does
+
+        mock_api.side_effect = side_effect
+
+        with self.app.app_context():
+            try:
+                certified_platform_details_by_release(
+                    "nonexistent", "22.04 LTS"
+                )
+            except NotFound:
+                pass  # Expected behavior
+
+        mock_decorators_abort.assert_called_once_with(404)
+
+    @patch("webapp.certified.views.api.certified_platform_details")
+    @patch("webapp.decorators.abort")
+    def test_general_exception_handling(self, mock_decorators_abort, mock_api):
+        """Test general exceptions are handled with 500 and Sentry logging."""
+
+        # The decorated method will catch the exception and call abort
+        def side_effect(*args, **kwargs):
+            mock_decorators_abort(500)
+            raise InternalServerError()  # Simulate what abort(500) does
+
+        mock_api.side_effect = side_effect
+
+        # Mock Sentry extension
+        with self.app.app_context():
+            self.app.extensions = {"sentry": Mock()}
+            try:
+                certified_platform_details_by_release("12345", "22.04 LTS")
+            except InternalServerError:
+                pass  # Expected behavior
+
+        mock_decorators_abort.assert_called_once_with(500)

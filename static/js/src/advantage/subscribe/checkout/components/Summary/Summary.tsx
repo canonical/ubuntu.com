@@ -156,6 +156,13 @@ function Summary({
           </>
         );
         errorType = "cue-banned";
+      } else if (
+        error.message.includes(
+          "cannot purchase the same exam more than two times",
+        )
+      ) {
+        message = <>You cannot purchase the same exam more than two times.</>;
+        errorType = "cue-exam-limit";
       } else {
         message = <>Sorry, there was an unknown error with your purchase.</>;
       }

@@ -15,6 +15,8 @@ jobs:
 
     steps:
       - name: Running performance checks on the homepage
+        id: homepage
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -22,6 +24,8 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the desktop overview page
+        id: desktop
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -29,6 +33,8 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the download overview page
+        id: download
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -36,6 +42,8 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the blog
+        id: blog
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -43,6 +51,8 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the openstack overview
+        id: openstack
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -50,6 +60,8 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the kubernetes overview
+        id: kubernetes
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -57,6 +69,8 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the managed overview
+        id: managed
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -64,6 +78,8 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the ai overview
+        id: ai
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -71,6 +87,8 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the robotics overview
+        id: robotics
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -78,6 +96,8 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the core overview
+        id: core
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -85,6 +105,8 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the cloud overview
+        id: cloud
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -92,6 +114,8 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the tutorials overview
+        id: tutorials
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -99,12 +123,48 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on a tutorial
+        id: tutorial-example
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
           url: "https://ubuntu.com/tutorials/how-to-upgrade-ubuntu-lts-to-ubuntu-pro-on-aws-using-aws-license-manager#1-overview"
           threshold: $THRESHOLD
           strategy: desktop
+
+      - name: Check overall results
+        run: |
+          failed_checks=""
+          
+          step_outcomes=(
+            "homepage:${{ steps.homepage.outcome }}"
+            "desktop:${{ steps.desktop.outcome }}"
+            "download:${{ steps.download.outcome }}"
+            "blog:${{ steps.blog.outcome }}"
+            "openstack:${{ steps.openstack.outcome }}"
+            "kubernetes:${{ steps.kubernetes.outcome }}"
+            "managed:${{ steps.managed.outcome }}"
+            "ai:${{ steps.ai.outcome }}"
+            "robotics:${{ steps.robotics.outcome }}"
+            "core:${{ steps.core.outcome }}"
+            "cloud:${{ steps.cloud.outcome }}"
+            "tutorials:${{ steps.tutorials.outcome }}"
+            "tutorial-example:${{ steps.tutorial-example.outcome }}"
+          )
+          
+          for step_outcome in "${step_outcomes[@]}"; do
+            step_name="${step_outcome%:*}"
+            outcome="${step_outcome#*:}"
+            [[ "$outcome" == "failure" ]] && failed_checks="$failed_checks $step_name"
+          done
+          
+          if [ -n "$failed_checks" ]; then
+            echo "Performance checks failed for:$failed_checks"
+            echo "FAILED_CHECKS=$failed_checks" >> $GITHUB_ENV
+            exit 1
+          else
+            echo "All performance checks passed!"
+          fi
 
       - name: Send message on failure
         if: failure()

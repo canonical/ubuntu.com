@@ -46,7 +46,12 @@ const BuyButton = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const isBuyButtonDisabled = useMemo(() => {
-    return isLoading || errorType === "cue-banned" || isDisabled;
+    return (
+      isLoading ||
+      errorType === "cue-banned" ||
+      errorType === "cue-exam-limit" ||
+      isDisabled
+    );
   }, [isLoading, errorType, isDisabled]);
 
   const {

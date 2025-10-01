@@ -54,7 +54,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 
 // import site specific patterns and overrides
 @import "pattern_accordion";
-@import "pattern_active-reveal";
 @import "pattern_ai";
 @import "pattern_blog-featured";
 @import "pattern_blog-list";
@@ -124,7 +123,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include blog-p-topic;
 @include blog-u-crop;
 @include ubuntu-p-accordion;
-@include ubuntu-p-active-reveal;
 @include ubuntu-p-ai;
 @include ubuntu-p-buttons;
 @include ubuntu-p-calculator;
@@ -183,10 +181,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include vf-p-equal-height-row;
 
 // Layouts:
-@import "layout-legal-pages";
-
-@include layout-legal-pages;
-
 @import "layout-tutorials";
 
 @include layout-tutorials;
@@ -194,10 +188,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "layout-tutorial";
 
 @include layout-tutorial;
-
-@import "layout-whitepapers";
-
-@include layout-whitepapers;
 
 // Set a min-height for the inner wrapper so the footer is always at the bottom
 .inner-wrapper {

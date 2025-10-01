@@ -1,6 +1,7 @@
 from requests import Session
 
 from webapp.certified.helpers import _get_clean_in_filter
+from webapp.decorators import handle_api_error
 
 
 class CertificationAPI:
@@ -33,6 +34,7 @@ class CertificationAPI:
 
         return response
 
+    @handle_api_error
     def certified_platform_details(
         self,
         platform_id,
