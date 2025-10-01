@@ -35,6 +35,7 @@
             width="852",
             height="249",
             hi_def=True,
+            attrs={"class": "u-hide--medium"},
             loading="auto") | safe
       }}
     {%- endif -%}
@@ -61,7 +62,7 @@
     </div>
   </section>
 
-  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
     {%- if slot == 'title' -%}
       <h2>Predictable .NET release cadence</h2>
     {%- endif -%}
@@ -120,9 +121,11 @@
   {%- endcall -%}
 
   {{ vf_basic_section(title={"text": "Security patching and maintenance, in partnership with Microsoft"},
+    is_split_on_medium=true,
     items=[
     {
     "type": "image",
+    "padding": "shallow",
     "item": {
     "attrs": {
     "src": "https://assets.ubuntu.com/v1/598e15c5-security_patching_maintenance.png",
@@ -138,10 +141,10 @@
       We have an established <a href=\"https://canonical.com/blog/install-dotnet-on-ubuntu\">partnership with Microsoft</a> to package, test, and deliver monthly .NET updates for Ubuntu 22.04 LTS and newer versions. As .NET security partners, we receive early access to security patches directly from Microsoft, enabling us to package and test even embargoed patches before their official release.
     </p>
     <p>
-      This coordination provides immediate, day 1 protection for your .NET applications, with security updates released on the same day of the official Microsoft releases. 
+      This coordination provides immediate, day 1 protection for your .NET applications, with security updates released on the same day of the official Microsoft releases.
     </p>
     <p>
-      Using .NET on Ubuntu gives developers the freedom to focus on making impactful applications that deliver value for customers. Through Ubuntu Pro, Canonical’s subscription for open source security,patching and maintenance for the latest .NET LTS releases will continue running until 2034.
+      Using .NET on Ubuntu gives developers the freedom to focus on making impactful applications that deliver value for customers. Through Ubuntu Pro, Canonical’s subscription for open source security, patching and maintenance for the latest .NET LTS releases will continue running until 2034.
     </p>
     "
     }
@@ -159,7 +162,7 @@
     }
     ]) }}
 
-  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
     {%- if slot == 'title' -%}
       <h2>Secure, minimal containers for .NET</h2>
     {%- endif -%}
@@ -180,7 +183,7 @@
     {%- endif -%}
   {%- endcall -%}
 
-  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
     {%- if slot == 'title' -%}
       <h2>Streamlined application packaging for VMs and containers</h2>
     {%- endif -%}
@@ -213,7 +216,7 @@
 
     {%- if slot == 'list_item_description_2' -%}
       <p>
-        The .NET Rockcraft plugin allows you to build .NET projects using the dotnet tool. It automates the typical build process by executing dotnet restore, dotnet build, and dotnet publish in that order. 
+        The .NET Rockcraft plugin allows you to build .NET projects using the <code>dotnet</code> tool. It automates the typical build process by executing <code>dotnet restore</code>, <code>dotnet build</code>, and <code>dotnet publish</code> in that order. 
       </p>
       <p>
         Rocks are Ubuntu LTS-based container images that are designed to meet cloud-native software’s security, stability, and reliability requirements.
@@ -225,10 +228,10 @@
   {%- endcall -%}
 
   {{ vf_basic_section(title={"text": "Ample architecture support"},
+    is_split_on_medium=true,
     items=[
     {
     "type": "description",
-    "padding": "shallow",
     "item": {
     "type": "text",
     "content": "Canonical .NET builds are available and tested on the following architectures:"
