@@ -31,13 +31,13 @@
         <p>
           Minimum requirements:
           <ul>
-            <li>Starting with 24.04 LTS, the minimum requirement is z14s/z14 for LinuxONE Rockhopper II/Emperor II, respectively.</li>
+            <li>
+              Starting with 24.04 LTS, the minimum requirement is z14s/z14 for LinuxONE Rockhopper II/Emperor II, respectively.
+            </li>
             <li>For 20.04 LTS, the minimum requirement is z13s/z13, for LinuxONE Rockhopper/Emperor, respectively.</li>
           </ul>
         </p>
-        <p>
-          zBC12/zEC12 was only supported up to Ubuntu Server 18.04 LTS.
-        </p>
+        <p>zBC12/zEC12 was only supported up to Ubuntu Server 18.04 LTS.</p>
         <p>
           Ubuntu Server for IBM Z and LinuxONE is priced at $19,500 per drawer per year, covering unlimited usage of Ubuntu within that drawer, Ubuntu Pro + Support (24/7) and regular security and reliability fixes from Canonical.
         </p>
@@ -83,16 +83,6 @@
             </label>
             <select id="NumUbuntuServers__c" name="NumUbuntuServers__c">
               <option value="">Select...</option>
-
-              <option value="zBC12" disabled>zBC12</option>
-              <option value="zBC12 - 1/2 drawer (up to 13 cores)">- 1/2 drawer (up to 13 cores)</option>
-
-              <option value="zEC12" disabled>zEC12</option>
-              <option value="zEC12 - 1 drawer (up to 20 cores)">- 1 drawer (up to 20 cores)</option>
-              <option value="zEC12 - 2 drawers (up to 43 cores)">- 2 drawers (up to 43 cores)</option>
-              <option value="zEC12 - 3 drawers (up to 66 cores)">- 3 drawers (up to 66 cores)</option>
-              <option value="zEC12 - 4 drawers (up to 101 cores)">- 4 drawers (up to 101 cores)</option>
-
               <option value="z13s/Rockhopper" disabled>z13s/Rockhopper</option>
               <option value="z13s/Rockhopper - 1/2 drawer (up to 20 cores)">- 1/2 drawer (up to 20 cores)</option>
 
@@ -120,11 +110,18 @@
               <option value="z15/LinuxONE III - 3 drawers (up to 108 cores)">- 3 drawers (up to 108 cores)</option>
               <option value="z15/LinuxONE III - 4 drawers (up to 190 cores)">- 4 drawers (up to 190 cores)</option>
 
-              <option value="z16 A01" disabled>z16 A01</option>
-              <option value="z16 A01 - 1 drawer (up to 39 cores)">- 1 drawer (up to 39 cores)</option>
-              <option value="z16 A01 - 2 drawers (up to 82 cores)">- 2 drawers (up to 82 cores)</option>
-              <option value="z16 A01 - 3 drawers (up to 125 cores)">- 3 drawers (up to 125 cores)</option>
-              <option value="z16 A01 - 4 drawers (up to 200 cores)">- 4 drawers (up to 200 cores)</option>
+              <option value="z16 A01/LinuxONE 4 LA1" disabled>z16 A01/LinuxONE 4 LA1</option>
+              <option value="z16 A01/LinuxONE 4 LA1 - 1 drawer (up to 39 cores)">- 1 drawer (up to 39 cores)</option>
+              <option value="z16 A01/LinuxONE 4 LA1 - 2 drawers (up to 82 cores)">- 2 drawers (up to 82 cores)</option>
+              <option value="z16 A01/LinuxONE 4 LA1 - 3 drawers (up to 125 cores)">- 3 drawers (up to 125 cores)</option>
+              <option value="z16 A01/LinuxONE 4 LA1 - 4 drawers (up to 200 cores)">- 4 drawers (up to 200 cores)</option>
+              <option value="z16 A02,AGZ/LinuxONE 4" disabled>z16 A02,AGZ/LinuxONE 4 LA2,AGL</option>
+              <option value="z16 A02,AGZ/LinuxONE 4 LA2,AGL - 1/2 drawer (up to 68 cores)">- 1/2 drawer (up to 68 cores)</option>
+              <option value="z17 ME1/LinuxONE 5" disabled>z17 ME1/LinuxONE 5</option>
+              <option value="z17 ME1/LinuxONE 5 - 1 drawer (up to 43 cores)">- 1 drawer (up to 43 cores)</option>
+              <option value="z17 ME1/LinuxONE 5 - 2 drawers (up to 90 cores)">- 2 drawers (up to 90 cores)</option>
+              <option value="z17 ME1/LinuxONE 5 - 3 drawers (up to 136 cores)">- 3 drawers (up to 136 cores)</option>
+              <option value="z17 ME1/LinuxONE 5 - 4 drawers (up to 208 cores)">- 4 drawers (up to 208 cores)</option>
             </select>
 
             <label for="Comments_from_Contact__c" aria-label="Comments_from_Contact__c">Serial number(s)</label>
@@ -172,7 +169,9 @@
             {# End of honey pots #}
 
             <p>
-              All information provided will be handled in accordance with the Canonical <a href="https://canonical.com/legal" target="_blank" rel="noopener noreferrer">privacy policy</a>. Your use of Ubuntu on IBM Z and LinuxONE in production constitutes <a href="https://canonical.com/legal/short-terms">acceptance of these terms</a>.
+              All information provided will be handled in accordance with the Canonical <a href="https://canonical.com/legal"
+    target="_blank"
+    rel="noopener noreferrer">privacy policy</a>. Your use of Ubuntu on IBM Z and LinuxONE in production constitutes <a href="https://canonical.com/legal/short-terms">acceptance of these terms</a>.
             </p>
 
             <button onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'LinuxONE server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });"
@@ -269,7 +268,6 @@
             <h3 class="p-heading--5">Helping hands</h3>
           </div>
           <div class="col-6 col-medium-3">
-            <hr class="p-rule--muted" />
             <p>
               <a href="https://discourse.ubuntu.com/">Ubuntu Discourse</a>
             </p>

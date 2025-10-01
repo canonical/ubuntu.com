@@ -1,5 +1,4 @@
 import talisker.requests
-import talisker.sentry
 import requests
 import math
 
@@ -16,7 +15,10 @@ from requests import Session
 from webapp.certified.api import CertificationAPI, PartnersAPI
 from urllib.parse import urlencode
 
-from webapp.certified.helpers import _get_category_pathname, get_download_url
+from webapp.certified.helpers import (
+    _get_category_pathname,
+    get_download_url,
+)
 
 session = Session()
 talisker.requests.configure(session)
@@ -162,14 +164,18 @@ def certified_platform_details(platform_id):
     platform = api.certified_platform_details(platform_id)
 
     # Get the set of all releases available for this platform
+    certificates = platform.get("certificates", {})
+    if not isinstance(certificates, dict):
+        certificates = {}
+
     releases = set(
         release
-        for _, certificate in platform["certificates"].items()
-        for release in certificate["releases"]
+        for _, certificate in certificates.items()
+        for release in certificate.get("releases", [])
     )
     return render_template(
         "certified/platforms/platform-details.html",
-        category_pathname=_get_category_pathname(platform["category"]),
+        category_pathname=_get_category_pathname(platform.get("category", "")),
         platform=platform,
         releases=releases,
         selected_release=None,
@@ -179,33 +185,43 @@ def certified_platform_details(platform_id):
 def certified_platform_details_by_release(platform_id, release):
     platform = api.certified_platform_details(platform_id)
 
+    certificates = platform.get("certificates", {})
+    if not isinstance(certificates, dict):
+        certificates = {}
+
     # Get the set of all releases available for this platform
     releases = set(
         release
-        for _, certificate in platform["certificates"].items()
-        for release in certificate["releases"]
+        for _, certificate in certificates.items()
+        for release in certificate.get("releases", [])
     )
 
-    # If the release specified in the URL is not available for this platform,
-    # render the page for all releases
+    # If the release specified in the URL is not available for this
+    # platform, render the page for all releases
     if release not in releases:
         return render_template(
             "certified/platforms/platform-details.html",
-            category_pathname=_get_category_pathname(platform["category"]),
+            category_pathname=_get_category_pathname(
+                platform.get("category", "")
+            ),
             platform=platform,
             releases=releases,
             selected_release=None,
         )
 
     # Filter only certificates for the release specified in the URL
-    platform["certificates"] = {
-        canonical_id: certificate
-        for canonical_id, certificate in platform["certificates"].items()
-        if release in certificate["releases"]
-    }
+    if certificates:
+        platform["certificates"] = {
+            canonical_id: certificate
+            for canonical_id, certificate in certificates.items()
+            if release in certificate.get("releases", [])
+        }
+    else:
+        platform["certificates"] = {}
+
     return render_template(
         "certified/platforms/platform-details.html",
-        category_pathname=_get_category_pathname(platform["category"]),
+        category_pathname=_get_category_pathname(platform.get("category", "")),
         platform=platform,
         releases=releases,
         selected_release=release,

@@ -254,7 +254,7 @@ def build_tutorials_index(session, tutorials_docs):
             tutorials = [
                 doc
                 for doc in tutorials_docs.parser.tutorials
-                if topic in doc["categories"]
+                if topic.lower() in doc["categories"]
             ]
 
         # Create list of topics
@@ -305,7 +305,7 @@ def build_tutorials_index(session, tutorials_docs):
             forum_url=tutorials_docs.parser.api.base_url,
             tutorials=tutorials,
             page=page,
-            topic=topic,
+            topic=topic.lower() if topic else topic,
             topics_list=dict(
                 sorted(topics_list.items(), key=lambda key: key[0])
             ),

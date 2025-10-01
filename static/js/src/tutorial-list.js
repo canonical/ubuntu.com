@@ -10,7 +10,23 @@ function handleFilter(key, el, url) {
   }
 
   if (url.searchParams.has(key)) {
-    el.value = url.searchParams.get(key);
+    const urlValue = url.searchParams.get(key);
+    const options = Array.from(el.options);
+
+    // First try exact match
+    const exactMatch = options.find(({ value }) => value === urlValue);
+    if (exactMatch) {
+      el.value = exactMatch.value;
+    } else {
+      // Fall back to case-insensitive match
+      const lowerUrlValue = urlValue.toLowerCase();
+      const caseInsensitiveMatch = options.find(
+        ({ value }) => value.toLowerCase() === lowerUrlValue,
+      );
+      if (caseInsensitiveMatch) {
+        el.value = caseInsensitiveMatch.value;
+      }
+    }
   }
 
   el.addEventListener("change", (e) => {
