@@ -239,7 +239,7 @@ juju deploy charmed-kubernetes --channel=1.27/beta
 Each Charmed Kubernetes release supports N-2 kubernetes releases.
 For example, Charmed Kubernetes 1.26 supports 1.26, 1.25, and 1.24 binary
 versions. Therefore, if you wish to install an older version of Kubernetes
-you may still be able to do so with the latest stable charms. 
+you may still be able to do so with the latest stable charms.
 
 Let's say, your project requires Kubernetes 1.24. Build an overlay which adjusts
 the charm configuration for that revision
@@ -456,7 +456,7 @@ Now you have a cluster up and running, check out the
 <!-- LINKS -->
 
 [latest-bundle-file]: https://charmhub.io/charmed-kubernetes
-[jaas]: https://jaas.ai/
+[jaas]: https://canonical.com/jaas
 [juju-docs]: https://documentation.ubuntu.com/juju/3.6/tutorial/
 [credentials]: https://documentation.ubuntu.com/juju/3.6/reference/juju-cli/list-of-juju-cli-commands/credentials/
 [quickstart]: /kubernetes/charmed-k8s/docs/quickstart

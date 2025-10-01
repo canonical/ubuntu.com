@@ -330,7 +330,7 @@ juju config calico ignore-loose-rpf=true
 [calico]: /kubernetes/charmed-k8s/docs/cni-calico
 [cilium]: /kubernetes/charmed-k8s/docs/cni-cilium
 [cni-overview]: /kubernetes/charmed-k8s/docs/cni-overview
-[Juju]: https://jaas.ai
+[Juju]: https://canonical.com/jaas
 [snap]: https://snapcraft.io/docs/installing-snapd
 [install]: /kubernetes/charmed-k8s/docs/install-manual
 [operations]: /kubernetes/charmed-k8s/docs/operations
@@ -345,4 +345,3 @@ juju config calico ignore-loose-rpf=true
     <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
   </div>
 </div>
-

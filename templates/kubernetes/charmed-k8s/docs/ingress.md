@@ -68,7 +68,7 @@ controllers may rely on annotations, such as Istio's
 [MetalLB]: metallb
 [worker charm]: charm-kubernetes-worker
 [ingress-resources]: https://kubernetes.io/docs/concepts/services-networking/ingress/
-[Istio bundle]: https://jaas.ai/istio
+[Istio bundle]: https://charmhub.io/istio
 [istio-traffic]: https://istio.io/latest/docs/concepts/traffic-management/
 [virt-svc]: https://istio.io/latest/docs/concepts/traffic-management/#virtual-services
 [istio-ingress]: https://istio.io/latest/docs/tasks/traffic-management/ingress/kubernetes-ingress/
@@ -85,5 +85,3 @@ controllers may rely on annotations, such as Istio's
     <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
   </div>
 </div>
-
-
