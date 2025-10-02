@@ -1206,7 +1206,7 @@ draft_blogs = BlogViews(
     excluded_tags=[],
     tag_ids=[4794],
     per_page=3,
-    blog_title="Daft blogs",
+    blog_title="Draft blogs",
     status="draft",
 )
 
