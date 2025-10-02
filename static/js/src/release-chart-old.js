@@ -361,8 +361,8 @@ function formatLabel(label, isTooltip = false) {
     case "kub":
       return "Kub";
     case "esm":
-      return `Expanded Security Maintenance${
-        !isTooltip ? " (extra 5 years)" : ""
+      return `LTS Expanded Security Maintenance for Ubuntu Main${
+        !isTooltip ? " (additional 5 years)" : ""
       }`;
     case "interim_release":
       return `Interim release standard security maintenance${
@@ -373,11 +373,11 @@ function formatLabel(label, isTooltip = false) {
     case "cve":
       return "CVE/Critical fixes only";
     case "main_universe":
-      return `LTS Expanded Security Maintenance (ESM) for Ubuntu Universe${
-        !isTooltip ? " (initial 5 years)" : ""
+      return `Expanded Security Maintenance (ESM) for Ubuntu Universe${
+        !isTooltip ? " (10 years)" : ""
       }`;
     case "hardware_and_maintenance_updates":
-      return "LTS standard security maintenance for Ubuntu Main";
+      return `LTS standard security maintenance for Ubuntu Main${!isTooltip ? " (initial 5 years)" : ""}`;
     case "matching_openstack_release_support":
       return "Matching OpenStack release support";
     case "extended_support_for_customers":
