@@ -6,44 +6,21 @@
 
 {% if product == 'supported-platforms' %}
 
-{% with h1='Contact us about supported platforms',
-  intro_text="Can't find your board of choice? Fill out the form and a member of our team will be in touch",
-  formid="4126",
-  lpId="",
-  returnURL="/download/thank-you?product=supported-platforms" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
+  {{ load_form("/download/supported-platforms/contact-us") | safe }}
 
 {% elif product == 'qualcomm-iot' %}
 
-{% with h1="Contact us",
-  intro_text="To speak about a specific project requirement or certification, please fill in this form and send us a message",
-  formid="6035",
-  lpId="",
-  returnURL="/download/thank-you?product=qualcomm-iot" %}
-  {% include "shared/forms/interactive/qualcomm-iot.html" %}
-{% endwith %}
+  {{ load_form("/download/qualcomm-iot/contact-us") | safe }}
 
 {% elif product == 'renesas-iot' %}
 
-{% with h1="Contact us",
-  intro_text="To speak about a specific project requirement or certification, please fill in this form and send us a message",
-  formid="6153",
-  lpId="",
-  returnURL="/download/thank-you?product=renesas-iot" %}
-  {% include "shared/forms/interactive/renesas-iot.html" %}
-{% endwith %}
+  {{ load_form("/download/renesas-iot/contact-us") | safe }}
 
 {% else %}
 
-{% with h1="Contact Canonical about downloads",
-  intro_text="",
-  formid="1257",
-  lpId="",
-  returnURL="/download/thank-you" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
+  {{ load_form("/download/contact-us") | safe }}
 
 {% endif %}
+
 
 {% endblock content %}
