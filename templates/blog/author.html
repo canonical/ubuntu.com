@@ -15,50 +15,52 @@
     <div class="row">
       <div class="col-8">
         <div class="p-media-object u-no-margin--bottom">
-          {% if author.id == 217 %}
-            {{ image(url="https://assets.ubuntu.com/v1/f16c40d0-Favicon+-+CoF.svg",
-                        alt="",
-                        width="16",
-                        height="16",
-                        hi_def=True,
-                        loading="auto",
-                        attrs={"class": "p-media-object__image"}) | safe
-            }}
-          {% else %}
-            <img src="{{ author.avatar_urls['96'] }}"
-                 class="p-media-object__image is-round"
-                 alt="" />
-          {% endif %}
-          <div class="p-media-object__details">
-            <h1 class="p-media-object__title">{{ author.name }}</h1>
-            {% if author.user_job_title %}
-              <p class="p-media-object__content">
-                <em>{{ author.user_job_title }}</em>
-              </p>
-            {% endif %}
-
+          {% if author %}
             {% if author.id == 217 %}
-              <p class="p-media-object__content" style="margin-top: 1rem;">
-                Canonical produces Ubuntu, provides commercial services for Ubuntu's users, and works with hardware manufacturers, software vendors and cloud partners to certify Ubuntu.
-              </p>
-            {% elif author.description %}
-              <p class="p-media-object__content" style="margin-top: 1rem;">{{ author.description | safe }}</p>
+              {{ image(url="https://assets.ubuntu.com/v1/f16c40d0-Favicon+-+CoF.svg",
+                          alt="",
+                          width="16",
+                          height="16",
+                          hi_def=True,
+                          loading="auto",
+                          attrs={"class": "p-media-object__image"}) | safe
+              }}
+            {% else %}
+              <img src="{{ author.avatar_urls['96'] }}"
+                  class="p-media-object__image is-round"
+                  alt="" />
             {% endif %}
-
-            <ul class="p-inline-list u-no-margin--bottom">
-              {% if author.user_twitter %}
-                <li class="p-inline-list__item">
-                  <a href="https://twitter.com/{{ author.user_twitter }}"><i class="p-icon--twitter"></i></a>
-                </li>
+            <div class="p-media-object__details">
+              <h1 class="p-media-object__title">{{ author.name }}</h1>
+              {% if author.user_job_title %}
+                <p class="p-media-object__content">
+                  <em>{{ author.user_job_title }}</em>
+                </p>
               {% endif %}
 
-              {% if author.user_facebook %}
-                <li class="p-inline-list__item">
-                  <a href="https://www.facebook.com/{{ author.user_facebook }}"><i class="p-icon--facebook"></i></a>
-                </li>
+              {% if author.id == 217 %}
+                <p class="p-media-object__content" style="margin-top: 1rem;">
+                  Canonical produces Ubuntu, provides commercial services for Ubuntu's users, and works with hardware manufacturers, software vendors and cloud partners to certify Ubuntu.
+                </p>
+              {% elif author.description %}
+                <p class="p-media-object__content" style="margin-top: 1rem;">{{ author.description | safe }}</p>
               {% endif %}
-            </ul>
-          </div>
+
+              <ul class="p-inline-list u-no-margin--bottom">
+                {% if author.user_twitter %}
+                  <li class="p-inline-list__item">
+                    <a href="https://twitter.com/{{ author.user_twitter }}"><i class="p-icon--twitter"></i></a>
+                  </li>
+                {% endif %}
+
+                {% if author.user_facebook %}
+                  <li class="p-inline-list__item">
+                    <a href="https://www.facebook.com/{{ author.user_facebook }}"><i class="p-icon--facebook"></i></a>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+          {% endif %}
         </div>
       </div>
     </div>
