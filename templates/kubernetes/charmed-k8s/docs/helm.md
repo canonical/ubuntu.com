@@ -145,7 +145,6 @@ export SERVICE_IP=$(kubectl get svc --namespace default hipster-orangutan-jenkin
 echo http://$SERVICE_IP:8080/login
 ```
 
-
 ![jenkins login page][img-jenkins]
 
 Enter 'admin' as the user name, and the password we retrieved earlier...

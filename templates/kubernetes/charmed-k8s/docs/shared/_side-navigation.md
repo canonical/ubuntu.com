@@ -3,15 +3,15 @@
 
 ## How to&hellip;
 
-- [&hellip;install](/kubernetes/charmed-k8s/docs/how-to-install)
-- [&hellip;integrate with clouds](/kubernetes/charmed-k8s/docs/how-to-clouds)
-- [&hellip;configure CNI](/kubernetes/charmed-k8s/docs/how-to-cni)
-- [&hellip;use container runtimes](/kubernetes/charmed-k8s/docs/how-to-containers)
-- [&hellip;operate Kubernetes](/kubernetes/charmed-k8s/docs/how-to-operate)
-- [&hellip;achieve High Availability](/kubernetes/charmed-k8s/docs/how-to-ha)
-- [&hellip;secure your cluster](/kubernetes/charmed-k8s/docs/how-to-security)
-- [&hellip;observe your cluster](/kubernetes/charmed-k8s/docs/how-to-cos-lite)
-- [&hellip;contribute to this project](/kubernetes/charmed-k8s/docs/how-to-contribute)
+- [Install](/kubernetes/charmed-k8s/docs/how-to-install)
+- [Integrate with clouds](/kubernetes/charmed-k8s/docs/how-to-clouds)
+- [Configure CNI](/kubernetes/charmed-k8s/docs/how-to-cni)
+- [Use container runtimes](/kubernetes/charmed-k8s/docs/how-to-containers)
+- [Operate Kubernetes](/kubernetes/charmed-k8s/docs/how-to-operate)
+- [Achieve High Availability](/kubernetes/charmed-k8s/docs/how-to-ha)
+- [Secure your cluster](/kubernetes/charmed-k8s/docs/how-to-security)
+- [Observe your cluster](/kubernetes/charmed-k8s/docs/how-to-cos-lite)
+- [Contribute to this project](/kubernetes/charmed-k8s/docs/how-to-contribute)
 
 ## Explanation
  - [Charmed Kubernetes](/kubernetes/charmed-k8s/docs/overview)
