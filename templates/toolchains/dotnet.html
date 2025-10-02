@@ -162,26 +162,45 @@
     }
     ]) }}
 
-  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
-    {%- if slot == 'title' -%}
-      <h2>Secure, minimal containers for .NET</h2>
-    {%- endif -%}
-
-    {%- if slot == 'description' -%}
-      <p>Since November 2023, Canonical has offered .NET chiseled containers for all supported .NET versions.</p>
-      <p>
-        Ultra-small and OCI-compliant, these images contain only your application and its essential runtime dependencies. This approach omits all other operating system packages and libraries, ensuring the images are lightweight, secure, and efficient.
-      </p>
-      <p>
-        The images are available for both AMD64 and ARM64 architectures, and benefit from up to 12 years of security support with Ubuntu Pro.
-      </p>
-      <p>
-        <a href="/containers/chiseled/dotnet" class="p-button--positive">Read the case study</a>
-        <a href="https://hub.docker.com/r/ubuntu/dotnet-runtime"
-           class="p-button">Download on Dockerhub</a>
-      </p>
-    {%- endif -%}
-  {%- endcall -%}
+  {{ vf_basic_section(title={"text": "Secure, minimal containers for .NET"},
+    is_split_on_medium=true,
+    items=[
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "Since November 2023, Canonical has offered .NET chiseled containers for all supported .NET versions."
+    }
+    },
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": " Ultra-small and OCI-compliant, these images contain only your application and its essential runtime dependencies. This approach omits all other operating system packages and libraries, ensuring the images are lightweight, secure, and efficient."
+    }
+    },
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "The images are available for both AMD64 and ARM64 architectures, and benefit from up to 12 years of security support with Ubuntu Pro."
+    }
+    },
+    {
+    "type": "cta-block",
+    "item": {
+    "primary": {
+    "content_html": "Read the case study",
+    "attrs": {
+    "href": "/containers/chiseled/dotnet"
+    }
+    },
+    "secondaries": [
+    {
+    "content_html": "Download on Dockerhub",
+    "attrs": {
+    "href": "https://hub.docker.com/r/ubuntu/dotnet-runtime"
+    }}],}} ]) }}
 
   {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
     {%- if slot == 'title' -%}
@@ -257,7 +276,8 @@
     "list_item_type": "bullet",
     "content": "Ppc64el"
     }
-    ]} },]) }}
+    ]} },
+    ]) }}
 
   <hr class="p-rule is-fixed-width" />
   <section class="p-strip is-deep">
