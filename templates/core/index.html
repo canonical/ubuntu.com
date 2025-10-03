@@ -1,3 +1,5 @@
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+
 {% extends "core/base_core.html" %}
 
 {% block title %}Ubuntu Core{% endblock %}
@@ -282,7 +284,7 @@ meta_copydoc %}
       </div>
     </div>
   </section>
-
+ 
   <section class="p-section">
     <div class="u-fixed-width p-section--shallow">
       <hr class="p-rule" />
@@ -593,112 +595,154 @@ meta_copydoc %}
       </div>
     </div>
   </section>
-  <section class="p-section">
-    <div class="grid-row--50-50-on-large">
-      <hr class="p-rule"/>
-      <div class="grid-col">
-        <h2 class="u-sv2">Get to market fast with our hardware ecosystem</h2>
-      </div>
-      <div class="grid-col">
-        <div class="grid-row">
-            <div class="grid-col-2 grid-col-medium-2">
-              <a href="https://ubuntu.com/certified?q=adlink&limit=20" aria-label="Adlink">
-                <div class="p-image-container--16-9 is-highlighted">
-                  <img class="p-image-container__image " src="https://assets.ubuntu.com/v1/6eff0263-adlink-logo.png" alt="Adlink" width="506" height="481"/>
-                </div>
-                <hr class="p-rule--muted"/>
-                <p>View ADLink Ubuntu certified hardware ›</p>
-              </a>
-            </div>
-            <div class="grid-col-2 grid-col-medium-2">
-              <a href="https://ubuntu.com/certified?q=advantech" aria-label="Advantech">
-                <div class="p-image-container--16-9 is-highlighted">
-                  <img class="p-image-container__image " src="https://assets.ubuntu.com/v1/d65da7f3-advantech-logo.png" alt="Advantech" width="250" height="481"/>
-                </div>
-                <hr class="p-rule--muted"/>
-                <p>View ADVANTECH Ubuntu certified hardware ›</p>
-              </a>
-            </div>
-            <div class="grid-col-2 grid-col-medium-2">
-              <a href="https://ubuntu.com/download/amd" aria-label="Amd">
-                <div class="p-image-container--16-9 is-highlighted">
-                  <img class="p-image-container__image " src="https://assets.ubuntu.com/v1/4bf8a9bc-amd-logo.png" alt="Amd" width="346" height="481"/>
-                </div>
-                <hr class="p-rule--muted"/>
-                <p>Install Ubuntu on AMD ›</p>
-              </a>
-            </div>
-            <div class="grid-col-2 grid-col-medium-2">
-              <a href="https://ubuntu.com/download/server/arm" aria-label="Arm">
-                <div class="p-image-container--16-9 is-highlighted">
-                  <img class="p-image-container__image " src="https://assets.ubuntu.com/v1/e37f5aa1-arm_logo_black_rgb.svg" alt="Arm" width="294" height="481"/>
-                </div>
-                <hr class="p-rule--muted"/>
-                <p>Learn more about Ubuntu Server for ARM ›</p>
-              </a>
-            </div>
-            <div class="grid-col-2 grid-col-medium-2">
-              <a href="https://ubuntu.com/download/iot/intel-iot" aria-label="Intel">
-                <div class="p-image-container--16-9 is-highlighted">
-                  <img class="p-image-container__image " src="https://assets.ubuntu.com/v1/59996fad-intel-new-logo.png" alt="Intel" width="250" height="481"/>
-                </div>
-                <hr class="p-rule--muted"/>
-                <p>Download Ubuntu for Intel IoT platforms ›</p>
-              </a>
-            </div>
-            <div class="grid-col-2 grid-col-medium-2">
-              <a href="https://ubuntu.com/download/mediatek-genio" aria-label="MediaTek">
-                <div class="p-image-container--16-9 is-highlighted">
-                  <img class="p-image-container__image " src="https://assets.ubuntu.com/v1/96d65ee2-mediatek-logo.png" alt="MediaTek" width="386" height="481"/>
-                </div>
-                <hr class="p-rule--muted"/>
-                <p>Install Ubuntu on MediaTek Genio ›</p>
-              </a>
-            </div>
-            <div class="grid-col-2 grid-col-medium-2">
-              <a href="https://ubuntu.com/download/nvidia-jetson" aria-label="Nvidia">
-                <div class="p-image-container--16-9 is-highlighted">
-                  <img class="p-image-container__image " src="https://assets.ubuntu.com/v1/e7b81879-nvidia-logo.png" alt="Nvidia" width="471" height="481"/>
-                </div>
-                <hr class="p-rule--muted"/>
-                <p>Install Ubuntu on NVIDIA Jetson ›</p>
-              </a>
-            </div>
-            <div class="grid-col-2 grid-col-medium-2">
-              <a href="https://www.nxp.com/" aria-label="NXP">
-                <div class="p-image-container--16-9 is-highlighted">
-                  <img class="p-image-container__image " src="https://assets.ubuntu.com/v1/be8db080-nxp-logo.png" alt="NXP" width="205" height="481"/>
-                </div>
-                <hr class="p-rule--muted"/>
-                <p>Learn more about NXP ›</p>
-              </a>
-            </div>
-            <div class="grid-col-2 grid-col-medium-2">
-              <a href="https://ubuntu.com/download/qualcomm-iot" aria-label="Qualcomm">
-                <div class="p-image-container--16-9 is-highlighted">
-                  <img class="p-image-container__image " src="https://assets.ubuntu.com/v1/31b259ec-qualcom-logo.png" alt="Qualcomm" width="481" height="481"/>
-                </div>
-                <hr class="p-rule--muted"/>
-                <p>Install Ubuntu on Qualcomm IoT Platforms ›</p>
-              </a>
-            </div>
-            <div class="grid-col-2 grid-col-medium-2">
-              <a href="https://ubuntu.com/download/renesas-iot" aria-label="Renesas">
-                <div class="p-image-container--16-9 is-highlighted">
-                  <img class="p-image-container__image " src="https://assets.ubuntu.com/v1/6e12ae75-renesas-logo.png" alt="Renesas" width="240" height="481"/>
-                </div>
-                <hr class="p-rule--muted"/>
-                <p>Install Ubuntu on Renesas IoT Platforms ›</p>
-              </a>
-            </div>
-        </div>
-        <div class="p-cta-block">
-            <a class="p-button--positive" href="/certified">Browse all certified hardware</a>
-            <a class="p-button" href="/core/contact-us">Contact us</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  {{ vf_basic_section(
+    title={"text": "Get to market fast with our hardware ecosystem"},
+    items=[
+      {
+        "type": "linked-logo-block",
+        "item": {
+          "links": [
+            {
+              "href": "https://ubuntu.com/certified?q=adlink&limit=20",
+              "text": "View ADLink Ubuntu certified hardware ›",
+              "label": "Adlink",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/6eff0263-adlink-logo.png",
+                "alt": "Adlink",
+                "width": "506",
+                "height": "481"
+              }
+            },
+            {
+              "href": "https://ubuntu.com/certified?q=advantech",
+              "text": "View ADVANTECH Ubuntu certified hardware ›",
+              "label": "Advantech",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/d65da7f3-advantech-logo.png",
+                "alt": "Advantech",
+                "width": "250",
+                "height": "481"
+              }
+            },
+            {
+              "href": "https://ubuntu.com/download/amd",
+              "text": "Install Ubuntu on AMD ›",
+              "label": "AMD",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/4bf8a9bc-amd-logo.png",
+                "alt": "AMD",
+                "width": "346",
+                "height": "481"
+              }
+            },
+            {
+              "href": "https://ubuntu.com/download/server/arm",
+              "text": "Learn more about Ubuntu Server for ARM ›",
+              "label": "Arm",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/e37f5aa1-arm_logo_black_rgb.svg",
+                "alt": "Arm",
+                "width": "294",
+                "height": "481"
+              }
+            },
+            {
+              "href": "https://ubuntu.com/download/iot/intel-iot",
+              "text": "Download Ubuntu for Intel IoT platforms ›",
+              "label": "Intel",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/59996fad-intel-new-logo.png",
+                "alt": "Intel",
+                "width": "250",
+                "height": "481"
+              }
+            },
+            {
+              "href": "https://ubuntu.com/download/mediatek-genio",
+              "text": "Install Ubuntu on MediaTek Genio ›",
+              "label": "MediaTek",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/96d65ee2-mediatek-logo.png",
+                "alt": "MediaTek",
+                "width": "386",
+                "height": "481"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "linked-logo-block",
+        "item": {
+          "links": [
+              {
+              "href": "https://ubuntu.com/download/nvidia-jetson",
+              "text": "Install Ubuntu on NVIDIA Jetson ›",
+              "label": "NVIDIA",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/e7b81879-nvidia-logo.png",
+                "alt": "NVIDIA",
+                "width": "471",
+                "height": "481"
+              }
+            },
+            {
+              "href": "https://www.nxp.com/",
+              "text": "Learn more about NXP ›",
+              "label": "NXP",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/be8db080-nxp-logo.png",
+                "alt": "NXP",
+                "width": "205",
+                "height": "481"
+              }
+            },
+            {
+              "href": "https://ubuntu.com/download/qualcomm-iot",
+              "text": "Install Ubuntu on Qualcomm IoT Platforms ›",
+              "label": "Qualcomm",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/31b259ec-qualcom-logo.png",
+                "alt": "Qualcomm",
+                "width": "481",
+                "height": "481"
+              }
+            },
+            {
+              "href": "https://ubuntu.com/download/renesas-iot",
+              "text": "Install Ubuntu on Renesas IoT Platforms ›",
+              "label": "Renesas",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/6e12ae75-renesas-logo.png",
+                "alt": "Renesas",
+                "width": "240",
+                "height": "481"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "cta-block",
+        "item": {
+          "primary": {
+            "content_html": "Browse all certified hardware",
+            "attrs": {
+              "href": "/certified"
+            }
+          },
+          "secondaries": [
+            {
+              "content_html": "Contact us",
+              "attrs": {
+                "href": "/core/contact-us"
+              }
+            }
+          ],
+        }
+      }
+    ]
+  ) }}
   <section class="p-section">
     <div class="row--50-50">
       <hr class="p-rule" />
