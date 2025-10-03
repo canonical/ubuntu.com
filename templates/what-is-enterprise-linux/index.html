@@ -426,44 +426,47 @@
   ]
 ) }}
 
-<section class="p-section--deep">
-  <div class="grid-row--50-50">
-    <hr class="p-rule" />
-    <div class="grid-col">
-      <h2>Resources</h2>
-    </div>
-    <div class="grid-col">
-      <div class="grid-row">
-        <div class="grid-col-1">
-          <h3 class="p-heading--5">Datasheet</h3>
-        </div>
-        <div class="grid-col-3">
-          <p>
-            <a href="https://assets.ubuntu.com/v1/a48fc9cd-Ubuntu%20Desktop%20DS%2021.06.23.pdf?_gl=1*543k35*_gcl_au*NzM0MDU3Njc5LjE3NTMxMDI4MDQ.">
-              Ubuntu Desktop in the enterprise
-            </a>
-          </p>
-          
-        </div>
-      </div>
-      <hr class="p-rule--muted" />
-      <div class="grid-row">
-        <div class="grid-col-1">
-          <h3 class="p-heading--5">Webpage</h3>
-        </div>
-        <div class="grid-col-3">
-          <p>
-            <a href="https://ubuntu.com/cloud/public-cloud">Ubuntu on public clouds</a>
-          </p>
-          <hr class="p-rule--muted" />
-          <p>
-            <a href="https://ubuntu.com/pro">Ubuntu Pro</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+{{ vf_basic_section(
+  title={"text": "Resources"},
+  is_split_on_medium=true,
+  padding="deep",
+  items=[
+    {
+      "type": "description",
+      "item": {
+        "type": "html",
+        "content": '<div class="grid-row">
+            <div class="grid-col-1">
+              <h3 class="p-heading--5">Datasheet</h3>
+            </div>
+            <div class="grid-col-3">
+              <p>
+                <a href="https://assets.ubuntu.com/v1/a48fc9cd-Ubuntu%20Desktop%20DS%2021.06.23.pdf?_gl=1*543k35*_gcl_au*NzM0MDU3Njc5LjE3NTMxMDI4MDQ.">
+                  Ubuntu Desktop in the enterprise
+                </a>
+              </p>
+              
+            </div>
+          </div>
+          <hr class="p-rule--muted">
+          <div class="grid-row">
+            <div class="grid-col-1">
+              <h3 class="p-heading--5">Webpage</h3>
+            </div>
+            <div class="grid-col-3">
+              <p>
+                <a href="https://ubuntu.com/cloud/public-cloud">Ubuntu on public clouds</a>
+              </p>
+              <hr class="p-rule--muted">
+              <p>
+                <a href="https://ubuntu.com/pro">Ubuntu Pro</a>
+              </p>
+            </div>
+          </div>'
+      }
+    }
+  ]
+) }}
 
 {{ load_form("/what-is-enterprise-linux") | safe }}
 
