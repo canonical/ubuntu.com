@@ -1,0 +1,471 @@
+{% extends "what-is-enterprise-linux/base.html" %}
+
+{% block content %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_equal-heights.jinja" import vf_equal_heights %}
+
+{% call(slot) vf_hero(
+  title_text='What is an enterprise Linux?',
+  layout='50/50-full-width-image'
+  ) -%}
+  {%- if slot == 'description' -%}
+    <p>
+      Enterprise Linux is a descriptor used by Linux distributions to highlight that they meet 
+      the rigorous needs of large organizations or commercial environments. 
+      The common characteristics shared by enterprise Linux distributions are stability, 
+      security and compliance, interoperability, and support.
+    </p>
+    <p>
+      With this guide, you can familiarize yourself with the features of enterprise Linux 
+      distributions, in order to make informed choices about which is most suitable for you.
+    </p> 
+    {%- endif -%}
+  {%- if slot == 'image' -%}
+
+          
+    <div class="p-image-container--cinematic is-cover">
+      {{ image(
+          url="https://assets.ubuntu.com/v1/42b40d72-hero.jpg",
+          alt="",
+          width="2464",
+          height="1027",
+          hi_def=True,
+          loading="auto",
+          attrs={"class": "p-image-container__image"}
+        ) | safe
+      }}
+    </div>
+  {% endif -%}
+{% endcall -%}
+
+{%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+  {%- if slot == 'title' -%}
+  <h2>Stability</h2>
+  {%- endif -%}
+
+  {%- if slot == 'description' -%}
+  <p>
+    Enterprise-grade Linux distributions proactively support business continuity, by providing a stable experience. 
+    They do this by facilitating users with a smooth, reliable platform to build their solutions on.
+  </p>
+  {%- endif -%}
+
+  {%- if slot == 'list_item_title_1' -%}
+  <h3 class="p-heading--5">
+    Long-term support
+  </h3>
+  {%- endif -%}
+  {%- if slot == 'list_item_description_1' -%}
+  <div class="p-section--shallow">
+    <p>
+      The lifespan of any software is determined by how long the publisher is willing to support it. 
+      Enterprise-grade Linux distributions tend to offer a longer support period than other Linux distributions.
+    </p>
+    <p>
+      As an example, Ubuntu, <a href="https://www.openlogic.com/blog/top-enterprise-linux-distributions">
+      the most popular enterprise-grade Linux distribution</a>, offers 5 years of standard support for all 
+      long-term support (LTS) releases, and up to 7 additional years of expanded support and security coverage 
+      – bringing the total support period up to 12 years.
+    </p>
+  </div>
+  {%- endif -%}
+
+  {%- if slot == 'list_item_title_2' -%}
+  <h3 class="p-heading--5">
+    Seamless out-of-the-box experience
+  </h3>
+  {%- endif -%}
+  {%- if slot == 'list_item_description_2' -%}
+  <div class="p-section--shallow">
+    <p>
+      Enterprise-grade distributions offer out-of-the-box functionality on various 
+      <a href="https://ubuntu.com/certified">hardware</a> and 
+      <a href="https://ubuntu.com/cloud/public-cloud">cloud platforms</a>, 
+      through direct partnerships with vendors to optimize their OS and ensure stability across platforms.
+    </p>
+  </div>
+  {%- endif -%}
+
+  {%- if slot == 'list_item_title_3' -%}
+  <h3 class="p-heading--5">
+    Predictable release cadence
+  </h3>
+  {%- endif -%}
+  {%- if slot == 'list_item_description_3' -%}
+  <div class="p-section--shallow">
+    <p>
+      Enterprise Linux distributions follow a 
+      <a href="https://ubuntu.com/about/release-cycle">regular and predictable release cadence</a>, 
+      so that enterprises can plan ahead efficiently. Organizations can anticipate which upstream 
+      features are likely to reach their distro, discuss functionality with third-party vendors in advance, 
+      and plan for the end of life of their current release.
+    </p>
+  </div>
+  {%- endif -%}
+
+  {%- if slot == 'list_item_title_4' -%}
+  <h3 class="p-heading--5">
+    Reliability throughout the distro lifecycle
+  </h3>
+  {%- endif -%}
+  {%- if slot == 'list_item_description_4' -%}
+  <div class="p-section--shallow">
+    <p>
+      Enterprise-grade distros perform continuous testing of package builds at build time, 
+      and integration testing against all dependencies, to spot potential issues before they hit the users. 
+      In addition to policies and review, this is also a line of defense to screen out changes which would 
+      be disruptive for active users.
+    </p>
+  </div>
+  {%- endif -%}
+{% endcall -%}
+
+{% call(slot) vf_equal_heights(
+  title_text="Security and compliance",
+  image_aspect_ratio_medium="2-3",
+  image_aspect_ratio_small="2-3",
+  highlight_images=True,
+  items=[
+    {
+      "title_text": "Platform security to minimize attack surface",
+      "image_html":  "<img src='https://assets.ubuntu.com/v1/c1cd58a8-platform_security.png'
+        class='p-image-container__image'
+        width='284'
+        height='426'
+        alt='' />",
+      "description_html": "<p>
+          Enterprise-grade Linux distributions are pre-enabled to minimize the chances of 
+          unauthorized access. Taking <a href='https://ubuntu.com/security'>Ubuntu as an example</a>, 
+          features such as full-disk encryption (FDE), application sandboxing, UEFI secure boot and 
+          <a href='https://ubuntu.com/confidential-computing'>confidential computing</a> ensure that 
+          organizations can adopt a strong security posture.
+        </p>",
+      "cta_html": "<a href='https://ubuntu.com/security/platform-security'>
+          Learn more about Ubuntu's platform security features
+        </a>"
+    },
+    {
+      "title_text": "Tools for compliance and hardening",
+      "image_html":  "<img src='https://assets.ubuntu.com/v1/9a830e8e-tools_for_compliance.png'
+        class='p-image-container__image'
+        width='284'
+        height='426'
+        alt='' />",
+      "description_html": "<p>
+          Enterprises are often bound by <a href='https://ubuntu.com/security/security-standards'>
+          strict compliance frameworks</a> like FIPS-140, NIST, or regulations like the Cyber Resilience Act. 
+          Enterprise-grade Linux distributions actively assist organizations in meeting these requirements, 
+          through vulnerability management, hardening tools, and security guides that address specific frameworks.
+        </p>",
+      "cta_html": "<a href='https://ubuntu.com/security/security-standards'>
+          Learn more about security standards
+        </a>"
+    },
+    {
+      "title_text": "Comprehensive security maintenance",
+      "image_html":  "<img src='https://assets.ubuntu.com/v1/3edb932b-comprehensive_security.png'
+        class='p-image-container__image'
+        width='284'
+        height='426'
+        alt='' />",
+      "description_html": "<p>
+          Organizations in strict regulatory environments prefer long-life solutions with robust vulnerability 
+          management, to avoid upgrade risks. Enterprise Linux distributions usually offer an opt-in service for 
+          <a href='https://ubuntu.com/security/esm'>expanded security maintenance</a> – for example, Ubuntu Pro 
+          extends maintenance up to 12 years, for both OS and package updates, supporting a reliable 
+          <a href='https://canonical.com/solutions/open-source-security'>software supply chain</a>.
+        </p>",
+    },
+    {
+      "title_text": "Identity and device management",
+      "image_html":  "<img src='https://assets.ubuntu.com/v1/6f624e72-identity_and.png'
+        class='p-image-container__image'
+        width='284'
+        height='426'
+        alt='' />",
+      "description_html": "<p>
+          Enterprise-standard Linux distributions facilitate zero-trust security (never trust, always verify), 
+          through built-in solutions for <a href='https://ubuntu.com/desktop/organizations'>identity management</a> and 
+          <a href='https://ubuntu.com/landscape'>device management</a>. Enterprise distros also offer native support, 
+          often via SSO, with third-party solutions, like Active Directory, Microsoft Entra ID or Azure IoT edge.
+        </p>",
+    }
+  ]
+) %}
+
+{% if slot == "description" %}
+<p>
+  Enterprise Linux distributions contain ready-built security features that help organizations 
+  safeguard their data and ensure operational integrity.
+</p>
+{% endif %}
+{% endcall %}
+
+{%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+  {%- if slot == 'title' -%}
+  <h2>Interoperability</h2>
+  {%- endif -%}
+
+  {%- if slot == 'description' -%}
+  <p>
+    Enterprise Linux distributions offer support across hardware, silicon, and cloud environments, 
+    acting as a single platform to accommodate the needs of each enterprise’s tech stack.
+  </p>
+  {%- endif -%}
+
+  {%- if slot == 'list_item_title_1' -%}
+  <h3 class="p-heading--5">
+    Certification for hardware and silicon
+  </h3>
+  {%- endif -%}
+  {%- if slot == 'list_item_description_1' -%}
+  <div class="p-section--shallow">
+    <p>
+      Publishers of enterprise Linux distributions, such as Canonical, work directly and continuously with 
+      <a href="https://ubuntu.com/certified">hardware and silicon vendors</a>, to pre-optimize their 
+      operating systems for the latest hardware. This ensures that new hardware can seamlessly integrate 
+      with the existing stack, without extensive manual modifications.
+    </p>
+  </div>
+  {%- endif -%}
+
+  {%- if slot == 'list_item_title_2' -%}
+  <h3 class="p-heading--5">
+    A single environment from development to deployment
+  </h3>
+  {%- endif -%}
+  {%- if slot == 'list_item_description_2' -%}
+  <div class="p-section--shallow">
+    <p>
+      Whether on desktops, servers, or workstations, enterprise Linux distributions offer developers 
+      the same features, tooling, and functionality across 
+      <a href="https://canonical.com/solutions/ubuntu-os/workstations">enterprise workstations</a> 
+      and servers, providing versions suitable for edge and IoT deployments as well.
+    </p>
+  </div>
+  {%- endif -%}
+
+  {%- if slot == 'list_item_title_3' -%}
+  <h3 class="p-heading--5">
+    Support for public clouds
+  </h3>
+  {%- endif -%}
+  {%- if slot == 'list_item_description_3' -%}
+  <div class="p-section--shallow">
+    <p>
+      Enterprise Linux distributions <a href="https://ubuntu.com/cloud/public-cloud">
+      optimize kernels for specific cloud platforms</a>, to ensure interoperability with on-prem infrastructure. 
+      Additionally, enterprise Linux instances on the public cloud receive the same patching and support as 
+      the rest of the stack.
+    </p>
+  </div>
+  {%- endif -%}
+{% endcall -%}
+
+{% call(slot) vf_equal_heights(
+  title_text="Support",
+  image_aspect_ratio_medium="2-3",
+  image_aspect_ratio_small="2-3",
+  highlight_images=True,
+  items=[
+    {
+      "title_text": "Documentation",
+      "image_html": "<img src='https://assets.ubuntu.com/v1/c4199e78-documentation.png' 
+        class='p-image-container__image' 
+        width='284' 
+        height='426' 
+        alt='' />",
+      "description_html": "<p>
+          <a href='https://docs.ubuntu.com/'>Extensive documentation</a> ensures that it is easy to install, 
+          deploy, and troubleshoot when using Linux systems. Enterprise Linux distributions ensure that their 
+          documentation is comprehensive, accessible, and up to date.
+        </p>",
+    },
+    {
+      "title_text": "Engineering support",
+      "image_html": "<img src='https://assets.ubuntu.com/v1/9bdff1b1-engineering_support.png' 
+        class='p-image-container__image' 
+        width='284' 
+        height='426' 
+        alt='' />",
+      "description_html": "<p>
+          Enterprise Linux distros have a mature, developed support infrastructure. This often comes in the form 
+          of optional,  direct support from their engineers, usually via <a href='https://ubuntu.com/support'>
+          tiered support packages</a>. This can range from 24/7 ticket support, to critical firefighting and 
+          consulting services for infrastructure solutions running on top, such as OpenStack.
+        </p>",
+    },
+    {
+      "title_text": "Managed services",
+      "image_html": "<img src='https://assets.ubuntu.com/v1/20ace314-managed_services.png' 
+        class='p-image-container__image' 
+        width='284' 
+        height='426' 
+        alt='' />",
+      "description_html": "<p>
+          When you want to focus on your core business, you can often contract the distro publisher to take over 
+          <a href='https://ubuntu.com/managed'>running and maintenance</a> of your open source infrastructure as well.
+        </p>",
+    }
+  ]
+) %}
+{% if slot == "description" %}
+<p>
+  When issues arise, or when knowledge gaps need to be plugged, enterprise-grade Linux distributions 
+  offer enhanced support options, ensuring you gain access to experts who can provide the knowledge 
+  you need, when you need it.
+</p>
+{% endif %}
+{% endcall %}
+
+{{ vf_basic_section(
+  title={"text": "What makes Ubuntu different?"},
+  is_split_on_medium=true,
+  items=[
+    {
+      "type": "description",
+      "item": {
+        "type": "text",
+        "content": "Ubuntu delivers the same OS for all users. Whilst other Linux distributions fork their 
+          distros into enterprise and community versions, Ubuntu maintains the same, consistent code base for everyone. 
+          Whether you’re a well-established enterprise, a start-up business, or an individual developer."
+      }
+    },
+    {
+      "type": "description",
+      "item": {
+        "type": "text",
+        "content": "We believe that a truly innovative enterprise Linux must draw on the innovations of the Linux 
+          community as a whole – and make them available at scale for everyone. From desktops and servers, to data 
+          centers, workstations, and the public cloud."
+      }
+    },
+    {
+      "type": "description",
+      "item": {
+        "type": "text",
+        "content": "What’s more, more users means more feedback, which makes for a stronger, more reliable OS. 
+          And when the time comes to scale, all you do is: scale. No need to switch to an enterprise fork, redeploy 
+          workloads, and learn new functionalities."
+      }
+    }
+  ]
+) }}
+
+{{ vf_basic_section(
+  title={"text": "Ubuntu: the enterprise Linux made for everyone"},
+  is_split_on_medium=true,
+  items=[
+    {
+      "type": "description",
+      "item": {
+        "type": "text",
+        "content": "Ubuntu comes with a 20 year track record of reliability. Ubuntu’s enterprise-grade features are available to all as standard, with a single codebase shared between our community and business users. This broad user base means more people can contribute to Ubuntu and feed back to us, making for a stronger, more stable, and more reliable OS for everyone."
+      }
+    },
+    {
+      "type": "description",
+      "item": {
+        "type": "text",
+        "content": "Organizations can opt for additional security maintenance and support on top of every Ubuntu LTS with Ubuntu Pro – a single, comprehensive subscription for enterprise-grade security and support. Ubuntu Pro expands security maintenance to up to 12 years, includes compliance tooling for major security standards, and offers access to live kernel patching for critical and high priority kernel CVEs. It’s free for personal use in up to five machines, and there is a free trial available for enterprises."
+      }
+    },
+    {
+      "type": "cta-block",
+      "item": {
+        "primary": {
+          "content_html": "Download Ubuntu",
+          "attrs": {
+            "href": "https://ubuntu.com/download"
+          }
+        },
+        "link": {
+          "content_html": "Learn more about Ubuntu Pro ›",
+          "attrs": {
+            "href": "https://ubuntu.com/pro"
+          }
+        }
+      }
+    }
+  ]
+) }}
+
+{{ vf_basic_section(
+  title={"text": "Questions? Get answers"},
+  items=[
+    {
+        "type": "image",
+        "item": {
+          "attrs": {
+            "src": "https://assets.ubuntu.com/v1/afe89cd4-questions_get_answers.jpg",
+            "alt": "",
+        }}
+    },
+    {
+        "type": "description",
+        "item": {
+            "type": "text",
+            "content": "Want to talk to us about your enterprise project? Contact us to discuss your needs."
+        }
+    },
+    {
+      "type": "cta-block",
+      "item": {
+        "primary": {
+          "content_html": "Contact us",
+          "attrs": {
+            "href": "#",
+            "aria-controls": "enterprise-linux-modal",
+            "class": "js-invoke-modal"
+          }
+        }
+      }
+    }
+  ]
+) }}
+
+<section class="p-section--deep">
+  <div class="grid-row--50-50">
+    <hr class="p-rule" />
+    <div class="grid-col">
+      <h2>Resources</h2>
+    </div>
+    <div class="grid-col">
+      <div class="grid-row">
+        <div class="grid-col-1">
+          <h3 class="p-heading--5">Datasheet</h3>
+        </div>
+        <div class="grid-col-3">
+          <p>
+            <a href="https://assets.ubuntu.com/v1/a48fc9cd-Ubuntu%20Desktop%20DS%2021.06.23.pdf?_gl=1*543k35*_gcl_au*NzM0MDU3Njc5LjE3NTMxMDI4MDQ.">
+              Ubuntu Desktop in the enterprise
+            </a>
+          </p>
+          
+        </div>
+      </div>
+      <hr class="p-rule--muted" />
+      <div class="grid-row">
+        <div class="grid-col-1">
+          <h3 class="p-heading--5">Webpage</h3>
+        </div>
+        <div class="grid-col-3">
+          <p>
+            <a href="https://ubuntu.com/cloud/public-cloud">Ubuntu on public clouds</a>
+          </p>
+          <hr class="p-rule--muted" />
+          <p>
+            <a href="https://ubuntu.com/pro">Ubuntu Pro</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ load_form("/what-is-enterprise-linux") | safe }}
+
+{% endblock %}
