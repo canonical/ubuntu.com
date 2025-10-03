@@ -27,21 +27,20 @@
 
           
     <div class="p-image-container--cinematic is-cover">
-      {{ image(
-          url="https://assets.ubuntu.com/v1/42b40d72-hero.jpg",
-          alt="",
-          width="2464",
-          height="1027",
-          hi_def=True,
-          loading="auto",
-          attrs={"class": "p-image-container__image"}
+      {{ image(url="https://assets.ubuntu.com/v1/2a9932f3-hero_3x.jpg",
+        alt="",
+        width="3696",
+        height="1540",
+        hi_def=True,
+        loading="auto",
+        attrs={"class": "p-image-container__image"}
         ) | safe
       }}
     </div>
   {% endif -%}
 {% endcall -%}
 
-{%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+{%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
   {%- if slot == 'title' -%}
   <h2>Stability</h2>
   {%- endif -%}
@@ -204,7 +203,7 @@
 {% endif %}
 {% endcall %}
 
-{%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+{%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
   {%- if slot == 'title' -%}
   <h2>Interoperability</h2>
   {%- endif -%}
