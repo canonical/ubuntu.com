@@ -13,3 +13,7 @@ TAEXAM_PROC_EXAM_MAPPING = {
     "cue-01-linux": 2,
     "cue-02-desktop": 4,
 }
+
+EXIT_SURVEY_ABILITY_SCREEN_ID_MAPPING = {
+    4229: "SA1",
+}

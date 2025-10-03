@@ -19,6 +19,7 @@ from webapp.shop.api.datastore import (
 from webapp.shop.cred.constants import (
     TAEXAM_PROC_EXAM_MAPPING,
     TAEXAM_PROC_STATE,
+    EXIT_SURVEY_ABILITY_SCREEN_ID_MAPPING,
 )
 from webapp.shop.decorators import (
     credentials_group,
@@ -1391,6 +1392,10 @@ def cred_faq(
 
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_submit_form(**_):
+    ability_screen_id = flask.request.args.get("exam_id")
+    exam_name = EXIT_SURVEY_ABILITY_SCREEN_ID_MAPPING.get(
+        ability_screen_id, None
+    )
     if flask.request.method == "GET":
         return flask.render_template("credentials/exit-survey.html")
 
@@ -1437,6 +1442,9 @@ def cred_submit_form(**_):
         "Consent_to_Processing__c": "",
         "grecaptcharesponse": "",
     }
+    if exam_name:
+        form_fields["examName"] = exam_name
+        form_fields["abilityScreenID"] = ability_screen_id
     for key in flask.request.form:
         values = flask.request.form.getlist(key)
         value = ", ".join(values)
