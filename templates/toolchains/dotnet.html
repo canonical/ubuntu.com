@@ -1,0 +1,295 @@
+{% extends "toolchains/base_toolchains.html" %}
+
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1OyWHUGEWsU5AaTTHDlLzMcKtoQGwcqtiiNwyonltsvY
+{% endblock meta_copydoc %}
+
+{% block title %}.NET support - Canonical builds of .Net for Ubuntu{% endblock %}
+
+{% block meta_description %}
+  Explore Canonical’s .NET support offering - long term supported builds, minimal runtime containers and installation automation
+{% endblock %}
+
+{% block meta_keywords %}
+  .NET on Ubuntu, Cluster: .NET
+{% endblock meta_keywords %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+
+  {% call(slot) vf_hero(
+    title_text='Canonical’s build of .NET for Ubuntu',
+    subtitle_text='Get long-term support, automated installation, and <br class="u-hide--small u-hide--medium" />streamlined packaging  for  .NET apps on Ubuntu' | safe,
+    layout='25/75'
+    ) -%}
+    {%- if slot == 'signpost_image' -%}
+      {{ image(url="https://assets.ubuntu.com/v1/b4fc6ffd-net-logo.png",
+            alt="",
+            width="852",
+            height="249",
+            hi_def=True,
+            attrs={"class": "u-hide--medium"},
+            loading="auto") | safe
+      }}
+    {%- endif -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Bring stability to your .NET environment by innovating on Ubuntu. Receive security patches on day 1, with up to 12 years of long-term support for .NET LTS releases, through Ubuntu Pro. Benefit from hassle-free installation through the .NET snap, and keep your workloads secure with our minimal runtime containers.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="https://documentation.ubuntu.com/ubuntu-for-developers/howto/dotnet-setup/"
+         class="p-button--positive u-no-margin--bottom">Use .NET on Ubuntu</a>
+      <a href="https://snapcraft.io/dotnet"
+         class="p-button u-no-margin--bottom">Install the .NET snap</a>
+    {%- endif -%}
+  {%- endcall -%}
+
+  <hr class="p-rule is-fixed-width" />
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <h2>
+        <a href="https://documentation.ubuntu.com/ubuntu-for-developers/reference/availability/dotnet"
+           aria-controls="toolchains-modal">View available .NET versions ›</a>
+      </h2>
+    </div>
+  </section>
+
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
+    {%- if slot == 'title' -%}
+      <h2>Predictable .NET release cadence</h2>
+    {%- endif -%}
+
+    {%- if slot == 'description' -%}
+      <p>
+        .NET releases on Ubuntu follow an established, reliable cadence that offers you both the latest versions and long-term support for LTS releases. There are multiple methods for installing the .NET toolchain on Ubuntu.
+      </p>
+      <p>
+        Each method offers distinct advantages for various organizations; therefore, choose the one that best aligns with your requirements from the options below.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">Archive packages</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+      <p>
+        Ubuntu LTS releases contain the most recent .NET LTS version in the archive at the time of the Ubuntu release. This package benefits from the security and support guarantees of Ubuntu Pro.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">.NET snap</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+      <p>
+        The .NET snap streamlines the setup experience and it facilitates the side-by-side installation of multiple .NET SDKs and runtimes, utilizing the identical source-built binaries available from the Ubuntu archive.
+      </p>
+      <p>
+        We offer .NET content snaps for the .NET and ASP.NET runtimes, along with the SDK. These content snaps allow for the sharing of .NET runtimes and SDK among various .NET application snaps, which can save storage space and accelerate installation.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_3' -%}
+      <h3 class="p-heading--5">.NET backports PPA</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_3' -%}
+      <p>
+        The <a href="https://documentation.ubuntu.com/ubuntu-for-developers/reference/availability/dotnet/#backports-ppa">.NET backports PPA</a> gives developers the ability to install older .NET releases on newer Ubuntu versions. Please note that the packages in the .NET backports PPA are only maintained until the upstream .NET release reaches end-of-life.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_4' -%}
+      <h3 class="p-heading--5">.NET previews PPA</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_4' -%}
+      <p>
+        The <a href="https://launchpad.net/~dotnet/+archive/ubuntu/previews">.NET previews PPA</a> makes available the latest .NET release previews Microsoft makes available for public testing. The packages in this PPA are intended only for testing and do not receive security support.
+      </p>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {{ vf_basic_section(title={"text": "Security patching and maintenance, in partnership with Microsoft"},
+    is_split_on_medium=true,
+    items=[
+    {
+    "type": "image",
+    "padding": "shallow",
+    "item": {
+    "attrs": {
+    "src": "https://assets.ubuntu.com/v1/598e15c5-security_patching_maintenance.png",
+    }
+    }
+    },
+    {
+    "type": "description",
+    "item": {
+    "type": "html",
+    "content": "
+    <p>
+      We have an established <a href=\"https://canonical.com/blog/install-dotnet-on-ubuntu\">partnership with Microsoft</a> to package, test, and deliver monthly .NET updates for Ubuntu 22.04 LTS and newer versions. As .NET security partners, we receive early access to security patches directly from Microsoft, enabling us to package and test even embargoed patches before their official release.
+    </p>
+    <p>
+      This coordination provides immediate, day 1 protection for your .NET applications, with security updates released on the same day of the official Microsoft releases.
+    </p>
+    <p>
+      Using .NET on Ubuntu gives developers the freedom to focus on making impactful applications that deliver value for customers. Through Ubuntu Pro, Canonical’s subscription for open source security, patching and maintenance for the latest .NET LTS releases will continue running until 2034.
+    </p>
+    "
+    }
+    },
+    {
+    "type": "cta-block",
+    "item": {
+    "secondaries": [{
+    "content_html": "Get support with Ubuntu Pro",
+    "attrs": {
+    "href": "/pricing/pro"
+    }
+    }],
+    }
+    }
+    ]) }}
+
+  {{ vf_basic_section(title={"text": "Secure, minimal containers for .NET"},
+    is_split_on_medium=true,
+    items=[
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "Since November 2023, Canonical has offered .NET chiseled containers for all supported .NET versions."
+    }
+    },
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": " Ultra-small and OCI-compliant, these images contain only your application and its essential runtime dependencies. This approach omits all other operating system packages and libraries, ensuring the images are lightweight, secure, and efficient."
+    }
+    },
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "The images are available for both AMD64 and ARM64 architectures, and benefit from up to 12 years of security support with Ubuntu Pro."
+    }
+    },
+    {
+    "type": "cta-block",
+    "item": {
+    "primary": {
+    "content_html": "Read the case study",
+    "attrs": {
+    "href": "/containers/chiseled/dotnet"
+    }
+    },
+    "secondaries": [
+    {
+    "content_html": "Download on Dockerhub",
+    "attrs": {
+    "href": "https://hub.docker.com/r/ubuntu/dotnet-runtime"
+    }}],}} ]) }}
+
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
+    {%- if slot == 'title' -%}
+      <h2>Streamlined application packaging for VMs and containers</h2>
+    {%- endif -%}
+
+    {%- if slot == 'description' -%}
+      <p>
+        Canonical provides tooling to simplify and automate packaging of .NET applications so that they can run on your VM and Kubernetes environments.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">Simplify packaging for VM environments</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+      <p>
+        The new Snapcraft plugin greatly simplifies packaging of .NET applications as Snaps. It defaults to using Ubuntu’s source-built, .NET SDK content snaps, supports monorepo setups, and integrates with MSBuild through custom flag attributes.
+      </p>
+      <p>
+        Snaps bundle an application with all its dependencies, allowing it to run securely in a sandbox on any major Linux distribution. This simplifies software management with automatic updates and robust security guarantees.
+      </p>
+      <p>
+        <a href="https://canonical-craft-parts.readthedocs-hosted.com/latest/common/craft-parts/reference/plugins/dotnet_v2_plugin/">Use the .NET Snapcraft Plugin ›</a>
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">Create secure, minimal containers</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+      <p>
+        The .NET Rockcraft plugin allows you to build .NET projects using the <code>dotnet</code> tool. It automates the typical build process by executing <code>dotnet restore</code>, <code>dotnet build</code>, and <code>dotnet publish</code> in that order. 
+      </p>
+      <p>
+        Rocks are Ubuntu LTS-based container images that are designed to meet cloud-native software’s security, stability, and reliability requirements.
+      </p>
+      <p>
+        <a href="https://documentation.ubuntu.com/rockcraft/latest/common/craft-parts/reference/plugins/dotnet_v2_plugin/">Use the .NET Rockcraft Plugin ›</a>
+      </p>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {{ vf_basic_section(title={"text": "Ample architecture support"},
+    is_split_on_medium=true,
+    items=[
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "Canonical .NET builds are available and tested on the following architectures:"
+    }
+    },
+    {
+    "type": "list",
+    "item": {
+    "list_items": [
+    {
+    "list_item_type": "bullet",
+    "content": "AMD64"
+    },
+    {
+    "list_item_type": "bullet",
+    "content": "ARM64"
+    },
+    {
+    "list_item_type": "bullet",
+    "content": "s390x"
+    },
+    {
+    "list_item_type": "bullet",
+    "content": "Ppc64el"
+    }
+    ]} },
+    ]) }}
+
+  <hr class="p-rule is-fixed-width" />
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <h2>
+        <a href="/toolchains/contact-us"
+           class="js-invoke-modal"
+           aria-controls="toolchains-modal">Talk to us about your .NET workloads on Ubuntu ›</a>
+      </h2>
+    </div>
+  </section>
+
+  {{ load_form("/toolchains") | safe }}
+
+{% endblock content %}
