@@ -1,6 +1,7 @@
 {% extends "landscape/base_landscape.html" %}
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
 
 {% block title %}Compare Landscape editions{% endblock %}
 
@@ -22,7 +23,7 @@
       ) -%}
       {%- if slot == 'description' -%}
         <p class="u-no-padding--top">
-          You can choose <a href="https://landscape.canonical.com/signup">Landscape</a> that’s maintained by Canonical, as a Managed App, or self-hosted. It is available for free for up to five Ubuntu instances, with an <a href="/pro">Ubuntu Pro subscription</a>, or as part of your package if you choose the Managed App.
+          There are three Landscape editions to choose from for managing your <a href="/pro">Ubuntu Pro</a> enabled Ubuntu Instances. Landscape SaaS is a multi-tenant cloud service, and is where the newest features first arrive. Landscape is also available as a Managed Service for customers that want a turnkey SaaS solution as a single tenant deployment. Self-hosted Landscape can be deployed on any cloud, on-premises, and even in an airgapped environment. A new Landscape release arrives every 6 months and follows the Ubuntu release calendar, with interim releases supported for 6 months and LTS releases security maintained for 10 years.
         </p>
       {%- endif -%}
       {%- if slot == 'image' -%}
@@ -53,24 +54,20 @@
           <thead>
             <tr>
               <th>Feature</th>
-              <th>
-                Landscape SaaS
-                <br />
-                <span class="u-text--muted">Maintained by Canonical</span>
-              </th>
-              <th>
-                Managed Landscape
-                <br />
-                <span class="u-text--muted">Runs anywhere, <a href="/landscape/managed">Learn more</a></span>
-              </th>
-              <th>
-                Self-hosted Landscape
-                <br />
-                <span class="u-text--muted">Bring your own SSO</span>
-              </th>
+              <th>Landscape SaaS</th>
+              <th>Managed Landscape</th>
+              <th>Self-hosted Landscape</th>
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td>Early access to new features</td>
+              <td>
+                <i class="p-icon--success">Included</i>
+              </td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
             <tr>
               <td>Managed by Canonical</td>
               <td>
@@ -82,7 +79,7 @@
               <td>-</td>
             </tr>
             <tr>
-              <td>Canonical SLA</td>
+              <td>Canonical upgrades Landscape Server on your schedule</td>
               <td>-</td>
               <td>
                 <i class="p-icon--success">Included</i>
@@ -153,29 +150,33 @@
                 <i class="p-icon--success">Included</i>
               </td>
             </tr>
+            <tr>
+              <td>Get started</td>
+              <td>
+                Multi-tenant service on Canonical's cloud. <a href="https://landscape.canonical.com/signup">Sign up</a> for Landscape, maintained by Canonical
+              </td>
+              <td>
+                Canonical deployed and maintained. Run anywhere, <a href="/landscape/managed">learn more</a> or <a href="/landscape/managed#get-in-touch">contact us</a>
+              </td>
+              <td>
+                <a href="https://documentation.ubuntu.com/landscape/how-to-guides/landscape-installation-and-set-up/">Self install Landscape</a> on-premise, or in a cloud.
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
   </section>
 
-  <hr class="p-rule is-fixed-width" />
-
-  <section class="p-strip is-deep">
-    <div class="u-fixed-width">
-      <div class="p-section--shallow">
-        <h2>
-          Learn more about Landscape
-          <br class="u-hide--small" />
-          and our professional services options.
-        </h2>
-      </div>
-      <div class="p-cta-block">
-        <a href="/contact-us" class="p-button--positive js-invoke-modal">Contact us</a>
-        <a href="/landscape/install">Install Landscape Server with quickstart mode&nbsp;&rsaquo;</a>
-      </div>
-    </div>
-  </section>
+  {% call(slot) vf_cta_section(
+    title_text='Learn more about Landscape and our professional services options.',
+    variant='block',
+    layout='100'
+  ) -%}
+    {%- if slot == 'cta' -%}
+      <a href="/landscape#get-in-touch" class="p-button--positive js-invoke-modal">Contact us</a>
+    {%- endif -%}
+  {% endcall -%}
 
   {{ load_form("/landscape") | safe }}
 
