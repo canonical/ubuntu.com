@@ -14,6 +14,10 @@
       }
     }
 
+    th.cve-table-packages {
+      padding-left: 2rem;
+    }
+
     tr:not(:first-child) {
       border-top: 1px solid #d9d9d9;
     }
@@ -22,6 +26,10 @@
       border-top: none !important;
       position: relative;
       word-wrap: break-word;
+    }
+
+    td.p-text--small {
+      padding-top: 0.5rem;
     }
   }
 
@@ -83,6 +91,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+
+    .p-pagination {
+      flex-wrap: wrap;
+    }
   }
 
   .cve-pagination-footer-links {
@@ -251,14 +263,22 @@
     overflow-wrap: break-word;
   }
 
+  .u-status-bump {
+    padding-left: 1.5rem;
+  }
+
+  .u-icon-bump {
+    margin-left: 0.35rem;
+  }
+
   @media screen and (width < $breakpoint-x-large) {
     .u-cve-table-horizontal-scroll {
-      overflow-x: hidden;
-      .u-cve-table-horizontal-scroll__table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-      }
+      overflow-x: auto;
+    }
+
+    .u-cve-table-horizontal-scroll__table {
+      width: max-content;
+      min-width: 100%;
     }
   }
 }
