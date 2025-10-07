@@ -168,7 +168,7 @@
                           <th rowspan={{ notice.release_packages[version].items() | length }}>
                             {{ version }}
                             {% for release in notice.releases %}
-                              {% if release.version == version %}<span class="u-text--muted">{{ release.codename }}</span>{% endif %}
+                              {% if release.version == version %}{% if release.support_tag %}LTS{% endif %} <span class="u-text--muted">{{ release.codename }}</span>{% endif %}
                             {% endfor %}
                           </th>
                         {% endif %}
