@@ -15,5 +15,6 @@ TAEXAM_PROC_EXAM_MAPPING = {
 }
 
 EXIT_SURVEY_ABILITY_SCREEN_ID_MAPPING = {
-    4229: "SA1",
+    "4229": "sa1-terminal",
+    "4534": "sa2-desktop",
 }
