@@ -88,7 +88,7 @@
           {% if metadata["language"] != '' %}
             {% set form = "engage/shared/_" + metadata["language"] + "_engage_form.html" %}
             {% if "form_cta" in metadata and metadata["form_cta"] != '' %}
-              {% with id=metadata["form_id"], returnURL=metadata['path']+"/thank-you", cta=metadata['form_cta'] %}
+              {% with id=metadata["form_id"], returnURL=metadata['path'], cta=metadata['form_cta'] %}
                 {% include form %}
               {% endwith %}
             {% else %}
