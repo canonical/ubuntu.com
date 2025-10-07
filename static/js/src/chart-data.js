@@ -153,7 +153,7 @@ export var serverAndDesktopReleases = [
     startDate: new Date("2025-10-01T00:00:00"),
     endDate: new Date("2026-07-07T00:00:00"),
     taskName: "25.10 (Questing Quokka)",
-    status: "INTERIM_RELEASE"
+    status: "INTERIM_RELEASE",
   },
 ];
 
