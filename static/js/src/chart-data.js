@@ -149,6 +149,12 @@ export var serverAndDesktopReleases = [
     taskName: "25.04 (Plucky Puffin)",
     status: "INTERIM_RELEASE",
   },
+  {
+    startDate: new Date("2025-10-01T00:00:00"),
+    endDate: new Date("2026-07-07T00:00:00"),
+    taskName: "25.10 (Questing Quokka)",
+    status: "INTERIM_RELEASE",
+  },
 ];
 
 export var kernelReleases = [
@@ -1255,6 +1261,7 @@ export var microStackStatus = {
 };
 
 export var desktopServerReleaseNames = [
+  "25.10 (Questing Quokka)",
   "25.04 (Plucky Puffin)",
   "24.10 (Oracular Oriole)",
   "24.04 LTS (Noble Numbat)",
