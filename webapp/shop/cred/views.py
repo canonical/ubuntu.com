@@ -1397,7 +1397,9 @@ def cred_submit_form(**_):
         ability_screen_id, None
     )
     if flask.request.method == "GET":
-        return flask.render_template("credentials/exit-survey.html")
+        return flask.render_template(
+            "credentials/exit-survey.html", ability_screen_id=ability_screen_id
+        )
 
     sso_user = user_info(flask.session)
     email = sso_user["email"]
