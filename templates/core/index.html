@@ -1,3 +1,5 @@
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+
 {% extends "core/base_core.html" %}
 
 {% block title %}Ubuntu Core{% endblock %}
@@ -25,7 +27,6 @@ meta_copydoc %}
 
   <section class="p-strip is-shallow u-no-padding--bottom">
     <div class="p-section row--50-50">
-      {% include "shared/_20-04-eol-banner.html" %}
       <div class="col">
         <h1 class="u-no-margin--bottom">Ubuntu Core</h1>
         <div class="p-section--shallow">
@@ -283,7 +284,7 @@ meta_copydoc %}
       </div>
     </div>
   </section>
-
+ 
   <section class="p-section">
     <div class="u-fixed-width p-section--shallow">
       <hr class="p-rule" />
@@ -594,58 +595,156 @@ meta_copydoc %}
       </div>
     </div>
   </section>
-  <section class="p-section">
-    <div class="u-fixed-width p-section--shallow">
-      <hr class="p-rule" />
-      <div class="p-section--shallow">
-        <h2>Get to market fast with our hardware ecosystem</h2>
-      </div>
-      <div class="p-logo-section--dense">
-        <div class="p-logo-section__items">
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/59996fad-intel-new-logo.png", alt="Intel", width="50", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="lazy",) | safe }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/4bf8a9bc-amd-logo.png", alt="AMD", width="69", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="lazy",) | safe }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/e7b81879-nvidia-logo.png", alt="Nvidia", width="94", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="lazy",) | safe }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/9a25ec68-arm-logo.png", alt="ARM", width="47", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="lazy",) | safe }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/31b259ec-qualcom-logo.png", alt="Qualcom", width="96", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="lazy",) | safe }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/d65da7f3-advantech-logo.png", alt="Advantech", width="95", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="lazy",) | safe }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/6eff0263-adlink-logo.png", alt="Adlink", width="101", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="lazy",) | safe }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/be8db080-nxp-logo.png", alt="NXP", width="41", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="lazy",) | safe }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/96d65ee2-mediatek-logo.png", alt="MediaTeK", width="77", height="96", hi_def=True, attrs={"class": "p-logo-section__logo"}, loading="lazy",) | safe }}
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <hr class="p-rule--muted" />
-      <div class="col-start-large-7 col-3 col-medium-2 col-start-medium-3">
-        <p>
-          <a href="/certified">Browse all certified hardware&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-      <div class="col-3 col-medium-2">
-        <p>
-          <a href="/core/contact-us">Contact us&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-    </div>
-  </section>
+  {{ vf_basic_section(
+    title={"text": "Get to market fast with our hardware ecosystem"},
+    items=[
+      {
+        "type": "linked-logo-block",
+        "item": {
+          "links": [
+            {
+              "href": "https://ubuntu.com/certified?q=adlink&limit=20",
+              "text": "View ADLink Ubuntu certified hardware ›",
+              "label": "Adlink",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/6eff0263-adlink-logo.png",
+                "alt": "Adlink",
+                "width": "506",
+                "height": "481"
+              }
+            },
+            {
+              "href": "https://ubuntu.com/certified?q=advantech",
+              "text": "View ADVANTECH Ubuntu certified hardware ›",
+              "label": "Advantech",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/d65da7f3-advantech-logo.png",
+                "alt": "Advantech",
+                "width": "250",
+                "height": "481"
+              }
+            },
+            {
+              "href": "https://ubuntu.com/download/amd",
+              "text": "Install Ubuntu on AMD ›",
+              "label": "AMD",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/4bf8a9bc-amd-logo.png",
+                "alt": "AMD",
+                "width": "346",
+                "height": "481"
+              }
+            },
+            {
+              "href": "https://ubuntu.com/download/server/arm",
+              "text": "Learn more about Ubuntu Server for ARM ›",
+              "label": "Arm",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/e37f5aa1-arm_logo_black_rgb.svg",
+                "alt": "Arm",
+                "width": "294",
+                "height": "481"
+              }
+            },
+            {
+              "href": "https://ubuntu.com/download/iot/intel-iot",
+              "text": "Download Ubuntu for Intel IoT platforms ›",
+              "label": "Intel",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/59996fad-intel-new-logo.png",
+                "alt": "Intel",
+                "width": "250",
+                "height": "481"
+              }
+            },
+            {
+              "href": "https://ubuntu.com/download/mediatek-genio",
+              "text": "Install Ubuntu on MediaTek Genio ›",
+              "label": "MediaTek",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/96d65ee2-mediatek-logo.png",
+                "alt": "MediaTek",
+                "width": "386",
+                "height": "481"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "linked-logo-block",
+        "item": {
+          "links": [
+              {
+              "href": "https://ubuntu.com/download/nvidia-jetson",
+              "text": "Install Ubuntu on NVIDIA Jetson ›",
+              "label": "NVIDIA",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/e7b81879-nvidia-logo.png",
+                "alt": "NVIDIA",
+                "width": "471",
+                "height": "481"
+              }
+            },
+            {
+              "href": "https://www.nxp.com/",
+              "text": "Learn more about NXP ›",
+              "label": "NXP",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/be8db080-nxp-logo.png",
+                "alt": "NXP",
+                "width": "205",
+                "height": "481"
+              }
+            },
+            {
+              "href": "https://ubuntu.com/download/qualcomm-iot",
+              "text": "Install Ubuntu on Qualcomm IoT Platforms ›",
+              "label": "Qualcomm",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/31b259ec-qualcom-logo.png",
+                "alt": "Qualcomm",
+                "width": "481",
+                "height": "481"
+              }
+            },
+            {
+              "href": "https://ubuntu.com/download/renesas-iot",
+              "text": "Install Ubuntu on Renesas IoT Platforms ›",
+              "label": "Renesas",
+              "image_attrs": {
+                "src": "https://assets.ubuntu.com/v1/6e12ae75-renesas-logo.png",
+                "alt": "Renesas",
+                "width": "240",
+                "height": "481"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "cta-block",
+        "item": {
+          "primary": {
+            "content_html": "Browse all certified hardware",
+            "attrs": {
+              "href": "/certified"
+            }
+          },
+          "secondaries": [
+            {
+              "content_html": "Contact us",
+              "attrs": {
+                "href": "/core/contact-us",
+                "aria-controls": "contact-modal",
+                "class": "js-invoke-modal"
+              }
+            }
+          ],
+        }
+      }
+    ]
+  ) }}
   <section class="p-section">
     <div class="row--50-50">
       <hr class="p-rule" />
@@ -692,22 +791,22 @@ meta_copydoc %}
           </div>
           <div class="col-3 col-medium-2">
             <p>
-              <a href="/engage/ubuntu-core-security-audit">An independent security audit of Ubuntu&nbsp;Core</a>
+              <a href="/engage/cra-yocto-core">Cyber Resilience Act: Yocto or Ubuntu Core for embedded devices?</a>
             </p>
             <hr class="p-rule--muted" />
             <p>
-              <a href="/engage/embedded-linux-make-or-buy/">Embedded Linux: make or&nbsp;buy?</a>
+              <a href="/engage/securing-ubuntu-devices">Maximise the security of your Ubuntu devices</a>
             </p>
           </div>
         </div>
         <hr class="p-rule" />
         <div class="row">
           <div class="col-3 col-medium-1">
-            <h5 class="p-heading--5">Webinar</h5>
+            <h5 class="p-heading--5">Video</h5>
           </div>
           <div class="col-3 col-medium-2">
             <p>
-              <a href="/engage/intro-to-ubuntu-core22-webinar#:~:text=With%204%20releases%20behind%2C%20Ubuntu,edge%20devices%20makers%20must%20face.">Introduction to Ubuntu Core 22</a>
+              <a href="https://www.youtube.com/watch?v=zf9bapbzb8o">Introduction to Ubuntu Core</a>
             </p>
           </div>
         </div>

@@ -149,9 +149,22 @@ export var serverAndDesktopReleases = [
     taskName: "25.04 (Plucky Puffin)",
     status: "INTERIM_RELEASE",
   },
+  {
+    startDate: new Date("2025-10-01T00:00:00"),
+    endDate: new Date("2026-07-07T00:00:00"),
+    taskName: "25.10 (Questing Quokka)",
+    status: "INTERIM_RELEASE",
+  },
 ];
 
 export var kernelReleases = [
+  {
+    startDate: new Date("2025-10-01T00:00:00"),
+    endDate: new Date("2026-07-01T00:00:00"),
+    taskName: "25.10",
+    taskVersion: "6.17 kernel",
+    status: "INTERIM_RELEASE",
+  },
   {
     startDate: new Date("2025-08-01T00:00:00"),
     endDate: new Date("2026-01-01T00:00:00"),
@@ -164,20 +177,6 @@ export var kernelReleases = [
     endDate: new Date("2026-01-01T00:00:00"),
     taskName: "25.04",
     taskVersion: "6.14 kernel",
-    status: "INTERIM_RELEASE",
-  },
-  {
-    startDate: new Date("2025-02-01T00:00:00"),
-    endDate: new Date("2025-07-01T00:00:00"),
-    taskName: "24.04.2 LTS (HWE)",
-    taskVersion: "6.11 kernel",
-    status: "INTERIM_RELEASE",
-  },
-  {
-    startDate: new Date("2024-10-01T00:00:00"),
-    endDate: new Date("2025-07-01T00:00:00"),
-    taskName: "24.10",
-    taskVersion: "6.11 kernel",
     status: "INTERIM_RELEASE",
   },
   {
@@ -1262,6 +1261,7 @@ export var microStackStatus = {
 };
 
 export var desktopServerReleaseNames = [
+  "25.10 (Questing Quokka)",
   "25.04 (Plucky Puffin)",
   "24.10 (Oracular Oriole)",
   "24.04 LTS (Noble Numbat)",
@@ -1273,10 +1273,9 @@ export var desktopServerReleaseNames = [
 ];
 
 export var kernelReleaseNames = [
+  "25.10",
   "24.04.3 LTS (HWE)",
   "25.04",
-  "24.04.2 LTS (HWE)",
-  "24.10",
   "22.04.5 LTS (HWE)",
   "24.04.[0 or 1] LTS",
   "20.04.5 LTS (HWE)",
@@ -1291,9 +1290,8 @@ export var kernelReleaseNames = [
 ];
 
 export var kernelVersionNames = [
+  "6.17",
   "6.14",
-  "",
-  "6.11",
   "",
   "6.8",
   "",
