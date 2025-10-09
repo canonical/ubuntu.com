@@ -3,200 +3,159 @@
 {% block title %}Install Ubuntu on Qualcomm IoT Platforms{% endblock %}
 
 {% block meta_description %}
-  Run Ubuntu on Qualcomm IoT Platforms for the familiar developer experience and an accelerated path to production
+Run Ubuntu on Qualcomm IoT Platforms for the familiar developer experience and an accelerated path to production
 {% endblock meta_description %}
 
 {% block meta_image %}
-  https://assets.ubuntu.com/v1/46af07ff-Qualcomm%20download%20page%20meta%20image.png
+https://assets.ubuntu.com/v1/46af07ff-Qualcomm%20download%20page%20meta%20image.png
 {% endblock %}
 
 {% block meta_copydoc %}
-  https://docs.google.com/document/d/1BP2T63R6kdnUFQFIZcbXbTIgY-9fQVgVRLsSUU5Rvx8/edit
+https://docs.google.com/document/d/1BP2T63R6kdnUFQFIZcbXbTIgY-9fQVgVRLsSUU5Rvx8/edit
 {% endblock meta_copydoc %}
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 
 {% block body_class %}
-  is-paper
+is-paper
 {% endblock body_class %}
 
 {% block content %}
-  {% call(slot) vf_hero(
-    title_text='Install Ubuntu on Qualcomm IoT Platforms',
-    layout='25/75'
-    ) -%}
-    {%- if slot == 'signpost_image' -%}
-      <a href="https://www.qualcomm.com/">
-        {{ image(url="https://assets.ubuntu.com/v1/d7787d4b-qualcomm-logo.png",
-                alt="Qualcomm",
-                width="224",
-                height="60",
-                hi_def=True,
-                loading="auto") | safe
-        }}
-      </a>
-    {%- endif -%}
-    {%- if slot == 'description' -%}
+{% call(slot) vf_hero(
+title_text='Install Ubuntu on Qualcomm IoT Platforms',
+layout='25/75'
+) -%}
+{%- if slot == 'signpost_image' -%}
+<a href="https://www.qualcomm.com/">
+  {{ image(url="https://assets.ubuntu.com/v1/d7787d4b-qualcomm-logo.png",
+  alt="Qualcomm",
+  width="224",
+  height="60",
+  hi_def=True,
+  loading="auto") | safe
+  }}
+</a>
+{%- endif -%}
+{%- if slot == 'description' -%}
+<p>
+  <a href="https://www.qualcomm.com/developer/software/ubuntu-on-qualcomm-iot-platforms">Ubuntu on Qualcomm® IoT
+    platforms</a> simplifies access to Qualcomm’s advanced AI capabilities, empowering developers and enterprises to
+  innovate with confidence. Run Ubuntu on Qualcomm IoT platforms to accelerate the deployment of secure, scalable edge
+  AI solutions and transform the IoT landscape.
+</p>
+{%- endif -%}
+{%- if slot == 'cta' -%}
+<a href="/download/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+{%- endif -%}
+{%- endcall -%}
+
+<section class="p-section">
+  <div class="row">
+    <hr class="p-rule" />
+    <div class="col-3 col-medium-2">
+      <div class="p-section--shallow">
+        <h2 class="p-text--small-caps">Choose a board</h2>
+        <nav id="boardDrawer" class="p-side-navigation" aria-label="Example side">
+          <ul class="p-side-navigation__list">
+            <li class="p-side-navigation__item">
+              <a class="p-side-navigation__link" href="#rb3-gen2" aria-current="page">Qualcomm Dragonwing™ RB3 Gen 2
+                Vision Development Kit (QCS6490)</a>
+            </li>
+            <li class="p-side-navigation__item">
+              <a class="p-side-navigation__link" href="#rb3-gen2-lite">Qualcomm Dragonwing™ RB3 Gen 2 Lite Vision
+                Development Kit (QCS5430)</a>
+            </li>
+            <li class="p-side-navigation__item">
+              <a class="p-side-navigation__link" href="#evaluation-kit">Qualcomm Dragonwing™ IQ-9075 Evaluation Kit
+                (EVK)</a>
+            </li>
+            <li class="p-side-navigation__item">
+              <a class="p-side-navigation__link" href="#rubikpi3">RUBIK Pi 3 Development Board (QCS6490)</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="col-9 col-medium-4">
+      {% include "download/qualcomm-iot/tabs/rb3-gen2-tab.html" %}
+      {% include "download/qualcomm-iot/tabs/rb3-gen2-lite-tab.html" %}
+      {% include "download/qualcomm-iot/tabs/evaluation-kit-tab.html" %}
+      {% include "download/qualcomm-iot/tabs/development-board-tab.html" %}
+    </div>
+  </div>
+</section>
+
+<section class="p-section--deep">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>
+        Are you working on a
+        <br class="u-hide--small u-hide--medium" />
+        commercial project?
+      </h2>
+    </div>
+    <div class="col">
       <p>
-        <a href="https://www.qualcomm.com/developer/software/ubuntu-on-qualcomm-iot-platforms">Ubuntu on Qualcomm® IoT platforms</a> simplifies access to Qualcomm’s advanced AI capabilities, empowering developers and enterprises to innovate with confidence. Run Ubuntu on Qualcomm IoT platforms to accelerate the deployment of secure, scalable edge AI solutions  and transform the IoT landscape.
+        Canonical partners with silicon vendors, board manufacturers and leading enterprises to shorten time-to-market.
+        If you are deploying Ubuntu on Qualcomm IoT platforms at-scale, <a href="/download/contact-us"
+          class="js-invoke-modal">reach out to Canonical</a> to get access to ongoing bug fixes, critical security
+        patching, long-term support; or to learn more about our solutions for custom board enablement and application
+        development services.
       </p>
-    {%- endif -%}
-    {%- if slot == 'cta' -%}
-      <a href="/download/contact-us"
-         class="p-button--positive js-invoke-modal">Get in touch</a>
-    {%- endif -%}
-  {%- endcall -%}
-
-  <section class="p-section">
-    <div class="row">
-      <hr class="p-rule" />
-      <div class="col-3 col-medium-2">
-        <div class="p-section--shallow">
-          <h2 class="p-text--small-caps">Choose a board</h2>
-        </div>
-        <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small"
-            role="tablist"
-            data-maintain-hash="true"
-            aria-label="Qualcomm IoT Boards">
-          <li>
-            <a
-              class="p-tabs__item"
-              role="tab"
-              aria-selected="false"
-              id="rb3-gen2"
-              href="#rb3-gen2"
-              aria-controls="rb3-gen2-tab"
-              style="display:block">
-                Qualcomm Dragonwing™ RB3 Gen 2 Vision Development Kit (QCS6490)
-            </a>
-          </li>
-          <li>
-            <a
-              class="p-tabs__item"
-              role="tab"
-              aria-selected="false"
-              id="rb3-gen2-lite"
-              href="#rb3-gen2-lite"
-              aria-controls="rb3-gen2-lite-tab"
-              style="display:block">
-                Qualcomm Dragonwing™ RB3 Gen 2 Lite Vision Development Kit (QCS5430)
-            </a>
-          </li>
-          <li>
-            <a
-              class="p-tabs__item"
-              role="tab"
-              aria-selected="false"
-              id="evaluation-kit"
-              href="#evaluation-kit"
-              aria-controls="evaluation-kit-tab"
-              style="display:block">
-                Qualcomm Dragonwing™ IQ-9075 Evaluation Kit (EVK)
-            </a>
-          </li>
-          <li>
-            <a
-              class="p-tabs__item"
-              role="tab"
-              aria-selected="false"
-              id="rubikpi3"
-              href="#rubikpi3"
-              aria-controls="rubikpi3-tab"
-              style="display:block">
-                RUBIK Pi 3 Development Board (QCS6490)
-            </a>
-          </li>
-        </ul>
-        <!-- form dropdown for smaller screens -->
-        <form class="u-hide--large u-hide--medium">
-          <select name="boardSelect" id="boardSelect">
-            <option value="rb3-gen2-tab" selected="">Qualcomm RB3 Gen 2 Vision Kit (QCS6490)</option>
-            <option value="rb3-gen2-lite-tab">Qualcomm RB3 Gen 2 Lite Vision Kit (QCS5430)</option>
-            <option value="evaluation-kit-tab">Qualcomm Dragonwing™ IQ-9075 Evaluation Kit (EVK)</option>
-            <option value="rubikpi3-tab">RUBIK Pi 3 Development Board (QCS6490)</option>
-          </select>
-        </form>
-      </div>
-      <div class="col-9 col-medium-4">
-        {% include "download/qualcomm-iot/tabs/rb3-gen2-tab.html" %}
-        {% include "download/qualcomm-iot/tabs/rb3-gen2-lite-tab.html" %}
-        {% include "download/qualcomm-iot/tabs/evaluation-kit-tab.html" %}
-        {% include "download/qualcomm-iot/tabs/development-board-tab.html" %}
-      </div>
+      <p>
+        For information about using Canonical's Ubuntu images on a commercial project, <a
+          href="https://canonical.com/legal/intellectual-property-policy">read Canonical's IP policy</a>.
+      </p>
+      <p>
+        If you have any questions about the platform or would like information
+        about our certification program, <a href="/download/contact-us" class="js-invoke-modal">contact us</a>.
+      </p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="p-section--deep">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>
-          Are you working on a
-          <br class="u-hide--small u-hide--medium" />
-          commercial project?
-        </h2>
-      </div>
-      <div class="col">
-        <p>
-          Canonical partners with silicon vendors, board manufacturers and leading enterprises to shorten time-to-market. If you are deploying Ubuntu on Qualcomm IoT platforms at-scale, <a href="/download/contact-us" class="js-invoke-modal">reach out to Canonical</a> to get access to ongoing bug fixes, critical security patching, long-term support; or to learn more about our solutions for custom board enablement and application development services.
-        </p>
-        <p>
-          For information about using Canonical's Ubuntu images on a commercial project, <a href="https://canonical.com/legal/intellectual-property-policy">read Canonical's IP policy</a>.
-        </p>
-        <p>
-          If you have any questions about the platform or would like information
-          about our certification program, <a href="/download/contact-us" class="js-invoke-modal">contact us</a>.
-        </p>
-      </div>
-    </div>
-  </section>
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/qualcomm-iot"
+  data-form-id="6035" data-lp-id="" data-return-url="https://ubuntu.com/download/thank-you?product=qualcomm-iot"
+  data-lp-url="https://ubuntu.com/download/contact-us?product=qualcomm-iot"></div>
 
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/qualcomm-iot"
-       data-form-id="6035"
-       data-lp-id=""
-       data-return-url="https://ubuntu.com/download/thank-you?product=qualcomm-iot"
-       data-lp-url="https://ubuntu.com/download/contact-us?product=qualcomm-iot"></div>
+<script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+<script>
+  function syncSelectWithHash() {
+    const hash = window.location.hash
+    if (!hash) return;
+    const panelId = hash.replace(/^#/, "");
+    const navElement = document.getElementById("boardDrawer");
 
-  <script>
-    const select = document.getElementById("boardSelect");
-
-    function showPanel(id) {
-      // hide all
-      document.querySelectorAll('[role="tabpanel"]').forEach(panel =>
-        panel.setAttribute("aria-hidden", "true")
-      );
-
-      // show selected
-      const active = document.getElementById(id);
-      if (active) active.removeAttribute("aria-hidden");
-    }
-
-    function syncSelectWithHash() {
-      const hash = window.location.hash.replace(/^#/, "");
-      if (!hash) return;
-      const option = Array.from(select.options).find(o => o.value === hash + '-tab');
-      if (option) {
-        select.value = option.value;
-        showPanel(hash);
+    const links = navElement.getElementsByClassName("p-side-navigation__link");
+    Array.from(links).forEach(link => {
+      const hrefValue = link.getAttribute("href");
+      if (hrefValue === hash) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
       }
-    }
 
-    select.addEventListener("change", (e) => {
-      const selectedId = e.target.value;
-      showPanel(selectedId);
-      const result = selectedId.replace(/-tab$/, "");
-      window.location.hash = result;
     });
 
-    window.addEventListener("DOMContentLoaded", syncSelectWithHash);
+    document.querySelectorAll('[role="tabpanel"]').forEach(panel => {
+      panel.setAttribute("aria-hidden", "true");
+      panel.classList.add("u-hide");
+    });
 
-    window.addEventListener("hashchange", syncSelectWithHash);
+    const active = document.getElementById(panelId);
+    if (active) {
+      active.removeAttribute("aria-hidden");
+      active.classList.remove("u-hide");
+    }
+  }
 
-  </script>
+  window.addEventListener("DOMContentLoaded", syncSelectWithHash);
+
+  window.addEventListener("hashchange", syncSelectWithHash);
+</script>
 
 {% endblock content %}
