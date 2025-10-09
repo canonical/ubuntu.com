@@ -179,7 +179,7 @@
     function syncSelectWithHash() {
       const hash = window.location.hash.replace(/^#/, "");
       if (!hash) return;
-      const option = Array.from(select.options).find(o => o.value.includes(hash));
+      const option = Array.from(select.options).find(o => o.value === hash + '-tab');
       if (option) {
         select.value = option.value;
         showPanel(hash);
