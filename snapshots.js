@@ -9,7 +9,7 @@ const acceptCookies = () => {
 
 // Common snapshot config factory
 const makeSnapshot = (path) => ({
-  name: path === "/" ? "/" : path,
+  name: path,
   url: `${baseURL}${path === "/" ? "" : path}`,
   waitForTimeout: timeout,
   execute: { beforeSnapshot: acceptCookies },
