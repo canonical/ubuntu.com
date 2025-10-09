@@ -190,7 +190,7 @@
       const selectedId = e.target.value;
       showPanel(selectedId);
       const result = selectedId.replace(/-tab$/, "");
-      window.location.hash = result ;
+      window.location.hash = result;
     });
 
     window.addEventListener("DOMContentLoaded", syncSelectWithHash);
