@@ -1,30 +1,32 @@
-const baseURL = 'http://localhost:8001';
-var timeout = 30000;
+// Snapshot configuration for Percy visual testing
+const baseURL = "http://localhost:8001";
+const timeout = 30000;
+
 const acceptCookies = () => {
-  const cookieBanner = document.querySelector(".cookie-policy");
-  if (cookieBanner) {
-    const acceptButton = cookieBanner.querySelector("#cookie-policy-button-accept");
-    if (acceptButton) {
-      acceptButton.click();
-    }
-  }
+  const banner = document.querySelector(".cookie-policy");
+  banner?.querySelector("#cookie-policy-button-accept")?.click();
 };
 
-module.exports = [
-  {
-    name: '/',
-    url: baseURL,
-    waitForTimeout: timeout,
-    execute: {
-      beforeSnapshot: acceptCookies,
-    }
-  },
-  {
-    name: '/download/desktop',
-    url: baseURL+'/download/desktop',
-    waitForTimeout: timeout,
-    execute: {
-      beforeSnapshot: acceptCookies,
-    }
-  }
+// Common snapshot config factory
+const makeSnapshot = (path) => ({
+  name: path === "/" ? "/" : path,
+  url: `${baseURL}${path === "/" ? "" : path}`,
+  waitForTimeout: timeout,
+  execute: { beforeSnapshot: acceptCookies },
+});
+
+const routes = [
+  "/",
+  "/desktop",
+  "/download",
+  "/download/desktop",
+  "/pricing/desktop",
+  "/pro",
+  "/ai",
+  "/robotics",
+  "/core",
+  "/cloud",
+  "/summit",
 ];
+
+module.exports = routes.map(makeSnapshot);
