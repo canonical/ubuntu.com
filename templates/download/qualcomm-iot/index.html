@@ -54,7 +54,7 @@
         <div class="p-section--shallow">
           <h2 class="p-text--small-caps">Choose a board</h2>
         </div>
-        <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small"
+        <ul class="js-tabbed-content p-tabs--vertical is-black"
             role="tablist"
             data-maintain-hash="true"
             aria-label="Qualcomm IoT Boards">
@@ -85,21 +85,12 @@
           </li>
           <li>
             <button class="p-tabs__item"
-                    id="development-board"
+                    id="rubikpi3"
                     role="tab"
                     aria-selected="false"
-                    aria-controls="development-board-tab">RUBIK Pi 3 Development Board (QCS6490)</button>
+                    aria-controls="rubikpi3-tab">RUBIK Pi 3 Development Board (QCS6490)</button>
           </li>
         </ul>
-        <!-- form dropdown for smaller screens -->
-        <form class="u-hide--large u-hide--medium">
-          <select name="boardSelect" id="boardSelect">
-            <option value="rb3-gen2-tab" selected="">Qualcomm RB3 Gen 2 Vision Kit (QCS6490)</option>
-            <option value="rb3-gen2-lite-tab">Qualcomm RB3 Gen 2 Lite Vision Kit (QCS5430)</option>
-            <option value="evaluation-kit-tab">Qualcomm Dragonwing™ IQ-9075 Evaluation Kit (EVK)</option>
-            <option value="development-board-tab">RUBIK Pi 3 Development Board (QCS6490)</option>
-          </select>
-        </form>
       </div>
       <div class="col-9 col-medium-4">
         {% include "download/qualcomm-iot/tabs/rb3-gen2-tab.html" %}
