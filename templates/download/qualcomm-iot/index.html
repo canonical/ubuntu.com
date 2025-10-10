@@ -55,28 +55,39 @@ layout='25/75'
     <div class="col-3 col-medium-2">
       <div class="p-section--shallow">
         <h2 class="p-text--small-caps">Choose a board</h2>
-        <nav id="boardDrawer" class="p-side-navigation" aria-label="Example side">
-          <ul class="p-side-navigation__list">
-            <li class="p-side-navigation__item">
-              <a class="p-side-navigation__link" href="#rb3-gen2" aria-current="page">Qualcomm Dragonwing™ RB3 Gen 2
-                Vision Development Kit (QCS6490)</a>
-            </li>
-            <li class="p-side-navigation__item">
-              <a class="p-side-navigation__link" href="#rb3-gen2-lite">Qualcomm Dragonwing™ RB3 Gen 2 Lite Vision
-                Development Kit (QCS5430)</a>
-            </li>
-            <li class="p-side-navigation__item">
-              <a class="p-side-navigation__link" href="#evaluation-kit">Qualcomm Dragonwing™ IQ-9075 Evaluation Kit
-                (EVK)</a>
-            </li>
-            <li class="p-side-navigation__item">
-              <a class="p-side-navigation__link" href="#rubikpi3">RUBIK Pi 3 Development Board (QCS6490)</a>
-            </li>
-          </ul>
-        </nav>
       </div>
+      <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small" role="tablist" data-maintain-hash="true"
+        aria-label="Qualcomm IoT Boards">
+        <li>
+          <button class="p-tabs__item" id="rb3-gen2" role="tab" aria-selected="true" aria-controls="rb3-gen2-tab">
+            Qualcomm Dragonwing™ RB3 Gen 2 Vision Development Kit (QCS6490)
+          </button>
+        </li>
+        <li>
+          <button class="p-tabs__item" id="rb3-gen2-lite" role="tab" aria-selected="false"
+            aria-controls="rb3-gen2-lite-tab">
+            Qualcomm Dragonwing™ RB3 Gen 2 Lite Vision Development Kit (QCS5430)
+          </button>
+        </li>
+        <li>
+          <button class="p-tabs__item" id="evaluation-kit" role="tab" aria-selected="false"
+            aria-controls="evaluation-kit-tab">Qualcomm Dragonwing™ IQ-9075 Evaluation Kit (EVK)</button>
+        </li>
+        <li>
+          <button class="p-tabs__item" id="rubikpi3" role="tab" aria-selected="false"
+            aria-controls="development-board-tab">RUBIK Pi 3 Development Board (QCS6490)</button>
+        </li>
+      </ul>
+      <!-- form dropdown for smaller screens -->
+      <form class="u-hide--large u-hide--medium">
+        <select name="boardSelect" id="boardSelect">
+          <option value="rb3-gen2-tab" selected="">Qualcomm RB3 Gen 2 Vision Kit (QCS6490)</option>
+          <option value="rb3-gen2-lite-tab">Qualcomm RB3 Gen 2 Lite Vision Kit (QCS5430)</option>
+          <option value="evaluation-kit-tab">Qualcomm Dragonwing™ IQ-9075 Evaluation Kit (EVK)</option>
+          <option value="rubikpi3-tab">RUBIK Pi 3 Development Board (QCS6490)</option>
+        </select>
+      </form>
     </div>
-
     <div class="col-9 col-medium-4">
       {% include "download/qualcomm-iot/tabs/rb3-gen2-tab.html" %}
       {% include "download/qualcomm-iot/tabs/rb3-gen2-lite-tab.html" %}
@@ -122,40 +133,5 @@ layout='25/75'
   data-lp-url="https://ubuntu.com/download/contact-us?product=qualcomm-iot"></div>
 
 <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
-
-<script>
-  function syncSelectWithHash() {
-    const hash = window.location.hash
-    if (!hash) return;
-    const panelId = hash.replace(/^#/, "");
-    const navElement = document.getElementById("boardDrawer");
-
-    const links = navElement.getElementsByClassName("p-side-navigation__link");
-    Array.from(links).forEach(link => {
-      const hrefValue = link.getAttribute("href");
-      if (hrefValue === hash) {
-        link.setAttribute("aria-current", "page");
-      } else {
-        link.removeAttribute("aria-current");
-      }
-
-    });
-
-    document.querySelectorAll('[role="tabpanel"]').forEach(panel => {
-      panel.setAttribute("aria-hidden", "true");
-      panel.classList.add("u-hide");
-    });
-
-    const active = document.getElementById(panelId);
-    if (active) {
-      active.removeAttribute("aria-hidden");
-      active.classList.remove("u-hide");
-    }
-  }
-
-  window.addEventListener("DOMContentLoaded", syncSelectWithHash);
-
-  window.addEventListener("hashchange", syncSelectWithHash);
-</script>
 
 {% endblock content %}
