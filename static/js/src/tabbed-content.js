@@ -81,10 +81,12 @@
           // if we're adding the ID of the tab to the URL
           // this prevents the page attempting to jump to
           // the section with that ID
-          history.pushState({}, "", tab.href);
+          const url = new URL(window.location.href);
+          url.hash = tab.id; // no '#'
+          history.pushState({}, "", url);
 
           // Update the URL again with the same hash, then go back
-          history.pushState({}, "", tab.href);
+          history.pushState({}, "", url);
           history.back();
         }
 
