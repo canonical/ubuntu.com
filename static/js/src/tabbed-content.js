@@ -82,7 +82,7 @@
           // this prevents the page attempting to jump to
           // the section with that ID
           const url = new URL(window.location.href);
-          url.hash = tab.id; // no '#'
+          url.hash = tab.id;
           history.pushState({}, "", url);
 
           // Update the URL again with the same hash, then go back
