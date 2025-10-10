@@ -158,6 +158,7 @@ CSP = {
         "*.youtube.com",
         "*.google.com",
         "*.livechat-static.com",
+        "ubuntu.com",
     ],
     "child-src": [
         "api.livechatinc.com",

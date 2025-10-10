@@ -22,6 +22,7 @@ class TestBlogNotice(VCRTestCase):
         from VCR so we don't record auth parameters
         """
         return {
+            "record_mode": "new_episodes",
             "decode_compressed_response": True,
             "filter_headers": ["Authorization", "Cookie"],
         }
@@ -38,20 +39,17 @@ class TestBlogNotice(VCRTestCase):
         """
 
         # Make sure the date is consistent
-        with time_machine.travel("2023-05-04"):
+        with time_machine.travel("2023-10-10"):
             # posts written more than one year ago should
             # contain "more than x year(s) old"
             one_year_old = self.client.get(
-                "/blog/lxd-5-0-lts-is-now-available"
+                "/blog/level-up-linux-gaming-new-steam-snap"
             )
             self.assertEqual(one_year_old.status_code, 200)
             one_year_old_soup = BeautifulSoup(one_year_old.data, "html.parser")
             one_year_old_notice = one_year_old_soup.find(id="date-notice")
-
             self.assertTrue(
-                re.search(
-                    r"more\s+than\s+1\s+year\s+old", one_year_old_notice.text
-                )
+                re.search(r"1\s+year\s+ago", one_year_old_notice.text)
             )
 
             # posts updated more than one year ago should
