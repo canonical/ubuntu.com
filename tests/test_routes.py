@@ -21,6 +21,7 @@ class TestRoutes(VCRTestCase):
         from VCR so we don"t record auth parameters
         """
         return {
+            "record_mode": "new_episodes",
             "filter_headers": [
                 "Authorization",
                 "Cookie",
@@ -61,7 +62,7 @@ class TestRoutes(VCRTestCase):
         This checks that the blog module is correctly
         integrated.
         """
-
+        print("self.client:", self.client.get("/blog"))
         self.assertEqual(self.client.get("/blog").status_code, 200)
         self.assertEqual(
             self.client.get("/blog/topics/design").status_code, 200
