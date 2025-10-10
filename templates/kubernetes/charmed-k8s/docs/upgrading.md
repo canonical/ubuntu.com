@@ -22,9 +22,9 @@ toc: False
   </div>
   <div class="p-notification__meta">
     <div class="p-notification__actions">
+      <a class='p-notification__action' href='/kubernetes/charmed-k8s/docs/1.34/upgrading'>Upgrade to 1.34</a>
       <a class='p-notification__action' href='/kubernetes/charmed-k8s/docs/1.33/upgrading'>Upgrade to 1.33</a>
       <a class='p-notification__action' href='/kubernetes/charmed-k8s/docs/1.32/upgrading'>Upgrade to 1.32</a>
-      <a class='p-notification__action' href='/kubernetes/charmed-k8s/docs/1.31/upgrading'>Upgrade to 1.31</a>
     </div>
   </div>
 </div>
@@ -38,7 +38,7 @@ New minor versions of **Kubernetes** are set to release three times per year. Yo
 <div class="p-notification--information is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Note:</span>
-    <p class="p-notification__message"><strong>Charmed Kubernetes</strong> will automatically handle patch releases. This means that the cluster will perform an unattended automatic upgrade between patch versions, e.g. 1.29.1 to 1.29.2. Attended upgrades are only required when you wish to upgrade a minor version, e.g. 1.28.x to 1.29.x.</p>
+    <p class="p-notification__message"><strong>Charmed Kubernetes</strong> will automatically handle patch releases. This means that the cluster will perform an unattended automatic upgrade between patch versions, e.g. 1.33.1 to 1.33.2. Attended upgrades are only required when you wish to upgrade a minor version, e.g. 1.33.x to 1.34.x.</p>
   </div>
 </div>
 
@@ -80,12 +80,13 @@ documentation for the version you are upgrading to.
 
 ### Supported versions
 
+- [Upgrading from 1.33.x to 1.34.x](/kubernetes/charmed-k8s/docs/1.34/upgrading)
 - [Upgrading from 1.32.x to 1.33.x](/kubernetes/charmed-k8s/docs/1.33/upgrading)
 - [Upgrading from 1.31.x to 1.32.x](/kubernetes/charmed-k8s/docs/1.32/upgrading)
-- [Upgrading from 1.30.x to 1.31.x](/kubernetes/charmed-k8s/docs/1.31/upgrading)
 
 ### Older versions
 
+- [Upgrading from 1.30.x to 1.31.x](/kubernetes/charmed-k8s/docs/1.31/upgrading)
 - [Upgrading from 1.29.x to 1.30.x](/kubernetes/charmed-k8s/docs/1.30/upgrading)
 - [Upgrading from 1.28.x to 1.29.x](/kubernetes/charmed-k8s/docs/1.29/upgrading)
 - [Upgrading from 1.27.x to 1.28.x](/kubernetes/charmed-k8s/docs/1.28/upgrading)

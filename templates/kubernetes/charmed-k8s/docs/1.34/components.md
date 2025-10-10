@@ -3,13 +3,13 @@ wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: kubernetes/charmed-k8s/docs/shared/_side-navigation.md
 context:
-  title: Components of Charmed Kubernetes 1.32
+  title: Components of Charmed Kubernetes 1.34
   description: Detailed description of Charmed Kubernetes release
 keywords: component, charms, versions, release
 tags:
     - reference
 sidebar: k8smain-sidebar
-permalink: 1.32/components.html
+permalink: 1.34/components.html
 layout:
     - base
     - ubuntu-com
@@ -24,15 +24,15 @@ https://github.com/charmed-kubernetes/kubernetes-docs/issues
 rather than editing the text -->
 
 This page details the charms and container images
-which comprise the 1.32 release of Charmed Kubernetes.
+which comprise the 1.34 release of Charmed Kubernetes.
 
 Other information about this release can be found on the following pages:
 
-<a class='p-button--brand' href='/kubernetes/charmed-k8s/docs/1.32/release-notes'>Release notes </a>
-<a class='p-button--brand' href='/kubernetes/charmed-k8s/docs/1.32/upgrading'>Upgrading </a>
+<a class='p-button--brand' href='/kubernetes/charmed-k8s/docs/1.34/release-notes'>Release notes </a>
+<a class='p-button--brand' href='/kubernetes/charmed-k8s/docs/1.34/upgrading'>Upgrading </a>
 <a class='p-button--brand' href='https://bugs.launchpad.net/charmed-kubernetes'>Bugs </a>
 <a class='p-button--brand' href='https://github.com/charmed-kubernetes/bundle'>Source </a>
-<a class='p-button--brand' href='https://launchpad.net/charmed-kubernetes/+milestone/1.32'>Milestone </a>
+<a class='p-button--brand' href='https://launchpad.net/charmed-kubernetes/+milestone/1.34'>Milestone </a>
 
 ## What's new
 
@@ -46,7 +46,6 @@ These charms are the core components of the Charmed Kubernetes release.
 |charm | summary | source | docs | bugs |
 |-|-|-|-|-|
 | [calico](https://charmhub.io/calico) | A robust Software Defined Network from Project Calico | [source](https://github.com/charmed-kubernetes/charm-calico.git) | [docs](https://charmhub.io/calico/docs) | [bugs](https://bugs.launchpad.net/charm-calico) |
-| [calico-enterprise](https://charmhub.io/calico-enterprise) | A robust Software Defined Network from Project Calico | [source](https://github.com/charmed-kubernetes/charm-calico-enterprise.git) | [docs](https://charmhub.io/calico-enterprise/docs) | [bugs](https://bugs.launchpad.net/charm-calico-enterprise) |
 | [containerd](https://charmhub.io/containerd) | Containerd container runtime subordinate | [source](https://github.com/charmed-kubernetes/charm-containerd.git) | [docs](https://charmhub.io/containerd/docs) | [bugs](https://bugs.launchpad.net/charm-containerd) |
 | [easyrsa](https://charmhub.io/easyrsa) | Deploys and manages EasyRSA to create a Certificate Authority (CA) | [source](https://github.com/charmed-kubernetes/layer-easyrsa.git) | [docs](https://charmhub.io/easyrsa/docs) | [bugs](https://bugs.launchpad.net/charm-easyrsa) |
 | [etcd](https://charmhub.io/etcd) | Deploy a TLS terminated ETCD Cluster | [source](https://github.com/charmed-kubernetes/layer-etcd.git) | [docs](https://charmhub.io/etcd/docs) | [bugs](https://bugs.launchpad.net/charm-etcd) |
@@ -63,9 +62,7 @@ These are the Container Network Interface (CNI) charms supported by Charmed Kube
 |charm | summary | source | docs | bugs |
 |-|-|-|-|-|
 | [calico](https://charmhub.io/calico) | A robust Software Defined Network from Project Calico | [source](https://github.com/charmed-kubernetes/charm-calico.git) | [docs](https://charmhub.io/calico/docs) | [bugs](https://bugs.launchpad.net/charm-calico) |
-| [calico-enterprise](https://charmhub.io/calico-enterprise) | A robust Software Defined Network from Project Calico | [source](https://github.com/charmed-kubernetes/charm-calico-enterprise.git) | [docs](https://charmhub.io/calico-enterprise/docs) | [bugs](https://bugs.launchpad.net/charm-calico-enterprise) |
 | [canal](https://charmhub.io/canal) | A Software Defined Network based on Flannel and Calico | [source](https://github.com/charmed-kubernetes/layer-canal.git) | [docs](https://charmhub.io/canal/docs) | [bugs](https://bugs.launchpad.net/charm-canal) |
-| [cilium](https://charmhub.io/cilium) | eBPF-based Networking, Observability, Security | [source](https://github.com/charmed-kubernetes/charm-cilium.git) | [docs](https://charmhub.io/cilium/docs) | [bugs](https://bugs.launchpad.net/charm-cilium) |
 | [flannel](https://charmhub.io/flannel) | A charm that provides a robust Software Defined Network | [source](https://github.com/charmed-kubernetes/charm-flannel.git) | [docs](https://charmhub.io/flannel/docs) | [bugs](https://bugs.launchpad.net/charm-flannel) |
 | [kube-ovn](https://charmhub.io/kube-ovn) | A Software Defined Network based on Kube-OVN | [source](https://github.com/charmed-kubernetes/charm-kube-ovn.git) | [docs](https://charmhub.io/kube-ovn/docs) | [bugs](https://bugs.launchpad.net/charm-kube-ovn) |
 | [multus](https://charmhub.io/multus) | a CNI plugin for attaching multiple network interfaces | [source](https://github.com/charmed-kubernetes/charm-multus.git) | [docs](https://charmhub.io/multus/docs) | [bugs](https://bugs.launchpad.net/charm-multus) |
@@ -81,16 +78,16 @@ such as cloud-native load balancing and storage.
 |charm | summary | source | docs | bugs |
 |-|-|-|-|-|
 | [aws-cloud-provider](https://charmhub.io/aws-cloud-provider) | Charm which enables out-of-tree AWS cloud-provider for Charmed Kubernetes. | [source](https://github.com/charmed-kubernetes/charm-aws-cloud-provider.git) | [docs](https://charmhub.io/aws-cloud-provider/docs) | [bugs](https://bugs.launchpad.net/charm-aws-cloud-provider) |
-| [aws-integrator](https://charmhub.io/aws-integrator) | Charm to enable AWS integrations via Juju relations. | [source](https://github.com/juju-solutions/charm-aws-integrator.git) | [docs](https://charmhub.io/aws-integrator/docs) | [bugs](https://bugs.launchpad.net/charm-aws-integrator) |
+| [aws-integrator](https://charmhub.io/aws-integrator) | Charm to enable AWS integrations via Juju relations. | [source](https://github.com/charmed-kubernetes/charm-aws-integrator.git) | [docs](https://charmhub.io/aws-integrator/docs) | [bugs](https://bugs.launchpad.net/charm-aws-integrator) |
 | [aws-k8s-storage](https://charmhub.io/aws-k8s-storage) | Charm which enables out-of-tree AWS storage for Charmed Kubernetes. | [source](https://github.com/charmed-kubernetes/aws-k8s-storage.git) | [docs](https://charmhub.io/aws-k8s-storage/docs) | [bugs](https://bugs.launchpad.net/charm-aws-k8s-storage) |
 | [azure-cloud-provider](https://charmhub.io/azure-cloud-provider) | Charm which enables Azure out-of-tree integrations for Charmed Kubernetes | [source](https://github.com/charmed-kubernetes/charm-azure-cloud-provider.git) | [docs](https://charmhub.io/azure-cloud-provider/docs) | [bugs](https://bugs.launchpad.net/charm-azure-cloud-provider) |
-| [azure-integrator](https://charmhub.io/azure-integrator) | Charm which enables Azure integrations for Juju | [source](https://github.com/juju-solutions/charm-azure-integrator.git) | [docs](https://charmhub.io/azure-integrator/docs) | [bugs](https://bugs.launchpad.net/charm-azure-integrator) |
+| [azure-integrator](https://charmhub.io/azure-integrator) | Charm which enables Azure integrations for Juju | [source](https://github.com/charmed-kubernetes/charm-azure-integrator.git) | [docs](https://charmhub.io/azure-integrator/docs) | [bugs](https://bugs.launchpad.net/charm-azure-integrator) |
 | [gcp-cloud-provider](https://charmhub.io/gcp-cloud-provider) | Charm which enables GCP out-of-tree integrations for Charmed Kubernetes | [source](https://github.com/charmed-kubernetes/charm-gcp-cloud-provider.git) | [docs](https://charmhub.io/gcp-cloud-provider/docs) | [bugs](https://bugs.launchpad.net/charm-gcp-cloud-provider) |
-| [gcp-integrator](https://charmhub.io/gcp-integrator) | Charm which enables Google GCP integrations for Juju | [source](https://github.com/juju-solutions/charm-gcp-integrator.git) | [docs](https://charmhub.io/gcp-integrator/docs) | [bugs](https://bugs.launchpad.net/charm-gcp-integrator) |
+| [gcp-integrator](https://charmhub.io/gcp-integrator) | Charm which enables Google GCP integrations for Juju | [source](https://github.com/charmed-kubernetes/charm-gcp-integrator.git) | [docs](https://charmhub.io/gcp-integrator/docs) | [bugs](https://bugs.launchpad.net/charm-gcp-integrator) |
 | [gcp-k8s-storage](https://charmhub.io/gcp-k8s-storage) | Charm which enables out-of-tree GCP storage for Charmed Kubernetes. | [source](https://github.com/charmed-kubernetes/gcp-k8s-storage.git) | [docs](https://charmhub.io/gcp-k8s-storage/docs) | [bugs](https://bugs.launchpad.net/charm-gcp-k8s-storage) |
-| [openstack-integrator](https://charmhub.io/openstack-integrator) | Charm which enables OpenStack integrations for Juju | [source](https://github.com/juju-solutions/charm-openstack-integrator.git) | [docs](https://charmhub.io/openstack-integrator/docs) | [bugs](https://bugs.launchpad.net/charm-openstack-integrator) |
+| [openstack-integrator](https://charmhub.io/openstack-integrator) | Charm which enables OpenStack integrations for Juju | [source](https://github.com/charmed-kubernetes/charm-openstack-integrator.git) | [docs](https://charmhub.io/openstack-integrator/docs) | [bugs](https://bugs.launchpad.net/charm-openstack-integrator) |
 | [vsphere-cloud-provider](https://charmhub.io/vsphere-cloud-provider) | Charm which enables vSphere out of tree provider for Juju | [source](https://github.com/charmed-kubernetes/vsphere-cloud-provider.git) | [docs](https://charmhub.io/vsphere-cloud-provider/docs) | [bugs](https://bugs.launchpad.net/charm-vsphere-cloud-provider) |
-| [vsphere-integrator](https://charmhub.io/vsphere-integrator) | Charm which enables vSphere integrations for Juju | [source](https://github.com/juju-solutions/charm-vsphere-integrator.git) | [docs](https://charmhub.io/vsphere-integrator/docs) | [bugs](https://bugs.launchpad.net/charm-vsphere-integrator) |
+| [vsphere-integrator](https://charmhub.io/vsphere-integrator) | Charm which enables vSphere integrations for Juju | [source](https://github.com/charmed-kubernetes/charm-vsphere-integrator.git) | [docs](https://charmhub.io/vsphere-integrator/docs) | [bugs](https://bugs.launchpad.net/charm-vsphere-integrator) |
 
 
 ## Additional charms
@@ -103,10 +100,9 @@ to extend the capabilities of your Kubernetes cluster.
 | [aws-iam](https://charmhub.io/aws-iam) |  | [source](https://github.com/charmed-kubernetes/charm-aws-iam.git) | [docs](https://charmhub.io/aws-iam/docs)  | [bugs](https://bugs.launchpad.net/charm-aws-iam) |
 | [ceph-csi](https://charmhub.io/ceph-csi) | Deploys Container Storage Interface (CSI) plugin that enables Charmed Kubernetes to use ceph as a storage backend. | [source](https://github.com/charmed-kubernetes/ceph-csi-operator.git) | [docs](https://charmhub.io/ceph-csi/docs)  | [bugs](https://bugs.launchpad.net/charm-ceph-csi) |
 | [coredns](https://charmhub.io/coredns) | The CoreDNS domain name service provider | [source](https://github.com/charmed-kubernetes/charm-coredns.git) | [docs](https://charmhub.io/coredns/docs)  | [bugs](https://bugs.launchpad.net/charm-coredns) |
-| [docker-registry](https://charmhub.io/docker-registry) | Registry for docker images | [source](https://github.com/CanonicalLtd/docker-registry-charm.git) | [docs](https://charmhub.io/docker-registry/docs)  | [bugs](https://bugs.launchpad.net/layer-docker-registry) |
+| [docker-registry](https://charmhub.io/docker-registry) | Registry for docker images | [source](https://github.com/canonical/docker-registry-charm.git) | [docs](https://charmhub.io/docker-registry/docs)  | [bugs](https://bugs.launchpad.net/layer-docker-registry) |
 | [gatekeeper-audit](https://charmhub.io/gatekeeper-audit) | Audit charm for Gatekeeper audit | [source](https://github.com/charmed-kubernetes/opa-gatekeeper-operators.git) | [docs](https://charmhub.io/gatekeeper-audit/docs)  | [bugs](https://bugs.launchpad.net/opa-gatekeeper-operator) |
 | [gatekeeper-controller-manager](https://charmhub.io/gatekeeper-controller-manager) | Controller charm for Gatekeeper | [source](https://github.com/charmed-kubernetes/opa-gatekeeper-operators.git) | [docs](https://charmhub.io/gatekeeper-controller-manager/docs)  | [bugs](https://bugs.launchpad.net/opa-gatekeeper-operator) |
-| [kata](https://charmhub.io/kata) | Kata untrusted container runtime subordinate | [source](https://github.com/charmed-kubernetes/charm-kata.git) | [docs](https://charmhub.io/kata/docs)  | [bugs](https://bugs.launchpad.net/charm-kata) |
 | [keepalived](https://charmhub.io/keepalived) | Failover and monitoring daemon for LVS clusters | [source](https://github.com/charmed-kubernetes/charm-keepalived.git) | [docs](https://charmhub.io/keepalived/docs)  | [bugs](https://bugs.launchpad.net/charm-keepalived) |
 | [kube-state-metrics](https://charmhub.io/kube-state-metrics) | a service that listens to the Kubernetes API and generates metrics | [source](https://github.com/charmed-kubernetes/kube-state-metrics-operator.git) | [docs](https://charmhub.io/kube-state-metrics/docs)  | [bugs](https://bugs.launchpad.net/kube-state-metrics-operator) |
 | [kubernetes-autoscaler](https://charmhub.io/kubernetes-autoscaler) | automatically scales up and down a kubernetes cluster | [source](https://github.com/charmed-kubernetes/charm-kubernetes-autoscaler.git) | [docs](https://charmhub.io/kubernetes-autoscaler/docs)  | [bugs](https://bugs.launchpad.net/charm-kubernetes-autoscaler) |
@@ -119,19 +115,21 @@ to extend the capabilities of your Kubernetes cluster.
 | [volcano-controllers](https://charmhub.io/volcano-controllers) | Volcano is a batch system built on Kubernetes. | [source](https://github.com/charmed-kubernetes/charm-volcano) | [docs](https://discourse.charmhub.io/t/volcano-docs-index/9600)  | [bugs](https://bugs.launchpad.net/charm-volcano) |
 | [volcano-scheduler](https://charmhub.io/volcano-scheduler) | Volcano is a batch system built on Kubernetes. | [source](https://github.com/charmed-kubernetes/charm-volcano) | [docs](https://discourse.charmhub.io/t/volcano-docs-index/9600)  | [bugs](https://bugs.launchpad.net/charm-volcano) |
 
+
+
 <!-- LINKS -->
 
-[release notes]: /kubernetes/charmed-k8s/docs/release-notes#1.32
+[release notes]: /kubernetes/charmed-k8s/docs/release-notes#1.34
 [upgrade notes]: /kubernetes/charmed-k8s/docs/upgrade-notes
 [bugs]: /kubernetes/charmed-k8s/docs/
 [source]: https://github.com/charmed-kubernetes
-[1.32 milestone]: https://launchpad.net/charmed-kubernetes/+milestone/1.32
+[1.34 milestone]: https://launchpad.net/charmed-kubernetes/+milestone/1.34
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <div class="p-notification__content">
     <p class="p-notification__message">We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/1.32/components.md" >edit this page</a>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/1.34/components.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
     <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>

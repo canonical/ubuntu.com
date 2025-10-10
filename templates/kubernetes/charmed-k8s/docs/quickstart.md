@@ -46,7 +46,7 @@ Kubernetes cluster running on the cloud of your choice in minutes!
       <li class="p-stepped-list__item">
         <h3 class="p-stepped-list__title"><span class="p-stepped-list__bullet">1</span>Install Juju</h3>
         <div class="p-stepped-list__content">
-<a href="https://canonical.com/jaas" >Juju</a> is a tool for
+<a href="https://documentation.ubuntu.com/juju/" >Juju</a> is a tool for
 deploying, configuring, and operating complex software on public or private
 clouds. It can be installed with a snap:
           <div class="p-code-snippet">
@@ -79,7 +79,7 @@ Google. You can see which ones are ready to use by running this command:
 <p>Most clouds require credentials so that the cloud knows which operations are authorised, so you will need to supply these for Juju. If you choose to use AWS, for example, you would run:</p>
           <div class="p-code-snippet">
             <pre class="p-code-snippet__block--icon"><code>juju add-credential aws</code></pre>
-          </div>        
+          </div>
 <p>For a different cloud, just substitute in the name from the previous
   list output by Juju. The data you need to supply will vary depending on the cloud. </p>
             <script id="asciicast-Wo12W39et3IJzF15rAyVunbbl" src="https://asciinema.org/a/Wo12W39et3IJzF15rAyVunbbl.js" async data-rows="18" ></script>
@@ -93,7 +93,7 @@ Google. You can see which ones are ready to use by running this command:
           <p>The Juju controller is used to manage the software deployed through Juju, from deployment to upgrades to day-two operations. One Juju controller can manage multiple projects or workspaces, which in Juju are known as 'models'.</p>
           <div class="p-code-snippet">
             <pre class="p-code-snippet__block--icon"><code>juju bootstrap aws my-controller</code></pre>
-          </div>               
+          </div>
           <script id="asciicast-2FOd2qvaJL0wWqvZqFeVbwUsz" src="https://asciinema.org/a/2FOd2qvaJL0wWqvZqFeVbwUsz.js" async data-rows="18"></script>
         </div>
       </li>
@@ -104,7 +104,7 @@ Google. You can see which ones are ready to use by running this command:
           <p>The model holds a specific deployment. It is a good idea to create a new one specifically for each deployment.</p>
           <div class="p-code-snippet">
             <pre class="p-code-snippet__block--icon"><code>juju add-model k8s</code></pre>
-          </div>   
+          </div>
                       <p>Remember that you can have multiple models on each controller, so you can deploy multiple Kubernetes clusters, or other applications.</p>
         </div>
       </li>
@@ -115,7 +115,7 @@ Google. You can see which ones are ready to use by running this command:
           <p>Deploy the Kubernetes bundle to the model. This will add instances to the model and deploy the required applications.</p>
           <div class="p-code-snippet">
             <pre class="p-code-snippet__block--icon"><code>juju deploy charmed-kubernetes</code></pre>
-          </div>            
+          </div>
           <script id="asciicast-8YAPb63aB9kfB7j1M9X6COGer" src="https://asciinema.org/a/8YAPb63aB9kfB7j1M9X6COGer.js" async></script>
         </div>
       </li>
@@ -125,7 +125,7 @@ Google. You can see which ones are ready to use by running this command:
           <p>Juju is now busy creating instances, installing software and connecting the different parts of the cluster together, which can take several minutes. You can monitor what's going on by running:</p>
           <div class="p-code-snippet">
             <pre class="p-code-snippet__block--icon"><code>watch -c juju status --color</code></pre>
-          </div>           
+          </div>
         </div>
       </li>
       <li class="p-stepped-list__item">
@@ -177,4 +177,3 @@ Google. You can see which ones are ready to use by running this command:
     <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
   </div>
 </div>
-

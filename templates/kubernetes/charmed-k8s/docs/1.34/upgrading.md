@@ -3,12 +3,12 @@ wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "kubernetes/charmed-k8s/docs/shared/_side-navigation.md"
 context:
-  title: "Upgrading to 1.32"
+  title: "Upgrading to 1.34"
   description: How to upgrade your version of Charmed Kubernetes.
 keywords: juju, upgrading, track, version
 tags: [operating]
 sidebar: k8smain-sidebar
-permalink: 1.32/upgrading.html
+permalink: 1.34/upgrading.html
 layout: [base, ubuntu-com]
 toc: False
 ---
@@ -20,7 +20,7 @@ You can check the latest release version on the [Kubernetes release page on GitH
 <div class="p-notification--information is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Note:</span>
-    <p class="p-notification__message"><strong>Kubernetes</strong> will automatically handle patch releases. This means that the cluster will perform an unattended automatic upgrade between patch versions, e.g. 1.24.1 to 1.24.2. Attended upgrades are only required when you wish to upgrade a minor version, e.g. 1.22.x to 1.23.x.</p>
+    <p class="p-notification__message"><strong>Kubernetes</strong> will automatically handle patch releases. This means that the cluster will perform an unattended automatic upgrade between patch versions, e.g. 1.34.1 to 1.34.2. Attended upgrades are only required when you wish to upgrade a minor version, e.g. 1.33.x to 1.34.x.</p>
   </div>
 </div>
 
@@ -39,7 +39,7 @@ The 'App' section of the output lists each application and its version number. N
 <div class="p-notification--warning is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Warning!:</span>
-    <p class="p-notification__message"><strong>Juju compatibility</strong>  The latest current version of Juju (as of the time of the Charmed Kubernetes 1.32 release) is <strong>3.5</strong>. This new major release introduces some breaking changes with previous versions. It is recommended that you upgrade to this new version of Juju, but also be aware of the changes. See the <a href="https://canonical-juju.readthedocs-hosted.com/en/latest/user/tutorial/#upgrade"> Juju documentation</a> for more information.</p>
+    <p class="p-notification__message"><strong>Juju compatibility</strong>  The latest current version of Juju (as of the time of the Charmed Kubernetes 1.34 release) is <strong>3.6</strong>. This new major release introduces some breaking changes with previous versions. It is recommended that you upgrade to this new version of Juju, but also be aware of the changes. See the <a href="https://documentation.ubuntu.com/juju/3.6/howto/manage-controllers/#upgrade-a-controller"> Juju documentation</a> for more information.</p>
   </div>
 </div>
 
@@ -54,7 +54,7 @@ You should also make sure:
 -   Your Juju client and controller/models are running the same, stable version of Juju (see the [Juju docs][juju-controller-upgrade]).
 -   You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from.
 -   You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster.
--   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.32.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.32 which may impact your workloads.
+-   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/release-1.34/CHANGELOG/CHANGELOG-1.34.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.34 which may impact your workloads.
 
 It is also important to understand that **Charmed Kubernetes** will only upgrade
 and if necessary migrate, components relating specifically to elements of
@@ -62,6 +62,23 @@ Kubernetes installed and configured as part of Charmed Kubernetes.
 This may not include any customised configuration of Kubernetes, or user
 generated objects (e.g. storage classes) or deployments which rely on
 deprecated APIs.
+
+<div class="p-notification--information is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message"><strong>The 'Focal' series (Ubuntu 20.04) is no longer supported:</strong> Support for Focal series charms in relation to Charmed Kubernetes has expired. If you are running charms on 'Focal', you will need to series upgrade the charms before completing the rest of the upgrade procedure.</p>
+  </div>
+</div>
+
+
+## Upgrading the Machine's Series (required for machines currently running 20.04 - Focal)
+
+All of the charms support [upgrading the machine's series via Juju](https://documentation.ubuntu.com/juju/3.6/reference/juju-cli/list-of-juju-cli-commands/upgrade-machine/).
+As each machine is upgraded, the applications on that machine will be stopped and the unit will
+go into a `blocked` status until the upgrade is complete. For the worker units, pods will be drained
+from the node and onto one of the other nodes at the start of the upgrade, and the node will be removed
+from the pool until the upgrade is complete.
+
 
 ## Infrastructure updates
 
@@ -87,7 +104,7 @@ By default, Versions 1.15 and later use Containerd as the container
 runtime. This subordinate charm can be upgraded with the command:
 
 ```bash
-juju refresh containerd --channel=1.32/stable
+juju refresh containerd --channel=1.34/stable
 ```
 
 ### Upgrading etcd
@@ -100,7 +117,7 @@ problems).
 Upgrade the charm with the command:
 
 ```bash
-juju refresh etcd --channel=1.32/stable
+juju refresh etcd --channel=1.34/stable
 ```
 
 To upgrade **etcd** itself, you will need to set the **etcd** charm's channel
@@ -128,7 +145,7 @@ First create a new model (call it whatever is preferred) so long as it is not na
 
 ```shell
 juju add-model juju-metallb
-juju deploy metallb --channel 1.32/stable --trust --config namespace=metallb-system-2
+juju deploy metallb --channel 1.34/stable --trust --config namespace=metallb-system-2
 ```
 
 Next, wait until the metallb charm is active/idle
@@ -158,14 +175,14 @@ The other infrastructure applications can be upgraded by running the `upgrade-ch
 command:
 
 ```bash
-juju refresh easyrsa --channel=1.32/stable
+juju refresh easyrsa --channel=1.34/stable
 ```
 
 Any other infrastructure charms should be upgraded in a similar way. For
 example, if you are using the flannel CNI:
 
 ```bash
-juju refresh flannel --channel=1.32/stable
+juju refresh flannel --channel=1.34/stable
 ```
 
 <div class="p-notification--caution">
@@ -201,11 +218,11 @@ For most use cases, it is strongly recommended to use the 'stable' version of ch
 ### Upgrading the **kube-api-loadbalancer**
 
 A core part of **Charmed Kubernetes** is the kubeapi-load-balancer component. To ensure API service
-continuity this upgrade should precede any upgrades to the **Kubernetes** master and
+continuity this upgrade should precede any upgrades to the **Kubernetes** control-plane and
 worker units.
 
 ```bash
-juju refresh kubeapi-load-balancer --channel=1.32/stable
+juju refresh kubeapi-load-balancer --channel=1.34/stable
 ```
 
 The load balancer itself is based on NGINX, and the version reported by `juju status` is
@@ -214,21 +231,22 @@ is no need to set a specific channel or version for this charm.
 
 ### Upgrading the **kubernetes-control-plane** units
 
-**Note**: Older versions of Charmed-Kubernetes used `kubernetes-master` as the charm name. This has been updated
-to `kubernetes-control-plane`. However, it is not possible to rename a deployed application. If you
-originally installed version 1.23 or before, your units will follow the old naming scheme and you should
-substitute `kubernetes-control-plane`for `kubernetes-master`in the following commands.
+<!-- wokeignore:rule=master -->
+**Note**: Older versions of Charmed-Kubernetes used `kubernetes-master` as the charm name. This is updated
+to `kubernetes-control-plane`. It is not possible to rename a deployed application. If your
+deployment still uses the old application name, you must substitute `kubernetes-control-plane`
+with your deployed charm name in all subsequent commands and instructions below.
 
-To start upgrading the Kubernetes master units, first upgrade the charm:
+To start upgrading the Kubernetes control-plane units, first upgrade the charm:
 
 ```bash
-juju refresh kubernetes-control-plane --channel=1.32/stable
+juju refresh kubernetes-control-plane --channel=1.34/stable
 ```
 
-Once the charm has been upgraded, it can be configured to select the desired **Kubernetes** channel, which takes the form `Major.Minor/risk-level`. This is then passed as a configuration option to the charm. So, for example, to select the stable 1.32 version of **Kubernetes**, you would enter:
+Once the charm has been upgraded, it can be configured to select the desired **Kubernetes** channel, which takes the form `Major.Minor/risk-level`. This is then passed as a configuration option to the charm. So, for example, to select the stable 1.34 version of **Kubernetes**, you would enter:
 
 ```bash
-juju config kubernetes-control-plane channel=1.32/stable
+juju config kubernetes-control-plane channel=1.34/stable
 ```
 
 If you wanted to try a release candidate for 1.26, the channel would be `1.26/candidate`.
@@ -242,7 +260,7 @@ currently active version of Kubernetes.
   </p>
 </div>
 
-Once the desired version has been configured, the upgrades should be performed. This is done by running the `upgrade` action on each master unit in the cluster:
+Once the desired version has been configured, the upgrades should be performed. This is done by running the `upgrade` action on each control-plane unit in the cluster:
 
 ```bash
 juju run-action kubernetes-control-plane/0 upgrade
@@ -273,13 +291,13 @@ Both methods are outlined below. The blue-green method is recommended for produc
 To begin, upgrade the kubernetes-worker charm itself:
 
 ```bash
-juju refresh kubernetes-worker --channel=1.32/stable
+juju refresh kubernetes-worker --channel=1.34/stable
 ```
 
-Next, run the command to configure the workers for the version of Kubernetes you wish to run (as you did previously for the master units). For example:
+Next, run the command to configure the workers for the version of Kubernetes you wish to run (as you did previously for the control-plane units). For example:
 
 ```bash
-juju config kubernetes-worker channel=1.32/stable
+juju config kubernetes-worker channel=1.34/stable
 ```
 
 Now add additional units of the kubernetes-worker. You should add as many units as you are replacing. For example, to add three additional units:
@@ -325,13 +343,13 @@ A variation on this method is to add, pause, remove  and recycle units one at a 
 To proceed with an in-place upgrade, first upgrade the charm itself:
 
 ```bash
-juju refresh kubernetes-worker --channel=1.32/stable
+juju refresh kubernetes-worker --channel=1.34/stable
 ```
 
-Next, run the command to configure the workers for the version of **Kubernetes** you wish to run (as you did previously for the master units). For example:
+Next, run the command to configure the workers for the version of **Kubernetes** you wish to run (as you did previously for the control-plane units). For example:
 
 ```bash
-juju config kubernetes-worker channel=1.32/stable
+juju config kubernetes-worker channel=1.34/stable
 ```
 
 All the units can now be upgraded by running the `upgrade` action on each one:
@@ -366,13 +384,12 @@ It is recommended that you run a [cluster validation][validation] to ensure that
 [blue-green]: https://martinfowler.com/bliki/BlueGreenDeployment.html
 [validation]: /kubernetes/charmed-k8s/docs/validation
 [supported-versions]: /kubernetes/charmed-k8s/docs/supported-versions
-[juju-controller-upgrade]:https://documentation.ubuntu.com/juju/3.6/howto/manage-controllers/#upgrade-a-controller
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <div class="p-notification__content">
     <p class="p-notification__message">We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/1.32/upgrading.md" >edit this page</a>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/1.34/upgrading.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
     <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>

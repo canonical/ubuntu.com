@@ -1,5 +1,5 @@
-
 ---
+
 wrapper_template: templates/docs/markdown.html
 markdown_includes:
   nav: kubernetes/charmed-k8s/docs/shared/_side-navigation.md
@@ -7,7 +7,7 @@ context:
   title: 1.31 Release notes
   description: Release notes for Charmed Kubernetes
 keywords: kubernetes, release, notes
-tags: 
+tags:
   - news
 sidebar: k8smain-sidebar
 permalink: 1.31/release-notes.html
@@ -78,7 +78,7 @@ and include them in the Subject Alternative Names (SANs).
 ### Kubernetes API Load Balancer
 * [LP#2091120](https://bugs.launchpad.net/charm-kubeapi-load-balancer/+bug/2091120) Charm events should reconcile lb_addresses to requirers
 
-### Docker Registry Charm 
+### Docker Registry Charm
 * [LP#2080349](https://bugs.launchpad.net/layer-docker-registry/+bug/2080349) Added explicit configuration option `storage-redirect-disable`
 
 ### Cilium Charm

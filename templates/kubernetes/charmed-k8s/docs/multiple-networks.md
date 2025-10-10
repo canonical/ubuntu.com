@@ -26,7 +26,7 @@ Currently, multiple networks are only supported in Juju on MAAS.
 The rest of this document assumes you're familiar with the basics of MAAS and
 Juju. If you're not, you can familiarise yourself with them by reading the
 [MAAS documentation](https://maas.io/docs) and
-[Juju documentation](https://documentation.ubuntu.com/jaas/latest/).
+[Juju documentation](https://documentation.ubuntu.com/juju/).
 
 ## Configure MAAS
 
@@ -131,4 +131,3 @@ You can read more about bindings in the Juju documentation here:
     <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
   </div>
 </div>
-
