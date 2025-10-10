@@ -1,0 +1,338 @@
+{
+  "form": {
+    "/download/iot/intel-iot": {
+      "templatePath": "/index.html",
+      "isModal": true,
+      "modalId": "contact-modal",
+      "formData": {
+        "title": "Let's get your project to market faster!",
+        "formId": "4205",
+        "introText": "Canonical and Intel have partnered to provide Ubuntu Desktop and Ubuntu Core on Intel's IoT platforms: Atom® X6000E Series, Intel® Pentium® and Celeron® N and J Series and 11th Gen Intel® Core™ processors.",
+        "returnUrl": "/download/iot/intel-iot#contact-form-success",
+        "product": ""
+      },
+      "fieldsets": [
+        {
+          "title": "Do you have a commercial project?",
+          "inputType": "radio",
+          "inputName": "commercial_project",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "radio",
+              "id": "commercial_project_yes",
+              "value": "commercial_project_yes",
+              "label": "Yes"
+            },
+            {
+              "type": "radio",
+              "id": "commercial_project_no",
+              "value": "commercial_project_no",
+              "label": "No"
+            }
+          ]
+        },
+        {
+          "title": "When do you need to ship? ",
+          "inputType": "radio",
+          "isRequired": true,
+          "inputName": "shipping_timeline",
+          "fields": [
+            {
+              "type": "radio",
+              "id": "shipping_timeline_1-3_months",
+              "value": "next 3 months",
+              "label": "Next 3 months"
+            },
+            {
+              "type": "radio",
+              "id": "shipping_timeline_3-6_months",
+              "value": "next 6 months",
+              "label": "Next 3 - 6 months"
+            },
+            {
+              "type": "radio",
+              "id": "shipping_timeline_6-12_months",
+              "value": "6-12_months",
+              "label": "Next 6 - 12 months"
+            },
+            {
+              "type": "radio",
+              "id": "shipping_timeline_no_timeline",
+              "value": "no_timeline",
+              "label": "Proof of Concept - No timeline"
+            }
+          ]
+        },
+        {
+          "title": "Which industry are you developing for?",
+          "id": "industry",
+          "inputType": "checkbox",
+          "fields": [
+            {
+              "type": "checkbox",
+              "label": "Smart cities",
+              "value": "smart_cities"
+            },
+            {
+              "type": "checkbox",
+              "label": "Smart buildings",
+              "value": "smart_buildings"
+            },
+            {
+              "type": "checkbox",
+              "label": "Smart homes",
+              "value": "smart_homes"
+            },
+            {
+              "type": "checkbox",
+              "label": "Agriculture",
+              "value": "agriculture"
+            },
+            {
+              "type": "checkbox",
+              "label": "Industrial IoT",
+              "value": "industrial_iot"
+            },
+            {
+              "type": "checkbox",
+              "label": "Transportation and logistics",
+              "value": "transportation_and_logistics"
+            },
+            {
+              "type": "checkbox",
+              "label": "Automotive",
+              "value": "automotive"
+            },
+            {
+              "type": "checkbox",
+              "label": "Healthcare",
+              "value": "healthcare"
+            },
+            {
+              "type": "checkbox",
+              "label": "Telecom",
+              "value": "telecom"
+            },
+            {
+              "type": "checkbox",
+              "label": "Robotics",
+              "value": "robotics"
+            },
+            {
+              "type": "checkbox",
+              "label": "Energy",
+              "value": "energy"
+            },
+            {
+              "type": "checkbox",
+              "label": "Retail",
+              "value": "retail"
+            },
+            {
+              "type": "checkbox",
+              "label": "Finance",
+              "value": "finance"
+            },
+            {
+              "type": "checkbox",
+              "label": "Others (please specify)",
+              "value": "others",
+              "hasTextarea": true
+            }
+          ]
+        },
+        {
+          "title": "Tell us more about your project",
+          "id": "project_details",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "comments",
+              "placeholder": "Please include which Intel edge processors that you are interested in developing with.",
+              "isRequired": false
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number"
+            }
+          ]
+        }
+      ]
+    },
+    "/download/iot/intel-iot/contact-us": {
+      "templatePath": "/contact-us.html",
+      "formData": {
+        "title": "Let's get your project to market faster!",
+        "formId": "4205",
+        "introText": "Canonical and Intel have partnered to provide Ubuntu Desktop and Ubuntu Core on Intel's IoT platforms: Atom® X6000E Series, Intel® Pentium® and Celeron® N and J Series and 11th Gen Intel® Core™ processors.",
+        "returnUrl": "/download/iot/intel-iot#contact-form-success",
+        "product": ""
+      },
+      "fieldsets": [
+        {
+          "title": "Do you have a commercial project?",
+          "inputType": "radio",
+          "inputName": "commercial_project",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "radio",
+              "id": "commercial_project_yes",
+              "value": "commercial_project_yes",
+              "label": "Yes"
+            },
+            {
+              "type": "radio",
+              "id": "commercial_project_no",
+              "value": "commercial_project_no",
+              "label": "No"
+            }
+          ]
+        },
+        {
+          "title": "When do you need to ship? ",
+          "inputType": "radio",
+          "isRequired": true,
+          "inputName": "shipping_timeline",
+          "fields": [
+            {
+              "type": "radio",
+              "id": "shipping_timeline_1-3_months",
+              "value": "next 3 months",
+              "label": "Next 3 months"
+            },
+            {
+              "type": "radio",
+              "id": "shipping_timeline_3-6_months",
+              "value": "next 6 months",
+              "label": "Next 3 - 6 months"
+            },
+            {
+              "type": "radio",
+              "id": "shipping_timeline_6-12_months",
+              "value": "6-12_months",
+              "label": "Next 6 - 12 months"
+            },
+            {
+              "type": "radio",
+              "id": "shipping_timeline_no_timeline",
+              "value": "no_timeline",
+              "label": "Proof of Concept - No timeline"
+            }
+          ]
+        },
+        {
+          "title": "Which industry are you developing for?",
+          "id": "industry",
+          "inputType": "checkbox",
+          "fields": [
+            {
+              "type": "checkbox",
+              "label": "Smart cities",
+              "value": "smart_cities"
+            },
+            {
+              "type": "checkbox",
+              "label": "Smart buildings",
+              "value": "smart_buildings"
+            },
+            {
+              "type": "checkbox",
+              "label": "Smart homes",
+              "value": "smart_homes"
+            },
+            {
+              "type": "checkbox",
+              "label": "Agriculture",
+              "value": "agriculture"
+            },
+            {
+              "type": "checkbox",
+              "label": "Industrial IoT",
+              "value": "industrial_iot"
+            },
+            {
+              "type": "checkbox",
+              "label": "Transportation and logistics",
+              "value": "transportation_and_logistics"
+            },
+            {
+              "type": "checkbox",
+              "label": "Automotive",
+              "value": "automotive"
+            },
+            {
+              "type": "checkbox",
+              "label": "Healthcare",
+              "value": "healthcare"
+            },
+            {
+              "type": "checkbox",
+              "label": "Telecom",
+              "value": "telecom"
+            },
+            {
+              "type": "checkbox",
+              "label": "Robotics",
+              "value": "robotics"
+            },
+            {
+              "type": "checkbox",
+              "label": "Energy",
+              "value": "energy"
+            },
+            {
+              "type": "checkbox",
+              "label": "Retail",
+              "value": "retail"
+            },
+            {
+              "type": "checkbox",
+              "label": "Finance",
+              "value": "finance"
+            },
+            {
+              "type": "checkbox",
+              "label": "Others (please specify)",
+              "value": "others",
+              "hasTextarea": true
+            }
+          ]
+        },
+        {
+          "title": "Tell us more about your project",
+          "id": "project_details",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "comments",
+              "placeholder": "Please include which Intel edge processors that you are interested in developing with.",
+              "isRequired": false
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
