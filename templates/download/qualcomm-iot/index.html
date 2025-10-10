@@ -22,31 +22,31 @@
 
 {% block content %}
   {% call(slot) vf_hero(
-  title_text='Install Ubuntu on Qualcomm IoT Platforms',
-  layout='25/75'
-  ) -%}
-  {%- if slot == 'signpost_image' -%}
-  <a href="https://www.qualcomm.com/">
-    {{ image(url="https://assets.ubuntu.com/v1/d7787d4b-qualcomm-logo.png",
-    alt="Qualcomm",
-    width="224",
-    height="60",
-    hi_def=True,
-    loading="auto") | safe
-    }}
-  </a>
-  {%- endif -%}
-  {%- if slot == 'description' -%}
-  <p>
-    <a href="https://www.qualcomm.com/developer/software/ubuntu-on-qualcomm-iot-platforms">Ubuntu on Qualcomm® IoT
-      platforms</a> simplifies access to Qualcomm’s advanced AI capabilities, empowering developers and enterprises to
-    innovate with confidence. Run Ubuntu on Qualcomm IoT platforms to accelerate the deployment of secure, scalable edge
-    AI solutions and transform the IoT landscape.
-  </p>
-  {%- endif -%}
-  {%- if slot == 'cta' -%}
-  <a href="/download/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
-  {%- endif -%}
+    title_text='Install Ubuntu on Qualcomm IoT Platforms',
+    layout='25/75'
+    ) -%}
+    {%- if slot == 'signpost_image' -%}
+    <a href="https://www.qualcomm.com/">
+      {{ image(url="https://assets.ubuntu.com/v1/d7787d4b-qualcomm-logo.png",
+      alt="Qualcomm",
+      width="224",
+      height="60",
+      hi_def=True,
+      loading="auto") | safe
+      }}
+    </a>
+    {%- endif -%}
+    {%- if slot == 'description' -%}
+    <p>
+      <a href="https://www.qualcomm.com/developer/software/ubuntu-on-qualcomm-iot-platforms">Ubuntu on Qualcomm® IoT
+        platforms</a> simplifies access to Qualcomm’s advanced AI capabilities, empowering developers and enterprises to
+      innovate with confidence. Run Ubuntu on Qualcomm IoT platforms to accelerate the deployment of secure, scalable edge
+      AI solutions and transform the IoT landscape.
+    </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+    <a href="/download/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+    {%- endif -%}
   {%- endcall -%}
 
   <section class="p-section">
@@ -56,25 +56,43 @@
         <div class="p-section--shallow">
           <h2 class="p-text--small-caps">Choose a board</h2>
         </div>
-        <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small" role="tablist" data-maintain-hash="true"
-          aria-label="Qualcomm IoT Boards">
+        <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small"
+            role="tablist"
+            data-maintain-hash="true"
+            aria-label="Qualcomm IoT Boards">
           <li>
-            <button class="p-tabs__item" id="rb3-gen2" role="tab" aria-selected="true" aria-controls="rb3-gen2-tab">
+            <button class="p-tabs__item"
+                    id="rb3-gen2"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="rb3-gen2-tab">
               Qualcomm Dragonwing™ RB3 Gen 2 Vision Development Kit (QCS6490)
             </button>
           </li>
           <li>
-            <button class="p-tabs__item" id="rb3-gen2-lite" role="tab" aria-selected="false"
+            <button
+              class="p-tabs__item"
+              id="rb3-gen2-lite"
+              role="tab"
+              aria-selected="false"
               aria-controls="rb3-gen2-lite-tab">
               Qualcomm Dragonwing™ RB3 Gen 2 Lite Vision Development Kit (QCS5430)
             </button>
           </li>
           <li>
-            <button class="p-tabs__item" id="evaluation-kit" role="tab" aria-selected="false"
+            <button
+              class="p-tabs__item"
+              id="evaluation-kit"
+              role="tab"
+              aria-selected="false"
               aria-controls="evaluation-kit-tab">Qualcomm Dragonwing™ IQ-9075 Evaluation Kit (EVK)</button>
           </li>
           <li>
-            <button class="p-tabs__item" id="rubikpi3" role="tab" aria-selected="false"
+            <button
+              class="p-tabs__item"
+              id="rubikpi3"
+              role="tab"
+              aria-selected="false"
               aria-controls="development-board-tab">RUBIK Pi 3 Development Board (QCS6490)</button>
           </li>
         </ul>
