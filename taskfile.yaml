@@ -1,0 +1,153 @@
+version: "3"
+
+vars:
+  VENV_DIR: .venv
+  VENV_BIN: "{{ .VENV_DIR }}/bin"
+  PYTHON_BIN: "{{ .VENV_BIN }}/python3"
+  PIP_BIN: "{{ .VENV_BIN }}/pip3"
+
+env:
+  PORT: 8001
+  PYTHON_VERSION: "3.10"
+  NODE_VERSION: "20"
+  PATH: "{{ .VENV_BIN }}:$PATH"
+
+dotenv: [".env.local", ".env"]
+
+# Available tasks:
+# - start (default)
+# - install
+# - shell
+# - clean
+# - test
+# - lint
+# - format
+# - build
+tasks:
+  default:
+    cmds:
+      - task: start
+
+  start:
+    desc: "Start the project"
+    deps:
+      - install
+    cmds:
+      - PATH="{{ .VENV_BIN }}:$PATH" yarn start
+
+  install:
+    desc: "Install Python and Node.js binaries and their packages"
+    deps:
+      - install-python
+      - install-yarn
+    cmds:
+      - echo "Installation complete"
+
+  shell:
+    desc: "Open a shell with the virtual environment activated"
+    deps:
+      - install
+    cmds:
+      - PATH="{{ .VENV_BIN }}:$PATH" $SHELL
+
+  clean:
+    cmds:
+      - rm -rf static/css static/js/dist node_modules {{ .VENV_DIR }} .task
+
+  test:
+    desc: "Run all project tests"
+    deps:
+      - install
+    cmds:
+      - PATH="{{ .VENV_BIN }}:$PATH" coverage run --source=. -m unittest discover tests
+      - PATH="{{ .VENV_BIN }}:$PATH" yarn test-js --coverage
+
+  lint:
+    desc: "Run all project linting"
+    deps:
+      - install
+    cmds:
+      - PATH="{{ .VENV_BIN }}:$PATH" yarn lint-python
+      - PATH="{{ .VENV_BIN }}:$PATH" yarn lint-ts
+      - PATH="{{ .VENV_BIN }}:$PATH" yarn lint-js
+      - PATH="{{ .VENV_BIN }}:$PATH" yarn lint-scss
+
+  format:
+    desc: "Run all project formatting"
+    deps:
+      - install
+    cmds:
+      - PATH="{{ .VENV_BIN }}:$PATH" yarn format-python
+      - PATH="{{ .VENV_BIN }}:$PATH" yarn format-prettier
+      - npx stylelint --fix static/**/*.scss
+
+  build:
+    desc: "Build the project static files"
+    deps:
+      - install
+    cmds:
+      - PATH="{{ .VENV_BIN }}:$PATH" yarn build
+
+  # Custom tools versioning setup (mise, python, node, etc.)
+  setup-mise:
+    internal: true
+    desc: "Setup mise"
+    preconditions:
+      - which curl
+    status:
+      - ! which mise
+    cmds:
+      - curl https://mise.run | sh
+
+  setup-python:
+    deps:
+      - setup-mise
+    cmds:
+      - mise install python@{{ .PYTHON_VERSION }}
+
+  setup-node:
+    deps:
+      - setup-mise
+    cmds:
+      - mise install node@{{ .NODE_VERSION }}
+
+  # Python virtual environment
+  venv:
+    internal: true
+    desc: "Setup python virtual environment"
+    deps:
+      - setup-python
+    status:
+      - ! -f {{ .PYTHON_BIN }}
+    cmds:
+      - mise exec python@{{ .PYTHON_VERSION }} -- python3 -m venv .venv
+      - echo "Using Python $({{ .PYTHON_BIN }} --version)"
+
+  install-python:
+    internal: true
+    desc: "Install python packages"
+    deps:
+      - venv
+    sources:
+      - requirements.txt
+    generates:
+      - "{{ .VENV_DIR }}/*"
+    cmds:
+      - "{{ .PIP_BIN }} install -r requirements.txt"
+
+  # Node.js package manager
+  install-yarn:
+    internal: true
+    desc: "Install yarn packages"
+    deps:
+      - setup-node
+    status:
+      - which yarn
+      - which node
+    sources:
+      - yarn.lock
+      - package.json
+    generates:
+      - "node_modules/**"
+    cmds:
+      - yarn install
