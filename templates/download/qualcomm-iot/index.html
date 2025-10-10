@@ -45,9 +45,6 @@
       <a href="/download/contact-us"
          class="p-button--positive js-invoke-modal">Get in touch</a>
     {%- endif -%}
-    {%- if slot == 'cta' -%}
-    <a href="/download/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
-    {%- endif -%}
   {%- endcall -%}
 
   <section class="p-section">
@@ -149,4 +146,4 @@
 
   <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
-  {% endblock content %}
+{% endblock content %}
