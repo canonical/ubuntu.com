@@ -10,3 +10,4 @@ import "./core.js";
 import "./smart-quotes.js";
 import "./prepare-form-inputs.js";
 import "./search.js";
+import { tabs } from "vanilla-framework/js";
