@@ -15,6 +15,32 @@
   <section class="p-strip is-deep">
     <div class="row">
       <div class="col-7">
+      <form id="js-product-selector-form">
+        <select name="product-selector" id="js-product-selector">
+          <option value="">Select a product</option>
+          {% for key, data in products_data.items() %}
+            <option value="{{ key }}">{{ data.product }}</option>
+          {% endfor %}
+        </select>
+  
+        <select disabled name="release-selector" id="js-release-selector">
+          <option value="">Select a release</option>
+        </select>
+
+        <select disabled name="version-selector" id="js-version-selector">
+          <option value="">Select a version</option>
+        </select>
+
+        <select name="subscription-selector" id="js-subscription-selector">
+          <option value="">Select a subscription</option>
+          <option value="pro">Subscribed to Ubuntu Pro</option>
+          <option value="pro-infra">Subscribed to Ubuntu Pro Infra Only</option>
+          <option value="none">No/I don't know</option>
+        </select>
+
+        <button id="js-product-selector-submit">Apply filters</button>
+      </form>
+
         <h1>The Ubuntu lifecycle and release cadence</h1>
         <p>
           Canonical publishes new releases of Ubuntu, OpenStack and Kubernetes on a regular cadence, enabling the community, businesses and developers to plan their roadmaps with the certainty of access to newer open source upstream capabilities.
@@ -360,4 +386,10 @@
           defer></script>
   <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
+  {# djlint:off #}
+  <script type="text/javascript">
+    const productsData = {{ products_data | tojson | safe }};
+  </script>
+  {# djlint:off #}
+  <script src="{{ versioned_static('js/src/product-releases.js') }}" defer></script>
 {% endblock content %}
