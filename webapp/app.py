@@ -152,6 +152,7 @@ from webapp.views import (
     appliance_install,
     build_vulnerabilities,
     build_vulnerabilities_list,
+    build_release_cycle_view,
     process_active_vulnerabilities,
     process_local_communities,
     process_community_events,
@@ -1348,6 +1349,12 @@ def render_security_fips_blogs():
 
 
 app.add_url_rule("/security/fips", view_func=render_security_fips_blogs)
+
+app.add_url_rule(
+    "/about/release-cycle",
+    view_func=build_release_cycle_view(),
+    endpoint="release_cycle",
+)
 
 
 def render_security_pci_dds_blogs():
