@@ -108,7 +108,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       if (modalTrigger && modalTrigger !== document.body)
         modalTrigger.setAttribute("aria-expanded", "true");
       updateHash(triggeringHash);
-      checkRequiredCheckboxes();
+      checkRequiredFields();
       dataLayer.push({
         event: "interactive-forms",
         action: "open",
@@ -582,13 +582,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       fireLoadedEvent();
 
-      // Disable submit button if there are required checkboxes
-      const requiredFieldsets = document.querySelectorAll(
-        "fieldset.js-required-checkbox",
-      );
-      if (requiredFieldsets.length) {
-        submitButton.disabled = true;
-      }
+      disableSubmitButtonForRequiredFields();
 
       // Add event listeners to toggle checkbox visibility
       const ubuntuVersionCheckboxes = document.querySelector(
@@ -596,17 +590,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       );
       ubuntuVersionCheckboxes?.addEventListener("change", function (event) {
         toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
-      });
-
-      // Add event listeners if there are required fieldsets present
-      if (requiredFieldsets.length > 0) {
-        const submitButton = document.querySelector(".js-submit-button");
-        submitButton.disabled = true;
-      }
-      requiredFieldsets?.forEach((fieldset) => {
-        fieldset.addEventListener("change", function (event) {
-          checkRequiredCheckboxes();
-        });
       });
 
       // Prefill user names and email address if they are logged in
@@ -762,17 +745,48 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     }
 
     /**
+     *  Disable submit button if there are required checkboxes (in fieldsets)
+     *  and required text fields.
+     *  Add event listeners to required fieldsets and required texts inputs
+     *  to check if they are filled and enable the submit button
+     *  accordingly.
+     */
+    function disableSubmitButtonForRequiredFields() {
+      const submitButton = document.querySelector(".js-submit-button");
+      const requiredCheckboxes = document.querySelectorAll(
+        "fieldset.js-required-checkbox",
+      );
+      const requiredTexts = document.querySelectorAll(
+        "input.js-required-text, textarea.js-required-text",
+      );
+
+      // Disable submit button if any required fields exist
+      if (requiredCheckboxes.length > 0 || requiredTexts.length > 0) {
+        submitButton.disabled = true;
+      }
+
+      // Add event listeners for required checkboxes and texts
+      requiredCheckboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", checkRequiredFields);
+      });
+      requiredTexts.forEach((text) => {
+        text.addEventListener("input", checkRequiredFields);
+      });
+    }
+
+    /**
      * Check all required fieldsets and enable/disable submit button accordingly
      * Submit button is only enabled when ALL required fieldsets have at least one checkbox checked
      */
-    function checkRequiredCheckboxes() {
+    function checkRequiredFields() {
       const submitButton = document.querySelector(".js-submit-button");
-      const allRequiredFieldsets = document.querySelectorAll(
+      const allRequiredCheckboxes = document.querySelectorAll(
         "fieldset.js-required-checkbox",
       );
       let allFieldsetsValid = true;
 
-      allRequiredFieldsets?.forEach((fieldset) => {
+      // Check required checkboxes
+      allRequiredCheckboxes?.forEach((fieldset) => {
         const checkboxes = fieldset.querySelectorAll("input[type='checkbox']");
         let hasCheckedCheckbox = false;
 
@@ -785,7 +799,19 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
           allFieldsetsValid = false;
         }
       });
-      submitButton.disabled = !allFieldsetsValid;
+
+      // Check required texts
+      const allRequiredTexts = document.querySelectorAll(
+        "input.js-required-text, textarea.js-required-text",
+      );
+      let allTextsValid = true;
+      allRequiredTexts?.forEach((text) => {
+        if (!text.value.trim()) {
+          allTextsValid = false;
+        }
+      });
+
+      submitButton.disabled = !(allFieldsetsValid && allTextsValid);
     }
   });
 })();
