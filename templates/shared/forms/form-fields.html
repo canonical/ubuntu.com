@@ -175,21 +175,23 @@
       <div class="col"></div>
       <div class="col">
         <ul class="p-list">
-          <li class="p-list__item">
-            <label class="p-checkbox">
-              <input class="p-checkbox__input js-checkbox-visibility"
-                     value="yes"
-                     aria-labelledby="canonicalUpdatesOptIn"
-                     name="canonicalUpdatesOptIn"
-                     type="checkbox" />
-              <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive
-                information about
-              Canonical's products and services.</span>
-            </label>
-          </li>
-          <li class="p-list__item u-sv3">
-            By submitting this form, I confirm that I have read and agree to <a href="https://canonical.com/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="https://canonical.com/legal/data-privacy">Privacy Policy</a>.
-          </li>
+          <fieldset class="p-fieldset-section js-required-checkbox">
+            <li class="p-list__item">
+              <label class="p-checkbox">
+                <input class="p-checkbox__input"
+                      value="yes"
+                      aria-labelledby="canonicalUpdatesOptIn"
+                      name="canonicalUpdatesOptIn"
+                      type="checkbox" />
+                <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive
+                  information about
+                Canonical's products and services.</span>
+              </label>
+            </li>
+            <li class="p-list__item u-sv3">
+              By submitting this form, I confirm that I have read and agree to <a href="https://canonical.com/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="https://canonical.com/legal/data-privacy">Privacy Policy</a>.
+            </li>
+          </fieldset>
           {# These are honey pot fields to catch bots #}
           <li class="u-off-screen">
             <label class="website" for="website">Website:</label>
