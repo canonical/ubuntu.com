@@ -5,6 +5,7 @@
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 {% from "_macros/vf_equal-heights.jinja" import vf_equal_heights %}
 {% from "_macros/vf_divided-section.jinja" import vf_divided_section %}
+
 {% extends "advantage/base_advantage.html" %}
 
 {% block title %}Ubuntu Pro{% endblock %}
@@ -24,643 +25,630 @@
 {% block content %}
   <div class="p-strip is-shallow u-no-padding--bottom">
 
-{% call(slot) vf_hero(
-  title_text='Ubuntu Pro',
-  subtitle_text='The most comprehensive subscription <br/> for open source security and compliance.',
-  layout='25/75'
-) -%}
-{%- if slot == 'signpost_image' -%}
-  <!-- Have to put an empty div to preserve the spacing  -->
-  <div></div>
-{%- endif -%}
-{%- if slot == 'description' -%}
-  <p>30-day trial for enterprises. Always free for personal use.</p>
-{%- endif -%}
-{%- if slot == 'cta' -%}
-          <a href="/contact-us/form?product=pro" class="p-button--positive">Talk to an expert</a>
-          <a href="/pro/subscribe" class="p-button" >Get Ubuntu&nbsp;Pro now</a>
-{%- endif -%}
-{%- endcall -%}
+    {% call(slot) vf_hero(
+      title_text='Ubuntu Pro',
+      subtitle_text='The most comprehensive subscription <br /> for open source security and compliance.',
+      layout='25/75'
+      ) -%}
+      {%- if slot == 'signpost_image' -%}
+        <!-- Have to put an empty div to preserve the spacing  -->
+        <div></div>
+      {%- endif -%}
+      {%- if slot == 'description' -%}
+        <p>30-day trial for enterprises. Always free for personal use.</p>
+      {%- endif -%}
+      {%- if slot == 'cta' -%}
+        <a href="/contact-us/form?product=pro" class="p-button--positive">Talk to an expert</a>
+        <a href="/pro/subscribe" class="p-button">Get Ubuntu&nbsp;Pro now</a>
+      {%- endif -%}
+    {%- endcall -%}
 
-{{ vf_basic_section(
-  title={"text": "Why Ubuntu Pro?"},
-  items=[
- {
-      "type": "description",
-      "item": {
+    {{ vf_basic_section(title={"text": "Why Ubuntu Pro?"},
+        items=[
+        {
+        "type": "description",
+        "item": {
         "type": "text",
         "content": "With Ubuntu Pro, you get access to:"
-      }
-    },
-    {
-      "type": "list",
-      "item": {
+        }
+        },
+        {
+        "type": "list",
+        "item": {
         "list_items": [
-          {
-            "list_item_type": "bullet",
-            "content": "A trusted open source repository you can build on"
-          },
-          {
-            "list_item_type": "bullet",
-            "content": "Fast remediation with tested vulnerability fixes"
-          },
-          {
-            "list_item_type": "bullet",
-            "content": "Auditing, patching automation and management tools to ensure visibility and uptime"
-          },
-          {
-            "list_item_type": "bullet",
-            "content": "Compliance profiles for the most popular security standards"
-          },
-          {
-            "list_item_type": "bullet",
-            "content": "Coverage for your OS, infrastructure and application stack Including GCC, PostgreSQL, OpenSSL,  Nagios, Rust, PHP, Redis and more."
-          },
+        {
+        "list_item_type": "bullet",
+        "content": "A trusted open source repository you can build on"
+        },
+        {
+        "list_item_type": "bullet",
+        "content": "Fast remediation with tested vulnerability fixes"
+        },
+        {
+        "list_item_type": "bullet",
+        "content": "Auditing, patching automation and management tools to ensure visibility and uptime"
+        },
+        {
+        "list_item_type": "bullet",
+        "content": "Compliance profiles for the most popular security standards"
+        },
+        {
+        "list_item_type": "bullet",
+        "content": "Coverage for your OS, infrastructure and application stack, including GCC, PostgreSQL, OpenSSL,  Nagios, Rust, PHP, Redis and more."
+        }
         ]
-      }
-    },
- {
-      "type": "description",
-      "item": {
+        }
+        },
+        {
+        "type": "description",
+        "item": {
         "type": "text",
         "content": "Ubuntu Pro extends the life of every Ubuntu LTS from 5 years of standard security maintenance for the Main repository to 10 years for the entire Ubuntu Archive (Main and Universe repositories)."
-      }
-    },
- {
-      "type": "description",
-      "item": {
+        }
+        },
+        {
+        "type": "description",
+        "item": {
         "type": "text",
         "content": "With the Legacy add-on, this is extended an additional 2 years, giving you a 12 year security maintenance and support commitment."
-      }
-    },
- {
-      "type": "description",
-      "item": {
+        }
+        },
+        {
+        "type": "description",
+        "item": {
         "type": "text",
         "content": "Existing Ubuntu LTS systems can be upgraded in-place to Ubuntu Pro without redeployment, streamlining the process across large Ubuntu estates with a single command."
-      }
-    },
-{
-      "type": "cta-block",
-      "item": {
-        "link": {
-          "content_html": "Learn why security professionals choose Ubuntu Pro ›",
-          "attrs": {
-            "href": "/pro/why-pro"
-          }
         }
-      }
-    },
-  ]
-) }}
+        },
+        {
+        "type": "cta-block",
+        "item": {
+        "link": {
+        "content_html": "Learn why security professionals choose Ubuntu Pro ›",
+        "attrs": {
+        "href": "/pro/why-pro"
+        }
+        }
+        }
+        },
+        ]) }}
 
-{% call(slot) vf_quote_wrapper(
-is_shallow=true,
-  title_text="Used by professionals",
-  quote_size="small",
-quote_text="The Telco industry demands high reliability, with many rounds of testing both during product development and before integration into the customer’s environment. Using Ubuntu Pro gives us the security, support and control over the product lifecycle that we need as the foundation to build our Metaswitch Clearwater products on.",
-  citation_source_name_text="Jon Rowland",
-  citation_source_title_text="Principal Group Software Engineering Manager",
-  citation_source_organisation_text="Microsoft Azure for Operators"
-) -%}
+    {% call(slot) vf_quote_wrapper(
+      is_shallow=true,
+      title_text="Used by professionals",
+      quote_size="small",
+      quote_text="The Telco industry demands high reliability, with many rounds of testing both during product development and before integration into the customer’s environment. Using Ubuntu Pro gives us the security, support and control over the product lifecycle that we need as the foundation to build our Metaswitch Clearwater products on.",
+      citation_source_name_text="Jon Rowland",
+      citation_source_title_text="Principal Group Software Engineering Manager",
+      citation_source_organisation_text="Microsoft Azure for Operators"
+      ) -%}
 
-{%- if slot == 'signpost_image' -%}
-<img src="https://assets.ubuntu.com/v1/70245349-microsoft_logo.png" alt="Microsoft">
-{%- endif -%}
+      {%- if slot == 'signpost_image' -%}
+        <img src="https://assets.ubuntu.com/v1/70245349-microsoft_logo.png"
+             alt="Microsoft" />
+      {%- endif -%}
 
-{% endcall -%}
-{% call(slot) vf_quote_wrapper(
-  quote_size="small",
-  quote_text="For the last decade, Google has partnered with Canonical to promote the adoption of open-source software. By offering Ubuntu Pro on Google Compute Engine, together we help customers enhance the security and compliance for their production workloads",
-  citation_source_name_text="Derry Cheng",
-  citation_source_title_text="Product Manager",
-  citation_source_organisation_text="for Compute Engine"
-) -%}
+    {% endcall -%}
+    {% call(slot) vf_quote_wrapper(
+      quote_size="small",
+      quote_text="For the last decade, Google has partnered with Canonical to promote the adoption of open-source software. By offering Ubuntu Pro on Google Compute Engine, together we help customers enhance the security and compliance for their production workloads",
+      citation_source_name_text="Derry Cheng",
+      citation_source_title_text="Product Manager",
+      citation_source_organisation_text="for Compute Engine"
+      ) -%}
 
-{%- if slot == 'signpost_image' -%}
-<img src="https://assets.ubuntu.com/v1/3100c850-gcp_logo.png" alt="Google Cloud Platform">
-{%- endif -%}
-{% endcall -%}
+      {%- if slot == 'signpost_image' -%}
+        <img src="https://assets.ubuntu.com/v1/3100c850-gcp_logo.png"
+             alt="Google Cloud Platform" />
+      {%- endif -%}
+    {% endcall -%}
 
-
-
-{{ vf_basic_section(
-  title={"text": "How much time is your team spending on security patching?"},
-  is_split_on_medium=true,
-  items=[
-    {
-      "type": "description",
-      "item": {
+    {{ vf_basic_section(title={"text": "How much time is your team spending on security patching?"},
+        is_split_on_medium=true,
+        items=[
+        {
+        "type": "description",
+        "item": {
         "type": "text",
         "content": "Research tells us that 7 in 10 teams spend almost a full day per week applying patches (source: IDC). That's a full day they could be spending on value-creating work."
-      }
-    },
-    {
-      "type": "description",
-      "item": {
+        }
+        },
+        {
+        "type": "description",
+        "item": {
         "type": "text",
         "content": "Ubuntu Pro helps you offload security maintenance and fulfill regulatory requirements for your open source stack so you can focus on building and running your business."
-      }
-    }
-  ]
-) }}
+        }
+        }
+        ]) }}
 
-{%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
-{%- if slot == 'title' -%}
-<h2>Enterprise features included</h2>
-{%- endif -%}
+    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+      {%- if slot == 'title' -%}
+        <h2>Enterprise features included</h2>
+      {%- endif -%}
 
-{%- if slot == 'description' -%}
-<p>
-Expanded Security Maintenance (ESM) provides 10 years of vulnerability fixes for critical, high and selected medium vulnerabilities across the whole Ubuntu archive, as defined by Ubuntu Priority. Expand this to 12 years with the Legacy Support add-on.</p>
+      {%- if slot == 'description' -%}
+        <p>
+          Expanded Security Maintenance (ESM) provides 10 years of vulnerability fixes for critical, high and selected medium vulnerabilities across the whole Ubuntu archive, as defined by Ubuntu Priority. Expand this to 12 years with the Legacy Support add-on.
+        </p>
 
-<div class="p-cta-block  u-no-padding--bottom">
-  <a href="/security/esm" class="p-button--positive">Learn about ESM</a>
-</div>
-{%- endif -%}
+        <div class="p-cta-block  u-no-padding--bottom">
+          <a href="/security/esm" class="p-button--positive">Learn about ESM</a>
+        </div>
+      {%- endif -%}
 
-{%- if slot == 'list_item_title_1' -%}
-<h3 class="p-heading--5">Kernel Livepatch</h3>
-{%- endif -%}
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">Kernel Livepatch</h3>
+      {%- endif -%}
 
-{%- if slot == 'list_item_description_1' -%}
-<p>Livepatch offers a rebootless security patching automation to address high and critical kernel vulnerabilities that surface between scheduled maintenance windows. Eliminate unexpected required reboots for machines requiring mission-critical uptime and maximum security.</p>
-<div class="p-cta-block ">
-<a href="/security/livepatch">Learn about Livepatch ›</a>
-</div>
-{%- endif -%}
+      {%- if slot == 'list_item_description_1' -%}
+        <p>
+          Livepatch offers a rebootless security patching automation to address high and critical kernel vulnerabilities that surface between scheduled maintenance windows. Eliminate unexpected required reboots for machines requiring mission-critical uptime and maximum security.
+        </p>
+        <div class="p-cta-block ">
+          <a href="/security/livepatch">Learn about Livepatch ›</a>
+        </div>
+      {%- endif -%}
 
-{%- if slot == 'list_item_title_2' -%}
-<h3 class="p-heading--5">Compliance and hardening tools</h3>
-{%- endif -%}
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">Compliance and hardening tools</h3>
+      {%- endif -%}
 
-{%- if slot == 'list_item_description_2' -%}
-<p>Ubuntu Pro includes security hardening features to enable easy compliance with common regulatory frameworks including FIPS 140, DISA-STIG, CIS, FedRAMP, CMMC, PCI-DSS & Cyber Essentials.</p>
-<div class="p-cta-block ">
-<a href="/security/security-standards">Learn about supported security standards ›</a>
-</div>
-{%- endif -%}
+      {%- if slot == 'list_item_description_2' -%}
+        <p>
+          Ubuntu Pro includes security hardening features to enable easy compliance with common regulatory frameworks including FIPS 140, DISA-STIG, CIS, FedRAMP, CMMC, PCI-DSS & Cyber Essentials.
+        </p>
+        <div class="p-cta-block ">
+          <a href="/security/security-standards">Learn about supported security standards ›</a>
+        </div>
+      {%- endif -%}
 
-{%- if slot == 'list_item_title_3' -%}
-<h3 class="p-heading--5">Centralized estate management</h3>
-{%- endif -%}
+      {%- if slot == 'list_item_title_3' -%}
+        <h3 class="p-heading--5">Centralized estate management</h3>
+      {%- endif -%}
 
-{%- if slot == 'list_item_description_3' -%}
-<p>Access to Landscape enables centralized administration for large Ubuntu estates. Enable management at scale with staggered updates, asset inventory, hardening, and audit functions for data centers, workstations, and IoT devices.</p>
-<div class="p-cta-block">
-<a href="/landscape">Learn about Landscape ›</a>
-</div>
-{%- endif -%}
+      {%- if slot == 'list_item_description_3' -%}
+        <p>
+          Access to Landscape enables centralized administration for large Ubuntu estates. Enable management at scale with staggered updates, asset inventory, hardening, and audit functions for data centers, workstations, and IoT devices.
+        </p>
+        <div class="p-cta-block">
+          <a href="/landscape">Learn about Landscape ›</a>
+        </div>
+      {%- endif -%}
 
-{%- if slot == 'list_item_title_4' -%}
-<h3 class="p-heading--5">Minimal, OCI-compliant containers</h3>
-{%- endif -%}
+      {%- if slot == 'list_item_title_4' -%}
+        <h3 class="p-heading--5">Minimal, OCI-compliant containers</h3>
+      {%- endif -%}
 
-{%- if slot == 'list_item_description_4' -%}
-<p>Chiseled images cut footprint and quicken start-up, while Ubuntu Pro delivers CVE fixes and support for production grade security. 
-Additionally with Container Build Service, Canonical offers custom container design and maintenance (with an extra fee). 
-</p>
-<div class="p-cta-block">
-<a href="/containers">Learn more about our container offering ›</a>
-</div>
-{%- endif -%}
-{%- endcall -%}
+      {%- if slot == 'list_item_description_4' -%}
+        <p>
+          Chiseled images cut footprint and quicken start-up, while Ubuntu Pro delivers CVE fixes and support for production grade security.
+          Additionally with Container Build Service, Canonical offers custom container design and maintenance (with an extra fee).
+        </p>
+        <div class="p-cta-block">
+          <a href="/containers">Learn more about our container offering ›</a>
+        </div>
+      {%- endif -%}
+    {%- endcall -%}
 
-{% call(slot) vf_quote_wrapper(
-is_shallow=true,
-  title_text="Used by professionals",
-  quote_size="small",
-  quote_text="Transformative innovations such as AI and deep learning are being put to work to unlock new levels of business automation. With the introduction of Ubuntu Pro, enterprises will benefit from better security, support and long-term maintenance for thousands of open source libraries that are at the core of modern AI and data science workflows.",
-  citation_source_name_text="Justin Boitano",
-  citation_source_title_text="Vice president",
-  citation_source_organisation_text="of Enterprise Computing"
-) -%}
+    {% call(slot) vf_quote_wrapper(
+      is_shallow=true,
+      title_text="Used by professionals",
+      quote_size="small",
+      quote_text="Transformative innovations such as AI and deep learning are being put to work to unlock new levels of business automation. With the introduction of Ubuntu Pro, enterprises will benefit from better security, support and long-term maintenance for thousands of open source libraries that are at the core of modern AI and data science workflows.",
+      citation_source_name_text="Justin Boitano",
+      citation_source_title_text="Vice president",
+      citation_source_organisation_text="of Enterprise Computing"
+      ) -%}
 
-{%- if slot == 'signpost_image' -%}
-<img src="https://assets.ubuntu.com/v1/d77e6fb4-nvidia_logo.png" alt="Nvidia">
-{%- endif -%}
+      {%- if slot == 'signpost_image' -%}
+        <img src="https://assets.ubuntu.com/v1/d77e6fb4-nvidia_logo.png"
+             alt="Nvidia" />
+      {%- endif -%}
 
-{% endcall -%}
-{% call(slot) vf_quote_wrapper(
-  quote_size="small",
-  quote_text="Enterprises need modular, cloud-native application platforms that accelerate how they build, run, and manage their applications without compromising on their compliance, security, or support requirements. VMware is thrilled to partner with Canonical with their field-proven expertise in securing and supporting open-source. By offering Ubuntu Pro with VMware Tanzu, we can provide customers with a hardened, better, secure and enterprise-grade application environment that is as friendly to their developers as it is to their CISO.",
-  citation_source_name_text="Ajay Patel",
-  citation_source_title_text="GM and SVP",
-  citation_source_organisation_text="Modern Apps & Cloud Management Business"
-) -%}
+    {% endcall -%}
+    {% call(slot) vf_quote_wrapper(
+      quote_size="small",
+      quote_text="Enterprises need modular, cloud-native application platforms that accelerate how they build, run, and manage their applications without compromising on their compliance, security, or support requirements. VMware is thrilled to partner with Canonical with their field-proven expertise in securing and supporting open-source. By offering Ubuntu Pro with VMware Tanzu, we can provide customers with a hardened, better, secure and enterprise-grade application environment that is as friendly to their developers as it is to their CISO.",
+      citation_source_name_text="Ajay Patel",
+      citation_source_title_text="GM and SVP",
+      citation_source_organisation_text="Modern Apps & Cloud Management Business"
+      ) -%}
 
-{%- if slot == 'signpost_image' -%}
-<img src="https://assets.ubuntu.com/v1/e2fa868e-vmware_logo.png" alt="VMware">
-{%- endif -%}
-{% endcall -%}
+      {%- if slot == 'signpost_image' -%}
+        <img src="https://assets.ubuntu.com/v1/e2fa868e-vmware_logo.png"
+             alt="VMware" />
+      {%- endif -%}
+    {% endcall -%}
 
-{{ vf_basic_section(
-  title={"text": "Public cloud instances"},
-  items=[
-    {
-      "type": "linked-logo-block",
-      "item": {
+    {{ vf_basic_section(title={"text": "Public cloud instances"},
+        items=[
+        {
+        "type": "linked-logo-block",
+        "item": {
         "links": [
-          {
-            "href": "https://aws.amazon.com/marketplace/search/results?searchTerms=ubuntu+pro+ec2&CREATOR=e6a5002c-6dd0-4d1e-8196-0a1d1857229b&filters=CREATOR",
-            "text": "Launch new Ubuntu Pro instances on the AWS Marketplace ›",
-            "label": "AWS",
-            "image_attrs": {
-              "src": "https://assets.ubuntu.com/v1/dcaf2f49-aws_linked_logo.png",
-              "alt": "AWS",
-              "width": "852",
-              "height": "480"
-            }
-          },
-          {
-            "href": "https://marketplace.microsoft.com/en-us/marketplace/apps?search=ubuntu%20pro%20canonical&page=1",
-            "text": "Launch new Ubuntu Pro instances on the Azure Marketplace ›",
-            "label": "Kafka",
-            "image_attrs": {
-              "src": "https://assets.ubuntu.com/v1/3794a576-azure_linked_logo.png",
-              "alt": "Azure",
-              "width": "852",
-              "height": "480"
-            }
-          },
-          {
-            "href": "https://console.cloud.google.com/marketplace/browse?q=ubuntu%20pro%20LTS%20canonical%20group&pli=1",
-            "text": "Launch new Ubuntu Pro instances on the Google Compute Engine ›",
-            "label": "Google cloud",
-            "image_attrs": {
-              "src": "https://assets.ubuntu.com/v1/def7402a-gcp_linked_logo.png",
-              "alt": "Google cloud",
-              "width": "852",
-              "height": "484"
-            }
-          }
+        {
+        "href": "https://aws.amazon.com/marketplace/search/results?searchTerms=ubuntu+pro+ec2&CREATOR=e6a5002c-6dd0-4d1e-8196-0a1d1857229b&filters=CREATOR",
+        "text": "Launch new Ubuntu Pro instances on the AWS Marketplace ›",
+        "label": "AWS",
+        "image_attrs": {
+        "src": "https://assets.ubuntu.com/v1/dcaf2f49-aws_linked_logo.png",
+        "alt": "AWS",
+        "width": "852",
+        "height": "480"
+        }
+        },
+        {
+        "href": "https://marketplace.microsoft.com/en-us/marketplace/apps?search=ubuntu%20pro%20canonical&page=1",
+        "text": "Launch new Ubuntu Pro instances on the Azure Marketplace ›",
+        "label": "Azure",
+        "image_attrs": {
+        "src": "https://assets.ubuntu.com/v1/3794a576-azure_linked_logo.png",
+        "alt": "Azure",
+        "width": "852",
+        "height": "480"
+        }
+        },
+        {
+        "href": "https://console.cloud.google.com/marketplace/browse?q=ubuntu%20pro%20LTS%20canonical%20group&pli=1",
+        "text": "Launch new Ubuntu Pro instances on the Google Compute Engine ›",
+        "label": "Google cloud",
+        "image_attrs": {
+        "src": "https://assets.ubuntu.com/v1/def7402a-gcp_linked_logo.png",
+        "alt": "Google cloud",
+        "width": "852",
+        "height": "484"
+        }
+        }
         ]
-      }
-},
-    {
-      "type": "description",
-      "item": {
+        }
+        },
+        {
+        "type": "description",
+        "item": {
         "type": "text",
         "content": "Ubuntu Pro is fully integrated with leading public clouds, allowing you to activate advanced security and compliance features directly through cloud marketplaces, with pricing that scales predictably with your cloud usage against existing spend commitments."
-      }
-    },
-    {
-      "type": "description",
-      "item": {
+        }
+        },
+        {
+        "type": "description",
+        "item": {
         "type": "text",
         "content": "This seamless integration means you can benefit from enterprise-grade security, compliance, and support without changing your existing cloud workflows and you will get billed on your existing bill by your current vendor."
-      }
-    },
-{
-      "type": "cta-block",
-      "item": {
-        "link": {
-          "content_html": "Read about Ubuntu on Public Clouds",
-          "attrs": {
-            "class":"p-button",
-            "href": "/cloud/public-cloud"
-          }
         }
-      }
-    },
+        },
+        {
+        "type": "cta-block",
+        "item": {
+        "link": {
+        "content_html": "Read about Ubuntu on Public Clouds",
+        "attrs": {
+        "class":"p-button",
+        "href": "/cloud/public-cloud"
+        }
+        }
+        }
+        },
+    
+        ]) }}
 
-  ]
-) }}
+    {% call(slot) vf_quote_wrapper(
+      is_shallow=true,
+      title_text="Used by professionals",
+      quote_size="small",
+      quote_text="Tenable and Canonical collaborate to provide timely, accurate and actionable vulnerability alerts. Ubuntu Pro offers security patch assurance for a broad spectrum of open-source software. Together, we give customers a foundation for trustworthy open source.",
+      citation_source_name_text="Robert Huber",
+      citation_source_title_text="Chief Security Officer",
+      ) -%}
 
+      {%- if slot == 'signpost_image' -%}
+        <img src="https://assets.ubuntu.com/v1/ad9fb473-tenable_logo.png"
+             alt="Tenable" />
+      {%- endif -%}
 
-{% call(slot) vf_quote_wrapper(
-is_shallow=true,
-  title_text="Used by professionals",
-  quote_size="small",
-  quote_text="Tenable and Canonical collaborate to provide timely, accurate and actionable vulnerability alerts. Ubuntu Pro offers security patch assurance for a broad spectrum of open-source software. Together, we give customers a foundation for trustworthy open source.",
-  citation_source_name_text="Robert Huber",
-  citation_source_title_text="Chief Security Officer",
-) -%}
+    {% endcall -%}
+    {% call(slot) vf_quote_wrapper(
+      quote_size="small",
+      quote_text="FIPS 140-2 certified Ubuntu images on AWS fulfil our FedRAMP compliance requirements. With enterprise-grade Ubuntu Pro support backed by Canonical’s 10-year security maintenance commitment, we provide critical development infrastructure for some of the world’s most famous brands.",
+      citation_source_name_text="Patrick Kaeding",
+      citation_source_title_text="Security Engineer",
+      ) -%}
 
-{%- if slot == 'signpost_image' -%}
-<img src="https://assets.ubuntu.com/v1/ad9fb473-tenable_logo.png" alt="Tenable">
-{%- endif -%}
+      {%- if slot == 'signpost_image' -%}
+        <img src="https://assets.ubuntu.com/v1/a3a852d1-launchdarkly_logo.png"
+             alt="LaunchDarkly" />
+      {%- endif -%}
+    {% endcall -%}
 
-{% endcall -%}
-{% call(slot) vf_quote_wrapper(
-  quote_size="small",
-  quote_text="FIPS 140-2 certified Ubuntu images on AWS fulfil our FedRAMP compliance requirements. With enterprise-grade Ubuntu Pro support backed by Canonical’s 10-year security maintenance commitment, we provide critical development infrastructure for some of the world’s most famous brands.",
-  citation_source_name_text="Patrick Kaeding",
-  citation_source_title_text="Security Engineer",
-) -%}
+    <section class="p-section u-fixed-width">
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <div class="grid-row--50-50-on-large">
+          <div class="grid-col">
+            <h2>So much more than just the OS</h2>
+          </div>
 
-{%- if slot == 'signpost_image' -%}
-<img src="https://assets.ubuntu.com/v1/a3a852d1-launchdarkly_logo.png" alt="LaunchDarkly">
-{%- endif -%}
-{% endcall -%}
-
-<section class="p-section u-fixed-width">
-  <hr class="p-rule">
-  <div class="p-section--shallow">
-    <div class="grid-row--50-50-on-large">
-      <div class="grid-col">
-        <h2>So much more than just the OS</h2>
+          <div class="grid-col">
+            <p>
+              Ubuntu Pro covers all aspects of open source infrastructure and applications, providing streamlined security, compliance, hardening, automation, and support for your full stack.
+            </p>
+          </div>
+        </div>
       </div>
+      <div class="p-section--shallow">
+        <div class="grid-row">
 
-      <div class="grid-col">
-        <p>Ubuntu Pro covers all aspects of open source infrastructure and applications, providing streamlined security, compliance, hardening, automation, and support for your full stack.</p>
+          <!-- table -->
+          <table class="grid-col-start-large-3">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Example applications and toolchains covered by Ubuntu Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Toolchains and frameworks</td>
+                <td>
+                  <p>Python, Rust, Go, C/C++</p>
+                  <a href="/toolchains">Explore toolchains ›</a>
+                </td>
+              </tr>
+              <tr>
+                <td>Data management and processing</td>
+                <td>
+                  <p>Apache Cassandra, Apache Kafka, Apache Spark, etcd, MongoDB, OpenSearch, PostgreSQL, Redis, Valkey</p>
+                  <a href="https://canonical.com/data">Browse data solutions ›</a>
+                </td>
+              </tr>
+              <tr>
+                <td>AI/ML & data science</td>
+                <td>
+                  <p>Kubeflow, MLFlow, Feast</p>
+                  <a href="/ai/mlops">Discover modular MLOps tools ›</a>
+                </td>
+              </tr>
+              <tr>
+                <td>Infrastructure & orchestration</td>
+                <td>
+                  <p>OpenStack, Kubernetes, MicroCloud, MAAS, Ceph storage</p>
+                  <a href="https://canonical.com/solutions/infrastructure">Get to know our infrastructure portfolio ›</a>
+                </td>
+              </tr>
+              <tr>
+                <td>Observability</td>
+                <td>
+                  <p>Grafana, Prometheus, Graylog</p>
+                  <a href="https://canonical.com/observability">Learn about our observability portfolio ›</a>
+                </td>
+              </tr>
+              <tr>
+                <td>Centralized management</td>
+                <td>
+                  <p>Landscape</p>
+                  <a href="/landscape">Learn more about Landscape ›</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="p-section--shallow">
-    <div class="grid-row">
+    </section>
 
-<!-- table -->
-<table class="grid-col-start-large-3">
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Example applications and toolchains covered by Ubuntu Pro </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Toolchains and frameworks</td>
-      <td>
-<p>
-Python, Rust, Go, C/C++
-</p>
-<a href="/toolchains">Explore toolchains ›</a>
-</td>
-    </tr>
-    <tr>
-      <td>Data management and processing</td>
-      <td>
-<p>
-Apache Cassandra, Apache Kafka, Apache Spark, etcd, MongoDB, OpenSearch, PostgreSQL, Redis, Valkey 
-</p>
-<a href="https://canonical.com/data">Browse data solutions ›</a>
-</td>
-    </tr>
-    <tr>
-      <td>AI/ML & data science </td>
-      <td>
-<p>Kubeflow, MLFlow, Feast
-</p>
-<a href="/ai/mlops">Discover modular MLOps tools ›</a>
-</td>
-    </tr>
-    <tr>
-      <td>Infrastructure & orchestration </td>
-      <td>
-<p>OpenStack, Kubernetes, MicroCloud, MAAS, Ceph storage </p>
-<a href="https://canonical.com/solutions/infrastructure">Get to know our infrastructure portfolio ›</a>
-</td>
-    </tr>
-    <tr>
-      <td>Observability</td>
-      <td>
-<p>Grafana, Prometheus, Graylog</p>
-<a href="https://canonical.com/observability">Learn about our observability portfolio ›</a>
-</td>
-    </tr>
-    <tr>
-      <td>Centralized management </td>
-      <td>
-<p>
-Landscape
-</p>
-<a href="https://canonical.com/data">Browse data solutions ›</a>
-</td>
-    </tr>
-    <tr>
-      <td>Data management and processing</td>
-      <td>
-<p>
-Apache Cassandra, Apache Kafka, Apache Spark, etcd, MongoDB, OpenSearch, PostgreSQL, Redis, Valkey 
-</p>
-<a href="/landscape">Learn more about Landscape ›</a>
-</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-  </div>
-</section>
-
-{{ vf_basic_section(
-  title={"text": "Get expert help with Ubuntu Pro + Support"},
-  is_split_on_medium=true,
-  items=[
-    {
-      "type": "description",
-      "item": {
+    {{ vf_basic_section(title={"text": "Get expert help with Ubuntu Pro + Support"},
+        is_split_on_medium=true,
+        items=[
+        {
+        "type": "description",
+        "item": {
         "type": "text",
         "content": "Complement Ubuntu Pro’s security maintenance with 24/7 support from open source experts. Ubuntu Pro + Support is an additional tier that provides break fix and bug fix support for your infrastructure and applications, ensuring business continuity and peace of mind."
-      }
-    },
-{
-      "type": "cta-block",
-      "item": {
-        "link": {
-          "content_html": "Learn more about phone and ticket support ›",
-          "attrs": {
-            "href": "/support"
-          }
         }
-      }
-    },
-  ]
-) }}
+        },
+        {
+        "type": "cta-block",
+        "item": {
+        "link": {
+        "content_html": "Learn more about phone and ticket support ›",
+        "attrs": {
+        "href": "/support"
+        }
+        }
+        }
+        },
+        ]) }}
 
-
-{% call(slot) vf_equal_heights(
-    title_text="Get started today",
-    image_aspect_ratio_medium="2-3",
-    image_aspect_ratio_small="2-3",
-    highlight_images=True,
-    items=[
-    {
-    "title_text": "Available for private,  public, or hybrid clouds",
-    "image_html":  '<img src="https://assets.ubuntu.com/v1/987967b2-available_for_private.png"
+    {% call(slot) vf_equal_heights(
+      title_text="Get started today",
+      image_aspect_ratio_medium="2-3",
+      image_aspect_ratio_small="2-3",
+      highlight_images=True,
+      items=[
+      {
+      "title_text": "Available for private,  public, or hybrid clouds",
+      "image_html":  '<img src="https://assets.ubuntu.com/v1/987967b2-available_for_private.png"
      class="p-image-container__image"
      width="852"
      height="1279"
      alt="" />',
-    "description_html": "<p>Try Ubuntu Pro for 30 days to find out what it can do for you.</p>",
+      "description_html": "<p>Try Ubuntu Pro for 30 days to find out what it can do for you.</p>",
       "cta_html": "<a href='/pro/free-trial'>Learn about our free trial&nbsp;&rsaquo;</a>"
-    },
-    {
-    "title_text": "Embedded devices",
-    "image_html":  '<img src="https://assets.ubuntu.com/v1/54b33af9-embedded_devices.png"
+      },
+      {
+      "title_text": "Embedded devices",
+      "image_html":  '<img src="https://assets.ubuntu.com/v1/54b33af9-embedded_devices.png"
      class="p-image-container__image"
      width="852"
      height="1279"
      alt="" />',
-    "description_html": "<p>Easily manage all your package updates and guarantee security and compliance for your IoT fleet.</p>",
+      "description_html": "<p>Easily manage all your package updates and guarantee security and compliance for your IoT fleet.</p>",
       "cta_html": "<a href='/pro/devices'>Discover Ubuntu Pro for Devices&nbsp;&rsaquo;</a>"
-    },
-    {
-    "title_text": "Education, research and academia ",
-    "image_html":  '<img src="https://assets.ubuntu.com/v1/0274126b-education_research.png"
+      },
+      {
+      "title_text": "Education, research and academia ",
+      "image_html":  '<img src="https://assets.ubuntu.com/v1/0274126b-education_research.png"
      class="p-image-container__image"
      width="852"
      height="1279"
      alt="" />',
-    "description_html": "<p>Canonical offers Ubuntu Pro at a discount for approved institutions, such as schools, research and academia.</p>",
+      "description_html": "<p>Canonical offers Ubuntu Pro at a discount for approved institutions, such as schools, research and academia.</p>",
       "cta_html": "<a href='/contact-us/form?product=pro'>Contact us to learn more&nbsp;&rsaquo;</a>"
-    },
-    {
-    "title_text": "Personal use",
-    "image_html":  '<img src="https://assets.ubuntu.com/v1/a5677e3b-personal_use.png"
+      },
+      {
+      "title_text": "Personal use",
+      "image_html":  '<img src="https://assets.ubuntu.com/v1/a5677e3b-personal_use.png"
      class="p-image-container__image"
      width="852"
      height="1279"
      alt="" />',
-"description_html": "<p>Ubuntu Pro is and always will be free for personal use on up to 5 physical machines, or 50 machines for <a href='https://wiki.ubuntu.com/Membership'>official Ubuntu Community members</a>.</p>",
+      "description_html": "<p>Ubuntu Pro is and always will be free for personal use on up to 5 physical machines, or 50 machines for <a href='https://wiki.ubuntu.com/Membership'>official Ubuntu Community members</a>.</p>",
       "cta_html": "<a href='/pro/subscribe'>Get started today&nbsp;&rsaquo;</a>"
-    }
-    ]
-    ) %}
-{% endcall %}
+      }
+      ]
+      ) %}
+    {% endcall %}
 
+    {% call(slot) vf_quote_wrapper(
+      is_shallow=true,
+      title_text="Used by professionals",
+      quote_size="small",
+      quote_text="Ubuntu Pro enables our engineering teams to focus on delivering industry-leading products and services to Acquia customers. Canonical’s transparency and patching expedience give me peace of mind that we are providing the most secure and compelling solutions to power innovative digital experiences.",
+      citation_source_name_text="Robert Former",
+      citation_source_title_text="Chief Information Security Officer",
+      ) -%}
 
-{% call(slot) vf_quote_wrapper(
-is_shallow=true,
-  title_text="Used by professionals",
-  quote_size="small",
-  quote_text="Ubuntu Pro enables our engineering teams to focus on delivering industry-leading products and services to Acquia customers. Canonical’s transparency and patching expedience give me peace of mind that we are providing the most secure and compelling solutions to power innovative digital experiences.",
-  citation_source_name_text="Robert Former",
-  citation_source_title_text="Chief Information Security Officer",
-) -%}
+      {%- if slot == 'signpost_image' -%}
+        <img src="https://assets.ubuntu.com/v1/ae29b16e-acquia_logo.png"
+             alt="Acquia" />
+      {%- endif -%}
 
-{%- if slot == 'signpost_image' -%}
-<img src="https://assets.ubuntu.com/v1/ae29b16e-acquia_logo.png" alt="Acquia">
-{%- endif -%}
+    {% endcall -%}
+    {% call(slot) vf_quote_wrapper(
+      quote_size="small",
+      quote_text="I manage my own compute cluster leveraging MAAS and other Canonical tools to support my research. The open-source security patches delivered through Ubuntu Pro give my team peace of mind and ensure my servers are secure. Canonical is continuously delivering timely CVE patches covering a broad portfolio of open-source applications for the entire ten-year lifetime of an Ubuntu LTS. This brings much needed stability and compliance.",
+      citation_source_name_text="David A Gutman",
+      citation_source_title_text="MD PhD",
+      citation_source_organisation_text="Associate Professor of Pathology"
+      ) -%}
+      {%- if slot == 'signpost_image' -%}
+        <img src="https://assets.ubuntu.com/v1/591b7338-emory_logo.png"
+             alt="Emory" />
+      {%- endif -%}
 
-{% endcall -%}
-{% call(slot) vf_quote_wrapper(
-  quote_size="small",
-  quote_text="I manage my own compute cluster leveraging MAAS and other Canonical tools to support my research. The open-source security patches delivered through Ubuntu Pro give my team peace of mind and ensure my servers are secure. Canonical is continuously delivering timely CVE patches covering a broad portfolio of open-source applications for the entire ten-year lifetime of an Ubuntu LTS. This brings much needed stability and compliance.",
-  citation_source_name_text="David A Gutman",
-  citation_source_title_text="MD PhD",
-  citation_source_organisation_text="Associate Professor of Pathology"
-) -%}
-{%- if slot == 'signpost_image' -%}
-<img src="https://assets.ubuntu.com/v1/591b7338-emory_logo.png" alt="Emory">
-{%- endif -%}
+    {% endcall -%}
 
-{% endcall -%}
+    {{ vf_divided_section(title={
+        "text": "Further reading",
+        },
+        blocks=[
+        {
+        "type": "divided-block",
+        "bullet_type": "none",
+        "items": [
+        {
+        "title_text": "The state of software supply chains research",
+        "contents": [
+        {
+        "type": "description",
+        "item": {
+        "type": "text",
+        "content": "Research from Canonical and IDC shows 70% of IT teams spend more than 6 hours per week on security patching."
+        }
+        },
+        {
+        "type": "cta-block",
+        "item": {
+        "link": {
+        "content_html": "How leaders drive resilience in their software supply chain ›",
+        "attrs": {
+        "href": "/engage/2025-state-of-software-supply-chain#:~:text=The latest research from IDC,heavy burdens on IT teams"
+        }
+        }
+        }
+        }
+        ]
+        },
+        {
+        "title_text": "Lucid Software meet FedRAMP compliance for government contracts",
+        "contents": [
+        {
+        "type": "description",
+        "item": {
+        "type": "text",
+        "content": "Lucid wanted to offer its Visual Collaboration Suite to Federal and Government organizations – but this required meeting FedRAMP compliance. To solve this challenge, Lucid accessed a FIPS-compliant Ubuntu image for AWS by adopting Ubuntu Pro through the AWS marketplace, allowing them access to all the FIPS 140-2 certified packages and auditing tools they would need."
+        }
+        },
+        {
+        "type": "cta-block",
+        "item": {
+        "link": {
+        "content_html": "Learn how Lucid met FedRAMP compliance through Ubuntu Pro ›",
+        "attrs": {
+        "href": "https://canonical.com/case-study/lucid-aws-fedramp-compliance-case-study"
+        }
+        }
+        }
+        }
+        ]
+        },
+        {
+        "title_text": "Large games publisher secures code dependencies and avoid costly migration",
+        "contents": [
+        {
+        "type": "description",
+        "item": {
+        "type": "text",
+        "content": "A leading game developer chose Ubuntu Pro to secure its mission-critical code for its gaming titles. Ubuntu Pro helped the company to avoid a costly, effort-intensive migration to upgrade to more recent versions – an effort that would have taken their teams 6 to 8 months to complete."
+        }
+        },
+        {
+        "type": "cta-block",
+        "item": {
+        "link": {
+        "content_html": "Find out how Ubuntu Pro brought time and stability to this major publisher ›",
+        "attrs": {
+        "href": "https://canonical.com/case-study/ubuntu-pro-support-for-games-developer"
+        }
+        }
+        }
+        }
+        ]
+        },
+        {
+        "title_text": "Airlock Digital boosts operational performance on Azure by 30%",
+        "contents": [
+        {
+        "type": "description",
+        "item": {
+        "type": "text",
+        "content": "Faced with the looming End of Life (EoL) for CentOS 7, Airlock Digital needed to find a new OS to drive their application control software. By migrating to Ubuntu 24.04 LTS for Azure, Airlock Digital was able to continue stable operations and meet stricter security requirements, with up to 40% improvements in performance and operational cost savings."
+        }
+        },
+        {
+        "type": "cta-block",
+        "item": {
+        "link": {
+        "content_html": "Learn how Ubuntu Pro brought security and efficiency to Airlock Digital ›",
+        "attrs": {
+        "href": "https://canonical.com/case-study/airlock-digital-ubuntu-pro-azure-case-study"
+        }
+        }
+        }
+        }
+        ]
+        },
+        ]
+        },
+        ]) 
+    }}
 
-{{ vf_divided_section(
-  title={
-    "text": "Further reading",
-  },
-  blocks=[
-  {
-    "type": "divided-block",
-    "bullet_type": "none",
-    "items": [
-          {
-            "title_text": "The state of software supply chains research",
-            "contents": [
-              {
-                "type": "description",
-                "item": {
-                  "type": "text",
-                  "content": "Research from Canonical and IDC shows 70% of IT teams spend more than 6 hours per week on security patching."
-                }
-              },
-              {
-                "type": "cta-block",
-                "item": {
-                  "link": {
-                    "content_html": "How leaders drive resilience in their software supply chain ›",
-                    "attrs": {
-                      "href": "/engage/2025-state-of-software-supply-chain#:~:text=The latest research from IDC,heavy burdens on IT teams"
-                    }
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "title_text": "Lucid Software meet FedRAMP compliance for government contracts",
-            "contents": [
-              {
-                "type": "description",
-                "item": {
-                  "type": "text",
-                  "content": "Lucid wanted to offer its Visual Collaboration Suite to Federal and Government organizations – but this required meeting FedRAMP compliance. To solve this challenge, Lucid accessed a FIPS-compliant Ubuntu image for AWS by adopting Ubuntu Pro through the AWS marketplace, allowing them access to all the FIPS 140-2 certified packages and auditing tools they would need."
-                }
-              },
-              {
-                "type": "cta-block",
-                "item": {
-                  "link": {
-                    "content_html": "Learn how Lucid met FedRAMP compliance through Ubuntu Pro ›",
-                    "attrs": {
-                      "href": "https://canonical.com/case-study/lucid-aws-fedramp-compliance-case-study"
-                    }
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "title_text": "Large games publisher secures code dependencies and avoid costly migration",
-            "contents": [
-              {
-                "type": "description",
-                "item": {
-                  "type": "text",
-                  "content": "A leading game developer chose Ubuntu Pro to secure its mission-critical code for its gaming titles. Ubuntu Pro helped the company to avoid a costly, effort-intensive migration to upgrade to more recent versions – an effort that would have taken their teams 6 to 8 months to complete."
-                }
-              },
-              {
-                "type": "cta-block",
-                "item": {
-                  "link": {
-                    "content_html": "Find out how Ubuntu Pro brought time and stability to this major publisher ›",
-                    "attrs": {
-                      "href": "https://canonical.com/case-study/ubuntu-pro-support-for-games-developer"
-                    }
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "title_text": "Airlock Digital boosts operational performance on Azure by 30%",
-            "contents": [
-              {
-                "type": "description",
-                "item": {
-                  "type": "text",
-                  "content": "Faced with the looming End of Life (EoL) for CentOS 7, Airlock Digital needed to find a new OS to drive their application control software. By migrating to Ubuntu 24.04 LTS for Azure, Airlock Digital was able to continue stable operations and meet stricter security requirements, with up to 40% improvements in performance and operational cost savings."
-                }
-              },
-              {
-                "type": "cta-block",
-                "item": {
-                  "link": {
-                    "content_html": "Learn how Ubuntu Pro brought security and efficiency to Airlock Digital ›",
-                    "attrs": {
-                      "href": "https://canonical.com/case-study/airlock-digital-ubuntu-pro-azure-case-study"
-                    }
-                  }
-                }
-              }
-            ]
-          },
-    ]
-  },
-],
-) 
-}}
-
-{% call(slot) vf_cta_section(
-        variant='default',
-        layout='100',
-        ) -%}
-{%- if slot == 'cta' -%}
-<a href="https://discourse.ubuntu.com/t/ubuntu-pro-faq/34042">Want more information? Browse our FAQ &rsaquo;</a>
-{%- endif -%}
-{% endcall -%}
-</div>
+    {% call(slot) vf_cta_section(
+      variant='default',
+      layout='100',
+      ) -%}
+      {%- if slot == 'cta' -%}
+        <a href="https://discourse.ubuntu.com/t/ubuntu-pro-faq/34042">Want more information? Browse our FAQ &rsaquo;</a>
+      {%- endif -%}
+    {% endcall -%}
+  </div>
 {% endblock content %}
