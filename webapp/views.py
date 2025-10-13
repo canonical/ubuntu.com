@@ -4,6 +4,8 @@ import json
 import math
 import os
 import re
+import requests
+import time
 import logging
 from urllib.parse import quote, unquote, urlparse
 from datetime import datetime
@@ -44,6 +46,7 @@ marketo_api = MarketoAPI(
     get_flask_env("MARKETO_API_SECRET"),
     marketo_session,
 )
+GITHUB_TOKEN = get_flask_env("GITHUB_TOKEN")
 
 
 def _build_mirror_list(local=False, country_code=None):
@@ -1628,3 +1631,86 @@ def build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter):
         )
 
     return display_ubuntu_weekly_newsletter
+
+
+# TODO: remove this after CI check is added to target repo
+def _load_json(raw: bytes):
+    return json.loads(raw.decode("utf-8"))
+
+
+def build_github_data_access():
+    """Return a JSON file fetcher with ETag caching for GitHub-hosted data."""
+    _cache = {}
+
+    def _gh_get_file_bytes(path: str) -> bytes:
+        key = f"main:{path}"
+        etag = _cache.get(key, {}).get("etag")
+
+        headers = {
+            "Authorization": f"token {GITHUB_TOKEN}",
+            "Accept": "application/vnd.github.raw",
+            "User-Agent": "flask-site/gh-fetch",
+        }
+        if etag:
+            headers["If-None-Match"] = etag
+
+        url = (
+            "https://api.github.com/repos/canonical/product-architecture/"
+            f"contents/{path}?ref=main"
+        )
+        response = requests.get(url, headers=headers, timeout=30)
+
+        if response.status_code == 304 and key in _cache:
+            return _cache[key]["data"]
+
+        try:
+            response.raise_for_status()
+        except HTTPError as e:
+            flask.current_app.extensions["sentry"].captureException(
+                f"Error fetching GitHub content: {e}"
+            )
+
+        data = response.content
+        _cache[key] = {
+            "etag": response.headers.get("ETag"),
+            "data": data,
+            "ts": time.time(),
+        }
+        return data
+
+    def get_json_files(file_paths: list[str]) -> dict[str, object]:
+        """Fetch and parse product JSON files"""
+        parsed_files = {}
+
+        for file_path in file_paths:
+            file_bytes = _gh_get_file_bytes(file_path)
+
+            # Derive clean name from path
+            # e.g. "products-data/25.10/kubernetes.json" -> "kubernetes"
+            base_name = file_path.split("/")[-1].replace(".json", "")
+
+            parsed_files[base_name] = _load_json(file_bytes)
+
+        return parsed_files
+
+    return get_json_files
+
+
+def build_release_cycle_view():
+    get_json_files = build_github_data_access()
+
+    def display_github_data():
+        # TODO: include remaining files when json validation is in place
+        files = [
+            "products-data/25.10/kubernetes.json",
+            "products-data/25.10/ubuntu-kernel.json",
+            "products-data/25.10/microcloud.json",
+            "products-data/25.10/ubuntu.json",
+        ]
+        products_data = get_json_files(files)
+        return flask.render_template(
+            "about/release-cycle.html",
+            products_data=products_data,
+        )
+
+    return display_github_data
