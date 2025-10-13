@@ -76,6 +76,7 @@ selectorForm.addEventListener('submit', (event) => {
   if (productValue) params.set('product', productValue);
   if (releaseValue) params.set('release', releaseValue);
   if (versionValue) params.set('version', versionValue);
+  // TODO: define behavior for subscription param   
   if (subscriptionValue) params.set('subscription', subscriptionValue);
 
   const newUrl = params.toString()
