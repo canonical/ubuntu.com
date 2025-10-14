@@ -4,6 +4,8 @@
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 {% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
 {% from "macros/_macros-resource.jinja" import resource_section %}
+{% from "_macros/vf_divided-section.jinja" import vf_divided_section %}
+
 
 {% block title %}Livepatch | Security{% endblock %}
 
@@ -64,10 +66,9 @@ meta_copydoc %}
 
       {%- if slot == 'list_item_description_1' -%}
         <p>
-          According to a study of Dimensional research <a href="https://www.pagerduty.com/resources/reports/unplanned-work/">64% of IT professionals spend more than 100 hours per year on unplanned work</a>. That’s work that eliminates focus and distracts from one’s goals and business objectives. With <a href="/blog/what-lies-after-lts-two-years-of-ubuntu-14-04-in-esm">40% of high and critical severity vulnerabilities affecting the Linux kernel</a>, the number of interruptions can be significant.
-        </p>
+          Anyone that takes their security posture seriously applies critical and high security patches with urgency, outside their regularly scheduled patching maintenance window. This is work that impacts focus and distracts from goals and business objectives.        </p>
         <p>
-          Livepatch reduces the unplanned work that comes from Linux kernel vulnerabilities, making you more effective when managing Ubuntu systems.
+          Livepatch reduces the unplanned work of installing Linux kernel security updates, making you more effective when managing Ubuntu systems.
         </p>
       {%- endif -%}
 
@@ -77,17 +78,40 @@ meta_copydoc %}
 
       {%- if slot == 'list_item_description_2' -%}
         <p>
-          Downtime is one of the major pains of every service provider. That is however unavoidable when deploying vulnerability fixes on the Linux kernel the traditional way. That’s because the updated system needs to be rebooted to apply the changes irrespective of your deployment strategy (<a href="/kubernetes">Kubernetes</a>, <a href="/openstack">OpenStack</a> or <a href="https://maas.io/">bare-metal</a>). Industry leaders achieve high uptime by livepatching and scheduled maintenance.
+          Downtime is one of the major pains of every service provider, and it is unavoidable when deploying vulnerability
+          fixes on the Linux kernel in the traditional way. That’s because the updated system needs to be rebooted,
+          potentially disrupting <a href="/kubernetes">Kubernetes</a>, <a href="/openstack">OpenStack</a>, virtualized, 
+          or <a href="https://canonical.com/maas">bare-metal</a> workloads. Industry leaders avoid this problem and achieve high uptime by livepatching between scheduled maintenance windows.
         </p>
       {%- endif -%}
 
       {%- if slot == 'list_item_title_3' -%}
-        <h3 class="p-heading--5">Follow organizational policy</h3>
+        <h3 class="p-heading--5">Enhanced security</h3>
       {%- endif -%}
 
       {%- if slot == 'list_item_description_3' -%}
         <p>
-          Livepatch on-prem allows you to define your rollout policy and remain in full control of which machines will get updated and when, as well as provide updates to isolated network environments. To keep your machines up-to-date, the Livepatch on-prem server regularly syncs with Ubuntu Livepatch service and obtains the latest patches. It then applies the policy for releasing patches gradually in as many stages as needed.
+          With early and cumulative patching of kernel vulnerabilities, Livepatch helps users maintain a strong security posture, and reduces the risk of exploits.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_4' -%}
+        <h3 class="p-heading--5">Follow organizational policy</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_4' -%}
+        <p>
+          Livepatch allows you to define your rollout policy and remain in full control of which machines will get updated and when, as well as provide updates to isolated network environments. System administrators can set a patching cut-off date and a patching delay on each machine, and uniformly secure groups of machines.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_5' -%}
+        <h3 class="p-heading--5">Ease of use</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_5' -%}
+        <p>
+          Livepatch is designed to be straightforward to set up and use, and patches are applied automatically after activation. Livepatch integrates with Canonical's web and API based Linux administration tool: <a href="/landscape">Landscape</a>.
         </p>
       {%- endif -%}
 
@@ -144,6 +168,16 @@ meta_copydoc %}
             }}
           </div>
           <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/20d17cf2-ebay-logo.png",
+                        alt="eBay",
+                        width="211",
+                        height="313",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
             {{ image(url="https://assets.ubuntu.com/v1/485b07a9-cisco-logo.png",
                         alt="Cisco",
                         width="189",
@@ -183,16 +217,6 @@ meta_copydoc %}
                         attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/20d17cf2-ebay-logo.png",
-                        alt="Ebay",
-                        width="211",
-                        height="313",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe
-            }}
-          </div>
         </div>
       </div>
     </div>
@@ -210,20 +234,20 @@ meta_copydoc %}
             When a high or critical Linux kernel vulnerability is detected a livepatch along with a <a href="/security/notices">Livepatch Security Notice</a> are issued. Systems that enable the livepatch client will receive and apply the patch, after it is made available. The livepatch will provide new kernel code replacing the vulnerable one, and will update the rest of the kernel to use the new code.
           </p>
           <div class="p-cta-block">
-            <a href="/security/livepatch/docs/kernels" class="p-button">Kernels covered by Livepatch</a>
+            <a href="/security/livepatch/docs/kernels" class="p-button">Explore kernels covered by Livepatch</a>
             <a href="/security/livepatch/docs/livepatch/explanation/howitworks">Learn more about how kernel livepatching works&nbsp;&rsaquo;</a>
           </div>
         </div>
       </div>
-      <div class="p-image-container--cinematic is-cover is-highlighted">
-        {{ image(url="https://assets.ubuntu.com/v1/c7f68138-chart-1.png",
-                alt="",
-                width="3696",
-                height="1541",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-image-container__image"}) | safe
-        }}
+      <div class="p-image-container--cinematic is-cover is-highlighted">        
+          {{ image(url="https://assets.ubuntu.com/v1/a3207c81-kernel_livepatching.png",
+            alt="A flow diagram showing how Ubuntu Livepatch works. On the left, a high priority or critical vulnerability is discovered. An arrow points to a cluster of servers/workstations with the Livepatch client enabled through a Canonical-authenticated livepatch update. The diagram highlights how a kernel can be live patched without a reboot.",
+            width="3696",
+            height="1541",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-image-container__image"}) | safe
+          }}
       </div>
     </div>
   </section>
@@ -237,7 +261,7 @@ meta_copydoc %}
       <div class="col">
         <div class="p-section--shallow">
           <p>
-            Livepatch on-prem is designed for complex Enterprise environments that follow their own rollout policy and remain in control of which machines will get updated and when. Livepatch on-prem regularly syncs with the Ubuntu Livepatch service and obtains the latest patches. It then deploys the livepatches gradually in as many stages as required.
+            Livepatch on-prem is designed for air gapped environments where Livepatch Client is unavailable to access security endpoints in Canonical's cloud. Livepatch on-prem can be updated with the latest patches, and Livepatch Client can retrieve the updates from Livepatch on-prem, instead of Canonical's cloud.
           </p>
           <div class="p-cta-block">
             <a href="/security/livepatch/docs/on_prem">Learn more about Livepatch on-prem server&nbsp;&rsaquo;</a>
@@ -245,8 +269,8 @@ meta_copydoc %}
         </div>
       </div>
       <div class="p-image-container--cinematic is-cover is-highlighted">
-        {{ image(url="https://assets.ubuntu.com/v1/2e977117-chart-2.png",
-                alt="",
+        {{ image(url="https://assets.ubuntu.com/v1/310da3dd-chart_2.png",
+                alt="Diagram of Canonical Livepatch distribution flow. On the left are multiple server environments (virtual machines and physical servers) connecting into an on-prem livepatch gateway. This on-prem server syncs regularly with Canonical to fetch the latest kernel patches, then applies a custom rollout policy: arrows show patches flowing to multiple groups of machines (staged deployment). This diagram illustrates how live patches can be distributed in an air-gapped environment.",
                 width="3696",
                 height="1541",
                 hi_def=True,
@@ -384,134 +408,135 @@ meta_copydoc %}
     </div>
   </section>
 
-  <section class="p-section">
-    <hr class="is-fixed-width p-rule" />
-    <div class="u-fixed-width">
-      <div class="p-section--shallow">
-        <h2>Learn more about Livepatch</h2>
-      </div>
-      <div class="p-tabs js-tabbed-content">
-        <div class="p-tabs__list" role="tablist" aria-label="Livepatch">
-          <div class="p-tabs__item">
-            <h3 class="p-tabs__link"
-                tabindex="0"
-                role="tab"
-                aria-selected="true"
-                aria-controls="webinar-tab"
-                id="webinar">Webinar</h3>
-          </div>
-          <div class="p-tabs__item">
-            <h3 class="p-tabs__link"
-                tabindex="0"
-                role="tab"
-                aria-selected="true"
-                aria-controls="documentation-tab"
-                id="documentation">Documentation</h3>
-          </div>
-          <div class="p-tabs__item">
-            <h3 class="p-tabs__link"
-                tabindex="0"
-                role="tab"
-                aria-selected="true"
-                aria-controls="datasheet-tab"
-                id="datasheet">Datasheet</h3>
-          </div>
-        </div>
-        <div tabindex="0"
-             role="tabpanel"
-             id="webinar-tab"
-             aria-labelledby="webinar">
-          {%- call(slot) resource_section(
-            date="3 June 2024",
-            hr=False
-            ) -%}
+  {{ vf_divided_section(
+    title={
+      "text": "Canonical Livepatch resources",
+    },
+    blocks=[
+      {
+        "type": "divided-block",
+        "bullet_type": "none",
+        "items": [
+            {
+              "title_text": "Webinar",
+              "contents": [
+                {
+                  "type": "cta-block",
+                  "item": {
+                    "link": {
+                      "content_html": "Best practices for security patching automations",
+                      "attrs": {
+                        "href": "/engage/patching-automations-best-practices"
+                      }
+                    }
+                  }
+                },
+              ]
+            },
+            {
+              "title_text": "Documentation",
+              "contents": [
+                {
+                  "type": "cta-block",
+                  "item": {
+                    "link": {
+                      "content_html": "Livepatch documentation",
+                      "attrs": {
+                        "href": "/security/livepatch/docs"
+                      }
+                    }
+                  }
+                },
+              ]
+            },
+            {
+              "title_text": "Datasheet",
+              "contents": [
+                {
+                  "type": "cta-block",
+                  "item": {
+                    "link": {
+                      "content_html": "Product overview and benefits",
+                      "attrs": {
+                        "href": "https://assets.ubuntu.com/v1/58f8d1e5-Livepatch_Datasheet.pdf"
+                      }
+                    }
+                  }
+                },
+              ]
+            },
+            {
+              "title_text": "Terms of Service",
+              "contents": [
+                {
+                  "type": "cta-block",
+                  "item": {
+                    "link": {
+                      "content_html": "Livepatch terms of service",
+                      "attrs": {
+                        "href": "https://canonical.com/legal/livepatch-terms-of-service"
+                      }
+                    }
+                  }
+                },
+              ]
+            },           
+          ]
+        },
+      ],
+    ) 
+  }}
 
-            {%- if slot == "author_links" -%}
-              <a href="https://canonical.com/blog/author/rajanpatel927"
-                 aria-label="Rajan Patel's blog author profile">Rajan Patel</a>
-            {%- endif -%}
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+  
+    {%- if slot == 'title' -%}
+      <h2>Frequently Asked Questions</h2>
+    {%- endif -%}
 
-            {%- if slot == "title_link" -%}
-              <a href="/engage/patching-automations-best-practices"
-                 aria-label="Watch 'Best practices for scheduling security patching automations'">Best practices for scheduling security patching automations</a>
-            {%- endif -%}
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">Should every vulnerability be Livepatched?</h3>
+    {%- endif -%}
 
-            {%- if slot == "description" -%}
-              <p>
-                In this webinar, you’ll learn about Canonical's release schedule for Ubuntu and its security updates, and how you can use this information to set optimal manual and automated security patching maintenance intervals.
-              </p>
-            {%- endif -%}
+    {%- if slot == 'list_item_description_1' -%}
+      <p>
+        Canonical Livepatch patches kernel vulnerabilities with critical and high Common Vulnerability Scoring System (CVSS) and <a href="/security/cves/about#priority">Ubuntu Priority</a> ratings. Canonical targets vulnerabilities that have security implications, such as privilege escalation or remote code execution, and are practical to patch safely in-memory.
+      </p>
+      <p>
+      Canonical Livepatch does not patch userspace libraries like OpenSSL or glibc, because that is the responsibility of <a href="https://manpages.ubuntu.com/manpages/man8/unattended-upgrade.8.html">unattended-upgrades</a> or a systems management tool, like <a href="/landscape">Canonical Landscape</a>.
+      </p>
+    {%- endif -%}
 
-            {%- if slot == "image" -%}
-              {{ image(url="https://assets.ubuntu.com/v1/009c321d-how-does-ubuntu.png",
-                            alt="",
-                            width="852",
-                            height="481",
-                            hi_def=True,
-                            loading="lazy",
-                            attrs={"class": "p-image-container__image"}) | safe
-              }}
-            {%- endif -%}
-          {%- endcall %}
-        </div>
-        <div tabindex="0"
-             role="tabpanel"
-             id="documentation-tab"
-             aria-labelledby="documentation">
-          {%- call(slot) resource_section(
-            hr=False
-            ) -%}
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">Can Livepatch trap me in a patched state?</h3>
+    {%- endif -%}
 
-            {%- if slot == "title_link" -%}
-              <a href="/security/livepatch/docs" aria-label="Visit Livepatch docs">Access the Livepatch documentation</a>
-            {%- endif -%}
+    {%- if slot == 'list_item_description_2' -%}
+      <p>
+        Canonical Livepatch prevents the risk of instability by providing cumulative patches instead of stacking incremental ones, 
+        which makes rollbacks unnecessary in practice.
+      </p>
+      <p>
+        Just like every Ubuntu kernel package, Canonical runs every Livepatch through the same testing and rigor. Each patch is tested cumulatively with previous patches, on real hardware, without emulation. Livepatch Client downloads a single cumulative patch for the running kernel. In practice, the failure rate of
+        Canonical Livepatch deployments is vanishingly small, and for Canonical Livepatch, reboots remain the safest and most sensible rollback path.
+      </p>
+    {%- endif -%}
 
-            {%- if slot == "image" -%}
-              {{ image(url="https://assets.ubuntu.com/v1/88295eae-maximizing-security-and-1.png",
-                            alt="",
-                            width="852",
-                            height="481",
-                            hi_def=True,
-                            loading="lazy",
-                            attrs={"class": "p-image-container__image"}) | safe
-              }}
-            {%- endif -%}
-          {%- endcall %}
-        </div>
-        <div tabindex="0"
-             role="tabpanel"
-             id="datasheet-tab"
-             aria-labelledby="datasheet">
-          {%- call(slot) resource_section(
-            hr=False
-            ) -%}
+    {%- if slot == 'list_item_title_3' -%}
+      <h3 class="p-heading--5">Is Livepatch a substitute for upgrade and reboot?</h3>
+    {%- endif -%}
 
-            {%- if slot == "title_link" -%}
-              <a href="https://assets.ubuntu.com/v1/58f8d1e5-Livepatch_Datasheet.pdf">Download the datasheet for the product overview, system requirements, and FAQs</a>
-            {%- endif -%}
+    {%- if slot == 'list_item_description_3' -%}
+      <p>Canonical Livepatch is not a replacement for rebooting. It is a tool that gives you more control by preventing unscheduled reboots. Reboots cleanly flush accumulated state inconsistencies from memory leaks, hung file handles, and other problems that could fester with long uptime. Eliminating reboots would expose any operating system to these inefficiencies over time. Trying to avoid all reboots results in incomplete security patching coverage, and leads to fragile patching strategies that involve service restarts and error prone dependency tracing. Scheduling reboots ensures a guaranteed clean slate.</p>
+    {%- endif -%}
 
-            {%- if slot == "image" -%}
-              {{ image(url="https://assets.ubuntu.com/v1/05128fd0-maximizing-security-and-2.png",
-                            alt="",
-                            width="852",
-                            height="480",
-                            hi_def=True,
-                            loading="lazy",
-                            attrs={"class": "p-image-container__image"}) | safe
-              }}
-            {%- endif -%}
-          {%- endcall %}
-        </div>
-      </div>
-    </div>
-  </section>
+  {%- endcall -%}
 
   <hr class="is-fixed-width p-rule" />
 
   <section class="p-strip is-deep">
     <div class="u-fixed-width">
       <h2>Livepatch is free to use on your own PC or server.</h2>
-      <a href="/support/contact-us" class="p-heading--2 js-invoke-modal">Talk to our team to learn if Livepatch is right for your business&nbsp;&rsaquo;</a>
+      <a href="/support/contact-us" class="p-heading--2 js-invoke-modal">Talk to our team and learn how Livepatch can secure your organization&nbsp;&rsaquo;</a>
     </div>
   </section>
 
