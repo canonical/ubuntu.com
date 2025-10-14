@@ -73,8 +73,9 @@
             </p>
             <hr class="p-rule--muted" />
             <p>
-              <a href="/download/iot/intel-iotg#get-in-touch"
-                 class="p-button--positive js-invoke-modal">Get in touch</a>
+              <a aria-controls="contact-modal"
+                  href="/download/iot/intel-iot/contact-us"
+                class="p-button--positive js-invoke-modal">Get in touch</a>
             </p>
             <p>
               <a href="/engage/iot-adoption-intel-and-ubuntu">Watch the joint webinar by Intel and Canonical on how
@@ -1076,15 +1077,7 @@
     </div>
   </section>
 
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/intel-iot.html"
-       data-form-id="4205"
-       data-lp-id="2065"
-       data-return-url="https://ubuntu.com/pricing/thank-you"
-       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
-
   <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
-
+  {{ load_form("/download/iot/intel-iot") | safe }}
+  
 {% endblock content %}
