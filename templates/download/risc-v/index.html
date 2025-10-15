@@ -58,7 +58,8 @@
         </div>
         <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small"
             role="tablist"
-            aria-label="Robotics features">
+            data-maintain-hash="true"
+            aria-label="Risc-v boards">
           <li>
             <button class="p-tabs__item"
                     id="allwinner-nezha"
@@ -133,7 +134,7 @@
           </li>
         </ul>
         <form class="u-hide--large u-hide--medium">
-          <select name="boardSelect" id="boardSelect">
+          <select name="boardSelect" id="boardSelect" data-maintain-hash="true">
             <option value="allwinner-nezha-tab" selected="">AllWinner Nezha</option>
             <option value="deepcomputing-fml13v01-tab">DeepComputing FML13V01</option>
             <option value="microchip-curiosity-tab">Microchip PIC64GX1000 Curiosity Kit</option>
