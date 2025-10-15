@@ -8,7 +8,7 @@ export class Notification {
     container,
     renderManager,
     destroyComponent,
-    sessionParams = null
+    sessionParams
   ) {
     this.container = container;
     this.renderManager = renderManager;
@@ -40,10 +40,10 @@ export class Notification {
 
   render(language) {
     this.container.innerHTML = this.getNotificationMarkup(language);
-    this.initaliseListeners();
+    this.initialiseListeners();
   }
 
-  initaliseListeners() {
+  initialiseListeners() {
     this.container
       .querySelector(".js-close")
       .addEventListener("click", async (e) => {
@@ -59,7 +59,6 @@ export class Notification {
   async handleAcceptAll() {
     const preference = "all";
 
-    // If we have session parameters, save to server and session
     storeCookiesPreferences(this.sessionParams, preference);
 
     this.destroyComponent();

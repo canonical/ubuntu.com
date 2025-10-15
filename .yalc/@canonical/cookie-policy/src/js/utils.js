@@ -57,7 +57,7 @@ export const setUserUuidCookie = (userUuid) => {
 };
 
 export const setCookiesAcceptedCookie = (preference) => {
-  // Set _cookies_acceptedd cookie with 365 days expiration
+  // Set _cookies_accepted cookie with 365 days expiration
   setSessionCookie("_cookies_accepted", preference, 365);
 };
 

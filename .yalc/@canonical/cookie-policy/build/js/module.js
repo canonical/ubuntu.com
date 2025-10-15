@@ -695,7 +695,7 @@ var setUserUuidCookie = function setUserUuidCookie(userUuid) {
   setSessionCookie("user_uuid", userUuid, 365);
 };
 var setCookiesAcceptedCookie = function setCookiesAcceptedCookie(preference) {
-  // Set _cookies_acceptedd cookie with 365 days expiration
+  // Set _cookies_accepted cookie with 365 days expiration
   setSessionCookie("_cookies_accepted", preference, 365);
 };
 var storeCookiesPreferences = /*#__PURE__*/function () {
@@ -884,8 +884,7 @@ var getLegacyUserId = function getLegacyUserId() {
 };
 
 var Notification = /*#__PURE__*/function () {
-  function Notification(container, renderManager, destroyComponent) {
-    var sessionParams = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+  function Notification(container, renderManager, destroyComponent, sessionParams) {
     _classCallCheck(this, Notification);
     this.container = container;
     this.renderManager = renderManager;
@@ -903,11 +902,11 @@ var Notification = /*#__PURE__*/function () {
     key: "render",
     value: function render(language) {
       this.container.innerHTML = this.getNotificationMarkup(language);
-      this.initaliseListeners();
+      this.initialiseListeners();
     }
   }, {
-    key: "initaliseListeners",
-    value: function initaliseListeners() {
+    key: "initialiseListeners",
+    value: function initialiseListeners() {
       var _this = this;
       this.container.querySelector(".js-close").addEventListener("click", /*#__PURE__*/function () {
         var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
@@ -938,7 +937,7 @@ var Notification = /*#__PURE__*/function () {
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
-              preference = "all"; // If we have session parameters, save to server and session
+              preference = "all";
               storeCookiesPreferences(this.sessionParams, preference);
               this.destroyComponent();
             case 3:
@@ -1011,8 +1010,7 @@ var Control = /*#__PURE__*/function () {
 }();
 
 var Manager = /*#__PURE__*/function () {
-  function Manager(container, destroyComponent) {
-    var sessionParams = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  function Manager(container, destroyComponent, sessionParams) {
     _classCallCheck(this, Manager);
     this.container = container;
     this.controlsStore = [];
@@ -1036,11 +1034,11 @@ var Manager = /*#__PURE__*/function () {
         var control = new Control(controlDetails, controlsContainer, language);
         _this.controlsStore.push(control);
       });
-      this.initaliseListeners();
+      this.initialiseListeners();
     }
   }, {
-    key: "initaliseListeners",
-    value: function initaliseListeners() {
+    key: "initialiseListeners",
+    value: function initialiseListeners() {
       var _this2 = this;
       this.container.querySelector(".js-close").addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -1075,8 +1073,7 @@ var Manager = /*#__PURE__*/function () {
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) switch (_context3.prev = _context3.next) {
             case 0:
-              // And if we don't have a session??
-              preference = "all"; // If we have session parameters, save to server and session
+              preference = "all";
               storeCookiesPreferences(this.sessionParams, preference);
               this.destroyComponent();
             case 3:
@@ -1108,8 +1105,6 @@ var Manager = /*#__PURE__*/function () {
                 lastCheckedControl = checkedControls[checkedControls.length - 1];
                 preference = lastCheckedControl ? lastCheckedControl.getId() : "essential";
               }
-
-              // If we have session parameters, save to server and session
               storeCookiesPreferences(this.sessionParams, preference, this.controlsStore);
               this.destroyComponent();
             case 4:
@@ -1175,7 +1170,6 @@ var cookiePolicy = function cookiePolicy() {
     };
   }();
   var renderNotification = function renderNotification(e) {
-    var hasCode = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
     if (e) {
       e.preventDefault();
     }
@@ -1184,8 +1178,8 @@ var cookiePolicy = function cookiePolicy() {
       cookiePolicyContainer.classList.add("cookie-policy");
       cookiePolicyContainer.setAttribute("open", true);
       document.body.appendChild(cookiePolicyContainer);
-      var notifiation = new Notification(cookiePolicyContainer, renderManager, close, sessionParams, hasCode);
-      notifiation.render(language);
+      var notification = new Notification(cookiePolicyContainer, renderManager, close, sessionParams);
+      notification.render(language);
       document.getElementById("cookie-policy-button-accept").focus();
     }
   };
@@ -1246,9 +1240,8 @@ var cookiePolicy = function cookiePolicy() {
     if (revokeButton) {
       revokeButton.addEventListener("click", function (e) {
         e.preventDefault();
-        var manageConsent = true;
         redirectToSession({
-          manageConsent: manageConsent
+          manageConsent: true
         });
       });
     }
