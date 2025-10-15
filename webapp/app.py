@@ -1210,7 +1210,7 @@ draft_blogs = BlogViews(
         session=session,
         thumbnail_width=555,
         thumbnail_height=311,
-        wordpress_user=WORDPRESS_USERNAME,
+        wordpress_username=WORDPRESS_USERNAME,
         wordpress_password=WORDPRESS_APPLICATION_PASSWORD,
     ),
     excluded_tags=[],
@@ -1233,7 +1233,6 @@ def require_login():
 @login_required
 def render_draft_blogs():
     email = user_info(flask.session).get("email", "").lower()
-    print(email)
     if not email.endswith("@canonical.com"):
         return flask.abort(403)
 
