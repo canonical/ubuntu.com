@@ -1077,7 +1077,6 @@ export var kubernetesReleases = [
     taskName: "Kubernetes 1.34",
     status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
-
 ];
 
 export var kubernetesReleasesLTS = [
