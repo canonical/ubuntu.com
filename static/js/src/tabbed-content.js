@@ -81,13 +81,7 @@
           // if we're adding the ID of the tab to the URL
           // this prevents the page attempting to jump to
           // the section with that ID
-          const url = new URL(window.location.href);
-          url.hash = tab.id;
-          history.pushState({}, "", url);
-
-          // Update the URL again with the same hash, then go back
-          history.pushState({}, "", url);
-          history.back();
+          handleHashChange(tab.id);
         }
 
         setActiveTab(tab, tabs);
@@ -221,6 +215,7 @@
 
   const boards = document.querySelectorAll(`[role=tabpanel]`);
   const dropdownSelect = document.getElementById("boardSelect");
+  const maintainHash = dropdownSelect?.getAttribute("data-maintain-hash");
 
   dropdownSelect?.addEventListener("change", () => {
     selectBoard();
@@ -228,7 +223,15 @@
 
   function selectBoard() {
     boards.forEach((board) => {
-      if (board.id === dropdownSelect.value) {
+      const targetValue = dropdownSelect.value;
+      if (board.id === targetValue) {
+        if (maintainHash) {
+          // Remove '-tab' from the hash
+          const cleanHash = targetValue.endsWith("-tab")
+            ? targetValue.slice(0, -4)
+            : targetValue;
+          handleHashChange(cleanHash);
+        }
         board.classList.remove("u-hide");
         board.focus();
       } else {
@@ -237,3 +240,13 @@
     });
   }
 })();
+
+const handleHashChange = (hash) => {
+  const url = new URL(window.location.href);
+  url.hash = hash;
+  history.pushState({}, "", url);
+
+  // Update the URL again with the same hash, then go back
+  history.pushState({}, "", url);
+  history.back();
+};
