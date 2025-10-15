@@ -162,7 +162,7 @@
         }
         ]) }}
 
-    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
       {%- if slot == 'title' -%}
         <h2>Enterprise features included</h2>
       {%- endif -%}
@@ -436,7 +436,7 @@
       </div>
     </section>
 
-    {{ vf_basic_section(title={"text": "Get expert help with Ubuntu Pro + Support"},
+    {{ vf_basic_section(title={"text": "Get expert help <br class='u-hide--medium' />with Ubuntu Pro + Support"},
         is_split_on_medium=true,
         items=[
         {
@@ -541,6 +541,7 @@
     {{ vf_divided_section(title={
         "text": "Further reading",
         },
+        is_split_on_medium=true,
         blocks=[
         {
         "type": "divided-block",
