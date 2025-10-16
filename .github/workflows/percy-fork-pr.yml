@@ -1,6 +1,5 @@
 name: Percy testing on PRs from forks
-run-name: Testing Percy on fork PR #${{ github.event.pull_request.number }}
-
+run-name: "Testing Percy on fork PR #${{ github.event.pull_request.number }}"
 # This workflow handles Percy testing for PRs from forks securely
 # It uses pull_request_target to access secrets while checking out the PR code
 
@@ -13,6 +12,7 @@ on:
       - synchronize
       - reopened
       - ready_for_review
+      - labeled
 
 jobs:
   # Security check job - validates the PR before running Percy
@@ -76,7 +76,8 @@ jobs:
       - name: Checkout PR code
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
           
       - uses: ./.github/actions/percy-snapshot
         with:

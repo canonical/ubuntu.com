@@ -25,7 +25,7 @@ PRs from trusted contributors are automatically approved if the author has one o
 For PRs from first-time or external contributors:
 
 1. A maintainer reviews the PR code for safety
-2. If safe, the maintainer adds the `safe-to-test` label to the PR
+2. If safe, the maintainer adds the `safe-for-percy` label to the PR
 3. The Percy tests will then run automatically
 
 
