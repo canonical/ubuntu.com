@@ -32,16 +32,6 @@ RESPONSE_LIST = {
     "json": "Returns json response.",
 }
 
-MARKETING_FLAGS = {
-    "utm_campaign": "salesforce-campaign-id",
-    "utm_source": "ad_source",
-    "gclid": "google-click-id",
-    "gbraid": "google-gbraid-id",
-    "wbraid": "google-wbraid-id",
-    "fbclid": "facebook-click-id",
-    "referrer": "referrer",
-}
-
 SERVICES = {
     "canonical-ua": {
         "short": "ua",
@@ -81,13 +71,6 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
     def decorator(func):
         @wraps(func)
         def decorated_function(*args, **kwargs):
-            # Set marketing flag
-            for query_parameter, metadata_key in MARKETING_FLAGS.items():
-                if query_parameter in flask.request.args:
-                    flask.session.pop(metadata_key, None)
-                    value = flask.request.args.get(query_parameter)
-                    flask.session[metadata_key] = value
-
             # shop under maintenance
             maintenance = strtobool(
                 get_flask_env("STORE_MAINTENANCE", "false")

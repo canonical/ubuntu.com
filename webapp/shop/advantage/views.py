@@ -321,24 +321,7 @@ def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
     if action == "renewal":
         purchase_request["renewalID"] = kwargs.get("renewal_id")
 
-    # marketing parameters
-    metadata_keys = [
-        "ad_source",
-        "google-click-id",
-        "google-gbraid-id",
-        "google-wbraid-id",
-        "facebook-click-id",
-        "salesforce-campaign-id",
-    ]
-
-    metadata = [
-        {
-            "key": metadata_key,
-            "value": flask.session.get(metadata_key),
-        }
-        for metadata_key in metadata_keys
-        if flask.session.get(metadata_key)
-    ]
+    metadata = []
     if referral_id:
         metadata.append({"key": "referralID", "value": referral_id})
 
