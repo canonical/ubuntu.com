@@ -14,6 +14,10 @@ on:
       - ready_for_review
       - labeled
 
+permissions:
+  contents: read      
+  pull-requests: read   
+
 jobs:
   # Security check job - validates the PR before running Percy
   security-check:

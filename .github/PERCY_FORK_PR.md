@@ -15,7 +15,7 @@ The `percy-fork-pr.yml` workflow uses `pull_request_target` which runs in the co
 
 ### Automatic Approval
 
-PRs from trusted contributors are automatically approved if the author has one of these associations:
+PRs from trusted contributors are automatically approved for Percy testing if the author has one of these associations:
 - `COLLABORATOR`
 - `MEMBER`
 - `OWNER`
