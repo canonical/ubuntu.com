@@ -20,6 +20,7 @@ If you have found a bug in the Ubuntu OS itself, please file it [here](https://b
 The simplest way to run the site locally is using the [`dotrun`](https://github.com/canonical-web-and-design/dotrun/) snap. Please use the installation scripts [mentioned in the README](https://github.com/canonical-web-and-design/dotrun/blob/main/README.md#installation) to install `dotrun`.
 
 Once it's installed, run the project with:
+test
 
 ```bash
 dotrun
