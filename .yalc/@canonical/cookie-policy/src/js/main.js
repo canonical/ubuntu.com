@@ -18,17 +18,19 @@ import {
   redirectToSession,
   getConsentPreferences,
   checkServiceHealth,
+  initApi,
 } from "./api.js";
 
 // Add Google Consent Mode as soon as the script is loaded
 addGoogleConsentMode();
 
-export const cookiePolicy = (callback = null) => {
+export const cookiePolicy = (apiUrl, callback = null, ) => {
+  let localMode;
   let cookiePolicyContainer = null;
   let language = document.documentElement.lang;
   let initialised = false;
   const sessionParams = extractSessionParameters();
-  let localMode;
+  initApi(apiUrl);
 
   // Handle return from session endpoint
   const handleReturnFromSession = async function () {

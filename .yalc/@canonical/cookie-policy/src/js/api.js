@@ -1,6 +1,13 @@
 // API Integration Layer for Cookie Policy Session Management
 
-const API_BASE_URL = "http://localhost:8118"; // Change to https://cookies.canonical.com in production
+let API_BASE_URL;
+
+// Set the base URL for the API service
+export const initApi = (apiUrl) => {
+  if (apiUrl) {
+    API_BASE_URL = apiUrl;
+  }
+};
 
 // Build API URL with query parameters
 export const buildApiUrl = (endpoint, params = {}) => {
