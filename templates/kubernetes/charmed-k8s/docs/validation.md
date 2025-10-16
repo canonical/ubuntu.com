@@ -42,11 +42,11 @@ version your cluster is set to by running:
 juju config kubernetes-control-plane channel
 ```
 
-The output will be in the form of `version.number/risk`, e.g `1.24/stable`. You should set
+The output will be in the form of `version.number/risk`, e.g `1.XX/stable`. You should set
 the `kubernetes-e2e` channel to the same value.
 
 ```
-juju config kubernetes-e2e channel=1.24/stable
+juju config kubernetes-e2e channel=1.XX/stable
 ```
 
 Finally we relate the charm to `easyrsa` and `kubernetes-control-plane`:
@@ -54,7 +54,6 @@ Finally we relate the charm to `easyrsa` and `kubernetes-control-plane`:
 ```bash
 juju config kubernetes-control-plane allow-privileged=true
 juju integrate kubernetes-e2e easyrsa
-juju integrate kubernetes-e2e kubernetes-control-plane:kube-api-endpoint
 juju integrate kubernetes-e2e:kube-control kubernetes-control-plane:kube-control
 ```
 
@@ -68,7 +67,7 @@ The tests are configured as a **Juju** _action_. To run the default tests:
 juju run kubernetes-e2e/0 test --background
 ```
 
-The command will return with a number for that specific action operation. 
+The command will return with a number for that specific action operation.
 ```console
 Scheduled operation 25 with task 26
 Check operation status with 'juju show-operation 25'
@@ -104,7 +103,7 @@ juju show-operation 25
 ```
 
 where `25` is the id of the scheduled operation when the test was initiated.
-This will return YAML output indicating the current status, 
+This will return YAML output indicating the current status,
 which can be either `running`, `completed` or `failed`.
 
 ```yaml
