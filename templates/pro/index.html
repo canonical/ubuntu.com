@@ -124,8 +124,13 @@
       ) -%}
 
       {%- if slot == 'signpost_image' -%}
-        <img src="https://assets.ubuntu.com/v1/70245349-microsoft_logo.png"
-             alt="Microsoft" />
+        {{ image(url="https://assets.ubuntu.com/v1/70245349-microsoft_logo.png",
+                alt="Microsoft",
+                width="852",
+                height="205",
+                hi_def=True,
+                loading="lazy") | safe
+        }}
       {%- endif -%}
 
     {% endcall -%}
@@ -138,8 +143,13 @@
       ) -%}
 
       {%- if slot == 'signpost_image' -%}
-        <img src="https://assets.ubuntu.com/v1/3100c850-gcp_logo.png"
-             alt="Google Cloud Platform" />
+        {{ image(url="https://assets.ubuntu.com/v1/3100c850-gcp_logo.png",
+                alt="Google Cloud Platform",
+                width="852",
+                height="203",
+                hi_def=True,
+                loading="lazy") | safe
+        }}
       {%- endif -%}
     {% endcall -%}
 
@@ -242,8 +252,13 @@
       ) -%}
 
       {%- if slot == 'signpost_image' -%}
-        <img src="https://assets.ubuntu.com/v1/d77e6fb4-nvidia_logo.png"
-             alt="Nvidia" />
+        {{ image(url="https://assets.ubuntu.com/v1/d77e6fb4-nvidia_logo.png",
+                alt="Nvidia",
+                width="852",
+                height="179",
+                hi_def=True,
+                loading="lazy") | safe
+        }}
       {%- endif -%}
 
     {% endcall -%}
@@ -256,8 +271,13 @@
       ) -%}
 
       {%- if slot == 'signpost_image' -%}
-        <img src="https://assets.ubuntu.com/v1/e2fa868e-vmware_logo.png"
-             alt="VMware" />
+        {{ image(url="https://assets.ubuntu.com/v1/e2fa868e-vmware_logo.png",
+                alt="VMware",
+                width="852",
+                height="170",
+                hi_def=True,
+                loading="lazy") | safe
+        }}
       {%- endif -%}
     {% endcall -%}
 
@@ -342,8 +362,13 @@
       ) -%}
 
       {%- if slot == 'signpost_image' -%}
-        <img src="https://assets.ubuntu.com/v1/ad9fb473-tenable_logo.png"
-             alt="Tenable" />
+        {{ image(url="https://assets.ubuntu.com/v1/ad9fb473-tenable_logo.png",
+                alt="Tenable",
+                width="852",
+                height="220",
+                hi_def=True,
+                loading="lazy") | safe
+        }}
       {%- endif -%}
 
     {% endcall -%}
@@ -355,8 +380,11 @@
       ) -%}
 
       {%- if slot == 'signpost_image' -%}
-        <img src="https://assets.ubuntu.com/v1/a3a852d1-launchdarkly_logo.png"
-             alt="LaunchDarkly" />
+        {{ image(url="https://assets.ubuntu.com/v1/a3a852d1-launchdarkly_logo.png",
+                alt="LaunchDarkly",
+                width="852",
+                height="209") | safe
+        }}
       {%- endif -%}
     {% endcall -%}
 
@@ -519,8 +547,11 @@
       ) -%}
 
       {%- if slot == 'signpost_image' -%}
-        <img src="https://assets.ubuntu.com/v1/ae29b16e-acquia_logo.png"
-             alt="Acquia" />
+        {{ image(url="https://assets.ubuntu.com/v1/ae29b16e-acquia_logo.png",
+                alt="Acquia",
+                width="852",
+                height="175") | safe
+        }}
       {%- endif -%}
 
     {% endcall -%}
@@ -532,8 +563,11 @@
       citation_source_organisation_text="Associate Professor of Pathology"
       ) -%}
       {%- if slot == 'signpost_image' -%}
-        <img src="https://assets.ubuntu.com/v1/591b7338-emory_logo.png"
-             alt="Emory" />
+        {{ image(url="https://assets.ubuntu.com/v1/591b7338-emory_logo.png",
+                alt="Emory",
+                width="852",
+                height="193") | safe
+        }}
       {%- endif -%}
 
     {% endcall -%}
