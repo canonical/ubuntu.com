@@ -1,0 +1,91 @@
+name: Percy testing on PRs from forks
+run-name: "Testing Percy on fork PR #${{ github.event.pull_request.number }}"
+# This workflow handles Percy testing for PRs from forks securely
+# It uses pull_request_target to access secrets while checking out the PR code
+
+on:
+  pull_request_target:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+      - labeled
+
+permissions:
+  contents: read      
+  pull-requests: read   
+
+jobs:
+  # Security check job - validates the PR before running Percy
+  security-check:
+    name: Security validation
+    runs-on: ubuntu-latest
+    # Only run for PRs from forks
+    if: github.event.pull_request.head.repo.full_name != github.repository
+    outputs:
+      approved: ${{ steps.check.outputs.approved }}
+    steps:
+      - name: Check PR author association
+        id: check
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const author = pr.user.login;
+            const authorAssociation = pr.author_association;
+            
+            // Allow PRs from collaborators, members, and owners
+            const trustedAssociations = ['COLLABORATOR', 'MEMBER', 'OWNER'];
+            const isTrusted = trustedAssociations.includes(authorAssociation);
+            
+            console.log(`PR #${pr.number} from ${author} (${authorAssociation})`);
+            
+            if (isTrusted) {
+              console.log('Author is trusted, proceeding with Percy tests');
+              core.setOutput('approved', 'true');
+            } else {
+              console.log('Author is not trusted. Percy tests require manual approval.');
+              console.log('A maintainer can approve by adding the "safe-for-percy" label.');
+              core.setOutput('approved', 'false');
+            }
+
+      - name: Check for safe-for-percy label
+        if: steps.check.outputs.approved != 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const labels = pr.labels.map(label => label.name);
+            
+            if (labels.includes('safe-for-percy')) {
+              console.log('PR has "safe-for-percy" label, proceeding with Percy tests');
+              core.setOutput('approved', 'true');
+            } else {
+              core.setFailed('PR from fork requires "safe-for-percy" label from a maintainer');
+            }
+
+  snapshot:
+    name: Take Percy snapshots
+    runs-on: ubuntu-latest
+    needs: security-check
+    # Only run for fork PRs that have been approved
+    if: |
+      needs.security-check.outputs.approved == 'true' &&
+      github.event.pull_request.head.repo.full_name != github.repository
+    steps:
+      # Checkout the PR code (not the base branch)
+      - name: Checkout PR code
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+          
+      - uses: ./.github/actions/percy-snapshot
+        with:
+          pr_number: ${{ github.event.pull_request.number }}
+          branch_name: ${{ github.event.pull_request.head.ref }}
+          commitsh: ${{ github.event.pull_request.head.sha }}
+          percy_token_write: ${{ secrets.PERCY_TOKEN_WRITE }}
