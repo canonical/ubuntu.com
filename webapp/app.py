@@ -34,7 +34,8 @@ from canonicalwebteam.form_generator import FormGenerator
 
 from webapp.certified.views import certified_routes
 from webapp.handlers import init_handlers
-from webapp.login import login_handler, logout
+from webapp.login import login_handler, logout, user_info
+from webapp.decorators import login_required
 from webapp.security.views import (
     cve,
     cve_index,
@@ -188,6 +189,10 @@ DISCOURSE_API_USERNAME = get_flask_env("DISCOURSE_API_USERNAME")
 CHARMHUB_DISCOURSE_API_KEY = get_flask_env("CHARMHUB_DISCOURSE_API_KEY")
 CHARMHUB_DISCOURSE_API_USERNAME = get_flask_env(
     "CHARMHUB_DISCOURSE_API_USERNAME"
+)
+WORDPRESS_USERNAME = get_flask_env("WORDPRESS_USERNAME")
+WORDPRESS_APPLICATION_PASSWORD = get_flask_env(
+    "WORDPRESS_APPLICATION_PASSWORD"
 )
 
 # Sitemaps that are already generated and don't need to be updated.
@@ -1198,6 +1203,49 @@ def render_blogs():
 
 
 app.add_url_rule("/hpe", view_func=render_blogs)
+
+
+draft_blogs = BlogViews(
+    api=BlogAPI(
+        session=session,
+        thumbnail_width=555,
+        thumbnail_height=311,
+        wordpress_username=WORDPRESS_USERNAME,
+        wordpress_password=WORDPRESS_APPLICATION_PASSWORD,
+    ),
+    excluded_tags=[],
+    tag_ids=[4794],
+    per_page=3,
+    blog_title="Draft blogs",
+    status="draft",
+)
+
+
+draft_blogs_blueprint = build_blueprint(draft_blogs)
+
+
+@draft_blogs_blueprint.before_request
+def require_login():
+    if not user_info(flask.session):
+        return flask.redirect("/login?next=" + flask.request.path)
+
+
+@login_required
+def render_draft_blogs():
+    email = user_info(flask.session).get("email", "").lower()
+    if not email.endswith("@canonical.com"):
+        return flask.abort(403)
+
+    test_blogs = draft_blogs.get_tag("staging-blogs")
+    return flask.render_template(
+        "/blog/draft-blogs.html", articles=test_blogs["articles"]
+    )
+
+
+app.register_blueprint(
+    draft_blogs_blueprint, url_prefix="/blog/draft-blogs", name="draft_blogs"
+)
+app.add_url_rule("/blog/draft-blogs", view_func=render_draft_blogs)
 
 
 # Public-cloud blog section
