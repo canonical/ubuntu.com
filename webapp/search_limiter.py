@@ -1,10 +1,13 @@
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
-Limiter instance
 limiter = Limiter(
-    key_func=get_remote_address,
-    default_limits=["200 per day", "50 per hour"]
+    key_func=get_remote_address
+)
+
+search_limit = limiter.shared_limit(
+    ["10 per minute", "500 per hour"],
+    scope="search"
 )
 
 @limiter.error_handler

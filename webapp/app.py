@@ -528,11 +528,10 @@ search_view = build_search_view(
     featured=navigation,
 )
 
-# limit search
-search_view = limiter.limit("10 per minute")(search_view)
+# Apply shared search limit
+search_view = search_limit(search_view)
 
 app.add_url_rule("/search", "search", search_view)
-
 
 app.add_url_rule(
     (
@@ -778,12 +777,14 @@ server_docs = Docs(
 app.add_url_rule(
     "/server/docs/search",
     "server-docs-search",
-    build_search_view(
-        app,
-        session=session,
-        site="ubuntu.com/server/docs",
-        template_path="/server/docs/search-results.html",
-        search_engine_id=search_engine_id,
+    search_limit(
+        build_search_view(
+            app,
+            session=session,
+            site="ubuntu.com/server/docs",
+            template_path="/server/docs/search-results.html",
+            search_engine_id=search_engine_id,
+        )
     ),
 )
 
@@ -806,12 +807,14 @@ community_docs = Docs(
 app.add_url_rule(
     "/community/search",
     "community-search",
-    build_search_view(
-        app,
-        session=session,
-        site="ubuntu.com/community",
-        template_path="/community/docs/search-results.html",
-        search_engine_id=search_engine_id,
+    search_limit(
+        build_search_view(
+            app,
+            session=session,
+            site="ubuntu.com/community",
+            template_path="/community/docs/search-results.html",
+            search_engine_id=search_engine_id,
+        )
     ),
 )
 
@@ -917,12 +920,14 @@ ceph_docs.init_app(app)
 app.add_url_rule(
     "/ceph/docs/search",
     "ceph-docs-search",
-    build_search_view(
-        app,
-        session=session,
-        site="ubuntu.com/ceph/docs",
-        template_path="ceph/docs/search-results.html",
-        search_engine_id=search_engine_id,
+    search_limit(
+        build_search_view(
+            app,
+            session=session,
+            site="ubuntu.com/ceph/docs",
+            template_path="ceph/docs/search-results.html",
+            search_engine_id=search_engine_id,
+        )
     ),
 )
 
@@ -1102,12 +1107,14 @@ openstack_docs = Docs(
 app.add_url_rule(
     "/openstack/docs/search",
     "openstack-docs-search",
-    build_search_view(
-        app,
-        session=session,
-        site="ubuntu.com/openstack/docs",
-        template_path="openstack/docs/search-results.html",
-        search_engine_id=search_engine_id,
+    search_limit(
+        build_search_view(
+            app,
+            session=session,
+            site="ubuntu.com/openstack/docs",
+            template_path="openstack/docs/search-results.html",
+            search_engine_id=search_engine_id,
+        )
     ),
 )
 
@@ -1129,12 +1136,14 @@ security_livepatch_docs = Docs(
 app.add_url_rule(
     "/security/livepatch/docs/search",
     "security-livepatch-docs-search",
-    build_search_view(
-        app,
-        session=session,
-        site="ubuntu.com/security/livepatch/docs",
-        template_path="/security/livepatch/docs/search-results.html",
-        search_engine_id=search_engine_id,
+    search_limit(
+        build_search_view(
+            app,
+            session=session,
+            site="ubuntu.com/security/livepatch/docs",
+            template_path="/security/livepatch/docs/search-results.html",
+            search_engine_id=search_engine_id,
+        )
     ),
 )
 
@@ -1156,12 +1165,14 @@ security_certs_docs = Docs(
 app.add_url_rule(
     "/security/certifications/docs/search",
     "security-certs-docs-search",
-    build_search_view(
-        app,
-        session=session,
-        site="ubuntu.com/security/certifications/docs",
-        template_path="/security/certifications/docs/search-results.html",
-        search_engine_id=search_engine_id,
+    search_limit(
+        build_search_view(
+            app,
+            session=session,
+            site="ubuntu.com/security/certifications/docs",
+            template_path="/security/certifications/docs/search-results.html",
+            search_engine_id=search_engine_id,
+        )
     ),
 )
 
