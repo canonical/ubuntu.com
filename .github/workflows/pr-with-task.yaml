@@ -68,6 +68,10 @@ jobs:
 
       - name: Test project
         run: task test
+    env:
+      MARKETO_API_URL: https://066-EOV-335.mktorest.com
+      MARKETO_API_CLIENT: ${{ secrets.MARKETO_API_CLIENT }}
+      MARKETO_API_SECRET: ${{ secrets.MARKETO_API_SECRET }}
 
   lint:
     name: "Lint Project"
