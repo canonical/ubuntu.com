@@ -217,6 +217,16 @@ production:
 
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+        
+        - name: WORDPRESS_APPLICATION_PASSWORD
+          secretKeyRef:
+            key: wordpress-application-password
+            name: wordpress-api
+
+        - name: WORDPRESS_USERNAME
+          secretKeyRef:
+            key: wordpress-username
+            name: wordpress-api
 
     - paths: [/credentials]
       name: ubuntu-com-credentials
@@ -816,6 +826,16 @@ staging:
 
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+
+        - name: WORDPRESS_APPLICATION_PASSWORD
+          secretKeyRef:
+            key: wordpress-application-password
+            name: wordpress-api
+
+        - name: WORDPRESS_USERNAME
+          secretKeyRef:
+            key: wordpress-username
+            name: wordpress-api
 
     - paths: [/credentials]
       name: ubuntu-com-credentials
