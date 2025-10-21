@@ -2,53 +2,79 @@ import { debounce } from "./utils/debounce.js";
 
 var hackerEarthData = {
   tasks: [
-    { value: 66, taskName: "Ubuntu" },
-    { value: 61, taskName: "MS Windows" },
-    { value: 57, taskName: "MacOS" },
-    { value: 11, taskName: "CentOs" },
-    { value: 10, taskName: "Debian" },
-    { value: 9, taskName: "Fedora" },
-    { value: 8, taskName: "Arch Linux" },
-    { value: 4, taskName: "Solaris" },
-    { value: 2, taskName: "FreeBSD" },
-    { value: 1, taskName: "Deepin" },
-  ],
-  labels: [
-    "Ubuntu",
-    "MS Windows",
-    "MacOS",
-    "CentOs",
-    "Debian",
-    "Fedora",
-    "Arch Linux",
-    "Solaris",
-    "FreeBSD",
-    "Deepin",
-  ],
-};
-
-var openSourceData = {
-  tasks: [
-    { value: 35.6, taskName: "Ubuntu" },
-    { value: 21.4, taskName: "Debian" },
-    { value: 19.5, taskName: "CentOS" },
-    { value: 16, taskName: "RHEL" },
-    { value: 14.6, taskName: "OpenSUSE" },
-    { value: 13.5, taskName: "SLES" },
-    { value: 11.1, taskName: "SELinux" },
-    { value: 7.5, taskName: "Rocky Linux" },
-    { value: 4.8, taskName: "NavyLinux" },
+    { value: 56.73, taskName: "Ubuntu" },
+    { value: 31.73, taskName: "Debian" },
+    { value: 25.96, taskName: "CentOS" },
+    { value: 21.63, taskName: "Red Hat Enterprise Linux" },
+    { value: 15.38, taskName: "Alpine Linux" },
+    { value: 14.42, taskName: "Fedora" },
+    { value: 11.54, taskName: "Amazon Linux" },
+    { value: 10.10, taskName: "Kali Linux" },
+    { value: 10.10, taskName: "Rocky Linux" },
+    { value: 9.13, taskName: "Oracle Linux" },
+    { value: 8.65, taskName: "OpenSUSE" },
+    { value: 8.17, taskName: "Alma Linux" },
+    { value: 7.21, taskName: "Linux Mint" },
+    { value: 6.73, taskName: "Arch Linux" },
+    { value: 6.73, taskName: "CentOS Stream" },
+    { value: 4.33, taskName: "SLES" },
+    { value: 3.37, taskName: "Navy Linux" },
   ],
   labels: [
     "Ubuntu",
     "Debian",
     "CentOS",
-    "RHEL",
-    "OpenSUSE",
-    "SLES",
-    "SELinux",
+    "Red Hat Enterprise Linux",
+    "Alpine Linux",
+    "Fedora",
+    "Amazon Linux",
+    "Kali Linux",
     "Rocky Linux",
-    "NavyLinux",
+    "Oracle Linux",
+    "OpenSUSE",
+    "Alma Linux",
+    "Linux Mint",
+    "Arch Linux",
+    "CentOS Stream",
+    "SLES",
+    "Navy Linux",
+  ],
+};
+
+var openSourceData = {
+  tasks: [
+    { value: 37.0, taskName: "Ubuntu (Classic, Server, and Core)" },
+    { value: 28.0, taskName: "Raspbian/Raspberry Pi OS" },
+    { value: 26.0, taskName: "Debian" },
+    { value: 21.0, taskName: "Yocto Project" },
+    { value: 11.0, taskName: "Other" },
+    { value: 10.0, taskName: "OpenWrt or equivalent (e.g. Linino, LEDE, etc.)" },
+    { value: 9.0, taskName: "Alpine" },
+    { value: 8.0, taskName: "CentOS" },
+    { value: 6.0, taskName: "Red Hat Enterprise Linux" },
+    { value: 5.0, taskName: "Automotive Grade" },
+    { value: 5.0, taskName: "Linus" },
+    { value: 4.0, taskName: "Fedora/Fedora IoT" },
+    { value: 2.0, taskName: "uClinux" },
+    { value: 1.0, taskName: "Wind River Linux" },
+    { value: 1.0, taskName: "Tizen" },
+  ],
+  labels: [
+    "Ubuntu (Classic, Server, and Core)",
+    "Raspbian/Raspberry Pi OS",
+    "Debian",
+    "Yocto Project",
+    "Other",
+    "OpenWrt or equivalent (e.g. Linino, LEDE, etc.)",
+    "Alpine",
+    "CentOS",
+    "Red Hat Enterprise Linux",
+    "Automotive Grade",
+    "Linus",
+    "Fedora/Fedora IoT",
+    "uClinux",
+    "Wind River Linux",
+    "Tizen",
   ],
 };
 
@@ -81,10 +107,12 @@ function sortData(data) {
  * Add bars to chart using supplied data
  */
 function addBarsToChart(svg, tasks, x, y) {
+  const labelOffset = 22;
+  const barHeight = 24;
   const barClass = (d) =>
-    d.taskName === "Ubuntu" ? "chart__bar--orange" : "chart__bar--light-grey";
+    d.taskName === "Ubuntu" || d.taskName === "Ubuntu (Classic, Server, and Core)" ? "chart__bar--orange" : "chart__bar--light-grey";
   const barWidth = (d) => x(d.value) - x(0);
-  const barTransform = (d) => `translate(${x(0)},${y(d.taskName)})`;
+  const barTransform = (d) => `translate(${x(0)},${y(d.taskName) + labelOffset})`;
 
   svg
     .selectAll(".chart")
@@ -94,8 +122,54 @@ function addBarsToChart(svg, tasks, x, y) {
     .attr("class", barClass)
     .attr("y", 0)
     .attr("transform", barTransform)
-    .attr("height", y.bandwidth)
+    .attr("height", barHeight)
     .attr("width", barWidth);
+}
+
+/**
+ *
+ * @param {*} svg
+ * @param {Array} tasks
+ * @param {*} y
+ *
+ * Add labels above each bar with muted styling
+ */
+function addLabelsAboveBars(svg, tasks, y) {
+  svg
+    .selectAll(".chart-label")
+    .data(tasks, (d) => d.taskName + d.value)
+    .enter()
+    .append("text")
+    .attr("class", "chart-label")
+    .attr("x", 0)
+    .attr("y", (d) => y(d.taskName) + 12)
+    .attr("style", "fill: #666; font-size: 16px; font-weight: 400;")
+    .text((d) => d.taskName);
+}
+
+/**
+ *
+ * @param {*} svg
+ * @param {Array} tasks
+ * @param {*} x
+ * @param {*} y
+ *
+ * Add percentage values to the right of each bar with bold styling
+ */
+function addPercentageLabels(svg, tasks, x, y) {
+  const labelOffset = 22;
+  const barHeight = 24;
+  svg
+    .selectAll(".chart-percentage")
+    .data(tasks, (d) => d.taskName + d.value)
+    .enter()
+    .append("text")
+    .attr("class", "chart-percentage")
+    .attr("x", (d) => x(d.value) + 8)
+    .attr("y", (d) => y(d.taskName) + labelOffset + barHeight / 2)
+    .attr("dy", "0.35em")
+    .attr("style", "fill: #000; font-size: 14px; font-weight: 700;")
+    .text((d) => d.value + "%");
 }
 
 /**
@@ -295,10 +369,10 @@ function calculateYAxisWidth(YAxisLabels, spacePerChar, extraSpace = 0) {
  * Builds chart using supplied selector and data
  */
 export function createDeveloperChart(chartSelector, taskTypes, tasks) {
-  margin.left = calculateYAxisWidth(taskTypes, 15, gapSpacing);
-  var rowHeight = 36;
+  margin.left = 0;
+  var rowHeight = 70;
   var highestValue = d3.max(tasks, (d) => d.value);
-  var height = taskTypes.length * rowHeight + margin.bottom;
+  var height = taskTypes.length * rowHeight + margin.bottom + margin.top;
   var parent = d3.select(chartSelector);
   var containerWidth = parent.node().getBoundingClientRect().width;
   if (containerWidth <= 0) {
@@ -316,17 +390,15 @@ export function createDeveloperChart(chartSelector, taskTypes, tasks) {
   var x = d3
     .scaleLinear()
     .domain([0, highestValue + 10])
-    .range([0, width + margin.right]);
+    .range([0, width]);
 
   var y = d3
     .scaleBand()
     .domain(taskTypes)
     .rangeRound([0, height - margin.top - margin.bottom])
-    .padding(0.1);
+    .padding(0.45);
 
   var xAxis = d3.axisBottom(x).tickValues(d3.range(0, highestValue + 10, 10));
-
-  var yAxis = d3.axisRight(y).tickPadding(-margin.left).tickSize(0);
 
   sortData(tasks);
 
@@ -336,7 +408,7 @@ export function createDeveloperChart(chartSelector, taskTypes, tasks) {
     .append("svg")
     .attr("class", "chart")
     .attr("width", width + margin.left + margin.right)
-    .attr("height", height - margin.top)
+    .attr("height", height)
     .append("g")
     .attr("class", "horizontal-bar-chart")
     .attr("width", width + margin.left + margin.right)
@@ -344,10 +416,8 @@ export function createDeveloperChart(chartSelector, taskTypes, tasks) {
     .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
 
   addBarsToChart(svg, tasks, x, y);
-  addXAxis(svg, height, margin, xAxis);
-  addYAxis(svg, yAxis, tasks);
-
-  addYAxisHorizontalLines(svg, yAxis, width, margin);
+  addLabelsAboveBars(svg, tasks, y);
+  addPercentageLabels(svg, tasks, x, y);
   addXAxisTicks(svg);
   cleanUpChart(svg);
 }
