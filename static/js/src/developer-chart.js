@@ -9,8 +9,8 @@ var hackerEarthData = {
     { value: 15.38, taskName: "Alpine Linux" },
     { value: 14.42, taskName: "Fedora" },
     { value: 11.54, taskName: "Amazon Linux" },
-    { value: 10.10, taskName: "Kali Linux" },
-    { value: 10.10, taskName: "Rocky Linux" },
+    { value: 10.1, taskName: "Kali Linux" },
+    { value: 10.1, taskName: "Rocky Linux" },
     { value: 9.13, taskName: "Oracle Linux" },
     { value: 8.65, taskName: "OpenSUSE" },
     { value: 8.17, taskName: "Alma Linux" },
@@ -48,7 +48,10 @@ var openSourceData = {
     { value: 26.0, taskName: "Debian" },
     { value: 21.0, taskName: "Yocto Project" },
     { value: 11.0, taskName: "Other" },
-    { value: 10.0, taskName: "OpenWrt or equivalent (e.g. Linino, LEDE, etc.)" },
+    {
+      value: 10.0,
+      taskName: "OpenWrt or equivalent (e.g. Linino, LEDE, etc.)",
+    },
     { value: 9.0, taskName: "Alpine" },
     { value: 8.0, taskName: "CentOS" },
     { value: 6.0, taskName: "Red Hat Enterprise Linux" },
@@ -110,9 +113,13 @@ function addBarsToChart(svg, tasks, x, y) {
   const labelOffset = 22;
   const barHeight = 24;
   const barClass = (d) =>
-    d.taskName === "Ubuntu" || d.taskName === "Ubuntu (Classic, Server, and Core)" ? "chart__bar--orange" : "chart__bar--light-grey";
+    d.taskName === "Ubuntu" ||
+    d.taskName === "Ubuntu (Classic, Server, and Core)"
+      ? "chart__bar--orange"
+      : "chart__bar--light-grey";
   const barWidth = (d) => x(d.value) - x(0);
-  const barTransform = (d) => `translate(${x(0)},${y(d.taskName) + labelOffset})`;
+  const barTransform = (d) =>
+    `translate(${x(0)},${y(d.taskName) + labelOffset})`;
 
   svg
     .selectAll(".chart")
