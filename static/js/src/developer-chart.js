@@ -418,7 +418,6 @@ export function createDeveloperChart(chartSelector, taskTypes, tasks) {
   addBarsToChart(svg, tasks, x, y);
   addLabelsAboveBars(svg, tasks, y);
   addPercentageLabels(svg, tasks, x, y);
-  addXAxisTicks(svg);
   cleanUpChart(svg);
 }
 
