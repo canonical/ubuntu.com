@@ -930,7 +930,7 @@ download_ubuntu:
               url: /embedded
             - title: Real-time Ubuntu
               description: Low-latency kernel
-              url: /real-time
+              url: /real-time      
       secondary_links:
         - title: Quick links
           links:
@@ -950,6 +950,22 @@ download_ubuntu:
               url: /raspberry-pi
             - title: RISC-V platforms
               url: /download/risc-v
+    - title: Ubuntu for RISC-V
+      primary_links: 
+        - links:
+            - title: Canonical-built images
+              description: RISC-V Ubuntu images from Canonical
+              url: /download/risc-v/canonical-built
+            - title: Partner-built images
+              description: RISC-V Ubuntu images from our partners
+              url: /download/risc-v/partner-built
+      secondary_links:
+        - title: Quick links
+          links:
+            - title: RISC-V Cookbook for partners to build Ubuntu images
+              url: https://canonical-risc-v-cookbook.readthedocs-hosted.com/en/latest/
+            - title: Introduction to Canonical's RISC-V programs
+              url: https://canonical.com/partners/silicon
     - title: Develop on Ubuntu
       primary_links:
         - links:
