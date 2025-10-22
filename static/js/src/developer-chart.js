@@ -2,53 +2,82 @@ import { debounce } from "./utils/debounce.js";
 
 var hackerEarthData = {
   tasks: [
-    { value: 66, taskName: "Ubuntu" },
-    { value: 61, taskName: "MS Windows" },
-    { value: 57, taskName: "MacOS" },
-    { value: 11, taskName: "CentOs" },
-    { value: 10, taskName: "Debian" },
-    { value: 9, taskName: "Fedora" },
-    { value: 8, taskName: "Arch Linux" },
-    { value: 4, taskName: "Solaris" },
-    { value: 2, taskName: "FreeBSD" },
-    { value: 1, taskName: "Deepin" },
-  ],
-  labels: [
-    "Ubuntu",
-    "MS Windows",
-    "MacOS",
-    "CentOs",
-    "Debian",
-    "Fedora",
-    "Arch Linux",
-    "Solaris",
-    "FreeBSD",
-    "Deepin",
-  ],
-};
-
-var openSourceData = {
-  tasks: [
-    { value: 35.6, taskName: "Ubuntu" },
-    { value: 21.4, taskName: "Debian" },
-    { value: 19.5, taskName: "CentOS" },
-    { value: 16, taskName: "RHEL" },
-    { value: 14.6, taskName: "OpenSUSE" },
-    { value: 13.5, taskName: "SLES" },
-    { value: 11.1, taskName: "SELinux" },
-    { value: 7.5, taskName: "Rocky Linux" },
-    { value: 4.8, taskName: "NavyLinux" },
+    { value: 56.73, taskName: "Ubuntu" },
+    { value: 31.73, taskName: "Debian" },
+    { value: 25.96, taskName: "CentOS" },
+    { value: 21.63, taskName: "Red Hat Enterprise Linux" },
+    { value: 15.38, taskName: "Alpine Linux" },
+    { value: 14.42, taskName: "Fedora" },
+    { value: 11.54, taskName: "Amazon Linux" },
+    { value: 10.1, taskName: "Kali Linux" },
+    { value: 10.1, taskName: "Rocky Linux" },
+    { value: 9.13, taskName: "Oracle Linux" },
+    { value: 8.65, taskName: "OpenSUSE" },
+    { value: 8.17, taskName: "Alma Linux" },
+    { value: 7.21, taskName: "Linux Mint" },
+    { value: 6.73, taskName: "Arch Linux" },
+    { value: 6.73, taskName: "CentOS Stream" },
+    { value: 4.33, taskName: "SLES" },
+    { value: 3.37, taskName: "Navy Linux" },
   ],
   labels: [
     "Ubuntu",
     "Debian",
     "CentOS",
-    "RHEL",
-    "OpenSUSE",
-    "SLES",
-    "SELinux",
+    "Red Hat Enterprise Linux",
+    "Alpine Linux",
+    "Fedora",
+    "Amazon Linux",
+    "Kali Linux",
     "Rocky Linux",
-    "NavyLinux",
+    "Oracle Linux",
+    "OpenSUSE",
+    "Alma Linux",
+    "Linux Mint",
+    "Arch Linux",
+    "CentOS Stream",
+    "SLES",
+    "Navy Linux",
+  ],
+};
+
+var openSourceData = {
+  tasks: [
+    { value: 37.0, taskName: "Ubuntu (Classic/Server/Core)" },
+    { value: 28.0, taskName: "Raspbian/Raspberry Pi OS" },
+    { value: 26.0, taskName: "Debian" },
+    { value: 21.0, taskName: "Yocto Project" },
+    { value: 11.0, taskName: "Other" },
+    {
+      value: 10.0,
+      taskName: "OpenWrt or equivalent",
+    },
+    { value: 9.0, taskName: "Alpine" },
+    { value: 8.0, taskName: "CentOS" },
+    { value: 6.0, taskName: "Red Hat Enterprise Linux" },
+    { value: 5.0, taskName: "Automotive Grade" },
+    { value: 5.0, taskName: "Linus" },
+    { value: 4.0, taskName: "Fedora/Fedora IoT" },
+    { value: 2.0, taskName: "uClinux" },
+    { value: 1.0, taskName: "Wind River Linux" },
+    { value: 1.0, taskName: "Tizen" },
+  ],
+  labels: [
+    "Ubuntu (Classic/Server/Core)",
+    "Raspbian/Raspberry Pi OS",
+    "Debian",
+    "Yocto Project",
+    "Other",
+    "OpenWrt or equivalent",
+    "Alpine",
+    "CentOS",
+    "Red Hat Enterprise Linux",
+    "Automotive Grade",
+    "Linus",
+    "Fedora/Fedora IoT",
+    "uClinux",
+    "Wind River Linux",
+    "Tizen",
   ],
 };
 
@@ -59,7 +88,7 @@ var margin = {
   bottom: 30,
   left: 0,
 };
-var gapSpacing = 32;
+var gapSpacing = 10;
 
 /**
  *
@@ -82,7 +111,9 @@ function sortData(data) {
  */
 function addBarsToChart(svg, tasks, x, y) {
   const barClass = (d) =>
-    d.taskName === "Ubuntu" ? "chart__bar--orange" : "chart__bar--light-grey";
+    d.taskName.startsWith("Ubuntu")
+      ? "chart__bar--orange"
+      : "chart__bar--light-grey";
   const barWidth = (d) => x(d.value) - x(0);
   const barTransform = (d) => `translate(${x(0)},${y(d.taskName)})`;
 
@@ -139,7 +170,7 @@ function appendYAxisGroup(svg, yAxis) {
  */
 function formatYAxisLabels(yAxisGroup, tasks) {
   yAxisGroup.selectAll(".tick text").each(function (d, i) {
-    d3.select(this).text("");
+    d3.select(this).text("").attr("class", "u-text--muted");
     d3.select(this).append("tspan").text(d);
     d3.select(this)
       .append("tspan")
@@ -295,7 +326,7 @@ function calculateYAxisWidth(YAxisLabels, spacePerChar, extraSpace = 0) {
  * Builds chart using supplied selector and data
  */
 export function createDeveloperChart(chartSelector, taskTypes, tasks) {
-  margin.left = calculateYAxisWidth(taskTypes, 15, gapSpacing);
+  margin.left = calculateYAxisWidth(taskTypes, 11, gapSpacing);
   var rowHeight = 36;
   var highestValue = d3.max(tasks, (d) => d.value);
   var height = taskTypes.length * rowHeight + margin.bottom;
@@ -346,8 +377,6 @@ export function createDeveloperChart(chartSelector, taskTypes, tasks) {
   addBarsToChart(svg, tasks, x, y);
   addXAxis(svg, height, margin, xAxis);
   addYAxis(svg, yAxis, tasks);
-
-  addYAxisHorizontalLines(svg, yAxis, width, margin);
   addXAxisTicks(svg);
   cleanUpChart(svg);
 }
