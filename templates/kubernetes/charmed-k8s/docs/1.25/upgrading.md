@@ -173,14 +173,14 @@ is no need to set a specific channel or version for this charm.
 ### Upgrading the **kubernetes-control-plane** units
 
 **Note**: Older versions of Charmed-Kubernetes used `kubernetes-master` as the charm name. This has been updated
-to `kubernetes-control-plane`. However, it is not possible to rename a deployed application. If you 
+to `kubernetes-control-plane`. However, it is not possible to rename a deployed application. If you
 originally installed version 1.23 or before, your units will follow the old naming scheme and you should
 substitute `kubernetes-control-plane`for `kubernetes-master`in the following commands.
 
 To start upgrading the Kubernetes master units, first upgrade the charm:
 
 ```bash
-juju upgrade-charm kubernetes-control-plane 
+juju upgrade-charm kubernetes-control-plane
 ```
 
 Once the charm has been upgraded, it can be configured to select the desired **Kubernetes** channel, which takes the form `Major.Minor/risk-level`. This is then passed as a configuration option to the charm. So, for example, to select the stable 1.25 version of **Kubernetes**, you would enter:
@@ -346,6 +346,6 @@ It is recommended that you run a [cluster validation][validation] to ensure that
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/1.25/upgrading.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
+    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack  channel</a>.</p>
   </div>
 </div>

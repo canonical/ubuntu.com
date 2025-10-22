@@ -13,9 +13,9 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-The vanilla installation of Kubernetes as provided by Charmed Kubernetes doesn't presume which cloud infrastructure the charms may be running on, providing the same Kubernetes experience regardless of the underlying cloud. But there are many cases a cloud operator would like to take advantage of specific features from the cloud provider.  
+The vanilla installation of Kubernetes as provided by Charmed Kubernetes doesn't presume which cloud infrastructure the charms may be running on, providing the same Kubernetes experience regardless of the underlying cloud. But there are many cases a cloud operator would like to take advantage of specific features from the cloud provider.
 
-Many features like Storage Drivers (CSIs), Network Drivers (CNIs), authentication integration and others, require the Kubernetes control plane to have authorisation to contact the cloud-provider APIs and request access to these features. The specifics of these are handled by the respective charm for that cloud. 
+Many features like Storage Drivers (CSIs), Network Drivers (CNIs), authentication integration and others, require the Kubernetes control plane to have authorisation to contact the cloud-provider APIs and request access to these features. The specifics of these are handled by the respective charm for that cloud.
 
 ### For example
 
@@ -40,6 +40,6 @@ For more details, see the various cloud integration pages.
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/how-to-clouds.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
+    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack  channel</a>.</p>
   </div>
 </div>

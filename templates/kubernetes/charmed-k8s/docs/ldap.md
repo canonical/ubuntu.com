@@ -173,7 +173,7 @@ The following adjustments are required to deploy the service:
 * `ConfigMap/keystone-sync-policy` (Optional)
   * Definitions for mapping keystone user/project/domain/roles to Kubernetes endpoints
   * See [keystone-authn-policy][] for details
-* `Deployment/k8s-keystone-auth` 
+* `Deployment/k8s-keystone-auth`
   * Requires arg `keystone-ca-file` if `keystone-url` is `https`
   * Requires arg `policy-configmap-name` or `sync-configmap-name`
   * Requires secret volume mapping for the `tls.crt` and `tls.key`
@@ -196,7 +196,7 @@ authorisation webhook endpoint.
   ```
 * `authz-webhook-endpoint`
   **Required** only for Authorisation
-  
+
   The API server requires the service endpoint in the `authorization-webhook-config-file`.
   Also, to use this config, the `authorization-mode` must add the `Webhook` mode.
 
@@ -242,7 +242,7 @@ The following variables will need to be set:
 
 Keystone has the ability to use LDAP for authentication.
 The Keystone charm is related to the Keystone-LDAP subordinate charm in order to
-support LDAP.  
+support LDAP.
 
 ```bash
 juju deploy keystone-ldap
@@ -344,9 +344,9 @@ configuring Keystone/LDAP.
 <div class="p-notification--information">
   <div class="p-notification__content">
     <p class="p-notification__message">We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/ldap.md" >edit this page</a> 
-    or 
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/ldap.md" >edit this page</a>
+    or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
+    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack  channel</a>.</p>
   </div>
 </div>

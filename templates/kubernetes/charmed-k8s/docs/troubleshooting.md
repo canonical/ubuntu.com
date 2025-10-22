@@ -117,7 +117,7 @@ Running the `juju-crashdump` script will generate a tarball of debug information
 
 ### Charms deployed to LXD containers fail after upgrade/reboot
 
-For deployments using Juju's `localhost` cloud, which deploys charms to LXD/LXC containers, or other 
+For deployments using Juju's `localhost` cloud, which deploys charms to LXD/LXC containers, or other
 cases where applications are deployed to LXD, there is a known issue
 ([https://bugs.launchpad.net/juju/+bug/1904619](https://bugs.launchpad.net/juju/+bug/1904619))
 with the profiles applied by Juju. The LXD profile used by Juju is named after the charm, including
@@ -492,6 +492,6 @@ juju exec --unit kubernetes-control-plane/0 -- journalctl -u snap.kube-apiserver
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/troubleshooting.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
+    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack  channel</a>.</p>
   </div>
 </div>

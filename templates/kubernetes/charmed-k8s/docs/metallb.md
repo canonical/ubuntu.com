@@ -136,10 +136,10 @@ Model         Controller       Cloud/Region                     Version  SLA    
 juju-metallb  overlord         k8s-cloud/default                3.1.5    unsupported  13:32:58-05:00
 
 App      Version  Status  Scale  Charm    Channel      Rev  Address        Exposed  Message
-metallb           active      1  metallb  1.28/stable  9    10.152.183.85  no       
+metallb           active      1  metallb  1.28/stable  9    10.152.183.85  no
 
 Unit        Workload  Agent  Address       Ports  Message
-metallb/0*  active    idle   192.168.0.15         
+metallb/0*  active    idle   192.168.0.15
 ```
 
 To exit the screen with `juju status --watch 1s`, enter `Ctrl+c`.
@@ -212,7 +212,7 @@ available again.
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/metallb.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
+    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack  channel</a>.</p>
   </div>
 </div>
 
