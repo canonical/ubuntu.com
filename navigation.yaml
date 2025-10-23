@@ -948,8 +948,20 @@ download_ubuntu:
               url: /download/nvidia-jetson
             - title: Raspberry Pi
               url: /raspberry-pi
-            - title: RISC-V platforms
-              url: /download/risc-v
+    - title: Ubuntu for RISC-V
+      primary_links: 
+        - links:
+            - title: Canonical-built images
+              description: RISC-V images from Canonical
+              url: /download/risc-v/canonical-built
+            - title: Partner-built images
+              description: RISC-V images from our partners
+              url: /download/risc-v/partner-built
+      secondary_links:
+        - title: Quick links
+          links:
+            - title: RISC-V Cookbook for partners to build Ubuntu images
+              url: https://canonical-risc-v-cookbook.readthedocs-hosted.com/en/latest/
     - title: Develop on Ubuntu
       primary_links:
         - links:
