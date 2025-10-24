@@ -1,0 +1,44 @@
+{
+  "name": "@canonical/cookie-policy",
+  "version": "3.6.5",
+  "description": "A script and style sheet that displays a cookie policy notification",
+  "main": "build/js/module.js",
+  "iife": "build/js/cookie-policy.js",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/canonical/cookie-policy.git"
+  },
+  "author": "Anthony Dillon <anthony.dillon@canonical.com>",
+  "contributors": [
+    "Barry McGee <barry.mcgee@canonical.com>"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/canonical/cookie-policy/issues"
+  },
+  "homepage": "https://github.com/canonical/cookie-policy#readme",
+  "watch": {
+    "buildJs": "src/js/*.js",
+    "buildScss": {
+      "patterns": [
+        "src/sass"
+      ],
+      "extensions": "scss"
+    }
+  },
+  "scripts": {
+    "clean": "rm -rf build node_modules",
+    "test": "npm run lint-js && npm run lint-scss",
+    "buildScss": "sass src/sass/cookie-policy.scss build/css/cookie-policy.css --load-path=node_modules --style=compressed",
+    "buildJs": "rollup -c",
+    "build": "npm run test && npm run buildScss && npm run buildJs",
+    "lint-js": "eslint src/js/**/*.js",
+    "lint-scss": "stylelint src/sass/**/*.scss",
+    "prepublishonly": "npm run build",
+    "preversion": "npm test",
+    "serve": "python3 -m http.server 8301 && echo 'Demo is running on http://0.0.0.0:8301'",
+    "watch": "npm-watch"
+  },
+  "yalcSig": "191a43e1229bfcf139b5ca996e229110"
+}
