@@ -118,6 +118,7 @@ CSP = {
         "*.text.com",
         "*.youtube.com",
         "*.google.com",
+        "localhost:8118"
     ],
     "frame-src": [
         "'self'",
