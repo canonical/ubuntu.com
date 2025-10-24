@@ -11,7 +11,7 @@ export const vatCountries = [
   "FI",
   "FR",
   "DE",
-  "EL",
+  "GR",
   "HU",
   "IE",
   "IT",
