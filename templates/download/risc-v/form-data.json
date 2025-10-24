@@ -1,0 +1,141 @@
+{
+  "form": {
+    "/download/risc-v/partner-built": {
+      "templatePath": "/download/risc-v/partner-built.html",
+      "isModal": true,
+      "modalId": "contact-modal",
+      "formData": {
+        "title": "Let's get your project to market faster!",
+        "introText": "Canonical partners with silicon companies, board manufacturers and ODMs to help the industry bring smart device and software capabilities to market faster. Tell us about your project so we can bring the right Canonical team members to the conversation to help you.",
+        "formId": "4532",
+        "returnUrl": "/download/risc-v/partner-built#contact-form-success",
+        "product": "risc-v"
+      },
+      "fieldsets": [
+        {
+          "title": "Your company is...",
+          "inputType": "radio",
+          "inputName": "your-company",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "radio",
+              "value": "a silicon vendor",
+              "label": "a silicon vendor",
+              "id": "your-company-is-silicon-vendor"
+            },
+            {
+              "type": "radio",
+              "value": "a tool provider",
+              "label": "a tool provider",
+              "id": "your-company-is-tool-provider"
+            },
+            {
+              "type": "radio",
+              "value": "an ODM/OEM",
+              "label": "an ODM/OEM",
+              "id": "your-company-is-odm-oem"
+            }
+          ]
+        },
+        {
+          "title": "If you are a silicon vendor or a tool provider, is Linux possible to run on the SoC/solution?",
+          "inputType": "radio",
+          "inputName": "linux-possible",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "radio",
+              "value": "Yes",
+              "label": "Yes",
+              "id": "linux-possible-yes"
+            },
+            {
+              "type": "radio",
+              "value": "No",
+              "label": "No",
+              "id": "linux-possible-no"
+            },
+            {
+              "type": "radio",
+              "value": "Not applicable",
+              "label": "Not applicable",
+              "id": "linux-possible-not-applicable"
+            }
+          ]
+        },
+        {
+          "title": "If you are an ODM/OEM, do you have a commercial project?",
+          "inputType": "radio",
+          "inputName": "commercial-project",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "radio",
+              "value": "Yes",
+              "label": "Yes",
+              "id": "commercial-project-yes"
+            },
+            {
+              "type": "radio",
+              "value": "No",
+              "label": "No",
+              "id": "commercial-project-no"
+            },
+            {
+              "type": "radio",
+              "value": "Not applicable",
+              "label": "Not applicable",
+              "id": "commercial-project-not-applicable"
+            }
+          ]
+        },
+        {
+          "title": "When do you need to ship?",
+          "id": "when-to-ship",
+          "inputType": "radio",
+          "inputName": "when-to-ship",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "radio",
+              "label": "Next 3 months",
+              "value": "Next 3 months",
+              "id": "next-3-months"
+            },
+            {
+              "type": "radio",
+              "label": "Next 3 - 6 months",
+              "value": "Next 3 - 6 months",
+              "id": "next-3-6-months"
+            },
+            {
+              "type": "radio",
+              "label": "Next 6 - 12 months",
+              "value": "Next 6 - 12 months",
+              "id": "next-6-12-months"
+            },
+            {
+              "type": "radio",
+              "label": "No timeline - just researching",
+              "value": "No timeline - just researching",
+              "id": "no-timeline"
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
