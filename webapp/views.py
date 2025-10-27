@@ -1711,18 +1711,114 @@ def build_github_data_access():
 def build_release_cycle_view():
     get_json_files = build_github_data_access()
 
+    def format_date(date_str):
+        """Convert YYYY-MM-DD → 'Month YYYY', gracefully handle bad values."""
+
+        try:
+            return datetime.strptime(date_str, "%Y-%m-%d").strftime("%B %Y")
+        except (TypeError, ValueError):
+            return date_str  # return as-is if not a valid date
+
+    def get_deployment(data, product_key, release_name):
+        """Return the deployment dict matching release_name, or None."""
+
+        product = data.get(product_key, {})
+        for deployment in product.get("deployment", []):
+            if deployment.get("name") == release_name:
+                return deployment
+        return None
+
+    def get_versions_for_release(data, product_key, release_name):
+        """Return list of version dicts for (product, release type name)."""
+
+        deployment = get_deployment(data, product_key, release_name)
+        if not deployment:
+            return []
+        return [
+            shape_version(version_dict)
+            for version_dict in deployment.get("versions", [])
+        ]
+
+    def get_selected_version_data(data, product_key, release_name, version):
+        """Return a dict with key details for the selected version."""
+
+        deployment = get_deployment(data, product_key, release_name)
+        if not deployment:
+            return None
+
+        for version_dict in deployment.get("versions", []):
+            if str(version_dict.get("release")) == str(version):
+                return shape_version(version_dict)
+        return None
+
+    def shape_version(version_dict):
+        """Normalize keys and format dates for a single version dict."""
+
+        return {
+            "release": version_dict.get("release"),
+            "architecture": version_dict.get("architecture", []),
+            "supported": format_date(version_dict.get("supported")),
+            "pro_supported": format_date(version_dict.get("pro-supported")),
+            "legacy_supported": format_date(
+                version_dict.get("legacy-supported")
+            ),
+            "release_date": format_date(version_dict.get("release-date")),
+            "upgrade_path": version_dict.get("upgrade-path", []),
+            "compatible_ubuntu_lts": [
+                item.get("ubuntu-lts")
+                for item in version_dict.get("compatible-ubuntu-lts", [])
+            ],
+        }
+
+    DEFAULTS = {"product": "ubuntu", "release": "Ubuntu", "version": "all"}
+
     def display_github_data():
-        # TODO: include remaining files when json validation is in place
         files = [
             "products-data/25.10/kubernetes.json",
             "products-data/25.10/ubuntu-kernel.json",
             "products-data/25.10/microcloud.json",
             "products-data/25.10/ubuntu.json",
+            "products-data/25.10/lxd.json",
+            "products-data/25.10/ceph.json",
+            "products-data/25.10/anbox.json",
+            "products-data/25.10/maas.json",
+            "products-data/25.10/openstack.json",
         ]
         products_data = get_json_files(files)
+
+        product = (
+            flask.request.args.get("product", type=str) or "ubuntu"
+        )
+        release_name = (
+            flask.request.args.get("release", type=str) or "Ubuntu"
+        )
+        version = (
+            flask.request.args.get("version", type=str) or "all"
+        )
+        subscription = flask.request.args.get("subscription", type=str)
+
+        versions = []
+        selected_version_data = None
+        if product and release_name:
+            versions = get_versions_for_release(
+                products_data, product, release_name
+            )
+            if version and version != "all":
+                selected_version_data = get_selected_version_data(
+                    products_data, product, release_name, version
+                )
+                selected_version = version
+
         return flask.render_template(
             "about/release-cycle.html",
             products_data=products_data,
+            product=product,
+            version=version,
+            release_name=release_name,
+            subscription=subscription,
+            versions=versions,
+            selected_version_data=selected_version_data,
+            now=datetime.utcnow(),
         )
 
     return display_github_data
