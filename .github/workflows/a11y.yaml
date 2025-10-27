@@ -1,0 +1,28 @@
+name: a11y check on ubuntu.com
+
+on:
+  # schedule:
+  #   - cron: "0 0 * * 1"  # every Monday at 00:00 UTC
+  pull_request:
+
+jobs:
+  check-a11y:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: yarn
+
+      - name: Run a11y tests
+        run: |
+          yarn pa11y-ci
+
+      - name: Send message on failure
+        if: failure()
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=a11y-alerts
