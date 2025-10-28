@@ -6,15 +6,10 @@
       "args": [
         "--no-sandbox"
       ]
-    }
-  },
-  "urls": [
-    {
-      "url": "http://localhost:8001/",
-      "hideElements": [
-        "#lightningjs-frame-usabilla_live",
-        "html > body > iframe[style*='display: none'], [style*='visibility: hidden;']"
-      ]
-    }
-  ]
+    },
+    "hideElements": [
+      "#lightningjs-frame-usabilla_live",
+      "html > body > iframe[style*='display: none'], [style*='visibility: hidden;']"
+    ]
+  }
 }
