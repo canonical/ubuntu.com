@@ -830,7 +830,8 @@ def vulnerabilities_sitemap(security_vulnerabilities):
                 ),
                 "last_updated": (
                     v["published_dt"].strftime("%Y-%m-%d")
-                    if v["published_dt"] else ""
+                    if v["published_dt"]
+                    else ""
                 ),
             }
             for v in vulnerabilities
