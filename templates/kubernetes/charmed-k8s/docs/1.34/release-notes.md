@@ -50,7 +50,7 @@ The release bundle can also be [downloaded here](https://raw.githubusercontent.c
 ### openstack-integrator
 
 * [LP#2110221](https://launchpad.net/bugs/2111261) Config change and creds
-  changes validates LB Requests
+  changes validates LB requests
 * Allow Juju admin to specify o7k endpoint proxy values by charm or model
 
 ### vsphere-cloud-provider
