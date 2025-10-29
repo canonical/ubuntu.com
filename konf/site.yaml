@@ -161,6 +161,11 @@ env:
       key: secret
       name: sitemaps
 
+  - name: GITHUB_TOKEN
+    secretKeyRef:
+      key: GITHUB_TOKEN
+      name: github-products-api
+
 
 memoryLimit: 512Mi
 
@@ -790,6 +795,11 @@ staging:
 
     - name: FLASK_ENV
       value: "staging"
+    
+    - name: GITHUB_TOKEN
+      secretKeyRef:
+        key: GITHUB_TOKEN
+        name: github-products-api
 
   routes:
     - paths: [/blog]
@@ -1320,6 +1330,11 @@ demo:
         name: discourse-api
 
     - name: FLASK_ENV
-      value: "demo"    
+      value: "demo"
+    
+    - name: GITHUB_TOKEN
+      secretKeyRef:
+        key: GITHUB_TOKEN
+        name: github-products-api    
 
     
