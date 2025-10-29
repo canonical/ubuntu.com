@@ -828,7 +828,11 @@ def vulnerabilities_sitemap(security_vulnerabilities):
                 "url": (
                     f"https://ubuntu.com/security/vulnerabilities/{v['slug']}"
                 ),
-                "last_updated": v["published_dt"].strftime("%Y/%m/%d"),
+                "last_updated": (
+                    v["published_dt"].strftime("%Y-%m-%d")
+                    if v["published_dt"]
+                    else ""
+                ),
             }
             for v in vulnerabilities
         ]
