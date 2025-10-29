@@ -15,6 +15,7 @@
 {% endblock body_class %}
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
 
 {% block content %}
 
@@ -107,7 +108,7 @@
     <div class="u-fixed-width">
       <hr class="p-rule--muted" />
       <table aria-label="Selected product coverage details"
-             id="js-product-coverage-table">
+             id="js-product-coverage-table" class="u-hide--small u-hide--medium">
         <colgroup>
           <col style="width: 20rem;" />
         </colgroup>
@@ -119,7 +120,7 @@
             <th scope="colgroup"
                 colspan="1"
                 class="u-text--muted"
-                style="border-bottom: .5px solid;
+                style="border-bottom: .5px solid #0000001A;
                        border-right: 1rem solid transparent">
               Standard
               <br />
@@ -128,7 +129,7 @@
             <th scope="colgroup"
                 colspan="3"
                 class="u-text--muted"
-                style="border-bottom: .5px solid">Ubuntu Pro coverage</th>
+                style="border-bottom: .5px solid #0000001A">Ubuntu Pro coverage</th>
           </tr>
           <tr>
             <th>Version</th>
@@ -178,21 +179,57 @@
               <th colspan="7" class="support-type-banner">In standard support</th>
             </tr>
             {% for version in versions %}
-              {% if version.supported > now.strftime("%Y-%m-%d") %}
+              {% if version.supported.raw > now.strftime("%Y-%m-%d") %}
                 <tr>
                   <td>
                     {{ version.release }}
                     <br />
-                    <span class="u-text--muted arch-paths">Supported archchitectures: {{ version['architecture'] | join(', ') }}</span>
-                    <br/>
-                    <span class="u-text--muted arch-paths">Upgrade path: {{ version['upgrade-path']  | join(', ')}}</span>
+                    <span class="u-text--muted arch-paths">
+                      Supported architectures:
+                      {% for arch in version.architecture %}
+                        {% if loop.last %}
+                          and {{ arch }}
+                        {% else %}
+                          {{ arch }}, 
+                        {% endif %}
+                      {% endfor %}
+                    </span>
+                    {% if version['upgrade-path'] %}
+                      <br/>
+                      <span class="u-text--muted arch-paths">Upgrade path: {{ version['upgrade-path']  | join(', ')}}</span>
+                    {% endif %}
+                  </td> 
+                  <td>
+                    {% set compat_list = version.compatible_ubuntu_lts %}
+                    {% if compat_list %}
+                      {% for item in compat_list %}
+                      <div class="p-accordion">
+                        <ul class="p-accordion__list">
+                          <li class="p-accordion__group">
+                            <div role="heading" aria-level="3" class="p-accordion__heading">
+                              <button type="button" class="p-accordion__tab u-no-padding--left" id="{{item['ubuntu-lts']}}-tab" aria-controls="{{item['ubuntu-lts']}}-section" aria-expanded="true">{{ item["ubuntu-lts"] }}</button>
+                            </div>
+                            <section class="p-accordion__panel" style="padding-left: 2rem;" id="{{item['ubuntu-lts']}}-section" aria-hidden="false" aria-labelledby="{{item['ubuntu-lts']}}-tab">
+                              <p class="p-heading--5 ">Compatible components:</p>
+                              {% for component in item["compatible-components"] %}
+                                {{ component.name }}: {{ component.version[0] }}<br/>
+                              {% endfor %}
+                            </section>
+                          </li>
+                        </ul>
+                      </div>
+                      {% endfor %}
+                    {% else %}
+                      {{ version.release }}
+                    {% endif %}
                   </td>
-                  <td>{{ version.release }}</td>
-                  <td>{{ version.release_date }}</td>
-                  <td>{{ version.supported }}</td>
-                  <td>{{ version.pro_supported }}</td>
-                  <td>{{ version.pro_supported }}</td>
-                  <td>{{ version.legacy_supported }}</td>
+                  <td>
+                    {{ version.release_date.formatted }}
+                  </td>
+                  <td>{{ version.supported.formatted }}</td>
+                  <td>{{ version.pro_supported.formatted }}</td>
+                  <td>{{ version.pro_supported.formatted }}</td>
+                  <td>{{ version.legacy_supported.formatted }}</td>
                 </tr>
               {% endif %}
             {% endfor %}
@@ -200,20 +237,29 @@
               <th colspan="7" class="support-type-banner">Out of standard support, only supported with <a href="/pro">Ubuntu Pro</a></th>
             </tr>
             {% for version in versions %}
-              {% if version.supported < now.strftime("%Y-%m-%d") %}
+              {% if version.supported.raw < now.strftime("%Y-%m-%d") %}
                 <tr>
                   <td>{{ version.release }}
                     <br />
-                    <span class="u-text--muted arch-paths">Supported archchitectures: {{ version['architecture'] | join(', ') }}</span>
+                    <span class="u-text--muted arch-paths">
+                      Supported architectures:
+                      {% for arch in version.architecture %}
+                        {% if loop.last %}
+                          and {{ arch }}
+                        {% else %}
+                          {{ arch }}, 
+                        {% endif %}
+                      {% endfor %}
+                    </span>
                     <br/>
                     <span class="u-text--muted arch-paths">Upgrade path: {{ version['upgrade-path']  | join(', ')}}</span>
                   </td>
                   <td>{{ version.release }}</td>
-                  <td>{{ version.release_date }}</td>
-                  <td>{{ version.supported }}</td>
-                  <td>{{ version.pro_supported }}</td>
-                  <td>{{ version.pro_supported }}</td>
-                  <td>{{ version.legacy_supported }}</td>
+                  <td>{{ version.release_date.formatted }}</td>
+                  <td>{{ version.supported.formatted }}</td>
+                  <td>{{ version.pro_supported.formatted }}</td>
+                  <td>{{ version.pro_supported.formatted }}</td>
+                  <td>{{ version.legacy_supported.formatted }}</td>
                 </tr>
               {% endif %}
             {% endfor %}
@@ -222,16 +268,25 @@
               <td>
                 {{ version }}
                 <br />
-                <span class="u-text--muted arch-paths">Supported archchitectures: {{ selected_version_data.architecture | join(', ') }}</span>
+                <span class="u-text--muted arch-paths">
+                  Supported architectures: 
+                  {% for arch in selected_version_data.architecture %}
+                    {% if loop.last %}
+                      and {{ arch }}
+                    {% else %}
+                      {{ arch }}, 
+                    {% endif %}
+                  {% endfor %}
+                </span>
                 <br/>
                 <span class="u-text--muted arch-paths">Upgrade path: {{ selected_version_data.upgrade_path  | join(', ')}}</span>
               </td>
               <td>{{ version }}</td>
-              <td>{{ selected_version_data.release_date }}</td>
-              <td>{{ selected_version_data.supported }}</td>
-              <td>{{ selected_version_data.pro_supported }}</td>
-              <td>{{ selected_version_data.pro_supported }}</td>
-              <td>{{ selected_version_data.legacy_supported or "test" }}</td>
+              <td>{{ selected_version_data.release_date.formatted }}</td>
+              <td>{{ selected_version_data.supported.formatted }}</td>
+              <td>{{ selected_version_data.pro_supported.formatted }}</td>
+              <td>{{ selected_version_data.pro_supported.formatted }}</td>
+              <td>{{ selected_version_data.legacy_supported.formatted }}</td>
             </tr>
           {% endif %}
         </tbody>
@@ -242,28 +297,31 @@
             <p class="p-notification__message">You are currently receiving coverage through Ubuntu Pro</p>
           </div>
         </div>
+      {% elif subscription == "none" and selected_version_data.supported.raw < now.strftime("%Y-%m-%d") %}
+        <div class="p-notification--caution">
+          <div class="p-notification__content">
+            <p class="p-notification__message">You are not receiving security updates or support. Subscribe to Ubuntu Pro to stay secure and supported. <a href="/pro">Start a 30-day Ubuntu Pro free trial&nbsp;&rsaquo;</a></p>
+          </div>
+        </div>
       {% endif %}
     </div>
   </section>
 
   <section class="p-section--deep">
-    <div class="p-section--shallow">
-      <div class="grid-row--50-50">
-        <hr />
-        <div class="grid-col">
-          <h2>
-            Canonical Ubuntu lifecycle
+    {{ vf_basic_section(
+      title={"text": "Canonical Ubuntu lifecycle
             <br />
-            and release cadence key concepts
-          </h2>
-        </div>
-        <div class="grid-col">
-          <p>
-            Canonical publishes new releases of Ubuntu and other products in our portfolio on a regular cadence, enabling the community, businesses and developers to plan their roadmaps with the certainty of access to newer open source upstream capabilities.
-          </p>
-        </div>
-      </div>
-    </div>
+            and release cadence key concepts"},
+      items=[
+        {
+          "type": "description",
+          "item": {
+            "type": "text",
+            "content": "Canonical publishes new releases of Ubuntu and other products in our portfolio on a regular cadence, enabling the community, businesses and developers to plan their roadmaps with the certainty of access to newer open source upstream capabilities."
+          }
+        }
+      ]
+    ) }}
     <div class="grid-row">
       <div class="grid-col-start-large-3 grid-col-6">
         <div class="p-section--shallow">
@@ -324,7 +382,7 @@
               </div>
             </div>
           </div>
-          <hr />
+          <hr class="p-rule--muted"/>
           <div class="p-section--shallow">
             <div class="grid-row">
               <div class="grid-col-2">
@@ -337,7 +395,7 @@
               </div>
             </div>
           </div>
-          <hr />
+          <hr class="p-rule--muted"/>
           <div class="p-section--shallow">
             <div class="grid-row">
               <div class="grid-col-2">
@@ -353,7 +411,7 @@
               </div>
             </div>
           </div>
-          <hr />
+          <hr class="p-rule--muted"/>
           <div class="p-section--shallow">
             <div class="grid-row">
               <div class="grid-col-2">
@@ -385,6 +443,140 @@
             </div>
           </div>
           <hr class="p-rule--muted" />
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Expanded Security Maintenance (ESM)</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>
+                  ESM extends the life of LTS releases by providing 10 years of security updates for the 'Main' repository and also adds 10 years of security coverage for the 'Universe' repository.
+                </p>
+                <p>
+                  Available through Ubuntu Pro, it provides continued critical and high security patches after standard security maintenance ends for packages in Main, and for thousands of open-source packages in the Universe repository.
+                </p>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Support</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>
+                  Full phone and ticketing break and bug fix support is available for Ubuntu Main and Universe repositories and the full open source stack, from infrastructure to applications, with Ubuntu Pro + Support.
+                </p>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Legacy add-on</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>
+                  At the end of the 10 year ESM period, a Legacy support add-on can be purchased to cover additional 2 years of the lifetime of Ubuntu LTS, giving a total of 12 years security maintenance and support.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Todo: Chart image and chips -->
+        </div>
+        <div class="p-tabs__content" tabindex="0" id="packaging-formats" role="tabpanel" aria-label="packaging-formats-tab">
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Deb packages</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>At the core of every Ubuntu release is a collection of 'deb' packages. Carefully tested for compatibility, debs use structured dependency management so all necessary software is installed and works together seamlessly.</p>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Snap packages</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>Ubuntu supports 'snap' packages, ideal for apps and tools that update frequently and independently from the main system. Snaps offer access to the latest versions of popular software, with strong security and easy version control.</p>
+                <p>Snaps can run in a secure, confined environment with limited system access, or as 'classic' snaps with broader access—similar to debs. Choose snaps from trusted publishers, especially when using classic confinement.</p>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Charms</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>Charms are software operators &ndash; business logic encapsulated in reusable software packages that automate every aspect of an application's life.</p>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Rocks</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>Rocks are minimal, optimized container images built from Debian packages, designed for secure, stable, and efficient containerized deployments. They are compatible with popular container tools like Docker and Kubernetes, helping administrators manage infrastructure with lightweight, focused images that reduce vulnerabilities and overhead.</p>
+                <p>Chiseled Rocks take this approach further by removing shells, package managers, and other non-essential components, offering ultra-minimal images with an even smaller attack surface for high-security, production-grade environments.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-tabs__content" tabindex="0" id="editions-and-flavors" role="tabpanel" aria-label="editions-and-flavors-tab">
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Ubuntu Classic</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>Ubuntu comes in various editions and minimal installs. “Classic” Ubuntu uses deb packages and supports snaps for specific apps, available across different desktop flavors and server/cloud images.</p>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Ubuntu Core</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>Ubuntu Core is an all-snap edition designed for appliances and IoT. With a lightweight, strictly confined architecture, it’s highly secure and reliable—perfect for large-scale, embedded deployments.</p>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted"/>
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Ubuntu Minimal</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>Ubuntu Minimal is a lightweight image that includes only the essential packages, making it ideal for building custom environments or optimizing deployments for performance and footprint. It provides an efficient foundation for containers, virtual machines, and specialized workloads requiring fine-grained control. Ubuntu Minimal images are available for all major public clouds, including AWS, Google Cloud and Azure.</p>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted"/>
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Ubuntu Flavors</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>Ubuntu flavors are community-maintained variants that offer different desktop environments and user experiences. The release cycle for flavours may differ from those described here. For release details and support policies specific to a flavor, please consult its official website or documentation.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

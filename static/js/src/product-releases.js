@@ -21,6 +21,28 @@ function resetSelectToPlaceholder(selectElement, shouldDisable = true) {
   selectElement.disabled = shouldDisable;
 }
 
+function populateReleaseOptions(deployments) {
+  resetSelectToPlaceholder(releaseSelection, false);
+  deployments.forEach((deployment) => {
+    const name = deployment?.name;
+    const slug = deployment?.slug;
+    releaseSelection.options[releaseSelection.options.length] = new Option(
+      name,
+      slug,
+    );
+  });
+}
+
+function populateVersionOptions(versions) {
+  resetSelectToPlaceholder(versionSelection, false);
+  versions.forEach((version) => {
+    versionSelection.options[versionSelection.options.length] = new Option(
+      version.release,
+      version.release,
+    );
+  });
+}
+
 productSelection.addEventListener("change", () => {
   const { product, deployments } = getSelectedProductContext();
 
@@ -28,45 +50,31 @@ productSelection.addEventListener("change", () => {
   resetSelectToPlaceholder(releaseSelection);
   resetSelectToPlaceholder(versionSelection);
 
-  // Only enable if a product is selected and we have deployments
-  releaseSelection.disabled = !(product && deployments.length);
-
-  // Populate releases
-  deployments.forEach((deployment) => {
-    const releaseName = deployment?.name;
-    releaseSelection.options[releaseSelection.options.length] = new Option(
-      releaseName,
-      releaseName,
-    );
-  });
+  if (product && deployments.length) {
+    populateReleaseOptions(deployments);
+  } else {
+    releaseSelection.disabled = true;
+  }
 });
 
 releaseSelection.addEventListener("change", () => {
   resetSelectToPlaceholder(versionSelection);
 
   const { deployments } = getSelectedProductContext();
-  const selectedReleaseName = releaseSelection.value;
+  const selectedReleaseSlug = releaseSelection.value;
 
   // If no release selected, disable version select and return
-  if (!selectedReleaseName) {
+  if (!selectedReleaseSlug) {
     versionSelection.disabled = true;
     return;
   }
 
   // Find the deployment matching the selected release
   const matchingDeployment = deployments.find(
-    (deployment) => deployment?.name === selectedReleaseName,
+    (deployment) => deployment?.slug === selectedReleaseSlug,
   );
-  const versions = matchingDeployment?.versions || [];
 
-  // Enable version select, then fill
-  versionSelection.disabled = false;
-  versions.forEach((version) => {
-    versionSelection.options[versionSelection.options.length] = new Option(
-      version.release,
-      version.release,
-    );
-  });
+  populateVersionOptions(matchingDeployment?.versions || []);
 });
 
 // Add selected options as URL parameters on submit
@@ -80,11 +88,9 @@ selectorForm.addEventListener("submit", (event) => {
   const versionValue = versionSelection.value;
   const subscriptionValue = subscriptionSelection?.value;
 
-  // TODO: format slugs for consistency
   if (productValue) params.set("product", productValue);
   if (releaseValue) params.set("release", releaseValue);
   if (versionValue) params.set("version", versionValue);
-  // TODO: define behavior for subscription param
   if (subscriptionValue) params.set("subscription", subscriptionValue);
 
   const newUrl = params.toString()
@@ -93,3 +99,43 @@ selectorForm.addEventListener("submit", (event) => {
 
   window.location.assign(newUrl);
 });
+
+// Persist selections from URL parameters on page load
+(function initFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const productParam = params.get("product");
+  const releaseParamSlug = params.get("release");
+  const versionParam = params.get("version");
+  const subscriptionParam = params.get("subscription");
+
+  if (productParam && productsData[productParam]) {
+    productSelection.value = productParam;
+
+    const { deployments } = getSelectedProductContext();
+    if (deployments.length) populateReleaseOptions(deployments);
+
+    if (releaseParamSlug) {
+      const match = Array.from(releaseSelection.options).find(
+        (opt) => opt.value === releaseParamSlug,
+      );
+
+      if (match) {
+        releaseSelection.value = match.value;
+
+        const matchingDeployment = deployments.find(
+          (deployment) => deployment?.slug === match.value,
+        );
+        console.log({ matchingDeployment });
+        populateVersionOptions(matchingDeployment?.versions || []);
+      }
+    }
+
+    if (versionParam) {
+      versionSelection.value = versionParam;
+    }
+  }
+
+  if (subscriptionParam) {
+    subscriptionSelection.value = subscriptionParam;
+  }
+})();
