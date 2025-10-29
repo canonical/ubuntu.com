@@ -7,6 +7,13 @@ const subscriptionSelection = document.getElementById(
 const selectorForm = document.getElementById("js-product-selector-form");
 const submitButton = document.getElementById("js-product-selector-submit");
 
+function syncSubmitState() {
+  const hasRelease = !releaseSelection.disabled && releaseSelection.selectedIndex > 0;
+  const hasVersion = !versionSelection.disabled && versionSelection.selectedIndex > 0;
+  submitButton.disabled = !(hasRelease && hasVersion);
+}
+submitButton.disabled = true;
+
 // Set current product context
 function getSelectedProductContext() {
   const productKey = productSelection.value;
@@ -19,6 +26,7 @@ function getSelectedProductContext() {
 function resetSelectToPlaceholder(selectElement, shouldDisable = true) {
   selectElement.length = 1;
   selectElement.disabled = shouldDisable;
+  syncSubmitState();
 }
 
 function populateReleaseOptions(deployments) {
@@ -41,6 +49,7 @@ function populateVersionOptions(versions) {
       version.release,
     );
   });
+  syncSubmitState();
 }
 
 productSelection.addEventListener("change", () => {
@@ -66,6 +75,7 @@ releaseSelection.addEventListener("change", () => {
   // If no release selected, disable version select and return
   if (!selectedReleaseSlug) {
     versionSelection.disabled = true;
+    syncSubmitState();
     return;
   }
 
@@ -75,6 +85,10 @@ releaseSelection.addEventListener("change", () => {
   );
 
   populateVersionOptions(matchingDeployment?.versions || []);
+});
+
+versionSelection.addEventListener("change", () => {
+  syncSubmitState();
 });
 
 // Add selected options as URL parameters on submit
@@ -138,4 +152,6 @@ selectorForm.addEventListener("submit", (event) => {
   if (subscriptionParam) {
     subscriptionSelection.value = subscriptionParam;
   }
+
+  syncSubmitState();
 })();
