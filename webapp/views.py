@@ -1712,19 +1712,27 @@ def build_release_cycle_view():
     get_json_files = build_github_data_access()
 
     def format_date(date_str):
-        """Convert YYYY-MM-DD → 'Month YYYY', gracefully handle bad values."""
+        """Convert YYYY-MM-DD → dict with raw and formatted versions."""
+        raw_date = None
+        formatted = date_str
 
         try:
-            return datetime.strptime(date_str, "%Y-%m-%d").strftime("%B %Y")
+            raw_date = datetime.strptime(date_str, "%Y-%m-%d")
+            formatted = raw_date.strftime("%B %Y")
         except (TypeError, ValueError):
-            return date_str  # return as-is if not a valid date
+            pass  # leave defaults if invalid or missing
 
-    def get_deployment(data, product_key, release_name):
+        return {"raw": date_str, "formatted": formatted}
+
+    def get_deployment(data, product_key, release_identifier):
         """Return the deployment dict matching release_name, or None."""
 
         product = data.get(product_key, {})
         for deployment in product.get("deployment", []):
-            if deployment.get("name") == release_name:
+            if (
+                deployment.get("name") == release_identifier
+                or deployment.get("slug") == release_identifier
+            ):
                 return deployment
         return None
 
@@ -1764,15 +1772,17 @@ def build_release_cycle_view():
             ),
             "release_date": format_date(version_dict.get("release-date")),
             "upgrade_path": version_dict.get("upgrade-path", []),
-            "compatible_ubuntu_lts": [
-                item.get("ubuntu-lts")
-                for item in version_dict.get("compatible-ubuntu-lts", [])
-            ],
+            "compatible_ubuntu_lts": version_dict.get(
+                "compatible-ubuntu-lts", []
+            ),
         }
 
-    DEFAULTS = {"product": "ubuntu", "release": "Ubuntu", "version": "all"}
-
     def display_github_data():
+        product = flask.request.args.get("product", type=str, default="ubuntu")
+        release_name = flask.request.args.get("release", type=str, default="ubuntu")
+        version = flask.request.args.get("version", type=str, default="all")
+        subscription = flask.request.args.get("subscription", type=str)
+
         files = [
             "products-data/25.10/kubernetes.json",
             "products-data/25.10/ubuntu-kernel.json",
@@ -1786,16 +1796,17 @@ def build_release_cycle_view():
         ]
         products_data = get_json_files(files)
 
-        product = (
-            flask.request.args.get("product", type=str) or "ubuntu"
+        products_data = dict(
+            sorted(
+                products_data.items(),
+                key=lambda item: str(item[1].get("product", "")).lower(),
+            )
         )
-        release_name = (
-            flask.request.args.get("release", type=str) or "Ubuntu"
-        )
-        version = (
-            flask.request.args.get("version", type=str) or "all"
-        )
-        subscription = flask.request.args.get("subscription", type=str)
+
+        for key, data in products_data.items():
+            for deployment in data["deployment"]:
+                name = deployment.get("name", "")
+                deployment["slug"] = name.lower()
 
         versions = []
         selected_version_data = None
