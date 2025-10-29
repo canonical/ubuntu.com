@@ -1779,7 +1779,9 @@ def build_release_cycle_view():
 
     def display_github_data():
         product = flask.request.args.get("product", type=str, default="ubuntu")
-        release_name = flask.request.args.get("release", type=str, default="ubuntu")
+        release_name = flask.request.args.get(
+            "release", type=str, default="ubuntu"
+        )
         version = flask.request.args.get("version", type=str, default="all")
         subscription = flask.request.args.get("subscription", type=str)
 
@@ -1818,7 +1820,6 @@ def build_release_cycle_view():
                 selected_version_data = get_selected_version_data(
                     products_data, product, release_name, version
                 )
-                selected_version = version
 
         return flask.render_template(
             "about/release-cycle.html",
