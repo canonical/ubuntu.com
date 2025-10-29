@@ -1,3 +1,6 @@
+const fs = require("fs");
+const yaml = require("js-yaml");
+
 // Snapshot configuration for Percy visual testing
 const baseURL = "http://localhost:8001";
 const timeout = 30000;
@@ -15,18 +18,10 @@ const makeSnapshot = (path) => ({
   execute: { beforeSnapshot: acceptCookies },
 });
 
-const routes = [
-  "/",
-  "/desktop",
-  "/download",
-  "/download/desktop",
-  "/pricing/desktop",
-  "/pro",
-  "/ai",
-  "/robotics",
-  "/core",
-  "/cloud",
-  "/summit",
-];
+const data = yaml.load(fs.readFileSync("test-links.yaml", "utf8"));
+
+const routes = data.links.map((link) =>
+  link.url.replace("https://ubuntu.com/", "/"),
+);
 
 module.exports = routes.map(makeSnapshot);
