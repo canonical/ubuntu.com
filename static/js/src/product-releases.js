@@ -8,9 +8,7 @@ const selectorForm = document.getElementById("js-product-selector-form");
 const submitButton = document.getElementById("js-product-selector-submit");
 
 function syncSubmitState() {
-  const hasRelease = !releaseSelection.disabled && releaseSelection.selectedIndex > 0;
-  const hasVersion = !versionSelection.disabled && versionSelection.selectedIndex > 0;
-  submitButton.disabled = !(hasRelease && hasVersion);
+  submitButton.disabled = !(releaseSelection.value && versionSelection.value);
 }
 submitButton.disabled = true;
 
