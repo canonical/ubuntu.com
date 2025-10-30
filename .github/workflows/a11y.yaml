@@ -1,11 +1,10 @@
 name: a11y check on ubuntu.com
 
-# TODO: uncomment before merging
 on:
-  # schedule:
-  #   - cron: "20 7 * * 1"  # every Monday at 07:20 UTC
-  pull_request:
-
+  schedule:
+    - cron: "20 7 * * 1" # every Monday at 07:20 UTC
+  workflow_dispatch:
+  
 permissions:
   contents: read
 
@@ -45,4 +44,4 @@ jobs:
         env:
           BOT_URL: ${{ secrets.BOT_URL }}
         if: failure()
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" $BOT_URL?room=a11y-alerts # TODO: change room before merging
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" $BOT_URL?room=web-alerts
