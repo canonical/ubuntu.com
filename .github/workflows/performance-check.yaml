@@ -9,155 +9,104 @@ env:
   THRESHOLD: 70
 
 jobs:
+  read-config:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix_data: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: "yarn"
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+      - name: Read links from test-links.yaml
+        id: set-matrix
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const yaml = require('js-yaml');
+            const fs = require('fs');
+
+            try {
+              // Read the 'links' array from the file
+              const doc = yaml.load(fs.readFileSync('test-links.yaml', 'utf8'));
+              const matrix = JSON.stringify(doc.links);
+              core.setOutput('matrix', matrix);
+            } catch (e) {
+              console.error(e);
+              core.setFailed('Failed to read or parse YAML config.');
+            }
   perf-checks:
     if: github.repository == 'canonical/ubuntu.com'
     runs-on: ubuntu-latest
+    needs: read-config
+    strategy:
+      matrix:
+        include: ${{ fromJson(needs.read-config.outputs.matrix_data) }}
 
     steps:
-      - name: Running performance checks on the homepage
-        id: homepage
+      - name: Running performance checks on ${{ matrix.name }}
+        id: perf-check
         continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
-          url: "https://ubuntu.com"
-          threshold: $THRESHOLD
-          strategy: desktop
-      - name: Running performance checks on the desktop overview page
-        id: desktop
-        continue-on-error: true
-        uses: jakepartusch/psi-action@v1.3
-        with:
-          key: ${{ secrets.PSI_API_KEY }}
-          url: "https://ubuntu.com/desktop"
-          threshold: $THRESHOLD
-          strategy: desktop
-      - name: Running performance checks on the download overview page
-        id: download
-        continue-on-error: true
-        uses: jakepartusch/psi-action@v1.3
-        with:
-          key: ${{ secrets.PSI_API_KEY }}
-          url: "https://ubuntu.com/download"
-          threshold: $THRESHOLD
-          strategy: desktop
-      - name: Running performance checks on the blog
-        id: blog
-        continue-on-error: true
-        uses: jakepartusch/psi-action@v1.3
-        with:
-          key: ${{ secrets.PSI_API_KEY }}
-          url: "https://ubuntu.com/blog"
-          threshold: $THRESHOLD
-          strategy: desktop
-      - name: Running performance checks on the openstack overview
-        id: openstack
-        continue-on-error: true
-        uses: jakepartusch/psi-action@v1.3
-        with:
-          key: ${{ secrets.PSI_API_KEY }}
-          url: "https://ubuntu.com/openstack"
-          threshold: $THRESHOLD
-          strategy: desktop
-      - name: Running performance checks on the kubernetes overview
-        id: kubernetes
-        continue-on-error: true
-        uses: jakepartusch/psi-action@v1.3
-        with:
-          key: ${{ secrets.PSI_API_KEY }}
-          url: "https://ubuntu.com/kubernetes"
-          threshold: $THRESHOLD
-          strategy: desktop
-      - name: Running performance checks on the managed overview
-        id: managed
-        continue-on-error: true
-        uses: jakepartusch/psi-action@v1.3
-        with:
-          key: ${{ secrets.PSI_API_KEY }}
-          url: "https://ubuntu.com/managed"
-          threshold: $THRESHOLD
-          strategy: desktop
-      - name: Running performance checks on the ai overview
-        id: ai
-        continue-on-error: true
-        uses: jakepartusch/psi-action@v1.3
-        with:
-          key: ${{ secrets.PSI_API_KEY }}
-          url: "https://ubuntu.com/ai"
-          threshold: $THRESHOLD
-          strategy: desktop
-      - name: Running performance checks on the robotics overview
-        id: robotics
-        continue-on-error: true
-        uses: jakepartusch/psi-action@v1.3
-        with:
-          key: ${{ secrets.PSI_API_KEY }}
-          url: "https://ubuntu.com/robotics"
-          threshold: $THRESHOLD
-          strategy: desktop
-      - name: Running performance checks on the core overview
-        id: core
-        continue-on-error: true
-        uses: jakepartusch/psi-action@v1.3
-        with:
-          key: ${{ secrets.PSI_API_KEY }}
-          url: "https://ubuntu.com/core"
-          threshold: $THRESHOLD
-          strategy: desktop
-      - name: Running performance checks on the cloud overview
-        id: cloud
-        continue-on-error: true
-        uses: jakepartusch/psi-action@v1.3
-        with:
-          key: ${{ secrets.PSI_API_KEY }}
-          url: "https://ubuntu.com/cloud"
-          threshold: $THRESHOLD
-          strategy: desktop
-      - name: Running performance checks on the tutorials overview
-        id: tutorials
-        continue-on-error: true
-        uses: jakepartusch/psi-action@v1.3
-        with:
-          key: ${{ secrets.PSI_API_KEY }}
-          url: "https://ubuntu.com/tutorials"
-          threshold: $THRESHOLD
-          strategy: desktop
-      - name: Running performance checks on a tutorial
-        id: tutorial-example
-        continue-on-error: true
-        uses: jakepartusch/psi-action@v1.3
-        with:
-          key: ${{ secrets.PSI_API_KEY }}
-          url: "https://ubuntu.com/tutorials/how-to-upgrade-ubuntu-lts-to-ubuntu-pro-on-aws-using-aws-license-manager#1-overview"
+          url: ${{ matrix.url }}
           threshold: $THRESHOLD
           strategy: desktop
 
+      - name: Save result
+        id: save-result
+        run: |
+          sanitized_name=$(echo "${{ matrix.name }}" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
+          obj=$(jq -cn --arg name "$sanitized_name" --arg value "${{ steps.perf-check.outcome }}" '{name: $name, value: $value}')
+          echo "$obj" > "result-${sanitized_name}.json"
+          echo "sanitized_name=$sanitized_name" >> $GITHUB_OUTPUT
+
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: perf-results-${{ steps.save-result.outputs.sanitized_name }}
+          path: result-${{ steps.save-result.outputs.sanitized_name }}.json
+
+  collect-results:
+    if: github.repository == 'canonical/ubuntu.com' && always()
+    runs-on: ubuntu-latest
+    needs: [read-config, perf-checks]
+
+    steps:
+      - name: Download all results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: perf-results-*
+          path: results/
+          merge-multiple: true 
       - name: Check overall results
         run: |
           failed_checks=""
-          
-          step_outcomes=(
-            "homepage:${{ steps.homepage.outcome }}"
-            "desktop:${{ steps.desktop.outcome }}"
-            "download:${{ steps.download.outcome }}"
-            "blog:${{ steps.blog.outcome }}"
-            "openstack:${{ steps.openstack.outcome }}"
-            "kubernetes:${{ steps.kubernetes.outcome }}"
-            "managed:${{ steps.managed.outcome }}"
-            "ai:${{ steps.ai.outcome }}"
-            "robotics:${{ steps.robotics.outcome }}"
-            "core:${{ steps.core.outcome }}"
-            "cloud:${{ steps.cloud.outcome }}"
-            "tutorials:${{ steps.tutorials.outcome }}"
-            "tutorial-example:${{ steps.tutorial-example.outcome }}"
-          )
-          
+
+          # Collect results from matrix outputs
+          results=$(jq -s '.' results/*.json)
+          step_outcomes=()
+
+          # Parse matrix results and build step_outcomes array
+          for result in $(echo "$results" | jq -r '.[] | @base64'); do
+            decoded=$(echo "$result" | base64 --decode)
+            name=$(echo "$decoded" | jq -r '.name')
+            value=$(echo "$decoded" | jq -r '.value')
+            step_outcomes+=("$name:$value")
+          done
+
           for step_outcome in "${step_outcomes[@]}"; do
             step_name="${step_outcome%:*}"
             outcome="${step_outcome#*:}"
             [[ "$outcome" == "failure" ]] && failed_checks="$failed_checks $step_name"
           done
-          
+
           if [ -n "$failed_checks" ]; then
             echo "Performance checks failed for:$failed_checks"
             echo "FAILED_CHECKS=$failed_checks" >> $GITHUB_ENV
@@ -168,4 +117,4 @@ jobs:
 
       - name: Send message on failure
         if: failure()
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=web-design
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=web-alerts

@@ -1,0 +1,46 @@
+name: a11y check on ubuntu.com
+
+on:
+  schedule:
+    - cron: "20 7 * * 1" # every Monday at 07:20 UTC
+  workflow_dispatch:
+permissions:
+  contents: read
+
+jobs:
+  read-config:
+    runs-on: ubuntu-latest
+    outputs:
+      urls: ${{ steps.get-urls.outputs.urls }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Read links from test-links.yaml
+        id: get-urls
+        run: |
+          urls=$(yq e '.links[].url' test-links.yaml | tr '\n' ' ' | sed 's/ *$//')
+          echo "urls=$urls" >> $GITHUB_OUTPUT
+  check-a11y:
+    runs-on: ubuntu-latest
+    needs: read-config
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: "yarn"
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Run a11y tests
+        run: |
+          yarn pa11y-ci ${{ needs.read-config.outputs.urls }}
+
+      - name: Send message on failure
+        env:
+          BOT_URL: ${{ secrets.BOT_URL }}
+        if: failure()
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" $BOT_URL?room=web-alerts

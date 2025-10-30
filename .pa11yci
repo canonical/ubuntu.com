@@ -1,0 +1,15 @@
+{
+  "defaults": {
+    "timeout": 120000,
+    "wait": 5000,
+    "chromeLaunchConfig": {
+      "args": [
+        "--no-sandbox"
+      ]
+    },
+    "hideElements": [
+      "#lightningjs-frame-usabilla_live",
+      "html > body > iframe[style*='display: none'], [style*='visibility: hidden;']"
+    ]
+  }
+}
