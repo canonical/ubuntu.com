@@ -15,13 +15,13 @@ toc: False
 
 As with any other component of IT architecture, it is recommended to have a plan for backing up and restoring key elements of your Kubernetes cluster.
 
-Although many believe that Kubernetes can be considered more or less stateless, that isn't really true beyond the use case of running a few ephemeral services. Unlike legacy systems running on distinct machines though, backing up a Kubernetes cluster requires some additional thought as to what components need to be backed up and how they might be restored. 
+Although many believe that Kubernetes can be considered more or less stateless, that isn't really true beyond the use case of running a few ephemeral services. Unlike legacy systems running on distinct machines though, backing up a Kubernetes cluster requires some additional thought as to what components need to be backed up and how they might be restored.
 
 ## The etcd distributed key-value store
 
-Kubernetes relies on the distributed key-value store `etcd` to keep information such as state, configuration and metadata in a central location where it can be accessed by any pods in the cluster. The name is derived from the idea that it is an '/etc' directory for destributed systems ('d'), though it is not used purely for configuration. 
+Kubernetes relies on the distributed key-value store `etcd` to keep information such as state, configuration and metadata in a central location where it can be accessed by any pods in the cluster. The name is derived from the idea that it is an '/etc' directory for destributed systems ('d'), though it is not used purely for configuration.
 The etcd store is essential to the operation of Kubernetes and should be considered worthy of a backup strategy.
-Etcd itself includes the ability to save and restore snapshots of the stored data, which in the case of **Charmed Kubernetes** is exposed to the cluster operator through a Juju action. The procedure for using the action to create snapshots, store the snapshots and subsequently restore them is covered in [this How To guide to backing up etcd][backup-etcd]. 
+Etcd itself includes the ability to save and restore snapshots of the stored data, which in the case of **Charmed Kubernetes** is exposed to the cluster operator through a Juju action. The procedure for using the action to create snapshots, store the snapshots and subsequently restore them is covered in [this How To guide to backing up etcd][backup-etcd].
 
 ## Persistent storage
 
@@ -61,7 +61,7 @@ Understandably, there are a number of third party backup solutions for Kubernete
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/explain-backups.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
+    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack  channel</a>.</p>
   </div>
 </div>
 
