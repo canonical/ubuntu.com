@@ -1501,7 +1501,7 @@ def process_local_communities(local_communities):
                     )
 
         return flask.render_template(
-            "community/local-communities.html",
+            "community/circles.html",
             communities_by_continent=communities_by_continent,
             map_markers=map_markers,
         )
