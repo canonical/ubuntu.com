@@ -5,7 +5,7 @@
 {% block title %}Ubuntu Circles{% endblock %}
 
 {% block meta_description %}
-  Ubuntu is powered by a collection of passionate grassroots communities. Find, join or start a Circle in your region.
+  Ubuntu is powered by a collection of passionate grassroots communities. Find, join or start an Ubuntu Circle in your region.
 {% endblock
 meta_description %}
 
@@ -28,7 +28,9 @@ meta_copydoc %}
         </div>
         <div class="col">
           <p>
-            Ubuntu Circles are local communities built around a shared love for Ubuntu and open source. Together, they meet, create, and contribute to make Ubuntu even better. Find a Circle in your region or <a href="/community/docs/locos/create">start your own</a>.
+            Ubuntu Circles are local communities built around a shared love for Ubuntu and open source.
+            <br/>
+            Together, they meet, create, and contribute to make Ubuntu even better. Find a Circle in your region or <a href="/community/docs/locos/create">start your own</a>.
           </p>
         </div>
       </div>
@@ -77,7 +79,7 @@ meta_copydoc %}
         <div class="row">
           <figcaption class="col-6 col-medium-3 col-start-medium-4 col-start-large-7 u-text--muted"
                       style="font-style:normal;
-                             padding-top:6px">Map of Ubuntu Local Community Locations</figcaption>
+                             padding-top:6px">Map of Ubuntu Circle Locations</figcaption>
         </div>
       </figure>
     </div>
@@ -125,6 +127,12 @@ meta_copydoc %}
             </div>
           </div>
         {% endfor %}
+        <div class="p-section--shallow">
+          <p>Don't see a Local Community in your region?</p>
+          <div class="p-cta-block">
+            <a href="/community/docs/locos/create" class="p-button">Consider starting one</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -161,6 +169,12 @@ meta_copydoc %}
         </div>
       </div>
     {% endfor %}
+    <div class="p-section--shallow">
+      <p>Don't see a Local Community in your region?</p>
+      <div class="p-cta-block">
+        <a href="/community/docs/locos/create" class="p-button">Consider starting one</a>
+      </div>
+    </div>
   </noscript>
 
   {{ vf_highlighted_cta(cta_text="Are you stuck and need help? <br /> <a href='https://ubuntu.com/community/support'>Take a look at how our community can support you.</a>") | safe }}
