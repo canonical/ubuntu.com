@@ -289,7 +289,8 @@
                   <div class="u-crop--16-9">
                     <div class="article-image p-image-container">
                       <a href="/blog/{{ article.slug }}">
-                        {{ image(url=article.image.source_url,
+                        {% set image_url = article.image.source_url if article.image and article.image.source_url else "https://assets.ubuntu.com/v1/94c82a15-blog_fallback_image.png" %}
+                        {{ image(url=image_url,
                                                 alt=article.title.rendered,
                                                 width="400",
                                                 height="400",
