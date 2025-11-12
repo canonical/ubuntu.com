@@ -472,7 +472,7 @@ function formatKeyLabel(key) {
   );
   formattedKey = formattedKey.replace(
     "Pro legacy support",
-    "Legacy add-on (years 11 to 15)",
+    "Legacy support (years 11 and 12)",
   );
   formattedKey = formattedKey.replace(
     "Microstack esm",
