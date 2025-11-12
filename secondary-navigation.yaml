@@ -51,11 +51,11 @@ aws:
 
 managedapps:
   title: Managed Services
-  path: /managed
+  path: /managed-infrastructure
 
   children:
     - title: Overview
-      path: /managed
+      path: /managed-infrastructure
     - title: OpenStack
       path: /openstack/managed
     - title: Kubernetes
@@ -63,9 +63,9 @@ managedapps:
     - title: Ceph
       path: /ceph/managed
     - title: Apps
-      path: /managed/apps
+      path: /managed-infrastructure/apps
     - title: Firefighting
-      path: /managed/firefighting-support
+      path: /managed-infrastructure/firefighting-support
 
 openstack:
   title: Canonical OpenStack
