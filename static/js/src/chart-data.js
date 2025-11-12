@@ -13,7 +13,7 @@ export var serverAndDesktopReleases = [
   },
   {
     startDate: new Date("2024-04-02T00:00:00"),
-    endDate: new Date("2026-04-02T00:00:00"),
+    endDate: new Date("2029-04-02T00:00:00"),
     taskName: "14.04 LTS (Trusty Tahr)",
     status: "PRO_LEGACY_SUPPORT",
   },
@@ -37,7 +37,7 @@ export var serverAndDesktopReleases = [
   },
   {
     startDate: new Date("2026-04-01T00:00:00"),
-    endDate: new Date("2028-04-02T00:00:00"),
+    endDate: new Date("2031-04-02T00:00:00"),
     taskName: "16.04 LTS (Xenial Xerus)",
     status: "PRO_LEGACY_SUPPORT",
   },
@@ -61,7 +61,7 @@ export var serverAndDesktopReleases = [
   },
   {
     startDate: new Date("2028-04-01T00:00:00"),
-    endDate: new Date("2030-04-01T00:00:00"),
+    endDate: new Date("2033-04-01T00:00:00"),
     taskName: "18.04 LTS (Bionic Beaver)",
     status: "PRO_LEGACY_SUPPORT",
   },
@@ -85,7 +85,7 @@ export var serverAndDesktopReleases = [
   },
   {
     startDate: new Date("2030-04-01T00:00:00"),
-    endDate: new Date("2032-04-02T00:00:00"),
+    endDate: new Date("2035-04-02T00:00:00"),
     taskName: "20.04 LTS (Focal Fossa)",
     status: "PRO_LEGACY_SUPPORT",
   },
@@ -109,7 +109,7 @@ export var serverAndDesktopReleases = [
   },
   {
     startDate: new Date("2032-04-01T00:00:00"),
-    endDate: new Date("2034-04-01T00:00:00"),
+    endDate: new Date("2037-04-01T00:00:00"),
     taskName: "22.04 LTS (Jammy Jellyfish)",
     status: "PRO_LEGACY_SUPPORT",
   },
@@ -133,7 +133,7 @@ export var serverAndDesktopReleases = [
   },
   {
     startDate: new Date("2034-04-25T00:00:00"),
-    endDate: new Date("2036-04-25T00:00:00"),
+    endDate: new Date("2039-04-25T00:00:00"),
     taskName: "24.04 LTS (Noble Numbat)",
     status: "PRO_LEGACY_SUPPORT",
   },

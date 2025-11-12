@@ -387,7 +387,7 @@ function formatLabel(label, isTooltip = false) {
     case "canonical_kubernetes_support":
       return "Canonical Kubernetes support";
     case "pro_legacy_support":
-      return `Legacy support${!isTooltip ? " (years 11 and 12)" : ""}`;
+      return `Legacy add-on${!isTooltip ? " (years 11 to 15)" : ""}`;
     case "microstack_esm":
       return "Expanded Security Maintenance (ESM)";
     case "pro_support":
