@@ -1,5 +1,10 @@
 {% extends "managed-infrastructure/_base_managed-apps.html" %}
 
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+{% from "_macros/vf_equal-heights.jinja" import vf_equal_heights %}
+{% from "_macros/vf_data-spotlight.jinja" import vf_data_spotlight %}
+
+
 {% block title %}Canonical Managed Infrastructure{% endblock %}
 
 {% block meta_description %}Opensource managed infrastructure for any enterprise challenge. Get experts to manage your private cloud, infrastructure, and operations.{% endblock meta_description %}
@@ -203,6 +208,56 @@
   </div>
 </section>
 
+{% call(slot) vf_quote_wrapper(
+  title_text="What managed services customers say",
+  quote_size="small",
+  quote_text="Kubernetes is both fast-moving and hard, so supporting it ourselves was not a viable option. The thought of having to support it is daunting. To keep it supported and up to date, it’s better to have experts who do this every day involved and manage it for us.",
+  citation_source_name_text="Michael Hawkshaw",
+  citation_source_title_text="ESA Mission Operations Infrastructure IT Service Manager at ESOC",
+) -%}
+
+{%- if slot == 'signpost_image' -%}
+<img src="https://assets.ubuntu.com/v1/4f1e0548-esa_logo.png" width="250" alt="ESA logo">
+{%- endif -%}
+
+{%- if slot == 'cta' -%}
+<a href="https://canonical.com/case-study/esa">Explore the case study &rsaquo;</a>
+{%- endif -%}
+
+{% endcall -%}
+
+
+{% call(slot) vf_quote_wrapper(
+  quote_size="small",
+  quote_text="The relationship with Canonical has been very positive. From the end-to-end support we received through the managed service, to the enterprise support we’re enjoying now, the journey has been good. We have assistance and guidance whenever we need it.",
+  citation_source_name_text="Macdonald Chamba",
+  citation_source_title_text="Head of Infrastructure and Cloud Services, TNM",
+) -%}
+
+{%- if slot == 'signpost_image' -%}
+<img src="https://assets.ubuntu.com/v1/24693a21-tnm_logo.png" width="250" alt="TNM logo">
+{%- endif -%}
+
+{%- if slot == 'cta' -%}
+<a href="https://ubuntu.com/engage/tnm-managed-openstack-case-study">Read the story &rsaquo;</a>
+{%- endif -%}
+
+{% endcall -%}
+
+
+{% call(slot) vf_quote_wrapper(
+  quote_size="small",
+  quote_text="The decision to go with a managed service has 100% paid off. Kafka was never our core focus. It would take us years to get to the level of expertise that Canonical already has.",
+  citation_source_name_text="Spokesperson",
+  citation_source_title_text="Safety technology company",
+) -%}
+
+{%- if slot == 'cta' -%}
+<a href="https://canonical.com/case-study/managed-kafka-for-smart-safety">Learn more &rsaquo;</a>
+{%- endif -%}
+
+{% endcall -%}
+
 <section class="p-section">
   <div class="p-section--shallow">
     <div class="row--50-50">
@@ -305,28 +360,62 @@
       <div class="row">
         <div class="col-3 col-medium-2">
           <hr class="p-rule--highlight" />
-          <h3 class="p-heading--4">Cloud apps</h3>
+          <h3 class="p-heading--4">Migrate to open source</h3>
         </div>
         <div class="col-6 col-medium-3">
-          <p>Enhance the security and reliability of your containers, databases, and service buses with fully managed
-            apps</p>
+          <p>Migrate your workload from proprietary virtualization solutions to a fully open source cloud.</p>
           <ul class="p-list--divided">
             <li class="p-list__item is-ticked">
-              Extensive suite of in-house automated apps
+              Tailored cloud deployment to replace your infrastructure
             </li>
             <li class="p-list__item is-ticked">
-              Adaptable security and compliance certifications
+              Tailored migration policies according to your needs
             </li>
             <li class="p-list__item is-ticked">
-              Assured high availability via site/geo redundancy
+              Fully managed cloud based on open source technologies
             </li>
           </ul>
-          <a href="/managed-infrastructure/apps">Explore our managed apps story&nbsp;&rsaquo;</a>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+{% call(slot) vf_equal_heights(
+  title_text="Building blocks in our managed infra portfolio",
+  items=[
+    {
+      "title_text": "Scalable software-defined storage",
+      "image_html":  "<img src='https://assets.ubuntu.com/v1/ad6ec304-scalable.png' class='p-image-container__image' width='284' height='426' alt='Storage illustration' />",
+      "description_html": "<p>Focus on your business applications, while Canonical takes care of your storage needs.</p>",
+      "cta_html": "<a href='/ceph/managed'>Discover managed Ceph&nbsp;&rsaquo;</a>"
+    },
+    {
+      "title_text": "Virtualization and private cloud management",
+      "image_html":  "<img src='https://assets.ubuntu.com/v1/9f7d88c5-virtualization.png' class='p-image-container__image' width='284' height='426' alt='Virtualization and cloud illustration' />",
+      "description_html": "<p>End-to-end operations and maintenance of your OpenStack cloud, including 24/7 monitoring, incident and problem management.</p>",
+      "cta_html": "<a href='https://canonical.com/openstack/support'>Browse OpenStack support offerings&nbsp;&rsaquo;</a>"
+    },
+    {
+      "title_text": "Container orchestration",
+      "image_html":  "<img src='https://assets.ubuntu.com/v1/c388cd50-container.png' class='p-image-container__image' width='284' height='426' alt='Container illustration' />",
+      "description_html": "<p>Modernize your applications while Canonical builds and manages your Kubernetes clusters.</p>",
+      "cta_html": "<a href='/kubernetes/managed'>Read about managed Kubernetes&nbsp;&rsaquo;</a>"
+    },
+    {
+      "title_text": "Observability",
+      "image_html":  "<img src='https://assets.ubuntu.com/v1/e52f4c7a-observability.png' class='p-image-container__image' width='284' height='426' alt='Observability illustration' />",
+      "description_html": "<p>Let us run open source monitoring tools like Prometeus, Grafana, and others for you.</p>",
+      "cta_html": "<a href='https://canonical.com/observability/managed'>Discover our observability solutions&nbsp;&rsaquo;</a>"
+    }
+  ]
+) %}
+{% if slot == "description" %}
+<p>
+  Adopt open source with confidence in your environment. Our infrastructure portfolio includes leading open source technologies that range from storage solutions to observability.
+</p>
+{% endif %}
+{% endcall %}
 
 <section class="p-section">
   <div class="row--50-50">
@@ -368,6 +457,43 @@
           </div>
         </li>
       </ol>
+    </div>
+  </div>
+</section>
+
+{{ vf_data_spotlight(
+  title={
+    "text": "Our offering",
+  },
+  blocks=[
+    {
+      "stat": "2",
+      "headline": "Products",
+    },
+    {
+      "stat": "2",
+      "headline": "Add-ons",
+    },
+    {
+      "stat": "0",
+      "headline": "Hassle",
+    }
+  ],
+) }}
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Value for money with managed infrastructure and applications</h2>
+    </div>
+    <div class="col">
+      <p>When you work with Canonical for Managed Services, you can access an entire portfolio of trusted open source solutions. You can adopt more open source with the same support guarantees from the same vendor, and get coverage for both the infrastructure layer and open source applications, including databases like PostgreSQL, and MLOps platforms like Kubeflow. 
+      </p>
+      <p>
+        Come for the infra, and get your apps on top.
+      </p>
+      <a href="/managed-infrastructure/apps">Explore our managed application offering</a>
     </div>
   </div>
 </section>
