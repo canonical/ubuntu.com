@@ -13,7 +13,7 @@ export var serverAndDesktopReleases = [
   },
   {
     startDate: new Date("2024-04-02T00:00:00"),
-    endDate: new Date("2026-04-02T00:00:00"),
+    endDate: new Date("2029-04-02T00:00:00"),
     taskName: "14.04 LTS (Trusty Tahr)",
     status: "PRO_LEGACY_SUPPORT",
   },
@@ -37,7 +37,7 @@ export var serverAndDesktopReleases = [
   },
   {
     startDate: new Date("2026-04-01T00:00:00"),
-    endDate: new Date("2028-04-02T00:00:00"),
+    endDate: new Date("2031-04-02T00:00:00"),
     taskName: "16.04 LTS (Xenial Xerus)",
     status: "PRO_LEGACY_SUPPORT",
   },
@@ -61,7 +61,7 @@ export var serverAndDesktopReleases = [
   },
   {
     startDate: new Date("2028-04-01T00:00:00"),
-    endDate: new Date("2030-04-01T00:00:00"),
+    endDate: new Date("2033-04-01T00:00:00"),
     taskName: "18.04 LTS (Bionic Beaver)",
     status: "PRO_LEGACY_SUPPORT",
   },
@@ -85,7 +85,7 @@ export var serverAndDesktopReleases = [
   },
   {
     startDate: new Date("2030-04-01T00:00:00"),
-    endDate: new Date("2032-04-02T00:00:00"),
+    endDate: new Date("2035-04-02T00:00:00"),
     taskName: "20.04 LTS (Focal Fossa)",
     status: "PRO_LEGACY_SUPPORT",
   },
@@ -109,7 +109,7 @@ export var serverAndDesktopReleases = [
   },
   {
     startDate: new Date("2032-04-01T00:00:00"),
-    endDate: new Date("2034-04-01T00:00:00"),
+    endDate: new Date("2037-04-01T00:00:00"),
     taskName: "22.04 LTS (Jammy Jellyfish)",
     status: "PRO_LEGACY_SUPPORT",
   },
@@ -133,7 +133,7 @@ export var serverAndDesktopReleases = [
   },
   {
     startDate: new Date("2034-04-25T00:00:00"),
-    endDate: new Date("2036-04-25T00:00:00"),
+    endDate: new Date("2039-04-25T00:00:00"),
     taskName: "24.04 LTS (Noble Numbat)",
     status: "PRO_LEGACY_SUPPORT",
   },
@@ -152,13 +152,6 @@ export var serverAndDesktopReleases = [
 ];
 
 export var kernelReleases = [
-  {
-    startDate: new Date("2025-10-01T00:00:00"),
-    endDate: new Date("2026-07-01T00:00:00"),
-    taskName: "25.10",
-    taskVersion: "6.17 kernel",
-    status: "INTERIM_RELEASE",
-  },
   {
     startDate: new Date("2025-08-01T00:00:00"),
     endDate: new Date("2026-01-01T00:00:00"),
@@ -189,7 +182,7 @@ export var kernelReleases = [
   },
   {
     startDate: new Date("2032-03-31T00:00:00"),
-    endDate: new Date("2034-04-29T00:00:00"),
+    endDate: new Date("2037-04-29T00:00:00"),
     taskName: "22.04.5 LTS (HWE)",
     taskVersion: "6.8 kernel",
     status: "PRO_LEGACY_SUPPORT",
@@ -210,7 +203,7 @@ export var kernelReleases = [
   },
   {
     startDate: new Date("2034-03-31T00:00:00"),
-    endDate: new Date("2036-04-29T00:00:00"),
+    endDate: new Date("2039-04-29T00:00:00"),
     taskName: "24.04.[0 or 1] LTS",
     taskVersion: "6.8 kernel",
     status: "PRO_LEGACY_SUPPORT",
@@ -231,7 +224,7 @@ export var kernelReleases = [
   },
   {
     startDate: new Date("2032-03-01T00:00:00"),
-    endDate: new Date("2034-04-29T00:00:00"),
+    endDate: new Date("2037-04-29T00:00:00"),
     taskName: "22.04.[0 or 1] LTS",
     taskVersion: "5.15 kernel",
     status: "PRO_LEGACY_SUPPORT",
@@ -252,7 +245,7 @@ export var kernelReleases = [
   },
   {
     startDate: new Date("2030-04-29T00:00:00"),
-    endDate: new Date("2032-04-29T00:00:00"),
+    endDate: new Date("2035-04-29T00:00:00"),
     taskName: "20.04.5 LTS (HWE)",
     taskVersion: "",
     status: "PRO_LEGACY_SUPPORT",
@@ -273,7 +266,7 @@ export var kernelReleases = [
   },
   {
     startDate: new Date("2028-04-28T00:00:00"),
-    endDate: new Date("2030-04-28T00:00:00"),
+    endDate: new Date("2033-04-28T00:00:00"),
     taskName: "18.04.5 LTS (HWE)",
     taskVersion: "5.4 kernel",
     status: "PRO_LEGACY_SUPPORT",
@@ -294,7 +287,7 @@ export var kernelReleases = [
   },
   {
     startDate: new Date("2030-04-29T00:00:00"),
-    endDate: new Date("2032-04-29T00:00:00"),
+    endDate: new Date("2035-04-29T00:00:00"),
     taskName: "20.04.[0 or 1] LTS",
     taskVersion: "",
     status: "PRO_LEGACY_SUPPORT",
@@ -315,7 +308,7 @@ export var kernelReleases = [
   },
   {
     startDate: new Date("2026-04-29T00:00:00"),
-    endDate: new Date("2028-04-29T00:00:00"),
+    endDate: new Date("2031-04-29T00:00:00"),
     taskName: "16.04.5 LTS (HWE)",
     taskVersion: "4.15 kernel",
     status: "PRO_LEGACY_SUPPORT",
@@ -336,7 +329,7 @@ export var kernelReleases = [
   },
   {
     startDate: new Date("2028-04-28T00:00:00"),
-    endDate: new Date("2030-04-28T00:00:00"),
+    endDate: new Date("2033-04-28T00:00:00"),
     taskName: "18.04.[0 or 1] LTS",
     taskVersion: "",
     status: "PRO_LEGACY_SUPPORT",
@@ -357,7 +350,7 @@ export var kernelReleases = [
   },
   {
     startDate: new Date("2024-04-29T00:00:00"),
-    endDate: new Date("2026-04-29T00:00:00"),
+    endDate: new Date("2029-04-29T00:00:00"),
     taskName: "14.04.5 LTS (HWE)",
     taskVersion: "4.4 kernel",
     status: "PRO_LEGACY_SUPPORT",
@@ -378,7 +371,7 @@ export var kernelReleases = [
   },
   {
     startDate: new Date("2026-04-29T00:00:00"),
-    endDate: new Date("2028-04-29T00:00:00"),
+    endDate: new Date("2031-04-29T00:00:00"),
     taskName: "16.04.[0 or 1] LTS",
     taskVersion: "",
     status: "PRO_LEGACY_SUPPORT",
@@ -399,7 +392,7 @@ export var kernelReleases = [
   },
   {
     startDate: new Date("2024-04-30T00:00:00"),
-    endDate: new Date("2026-04-30T00:00:00"),
+    endDate: new Date("2029-04-30T00:00:00"),
     taskName: "14.04.[0 or 1] LTS",
     taskVersion: "",
     status: "PRO_LEGACY_SUPPORT",
@@ -1087,7 +1080,7 @@ export var kubernetesReleasesLTS = [
   },
   {
     startDate: new Date("2034-12-01T00:00:00"),
-    endDate: new Date("2036-12-01T00:00:00"),
+    endDate: new Date("2039-12-01T00:00:00"),
     taskName: "Kubernetes 1.32.x LTS",
     status: "CANONICAL_KUBERNETES_LEGACY_SUPPORT",
   },
@@ -1290,7 +1283,6 @@ export var desktopServerReleaseNames = [
 ];
 
 export var kernelReleaseNames = [
-  "25.10",
   "24.04.3 LTS (HWE)",
   "25.04",
   "22.04.5 LTS (HWE)",
@@ -1307,7 +1299,6 @@ export var kernelReleaseNames = [
 ];
 
 export var kernelVersionNames = [
-  "6.17",
   "6.14",
   "",
   "6.8",
