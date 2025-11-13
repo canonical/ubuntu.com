@@ -32,6 +32,7 @@ from canonicalwebteam.search import build_search_view
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.form_generator import FormGenerator
 
+
 from webapp.certified.views import certified_routes
 from webapp.handlers import init_handlers
 from webapp.login import login_handler, logout, user_info
@@ -262,6 +263,62 @@ charmhub_discourse_api = DiscourseAPI(
 search_engine_id = "adb2397a224a1fe55"
 
 init_handlers(app, sentry)
+
+# TEMP imports for testing
+# Code will be moved to independent repo
+from webapp.cookie_consent_pkg import CookieConsent
+from webapp.cookie_consent_pkg.helpers import (
+    check_session_and_redirect,
+    sync_preferences_cookie,
+)
+
+
+app.config["CENTRAL_COOKIE_SERVICE_URL"] = (
+    "https://cookies.staging.canonical.com"  # Local testing value
+)
+app.config["SESSION_COOKIE_SECURE"] = False  # Local testing value
+
+# --- TEMP CACHE SETUP: START ---
+_cache = {}
+
+
+def get_cache(key):
+    return _cache.get(key)
+
+
+def set_cache(key, value):
+    _cache[key] = value
+
+
+# --- TEMP CACHE SETUP: END ---
+
+# Initialize cookie consent service
+cookie_service = CookieConsent().init_app(
+    app,
+    get_cache_func=get_cache,
+    set_cache_func=set_cache,
+    start_health_check=not bool(app.debug),
+)
+
+
+@app.before_request
+def redirect_to_cookie_service():
+    """
+    Redirects to the cookie consent service to create a session
+    """
+    response = check_session_and_redirect()
+    if response:
+        return response
+
+
+@app.after_request
+def set_cookies(response):
+    """
+    Checks if cookies need to be synced after request
+    """
+    response = sync_preferences_cookie(response)
+    if response:
+        return response
 
 
 # Prepare forms
