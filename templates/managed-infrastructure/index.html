@@ -3,6 +3,7 @@
 {% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
 {% from "_macros/vf_equal-heights.jinja" import vf_equal_heights %}
 {% from "_macros/vf_data-spotlight.jinja" import vf_data_spotlight %}
+{% from "_macros/vf_logo-section.jinja" import vf_logo_section %}
 
 
 {% block title %}Canonical Managed Infrastructure{% endblock %}
@@ -31,108 +32,55 @@
   <div class="p-suru"></div>
 </section>
 
-<section class="p-section--shallow">
-  <div class="row">
-    <hr class="p-rule" />
-    <div class="col-3">
-      <p class="p-muted-heading">Trusted by</p>
-    </div>
-    <div class="col-9">
-      <div class="p-logo-section">
-        <div class="p-logo-section__items">
-          <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/bdd5a9a1-docaposte_logo.png",
-            alt="docapost",
-            width="143",
-            height="128",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/db8fa7fa-telefonica_logo.png",
-            alt="Telefonica",
-            width="162",
-            height="128",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/db85a281-rabobank_logo.png",
-            alt="Rabo bank",
-            width="128",
-            height="128",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/4e71969b-barnes_noble_logo.png",
-            alt="Barnes & Noble",
-            width="143",
-            height="128",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/41834c82-onetrail_logo.png",
-            alt="onetrail",
-            width="106",
-            height="128",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/1f8f3262-dyson_logo.png",
-            alt="dyson",
-            width="78",
-            height="128",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/52de72dc-gamma_logo.png",
-            alt="Gamma",
-            width="141",
-            height="128",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/3eed5d6a-unicc_logo.png",
-            alt="Unicc",
-            width="62",
-            height="128",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
+{% call(slot) vf_logo_section(
+  title={
+    "text": "Trusted by"
+  },
+  blocks=[
+    {
+      "type": "logo-block",
+      "item": {
+        "logos": [
+          {
+            "src": "https://assets.ubuntu.com/v1/bdd5a9a1-docaposte_logo.png",
+            "alt": "docapost"
+          },
+          {
+            "src": "https://assets.ubuntu.com/v1/db8fa7fa-telefonica_logo.png",
+            "alt": "Telefonica"
+          },
+          {
+            "src": "https://assets.ubuntu.com/v1/db85a281-rabobank_logo.png",
+            "alt": "Rabo bank"
+          },
+          {
+            "src": "https://assets.ubuntu.com/v1/4e71969b-barnes_noble_logo.png",
+            "alt": "Barnes & Noble"
+          },
+          {
+            "src": "https://assets.ubuntu.com/v1/41834c82-onetrail_logo.png",
+            "alt": "onetrail"
+          },
+          {
+            "src": "https://assets.ubuntu.com/v1/1f8f3262-dyson_logo.png",
+            "alt": "Dyson"
+          },
+          {
+            "src": "https://assets.ubuntu.com/v1/52de72dc-gamma_logo.png",
+            "alt": "Gamma"
+          },
+          {
+            "src": "https://assets.ubuntu.com/v1/3eed5d6a-unicc_logo.png",
+            "alt": "Unicc"
+          }
+        ]
+      }
+    }
+  ]
+) -%}
+{% endcall -%}
+
 
 <section class="p-section">
   <div class="row--50-50">
