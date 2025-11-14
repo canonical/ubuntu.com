@@ -201,7 +201,7 @@ function createModal({ modalSelector, triggerButton }) {
       name: data.get("name"),
       taxID: {
         value: data.get("vat"),
-        type: country === "ZA" ? "za_vat" : "eu_vat",
+        type: findCountryCode(country) === "ZA" ? "za_vat" : "eu_vat",
       },
     };
 
