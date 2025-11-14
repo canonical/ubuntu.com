@@ -853,7 +853,7 @@ ubuntu_weekly_newsletter = Category(
 )
 
 app.add_url_rule(
-    "/community/local-communities",
+    "/community/circles",
     view_func=process_local_communities(local_communities),
 )
 

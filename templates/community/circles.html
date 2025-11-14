@@ -2,10 +2,10 @@
 
 {% from "macros/_vf_highlighted-cta.jinja" import vf_highlighted_cta %}
 
-{% block title %}Ubuntu Local Communities{% endblock %}
+{% block title %}Ubuntu Circles{% endblock %}
 
 {% block meta_description %}
-  Ubuntu is powered by a collection of passionate grassroots communities. Find, join or start a local community in your region.
+  Ubuntu is powered by a collection of passionate grassroots communities. Find, join or start an Ubuntu Circle in your region.
 {% endblock
 meta_description %}
 
@@ -24,23 +24,24 @@ meta_copydoc %}
     <div class="p-section--shallow">
       <div class="row--50-50">
         <div class="col">
-          <h1>Ubuntu local communities</h1>
+          <h1>Ubuntu Circles</h1>
         </div>
         <div class="col">
           <p>
-            Ubuntu Local Communities, often shortened to LoCos, are regional teams that help advocate, promote, translate, develop, and otherwise improve Ubuntu. Find a Local Community in your region or <a href="/community/docs/locos/create">start your own</a>.
+            Ubuntu Circles are local communities built around a shared love for Ubuntu and open source.
+            <br/>
+            Together, they meet, create, and contribute to make Ubuntu even better. Find a Circle in your region or <a href="/community/docs/locos/create">start your own</a>.
           </p>
         </div>
       </div>
     </div>
     <div class="u-fixed-width">
       <div class="p-image-container--cinematic is-cover">
-        {{ image(url="https://assets.ubuntu.com/v1/9244575c-local-communities-cover.png",
+        {{ image(url="https://assets.ubuntu.com/v1/2f3bad3c-pxl_20250620_200348804.jpg",
                 alt="",
                 width="1232",
                 height="514",
                 hi_def=True,
-                fmt="webp",
                 loading="auto",
                 attrs={"class": "p-image-container__image"}) | safe
         }}
@@ -51,7 +52,7 @@ meta_copydoc %}
   <section class="p-section">
     <div class="u-fixed-width">
       <div class="p-section--shallow">
-        <h2>What are the perks of being in an Ubuntu Local Community?</h2>
+        <h2>What are the perks of being in an Ubuntu Circle?</h2>
       </div>
       <div class="p-list--horizontal-section-wrapper">
         <ul class="p-list--horizontal-section is-50-50-on-large">
@@ -71,14 +72,14 @@ meta_copydoc %}
     <hr class="p-rule is-fixed-width" />
     <div class="u-fixed-width">
       <div class="p-section--shallow">
-        <h2>Join an Ubuntu Local Community</h2>
+        <h2>Join an Ubuntu Circle</h2>
       </div>
       <figure class="js-show-map" style="visibility:hidden;margin:0;">
         <div id="locations-map"></div>
         <div class="row">
           <figcaption class="col-6 col-medium-3 col-start-medium-4 col-start-large-7 u-text--muted"
                       style="font-style:normal;
-                             padding-top:6px">Map of Ubuntu Local Community Locations</figcaption>
+                             padding-top:6px">Map of Ubuntu Circle Locations</figcaption>
         </div>
       </figure>
     </div>
@@ -87,7 +88,7 @@ meta_copydoc %}
       <div class="p-tabs js-tabbed-content">
         <nav class="p-tabs__list"
              role="tablist"
-             aria-label="Ubuntu Local Communities">
+             aria-label="Ubuntu Circles">
           {% for continent in communities_by_continent %}
             <div class="p-tabs__item">
               <button class="p-tabs__link"
@@ -96,12 +97,6 @@ meta_copydoc %}
                       id="{{ continent | slug }}">{{ continent }}</button>
             </div>
           {% endfor %}
-          <div class="p-tabs__item">
-            <button class="p-tabs__link"
-                    role="tab"
-                    aria-controls="historic-locos-tab"
-                    id="historic-locos">Historic/ Inactive LoCo Teams</button>
-          </div>
         </nav>
 
         {% for continent in communities_by_continent %}
@@ -132,35 +127,6 @@ meta_copydoc %}
             </div>
           </div>
         {% endfor %}
-        <div tabindex="0"
-             class="u-hide"
-             role="tabpanel"
-             id="historic-locos-tab"
-             aria-labelledby="historic-locos">
-          <div class="row--50-50">
-            <div class="col">
-              <h2>Historic/ Inactive LoCo teams</h2>
-            </div>
-            <div class="col">
-              <div class="p-section--shallow">
-                <div class="p-image-container--3-2 is-cover">
-                  {{ image(url="https://assets.ubuntu.com/v1/c71d8fa6-new-community.png",
-                                    alt="",
-                                    width="566",
-                                    height="380",
-                                    hi_def=True,
-                                    loading="lazy",
-                                    attrs={"class": "p-image-container__image"}) | safe
-                  }}
-                </div>
-              </div>
-              <p>Don't see a Local Community in your region?</p>
-              <div class="p-cta-block">
-                <a href="/community/docs/locos/create" class="p-button">Consider starting one</a>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -197,30 +163,6 @@ meta_copydoc %}
         </div>
       </div>
     {% endfor %}
-    <hr class="p-rule--muted is-fixed-width" />
-    <div class="row--25-75">
-      <div class="col">
-        <h3>Historic/ Inactive LoCo teams</h3>
-      </div>
-      <div class="col">
-        <div class="p-section--shallow">
-          <div class="p-image-container--3-2 is-cover">
-            {{ image(url="https://assets.ubuntu.com/v1/c71d8fa6-new-community.png",
-                        alt="",
-                        width="566",
-                        height="380",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-image-container__image"}) | safe
-            }}
-          </div>
-        </div>
-        <p>Don't see a Local Community in your region?</p>
-        <div class="p-cta-block">
-          <a href="/community/docs/locos/create" class="p-button">Consider starting one</a>
-        </div>
-      </div>
-    </div>
   </noscript>
 
   {{ vf_highlighted_cta(cta_text="Are you stuck and need help? <br /> <a href='https://ubuntu.com/community/support'>Take a look at how our community can support you.</a>") | safe }}
