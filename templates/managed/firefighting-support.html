@@ -1,4 +1,4 @@
-{% extends "managed-infrastructure/_base_managed-apps.html" %}
+{% extends "managed/_base_managed-apps.html" %}
 
 {% block title %}Firefighting Support: enhanced cloud support from Canonical{% endblock %}
 
@@ -26,7 +26,7 @@
             The best self-managed alternative to <a href="/managed-infrastructure">Canonical Managed Services</a>. Get engineers on call to help you resolve the most critical issues, while continuing to manage your own environments.
           </p>
           <hr class="p-rule--muted" />
-          <a href="/managed-infrastructure/contact-us" class="p-button--positive js-invoke-modal">Enhance your cloud support now</a>
+          <a href="/managed/contact-us" class="p-button--positive js-invoke-modal">Enhance your cloud support now</a>
         </div>
       </div>
     </div>
@@ -101,7 +101,7 @@
           <li class="p-list__item is-ticked">Full control of your environments</li>
         </ul>
         <hr class="p-rule--muted" />
-        <a href="/managed-infrastructure/contact-us" class="p-button--positive js-invoke-modal">Get Firefighting Support</a>
+        <a href="/managed/contact-us" class="p-button--positive js-invoke-modal">Get Firefighting Support</a>
       </div>
     </div>
   </section>
@@ -321,7 +321,7 @@
           </div>
           <div class="col-6">
             <p>
-              Firefighting Support covers <a href="/openstack">Charmed OpenStack</a>, <a href="/kubernetes">Canonical Kubernetes</a>, and our entire <a href="/managed-infrastructure/apps">Managed Apps</a> portfolio.
+              Firefighting Support covers <a href="/openstack">Charmed OpenStack</a>, <a href="/kubernetes">Canonical Kubernetes</a>, and our entire <a href="/managed/apps">Managed Apps</a> portfolio.
             </p>
           </div>
         </div>
@@ -464,11 +464,11 @@
   <section class="p-strip is-deep">
     <div class="u-fixed-width">
       <h2>
-        <a href="/managed-infrastructure/contact-us" class="js-invoke-modal">Contact us and discuss your options&nbsp;&rsaquo;</a>
+        <a href="/managed/contact-us" class="js-invoke-modal">Contact us and discuss your options&nbsp;&rsaquo;</a>
       </h2>
     </div>
   </section>
 
-  {{ load_form('/managed-infrastructure') | safe }}
+  {{ load_form('/managed') | safe }}
 
 {% endblock content %}
