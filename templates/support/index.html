@@ -1,5 +1,7 @@
 {% extends "support/base_support.html" %}
 
+{% from "_macros/vf_resources.jinja" import vf_resources %}
+
 {% block title %}Enterprise open source support{% endblock %}
 
 {% block meta_description %}
@@ -1157,7 +1159,7 @@
     </div>
   </section>
 
-  <section class="p-section--deep">
+  <section class="p-section">
     <hr class="p-rule is-fixed-width" />
     <div class="row--50-50">
       <div class="col">
@@ -1177,6 +1179,81 @@
         </ul>
       </div>
     </div>
+  </section>
+
+  <section class="p-section">
+    {% call(slot) vf_resources(
+      title={
+        "text": "Resources",
+      },
+      blocks=[
+        {
+          "type": "resources",
+          "render_images": false,
+          "categories": [
+            {
+              "title": "Datasheets",
+              "items": [
+                {
+                  "title": {
+                    "text": "Ubuntu Pro + Support",
+                    "link_attrs": {
+                      "href": "https://assets.ubuntu.com/v1/5c454478-ubuntu_pro_and_support_data_sheet.pdf",
+                      "target": "_blank"
+                    }
+                  },
+                  "description": {
+                    "text": "Get a short overview of our Support offering."
+                  }
+                }
+              ]
+            },
+            {
+              "title": "Blog",
+              "items": [
+                {
+                  "title": {
+                    "text": "What is Linux Support?",
+                    "link_attrs": {
+                      "href": "https://ubuntu.com/blog/what-is-linux-support",
+                      "target": "_blank"
+                    }
+                  },
+                  "description": {
+                    "text": "Real case examples illustrate how our support goes beyond break-fix, offering deep expertise and a true partnership for running open source infrastructure with confidence.",
+                  }
+                },
+                {
+                  "title": {
+                    "text": "54% of European enterprises want long term open source support: how Ubuntu Pro + Support delivers",
+                    "link_attrs": {
+                      "href": "https://ubuntu.com/blog/54-of-european-enterprises-want-long-term-open-source-support-how-ubuntu-pro-support-delivers",
+                      "target": "_blank"
+                    }
+                  },
+                  "description": {
+                    "text": "Explore why long-term open source support matters to enterprises, and how Ubuntu Pro helps organisations manage risk and ensure stability.",
+                  }
+                },
+                {
+                  "title": {
+                    "text": "What dedicated Linux support specialists do",
+                    "link_attrs": {
+                      "href": "https://ubuntu.com/blog/dedicated-linux-support",
+                      "target": "_blank"
+                    }
+                  },
+                  "description": {
+                    "text": "Discover how Canonical’s Technical Account Managers (TAMs) and Dedicated Support Engineers (DSEs) act as an extension of your team, combining deep technical knowledge with intimate awareness of your unique environment.",
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    ) -%}
+    {% endcall -%}
   </section>
 
   <!-- Set default Marketo information for contact form below-->
