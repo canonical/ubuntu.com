@@ -84,12 +84,20 @@
                     aria-selected="false"
                     aria-controls="eswin-ebc7702-mini-dtx-mainboard-tab">ESWIN EBC7702 Mini-DTX Mainboard</button>
           </li>
+          <li>
+            <button class="p-tabs__item"
+                    id="sifive-hifive-premier-p550"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="sifive-hifive-premier-p550-tab">SiFive HiFive Premier P550</button>
+          </li>
         </ul>
         <form class="u-hide--large u-hide--medium">
           <select name="boardSelect" id="boardSelect" data-maintain-hash="true">
             <option value="deepcomputing-fml13v01-tab">DeepComputing FML13V01</option>
             <option value="eswin-ebc7700-sbc-tab">ESWIN EBC7700 SBC</option>
             <option value="eswin-ebc7702-mini-dtx-mainboard-tab">ESWIN EBC7702 Mini-DTX Mainboard</option>
+            <option value="sifive-hifive-premier-p550-tab">SiFive HiFive Premier P550</option>
           </select>
         </form>
       </div>
@@ -97,6 +105,7 @@
         {% include "download/risc-v/deepcomputing-fml13v01-partner.html" %}
         {% include "download/risc-v/eswin-ebc7700-sbc.html" %}
         {% include "download/risc-v/eswin-ebc7702-mini-dtx-mainboard.html" %}
+        {% include "download/risc-v/sifive-hifive-premier-p550.html" %}
       </div>
     </div>
   </section>
