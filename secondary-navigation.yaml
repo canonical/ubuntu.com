@@ -50,21 +50,27 @@ aws:
       path: https://documentation.ubuntu.com/aws/en/latest/
 
 managedapps:
-  title: Managed Services
+  title: Managed infrastructure
   path: /managed
 
   children:
     - title: Overview
-      path: /managed
-    - title: OpenStack
-      path: /openstack/managed
-    - title: Kubernetes
-      path: /kubernetes/managed
-    - title: Ceph
-      path: /ceph/managed
-    - title: Apps
+      path: /managed-infrastructure
+    - title: Managed apps
       path: /managed/apps
-    - title: Firefighting
+    - title: Firefighting Support
+      path: /managed/firefighting-support
+
+managedinfrastructure:
+  title: Managed infrastructure
+  path: /managed-infrastructure
+
+  children:
+    - title: Overview
+      path: /managed-infrastructure
+    - title: Managed apps
+      path: /managed/apps
+    - title: Firefighting Support
       path: /managed/firefighting-support
 
 openstack:

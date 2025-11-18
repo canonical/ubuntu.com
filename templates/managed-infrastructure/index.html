@@ -1,9 +1,14 @@
-{% extends "managed/_base_managed-apps.html" %}
+{% extends "managed-infrastructure/_base_managed-apps.html" %}
 
-{% block title %}Managed IT Services for open source{% endblock %}
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+{% from "_macros/vf_equal-heights.jinja" import vf_equal_heights %}
+{% from "_macros/vf_data-spotlight.jinja" import vf_data_spotlight %}
+{% from "_macros/vf_logo-section.jinja" import vf_logo_section %}
 
-{% block meta_description %}Discover how to simplify open source consumption and cut your operational costs using IT
-managed services without spending months on hiring and training.{% endblock meta_description %}
+
+{% block title %}Canonical Managed Infrastructure{% endblock %}
+
+{% block meta_description %}Opensource managed infrastructure for any enterprise challenge. Get experts to manage your private cloud, infrastructure, and operations.{% endblock meta_description %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/19GoMudyrd9Zt1e7kfj-koL-Lt0RGYzWHRPuuKYUPvqw/edit
 {% endblock meta_copydoc %}
@@ -13,185 +18,98 @@ managed services without spending months on hiring and training.{% endblock meta
 {% block content %}
 
 <section class="u-no-margin--bottom">
-  <div class="p-section--shallow">
+  <div class="p-section--hero">
     <div class="row">
       <div class="col-medium-6 col-9 col-start-large-4">
-        <h1>Managed IT Services you can rely on</h1>
+        <h1>Managed infrastructure you can rely on</h1>
         <p>Gain the space to focus on your core business by outsourcing the management of your operations with
-          Canonical's Managed IT services. Whatever the size of your company, our engineers can deploy and manage your
-          environments efficiently and securely.</p>
-        <hr class="p-rule" />
-        <a class="p-button--positive js-invoke-modal" href="/managed/contact-us" aria-controls="managed-form-modal">Ask a Managed Solutions expert</a>
+          Canonical's Managed Services. Our engineers deploy and manage environments effectively and securely, for companies of all sizes.</p>
+        <hr class="p-rule--muted" />
+        <a class="p-button--positive js-invoke-modal" href="/managed-infrastructure/contact-us" aria-controls="managed-form-modal">Ask a Managed Solutions expert</a>
       </div>
     </div>
   </div>
   <div class="p-suru"></div>
 </section>
 
-<section class="p-section--shallow">
-  <div class="row">
-    <hr class="p-rule" />
-    <div class="col-3">
-      <p class="p-muted-heading">Trusted by</p>
-    </div>
-    <div class="col-9">
-      <div class="p-logo-section">
-        <div class="p-logo-section__items">
-          <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/52bac407-rabobank-logo.png",
-            alt="Rabo bank",
-            width="128",
-            height="128",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/b0662ad2-tele2-logo.png",
-            alt="Tele2",
-            width="62",
-            height="128",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/a98c1a19-telefonica-logo.png",
-            alt="Telefonica",
-            width="162",
-            height="128",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/f40e5590-tomtom-logo%201.png",
-            alt="Tomtom",
-            width="123",
-            height="128",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/94adb36e-barnes&noble-logo.png",
-            alt="Barnes & Noble",
-            width="143",
-            height="128",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/3eea9789-firmus-logo.png",
-            alt="firmus",
-            width="113",
-            height="128",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/f2b3519a-tomtom-logo%202.png",
-            alt="Gamma",
-            width="141",
-            height="128",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/b68a93ee-docaposte-logo.png",
-            alt="docapost",
-            width="143",
-            height="128",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/67d846b9-dyson-logo.png",
-            alt="dyson",
-            width="78",
-            height="128",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/de997f4e-onetrail-logo.png",
-            alt="onetrail",
-            width="106",
-            height="128",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section class="u-fixed-width">
-  <hr class="p-rule" />
-  <div class="p-strip is-deep">
-    <h2>
-      Case study: <a href="/engage/kubernetes-openstack-case-study-firmus">Firmus builds a sustainable
-        supercloud with&nbsp;Canonical</a>
-    </h2>
-  </div>
-</section>
+{% call(slot) vf_logo_section(
+  title={
+    "text": "Trusted by"
+  },
+  blocks=[
+    {
+      "type": "logo-block",
+      "item": {
+        "logos": [
+          {
+            "src": "https://assets.ubuntu.com/v1/bdd5a9a1-docaposte_logo.png",
+            "alt": "docapost"
+          },
+          {
+            "src": "https://assets.ubuntu.com/v1/db8fa7fa-telefonica_logo.png",
+            "alt": "Telefonica"
+          },
+          {
+            "src": "https://assets.ubuntu.com/v1/db85a281-rabobank_logo.png",
+            "alt": "Rabo bank"
+          },
+          {
+            "src": "https://assets.ubuntu.com/v1/4e71969b-barnes_noble_logo.png",
+            "alt": "Barnes & Noble"
+          },
+          {
+            "src": "https://assets.ubuntu.com/v1/41834c82-onetrail_logo.png",
+            "alt": "onetrail"
+          },
+          {
+            "src": "https://assets.ubuntu.com/v1/1f8f3262-dyson_logo.png",
+            "alt": "Dyson"
+          },
+          {
+            "src": "https://assets.ubuntu.com/v1/52de72dc-gamma_logo.png",
+            "alt": "Gamma"
+          },
+          {
+            "src": "https://assets.ubuntu.com/v1/3eed5d6a-unicc_logo.png",
+            "alt": "Unicc"
+          }
+        ]
+      }
+    }
+  ]
+) -%}
+{% endcall -%}
+
 
 <section class="p-section">
-  <div class="row--50-50">
+  <div class="grid-row--50-50">
     <hr class="p-rule" />
-    <div class="col">
+    <div class="grid-col">
       <h2>We mind your ops,<br />you mind your business</h2>
     </div>
-    <div class="col">
+    <div class="grid-col">
       <p>Open source IT solutions are the future when it comes to technology, but can often be challenging to maintain.
-        Managed IT services are a solution that allows you to harness the power of open source without the hassle of
+        Managed infrastructure services enable you to unlock power of open source without the hassle of
         maintenance.
       </p>
       <p>
-        Canonical’s Managed Solutions is a service that identifies, deploys, and manages open source ecosystems for you
+        With Canonical’s Managed Services, our experts identify, deploy, and manage open source ecosystems for you
         at predictable costs. This way, you can access our market-leading open source expertise and focus more of your
         resources on your core business.
       </p>
-      <hr class="p-rule" />
-      <a class="p-button--positive js-invoke-modal" href="/managed/contact-us">Tell us what you need</a>
+      <a class="p-button--positive js-invoke-modal" href="/managed-infrastructure/contact-us">Let's talk about your project</a>
     </div>
   </div>
 </section>
 
 <section class="p-section">
-  <div class="row--50-50">
+  <div class="grid-row--50-50">
     <hr class="p-rule" />
-    <div class="col">
+    <div class="grid-col">
       <h2>Key benefits</h2>
     </div>
-    <div class="col">
+    <div class="grid-col">
       <ul class="p-list--divided">
         <li class="p-list__item is-ticked">
           Access to market-leading technological expertise
@@ -209,22 +127,72 @@ managed services without spending months on hiring and training.{% endblock meta
           Ingrained observability
         </li>
         <li class="p-list__item is-ticked">
-          24/7 support included with <a href="/pro">Ubuntu Pro</a>
+          24/7 support included with <a href="/pro">Ubuntu Pro + Support</a>
         </li>
       </ul>
     </div>
   </div>
 </section>
 
+{% call(slot) vf_quote_wrapper(
+  title_text="What managed services customers say",
+  quote_size="small",
+  quote_text="Kubernetes is both fast-moving and hard, so supporting it ourselves was not a viable option. The thought of having to support it is daunting. To keep it supported and up to date, it’s better to have experts who do this every day involved and manage it for us.",
+  citation_source_name_text="Michael Hawkshaw",
+  citation_source_title_text="ESA Mission Operations Infrastructure IT Service Manager at ESOC",
+) -%}
+
+{%- if slot == 'signpost_image' -%}
+<img src="https://assets.ubuntu.com/v1/4f1e0548-esa_logo.png" alt="ESA">
+{%- endif -%}
+
+{%- if slot == 'cta' -%}
+<a href="https://canonical.com/case-study/esa">Explore the case study &rsaquo;</a>
+{%- endif -%}
+
+{% endcall -%}
+
+
+{% call(slot) vf_quote_wrapper(
+  quote_size="small",
+  quote_text="The relationship with Canonical has been very positive. From the end-to-end support we received through the managed service, to the enterprise support we’re enjoying now, the journey has been good. We have assistance and guidance whenever we need it.",
+  citation_source_name_text="Macdonald Chamba",
+  citation_source_title_text="Head of Infrastructure and Cloud Services, TNM",
+) -%}
+
+{%- if slot == 'signpost_image' -%}
+<img src="https://assets.ubuntu.com/v1/24693a21-tnm_logo.png" alt="TNM">
+{%- endif -%}
+
+{%- if slot == 'cta' -%}
+<a href="https://ubuntu.com/engage/tnm-managed-openstack-case-study">Read the story &rsaquo;</a>
+{%- endif -%}
+
+{% endcall -%}
+
+
+{% call(slot) vf_quote_wrapper(
+  quote_size="small",
+  quote_text="The decision to go with a managed service has 100% paid off. Kafka was never our core focus. It would take us years to get to the level of expertise that Canonical already has.",
+  citation_source_name_text="Spokesperson",
+  citation_source_title_text="Safety technology company",
+) -%}
+
+{%- if slot == 'cta' -%}
+<a href="https://canonical.com/case-study/managed-kafka-for-smart-safety">Learn more &rsaquo;</a>
+{%- endif -%}
+
+{% endcall -%}
+
 <section class="p-section">
   <div class="p-section--shallow">
-    <div class="row--50-50">
+    <div class="grid-row--50-50">
       <hr class="p-rule" />
-      <div class="col">
+      <div class="grid-col">
         <h2>Managed packages</h2>
       </div>
-      <div class="col">
-        <p>Besides providing managed services for most of our products, we propose a series of pre-packaged solutions
+      <div class="grid-col">
+        <p>Besides providing Managed Services for most of our products, we propose a series of pre-packaged solutions
           for the most frequent business challenges. </p>
       </div>
     </div>
@@ -232,14 +200,14 @@ managed services without spending months on hiring and training.{% endblock meta
 
   <div class="row p-section--shallow">
     <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-      <hr class="p-rule" />
+      <hr class="p-rule u-no-margin--bottom" />
       <div class="row">
         <div class="col-3 col-medium-2">
           <hr class="p-rule--highlight" />
           <h3 class="p-heading--4">Private cloud</h3>
         </div>
         <div class="col-6 col-medium-3">
-          <p>Enjoy your own private cloud without worrying about its deployment or maintenance</p>
+          <p>Innovate on your private cloud without worrying about its deployment or maintenance</p>
           <ul class="p-list--divided">
             <li class="p-list__item is-ticked">
               Hardware consulting and certification
@@ -254,25 +222,25 @@ managed services without spending months on hiring and training.{% endblock meta
               Proactive upgrades
             </li>
           </ul>
-          <a href="/openstack/managed">Explore managed private cloud options&nbsp;&rsaquo;</a>
+          <a href="https://canonical.com/solutions/infrastructure">Learn about our infrastructure portfolio&nbsp;&rsaquo;</a>
         </div>
       </div>
     </div>
   </div>
   <div class="row p-section--shallow">
     <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-      <hr class="p-rule" />
+      <hr class="p-rule u-no-margin--bottom" />
       <div class="row">
         <div class="col-3 col-medium-2">
           <hr class="p-rule--highlight" />
           <h3 class="p-heading--4">AI infrastructure</h3>
         </div>
         <div class="col-6 col-medium-3">
-          <p>Stay ahead of the competition with fully managed MLOps infrastructure that enables you to deploy high
-            complexity models</p>
+          <p>Stay ahead of the competition with fully managed MLOps infrastructure that enables you to deploy
+            high-complexity models</p>
           <ul class="p-list--divided">
             <li class="p-list__item is-ticked">
-              Fully integrated <a href="https://canonical.com/mlops">MLOps solution</a>, available on-prem or on public cloud
+              Fully integrated <a href="https://canonical.com/mlops">MLOps solution</a> available
             </li>
             <li class="p-list__item is-ticked">
               Faster project delivery
@@ -281,15 +249,14 @@ managed services without spending months on hiring and training.{% endblock meta
               Reliable experts to speed up your AI journey
             </li>
           </ul>
-          <a href="https://documentation.ubuntu.com/charmed-kubeflow/tutorial/get-started/">Get started with
-            Kubeflow&nbsp;&rsaquo;</a>
+          <a href="https://canonical.com/solutions/ai/infrastructure">Learn about AI infrastructure&nbsp;&rsaquo;</a>
         </div>
       </div>
     </div>
   </div>
   <div class="row p-section--shallow">
     <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-      <hr class="p-rule" />
+      <hr class="p-rule u-no-margin--bottom" />
       <div class="row">
         <div class="col-3 col-medium-2">
           <hr class="p-rule--highlight" />
@@ -308,61 +275,98 @@ managed services without spending months on hiring and training.{% endblock meta
               Infinite scalability from the get-go
             </li>
           </ul>
-          <a href="/blog/telco-cloud-what-is-that">Learn more about telco clouds&nbsp;&rsaquo;</a>
+          <a href="https://canonical.com/solutions/telco/5g-core">Learn more about telco clouds&nbsp;&rsaquo;</a>
         </div>
       </div>
     </div>
   </div>
   <div class="row p-section--shallow">
     <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-      <hr class="p-rule" />
+      <hr class="p-rule u-no-margin--bottom" />
       <div class="row">
         <div class="col-3 col-medium-2">
           <hr class="p-rule--highlight" />
-          <h3 class="p-heading--4">Cloud apps</h3>
+          <h3 class="p-heading--4">Migrate to open source</h3>
         </div>
         <div class="col-6 col-medium-3">
-          <p>Enhance the security and reliability of your containers, databases, and service buses with fully managed
-            apps</p>
+          <p>Migrate your workload from proprietary virtualization solutions to a fully open source cloud.</p>
           <ul class="p-list--divided">
             <li class="p-list__item is-ticked">
-              Extensive suite of in-house automated apps
+              Tailored cloud deployment to replace your infrastructure
             </li>
             <li class="p-list__item is-ticked">
-              Adaptable security and compliance certifications
+              Tailored migration policies according to your needs
             </li>
             <li class="p-list__item is-ticked">
-              Assured high availability via site/geo redundancy
+              Fully managed cloud based on open source technologies
             </li>
           </ul>
-          <a href="/managed/apps">Explore our managed apps story&nbsp;&rsaquo;</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+{% call(slot) vf_equal_heights(
+  title_text="Building blocks in our<br />managed infra portfolio",
+  image_aspect_ratio_medium="2-3",
+  image_aspect_ratio_small="2-3",
+  highlight_images=True,
+  items=[
+    {
+      "title_text": "Scalable software-defined storage",
+      "image_html":  "<img src='https://assets.ubuntu.com/v1/ad6ec304-scalable.png' class='p-image-container__image' width='284' height='426' />",
+      "description_html": "<p>Focus on your business applications, while Canonical takes care of your storage needs.</p>",
+      "cta_html": "<a href='/ceph/managed'>Discover managed Ceph&nbsp;&rsaquo;</a>"
+    },
+    {
+      "title_text": "Virtualization and private cloud management",
+      "image_html":  "<img src='https://assets.ubuntu.com/v1/9f7d88c5-virtualization.png' class='p-image-container__image' width='284' height='426' />",
+      "description_html": "<p>End-to-end operations and maintenance of your OpenStack cloud, including 24/7 monitoring, incident and problem management.</p>",
+      "cta_html": "<a href='https://canonical.com/openstack/support'>Browse OpenStack support offerings&nbsp;&rsaquo;</a>"
+    },
+    {
+      "title_text": "Container orchestration",
+      "image_html":  "<img src='https://assets.ubuntu.com/v1/c388cd50-container.png' class='p-image-container__image' width='284' height='426' />",
+      "description_html": "<p>Modernize your applications while Canonical builds and manages your Kubernetes clusters.</p>",
+      "cta_html": "<a href='/kubernetes/managed'>Read about managed Kubernetes&nbsp;&rsaquo;</a>"
+    },
+    {
+      "title_text": "Observability",
+      "image_html":  "<img src='https://assets.ubuntu.com/v1/e52f4c7a-observability.png' class='p-image-container__image' width='284' height='426' />",
+      "description_html": "<p>Let us run open source monitoring tools like Prometeus, Grafana, and others for you.</p>",
+      "cta_html": "<a href='https://canonical.com/observability/managed'>Discover our observability solutions&nbsp;&rsaquo;</a>"
+    }
+  ]
+) %}
+{% if slot == "description" %}
+<p>
+  Adopt open source with confidence in your environment. Our infrastructure portfolio includes leading open source technologies that range from storage solutions to observability.
+</p>
+{% endif %}
+{% endcall %}
+
 <section class="p-section">
-  <div class="row--50-50">
+  <div class="grid-row--50-50">
     <hr class="p-rule" />
-    <div class="col">
+    <div class="grid-col">
       <h2>Our process</h2>
     </div>
-    <div class="col">
-      <p>Our Managed Solutions process is easy and intuitive. You’ll initially be consulted by our specialists to design
+    <div class="grid-col">
+      <p>Our process is easy and intuitive. You’ll initially be consulted by our specialists to design
         the best managed solution for your needs. Afterwards, it’s all on us:</p>
       <ol class="p-stepped-list">
         <li class="p-stepped-list__item">
-          <hr class="p-rule" />
+          <hr class="p-rule--muted" />
           <h3 class="p-heading--5 p-stepped-list__title">
             Deployment
           </h3>
           <div class="p-stepped-list__content">
-            Specialised Canonical engineers deploy your required architecture sustainably and efficiently.
+            Specialized Canonical engineers deploy your required architecture sustainably and efficiently.
           </div>
         </li>
         <li class="p-stepped-list__item">
-          <hr class="p-rule" />
+          <hr class="p-rule--muted" />
           <h3 class="p-heading--5 p-stepped-list__title">
             Management
           </h3>
@@ -372,7 +376,7 @@ managed services without spending months on hiring and training.{% endblock meta
           </div>
         </li>
         <li class="p-stepped-list__item">
-          <hr class="p-rule" />
+          <hr class="p-rule--muted" />
           <h3 class="p-heading--5 p-stepped-list__title">
             Optional handover
           </h3>
@@ -386,13 +390,50 @@ managed services without spending months on hiring and training.{% endblock meta
   </div>
 </section>
 
+{{ vf_data_spotlight(
+  title={
+    "text": "Our offering",
+  },
+  blocks=[
+    {
+      "stat": "2",
+      "headline": "Products",
+    },
+    {
+      "stat": "2",
+      "headline": "Add-ons",
+    },
+    {
+      "stat": "0",
+      "headline": "Hassle",
+    }
+  ],
+) }}
+
 <section class="p-section">
-  <div class="row--25-75">
+  <div class="grid-row--50-50">
     <hr class="p-rule" />
-    <div class="col">
+    <div class="grid-col">
+      <h2>Value for money with managed infrastructure and applications</h2>
+    </div>
+    <div class="grid-col">
+      <p>When you work with Canonical for Managed Services, you can access an entire portfolio of trusted open source solutions. You can adopt more open source with the same support guarantees from the same vendor, and get coverage for both the infrastructure layer and open source applications, including databases like PostgreSQL, and MLOps platforms like Kubeflow. 
+      </p>
+      <p>
+        Come for the infra, and get your apps on top.
+      </p>
+      <a href="/managed/apps">Explore our managed application offering&nbsp;&rsaquo;</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="grid-row--25-75">
+    <hr class="p-rule" />
+    <div class="grid-col">
       <h2>Your options</h2>
     </div>
-    <div class="col">
+    <div class="grid-col">
       <div class="p-strip is-shallow u-no-margin--bottom">
         <table aria-label="A table that shows advantages of Managed solutions over firefighting support">
           <thead>
@@ -407,9 +448,9 @@ managed services without spending months on hiring and training.{% endblock meta
               <td>
                 <h3 class="p-heading--5">What it is</h3>
               </td>
-              <td>Canonical engineers deploy your environment and manage all operations. We maintain admin
+              <td class="has-overflow">Canonical engineers deploy your environment and manage all operations. We maintain admin
                 rights and a permanent connection.</td>
-              <td>Canonical engineers provide support and guidance in high-severity situations, while you
+              <td class="has-overflow">Canonical engineers provide support and guidance in high-severity situations, while you
                 manage your operations.</td>
             </tr>
             <tr>
@@ -477,12 +518,12 @@ managed services without spending months on hiring and training.{% endblock meta
 
 <section class="p-section--deep">
   <div class="p-section--shallow">
-    <div class="row--50-50">
+    <div class="grid-row--50-50">
       <hr class="p-rule" />
-      <div class="col">
-        <h2>Add-on support <br />for managed solutions</h2>
+      <div class="grid-col">
+        <h2>Add-on support <br />for Managed Services</h2>
       </div>
-      <div class="col">
+      <div class="grid-col">
         <p>Go beyond operation management with our suite of add-ons designed to give you access to training, priority
           support, or assistance with non-operational queries.</p>
       </div>
@@ -490,15 +531,15 @@ managed services without spending months on hiring and training.{% endblock meta
   </div>
   <div class="row">
     <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-      <hr class="p-rule" />
+      <hr class="p-rule--muted" />
       <div class="row">
         <div class="col-3 col-medium-2">
-          <h3 class="p-heading--5">Ops consulting</h3>
+          <h3 class="p-heading--5">Ops Consultancy</h3>
         </div>
         <div class="col-6 col-medium-3">
           <ul class="p-list--divided">
             <li class="p-list__item has-bullet">
-              On-demand, private sessions with Managed Services engineers specialised in specific products or
+              On-demand, private sessions with Managed Services engineers specialized in specific products or
               operations
             </li>
             <li class="p-list__item has-bullet">
@@ -517,15 +558,15 @@ managed services without spending months on hiring and training.{% endblock meta
   </div>
   <div class="row">
     <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-      <hr class="p-rule" />
+      <hr class="p-rule--muted" />
       <div class="row">
         <div class="col-3 col-medium-2">
-          <h3 class="p-heading--5">Dedicated Support Engineer (DSE)</h3>
+          <h3 class="p-heading--5">Dedicated Service Reliability Engineer (DSE)</h3>
         </div>
         <div class="col-6 col-medium-3">
           <ul class="p-list--divided">
             <li class="p-list__item has-bullet">
-              Your own Canonical Managed Services engineer, who will prioritise your cases and needs
+              Your own Canonical Managed Services engineer, who will prioritize your cases and needs
             </li>
             <li class="p-list__item has-bullet">
               Dedicated one-on-one engineering time eight hours a day, five days a week, at your discretion
@@ -543,6 +584,6 @@ managed services without spending months on hiring and training.{% endblock meta
   </div>
 </section>
 
-{{ load_form('/managed') | safe }}
+{{ load_form('/managed-infrastructure') | safe }}
 
 {% endblock content %}
