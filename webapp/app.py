@@ -183,6 +183,11 @@ from webapp.views import (
     unlisted_engage_page,
     build_sitemap_tree,
 )
+from webapp.cookie_consent_pkg import CookieConsent
+from webapp.cookie_consent_pkg.helpers import (
+    check_session_and_redirect,
+    sync_preferences_cookie,
+)
 
 DISCOURSE_API_KEY = get_flask_env("DISCOURSE_API_KEY")
 DISCOURSE_API_USERNAME = get_flask_env("DISCOURSE_API_USERNAME")
@@ -264,17 +269,10 @@ search_engine_id = "adb2397a224a1fe55"
 
 init_handlers(app, sentry)
 
-# TEMP imports for testing
-# Code will be moved to independent repo
-from webapp.cookie_consent_pkg import CookieConsent
-from webapp.cookie_consent_pkg.helpers import (
-    check_session_and_redirect,
-    sync_preferences_cookie,
-)
-
 
 app.config["CENTRAL_COOKIE_SERVICE_URL"] = (
-    "https://cookies.staging.canonical.com"  # Local testing value
+    "https://cookies.staging.canonical.com"
+    # "http://local-cookies.com:8118"  # Local testing value
 )
 app.config["SESSION_COOKIE_SECURE"] = False  # Local testing value
 

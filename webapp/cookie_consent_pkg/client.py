@@ -4,6 +4,7 @@ import logging
 import threading
 import time
 
+from .exceptions import UserNotFoundException
 
 logger = logging.getLogger(__name__)
 
@@ -99,11 +100,21 @@ class CookieServiceClient:
         """Gets preferences from the central service."""
         try:
             url = f"{self.base_url}/api/v1/users/{user_uuid}/preferences"
-            response = requests.get(
-                url, headers=self._get_auth_headers(), timeout=10
-            )
+            request_headers = self._get_auth_headers()
+
+            # Ensure we get fresh data
+            request_headers["Cache-Control"] = "no-cache"
+            request_headers["Pragma"] = "no-cache"
+
+            response = requests.get(url, headers=request_headers, timeout=10)
             response.raise_for_status()
             return response.json()
+        except requests.exceptions.HTTPError as e:
+            if e.response.status_code == 404:
+                logger.warning(f"User {user_uuid} not found in cookie service")
+                raise UserNotFoundException(user_uuid) from e
+            logger.error(f"Failed to fetch preferences: {e}")
+            return None
         except requests.exceptions.RequestException as e:
             logger.error(f"Failed to fetch preferences: {e}")
             return None

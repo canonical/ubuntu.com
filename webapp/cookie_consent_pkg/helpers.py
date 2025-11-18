@@ -1,13 +1,15 @@
-# helpers.py (new file in your package)
+# helpers.py
 from flask import request, current_app, redirect, session
 from datetime import datetime, timezone, timedelta
+
+from .exceptions import UserNotFoundException
 
 
 def get_client():
     return current_app.extensions["cookie_consent_client"]
 
 
-def set_persistent_cookie(response, key, value):
+def set_cookie_accepted_with_ts(response, key, value):
     days = get_client().app.config.get("PREFERENCES_COOKIE_EXPIRY_DAYS")
 
     response.set_cookie(
@@ -37,15 +39,13 @@ def set_short_lived_cookie(response, key, value, minutes=5):
     )
 
 
-def check_cookie_stale(cookie_stale):
+def check_cookie_stale(cookie_stale) -> bool:
     """Check if cookie is older than 1 day."""
     timestamp_cookie = request.cookies.get("_cookies_accepted_ts")
     if timestamp_cookie:
         try:
             timestamp = datetime.fromisoformat(timestamp_cookie)
-            if datetime.now(timezone.utc) - timestamp > timedelta(
-                days=0.000001
-            ):
+            if datetime.now(timezone.utc) - timestamp > timedelta(days=1):
                 cookie_stale = True
         except Exception:
             cookie_stale = True
@@ -59,7 +59,7 @@ def get_cookie_mode_cookie(request):
     return getattr(request, "_cookie_mode", "local")
 
 
-def skip_non_html_requests(response=None):
+def skip_non_html_requests(response=None) -> bool:
     """
     Helper function to filter requests for middleware.
     """
@@ -134,7 +134,6 @@ def sync_preferences_cookie(response):
 
     cookie_stale = False
     cookie_stale = check_cookie_stale(cookie_stale)
-    print(f"Cookie stale: {cookie_stale}")
 
     user_uuid = session.get("user_uuid")
     local_preferences = request.cookies.get("_cookies_accepted")
@@ -147,9 +146,11 @@ def sync_preferences_cookie(response):
                 consent_value = preferences_data.get("preferences", {}).get(
                     "consent", "unset"
                 )
-                set_persistent_cookie(
+                set_cookie_accepted_with_ts(
                     response, "_cookies_accepted", consent_value
                 )
+        except UserNotFoundException:
+            session.pop("user_uuid", None)
         except Exception:
             pass
 

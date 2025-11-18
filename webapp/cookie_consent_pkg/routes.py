@@ -1,8 +1,8 @@
 # routes.py
 import flask
-import json
-from flask import request, session, jsonify, redirect, Blueprint, current_app
-from .helpers import set_persistent_cookie, get_client
+from flask import request, session, jsonify, redirect, Blueprint
+from .helpers import set_cookie_accepted_with_ts, get_client
+from .exceptions import UserNotFoundException
 
 
 consent_bp = Blueprint("cookie_consent", __name__)
@@ -17,7 +17,6 @@ def callback():
     """
     code = request.args.get("code")
     return_uri = request.args.get("return_uri") or "/"
-    preferences_unset = request.args.get("preferences_unset")
 
     if not code:
         return jsonify({"error": "No code provided"}), 400
@@ -38,12 +37,14 @@ def callback():
 
     response = flask.make_response(redirect(return_uri))
 
-    if preferences_unset == "False":
-        preferences = client.fetch_preferences(user_uuid)
-        if preferences:
-            set_persistent_cookie(
-                response, "_cookie_preferences", json.dumps(preferences)
-            )
+    try:
+        preferences = client.fetch_preferences(user_uuid).get("preferences").get("consent")
+    except UserNotFoundException:
+        session.pop("user_uuid", None)
+    if preferences:
+        set_cookie_accepted_with_ts(
+            response, "_cookies_accepted", preferences
+        )
 
     return response
 
@@ -57,7 +58,7 @@ def get_preferences():
     if not user_uuid:
         return jsonify({"error": "Not authenticated"}), 401
 
-    preferences = get_client().fetch_preferences(user_uuid)
+    preferences = get_client().fetch_preferences(user_uuid) 
     return jsonify(preferences), 200
 
 

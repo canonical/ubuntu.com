@@ -19,14 +19,12 @@ if (!cookieAcceptanceValue) {
 }
 
 function postUpdatedPreferences() {
-  console.log("Posting updated cookie preferences to server.");
   const cookieAcceptanceValue = getCookie("_cookies_accepted");
-
+  
   if (!cookieAcceptanceValue) {
-    console.warn("No cookie acceptance value found.");
     return;
   }
-
+  
   fetch("/cookies/set-preferences", {
     method: "POST",
     headers: {
