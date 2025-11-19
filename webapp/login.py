@@ -54,7 +54,7 @@ def user_info(user_session):
 
 def empty_session(user_session):
     """
-    Remove items from session   
+    Remove items from session
     """
 
     user_session.pop("macaroon_root", None)
@@ -73,7 +73,6 @@ def login_handler():
     api_url = get_flask_env(
         "CONTRACTS_API_URL", "https://contracts.canonical.com"
     )
-    api_url = "https://contracts.canonical.com"
 
     if flask.request.args.get("set_large_cookie"):
         try:
