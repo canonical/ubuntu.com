@@ -36,6 +36,26 @@ from canonicalwebteam.flask_base.env import get_flask_env
 
 
 def init_handlers(app, sentry):
+    @app.before_request
+    def trim_cookie_if_large():
+        cookie_header = flask.request.headers.get("Cookie", "")
+        try:
+            max_bytes = int(get_flask_env("MAX_COOKIE_HEADER_BYTES", "8192"))
+        except ValueError:
+            max_bytes = 8192
+        if len(cookie_header) > max_bytes:
+            empty_session(flask.session)
+            try:
+                sentry.captureMessage(
+                    "Trimmed session due to oversized Cookie header",
+                    extra={
+                        "cookie_size": len(cookie_header),
+                        "path": flask.request.path,
+                    },
+                )
+            except Exception:
+                pass
+
     @app.after_request
     def cache_headers(response):
         """

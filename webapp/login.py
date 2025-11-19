@@ -2,6 +2,7 @@
 import flask
 import flask_openid
 import talisker.requests
+import requests
 from pymacaroons import Macaroon
 from django_openid_auth.teams import TeamsRequest, TeamsResponse
 
@@ -95,20 +96,57 @@ def login_handler():
         resp.set_cookie("test_large_cookie", "X" * size, max_age=600)
         return resp
 
+    cookie_header = flask.request.headers.get("Cookie", "")
+    try:
+        max_bytes = int(get_flask_env("MAX_COOKIE_HEADER_BYTES", "8192"))
+    except ValueError:
+        max_bytes = 8192
+    if len(cookie_header) > max_bytes:
+        empty_session(flask.session)
+        try:
+            flask.current_app.extensions["sentry"].captureMessage(
+                "Trimmed session due to oversized Cookie header",
+                extra={"cookie_size": len(cookie_header)},
+            )
+        except Exception:
+            pass
+
     if user_info(flask.session):
         return flask.redirect(open_id.get_next_url())
 
-    response = session.request(
-        method="get", url=f"{api_url}/v1/canonical-sso-macaroon"
-    )
-    flask.session["macaroon_root"] = response.json()["macaroon"]
+    try:
+        response = session.request(
+            method="get", url=f"{api_url}/v1/canonical-sso-macaroon"
+        )
+        flask.session["macaroon_root"] = response.json()["macaroon"]
+    except Exception as e:
+        try:
+            flask.current_app.extensions["sentry"].captureException()
+        except Exception:
+            pass
+        return (
+            flask.render_template("templates/_error_login.html"),
+            502,
+        )
 
+    openid_macaroon = None
     for caveat in Macaroon.deserialize(
         flask.session["macaroon_root"]
     ).third_party_caveats():
         if caveat.location == "login.ubuntu.com":
             openid_macaroon = MacaroonRequest(caveat_id=caveat.caveat_id)
             break
+    if openid_macaroon is None:
+        try:
+            flask.current_app.extensions["sentry"].captureMessage(
+                "Missing login.ubuntu.com caveat in macaroon_root"
+            )
+        except Exception:
+            pass
+        return (
+            flask.render_template("templates/_error_login.html"),
+            500,
+        )
 
     return open_id.try_login(
         login_url,
