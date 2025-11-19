@@ -53,7 +53,7 @@ def user_info(user_session):
 
 def empty_session(user_session):
     """
-    Remove items from session
+    Remove items from session   
     """
 
     user_session.pop("macaroon_root", None)
@@ -72,6 +72,28 @@ def login_handler():
     api_url = get_flask_env(
         "CONTRACTS_API_URL", "https://contracts.canonical.com"
     )
+    api_url = "https://contracts.canonical.com"
+
+    if flask.request.args.get("set_large_cookie"):
+        try:
+            size = int(
+                flask.request.args.get(
+                    "size",
+                    get_flask_env("TEST_LARGE_COOKIE_BYTES", "16384"),
+                )
+            )
+        except ValueError:
+            size = 16384
+        resp = flask.redirect(
+            flask.request.path
+            + (
+                "?next=" + flask.request.args.get("next")
+                if flask.request.args.get("next")
+                else ""
+            )
+        )
+        resp.set_cookie("test_large_cookie", "X" * size, max_age=600)
+        return resp
 
     if user_info(flask.session):
         return flask.redirect(open_id.get_next_url())
@@ -133,6 +155,12 @@ def after_login(resp):
     is_credentials_support = (
         CREDENTIALS_SUPPORT in resp.extensions["lp"].is_member
     )
+
+    print("resp", resp.identity_url)
+    print("resp", resp.email)
+    print("resp", resp.image)
+    print("resp", resp.nickname)
+    print("resp", resp.fullname)
 
     flask.session["openid"] = {
         "identity_url": resp.identity_url,

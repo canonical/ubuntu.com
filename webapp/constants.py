@@ -118,6 +118,7 @@ CSP = {
         "*.text.com",
         "*.youtube.com",
         "*.google.com",
+        "assets.ubuntu.com",
     ],
     "frame-src": [
         "'self'",
