@@ -178,6 +178,18 @@ def account_query():
     )
 
 
+def session_health_check():
+    val = flask.session.get("session_hc")
+    if not val:
+        import secrets
+        val = secrets.token_urlsafe(16)
+        flask.session["session_hc"] = val
+        initialized = True
+    else:
+        initialized = False
+    return flask.jsonify({"ok": True, "value": val, "initialized": initialized})
+
+
 def json_asset_query(file_name):
     """
     A JSON endpoint to request JSON assets from the asset manager

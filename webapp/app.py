@@ -181,6 +181,7 @@ from webapp.views import (
     thank_you,
     unlisted_engage_page,
     build_sitemap_tree,
+    session_health_check,
 )
 
 DISCOURSE_API_KEY = get_flask_env("DISCOURSE_API_KEY")
@@ -294,6 +295,7 @@ init_forms()
 app.add_url_rule("/asset/<file_name>", view_func=json_asset_query)
 app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
 app.add_url_rule("/account.json", view_func=account_query)
+app.add_url_rule("/health/session", view_func=session_health_check)
 app.add_url_rule("/mirrors.json", view_func=mirrors_query)
 app.add_url_rule("/marketo/submit", view_func=marketo_submit, methods=["POST"])
 app.add_url_rule("/thank-you", view_func=thank_you)
