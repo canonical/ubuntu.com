@@ -96,6 +96,8 @@ def login_handler():
         return resp
 
     cookie_header = flask.request.headers.get("Cookie", "")
+    # print("cookie_header", cookie_header)
+    print("len(cookie_header)", len(cookie_header))
     try:
         max_bytes = int(get_flask_env("MAX_COOKIE_HEADER_BYTES", "8192"))
     except ValueError:
@@ -113,20 +115,35 @@ def login_handler():
     if user_info(flask.session):
         return flask.redirect(open_id.get_next_url())
 
-    try:
-        response = session.request(
-            method="get", url=f"{api_url}/v1/canonical-sso-macaroon"
-        )
-        flask.session["macaroon_root"] = response.json()["macaroon"]
-    except Exception as e:
-        try:
-            flask.current_app.extensions["sentry"].captureException()
-        except Exception:
-            pass
-        return (
-            flask.render_template("templates/_error_login.html"),
-            502,
-        )
+    response = session.request(
+        method="get", url=f"{api_url}/v1/canonical-sso-macaroon"
+    )
+    flask.session["macaroon_root"] = response.json()["macaroon"]
+    # except Exception as e:
+    #     try:
+    #         flask.current_app.extensions["sentry"].captureException()
+    #     except Exception:
+    #         pass
+    #     print("session.request error >>>>>")
+    #     return (
+    #         flask.render_template("templates/_error_login.html"),
+    #         502,
+    #     )
+    # try:
+    #     response = session.request(
+    #         method="get", url=f"{api_url}/v1/canonical-sso-macaron"
+    #     )
+    #     flask.session["macaroon_root"] = response.json()["macaroon"]
+    # except Exception as e:
+    #     try:
+    #         flask.current_app.extensions["sentry"].captureException()
+    #     except Exception:
+    #         pass
+    #     print("session.request error >>>>>")
+    #     return (
+    #         flask.render_template("templates/_error_login.html"),
+    #         502,
+    #     )
 
     openid_macaroon = None
     for caveat in Macaroon.deserialize(
@@ -142,6 +159,7 @@ def login_handler():
             )
         except Exception:
             pass
+        print("missing macaroon >>>>>")
         return (
             flask.render_template("templates/_error_login.html"),
             500,
@@ -170,6 +188,7 @@ def after_login(resp):
     try:
         root = Macaroon.deserialize(flask.session.pop("macaroon_root"))
     except KeyError:
+        print("macaroon key error >>>>>")
         return (
             flask.render_template(
                 "templates/_error_login.html",

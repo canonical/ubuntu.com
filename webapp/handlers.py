@@ -43,6 +43,8 @@ def init_handlers(app, sentry):
             max_bytes = int(get_flask_env("MAX_COOKIE_HEADER_BYTES", "8192"))
         except ValueError:
             max_bytes = 8192
+        print("before request >>>>>", len(cookie_header), max_bytes)
+        print("cookie_header", cookie_header)
         if len(cookie_header) > max_bytes:
             empty_session(flask.session)
             try:
