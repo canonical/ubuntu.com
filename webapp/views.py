@@ -8,7 +8,7 @@ import requests
 import time
 import logging
 from urllib.parse import quote, unquote, urlparse
-from datetime import datetime
+from datetime import datetime, date
 
 # Packages
 import dateutil
@@ -1711,18 +1711,47 @@ def build_github_data_access():
 def build_release_cycle_view():
     get_json_files = build_github_data_access()
 
-    def format_date(date_str):
-        """Convert YYYY-MM-DD → dict with raw and formatted versions."""
-        raw_date = None
-        formatted = date_str
+    def format_date(value):
+        """Convert YYYY-MM-DD or {date:..., notes:...} to a normalized dict."""
+        raw = None
+        formatted = None
+        notes = None
+        is_past = False
 
-        try:
-            raw_date = datetime.strptime(date_str, "%Y-%m-%d")
-            formatted = raw_date.strftime("%B %Y")
-        except (TypeError, ValueError):
-            pass  # leave defaults if invalid or missing
+        # Case 1: dict with date or notes
+        if isinstance(value, dict):
+            # A real date
+            if "date" in value:
+                raw = value["date"]
+                try:
+                    dt = datetime.strptime(raw, "%Y-%m-%d").date()
+                    formatted = dt.strftime("%b %Y")  # Dec 2025
+                    is_past = dt < date.today()
+                except ValueError:
+                    formatted = raw
 
-        return {"raw": date_str, "formatted": formatted}
+            # Notes only
+            elif "notes" in value:
+                notes = value["notes"]
+                raw = notes
+
+        else:
+            # Case 2: plain date string
+            raw = value
+            try:
+                dt = datetime.strptime(raw, "%Y-%m-%d").date()
+                formatted = dt.strftime("%b %Y")
+                is_past = dt < date.today()
+            except Exception:
+                formatted = raw
+
+        # Single return
+        return {
+            "raw": raw,
+            "date": formatted,
+            "notes": notes,
+            "is_past": is_past,
+        }
 
     def get_deployment(data, product_key, release_identifier):
         """Return the deployment dict matching release_name, or None."""
@@ -1783,7 +1812,6 @@ def build_release_cycle_view():
             "release", type=str, default="ubuntu"
         )
         version = flask.request.args.get("version", type=str, default="all")
-        subscription = flask.request.args.get("subscription", type=str)
 
         files = [
             "products-data/25.10/kubernetes.json",
@@ -1811,13 +1839,16 @@ def build_release_cycle_view():
                 deployment["slug"] = name.lower()
 
         versions = []
-        selected_version_data = None
+        selected_version = None
+        deployment = None
+
         if product and release_name:
+            deployment = get_deployment(products_data, product, release_name)
             versions = get_versions_for_release(
                 products_data, product, release_name
             )
             if version and version != "all":
-                selected_version_data = get_selected_version_data(
+                selected_version = get_selected_version_data(
                     products_data, product, release_name, version
                 )
 
@@ -1827,9 +1858,9 @@ def build_release_cycle_view():
             product=product,
             version=version,
             release_name=release_name,
-            subscription=subscription,
             versions=versions,
-            selected_version_data=selected_version_data,
+            selected_version=selected_version,
+            deployment=deployment,
             now=datetime.utcnow(),
         )
 

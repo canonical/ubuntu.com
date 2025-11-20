@@ -1,0 +1,102 @@
+<table aria-label="Selected product coverage details"
+             id="js-product-coverage-table" class="release-cycle-table u-hide--large">
+	<thead>
+			<tr>
+				<th>Version</th>
+				<th>
+					Standard
+				</th>
+				<th>
+					Ubuntu Pro
+					<p style="font-weight: 400; max-width: none; text-transform: none;" class="u-no-margin--bottom">
+						Subscribe to Ubuntu Pro to stay secure and supported. <a href="/pro/free-trial">Start a 30-day Ubuntu Pro free trial ›</a> 
+					</p>
+				</th>
+		</tr>
+	</thead>
+	<tbody>
+  {# Choose which versions to render: all or just one #}
+  {% set versions_to_display = versions if version == "all" else [selected_version] %}
+
+  {% for v in versions_to_display %}
+    <tr>
+      <td style="overflow: visible;">
+        <span class="p-heading--5">
+          {{ v.release }}
+        </span>
+
+        {# tooltip expects `version`, so pass v in #}
+        {% with version=v %}
+          {% include "about/partials/_component-tooltip.html" %}
+        {% endwith %}
+
+        <br />
+        <p class="p-text--small u-no-margin--bottom">
+          Ubuntu {{ v.release }}
+        </p>
+
+        <span class="p-text--small u-text--muted">
+          Released: {{ v.release_date.date }}
+        </span>
+      </td>
+
+      <td>
+        <p class="p-text--small-caps u-no-margin--bottom">Standard security maintenance</p>
+        {{ v.supported.date }}
+        {% if v.supported.is_past %}
+          <span class="p-chip--negative is-readonly" style="margin-left: -.3rem;">
+            <span class="p-chip__value">No longer maintained</span>
+          </span>
+        {% endif %}
+      </td>
+
+      <td>
+        {# Expanded security maintenance #}
+        <p class="p-text--small-caps u-no-margin--bottom">Expanded security maintenance</p>
+        {% if v.pro_supported.date %}
+          <p {% if v.pro_supported.is_past %}class="u-no-margin--bottom"{% endif %}>
+            {{ v.pro_supported.date }}
+          </p>
+          {% if v.pro_supported.is_past %}
+            <span class="p-chip--negative is-readonly" style="margin-left: -.3rem;">
+              <span class="p-chip__value">No longer covered</span>
+            </span>
+          {% endif %}
+        {% elif v.pro_supported.notes %}
+          <p>{{ v.pro_supported.notes }}</p>
+        {% endif %}
+
+        {# Break/bug support #}
+        <p class="p-text--small-caps u-no-margin--bottom">Break/bug support</p>
+        {% if v.pro_supported.date %}
+          <p {% if v.pro_supported.is_past %}class="u-no-margin--bottom"{% endif %}>
+            {{ v.pro_supported.date }}
+          </p>
+          {% if v.pro_supported.is_past %}
+            <span class="p-chip--negative is-readonly" style="margin-left: -.3rem;">
+              <span class="p-chip__value">No longer covered</span>
+            </span>
+          {% endif %}
+        {% elif v.pro_supported.notes %}
+          {{ v.pro_supported.notes }}
+        {% endif %}
+
+        {# Legacy add-on #}
+        <p class="p-text--small-caps u-no-margin--bottom">Legacy add-on</p>
+        {% if v.legacy_supported.date %}
+          <p {% if v.legacy_supported.is_past %}class="u-no-margin--bottom"{% endif %}>
+            {{ v.legacy_supported.date }}
+          </p>
+          {% if v.legacy_supported.is_past %}
+            <span class="p-chip--negative is-readonly" style="margin-left: -.3rem;">
+              <span class="p-chip__value">No longer covered</span>
+            </span>
+          {% endif %}
+        {% elif v.legacy_supported.notes %}
+          {{ v.legacy_supported.notes }}
+        {% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+</tbody>
+</table>

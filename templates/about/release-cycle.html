@@ -19,19 +19,8 @@
 
 {% block content %}
 
-  <style>
-    .support-type-banner {
-      background-color: #E7E7E7;
-    }
-
-    .arch-paths {
-      display: inline-block;
-      width: 95%;
-    } 
-  </style>
   {% call(slot) vf_hero(
     title_text="Know what's supported",
-    subtitle_text="Canonical product release cycle",
     layout="50/50",
     is_split_on_medium=true
     ) -%}
@@ -40,270 +29,87 @@
         Find out which versions of Ubuntu and Canonical products are supported, for how long, and what's best for your deployment &ndash; from LTS versions to available security coverage options.
       </p>
     {%- endif -%}
-    {%- if slot == "image" -%}
-      <div class="p-image-container--16-9 is-highlighted u-hide--small">
-        {{ image(url="https://assets.ubuntu.com/v1/0d2d1bc4-hero-img.png",
-                alt="",
-                width="568",
-                height="800",
-                hi_def=True,
-                loading="auto",
-                attrs={"class": "p-image-container__image"},) | safe
-        }}
-      </div>
-    {%- endif -%}
   {% endcall -%}
 
+  {{ vf_basic_section(
+    title={"text": "Find out your current coverage"},
+    items=[
+      {
+        "type": "description",
+        "item": {
+          "type": "text",
+          "content": "Not sure if your product version is still supported? Let's walk through a few simple questions to help you find out."
+        }
+      }
+    ]
+  ) }}
   <section class="p-section">
     <div class="p-section--shallow">
-      <div class="grid-row--50-50">
-        <div class="grid-col">
-          <h2>Find out your current coverage</h2>
-        </div>
-        <div class="grid-col">
-          <p>
-            Not sure if your product version is still supported? Let's walk through a few simple questions to help you find out.
-          </p>
-        </div>
-      </div>
-    </div>
-    <form id="js-product-selector-form">
-      <div class="grid-row">
-        <div class="grid-col-2 grid-col-medium-2">
-          <label for="js-product-selector" class="is-required">Product</label>
-          <select name="product-selector" id="js-product-selector">
-            <option value="">Select a product</option>
-            {% for key, data in products_data.items() %}<option value="{{ key }}">{{ data.product }}</option>{% endfor %}
-          </select>
-          
-        </div>
-        <div class="grid-col-2 grid-col-medium-2">
-          <label for="js-release-selector">Release type</label>
-          <select disabled name="release-selector" id="js-release-selector">
-            <option value="">Select a release</option>
-          </select>
-        </div>
-        <div class="grid-col-2 grid-col-medium-2">
-          <label for="js-version-selector">Version</label>
-          <select disabled name="version-selector" id="js-version-selector">
-            <option value="all">All versions</option>
-          </select>
-        </div>
-        <div class="grid-col-2 grid-col-medium-2">
-          <label for="js-subscription-selector">Ubuntu Pro subscription</label>
-          <select name="subscription-selector"
-                  id="js-subscription-selector"
-                  class="u-no-margin--bottom">
-            <option value="">Select a subscription</option>
-            <option value="pro">Subscribed to Ubuntu Pro</option>
-            <option value="pro-infra">Subscribed to Ubuntu Pro Infra Only</option>
-            <option value="none">No/I don't know</option>
-          </select>
-          <p class="u-text--muted">To check the subscription status of your system, use the command: $ pro status</p>
-          <button class="p-button--positive" id="js-product-selector-submit" disabled>View coverage</button>
-        </div>
-      </div>
-    </form>
+      <form id="js-product-selector-form">
+        <div class="grid-row">
+          <div class="grid-col-2 grid-col-medium-2">
+            <label for="js-product-selector">Product</label>
+            <select name="product" id="js-product-selector">
+              <option value="">Select a product</option>
+              {% for key, data in products_data.items() %}
+                <option value="{{ key }}" {% if key == product %}selected{% endif %}>
+                  {{ data.product }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="grid-col-2 grid-col-medium-2">
+            <label for="js-release-selector">Release type</label>
+            <select
+              name="release"
+              id="js-release-selector"
+              {% if not product %}disabled{% endif %}
+            >
+              <option value="">Select a release</option>
 
+              {% if product in products_data %}
+                {% for deployment in products_data[product]["deployment"] %}
+                  <option
+                    value="{{ deployment.slug }}"
+                    {% if deployment.slug == release_name %}selected{% endif %}
+                  >
+                    {{ deployment.name }}
+                  </option>
+                {% endfor %}
+              {% endif %}
+            </select>
+          </div>
+          <div class="grid-col-2 grid-col-medium-2">
+            <label for="js-version-selector">Version</label>
+            <select
+              name="version"
+              id="js-version-selector"
+              {% if not versions %}disabled{% endif %}
+            >
+              <option value="all" {% if version == "all" %}selected{% endif %}>
+                All versions
+              </option>
+
+              {% for v in versions %}
+                <option
+                  value="{{ v.release }}"
+                  {% if v.release == version %}selected{% endif %}
+                >
+                  {{ v.release }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="grid-col-2 grid-col-medium-2">
+            <button class="p-button--positive u-no-margin--bottom" id="js-product-selector-submit" disabled style="margin-top: 2.5rem;">View coverage</button>
+          </div>
+        </div>
+      </form>
+    </div>
     <div class="u-fixed-width">
-      <hr class="p-rule--muted" />
-      <table aria-label="Selected product coverage details"
-             id="js-product-coverage-table" class="u-hide--small u-hide--medium">
-        <colgroup>
-          <col style="width: 20rem;" />
-        </colgroup>
-        <thead>
-          <tr style="border-bottom: none;">
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="colgroup"
-                colspan="1"
-                class="u-text--muted"
-                style="border-bottom: .5px solid #0000001A;
-                       border-right: 1rem solid transparent">
-              Standard
-              <br />
-              coverage
-            </th>
-            <th scope="colgroup"
-                colspan="3"
-                class="u-text--muted"
-                style="border-bottom: .5px solid #0000001A">Ubuntu Pro coverage</th>
-          </tr>
-          <tr>
-            <th>Version</th>
-            <th>
-              Ubuntu
-              <br />
-              release
-            </th>
-            <th>
-              Release
-              <br />
-              date
-            </th>
-            <th>
-              End of
-              <br />
-              standard
-              <br />
-              security
-              <br />
-              maintenance
-            </th>
-            <th>
-              End of
-              <br />
-              expanded
-              <br />
-              security
-              <br />
-              maintenance
-            </th>
-            <th>
-              End of break/
-              <br />
-              bug support
-            </th>
-            <th>
-              End of legacy
-              <br />
-              support
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {% if version == "all" %}
-            <tr>
-              <th colspan="7" class="support-type-banner">In standard support</th>
-            </tr>
-            {% for version in versions %}
-              {% if version.supported.raw > now.strftime("%Y-%m-%d") %}
-                <tr>
-                  <td>
-                    {{ version.release }}
-                    <br />
-                    <span class="u-text--muted arch-paths">
-                      Supported architectures:
-                      {% for arch in version.architecture %}
-                        {% if loop.last %}
-                          and {{ arch }}
-                        {% else %}
-                          {{ arch }}, 
-                        {% endif %}
-                      {% endfor %}
-                    </span>
-                    {% if version['upgrade-path'] %}
-                      <br/>
-                      <span class="u-text--muted arch-paths">Upgrade path: {{ version['upgrade-path']  | join(', ')}}</span>
-                    {% endif %}
-                  </td> 
-                  <td>
-                    {% set compat_list = version.compatible_ubuntu_lts %}
-                    {% if compat_list %}
-                      {% for item in compat_list %}
-                      <div class="p-accordion">
-                        <ul class="p-accordion__list">
-                          <li class="p-accordion__group">
-                            <div role="heading" aria-level="3" class="p-accordion__heading">
-                              <button type="button" class="p-accordion__tab u-no-padding--left" id="{{item['ubuntu-lts']}}-tab" aria-controls="{{item['ubuntu-lts']}}-section" aria-expanded="true">{{ item["ubuntu-lts"] }}</button>
-                            </div>
-                            <section class="p-accordion__panel" style="padding-left: 2rem;" id="{{item['ubuntu-lts']}}-section" aria-hidden="false" aria-labelledby="{{item['ubuntu-lts']}}-tab">
-                              <p class="p-heading--5 ">Compatible components:</p>
-                              {% for component in item["compatible-components"] %}
-                                {{ component.name }}: {{ component.version[0] }}<br/>
-                              {% endfor %}
-                            </section>
-                          </li>
-                        </ul>
-                      </div>
-                      {% endfor %}
-                    {% else %}
-                      {{ version.release }}
-                    {% endif %}
-                  </td>
-                  <td>
-                    {{ version.release_date.formatted }}
-                  </td>
-                  <td>{{ version.supported.formatted }}</td>
-                  <td>{{ version.pro_supported.formatted }}</td>
-                  <td>{{ version.pro_supported.formatted }}</td>
-                  <td>{{ version.legacy_supported.formatted }}</td>
-                </tr>
-              {% endif %}
-            {% endfor %}
-            <tr>
-              <th colspan="7" class="support-type-banner">Out of standard support, only supported with <a href="/pro">Ubuntu Pro</a></th>
-            </tr>
-            {% for version in versions %}
-              {% if version.supported.raw < now.strftime("%Y-%m-%d") %}
-                <tr>
-                  <td>{{ version.release }}
-                    <br />
-                    <span class="u-text--muted arch-paths">
-                      Supported architectures:
-                      {% for arch in version.architecture %}
-                        {% if loop.last %}
-                          and {{ arch }}
-                        {% else %}
-                          {{ arch }}, 
-                        {% endif %}
-                      {% endfor %}
-                    </span>
-                    <br/>
-                    <span class="u-text--muted arch-paths">Upgrade path: {{ version['upgrade-path']  | join(', ')}}</span>
-                  </td>
-                  <td>{{ version.release }}</td>
-                  <td>{{ version.release_date.formatted }}</td>
-                  <td>{{ version.supported.formatted }}</td>
-                  <td>{{ version.pro_supported.formatted }}</td>
-                  <td>{{ version.pro_supported.formatted }}</td>
-                  <td>{{ version.legacy_supported.formatted }}</td>
-                </tr>
-              {% endif %}
-            {% endfor %}
-          {% else %}
-            <tr>
-              <td>
-                {{ version }}
-                <br />
-                <span class="u-text--muted arch-paths">
-                  Supported architectures: 
-                  {% for arch in selected_version_data.architecture %}
-                    {% if loop.last %}
-                      and {{ arch }}
-                    {% else %}
-                      {{ arch }}, 
-                    {% endif %}
-                  {% endfor %}
-                </span>
-                <br/>
-                <span class="u-text--muted arch-paths">Upgrade path: {{ selected_version_data.upgrade_path  | join(', ')}}</span>
-              </td>
-              <td>{{ version }}</td>
-              <td>{{ selected_version_data.release_date.formatted }}</td>
-              <td>{{ selected_version_data.supported.formatted }}</td>
-              <td>{{ selected_version_data.pro_supported.formatted }}</td>
-              <td>{{ selected_version_data.pro_supported.formatted }}</td>
-              <td>{{ selected_version_data.legacy_supported.formatted }}</td>
-            </tr>
-          {% endif %}
-        </tbody>
-      </table>
-      {% if subscription == "pro" %}
-        <div class="p-notification--positive">
-          <div class="p-notification__content">
-            <p class="p-notification__message">You are currently receiving coverage through Ubuntu Pro</p>
-          </div>
-        </div>
-      {% elif subscription == "none" and selected_version_data.supported.raw < now.strftime("%Y-%m-%d") %}
-        <div class="p-notification--caution">
-          <div class="p-notification__content">
-            <p class="p-notification__message">You are not receiving security updates or support. Subscribe to Ubuntu Pro to stay secure and supported. <a href="/pro">Start a 30-day Ubuntu Pro free trial&nbsp;&rsaquo;</a></p>
-          </div>
-        </div>
-      {% endif %}
+      {% include "about/partials/_desktop-releases-table.html" %}
+
+      {% include "about/partials/_tablet-mobile-releases-table.html" %} 
     </div>
   </section>
 
@@ -371,7 +177,7 @@
               </div>
               <div class="grid-col-4">
                 <p>
-                  Ubuntu releases a new version every six months. Releases of Ubuntu get a development codename ('Questing Quokka’) and are versioned by the year and month of delivery &ndash; for example, Ubuntu 25.10 was released in October 2025.
+                  Ubuntu releases a new version every six months. Releases of Ubuntu get a development codename ('Questing Quokka') and are versioned by the year and month of delivery &ndash; for example, Ubuntu 25.10 was released in October 2025.
                 </p>
                 <p>
                   Each version includes the latest features, updates, and security patches during its supported lifecycle.
@@ -484,7 +290,61 @@
               </div>
             </div>
           </div>
-          <!-- Todo: Chart image and chips -->
+          <hr class="p-rule--muted" />
+          <div class="u-fixed-width">
+            <h3 class="p-heading--5">Security and support coverage for LTS releases</h3>
+            <div class="u-hide--small u-hide--medium">
+              <div class="p-section--shallow">
+                {{ image(url="https://assets.ubuntu.com/v1/fb862411-chart.png",
+                  alt="",
+                  width="2748",
+                  height="135",
+                  hi_def=True,
+                  loading="lazy"
+                  ) | safe
+                }}
+              </div>
+              <ul class="p-release-cycle-legend">
+                <li class="p-list__item has-bullet">
+                  <div>
+                    Standard Security Maintenance for packages in Main
+                    <br/>
+                    Expanded Security Maintenance for packages in Universe
+                  </div>
+                  {% include "about/partials/_lts-chip.html" %}
+                </li>
+                <li class="p-list__item has-bullet">
+                  Expanded Security Maintenance for packages in Main and Universe 
+                  {% include "about/partials/_pro-chip.html" %}
+                </li>
+                <li class="p-list__item has-bullet">
+                  Break and bug fix support
+                  {% include "about/partials/_pro-chip.html" %}       
+                </li>
+                <li class="p-list__item has-bullet">
+                  Legacy add-on for security coverage and support
+                  {% include "about/partials/_pro-chip.html" %}
+                </li>
+              </ul>
+            </div>
+            <div class="u-hide--large ">
+              <div class="p-card">
+                <p class="p-text--small-caps">1-5 years</p>
+                <p class="p-text--small-caps">Security:</p>
+                <ul class="p-list">
+                  <li class="p-list__item">
+                    Standard Security Maintenance for packages in Main
+                    {% include "about/partials/_lts-chip.html" %}
+                  </li>
+                  <li>
+                    Expanded Security Maintenance for packages in Universe
+                    {% include "about/partials/_pro-chip.html" %}
+                  </li>
+                </ul>
+                <!-- <p class="p-card__content">If you are an independent software vendor or bundle author, it's easy to apply. You can find out more below.</p> -->
+              </div>
+            </div>
+          </div>
         </div>
         <div class="p-tabs__content" tabindex="0" id="packaging-formats" role="tabpanel" aria-label="packaging-formats-tab">
           <div class="p-section--shallow">
@@ -590,7 +450,7 @@
   {# djlint:off #}
   <script type="text/javascript">
     const productsData = {{ products_data | tojson | safe }};
-</script>
+  </script>
   {# djlint:off #}
   <script src="{{ versioned_static('js/src/product-releases.js') }}" defer></script>
 {% endblock content %}

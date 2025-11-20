@@ -1,0 +1,100 @@
+// Styles for /about/release-cycle page
+@mixin ubuntu-p-release-cycle{
+  .release-cycle-table {
+    border-collapse: collapse;
+
+    // Background fill for Ubuntu Pro columns (3–5)
+    th:nth-child(n+3):nth-child(-n+5),
+    td:nth-child(n+3):nth-child(-n+5) {
+      background-color: rgba($color-brand, 0.05);
+
+    }
+
+    // Left outer border on column 3
+    th:nth-child(3),
+    td:nth-child(3) {
+      border-left: 1px solid rgba($color-brand, 0.5);
+    }
+
+    // Right outer border on column 5
+    th:nth-child(5),
+    td:nth-child(5) {
+      border-right: 1px solid rgba($color-brand, 0.5);
+    }
+
+    // Top + right border on the Ubuntu Pro heading cell
+    thead tr:first-child th:nth-child(3) {
+      border-top: 1px solid rgba($color-brand, 0.5);
+      border-right: 1px solid rgba($color-brand, 0.5);
+    }
+
+    // Bottom border on the last row under Ubuntu Pro block
+    tbody tr:last-child td:nth-child(n+3):nth-child(-n+5) {
+      border-bottom: 1px solid rgba($color-brand, 0.5);
+    }
+  }
+
+  .p-release-cycle-legend {
+    @extend .p-list--divided;
+    
+    > li {
+      // Layout for text + chip
+      align-items: flex-start;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+
+      // Bullet styles
+      &::before {
+        font-size: 1.8em;
+      }
+      &:nth-child(1)::before { color: #772953; }
+      &:nth-child(2)::before { color: $color-accent; }
+      &:nth-child(3)::before { color: #808080; }
+      &:nth-child(4)::before { color: #CCCCCC; }
+
+      // Default chip styling (all chips)
+      .p-chip {
+        background-color: #000;
+        margin-left: auto; // ensure right-align even if spacing changes
+        margin-bottom: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem; // small space between icon and text
+        
+        .p-chip__lead+.p-chip__value::before {
+          content: "";
+          margin-left: .25rem;
+        }
+
+        .p-chip__lead img {
+          display: block;         // remove baseline weirdness
+        }
+
+        .p-chip__value {
+          color: white;
+        }
+      }
+
+      // First chip special color
+      &:nth-child(1) .p-chip {
+        background-color: $color-brand;
+      }
+    }
+  }
+
+  .p-release-tooltip {
+    @extend .p-tooltip--right;
+
+    margin: 0;
+    padding: 0;
+    border: none;
+
+    .p-tooltip__message {
+      background-color: white; 
+      color: black; 
+      white-space: normal; 
+      width: 20rem;
+    }
+  }
+}
