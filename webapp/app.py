@@ -574,6 +574,24 @@ app.add_url_rule(
 )
 app.register_blueprint(build_blueprint(blog_views), url_prefix="/blog")
 
+cn_blog_views = BlogViews(
+    api=BlogAPI(session=session, thumbnail_width=555, thumbnail_height=311),
+    tag_ids=[3265],
+    per_page=11,
+    blog_title="Ubuntu blog (Chinese)",
+)
+
+app.register_blueprint(build_blueprint(cn_blog_views), url_prefix="/cn-blog", name="cn-blog")
+
+jp_blog_views = BlogViews(
+    api=BlogAPI(session=session, thumbnail_width=555, thumbnail_height=311),
+    tag_ids=[3184],
+    per_page=11,
+    blog_title="Ubuntu blog (Japanese)",
+)
+
+app.register_blueprint(build_blueprint(jp_blog_views), url_prefix="/jp-blog", name="jp-blog")
+
 # usn section
 app.add_url_rule("/security/notices", view_func=notices)
 
