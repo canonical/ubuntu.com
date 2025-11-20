@@ -1,0 +1,89 @@
+/* stylelint-disable selector-class-pattern */
+$breakpoint-small-banner: 320px;
+
+@mixin cookie-p-modal {
+  .cookie-manager-modal {
+    pointer-events: auto;
+
+    .p-accordion__tab {
+      align-items: center;
+      display: flex;
+
+      .p-accordion__switch {
+        flex-shrink: 1;
+        margin-left: auto;
+      }
+
+      &::before {
+        flex-shrink: 0;
+      }
+    }
+
+    .p-modal {
+      height: auto;
+      width: auto;
+
+      &__dialog {
+        margin-bottom: 0 !important;
+        max-height: 80vh;
+        overflow: auto;
+        padding-bottom: 0;
+      }
+
+      button {
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  .cookie-notification-modal {
+    align-items: end;
+    background: none;
+
+    .p-modal__dialog {
+      background-color: $colors--theme--background-alt;
+      border: 1px solid $colors--theme--border-high-contrast;
+      box-shadow: $box-shadow--deep;
+      max-width: 100%;
+      overflow: hidden;
+      pointer-events: auto;
+      width: 100%;
+    }
+
+    .p-modal__header {
+      background-color: $colors--theme--background-alt;
+    }
+
+    /* Full width on medium and small screens */
+    @media (width < $breakpoint-large) {
+      .p-modal__dialog {
+        bottom: 0;
+        left: 0;
+        max-width: 100%;
+        right: 0;
+        width: 100%;
+      }
+    }
+
+    /* Right-align buttons on large screens */
+    @media (width >= $breakpoint-large) {
+      .cookie-notification-buttons {
+        justify-content: flex-end !important;
+        text-align: right !important;
+      }
+    }
+
+    /* Add margin-left to is-inline button on medium and large screens */
+    @media (width > $breakpoint-small-banner) {
+      .p-button--link.is-inline {
+        margin-bottom: 1.25rem;
+        margin-left: 0 !important;
+        margin-right: $sph--large;
+      }
+    }
+
+    .p-modal__header::after {
+      background-color: $colors--theme--border-low-contrast;
+    }
+  }
+}

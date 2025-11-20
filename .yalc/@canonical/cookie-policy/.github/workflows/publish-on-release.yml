@@ -1,0 +1,29 @@
+name: Publish Cookie Policy release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-and-publish:
+    name: Publish Cookie Policy to NPM
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          registry-url: https://registry.npmjs.org/
+      - name: Build Cookie Policy
+        run: |
+          yarn install
+          yarn build
+          yarn test
+      - if: ${{ !github.event.release.prerelease }}
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - if: ${{ github.event.release.prerelease }}
+        run: npm publish --tag next --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
