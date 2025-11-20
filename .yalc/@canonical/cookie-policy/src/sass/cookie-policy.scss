@@ -1,0 +1,33 @@
+/* Vanilla components */
+@import "vanilla-framework";
+@import "patterns-modal";
+
+/* Include base Vanilla styles */
+@include vf-b-placeholders;
+
+/* Include all the CSS */
+.cookie-policy {
+  @include vf-base;
+  @include vf-b-typography;
+  @include vf-b-hr;
+  @include vf-button-positive;
+  @include vf-p-modal;
+  @include vf-p-switch;
+  @include vf-u-vertical-spacing;
+  @include vf-u-margin-collapse;
+  @include vf-u-off-screen;
+  @include vf-u-floats;
+  @include cookie-p-modal;
+  @include vf-p-accordion;
+  @include vf-p-headings;
+  @include vf-u-padding-collapse;
+  @include vf-u-text-muted;
+  @include vf-p-grid-8;
+  @include vf-button-link;
+  @include vf-u-align;
+  @include vf-u-vertically-center;
+  @include vf-u-no-max-width;
+
+  /* fix box-sizing that Vanilla sets on html and it doesn't work nested in .cookie-policy */
+  box-sizing: border-box;
+}
