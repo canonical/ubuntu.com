@@ -1,16 +1,24 @@
 const productSelection = document.getElementById("js-product-selector");
 const releaseSelection = document.getElementById("js-release-selector");
 const versionSelection = document.getElementById("js-version-selector");
-const subscriptionSelection = document.getElementById(
-  "js-subscription-selector",
-);
 const selectorForm = document.getElementById("js-product-selector-form");
 const submitButton = document.getElementById("js-product-selector-submit");
+const tooltipButtons = document.querySelectorAll(".js-info-tooltip");
 
 function syncSubmitState() {
   submitButton.disabled = !(releaseSelection.value && versionSelection.value);
 }
 submitButton.disabled = true;
+
+function handleTooltipClick() {
+  tooltipButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const tooltip = button.querySelector('.version-tooltip-content');
+      tooltip.classList.toggle('u-hide');
+    });
+  });
+}
+handleTooltipClick();
 
 // Set current product context
 function getSelectedProductContext() {
@@ -98,12 +106,10 @@ selectorForm.addEventListener("submit", (event) => {
   const productValue = productSelection.value;
   const releaseValue = releaseSelection.value;
   const versionValue = versionSelection.value;
-  const subscriptionValue = subscriptionSelection?.value;
 
   if (productValue) params.set("product", productValue);
   if (releaseValue) params.set("release", releaseValue);
   if (versionValue) params.set("version", versionValue);
-  if (subscriptionValue) params.set("subscription", subscriptionValue);
 
   const newUrl = params.toString()
     ? `${window.location.pathname}?${params.toString()}`
