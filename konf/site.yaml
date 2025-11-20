@@ -1191,16 +1191,16 @@ staging:
     }
 
 demo:
-  useProxy: false
-  env:
-    - name: HTTP_PROXY
-      value: http://squid.ps6.internal:3128
+  # useProxy: false
+  # env:
+  #   - name: HTTP_PROXY
+  #     value: http://squid.ps6.internal:3128
 
-    - name: HTTPS_PROXY
-      value: http://squid.ps6.internal:3128
+  #   - name: HTTPS_PROXY
+  #     value: http://squid.ps6.internal:3128
 
-    - name: NO_PROXY
-      value: "10.24.0.132,10.24.0.23,.internal,ubuntu.com,.ubuntu.com,snapcraft.io,.snapcraft.io,jujucharms.com,.jujucharms.com,maas.io,.maas.io,conjure-up.io,.conjure-up.io,netplan.io,.netplan.io,canonical.com,.canonical.com,launchpad.net,.launchpad.net,linuxcontainers.org,.linuxcontainers.org,cloud-init.io,.cloud-init.io,vanillaframework.io,.vanillaframework.io,anbox-cloud.io,.anbox-cloud.io,juju.is,.juju.is,dqlite.io,.dqlite.io,charmhub.io,.charmhub.io,canonical.design,.canonical.design"
+  #   - name: NO_PROXY
+  #     value: "10.24.0.132,10.24.0.23,.internal,ubuntu.com,.ubuntu.com,snapcraft.io,.snapcraft.io,jujucharms.com,.jujucharms.com,maas.io,.maas.io,conjure-up.io,.conjure-up.io,netplan.io,.netplan.io,canonical.com,.canonical.com,launchpad.net,.launchpad.net,linuxcontainers.org,.linuxcontainers.org,cloud-init.io,.cloud-init.io,vanillaframework.io,.vanillaframework.io,anbox-cloud.io,.anbox-cloud.io,juju.is,.juju.is,dqlite.io,.dqlite.io,charmhub.io,.charmhub.io,canonical.design,.canonical.design"
 
     - name: CREDENTIALS_CONFIDENTIALITY_ENABLED
       value: false
