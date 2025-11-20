@@ -74,30 +74,7 @@ def login_handler():
         "CONTRACTS_API_URL", "https://contracts.canonical.com"
     )
 
-    if flask.request.args.get("set_large_cookie"):
-        try:
-            size = int(
-                flask.request.args.get(
-                    "size",
-                    get_flask_env("TEST_LARGE_COOKIE_BYTES", "16384"),
-                )
-            )
-        except ValueError:
-            size = 16384
-        resp = flask.redirect(
-            flask.request.path
-            + (
-                "?next=" + flask.request.args.get("next")
-                if flask.request.args.get("next")
-                else ""
-            )
-        )
-        resp.set_cookie("test_large_cookie", "X" * size, max_age=600)
-        return resp
-
     cookie_header = flask.request.headers.get("Cookie", "")
-    # print("cookie_header", cookie_header)
-    print("len(cookie_header)", len(cookie_header))
     try:
         max_bytes = int(get_flask_env("MAX_COOKIE_HEADER_BYTES", "8192"))
     except ValueError:
@@ -115,35 +92,21 @@ def login_handler():
     if user_info(flask.session):
         return flask.redirect(open_id.get_next_url())
 
-    response = session.request(
-        method="get", url=f"{api_url}/v1/canonical-sso-macaroon"
-    )
-    flask.session["macaroon_root"] = response.json()["macaroon"]
-    # except Exception as e:
-    #     try:
-    #         flask.current_app.extensions["sentry"].captureException()
-    #     except Exception:
-    #         pass
-    #     print("session.request error >>>>>")
-    #     return (
-    #         flask.render_template("templates/_error_login.html"),
-    #         502,
-    #     )
-    # try:
-    #     response = session.request(
-    #         method="get", url=f"{api_url}/v1/canonical-sso-macaron"
-    #     )
-    #     flask.session["macaroon_root"] = response.json()["macaroon"]
-    # except Exception as e:
-    #     try:
-    #         flask.current_app.extensions["sentry"].captureException()
-    #     except Exception:
-    #         pass
-    #     print("session.request error >>>>>")
-    #     return (
-    #         flask.render_template("templates/_error_login.html"),
-    #         502,
-    #     )
+    try:
+        response = session.request(
+            method="get", url=f"{api_url}/v1/canonical-sso-macaron"
+        )
+        flask.session["macaroon_root"] = response.json()["macaroon"]
+    except Exception as e:
+        try:
+            flask.current_app.extensions["sentry"].captureException()
+        except Exception:
+            pass
+        print("session.request error >>>>>")
+        return (
+            flask.render_template("templates/_error_login.html"),
+            502,
+        )
 
     openid_macaroon = None
     for caveat in Macaroon.deserialize(
@@ -211,12 +174,6 @@ def after_login(resp):
     is_credentials_support = (
         CREDENTIALS_SUPPORT in resp.extensions["lp"].is_member
     )
-
-    print("resp", resp.identity_url)
-    print("resp", resp.email)
-    print("resp", resp.image)
-    print("resp", resp.nickname)
-    print("resp", resp.fullname)
 
     flask.session["openid"] = {
         "identity_url": resp.identity_url,
