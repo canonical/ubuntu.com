@@ -1,0 +1,188 @@
+// Styles for /about/release-cycle page
+@mixin ubuntu-p-release-cycle{
+  .release-cycle-table {
+    border-collapse: collapse;
+
+    // Background fill for Ubuntu Pro columns (3–5)
+    th:nth-child(n+3):nth-child(-n+5),
+    td:nth-child(n+3):nth-child(-n+5) {
+      background-color: rgba($color-brand, 0.05);
+    }
+
+    // Left outer border on column 3
+    th:nth-child(3),
+    td:nth-child(3) {
+      border-left: 1px solid rgba($color-brand, 0.5);
+    }
+
+    // Right outer border on column 5
+    th:nth-child(5),
+    td:nth-child(5) {
+      border-right: 1px solid rgba($color-brand, 0.5);
+    }
+
+    // Top + right border on the Ubuntu Pro heading cell
+    thead tr:first-child th:nth-child(3) {
+      border-top: 1px solid rgba($color-brand, 0.5);
+      border-right: 1px solid rgba($color-brand, 0.5);
+    }
+
+    // Bottom border on the last row under Ubuntu Pro block
+    tbody tr:last-child td:nth-child(n+3):nth-child(-n+5) {
+      border-bottom: 1px solid rgba($color-brand, 0.5);
+    }
+
+    // Right border on column 3 for medium screens and smaller
+    @media screen and (width < $breakpoint-large) {
+      tbody td:nth-child(3) {
+        border-right: 1px solid rgba($color-brand, 0.5);
+      }
+
+      // Sticky header styles
+      thead {
+        position: sticky;
+        top: 3.4rem;
+        z-index: 2;
+        background: #f3f3f3;
+      }
+
+      thead th {
+        background: #f3f3f3;
+      }
+    }
+  }
+
+  .p-release-cycle-legend {
+    @extend .p-list--divided;
+    
+    > li {
+      // Layout for text + chip
+      align-items: flex-start;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+
+      // Bullet styles
+      &::before {
+        font-size: 1.8em;
+      }
+      &:nth-child(1)::before { color: #772953; }
+      &:nth-child(2)::before { color: transparent; }
+      &:nth-child(3)::before { color: $color-accent; }
+      &:nth-child(4)::before { color: #808080; }
+      &:nth-child(5)::before { color: #CCCCCC; }
+    }
+  }
+
+  .p-release-chip {
+    @extend .p-chip;
+
+    background-color: #000;
+    margin-left: auto;
+    margin-bottom: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    
+    .p-chip__lead+.p-chip__value::before {
+      content: "";
+      margin-left: .25rem;
+    }
+
+    .p-chip__lead img {
+      display: block;
+    }
+
+    .p-chip__value {
+      color: white;
+    }
+  }
+
+  .p-release-tooltip {
+    @extend .p-tooltip--btm-right;
+
+    margin: 0;
+    padding: 0;
+    border: none;
+
+    &.is-tooltip-closed {
+      .p-tooltip__message {
+        display: none !important;
+      }
+
+      &:hover .p-tooltip__message,
+      &:focus-within .p-tooltip__message {
+        display: none !important;
+      }
+
+      // Remove vanilla button hover background when closed
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: transparent !important;
+      }
+    }
+
+    .p-tooltip__message {
+      // Remove tooltip arrow  
+      &::before {
+        content: none;
+        border: none;
+        display: none;
+      }
+
+      background-color: white; 
+      color: black;
+      transform: translate(345px, -20px) !important;
+      white-space: normal; 
+      width: 20rem;
+      padding-right: 1.5rem;
+
+      @media screen and (width < $breakpoint-large) {
+        transform: translate(307px, -20px) !important;
+      }
+      
+      .p-tooltip__header {
+        position: relative;
+      }
+
+      .p-icon--close {
+        position: absolute;
+        top: 0.2rem;
+        right: 0.2rem;
+        cursor: pointer;
+        font-size: 1rem;
+        opacity: 0.6;
+
+        background-image: vf-icon-close-url(#000000);
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+ 
+  .p-release-card {
+    @extend .p-card;
+
+    .p-list > li {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  }
+
+  .p-product-selector-form {
+    .p-form-validation__message {
+      display: none;
+    }
+
+    .p-form-validation.is-error .p-form-validation__message {
+      display: block;
+    }
+}
+
+}

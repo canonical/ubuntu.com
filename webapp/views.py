@@ -8,7 +8,7 @@ import requests
 import time
 import logging
 from urllib.parse import quote, unquote, urlparse
-from datetime import datetime
+from datetime import datetime, date
 
 # Packages
 import dateutil
@@ -1699,18 +1699,163 @@ def build_github_data_access():
 def build_release_cycle_view():
     get_json_files = build_github_data_access()
 
+    def format_date(value):
+        """Convert YYYY-MM-DD or {date:..., notes:...} to a normalized dict."""
+        raw = None
+        formatted = None
+        notes = None
+        is_past = False
+
+        # Case 1: dict with date or notes
+        if isinstance(value, dict):
+            # A real date
+            if "date" in value:
+                raw = value["date"]
+                try:
+                    dt = datetime.strptime(raw, "%Y-%m-%d").date()
+                    formatted = dt.strftime("%b %Y")  # Dec 2025
+                    is_past = dt < date.today()
+                except ValueError:
+                    formatted = raw
+
+            # Notes only
+            elif "notes" in value:
+                notes = value["notes"]
+                raw = notes
+
+        else:
+            # Case 2: plain date string
+            raw = value
+            try:
+                dt = datetime.strptime(raw, "%Y-%m-%d").date()
+                formatted = dt.strftime("%b %Y")
+                is_past = dt < date.today()
+            except Exception:
+                formatted = raw
+
+        # Single return
+        return {
+            "raw": raw,
+            "date": formatted,
+            "notes": notes,
+            "is_past": is_past,
+        }
+
+    def get_deployment(data, product_key, release_identifier):
+        """Return the deployment dict matching release_name, or None."""
+
+        product = data.get(product_key, {})
+        for deployment in product.get("deployment", []):
+            if (
+                deployment.get("name") == release_identifier
+                or deployment.get("slug") == release_identifier
+            ):
+                return deployment
+        return None
+
+    def get_versions_for_release(data, product_key, release_name):
+        """Return list of version dicts for (product, release type name)."""
+
+        deployment = get_deployment(data, product_key, release_name)
+        if not deployment:
+            return []
+        return [
+            shape_version(version_dict)
+            for version_dict in deployment.get("versions", [])
+        ]
+
+    def get_selected_version_data(data, product_key, release_name, version):
+        """Return a dict with key details for the selected version."""
+
+        deployment = get_deployment(data, product_key, release_name)
+        if not deployment:
+            return None
+
+        for version_dict in deployment.get("versions", []):
+            if str(version_dict.get("release")) == str(version):
+                return shape_version(version_dict)
+        return None
+
+    def shape_version(version_dict):
+        """Normalize keys and format dates for a single version dict."""
+        
+        compat_list = version_dict.get("compatible-ubuntu-lts", [])
+        has_compatible_components = any(
+            item.get("compatible-components") for item in compat_list
+        )
+
+        return {
+            "release": version_dict.get("release"),
+            "architecture": version_dict.get("architecture", []),
+            "supported": format_date(version_dict.get("supported")),
+            "pro_supported": format_date(version_dict.get("pro-supported")),
+            "legacy_supported": format_date(
+                version_dict.get("legacy-supported")
+            ),
+            "release_date": format_date(version_dict.get("release-date")),
+            "upgrade_path": version_dict.get("upgrade-path", []),
+            "compatible_ubuntu_lts": version_dict.get(
+                "compatible-ubuntu-lts", []
+            ),
+            "has_compatible_components": has_compatible_components,
+        }
+
     def display_github_data():
-        # TODO: include remaining files when json validation is in place
+        product = flask.request.args.get("product", type=str, default="ubuntu")
+        release_name = flask.request.args.get(
+            "release", type=str, default="ubuntu"
+        )
+        version = flask.request.args.get("version", type=str, default="all")
+
         files = [
             "products-data/25.10/kubernetes.json",
             "products-data/25.10/ubuntu-kernel.json",
             "products-data/25.10/microcloud.json",
             "products-data/25.10/ubuntu.json",
+            "products-data/25.10/lxd.json",
+            "products-data/25.10/ceph.json",
+            "products-data/25.10/anbox.json",
+            "products-data/25.10/maas.json",
+            "products-data/25.10/openstack.json",
         ]
         products_data = get_json_files(files)
+
+        products_data = dict(
+            sorted(
+                products_data.items(),
+                key=lambda item: str(item[1].get("product", "")).lower(),
+            )
+        )
+
+        for key, data in products_data.items():
+            for deployment in data["deployment"]:
+                name = deployment.get("name", "")
+                deployment["slug"] = name.lower()
+
+        versions = []
+        selected_version = None
+        deployment = None
+
+        if product and release_name:
+            deployment = get_deployment(products_data, product, release_name)
+            versions = get_versions_for_release(
+                products_data, product, release_name
+            )
+            if version and version != "all":
+                selected_version = get_selected_version_data(
+                    products_data, product, release_name, version
+                )
+
         return flask.render_template(
             "about/release-cycle.html",
             products_data=products_data,
+            product=product,
+            version=version,
+            release_name=release_name,
+            versions=versions,
+            selected_version=selected_version,
+            deployment=deployment,
+            now=datetime.utcnow(),
         )
 
     return display_github_data
