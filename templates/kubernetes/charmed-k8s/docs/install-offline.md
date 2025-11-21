@@ -18,9 +18,9 @@ on a system which does not have unfettered access to the internet. To make
 this possible, it is necessary to prepare the required resources, and configure
 Charmed Kubernetes to make use of them.
 
-As user needs may vary, this documentation does not present a prescriptive 
-recipe, but outlines the types of resources which are required and some 
-recommendations on how to provide them. If you are already installing 
+As user needs may vary, this documentation does not present a prescriptive
+recipe, but outlines the types of resources which are required and some
+recommendations on how to provide them. If you are already installing
 services in a restricted environment you may already have some 'air-gap'
 resources available, and may only need to configure Charmed Kubernetes to
 make use of them.
@@ -48,7 +48,7 @@ use tools such as **rsync**, **apt-mirror** or **aptly** to create the mirror.
 
 ### Series and architectures
 
-Note that the mirror should contain packages for the required series (e.g. focal 
+Note that the mirror should contain packages for the required series (e.g. focal
 (Ubuntu 20.04), bionic) and architectures (e.g. `amd64`, `i386`) expected to be used
 in the deployment. The core Charmed Kubernetes components all use the `focal` series,
 but some additional charms may be based on other series.
@@ -94,7 +94,7 @@ the local store. Information on how to do this is in the
 Note: Running the Snap Store Proxy also requires access to a PostgreSQL database,
 and an Ubuntu SSO account.
 
-## Juju 
+## Juju
 
 Since `Charmed Kubernetes` requires Juju, the Juju environment will also
 need to be deployed in an offline-mode. Details of how to install and run Juju
@@ -125,11 +125,11 @@ deploying the rest of Charmed Kubernetes.
 
 A list of the required images for each supported release is made available as part of
 the Charmed Kubernetes bundle repository on github. You can inspect or download the
-lists from the [container images][] directory. 
+lists from the [container images][] directory.
 
 Using this list, it is possible to fetch the desired images locally on a system which
 has access to public repositories. The shrinkwrap tool also gathers all the necessary
-images for a specific release into one "containers" folder of the resulting tar.gz 
+images for a specific release into one "containers" folder of the resulting tar.gz
 ready for installation.
 
 When using the Juju docker-registry charm, the image archives can be copied to the
@@ -141,7 +141,7 @@ docker pull registry
 docker save registry | gzip > registry.tgz
 ```
 
-The local image files can then be copied to the unit running the docker-registry and 
+The local image files can then be copied to the unit running the docker-registry and
 loaded:
 
 ```bash
@@ -173,9 +173,9 @@ with Juju or Ubuntu images, the following documentation may be useful.
 [LXD][] is a special case, as not only can Charmed Kubernetes be deployed entirely
 on LXD containers (See the [localhost documentation][local-install]), but LXD is also used in other
 clouds to co-locate applications on a single machine. In both cases, the OS images need
-to be fetched from somewhere. 
+to be fetched from somewhere.
 
-This can be configured in various ways using LXD, either 
+This can be configured in various ways using LXD, either
 by pre-caching image files or pointing to an accessible repository. This is covered
 in detail in the [LXD image documentation][LXD-image].
 
@@ -196,13 +196,13 @@ patches and apply to the running kernel. However, with [On Prem Livepatch][on-pr
 patches can be published to a locally available livepatch hosting server.
 
 
-## Charmed Kubernetes 
+## Charmed Kubernetes
 
 ### Bundle and charms
 
 The specific bundle and charms which are required by those bundles must first be retrieved,
 then locally installed with Juju. The [bundles][], [overlays][], and charms to install
-can be retrieved using the [Shrinkwrap][cdk-shrinkwrap] tool.   
+can be retrieved using the [Shrinkwrap][cdk-shrinkwrap] tool.
 
 from an internet connected machine:
 
@@ -213,7 +213,7 @@ from an internet connected machine:
    git clone https://github.com/charmed-kubernetes/cdk-shrinkwrap.git /tmp/.shrinkwrap
    cd /tmp/.shrinkwrap
    BUNDLE='charmed-kubernetes --channel=1.26/stable'       # Choose a deployment bundle (example is 1.26.x)
-   ./shrinkwrap-lxc.sh $BUNDLE 
+   ./shrinkwrap-lxc.sh $BUNDLE
    ls /tmp/.shrinkwrap/build/
    ```
 
@@ -237,7 +237,7 @@ In the air-gapped environment with access to the Juju controller:
    cd charmed-kubernetes-*/
    ./deploy.sh
    ```
-   
+
    Examine the provided instructions and ensure necessary modifications are considered and made. Then...
 
    ```
@@ -288,6 +288,6 @@ is covered in the [proxy documentation][].
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/install-offline.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
+    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack  channel</a>.</p>
   </div>
 </div>

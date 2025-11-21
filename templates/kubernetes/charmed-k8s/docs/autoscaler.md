@@ -26,10 +26,10 @@ This work is based on the upstream autoscaler code - see the [FAQ][] for more de
 ## Deploying the autoscaler
 
 The autoscaler charm must be deployed in a Kubernetes model on your cluster, not
-a machine model (i.e., it runs on Kubernetes). These instructions assume you 
-have read and followed the instructions for 
-[adding your Charmed Kubernetes cluster to your Juju controller][kubernetes-operators]. 
-These instructions assume you have a cluster registered with Juju and named `ck8s`. Please 
+a machine model (i.e., it runs on Kubernetes). These instructions assume you
+have read and followed the instructions for
+[adding your Charmed Kubernetes cluster to your Juju controller][kubernetes-operators].
+These instructions assume you have a cluster registered with Juju and named `ck8s`. Please
 adjust the commands given appropriately if you have used a different name.
 
 It is also recommended to schedule the autoscaler charm pods on
@@ -136,6 +136,6 @@ juju config kubernetes-autoscaler autoscaler_extra_args="{v: 5, scale-down-delay
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/autoscaler.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
+    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack  channel</a>.</p>
   </div>
 </div>
