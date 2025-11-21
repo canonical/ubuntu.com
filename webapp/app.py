@@ -10,6 +10,7 @@ import requests
 import talisker.requests
 from jinja2 import ChoiceLoader, FileSystemLoader
 import yaml
+import datetime
 
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
@@ -269,13 +270,6 @@ search_engine_id = "adb2397a224a1fe55"
 
 init_handlers(app, sentry)
 
-
-app.config["CENTRAL_COOKIE_SERVICE_URL"] = (
-    "https://cookies.staging.canonical.com"
-    # "http://local-cookies.com:8118"  # Local testing value
-)
-app.config["SESSION_COOKIE_SECURE"] = False  # Local testing value
-
 # --- TEMP CACHE SETUP: START ---
 _cache = {}
 
@@ -286,9 +280,20 @@ def get_cache(key):
 
 def set_cache(key, value):
     _cache[key] = value
-
-
 # --- TEMP CACHE SETUP: END ---
+
+# Set default config for session
+app.config.setdefault(
+    "PERMANENT_SESSION_LIFETIME", datetime.timedelta(days=365)
+)
+app.config.setdefault("SESSION_COOKIE_SAMESITE", "Lax")
+app.config.setdefault("SESSION_COOKIE_SECURE", True)
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+
+# For testing, point to staging cookie service
+app.config["CENTRAL_COOKIE_SERVICE_URL"] = (
+    "https://cookies.staging.canonical.com"
+)
 
 # Initialize cookie consent service
 cookie_service = CookieConsent().init_app(

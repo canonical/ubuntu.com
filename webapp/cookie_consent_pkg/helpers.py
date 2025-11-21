@@ -1,5 +1,5 @@
 # helpers.py
-from flask import request, current_app, redirect, session
+from flask import request, current_app, redirect, session, g
 from datetime import datetime, timezone, timedelta
 
 from .exceptions import UserNotFoundException
@@ -9,54 +9,58 @@ def get_client():
     return current_app.extensions["cookie_consent_client"]
 
 
-def set_cookie_accepted_with_ts(response, key, value):
+def is_secure_context():
+    """
+    Determine if we are in development (not secure)
+    or production (secure).
+    """
+    return not bool(current_app.debug)
+
+
+def set_cookies_accepted_with_ts(response, value):
+    """
+    Sets the '_cookies_accepted' and '_cookies_accepted_ts' cookies.
+    """
     days = get_client().app.config.get("PREFERENCES_COOKIE_EXPIRY_DAYS")
 
     response.set_cookie(
-        key,
+        "_cookies_accepted",
         value,
         max_age=60 * 60 * 24 * days,
         samesite="Lax",
-        secure=False,
+        secure=is_secure_context(),
     )
 
     response.set_cookie(
-        f"{key}_ts",
+        "_cookies_accepted_ts",
         datetime.now(timezone.utc).isoformat(),
         max_age=60 * 60 * 24 * days,
         samesite="Lax",
-        secure=False,
+        secure=is_secure_context(),
     )
 
 
-def set_short_lived_cookie(response, key, value, minutes=5):
+def set_cookie_for_session_life(response, key, value):
+    """Sets a cookie that expires with the session."""
     response.set_cookie(
         key,
         value,
-        max_age=60 * minutes,
         samesite="Lax",
-        secure=False,
+        secure=is_secure_context(),
     )
 
 
-def check_cookie_stale(cookie_stale) -> bool:
+def check_cookie_stale() -> bool:
     """Check if cookie is older than 1 day."""
     timestamp_cookie = request.cookies.get("_cookies_accepted_ts")
-    if timestamp_cookie:
-        try:
-            timestamp = datetime.fromisoformat(timestamp_cookie)
-            if datetime.now(timezone.utc) - timestamp > timedelta(days=1):
-                cookie_stale = True
-        except Exception:
-            cookie_stale = True
-    else:
-        cookie_stale = True
+    if not timestamp_cookie:
+        return True
 
-    return cookie_stale
-
-
-def get_cookie_mode_cookie(request):
-    return getattr(request, "_cookie_mode", "local")
+    try:
+        timestamp = datetime.fromisoformat(timestamp_cookie)
+        return datetime.now(timezone.utc) - timestamp > timedelta(days=1)
+    except Exception:
+        return True
 
 
 def skip_non_html_requests(response=None) -> bool:
@@ -95,25 +99,18 @@ def check_session_and_redirect():
     Middleware function for checking session and redirecting if needed.
     The host app must call this with a @before_request hook.
     """
-    if skip_non_html_requests():
-        return
-
-    # Check health and set flag, used for setting '_cookie_mode' cookie later
-    if not get_client().is_service_up():
-        request._cookie_mode = "local"
-        return
-    else:
-        request._cookie_mode = "shared"
-
-    # We don't need to redirect if session exists
+    # We don't need to redirect if session already exists
     if "user_uuid" in session:
-        return
+        return False
+
+    # Only run on legitamate page requests
+    if skip_non_html_requests():
+        return False
 
     # Redirect to cookie service to create session
     service_url = current_app.config["CENTRAL_COOKIE_SERVICE_URL"]
-    return_uri = request.url
     redirect_url = (
-        f"{service_url}/api/v1/cookies/session?return_uri={return_uri}"
+        f"{service_url}/api/v1/cookies/session?return_uri={request.url}"
     )
 
     return redirect(redirect_url)
@@ -124,21 +121,26 @@ def sync_preferences_cookie(response):
     This is the middleware helper for syncing preferences to a local cookie.
     The host app must call this from its own @after_request hook.
     """
+    # If service is down or user doesn't want shared cookies, skip
+    if getattr(g, "cookies_service_up", False) is not True:
+        return response
+    else:
+        # Otherwise we set a cookie for interaction with cookie-policy.js
+        set_cookie_for_session_life(response, "_cookies_service_up", "1")
+
+    # Check if we've already run sync in this request
+    if getattr(g, "cookies_synced", False):
+        return response
+
+    # Only run on legitamate page requests
     if skip_non_html_requests(response):
         return response
 
-    # If service is down or user doesn't want shared cookies, skip
-    if get_cookie_mode_cookie(request) == "local":
-        set_short_lived_cookie(response, "_cookie_mode", "local", minutes=5)
-        return response
-
-    cookie_stale = False
-    cookie_stale = check_cookie_stale(cookie_stale)
-
+    cookie_stale = check_cookie_stale()
     user_uuid = session.get("user_uuid")
     local_preferences = request.cookies.get("_cookies_accepted")
 
-    # Refresh preferences if missing or stale
+    # Refresh preferences if cookie missing or stale
     if user_uuid and (not local_preferences or cookie_stale):
         try:
             preferences_data = get_client().fetch_preferences(user_uuid)
@@ -146,12 +148,11 @@ def sync_preferences_cookie(response):
                 consent_value = preferences_data.get("preferences", {}).get(
                     "consent", "unset"
                 )
-                set_cookie_accepted_with_ts(
-                    response, "_cookies_accepted", consent_value
-                )
+                set_cookies_accepted_with_ts(response, consent_value)
         except UserNotFoundException:
             session.pop("user_uuid", None)
         except Exception:
             pass
 
+    g.cookies_synced = True
     return response
