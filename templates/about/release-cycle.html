@@ -45,60 +45,93 @@
   ) }}
   <section class="p-section">
     <div class="p-section--shallow">
-      <form id="js-product-selector-form">
+      <form id="js-product-selector-form" class="p-product-selector-form">
         <div class="grid-row">
+          <!-- Product select -->
           <div class="grid-col-2 grid-col-medium-2">
-            <label for="js-product-selector">Product</label>
-            <select name="product" id="js-product-selector">
-              <option value="">Select a product</option>
-              {% for key, data in products_data.items() %}
-                <option value="{{ key }}" {% if key == product %}selected{% endif %}>
-                  {{ data.product }}
-                </option>
-              {% endfor %}
-            </select>
-          </div>
-          <div class="grid-col-2 grid-col-medium-2">
-            <label for="js-release-selector">Release type</label>
-            <select
-              name="release"
-              id="js-release-selector"
-              {% if not product %}disabled{% endif %}
-            >
-              <option value="">Select a release</option>
-
-              {% if product in products_data %}
-                {% for deployment in products_data[product]["deployment"] %}
-                  <option
-                    value="{{ deployment.slug }}"
-                    {% if deployment.slug == release_name %}selected{% endif %}
-                  >
-                    {{ deployment.name }}
-                  </option>
-                {% endfor %}
-              {% endif %}
-            </select>
-          </div>
-          <div class="grid-col-2 grid-col-medium-2">
-            <label for="js-version-selector">Version</label>
-            <select
-              name="version"
-              id="js-version-selector"
-              {% if not versions %}disabled{% endif %}
-            >
-              <option value="all" {% if version == "all" %}selected{% endif %}>
-                All versions
-              </option>
-
-              {% for v in versions %}
-                <option
-                  value="{{ v.release }}"
-                  {% if v.release == version %}selected{% endif %}
+            <div class="p-form-validation" id="js-product-validation">
+              <label for="js-product-selector">Product</label>
+              <div class="p-form-validation__select-wrapper">
+                <select
+                  name="product"
+                  id="js-product-selector"
+                  aria-invalid="false"
+                  aria-describedby="js-product-validation-message"
                 >
-                  {{ v.release }}
-                </option>
-              {% endfor %}
-            </select>
+                  <option value="">Select a product</option>
+                  {% for key, data in products_data.items() %}
+                    <option value="{{ key }}" {% if key == product %}selected{% endif %}>
+                      {{ data.product }}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <p class="p-form-validation__message" id="js-product-validation-message">
+                Please select a product.
+              </p>
+            </div>
+          </div>
+          <!-- Release select -->
+          <div class="grid-col-2 grid-col-medium-2">
+            <div class="p-form-validation" id="js-release-validation">
+              <label for="js-release-selector">Release type</label>
+              <div class="p-form-validation__select-wrapper">
+                <select
+                  name="release"
+                  id="js-release-selector"
+                  {% if not product %}disabled{% endif %}
+                  aria-invalid="false"
+                  aria-describedby="js-release-validation-message"
+                >
+                  <option value="">Select a release</option>
+
+                  {% if product in products_data %}
+                    {% for deployment in products_data[product]["deployment"] %}
+                      <option
+                        value="{{ deployment.slug }}"
+                        {% if deployment.slug == release_name %}selected{% endif %}
+                      >
+                        {{ deployment.name }}
+                      </option>
+                    {% endfor %}
+                  {% endif %}
+                </select>
+              </div>
+              <p class="p-form-validation__message" id="js-release-validation-message">
+                Please select a release type.
+              </p>
+            </div>
+          </div>
+          <!-- Version select -->
+          <div class="grid-col-2 grid-col-medium-2">
+            <div class="p-form-validation" id="js-version-validation">
+              <label for="js-version-selector">Version</label>
+              <div class="p-form-validation__select-wrapper">
+                <select
+                  name="version"
+                  id="js-version-selector"
+                  {% if not versions %}disabled{% endif %}
+                  aria-invalid="false"
+                  aria-describedby="js-version-validation-message"
+                >
+                  <option value="all" {% if version == "all" %}selected{% endif %}>
+                    All versions
+                  </option>
+
+                  {% for v in versions %}
+                    <option
+                      value="{{ v.release }}"
+                      {% if v.release == version %}selected{% endif %}
+                    >
+                      {{ v.release }}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <p class="p-form-validation__message" id="js-version-validation-message">
+                Please select a version.
+              </p>
+            </div>
           </div>
           <div class="grid-col-2 grid-col-medium-2">
             <button class="p-button--positive u-no-margin--bottom" id="js-product-selector-submit" disabled style="margin-top: 2.5rem;">View coverage</button>
@@ -306,12 +339,11 @@
               </div>
               <ul class="p-release-cycle-legend">
                 <li class="p-list__item has-bullet">
-                  <div>
-                    Standard Security Maintenance for packages in Main
-                    <br/>
-                    Expanded Security Maintenance for packages in Universe
-                  </div>
-                  {% include "about/partials/_lts-chip.html" %}
+                  Standard Security Maintenance for packages in Main
+                </li>
+                <li class="p-list__item has-bullet">
+                  Expanded Security Maintenance for packages in Universe
+                  {% include "about/partials/_pro-chip.html" %}
                 </li>
                 <li class="p-list__item has-bullet">
                   Expanded Security Maintenance for packages in Main and Universe 
@@ -328,20 +360,62 @@
               </ul>
             </div>
             <div class="u-hide--large ">
-              <div class="p-card">
-                <p class="p-text--small-caps">1-5 years</p>
+              <div class="p-release-card">
+                <h4 class="p-text--small-caps">1-5 years</h4>
                 <p class="p-text--small-caps">Security:</p>
                 <ul class="p-list">
                   <li class="p-list__item">
                     Standard Security Maintenance for packages in Main
-                    {% include "about/partials/_lts-chip.html" %}
                   </li>
+                  <li class="p-list__item">
+                    Expanded Security Maintenance for packages in Universe
+                    {% include "about/partials/_pro-chip.html" %}
+                  </li>
+                </ul>
+                <hr class="p-rule--muted" />
+                <p class="p-text--small-caps">Support:</p>
+                <ul class="p-list">
+                  <li>
+                    Break fix and bug support
+                    {% include "about/partials/_pro-chip.html" %}
+                  </li>
+                </ul>
+              </div>
+              <div class="p-release-card">
+                <p class="p-text--small-caps">6-10 years</p>
+                <p class="p-text--small-caps">Security:</p>
+                <ul class="p-list">
                   <li>
                     Expanded Security Maintenance for packages in Universe
                     {% include "about/partials/_pro-chip.html" %}
                   </li>
                 </ul>
-                <!-- <p class="p-card__content">If you are an independent software vendor or bundle author, it's easy to apply. You can find out more below.</p> -->
+                <hr class="p-rule--muted" />
+                <p class="p-text--small-caps">Support:</p>
+                <ul class="p-list">
+                  <li>
+                    Break fix and bug support
+                    {% include "about/partials/_pro-chip.html" %}
+                  </li>
+                </ul>
+              </div>
+              <div class="p-release-card">
+                <p class="p-text--small-caps">11-12 years</p>
+                <p class="p-text--small-caps">Security:</p>
+                <ul class="p-list">
+                  <li>
+                    Legacy add-on for security coverage and support
+                    {% include "about/partials/_pro-chip.html" %}
+                  </li>
+                </ul>
+                <hr class="p-rule--muted" />
+                <p class="p-text--small-caps">Support:</p>
+                <ul class="p-list">
+                  <li>
+                    Legacy coverage for break fix and bug support
+                    {% include "about/partials/_pro-chip.html" %}
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
