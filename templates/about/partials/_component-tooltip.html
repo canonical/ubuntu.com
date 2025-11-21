@@ -1,9 +1,12 @@
-<button class="p-release-tooltip" aria-describedby="{{ version.release }}-tooltip">
+<button class="p-release-tooltip js-component-tooltip" aria-describedby="{{ version.release }}-tooltip">
 	<i class="p-icon--information" aria-hidden="true"></i>
 	<span class="p-tooltip__message" role="tooltip" id="{{ version.release }}-tooltip">
-		<p class="p-heading--5 u-no-margin--bottom p-release-tooltip__heading" style="margin-bottom: .5rem;">
-			{{ deployment.name }}
-		</p>
+		<div class="p-tooltip__header">
+			<p class="p-heading--5 u-no-margin--bottom p-release-tooltip__heading" style="margin-bottom: .5rem;">
+				{{ deployment.name }}
+			</p>
+			<i class="p-icon--close js-tooltip-close  u-hide--large" aria-label="Close tooltip"></i>
+		</div>
 		<hr style="background-color: lightgrey;" />
 		<p class="p-text--small-caps u-no-padding--bottom u-no-margin--bottom">
 			Supported architectures
@@ -23,26 +26,28 @@
 			<span>
 				{{ version.upgrade_path  | join(', ') }}
 			</span>
-			{% endif %}
-			{% set compat_list = version.compatible_ubuntu_lts %}
-			{% if compat_list %}
+		{% endif %}
+		{% set compat_list = version.compatible_ubuntu_lts %}
+		{% if version.has_compatible_components %}
 			<hr style="background-color: lightgrey;" />
-			<p class="p-heading--5 u-no-margin--bottom" style="padding-top: .5rem;">Compatible components:</p>
-				{% for item in compat_list %}
-					{% if item["ubuntu-lts"] %} 
-						<p style="color: grey;" class="p-text--small u-no-padding--top u-no-margin--bottom">
-							Ubuntu {{ item["ubuntu-lts"] }}
-						</p>
-					{% endif %}
-					{% if item["compatible-components"] %}
-						{% for component in item["compatible-components"] %}
-						<p class="u-no-margin--bottom">
+			<p class="p-text--small-caps u-no-margin--bottom" style="padding-top: .5rem;">
+				Compatible components:
+			</p>
+
+			{% for item in compat_list %}
+				{% if item["compatible-components"] %}
+					<p style="color: grey;"
+						class="p-text--small-caps u-no-padding--top u-no-margin--bottom">
+						Ubuntu {{ item["ubuntu-lts"] }}
+					</p>
+
+					{% for component in item["compatible-components"] %}
+						<p style="margin-bottom: .5rem;">
 							{{ component.name }}: {{ component.version[0] }}
 						</p>
-						{% endfor %}
-					{% endif %}
-					<hr style="background-color: lightgrey;" />
-				{% endfor %}
+					{% endfor %}
+				{% endif %}
+			{% endfor %}
 		{% endif %}
 	</span>
 </button>

@@ -3,22 +3,61 @@ const releaseSelection = document.getElementById("js-release-selector");
 const versionSelection = document.getElementById("js-version-selector");
 const selectorForm = document.getElementById("js-product-selector-form");
 const submitButton = document.getElementById("js-product-selector-submit");
-const tooltipButtons = document.querySelectorAll(".js-info-tooltip");
+const tooltips = document.querySelectorAll(".js-component-tooltip");
+const productValidation = document.getElementById("js-product-validation");
+const releaseValidation = document.getElementById("js-release-validation");
+const versionValidation = document.getElementById("js-version-validation");
 
 function syncSubmitState() {
   submitButton.disabled = !(releaseSelection.value && versionSelection.value);
+
+  const hasProduct = Boolean(productSelection.value);
+  const hasRelease = Boolean(releaseSelection.value);
+  const hasVersion = Boolean(versionSelection.value);
+
+  // Error rules:
+  // - Product: always required
+  // - Release: should show error if there's no product OR no release
+  // - Version: should show error if there's no release OR no version
+  const productHasError = !hasProduct;
+  const releaseHasError = !hasProduct || !hasRelease;
+  const versionHasError = !hasRelease || !hasVersion;
+
+  setFieldError(productValidation, productSelection, productHasError);
+  setFieldError(releaseValidation, releaseSelection, releaseHasError);
+  setFieldError(versionValidation, versionSelection, versionHasError);
+
+  const isFormValid = !productHasError && !releaseHasError && !versionHasError;
+  submitButton.disabled = !isFormValid;
 }
 submitButton.disabled = true;
 
-function handleTooltipClick() {
-  tooltipButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const tooltip = button.querySelector('.version-tooltip-content');
-      tooltip.classList.toggle('u-hide');
-    });
+// Close button logic for release tooltips
+tooltips.forEach((tooltip) => {
+  const closeButton = tooltip.querySelector(".js-tooltip-close");
+  if (!closeButton) return;
+  
+  closeButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+    tooltip.classList.add("is-tooltip-closed");
   });
+ 
+  tooltip.addEventListener("mouseleave", () => {
+    tooltip.classList.remove("is-tooltip-closed");
+  });
+});
+
+function setFieldError(validationWrapper, fieldElement, hasError) {
+  if (!validationWrapper || !fieldElement) return;
+
+  if (hasError) {
+    validationWrapper.classList.add("is-error");
+    fieldElement.setAttribute("aria-invalid", "true");
+  } else {
+    validationWrapper.classList.remove("is-error");
+    fieldElement.setAttribute("aria-invalid", "false");
+  }
 }
-handleTooltipClick();
 
 // Set current product context
 function getSelectedProductContext() {
@@ -143,7 +182,6 @@ selectorForm.addEventListener("submit", (event) => {
         const matchingDeployment = deployments.find(
           (deployment) => deployment?.slug === match.value,
         );
-        console.log({ matchingDeployment });
         populateVersionOptions(matchingDeployment?.versions || []);
       }
     }

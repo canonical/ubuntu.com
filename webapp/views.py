@@ -1790,6 +1790,11 @@ def build_release_cycle_view():
 
     def shape_version(version_dict):
         """Normalize keys and format dates for a single version dict."""
+        
+        compat_list = version_dict.get("compatible-ubuntu-lts", [])
+        has_compatible_components = any(
+            item.get("compatible-components") for item in compat_list
+        )
 
         return {
             "release": version_dict.get("release"),
@@ -1804,6 +1809,7 @@ def build_release_cycle_view():
             "compatible_ubuntu_lts": version_dict.get(
                 "compatible-ubuntu-lts", []
             ),
+            "has_compatible_components": has_compatible_components,
         }
 
     def display_github_data():
