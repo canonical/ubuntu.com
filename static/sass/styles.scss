@@ -32,9 +32,6 @@ $colors--light-theme--border-low-contrast: rgba(
 // custom mixins
 @import "mixins/full-width-breakout";
 
-// import cookie policy
-@import "@canonical/cookie-policy/build/css/cookie-policy";
-
 // import dial-code dropdown
 @import "intl-tel-input/build/css/intlTelInput";
 
@@ -188,6 +185,9 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "layout-tutorial";
 
 @include layout-tutorial;
+
+// import cookie policy
+@import "@canonical/cookie-policy/build/css/cookie-policy";
 
 // Set a min-height for the inner wrapper so the footer is always at the bottom
 .inner-wrapper {
