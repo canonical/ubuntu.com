@@ -44,14 +44,28 @@ $breakpoint-small-banner: 320px;
       background-color: $colors--theme--background-alt;
       border: 1px solid $colors--theme--border-high-contrast;
       box-shadow: $box-shadow--deep;
+      display: flex;
       max-width: 100%;
-      overflow: hidden;
+      overflow: visible;
       pointer-events: auto;
       width: 100%;
     }
 
     .p-modal__header {
       background-color: $colors--theme--background-alt;
+      flex-shrink: 0;
+    }
+
+    #cookie-policy-content {
+      max-height: 80vh;
+      overflow: auto;
+    }
+
+    .cookie-notification-buttons {
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      gap: $sph--small;
     }
 
     /* Full width on medium and small screens */
@@ -69,7 +83,7 @@ $breakpoint-small-banner: 320px;
     @media (width >= $breakpoint-large) {
       .cookie-notification-buttons {
         justify-content: flex-end !important;
-        text-align: right !important;
+        text-align: flex-end !important;
       }
     }
 
@@ -79,6 +93,10 @@ $breakpoint-small-banner: 320px;
         margin-bottom: 1.25rem;
         margin-left: 0 !important;
         margin-right: $sph--large;
+
+        &:last-child {
+          margin-right: 0;
+        }
       }
     }
 
