@@ -136,6 +136,7 @@ CSP = {
         "app3.trueability.com",
         "app.trueability.com",
         "pay.stripe.com",
+        "localhost:8118",
     ],
     "style-src": [
         "*.cloudfront.net",

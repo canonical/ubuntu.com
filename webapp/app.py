@@ -10,6 +10,7 @@ import requests
 import talisker.requests
 from jinja2 import ChoiceLoader, FileSystemLoader
 import yaml
+import datetime
 
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
@@ -31,6 +32,7 @@ import canonicalwebteam.directory_parser as directory_parser
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.form_generator import FormGenerator
+
 
 from webapp.certified.views import certified_routes
 from webapp.handlers import init_handlers
@@ -182,6 +184,11 @@ from webapp.views import (
     unlisted_engage_page,
     build_sitemap_tree,
 )
+from webapp.cookie_consent_pkg import CookieConsent
+from webapp.cookie_consent_pkg.helpers import (
+    check_session_and_redirect,
+    sync_preferences_cookie,
+)
 
 DISCOURSE_API_KEY = get_flask_env("DISCOURSE_API_KEY")
 DISCOURSE_API_USERNAME = get_flask_env("DISCOURSE_API_USERNAME")
@@ -262,6 +269,59 @@ charmhub_discourse_api = DiscourseAPI(
 search_engine_id = "adb2397a224a1fe55"
 
 init_handlers(app, sentry)
+
+# --- TEMP CACHE SETUP: START ---
+_cache = {}
+
+
+def get_cache(key):
+    return _cache.get(key)
+
+
+def set_cache(key, value):
+    _cache[key] = value
+# --- TEMP CACHE SETUP: END ---
+
+# Set default config for session
+app.config.setdefault(
+    "PERMANENT_SESSION_LIFETIME", datetime.timedelta(days=365)
+)
+app.config.setdefault("SESSION_COOKIE_SAMESITE", "Lax")
+app.config.setdefault("SESSION_COOKIE_SECURE", True)
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+
+# For testing, point to staging cookie service
+app.config["CENTRAL_COOKIE_SERVICE_URL"] = (
+    "https://cookies.staging.canonical.com"
+)
+
+# Initialize cookie consent service
+cookie_service = CookieConsent().init_app(
+    app,
+    get_cache_func=get_cache,
+    set_cache_func=set_cache,
+    start_health_check=not bool(app.debug),
+)
+
+
+@app.before_request
+def redirect_to_cookie_service():
+    """
+    Redirects to the cookie consent service to create a session
+    """
+    response = check_session_and_redirect()
+    if response:
+        return response
+
+
+@app.after_request
+def set_cookies(response):
+    """
+    Checks if cookies need to be synced after request
+    """
+    response = sync_preferences_cookie(response)
+    if response:
+        return response
 
 
 # Prepare forms
