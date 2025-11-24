@@ -84,6 +84,12 @@ function populateReleaseOptions(deployments) {
       slug,
     );
   });
+
+  // Auto-select if only one release
+  if (deployments.length === 1) {
+    releaseSelection.value = deployments[0].slug;
+    releaseSelection.dispatchEvent(new Event("change"));
+  }
 }
 
 function populateVersionOptions(versions) {
@@ -95,6 +101,14 @@ function populateVersionOptions(versions) {
     );
   });
   syncSubmitState();
+
+  // Auto-select if only one version
+  if (versions.length === 1) {    
+    versionSelection.value = versions[0].release;
+    versionSelection.dispatchEvent(new Event("change"));
+
+    syncSubmitState();
+  }
 }
 
 productSelection.addEventListener("change", () => {

@@ -1718,7 +1718,6 @@ def build_release_cycle_view():
         notes = None
         is_past = False
 
-        # Case 1: dict with date or notes
         if isinstance(value, dict):
             # A real date
             if "date" in value:
@@ -1736,7 +1735,6 @@ def build_release_cycle_view():
                 raw = notes
 
         else:
-            # Case 2: plain date string
             raw = value
             try:
                 dt = datetime.strptime(raw, "%Y-%m-%d").date()
@@ -1745,13 +1743,47 @@ def build_release_cycle_view():
             except Exception:
                 formatted = raw
 
-        # Single return
         return {
             "raw": raw,
             "date": formatted,
             "notes": notes,
             "is_past": is_past,
         }
+
+    def version_is_expired(version):
+        """
+        A version is expired if all lifecycle phases are in the past.
+        """
+        lifecycle_fields = ["supported", "pro_supported", "legacy_supported"]
+
+        for field in lifecycle_fields:
+            data = version.get(field)
+
+            raw = data.get("raw")
+            notes = data.get("notes")
+            is_past = data.get("is_past")
+
+            # If there's at least one future date, version is active
+            if raw and not notes:
+                if not is_past:
+                    return False
+                else:
+                    continue
+        
+            # If there are notes, considered expired unless special exception
+            if notes:
+                normalized = notes.lower().strip()
+
+                # If notes contain "until", keep version visible
+                if "until" in normalized:
+                    return False
+
+                continue
+
+            # catch-all fallback: treat as active
+            return False
+
+        return True
 
     def get_deployment(data, product_key, release_identifier):
         """Return the deployment dict matching release_name, or None."""
@@ -1771,10 +1803,19 @@ def build_release_cycle_view():
         deployment = get_deployment(data, product_key, release_name)
         if not deployment:
             return []
-        return [
-            shape_version(version_dict)
-            for version_dict in deployment.get("versions", [])
+   
+        shaped = [
+            shape_version(v)
+            for v in deployment.get("versions", [])
         ]
+
+        # Filter out expired versions
+        filtered = [
+            version for version in shaped
+            if not version_is_expired(version)
+        ]
+
+        return filtered
 
     def get_selected_version_data(data, product_key, release_name, version):
         """Return a dict with key details for the selected version."""
@@ -1785,7 +1826,14 @@ def build_release_cycle_view():
 
         for version_dict in deployment.get("versions", []):
             if str(version_dict.get("release")) == str(version):
-                return shape_version(version_dict)
+                shaped = shape_version(version_dict)
+
+                # Prevent selecting an expired version
+                if version_is_expired(shaped):
+                    return None
+
+                return shaped
+
         return None
 
     def shape_version(version_dict):
