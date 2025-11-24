@@ -36,7 +36,7 @@ jobs:
 
       - name: Build assets and run dotrun
         run: |
-          dotrun & sleep 5
+          dotrun & sleep 10
           curl --head --fail --retry-delay 2 --retry 30 --retry-connrefused http://localhost:8001
 
   lint-scss:

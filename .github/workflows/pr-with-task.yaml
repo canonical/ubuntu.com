@@ -22,7 +22,7 @@ jobs:
 
       - name: Wait for server to start
         run: |
-          timeout 120 bash -c 'tail -n0 -F server.log | grep -m1 "Listening at"'
+          timeout 180 bash -c 'tail -n0 -F server.log | grep -m1 "Listening at"'
 
       - name: Print server logs
         if: always()
