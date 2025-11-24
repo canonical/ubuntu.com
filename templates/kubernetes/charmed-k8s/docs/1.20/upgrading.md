@@ -33,11 +33,11 @@ toc: False
 <div class="p-notification--caution is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Caution:</span>
-    <p class="p-notification__message">There is a known issue 
+    <p class="p-notification__message">There is a known issue
     <a href="https://bugs.launchpad.net/juju/+bug/1904619"> (https://bugs.launchpad.net/juju/+bug/1904619)</a>
-    with container profiles not surviving an upgrade when deploying applications to LXD. If your 
+    with container profiles not surviving an upgrade when deploying applications to LXD. If your
     container-based applications fail to work properly after an upgrade, or you use the Juju `localhost` cloud,
-    please see this 
+    please see this
     <a href="/kubernetes/charmed-k8s/docs/troubleshooting#lxd"> topic on the troubleshooting page</a></p>
   </div>
 </div>
@@ -172,7 +172,7 @@ this data before running an upgrade. This is covered in more detail in the
 juju run-action etcd/0 snapshot --wait
 ```
 
-You should see confirmation of the snapshot being created, and the command needed to download the snapshot  
+You should see confirmation of the snapshot being created, and the command needed to download the snapshot
 _from the **etcd** unit_. See the following truncated, example output:
 
 ```
@@ -502,7 +502,7 @@ kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvc
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/upgrading.md" >edit this page</a>
     or
      <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-     <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
+     <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack  channel</a>.</p>
 
   </div>
 </div>
