@@ -181,6 +181,7 @@ from webapp.views import (
     thank_you,
     unlisted_engage_page,
     build_sitemap_tree,
+    BlogLatestNews,
 )
 
 DISCOURSE_API_KEY = get_flask_env("DISCOURSE_API_KEY")
@@ -581,8 +582,11 @@ cn_blog_views = BlogViews(
     blog_title="Ubuntu blog (Chinese)",
 )
 
-app.register_blueprint(
-    build_blueprint(cn_blog_views), url_prefix="/cn-blog", name="cn-blog"
+app.add_url_rule(
+    "/cn-blog/latest-news",
+    view_func=BlogLatestNews.as_view(
+        "cn_blog_latest_news", blog_views=cn_blog_views
+    ),
 )
 
 jp_blog_views = BlogViews(
@@ -592,8 +596,11 @@ jp_blog_views = BlogViews(
     blog_title="Ubuntu blog (Japanese)",
 )
 
-app.register_blueprint(
-    build_blueprint(jp_blog_views), url_prefix="/jp-blog", name="jp-blog"
+app.add_url_rule(
+    "/jp-blog/latest-news",
+    view_func=BlogLatestNews.as_view(
+        "jp_blog_latest_news", blog_views=jp_blog_views
+    ),
 )
 
 # usn section
