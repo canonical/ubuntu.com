@@ -34,8 +34,8 @@ export const selectProducts = async (
 export const acceptCookiePolicy = async (
   page: Page,
 ) => {
-  if (await isExistingField(page, '#cookie-policy-button-accept')) {
-    await page.locator('#cookie-policy-button-accept').click();
+  if (await isExistingField(page, '#cookie-policy-button-accept-all')) {
+    await page.locator('#cookie-policy-button-accept-all').click();
   }
 };
 
