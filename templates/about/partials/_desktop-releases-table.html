@@ -33,7 +33,7 @@
 				Break/bug support
 			</th>
 			<th>
-				Legacy add-on
+				Legacy add on<br/> for security maintenance and support
 			</th>
 		</tr>
 	</thead>
@@ -51,7 +51,18 @@
         {% endwith %}
         <br />
         <p class="p-text--small u-no-margin--bottom">
-          Ubuntu {{ version.release }}
+          {% set compat_list = version.compatible_ubuntu_lts %}
+          {% if product=="ubuntu" %}
+            Ubuntu {{ version.release }}
+          {% elif compat_list %}
+            Ubuntu
+            {% for item in compat_list %}
+              {{ item["ubuntu-lts"] }}
+              {% if not loop.last %}
+              ,
+              {% endif %}
+            {% endfor %}
+          {% endif %}
         </p>
         <span class="p-text--small u-text--muted">
           Released: {{ version.release_date.date }}
