@@ -124,6 +124,8 @@
     {% block extra_metatags %}{% endblock %}
     <style>#rememberMe {display: none;}</style>
 
+    <!-- Cookie policy -->
+    <link rel="stylesheet" href="{{ versioned_static('css/cookie-policy.css') }}">
     <script src="{{ versioned_static('js/dist/cookie-policy.js') }}"></script>
     <script src="{{ versioned_static('js/src/cookie-policy-with-callback.js') }}" type="module"></script>
   </head>
