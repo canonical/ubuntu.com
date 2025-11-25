@@ -59,7 +59,7 @@ tasks:
     deps:
       - install
     cmds:
-      - PATH="{{ .VENV_BIN }}:$PATH" coverage run --source=. -m unittest discover tests
+      - PATH="{{ .VENV_BIN }}:$PATH" coverage run --source=webapp -m unittest $(find tests/ -name "test_*.py" ! -name "test_marketo.py")
       - PATH="{{ .VENV_BIN }}:$PATH" yarn test-js --coverage
 
   lint:

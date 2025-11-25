@@ -46,6 +46,7 @@ jobs:
         PLAYWRIGHT_USER_ID: ${{ secrets.PLAYWRIGHT_USER_ID }}
         PLAYWRIGHT_USER_PASSWORD : ${{ secrets.PLAYWRIGHT_USER_PASSWORD }}
         TESTING: true
+        INCLUDE_FORMS: true
       run: yarn playwright test forms
 
   test-marketo:

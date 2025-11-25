@@ -7,7 +7,7 @@ const timeout = 30000;
 
 const acceptCookies = () => {
   const banner = document.querySelector(".cookie-policy");
-  banner?.querySelector("#cookie-policy-button-accept")?.click();
+  banner?.querySelector("#cookie-policy-button-accept-all")?.click();
 };
 
 // Common snapshot config factory
