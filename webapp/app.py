@@ -581,7 +581,9 @@ cn_blog_views = BlogViews(
     blog_title="Ubuntu blog (Chinese)",
 )
 
-app.register_blueprint(build_blueprint(cn_blog_views), url_prefix="/cn-blog", name="cn-blog")
+app.register_blueprint(
+    build_blueprint(cn_blog_views), url_prefix="/cn-blog", name="cn-blog"
+)
 
 jp_blog_views = BlogViews(
     api=BlogAPI(session=session, thumbnail_width=555, thumbnail_height=311),
@@ -590,7 +592,9 @@ jp_blog_views = BlogViews(
     blog_title="Ubuntu blog (Japanese)",
 )
 
-app.register_blueprint(build_blueprint(jp_blog_views), url_prefix="/jp-blog", name="jp-blog")
+app.register_blueprint(
+    build_blueprint(jp_blog_views), url_prefix="/jp-blog", name="jp-blog"
+)
 
 # usn section
 app.add_url_rule("/security/notices", view_func=notices)
