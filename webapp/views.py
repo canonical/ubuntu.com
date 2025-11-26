@@ -796,6 +796,16 @@ class BlogSitemapPage(BlogView):
         return response
 
 
+class BlogLatestNews(BlogView):
+    def dispatch_request(self):
+        context = self.blog_views.get_latest_news(
+            tag_ids=flask.request.args.getlist("tag-id"),
+            group_ids=flask.request.args.getlist("group-id"),
+            limit=flask.request.args.get("limit", "3"),
+        )
+        return flask.jsonify(context)
+
+
 def sitemap_index():
     xml_sitemap = flask.render_template("sitemap_index.xml")
     response = flask.make_response(xml_sitemap)

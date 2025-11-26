@@ -181,6 +181,7 @@ from webapp.views import (
     thank_you,
     unlisted_engage_page,
     build_sitemap_tree,
+    BlogLatestNews,
 )
 
 DISCOURSE_API_KEY = get_flask_env("DISCOURSE_API_KEY")
@@ -573,6 +574,34 @@ app.add_url_rule(
     view_func=BlogRedirects.as_view("blog_redirects", blog_views=blog_views),
 )
 app.register_blueprint(build_blueprint(blog_views), url_prefix="/blog")
+
+cn_blog_views = BlogViews(
+    api=BlogAPI(session=session, thumbnail_width=555, thumbnail_height=311),
+    tag_ids=[3265],
+    per_page=11,
+    blog_title="Ubuntu blog (Chinese)",
+)
+
+app.add_url_rule(
+    "/cn-blog/latest-news",
+    view_func=BlogLatestNews.as_view(
+        "cn_blog_latest_news", blog_views=cn_blog_views
+    ),
+)
+
+jp_blog_views = BlogViews(
+    api=BlogAPI(session=session, thumbnail_width=555, thumbnail_height=311),
+    tag_ids=[3184],
+    per_page=11,
+    blog_title="Ubuntu blog (Japanese)",
+)
+
+app.add_url_rule(
+    "/jp-blog/latest-news",
+    view_func=BlogLatestNews.as_view(
+        "jp_blog_latest_news", blog_views=jp_blog_views
+    ),
+)
 
 # usn section
 app.add_url_rule("/security/notices", view_func=notices)
