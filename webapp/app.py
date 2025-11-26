@@ -32,6 +32,7 @@ import canonicalwebteam.directory_parser as directory_parser
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.form_generator import FormGenerator
+from canonicalwebteam.cookie_service import CookieConsent
 
 
 from webapp.certified.views import certified_routes
@@ -287,7 +288,7 @@ app.config.setdefault(
     "PERMANENT_SESSION_LIFETIME", datetime.timedelta(days=365)
 )
 app.config.setdefault("SESSION_COOKIE_SAMESITE", "Lax")
-app.config.setdefault("SESSION_COOKIE_SECURE", True)
+app.config.setdefault("SESSION_COOKIE_SECURE", False)
 app.config["SESSION_COOKIE_HTTPONLY"] = True
 
 # For testing, point to staging cookie service
@@ -300,28 +301,8 @@ cookie_service = CookieConsent().init_app(
     app,
     get_cache_func=get_cache,
     set_cache_func=set_cache,
-    start_health_check=not bool(app.debug),
+    start_health_check=not bool(app.debug), # only run in production
 )
-
-
-@app.before_request
-def redirect_to_cookie_service():
-    """
-    Redirects to the cookie consent service to create a session
-    """
-    response = check_session_and_redirect()
-    if response:
-        return response
-
-
-@app.after_request
-def set_cookies(response):
-    """
-    Checks if cookies need to be synced after request
-    """
-    response = sync_preferences_cookie(response)
-    if response:
-        return response
 
 
 # Prepare forms
