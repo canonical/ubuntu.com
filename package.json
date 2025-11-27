@@ -9,7 +9,7 @@
     "lint-js": "eslint static/js/src/**/*.{js,jsx,ts,tsx}",
     "lint-ts": "tsc --noEmit",
     "test-js": "TZ=UTC NODE_ICU_DATA=node_modules/full-icu jest",
-    "build-css": "sass static/sass:static/css --load-path=node_modules --style=compressed --quiet-deps && postcss --replace 'static/css/**/*.css' --no-map",
+    "build-css": "sass static/sass:static/css --load-path=node_modules --style=compressed --quiet-deps && postcss --replace 'static/css/**/*.css' --no-map && cp node_modules/@canonical/cookie-policy/build/css/cookie-policy.css static/css/",
     "build-js": "node build.js && ./scripts/build-modules.sh",
     "build-vanilla-framework": "mkdir -p static/js/modules/vanilla-framework && cp -r node_modules/vanilla-framework/templates/_macros/ static/js/modules/vanilla-framework",
     "build": "yarn run build-css && yarn run build-js",
