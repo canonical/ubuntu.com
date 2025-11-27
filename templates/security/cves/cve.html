@@ -262,7 +262,7 @@
           {% endif %}
 
           {% if cve.priority_reason %}
-            <h3 id="priority-reason" style="scroll-margin-top: 3.5rem">Why is this CVE {{ cve.priority }} priority?</h3>
+            <h3 id="priority-reason">Why is this CVE {{ cve.priority }} priority?</h3>
             <p>{{ cve.priority_reason }}</p>
             <p>
               <a href="/security/cves/about#priority">Learn more about Ubuntu priority</a>
@@ -408,8 +408,7 @@
         {% endif %}
 
         {% if patches %}
-          <div class="p-section"
-               style="scroll-margin-top: 3.5rem">
+          <div class="p-section">
             <h3 id="patch-details" class="section-heading">Patch details</h3>
             <div class="p-notification--information">
               <div class="p-notification__content">
