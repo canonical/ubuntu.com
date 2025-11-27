@@ -3,7 +3,6 @@
 
 # Build cookie policy
 cp node_modules/@canonical/cookie-policy/build/js/cookie-policy.js static/js/dist/
-cp node_modules/@canonical/cookie-policy/build/css/cookie-policy.css static/css/
 
 # Build flickity
 cp node_modules/flickity/dist/flickity.pkgd.min.js static/js/dist/
