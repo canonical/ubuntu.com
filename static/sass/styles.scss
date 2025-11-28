@@ -863,6 +863,7 @@ td.p-accordion {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
 }
 
 .support-cart-summary {
@@ -1844,13 +1845,6 @@ ol.p-stepped-list.no-full-stop
   top: 4rem;
   width: fit-content;
   z-index: 2;
-}
-
-.vulnerabilities-content .section-heading {
-  scroll-margin-top: 80px;
-  @media (max-width: $breakpoint-large) {
-    scroll-margin-top: 100px;
-  }
 }
 
 // Custom styling for the vulnerability details page
