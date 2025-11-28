@@ -79,7 +79,7 @@
             </span>
           {% endif %}
         {% elif version.supported.notes %}
-          {{ version.supported.notes }}
+          {{ version.supported.notes | capitalize}}
         {% endif %}
       </td>
 
@@ -91,7 +91,7 @@
             {% include "about/partials/_coverage-chip.html" %}
           {% endif %}
         {% elif version.pro_supported.notes %}
-          {{ version.pro_supported.notes }}
+          {{ version.pro_supported.notes | capitalize}}
         {% endif %}
       </td>
 
@@ -99,7 +99,7 @@
         {% if version.pro_supported.date %}
           {{ version.pro_supported.date }}
         {% elif version.pro_supported.notes %}
-          {{ version.pro_supported.notes }}
+          {{ version.pro_supported.notes | capitalize}}
         {% endif %}
         {% if version.pro_supported.is_past %}
           <br />
@@ -111,7 +111,7 @@
         {% if version.legacy_supported.date %}
           {{ version.legacy_supported.date }}
         {% elif version.legacy_supported.notes %}
-          {{ version.legacy_supported.notes }}
+          {{ version.legacy_supported.notes | capitalize}}
         {% endif %}
         {% if version.legacy_supported.is_past %}
           <br />
