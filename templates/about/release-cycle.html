@@ -57,6 +57,7 @@
                   id="js-product-selector"
                   aria-invalid="false"
                   aria-describedby="js-product-validation-message"
+                  class="p-form-validation__input"
                 >
                   <option value="">Select a product</option>
                   {% for key, data in products_data.items() %}
@@ -82,6 +83,7 @@
                   {% if not product %}disabled{% endif %}
                   aria-invalid="false"
                   aria-describedby="js-release-validation-message"
+                  class="p-form-validation__input"
                 >
                   <option value="">Select a release</option>
 
@@ -104,7 +106,7 @@
           </div>
           <!-- Version select -->
           <div class="grid-col-2 grid-col-medium-2">
-            <div class="p-form-validation" id="js-version-validation">
+            <div>
               <label for="js-version-selector">Version</label>
               <div class="p-form-validation__select-wrapper">
                 <select
@@ -112,7 +114,6 @@
                   id="js-version-selector"
                   {% if not versions %}disabled{% endif %}
                   aria-invalid="false"
-                  aria-describedby="js-version-validation-message"
                 >
                   <option value="all" {% if version == "all" %}selected{% endif %}>
                     All versions
@@ -134,7 +135,14 @@
             </div>
           </div>
           <div class="grid-col-2 grid-col-medium-2">
-            <button class="p-button--positive u-no-margin--bottom" id="js-product-selector-submit" disabled style="margin-top: 2.5rem;">View coverage</button>
+            <button
+              class="p-button--positive u-no-margin--bottom"
+              id="js-product-selector-submit"
+              disabled
+              style="margin-top: 2.5rem;">
+                <i class="p-icon--spinner u-animation--spin is-light u-hide"></i>
+                <span class="js-button-label">View coverage</span>
+            </button>
           </div>
         </div>
       </form>
@@ -142,7 +150,9 @@
     <div class="u-fixed-width">
       {% include "about/partials/_desktop-releases-table.html" %}
 
-      {% include "about/partials/_tablet-mobile-releases-table.html" %} 
+      <div class="release-cycle-table-scroll">
+        {% include "about/partials/_tablet-mobile-releases-table.html" %} 
+      </div>
     </div>
   </section>
 
@@ -210,7 +220,7 @@
               </div>
               <div class="grid-col-4">
                 <p>
-                  Ubuntu releases a new version every six months. Releases of Ubuntu get a development codename ('Questing Quokka') and are versioned by the year and month of delivery &ndash; for example, Ubuntu 25.10 was released in October 2025.
+                  Ubuntu releases a new version every six months. Releases of Ubuntu get a development codename ('{{ releases.latest.name }}') and are versioned by the year and month of delivery &ndash; for example, Ubuntu 25.10 was released in October 2025.
                 </p>
                 <p>
                   Each version includes the latest features, updates, and security patches during its supported lifecycle.
@@ -329,7 +339,7 @@
             <div class="u-hide--small u-hide--medium">
               <div class="p-section--shallow">
                 {{ image(url="https://assets.ubuntu.com/v1/fb862411-chart.png",
-                  alt="",
+                  alt="Schematic representation of the maintenance and support window for Ubuntu LTS releases: five years of standard security maintenance, five years of Expanded Security Maintenance (ESM) through Ubuntu Pro, and five years of additional coverage with the Legacy add-on to Ubuntu Pro, with optional break/bug fix support throughout the 15 years.",
                   width="2748",
                   height="135",
                   hi_def=True,
@@ -339,10 +349,12 @@
               </div>
               <ul class="p-release-cycle-legend">
                 <li class="p-list__item has-bullet">
-                  Standard Security Maintenance for packages in Main
-                </li>
-                <li class="p-list__item has-bullet">
-                  Expanded Security Maintenance for packages in Universe
+                  <div>
+                    <p class="u-no-padding--top u-vertical-nudge">
+                      Standard Security Maintenance for packages in Main
+                    </p>
+                    Expanded Security Maintenance for packages in Universe
+                  </div>
                   {% include "about/partials/_pro-chip.html" %}
                 </li>
                 <li class="p-list__item has-bullet">
@@ -359,16 +371,21 @@
                 </li>
               </ul>
             </div>
+            <!-- Mobile cards -->
             <div class="u-hide--large ">
               <div class="p-release-card">
                 <h4 class="p-text--small-caps">1-5 years</h4>
                 <p class="p-text--small-caps">Security:</p>
                 <ul class="p-list">
                   <li class="p-list__item">
-                    Standard Security Maintenance for packages in Main
+                    <span class="p-release-card__label">
+                      Standard Security Maintenance for packages in Main
+                    </span>
                   </li>
                   <li class="p-list__item">
-                    Expanded Security Maintenance for packages in Universe
+                    <span class="p-release-card__label">
+                      Expanded Security Maintenance for packages in Universe
+                    </span>
                     {% include "about/partials/_pro-chip.html" %}
                   </li>
                 </ul>
@@ -376,7 +393,9 @@
                 <p class="p-text--small-caps">Support:</p>
                 <ul class="p-list">
                   <li>
-                    Break fix and bug support
+                    <span class="p-release-card__label">
+                      Break fix and bug support
+                    </span>
                     {% include "about/partials/_pro-chip.html" %}
                   </li>
                 </ul>
@@ -386,7 +405,9 @@
                 <p class="p-text--small-caps">Security:</p>
                 <ul class="p-list">
                   <li>
-                    Expanded Security Maintenance for packages in Universe
+                    <span class="p-release-card__label">
+                      Expanded Security Maintenance for packages in Universe
+                    </span>
                     {% include "about/partials/_pro-chip.html" %}
                   </li>
                 </ul>
@@ -394,7 +415,9 @@
                 <p class="p-text--small-caps">Support:</p>
                 <ul class="p-list">
                   <li>
-                    Break fix and bug support
+                    <span class="p-release-card__label">
+                      Break fix and bug support
+                    </span>
                     {% include "about/partials/_pro-chip.html" %}
                   </li>
                 </ul>
@@ -404,7 +427,9 @@
                 <p class="p-text--small-caps">Security:</p>
                 <ul class="p-list">
                   <li>
-                    Legacy add-on for security coverage and support
+                    <span class="p-release-card__label">
+                      Legacy add-on for security coverage and support
+                    </span>
                     {% include "about/partials/_pro-chip.html" %}
                   </li>
                 </ul>
@@ -412,7 +437,9 @@
                 <p class="p-text--small-caps">Support:</p>
                 <ul class="p-list">
                   <li>
-                    Legacy coverage for break fix and bug support
+                    <span class="p-release-card__label">
+                      Legacy coverage for break fix and bug support
+                    </span>
                     {% include "about/partials/_pro-chip.html" %}
                   </li>
                 </ul>

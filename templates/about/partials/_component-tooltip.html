@@ -2,15 +2,15 @@
 	<i class="p-icon--information" aria-hidden="true"></i>
 	<span class="p-tooltip__message" role="tooltip" id="{{ version.release }}-tooltip">
 		<div class="p-tooltip__header">
-			<p class="p-heading--5 u-no-margin--bottom p-release-tooltip__heading" style="margin-bottom: .5rem;">
+			<p class="p-heading--5 p-release-tooltip__heading">
 				{{ deployment.name }}
 			</p>
 			<i class="p-icon--close js-tooltip-close  u-hide--large" aria-label="Close tooltip"></i>
 		</div>
-		<hr style="background-color: lightgrey;" />
-		<p class="p-text--small-caps u-no-padding--bottom u-no-margin--bottom">
+		<p class="u-align-text--small-to-default p-text--small p-text--small-caps p-release-tooltip__subheading">
 			Supported architectures
 		</p>
+		<p class="u-align-text--small-to-default p-text--small u-vertical-nudge">
 			{% for arch in version.architecture %}
 				{% if loop.last %}
 					{{ arch }}
@@ -18,31 +18,36 @@
 					{{ arch }}, 
 				{% endif %}
 			{% endfor %}
-		<hr style="background-color: lightgrey;" />
+		</p>
+		<div style="padding-bottom: 7px;">
+			<hr class="u-no-margin--bottom"/>
+		</div>
 		{% if version.upgrade_path %}
-			<p class="p-text--small-caps u-no-margin--bottom">
+			<p class="u-align-text--small-to-default p-text--small p-text--small-caps p-release-tooltip__subheading">
 				Upgrade path
 			</p>
-			<span>
+			<p class="u-align-text--small-to-default p-text--small u-vertical-nudge">
 				{{ version.upgrade_path  | join(', ') }}
-			</span>
+			</p>
 		{% endif %}
 		{% set compat_list = version.compatible_ubuntu_lts %}
 		{% if version.has_compatible_components %}
-			<hr style="background-color: lightgrey;" />
-			<p class="p-text--small-caps u-no-margin--bottom" style="padding-top: .5rem;">
-				Compatible components:
+			<div style="padding-bottom: 7px;">
+				<hr class="u-no-margin--bottom"/>
+			</div>
+			<p class="u-align-text--small-to-default p-text--small p-text--small-caps p-release-tooltip__subheading">
+				Compatible components
 			</p>
 
 			{% for item in compat_list %}
 				{% if item["compatible-components"] %}
-					<p style="color: grey;"
-						class="p-text--small-caps u-no-padding--top u-no-margin--bottom">
+					<p style="color: grey; padding-top: .2rem;"
+						class="u-align-text--small-to-default p-text--small p-text--small-caps u-no-margin--bottom">
 						Ubuntu {{ item["ubuntu-lts"] }}
 					</p>
 
 					{% for component in item["compatible-components"] %}
-						<p style="margin-bottom: .5rem;">
+						<p class="u-vertical-nudge u-align-text--small-to-default p-text--small">
 							{{ component.name }}: {{ component.version[0] }}
 						</p>
 					{% endfor %}

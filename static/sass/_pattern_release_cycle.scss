@@ -1,14 +1,19 @@
 // Styles for /about/release-cycle page
-@mixin ubuntu-p-release-cycle{
+@mixin ubuntu-p-release-cycle {
   .release-cycle-table {
     border-collapse: collapse;
-
+    
     // Background fill for Ubuntu Pro columns (3–5)
-    th:nth-child(n+3):nth-child(-n+5),
-    td:nth-child(n+3):nth-child(-n+5) {
+    th:nth-child(n + 3):nth-child(-n + 5),
+    td:nth-child(n + 3):nth-child(-n + 5) {
       background-color: rgba($color-brand, 0.05);
     }
-
+    
+    // Bottom border on the last row under Ubuntu Pro block
+    tbody tr:last-child td:nth-child(n + 3):nth-child(-n + 5) {
+      border-bottom: 1px solid rgba($color-brand, 0.5);
+    }
+    
     // Left outer border on column 3
     th:nth-child(3),
     td:nth-child(3) {
@@ -27,34 +32,49 @@
       border-right: 1px solid rgba($color-brand, 0.5);
     }
 
-    // Bottom border on the last row under Ubuntu Pro block
-    tbody tr:last-child td:nth-child(n+3):nth-child(-n+5) {
-      border-bottom: 1px solid rgba($color-brand, 0.5);
-    }
-
-    // Right border on column 3 for medium screens and smaller
-    @media screen and (width < $breakpoint-large) {
-      tbody td:nth-child(3) {
-        border-right: 1px solid rgba($color-brand, 0.5);
-      }
-
-      // Sticky header styles
+    // Sticky header styles for desktop/tablet table
+    @media screen and (width > $breakpoint-small) {
       thead {
         position: sticky;
         top: 3.4rem;
-        z-index: 2;
+        z-index: 1;
         background: #f3f3f3;
+        box-shadow: 0px 1.5rem 1rem -15px rgba(0, 0, 0, 0.2);
       }
 
       thead th {
         background: #f3f3f3;
+      }
+      // css
+    }
+
+    @media screen and (width < $breakpoint-large) {
+      // Right border on column 3 for medium screens and smaller
+      tbody td:nth-child(3) {
+        border-right: 1px solid rgba($color-brand, 0.5);
+      }
+    }
+  }
+
+  .release-cycle-table-scroll {
+    padding-top: 1.5rem;
+
+    // Small screen horizontal scroll
+    @media screen and (width < $breakpoint-small) {
+      width: 100% !important;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+
+      .release-cycle-table {
+        // keep columns readable, don't squash them
+        min-width: 48rem; // tweak to whatever matches your design
       }
     }
   }
 
   .p-release-cycle-legend {
     @extend .p-list--divided;
-    
+
     > li {
       // Layout for text + chip
       align-items: flex-start;
@@ -66,11 +86,18 @@
       &::before {
         font-size: 1.8em;
       }
-      &:nth-child(1)::before { color: #772953; }
-      &:nth-child(2)::before { color: transparent; }
-      &:nth-child(3)::before { color: $color-accent; }
-      &:nth-child(4)::before { color: #808080; }
-      &:nth-child(5)::before { color: #CCCCCC; }
+      &:nth-child(1)::before {
+        color: #772953;
+      }
+      &:nth-child(2)::before {
+        color: $color-accent;
+      }
+      &:nth-child(3)::before {
+        color: #808080;
+      }
+      &:nth-child(4)::before {
+        color: #cccccc;
+      }
     }
   }
 
@@ -83,10 +110,10 @@
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
-    
-    .p-chip__lead+.p-chip__value::before {
+
+    .p-chip__lead + .p-chip__value::before {
       content: "";
-      margin-left: .25rem;
+      margin-left: 0.25rem;
     }
 
     .p-chip__lead img {
@@ -104,47 +131,47 @@
     margin: 0;
     padding: 0;
     border: none;
-
-    &.is-tooltip-closed {
-      .p-tooltip__message {
-        display: none !important;
-      }
-
-      &:hover .p-tooltip__message,
-      &:focus-within .p-tooltip__message {
-        display: none !important;
-      }
-
-      // Remove vanilla button hover background when closed
-      &,
-      &:hover,
-      &:focus,
-      &:active {
-        background-color: transparent !important;
-      }
-    }
+    background-color: transparent !important;
+    position: relative;
 
     .p-tooltip__message {
-      // Remove tooltip arrow  
+      // Remove tooltip arrow
       &::before {
         content: none;
         border: none;
         display: none;
       }
 
-      background-color: white; 
-      color: black;
-      transform: translate(345px, -20px) !important;
-      white-space: normal; 
-      width: 20rem;
-      padding-right: 1.5rem;
+      // Tooltip message positioning
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      transform: translate(0.5rem, -4%);
+      max-width: min(18rem, calc(100vw - 2rem));
 
-      @media screen and (width < $breakpoint-large) {
-        transform: translate(307px, -20px) !important;
-      }
-      
+      background-color: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.1) !important;
+      color: #000;
+      white-space: normal;
+      width: 18rem;
+      padding: 16px;
+
       .p-tooltip__header {
         position: relative;
+      }
+
+      .p-release-tooltip__heading {
+        margin-bottom: 0.5rem !important;
+        padding: 0 !important;
+      }
+
+      .p-release-tooltip__subheading {
+        margin-bottom: 0 !important;
+        padding-top: 0;
+      }
+
+      hr {
+        background-color: rgba($color-x-dark, 0.1);
       }
 
       .p-icon--close {
@@ -162,8 +189,21 @@
         }
       }
     }
+
+    &.is-tooltip-closed {
+      .p-tooltip__message {
+        display: none !important;
+      }
+
+      &:hover .p-tooltip__message,
+      &:focus-within .p-tooltip__message {
+        display: none !important;
+      }
+    }
+
+    
   }
- 
+
   .p-release-card {
     @extend .p-card;
 
@@ -172,6 +212,14 @@
       justify-content: space-between;
       align-items: flex-start;
       gap: 1rem;
+    }
+
+    .p-release-card__label {
+      max-width: 70%;
+    }
+
+    .p-release-chip {
+      flex-shrink: 0;
     }
   }
 
@@ -183,6 +231,18 @@
     .p-form-validation.is-error .p-form-validation__message {
       display: block;
     }
-}
 
+    select {
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+    }
+  }
+
+  .p-button--positive.is-processing {
+    width: auto;
+    height: auto;
+  }
 }

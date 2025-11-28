@@ -50,7 +50,7 @@
       </td>
 
       <td>
-        {# Expanded security maintenance #}
+        <!-- Expanded security maintenance -->
         <p class="p-text--small-caps u-no-margin--bottom">Expanded security maintenance</p>
         {% if version.pro_supported.date %}
           <p {% if version.pro_supported.is_past %}class="u-no-margin--bottom"{% endif %}>
@@ -60,10 +60,10 @@
             {% include "about/partials/_coverage-chip.html" %}
           {% endif %}
         {% elif version.pro_supported.notes %}
-          <p>{{ version.pro_supported.notes }}</p>
+          <p>{{ version.pro_supported.notes | capitalize}}</p>
         {% endif %}
 
-        {# Break/bug support #}
+        <!-- Break/bug support -->
         <p class="p-text--small-caps u-no-margin--bottom">Break/bug support</p>
         {% if version.pro_supported.date %}
           <p {% if version.pro_supported.is_past %}class="u-no-margin--bottom"{% endif %}>
@@ -73,10 +73,12 @@
             {% include "about/partials/_coverage-chip.html" %}
           {% endif %}
         {% elif version.pro_supported.notes %}
-          {{ version.pro_supported.notes }}
+        <p>
+          {{ version.pro_supported.notes | capitalize}}
+        </p>
         {% endif %}
 
-        {# Legacy add-on #}
+        <!-- Legacy add-on -->
         <p class="p-text--small-caps u-no-margin--bottom">Legacy add-on</p>
         {% if version.legacy_supported.date %}
           <p {% if version.legacy_supported.is_past %}class="u-no-margin--bottom"{% endif %}>
@@ -86,7 +88,7 @@
             {% include "about/partials/_coverage-chip.html" %}
           {% endif %}
         {% elif version.legacy_supported.notes %}
-          {{ version.legacy_supported.notes }}
+          {{ version.legacy_supported.notes | capitalize}}
         {% endif %}
       </td>
     </tr>

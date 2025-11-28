@@ -7,6 +7,8 @@ const tooltips = document.querySelectorAll(".js-component-tooltip");
 const productValidation = document.getElementById("js-product-validation");
 const releaseValidation = document.getElementById("js-release-validation");
 const versionValidation = document.getElementById("js-version-validation");
+const spinner = submitButton.querySelector(".p-icon--spinner");
+const label = submitButton.querySelector(".js-button-label");
 
 function syncSubmitState() {
   submitButton.disabled = !(releaseSelection.value && versionSelection.value);
@@ -18,7 +20,6 @@ function syncSubmitState() {
   // Error rules:
   // - Product: always required
   // - Release: should show error if there's no product OR no release
-  // - Version: should show error if there's no release OR no version
   const productHasError = !hasProduct;
   const releaseHasError = !hasProduct || !hasRelease;
   const versionHasError = !hasRelease || !hasVersion;
@@ -36,12 +37,12 @@ submitButton.disabled = true;
 tooltips.forEach((tooltip) => {
   const closeButton = tooltip.querySelector(".js-tooltip-close");
   if (!closeButton) return;
-  
+
   closeButton.addEventListener("click", (event) => {
     event.stopPropagation();
     tooltip.classList.add("is-tooltip-closed");
   });
- 
+
   tooltip.addEventListener("mouseleave", () => {
     tooltip.classList.remove("is-tooltip-closed");
   });
@@ -103,7 +104,7 @@ function populateVersionOptions(versions) {
   syncSubmitState();
 
   // Auto-select if only one version
-  if (versions.length === 1) {    
+  if (versions.length === 1) {
     versionSelection.value = versions[0].release;
     versionSelection.dispatchEvent(new Event("change"));
 
@@ -153,6 +154,18 @@ versionSelection.addEventListener("change", () => {
 // Add selected options as URL parameters on submit
 selectorForm.addEventListener("submit", (event) => {
   event.preventDefault();
+
+  // Lock the button and show spinner
+  const rect = submitButton.getBoundingClientRect();
+  submitButton.style.width = rect.width + "px";
+  submitButton.style.height = rect.height + "px";
+  submitButton.disabled = true;
+  submitButton.classList.add("is-processing");
+
+  if (spinner && label) {
+    spinner.classList.remove("u-hide");
+    label.classList.add("u-hide");
+  }
 
   const params = new URLSearchParams();
 
