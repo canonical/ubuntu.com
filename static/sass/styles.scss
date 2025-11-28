@@ -202,6 +202,15 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
   }
 }
 
+// Override dropdown background colours to match theme
+.iti__dropdown-content {
+  background-color: $colors--theme--background-default;
+}
+
+.iti__country.iti__highlight {
+  background-color: $colors--theme--background-hover;
+}
+
 // Make sure the phone input has the same margin as other inputs
 .iti {
   margin-bottom: $input-margin-bottom;
