@@ -8,7 +8,7 @@ import requests
 import time
 import logging
 from urllib.parse import quote, unquote, urlparse
-from datetime import datetime
+from datetime import datetime, date
 
 # Packages
 import dateutil
@@ -1699,18 +1699,211 @@ def build_github_data_access():
 def build_release_cycle_view():
     get_json_files = build_github_data_access()
 
+    def format_date(value):
+        """Convert YYYY-MM-DD or {date:..., notes:...} to a normalized dict."""
+        raw = None
+        formatted = None
+        notes = None
+        is_past = False
+
+        if isinstance(value, dict):
+            # A real date
+            if "date" in value:
+                raw = value["date"]
+                try:
+                    dt = datetime.strptime(raw, "%Y-%m-%d").date()
+                    formatted = dt.strftime("%b %Y")  # Dec 2025
+                    is_past = dt < date.today()
+                except ValueError:
+                    formatted = raw
+
+            # Notes only
+            elif "notes" in value:
+                notes = value["notes"]
+                raw = notes
+
+        else:
+            raw = value
+            try:
+                dt = datetime.strptime(raw, "%Y-%m-%d").date()
+                formatted = dt.strftime("%b %Y")
+                is_past = dt < date.today()
+            except Exception:
+                formatted = raw
+
+        return {
+            "raw": raw,
+            "date": formatted,
+            "notes": notes,
+            "is_past": is_past,
+        }
+
+    def version_is_expired(version):
+        """
+        A version is expired if all lifecycle phases are in the past.
+        """
+        lifecycle_fields = ["supported", "pro_supported", "legacy_supported"]
+
+        for field in lifecycle_fields:
+            data = version.get(field)
+
+            raw = data.get("raw")
+            notes = data.get("notes")
+            is_past = data.get("is_past")
+
+            # If there's at least one future date, version is active
+            if raw and not notes:
+                if not is_past:
+                    return False
+                else:
+                    continue
+        
+            # If there are notes, considered expired unless special exception
+            if notes:
+                normalized = notes.lower().strip()
+
+                # If notes contain "until", keep version visible
+                if "until" in normalized:
+                    return False
+
+                continue
+
+            # catch-all fallback: treat as active
+            return False
+
+        return True
+
+    def get_deployment(data, product_key, release_identifier):
+        """Return the deployment dict matching release_name, or None."""
+
+        product = data.get(product_key, {})
+        for deployment in product.get("deployment", []):
+            if (
+                deployment.get("name") == release_identifier
+                or deployment.get("slug") == release_identifier
+            ):
+                return deployment
+        return None
+
+    def get_versions_for_release(data, product_key, release_name):
+        """Return list of version dicts for (product, release type name)."""
+
+        deployment = get_deployment(data, product_key, release_name)
+        if not deployment:
+            return []
+   
+        shaped = [
+            shape_version(v)
+            for v in deployment.get("versions", [])
+        ]
+
+        # Filter out expired versions
+        filtered = [
+            version for version in shaped
+            if not version_is_expired(version)
+        ]
+
+        return filtered
+
+    def get_selected_version_data(data, product_key, release_name, version):
+        """Return a dict with key details for the selected version."""
+
+        deployment = get_deployment(data, product_key, release_name)
+        if not deployment:
+            return None
+
+        for version_dict in deployment.get("versions", []):
+            if str(version_dict.get("release")) == str(version):
+                shaped = shape_version(version_dict)
+
+                # Prevent selecting an expired version
+                if version_is_expired(shaped):
+                    return None
+
+                return shaped
+
+        return None
+
+    def shape_version(version_dict):
+        """Normalize keys and format dates for a single version dict."""
+        
+        compat_list = version_dict.get("compatible-ubuntu-lts", [])
+        has_compatible_components = any(
+            item.get("compatible-components") for item in compat_list
+        )
+
+        return {
+            "release": version_dict.get("release"),
+            "architecture": version_dict.get("architecture", []),
+            "supported": format_date(version_dict.get("supported")),
+            "pro_supported": format_date(version_dict.get("pro-supported")),
+            "legacy_supported": format_date(
+                version_dict.get("legacy-supported")
+            ),
+            "release_date": format_date(version_dict.get("release-date")),
+            "upgrade_path": version_dict.get("upgrade-path", []),
+            "compatible_ubuntu_lts": version_dict.get(
+                "compatible-ubuntu-lts", []
+            ),
+            "has_compatible_components": has_compatible_components,
+        }
+
     def display_github_data():
-        # TODO: include remaining files when json validation is in place
+        product = flask.request.args.get("product", type=str, default="ubuntu")
+        release_name = flask.request.args.get(
+            "release", type=str, default="ubuntu"
+        )
+        version = flask.request.args.get("version", type=str, default="all")
+
         files = [
             "products-data/25.10/kubernetes.json",
             "products-data/25.10/ubuntu-kernel.json",
             "products-data/25.10/microcloud.json",
             "products-data/25.10/ubuntu.json",
+            "products-data/25.10/lxd.json",
+            "products-data/25.10/ceph.json",
+            "products-data/25.10/anbox.json",
+            "products-data/25.10/maas.json",
+            "products-data/25.10/openstack.json",
         ]
         products_data = get_json_files(files)
+
+        products_data = dict(
+            sorted(
+                products_data.items(),
+                key=lambda item: str(item[1].get("product", "")).lower(),
+            )
+        )
+
+        for key, data in products_data.items():
+            for deployment in data["deployment"]:
+                name = deployment.get("name", "")
+                deployment["slug"] = name.lower()
+
+        versions = []
+        selected_version = None
+        deployment = None
+
+        if product and release_name:
+            deployment = get_deployment(products_data, product, release_name)
+            versions = get_versions_for_release(
+                products_data, product, release_name
+            )
+            if version and version != "all":
+                selected_version = get_selected_version_data(
+                    products_data, product, release_name, version
+                )
+
         return flask.render_template(
             "about/release-cycle.html",
             products_data=products_data,
+            product=product,
+            version=version,
+            release_name=release_name,
+            versions=versions,
+            selected_version=selected_version,
+            deployment=deployment,
+            now=datetime.utcnow(),
         )
 
     return display_github_data
