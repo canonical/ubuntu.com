@@ -1,0 +1,69 @@
+#!/bin/bash
+
+scss_files=()
+js_files=()
+html_files=()
+
+while read local_ref local_sha remote_ref remote_sha
+do
+  # Ignore deleted files
+  if [ "$local_sha" = "0000000000000000000000000000000000000000000" ]; then
+    continue
+  fi
+
+  # Find appropriate commit range
+  if [ "$remote_sha" = "0000000000000000000000000000000000000000000" ]; then
+    range="${local_sha}"
+  else
+    range="${remote_sha}..${local_sha}"
+  fi
+
+  changed_files=$(git diff --name-only "$range")
+
+  # Group file types
+  for file in $changed_files; do
+    case "$file" in
+      *.scss) scss_files+=("$file") ;;
+      *.js) js_files+=("$file") ;;
+      *.html) html_files+=("$file") ;;
+      *.py) py_files+=("$file") ;;
+    esac
+  done
+done
+
+error_flag=0
+
+if [ ${#scss_files[@]} -gt 0 ]; then
+  if ! npx stylelint --quiet "${scss_files[@]}" ; then
+    error_flag=1
+  fi
+fi
+
+if [ ${#js_files[@]} -gt 0 ]; then
+  if ! npx eslint "${js_files[@]}" ; then
+    error_flag=1
+  fi
+fi
+
+if [ ${#py_files[@]} -gt 0 ]; then
+  if ! npx flake8 "${py_files[@]}" ; then
+    error_flag=1
+  fi
+  if ! black --check --line-length 79 "${py_files[@]}" ; then
+    error_flag=1
+  fi
+fi
+
+if [ ${#html_files[@]} -gt 0 ]; then
+  if ! ./scripts/djlint lint --committed ; then
+    error_flag=1
+  fi
+fi
+
+if [ "$error_flag" -eq 1 ]; then
+  echo "❌ One or more linters failed. Push denied."
+  exit 1
+else
+  echo "✅ All linters passed. Push allowed."
+  exit 0
+fi
