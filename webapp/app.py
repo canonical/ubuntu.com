@@ -10,6 +10,8 @@ import requests
 import talisker.requests
 from jinja2 import ChoiceLoader, FileSystemLoader
 import yaml
+from flask_caching import Cache
+from datetime import timedelta
 
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
@@ -31,6 +33,7 @@ import canonicalwebteam.directory_parser as directory_parser
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.form_generator import FormGenerator
+from canonicalwebteam.cookie_service import CookieConsent
 
 from webapp.certified.views import certified_routes
 from webapp.handlers import init_handlers
@@ -262,6 +265,38 @@ charmhub_discourse_api = DiscourseAPI(
 search_engine_id = "adb2397a224a1fe55"
 
 init_handlers(app, sentry)
+
+# Configuration for shared cookie service
+
+# Configure Flask session
+app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days=365)
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_COOKIE_SECURE"] = True
+
+# Number of days before preference cookies expire (default: 365)
+app.config["PREFERENCES_COOKIE_EXPIRY_DAYS"] = 365
+
+# Initialize Flask-Caching
+app.config["CACHE_TYPE"] = "SimpleCache"
+cache = Cache(app)
+
+
+# Set up cache functions for cookie consent service
+def get_cache(key):
+    return cache.get(key)
+
+
+def set_cache(key, value, timeout):
+    cache.set(key, value, timeout)
+
+
+cookie_service = CookieConsent().init_app(
+    app,
+    get_cache_func=get_cache,
+    set_cache_func=set_cache,
+    start_health_check=True,
+)
 
 
 # Prepare forms
