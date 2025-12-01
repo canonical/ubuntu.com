@@ -7,28 +7,25 @@ const tooltips = document.querySelectorAll(".js-component-tooltip");
 const productValidation = document.getElementById("js-product-validation");
 const releaseValidation = document.getElementById("js-release-validation");
 const versionValidation = document.getElementById("js-version-validation");
-const spinner = submitButton.querySelector(".p-icon--spinner");
 const label = submitButton.querySelector(".js-button-label");
+const spinner = submitButton.querySelector(".p-icon--spinner");
 
 function syncSubmitState() {
-  submitButton.disabled = !(releaseSelection.value && versionSelection.value);
+  // submitButton.disabled = !(releaseSelection.value && versionSelection.value);
 
   const hasProduct = Boolean(productSelection.value);
   const hasRelease = Boolean(releaseSelection.value);
-  const hasVersion = Boolean(versionSelection.value);
 
   // Error rules:
   // - Product: always required
   // - Release: should show error if there's no product OR no release
   const productHasError = !hasProduct;
   const releaseHasError = !hasProduct || !hasRelease;
-  const versionHasError = !hasRelease || !hasVersion;
 
   setFieldError(productValidation, productSelection, productHasError);
   setFieldError(releaseValidation, releaseSelection, releaseHasError);
-  setFieldError(versionValidation, versionSelection, versionHasError);
 
-  const isFormValid = !productHasError && !releaseHasError && !versionHasError;
+  const isFormValid = !productHasError && !releaseHasError;
   submitButton.disabled = !isFormValid;
 }
 submitButton.disabled = true;
@@ -184,13 +181,60 @@ selectorForm.addEventListener("submit", (event) => {
   window.location.assign(newUrl);
 });
 
+function initStickyHeader() {
+  const desktopTable = document.querySelector(".is-desktop");
+  if (!desktopTable) return;
+
+  const thead = desktopTable.querySelector("thead");
+  if (!thead) return;
+
+  const updateHeaderShadow = () => {
+    const computed = getComputedStyle(thead);
+    const stickyTop = parseFloat(computed.top) || 0;
+    const rect = thead.getBoundingClientRect();
+
+    // Sticky when thead has reached its sticky offset but still in view
+    const isSticky =
+      rect.top <= stickyTop + 1 && // at or above sticky top
+      rect.bottom > stickyTop + 1; // header still visible
+
+    thead.classList.toggle("is-sticky", isSticky);
+  };
+
+  window.addEventListener("scroll", updateHeaderShadow, { passive: true });
+  window.addEventListener("resize", updateHeaderShadow);
+  updateHeaderShadow();
+}
+
+function initScrollFade() {
+  const scrollWrapper = document.querySelector(".release-cycle-table-scroll");
+  if (!scrollWrapper) return;
+
+  const updateScrollFade = () => {
+    const maxScrollLeft = scrollWrapper.scrollWidth - scrollWrapper.clientWidth;
+
+    // If there's no horizontal overflow, hide the gradient
+    if (maxScrollLeft <= 1) {
+      scrollWrapper.classList.add("is-at-end");
+      return;
+    }
+
+    const atEnd = scrollWrapper.scrollLeft >= maxScrollLeft - 2;
+    scrollWrapper.classList.toggle("is-at-end", atEnd);
+  };
+
+  scrollWrapper.addEventListener("scroll", updateScrollFade, { passive: true });
+  window.addEventListener("resize", updateScrollFade);
+
+  updateScrollFade();
+}
+
 // Persist selections from URL parameters on page load
-(function initFromUrl() {
+function initFromUrl() {
   const params = new URLSearchParams(window.location.search);
   const productParam = params.get("product");
   const releaseParamSlug = params.get("release");
   const versionParam = params.get("version");
-  const subscriptionParam = params.get("subscription");
 
   if (productParam && productsData[productParam]) {
     productSelection.value = productParam;
@@ -218,9 +262,11 @@ selectorForm.addEventListener("submit", (event) => {
     }
   }
 
-  if (subscriptionParam) {
-    subscriptionSelection.value = subscriptionParam;
-  }
-
   syncSubmitState();
-})();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initFromUrl();
+  initStickyHeader();
+  initScrollFade();
+});

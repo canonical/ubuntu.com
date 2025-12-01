@@ -2,34 +2,40 @@
 @mixin ubuntu-p-release-cycle {
   .release-cycle-table {
     border-collapse: collapse;
-    
+
     // Background fill for Ubuntu Pro columns (3–5)
     th:nth-child(n + 3):nth-child(-n + 5),
     td:nth-child(n + 3):nth-child(-n + 5) {
       background-color: rgba($color-brand, 0.05);
     }
-    
+
+    // Left outer edge for the Pro block (body + subheader row)
+    tbody th:nth-child(3),
+    tbody td:nth-child(3),
+    thead tr:nth-child(2) th:nth-child(3) {
+      box-shadow: inset 1px 0 0 rgba($color-brand, 0.5);
+    }
+
+    // Right outer edge for the Pro block (body + subheader row)
+    tbody th:nth-child(5),
+    tbody td:nth-child(5),
+    thead tr:nth-child(2) th:nth-child(5) {
+      box-shadow: inset -1px 0 0 rgba($color-brand, 0.5);
+    }
+
+    // Ubuntu Pro heading cell (spans columns 3–5)
+    thead tr:first-child th:nth-child(3) {
+      border-top: 1px solid rgba($color-brand, 0.5);
+
+      // draw BOTH left and right edges here in one go
+      box-shadow:
+        inset 1px 0 0 rgba($color-brand, 0.5),   // left edge
+        inset -1px 0 0 rgba($color-brand, 0.5);  // right edge
+    }
+
     // Bottom border on the last row under Ubuntu Pro block
     tbody tr:last-child td:nth-child(n + 3):nth-child(-n + 5) {
       border-bottom: 1px solid rgba($color-brand, 0.5);
-    }
-    
-    // Left outer border on column 3
-    th:nth-child(3),
-    td:nth-child(3) {
-      border-left: 1px solid rgba($color-brand, 0.5);
-    }
-
-    // Right outer border on column 5
-    th:nth-child(5),
-    td:nth-child(5) {
-      border-right: 1px solid rgba($color-brand, 0.5);
-    }
-
-    // Top + right border on the Ubuntu Pro heading cell
-    thead tr:first-child th:nth-child(3) {
-      border-top: 1px solid rgba($color-brand, 0.5);
-      border-right: 1px solid rgba($color-brand, 0.5);
     }
 
     // Sticky header styles for desktop/tablet table
@@ -39,13 +45,34 @@
         top: 3.4rem;
         z-index: 1;
         background: #f3f3f3;
-        box-shadow: 0px 1.5rem 1rem -15px rgba(0, 0, 0, 0.2);
+        box-shadow: none;
+        transition: box-shadow 0.2s ease;
+
+        &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 1px;
+          background: var(--vf-color-border-default);
+          opacity: 1;
+          transition: opacity 0.2s ease;
+          pointer-events: none;
+        }
+
+        &.is-sticky {
+          box-shadow: 0px 1.5rem 1rem -15px rgba(0, 0, 0, 0.2);
+
+          &::after {
+            opacity: 0; // hide the bottom border when sticky
+          }
+        }
       }
 
       thead th {
         background: #f3f3f3;
       }
-      // css
     }
 
     @media screen and (width < $breakpoint-large) {
@@ -61,13 +88,31 @@
 
     // Small screen horizontal scroll
     @media screen and (width < $breakpoint-small) {
-      width: 100% !important;
+      position: relative;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
 
       .release-cycle-table {
-        // keep columns readable, don't squash them
-        min-width: 48rem; // tweak to whatever matches your design
+        min-width: 40rem;
+      }
+
+      &::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 3.5rem;
+        height: 100%;
+        pointer-events: none;
+        opacity: 1;
+        transition: opacity 0.2s ease;
+
+        // Fade from transparent to page background
+        background: linear-gradient(to right, rgba(#f3f3f3, 0) 0%, #f3f3f3 75%);
+      }
+
+      &.is-at-end::after {
+        opacity: 0; // hide fade when fully scrolled
       }
     }
   }
@@ -97,6 +142,11 @@
       }
       &:nth-child(4)::before {
         color: #cccccc;
+      }
+
+      // Keep chip aligned second list item
+      &:nth-child(1) .p-release-chip {
+        margin-top: 2rem;
       }
     }
   }
@@ -200,8 +250,6 @@
         display: none !important;
       }
     }
-
-    
   }
 
   .p-release-card {

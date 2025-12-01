@@ -1673,6 +1673,8 @@ def build_github_data_access():
         response = requests.get(url, headers=headers, timeout=30)
 
         if response.status_code == 304 and key in _cache:
+            # import pdb
+            # pdb.set_trace()
             return _cache[key]["data"]
 
         try:
@@ -1688,6 +1690,7 @@ def build_github_data_access():
             "data": data,
             "ts": time.time(),
         }
+
         return data
 
     def get_json_files(file_paths: list[str]) -> dict[str, object]:
@@ -1709,7 +1712,7 @@ def build_github_data_access():
 
 
 def build_release_cycle_view():
-    get_json_files = build_github_data_access()
+    get_combined_products = build_github_data_access()
 
     def format_date(value):
         """Convert YYYY-MM-DD or {date:..., notes:...} to a normalized dict."""
@@ -1769,7 +1772,7 @@ def build_release_cycle_view():
                     return False
                 else:
                     continue
-        
+
             # If there are notes, considered expired unless special exception
             if notes:
                 normalized = notes.lower().strip()
@@ -1784,6 +1787,49 @@ def build_release_cycle_view():
             return False
 
         return True
+
+    def build_ui_products(
+        raw_products: dict[str, object],
+    ) -> dict[str, object]:
+        """
+        Take raw GitHub JSON and return a shaped structure:
+        - products sorted by name
+        - deployment.slug added
+        - versions shaped + expired versions removed
+        """
+        ui_products: dict[str, object] = {}
+
+        for key, product in sorted(
+            raw_products.items(),
+            key=lambda item: str(item[1].get("product", "")).lower(),
+        ):
+            product_name = product.get("product", "")
+            deployments = []
+
+            for deployment in product.get("deployment", []):
+                name = deployment.get("name", "")
+                slug = name.lower()
+
+                raw_versions = deployment.get("versions", [])
+                shaped_versions = [shape_version(v) for v in raw_versions]
+                visible_versions = [
+                    v for v in shaped_versions if not version_is_expired(v)
+                ]
+
+                deployments.append(
+                    {
+                        "name": name,
+                        "slug": slug,
+                        "versions": visible_versions,
+                    }
+                )
+
+            ui_products[key] = {
+                "product": product_name,
+                "deployment": deployments,
+            }
+
+        return ui_products
 
     def get_deployment(data, product_key, release_identifier):
         """Return the deployment dict matching release_name, or None."""
@@ -1803,16 +1849,12 @@ def build_release_cycle_view():
         deployment = get_deployment(data, product_key, release_name)
         if not deployment:
             return []
-   
-        shaped = [
-            shape_version(v)
-            for v in deployment.get("versions", [])
-        ]
+
+        shaped = [shape_version(v) for v in deployment.get("versions", [])]
 
         # Filter out expired versions
         filtered = [
-            version for version in shaped
-            if not version_is_expired(version)
+            version for version in shaped if not version_is_expired(version)
         ]
 
         return filtered
@@ -1838,7 +1880,7 @@ def build_release_cycle_view():
 
     def shape_version(version_dict):
         """Normalize keys and format dates for a single version dict."""
-        
+
         compat_list = version_dict.get("compatible-ubuntu-lts", [])
         has_compatible_components = any(
             item.get("compatible-components") for item in compat_list
@@ -1867,30 +1909,13 @@ def build_release_cycle_view():
         )
         version = flask.request.args.get("version", type=str, default="all")
 
-        files = [
-            "products-data/25.10/kubernetes.json",
-            "products-data/25.10/ubuntu-kernel.json",
-            "products-data/25.10/microcloud.json",
-            "products-data/25.10/ubuntu.json",
-            "products-data/25.10/lxd.json",
-            "products-data/25.10/ceph.json",
-            "products-data/25.10/anbox.json",
-            "products-data/25.10/maas.json",
-            "products-data/25.10/openstack.json",
-        ]
-        products_data = get_json_files(files)
-
-        products_data = dict(
-            sorted(
-                products_data.items(),
-                key=lambda item: str(item[1].get("product", "")).lower(),
-            )
+        raw_files = get_combined_products(
+            ["products-data/25.10/products.json"]
         )
 
-        for key, data in products_data.items():
-            for deployment in data["deployment"]:
-                name = deployment.get("name", "")
-                deployment["slug"] = name.lower()
+        raw_products = raw_files.get("products", {})
+
+        products_data = build_ui_products(raw_products)
 
         versions = []
         selected_version = None
@@ -1898,13 +1923,22 @@ def build_release_cycle_view():
 
         if product and release_name:
             deployment = get_deployment(products_data, product, release_name)
-            versions = get_versions_for_release(
-                products_data, product, release_name
-            )
+            if deployment:
+                versions = deployment.get("versions", [])
+
             if version and version != "all":
-                selected_version = get_selected_version_data(
-                    products_data, product, release_name, version
+                # Look up the selected version among visible ones
+                selected_version = next(
+                    (
+                        v
+                        for v in versions
+                        if str(v.get("release")) == str(version)
+                    ),
+                    None,
                 )
+                # If not found (expired or invalid), fall back to "all"
+                if selected_version is None:
+                    version = "all"
 
         return flask.render_template(
             "about/release-cycle.html",

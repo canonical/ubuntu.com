@@ -26,7 +26,7 @@
 			<p class="u-align-text--small-to-default p-text--small p-text--small-caps p-release-tooltip__subheading">
 				Upgrade path
 			</p>
-			<p class="u-align-text--small-to-default p-text--small u-vertical-nudge">
+			<p class="u-align-text--small-to-default p-text--small u-vertical-nudge {%if not version.has_compatible_components %}u-no-margin--bottom{% endif %}">
 				{{ version.upgrade_path  | join(', ') }}
 			</p>
 		{% endif %}
