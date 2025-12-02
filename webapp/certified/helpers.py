@@ -26,6 +26,9 @@ def get_download_url(model_details):
     if make == "nvidia" and "jetson" in configuration_name:
         return "https://ubuntu.com/download/nvidia-jetson"
 
+    if "qualcomm" in make and "dragonwing" in configuration_name:
+        return "https://ubuntu.com/download/qualcomm-iot#evaluation-kit"
+
     if "core" in platform_category:
         if make == "xilinx":
             return "https://ubuntu.com/download/amd"
