@@ -38,11 +38,9 @@ setup which are covered in these guides:
 - [Monitor with COS Lite](/kubernetes/charmed-k8s/docs/how-to-cos-lite)
 - [Use K8s Operator Charms](/kubernetes/charmed-k8s/docs/operator-charms)
 - [Schedule containers with Volcano](/kubernetes/charmed-k8s/docs/volcano)
-- [Use the cluster autoscaler](/kubernetes/charmed-k8s/docs/autoscaler)
 - [Validate your cluster with e2e](/kubernetes/charmed-k8s/docs/validation)
 - [Use a private Docker Registry](/kubernetes/charmed-k8s/docs/docker-registry)
 - [Configuring proxies](/kubernetes/charmed-k8s/docs/proxies)
-
 
 If you run into trouble, please see the troubleshooting guide:
 
