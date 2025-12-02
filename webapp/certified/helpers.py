@@ -7,7 +7,6 @@ from markupsafe import Markup
 def get_download_url(model_details):
     """
     Return the appropriate ubuntu models.com/download url for the model
-    :param model: a certifiedmodel resource
     :param model_details: a certifiedmodeldetails resource
     :return: appropriate ubuntu.com/download url
     """
@@ -25,6 +24,9 @@ def get_download_url(model_details):
 
     if make == "nvidia" and "jetson" in configuration_name:
         return "https://ubuntu.com/download/nvidia-jetson"
+
+    if "qualcomm" in make and "dragonwing" in configuration_name:
+        return "https://ubuntu.com/download/qualcomm-iot#evaluation-kit"
 
     if "core" in platform_category:
         if make == "xilinx":
