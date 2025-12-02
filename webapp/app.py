@@ -177,6 +177,7 @@ from webapp.views import (
     show_template,
     sitemap_index,
     spanish_why_openstack,
+    wsl_install_redirect,
     subscription_centre,
     thank_you,
     unlisted_engage_page,
@@ -520,7 +521,10 @@ app.add_url_rule(
     view_func=download_server_steps,
 )
 
+app.add_url_rule("/desktop/wsl/install", view_func=wsl_install_redirect)
+
 app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
+
 with open("navigation.yaml") as navigation_file:
     navigation = yaml.load(navigation_file.read(), Loader=yaml.FullLoader)
 
