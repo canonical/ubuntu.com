@@ -257,7 +257,7 @@ class TestRoutes(VCRTestCase):
         self.assertEqual(response.status_code, 302)
         self.assertTrue(
             response.location.startswith(
-                "https://github.com/canonical/Ubuntu-Pro-For-WSL/releases/"
+                "https://github.com/canonical/ubuntu-pro-for-wsl/releases/"
             )
         )
 
