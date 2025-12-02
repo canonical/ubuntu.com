@@ -1,5 +1,7 @@
 {% extends "desktop/base_desktop.html" %}
 
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+
 {% block meta_copydoc %}
   https://docs.google.com/document/d/1M7e2B08GgPA7K6Wx0ThE6s9_xQINM0MSkarfdKUTEYI/edit#
 {% endblock meta_copydoc %}
@@ -142,6 +144,54 @@
         </div>
       </div>
     </section>
+
+    {{ vf_basic_section(
+      title={"text": "Ubuntu is the number 1 choice for organizations using WSL"},
+      items=[
+        {
+          "type": "description",
+          "item": {
+            "type": "html",
+            "content": '
+              <p class="u-sv3">
+                <a href="/pro">Ubuntu Pro</a> brings Expanded Security Maintenance (ESM) for all Ubuntu LTS releases for up to 15 years and optional 24/7 support, including instances on WSL.
+              </p>
+            '
+          }
+        },
+        {
+          "type": "cta-block",
+          "item": {
+            "secondaries": [
+              {
+                "content_html": "Download the Ubuntu Pro for WSL app",
+                "attrs": {
+                  "href": "https://github.com/canonical/ubuntu-pro-for-wsl/releases/latest/download/UbuntuProForWSL.msixbundle"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "description",
+          "item": {
+            "type": "html",
+            "content": '
+              <p>
+                Ubuntu Pro also enables system administrators to manage WSL instances using <a href="/landscape">Landscape, Canonical\'s system management tool for Ubuntu</a>.
+              </p>
+            '
+          }
+        },
+        {
+          "type": "description",
+          "item": {
+            "type": "text",
+            "content": "Monitor your entire estate using the latest Landscape beta features and automatically identify which WSL instances comply with your provisioning and configuration policies in order to keep your environment secure."
+          }
+        },
+      ]
+    ) }}
 
     <section class="p-section">
       <div class="u-fixed-width p-section--shallow">
