@@ -523,7 +523,6 @@ app.add_url_rule(
 
 app.add_url_rule("/desktop/wsl/install", view_func=wsl_install_redirect)
 
-
 app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
 
 with open("navigation.yaml") as navigation_file:
