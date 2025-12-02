@@ -7,7 +7,6 @@ from markupsafe import Markup
 def get_download_url(model_details):
     """
     Return the appropriate ubuntu models.com/download url for the model
-    :param model: a certifiedmodel resource
     :param model_details: a certifiedmodeldetails resource
     :return: appropriate ubuntu.com/download url
     """
