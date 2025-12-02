@@ -248,6 +248,19 @@ class TestRoutes(VCRTestCase):
         response = self.client.get("/robots.txt")
         self.assertTrue(response.headers.get("X-Robots-Tag") != "none")
 
+    def test_wsl_install_redirect(self):
+        """
+        Check WSL install redirect endpoint returns 302 redirect
+        to the GitHub release URL
+        """
+        response = self.client.get("/desktop/wsl/install")
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(
+            response.location.startswith(
+                "https://github.com/canonical/Ubuntu-Pro-For-WSL/releases/"
+            )
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
