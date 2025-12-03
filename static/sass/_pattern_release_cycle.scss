@@ -2,72 +2,66 @@
 @mixin ubuntu-p-release-cycle {
   .release-cycle-table {
     border-collapse: collapse;
-
-    // Background fill for Ubuntu Pro columns (3–5)
-    th:nth-child(n + 3):nth-child(-n + 5),
-    td:nth-child(n + 3):nth-child(-n + 5) {
-      background-color: rgba($color-brand, 0.05);
+    /* stylelint-disable no-descending-specificity */
+    thead tr:first-child th {
+      border-bottom: none !important;
     }
 
-    // Left outer edge for the Pro block (body + subheader row)
+    // Left outer edge for the Pro block
     tbody th:nth-child(3),
     tbody td:nth-child(3),
     thead tr:nth-child(2) th:nth-child(3) {
       box-shadow: inset 1px 0 0 rgba($color-brand, 0.5);
     }
 
-    // Right outer edge for the Pro block (body + subheader row)
+    // Right outer edge for the Pro block
     tbody th:nth-child(5),
     tbody td:nth-child(5),
     thead tr:nth-child(2) th:nth-child(5) {
       box-shadow: inset -1px 0 0 rgba($color-brand, 0.5);
     }
 
-    // Ubuntu Pro heading cell (spans columns 3–5)
+    // Top-level heading borders for Pro columns
     thead tr:first-child th:nth-child(3) {
-      // border-top: 1px solid rgba($color-brand, 0.5);
-
       box-shadow:
-        inset 0 1px 0 rgba($color-brand, 0.5),   // top edge
-        inset 1px 0 0 rgba($color-brand, 0.5),   // left edge
-        inset -1px 0 0 rgba($color-brand, 0.5);  // right edge
+        inset 0 1px 0 rgba($color-brand, 0.5),
+        // top edge
+        inset 1px 0 0 rgba($color-brand, 0.5),
+        // left edge
+        inset -1px 0 0 rgba($color-brand, 0.5); // right edge
     }
 
-    // Bottom border on the last row under Ubuntu Pro block
-    tbody tr:last-child td:nth-child(n + 3):nth-child(-n + 5) {
-      // border-bottom: 1px solid rgba($color-brand, 0.5);
+    // Bottom border for center Pro column
+    tbody tr:last-child td:nth-child(4) {
+      box-shadow: inset 0 -1px 0 rgba($color-brand, 0.5); // bottom edge
     }
 
-    // Bottom edge of the Ubuntu Pro block on the last data row
-
-    // Column 3: left + bottom
+    // Closing bottom edges for Pro block
     tbody tr:last-child td:nth-child(3) {
       box-shadow:
-        inset 1px 0 0 rgba($color-brand, 0.5),   // left edge
-        inset 0 -1px 0 rgba($color-brand, 0.5);  // bottom edge
+        inset 1px 0 0 rgba($color-brand, 0.5),
+        // left edge
+        inset 0 -1px 0 rgba($color-brand, 0.5); // bottom edge
     }
 
-    // Column 4: bottom only
-    tbody tr:last-child td:nth-child(4) {
-      box-shadow:
-        inset 0 -1px 0 rgba($color-brand, 0.5);  // bottom edge
-    }
-
-    // Column 5: right + bottom
+    // Closing bottom edge and right edge of the Pro block
     tbody tr:last-child td:nth-child(5) {
       box-shadow:
-        inset -1px 0 0 rgba($color-brand, 0.5),  // right edge
-        inset 0 -1px 0 rgba($color-brand, 0.5);  // bottom edge
-    }
-
-
-    thead tr:first-child th {
-      border-bottom: none !important;
+        inset -1px 0 0 rgba($color-brand, 0.5),
+        // right edge
+        inset 0 -1px 0 rgba($color-brand, 0.5); // bottom edge
     }
 
     thead tr:nth-child(2) th {
       border-bottom: 1px solid var(--vf-color-border-low-contrast);
     }
+
+    // Background fill for Ubuntu Pro columns
+    th:nth-child(n + 3):nth-child(-n + 5),
+    td:nth-child(n + 3):nth-child(-n + 5) {
+      background-color: rgba($color-brand, 0.05);
+    }
+    /* stylelint-enable no-descending-specificity */
 
     // Sticky header styles for desktop/tablet table
     @media screen and (min-width: $breakpoint-small) {
@@ -90,7 +84,7 @@
         box-shadow: 0px 1.5rem 1rem -15px rgba(0, 0, 0, 0.2);
       }
     }
-    
+
     @media screen and (max-width: $breakpoint-large) {
       // Right border on column 3 for medium screens and smaller
       tbody td:nth-child(3) {
@@ -104,9 +98,12 @@
 
     // Small screen horizontal scroll
     @media screen and (max-width: $breakpoint-small) {
-      position: relative;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
+      position: relative; // gradient anchor
+
+      .release-cycle-table-scroll-inner {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
 
       .release-cycle-table {
         min-width: 40rem;
@@ -114,7 +111,7 @@
 
       &::after {
         content: "";
-        position: fixed;
+        position: absolute; // now relative to NON-scrolling wrapper
         top: 0;
         right: 0;
         width: 3.5rem;
@@ -132,6 +129,32 @@
       }
     }
   }
+
+  /* stylelint-disable no-descending-specificity */
+  .p-release-chip {
+    @extend .p-chip;
+
+    background-color: #000;
+    margin-left: auto;
+    margin-bottom: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    .p-chip__lead + .p-chip__value::before {
+      content: "";
+      margin-left: 0.25rem;
+    }
+
+    .p-chip__lead img {
+      display: block;
+    }
+
+    .p-chip__value {
+      color: white;
+    }
+  }
+  /* stylelint-enable no-descending-specificity */
 
   .p-release-cycle-legend {
     @extend .p-list--divided;
@@ -164,30 +187,6 @@
       &:nth-child(1) .p-release-chip {
         margin-top: 2rem;
       }
-    }
-  }
-
-  .p-release-chip {
-    @extend .p-chip;
-
-    background-color: #000;
-    margin-left: auto;
-    margin-bottom: 0;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-
-    .p-chip__lead + .p-chip__value::before {
-      content: "";
-      margin-left: 0.25rem;
-    }
-
-    .p-chip__lead img {
-      display: block;
-    }
-
-    .p-chip__value {
-      color: white;
     }
   }
 
@@ -268,6 +267,7 @@
     }
   }
 
+  /* stylelint-disable no-descending-specificity */
   .p-release-card {
     @extend .p-card;
 
@@ -286,6 +286,7 @@
       flex-shrink: 0;
     }
   }
+  /* stylelint-enable no-descending-specificity */
 
   .p-product-selector-form {
     .p-form-validation__message {

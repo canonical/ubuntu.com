@@ -1673,8 +1673,6 @@ def build_github_data_access():
         response = requests.get(url, headers=headers, timeout=30)
 
         if response.status_code == 304 and key in _cache:
-            # import pdb
-            # pdb.set_trace()
             return _cache[key]["data"]
 
         try:
@@ -1701,7 +1699,7 @@ def build_github_data_access():
             file_bytes = _gh_get_file_bytes(file_path)
 
             # Derive clean name from path
-            # e.g. "products-data/25.10/kubernetes.json" -> "kubernetes"
+            # e.g. "products-data/25.10/products.json" -> "products"
             base_name = file_path.split("/")[-1].replace(".json", "")
 
             parsed_files[base_name] = _load_json(file_bytes)

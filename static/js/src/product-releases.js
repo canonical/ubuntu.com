@@ -207,20 +207,23 @@ function initStickyHeader() {
 }
 
 function initScrollFade() {
-  const scrollWrapper = document.querySelector(".release-cycle-table-scroll");
-  if (!scrollWrapper) return;
+  const container = document.querySelector(".release-cycle-table-scroll");
+  const scrollWrapper = container?.querySelector(
+    ".release-cycle-table-scroll-inner",
+  );
+  if (!container || !scrollWrapper) return;
 
   const updateScrollFade = () => {
     const maxScrollLeft = scrollWrapper.scrollWidth - scrollWrapper.clientWidth;
 
     // If there's no horizontal overflow, hide the gradient
     if (maxScrollLeft <= 1) {
-      scrollWrapper.classList.add("is-at-end");
+      container.classList.add("is-at-end");
       return;
     }
 
     const atEnd = scrollWrapper.scrollLeft >= maxScrollLeft - 2;
-    scrollWrapper.classList.toggle("is-at-end", atEnd);
+    container.classList.toggle("is-at-end", atEnd);
   };
 
   scrollWrapper.addEventListener("scroll", updateScrollFade, { passive: true });
