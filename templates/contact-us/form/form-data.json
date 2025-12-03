@@ -1,16 +1,14 @@
 {
   "form": {
-    "/pro/subscribe": {
-      "templatePath": "/advantage/subscribe/index.html",
-      "isModal": true,
-      "modalId": "20-04-modal",
+    "/contact-us/form?product=pro": {
+      "templatePath": "/contact-us/form/index.html",
+      "modalId": "pro-modal",
       "formData": {
-        "title": "Contact us about using Ubuntu Pro on your cloud provider",
-        "introText": "This form enables customers using cloud providers not listed on our website to get in touch with us.",
-        "formId": "6266",
-        "returnUrl": "/pro/subscribe#contact-form-success",
-        "lpUrl": "https://ubuntu.com/pro/subscribe/contact-us",
-        "product": ""
+        "title": "Contact us about Ubuntu Pro",
+        "formId": "1257",
+        "returnUrl": "/contact-us/thank-you",
+        "lpId": "2154",
+        "product": "pro"
       },
       "fieldsets": [
         {
@@ -112,19 +110,45 @@
           ]
         },
         {
-          "title": "What is the name of your cloud provider?",
-          "id": "cloud-provider",
+          "title": "What kind of device are you using?",
+          "id": "kind-of-device",
           "isRequired": true,
+          "inputType": "checkbox",
           "fields": [
             {
-              "type": "long-text",
-              "id": "cloud-provider-name",
-              "label": "Cloud provider name"
+              "type": "checkbox",
+              "id": "desktop-workstation",
+              "value": "desktop/workstation",
+              "label": "Desktop workstation"
+            },
+            {
+              "type": "checkbox",
+              "id": "physical-server",
+              "value": "physical/server",
+              "label": "Physical server"
+            },
+            {
+              "type": "checkbox",
+              "id": "public-cloud",
+              "value": "public/cloud",
+              "label": "Public cloud"
+            },
+            {
+              "type": "checkbox",
+              "id": "virtual-machine",
+              "value": "virtual/machine",
+              "label": "Virtual machine"
+            },
+            {
+              "type": "checkbox",
+              "id": "iot-edge-device",
+              "value": "iot/edge device",
+              "label": "IoT/Edge device"
             }
           ]
         },
         {
-          "title": "How many virtual machines?",
+          "title": "How many devices?",
           "id": "how-many-machines",
           "inputName": "how-many-machines-do-you-have",
           "inputType": "radio",
@@ -280,8 +304,8 @@
             {
               "type": "checkbox",
               "id": "project-team",
-              "value": "Internal team",
-              "label": "Internal team"
+              "value": "The project team",
+              "label": "The project team"
             },
             {
               "type": "checkbox",
@@ -304,7 +328,7 @@
             {
               "type": "long-text",
               "id": "advice",
-              "label": "Tell us about your challenges and your goals"
+              "placeholder": "Tell us about your challenges and your goals"
             }
           ]
         },

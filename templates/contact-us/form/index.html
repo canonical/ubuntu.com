@@ -37,13 +37,7 @@
   {% endwith %}
 
 {% elif product == 'pro' %}
-  {% with h1="Contact us about Ubuntu Pro",
-    intro_text="",
-    formid="1257",
-    lpId="2154",
-    returnURL="/contact-us/thank-you" %}
-    {% include "shared/_pro-contact-us-form.html" %}
-  {% endwith %}
+  {{ load_form("/contact-us/form?product=pro") | safe }}
 
 {% elif product == 'landscape' %}
   {% with h1="Talk to our Landscape team",
