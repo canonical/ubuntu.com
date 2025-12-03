@@ -25,57 +25,73 @@
 
     // Ubuntu Pro heading cell (spans columns 3–5)
     thead tr:first-child th:nth-child(3) {
-      border-top: 1px solid rgba($color-brand, 0.5);
+      // border-top: 1px solid rgba($color-brand, 0.5);
 
-      // draw BOTH left and right edges here in one go
       box-shadow:
+        inset 0 1px 0 rgba($color-brand, 0.5),   // top edge
         inset 1px 0 0 rgba($color-brand, 0.5),   // left edge
         inset -1px 0 0 rgba($color-brand, 0.5);  // right edge
     }
 
     // Bottom border on the last row under Ubuntu Pro block
     tbody tr:last-child td:nth-child(n + 3):nth-child(-n + 5) {
-      border-bottom: 1px solid rgba($color-brand, 0.5);
+      // border-bottom: 1px solid rgba($color-brand, 0.5);
+    }
+
+    // Bottom edge of the Ubuntu Pro block on the last data row
+
+    // Column 3: left + bottom
+    tbody tr:last-child td:nth-child(3) {
+      box-shadow:
+        inset 1px 0 0 rgba($color-brand, 0.5),   // left edge
+        inset 0 -1px 0 rgba($color-brand, 0.5);  // bottom edge
+    }
+
+    // Column 4: bottom only
+    tbody tr:last-child td:nth-child(4) {
+      box-shadow:
+        inset 0 -1px 0 rgba($color-brand, 0.5);  // bottom edge
+    }
+
+    // Column 5: right + bottom
+    tbody tr:last-child td:nth-child(5) {
+      box-shadow:
+        inset -1px 0 0 rgba($color-brand, 0.5),  // right edge
+        inset 0 -1px 0 rgba($color-brand, 0.5);  // bottom edge
+    }
+
+
+    thead tr:first-child th {
+      border-bottom: none !important;
+    }
+
+    thead tr:nth-child(2) th {
+      border-bottom: 1px solid var(--vf-color-border-low-contrast);
     }
 
     // Sticky header styles for desktop/tablet table
-    @media screen and (width > $breakpoint-small) {
+    @media screen and (min-width: $breakpoint-small) {
       thead {
         position: sticky;
         top: 3.4rem;
-        z-index: 1;
+        z-index: 3;
         background: #f3f3f3;
         box-shadow: none;
         transition: box-shadow 0.2s ease;
-
-        &::after {
-          content: "";
-          position: absolute;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          height: 1px;
-          background: var(--vf-color-border-default);
-          opacity: 1;
-          transition: opacity 0.2s ease;
-          pointer-events: none;
-        }
-
-        &.is-sticky {
-          box-shadow: 0px 1.5rem 1rem -15px rgba(0, 0, 0, 0.2);
-
-          &::after {
-            opacity: 0; // hide the bottom border when sticky
-          }
-        }
       }
 
       thead th {
-        background: #f3f3f3;
+        background: inherit;
+        border-bottom: 1px solid var(--vf-color-border-default);
+        transition: border-bottom-color 0.2s ease;
+      }
+
+      thead.is-sticky {
+        box-shadow: 0px 1.5rem 1rem -15px rgba(0, 0, 0, 0.2);
       }
     }
-
-    @media screen and (width < $breakpoint-large) {
+    
+    @media screen and (max-width: $breakpoint-large) {
       // Right border on column 3 for medium screens and smaller
       tbody td:nth-child(3) {
         border-right: 1px solid rgba($color-brand, 0.5);
@@ -87,7 +103,7 @@
     padding-top: 1.5rem;
 
     // Small screen horizontal scroll
-    @media screen and (width < $breakpoint-small) {
+    @media screen and (max-width: $breakpoint-small) {
       position: relative;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
