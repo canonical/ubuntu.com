@@ -11,8 +11,6 @@ const label = submitButton.querySelector(".js-button-label");
 const spinner = submitButton.querySelector(".p-icon--spinner");
 
 function syncSubmitState() {
-  // submitButton.disabled = !(releaseSelection.value && versionSelection.value);
-
   const hasProduct = Boolean(productSelection.value);
   const hasRelease = Boolean(releaseSelection.value);
 
