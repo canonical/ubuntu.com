@@ -47,13 +47,16 @@ $navigation-height: 3rem;
     }
   }
 
-  .p-navigation__item--dropdown-toggle#canonical-login {
-    position: relative;
-  }
+  // Fix account dropdown position on larger screens
+  @media (min-width: $breakpoint-navigation-threshold) {
+    .p-navigation__item--dropdown-toggle#canonical-login {
+      position: relative;
+    }
 
-  .p-navigation__dropdown#canonical-login-content-mobile {
-    position: absolute;
-    right: 0;
+    .p-navigation__dropdown#canonical-login-content-mobile {
+      position: absolute;
+      right: 0;
+    }
   }
 
   .p-navigation--sliding {
