@@ -17,13 +17,11 @@ If you have a specific goal, but are already familiar with Kubernetes, our How-t
 
 There are a large number of guides, so we list them here by the same categories used in the navigation.
 
-
 ## Installation
 
 - [Install on a cloud](/kubernetes/charmed-k8s/docs/install-manual)
 - [Install locally with LXD](/kubernetes/charmed-k8s/docs/install-local)
 - [Install on Equinix](/kubernetes/charmed-k8s/docs/equinix)
-
 
 There are also two 'special case' scenarios we provide guidance for:
 
@@ -57,12 +55,13 @@ Charmed Kubernetes supports a wide variety of network options for your cluster, 
 - [Ingress](/kubernetes/charmed-k8s/docs/ingress)
 
 ## Container runtimes
+
 In addition to the standard runtime, Charmed Kubernetes supports a variety of container runtime options.
+
 - [Containerd](/kubernetes/charmed-k8s/docs/container-runtime)
 - [Kata](/kubernetes/charmed-k8s/docs/kata)
 - [VM workloads (KubeVirt)](/kubernetes/charmed-k8s/docs/kubevirt)
 - [GPU workers](/kubernetes/charmed-k8s/docs/gpu-workers)
-
 
 ## Operating Kubernetes
 
@@ -86,17 +85,16 @@ setup which are covered in these guides:
 - [Monitor with Grafana/Prometheus](/kubernetes/charmed-k8s/docs/monitoring)
 - [Use K8s Operator Charms](/kubernetes/charmed-k8s/docs/operator-charms)
 - [Schedule containers with Volcano](/kubernetes/charmed-k8s/docs/volcano)
-- [Use the cluster autoscaler](/kubernetes/charmed-k8s/docs/autoscaler)
 - [Validate your cluster with e2e](/kubernetes/charmed-k8s/docs/validation)
 - [Use a private Docker Registry](/kubernetes/charmed-k8s/docs/docker-registry)
 - [Configuring proxies](/kubernetes/charmed-k8s/docs/proxies)
-
 
 If you run into trouble, please see the troubleshooting guide:
 
 - [Troubleshooting](/kubernetes/charmed-k8s/docs/troubleshooting)
 
 ## High availability
+
 Charmed Kubernetes supports enhancement for High Availability through a variety of approaches. Follow the links below for more information:
 
 - [Using keepalived](/kubernetes/charmed-k8s/docs/keepalived)
@@ -105,6 +103,7 @@ Charmed Kubernetes supports enhancement for High Availability through a variety 
 - [Adding a custom load balancer](/kubernetes/charmed-k8s/docs/custom-loadbalancer)
 
 ## Securing your cluster
+
 The term 'security' covers a great many subtopics related to running a Kubernetes cluster, ranging from aspects of the workloads to the underlying OS. Please see the [overview of security](/kubernetes/charmed-k8s/docs/security) page for a better understanding of the approach to securing your cluster.
 
 The guides in this section contain How tos for pursuing specific security goals:
@@ -114,10 +113,6 @@ The guides in this section contain How tos for pursuing specific security goals:
 - [Authenticate with LDAP](/kubernetes/charmed-k8s/docs/ldap)
 - [Use the OPA Gatekeeper](/kubernetes/charmed-k8s/docs/gatekeeper)
 - [Use encryption-at-rest](/kubernetes/charmed-k8s/docs/encryption-at-rest)
-
-
-
-
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

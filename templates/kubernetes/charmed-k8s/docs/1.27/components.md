@@ -53,7 +53,6 @@ These charms are the core components of the Charmed Kubernetes release.
 | [kubernetes-control-plane](https://charmhub.io/kubernetes-control-plane) | The Kubernetes control plane | [source](https://github.com/charmed-kubernetes/charm-kubernetes-control-plane.git) | [docs](https://charmhub.io/kubernetes-control-plane/docs) | [bugs](https://bugs.launchpad.net/charm-kubernetes-control-plane) |
 | [kubernetes-worker](https://charmhub.io/kubernetes-worker) | The workload bearing units of a kubernetes cluster | [source](https://github.com/charmed-kubernetes/charm-kubernetes-worker.git) | [docs](https://charmhub.io/kubernetes-worker/docs) | [bugs](https://bugs.launchpad.net/charm-kubernetes-worker) |
 
-
 ## CNI charms
 
 These are the Container Network Interface (CNI) charms supported by Charmed Kubernetes
@@ -70,7 +69,6 @@ These are the Container Network Interface (CNI) charms supported by Charmed Kube
 | [sriov-cni](https://charmhub.io/sriov-cni) | Attach SR-IOV Virtual Functions (VFs) directly to pods | [source](https://github.com/charmed-kubernetes/charm-sriov-cni.git) | [docs](https://charmhub.io/sriov-cni/docs) | [bugs](https://bugs.launchpad.net/charm-sriov-cni) |
 | [sriov-network-device-plugin](https://charmhub.io/sriov-network-device-plugin) | Enable SR-IOV support | [source](https://github.com/charmed-kubernetes/charm-sriov-network-device-plugin.git) | [docs](https://charmhub.io/sriov-network-device-plugin/docs) | [bugs](https://bugs.launchpad.net/charm-sriov-network-device-plugin) |
 | [tigera-secure-ee](https://charmhub.io/tigera-secure-ee) | Tigera Secure Enterprise Edition | [source](https://github.com/charmed-kubernetes/layer-tigera-secure-ee.git) | [docs](https://charmhub.io/tigera-secure-ee/docs) | [bugs](https://bugs.launchpad.net/charm-tigera-secure-ee) |
-
 
 ## Cloud provider charms
 
@@ -90,7 +88,6 @@ such as cloud-native load balancing and storage.
 | [vsphere-cloud-provider](https://charmhub.io/vsphere-cloud-provider) | Charm which enables vSphere out of tree provider for Juju | [source](https://github.com/charmed-kubernetes/vsphere-cloud-provider.git) | [docs](https://charmhub.io/vsphere-cloud-provider/docs) | [bugs](https://bugs.launchpad.net/charm-vsphere-cloud-provider) |
 | [vsphere-integrator](https://charmhub.io/vsphere-integrator) | Charm which enables vSphere integrations for Juju | [source](https://github.com/juju-solutions/charm-vsphere-integrator.git) | [docs](https://charmhub.io/vsphere-integrator/docs) | [bugs](https://bugs.launchpad.net/charm-vsphere-integrator) |
 
-
 ## Additional charms
 
 These charms are also maintained and supported by the Charmed Kubernetes team
@@ -107,7 +104,6 @@ to extend the capabilities of your Kubernetes cluster.
 | [kata](https://charmhub.io/kata) | Kata untrusted container runtime subordinate | [source](https://github.com/charmed-kubernetes/charm-kata.git) | [docs](https://charmhub.io/kata/docs)  | [bugs](https://bugs.launchpad.net/charm-kata) |
 | [keepalived](https://charmhub.io/keepalived) | Failover and monitoring daemon for LVS clusters | [source](https://github.com/charmed-kubernetes/charm-keepalived.git) | [docs](https://charmhub.io/keepalived/docs)  | [bugs](https://bugs.launchpad.net/charm-keepalived) |
 | [kube-state-metrics](https://charmhub.io/kube-state-metrics) | a service that listens to the Kubernetes API and generates metrics | [source](https://github.com/charmed-kubernetes/kube-state-metrics-operator.git) | [docs](https://charmhub.io/kube-state-metrics/docs)  | [bugs](https://bugs.launchpad.net/kube-state-metrics-operator) |
-| [kubernetes-autoscaler](https://charmhub.io/kubernetes-autoscaler) | automatically scales up and down a kubernetes cluster | [source](https://github.com/charmed-kubernetes/charm-kubernetes-autoscaler.git) | [docs](https://charmhub.io/kubernetes-autoscaler/docs)  | [bugs](https://bugs.launchpad.net/charm-kubernetes-autoscaler) |
 | [kubernetes-e2e](https://charmhub.io/kubernetes-e2e) | End-to-end (e2e) tests for Kubernetes | [source](https://github.com/charmed-kubernetes/charm-kubernetes-e2e.git) | [docs](https://charmhub.io/kubernetes-e2e/docs)  | [bugs](https://bugs.launchpad.net/charm-kubernetes-e2e) |
 | [kubernetes-metrics-server](https://charmhub.io/kubernetes-metrics-server) | Exposes core Kubernetes metrics via metrics API | [source](https://github.com/charmed-kubernetes/kubernetes-metrics-server-operator.git) | [docs](https://charmhub.io/kubernetes-metrics-server/docs)  | [bugs](https://bugs.launchpad.net/charm-kubernetes-metrics-server) |
 | [kubevirt](https://charmhub.io/kubevirt) | Deploys KubeVirt into a Charmed-Kubernetes cluster | [source](https://github.com/charmed-kubernetes/charm-kube-virt.git) | [docs](https://charmhub.io/kubevirt/docs)  | [bugs](https://bugs.launchpad.net/charm-kubevirt) |
@@ -116,7 +112,6 @@ to extend the capabilities of your Kubernetes cluster.
 | [volcano-admission](https://charmhub.io/volcano-admission) | Volcano is a batch system built on Kubernetes. | [source](https://github.com/charmed-kubernetes/charm-volcano) | [docs](https://discourse.charmhub.io/t/volcano-docs-index/9600)  | [bugs](https://bugs.launchpad.net/charm-volcano) |
 | [volcano-controllers](https://charmhub.io/volcano-controllers) | Volcano is a batch system built on Kubernetes. | [source](https://github.com/charmed-kubernetes/charm-volcano) | [docs](https://discourse.charmhub.io/t/volcano-docs-index/9600)  | [bugs](https://bugs.launchpad.net/charm-volcano) |
 | [volcano-scheduler](https://charmhub.io/volcano-scheduler) | Volcano is a batch system built on Kubernetes. | [source](https://github.com/charmed-kubernetes/charm-volcano) | [docs](https://discourse.charmhub.io/t/volcano-docs-index/9600)  | [bugs](https://bugs.launchpad.net/charm-volcano) |
-
 
 ## Images
 

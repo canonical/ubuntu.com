@@ -54,8 +54,8 @@ release. These charms are maintained by the Charmed Kubernetes team.
 | [kubernetes-control-plane](https://charmhub.io/kubernetes-control-plane) | The Kubernetes control plane | [source](https://github.com/charmed-kubernetes/charm-kubernetes-control-plane.git) | [docs](https://charmhub.io/kubernetes-control-plane/docs) | [bugs](https://bugs.launchpad.net/charm-kubernetes-control-plane) |
 | [kubernetes-worker](https://charmhub.io/kubernetes-worker) | The workload bearing units of a kubernetes cluster | [source](https://github.com/charmed-kubernetes/charm-kubernetes-worker.git) | [docs](https://charmhub.io/kubernetes-worker/docs) | [bugs](https://bugs.launchpad.net/charm-kubernetes-worker) |
 
-
 ## CNI charms
+
 These are the CNI charms also supported by Charmed Kubernetes (Calico
  is the default CNI and is included in the core charms above)
 
@@ -69,7 +69,6 @@ These are the CNI charms also supported by Charmed Kubernetes (Calico
 | [sriov-cni](https://charmhub.io/sriov-cni) | Attach SR-IOV Virtual Functions (VFs) directly to pods | [source](https://github.com/charmed-kubernetes/charm-sriov-cni.git) | [docs](https://charmhub.io/sriov-cni/docs) | [bugs](https://bugs.launchpad.net/charm-sriov-cni) |
 | [sriov-network-device-plugin](https://charmhub.io/sriov-network-device-plugin) | Enable SR-IOV support | [source](https://github.com/charmed-kubernetes/charm-sriov-network-device-plugin.git) | [docs](https://charmhub.io/sriov-network-device-plugin/docs) | [bugs](https://bugs.launchpad.net/charm-sriov-network-device-plugin) |
 | [tigera-secure-ee](https://charmhub.io/tigera-secure-ee) | Tigera Secure Enterprise Edition | [source](https://github.com/charmed-kubernetes/layer-tigera-secure-ee.git) | [docs](https://charmhub.io/tigera-secure-ee/docs) | [bugs](https://bugs.launchpad.net/charm-tigera-secure-ee) |
-
 
 ## Integrator charms
 
@@ -103,7 +102,6 @@ enables Charmed Kubernetes to use ceph as a storage backend. | [source](https://
 | [kata](https://charmhub.io/kata) | Kata untrusted container runtime subordinate | [source](https://github.com/charmed-kubernetes/charm-kata.git) | [docs](https://charmhub.io/kata/docs)  | [bugs](https://bugs.launchpad.net/charm-kata) |
 | [keepalived](https://charmhub.io/keepalived) | Failover and monitoring daemon for LVS clusters | [source](https://github.com/charmed-kubernetes/charm-keepalived.git) | [docs](https://charmhub.io/keepalived/docs)  | [bugs](https://bugs.launchpad.net/charm-keepalived) |
 | [kube-state-metrics](https://charmhub.io/kube-state-metrics) | a service that listens to the Kubernetes API and generates metrics | [source](https://github.com/charmed-kubernetes/kube-state-metrics-operator.git) | [docs](https://charmhub.io/kube-state-metrics/docs)  | [bugs](https://bugs.launchpad.net/kube-state-metrics-operator) |
-| [kubernetes-autoscaler](https://charmhub.io/kubernetes-autoscaler) | automatically scales up and down a kubernetes cluster | [source](https://github.com/charmed-kubernetes/charm-kubernetes-autoscaler.git) | [docs](https://charmhub.io/kubernetes-autoscaler/docs)  | [bugs](https://bugs.launchpad.net/charm-kubernetes-autoscaler) |
 | [kubernetes-e2e](https://charmhub.io/kubernetes-e2e) | End-to-end (e2e) tests for Kubernetes | [source](https://github.com/charmed-kubernetes/charm-kubernetes-e2e.git) | [docs](https://charmhub.io/kubernetes-e2e/docs)  | [bugs](https://bugs.launchpad.net/charm-kubernetes-e2e) |
 | [kubernetes-metrics-server](https://charmhub.io/kubernetes-metrics-server) | Exposes core Kubernetes metrics via metrics API | [source](https://github.com/charmed-kubernetes/kubernetes-metrics-server-operator.git) | [docs](https://charmhub.io/kubernetes-metrics-server/docs)  | [bugs](https://bugs.launchpad.net/charmed-kubernetes) |
 | [metallb-controller](https://charmhub.io/metallb-controller) | Controller charm for the metallb loadbalancer | [source](https://github.com/charmed-kubernetes/metallb-operator.git) | [docs](https://charmhub.io/metallb-controller/docs)  | [bugs](https://bugs.launchpad.net/operator-metallb) |
