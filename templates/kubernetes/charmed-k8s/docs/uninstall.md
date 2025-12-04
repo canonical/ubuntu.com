@@ -19,7 +19,7 @@ This guide describes how to uninstall **Charmed Kubernetes**.
 If you have other resources inside the model other than Charmed Kubernetes that you would like to preserve, you can proceed with removing the Charmed Kubernetes applications one by one. For detailed information you can see how to [Remove an Application][remove-an-application].
 
 ## Remove the model
-Alternatively, you can destroy the model and the resources residing in it, including Charmed Kubernetes. 
+Alternatively, you can destroy the model and the resources residing in it, including Charmed Kubernetes.
 ```bash
 juju destroy-model charmed-kubernetes --destroy-storage
 ```
@@ -48,6 +48,6 @@ See [Destroy a Model][destroy-a-model] for more details.
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/how-to-install.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-    <p>See the guide to <a href="/kubernetes/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
+    <p>See the guide to <a href="/kubernetes/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack  channel</a>.</p>
   </div>
 </div>

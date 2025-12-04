@@ -13,8 +13,8 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-The [docker-registry][registry-charm] charm deploys a local image registry 
-for your cluster, taking care of the storage and distribution of 
+The [docker-registry][registry-charm] charm deploys a local image registry
+for your cluster, taking care of the storage and distribution of
 container images. There are a few reasons why this may be a useful option
 for your cluster:
 
@@ -23,9 +23,9 @@ for your cluster:
    is controlled, expensive or otherwise problematic).
 -  Providing images required by workloads running on the cluster.
 
-When deployed and related to the cluster as described below, this 
+When deployed and related to the cluster as described below, this
 registry will be checked first for any image requests, so it can be used
-in addition to public registries. For more details of the mechanics of 
+in addition to public registries. For more details of the mechanics of
 the Docker Registry, see the
 [upstream documentation at https://docs.docker.com/registry][upstream-registry].
 
@@ -142,7 +142,7 @@ the [container-images.txt][container-images-txt] document. This is a
 comprehensive list sorted by release; not all images are required for all
 deployments. Take note of the images required by your deployment that will
 need to be hosted in your private registry. A list of images required by
-a specific release is also included on the 'components' page in the 
+a specific release is also included on the 'components' page in the
 documentation, for example, the list for the 1.24 release is located on the
 [1.24 components page][1.24]
 
@@ -193,7 +193,7 @@ juju config kubernetes-control-plane image-registry=$REGISTRY
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/docker-registry.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
+    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack  channel</a>.</p>
   </div>
 </div>
 

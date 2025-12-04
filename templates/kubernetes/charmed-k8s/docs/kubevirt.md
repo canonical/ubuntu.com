@@ -26,9 +26,9 @@ This work is based on the upstream project [kubevirt.io][upstream].
 
 ## Deploying the kubevirt charms
 
-### Prerequisites 
+### Prerequisites
 * The [kubevirt charm][charmhub] is deployed as a subordinate to the Kubernetes Worker
-* These instructions assume you have a cluster created with Juju and named `charmed-kubernetes`. 
+* These instructions assume you have a cluster created with Juju and named `charmed-kubernetes`.
     - Please adjust the commands given appropriately if you have used a different name.
 * kubevirt requires that the control-plane allows for privileged containers:
 ```bash
@@ -89,6 +89,6 @@ juju integrate kubevirt:kube-control kubernetes-control-plane
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/kubevirt.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
+    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack  channel</a>.</p>
   </div>
 </div>
