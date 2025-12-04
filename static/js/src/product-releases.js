@@ -180,28 +180,31 @@ selectorForm.addEventListener("submit", (event) => {
 });
 
 function initStickyHeader() {
-  const desktopTable = document.querySelector(".is-desktop");
-  if (!desktopTable) return;
+  const stickyTables = document.querySelectorAll(".js-sticky-table");
+  if (!stickyTables.length) return;
 
-  const thead = desktopTable.querySelector("thead");
-  if (!thead) return;
+  stickyTables.forEach((table) => {
+    const thead = table.querySelector("thead");
+    if (!thead) return;
 
-  const updateHeaderShadow = () => {
-    const computed = getComputedStyle(thead);
-    const stickyTop = parseFloat(computed.top) || 0;
-    const rect = thead.getBoundingClientRect();
+    const updateHeaderShadow = () => {
+      const computed = getComputedStyle(thead);
+      const stickyTop = parseFloat(computed.top) || 0;
+      const rect = thead.getBoundingClientRect();
 
-    // Sticky when thead has reached its sticky offset but still in view
-    const isSticky =
-      rect.top <= stickyTop + 1 && // at or above sticky top
-      rect.bottom > stickyTop + 1; // header still visible
+      // Sticky when thead has reached its sticky offset but still in view
+      const isSticky =
+        rect.top <= stickyTop + 1 && // at or above sticky top
+        rect.bottom > stickyTop + 1; // header still visible
 
-    thead.classList.toggle("is-sticky", isSticky);
-  };
+      thead.classList.toggle("is-sticky", isSticky);
+    };
 
-  window.addEventListener("scroll", updateHeaderShadow, { passive: true });
-  window.addEventListener("resize", updateHeaderShadow);
-  updateHeaderShadow();
+    window.addEventListener("scroll", updateHeaderShadow, { passive: true });
+    window.addEventListener("resize", updateHeaderShadow);
+
+    updateHeaderShadow();
+  });
 }
 
 function initScrollFade() {

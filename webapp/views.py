@@ -1741,7 +1741,12 @@ def build_release_cycle_view():
                 dt = datetime.strptime(raw, "%Y-%m-%d").date()
                 formatted = dt.strftime("%b %Y")
                 is_past = dt < date.today()
-            except Exception:
+            except ValueError:
+                formatted = raw
+            except Exception as e:
+                logging.error(
+                    f"Unexpected error in format_date: {e}", exc_info=True
+                )
                 formatted = raw
 
         return {
@@ -1781,8 +1786,8 @@ def build_release_cycle_view():
 
                 continue
 
-            # catch-all fallback: treat as active
-            return False
+            # Raw date or notes are always expected per data source
+            continue
 
         return True
 
@@ -1839,41 +1844,6 @@ def build_release_cycle_view():
                 or deployment.get("slug") == release_identifier
             ):
                 return deployment
-        return None
-
-    def get_versions_for_release(data, product_key, release_name):
-        """Return list of version dicts for (product, release type name)."""
-
-        deployment = get_deployment(data, product_key, release_name)
-        if not deployment:
-            return []
-
-        shaped = [shape_version(v) for v in deployment.get("versions", [])]
-
-        # Filter out expired versions
-        filtered = [
-            version for version in shaped if not version_is_expired(version)
-        ]
-
-        return filtered
-
-    def get_selected_version_data(data, product_key, release_name, version):
-        """Return a dict with key details for the selected version."""
-
-        deployment = get_deployment(data, product_key, release_name)
-        if not deployment:
-            return None
-
-        for version_dict in deployment.get("versions", []):
-            if str(version_dict.get("release")) == str(version):
-                shaped = shape_version(version_dict)
-
-                # Prevent selecting an expired version
-                if version_is_expired(shaped):
-                    return None
-
-                return shaped
-
         return None
 
     def shape_version(version_dict):

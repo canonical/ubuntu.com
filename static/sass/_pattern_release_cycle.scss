@@ -1,5 +1,10 @@
 // Styles for /about/release-cycle page
 @mixin ubuntu-p-release-cycle {
+  // Local colors
+  $color-ubuntu-purple: #772953;
+  $color-grey: #808080;
+  $color-light-grey: #cccccc;
+
   .release-cycle-table {
     border-collapse: collapse;
     /* stylelint-disable no-descending-specificity */
@@ -69,7 +74,7 @@
         position: sticky;
         top: 3.4rem;
         z-index: 3;
-        background: #f3f3f3;
+        background: $color-paper;
         box-shadow: none;
         transition: box-shadow 0.2s ease;
       }
@@ -121,7 +126,11 @@
         transition: opacity 0.2s ease;
 
         // Fade from transparent to page background
-        background: linear-gradient(to right, rgba(#f3f3f3, 0) 0%, #f3f3f3 75%);
+        background: linear-gradient(
+          to right,
+          rgba($color-paper, 0) 0%,
+          $color-paper 75%
+        );
       }
 
       &.is-at-end::after {
@@ -134,7 +143,7 @@
   .p-release-chip {
     @extend .p-chip;
 
-    background-color: #000;
+    background-color: $color-x-dark;
     margin-left: auto;
     margin-bottom: 0;
     display: inline-flex;
@@ -171,16 +180,16 @@
         font-size: 1.8em;
       }
       &:nth-child(1)::before {
-        color: #772953;
+        color: $color-ubuntu-purple;
       }
       &:nth-child(2)::before {
         color: $color-accent;
       }
       &:nth-child(3)::before {
-        color: #808080;
+        color: $color-grey;
       }
       &:nth-child(4)::before {
-        color: #cccccc;
+        color: $color-light-grey;
       }
 
       // Keep chip aligned second list item
@@ -214,9 +223,9 @@
       transform: translate(0.5rem, -4%);
       max-width: min(18rem, calc(100vw - 2rem));
 
-      background-color: #fff;
+      background-color: $color-x-light;
       border: 1px solid rgba(0, 0, 0, 0.1) !important;
-      color: #000;
+      color: $color-x-dark;
       white-space: normal;
       width: 18rem;
       padding: 16px;
@@ -247,7 +256,7 @@
         font-size: 1rem;
         opacity: 0.6;
 
-        background-image: vf-icon-close-url(#000000);
+        background-image: vf-icon-close-url($color-x-dark);
 
         &:hover {
           opacity: 1;
@@ -309,5 +318,15 @@
   .p-button--positive.is-processing {
     width: auto;
     height: auto;
+  }
+
+  .u-horizontal-negative-nudge {
+    margin-left: -0.3rem;
+  }
+
+  .p-header-subtext {
+    font-weight: 400;
+    max-width: none;
+    text-transform: none;
   }
 }
