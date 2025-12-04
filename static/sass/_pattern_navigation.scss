@@ -47,6 +47,18 @@ $navigation-height: 3rem;
     }
   }
 
+  // Fix account dropdown position on larger screens
+  @media (min-width: $breakpoint-navigation-threshold) {
+    .p-navigation__item--dropdown-toggle#canonical-login {
+      position: relative;
+    }
+
+    .p-navigation__dropdown#canonical-login-content-mobile {
+      position: absolute;
+      right: 0;
+    }
+  }
+
   .p-navigation--sliding {
     position: sticky;
     top: 0;
@@ -187,11 +199,6 @@ $navigation-height: 3rem;
             .p-navigation__dropdown {
               height: auto;
               min-width: 10rem;
-              right: 3rem;
-            }
-
-            #canonical-login-content-mobile {
-              right: unset;
             }
           }
 
@@ -390,6 +397,10 @@ $navigation-height: 3rem;
         padding-left: $row-margin-small;
       }
     }
+  }
+
+  #navigation .p-navigation__banner {
+    height: unset;
   }
 
   .p-navigation--sliding.has-menu-open {
