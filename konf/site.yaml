@@ -55,7 +55,7 @@ env:
     secretKeyRef:
       key: auth-consumer
       name: launchpad-imagebuild
-
+  
   - name: MARKETO_API_URL
     value: https://066-EOV-335.mktorest.com
 
@@ -150,7 +150,7 @@ env:
     secretKeyRef:
       key: app-secret
       name: proctor360
-
+      
   - name: PROCTOR360_APP_ID
     secretKeyRef:
       key: app-id
@@ -160,6 +160,21 @@ env:
     secretKeyRef:
       key: secret
       name: sitemaps
+
+  - name: WORDPRESS_APPLICATION_PASSWORD
+    secretKeyRef:
+      key: wordpress-application-password
+      name: wordpress-api
+
+  - name: WORDPRESS_USERNAME
+    secretKeyRef:
+      key: wordpress-username
+      name: wordpress-api
+
+  - name: GITHUB_TOKEN
+    secretKeyRef:
+      key: GITHUB_TOKEN
+      name: github-products-api
 
 memoryLimit: 512Mi
 
@@ -206,7 +221,7 @@ production:
 
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
-
+        
         - name: WORDPRESS_APPLICATION_PASSWORD
           secretKeyRef:
             key: wordpress-application-password
@@ -226,7 +241,7 @@ production:
       env:
         - name: HTTPS_PROXY
           value: http://squid.ps6.internal:3128
-
+        
         - name: HTTP_PROXY
           value: http://squid.ps6.internal:3128
 
@@ -317,7 +332,7 @@ production:
           secretKeyRef:
             key: api-key
             name: trueability
-
+        
         - name: PROCTOR360_BASE_URL
           value: https://prod1ext.proctor360.com
 
@@ -325,15 +340,15 @@ production:
           secretKeyRef:
             key: app-secret
             name: proctor360
-
+            
         - name: PROCTOR360_APP_ID
           secretKeyRef:
             key: app-id
             name: proctor360
-
+        
         - name: MARKETO_API_URL
           value: https://066-EOV-335.mktorest.com
-
+        
         - name: MARKETO_API_CLIENT
           secretKeyRef:
             key: api_client
@@ -343,7 +358,7 @@ production:
           secretKeyRef:
             key: api_secret
             name: marketo
-
+      
         - name: CREDLY_URL
           value: https://api.credly.com/v1
 
@@ -442,10 +457,18 @@ production:
         ]
       service_name: ubuntu-com-security-api
 
-    - paths: [/security/notices\.json, /security/notices/.*\.json]
+    - paths:
+        [
+          /security/notices\.json,
+          /security/notices/.*\.json,
+        ]
       service_name: ubuntu-com-security-api-notices
 
-    - paths: [/security/flat/notices\.json, /security/flat/notices/.*\.json]
+    - paths:
+        [
+          /security/flat/notices\.json,
+          /security/flat/notices/.*\.json,
+        ]
       service_name: ubuntu-com-security-api-flat-notices
 
     - paths: [/security/updates/.*]
@@ -742,7 +765,7 @@ staging:
       secretKeyRef:
         key: app-secret
         name: proctor360
-
+        
     - name: PROCTOR360_APP_ID
       secretKeyRef:
         key: app-id
@@ -833,13 +856,13 @@ staging:
       env:
         - name: HTTPS_PROXY
           value: http://squid.ps6.internal:3128
-
+        
         - name: HTTP_PROXY
           value: http://squid.ps6.internal:3128
 
         - name: NO_PROXY
           value: "10.24.0.132,10.24.0.23,.internal,ubuntu.com,.ubuntu.com,snapcraft.io,.snapcraft.io,jujucharms.com,.jujucharms.com,maas.io,.maas.io,conjure-up.io,.conjure-up.io,netplan.io,.netplan.io,canonical.com,.canonical.com,launchpad.net,.launchpad.net,linuxcontainers.org,.linuxcontainers.org,cloud-init.io,.cloud-init.io,vanillaframework.io,.vanillaframework.io,anbox-cloud.io,.anbox-cloud.io,juju.is,.juju.is,dqlite.io,.dqlite.io,charmhub.io,.charmhub.io,canonical.design,.canonical.design"
-
+        
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -929,7 +952,7 @@ staging:
           secretKeyRef:
             key: app-secret
             name: proctor360
-
+            
         - name: PROCTOR360_APP_ID
           secretKeyRef:
             key: app-id
@@ -1051,11 +1074,19 @@ staging:
           /security/updates/.*,
         ]
       service_name: ubuntu-com-security-api
-
-    - paths: [/security/notices\.json, /security/notices/.*\.json]
+    
+    - paths:
+       [
+          /security/notices\.json,
+          /security/notices/.*\.json,
+       ]
       service_name: ubuntu-com-security-api-notices
 
-    - paths: [/security/flat/notices\.json, /security/flat/notices/.*\.json]
+    - paths:
+        [
+          /security/flat/notices\.json,
+          /security/flat/notices/.*\.json,
+        ]
       service_name: ubuntu-com-security-api-flat-notices
 
     - paths: [/security]
@@ -1238,7 +1269,7 @@ demo:
       secretKeyRef:
         key: auth-consumer
         name: launchpad-imagebuild
-
+    
     - name: MARKETO_API_URL
       value: https://066-EOV-335.mktorest.com
 
@@ -1298,7 +1329,7 @@ demo:
       secretKeyRef:
         key: app-secret
         name: proctor360
-
+        
     - name: PROCTOR360_APP_ID
       secretKeyRef:
         key: app-id
@@ -1328,12 +1359,7 @@ demo:
         name: discourse-api
 
     - name: FLASK_ENV
-      value: "demo"
-
-    - name: GITHUB_TOKEN
-      secretKeyRef:
-        key: GITHUB_TOKEN
-        name: github-products-api
+      value: "demo"    
 
     - name: WORDPRESS_APPLICATION_PASSWORD
       secretKeyRef:
@@ -1347,3 +1373,8 @@ demo:
 
     - name: CANONICAL_CLA_API_URL
       value: https://cla.staging.canonical.com
+    
+    - name: GITHUB_TOKEN
+      secretKeyRef:
+        key: GITHUB_TOKEN
+        name: github-products-api
