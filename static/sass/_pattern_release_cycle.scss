@@ -1,0 +1,332 @@
+// Styles for /about/release-cycle page
+@mixin ubuntu-p-release-cycle {
+  // Local colors
+  $color-ubuntu-purple: #772953;
+  $color-grey: #808080;
+  $color-light-grey: #cccccc;
+
+  .release-cycle-table {
+    border-collapse: collapse;
+    /* stylelint-disable no-descending-specificity */
+    thead tr:first-child th {
+      border-bottom: none !important;
+    }
+
+    // Left outer edge for the Pro block
+    tbody th:nth-child(3),
+    tbody td:nth-child(3),
+    thead tr:nth-child(2) th:nth-child(3) {
+      box-shadow: inset 1px 0 0 rgba($color-brand, 0.5);
+    }
+
+    // Right outer edge for the Pro block
+    tbody th:nth-child(5),
+    tbody td:nth-child(5),
+    thead tr:nth-child(2) th:nth-child(5) {
+      box-shadow: inset -1px 0 0 rgba($color-brand, 0.5);
+    }
+
+    // Top-level heading borders for Pro columns
+    thead tr:first-child th:nth-child(3) {
+      box-shadow:
+        inset 0 1px 0 rgba($color-brand, 0.5),
+        // top edge
+        inset 1px 0 0 rgba($color-brand, 0.5),
+        // left edge
+        inset -1px 0 0 rgba($color-brand, 0.5); // right edge
+    }
+
+    // Bottom border for center Pro column
+    tbody tr:last-child td:nth-child(4) {
+      box-shadow: inset 0 -1px 0 rgba($color-brand, 0.5); // bottom edge
+    }
+
+    // Closing bottom edges for Pro block
+    tbody tr:last-child td:nth-child(3) {
+      box-shadow:
+        inset 1px 0 0 rgba($color-brand, 0.5),
+        // left edge
+        inset 0 -1px 0 rgba($color-brand, 0.5); // bottom edge
+    }
+
+    // Closing bottom edge and right edge of the Pro block
+    tbody tr:last-child td:nth-child(5) {
+      box-shadow:
+        inset -1px 0 0 rgba($color-brand, 0.5),
+        // right edge
+        inset 0 -1px 0 rgba($color-brand, 0.5); // bottom edge
+    }
+
+    thead tr:nth-child(2) th {
+      border-bottom: 1px solid var(--vf-color-border-low-contrast);
+    }
+
+    // Background fill for Ubuntu Pro columns
+    th:nth-child(n + 3):nth-child(-n + 5),
+    td:nth-child(n + 3):nth-child(-n + 5) {
+      background-color: rgba($color-brand, 0.05);
+    }
+    /* stylelint-enable no-descending-specificity */
+
+    // Sticky header styles for desktop/tablet table
+    @media screen and (min-width: $breakpoint-small) {
+      thead {
+        position: sticky;
+        top: 3.4rem;
+        z-index: 3;
+        background: $color-paper;
+        box-shadow: none;
+        transition: box-shadow 0.2s ease;
+      }
+
+      thead th {
+        background: inherit;
+        border-bottom: 1px solid var(--vf-color-border-default);
+        transition: border-bottom-color 0.2s ease;
+      }
+
+      thead.is-sticky {
+        box-shadow: 0px 1.5rem 1rem -15px rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    @media screen and (max-width: $breakpoint-large) {
+      // Right border on column 3 for medium screens and smaller
+      tbody td:nth-child(3) {
+        border-right: 1px solid rgba($color-brand, 0.5);
+      }
+    }
+  }
+
+  .release-cycle-table-scroll {
+    padding-top: 1.5rem;
+
+    // Small screen horizontal scroll
+    @media screen and (max-width: $breakpoint-small) {
+      position: relative; // gradient anchor
+
+      .release-cycle-table-scroll-inner {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .release-cycle-table {
+        min-width: 40rem;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 3.5rem;
+        height: 100%;
+        pointer-events: none;
+        opacity: 1;
+        transition: opacity 0.2s ease;
+
+        // Fade from transparent to page background
+        background: linear-gradient(
+          to right,
+          rgba($color-paper, 0) 0%,
+          $color-paper 75%
+        );
+      }
+
+      &.is-at-end::after {
+        opacity: 0; // hide fade when fully scrolled
+      }
+    }
+  }
+
+  /* stylelint-disable no-descending-specificity */
+  .p-release-chip {
+    @extend .p-chip;
+
+    background-color: $color-x-dark;
+    margin-left: auto;
+    margin-bottom: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    .p-chip__lead + .p-chip__value::before {
+      content: "";
+      margin-left: 0.25rem;
+    }
+
+    .p-chip__lead img {
+      display: block;
+    }
+
+    .p-chip__value {
+      color: white;
+    }
+  }
+  /* stylelint-enable no-descending-specificity */
+
+  .p-release-cycle-legend {
+    @extend .p-list--divided;
+
+    > li {
+      // Layout for text + chip
+      align-items: flex-start;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+
+      // Bullet styles
+      &::before {
+        font-size: 1.8em;
+      }
+      &:nth-child(1)::before {
+        color: $color-ubuntu-purple;
+      }
+      &:nth-child(2)::before {
+        color: $color-accent;
+      }
+      &:nth-child(3)::before {
+        color: $color-grey;
+      }
+      &:nth-child(4)::before {
+        color: $color-light-grey;
+      }
+
+      // Keep chip aligned second list item
+      &:nth-child(1) .p-release-chip {
+        margin-top: 2rem;
+      }
+    }
+  }
+
+  .p-release-tooltip {
+    @extend .p-tooltip--btm-right;
+
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent !important;
+    position: relative;
+
+    .p-tooltip__message {
+      // Remove tooltip arrow
+      &::before {
+        content: none;
+        border: none;
+        display: none;
+      }
+
+      // Tooltip message positioning
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      transform: translate(0.5rem, -4%);
+      max-width: min(18rem, calc(100vw - 2rem));
+
+      background-color: $color-x-light;
+      border: 1px solid rgba(0, 0, 0, 0.1) !important;
+      color: $color-x-dark;
+      white-space: normal;
+      width: 18rem;
+      padding: 16px;
+
+      .p-tooltip__header {
+        position: relative;
+      }
+
+      .p-release-tooltip__heading {
+        margin-bottom: 0.5rem !important;
+        padding: 0 !important;
+      }
+
+      .p-release-tooltip__subheading {
+        margin-bottom: 0 !important;
+        padding-top: 0;
+      }
+
+      hr {
+        background-color: rgba($color-x-dark, 0.1);
+      }
+
+      .p-icon--close {
+        position: absolute;
+        top: 0.2rem;
+        right: 0.2rem;
+        cursor: pointer;
+        font-size: 1rem;
+        opacity: 0.6;
+
+        background-image: vf-icon-close-url($color-x-dark);
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    &.is-tooltip-closed {
+      .p-tooltip__message {
+        display: none !important;
+      }
+
+      &:hover .p-tooltip__message,
+      &:focus-within .p-tooltip__message {
+        display: none !important;
+      }
+    }
+  }
+
+  /* stylelint-disable no-descending-specificity */
+  .p-release-card {
+    @extend .p-card;
+
+    .p-list > li {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .p-release-card__label {
+      max-width: 70%;
+    }
+
+    .p-release-chip {
+      flex-shrink: 0;
+    }
+  }
+  /* stylelint-enable no-descending-specificity */
+
+  .p-product-selector-form {
+    .p-form-validation__message {
+      display: none;
+    }
+
+    .p-form-validation.is-error .p-form-validation__message {
+      display: block;
+    }
+
+    select {
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+    }
+  }
+
+  .p-button--positive.is-processing {
+    width: auto;
+    height: auto;
+  }
+
+  .u-horizontal-negative-nudge {
+    margin-left: -0.3rem;
+  }
+
+  .p-header-subtext {
+    font-weight: 400;
+    max-width: none;
+    text-transform: none;
+  }
+}

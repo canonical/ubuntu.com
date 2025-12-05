@@ -1,7 +1,7 @@
 {% extends "templates/one-column.html" %}
 
 {% block meta_copydoc %}
-  https://docs.google.com/document/d/1-l3B7AoyDoETaL80UhlfEWCVKmMWPdy3zoF5LpsGcYQ
+  https://docs.google.com/document/d/1EV5ckGXgPrIHg7joYMxZTqqZhzi51ekwlPjUt_dPbiQ
 {% endblock meta_copydoc %}
 
 {% block meta_description %}
@@ -10,344 +10,554 @@
 
 {% block title %}Ubuntu release cycle{% endblock %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+
 {% block content %}
 
-  <section class="p-strip is-deep">
-    <div class="row">
-      <div class="col-7">
-        <h1>The Ubuntu lifecycle and release cadence</h1>
-        <p>
-          Canonical publishes new releases of Ubuntu, OpenStack and Kubernetes on a regular cadence, enabling the community, businesses and developers to plan their roadmaps with the certainty of access to newer open source upstream capabilities.
-        </p>
-      </div>
-      <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
-        {{ image(url="https://assets.ubuntu.com/v1/ce518a18-CoF-2022_solid+O.svg",
-                alt="",
-                width="200",
-                height="200",
-                hi_def=True,
-                loading="auto",) | safe
-        }}
-      </div>
-    </div>
-  </section>
+  {% call(slot) vf_hero(
+    title_text="Know what's supported",
+    layout="50/50",
+    is_split_on_medium=true
+    ) -%}
+    {%- if slot == "description" -%}
+      <p>
+        Find out which versions of Ubuntu and Canonical products are supported, for how long, and what's best for your deployment &ndash; from LTS versions to available security coverage options.
+      </p>
+    {%- endif -%}
+  {% endcall -%}
 
-  <section class="p-strip u-no-padding">
-    <div class="u-fixed-width">
-      <nav class="p-tabs js-tabbed-content">
-        <ul class="p-tabs__list u-no-margin--bottom"
-            data-maintain-hash="true"
-            role="tablist">
-          <li class="p-tabs__item" role="presentation">
-            <a href="#ubuntu"
-               class="p-tabs__link"
-               id="ubuntu-tab"
-               role="tab"
-               aria-controls="ubuntu-release-cycle"
-               aria-selected="true">Ubuntu</a>
-          </li>
-          <li class="p-tabs__item" role="presentation">
-            <a href="#ubuntu-kernel-release-cycle"
-               class="p-tabs__link"
-               id="ubuntu-kernel-release-cycle-tab"
-               role="tab"
-               aria-controls="ubuntu-kernel-release-cycle">Ubuntu kernel</a>
-          </li>
-          <li class="p-tabs__item" role="presentation">
-            <a href="#openstack-release-cycle"
-               class="p-tabs__link"
-               id="openstack-release-cycle-tab"
-               role="tab"
-               aria-controls="openstack-release-cycle">OpenStack</a>
-          </li>
-          <li class="p-tabs__item" role="presentation">
-            <a href="#canonical-kubernetes-release-cycle"
-               class="p-tabs__link"
-               id="canonical-kubernetes-release-cycle-tab"
-               role="tab"
-               aria-controls="canonical-kubernetes-release-cycle">Kubernetes</a>
-          </li>
-          <li class="p-tabs__item" role="presentation">
-            <a href="#canonical-ceph-release-cycle"
-               class="p-tabs__link"
-               id="canonical-ceph-release-cycle-tab"
-               role="tab"
-               aria-controls="canonical-ceph-release-cycle">Ceph</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </section>
+  {{ vf_basic_section(
+    title={"text": "Find out your current coverage"},
+    items=[
+      {
+        "type": "description",
+        "item": {
+          "type": "text",
+          "content": "Not sure if your product version is still supported? Let's walk through a few simple questions to help you find out."
+        }
+      }
+    ]
+  ) }}
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <form id="js-product-selector-form" class="p-product-selector-form">
+        <div class="grid-row">
+          <!-- Product select -->
+          <div class="grid-col-2 grid-col-medium-2">
+            <div class="p-form-validation" id="js-product-validation">
+              <label for="js-product-selector">Product</label>
+              <div class="p-form-validation__select-wrapper">
+                <select
+                  name="product"
+                  id="js-product-selector"
+                  aria-invalid="false"
+                  aria-describedby="js-product-validation-message"
+                  class="p-form-validation__input"
+                >
+                  <option value="">Select a product</option>
+                  {% for key, data in products_data.items() %}
+                    <option value="{{ key }}" {% if key == product %}selected{% endif %}>
+                      {{ data.product }}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <p class="p-form-validation__message" id="js-product-validation-message">
+                Please select a product.
+              </p>
+            </div>
+          </div>
+          <!-- Release select -->
+          <div class="grid-col-2 grid-col-medium-2">
+            <div class="p-form-validation" id="js-release-validation">
+              <label for="js-release-selector">Release type</label>
+              <div class="p-form-validation__select-wrapper">
+                <select
+                  name="release"
+                  id="js-release-selector"
+                  {% if not product %}disabled{% endif %}
+                  aria-invalid="false"
+                  aria-describedby="js-release-validation-message"
+                  class="p-form-validation__input"
+                >
+                  <option value="">Select a release</option>
 
-  <section class="p-tabs__content"
-           id="ubuntu-release-cycle"
-           role="tabpanel"
-           aria-labelledby="ubuntu-tab">
-    <div class="p-strip is-shallow">
-      <div class="u-fixed-width">
-        <h2>Long term support and interim releases</h2>
+                  {% if product in products_data %}
+                    {% for deployment in products_data[product]["deployment"] %}
+                      <option
+                        value="{{ deployment.slug }}"
+                        {% if deployment.slug == release_name %}selected{% endif %}
+                      >
+                        {{ deployment.name }}
+                      </option>
+                    {% endfor %}
+                  {% endif %}
+                </select>
+              </div>
+              <p class="p-form-validation__message" id="js-release-validation-message">
+                Please select a release type.
+              </p>
+            </div>
+          </div>
+          <!-- Version select -->
+          <div class="grid-col-2 grid-col-medium-2">
+            <div>
+              <label for="js-version-selector">Version</label>
+              <div class="p-form-validation__select-wrapper">
+                <select
+                  name="version"
+                  id="js-version-selector"
+                  {% if not versions %}disabled{% endif %}
+                  aria-invalid="false"
+                >
+                  <option value="all" {% if version == "all" %}selected{% endif %}>
+                    All versions
+                  </option>
 
-        <h3>Version numbers are YY.MM</h3>
-
-        <p>
-          Releases of Ubuntu get a development codename ('{{ releases.latest.name }}') and are versioned by the year and month of delivery - for example, Ubuntu {{ releases.latest.short_version }} was released in {{ releases.latest.release_date }}.
-        </p>
-
-        <p>
-          LTS or 'Long Term Support' releases are published every two years in April. LTS releases are the 'enterprise grade' releases of Ubuntu and are used the most. An estimated 95% of all Ubuntu installations are LTS releases.
-        </p>
-
-        <p>
-          Ubuntu LTS releases receive 5 years of standard security maintenance for all packages in the ‘Main’ repository. With an Ubuntu Pro subscription, you get access to Expanded Security Maintenance (ESM) covering security fixes for packages in both the ‘Main’ and ‘Universe’ repositories for 10 years.
-          <a href="/support">Phone and ticket support</a> is also available and can be optionally added on top of an Ubuntu Pro subscription, covering the same packages covered by ESM, for the same time frame.
-        </p>
-
-        <p>
-          The optional Legacy add-on to Ubuntu Pro expands security maintenance and support for an additional 5 years, resulting in 15 years of coverage overall.
-        </p>
-
-        <p>
-          Every six months between LTS versions, Canonical publishes an interim release of Ubuntu, with {{ releases.latest.short_version }} being the latest example. These are production-quality releases and are supported for 9 months, with sufficient time provided for users to update, but these releases do not receive the long-term commitment of LTS releases.
-        </p>
-      </div>
-
-      {% include "/about/release_cycles/ubuntu-eol.html" %}
-
-      <div class="u-fixed-width">
-        <p>ESM and phone and ticket support require Ubuntu Pro subscription.</p>
-        <p>
-          Interim releases will introduce new capabilities from Canonical and upstream open source projects, they serve as a proving ground for these new capabilities. Many developers run interim releases because they provide newer compilers or access to newer kernels and newer libraries, and they are often used inside rapid devops processes like CI/CD pipelines where the lifespan of an artefact is likely to be less than the support period of the interim release. Interim releases receive full security maintenance for 'main' during their lifespan.
-        </p>
-      </div>
-    </div>
-
-    <div class="p-strip--light is-shallow">
-      <div class="u-fixed-width">
-        <h2>Maintenance and security updates</h2>
-
-        <p>
-          The debs in Ubuntu are categorized by whether they are considered part of the base system ('main' and 'restricted' are in the base and 'universe' and 'multiverse' are not) and whether they are open source ('main' and 'universe' are, 'restricted' and 'multiverse' are not).
-        </p>
-
-        <table style="margin-top: 1rem;">
-          <thead>
-            <tr>
-              <th>&nbsp;</th>
-              <th scope="col">Ubuntu Base Packages</th>
-              <th scope="col">Community Packages</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <strong>Open Source</strong>
-              </td>
-              <td>main</td>
-              <td>universe</td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Not Open Source</strong>
-              </td>
-              <td>restricted</td>
-              <td>multiverse</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <p>
-          For each Ubuntu LTS release, Canonical maintains the Base Packages and provides security updates, including kernel
-          livepatching, and optional phone and ticket support, for a period of twelve years. The lifecycle consists of an initial
-          five-year standard security maintenance period for the ‘main’ repository, during which maintenance updates are publicly
-          available without a subscription, and five years of <a href="/security/esm">Expanded Security Maintenance (ESM)</a>.
-          Furthermore ESM also covers 10 years of security maintenance for the Universe repository, which is not provided outside
-          of Ubuntu Pro subscription. The full 10 year Ubuntu LTS lifecycle is available with an <a href="/pro">Ubuntu Pro
-          subscription</a> (free for personal use on up to 5 machines). Technical phone and ticket support is only available as an
-          add-on to an Ubuntu Pro subscription. At the end of the 10 year Ubuntu Pro period, a Legacy add-on can be purchased
-          to cover additional 5 years of the lifetime of Ubuntu LTS, giving a total of 15 years support and maintenance.
-        </p>
-
-        <p>To check the subscription status of your system, use this command:</p>
-
-        <div class="p-code-snippet">
-          <pre class="p-code-snippet__block--icon"><code>pro status</code></pre>
+                  {% for v in versions %}
+                    <option
+                      value="{{ v.release }}"
+                      {% if v.release == version %}selected{% endif %}
+                    >
+                      {{ v.release }}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <p class="p-form-validation__message" id="js-version-validation-message">
+                Please select a version.
+              </p>
+            </div>
+          </div>
+          <div class="grid-col-2 grid-col-medium-2">
+            <button
+              class="p-button--positive u-no-margin--bottom"
+              id="js-product-selector-submit"
+              disabled
+              style="margin-top: 2.5rem;">
+                <i class="p-icon--spinner u-animation--spin is-light u-hide"></i>
+                <span class="js-button-label">View coverage</span>
+            </button>
+          </div>
         </div>
-
-        <p>
-          The <a href="https://documentation.ubuntu.com/project/release-team/list-of-releases/">Ubuntu project documentation</a> has current information on previous and upcoming versions.
-        </p>
-      </div>
+      </form>
     </div>
+    <div class="u-fixed-width">
+      {% include "about/partials/_desktop-releases-table.html" %}
 
-    <div class="p-strip is-shallow">
-      <div class="u-fixed-width">
-        <h2>Release components - debs, snaps, images, containers</h2>
-
-        <p>
-          A release of Ubuntu is made through several different channels. What you consume will depend on where you are and what your interests happen to be.
-        </p>
-
-        <p>
-          The heart of Ubuntu is a collection of 'deb' packages which are tested and integrated so that they work well as a set. Debs are optimized for highly structured dependency management, enabling you to combine debs very richly while ensuring that the necessary software dependencies for each deb (themselves delivered as debs) are installed on your machine.
-        </p>
-
-        <p>
-          Ubuntu also supports 'snap' packages which are more suited for third-party applications and tools which evolve at their own speed, independently of Ubuntu. If you want to install a high-profile app like Firefox or a toolchain like the latest version of Golang, you probably want the snap because it will give you fresher versions and more control of the specific major versions you want to track.
-        </p>
-
-        <p>
-          Snaps each pick a 'base', for example, Ubuntu18 (corresponding to the set of minimal debs in Ubuntu 18.04 LTS). Nevertheless, the choice of base does not impact on your ability to use a snap on any of the supported Linux distributions or versions &mdash; it's a choice of the publisher and should be invisible to you as a user or developer.
-        </p>
-
-        <p>
-          A snap can be strictly confined, which means that it operates in a secure box with only predefined points of access to the rest of the system. For third-party applications, this means that you will have a very high level of confidence that the app can only see appropriate data that you have provided to it. Snaps can also be 'classic' which means that they behave more like debs, and can see everything on your system. You should make sure you have a high level of confidence in the publisher of any classic snap you install since a compromise or bad faith behavior in that code is not confined to the app itself.
-        </p>
-
-        <p>
-          It is also common to consume Ubuntu as an image on a public cloud, or as a container. Ubuntu is published by Canonical on all major public clouds, and the latest image for each LTS version will always include security updates rolled up to at most two weeks ago. You may benefit from installing newer updates than that, but the base image you boot on the cloud should always be the current one from Canonical to ensure that it is broadly up to date and the number of updates needed for full security is minimal.
-        </p>
-
-        <p>
-          Canonical also publishes a set of images and containers that you can download for use with VMware or other local hypervisors and private cloud technologies. These include standard Ubuntu images on the Docker Hub and standard images for use with LXD and MAAS. These images are also kept up to date, with the publication of rolled up security updated images on a regular cadence, and you should automate your use of the latest images to ensure consistent security coverage for your users.
-        </p>
-
-        <h2>Editions, Classic and Core</h2>
-
-        <p>
-          Each release of Ubuntu is available in minimal configurations which have the fewest possible packages installed: available in the installer for Server, Desktop and as separate cloud images. There are also multiple flavours of desktop Ubuntu corresponding to a number of desktop GUI preferences. All of these images are considered 'Classic' Ubuntu because they use debs as their base and may add snaps for specific packages or applications.
-        </p>
-
-        <p>
-          The Ubuntu Core image is an all-snap edition of Ubuntu. It is unusual in that the base operating system itself is delivered as a snap; that makes it suitable for embedded appliances where all the possible apps that might need to be installed are available as strictly confined snaps. Ubuntu Core is an appliance or embedded oriented edition of Ubuntu, not particularly comfortable for humans but highly reliable and secure for large-scale appliance deployments such as IoT and CPE in the telco world.
-        </p>
+      <div class="release-cycle-table-scroll">
+        <div class="release-cycle-table-scroll-inner">
+          {% include "about/partials/_tablet-mobile-releases-table.html" %} 
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="p-tabs__content"
-           id="ubuntu-kernel-release-cycle"
-           role="tabpanel"
-           aria-labelledby="ubuntu-kernel-release-cycle-tab">
-    <div class="p-strip is-shallow">
-      <div class="u-fixed-width">
-        <h2>Ubuntu kernel release cycle</h2>
-
-        <p>
-          Canonical maintains multiple kernel packages for each LTS version of Ubuntu, which serve different purposes. Several of the kernel packages address the need for kernels with specific performance priorities, for example, the low-latency kernel package. Others are focused on optimisation for a particular hypervisor, for example, the kernel packages which are named after public clouds. You are recommended to use the <a href="https://wiki.ubuntu.com/Kernel">detailed Ubuntu kernel guide</a> to select the best Ubuntu kernel for your application.
-        </p>
-
-        <p>
-          In general, all of the LTS kernel packages will use the same base version of the Linux kernel, for example, Ubuntu 20.04 LTS kernels typically used the 5.4 upstream Linux kernel as a base. Some cloud-specific kernels may use a newer version in order to benefit from improved mechanisms in performance or security that are material to that cloud. These kernels are all supported for the full life of their underlying LTS release.
-        </p>
-
-        <p>
-          In addition, the kernel versions from the subsequent four releases are made available on the latest LTS release of Ubuntu. So Ubuntu 18.04 LTS received the kernels from Ubuntu 18.10, 19.04, 19.10 and 20.04 LTS. These kernels use newer upstream versions and as a result, offer an easy path to newer features and newer classes of hardware for many users of Ubuntu. Note however that these kernels 'roll' which means that they jump every six months until the next LTS. Large scale deployments that adopt the 'hardware enablement' or HWE kernels should manage those transitions explicitly. These newer HWE kernels are accompanied by a collection of userspace tools closely tied to the kernel and hardware, specifically X11 display enablement on newer graphics cards.
-        </p>
-
-      </div>
-
-      {% include "/about/release_cycles/kernel-eol.html" %}
-
-      <div class="u-fixed-width">
-        <p>
-          For more information on previous and upcoming kernel releases please see the <a href="https://wiki.ubuntu.com/Kernel/LTSEnablementStack">Ubuntu LTS Enablement Stack wiki page</a>.
-        </p>
+  <section class="p-section--deep">
+    {{ vf_basic_section(
+      title={"text": "Canonical Ubuntu lifecycle
+            <br />
+            and release cadence key concepts"},
+      items=[
+        {
+          "type": "description",
+          "item": {
+            "type": "text",
+            "content": "Canonical publishes new releases of Ubuntu and other products in our portfolio on a regular cadence, enabling the community, businesses and developers to plan their roadmaps with the certainty of access to newer open source upstream capabilities."
+          }
+        }
+      ]
+    ) }}
+    <div class="grid-row">
+      <div class="grid-col-start-large-3 grid-col-6">
+        <div class="p-section--shallow">
+          <nav class="p-tabs js-tabbed-content">
+            <ul class="p-tabs__list u-no-margin--bottom"
+                data-maintain-hash="true"
+                role="tablist">
+              <li class="p-tabs__item" role="presentation">
+                <a class="p-tabs__link"
+                   href="#ubuntu-releases"
+                   id="ubuntu-releases-tab"
+                   role="tab"
+                   aria-controls="ubuntu-releases"
+                   aria-selected="true">Ubuntu releases</a>
+              </li>
+              <li class="p-tabs__item" role="presentation">
+                <a href="#repository-coverage"
+                   class="p-tabs__link"
+                   id="repository-coverage-tab"
+                   role="tab"
+                   aria-controls="repository-coverage">Repository coverage</a>
+              </li>
+              <li class="p-tabs__item" role="presentation">
+                <a href="#packaging-formats"
+                   class="p-tabs__link"
+                   id="packaging-formats-tab"
+                   role="tab"
+                   aria-controls="packaging-formats">Packaging formats</a>
+              </li>
+              <li class="p-tabs__item" role="presentation">
+                <a href="#editions-and-flavors"
+                   class="p-tabs__link"
+                   id="editions-and-flavors-tab"
+                   role="tab"
+                   aria-controls="editions-and-flavors">Editions and flavors</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="p-tabs__content" tabindex="0"
+             id="ubuntu-releases"
+             role="tabpanel"
+             aria-labelledby="ubuntu-releases-tab">
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Ubuntu release cycle</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>
+                  Ubuntu releases a new version every six months. Releases of Ubuntu get a development codename ('{{ releases.latest.name }}') and are versioned by the year and month of delivery &ndash; for example, Ubuntu {{ releases.latest.short_version }} was released in {{ releases.latest.release_date }}.
+                </p>
+                <p>
+                  Each version includes the latest features, updates, and security patches during its supported lifecycle.
+                </p>
+                <a href="https://wiki.ubuntu.com/Releases">
+                  The Ubuntu Releases wiki has current information on previous and upcoming versions&nbsp;&rsaquo;
+                </a>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted"/>
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Interim releases</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>
+                  Ubuntu's interim releases are designed for users and teams who move fast and need access to the latest kernels, languages, and toolchains. They provide cutting-edge features and hardware support every six months, but with only 9 months of updates. For long-term stability, production environments should use the LTS version, while interim releases suit those prioritizing speed and rapid feature testing.
+                </p>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted"/>
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">LTS releases</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>
+                  LTS are released every two years and receive 5 years of standard security maintenance.
+                </p>
+                <p>
+                  LTS releases are the go-to choice for users who value stability and extended support. These versions are security maintained for 5 years with CVE patches for packages in the Main repository. They are recommended for production environments, enterprises, and long-term projects.
+                </p>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted"/>
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Ubuntu Pro</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>
+                  Ubuntu Pro is Canonical's enhanced security and support subscription for Ubuntu systems. It includes up to 12 years of security coverage (ESM and Legacy add-on), Kernel Livepatch, Landscape, FIPS 140-2 certified packages, and CIS hardening, and optional enterprise-grade support.
+                </p>
+                <p>
+                  Ubuntu Pro subscriptions are free for personal use on up to five machines.
+                </p>
+                <div class="p-cta-block">
+                  <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-tabs__content" tabindex="0" id="repository-coverage" role="tabpanel" aria-labelledby="repository-coverage-tab">
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Ubuntu package categories</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>Ubuntu packages are grouped into four main categories: 'Main' and 'Restricted' (the base system), and 'Universe' and 'Multiverse' (community and extra packages). 'Main' and 'Universe' are open source, while 'Restricted' and 'Multiverse' contain some non-open source software.</p>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Expanded Security Maintenance (ESM)</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>
+                  ESM extends the life of LTS releases by providing 10 years of security updates for the 'Main' repository and also adds 10 years of security coverage for the 'Universe' repository.
+                </p>
+                <p>
+                  Available through Ubuntu Pro, it provides continued critical and high security patches after standard security maintenance ends for packages in Main, and for thousands of open-source packages in the Universe repository.
+                </p>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Support</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>
+                  Full phone and ticketing break and bug fix support is available for Ubuntu Main and Universe repositories and the full open source stack, from infrastructure to applications, with Ubuntu Pro + Support.
+                </p>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Legacy add-on</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>
+                  At the end of the 10 year ESM period, the Legacy add-on can be purchased to cover additional 5 years of the lifetime of Ubuntu LTS, giving a total of 15 years security maintenance and support for LTS releases.
+                </p>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <div class="u-fixed-width">
+            <h3 class="p-heading--5">Security and support coverage for LTS releases</h3>
+            <div class="u-hide--small u-hide--medium">
+              <div class="p-section--shallow">
+                {{ image(url="https://assets.ubuntu.com/v1/fb862411-chart.png",
+                  alt="Schematic representation of the maintenance and support window for Ubuntu LTS releases: five years of standard security maintenance, five years of Expanded Security Maintenance (ESM) through Ubuntu Pro, and five years of additional coverage with the Legacy add-on to Ubuntu Pro, with optional break/bug fix support throughout the 15 years.",
+                  width="2748",
+                  height="135",
+                  hi_def=True,
+                  loading="lazy"
+                  ) | safe
+                }}
+              </div>
+              <ul class="p-release-cycle-legend">
+                <li class="p-list__item has-bullet">
+                  <div>
+                    <p class="u-no-padding--top u-vertical-nudge">
+                      Standard Security Maintenance for packages in Main
+                    </p>
+                    Expanded Security Maintenance for packages in Universe
+                  </div>
+                  {% include "about/partials/_pro-chip.html" %}
+                </li>
+                <li class="p-list__item has-bullet">
+                  Expanded Security Maintenance for packages in Main and Universe 
+                  {% include "about/partials/_pro-chip.html" %}
+                </li>
+                <li class="p-list__item has-bullet">
+                  Break and bug fix support
+                  {% include "about/partials/_pro-chip.html" %}       
+                </li>
+                <li class="p-list__item has-bullet">
+                  Legacy add-on for security coverage and support
+                  {% include "about/partials/_pro-chip.html" %}
+                </li>
+              </ul>
+            </div>
+            <!-- Mobile cards -->
+            <div class="u-hide--large ">
+              <div class="p-release-card">
+                <h4 class="p-text--small-caps">1-5 years</h4>
+                <p class="p-text--small-caps">Security:</p>
+                <ul class="p-list">
+                  <li class="p-list__item">
+                    <span class="p-release-card__label">
+                      Standard Security Maintenance for packages in Main
+                    </span>
+                  </li>
+                  <li class="p-list__item">
+                    <span class="p-release-card__label">
+                      Expanded Security Maintenance for packages in Universe
+                    </span>
+                    {% include "about/partials/_pro-chip.html" %}
+                  </li>
+                </ul>
+                <hr class="p-rule--muted" />
+                <p class="p-text--small-caps">Support:</p>
+                <ul class="p-list">
+                  <li>
+                    <span class="p-release-card__label">
+                      Break fix and bug support
+                    </span>
+                    {% include "about/partials/_pro-chip.html" %}
+                  </li>
+                </ul>
+              </div>
+              <div class="p-release-card">
+                <h4 class="p-text--small-caps">6-10 years</h4>
+                <p class="p-text--small-caps">Security:</p>
+                <ul class="p-list">
+                  <li>
+                    <span class="p-release-card__label">
+                      Expanded Security Maintenance for packages in Universe
+                    </span>
+                    {% include "about/partials/_pro-chip.html" %}
+                  </li>
+                </ul>
+                <hr class="p-rule--muted" />
+                <p class="p-text--small-caps">Support:</p>
+                <ul class="p-list">
+                  <li>
+                    <span class="p-release-card__label">
+                      Break fix and bug support
+                    </span>
+                    {% include "about/partials/_pro-chip.html" %}
+                  </li>
+                </ul>
+              </div>
+              <div class="p-release-card">
+                <h4 class="p-text--small-caps">11-15 years</h4>
+                <p class="p-text--small-caps">Security:</p>
+                <ul class="p-list">
+                  <li>
+                    <span class="p-release-card__label">
+                      Legacy add-on for security coverage and support
+                    </span>
+                    {% include "about/partials/_pro-chip.html" %}
+                  </li>
+                </ul>
+                <hr class="p-rule--muted" />
+                <p class="p-text--small-caps">Support:</p>
+                <ul class="p-list">
+                  <li>
+                    <span class="p-release-card__label">
+                      Legacy coverage for break fix and bug support
+                    </span>
+                    {% include "about/partials/_pro-chip.html" %}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-tabs__content" tabindex="0" id="packaging-formats" role="tabpanel" aria-labelledby="packaging-formats-tab">
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Deb packages</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>At the core of every Ubuntu release is a collection of 'deb' packages. Carefully tested for compatibility, debs use structured dependency management so all necessary software is installed and works together seamlessly.</p>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Snap packages</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>Ubuntu supports 'snap' packages, ideal for apps and tools that update frequently and independently from the main system. Snaps offer access to the latest versions of popular software, with strong security and easy version control.</p>
+                <p>Snaps can run in a secure, confined environment with limited system access, or as 'classic' snaps with broader access &ndash; similar to debs. Choose snaps from trusted publishers, especially when using classic confinement.</p>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Charms</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>Charms are software operators &ndash; business logic encapsulated in reusable software packages that automate every aspect of an application's life.</p>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Rocks</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>Rocks are minimal, optimized container images built from Debian packages, designed for secure, stable, and efficient containerized deployments. They are compatible with popular container tools like Docker and Kubernetes, helping administrators manage infrastructure with lightweight, focused images that reduce vulnerabilities and overhead.</p>
+                <p>Chiseled Rocks take this approach further by removing shells, package managers, and other non-essential components, offering ultra-minimal images with an even smaller attack surface for high-security, production-grade environments.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-tabs__content" tabindex="0" id="editions-and-flavors" role="tabpanel" aria-labelledby="editions-and-flavors-tab">
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Ubuntu Classic</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>Ubuntu comes in various editions and minimal installs. “Classic” Ubuntu uses deb packages and supports snaps for specific apps, available across different desktop flavors and server/cloud images.</p>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Ubuntu Core</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>Ubuntu Core is an all-snap edition designed for appliances and IoT. With a lightweight, strictly confined architecture, it's highly secure and reliable &ndash; perfect for large-scale, embedded deployments.</p>
+                <div class="p-cta-block">
+                  <a href="/core">Learn more about Ubuntu Core&nbsp;&rsaquo;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted"/>
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Ubuntu Minimal</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>Ubuntu Minimal is a lightweight image that includes only the essential packages, making it ideal for building custom environments or optimizing deployments for performance and footprint. It provides an efficient foundation for containers, virtual machines, and specialized workloads requiring fine-grained control. Ubuntu Minimal images are available for all major public clouds, including AWS, Google Cloud and Azure.</p>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted"/>
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              <div class="grid-col-2">
+                <h3 class="p-heading--5">Ubuntu Flavors</h3>
+              </div>
+              <div class="grid-col-4">
+                <p>Ubuntu flavors are community-maintained variants that offer different desktop environments and user experiences. The release cycle for flavours may differ from those described here. For release details and support policies specific to a flavor, please consult its official website or documentation.</p>
+                <div class="p-cta-block">
+                  <a href="/desktop/flavors">Learn more about Ubuntu flavors&nbsp;&rsaquo;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="p-tabs__content"
-           id="openstack-release-cycle"
-           role="tabpanel"
-           aria-labelledby="openstack-release-cycle-tab">
-    <div class="p-strip is-shallow">
-      <div class="u-fixed-width">
-        <h2>OpenStack release cycle</h2>
-        <p>
-          For OpenStack release cycle and supported versions refer to the <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/reference/release-cycle-and-supported-versions/">product documentation</a>.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-tabs__content"
-           id="canonical-kubernetes-release-cycle"
-           role="tabpanel"
-           aria-labelledby="canonical-kubernetes-release-cycle-tab">
-    <div class="p-strip is-shallow">
-      <div class="u-fixed-width">
-        <h2>Canonical Kubernetes release cycle</h2>
-
-        <h3>Canonical Kubernetes</h3>
-
-        <p>
-          Canonical now offers 15 years of security maintenance and support for Kubernetes with an <a href="/support">Ubuntu Pro</a> subscription, starting with Kubernetes 1.32.
-        </p>
-
-        <p>
-          Canonical will release a Kubernetes LTS every two years, aligned with the Ubuntu LTS cycle. Canonical will also provide upstream Kubernetes releases, with a new version every four months.
-        </p>
-
-        <p>
-          With the Ubuntu Pro subscription you get 10 years of security maintenance and support for the Canonical Kubernetes snap and built-in features: network, DNS, local storage, load balancer, gateway, ingress and metrics server. Upstream updates and fixes to snap components, provided as binaries or container images, will be included in the Canonical Kubernetes.
-        </p>
-
-        <p>
-          The optional Legacy add-on on top of Ubuntu Pro extends the security maintenance and support for an additional 5 years, resulting in 15 years coverage overall.
-        </p>
-
-        <p>The Canonical Kubernetes support lifecycle can be represented this way:</p>
-
-        {% include "/about/release_cycles/k8s-lts.html" %}
-
-        <p>
-          For more information on previous and current releases, please see the <a href="https://documentation.ubuntu.com/canonical-kubernetes/latest/releases/">Canonical Kubernetes</a> release notes.
-        </p>
-
-        <h3>Charmed Kubernetes and MicroK8s</h3>
-
-        <p>
-          The release cycles of Charmed Kubernetes and MicroK8s are tightly synchronised to the release of upstream Kubernetes<sup>&reg;</sup>. The current release and two prior releases are supported (N-2), subject to changes in the upstream release cycle. Canonical also provides Expanded Security Maintenance (ESM) for N-4 Kubernetes releases in the stable release channel.
-        </p>
-
-        <p>
-          For <a href="/support">Ubuntu Pro</a> support, users must upgrade to remain in the N-2 support window.
-        </p>
-
-        <p>
-          ESM support includes fixes to high and critical CVEs related to Kubernetes charms and MicroK8s (snap), in the current N-4 support window. Upstream updates and fixes to Kubernetes binaries or container images are absorbed by Charmed Kubernetes and MicroK8s.
-        </p>
-
-        <p>The Charmed Kubernetes and MicroK8s support lifecycle can be represented this way:</p>
-      </div>
-
-      {% include "/about/release_cycles/k8s-eol.html" %}
-
-      <div class="u-fixed-width">
-        <p>
-          For more information on previous and current releases, please see the <a href="/kubernetes/charmed-k8s/docs/release-notes">Charmed Kubernetes release notes</a> or the <a href="https://microk8s.io/docs/release-notes">MicroK8s release notes.</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-tabs__content"
-           id="canonical-ceph-release-cycle"
-           role="tabpanel"
-           aria-labelledby="canonical-ceph-release-cycle-tab">
-    <div class="p-strip is-shallow">
-      <div class="u-fixed-width">
-        <h2>Canonical Ceph release cycle</h2>
-        <p>
-          For the Ceph release cycle and supported versions, refer to the <a href="/ceph/docs/supported-ceph-versions">product documentation</a>.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <script src="https://assets.ubuntu.com/v1/6d64bd2f-d3.min.js" defer></script>
-  <script src="{{ versioned_static('js/dist/release-chart-manager.js') }}"
-          defer></script>
   <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
+  {# djlint:off #}
+  <script type="text/javascript">
+    const productsData = {{ products_data | tojson | safe }};
+  </script>
+  {# djlint:off #}
+  <script src="{{ versioned_static('js/src/product-releases.js') }}" defer></script>
 {% endblock content %}
