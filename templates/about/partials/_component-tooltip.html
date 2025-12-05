@@ -1,0 +1,58 @@
+<button class="p-release-tooltip js-component-tooltip" aria-describedby="{{ version.release }}-tooltip">
+	<i class="p-icon--information" aria-hidden="true"></i>
+	<span class="p-tooltip__message" role="tooltip" id="{{ version.release }}-tooltip">
+		<div class="p-tooltip__header">
+			<p class="p-heading--5 p-release-tooltip__heading">
+				{{ deployment.name }}
+			</p>
+			<i class="p-icon--close js-tooltip-close  u-hide--large" aria-label="Close tooltip"></i>
+		</div>
+		<p class="u-align-text--small-to-default p-text--small p-text--small-caps p-release-tooltip__subheading">
+			Supported architectures
+		</p>
+		<p class="u-align-text--small-to-default p-text--small u-vertical-nudge">
+			{% for arch in version.architecture %}
+				{% if loop.last %}
+					{{ arch }}
+				{% else %}
+					{{ arch }}, 
+				{% endif %}
+			{% endfor %}
+		</p>
+		<div style="padding-bottom: 7px;">
+			<hr class="u-no-margin--bottom"/>
+		</div>
+		{% if version.upgrade_path %}
+			<p class="u-align-text--small-to-default p-text--small p-text--small-caps p-release-tooltip__subheading">
+				Upgrade path
+			</p>
+			<p class="u-align-text--small-to-default p-text--small u-vertical-nudge {%if not version.has_compatible_components %}u-no-margin--bottom{% endif %}">
+				{{ version.upgrade_path  | join(', ') }}
+			</p>
+		{% endif %}
+		{% set compat_list = version.compatible_ubuntu_lts %}
+		{% if version.has_compatible_components %}
+			<div style="padding-bottom: 7px;">
+				<hr class="u-no-margin--bottom"/>
+			</div>
+			<p class="u-align-text--small-to-default p-text--small p-text--small-caps p-release-tooltip__subheading">
+				Compatible components
+			</p>
+
+			{% for item in compat_list %}
+				{% if item["compatible-components"] %}
+					<p style="color: grey; padding-top: .2rem;"
+						class="u-align-text--small-to-default p-text--small p-text--small-caps u-no-margin--bottom">
+						Ubuntu {{ item["ubuntu-lts"] }}
+					</p>
+
+					{% for component in item["compatible-components"] %}
+						<p class="u-vertical-nudge u-align-text--small-to-default p-text--small">
+							{{ component.name }}: {{ component.version[0] }}
+						</p>
+					{% endfor %}
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+	</span>
+</button>
