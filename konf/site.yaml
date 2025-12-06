@@ -171,6 +171,10 @@ env:
       key: wordpress-username
       name: wordpress-api
 
+  - name: COOKIE_SERVICE_API_KEY
+    secretKeyRef:
+      key: cookies-api-key
+      name: cookies-canonical-com-credentials
 
 memoryLimit: 512Mi
 
