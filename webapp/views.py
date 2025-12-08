@@ -1678,9 +1678,13 @@ def build_github_data_access():
         try:
             response.raise_for_status()
         except HTTPError as e:
-            flask.current_app.extensions["sentry"].captureException(
-                f"Error fetching GitHub content: {e}"
-            )
+            flask.current_app.extensions["sentry"].captureException(e)
+
+            # If stale data, use it as a fallback
+            if key in _cache:
+                return _cache[key]["data"]
+
+            raise
 
         data = response.content
         _cache[key] = {
