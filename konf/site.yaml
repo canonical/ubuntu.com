@@ -171,6 +171,10 @@ env:
       key: wordpress-username
       name: wordpress-api
 
+  - name: GITHUB_TOKEN
+    secretKeyRef:
+      key: GITHUB_TOKEN
+      name: github-products-api
 
 memoryLimit: 512Mi
 
@@ -811,6 +815,11 @@ staging:
     - name: FLASK_ENV
       value: "staging"
 
+    - name: GITHUB_TOKEN
+      secretKeyRef:
+        key: GITHUB_TOKEN
+        name: github-products-api
+
   routes:
     - paths: [/blog]
       name: ubuntu-com-blog
@@ -1364,3 +1373,8 @@ demo:
 
     - name: CANONICAL_CLA_API_URL
       value: https://cla.staging.canonical.com
+    
+    - name: GITHUB_TOKEN
+      secretKeyRef:
+        key: GITHUB_TOKEN
+        name: github-products-api

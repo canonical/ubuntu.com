@@ -20,8 +20,8 @@ toc: False
     <br/>
     Additionally, some features from previous <strong>Charmed Kubernetes</strong> releases are not yet available in this release. If you rely on a component identified as an <strong>Integration gap</strong> in the <a href="/kubernetes/charmed-k8s/docs/1.29/release-notes#notes-issues">Notes and Known Issues</a> section of the release notes, remain on release 1.28 (or earlier) and do not upgrade to 1.29 at this time.<br/>
     <br/>
-    Some specific scenarios for those using particular configurations are also covered in the 
-    <a href="/kubernetes/charmed-k8s/docs/upgrade-notes"> Upgrade notes document</a>, particularly concerning those using 
+    Some specific scenarios for those using particular configurations are also covered in the
+    <a href="/kubernetes/charmed-k8s/docs/upgrade-notes"> Upgrade notes document</a>, particularly concerning those using
     observability, LDAP/Keystone integration and Ceph.<br/>
     </p>
   </div>
@@ -389,6 +389,6 @@ It is recommended that you run a [cluster validation][validation] to ensure that
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/1.29/upgrading.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
+    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack  channel</a>.</p>
   </div>
 </div>

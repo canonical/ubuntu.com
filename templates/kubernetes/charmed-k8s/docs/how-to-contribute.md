@@ -18,7 +18,7 @@ toc: False
 ## Contributing to the code
 
 All the code which makes up Charmed Kubernetes is located in repositories on GitHub. Each charm has its own repository where you can find more specifics about that project.
-For an overview of the Charmed Kubernetes project, visit the respective [organisation on GitHub](https://github.com/charmed-kubernetes). 
+For an overview of the Charmed Kubernetes project, visit the respective [organisation on GitHub](https://github.com/charmed-kubernetes).
 
 A charmed operator (‘charm’) is software which wraps an application and contains all of the instructions necessary for deploying, configuring, scaling, integrating, etc., the application on any cloud using Juju.
 
@@ -72,6 +72,6 @@ The charm specific documentation follows the same diataxis principles. See the [
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/how-to-contribute.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
+    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack  channel</a>.</p>
   </div>
 </div>

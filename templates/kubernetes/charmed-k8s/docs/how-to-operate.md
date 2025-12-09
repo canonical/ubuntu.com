@@ -16,7 +16,7 @@ toc: False
 We don't desert our users on day zero - while this documentation can never be a
 complete guide to the general operation of a Kubernetes cluster, we can provide
 guides for many of the common activities and functions of a Charmed Kubernetes
-cluster. 
+cluster.
 
 These guides demonstrate the common tasks any user is likely to need:
 
@@ -38,11 +38,9 @@ setup which are covered in these guides:
 - [Monitor with COS Lite](/kubernetes/charmed-k8s/docs/how-to-cos-lite)
 - [Use K8s Operator Charms](/kubernetes/charmed-k8s/docs/operator-charms)
 - [Schedule containers with Volcano](/kubernetes/charmed-k8s/docs/volcano)
-- [Use the cluster autoscaler](/kubernetes/charmed-k8s/docs/autoscaler)
 - [Validate your cluster with e2e](/kubernetes/charmed-k8s/docs/validation)
 - [Use a private Docker Registry](/kubernetes/charmed-k8s/docs/docker-registry)
 - [Configuring proxies](/kubernetes/charmed-k8s/docs/proxies)
-
 
 If you run into trouble, please see the troubleshooting guide:
 
@@ -55,6 +53,6 @@ If you run into trouble, please see the troubleshooting guide:
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/how-to-operate.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
+    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack  channel</a>.</p>
   </div>
 </div>

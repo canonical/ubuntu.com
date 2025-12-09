@@ -4,9 +4,11 @@ import json
 import math
 import os
 import re
+import requests
+import time
 import logging
 from urllib.parse import quote, unquote, urlparse
-from datetime import datetime
+from datetime import datetime, date
 
 # Packages
 import dateutil
@@ -44,6 +46,7 @@ marketo_api = MarketoAPI(
     get_flask_env("MARKETO_API_SECRET"),
     marketo_session,
 )
+GITHUB_TOKEN = get_flask_env("GITHUB_TOKEN")
 
 
 def _build_mirror_list(local=False, country_code=None):
@@ -1640,3 +1643,285 @@ def build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter):
         )
 
     return display_ubuntu_weekly_newsletter
+
+
+# TODO: remove this after CI check is added to target repo
+def _load_json(raw: bytes):
+    return json.loads(raw.decode("utf-8"))
+
+
+def build_github_data_access():
+    """Return a JSON file fetcher with ETag caching for GitHub-hosted data."""
+    _cache = {}
+
+    def _gh_get_file_bytes(path: str) -> bytes:
+        key = f"main:{path}"
+        etag = _cache.get(key, {}).get("etag")
+
+        headers = {
+            "Authorization": f"token {GITHUB_TOKEN}",
+            "Accept": "application/vnd.github.raw",
+            "User-Agent": "flask-site/gh-fetch",
+        }
+        if etag:
+            headers["If-None-Match"] = etag
+
+        url = (
+            "https://api.github.com/repos/canonical/product-architecture/"
+            f"contents/{path}?ref=main"
+        )
+        response = requests.get(url, headers=headers, timeout=30)
+
+        if response.status_code == 304 and key in _cache:
+            return _cache[key]["data"]
+
+        try:
+            response.raise_for_status()
+        except HTTPError as e:
+            flask.current_app.extensions["sentry"].captureException(e)
+
+            # If stale data, use it as a fallback
+            if key in _cache:
+                return _cache[key]["data"]
+
+            raise
+
+        data = response.content
+        _cache[key] = {
+            "etag": response.headers.get("ETag"),
+            "data": data,
+            "ts": time.time(),
+        }
+
+        return data
+
+    def get_json_files(file_paths: list[str]) -> dict[str, object]:
+        """Fetch and parse product JSON files"""
+        parsed_files = {}
+
+        for file_path in file_paths:
+            file_bytes = _gh_get_file_bytes(file_path)
+
+            # Derive clean name from path
+            # e.g. "products-data/25.10/products.json" -> "products"
+            base_name = file_path.split("/")[-1].replace(".json", "")
+
+            parsed_files[base_name] = _load_json(file_bytes)
+
+        return parsed_files
+
+    return get_json_files
+
+
+def build_release_cycle_view():
+    get_combined_products = build_github_data_access()
+
+    def format_date(value):
+        """Convert YYYY-MM-DD or {date:..., notes:...} to a normalized dict."""
+        raw = None
+        formatted = None
+        notes = None
+        is_past = False
+
+        if isinstance(value, dict):
+            # A real date
+            if "date" in value:
+                raw = value["date"]
+                try:
+                    dt = datetime.strptime(raw, "%Y-%m-%d").date()
+                    formatted = dt.strftime("%b %Y")  # Dec 2025
+                    is_past = dt < date.today()
+                except ValueError:
+                    formatted = raw
+
+            # Notes only
+            elif "notes" in value:
+                notes = value["notes"]
+                raw = notes
+
+        else:
+            raw = value
+            try:
+                dt = datetime.strptime(raw, "%Y-%m-%d").date()
+                formatted = dt.strftime("%b %Y")
+                is_past = dt < date.today()
+            except ValueError:
+                formatted = raw
+            except Exception as e:
+                logging.error(
+                    f"Unexpected error in format_date: {e}", exc_info=True
+                )
+                formatted = raw
+
+        return {
+            "raw": raw,
+            "date": formatted,
+            "notes": notes,
+            "is_past": is_past,
+        }
+
+    def version_is_expired(version):
+        """
+        A version is expired if all lifecycle phases are in the past.
+        """
+        lifecycle_fields = ["supported", "pro_supported", "legacy_supported"]
+
+        for field in lifecycle_fields:
+            data = version.get(field)
+
+            raw = data.get("raw")
+            notes = data.get("notes")
+            is_past = data.get("is_past")
+
+            # If there's at least one future date, version is active
+            if raw and not notes:
+                if not is_past:
+                    return False
+                else:
+                    continue
+
+            # If there are notes, considered expired unless special exception
+            if notes:
+                normalized = notes.lower().strip()
+
+                # If notes contain "until", keep version visible
+                if "until" in normalized:
+                    return False
+
+                continue
+
+            # Raw date or notes are always expected per data source
+            continue
+
+        return True
+
+    def build_ui_products(
+        raw_products: dict[str, object],
+    ) -> dict[str, object]:
+        """
+        Take raw GitHub JSON and return a shaped structure:
+        - products sorted by name
+        - deployment.slug added
+        - versions shaped + expired versions removed
+        """
+        ui_products: dict[str, object] = {}
+
+        for key, product in sorted(
+            raw_products.items(),
+            key=lambda item: str(item[1].get("product", "")).lower(),
+        ):
+            product_name = product.get("product", "")
+            deployments = []
+
+            for deployment in product.get("deployment", []):
+                name = deployment.get("name", "")
+                slug = name.lower()
+
+                raw_versions = deployment.get("versions", [])
+                shaped_versions = [shape_version(v) for v in raw_versions]
+                visible_versions = [
+                    v for v in shaped_versions if not version_is_expired(v)
+                ]
+
+                deployments.append(
+                    {
+                        "name": name,
+                        "slug": slug,
+                        "versions": visible_versions,
+                    }
+                )
+
+            ui_products[key] = {
+                "product": product_name,
+                "deployment": deployments,
+            }
+
+        return ui_products
+
+    def get_deployment(data, product_key, release_identifier):
+        """Return the deployment dict matching release_name, or None."""
+
+        product = data.get(product_key, {})
+        for deployment in product.get("deployment", []):
+            if (
+                deployment.get("name") == release_identifier
+                or deployment.get("slug") == release_identifier
+            ):
+                return deployment
+        return None
+
+    def shape_version(version_dict):
+        """Normalize keys and format dates for a single version dict."""
+
+        compat_list = version_dict.get("compatible-ubuntu-lts", [])
+        has_compatible_components = any(
+            item.get("compatible-components") for item in compat_list
+        )
+
+        return {
+            "release": version_dict.get("release"),
+            "architecture": version_dict.get("architecture", []),
+            "supported": format_date(version_dict.get("supported")),
+            "pro_supported": format_date(version_dict.get("pro-supported")),
+            "legacy_supported": format_date(
+                version_dict.get("legacy-supported")
+            ),
+            "release_date": format_date(version_dict.get("release-date")),
+            "upgrade_path": version_dict.get("upgrade-path", []),
+            "compatible_ubuntu_lts": version_dict.get(
+                "compatible-ubuntu-lts", []
+            ),
+            "has_compatible_components": has_compatible_components,
+        }
+
+    def display_github_data():
+        product = flask.request.args.get("product", type=str, default="ubuntu")
+        release_name = flask.request.args.get(
+            "release", type=str, default="ubuntu"
+        )
+        version = flask.request.args.get("version", type=str, default="all")
+
+        raw_files = get_combined_products(
+            ["products-data/25.10/products.json"]
+        )
+
+        raw_products = raw_files.get("products", {})
+
+        products_data = build_ui_products(raw_products)
+
+        versions = []
+        selected_version = None
+        deployment = None
+
+        if product and release_name:
+            deployment = get_deployment(products_data, product, release_name)
+            if deployment:
+                versions = deployment.get("versions", [])
+
+            if version and version != "all":
+                # Look up the selected version among visible ones
+                selected_version = next(
+                    (
+                        v
+                        for v in versions
+                        if str(v.get("release")) == str(version)
+                    ),
+                    None,
+                )
+                # If not found (expired or invalid), fall back to "all"
+                if selected_version is None:
+                    version = "all"
+
+        return flask.render_template(
+            "about/release-cycle.html",
+            products_data=products_data,
+            product=product,
+            version=version,
+            release_name=release_name,
+            versions=versions,
+            selected_version=selected_version,
+            deployment=deployment,
+            now=datetime.utcnow(),
+        )
+
+    return display_github_data

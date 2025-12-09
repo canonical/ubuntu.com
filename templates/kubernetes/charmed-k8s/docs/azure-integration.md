@@ -70,9 +70,9 @@ integrator uses, please see the [charm readme][azure-integrator].
 
 ### Installing using In-Tree Providers
 
-The Kubernetes binaries have in-tree providers for common cloud platforms, 
+The Kubernetes binaries have in-tree providers for common cloud platforms,
 and Azure is no different. The in-tree providers are less flexible, deprecated,
-and will eventually cease to operate.  It's recommended to use the out-of-tree 
+and will eventually cease to operate.  It's recommended to use the out-of-tree
 providers because of this.
 
 If you install **Charmed Kubernetes** [using the Juju bundle][install],
@@ -131,7 +131,7 @@ juju ssh kubernetes-control-plane/leader -- cat config > ~/.kube/config
 ## Storage
 
 This section describes creating a busybox pod with a persistent volume claim
-backed by Azure's Disk Storage. Differenced between the In-tree and Out-of-Tree 
+backed by Azure's Disk Storage. Differenced between the In-tree and Out-of-Tree
 storage will be noted in each step.
 
 ### 1. Create a storage class:
@@ -231,7 +231,7 @@ You can then verify this works by loading the described IP address (on port
 8080!) in a browser.
 
 For more configuration options and details of the permissions which the integrator uses,
-please see the [azure-integrator charm page][azure-integrator] and 
+please see the [azure-integrator charm page][azure-integrator] and
 [azure-cloud-provider charm page][azure-cloud-provider].
 
 ## Azure load-balancers for the control plane
@@ -263,7 +263,7 @@ external clients.
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/azure-integration.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
+    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack  channel</a>.</p>
   </div>
 </div>
 
