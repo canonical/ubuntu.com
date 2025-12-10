@@ -1,7 +1,7 @@
 {% extends 'security/base_security.html' %}
 
 {% from '_macros/vf_hero.jinja' import vf_hero %}
-{% from "macros/_vf_equal-heights.jinja" import vf_equal_heights %}
+{% from "_macros/vf_equal-heights.jinja" import vf_equal_heights %}
 {% from "_macros/vf_rich-vertical-list.jinja" import vf_rich_vertical_list %}
 
 {% block title %}Enable PCI-DSS compliance with Ubuntu Pro{% endblock %}
@@ -39,7 +39,7 @@
     image_aspect_ratio_small="3-2",
     image_aspect_ratio_medium="3-2",
     image_aspect_ratio_large="3-2",
-    addiotional_image_class="is-highlighted",
+    highlight_images=true,
     items=[
     {
     "title_text": "Easy and automated security patching",
@@ -243,14 +243,16 @@
             role="tablist"
             aria-label="Resources"
             data-maintain-hash="true">
-          <li class="p-tabs__item">
-            <a href="#resources-blogs"
-               class="p-tabs__link"
-               role="tab"
-               aria-selected="true"
-               aria-controls="resources-blogs-tab"
-               id="resources-blogs">Blogs</a>
-          </li>
+          {% if blogs %}
+            <li class="p-tabs__item">
+              <a href="#resources-blogs"
+                 class="p-tabs__link"
+                 role="tab"
+                 aria-selected="true"
+                 aria-controls="resources-blogs-tab"
+                 id="resources-blogs">Blogs</a>
+            </li>
+          {% endif %}
           <li class="p-tabs__item">
             <a href="#resources-whitepapers"
                class="p-tabs__link"
