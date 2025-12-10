@@ -555,6 +555,7 @@ blog_views = BlogViews(
     api=BlogAPI(session=session, thumbnail_width=555, thumbnail_height=311),
     excluded_tags=[
         # fmt: off
+        # Canonical-specific internal tags that should not appear on Ubuntu blog
         3184, 3265, 3408, 3960, 4491, 4632, 3648, 4499, 1327, 1304, 1743,
         2544, 1332, 1938, 3741, 4315, 1397, 4381, 4579, 4076, 4371, 4125,
         4223, 4018, 4062, 4786, 2609, 2503, 2633, 3951, 3949, 4353, 4819,
