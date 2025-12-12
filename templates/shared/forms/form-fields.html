@@ -22,56 +22,53 @@
         <fieldset class="p-fieldset-section{% if fieldset.inputType == 'checkbox' or fieldset.inputType == 'checkbox-visibility' %} js-remove-checkbox-names{% if fieldset.isRequired %} js-required-checkbox{% endif %}{% if fieldset.inputType == 'checkbox-visibility' %} js-toggle-checkbox-visibility{% endif %}{% elif fieldset.inputType == 'radio' %} js-remove-radio-names{% endif %}"
                   id="{{ fieldset.id }}"
                   aria-labelledby="{{ fieldset.id }}">
+          <!-- This legend is for screen readers only, to fix a11y warning -->
+          <legend class="u-hide">{{ fieldset.title }}</legend>
           <div class="row--50-50 {% if not fieldset.noCommentsFromLead %}js-formfield{% endif %}">
             <div class="col">
               <legend class="p-heading--4 js-formfield-title {% if fieldset.isRequired %}is-required{% endif %}"
-                      id="{{ fieldset.id }}-legend">{{ fieldset.title }}</legend>
+                      {% if fieldset.id %}id="{{ fieldset.id }}-legend"{% endif %}>{{ fieldset.title }}</legend>
             </div>
             <div class="col">
               <ul class="p-list">
                 {% if fieldset_id == "about-you" %}
-                  <label class="is-required"
-                          for="firstName">First name:</label>
+                  <label class="is-required" for="firstName">First name:</label>
                   <input required
-                          id="firstName"
-                          name="firstName"
-                          maxlength="255"
-                          autocomplete="given-name"
-                          type="text" />
-                  <label class="is-required"
-                          for="lastName">Last name:</label>
+                         id="firstName"
+                         name="firstName"
+                         maxlength="255"
+                         autocomplete="given-name"
+                         type="text" />
+                  <label class="is-required" for="lastName">Last name:</label>
                   <input required
-                          id="lastName"
-                          name="lastName"
-                          maxlength="255"
-                          autocomplete="family-name"
-                          type="text" />
-                  <label class="is-required"
-                            for="email">Email:</label>
+                         id="lastName"
+                         name="lastName"
+                         maxlength="255"
+                         autocomplete="family-name"
+                         type="text" />
+                  <label class="is-required" for="email">Email:</label>
                   <input required
-                          id="email"
-                          name="email"
-                          maxlength="255"
-                          autocomplete="email"
-                          type="email"
-                          pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$"/>
-                  <label class="is-required" 
-                          for="company">Company:</label>
-                  <input required 
-                          id="company" 
-                          name="company" 
-                          maxlength="255"
-                          autocomplete="organization"
-                          type="text" />
-                  <label class="is-required" 
-                          for="title">Job Title:</label>
-                  <input required 
-                          id="title" 
-                          name="title" 
-                          maxlength="255" 
-                          autocomplete="organization-title"
-                          type="text" />
-                  
+                         id="email"
+                         name="email"
+                         maxlength="255"
+                         autocomplete="email"
+                         type="email"
+                         pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
+                  <label class="is-required" for="company">Company:</label>
+                  <input required
+                         id="company"
+                         name="company"
+                         maxlength="255"
+                         autocomplete="organization"
+                         type="text" />
+                  <label class="is-required" for="title">Job Title:</label>
+                  <input required
+                         id="title"
+                         name="title"
+                         maxlength="255"
+                         autocomplete="organization-title"
+                         type="text" />
+
                   {% with required = true %}
                     {% include "shared/forms/_country.html" %}
                   {% endwith %}
@@ -95,15 +92,16 @@
                   <li class="p-list__item">
                     {% if field.type == "text" or field.type == "tel" or field.type == "email" %}
                       <label {% if field.isRequired %}class="is-required"{% endif %}
-                              for="{{ field_id }}">{{ field.label }}:</label>
+                             for="{{ field_id }}">{{ field.label }}:</label>
                       <input {% if field.isRequired %}required{% endif %}
-                              id="{{ field_id }}"
-                              name="{{ field_id }}"
-                              maxlength="255"
-                              autocomplete="{% if field.type == 'tel' %}tel{% elif field.type == 'email' %}email{% endif %}"
-                              type="{{ field.type }}" />
+                             id="{{ field_id }}"
+                             name="{{ field_id }}"
+                             maxlength="255"
+                             autocomplete="{% if field.type == 'tel' %}tel{% elif field.type == 'email' %}email{% endif %}"
+                             type="{{ field.type }}" />
                     {% elif field.type == "long-text" %}
                       <textarea {% if fieldset.isRequired %}required{% endif %}
+                                aria-label="{{ fieldset.title }}"
                                 id="{{ field_id }}"
                                 rows="5"
                                 maxlength="2000"
@@ -111,14 +109,14 @@
                     {% elif field.type == "radio" %}
                       <label class="p-radio">
                         <input {% if fieldset.isRequired %}required{% endif %}
-                                class="p-radio__input"
-                                id="{{ field_id }}"
-                                type="radio"
-                                name="_radio_{{ fieldset_inputName }}"
-                                aria-labelledby="{{ field_id }}"
-                                value="{{ field_value }}"
-                                {% if field.isSelected %}checked{% endif %} />
-                        <span class="p-radio__label" id="{{ field_id }}">{{ field.label }}</span>
+                               class="p-radio__input"
+                               id="{{ field_id }}"
+                               type="radio"
+                               name="_radio_{{ fieldset_inputName }}"
+                               aria-labelledby="{{ field_id }}"
+                               value="{{ field_value }}"
+                               {% if field.isSelected %}checked{% endif %} />
+                        <span class="p-radio__label">{{ field.label }}</span>
                       </label>
                       {% if field.hasTextarea %}
                         <textarea class="js-other-input u-hide"
@@ -128,12 +126,12 @@
                     {% elif field.type == "checkbox" %}
                       <label class="p-checkbox">
                         <input class="p-checkbox__input js-checkbox-visibility"
-                                type="checkbox"
-                                id="{{ field_id }}"
-                                name="{{ fieldset_inputName }}"
-                                aria-labelledby="{{ field_id }}"
-                                value="{{ field_value }}"
-                                {% if field.isSelected %}checked{% endif %} />
+                               type="checkbox"
+                               id="{{ field_id }}"
+                               name="{{ fieldset_inputName }}"
+                               aria-labelledby="{{ field_id }}"
+                               value="{{ field_value }}"
+                               {% if field.isSelected %}checked{% endif %} />
                         <span class="p-checkbox__label" id="{{ field_id }}">{{ field.label }}</span>
                       </label>
                       {% if field.hasTextarea %}
@@ -147,16 +145,16 @@
                         {% for option in field.options %}
                           <label class="p-checkbox">
                             <input class="p-checkbox__input js-checkbox-visibility{% if field.fieldTitle=="Other" %}__other{% endif %}"
-                                    type="checkbox"
-                                    aria-labelledby="{{ option.id }}"
-                                    value="{{ option.value }}" />
+                                   type="checkbox"
+                                   aria-labelledby="{{ option.id }}"
+                                   value="{{ option.value }}" />
                             <span class="p-checkbox__label" id="{{ option.id }}">{{ option.label }}</span>
                           </label>
                         {% endfor %}
                       </div>
                     {% elif field.type == "select" %}
                       <label {% if fieldset.isRequired %}class="is-required"{% endif %}
-                              for="{{ field_id }}">{{ field.label }}:</label>
+                             for="{{ field_id }}">{{ field.label }}:</label>
                       <select id="{{ field_id }}" {% if field.isRequired %}required{% endif %}>
                         {% for option in field.options %}<option value="{{ option.value }}">{{ option.label }}</option>{% endfor %}
                       </select>
