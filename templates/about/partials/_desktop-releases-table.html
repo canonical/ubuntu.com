@@ -73,9 +73,7 @@
           {{ version.supported.date }}
           {% if version.supported.is_past %}
             <br />
-            <span class="p-chip--negative is-readonly u-horizontal-negative-nudge">
-              <span class="p-chip__value">No longer maintained</span>
-            </span>
+            {% include "about/partials/_coverage-chip-standard.html" %}
           {% endif %}
         {% elif version.supported.notes %}
           {{ version.supported.notes | capitalize}}
@@ -87,7 +85,7 @@
           {{ version.pro_supported.date }}
           {% if version.pro_supported.is_past %}
             <br />
-            {% include "about/partials/_coverage-chip.html" %}
+            {% include "about/partials/_coverage-chip-pro.html" %}
           {% endif %}
         {% elif version.pro_supported.notes %}
           {{ version.pro_supported.notes | capitalize}}
@@ -102,7 +100,7 @@
         {% endif %}
         {% if version.pro_supported.is_past %}
           <br />
-          {% include "about/partials/_coverage-chip.html" %}
+          {% include "about/partials/_coverage-chip-pro.html" %}
         {% endif %}
       </td>
 
@@ -114,7 +112,7 @@
         {% endif %}
         {% if version.legacy_supported.is_past %}
           <br />
-          {% include "about/partials/_coverage-chip.html" %}
+          {% include "about/partials/_coverage-chip-pro.html" %}
         {% endif %}
       </td>
     </tr>
