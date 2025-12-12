@@ -113,7 +113,7 @@
                                id="{{ field_id }}"
                                type="radio"
                                name="_radio_{{ fieldset_inputName }}"
-                               aria-labelledby="{{ field_id }}"
+                               aria-label="{{ field_id }}"
                                value="{{ field_value }}"
                                {% if field.isSelected %}checked{% endif %} />
                         <span class="p-radio__label">{{ field.label }}</span>
@@ -129,10 +129,10 @@
                                type="checkbox"
                                id="{{ field_id }}"
                                name="{{ fieldset_inputName }}"
-                               aria-labelledby="{{ field_id }}"
+                               aria-label="{{ field_id }}"
                                value="{{ field_value }}"
                                {% if field.isSelected %}checked{% endif %} />
-                        <span class="p-checkbox__label" id="{{ field_id }}">{{ field.label }}</span>
+                        <span class="p-checkbox__label">{{ field.label }}</span>
                       </label>
                       {% if field.hasTextarea %}
                         <textarea class="js-other-input u-hide"
@@ -146,9 +146,9 @@
                           <label class="p-checkbox">
                             <input class="p-checkbox__input js-checkbox-visibility{% if field.fieldTitle=="Other" %}__other{% endif %}"
                                    type="checkbox"
-                                   aria-labelledby="{{ option.id }}"
+                                   aria-label="{{ option.id }}"
                                    value="{{ option.value }}" />
-                            <span class="p-checkbox__label" id="{{ option.id }}">{{ option.label }}</span>
+                            <span class="p-checkbox__label">{{ option.label }}</span>
                           </label>
                         {% endfor %}
                       </div>
