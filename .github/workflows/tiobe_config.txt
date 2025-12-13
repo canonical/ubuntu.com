@@ -1,0 +1,21 @@
+'DIR' => 
+  "/webapp/" ||
+  "/templates/" ||
+  "/static/js/"
+
+
+'TESTCODE_FILE' =>
+  "/tests/" ||
+  "/.+\.test\..+"
+
+'GENERATED_FILE' =>
+  "/node_modules/" ||
+  "/static/js/dist/" ||
+  "/static/js/modules/vanilla-framework" ||
+  "/static/css/"
+
+'INFRA_FILE' =>
+  "/.+\.config\..+" ||
+  "/Dockerfile" ||
+  "/\.pa11yci" ||
+  "/.github/workflows/"

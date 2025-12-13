@@ -1,0 +1,107 @@
+name: TICS Analysis and Coverage
+on: pull_request
+# on:
+#   schedule:
+#     - cron: "0 22 * * 5"
+#   workflow_dispatch:
+permissions: read-all
+env:
+  SECRET_KEY: insecure_test_key
+  SEARCH_API_KEY: fake-key
+  MARKETO_API_URL: "https://066-EOV-335.mktorest.com"
+  MARKETO_API_CLIENT: ${{ secrets.MARKETO_API_CLIENT }}
+  MARKETO_API_SECRET: ${{ secrets.MARKETO_API_SECRET }}
+
+jobs:
+  build-coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.base_ref }}
+
+      - name: Install node dependencies
+        run: yarn install --immutable
+
+      - name: Test JS
+        run: yarn test-js --coverage
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt coverage pylint flake8
+
+      - name: Run tests and generate coverage report
+        run: |
+          coverage run --data-file=.coverage_db --source=webapp -m unittest discover tests &&
+          coverage report --data-file=.coverage_db &&
+          coverage xml --data-file=.coverage_db -o coverage/coverage.xml
+      
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ubuntu-com-coverage
+          path: coverage
+          retention-days: 1
+
+
+  TICS:
+    runs-on: [self-hosted, linux, amd64, tiobe, noble]
+    needs: build-coverage
+    strategy:
+      matrix:
+        node-version: [22.x]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
+      
+      - name: Install Python requirements
+        run: |
+          sudo apt update
+          sudo apt-get install --yes python3-setuptools
+
+          pip install \
+          -r requirements.txt \
+          coverage \
+          pylint \
+          flake8 \
+          --break-system-packages
+
+      - name: Install node dependencies
+        run: yarn install --immutable
+
+      - name: Download coverage report
+        uses: actions/download-artifact@v4
+        with:
+          name: ubuntu-com-coverage
+          path: coverage
+      
+      - name: Move coverage report to expected location
+        run: |
+          mkdir -p .coverage &&
+          mv coverage/coverage.xml .coverage/coverage.xml
+
+      - name: Run TICS analysis with github-action
+        uses: tiobe/tics-github-action@v3
+        with:
+          mode: qserver
+          project: ubuntu.com
+          branchdir: .
+          viewerUrl: https://canonical.tiobe.com/tiobeweb/TICS/api/cfg?name=default
+          ticsAuthToken: ${{ secrets.TICSAUTHTOKEN }}
+          installTics: true
+          tmpdir: /tmp/tics
+          additionalFlags: -archivefile ${{ github.workspace }}/.github/workflows/tiobe_config.txt
