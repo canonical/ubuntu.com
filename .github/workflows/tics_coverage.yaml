@@ -1,9 +1,8 @@
 name: TICS Analysis and Coverage
-on: pull_request
-# on:
-#   schedule:
-#     - cron: "0 22 * * 5"
-#   workflow_dispatch:
+on:
+  schedule:
+    - cron: "0 22 * * 5"
+  workflow_dispatch:
 permissions: read-all
 env:
   SECRET_KEY: insecure_test_key
@@ -31,7 +30,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: "3.10"
 
       - name: Install Python dependencies
         run: |
@@ -43,7 +42,7 @@ jobs:
           coverage run --data-file=.coverage_db --source=webapp -m unittest discover tests &&
           coverage report --data-file=.coverage_db &&
           coverage xml --data-file=.coverage_db -o coverage/coverage.xml
-      
+
       - name: Upload coverage report
         if: always()
         uses: actions/upload-artifact@v4
@@ -51,7 +50,6 @@ jobs:
           name: ubuntu-com-coverage
           path: coverage
           retention-days: 1
-
 
   TICS:
     runs-on: [self-hosted, linux, amd64, tiobe, noble]
@@ -67,7 +65,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "yarn"
-      
+
       - name: Install Python requirements
         run: |
           sudo apt update
@@ -88,7 +86,7 @@ jobs:
         with:
           name: ubuntu-com-coverage
           path: coverage
-      
+
       - name: Move coverage report to expected location
         run: |
           mkdir -p .coverage &&
