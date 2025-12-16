@@ -1,0 +1,222 @@
+{% extends "enterprise-store/base-enterprise-store.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+
+{% block title %}
+  Enterprise Store
+{% endblock title %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1qjEETcjyPQVzWLN0MKHNlpBQktVIkFqYFSvMk1ETfC0
+{% endblock meta_copydoc %}
+
+{% block meta_description %}
+  On-premise edge proxy for secure software distribution in network-restricted environments.
+{% endblock %}
+
+{% block body_class %}is-paper{% endblock %}
+
+{% block content %}
+  {% call(slot) vf_hero(
+    title_text='Enterprise Store',
+    subtitle_text='Secure software management for restricted network environments',
+    layout='50/50'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        The Enterprise Store is an on-premise edge proxy that enables enterprises to maintain
+        control over software distribution whilst operating in network-restricted environments.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="/contact-us/form"
+         aria-controls="enterprise-store-modal"
+         class="p-button--positive js-invoke-modal">Contact us</a>
+    {%- endif -%}
+  {% endcall -%}
+
+  <section class="p-section u-fixed-width">
+    <hr class="p-rule" />
+    <div class="grid-row">
+      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
+        <h2>
+          Operation in complex networks
+          or air-gapped environments
+        </h2>
+      </div>
+      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
+
+        {{ image(url="https://assets.ubuntu.com/v1/066647e9-complex_networks.png",
+                alt="",
+                width="1200",
+                height="800",
+                hi_def=True,
+                loading="lazy") | safe
+        }}
+        <p>
+          The Enterprise Store enables organizations to access Canonical's software ecosystems from behind corporate firewalls, in air-gapped environments or other restricted networking environments. 
+        </p>
+        <p>
+          For air-gapped environments with no internet connectivity, the Enterprise Store can operate in offline mode. This allows updates to be manually sideloaded, ensuring software remains up to date and secure.
+        </p>
+        <p>
+          The Enterprise Store creates a local cache of downloaded files, speeding up subsequent downloads and minimizing bandwidth usage across your organization.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+    {%- if slot == 'title' -%}
+      <h2>Key features</h2>
+    {%- endif -%}
+
+    {%- if slot == 'description' -%}
+      <p>The Enterprise Store provides core capabilities to manage software securely across regulated industries.</p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">Local caching optimization</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+      <p>A local cache of downloaded files speeds up deployments and minimizes bandwidth usage.</p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">Air-gapped operation</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+      <p>Offline mode allows machines to receive updates even with no connection to the internet.</p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_3' -%}
+      <h3 class="p-heading--5">High availability</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_3' -%}
+      <p>
+        Multiple units ensure uninterrupted service by automatically routing requests to active instances during downtime.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_4' -%}
+      <h3 class="p-heading--5">Granular revision control</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_4' -%}
+      <p>Pin specific revisions to prevent unexpected updates during operation.</p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_5' -%}
+      <h3 class="p-heading--5">Multi-package support</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_5' -%}
+      <p>The Enterprise Store supports all snap and charm packages.</p>
+    {%- endif -%}
+
+  {%- endcall -%}
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="grid-row">
+      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
+        <h2>Snap integrity verification</h2>
+      </div>
+      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
+        <p>
+          The Enterprise Store serves regulated industries where strict security controls are required. Fundamentally, snaps have been designed with security in mind from the ground up.
+        </p>
+        <p>
+          The integrity of downloaded snap files is guaranteed through hashing signatures that are built into the design of snaps and implemented in snapd and the Snap Store. 
+        </p>
+        <p>
+          The Enterprise Store does not alter these signatures, ensuring that the chain of trust is always complete. This allows organizations to proxy software distribution through their controlled infrastructure while maintaining the same verification mechanisms as direct downloads.
+        </p>
+        <a class="p-button" href="/internet-of-things/appstore">Explore our Dedicated Snap Store</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="grid-row">
+      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
+        <h2>Industries we support</h2>
+      </div>
+      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
+        <p>
+          The Enterprise Store is used by many enterprises where software control, security, and compliance are paramount.
+          Our teams understand the unique challenges and regulatory requirements of each industry, delivering solutions
+          that meet the needs of each use case.
+        </p>
+        <ul class="p-list--divided">
+          <li class="p-list__item has-bullet">Critical infrastructure</li>
+          <li class="p-list__item has-bullet">Public sector</li>
+          <li class="p-list__item has-bullet">Research and development</li>
+          <li class="p-list__item has-bullet">Communications</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="grid-row">
+      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
+        <h2>
+          Expert support
+          <br class="u-hide--small" />
+          for enterprise deployments
+        </h2>
+      </div>
+      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
+        <div class="u-fixed-width u-hide--small">
+          <div class="p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/bd331801-expert_support.png",
+                        alt="",
+                        width="1200",
+                        height="800",
+                        hi_def=True,
+                        loading="lazy") | safe
+            }}
+          </div>
+        </div>
+        <p>
+          Our expert engineering teams provide deployment and support services for the Enterprise Store, for a range of network configurations. From straightforward implementations to complex multi-site rollouts, our engineers ensure your deployment meets your specific enterprise needs.
+        </p>
+        <a class="p-button" href="/core/services">Learn more about our services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="p-rule is-fixed-width" />
+
+<section class="p-strip is-deep">
+  <div class="row">
+    <h2>
+      Let’s discuss the best solution for your enterprise
+      <br />
+      <a href="/contact-us"
+         aria-controls="enterprise-store-modal"
+         class="js-invoke-modal">Get in touch&nbsp;&rsaquo;</a>
+    </h2>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Sign up for our IoT newsletter</h2>
+    </div>
+    <div class="col">{% include "shared/contextual_footers/_iot_newsletter_signup.html" %}</div>
+  </div>
+</section>
+
+{{ load_form("/enterprise-store") | safe }}
+{% endblock content %}
