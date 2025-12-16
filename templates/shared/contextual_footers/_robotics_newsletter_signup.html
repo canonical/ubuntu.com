@@ -9,13 +9,14 @@
         <p>Receive regular updates from our Robotics newsletter.</p>
         <ul class="p-list">
           <li class="p-list__item">
-            <label for="email" class="contextual-footer__text--label">Your email address:</label>
-            <input required
-                   id="email"
-                   name="email"
-                   maxlength="255"
-                   type="email"
-                   pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
+            <label class="contextual-footer__text--label u-fixed-width">
+              Your email address:
+              <input required
+                     name="email"
+                     maxlength="255"
+                     type="email"
+                     pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
+            </label>
           </li>
           <li class="p-list__item">
             <label class="p-checkbox">
@@ -31,24 +32,29 @@
 
           {# These are honey pot fields to catch bots #}
           <li class="u-off-screen">
-            <label class="website" for="website">Website:</label>
-            <input name="website"
-                   type="text"
-                   class="website"
-                   autocomplete="off"
-                   value=""
-                   id="website"
-                   tabindex="-1" />
+            <label>
+              Website:
+              <input name="website"
+                     type="text"
+                     class="website"
+                     autocomplete="off"
+                     value=""
+                     tabindex="-1" />
+            </label>
+
           </li>
           <li class="u-off-screen">
-            <label class="name" for="name">Name:</label>
-            <input name="name"
-                   type="text"
-                   class="name"
-                   autocomplete="off"
-                   value=""
-                   id="name"
-                   tabindex="-1" />
+            <label>
+              Name:
+              <input name="name"
+                     aria-labelledby="name-label"
+                     type="text"
+                     class="name"
+                     autocomplete="off"
+                     value=""
+                     tabindex="-1" />
+            </label>
+
           </li>
           {# End of honey pots #}
 

@@ -263,15 +263,15 @@ meta_copydoc %}
                     aria-controls="ubuntu-core-tab">Ubuntu Core</button>
           </li>
         </ul>
-        <form class="u-hide--large u-hide--medium">
-          <select name="boardSelect" id="boardSelect">
+        <div class="u-hide--large u-hide--medium">
+          <select name="boardSelect" id="boardSelect" aria-label="Select a deployment target">
             <option value="overview-tab" selected="">Overview</option>
             <option value="ubuntu-vision-tab">Ubuntu</option>
             <option value="snapcraft-tab">Snapcraft</option>
             <option value="snap-store-tab">Snap Store</option>
             <option value="ubuntu-core-tab">Ubuntu Core</option>
           </select>
-        </form>
+        </div>
       </div>
       <div class="col-6 col-medium-3">{% include "core/tabs.html" %}</div>
     </div>
