@@ -4,6 +4,8 @@
 {% from "_macros/vf_equal-heights.jinja" import vf_equal_heights %}
 {% from "_macros/vf_data-spotlight.jinja" import vf_data_spotlight %}
 {% from "_macros/vf_logo-section.jinja" import vf_logo_section %}
+{% from "_macros/vf_divided-section.jinja" import vf_divided_section %}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
 
 {% block title %}Canonical Managed Infrastructure{% endblock %}
 
@@ -30,7 +32,6 @@
   </div>
   <div class="p-suru"></div>
 </section>
-
 
 {% call(slot) vf_logo_section(
   title={
@@ -80,58 +81,75 @@
 ) -%}
 {% endcall -%}
 
+{{ vf_basic_section(
+  title={"text": "We mind your ops,<br />you mind your business"},
+  is_split_on_medium=true,
+  items=[
+    {
+      "type": "description",
+      "item": {
+        "type": "text",
+        "content": "Open source IT solutions are the future when it comes to technology, but can often be challenging to maintain. Managed infrastructure services enable you to unlock power of open source without the hassle of maintenance."
+      }
+    },
+    {
+      "type": "description",
+      "item": {
+        "type": "text",
+        "content": "With Canonical's Managed Services, our experts identify, deploy, and manage open source ecosystems for you at predictable costs. This way, you can access our market-leading open source expertise and focus more of your resources on your core business."
+      }
+    },
+    {
+      "type": "cta-block",
+      "item": {
+        "primary": {
+          "content_html": "Let's talk about your project",
+          "attrs": {
+            "class": "p-button--positive js-invoke-modal",
+            "href": "/managed-infrastructure/contact-us"
+          }
+        }
+      }
+    },
+  ]
+) }}
 
-<section class="p-section">
-  <div class="grid-row--50-50">
-    <hr class="p-rule" />
-    <div class="grid-col">
-      <h2>We mind your ops,<br />you mind your business</h2>
-    </div>
-    <div class="grid-col">
-      <p>Open source IT solutions are the future when it comes to technology, but can often be challenging to maintain.
-        Managed infrastructure services enable you to unlock power of open source without the hassle of
-        maintenance.
-      </p>
-      <p>
-        With Canonical’s Managed Services, our experts identify, deploy, and manage open source ecosystems for you
-        at predictable costs. This way, you can access our market-leading open source expertise and focus more of your
-        resources on your core business.
-      </p>
-      <a class="p-button--positive js-invoke-modal" href="/managed-infrastructure/contact-us">Let's talk about your project</a>
-    </div>
-  </div>
-</section>
-
-<section class="p-section">
-  <div class="grid-row--50-50">
-    <hr class="p-rule" />
-    <div class="grid-col">
-      <h2>Key benefits</h2>
-    </div>
-    <div class="grid-col">
-      <ul class="p-list--divided">
-        <li class="p-list__item is-ticked">
-          Access to market-leading technological expertise
-        </li>
-        <li class="p-list__item is-ticked">
-          Enterprise-grade security and compliance
-        </li>
-        <li class="p-list__item is-ticked">
-          24/7 monitoring and incident resolution
-        </li>
-        <li class="p-list__item is-ticked">
-          Significant reductions in CAPEX
-        </li>
-        <li class="p-list__item is-ticked">
-          Ingrained observability
-        </li>
-        <li class="p-list__item is-ticked">
-          24/7 support included with <a href="/pro">Ubuntu Pro + Support</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
+{{ vf_basic_section(
+  title={"text": "Key benefits"},
+  items=[
+    {
+      "type": "list",
+      "item": {
+        "list_items": [
+          {
+            "list_item_type": "tick",
+            "content": "Access to market-leading technological expertise"
+          },
+          {
+            "list_item_type": "tick",
+            "content": "Enterprise-grade security and compliance"
+          },
+          {
+            "list_item_type": "tick",
+            "content": "24/7 monitoring and incident resolution"
+          },
+          {
+            "list_item_type": "tick",
+            "content": "Significant reductions in CAPEX"
+          },
+          {
+            "list_item_type": "tick",
+            "content": "Ingrained observability"
+          },
+          {
+            "list_item_type": "tick",
+            "content": "24/7 support included with <a href='/pro'>Ubuntu Pro + Support</a>"
+          },
+        ]
+      }
+    }
+  ]
+) }}
 
 {% call(slot) vf_quote_wrapper(
   title_text="What managed services customers say",
@@ -150,7 +168,6 @@
 {%- endif -%}
 
 {% endcall -%}
-
 
 {% call(slot) vf_quote_wrapper(
   quote_size="small",
@@ -345,49 +362,67 @@
 {% endif %}
 {% endcall %}
 
-<section class="p-section">
-  <div class="grid-row--50-50">
-    <hr class="p-rule" />
-    <div class="grid-col">
-      <h2>Our process</h2>
-    </div>
-    <div class="grid-col">
-      <p>Our process is easy and intuitive. You’ll initially be consulted by our specialists to design
-        the best managed solution for your needs. Afterwards, it’s all on us:</p>
-      <ol class="p-stepped-list">
-        <li class="p-stepped-list__item">
-          <hr class="p-rule--muted" />
-          <h3 class="p-heading--5 p-stepped-list__title">
-            Deployment
-          </h3>
-          <div class="p-stepped-list__content">
-            Specialized Canonical engineers deploy your required architecture sustainably and efficiently.
-          </div>
-        </li>
-        <li class="p-stepped-list__item">
-          <hr class="p-rule--muted" />
-          <h3 class="p-heading--5 p-stepped-list__title">
-            Management
-          </h3>
-          <div class="p-stepped-list__content">
-            Our team manages all your ‘day 2’ operations, from observability to upgrades. We handle all issues, and
-            consistently re-enforce the security of your environment.
-          </div>
-        </li>
-        <li class="p-stepped-list__item">
-          <hr class="p-rule--muted" />
-          <h3 class="p-heading--5 p-stepped-list__title">
-            Optional handover
-          </h3>
-          <div class="p-stepped-list__content">
-            We’re lock-in free, so if after a while you want to start managing your environments by yourself, we can
-            teach you how and give you remote support for high-severity cases.
-          </div>
-        </li>
-      </ol>
-    </div>
-  </div>
-</section>
+{{ vf_divided_section(
+  title={
+    "text": "Our process",
+  },
+  blocks=[
+  {
+    "type": "description-block",
+    "items": [
+      {
+        "type": "description",
+        "item": {
+          "type": "text",
+          "content": "Our process is easy and intuitive. You'll initially be consulted by our specialists to design the best managed solution for your needs. Afterwards, it's all on us:"
+        }
+      }
+    ]
+  },
+  {
+    "type": "divided-block",
+    "bullet_type": "number",
+    "items": [
+      {
+        "title_text": "Deployment",
+        "contents": [
+          {
+            "type": "description",
+            "item": {
+              "type": "text",
+              "content": "Specialized Canonical engineers deploy your required architecture sustainably and efficiently."
+            }
+          }
+        ]
+      },
+      {
+        "title_text": "Management",
+        "contents": [
+          {
+            "type": "description",
+            "item": {
+              "type": "text",
+              "content": "Our team manages all your 'day 2' operations, from observability to upgrades. We handle all issues, and consistently re-enforce the security of your environment."
+            }
+          }
+        ]
+      },
+      {
+        "title_text": "Optional handover",
+        "contents": [
+          {
+            "type": "description",
+            "item": {
+              "type": "text",
+              "content": "We’re lock-in free, so if after a while you want to start managing your environments by yourself, we can teach you how and give you remote support for high-severity cases."
+            }
+          }
+        ]
+      },
+    ]
+  },
+],
+) }}
 
 {{ vf_data_spotlight(
   title={
@@ -548,7 +583,7 @@
               Essential before and after major changes in infrastructure, as well as handovers
             </li>
             <li class="p-list__item has-bullet">
-              Available in monthly packages of 10, 20, or 40 hourse
+              Available in monthly packages of 10, 20, or 40 hours
             </li>
           </ul>
         </div>
