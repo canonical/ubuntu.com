@@ -86,6 +86,13 @@
           </li>
           <li>
             <button class="p-tabs__item"
+                    id="milk-v-titan"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="milk-v-titan-tab">Milk-V Titan</button>
+          </li>
+          <li>
+            <button class="p-tabs__item"
                     id="sifive-hifive-premier-p550"
                     role="tab"
                     aria-selected="false"
@@ -97,6 +104,7 @@
             <option value="deepcomputing-fml13v01-tab">DeepComputing FML13V01</option>
             <option value="eswin-ebc7700-sbc-tab">ESWIN EBC7700 SBC</option>
             <option value="eswin-ebc7702-mini-dtx-mainboard-tab">ESWIN EBC7702 Mini-DTX Mainboard</option>
+            <option value="milk-v-titan-tab">Milk-V Titan</option>
             <option value="sifive-hifive-premier-p550-tab">SiFive HiFive Premier P550</option>
           </select>
         </form>
@@ -105,6 +113,7 @@
         {% include "download/risc-v/deepcomputing-fml13v01-partner.html" %}
         {% include "download/risc-v/eswin-ebc7700-sbc.html" %}
         {% include "download/risc-v/eswin-ebc7702-mini-dtx-mainboard.html" %}
+        {% include "download/risc-v/milk-v-titan.html" %}
         {% include "download/risc-v/sifive-hifive-premier-p550.html" %}
       </div>
     </div>
