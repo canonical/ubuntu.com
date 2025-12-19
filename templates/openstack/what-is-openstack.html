@@ -147,77 +147,101 @@
     </div>
   </div>
 
-  {{ vf_basic_section(title={"text": "How does OpenStack work?"},
-    is_split_on_medium=true,
-    items=[
-    {
-    "type": "description",
-    "item": {
-    "type": "html",
-    "content": '
-    <p>As every other cloud platform, OpenStack manages distributed compute, network, and storage resources, aggregates them into pools, and allows on-demand provisioning of virtualized cloud resources through a self-service portal.</p>
-    <p>In addition, OpenStack automates all typical infrastructure management processes, such as machine clustering, resource scheduling, and security policies enforcement. </p>
-    <p><a href="https://canonical.com/openstack/architecture">Explore OpenStack’s architecture&nbsp;&rsaquo;</a></p>
-    '
-    }
-    }
-    ]) }}
+  {# using the p-equal-height-row component here as vf_equal_heights does not support image containers without is-cover #}
+  <div class="p-section ">
+    <hr class="p-rule is-fixed-width" />
+    <div class="p-section--shallow">
+      <div class="row--50-50-on-large">
+        <div class="col">
+          <h2>Cloud computing on your terms</h2>
+        </div>
+        <div class="col">
+          <p>
+            Build your own cloud infrastructure and augment your multi-cloud strategy with a feature-rich on-prem extension. Accept no compromises. OpenStack lets you move your business to the cloud on your own terms.
+          </p>
+        </div>
+      </div>
+    </div>
 
-  {% call(slot) vf_equal_heights(
-    title_text="Cloud computing on your terms",
-    image_aspect_ratio_medium="2-3",
-    image_aspect_ratio_small="2-3",
-    items=[
-    {
-    "title_text": "Cost optimization",
-    "image_html":
-    image(url="https://assets.ubuntu.com/v1/864680ae-cost_opt.png",
-    alt="",
-    width="852",
-    height="1278",
-    hi_def=True,
-    loading="lazy",
-    attrs={"class": "p-image-container__image"}
-    ) | safe
-    ,
-    "description_html": "<p>Always run your applications where it makes most sense from an economical standpoint. OpenStack serves as a cost-effective extension to existing public cloud infrastructure, providing cost optimization capabilities and leading to a reduction in total cost of ownership (TCO) over time.</p>",
-    },
-    {
-    "title_text": "Digital sovereignty",
-    "image_html":
-    image(url="https://assets.ubuntu.com/v1/f7628de4-digital_sov.png",
-    alt="",
-    width="852",
-    height="1278",
-    hi_def=True,
-    loading="lazy",
-    attrs={"class": "p-image-container__image"}
-    ) | safe
-    ,
-    "description_html": "<p>Safeguard national interests, comply with local regulations, and regain full control of privacy. Due to the open source nature of the project and vendor-neutral governance, an OpenStack-based private cloud helps you achieve the desired level of digital sovereignty.</p>",
-    },
-    {
-    "title_text": "Performance acceleration",
-    "image_html":
-    image(url="https://assets.ubuntu.com/v1/d1c81e76-performance.png",
-    alt="",
-    width="852",
-    height="1278",
-    hi_def=True,
-    loading="lazy",
-    attrs={"class": "p-image-container__image"}
-    ) | safe
-    ,
-    "description_html": "<p>In regions of the world where hyperscalers don’t have their own data centers, high latency becomes a challenge. OpenStack enables governments, service providers, and individual organizations to build their own regional cloud infrastructure and thus meet performance requirements of cloud workloads.</p>",
-    }
-    ]
-    ) %}
-    {% if slot == "description" %}
-      <p>
-        Build your own cloud infrastructure and augment your multi-cloud strategy with a feature-rich on-prem extension. Accept no compromises. OpenStack lets you move your business to the cloud on your own terms.
-      </p>
-    {% endif %}
-  {% endcall %}
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <div class="p-equal-height-row--wrap">
+
+          <div class="p-equal-height-row__col is-borderless">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container  p-image-container--square-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/864680ae-cost_opt.png",
+                                alt="",
+                                width="852",
+                                height="1278",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe}}
+              </div>
+              <hr class="p-rule--highlight" />
+            </div>
+            <div class="p-equal-height-row__item">
+              <p class="p-heading--5">Cost optimization</p>
+            </div>
+            <div class="p-equal-height-row__item">
+              <p>
+                Always run your applications where it makes most sense from an economical standpoint. OpenStack serves as a cost-effective extension to existing public cloud infrastructure, providing cost optimization capabilities and leading to a reduction in total cost of ownership (TCO) over time.
+              </p>
+            </div>
+            <div class="p-equal-height-row__item"></div>
+          </div>
+
+          <div class="p-equal-height-row__col is-borderless">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container  p-image-container--square-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/f7628de4-digital_sov.png",
+                                alt="",
+                                width="852",
+                                height="1278",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe}}
+              </div>
+              <hr class="p-rule--highlight" />
+            </div>
+            <div class="p-equal-height-row__item">
+              <p class="p-heading--5">Digital sovereignty</p>
+            </div>
+            <div class="p-equal-height-row__item">
+              <p>
+                Safeguard national interests, comply with local regulations, and regain full control of privacy. Due to the open source nature of the project and vendor-neutral governance, an OpenStack-based private cloud helps you achieve the desired level of digital sovereignty.
+              </p>
+            </div>
+            <div class="p-equal-height-row__item"></div>
+          </div>
+
+          <div class="p-equal-height-row__col is-borderless">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container  p-image-container--square-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/d1c81e76-performance.png",
+                                alt="",
+                                width="852",
+                                height="1278",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe}}
+              </div>
+              <hr class="p-rule--highlight" />
+            </div>
+            <div class="p-equal-height-row__item">
+              <p class="p-heading--5">Performance acceleration</p>
+            </div>
+            <div class="p-equal-height-row__item">
+              <p>
+                In regions of the world where hyperscalers don’t have their own data centers, high latency becomes a challenge. OpenStack enables governments, service providers, and individual organizations to build their own regional cloud infrastructure and thus meet performance requirements of cloud workloads.
+              </p>
+            </div>
+            <div class="p-equal-height-row__item"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
     {%- if slot == 'title' -%}
@@ -292,7 +316,7 @@
         <div class="p-equal-height-row--wrap">
           <div class="p-equal-height-row__col is-borderless">
             <div class="p-equal-height-row__item">
-              <div class="p-image-container p-image-container--2-3 is-cover">
+              <div class="p-image-container p-image-container--square-on-medium p-image-container--square-on-small p-image-container--2-3-on-large is-cover">
                 {{ image(url="https://assets.ubuntu.com/v1/947bfb46-install_os.jpg",
                                 alt="",
                                 width="568",
@@ -318,7 +342,7 @@
 
           <div class="p-equal-height-row__col is-borderless">
             <div class="p-equal-height-row__item">
-              <div class="p-image-container p-image-container--2-3 is-cover">
+              <div class="p-image-container p-image-container--square-on-medium p-image-container--square-on-small p-image-container--2-3-on-large is-cover">
                 {{ image(url="https://assets.ubuntu.com/v1/37048fa6-let_us_build.jpg",
                                 alt="",
                                 width="568",
@@ -344,7 +368,7 @@
 
           <div class="p-equal-height-row__col is-borderless">
             <div class="p-equal-height-row__item">
-              <div class="p-image-container p-image-container--2-3 is-cover">
+              <div class="p-image-container p-image-container--square-on-medium p-image-container--square-on-small p-image-container--2-3-on-large is-cover">
                 {{ image(url="https://assets.ubuntu.com/v1/7b84d9b4-get_fully_managed.jpg",
                                 alt="",
                                 width="568",
