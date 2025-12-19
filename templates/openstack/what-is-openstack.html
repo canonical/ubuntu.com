@@ -9,7 +9,7 @@
 {% block title %}What is OpenStack{% endblock %}
 
 {% block meta_description %}
-  OpenStack is an open-source cloud platform that manages distributed compute, network and storage resources, aggregates them into pools, and allows on-demand provisioning of virtual resources through a self-service portal.
+  OpenStack is the leading open source cloud platform, designed to power mission-critical workloads: from banking systems to government services and 5G core.
 {% endblock meta_description %}
 
 {% block meta_copydoc %}
@@ -80,9 +80,9 @@
     "item": {
     "type": "html",
     "content": '
-    <p>OpenStack was launched in 2010 and its primary objective was to resemble the behaviour of leading public clouds. This is why AWS, Azure, or Google Cloud workloads can be moved to OpenStack so easily. The platform, however, is fully open source, resulting in code transparency and no vendor lock-in.</p>
+    <p>OpenStack was launched in 2010 and its primary objective was to resemble the behavior of leading public clouds. This is why AWS, Azure, or Google Cloud workloads can be moved to OpenStack so easily. The platform, however, is fully open source, resulting in code transparency and no vendor lock-in.</p>
     <p>Under the hood, OpenStack uses many other software components and open source projects, such as <a href="/blog/kvm-hyphervisor">KVM</a>, <a href="/ceph">Ceph</a>, and <a href="/blog/data-centre-networking-what-is-ovn">OVN</a>. All of that, wrapped with programmable APIs and end-to-end automation, delivers a cloud experience that lets users provision and manage cloud resources through a self-service portal.</p>
-    <p>Today OpenStack serves as a de facto standard for building clouds of any type. Native integration with <a href="/kubernetes">Kubernetes</a> and world’s leading chipsets, such as <a href="https://canonical.com/blog/nvidia-vgpu-release">NVIDIA GPUs</a>, make it a perfect candidate for running both traditional and modern, cloud-native applications.</p>
+    <p>Today OpenStack serves as a <i>de facto</i> standard for building clouds of any type. Native integration with <a href="/kubernetes">Kubernetes</a> and world’s leading chipsets, such as <a href="https://canonical.com/blog/nvidia-vgpu-release">NVIDIA GPUs</a>, make it a perfect candidate for running both traditional and modern, cloud-native applications.</p>
     '
     }
     }
@@ -105,7 +105,7 @@
 
     {%- if slot == 'list_item_description_1' -%}
       <p>
-        OpenStack has been on the market for more than one and half decades now – this means a lot in the software space. Today, OpenStack is more like Linux: it’s a mature project, demonstrating a high level of stability and security as typically required by the most demanding users and industries.
+        OpenStack has been on the market for more than one and a half decades now – this means a lot in the software space. Today, OpenStack is more like Linux: it’s a mature project, demonstrating a high level of stability and security as typically required by the most demanding users and industries.
       </p>
     {%- endif -%}
 
@@ -165,6 +165,8 @@
 
   {% call(slot) vf_equal_heights(
     title_text="Cloud computing on your terms",
+    image_aspect_ratio_medium="2-3",
+    image_aspect_ratio_small="2-3",
     items=[
     {
     "title_text": "Cost optimization",
@@ -290,7 +292,7 @@
         <div class="p-equal-height-row--wrap">
           <div class="p-equal-height-row__col is-borderless">
             <div class="p-equal-height-row__item">
-              <div class="p-image-container  p-image-container--square-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-cover">
+              <div class="p-image-container p-image-container--2-3 is-cover">
                 {{ image(url="https://assets.ubuntu.com/v1/947bfb46-install_os.jpg",
                                 alt="",
                                 width="568",
@@ -316,7 +318,7 @@
 
           <div class="p-equal-height-row__col is-borderless">
             <div class="p-equal-height-row__item">
-              <div class="p-image-container  p-image-container--square-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-cover">
+              <div class="p-image-container p-image-container--2-3 is-cover">
                 {{ image(url="https://assets.ubuntu.com/v1/37048fa6-let_us_build.jpg",
                                 alt="",
                                 width="568",
@@ -334,7 +336,7 @@
             </div>
             <div class="p-equal-height-row__item">
               <p>
-                Looking for professional services for OpenStack? Let our experts build the cloud for you. Get your production environment designed and delivered inline with Canonical’s best practices and the latest market trends.
+                Looking for professional services for OpenStack? Let our experts build the cloud for you. Get your production environment designed and delivered in line with Canonical’s best practices and the latest market trends.
               </p>
             </div>
             <div class="p-equal-height-row__item"></div>
@@ -342,7 +344,7 @@
 
           <div class="p-equal-height-row__col is-borderless">
             <div class="p-equal-height-row__item">
-              <div class="p-image-container  p-image-container--square-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-cover">
+              <div class="p-image-container p-image-container--2-3 is-cover">
                 {{ image(url="https://assets.ubuntu.com/v1/7b84d9b4-get_fully_managed.jpg",
                                 alt="",
                                 width="568",
@@ -375,13 +377,13 @@
       <hr class="p-rule" />
       <ol class="p-list">
         <li id="footnote-1" class="p-list__item">
-          <sup>1</sup> Source: <a href="https://www.stackalytics.com/">https://www.stackalytics.com/</a>.
+          <sup>1</sup> Source: <a href="https://www.stackalytics.com/">stackalytics.com</a>.
           <a class="u-off-screen"
              href="#footnote-1-link"
              aria-label="Back to content">↩</a>
         </li>
         <li id="footnote-2" class="p-list__item">
-          <sup>2</sup> Source: <a href="https://www.mordorintelligence.com/industry-reports/openstack-services-market">https://www.mordorintelligence.com/industry-reports/openstack-services-market</a>.
+          <sup>2</sup> Source: <a href="https://www.mordorintelligence.com/industry-reports/openstack-services-market">mordorintelligence.com/industry-reports/openstack-services-market</a>.
           <a class="u-off-screen"
              href="#footnote-2-link"
              aria-label="Back to content">↩</a>
