@@ -7,7 +7,14 @@ import re
 import requests
 import time
 import logging
-from urllib.parse import quote, unquote, urlparse
+from urllib.parse import (
+    quote,
+    unquote,
+    urlparse,
+    urlunparse,
+    urlencode,
+    parse_qs,
+)
 from datetime import datetime, date
 
 # Packages
@@ -850,6 +857,52 @@ def shorten_acquisition_url(acquisition_url):
     return acquisition_url
 
 
+def enrich_acquisition_url(acquisition_url, utm_dict, approved_utms):
+    """
+    Function to append UTM parameters from cookie session (if present)
+    to acquisition URL.
+    """
+    parsed_url = urlparse(acquisition_url)
+
+    # Build utm query parameters
+    utm_params = {}
+    for k, v in utm_dict.items():
+        if k in approved_utms:
+            utm_params[k] = v
+
+    # Parse existing query parameters
+    existing_params = {}
+    if parsed_url.query:
+        existing_params = dict(
+            parse_qs(parsed_url.query, keep_blank_values=True)
+        )
+        # Flatten lists in params
+        existing_params = {
+            k: v[0] if isinstance(v, list) else v
+            for k, v in existing_params.items()
+        }
+
+    # Merge UTM params
+    existing_params.update(utm_params)
+
+    # Build new query string
+    query_string = urlencode(existing_params)
+
+    # Reconstruct URL (fragment stays at the end)
+    enriched_url = urlunparse(
+        (
+            parsed_url.scheme,
+            parsed_url.netloc,
+            parsed_url.path,
+            parsed_url.params,
+            query_string,
+            parsed_url.fragment,
+        )
+    )
+
+    return enriched_url
+
+
 def marketo_submit():
     form_fields = {}
     for key in flask.request.form:
@@ -997,6 +1050,14 @@ def marketo_submit():
                 if k == "utm_content":
                     k = "utmcontent"
                 enrichment_fields[k] = v
+
+        # Append utm values in acquisition url
+        acquisition_url = enrichment_fields.get("acquisition_url")
+        if acquisition_url:
+            enriched_acquisition_url = enrich_acquisition_url(
+                acquisition_url, utm_dict, approved_utms
+            )
+            enrichment_fields["acquisition_url"] = enriched_acquisition_url
 
     enriched_payload = {
         "formId": "4198",
