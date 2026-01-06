@@ -56,7 +56,8 @@ function setUtms() {
   cookieAcceptanceValue = getCookie("_cookies_accepted");
   if (
     cookieAcceptanceValue?.[2] === "all" ||
-    cookieAcceptanceValue?.[2] === "performance"
+    cookieAcceptanceValue?.[2] === "performance" ||
+    cookieAcceptanceValue?.[2] === "essential"
   ) {
     let utmCookies = getCookie("utms");
     const urlParams = new URLSearchParams(window.location.search);
@@ -65,7 +66,7 @@ function setUtms() {
     } else if (utmCookies) {
       const referrer = document.referrer;
       const currentHost = window.location.host;
-      if (!referrer.includes(currentHost)) {
+      if (referrer && !referrer.includes(currentHost)) {
         document.cookie = "utms=;max-age=0;path=/;";
       }
     }
