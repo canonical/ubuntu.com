@@ -9,14 +9,15 @@ from werkzeug.exceptions import NotFound, InternalServerError
 
 from webapp.app import app
 from webapp.views import (
-    shorten_acquisition_url,
-    process_local_communities,
     _build_mirror_list,
-    download_thank_you,
     account_query,
-    build_tutorials_query,
-    match_tags,
     build_engage_page,
+    build_tutorials_query,
+    download_thank_you,
+    enrich_acquisition_url,
+    match_tags,
+    process_local_communities,
+    shorten_acquisition_url,
 )
 from webapp.certified.views import certified_platform_details_by_release
 
@@ -725,3 +726,171 @@ class TestCertifiedPlatformDetailsByRelease(BaseViewTestCase):
                 pass  # Expected behavior
 
         mock_decorators_abort.assert_called_once_with(500)
+
+
+class TestEnrichAcquisitionURL(BaseViewTestCase):
+    """
+    Unit tests for `webapp.views.enrich_acquisition_url`.
+
+    This function appends UTM parameters to an acquisition URL while
+    preserving existing query parameters and fragments.
+
+    Test cases:
+    - UTM parameters are appended to URL without query string.
+    - UTM parameters are merged with existing query parameters.
+    - Fragment identifiers are preserved at the end of the URL.
+    - Only approved UTM keys are included in the URL.
+    - Empty utm_dict returns the original URL.
+    - Non-approved UTM parameters are filtered out.
+    - Multiple UTM parameters are correctly encoded.
+    """
+
+    def setUp(self):
+        super().setUp()
+        self.approved_utms = [
+            "utm_source",
+            "utm_medium",
+            "utm_campaign",
+            "utm_content",
+            "utm_term",
+        ]
+
+    def test_basic_url_with_utms(self):
+        """Test appending UTMs to a simple URL."""
+        url = "https://ubuntu.com/engage/test-page"
+        utm_dict = {
+            "utm_source": "facebook",
+            "utm_medium": "cpc",
+            "utm_campaign": "test_campaign",
+        }
+
+        result = enrich_acquisition_url(url, utm_dict, self.approved_utms)
+
+        self.assertIn("utm_source=facebook", result)
+        self.assertIn("utm_medium=cpc", result)
+        self.assertIn("utm_campaign=test_campaign", result)
+        self.assertTrue(
+            result.startswith("https://ubuntu.com/engage/test-page?")
+        )
+
+    def test_url_with_fragment_preserved(self):
+        """Test that URL fragments are preserved at the end."""
+        url = "https://ubuntu.com/engage/test-page#contact-form"
+        utm_dict = {
+            "utm_source": "google",
+            "utm_medium": "organic",
+        }
+
+        result = enrich_acquisition_url(url, utm_dict, self.approved_utms)
+
+        self.assertTrue(result.endswith("#contact-form"))
+        self.assertIn("utm_source=google", result)
+        self.assertIn("utm_medium=organic", result)
+
+    def test_url_with_existing_query_params(self):
+        """Test merging UTMs with existing query parameters."""
+        url = "https://ubuntu.com/engage/test-page?existing=value&foo=bar"
+        utm_dict = {
+            "utm_source": "email",
+            "utm_campaign": "newsletter",
+        }
+
+        result = enrich_acquisition_url(url, utm_dict, self.approved_utms)
+
+        self.assertIn("utm_source=email", result)
+        self.assertIn("utm_campaign=newsletter", result)
+        self.assertIn("existing=value", result)
+        self.assertIn("foo=bar", result)
+
+    def test_url_with_existing_params_and_fragment(self):
+        """Test merging UTMs with both existing params and fragment."""
+        url = "https://ubuntu.com/page?id=123#section"
+        utm_dict = {
+            "utm_source": "twitter",
+            "utm_content": "post123",
+        }
+
+        result = enrich_acquisition_url(url, utm_dict, self.approved_utms)
+
+        self.assertIn("utm_source=twitter", result)
+        self.assertIn("utm_content=post123", result)
+        self.assertIn("id=123", result)
+        self.assertTrue(result.endswith("#section"))
+
+    def test_empty_utm_dict(self):
+        """Test that empty utm_dict returns original URL."""
+        url = "https://ubuntu.com/engage/test-page"
+        utm_dict = {}
+
+        result = enrich_acquisition_url(url, utm_dict, self.approved_utms)
+
+        # Should return URL with no query params added
+        self.assertEqual(result, url)
+
+    def test_only_unapproved_utms(self):
+        """Test that unapproved UTM parameters are filtered out."""
+        url = "https://ubuntu.com/engage/test-page"
+        utm_dict = {
+            "utm_source": "facebook",
+            "custom_param": "should_be_filtered",
+            "another_param": "also_filtered",
+        }
+
+        result = enrich_acquisition_url(url, utm_dict, self.approved_utms)
+
+        self.assertIn("utm_source=facebook", result)
+        self.assertNotIn("custom_param", result)
+        self.assertNotIn("another_param", result)
+
+    def test_all_approved_utm_types(self):
+        """Test all five approved UTM parameter types."""
+        url = "https://ubuntu.com/page"
+        utm_dict = {
+            "utm_source": "google",
+            "utm_medium": "cpc",
+            "utm_campaign": "summer_sale",
+            "utm_content": "banner_v2",
+            "utm_term": "kubernetes",
+        }
+
+        result = enrich_acquisition_url(url, utm_dict, self.approved_utms)
+
+        self.assertIn("utm_source=google", result)
+        self.assertIn("utm_medium=cpc", result)
+        self.assertIn("utm_campaign=summer_sale", result)
+        self.assertIn("utm_content=banner_v2", result)
+        self.assertIn("utm_term=kubernetes", result)
+
+    def test_utm_with_special_characters(self):
+        """Test UTM parameters with special characters are properly encoded."""
+        url = "https://ubuntu.com/page"
+        utm_dict = {
+            "utm_source": "facebook",
+            "utm_campaign": "test & promo",
+            "utm_content": "banner#1",
+        }
+
+        result = enrich_acquisition_url(url, utm_dict, self.approved_utms)
+
+        # URL encoding should handle special characters
+        self.assertIn("utm_source=facebook", result)
+        # Special characters should be URL encoded
+        self.assertIn("%26", result)  # & encoded
+        self.assertIn("%23", result)  # # encoded
+
+    def test_partial_utm_dict(self):
+        """Test with only some UTM parameters provided."""
+        url = "https://ubuntu.com/page"
+        utm_dict = {
+            "utm_source": "direct",
+            "utm_medium": "none",
+        }
+
+        result = enrich_acquisition_url(url, utm_dict, self.approved_utms)
+
+        self.assertIn("utm_source=direct", result)
+        self.assertIn("utm_medium=none", result)
+        # Should not include utm_campaign, utm_content, or utm_term
+        self.assertNotIn("utm_campaign", result)
+        self.assertNotIn("utm_content", result)
+        self.assertNotIn("utm_term", result)
