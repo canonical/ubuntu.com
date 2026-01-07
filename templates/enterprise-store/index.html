@@ -2,6 +2,8 @@
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
+{% from "_macros/vf_newsletter-signup.jinja" import vf_newsletter_signup %}
 
 {% block title %}
   Enterprise Store
@@ -46,14 +48,15 @@
         </h2>
       </div>
       <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
-
-        {{ image(url="https://assets.ubuntu.com/v1/066647e9-complex_networks.png",
-                alt="",
-                width="1200",
-                height="800",
-                hi_def=True,
-                loading="lazy") | safe
-        }}
+        <div class="p-image-container is-highlighted">
+          {{ image(url="https://assets.ubuntu.com/v1/066647e9-complex_networks.png",
+                    alt="",
+                    width="1200",
+                    height="800",
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
+        </div>
         <p>
           The Enterprise Store enables organizations to access Canonical's software ecosystems from behind corporate firewalls, in air-gapped environments or other restricted networking environments. 
         </p>
@@ -156,6 +159,7 @@
         <ul class="p-list--divided">
           <li class="p-list__item has-bullet">Critical infrastructure</li>
           <li class="p-list__item has-bullet">Public sector</li>
+          <li class="p-list__item has-bullet">Manufacturing</li>
           <li class="p-list__item has-bullet">Research and development</li>
           <li class="p-list__item has-bullet">Communications</li>
         </ul>
@@ -194,28 +198,24 @@
   </div>
 </section>
 
-<hr class="p-rule is-fixed-width" />
-
-<section class="p-strip is-deep">
-  <div class="row">
-    <h2>
-      Let’s discuss the best solution for your enterprise
-      <br />
-      <a href="/contact-us"
-         aria-controls="enterprise-store-modal"
-         class="js-invoke-modal">Get in touch&nbsp;&rsaquo;</a>
-    </h2>
-  </div>
-</section>
+{% call(slot) vf_cta_section(
+  title_text='Let\'s discuss the best solution for your enterprise',
+  variant='default',
+  layout='100',
+  ) -%}
+  {%- if slot == 'cta' -%}
+    <a href="/contact-us"
+       aria-controls="enterprise-store-modal"
+       class="js-invoke-modal">Get in touch &rsaquo;</a>
+  {%- endif -%}
+{% endcall -%}
 
 <section class="p-section">
-  <div class="row--50-50">
-    <hr class="p-rule" />
-    <div class="col">
-      <h2>Sign up for our IoT newsletter</h2>
-    </div>
-    <div class="col">{% include "shared/contextual_footers/_iot_newsletter_signup.html" %}</div>
-  </div>
+  {% call(slot) vf_newsletter_signup(layout="50-50", title_text="Sign up for our IoT newsletter", form_id="mktoForm_1670", return_url="https://ubuntu.com/#contact-form-success", input_label='Work email', checkbox_id='canonicalUpdatesOptIn', checkbox_label='I agree to receive information about Canonical\'s products and services.') %}
+    {%- if slot == 'description' -%}
+      <p>Receive regular updates from our IoT newsletter.</p>
+    {%- endif -%}
+  {% endcall %}
 </section>
 
 {{ load_form("/enterprise-store") | safe }}
