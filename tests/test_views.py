@@ -9,15 +9,15 @@ from werkzeug.exceptions import NotFound, InternalServerError
 
 from webapp.app import app
 from webapp.views import (
-    _build_mirror_list,
-    account_query,
-    build_engage_page,
-    build_tutorials_query,
-    download_thank_you,
-    enrich_acquisition_url,
-    match_tags,
-    process_local_communities,
     shorten_acquisition_url,
+    process_local_communities,
+    _build_mirror_list,
+    download_thank_you,
+    account_query,
+    build_tutorials_query,
+    match_tags,
+    build_engage_page,
+    enrich_acquisition_url,
 )
 from webapp.certified.views import certified_platform_details_by_release
 
