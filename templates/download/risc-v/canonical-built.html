@@ -100,6 +100,13 @@ layout='25/75'
           </li>
           <li>
             <button class="p-tabs__item"
+                    id="milk-v-mars-cm"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="milk-v-mars-cm-tab">Milk-V Mars CM</button>
+          </li>
+          <li>
+            <button class="p-tabs__item"
                     id="pine64-star64"
                     role="tab"
                     aria-selected="false"
@@ -133,6 +140,13 @@ layout='25/75'
                     aria-selected="false"
                     aria-controls="starfive-visionfive-2-tab">StarFive VisionFive 2</button>
           </li>
+          <li>
+            <button class="p-tabs__item"
+                    id="starfive-visionfive-2-lite"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="starfive-visionfive-2-lite-tab">StarFive VisionFive 2 Lite</button>
+          </li>
         </ul>
         <form class="u-hide--large u-hide--medium">
           <select name="boardSelect" id="boardSelect" data-maintain-hash="true">
@@ -155,11 +169,13 @@ layout='25/75'
         {% include "download/risc-v/microchip-curiosity.html" %}
         {% include "download/risc-v/microchip-polarfire.html" %}
         {% include "download/risc-v/milk-v-mars.html" %}
+        {% include "download/risc-v/milk-v-mars-cm.html" %}
         {% include "download/risc-v/pine64-star64.html" %}
         {% include "download/risc-v/qemu-emulator.html" %}
         {% include "download/risc-v/sifive-unmatched.html" %}
         {% include "download/risc-v/sipeed-licheerv.html" %}
         {% include "download/risc-v/starfive-visionfive.html" %}
+        {% include "download/risc-v/starfive-visionfive-2-lite.html" %}
       </div>
     </div>
   </section>
