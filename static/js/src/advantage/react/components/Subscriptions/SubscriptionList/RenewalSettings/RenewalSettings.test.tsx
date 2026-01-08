@@ -297,7 +297,7 @@ describe("RenewalSettings", () => {
       ],
     );
     setAutoRenewalSpy.mockImplementation(() =>
-      Promise.resolve({ errors: "Uh oh" }),
+      Promise.reject(new Error("Uh oh")),
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -314,6 +314,10 @@ describe("RenewalSettings", () => {
     });
     await act(async () => {
       wrapper.find("Formik form").simulate("submit");
+    });
+    await act(async () => {
+      // Wait for the mutation to settle
+      await new Promise((resolve) => setTimeout(resolve, 0));
     });
     wrapper.update();
     const notification = wrapper.find("Notification[data-test='update-error']");
@@ -336,7 +340,7 @@ describe("RenewalSettings", () => {
       ],
     );
     setAutoRenewalSpy.mockImplementation(() =>
-      Promise.resolve({ errors: "Uh oh" }),
+      Promise.reject(new Error("Uh oh")),
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>

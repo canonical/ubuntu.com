@@ -299,7 +299,7 @@ describe("SubscriptionEdit", () => {
 
   it("can display an error when there's an unknown payment error", async () => {
     resizeContractSpy.mockImplementation(() =>
-      Promise.resolve({ errors: "unknown error" }),
+      Promise.reject(new Error("unknown error")),
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -316,6 +316,10 @@ describe("SubscriptionEdit", () => {
         .find("input[name='size']")
         .simulate("change", { name: "size", value: 6 });
       wrapper.find("Formik form").simulate("submit");
+    });
+    await act(async () => {
+      // Wait for the mutation to settle
+      await new Promise((resolve) => setTimeout(resolve, 0));
     });
     wrapper.update();
     expect(wrapper.find("[data-test='payment-error']").exists()).toBe(true);
