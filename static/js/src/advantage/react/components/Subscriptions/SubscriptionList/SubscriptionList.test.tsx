@@ -125,8 +125,8 @@ describe("SubscriptionList", () => {
   it("hide free subscription if a valid paid subscription exists", () => {
     const subscriptions = [
       userSubscriptionFactory.build({
-        start_date: "2024-12-31T02:56:54Z",
-        end_date: "2025-12-31T02:56:54Z",
+        start_date: "2025-12-31T02:56:54Z",
+        end_date: "2026-12-31T02:56:54Z",
       }),
       userSubscriptionFactory.build({
         start_date: "2020-08-11T02:56:54Z",

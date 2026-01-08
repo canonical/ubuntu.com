@@ -17,6 +17,7 @@ describe("CVETable", () => {
             section: "section-1",
             pocket: "main",
             version: "1",
+            origin: "universe",
             critical_cves: [],
             high_cves: [
               {
@@ -30,6 +31,7 @@ describe("CVETable", () => {
             section: "section-2",
             pocket: "main",
             version: "2",
+            origin: "universe",
             critical_cves: [
               {
                 name: "CVE-3",
