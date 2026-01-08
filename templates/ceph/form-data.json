@@ -1,0 +1,72 @@
+{
+  "form": {
+    "/ceph/contact-us": {
+      "templatePath": "ceph/contact-us.html",
+      "formData": {
+        "title": "Contact us",
+        "introText": "If you are thinking about using Ceph, please fill in your details below and a member of our team will get in touch.",
+        "formId": "1233",
+        "returnUrl": "/ceph/thank-you",
+        "lpId": "2001"
+      },
+      "fieldsets": [
+        {
+          "title": "How many devices?",
+          "id": "how-many-machines",
+          "inputName": "how-many-machines-do-you-have",
+          "inputType": "radio",
+          "fields": [
+            {
+              "type": "radio",
+              "value": "less than 5",
+              "label": "< 5 machines"
+            },
+            {
+              "type": "radio",
+              "value": "5 to 15 machines",
+              "label": "5 – 15 machines"
+            },
+            {
+              "type": "radio",
+              "value": "15 to 50 machines",
+              "label": "15 – 50 machines"
+            },
+            {
+              "type": "radio",
+              "value": "50 to 100 machines",
+              "label": "50 – 100 machines"
+            },
+            {
+              "type": "radio",
+              "value": "greater than 100",
+              "label": "> 100 machines"
+            }
+          ]
+        },
+        {
+          "title": "What would you like to talk to us about?",
+          "id": "comments",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "comments",
+              "label": ""
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
