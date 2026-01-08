@@ -1,0 +1,71 @@
+{
+  "form": {
+    "/masters-conference/contact-us": {
+      "templatePath": "masters-conference/contact-us.html",
+      "formData": {
+        "title": "Ubuntu Masters",
+        "introText": "Ubuntu Masters are IT practitioners who are driving revolutionary change in the corporate space. Watch videos from our first Ubuntu Masters Conference, featuring these inspiring doers to hear how they are solving complex industry-wide challenges.",
+        "formId": "3475",
+        "returnUrl": "/masters-conference/thank-you"
+      },
+      "fieldsets": [
+        {
+          "title": "How many devices?",
+          "id": "how-many-machines",
+          "inputName": "how-many-machines-do-you-have",
+          "inputType": "radio",
+          "fields": [
+            {
+              "type": "radio",
+              "value": "less than 5",
+              "label": "< 5 machines"
+            },
+            {
+              "type": "radio",
+              "value": "5 to 15 machines",
+              "label": "5 – 15 machines"
+            },
+            {
+              "type": "radio",
+              "value": "15 to 50 machines",
+              "label": "15 – 50 machines"
+            },
+            {
+              "type": "radio",
+              "value": "50 to 100 machines",
+              "label": "50 – 100 machines"
+            },
+            {
+              "type": "radio",
+              "value": "greater than 100",
+              "label": "> 100 machines"
+            }
+          ]
+        },
+        {
+          "title": "What would you like to talk to us about?",
+          "id": "comments",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "comments",
+              "label": ""
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -4,12 +4,6 @@
 
 {% block content %}
 
-{% with h1='Ubuntu Masters',
-  intro_text="Ubuntu Masters are IT practitioners who are driving revolutionary change in the corporate space. Watch videos from our first Ubuntu Masters Conference, featuring these inspiring doers to hear how they are solving complex industry-wide challenges.",
-  formid="3475",
-  lpId="",
-  returnURL="/masters-conference/thank-you" %}
-  {% include "shared/_client-contact-us-form.html" %}
-{% endwith %}
+{{ load_form("/masters-conference/contact-us") | safe }}
 
 {% endblock content %}
