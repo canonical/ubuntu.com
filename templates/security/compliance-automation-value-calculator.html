@@ -65,7 +65,7 @@
                id="compliance-profile"
                aria-label="CIS Level from 1 to 3" />
         <select class="p-slider__input p-slider__input--extended"
-                name="exampleSelect"
+                name="compliance-profile-select"
                 id="compliance-profile-input">
           <option value="1" selected="">CIS Level 1</option>
           <option value="2">CIS Level 2</option>
@@ -188,10 +188,10 @@
     {
     "stat": "<span id=\"work-weeks\">0</span>",
     "headline": "work weeks",
-    "description": "Or 0.63 Full time employee ",
+    "description": "Or <span id=\"full-time-employment\">0.63</span> full time employee(s)",
     },
     {
-    "stat": "<span id=\"cost-savings\">0</span>",
+    "stat": "$<span id=\"cost-savings\">0</span>",
     "headline": "Cost savings",
     "description": "Approximately per year",
     }
@@ -367,7 +367,7 @@
                   "type": "text",
                   "content": 
                   "<div class=\"p-section--shallow\" id=\"formula-total\"></div>
-                  <p>The numbers used in the calculations are .based on common industry metrics.</p>"
+                  <p>The numbers used in the calculations are based on common industry metrics.</p>"
                 }
               }
             ]
@@ -501,6 +501,7 @@
       document.getElementById("documentation-time").textContent = Math.round(documentationTimeSavings).toLocaleString();
       document.getElementById("remediation-time").textContent = Math.round(remediationTimeSavings).toLocaleString();
       document.getElementById("total-breakdown").textContent = totalSavings.toLocaleString();
+      document.getElementById("full-time-employment").textContent = fte.toLocaleString();
       // Update formulas with actual numbers
       document.getElementById("formula-hardening").textContent =
         `${systems} systems x (${profile.manualHardeningHours} hrs manual - ${USG_HARDENING_HOURS} hrs USG) = ${Math.round(hardeningTimeSavings).toLocaleString()} hours saved`;
@@ -533,23 +534,10 @@
     newSystems.addEventListener("input", () => {
       calculateTimeSavings();
     });
-    numSystemsValue.addEventListener("input", () => {
-      calculateTimeSavings();
-    });
     complianceProfileValue.addEventListener("change", () => {
       calculateTimeSavings();
     });
-    auditFrequencyValue.addEventListener("input", () => {
-      calculateTimeSavings();
-    });
-    driftChecksValue.addEventListener("input", () => {
-      calculateTimeSavings();
-    });
-    newSystemsValue.addEventListener("input", () => {
-      calculateTimeSavings();
-    });
     // Initialize on page load
-    updateDisplayValues();
     calculateTimeSavings();
   </script>
 {% endblock content %}

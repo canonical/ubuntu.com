@@ -1,5 +1,5 @@
 // This is the JS base required to make the slider component work
-// It colours the progress bar and equalizers the values between
+// It colours the progress bar and equalizes the values between
 // the input and slider elements
 // From: https://vanillaframework.io/docs/patterns/slider
 
