@@ -235,6 +235,73 @@
           ]
         }
       ]
+    },
+    "/gcp/contact-us": {
+      "templatePath": "gcp/contact-us.html",
+      "formData": {
+        "title": "Canonical - the \"Ubuntu on GCP\" experts",
+        "introText": "Already running Ubuntu on GCP, or planning a migration to the public cloud? Canonical has the expertise to assist you in your project, whether it involves application architecture, optimisation or streamlining operations at scale. Share some details about your project with us and let's get started.",
+        "formId": "3860",
+        "returnUrl": "/gcp/thank-you"
+      },
+      "fieldsets": [
+        {
+          "title": "How many devices?",
+          "id": "how-many-machines",
+          "inputName": "how-many-machines-do-you-have",
+          "inputType": "radio",
+          "fields": [
+            {
+              "type": "radio",
+              "value": "less than 5",
+              "label": "< 5 machines"
+            },
+            {
+              "type": "radio",
+              "value": "5 to 15 machines",
+              "label": "5 – 15 machines"
+            },
+            {
+              "type": "radio",
+              "value": "15 to 50 machines",
+              "label": "15 – 50 machines"
+            },
+            {
+              "type": "radio",
+              "value": "50 to 100 machines",
+              "label": "50 – 100 machines"
+            },
+            {
+              "type": "radio",
+              "value": "greater than 100",
+              "label": "> 100 machines"
+            }
+          ]
+        },
+        {
+          "title": "What would you like to talk to us about?",
+          "id": "comments",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "comments",
+              "label": ""
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number"
+            }
+          ]
+        }
+      ]
     }
   }
 }
