@@ -31,6 +31,7 @@ export default function RenewalButton({
       value: price,
     },
     canBeTrialled: false,
+    startDate: subscription.end_date,
   };
 
   const shopCheckoutData = {

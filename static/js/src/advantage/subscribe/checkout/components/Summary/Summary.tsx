@@ -104,7 +104,11 @@ function Summary({
     } else {
       addObj.years = quantity;
     }
-    return format(add(new Date(), addObj), DATE_FORMAT);
+    let initialDate = new Date();
+    if (product?.startDate) {
+      initialDate = add(new Date(product.startDate), {days: 1});
+    }
+    return format(add(initialDate, addObj), DATE_FORMAT);
   };
 
   const endDate = useMemo(() => calculateProductEndDate(), [product]);
