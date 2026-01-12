@@ -22,7 +22,9 @@
           <p class="p-heading--2">Ubuntu Pro covers all aspects of open infrastructure and applications.</p>
         </div>
         <div class="p-cta-block">
-          <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+          <a href="/support/contact-us"
+             class="p-button--positive js-invoke-modal"
+             aria-controls="pricing-contact-modal">Get in touch</a>
           <a href="/pro/subscribe">Purchase a subscription&nbsp;&rsaquo;</a>
         </div>
       </div>
@@ -43,34 +45,28 @@
         <h3 class="p-heading--5">Ubuntu Pro for personal users</h3>
       </div>
       <div class="col-10 col-medium-6">
-        <p>Ubuntu Pro is free for personal users on up to 5 machines, and on up to 50 machines for active <a href="/community/membership">Ubuntu Community members</a>.</p>
+        <p>
+          Ubuntu Pro is free for personal users on up to 5 machines, and on up to 50 machines for active <a href="/community/membership">Ubuntu Community members</a>.
+        </p>
         <aside class="p-accordion">
           <ul class="p-accordion__list">
             <li class="p-accordion__group">
               <div role="heading" aria-level="3" class="p-accordion__heading">
-                <button type="button" class="p-accordion__tab" id="tab1" aria-controls="tab1-section" aria-expanded="false">What is included in a free Pro subscription?</button>
+                <button type="button"
+                        class="p-accordion__tab"
+                        id="tab1"
+                        aria-controls="tab1-section"
+                        aria-expanded="false">What is included in a free Pro subscription?</button>
               </div>
-              <section class="p-accordion__panel" id="tab1-section" aria-hidden="true" aria-labelledby="tab1">
-                {% set free_data = [
-                  ['Security patching for Ubuntu Main repository for 10 years (esm-infra)', None, True],
-                  ['Security patching for Ubuntu Universe repository for 10 years (esm-apps)', '(Ubuntu 16.04 LTS onwards)', True],
-                  ['Kernel Livepatch to avoid unscheduled reboots', None, True],
-                  ['Systems management at scale with Landscape', None, True],
-                  ['Real-time kernel', '(Ubuntu 22.04 LTS onwards)', True],
-                  ['NIST-certified FIPS crypto-modules', '(pending for Ubuntu 24.04 LTS)', True],
-                  ['USG hardening with CIS and DISA-STIG profiles', '(DISA-STIG tooling & automation for Ubuntu 20.04 LTS and 22.04 LTS)', True],
-                  ['Common Criteria EAL2', '(Ubuntu LTS 14.04 LTS and 16.04 LTS only)', True],
-                  ['Advanced Active Directory policies for Ubuntu Desktop', None, True],
-                  ['Certified Windows drivers for KVM guests', None, False],
-                  ['Knowledge base access', None, False],
-                  ['Ubuntu Assurance Program', None, False],
-                ] %}
+              <section class="p-accordion__panel"
+                       id="tab1-section"
+                       aria-hidden="true"
+                       aria-labelledby="tab1">
+                {% set free_data = [['Security patching for Ubuntu Main repository for 10 years (esm-infra)', None, True], ['Security patching for Ubuntu Universe repository for 10 years (esm-apps)', '(Ubuntu 16.04 LTS onwards)', True], ['Kernel Livepatch to avoid unscheduled reboots', None, True], ['Systems management at scale with Landscape', None, True], ['Real-time kernel', '(Ubuntu 22.04 LTS onwards)', True], ['NIST-certified FIPS crypto-modules', '(pending for Ubuntu 24.04 LTS)', True], ['USG hardening with CIS and DISA-STIG profiles', '(DISA-STIG tooling & automation for Ubuntu 20.04 LTS and 22.04 LTS)', True], ['Common Criteria EAL2', '(Ubuntu LTS 14.04 LTS and 16.04 LTS only)', True], ['Advanced Active Directory policies for Ubuntu Desktop', None, True], ['Certified Windows drivers for KVM guests', None, False], ['Knowledge base access', None, False], ['Ubuntu Assurance Program', None, False]] %}
                 <table aria-label="What is included in a free Pro subscription?">
                   <thead>
                     <tr>
-                      <th style="width: 79%;" scope="col">
-                        Security and Compliance
-                      </th>
+                      <th style="width: 79%;" scope="col">Security and Compliance</th>
                       <th scope="col">
                         Free tier
                         <br />
@@ -728,7 +724,9 @@
           Weekday support is discounted by 50%.
         </p>
         <div class="p-cta-block">
-          <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+          <a href="/support/contact-us"
+             class="p-button--positive js-invoke-modal"
+             aria-controls="pricing-contact-modal">Get in touch</a>
         </div>
       </div>
     </div>
@@ -744,9 +742,7 @@
         </p>
       </div>
       <div class="col">
-        <h3>
-          Managed
-        </h3>
+        <h3>Managed</h3>
         <table class="p-table is-not-indented">
           <thead>
             <tr>
@@ -773,9 +769,7 @@
             </tr>
           </tbody>
         </table>
-        <h3>
-          Firefighting
-        </h3>
+        <h3>Firefighting</h3>
         <table>
           <thead>
             <tr>
@@ -803,7 +797,9 @@
           </tbody>
         </table>
         <div class="p-cta-block">
-          <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+          <a href="/support/contact-us"
+             class="p-button--positive js-invoke-modal"
+             aria-controls="pricing-contact-modal">Get in touch</a>
         </div>
       </div>
     </div>
@@ -868,7 +864,9 @@
           </tbody>
         </table>
         <div class="p-cta-block">
-          <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+          <a href="/support/contact-us"
+             class="p-button--positive js-invoke-modal"
+             aria-controls="pricing-contact-modal">Get in touch</a>
         </div>
       </div>
     </div>
@@ -880,7 +878,8 @@
       <div class="row u-vertically-center">
         <div class="col-10">
           <h2>
-            Any questions? <a href="/pricing/pro#get-in-touch"
+            Any questions? <a href="/contact-us/form?product=pro"
+            class="js-invoke-modal" aria-controls="pricing-contact-modal"
     aria-label="Contact us about Ubuntu Pro pricing">Contact us&nbsp;&rsaquo;</a>
           </h2>
         </div>
@@ -888,15 +887,9 @@
     </div>
   </section>
 
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/pricing-infra"
-       data-form-id="1240"
-       data-lp-id="2065"
-       data-return-url="/pricing/thank-you"
-       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+  {{ load_form("pricing/pro") | safe }}
 
 {% endblock content %}
 
-{% block footer_extra %}{% endblock footer_extra %}
+{% block footer_extra %}
+{% endblock footer_extra %}
