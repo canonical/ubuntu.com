@@ -1,79 +1,302 @@
 {
-  "form": {
-    "/dell/contact-us": {
-      "templatePath": "/dell/contact-us.html",
-      "formData": {
-        "title": "Contact us",
-        "introText": "From the desktop to the edge, from the data centre to the multi-cloud environment, Dell and Canonical work together to bring you joint solutions that work out-of-the-box for a consistent open source experience spanning the Dell EMC hardware portfolio.",
-        "formId": "3454",
-        "returnUrl": "/dell/thank-you",
-        "lpId": "2166"
-      },
-      "fieldsets": [
-        {
-          "title": "How many devices?",
-          "id": "how-many-machines",
-          "inputName": "how-many-machines-do-you-have",
-          "inputType": "radio",
-          "isRequired": true,
-          "fields": [
-            {
-              "type": "radio",
-              "id": "less-5-machines",
-              "value": "less than 5",
-              "label": "< 5 machines"
+    "form": {
+        "/dell": {
+            "templatePath": "/dell/index.html",
+            "isModal": true,
+            "modalId": "dell-contact-modal",
+            "formData": {
+                "title": "Unleash open source in your business",
+                "introText": "From the desktop to the edge, from the data centre to the multi-cloud environment, Dell and Canonical work together to bring you joint solutions that work out-of-the-box for a consistent open source experience spanning the Dell EMC hardware portfolio.",
+                "formId": 3454,
+                "returnUrl": "https://ubuntu.com/dell#success"
             },
-            {
-              "type": "radio",
-              "id": "5-to-15-machines",
-              "value": "5 to 15 machines",
-              "label": "5 - 15 machines"
-            },
-            {
-              "type": "radio",
-              "id": "15-to-50-machines",
-              "value": "15 to 50 machines",
-              "label": "15 - 50 machines"
-            },
-            {
-              "type": "radio",
-              "id": "50-to-100-machines",
-              "value": "50 to 100 machines",
-              "label": "50 - 100 machines"
-            },
-            {
-              "type": "radio",
-              "id": "greater-than-100",
-              "value": "greater than 100",
-              "label": "> 100 machines"
-            }
-          ]
-        },
-        {
-          "title": "What would you like to talk to us about?",
-          "id": "comments",
-          "isRequired": true,
-          "fields": [
-            {
-              "type": "long-text",
-              "id": "comments",
-              "label": ""
-            }
-          ]
-        },
-        {
-          "title": "How should we get in touch?",
-          "id": "about-you",
-          "noCommentsFromLead": true,
-          "fields": [
-            {
-              "type": "tel",
-              "id": "phone",
-              "label": "Mobile/cell phone number"
-            }
-          ]
+            "fieldsets": [
+                {
+                    "title": "Who's your target audience?",
+                    "id": "target-audience",
+                    "inputType": "radio",
+                    "inputName": "target-audience",
+                    "fields": [
+                        {
+                            "type": "radio",
+                            "value": "Enterprise",
+                            "label": "Enterprise"
+                        },
+                        {
+                            "type": "radio",
+                            "value": "Consumer",
+                            "label": "Consumer"
+                        }
+                    ]
+                },
+                {
+                    "title": "Where would you like to go faster?",
+                    "id": "go-faster",
+                    "inputType": "checkbox",
+                    "fields": [
+                        {
+                            "type": "checkbox",
+                            "label": "Workstations",
+                            "value": "Workstations"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "PCs, laptops",
+                            "value": "PCs, laptops"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Servers",
+                            "value": "Servers"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Public cloud",
+                            "value": "Public cloud"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Private cloud",
+                            "value": "Private cloud"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Multi-cloud",
+                            "value": "Multi-cloud"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Infrastructure",
+                            "value": "Infrastructure"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Applications",
+                            "value": "Applications"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Embedding",
+                            "value": "Embedding"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Development",
+                            "value": "Development"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Virtualization",
+                            "value": "Virtualization"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Storage",
+                            "value": "Storage"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Networking",
+                            "value": "Networking"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Kubernetes",
+                            "value": "Kubernetes"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "OpenStack",
+                            "value": "OpenStack"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "AI/ML",
+                            "value": "AI/ML"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Other",
+                            "value": "other",
+                            "hasOtherInput": true,
+                            "otherInputId": "go-faster-other-specified",
+                            "otherInputPlaceholder": "Please specify"
+                        }
+                    ]
+                },
+                {
+                    "title": "What are your platform architecture preferences?",
+                    "id": "platform-architecture-preferences",
+                    "inputType": "checkbox",
+                    "fields": [
+                        {
+                            "type": "checkbox",
+                            "label": "Intel",
+                            "value": "Intel"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "ARM",
+                            "value": "ARM"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "POWER",
+                            "value": "POWER"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Z",
+                            "value": "Z"
+                        }
+                    ]
+                },
+                {
+                    "title": "What are your platform server preferences?",
+                    "id": "platform-server-preferences",
+                    "inputType": "checkbox",
+                    "fields": [
+                        {
+                            "type": "checkbox",
+                            "label": "Dell",
+                            "value": "Dell"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "HP",
+                            "value": "HP"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Lenovo",
+                            "value": "Lenovo"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Supermicro",
+                            "value": "Supermicro"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Intel Select",
+                            "value": "Intel Select"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Cisco",
+                            "value": "Cisco"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Undecided",
+                            "value": "Undecided"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Other",
+                            "value": "other"
+                        }
+                    ]
+                },
+                {
+                    "title": "What are your platform network preferences?",
+                    "id": "platform-network-preferences",
+                    "inputType": "checkbox",
+                    "fields": [
+                        {
+                            "type": "checkbox",
+                            "label": "Dell",
+                            "value": "Dell"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Juniper",
+                            "value": "Juniper"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Arista",
+                            "value": "Arista"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Cisco",
+                            "value": "Cisco"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Mellanox",
+                            "value": "Mellanox"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Open-box",
+                            "value": "Open-box"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Other",
+                            "value": "other"
+                        }
+                    ]
+                },
+                {
+                    "title": "What are your platform storage preferences?",
+                    "id": "platform-storage-preferences",
+                    "inputType": "checkbox",
+                    "fields": [
+                        {
+                            "type": "checkbox",
+                            "label": "Dell EMC",
+                            "value": "Dell EMC"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "NetApp",
+                            "value": "NetApp"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Commodity",
+                            "value": "Commodity"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "PureStorage",
+                            "value": "PureStorage"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Other",
+                            "value": "other"
+                        }
+                    ]
+                },
+                {
+                    "title": "Tell us about your project or interest",
+                    "id": "project-details",
+                    "fields": [
+                        {
+                            "type": "long-text",
+                            "id": "tell-us-about-your-project",
+                            "label": "",
+                            "placeholder": "If there is a particular emphasis or specialization it helps us to bring the right insights to the conversation."
+                        }
+                    ]
+                },
+                {
+                    "title": "How should we get in touch?",
+                    "id": "about-you",
+                    "fields": [
+                        {
+                            "type": "tel",
+                            "id": "phone",
+                            "label": "Mobile/cell phone number",
+                            "isRequired": true
+                        }
+                    ]
+                }
+            ]
         }
-      ]
     }
-  }
 }
