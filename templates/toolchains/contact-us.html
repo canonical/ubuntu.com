@@ -4,13 +4,45 @@
 
 {% block content %}
 
-  {% with h1='Contact us – Toolchains',
-    intro_text="",
-    formid="6296",
-    lpId="",
-    returnURL="/toolchains#contact-form-success",
-    howManyVM=True %}
-    {% include "shared/_default-contact-us-form.html" %}
-  {% endwith %}
+{{ load_form("/toolchains/contact-us") | safe }}
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Need help with Ubuntu?</h2>
+    </div>
+    <div class="col">
+      <p>
+        If you are just looking for some free support for yourself, you can try:
+      </p>
+      <ul class="p-list">
+        <li class="p-list__item">
+          <a href="https://askubuntu.com/">Ask Ubuntu</a>
+        </li>
+        <li class="p-list__item">
+          <a href="https://discourse.ubuntu.com/">
+            Ubuntu Community on Discourse
+          </a>
+        </li>
+        <li class="p-list__item">
+          <a href="https://help.ubuntu.com/">Help docs</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelector('form').addEventListener('submit', function(event) {
+    dataLayer.push({
+      'event': 'GAEvent',
+      'eventCategory': 'Form',
+      'eventAction': 'cloud contact-us',
+      'eventLabel': '{{ product }}',
+      'eventValue': undefined
+    });
+  });
+</script>
 
 {% endblock content %}

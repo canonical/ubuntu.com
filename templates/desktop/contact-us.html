@@ -5,28 +5,64 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1Z0UWLHT9AKRVfYOYQTXz27DefZ3BcQ7Sqg1kcmlIXtc/edit{% endblock meta_copydoc %}
 
 {% block content %}
-  {% if product == 'desktop-education' %}
-{% with h1="Contact us",
-  intro_text="Considering Ubuntu for your school or university? Are you interested in cost-effective systems management and professional support?",
-  formid="1253",
-  lpId="1409",
-  returnURL="/desktop/thank-you",
-  side1="shared/forms/_desktop_help.html",
-  side2="shared/forms/_desktop_ua-shop.html" %}
-  {% include "shared/_client-contact-us-form.html" %}
-{% endwith %}
 
-  {% else %}
+{% if product == 'desktop-education' %}
+  {{ load_form("/desktop/contact-us",
+      introText="Considering Ubuntu for your school or university? Are you interested in cost-effective systems management and professional support?") | safe }}
+{% else %}
+  {{ load_form("/desktop/contact-us") | safe }}
+{% endif %}
 
-{% with h1="Contact us",
-  intro_text="Considering Ubuntu for your organisation? Are you interested in cost-effective systems management and professional support?",
-  formid="1253",
-  lpId="1409",
-  returnURL="/desktop/thank-you",
-  side1="shared/forms/_desktop_help.html",
-  side2="shared/forms/_desktop_ua-shop.html" %}
-  {% include "shared/_client-contact-us-form.html" %}
-{% endwith %}
+<div class="p-section">
+  <hr class="p-rule" />
+  <div class="row--50-50">
+    <div class="col">
+      <h2 class="p-card__title">Need help with Ubuntu?</h2>
+    </div>
+    <div class="col">
+      <p>
+        If you are just looking for some free support for yourself, you can try:
+      </p>
+      <ul class="p-list">
+        <li class="p-list__item">
+          <a href="https://askubuntu.com/">Ask Ubuntu</a>
+        </li>
+        <li class="p-list__item">
+          <a href="https://discourse.ubuntu.com/">
+            Ubuntu Community on Discourse
+          </a>
+        </li>
+        <li class="p-list__item">
+          <a href="https://help.ubuntu.com/">Help docs</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-  {% endif %}
+<div class="p-section">
+  <hr class="p-rule" />
+  <div class="row--50-50">
+    <div class="col">
+      <h2 class="p-card__title">Looking for a little <br class="u-hide-small u-hide-medium"/>professional support?</h2>
+    </div>
+    <div class="col">
+      <p>If you are a small organisation, you can purchase packs of Ubuntu Pro in our shop.</p>
+      <p><a href="/pro">Buy Ubuntu Pro</a></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelector('form').addEventListener('submit', function(event) {
+    dataLayer.push({
+      'event': 'GAEvent',
+      'eventCategory': 'Form',
+      'eventAction': 'iot contact-us',
+      'eventLabel': '{{ product }}',
+      'eventValue': undefined
+    });
+  });
+</script>
+
 {% endblock content %}

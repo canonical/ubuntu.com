@@ -1,0 +1,39 @@
+{
+  "form": {
+    "/blender/contact-us": {
+      "templatePath": "/blender/contact-us.html",
+      "formData": {
+        "title": "Let's get in touch",
+        "introText": "Blender has partnered with Canonical to offer enterprise-grade support for the Blender LTS application suite. We can help you unleash more capabilities and supply the right level of support you need to have the best, hassle-free experience.",
+        "formId": "4052",
+        "returnUrl": "/blender/thank-you.html"
+      },
+      "fieldsets": [
+        {
+          "title": "Tell us about your project and what problem(s) you're looking to solve:",
+          "id": "comments",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "Comments_from_lead__c",
+              "label": ""
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
