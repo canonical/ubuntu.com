@@ -6,16 +6,4 @@
 
 {{ load_form("/masters-conference/contact-us") | safe }}
 
-<script>
-  document.querySelector('form').addEventListener('submit', function(event) {
-    dataLayer.push({
-      'event': 'GAEvent',
-      'eventCategory': 'Form',
-      'eventAction': 'iot contact-us',
-      'eventLabel': '{{ product }}',
-      'eventValue': undefined
-    });
-  });
-</script>
-
 {% endblock content %}
