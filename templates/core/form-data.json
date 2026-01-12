@@ -89,6 +89,155 @@
           ]
         }
       ]
+    },
+    "/core/contact-us": {
+      "templatePath": "/core/contact-us.html",
+      "formData": {
+        "title": "Contact us",
+        "introText": "If you are thinking about using Ubuntu Core to power your Internet of Things devices or anything else, please fill in your details below and a member of our team will get in touch.",
+        "formId": "1266",
+        "returnUrl": "/core/thank-you",
+        "lpId": "2166"
+      },
+      "fieldsets": [
+        {
+          "title": "How many devices?",
+          "id": "how-many-machines",
+          "inputName": "how-many-machines-do-you-have",
+          "inputType": "radio",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "radio",
+              "id": "less-5-machines",
+              "value": "less than 5",
+              "label": "< 5 machines"
+            },
+            {
+              "type": "radio",
+              "id": "5-to-15-machines",
+              "value": "5 to 15 machines",
+              "label": "5 - 15 machines"
+            },
+            {
+              "type": "radio",
+              "id": "15-to-50-machines",
+              "value": "15 to 50 machines",
+              "label": "15 - 50 machines"
+            },
+            {
+              "type": "radio",
+              "id": "50-to-100-machines",
+              "value": "50 to 100 machines",
+              "label": "50 - 100 machines"
+            },
+            {
+              "type": "radio",
+              "id": "greater-than-100",
+              "value": "greater than 100",
+              "label": "> 100 machines"
+            }
+          ]
+        },
+        {
+          "title": "What would you like to talk to us about?",
+          "id": "comments",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "comments",
+              "label": ""
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number"
+            }
+          ]
+        }
+      ]
+    },
+    "/core/services/contact-us": {
+      "templatePath": "/core/services/contact-us.html",
+      "formData": {
+        "title": "Let's get your IoT product to market faster!",
+        "introText": "Canonical partners with silicon companies, board manufacturers and ODMs to help innovators bring smart devices and software capabilities to market faster. Tell us about your project so we can bring the right Canonical team members to the conversation to help you.",
+        "formId": "3591",
+        "returnUrl": "/core/services/thank-you"
+      },
+      "fieldsets": [
+        {
+          "title": "How many devices?",
+          "id": "how-many-machines",
+          "inputName": "how-many-machines-do-you-have",
+          "inputType": "radio",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "radio",
+              "id": "less-5-machines",
+              "value": "less than 5",
+              "label": "< 5 machines"
+            },
+            {
+              "type": "radio",
+              "id": "5-to-15-machines",
+              "value": "5 to 15 machines",
+              "label": "5 - 15 machines"
+            },
+            {
+              "type": "radio",
+              "id": "15-to-50-machines",
+              "value": "15 to 50 machines",
+              "label": "15 - 50 machines"
+            },
+            {
+              "type": "radio",
+              "id": "50-to-100-machines",
+              "value": "50 to 100 machines",
+              "label": "50 - 100 machines"
+            },
+            {
+              "type": "radio",
+              "id": "greater-than-100",
+              "value": "greater than 100",
+              "label": "> 100 machines"
+            }
+          ]
+        },
+        {
+          "title": "What would you like to talk to us about?",
+          "id": "comments",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "comments",
+              "label": ""
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number"
+            }
+          ]
+        }
+      ]
     }
   }
 }
