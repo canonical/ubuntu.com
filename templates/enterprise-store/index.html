@@ -1,9 +1,10 @@
 {% extends "enterprise-store/base-enterprise-store.html" %}
 
-{% from "_macros/vf_hero.jinja" import vf_hero %}
-{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
 {% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
+{% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_newsletter-signup.jinja" import vf_newsletter_signup %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 
 {% block title %}
   Enterprise Store
@@ -55,7 +56,7 @@
     "item": {
     "type": "text",
     "content": "The Enterprise Store enables organizations to access Canonical's software ecosystems from behind corporate firewalls,
-      in air-gapped environments or other restricted networking environments."
+    in air-gapped environments or other restricted networking environments."
     }
     },
     {
@@ -63,7 +64,7 @@
     "item": {
     "type": "text",
     "content": "For air-gapped environments with no internet connectivity, the Enterprise Store can operate in offline mode. This
-      allows updates to be manually sideloaded, ensuring software remains up to date and secure."
+    allows updates to be manually sideloaded, ensuring software remains up to date and secure."
     }
     },
     {
@@ -71,7 +72,7 @@
     "item": {
     "type": "text",
     "content": "The Enterprise Store creates a local cache of downloaded files, speeding up subsequent downloads and minimizing
-      bandwidth usage across your organization."
+    bandwidth usage across your organization."
     }
     }
     ]) }}
@@ -156,14 +157,14 @@
     {
     "type": "cta-block",
     "item": {
-      "secondaries": [
-      {
-      "content_html": "Explore our Dedicated Snap Store",
-      "attrs": {
-      "href": "/internet-of-things/appstore"
-      }
-      }
-      ],
+    "secondaries": [
+    {
+    "content_html": "Explore our Dedicated Snap Store",
+    "attrs": {
+    "href": "/internet-of-things/appstore"
+    }
+    }
+    ],
     }
     },
     ]) }}
@@ -176,8 +177,8 @@
     "item": {
     "type": "text",
     "content": "The Enterprise Store is used by many enterprises where software control, security, and compliance are paramount.
-      Our teams understand the unique challenges and regulatory requirements of each industry, delivering solutions
-      that meet the needs of each use case."
+    Our teams understand the unique challenges and regulatory requirements of each industry, delivering solutions
+    that meet the needs of each use case."
     }
     },
     {
@@ -245,25 +246,25 @@
     },
     ]) }}
 
-{% call(slot) vf_cta_section(
-  title_text='Let\'s discuss the best solution for your enterprise',
-  variant='default',
-  layout='100',
-  ) -%}
-  {%- if slot == 'cta' -%}
-    <a href="/contact-us"
-       aria-controls="enterprise-store-modal"
-       class="js-invoke-modal">Get in touch &rsaquo;</a>
-  {%- endif -%}
-{% endcall -%}
-
-<section class="p-section">
-  {% call(slot) vf_newsletter_signup(layout="50-50", title_text="Sign up for our IoT newsletter", form_id="mktoForm_1670", return_url="https://ubuntu.com/#contact-form-success", input_label='Work email', checkbox_id='canonicalUpdatesOptIn', checkbox_label='I agree to receive information about Canonical\'s products and services.') %}
-    {%- if slot == 'description' -%}
-      <p>Receive regular updates from our IoT newsletter.</p>
+  {% call(slot) vf_cta_section(
+    title_text='Let\'s discuss the best solution for your enterprise',
+    variant='default',
+    layout='100',
+    ) -%}
+    {%- if slot == 'cta' -%}
+      <a href="/contact-us"
+         aria-controls="enterprise-store-modal"
+         class="js-invoke-modal">Get in touch &rsaquo;</a>
     {%- endif -%}
-  {% endcall %}
-</section>
+  {% endcall -%}
 
-{{ load_form("/enterprise-store") | safe }}
+  <section class="p-section">
+    {% call(slot) vf_newsletter_signup(layout="50-50", title_text="Sign up for our IoT newsletter", form_id="mktoForm_1670", return_url="https://ubuntu.com/#contact-form-success", input_label='Work email', checkbox_id='canonicalUpdatesOptIn', checkbox_label='I agree to receive information about Canonical\'s products and services.') %}
+      {%- if slot == 'description' -%}
+        <p>Receive regular updates from our IoT newsletter.</p>
+      {%- endif -%}
+    {% endcall %}
+  </section>
+
+  {{ load_form("/enterprise-store") | safe }}
 {% endblock content %}
