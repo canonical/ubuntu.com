@@ -129,26 +129,44 @@
 
   {%- endcall -%}
 
-  <section class="p-section">
-    <hr class="p-rule is-fixed-width" />
-    <div class="grid-row">
-      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
-        <h2>Snap integrity verification</h2>
-      </div>
-      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
-        <p>
-          The Enterprise Store serves regulated industries where strict security controls are required. Fundamentally, snaps have been designed with security in mind from the ground up.
-        </p>
-        <p>
-          The integrity of downloaded snap files is guaranteed through hashing signatures that are built into the design of snaps and implemented in snapd and the Snap Store. 
-        </p>
-        <p>
-          The Enterprise Store does not alter these signatures, ensuring that the chain of trust is always complete. This allows organizations to proxy software distribution through their controlled infrastructure while maintaining the same verification mechanisms as direct downloads.
-        </p>
-        <a class="p-button" href="/internet-of-things/appstore">Explore our Dedicated Snap Store</a>
-      </div>
-    </div>
-  </section>
+  {{ vf_basic_section(title={"text": "Snap integrity verification"},
+    is_split_on_medium=true,
+    items=[
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "The Enterprise Store serves regulated industries where strict security controls are required. Fundamentally, snaps have been designed with security in mind from the ground up."
+    }
+    },
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "The integrity of downloaded snap files is guaranteed through hashing signatures that are built into the design of snaps and implemented in snapd and the Snap Store."
+    }
+    },
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "The Enterprise Store does not alter these signatures, ensuring that the chain of trust is always complete. This allows organizations to proxy software distribution through their controlled infrastructure while maintaining the same verification mechanisms as direct downloads."
+    }
+    },
+    {
+    "type": "cta-block",
+    "item": {
+      "secondaries": [
+      {
+      "content_html": "Explore our Dedicated Snap Store",
+      "attrs": {
+      "href": "/internet-of-things/appstore"
+      }
+      }
+      ],
+    }
+    },
+    ]) }}
 
   <section class="p-section">
     <hr class="p-rule is-fixed-width" />
