@@ -2,7 +2,7 @@
 
 {% block title %}Compliance automation calculator{% endblock %}
 
-{% block meta_description %}Calculate time savings with Ubuntu Security Guide (USG).{% endblock %}
+{% block meta_description %}Calculate time saved automating Linux compliance. Ubuntu Security Guide handles CIS and DISA-STIG hardening, audits, and drift checks, saving thousands of hours.{% endblock %}
 
 {% block meta_copydoc %}
   https://docs.google.com/document/d/1-oMEJ7J30oMX3EYcJ0kGBhUCLEML_c_cr0d_2JCylGY/edit?tab=t.0
@@ -31,9 +31,9 @@
       </p>
     {%- endif -%}
     {%- if slot == 'cta' -%}
-      <a href="/security/contact-us"
+      <a href="/contact-us/form?product=pro"
          class="p-button--positive js-invoke-modal"
-         aria-controls="security-modal">Contact us</a>
+         aria-controls="compliance-automation-value-calculator-modal">Contact us</a>
       <a href="https://documentation.ubuntu.com/security/compliance/">Learn more about compliance automation&nbsp;&rsaquo;</a>
     {%- endif -%}
   {% endcall -%}
@@ -177,7 +177,7 @@
   {%- endcall -%}
 
   {{ vf_data_spotlight(title={
-    "text": "Estimated annual time savings",
+    "text": "Estimated annual savings",
     },
     blocks=[
     {
@@ -201,9 +201,9 @@
     <div class="grid-row">
       <div class="grid-col-4 grid-col-start-large-5">
         <div class="p-cta-block">
-          <a href="/security/contact-us"
+          <a href="/contact-us/form?product=pro"
              class="p-button--positive js-invoke-modal"
-             aria-controls="security-modal">Contact us</a>
+             aria-controls="compliance-automation-value-calculator-modal">Contact us</a>
         </div>
       </div>
     </div>
@@ -387,12 +387,12 @@
       <p>Ubuntu Pro includes USG for automated CIS and DISA-STIG compliance.</p>
     {%- endif -%}
     {%- if slot == 'cta' -%}
-      <a href="/pro" class="p-button--positive">Get Ubuntu Pro</a>
-      <a href="/security/security-standards" class="p-button">Learn about certifications</a>
+      <a href="/pro/subscribe" class="p-button--positive">Get Ubuntu Pro</a>
+      <a href="/security/security-standards" class="p-button">Learn about compliance</a>
     {%- endif -%}
   {% endcall -%}
 
-  {{ load_form("/security") | safe }}
+  {{ load_form("/security/compliance-automation-value-calculator") | safe }}
 
   <script src="{{ versioned_static('js/src/slider-base.js') }}"></script>
   <script>
