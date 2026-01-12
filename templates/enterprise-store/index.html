@@ -38,37 +38,43 @@
     {%- endif -%}
   {% endcall -%}
 
-  <section class="p-section u-fixed-width">
-    <hr class="p-rule" />
-    <div class="grid-row">
-      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
-        <h2>
-          Operation in complex networks
-          or air-gapped environments
-        </h2>
-      </div>
-      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
-        <div class="p-image-container is-highlighted">
-          {{ image(url="https://assets.ubuntu.com/v1/066647e9-complex_networks.png",
-                    alt="",
-                    width="1200",
-                    height="800",
-                    hi_def=True,
-                    loading="lazy") | safe
-          }}
-        </div>
-        <p>
-          The Enterprise Store enables organizations to access Canonical's software ecosystems from behind corporate firewalls, in air-gapped environments or other restricted networking environments. 
-        </p>
-        <p>
-          For air-gapped environments with no internet connectivity, the Enterprise Store can operate in offline mode. This allows updates to be manually sideloaded, ensuring software remains up to date and secure.
-        </p>
-        <p>
-          The Enterprise Store creates a local cache of downloaded files, speeding up subsequent downloads and minimizing bandwidth usage across your organization.
-        </p>
-      </div>
-    </div>
-  </section>
+  {{ vf_basic_section(title={"text": "Operation in complex networks or air-gapped environments"},
+    is_split_on_medium=true,
+    items=[
+    {
+    "type": "image",
+    "item": {
+    "aspect_ratio": "16-9",
+    "attrs": {
+    "src": "https://assets.ubuntu.com/v1/066647e9-complex_networks.png",
+    }
+    }
+    },
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "The Enterprise Store enables organizations to access Canonical's software ecosystems from behind corporate firewalls,
+      in air-gapped environments or other restricted networking environments."
+    }
+    },
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "For air-gapped environments with no internet connectivity, the Enterprise Store can operate in offline mode. This
+      allows updates to be manually sideloaded, ensuring software remains up to date and secure."
+    }
+    },
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "The Enterprise Store creates a local cache of downloaded files, speeding up subsequent downloads and minimizing
+      bandwidth usage across your organization."
+    }
+    }
+    ]) }}
 
   {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
     {%- if slot == 'title' -%}
