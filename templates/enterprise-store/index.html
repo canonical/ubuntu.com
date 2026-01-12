@@ -168,28 +168,46 @@
     },
     ]) }}
 
-  <section class="p-section">
-    <hr class="p-rule is-fixed-width" />
-    <div class="grid-row">
-      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
-        <h2>Industries we support</h2>
-      </div>
-      <div class="grid-col-small-8 grid-col-medium-4 grid-col-4">
-        <p>
-          The Enterprise Store is used by many enterprises where software control, security, and compliance are paramount.
-          Our teams understand the unique challenges and regulatory requirements of each industry, delivering solutions
-          that meet the needs of each use case.
-        </p>
-        <ul class="p-list--divided">
-          <li class="p-list__item has-bullet">Critical infrastructure</li>
-          <li class="p-list__item has-bullet">Public sector</li>
-          <li class="p-list__item has-bullet">Manufacturing</li>
-          <li class="p-list__item has-bullet">Research and development</li>
-          <li class="p-list__item has-bullet">Communications</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+  {{ vf_basic_section(title={"text": "Industries we support"},
+    is_split_on_medium=true,
+    items=[
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "The Enterprise Store is used by many enterprises where software control, security, and compliance are paramount.
+      Our teams understand the unique challenges and regulatory requirements of each industry, delivering solutions
+      that meet the needs of each use case."
+    }
+    },
+    {
+    "type": "list",
+    "item": {
+    "list_items": [
+    {
+    "list_item_type": "bullet",
+    "content": "Critical infrastructure"
+    },
+    {
+    "list_item_type": "bullet",
+    "content": "Public sector"
+    },
+    {
+    "list_item_type": "bullet",
+    "content": "Manufacturing"
+    },
+    {
+    "list_item_type": "bullet",
+    "content": "Research and development"
+    },
+    {
+    "list_item_type": "bullet",
+    "content": "Communications"
+    }
+    ]
+    }
+    }
+    ]) }}
 
   {{ vf_basic_section(title={"text": 'Expert support <br class="u-hide--small" />for enterprise deployments'},
     is_split_on_medium=true,
