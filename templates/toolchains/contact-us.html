@@ -4,8 +4,9 @@
 
 {% block content %}
 
-{{ load_form("/toolchains/contact-us") | safe }}
+  {{ load_form("/default-contact-us-vms", 6296, title='Contact us – Toolchains',
+    returnURL="/toolchains#contact-form-success",) | safe }}
 
-{% include "shared/forms/_ubuntu_help_resources.html" %}
+  {% include "shared/forms/_ubuntu_help_resources.html" %}
 
 {% endblock content %}

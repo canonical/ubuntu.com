@@ -2,14 +2,22 @@
 
 {% block title %}Contact us | Managed apps{% endblock %}
 
-{% block meta_description %}Thank you for enquiring about Canonical's managed IT Services{% endblock meta_description %}
+{% block meta_description %}
+  Thank you for enquiring about Canonical's managed IT Services
+{% endblock meta_description %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1twkl4QVBl8JXEWumQpu0fYzRWG39wLT9xxDeFzqWgdk/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1twkl4QVBl8JXEWumQpu0fYzRWG39wLT9xxDeFzqWgdk/edit
+{% endblock meta_copydoc %}
 
 {% block content %}
 
-{{ load_form("/managed-infrastructure/contact-us") | safe }}
+  {{ load_form("/default-contact-us-devices", 3545,
+    title="Contact us about managed IT Services",
+    introText="Rely on our experienced engineers to deploy and operate your apps, with full lifecycle coverage included.",
+    lpId="2166",
+    returnUrl="/managed-infrastructure/thank-you") | safe }}
 
-{% include "shared/forms/_ubuntu_help_resources.html" %}
+  {% include "shared/forms/_ubuntu_help_resources.html" %}
 
 {% endblock content %}

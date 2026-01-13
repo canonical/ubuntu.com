@@ -4,8 +4,11 @@
 
 {% block content %}
 
-{{ load_form("/pricing/contact-us") | safe }}
+  {{ load_form("/default-contact-us-devices", 1240, title="Contact us about pricing",
+    introText="Fill in your details below and a member of our sales team will be in touch.",
+    lpId="2065",
+    returnUrl="/pricing/thank-you") | safe }}
 
-{% include "shared/forms/_ubuntu_help_resources.html" %}
+  {% include "shared/forms/_ubuntu_help_resources.html" %}
 
 {% endblock content %}
