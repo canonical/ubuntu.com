@@ -16,6 +16,7 @@ import {
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
 import DistributorSummary from "../DistributorSummary.tsx/DistributorSummary";
 import type { DisplayError } from "../../utils/types";
+import { start } from "repl";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
@@ -110,7 +111,7 @@ function Summary({
     }
     return format(add(initialDate, addObj), DATE_FORMAT);
   };
-
+  
   const endDate = useMemo(() => calculateProductEndDate(), [product]);
 
   useEffect(() => {
@@ -353,7 +354,7 @@ function Summary({
         </Col>
         <Col size={8}>
           <p data-testid="start-date">
-            <strong>{format(new Date(), DATE_FORMAT)}</strong>
+            <strong>{format(product.startDate?add(new Date(product.startDate), {days: 1}): new Date(), DATE_FORMAT)}</strong>
           </p>
         </Col>
       </Row>
