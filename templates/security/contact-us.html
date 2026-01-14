@@ -3,27 +3,19 @@
 {% block title %}Contact us | Security{% endblock %}
 
 {% block content %}
+  {% if product == 'docker' %}
+    {{ load_form("/default-contact-us-devices", 3785,
+        title="Contact us about LTS Docker Images",
+        introText="",
+        lpId="",
+        returnUrl="/security/thank-you?product=docker") | safe }}
+  {% else %}
+    {{ load_form("/default-contact-us-devices", 1240,
+        title="Contact Canonical about Ubuntu Pro",
+        introText="Considering Ubuntu for your business? Just fill in the form below and a member of our team will be in touch.",
+        lpId="2065",
+        returnUrl="/support/thank-you") | safe }}
+  {% endif %}
 
-{% if product == 'docker' %}
-
-{% with h1='Contact us about LTS Docker Images',
-  intro_text="",
-  formid="3785",
-  lpId="",
-  returnURL="/security/thank-you?product=docker" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
-{% else %}
-
-{% with h1="Contact Canonical about Ubuntu Pro",
-  intro_text="Considering Ubuntu for your business? Just fill in the form below and a member of our team will be in touch.",
-  formid="1240",
-  lpId="2065",
-  returnURL="/support/thank-you" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
-{% endif %}
-
+  {% include "shared/forms/_ubuntu_help_resources.html" %}
 {% endblock content %}
