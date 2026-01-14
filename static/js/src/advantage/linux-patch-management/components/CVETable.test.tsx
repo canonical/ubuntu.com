@@ -94,7 +94,11 @@ describe("CVETable", () => {
     expect(getByRole("rowheader", { name: "Package 1" })).toBeInTheDocument();
     expect(getByRole("rowheader", { name: "Package 2" })).toBeInTheDocument();
     console.log(getAllByRole("row"));
-    expect(getByRole("row", { name: "Package 1 1 0 Ubuntu Pro" })).toBeInTheDocument();
-    expect(getByRole("row", { name: "Package 2 1 2 Ubuntu Pro" })).toBeInTheDocument();
+    expect(
+      getByRole("row", { name: "Package 1 1 0 Ubuntu Pro" }),
+    ).toBeInTheDocument();
+    expect(
+      getByRole("row", { name: "Package 2 1 2 Ubuntu Pro" }),
+    ).toBeInTheDocument();
   });
 });

@@ -1,5 +1,9 @@
 name: PR checks
-on: [push, pull_request]
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
 env:
   SECRET_KEY: insecure_test_key
 
