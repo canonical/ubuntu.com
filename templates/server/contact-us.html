@@ -1,70 +1,51 @@
 {% extends "server/base_server.html" %}
 
 {% block title %}Contact us | Ubuntu Server{% endblock %}
+
 {% block meta_description %}Contact us about Ubuntu Server about Ubuntu Server{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1NsOLPLZLb3h49LIJCzMozjQBxKc041evAC1Dbx6U8_s/edit{% endblock meta_copydoc %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1NsOLPLZLb3h49LIJCzMozjQBxKc041evAC1Dbx6U8_s/edit
+{% endblock meta_copydoc %}
 
 {% block content %}
   {% if product == 'server-overview' %}
-
-{% with h1="Contact us about Ubuntu Server",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="1254",
-  lpId="2152",
-  returnURL="/server/thank-you" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/default-contact-us-devices", 1254,
+        title="Contact us about Ubuntu Server",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="2152",
+        returnUrl="/server/thank-you") | safe }}
   {% elif product == 'server-hyperscale' %}
-
-{% with h1="Contact us about Ubuntu Server for hyperscale",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="1254",
-  lpId="2152",
-  returnURL="/server/thank-you" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/default-contact-us-devices", 1254,
+        title="Contact us about Ubuntu Server for hyperscale",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="2152",
+        returnUrl="/server/thank-you") | safe }}
   {% elif product == 'server-management' %}
-
-{% with h1="Contact us about Ubuntu Advantage support",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="1254",
-  lpId="2152",
-  returnURL="/server/thank-you" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/default-contact-us-devices", 1254,
+        title="Contact us about Ubuntu Advantage support",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="2152",
+        returnUrl="/server/thank-you") | safe }}
   {% elif product == 'server-maas' or product == 'contextual-footer-server-maas' %}
-
-{% with h1="Contact us about MAAS and server provisioning",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="1254",
-  lpId="2152",
-  returnURL="/server/thank-you?product=server-maas" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/default-contact-us-devices", 1254,
+        title="Contact us about MAAS and server provisioning",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="2152",
+        returnUrl="/server/thank-you?product=server-maas") | safe }}
   {% elif product == 'contextual-footer-maas' %}
-
-{% with h1="Contact us about MAAS and server provisioning",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="1254",
-  lpId="2152",
-  returnURL="/server/thank-you" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/default-contact-us-devices", 1254,
+        title="Contact us about MAAS and server provisioning",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="2152",
+        returnUrl="/server/thank-you") | safe }}
   {% else %}
+    {{ load_form("/default-contact-us-devices", 1254,
+        title="Contact us about Ubuntu Server",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="2152",
+        returnUrl="/server/thank-you") | safe }}
+  {% endif %}
 
-{% with h1="Contact us about Ubuntu Server",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="1254",
-  lpId="2152",
-  returnURL="/server/thank-you" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
-{% endif %}
-
+  {% include "shared/forms/_ubuntu_help_resources.html" %}
 {% endblock content %}
