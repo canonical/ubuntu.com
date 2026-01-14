@@ -40,7 +40,7 @@
           <p>Real-time Ubuntu ensures high-priority processes are executed first, with deterministic response times.</p>
           <p>
             <a class="p-button--positive js-invoke-modal"
-            href="/kernel/real-time/contact-us">Get in touch</a>
+            href="/kernel/real-time/contact-us" aria-controls="realtime-contact-modal">Get in touch</a>
             <a class="p-button" href="https://documentation.ubuntu.com/real-time/">Read the docs</a>
           </p>
         </div>
@@ -65,7 +65,7 @@
             <li class="p-list__item is-ticked">12 year security update commitment</li>
           </ul>
           <p>
-            <a class="js-invoke-modal" href="/kernel/real-time/contact-us">Talk to our team about how Real-time Ubuntu can support your work&nbsp;&rsaquo;</a>
+            <a class="js-invoke-modal" href="/kernel/real-time/contact-us" aria-controls="realtime-contact-modal">Talk to our team about how Real-time Ubuntu can support your work&nbsp;&rsaquo;</a>
           </p>
         </div>
       </div>
@@ -146,7 +146,7 @@
       <p>
         Not sure real-time is for you?
         <br />
-        <a href="/kernel/real-time/contact-us">Get in touch</a> to talk over
+        <a href="/kernel/real-time/contact-us" aria-controls="realtime-contact-modal" class="js-invoke-modal">Get in touch</a> to talk over
         your
         use case with our sales team
       </p>
@@ -220,7 +220,7 @@
               <p>
                 Not sure real-time is for you?
                 <br />
-                <a href="/kernel/real-time/contact-us">Get in touch</a> to talk over
+                <a href="/kernel/real-time/contact-us" class="js-invoke-modal" aria-controls="realtime-contact-modal">Get in touch</a> to talk over
                 your use case with our sales team
               </p>
             </div>
@@ -379,20 +379,15 @@ pro enable realtime-kernel --variant=raspi</code></pre>
         </div>
         <p>
           <a class="p-button--positive js-invoke-modal"
-             href="/kernel/real-time/contact-us">Get in touch</a>
+             href="/kernel/real-time/contact-us" aria-controls="realtime-contact-modal">Get in touch</a>
         </p>
       </div>
     </div>
   </section>
 
   <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/real-time"
-       data-form-id="4914"
-       data-lp-id=""
-       data-return-url="/real-time#success"
-       data-lp-url="https://ubuntu.com/kernel/real-time/contact-us"></div>
+ {{ load_form("/real-time") | safe }}
+
   <style>
     @media (min-width: 1032px) {
       .p-cases {

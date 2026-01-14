@@ -27,7 +27,7 @@
           Get a consistent and unified experience for HPC with solutions from Canonical across any type of cluster. On-premise, bare metal, private and public clouds.
         </p>
         <p>
-          <a href="/hpc/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+          <a href="/hpc/contact-us" class="p-button--positive js-invoke-modal" aria-controls="hpc-contact-modal">Get in touch</a>
         </p>
         <p>
           <a href="/engage/a-guide-to-high-performance-computing">Download our Guide to HPC&nbsp;&rsaquo;</a>
@@ -460,7 +460,7 @@
         Canonical has a strong network of technical alliances, driving platform compatibility on Ubuntu. Close partnerships make sure Ubuntu runs optimally on the CPU architecture and works well with GPUs, FPGA, accelerators and high speed interconnects.
       </p>
       <p>
-        <a class="p-button--positive" href="/hpc/contact-us">Learn more about partnerships</a>
+        <a class="p-button--positive js-invoke-modal" href="/hpc/contact-us" aria-controls="hpc-contact-modal">Learn more about partnerships</a>
       </p>
     </div>
   </section>
@@ -621,19 +621,13 @@
         <h2>Get in touch</h2>
         <p>Learn more about how we can work together to ease operations and accelerate discovery.</p>
         <p>
-          <a class="p-button--positive js-invoke-modal" href="/hpc/contact-us">Get in touch</a>
+          <a class="p-button--positive js-invoke-modal" href="/hpc/contact-us" aria-controls="hpc-contact-modal">Get in touch</a>
         </p>
       </div>
     </div>
   </section>
 
   <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/hpc"
-       data-form-id="4537"
-       data-lp-id=""
-       data-return-url="https://ubuntu.com/hpc/thank-you"
-       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+{{ load_form("/hpc") | safe }}
 
 {% endblock outer_content %}

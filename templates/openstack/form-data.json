@@ -18,7 +18,8 @@
           "fields": [
             {
               "type": "long-text",
-              "id": "about-your-project-or-interest"
+              "id": "about-your-project-or-interest",
+              "placeholder": "Where are you located? What is the scale of your project (number of servers, number of VMs, etc.)? Have you already purchased hardware for this project? Do you already have OpenStack deployed? Where are your workloads running right now? Is this initiative for a specific workload or for the business as a whole?"
             }
           ]
         },
@@ -169,7 +170,15 @@
         {
           "title": "How should we get in touch?",
           "id": "about-you",
-          "noCommentsFromLead": true
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number",
+              "isRequired": true
+            }
+          ]
         }
       ]
     }

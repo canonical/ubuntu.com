@@ -29,7 +29,8 @@
       </p>
     {%- endif -%}
     {%- if slot == 'cta' -%}
-      <a href="/security/contact-us" class="js-invoke-modal p-button--positive">Speak to an expert</a>
+      <a href="/security/contact-us" aria-controls="security-modal"
+         class="js-invoke-modal p-button--positive">Speak to an expert</a>
     {%- endif -%}
   {% endcall -%}
 
@@ -161,7 +162,6 @@
   <script src="https://assets.ubuntu.com/v1/6d64bd2f-d3.min.js"></script>
   <script src="{{ versioned_static('js/dist/release-chart-manager.js') }}"></script>
 
-
   <section class="p-section">
     <div class="row--50-50">
       <hr class="p-rule" />
@@ -250,7 +250,7 @@
           The “esm-infra” stream covers 'Main' packages for the period after the standard five year security maintenance of 'Main' packages ends. We call this 'infra' because it is commonly used to build our private cloud, storage and kubernetes clusters, where 'Universe' packages are not typically deployed. You can get a lower-cost Ubuntu Pro (infra-only) subscription if you only want the infra components, which equates to our original ESM offering.
         </p>
         <div class="p-cta-block">
-          <a href="/security/contact-us" class="js-invoke-modal">Get in touch&nbsp;&rsaquo;</a>
+          <a href="/security/contact-us" aria-controls="security-modal" class="js-invoke-modal">Get in touch&nbsp;&rsaquo;</a>
         </div>
       </div>
     </div>
@@ -432,12 +432,6 @@
   </section>
 
   <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/esm"
-       data-form-id="3764"
-       data-lp-id=""
-       data-return-url="https://ubuntu.com/security/thank-you?product=esm"
-       data-lp-url=""></div>
+  {{ load_form('/security/esm', 3764) | safe }}
 
 {% endblock content %}
