@@ -1,90 +1,73 @@
 {% extends "kubernetes/base_kubernetes.html" %}
 
-{% block title %}Contact us | Kubernetes  {% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1Zf_xYK57S5T_T3HtKCPK7bf7vMVIMNuhJggSb-EdgAc/edit{% endblock meta_copydoc %}
+{% block title %}Contact us | Kubernetes{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1Zf_xYK57S5T_T3HtKCPK7bf7vMVIMNuhJggSb-EdgAc/edit
+{% endblock meta_copydoc %}
 
 {% block content %}
-
   {% if product == 'kubernetes' %}
-{% with h1="Contact us about Kubernetes",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="3230",
-  lpId="6274",
-  returnURL="/kubernetes#contact-form-success" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form("/default-contact-us-devices", 3230,
+        title="Contact us about Kubernetes",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="6274",
+        returnUrl="/kubernetes#contact-form-success") | safe }}
   {% elif product == 'kubernetes-managed' %}
-{% with h1="Contact us about Managed Kubernetes",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="3230",
-  lpId="6274",
-  returnURL="/kubernetes#contact-form-success" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form("/default-contact-us-devices", 3230,
+        title="Contact us about Managed Kubernetes",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="6274",
+        returnUrl="/kubernetes#contact-form-success") | safe }}
   {% elif product == 'kubernetes-kubeadm' %}
-{% with h1="Contact us about kubeadm",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="3230",
-  lpId="6274",
-  returnURL="/kubernetes#contact-form-success" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form("/default-contact-us-devices", 3230,
+        title="Contact us about kubeadm",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="6274",
+        returnUrl="/kubernetes#contact-form-success") | safe }}
   {% elif product == 'multicloud' %}
-{% with h1="Contact us about multicloud",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="3230",
-  lpId="6274",
-  returnURL="/kubernetes#contact-form-success" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form("/default-contact-us-devices", 3230,
+        title="Contact us about multicloud",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="6274",
+        returnUrl="/kubernetes#contact-form-success") | safe }}
   {% elif product == 'kubernetes-install' %}
-{% with h1="Contact us about Kubernetes",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="3230",
-  lpId="6274",
-  returnURL="/kubernetes#contact-form-success" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form("/default-contact-us-devices", 3230,
+        title="Contact us about Kubernetes",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="6274",
+        returnUrl="/kubernetes#contact-form-success") | safe }}
   {% elif product == 'kubernetes-features' %}
-{% with h1="Contact us about Kubernetes",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="3230",
-  lpId="6274",
-  returnURL="/kubernetes#contact-form-success" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form("/default-contact-us-devices", 3230,
+        title="Contact us about Kubernetes",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="6274",
+        returnUrl="/kubernetes#contact-form-success") | safe }}
   {% elif product == 'kubernetes-consulting' %}
-{% with h1="Contact us about Kubernetes consulting",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="3230",
-  lpId="6274",
-  returnURL="/kubernetes#contact-form-success" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form("/default-contact-us-devices", 3230,
+        title="Contact us about Kubernetes consulting",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="6274",
+        returnUrl="/kubernetes#contact-form-success") | safe }}
   {% elif product == 'kubernetes-add-on' %}
-{% with h1="Contact us about Kubernetes with AI/ML",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="3230",
-  lpId="6274",
-  returnURL="/kubernetes#contact-form-success" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form("/default-contact-us-devices", 3230,
+        title="Contact us about Kubernetes with AI/ML",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="6274",
+        returnUrl="/kubernetes#contact-form-success") | safe }}
   {% elif product == 'kubernetes-support' %}
-{% with h1="Contact us about Kubernetes support",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="3230",
-  lpId="6274",
-  returnURL="/kubernetes#contact-form-success" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form("/default-contact-us-devices", 3230,
+        title="Contact us about Kubernetes support",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="6274",
+        returnUrl="/kubernetes#contact-form-success") | safe }}
   {% else %}
-{% with h1="Contact us about Kubernetes",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="3230",
-  lpId="6274",
-  returnURL="/kubernetes#contact-form-success" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form("/default-contact-us-devices", 3230,
+        title="Contact us about Kubernetes",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="6274",
+        returnUrl="/kubernetes#contact-form-success") | safe }}
   {% endif %}
 
+  {% include "shared/forms/_ubuntu_help_resources.html" %}
 {% endblock content %}
