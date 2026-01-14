@@ -1,56 +1,49 @@
 {% extends "containers/base_containers.html" %}
 
-{% block title %}Contact us | Containers {% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1eTF2u8oOFGg-h-sQQwZtx3D6pOfqlJSXCuNo5-dh3Fg/edit{% endblock meta_copydoc %}
+{% block title %}Contact us | Containers{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1eTF2u8oOFGg-h-sQQwZtx3D6pOfqlJSXCuNo5-dh3Fg/edit
+{% endblock meta_copydoc %}
 
 {% block content %}
   {% if product == 'containers-docker' %}
-{% with h1="Contact us about Docker Engine on Ubuntu",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="1964",
-  lpId="3828",
-  returnURL="/containers/thank-you" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form("/default-contact-us-devices", 1964,
+        title="Contact us about Docker Engine on Ubuntu",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="3828",
+        returnUrl="/containers/thank-you") | safe }}
   {% elif product == 'containers-kubernetes' %}
-{% with h1="Contact us about Charmed Kubernetes",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="2243",
-  lpId="4986",
-  returnURL="/containers/thank-you?product=containers-kubernetes" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form("/default-contact-us-devices", 2243,
+        title="Contact us about Charmed Kubernetes",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="4986",
+        returnUrl="/containers/thank-you?product=containers-kubernetes") | safe }}
   {% elif product == 'containers-kubernetes-foundation' %}
-{% with h1="Contact us about Canonical's enterprise Kubernetes packages",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="2243",
-  lpId="4986",
-  returnURL="/containers/thank-you?product=containers-kubernetes-foundation" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form("/default-contact-us-devices", 2243,
+        title="Contact us about Canonical's enterprise Kubernetes packages",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="4986",
+        returnUrl="/containers/thank-you?product=containers-kubernetes-foundation") | safe }}
   {% elif product == 'containers-lxd' %}
-{% with h1="Contact us about LXD",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="1964",
-  lpId="3828",
-  returnURL="/containers/thank-you" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form("/default-contact-us-devices", 1964,
+        title="Contact us about LXD",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="3828",
+        returnUrl="/containers/thank-you") | safe }}
   {% elif product == 'containers-overview' %}
-{% with h1="Contact us about containers on Ubuntu",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="1964",
-  lpId="3828",
-  returnURL="/containers/thank-you" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form("/default-contact-us-devices", 1964,
+        title="Contact us about containers on Ubuntu",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="3828",
+        returnUrl="/containers/thank-you") | safe }}
   {% else %}
-{% with h1="Contact us about containers",
-  intro_text="Fill in your details below and a member of our sales team will be in touch.",
-  formid="1964",
-  lpId="3828",
-  returnURL="/containers/thank-you" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form("/default-contact-us-devices", 1964,
+        title="Contact us about containers",
+        introText="Fill in your details below and a member of our sales team will be in touch.",
+        lpId="3828",
+        returnUrl="/containers/thank-you") | safe }}
   {% endif %}
+
+  {% include "shared/forms/_ubuntu_help_resources.html" %}
 {% endblock content %}
