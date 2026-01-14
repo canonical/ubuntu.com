@@ -1,118 +1,81 @@
 {% extends "training/_base_training.html" %}
 
 {% block title %}Contact us | Training{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/10lo3O2TKiR-cc48CqhH3Ghak0xZQaP2n4YthDtdIXpo/edit{% endblock meta_copydoc %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/10lo3O2TKiR-cc48CqhH3Ghak0xZQaP2n4YthDtdIXpo/edit
+{% endblock meta_copydoc %}
 
 {% block content %}
   {% if product == 'openstack-training' %}
-
-{% with h1="Contact us about our training courses",
-  intro_text="Fill in your details below and a member of our training team will be in touch.",
-  formid="1263",
-  lpId="2163",
-  returnURL="/training/thank-you?product=openstack-training" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/default-contact-us-devices", 1263,
+        title="Contact us about our training courses",
+        introText="Fill in your details below and a member of our training team will be in touch.",
+        lpId="2163",
+        returnUrl="/training/thank-you?product=openstack-training") | safe }}
   {% elif product == 'openstack-training-classroom' %}
-
-{% with h1="Register for Ubuntu OpenStack Training",
-  intro_text="If you are interested in the Ubuntu OpenStack training, please fill out the form below and we'll get back to you with available dates and locations.",
-  formid="1261",
-  lpId="2161",
-  returnURL="/training/thank-you?product=openstack-training-classroom" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/default-contact-us-devices", 1261,
+        title="Register for Ubuntu OpenStack Training",
+        introText="If you are interested in the Ubuntu OpenStack training, please fill out the form below and we'll get back to you with available dates and locations.",
+        lpId="2161",
+        returnUrl="/training/thank-you?product=openstack-training-classroom") | safe }}
   {% elif product == 'openstack-training-onsite' %}
-
-{% with h1="Contact us about our training courses",
-  intro_text="Fill in your details below and a member of our training team will be in touch.",
-  formid="1223",
-  lpId="1973",
-  returnURL="/training/thank-you?product=openstack-training-onsite" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/default-contact-us-devices", 1223,
+        title="Contact us about our training courses",
+        introText="Fill in your details below and a member of our training team will be in touch.",
+        lpId="1973",
+        returnUrl="/training/thank-you?product=openstack-training-onsite") | safe }}
   {% elif product == 'openstack-training-server-admin' %}
-
-{% with h1="Contact us about our Ubuntu Server Administration training courses",
-  intro_text="Fill in your details below and a member of our training team will be in touch.",
-  formid="1448",
-  lpId="2661",
-  returnURL="/training/thank-you?product=openstack-training-server-admin" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
-{% elif product == 'kubeflow-training-onsite' %}
-
-{% with h1="Contact us about our Kubeflow training",
-intro_text="Fill in your details below and a member of our training team will be in touch.",
-formid="1448",
-lpId="2661",
-returnURL="/training/thank-you?product=kubeflow-training-onsite" %}
-{% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
-{% elif product == 'maas-training-onsite' %}
-
-{% with h1="Contact us about our MAAS Deployment and Operations training",
-intro_text="Fill in your details below and a member of our training team will be in touch.",
-formid="1448",
-lpId="2661",
-returnURL="/training/thank-you?product=maas-training-onsite" %}
-{% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
-{% elif product == 'landscape-training-onsite' %}
-
-{% with h1="Contact us about our Landscape Deployment and Operations training",
-intro_text="Fill in your details below and a member of our training team will be in touch.",
-formid="1448",
-lpId="2661",
-returnURL="/training/thank-you?product=landscape-training-onsite" %}
-{% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
-{% elif product == 'juju-administrator-training-onsite' %}
-
-{% with h1="Contact us about our Juju Administrator training",
-intro_text="Fill in your details below and a member of our training team will be in touch.",
-formid="1448",
-lpId="2661",
-returnURL="/training/thank-you?product=juju-administrator-training-onsite" %}
-{% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
-{% elif product == 'charm-developer-training-onsite' %}
-
-{% with h1="Contact us about our Charm Developer training",
-intro_text="Fill in your details below and a member of our training team will be in touch.",
-formid="1448",
-lpId="2661",
-returnURL="/training/thank-you?product=charm-developer-training-onsite" %}
-{% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
-{% elif product == 'snapcraft-101' %}
-
-{% with h1="Contact us about our Snapcraft 101 training course",
-intro_text="Fill in your details below and a member of our training team will be in touch.",
-formid="4843",
-lpId="2661",
-returnURL="/training/thank-you?product=snapcraft-101" %}
-{% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/default-contact-us-devices", 1448,
+        title="Contact us about our Ubuntu Server Administration training courses",
+        introText="Fill in your details below and a member of our training team will be in touch.",
+        lpId="2661",
+        returnUrl="/training/thank-you?product=openstack-training-server-admin") | safe }}
+  {% elif product == 'kubeflow-training-onsite' %}
+    {{ load_form("/default-contact-us-devices", 1448,
+        title="Contact us about our Kubeflow training",
+        introText="Fill in your details below and a member of our training team will be in touch.",
+        lpId="2661",
+        returnUrl="/training/thank-you?product=kubeflow-training-onsite") | safe }}
+  {% elif product == 'maas-training-onsite' %}
+    {{ load_form("/default-contact-us-devices", 1448,
+        title="Contact us about our MAAS Deployment and Operations training",
+        introText="Fill in your details below and a member of our training team will be in touch.",
+        lpId="2661",
+        returnUrl="/training/thank-you?product=maas-training-onsite") | safe }}
+  {% elif product == 'landscape-training-onsite' %}
+    {{ load_form("/default-contact-us-devices", 1448,
+        title="Contact us about our Landscape Deployment and Operations training",
+        introText="Fill in your details below and a member of our training team will be in touch.",
+        lpId="2661",
+        returnUrl="/training/thank-you?product=landscape-training-onsite") | safe }}
+  {% elif product == 'juju-administrator-training-onsite' %}
+    {{ load_form("/default-contact-us-devices", 1448,
+        title="Contact us about our Juju Administrator training",
+        introText="Fill in your details below and a member of our training team will be in touch.",
+        lpId="2661",
+        returnUrl="/training/thank-you?product=juju-administrator-training-onsite") | safe }}
+  {% elif product == 'charm-developer-training-onsite' %}
+    {{ load_form("/default-contact-us-devices", 1448,
+        title="Contact us about our Charm Developer training",
+        introText="Fill in your details below and a member of our training team will be in touch.",
+        lpId="2661",
+        returnUrl="/training/thank-you?product=charm-developer-training-onsite") | safe }}
+  {% elif product == 'snapcraft-101' %}
+    {{ load_form("/default-contact-us-devices", 4843,
+        title="Contact us about our Snapcraft 101 training course",
+        introText="Fill in your details below and a member of our training team will be in touch.",
+        lpId="2661",
+        returnUrl="/training/thank-you?product=snapcraft-101") | safe }}
   {% else %}
-
-{% with h1="Contact us about Canonical Training",
-  intro_text="Fill in your details below and a member of our cloud sales team will be in touch.",
-  formid="1251",
-  lpId="2086",
-  returnURL="/training/thank-you" %}
-  {% include "shared/_openstack_contact_us.html" %}
-{% endwith %}
-
+    {% with h1="Contact us about Canonical Training",
+      intro_text="Fill in your details below and a member of our cloud sales team will be in touch.",
+      formid="1251",
+      lpId="2086",
+      returnURL="/training/thank-you" %}
+      {% include "shared/_openstack_contact_us.html" %}
+    {% endwith %}
   {% endif %}
+
+  {% include "shared/forms/_ubuntu_help_resources.html" %}
 {% endblock content %}
