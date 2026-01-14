@@ -71,7 +71,9 @@ describe("CVETable", () => {
   });
 
   it("renders CVESelector with correct props", () => {
-    const { getByTestId, getByText, getByRole,getAllByRole } = render(<CVETable />);
+    const { getByTestId, getByText, getByRole, getAllByRole } = render(
+      <CVETable />,
+    );
     expect(getByTestId("table-status-filter")).toHaveValue("focal");
     const options = getByTestId("table-status-filter").querySelectorAll(
       "option",
@@ -92,11 +94,7 @@ describe("CVETable", () => {
     expect(getByRole("rowheader", { name: "Package 1" })).toBeInTheDocument();
     expect(getByRole("rowheader", { name: "Package 2" })).toBeInTheDocument();
     console.log(getAllByRole("row"));
-    expect(
-      getByRole("row", { name: "Package 1 1 0 LTS" }),
-    ).toBeInTheDocument();
-    expect(
-      getByRole("row", { name: "Package 2 1 2 LTS" }),
-    ).toBeInTheDocument();
+    expect(getByRole("row", { name: "Package 1 1 0 LTS" })).toBeInTheDocument();
+    expect(getByRole("row", { name: "Package 2 1 2 LTS" })).toBeInTheDocument();
   });
 });
