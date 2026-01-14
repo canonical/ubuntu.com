@@ -1,0 +1,353 @@
+{% extends "containers/base_containers.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_linked-logo-section.jinja" import vf_linked_logo_section %}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_equal-heights.jinja" import vf_equal_heights %}
+
+{% block title %}Getting started with Canonical containers{% endblock %}
+
+{% block meta_description %}
+  Learn about Canonical containers, also known as “rocks”, and how to build your own.
+{% endblock meta_description %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1Vs57mJHBcn_Q48rkR8UrVq8eHvDG7R4581wRhcVQQr0/edit?usp=sharing
+{% endblock meta_copydoc %}
+
+{% block meta_image %}
+  https://assets.ubuntu.com/v1/9febf64f-circle_of_friends_white_on_orange.png
+{% endblock meta_image %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+  {% call(slot) vf_hero(
+    title_text='Canonical containers',
+    layout='50/50'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+Canonical containers, also known as “rocks”, are a new generation of secure, stable and OCI-compliant Ubuntu images, <a href="https://documentation.ubuntu.com/chisel/en/latest/">hardened by design</a>, and offering a <a href="https://documentation.ubuntu.com/rockcraft/latest/explanation/pebble/">specialized and predictable UX</a>.
+      </p>
+    {%- endif -%}
+  {% endcall -%}
+
+  {{ vf_linked_logo_section(
+  title_text="Browse rocks",
+  layout="25/75",
+  links=[
+    {
+      "href": "https://hub.docker.com/r/ubuntu/python",
+      "text": "Python",
+      "label": "Python",
+      "image_attrs": image(
+              url="https://assets.ubuntu.com/v1/fc781c43-Case+study+-+white.svg",
+              alt="",
+              height="32",
+              width="32",
+              hi_def=True,
+              loading="lazy",
+              output_mode="attrs",
+            )
+    },
+    {
+      "href": "https://hub.docker.com/r/ubuntu/kafka",
+      "text": "Kafka",
+      "label": "Kafka",
+      "image_attrs": image(
+              url="https://assets.ubuntu.com/v1/104192d9-mlflow-logo-container-vert-fill.png",
+              alt="",
+              height="222",
+              width="481",
+              hi_def=True,
+              loading="lazy",
+              output_mode="attrs",
+            )
+    },
+    {
+      "href": "https://hub.docker.com/r/ubuntu/rabbitmq",
+      "text": "RabbitMQ",
+      "label": "RabbitMQ",
+      "image_attrs": image(
+              url="https://assets.ubuntu.com/v1/855deda8-apache-spark-logo-container-vert-fill.png",
+              alt="",
+              height="240",
+              width="481",
+              hi_def=True,
+              loading="lazy",
+              output_mode="attrs",
+            )
+    },
+    {
+      "href": "https://hub.docker.com/u/ubuntu",
+      "text": ".NET Runtime",
+      "label": ".NET Runtime",
+      "image_attrs": image(
+              url="https://assets.ubuntu.com/v1/a8185f91-opensearch-logo-container-vert-fill.png",
+              alt="",
+              height="330",
+              width="481",
+              hi_def=True,
+              loading="lazy",
+              output_mode="attrs",
+            )
+    },
+    {
+      "href": "https://hub.docker.com/r/ubuntu/valkey",
+      "text": "Valkey",
+      "label": "Valkey",
+      "image_attrs": image(url="https://assets.ubuntu.com/v1/620117a1-valkey.png",
+            alt="",
+            width="852",
+            height="480",
+            hi_def=True,
+            loading="lazy",
+            output_mode="attrs",
+      )
+    },
+    {
+      "href": "https://hub.docker.com/r/ubuntu/jre",
+      "text": "JRE",
+      "label": "JRE",
+      "image_attrs": image(url="https://assets.ubuntu.com/v1/775f912c-jre.png",
+            alt="",
+            width="852",
+            height="480",
+            hi_def=True,
+            loading="lazy",
+            output_mode="attrs",
+      )
+    }
+  ],
+) }}
+
+{{ vf_basic_section(
+  title={"text": "Use a rock"},
+  items=[
+    {
+      "type": "image",
+      "item": {
+        "aspect_ratio": "16-9",
+        "attrs": image(url="https://assets.ubuntu.com/v1/24d60b8b-use_a_rock.gif",
+            alt="",
+            width="1600",
+            height="754",
+            hi_def=True,
+            loading="lazy",
+            output_mode="attrs",
+        )
+      }
+    },
+    {
+      "type": "description",
+      "item": {
+        "type": "text",
+        "content": "Rocks are hardened to chisel away contents that are unnecessary at runtime, thus preserving the same functionality while reducing the storage footprint and attack surface. Like this Python rock"
+      }
+    },
+  ]
+) }}
+
+{% call(slot) vf_equal_heights(
+  title_text="Building steps",
+  highlight_images=True,
+  image_aspect_ratio_medium="2-3",
+  image_aspect_ratio_small="2-3",
+  items=[
+    {
+      "title_text": "Initialize",
+      "image_html":  image(url="https://assets.ubuntu.com/v1/12274ef1-initialize.png",
+            alt="",
+            width="852",
+            height="1278",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-image-container__image"}
+      ),
+      "description_html": "
+      <p>
+        <a href='https://documentation.ubuntu.com/rockcraft/latest/how-to/get-started'>
+          Get started - quick guide
+        </a>
+        <a href='https://documentation.ubuntu.com/rockcraft/latest/tutorial/hello-world/#setup-your-environment'>
+          Use Rockcraft with Multipass
+        </a>
+      </p>
+      ",
+    
+    },
+    {
+      "title_text": "Craft",
+      "image_html": image(url="https://assets.ubuntu.com/v1/026825c5-craft.png",
+            alt="",
+            width="852",
+            height="1278",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-image-container__image"},
+       ),
+       "description_html": "
+      <p>
+        <a href='https://documentation.ubuntu.com/rockcraft/latest/reference/rockcraft-yaml/'>
+          Rocks project file
+        </a>
+        <a href='https://canonical-craft-parts.readthedocs-hosted.com/latest/how-to/use_parts/'>
+          Use parts to build your container application
+        </a>
+        <a href='https://documentation.ubuntu.com/rockcraft/latest/how-to/crafting/convert-to-pebble-layer/'>
+          Define rocks services
+        </a>
+        <a href='https://documentation.ubuntu.com/rockcraft/latest/how-to/chiselling/chisel-existing-rock/#chisel-the-python-rock'>
+          Harden a rock
+        </a>
+        <a href='https://documentation.ubuntu.com/rockcraft/latest/how-to/chiselling/install-slice/'>
+          Install a custom package slice
+        </a>
+        <a href='https://documentation.ubuntu.com/rockcraft/latest/how-to/crafting/add-internal-user-to-a-rock/'>
+          Define a non root user
+        </a>
+      </p>
+      ",
+    },
+    {
+      "title_text": "Pack",
+      "image_html": image(url="https://assets.ubuntu.com/v1/ef2eb5e9-pack.png",
+            alt="",
+            width="852",
+            height="1278",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-image-container__image"},
+      ),
+      "description_html": "
+      <p>
+        <a href='https://documentation.ubuntu.com/rockcraft/latest/reference/commands/pack/'>
+          Pack a rock
+        </a>
+      </p>
+      ",
+    }
+  ]
+) %}
+{% endcall %}
+
+<div class="grid-demo">
+  <div class="grid-row--50-50">
+    <div class="grid-col">
+      <span>50</span>
+    </div>
+    <div class="grid-col">
+      <span>50</span>
+    </div>
+  </div>
+</div>
+
+{{ vf_basic_section(
+  title={"text": "Get started with rocks"},
+  subtitle={"text": "You can build rocks for a variety of applications."},
+) }}
+
+{{ vf_linked_logo_section(
+  title_text="",
+  layout="25/75",
+  links=[
+    {
+      "href": "https://hub.docker.com/r/ubuntu/flask",
+      "text": "Flask",
+      "label": "Flask",
+      "image_attrs": image(
+              url="https://assets.ubuntu.com/v1/d7f7f82e-Flask.svg",
+              alt="",
+              height="32",
+              width="32",
+              hi_def=True,
+              loading="lazy",
+              output_mode="attrs",
+            )
+    },
+    {
+      "href": "https://hub.docker.com/r/ubuntu/django",
+      "text": "Django",
+      "label": "Django",
+      "image_attrs": image(
+              url="https://assets.ubuntu.com/v1/e72692a9-Django.svg",
+              alt="",
+              height="32",
+              width="32",
+              hi_def=True,
+              loading="lazy",
+              output_mode="attrs",
+            )
+    },
+    {
+      "href": "https://hub.docker.com/r/ubuntu/fastapi",
+      "text": "FastAPI",
+      "label": "FastAPI",
+      "image_attrs": image(
+              url="https://assets.ubuntu.com/v1/aab84d59-FastAPI.svg",
+              alt="",
+              height="32",
+              width="32",
+              hi_def=True,
+              loading="lazy",
+              output_mode="attrs",
+            )
+    },
+    {
+      "href": "https://hub.docker.com/r/ubuntu/go",
+      "text": "Go",
+      "label": "Go",
+      "image_attrs": image(url="https://assets.ubuntu.com/v1/3a282fac-go.png",
+            alt="",
+            width="852",
+            height="480",
+            hi_def=True,
+            loading="lazy",
+            )
+    },
+    {
+      "href": "https://hub.docker.com/r/ubuntu/express",
+      "text": "Express",
+      "label": "Express",
+      "image_attrs": image(
+              url="https://assets.ubuntu.com/v1/26308504-Express.svg",
+              alt="",
+              height="32",
+              width="32",
+              hi_def=True,
+              loading="lazy",
+              output_mode="attrs",
+            )
+    },
+    {
+      "href": "https://hub.docker.com/r/ubuntu/spring-boot",
+      "text": "Spring Boot",
+      "label": "Spring Boot",
+      "image_attrs": image(
+              url="https://assets.ubuntu.com/v1/8444e26f-Springboot.svg",
+              alt="",
+              height="32",
+              width="32",
+              hi_def=True,
+              loading="lazy",
+              output_mode="attrs",
+            )
+    }
+  ],
+) }}
+
+    <section class="u-fixed-width">
+      <hr class="p-rule" />
+      <div class="p-strip is-deep">
+        <p class="p-heading--2">
+          <a href="/containers/contact-us" class="js-invoke-modal">Get in touch to discuss your custom container build&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+    </section>
+
+    {{ load_form("/containers") | safe }}
+
+  {% endblock %}
