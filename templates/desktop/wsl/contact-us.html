@@ -1,16 +1,16 @@
 {% extends "desktop/base_desktop.html" %}
 
 {% block title %}Contact Canonical | WSL{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1UxS6S6RTRIiI2rD-yOc8bfbVb2FP1Czd8mGejKrjoDE/edit#{% endblock meta_copydoc %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1UxS6S6RTRIiI2rD-yOc8bfbVb2FP1Czd8mGejKrjoDE/edit#
+{% endblock meta_copydoc %}
 
 {% block content %}
+  {{ load_form("/default-contact-us-devices", 3755,
+    title="Contact us about WSL at your company",
+    introText="Ubuntu brings you the best-in-class, seamless experience for the Windows Subsystem for Linux. We can help you unleash more capabilities and supply the right level of support you need to have the best experience out-of-the-box.",
+    returnUrl="/desktop/wsl/thank-you") | safe }}
 
-{% with h1="Contact us about WSL at your company",
-  intro_text="Ubuntu brings you the best-in-class, seamless experience for the Windows Subsystem for Linux. We can help you unleash more capabilities and supply the right level of support you need to have the best experience out-of-the-box.",
-  formid="3755",
-  lpId="",
-  returnURL="/desktop/wsl/thank-you" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
+  {% include "shared/forms/_ubuntu_help_resources.html" %}
 {% endblock content %}
