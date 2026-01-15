@@ -12,6 +12,7 @@ from jinja2 import ChoiceLoader, FileSystemLoader
 import yaml
 import sentry_sdk
 
+from sentry_sdk.integrations.flask import FlaskIntegration
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
     DiscourseAPI,
@@ -272,9 +273,10 @@ if sentry_dsn:
         dsn=sentry_dsn,
         send_default_pii=True,
         environment=environment,
+        integrations=[FlaskIntegration()],
     )
 
-init_handlers(app, sentry_sdk)
+init_handlers(app)
 
 
 # Prepare forms
@@ -1492,8 +1494,10 @@ if app.config.get("TESTING") or os.getenv("TESTING") or app.debug:
         return flask.render_template(f"tests/{subpath}.html")
 
 
-@app.route("/sentry-debug")
-def trigger_error():
-    """Endpoint to trigger a Sentry error for testing purposes."""
-    division_by_zero = 1 / 0
-    return str(division_by_zero)
+if environment != "production":
+
+    @app.route("/sentry-debug")
+    def trigger_error():
+        """Endpoint to trigger a Sentry error for testing purposes."""
+        1 / 0
+        return "This won't be reached"
