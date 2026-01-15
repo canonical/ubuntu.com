@@ -1,89 +1,14 @@
 {
   "form": {
-    "/ibm/contact-us": {
-      "templatePath": "/ibm/contact-us.html",
-      "formData": {
-        "title": "Contact us",
-        "introText": "From the servers to the cloud, IBM and Canonical work together to bring you joint solutions that work out-of-the-box for a consistent open source experience spanning the IBM portfolio.",
-        "formId": "1444",
-        "returnUrl": "/ibm/thank-you",
-        "lpId": "2649"
-      },
-      "fieldsets": [
-        {
-          "title": "How many devices?",
-          "id": "how-many-machines",
-          "inputName": "how-many-machines-do-you-have",
-          "inputType": "radio",
-          "isRequired": true,
-          "fields": [
-            {
-              "type": "radio",
-              "id": "less-5-machines",
-              "value": "less than 5",
-              "label": "< 5 machines"
-            },
-            {
-              "type": "radio",
-              "id": "5-to-15-machines",
-              "value": "5 to 15 machines",
-              "label": "5 - 15 machines"
-            },
-            {
-              "type": "radio",
-              "id": "15-to-50-machines",
-              "value": "15 to 50 machines",
-              "label": "15 - 50 machines"
-            },
-            {
-              "type": "radio",
-              "id": "50-to-100-machines",
-              "value": "50 to 100 machines",
-              "label": "50 - 100 machines"
-            },
-            {
-              "type": "radio",
-              "id": "greater-than-100",
-              "value": "greater than 100",
-              "label": "> 100 machines"
-            }
-          ]
-        },
-        {
-          "title": "What would you like to talk to us about?",
-          "id": "comments",
-          "isRequired": true,
-          "fields": [
-            {
-              "type": "long-text",
-              "id": "comments",
-              "label": ""
-            }
-          ]
-        },
-        {
-          "title": "How should we get in touch?",
-          "id": "about-you",
-          "noCommentsFromLead": true,
-          "fields": [
-            {
-              "type": "tel",
-              "id": "phone",
-              "label": "Mobile/cell phone number"
-            }
-          ]
-        }
-      ]
-    },
-    "/ibm": {
-      "templatePath": "/ibm/index.html",
+    "/": {
+      "templatePath": "/base_index.html",
       "isModal": true,
       "modalId": "contact-modal",
       "formData": {
         "title": "The Ubuntu experts",
         "introText": "Canonical certifies, secures and enables enterprise open source on Ubuntu. Tell us about your project so we bring the right team to the conversation.",
-        "formId": "1444",
-        "returnUrl": "/ibm#success",
+        "formId": "1257",
+        "returnUrl": "#success",
         "lpUrl": "https://pages.ubuntu.com/things-contact-us.html",
         "product": ""
       },

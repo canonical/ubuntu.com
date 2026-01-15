@@ -27,7 +27,9 @@
         </p>
         <hr class="is-muted" />
         <p>
-          <a class="p-button--positive js-invoke-modal" href="/contact-us">Contact us</a>
+          <a class="p-button--positive js-invoke-modal"
+             href="/contact-us"
+             aria-controls="cloud-contact-modal">Contact us</a>
         </p>
       </div>
     </div>
@@ -315,5 +317,6 @@
   </section>
 
   <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  {{ load_form("/cloud") | safe }}
 
 {% endblock content %}

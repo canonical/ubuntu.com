@@ -85,14 +85,15 @@
         </div>
         <div class="col-6 u-vertically-center u-align--center u-hide--medium u-hide--small">
           <picture>
-            <source srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" media="(max-width: 1036px)"> 
+            <source srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                    media="(max-width: 1036px)" />
             {{ image(url="https://assets.ubuntu.com/v1/33b5133c-Noble-Numbat-optimised.svg",
-                      alt="",
-                      width="197",
-                      height="150",
-                      hi_def=True,
-                      loading="auto",
-                      attrs={"id": "takeover-image"}) | safe
+                        alt="",
+                        width="197",
+                        height="150",
+                        hi_def=True,
+                        loading="auto",
+                        attrs={"id": "takeover-image"}) | safe
             }}
           </picture>
         </div>
@@ -387,7 +388,9 @@
           </ul>
           <hr class="p-rule--muted" />
           <p class="u-no-margin--bottom">
-            <a href="/contact-us" class="js-invoke-modal p-button is-dark">Let's talk open source</a>
+            <a href="/contact-us"
+               class="js-invoke-modal p-button is-dark"
+               aria-controls="contact-modal">Let's talk open source</a>
           </p>
         </div>
       </div>
@@ -611,7 +614,8 @@
                class="p-button is-dark">Learn more</a>
             <a href="/kubernetes/contact-us"
                aria-label="Contact us about multi-cloud Kubernetes and containers"
-               class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
+               class="js-invoke-modal"
+               aria-controls="contact-modal">Contact us&nbsp;&rsaquo;</a>
           </p>
         </div>
       </div>
@@ -744,7 +748,8 @@
                class="p-button is-dark">Learn more</a>
             <a href="/openstack/contact-us"
                aria-label="Contact us about carrier-grade private cloud"
-               class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
+               class="js-invoke-modal"
+               aria-controls="contact-modal">Contact us&nbsp;&rsaquo;</a>
           </p>
         </div>
       </div>
@@ -856,7 +861,8 @@
                class="p-button is-dark">Learn more</a>
             <a href="/core/contact-us"
                aria-label="Contact us about Ubuntu Core"
-               class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
+               class="js-invoke-modal"
+               aria-controls="contact-modal">Contact us&nbsp;&rsaquo;</a>
           </p>
         </div>
       </div>
@@ -999,7 +1005,8 @@
                class="p-button is-dark">Learn more</a>
             <a href="/desktop/contact-us"
                aria-label="Contact us about workstations and desktops"
-               class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
+               class="js-invoke-modal"
+               aria-controls="contact-modal">Contact us&nbsp;&rsaquo;</a>
           </p>
         </div>
       </div>
@@ -1278,7 +1285,8 @@
                class="p-button is-dark">Learn more</a>
             <a href="/contact-us"
                aria-label="Contact us about robotics"
-               class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
+               class="js-invoke-modal"
+               aria-controls="contact-modal">Contact us&nbsp;&rsaquo;</a>
           </p>
         </div>
       </div>
@@ -1620,13 +1628,7 @@
     </script>
 
     <!-- Set default Marketo information for contact form below-->
-    <div class="u-hide"
-         id="contact-form-container"
-         data-form-location="/shared/forms/interactive/general"
-         data-form-id="1257"
-         data-lp-id="2154"
-         data-return-url="https://ubuntu.com/contact-us/thank-you"
-         data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+    {{ load_form("/") | safe }}
 
   {% endblock content %}
 {% endblock outer_content %}

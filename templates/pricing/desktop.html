@@ -29,7 +29,9 @@
         <div class="p-cta-block">
           <a class="p-button"
              href="https://assets.ubuntu.com/v1/a48fc9cd-Ubuntu%20Desktop%20DS%2021.06.23.pdf">Download the datasheet</a>
-          <a href="/desktop/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+          <a href="/pricing/contact-us"
+             class="p-button--positive js-invoke-modal"
+             aria-controls="desktop-contact-modal">Get in touch</a>
         </div>
       </div>
     </div>
@@ -362,7 +364,9 @@
             <div class="p-cta-block">
               <a class="p-button"
                  href="https://assets.ubuntu.com/v1/a48fc9cd-Ubuntu%20Desktop%20DS%2021.06.23.pdf">Download the datasheet</a>
-              <a href="/desktop/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+              <a href="/desktop/contact-us"
+                 class="p-button--positive js-invoke-modal"
+                 aria-controls="desktop-contact-modal">Get in touch</a>
             </div>
           </div>
         </div>
@@ -430,18 +434,14 @@
   <section class="p-strip is-deep">
     <div class="u-fixed-width">
       <p class="p-heading--2">
-        <a href="/pricing/contact-us" class="js-invoke-modal">Any questions? Contact us&nbsp;&rsaquo;</a>
+        <a href="/pricing/contact-us"
+           class="js-invoke-modal"
+           aria-controls="desktop-contact-modal">Any questions? Contact us&nbsp;&rsaquo;</a>
       </p>
     </div>
-  </section> 
+  </section>
 
   <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/general"
-       data-form-id="1253"
-       data-lp-id="1409"
-       data-return-url="https://ubuntu.com/desktop/thank-you"
-       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+  {{ load_form("/pricing/desktop") | safe }}
 
 {% endblock %}
