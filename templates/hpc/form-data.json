@@ -241,6 +241,54 @@
           ]
         }
       ]
+    },
+    "/hpc-contact-us": {
+      "templatePath": "/hpc/contact-us.html",
+      "isModal": false,
+      "formData": {
+        "title": "Contact us about HPC",
+        "introText": "Fill in your details below and a member of our team will be in touch.",
+        "formId": "1251",
+        "returnUrl": "/hpc/thank-you",
+        "lpId": ""
+      },
+      "fieldsets": [
+        {
+          "title": "About your company",
+          "fields": [
+            {
+              "type": "text",
+              "id": "industry",
+              "label": "Industry:",
+              "isRequired": true
+            }
+          ]
+        },
+        {
+          "title": "Your comments",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "comments",
+              "label": "What would you like to talk to us about?"
+            }
+          ],
+          "id": "your-comments"
+        },
+
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number"
+            }
+          ]
+        }
+      ]
     }
   }
 }
