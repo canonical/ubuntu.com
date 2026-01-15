@@ -265,8 +265,8 @@ charmhub_discourse_api = DiscourseAPI(
 search_engine_id = "adb2397a224a1fe55"
 
 # Sentry setup
-sentry_dsn = os.getenv("SENTRY_DSN")
-environment = os.getenv("FLASK_ENV", "production")
+sentry_dsn = get_flask_env("SENTRY_DSN")
+environment = get_flask_env("FLASK_ENV", "production")
 
 if sentry_dsn:
     sentry_sdk.init(
