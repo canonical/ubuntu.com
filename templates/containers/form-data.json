@@ -2,7 +2,9 @@
   "form": {
     "/containers": {
       "templatePath": "/containers/index.html",
-      "childrenPaths": ["/containers/container-build-service"],
+      "childrenPaths": [
+        "/containers/container-build-service"
+      ],
       "isModal": true,
       "modalId": "contact-modal",
       "formData": {
@@ -42,6 +44,44 @@
         "product": ""
       },
       "fieldsets": [
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    },
+    "/containers/chiseled/dotnet": {
+      "templatePath": "/containers/chiseled/dotnet.html",
+      "isModal": true,
+      "modalId": "dotnet-contact-modal",
+      "formData": {
+        "title": "Deliver secured and efficient containers",
+        "introText": "Fill in this form and a member of our team will be in touch shortly.",
+        "formId": "5272",
+        "returnUrl": "/containers/chiseled/dotnet#success",
+        "lpUrl": "https://pages.ubuntu.com/things-contact-us.html"
+      },
+      "fieldsets": [
+        {
+          "title": "Tell us more about your use case",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "advice",
+              "placeholder": "What is your current setup? Any particular use case?  Anything you would like to communicate with our experts?",
+              "label": "What is your current setup? Any particular use case?  Anything you would like to communicate with our experts?"
+            }
+          ]
+        },
         {
           "title": "How should we get in touch?",
           "id": "about-you",
