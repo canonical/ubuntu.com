@@ -31,7 +31,7 @@
               </p>
               <hr class="p-rule" />
               <p>
-                <a class="p-button--positive js-invoke-modal" href="/desktop/contact-us">Contact us</a>
+                <a class="p-button--positive js-invoke-modal" href="/desktop/contact-us" aria-controls="desktop-contact-modal">Contact us</a>
                 <a class="p-button"
                    href="https://assets.ubuntu.com/v1/def33105-ubuntu_desktop_datasheet_2025.pdf">Download the datasheet</a>
                 <a href="/pro">Secure&nbsp;open&nbsp;source&nbsp;with&nbsp;Ubuntu&nbsp;Pro&nbsp;&rsaquo;</a>
@@ -123,7 +123,7 @@
               Advanced support customers get direct 24/7 access to our enterprise open source support team through our web portal, knowledge base or via phone.
             </p>
             <hr class="p-rule" />
-            <a class="p-button--positive js-invoke-modal" href="/desktop/contact-us">Contact us</a>
+            <a class="p-button--positive js-invoke-modal" href="/desktop/contact-us" aria-controls="desktop-contact-modal">Contact us</a>
           </div>
         </div>
       </div>
@@ -473,5 +473,7 @@
   </section>
 
   {% include "desktop/partial/_desktop-latest-news.html" %}
+
+  {{ load_form("/desktop/organizations") | safe }}
 
 {% endblock content %}
