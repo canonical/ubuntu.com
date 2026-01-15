@@ -1,117 +1,73 @@
 {% extends "openstack/_base_openstack.html" %}
 
 {% block title %}Contact us | HPC{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1Tdu0Z60hSE8BSMMYAShfF5KFCJ_tE11eRp31oryk5xg/edit#{% endblock meta_copydoc %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1Tdu0Z60hSE8BSMMYAShfF5KFCJ_tE11eRp31oryk5xg/edit#
+{% endblock meta_copydoc %}
 
 {% block content %}
   {% if product == 'hpc-demo' %}
-
-{% with h1="Schedule a demo",
-  intro_text="Fill in your details below and a member of our data center sales team will be in touch.",
-  formid="4537",
-  returnURL="/hpc/thank-you?product=hpc-demo" %}
-  {% include "shared/_hpc-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/hpc-contact-us",
+        title="Schedule a demo",
+        introText="Fill in your details below and a member of our data center sales team will be in touch.",
+        returnUrl="/hpc/thank-you?product=hpc-demo") | safe }}
   {% elif product == 'hpc-charmed' %}
-
-{% with h1="Talk to us about building your cluster environments",
-  intro_text="Fill in your details below and a member of our data center sales team will be in touch.",
-  formid="4537",
-  returnURL="/hpc/thank-you?product=hpc-charmed" %}
-  {% include "shared/_hpc-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/hpc-contact-us",
+        title="Talk to us about building your cluster environments",
+        introText="Fill in your details below and a member of our data center sales team will be in touch.",
+        returnUrl="/hpc/thank-you?product=hpc-charmed") | safe }}
   {% elif product == 'hpc-ubuntu' %}
-
-{% with h1="Contact us about Ubuntu for HPC & Supercomputing",
-  intro_text="Fill in your details below and a member of our data center sales team will be in touch.",
-  formid="4537",
-  returnURL="/hpc/thank-you?product=hpc-ubuntu" %}
-  {% include "shared/_hpc-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/hpc-contact-us",
+        title="Contact us about Ubuntu for HPC & Supercomputing",
+        introText="Fill in your details below and a member of our data center sales team will be in touch.",
+        returnUrl="/hpc/thank-you?product=hpc-ubuntu") | safe }}
   {% elif product == 'hpc-maas' %}
-
-{% with h1="Contact us about MAAS for cluster management",
-  intro_text="Fill in your details below and a member of our data center sales team will be in touch.	",
-  formid="4537",
-  returnURL="/hpc/thank-you?product=hpc-maas" %}
-  {% include "shared/_hpc-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/hpc-contact-us",
+        title="Contact us about MAAS for cluster management",
+        introText="Fill in your details below and a member of our data center sales team will be in touch.",
+        returnUrl="/hpc/thank-you?product=hpc-maas") | safe }}
   {% elif product == 'hpc-kubernetes' %}
-
-{% with h1="Contact us about Kubernetes for workload management",
-  intro_text="Fill in your details below and a member of our data center sales team will be in touch.",
-  formid="4537",
-  returnURL="/hpc/thank-you?product=hpc-kubernetes" %}
-  {% include "shared/_hpc-contact-us-form.html" %}
-{% endwith %}
-
-    {% elif product == 'hpc-ceph' %}
-
-{% with h1="Contact us about Ceph for Computational Storage",
-  intro_text="Fill in your details below and a member of our data center sales team will be in touch.",
-  formid="4537",
-  returnURL="/hpc/thank-you?product=hpc-ceph" %}
-  {% include "shared/_hpc-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/hpc-contact-us",
+        title="Contact us about Kubernetes for workload management",
+        introText="Fill in your details below and a member of our data center sales team will be in touch.",
+        returnUrl="/hpc/thank-you?product=hpc-kubernetes") | safe }}
+  {% elif product == 'hpc-ceph' %}
+    {{ load_form("/hpc-contact-us",
+        title="Contact us about Ceph for Computational Storage",
+        introText="Fill in your details below and a member of our data center sales team will be in touch.",
+        returnUrl="/hpc/thank-you?product=hpc-ceph") | safe }}
   {% elif product == 'hpc-openstack' %}
-
-{% with h1="Contact us about OpenStack & HPC",
-  intro_text="Fill in your details below and a member of our data center sales team will be in touch.",
-  formid="4537",
-  returnURL="/hpc/thank-you?product=hpc-openstack" %}
-  {% include "shared/_hpc-contact-us-form.html" %}
-{% endwith %}
-
-{% elif product == 'hpc-isv' %}
-
-{% with h1="As a HPC & Supercomputing ISV let's discuss partnership",
-  intro_text="Fill in your details below and a member of our alliance team will be in touch.",
-  formid="4537",
-  returnURL="/hpc/thank-you?product=hpc-isv" %}
-  {% include "shared/_hpc-contact-us-form.html" %}
-{% endwith %}
-
-{% elif product == 'openinfra-summit' %}
-
-{% with h1="Let's talk at OpenInfra Summit",
-  intro_text="Fill in your details below and a member of our team will be in touch to arrange a meeting.",
-  formid="4537",
-  returnURL="/hpc/thank-you?product=openinfra-summit" %}
-  {% include "shared/_hpc-contact-us-form.html" %}
-{% endwith %}
-
-{% elif product == 'supercomputing' %}
-
-{% with h1="Let's talk at Supercomputing",
-  intro_text="Fill in your details below and a member of our team will be in touch to arrange a meeting.",
-  formid="4537",
-  returnURL="/hpc/thank-you?product=supercomputing" %}
-  {% include "shared/_hpc-contact-us-form.html" %}
-{% endwith %}
-
-
-{% elif product == 'isc-hpc' %}
-
-{% with h1="Let's talk at ISC HPC",
-  intro_text="Fill in your details below and a member of our team will be in touch to arrange a meeting.",
-  formid="4537",
-  returnURL="/hpc/thank-you?product=isc-hpc" %}
-  {% include "shared/_hpc-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/hpc-contact-us",
+        title="Contact us about OpenStack & HPC",
+        introText="Fill in your details below and a member of our data center sales team will be in touch.",
+        returnUrl="/hpc/thank-you?product=hpc-openstack") | safe }}
+  {% elif product == 'hpc-isv' %}
+    {{ load_form("/hpc-contact-us",
+        title="As a HPC & Supercomputing ISV let's discuss partnership",
+        introText="Fill in your details below and a member of our alliance team will be in touch.",
+        returnUrl="/hpc/thank-you?product=hpc-isv") | safe }}
+  {% elif product == 'openinfra-summit' %}
+    {{ load_form("/hpc-contact-us",
+        title="Let's talk at OpenInfra Summit",
+        introText="Fill in your details below and a member of our team will be in touch to arrange a meeting.",
+        returnUrl="/hpc/thank-you?product=openinfra-summit") | safe }}
+  {% elif product == 'supercomputing' %}
+    {{ load_form("/hpc-contact-us",
+        title="Let's talk at Supercomputing",
+        introText="Fill in your details below and a member of our team will be in touch to arrange a meeting.",
+        returnUrl="/hpc/thank-you?product=supercomputing") | safe }}
+  {% elif product == 'isc-hpc' %}
+    {{ load_form("/hpc-contact-us",
+        title="Let's talk at ISC HPC",
+        introText="Fill in your details below and a member of our team will be in touch to arrange a meeting.",
+        returnUrl="/hpc/thank-you?product=isc-hpc") | safe }}
   {% else %}
-
-{% with h1="Contact us about HPC & Supercomputing",
-  intro_text="Fill in your details below and a member of our data center sales team will be in touch.",
-  formid="4537",
-  returnURL="/hpc/thank-you" %}
-  {% include "shared/_hpc-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/hpc-contact-us",
+        title="Contact us about HPC & Supercomputing",
+        introText="Fill in your details below and a member of our data center sales team will be in touch.",
+        returnUrl="/hpc/thank-you") | safe }}
   {% endif %}
+
+  {% include "shared/forms/_ubuntu_help_resources.html" %}
 {% endblock content %}
