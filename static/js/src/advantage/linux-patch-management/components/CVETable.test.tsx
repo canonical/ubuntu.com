@@ -1,4 +1,4 @@
-import { getAllByRole, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import CVETable from "./CVETable";
 import { useFetchCVEData } from "../utils/helpers";
 

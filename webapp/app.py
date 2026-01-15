@@ -10,7 +10,9 @@ import requests
 import talisker.requests
 from jinja2 import ChoiceLoader, FileSystemLoader
 import yaml
+import sentry_sdk
 
+from sentry_sdk.integrations.flask import FlaskIntegration
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
     DiscourseAPI,
@@ -239,7 +241,6 @@ loader = ChoiceLoader(
 
 app.jinja_loader = loader
 
-sentry = app.extensions["sentry"]
 session = talisker.requests.get_session()
 charmhub_session = requests.Session()
 talisker.requests.configure(charmhub_session)
@@ -263,7 +264,19 @@ charmhub_discourse_api = DiscourseAPI(
 # Web tribe websites custom search ID
 search_engine_id = "adb2397a224a1fe55"
 
-init_handlers(app, sentry)
+# Sentry setup
+sentry_dsn = get_flask_env("SENTRY_DSN")
+environment = get_flask_env("FLASK_ENV", "production")
+
+if sentry_dsn:
+    sentry_sdk.init(
+        dsn=sentry_dsn,
+        send_default_pii=True,
+        environment=environment,
+        integrations=[FlaskIntegration()],
+    )
+
+init_handlers(app)
 
 
 # Prepare forms
@@ -1479,3 +1492,12 @@ if app.config.get("TESTING") or os.getenv("TESTING") or app.debug:
         Expose all routes under templates/tests if in development/testing mode.
         """
         return flask.render_template(f"tests/{subpath}.html")
+
+
+if environment != "production":
+
+    @app.route("/sentry-debug")
+    def trigger_error():
+        """Endpoint to trigger a Sentry error for testing purposes."""
+        1 / 0
+        return "This won't be reached"

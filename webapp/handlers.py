@@ -35,7 +35,7 @@ from webapp.certified.helpers import convert_markdown_to_html
 from canonicalwebteam.flask_base.env import get_flask_env
 
 
-def init_handlers(app, sentry):
+def init_handlers(app):
     @app.after_request
     def cache_headers(response):
         """
@@ -109,30 +109,11 @@ def init_handlers(app, sentry):
 
     @app.errorhandler(UAContractsValidationError)
     def ua_contracts_validation_error(error):
-        sentry.captureException(
-            extra={
-                "user_info": user_info(flask.session),
-                "request_url": error.request.url,
-                "request_body": error.request.json,
-                "response_body": error.response.messages,
-            }
-        )
-
         return flask.jsonify({"errors": error.response.messages}), 422
 
     @app.errorhandler(UAContractsAPIError)
     @app.errorhandler(UnauthorizedError)
     def ua_contracts_api_error(error):
-        sentry.captureException(
-            extra={
-                "user_info": user_info(flask.session),
-                "request_url": error.request.url,
-                "request_headers": error.request.headers,
-                "response_headers": error.response.headers,
-                "response_body": error.response.json(),
-            }
-        )
-
         if error.response.status_code == 401:
             empty_session(flask.session)
 
@@ -144,16 +125,6 @@ def init_handlers(app, sentry):
     @app.errorhandler(UAContractsAPIErrorView)
     @app.errorhandler(UnauthorizedErrorView)
     def ua_contracts_api_error_view(error):
-        sentry.captureException(
-            extra={
-                "user_info": user_info(flask.session),
-                "request_url": error.request.url,
-                "request_headers": error.request.headers,
-                "response_headers": error.response.headers,
-                "response_body": error.response.json(),
-            }
-        )
-
         if error.response.status_code == 401:
             empty_session(flask.session)
 
