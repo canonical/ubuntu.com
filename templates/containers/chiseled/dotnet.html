@@ -32,7 +32,8 @@
         </p>
         <p>
           <a href="/containers/contact-us"
-             class="p-button--positive js-invoke-modal">Get in touch</a>
+             class="p-button--positive js-invoke-modal"
+             aria-controls="dotnet-contact-modal">Get in touch</a>
         </p>
       </div>
     </div>
@@ -180,7 +181,9 @@
           </p>
         </div>
         <p>
-          <a href="/containers/contact-us" class="p-heading--2 js-invoke-modal">Get in touch&nbsp;&rsaquo;</a>
+          <a href="/containers/contact-us"
+             class="p-heading--2 js-invoke-modal"
+             aria-controls="dotnet-contact-modal">Get in touch&nbsp;&rsaquo;</a>
         </p>
       </div>
     </div>
@@ -380,18 +383,13 @@
   <section class="p-strip--white is-deep">
     <div class="row">
       <p>
-        <a href="/containers/contact-us" class="p-heading--2 js-invoke-modal">Get in touch&nbsp;&rsaquo;</a>
+        <a href="/containers/contact-us"
+           class="p-heading--2 js-invoke-modal"
+           aria-controls="dotnet-contact-modal">Get in touch&nbsp;&rsaquo;</a>
       </p>
     </div>
   </section>
 
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/containers-chiseled-dotnet"
-       data-form-id="5272"
-       data-lp-id=""
-       data-return-url="https://ubuntu.com/containers/chiseled/dotnet#success"
-       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+  {{ load_form("/containers/chiseled/dotnet") | safe }}
 
 {% endblock content %}
