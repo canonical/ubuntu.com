@@ -130,7 +130,7 @@ Canonical containers, also known as “rocks”, are a new generation of secure,
       <div class="p-section--shallow">
         <img 
           src="https://assets.ubuntu.com/v1/24d60b8b-use_a_rock.gif" 
-          alt="" 
+          alt="Console illustrating how to use a Python rock" 
           width="1600" 
           height="754" 
           loading="lazy" />
@@ -143,8 +143,6 @@ Canonical containers, also known as “rocks”, are a new generation of secure,
 {% call(slot) vf_equal_heights(
   title_text="Building steps",
   highlight_images=True,
-  image_aspect_ratio_medium="2-3",
-  image_aspect_ratio_small="2-3",
   items=[
     {
       "title_text": "Initialize",
@@ -231,8 +229,16 @@ Canonical containers, also known as “rocks”, are a new generation of secure,
 
 {{ vf_basic_section(
   title={"text": "Get started with rocks"},
-  subtitle={"text": "You can build rocks for a variety of applications."},
   padding="shallow",
+  items=[
+    {
+      "type": "description",
+      "item": {
+        "type": "html",
+        "content": "<p>Try building a <a href='https://documentation.ubuntu.com/rockcraft/latest/tutorial/hello-world/#tutorial-create-a-hello-world-rock'>'Hello world' rock</a>. You can also build rocks for a variety of applications.</p>"
+      }
+    }
+  ]
 ) }}
 
 {{ vf_linked_logo_section(
