@@ -68,13 +68,11 @@
         lpId="2661",
         returnUrl="/training/thank-you?product=snapcraft-101") | safe }}
   {% else %}
-    {% with h1="Contact us about Canonical Training",
-      intro_text="Fill in your details below and a member of our cloud sales team will be in touch.",
-      formid="1251",
-      lpId="2086",
-      returnURL="/training/thank-you" %}
-      {% include "shared/_openstack_contact_us.html" %}
-    {% endwith %}
+    {{ load_form("/openstack-contact-us",
+        title="Contact us about Canonical Training",
+        introText="Fill in your details below and a member of our cloud sales team will be in touch.",
+        lpId="2086",
+        returnUrl="/training/thank-you") | safe }}
   {% endif %}
 
   {% include "shared/forms/_ubuntu_help_resources.html" %}
