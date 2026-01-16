@@ -2,162 +2,152 @@
 
 {% block title %}Managed Kafka on Ubuntu | Multi-Cloud and On-Premise{% endblock %}
 
-{% block meta_description %}OCanonical and Ubuntu provide fully managed Apache Kafka on Ubuntu hosted on any cloud architecture, including Kubernetes, public cloud, on-premise or bare-metal. {% endblock meta_description %}
+{% block meta_description %}
+  OCanonical and Ubuntu provide fully managed Apache Kafka on Ubuntu hosted on any cloud architecture, including Kubernetes, public cloud, on-premise or bare-metal.
+{% endblock meta_description %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/15c89-PyMc-QnSHglG1hf_Tub5lMkEcVYALL0rm5-LvA/{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/15c89-PyMc-QnSHglG1hf_Tub5lMkEcVYALL0rm5-LvA/
+{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip--suru is-dark">
-  <div class="row u-vertically-center">
-    <div class="col-7">
-      <h1>
-        Managed Apache Kafka
-      </h1>
-      <p class="p-heading--4">Fully managed Apache Kafka anywhere: on-prem and multi-cloud environments.</p>
-      <p>Spend less time managing infrastructure, more time building applications. Highly available, secure and fully managed Apache Kafka for frictionless innovation.</p>
-      <p><a href="/managed/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a></p>
-    </div>
-    <div class="col-5 u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/ce971717-Kafka-logo-badge-white.svg",
-        alt="",
-        height="287",
-        width="178",
-        hi_def=True,
-        attrs={"class": ""},
-        loading="auto",
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-{% include "managed/apps/_managed-apps-logo-section.html" %}
-
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-5 u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/f880a3bd-Enterprise+support.svg",
-          alt="VMWare",
-          width="200",
-          height="200",
-          hi_def=True,
-        ) | safe
-      }}
-    </div>
-    <div class="col-7 u-vertically-center">
-      <div>
-        <h3>
-          Full-stack solution for Apache Kafka, supported and managed on your infrastructure.
-        </h3>
-        <p><a href="/managed/contact-us">Get started with a free architecture assessment&nbsp;&rsaquo;</a></p>
+  <section class="p-strip--suru is-dark">
+    <div class="row u-vertically-center">
+      <div class="col-7">
+        <h1>Managed Apache Kafka</h1>
+        <p class="p-heading--4">Fully managed Apache Kafka anywhere: on-prem and multi-cloud environments.</p>
+        <p>
+          Spend less time managing infrastructure, more time building applications. Highly available, secure and fully managed Apache Kafka for frictionless innovation.
+        </p>
+        <p>
+          <a href="/managed/contact-us" class="p-button--positive js-invoke-modal" aria-controls="kafka-contact-modal">Get in touch</a>
+        </p>
+      </div>
+      <div class="col-5 u-hide--medium u-hide--small u-align--center">
+        {{ image(url="https://assets.ubuntu.com/v1/ce971717-Kafka-logo-badge-white.svg",
+                alt="",
+                height="287",
+                width="178",
+                hi_def=True,
+                attrs={"class": ""},
+                loading="auto",) | safe
+        }}
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip--suru-accent is-dark" id="webinar">
-  <div class="row">
-    <div class="col-4 u-hide--small">
-      <div class="p-card">
-        <a href="https://www.brighttalk.com/webcast/6793/410402" aria-hidden="true" tabindex="-1">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/e40b01bd-kafka-in-production-webinar.png",
-              alt="",
-              width="640",
-              height="360",
-              hi_def=True,
-            ) | safe
-          }}
-        </a>
+  {% include "managed/apps/_managed-apps-logo-section.html" %}
+
+  <section class="p-strip--light">
+    <div class="row u-equal-height">
+      <div class="col-5 u-hide--medium u-hide--small u-align--center">
+        {{ image(url="https://assets.ubuntu.com/v1/f880a3bd-Enterprise+support.svg",
+                alt="VMWare",
+                width="200",
+                height="200",
+                hi_def=True,) | safe
+        }}
       </div>
-    </div>
-    <div class="col-8 col-start-large-6 u-vertically-center">
-      <div class="p-heading-icon--small">
-        <div class="p-heading-icon__header">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/816ae23b-Webinar+-+white.svg",
-              alt="",
-              width="32",
-              height="32",
-              hi_def=True,
-              attrs={"class": "p-heading-icon__img u-hide--small u-hide--medium"},
-            ) | safe
-          }}
-          <p class="p-heading--4 p-heading-icon__title">Webinar</p>
+      <div class="col-7 u-vertically-center">
+        <div>
+          <h3>Full-stack solution for Apache Kafka, supported and managed on your infrastructure.</h3>
+          <p>
+            <a href="/managed/contact-us">Get started with a free architecture assessment&nbsp;&rsaquo;</a>
+          </p>
         </div>
-        <h4>Kafka can be challenging. Learn how we simplify it.</h4>
-        <p><a href="https://www.brighttalk.com/webcast/6793/410402" class="p-button">Watch the webinar on BrightTALK</a></p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip">
-  <div class="row">
-    <div class="col-8">
-      <h2>Key Features</h2>
+  <section class="p-strip--suru-accent is-dark" id="webinar">
+    <div class="row">
+      <div class="col-4 u-hide--small">
+        <div class="p-card">
+          <a href="https://www.brighttalk.com/webcast/6793/410402"
+             aria-hidden="true"
+             tabindex="-1">
+            {{ image(url="https://assets.ubuntu.com/v1/e40b01bd-kafka-in-production-webinar.png",
+                        alt="",
+                        width="640",
+                        height="360",
+                        hi_def=True,) | safe
+            }}
+          </a>
+        </div>
+      </div>
+      <div class="col-8 col-start-large-6 u-vertically-center">
+        <div class="p-heading-icon--small">
+          <div class="p-heading-icon__header">
+            {{ image(url="https://assets.ubuntu.com/v1/816ae23b-Webinar+-+white.svg",
+                        alt="",
+                        width="32",
+                        height="32",
+                        hi_def=True,
+                        attrs={"class": "p-heading-icon__img u-hide--small u-hide--medium"},) | safe
+            }}
+            <p class="p-heading--4 p-heading-icon__title">Webinar</p>
+          </div>
+          <h4>Kafka can be challenging. Learn how we simplify it.</h4>
+          <p>
+            <a href="https://www.brighttalk.com/webcast/6793/410402"
+               class="p-button">Watch the webinar on BrightTALK</a>
+          </p>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row u-sv3">
-    <div class="col-4 u-sv3">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/c5b21ec2-Private+Cloud.svg",
-          alt="VMWare",
-          width="274",
-          height="200",
-          hi_def=True,
-          attrs={"style":"height: 80px; width: auto;", "class": "u-hide--small u-hide--medium"},
-        ) | safe
-      }}
-      <h4>Secure</h4>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">End-to-end encrypted communications by default</li>
-        <li class="p-list__item is-ticked">Data security assurance &mdash; SOC2 and ISO27001/2</li>
-      </ul>
+  </section>
+
+  <section class="p-strip">
+    <div class="row">
+      <div class="col-8">
+        <h2>Key Features</h2>
+      </div>
     </div>
-    <div class="col-4">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/7e5a3ee1-scan.svg",
-          alt="VMWare",
-          width="100",
-          height="100",
-          hi_def=True,
-          attrs={"style":"height: 80px; width: auto;", "class": "u-hide--small u-hide--medium"},
-        ) | safe
-      }}
-      <h4>Reliable</h4>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">99.5% SLA, highly available service architecture</li>
-	<li class="p-list__item is-ticked">Long-term supported solution maintenance backed by the expertise of Canonical</li>
-      </ul>
+    <div class="row u-sv3">
+      <div class="col-4 u-sv3">
+        {{ image(url="https://assets.ubuntu.com/v1/c5b21ec2-Private+Cloud.svg",
+                alt="VMWare",
+                width="274",
+                height="200",
+                hi_def=True,
+                attrs={"style":"height: 80px; width: auto;", "class": "u-hide--small u-hide--medium"},) | safe
+        }}
+        <h4>Secure</h4>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">End-to-end encrypted communications by default</li>
+          <li class="p-list__item is-ticked">Data security assurance &mdash; SOC2 and ISO27001/2</li>
+        </ul>
+      </div>
+      <div class="col-4">
+        {{ image(url="https://assets.ubuntu.com/v1/7e5a3ee1-scan.svg",
+                alt="VMWare",
+                width="100",
+                height="100",
+                hi_def=True,
+                attrs={"style":"height: 80px; width: auto;", "class": "u-hide--small u-hide--medium"},) | safe
+        }}
+        <h4>Reliable</h4>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">99.5% SLA, highly available service architecture</li>
+          <li class="p-list__item is-ticked">Long-term supported solution maintenance backed by the expertise of Canonical</li>
+        </ul>
+      </div>
+      <div class="col-4">
+        {{ image(url="https://assets.ubuntu.com/v1/0cfe6c2d-build.svg",
+                alt="VMWare",
+                width="152",
+                height="100",
+                hi_def=True,
+                attrs={"style":"height: 80px; width: auto;", "class": "u-hide--small u-hide--medium"},) | safe
+        }}
+        <h4>Optimised</h4>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">24/7 proactive monitoring and management</li>
+          <li class="p-list__item is-ticked">Schedule updates to planned downtime</li>
+          <li class="p-list__item is-ticked">Web-based dashboard of key health metrics</li>
+        </ul>
+      </div>
     </div>
-    <div class="col-4">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/0cfe6c2d-build.svg",
-          alt="VMWare",
-          width="152",
-          height="100",
-          hi_def=True,
-          attrs={"style":"height: 80px; width: auto;", "class": "u-hide--small u-hide--medium"},
-        ) | safe
-      }}
-      <h4>Optimised</h4>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">24/7 proactive monitoring and management</li>
-        <li class="p-list__item is-ticked">Schedule updates to planned downtime</li>
-        <li class="p-list__item is-ticked">Web-based dashboard of key health metrics</li>
-      </ul>
-    </div>
-  </div>
     <section class="p-strip--light">
       <div class="row">
         <div class="col-8">
@@ -168,16 +158,13 @@
         <div class="col-3 p-divider__block">
           <div class="p-heading-icon">
             <div class="p-heading-icon__header is-stacked">
-              {{
-                image(
-                url="https://assets.ubuntu.com/v1/7de21966-snapshot.svg",
-                alt="",
-                width="100",
-                height="100",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-heading-icon__img u-hide--small u-hide--medium"},
-                ) | safe
+              {{ image(url="https://assets.ubuntu.com/v1/7de21966-snapshot.svg",
+                            alt="",
+                            width="100",
+                            height="100",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-heading-icon__img u-hide--small u-hide--medium"},) | safe
               }}
               <h4 class="p-heading-icon__title" style="padding-top: .5rem;">Regain focus</h4>
             </div>
@@ -191,16 +178,13 @@
         <div class="col-3 p-divider__block">
           <div class="p-heading-icon">
             <div class="p-heading-icon__header is-stacked">
-              {{
-                image(
-                url="https://assets.ubuntu.com/v1/ec3f53f7-extended-security-maintenance.svg",
-                alt="",
-                width="100",
-                height="100",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-heading-icon__img u-hide--small u-hide--medium"},
-                ) | safe
+              {{ image(url="https://assets.ubuntu.com/v1/ec3f53f7-extended-security-maintenance.svg",
+                            alt="",
+                            width="100",
+                            height="100",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-heading-icon__img u-hide--small u-hide--medium"},) | safe
               }}
               <h4 class="p-heading-icon__title" style="padding-top: .5rem;">Reliable and robust</h4>
             </div>
@@ -214,16 +198,13 @@
         <div class="col-3 p-divider__block">
           <div class="p-heading-icon">
             <div class="p-heading-icon__header is-stacked">
-              {{
-                image(
-                url="https://assets.ubuntu.com/v1/c0e765e4-save-time-money-icon-lrg.svg",
-                alt="",
-                width="100",
-                height="100",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-heading-icon__img u-hide--small u-hide--medium"},
-                ) | safe
+              {{ image(url="https://assets.ubuntu.com/v1/c0e765e4-save-time-money-icon-lrg.svg",
+                            alt="",
+                            width="100",
+                            height="100",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-heading-icon__img u-hide--small u-hide--medium"},) | safe
               }}
               <h4 class="p-heading-icon__title" style="padding-top: .5rem;">Predictable pricing</h4>
             </div>
@@ -238,113 +219,100 @@
         <div class="col-3 p-divider__block">
           <div class="p-heading-icon">
             <div class="p-heading-icon__header is-stacked">
-              {{
-                image(
-                url="https://assets.ubuntu.com/v1/0714f018-VMware-migration.svg",
-                alt="",
-                width="100",
-                height="100",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-heading-icon__img u-hide--small u-hide--medium"},
-                ) | safe
+              {{ image(url="https://assets.ubuntu.com/v1/0714f018-VMware-migration.svg",
+                            alt="",
+                            width="100",
+                            height="100",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-heading-icon__img u-hide--small u-hide--medium"},) | safe
               }}
-              <h4 class="p-heading-icon__title" style="padding-top: .5rem;">Accelerate to market</hh43>
+              <h4 class="p-heading-icon__title" style="padding-top: .5rem;">
+                Accelerate to market</hh43>
+              </div>
+              <ul class="p-list">
+                <li class="p-list__item is-ticked">Bring your own cloud</li>
+                <li class="p-list__item is-ticked">Use apps without hiring delays</li>
+                <li class="p-list__item is-ticked">Offload background apps to our specialist team</li>
+              </ul>
             </div>
-            <ul class="p-list">
-              <li class="p-list__item is-ticked">Bring your own cloud</li>
-              <li class="p-list__item is-ticked">Use apps without hiring delays</li>
-              <li class="p-list__item is-ticked">Offload background apps to our specialist team</li>
-            </ul>
           </div>
         </div>
-      </div>
-      <div class="row u-sv3">
-        <div class="col-8">
-          <p><a href="/managed/contact-us" class="p-button--positive js-invoke-modal">Contact us</a></p>
+        <div class="row u-sv3">
+          <div class="col-8">
+            <p>
+              <a href="/managed/contact-us" aria-controls="kafka-contact-modal" class="p-button--positive js-invoke-modal">Contact us</a>
+            </p>
+          </div>
         </div>
-      </div>
 
-    </section>
+      </section>
 
-    <section class="p-strip">
-      <div class="row">
-        <div class="col-8">
-          <h2>
-            Managed Kafka - Pricing
-          </h2>
-          <p>
-            We manage applications at both the host and the guest level. All prices are dependent on current cloud architecture and requirements.
-          </p>
-          <p><a href="/managed/contact-us">Get started with a free quote and architecture assessment&nbsp;&rsaquo;</a></p>
+      <section class="p-strip">
+        <div class="row">
+          <div class="col-8">
+            <h2>Managed Kafka - Pricing</h2>
+            <p>
+              We manage applications at both the host and the guest level. All prices are dependent on current cloud architecture and requirements.
+            </p>
+            <p>
+              <a href="/managed/contact-us">Get started with a free quote and architecture assessment&nbsp;&rsaquo;</a>
+            </p>
+          </div>
         </div>
-      </div>
-      {% include '/shared/pricing/_managed-pricing.html' %}
-    </section>
+        {% include '/shared/pricing/_managed-pricing.html' %}
+      </section>
 
-    <section class="p-strip--light">
-      <div class="row u-equal-height">
-        <div class="col-7">
-          <h2>
-            Plan and optimise your Kafka deployment
-          </h2>
-          <p>
-            Watch this webinar to understand the key design decisions in creating a resilient and secure Kafka streaming pipeline, and options to achieve operations at scale.
-          </p>
-          <p>
-            <a href="/engage/kafka-in-production">Watch the webinar&nbsp;&rsaquo;</a>
-          </p>
+      <section class="p-strip--light">
+        <div class="row u-equal-height">
+          <div class="col-7">
+            <h2>Plan and optimise your Kafka deployment</h2>
+            <p>
+              Watch this webinar to understand the key design decisions in creating a resilient and secure Kafka streaming pipeline, and options to achieve operations at scale.
+            </p>
+            <p>
+              <a href="/engage/kafka-in-production">Watch the webinar&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+          <div class="col-5 u-hide--small u-hide--medium u-vertically-center u-align--center">
+            {{ image(url="https://assets.ubuntu.com/v1/7cafcb2c-Managed-apps.svg",
+                        alt="",
+                        height="138",
+                        width="272",
+                        hi_def=True,
+                        loading="lazy",) | safe
+            }}
+          </div>
         </div>
-        <div class="col-5 u-hide--small u-hide--medium u-vertically-center u-align--center">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/7cafcb2c-Managed-apps.svg",
-            alt="",
-            height="138",
-            width="272",
-            hi_def=True,
-            loading="lazy",
-            ) | safe
-          }}
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="p-strip">
-      <div class="row u-equal-height">
-        <div class="col-4 u-hide--medium u-hide--small u-align--center u-vertically-center">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/0e5f4269-questions.svg",
-            alt="",
-            height="180",
-            width="180",
-            hi_def=True,
-            loading="lazy",
-            ) | safe
-          }}
+      <section class="p-strip">
+        <div class="row u-equal-height">
+          <div class="col-4 u-hide--medium u-hide--small u-align--center u-vertically-center">
+            {{ image(url="https://assets.ubuntu.com/v1/0e5f4269-questions.svg",
+                        alt="",
+                        height="180",
+                        width="180",
+                        hi_def=True,
+                        loading="lazy",) | safe
+            }}
+          </div>
+          <div class="col-8 u-vertically-center">
+            <h2>Got questions? We've got the answers</h2>
+            <p>Still have open questions?</p>
+            <p>
+              <a class="p-button--positive js-invoke-modal" href="/managed/contact-us" aria-controls="kafka-contact-modal">Contact us</a>
+            </p>
+            <p>
+              Or get in touch with <a href="mailto:sales@canonical.com">sales@canonical.com</a> or ask a question in our chat.
+            </p>
+          </div>
         </div>
-        <div class="col-8 u-vertically-center">
-          <h2>
-            Got questions? We've got the answers
-          </h2>
-          <p>
-            Still have open questions?
-          </p>
-          <p>
-            <a class="p-button--positive js-invoke-modal" href="/managed/contact-us">
-              Contact us
-            </a>
-          </p>
-          <p>
-            Or get in touch with <a href="mailto:sales@canonical.com">sales@canonical.com</a> or ask a question in our chat.
-          </p>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    {% with first_item="_cloud_ubuntu_advantage", second_item="_cloud_contact_us", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+      {% with first_item="_cloud_ubuntu_advantage", second_item="_cloud_contact_us", third_item="_cloud_further_reading" %}
+        {% include "shared/contextual_footers/_contextual_footer.html" %}
+      {% endwith %}
 
-    <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/kafka.html" data-form-id="3592" data-lp-id="3828" data-return-url="https://ubuntu.com/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-    </div>
+      {{ load_form("/managed/apps/kafka") | safe }}
     {% endblock content %}

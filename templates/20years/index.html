@@ -1757,18 +1757,13 @@
   <section class="p-strip is-deep">
     <div class="u-fixed-width">
       <h2>
-        <a class="js-invoke-modal" href="/contact-us/newsletter-opt-in">Get notified when Ubuntu 25.04 launches&nbsp;&rsaquo;</a>
+        <a class="js-invoke-modal"
+           href="/contact-us/newsletter-opt-in"
+           aria-controls="20years-contact-modal">Get notified when Ubuntu 25.04 launches&nbsp;&rsaquo;</a>
       </h2>
     </div>
   </section>
-
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/newsletter-opt-in"
-       data-form-id="4960"
-       data-lp-id=""
-       data-return-url="/20years#newsletter-signup"
-       data-lp-url=""></div>
+  {{ load_form("/20years") | safe }}
   <script src="{{ versioned_static('js/third-party/typer.js') }}" defer></script>
 
 {% endblock content %}

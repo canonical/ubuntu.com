@@ -368,4 +368,6 @@
     {% include "shared/contextual_footers/_contextual_footer.html" %}
   {% endwith %}
 
+  {{ load_form("/cloud") | safe }}
+
 {% endblock content %}

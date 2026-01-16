@@ -1,194 +1,182 @@
 {% extends "ibm/base_ibm.html" %}
 
 {% block title %}IBM and Ubuntu{% endblock %}
-{% block meta_description %}Canonical and the Ubuntu community work together with IBM to ensure that Ubuntu works seamlessly across IBM platforms, including IBM Z and LinuxONE, IBM Power Systems, and the IBM Cloud.{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/10-dfyLyXBfsqoj0p1_omJhVpMYowX277kcPfdMLkzBA/edit#{% endblock meta_copydoc %}
+
+{% block meta_description %}
+  Canonical and the Ubuntu community work together with IBM to ensure that Ubuntu works seamlessly across IBM platforms, including IBM Z and LinuxONE, IBM Power Systems, and the IBM Cloud.
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/10-dfyLyXBfsqoj0p1_omJhVpMYowX277kcPfdMLkzBA/edit#
+{% endblock meta_copydoc %}
 
 {% block content %}
 
-<section class="p-strip--image is-dark is-deep u-no-padding--top u-no-padding--bottom" style="background-image: url(https://assets.ubuntu.com/v1/3978eb15-cloud-lifestyle-with-screens.png?w=1500); background-position: right bottom; background-size: 1246px auto;">
-  <div class="p-strip--suru-background">
-    <div class="row">
-      <div class="col-6 u-vertically-center">
-        <h1>
-          Ubuntu on IBM
-        </h1>
+  <section class="p-strip--image is-dark is-deep u-no-padding--top u-no-padding--bottom"
+           style="background-image: url(https://assets.ubuntu.com/v1/3978eb15-cloud-lifestyle-with-screens.png?w=1500);
+                  background-position: right bottom;
+                  background-size: 1246px auto">
+    <div class="p-strip--suru-background">
+      <div class="row">
+        <div class="col-6 u-vertically-center">
+          <h1>Ubuntu on IBM</h1>
+          <p>
+            Ubuntu is the operating system of choice for next-generation, cloud workloads. Canonical and the Ubuntu community work together with IBM to ensure that Ubuntu works seamlessly across IBM platforms, including IBM Z and LinuxONE, IBM Power Systems and the IBM Cloud.
+          </p>
+          <p>
+            <a class="p-button--positive js-invoke-modal u-no-margin--bottom"
+               href="/ibm/contact-us">Speak to the experts</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip">
+    <div class="row u-vertically-center">
+      <div class="col-8">
+        <h2>Secure Execution for Linux</h2>
         <p>
-          Ubuntu is the operating system of choice for next-generation, cloud workloads. Canonical and the Ubuntu community work together with IBM to ensure that Ubuntu works seamlessly across IBM platforms, including IBM Z and LinuxONE, IBM Power Systems and the IBM Cloud.
+          IBM Z delivers a Trusted Execution Environment with Ubuntu 20.04 LTS and new single frame models. Announcing <a href="https://www.ibm.com/marketplace/z15">z15 T02</a>, <a href="https://www.ibm.com/us-en/marketplace/linuxone-iii">LinuxONE III LT2</a> and IBM Secure Execution for Linux - enabling clients to isolate large numbers of workloads with granularity and at scale, within a Trusted Execution Environment.
         </p>
         <p>
-          <a class="p-button--positive js-invoke-modal u-no-margin--bottom" href="/ibm/contact-us">
-            Speak to the experts
+          We are actively collaborating with IBM in areas like containers, virtualization, Infrastructure-as-a-Service, big data analytics and DevOps to provide reference architectures, support solutions and cloud offerings, both for enterprise data centres and cloud service providers.
+        </p>
+        <p>See what's possible with our multi-cloud solutions:</p>
+
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Ubuntu for IBM Z and LinuxONE on premises</li>
+          <li class="p-list__item is-ticked">Ubuntu for IBM Power</li>
+          <li class="p-list__item is-ticked">Private cloud with Ubuntu and IBM Z or LinuxONE</li>
+          <li class="p-list__item is-ticked">Ubuntu on  IBM Public Cloud</li>
+          <li class="p-list__item is-ticked">Ongoing enterprise level support alongside Global Technology Services</li>
+        </ul>
+        <p>
+          <a href="https://people.canonical.com/~fheimes/Ubuntu_Server_s390x.pdf">
+            What's new in Ubuntu Server for IBM Z and LinuxONE&nbsp;&rsaquo;
+          </a>
+        </p>
+        <p>
+          With every Ubuntu release we update packages and kernel to latest upstream levels, with a special focus on cryptography, compression and tools-chain, to allow a maximum level of (IBM Z and LinuxONE) hardware exploitation.
+        </p>
+      </div>
+      <div class="col-4 u-hide--medium u-hide--small u-align--center">
+        {{ image(url="https://assets.ubuntu.com/v1/2e3b72d3-2018-logo-IBM.svg",
+                alt="IBM logo",
+                width="250",
+                height="98",
+                hi_def=True,
+                loading="lazy") | safe}}
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip--light">
+    <div class="row u-vertically-center">
+      <div class="col-8">
+        <h2>Ubuntu for IBM Z and LinuxONE</h2>
+        <p>
+          IBM Z and LinuxONE leverage open technology solutions and mission-critical hardware to meet the requirements of the new data centre. They combine the best of open source to offer cloud service providers and IBM's enterprise customers unprecedented performance, security and resiliency, combined with lower TCO leveraging Ubuntu 20.04 Long Term Service.
+        </p>
+        <p>
+          <a class="p-button--positive" href="/download/server/s390x">Get Ubuntu for IBM Z and LinuxONE</a>
+        </p>
+        <p>
+          <a href="/blog/ibm-z-delivers-a-trusted-execution-environment-with-ubuntu-20-04-lts-and-new-single-frame-models">
+            Learn more about the Trusted Execution Environment and new single frame models&nbsp;&rsaquo;
           </a>
         </p>
       </div>
-    </div>
-  </div>
-</section>
+      <div class="col-4">
+        {{ image(url="https://assets.ubuntu.com/v1/32d396bf-LinuxONE-logo.png",
+                alt="IBM LinuxONE",
+                width="325",
+                height="190",
+                hi_def=True,
+                loading="lazy") | safe}}
+      </div>
 
-<section class="p-strip">
-  <div class="row u-vertically-center">
-    <div class="col-8">
-      <h2>
-        Secure Execution for Linux
-      </h2>
-      <p>
-        IBM Z delivers a Trusted Execution Environment with Ubuntu 20.04 LTS and new single frame models. Announcing <a href="https://www.ibm.com/marketplace/z15">z15 T02</a>, <a href="https://www.ibm.com/us-en/marketplace/linuxone-iii">LinuxONE III LT2</a> and IBM Secure Execution for Linux - enabling clients to isolate large numbers of workloads with granularity and at scale, within a Trusted Execution Environment.
-      </p>
-      <p>
-        We are actively collaborating with IBM in areas like containers, virtualization, Infrastructure-as-a-Service, big data analytics and DevOps to provide reference architectures, support solutions and cloud offerings, both for enterprise data centres and cloud service providers.
-      </p>
-      <p>
-        See what's possible with our multi-cloud solutions:
-      </p>
+    </div>
+  </section>
 
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Ubuntu for IBM Z and LinuxONE on premises</li>
-        <li class="p-list__item is-ticked">Ubuntu for IBM Power</li>
-        <li class="p-list__item is-ticked">Private cloud with Ubuntu and IBM Z or LinuxONE</li>
-        <li class="p-list__item is-ticked">Ubuntu on  IBM Public Cloud</li>
-        <li class="p-list__item is-ticked">Ongoing enterprise level support alongside Global Technology Services</li>
-      </ul>
-      <p>
-        <a href="https://people.canonical.com/~fheimes/Ubuntu_Server_s390x.pdf">
-          What's new in Ubuntu Server for IBM Z and LinuxONE&nbsp;&rsaquo;
-        </a>
-      </p>
-      <p>With every Ubuntu release we update packages and kernel to latest upstream levels, with a special focus on cryptography, compression and tools-chain, to allow a maximum level of (IBM Z and LinuxONE) hardware exploitation.</p>
+  <section class="p-strip">
+    <div class="row u-vertically-center">
+      <div class="col-4 u-align--center">
+        {{ image(url="https://assets.ubuntu.com/v1/3be58d77-6a00d83545a5d153ef01a73dac0104970d.png",
+                alt="Power Systems",
+                width="271",
+                height="186",
+                hi_def=True,
+                loading="lazy") | safe}}
+      </div>
+      <div class="col-8">
+        <h2>Ubuntu for IBM Power Systems</h2>
+        <p>
+          IBM Power Systems are the smart choice for data-intensive workloads with high-performance needs.  Power Systems are especially optimised for Mobile, Social, Cloud, Machine Learning, Big Data and Analytics workloads. Ubuntu enablement and tooling such as <a href="https://canonical.com/jaas/">Juju</a> make managing and deploying those workloads easy.
+        </p>
+        <p>
+          PowerAI Vision, running on Ubuntu is an enterprise-grade toolset to quickly roll out an AI program. Using popular open-source deep learning frameworks it eliminates the need for coding to provide a solution for data-intensive AI  at a minimal cost.
+        </p>
+        <p>
+          <a class="p-button--positive" href="/download/server/power8">Get Ubuntu for Power Systems</a>
+        </p>
+      </div>
     </div>
-    <div class="col-4 u-hide--medium u-hide--small u-align--center">
-      {{  image(
-        url="https://assets.ubuntu.com/v1/2e3b72d3-2018-logo-IBM.svg",
-        alt="IBM logo",
-        width="250",
-        height="98",
-        hi_def=True,
-        loading="lazy") | safe}}
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip--light">
-  <div class="row u-vertically-center">
-    <div class="col-8">
-      <h2>
-        Ubuntu for IBM Z and LinuxONE
-      </h2>
-      <p>
-        IBM Z and LinuxONE leverage open technology solutions and mission-critical hardware to meet the requirements of the new data centre. They combine the best of open source to offer cloud service providers and IBM's enterprise customers unprecedented performance, security and resiliency, combined with lower TCO leveraging Ubuntu 20.04 Long Term Service.
-      </p>
-      <p>
-        <a class="p-button--positive" href="/download/server/s390x">
-          Get Ubuntu for IBM Z and LinuxONE
-        </a>
-      </p>
-      <p>
-        <a href="/blog/ibm-z-delivers-a-trusted-execution-environment-with-ubuntu-20-04-lts-and-new-single-frame-models">
-          Learn more about the Trusted Execution Environment and new single frame models&nbsp;&rsaquo;
-        </a>
-      </p>
+  <section class="p-strip--light">
+    <div class="row u-vertically-center">
+      <div class="col-8">
+        <h2>Private cloud with Ubuntu and IBM Z or LinuxONE</h2>
+        <p>
+          Canonical and IBM collaborate to let enterprises build their private cloud on IBM hardware and run workloads ranging from secure blockchain services to generic IT.
+        </p>
+        <p>
+          With IBM Hyper Protect Virtual Servers (the evolution of IBM secure service containers technology), applications can be protected from external and internal threats on IBM Z and LinuxONE servers. Applications including containerised applications using microservices benefit from tamper protection at installation, restricted administrator access and automatic encryption of data in flight and at rest.
+        </p>
+        <p>
+          Canonical also adds support of OpenStack and Kubernetes to Ubuntu on IBM Z and LinuxONE, making it easier for  developers and operations teams to develop and manage Linux applications and containers across the hybrid multi-cloud.
+        </p>
+        <p>
+          <a href="https://www.ibm.com/case-studies/digital-asset-custody-services-linuxone-encryption"
+             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Dedicated Partner Page Link', 'eventAction' : 'IBM Page', 'eventLabel' : 'IBM - Private cloud with Ubuntu and IBM Z or LinuxONE row link', 'eventValue' : undefined });">
+            Read how DACS powers access to digital assets with IBM and Ubuntu
+          </a>
+        </p>
+      </div>
+      <div class="col-4 u-hide--medium u-hide--small u-align--center">
+        {{ image(url="https://assets.ubuntu.com/v1/46439b10-2.+model_AW.svg",
+                alt="",
+                width="153",
+                height="100",
+                hi_def=True,
+                loading="lazy") | safe}}
+      </div>
     </div>
-    <div class="col-4">
-      {{  image(
-        url="https://assets.ubuntu.com/v1/32d396bf-LinuxONE-logo.png",
-        alt="IBM LinuxONE",
-        width="325",
-        height="190",
-        hi_def=True,
-        loading="lazy" ) | safe}}
-    </div>
+  </section>
 
-  </div>
-</section>
+  <section class="p-strip">
+    <div class="row u-vertically-center">
+      <div class="col-4 u-hide--medium u-hide--small u-align--center">
+        {{ image(url="https://assets.ubuntu.com/v1/fc2757dd-ubuntu-cloud-1.svg",
+                alt="",
+                width="153",
+                height="100",
+                hi_def=True,
+                loading="lazy") | safe}}
+      </div>
+      <div class="col-8">
+        <h2>Multi-cloud solutions on Ubuntu</h2>
+        <p>
+          The IBM Cloud public cloud infrastructure uses Ubuntu as a host operating system. In addition, Canonical can provide an optimised Ubuntu image for the IBM hardware with a custom kernel, a minimal size, livepatch and support.
+        </p>
+        <p>
+          <a class="p-button" href="https://www.ibm.com/cloud">Learn more about IBM Cloud</a>
+        </p>
+      </div>
+    </div>
+  </section>
 
-<section class="p-strip">
-  <div class="row u-vertically-center">
-    <div class="col-4 u-align--center">
-      {{  image(
-        url="https://assets.ubuntu.com/v1/3be58d77-6a00d83545a5d153ef01a73dac0104970d.png",
-        alt="Power Systems",
-        width="271",
-        height="186",
-        hi_def=True,
-        loading="lazy"  ) | safe}}
-    </div>
-    <div class="col-8">
-      <h2>
-        Ubuntu for IBM Power Systems
-      </h2>
-      <p>
-        IBM Power Systems are the smart choice for data-intensive workloads with high-performance needs.  Power Systems are especially optimised for Mobile, Social, Cloud, Machine Learning, Big Data and Analytics workloads. Ubuntu enablement and tooling such as <a href="https://canonical.com/jaas/">Juju</a> make managing and deploying those workloads easy.
-      </p>
-      <p>
-        PowerAI Vision, running on Ubuntu is an enterprise-grade toolset to quickly roll out an AI program. Using popular open-source deep learning frameworks it eliminates the need for coding to provide a solution for data-intensive AI  at a minimal cost.
-      </p>
-      <p>
-        <a class="p-button--positive" href="/download/server/power8">
-          Get Ubuntu for Power Systems
-        </a>
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="row u-vertically-center">
-    <div class="col-8">
-      <h2>
-        Private cloud with Ubuntu and IBM Z or LinuxONE
-      </h2>
-      <p>
-        Canonical and IBM collaborate to let enterprises build their private cloud on IBM hardware and run workloads ranging from secure blockchain services to generic IT.
-      </p>
-      <p>
-        With IBM Hyper Protect Virtual Servers (the evolution of IBM secure service containers technology), applications can be protected from external and internal threats on IBM Z and LinuxONE servers. Applications including containerised applications using microservices benefit from tamper protection at installation, restricted administrator access and automatic encryption of data in flight and at rest.
-      </p>
-      <p>
-        Canonical also adds support of OpenStack and Kubernetes to Ubuntu on IBM Z and LinuxONE, making it easier for  developers and operations teams to develop and manage Linux applications and containers across the hybrid multi-cloud.
-      </p>
-      <p>
-        <a href="https://www.ibm.com/case-studies/digital-asset-custody-services-linuxone-encryption" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Dedicated Partner Page Link', 'eventAction' : 'IBM Page', 'eventLabel' : 'IBM - Private cloud with Ubuntu and IBM Z or LinuxONE row link', 'eventValue' : undefined });">
-          Read how DACS powers access to digital assets with IBM and Ubuntu
-        </a>
-      </p>
-    </div>
-    <div class="col-4 u-hide--medium u-hide--small u-align--center">
-      {{  image(
-        url="https://assets.ubuntu.com/v1/46439b10-2.+model_AW.svg",
-        alt="",
-        width="153",
-        height="100",
-        hi_def=True,
-        loading="lazy" ) | safe}}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row u-vertically-center">
-    <div class="col-4 u-hide--medium u-hide--small u-align--center">
-      {{  image(
-        url="https://assets.ubuntu.com/v1/fc2757dd-ubuntu-cloud-1.svg",
-        alt="",
-        width="153",
-        height="100",
-        hi_def=True,
-        loading="lazy" ) | safe}}
-    </div>
-    <div class="col-8">
-      <h2>
-        Multi-cloud solutions on Ubuntu
-      </h2>
-      <p>
-        The IBM Cloud public cloud infrastructure uses Ubuntu as a host operating system. In addition, Canonical can provide an optimised Ubuntu image for the IBM hardware with a custom kernel, a minimal size, livepatch and support.
-      </p>
-      <p>
-        <a class="p-button" href="https://www.ibm.com/cloud">
-          Learn more about IBM Cloud
-        </a>
-      </p>
-    </div>
-  </div>
-</section>
+  {{ load_form("/ibm") | safe }}
 
 {% endblock content %}

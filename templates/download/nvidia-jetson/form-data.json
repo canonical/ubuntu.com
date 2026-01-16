@@ -1,0 +1,79 @@
+{
+  "form": {
+    "/download/nvidia-jetson": {
+      "templatePath": "/download/nvidia-jetson/index.html",
+      "isModal": true,
+      "modalId": "nvidia-contact-modal",
+      "formData": {
+        "title": "Interested in optimised Ubuntu on NVIDIA platforms?",
+        "introText": "Canonical announced plans to certify Ubuntu to run on NVIDIA platforms powered by the Orin architecture. Ubuntu will run on the full range of NVIDIA IoT platforms, bringing Ubuntu to the automotive industry with the NVIDIA DRIVE® platform, to industrial applications with the NVIDIA IGX Orin™ platform, as well as to advanced embedded systems with NVIDIA Jetson Orin™ system-on-modules. The optimised kernel and images will combine software features from NVIDIA with unparalleled security, reliability, and support for regulated enterprise deployments.\n\nWith this collaboration, optimised Ubuntu and Ubuntu Core images will be available for commercial-grade IoT deployments for a wide range of popular silicon platforms across a variety of vendors, establishing a de facto standard across enterprise IoT – from software- defined vehicles and industry 4.0 to retail and robotics.\n\nFill out the form to receive the latest update from us!",
+        "formId": 4953,
+        "returnUrl": "/download/nvidia-jetson#success",
+        "lpUrl": "https://pages.ubuntu.com/things-contact-us.html"
+      },
+      "fieldsets": [
+        {
+          "title": "Which NVIDIA platforms are you interested in?",
+          "id": "nvidia-platforms",
+          "inputType": "checkbox",
+          "fields": [
+            {
+              "type": "checkbox",
+              "label": "Xavier",
+              "value": "Xavier"
+            },
+            {
+              "type": "checkbox",
+              "label": "DRIVE Orin",
+              "value": "DRIVE Orin"
+            },
+            {
+              "type": "checkbox",
+              "label": "IGX Orin",
+              "value": "IGX Orin"
+            },
+            {
+              "type": "checkbox",
+              "label": "Jetson AGX Orin",
+              "value": "Jetson AGX Orin"
+            },
+            {
+              "type": "checkbox",
+              "label": "Jetson Orin NX",
+              "value": "Jetson Orin NX"
+            },
+            {
+              "type": "checkbox",
+              "label": "Jetson Orin Nano",
+              "value": "Jetson Orin Nano"
+            }
+          ]
+        },
+        {
+          "title": "Tell us more about your project",
+          "id": "about-your-project",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "tell-us-about-your-project",
+              "label": ""
+            }
+          ]
+        },
+        {
+          "title": "Please leave your contact details so that we can inform you once the optimised Ubuntu images are available to download and install on your Tegra SoCs.",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

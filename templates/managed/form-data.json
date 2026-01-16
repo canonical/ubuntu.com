@@ -2,7 +2,10 @@
   "form": {
     "/managed": {
       "templatePath": "/managed-infrastructure/index.html",
-      "childrenPaths": ["/managed/firefighting-support", "/managed/apps"],
+      "childrenPaths": [
+        "/managed/firefighting-support",
+        "/managed/apps"
+      ],
       "isModal": true,
       "modalId": "managed-form-modal",
       "formData": {
@@ -60,6 +63,44 @@
               "id": "apps-using-other-info",
               "label": "What are you currently working on? What does your current infrastructure and services look like? Anything extra you’d like to communicate about your needs or interests?",
               "placeholder": "What are you currently working on? What does your current infrastructure and services look like? Anything extra you’d like to communicate about your needs or interests?"
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    },
+    "/managed/apps/kafka": {
+      "templatePath": "/managed/apps/kafka.html",
+      "isModal": true,
+      "modalId": "kafka-contact-modal",
+      "formData": {
+        "title": "Talk to our Kafka experts",
+        "introText": "Fill in this form and a member of our team will be in touch shortly.",
+        "formId": "3592",
+        "returnUrl": "/managed/apps/kafka#success",
+        "lpUrl": "https://pages.ubuntu.com/things-contact-us.html"
+      },
+      "fieldsets": [
+        {
+          "title": "Tell us more about your Kafka use case",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "advice",
+              "placeholder": "Anything you'd like to communicate about your needs or interests?",
+              "label": "Anything you'd like to communicate about your needs or interests?"
             }
           ]
         },
