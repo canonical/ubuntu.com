@@ -19,7 +19,41 @@ Merging a pull request (PR) into the `main` branch will automatically trigger a 
 
 ## File structure
 
-- [`./redirects.yaml`](rerdirects.yaml): A file defining URL paths for 302 redirects
+📁 Project Structure – `ubuntu.com`
+
+```
+ubuntu.com/
+│
+├── redirects.yaml               # Defines 302 redirects for legacy paths
+├── deleted.yaml                 # Defines 410 responses for deleted content
+├── releases.yaml                # Defines Ubuntu releases shown on the website
+├── appliances.yaml              # Appliance metadata for ubuntu.com/appliance
+├── navigation.yaml              # Main navigation structure
+├── secondary-navigation.yaml    # Secondary nav for product-specific paths
+│
+├── entrypoint                   # Startup command for Gunicorn (used in Docker)
+├── Dockerfile                   # Docker image setup for production (via Jenkins)
+├── requirements.txt             # Python package dependencies
+│
+├── konf/
+│   └── site.yaml                # Kubernetes deployment config (via Konf)
+│
+├── scripts/                     # Developer utility scripts (non-prod)
+│
+├── templates/                   # Jinja2 templates for page rendering
+├── webapp/                      # Python Flask application
+│   ├── app.py                   # Main app entry point and route registration
+│   ├── views.py                 # View functions mapped to URL routes
+│   ├── login.py                 # Login/authentication logic
+│   ├── macaroons.py             # Macaroons-based authentication
+│   ├── certified/               # Blueprint: /certified routes
+│   ├── shop/                    # Blueprint: /shop routes
+│   └── security/                # Blueprint: /security routes
+│
+└── README.md                    # Project overview and contribution guide
+```
+
+- [`./redirects.yaml`](redirects.yaml): A file defining URL paths for 302 redirects
 - [`./deleted.yaml`](deleted.yaml): A file defining URL paths for 310 deleted responses
 - [`./entrypoint`](entrypoint): The commands for running the application with Gunicorn. This is used within `Dockerfile` for running the production site.
 - [`./Dockerfile`](Dockerfile): Used by the [production Jenkins job](https://jenkins.canonical.com/webteam/job/ubuntu.com) for building the production docker image. See [our standard deployment flow](https://discourse.canonical.com/t/how-the-standard-website-deployment-flow-is-set-up-in-github-jenkins-and-kubernetes/2112).
@@ -29,10 +63,10 @@ Merging a pull request (PR) into the `main` branch will automatically trigger a 
 - [`./appliances.yaml`](appliances.yaml): Appliance metadata for displaying on ubuntu.com/appliance
 - [`./requirements.txt`](requirements.txt): Python dependencies for the project
 - [`./webapp/`](webapp/): The Python application files:
-  - [`app.py`](webapp/app.py) is entrypoint for the parent application, and defines URL routes
-  - [`views.py`](webapp/views.py) contains the view functions for handing routed URL paths
-  - [`certified/`](webapp/certified/), [`shop/`](webapp/shop/) and [`security/`](webapp/security/) contain blueprints for the sub-paths of ubuntu.com
-  - [`login.py`](webapp/login.py) and [`macaroons.py`](webapp/macaroons.py) contain the logic for authentication and login
+- [`app.py`](webapp/app.py) is entrypoint for the parent application, and defines URL routes
+- [`views.py`](webapp/views.py) contains the view functions for handing routed URL paths
+- [`certified/`](webapp/certified/), [`shop/`](webapp/shop/) and [`security/`](webapp/security/) contain blueprints for the sub-paths of ubuntu.com
+- [`login.py`](webapp/login.py) and [`macaroons.py`](webapp/macaroons.py) contain the logic for authentication and login
 - [`./templates/`](templates/): Jinja2 templates, used by the Flask app for serving HTTP pages
 - [`./konf/site.yaml`](konf/site.yaml): Kubernetes configuration files to be interpreted by [Konf](https://github.com/canonical/konf), our custom config manager. Used in our [standard deployment flow](https://discourse.canonical.com/t/how-the-standard-website-deployment-flow-is-set-up-in-github-jenkins-and-kubernetes/2112) to release the site to Kubernetes.
 - [`./scripts/`](scripts/): Local utility scripts, not used by the production application
