@@ -1,19 +1,21 @@
 <div tabindex="0"
      role="tabpanel"
-     id="quemu-sifive-image-tab"
-     aria-labelledby="quemu-sifive-image">
-  <div class="row p-strip is-shallow u-no-padding--top">
+     id="milk-v-mars-cm-tab"
+     aria-labelledby="milk-v-mars-cm"
+     aria-hidden="true">
+  <div class="row p-section--shallow u-no-padding--top">
     <div class="col-3">
-      <h2 class="u-hide--small">SiFive Unmatched</h2>
+      <h2 class="u-hide--small">Milk-V Mars CM</h2>
     </div>
     <div class="col-6 risc-v-container u-vertically-center u-align--center">
-      {{ image(url="https://assets.ubuntu.com/v1/37c094a9-SiFive+Unmatched+Board.jpg",
-            alt="",
-            width="504",
-            height="286",
-            hi_def=True,
-            loading="auto",
-            attrs={"class": "risc-v-image"}) | safe
+      {{ image (
+      url="https://assets.ubuntu.com/v1/acb660bd-milk_v_mars_cm.png",
+      alt="Milk-V Mars CM",
+      width="452",
+      height="300",
+      hi_def=True,
+      loading="lazy",
+      attrs={"class": "risc-v-image"}) | safe
       }}
     </div>
   </div>
@@ -30,9 +32,9 @@
       <p class="p-notification__message">
         <i class="p-icon--information"></i> If you have an NVMe drive, we advise you to use the Ubuntu Server live installer.
       </p>
-      <p class="u-sv3">
+      <p>
         <a class="p-button"
-           href="https://cdimage.ubuntu.com/releases/24.04.4/release/ubuntu-24.04.4-preinstalled-server-riscv64+unmatched.img.xz">Download 24.04.4 LTS</a>
+           href="https://cdimage.ubuntu.com/releases/24.04.4/release/ubuntu-24.04.4-preinstalled-server-riscv64+jh7110.img.xz">Download 24.04.4 LTS</a>
       </p>
     </div>
   </div>
@@ -51,7 +53,7 @@
            href="https://cdimage.ubuntu.com/releases/24.04.4/release/ubuntu-24.04.4-live-server-riscv64.iso">Download 24.04.4 LTS live installer</a>
       </p>
       <p>
-        <a href="https://canonical-ubuntu-hardware-support.readthedocs-hosted.com/boards/how-to/sifive-hifive-unmatched/">How to install Ubuntu on SiFive HiFive Unmatched</a>
+        <a href="https://canonical-ubuntu-hardware-support.readthedocs-hosted.com/boards/how-to/milk-v-mars/">How to install Ubuntu on the Milk-V Mars</a>
       </p>
     </div>
   </div>
