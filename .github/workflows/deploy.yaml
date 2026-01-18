@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Setup LXD
         uses: canonical/setup-lxd@main
@@ -28,7 +28,7 @@ jobs:
           charmcraft pack -v --project-dir ./
 
       - name: Upload charm
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ vars.CHARM_NAME }}-charm
           path: ./charm/*.charm
@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Setup LXD
         uses: canonical/setup-lxd@main
@@ -49,7 +49,7 @@ jobs:
         run: rockcraft pack -v
 
       - name: Upload Rock
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ vars.CHARM_NAME }}-rock
           path: ./*.rock
@@ -61,7 +61,7 @@ jobs:
       image_url: ${{ steps.set_image_url.outputs.image_url }}
     steps:
       - name: Get Rock
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: ${{ vars.CHARM_NAME }}-rock
 
@@ -86,7 +86,7 @@ jobs:
           sudo snap install vault --classic
 
       - name: Download Charm Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: ${{ vars.CHARM_NAME }}-charm
 
@@ -136,7 +136,7 @@ jobs:
           sudo snap install vault --classic
 
       - name: Download Charm Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: ${{ vars.CHARM_NAME }}-charm
 
