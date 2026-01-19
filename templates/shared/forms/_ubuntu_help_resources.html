@@ -1,0 +1,49 @@
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+
+{{ vf_basic_section(
+  title={"text": "Need help with Ubuntu?"},
+  padding="deep",
+  is_split_on_medium=true,
+  items=[
+    {
+      "type": "description",
+      "item": {
+        "type": "text",
+        "content": "If you are just looking for some free support for yourself, you can try:"
+      }
+    },
+    {
+      "type": "cta-block",
+      "item": {
+        "link": {
+          "content_html": "Ask Ubuntu",
+          "attrs": {
+            "href": "https://askubuntu.com/"
+          }
+        }
+      }
+    },
+    {
+      "type": "cta-block",
+      "item": {
+        "link": {
+          "content_html": "Ubuntu Community on Discourse",
+          "attrs": {
+            "href": "https://discourse.ubuntu.com/"
+          }
+        }
+      }
+    },
+    {
+      "type": "cta-block",
+      "item": {
+        "link": {
+          "content_html": "Help docs",
+          "attrs": {
+            "href": "https://help.ubuntu.com/"
+          }
+        }
+      }
+    },
+  ]
+) }}

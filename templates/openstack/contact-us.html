@@ -1,98 +1,67 @@
 {% extends "openstack/_base_openstack.html" %}
 
 {% block title %}Contact us | OpenStack{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/10lo3O2TKiR-cc48CqhH3Ghak0xZQaP2n4YthDtdIXpo/edit{% endblock meta_copydoc %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/10lo3O2TKiR-cc48CqhH3Ghak0xZQaP2n4YthDtdIXpo/edit
+{% endblock meta_copydoc %}
 
 {% block content %}
   {% if product == 'openstack-training' %}
-
-{% with h1="Contact us about our training courses",
-  intro_text="Fill in your details below and a member of our training team will be in touch.",
-  formid="1263",
-  lpId="2163",
-  returnURL="/openstack/thank-you?product=openstack-training" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/default-contact-us-devices", 1263,
+        title="Contact us about our training courses",
+        introText="Fill in your details below and a member of our training team will be in touch.",
+        lpId="2163",
+        returnUrl="/openstack/thank-you?product=openstack-training") | safe }}
   {% elif product == 'openstack-training-classroom' %}
-
-{% with h1="Register for Ubuntu OpenStack Training",
-  intro_text="If you are interested in the Ubuntu OpenStack training, please fill out the form below and we'll get back to you with available dates and locations.",
-  formid="1261",
-  lpId="2161",
-  returnURL="/openstack/thank-you?product=openstack-training-classroom" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/default-contact-us-devices", 1261,
+        title="Register for Ubuntu OpenStack Training",
+        introText="If you are interested in the Ubuntu OpenStack training, please fill out the form below and we'll get back to you with available dates and locations.",
+        lpId="2161",
+        returnUrl="/openstack/thank-you?product=openstack-training-classroom") | safe }}
   {% elif product == 'openstack-training-onsite' %}
-
-{% with h1="Contact us about our training courses",
-  intro_text="Fill in your details below and a member of our training team will be in touch.",
-  formid="1223",
-  lpId="1973",
-  returnURL="/openstack/thank-you?product=openstack-training-onsite" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/default-contact-us-devices", 1223,
+        title="Contact us about our training courses",
+        introText="Fill in your details below and a member of our training team will be in touch.",
+        lpId="1973",
+        returnUrl="/openstack/thank-you?product=openstack-training-onsite") | safe }}
   {% elif product == 'openstack-training-server-admin' %}
-
-{% with h1="Contact us about our Ubuntu Server Administration training courses",
-  intro_text="Fill in your details below and a member of our training team will be in touch.",
-  formid="1448",
-  lpId="2661",
-  returnURL="/openstack/thank-you?product=openstack-training-server-admin" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/default-contact-us-devices", 1448,
+        title="Contact us about our Ubuntu Server Administration training courses",
+        introText="Fill in your details below and a member of our training team will be in touch.",
+        lpId="2661",
+        returnUrl="/openstack/thank-you?product=openstack-training-server-admin") | safe }}
   {% elif product == 'ubuntu-advantage-storage' %}
-
-{% with h1="Ubuntu Advantage Storage",
-  intro_text="Let Canonical help you build your own software-defined storage network.",
-  formid="1233",
-  lpId="2001",
-  returnURL="/openstack/thank-you?product=ubuntu-advantage-storage" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/default-contact-us-devices", 1233,
+        title="Ubuntu Advantage Storage",
+        introText="Let Canonical help you build your own software-defined storage network.",
+        lpId="2001",
+        returnUrl="/openstack/thank-you?product=ubuntu-advantage-storage") | safe }}
   {% elif product == 'openstack-managed-cloud' %}
-
-{% with h1="Contact us about an OpenStack managed cloud",
-  intro_text="Fill in your details below and a member of our BootStack team will be in touch.",
-  formid="1128",
-  lpId="1646",
-  returnURL="/openstack/thank-you?product=openstack-managed-cloud" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
-    {% elif product == 'openstack-managed-cloud-demo' %}
-
-{% with h1="Schedule a demo",
-  intro_text="Fill in your details below and a member of our BootStack team will be in touch.",
-  formid="1128",
-  lpId="1646",
-  returnURL="/openstack/thank-you?product=openstack-managed-cloud" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
+    {{ load_form("/default-contact-us-devices", 1128,
+        title="Contact us about an OpenStack managed cloud",
+        introText="Fill in your details below and a member of our BootStack team will be in touch.",
+        lpId="1646",
+        returnUrl="/openstack/thank-you?product=openstack-managed-cloud") | safe }}
+  {% elif product == 'openstack-managed-cloud-demo' %}
+    {{ load_form("/default-contact-us-devices", 1128,
+        title="Schedule a demo",
+        introText="Fill in your details below and a member of our BootStack team will be in touch.",
+        lpId="1646",
+        returnUrl="/openstack/thank-you?product=openstack-managed-cloud") | safe }}
   {% elif product == 'foundation-cloud' %}
-
-{% with h1="Talk to us about building your cloud",
-  intro_text="Fill in your details below and a member of our Private Cloud Build team will be in touch.",
-  formid="1251",
-  lpId="2086",
-  returnURL="/openstack/thank-you?product=foundation-cloud" %}
-  {% include "shared/_openstack_contact_us.html" %}
-{% endwith %}
-
+    {{ load_form("/openstack-contact-us",
+        title="Talk to us about building your cloud",
+        introText="Fill in your details below and a member of our Private Cloud Build team will be in touch.",
+        lpId="2086",
+        returnUrl="/openstack/thank-you?product=foundation-cloud") | safe }}
   {% else %}
-
-{% with h1="Contact us about OpenStack",
-  intro_text="Fill in your details below and a member of our cloud sales team will be in touch.",
-  formid="1251",
-  lpId="2086",
-  returnURL="/openstack/thank-you" %}
-  {% include "shared/_openstack_contact_us.html" %}
-{% endwith %}
-
+    {{ load_form("/openstack-contact-us",
+        title="Contact us about OpenStack",
+        introText="Fill in your details below and a member of our cloud sales team will be in touch.",
+        lpId="2086",
+        returnUrl="/openstack/thank-you") | safe }}
   {% endif %}
+
+  {% include "shared/forms/_ubuntu_help_resources.html" %}
 {% endblock content %}
