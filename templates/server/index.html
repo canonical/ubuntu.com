@@ -25,64 +25,71 @@
   {% call(slot) vf_hero(
     title_text='Scale out with Ubuntu Server',
     layout='50/50'
-  ) -%}
-  {%- if slot == 'description' -%}
-  <p>
-    Ubuntu Server brings economic and technical scalability to your data center, public or private cloud. Whether you want to deploy an OpenStack cloud, a Kubernetes cluster, or a 50,000-node render farm, Ubuntu Server delivers the best value scale-out performance available.
-  </p>
-  {%- endif -%}
-  {%- if slot == 'cta' -%}
-  <hr class="p-rule--muted" />
-  <a href="/download/server" class="p-button--positive">Download Ubuntu Server</a>
-  {%- endif -%}
-  {%- if slot == 'image' -%}
-  <div class="p-image-container--3-2 is-cover">
-    <img class="p-image-container__image" src="https://assets.ubuntu.com/v1/a1dd867d-hero.jpg" alt="">
-  </div>
-  {%- endif -%}
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Ubuntu Server brings economic and technical scalability to your data center, public or private cloud. Whether you want to deploy an OpenStack cloud, a Kubernetes cluster, or a 50,000-node render farm, Ubuntu Server delivers the best value scale-out performance available.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <hr class="p-rule--muted" />
+      <a href="/download/server" class="p-button--positive">Download Ubuntu Server</a>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--3-2 is-cover">
+        <img class="p-image-container__image"
+             src="https://assets.ubuntu.com/v1/a1dd867d-hero.jpg"
+             alt="" />
+      </div>
+    {%- endif -%}
   {% endcall -%}
 
   {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=true) -%}
-  {%- if slot == 'title' -%}
-  <h2>Why choose Ubuntu Server</h2>
-  {%- endif -%}
+    {%- if slot == 'title' -%}
+      <h2>Why choose Ubuntu Server</h2>
+    {%- endif -%}
 
-  {%- if slot == 'list_item_title_1' -%}
-  <h3 class="p-heading--5">Performance and versatility</h3>
-  {%- endif -%}
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">Performance and versatility</h3>
+    {%- endif -%}
 
-  {%- if slot == 'list_item_description_1' -%}
-  <p>Ubuntu Server is certified by leading hardware OEMs, 
-    carries a lean initial deployment, and includes 
-    integrated deployment and application modeling tools, 
-    so you can get the most from your infrastructure – whether 
-    you're deploying NoSQL databases, web farms, or the cloud.</p>
-  {%- endif -%}
+    {%- if slot == 'list_item_description_1' -%}
+      <p>
+        Ubuntu Server is certified by leading hardware OEMs,
+        carries a lean initial deployment, and includes
+        integrated deployment and application modeling tools,
+        so you can get the most from your infrastructure – whether
+        you're deploying NoSQL databases, web farms, or the cloud.
+      </p>
+    {%- endif -%}
 
-  {%- if slot == 'list_item_title_2' -%}
-  <h3 class="p-heading--5">A release schedule you can rely on</h3>
-  {%- endif -%}
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">A release schedule you can rely on</h3>
+    {%- endif -%}
 
-  {%- if slot == 'list_item_description_2' -%}
-  <p>Long term support (LTS) releases of Ubuntu Server receive standard security updates 
-    for around 2,500 packages in the Ubuntu Main repository for five years by default. 
-    Interim releases every six months bring new features, while hardware enablement updates 
-    add support for the latest machines to all supported LTS releases. </p>
-  {%- endif -%}
+    {%- if slot == 'list_item_description_2' -%}
+      <p>
+        Long term support (LTS) releases of Ubuntu Server receive standard security updates
+        for around 2,500 packages in the Ubuntu Main repository for five years by default.
+        Interim releases every six months bring new features, while hardware enablement updates
+        add support for the latest machines to all supported LTS releases.
+      </p>
+    {%- endif -%}
 
-  {%- if slot == 'list_item_title_3' -%}
-  <h3 class="p-heading--5">Most widely used and trusted platform</h3>
-  {%- endif -%}
+    {%- if slot == 'list_item_title_3' -%}
+      <h3 class="p-heading--5">Most widely used and trusted platform</h3>
+    {%- endif -%}
 
-  {%- if slot == 'list_item_description_3' -%}
-  <p>Ubuntu is the foundation for private cloud implementation and the most-used Linux distribution 
-    in the world (for the third year in a row) according to the 
-    <a href="https://www.openlogic.com/system/files/2025-05/report-openlogic-2025-state-of-open-source-support.pdf">
-      OpenLogic 2025 State of Open Source report
-    </a>.</p>
-  {%- endif -%}
+    {%- if slot == 'list_item_description_3' -%}
+      <p>
+        Ubuntu is the foundation for private cloud implementation and the most-used Linux distribution
+        in the world (for the third year in a row) according to the
+        <a href="https://www.openlogic.com/system/files/2025-05/report-openlogic-2025-state-of-open-source-support.pdf">
+          OpenLogic 2025 State of Open Source report
+        </a>.
+      </p>
+    {%- endif -%}
   {%- endcall -%}
-
 
   <section class="p-section">
     <div class="row--50-50 p-section--shallow">
@@ -106,8 +113,7 @@
                         height="104",
                         hi_def=True,
                         loading="lazy",
-                        fmt="svg"
-                        ) | safe
+                        fmt="svg") | safe
             }}
           </div>
           <div class="p-logo-section__item">
@@ -117,8 +123,7 @@
                         height="104",
                         hi_def=True,
                         loading="lazy",
-                        fmt="svg"
-                        ) | safe
+                        fmt="svg") | safe
             }}
           </div>
           <div class="p-logo-section__item">
@@ -128,8 +133,7 @@
                         height="104",
                         hi_def=True,
                         loading="lazy",
-                        fmt="svg"
-                        ) | safe
+                        fmt="svg") | safe
             }}
           </div>
           <div class="p-logo-section__item">
@@ -139,8 +143,7 @@
                         height="104",
                         hi_def=True,
                         loading="lazy",
-                        fmt="svg"
-                        ) | safe
+                        fmt="svg") | safe
             }}
           </div>
           <div class="p-logo-section__item">
@@ -150,8 +153,7 @@
                         height="104",
                         hi_def=True,
                         loading="lazy",
-                        fmt="svg"
-                        ) | safe
+                        fmt="svg") | safe
             }}
           </div>
           <div class="p-logo-section__item">
@@ -161,8 +163,7 @@
                         height="104",
                         hi_def=True,
                         loading="lazy",
-                        fmt="svg"
-                        ) | safe
+                        fmt="svg") | safe
             }}
           </div>
           <div class="p-logo-section__item">
@@ -172,8 +173,7 @@
                         height="104",
                         hi_def=True,
                         loading="lazy",
-                        fmt="svg"
-                        ) | safe
+                        fmt="svg") | safe
             }}
           </div>
           <div class="p-logo-section__item">
@@ -183,8 +183,7 @@
                         height="104",
                         hi_def=True,
                         loading="lazy",
-                        fmt="svg"
-                        ) | safe
+                        fmt="svg") | safe
             }}
           </div>
         </div>
@@ -214,8 +213,7 @@
                         height="104",
                         hi_def=True,
                         loading="lazy",
-                        fmt="svg"
-                        ) | safe
+                        fmt="svg") | safe
             }}
           </div>
           <div class="p-logo-section__item">
@@ -225,8 +223,7 @@
                         height="104",
                         hi_def=True,
                         loading="lazy",
-                        fmt="svg"
-                        ) | safe
+                        fmt="svg") | safe
             }}
           </div>
           <div class="p-logo-section__item">
@@ -236,8 +233,7 @@
                         height="104",
                         hi_def=True,
                         loading="lazy",
-                        fmt="svg"
-                        ) | safe
+                        fmt="svg") | safe
             }}
           </div>
           <div class="p-logo-section__item">
@@ -247,8 +243,7 @@
                         height="104",
                         hi_def=True,
                         loading="lazy",
-                        fmt="svg"
-                        ) | safe
+                        fmt="svg") | safe
             }}
           </div>
         </div>
@@ -259,13 +254,12 @@
   <section class="p-section--shallow u-no-padding--bottom">
     <div class="u-fixed-width">
       {{ image(url="https://assets.ubuntu.com/v1/9c29c336-Digital-Light-Theme-Canonical%2520Ubuntu%2520Pro%2520logo.svg",
-        alt="Ubuntu Pro",
-        width="180",
-        height="51",
-        hi_def=True,
-        loading="lazy",
-        fmt="svg"
-        ) | safe
+            alt="Ubuntu Pro",
+            width="180",
+            height="51",
+            hi_def=True,
+            loading="lazy",
+            fmt="svg") | safe
       }}
     </div>
   </section>
@@ -274,18 +268,26 @@
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
-        <h2>
-          Get the latest security updates and support
-        </h2>
+        <h2>Get the latest security updates and support</h2>
       </div>
       <div class="col">
-        <p>Ubuntu Pro is a comprehensive subscription delivering enterprise-grade security, management tooling, and extended support for developers and enterprises.</p>
+        <p>
+          Ubuntu Pro is a comprehensive subscription delivering enterprise-grade security, management tooling, and extended support for developers and enterprises.
+        </p>
         <hr class="p-rule--muted" />
         <ul class="p-list--divided">
-          <li class="p-list__item has-bullet">Security updates for the <a href="/esm">full open source stack</a></li>
-          <li class="p-list__item has-bullet">Monitoring and management for your entire estate <a href="/landscape">with Landscape</a></li>
-          <li class="p-list__item has-bullet"><a href="/security/security-standards">FIPS 140, CIS hardening, STIG, PCI-DSS and more</a></li>
-          <li class="p-list__item has-bullet">Minimize rolling reboots with <a href="/livepatch">Kernel Livepatch</a></li>
+          <li class="p-list__item has-bullet">
+            Security updates for the <a href="/esm">full open source stack</a>
+          </li>
+          <li class="p-list__item has-bullet">
+            Monitoring and management for your entire estate <a href="/landscape">with Landscape</a>
+          </li>
+          <li class="p-list__item has-bullet">
+            <a href="/security/security-standards">FIPS 140, CIS hardening, STIG, PCI-DSS and more</a>
+          </li>
+          <li class="p-list__item has-bullet">
+            Minimize rolling reboots with <a href="/livepatch">Kernel Livepatch</a>
+          </li>
           <li class="p-list__item has-bullet">Optional weekday or 24/7 support tiers</li>
         </ul>
         <hr class="p-rule--muted" />
@@ -427,7 +429,7 @@
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
-          <h2>Ubuntu Pro in action</h2>
+        <h2>Ubuntu Pro in action</h2>
       </div>
       <div class="col">
         <nav class="p-tabs js-tabbed-content">
@@ -436,29 +438,29 @@
               data-maintain-hash="true">
             <li class="p-tabs__item">
               <a class="p-tabs__link"
-                  role="tab"
-                  aria-selected="false"
-                  id="ubuntu-pro-tab-roblox"
-                  href="#ubuntu-pro-roblox"
-                  aria-controls="ubuntu-pro-roblox"
-                  tabindex="-1">Roblox</a>
+                 role="tab"
+                 aria-selected="false"
+                 id="ubuntu-pro-tab-roblox"
+                 href="#ubuntu-pro-roblox"
+                 aria-controls="ubuntu-pro-roblox"
+                 tabindex="-1">Roblox</a>
             </li>
             <li class="p-tabs__item">
               <a class="p-tabs__link"
-                  role="tab"
-                  aria-selected="true"
-                  id="ubuntu-pro-tab-launchdarkly"
-                  href="#ubuntu-pro-launchdarkly"
-                  aria-controls="ubuntu-pro-launchdarkly">LaunchDarkly</a>
+                 role="tab"
+                 aria-selected="true"
+                 id="ubuntu-pro-tab-launchdarkly"
+                 href="#ubuntu-pro-launchdarkly"
+                 aria-controls="ubuntu-pro-launchdarkly">LaunchDarkly</a>
             </li>
             <li class="p-tabs__item">
               <a class="p-tabs__link"
-                  role="tab"
-                  aria-selected="false"
-                  id="ubuntu-pro-tab-new-mexico"
-                  href="#ubuntu-pro-new-mexico"
-                  aria-controls="ubuntu-pro-new-mexico"
-                  tabindex="-1">New Mexico State University</a>
+                 role="tab"
+                 aria-selected="false"
+                 id="ubuntu-pro-tab-new-mexico"
+                 href="#ubuntu-pro-new-mexico"
+                 aria-controls="ubuntu-pro-new-mexico"
+                 tabindex="-1">New Mexico State University</a>
             </li>
           </ul>
         </nav>
@@ -468,26 +470,24 @@
              aria-labelledby="ubuntu-pro-tab-roblox">
           <div class="p-strip is-shallow u-no-padding--top u-no-padding--bottom">
             {{ image(url="https://assets.ubuntu.com/v1/a289e640-roblox_logo_2025_1.svg",
-              alt="Roblox",
-              width="58",
-              height="104",
-              hi_def=True,
-              loading="lazy",
-              fmt="svg"
-              ) | safe
+                        alt="Roblox",
+                        width="58",
+                        height="104",
+                        hi_def=True,
+                        loading="lazy",
+                        fmt="svg") | safe
             }}
             <h3>Explore how Roblox migrated servers from Windows to Ubuntu in a seven-day timeframe</h3>
             <div class="u-embedded-media">
-              <iframe
-                class="u-embedded-media__element"
-                src="https://www.youtube.com/embed/SwlU4U-BWRo"
-                title="How Roblox went from Windows to Ubuntu in 7 days for edge compute nodes"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen></iframe>
+              <iframe class="u-embedded-media__element"
+                      src="https://www.youtube.com/embed/SwlU4U-BWRo"
+                      title="How Roblox went from Windows to Ubuntu in 7 days for edge compute nodes"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      allowfullscreen></iframe>
             </div>
-            
+
           </div>
         </div>
         <div id="ubuntu-pro-launchdarkly"
@@ -502,14 +502,14 @@
                             height="30",
                             hi_def=True,
                             fmt="svg",
-                            loading="lazy"
-                      ) | safe
+                            loading="lazy") | safe
               }}
             </div>
             <h3>LaunchDarkly becomes the first FedRAMP-authorized feature management platform thanks to Ubuntu Pro</h3>
             <p>Learn how a SaaS provider achieved effortless FIPS compliance on AWS.</p>
             <hr class="p-rule--muted" />
-            <a href="https://assets.ubuntu.com/v1/b97b2df6-AWS%20LaunchDarkly%20Case%20Study%20v3%203.6.2024.pdf" aria-label="Read the case study about LaunchDarkly">Read the case study&nbsp;&rsaquo;</a>
+            <a href="https://assets.ubuntu.com/v1/b97b2df6-AWS%20LaunchDarkly%20Case%20Study%20v3%203.6.2024.pdf"
+               aria-label="Read the case study about LaunchDarkly">Read the case study&nbsp;&rsaquo;</a>
           </div>
         </div>
         <div id="ubuntu-pro-new-mexico"
@@ -519,19 +519,21 @@
           <div class="p-strip is-shallow u-no-padding--top">
             <div class="p-strip is-shallow">
               {{ image(url="https://assets.ubuntu.com/v1/b0ee8fee-nmsu-logo.svg",
-              alt="New Mexico State University",
-              width="45",
-              height="50",
-              hi_def=True,
-              fmt="svg",
-              loading="lazy"
-              ) | safe
+                            alt="New Mexico State University",
+                            width="45",
+                            height="50",
+                            hi_def=True,
+                            fmt="svg",
+                            loading="lazy") | safe
               }}
             </div>
             <h3>How New Mexico State University accelerates compliant federal research with Ubuntu</h3>
-            <p>When the stakes are high and national security is on the line, every decision matters. Just ask the team at New Mexico State University's Physical Science Laboratory (PSL).</p>
+            <p>
+              When the stakes are high and national security is on the line, every decision matters. Just ask the team at New Mexico State University's Physical Science Laboratory (PSL).
+            </p>
             <hr class="p-rule--muted" />
-            <a href="/blog/how-new-mexico-state-university-accelerates-compliant-federal-research-with-ubuntu" aria-label="Read the case study about New Mexico State University">Read the case study&nbsp;&rsaquo;</a>
+            <a href="/blog/how-new-mexico-state-university-accelerates-compliant-federal-research-with-ubuntu"
+               aria-label="Read the case study about New Mexico State University">Read the case study&nbsp;&rsaquo;</a>
           </div>
         </div>
       </div>
@@ -543,97 +545,95 @@
     highlight_images=False,
     image_aspect_ratio_large="16-9",
     items=[
-      {
-        "title_text": "Multi-cloud orchestration",
-        "image_html": image(url="https://assets.ubuntu.com/v1/11b77504-multi_cloud.svg",
-        alt="Canonical Juju",
-        width="284",
-        height="161",
-        hi_def=True,
-        loading="lazy",
-        fmt="svg",
-        attrs={
-          "class": "p-image-container__image"
-        })|safe,
-        "description_html": "<p>With the option of a command line or browser-based interface, Juju enables you to design and deploy entire workloads in just a few clicks. It works on public clouds like AWS and Microsoft Azure, private clouds built on OpenStack and even directly on bare metal, via MAAS.</p>",
-        "cta_html": "<a href='https://charmhub.io/'>Learn more about Juju&nbsp;&rsaquo;</a>"
-      },
-      {
-        "title_text": "Bare metal provisioning",
-        "image_html": image(url="https://assets.ubuntu.com/v1/8cb84a41-bare_metal.svg",
-        alt="Canonical MAAS",
-        width="284",
-        height="161",
-        hi_def=True,
-        loading="lazy",
-        fmt="svg",
-        attrs={
-          "class": "p-image-container__image"
-        })|safe,
-        "description_html": "<p>MAAS is a time-saving provisioning system that makes it quick and easy to set up the physical hardware needed to deploy complex services, like Ubuntu's OpenStack cloud infrastructure. Just plug in your servers, connect them to the network and let MAAS do the rest.</p>",
-        "cta_html": "<a href='https://canonical.com/maas'>Learn more about MAAS&nbsp;&rsaquo;</a>"
-      },
-      {
-        "title_text": "Machine containers",
-        "image_html": image(url="https://assets.ubuntu.com/v1/44ac6a9f-machine_containers.svg",
-        alt="Canonical LXD",
-        width="284",
-        height="161",
-        hi_def=True,
-        loading="lazy",
-        fmt="svg",
-        attrs={
-          "class": "p-image-container__image"
-        })|safe,
-        "description_html": "<p>Economics are directly tied to compute density. LXD, the Linux container hypervisor, merges the speed and density of containers with the manageability and security of traditional virtual machines.</p>",
-        "cta_html": "<a href='/lxd'>Learn more about LXD&nbsp;&rsaquo;</a>"
-      }
-      ]
-      ) %}
+    {
+    "title_text": "Multi-cloud orchestration",
+    "image_html": image(url="https://assets.ubuntu.com/v1/11b77504-multi_cloud.svg",
+    alt="Canonical Juju",
+    width="284",
+    height="161",
+    hi_def=True,
+    loading="lazy",
+    fmt="svg",
+    attrs={
+    "class": "p-image-container__image"
+    })|safe,
+    "description_html": "<p>With the option of a command line or browser-based interface, Juju enables you to design and deploy entire workloads in just a few clicks. It works on public clouds like AWS and Microsoft Azure, private clouds built on OpenStack and even directly on bare metal, via MAAS.</p>",
+    "cta_html": "<a href='https://charmhub.io/'>Learn more about Juju&nbsp;&rsaquo;</a>"
+    },
+    {
+    "title_text": "Bare metal provisioning",
+    "image_html": image(url="https://assets.ubuntu.com/v1/8cb84a41-bare_metal.svg",
+    alt="Canonical MAAS",
+    width="284",
+    height="161",
+    hi_def=True,
+    loading="lazy",
+    fmt="svg",
+    attrs={
+    "class": "p-image-container__image"
+    })|safe,
+    "description_html": "<p>MAAS is a time-saving provisioning system that makes it quick and easy to set up the physical hardware needed to deploy complex services, like Ubuntu's OpenStack cloud infrastructure. Just plug in your servers, connect them to the network and let MAAS do the rest.</p>",
+    "cta_html": "<a href='https://canonical.com/maas'>Learn more about MAAS&nbsp;&rsaquo;</a>"
+    },
+    {
+    "title_text": "Machine containers",
+    "image_html": image(url="https://assets.ubuntu.com/v1/44ac6a9f-machine_containers.svg",
+    alt="Canonical LXD",
+    width="284",
+    height="161",
+    hi_def=True,
+    loading="lazy",
+    fmt="svg",
+    attrs={
+    "class": "p-image-container__image"
+    })|safe,
+    "description_html": "<p>Economics are directly tied to compute density. LXD, the Linux container hypervisor, merges the speed and density of containers with the manageability and security of traditional virtual machines.</p>",
+    "cta_html": "<a href='/lxd'>Learn more about LXD&nbsp;&rsaquo;</a>"
+    }
+    ]
+    ) %}
   {% endcall %}
 
   {% call(slot) vf_cta_section(
-          title_text='',
-          variant='default',
-          layout='25-75',
-          ) -%}
-  {%- if slot == 'cta' -%}
-  <a href="/server/contact-us?product=server-overview" class="js-invoke-modal" aria-controls="contact-modal"> Speak to our technical support team about your support requirements&nbsp;&rsaquo;</a>
-  {%- endif -%}
+    title_text='',
+    variant='default',
+    layout='25-75',
+    ) -%}
+    {%- if slot == 'cta' -%}
+      <a href="/server/contact-us?product=server-overview"
+         class="js-invoke-modal"
+         aria-controls="server-contact-modal"> Speak to our technical support team about your support requirements&nbsp;&rsaquo;</a>
+    {%- endif -%}
   {% endcall -%}
 
-  {{ vf_basic_section(
-    title={"text": "A thriving community"},
+  {{ vf_basic_section(title={"text": "A thriving community"},
     items=[
-      {
-        "type": "description",
-        "item": {
-          "type": "html",
-          "content": "
-            <p>
-              Exchange expertise and ideas with thousands of other IT professionals.
-            </p>
-            <p>
-              Want to talk to other Ubuntu users straightaway? Share ideas and get advice and help from our large, 
-              active community of IT professionals. As a community, we set high standards for friendliness and tolerance, 
-              we welcome your questions and contributions!
-            </p>
-          "
-        }
-      },
-      {
-        "type": "cta-block",
-        "item": {
-          "link": {
-            "content_html": "Join the community&nbsp;&rsaquo;",
-            "attrs": {
-              "href": "/community"
-            }
-          }
-        }
-      }
-    ]
-  ) }}
+    {
+    "type": "description",
+    "item": {
+    "type": "html",
+    "content": "
+    <p>Exchange expertise and ideas with thousands of other IT professionals.</p>
+    <p>
+      Want to talk to other Ubuntu users straightaway? Share ideas and get advice and help from our large,
+      active community of IT professionals. As a community, we set high standards for friendliness and tolerance,
+      we welcome your questions and contributions!
+    </p>
+    "
+    }
+    },
+    {
+    "type": "cta-block",
+    "item": {
+    "link": {
+    "content_html": "Join the community&nbsp;&rsaquo;",
+    "attrs": {
+    "href": "/community"
+    }
+    }
+    }
+    }
+    ]) }}
 
   <section class="p-section">
     <div class="u-fixed-width">
@@ -653,7 +653,7 @@
             </div>
             <div class="grid-col-4 grid-col-medium-2">
               <p>
-                Whether you want to configure a simple file server or build a fifty thousand-node cloud, 
+                Whether you want to configure a simple file server or build a fifty thousand-node cloud,
                 you can rely on Ubuntu Server and its five years of guaranteed free upgrades.
               </p>
               <a href="/download/server" class="p-button">Get Ubuntu Server</a>
@@ -667,11 +667,11 @@
               <h3 class="p-heading--5">Get Ubuntu Pro</h3>
             </div>
             <div class="grid-col-4 grid-col-medium-2">
-              <p>
-                Get the latest security updates and support for Ubuntu Server from Canonical.
-              </p>
+              <p>Get the latest security updates and support for Ubuntu Server from Canonical.</p>
               <a href="/pro" class="p-button">Explore Ubuntu Pro</a>
-              <a href="/server/contact-us?product=contextual-footer-ua" class="js-invoke-modal" aria-controls="contact-modal">Get in touch&nbsp;&rsaquo;</a>
+              <a href="/server/contact-us?product=contextual-footer-ua"
+                 class="js-invoke-modal"
+                 aria-controls="server-contact-modal">Get in touch&nbsp;&rsaquo;</a>
             </div>
           </div>
         </div>
@@ -684,13 +684,5 @@
   {% endwith %}
 
   <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
-
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/support"
-       data-form-id="1254"
-       data-lp-id="2152"
-       data-return-url="https://ubuntu.com/server/thank-you"
-       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+  {{ load_form("/server") | safe }}
 {% endblock content %}

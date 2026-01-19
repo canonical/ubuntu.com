@@ -595,7 +595,9 @@
         </p>
         <p class="u-no-margin--bottom">
 
-          <a class="p-button js-invoke-modal" href="/openstack/contact-us">Order Canonical-managed OpenStack</a>
+          <a class="p-button js-invoke-modal"
+             href="/openstack/contact-us"
+             aria-controls="openstack-modal">Order Canonical-managed OpenStack</a>
         </p>
         <p>
           <a href="https://canonical.com/openstack/support">Learn more about Canonical-managed OpenStack&nbsp;›</a>
@@ -631,7 +633,9 @@
               We deploy OpenStack for you. Together, we find the design that suits your use case best. We will share our best practices and reference hardware specifications. We will only hand over the cloud to you once we ensure the deployment process is fully automated and repeatable.
             </p>
             <p class="u-no-margin--bottom">
-              <a class="p-button js-invoke-modal" href="/openstack/contact-us">Order Canonical-deployed OpenStack</a>
+              <a class="p-button js-invoke-modal"
+                 href="/openstack/contact-us"
+                 aria-controls="openstack-modal">Order Canonical-deployed OpenStack</a>
             </p>
             <p>
               <a href="https://canonical.com/openstack/support">Learn more about Canonical-deployed OpenStack&nbsp;›</a>
@@ -853,7 +857,7 @@
             <script src="{{ versioned_static('js/dist/openstackDeploymentChart.js') }}"></script>
           </div>
           <div class="p-cta-block">
-            <a href="/openstack/compare">Compare OpenStack distros&nbsp;&rsaquo;</a>
+            <a href="https://canonical.com/openstack/compare">Compare OpenStack distros&nbsp;&rsaquo;</a>
           </div>
         </div>
       </div>
@@ -927,6 +931,7 @@
           </p>
           <div class="p-cta-block">
             <a class="p-button js-invoke-modal"
+               aria-controls="openstack-modal"
                href="/openstack/contact-us?product=openstack">Contact us</a>
           </div>
         </div>
@@ -936,13 +941,6 @@
 
   <script src="{{ versioned_static('js/dist/cloud-price-slider.js') }}" defer></script>
 
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/openstack"
-       data-form-id="1251"
-       data-lp-id="2086"
-       data-return-url="https://ubuntu.com/openstack/thank-you?product=foundation-cloud"
-       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+  {{ load_form("/openstack") | safe }}
 
 {% endblock content %}

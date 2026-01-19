@@ -1,0 +1,139 @@
+{
+  "form": {
+    "/real-time": {
+      "templatePath": "/real-time/index.html",
+      "isModal": true,
+      "modalId": "realtime-contact-modal",
+      "formData": {
+        "title": "Run Real-time Ubuntu in production",
+        "introText": "Tell us about your project so we can bring the right Canonical team members to the conversation to help you.",
+        "formId": 4914,
+        "returnUrl": "/real-time#success"
+      },
+      "fieldsets": [
+        {
+          "title": "In which industry do you operate?",
+          "id": "your-industry",
+          "inputType": "radio",
+          "inputName": "your-industry",
+          "fields": [
+            {
+              "type": "radio",
+              "value": "Industrial",
+              "label": "Industrial"
+            },
+            {
+              "type": "radio",
+              "value": "Automotive",
+              "label": "Automotive"
+            },
+            {
+              "type": "radio",
+              "value": "Telco",
+              "label": "Telco"
+            },
+            {
+              "type": "radio",
+              "value": "Public sector",
+              "label": "Public sector"
+            },
+            {
+              "type": "radio",
+              "value": "other",
+              "label": "Other",
+              "hasOtherInput": true,
+              "otherInputId": "your-industry-is-other-specified",
+              "otherInputPlaceholder": "Please specify"
+            }
+          ]
+        },
+        {
+          "title": "Which architecture are you using?",
+          "id": "architecture-using",
+          "inputType": "radio",
+          "inputName": "architecture-using",
+          "fields": [
+            {
+              "type": "radio",
+              "value": "arm",
+              "label": "arm"
+            },
+            {
+              "type": "radio",
+              "value": "x86",
+              "label": "x86"
+            },
+            {
+              "type": "radio",
+              "value": "other",
+              "label": "Other",
+              "hasOtherInput": true,
+              "otherInputId": "architecture-using-other-specified",
+              "otherInputPlaceholder": "Please specify"
+            }
+          ]
+        },
+        {
+          "title": "How are you currently meeting your latency requirements?",
+          "id": "meeting-latency-requirements",
+          "inputType": "radio",
+          "inputName": "meeting-latency-requirements",
+          "fields": [
+            {
+              "type": "radio",
+              "value": "RTOS",
+              "label": "RTOS"
+            },
+            {
+              "type": "radio",
+              "value": "Commercially-supported real-time Linux",
+              "label": "Commercially-supported real-time Linux"
+            },
+            {
+              "type": "radio",
+              "value": "Patching own Linux kernel",
+              "label": "Patching own Linux kernel"
+            },
+            {
+              "type": "radio",
+              "value": "No solution",
+              "label": "No solution"
+            },
+            {
+              "type": "radio",
+              "value": "other",
+              "label": "Other",
+              "hasOtherInput": true,
+              "otherInputId": "meeting-latency-requirements-other-specified",
+              "otherInputPlaceholder": "Please specify"
+            }
+          ]
+        },
+        {
+          "title": "Tell us more about your project",
+          "id": "project-details",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "tell-us-about-your-project",
+              "label": ""
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
