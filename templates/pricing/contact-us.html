@@ -3,11 +3,12 @@
 {% block title %}Contact us | Pricing{% endblock %}
 
 {% block content %}
-  {% with h1="Contact us about pricing",
-    intro_text="Fill in your details below and a member of our sales team will be in touch.",
-    formid="1240",
+
+  {{ load_form("/default-contact-us-devices", 1240, title="Contact us about pricing",
+    introText="Fill in your details below and a member of our sales team will be in touch.",
     lpId="2065",
-    returnURL="/pricing/thank-you" %}
-    {% include "shared/_default-contact-us-form.html" %}
-  {% endwith %}
+    returnUrl="/pricing/thank-you") | safe }}
+
+  {% include "shared/forms/_ubuntu_help_resources.html" %}
+
 {% endblock content %}
