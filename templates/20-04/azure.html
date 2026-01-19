@@ -18,7 +18,7 @@
 {% block content %}
 
   {% call(slot) vf_hero(
-    title_text='Ubuntu 20.04 LTS <br class="u-hide--small" />(Focal Fossa) on Azure',
+    title_text='Ubuntu 20.04 LTS <br class="u-hide--small" />(Focal Fossa) on Azure' | safe,
     layout='50/50'
     ) -%}
     {%- if slot == 'description' -%}
@@ -161,7 +161,7 @@
   </section>
 
   {% call(slot) vf_quote_wrapper(
-    title_text="What customers say <br />about Ubuntu Pro",
+    title_text="What customers say <br />about Ubuntu Pro" | safe,
     quote_size="medium",
     quote_text="ESM literally saved our lives. It's allowing us to upgrade from 14.04 LTS at our own pace. It's taken the pressure off, and it also means we can tackle the Ubuntu upgrades at the same time as we roll out the new version of our platform.",
     citation_source_name_text="Zivago Lee",

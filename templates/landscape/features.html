@@ -16,7 +16,7 @@
 {% block content %}
 
   {% call(slot) vf_hero(
-    title_text='Manage thousands of Ubuntu<br /> machines as easily as one',
+    title_text='Manage thousands of Ubuntu<br /> machines as easily as one' | safe,
     subtitle_text='',
     layout='50/50-full-width-image'
     ) -%}

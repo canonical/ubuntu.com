@@ -19,7 +19,7 @@
 
 {% block content %}
   {% call(slot) vf_hero(
-    title_text='Simplify the development <br class="u-hide--small" /> of embedded displays',
+    title_text='Simplify the development <br class="u-hide--small" /> of embedded displays' | safe,
     layout='50/50',
     is_split_on_medium=false
     ) -%}

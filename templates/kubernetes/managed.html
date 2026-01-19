@@ -20,7 +20,7 @@
 {% block content %}
   {% call(slot) vf_hero(
     title_text='Fully managed Kubernetes',
-    subtitle_text='Cost effective, on demand, <br class="u-hide--medium u-hide--small" />container orchestration',
+    subtitle_text='Cost effective, on demand, <br class="u-hide--medium u-hide--small" />container orchestration' | safe,
     layout='50/50-full-width-image'
     ) -%}
     {%- if slot == 'description' -%}

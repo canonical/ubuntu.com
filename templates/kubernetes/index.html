@@ -19,7 +19,7 @@
 
 {% block content %}
   {% call(slot) vf_hero(
-    title_text='Enterprise-grade Kubernetes <br class="u-hide--small u-hide--medium" />for multi-cloud operations',
+    title_text='Enterprise-grade Kubernetes <br class="u-hide--small u-hide--medium" />for multi-cloud operations' | safe,
     layout='50/50-full-width-image'
     ) -%}
     {%- if slot == 'description' -%}

@@ -21,7 +21,7 @@
 {% block content %}
 
   {% call(slot) vf_hero(
-    title_text='Ubuntu 16.04 LTS<br class="u-hide--small u-hide--medium" /> (Xenial Xerus)',
+    title_text='Ubuntu 16.04 LTS<br class="u-hide--small u-hide--medium" /> (Xenial Xerus)' | safe,
     layout='50/50'
     ) -%}
     {%- if slot == 'description' -%}

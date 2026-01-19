@@ -23,7 +23,7 @@
 
 {% block content %}
   {% call(slot) vf_hero(
-    title_text='Secure Ubuntu 16.04 LTS<br class="u-hide--small" /> on Azure',
+    title_text='Secure Ubuntu 16.04 LTS<br class="u-hide--small" /> on Azure' | safe,
     layout='50/50'
     ) -%}
     {%- if slot == 'description' -%}

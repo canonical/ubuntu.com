@@ -25,7 +25,7 @@
   <section class="p-strip is-shallow u-no-padding--bottom">
     {% include "shared/_20-04-eol-banner.html" %}
 
-    {% call(slot) vf_hero( title_text='Powering robotics <br />in every industry', subtitle_text='Develop, deploy and maintain your fleet of robots with Ubuntu.', layout='50/50' ) -%}
+    {% call(slot) vf_hero( title_text='Powering robotics <br />in every industry' | safe, subtitle_text='Develop, deploy and maintain your fleet of robots with Ubuntu.', layout='50/50' ) -%}
     {%- if slot == 'cta' -%}
       <a href="/core/contact-us"
          class="p-button--positive js-invoke-modal"

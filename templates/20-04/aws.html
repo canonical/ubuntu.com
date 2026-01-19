@@ -18,7 +18,7 @@
 {% block content %}
 
   {% call(slot) vf_hero(
-    title_text='Ubuntu 20.04 LTS <br class="u-hide--small" />(Focal Fossa) on AWS',
+    title_text='Ubuntu 20.04 LTS <br class="u-hide--small" />(Focal Fossa) on AWS' | safe,
     layout='50/50'
     ) -%}
     {%- if slot == 'description' -%}

@@ -22,7 +22,7 @@
 
   {% call(slot) vf_hero(
     title_text='Ubuntu 20.04 LTS (Focal Fossa)',
-    subtitle_text='Out of standard support <br class="u-hide-small u-hide-medium" />Upgrade to Ubuntu Pro',
+    subtitle_text='Out of standard support <br class="u-hide-small u-hide-medium" />Upgrade to Ubuntu Pro' | safe,
     layout='50/50'
     ) -%}
     {%- if slot == 'description' -%}

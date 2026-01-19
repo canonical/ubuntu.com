@@ -20,7 +20,7 @@
 {% block content %}
 
   {% call(slot) vf_hero(
-    title_text='Welcome to our<br class="u-hide--small" /> Ubuntu appliance community',
+    title_text='Welcome to our<br class="u-hide--small" /> Ubuntu appliance community' | safe,
     layout='50/50'
     ) -%}
     {%- if slot == 'description' -%}

@@ -26,7 +26,7 @@ meta_copydoc %}
 
   {% call(slot) vf_hero(
     title_text='Linux Kernel Livepatch',
-    subtitle_text='Mitigate Linux kernel exploits<br /> with Livepatch',
+    subtitle_text='Mitigate Linux kernel exploits<br /> with Livepatch' | safe,
     layout='50/50'
     ) -%}
     {%- if slot == 'description' -%}

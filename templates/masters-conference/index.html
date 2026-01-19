@@ -10,7 +10,7 @@
 
 {% block content %}
   {% call(slot) vf_hero(
-    title_text='Ubuntu Masters:<br />the masters speak',
+    title_text='Ubuntu Masters:<br />the masters speak' | safe,
     layout='50/50'
     ) -%}
     {%- if slot == 'description' -%}

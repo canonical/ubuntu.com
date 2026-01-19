@@ -324,7 +324,7 @@
 </section>
 
 {% call(slot) vf_equal_heights(
-  title_text="Building blocks in our<br />managed infra portfolio",
+  title_text="Building blocks in our<br />managed infra portfolio" | safe,
   image_aspect_ratio_medium="2-3",
   image_aspect_ratio_small="2-3",
   highlight_images=True,
