@@ -20,7 +20,7 @@
 
 {% block content %}
   {% call(slot) vf_hero(
-    title_text='Expanded Security Maintenance <br />for Ubuntu and open source',
+    title_text='Expanded Security Maintenance <br />for Ubuntu and open source' | safe,
     layout='50/50'
     ) -%}
     {%- if slot == 'description' -%}

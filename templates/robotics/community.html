@@ -26,7 +26,7 @@
 {% block content %}
 
   {% call(slot) vf_hero(
-    title_text='How to join the ROS<br class="u-hide--small u-hide--medium" /> and Ubuntu community',
+    title_text='How to join the ROS<br class="u-hide--small u-hide--medium" /> and Ubuntu community' | safe,
     layout='50/50',
     ) -%}
     {%- if slot == 'description' -%}

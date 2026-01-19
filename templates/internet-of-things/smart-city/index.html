@@ -24,7 +24,7 @@
 
   {% call(slot) vf_hero(
     title_text='Build the future with smart cities',
-    subtitle_text='Enhance transport, utilities<br /> and infrastructure with IoT',
+    subtitle_text='Enhance transport, utilities<br /> and infrastructure with IoT' | safe,
     layout='50/50-full-width-image'
     ) -%}
     {%- if slot == 'cta' -%}

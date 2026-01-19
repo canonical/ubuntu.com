@@ -27,7 +27,7 @@
 
     {% call(slot) vf_hero(
       title_text='Ubuntu Pro',
-      subtitle_text='The most comprehensive subscription <br /> for open source security and compliance.',
+      subtitle_text='The most comprehensive subscription <br /> for open source security and compliance.' | safe,
       layout='25/75'
       ) -%}
       {%- if slot == 'signpost_image' -%}
@@ -117,7 +117,7 @@
       is_shallow=true,
       title_text="Used by professionals",
       quote_size="small",
-      quote_text="The Telco industry demands high reliability, with many rounds of testing both during product development and before integration into the customer’s environment.<br /><br />Using Ubuntu Pro gives us the security, support and control over the product lifecycle that we need as the foundation to build our Metaswitch Clearwater products on.",
+      quote_text="The Telco industry demands high reliability, with many rounds of testing both during product development and before integration into the customer’s environment.<br /><br />Using Ubuntu Pro gives us the security, support and control over the product lifecycle that we need as the foundation to build our Metaswitch Clearwater products on." | safe,
       citation_source_name_text="Jon Rowland",
       citation_source_title_text="Principal Group Software Engineering Manager",
       citation_source_organisation_text="Microsoft Azure for Operators"
@@ -136,7 +136,7 @@
     {% endcall -%}
     {% call(slot) vf_quote_wrapper(
       quote_size="small",
-      quote_text="For the last decade, Google has partnered with Canonical to promote the adoption of open-source software.<br /> <br />By offering Ubuntu Pro on Google Compute Engine, together we help customers enhance the security and compliance for their production workloads",
+      quote_text="For the last decade, Google has partnered with Canonical to promote the adoption of open-source software.<br /> <br />By offering Ubuntu Pro on Google Compute Engine, together we help customers enhance the security and compliance for their production workloads" | safe,
       citation_source_name_text="Derry Cheng",
       citation_source_title_text="Product Manager",
       citation_source_organisation_text="for Compute Engine"
@@ -245,7 +245,7 @@
       is_shallow=true,
       title_text="Used by professionals",
       quote_size="small",
-      quote_text="Transformative innovations such as AI and deep learning are being put to work to unlock new levels of business automation.<br /> <br />With the introduction of Ubuntu Pro, enterprises will benefit from better security, support and long-term maintenance for thousands of open source libraries that are at the core of modern AI and data science workflows.",
+      quote_text="Transformative innovations such as AI and deep learning are being put to work to unlock new levels of business automation.<br /> <br />With the introduction of Ubuntu Pro, enterprises will benefit from better security, support and long-term maintenance for thousands of open source libraries that are at the core of modern AI and data science workflows." | safe,
       citation_source_name_text="Justin Boitano",
       citation_source_title_text="Vice president",
       citation_source_organisation_text="of Enterprise Computing"
@@ -264,7 +264,7 @@
     {% endcall -%}
     {% call(slot) vf_quote_wrapper(
       quote_size="small",
-      quote_text="Enterprises need modular, cloud-native application platforms that accelerate how they build, run, and manage their applications without compromising on their compliance, security, or support requirements.<br /> <br />VMware is thrilled to partner with Canonical with their field-proven expertise in securing and supporting open-source. By offering Ubuntu Pro with VMware Tanzu, we can provide customers with a hardened, better, secure and enterprise-grade application environment that is as friendly to their developers as it is to their CISO.",
+      quote_text="Enterprises need modular, cloud-native application platforms that accelerate how they build, run, and manage their applications without compromising on their compliance, security, or support requirements.<br /> <br />VMware is thrilled to partner with Canonical with their field-proven expertise in securing and supporting open-source. By offering Ubuntu Pro with VMware Tanzu, we can provide customers with a hardened, better, secure and enterprise-grade application environment that is as friendly to their developers as it is to their CISO." | safe,
       citation_source_name_text="Ajay Patel",
       citation_source_title_text="GM and SVP",
       citation_source_organisation_text="Modern Apps & Cloud Management Business"
@@ -356,7 +356,7 @@
       is_shallow=true,
       title_text="Used by professionals",
       quote_size="small",
-      quote_text="Tenable and Canonical collaborate to provide timely, accurate and actionable vulnerability alerts.<br /> <br />Ubuntu Pro offers security patch assurance for a broad spectrum of open-source software. Together, we give customers a foundation for trustworthy open source.",
+      quote_text="Tenable and Canonical collaborate to provide timely, accurate and actionable vulnerability alerts.<br /> <br />Ubuntu Pro offers security patch assurance for a broad spectrum of open-source software. Together, we give customers a foundation for trustworthy open source." | safe,
       citation_source_name_text="Robert Huber",
       citation_source_title_text="Chief Security Officer",
       ) -%}
@@ -374,7 +374,7 @@
     {% endcall -%}
     {% call(slot) vf_quote_wrapper(
       quote_size="small",
-      quote_text="FIPS 140-2 certified Ubuntu images on AWS fulfil our FedRAMP compliance requirements.<br /> <br />With enterprise-grade Ubuntu Pro support backed by Canonical’s 10-year security maintenance commitment, we provide critical development infrastructure for some of the world’s most famous brands.",
+      quote_text="FIPS 140-2 certified Ubuntu images on AWS fulfil our FedRAMP compliance requirements.<br /> <br />With enterprise-grade Ubuntu Pro support backed by Canonical’s 10-year security maintenance commitment, we provide critical development infrastructure for some of the world’s most famous brands." | safe,
       citation_source_name_text="Patrick Kaeding",
       citation_source_title_text="Security Engineer",
       ) -%}
@@ -541,7 +541,7 @@
       is_shallow=true,
       title_text="Used by professionals",
       quote_size="small",
-      quote_text="Ubuntu Pro enables our engineering teams to focus on delivering industry-leading products and services to Acquia customers.<br /> <br />Canonical’s transparency and patching expedience give me peace of mind that we are providing the most secure and compelling solutions to power innovative digital experiences.",
+      quote_text="Ubuntu Pro enables our engineering teams to focus on delivering industry-leading products and services to Acquia customers.<br /> <br />Canonical’s transparency and patching expedience give me peace of mind that we are providing the most secure and compelling solutions to power innovative digital experiences." | safe,
       citation_source_name_text="Robert Former",
       citation_source_title_text="Chief Information Security Officer",
       ) -%}
@@ -557,7 +557,7 @@
     {% endcall -%}
     {% call(slot) vf_quote_wrapper(
       quote_size="small",
-      quote_text="I manage my own compute cluster leveraging MAAS and other Canonical tools to support my research.<br /> <br />The open-source security patches delivered through Ubuntu Pro give my team peace of mind and ensure my servers are secure.<br /> <br />Canonical is continuously delivering timely CVE patches covering a broad portfolio of open-source applications for the entire ten-year lifetime of an Ubuntu LTS. This brings much needed stability and compliance.",
+      quote_text="I manage my own compute cluster leveraging MAAS and other Canonical tools to support my research.<br /> <br />The open-source security patches delivered through Ubuntu Pro give my team peace of mind and ensure my servers are secure.<br /> <br />Canonical is continuously delivering timely CVE patches covering a broad portfolio of open-source applications for the entire ten-year lifetime of an Ubuntu LTS. This brings much needed stability and compliance." | safe,
       citation_source_name_text="David A Gutman",
       citation_source_title_text="MD PhD",
       citation_source_organisation_text="Associate Professor of Pathology"

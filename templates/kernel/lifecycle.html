@@ -19,7 +19,7 @@
 {% block content %}
 
   {% call(slot) vf_hero(
-    title_text='Ubuntu kernel lifecycle<br /> and enablement stack',
+    title_text='Ubuntu kernel lifecycle<br /> and enablement stack' | safe,
     layout='50/50',
     is_split_on_medium=true
     ) -%}

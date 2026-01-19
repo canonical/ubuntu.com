@@ -20,7 +20,7 @@
 {% block content %}
 
   {% call(slot) vf_hero(
-      title_text='Download Partner-built Ubuntu for <br class="u-hide--medium" /> RISC-V platforms',
+      title_text='Download Partner-built Ubuntu for <br class="u-hide--medium" /> RISC-V platforms' | safe,
       layout='25/75'
     ) -%}
 

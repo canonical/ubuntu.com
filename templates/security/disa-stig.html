@@ -18,7 +18,7 @@
 
   {% call(slot) vf_hero(
     title_text='DISA-STIG on Ubuntu',
-    subtitle_text='Comply with the DISA Security <br />Technical Implementation Guide',
+    subtitle_text='Comply with the DISA Security <br />Technical Implementation Guide' | safe,
     layout='25/75'
     ) -%}
     {%- if slot == 'signpost_image' -%}

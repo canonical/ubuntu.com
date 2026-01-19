@@ -23,7 +23,7 @@
   </section>
 
   {% call(slot) vf_hero(
-    title_text="Ubuntu for the<br /> Internet of Things",
+    title_text="Ubuntu for the<br /> Internet of Things" | safe,
     layout='50/50-full-width-image',
     ) -%}
     {%- if slot == "description" -%}

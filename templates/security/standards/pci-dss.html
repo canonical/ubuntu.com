@@ -19,7 +19,7 @@
 {% block content %}
 
   {% call(slot) vf_hero(
-    title_text='Enable PCI-DSS compliance<br class="u-hide--small" /> with Ubuntu Pro',
+    title_text='Enable PCI-DSS compliance<br class="u-hide--small" /> with Ubuntu Pro' | safe,
     layout='50/50'
     ) -%}
     {%- if slot == 'description' -%}

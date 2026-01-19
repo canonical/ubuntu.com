@@ -22,8 +22,8 @@
 {% block content %}
 
   {% call(slot) vf_hero(
-      title_text='Ubuntu <br/>for confidential compute',
-      subtitle_text='Protect your data in use,<br/> across public and private clouds.',
+      title_text='Ubuntu <br/>for confidential compute' | safe,
+      subtitle_text='Protect your data in use,<br/> across public and private clouds.' | safe,
       layout='50/50'
     ) -%}
     {%- if slot == 'cta' -%}

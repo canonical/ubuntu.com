@@ -27,7 +27,7 @@ from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
 {% block content %}
 
   {%- call(slot) vf_hero(
-    title_text='Robot Operating System <br class="u-hide--small u-hide--medium" />Expanded Security Maintenance',
+    title_text='Robot Operating System <br class="u-hide--small u-hide--medium" />Expanded Security Maintenance' | safe,
     layout='50/50-full-width-image'
     ) -%}
     {%- if slot == 'description' -%}

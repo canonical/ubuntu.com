@@ -19,7 +19,7 @@
 
 {% block content %}
   {% call(slot) vf_hero(
-    title_text='Take control <br />of your infrastructure',
+    title_text='Take control <br />of your infrastructure' | safe,
     subtitle_text='',
     layout='50/50-full-width-image'
     ) -%}
