@@ -3,7 +3,6 @@
     "/openstack": {
       "templatePath": "/openstack/index.html",
       "childrenPaths": [
-        "/openstack/compare",
         "/openstack/features",
         "/openstack/install",
         "/openstack/support",
@@ -413,7 +412,12 @@
               "value": "DPDK",
               "label": "DPDK"
             },
-            { "type": "checkbox", "id": "epa", "value": "EPA", "label": "EPA" },
+            {
+              "type": "checkbox",
+              "id": "epa",
+              "value": "EPA",
+              "label": "EPA"
+            },
             {
               "type": "checkbox",
               "id": "numa",
@@ -444,7 +448,12 @@
               "value": "Secret management",
               "label": "Secret management"
             },
-            { "type": "checkbox", "id": "hsm", "value": "HSM", "label": "HSM" },
+            {
+              "type": "checkbox",
+              "id": "hsm",
+              "value": "HSM",
+              "label": "HSM"
+            },
             {
               "type": "checkbox",
               "id": "gpgpu",
