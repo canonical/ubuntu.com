@@ -8,22 +8,9 @@
         "title": "Interested in optimized Ubuntu on Renesas platforms?",
         "introText": "Fill out the form to receive the latest update from us!",
         "formId": 6153,
-        "returnUrl": "https://ubuntu.com/download/renesas-iot#success"
+        "returnUrl": "/download/renesas-iot#success"
       },
       "fieldsets": [
-        {
-          "title": "How should we get in touch?",
-          "id": "about-you",
-          "noCommentsFromLead": true,
-          "fields": [
-            {
-              "type": "tel",
-              "id": "phone",
-              "label": "Mobile/cell phone number",
-              "isRequired": true
-            }
-          ]
-        },
         {
           "title": "Your company is?",
           "id": "your-company",
@@ -84,6 +71,19 @@
               "type": "long-text",
               "id": "about-your-project",
               "label": ""
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number",
+              "isRequired": true
             }
           ]
         }
