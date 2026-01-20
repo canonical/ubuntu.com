@@ -1,0 +1,135 @@
+{
+  "form": {
+    "/desktop/wsl": {
+      "templatePath": "/desktop/wsl/index.html",
+      "isModal": true,
+      "modalId": "contact-modal",
+      "formData": {
+        "title": "Let's get in touch.",
+        "introText": "Ubuntu brings you the best-in-class, seamless experience for the Windows Subsystem for Linux. We can help you unleash more capabilities and supply the right level of support you need to have the best experience out-of-the-box.",
+        "formId": "3755",
+        "returnUrl": "/desktop/wsl#success",
+        "product": "wsl"
+      },
+      "fieldsets": [
+        {
+          "title": "Describe your project",
+          "id": "about-project",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "about-project",
+              "label": "Tell us about your project and why you're considering using WSL at your company."
+            }
+          ]
+        },
+        {
+          "title": "How will you use WSL?",
+          "id": "use-wsl",
+          "inputType": "checkbox",
+          "fields": [
+            {
+              "type": "checkbox",
+              "id": "use-wsl-ai-ml",
+              "value": "AI / machine learning",
+              "label": "AI / machine learning"
+            },
+            {
+              "type": "checkbox",
+              "id": "use-wsl-endpoints",
+              "value": "Managing both Windows and Linux endpoints",
+              "label": "Managing both Windows and Linux endpoints"
+            },
+            {
+              "type": "checkbox",
+              "id": "use-wsl-applications",
+              "value": "Leveraging legacy applications that will only work on Linux",
+              "label": "Leveraging legacy applications that will only work on Linux"
+            },
+            {
+              "type": "checkbox",
+              "id": "use-wsl-GUI",
+              "value": "GUI access",
+              "label": "GUI access"
+            },
+            {
+              "type": "checkbox",
+              "id": "use-Cross-platform",
+              "value": "Cross platform development",
+              "label": "Cross platform development"
+            },
+            {
+              "type": "checkbox",
+              "id": "use-wsl-Training",
+              "value": "Training Windows users on Linux",
+              "label": "Training Windows users on Linux"
+            },
+            {
+              "type": "checkbox",
+              "id": "use-wsl-Robotics",
+              "value": "IoT / Robotics",
+              "label": "IoT / Robotics"
+            },
+            {
+              "type": "checkbox",
+              "id": "use-wsl-other",
+              "value": "Other",
+              "label": "Other",
+              "hasOtherInput": true,
+              "otherInputId": "use-wsl-other-specified",
+              "otherInputPlaceholder": "Please specify"
+            }
+          ]
+        },
+        {
+          "title": "What version of Windows 10 will you have access to?",
+          "id": "platform-architecture",
+          "inputType": "checkbox",
+          "fields": [
+            {
+              "type": "checkbox",
+              "id": "platform-architecture-Windows-Insiders",
+              "value": "Windows Insiders Program",
+              "label": "Windows Insiders Program"
+            },
+            {
+              "type": "checkbox",
+              "id": "platform-architecture-Version-1903",
+              "value": "Version 1903, Build 18362* or higher",
+              "label": "Version 1903, Build 18362* or higher"
+            },
+            {
+              "type": "checkbox",
+              "id": "platform-architecture-Windows-Server",
+              "value": "Windows Server 2019",
+              "label": "Windows Server 2019"
+            },
+            {
+              "type": "checkbox",
+              "id": "platform-architecture-other",
+              "value": "Other",
+              "label": "Other",
+              "hasOtherInput": true,
+              "otherInputId": "platform-architecture-other-specified",
+              "otherInputPlaceholder": "Please specify"
+            }
+          ],
+          "helpText": "Check your Windows version by selecting the Windows logo key + R, type winver, select OK"
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number:",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

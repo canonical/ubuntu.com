@@ -52,7 +52,7 @@
         </li>
       </ul>
       <div class="p-cta-block">
-        <a class="js-invoke-modal" href="/desktop/wsl/contact-us">Looking&nbsp;for&nbsp;enterprise&nbsp;support?&nbsp;Contact&nbsp;us&nbsp;&rsaquo;</a>
+        <a class="js-invoke-modal" href="/desktop/wsl/contact-us" aria-controls="contact-modal">Looking&nbsp;for&nbsp;enterprise&nbsp;support?&nbsp;Contact&nbsp;us&nbsp;&rsaquo;</a>
       </div>
     {%- endif -%}
     {%- if slot == 'image' -%}
@@ -66,140 +66,139 @@
                 attrs={"class": "p-image-container__image"}) | safe
         }}
       </div>
-      {% endif -%}
-    {% endcall -%}
+    {% endif -%}
+  {% endcall -%}
 
-    <section class="p-section">
-      <div class="u-fixed-width p-section--shallow">
+  <section class="p-section">
+    <div class="u-fixed-width p-section--shallow">
+      <hr class="p-rule" />
+      <h2>Develop with the best of both worlds</h2>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
         <hr class="p-rule" />
-        <h2>Develop with the best of both worlds</h2>
-      </div>
-      <div class="row">
-        <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-          <hr class="p-rule" />
-          <div class="row">
-            <div class="col-3 col-medium-2">
-              <h3 class="p-heading--5">The freedom of Ubuntu</h3>
-            </div>
-            <div class="col-6 col-medium-3">
-              <p>
-                Run your choice of Linux text editors, including vim, emacs, and nano. Install applications, compilers and libraries from the Ubuntu repository, securely maintained by Canonical.
-              </p>
-            </div>
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">The freedom of Ubuntu</h3>
           </div>
-          <hr class="p-rule" />
-          <div class="row">
-            <div class="col-3 col-medium-2">
-              <h3 class="p-heading--5">Highly performant AI/ML</h3>
-            </div>
-            <div class="col-6 col-medium-3">
-              <p>
-                Ubuntu is the target platform for all major open source AI/ML frameworks. NVIDIA Data Science Stack lets you maximise the performance of your Data Science and Machine Learning projects on top of native Windows NVIDIA drivers.
-              </p>
-            </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Run your choice of Linux text editors, including vim, emacs, and nano. Install applications, compilers and libraries from the Ubuntu repository, securely maintained by Canonical.
+            </p>
           </div>
-          <hr class="p-rule" />
-          <div class="row">
-            <div class="col-3 col-medium-2">
-              <h3 class="p-heading--5">Fully flexible web applications</h3>
-            </div>
-            <div class="col-6 col-medium-3">
-              <p>
-                Build, test, and deploy Kubernetes clusters on Windows. Develop in WSL using native Windows IDEs including VS Code and IntelliJ. Use containers to improve your workflow and benefit from full NodeJS and Ruby support.
-              </p>
-            </div>
+        </div>
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Highly performant AI/ML</h3>
           </div>
-          <hr class="p-rule" />
-          <div class="row">
-            <div class="col-3 col-medium-2">
-              <h3 class="p-heading--5">Ideal for cross-platform development</h3>
-            </div>
-            <div class="col-6 col-medium-3">
-              <p>
-                Create and test your CI/CD pipelines locally on an Ubuntu on WSL instance. When ready, publish to a cloud production environment running Ubuntu VMs. Develop and test graphical Linux applications using WSLg and development frameworks like Flutter or React Native.
-              </p>
-            </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Ubuntu is the target platform for all major open source AI/ML frameworks. NVIDIA Data Science Stack lets you maximise the performance of your Data Science and Machine Learning projects on top of native Windows NVIDIA drivers.
+            </p>
           </div>
-          <hr class="p-rule" />
-          <div class="row">
-            <div class="col-3 col-medium-2">
-              <h3 class="p-heading--5">Critical tools for security specialists</h3>
-            </div>
-            <div class="col-6 col-medium-3">
-              <p>
-                Leverage Linux security tools to test and harden your network. Achieve the same first-class, out-of-the-box, compliant security that is synonymous with Ubuntu.
-              </p>
-            </div>
+        </div>
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Fully flexible web applications</h3>
           </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Build, test, and deploy Kubernetes clusters on Windows. Develop in WSL using native Windows IDEs including VS Code and IntelliJ. Use containers to improve your workflow and benefit from full NodeJS and Ruby support.
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Ideal for cross-platform development</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Create and test your CI/CD pipelines locally on an Ubuntu on WSL instance. When ready, publish to a cloud production environment running Ubuntu VMs. Develop and test graphical Linux applications using WSLg and development frameworks like Flutter or React Native.
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Critical tools for security specialists</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Leverage Linux security tools to test and harden your network. Achieve the same first-class, out-of-the-box, compliant security that is synonymous with Ubuntu.
+            </p>
+          </div>
+        </div>
 
-          <hr class="p-rule" />
-          <div class="row">
-            <div class="col-3 col-medium-2">
-              <h3 class="p-heading--5">Mixed IT infrastructure management</h3>
-            </div>
-            <div class="col-6 col-medium-3">
-              <p>From the same workstation, manage mixed Linux and Windows infrastructure both on-prem and across public clouds.</p>
-            </div>
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Mixed IT infrastructure management</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>From the same workstation, manage mixed Linux and Windows infrastructure both on-prem and across public clouds.</p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- The download for "/desktop/wsl/install" is redirected to Github via url rule -->
-    {{ vf_basic_section(
-      title={"text": "Ubuntu is the number 1 choice for organizations using WSL"},
-      items=[
-        {
-          "type": "description",
-          "item": {
-            "type": "html",
-            "content": '
-              <p class="u-sv3">
-                <a href="/pro">Ubuntu Pro</a> brings Expanded Security Maintenance (ESM) for all Ubuntu LTS releases for up to 15 years and optional 24/7 support, including instances on WSL.
-              </p>
-            '
-          }
-        },
-        {
-          "type": "cta-block",
-          "item": {
-            "secondaries": [
-              {
-                "content_html": "Download the Ubuntu Pro for WSL app",
-                "attrs": {
-                  "href": "/desktop/wsl/install"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "description",
-          "item": {
-            "type": "html",
-            "content": '
-              <p>
-                Ubuntu Pro also enables system administrators to manage WSL instances using <a href="/landscape">Landscape, Canonical\'s system management tool for Ubuntu</a>.
-              </p>
-            '
-          }
-        },
-        {
-          "type": "description",
-          "item": {
-            "type": "text",
-            "content": "Monitor your entire estate using the latest Landscape beta features and automatically identify which WSL instances comply with your provisioning and configuration policies in order to keep your environment secure."
-          }
-        },
-      ]
+  <!-- The download for "/desktop/wsl/install" is redirected to Github via url rule -->
+  {{ vf_basic_section(title={"text": "Ubuntu is the number 1 choice for organizations using WSL"},
+    items=[
+    {
+    "type": "description",
+    "item": {
+    "type": "html",
+    "content": '
+    <p class="u-sv3">
+      <a href="/pro">Ubuntu Pro</a> brings Expanded Security Maintenance (ESM) for all Ubuntu LTS releases for up to 15 years and optional 24/7 support, including instances on WSL.
+    </p>
+    '
+    }
+    },
+    {
+    "type": "cta-block",
+    "item": {
+    "secondaries": [
+    {
+    "content_html": "Download the Ubuntu Pro for WSL app",
+    "attrs": {
+    "href": "/desktop/wsl/install"
+    }
+    }
+    ]
+    }
+    },
+    {
+    "type": "description",
+    "item": {
+    "type": "html",
+    "content": '
+    <p>
+      Ubuntu Pro also enables system administrators to manage WSL instances using <a href="/landscape">Landscape, Canonical\'s system management tool for Ubuntu</a>.
+    </p>
+    '
+    }
+    },
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "Monitor your entire estate using the latest Landscape beta features and automatically identify which WSL instances comply with your provisioning and configuration policies in order to keep your environment secure."
+    }
+    },
+    ]
     ) }}
-
+  
     <section class="p-section">
       <div class="u-fixed-width p-section--shallow">
         <hr class="p-rule" />
         <h2>Get started with Ubuntu on WSL today</h2>
       </div>
-
+  
       <div class="row">
         <div class="col-3 col-medium-3 col-small-4">
           <div class="u-embedded-media u-no-margin--bottom">
@@ -241,7 +240,7 @@
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
-
+  
           </div>
           <h3 class="p-heading--5">
             <a href="https://www.youtube.com/watch?v=LViy7x2Gpc4&t=55s">Ubuntu on WSL | An FAQ for Data Scientists and Developers</a>
@@ -258,14 +257,14 @@
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
           </div>
-
+  
           <h3 class="p-heading--5">
             <a href="https://www.youtube.com/watch?v=Ja3qikzd-as">WSL: Partnering with Canonical to support systemd</a>
           </h3>
         </div>
       </div>
     </section>
-
+  
     <section class="p-section--deep">
       <hr class="p-rule is-fixed-width" />
       <div class="row">
@@ -322,7 +321,7 @@
               </ul>
             </div>
           </div>
-
+  
           <hr class="p-rule" />
           <div class="row">
             <div class="col-3 col-medium-3">
@@ -333,14 +332,14 @@
                 If you have further questions around Ubuntu on WSL or want to share your experiences, join the conversation on the <a href="https://discourse.ubuntu.com/c/wsl/27">Ubuntu Discourse</a>.
               </p>
               <p>
-                If you want to hear more about the benefits of securing Ubuntu on WSL at your organisation, please <a class="js-invoke-modal" href="/desktop/wsl/contact-us">get in touch</a>.
+                If you want to hear more about the benefits of securing Ubuntu on WSL at your organisation, please <a class="js-invoke-modal" href="/desktop/wsl/contact-us" aria-controls="contact-modal">get in touch</a>.
               </p>
             </div>
           </div>
         </div>
       </div>
     </section>
-
+  
     <section class="p-section--deep">
       <hr class="p-rule is-fixed-width" />
       <div class="row">
@@ -365,7 +364,7 @@
         </div>
       </template>
     </section>
-
+  
     <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
     <script>
       canonicalLatestNews.fetchLatestNews({
@@ -377,7 +376,7 @@
         limit: 3
       })
     </script>
-
+  
     <script src="/static/js/src/render-tutorials.js" type="text/javascript"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function() {
@@ -385,11 +384,5 @@
       });
     </script>
 
-    <div class="u-hide"
-         id="contact-form-container"
-         data-form-location="/shared/forms/interactive/wsl.html"
-         data-form-id="3755"
-         data-lp-id=""
-         data-return-url="https://ubuntu.com/wsl/thank-you"
-         data-lp-url=""></div>
-  {% endblock %}
+  {{ load_form("/desktop/wsl") | safe }}
+{% endblock %}
