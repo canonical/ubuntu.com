@@ -1,142 +1,148 @@
 {% extends "templates/base.html" %}
 
-{% block title %}{{ title }}{% endblock title %}
-{% block meta_description %}{{ description }}{% endblock meta_description %}
-{% block meta_copydoc %}{{ copydoc }}{% endblock meta_copydoc %}
+{% block title %}
+  {{ title }}
+{% endblock title %}
+
+{% block meta_description %}
+  {{ description }}
+{% endblock meta_description %}
+
+{% block meta_copydoc %}
+  {{ copydoc }}
+{% endblock meta_copydoc %}
 
 {% block outer_content %}
-<div class="p-strip is-shallow">
-  <div class="row">
-    <aside class="col-3">
-      <div class="p-side-navigation--raw-html" id="drawer">
-        <a href="#drawer" class="p-side-navigation__toggle js-drawer-toggle" aria-controls="drawer">
-          Toggle side navigation
-        </a>
-        <div class="p-side-navigation__overlay js-drawer-toggle" aria-controls="drawer"></div>
-        <div class="p-side-navigation__drawer">
-          <div class="p-side-navigation__drawer-header">
-            <a href="#" class="p-side-navigation__toggle--in-drawer js-drawer-toggle" aria-controls="drawer">
-              Toggle side navigation
+  <div class="p-strip is-shallow">
+    <div class="row">
+      <aside class="col-3">
+        <div class="p-side-navigation--raw-html" id="drawer">
+          <a href="#drawer"
+             class="p-side-navigation__toggle js-drawer-toggle"
+             aria-controls="drawer">Toggle side navigation</a>
+          <div class="p-side-navigation__overlay js-drawer-toggle"
+               aria-controls="drawer"></div>
+          <div class="p-side-navigation__drawer">
+            <div class="p-side-navigation__drawer-header">
+              <a href="#"
+                 class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
+                 aria-controls="drawer">Toggle side navigation</a>
+            </div>
+            {{ nav | safe }}
+          </div>
+        </div>
+      </aside>
+
+      <main class="col-9">
+        {% if title %}
+          <div class="p-strip is-shallow is-bordered u-no-padding--top">
+            <h1 class="u-no-margin--bottom">{{ title }}</h1>
+          </div>
+        {% endif %}
+        <div class="p-strip is-shallow" style="overflow: visible;">{{ content | safe }}</div>
+        {% if auto_paginate %}
+          <div class="p-article-pagination">
+            <a class="p-article-pagination__link--previous js-previous"
+               href="#previous">
+              <span class="p-article-pagination__label">Previous</span>
+            </a>
+            <a class="p-article-pagination__link--next js-next" href="#next">
+              <span class="p-article-pagination__label">Next</span>
             </a>
           </div>
-          {{ nav | safe }}
-        </div>
-      </div>
-    </aside>
-
-    <main class="col-9">
-      {% if title %}
-      <div class="p-strip is-shallow is-bordered u-no-padding--top">
-        <h1 class="u-no-margin--bottom">{{ title }}</h1>
-      </div>
-      {% endif %}
-      <div class="p-strip is-shallow" style="overflow: visible;">
-        {{ content | safe }}
-      </div>
-      {% if auto_paginate %}
-      <div class="p-article-pagination">
-        <a class="p-article-pagination__link--previous js-previous" href="#previous">
-          <span class="p-article-pagination__label">Previous</span>
-        </a>
-        <a class="p-article-pagination__link--next js-next" href="#next">
-          <span class="p-article-pagination__label">Next</span>
-        </a>
-      </div>
-      {% endif %}
-    </main>
+        {% endif %}
+      </main>
+    </div>
   </div>
-</div>
 
-<script>
-  var links = [].slice.call(document.querySelectorAll('.p-side-navigation--raw-html li > a'));
-  var currentPath = window.location.pathname;
+  <script>
+    var links = [].slice.call(document.querySelectorAll('.p-side-navigation--raw-html li > a'));
+    var currentPath = window.location.pathname;
 
-  var previousLink = document.querySelector(".js-previous");
-  var nextLink = document.querySelector(".js-next");
+    var previousLink = document.querySelector(".js-previous");
+    var nextLink = document.querySelector(".js-next");
 
-  links.forEach(function (link, index) {
-    link.addEventListener('click', function () {
-      links.forEach(function (link) {
-        link.removeAttribute('aria-current');
+    links.forEach(function(link, index) {
+      link.addEventListener('click', function() {
+        links.forEach(function(link) {
+          link.removeAttribute('aria-current');
+        });
+        this.setAttribute('aria-current', 'page');
+        this.blur();
       });
-      this.setAttribute('aria-current', 'page');
-      this.blur();
-    });
 
-    if (link.getAttribute('href') === currentPath) {
-      link.setAttribute('aria-current', 'page');
-      if (previousLink !== null) {
-        if (index > 0) {
-          previousLink.href = links[index-1].getAttribute('href');
-        } else {
-          previousLink.remove()
+      if (link.getAttribute('href') === currentPath) {
+        link.setAttribute('aria-current', 'page');
+        if (previousLink !== null) {
+          if (index > 0) {
+            previousLink.href = links[index - 1].getAttribute('href');
+          } else {
+            previousLink.remove()
+          }
+        }
+        if (nextLink !== null) {
+          if (index !== links.length - 1) {
+            nextLink.href = links[index + 1].getAttribute('href');
+          } else {
+            nextLink.remove()
+          }
         }
       }
-      if (nextLink !== null) {
-        if (index !== links.length -1) {
-          nextLink.href = links[index+1].getAttribute('href');
+    });
+
+    /**
+      Toggles the expanded/collapsed classed on side navigation element.
+
+      @param {HTMLElement} sideNavigation The side navigation element.
+      @param {Boolean} show Whether to show or hide the drawer.
+    */
+    function toggleDrawer(sideNavigation, show) {
+      if (sideNavigation) {
+        if (show) {
+          sideNavigation.classList.remove('is-collapsed');
+          sideNavigation.classList.add('is-expanded');
         } else {
-          nextLink.remove()
+          sideNavigation.classList.remove('is-expanded');
+          sideNavigation.classList.add('is-collapsed');
         }
       }
     }
-  });
 
-  /**
-    Toggles the expanded/collapsed classed on side navigation element.
+    /**
+      Attaches event listeners for the side navigation toggles
+      @param {HTMLElement} sideNavigation The side navigation element.
+    */
+    function setupSideNavigation(sideNavigation) {
+      var toggles = [].slice.call(sideNavigation.querySelectorAll('.js-drawer-toggle'));
 
-    @param {HTMLElement} sideNavigation The side navigation element.
-    @param {Boolean} show Whether to show or hide the drawer.
-  */
-  function toggleDrawer(sideNavigation, show) {
-    if (sideNavigation) {
-      if (show) {
-        sideNavigation.classList.remove('is-collapsed');
-        sideNavigation.classList.add('is-expanded');
-      } else {
-        sideNavigation.classList.remove('is-expanded');
-        sideNavigation.classList.add('is-collapsed');
-      }
-    }
-  }
+      toggles.forEach(function(toggle) {
+        toggle.addEventListener('click', function(event) {
+          event.preventDefault();
+          var sideNav = document.getElementById(toggle.getAttribute('aria-controls'));
 
-  /**
-    Attaches event listeners for the side navigation toggles
-    @param {HTMLElement} sideNavigation The side navigation element.
-  */
-  function setupSideNavigation(sideNavigation) {
-    var toggles = [].slice.call(sideNavigation.querySelectorAll('.js-drawer-toggle'));
-
-    toggles.forEach(function (toggle) {
-      toggle.addEventListener('click', function (event) {
-        event.preventDefault();
-        var sideNav = document.getElementById(toggle.getAttribute('aria-controls'));
-
-        if (sideNav) {
-          toggleDrawer(sideNav, !sideNav.classList.contains('is-expanded'));
-        }
+          if (sideNav) {
+            toggleDrawer(sideNav, !sideNav.classList.contains('is-expanded'));
+          }
+        });
       });
-    });
-  }
+    }
 
-  /**
-    Attaches event listeners for all the side navigations in the document.
-    @param {String} sideNavigationSelector The CSS selector matching side navigation elements.
-  */
-  function setupSideNavigations(sideNavigationSelector) {
-    // Setup all side navigations on the page.
-    var sideNavigations = [].slice.call(document.querySelectorAll(sideNavigationSelector));
+    /**
+      Attaches event listeners for all the side navigations in the document.
+      @param {String} sideNavigationSelector The CSS selector matching side navigation elements.
+    */
+    function setupSideNavigations(sideNavigationSelector) {
+      // Setup all side navigations on the page.
+      var sideNavigations = [].slice.call(document.querySelectorAll(sideNavigationSelector));
 
-    sideNavigations.forEach(setupSideNavigation);
-  }
+      sideNavigations.forEach(setupSideNavigation);
+    }
 
-  setupSideNavigations('.p-side-navigation, [class*="p-side-navigation--"]');
-</script>
+    setupSideNavigations('.p-side-navigation, [class*="p-side-navigation--"]');
+  </script>
 {% endblock %}
 
 {% block footer_extra %}
-<script src="{{ versioned_static('js/dist/prism.js') }}"></script>
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/smart-start" data-form-id="3591" data-lp-id="" data-return-url="/core/services/thank-you" data-lp-url="/core/services/contact-us">
-</div>
+  <script src="{{ versioned_static('js/dist/prism.js') }}"></script>
+  {{ load_form("/templates/docs/markdown") | safe }}
 {% endblock footer_extra %}
