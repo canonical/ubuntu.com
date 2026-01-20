@@ -1,0 +1,352 @@
+{
+  "form": {
+    "/nvidia": {
+      "templatePath": "/nvidia/index.html",
+      "isModal": true,
+      "modalId": "contact-modal",
+      "formData": {
+        "title": "Let's get your AI project ready to launch!",
+        "introText": [
+          "Canonical partners with NVIDIA to offer turnkey AI solutions to enterprises.",
+          "Tell us about your project so we can bring the right Canonical team members to the conversation to help you."
+        ],
+        "formId": 4656,
+        "returnUrl": "/nvidia#success",
+        "lpUrl": "https://pages.ubuntu.com/things-contact-us.html"
+      },
+      "fieldsets": [
+        {
+          "title": "What is your role in your organisation?",
+          "id": "your-role",
+          "inputType": "checkbox",
+          "fields": [
+            {
+              "type": "checkbox",
+              "id": "role-developer-engineer",
+              "label": "Developer/Engineer"
+            },
+            {
+              "type": "checkbox",
+              "id": "role-research-engineer",
+              "label": "Research engineer"
+            },
+            {
+              "type": "checkbox",
+              "id": "role-data-scientist",
+              "label": "Data scientist"
+            },
+            {
+              "type": "checkbox",
+              "id": "role-manager",
+              "label": "Manager"
+            },
+            {
+              "type": "checkbox",
+              "id": "role-director",
+              "label": "Director"
+            },
+            {
+              "type": "checkbox",
+              "id": "role-cto-cio",
+              "label": "CTO/CIO"
+            },
+            {
+              "type": "checkbox",
+              "id": "role-ceo-founder",
+              "label": "CEO/Founder"
+            }
+          ]
+        },
+        {
+          "title": "What best represents your organisation?",
+          "id": "organisation-type",
+          "inputType": "checkbox",
+          "fields": [
+            {
+              "type": "checkbox",
+              "id": "organisation-leverage",
+              "label": "We leverage (or would like to leverage) NVIDIA hardware and Canonical / Ubuntu solutions"
+            },
+            {
+              "type": "checkbox",
+              "id": "organisation-isv",
+              "label": "We build solutions on top of NVIDIA and Ubuntu platforms (ISV)"
+            },
+            {
+              "type": "checkbox",
+              "id": "organisation-var",
+              "label": "We are a value added reseller (VAR)"
+            },
+            {
+              "type": "checkbox",
+              "id": "organisation-gsi",
+              "label": "We are a system integrator (GSI)"
+            },
+            {
+              "type": "checkbox",
+              "id": "organisation-hardware-systems",
+              "label": "We build hardware systems (OEM/ODM)"
+            },
+            {
+              "type": "checkbox",
+              "id": "organisation-miscellaneous",
+              "label": "Miscellaneous"
+            }
+          ]
+        },
+        {
+          "title": "What NVIDIA hardware are you using or plan to use? (multiple choices)",
+          "id": "nvidia-hardware",
+          "inputType": "checkbox",
+          "fields": [
+            {
+              "type": "checkbox",
+              "id": "hardware-datacenter-gpu",
+              "label": "Datacenter GPUs"
+            },
+            {
+              "type": "checkbox",
+              "id": "hardware-workstation-gpu",
+              "label": "Workstation GPUs"
+            },
+            {
+              "type": "checkbox",
+              "id": "hardware-gpu-in-a-cloud",
+              "label": "I work with GPUs, but they are all in a cloud"
+            },
+            {
+              "type": "checkbox",
+              "id": "hardware-bluefield-dpus",
+              "label": "Bluefield DPUs"
+            },
+            {
+              "type": "checkbox",
+              "id": "hardware-nvidia-connectx",
+              "label": "NVIDIA ConnectX"
+            },
+            {
+              "type": "checkbox",
+              "id": "hardware-nvidia-dgx",
+              "label": "NVIDIA DGX"
+            },
+            {
+              "type": "checkbox",
+              "id": "hardware-egx-systems",
+              "label": "EGX systems"
+            },
+            {
+              "type": "checkbox",
+              "id": "hardware-spectrum-nics",
+              "label": "Spectrum NICs"
+            },
+            {
+              "type": "checkbox",
+              "id": "hardware-mobile-socs",
+              "label": "Mobile SoCs (Tegra/Jetson/DRIVE)"
+            },
+            {
+              "type": "checkbox",
+              "id": "hardware-other",
+              "label": "Other",
+              "hasOtherInput": true,
+              "otherInputId": "hardware-other-specified",
+              "otherInputPlaceholder": "Please specify"
+            }
+          ]
+        },
+        {
+          "title": "What industry vertical best describes your use-case? (multiple choices)",
+          "id": "industry-vertical",
+          "inputType": "checkbox",
+          "fields": [
+            {
+              "type": "checkbox",
+              "id": "use-case-agriculture",
+              "label": "Agriculture"
+            },
+            {
+              "type": "checkbox",
+              "id": "use-case-automotive",
+              "label": "Automotive"
+            },
+            {
+              "type": "checkbox",
+              "id": "use-case-energy",
+              "label": "Energy"
+            },
+            {
+              "type": "checkbox",
+              "id": "use-case-education",
+              "label": "Education"
+            },
+            {
+              "type": "checkbox",
+              "id": "use-case-financial-services",
+              "label": "Financial services"
+            },
+            {
+              "type": "checkbox",
+              "id": "use-case-healthcare",
+              "label": "Healthcare"
+            },
+            {
+              "type": "checkbox",
+              "id": "use-case-hpc",
+              "label": "HPC"
+            },
+            {
+              "type": "checkbox",
+              "id": "use-case-manufacturing",
+              "label": "Manufacturing"
+            },
+            {
+              "type": "checkbox",
+              "id": "use-case-media",
+              "label": "Media"
+            },
+            {
+              "type": "checkbox",
+              "id": "use-case-public-sector",
+              "label": "Public sector"
+            },
+            {
+              "type": "checkbox",
+              "id": "use-case-retail",
+              "label": "Retail"
+            },
+            {
+              "type": "checkbox",
+              "id": "use-case-technology",
+              "label": "Technology"
+            },
+            {
+              "type": "checkbox",
+              "id": "use-case-telecom",
+              "label": "Telecom"
+            },
+            {
+              "type": "checkbox",
+              "id": "use-case-other",
+              "label": "Other",
+              "hasOtherInput": true,
+              "otherInputId": "use-case-other-specified",
+              "otherInputPlaceholder": "Please specify"
+            }
+          ]
+        },
+        {
+          "title": "Are you familiar with NVIDIA AI for Enterprise solutions?",
+          "id": "familiar-nvidia-ai",
+          "inputType": "radio",
+          "fields": [
+            {
+              "type": "radio",
+              "id": "familiar-nvidia-ai-yes",
+              "label": "Yes",
+              "value": "Yes"
+            },
+            {
+              "type": "radio",
+              "id": "familiar-nvidia-ai-no",
+              "label": "No",
+              "value": "No"
+            }
+          ]
+        },
+        {
+          "title": "What Canonical/NVIDIA solutions would you be interested in?(multiple choices)",
+          "id": "interested-solutions",
+          "inputType": "checkbox",
+          "fields": [
+            {
+              "type": "checkbox",
+              "id": "solutions-os",
+              "label": "Operating system & GPU driver support"
+            },
+            {
+              "type": "checkbox",
+              "id": "solutions-virtualisation",
+              "label": "Virtualisation : vGPU and MIG-based solutions"
+            },
+            {
+              "type": "checkbox",
+              "id": "solutions-networking",
+              "label": "Networking : Offload, storage, accelerations"
+            },
+            {
+              "type": "checkbox",
+              "id": "solutions-ai-ml-training",
+              "label": "AI/ML training or inference"
+            },
+            {
+              "type": "checkbox",
+              "id": "solutions-datacenter",
+              "label": "Provisioning a datacenter (on-prem or hybrid)"
+            },
+            {
+              "type": "checkbox",
+              "id": "solutions-container-orchestration",
+              "label": "Container orchestration"
+            },
+            {
+              "type": "checkbox",
+              "id": "solutions-mlops",
+              "label": "MLOps"
+            },
+            {
+              "type": "checkbox",
+              "id": "solutions-nvidia-enterprise",
+              "label": "NVIDIA AI for Enterprise"
+            },
+            {
+              "type": "checkbox",
+              "id": "solutions-mofed-support",
+              "label": "MOFED support"
+            },
+            {
+              "type": "checkbox",
+              "id": "solutions-nvidia-doca",
+              "label": "NVIDIA DOCA"
+            },
+            {
+              "type": "checkbox",
+              "id": "solutions-nvidia-triton",
+              "label": "NVIDIA Triton"
+            },
+            {
+              "type": "checkbox",
+              "id": "solutions-other",
+              "label": "Other",
+              "hasOtherInput": true,
+              "otherInputId": "solutions-other-specified",
+              "otherInputPlaceholder": "Please specify"
+            }
+          ]
+        },
+        {
+          "title": "Tell us more about your project",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "summarize-your-project",
+              "label": "Tell us more about your project. What are some of your challenges when building your product and taking it to market?",
+              "rows": 3
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
