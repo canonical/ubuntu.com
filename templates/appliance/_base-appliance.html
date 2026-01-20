@@ -1,25 +1,30 @@
 {% extends "templates/base.html" %}
 
-{% block meta_copydoc %}{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+{% endblock meta_copydoc %}
 
 {% block body_class %}
   is-paper
 {% endblock body_class %}
 
 {% block outer_content %}
+
   {% block content %}{% endblock %}
-  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_appliance" data-form-id="3231" data-lp-id="6279" data-return-url="https://ubuntu.com/appliance#contact-form-success" data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+  <!-- There was never a form "/shared/forms/interactive/_appliance" so pointing it to default contact-us form -->
+  <!-- <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_appliance" data-form-id="3231" data-lp-id="6279" data-return-url="https://ubuntu.com/appliance#contact-form-success" data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div> -->
+  {{ load_form("/appliance/contact-us",formId=3231, isModal=true) | safe }}
   <script src="{{ versioned_static('js/dist/appliance.js') }}" defer></script>
 
   <style>
     .p-stepped-list--detailed ol li {
       margin-bottom: 1rem;
     }
-  
-    .p-stepped-list--detailed > .p-stepped-list__item:first-child {
+
+    .p-stepped-list--detailed>.p-stepped-list__item:first-child {
       &::after {
         display: none;
       }
+
       border: 0;
     }
   </style>
