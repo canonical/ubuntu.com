@@ -1,0 +1,345 @@
+{% extends "toolchains/base_toolchains.html" %}
+
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/11SBSniWIQSaEJE3VT1bqyClKVV3NHPtD72dCyJ5hUPE
+{% endblock meta_copydoc %}
+
+{% block title %}Go support - Canonical builds of OpenJDK for Ubuntu{% endblock %}
+
+{% block meta_description %}
+  Explore Canonical’s Go support and automation offering - 
+  long term supported builds, minimal containers and dev environment automation
+{% endblock %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+
+  {% call(slot) vf_hero(
+    title_text='Canonical’s build of Go for Ubuntu',
+    subtitle_text='Long-term support, automated installation, and<br class="u-hide--small u-hide--medium" /> streamlined packaging for Go apps on Ubuntu' | safe,
+    layout='25/75'
+    ) -%}
+    {%- if slot == 'signpost_image' -%}
+          {{ image(url="https://assets.ubuntu.com/v1/deb91f35-go_logo.png",
+            alt="",
+            width="852",
+            height="249",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe
+          }}
+    {%- endif -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Bring stability to your Go environment by innovating on Ubuntu. 
+        Receive security patches on day 1, with up to 15 years of long-term support 
+        for Go releases through Ubuntu Pro. Benefit from hassle-free installation 
+        through the Go snap, streamline your development environment creation with 
+        the devpack for Go, and keep your workloads secure with our minimal runtime containers.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="https://documentation.ubuntu.com/ubuntu-for-developers/howto/go-setup/#install-golang"
+         class="p-button--positive u-no-margin--bottom">Use Go on Ubuntu</a>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {% call(slot) vf_cta_section(
+          variant='default',
+          layout='100',
+          ) -%}
+    {%- if slot == 'cta' -%}
+      <a href="https://documentation.ubuntu.com/ubuntu-for-developers/reference/availability/go/">View available versions of Go &rsaquo;</a>
+    {%- endif -%}
+  {% endcall -%}
+
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
+    {%- if slot == 'title' -%}
+      <h2>Predictable Go release cadence</h2>
+    {%- endif -%}
+
+    {%- if slot == 'description' -%}
+      <p>
+        Go releases on Ubuntu follow an established, reliable cadence that offers you both the latest versions and long-term support for LTS releases. There are multiple methods for installing the Go toolchain on Ubuntu.
+      </p>
+      <p>
+        Each method offers distinct advantages for various organizations; therefore, choose the one that best aligns with your requirements from the options below.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">Archive packages</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+      <p>
+        Ubuntu LTS releases contain the recent Go versions in the archive at the time of the Ubuntu release. This package benefits from the security and support guarantees of Ubuntu Pro.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">Snap for Go</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+      <p>
+        The Go snap streamlines the setup experience and it facilitates the side-by-side installation of multiple Go versions, utilizing the identical source-built binaries available from the Ubuntu archive.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_3' -%}
+      <h3 class="p-heading--5">Precompiled Go binaries</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_3' -%}
+      <p>
+        Precompiled Go binaries, ready for immediate use, can be downloaded in a standard compressed archive format. These official distributions are hosted on the dedicated release page of the official Go programming language website.
+      </p>
+    {%- endif -%}
+
+  {%- endcall -%}
+
+  {{ vf_basic_section(title={"text": "Build production grade containers for your Go applications"},
+    is_split_on_medium=true,
+    items=[
+    {
+    "type": "image",
+    "padding": "shallow",
+    "item": {
+    "attrs": {
+    "src": "https://assets.ubuntu.com/v1/ae755737-build_production_grade.png",
+    "alt": "Chiselled Ubuntu containers for Go applications",
+    }
+    }
+    },
+    {
+    "type": "description",
+    "item": {
+    "type": "html",
+    "content": "
+    <p>
+      Thanks to the Go extension for Rockcraft, in just one command you can build
+      <a href=\"https://documentation.ubuntu.com/rockcraft/stable/explanation/rocks\"> Rocks</a>,
+      which are production-grade OCI containers for your application.
+    </p>
+    "
+    }
+    },
+    {
+    "type": "cta-block",
+    "item": {
+    "secondaries": [{
+    "content_html": "Build a Rock for a Go application",
+    "attrs": {
+    "href": "https://documentation.ubuntu.com/rockcraft/latest/tutorial/go/"
+    }
+    }],
+    }
+    }
+  ]) }}
+
+  {{ vf_basic_section(
+      title={"text": "Create a Kubernetes operator for your Go applications"},
+      items=[
+        {
+          "type": "image",
+          "padding": "shallow",
+          "item": {
+            "attrs": {
+              "src": "https://assets.ubuntu.com/v1/167b8b1e-create_a_kubernetes.png",
+              "alt": "Kubernetes operator for Go applications"
+            }
+          }
+        },
+        {
+          "type": "description",
+          "item": {
+            "type": "html",
+            "content": "
+              <p>
+                Using the <a href=\"https://documentation.ubuntu.com/charmcraft/stable/tutorial/kubernetes-charm-go/\">Charmcraft Go plugin</a>,
+                you can package your Go application as a charm in a single command. 
+                Charms are universal software operators for lifecycle management, and through the Go plugin, 
+                you can unlock the benefits of the entire charm ecosystem.
+              </p>
+              <p>
+                This enables connections to services like HA Postgres databases, monitoring through Grafana, 
+                and easy integration with ingress, among other features.
+              </p>
+
+              <h3 class=\"p-heading--5 u-no-padding--top u-no-margin--bottom\">Full application lifecycle management</h3>
+              <p class=\"u-no-padding--top\">Charms operate across all aspects of application lifecycle management, with an emphasis on day 2 operations.</p>
+              <h3 class=\"p-heading--5 u-no-padding--top u-no-margin--bottom\">Support for all Kubernetes distributions</h3>
+              <p class=\"u-no-padding--top\">Your app can be deployed and orchestrated on all major on prem and cloud Kubernetes distributions.</p>
+              <h3 class=\"p-heading--5 u-no-padding--top u-no-margin--bottom\">Benefit from Canonical’s charm ecosystem</h3>
+              <p class=\"u-no-padding--top\">Every charm benefits from a set of prebuilt integrations including databases, observability, ingress, authentication and much more.</p>
+            "
+          }
+        },
+        {
+          "type": "cta-block",
+          "item": {
+            "secondaries": [
+              {
+                "content_html": "Use Charmcraft Go plugin",
+                "attrs": {
+                  "href": "https://documentation.ubuntu.com/charmcraft/stable/tutorial/kubernetes-charm-go/"
+                }
+              },
+            ],
+          }
+        }
+      ],
+  ) }}
+    
+
+  {{ vf_basic_section(
+      title={"text": "Streamlined application packaging for VMs "},
+      items=[
+        {
+          "type": "description",
+          "item": {
+            "type": "html",
+            "content": "
+              <p>
+                Canonical provides tooling to simplify and automate packaging 
+                of Go applications so that they can run on your VM or bare metal machine.
+              </p>
+
+              <h3 class=\"p-heading--5 u-no-padding--top\">
+                Simplify packaging for VM environments
+              </h3>
+              <p>
+                The new Snapcraft plugin greatly simplifies packaging of Go applications as Snaps. 
+                It builds Go modules, which are collections of packages stored in a file tree 
+                containing a go.mod file at the root, and allows for setting up a go workspace for Go modules.
+              </p>
+              <p>
+                Snaps bundle an application with all its dependencies, 
+                allowing it to run securely in a sandbox on any major Linux distribution. 
+                This simplifies software management with automatic updates and 
+                robust security guarantees.
+              </p>
+            "
+          }
+        },
+        {
+          "type": "cta-block",
+          "item": {
+            "secondaries": [
+              {
+                "content_html": "Use the Go Snapcraft Plugin",
+                "attrs": {
+                  "href": "https://documentation.ubuntu.com/snapcraft/stable/common/craft-parts/reference/plugins/go_plugin/"
+                }
+              },
+            ],
+          }
+        }
+      ],
+  ) }}
+
+  {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=true) -%}
+      {%- if slot == 'title' -%}
+      <h2>Ample architecture and FIPS support</h2>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">Supported architectures</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+      <p class="u-no-margin--bottom">
+        Canonical Go builds are available and tested on the following architectures:
+        <ul class=\"p-list\">
+          <li class=\"p-list__item\">AMD64</li>
+          <li class=\"p-list__item\">ARM64</li>
+          <li class=\"p-list__item\">s390x</li>
+          <li class=\"p-list__item\">Ppc64el</li>
+        </ul>
+      </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">FIPS compliance</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+      <p>
+        With <a href="/pro">Ubuntu Pro</a>, you can get access to 
+        FIPS certified versions of the Go toolchain for Ubuntu packaged 
+        as snaps, starting from version 1.18.
+      </p>
+      {%- endif -%}
+
+  {%- endcall -%}
+
+  {{ vf_basic_section(
+      title={"text": "Receive up to 15 years of security patching and maintenance"},
+      items=[
+        {
+          "type": "image",
+          "padding": "shallow",
+          "item": {
+            "attrs": {
+              "src": "https://assets.ubuntu.com/v1/40531e07-receive_up_to.png",
+              "alt": ""
+            }
+          }
+        },
+        {
+          "type": "description",
+          "item": {
+            "type": "html",
+            "content": "
+              <p>
+                Extend the security support period for your preferred 
+                Go build to up to 15 years, through <a href=\"/pro\">Ubuntu Pro</a> 
+                – Canonical’s comprehensive subscription for open source security.
+              </p>
+              <p>
+                Using Go on Ubuntu gives developers the freedom to focus 
+                on making impactful applications that deliver for customers
+                with expanded security maintenance for the latest Go releases.
+              </p>
+            "
+          }
+        },
+        {
+          "type": "cta-block",
+          "item": {
+            "secondaries": [
+              {
+                "content_html": "Get support with Ubuntu Pro",
+                "attrs": {
+                  "href": "/pricing/pro"
+                }
+              },
+            ],
+          }
+        }
+      ],
+  ) }}
+
+  <hr class="p-rule is-fixed-width" />
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <h2>
+        <a href="/toolchains/contact-us"
+           class="js-invoke-modal"
+           aria-controls="toolchains-modal">Talk to us about your Go workloads on Ubuntu ›</a>
+      </h2>
+    </div>
+  </section>
+
+  {{ load_form("/toolchains") | safe }}
+
+{% endblock content %}
