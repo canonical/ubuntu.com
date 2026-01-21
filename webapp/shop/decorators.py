@@ -237,10 +237,7 @@ def credentials_admin():
         @wraps(func)
         def decorated_function(*args, **kwargs):
             sso_user = user_info(flask.session)
-            if (
-                sso_user
-                and sso_user.get("is_credentials_admin", False)
-            ):
+            if sso_user and sso_user.get("is_credentials_admin", False):
                 return func(*args, **kwargs)
 
             return flask.render_template(
