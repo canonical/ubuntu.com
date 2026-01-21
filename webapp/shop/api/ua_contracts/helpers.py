@@ -41,7 +41,7 @@ def get_items_aggregated_values(items: List[ContractItem], type: str) -> Dict:
     end_date = None
     number_of_machines = 0
     for item in items:
-        number_of_machines = number_of_machines + item.value
+        number_of_machines += item.value
 
         if not start_date:
             start_date = item.start_date

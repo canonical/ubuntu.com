@@ -63,10 +63,10 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
     area = area if area in AREA_LIST else "account"
 
     session = talisker.requests.get_session()
-    badgr_session = init_badgr_session(area)
-    trueability_session = init_trueability_session(area)
-    proctor_session = init_proctor_session(area)
-    credly_session = init_credly_session(area)
+    badgr_session = init_cred_session(area)
+    trueability_session = init_cred_session(area)
+    proctor_session = init_cred_session(area)
+    credly_session = init_cred_session(area)
 
     def decorator(func):
         @wraps(func)
@@ -218,8 +218,8 @@ def credentials_group():
         def decorated_function(*args, **kwargs):
             sso_user = user_info(flask.session)
             if sso_user and (
-                (sso_user.get("is_credentials_admin", False) is True)
-                or (sso_user.get("is_credentials_support", False) is True)
+                sso_user.get("is_credentials_admin", False)
+                or sso_user.get("is_credentials_support", False)
             ):
                 return func(*args, **kwargs)
 
@@ -239,7 +239,7 @@ def credentials_admin():
             sso_user = user_info(flask.session)
             if (
                 sso_user
-                and sso_user.get("is_credentials_admin", False) is True
+                and sso_user.get("is_credentials_admin", False)
             ):
                 return func(*args, **kwargs)
 
@@ -252,44 +252,14 @@ def credentials_admin():
     return decorator
 
 
-def init_badgr_session(area) -> Session:
+def init_cred_session(area) -> Session:
     if area != "cred":
         return None
 
-    badgr_session = Session()
-    talisker.requests.configure(badgr_session)
+    session = Session()
+    talisker.requests.configure(session)
 
-    return badgr_session
-
-
-def init_credly_session(area) -> Session:
-    if area != "cred":
-        return None
-
-    credly_session = Session()
-    talisker.requests.configure(credly_session)
-
-    return credly_session
-
-
-def init_trueability_session(area) -> Session:
-    if area != "cred":
-        return None
-
-    trueability_session = Session()
-    talisker.requests.configure(trueability_session)
-
-    return trueability_session
-
-
-def init_proctor_session(area) -> Session:
-    if area != "cred":
-        return None
-
-    proc_session = Session()
-    talisker.requests.configure(proc_session)
-
-    return proc_session
+    return session
 
 
 def get_redirect_default(area) -> str:
