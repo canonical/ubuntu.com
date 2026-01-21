@@ -52,7 +52,9 @@
         </li>
       </ul>
       <div class="p-cta-block">
-        <a class="js-invoke-modal" href="/desktop/wsl/contact-us" aria-controls="contact-modal">Looking&nbsp;for&nbsp;enterprise&nbsp;support?&nbsp;Contact&nbsp;us&nbsp;&rsaquo;</a>
+        <a class="js-invoke-modal"
+           href="/desktop/wsl/contact-us"
+           aria-controls="contact-modal">Looking&nbsp;for&nbsp;enterprise&nbsp;support?&nbsp;Contact&nbsp;us&nbsp;&rsaquo;</a>
       </div>
     {%- endif -%}
     {%- if slot == 'image' -%}
@@ -146,51 +148,52 @@
   </section>
 
   <!-- The download for "/desktop/wsl/install" is redirected to Github via url rule -->
-  {{ vf_basic_section(title={"text": "Ubuntu is the number 1 choice for organizations using WSL"},
-    items=[
-    {
-    "type": "description",
-    "item": {
-    "type": "html",
-    "content": '
-    <p class="u-sv3">
-      <a href="/pro">Ubuntu Pro</a> brings Expanded Security Maintenance (ESM) for all Ubuntu LTS releases for up to 15 years and optional 24/7 support, including instances on WSL.
-    </p>
-    '
-    }
-    },
-    {
-    "type": "cta-block",
-    "item": {
-    "secondaries": [
-    {
-    "content_html": "Download the Ubuntu Pro for WSL app",
-    "attrs": {
-    "href": "/desktop/wsl/install"
-    }
-    }
-    ]
-    }
-    },
-    {
-    "type": "description",
-    "item": {
-    "type": "html",
-    "content": '
-    <p>
-      Ubuntu Pro also enables system administrators to manage WSL instances using <a href="/landscape">Landscape, Canonical\'s system management tool for Ubuntu</a>.
-    </p>
-    '
-    }
-    },
-    {
-    "type": "description",
-    "item": {
-    "type": "text",
-    "content": "Monitor your entire estate using the latest Landscape beta features and automatically identify which WSL instances comply with your provisioning and configuration policies in order to keep your environment secure."
-    }
-    },
-    ]
+  {{ vf_basic_section(
+      title={"text": "Ubuntu is the number 1 choice for organizations using WSL"},
+      items=[
+        {
+          "type": "description",
+          "item": {
+            "type": "html",
+            "content": '
+              <p class="u-sv3">
+                <a href="/pro">Ubuntu Pro</a> brings Expanded Security Maintenance (ESM) for all Ubuntu LTS releases for up to 15 years and optional 24/7 support, including instances on WSL.
+              </p>
+            '
+          }
+        },
+        {
+          "type": "cta-block",
+          "item": {
+            "secondaries": [
+              {
+                "content_html": "Download the Ubuntu Pro for WSL app",
+                "attrs": {
+                  "href": "/desktop/wsl/install"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "description",
+          "item": {
+            "type": "html",
+            "content": '
+              <p>
+                Ubuntu Pro also enables system administrators to manage WSL instances using <a href="/landscape">Landscape, Canonical\'s system management tool for Ubuntu</a>.
+              </p>
+            '
+          }
+        },
+        {
+          "type": "description",
+          "item": {
+            "type": "text",
+            "content": "Monitor your entire estate using the latest Landscape beta features and automatically identify which WSL instances comply with your provisioning and configuration policies in order to keep your environment secure."
+          }
+        },
+      ]
     ) }}
   
     <section class="p-section">
@@ -332,7 +335,9 @@
                 If you have further questions around Ubuntu on WSL or want to share your experiences, join the conversation on the <a href="https://discourse.ubuntu.com/c/wsl/27">Ubuntu Discourse</a>.
               </p>
               <p>
-                If you want to hear more about the benefits of securing Ubuntu on WSL at your organisation, please <a class="js-invoke-modal" href="/desktop/wsl/contact-us" aria-controls="contact-modal">get in touch</a>.
+                If you want to hear more about the benefits of securing Ubuntu on WSL at your organisation, please <a class="js-invoke-modal"
+      href="/desktop/wsl/contact-us"
+      aria-controls="contact-modal">get in touch</a>.
               </p>
             </div>
           </div>
@@ -383,6 +388,5 @@
         renderTutorials('wsl');
       });
     </script>
-
   {{ load_form("/desktop/wsl") | safe }}
 {% endblock %}

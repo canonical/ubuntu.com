@@ -11,7 +11,7 @@
           "Tell us about your project so we can bring the right Canonical team members to the conversation to help you."
         ],
         "formId": 4656,
-        "returnUrl": "/nvidia#success",
+        "returnUrl": "/nvidia#contact-form-success",
         "lpUrl": "https://pages.ubuntu.com/things-contact-us.html"
       },
       "fieldsets": [
@@ -147,10 +147,7 @@
             {
               "type": "checkbox",
               "id": "hardware-other",
-              "label": "Other",
-              "hasOtherInput": true,
-              "otherInputId": "hardware-other-specified",
-              "otherInputPlaceholder": "Please specify"
+              "label": "Other"
             }
           ]
         },
@@ -227,10 +224,7 @@
             {
               "type": "checkbox",
               "id": "use-case-other",
-              "label": "Other",
-              "hasOtherInput": true,
-              "otherInputId": "use-case-other-specified",
-              "otherInputPlaceholder": "Please specify"
+              "label": "Other"
             }
           ]
         },
@@ -316,10 +310,7 @@
             {
               "type": "checkbox",
               "id": "solutions-other",
-              "label": "Other",
-              "hasOtherInput": true,
-              "otherInputId": "solutions-other-specified",
-              "otherInputPlaceholder": "Please specify"
+              "label": "Other"
             }
           ]
         },
@@ -329,7 +320,7 @@
             {
               "type": "long-text",
               "id": "summarize-your-project",
-              "label": "Tell us more about your project. What are some of your challenges when building your product and taking it to market?",
+              "placeholder": "Tell us more about your project. What are some of your challenges when building your product and taking it to market?",
               "rows": 3
             }
           ]
