@@ -11,6 +11,7 @@ import talisker.requests
 from jinja2 import ChoiceLoader, FileSystemLoader
 import yaml
 import sentry_sdk
+from werkzeug.exceptions import HTTPException
 
 from sentry_sdk.integrations.flask import FlaskIntegration
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
@@ -268,12 +269,32 @@ search_engine_id = "adb2397a224a1fe55"
 sentry_dsn = get_flask_env("SENTRY_DSN")
 environment = get_flask_env("FLASK_ENV", "production")
 
+
+def sentry_before_send(event, hint):
+    """
+    Filter Sentry events.
+    Excludes all 4xx errors.
+    """
+    if "exc_info" in hint:
+        _, exc_value, _ = hint["exc_info"]
+        # Check if the exception is an HTTPException
+        # (which includes 4xx errors)
+        if (
+            isinstance(exc_value, HTTPException)
+            and 400 <= exc_value.code < 500
+        ):
+            # return None to discard the event
+            return None
+    return event
+
+
 if sentry_dsn:
     sentry_sdk.init(
         dsn=sentry_dsn,
         send_default_pii=True,
         environment=environment,
         integrations=[FlaskIntegration()],
+        before_send=sentry_before_send,
     )
 
 init_handlers(app)
