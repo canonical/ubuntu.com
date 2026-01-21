@@ -24,17 +24,16 @@
 
   {% call(slot) vf_hero(
     title_text='Canonical’s build of Go for Ubuntu',
-    subtitle_text='Long-term support, automated installation, and<br class="u-hide--small u-hide--medium" /> streamlined packaging for Go apps on Ubuntu' | safe,
+    subtitle_text='Long-term support, automated installation,<br class="u-hide--small u-hide--medium" /> and streamlined packaging for Go apps on Ubuntu' | safe,
     layout='25/75'
     ) -%}
     {%- if slot == 'signpost_image' -%}
           {{ image(url="https://assets.ubuntu.com/v1/deb91f35-go_logo.png",
-            alt="Go logo",
+            alt="",
             width="852",
             height="249",
             hi_def=True,
-            loading="auto|lazy",
-            attrs={"class": "u-hide--medium"},
+            loading="auto|lazy"
             ) | safe
           }}
     {%- endif -%}
@@ -117,7 +116,7 @@
     "item": {
     "attrs": {
     "src": "https://assets.ubuntu.com/v1/ae755737-build_production_grade.png",
-    "alt": "Ubuntu containers for Go applications",
+    "alt": "",
     }
     }
     },
@@ -148,7 +147,8 @@
   ]) }}
 
   {{ vf_basic_section(
-      title={"text": "Create a Kubernetes operator for your Go applications"},
+      title={"text": "Create a Kubernetes operator<br/> for your Go applications"},
+      is_split_on_medium=true,
       items=[
         {
           "type": "image",
@@ -156,7 +156,7 @@
           "item": {
             "attrs": {
               "src": "https://assets.ubuntu.com/v1/167b8b1e-create_a_kubernetes.png",
-              "alt": "Kubernetes operator for Go applications"
+              "alt": ""
             }
           }
         },
@@ -204,6 +204,7 @@
 
   {{ vf_basic_section(
       title={"text": "Streamlined application packaging for VMs"},
+      is_split_on_medium=true,
       items=[
         {
           "type": "description",
@@ -248,7 +249,7 @@
       ],
   ) }}
 
-  {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=true) -%}
+  {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=false) -%}
       {%- if slot == 'title' -%}
       <h2>Ample architecture and FIPS support</h2>
       {%- endif -%}
@@ -285,6 +286,7 @@
 
   {{ vf_basic_section(
       title={"text": "Receive up to 15 years of security patching and maintenance"},
+      is_split_on_medium=true,
       items=[
         {
           "type": "image",
@@ -292,7 +294,7 @@
           "item": {
             "attrs": {
               "src": "https://assets.ubuntu.com/v1/40531e07-receive_up_to.png",
-              "alt": "Security support for Go applications"
+              "alt": ""
             }
           }
         },
