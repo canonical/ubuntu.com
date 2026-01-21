@@ -153,7 +153,7 @@ Canonical containers, also known as “rocks”, are a new generation of secure,
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-image-container__image"}
-      ),
+      ) | safe,
       "description_html": "
       <p>
         <a href='https://documentation.ubuntu.com/rockcraft/latest/how-to/get-started'>
@@ -164,7 +164,7 @@ Canonical containers, also known as “rocks”, are a new generation of secure,
           Use Rockcraft with Multipass
         </a>
       </p>
-      ",
+      " | safe,
     
     },
     {
@@ -176,7 +176,7 @@ Canonical containers, also known as “rocks”, are a new generation of secure,
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-image-container__image"},
-       ),
+       ) | safe,
        "description_html": "
       <p>
         <a href='https://documentation.ubuntu.com/rockcraft/latest/reference/rockcraft-yaml/'>
@@ -203,7 +203,7 @@ Canonical containers, also known as “rocks”, are a new generation of secure,
           Define a non root user
         </a>
       </p>
-      ",
+      " | safe,
     },
     {
       "title_text": "Pack",
@@ -214,14 +214,14 @@ Canonical containers, also known as “rocks”, are a new generation of secure,
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-image-container__image"},
-      ),
+      ) | safe,
       "description_html": "
       <p>
         <a href='https://documentation.ubuntu.com/rockcraft/latest/reference/commands/pack/'>
           Pack a rock
         </a>
       </p>
-      ",
+      " | safe,
     }
   ]
 ) %}
