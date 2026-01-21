@@ -100,9 +100,7 @@ class TestSentryFiltering(unittest.TestCase):
         Test that sentry_sdk.init is called
         with the correct before_send function.
         """
-        with patch(
-            "webapp.app.sentry_sdk.init"
-        ) as mock_init:
+        with patch("webapp.app.sentry_sdk.init") as mock_init:
             # Set env vars to ensure init is called.
             with patch.dict(
                 os.environ,
