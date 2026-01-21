@@ -19,7 +19,7 @@
 
 {% block content %}
   {% call(slot) vf_hero(
-    title_text='The full Ubuntu experience, now&nbsp;available on Windows',
+    title_text='The full Ubuntu experience, now&nbsp;available on Windows' | safe,
     layout='50/50-full-width-image'
     ) -%}
     {%- if slot == 'description' -%}

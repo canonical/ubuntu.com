@@ -448,7 +448,7 @@ hwe-16.04</code></pre>
     {%- endif -%}
   {%- endcall -%}
 
-  {{ vf_latest_news(title_text='Latest from our blog&nbsp;&rsaquo;',
+  {{ vf_latest_news(title_text='Latest from our blog&nbsp;&rsaquo;' | safe,
     tag_name="ubuntu-16-04",
     tag_id="2563") }}
 

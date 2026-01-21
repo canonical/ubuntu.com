@@ -222,7 +222,7 @@ meta_copydoc %}
     </div>
   </section>
 
-  {{ vf_latest_news(title_text='Latest from our blog&nbsp;&rsaquo;',
+  {{ vf_latest_news(title_text='Latest from our blog&nbsp;&rsaquo;' | safe,
     tag_name="community",
     tag_id="1227",
     items=3) | safe
