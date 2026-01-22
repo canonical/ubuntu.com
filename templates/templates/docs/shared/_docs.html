@@ -108,14 +108,15 @@
           <hr class="p-rule" />
           <div class="p-article-pagination">
             {% set nav_items = navigation.nav_items %}
-            {% set ns = namespace(use_next=false, outer_title=none) %}
+            {% set ns = namespace(use_next=false, outer_title=none, found_active=false) %}
 
             {%- for page in nav_items|reverse recursive %}
               {% if ns.use_next and not page.hidden and page.navlink_text and not page.navlink_href %}
                 {% set ns.outer_title = page.navlink_text %}
               {% endif %}
               {{- loop(page.children|reverse) }}
-              {% if page.is_active %}
+              {% if page.is_active and not ns.found_active %}
+                {% set ns.found_active = true %}
                 {% set ns.use_next = true %}
               {% elif ns.use_next and not page.hidden and page.navlink_text %}
                 {% if page.navlink_href %}
@@ -133,9 +134,11 @@
 
             {% set ns.outer_title = none %}
             {% set ns.use_next = false %}
+            {% set ns.found_active = false %}
 
             {%- for page in nav_items recursive %}
-              {% if page.is_active %}
+              {% if page.is_active and not ns.found_active %}
+                {% set ns.found_active = true %}
                 {% set ns.use_next = true %}
               {% elif ns.use_next and not page.hidden and page.navlink_text %}
                 {% if page.navlink_href %}
