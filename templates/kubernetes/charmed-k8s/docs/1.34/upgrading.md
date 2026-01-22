@@ -43,18 +43,16 @@ The 'App' section of the output lists each application and its version number. N
   </div>
 </div>
 
-
-
 As with all upgrades, there is a possibility that there may be unforeseen difficulties. It is **highly recommended that you make a backup** of any important data, including any running workloads. For more details on creating backups, see the separate [documentation on backups][backups].
 
 You should also make sure:
 
--   The machine from which you will perform the backup has sufficient internet access to retrieve updated software.
--   Your cluster is running normally.
--   Your Juju client and controller/models are running the same, stable version of Juju (see the [Juju docs][juju-controller-upgrade]).
--   You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from.
--   You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster.
--   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/release-1.34/CHANGELOG/CHANGELOG-1.34.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.34 which may impact your workloads.
+- The machine from which you will perform the backup has sufficient internet access to retrieve updated software.
+- Your cluster is running normally.
+- Your Juju client and controller/models are running the same, stable version of Juju (see the [Juju docs][juju-controller-upgrade]).
+- You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from.
+- You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster.
+- You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/release-1.34/CHANGELOG/CHANGELOG-1.34.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.34 which may impact your workloads.
 
 It is also important to understand that **Charmed Kubernetes** will only upgrade
 and if necessary migrate, components relating specifically to elements of
@@ -70,7 +68,6 @@ deprecated APIs.
   </div>
 </div>
 
-
 ## Upgrading the Machine's Series (required for machines currently running 20.04 - Focal)
 
 All of the charms support [upgrading the machine's series via Juju](https://documentation.ubuntu.com/juju/3.6/reference/juju-cli/list-of-juju-cli-commands/upgrade-machine/).
@@ -78,7 +75,6 @@ As each machine is upgraded, the applications on that machine will be stopped an
 go into a `blocked` status until the upgrade is complete. For the worker units, pods will be drained
 from the node and onto one of the other nodes at the start of the upgrade, and the node will be removed
 from the pool until the upgrade is complete.
-
 
 ## Infrastructure updates
 
@@ -94,7 +90,6 @@ This includes:
 
 Note that this may include other applications which you may have installed, such as
 Elasticsearch, Prometheus, Nagios, Helm, etc.
-
 
 <a id='upgrading-containerd'> </a>
 
@@ -133,6 +128,7 @@ Once you know the correct channel, set the **etcd** charm's channel config:
 ```bash
 juju config etcd channel=3.4/stable
 ```
+
 ### Upgrading MetalLB (if used)
 
 Previous versions of the Charmed Kubernetes bundle adopted a two charm approach, deployed in a K8s model with the suggested name `metallb-system`.
@@ -167,7 +163,6 @@ Once the model is empty, it should be safe to remove the model
 ```shell
 juju destroy-model metallb-system --no-prompt
 ```
-
 
 ### Upgrading additional components
 
@@ -383,7 +378,6 @@ It is recommended that you run a [cluster validation][validation] to ensure that
 [snap-channels]: https://docs.snapcraft.io/reference/channels
 [blue-green]: https://martinfowler.com/bliki/BlueGreenDeployment.html
 [validation]: /kubernetes/charmed-k8s/docs/validation
-[supported-versions]: /kubernetes/charmed-k8s/docs/supported-versions
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
@@ -392,6 +386,6 @@ It is recommended that you run a [cluster validation][validation] to ensure that
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/1.34/upgrading.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack  channel</a>.</p>
+    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack channel</a>.</p>
   </div>
 </div>
