@@ -34,10 +34,10 @@
           <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
         </div>
         <div class="p-image-wrapper u-hide--small">
-          {{ image(url="https://assets.ubuntu.com/v1/3b5fa561-mascot-numbat@2x.png",
-                    alt="Noble Numbat",
-                    width="182",
-                    height="135",
+          {{ image(url=releases.lts.mascot_image_large.url,
+                    alt=releases.lts.name,
+                    width=releases.lts.mascot_image_large.width,
+                    height=releases.lts.mascot_image_large.height,
                     hi_def=True,
                     loading="auto") | safe
           }}
@@ -175,10 +175,10 @@
           <h2>Ubuntu {{ releases.latest.full_version }}</h2>
         </div>
         <div class="p-image-wrapper u-hide--small">
-          {{ image(url="https://assets.ubuntu.com/v1/fe84bc06-questing_quokka_mascot_circle_bg.svg",
-                    alt="Questing Quokka mascot",
-                    width="182",
-                    height="182",
+          {{ image(url=releases.latest.mascot_image_large.url,
+                    alt=releases.latest.name,
+                    width=releases.latest.mascot_image_large.width,
+                    height=releases.latest.mascot_image_large.height,
                     hi_def=True,
                     loading="auto") | safe
           }}
