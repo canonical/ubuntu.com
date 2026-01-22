@@ -9,19 +9,7 @@
 {% block body_class %}is-paper{% endblock %}
 
 {% block content %}
-  <section class="p-section--hero">
-    <div class="row--50-50">
-      <div class="col">
-        <h1>Run real-time Ubuntu in production</h1>
-      </div>
-      <div class="col">
-        <p>
-          Canonical announced the general availability of real-time Ubuntu 24.04 LTS. Enterprises in industrial, telecommunications, automotive, aerospace and defence, as well as public sector and retail, can now run their most demanding workloads and develop a wide range of time-sensitive applications on the most popular open-source OS. Register your interest below.
-        </p>
-      </div>
-    </div>
-  </section>
 
-  {{ load_form("/kernel/real-time/contact-us") | safe }}
+  {{ load_form("/real-time", isModal=false, introText="Canonical announced the general availability of real-time Ubuntu 24.04 LTS. Enterprises in industrial, telecommunications, automotive, aerospace and defence, as well as public sector and retail, can now run their most demanding workloads and develop a wide range of time-sensitive applications on the most popular open-source OS. Register your interest below.") | safe }}
 
 {% endblock %}
