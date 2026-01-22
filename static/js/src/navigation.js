@@ -791,7 +791,9 @@ if (accountContainer) {
         accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;" tabindex="0" role="button" onclick="event.stopPropagation()">Sign in</a>`;
       } else {
         window.accountJSONRes = data.account;
-        accountContainer.innerHTML = `<button href="#" class="p-navigation__link is-signed-in" role="menuitem" aria-controls="canonical-login-content-mobile" aria-expanded="false" aria-haspopup="true">Account</button>
+        if (data.account && data.account.email) {
+          const escapedEmail = escapeHtml(data.account.email);
+          accountContainer.innerHTML = `<button href="#" class="p-navigation__link is-signed-in" role="menuitem" aria-controls="canonical-login-content-mobile" aria-expanded="false" aria-haspopup="true">Account</button>
           <ul class="p-navigation__dropdown" id="canonical-login-content-mobile" aria-hidden="true">
             <li class="p-navigation__item--dropdown-close" id="canonical-login-back">
               <button class="p-navigation__link js-back" href="canonical-login-content-mobile" aria-controls="canonical-login-content-mobile" tabindex="-1"">
@@ -800,7 +802,7 @@ if (accountContainer) {
             </li>
             <li class="p-navigation__account-name u-no-padding--bottom">
               <p class="p-text--small">Logged in as <br/>
-              <strong>${data.account.email}</strong></p>
+              <strong>${escapedEmail}</strong></p>
               <hr class="is-dark u-no-margin" />
             </li>
             <li class="p-navigation__dropdown-item"><a class="p-link--inverted" href="/pro/dashboard" onclick="event.stopPropagation()">Ubuntu Pro dashboard</a></li>
@@ -814,8 +816,22 @@ if (accountContainer) {
               <a class="p-link--inverted" href="/logout" onclick="event.stopPropagation()">Logout</a>
             </li>
           </ul>`;
+        } else {
+          console.error("Account data is missing.");
+        }
       }
     });
+}
+
+// Simple HTML escape function
+// From https://stackoverflow.com/questions/6234773/can-i-escape-html-special-chars-in-javascript
+function escapeHtml(unsafe) {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 // Add GA events
