@@ -44,10 +44,19 @@ class MarketoFormTestCase(unittest.TestCase):
 
         marketo_session = Session()
         talisker.requests.configure(marketo_session)
+
+        marketo_url = get_flask_env("MARKETO_API_URL")
+        marketo_client = get_flask_env("MARKETO_API_CLIENT")
+        marketo_secret = get_flask_env("MARKETO_API_SECRET")
+
+        if not (marketo_url and marketo_client and marketo_secret):
+            raise unittest.SkipTest(
+                "Marketo credentials not found in environment")
+
         cls.marketo_api = MarketoAPI(
-            get_flask_env("MARKETO_API_URL"),
-            get_flask_env("MARKETO_API_CLIENT"),
-            get_flask_env("MARKETO_API_SECRET"),
+            marketo_url,
+            marketo_client,
+            marketo_secret,
             marketo_session,
         )
         cls.marketo_api._authenticate()

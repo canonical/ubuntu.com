@@ -93,7 +93,9 @@ class TestRoutes(VCRTestCase):
         """
         Check the tutorials search works
         """
-
+        # Ensure we have a fake key for testing to avoid NoAPIKeyError
+        # VCR should handle the actual request recording/playback
+        os.environ["SEARCH_API_KEY"] = "fake-key"
         search_response = self.client.get("/tutorials?q=ubuntu")
 
         self.assertEqual(search_response.status_code, 200)
