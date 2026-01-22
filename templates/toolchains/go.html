@@ -332,16 +332,17 @@
       ],
   ) }}
 
-  <hr class="p-rule is-fixed-width" />
-  <section class="p-strip is-deep">
-    <div class="u-fixed-width">
-      <h2>
-        <a href="/toolchains/contact-us"
-           class="js-invoke-modal"
-           aria-controls="toolchains-modal">Talk to us about your Go workloads on Ubuntu ›</a>
-      </h2>
-    </div>
-  </section>
+  {% call(slot) vf_cta_section(
+        variant='default',
+        layout='100',
+        ) -%}
+    {%- if slot == 'cta' -%}
+      <a href="/toolchains/contact-us"
+         class="js-invoke-modal"
+         aria-controls="toolchains-modal">Talk to us about your Go workloads on Ubuntu &rsaquo;</a>
+    {%- endif -%}
+  {% endcall -%}
+
 
   {{ load_form("/toolchains") | safe }}
 
