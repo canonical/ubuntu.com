@@ -7,7 +7,6 @@
     {{ load_form("/default-contact-us-devices", 3785,
         title="Contact us about LTS Docker Images",
         introText="",
-        lpId="",
         returnUrl="/security/thank-you?product=docker") | safe }}
   {% else %}
     {{ load_form("/default-contact-us-devices", 1240,
