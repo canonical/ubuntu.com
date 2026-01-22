@@ -51,7 +51,8 @@ class MarketoFormTestCase(unittest.TestCase):
 
         if not (marketo_url and marketo_client and marketo_secret):
             raise unittest.SkipTest(
-                "Marketo credentials not found in environment")
+                "Marketo credentials not found in environment"
+            )
 
         cls.marketo_api = MarketoAPI(
             marketo_url,
