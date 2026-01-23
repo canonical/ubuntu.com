@@ -207,10 +207,13 @@ DYNAMIC_SITEMAPS = [
     "tutorials",
     "engage",
     "ceph/docs",
+    "community/docs",
+    "openstack/docs",
     "blog",
     "security/notices",
     "security/cves",
     "security/vulnerabilities",
+    "security/certifications/docs",
     "security/livepatch/docs",
     "robotics/docs",
 ]
