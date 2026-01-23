@@ -192,9 +192,13 @@ DISCOURSE_API_KEY = get_flask_env("DISCOURSE_API_KEY")
 DISCOURSE_API_USERNAME = get_flask_env("DISCOURSE_API_USERNAME")
 
 CHARMHUB_DISCOURSE_API_KEY = get_flask_env("CHARMHUB_DISCOURSE_API_KEY")
-CHARMHUB_DISCOURSE_API_USERNAME = get_flask_env("CHARMHUB_DISCOURSE_API_USERNAME")
+CHARMHUB_DISCOURSE_API_USERNAME = get_flask_env(
+    "CHARMHUB_DISCOURSE_API_USERNAME"
+)
 WORDPRESS_USERNAME = get_flask_env("WORDPRESS_USERNAME")
-WORDPRESS_APPLICATION_PASSWORD = get_flask_env("WORDPRESS_APPLICATION_PASSWORD")
+WORDPRESS_APPLICATION_PASSWORD = get_flask_env(
+    "WORDPRESS_APPLICATION_PASSWORD"
+)
 
 # Sitemaps that are already generated and don't need to be updated.
 # Can be seen on sitemap_index.xml
@@ -227,7 +231,9 @@ app = FlaskBase(
 )
 
 # ChoiceLoader attempts loading templates from each path in successive order
-directory_parser_templates = Path(directory_parser.__file__).parent / "templates"
+directory_parser_templates = (
+    Path(directory_parser.__file__).parent / "templates"
+)
 loader = ChoiceLoader(
     [
         FileSystemLoader("templates"),
@@ -276,7 +282,10 @@ def sentry_before_send(event, hint):
         _, exc_value, _ = hint["exc_info"]
         # Check if the exception is an HTTPException
         # (which includes 4xx errors)
-        if isinstance(exc_value, HTTPException) and 400 <= exc_value.code < 500:
+        if (
+            isinstance(exc_value, HTTPException)
+            and 400 <= exc_value.code < 500
+        ):
             # return None to discard the event
             return None
     return event
@@ -303,7 +312,9 @@ def init_forms():
             Path(app.root_path).parent / "templates" / form_template_path
         )
         if not template_full_path.exists():
-            raise FileNotFoundError(f"Form template not found: {template_full_path}")
+            raise FileNotFoundError(
+                f"Form template not found: {template_full_path}"
+            )
 
         form_loader = FormGenerator(app, form_template_path)
         form_loader.load_forms()
@@ -334,10 +345,16 @@ app.add_url_rule(
 app.add_url_rule("/navigation", view_func=navigation_nojs)
 app.add_url_rule("/pro/dashboard", view_func=advantage_view)
 app.add_url_rule("/pro/user-subscriptions", view_func=get_user_subscriptions)
-app.add_url_rule("/pro/subscriptions.json", view_func=get_annotated_subscriptions)
-app.add_url_rule("/pro/contracts/<contract_id>/token", view_func=get_contract_token)
+app.add_url_rule(
+    "/pro/subscriptions.json", view_func=get_annotated_subscriptions
+)
+app.add_url_rule(
+    "/pro/contracts/<contract_id>/token", view_func=get_contract_token
+)
 app.add_url_rule("/pro/users", view_func=advantage_account_users_view)
-app.add_url_rule("/pro/distributor/users", view_func=advantage_account_users_view)
+app.add_url_rule(
+    "/pro/distributor/users", view_func=advantage_account_users_view
+)
 app.add_url_rule("/pro/account-users", view_func=get_account_users)
 app.add_url_rule(
     "/pro/accounts/<account_id>/user",
@@ -367,7 +384,9 @@ app.add_url_rule(
     view_func=post_auto_renewal_settings,
     methods=["POST"],
 )
-app.add_url_rule("/pro/renewals/<renewal_id>", view_func=get_renewal, methods=["GET"])
+app.add_url_rule(
+    "/pro/renewals/<renewal_id>", view_func=get_renewal, methods=["GET"]
+)
 app.add_url_rule(
     "/pro/trial/<account_id>",
     view_func=cancel_trial,
@@ -400,13 +419,17 @@ app.add_url_rule(
 
 app.add_url_rule("/pro/distributor", view_func=get_distributor_view)
 app.add_url_rule("/pro/distributor/shop", view_func=get_distributor_view)
-app.add_url_rule("/pro/distributor/thank-you", view_func=get_distributor_thank_you_view)
+app.add_url_rule(
+    "/pro/distributor/thank-you", view_func=get_distributor_thank_you_view
+)
 app.add_url_rule(
     "/pro/channel-offers.json",
     view_func=get_channel_offers,
     methods=["GET"],
 )
-app.add_url_rule("/pro/attach", view_func=activate_magic_attach, methods=["POST"])
+app.add_url_rule(
+    "/pro/attach", view_func=activate_magic_attach, methods=["POST"]
+)
 app.add_url_rule("/pro/attach", view_func=magic_attach_view, methods=["GET"])
 # shop
 app.add_url_rule(
@@ -522,7 +545,11 @@ app.add_url_rule(
 # end of shop
 
 app.add_url_rule(
-    ("/download" "/<regex('server|desktop|cloud|raspberry-pi'):category>" "/thank-you"),
+    (
+        "/download"
+        "/<regex('server|desktop|cloud|raspberry-pi'):category>"
+        "/thank-you"
+    ),
     view_func=download_thank_you,
 )
 
@@ -621,7 +648,9 @@ app.add_url_rule("/security/cves/sitemap.xml", view_func=cves_sitemap)
 # cve section
 app.add_url_rule("/security/cves", view_func=cve_index)
 
-app.add_url_rule(r"/security/<regex('(cve-|CVE-)\d{4}-\d{4,7}'):cve_id>", view_func=cve)
+app.add_url_rule(
+    r"/security/<regex('(cve-|CVE-)\d{4}-\d{4,7}'):cve_id>", view_func=cve
+)
 
 # Security vulnerabilities
 security_vulnerabilities = Category(
@@ -653,7 +682,9 @@ app.add_url_rule(
 app.add_url_rule(
     "/security/vulnerabilities/view-all",
     endpoint="vulnerabilities_list-all",
-    view_func=build_vulnerabilities_list(security_vulnerabilities, "/view-all"),
+    view_func=build_vulnerabilities_list(
+        security_vulnerabilities, "/view-all"
+    ),
 )
 
 app.add_url_rule(
@@ -889,11 +920,15 @@ app.add_url_rule(
 )
 tutorials_docs.init_app(app)
 
-app.add_url_rule("/tutorials.json", view_func=build_tutorials_query(tutorials_docs))
+app.add_url_rule(
+    "/tutorials.json", view_func=build_tutorials_query(tutorials_docs)
+)
 
 # Ceph docs
 ceph_docs = Docs(
-    parser=DocParser(api=discourse_api, index_topic_id=17250, url_prefix="/ceph/docs"),
+    parser=DocParser(
+        api=discourse_api, index_topic_id=17250, url_prefix="/ceph/docs"
+    ),
     document_template="/ceph/docs/document.html",
     url_prefix="/ceph/docs",
     blueprint_name="ceph",
@@ -921,7 +956,9 @@ app.add_url_rule("/credentials/faq", view_func=cred_faq)
 app.add_url_rule(
     "/credentials/sign-up", view_func=cred_sign_up, methods=["GET", "POST"]
 )
-app.add_url_rule("/credentials/thank-you", view_func=cred_thank_you, methods=["GET"])
+app.add_url_rule(
+    "/credentials/thank-you", view_func=cred_thank_you, methods=["GET"]
+)
 app.add_url_rule(
     "/credentials/schedule",
     view_func=cred_schedule,
@@ -947,7 +984,9 @@ app.add_url_rule(
 )
 app.add_url_rule("/credentials/shop/<p>", view_func=cred_shop)
 app.add_url_rule("/credentials/shop/keys", view_func=cred_shop_keys)
-app.add_url_rule("/credentials/shop/order-thank-you", view_func=cred_shop_thank_you)
+app.add_url_rule(
+    "/credentials/shop/order-thank-you", view_func=cred_shop_thank_you
+)
 app.add_url_rule(
     "/credentials/shop/webhook_responses",
     view_func=cred_shop_webhook_responses,
@@ -1163,14 +1202,18 @@ app.add_url_rule(
 # HPE blog section
 def render_blogs():
     blogs = BlogViews(
-        api=BlogAPI(session=session, thumbnail_width=555, thumbnail_height=311),
+        api=BlogAPI(
+            session=session, thumbnail_width=555, thumbnail_height=311
+        ),
         excluded_tags=[3184, 3265, 3408, 3960, 4491, 3599],
         tag_ids=[4307],
         per_page=3,
         blog_title="HPE blogs",
     )
     hpe_articles = blogs.get_tag("hpe")
-    return flask.render_template("/hpe/index.html", blogs=hpe_articles["articles"])
+    return flask.render_template(
+        "/hpe/index.html", blogs=hpe_articles["articles"]
+    )
 
 
 app.add_url_rule("/hpe", view_func=render_blogs)
@@ -1225,7 +1268,9 @@ app.add_url_rule("/blog/draft-blogs", view_func=render_draft_blogs)
 # ubuntu-on-aws - 4478, ubuntu-on-gcp - 4387, ubuntu-on-azure - 4540
 def render_public_cloud_blogs():
     blogs = BlogViews(
-        api=BlogAPI(session=session, thumbnail_width=1000, thumbnail_height=700),
+        api=BlogAPI(
+            session=session, thumbnail_width=1000, thumbnail_height=700
+        ),
         excluded_tags=[3184, 3265, 3408, 3960, 4491, 3599],
         tag_ids=[1205, 1350, 1748, 4191, 4478, 4540, 4387],
         per_page=3,
@@ -1233,7 +1278,9 @@ def render_public_cloud_blogs():
     )
     public_cloud_articles = blogs.get_index()["articles"]
     sorted_articles = sorted(public_cloud_articles, key=lambda x: x["date"])
-    return flask.render_template("/cloud/public-cloud.html", blogs=sorted_articles)
+    return flask.render_template(
+        "/cloud/public-cloud.html", blogs=sorted_articles
+    )
 
 
 app.add_url_rule("/cloud/public-cloud", view_func=render_public_cloud_blogs)
@@ -1242,7 +1289,9 @@ app.add_url_rule("/cloud/public-cloud", view_func=render_public_cloud_blogs)
 # Security standards resources blogs tab
 def render_security_standards_blogs():
     blogs = BlogViews(
-        api=BlogAPI(session=session, thumbnail_width=640, thumbnail_height=340),
+        api=BlogAPI(
+            session=session, thumbnail_width=640, thumbnail_height=340
+        ),
         tag_ids=[
             3829,
             2562,
@@ -1263,7 +1312,9 @@ def render_security_standards_blogs():
         per_page=4,
         blog_title="Security standards blogs",
     )
-    sorted_articles = sorted(blogs.get_index()["articles"], key=lambda x: x["date"])
+    sorted_articles = sorted(
+        blogs.get_index()["articles"], key=lambda x: x["date"]
+    )
     return flask.render_template(
         "/security/standards/index.html", blogs=sorted_articles
     )
@@ -1277,7 +1328,9 @@ app.add_url_rule(
 # Security FIPS resources blogs tab
 def render_security_fips_blogs():
     blogs = BlogViews(
-        api=BlogAPI(session=session, thumbnail_width=640, thumbnail_height=340),
+        api=BlogAPI(
+            session=session, thumbnail_width=640, thumbnail_height=340
+        ),
         tag_ids=[
             3829,
             2562,
@@ -1298,7 +1351,9 @@ def render_security_fips_blogs():
         per_page=4,
         blog_title="Security FIPS blogs",
     )
-    sorted_articles = sorted(blogs.get_index()["articles"], key=lambda x: x["date"])
+    sorted_articles = sorted(
+        blogs.get_index()["articles"], key=lambda x: x["date"]
+    )
     return flask.render_template("/security/fips.html", blogs=sorted_articles)
 
 
@@ -1313,7 +1368,9 @@ app.add_url_rule(
 
 def render_security_pci_dds_blogs():
     blogs = BlogViews(
-        api=BlogAPI(session=session, thumbnail_width=640, thumbnail_height=340),
+        api=BlogAPI(
+            session=session, thumbnail_width=640, thumbnail_height=340
+        ),
         tag_ids=[
             4787,
             3829,
@@ -1335,7 +1392,9 @@ def render_security_pci_dds_blogs():
         per_page=4,
         blog_title="Security standards blogs",
     )
-    sorted_articles = sorted(blogs.get_index()["articles"], key=lambda x: x["date"])
+    sorted_articles = sorted(
+        blogs.get_index()["articles"], key=lambda x: x["date"]
+    )
     return flask.render_template(
         "/security/standards/pci-dss.html", blogs=sorted_articles
     )
@@ -1347,7 +1406,9 @@ app.add_url_rule("/security/pci-dss", view_func=render_security_pci_dds_blogs)
 # CMMC resources blogs tab
 def render_cmmc_blogs():
     blogs = BlogViews(
-        api=BlogAPI(session=session, thumbnail_width=640, thumbnail_height=340),
+        api=BlogAPI(
+            session=session, thumbnail_width=640, thumbnail_height=340
+        ),
         tag_ids=[
             3829,
             2562,
@@ -1368,8 +1429,12 @@ def render_cmmc_blogs():
         per_page=4,
         blog_title="CMMC blogs",
     )
-    sorted_articles = sorted(blogs.get_index()["articles"], key=lambda x: x["date"])
-    return flask.render_template("/security/cmmc/index.html", blogs=sorted_articles)
+    sorted_articles = sorted(
+        blogs.get_index()["articles"], key=lambda x: x["date"]
+    )
+    return flask.render_template(
+        "/security/cmmc/index.html", blogs=sorted_articles
+    )
 
 
 app.add_url_rule("/security/cmmc", view_func=render_cmmc_blogs)
@@ -1378,7 +1443,9 @@ app.add_url_rule("/security/cmmc", view_func=render_cmmc_blogs)
 # Supermicro blog section
 def render_supermicro_blogs():
     blogs = BlogViews(
-        api=BlogAPI(session=session, thumbnail_width=555, thumbnail_height=311),
+        api=BlogAPI(
+            session=session, thumbnail_width=555, thumbnail_height=311
+        ),
         tag_ids=[2247],
         excluded_tags=[3184, 3265, 3408, 3960, 4491, 3599],
         per_page=3,
