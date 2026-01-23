@@ -2,6 +2,7 @@
 import logging
 import os
 import unittest
+from unittest.mock import patch
 
 # Packages
 from bs4 import BeautifulSoup
@@ -89,11 +90,11 @@ class TestRoutes(VCRTestCase):
             200,
         )
 
+    @patch.dict(os.environ, {"SEARCH_API_KEY": "fake-key"})
     def test_tutorials_search(self):
         """
         Check the tutorials search works
         """
-
         search_response = self.client.get("/tutorials?q=ubuntu")
 
         self.assertEqual(search_response.status_code, 200)
