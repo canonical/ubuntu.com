@@ -76,12 +76,12 @@
   <section class="p-section">
     <div class="row--50-50 p-section">
       <div class="col u-image-position">
-        <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
+        <h2>Ubuntu {{ releases_yaml.lts.full_version }} LTS</h2>
         <div class="p-image-wrapper u-hide--small">
-          {{ image(url=releases.lts.mascot_image_large.url,
-                    alt=releases.lts.name,
-                    width=releases.lts.mascot_image_large.width,
-                    height=releases.lts.mascot_image_large.height,
+          {{ image(url=releases_yaml.lts.mascot_image_large.url,
+                    alt=releases_yaml.lts.name,
+                    width=releases_yaml.lts.mascot_image_large.width,
+                    height=releases_yaml.lts.mascot_image_large.height,
                     hi_def=True,
                     loading="auto") | safe
           }}
@@ -93,21 +93,21 @@
         </p>
         <hr class="p-rule" />
         <p class="u-responsive-realign">
-          <a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=desktop-arm64+raspi"
-             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Desktop', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });"
-             class="p-button--positive u-no-margin--bottom">Download Ubuntu Desktop {{ releases.lts.full_version }} LTS</a>
-          {% if releases.lts.raspi_desktop_iso_size %}
-            <span class="u-text--muted">{{ releases.lts.raspi_desktop_iso_size }}</span>
+          <a href="/download/raspberry-pi/thank-you?version={{ releases_yaml.lts.full_version }}&amp;architecture=desktop-arm64+raspi"
+             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Desktop', 'eventLabel' : '{{ releases_yaml.lts.full_version }}', 'eventValue' : undefined });"
+             class="p-button--positive u-no-margin--bottom">Download Ubuntu Desktop {{ releases_yaml.lts.full_version }} LTS</a>
+          {% if releases_yaml.lts.raspi_desktop_iso_size %}
+            <span class="u-text--muted">{{ releases_yaml.lts.raspi_desktop_iso_size }}</span>
           {% endif %}
         </p>
         <p>Minimum 4GBs of RAM and 16GB storage required</p>
         <hr class="p-rule" />
         <p class="u-responsive-realign">
-          <a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=server-arm64+raspi"
-             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Server', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });"
-             class="p-button">Download Ubuntu Server {{ releases.lts.full_version }} LTS</a>
-          {% if releases.lts.raspi_server_iso_size %}
-            <span class="u-text--muted">{{ releases.lts.raspi_server_iso_size }}</span>
+          <a href="/download/raspberry-pi/thank-you?version={{ releases_yaml.lts.full_version }}&amp;architecture=server-arm64+raspi"
+             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Server', 'eventLabel' : '{{ releases_yaml.lts.full_version }}', 'eventValue' : undefined });"
+             class="p-button">Download Ubuntu Server {{ releases_yaml.lts.full_version }} LTS</a>
+          {% if releases_yaml.lts.raspi_server_iso_size %}
+            <span class="u-text--muted">{{ releases_yaml.lts.raspi_server_iso_size }}</span>
           {% endif %}
         </p>
       </div>
@@ -115,12 +115,12 @@
     <hr class="p-rule is-fixed-width" />
     <div class="row--50-50 p-section">
       <div class="col u-image-position">
-        <h2>Ubuntu {{ releases.latest.full_version }}</h2>
+        <h2>Ubuntu {{ releases_yaml.latest.full_version }}</h2>
         <div class="p-image-wrapper u-hide--small">
-          {{ image(url=releases.latest.mascot_image_large.url,
-                    alt=releases.latest.name,
-                    width=releases.latest.mascot_image_large.width,
-                    height=releases.latest.mascot_image_large.height,
+          {{ image(url=releases_yaml.latest.mascot_image_large.url,
+                    alt=releases_yaml.latest.name,
+                    width=releases_yaml.latest.mascot_image_large.width,
+                    height=releases_yaml.latest.mascot_image_large.height,
                     hi_def=True,
                     loading="auto") | safe
           }}
@@ -128,25 +128,25 @@
       </div>
       <div class="col">
         <p>
-          The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{ releases.latest.full_version }} comes with nine months of security and maintenance updates, until {{ releases.latest.eol }}.
+          The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{ releases_yaml.latest.full_version }} comes with nine months of security and maintenance updates, until {{ releases_yaml.latest.eol }}.
         </p>
         <hr />
         <p class="u-responsive-realign">
-          <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=desktop-arm64+raspi"
-             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Desktop', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });"
-             class="p-button--positive u-no-margin--bottom">Download Ubuntu Desktop {{ releases.latest.full_version }}</a>
-          {% if releases.latest.raspi_desktop_iso_size %}
-            <span class="u-text--muted">{{ releases.latest.raspi_desktop_iso_size }}</span>
+          <a href="/download/raspberry-pi/thank-you?version={{ releases_yaml.latest.full_version }}&amp;architecture=desktop-arm64+raspi"
+             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Desktop', 'eventLabel' : '{{ releases_yaml.latest.full_version }}', 'eventValue' : undefined });"
+             class="p-button--positive u-no-margin--bottom">Download Ubuntu Desktop {{ releases_yaml.latest.full_version }}</a>
+          {% if releases_yaml.latest.raspi_desktop_iso_size %}
+            <span class="u-text--muted">{{ releases_yaml.latest.raspi_desktop_iso_size }}</span>
           {% endif %}
         </p>
         <p>Minimum 4GBs of RAM and 16GB storage required</p>
         <hr />
         <p class="u-responsive-realign">
-          <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=server-arm64+raspi"
-             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Server', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });"
-             class="p-button">Download Ubuntu Server {{ releases.latest.full_version }}</a>
-          {% if releases.latest.raspi_server_iso_size %}
-            <span class="u-text--muted">{{ releases.latest.raspi_server_iso_size }}</span>
+          <a href="/download/raspberry-pi/thank-you?version={{ releases_yaml.latest.full_version }}&amp;architecture=server-arm64+raspi"
+             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Server', 'eventLabel' : '{{ releases_yaml.latest.full_version }}', 'eventValue' : undefined });"
+             class="p-button">Download Ubuntu Server {{ releases_yaml.latest.full_version }}</a>
+          {% if releases_yaml.latest.raspi_server_iso_size %}
+            <span class="u-text--muted">{{ releases_yaml.latest.raspi_server_iso_size }}</span>
           {% endif %}
         </p>
       </div>
@@ -154,7 +154,7 @@
     <hr class="p-rule is-fixed-width" />
     <div class="row--50-50">
       <div class="col">
-        <h2>Ubuntu Core {{ releases.latest.core_version }}</h2>
+        <h2>Ubuntu Core {{ releases_yaml.latest.core_version }}</h2>
       </div>
       <div class="col">
         <p>
@@ -167,11 +167,11 @@
           Or try a pre-built Ubuntu Core image for the Raspberry Pi. Our pre-built Ubuntu Core images are an ideal way to experiment with Ubuntu Core.
         </p>
         <p class="u-responsive-realign">
-          <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.core_version }}&amp;architecture=core-24-arm64+raspi"
-             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Core', 'eventLabel' : '{{ releases.latest.core_version }}', 'eventValue' : undefined });"
-             class="p-button">Download Ubuntu Core {{ releases.latest.core_version }}</a>
-          {% if releases.latest.rasp_pi_core_24_size %}
-            <span class="u-text--muted" style="margin-top: 0.5rem;">{{ releases.latest.rasp_pi_core_24_size }}</span>
+          <a href="/download/raspberry-pi/thank-you?version={{ releases_yaml.latest.core_version }}&amp;architecture=core-24-arm64+raspi"
+             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Core', 'eventLabel' : '{{ releases_yaml.latest.core_version }}', 'eventValue' : undefined });"
+             class="p-button">Download Ubuntu Core {{ releases_yaml.latest.core_version }}</a>
+          {% if releases_yaml.latest.rasp_pi_core_24_size %}
+            <span class="u-text--muted" style="margin-top: 0.5rem;">{{ releases_yaml.latest.rasp_pi_core_24_size }}</span>
           {% endif %}
         </p>
       </div>
@@ -209,10 +209,10 @@
               <th style="width: 15%;"></th>
               <th style="width: 10%;"></th>
               <th style="width: 18%">
-                Ubuntu {{ releases.lts.short_version }} <abbr title="Long-term support">LTS</abbr>
+                Ubuntu {{ releases_yaml.lts.short_version }} <abbr title="Long-term support">LTS</abbr>
               </th>
-              <th style="width: 15%">Ubuntu {{ releases.latest.short_version }}</th>
-              <th style="width: 15%">Ubuntu Core {{ releases.latest.core_version }}</th>
+              <th style="width: 15%">Ubuntu {{ releases_yaml.latest.short_version }}</th>
+              <th style="width: 15%">Ubuntu Core {{ releases_yaml.latest.core_version }}</th>
             </tr>
           </thead>
           <tbody>

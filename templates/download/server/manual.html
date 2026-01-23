@@ -62,13 +62,13 @@
     <div class="row--50-50">
       <div class="col">
         <div class="p-section">
-          <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
+          <h2>Ubuntu {{ releases_yaml.lts.full_version }} LTS</h2>
         </div>
         <div class="p-image-wrapper u-hide--small">
-          {{ image(url=releases.lts.mascot_image_large.url,
-                    alt=releases.lts.name,
-                    width=releases.lts.mascot_image_large.width,
-                    height=releases.lts.mascot_image_large.height,
+          {{ image(url=releases_yaml.lts.mascot_image_large.url,
+                    alt=releases_yaml.lts.name,
+                    width=releases_yaml.lts.mascot_image_large.width,
+                    height=releases_yaml.lts.mascot_image_large.height,
                     hi_def=True,
                     loading="auto") | safe
           }}
@@ -82,10 +82,10 @@
           <hr class="p-rule" />
           <p class="u-responsive-realign">
             <a class="p-button--positive"
-               href="/download/server/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64&amp;lts=true"
-               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });">Download {{ releases.lts.full_version }} LTS
+               href="/download/server/thank-you?version={{ releases_yaml.lts.full_version }}&amp;architecture=amd64&amp;lts=true"
+               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases_yaml.lts.full_version }}', 'eventValue' : undefined });">Download {{ releases_yaml.lts.full_version }} LTS
             </a>
-            {% if releases.lts.server_iso_size %}<span class="u-text--muted">{{ releases.lts.server_iso_size }}</span>{% endif %}
+            {% if releases_yaml.lts.server_iso_size %}<span class="u-text--muted">{{ releases_yaml.lts.server_iso_size }}</span>{% endif %}
           </p>
           <p>
             <a href="/download/alternative-downloads">Alternative downloads&nbsp;&rsaquo;</a>
@@ -145,8 +145,8 @@
           </ul>
           <hr class="p-rule" />
           <p>
-            <a href="{{ releases.lts.release_notes_url }}"
-               aria-label="{{ releases.lts.short_version }} LTS release notes">Release notes&nbsp;&rsaquo;</a>
+            <a href="{{ releases_yaml.lts.release_notes_url }}"
+               aria-label="{{ releases_yaml.lts.short_version }} LTS release notes">Release notes&nbsp;&rsaquo;</a>
           </p>
         </div>
 
@@ -193,13 +193,13 @@
     <div class="row--50-50 p-section">
       <div class="col">
         <div class="p-section">
-          <h2>Ubuntu {{ releases.latest.full_version }}</h2>
+          <h2>Ubuntu {{ releases_yaml.latest.full_version }}</h2>
         </div>
         <div class="p-image-wrapper u-hide--small">
-          {{ image(url=releases.latest.mascot_image_large.url,
-                    alt=releases.latest.name,
-                    width=releases.latest.mascot_image_large.width,
-                    height=releases.latest.mascot_image_large.height,
+          {{ image(url=releases_yaml.latest.mascot_image_large.url,
+                    alt=releases_yaml.latest.name,
+                    width=releases_yaml.latest.mascot_image_large.width,
+                    height=releases_yaml.latest.mascot_image_large.height,
                     hi_def=True,
                     loading="auto") | safe
           }}
@@ -208,16 +208,16 @@
       <div class="col">
         <div class="p-section--shallow">
           <p>
-            The latest version of Ubuntu Server, including nine months of security and maintenance updates until {{ releases.latest.eol }}.
+            The latest version of Ubuntu Server, including nine months of security and maintenance updates until {{ releases_yaml.latest.eol }}.
           </p>
           <hr />
           <p class="u-responsive-realign">
             <a class="p-button--positive"
-               href="/download/server/thank-you?version={{ releases.latest.full_version }}&amp;architecture=amd64"
-               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });">Download {{ releases.latest.full_version }}
+               href="/download/server/thank-you?version={{ releases_yaml.latest.full_version }}&amp;architecture=amd64"
+               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases_yaml.latest.full_version }}', 'eventValue' : undefined });">Download {{ releases_yaml.latest.full_version }}
             </a>
-            {% if releases.latest.server_iso_size %}
-              <span class="u-text--muted">{{ releases.latest.server_iso_size }}</span>
+            {% if releases_yaml.latest.server_iso_size %}
+              <span class="u-text--muted">{{ releases_yaml.latest.server_iso_size }}</span>
             {% endif %}
           </p>
         </div>
@@ -266,12 +266,12 @@
           <hr class="p-rule" />
           <ul class="u-responsive-realign p-inline-list">
             <li class="p-inline-list__item">
-              <a href="{{ releases.latest.blog_post_url }}"
-                 aria-label="{{ releases.latest.short_version }} Press Release">Press release&nbsp;&rsaquo;</a>
+              <a href="{{ releases_yaml.latest.blog_post_url }}"
+                 aria-label="{{ releases_yaml.latest.short_version }} Press Release">Press release&nbsp;&rsaquo;</a>
             </li>
             <li class="p-inline-list__item">
-              <a href="{{ releases.latest.release_notes_url }}"
-                 aria-label="{{ releases.latest.short_version }} release notes">Release notes&nbsp;&rsaquo;</a>
+              <a href="{{ releases_yaml.latest.release_notes_url }}"
+                 aria-label="{{ releases_yaml.latest.short_version }} release notes">Release notes&nbsp;&rsaquo;</a>
             </li>
           </ul>
         </div>
@@ -327,9 +327,9 @@
               <p>BitTorrent sometimes enables higher download speeds and more reliable downloads of large files.</p>
               <hr class="p-rule" />
               <a class="p-button"
-                 href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-live-server-amd64.iso.torrent">Torrent for {{ releases.lts.full_version }} LTS</a>
+                 href="https://releases.ubuntu.com/{{ releases_yaml.lts.short_version }}/ubuntu-{{ releases_yaml.lts.full_version }}-live-server-amd64.iso.torrent">Torrent for {{ releases_yaml.lts.full_version }} LTS</a>
               <a class="p-button"
-                 href="https://releases.ubuntu.com/{{ releases.latest.short_version }}/ubuntu-{{ releases.latest.full_version }}-live-server-amd64.iso.torrent">Torrent for {{ releases.latest.full_version }}</a>
+                 href="https://releases.ubuntu.com/{{ releases_yaml.latest.short_version }}/ubuntu-{{ releases_yaml.latest.full_version }}-live-server-amd64.iso.torrent">Torrent for {{ releases_yaml.latest.full_version }}</a>
             </div>
           </div>
           <hr class="p-rule" />
@@ -341,12 +341,12 @@
               <p>Previous long-term support versions of Ubuntu Server, still supported.</p>
               <hr class="p-rule" />
               <a class="p-button"
-                 href="/download/server/thank-you?version={{ releases.previous_lts.full_version }}&amp;architecture=amd64&amp;lts=true"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.previous_lts.full_version }}', 'eventValue' : undefined });">Download {{ releases.previous_lts.full_version }} LTS
+                 href="/download/server/thank-you?version={{ releases_yaml.previous_lts.full_version }}&amp;architecture=amd64&amp;lts=true"
+                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases_yaml.previous_lts.full_version }}', 'eventValue' : undefined });">Download {{ releases_yaml.previous_lts.full_version }} LTS
               </a>
               <a class="p-button"
-                 href="/download/server/thank-you?version={{ releases.previous_previous_lts.full_version }}&amp;architecture=amd64&amp;lts=true"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.previous_previous_lts.full_version }}', 'eventValue' : undefined });">Download {{ releases.previous_previous_lts.full_version }} LTS
+                 href="/download/server/thank-you?version={{ releases_yaml.previous_previous_lts.full_version }}&amp;architecture=amd64&amp;lts=true"
+                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases_yaml.previous_previous_lts.full_version }}', 'eventValue' : undefined });">Download {{ releases_yaml.previous_previous_lts.full_version }} LTS
               </a>
             </div>
           </div>

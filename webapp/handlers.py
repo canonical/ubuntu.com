@@ -150,7 +150,7 @@ def init_handlers(app):
             ),
             "product": flask.request.args.get("product", ""),
             "request": flask.request,
-            "releases": releases(),
+            "releases_yaml": releases(),
             "user_info": user_info(flask.session),
             "utm_campaign": flask.request.args.get("utm_campaign", ""),
             "utm_content": flask.request.args.get("utm_content", ""),

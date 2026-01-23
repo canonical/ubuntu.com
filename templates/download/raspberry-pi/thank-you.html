@@ -22,7 +22,7 @@
 
   {% if version %}
     <meta http-equiv="refresh"
-          content="3;url={% if version==releases.latest.core_version %}https://cdimage.ubuntu.com/ubuntu-core/{{ version }}/stable/current/ubuntu-{{ architecture }}.img.xz{% else %}https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz{% endif %}" />
+          content="3;url={% if version==releases_yaml.latest.core_version %}https://cdimage.ubuntu.com/ubuntu-core/{{ version }}/stable/current/ubuntu-{{ architecture }}.img.xz{% else %}https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz{% endif %}" />
   {% endif %}
 
   <section class="p-strip is-shallow u-no-padding--bottom">
@@ -33,14 +33,14 @@
             Thank you for downloading
             <br class="u-hide--small" />
             Ubuntu
-            {% if version==releases.latest.core_version %}Core{% endif %}
+            {% if version==releases_yaml.latest.core_version %}Core{% endif %}
             {{ version }}
             <br />
             for Raspberry Pi
           </h1>
           <p>
             Your download should start automatically. If it doesn't,
-            <a href="{% if version==releases.latest.core_version %}https://cdimage.ubuntu.com/ubuntu-core/{{ version }}/stable/current/ubuntu-{{ architecture }}.img.xz{% else %}https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz{% endif %}">download now</a>.
+            <a href="{% if version==releases_yaml.latest.core_version %}https://cdimage.ubuntu.com/ubuntu-core/{{ version }}/stable/current/ubuntu-{{ architecture }}.img.xz{% else %}https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz{% endif %}">download now</a>.
             <br />
             {% with version=version, system=architecture, architecture=architecture %}
               {% include "download/shared/_verify-checksums.html" %}
@@ -77,10 +77,10 @@
       <div class="col-12 col-medium-6 col-start-large-4">
         <hr class="p-rule is-fixed-width" />
         <div class="row">
-          {% if version == releases.latest.core_version %}
+          {% if version == releases_yaml.latest.core_version %}
             <div class="col-4 col-medium-2">
               <h3 class="p-heading--5">
-                <a href="https://documentation.ubuntu.com/core/tutorials/try-pre-built-images/use-raspberry-pi-imager/index.html">Installing Ubuntu Core {{ releases.core_lts.version }} on a Raspberry Pi</a>
+                <a href="https://documentation.ubuntu.com/core/tutorials/try-pre-built-images/use-raspberry-pi-imager/index.html">Installing Ubuntu Core {{ releases_yaml.core_lts.version }} on a Raspberry Pi</a>
               </h3>
               <p>A complete guide to installing Ubuntu Core on a Raspberry Pi 4 (4GB or 8GB).</p>
             </div>
