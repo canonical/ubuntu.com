@@ -115,7 +115,7 @@
                 {% set ns.outer_title = page.navlink_text %}
               {% endif %}
               {{- loop(page.children|reverse) }}
-              {% if page.is_active and not ns.found_active %}
+              {% if page.is_active and not ns.found_active and page.path in request.path %}
                 {% set ns.found_active = true %}
                 {% set ns.use_next = true %}
               {% elif ns.use_next and not page.hidden and page.navlink_text %}
@@ -137,7 +137,7 @@
             {% set ns.found_active = false %}
 
             {%- for page in nav_items recursive %}
-              {% if page.is_active and not ns.found_active %}
+              {% if page.is_active and not ns.found_active and page.path in request.path %}
                 {% set ns.found_active = true %}
                 {% set ns.use_next = true %}
               {% elif ns.use_next and not page.hidden and page.navlink_text %}
