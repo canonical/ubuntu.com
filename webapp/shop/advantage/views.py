@@ -73,7 +73,7 @@ def advantage_view(advantage_mapper, is_in_maintenance, **kwargs):
     is_technical = False
     try:
         account = advantage_mapper.get_purchase_account("canonical-ua")
-        if (account.hasChannelStoreAccess) is True:
+        if account.hasChannelStoreAccess:
             return flask.render_template(
                 "account/forbidden.html", reason="channel_account"
             )
@@ -201,7 +201,7 @@ def advantage_shop_view(advantage_mapper, **kwargs):
     if user_info(flask.session):
         try:
             account = advantage_mapper.get_purchase_account("canonical-ua")
-            if (account.hasChannelStoreAccess) is True:
+            if account.hasChannelStoreAccess:
                 return flask.render_template(
                     "account/forbidden.html", reason="channel_account"
                 )
@@ -586,7 +586,7 @@ def get_channel_offers(advantage_mapper, **kwargs):
 def get_distributor_view(advantage_mapper, **kwargs):
     try:
         account = advantage_mapper.get_purchase_account("canonical-ua")
-        if (account.hasChannelStoreAccess) is True:
+        if account.hasChannelStoreAccess:
             listings = advantage_mapper.get_product_listings(
                 "canonical-pro-channel"
             )
@@ -607,7 +607,7 @@ def get_distributor_view(advantage_mapper, **kwargs):
 def get_distributor_thank_you_view(advantage_mapper, **kwargs):
     try:
         account = advantage_mapper.get_purchase_account("canonical-ua")
-        if (account.hasChannelStoreAccess) is True:
+        if account.hasChannelStoreAccess:
             email = kwargs.get("email")
         else:
             return flask.render_template("account/forbidden.html")
@@ -624,7 +624,7 @@ def get_distributor_thank_you_view(advantage_mapper, **kwargs):
 def get_account_offers(advantage_mapper, **kwargs):
     try:
         account = advantage_mapper.get_purchase_account("canonical-ua")
-        if (account.hasChannelStoreAccess) is True:
+        if account.hasChannelStoreAccess:
             return (
                 flask.jsonify(
                     {"error": "User has no permission to pro store"}
@@ -655,7 +655,7 @@ def get_account_offers(advantage_mapper, **kwargs):
 )
 def get_advantage_offers(advantage_mapper, **kwargs):
     account = advantage_mapper.get_purchase_account("canonical-ua")
-    if (account.hasChannelStoreAccess) is True:
+    if account.hasChannelStoreAccess:
         return flask.render_template(
             "account/forbidden.html", reason="channel_account"
         )
