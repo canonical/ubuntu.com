@@ -31,13 +31,13 @@
       <hr class="p-rule" />
       <div class="col">
         <div class="p-section">
-          <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
+          <h2>Ubuntu {{ releases_yaml.lts.full_version }} LTS</h2>
         </div>
         <div class="p-image-wrapper u-hide--small">
-          {{ image(url="https://assets.ubuntu.com/v1/3b5fa561-mascot-numbat@2x.png",
-                    alt="Noble Numbat",
-                    width="182",
-                    height="135",
+          {{ image(url=releases_yaml.lts.mascot_image_large.url,
+                    alt=releases_yaml.lts.name,
+                    width=releases_yaml.lts.mascot_image_large.width,
+                    height=releases_yaml.lts.mascot_image_large.height,
                     hi_def=True,
                     loading="auto") | safe
           }}
@@ -58,11 +58,11 @@
             </div>
             <div class="col-3">
               <a class="p-button--positive"
-                 href="/download/desktop/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64&amp;lts=true"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });"
-                 aria-label="Download Ubuntu {{ releases.lts.short_version }} LTS amd64">Download</a>
-              {% if releases.lts.iso_download_size %}
-                <span class="u-text--muted">{{ releases.lts.iso_download_size }}</span>
+                 href="/download/desktop/thank-you?version={{ releases_yaml.lts.full_version }}&amp;architecture=amd64&amp;lts=true"
+                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases_yaml.lts.short_version }}', 'eventValue' : undefined });"
+                 aria-label="Download Ubuntu {{ releases_yaml.lts.short_version }} LTS amd64">Download</a>
+              {% if releases_yaml.lts.iso_download_size %}
+                <span class="u-text--muted">{{ releases_yaml.lts.iso_download_size }}</span>
               {% endif %}
 
               <script>
@@ -84,36 +84,36 @@
               <a class="p-tabs__link"
                  role="tab"
                  aria-selected="true"
-                 id="release-notes-tab-{{ releases.lts.slug }}"
-                 href="#release-notes-{{ releases.lts.slug }}"
-                 aria-controls="release-notes-{{ releases.lts.slug }}">What's new</a>
+                 id="release-notes-tab-{{ releases_yaml.lts.slug }}"
+                 href="#release-notes-{{ releases_yaml.lts.slug }}"
+                 aria-controls="release-notes-{{ releases_yaml.lts.slug }}">What's new</a>
             </li>
             <li class="p-tabs__item">
               <a class="p-tabs__link"
                  role="tab"
                  aria-selected="false"
-                 id="system-requirements-tab-{{ releases.lts.slug }}"
-                 href="#system-requirements-{{ releases.lts.slug }}"
-                 aria-controls="system-requirements-{{ releases.lts.slug }}"
+                 id="system-requirements-tab-{{ releases_yaml.lts.slug }}"
+                 href="#system-requirements-{{ releases_yaml.lts.slug }}"
+                 aria-controls="system-requirements-{{ releases_yaml.lts.slug }}"
                  tabindex="-1">System requirements</a>
             </li>
             <li class="p-tabs__item">
               <a class="p-tabs__link"
                  role="tab"
                  aria-selected="false"
-                 id="how-to-install-tab-{{ releases.lts.slug }}"
-                 href="#how-to-install-{{ releases.lts.slug }}"
-                 aria-controls="how-to-install-{{ releases.lts.slug }}"
+                 id="how-to-install-tab-{{ releases_yaml.lts.slug }}"
+                 href="#how-to-install-{{ releases_yaml.lts.slug }}"
+                 aria-controls="how-to-install-{{ releases_yaml.lts.slug }}"
                  tabindex="-1">How to install</a>
             </li>
           </ul>
         </nav>
         <!-- End tab container -->
         <!-- tab 1 -->
-        <div id="release-notes-{{ releases.lts.slug }}"
+        <div id="release-notes-{{ releases_yaml.lts.slug }}"
              class="p-tabs__content"
              role="tabpanel"
-             aria-labelledby="release-notes-tab-{{ releases.lts.slug }}">
+             aria-labelledby="release-notes-tab-{{ releases_yaml.lts.slug }}">
           <ul class="p-list--divided">
             <li class="p-list__item is-ticked">New Desktop installer with support for autoinstall</li>
             <li class="p-list__item is-ticked">New App Center and Firmware Updater applications</li>
@@ -124,20 +124,20 @@
           <hr class="p-rule--muted" />
           <ul class="u-responsive-realign p-inline-list">
             <li class="p-inline-list__item">
-              <a href="/blog/ubuntu-desktop-24-04-noble-numbat-deep-dive"
-                 aria-label="{{ releases.lts.full_version }} LTS deep dive">Deep dive&nbsp;&rsaquo;</a>
+              <a href="{{ releases_yaml.lts.blog_post_url }}"
+                 aria-label="{{ releases_yaml.lts.full_version }} LTS deep dive">Deep dive&nbsp;&rsaquo;</a>
             </li>
             <li class="p-inline-list__item">
-              <a href="{{ releases.lts.release_notes_url }}"
-                 aria-label="{{ releases.lts.full_version }} LTS release notes">Release notes&nbsp;&rsaquo;</a>
+              <a href="{{ releases_yaml.lts.release_notes_url }}"
+                 aria-label="{{ releases_yaml.lts.full_version }} LTS release notes">Release notes&nbsp;&rsaquo;</a>
             </li>
           </ul>
         </div>
         <!-- tab 2 -->
-        <div id="system-requirements-{{ releases.lts.slug }}"
+        <div id="system-requirements-{{ releases_yaml.lts.slug }}"
              class="p-tabs__content"
              role="tabpanel"
-             aria-labelledby="system-requirements-tab-{{ releases.lts.slug }}">
+             aria-labelledby="system-requirements-tab-{{ releases_yaml.lts.slug }}">
           <ul class="p-list--divided">
             <li class="p-list__item is-ticked">2 GHz dual-core processor or better</li>
             <li class="p-list__item is-ticked">4 GB system memory</li>
@@ -147,10 +147,10 @@
           </ul>
         </div>
         <!-- tab 3 -->
-        <div id="how-to-install-{{ releases.lts.slug }}"
+        <div id="how-to-install-{{ releases_yaml.lts.slug }}"
              class="p-tabs__content"
              role="tabpanel"
-             aria-labelledby="how-to-install-tab-{{ releases.lts.slug }}">
+             aria-labelledby="how-to-install-tab-{{ releases_yaml.lts.slug }}">
           <p>To install or try Ubuntu Desktop:</p>
           <ol class="p-list--divided">
             <li class="p-list__item">Download the ISO image</li>
@@ -172,13 +172,13 @@
       <hr class="p-rule" />
       <div class="col">
         <div class="p-section">
-          <h2>Ubuntu {{ releases.latest.full_version }}</h2>
+          <h2>Ubuntu {{ releases_yaml.latest.full_version }}</h2>
         </div>
         <div class="p-image-wrapper u-hide--small">
-          {{ image(url="https://assets.ubuntu.com/v1/fe84bc06-questing_quokka_mascot_circle_bg.svg",
-                    alt="Questing Quokka mascot",
-                    width="182",
-                    height="182",
+          {{ image(url=releases_yaml.latest.mascot_image_large.url,
+                    alt=releases_yaml.latest.name,
+                    width=releases_yaml.latest.mascot_image_large.width,
+                    height=releases_yaml.latest.mascot_image_large.height,
                     hi_def=True,
                     loading="auto") | safe
           }}
@@ -187,7 +187,7 @@
       <div class="col">
         <div class="p-section--shallow">
           <p>
-            The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{ releases.latest.full_version }} comes with nine months of security and maintenance updates, until {{ releases.latest.eol }}.
+            The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{ releases_yaml.latest.full_version }} comes with nine months of security and maintenance updates, until {{ releases_yaml.latest.eol }}.
           </p>
           <hr class="p-rule--muted" />
 
@@ -197,11 +197,11 @@
             </div>
             <div class="col-3">
               <a class="p-button--positive"
-                 href="/download/desktop/thank-you?version={{ releases.latest.full_version }}&amp;architecture=amd64"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });"
-                 aria-label="Download Ubuntu {{ releases.latest.full_version }} amd64">Download</a>
-              {% if releases.latest.iso_download_size %}
-                <span class="u-text--muted">{{ releases.latest.iso_download_size }}</span>
+                 href="/download/desktop/thank-you?version={{ releases_yaml.latest.full_version }}&amp;architecture=amd64"
+                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases_yaml.latest.short_version }}', 'eventValue' : undefined });"
+                 aria-label="Download Ubuntu {{ releases_yaml.latest.full_version }} amd64">Download</a>
+              {% if releases_yaml.latest.iso_download_size %}
+                <span class="u-text--muted">{{ releases_yaml.latest.iso_download_size }}</span>
               {% endif %}
 
               <script>
@@ -216,11 +216,11 @@
             </div>
             <div class="col-3">
               <a class="p-button"
-                 href="https://cdimage.ubuntu.com/releases/{{ releases.latest.full_version }}/release/ubuntu-{{ releases.latest.full_version }}-desktop-arm64.iso"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });"
-                 aria-label="Download Ubuntu {{ releases.latest.full_version }} arm64">Download</a>
-              {% if releases.latest.arm_iso_download_size %}
-                <span class="u-text--muted">{{ releases.latest.arm_iso_download_size }}</span>
+                 href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.latest.full_version }}/release/ubuntu-{{ releases_yaml.latest.full_version }}-desktop-arm64.iso"
+                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases_yaml.latest.short_version }}', 'eventValue' : undefined });"
+                 aria-label="Download Ubuntu {{ releases_yaml.latest.full_version }} arm64">Download</a>
+              {% if releases_yaml.latest.arm_iso_download_size %}
+                <span class="u-text--muted">{{ releases_yaml.latest.arm_iso_download_size }}</span>
               {% endif %}
 
               <script>
@@ -241,36 +241,36 @@
               <a class="p-tabs__link"
                  role="tab"
                  aria-selected="true"
-                 id="release-notes-tab-{{ releases.latest.slug }}"
-                 href="#release-notes-{{ releases.latest.slug }}"
-                 aria-controls="release-notes-{{ releases.latest.slug }}">What's new</a>
+                 id="release-notes-tab-{{ releases_yaml.latest.slug }}"
+                 href="#release-notes-{{ releases_yaml.latest.slug }}"
+                 aria-controls="release-notes-{{ releases_yaml.latest.slug }}">What's new</a>
             </li>
             <li class="p-tabs__item">
               <a class="p-tabs__link"
                  role="tab"
                  aria-selected="false"
-                 id="system-requirements-tab-{{ releases.latest.slug }}"
-                 href="#system-requirements-{{ releases.latest.slug }}"
-                 aria-controls="system-requirements-{{ releases.latest.slug }}"
+                 id="system-requirements-tab-{{ releases_yaml.latest.slug }}"
+                 href="#system-requirements-{{ releases_yaml.latest.slug }}"
+                 aria-controls="system-requirements-{{ releases_yaml.latest.slug }}"
                  tabindex="-1">System requirements</a>
             </li>
             <li class="p-tabs__item">
               <a class="p-tabs__link"
                  role="tab"
                  aria-selected="false"
-                 id="how-to-install-tab-{{ releases.latest.slug }}"
-                 href="#how-to-install-{{ releases.latest.slug }}"
-                 aria-controls="how-to-install-{{ releases.latest.slug }}"
+                 id="how-to-install-tab-{{ releases_yaml.latest.slug }}"
+                 href="#how-to-install-{{ releases_yaml.latest.slug }}"
+                 aria-controls="how-to-install-{{ releases_yaml.latest.slug }}"
                  tabindex="-1">How to install</a>
             </li>
           </ul>
         </nav>
         <!-- End tab container -->
         <!-- tab 1 -->
-        <div id="release-notes-{{ releases.latest.slug }}"
+        <div id="release-notes-{{ releases_yaml.latest.slug }}"
              class="p-tabs__content"
              role="tabpanel"
-             aria-labelledby="release-notes-tab-{{ releases.latest.slug }}">
+             aria-labelledby="release-notes-tab-{{ releases_yaml.latest.slug }}">
           <ul class="p-list--divided">
             <li class="p-list__item is-ticked">Linux Kernel 6.17 with support for the latest hardware</li>
             <li class="p-list__item is-ticked">
@@ -283,20 +283,20 @@
           <hr class="p-rule--muted" />
           <ul class="u-responsive-realign p-inline-list">
             <li class="p-inline-list__item">
-              <a href="/blog/canonical-releases-ubuntu-25-10-questing-quokka"
-                 aria-label="{{ releases.lts.full_version }} LTS deep dive">Press release&nbsp;&rsaquo;</a>
+              <a href="{{ releases_yaml.latest.blog_post_url }}"
+                 aria-label="{{ releases_yaml.latest.full_version }} deep dive">Press release&nbsp;&rsaquo;</a>
             </li>
             <li class="p-inline-list__item">
-              <a href="{{ releases.latest.release_notes_url }}"
-                 aria-label="{{ releases.latest.full_version }} release notes">Release notes&nbsp;&rsaquo;</a>
+              <a href="{{ releases_yaml.latest.release_notes_url }}"
+                 aria-label="{{ releases_yaml.latest.full_version }} release notes">Release notes&nbsp;&rsaquo;</a>
             </li>
           </ul>
         </div>
         <!-- tab 2 -->
-        <div id="system-requirements-{{ releases.latest.slug }}"
+        <div id="system-requirements-{{ releases_yaml.latest.slug }}"
              class="p-tabs__content"
              role="tabpanel"
-             aria-labelledby="system-requirements-tab-{{ releases.latest.slug }}">
+             aria-labelledby="system-requirements-tab-{{ releases_yaml.latest.slug }}">
           <ul class="p-list--divided">
             <li class="p-list__item is-ticked">2 GHz dual-core processor or better</li>
             <li class="p-list__item is-ticked">4 GB system memory</li>
@@ -306,10 +306,10 @@
           </ul>
         </div>
         <!-- tab 3 -->
-        <div id="how-to-install-{{ releases.latest.slug }}"
+        <div id="how-to-install-{{ releases_yaml.latest.slug }}"
              class="p-tabs__content"
              role="tabpanel"
-             aria-labelledby="how-to-install-tab-{{ releases.latest.slug }}">
+             aria-labelledby="how-to-install-tab-{{ releases_yaml.latest.slug }}">
           <p>To install or try Ubuntu Desktop:</p>
           <ol class="p-list--divided">
             <li class="p-list__item">Download the ISO image</li>

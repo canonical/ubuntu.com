@@ -69,7 +69,7 @@
       <div class="row p-takeover-animation" id="takeover-animation">
         <div class="col-6">
           <div class="p-section--shallow">
-            <h1 id="takeover-title" class="u-no-margin--bottom">Ubuntu 24.04 LTS Noble Numbat is available for download</h1>
+            <h1 id="takeover-title" class="u-no-margin--bottom">Ubuntu {{ releases_yaml.lts.short_version }} LTS {{ releases_yaml.lts.name }} is available for download</h1>
             <p class="p-heading--2" id="takeover-subtitle">
               Discover the latest and greatest features in our most recent long term supported release.
             </p>
@@ -79,7 +79,7 @@
             <p>
               <a id="takeover-primary-url" href="/download" class="p-button--positive">Download for free</a>
               <a id="takeover-secondary-url"
-                 href="/blog/ubuntu-desktop-24-04-noble-numbat-deep-dive">Read the deep dive&nbsp;&rsaquo;</a>
+                 href="{{ releases_yaml.lts.blog_post_url }}">Read the deep dive&nbsp;&rsaquo;</a>
             </p>
           </div>
         </div>

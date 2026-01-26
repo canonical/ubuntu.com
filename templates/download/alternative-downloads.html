@@ -79,49 +79,49 @@ meta_copydoc %}
           </div>
           <hr class="p-rule" />
           <div class="row">
-            {% if releases.latest.short_version > releases.lts.short_version %}
+            {% if releases_yaml.latest.short_version > releases_yaml.lts.short_version %}
               <div class="col-3 col-medium-2">
-                <h3 class="p-heading--5">Ubuntu {{ releases.latest.full_version }}</h3>
+                <h3 class="p-heading--5">Ubuntu {{ releases_yaml.latest.full_version }}</h3>
                 <p>
                   <a class="download-torrent"
-                     href="https://releases.ubuntu.com/{{ releases.latest.desktop_version }}/ubuntu-{{ releases.latest.desktop_version }}-desktop-amd64.iso.torrent">Ubuntu
-                  Desktop {{ releases.latest.full_version }} (64-bit)</a>
+                     href="https://releases.ubuntu.com/{{ releases_yaml.latest.desktop_version }}/ubuntu-{{ releases_yaml.latest.desktop_version }}-desktop-amd64.iso.torrent">Ubuntu
+                  Desktop {{ releases_yaml.latest.full_version }} (64-bit)</a>
                 </p>
                 <p>
                   <a class="download-torrent"
-                     href="https://releases.ubuntu.com/{{ releases.latest.short_version }}/ubuntu-{{ releases.latest.full_version }}-live-server-amd64.iso.torrent">Ubuntu
-                  Server {{ releases.latest.full_version }}</a>
+                     href="https://releases.ubuntu.com/{{ releases_yaml.latest.short_version }}/ubuntu-{{ releases_yaml.latest.full_version }}-live-server-amd64.iso.torrent">Ubuntu
+                  Server {{ releases_yaml.latest.full_version }}</a>
                 </p>
               </div>
             {% endif %}
             <div class="col-3 col-medium-2">
               <h3 class="p-heading--5">
-                Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
+                Ubuntu {{ releases_yaml.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
               </h3>
               <p>
                 <a class="download-torrent"
-                   href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-desktop-amd64.iso.torrent">Ubuntu
-                Desktop {{ releases.lts.full_version }} (64-bit)</a>
+                   href="https://releases.ubuntu.com/{{ releases_yaml.lts.short_version }}/ubuntu-{{ releases_yaml.lts.full_version }}-desktop-amd64.iso.torrent">Ubuntu
+                Desktop {{ releases_yaml.lts.full_version }} (64-bit)</a>
               </p>
               <p>
                 <a class="download-torrent"
-                   href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-live-server-amd64.iso.torrent">Ubuntu
-                Server {{ releases.lts.full_version }} LTS</a>
+                   href="https://releases.ubuntu.com/{{ releases_yaml.lts.short_version }}/ubuntu-{{ releases_yaml.lts.full_version }}-live-server-amd64.iso.torrent">Ubuntu
+                Server {{ releases_yaml.lts.full_version }} LTS</a>
               </p>
             </div>
             <div class="col-3 col-medium-2">
               <h3 class="p-heading--5">
-                Ubuntu {{ releases.previous_lts.full_version }} <abbr title="Long-term support">LTS</abbr>
+                Ubuntu {{ releases_yaml.previous_lts.full_version }} <abbr title="Long-term support">LTS</abbr>
               </h3>
               <p>
                 <a class="download-lts"
-                   href="https://releases.ubuntu.com/{{ releases.previous_lts.short_version }}/ubuntu-{{ releases.previous_lts.full_version }}-desktop-amd64.iso.torrent">Ubuntu
-                Desktop {{ releases.previous_lts.full_version }} (64-bit)</a>
+                   href="https://releases.ubuntu.com/{{ releases_yaml.previous_lts.short_version }}/ubuntu-{{ releases_yaml.previous_lts.full_version }}-desktop-amd64.iso.torrent">Ubuntu
+                Desktop {{ releases_yaml.previous_lts.full_version }} (64-bit)</a>
               </p>
               <p>
                 <a class="download-lts"
-                   href="https://releases.ubuntu.com/{{ releases.previous_lts.short_version }}/ubuntu-{{ releases.previous_lts.full_version }}-live-server-amd64.iso.torrent">Ubuntu
-                Server {{ releases.previous_lts.full_version }} LTS</a>
+                   href="https://releases.ubuntu.com/{{ releases_yaml.previous_lts.short_version }}/ubuntu-{{ releases_yaml.previous_lts.full_version }}-live-server-amd64.iso.torrent">Ubuntu
+                Server {{ releases_yaml.previous_lts.full_version }} LTS</a>
               </p>
             </div>
           </div>

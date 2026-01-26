@@ -8,9 +8,9 @@ You can
      id="menu-4"
      aria-hidden="true"
      aria-label="Verification instructions:">
-  {% if releases.checksums[system] and releases.checksums[system][version] %}
+  {% if releases_yaml.checksums[system] and releases_yaml.checksums[system][version] %}
     <p>Run this command in your terminal in the directory the iso was downloaded to verify the SHA256 checksum:</p>
-    <pre>echo "{{ releases.checksums[system][version] }}" | shasum -a 256 --check</pre>
+    <pre>echo "{{ releases_yaml.checksums[system][version] }}" | shasum -a 256 --check</pre>
     <p>You should get the following output:</p>
     <pre>ubuntu-{{ version }}-{% if system != architecture %}{{ system }}-{% else %}preinstalled-server-{% endif %}{{ architecture }}.iso: OK</pre>
     <p>
