@@ -207,10 +207,13 @@ DYNAMIC_SITEMAPS = [
     "tutorials",
     "engage",
     "ceph/docs",
+    "community/docs",
+    "openstack/docs",
     "blog",
     "security/notices",
     "security/cves",
     "security/vulnerabilities",
+    "security/certifications/docs",
     "security/livepatch/docs",
     "robotics/docs",
 ]
@@ -807,34 +810,6 @@ template_finder_view = TemplateFinder.as_view("template_finder")
 template_finder_view._exclude_xframe_options_header = True
 app.add_url_rule("/", view_func=template_finder_view)
 app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
-
-# Server docs
-url_prefix = "/server/docs"
-server_docs = Docs(
-    parser=DocParser(
-        api=discourse_api,
-        index_topic_id=11322,
-        url_prefix=url_prefix,
-    ),
-    document_template="/server/docs/document.html",
-    url_prefix=url_prefix,
-    blueprint_name="server-docs",
-)
-
-# Server docs search
-app.add_url_rule(
-    "/server/docs/search",
-    "server-docs-search",
-    build_search_view(
-        app,
-        session=session,
-        site="ubuntu.com/server/docs",
-        template_path="/server/docs/search-results.html",
-        search_engine_id=search_engine_id,
-    ),
-)
-
-server_docs.init_app(app)
 
 # Community docs
 url_prefix = "/community/docs"
