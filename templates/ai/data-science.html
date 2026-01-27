@@ -368,7 +368,9 @@
           </ul>
         </div>
         <p>
-          <a class="p-button--positive js-invoke-modal" href="/ai/contact-us">Contact us <span class="u-off-screen">about data science stack</span></a>
+          <a class="p-button--positive js-invoke-modal"
+             href="/ai/contact-us"
+             aria-controls="contact-modal">Contact us <span class="u-off-screen">about data science stack</span></a>
         </p>
       </div>
     </div>
@@ -488,13 +490,6 @@
     </div>
   </section>
 
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/ai-data-science"
-       data-form-id="5917"
-       data-lp-id="6279"
-       data-return-url="https://ubuntu.com/ai/thank-you?product=ai-data-science"
-       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+  {{ load_form("/ai/data-science") | safe }}
 
 {% endblock content %}

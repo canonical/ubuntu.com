@@ -18,161 +18,155 @@
 
 {% block content %}
 
-{% call(slot) vf_hero(
-title_text='Download Canonical-built Ubuntu for RISC-V Platforms',
-layout='25/75'
-) -%}
+  {% call(slot) vf_hero(
+    title_text='Download Canonical-built Ubuntu for RISC-V Platforms',
+    layout='25/75'
+    ) -%}
 
-{%- if slot == 'signpost_image' -%}
-  {{ image(url="https://assets.ubuntu.com/v1/4d5b8d51-riscv-color.svg",
-    alt="",
-    width="200",
-    height="32",
-    hi_def=True,
-    loading="auto",
-    attrs={"style": "padding-top: 1rem"},) | safe
-  }}{%- endif -%}
-  {%- if slot == 'description' -%}
-    <p>
-      These Ubuntu images are built and hosted by Canonical, with support and maintenance for Ubuntu components provided under Canonical’s standard SLA. For additional or extended support, please <a href="https://ubuntu.com/download/risc-v#get-in-touch">get in touch</a> with Canonical.
-    </p>
-    <p>
-      Get Ubuntu, running on your favorite RISC-V boards. Choose the right image for your hardware below, flash it onto an SD/microSD card, power up your board, and start building right away.
-    </p>
-    <p>
-      <strong>
-        Note: We have upgraded the required RISC-V ISA profile to RVA23S64 with the 25.10 release. Hardware that is not RVA23-ready continues to be supported by our 24.04 LTS release.
-      </strong>
-    </p>
-  {%- endif -%}
-  {%- if slot == 'cta' -%}
-    <a href="/download/contact-us" class="js-invoke-modal p-button--positive">Contact us</a>
-  {%- endif -%}
-{%- endcall -%}
+    {%- if slot == 'signpost_image' -%}
+      {{ image(url="https://assets.ubuntu.com/v1/4d5b8d51-riscv-color.svg",
+            alt="",
+            width="200",
+            height="32",
+            hi_def=True,
+            loading="auto",
+            attrs={"style": "padding-top: 1rem"},) | safe
+      }}{%- endif -%}
+      {%- if slot == 'description' -%}
+        <p>
+          These Ubuntu images are built and hosted by Canonical, with support and maintenance for Ubuntu components provided under Canonical’s standard SLA. For additional or extended support, please <a href="https://ubuntu.com/download/risc-v#get-in-touch">get in touch</a> with Canonical.
+        </p>
+        <p>
+          Get Ubuntu, running on your favorite RISC-V boards. Choose the right image for your hardware below, flash it onto an SD/microSD card, power up your board, and start building right away.
+        </p>
+        <p>
+          <strong>
+            Note: We have upgraded the required RISC-V ISA profile to RVA23S64 with the 25.10 release. Hardware that is not RVA23-ready continues to be supported by our 24.04 LTS release.
+          </strong>
+        </p>
+      {%- endif -%}
+      {%- if slot == 'cta' -%}
+        <a href="/download/contact-us"
+           class="js-invoke-modal p-button--positive" aria-controls="contact-modal">Contact us</a>
+      {%- endif -%}
+    {%- endcall -%}
 
-  <section class="p-strip is-deep u-no-padding--top">
-    <hr class="is-fixed-width p-rule" />
-    <div class="row">
-      <div class="col-3 col-medium-2">
-        <div class="p-strip is-shallow u-no-padding--top">
-          <h2 class="p-text--small-caps">Choose a board</h2>
+    <section class="p-strip is-deep u-no-padding--top">
+      <hr class="is-fixed-width p-rule" />
+      <div class="row">
+        <div class="col-3 col-medium-2">
+          <div class="p-strip is-shallow u-no-padding--top">
+            <h2 class="p-text--small-caps">Choose a board</h2>
+          </div>
+          <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small"
+              role="tablist"
+              data-maintain-hash="true"
+              aria-label="Risc-v boards">
+            <li>
+              <button class="p-tabs__item"
+                      id="allwinner-nezha"
+                      role="tab"
+                      aria-selected="true"
+                      aria-controls="allwinner-nezha-tab">AllWinner Nezha</button>
+            </li>
+            <li>
+              <button class="p-tabs__item"
+                      id="deepcomputing-fml13v01"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="deepcomputing-fml13v01-tab">DeepComputing FML13V01</button>
+            </li>
+            <li>
+              <button class="p-tabs__item"
+                      id="microchip-curiosity"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="microchip-curiosity-tab">Microchip PIC64GX1000 Curiosity Kit</button>
+            </li>
+            <li>
+              <button class="p-tabs__item"
+                      id="microchip-polarfire-soc-fpga-icicle-kit"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="microchip-polarfire-soc-fpga-icicle-kit-tab">
+                Microchip Polarfire SoC FPGA Icicle
+              </button>
+            </li>
+            <li>
+              <button class="p-tabs__item"
+                      id="milk-v-mars"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="milk-v-mars-tab">Milk-V Mars</button>
+            </li>
+            <li>
+              <button class="p-tabs__item"
+                      id="pine64-star64"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="pine64-star64-tab">Pine64 Star64</button>
+            </li>
+            <li>
+              <button class="p-tabs__item"
+                      id="qemu"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="qemu-tab">QEMU emulator</button>
+            </li>
+            <li>
+              <button class="p-tabs__item"
+                      id="quemu-sifive-image"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="quemu-sifive-image-tab">SiFive Unmatched</button>
+            </li>
+            <li>
+              <button class="p-tabs__item"
+                      id="sipeed-licheerv-dock"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="sipeed-licheerv-dock-tab">Sipeed LicheeRV Dock</button>
+            </li>
+            <li>
+              <button class="p-tabs__item"
+                      id="starfive-visionfive-2"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="starfive-visionfive-2-tab">StarFive VisionFive 2</button>
+            </li>
+          </ul>
+          <form class="u-hide--large u-hide--medium">
+            <select name="boardSelect" id="boardSelect" data-maintain-hash="true">
+              <option value="allwinner-nezha-tab" selected="">AllWinner Nezha</option>
+              <option value="deepcomputing-fml13v01-tab">DeepComputing FML13V01</option>
+              <option value="microchip-curiosity-tab">Microchip PIC64GX1000 Curiosity Kit</option>
+              <option value="microchip-polarfire-soc-fpga-icicle-kit-tab">Microchip Polarfire SoC FPGA Icicle</option>
+              <option value="milk-v-mars-tab">Milk-V Mars</option>
+              <option value="pine64-star64-tab">Pine64 Star64</option>
+              <option value="qemu-tab">QEMU emulator</option>
+              <option value="quemu-sifive-image-tab">SiFive Unmatched</option>
+              <option value="sipeed-licheerv-dock-tab">Sipeed LicheeRV Dock</option>
+              <option value="starfive-visionfive-2-tab">StarFive VisionFive 2</option>
+            </select>
+          </form>
         </div>
-        <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small"
-            role="tablist"
-            data-maintain-hash="true"
-            aria-label="Risc-v boards">
-          <li>
-            <button class="p-tabs__item"
-                    id="allwinner-nezha"
-                    role="tab"
-                    aria-selected="true"
-                    aria-controls="allwinner-nezha-tab">AllWinner Nezha</button>
-          </li>
-          <li>
-            <button class="p-tabs__item"
-                    id="deepcomputing-fml13v01"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="deepcomputing-fml13v01-tab">DeepComputing FML13V01</button>
-          </li>
-          <li>
-            <button class="p-tabs__item"
-                    id="microchip-curiosity"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="microchip-curiosity-tab">Microchip PIC64GX1000 Curiosity Kit</button>
-          </li>
-          <li>
-            <button class="p-tabs__item"
-                    id="microchip-polarfire-soc-fpga-icicle-kit"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="microchip-polarfire-soc-fpga-icicle-kit-tab">
-              Microchip Polarfire SoC FPGA Icicle
-            </button>
-          </li>
-          <li>
-            <button class="p-tabs__item"
-                    id="milk-v-mars"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="milk-v-mars-tab">Milk-V Mars</button>
-          </li>
-          <li>
-            <button class="p-tabs__item"
-                    id="pine64-star64"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="pine64-star64-tab">Pine64 Star64</button>
-          </li>
-          <li>
-            <button class="p-tabs__item"
-                    id="qemu"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="qemu-tab">QEMU emulator</button>
-          </li>
-          <li>
-            <button class="p-tabs__item"
-                    id="quemu-sifive-image"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="quemu-sifive-image-tab">SiFive Unmatched</button>
-          </li>
-          <li>
-            <button class="p-tabs__item"
-                    id="sipeed-licheerv-dock"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="sipeed-licheerv-dock-tab">Sipeed LicheeRV Dock</button>
-          </li>
-          <li>
-            <button class="p-tabs__item"
-                    id="starfive-visionfive-2"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="starfive-visionfive-2-tab">StarFive VisionFive 2</button>
-          </li>
-        </ul>
-        <form class="u-hide--large u-hide--medium">
-          <select name="boardSelect" id="boardSelect" data-maintain-hash="true">
-            <option value="allwinner-nezha-tab" selected="">AllWinner Nezha</option>
-            <option value="deepcomputing-fml13v01-tab">DeepComputing FML13V01</option>
-            <option value="microchip-curiosity-tab">Microchip PIC64GX1000 Curiosity Kit</option>
-            <option value="microchip-polarfire-soc-fpga-icicle-kit-tab">Microchip Polarfire SoC FPGA Icicle</option>
-            <option value="milk-v-mars-tab">Milk-V Mars</option>
-            <option value="pine64-star64-tab">Pine64 Star64</option>
-            <option value="qemu-tab">QEMU emulator</option>
-            <option value="quemu-sifive-image-tab">SiFive Unmatched</option>
-            <option value="sipeed-licheerv-dock-tab">Sipeed LicheeRV Dock</option>
-            <option value="starfive-visionfive-2-tab">StarFive VisionFive 2</option>
-          </select>
-        </form>
+        <div class="col-9 col-medium-4">
+          {% include "download/risc-v/allwinner-nezha.html" %}
+          {% include "download/risc-v/deepcomputing-fml13v01.html" %}
+          {% include "download/risc-v/microchip-curiosity.html" %}
+          {% include "download/risc-v/microchip-polarfire.html" %}
+          {% include "download/risc-v/milk-v-mars.html" %}
+          {% include "download/risc-v/pine64-star64.html" %}
+          {% include "download/risc-v/qemu-emulator.html" %}
+          {% include "download/risc-v/sifive-unmatched.html" %}
+          {% include "download/risc-v/sipeed-licheerv.html" %}
+          {% include "download/risc-v/starfive-visionfive.html" %}
+        </div>
       </div>
-      <div class="col-9 col-medium-4">
-        {% include "download/risc-v/allwinner-nezha.html" %}
-        {% include "download/risc-v/deepcomputing-fml13v01.html" %}
-        {% include "download/risc-v/microchip-curiosity.html" %}
-        {% include "download/risc-v/microchip-polarfire.html" %}
-        {% include "download/risc-v/milk-v-mars.html" %}
-        {% include "download/risc-v/pine64-star64.html" %}
-        {% include "download/risc-v/qemu-emulator.html" %}
-        {% include "download/risc-v/sifive-unmatched.html" %}
-        {% include "download/risc-v/sipeed-licheerv.html" %}
-        {% include "download/risc-v/starfive-visionfive.html" %}
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/risc-v"
-       data-form-id="4532"
-       data-lp-id=""
-       data-return-url="https://ubuntu.com/contact-us/thank-you"
-       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+    {{ load_form("/download/risc-v/canonical-built") | safe }}
 
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+    <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
-{% endblock content %}
+  {% endblock content %}

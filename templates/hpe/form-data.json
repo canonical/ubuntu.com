@@ -1,0 +1,41 @@
+{
+  "form": {
+    "/hpe": {
+      "templatePath": "/hpe/index.html",
+      "isModal": true,
+      "modalId": "contact-modal",
+      "formData": {
+        "title": "Talk to us about Ubuntu and HPE",
+        "introText": "To speak about a specific project requirement, or have any questions, contact directly with Canonical Alliance Business Director - valerie.noto@canonical.com or to HPE Technology Partner Program - tam.vuong@hpe.com or HPE Certification Program - padilla@hpe.com, eddie.campbell@hpe.com",
+        "formId": "4563",
+        "returnUrl": "/hpe#contact-form-success",
+        "lpUrl": "https://pages.ubuntu.com/things-contact-us.html"
+      },
+      "fieldsets": [
+        {
+          "title": "Tell us about your project",
+          "id": "tell-us-about-your-project",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "tell-us-about-your-project"
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Phone number",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

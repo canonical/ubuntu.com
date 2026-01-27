@@ -1,0 +1,113 @@
+{
+  "form": {
+    "/download/qualcomm-iot": {
+      "templatePath": "/download/qualcomm-iot/index.html",
+      "isModal": true,
+      "modalId": "contact-modal",
+      "formData": {
+        "title": "Interested in optimized Ubuntu on Qualcomm platforms?",
+        "introText": "Fill out the form to receive the latest update from us!",
+        "formId": 6035,
+        "returnUrl": "/download/qualcomm-iot#contact-form-success",
+        "lpUrl": "https://ubuntu.com/download/contact-us?product=qualcomm-iot"
+      },
+      "fieldsets": [
+        {
+          "title": "About your company, your company is:",
+          "id": "your-company",
+          "fields": [
+            {
+              "type": "radio",
+              "id": "your-company-is-ODM-OEM",
+              "label": "an ODM/OEM",
+              "value": "an ODM/OEM"
+            },
+            {
+              "type": "radio",
+              "id": "your-company-is-end-customer",
+              "label": "an end customer",
+              "value": "an end customer"
+            }
+          ]
+        },
+        {
+          "title": "Do you have a commercial project?",
+          "id": "commercial-project",
+          "fields": [
+            {
+              "type": "radio",
+              "id": "commercial-project-yes",
+              "label": "Yes",
+              "value": "Yes"
+            },
+            {
+              "type": "radio",
+              "id": "commercial-project-no",
+              "label": "No",
+              "value": "No"
+            },
+            {
+              "type": "radio",
+              "id": "commercial-project-not-applicable",
+              "label": "Not applicable",
+              "value": "Not applicable"
+            }
+          ]
+        },
+        {
+          "title": "When do you need to ship?",
+          "id": "when-do-you-ship",
+          "fields": [
+            {
+              "type": "radio",
+              "id": "when-do-you-ship-next-3-months",
+              "label": "Next 3 months",
+              "value": "Next 3 months"
+            },
+            {
+              "type": "radio",
+              "id": "when-do-you-ship-next-3-6-months",
+              "label": "Next 3-6 months",
+              "value": "Next 3-6 months"
+            },
+            {
+              "type": "radio",
+              "id": "when-do-you-ship-next-6-12-months",
+              "label": "Next 6-12 months",
+              "value": "Next 6-12 months"
+            },
+            {
+              "type": "radio",
+              "id": "when-do-you-ship-no-timeline",
+              "label": "No timeline - just researching",
+              "value": "No timeline - just researching"
+            }
+          ]
+        },
+        {
+          "title": "Tell us more about your project",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "about-your-project",
+              "label": "Tell us more about your project"
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

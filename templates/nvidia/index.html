@@ -24,7 +24,7 @@
         <p>
           The publishers of the most popular open-source OS meet the global innovators in AI. We put the future in your hands.
         </p>
-        <a href="/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+        <a href="/contact-us" class="p-button--positive js-invoke-modal" aria-controls="contact-modal">Get in touch</a>
 
       </div>
 
@@ -823,12 +823,5 @@
 
 </section>
 
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide"
-     id="contact-form-container"
-     data-form-location="/shared/forms/interactive/nvidia"
-     data-form-id="4656"
-     data-lp-id="2065"
-     data-return-url="https://ubuntu.com/thank-you"
-     data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+{{ load_form("/nvidia") | safe }}
 {% endblock outer_content %}

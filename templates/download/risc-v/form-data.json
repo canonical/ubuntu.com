@@ -2,6 +2,9 @@
   "form": {
     "/download/risc-v/partner-built": {
       "templatePath": "/download/risc-v/partner-built.html",
+      "childrenPaths": [
+        "/download/risc-v/canonical-built"
+      ],
       "isModal": true,
       "modalId": "contact-modal",
       "formData": {
@@ -120,6 +123,16 @@
               "label": "No timeline - just researching",
               "value": "No timeline - just researching",
               "id": "no-timeline"
+            }
+          ]
+        },
+        {
+          "title": "Tell us more about your project:",
+          "id": "about-project",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "about-project"
             }
           ]
         },
