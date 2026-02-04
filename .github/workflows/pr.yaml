@@ -173,7 +173,6 @@ jobs:
           DISCOURSE_API_USERNAME: ${{ secrets.DISCOURSE_API_USERNAME }}
           DISCOURSE_API_KEY: ${{ secrets.DISCOURSE_API_KEY }}
 
-
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
