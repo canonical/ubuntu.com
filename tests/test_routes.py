@@ -22,7 +22,7 @@ class TestRoutes(VCRTestCase):
         from VCR so we don"t record auth parameters
         """
         return {
-            "record_mode": "new_episodes",
+            "record_mode": "none",
             "filter_headers": [
                 "Authorization",
                 "Cookie",
