@@ -1,18 +1,20 @@
 interactions:
 - request:
-    body: params=%7B%22category_id%22%3A+%2251%22%2C+%22keyword%22%3A+%22path%22%2C+%22value%22%3A+%22%2Fengage%2Fmicro-clouds%22%7D
+    body: params=%7B%22category_id%22%3A+%2251%22%2C+%22limit%22%3A+%2250%22%2C+%22offset%22%3A+%220%22%2C+%22keyword%22%3A+%22path%22%2C+%22value%22%3A+%22%2Fengage%2Fmicro-clouds%22%7D
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate, br
       Content-Length:
-      - '122'
+      - '176'
       Content-Type:
       - multipart/form-data;
     method: POST
     uri: https://discourse.ubuntu.com/admin/plugins/explorer/queries/16/run
   response:
     body:
-      string: '{"success":true,"errors":[],"duration":43.9,"result_count":1,"params":{"category_id":"51","keyword":"path","value":"/engage/micro-clouds"},"columns":["cooked","raw","deleted_at","title","created_at","updated_at","id","slug"],"default_limit":1000,"relations":{},"colrender":{},"rows":[["\u003cdiv
+      string: '{"success":true,"errors":[],"duration":163.7,"result_count":1,"params":{"category_id":"51","limit":"50","offset":"0","keyword":"path","value":"/engage/micro-clouds"},"columns":["cooked","raw","deleted_at","title","created_at","updated_at","id","slug","full_count","active_count","current_total"],"default_limit":1000,"relations":{},"colrender":{},"rows":[["\u003cdiv
         class=\"md-table\"\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003eKey\u003c/th\u003e\n\u003cth\u003eValue\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd\u003eimage\u003c/td\u003e\n\u003ctd\u003e\u003ca
         href=\"https://assets.ubuntu.com/v1/d90b0f36-Edge+Cloud-white.svg\"\u003ehttps://assets.ubuntu.com/v1/d90b0f36-Edge+Cloud-white.svg\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003eimage_width\u003c/td\u003e\n\u003ctd\u003e280\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003eimage_height\u003c/td\u003e\n\u003ctd\u003e250\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003emeta_image\u003c/td\u003e\n\u003ctd\u003e\u003ca
         href=\"https://assets.ubuntu.com/v1/e5acd2cc-twitter_wide_banner+%2816%29.jpeg\"\u003ehttps://assets.ubuntu.com/v1/e5acd2cc-twitter_wide_banner+(16).jpeg\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003emeta_copydoc\u003c/td\u003e\n\u003ctd\u003e\u003ca
@@ -48,47 +50,41 @@ interactions:
         computing environments\n* Lightweight deployments at scale\n* Clustering Microk8s
         to create a base station\n* Automatic high availability with Microk8s for
         mission-critical workloads\n* Continuation of the edge strategy in the multi-cloud
-        environment\n* Customer use case",null,"Micro clouds:","2020-11-19T12:43:19.126Z","2022-06-27T09:47:36.873Z",19424,"micro-clouds"]]}'
+        environment\n* Customer use case",null,"Micro clouds:","2020-11-19T12:43:19.126Z","2022-06-27T09:47:36.873Z",19424,"micro-clouds",901,1,1]]}'
     headers:
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Allow-Headers:
-      - Content-Type, Cache-Control, X-Requested-With, X-CSRF-Token, Discourse-Present,
-        User-Api-Key, User-Api-Client-Id, Authorization
-      Access-Control-Allow-Methods:
-      - POST, PUT, GET, OPTIONS, DELETE
-      Access-Control-Allow-Origin:
-      - https://didrocks.fr
       Cache-Control:
       - no-cache, no-store
+      Connection:
+      - keep-alive
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Tue, 09 Aug 2022 04:58:58 GMT
+      - Thu, 05 Feb 2026 12:08:16 GMT
       Referrer-Policy:
       - strict-origin-when-cross-origin
-      Server:
-      - Apache/2.4.18 (Ubuntu)
+      Set-Cookie:
+      - DISCOURSE-K8S_AFFINITY=1770293297.176.53.279953|078f402a49fdc959a550ab8a5dea4dd5;
+        Max-Age=3600; Path=/; Secure; HttpOnly; SameSite=Lax
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
       Transfer-Encoding:
       - chunked
       X-Content-Type-Options:
       - nosniff
       X-Discourse-Route:
-      - query/run
+      - discourse_data_explorer/query/run
       X-Discourse-Username:
-      - carkod
-      X-Download-Options:
-      - noopen
+      - britneywwc
       X-Frame-Options:
       - SAMEORIGIN
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Request-Id:
-      - 1dd9ced9-64da-4c76-a9f1-63db4130eea1
+      - 8f33155c27279219fb81f200abf30024
       X-Runtime:
-      - '0.085830'
+      - '0.214403'
       X-XSS-Protection:
-      - 1; mode=block
+      - '0'
     status:
       code: 200
       message: OK
