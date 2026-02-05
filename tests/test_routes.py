@@ -20,13 +20,13 @@ class TestRoutes(VCRTestCase):
         """
         This removes the authorization header
         from VCR so we don"t record auth parameters
-        
+
         IMPORTANT: If there are changes to the APIs called in these tests,
-        they need to be re-recorded in cassettes using record_mode: "all" 
+        they need to be re-recorded in cassettes using record_mode: "all"
         and then switched back to "none".
         """
         return {
-            "record_mode": "none",
+            "record_mode": "new_episodes",
             "filter_headers": [
                 "Authorization",
                 "Cookie",
