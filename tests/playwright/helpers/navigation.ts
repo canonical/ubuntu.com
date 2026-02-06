@@ -47,6 +47,7 @@ export class NavigationComponent {
   // Search
   readonly searchButton: Locator;
   readonly searchInput: Locator;
+  readonly searchResetButton: Locator;
   readonly searchOverlay: Locator;
   readonly searchForm: Locator;
 
@@ -77,6 +78,7 @@ export class NavigationComponent {
       "nav.p-navigation__nav .js-search-button"
     );
     this.searchInput = page.locator('input[name="q"]');
+    this.searchResetButton = page.locator("button.p-search-box__reset");
     this.searchOverlay = page.locator(".p-navigation__search-overlay");
     this.searchForm = page.locator("form.js-search-form");
 
