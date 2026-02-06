@@ -22,7 +22,7 @@ class TestBlogNotice(VCRTestCase):
         from VCR so we don't record auth parameters
         """
         return {
-            "record_mode": "new_episodes",
+            "record_mode": "none",
             "decode_compressed_response": True,
             "filter_headers": ["Authorization", "Cookie"],
         }
