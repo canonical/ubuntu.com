@@ -44,19 +44,13 @@ test.describe("Dropdown lazy loading", () => {
     await nav.banner.hover();
 
     // Second hover should NOT trigger fetch
-    let secondFetchTriggered = false;
-    nav.page.on("request", (req) => {
-      if (req.url().includes("/templates/navigation/products")) {
-        secondFetchTriggered = true;
-      }
-    });
     await productsLink.hover();
-    await expect
-      .poll(
-        () => secondFetchTriggered,
-        { timeout: 2000, message: "Expected no second fetch to be triggered" }
+    await expect(
+      nav.page.waitForRequest(
+        (req) => req.url().includes("/templates/navigation/products"),
+        { timeout: 2000 }
       )
-      .toBe(false);
+    ).rejects.toThrow();
   });
 
   test("focus triggers fetch via onfocus", async () => {

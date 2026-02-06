@@ -15,8 +15,8 @@ test.describe("Navigation rendering", () => {
   });
 
   test("logo links to / with text Canonical Ubuntu", async () => {
-    await expect(nav.logoLink.first()).toHaveAttribute("href", "/");
-    await expect(nav.logoLink.first()).toContainText("Canonical Ubuntu");
+    await expect(nav.logoLink).toHaveAttribute("href", "/");
+    await expect(nav.logoLink).toContainText("Canonical Ubuntu");
   });
 
   test("dropdown-window container exists with 5 empty content divs", async () => {

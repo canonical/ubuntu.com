@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { NavigationComponent, NAV_SECTIONS } from "../../helpers/navigation";
+import { NavigationComponent } from "../../helpers/navigation";
 
 test.describe("Search functionality", () => {
   let nav: NavigationComponent;
@@ -37,7 +37,6 @@ test.describe("Search functionality", () => {
     await nav.searchInput.press("Enter");
 
     await nav.page.waitForURL(/\/search\?q=kubernetes/, { timeout: 10000 });
-    expect(nav.page.url()).toContain("/search?q=kubernetes");
   });
 
   test("search form has correct action", async () => {

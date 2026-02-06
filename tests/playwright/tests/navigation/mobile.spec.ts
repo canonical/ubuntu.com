@@ -1,8 +1,10 @@
 import { test, expect } from "@playwright/test";
 import { NavigationComponent, NAV_SECTIONS } from "../../helpers/navigation";
 
+const MOBILE_THRESHOLD = 1035;
+
 test.describe("Mobile menu", () => {
-  test.use({ viewport: { width: 375, height: 812 } });
+  test.use({ viewport: { width: MOBILE_THRESHOLD, height: 1035 } });
 
   let nav: NavigationComponent;
 
@@ -43,7 +45,7 @@ test.describe("Mobile menu", () => {
 
     const mobileDropdown = nav.page.locator("#products-content-mobile");
     await expect(mobileDropdown).toHaveAttribute("aria-hidden", "false", {
-      timeout: 10000,
+      timeout: 1000,
     });
   });
 });
@@ -65,7 +67,7 @@ test.describe("Responsive navigation", () => {
 
       await expect(nav.header).toBeVisible();
 
-      if (width <= 768) {
+      if (width < MOBILE_THRESHOLD) {
         await expect(nav.mobileMenuButton).toBeVisible();
       } else {
         for (const section of NAV_SECTIONS) {

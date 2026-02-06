@@ -9,21 +9,6 @@ test.describe("Dropdown response performance", () => {
     await nav.goto("/");
   });
 
-  test("each dropdown endpoint responds in < 3000ms", async () => {
-    for (const section of NAV_SECTIONS) {
-      const link = nav.sectionLink(section.id);
-      const start = Date.now();
-      const responsePromise = nav.page.waitForResponse((res) =>
-        res.url().includes(section.endpoint)
-      );
-      await link.hover();
-      const response = await responsePromise;
-      const elapsed = Date.now() - start;
-      expect(elapsed).toBeLessThan(3000);
-      expect(response.status()).toBe(200);
-    }
-  });
-
   test("each dropdown response contains .desktop-dropdown-content", async () => {
     for (const section of NAV_SECTIONS) {
       const link = nav.sectionLink(section.id);

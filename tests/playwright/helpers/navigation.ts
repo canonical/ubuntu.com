@@ -66,7 +66,7 @@ export class NavigationComponent {
     this.header = page.locator("header#navigation.p-navigation--sliding");
     this.headerEl = page.locator("header#navigation");
     this.logoLink = page.locator(
-      ".p-navigation__tagged-logo a.p-navigation__link"
+      "header#navigation .p-navigation__tagged-logo a.p-navigation__link"
     );
 
     this.dropdownWindow = page.locator(".dropdown-window");
@@ -135,11 +135,15 @@ export class NavigationComponent {
   }
 
   async openSearch(): Promise<void> {
-    await this.searchButton.click({ force: true });
+    await this.searchButton.waitFor({ state: "visible" });
+    // await expect(this.searchButton).toBeVisible();
+    await this.searchButton.click();
   }
 
   async closeSearchViaOverlay(): Promise<void> {
-    await this.searchOverlay.click({ force: true });
+    await this.searchOverlay.waitFor({ state: "visible" });
+    // await expect(this.searchOverlay).toBeVisible();
+    await this.searchOverlay.click();
   }
 
   async openMobileMenu(): Promise<void> {

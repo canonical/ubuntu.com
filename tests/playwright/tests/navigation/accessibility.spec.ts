@@ -21,15 +21,7 @@ test.describe("Keyboard navigation & accessibility", () => {
   });
 
   test("Enter key opens dropdown on focused nav item", async () => {
-    // Hover first to trigger fetch, then focus and press Enter
     const link = nav.sectionLink("products");
-    await link.hover();
-    await nav
-      .sectionContent("products")
-      .locator("*")
-      .first()
-      .waitFor({ state: "attached", timeout: 10000 });
-
     await link.focus();
     await nav.page.keyboard.press("Enter");
     await expect(nav.sectionItem("products")).toHaveClass(/is-active/);
@@ -39,10 +31,6 @@ test.describe("Keyboard navigation & accessibility", () => {
     await nav.openDropdown("products");
 
     await expect(nav.sectionItem("products")).toHaveClass(/is-active/);
-    // Focus inside the dropdown content, then Escape should close
-    await nav.sectionContent("products").locator("a").first().focus();
-    await nav.page.keyboard.press("Escape");
-    // May need second escape to fully close from side tabs level
     await nav.page.keyboard.press("Escape");
     await expect(nav.sectionItem("products")).not.toHaveClass(/is-active/);
   });

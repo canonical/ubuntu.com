@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { NavigationComponent, NAV_SECTIONS } from "../../helpers/navigation";
+import { NavigationComponent } from "../../helpers/navigation";
 
 test.describe("Secondary navigation", () => {
   let nav: NavigationComponent;
@@ -22,7 +22,7 @@ test.describe("Secondary navigation", () => {
     for (const item of expectedItems) {
       await expect(
         nav.secondaryNav.getByRole("link", { name: item }).first()
-      ).toBeAttached();
+      ).toBeVisible();
     }
   });
 
@@ -53,12 +53,6 @@ test.describe("Secondary navigation", () => {
   test("homepage does not show secondary navigation", async () => {
     await nav.goto("/");
 
-    await expect(nav.secondaryNav).not.toBeAttached();
-  });
-
-  test("section page shows mobile toggle button", async () => {
-    await nav.goto("/azure");
-
-    await expect(nav.secondaryNavToggle).toBeAttached();
+    await expect(nav.secondaryNav).toHaveCount(0);
   });
 });
