@@ -9,16 +9,18 @@ test.describe("Dropdown response performance", () => {
     await nav.goto("/");
   });
 
-  test("each dropdown response contains .desktop-dropdown-content", async () => {
+  test.describe("each dropdown response contains .desktop-dropdown-content", () => {
     for (const section of NAV_SECTIONS) {
-      const link = nav.sectionLink(section.id);
-      const responsePromise = nav.page.waitForResponse((res) =>
-        res.url().includes(section.endpoint)
-      );
-      await link.hover();
-      const response = await responsePromise;
-      const body = await response.text();
-      expect(body).toContain("desktop-dropdown-content");
+      test(section.id, async () => {
+        const link = nav.sectionLink(section.id);
+        const responsePromise = nav.page.waitForResponse((res) =>
+          res.url().includes(section.endpoint)
+        );
+        await link.hover();
+        const response = await responsePromise;
+        const body = await response.text();
+        expect(body).toContain("desktop-dropdown-content");
+      });
     }
   });
 });

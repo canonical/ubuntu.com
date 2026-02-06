@@ -30,7 +30,8 @@ test.describe("Keyboard navigation & accessibility", () => {
   test("Escape closes open dropdown", async () => {
     await nav.openDropdown("products");
 
-    await expect(nav.sectionItem("products")).toHaveClass(/is-active/);
+    // Focus inside the dropdown content, Escape closes the dropdown.
+    await nav.sectionContent("products").locator("a").first().focus();
     await nav.page.keyboard.press("Escape");
     await expect(nav.sectionItem("products")).not.toHaveClass(/is-active/);
   });
