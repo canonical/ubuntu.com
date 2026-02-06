@@ -27,7 +27,7 @@ export const NAV_SECTIONS = [
     label: "Download Ubuntu",
     endpoint: "/templates/navigation/download-ubuntu",
   },
-];
+] as const;
 
 export class NavigationComponent {
   readonly page: Page;
