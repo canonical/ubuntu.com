@@ -26,7 +26,7 @@ class TestRoutes(VCRTestCase):
         and then switched back to "none".
         """
         return {
-            "record_mode": "new_episodes",
+            "record_mode": "none",
             "filter_headers": [
                 "Authorization",
                 "Cookie",
