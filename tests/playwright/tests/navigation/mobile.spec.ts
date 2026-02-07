@@ -2,9 +2,10 @@ import { test, expect } from "@playwright/test";
 import { NavigationComponent, NAV_SECTIONS } from "../../helpers/navigation";
 
 const MOBILE_THRESHOLD = 1035;
+const MOBILE_VIEWPORT_HEIGHT = 812;
 
 test.describe("Mobile menu", () => {
-  test.use({ viewport: { width: MOBILE_THRESHOLD, height: 1035 } });
+  test.use({ viewport: { width: MOBILE_THRESHOLD, height: MOBILE_VIEWPORT_HEIGHT } });
 
   let nav: NavigationComponent;
 
@@ -52,7 +53,7 @@ test.describe("Mobile menu", () => {
 
 test.describe("Responsive navigation", () => {
   const viewports = [
-    { name: "mobile", width: 375, height: 812 },
+    { name: "mobile", width: 375, height: MOBILE_VIEWPORT_HEIGHT },
     { name: "tablet", width: 768, height: 1024 },
     { name: "desktop", width: 1280, height: 800 },
   ];

@@ -136,13 +136,11 @@ export class NavigationComponent {
 
   async openSearch(): Promise<void> {
     await this.searchButton.waitFor({ state: "visible" });
-    // await expect(this.searchButton).toBeVisible();
     await this.searchButton.click();
   }
 
   async closeSearchViaOverlay(): Promise<void> {
     await this.searchOverlay.waitFor({ state: "visible" });
-    // await expect(this.searchOverlay).toBeVisible();
     await this.searchOverlay.click();
   }
 
