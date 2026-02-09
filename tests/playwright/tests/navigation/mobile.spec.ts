@@ -12,6 +12,7 @@ test.describe("Mobile menu", () => {
   test.beforeEach(async ({ page }) => {
     nav = new NavigationComponent(page);
     await nav.goto("/");
+    await nav.openMobileMenu();
   });
 
   test("menu button is visible with text Menu", async () => {
@@ -20,12 +21,10 @@ test.describe("Mobile menu", () => {
   });
 
   test("clicking menu button toggles has-menu-open class", async () => {
-    await nav.openMobileMenu();
     await expect(nav.headerEl).toHaveClass(/has-menu-open/);
   });
 
   test("clicking menu button again closes menu", async () => {
-    await nav.openMobileMenu();
     await expect(nav.headerEl).toHaveClass(/has-menu-open/);
 
     await nav.closeMobileMenu();
@@ -33,7 +32,6 @@ test.describe("Mobile menu", () => {
   });
 
   test("Escape key closes mobile menu", async () => {
-    await nav.openMobileMenu();
     await expect(nav.headerEl).toHaveClass(/has-menu-open/);
 
     await nav.page.keyboard.press("Escape");
@@ -41,7 +39,6 @@ test.describe("Mobile menu", () => {
   });
 
   test("tapping a nav item reveals its mobile sub-options", async () => {
-    await nav.openMobileMenu();
     await nav.sectionLink("products").click();
 
     const mobileDropdown = nav.page.locator("#products-content-mobile");

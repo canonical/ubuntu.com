@@ -37,8 +37,34 @@ interface FlatSection {
 
 type NavigationData = Record<string, FlatSection>;
 
+// --- Secondary navigation types ---
+
+interface SecondaryNavChild {
+  title: string;
+  path: string;
+  login_required?: boolean;
+}
+
+interface SecondaryNavSection {
+  title: string;
+  path: string;
+  children: SecondaryNavChild[];
+}
+
+type SecondaryNavigationData = Record<string, SecondaryNavSection>;
+
+// --- Load YAML data ---
+
 const yamlPath = path.resolve(__dirname, "../../../navigation.yaml");
 const navData = yaml.load(fs.readFileSync(yamlPath, "utf8")) as NavigationData;
+
+const secondaryYamlPath = path.resolve(
+  __dirname,
+  "../../../secondary-navigation.yaml"
+);
+const secondaryNavData = yaml.load(
+  fs.readFileSync(secondaryYamlPath, "utf8")
+) as SecondaryNavigationData;
 
 /** Convert a test section ID (hyphens) to a YAML key (underscores). */
 function toYamlKey(sectionId: string): string {
@@ -125,4 +151,61 @@ export function getSectionFooter(
     );
   }
   return tab.section_footer;
+}
+
+// --- Secondary navigation helpers ---
+
+function isLocalPath(p: string): boolean {
+  return p.startsWith("/");
+}
+
+/** Sections that don't render secondary nav in the test environment. */
+const EXCLUDED_SECTIONS = new Set([
+  // "blog", // External BlogAPI content
+  // "tutorials", // External Discourse content
+  // "community", // External Discourse endpoints
+  "account", // Requires login — redirects to /login
+  "Distributor", // Requires login — redirects to /login
+  // "documentation", // Internal docs pages (/0_docs) not publicly routed
+  "credentials", // redirects to https://canonical.com/academy
+  // "legal", // Legal pages don't render secondary nav
+]);
+
+/** All secondary nav sections with local paths (excludes external URLs). */
+export function getSecondaryNavSections(): {
+  key: string;
+  section: SecondaryNavSection;
+}[] {
+  return Object.entries(secondaryNavData)
+    .filter(
+      ([key, section]) =>
+        !EXCLUDED_SECTIONS.has(key) && isLocalPath(String(section.path))
+    )
+    .map(([key, section]) => ({
+      key,
+      section: {
+        ...section,
+        title: String(section.title),
+        path: String(section.path),
+      },
+    }));
+}
+
+/** A single secondary nav section by YAML key. */
+export function getSecondaryNavSection(key: string): SecondaryNavSection {
+  const section = secondaryNavData[key];
+  if (!section) {
+    throw new Error(
+      `Section "${key}" not found in secondary-navigation.yaml`
+    );
+  }
+  return section;
+}
+
+/** Child titles for a section, excluding Overview, login_required, and external items. */
+export function getSecondaryNavChildTitles(key: string): string[] {
+  const section = getSecondaryNavSection(key);
+  return section.children
+    .filter((c) => c.title !== "Overview" && !c.login_required && isLocalPath(c.path))
+    .map((c) => c.title);
 }

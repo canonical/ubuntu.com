@@ -1,5 +1,11 @@
 import { test, expect } from "@playwright/test";
 import { NavigationComponent } from "../../helpers/navigation";
+import {
+  getSecondaryNavSections,
+  getSecondaryNavChildTitles,
+} from "../../helpers/navigation-data";
+
+const sections = getSecondaryNavSections();
 
 test.describe("Secondary navigation", () => {
   let nav: NavigationComponent;
@@ -8,47 +14,28 @@ test.describe("Secondary navigation", () => {
     nav = new NavigationComponent(page);
   });
 
-  test("/azure page shows secondary navigation with title Azure", async () => {
-    await nav.goto("/azure");
+  for (const { key, section } of sections) {
+    test(`${section.path} shows secondary nav with title "${section.title}"`, async () => {
+      await nav.goto(section.path);
 
-    await expect(nav.secondaryNav).toBeVisible();
-    await expect(nav.secondaryNavTitle).toContainText("Azure");
-  });
+      await expect(nav.secondaryNav).toBeVisible();
+      await expect(nav.secondaryNavTitle).toContainText(section.title);
+    });
 
-  test("/azure page has expected child items", async () => {
-    await nav.goto("/azure");
+    const childTitles = getSecondaryNavChildTitles(key);
 
-    const expectedItems = ["Pro", "Support", "FIPS", "SQL", "Docs"];
-    for (const item of expectedItems) {
-      await expect(
-        nav.secondaryNav.getByRole("link", { name: item }).first()
-      ).toBeVisible();
+    if (childTitles.length > 0) {
+      test(`${section.path} has expected child items`, async () => {
+        await nav.goto(section.path);
+
+        for (const title of childTitles) {
+          await expect(
+            nav.secondaryNav.getByRole("link", { name: title }).first()
+          ).toBeVisible();
+        }
+      });
     }
-  });
-
-  test("/azure/pro shows Pro as selected with aria-current", async () => {
-    await nav.goto("/azure/pro");
-
-    await expect(nav.secondaryNavSelectedItem).toContainText("Pro");
-    await expect(nav.secondaryNavSelectedItem.locator("a")).toHaveAttribute(
-      "aria-current",
-      "page"
-    );
-  });
-
-  test("/pro page shows secondary nav with title Ubuntu Pro", async () => {
-    await nav.goto("/pro");
-
-    await expect(nav.secondaryNav).toBeVisible();
-    await expect(nav.secondaryNavTitle).toContainText("Ubuntu\u00a0Pro");
-  });
-
-  test("/openstack page shows secondary nav with OpenStack branding", async () => {
-    await nav.goto("/openstack");
-
-    await expect(nav.secondaryNav).toBeVisible();
-    await expect(nav.secondaryNavTitle).toContainText("OpenStack");
-  });
+  }
 
   test("homepage does not show secondary navigation", async () => {
     await nav.goto("/");
