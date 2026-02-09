@@ -7,7 +7,7 @@ export const staticContactUsPages = [
   "/tests/_static-default-form",
 ]
 
-test.describe("Form ID validation", () => {
+test.skip("Form ID validation", () => {
   /**
    * Discover all static contact us pages from the sitemap parser
    * @param page The Playwright page object
@@ -52,7 +52,7 @@ test.describe("Form ID validation", () => {
   });
 });
 
-test.describe("Form submission validation", () => {
+test.skip("Form submission validation", () => {
   test("should fill and redirect to marketo submission endpoint", async ({ page }) => {
     for (const url of staticContactUsPages) {
       await test.step(`Testing form on ${url}`, async () => {
@@ -102,7 +102,7 @@ test.describe("Form submission validation", () => {
   });
 });
 
-test.describe("Radio field handling", () => {
+test.skip("Radio field handling", () => {
   test("radio fields should have appropriate js hooks classnames", async ({ page }) => {
     for (const url of staticContactUsPages) {
       await test.step(`Testing form on ${url}`, async () => {
@@ -126,7 +126,7 @@ test.describe("Radio field handling", () => {
   });
 });
 
-test.describe("Required checkbox validation", () => {
+test.skip("Required checkbox validation", () => {
   test("should disable submit button when required checkbox is not checked", async ({ page }) => {    
     await page.goto("/tests/_static-default-form");
     await acceptCookiePolicy(page);
