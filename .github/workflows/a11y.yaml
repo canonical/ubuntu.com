@@ -4,7 +4,9 @@ on:
   schedule:
     - cron: "20 7 * * 1" # every Monday at 07:20 UTC
   workflow_dispatch:
+  # Remove after approval
   pull_request:
+  push:
 permissions:
   contents: read
 
