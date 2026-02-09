@@ -3,12 +3,14 @@ import {
   getSecondaryNavSections,
   getSecondaryNavChildTitles,
 } from "../../helpers/navigation-data";
+import { NavigationComponent } from "../../helpers/navigation";
 
 const sections = getSecondaryNavSections();
 
 test.describe("Secondary navigation", () => {
   for (const { key, section } of sections) {
-    test(`${section.path} shows secondary nav with title "${section.title}"`, async ({ nav }) => {
+    test(`${section.path} shows secondary nav with title "${section.title}"`, async ({ page }) => {
+      const nav = new NavigationComponent(page);
       await nav.goto(section.path);
 
       await expect(nav.secondaryNav).toBeVisible();
@@ -18,7 +20,8 @@ test.describe("Secondary navigation", () => {
     const childTitles = getSecondaryNavChildTitles(key);
 
     if (childTitles.length > 0) {
-      test(`${section.path} has expected child items`, async ({ nav }) => {
+      test(`${section.path} has expected child items`, async ({ page }) => {
+        const nav = new NavigationComponent(page);
         await nav.goto(section.path);
 
         for (const title of childTitles) {

@@ -159,16 +159,15 @@ function isLocalPath(p: string): boolean {
   return p.startsWith("/");
 }
 
-/** Sections that don't render secondary nav in the test environment. */
+/** Sections with redirect and/or auth */
 const EXCLUDED_SECTIONS = new Set([
   "blog", // External BlogAPI content
   "tutorials", // External Discourse content
   "community", // External Discourse endpoints
+  // "engage", // External Discourse endpoints
   "account", // Requires login — redirects to /login
   "Distributor", // Requires login — redirects to /login
-  "documentation", // Internal docs pages (/0_docs) not publicly routed
-  "engage", // External Discourse endpoints
-  // "legal", // Legal pages don't render secondary nav
+  "credentials", // redirects to https://canonical.com/academy
 ]);
 
 /** All secondary nav sections with local paths (excludes external URLs). */
