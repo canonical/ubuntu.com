@@ -1,25 +1,18 @@
-import { test, expect } from "@playwright/test";
-import { NavigationComponent, NAV_SECTIONS } from "../../helpers/navigation";
+import { test, expect } from "../../helpers/fixtures";
+import { NAV_SECTIONS } from "../../helpers/navigation";
 
 test.describe("Navigation rendering", () => {
-  let nav: NavigationComponent;
-
-  test.beforeEach(async ({ page }) => {
-    nav = new NavigationComponent(page);
-    await nav.goto("/");
-  });
-
-  test("main navigation header renders with correct classes", async () => {
+  test("main navigation header renders with correct classes", async ({ nav }) => {
     await expect(nav.header).toBeVisible();
     await expect(nav.header).toHaveClass(/is-dark/);
   });
 
-  test("logo links to / with text Canonical Ubuntu", async () => {
+  test("logo links to / with text Canonical Ubuntu", async ({ nav }) => {
     await expect(nav.logoLink).toHaveAttribute("href", "/");
     await expect(nav.logoLink).toContainText("Canonical Ubuntu");
   });
 
-  test("dropdown-window container exists with 5 empty content divs", async () => {
+  test("dropdown-window container exists with 5 empty content divs", async ({ nav }) => {
     await expect(nav.dropdownWindow).toBeAttached();
 
     for (const section of NAV_SECTIONS) {
@@ -29,20 +22,13 @@ test.describe("Navigation rendering", () => {
     }
   });
 
-  test("dropdown-window-overlay exists", async () => {
+  test("dropdown-window-overlay exists", async ({ nav }) => {
     await expect(nav.dropdownOverlay).toBeAttached();
   });
 });
 
 test.describe("Top-level navigation items", () => {
-  let nav: NavigationComponent;
-
-  test.beforeEach(async ({ page }) => {
-    nav = new NavigationComponent(page);
-    await nav.goto("/");
-  });
-
-  test("all 5 nav items visible with correct text", async () => {
+  test("all 5 nav items visible with correct text", async ({ nav }) => {
     for (const section of NAV_SECTIONS) {
       const link = nav.sectionLink(section.id);
       await expect(link).toBeVisible();
@@ -50,7 +36,7 @@ test.describe("Top-level navigation items", () => {
     }
   });
 
-  test("nav items have correct href attributes", async () => {
+  test("nav items have correct href attributes", async ({ nav }) => {
     const expectedHrefs = {
       products: "/navigation#products-navigation",
       "use-case": "/navigation#use-case-navigation",
@@ -64,7 +50,7 @@ test.describe("Top-level navigation items", () => {
     }
   });
 
-  test("nav items have correct aria-controls attributes", async () => {
+  test("nav items have correct aria-controls attributes", async ({ nav }) => {
     for (const section of NAV_SECTIONS) {
       const link = nav.sectionLink(section.id);
       await expect(link).toHaveAttribute(
@@ -74,7 +60,7 @@ test.describe("Top-level navigation items", () => {
     }
   });
 
-  test('all links have role="menuitem" and tabindex="0"', async () => {
+  test('all links have role="menuitem" and tabindex="0"', async ({ nav }) => {
     for (const section of NAV_SECTIONS) {
       const link = nav.sectionLink(section.id);
       await expect(link).toHaveAttribute("role", "menuitem");

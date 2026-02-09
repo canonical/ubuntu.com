@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../../helpers/fixtures";
 import { NavigationComponent, NAV_SECTIONS } from "../../helpers/navigation";
 
 const MOBILE_THRESHOLD = 1035;
@@ -7,38 +7,34 @@ const MOBILE_VIEWPORT_HEIGHT = 812;
 test.describe("Mobile menu", () => {
   test.use({ viewport: { width: MOBILE_THRESHOLD, height: MOBILE_VIEWPORT_HEIGHT } });
 
-  let nav: NavigationComponent;
-
-  test.beforeEach(async ({ page }) => {
-    nav = new NavigationComponent(page);
-    await nav.goto("/");
+  test.beforeEach(async ({ nav }) => {
     await nav.openMobileMenu();
   });
 
-  test("menu button is visible with text Menu", async () => {
+  test("menu button is visible with text Menu", async ({ nav }) => {
     await expect(nav.mobileMenuButton).toBeVisible();
     await expect(nav.mobileMenuButton).toHaveText("Menu");
   });
 
-  test("clicking menu button toggles has-menu-open class", async () => {
+  test("clicking menu button toggles has-menu-open class", async ({ nav }) => {
     await expect(nav.headerEl).toHaveClass(/has-menu-open/);
   });
 
-  test("clicking menu button again closes menu", async () => {
+  test("clicking menu button again closes menu", async ({ nav }) => {
     await expect(nav.headerEl).toHaveClass(/has-menu-open/);
 
     await nav.closeMobileMenu();
     await expect(nav.headerEl).not.toHaveClass(/has-menu-open/);
   });
 
-  test("Escape key closes mobile menu", async () => {
+  test("Escape key closes mobile menu", async ({ nav }) => {
     await expect(nav.headerEl).toHaveClass(/has-menu-open/);
 
     await nav.page.keyboard.press("Escape");
     await expect(nav.headerEl).not.toHaveClass(/has-menu-open/);
   });
 
-  test("tapping a nav item reveals its mobile sub-options", async () => {
+  test("tapping a nav item reveals its mobile sub-options", async ({ nav }) => {
     await nav.sectionLink("products").click();
 
     const mobileDropdown = nav.page.locator("#products-content-mobile");

@@ -161,13 +161,13 @@ function isLocalPath(p: string): boolean {
 
 /** Sections that don't render secondary nav in the test environment. */
 const EXCLUDED_SECTIONS = new Set([
-  // "blog", // External BlogAPI content
-  // "tutorials", // External Discourse content
-  // "community", // External Discourse endpoints
+  "blog", // External BlogAPI content
+  "tutorials", // External Discourse content
+  "community", // External Discourse endpoints
   "account", // Requires login — redirects to /login
   "Distributor", // Requires login — redirects to /login
-  // "documentation", // Internal docs pages (/0_docs) not publicly routed
-  "credentials", // redirects to https://canonical.com/academy
+  "documentation", // Internal docs pages (/0_docs) not publicly routed
+  "engage", // External Discourse endpoints
   // "legal", // Legal pages don't render secondary nav
 ]);
 

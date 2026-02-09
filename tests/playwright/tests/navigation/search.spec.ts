@@ -1,21 +1,13 @@
-import { test, expect } from "@playwright/test";
-import { NavigationComponent } from "../../helpers/navigation";
+import { test, expect } from "../../helpers/fixtures";
 
 test.describe("Search functionality", () => {
-  let nav: NavigationComponent;
-
-  test.beforeEach(async ({ page }) => {
-    nav = new NavigationComponent(page);
-    await nav.goto("/");
-  });
-
-  test("clicking search button opens search", async () => {
+  test("clicking search button opens search", async ({ nav }) => {
     await nav.openSearch();
     await expect(nav.headerEl).toHaveClass(/has-search-open/);
     await expect(nav.searchInput).toBeVisible();
   });
 
-  test("clicking search overlay closes search", async () => {
+  test("clicking search overlay closes search", async ({ nav }) => {
     await nav.openSearch();
     await expect(nav.headerEl).toHaveClass(/has-search-open/);
 
@@ -23,7 +15,7 @@ test.describe("Search functionality", () => {
     await expect(nav.headerEl).not.toHaveClass(/has-search-open/);
   });
 
-  test("pressing Escape closes search", async () => {
+  test("pressing Escape closes search", async ({ nav }) => {
     await nav.openSearch();
     await expect(nav.headerEl).toHaveClass(/has-search-open/);
 
@@ -31,7 +23,7 @@ test.describe("Search functionality", () => {
     await expect(nav.headerEl).not.toHaveClass(/has-search-open/);
   });
 
-  test("submitting search navigates to search results", async () => {
+  test("submitting search navigates to search results", async ({ nav }) => {
     await nav.openSearch();
     await nav.searchInput.fill("kubernetes");
     await nav.searchInput.press("Enter");
@@ -39,11 +31,11 @@ test.describe("Search functionality", () => {
     await nav.page.waitForURL(/\/search\?q=kubernetes/, { timeout: 10000 });
   });
 
-  test("search form has correct action", async () => {
+  test("search form has correct action", async ({ nav }) => {
     await expect(nav.searchForm).toHaveAttribute("action", "/search");
   });
 
-  test("reset button clears search input", async () => {
+  test("reset button clears search input", async ({ nav }) => {
     await nav.openSearch();
     await nav.searchInput.fill("kubernetes");
     await expect(nav.searchInput).toHaveValue("kubernetes");

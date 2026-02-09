@@ -1,5 +1,4 @@
-import { test, expect } from "@playwright/test";
-import { NavigationComponent } from "../../helpers/navigation";
+import { test, expect } from "../../helpers/fixtures";
 import {
   getSecondaryNavSections,
   getSecondaryNavChildTitles,
@@ -8,14 +7,8 @@ import {
 const sections = getSecondaryNavSections();
 
 test.describe("Secondary navigation", () => {
-  let nav: NavigationComponent;
-
-  test.beforeEach(async ({ page }) => {
-    nav = new NavigationComponent(page);
-  });
-
   for (const { key, section } of sections) {
-    test(`${section.path} shows secondary nav with title "${section.title}"`, async () => {
+    test(`${section.path} shows secondary nav with title "${section.title}"`, async ({ nav }) => {
       await nav.goto(section.path);
 
       await expect(nav.secondaryNav).toBeVisible();
@@ -25,7 +18,7 @@ test.describe("Secondary navigation", () => {
     const childTitles = getSecondaryNavChildTitles(key);
 
     if (childTitles.length > 0) {
-      test(`${section.path} has expected child items`, async () => {
+      test(`${section.path} has expected child items`, async ({ nav }) => {
         await nav.goto(section.path);
 
         for (const title of childTitles) {
@@ -37,9 +30,8 @@ test.describe("Secondary navigation", () => {
     }
   }
 
-  test("homepage does not show secondary navigation", async () => {
-    await nav.goto("/");
-
+  test("homepage does not show secondary navigation", async ({ nav }) => {
+    // Already on homepage via fixture
     await expect(nav.secondaryNav).toHaveCount(0);
   });
 });

@@ -1,15 +1,8 @@
-import { test, expect } from "@playwright/test";
-import { NavigationComponent, NAV_SECTIONS } from "../../helpers/navigation";
+import { test, expect } from "../../helpers/fixtures";
+import { NAV_SECTIONS } from "../../helpers/navigation";
 
 test.describe("Keyboard navigation & accessibility", () => {
-  let nav: NavigationComponent;
-
-  test.beforeEach(async ({ page }) => {
-    nav = new NavigationComponent(page);
-    await nav.goto("/");
-  });
-
-  test("Tab cycles through nav items in sequence", async () => {
+  test("Tab cycles through nav items in sequence", async ({ nav }) => {
     await nav.sectionLink("products").focus();
     await expect(nav.sectionLink("products")).toBeFocused();
 
@@ -20,14 +13,14 @@ test.describe("Keyboard navigation & accessibility", () => {
     await expect(nav.sectionLink("support")).toBeFocused();
   });
 
-  test("Enter key opens dropdown on focused nav item", async () => {
+  test("Enter key opens dropdown on focused nav item", async ({ nav }) => {
     const link = nav.sectionLink("products");
     await link.focus();
     await nav.page.keyboard.press("Enter");
     await expect(nav.sectionItem("products")).toHaveClass(/is-active/);
   });
 
-  test("Escape closes open dropdown", async () => {
+  test("Escape closes open dropdown", async ({ nav }) => {
     await nav.openDropdown("products");
 
     // Focus inside the dropdown content, Escape closes the dropdown.
@@ -36,7 +29,7 @@ test.describe("Keyboard navigation & accessibility", () => {
     await expect(nav.sectionItem("products")).not.toHaveClass(/is-active/);
   });
 
-  test("all 5 nav links have tabindex=0", async () => {
+  test("all 5 nav links have tabindex=0", async ({ nav }) => {
     for (const section of NAV_SECTIONS) {
       await expect(nav.sectionLink(section.id)).toHaveAttribute(
         "tabindex",
@@ -47,14 +40,7 @@ test.describe("Keyboard navigation & accessibility", () => {
 });
 
 test.describe("ARIA relationship between menu items and content", () => {
-  let nav: NavigationComponent;
-
-  test.beforeEach(async ({ page }) => {
-    nav = new NavigationComponent(page);
-    await nav.goto("/");
-  });
-
-  test("aria-controls target becomes visible when dropdown opens and hidden when closed", async () => {
+  test("aria-controls target becomes visible when dropdown opens and hidden when closed", async ({ nav }) => {
     const link = nav.sectionLink("products");
     const ariaControls = await link.getAttribute("aria-controls");
     expect(ariaControls).toBe("products-content");

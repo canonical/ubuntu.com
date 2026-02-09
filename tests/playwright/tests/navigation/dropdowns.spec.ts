@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../../helpers/fixtures";
 import { NavigationComponent, NAV_SECTIONS } from "../../helpers/navigation";
 import {
   getSideNavTitles,
@@ -9,14 +9,7 @@ import {
 } from "../../helpers/navigation-data";
 
 test.describe("Dropdown lazy loading", () => {
-  let nav: NavigationComponent;
-
-  test.beforeEach(async ({ page }) => {
-    nav = new NavigationComponent(page);
-    await nav.goto("/");
-  });
-
-  test("hover triggers fetch for each section", async () => {
+  test("hover triggers fetch for each section", async ({ nav }) => {
     for (const section of NAV_SECTIONS) {
       const link = nav.sectionLink(section.id);
       const responsePromise = nav.page.waitForRequest((req) =>
@@ -32,7 +25,7 @@ test.describe("Dropdown lazy loading", () => {
     }
   });
 
-  test("cache prevents re-fetch on second hover", async () => {
+  test("cache prevents re-fetch on second hover", async ({ nav }) => {
     const productsLink = nav.sectionLink("products");
 
     // First hover triggers fetch
@@ -60,7 +53,7 @@ test.describe("Dropdown lazy loading", () => {
     ).rejects.toThrow();
   });
 
-  test("focus triggers fetch via onfocus", async () => {
+  test("focus triggers fetch via onfocus", async ({ nav }) => {
     const fetchPromise = nav.page.waitForRequest((req) =>
       req.url().includes("/templates/navigation/products")
     );
@@ -68,7 +61,7 @@ test.describe("Dropdown lazy loading", () => {
     await fetchPromise;
   });
 
-  test("click activates dropdown and shows content", async () => {
+  test("click activates dropdown and shows content", async ({ nav }) => {
     await nav.openDropdown("products");
 
     await expect(nav.sectionItem("products")).toHaveClass(/is-active/);
@@ -77,14 +70,7 @@ test.describe("Dropdown lazy loading", () => {
 });
 
 test.describe("Dropdown content verification", () => {
-  let nav: NavigationComponent;
-
-  test.beforeEach(async ({ page }) => {
-    nav = new NavigationComponent(page);
-    await nav.goto("/");
-  });
-
-  test("Products side nav tabs match expected list", async () => {
+  test("Products side nav tabs match expected list", async ({ nav }) => {
     await nav.openDropdown("products");
 
     const expectedTabs = getSideNavTitles("products");
@@ -97,7 +83,7 @@ test.describe("Dropdown content verification", () => {
     }
   });
 
-  test("Products Featured links are visible", async () => {
+  test("Products Featured links are visible", async ({ nav }) => {
     await nav.openDropdown("products");
 
     const featuredLinks = getPrimaryLinks("products", "Featured");
@@ -112,7 +98,7 @@ test.describe("Dropdown content verification", () => {
     }
   });
 
-  test("tab switching works - click Kubernetes tab", async () => {
+  test("tab switching works - click Kubernetes tab", async ({ nav }) => {
     await nav.openDropdown("products");
 
     const k8sLinks = getPrimaryLinks("products", "Kubernetes");
@@ -128,7 +114,7 @@ test.describe("Dropdown content verification", () => {
     ).toBeVisible();
   });
 
-  test("Use cases has correct headings and key links", async () => {
+  test("Use cases has correct headings and key links", async ({ nav }) => {
     await nav.openDropdown("use-case");
 
     const primaryGroups = getFlatPrimaryLinks("use-case");
@@ -161,7 +147,7 @@ test.describe("Dropdown content verification", () => {
     }
   });
 
-  test("Support has expected tabs", async () => {
+  test("Support has expected tabs", async ({ nav }) => {
     await nav.openDropdown("support");
 
     const expectedTabs = getSideNavTitles("support");
@@ -172,7 +158,7 @@ test.describe("Dropdown content verification", () => {
     }
   });
 
-  test("Community has expected tabs", async () => {
+  test("Community has expected tabs", async ({ nav }) => {
     await nav.openDropdown("community");
 
     const expectedTabs = getSideNavTitles("community");
@@ -183,7 +169,7 @@ test.describe("Dropdown content verification", () => {
     }
   });
 
-  test("Download Ubuntu has expected tabs", async () => {
+  test("Download Ubuntu has expected tabs", async ({ nav }) => {
     await nav.openDropdown("download-ubuntu");
 
     const expectedTabs = getSideNavTitles("download-ubuntu");
@@ -196,14 +182,7 @@ test.describe("Dropdown content verification", () => {
 });
 
 test.describe("Link validation in dropdowns", () => {
-  let nav: NavigationComponent;
-
-  test.beforeEach(async ({ page }) => {
-    nav = new NavigationComponent(page);
-    await nav.goto("/");
-  });
-
-  test("Products Featured links have correct hrefs", async () => {
+  test("Products Featured links have correct hrefs", async ({ nav }) => {
     await nav.openDropdown("products");
 
     const featuredLinks = getPrimaryLinks("products", "Featured");
@@ -221,7 +200,7 @@ test.describe("Link validation in dropdowns", () => {
     }
   });
 
-  test("Use cases links have correct hrefs", async () => {
+  test("Use cases links have correct hrefs", async ({ nav }) => {
     await nav.openDropdown("use-case");
 
     const primaryGroups = getFlatPrimaryLinks("use-case");
@@ -239,7 +218,7 @@ test.describe("Link validation in dropdowns", () => {
     }
   });
 
-  test("link descriptions are rendered near product links", async () => {
+  test("link descriptions are rendered near product links", async ({ nav }) => {
     await nav.openDropdown("products");
 
     const firstDescription = getPrimaryLinks("products", "Featured")[0].description!;
@@ -252,7 +231,7 @@ test.describe("Link validation in dropdowns", () => {
     ).toBeVisible();
   });
 
-  test("Products section footer has CTA", async () => {
+  test("Products section footer has CTA", async ({ nav }) => {
     await nav.openDropdown("products");
 
     const footer = getSectionFooter("products", "Featured");
@@ -263,7 +242,7 @@ test.describe("Link validation in dropdowns", () => {
     await expect(ctaLink).toHaveAttribute("href", footer.cta_url);
   });
 
-  test("clicking a dropdown link navigates to the correct page", async () => {
+  test("clicking a dropdown link navigates to the correct page", async ({ nav }) => {
     await nav.openDropdown("products");
 
     await nav
@@ -277,14 +256,7 @@ test.describe("Link validation in dropdowns", () => {
 });
 
 test.describe("Dropdown overlay & edge cases", () => {
-  let nav: NavigationComponent;
-
-  test.beforeEach(async ({ page }) => {
-    nav = new NavigationComponent(page);
-  });
-
-  test("clicking overlay closes active dropdown", async () => {
-    await nav.goto("/");
+  test("clicking overlay closes active dropdown", async ({ nav }) => {
     await nav.openDropdown("products");
 
     await expect(nav.dropdownWindow).toHaveClass(/is-active/);
@@ -292,8 +264,7 @@ test.describe("Dropdown overlay & edge cases", () => {
     await expect(nav.dropdownWindow).not.toHaveClass(/is-active/);
   });
 
-  test("opening one dropdown closes another", async () => {
-    await nav.goto("/");
+  test("opening one dropdown closes another", async ({ nav }) => {
     await nav.openDropdown("products");
     await expect(nav.sectionItem("products")).toHaveClass(/is-active/);
 
@@ -302,13 +273,13 @@ test.describe("Dropdown overlay & edge cases", () => {
     await expect(nav.sectionItem("products")).not.toHaveClass(/is-active/);
   });
 
-  test("/azure page header has is-reduced class", async () => {
+  test("/azure page header has is-reduced class", async ({ page }) => {
+    const nav = new NavigationComponent(page);
     await nav.goto("/azure");
     await expect(nav.headerEl).toHaveClass(/is-reduced/);
   });
 
-  test("homepage header does NOT have is-reduced class", async () => {
-    await nav.goto("/");
+  test("homepage header does NOT have is-reduced class", async ({ nav }) => {
     await expect(nav.headerEl).not.toHaveClass(/is-reduced/);
   });
 });

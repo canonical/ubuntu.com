@@ -1,17 +1,10 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../../helpers/fixtures";
 import { NavigationComponent, NAV_SECTIONS } from "../../helpers/navigation";
 
 test.describe("Dropdown response performance", () => {
-  let nav: NavigationComponent;
-
-  test.beforeEach(async ({ page }) => {
-    nav = new NavigationComponent(page);
-    await nav.goto("/");
-  });
-
   test.describe("each dropdown response contains .desktop-dropdown-content", () => {
     for (const section of NAV_SECTIONS) {
-      test(section.id, async () => {
+      test(section.id, async ({ nav }) => {
         const link = nav.sectionLink(section.id);
         const responsePromise = nav.page.waitForResponse((res) =>
           res.url().includes(section.endpoint)
