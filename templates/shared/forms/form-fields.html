@@ -102,7 +102,7 @@
                     {% elif field.type == "long-text" %}
                       <textarea {% if fieldset.isRequired %}required{% endif %}
                                 aria-label="{{ fieldset.title }}"
-                                id="{{ field_id }}-textarea"
+                                id="{{ field_id }}"
                                 rows="5"
                                 maxlength="2000"
                                 {% if field.placeholder %}placeholder="{{ field.placeholder }}"{% endif %}></textarea>
