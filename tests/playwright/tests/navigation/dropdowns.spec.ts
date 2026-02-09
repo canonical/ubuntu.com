@@ -1,5 +1,12 @@
 import { test, expect } from "@playwright/test";
 import { NavigationComponent, NAV_SECTIONS } from "../../helpers/navigation";
+import {
+  getSideNavTitles,
+  getPrimaryLinks,
+  getFlatPrimaryLinks,
+  getFlatSecondaryLinks,
+  getSectionFooter,
+} from "../../helpers/navigation-data";
 
 test.describe("Dropdown lazy loading", () => {
   let nav: NavigationComponent;
@@ -80,19 +87,7 @@ test.describe("Dropdown content verification", () => {
   test("Products side nav tabs match expected list", async () => {
     await nav.openDropdown("products");
 
-    const expectedTabs = [
-      "Featured",
-      "Ubuntu OS",
-      "Private cloud",
-      "Public cloud",
-      "Virtualization",
-      "Security and support",
-      "Kubernetes",
-      "AI and data",
-      "Certified hardware",
-      "IoT and edge",
-      "Developer tools",
-    ];
+    const expectedTabs = getSideNavTitles("products");
 
     const tabLinks = nav.sectionSideNavLinks("products");
     const count = await tabLinks.count();
@@ -105,14 +100,8 @@ test.describe("Dropdown content verification", () => {
   test("Products Featured links are visible", async () => {
     await nav.openDropdown("products");
 
-    const keyLinks = [
-      "Ubuntu Desktop",
-      "Ubuntu Server",
-      "Ubuntu Pro",
-      "OpenStack",
-      "Kubernetes",
-      "AI",
-    ];
+    const featuredLinks = getPrimaryLinks("products", "Featured");
+    const keyLinks = featuredLinks.slice(0, 6).map((l) => l.title);
     for (const linkText of keyLinks) {
       await expect(
         nav
@@ -126,12 +115,15 @@ test.describe("Dropdown content verification", () => {
   test("tab switching works - click Kubernetes tab", async () => {
     await nav.openDropdown("products");
 
+    const k8sLinks = getPrimaryLinks("products", "Kubernetes");
+    const firstLink = k8sLinks[0].title;
+
     await nav.sectionSideNavLinkByText("products", "Kubernetes").click();
 
     await expect(
       nav
         .sectionContent("products")
-        .getByRole("link", { name: "MicroK8s" })
+        .getByRole("link", { name: firstLink })
         .first()
     ).toBeVisible();
   });
@@ -139,15 +131,27 @@ test.describe("Dropdown content verification", () => {
   test("Use cases has correct headings and key links", async () => {
     await nav.openDropdown("use-case");
 
-    await expect(
-      nav.sectionContent("use-case").getByText("By solution")
-    ).toBeVisible();
-    await expect(
-      nav.sectionContent("use-case").getByText("By industry")
-    ).toBeVisible();
+    const primaryGroups = getFlatPrimaryLinks("use-case");
+    const secondaryGroups = getFlatSecondaryLinks("use-case");
 
-    const keyLinks = ["AI/ML", "IoT", "Automotive"];
-    for (const linkText of keyLinks) {
+    for (const group of primaryGroups) {
+      if (group.groupTitle) {
+        await expect(
+          nav.sectionContent("use-case").getByText(group.groupTitle)
+        ).toBeVisible();
+      }
+    }
+    for (const group of secondaryGroups) {
+      if (group.groupTitle) {
+        await expect(
+          nav.sectionContent("use-case").getByText(group.groupTitle)
+        ).toBeVisible();
+      }
+    }
+
+    const spotCheckLinks = primaryGroups[0].links.slice(0, 2).map((l) => l.title)
+      .concat(secondaryGroups[0].links.slice(0, 1).map((l) => l.title));
+    for (const linkText of spotCheckLinks) {
       await expect(
         nav
           .sectionContent("use-case")
@@ -157,27 +161,21 @@ test.describe("Dropdown content verification", () => {
     }
   });
 
-  test("Support has Enterprise and Resources tabs", async () => {
+  test("Support has expected tabs", async () => {
     await nav.openDropdown("support");
 
-    await expect(
-      nav.sectionSideNavLinkByText("support", "Enterprise")
-    ).toBeVisible();
-    await expect(
-      nav.sectionSideNavLinkByText("support", "Resources")
-    ).toBeVisible();
+    const expectedTabs = getSideNavTitles("support");
+    for (const tab of expectedTabs) {
+      await expect(
+        nav.sectionSideNavLinkByText("support", tab)
+      ).toBeVisible();
+    }
   });
 
   test("Community has expected tabs", async () => {
     await nav.openDropdown("community");
 
-    const expectedTabs = [
-      "Learning resources",
-      "Forums",
-      "Contribute to Ubuntu",
-      "Mission and governance",
-      "Keep up to date",
-    ];
+    const expectedTabs = getSideNavTitles("community");
     for (const tab of expectedTabs) {
       await expect(
         nav.sectionSideNavLinkByText("community", tab)
@@ -188,15 +186,7 @@ test.describe("Dropdown content verification", () => {
   test("Download Ubuntu has expected tabs", async () => {
     await nav.openDropdown("download-ubuntu");
 
-    const expectedTabs = [
-      "Desktop",
-      "Server",
-      "Raspberry Pi",
-      "Ubuntu for IoT",
-      "Ubuntu for RISC-V",
-      "Develop on Ubuntu",
-      "Windows & macOS",
-    ];
+    const expectedTabs = getSideNavTitles("download-ubuntu");
     for (const tab of expectedTabs) {
       await expect(
         nav.sectionSideNavLinkByText("download-ubuntu", tab)
@@ -216,13 +206,11 @@ test.describe("Link validation in dropdowns", () => {
   test("Products Featured links have correct hrefs", async () => {
     await nav.openDropdown("products");
 
-    const expectedLinks = [
-      { name: "Ubuntu Desktop", href: "/desktop" },
-      { name: "Ubuntu Server", href: "/server" },
-      { name: "OpenStack", href: "/openstack" },
-      { name: "Ubuntu Pro", href: "/pro" },
-      { name: "Kubernetes", href: "/kubernetes" },
-    ];
+    const featuredLinks = getPrimaryLinks("products", "Featured");
+    const expectedLinks = featuredLinks
+      .filter((l) => l.url.startsWith("/"))
+      .slice(0, 5)
+      .map((l) => ({ name: l.title, href: l.url }));
     for (const { name, href } of expectedLinks) {
       await expect(
         nav
@@ -236,11 +224,11 @@ test.describe("Link validation in dropdowns", () => {
   test("Use cases links have correct hrefs", async () => {
     await nav.openDropdown("use-case");
 
-    const expectedLinks = [
-      { name: "AI/ML", href: "/ai" },
-      { name: "Compliance", href: "/security/security-standards" },
-      { name: "Containers", href: "/containers" },
-    ];
+    const primaryGroups = getFlatPrimaryLinks("use-case");
+    const expectedLinks = primaryGroups[0].links
+      .filter((l) => l.url.startsWith("/"))
+      .slice(0, 3)
+      .map((l) => ({ name: l.title, href: l.url }));
     for (const { name, href } of expectedLinks) {
       await expect(
         nav
@@ -254,23 +242,25 @@ test.describe("Link validation in dropdowns", () => {
   test("link descriptions are rendered near product links", async () => {
     await nav.openDropdown("products");
 
+    const firstDescription = getPrimaryLinks("products", "Featured")[0].description!;
     // Use .first() since the description appears in both Featured and Ubuntu OS tabs
     await expect(
       nav
         .sectionContent("products")
-        .getByText("Fast, modern and secure Linux")
+        .getByText(firstDescription)
         .first()
     ).toBeVisible();
   });
 
-  test("Products section footer has Contact us CTA", async () => {
+  test("Products section footer has CTA", async () => {
     await nav.openDropdown("products");
 
-    const contactLink = nav
+    const footer = getSectionFooter("products", "Featured");
+    const ctaLink = nav
       .sectionContent("products")
-      .getByRole("link", { name: "Contact us" });
-    await expect(contactLink).toBeVisible();
-    await expect(contactLink).toHaveAttribute("href", "/contact-us");
+      .getByRole("link", { name: footer.cta_title });
+    await expect(ctaLink).toBeVisible();
+    await expect(ctaLink).toHaveAttribute("href", footer.cta_url);
   });
 
   test("clicking a dropdown link navigates to the correct page", async () => {
