@@ -2,7 +2,12 @@
 
 lint_html() {
   local diff_option=$1
-  if [ "$diff_option" == "--cached" ]; then
+  shift
+  
+  # If files are passed as arguments, use them directly
+  if [ $# -gt 0 ]; then
+    CHANGED_FILES="$@"
+  elif [ "$diff_option" == "--cached" ]; then
     CHANGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
   elif [ "$diff_option" == "--committed" ]; then
     CHANGED_FILES=$(git diff HEAD~1 --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
@@ -22,7 +27,12 @@ lint_html() {
 
 format_html() {
   local diff_option=$1
-  if [ "$diff_option" == "--cached" ]; then
+  shift
+  
+  # If files are passed as arguments, use them directly
+  if [ $# -gt 0 ]; then
+    CHANGED_FILES="$@"
+  elif [ "$diff_option" == "--cached" ]; then
     CHANGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
   else
     CHANGED_FILES=$(git diff --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
@@ -40,13 +50,15 @@ format_html() {
 
 case "$1" in
   lint)
-    lint_html "$2"
+    shift
+    lint_html "$@"
     ;;
   format)
-    format_html "$2"
+    shift
+    format_html "$@"
     ;;
   *)
-    echo "Usage: $0 {lint|format} [--cached]"
+    echo "Usage: $0 {lint|format} [--cached|--committed|file1 file2 ...]"
     exit 1
     ;;
 esac

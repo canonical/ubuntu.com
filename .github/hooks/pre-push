@@ -58,7 +58,7 @@ fi
 
 if [ ${#html_files[@]} -gt 0 ]; then
   echo "Linting HTML files..."
-  if ! dotrun lint-html ; then
+  if ! dotrun exec ./scripts/djlint lint -- "${html_files[@]}" ; then
     error_flag=1
   fi
 fi
