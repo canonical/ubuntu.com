@@ -105,7 +105,7 @@ To update cassettes, run the tests with the `VCR_RECORD_MODE` environment variab
 
 ```bash
 # Record new cassettes
-VCR_RECORD_MODE=all dotrun test-python
+dotrun -e VCR_RECORD_MODE=all test-python
 ```
 
 Alternatively, add `VCR_RECORD_MODE=all` to your `.env.local` file temporarily while re-recording.
