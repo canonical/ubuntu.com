@@ -1,5 +1,6 @@
 # Standard library
 import logging
+import os
 import re
 
 import time_machine
@@ -20,9 +21,13 @@ class TestBlogNotice(VCRTestCase):
         """
         This removes the authorization header
         from VCR so we don't record auth parameters
+
+        IMPORTANT: If there are changes to the APIs called in these tests,
+        they need to be re-recorded in cassettes. See HACKING.md for
+        instructions on how to update cassettes.
         """
         return {
-            "record_mode": "none",
+            "record_mode": os.environ.get("VCR_RECORD_MODE", "none"),
             "decode_compressed_response": True,
             "filter_headers": ["Authorization", "Cookie"],
         }

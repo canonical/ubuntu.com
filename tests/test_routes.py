@@ -22,11 +22,11 @@ class TestRoutes(VCRTestCase):
         from VCR so we don"t record auth parameters
 
         IMPORTANT: If there are changes to the APIs called in these tests,
-        they need to be re-recorded in cassettes using record_mode: "all"
-        and then switched back to "none".
+        they need to be re-recorded in cassettes. See HACKING.md for
+        instructions on how to update cassettes.
         """
         return {
-            "record_mode": "none",
+            "record_mode": os.environ.get("VCR_RECORD_MODE", "none"),
             "filter_headers": [
                 "Authorization",
                 "Cookie",
