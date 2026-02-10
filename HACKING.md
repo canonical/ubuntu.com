@@ -97,6 +97,27 @@ For the most part this will happen automatically as long as the subpages (/appli
 {% endblock %}
 ```
 
+### Updating VCR Cassettes
+
+Some tests use [VCR.py](https://vcrpy.readthedocs.io/) to record and replay HTTP interactions (cassettes). When APIs change or new tests are added, you may need to re-record the cassettes.
+
+To update cassettes, run the tests with the `VCR_RECORD_MODE` environment variable set to `all`:
+
+```bash
+# Record new cassettes
+dotrun -e VCR_RECORD_MODE=all test-python
+```
+
+Alternatively, add `VCR_RECORD_MODE=all` to your `.env.local` file temporarily while re-recording.
+
+After recording, verify the tests pass without the environment variable (using the recorded cassettes):
+
+```bash
+dotrun test-python
+```
+
+**Note:** Cassettes are stored in `tests/cassettes/`. Review the changes before committing to ensure no sensitive data was recorded.
+
 ### Working on Credentials
 
 If you want to work on [Credentials](https://ubuntu.com/credentials) you need to add some environment vars into your `.env.local`.

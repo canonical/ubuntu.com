@@ -20,13 +20,18 @@ class TestRoutes(VCRTestCase):
         """
         This removes the authorization header
         from VCR so we don"t record auth parameters
+
+        IMPORTANT: If there are changes to the APIs called in these tests,
+        they need to be re-recorded in cassettes. See HACKING.md for
+        instructions on how to update cassettes.
         """
         return {
-            "record_mode": "new_episodes",
+            "record_mode": os.environ.get("VCR_RECORD_MODE", "none"),
             "filter_headers": [
                 "Authorization",
                 "Cookie",
                 "Api-Key",
+                "X-Discourse-Username",
                 "Api-Username",
             ],
             "filter_query_parameters": ["key"],
