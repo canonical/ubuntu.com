@@ -241,7 +241,7 @@ test.describe("Dropdown overlay & edge cases", () => {
     await nav.openDropdown("products");
 
     await expect(nav.dropdownWindow).toHaveClass(/is-active/);
-    await nav.dropdownOverlay.click();
+    await nav.closeDropdownViaOverlay();
     await expect(nav.dropdownWindow).not.toHaveClass(/is-active/);
   });
 

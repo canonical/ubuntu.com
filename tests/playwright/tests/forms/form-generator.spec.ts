@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
-import { fillExistingFields, acceptCookiePolicy } from "../../helpers/commands.ts";
-import { formTextFields, formCheckboxFields, formRadioFields } from "../../helpers/form-fields.ts";
+import { fillExistingFields, acceptCookiePolicy } from "../../helpers/commands";
+import { formTextFields, formCheckboxFields, formRadioFields } from "../../helpers/form-fields";
 
 const openModal = async (page) => {
   await page.goto("/tests/_form-generator");
@@ -10,7 +10,7 @@ const openModal = async (page) => {
   await contactUsLink.click();
   const modal = page.locator("#contact-modal");
   await expect(modal).toBeVisible();
-}
+};
 
 test.beforeEach(async ({ page }) => {
   await openModal(page);
@@ -125,7 +125,7 @@ test("should retain form data when modal is closed and reopened", async ({ page 
   const testFields = [
     { field: 'input[name="company"]', value: 'Test Company' },
     { field: 'input[name="title"]', value: 'Test Title' }
-  ]
+  ];
   for (const { field, value } of testFields) {
     await page.fill(field, value);
   }

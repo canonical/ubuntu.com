@@ -50,7 +50,7 @@ test.describe("ARIA relationship between menu items and content", () => {
     await nav.openDropdown("products");
     await expect(controlledContent).not.toHaveClass(/u-hide/);
 
-    await nav.dropdownOverlay.click();
+    await nav.closeDropdownViaOverlay();
     await expect(controlledContent).toHaveClass(/u-hide/);
   });
 });

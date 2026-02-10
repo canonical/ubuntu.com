@@ -144,6 +144,13 @@ export class NavigationComponent {
     await this.searchOverlay.click();
   }
 
+  async closeDropdownViaOverlay(): Promise<void> {
+    const box = await this.dropdownWindow.boundingBox();
+    if (!box) throw new Error("Dropdown window not visible");
+    // Click below the dropdown window where the overlay is unobstructed
+    await this.page.mouse.click(box.x + box.width / 2, box.y + box.height + 30);
+  }
+
   async openMobileMenu(): Promise<void> {
     await this.mobileMenuButton.click();
   }

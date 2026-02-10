@@ -1,11 +1,11 @@
 import { test, expect } from "@playwright/test";
-import { fillExistingFields, acceptCookiePolicy } from "../../helpers/commands.ts";
-import { formTextFields, formCheckboxFields, formRadioFields } from "../../helpers/form-fields.ts";
+import { fillExistingFields, acceptCookiePolicy } from "../../helpers/commands";
+import { formTextFields, formCheckboxFields, formRadioFields } from "../../helpers/form-fields";
 
 export const staticContactUsPages = [
   "/tests/_static-client-form",
   "/tests/_static-default-form",
-]
+];
 
 test.describe("Form ID validation", () => {
   /**
