@@ -1,11 +1,11 @@
 import { test as base } from "@playwright/test";
 import { NavigationComponent } from "./navigation";
 
-type MyFixtures = {
+type E2EFixtures = {
   nav: NavigationComponent;
 };
 
-export const test = base.extend<MyFixtures>({
+export const test = base.extend<E2EFixtures>({
   nav: async ({ page }, use) => {
     const nav = new NavigationComponent(page);
     await nav.goto("/");
