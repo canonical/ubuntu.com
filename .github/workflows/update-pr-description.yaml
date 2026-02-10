@@ -1,0 +1,44 @@
+name: Update PR Description with Demo Link
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  update-pr-description:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Update PR Description with Demo Link and Jira Ticket
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pr_number="${{ github.event.pull_request.number }}"
+          branch_name="${{ github.event.pull_request.head.ref }}"
+          demo_link="https://ubuntu-com-${pr_number}.demos.haus/"
+          repo="${{ github.repository }}"
+          
+          if [[ "$branch_name" =~ ([Ww][Dd]-[0-9]+) ]]; then
+            jira_ticket="${BASH_REMATCH[1]}"
+            jira_link="[${jira_ticket}](https://warthogs.atlassian.net/browse/${jira_ticket})"
+            echo "Found Jira ticket: $jira_ticket"
+          else
+            jira_link=""
+            echo "No Jira ticket found in branch name"
+          fi
+          
+          gh pr view "$pr_number" --repo "$repo" --json body -q .body > original_body.txt
+          
+          # Add demo link after "Check out this feature branch"
+          sed "s|Check out this feature branch|Check out this feature branch or visit the [demo link]($demo_link)|g" original_body.txt > temp_body.txt
+          
+          if [ -n "$jira_link" ]; then
+            sed "s|Fixes #|Fixes $jira_link|g" temp_body.txt > updated_body.txt
+          else
+            mv temp_body.txt updated_body.txt
+          fi
+          
+          gh pr edit "$pr_number" --repo "$repo" --body-file updated_body.txt
+          
+          echo "Updated PR #$pr_number with demo link: $demo_link"
+          [ -n "$jira_link" ] && echo "Added Jira link: $jira_link"
