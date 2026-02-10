@@ -142,7 +142,11 @@ Once initialized, it will require the following lint check to pass before it all
 - lint-python
 - lint-scss
 
-You can disable them with:
+You can skip the pre-push checks with:
+
+`git push -n`
+
+Or you can disable them entirely with:
 
 `rm .git/hooks/pre-push`
 
