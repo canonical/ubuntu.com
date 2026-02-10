@@ -135,8 +135,9 @@ test.describe("Dropdown content verification", () => {
       }
     }
 
-    const spotCheckLinks = primaryGroups[0].links.slice(0, 2).map((l) => l.title)
-      .concat(secondaryGroups[0].links.slice(0, 1).map((l) => l.title));
+    const primaryCheckLinks = primaryGroups[0].links.slice(0, 2).map((l) => l.title);
+    const secondaryCheckLinks = secondaryGroups[0].links.slice(0, 1).map((l) => l.title);
+    const spotCheckLinks = [...primaryCheckLinks, ...secondaryCheckLinks];
     for (const linkText of spotCheckLinks) {
       await expect(
         nav
@@ -147,38 +148,18 @@ test.describe("Dropdown content verification", () => {
     }
   });
 
-  test("Support has expected tabs", async ({ nav }) => {
-    await nav.openDropdown("support");
+  const sectionsWithTabs = ["support", "community", "download-ubuntu"] as const;
 
-    const expectedTabs = getSideNavTitles("support");
-    for (const tab of expectedTabs) {
-      await expect(
-        nav.sectionSideNavLinkByText("support", tab)
-      ).toBeVisible();
-    }
-  });
+  for (const sectionId of sectionsWithTabs) {
+    test(`${sectionId} has expected tabs`, async ({ nav }) => {
+      await nav.openDropdown(sectionId);
+      const expectedTabs = getSideNavTitles(sectionId);
 
-  test("Community has expected tabs", async ({ nav }) => {
-    await nav.openDropdown("community");
-
-    const expectedTabs = getSideNavTitles("community");
-    for (const tab of expectedTabs) {
-      await expect(
-        nav.sectionSideNavLinkByText("community", tab)
-      ).toBeVisible();
-    }
-  });
-
-  test("Download Ubuntu has expected tabs", async ({ nav }) => {
-    await nav.openDropdown("download-ubuntu");
-
-    const expectedTabs = getSideNavTitles("download-ubuntu");
-    for (const tab of expectedTabs) {
-      await expect(
-        nav.sectionSideNavLinkByText("download-ubuntu", tab)
-      ).toBeVisible();
-    }
-  });
+      for (const tab of expectedTabs) {
+        await expect(nav.sectionSideNavLinkByText(sectionId, tab)).toBeVisible();
+      }
+    });
+  }
 });
 
 test.describe("Link validation in dropdowns", () => {
@@ -260,7 +241,7 @@ test.describe("Dropdown overlay & edge cases", () => {
     await nav.openDropdown("products");
 
     await expect(nav.dropdownWindow).toHaveClass(/is-active/);
-    await nav.dropdownOverlay.click({ force: true });
+    await nav.dropdownOverlay.click();
     await expect(nav.dropdownWindow).not.toHaveClass(/is-active/);
   });
 

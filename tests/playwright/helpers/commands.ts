@@ -58,20 +58,20 @@ export const clickRecaptcha = async (page: Page) => {
 export const fillExistingFields = async (
   page: Page,
   testTextFields: { field: string; value: string }[],
-  testCheckboxFields: { field: string; value: string }[],
-  testRadioFields: { field: string; value: string }[]
+  testCheckboxFields: { field: string }[],
+  testRadioFields: { field: string }[]
 ) => {
   for (const { field, value } of testTextFields) {
     if (await isExistingField(page, field)) {
       await page.fill(field, value);
     }
   }
-  for (const { field, value } of testCheckboxFields) {
+  for (const { field } of testCheckboxFields) {
     if (await isExistingField(page, field)) {
       await page.locator(field).check({ force: true });
     }
   }
-  for (const { field, value } of testRadioFields) {
+  for (const { field } of testRadioFields) {
     if (await isExistingField(page, field)) {
       await page.locator(field).click({ force: true });
     }

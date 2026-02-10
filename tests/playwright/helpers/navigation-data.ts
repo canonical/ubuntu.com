@@ -155,20 +155,30 @@ export function getSectionFooter(
 
 // --- Secondary navigation helpers ---
 
-function isLocalPath(p: string): boolean {
-  return p.startsWith("/");
-}
+const isLocalPath = (p: string) => p.startsWith("/");
 
 /** Sections with redirect and/or auth */
 const EXCLUDED_SECTIONS = new Set([
-  "blog", // External BlogAPI content
-  "tutorials", // External Discourse content
-  "community", // External Discourse endpoints
-  // "engage", // External Discourse endpoints
-  "account", // Requires login — redirects to /login
+  "blog",        // External BlogAPI content
+  "tutorials",   // External Discourse content
+  "community",   // External Discourse endpoints
+  "engage",      // External Discourse endpoints
+  "account",     // Requires login — redirects to /login
   "Distributor", // Requires login — redirects to /login
   "credentials", // redirects to https://canonical.com/academy
 ]);
+
+const isValidSection = ([key, section]: [string, SecondaryNavSection]) =>
+  !EXCLUDED_SECTIONS.has(key) && isLocalPath(String(section.path));
+
+const toSectionEntry = ([key, section]: [string, SecondaryNavSection]) => ({
+  key,
+  section: {
+    ...section,
+    title: String(section.title),
+    path: String(section.path),
+  },
+});
 
 /** All secondary nav sections with local paths (excludes external URLs). */
 export function getSecondaryNavSections(): {
@@ -176,35 +186,26 @@ export function getSecondaryNavSections(): {
   section: SecondaryNavSection;
 }[] {
   return Object.entries(secondaryNavData)
-    .filter(
-      ([key, section]) =>
-        !EXCLUDED_SECTIONS.has(key) && isLocalPath(String(section.path))
-    )
-    .map(([key, section]) => ({
-      key,
-      section: {
-        ...section,
-        title: String(section.title),
-        path: String(section.path),
-      },
-    }));
+    .filter(isValidSection)
+    .map(toSectionEntry);
 }
 
 /** A single secondary nav section by YAML key. */
 export function getSecondaryNavSection(key: string): SecondaryNavSection {
   const section = secondaryNavData[key];
   if (!section) {
-    throw new Error(
-      `Section "${key}" not found in secondary-navigation.yaml`
-    );
+    throw new Error(`Section "${key}" not found in secondary-navigation.yaml`);
   }
   return section;
 }
 
+const isValidChild = (c: SecondaryNavChild): boolean =>
+  c.title !== "Overview" && !c.login_required && isLocalPath(c.path);
+
 /** Child titles for a section, excluding Overview, login_required, and external items. */
 export function getSecondaryNavChildTitles(key: string): string[] {
-  const section = getSecondaryNavSection(key);
-  return section.children
-    .filter((c) => c.title !== "Overview" && !c.login_required && isLocalPath(c.path))
+  return getSecondaryNavSection(key)
+    .children
+    .filter(isValidChild)
     .map((c) => c.title);
 }

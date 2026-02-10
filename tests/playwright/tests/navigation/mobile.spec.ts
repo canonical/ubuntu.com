@@ -1,8 +1,16 @@
 import { test, expect } from "../../helpers/fixtures";
 import { NavigationComponent, NAV_SECTIONS } from "../../helpers/navigation";
 
+// Viewport configuration
 const MOBILE_THRESHOLD = 1035;
 const MOBILE_VIEWPORT_HEIGHT = 812;
+const TABLET_VIEWPORT_HEIGHT = 1024;
+const DESKTOP_VIEWPORT_HEIGHT = 800;
+
+// Standard test viewports
+const MOBILE_WIDTH = 375;
+const TABLET_WIDTH = 768;
+const DESKTOP_WIDTH = 1280;
 
 test.describe("Mobile menu", () => {
   test.use({ viewport: { width: MOBILE_THRESHOLD, height: MOBILE_VIEWPORT_HEIGHT } });
@@ -45,10 +53,16 @@ test.describe("Mobile menu", () => {
 });
 
 test.describe("Responsive navigation", () => {
-  const viewports = [
-    { name: "mobile", width: 375, height: MOBILE_VIEWPORT_HEIGHT },
-    { name: "tablet", width: 768, height: 1024 },
-    { name: "desktop", width: 1280, height: 800 },
+  type ViewportConfig = {
+    name: string;
+    width: number;
+    height: number;
+  };
+
+  const viewports: ViewportConfig[] = [
+    { name: "mobile", width: MOBILE_WIDTH, height: MOBILE_VIEWPORT_HEIGHT },
+    { name: "tablet", width: TABLET_WIDTH, height: TABLET_VIEWPORT_HEIGHT },
+    { name: "desktop", width: DESKTOP_WIDTH, height: DESKTOP_VIEWPORT_HEIGHT },
   ];
 
   for (const { name, width, height } of viewports) {

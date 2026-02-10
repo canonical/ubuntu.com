@@ -42,16 +42,15 @@ test.describe("Keyboard navigation & accessibility", () => {
 test.describe("ARIA relationship between menu items and content", () => {
   test("aria-controls target becomes visible when dropdown opens and hidden when closed", async ({ nav }) => {
     const link = nav.sectionLink("products");
-    const ariaControls = await link.getAttribute("aria-controls");
-    expect(ariaControls).toBe("products-content");
+    await expect(link).toHaveAttribute("aria-controls", "products-content");
 
-    const controlledContent = nav.page.locator(`#${ariaControls}`);
+    const controlledContent = nav.sectionContent("products");
     await expect(controlledContent).toHaveClass(/u-hide/);
 
     await nav.openDropdown("products");
     await expect(controlledContent).not.toHaveClass(/u-hide/);
 
-    await nav.dropdownOverlay.click({ force: true });
+    await nav.dropdownOverlay.click();
     await expect(controlledContent).toHaveClass(/u-hide/);
   });
 });
