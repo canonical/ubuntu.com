@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, Page } from "@playwright/test";
 import { fillExistingFields, acceptCookiePolicy } from "../../helpers/commands";
 import { formTextFields, formCheckboxFields, formRadioFields } from "../../helpers/form-fields";
 
@@ -7,6 +7,11 @@ export const staticContactUsPages = [
   "/tests/_static-default-form",
 ];
 
+interface SitemapNode {
+  children: SitemapNode[]
+  name: string
+}
+
 test.describe("Form ID validation", () => {
   /**
    * Discover all static contact us pages from the sitemap parser
@@ -14,18 +19,18 @@ test.describe("Form ID validation", () => {
    * @returns An array of contact us page URLs
    */
 
-  async function discoverContactUsPages(page) {
+  async function discoverContactUsPages(page: Page) {
     await page.goto('/sitemap_parser');
     const sitemapContent = await page.textContent('body');
-    const sitemap = JSON.parse(sitemapContent);
+    const sitemap = JSON.parse(sitemapContent!);
 
     // Recursive function to retrieve all /contact-us pages, excluding the root /contact-us
-    function collectContactUsPages(node, results: string[] = []) {
+    function collectContactUsPages(node: SitemapNode, results: string[] = []) {
       if (node.name && node.name !== "/contact-us" && node.name.endsWith("/contact-us")) {
         results.push(node.name);
       }
       if (Array.isArray(node.children)) {
-        node.children.forEach(child => collectContactUsPages(child, results));
+        node.children.forEach((child) => collectContactUsPages(child, results));
       }
       return results;
     }

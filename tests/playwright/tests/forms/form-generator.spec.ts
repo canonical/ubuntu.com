@@ -1,8 +1,8 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, Page } from "@playwright/test";
 import { fillExistingFields, acceptCookiePolicy } from "../../helpers/commands";
 import { formTextFields, formCheckboxFields, formRadioFields } from "../../helpers/form-fields";
 
-const openModal = async (page) => {
+const openModal = async (page: Page) => {
   await page.goto("/tests/_form-generator");
   await acceptCookiePolicy(page);
   const contactUsLink = page.locator('a[aria-controls="contact-modal"]');
@@ -17,7 +17,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe("Modal interaction tests", () => {
-  test("should open the form generator modal", async ({ page }) => {
+  test("should open the form generator modal", async () => {
   });
 
   test("should close the modal with close button", async ({ page }) => {
