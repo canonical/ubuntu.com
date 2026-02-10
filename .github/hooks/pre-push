@@ -31,31 +31,34 @@ do
   done
 done
 
+echo "Running pre-push linters..."
+
 error_flag=0
 
 if [ ${#scss_files[@]} -gt 0 ]; then
-  if ! npx stylelint --quiet "${scss_files[@]}" ; then
+  echo "Linting SCSS files..."
+  if ! dotrun lint-scss ; then
     error_flag=1
   fi
 fi
 
 if [ ${#js_files[@]} -gt 0 ]; then
-  if ! npx eslint "${js_files[@]}" ; then
+  echo "Linting JS files..."
+  if ! dotrun lint-js ; then
     error_flag=1
   fi
 fi
 
 if [ ${#py_files[@]} -gt 0 ]; then
-  if ! npx flake8 "${py_files[@]}" ; then
-    error_flag=1
-  fi
-  if ! black --check --line-length 79 "${py_files[@]}" ; then
+  echo "Linting Python files..."
+  if ! dotrun lint-python ; then
     error_flag=1
   fi
 fi
 
 if [ ${#html_files[@]} -gt 0 ]; then
-  if ! ./scripts/djlint lint --committed ; then
+  echo "Linting HTML files..."
+  if ! dotrun lint-html ; then
     error_flag=1
   fi
 fi

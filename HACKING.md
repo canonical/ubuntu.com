@@ -142,6 +142,10 @@ Once initialized, it will require the following lint check to pass before it all
 - lint-python
 - lint-scss
 
+You can disable them with:
+
+`rm .git/hooks/pre-push`
+
 ### Installing tools
 
 First install the necessary tools globally:
