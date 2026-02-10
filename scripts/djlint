@@ -1,5 +1,29 @@
 #!/bin/bash
 
+show_usage() {
+  cat << EOF
+Usage: $0 <command> [options] [files...]
+
+Commands:
+  lint      Lint HTML files
+  format    Format HTML files
+
+Options:
+  --cached      Use staged files from git
+  --committed   Use files from last commit
+  
+If no options are provided, uses unstaged and staged changes.
+If files are provided as arguments, lints/formats those specific files.
+
+Examples:
+  $0 lint
+  $0 lint --cached
+  $0 lint --committed
+  $0 lint templates/file1.html templates/file2.html
+  $0 format --cached
+EOF
+}
+
 lint_html() {
   local diff_option=$1
   shift
@@ -11,6 +35,10 @@ lint_html() {
     CHANGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
   elif [ "$diff_option" == "--committed" ]; then
     CHANGED_FILES=$(git diff HEAD~1 --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
+  elif [ -n "$diff_option" ] && [ "$diff_option" != "--cached" ] && [ "$diff_option" != "--committed" ]; then
+    echo "Error: Unknown option '$diff_option'"
+    show_usage
+    exit 1
   else
     CHANGED_FILES=$(git diff --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
     STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
@@ -34,6 +62,12 @@ format_html() {
     CHANGED_FILES="$@"
   elif [ "$diff_option" == "--cached" ]; then
     CHANGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
+  elif [ "$diff_option" == "--committed" ]; then
+    CHANGED_FILES=$(git diff HEAD~1 --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
+  elif [ -n "$diff_option" ] && [ "$diff_option" != "--cached" ] && [ "$diff_option" != "--committed" ]; then
+    echo "Error: Unknown option '$diff_option'"
+    show_usage
+    exit 1
   else
     CHANGED_FILES=$(git diff --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
     STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
@@ -57,8 +91,13 @@ case "$1" in
     shift
     format_html "$@"
     ;;
+  -h|--help|help)
+    show_usage
+    exit 0
+    ;;
   *)
-    echo "Usage: $0 {lint|format} [--cached|--committed|file1 file2 ...]"
+    echo "Error: Unknown command '$1'"
+    show_usage
     exit 1
     ;;
 esac
