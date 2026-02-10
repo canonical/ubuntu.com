@@ -3,22 +3,22 @@
 scss_files=()
 js_files=()
 html_files=()
+py_files=()
 
 while read local_ref local_sha remote_ref remote_sha
 do
-  # Ignore deleted files
-  if [ "$local_sha" = "0000000000000000000000000000000000000000000" ]; then
+  # Ignore deleted refs (all-zero SHA)
+  if [[ "$local_sha" =~ ^0+$ ]]; then
     continue
   fi
-
   # Find appropriate commit range
-  if [ "$remote_sha" = "0000000000000000000000000000000000000000000" ]; then
+  if [[ "$remote_sha" =~ ^0+$ ]]; then
     range="${local_sha}"
   else
     range="${remote_sha}..${local_sha}"
   fi
 
-  changed_files=$(git diff --name-only "$range")
+  changed_files=$(git diff --name-only --diff-filter=ACMR "$range")
 
   # Group file types
   for file in $changed_files; do

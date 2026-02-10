@@ -133,7 +133,7 @@ These tools should take their configuration from files stored in our codebases, 
 
 We have a pre-push hook that will run anytime you try to push changes. To get it to work you need to copy over the pre-push script to `.git/hooks`. This can be done with the following command:
 
-`cp .github/hooks/pre-push .git/hooks`
+`install -m 0755 .github/hooks/pre-push .git/hooks/pre-push`
 
 Once initialized, it will require the following lint check to pass before it allows you to push:
 
