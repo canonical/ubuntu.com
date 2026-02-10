@@ -4,14 +4,12 @@ on:
   schedule:
     - cron: "20 7 * * 1" # every Monday at 07:20 UTC
   workflow_dispatch:
-  # Remove after approval
-  pull_request:
-  push:
 permissions:
   contents: read
 
 jobs:
   read-config:
+    if: github.repository == 'canonical/ubuntu.com'
     runs-on: ubuntu-latest
     outputs:
       urls: ${{ steps.get-urls.outputs.urls }}
@@ -25,6 +23,7 @@ jobs:
           urls=$(yq e '.links[].url' test-links.yaml | tr '\n' ' ' | sed 's/ *$//')
           echo "urls=$urls" >> $GITHUB_OUTPUT
   check-a11y:
+    if: github.repository == 'canonical/ubuntu.com'
     runs-on: ubuntu-latest
     needs: read-config
     steps:

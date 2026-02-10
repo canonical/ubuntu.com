@@ -8,7 +8,7 @@ env:
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   run-playwright:
@@ -16,30 +16,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - uses: actions/setup-node@v4
-      with:
-        node-version: 20
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-    - name: Install dependencies
-      run: yarn install --immutable
+      - name: Install dependencies
+        run: yarn install --immutable
 
-    - name: Install dotrun
-      run: sudo pip3 install dotrun
+      - name: Install dotrun
+        run: sudo pip3 install dotrun
 
-    - name: Install dependencies
-      run: |
-        sudo chmod -R 777 .
-        dotrun install
+      - name: Install dependencies
+        run: |
+          sudo chmod -R 777 .
+          dotrun install
 
-    - name: Build assets and run dotrun
-      run: |
-        dotrun & sleep 5
-          curl --head --fail --retry-delay 2 --retry 30 --retry-connrefused http://localhost:8001
+      - name: Build assets and run dotrun
+        run: |
+          dotrun & sleep 5
+            curl --head --fail --retry-delay 2 --retry 30 --retry-connrefused http://localhost:8001
 
-    - name: Install Playwright Browsers
-      run: yarn playwright install --with-deps
+      - name: Run a11y tests
+        run: |
+          yarn pa11y-ci http://localhost:8001/ http://localhost:8001/desktop http://localhost:8001/download http://localhost:8001/blog http://localhost:8001/openstack http://localhost:8001/kubernetes http://localhost:8001/managed-infrastructure http://localhost:8001/ai http://localhost:8001/robotics http://localhost:8001/core http://localhost:8001/cloud http://localhost:8001/tutorials http://localhost:8001/tutorials/blocking-software-package-installation-with-landscape\#1-overview http://localhost:8001/download/desktop http://localhost:8001/pricing/desktop http://localhost:8001/pro http://localhost:8001/summit
+
+      - name: Install Playwright Browsers
+        run: yarn playwright install --with-deps
 
     - name: Run Playwright tests
       env:
