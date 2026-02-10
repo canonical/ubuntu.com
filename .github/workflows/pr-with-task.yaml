@@ -1,9 +1,7 @@
 name: PR checks with taskfile
 on:
   push:
-    branches:
-      - xx
-  # pull_request:
+  pull_request:
 
 jobs:
   start:

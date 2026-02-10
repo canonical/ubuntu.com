@@ -16,7 +16,7 @@ test.beforeEach(async ({ page }) => {
   await openModal(page);
 });
 
-test.skip("Modal interaction tests", () => {
+test.describe("Modal interaction tests", () => {
   test("should open the form generator modal", async ({ page }) => {
   });
 
@@ -57,7 +57,7 @@ test.skip("Modal interaction tests", () => {
   });
 });
 
-test.skip("Modal validation tests", () => {
+test.describe("Modal validation tests", () => {
   test("should have the correct form ID", async ({ page }) => {
     // Test that the modal contains the form
     const modal = page.locator("#contact-modal");
@@ -120,7 +120,7 @@ test.skip("Modal validation tests", () => {
   });
 });
 
-test.skip("should retain form data when modal is closed and reopened", async ({ page }) => {
+test("should retain form data when modal is closed and reopened", async ({ page }) => {
   // Fill some fields
   const testFields = [
     { field: 'input[name="company"]', value: 'Test Company' },
