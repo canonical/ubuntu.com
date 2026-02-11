@@ -12,6 +12,12 @@ from jinja2 import ChoiceLoader, FileSystemLoader
 import yaml
 import sentry_sdk
 from werkzeug.exceptions import HTTPException
+from urllib3.exceptions import MaxRetryError
+from requests.exceptions import (
+    RetryError,
+    ConnectionError as RequestsConnectionError,
+)
+import random
 
 from sentry_sdk.integrations.flask import FlaskIntegration
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
@@ -277,9 +283,11 @@ def sentry_before_send(event, hint):
     """
     Filter Sentry events.
     Excludes all 4xx errors.
+    Samples MaxRetryError from security API calls to reduce quota usage.
     """
     if "exc_info" in hint:
         _, exc_value, _ = hint["exc_info"]
+
         # Check if the exception is an HTTPException
         # (which includes 4xx errors)
         if (
@@ -288,6 +296,22 @@ def sentry_before_send(event, hint):
         ):
             # return None to discard the event
             return None
+
+        # Sample MaxRetryError from security API calls
+        if isinstance(
+            exc_value, (MaxRetryError, RetryError, RequestsConnectionError)
+        ):
+            error_msg = str(exc_value)
+            # Check for security API URLs and 500/502/503/504 errors
+            if "/security/" in error_msg and any(
+                f"{code} error" in error_msg
+                for code in ["500", "502", "503", "504"]
+            ):
+                if (
+                    random.random() > 0.05
+                ):  # Drop 95% of security API retry errors
+                    return None
+
     return event
 
 
