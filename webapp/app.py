@@ -6,7 +6,6 @@ import math
 import os
 
 import random
-
 import flask
 import requests
 import talisker.requests
@@ -15,6 +14,7 @@ import yaml
 import sentry_sdk
 from requests.exceptions import RetryError, ConnectionError
 from werkzeug.exceptions import HTTPException
+from webapp.security.api import SecurityAPIError
 
 from sentry_sdk.integrations.flask import FlaskIntegration
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
@@ -296,6 +296,15 @@ def sentry_before_send(event, hint):
         # Sample RetryError/ConnectionError at ~1% to avoid
         # flooding Sentry during upstream outages
         if isinstance(exc_value, (RetryError, ConnectionError)):
+            if random.random() >= 0.01:
+                return None
+        # SecurityAPIError wrapping upstream outages (status 503)
+        # gets the same sampling — _get() sets status_code=503
+        # for RetryError, ConnectionError, and 502/503/504 HTTPError
+        if (
+            isinstance(exc_value, SecurityAPIError)
+            and exc_value.status_code == 503
+        ):
             if random.random() >= 0.01:
                 return None
     return event

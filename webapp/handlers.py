@@ -105,7 +105,11 @@ def init_handlers(app):
                 response_data = error.response.json()
                 message = response_data.get("message", message)
             except (ValueError, AttributeError):
-                pass
+                app.logger.warning(
+                    "Failed to parse SecurityAPIError response JSON; "
+                    "using default error message.",
+                    exc_info=True,
+                )
 
         return (
             flask.render_template(

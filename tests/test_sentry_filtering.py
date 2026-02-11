@@ -10,9 +10,10 @@ from werkzeug.exceptions import (
     BadRequest,
     TooManyRequests,
 )
-from requests.exceptions import RetryError, ConnectionError
+from requests.exceptions import HTTPError, RetryError, ConnectionError
 import webapp.app
 from webapp.app import sentry_before_send
+from webapp.security.api import SecurityAPIError
 
 
 class TestSentryFiltering(unittest.TestCase):
@@ -103,16 +104,10 @@ class TestSentryFiltering(unittest.TestCase):
         """
         hint = {"exc_info": (None, RetryError(), None)}
         event = {"level": "error"}
-        sent = 0
-        iterations = 10000
         with patch("webapp.app.random") as mock_random:
-            # Simulate: 99% of random values >= 0.01 → filtered
             mock_random.random.return_value = 0.5
-            for _ in range(iterations):
-                result = sentry_before_send(event, hint)
-                if result is not None:
-                    sent += 1
-        self.assertEqual(sent, 0, "RetryError should be filtered at >=0.01")
+            result = sentry_before_send(event, hint)
+        self.assertIsNone(result, "RetryError should be filtered at >=0.01")
 
     def test_retry_error_sometimes_sent(self):
         """
@@ -155,6 +150,91 @@ class TestSentryFiltering(unittest.TestCase):
             event,
             "ConnectionError should be sent when random < 0.01",
         )
+
+    def test_security_api_error_503_mostly_filtered(self):
+        """
+        Test that SecurityAPIError with status_code=503 is sampled at ~1%
+        (most are filtered).
+        """
+        exc = SecurityAPIError(Exception("upstream timeout"), status_code=503)
+        hint = {"exc_info": (None, exc, None)}
+        event = {"level": "error"}
+        with patch("webapp.app.random") as mock_random:
+            mock_random.random.return_value = 0.5
+            result = sentry_before_send(event, hint)
+        self.assertIsNone(
+            result,
+            "SecurityAPIError(503) should be filtered at >=0.01",
+        )
+
+    def test_security_api_error_503_sometimes_sent(self):
+        """
+        Test that SecurityAPIError with status_code=503 passes through
+        when random < 0.01.
+        """
+        exc = SecurityAPIError(Exception("upstream timeout"), status_code=503)
+        hint = {"exc_info": (None, exc, None)}
+        event = {"level": "error"}
+        with patch("webapp.app.random") as mock_random:
+            mock_random.random.return_value = 0.005
+            result = sentry_before_send(event, hint)
+        self.assertEqual(
+            result,
+            event,
+            "SecurityAPIError(503) should be sent when random < 0.01",
+        )
+
+    def test_security_api_error_500_not_filtered(self):
+        """
+        Test that SecurityAPIError with default status_code=500
+        is NOT sampled.
+        """
+        exc = SecurityAPIError(Exception("internal error"))
+        hint = {"exc_info": (None, exc, None)}
+        event = {"level": "error"}
+        result = sentry_before_send(event, hint)
+        self.assertEqual(
+            result,
+            event,
+            "SecurityAPIError(500) should not be filtered",
+        )
+
+    def test_security_api_error_derives_status_from_http_error(self):
+        """
+        Test that SecurityAPIError derives status_code from
+        HTTPError.response.status_code when no explicit status is given.
+        """
+        from unittest.mock import Mock
+
+        response = Mock()
+        response.status_code = 502
+        error = HTTPError(response=response)
+        exc = SecurityAPIError(error)
+        self.assertEqual(exc.status_code, 502)
+        self.assertIs(exc.response, response)
+
+    def test_security_api_error_defaults_500_without_response(self):
+        """
+        Test that SecurityAPIError defaults to 500 when the wrapped
+        exception has no response (e.g. RetryError).
+        """
+        error = RetryError()
+        exc = SecurityAPIError(error)
+        self.assertEqual(exc.status_code, 500)
+        self.assertIsNone(exc.response)
+
+    def test_security_api_error_explicit_status_overrides(self):
+        """
+        Test that an explicit status_code takes precedence over
+        the one on error.response.
+        """
+        from unittest.mock import Mock
+
+        response = Mock()
+        response.status_code = 502
+        error = HTTPError(response=response)
+        exc = SecurityAPIError(error, status_code=503)
+        self.assertEqual(exc.status_code, 503)
 
     def test_sentry_init_configuration(self):
         """

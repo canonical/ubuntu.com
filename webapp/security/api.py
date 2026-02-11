@@ -9,10 +9,30 @@ SECURITY_API_URL = get_flask_env(
 
 
 class SecurityAPIError(Exception):
-    def __init__(self, error, status_code=500):
+    """Wraps exceptions from the Security API.
+
+    Accepts HTTPError (has a response with status_code),
+    RetryError, or ConnectionError (no response attribute).
+
+    Args:
+        error: The original requests exception.
+        status_code: HTTP status to return to the client.
+            When None, derived from error.response.status_code
+            if available, otherwise defaults to 500.
+    """
+
+    def __init__(self, error, status_code=None):
         self.original_error = error
         self.response = getattr(error, "response", None)
-        self.status_code = status_code
+        if status_code is not None:
+            self.status_code = status_code
+        elif (
+            self.response is not None
+            and hasattr(self.response, "status_code")
+        ):
+            self.status_code = self.response.status_code
+        else:
+            self.status_code = 500
         super().__init__(str(error))
 
 
