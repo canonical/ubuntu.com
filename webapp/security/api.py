@@ -38,6 +38,12 @@ class SecurityAPI:
             response.raise_for_status()
         except (RetryError, ConnectionError) as error:
             raise SecurityAPIError(error, status_code=503) from error
+        except HTTPError as error:
+            if error.response is not None and error.response.status_code in (
+                502, 503, 504,
+            ):
+                raise SecurityAPIError(error, status_code=503) from error
+            raise
 
         return response
 
