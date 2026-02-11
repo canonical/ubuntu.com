@@ -20,7 +20,7 @@
       <div class="{% if loop.index != fieldsets|length %}p-section{% endif %}">
         <hr class="p-rule is-fixed-width" />
         <fieldset class="p-fieldset-section{% if fieldset.inputType == 'checkbox' or fieldset.inputType == 'checkbox-visibility' %} js-remove-checkbox-names{% if fieldset.isRequired %} js-required-checkbox{% endif %}{% if fieldset.inputType == 'checkbox-visibility' %} js-toggle-checkbox-visibility{% endif %}{% elif fieldset.inputType == 'radio' %} js-remove-radio-names{% endif %}"
-                  id="{{ fieldset.id }}"
+                  id="{{ fieldset.id }}-field"
                   aria-labelledby="{{ fieldset.id }}">
           <!-- This legend is for screen readers only, to fix a11y warning -->
           <legend class="u-hide">{{ fieldset.title }}</legend>
