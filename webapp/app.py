@@ -5,12 +5,15 @@ A Flask application for ubuntu.com
 import math
 import os
 
+import random
+
 import flask
 import requests
 import talisker.requests
 from jinja2 import ChoiceLoader, FileSystemLoader
 import yaml
 import sentry_sdk
+from requests.exceptions import RetryError, ConnectionError
 from werkzeug.exceptions import HTTPException
 
 from sentry_sdk.integrations.flask import FlaskIntegration
@@ -277,6 +280,8 @@ def sentry_before_send(event, hint):
     """
     Filter Sentry events.
     Excludes all 4xx errors.
+    Samples RetryError/ConnectionError at ~1% to prevent Sentry flooding
+    during upstream outages.
     """
     if "exc_info" in hint:
         _, exc_value, _ = hint["exc_info"]
@@ -288,6 +293,11 @@ def sentry_before_send(event, hint):
         ):
             # return None to discard the event
             return None
+        # Sample RetryError/ConnectionError at ~1% to avoid
+        # flooding Sentry during upstream outages
+        if isinstance(exc_value, (RetryError, ConnectionError)):
+            if random.random() >= 0.01:
+                return None
     return event
 
 

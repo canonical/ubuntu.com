@@ -10,6 +10,7 @@ from werkzeug.exceptions import (
     BadRequest,
     TooManyRequests,
 )
+from requests.exceptions import RetryError, ConnectionError
 import webapp.app
 from webapp.app import sentry_before_send
 
@@ -93,6 +94,66 @@ class TestSentryFiltering(unittest.TestCase):
         result = sentry_before_send(event, hint)
         self.assertEqual(
             result, event, "Events without exc_info should not be filtered"
+        )
+
+    def test_retry_error_mostly_filtered(self):
+        """
+        Test that RetryError events are sampled at ~1%
+        (most are filtered).
+        """
+        hint = {"exc_info": (None, RetryError(), None)}
+        event = {"level": "error"}
+        sent = 0
+        iterations = 10000
+        with patch("webapp.app.random") as mock_random:
+            # Simulate: 99% of random values >= 0.01 → filtered
+            mock_random.random.return_value = 0.5
+            for _ in range(iterations):
+                result = sentry_before_send(event, hint)
+                if result is not None:
+                    sent += 1
+        self.assertEqual(sent, 0, "RetryError should be filtered at >=0.01")
+
+    def test_retry_error_sometimes_sent(self):
+        """
+        Test that RetryError events pass through when random < 0.01.
+        """
+        hint = {"exc_info": (None, RetryError(), None)}
+        event = {"level": "error"}
+        with patch("webapp.app.random") as mock_random:
+            mock_random.random.return_value = 0.001
+            result = sentry_before_send(event, hint)
+        self.assertEqual(
+            result, event, "RetryError should be sent when random < 0.01"
+        )
+
+    def test_connection_error_mostly_filtered(self):
+        """
+        Test that ConnectionError events are sampled at ~1%
+        (most are filtered).
+        """
+        hint = {"exc_info": (None, ConnectionError(), None)}
+        event = {"level": "error"}
+        with patch("webapp.app.random") as mock_random:
+            mock_random.random.return_value = 0.5
+            result = sentry_before_send(event, hint)
+        self.assertIsNone(
+            result, "ConnectionError should be filtered at >=0.01"
+        )
+
+    def test_connection_error_sometimes_sent(self):
+        """
+        Test that ConnectionError events pass through when random < 0.01.
+        """
+        hint = {"exc_info": (None, ConnectionError(), None)}
+        event = {"level": "error"}
+        with patch("webapp.app.random") as mock_random:
+            mock_random.random.return_value = 0.005
+            result = sentry_before_send(event, hint)
+        self.assertEqual(
+            result,
+            event,
+            "ConnectionError should be sent when random < 0.01",
         )
 
     def test_sentry_init_configuration(self):

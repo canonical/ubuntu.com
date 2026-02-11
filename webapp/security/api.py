@@ -1,5 +1,5 @@
 from requests import Session
-from requests.exceptions import HTTPError
+from requests.exceptions import HTTPError, RetryError, ConnectionError
 from urllib.parse import urlencode
 from canonicalwebteam.flask_base.env import get_flask_env
 
@@ -8,9 +8,12 @@ SECURITY_API_URL = get_flask_env(
 )
 
 
-class SecurityAPIError(HTTPError):
-    def __init__(self, error: HTTPError):
-        super().__init__(request=error.request, response=error.response)
+class SecurityAPIError(Exception):
+    def __init__(self, error, status_code=500):
+        self.original_error = error
+        self.response = getattr(error, "response", None)
+        self.status_code = status_code
+        super().__init__(str(error))
 
 
 class SecurityAPI:
@@ -30,9 +33,11 @@ class SecurityAPI:
 
         uri = f"{self.base_url}{path}"
 
-        response = self.session.get(uri, params=params)
-
-        response.raise_for_status()
+        try:
+            response = self.session.get(uri, params=params)
+            response.raise_for_status()
+        except (RetryError, ConnectionError) as error:
+            raise SecurityAPIError(error, status_code=503) from error
 
         return response
 
