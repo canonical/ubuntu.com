@@ -304,7 +304,7 @@ def sentry_before_send(event, hint):
             error_msg = str(exc_value)
             # Check for security API URLs and 500/502/503/504 errors
             if "/security/" in error_msg and any(
-                code in error_msg for code in ["500", "502", "503", "504"]
+                f"{code} error" in error_msg for code in ["500", "502", "503", "504"]
             ):
                 if (
                     random.random() > 0.05
