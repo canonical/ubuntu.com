@@ -13,6 +13,10 @@ import yaml
 import sentry_sdk
 from werkzeug.exceptions import HTTPException
 from urllib3.exceptions import MaxRetryError
+from requests.exceptions import (
+    RetryError,
+    ConnectionError as RequestsConnectionError,
+)
 import random
 
 from sentry_sdk.integrations.flask import FlaskIntegration
@@ -294,10 +298,14 @@ def sentry_before_send(event, hint):
             return None
 
         # Sample MaxRetryError from security API calls
-        if isinstance(exc_value, MaxRetryError):
+        if isinstance(
+            exc_value, (MaxRetryError, RetryError, RequestsConnectionError)
+        ):
             error_msg = str(exc_value)
-            # Check for security API URLs and 502/503/504 errors
-            if "/security/" in error_msg and "50" in error_msg:
+            # Check for security API URLs and 500/502/503/504 errors
+            if "/security/" in error_msg and any(
+                code in error_msg for code in ["500", "502", "503", "504"]
+            ):
                 if (
                     random.random() > 0.05
                 ):  # Drop 95% of security API retry errors
