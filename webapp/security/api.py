@@ -1,5 +1,5 @@
 from requests import Session
-from requests.exceptions import HTTPError
+from requests.exceptions import HTTPError, RetryError, ConnectionError
 from urllib.parse import urlencode
 from canonicalwebteam.flask_base.env import get_flask_env
 
@@ -8,9 +8,32 @@ SECURITY_API_URL = get_flask_env(
 )
 
 
-class SecurityAPIError(HTTPError):
-    def __init__(self, error: HTTPError):
-        super().__init__(request=error.request, response=error.response)
+class SecurityAPIError(Exception):
+    """Wraps exceptions from the Security API.
+
+    Accepts HTTPError (has a response with status_code),
+    RetryError, or ConnectionError (no response attribute).
+
+    Args:
+        error: The original requests exception.
+        status_code: HTTP status to return to the client.
+            When None, derived from error.response.status_code
+            if available, otherwise defaults to 500.
+    """
+
+    def __init__(self, error, status_code=None):
+        self.original_error = error
+        self.response = getattr(error, "response", None)
+        if status_code is not None:
+            self.status_code = status_code
+        elif (
+            self.response is not None
+            and hasattr(self.response, "status_code")
+        ):
+            self.status_code = self.response.status_code
+        else:
+            self.status_code = 500
+        super().__init__(str(error))
 
 
 class SecurityAPI:
@@ -30,9 +53,17 @@ class SecurityAPI:
 
         uri = f"{self.base_url}{path}"
 
-        response = self.session.get(uri, params=params)
-
-        response.raise_for_status()
+        try:
+            response = self.session.get(uri, params=params)
+            response.raise_for_status()
+        except (RetryError, ConnectionError) as error:
+            raise SecurityAPIError(error, status_code=503) from error
+        except HTTPError as error:
+            if error.response is not None and error.response.status_code in (
+                502, 503, 504,
+            ):
+                raise SecurityAPIError(error, status_code=503) from error
+            raise
 
         return response
 

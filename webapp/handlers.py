@@ -92,19 +92,31 @@ def init_handlers(app):
 
     @app.errorhandler(SecurityAPIError)
     def security_api_error(error):
-        message = "An error occurred while fetching security data"
-        try:
-            response_data = error.response.json()
-            message = response_data.get("message", message)
-        except (ValueError, AttributeError):
-            pass
+        status_code = getattr(error, "status_code", 500)
+
+        if status_code == 503:
+            message = (
+                "The security data service is temporarily unavailable. "
+                "Please try again later."
+            )
+        else:
+            message = "An error occurred while fetching security data"
+            try:
+                response_data = error.response.json()
+                message = response_data.get("message", message)
+            except (ValueError, AttributeError):
+                app.logger.warning(
+                    "Failed to parse SecurityAPIError response JSON; "
+                    "using default error message.",
+                    exc_info=True,
+                )
 
         return (
             flask.render_template(
                 "security-error-500.html",
                 message=message,
             ),
-            500,
+            status_code,
         )
 
     @app.errorhandler(UAContractsValidationError)
