@@ -25,7 +25,7 @@ toc: False
 ## Notable Fixes
 
 ### Kubernetes Control Plane
-* Reduced rules needed by  `ClusterRole/system:cos` to improve security posture
+* Reduced rules needed by `ClusterRole/system:cos` to improve security posture
 
 
 # 1.34
@@ -59,7 +59,7 @@ The release bundle can also be [downloaded here](https://raw.githubusercontent.c
 
 ### openstack-integrator
 
-* [LP#2110221](https://launchpad.net/bugs/2111261) Config change and creds
+* [LP#2110221](https://launchpad.net/bugs/2110221) Config change and creds
   changes validates LB Requests
 * Allow Juju admin to specify o7k endpoint proxy values by charm or model
 
