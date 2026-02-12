@@ -18,37 +18,38 @@
 
 {% block content %}
 
-{% call(slot) vf_hero(
-title_text='Download Canonical-built Ubuntu for RISC-V Platforms',
-layout='25/75'
-) -%}
+  {% call(slot) vf_hero(
+    title_text='Download Canonical-built Ubuntu for RISC-V Platforms',
+    layout='25/75'
+    ) -%}
 
-{%- if slot == 'signpost_image' -%}
-  {{ image(url="https://assets.ubuntu.com/v1/4d5b8d51-riscv-color.svg",
-    alt="",
-    width="200",
-    height="32",
-    hi_def=True,
-    loading="auto",
-    attrs={"style": "padding-top: 1rem"},) | safe
-  }}{%- endif -%}
-  {%- if slot == 'description' -%}
-    <p>
-      These Ubuntu images are built and hosted by Canonical, with support and maintenance for Ubuntu components provided under Canonical’s standard SLA. For additional or extended support, please <a href="https://ubuntu.com/download/risc-v#get-in-touch">get in touch</a> with Canonical.
-    </p>
-    <p>
-      Get Ubuntu, running on your favorite RISC-V boards. Choose the right image for your hardware below, flash it onto an SD/microSD card, power up your board, and start right away.
-    </p>
-    <p>
-      <strong>
-        Note: We have upgraded the required RISC-V ISA profile to RVA23S64 with the 25.10 release. Hardware that is not RVA23-ready continues to be supported by our 24.04 LTS release.
-      </strong>
-    </p>
-  {%- endif -%}
-  {%- if slot == 'cta' -%}
-    <a href="/download/contact-us" class="js-invoke-modal p-button--positive">Contact us</a>
-  {%- endif -%}
-{%- endcall -%}
+    {%- if slot == 'signpost_image' -%}
+      {{ image(url="https://assets.ubuntu.com/v1/4d5b8d51-riscv-color.svg",
+        alt="",
+        width="200",
+        height="32",
+        hi_def=True,
+        loading="auto",
+        attrs={"style": "padding-top: 1rem"},) | safe
+      }}{%- endif -%}
+      {%- if slot == 'description' -%}
+        <p>
+          These Ubuntu images are built and hosted by Canonical, with support and maintenance for Ubuntu components provided under Canonical’s standard SLA. For additional or extended support, please <a href="https://ubuntu.com/download/risc-v#get-in-touch">get in touch</a> with Canonical.
+        </p>
+        <p>
+          Get Ubuntu, running on your favorite RISC-V boards. Choose the right image for your hardware below, flash it onto an SD/microSD card, power up your board, and start right away.
+        </p>
+        <p>
+          <strong>
+            Note: We have upgraded the required RISC-V ISA profile to RVA23S64 with the 25.10 release. Hardware that is not RVA23-ready continues to be supported by our 24.04 LTS release.
+          </strong>
+        </p>
+      {%- endif -%}
+      {%- if slot == 'cta' -%}
+        <a href="/download/contact-us"
+           class="js-invoke-modal p-button--positive" aria-controls="contact-modal">Contact us</a>
+      {%- endif -%}
+    {%- endcall -%}
 
   <section class="p-strip is-deep u-no-padding--top">
     <hr class="is-fixed-width p-rule" />
