@@ -2,7 +2,9 @@
   "form": {
     "/ai": {
       "templatePath": "/ai/index.html",
-      "childrenPaths": ["/ai/consulting"],
+      "childrenPaths": [
+        "/ai/consulting"
+      ],
       "isModal": true,
       "modalId": "ai-modal",
       "formData": {
@@ -65,6 +67,79 @@
               "type": "long-text",
               "label": "",
               "id": "add-details-about-your-requirements"
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Phone number",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    },
+    "/ai/data-science": {
+      "templatePath": "/ai/data-science.html",
+      "isModal": true,
+      "modalId": "contact-modal",
+      "formData": {
+        "title": "Open source AI: a scalable path to production",
+        "introText": "Looking to scale your MLOPs infrastructure or need consulting services to kick start your AI journey? Our experts are here to help you.",
+        "formId": "5917",
+        "returnUrl": "/ai/data-science#contact-form-success",
+        "lpUrl": "https://pages.ubuntu.com/things-contact-us.html"
+      },
+      "fieldsets": [
+        {
+          "title": "Tell us about your project",
+          "id": "tell-us-about-your-project",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "tell-us-about-your-project"
+            }
+          ]
+        },
+        {
+          "title": "Have you tried Data Science Stack",
+          "id": "data-science-stack",
+          "inputType": "radio",
+          "inputName": "data-science-stack",
+          "fields": [
+            {
+              "type": "radio",
+              "id": "yes-data-science-stack",
+              "value": "yes",
+              "label": "Yes"
+            },
+            {
+              "type": "radio",
+              "id": "no-data-science-stack",
+              "value": "no",
+              "label": "No"
+            },
+            {
+              "type": "radio",
+              "id": "i-dont-know-data-science-stack",
+              "value": "I don't know",
+              "label": "I don't know"
+            }
+          ]
+        },
+        {
+          "title": "What advice are you looking for?",
+          "id": "what-advice-are-you-looking-for",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "what-advice-are-you-looking-for"
             }
           ]
         },

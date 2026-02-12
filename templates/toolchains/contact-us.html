@@ -4,13 +4,10 @@
 
 {% block content %}
 
-  {% with h1='Contact us – Toolchains',
-    intro_text="",
-    formid="6296",
-    lpId="",
-    returnURL="/toolchains#contact-form-success",
-    howManyVM=True %}
-    {% include "shared/_default-contact-us-form.html" %}
-  {% endwith %}
+  {{ load_form("/default-contact-us-vms", 6296,
+    title='Contact us - Toolchains',
+    returnUrl="/toolchains#contact-form-success") | safe }}
+
+  {% include "shared/forms/_ubuntu_help_resources.html" %}
 
 {% endblock content %}

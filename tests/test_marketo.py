@@ -42,7 +42,13 @@ class TestFormGenerator(MarketoFormTestCase):
 
             # form-data.json may have multiple forms
             for form_data in forms.values():
-                form_id = form_data.get("formData").get("formId")
+                form_data_obj = form_data.get("formData", {})
+                form_id = form_data_obj.get("formId")
+
+                self.assertIsNotNone(
+                    form_id,
+                    f"formId not found in form data for {form_path}",
+                )
 
                 # Check that marketo form exists
                 marketo_fields = self._get_marketo_fields(form_id)

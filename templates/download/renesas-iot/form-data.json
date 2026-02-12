@@ -1,0 +1,93 @@
+{
+  "form": {
+    "/download/renesas-iot": {
+      "templatePath": "/download/renesas-iot/index.html",
+      "isModal": true,
+      "modalId": "renesas-contact-modal",
+      "formData": {
+        "title": "Interested in optimized Ubuntu on Renesas platforms?",
+        "introText": "Fill out the form to receive the latest update from us!",
+        "formId": 6153,
+        "returnUrl": "/download/renesas-iot#contact-form-success"
+      },
+      "fieldsets": [
+        {
+          "title": "Your company is?",
+          "id": "your-company",
+          "inputType": "radio",
+          "inputName": "your-company",
+          "fields": [
+            {
+              "type": "radio",
+              "value": "an ODM/OEM",
+              "label": "an ODM/OEM"
+            },
+            {
+              "type": "radio",
+              "value": "an end customer",
+              "label": "an end customer"
+            }
+          ]
+        },
+        {
+          "title": "Do you have a commercial project?",
+          "id": "commercial-project",
+          "inputType": "radio",
+          "inputName": "commercial-project",
+          "fields": [
+            {
+              "type": "radio",
+              "value": "Yes",
+              "label": "Yes"
+            },
+            {
+              "type": "radio",
+              "value": "No",
+              "label": "No"
+            },
+            {
+              "type": "radio",
+              "value": "Not applicable",
+              "label": "Not applicable"
+            }
+          ]
+        },
+        {
+          "title": "Which Renesas platforms are you interested in?",
+          "id": "renesas-platform",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "renesas-platform",
+              "label": ""
+            }
+          ]
+        },
+        {
+          "title": "Tell us more about your project",
+          "id": "about-your-project",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "about-your-project",
+              "label": ""
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

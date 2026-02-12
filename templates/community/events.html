@@ -17,6 +17,31 @@
 {% endblock body_class %}
 
 {% block content %}
+  <!-- This is a temporary implementation of has-divider-0 for the specific design requirements.
+  An issue has been created here: https://github.com/canonical/vanilla-framework/issues/5580 once it is merged this can be removed -->
+  <style>
+    /* Custom has-divider-0 implementation for events page */
+    .p-equal-height-row.has-divider-0::before,
+    .p-equal-height-row--wrap.has-divider-0::before {
+      background-color: var(--vf-color-border-low-contrast);
+      content: "";
+      display: none;
+      grid-column-end: span 8;
+      grid-column-start: 1;
+      grid-row: 1;
+      height: 1px;
+      margin: auto;
+      width: 100%;
+    }
+
+    @media screen and (min-width: 1036px) {
+
+      .p-equal-height-row.has-divider-0::before,
+      .p-equal-height-row--wrap.has-divider-0::before {
+        display: block;
+      }
+    }
+  </style>
 
   {% call(slot) vf_hero(
     title_text='Community events',
@@ -301,4 +326,5 @@
       showPage(1)
     });
   </script>
+
 {% endblock content %}

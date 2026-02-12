@@ -7,85 +7,90 @@
 
   {% if product == 'smart-displays' %}
 
-{% with h1="Contact us about digital signage",
-  intro_text="If you are thinking about building a digital signage product on Ubuntu, please fill in your details below and a member of our team will get in touch.",
-  formid="1422",
-  lpId="2166",
-  returnURL="/internet-of-things#success" %}
-  {% include "shared/_client-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form(
+      "/shared/client-contact-us",
+      1422,
+      title="Contact us about digital signage",
+      introText="If you are thinking about building a digital signage product on Ubuntu, please fill in your details below and a member of our team will get in touch.",
+      returnUrl="/internet-of-things#contact-form-success"
+    ) | safe }}
 
   {% elif product == 'gateways' %}
 
-{% with h1="Contact us about gateways",
-  intro_text="If you would like to know more about Ubuntu for edge gateways, please fill in your details below and a member of our team will get in touch.",
-  formid="1663",
-  lpId="3143",
-  returnURL="/internet-of-things#success" %}
-  {% include "shared/_client-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form(
+      "/shared/client-contact-us",
+      1663,
+      title="Contact us about gateways",
+      introText="If you would like to know more about Ubuntu for edge gateways, please fill in your details below and a member of our team will get in touch.",
+      returnUrl="/internet-of-things#contact-form-success"
+    ) | safe }}
 
   {% elif product == 'robotics' %}
 
-{% with h1="Contact us about robotics",
-  intro_text="If you would like to know more about Ubuntu for Robotics, please fill in your details below and a member of our team will get in touch.",
-  formid="1650",
-  lpId="2838",
-  returnURL="/internet-of-things#success" %}
-  {% include "shared/_client-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form(
+      "/shared/client-contact-us",
+      1650,
+      title="Contact us about robotics",
+      introText="If you would like to know more about Ubuntu for Robotics, please fill in your details below and a member of our team will get in touch.",
+      returnUrl="/internet-of-things#contact-form-success"
+    ) | safe }}
 
-    {% elif product == 'appstore' %}
+  {% elif product == 'appstore' %}
 
-{% with h1="Contact us about app stores",
-  intro_text="Enhance your software distribution with a custom, dedicated app store. Fill in your details below and a member of our team will be in touch.",
-  formid="2639",
-  lpId="5811",
-  returnURL="/internet-of-things#success" %}
-  {% include "shared/_client-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form(
+      "/shared/client-contact-us",
+      2639,
+      title="Contact us about app stores",
+      introText="Enhance your software distribution with a custom, dedicated app store. Fill in your details below and a member of our team will be in touch.",
+      returnUrl="/internet-of-things#contact-form-success"
+    ) | safe }}
 
-    {% elif product == 'automotive' %}
+  {% elif product == 'automotive' %}
 
-{% with h1="Reinvent the automobile with Ubuntu",
-  intro_text="We would love to hear what you want to create, and be your partner in innovation.",
-  formid="2639",
-  lpId="5811",
-  returnURL="/internet-of-things#success" %}
-  {% include "shared/_client-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form(
+      "/shared/client-contact-us",
+      2639,
+      title="Reinvent the automobile with Ubuntu",
+      introText="We would love to hear what you want to create, and be your partner in innovation.",
+      returnUrl="/internet-of-things#contact-form-success"
+    ) | safe }}
 
-    {% elif product == 'networking' %}
+  {% elif product == 'networking' %}
 
-{% with h1="Contact us about networking",
-  intro_text="If you would like to know more about Ubuntu for networking, please fill in your details below and a member of our team will get in touch.",
-  formid="3484",
-  lpId="",
-  returnURL="/internet-of-things#success" %}
-  {% include "shared/_client-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form(
+      "/shared/client-contact-us",
+      3484,
+      title="Contact us about networking",
+      introText="If you would like to know more about Ubuntu for networking, please fill in your details below and a member of our team will get in touch.",
+      returnUrl="/internet-of-things#contact-form-success"
+    ) | safe }}
 
-    {% elif product == 'management' %}
+  {% elif product == 'management' %}
 
-{% with h1="Contact us about IoT device management",
-  intro_text="If you would like to learn more about our enterprise device management features, please fill in the form below and a member of our team will be in touch.",
-  formid="4296",
-  lpId="",
-  returnURL="/internet-of-things#success" %}
-  {% include "shared/_client-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form(
+      "/shared/client-contact-us",
+      4296,
+      title="Contact us about IoT device management",
+      introText="If you would like to learn more about our enterprise device management features, please fill in the form below and a member of our team will be in touch.",
+      returnUrl="/internet-of-things#contact-form-success"
+    ) | safe }}
 
   {% else %}
 
-{% with h1="Contact us",
-  intro_text="If you are thinking about using Ubuntu Core to power your Internet of Things devices, please fill in your details below and a member of our team will get in touch.",
-  formid="1266",
-  lpId="2551",
-  returnURL="/internet-of-things#success",
-  side1="shared/forms/_desktop_help.html",
-  side2="shared/forms/_desktop_ua-shop.html" %}
-  {% include "shared/_client-contact-us-form.html" %}
-{% endwith %}
+    {{ load_form(
+      "/shared/client-contact-us",
+      1266,
+      title="Contact us",
+      introText="If you are thinking about using Ubuntu Core to power your Internet of Things devices, please fill in your details below and a member of our team will get in touch.",
+      returnUrl="/internet-of-things#contact-form-success"
+    ) | safe }}
+
+    <div class="p-section">
+      <div class="row">
+        <div class="col">{% include "shared/forms/_desktop_help.html" %}</div>
+        <div class="col">{% include "shared/forms/_desktop_ua-shop.html" %}</div>
+      </div>
+    </div>
 
   {% endif %}
 

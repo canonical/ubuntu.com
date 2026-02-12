@@ -39,7 +39,8 @@ def releases():
     """
     Read releases as a dictionary from releases.yaml,
     and provide the contents as a dictionary in the global
-    template context
+    template context.
+    Exposes them as "releases_yaml".
     """
 
     with open("releases.yaml") as releases:

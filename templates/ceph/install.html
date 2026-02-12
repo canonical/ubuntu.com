@@ -30,7 +30,7 @@
       <p>Looking for help running Ceph?</p>
     {%- endif -%}
     {%- if slot == "cta" -%}
-      <a href="/ceph/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+      <a href="/ceph/contact-us" class="p-button--positive js-invoke-modal" aria-label="contact-modal">Get in touch</a>
     {%- endif -%}
     {%- if slot == "image" -%}
 
@@ -113,7 +113,7 @@
       <div class="col">
         <p>Let our Ceph experts help you take the next step.</p>
         <div class="p-cta-block">
-          <a class="p-button--positive js-invoke-modal" href="/ceph/contact-us">Get in touch</a>
+          <a class="p-button--positive js-invoke-modal" href="/ceph/contact-us" aria-label="contact-modal">Get in touch</a>
         </div>
       </div>
     </div>
@@ -124,5 +124,7 @@
   {% endwith %}
 
   <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+
+  {{ load_form("/ceph/install") | safe }}
 
 {% endblock content %}

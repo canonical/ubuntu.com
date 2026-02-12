@@ -105,7 +105,7 @@ env:
       name: confidentiality-webhook
 
   - name: SENTRY_DSN
-    value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+    value: https://624a17f6cb841af9f2c4b0998b8f30d2@o4510662863749120.ingest.de.sentry.io/4510709886419024
 
   - name: BADGR_URL
     value: https://api.eu.badgr.io
@@ -220,7 +220,7 @@ production:
             name: google-api
 
         - name: SENTRY_DSN
-          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+          value: https://624a17f6cb841af9f2c4b0998b8f30d2@o4510662863749120.ingest.de.sentry.io/4510709886419024
         
         - name: WORDPRESS_APPLICATION_PASSWORD
           secretKeyRef:
@@ -254,7 +254,7 @@ production:
             name: google-api
 
         - name: SENTRY_DSN
-          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+          value: https://624a17f6cb841af9f2c4b0998b8f30d2@o4510662863749120.ingest.de.sentry.io/4510709886419024
 
         - name: BADGR_URL
           value: https://api.eu.badgr.io
@@ -404,11 +404,10 @@ production:
             name: discourse-api
 
         - name: SENTRY_DSN
-          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+          value: https://624a17f6cb841af9f2c4b0998b8f30d2@o4510662863749120.ingest.de.sentry.io/4510709886419024
 
     - paths:
         [
-          /server/docs,
           /ceph/docs,
           /openstack/docs,
           /engage,
@@ -438,7 +437,7 @@ production:
             name: discourse-api
 
         - name: SENTRY_DSN
-          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+          value: https://624a17f6cb841af9f2c4b0998b8f30d2@o4510662863749120.ingest.de.sentry.io/4510709886419024
 
     - paths:
         [
@@ -499,7 +498,7 @@ production:
             name: discourse-api
 
         - name: SENTRY_DSN
-          value: https://08dea8b1d0414fb89b28844cdb1e16a0@sentry.is.canonical.com//53
+          value: https://624a17f6cb841af9f2c4b0998b8f30d2@o4510662863749120.ingest.de.sentry.io/4510709886419024
 
     - paths: [/advantage, /account, /pro]
       name: ubuntu-com-advantage
@@ -533,7 +532,7 @@ production:
             name: discourse-api
 
         - name: SENTRY_DSN
-          value: https://a572cf09d13f42ceba3be1c9710751e3@sentry.is.canonical.com//52
+          value: https://624a17f6cb841af9f2c4b0998b8f30d2@o4510662863749120.ingest.de.sentry.io/4510709886419024
 
         - name: CONTRACTS_API_URL
           value: https://contracts.canonical.com/
@@ -720,7 +719,7 @@ staging:
         name: confidentiality-webhook
 
     - name: SENTRY_DSN
-      value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+      value: https://624a17f6cb841af9f2c4b0998b8f30d2@o4510662863749120.ingest.de.sentry.io/4510709886419024
 
     - name: BADGR_URL
       value: https://api.test.badgr.com
@@ -834,7 +833,7 @@ staging:
             name: google-api
 
         - name: SENTRY_DSN
-          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+          value: https://624a17f6cb841af9f2c4b0998b8f30d2@o4510662863749120.ingest.de.sentry.io/4510709886419024
 
         - name: WORDPRESS_APPLICATION_PASSWORD
           secretKeyRef:
@@ -869,7 +868,7 @@ staging:
             name: google-api
 
         - name: SENTRY_DSN
-          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+          value: https://624a17f6cb841af9f2c4b0998b8f30d2@o4510662863749120.ingest.de.sentry.io/4510709886419024
 
         - name: BADGR_URL
           value: https://api.test.badgr.com
@@ -1021,11 +1020,10 @@ staging:
             name: discourse-api
 
         - name: SENTRY_DSN
-          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+          value: https://624a17f6cb841af9f2c4b0998b8f30d2@o4510662863749120.ingest.de.sentry.io/4510709886419024
 
     - paths:
         [
-          /server/docs,
           /ceph/docs,
           /openstack/docs,
           /engage,
@@ -1055,7 +1053,7 @@ staging:
             name: discourse-api
 
         - name: SENTRY_DSN
-          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+          value: https://624a17f6cb841af9f2c4b0998b8f30d2@o4510662863749120.ingest.de.sentry.io/4510709886419024
 
     - paths:
         [
@@ -1112,7 +1110,7 @@ staging:
             name: discourse-api
 
         - name: SENTRY_DSN
-          value: https://08dea8b1d0414fb89b28844cdb1e16a0@sentry.is.canonical.com//53
+          value: https://624a17f6cb841af9f2c4b0998b8f30d2@o4510662863749120.ingest.de.sentry.io/4510709886419024
 
         - name: SECURITY_API_URL
           value: https://staging.ubuntu.com/security/
@@ -1149,7 +1147,7 @@ staging:
             name: discourse-api
 
         - name: SENTRY_DSN
-          value: https://a572cf09d13f42ceba3be1c9710751e3@sentry.is.canonical.com//52
+          value: https://624a17f6cb841af9f2c4b0998b8f30d2@o4510662863749120.ingest.de.sentry.io/4510709886419024
 
         - name: CONTRACTS_API_URL
           value: https://contracts.staging.canonical.com/
@@ -1284,7 +1282,7 @@ demo:
         name: marketo
 
     - name: SENTRY_DSN
-      value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+      value: https://624a17f6cb841af9f2c4b0998b8f30d2@o4510662863749120.ingest.de.sentry.io/4510709886419024
 
     - name: BADGR_URL
       value: https://api.test.badgr.com

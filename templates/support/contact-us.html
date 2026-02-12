@@ -2,31 +2,28 @@
 
 {% block title %}Contact Canonical | Support{% endblock %}
 
-{% block meta_description %}Ubuntu Pro with Enterprise Open Source Support offers the most comprehensive Linux, open source infrastructure & applications security and support in the industry{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1rWgWFGtal7ddDAkIOKtA6M3wXKd7gX-ABQtyhwbqjyk/edit{% endblock meta_copydoc %}
+{% block meta_description %}
+  Ubuntu Pro with Enterprise Open Source Support offers the most comprehensive Linux, open source infrastructure & applications security and support in the industry
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1rWgWFGtal7ddDAkIOKtA6M3wXKd7gX-ABQtyhwbqjyk/edit
+{% endblock meta_copydoc %}
 
 {% block content %}
+  {% if product == 'education-discount' %}
+    {{ load_form("/default-contact-us-devices", 3762,
+        title="Contact us about discounts for education and research",
+        introText="Considering Ubuntu for your school, research or academic organization? Just fill in the form below and a member of our team will be in touch.",
+        lpId="2065",
+        returnUrl="/support/thank-you?product=education-discount") | safe }}
+  {% else %}
+    {{ load_form("/default-contact-us-devices", 1240,
+        title="Contact Canonical about Ubuntu Pro + Support",
+        introText="Considering an Ubuntu based stack for your infrastructure and applications? Just fill in the form below and a member of our team will be in touch.",
+        lpId="2065",
+        returnUrl="/support/thank-you") | safe }}
+  {% endif %}
 
-{% if product == 'education-discount' %}
-
-{% with h1="Contact us about discounts for education and research",
-  intro_text="Considering Ubuntu for your school, research or academic organisation? Just fill in the form below and a member of our team will be in touch.",
-  formid="3762",
-  lpId="2065",
-  returnURL="/support/thank-you?product=education-discount" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
-{% else %}
-
-{% with h1="Contact Canonical about Ubuntu Pro + Support",
-  intro_text="Considering an Ubuntu based stack for your infrastructure and applications? Just fill in the form below and a member of our team will be in touch.",
-  formid="1240",
-  lpId="2065",
-  returnURL="/support/thank-you" %}
-  {% include "shared/_default-contact-us-form.html" %}
-{% endwith %}
-
-{% endif %}
-
+  {% include "shared/forms/_ubuntu_help_resources.html" %}
 {% endblock content %}

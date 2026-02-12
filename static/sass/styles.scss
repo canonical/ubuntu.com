@@ -106,7 +106,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_dell";
 @import "pattern_modals";
 @import "pattern_tube-line";
-@import "pattern_equal-height-row";
 @import "pattern_release_cycle";
 @import "utility_animations";
 @import "utility_crop";
@@ -177,7 +176,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include vf-p-icon-plans;
 @include vf-p-icon-credit-card;
 @include openstack-carousel;
-@include vf-p-equal-height-row;
 
 // Layouts:
 @import "layout-tutorials";
@@ -1937,4 +1935,12 @@ ol.p-stepped-list.no-full-stop
   .p-slider__max-value {
     padding-left: 1rem;
   }
+}
+
+// Custom styling for slider component, increases width of input field
+// use in templates/security/compliance-automation-value-calculator.html
+.p-slider__input--extended {
+  min-width: 128px;
+  padding-right: 1rem;
+  padding-left: 1rem;
 }

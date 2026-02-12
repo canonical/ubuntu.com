@@ -1,32 +1,44 @@
 {% extends "desktop/base_desktop.html" %}
 
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+
 {% block title %}Contact us{% endblock %}
 {% block meta_description %}Fast, easy and quick to deploy, switching to Ubuntu has never been easier{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1Z0UWLHT9AKRVfYOYQTXz27DefZ3BcQ7Sqg1kcmlIXtc/edit{% endblock meta_copydoc %}
 
 {% block content %}
-  {% if product == 'desktop-education' %}
-{% with h1="Contact us",
-  intro_text="Considering Ubuntu for your school or university? Are you interested in cost-effective systems management and professional support?",
-  formid="1253",
-  lpId="1409",
-  returnURL="/desktop/thank-you",
-  side1="shared/forms/_desktop_help.html",
-  side2="shared/forms/_desktop_ua-shop.html" %}
-  {% include "shared/_client-contact-us-form.html" %}
-{% endwith %}
 
-  {% else %}
+{% if product == 'desktop-education' %}
+  {{ load_form("/desktop/contact-us",
+      introText="Considering Ubuntu for your school or university? Are you interested in cost-effective systems management and professional support?") | safe }}
+{% else %}
+  {{ load_form("/desktop/contact-us") | safe }}
+{% endif %}
 
-{% with h1="Contact us",
-  intro_text="Considering Ubuntu for your organisation? Are you interested in cost-effective systems management and professional support?",
-  formid="1253",
-  lpId="1409",
-  returnURL="/desktop/thank-you",
-  side1="shared/forms/_desktop_help.html",
-  side2="shared/forms/_desktop_ua-shop.html" %}
-  {% include "shared/_client-contact-us-form.html" %}
-{% endwith %}
+{% include "shared/forms/_ubuntu_help_resources.html" %}
 
-  {% endif %}
+{{ vf_basic_section(
+  title={"text": "Looking for a little <br class=\"u-hide-small u-hide-medium\" />professional support?"},
+  items=[
+    {
+      "type": "description",
+      "item": {
+        "type": "text",
+        "content": "If you are a small organisation, you can purchase packs of Ubuntu Pro in our shop."
+      }
+    },
+    {
+      "type": "cta-block",
+      "item": {
+        "link": {
+          "content_html": "Buy Ubuntu Pro",
+          "attrs": {
+            "href": "/pro"
+          }
+        }
+      }
+    }
+  ]
+) }}
+
 {% endblock content %}

@@ -1,5 +1,4 @@
 20.10/?: "/download"
-404/?: "/"
 500/?: "/"
 2009/.+/: "/blog"
 2010/.+/: "/blog"
@@ -589,8 +588,8 @@ edge/?: "https://canonical.com/edge-computing"
 edge-cloud/?: "/cloud"
 edge-computing: "https://canonical.com/edge-computing"
 education.*/?: "/desktop/education"
-embedding: "https://canonical.com/embedding"
-embedding/faqs: "https://canonical.com/embedding/faqs"
+embedding/faqs/?: "https://canonical.com/partners/isv-program"
+embedding/?: "https://canonical.com/partners/isv-program"
 employment/?: "https://www.canonical.com/careers"
 employment/SSEBzr/?: "https://www.canonical.com/careers"
 end-of-life/?: "/about/release-cycle"
@@ -732,14 +731,14 @@ legal/managed-services/service-description?: "https://canonical.com/legal/ubuntu
 legal/online-accounts/?: "https://canonical.com/legal/online-account-terms"
 legal/privacy-policy/?: "https://canonical.com/legal/data-privacy"
 legal/privacy-policy/third-parties/?: "https://canonical.com/legal/data-privacy"
-legal/service-terms(?P<page>.*)/?: "https://canonical.com/legal/ubuntu-advantage-service-terms{page}"
+legal/service-terms(?P<page>.*)/?: "https://canonical.com/legal/ubuntu-pro-service-terms{page}"
 legal/terms-and-policies/privacy-policy?: "https://canonical.com/legal/data-privacy"
 legal/ubuntu-advantage/?: "https://canonical.com/legal/ubuntu-pro"
 legal/ubuntu-advantage/service-description: "https://canonical.com/legal/ubuntu-pro-description"
 legal/ubuntu-advantage/service-description-ja/2017-06-27: "https://canonical.com/legal/ubuntu-pro-description/ja"
 legal/ubuntu-advantage/service-description-ja/2017-02-09: "https://canonical.com/legal/ubuntu-pro-description/ja"
 legal/ubuntu-advantage/ua-terms-ja/?: "https://canonical.com/legal/ubuntu-pro-service-terms/ja"
-legal/short-terms(?P<page>.*)/?: "https://canonical.com/legal/ubuntu-advantage-service-terms/{page}"
+legal/short-terms(?P<page>.*)/?: "https://canonical.com/legal/ubuntu-pro-service-terms{page}"
 legal/short-terms-ja/?: "https://canonical.com/legal/ubuntu-pro-description/ja"
 legal/ubuntu-advantage/service-description/?: /legal/ubuntu-pro-description
 legal/ubuntu-advantage-service-description: /legal/ubuntu-pro-description
@@ -937,6 +936,7 @@ smart-start(?P<path>.*)/?: "/core/services/guide"
 smartstart(?P<path>.*)/?: "/core/services/guide"
 snappy/?: "/desktop/developers"
 software/?: "https://apps.ubuntu.com/cat/"
+software-partnerships/?: "https://canonical.com/partners/isv-program"
 start-download.*: "/download"
 storage/?: "/ceph"
 successes/?: "/blog"
@@ -1126,7 +1126,7 @@ blog/kubernetes-1-21-available-from-canonical..*: /blog/kubernetes-1-21-availabl
 blog/what-is-elasticsearch-and-how-are-enterprises-using-it: /blog/what-is-elasticsearch
 blog/managed-postgresql: /blog/what-is-postgresql
 blog/howto-host-your-own-snap-store: /internet-of-things/appstore
-blog/charmed-aether-sd-core-beta-release-announcement: https://canonical.com/solutions/telco 
+blog/charmed-aether-sd-core-beta-release-announcement: https://canonical.com/solutions/telco
 
 # Move snappy topic to snapcraft
 blog/topics/snappy/?: /blog/topics/snapcraft

@@ -33,13 +33,13 @@ meta_copydoc %}
     <div class="row--50-50">
       <div class="col">
         <div class="p-section">
-          <h2>Ubuntu Core {{ releases.core_lts.version }}</h2>
+          <h2>Ubuntu Core {{ releases_yaml.core_lts.version }}</h2>
         </div>
         <div class="p-image-wrapper u-hide--small u-hide--medium">
-          {{ image(url="https://assets.ubuntu.com/v1/3b5fa561-mascot-numbat@2x.png",
-                    alt="Noble Numbat",
-                    width="182",
-                    height="135",
+          {{ image(url=releases_yaml.lts.mascot_image_large.url,
+                    alt=releases_yaml.lts.name,
+                    width=releases_yaml.lts.mascot_image_large.width,
+                    height=releases_yaml.lts.mascot_image_large.height,
                     hi_def=True,
                     loading="auto") | safe
           }}
@@ -49,11 +49,11 @@ meta_copydoc %}
         <div class="p-section--shallow">
           <p>Build your Ubuntu Core image for your application and targeted hardware.</p>
           <p>
-            Ubuntu Core {{ releases.core_lts.version }} is the latest LTS version of Ubuntu for deployment on embedded devices and edge systems. LTS stands for long-term support &mdash; which means 10 years of security and maintenance updates guaranteed until {{ releases.core_lts.eol }}.
+            Ubuntu Core {{ releases_yaml.core_lts.version }} is the latest LTS version of Ubuntu for deployment on embedded devices and edge systems. LTS stands for long-term support &mdash; which means 10 years of security and maintenance updates guaranteed until {{ releases_yaml.core_lts.eol }}.
           </p>
           <hr class="p-rule" />
           <p>
-            <a class="p-button--positive" href="/core/docs/getting-started">Build your Core {{ releases.core_lts.version }}</a>
+            <a class="p-button--positive" href="/core/docs/getting-started">Build your Core {{ releases_yaml.core_lts.version }}</a>
           </p>
         </div>
         <!-- Start tab container -->
@@ -94,7 +94,7 @@ meta_copydoc %}
           </ul>
           <hr class="p-rule is-muted" />
           <p>
-            <a href="https://documentation.ubuntu.com/core/reference/release-notes/index.html">Core {{ releases.core_lts.version }} release notes&nbsp;&rsaquo;</a>
+            <a href="https://documentation.ubuntu.com/core/reference/release-notes/index.html">Core {{ releases_yaml.core_lts.version }} release notes&nbsp;&rsaquo;</a>
           </p>
         </div>
         <!-- tab 2 -->

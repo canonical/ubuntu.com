@@ -24,7 +24,7 @@
       </p>
     {%- endif -%}
     {%- if slot == 'cta' -%}
-      <a href="/ceph/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+      <a href="/ceph/contact-us" class="p-button--positive js-invoke-modal" aria-label="contact-modal">Get in touch</a>
       <a href="https://www.brighttalk.com/webcast/6793/520582">Watch the webinar - Ceph for Enterprise&nbsp;&rsaquo;</a>
     {%- endif -%}
     {%- if slot == 'image' -%}
@@ -252,4 +252,6 @@
   <section class="p-section--deep">
     {% include "shared/_resources_ceph.html" %}
   </section>
+
+  {{ load_form("/ceph/what-is-ceph") | safe }}
 {% endblock content %}

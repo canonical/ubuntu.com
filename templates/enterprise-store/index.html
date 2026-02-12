@@ -1,0 +1,268 @@
+{% extends "enterprise-store/base-enterprise-store.html" %}
+
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_newsletter-signup.jinja" import vf_newsletter_signup %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+
+{% block title %}
+  Enterprise Store
+{% endblock title %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1qjEETcjyPQVzWLN0MKHNlpBQktVIkFqYFSvMk1ETfC0
+{% endblock meta_copydoc %}
+
+{% block meta_description %}
+  On-premise edge proxy for secure software distribution in network-restricted environments.
+{% endblock %}
+
+{% block body_class %}is-paper{% endblock %}
+
+{% block content %}
+  {% call(slot) vf_hero(
+    title_text='Enterprise Store',
+    subtitle_text='Secure software management for restricted network environments',
+    layout='50/50'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        The Enterprise Store is an on-premise edge proxy that enables enterprises to maintain
+        control over software distribution whilst operating in network-restricted environments.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="/contact-us/form"
+         aria-controls="enterprise-store-modal"
+         class="p-button--positive js-invoke-modal">Contact us</a>
+    {%- endif -%}
+  {% endcall -%}
+
+  {{ vf_basic_section(title={"text": "Operation in complex networks or air-gapped environments"},
+    is_split_on_medium=true,
+    items=[
+    {
+    "type": "image",
+    "item": {
+    "aspect_ratio": "16-9",
+    "attrs": {
+    "src": "https://assets.ubuntu.com/v1/066647e9-complex_networks.png",
+    }
+    }
+    },
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "The Enterprise Store enables organizations to access Canonical's software ecosystems from behind corporate firewalls,
+    in air-gapped environments or other restricted networking environments."
+    }
+    },
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "For air-gapped environments with no internet connectivity, the Enterprise Store can operate in offline mode. This
+    allows updates to be manually sideloaded, ensuring software remains up to date and secure."
+    }
+    },
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "The Enterprise Store creates a local cache of downloaded files, speeding up subsequent downloads and minimizing
+    bandwidth usage across your organization."
+    }
+    }
+    ]) }}
+
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+    {%- if slot == 'title' -%}
+      <h2>Key features</h2>
+    {%- endif -%}
+
+    {%- if slot == 'description' -%}
+      <p>The Enterprise Store provides core capabilities to manage software securely across regulated industries.</p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">Local caching optimization</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+      <p>A local cache of downloaded files speeds up deployments and minimizes bandwidth usage.</p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">Air-gapped operation</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+      <p>Offline mode allows machines to receive updates even with no connection to the internet.</p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_3' -%}
+      <h3 class="p-heading--5">High availability</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_3' -%}
+      <p>
+        Multiple units ensure uninterrupted service by automatically routing requests to active instances during downtime.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_4' -%}
+      <h3 class="p-heading--5">Granular revision control</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_4' -%}
+      <p>Pin specific revisions to prevent unexpected updates during operation.</p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_5' -%}
+      <h3 class="p-heading--5">Multi-package support</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_5' -%}
+      <p>The Enterprise Store supports all snap and charm packages.</p>
+    {%- endif -%}
+
+  {%- endcall -%}
+
+  {{ vf_basic_section(title={"text": "Snap integrity verification"},
+    is_split_on_medium=true,
+    items=[
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "The Enterprise Store serves regulated industries where strict security controls are required. Fundamentally, snaps have been designed with security in mind from the ground up."
+    }
+    },
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "The integrity of downloaded snap files is guaranteed through hashing signatures that are built into the design of snaps and implemented in snapd and the Snap Store."
+    }
+    },
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "The Enterprise Store does not alter these signatures, ensuring that the chain of trust is always complete. This allows organizations to proxy software distribution through their controlled infrastructure while maintaining the same verification mechanisms as direct downloads."
+    }
+    },
+    {
+    "type": "cta-block",
+    "item": {
+    "secondaries": [
+    {
+    "content_html": "Explore our Dedicated Snap Store",
+    "attrs": {
+    "href": "/internet-of-things/appstore"
+    }
+    }
+    ],
+    }
+    },
+    ]) }}
+
+  {{ vf_basic_section(title={"text": "Industries we support"},
+    is_split_on_medium=true,
+    items=[
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "The Enterprise Store is used by many enterprises where software control, security, and compliance are paramount.
+    Our teams understand the unique challenges and regulatory requirements of each industry, delivering solutions
+    that meet the needs of each use case."
+    }
+    },
+    {
+    "type": "list",
+    "item": {
+    "list_items": [
+    {
+    "list_item_type": "bullet",
+    "content": "Critical infrastructure"
+    },
+    {
+    "list_item_type": "bullet",
+    "content": "Public sector"
+    },
+    {
+    "list_item_type": "bullet",
+    "content": "Manufacturing"
+    },
+    {
+    "list_item_type": "bullet",
+    "content": "Research and development"
+    },
+    {
+    "list_item_type": "bullet",
+    "content": "Communications"
+    }
+    ]
+    }
+    }
+    ]) }}
+
+  {{ vf_basic_section(title={"text": 'Expert support <br class="u-hide--small" />for enterprise deployments'},
+    is_split_on_medium=true,
+    items=[
+    {
+    "type": "image",
+    "item": {
+    "aspect_ratio": "16-9",
+    "attrs": {
+    "src": "https://assets.ubuntu.com/v1/bd331801-expert_support.png",
+    }
+    }
+    },
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "Our expert engineering teams provide deployment and support services for the Enterprise Store, for a range of network
+    configurations. From straightforward implementations to complex multi-site rollouts, our engineers ensure your
+    deployment meets your specific enterprise needs."
+    }
+    },
+    {
+    "type": "cta-block",
+    "item": {
+    "primary": {
+    "content_html": "Learn more about our services",
+    "attrs": {
+    "href": "/core/services"
+    }
+    }
+    }
+    },
+    ]) }}
+
+  {% call(slot) vf_cta_section(
+    title_text='Let\'s discuss the best solution for your enterprise',
+    variant='default',
+    layout='100',
+    ) -%}
+    {%- if slot == 'cta' -%}
+      <a href="/contact-us"
+         aria-controls="enterprise-store-modal"
+         class="js-invoke-modal">Get in touch &rsaquo;</a>
+    {%- endif -%}
+  {% endcall -%}
+
+  <section class="p-section">
+    {% call(slot) vf_newsletter_signup(layout="50-50", title_text="Sign up for our IoT newsletter", form_id="mktoForm_1670", return_url="https://ubuntu.com/#contact-form-success", input_label='Work email', checkbox_id='canonicalUpdatesOptIn', checkbox_label='I agree to receive information about Canonical\'s products and services.') %}
+      {%- if slot == 'description' -%}
+        <p>Receive regular updates from our IoT newsletter.</p>
+      {%- endif -%}
+    {% endcall %}
+  </section>
+
+  {{ load_form("/enterprise-store") | safe }}
+{% endblock content %}

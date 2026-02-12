@@ -1,0 +1,634 @@
+{
+  "form": {
+    "/engage/de/warum-openstack": {
+      "templatePath": "/engage/de_why-openstack.html",
+      "childrenPaths": [
+        "/engage/fr/pourquoi-openstack",
+        "/engage/es/por-que-openstack"
+      ],
+      "isModal": true,
+      "modalId": "why-openstack-modal",
+      "formData": {
+        "title": "Optimise your OpenStack for price-performance",
+        "formId": "4578",
+        "returnUrl": "/engage/de/warum-openstack#contact-form-success",
+        "product": ""
+      },
+      "fieldsets": [
+        {
+          "title": "Tell us about your project and team",
+          "id": "about-your-project-or-interest",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "about-your-project-or-interest",
+              "placeholder": "Where are you located? What is the scale of your project (number of servers, number of VMs, etc.)? Have you already purchased hardware for this project? Do you already have OpenStack deployed? Where are your workloads running right now? Is this initiative for a specific workload or for the business as a whole?"
+            }
+          ]
+        },
+        {
+          "title": "What are your priority workloads and use cases?",
+          "id": "priority-workloads",
+          "inputType": "checkbox",
+          "fields": [
+            {
+              "type": "checkbox",
+              "id": "telco-nfv",
+              "value": "Telco NFV",
+              "label": "Telco NFV"
+            },
+            {
+              "type": "checkbox",
+              "id": "kubernetes",
+              "value": "Kubernetes",
+              "label": "Kubernetes"
+            },
+            {
+              "type": "checkbox",
+              "id": "serverless",
+              "value": "Serverless",
+              "label": "Serverless"
+            },
+            {
+              "type": "checkbox",
+              "id": "high-performance-computing",
+              "value": "High performance computing",
+              "label": "High performance computing"
+            },
+            {
+              "type": "checkbox",
+              "id": "databases",
+              "value": "Databases",
+              "label": "Databases"
+            },
+            {
+              "type": "checkbox",
+              "id": "data-warehouses",
+              "value": "Data warehouses",
+              "label": "Data warehouses"
+            },
+            {
+              "type": "checkbox",
+              "id": "data-lake",
+              "value": "Data lake",
+              "label": "Data lake"
+            },
+            {
+              "type": "checkbox",
+              "id": "cloud-storage",
+              "value": "Cloud storage",
+              "label": "Cloud storage"
+            },
+            {
+              "type": "checkbox",
+              "id": "ai-ml",
+              "value": "AI/ML",
+              "label": "AI/ML"
+            },
+            {
+              "type": "checkbox",
+              "id": "big-data-analytics",
+              "value": "Big data analytics",
+              "label": "Big data analytics"
+            },
+            {
+              "type": "checkbox",
+              "id": "ci-cd",
+              "value": "CI/CD",
+              "label": "CI/CD"
+            },
+            {
+              "type": "checkbox",
+              "id": "developer-vms",
+              "value": "Developer VMs",
+              "label": "Developer VMs"
+            },
+            {
+              "type": "checkbox",
+              "id": "web-applications",
+              "value": "Web applications",
+              "label": "Web applications"
+            },
+            {
+              "type": "checkbox",
+              "id": "media-streaming",
+              "value": "Media streaming",
+              "label": "Media streaming"
+            },
+            {
+              "type": "checkbox",
+              "id": "video-transcoding",
+              "value": "Video transcoding",
+              "label": "Video transcoding"
+            },
+            {
+              "type": "checkbox",
+              "id": "other",
+              "value": "Other",
+              "label": "Other"
+            }
+          ]
+        },
+        {
+          "title": "What are your platform preferences?",
+          "id": "platform-preferences",
+          "inputType": "checkbox-visibility",
+          "fields": [
+            {
+              "fieldTitle": "CPU",
+              "options": [
+                {
+                  "type": "checkbox",
+                  "id": "intel",
+                  "value": "CPU: Intel",
+                  "label": "Intel"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "amd",
+                  "value": "CPU: AMD",
+                  "label": "AMD"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "arm",
+                  "value": "CPU: ARM",
+                  "label": "ARM"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "power",
+                  "value": "CPU: POWER",
+                  "label": "POWER"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "z",
+                  "value": "CPU: Z",
+                  "label": "Z"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "undecided-cpu",
+                  "value": "CPU: Undecided",
+                  "label": "Undecided"
+                }
+              ]
+            },
+            {
+              "fieldTitle": "Servers",
+              "options": [
+                {
+                  "type": "checkbox",
+                  "id": "gigabyte",
+                  "value": "Servers: Gigabyte",
+                  "label": "Gigabyte"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "lenovo",
+                  "value": "Servers: Lenovo",
+                  "label": "Lenovo"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "dell",
+                  "value": "Servers: Dell",
+                  "label": "Dell"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "hpe",
+                  "value": "Servers: HPE",
+                  "label": "HPE"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "huawei",
+                  "value": "Servers: Huawei",
+                  "label": "Huawei"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "cisco",
+                  "value": "Servers: Cisco",
+                  "label": "Cisco"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "undecided-servers",
+                  "value": "Servers: Undecided",
+                  "label": "Undecided"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "servers-other",
+                  "value": "Servers: Other",
+                  "label": "Other"
+                }
+              ]
+            },
+            {
+              "fieldTitle": "Networking",
+              "options": [
+                {
+                  "type": "checkbox",
+                  "id": "ovn",
+                  "value": "Networking: OVN",
+                  "label": "OVN"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "ovs",
+                  "value": "Networking: OVS",
+                  "label": "OVS"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "cisco-networking",
+                  "value": "Networking: Cisco",
+                  "label": "Cisco"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "juniper",
+                  "value": "Networking: Juniper",
+                  "label": "Juniper"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "undecided-networking",
+                  "value": "Networking: Undecided",
+                  "label": "Undecided"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "networking-other",
+                  "value": "Networking: Other",
+                  "label": "Other"
+                }
+              ]
+            },
+            {
+              "fieldTitle": "Storage",
+              "options": [
+                {
+                  "type": "checkbox",
+                  "id": "ceph",
+                  "value": "Storage: Ceph",
+                  "label": "Ceph"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "iscsi",
+                  "value": "Storage: iSCSI",
+                  "label": "iSCSI"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "undecided-storage",
+                  "value": "Storage: Undecided",
+                  "label": "Undecided"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "storage-other",
+                  "value": "Storage: Other",
+                  "label": "Other"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "What is your desired cloud architecture?",
+          "id": "cloud-architecture",
+          "inputType": "checkbox",
+          "fields": [
+            {
+              "type": "checkbox",
+              "id": "hyper-converged",
+              "value": "Hyper-converged",
+              "label": "Hyper-converged"
+            },
+            {
+              "type": "checkbox",
+              "id": "converged",
+              "value": "Converged",
+              "label": "Converged"
+            },
+            {
+              "type": "checkbox",
+              "id": "fully-disaggregated",
+              "value": "Fully Disaggregated",
+              "label": "Fully Disaggregated"
+            },
+            {
+              "type": "checkbox",
+              "id": "undecided",
+              "value": "Undecided",
+              "label": "Undecided"
+            }
+          ]
+        },
+        {
+          "title": "Which OpenStack capabilities matter to you?",
+          "id": "openstack-capabilities",
+          "inputType": "checkbox",
+          "fields": [
+            {
+              "type": "checkbox",
+              "id": "vms-coordination",
+              "value": "VMs coordination",
+              "label": "VMs coordination"
+            },
+            {
+              "type": "checkbox",
+              "id": "containers-coordination",
+              "value": "Containers coordination",
+              "label": "Containers coordination"
+            },
+            {
+              "type": "checkbox",
+              "id": "workload-ha",
+              "value": "Workload HA",
+              "label": "Workload HA"
+            },
+            {
+              "type": "checkbox",
+              "id": "ephemeral-storage",
+              "value": "Ephemeral storage",
+              "label": "Ephemeral storage"
+            },
+            {
+              "type": "checkbox",
+              "id": "block-storage",
+              "value": "Block storage",
+              "label": "Block storage"
+            },
+            {
+              "type": "checkbox",
+              "id": "object-storage",
+              "value": "Object storage",
+              "label": "Object storage"
+            },
+            {
+              "type": "checkbox",
+              "id": "shared-file-system",
+              "value": "Shared file system",
+              "label": "Shared file system"
+            },
+            {
+              "type": "checkbox",
+              "id": "identity-management",
+              "value": "Identity management",
+              "label": "Identity management"
+            },
+            {
+              "type": "checkbox",
+              "id": "dnsaas",
+              "value": "DNSaaS",
+              "label": "DNSaaS"
+            },
+            {
+              "type": "checkbox",
+              "id": "lbaas",
+              "value": "LBaaS",
+              "label": "LBaaS"
+            },
+            {
+              "type": "checkbox",
+              "id": "sr-iov",
+              "value": "SR-IOV",
+              "label": "SR-IOV"
+            },
+            {
+              "type": "checkbox",
+              "id": "dpdk",
+              "value": "DPDK",
+              "label": "DPDK"
+            },
+            {
+              "type": "checkbox",
+              "id": "epa",
+              "value": "EPA",
+              "label": "EPA"
+            },
+            {
+              "type": "checkbox",
+              "id": "numa",
+              "value": "NUMA",
+              "label": "NUMA"
+            },
+            {
+              "type": "checkbox",
+              "id": "fpga",
+              "value": "FPGA",
+              "label": "FPGA"
+            },
+            {
+              "type": "checkbox",
+              "id": "smartnics",
+              "value": "SmartNICs",
+              "label": "SmartNICs"
+            },
+            {
+              "type": "checkbox",
+              "id": "automation",
+              "value": "Automation",
+              "label": "Automation"
+            },
+            {
+              "type": "checkbox",
+              "id": "secret-management",
+              "value": "Secret management",
+              "label": "Secret management"
+            },
+            {
+              "type": "checkbox",
+              "id": "hsm",
+              "value": "HSM",
+              "label": "HSM"
+            },
+            {
+              "type": "checkbox",
+              "id": "gpgpu",
+              "value": "GPGPU",
+              "label": "GPGPU"
+            },
+            {
+              "type": "checkbox",
+              "id": "telemetry",
+              "value": "Telemetry",
+              "label": "Telemetry"
+            },
+            {
+              "type": "checkbox",
+              "id": "billing",
+              "value": "Billing",
+              "label": "Billing"
+            },
+            {
+              "type": "checkbox",
+              "id": "dashboard",
+              "value": "Dashboard",
+              "label": "Dashboard"
+            },
+            {
+              "type": "checkbox",
+              "id": "openstack-capabilities-other",
+              "value": "Other",
+              "label": "Other"
+            }
+          ]
+        },
+        {
+          "title": "What type of services are you looking for?",
+          "id": "most-helpful",
+          "inputType": "checkbox",
+          "fields": [
+            {
+              "type": "checkbox",
+              "id": "workload-analysis",
+              "value": "Workload analysis",
+              "label": "Workload analysis"
+            },
+            {
+              "type": "checkbox",
+              "id": "architecture-design",
+              "value": "Architecture design",
+              "label": "Architecture design"
+            },
+            {
+              "type": "checkbox",
+              "id": "hardware-guidance",
+              "value": "Hardware guidance",
+              "label": "Hardware guidance"
+            },
+            {
+              "type": "checkbox",
+              "id": "performance-tuning",
+              "value": "Performance tuning",
+              "label": "Performance tuning"
+            },
+            {
+              "type": "checkbox",
+              "id": "ecosystem-integration",
+              "value": "Ecosystem integration",
+              "label": "Ecosystem integration"
+            },
+            {
+              "type": "checkbox",
+              "id": "compliance-certification",
+              "value": "Compliance certification",
+              "label": "Compliance certification"
+            },
+            {
+              "type": "checkbox",
+              "id": "cost-estimates",
+              "value": "Cost estimates",
+              "label": "Cost estimates"
+            },
+            {
+              "type": "checkbox",
+              "id": "openstack-deployment",
+              "value": "OpenStack deployment",
+              "label": "OpenStack deployment"
+            },
+            {
+              "type": "checkbox",
+              "id": "performance-benchmarking",
+              "value": "Performance benchmarking",
+              "label": "Performance benchmarking"
+            },
+            {
+              "type": "checkbox",
+              "id": "backup-and-recovery",
+              "value": "Backup and recovery",
+              "label": "Backup and recovery"
+            },
+            {
+              "type": "checkbox",
+              "id": "disaster-recovery-plans",
+              "value": "Disaster recovery plans",
+              "label": "Disaster recovery plans"
+            },
+            {
+              "type": "checkbox",
+              "id": "observability-stack",
+              "value": "Observability stack",
+              "label": "Observability stack"
+            },
+            {
+              "type": "checkbox",
+              "id": "openstack-training",
+              "value": "OpenStack training",
+              "label": "OpenStack training"
+            },
+            {
+              "type": "checkbox",
+              "id": "workload-migration",
+              "value": "Workload migration",
+              "label": "Workload migration"
+            },
+            {
+              "type": "checkbox",
+              "id": "upgrade-to-new-version",
+              "value": "Upgrade to new version",
+              "label": "Upgrade to new version"
+            },
+            {
+              "type": "checkbox",
+              "id": "enterprise-support",
+              "value": "Enterprise support",
+              "label": "Enterprise support"
+            },
+            {
+              "type": "checkbox",
+              "id": "fully-managed-private-cloud",
+              "value": "Fully-managed private cloud",
+              "label": "Fully-managed private cloud"
+            },
+            {
+              "type": "checkbox",
+              "id": "security-updates",
+              "value": "Security updates",
+              "label": "Security updates"
+            },
+            {
+              "type": "checkbox",
+              "id": "security-audit",
+              "value": "Security audit",
+              "label": "Security audit"
+            },
+            {
+              "type": "checkbox",
+              "id": "hybrid-multi-cloud",
+              "value": "Hybrid/multi-cloud",
+              "label": "Hybrid/multi-cloud"
+            },
+            {
+              "type": "checkbox",
+              "id": "most-helpful-other",
+              "value": "Other",
+              "label": "Other"
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

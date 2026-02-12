@@ -1,0 +1,41 @@
+{
+  "form": {
+    "/kubeconeurope2020": {
+      "templatePath": "/kubeconeurope2020/index.html",
+      "isModal": true,
+      "modalId": "kubernetes-contact-modal",
+      "formData": {
+        "title": "Talk to our Kubernetes experts",
+        "formId": "3230",
+        "returnUrl": "/kubeconeurope2020#contact-form-success",
+        "lpUrl": "https://pages.ubuntu.com/things-contact-us.html"
+      },
+      "fieldsets": [
+        {
+          "title": "Tell us more about your Kubernetes use cases",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "advice",
+              "placeholder": "Anything you'd like to communicate about your needs or interests?",
+              "label": "Anything you'd like to communicate about your needs or interests?"
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Phone number",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

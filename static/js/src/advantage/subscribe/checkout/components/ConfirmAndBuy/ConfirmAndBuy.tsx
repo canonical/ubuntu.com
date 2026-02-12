@@ -146,7 +146,7 @@ const getLabels = (product: Product, action: Action) => {
         <>
           I agree to the{" "}
           <a
-            href="https://canonical.com/legal/ubuntu-advantage-service-terms"
+            href="https://canonical.com/legal/ubuntu-pro-service-terms"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -218,7 +218,7 @@ const getLabels = (product: Product, action: Action) => {
       <>
         I agree to the{" "}
         <a
-          href="https://canonical.com/legal/ubuntu-advantage-service-terms"
+          href="https://canonical.com/legal/ubuntu-pro-service-terms"
           target="_blank"
           rel="noopener noreferrer"
         >

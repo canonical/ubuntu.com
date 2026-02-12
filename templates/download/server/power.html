@@ -45,16 +45,16 @@
             <p>This is the ISO image of the Ubuntu Server installer.</p>
             <p>
               <a class="p-button--positive"
-                 href="https://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-live-server-ppc64el.iso"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
-                Download {{ releases.lts.full_version }} LTS
+                 href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.lts.short_version }}/release/ubuntu-{{ releases_yaml.lts.full_version }}-live-server-ppc64el.iso"
+                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases_yaml.lts.short_version }}', 'eventValue' : undefined });">
+                Download {{ releases_yaml.lts.full_version }} LTS
               </a>
-              {% if releases.latest.short_version > releases.lts.short_version %}
+              {% if releases_yaml.latest.short_version > releases_yaml.lts.short_version %}
                 &nbsp;&nbsp;
                 <a class="p-button"
-                   href="https://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-ppc64el.iso"
-                   onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
-                  Download {{ releases.latest.full_version }}
+                   href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.latest.short_version }}/release/ubuntu-{{ releases_yaml.latest.full_version }}-live-server-ppc64el.iso"
+                   onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases_yaml.latest.short_version }}', 'eventValue' : undefined });">
+                  Download {{ releases_yaml.latest.full_version }}
                 </a>
               {% endif %}
             </p>

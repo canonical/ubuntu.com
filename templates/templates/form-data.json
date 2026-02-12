@@ -1,0 +1,322 @@
+{
+  "form": {
+    "/templates/markdown/base": {
+      "templatePath": "/templates/markdown/base.html",
+      "childrenPaths": ["/templates/docs/markdown"],
+      "isModal": true,
+      "modalId": "contact-modal",
+      "formData": {
+        "title": "Let's get your IoT product to market faster!",
+        "introText": "Canonical partners with silicon companies, board manufacturers and ODMs to help innovators bring smart devices and software capabilities to market faster. Tell us about your project so we can bring the right Canonical team members to the conversation to help you.",
+        "formId": 3591,
+        "returnUrl": "/core/services#contact-form-success",
+        "lpUrl": "/core/services/contact-us"
+      },
+      "fieldsets": [
+        {
+          "title": "What's your target vertical?",
+          "id": "target-vertical",
+          "inputType": "checkbox",
+          "fields": [
+            {
+              "type": "checkbox",
+              "id": "target-vertical-Industry",
+              "label": "Industry 4.0"
+            },
+            {
+              "type": "checkbox",
+              "id": "target-vertical-Logistics",
+              "label": "Logistics"
+            },
+            {
+              "type": "checkbox",
+              "id": "target-vertical-Agriculture",
+              "label": "Agriculture"
+            },
+            {
+              "type": "checkbox",
+              "id": "target-vertical-Smart-City",
+              "label": "Smart City"
+            },
+            {
+              "type": "checkbox",
+              "id": "target-vertical-Smart-home",
+              "label": "Smart home"
+            },
+            {
+              "type": "checkbox",
+              "id": "target-vertical-Healthcare",
+              "label": "Healthcare"
+            },
+            {
+              "type": "checkbox",
+              "id": "target-vertical-Energy-and-utilities",
+              "label": "Energy and utilities"
+            },
+            {
+              "type": "checkbox",
+              "id": "target-vertical-Consumer-IoT",
+              "label": "Consumer IoT"
+            },
+            {
+              "type": "checkbox",
+              "id": "target-vertical-other",
+              "label": "Other - please describe",
+              "hasOtherInput": true,
+              "otherInputId": "target-vertical-other-specified",
+              "otherInputPlaceholder": "Please specify"
+            }
+          ]
+        },
+        {
+          "title": "Describe your project",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "about-project",
+              "label": "Tell us more about your project",
+              "rows": 3
+            }
+          ]
+        },
+        {
+          "title": "What device capabilities are important to you?",
+          "id": "capabilities",
+          "inputType": "checkbox",
+          "fields": [
+            {
+              "type": "checkbox",
+              "id": "capabilities-Security",
+              "label": "Security"
+            },
+            {
+              "type": "checkbox",
+              "id": "capabilities-Over-the-air",
+              "label": "Over-the-air updates"
+            },
+            {
+              "type": "checkbox",
+              "id": "capabilities-App-Store",
+              "label": "App Store"
+            },
+            {
+              "type": "checkbox",
+              "id": "capabilities-10-year-support",
+              "label": "10-year support"
+            },
+            {
+              "type": "checkbox",
+              "id": "capabilities-Real-time",
+              "label": "Real-time"
+            },
+            {
+              "type": "checkbox",
+              "id": "capabilities-Snaps",
+              "label": "Snaps"
+            },
+            {
+              "type": "checkbox",
+              "id": "capabilities-CI-CD",
+              "label": "CI-CD"
+            },
+            {
+              "type": "checkbox",
+              "id": "capabilities-Board-bring-up",
+              "label": "Board bring up"
+            },
+            {
+              "type": "checkbox",
+              "id": "capabilities-Compliance",
+              "label": "Compliance"
+            },
+            {
+              "type": "checkbox",
+              "id": "capabilities-Encryption",
+              "label": "Encryption"
+            },
+            {
+              "type": "checkbox",
+              "id": "capabilities-Recovery-partition",
+              "label": "Recovery partition"
+            },
+            {
+              "type": "checkbox",
+              "id": "capabilities-AI-machine-learning",
+              "label": "AI / machine learning"
+            },
+            {
+              "type": "checkbox",
+              "id": "capabilities-Network-capabilities",
+              "label": "Network capabilities"
+            },
+            {
+              "type": "checkbox",
+              "id": "capabilities-Device-management",
+              "label": "Device management"
+            },
+            {
+              "type": "checkbox",
+              "id": "capabilities-Secure-onboarding",
+              "label": "Secure onboarding"
+            },
+            {
+              "type": "checkbox",
+              "id": "capabilities-Boot-time",
+              "label": "Boot time"
+            },
+            {
+              "type": "checkbox",
+              "id": "capabilities-Secure-boot",
+              "label": "Secure boot"
+            },
+            {
+              "type": "checkbox",
+              "id": "capabilities-Battery-life",
+              "label": "Battery life"
+            }
+          ]
+        },
+        {
+          "title": "What are your platform preferences?",
+          "id": "platform-preferences",
+          "subFieldsets": [
+            {
+              "subtitle": "Architecture",
+              "inputType": "checkbox",
+              "fields": [
+                {
+                  "type": "checkbox",
+                  "id": "platform-architecture-Intel",
+                  "label": "Intel"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "platform-architecture-ARM",
+                  "label": "ARM"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "platform-architecture-other",
+                  "label": "Other",
+                  "hasOtherInput": true,
+                  "otherInputId": "platform-architecture-other-specified",
+                  "otherInputPlaceholder": "Please specify"
+                }
+              ]
+            },
+            {
+              "subtitle": "Board",
+              "inputType": "checkbox",
+              "fields": [
+                {
+                  "type": "checkbox",
+                  "id": "platform-Board-Undecided",
+                  "label": "Undecided"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "platform-Board-ARM",
+                  "label": "ARM"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "platform-Board-Nvidia",
+                  "label": "Nvidia"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "platform-Board-NXP",
+                  "label": "NXP"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "platform-Board-Qualcomm",
+                  "label": "Qualcomm"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "platform-Board-HiSilicon",
+                  "label": "HiSilicon"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "platform-Board-Renesas",
+                  "label": "Renesas"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "platform-Board-STM",
+                  "label": "STM"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "platform-Board-Xilinx",
+                  "label": "Xilinx"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "platform-Board-TI",
+                  "label": "TI"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "platform-Board-other",
+                  "label": "Other",
+                  "hasOtherInput": true,
+                  "otherInputId": "platform-Board-other-specified",
+                  "otherInputPlaceholder": "Please specify"
+                }
+              ]
+            },
+            {
+              "subtitle": "ODM",
+              "inputType": "checkbox",
+              "fields": [
+                {
+                  "type": "checkbox",
+                  "id": "platform-ODM-Undecided",
+                  "label": "Undecided"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "platform-ODM-Advantech",
+                  "label": "Advantech"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "platform-ODM-Adlink",
+                  "label": "Adlink"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "platform-ODM-Nvidia",
+                  "label": "Nvidia"
+                },
+                {
+                  "type": "checkbox",
+                  "id": "platform-ODM-other",
+                  "label": "Other",
+                  "hasOtherInput": true,
+                  "otherInputId": "platform-ODM-other-specified",
+                  "otherInputPlaceholder": "Please specify"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

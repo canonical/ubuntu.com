@@ -2,7 +2,11 @@
   "form": {
     "/security": {
       "templatePath": "/security/index.html",
-      "childrenPaths": ["/security/cc"],
+      "childrenPaths": [
+        "/security/cc",
+        "/security/esm",
+        "/security/compliance-compliance-automation-value-calculator"
+      ],
       "isModal": true,
       "modalId": "security-modal",
       "formData": {
@@ -77,7 +81,7 @@
               ]
             },
             {
-              "fieldTitle": "Outdated or non-LTS releases non-LTS release",
+              "fieldTitle": "Outdated or non-LTS releases",
               "options": [
                 {
                   "type": "checkbox",

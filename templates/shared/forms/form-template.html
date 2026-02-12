@@ -66,11 +66,11 @@
 {% endif %}
 
 <script>
-  document.querySelector('form').addEventListener('submit', function(event) {
+  document.querySelector('form[id^="mktoForm_"]').addEventListener('submit', function(event) {
     dataLayer.push({
       'event': 'GAEvent',
       'eventCategory': 'Form',
-      'eventAction': 'iot contact-us',
+      'eventAction': '{{ formPath or "iot" }} contact-us',
       'eventLabel': '{{ formData.product }}',
       'eventValue': undefined
     });

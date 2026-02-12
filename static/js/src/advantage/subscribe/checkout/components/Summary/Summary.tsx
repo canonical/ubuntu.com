@@ -104,7 +104,11 @@ function Summary({
     } else {
       addObj.years = quantity;
     }
-    return format(add(new Date(), addObj), DATE_FORMAT);
+    let initialDate = new Date();
+    if (product?.startDate) {
+      initialDate = add(new Date(product.startDate), { days: 1 });
+    }
+    return format(add(initialDate, addObj), DATE_FORMAT);
   };
 
   const endDate = useMemo(() => calculateProductEndDate(), [product]);
@@ -349,7 +353,14 @@ function Summary({
         </Col>
         <Col size={8}>
           <p data-testid="start-date">
-            <strong>{format(new Date(), DATE_FORMAT)}</strong>
+            <strong>
+              {format(
+                product.startDate
+                  ? add(new Date(product.startDate), { days: 1 })
+                  : new Date(),
+                DATE_FORMAT,
+              )}
+            </strong>
           </p>
         </Col>
       </Row>

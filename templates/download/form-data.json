@@ -73,7 +73,7 @@
               ]
             },
             {
-              "fieldTitle": "Outdated or non-LTS releases non-LTS release",
+              "fieldTitle": "Outdated or non-LTS releases",
               "options": [
                 {
                   "type": "checkbox",
@@ -403,7 +403,7 @@
               ]
             },
             {
-              "fieldTitle": "Outdated or non-LTS releases non-LTS release",
+              "fieldTitle": "Outdated or non-LTS releases",
               "options": [
                 {
                   "type": "checkbox",
@@ -762,6 +762,117 @@
               "type": "tel",
               "id": "phone",
               "label": "Mobile/cell phone number"
+            }
+          ]
+        }
+      ]
+    },
+    "/download/mediatek-genio/contact-us": {
+      "templatePath": "/download/mediatek-genio/contact-us.html",
+      "isModal": false,
+      "formData": {
+        "title": "",
+        "formId": "4644",
+        "returnUrl": "/download/thank-you",
+        "product": "MediaTek"
+      },
+      "fieldsets": [
+        {
+          "title": "Your company is:",
+          "inputType": "radio",
+          "inputName": "your-company-is",
+          "fields": [
+            {
+              "type": "radio",
+              "value": "an ODM/OEM",
+              "label": "an ODM/OEM",
+              "id": "your-company-is-ODM-OEM"
+            },
+            {
+              "type": "radio",
+              "value": "an end customer",
+              "label": "an end customer",
+              "id": "your-company-is-end-customer"
+            }
+          ]
+        },
+        {
+          "title": "Do you have a commercial project?",
+          "inputType": "radio",
+          "inputName": "commercial-project",
+          "fields": [
+            {
+              "type": "radio",
+              "value": "Yes",
+              "label": "Yes",
+              "id": "commercial-project-yes"
+            },
+            {
+              "type": "radio",
+              "value": "No",
+              "label": "No",
+              "id": "commercial-project-no"
+            },
+            {
+              "type": "radio",
+              "value": "Not applicable",
+              "label": "Not applicable",
+              "id": "commercial-project-not-applicable"
+            }
+          ]
+        },
+        {
+          "title": "When do you need to ship?",
+          "inputType": "radio",
+          "inputName": "when-do-you-ship",
+          "fields": [
+            {
+              "type": "radio",
+              "value": "Next 3 months",
+              "label": "Next 3 months",
+              "id": "when-do-you-ship-next-3-months"
+            },
+            {
+              "type": "radio",
+              "value": "Next 3-6 months",
+              "label": "Next 3-6 months",
+              "id": "when-do-you-ship-next-3-6-months"
+            },
+            {
+              "type": "radio",
+              "value": "Next 6-12 months",
+              "label": "Next 6-12 months",
+              "id": "when-do-you-ship-next-6-12-months"
+            },
+            {
+              "type": "radio",
+              "value": "No timeline - just researching",
+              "label": "No timeline - just researching",
+              "id": "when-do-you-ship-no-timeline"
+            }
+          ]
+        },
+        {
+          "title": "Tell us more about your project",
+          "id": "tell-us-about-your-project",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "tell-us-about-your-project",
+              "label": "Tell us more about your project"
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number",
+              "isRequired": true
             }
           ]
         }

@@ -10,7 +10,16 @@ import requests
 import talisker.requests
 from jinja2 import ChoiceLoader, FileSystemLoader
 import yaml
+import sentry_sdk
+from werkzeug.exceptions import HTTPException
+from urllib3.exceptions import MaxRetryError
+from requests.exceptions import (
+    RetryError,
+    ConnectionError as RequestsConnectionError,
+)
+import random
 
+from sentry_sdk.integrations.flask import FlaskIntegration
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
     DiscourseAPI,
@@ -204,10 +213,13 @@ DYNAMIC_SITEMAPS = [
     "tutorials",
     "engage",
     "ceph/docs",
+    "community/docs",
+    "openstack/docs",
     "blog",
     "security/notices",
     "security/cves",
     "security/vulnerabilities",
+    "security/certifications/docs",
     "security/livepatch/docs",
     "robotics/docs",
 ]
@@ -239,7 +251,6 @@ loader = ChoiceLoader(
 
 app.jinja_loader = loader
 
-sentry = app.extensions["sentry"]
 session = talisker.requests.get_session()
 charmhub_session = requests.Session()
 talisker.requests.configure(charmhub_session)
@@ -263,7 +274,57 @@ charmhub_discourse_api = DiscourseAPI(
 # Web tribe websites custom search ID
 search_engine_id = "adb2397a224a1fe55"
 
-init_handlers(app, sentry)
+# Sentry setup
+sentry_dsn = get_flask_env("SENTRY_DSN")
+environment = get_flask_env("FLASK_ENV", "production")
+
+
+def sentry_before_send(event, hint):
+    """
+    Filter Sentry events.
+    Excludes all 4xx errors.
+    Samples MaxRetryError from security API calls to reduce quota usage.
+    """
+    if "exc_info" in hint:
+        _, exc_value, _ = hint["exc_info"]
+
+        # Check if the exception is an HTTPException
+        # (which includes 4xx errors)
+        if (
+            isinstance(exc_value, HTTPException)
+            and 400 <= exc_value.code < 500
+        ):
+            # return None to discard the event
+            return None
+
+        # Sample MaxRetryError from security API calls
+        if isinstance(
+            exc_value, (MaxRetryError, RetryError, RequestsConnectionError)
+        ):
+            error_msg = str(exc_value)
+            # Check for security API URLs and 500/502/503/504 errors
+            if "/security/" in error_msg and any(
+                f"{code} error" in error_msg
+                for code in ["500", "502", "503", "504"]
+            ):
+                if (
+                    random.random() > 0.05
+                ):  # Drop 95% of security API retry errors
+                    return None
+
+    return event
+
+
+if sentry_dsn:
+    sentry_sdk.init(
+        dsn=sentry_dsn,
+        send_default_pii=True,
+        environment=environment,
+        integrations=[FlaskIntegration()],
+        before_send=sentry_before_send,
+    )
+
+init_handlers(app)
 
 
 # Prepare forms
@@ -773,34 +834,6 @@ template_finder_view = TemplateFinder.as_view("template_finder")
 template_finder_view._exclude_xframe_options_header = True
 app.add_url_rule("/", view_func=template_finder_view)
 app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
-
-# Server docs
-url_prefix = "/server/docs"
-server_docs = Docs(
-    parser=DocParser(
-        api=discourse_api,
-        index_topic_id=11322,
-        url_prefix=url_prefix,
-    ),
-    document_template="/server/docs/document.html",
-    url_prefix=url_prefix,
-    blueprint_name="server-docs",
-)
-
-# Server docs search
-app.add_url_rule(
-    "/server/docs/search",
-    "server-docs-search",
-    build_search_view(
-        app,
-        session=session,
-        site="ubuntu.com/server/docs",
-        template_path="/server/docs/search-results.html",
-        search_engine_id=search_engine_id,
-    ),
-)
-
-server_docs.init_app(app)
 
 # Community docs
 url_prefix = "/community/docs"
@@ -1479,3 +1512,12 @@ if app.config.get("TESTING") or os.getenv("TESTING") or app.debug:
         Expose all routes under templates/tests if in development/testing mode.
         """
         return flask.render_template(f"tests/{subpath}.html")
+
+
+if environment != "production":
+
+    @app.route("/sentry-debug")
+    def trigger_error():
+        """Endpoint to trigger a Sentry error for testing purposes."""
+        1 / 0
+        return "This won't be reached"
