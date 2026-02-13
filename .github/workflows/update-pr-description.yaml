@@ -1,0 +1,60 @@
+name: Update PR Description with Demo Link
+
+on:
+  pull_request:
+    types: [opened]
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  update-pr-description:
+    runs-on: ubuntu-latest
+    # Skip for PRs from forks
+    if: github.event.pull_request.head.repo.full_name == github.repository
+
+    steps:
+      - name: Update PR Description with Demo Link and Jira Ticket
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          pr_number="${{ github.event.pull_request.number }}"
+          branch_name="${{ github.event.pull_request.head.ref }}"
+          demo_link="https://ubuntu-com-${pr_number}.demos.haus/"
+          repo="${{ github.repository }}"
+          
+          if [[ "$branch_name" =~ ([Ww][Dd]-[0-9]+) ]]; then
+            jira_ticket="${BASH_REMATCH[1]}"
+            jira_link="[${jira_ticket}](https://warthogs.atlassian.net/browse/${jira_ticket})"
+            echo "Found Jira ticket: $jira_ticket"
+          else
+            jira_link=""
+            echo "::warning::No Jira ticket ref found in branch name"
+          fi
+          
+          gh pr view "$pr_number" --repo "$repo" --json body -q .body > original_body.txt
+          if [ $? -ne 0 ]; then
+            echo "::warning::Failed to fetch PR body"
+            exit 0
+          fi
+          
+          # Replace __DEMO_URL__ placeholder with actual demo link
+          sed "s|__DEMO_URL__|$demo_link|g" original_body.txt > temp_body.txt
+          
+          if [ -n "$jira_link" ]; then
+            sed "s|Fixes #|Fixes $jira_link|g" temp_body.txt > updated_body.txt
+          else
+            mv temp_body.txt updated_body.txt
+          fi
+          
+          gh pr edit "$pr_number" --repo "$repo" --body-file updated_body.txt
+          if [ $? -ne 0 ]; then
+            echo "::warning::Failed to update PR description"
+            exit 0
+          fi
+          
+          echo "Updated PR #$pr_number with demo link: $demo_link"
+          [ -n "$jira_link" ] && echo "Added Jira link: $jira_link"
