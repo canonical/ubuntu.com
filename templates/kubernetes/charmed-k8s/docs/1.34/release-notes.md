@@ -18,6 +18,16 @@ toc: False
 
 ---
 
+# 1.34+ck1
+
+### Feb 12, 2026 - `charmed-kubernetes --channel 1.34/stable`
+
+## Notable Fixes
+
+### Kubernetes Control Plane
+* Reduced rules needed by `ClusterRole/system:cos` to improve security posture
+
+
 # 1.34
 
 ### September 24, 2025 - `charmed-kubernetes --channel 1.34/stable`
@@ -49,8 +59,8 @@ The release bundle can also be [downloaded here](https://raw.githubusercontent.c
 
 ### openstack-integrator
 
-* [LP#2110221](https://launchpad.net/bugs/2111261) Config change and creds
-  changes validates LB requests
+* [LP#2110221](https://launchpad.net/bugs/2110221) Config change and creds
+  changes validates LB Requests
 * Allow Juju admin to specify o7k endpoint proxy values by charm or model
 
 ### vsphere-cloud-provider
