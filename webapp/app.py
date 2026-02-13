@@ -1500,7 +1500,7 @@ if environment != "production":
         return "This won't be reached"
 
 
-# Append utms cookie to canonical.com redirect links
+# Append utms cookie to canonical.com links in HTML responses
 @app.after_request
-def check_redirect(response):
+def append_utms_to_canonical_links(response):
     return append_utms_cookie_to_canonical_links(response)

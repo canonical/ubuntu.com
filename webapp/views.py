@@ -1998,13 +1998,24 @@ def append_utms_cookie_to_canonical_links(response):
         if cookie_value:
             data = response.get_data(as_text=True)
             # Find all href attributes pointing to canonical.com
-            pattern = r'href=["\']([^"\']*canonical\.com[^"\']*)["\']'
+            pattern = r'href=(["\'])([^"\']*canonical\.com[^"\']*)\1'
 
             def add_cookie_to_url(match):
-                url = match.group(1)
-                separator = "&" if "?" in url else "?"
-                new_url = f"{url}{separator}{cookie_value}"
-                return f'href="{new_url}"'
+                quote = match.group(1)
+                url = match.group(2)
+
+                parsed = urlparse(url)
+                decoded_cookie = unquote(cookie_value)
+                formatted_cookie = decoded_cookie.replace(":", "=")
+                if parsed.query:
+                    new_query = f"{parsed.query}&{formatted_cookie}"
+                else:
+                    new_query = formatted_cookie
+
+                new_parsed = parsed._replace(query=new_query)
+                new_url = urlunparse(new_parsed)
+                escaped_url = html.escape(new_url, quote=True)
+                return f'href={quote}{escaped_url}{quote}"'
 
             data = re.sub(pattern, add_cookie_to_url, data)
             response.set_data(data)
