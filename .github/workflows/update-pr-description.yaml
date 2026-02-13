@@ -41,8 +41,8 @@ jobs:
             exit 0
           fi
           
-          # Add demo link after "Check out this feature branch"
-          sed "s|Check out this feature branch|Check out this feature branch or visit the [demo link]($demo_link)|g" original_body.txt > temp_body.txt
+          # Replace __DEMO_URL__ placeholder with actual demo link
+          sed "s|__DEMO_URL__|$demo_link|g" original_body.txt > temp_body.txt
           
           if [ -n "$jira_link" ]; then
             sed "s|Fixes #|Fixes $jira_link|g" temp_body.txt > updated_body.txt
