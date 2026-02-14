@@ -1,0 +1,72 @@
+#!/bin/bash
+
+scss_files=()
+js_files=()
+html_files=()
+py_files=()
+
+while read local_ref local_sha remote_ref remote_sha
+do
+  # Ignore deleted refs (all-zero SHA)
+  if [[ "$local_sha" =~ ^0+$ ]]; then
+    continue
+  fi
+  # Find appropriate commit range
+  if [[ "$remote_sha" =~ ^0+$ ]]; then
+    range="${local_sha}"
+  else
+    range="${remote_sha}..${local_sha}"
+  fi
+
+  changed_files=$(git diff --name-only --diff-filter=ACMR "$range")
+
+  # Group file types
+  for file in $changed_files; do
+    case "$file" in
+      *.scss) scss_files+=("$file") ;;
+      *.js) js_files+=("$file") ;;
+      *.html) html_files+=("$file") ;;
+      *.py) py_files+=("$file") ;;
+    esac
+  done
+done
+
+echo "Running pre-push linters..."
+
+error_flag=0
+
+if [ ${#scss_files[@]} -gt 0 ]; then
+  echo "Linting SCSS files..."
+  if ! dotrun lint-scss ; then
+    error_flag=1
+  fi
+fi
+
+if [ ${#js_files[@]} -gt 0 ]; then
+  echo "Linting JS files..."
+  if ! dotrun lint-js ; then
+    error_flag=1
+  fi
+fi
+
+if [ ${#py_files[@]} -gt 0 ]; then
+  echo "Linting Python files..."
+  if ! dotrun lint-python ; then
+    error_flag=1
+  fi
+fi
+
+if [ ${#html_files[@]} -gt 0 ]; then
+  echo "Linting HTML files..."
+  if ! dotrun exec ./scripts/djlint lint -- "${html_files[@]}" ; then
+    error_flag=1
+  fi
+fi
+
+if [ "$error_flag" -eq 1 ]; then
+  echo "One or more linters failed. Push denied."
+  exit 1
+else
+  echo "All linters passed. Push allowed."
+  exit 0
+fi
