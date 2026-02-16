@@ -55,85 +55,83 @@
     {%- endif -%}
   {%- endcall -%}
 
-  <section>
-    <div class="row">
-      <hr class="p-rule" />
-      <div class="col-3 col-medium-2">
-        <div class="p-section--shallow">
-          <h2 class="p-text--small-caps">Choose a board</h2>
-        </div>
-        <ul class="js-tabbed-content p-tabs--vertical is-black"
-            role="tablist"
-            data-maintain-hash="true"
-            aria-label="Qualcomm IoT Boards">
-          <li>
-            <button class="p-tabs__item"
-                    id="genio-720-evk"
-                    role="tab"
-                    aria-selected="true"
-                    aria-controls="genio-720-evk-tab">
-              Genio 720 EVK
-            </button>
-          </li>
-          <li>
-            <button class="p-tabs__item"
-                    id="genio-520-evk"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="genio-520-evk-tab">
-              Genio 520 EVK
-            </button>
-          </li>
-          <li>
-            <button class="p-tabs__item"
-                    id="genio-1200-evk"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="genio-1200-evk-tab">
-              Genio 1200 EVK
-            </button>
-          </li>
-          <li>
-            <button class="p-tabs__item"
-                    id="genio-700-evk"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="genio-700-evk-tab">
-              Genio 700 EVK
-            </button>
-          </li>
-          <li>
-            <button class="p-tabs__item"
-                    id="genio-510-evk"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="genio-510-evk-tab">
-              Genio 510 EVK
-            </button>
-          </li>
-          <li>
-            <button class="p-tabs__item"
-                    id="genio-350-evk"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="genio-350-evk-tab">
-              Genio 350 EVK
-            </button>
-          </li>
-        </ul>
+  <section class="row">
+    <hr class="p-rule" />
+    <div class="col-3 col-medium-2">
+      <div class="p-section--shallow">
+        <h2 class="p-text--small-caps">Choose a board</h2>
       </div>
-      <div class="col-9 col-medium-4">
-        {% include "download/mediatek-genio/tabs/genio-720-evk.html" %}
-        {% include "download/mediatek-genio/tabs/genio-520-evk.html" %}
-        {% include "download/mediatek-genio/tabs/genio-1200-evk.html" %}
-        {% include "download/mediatek-genio/tabs/genio-700-evk.html" %}
-        {% include "download/mediatek-genio/tabs/genio-510-evk.html" %}
-        {% include "download/mediatek-genio/tabs/genio-350-evk.html" %}
-      </div>
+      <ul class="js-tabbed-content p-tabs--vertical is-black"
+          role="tablist"
+          data-maintain-hash="true"
+          aria-label="Qualcomm IoT Boards">
+        <li>
+          <button class="p-tabs__item"
+                  id="genio-720-evk"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="genio-720-evk-tab">
+            Genio 720 EVK
+          </button>
+        </li>
+        <li>
+          <button class="p-tabs__item"
+                  id="genio-520-evk"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="genio-520-evk-tab">
+            Genio 520 EVK
+          </button>
+        </li>
+        <li>
+          <button class="p-tabs__item"
+                  id="genio-1200-evk"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="genio-1200-evk-tab">
+            Genio 1200 EVK
+          </button>
+        </li>
+        <li>
+          <button class="p-tabs__item"
+                  id="genio-700-evk"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="genio-700-evk-tab">
+            Genio 700 EVK
+          </button>
+        </li>
+        <li>
+          <button class="p-tabs__item"
+                  id="genio-510-evk"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="genio-510-evk-tab">
+            Genio 510 EVK
+          </button>
+        </li>
+        <li>
+          <button class="p-tabs__item"
+                  id="genio-350-evk"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="genio-350-evk-tab">
+            Genio 350 EVK
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div class="col-9 col-medium-4">
+      {% include "download/mediatek-genio/tabs/genio-720-evk.html" %}
+      {% include "download/mediatek-genio/tabs/genio-520-evk.html" %}
+      {% include "download/mediatek-genio/tabs/genio-1200-evk.html" %}
+      {% include "download/mediatek-genio/tabs/genio-700-evk.html" %}
+      {% include "download/mediatek-genio/tabs/genio-510-evk.html" %}
+      {% include "download/mediatek-genio/tabs/genio-350-evk.html" %}
     </div>
   </section>
 
-  <section class="p-section--deep">
+  <section class="row p-section--deep">
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
