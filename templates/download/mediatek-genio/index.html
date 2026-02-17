@@ -15,6 +15,7 @@
 {% endblock body_class %}
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
 
 {% block content %}
   {% call(slot) vf_hero(
@@ -131,39 +132,34 @@
     </div>
   </section>
 
-  <section class="p-strip row p-section--deep">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>
-          Are you working on a
-          <br class="u-hide--small u-hide--medium" />
-          commercial project?
-        </h2>
-      </div>
-      <div class="col">
-        <p>
-          Canonical partners with silicon vendors, board manufacturers, and leading enterprises to shorten time-to-market.
-          If you are deploying Ubuntu on MediaTek Genio platforms at-scale,
-          <a href="/download/contact-us" class="js-invoke-modal" aria-controls="contact-modal">
-            reach out to Canonical
-          </a>
-          to get access to ongoing bug fixes, critical security patching, long-term support;
-          or to learn more about our solutions for custom board enablement and application development services.
-        </p>
-        <p>
-          For information about using Canonical’s Ubuntu images on a commercial project,
-          <a href="https://canonical.com/legal/intellectual-property-policy">read Canonical’s IP policy</a>.
-        </p>
-        <p>
-          If you have any questions about the platform or would like information about our certification program,
-          <a href="/download/contact-us" class="js-invoke-modal" aria-controls="contact-modal">
-            contact us
-          </a>.
-        </p>
-      </div>
-    </div>
-  </section>
+  {{ vf_basic_section(
+    title={"text": 'Are you working on a <br class="u-hide--small u-hide--medium" /> commercial project?'},
+    padding="deep",
+    is_split_on_medium=true,
+    items=[
+      {
+        "type": "description",
+        "item": {
+          "type": "text",
+          "content": 'Canonical partners with silicon vendors, board manufacturers, and leading enterprises to shorten time-to-market. If you are deploying Ubuntu on MediaTek Genio platforms at-scale, <a href="/download/contact-us" class="js-invoke-modal" aria-controls="contact-modal">reach out to Canonical</a> to get access to ongoing bug fixes, critical security patching, long-term support; or to learn more about our solutions for custom board enablement and application development services.'
+        }
+      },
+      {
+        "type": "description",
+        "item": {
+          "type": "text",
+          "content": 'For information about using Canonical’s Ubuntu images on a commercial project, <a href="https://canonical.com/legal/intellectual-property-policy">read Canonical’s IP policy</a>.'
+        }
+      },
+      {
+        "type": "description",
+        "item": {
+          "type": "text",
+          "content": 'If you have any questions about the platform or would like information about our certification program, <a href="/download/contact-us" class="js-invoke-modal" aria-controls="contact-modal">contact us</a>.'
+        }
+      }
+    ]
+  ) }}
 
   {{ load_form("/download/mediatek-genio") | safe }}
 
