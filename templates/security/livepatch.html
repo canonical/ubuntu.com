@@ -337,6 +337,7 @@ meta_copydoc %}
       {%- endif -%}
 
       {%- if slot == 'description' -%}
+        
         <div class="p-section--shallow u-hide--medium u-hide--small">
           <div class="p-image-container is-highlighted">
             {{ image(url="https://assets.ubuntu.com/v1/df38fad4-ubuntu-pro.png",
@@ -348,8 +349,9 @@ meta_copydoc %}
                         attrs={"class": "p-image-container__image"}) | safe
             }}
           </div>
-          <p>Ubuntu Pro is Canonical’s comprehensive subscription for open source security, support, and compliance. Ubuntu Pro gives you access to a trusted open source repository, compliance profiles for the most stringent security standards, and up to 15 years of vulnerability fixes for your OS, infrastructure, and applications – as well as tools like Livepatch and Landscape that make security maintenance and compliance at scale easier and faster.</p>
         </div>
+        <p>Ubuntu Pro is Canonical’s comprehensive subscription for open source security, support, and compliance. Ubuntu Pro gives you access to a trusted open source repository, compliance profiles for the most stringent security standards, and up to 15 years of vulnerability fixes for your OS, infrastructure, and applications – as well as tools like Livepatch and Landscape that make security maintenance and compliance at scale easier and faster.</p>
+
       {%- endif -%}
 
       {%- if slot == 'list_item_title_1' -%}
