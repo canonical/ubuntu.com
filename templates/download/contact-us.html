@@ -8,6 +8,10 @@
 
   {{ load_form("/download/supported-platforms/contact-us") | safe }}
 
+{% elif product == 'mediatek-genio' %}
+
+  {{ load_form("/download/mediatek-genio/contact-us") | safe }}
+
 {% elif product == 'qualcomm-iot' %}
 
   {{ load_form("/download/qualcomm-iot/contact-us") | safe }}
