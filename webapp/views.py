@@ -1986,3 +1986,38 @@ def build_release_cycle_view():
         )
 
     return display_github_data
+
+
+def append_utms_cookie_to_canonical_links(response):
+    """
+    Append utms cookie parameter to all canonical.com links in HTML responses
+    """
+    if response.mimetype == "text/html" and response.is_sequence:
+        cookie_value = flask.request.cookies.get("utms")
+
+        if cookie_value:
+            data = response.get_data(as_text=True)
+            # Find all href attributes pointing to canonical.com
+            pattern = r'href=(["\'])([^"\']*canonical\.com[^"\']*)\1'
+
+            def add_cookie_to_url(match):
+                quote = match.group(1)
+                url = match.group(2)
+
+                parsed = urlparse(url)
+                decoded_cookie = unquote(cookie_value)
+                formatted_cookie = decoded_cookie.replace(":", "=")
+                if parsed.query:
+                    new_query = f"{parsed.query}&{formatted_cookie}"
+                else:
+                    new_query = formatted_cookie
+
+                new_parsed = parsed._replace(query=new_query)
+                new_url = urlunparse(new_parsed)
+                escaped_url = html.escape(new_url, quote=True)
+                return f'href={quote}{escaped_url}{quote}"'
+
+            data = re.sub(pattern, add_cookie_to_url, data)
+            response.set_data(data)
+
+    return response

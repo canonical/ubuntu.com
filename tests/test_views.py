@@ -18,6 +18,7 @@ from webapp.views import (
     match_tags,
     build_engage_page,
     enrich_acquisition_url,
+    append_utms_cookie_to_canonical_links,
 )
 from webapp.certified.views import certified_platform_details_by_release
 
@@ -894,3 +895,184 @@ class TestEnrichAcquisitionURL(BaseViewTestCase):
         self.assertNotIn("utm_campaign", result)
         self.assertNotIn("utm_content", result)
         self.assertNotIn("utm_term", result)
+
+
+class TestAppendUtmsCookieToCanonicalLinks(BaseViewTestCase):
+    """
+    Unit tests for `append_utms_cookie_to_canonical_links`.
+
+    This function appends utms cookie parameters to all canonical.com
+    links in HTML responses.
+
+    Test cases:
+    - No cookie exists - response unchanged
+    - Non-HTML response - response unchanged
+    - Append to URL without query params - uses ?
+    - Append to URL with existing params - uses &
+    - Multiple canonical.com links - all modified
+    - Non-canonical.com links - ignored
+    - Complex cookie values - handled correctly
+    """
+
+    def test_append_utms_cookie_no_cookie(self):
+        """
+        Test that function returns unchanged response
+        when no cookie exists
+        """
+        with self.app.test_request_context():
+            response = MagicMock()
+            response.mimetype = "text/html"
+            response.is_sequence = True
+            response.get_data.return_value = (
+                '<a href="https://canonical.com/test">Link</a>'
+            )
+
+            result = append_utms_cookie_to_canonical_links(response)
+            self.assertEqual(result, response)
+            response.set_data.assert_not_called()
+
+    def test_append_utms_cookie_non_html_response(self):
+        """
+        Test that function returns unchanged response for non-HTML content
+        """
+        with self.app.test_request_context():
+            response = MagicMock()
+            response.mimetype = "application/json"
+            response.is_sequence = True
+
+            result = append_utms_cookie_to_canonical_links(response)
+            self.assertEqual(result, response)
+
+    def test_append_utms_cookie_simple_append_with_question_mark(self):
+        """
+        Test appending cookie to URL without existing parameters
+        """
+        with self.app.test_request_context(
+            "/", headers={"Cookie": "utms=utm_source:test1&utm_medium:test2"}
+        ):
+            response = MagicMock()
+            response.mimetype = "text/html"
+            response.is_sequence = True
+            html = '<a href="https://canonical.com/test">Link</a>'
+            response.get_data.return_value = html
+
+            append_utms_cookie_to_canonical_links(response)
+
+            # Verify set_data was called
+            response.set_data.assert_called_once()
+            updated_html = response.set_data.call_args[0][0]
+            self.assertIn("utm_source:test1&utm_medium:test2", updated_html)
+            self.assertIn("?", updated_html)
+
+    def test_append_utms_cookie_simple_append_with_ampersand(self):
+        """
+        Test appending cookie to URL with existing parameters
+        """
+        with self.app.test_request_context(
+            "/", headers={"Cookie": "utms=utm_source:test1"}
+        ):
+            response = MagicMock()
+            response.mimetype = "text/html"
+            response.is_sequence = True
+            html = (
+                '<a href="https://canonical.com/test?existing=param">Link</a>'
+            )
+            response.get_data.return_value = html
+
+            append_utms_cookie_to_canonical_links(response)
+
+            updated_html = response.set_data.call_args[0][0]
+            self.assertIn("existing=param&utm_source:test1", updated_html)
+
+    def test_append_utms_cookie_multiple_links(self):
+        """
+        Test appending cookie to multiple canonical.com links
+        """
+        with self.app.test_request_context(
+            "/", headers={"Cookie": "utms=utm_source:test1"}
+        ):
+            response = MagicMock()
+            response.mimetype = "text/html"
+            response.is_sequence = True
+            html = """
+                <a href="https://canonical.com/test1">Link 1</a>
+                <a href="https://canonical.com/test2">Link 2</a>
+                <a href="https://other.com/test">Other Link</a>
+            """
+            response.get_data.return_value = html
+
+            append_utms_cookie_to_canonical_links(response)
+
+            updated_html = response.set_data.call_args[0][0]
+            # Count occurrences of utm_source
+            utm_count = updated_html.count("utm_source:test1")
+            self.assertEqual(utm_count, 2)
+            # Verify non-canonical.com link is unchanged
+            self.assertIn('href="https://other.com/test"', updated_html)
+
+    def test_append_utms_cookie_ignores_non_canonical_links(self):
+        """
+        Test that non-canonical.com links are not modified
+        """
+        with self.app.test_request_context(
+            "/", headers={"Cookie": "utms=utm_source:test1"}
+        ):
+            response = MagicMock()
+            response.mimetype = "text/html"
+            response.is_sequence = True
+            html = '<a href="https://google.com/test">Link</a>'
+            response.get_data.return_value = html
+
+            append_utms_cookie_to_canonical_links(response)
+
+            updated_html = response.set_data.call_args[0][0]
+            self.assertEqual(updated_html, html)
+
+    def test_append_utms_cookie_with_complex_values(self):
+        """
+        Test handling of cookie with complex parameter values
+        """
+        with self.app.test_request_context(
+            "/",
+            headers={"Cookie": "utms=utm_content%3Atest%26utm_source%3Atest1"},
+        ):
+            response = MagicMock()
+            response.mimetype = "text/html"
+            response.is_sequence = True
+            html = '<a href="https://canonical.com/test">Link</a>'
+            response.get_data.return_value = html
+
+            append_utms_cookie_to_canonical_links(response)
+
+            updated_html = response.set_data.call_args[0][0]
+            self.assertIn(
+                "utm_content%3Atest%26utm_source%3Atest1", updated_html
+            )
+
+    def test_append_utms_cookie_mixed_links(self):
+        """
+        Test appending cookie with mix of canonical, ubuntu, and other links
+        """
+        with self.app.test_request_context(
+            "/", headers={"Cookie": "utms=utm_source:twitter"}
+        ):
+            response = MagicMock()
+            response.mimetype = "text/html"
+            response.is_sequence = True
+            html = """
+                <a href="https://canonical.com/services">Canonical</a>
+                <a href="https://ubuntu.com/download">Ubuntu</a>
+                <a href="https://canonical.com/blog">Blog</a>
+            """
+            response.get_data.return_value = html
+
+            append_utms_cookie_to_canonical_links(response)
+
+            updated_html = response.set_data.call_args[0][0]
+            # canonical.com links should be modified
+            canonical_utm_count = updated_html.count(
+                'href="https://canonical.com'
+            )
+            self.assertEqual(canonical_utm_count, 2)
+            # ubuntu.com link should not be modified
+            self.assertIn('href="https://ubuntu.com/download"', updated_html)
