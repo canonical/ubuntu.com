@@ -1094,9 +1094,7 @@ def marketo_submit():
             )
 
     except Exception:
-        sentry_sdk.capture_exception(
-            extra={"payload": payload}
-        )
+        sentry_sdk.capture_exception(extra={"payload": payload})
 
         return (
             flask.jsonify(
@@ -1488,14 +1486,12 @@ def build_sitemap_tree(exclude_paths=None):
         dynamically on every new push to main.
         """
         sitemap_path = os.getcwd() + "/templates/sitemap_tree.xml"
-
         # Validate the secret if its a POST request
         if flask.request.method == "POST":
             expected_secret = get_flask_env("SITEMAP_SECRET")
             provided_secret = flask.request.headers.get(
                 "Authorization", ""
             ).replace("Bearer ", "")
-
             if provided_secret != expected_secret:
                 logging.warning("Invalid secret provided")
                 return {"error": "Unauthorized"}, 401

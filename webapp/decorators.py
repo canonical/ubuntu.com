@@ -5,7 +5,7 @@ import functools
 import flask
 import requests
 import sentry_sdk
-from flask import current_app, abort
+from flask import abort
 from webapp.login import user_info
 
 

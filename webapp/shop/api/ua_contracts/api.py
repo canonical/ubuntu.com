@@ -16,7 +16,7 @@ class UAContractsAPI:
     ):
         """
         Initialize the UA Contracts API client.
-        
+
         Args:
             session: A requests.Session() instance for making HTTP requests
         """

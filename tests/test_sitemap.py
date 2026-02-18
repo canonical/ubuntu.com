@@ -1,7 +1,6 @@
 import unittest
 import re
 import os
-import logging
 from unittest.mock import patch
 import xml.etree.ElementTree as ET
 from webapp.app import app

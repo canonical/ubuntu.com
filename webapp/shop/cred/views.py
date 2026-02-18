@@ -216,9 +216,7 @@ def cred_sign_up(**_):
                     400,
                 )
     except Exception:
-        sentry_sdk.capture_exception(
-            extra={"payload": payload}
-        )
+        sentry_sdk.capture_exception(extra={"payload": payload})
 
         return (
             flask.render_template(
@@ -1539,9 +1537,7 @@ def cred_submit_form(**_):
             ):
                 return flask.render_template("credentials/exit-survey.html")
     except Exception:
-        sentry_sdk.capture_exception(
-            extra={"payload": payload}
-        )
+        sentry_sdk.capture_exception(extra={"payload": payload})
 
     return flask.redirect("/thank-you")
 
