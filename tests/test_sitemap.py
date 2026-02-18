@@ -7,8 +7,6 @@ import xml.etree.ElementTree as ET
 from webapp.app import app
 from webapp.views import build_sitemap_tree
 
-logging.getLogger("talisker.context").disabled = True
-
 
 class TestSitemap(unittest.TestCase):
     def setUp(self):

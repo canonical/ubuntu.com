@@ -11,5 +11,5 @@ fi
 
 # Start server
 # ===
-talisker.gunicorn.gevent webapp.app:app --bind $1 --workers 2 --worker-class gevent --name talisker-`hostname` ${EXTRA_ARGS}
+gunicorn webapp.app:app --bind $1 --workers 2 --worker-class gevent --name `hostname` ${EXTRA_ARGS}
 

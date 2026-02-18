@@ -1,5 +1,4 @@
 import unittest
-import talisker.requests
 import json
 import re
 from requests import Session
@@ -43,7 +42,6 @@ class MarketoFormTestCase(unittest.TestCase):
         )
 
         marketo_session = Session()
-        talisker.requests.configure(marketo_session)
 
         marketo_url = get_flask_env("MARKETO_API_URL")
         marketo_client = get_flask_env("MARKETO_API_CLIENT")
@@ -320,7 +318,8 @@ class TestHandleApiError(BaseViewTestCase):
         mock_abort.assert_called_once_with(404)
 
     @patch("webapp.decorators.abort")
-    def test_http_500_error_handling(self, mock_abort):
+    @patch("webapp.decorators.sentry_sdk")
+    def test_http_500_error_handling(self, mock_sentry, mock_abort):
         """Test that HTTP 500 errors result in abort(500) and Sentry logging"""
 
         # Create a mock response with 500 status
@@ -339,10 +338,11 @@ class TestHandleApiError(BaseViewTestCase):
             mock_api_call()
 
         mock_abort.assert_called_once_with(500)
-        self.app.extensions["sentry"].captureException.assert_called_once()
+        mock_sentry.capture_exception.assert_called_once()
 
     @patch("webapp.decorators.abort")
-    def test_general_exception_handling(self, mock_abort):
+    @patch("webapp.decorators.sentry_sdk")
+    def test_general_exception_handling(self, mock_sentry, mock_abort):
         """Test that general exceptions result in abort(500) and Sentry
         logging"""
 
@@ -355,5 +355,4 @@ class TestHandleApiError(BaseViewTestCase):
             mock_api_call()
 
         mock_abort.assert_called_once_with(500)
-        sentry_mock = self.app.extensions["sentry"]
-        sentry_mock.captureException.assert_called_once()
+        mock_sentry.capture_exception.assert_called_once()

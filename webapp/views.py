@@ -7,6 +7,7 @@ import re
 import requests
 import time
 import logging
+import sentry_sdk
 from urllib.parse import (
     quote,
     unquote,
@@ -22,7 +23,6 @@ import dateutil
 import feedparser
 import flask
 import jinja2
-import talisker.requests
 import yaml
 from bs4 import BeautifulSoup
 from canonicalwebteam.discourse import DiscourseAPI, DocParser, Docs
@@ -43,10 +43,9 @@ from webapp.utils import format_community_event_time
 from webapp.constants import ENGAGE_UI_TRANSLATIONS
 
 ip_reader = geolite2.reader()
-session = talisker.requests.get_session()
+session = Session()
 
 marketo_session = Session()
-talisker.requests.configure(marketo_session)
 marketo_api = MarketoAPI(
     get_flask_env("MARKETO_API_URL"),
     get_flask_env("MARKETO_API_CLIENT"),
@@ -211,7 +210,7 @@ def json_asset_query(file_name):
         )
         json = response.json()
     except HTTPError:
-        flask.current_app.extensions["sentry"].captureException()
+        sentry_sdk.capture_exception()
 
     return flask.jsonify(json)
 
@@ -1014,7 +1013,7 @@ def marketo_submit():
             "There was a problem submitting your form.",
             "contact-form-fail",
         )
-        flask.current_app.extensions["sentry"].captureMessage(
+        sentry_sdk.capture_message(
             "Marketo form ID missing",
             extra={"enrichment_fields": enrichment_fields},
         )
@@ -1076,7 +1075,7 @@ def marketo_submit():
             )
 
         if "result" not in data:
-            flask.current_app.extensions["sentry"].captureMessage(
+            sentry_sdk.capture_message(
                 "Marketo form API Issue",
                 extra={"payload": payload, "response": data},
             )
@@ -1089,13 +1088,13 @@ def marketo_submit():
             )
 
         if data["result"][0]["status"] == "skipped":
-            flask.current_app.extensions["sentry"].captureMessage(
+            sentry_sdk.capture_message(
                 f"Marketo form {payload['formId']} failed to submit",
                 extra={"payload": payload, "response": data},
             )
 
     except Exception:
-        flask.current_app.extensions["sentry"].captureException(
+        sentry_sdk.capture_exception(
             extra={"payload": payload}
         )
 
@@ -1150,7 +1149,7 @@ def marketo_submit():
             payload_status == "skipped"
             and enrichment_submission["success"] is False
         ):
-            flask.current_app.extensions["sentry"].captureMessage(
+            sentry_sdk.capture_message(
                 (
                     f"Marketo form {payload['formId']} and enrichment payload "
                     "failed to submit"
@@ -1168,7 +1167,7 @@ def marketo_submit():
                 "contact-form-fail",
             )
         elif payload_status == "skipped":
-            flask.current_app.extensions["sentry"].captureMessage(
+            sentry_sdk.capture_message(
                 f"Marketo form {payload['formId']} payload failed to submit",
                 extra={
                     "payload": payload,
@@ -1285,7 +1284,7 @@ def subscription_centre():
         )
         data = response.json()
     except HTTPError:
-        flask.current_app.extensions["sentry"].captureException()
+        sentry_sdk.capture_exception()
 
     return flask.render_template(
         "subscription-centre/index.html",
@@ -1318,7 +1317,7 @@ def subscription_centre_submit(sfdcLeadId, unsubscribe):
         )
         return response
     except HTTPError:
-        flask.current_app.extensions["sentry"].captureException()
+        sentry_sdk.capture_exception()
 
 
 def navigation_nojs():
@@ -1367,7 +1366,7 @@ def process_active_vulnerabilities(security_vulnerabilities):
                 active_vulnerabilities=filtered_vulnerabilities,
             )
         except (HTTPError, TypeError) as e:
-            flask.current_app.extensions["sentry"].captureException(
+            sentry_sdk.capture_exception(
                 f"Error processing vulnerabilities: {e}"
             )
             return flask.render_template(
@@ -1425,7 +1424,7 @@ def build_vulnerabilities_list(security_vulnerabilities, path=None):
                 vulnerabilities=vulnerabilities,
             )
         except HTTPError as e:
-            flask.current_app.extensions["sentry"].captureException(
+            sentry_sdk.capture_exception(
                 f"Error fetching vulnerabilities: {e}"
             )
 
@@ -1453,7 +1452,7 @@ def build_vulnerabilities(security_vulnerabilities):
                 document=document,
             )
         except HTTPError as e:
-            flask.current_app.extensions["sentry"].captureException(
+            sentry_sdk.capture_exception(
                 f"Error fetching vulnerabilities: {e}"
             )
 
@@ -1739,7 +1738,7 @@ def build_github_data_access():
         try:
             response.raise_for_status()
         except HTTPError as e:
-            flask.current_app.extensions["sentry"].captureException(e)
+            sentry_sdk.capture_exception(e)
 
             # If stale data, use it as a fallback
             if key in _cache:

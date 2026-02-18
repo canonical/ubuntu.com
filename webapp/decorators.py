@@ -4,6 +4,7 @@ import functools
 # Third party packages
 import flask
 import requests
+import sentry_sdk
 from flask import current_app, abort
 from webapp.login import user_info
 
@@ -41,10 +42,10 @@ def handle_api_error(func):
             if error.response.status_code == 404:
                 abort(404)
             else:
-                current_app.extensions["sentry"].captureException()
+                sentry_sdk.capture_exception()
                 abort(500)
         except Exception:
-            current_app.extensions["sentry"].captureException()
+            sentry_sdk.capture_exception()
             abort(500)
 
     return wrapper

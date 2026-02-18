@@ -12,9 +12,6 @@ from vcr_unittest import VCRTestCase
 # Local
 from webapp.app import app
 
-# Suppress talisker warnings, that get annoying
-logging.getLogger("talisker.context").disabled = True
-
 
 class TestBlogNotice(VCRTestCase):
     def _get_vcr_kwargs(self):

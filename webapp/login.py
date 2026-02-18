@@ -1,7 +1,7 @@
 # Packages
 import flask
 import flask_openid
-import talisker.requests
+import requests
 from pymacaroons import Macaroon
 from django_openid_auth.teams import TeamsRequest, TeamsResponse
 
@@ -23,7 +23,7 @@ open_id = flask_openid.OpenID(
     safe_roots=[],
     extension_responses=[MacaroonResponse, TeamsResponse],
 )
-session = talisker.requests.get_session()
+session = requests.Session()
 
 
 def user_info(user_session):
