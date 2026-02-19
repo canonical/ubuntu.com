@@ -216,8 +216,9 @@ def cred_sign_up(**_):
                     400,
                 )
     except Exception:
-        sentry_sdk.capture_exception(extra={"payload": payload})
-
+        with sentry_sdk.push_scope() as scope:
+            scope.set_extra("payload", payload)
+            sentry_sdk.capture_exception()
         return (
             flask.render_template(
                 "credentials/sign-up.html",
