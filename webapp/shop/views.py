@@ -5,6 +5,7 @@ import concurrent.futures
 
 import flask
 import pytz
+import sentry_sdk
 from dateutil.parser import parse
 from requests.exceptions import HTTPError
 
@@ -115,7 +116,7 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
                 # Purchase not found, skip it
                 return
             else:
-                flask.current_app.extensions["sentry"].captureException()
+                sentry_sdk.capture_exception()
                 return
 
     if account:
@@ -269,7 +270,7 @@ def get_customer_info(ua_contracts_api, **kwargs):
             response["data"] = error.response.json()
             response["success"] = False
         else:
-            flask.current_app.extensions["sentry"].captureException()
+            sentry_sdk.capture_exception()
             raise error
 
     return response

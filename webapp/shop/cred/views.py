@@ -5,6 +5,7 @@ import pytz
 import flask
 import json
 import html
+import sentry_sdk
 from webapp.shop.api.ua_contracts.api import (
     UAContractsAPIErrorView,
     UAContractsUserHasNoAccount,
@@ -215,10 +216,9 @@ def cred_sign_up(**_):
                     400,
                 )
     except Exception:
-        flask.current_app.extensions["sentry"].captureException(
-            extra={"payload": payload}
-        )
-
+        with sentry_sdk.push_scope() as scope:
+            scope.set_extra("payload", payload)
+            sentry_sdk.capture_exception()
         return (
             flask.render_template(
                 "credentials/sign-up.html",
@@ -678,7 +678,7 @@ def cred_schedule(
                     contract_long_id=contract_long_id,
                 )
             except Exception as error:
-                flask.current_app.extensions["sentry"].captureException(
+                sentry_sdk.capture_exception(
                     extra={
                         "user_info": user_info(flask.session),
                         "request_url": error.request.url,
@@ -751,7 +751,7 @@ def cred_schedule(
                     contract_long_id=contract_long_id,
                 )
             except Exception as error:
-                flask.current_app.extensions["sentry"].captureException(
+                sentry_sdk.capture_exception(
                     extra={
                         "user_info": user_info(flask.session),
                         "request_url": error.request.url,
@@ -852,7 +852,7 @@ def cred_your_exams(
             email=email, product_tags=["cue"]
         )
     except Exception as error:
-        flask.current_app.extensions["sentry"].captureException(
+        sentry_sdk.capture_exception(
             extra={
                 "user_info": user_info(flask.session),
                 "request_url": flask.request.url,
@@ -1258,7 +1258,7 @@ def cred_exam(trueability_api, proctor_api, is_cred_admin, **_):
                 .get("id")
             )
         except Exception:
-            flask.current_app.extensions["sentry"].captureException(
+            sentry_sdk.capture_exception(
                 extra={
                     "user_info": user_info(flask.session),
                     "request_url": flask.request.url,
@@ -1538,9 +1538,7 @@ def cred_submit_form(**_):
             ):
                 return flask.render_template("credentials/exit-survey.html")
     except Exception:
-        flask.current_app.extensions["sentry"].captureException(
-            extra={"payload": payload}
-        )
+        sentry_sdk.capture_exception(extra={"payload": payload})
 
     return flask.redirect("/thank-you")
 
@@ -1727,7 +1725,7 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
         )
     except UAContractsAPIErrorView as error:
         activation_response = json.loads(error.response.text).get("message")
-        flask.current_app.extensions["sentry"].captureException(
+        sentry_sdk.capture_exception(
             extra={
                 "user_info": user_info(flask.session),
                 "request_url": error.request.url,
@@ -1744,7 +1742,7 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
             notification_message=activation_response,
         )
     except UAContractsUserHasNoAccount as error:
-        flask.current_app.extensions["sentry"].captureException(
+        sentry_sdk.capture_exception(
             extra={
                 "request_url": error.request.url,
                 "request_headers": error.request.headers,
@@ -1794,7 +1792,7 @@ def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
             if contract_keys:
                 keys.extend(contract_keys)
         except Exception as error:
-            flask.current_app.extensions["sentry"].captureException(
+            sentry_sdk.capture_exception(
                 extra={
                     "request_url": error.request.url,
                     "request_headers": error.request.headers,
@@ -1949,7 +1947,7 @@ def cancel_scheduled_exam(trueability_api, **kwargs):
             )
         return flask.jsonify({"status": "success"})
     except Exception as error:
-        flask.current_app.extensions["sentry"].captureException(
+        sentry_sdk.capture_exception(
             extra={
                 "request_url": error.request.url,
                 "request_headers": error.request.headers,
@@ -2096,7 +2094,7 @@ def cred_dashboard_exam_results(trueability_api, **_):
         )
         return flask.jsonify(latest_results)
     except Exception:
-        flask.current_app.extensions["sentry"].captureException()
+        sentry_sdk.capture_exception()
         return flask.jsonify({"error": "Error fetching exam results"}), 500
 
 

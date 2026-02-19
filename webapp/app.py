@@ -7,7 +7,6 @@ import os
 
 import flask
 import requests
-import talisker.requests
 from jinja2 import ChoiceLoader, FileSystemLoader
 import yaml
 import sentry_sdk
@@ -251,9 +250,8 @@ loader = ChoiceLoader(
 
 app.jinja_loader = loader
 
-session = talisker.requests.get_session()
+session = requests.Session()
 charmhub_session = requests.Session()
-talisker.requests.configure(charmhub_session)
 
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",

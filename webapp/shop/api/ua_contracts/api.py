@@ -15,8 +15,10 @@ class UAContractsAPI:
         remote_addr=None,
     ):
         """
-        Expects a Talisker session in most circumstances,
-        from `talisker.requests.get_session()`
+        Initialize the UA Contracts API client.
+
+        Args:
+            session: A requests.Session() instance for making HTTP requests
         """
 
         self.session = session
@@ -50,7 +52,7 @@ class UAContractsAPI:
 
         if self.remote_addr:
             headers["X-Forwarded-For"] = self.remote_addr
-            logger = logging.getLogger("talisker.requests")
+            logger = logging.getLogger("requests")
             logger.info(
                 "remote address", extra={"remote_addr": self.remote_addr}
             )

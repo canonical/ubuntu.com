@@ -1,5 +1,4 @@
 # Standard library
-import logging
 import os
 import unittest
 from unittest.mock import patch
@@ -10,9 +9,6 @@ from vcr_unittest import VCRTestCase
 
 # Local
 from webapp.app import app
-
-# Suppress talisker warnings, that get annoying
-logging.getLogger("talisker.context").disabled = True
 
 
 class TestRoutes(VCRTestCase):
