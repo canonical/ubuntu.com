@@ -609,7 +609,7 @@ production:
       proxy_pass https://admin.insights.ubuntu.com/wp-content/uploads/;
     }
     location ^~ /usn-db/ {
-      proxy_pass https://people.canonical.com/%7Eubuntu-security/usn/;
+      proxy_pass http://seceng-people.internal/%7Eubuntu-security/usn/;
     }
     location ^~ /usn-db-stg/ {
       proxy_pass http://seceng-people.internal/%7Eubuntu-security/usn/;
