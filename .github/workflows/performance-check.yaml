@@ -15,9 +15,9 @@ jobs:
       matrix_data: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: lts/*
           cache: "yarn"
@@ -25,7 +25,7 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Read links from test-links.yaml
         id: set-matrix
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const yaml = require('js-yaml');
@@ -68,7 +68,7 @@ jobs:
           echo "sanitized_name=$sanitized_name" >> $GITHUB_OUTPUT
 
       - name: Upload result
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: perf-results-${{ steps.save-result.outputs.sanitized_name }}
           path: result-${{ steps.save-result.outputs.sanitized_name }}.json
@@ -80,7 +80,7 @@ jobs:
 
     steps:
       - name: Download all results
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           pattern: perf-results-*
           path: results/
