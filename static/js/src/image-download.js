@@ -28,18 +28,39 @@ function initImageDownload(imagePath, GAlabel) {
 
 function startDownload(mirrors, imagePath) {
   var defaultLocation = "https://releases.ubuntu.com/";
+  var defaultLink = defaultLocation + imagePath;
+
   // Select a random mirror from list
   var selectedMirror = chooseRandomMirror(mirrors);
-  var downloadLocation = defaultLocation;
 
-  // Build the download link
+  // If a mirror was selected, verify the file exists before redirecting
   if (selectedMirror && selectedMirror.link) {
-    downloadLocation = selectedMirror.link;
-  }
+    var mirrorLink = selectedMirror.link + imagePath;
 
-  var downloadLink = downloadLocation + imagePath;
-  // Start download
-  delayStartDownload(downloadLink, 3000);
+    // Check the mirror exists before attempting to download
+    fetch(
+      `/mirror-check?mirror_url=${encodeURIComponent(mirrorLink)}`,
+    )
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        if (data.available) {
+          // Mirror has the file, download from mirror
+          delayStartDownload(mirrorLink, 3000);
+        } else {
+          // Mirror doesn't have the file, download from default
+          delayStartDownload(defaultLink, 3000);
+        }
+      })
+      .catch(function () {
+        // Error checking mirror, download from default
+        delayStartDownload(defaultLink, 3000);
+      });
+  } else {
+    // No mirror selected, download from default
+    delayStartDownload(defaultLink, 3000);
+  }
 }
 
 /**

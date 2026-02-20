@@ -233,6 +233,31 @@ def mirrors_query():
     )
 
 
+def mirror_check():
+    """
+    An endpoint that checks if a file exists on a given mirror.
+    Returns:
+      - 200 with {"available": true} if the file exists
+      - 400 with {"available": false} if file was not found or url was invalid
+    """
+    mirror_url = flask.request.args.get("mirror_url", default=None)
+
+    if not mirror_url:
+        return flask.jsonify({"available": False}), 400
+
+    parsed = urlparse(mirror_url)
+    if parsed.scheme not in ("http", "https") or not parsed.netloc:
+        return flask.jsonify({"available": False}), 400
+
+    try:
+        response = session.head(mirror_url, timeout=5, allow_redirects=True)
+        available = response.status_code == 200
+    except Exception:
+        available = False
+
+    return flask.jsonify({"available": available})
+
+
 def build_tutorials_index(session, tutorials_docs):
     def tutorials_index():
         page = flask.request.args.get("page", default=1, type=int)
