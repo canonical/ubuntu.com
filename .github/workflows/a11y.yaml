@@ -15,7 +15,7 @@ jobs:
       urls: ${{ steps.get-urls.outputs.urls }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Read links from test-links.yaml
         id: get-urls
@@ -28,9 +28,9 @@ jobs:
     needs: read-config
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: lts/*
           cache: "yarn"
