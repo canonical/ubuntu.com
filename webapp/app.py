@@ -1422,6 +1422,9 @@ def render_security_pci_dds_blogs():
     )
 
 
+app.add_url_rule(
+    "/security/standards/pci-dss", view_func=render_security_pci_dds_blogs
+)
 app.add_url_rule("/security/pci-dss", view_func=render_security_pci_dds_blogs)
 
 
