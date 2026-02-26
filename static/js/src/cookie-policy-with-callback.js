@@ -37,16 +37,25 @@ function setUserId() {
 }
 
 function setUtmCookies(urlParams) {
-  let utmParams = "";
+  const utmMap = {};
+
   urlParams.forEach((value, key) => {
     if (key.startsWith("utm_")) {
-      utmParams += key + ":" + value + "&";
+      if (utmMap[key]) {
+        // If the key already exists, concatenate the values with a comma
+        utmMap[key] += "," + value;
+      } else {
+        utmMap[key] = value;
+      }
     }
   });
+
+  // Build the utm string from the map
+  const utmParams = Object.entries(utmMap)
+    .map(([key, value]) => (value ? key + ":" + value : key))
+    .join("&");
+
   if (utmParams.length > 0) {
-    if (utmParams.endsWith("&")) {
-      utmParams = utmParams.slice(0, -1);
-    }
     document.cookie =
       "utms=" + encodeURIComponent(utmParams) + ";max-age=86400;path=/;";
   }
