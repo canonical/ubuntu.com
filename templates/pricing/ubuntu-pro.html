@@ -1,0 +1,497 @@
+{% extends "pricing/base_pricing.html" %}
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
+{% block title %}Ubuntu Pro | plans and pricing{% endblock %}
+{% block meta_description %}
+Ubuntu Pro, the expanded security maintenance and compliance subscription is now available for data centres and
+workstations. Ubuntu Pro expands security coverage for critical, high and medium Common Vulnerabilities and Exposures
+(CVEs) to thousands of applications and toolchains including Ansible, Apache Tomcat, Apache Zookeeper, Docker, Drupal,
+Nagios, Node.js, phpMyAdmin, Puppet, PowerDNS, Python 2, Redis, Rust, WordPress, and more.
+{% endblock %}
+
+{% block meta_copydoc %}
+https://docs.google.com/document/d/1Ynk0iLa9hjrdich6ATTsybtPbDwW_k4vRI0nk_HNhcI/edit
+{% endblock meta_copydoc %}
+
+{% block content %}
+
+{% call(slot) vf_hero(
+title_text='Ubuntu Pro pricing',
+subtitle_text='',
+layout='50/50'
+) -%}
+{%- if slot == 'description' -%}
+<p>
+  Evaluate Ubuntu Pro pricing and get comprehensive open source security and support. Find the subscription that fits
+  your needs.
+</p>
+{%- endif -%}
+{% if slot == 'cta' -%}
+<a href="/support/contact-us" class="p-button--positive">Get in touch</a>
+<a href="/pro/subscribe" class="p-button">Subscribe now</a>
+<a href="/pro/free-trial">Looking for a free trial&nbsp;&rsaquo;</a>
+{%- endif -%}
+{% endcall -%}
+
+<section class="p-strip">
+  <div class="row">
+    <hr class="p-rule" />
+  </div>
+  <div class="grid-row--50-50">
+    <div class="grid-col">
+      <h2>Ubuntu Pro subscription</h2>
+    </div>
+    <div class="grid-col">
+      <div class="p-tabs js-tabbed-content">
+        <div class="p-tabs__list" role="tablist" aria-label="Ubuntu Pro subscription tabs">
+          <div class="p-tabs__item">
+            <h2 class="p-tabs__link" tabindex="0" role="tab" aria-selected="true" aria-controls="enterprise-tab"
+              id="enterprise">Enterprise</h2>
+          </div>
+          <div class="p-tabs__item">
+            <h2 class="p-tabs__link" tabindex="0" role="tab" aria-selected="false" aria-controls="personal-tab"
+              id="personal">Personal</h2>
+          </div>
+        </div>
+      </div>
+
+      <div tabindex="0" role="tabpanel" id="enterprise-tab" aria-labelledby="enterprise">
+        <div class="grid-row--50-50">
+          <div class="grid-col">
+            <p class="p-text--small-caps">Workstation</p>
+            <div class="p-section--shallow">
+              <h1>$25</h1>
+              <p class="u-text--muted">per machine per year</p>
+            </div>
+          </div>
+          <div class="grid-col">
+            <p class="p-text--small-caps">Server with unlimited VMs</p>
+            <div class="p-section--shallow">
+              <h1>$500</h1>
+              <p class="u-text--muted">per machine per year</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div tabindex="0" role="tabpanel" id="personal-tab" aria-labelledby="personal">
+        <div class="grid-row--50-50">
+          <div class="grid-col">
+            <div class="p-section--shallow">
+              <h1>Personal</h1>
+              <p class="u-text--muted">For upto 5 machines</p>
+            </div>
+          </div>
+          <div class="grid-col">
+            <div class="p-section--shallow">
+              <h1>Community</h1>
+              <p class="u-text--muted">Upto 50 machines for active <br />
+                <a href="/community/membership">Ubuntu community members&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <hr class="p-rule" />
+          <p>Does not include knowledge base access, Certified Windows drivers for KVM guests and Ubuntu Assurance
+            Program</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="grid-row--50-50">
+    <hr class="p-rule" />
+    <div class="grid-col">
+      <h2>24/7 Enterprise support</h2>
+      <p>Weekday support is 50% price of 24/7 support</p>
+    </div>
+    <div class="grid-col">
+      <div class="grid-row--50-50">
+        <div class="grid-col">
+          <p class="p-text--small-caps">Workstation</p>
+          <div class="p-section--shallow">
+            <h1>$300</h1>
+            <p class="u-text--muted">full support per machine per year</p>
+          </div>
+        </div>
+        <div class="grid-col">
+          <p class="p-text--small-caps">Server with unlimited VMs</p>
+          <div class="p-section--shallow">
+            <h1>$3,400</h1>
+            <p class="u-text--muted">full support per machine per year<br />
+              $1775 infra support per machine per year
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <hr class="p-rule" />
+  </div>
+  <div class="grid-row--50-50">
+    <div class="grid-col">
+      <h2>Looking for Ubuntu Pro on public clouds?</h2>
+    </div>
+    <div class="grid-col">
+      <p>
+        Ubuntu Pro on public clouds is metered by the hour and charged through your cloud provider’s bill. Pricing is
+        relative to your compute cost, typically between 3–4.5% of the list price. For exact rates, please refer to the
+        pricing pages for <a href="/aws/pro">AWS</a>, <a href="/azure/pro">Azure</a> and <a href="/gcp/pro">GCP</a>.
+        Please note, you can also deprecate your committed spend with Ubuntu Pro.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip" style="overflow: visible;">
+  <div class="grid-row--50-50">
+    <hr class="p-rule" />
+    <div class="grid-col">
+      <h2>Coverage for both open source infrastructure and applications</h2>
+    </div>
+    <div class="grid-col">
+      <p>
+        Ubuntu Pro covers Canonical’s complete open source portfolio, including infrastructure automation, scalable
+        storage, private and edge clouds, container orchestration, and applications.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="p-tabs js-tabbed-content">
+      <div class="p-tabs__list" role="tablist" aria-label="Feature section">
+        <div class="p-tabs__item">
+          <button class="p-tabs__link" tabindex="1" role="tab" aria-selected="true"
+            aria-controls="security-compliance-tab" id="security-compliance">Security and compliance</button>
+        </div>
+        <div class="p-tabs__item">
+          <button class="p-tabs__link" tabindex="1" role="tab" aria-selected="false"
+            aria-controls="operations-management-tab" id="operations-management">Operations and management</button>
+        </div>
+        <div class="p-tabs__item">
+          <button class="p-tabs__link" tabindex="1" role="tab" aria-selected="false" aria-controls="infrastructure-tab"
+            id="infrastructure">Infrastructure</button>
+        </div>
+        <div class="p-tabs__item">
+          <button class="p-tabs__link" tabindex="1" role="tab" aria-selected="false" aria-controls="application-tab"
+            id="application">Application</button>
+        </div>
+        <div class="p-tabs__item">
+          <button class="p-tabs__link" tabindex="1" role="tab" aria-selected="false" aria-controls="services-tab"
+            id="services">Services</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div tabindex="1" role="tabpanel" id="security-compliance-tab" aria-labelledby="security-compliance">
+    <section class="row">
+      <aside class="col-3">
+        <div class="p-side-navigation is-sticky" id="drawer" style="top: 4rem;">
+          <div class="p-side-navigation__overlay js-drawer-toggle" aria-controls="drawer"></div>
+          <nav class="p-side-navigation__drawer" aria-label="security compliance side navigation">
+            <ul>
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link" href="#security-compliance-security">Security</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link" href="#security-compliance-livepatch">Livepatch</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link" href="#security-compliance-compliance-hardening">Compliance and
+                  hardening</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+      <main class="col-9">
+        <div class="p-section section-heading" id="security-compliance-security">
+          <div class="p-section--shallow grid-row--25-75">
+            <div class="grid-col">
+              <h3>Security</h3>
+            </div>
+            <div class="grid-col">
+              <h4>Expanded Security Maintenance for Ubuntu and open source software</h4>
+            </div>
+          </div>
+          <div class="p-section--shallow">
+            <div class="grid-row--25-75">
+              <div class="grid-col">
+                <p class="p-text--small-caps">Availability</p>
+              </div>
+              <div class="grid-col">
+                <p class="p-text--small-caps">Details</p>
+              </div>
+            </div>
+            <div class="row">
+              <hr class="p-rule--muted" />
+            </div>
+            <div class="grid-row--25-75">
+              <div class="grid-col">
+                <p>
+                  Included in an Ubuntu Pro subscription
+                </p>
+              </div>
+              <div class="grid-col">
+                <p>
+                  Expanded Security Maintenance for Ubuntu’s Main repository for an additional 5 years beyond Ubuntu LTS
+                  end of standard support (infra-only)
+                </p>
+                <hr class="p-rule--muted" />
+                <p>Security patching for the Ubuntu Universe repository for 10 years (Ubuntu 16.04 LTS onwards)</p>
+              </div>
+            </div>
+            <div class="row">
+              <hr class="p-rule--muted" />
+            </div>
+            <div class="grid-row--25-75">
+              <div class="grid-col">
+                <p>Ubuntu Pro subscription with Legacy price is 50% more</p>
+              </div>
+              <div class="grid-col">
+                <p>5-year Legacy add-on: an additional two years of security maintenance and support, extending total
+                  coverage to 15 years</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <hr class="p-rule--muted" />
+          </div>
+          <div class="row">
+            <h5 class="p-text--small-caps">Coverage levels</h5>
+          </div>
+          <div class="grid-row--25-75">
+            <div class="grid-col">
+              <h5>Infra-only coverage</h5>
+            </div>
+            <div class="grid-col">
+              <p>Encompasses over 4,700 open source deb packages in Ubuntu’s Main repository for an additional 5 years,
+                including:</p>
+              <div class="p-logo-section">
+                <div class="p-logo-section__items">
+                  <div class="p-logo-section__item">
+                    <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/38fdfd23-Dell-logo.png"
+                      alt="Dell Technologies" />
+                  </div>
+                  <div class="p-logo-section__item">
+                    <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/cd5f636a-hp-logo.png"
+                      alt="Hewlett Packard" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <hr class="p-rule--muted" />
+          </div>
+          <div class="grid-row--25-75">
+            <div class="grid-col">
+              <h5>Full-stack coverage</h5>
+            </div>
+            <div class="grid-col">
+              <p>Provides security maintenance for over 36,000 open source deb packages in the Ubuntu Universe
+                repository for up to 10 years, including:</p>
+              <div class="p-logo-section">
+                <div class="p-logo-section__items">
+                  <div class="p-logo-section__item">
+                    <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/38fdfd23-Dell-logo.png"
+                      alt="Dell Technologies" />
+                  </div>
+                  <div class="p-logo-section__item">
+                    <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/cd5f636a-hp-logo.png"
+                      alt="Hewlett Packard" />
+                  </div>
+                  <div class="p-logo-section__item">
+                    <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/f90702cd-lenovo-logo.png"
+                      alt="Lenovo" />
+                  </div>
+                  <div class="p-logo-section__item">
+                    <img class="p-logo-section__logo"
+                      src="https://assets.ubuntu.com/v1/2ef3c028-amazon-web-services-logo.png"
+                      alt="Amazon Web Services" />
+                  </div>
+                  <div class="p-logo-section__item">
+                    <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/cb7ef8ac-ibm-cloud-logo.png"
+                      alt="IBM Cloud" />
+                  </div>
+                  <div class="p-logo-section__item">
+                    <img class="p-logo-section__logo"
+                      src="https://assets.ubuntu.com/v1/210f44e4-microsoft-azure-new-logo.png" alt="Microsoft Azure">
+                  </div>
+                  <div class="p-logo-section__item">
+                    <img class="p-logo-section__logo"
+                      src="https://assets.ubuntu.com/v1/210f44e4-microsoft-azure-new-logo.png" alt="Microsoft Azure" />
+                  </div>
+                  <div class="p-logo-section__item">
+                    <img class="p-logo-section__logo"
+                      src="https://assets.ubuntu.com/v1/210f44e4-microsoft-azure-new-logo.png" alt="Microsoft Azure" />
+                  </div>
+                  <div class="p-logo-section__item">
+                    <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/a554a818-google-cloud-logo.png"
+                      alt="Google Cloud Platform" />
+                  </div>
+                  <div class="p-logo-section__item">
+                    <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/b3e692f4-oracle-new-logo.png"
+                      alt="Oracle" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <hr class="p-rule--muted" />
+          </div>
+          <div class="grid-row--25-75">
+            <div class="grid-col grid-col-start-2">
+              <p>
+                <a href="/pro/linux-patch-management-with-pro">Check the coverage for your packages ›</a>
+              </p>
+              <hr class="p-rule--muted">
+              <p>
+                <a href="/pro/linux-patch-management-with-pro">What are main and universe repositories? ›</a>
+              </p>
+              <hr class="p-rule--muted">
+              <div class="p-cta-block">
+                <a href="/pricing/pro#get-in-touch" class="p-button">Get security maintenance</a>
+                <a href="/security">Learn more ›</a>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="p-section section-heading" id="security-compliance-livepatch">
+          <div class="row">
+            <hr class="p-rule--muted" />
+          </div>
+          <div class="p-section--shallow grid-row--25-75">
+            <div class="grid-col">
+              <h3>Livepatch</h3>
+            </div>
+            <div class="grid-col">
+              <h4>Reduce downtime and unplanned work</h4>
+            </div>
+          </div>
+          <div class="grid-row--25-75">
+            <div class="grid-col">
+              <p class="p-text--small-caps">Availability</p>
+            </div>
+            <div class="grid-col">
+              <p class="p-text--small-caps">Details</p>
+            </div>
+          </div>
+          <div class="row">
+            <hr class="p-rule--muted" />
+          </div>
+          <div class="grid-row--25-75">
+            <div class="grid-col">
+              <p>Included in an Ubuntu Pro subscription</p>
+            </div>
+            <div class="grid-col">
+              <p>Patch critical and high severity kernel vulnerabilities while the system runs and defer maintenance
+                windows</p>
+            </div>
+          </div>
+          <div class="row">
+            <hr class="p-rule--muted" />
+          </div>
+          <div class="grid-row--25-75">
+            <div class="grid-col grid-col-start-2">
+              <div class="p-cta-block">
+                <a href="/pricing/pro#get-in-touch" class="p-button">Enable Livepatch</a>
+                <a href="/security/livepatch">Learn more ›</a>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="p-section section-heading" id="security-compliance-compliance-hardening">
+          <div class="row">
+            <hr class="p-rule--muted" />
+          </div>
+          <div class="p-section--shallow grid-row--25-75">
+            <div class="grid-col">
+              <h3>Compliance and hardening</h3>
+            </div>
+            <div class="grid-col">
+              <h4>Run Ubuntu in high-security environments</h4>
+            </div>
+          </div>
+        </div>
+  
+      </main>
+    </section>
+  </div>
+
+  <div tabindex="1" role="tabpanel" id="operations-management-tab" aria-labelledby="operations-management">
+    <div class="grid-row--25-75">
+      <div class="grid-col">
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <hr class="p-rule" />
+  </div>
+  <div class="row p-section--shallow">
+    <p class="p-text--small-caps">Companies that trust Ubuntu Pro</p>
+  </div>
+  <div class="u-fixed-width">
+    <div class="p-logo-section">
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item">
+          <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/358661f9-launchdarkly-logo.svg"
+            width="211" height="104" alt="LaunchDarkly logo" />
+        </div>
+        <div class="p-logo-section__item">
+          <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/38004c36-lucid-logo.svg" height="104"
+            alt="Lucid logo" />
+          <div class="p-logo-section__item">
+            <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/a2921daa-AIRLOCK_LOGO_COLOUR.svg"
+              height="104" alt="Airlock logo" />
+          </div>
+          <div class="p-logo-section__item">
+            <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/a2921daa-AIRLOCK_LOGO_COLOUR.svg"
+              height="104" alt="Airlock logo" />
+          </div>
+          <div class="p-logo-section__item">
+            <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/b010446b-Grundium%2520logo.png" width=""
+              height="104" alt="Grundium logo" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <hr class="p-rule" />
+  </div>
+  <div class="grid-row--50-50">
+    <div class="grid-col">
+      <h2>Education, Research and Academia</h2>
+    </div>
+    <div class="grid-col">
+      <p>
+        Ubuntu Pro is available for purchase through our website, or through our global network of partners. For more
+        information on purchasing Ubuntu Pro, please contact us.
+      </p>
+      <a href="/support/contact-us" class="p-button--positive">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+<script src="{{ versioned_static('js/dist/active-nav-scroll.js') }}"></script>
+
+{% endblock %}
