@@ -2022,26 +2022,41 @@ def append_utms_cookie_to_canonical_links(response):
         cookie_value = flask.request.cookies.get("utms")
 
         if cookie_value:
+            # Decode the URI encoded cookie value
+            cookie_value = unquote(cookie_value)
             data = response.get_data(as_text=True)
+
             # Find all href attributes pointing to canonical.com
-            pattern = r'href=(["\'])([^"\']*canonical\.com[^"\']*)\1'
+            pattern = r'href=["\']([^"\']*canonical\.com[^"\']*)["\']'
 
             def add_cookie_to_url(match):
-                quote = match.group(1)
-                url = match.group(2)
-
+                url = match.group(1)
+                # Parse URL to properly handle fragments (hash)
                 parsed = urlparse(url)
-                decoded_cookie = unquote(cookie_value)
-                formatted_cookie = decoded_cookie.replace(":", "=")
-                if parsed.query:
-                    new_query = f"{parsed.query}&{formatted_cookie}"
-                else:
-                    new_query = formatted_cookie
 
-                new_parsed = parsed._replace(query=new_query)
-                new_url = urlunparse(new_parsed)
-                escaped_url = html.escape(new_url, quote=True)
-                return f'href={quote}{escaped_url}{quote}"'
+                # Determine separator: use & if query params exist, otherwise ?
+                separator = "&" if parsed.query else "?"
+
+                # Build new query string with cookie value
+                new_query = (
+                    f"{parsed.query}{separator}{cookie_value}"
+                    if parsed.query
+                    else cookie_value
+                )
+
+                # Reconstruct URL with updated query string
+                new_url = urlunparse(
+                    (
+                        parsed.scheme,
+                        parsed.netloc,
+                        parsed.path,
+                        parsed.params,
+                        new_query,
+                        parsed.fragment,
+                    )
+                )
+
+                return f'href="{new_url}"'
 
             data = re.sub(pattern, add_cookie_to_url, data)
             response.set_data(data)
