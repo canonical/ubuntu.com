@@ -189,253 +189,12 @@ layout='50/50'
     </div>
   </div>
 
+  {% include "pricing/pro/security-and-compliance.html" %}
+  {% include "pricing/pro/operations-and-management.html" %}
+  {% include "pricing/pro/infrastructure.html" %}
+  {% include "pricing/pro/application.html" %}
+  {% include "pricing/pro/services.html" %}
   
-  <div tabindex="1" role="tabpanel" id="security-compliance-tab" aria-labelledby="security-compliance">
-    <section class="row">
-      <aside class="col-3">
-        <div class="p-side-navigation is-sticky" id="drawer" style="top: 4rem;">
-          <div class="p-side-navigation__overlay js-drawer-toggle" aria-controls="drawer"></div>
-          <nav class="p-side-navigation__drawer" aria-label="security compliance side navigation">
-            <ul>
-              <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link" href="#security-compliance-security">Security</a>
-              </li>
-              <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link" href="#security-compliance-livepatch">Livepatch</a>
-              </li>
-              <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link" href="#security-compliance-compliance-hardening">Compliance and
-                  hardening</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </aside>
-      <main class="col-9">
-        <div class="p-section section-heading" id="security-compliance-security">
-          <div class="p-section--shallow grid-row--25-75">
-            <div class="grid-col">
-              <h3>Security</h3>
-            </div>
-            <div class="grid-col">
-              <h4>Expanded Security Maintenance for Ubuntu and open source software</h4>
-            </div>
-          </div>
-          <div class="p-section--shallow">
-            <div class="grid-row--25-75">
-              <div class="grid-col">
-                <p class="p-text--small-caps">Availability</p>
-              </div>
-              <div class="grid-col">
-                <p class="p-text--small-caps">Details</p>
-              </div>
-            </div>
-            <div class="row">
-              <hr class="p-rule--muted" />
-            </div>
-            <div class="grid-row--25-75">
-              <div class="grid-col">
-                <p>
-                  Included in an Ubuntu Pro subscription
-                </p>
-              </div>
-              <div class="grid-col">
-                <p>
-                  Expanded Security Maintenance for Ubuntu’s Main repository for an additional 5 years beyond Ubuntu LTS
-                  end of standard support (infra-only)
-                </p>
-                <hr class="p-rule--muted" />
-                <p>Security patching for the Ubuntu Universe repository for 10 years (Ubuntu 16.04 LTS onwards)</p>
-              </div>
-            </div>
-            <div class="row">
-              <hr class="p-rule--muted" />
-            </div>
-            <div class="grid-row--25-75">
-              <div class="grid-col">
-                <p>Ubuntu Pro subscription with Legacy price is 50% more</p>
-              </div>
-              <div class="grid-col">
-                <p>5-year Legacy add-on: an additional two years of security maintenance and support, extending total
-                  coverage to 15 years</p>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <hr class="p-rule--muted" />
-          </div>
-          <div class="row">
-            <h5 class="p-text--small-caps">Coverage levels</h5>
-          </div>
-          <div class="grid-row--25-75">
-            <div class="grid-col">
-              <h5>Infra-only coverage</h5>
-            </div>
-            <div class="grid-col">
-              <p>Encompasses over 4,700 open source deb packages in Ubuntu’s Main repository for an additional 5 years,
-                including:</p>
-              <div class="p-logo-section">
-                <div class="p-logo-section__items">
-                  <div class="p-logo-section__item">
-                    <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/38fdfd23-Dell-logo.png"
-                      alt="Dell Technologies" />
-                  </div>
-                  <div class="p-logo-section__item">
-                    <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/cd5f636a-hp-logo.png"
-                      alt="Hewlett Packard" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <hr class="p-rule--muted" />
-          </div>
-          <div class="grid-row--25-75">
-            <div class="grid-col">
-              <h5>Full-stack coverage</h5>
-            </div>
-            <div class="grid-col">
-              <p>Provides security maintenance for over 36,000 open source deb packages in the Ubuntu Universe
-                repository for up to 10 years, including:</p>
-              <div class="p-logo-section">
-                <div class="p-logo-section__items">
-                  <div class="p-logo-section__item">
-                    <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/38fdfd23-Dell-logo.png"
-                      alt="Dell Technologies" />
-                  </div>
-                  <div class="p-logo-section__item">
-                    <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/cd5f636a-hp-logo.png"
-                      alt="Hewlett Packard" />
-                  </div>
-                  <div class="p-logo-section__item">
-                    <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/f90702cd-lenovo-logo.png"
-                      alt="Lenovo" />
-                  </div>
-                  <div class="p-logo-section__item">
-                    <img class="p-logo-section__logo"
-                      src="https://assets.ubuntu.com/v1/2ef3c028-amazon-web-services-logo.png"
-                      alt="Amazon Web Services" />
-                  </div>
-                  <div class="p-logo-section__item">
-                    <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/cb7ef8ac-ibm-cloud-logo.png"
-                      alt="IBM Cloud" />
-                  </div>
-                  <div class="p-logo-section__item">
-                    <img class="p-logo-section__logo"
-                      src="https://assets.ubuntu.com/v1/210f44e4-microsoft-azure-new-logo.png" alt="Microsoft Azure">
-                  </div>
-                  <div class="p-logo-section__item">
-                    <img class="p-logo-section__logo"
-                      src="https://assets.ubuntu.com/v1/210f44e4-microsoft-azure-new-logo.png" alt="Microsoft Azure" />
-                  </div>
-                  <div class="p-logo-section__item">
-                    <img class="p-logo-section__logo"
-                      src="https://assets.ubuntu.com/v1/210f44e4-microsoft-azure-new-logo.png" alt="Microsoft Azure" />
-                  </div>
-                  <div class="p-logo-section__item">
-                    <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/a554a818-google-cloud-logo.png"
-                      alt="Google Cloud Platform" />
-                  </div>
-                  <div class="p-logo-section__item">
-                    <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/b3e692f4-oracle-new-logo.png"
-                      alt="Oracle" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <hr class="p-rule--muted" />
-          </div>
-          <div class="grid-row--25-75">
-            <div class="grid-col grid-col-start-2">
-              <p>
-                <a href="/pro/linux-patch-management-with-pro">Check the coverage for your packages ›</a>
-              </p>
-              <hr class="p-rule--muted">
-              <p>
-                <a href="/pro/linux-patch-management-with-pro">What are main and universe repositories? ›</a>
-              </p>
-              <hr class="p-rule--muted">
-              <div class="p-cta-block">
-                <a href="/pricing/pro#get-in-touch" class="p-button">Get security maintenance</a>
-                <a href="/security">Learn more ›</a>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="p-section section-heading" id="security-compliance-livepatch">
-          <div class="row">
-            <hr class="p-rule--muted" />
-          </div>
-          <div class="p-section--shallow grid-row--25-75">
-            <div class="grid-col">
-              <h3>Livepatch</h3>
-            </div>
-            <div class="grid-col">
-              <h4>Reduce downtime and unplanned work</h4>
-            </div>
-          </div>
-          <div class="grid-row--25-75">
-            <div class="grid-col">
-              <p class="p-text--small-caps">Availability</p>
-            </div>
-            <div class="grid-col">
-              <p class="p-text--small-caps">Details</p>
-            </div>
-          </div>
-          <div class="row">
-            <hr class="p-rule--muted" />
-          </div>
-          <div class="grid-row--25-75">
-            <div class="grid-col">
-              <p>Included in an Ubuntu Pro subscription</p>
-            </div>
-            <div class="grid-col">
-              <p>Patch critical and high severity kernel vulnerabilities while the system runs and defer maintenance
-                windows</p>
-            </div>
-          </div>
-          <div class="row">
-            <hr class="p-rule--muted" />
-          </div>
-          <div class="grid-row--25-75">
-            <div class="grid-col grid-col-start-2">
-              <div class="p-cta-block">
-                <a href="/pricing/pro#get-in-touch" class="p-button">Enable Livepatch</a>
-                <a href="/security/livepatch">Learn more ›</a>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="p-section section-heading" id="security-compliance-compliance-hardening">
-          <div class="row">
-            <hr class="p-rule--muted" />
-          </div>
-          <div class="p-section--shallow grid-row--25-75">
-            <div class="grid-col">
-              <h3>Compliance and hardening</h3>
-            </div>
-            <div class="grid-col">
-              <h4>Run Ubuntu in high-security environments</h4>
-            </div>
-          </div>
-        </div>
-  
-      </main>
-    </section>
-  </div>
-
-  <div tabindex="1" role="tabpanel" id="operations-management-tab" aria-labelledby="operations-management">
-    <div class="grid-row--25-75">
-      <div class="grid-col">
-
-      </div>
-    </div>
-  </div>
 </section>
 
 <section class="p-strip">
@@ -446,31 +205,180 @@ layout='50/50'
     <p class="p-text--small-caps">Companies that trust Ubuntu Pro</p>
   </div>
   <div class="u-fixed-width">
-    <div class="p-logo-section">
+    <div class="p-logo-section  has-misaligned-images">
       <div class="p-logo-section__items">
+        
         <div class="p-logo-section__item">
-          <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/358661f9-launchdarkly-logo.svg"
-            width="211" height="104" alt="LaunchDarkly logo" />
+          {{ image(url="https://assets.ubuntu.com/v1/52bea08c-launchdarkly_logo_0_1.png",
+            alt="",
+            width="633",
+            height="99",
+            attrs={
+              "class": "p-logo-section__logo",
+            },
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe
+          }}
         </div>
         <div class="p-logo-section__item">
-          <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/38004c36-lucid-logo.svg" height="104"
-            alt="Lucid logo" />
-          <div class="p-logo-section__item">
-            <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/a2921daa-AIRLOCK_LOGO_COLOUR.svg"
-              height="104" alt="Airlock logo" />
-          </div>
-          <div class="p-logo-section__item">
-            <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/a2921daa-AIRLOCK_LOGO_COLOUR.svg"
-              height="104" alt="Airlock logo" />
-          </div>
-          <div class="p-logo-section__item">
-            <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/b010446b-Grundium%2520logo.png" width=""
-              height="104" alt="Grundium logo" />
-          </div>
+          {{ image(url="https://assets.ubuntu.com/v1/12185d03-airlock_digital_idq1zqs8xz_1_1.png",
+            alt="",
+            width="339",
+            height="93",
+            attrs={
+              "class": "p-logo-section__logo",
+            },
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image(url="https://assets.ubuntu.com/v1/2d527312-tenable_idqwa8poda_0_2.png",
+            alt="",
+            width="327",
+            height="72",
+            attrs={
+              "class": "p-logo-section__logo",
+            },
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image(url="https://assets.ubuntu.com/v1/814b4ee5-vector.png",
+            alt="",
+            width="270",
+            height="57",
+            attrs={
+              "class": "p-logo-section__logo",
+            },
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image(url="https://assets.ubuntu.com/v1/41a7c3d0-lucid_software_id3o8kzxax_0_1.png",
+            alt="",
+            width="249",
+            height="312",
+            attrs={
+              "class": "p-logo-section__logo",
+            },
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image(url="https://assets.ubuntu.com/v1/db869316-vmware_logo_s.png",
+            alt="",
+            width="322",
+            height="312",
+            attrs={
+              "class": "p-logo-section__logo",
+            },
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image(url="https://assets.ubuntu.com/v1/b3e1e022-Grundium%20logo.png",
+            alt="",
+            width="355",
+            height="60",
+            attrs={
+              "class": "p-logo-section__logo",
+            },
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe
+          }}
         </div>
       </div>
     </div>
   </div>
+  <!-- <div class="grid-row">
+    <div class="grid-col-2">
+      <div class="p-image-container">
+        {{ image(url="https://assets.ubuntu.com/v1/52bea08c-launchdarkly_logo_0_1.png",
+        alt="",
+        width="633",
+        height="99",
+        attrs={
+        "class": "p-image-container__image",
+        },
+        hi_def=True,
+        loading="auto|lazy"
+        ) | safe
+        }}
+      </div>
+    </div>
+    <div class="grid-col-2">
+      <div class="p-image-container">
+        {{ image(url="https://assets.ubuntu.com/v1/12185d03-airlock_digital_idq1zqs8xz_1_1.png",
+        alt="",
+        width="339",
+        height="93",
+        attrs={
+        "class": "p-image-container__image",
+        },
+        hi_def=True,
+        loading="auto|lazy"
+        ) | safe
+        }}
+      </div>
+    </div>
+    <div class="grid-col-2">
+      <div class="p-image-container">
+        {{ image(url="https://assets.ubuntu.com/v1/2d527312-tenable_idqwa8poda_0_2.png",
+        alt="",
+        width="327",
+        height="72",
+        attrs={
+        "class": "p-image-container__image",
+        },
+        hi_def=True,
+        loading="auto|lazy"
+        ) | safe
+        }}
+      </div>
+    </div>
+    <div class="grid-col-2">
+      <div class="p-image-container">
+        {{ image(url="https://assets.ubuntu.com/v1/814b4ee5-vector.png",
+        alt="",
+        width="270",
+        height="57",
+        attrs={
+        "class": "p-image-container__image",
+        },
+        hi_def=True,
+        loading="auto|lazy"
+        ) | safe
+        }}
+      </div>
+    </div>
+    <div class="grid-col-2">
+      <div class="p-image-container">
+        {{ image(url="https://assets.ubuntu.com/v1/41a7c3d0-lucid_software_id3o8kzxax_0_1.png",
+        alt="",
+        width="249",
+        height="312",
+        attrs={
+        "class": "p-image-container__image",
+        },
+        hi_def=True,
+        loading="auto|lazy"
+        ) | safe
+        }}
+      </div>
+    </div>
+  </div> -->
 </section>
 
 <section class="p-strip">
@@ -489,6 +397,21 @@ layout='50/50'
       <a href="/support/contact-us" class="p-button--positive">Get in touch</a>
     </div>
   </div>
+</section>
+<div class="row">
+  <hr class="p-rule" />
+</div>
+
+<section class="p-strip is-deep">
+  <div class="u-fixed-width">
+    <h2>Get started with Ubuntu Pro today</h2>
+    <div class="p-cta-block">
+      <a href="/pricing/pro#get-in-touch" class="p-button--positive">Contact us</a>
+      <a href="/pro/subscribe" class="p-button">Subscribe now</a>
+      <a href="/cloud/public-cloud">Buy on public clouds ›</a>
+    </div>
+  </div>
+
 </section>
 
 <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
