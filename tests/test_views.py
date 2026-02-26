@@ -1094,7 +1094,7 @@ class TestAppendUtmsCookieToCanonicalLinks(BaseViewTestCase):
         """
         with self.app.test_request_context(
             "/",
-            headers={"Cookie": "utms=utm_content%3Atest%26utm_source%3Atest1"},
+            headers={"Cookie": "utms=utm_content:test&utm_source:test1"},
         ):
             response = MagicMock()
             response.mimetype = "text/html"
@@ -1106,7 +1106,7 @@ class TestAppendUtmsCookieToCanonicalLinks(BaseViewTestCase):
 
             updated_html = response.set_data.call_args[0][0]
             self.assertIn(
-                "utm_content%3Atest%26utm_source%3Atest1", updated_html
+                "utm_content:test&utm_source:test1", updated_html
             )
 
     def test_append_utms_cookie_mixed_links(self):
@@ -1136,3 +1136,84 @@ class TestAppendUtmsCookieToCanonicalLinks(BaseViewTestCase):
             self.assertEqual(canonical_utm_count, 2)
             # ubuntu.com link should not be modified
             self.assertIn('href="https://ubuntu.com/download"', updated_html)
+
+    def test_append_utms_after_hash(self):
+        """
+        Test handling of cookie with complex parameter values
+        """
+        with self.app.test_request_context(
+            "/",
+            headers={"Cookie": "utms=utm_content:test&utm_medium:test1"},
+        ):
+            response = MagicMock()
+            response.mimetype = "text/html"
+            response.is_sequence = True
+            html = '<a href="https://canonical.com/test#section">Link</a>'
+            response.get_data.return_value = html
+
+            append_utms_cookie_to_canonical_links(response)
+
+            updated_html = response.set_data.call_args[0][0]
+            self.assertIn(
+                "utm_content:test&utm_medium:test1#section", updated_html
+            )
+
+    def test_separator_behavior_with_nonexisting_params(self):
+        """
+        Test handling of URL with no existing parameters
+        """
+        with self.app.test_request_context(
+            "/", headers={"Cookie": "utms=utm_source:social"}
+        ):
+            response = MagicMock()
+            response.mimetype = "text/html"
+            response.is_sequence = True
+            html = '<a href="https://canonical.com/page">Link</a>'
+            response.get_data.return_value = html
+
+            append_utms_cookie_to_canonical_links(response)
+            updated_html = response.set_data.call_args[0][0]
+
+            # Should use ? separator when there are no existing params
+            self.assertIn("page?utm_source:social", updated_html)
+            self.assertNotIn("page&utm_source", updated_html)
+
+    def test_separator_behavior_with_existing_params(self):
+        """
+        Test handling of URL with existing parameters
+        """
+        with self.app.test_request_context(
+            "/", headers={"Cookie": "utms=utm_source:social"}
+        ):
+            response = MagicMock()
+            response.mimetype = "text/html"
+            response.is_sequence = True
+            html = '<a href="https://canonical.com/page?id=123">Link</a>'
+            response.get_data.return_value = html
+
+            append_utms_cookie_to_canonical_links(response)
+            updated_html = response.set_data.call_args[0][0]
+
+            # Should use & separator when params exist
+            self.assertIn("?id=123&utm_source:social", updated_html)
+            self.assertNotIn("id=123?utm_source", updated_html)
+
+    def test_append_utms_with_hash(self):
+        """
+        Test handling of URL with hash fragment
+        """
+        with self.app.test_request_context(
+            "/", headers={"Cookie": "utms=utm_source:social"}
+        ):
+            response = MagicMock()
+            response.mimetype = "text/html"
+            response.is_sequence = True
+            html = '<a href="https://canonical.com/page#section">Link</a>'
+            response.get_data.return_value = html
+
+            append_utms_cookie_to_canonical_links(response)
+            updated_html = response.set_data.call_args[0][0]
+
+            # UTM should be added before hash
+            self.assertIn("?utm_source:social#section", updated_html)
+            self.assertNotIn("#section?utm_source", updated_html)
