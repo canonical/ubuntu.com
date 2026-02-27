@@ -86,26 +86,42 @@ def get_purchase_account_status(advantage_mapper: AdvantageMapper, **kwargs):
 
     return flask.jsonify(response), 200
 
+
 # MOCK INVOICE CLASS
 class MockInnerInvoice:
     def __init__(self, status, receipt_url=None):
         self.status = status
         self.receipt_url = receipt_url
 
+
 class MockInvoice:
-    def __init__(self, marketplace, period, date, status, inner_status=None, total=None, receipt_url=None):
+    def __init__(
+        self,
+        marketplace,
+        period,
+        date,
+        status,
+        inner_status=None,
+        total=None,
+        receipt_url=None,
+    ):
         self.marketplace = marketplace
         self.period = period
         self.date = date
         self.status = status
         self.total = total
-        self.invoice = MockInnerInvoice(inner_status, receipt_url) if inner_status else None
+        self.invoice = (
+            MockInnerInvoice(inner_status, receipt_url)
+            if inner_status
+            else None
+        )
 
     def get_formatted_date(self):
         return self.date
 
     def get_total(self):
         return self.total
+
 
 @shop_decorator(area="account", permission="user", response="html")
 @use_kwargs(invoice_view, location="query")
@@ -117,25 +133,42 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
 
     if not mock_invoices:
         raise KeyError("Cannot find mock_invoices")
-    
+
     if True:
         mock_payments = [
             MockInvoice(
-                marketplace="canonical-ua", period="Oct 2023", date="Oct 1, 2023", 
-                status="done", inner_status="paid", total="150.00 USD", receipt_url="https://example.com/pdf1"
+                marketplace="canonical-ua",
+                period="Oct 2023",
+                date="Oct 1, 2023",
+                status="done",
+                inner_status="paid",
+                total="150.00 USD",
+                receipt_url="https://example.com/pdf1",
             ),
             MockInvoice(
-                marketplace="blender", period="Nov 2023", date="Nov 1, 2023", 
-                status="done", inner_status="failed", total="25.00 EUR", receipt_url=None
+                marketplace="blender",
+                period="Nov 2023",
+                date="Nov 1, 2023",
+                status="done",
+                inner_status="failed",
+                total="25.00 EUR",
+                receipt_url=None,
             ),
             MockInvoice(
-                marketplace="canonical-cube", period="Dec 2023", date="Dec 1, 2023", 
-                status="pending", inner_status=None, total=None, receipt_url=None
-            )
+                marketplace="canonical-cube",
+                period="Dec 2023",
+                date="Dec 1, 2023",
+                status="pending",
+                inner_status=None,
+                total=None,
+                receipt_url=None,
+            ),
         ]
-        
+
         if marketplace:
-            mock_payments = [p for p in mock_payments if p.marketplace == marketplace]
+            mock_payments = [
+                p for p in mock_payments if p.marketplace == marketplace
+            ]
 
         per_page = 10
         start_page = (page - 1) * per_page
