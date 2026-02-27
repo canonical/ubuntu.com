@@ -7,7 +7,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import { BrowserRouter as Router } from "react-router-dom";
 
 Sentry.init({
-  dsn: "https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13",
+  dsn: "https://624a17f6cb841af9f2c4b0998b8f30d2@o4510662863749120.ingest.de.sentry.io/4510709886419024",
   integrations: [Sentry.browserTracingIntegration()],
   allowUrls: ["ubuntu.com"],
 });

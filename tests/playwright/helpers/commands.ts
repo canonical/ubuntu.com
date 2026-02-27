@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 
-export const isExistingField = async (page, fieldName) => {
+export const isExistingField = async (page: Page, fieldName: string) => {
   const field = page.locator(fieldName);
   return await field.isVisible();
 };
@@ -55,18 +55,23 @@ export const clickRecaptcha = async (page: Page) => {
  * @param testCheckboxFields List of checkbox fields to fill
  * @param testRadioFields List of radio fields to fill
  */
-export const fillExistingFields = async (page, testTextFields, testCheckboxFields, testRadioFields) => {
+export const fillExistingFields = async (
+  page: Page,
+  testTextFields: { field: string; value: string }[],
+  testCheckboxFields: { field: string }[],
+  testRadioFields: { field: string }[]
+) => {
   for (const { field, value } of testTextFields) {
     if (await isExistingField(page, field)) {
       await page.fill(field, value);
     }
   }
-  for (const { field, value } of testCheckboxFields) {
+  for (const { field } of testCheckboxFields) {
     if (await isExistingField(page, field)) {
       await page.locator(field).check({ force: true });
     }
   }
-  for (const { field, value } of testRadioFields) {
+  for (const { field } of testRadioFields) {
     if (await isExistingField(page, field)) {
       await page.locator(field).click({ force: true });
     }

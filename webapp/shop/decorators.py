@@ -5,7 +5,6 @@ from dateutil.parser import parse
 
 import flask
 import pytz
-import talisker.requests
 
 from webapp.shop.api.ua_contracts.api import UAContractsAPI
 from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
@@ -62,7 +61,7 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
     response = response if response in RESPONSE_LIST else "json"
     area = area if area in AREA_LIST else "account"
 
-    session = talisker.requests.get_session()
+    session = Session()
     badgr_session = init_badgr_session(area)
     trueability_session = init_trueability_session(area)
     proctor_session = init_proctor_session(area)
@@ -257,7 +256,6 @@ def init_badgr_session(area) -> Session:
         return None
 
     badgr_session = Session()
-    talisker.requests.configure(badgr_session)
 
     return badgr_session
 
@@ -267,7 +265,6 @@ def init_credly_session(area) -> Session:
         return None
 
     credly_session = Session()
-    talisker.requests.configure(credly_session)
 
     return credly_session
 
@@ -277,7 +274,6 @@ def init_trueability_session(area) -> Session:
         return None
 
     trueability_session = Session()
-    talisker.requests.configure(trueability_session)
 
     return trueability_session
 
@@ -287,7 +283,6 @@ def init_proctor_session(area) -> Session:
         return None
 
     proc_session = Session()
-    talisker.requests.configure(proc_session)
 
     return proc_session
 

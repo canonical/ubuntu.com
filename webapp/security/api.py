@@ -24,7 +24,7 @@ class SecurityAPI:
 
     def _get(self, path: str, params={}):
         """
-        Defines get request set up, returns data if succesful,
+        Defines get request set up, returns data if successful,
         raises HTTP errors if not
         """
 

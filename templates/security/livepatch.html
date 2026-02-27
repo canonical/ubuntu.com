@@ -34,7 +34,7 @@ meta_copydoc %}
         Livepatch shrinks the exploit window for critical and high severity Linux kernel vulnerabilities, by patching the Linux kernel between security maintenance windows, while the system runs.
       </p>
       <p>
-        Livepatch provides security coverage for 10 years with <a href="/pro">Ubuntu Pro</a>, and an additional two years with Ubuntu Pro's Legacy add-on, for a total of 12 years.
+        Livepatch provides security coverage for 10 years with <a href="/pro">Ubuntu Pro</a>, and an additional five years with Ubuntu Pro's Legacy add-on, for a total of 15 years.
       </p>
     {%- endif -%}
     {%- if slot == 'cta' -%}
@@ -261,7 +261,7 @@ meta_copydoc %}
       <div class="col">
         <div class="p-section--shallow">
           <p>
-            Livepatch on-prem is designed for air gapped environments where Livepatch Client is unavailable to access security endpoints in Canonical's cloud. Livepatch on-prem can be updated with the latest patches, and Livepatch Client can retrieve the updates from Livepatch on-prem, instead of Canonical's cloud.
+            Livepatch on-prem is designed for air-gapped environments where Livepatch Client is unavailable to access security endpoints in Canonical's cloud. Livepatch on-prem can be updated with the latest patches, and Livepatch Client can retrieve the updates from Livepatch on-prem, instead of Canonical's cloud.
           </p>
           <div class="p-cta-block">
             <a href="/security/livepatch/docs/on_prem">Learn more about Livepatch on-prem server&nbsp;&rsaquo;</a>
@@ -337,6 +337,7 @@ meta_copydoc %}
       {%- endif -%}
 
       {%- if slot == 'description' -%}
+        
         <div class="p-section--shallow u-hide--medium u-hide--small">
           <div class="p-image-container is-highlighted">
             {{ image(url="https://assets.ubuntu.com/v1/df38fad4-ubuntu-pro.png",
@@ -349,6 +350,8 @@ meta_copydoc %}
             }}
           </div>
         </div>
+        <p>Ubuntu Pro is Canonical’s comprehensive subscription for open source security, support, and compliance. Ubuntu Pro gives you access to a trusted open source repository, compliance profiles for the most stringent security standards, and up to 15 years of vulnerability fixes for your OS, infrastructure, and applications – as well as tools like Livepatch and Landscape that make security maintenance and compliance at scale easier and faster.</p>
+
       {%- endif -%}
 
       {%- if slot == 'list_item_title_1' -%}

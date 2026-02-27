@@ -263,8 +263,8 @@ currently active version of Kubernetes.
 Once the desired version has been configured, the upgrades should be performed. This is done by running the `upgrade` action on each master unit in the cluster:
 
 ```bash
-juju run-action kubernetes-control-plane/0 upgrade
-juju run-action kubernetes-control-plane/1 upgrade
+juju run kubernetes-control-plane/0 upgrade --wait=5m
+juju run kubernetes-control-plane/1 upgrade --wait=5m
 ```
 
 If you have more `kubernetes-control-plane` units in your cluster, you should continue and run this process on every one of them.
@@ -311,9 +311,9 @@ This will create new units to migrate the existing workload to. As you configure
 Now we can pause the existing workers, which will cause the workloads to migrate to the new units recently added. A worker unit is paused by running the corresponding action on that unit:
 
 ```bash
-juju run-action kubernetes-worker/0 pause
-juju run-action kubernetes-worker/1 pause
-juju run-action kubernetes-worker/2 pause
+juju run kubernetes-worker/0 pause
+juju run kubernetes-worker/1 pause
+juju run kubernetes-worker/2 pause
 ...
 ```
 
@@ -355,8 +355,8 @@ juju config kubernetes-worker channel=1.33/stable
 All the units can now be upgraded by running the `upgrade` action on each one:
 
 ```bash
-juju run-action kubernetes-worker/0 upgrade
-juju run-action kubernetes-worker/1 upgrade
+juju run kubernetes-worker/0 upgrade --wait=5m
+juju run kubernetes-worker/1 upgrade --wait=5m
 ...
 ```
 
@@ -392,6 +392,6 @@ It is recommended that you run a [cluster validation][validation] to ensure that
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/1.33/upgrading.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack  channel</a>.</p>
+    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack channel</a>.</p>
   </div>
 </div>

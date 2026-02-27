@@ -1,5 +1,6 @@
 # Packages
 import json
+import sentry_sdk
 from typing import List
 
 import flask
@@ -56,7 +57,7 @@ def pro_page_view(advantage_mapper, **kwargs):
                     show_beta_request = True
                     break
         except Exception:
-            flask.current_app.extensions["sentry"].captureException(
+            sentry_sdk.capture_exception(
                 extra={
                     "message": "Could not get user subscriptions on pro page"
                 }

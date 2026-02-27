@@ -2,9 +2,7 @@
   "form": {
     "/cloud": {
       "templatePath": "/cloud/index.html",
-      "childrenPaths": [
-        "/cloud/public-cloud"
-      ],
+      "childrenPaths": ["/cloud/public-cloud"],
       "isModal": true,
       "modalId": "cloud-contact-modal",
       "formData": {
@@ -106,7 +104,7 @@
                 },
                 {
                   "type": "checkbox",
-                  "id": "i-dont-know",
+                  "id": "i-dont-know-other",
                   "value": "I don't know",
                   "label": "I don't know"
                 }
@@ -302,7 +300,7 @@
             },
             {
               "type": "checkbox",
-              "id": "i-dont-know",
+              "id": "i-dont-know-tracking-responsibility",
               "value": "I don't know",
               "label": "I don't know"
             }

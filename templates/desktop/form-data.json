@@ -38,9 +38,7 @@
     },
     "/desktop": {
       "templatePath": "/desktop/index.html",
-      "childrenPaths": [
-        "/desktop/organizations"
-      ],
+      "childrenPaths": ["/desktop/organizations"],
       "isModal": true,
       "modalId": "desktop-contact-modal",
       "formData": {
@@ -142,7 +140,7 @@
                 },
                 {
                   "type": "checkbox",
-                  "id": "i-dont-know",
+                  "id": "i-dont-know-other",
                   "value": "I don't know",
                   "label": "I don't know"
                 }
@@ -252,7 +250,7 @@
             },
             {
               "type": "checkbox",
-              "id": "i-dont-know",
+              "id": "i-dont-know-how-i-consume-oss",
               "value": "I don't know",
               "label": "I don't know"
             }

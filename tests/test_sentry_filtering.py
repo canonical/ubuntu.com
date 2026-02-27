@@ -12,6 +12,11 @@ from werkzeug.exceptions import (
 )
 import webapp.app
 from webapp.app import sentry_before_send
+from urllib3.exceptions import MaxRetryError
+from requests.exceptions import (
+    RetryError,
+    ConnectionError as RequestsConnectionError,
+)
 
 
 class TestSentryFiltering(unittest.TestCase):
@@ -123,6 +128,183 @@ class TestSentryFiltering(unittest.TestCase):
                 self.assertEqual(
                     call_args["before_send"], webapp.app.sentry_before_send
                 )
+
+    @patch("webapp.app.random.random")
+    def test_sample_security_api_retry_error_drops_95_percent(
+        self, mock_random
+    ):
+        """
+        Test that RetryError from security API is sampled at 5% (95% dropped).
+        """
+        # Mock random to return > 0.05, so error should be dropped
+        mock_random.return_value = 0.96
+
+        mock_error = RetryError()
+        mock_error.args = (
+            "Max retries exceeded with url: /security/cves/CVE-2025-1234.json "
+            "(Caused by ResponseError('too many 504 error responses'))",
+        )
+
+        hint = {"exc_info": (None, mock_error, None)}
+        event = {"level": "error"}
+        result = sentry_before_send(event, hint)
+
+        self.assertIsNone(
+            result, "95% of security API RetryErrors should be dropped"
+        )
+
+    @patch("webapp.app.random.random")
+    def test_sample_security_api_retry_error_keeps_5_percent(
+        self, mock_random
+    ):
+        """
+        Test that RetryError from security API keeps 5% of errors.
+        """
+        # Mock random to return <= 0.05, so error should be kept
+        mock_random.return_value = 0.04
+
+        mock_error = RetryError()
+        mock_error.args = (
+            "Max retries exceeded with url: /security/notices/USN-1234-1.json"
+            "(Caused by ResponseError('too many 503 error responses'))",
+        )
+
+        hint = {"exc_info": (None, mock_error, None)}
+        event = {"level": "error"}
+        result = sentry_before_send(event, hint)
+
+        self.assertEqual(
+            result, event, "5% of security API RetryErrors should be kept"
+        )
+
+    @patch("webapp.app.random.random")
+    def test_security_api_retry_error_with_502(self, mock_random):
+        """
+        Test that 502 errors from security API are sampled.
+        """
+        mock_random.return_value = 0.96
+
+        mock_error = RetryError()
+        mock_error.args = (
+            "Max retries exceeded with url: /security/releases.json "
+            "(Caused by ResponseError('too many 502 error responses'))",
+        )
+
+        hint = {"exc_info": (None, mock_error, None)}
+        event = {"level": "error"}
+        result = sentry_before_send(event, hint)
+
+        self.assertIsNone(
+            result, "502 errors from security API should be sampled"
+        )
+
+    def test_retry_error_non_security_api_not_filtered(self):
+        """
+        Test that RetryError from non-security API endpoints are NOT filtered.
+        """
+        mock_error = RetryError()
+        mock_error.args = (
+            "Max retries exceeded with url: /advantage/api/something.json "
+            "(Caused by ResponseError('too many 504 error responses'))",
+        )
+
+        hint = {"exc_info": (None, mock_error, None)}
+        event = {"level": "error"}
+        result = sentry_before_send(event, hint)
+
+        self.assertEqual(
+            result, event, "Non-security API errors should not be filtered"
+        )
+
+    def test_retry_error_security_api_non_targeted_status_not_filtered(self):
+        """
+        Test that RetryError from security API with
+        non-500/502/503/504 errors are NOT filtered.
+        """
+        mock_error = RetryError()
+        mock_error.args = (
+            "Max retries exceeded with url: /security/cves.json "
+            "(Caused by ResponseError('too many 501 error responses'))",
+        )  # 501 not in our target list
+
+        hint = {"exc_info": (None, mock_error, None)}
+        event = {"level": "error"}
+        result = sentry_before_send(event, hint)
+
+        self.assertEqual(
+            result,
+            event,
+            "Security API errors with 501 should not be filtered",
+        )
+
+    def test_retry_error_security_api_connection_timeout_not_filtered(self):
+        """
+        Test that RetryError from security API
+        without status code in message are NOT filtered.
+        """
+        mock_error = RetryError()
+        mock_error.args = (
+            "Max retries exceeded with url: /security/cves.json "
+            "(Caused by ConnectionError('connection timeout'))",
+        )  # No status code in message
+
+        hint = {"exc_info": (None, mock_error, None)}
+        event = {"level": "error"}
+        result = sentry_before_send(event, hint)
+
+        self.assertEqual(
+            result,
+            event,
+            "Security API errors without target status "
+            "codes should not be filtered",
+        )
+
+    @patch("webapp.app.random.random")
+    def test_max_retry_error_also_sampled(self, mock_random):
+        """
+        Test that urllib3.exceptions.MaxRetryError
+        is also sampled (unwrapped exception).
+        """
+        mock_random.return_value = 0.96
+
+        # Create a MaxRetryError
+        mock_error = MaxRetryError(
+            pool=None,
+            url="/security/page/notices.json",
+            reason="too many 504 error responses",
+        )
+
+        hint = {"exc_info": (None, mock_error, None)}
+        event = {"level": "error"}
+        result = sentry_before_send(event, hint)
+
+        self.assertIsNone(
+            result, "urllib3.exceptions.MaxRetryError should also be sampled"
+        )
+
+    @patch("webapp.app.random.random")
+    def test_requests_connection_error_also_sampled(self, mock_random):
+        """
+        Test that requests.exceptions.ConnectionError
+        is also sampled if from security API.
+        """
+        mock_random.return_value = 0.96
+
+        mock_error = RequestsConnectionError()
+        mock_error.args = (
+            "HTTPSConnectionPool(host='ubuntu.com', port=443): ",
+            "Max retries exceeded with url: /security/cves/CVE-123.json ",
+            "(Caused by ResponseError('too many 503 error responses'))",
+        )
+
+        hint = {"exc_info": (None, mock_error, None)}
+        event = {"level": "error"}
+        result = sentry_before_send(event, hint)
+
+        self.assertIsNone(
+            result,
+            "requests.exceptions.ConnectionError should also be sampled",
+        )
 
 
 if __name__ == "__main__":

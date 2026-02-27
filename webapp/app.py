@@ -7,11 +7,16 @@ import os
 
 import flask
 import requests
-import talisker.requests
 from jinja2 import ChoiceLoader, FileSystemLoader
 import yaml
 import sentry_sdk
 from werkzeug.exceptions import HTTPException
+from urllib3.exceptions import MaxRetryError
+from requests.exceptions import (
+    RetryError,
+    ConnectionError as RequestsConnectionError,
+)
+import random
 
 from sentry_sdk.integrations.flask import FlaskIntegration
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
@@ -245,9 +250,8 @@ loader = ChoiceLoader(
 
 app.jinja_loader = loader
 
-session = talisker.requests.get_session()
+session = requests.Session()
 charmhub_session = requests.Session()
-talisker.requests.configure(charmhub_session)
 
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
@@ -277,9 +281,11 @@ def sentry_before_send(event, hint):
     """
     Filter Sentry events.
     Excludes all 4xx errors.
+    Samples MaxRetryError from security API calls to reduce quota usage.
     """
     if "exc_info" in hint:
         _, exc_value, _ = hint["exc_info"]
+
         # Check if the exception is an HTTPException
         # (which includes 4xx errors)
         if (
@@ -288,6 +294,22 @@ def sentry_before_send(event, hint):
         ):
             # return None to discard the event
             return None
+
+        # Sample MaxRetryError from security API calls
+        if isinstance(
+            exc_value, (MaxRetryError, RetryError, RequestsConnectionError)
+        ):
+            error_msg = str(exc_value)
+            # Check for security API URLs and 500/502/503/504 errors
+            if "/security/" in error_msg and any(
+                f"{code} error" in error_msg
+                for code in ["500", "502", "503", "504"]
+            ):
+                if (
+                    random.random() > 0.05
+                ):  # Drop 95% of security API retry errors
+                    return None
+
     return event
 
 
@@ -1400,6 +1422,9 @@ def render_security_pci_dds_blogs():
     )
 
 
+app.add_url_rule(
+    "/security/standards/pci-dss", view_func=render_security_pci_dds_blogs
+)
 app.add_url_rule("/security/pci-dss", view_func=render_security_pci_dds_blogs)
 
 
@@ -1432,9 +1457,7 @@ def render_cmmc_blogs():
     sorted_articles = sorted(
         blogs.get_index()["articles"], key=lambda x: x["date"]
     )
-    return flask.render_template(
-        "/security/cmmc/index.html", blogs=sorted_articles
-    )
+    return flask.render_template("/security/cmmc.html", blogs=sorted_articles)
 
 
 app.add_url_rule("/security/cmmc", view_func=render_cmmc_blogs)

@@ -6,7 +6,7 @@ from math import ceil, floor
 # Packages
 import flask
 import dateutil
-import talisker.requests
+import requests
 from feedgen.entry import FeedEntry
 from feedgen.feed import FeedGenerator
 from mistune import Markdown
@@ -29,7 +29,7 @@ from webapp.security.helpers import (
 markdown_parser = Markdown(
     hard_wrap=True, parse_block_html=True, parse_inline_html=True
 )
-session = talisker.requests.get_session()
+session = requests.Session()
 
 security_api = SecurityAPI(session=session)
 

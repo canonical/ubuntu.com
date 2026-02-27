@@ -1,12 +1,11 @@
-import talisker.requests
 import requests
 import math
+import sentry_sdk
 
 from flask import (
     request,
     render_template,
     abort,
-    current_app,
     redirect,
     jsonify,
     url_for,
@@ -21,7 +20,6 @@ from webapp.certified.helpers import (
 )
 
 session = Session()
-talisker.requests.configure(session)
 api = CertificationAPI(
     base_url="https://certification.canonical.com/api/v2", session=session
 )
@@ -485,7 +483,7 @@ def certified_component_details(component_id):
         if error.response.status_code == 404:
             abort(404)
         else:
-            current_app.extensions["sentry"].captureException()
+            sentry_sdk.capture_exception()
             abort(500)
 
     models_response = api.certified_configurations(

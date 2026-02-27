@@ -1,4 +1,5 @@
 from requests import Session
+import sentry_sdk
 import datetime
 from urllib.parse import urlencode
 import flask
@@ -46,7 +47,7 @@ class Proctor360API:
             try:
                 auth_response = self.authenticate()
             except Exception:
-                flask.current_app.extensions["sentry"].captureException()
+                sentry_sdk.capture_exception()
 
             if auth_response.get("access_token", None) is None:
                 raise Exception("Failed to authenticate with Proctor360")
