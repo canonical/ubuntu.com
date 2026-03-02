@@ -207,7 +207,7 @@
                       aria-controls="drawer">Toggle table of contents</button>
             </div>
             <ul>
-              {% if cve.description or cve.ubuntu_description%}
+              {% if cve.description or cve.ubuntu_description %}
                 <li class="p-side-navigation__item">
                   <a class="highlight-link is-active" href="#description">Description</a>
                 </li>
@@ -320,8 +320,8 @@
                             {% if status.pocket_desc and status.pocket_desc.label != "Ubuntu Pro" %}
                               &nbsp;
                               <button class="js-tooltip is-dense p-chip p-tooltip--top-center u-no-margin--bottom"
-                                 aria-describedby="{{ status.pocket }}-tooltip"
-                                 style="vertical-align: unset;">
+                                      aria-describedby="{{ status.pocket }}-tooltip"
+                                      style="vertical-align: unset;">
                                 <span class="p-chip__value">{{ status.pocket_desc.label }}</span>
                                 <span class="p-tooltip__message cve-chip u-hide"
                                       role="tooltip"
@@ -389,7 +389,7 @@
         {% endif %}
 
         {% if cve.notes and only_priority_note == False %}
-          <div class="p-section" >
+          <div class="p-section">
             <h2 id="notes" class="section-heading">Notes</h2>
             <div class="row">
               <div class="col-6">
@@ -462,7 +462,7 @@
           </div>
         {% endif %}
         {% if cvssV3 %}
-          <div class="p-section" >
+          <div class="p-section">
             <div>
               <h2 id="impact-score" class="section-heading">Severity score breakdown</h2>
               <table>
@@ -562,7 +562,7 @@
           </div>
         {% endif %}
 
-        <div class="p-section" >
+        <div class="p-section">
           <h2 id="references" class="section-heading">References</h2>
           <ul class="p-inline-list">
             <li class="p-inline-list__item">
@@ -607,9 +607,73 @@
         </div>
       </main>
     </div>
+
+    <div id="engage-resources" class="u-hide">
+      <div class="p-section">
+        <hr class="p-rule is-fixed-width" />
+        <div class="u-fixed-width">
+          <div class="p-section--shallow">
+            <h2>Access our resources on patching vulnerabilities</h2>
+          </div>
+        </div>
+        <div id="engage-resources__list" class="u-fixed-width"></div>
+      </div>
+    </div>
+
+    <template id="engage-resource-card">
+      <div class="p-section--shallow">
+        <div class="grid-row">
+          <div class="grid-col-2 grid-col-medium-2">
+            <div class="p-image-container--16-9 is-cover" data-key="meta_image_container">
+              <img class="p-image-container__image" data-key="meta_image" src="" alt="" />
+            </div>
+          </div>
+          <div class="grid-col-4 grid-col-medium-2">
+            <p>
+              <a data-key="path_name"></a>
+            </p>
+            <p data-key="subtitle"></p>
+          </div>
+        </div>
+      </div>
+
+    </template>
+
+    <script>
+      fetch("/engage/resources.json?tag=vulnerability+patching")
+        .then((r) => r.json())
+        .then((resources) => {
+          if (!resources || !resources.length) return;
+          const list = document.getElementById("engage-resources__list");
+          const template = document.getElementById("engage-resource-card");
+
+          resources.forEach((resource) => {
+            if (!resource.topic_name || !resource.path) return;
+
+            const card = template.content.cloneNode(true);
+
+            if (resource.meta_image) {
+              card.querySelector("[data-key='meta_image']").src = resource.meta_image;
+            } else {
+              card.querySelector("[data-key='meta_image_container']").remove();
+            }
+
+            const link = card.querySelector("[data-key='path_name']");
+            link.href = resource.path;
+            link.textContent = resource.topic_name;
+
+            card.querySelector("[data-key='subtitle']").textContent = resource.subtitle || "";
+            list.appendChild(card);
+          });
+
+          document.getElementById("engage-resources").classList.remove("u-hide");
+        })
+        .catch(() => {
+          // Silently fail
+        });
+    </script>
   </section>
 
-  <!-- Linting is turned off as additional indentaion on view variables (maintainedCount, isOnlyUpstream) will break the rest of the script -->
   {# djlint: off #}
   <script src="{{ versioned_static('js/dist/dynamic-toc.js') }}" defer></script>
   <script src="{{ versioned_static('js/dist/notices.js') }}" defer></script>

@@ -170,6 +170,7 @@ from webapp.views import (
     build_engage_page,
     build_engage_pages_sitemap,
     build_engage_pages_metadata,
+    build_engage_page_resources,
     build_tutorials_index,
     build_tutorials_query,
     download_server_steps,
@@ -741,6 +742,13 @@ engage_pages = EngagePages(
     category_id=51,
     page_type="engage-pages",
     exclude_topics=[17229, 18033, 17250],
+)
+
+
+# API to fetch most recent 3 engage pages based on tag and resource type
+app.add_url_rule(
+    "/engage/resources.json",
+    view_func=build_engage_page_resources(engage_pages),
 )
 
 app.add_url_rule(
