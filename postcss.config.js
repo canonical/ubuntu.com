@@ -50,6 +50,8 @@ let config = {
           /^is-/,
           /^js-/, // JavaScript-related classes
           /^leaflet-/,
+          /^row/, // <-- ADD THIS: Protects row, row--75-25, row--50-50, etc.
+          /^col/, // <-- ADD THIS: Protects col, col-3, col-9, col-medium-4, etc.
         ],
         greedy: [
           /^iti/,
