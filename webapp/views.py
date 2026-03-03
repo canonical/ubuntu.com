@@ -422,8 +422,6 @@ def build_engage_page_resources(engage_docs):
                 tag_value=tag,
                 key="type",
                 value=resource,
-                second_key="language",
-                second_value="en",
             )
         else:
             metadata, *_ = engage_docs.get_index(
