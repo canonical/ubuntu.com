@@ -38,9 +38,8 @@ function startDownload(mirrors, imagePath) {
     var mirrorLink = selectedMirror.link + imagePath;
 
     // Check the mirror exists before attempting to download
-    fetch(
-      `/mirror-check?mirror_url=${encodeURIComponent(mirrorLink)}`,
-    )
+    // Has to be done server-side due to client-side CORs checks
+    fetch(`/mirror-check?mirror_url=${encodeURIComponent(mirrorLink)}`)
       .then(function (response) {
         return response.json();
       })
