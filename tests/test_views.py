@@ -1105,9 +1105,7 @@ class TestAppendUtmsCookieToCanonicalLinks(BaseViewTestCase):
             append_utms_cookie_to_canonical_links(response)
 
             updated_html = response.set_data.call_args[0][0]
-            self.assertIn(
-                "utm_content:test&utm_source:test1", updated_html
-            )
+            self.assertIn("utm_content:test&utm_source:test1", updated_html)
 
     def test_append_utms_cookie_mixed_links(self):
         """
