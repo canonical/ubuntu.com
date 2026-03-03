@@ -1989,26 +1989,44 @@ def append_utms_cookie_to_canonical_links(response):
         cookie_value = flask.request.cookies.get("utms")
 
         if cookie_value:
+            # Decode the URI encoded cookie value
+            cookie_value = unquote(cookie_value)
             data = response.get_data(as_text=True)
+
             # Find all href attributes pointing to canonical.com
+            # Use backreference \1 to ensure opening and closing quotes match
             pattern = r'href=(["\'])([^"\']*canonical\.com[^"\']*)\1'
 
             def add_cookie_to_url(match):
-                quote = match.group(1)
+                quote_char = match.group(1)
                 url = match.group(2)
 
+                # Parse URL to properly handle fragments (hash)
                 parsed = urlparse(url)
-                decoded_cookie = unquote(cookie_value)
-                formatted_cookie = decoded_cookie.replace(":", "=")
-                if parsed.query:
-                    new_query = f"{parsed.query}&{formatted_cookie}"
-                else:
-                    new_query = formatted_cookie
 
-                new_parsed = parsed._replace(query=new_query)
-                new_url = urlunparse(new_parsed)
+                # Build new query string with cookie value (no leading "?")
+                if parsed.query:
+                    new_query = f"{parsed.query}&{cookie_value}"
+                else:
+                    new_query = cookie_value
+
+                # Reconstruct URL with updated query string
+                new_url = urlunparse(
+                    (
+                        parsed.scheme,
+                        parsed.netloc,
+                        parsed.path,
+                        parsed.params,
+                        new_query,
+                        parsed.fragment,
+                    )
+                )
+
+                # HTML-escape the URL to prevent XSS from cookie injection
                 escaped_url = html.escape(new_url, quote=True)
-                return f'href={quote}{escaped_url}{quote}"'
+                escaped_url = escaped_url.replace('&amp;', '&')
+
+                return f'href={quote_char}{escaped_url}{quote_char}'
 
             data = re.sub(pattern, add_cookie_to_url, data)
             response.set_data(data)
