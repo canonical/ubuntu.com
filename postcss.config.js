@@ -52,6 +52,8 @@ let config = {
           /^leaflet-/,
           /^row/, // Protects row, row--75-25, row--50-50, etc.
           /^col/, // Protects col, col-3, col-9, col-medium-4, etc.
+          /^grid-row/, // Protects modern Vanilla Framework rows (grid-row, etc.)
+          /^grid-col/, // Protects modern Vanilla Framework columns (grid-col, etc.)
         ],
         greedy: [
           /^iti/,
