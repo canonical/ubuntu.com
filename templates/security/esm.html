@@ -433,14 +433,17 @@
     </div>
   </section>
 
-  <hr class="p-rule is-fixed-width" />
+  {% call(slot) vf_cta_section(
+    title_text='Secure your Ubuntu estate',
+    variant='default',
+    layout='100',
+    attrs={'id': 'full-width-default'}
+    ) -%}
 
-  <section class="p-strip is-deep">
-    <div class="u-fixed-width">
-      <h2>Secure your Ubuntu estate</h2>
-      <a href="/security/esm#get-in-touch" aria-controls="security-modal" class="p-heading--2 js-invoke-modal">Get in touch to discuss ESM&nbsp;&rsaquo;</a>
-    </div>
-  </section>
+    {%- if slot == 'cta' -%}
+      <a href="/security/esm#get-in-touch" aria-controls="security-modal">Get in touch to discuss ESM&nbsp;&rsaquo;</a>
+    {%- endif -%}
+  {% endcall -%}
 
   <!-- Set default Marketo information for contact form below-->
   {{ load_form('/security/esm', 3764) | safe }}
