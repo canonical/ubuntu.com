@@ -7,6 +7,7 @@
 {% block canonical_url %}https://ubuntu.com/contact-us/thank-you{% endblock %}
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "macros/_macro-lite-video.jinja" import lite_video %}
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 {% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
 {% from "_macros/vf_tab-section.jinja" import vf_tab_section %}
@@ -26,12 +27,10 @@
         is_split_on_medium=true,
         items=[
         {
-            "type": "video",
+            "type": "description",
             "item": {
-            "attrs": {
-                "src": "https://www.youtube.com/embed/tNECRG5r2sg?si=x5QU0WrvtQhKfjd1",
-                "allowfullscreen": ""
-            }
+                "type": "html",
+                "content": lite_video(video_id="tNECRG5r2sg", video_title="Ubuntu Pro explained in 2 minutes")
             }
         },
         {
