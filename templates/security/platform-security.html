@@ -2,11 +2,17 @@
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block title %}Platform security features in Ubuntu | Linux security{% endblock %}
 
 {% block meta_description %}
-  Learn about the platform security features built into Ubuntu, such as secure boot, full disk encryption, Apparmor and confidential computing capabilities.
+  Learn about the platform security features built into Ubuntu, such as Secure Boot, Full Disk Encryption, AppArmor, and confidential computing capabilities.
 {% endblock %}
 
 {% block meta_copydoc %}
@@ -24,7 +30,7 @@
       <div class="col p-section--shallow">
         <div class="p-section--shallow">
           <p>
-            Ubuntu's platform security features are carefully designed to enhance security while providing an intuitive user experience - from hardware roots of trust to secure boot and confidential computing.
+            Ubuntu's platform security features are carefully designed to enhance security while providing an intuitive user experience &ndash; from hardware roots of trust to secure boot and confidential computing.
           </p>
         </div>
         <hr class="p-rule--muted" />
@@ -68,7 +74,7 @@
           Securing early boot software and firmware is critically important as it acts as a root of trust for the entire platform. When compromised, they allow malware to execute with the highest privileges, even before the OS security mechanisms are loaded.
         </p>
         <div class="p-cta-block">
-          <a href="/pricing/infra#:~:text=Fully%20managed%20OpenStack%2C%20Kubernetes%20and%20LMA">Explore pricing for self-managed with support&nbsp;&rsaquo;</a>
+          <a href="https://wiki.ubuntu.com/UEFI/SecureBoot/">Dive deeper into  Ubuntu’s secure boot implementation&nbsp;&rsaquo;</a>
         </div>
 
       </div>
@@ -144,7 +150,7 @@
           Ubuntu comes pre-installed with a range of AppArmor profiles for common applications. But if your critical workload application doesn’t have a profile, it is straightforward to create one.
         </p>
         <div class="p-cta-block">
-          <a href="/tutorials/beginning-apparmor-profile-development#1-overview">Get started with AppArmor profiles for your applications&nbsp;&rsaquo;</a>
+          <a href="https://documentation.ubuntu.com/security/security-features/privilege-restriction/apparmor/#1-overview">Get started with AppArmor profiles for your applications&nbsp;&rsaquo;</a>
         </div>
 
       </div>
@@ -255,14 +261,72 @@
     </div>
   </section>
 
-  <hr class="p-rule is-fixed-width" />
+  {{ vf_basic_section(
+    title={"text": "Enhance your security with vulnerability management and compliance"},
+    is_split_on_medium=true,
+    items=[
+      {
+        "type": "logo-block",
+        "item": {
+          "is_fixed_width": true,
+          "logos": [
+            {
+              "attrs": {
+                "src": "https://assets.ubuntu.com/v1/78c7a8e5-ubuntu_pro_logo.png",
+                "alt": ""
+              }
+            },
+          ]
+        }
+      },
+      {
+        "type": "description",
+        "item": {
+          "type": "text",
+          "content": "Ubuntu Pro unlocks the full potential of open source for your enterprise, extending the latest in security maintenance across your entire fleet and elevating your platform security."
+        }
+      },
+      {
+        "type": "description",
+        "item": {
+          "type": "text",
+          "content": "Free your team from security patching for up to 15 years, with our comprehensive coverage for your platform &ndash; from your OS and infrastructure to your application stack, across desktops, servers, public clouds, and smart devices. Make your pathway to compliance easier, with full access to a trusted repository of open source toolchains and frameworks, as well as hardening configurations and compliance profiles for FIPS, DISA-STIG, and other stringent security standards."
+        }
+      },
+      {
+        "type": "cta-block",
+        "item": {
+          "link": {
+            "content_html": "Learn more about Ubuntu Pro&nbsp;&rsaquo;",
+            "attrs": {
+              "href": "/pro"
+            }
+          }
+        }
+      },
+      {
+        "type": "cta-block",
+        "item": {
+          "link": {
+            "content_html": "Get a 30-day free trial&nbsp;&rsaquo;",
+            "attrs": {
+              "href": "/pro/free-trial"
+            }
+          }
+        }
+      }
+    ]
+  ) }}
 
-  <section class="p-strip is-deep">
-    <div class="u-fixed-width">
-      <p class="p-heading--2">
-        Enhance your security with vulnerability management and compliance.
-        <a href="/pro">Discover Ubuntu Pro&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-  </section>
+  {% call(slot) vf_cta_section(
+        title_text='Do you have platform security challenges?',
+        variant='default',
+        layout='100',
+        attrs={'id': 'full-width-default'}
+        ) -%}
+  {%- if slot == 'cta' -%}
+  <a href="/contact-us/form?product=pro">Contact us for solutions&nbsp;&rsaquo;</a>
+  {%- endif -%}
+  {% endcall -%}
+
 {% endblock content %}
