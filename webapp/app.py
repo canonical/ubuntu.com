@@ -181,6 +181,7 @@ from webapp.views import (
     json_asset_query,
     marketo_submit,
     mirrors_query,
+    mirror_check,
     navigation_nojs,
     releasenotes_redirect,
     show_template,
@@ -356,6 +357,7 @@ app.add_url_rule("/asset/<file_name>", view_func=json_asset_query)
 app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
 app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/mirrors.json", view_func=mirrors_query)
+app.add_url_rule("/mirror-check", view_func=mirror_check)
 app.add_url_rule("/marketo/submit", view_func=marketo_submit, methods=["POST"])
 app.add_url_rule("/thank-you", view_func=thank_you)
 app.add_url_rule("/pro/activate", view_func=get_activate_view)
