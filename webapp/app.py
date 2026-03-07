@@ -157,6 +157,7 @@ from webapp.views import (
     BlogSitemapIndex,
     BlogSitemapPage,
     account_query,
+    append_utms_cookie_to_canonical_links,
     appliance_install,
     build_vulnerabilities,
     build_vulnerabilities_list,
@@ -1520,3 +1521,9 @@ if environment != "production":
         """Endpoint to trigger a Sentry error for testing purposes."""
         1 / 0
         return "This won't be reached"
+
+
+# Append utms cookie to canonical.com links in HTML responses
+@app.after_request
+def append_utms_to_canonical_links(response):
+    return append_utms_cookie_to_canonical_links(response)

@@ -1979,3 +1979,56 @@ def build_release_cycle_view():
         )
 
     return display_github_data
+
+
+def append_utms_cookie_to_canonical_links(response):
+    """
+    Append utms cookie parameter to all canonical.com links in HTML responses
+    """
+    if response.mimetype == "text/html" and response.is_sequence:
+        cookie_value = flask.request.cookies.get("utms")
+
+        if cookie_value:
+            # Decode the URI encoded cookie value
+            cookie_value = unquote(cookie_value)
+            data = response.get_data(as_text=True)
+
+            # Find all href attributes pointing to canonical.com
+            # Use backreference \1 to ensure opening and closing quotes match
+            pattern = r'href=(["\'])([^"\']*canonical\.com[^"\']*)\1'
+
+            def add_cookie_to_url(match):
+                quote_char = match.group(1)
+                url = match.group(2)
+
+                # Parse URL to properly handle fragments (hash)
+                parsed = urlparse(url)
+
+                # Build new query string with cookie value (no leading "?")
+                if parsed.query:
+                    new_query = f"{parsed.query}&{cookie_value}"
+                else:
+                    new_query = cookie_value
+
+                # Reconstruct URL with updated query string
+                new_url = urlunparse(
+                    (
+                        parsed.scheme,
+                        parsed.netloc,
+                        parsed.path,
+                        parsed.params,
+                        new_query,
+                        parsed.fragment,
+                    )
+                )
+
+                # HTML-escape the URL to prevent XSS from cookie injection
+                escaped_url = html.escape(new_url, quote=True)
+                escaped_url = escaped_url.replace('&amp;', '&')
+
+                return f'href={quote_char}{escaped_url}{quote_char}'
+
+            data = re.sub(pattern, add_cookie_to_url, data)
+            response.set_data(data)
+
+    return response
