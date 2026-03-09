@@ -4,10 +4,10 @@
 {% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
 {% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
 
-{% block title %}Landscape | management and patching automation for Ubuntu {% endblock %}
+{% block title %}Landscape | management and patching automation for Ubuntu{% endblock %}
 
 {% block meta_description %}
-  Landscape is the leading management and administration tool for all versions of Ubuntu, anywhere. It provides patching automation features, auditing, and access management. 
+  Landscape is the leading management and administration tool for all versions of Ubuntu, anywhere. It provides patching automation features, auditing, and access management.
 {% endblock meta_description %}
 
 {% block meta_copydoc %}
@@ -78,44 +78,44 @@
   </section>
 
   {{ vf_basic_section(
-  title={"text": "How does Landscape work?"},
-  items=[
-    {
-      "type": "list",
-      "item": {
-        "list_items": [
-          {
-            "list_item_type": "tick",
-            "content": "Landscape monitors your systems through a management agent installed on each machine"
-          },
-          {
-            "list_item_type": "tick",
-            "content": "The agent communicates with the Landscape server to update an automatically selected set of essential health metrics"
-          },
-          {
-            "list_item_type": "tick",
-            "content": "Data is securely collected and stored in the Landscape database and allows for the collection of custom metrics"
-          },
-          {
-            "list_item_type": "tick",
-            "content": "Landscape also allows you to remotely update and upgrade machines and manage users and permissions"
-          }
-        ]
-      }
-    },
-    {
-      "type": "cta-block",
-      "item": {
-        "link": {
-          "content_html": "Learn about Landscape's features&nbsp;&rsaquo;",
-          "attrs": {
-            "href": "/landscape/features"
+    title={"text": "How does Landscape work?"},
+    items=[
+      {
+        "type": "list",
+        "item": {
+          "list_items": [
+            {
+              "list_item_type": "tick",
+              "content": "Landscape monitors your systems through a management agent installed on each machine"
+            },
+            {
+              "list_item_type": "tick",
+              "content": "The agent communicates with the Landscape server to update an automatically selected set of essential health metrics"
+            },
+            {
+              "list_item_type": "tick",
+              "content": "Data is securely collected and stored in the Landscape database and allows for the collection of custom metrics"
+            },
+            {
+              "list_item_type": "tick",
+              "content": "Landscape also allows you to remotely update and upgrade machines and manage users and permissions"
+            }
+          ]
+        }
+      },
+      {
+        "type": "cta-block",
+        "item": {
+          "link": {
+            "content_html": "Learn about Landscape's features&nbsp;&rsaquo;",
+            "attrs": {
+              "href": "/landscape/features"
+            }
           }
         }
       }
-    }
-  ],
-) }}
+    ],
+  ) }}
 
   <section class="p-section">
     <div class="row--50-50">
@@ -207,10 +207,10 @@
                             width="1800",
                             height="1201",
                             hi_def=True,
-                            loading="auto",
+                            loading="lazy",
                             attrs={"class": "p-image-container__image"}) | safe
               }}
-            </div>  
+            </div>
           </div>
           <p>Ubuntu Pro is Canonical's comprehensive subscription for open source security, support, and compliance. Get access to a trusted open source repository, compliance profiles for the most stringent security standards, and up to 15 years of vulnerability fixes for your OS, infrastructure, and applications &ndash; along with monitoring, hardening, and automation tools for simpler security management, auditing, and compliance at scale.</p>
           <p>An Ubuntu Pro subscription includes:</p>
@@ -323,7 +323,7 @@
 
   {{ vf_basic_section(
     title={"text": "Discover Landscape
-            <br class=`u-hide--small` />
+            <br class='u-hide--small' />
             for IoT device management"},
     items=[
         {
