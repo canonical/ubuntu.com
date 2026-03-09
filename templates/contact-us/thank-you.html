@@ -1,34 +1,577 @@
 {% extends "contact-us/base_contact-us.html" %}
 
 {% block title %}Thank you{% endblock %}
+{% block description %}Thank you for contacting us about Ubuntu Pro. Explore other resources, and we will be in touch soon.{% endblock %}
 {% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1uNruzpoTYxhrCJDxB0q_FH8z8YFs8w_m02fckevjFrU/edit{% endblock meta_copydoc %}
-{% block canonical_url %}https://ubuntu.com/contact-us/form{% endblock %}
+{% block canonical_url %}https://ubuntu.com/contact-us/thank-you{% endblock %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "macros/_macro-lite-video.jinja" import lite_video %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_tab-section.jinja" import vf_tab_section %}
 
 {% block content %}
-  <div class="p-section--hero">
-    <div class="row--50-50">
-      <div class="col">
-        <h1 class="u-no-margin--bottom">Thank you for contacting our team</h1>
-        <h2>A member of our team will be in touch shortly.</h2>
-      </div>
-      <div class="col">
-        <div class="p-image-container--16-9 is-cover u-hide--small">
-          {{ image(url="https://assets.ubuntu.com/v1/934cb30f-thank-you.jpg",
-            alt="",
-            width="1200",
-            height="752",
-            hi_def=True,
-            loading="auto",
-            attrs={"class":"p-image-container__image"}
-            ) | safe
-          }}
-    </div>
-  </div>
-</div>
-</div>
+    {% call(slot) vf_hero(
+        title_text='Thank you for contacting us',
+        subtitle_text='A member of our team <br>will be in touch shortly.',
+        layout='50/50',
+        is_split_on_medium=true
+    ) -%}
+    {% endcall -%}
 
-  {% include "shared/_thank_you_footer.html" %}
+    {{ vf_basic_section(
+        label_text="In the meantime",
+        title={"text": "Start a free 30-day trial to experience all the advantages of Ubuntu Pro now"},
+        is_split_on_medium=true,
+        items=[
+        {
+            "type": "description",
+            "item": {
+                "type": "html",
+                "content": lite_video(video_id="tNECRG5r2sg", video_title="Ubuntu Pro explained in 2 minutes")
+            }
+        },
+        {
+            "type": "cta-block",
+            "item": {
+                "secondaries": [
+                    {
+                        "content_html": "Visit our store",
+                        "attrs": {
+                            "href": "/pro/subscribe"
+                        }
+                    }
+                ],
+                "link": {
+                    "content_html": "Learn more about free trial ›",
+                    "attrs": {
+                        "href": "/pro/free-trial"
+                    }
+                }
+            }
+        }
+        ]
+    ) }}
+
+    {{- vf_tab_section(
+        title={
+            "text": "Discover Ubuntu Pro in action"
+        },
+        tabs=[
+            {
+                "tab_html": "Lucid",
+                "type": "basic-section",
+                "item": {
+                    "items": [
+                        {
+                            "type": "logo-block",
+                            "item": {
+                                "logos": [
+                                    {
+                                        "attrs": image(url="https://assets.ubuntu.com/v1/5324b7b6-lucid_logo.png",
+                                            alt="Lucid",
+                                            width="261",
+                                            height="312",
+                                            hi_def=True,
+                                            loading="lazy",
+                                            output_mode="attrs"
+                                        ),
+                                    },
+                                ]
+                            }
+                        },
+                        {
+                            "type": "description",
+                            "item": {
+                                "type": "html",
+                                "content": "<p class='p-heading--3'>Ubuntu Pro helps Lucid Software meet FedRAMP compliance for government contracts</p>"
+                            }
+                        },
+                        {
+                            "type": "description",
+                            "item": {
+                                "type": "html",
+                                "content": "<p>By deploying Ubuntu Pro, Lucid acquired AWS-compatible and FIPS 140-2 certified packages and became FedRAMP compliant.</p>"
+                            }
+                        },
+                        {
+                            "type": "cta-block",
+                            "item": {
+                                "secondaries": [
+                                    {
+                                        "content_html": "Read the case study",
+                                        "attrs": {
+                                            "href": "https://canonical.com/case-study/lucid-aws-fedramp-compliance-case-study"
+                                        }
+                                    }
+                                ],
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "tab_html": "Airlock",
+                "type": "basic-section",
+                "item": {
+                    "items": [
+                        {
+                            "type": "logo-block",
+                            "item": {
+                                "logos": [
+                                    {
+                                        "attrs": image(url="https://assets.ubuntu.com/v1/42c0a62c-airlock_logo.png",
+                                            alt="Airlock",
+                                            width="330",
+                                            height="312",
+                                            hi_def=True,
+                                            loading="lazy",
+                                            output_mode="attrs"
+                                        ), 
+                                    },
+                                ]
+                            }
+                        },
+                        {
+                            "type": "description",
+                            "item": {
+                                "type": "html",
+                                "content": "
+                                    <p class='p-heading--3'>
+                                        Airlock Digital boosts operational performance on Azure by 30%
+                                    </p>
+                                "
+                            }
+                        },
+                        {
+                            "type": "description",
+                            "item": {
+                                "type": "html",
+                                "content": "
+                                    <p>
+                                        Faced with the looming End of Life (EoL) for CentOS 7, Airlock Digital needed to find a new OS to drive their application control software.
+                                    </p>
+                                "
+                            }
+                        },
+                        {
+                            "type": "cta-block",
+                            "item": {
+                                "secondaries": [
+                                    {
+                                        "content_html": "Read the case study",
+                                        "attrs": {
+                                            "href": "https://canonical.com/case-study/airlock-digital-ubuntu-pro-azure-case-study"
+                                        }
+                                    }
+                                ],
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "tab_html": "Large games publisher",
+                "type": "basic-section",
+                "item": {
+                    "items": [
+                        {
+                            "type": "description",
+                            "item": {
+                                "type": "html",
+                                "content": "
+                                    <p class='p-heading--3'>
+                                        Large games publisher secures code dependencies and avoid costly migration
+                                    </p>
+                                "
+                            }
+                        },
+                        {
+                            "type": "description",
+                            "item": {
+                                "type": "html",
+                                "content": "
+                                    <p>
+                                        Ubuntu Pro helped the company to avoid a costly, effort-intensive migration to upgrade to more recent versions – an effort that would have taken their teams 6 to 8 months to complete.
+                                    </p>
+                                "
+                            }
+                        },
+                        {
+                            "type": "cta-block",
+                            "item": {
+                                "secondaries": [
+                                    {
+                                        "content_html": "Read the case study",
+                                        "attrs": {
+                                            "href": "https://canonical.com/case-study/ubuntu-pro-support-for-games-developer"
+                                        }
+                                    }
+                                ],
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    ) -}}
+
+    {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=false) -%}
+        {%- if slot == 'title' -%}
+            <h2>Learn more about our services</h2>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_title_1' -%}
+            <h3 class="p-heading--5">Fully managed open source</h3>
+        {%- endif -%}
+        {%- if slot == 'list_item_description_1' -%}
+            <p>Canonical offers fully managed packages, including private and telco cloud, AI infrastructure and cloud-native data applications.</p>
+            <div class="p-cta-block">
+                <a href="/pricing/pro#managed">Managed open infrastructure &rsaquo;</a>
+            </div>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_title_2' -%}
+            <h3 class="p-heading--5">Consulting and deployment</h3>
+        {%- endif -%}
+        {%- if slot == 'list_item_description_2' -%}
+            <p>Open infrastructure consulting and training is also provided by Canonical, with optimal and custom architecture design and deployment.</p>
+            <div class="p-cta-block">
+                <a href="https://canonical.com/consulting">Consulting, deployment from Canonical &rsaquo;</a>
+            </div>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_title_3' -%}
+            <h3 class="p-heading--5">Support and security for infrastructure and application layers</h3>
+        {%- endif -%}
+        {%- if slot == 'list_item_description_3' -%}
+            <p>Access critical security fixes, legal assurance and phone and ticket support for OpenStack, K8s, Ceph and all of Canonical’s applications, no matter the packaging format.</p>
+            <div class="p-cta-block">
+                <a href="/pricing/pro">Security maintenance and support &rsaquo;</a>
+            </div>
+            <div class="p-cta-block">
+                <a href="/pro/subscribe">Purchase from our store &rsaquo;</a>
+            </div>
+        {%- endif -%}
+    {%- endcall -%}
+
+    <section class="p-section">
+        <div class="u-fixed-width">
+            <hr class="p-rule" />
+            <h2>Resources</h2>
+        </div>
+        <div class="u-fixed-width">
+            <nav class="p-tabs js-tabbed-content">
+                <ul class="p-tabs__list"
+                    role="tablist"
+                    aria-label="Resources"
+                    data-maintain-hash="true">
+                <li class="p-tabs__item">
+                    <a href="#resources-blogs"
+                    class="p-tabs__link"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="resources-blogs-tab"
+                    id="resources-blogs">Blogs</a>
+                </li>
+                <li class="p-tabs__item">
+                    <a href="#resources-whitepapers"
+                    class="p-tabs__link"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="resources-whitepapers-tab"
+                    id="resources-whitepapers"
+                    tabindex="-1">Whitepapers</a>
+                </li>
+                </ul>
+            </nav>
+
+            <div class="p-tabs__content"
+                tabindex="0"
+                role="tabpanel"
+                id="resources-blogs-tab"
+                aria-labelledby="resources-blogs">
+                <div class="col">
+                    <div id="blog-posts" class="row"></div>
+                </div>
+            </div>
+
+            <div class="p-tabs__content"
+                tabindex="0"
+                role="tabpanel"
+                id="resources-whitepapers-tab"
+                hidden
+                aria-labelledby="resources-whitepapers">
+                <div class="row">
+                    <div class="col-3 col-medium-2 u-equal-height-items">
+                        <div class="u-crop--16-9">
+                            <div class="p-image-wrapper">
+                                {{ image(url="https://assets.ubuntu.com/v1/220bbbbb-wp1.jpg",
+                                                alt="",
+                                                width="852",
+                                                height="570",
+                                                hi_def=True,
+                                                loading="lazy") | safe
+                                }}
+                            </div>
+                        </div>
+                        <a href="/engage/vulnerability-management">A guide to open source vulnerability management</a>
+                    </div>
+                    <div class="col-3 col-medium-2 u-equal-height-items">
+                        <div class="u-crop--16-9">
+                            <div class="p-image-wrapper">
+                                {{ image(url="https://assets.ubuntu.com/v1/d9dc1602-wp2.jpg",
+                                                alt="",
+                                                width="852",
+                                                height="570",
+                                                hi_def=True,
+                                                loading="lazy") | safe
+                                }}
+                            </div>
+                        </div>
+                        <a href="/engage/a-guide-to-infrastructure-hardening">A guide to Infrastructure Hardening</a>
+                    </div>
+                    <div class="col-3 col-medium-2 u-equal-height-items">
+                        <div class="u-crop--16-9">
+                            <div class="p-image-wrapper">
+                                {{ image(url="https://assets.ubuntu.com/v1/90df9fb3-wp3.jpg",
+                                                alt="",
+                                                width="852",
+                                                height="570",
+                                                hi_def=True,
+                                                loading="lazy") | safe
+                                }}
+                            </div>
+                        </div>
+                        <a href="/engage/security-compliance-US-public-sector-FIPS-DISASTIG">Ubuntu compliance guide for US public sector</a>
+                    </div>
+                    <div class="col-3 col-medium-2 u-equal-height-items">
+                        <div class="u-crop--16-9">
+                            <div class="p-image-wrapper">
+                                {{ image(url="https://assets.ubuntu.com/v1/5247450a-wp4.jpg",
+                                                alt="",
+                                                width="852",
+                                                height="570",
+                                                hi_def=True,
+                                                loading="lazy") | safe
+                                }}
+                            </div>
+                        </div>
+                        <a href="/engage/iot-compliance-in-the-global-market-a-guide-for-iot-device-manufacturers">Understand IoT security and IoT compliance across global markets</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="p-section--deep">
+        <div class="grid-row--50-50 grid-row--50-50-on-medium">
+            <hr class="p-rule" />
+            <div class="grid-col">
+                <h2>
+                    Sign up for our newsletter
+                </h2>
+            </div>
+            <div class="grid-col">
+                <p>Get the latest Ubuntu news and updates in your inbox.</p>
+                <form action="/marketo/submit"
+                    onsubmit="stringifyCustomFields(); ga('send', 'Newsletter', 'Signup', 'contact thank you newsletter signup');"
+                    method="post"
+                    id="mktoForm_4960"
+                    class="modal-form">
+                    <label class="is-required" for="email">Email:</label>
+                    <input required
+                            id="email"
+                            name="email"
+                            maxlength="255"
+                            type="email"
+                            pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$"
+                            required="required" />
+                    <textarea class="u-hide"
+                        id="ubuntu_desktop_usage"
+                        name="UbuntuDesktopPlannedUsage"
+                        maxlength="2000"></textarea>
+                    <label for="ubuntu_desktop_usage_fields" id="ubuntu_desktop_usage_label">How do you plan to use Ubuntu Desktop?</label>
+                    <div class="p-section--shallow" id="ubuntu_desktop_usage_fields" style="display: flex; align-items: center; gap: 24px;">
+                        <label class="p-checkbox js-checkbox u-no-margin">
+                        <input type="checkbox" aria-labelledby="work" class="p-checkbox__input" />
+                        <span class="p-checkbox__label" id="work">Work</span>
+                        </label>
+                        <label class="p-checkbox js-checkbox u-no-margin">
+                        <input type="checkbox" aria-labelledby="education" class="p-checkbox__input" />
+                        <span class="p-checkbox__label" id="education">Education</span>
+                        </label>
+                        <label class="p-checkbox js-checkbox u-no-margin">
+                        <input type="checkbox" aria-labelledby="personal" class="p-checkbox__input" />
+                        <span class="p-checkbox__label" id="personal">Personal use</span>
+                        </label>
+                    </div>
+                    <label class="p-checkbox">
+                        <input required
+                            class="p-checkbox__input"
+                            value="yes"
+                            aria-labelledby="canonicalUpdatesOptIn"
+                            name="canonicalUpdatesOptIn"
+                            type="checkbox" />
+                        <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                    </label>
+                    <p>
+                        By submitting this form, I confirm that I have read and agree to <a href="https://canonical.com/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="https://canonical.com/legal/data-privacy">Privacy Policy</a>.
+                    </p>
+                    {# These are honey pot fields to catch bots #}
+                    <div class="u-off-screen">
+                        <label class="website" for="website">Website:</label>
+                        <input name="website"
+                            type="text"
+                            class="website"
+                            autocomplete="off"
+                            value=""
+                            id="website"
+                            tabindex="-1" />
+                        <label class="name" for="name">Name:</label>
+                        <input name="name"
+                            type="text"
+                            class="name"
+                            autocomplete="off"
+                            value=""
+                            id="name"
+                            tabindex="-1" />
+                        {# End of honey pots #}
+                    </div>
+
+                    <div class="u-hide">
+                        <h3>Your comments</h3>
+                        <ul class="p-list">
+                        <li class="p-list__item">
+                            <label for="Comments_from_lead__c">What would you like to talk to us about?</label>
+                            <textarea id="Comments_from_lead__c"
+                                    name="Comments_from_lead__c"
+                                    rows="5"
+                                    maxlength="2000"></textarea>
+                        </li>
+                        </ul>
+                        <input type="hidden"
+                            aria-hidden="true"
+                            aria-label="hidden field"
+                            name="returnURL"
+                            value="/contact-us/thank-you#contact-form-success" />
+                        <input type="hidden"
+                            aria-hidden="true"
+                            aria-label="hidden field"
+                            name="formid"
+                            value="4960" />
+                        <input type="hidden"
+                            aria-hidden="true"
+                            aria-label="hidden field"
+                            name="Consent_to_Processing__c"
+                            value="yes" />
+                        <input type="hidden"
+                            aria-hidden="true"
+                            aria-label="hidden field"
+                            name="productContext"
+                            id="product-context"
+                            value="" />
+                        <input type="hidden"
+                            aria-hidden="true"
+                            aria-label="hidden field"
+                            name="utm_campaign"
+                            id="utm_campaign"
+                            value="" />
+                        <input type="hidden"
+                            aria-hidden="true"
+                            aria-label="hidden field"
+                            name="utm_medium"
+                            id="utm_medium"
+                            value="" />
+                        <input type="hidden"
+                            aria-hidden="true"
+                            aria-label="hidden field"
+                            name="utm_source"
+                            id="utm_source"
+                            value="" />
+                        <input type="hidden"
+                            aria-hidden="true"
+                            aria-label="hidden field"
+                            name="utm_content"
+                            id="utm_content"
+                            value="" />
+                        <input type="hidden"
+                            aria-hidden="true"
+                            aria-label="hidden field"
+                            name="utm_term"
+                            id="utm_term"
+                            value="" />
+                        <input type="hidden"
+                            aria-hidden="true"
+                            aria-label="hidden field"
+                            name="GCLID__c"
+                            id="GCLID__c"
+                            value="" />
+                        <input type="hidden"
+                            aria-hidden="true"
+                            aria-label="hidden field"
+                            name="Facebook_Click_ID__c"
+                            id="Facebook_Click_ID__c"
+                            value="" />
+                        <input type="hidden"
+                            aria-hidden="true"
+                            aria-label="hidden field"
+                            id="preferredLanguage"
+                            name="preferredLanguage"
+                            maxlength="255"
+                            value="" />
+                    </div>
+                    <button type="submit" class=" p-button--positive" aria-label="Submit">Subscribe now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <template style="display: none" id="articles-template">
+        <div class="col-3 col-medium-2 u-equal-height-items">
+            <div class="article-image"></div>
+            <h3 class="p-heading--5" style="font-weight: normal">
+                <a class="article-link article-title"></a>
+            </h3>
+        </div>
+    </template>
+
+    <script type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
+
+    <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+    <script>
+        canonicalLatestNews.fetchLatestNews({
+            imageClasses: ["p-image-container__image"],
+            limit: "4",
+
+            articlesContainerSelector: "#blog-posts",
+            articleTemplateSelector: "#articles-template",
+            excerptLength: 180,
+            tagIds: "3829,2562,4063,3903,4468,4464,4392,1228,4417,4391,3830,4632,4633,4749,3586,4532",
+        })
+    </script>
+
+    <script>
+        function stringifyCustomFields() {
+            const checkboxes = document.querySelectorAll(".js-checkbox");
+            const textarea = document.getElementById("ubuntu_desktop_usage");
+            textarea.value = "";
+            let usageOptions = [];
+
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.children[0].checked) {
+                const text = checkbox.children[1].id;
+                usageOptions.push(text);
+                }
+            });
+
+            if (usageOptions.length) {
+                textarea.value += usageOptions.join(', ').toLowerCase();
+            }
+        }
+  </script>
 
 {% endblock content %}
 {% block footer_extra %}
