@@ -1,5 +1,7 @@
 {% extends "server/base_server.html" %}
 
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+
 {% block title %}Ubuntu Server and hyperscale | Server{% endblock %}
 
 {% block meta_description %}Unlock the promise of new extreme low-energy server technology{% endblock %}
@@ -46,10 +48,16 @@
       </div>
       <div class="col">
         <p>
-          Computing in the 21st century will be done at an unprecedented scale, connecting people across the continents to a vast network of business, social and entertainment services.
+          Computing in the 21st century will be done at an unprecedented scale, connecting people across the continents to a vast network of business, social, and entertainment services.
         </p>
         <p>
-          Providing compute capacity at that magnitude is today's top infrastructure challenge. That challenge is being taken on by a new wave of ultra-dense hardware, combined with software designed to natively scale out.
+          Providing compute capacity at that magnitude is today's top infrastructure challenge.
+        </p>
+        <p>
+          That challenge is being taken on by a new wave of ultra-dense hardware, combined with software designed to natively scale out.
+        </p>
+        <p>
+          Tomorrow's servers will be built upon multiple architectures, including Intel x86 and ARM, and will be connected into datacentre-wide clusters via flexible, high-speed fabrics. At the heart of these clusters lies Ubuntu Server, the OS leading the cloud computing revolution.
         </p>
       </div>
     </div>
@@ -66,7 +74,7 @@
           Ubuntu Server embraces the scale-out philosophy and comes out of the box with tools that make deploying a complex network of services as easy as drawing up a diagram and pressing “go”.
         </p>
         <p>
-          Ubuntu works seamlessly across x86 and ARM. And it comes with all the leading open source and commercial workloads built in, including Apache Hadoop, Inktank Ceph, 10gen MongoDB and many others.
+          Ubuntu works seamlessly across x86 and ARM, and comes with all the leading open source and commercial workloads built in, including Apache Hadoop, Inktank Ceph, 10gen MongoDB, and many others.
         </p>
       </div>
     </div>
@@ -76,7 +84,7 @@
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
-        <h2>Here's why Ubuntu is the best answer to the scale-out challenge:</h2>
+        <h2>Here's why Ubuntu is the best answer to the scale-out challenge</h2>
       </div>
       <div class="col">
         <ul class="p-list--divided">
@@ -84,7 +92,7 @@
             <strong>Scale-out at the core</strong>: Ubuntu Server supports the scale-out compute model and provides tools which make it simple to manage the entire cluster.
           </li>
           <li class="p-list__item is-ticked">
-            <strong>No end-user licence fee</strong>: Ubuntu is offered free to end-users. Adding 100 more nodes shouldn't require you to pay another 100 times for the OS!
+            <strong>No end-user license fee</strong>: Ubuntu is offered free to end-users. Adding 100 more nodes shouldn't require you to pay another 100 times for the OS!
           </li>
           <li class="p-list__item is-ticked">
             <strong>Partners</strong>: Canonical has a global program with SoC vendors and OEMs to ensure that platforms are enabled and certified to run Ubuntu.
@@ -93,14 +101,86 @@
             <strong>Seamless platform support</strong>: Ubuntu Server runs exactly the same on every enabled architecture, be it x86, ARM or PowerPC; with the same applications and tools.
           </li>
           <li class="p-list__item is-ticked">
-            <strong>Commercially supported</strong>: Canonical backs its free OS commitment with Ubuntu Pro including commercial support, systems management and access to top experts.
+            <strong>Commercially supported</strong>: Canonical backs its free OS commitment with Ubuntu Pro, including commercial support, systems management and access to top experts.
           </li>
         </ul>
-        <hr class="p-rule--muted" />
-        <a href="/pricing">Find out more about plans and pricing&nbsp;&rsaquo;</a>
       </div>
     </div>
   </div>
+
+  {{ vf_basic_section(
+    title={"text": "Get up to 15 years of enterprise-grade security coverage"},
+    is_split_on_medium=true,
+    items=[
+      {
+        "type": "logo-block",
+        "item": {
+          "is_fixed_width": true,
+          "logos": [
+            {
+              "attrs": {
+                "src": "https://assets.ubuntu.com/v1/78c7a8e5-ubuntu_pro_logo.png",
+                "alt": ""
+              }
+            },
+          ]
+        }
+      },
+      {
+        "type": "description",
+        "item": {
+          "type": "text",
+          "content": "Ubuntu Pro is Canonical's comprehensive subscription that delivers enterprise-grade security, management tooling, and extended support for developers and enterprises."
+        }
+      },
+      {
+        "type": "list",
+        "item": {
+          "list_items": [
+            {
+              "list_item_type": "bullet",
+              "content": "Get timely security updates for the <a href=\"/esm\">full open source stack</a>"
+            },
+            {
+              "list_item_type": "bullet",
+              "content": "Access monitoring and management for your entire estate with <a href=\"/landscape\">Landscape</a>"
+            },
+            {
+              "list_item_type": "bullet",
+              "content": "Get hardening tools and configurations for <a href=\"/security/certifications\">FIPS 140-3, CIS, DISA STIG, PCI-DSS, and the most stringent security standards</a>"
+            },
+            {
+              "list_item_type": "bullet",
+              "content": "Minimize rolling reboots with <a href=\"/livepatch\">Kernel Livepatch</a>"
+            },
+            {
+              "list_item_type": "bullet",
+              "content": "Optional weekday or 24/7 support tiers"
+            }
+          ]
+        }
+      },
+      {
+        "type": "cta-block",
+        "item": {
+          "primary": {
+            "content_html": "Get Ubuntu Pro",
+            "attrs": {
+              "href": "/pro"
+            }
+          },
+          "secondaries": [
+            {
+              "content_html": "Start a 30-day free trial",
+              "attrs": {
+                "href": "/engage/vulnerability-management"
+              }
+            }
+          ]
+        }
+      },
+    ]
+  ) }}
 
   <div class="p-section">
     <div class="u-fixed-width">
@@ -216,10 +296,10 @@
                aria-labelledby="maas">
             <p class="p-heading--5">Bare-metal provisioning with MAAS</p>
             <p>
-              With their unique architecture, hyperscale servers need to be provisioned through scalable automation. Canonical's <strong>Metal As A Service (MAAS)</strong> addresses the problem of deploying hundreds of OS instances to a cluster of nodes:
+              With their unique architecture, hyperscale servers need to be provisioned through scalable automation. Canonical's <strong>Metal As A Service (MAAS)</strong> addresses the problem of deploying hundreds of OS instances to a cluster of nodes.
             </p>
             <p>
-              MAAS provides a flexible mechanism to automatically detect, provision and configure individual nodes with Ubuntu server without any complex or manual configuration.
+              MAAS provides a flexible mechanism to automatically detect, provision, and configure individual nodes with Ubuntu server without any complex or manual configuration.
             </p>
             <hr class="p-rule--muted" />
             <a href="https://maas.io">Learn more about MAAS&nbsp;&rsaquo;</a>
@@ -234,7 +314,7 @@
           <div class="col-3 col-medium-2">
             <h3 class="p-heading--5">Deployment-time workload acceleration</h3>
             <p>
-              Hyperscale systems with Juju and MAAS can provide nodes optimised to specific applications, including crypto, vector compute and transcoding.
+              Hyperscale systems with Juju and MAAS can provide nodes optimized to specific applications, including crypto, vector compute and transcoding.
             </p>
           </div>
           <div class="col-3 col-medium-2">
@@ -299,7 +379,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              Canonical offers a range of engineering services to all companies within the value chain developing boards, sub-systems, appliances and complete server suites to ensure that systems are fully certified to meet the rigorous demands of the hyperscale datacentre.
+              Canonical offers a range of engineering services to all companies within the value chain developing boards, sub-systems, appliances, and complete server suites to ensure that systems are fully certified to meet the rigorous demands of the hyperscale datacentre.
             </p>
           </div>
         </div>
@@ -310,7 +390,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              Canonical, together with OEM and ODM partners, delivers critical support and services to ensure customers can realise the full benefits of hyperscale technology.
+              Canonical, together with OEM and ODM partners, delivers critical support and services to ensure customers can realize the full benefits of hyperscale technology.
             </p>
           </div>
         </div>
@@ -388,7 +468,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p class="u-no-padding--top">
-              Cavium is a provider of highly integrated semiconductor processors that enable intelligent networking, communications, storage, video and security applications within enterprise, datacentre, broadband/consumer, and access and service provider equipment.
+              Cavium is a provider of highly integrated semiconductor processors that enable intelligent networking, communications, storage, video, and security applications within enterprise, datacentre, broadband/consumer, and access and service provider equipment.
             </p>
           </div>
         </div>
