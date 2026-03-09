@@ -2,11 +2,12 @@
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
 
-{% block title %}Landscape{% endblock %}
+{% block title %}Landscape | management and patching automation for Ubuntu {% endblock %}
 
 {% block meta_description %}
-  Landscape is the leading management and administration tool for all versions of Ubuntu, anywhere.
+  Landscape is the leading management and administration tool for all versions of Ubuntu, anywhere. It provides patching automation features, auditing, and access management. 
 {% endblock meta_description %}
 
 {% block meta_copydoc %}
@@ -25,7 +26,7 @@
     ) -%}
     {%- if slot == 'description' -%}
       <p>
-        Landscape is a systems management tool that can be used as a web based service or through an API. Landscape Server is available through Canonical either as a managed solution or Software-as-a-Service model, or it can be self-hosted. Landscape Client is installed on Ubuntu to enroll with Landscape Server.
+        Landscape is a systems management tool that can be used as a web-based service or through an API. Landscape Server is available through Canonical either as a managed solution or Software-as-a-Service model, or it can be self-hosted. Landscape Client is installed on Ubuntu to enroll with Landscape Server.
       </p>
       <p>
         Landscape automates security patching, auditing, access management and compliance tasks across your Ubuntu estate. Use it in well-connected or airgapped environments: at sea, in space and everywhere in between.
@@ -76,33 +77,45 @@
     </div>
   </section>
 
-  <section class="p-section">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>How does Landscape work?</h2>
-      </div>
-      <div class="col">
-        <ul class="p-list--divided">
-          <li class="p-list__item is-ticked">
-            Landscape monitors your systems through a management agent installed on each machine
-          </li>
-          <li class="p-list__item is-ticked">
-            The agent communicates with the Landscape server to update an automatically selected set of essential health metrics
-          </li>
-          <li class="p-list__item is-ticked">
-            Data is securely collected and stored in the Landscape database and allows for the collection of custom metrics
-          </li>
-          <li class="p-list__item is-ticked">
-            It also allows you to remotely update and upgrade machines and manage users and permissions
-          </li>
-        </ul>
-        <div class="p-cta-block">
-          <a href="/landscape/features">Learn about Landscape's features&nbsp;&rsaquo;</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  {{ vf_basic_section(
+  title={"text": "How does Landscape work?"},
+  items=[
+    {
+      "type": "list",
+      "item": {
+        "list_items": [
+          {
+            "list_item_type": "tick",
+            "content": "Landscape monitors your systems through a management agent installed on each machine"
+          },
+          {
+            "list_item_type": "tick",
+            "content": "The agent communicates with the Landscape server to update an automatically selected set of essential health metrics"
+          },
+          {
+            "list_item_type": "tick",
+            "content": "Data is securely collected and stored in the Landscape database and allows for the collection of custom metrics"
+          },
+          {
+            "list_item_type": "tick",
+            "content": "Landscape also allows you to remotely update and upgrade machines and manage users and permissions"
+          }
+        ]
+      }
+    },
+    {
+      "type": "cta-block",
+      "item": {
+        "link": {
+          "content_html": "Learn about Landscape's features&nbsp;&rsaquo;",
+          "attrs": {
+            "href": "/landscape/features"
+          }
+        }
+      }
+    }
+  ],
+) }}
 
   <section class="p-section">
     <div class="row--50-50">
@@ -148,7 +161,7 @@
       <div class="col-9 col-start-large-4">
         <hr class="p-rule--muted" />
         <p class="u-text--muted">
-          <i>Figures based on a deployment of 1000 desktops.</i>
+          <i>Figures based on a deployment of 1000 desktops and independent research done by Enterprise Management Associates.</i>
         </p>
       </div>
     </div>
@@ -172,10 +185,6 @@
             loading="lazy") | safe
       }}
     {%- endif -%}
-    {%- if slot == 'cta' -%}
-      <a href="https://insights.ubuntu.com/2012/09/06/capgemini-bpo-deploys-hybrid-thin-client-solution-with-ubuntu-advantage/"
-         aria-label="Client case study Capgemini">Read the case study&nbsp;&rsaquo;</a>
-    {%- endif -%}
 
   {% endcall -%}
 
@@ -193,7 +202,7 @@
         <div class="col">
           <div class="p-section--shallow">
             <div class="p-image-container is-highlighted">
-              {{ image(url="https://assets.ubuntu.com/v1/65c0e352-get landscape.png",
+              {{ image(url="https://assets.ubuntu.com/v1/65c0e352-get%2520landscape.png",
                             alt="",
                             width="1800",
                             height="1201",
@@ -201,8 +210,9 @@
                             loading="auto",
                             attrs={"class": "p-image-container__image"}) | safe
               }}
-            </div>
+            </div>  
           </div>
+          <p>Ubuntu Pro is Canonical's comprehensive subscription for open source security, support, and compliance. Get access to a trusted open source repository, compliance profiles for the most stringent security standards, and up to 15 years of vulnerability fixes for your OS, infrastructure, and applications &ndash; along with monitoring, hardening, and automation tools for simpler security management, auditing, and compliance at scale.</p>
           <p>An Ubuntu Pro subscription includes:</p>
           <hr class="p-rule--muted" />
           <ul class="p-list--divided">
@@ -212,8 +222,11 @@
             <li class="p-list__item is-ticked">IP legal assurance</li>
             <li class="p-list__item is-ticked">Kernel Livepatching for all your machines</li>
           </ul>
-          <div class="p-cta-block">
+          <div class="p-cta-block u-no-padding--bottom">
             <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
+          </div>
+          <div class="p-cta-block">
+            <a href="/pro/free-trial">Get a 30-day free trial&nbsp;&rsaquo;</a>
           </div>
         </div>
       </div>
@@ -308,31 +321,46 @@
     </div>
   </section>
 
-  <section class="p-section">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>
-          Discover Landscape
-          <br class="u-hide--small" />
-          for IoT device management
-        </h2>
-      </div>
-      <div class="col">
-        <p>Did you know you can use Landscape to manage all the devices in your Ubuntu estate, including embedded devices?</p>
-        <p>
-          Manage installed snaps, updates and snap configurations effortlessly over your entire estate - from a single device to thousands - all from a centralized remote portal.
-        </p>
-        <p>
-          With role-based access controls, zero-touch enablement, health monitoring and remote debugging/scripting capabilities &mdash; you can rest easy.
-        </p>
-        <div class="p-cta-block">
-          <a href="/internet-of-things/management" class="p-button--positive">Explore IoT device management</a>
-          <a href="/engage/iot-management-landscape">Access whitepaper on patching IoT devices&nbsp;&rsaquo;</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  {{ vf_basic_section(
+    title={"text": "Discover Landscape
+            <br class=`u-hide--small` />
+            for IoT device management"},
+    items=[
+        {
+        "type": "description",
+        "item": {
+          "type": "html",
+          "content": "
+            <p>Did you know you can use Landscape to manage all the devices in your Ubuntu estate, including embedded devices?</p>
+            <p>
+              Manage installed snaps, updates, and snap configurations effortlessly over your entire estate &ndash; from a single device to thousands &ndash; all from a centralized remote portal.
+            </p>
+            <p>
+              With role-based access controls, zero-touch enablement, health monitoring and remote debugging/scripting capabilities &mdash; you can rest easy.
+            </p>
+          "
+        }
+      },
+      {
+        "type": "cta-block",
+        "item": {
+          "primary": {
+            "content_html": "Explore IoT device management",
+            "attrs": {
+              "href": "/internet-of-things/management"
+            }
+          },
+          "link": {
+            "content_html": "Access whitepaper on patching IoT devices&nbsp;&rsaquo;",
+            "attrs": {
+                "href": "/engage/iot-management-landscape"
+              }
+          }
+        }
+      },
+    ],
+  ) }}
+
 
   <section class="p-section">
     <div class="row--50-50">
