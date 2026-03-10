@@ -18,6 +18,7 @@ from webapp.views import (
     match_tags,
     build_engage_page,
     enrich_acquisition_url,
+    build_engage_page_resources,
 )
 from webapp.certified.views import certified_platform_details_by_release
 
@@ -530,6 +531,58 @@ class TestBuildingTutorialsQuery(BaseViewTestCase):
         # Check that the created_at field is parsed correctly
         self.assertEqual(data[0]["created_at"], "2024-02-01T00:00:00Z")
         self.assertEqual(data[1]["created_at"], "2023-02-01T00:00:00Z")
+
+
+class TestBuildEngagePageResources(BaseViewTestCase):
+    """
+    Unit tests for `build_engage_page_resources`.
+    """
+
+    def _make_engage_docs(self, metadata):
+        mock = Mock()
+        # get_index returns (metadata, count, active_count, current_total)
+        mock.get_index.return_value = (metadata, len(metadata), len(metadata), len(metadata))
+        return mock
+
+    def test_cache_control_header_is_set(self):
+        engage_docs = self._make_engage_docs([
+            {"topic_name": "Test", "path": "/engage/test"},
+        ])
+        view = build_engage_page_resources(engage_docs)
+
+        with self.app.test_request_context("/engage/resources.json"):
+            response = view()
+
+        self.assertEqual(
+            response.headers["Cache-Control"], "public, max-age=900"
+        )
+
+    def test_filters_by_tag_and_resource(self):
+        engage_docs = self._make_engage_docs([])
+        view = build_engage_page_resources(engage_docs)
+
+        with self.app.test_request_context(
+            "/engage/resources.json?tag=openstack&resource=Whitepaper"
+        ):
+            view()
+
+        engage_docs.get_index.assert_called_once_with(
+            limit=3,
+            tag_value="openstack",
+            key="type",
+            value="Whitepaper",
+        )
+
+    def test_no_filters_uses_default_query(self):
+        engage_docs = self._make_engage_docs([])
+        view = build_engage_page_resources(engage_docs)
+
+        with self.app.test_request_context("/engage/resources.json"):
+            view()
+
+        engage_docs.get_index.assert_called_once_with(
+            limit=3, key="is_static", value=None
+        )
 
 
 class TestMatchTags(TestCase):
