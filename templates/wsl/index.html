@@ -1,4 +1,4 @@
-{% extends "desktop/base_desktop.html" %}
+{% extends "wsl/base_wsl.html" %}
 
 {% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
 
@@ -6,11 +6,11 @@
   https://docs.google.com/document/d/1M7e2B08GgPA7K6Wx0ThE6s9_xQINM0MSkarfdKUTEYI/edit#
 {% endblock meta_copydoc %}
 
-{% block title %}Windows Subsystem for Linux (WSL){% endblock %}
+{% block title %}Ubuntu on WSL{% endblock %}
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 
 {% block meta_description %}
-  Access the Ubuntu terminal on Windows with WSL. Develop cross-platform applications and manage IT infrastructure without leaving Windows.
+  Access the power of a full Ubuntu terminal environment on Windows with Windows Subsystem for Linux (WSL).
 {% endblock %}
 
 {% block body_class %}
@@ -19,7 +19,7 @@
 
 {% block content %}
   {% call(slot) vf_hero(
-    title_text='The full Ubuntu experience, now&nbsp;available on Windows',
+    title_text='The full Ubuntu experience, &nbsp;available on Windows',
     layout='50/50-full-width-image'
     ) -%}
     {%- if slot == 'description' -%}
@@ -27,35 +27,17 @@
       <p>
         Streamline web application development, leverage cutting-edge AI/ML tooling, develop cross-platform applications and manage IT infrastructure without leaving Windows.
       </p>
-      <hr class="p-rule--muted u-no-margin--bottom" />
       <ul class="p-list--divided u-no-margin--bottom">
         <li class="p-list__item">
           <div class="row">
-            <div class="col-3">
-              <p class="p-heading--5">Intel or AMD 64-bit architecture</p>
-            </div>
             <div class="col-3">
               <a class="p-button--positive u-no-margin--bottom"
                  href="https://releases.ubuntu.com/noble/ubuntu-{{ releases_yaml.wsl.version }}-wsl-amd64.wsl">Download Ubuntu on WSL</a>
             </div>
           </div>
         </li>
-        <li class="p-list__item">
-          <div class="row">
-            <div class="col-3">
-              <p class="p-heading--5">ARM 64-bit architecture</p>
-            </div>
-            <div class="col-3">
-              <a class="p-button" href="https://cdimages.ubuntu.com/releases/noble/release/ubuntu-{{ releases_yaml.wsl.version }}-wsl-arm64.wsl">Download Ubuntu on WSL</a>
-            </div>
-          </div>
-        </li>
       </ul>
-      <div class="p-cta-block">
-        <a class="js-invoke-modal"
-           href="/desktop/wsl/contact-us"
-           aria-controls="contact-modal">Looking for enterprise support? Contact us ›</a>
-      </div>
+
     {%- endif -%}
     {%- if slot == 'image' -%}
       <div class="p-image-container--16-9 is-cover">
@@ -147,58 +129,57 @@
     </div>
   </section>
 
-  <!-- The download for "/desktop/wsl/install" is redirected to Github via url rule -->
+  <!-- The download for "/wsl/install" is redirected to Github via url rule -->
   {{ vf_basic_section(
-      title={"text": "Ubuntu is the number 1 choice for organizations using WSL"},
-      items=[
-        {
-          "type": "description",
-          "item": {
-            "type": "html",
-            "content": '
-              <p class="u-sv3">
-                <a href="/pro">Ubuntu Pro</a> brings Expanded Security Maintenance (ESM) for all Ubuntu LTS releases for up to 15 years and optional 24/7 support, including instances on WSL.
-              </p>
-            '
+    title={"text": "Ubuntu is the number 1 choice for organizations using WSL"},
+    subtitle={"text": "<a href='/pro'>Ubuntu Pro</a> brings enterprise-grade security and compliance with up to 15 years of coverage for long-term support releases of Ubuntu, including:"},
+    items=[
+      {
+        "type": "list",
+        "item": {
+          "list_items": [
+            {
+              "list_item_type": "bullet",
+              "content": "Security updates for the full open source stack"
+            },
+            {
+              "list_item_type": "bullet",
+              "content": "Estate <a href="">monitoring and management</a> of WSL instances"
+            },
+            {
+              "list_item_type": "bullet",
+              "content": "Optional weekday or 24/7 support tiers"
+            },
+            {
+              "list_item_type": "bullet",
+              "content": "Security maintenance for popular toolchains on WSL, such as Python, Go, Rust, and more."
+            }
+          ]
+        }
+      },
+      {
+        "type": "cta-block",
+        "item": {
+          "primary": {
+            "content_html": "Download the Ubuntu Pro for WSL app",
+            "attrs": {
+              "href": "https://github.com/canonical/ubuntu-pro-for-wsl/releases/latest/download/UbuntuProForWSL.msixbundle"
+            }
+          },
+          "link": {
+            "content_html": "Learn more about Ubuntu on WSL for enterprises &rsaquo;",
+            "attrs": {
+              "href": "/organizations"
+            }
           }
-        },
-        {
-          "type": "cta-block",
-          "item": {
-            "secondaries": [
-              {
-                "content_html": "Download the Ubuntu Pro for WSL app",
-                "attrs": {
-                  "href": "/desktop/wsl/install"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "description",
-          "item": {
-            "type": "html",
-            "content": '
-              <p>
-                Ubuntu Pro also enables system administrators to manage WSL instances using <a href="/landscape">Landscape, Canonical\'s system management tool for Ubuntu</a>.
-              </p>
-            '
-          }
-        },
-        {
-          "type": "description",
-          "item": {
-            "type": "text",
-            "content": "Monitor your entire estate using the latest Landscape beta features and automatically identify which WSL instances comply with your provisioning and configuration policies in order to keep your environment secure."
-          }
-        },
-      ]
-    ) }}
+        }
+      }
+    ]
+  ) }} 
     <section class="p-section">
       <div class="u-fixed-width p-section--shallow">
         <hr class="p-rule" />
-        <h2>Get started with Ubuntu on WSL today</h2>
+        <h2>Learn more about Ubuntu on WSL</h2>
       </div>
   
       <div class="row">
@@ -207,14 +188,14 @@
             <iframe class="u-embedded-media__element"
                     width="560"
                     height="315"
-                    src="https://www.youtube.com/embed/QkA9zLm17bs"
+                    src="https://www.youtube.com/embed/QkA9zLm17bs?si=9bHnGLOFY-nLfvjd"
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
           </div>
           <h3 class="p-heading--5">
-            <a href="https://www.youtube.com/watch?v=QkA9zLm17bs">Windows Subsystem for Linux (WSL) - Make an awesome Linux environment directly on Windows</a>
+            <a href="https://www.youtube.com/watch?v=QkA9zLm17bs">Make an awesome Linux environment directly on Windows</a>
           </h3>
         </div>
         <div class="col-3 col-medium-3 col-small-4">
@@ -229,7 +210,7 @@
                     allowfullscreen></iframe>
           </div>
           <h3 class="p-heading--5">
-            <a href="https://www.youtube.com/watch?v=-tAelKpya4g">Ubuntu Summit 2022 | The Windows Subsystem for Linux WSL Latest updates and future improvements</a>
+            <a href="https://www.youtube.com/watch?v=-tAelKpya4g">Latest updates and future improvements to Windows Subsystem for Linux</a>
           </h3>
         </div>
         <div class="col-3 col-medium-3 col-small-4">
@@ -245,7 +226,7 @@
   
           </div>
           <h3 class="p-heading--5">
-            <a href="https://www.youtube.com/watch?v=LViy7x2Gpc4&t=55s">Ubuntu on WSL | An FAQ for Data Scientists and Developers</a>
+            <a href="https://www.youtube.com/watch?v=LViy7x2Gpc4&t=55s">An FAQ for Data Scientists and Developers</a>
           </h3>
         </div>
         <div class="col-3 col-medium-3 col-small-4">
@@ -261,10 +242,29 @@
           </div>
   
           <h3 class="p-heading--5">
-            <a href="https://www.youtube.com/watch?v=Ja3qikzd-as">WSL: Partnering with Canonical to support systemd</a>
+            <a href="https://www.youtube.com/watch?v=Ja3qikzd-as">Microsoft Partnering with Canonical to support systemd</a>
           </h3>
         </div>
       </div>
+      <div class="row">
+        <div class="col-3 col-medium-3 col-small-4">
+          <div class="u-embedded-media u-no-margin--bottom">
+            <iframe class="u-embedded-media__element"
+                    width="560"
+                    height="315"
+                    src="https://www.youtube.com/embed/VKdAcrdjQKI?si=XKRb-tyiP6AHXWes"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+          </div>
+  
+          <h3 class="p-heading--5">
+            <a href="https://www.youtube.com/watch?v=VKdAcrdjQKI">Get started with Ubuntu Pro for WSL on Windows</a>
+          </h3>
+        </div>
+      </div>
+
     </section>
   
     <section class="p-section--deep">
@@ -276,54 +276,34 @@
         <div class="col-9 col-medium-3">
           <div class="row">
             <div class="col-3 col-medium-3">
-              <h3 class="p-heading--5 p-text--small-caps">Tutorials</h3>
-            </div>
-            <div class="col-6 col-medium-3">
-              <ul class="p-list--divided u-no-margin--bottom">
-                <li class="p-list__item">
-                  <a href="https://canonical-ubuntu-wsl.readthedocs-hosted.com/en/latest/guides/install-ubuntu-wsl2/">Install Ubuntu on WSL2</a>
-                </li>
-                <li class="p-list__item">
-                  <a href="https://www.youtube.com/watch?v=08WDGV0u58Y">An introduction to numerical computation applications using Ubuntu on WSL</a>
-                </li>
-                <li class="p-list__item">
-                  <a href="https://canonical-ubuntu-wsl.readthedocs-hosted.com/en/latest/tutorials/vscode/">Working with Visual Studio Code</a>
-                </li>
-                <li class="p-list__item">
-                  <a href="https://canonical-ubuntu-wsl.readthedocs-hosted.com/en/latest/tutorials/interop/">Windows and Ubuntu interoperability</a>
-                </li>
-                <li class="p-list__item">
-                  <a href="https://canonical-ubuntu-wsl.readthedocs-hosted.com/en/latest/tutorials/gpu-cuda/">Enabling GPU acceleration with NVIDIA CUDA</a>
-                </li>
-                <li class="p-list__item">
-                  <a href="https://canonical-ubuntu-wsl.readthedocs-hosted.com/en/latest/tutorials/data-science-and-engineering/">Using WSL for data science and engineering</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <hr class="p-rule" />
-          <div class="row">
-            <div class="col-3 col-medium-3">
               <h3 class="p-heading--5 p-text--small-caps">Documentation</h3>
             </div>
             <div class="col-6 col-medium-3">
               <ul class="p-list--divided u-no-margin--bottom">
                 <li class="p-list__item">
-                  <a href="https://canonical-ubuntu-wsl.readthedocs-hosted.com/en/latest/">Ubuntu on WSL</a>
+                  <a href="https://documentation.ubuntu.com/wsl/stable/">Official documentation for Ubuntu on WSL</a>
                 </li>
                 <li class="p-list__item">
-                  <a href="https://canonical-ubuntu-wsl.readthedocs-hosted.com/en/latest/tutorials/">Ubuntu on WSL tutorials</a>
+                  <a href="https://documentation.ubuntu.com/wsl/stable/tutorials/develop-with-ubuntu-wsl/">Developing with Ubuntu on WSL</a>
                 </li>
                 <li class="p-list__item">
-                  <a href="https://documentation.ubuntu.com/landscape/how-to-guides/wsl-integration/perform-common-tasks/">Landscape WSL integration</a>
+                  <a href="https://documentation.ubuntu.com/wsl/stable/tutorials/getting-started-with-up4w/">Installing and configuring Ubuntu Pro for WSL</a>
                 </li>
                 <li class="p-list__item">
-                  <a href="https://learn.microsoft.com/en-us/windows/wsl/">Microsoft documentation for WSL</a>
+                  <a href="https://documentation.ubuntu.com/wsl/stable/tutorials/deployment/">Deploying WSL remotely with Pro for WSL and Landscape</a>
+                </li>
+                <li class="p-list__item">
+                  <a href="https://documentation.ubuntu.com/wsl/stable/howto/install-ubuntu-wsl2/">Installing Ubuntu on WSL using different methods</a>
+                </li>
+                <li class="p-list__item">
+                  <a href="https://documentation.ubuntu.com/wsl/stable/howto/gpu-cuda/">Enabling GPU acceleration with NVIDIA CUDA</a>
+                </li>
+                <li class="p-list__item">
+                  <a href="https://documentation.ubuntu.com/wsl/stable/howto/custom-ubuntu-distro/">Customizing an Ubuntu distro for WSL</a>
                 </li>
               </ul>
             </div>
           </div>
-  
           <hr class="p-rule" />
           <div class="row">
             <div class="col-3 col-medium-3">
@@ -335,7 +315,7 @@
               </p>
               <p>
                 If you want to hear more about the benefits of securing Ubuntu on WSL at your organisation, please <a class="js-invoke-modal"
-      href="/desktop/wsl/contact-us"
+      href="/wsl/contact-us"
       aria-controls="contact-modal">get in touch</a>.
               </p>
             </div>
@@ -387,5 +367,5 @@
         renderTutorials('wsl');
       });
     </script>
-  {{ load_form("/desktop/wsl") | safe }}
+  {{ load_form("/wsl") | safe }}
 {% endblock %}
