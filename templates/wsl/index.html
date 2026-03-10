@@ -132,9 +132,15 @@
   <!-- The download for "/wsl/install" is redirected to Github via url rule -->
   {{ vf_basic_section(
     title={"text": "Ubuntu is the number 1 choice for organizations using WSL"},
-    subtitle={"text": "<a href='/pro'>Ubuntu Pro</a> brings enterprise-grade security and compliance with up to 15 years of coverage for long-term support releases of Ubuntu, including:"},
     items=[
       {
+        "type": "description",
+        "item": {
+          "type": "text",
+          "content": "<a href='/pro'>Ubuntu Pro</a> brings enterprise-grade security and compliance with up to 15 years of coverage for long-term support releases of Ubuntu, including:"
+        }
+      },
+      { 
         "type": "list",
         "item": {
           "list_items": [
@@ -166,12 +172,14 @@
               "href": "https://github.com/canonical/ubuntu-pro-for-wsl/releases/latest/download/UbuntuProForWSL.msixbundle"
             }
           },
-          "link": {
-            "content_html": "Learn more about Ubuntu on WSL for enterprises &rsaquo;",
-            "attrs": {
-              "href": "/organizations"
+          "secondaries": [
+            {
+              "content_html": "Learn more about Ubuntu on WSL for enterprises &rsaquo;",
+              "attrs": {
+                "href": "/organizations"
+              }
             }
-          }
+          ]
         }
       }
     ]
@@ -182,7 +190,10 @@
         <h2>Learn more about Ubuntu on WSL</h2>
       </div>
   
+    <section class="p-section">
       <div class="row">
+        <div class="col-3 u-hide--medium u-hide--small"></div>
+      
         <div class="col-3 col-medium-3 col-small-4">
           <div class="u-embedded-media u-no-margin--bottom">
             <iframe class="u-embedded-media__element"
@@ -198,6 +209,7 @@
             <a href="https://www.youtube.com/watch?v=QkA9zLm17bs">Make an awesome Linux environment directly on Windows</a>
           </h3>
         </div>
+      
         <div class="col-3 col-medium-3 col-small-4">
           <div class="u-embedded-media u-no-margin--bottom">
             <iframe class="u-embedded-media__element"
@@ -213,6 +225,7 @@
             <a href="https://www.youtube.com/watch?v=-tAelKpya4g">Latest updates and future improvements to Windows Subsystem for Linux</a>
           </h3>
         </div>
+      
         <div class="col-3 col-medium-3 col-small-4">
           <div class="u-embedded-media u-no-margin--bottom">
             <iframe class="u-embedded-media__element"
@@ -223,12 +236,14 @@
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
-  
           </div>
           <h3 class="p-heading--5">
             <a href="https://www.youtube.com/watch?v=LViy7x2Gpc4&t=55s">An FAQ for Data Scientists and Developers</a>
           </h3>
         </div>
+      
+        <div class="col-3 u-hide--medium u-hide--small"></div>
+      
         <div class="col-3 col-medium-3 col-small-4">
           <div class="u-embedded-media u-no-margin--bottom">
             <iframe class="u-embedded-media__element"
@@ -240,13 +255,11 @@
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
           </div>
-  
           <h3 class="p-heading--5">
             <a href="https://www.youtube.com/watch?v=Ja3qikzd-as">Microsoft Partnering with Canonical to support systemd</a>
           </h3>
         </div>
-      </div>
-      <div class="row">
+      
         <div class="col-3 col-medium-3 col-small-4">
           <div class="u-embedded-media u-no-margin--bottom">
             <iframe class="u-embedded-media__element"
@@ -258,13 +271,11 @@
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
           </div>
-  
           <h3 class="p-heading--5">
             <a href="https://www.youtube.com/watch?v=VKdAcrdjQKI">Get started with Ubuntu Pro for WSL on Windows</a>
           </h3>
         </div>
       </div>
-
     </section>
   
     <section class="p-section--deep">
