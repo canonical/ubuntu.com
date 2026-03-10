@@ -541,13 +541,20 @@ class TestBuildEngagePageResources(BaseViewTestCase):
     def _make_engage_docs(self, metadata):
         mock = Mock()
         # get_index returns (metadata, count, active_count, current_total)
-        mock.get_index.return_value = (metadata, len(metadata), len(metadata), len(metadata))
+        mock.get_index.return_value = (
+            metadata,
+            len(metadata),
+            len(metadata),
+            len(metadata),
+        )
         return mock
 
     def test_cache_control_header_is_set(self):
-        engage_docs = self._make_engage_docs([
-            {"topic_name": "Test", "path": "/engage/test"},
-        ])
+        engage_docs = self._make_engage_docs(
+            [
+                {"topic_name": "Test", "path": "/engage/test"},
+            ]
+        )
         view = build_engage_page_resources(engage_docs)
 
         with self.app.test_request_context("/engage/resources.json"):
