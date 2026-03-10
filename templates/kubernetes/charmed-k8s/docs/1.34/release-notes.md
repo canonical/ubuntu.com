@@ -18,6 +18,15 @@ toc: False
 
 ---
 
+# 1.34+ck2
+
+### Mar 10, 2026 - `charmed-kubernetes --channel 1.34/stable`
+
+## Notable Fixes
+
+### Kubernetes Worker
+* Update the `ingress-nginx` tag to `1.14.4` to address `CVE-2026-3288`.
+
 # 1.34+ck1
 
 ### Feb 12, 2026 - `charmed-kubernetes --channel 1.34/stable`
