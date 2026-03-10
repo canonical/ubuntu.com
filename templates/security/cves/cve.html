@@ -620,60 +620,9 @@
       </div>
     </div>
 
-    <template id="engage-resource-card">
-      <div class="p-section--shallow">
-        <div class="grid-row">
-          <div class="grid-col-2 grid-col-medium-2">
-            <div class="p-image-container--16-9 is-cover"
-                 data-key="meta_image_container">
-              <img class="p-image-container__image" data-key="meta_image" src="" alt="" />
-            </div>
-          </div>
-          <div class="grid-col-4 grid-col-medium-2">
-            <p>
-              <strong>
-                <a data-key="path_name"></a>
-              </strong>
-            </p>
-            <p data-key="subtitle"></p>
-          </div>
-        </div>
-      </div>
-
-    </template>
-
+    <script src="{{ versioned_static('js/src/resources.js') }}"></script>
     <script>
-      fetch("/engage/resources.json?tag=vulnerability+patching")
-        .then((r) => r.json())
-        .then((resources) => {
-          if (!resources || !resources.length) return;
-          const list = document.getElementById("engage-resources__list");
-          const template = document.getElementById("engage-resource-card");
-
-          resources.forEach((resource) => {
-            if (!resource.topic_name || !resource.path) return;
-
-            const card = template.content.cloneNode(true);
-
-            if (resource.meta_image) {
-              card.querySelector("[data-key='meta_image']").src = resource.meta_image;
-            } else {
-              card.querySelector("[data-key='meta_image_container']").remove();
-            }
-
-            const link = card.querySelector("[data-key='path_name']");
-            link.href = resource.path;
-            link.textContent = resource.topic_name;
-
-            card.querySelector("[data-key='subtitle']").textContent = resource.subtitle || "";
-            list.appendChild(card);
-          });
-
-          document.getElementById("engage-resources").classList.remove("u-hide");
-        })
-        .catch(() => {
-          // Silently fail
-        });
+      fetchAndRenderResources("vulnerability+patching");
     </script>
   </section>
 
