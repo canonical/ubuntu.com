@@ -11,6 +11,7 @@
  *  </div>
  *
  * XXX: This is a hack until we have an individual resource component pattern.
+ * https://github.com/canonical/vanilla-framework/issues/5771
  */
 const fetchAndRenderResources = (tag = "", resource = "") => {
   tag = tag.replaceAll(" ", "+");
