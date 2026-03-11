@@ -1,5 +1,6 @@
 /**
  * Fetches and renders resources from Discourse.
+ * You can see all possible tags and resource types by visiting https://ubuntu.com/engage
  * @param {string} tag - The tag to filter resources by.
  * @param {string} resource - The resource type to filter by.
  * @returns {void}
