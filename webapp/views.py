@@ -406,6 +406,39 @@ def build_engage_index(engage_docs):
     return engage_index
 
 
+def build_engage_page_resources(engage_docs):
+    """
+    JSON endpoint returning up to 3 engage page resources,
+    optionally filtered by ?tag= and/or ?resource= query params.
+    Serves cached data with 15 minute expiry.
+
+    tag: is one of the tags defined in Discourse, e.g. "aws", "openstack"
+    resource: is the resource type, e.g. "Webinar", "Whitepaper", "Case Study"
+    """
+
+    def engage_page_resources():
+        tag = flask.request.args.get("tag", default=None, type=str)
+        resource = flask.request.args.get("resource", default=None, type=str)
+
+        if tag or resource:
+            metadata, *_ = engage_docs.get_index(
+                limit=3,
+                tag_value=tag,
+                key="type",
+                value=resource,
+            )
+        else:
+            metadata, *_ = engage_docs.get_index(
+                limit=3, key="is_static", value=None
+            )
+
+        response = flask.jsonify(metadata)
+        response.headers["Cache-Control"] = "public, max-age=900"
+        return response
+
+    return engage_page_resources
+
+
 def build_engage_page(engage_pages):
     def engage_page(language, page):
         if language:
