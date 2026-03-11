@@ -2027,7 +2027,6 @@ def append_utms_cookie_to_canonical_links(response):
             data = response.get_data(as_text=True)
 
             # Find all href attributes pointing to canonical.com
-            # Use backreference \1 to ensure opening and closing quotes match
             pattern = r'href=(["\'])([^"\']*canonical\.com[^"\']*)\1'
 
             def add_cookie_to_url(match):
@@ -2036,6 +2035,17 @@ def append_utms_cookie_to_canonical_links(response):
 
                 # Parse URL to properly handle fragments (hash)
                 parsed = urlparse(url)
+
+                # Only rewrite HTTP/HTTPS URLs
+                if parsed.scheme not in ("http", "https"):
+                    return match.group(0)
+
+                # Extract hostname, ignoring any potential userinfo part
+                host = parsed.netloc.split("@", 1)[-1]
+                if not (
+                    host == "canonical.com" or host.endswith(".canonical.com")
+                ):
+                    return match.group(0)
 
                 # Build new query string with cookie value (no leading "?")
                 if parsed.query:
@@ -2057,9 +2067,9 @@ def append_utms_cookie_to_canonical_links(response):
 
                 # HTML-escape the URL to prevent XSS from cookie injection
                 escaped_url = html.escape(new_url, quote=True)
-                escaped_url = escaped_url.replace('&amp;', '&')
+                escaped_url = escaped_url.replace("&amp;", "&")
 
-                return f'href={quote_char}{escaped_url}{quote_char}'
+                return f"href={quote_char}{escaped_url}{quote_char}"
 
             data = re.sub(pattern, add_cookie_to_url, data)
             response.set_data(data)

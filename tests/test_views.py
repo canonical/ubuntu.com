@@ -1215,3 +1215,22 @@ class TestAppendUtmsCookieToCanonicalLinks(BaseViewTestCase):
             # UTM should be added before hash
             self.assertIn("?utm_source:social#section", updated_html)
             self.assertNotIn("#section?utm_source", updated_html)
+
+    def test_append_utms_mailto_links_unchanged(self):
+        """
+        Test that mailto: links are not modified
+        """
+        with self.app.test_request_context(
+            "/", headers={"Cookie": "utms=utm_source:email"}
+        ):
+            response = MagicMock()
+            response.mimetype = "text/html"
+            response.is_sequence = True
+            html = '<a href="mailto:info@canonical.com">Contact us</a>'
+            response.get_data.return_value = html
+
+            append_utms_cookie_to_canonical_links(response)
+
+            updated_html = response.set_data.call_args[0][0]
+            # Verify mailto link is unchanged
+            self.assertEqual(updated_html, html)
