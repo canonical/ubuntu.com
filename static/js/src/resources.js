@@ -9,7 +9,7 @@
  *  <div id="engage-resources" class="u-hide">
  *    <div id="engage-resources__list" class="u-fixed-width"></div>
  *  </div>
- * 
+ *
  * XXX: This is a hack until we have an individual resource component pattern.
  */
 const fetchAndRenderResources = (tag = "", resource = "") => {
@@ -45,7 +45,8 @@ const fetchAndRenderResources = (tag = "", resource = "") => {
         const card = template.content.cloneNode(true);
 
         if (resource.meta_image) {
-          card.querySelector("[data-key='meta_image']").src = resource.meta_image;
+          card.querySelector("[data-key='meta_image']").src =
+            resource.meta_image;
         } else {
           card.querySelector("[data-key='meta_image_container']").remove();
         }
@@ -54,7 +55,8 @@ const fetchAndRenderResources = (tag = "", resource = "") => {
         link.href = resource.path;
         link.textContent = resource.topic_name;
 
-        card.querySelector("[data-key='subtitle']").textContent = resource.subtitle || "";
+        card.querySelector("[data-key='subtitle']").textContent =
+          resource.subtitle || "";
         list.appendChild(card);
       });
 
