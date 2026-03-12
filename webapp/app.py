@@ -297,7 +297,7 @@ def sentry_before_send(event, hint):
             # return None to discard the event
             return None
 
-        # Sample MaxRetryError from security API calls
+        # Sample MaxRetryError from security and blog API calls
         if isinstance(
             exc_value, (MaxRetryError, RetryError, RequestsConnectionError)
         ):
@@ -310,6 +310,13 @@ def sentry_before_send(event, hint):
                 if (
                     random.random() > 0.05
                 ):  # Drop 95% of security API retry errors
+                    return None
+
+            # Sample blog/WordPress API retry errors
+            if "admin.insights.ubuntu.com" in error_msg:
+                if (
+                    random.random() > 0.05
+                ):  # Drop 95% of blog API retry errors
                     return None
 
     return event

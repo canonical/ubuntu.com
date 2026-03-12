@@ -748,7 +748,16 @@ class BlogView(flask.views.View):
 class BlogRedirects(BlogView):
     def dispatch_request(self, slug):
         slug = quote(slug, safe="/:?&")
-        context = self.blog_views.get_article(slug)
+
+        try:
+            context = self.blog_views.get_article(slug)
+        except (
+            requests.exceptions.ConnectionError,
+            requests.exceptions.Timeout,
+            requests.exceptions.HTTPError,
+        ):
+            sentry_sdk.capture_exception()
+            flask.abort(502)
 
         if "article" not in context:
             return flask.abort(404)
