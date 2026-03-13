@@ -1,6 +1,5 @@
 {% extends "support/base_support.html" %}
 
-{% from "_macros/vf_resources.jinja" import vf_resources %}
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
 
@@ -57,18 +56,29 @@
       <hr class="p-rule" />
       <div class="grid-col">
         <h2>
-          Alternative to direct
+          Alternative to 
           <br class="u-hide--small" />
-          operation management
+         direct management
         </h2>
       </div>
       <div class="grid-col">
+        <div class="p-section--shallow">
+          <div class="p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/88b745c8-direct_op_management_alt.png",
+                        alt="",
+                        width="616",
+                        height="550",
+                        hi_def=True,
+                        attrs={"class": "p-image-container__image"},
+                        loading="auto") | safe
+            }}
+          </div>
+        </div>
         <p>
-          Running a cloud on <a href="/openstack">OpenStack</a> or <a href="/microcloud">MicroCloud</a>, or operating applications such as Kafka, Kubeflow, Spark, or OpenSearch, is complex and demanding Canonical’s <a href="/managed">fully managed services</a> take that responsibility off your hands &ndash; but in some environments, security or compliance rules mean our engineers can’t access your systems directly.
-
+          Running a cloud on <a href="/openstack">OpenStack</a> or <a href="/microcloud">MicroCloud</a>, or operating applications such as Kafka, Kubeflow, Spark, or OpenSearch, is complex and demanding. Canonical’s <a href="/managed">fully managed services</a> take that responsibility off your hands &ndash; but in some environments, security or compliance rules mean our engineers can’t access your systems directly.
         </p>
         <p>
-          Firefighting Support is the answer to these restrictions: it gives the support,  protection, and confidence you need, while allowing you to operate your own environments with full control and privacy.
+          Firefighting Support is the answer to these restrictions: it gives the support, protection, and confidence you need, while allowing you to operate your own environments with full control and privacy.
         </p>
       </div>
     </div>
@@ -242,9 +252,9 @@
       <div class="grid-col">
         <h2>Your options</h2>
       </div>
-      <div class="grid-col">
-        <table aria-label="Vanilla framework table example">
-          <thead style="height:100px;">
+      <div class="grid-col" style="overflow: auto;">
+        <table aria-label="Comparison between fully managed solutions and firefighting support" style="width: auto; border-collapse: collapse;">
+          <thead>
             <tr>
               <th></th>
               <th class="p-text--small-caps">
@@ -340,7 +350,7 @@
               Ubuntu Pro is the security, compliance, and maintenance subscription that extends security updates for Ubuntu LTS, adds hardening profiles, and provides access to trusted open source repositories. Firefighting Support includes Ubuntu Pro + <a href="/support">Support</a> for all covered products and adds a dedicated Managed Solutions engineering team on top, with faster SLAs and experts who get to know your environment before helping you in high‑severity incidents.​
             </p>
             <p>
-              Firefighting support you get all the benefits of Ubuntu Pro, plus additional incident response and guidance capabilities tailored to your cloud.
+              With Firefighting support you get all the benefits of Ubuntu Pro, plus additional incident response and guidance capabilities tailored to your cloud.
             </p>
           </div>
         </div>
@@ -362,7 +372,7 @@
           </div>
           <div class="grid-col-4">
             <p>
-              This depends on the products you want to cover and the number of nodes. Our pricing model is simple,  intuitive, and works on a per node per year basis. <a href="/support/contact-us"
+              This depends on the products you want to cover and the number of nodes. Our pricing model is simple, intuitive, and works on a per node per year basis. <a href="/support/contact-us"
     class="js-invoke-modal"
     aria-controls="firefighting-form-modal">Get in touch with our team to find out more.</a>
             </p>
@@ -384,9 +394,9 @@
   </section>
 
   <section class="p-section">
-    <hr class="p-rule" />
     <div class="p-section--shallow">
       <div class="grid-row--50-50">
+        <hr class="p-rule" />
         <div class="grid-col">
           <h2>Unlock Ops Consulting</h2>
         </div>
