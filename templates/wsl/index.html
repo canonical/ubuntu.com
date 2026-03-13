@@ -1,4 +1,4 @@
-{% extends "wsl/base_wsl.html" %}
+{% extends "templates/base.html" %}
 
 {% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
 
@@ -17,7 +17,7 @@
   is-paper
 {% endblock body_class %}
 
-{% block content %}
+{% block outer_content %}
   {% call(slot) vf_hero(
     title_text='The full Ubuntu experience, &nbsp;available on Windows',
     layout='50/50-full-width-image'
@@ -379,4 +379,4 @@
       });
     </script>
   {{ load_form("/wsl") | safe }}
-{% endblock %}
+{% endblock outer_content %}
