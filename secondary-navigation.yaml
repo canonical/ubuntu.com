@@ -226,8 +226,18 @@ desktop:
       path: /desktop/developers
     - title: Flavors
       path: /desktop/flavors
-    - title: WSL
-      path: /desktop/wsl
+
+wsl:
+  title: Ubuntu on WSL
+  path: /wsl
+
+  children:
+    - title: Overview
+      path: /wsl
+    - title: Organizations
+      path: /wsl/organizations
+    - title: Docs
+      path: https://documentation.ubuntu.com/wsl
 
 core:
   title: Ubuntu Core

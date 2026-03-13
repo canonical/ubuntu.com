@@ -143,7 +143,7 @@ def download_thank_you(category):
 def wsl_install_redirect():
     """
     View to redirect to the Ubuntu Pro for WSL GitHub release download.
-    Used on 'desktop/wsl' page.
+    Used on 'wsl' page.
     """
     download_url = (
         "https://github.com/canonical/ubuntu-pro-for-wsl/releases/"

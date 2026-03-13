@@ -255,7 +255,7 @@ class TestRoutes(VCRTestCase):
         Check WSL install redirect endpoint returns 302 redirect
         to the GitHub release URL
         """
-        response = self.client.get("/desktop/wsl/install")
+        response = self.client.get("/wsl/install")
         self.assertEqual(response.status_code, 302)
         self.assertTrue(
             response.location.startswith(
