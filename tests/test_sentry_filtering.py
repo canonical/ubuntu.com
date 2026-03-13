@@ -306,7 +306,6 @@ class TestSentryFiltering(unittest.TestCase):
             "requests.exceptions.ConnectionError should also be sampled",
         )
 
-
     @patch("webapp.app.random.random")
     def test_sample_blog_api_retry_error_drops_95_percent(self, mock_random):
         """
@@ -384,10 +383,7 @@ class TestSentryFiltering(unittest.TestCase):
 
         mock_error = MaxRetryError(
             pool=None,
-            url=(
-                "/wp-json/wp/v2/posts?slug=test"
-                "&tags_exclude=3184"
-            ),
+            url=("/wp-json/wp/v2/posts?slug=test" "&tags_exclude=3184"),
             reason=(
                 "ResponseError('too many 503 error responses')"
                 " admin.insights.ubuntu.com"
@@ -402,7 +398,6 @@ class TestSentryFiltering(unittest.TestCase):
             result,
             "MaxRetryError from blog API should also be sampled",
         )
-
 
     def test_blog_api_connection_timeout_not_filtered(self):
         """

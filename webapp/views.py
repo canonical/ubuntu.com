@@ -756,9 +756,7 @@ class BlogRedirects(BlogView):
             Timeout,
             HTTPError,
         ):
-            return flask.make_response(
-                flask.render_template("500.html"), 502
-            )
+            return flask.make_response(flask.render_template("500.html"), 502)
 
         if "article" not in context:
             return flask.abort(404)

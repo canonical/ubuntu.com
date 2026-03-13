@@ -317,9 +317,7 @@ def sentry_before_send(event, hint):
                 f"{code} error" in error_msg
                 for code in ["500", "502", "503", "504"]
             ):
-                if (
-                    random.random() > 0.05
-                ):  # Drop 95% of blog API retry errors
+                if random.random() > 0.05:  # Drop 95% of blog API retry errors
                     return None
 
     return event
