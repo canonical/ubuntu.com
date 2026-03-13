@@ -283,7 +283,8 @@ def sentry_before_send(event, hint):
     """
     Filter Sentry events.
     Excludes all 4xx errors.
-    Samples MaxRetryError from security API calls to reduce quota usage.
+    Samples retry errors from security and
+    blog/WordPress API calls to reduce quota usage.
     """
     if "exc_info" in hint:
         _, exc_value, _ = hint["exc_info"]
@@ -313,7 +314,7 @@ def sentry_before_send(event, hint):
                     return None
 
             # Sample blog/WordPress API retry errors
-            if "admin.insights.ubuntu.com" in error_msg and any(
+            if "/wp-json/wp/v2" in error_msg and any(
                 f"{code} error" in error_msg
                 for code in ["500", "502", "503", "504"]
             ):
