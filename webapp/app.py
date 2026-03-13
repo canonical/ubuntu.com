@@ -313,7 +313,10 @@ def sentry_before_send(event, hint):
                     return None
 
             # Sample blog/WordPress API retry errors
-            if "admin.insights.ubuntu.com" in error_msg:
+            if "admin.insights.ubuntu.com" in error_msg and any(
+                f"{code} error" in error_msg
+                for code in ["500", "502", "503", "504"]
+            ):
                 if (
                     random.random() > 0.05
                 ):  # Drop 95% of blog API retry errors

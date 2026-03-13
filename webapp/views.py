@@ -31,7 +31,7 @@ from canonicalwebteam.search.views import NoAPIKeyError
 from canonicalwebteam.directory_parser import generate_sitemap
 from geolite2 import geolite2
 from requests import Session
-from requests.exceptions import HTTPError
+from requests.exceptions import HTTPError, ConnectionError, Timeout
 from ubuntu_release_info.data import Data
 from werkzeug.exceptions import BadRequest
 from canonicalwebteam.flask_base.env import get_flask_env
@@ -752,12 +752,13 @@ class BlogRedirects(BlogView):
         try:
             context = self.blog_views.get_article(slug)
         except (
-            requests.exceptions.ConnectionError,
-            requests.exceptions.Timeout,
-            requests.exceptions.HTTPError,
+            ConnectionError,
+            Timeout,
+            HTTPError,
         ):
-            sentry_sdk.capture_exception()
-            flask.abort(502)
+            return flask.make_response(
+                flask.render_template("500.html"), 502
+            )
 
         if "article" not in context:
             return flask.abort(404)

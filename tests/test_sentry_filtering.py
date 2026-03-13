@@ -307,5 +307,126 @@ class TestSentryFiltering(unittest.TestCase):
         )
 
 
+    @patch("webapp.app.random.random")
+    def test_sample_blog_api_retry_error_drops_95_percent(self, mock_random):
+        """
+        Test that RetryError from blog API
+        (admin.insights.ubuntu.com) is sampled at 5% (95% dropped).
+        """
+        mock_random.return_value = 0.96
+
+        mock_error = RetryError()
+        mock_error.args = (
+            "HTTPSConnectionPool(host='admin.insights.ubuntu.com', port=443):"
+            " Max retries exceeded with url: /wp-json/wp/v2/posts?slug=test"
+            " (Caused by ResponseError('too many 503 error responses'))",
+        )
+
+        hint = {"exc_info": (None, mock_error, None)}
+        event = {"level": "error"}
+        result = sentry_before_send(event, hint)
+
+        self.assertIsNone(
+            result, "95% of blog API RetryErrors should be dropped"
+        )
+
+    @patch("webapp.app.random.random")
+    def test_sample_blog_api_retry_error_keeps_5_percent(self, mock_random):
+        """
+        Test that RetryError from blog API keeps 5% of errors.
+        """
+        mock_random.return_value = 0.04
+
+        mock_error = RetryError()
+        mock_error.args = (
+            "HTTPSConnectionPool(host='admin.insights.ubuntu.com', port=443):"
+            " Max retries exceeded with url: /wp-json/wp/v2/posts?slug=test"
+            " (Caused by ResponseError('too many 503 error responses'))",
+        )
+
+        hint = {"exc_info": (None, mock_error, None)}
+        event = {"level": "error"}
+        result = sentry_before_send(event, hint)
+
+        self.assertEqual(
+            result, event, "5% of blog API RetryErrors should be kept"
+        )
+
+    @patch("webapp.app.random.random")
+    def test_blog_api_connection_error_also_sampled(self, mock_random):
+        """
+        Test that ConnectionError from blog API is also sampled.
+        """
+        mock_random.return_value = 0.96
+
+        mock_error = RequestsConnectionError()
+        mock_error.args = (
+            "HTTPSConnectionPool(host='admin.insights.ubuntu.com', port=443):"
+            " Max retries exceeded with url: /wp-json/wp/v2/posts?slug=test"
+            " (Caused by ResponseError('too many 503 error responses'))",
+        )
+
+        hint = {"exc_info": (None, mock_error, None)}
+        event = {"level": "error"}
+        result = sentry_before_send(event, hint)
+
+        self.assertIsNone(
+            result,
+            "ConnectionError from blog API should also be sampled",
+        )
+
+    @patch("webapp.app.random.random")
+    def test_blog_api_max_retry_error_also_sampled(self, mock_random):
+        """
+        Test that MaxRetryError from blog API is also sampled.
+        """
+        mock_random.return_value = 0.96
+
+        mock_error = MaxRetryError(
+            pool=None,
+            url=(
+                "/wp-json/wp/v2/posts?slug=test"
+                "&tags_exclude=3184"
+            ),
+            reason=(
+                "ResponseError('too many 503 error responses')"
+                " admin.insights.ubuntu.com"
+            ),
+        )
+
+        hint = {"exc_info": (None, mock_error, None)}
+        event = {"level": "error"}
+        result = sentry_before_send(event, hint)
+
+        self.assertIsNone(
+            result,
+            "MaxRetryError from blog API should also be sampled",
+        )
+
+
+    def test_blog_api_connection_timeout_not_filtered(self):
+        """
+        Test that blog API errors without 500/502/503/504 status codes
+        (e.g. connection timeouts) are NOT filtered.
+        """
+        mock_error = RequestsConnectionError()
+        mock_error.args = (
+            "HTTPSConnectionPool(host='admin.insights.ubuntu.com', port=443):"
+            " Max retries exceeded with url: /wp-json/wp/v2/posts?slug=test"
+            " (Caused by ConnectTimeoutError('connection timed out'))",
+        )
+
+        hint = {"exc_info": (None, mock_error, None)}
+        event = {"level": "error"}
+        result = sentry_before_send(event, hint)
+
+        self.assertEqual(
+            result,
+            event,
+            "Blog API errors without 5xx status codes "
+            "should not be filtered",
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
