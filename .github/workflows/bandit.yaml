@@ -1,0 +1,17 @@
+name: Bandit
+
+on:
+  workflow_dispatch:
+  # remove "pull_request" before merging
+  pull_request:
+  schedule:
+    - cron: "20 7 * * 1" # every Monday at 07:20 UTC
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+    steps:
+      - name: Perform Bandit Analysis
+        uses: PyCQA/bandit-action@v1
