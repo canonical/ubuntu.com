@@ -1,6 +1,9 @@
 name: Percy Snapshot
 description: Starts local server, captures example snapshots, & uploads them to Percy
 inputs:
+  project_root:
+    description: 'Where the PR code is located'
+    default: '.'
   pr_number:
     required: false
     description: Identifier of a pull request to associate with this Percy build. I.E. github.com/{repo}/pull/{pr_number}
@@ -38,20 +41,24 @@ runs:
 
     - name: Install dependencies
       shell: bash
-      run: yarn install && pip3 install -r requirements.txt
+      working-directory: ${{ inputs.project_root }}
+      run: yarn install --ignore-scripts && pip3 install -r requirements.txt
 
     - name: Build
       shell: bash
+      working-directory: ${{ inputs.project_root }}
       run: yarn build
 
     - name: Start testing server
       shell: bash
+      working-directory: ${{ inputs.project_root }}
       env:
         SECRET_KEY: local_development_fake_key
       run: ./entrypoint 0.0.0.0:8001 &
 
     - name: Wait for server availability
       shell: bash
+      working-directory: ${{ inputs.project_root }}
       run: |
         set -e
         sleep_interval_secs=2
@@ -78,6 +85,7 @@ runs:
     - name: Take snapshots & upload to Percy
       shell: bash
       id: percy_snapshot
+      working-directory: ${{ inputs.project_root }}
       env:
         PERCY_TOKEN: ${{ inputs.percy_token_write }}
         # This is used to name the build on the Percy dashboard. For PRs, it is `pull/{pr_number}`, and for baseline, it is `main`.
