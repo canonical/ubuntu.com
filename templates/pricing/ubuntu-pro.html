@@ -101,7 +101,7 @@ layout='50/50'
 
   </div>
 
-  <div class="grid-row--50-50">
+  <div class="grid-row--50-50" id="enterprise-support">
     <hr class="p-rule" />
     <div class="grid-col">
       <h2>24/7 Enterprise support</h2>
@@ -339,5 +339,19 @@ layout='50/50'
 
 <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 <script src="{{ versioned_static('js/dist/active-nav-scroll.js') }}"></script>
+<script>
+  const personalTab = document.getElementById('personal');
+  const enterpriseTab = document.getElementById('enterprise');
+  const toggleEnterpriseSupport = ()=>{
+    const enterpriseSupport = document.getElementById("enterprise-support");
+    if(enterpriseTab.getAttribute('aria-selected') === 'false'){
+      enterpriseSupport.style.display = "none";
+    } else {
+      enterpriseSupport.style.display = "grid";
+    }
+  }
+  personalTab.addEventListener('click', toggleEnterpriseSupport);
+  enterpriseTab.addEventListener('click', toggleEnterpriseSupport);
+</script>
 
 {% endblock %}
