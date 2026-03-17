@@ -31,7 +31,6 @@ export function setUpDynamicSideNav() {
       function (entry) {
         if (entry[0].isIntersecting) {
           const sectionId = entry[0].target.id;
-          console.log(sectionId);
           navigationLinks.forEach(function (link) {
             if (link.getAttribute("href") === `#${sectionId}`) {
               link.classList.add("is-active");
