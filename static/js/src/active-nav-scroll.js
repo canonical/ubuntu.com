@@ -20,10 +20,10 @@
  */
 export function setUpDynamicSideNav() {
   const sections = Array.prototype.slice.call(
-    document.querySelectorAll(".section-heading")
+    document.querySelectorAll(".section-heading"),
   );
   const navigationLinks = Array.prototype.slice.call(
-    document.querySelectorAll(".p-side-navigation__link")
+    document.querySelectorAll(".p-side-navigation__link"),
   );
 
   sections.forEach(function (section) {
@@ -44,7 +44,7 @@ export function setUpDynamicSideNav() {
       {
         rootMargin: "-5% 0px -87% 0px",
         threshold: 0,
-      }
+      },
     );
 
     observer.observe(section);
