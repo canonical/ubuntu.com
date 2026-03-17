@@ -92,6 +92,7 @@ def get_purchase_account_status(advantage_mapper: AdvantageMapper, **kwargs):
 def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
     marketplace = kwargs.get("marketplace")
     page = kwargs.get("page", 1)
+
     try:
         account = advantage_mapper.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount:

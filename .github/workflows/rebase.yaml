@@ -2,15 +2,22 @@ name: Automatic Rebase
 on:
   issue_comment:
     types: [created]
+
 jobs:
   rebase:
     name: Rebase
     runs-on: ubuntu-latest
+    # Added security: Only allow Repo Owners, Members, or Collaborators to trigger
     if: >-
       github.event.issue.pull_request != '' && 
       (
-        contains(github.event.comment.body, '/rebase') || 
-        contains(github.event.comment.body, '/autosquash')
+        github.event.comment.author_association == 'OWNER' || 
+        github.event.comment.author_association == 'MEMBER' || 
+        github.event.comment.author_association == 'COLLABORATOR'
+      ) &&
+      (
+        startsWith(github.event.comment.body, '/rebase') || 
+        startsWith(github.event.comment.body, '/autosquash')
       )
     steps:
       - name: Checkout the latest code

@@ -38,8 +38,10 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Run a11y tests
+        env:
+          URL_LIST: ${{ needs.read-config.outputs.urls }}
         run: |
-          yarn pa11y-ci ${{ needs.read-config.outputs.urls }}
+          yarn pa11y-ci $URL_LIST
 
       - name: Send message on failure
         env:

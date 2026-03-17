@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+concurrency: 
+  group: ubuntu-com-deploy
+  cancel-in-progress: false
+
 env:
   CHARMCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS: true
   ROCKCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS: true
@@ -125,7 +129,7 @@ jobs:
   deploy-production:
     runs-on:
       [self-hosted, self-hosted-linux-amd64-jammy-private-endpoint-medium]
-    needs: [pack-charm, publish-image]
+    needs: [pack-charm, publish-image, deploy-staging]
     environment:
       name: production
       url: https://ubuntu.com

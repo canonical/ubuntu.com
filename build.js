@@ -39,6 +39,7 @@ let entries = {
   "linux-patch-management": "./static/js/src/advantage/linux-patch-management/app.tsx",
   prism: "./static/js/src/prism.js",
   "active-nav-scroll": "./static/js/src/active-nav-scroll.js",
+  resources: "./static/js/src/resources.js",
 };
 
 const isDev = process && process.env && process.env.NODE_ENV === "development";

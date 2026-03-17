@@ -13,6 +13,15 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+# 1.34+ck2
+
+### Mar 10, 2026 - `charmed-kubernetes --channel 1.34/stable`
+
+## Notable Fixes
+
+### Kubernetes Worker
+* Update the `ingress-nginx` tag to `1.14.4` to address `CVE-2026-3288`.
+
 # 1.34+ck1
 
 ### Feb 12, 2026 - `charmed-kubernetes --channel 1.34/stable`
@@ -97,6 +106,15 @@ For details of other deprecation notices and API changes for Kubernetes 1.34, pl
 relevant sections of the [upstream release notes][upstream-changelog-1.34].
 
 [upstream-changelog-1.34]: https://github.com/kubernetes/kubernetes/blob/release-1.34/CHANGELOG/CHANGELOG-1.34.md#deprecation
+
+# 1.33+ck5
+
+### Mar 10, 2026 - `charmed-kubernetes --channel 1.33/stable`
+
+## Notable Fixes
+
+### Kubernetes Worker
+* Update the `ingress-nginx` tag to `1.14.4` to address `CVE-2026-3288`.
 
 # 1.33+ck4
 
@@ -230,6 +248,15 @@ For details of other deprecation notices and API changes for Kubernetes 1.33, pl
 relevant sections of the [upstream release notes][upstream-changelog-1.33].
 
 [upstream-changelog-1.33]: https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.33.md#deprecation
+
+# 1.32+ck6
+
+### Mar 10, 2026 - `charmed-kubernetes --channel 1.32/stable`
+
+## Notable Fixes
+
+### Kubernetes Worker
+* Update the `ingress-nginx` tag to `1.14.4` to address `CVE-2026-3288`.
 
 # 1.32+ck5
 
@@ -396,6 +423,15 @@ please see the relevant sections of the
 <!--LINKS-->
 
 [rel]: /kubernetes/docs/release-notes
+
+# 1.31+ck6
+
+### Mar 10, 2026 - `charmed-kubernetes --channel 1.31/stable`
+
+## Notable Fixes
+
+### Kubernetes Worker
+* Update the `ingress-nginx` tag to `1.14.4` to address `CVE-2026-3288`.
 
 # 1.31+ck5
 
