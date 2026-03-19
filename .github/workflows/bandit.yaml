@@ -2,8 +2,6 @@ name: Bandit
 
 on:
   workflow_dispatch:
-  # remove "pull_request" before merging
-  pull_request:
   schedule:
     - cron: "20 7 * * 1" # every Monday at 07:20 UTC
 
@@ -14,4 +12,10 @@ jobs:
       security-events: write
     steps:
       - name: Perform Bandit Analysis
-        uses: PyCQA/bandit-action@v1
+        uses: PyCQA/bandit-action@67a458d90fa11fb1463e91e7f4c8f068b5863c7f # v1.0.1
+
+      - name: Send message on failure
+        env:
+          BOT_URL: ${{ secrets.BOT_URL }}
+        if: failure()
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" $BOT_URL?room=web-alerts
