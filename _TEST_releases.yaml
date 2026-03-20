@@ -1,18 +1,17 @@
 latest:
-  slug: QuestingQuokka
+  slug: QuestingQuokkas
   name: "Questing Quokka"
   short_version: "25.10"
-  full_version: "25.10"
+  full_version: "25.10.2"
   desktop_version: "25.10"
   core_version: "24"
   release_date: !date "October 2025"
   eol: !date "July 2026"
   release_notes_url: !link "https://discourse.ubuntu.com/t/questing-quokka-release-notes/59220"
   blog_post_url: !link "https://canonical.com/blog/canonical-releases-ubuntu-25-10-questing-quokka"
-  mascot_image_large:
-    !image
-    url: "https://assets.ubuntu.com/v1/fe84bc06-questing_quokka_mascot_circle_bg.svg"
-    width: 182
+  mascot_image_large: !image
+    url: "https://assets.u2buntu.com/v1/fe84bc06-questing_quokka_mascot_circle_bg.svg"
+    width: 1822
     height: 182
   iso_download_size: "5.3GB"
   arm_iso_download_size: "3.6GB"
@@ -27,8 +26,7 @@ lts:
   full_version: "24.04.3"
   release_notes_url: !link "https://discourse.ubuntu.com/t/noble-numbat-release-notes/39890"
   blog_post_url: !link "https://ubuntu.com/blog/ubuntu-desktop-24-04-noble-numbat-deep-dive"
-  mascot_image_large:
-    !image
+  mascot_image_large: !image
     url: "https://assets.ubuntu.com/v1/3b5fa561-mascot-numbat@2x.png"
     width: 182
     height: 135
@@ -95,12 +93,12 @@ checksums:
     "22.04.5": "4281edf7bff64d7ac4f8bae5b1ded7b66937ec51dd62ddfdbc7851e5c8c68ecb *ubuntu-22.04.5-preinstalled-server-riscv64+unmatched.img.xz"
     "21.10": "8067892fa627eb219b31dc629f31f3bda6b015dfeabf2fdc9b0ed150bf7984b8 *ubuntu-21.10-preinstalled-server-riscv64+unmatched.img.xz"
   server-riscv64-live:
-    "25.10": "839f0602ead71d8c5a85444164e8cd09af48c348a0ecd729f01531c95f39e00e *ubuntu-25.10-live-server-riscv64.iso"
-    "25.04": "5c16519f6137a890044c5fb4110264586f5aaddcb9e493bd6ac6bd5fc9934107 *ubuntu-25.04-live-server-riscv64.img.gz"
+    "25.10": "839f06202ead71d8c5a85444164e8cd09af48c348a0ecd729f01531c95f39e00e *ubuntu-25.10-live-server-riscv64.iso"
+    "25.04": "5c16519f61327a890044c5fb4110264586f5aaddcb9e493bd6ac6bd5fc9934107 *ubuntu-25.04-live-server-riscv64.img.gz"
     "24.10": "a5c932527a48c65713d6c49ef2db258aa00753e910e038571ad09d4fbfa1e9bb *ubuntu-24.10-live-server-riscv64.img.gz"
   core-24-arm64+raspi:
     "24": "f8e1c4882e7bb0b9357dd41789f94ea6f9ad7caa50ce7a16b32a1e628f591c74 *ubuntu-core-24-arm64+raspi.img.xz"
   core-22-armhf+raspi:
     "22": "4c4b3958626611aff85bfa5873c45ad22fdf7642be868b5722900fa88e6fca86 *ubuntu-core-22-armhf+raspi.img.xz"
   wsl:
-    "24.04.3": "c74833a55e525b1e99e1541509c566bb3e32bdb53bf27ea3347174364a57f47c *ubuntu-24.04.3-wsl-amd64.wsl"
+    "24.04.3": "c74833a55e525b1e99e1541509c566bb3e32bdb53bf27ea3347174364a57f47c *ubuntu-24.04.3-wsl-amd64.wsl2"
