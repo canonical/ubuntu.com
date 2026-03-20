@@ -157,6 +157,7 @@ from webapp.views import (
     BlogSitemapIndex,
     BlogSitemapPage,
     account_query,
+    append_utms_cookie_to_canonical_links,
     appliance_install,
     build_vulnerabilities,
     build_vulnerabilities_list,
@@ -170,6 +171,7 @@ from webapp.views import (
     build_engage_page,
     build_engage_pages_sitemap,
     build_engage_pages_metadata,
+    build_engage_page_resources,
     build_tutorials_index,
     build_tutorials_query,
     download_server_steps,
@@ -741,6 +743,13 @@ engage_pages = EngagePages(
     category_id=51,
     page_type="engage-pages",
     exclude_topics=[17229, 18033, 17250],
+)
+
+
+# API to fetch most recent 3 engage pages based on tag and resource type
+app.add_url_rule(
+    "/engage/resources.json",
+    view_func=build_engage_page_resources(engage_pages),
 )
 
 app.add_url_rule(
@@ -1520,3 +1529,9 @@ if environment != "production":
         """Endpoint to trigger a Sentry error for testing purposes."""
         1 / 0
         return "This won't be reached"
+
+
+# Append utms cookie to canonical.com links in HTML responses
+@app.after_request
+def append_utms_to_canonical_links(response):
+    return append_utms_cookie_to_canonical_links(response)

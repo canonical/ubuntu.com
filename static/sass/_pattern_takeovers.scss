@@ -65,4 +65,16 @@
     );
     color: $color-x-light;
   }
+
+  @include p-engage-banner("edge-fan") {
+    background-color: #262628;
+    color: $color-x-light;
+
+    @media screen and (min-width: $breakpoint-large) {
+      background-image: url("https://assets.ubuntu.com/v1/90c93cd6-suru_edge_fan_bottom_dark_engage_hero.jpg");
+      background-position: right bottom;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+  }
 }

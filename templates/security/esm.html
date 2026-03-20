@@ -10,6 +10,7 @@
   https://docs.google.com/document/d/1RBZX3PJPvODxRlcnIS10Ii4SkIMH5Fm74EmsMQ0cnic/edit
 {% endblock meta_copydoc %}
 
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 {% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
@@ -42,7 +43,7 @@
       </div>
       <div class="col">
         <p>
-          Security maintenance is part of a continuous process that proactively protects systems. It includes regular vulnerability scanning, evaluation and patch management. Regular security maintenance and vulnerability management is key to comply with industry regulations.
+          Security maintenance is part of a continuous process that proactively protects systems. It includes regular vulnerability scanning, evaluation, and patch management. Regular security maintenance and vulnerability management is key to comply with industry regulations.
         </p>
         <div class="p-cta-block">
           <a href="/blog/securing-open-source-through-cve-prioritisation">Learn more about CVE mitigation in Ubuntu&nbsp;&rsaquo;</a>
@@ -75,7 +76,7 @@
             </div>
             <h3 class="p-heading--5">Security updates in Ubuntu LTS</h3>
             <p>
-              Ubuntu LTS gained popularity due to a 5 years security maintenance commitment for the operating system (specifically all packages in the 'main repository'). This is done by Canonical with no subscription required. Over the 5 years of the standard security term of an Ubuntu LTS, the security team patches thousands of CVEs.
+              Ubuntu LTS gained popularity due to a 5-year security maintenance commitment for the operating system (specifically all packages in the 'main repository'). This is done by Canonical with no subscription required. Over the 5 years of the standard security term of an Ubuntu LTS, Canonical's security team patches thousands of CVEs.
             </p>
           </div>
           <div class="col-3 col-medium-3">
@@ -116,7 +117,7 @@
       {%- endif -%}
 
       {%- if slot == 'list_item_title_1' -%}
-        <h3 class="p-heading--5">Up to 15 years of support</h3>
+        <h3 class="p-heading--5">Up to 15 years of security maintenance and support</h3>
       {%- endif -%}
 
       {%- if slot == 'list_item_description_1' -%}
@@ -124,7 +125,7 @@
           Running the latest operating system (OS) offers new features and enhanced performance, which is a good choice for new deployments. However, for large, established production systems, the transition to a new OS version presents a challenge as it may involve updating the entire software stack running on top of it.
         </p>
         <p>
-          This complexity is amplified by modern software architectures that incorporate containerization, microservices, extensive data management features, as well as integration with third-party APIs.
+          This complexity is amplified by modern software architectures that incorporate containerization, microservices, and extensive data management features, as well as integration with third-party APIs.
         </p>
       {%- endif -%}
 
@@ -140,6 +141,8 @@
 
       {%- if slot == 'cta' -%}
         <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
+        <br />
+        <a href="/pro/why-pro">Read why organizations choose Ubuntu Pro&nbsp;&rsaquo;</a>
       {%- endif -%}
     {%- endcall -%}
   </section>
@@ -203,12 +206,12 @@
         </div>
         <div class="col">
           <ul class="p-list--divided">
-            <li class="p-list__item is-ticked">Gain peace of mind</li>
-            <li class="p-list__item is-ticked">Keep systems stable and maintained</li>
-            <li class="p-list__item is-ticked">Reduced need for migrations</li>
-            <li class="p-list__item is-ticked">Proactive Ubuntu Security Team</li>
-            <li class="p-list__item is-ticked">Get quick fixes to critical, high and selected medium CVEs</li>
-            <li class="p-list__item is-ticked">Maintain compliance across your estate</li>
+            <li class="p-list__item is-ticked">Gain operational stability and peace of mind</li>
+            <li class="p-list__item is-ticked">Keep systems stable and security maintained for up to 15 years</li>
+            <li class="p-list__item is-ticked">Reduce your need for migrations</li>
+            <li class="p-list__item is-ticked">Get quick fixes to critical, high, and selected medium CVEs</li>
+            <li class="p-list__item is-ticked">Get tools for monitoring, auditing, and managing patches and devices at scale</li>
+            <li class="p-list__item is-ticked">Get hardening tools and compliance profiles to maintain compliance across your estate</li>
           </ul>
         </div>
       </div>
@@ -241,7 +244,7 @@
       </div>
       <div class="col">
         <p>
-          Ubuntu Pro is a broad subscription that includes many different variations of open source packages to meet different needs. For example, Pro includes a set of package versions that are compliant with FIPS regulations. You would want these versions only on machines that need to meet FIPS requirements, so you can choose to enable that stream specifically on those machines.
+          Ubuntu Pro is a broad subscription that includes many different variations of open source packages to meet different needs. For example, Ubuntu Pro includes a set of package versions that are compliant with FIPS regulations. You would want these versions only on machines that need to meet FIPS requirements, so you can choose to enable that stream specifically on those machines.
         </p>
         <p>
           There are two streams which cover broad-based package security updates; we label these “apps” and “infra”. The “esm-apps” stream covers all 'Universe' packages for ten years from the release of the LTS.
@@ -430,6 +433,18 @@
       </div>
     </div>
   </section>
+
+  {% call(slot) vf_cta_section(
+    title_text='Secure your Ubuntu estate',
+    variant='default',
+    layout='100',
+    attrs={'id': 'full-width-default'}
+    ) -%}
+
+    {%- if slot == 'cta' -%}
+      <a href="/security/contact-us" aria-controls="security-modal" class="js-invoke-modal">Get in touch to discuss ESM&nbsp;&rsaquo;</a>
+    {%- endif -%}
+  {% endcall -%}
 
   <!-- Set default Marketo information for contact form below-->
   {{ load_form('/security/esm', 3764) | safe }}
