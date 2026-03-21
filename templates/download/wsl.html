@@ -1,0 +1,308 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Get Ubuntu on WSL | Download{% endblock %}
+
+{% block meta_description %}
+  Download Ubuntu on WSL and access the power of a full Ubuntu terminal environment on Windows.
+{% endblock meta_description %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/16mQ6w4HGtaERD5QL-euieKYRtYb2ojVksdEocecLkto
+{% endblock meta_copydoc %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tab-section.jinja" import vf_tab_section %}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_equal-heights.jinja" import vf_equal_heights %}
+{% from "_macros/vf_resources.jinja" import vf_resources %}
+{% from "macros/_vf-latest-news.jinja" import vf_latest_news with context %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+
+  {%- call(slot) vf_hero(
+      title_text='Get Ubuntu on WSL',
+      layout='fallback'
+    ) 
+  -%}
+  {%- endcall -%}
+
+  {{- vf_tab_section(
+      title={
+          "text": "Ubuntu 24.04 LTS"
+      },
+      description={
+          "type": "html",
+          "content": "
+            <p>
+              The latest <abbr title='Long-term support'>LTS</abbr> version of Ubuntu on WSL.
+              LTS stands for long-term support – which means five years of free security and
+              maintenance updates, extended to 15 years with <a href='/pro'>Ubuntu Pro</a>.
+            </p>
+
+            <div class='grid-row'>
+              <div class='grid-col-2'>
+                <p class='p-heading--5'>Intel or AMD 64-bit architecture</p>
+              </div>
+              <div class='grid-col-2'>
+                <a class='p-button--positive' href='https://releases.ubuntu.com/noble/ubuntu-24.04.4-wsl-amd64.wsl'>Download</a>
+                <span class='u-text--muted'>373MB</span>
+              </div>
+            </div>
+
+            <div class='grid-row'>
+              <div class='grid-col-2'>
+                <p class='p-heading--5'>ARM 64-bit architecture</p>
+              </div>
+              <div class='grid-col-2'>
+                <a class='p-button--positive' href='https://cdimages.ubuntu.com/releases/noble/release/ubuntu-24.04.4-wsl-arm64.wsl'>Download</a>
+                <span class='u-text--muted'>374MB</span>
+              </div>
+            </div>
+          "
+      },
+      tabs=[
+          {
+              "tab_html": "<h5 class='u-no-margin--bottom'>What’s new</h5>",
+              "type": "basic-section",
+              "item": {
+                  "items": [
+                      {
+                          "type": "description",
+                          "item": {
+                              "content": "
+                                <p>Rust 1.78, .NET 8 and OpenJDK 21 with TCK certification in addition to other toolchain upgrades</p>
+                                <p class='link'>
+                                  <a href='https://discourse.ubuntu.com/t/noble-numbat-release-notes/39890'>
+                                    Release notes ›
+                                  </a>
+                                </p>
+                              "
+                          }
+                      }
+                  ]
+              }
+          },
+          {
+              "tab_html": "<h5 class='u-no-margin--bottom'>System requirements</h5>",
+              "type": "basic-section",
+              "item": {
+                  "items": [
+                      {
+                          "type": "description",
+                          "item": {
+                              "content": "
+                                <p>Windows 11 (recommended) or Windows 10 with minimum version 21H2 on a physical machine</p>
+                                <p class='link'>
+                                  <a href='https://documentation.ubuntu.com/wsl/stable/howto/install-ubuntu-wsl2/#what-you-will-need'>
+                                    Detailed requirements ›
+                                  </a>
+                                </p>
+                              "
+                          }
+                      }
+                  ]
+              }
+          },
+          {
+              "tab_html": "<h5 class='u-no-margin--bottom'>How to install</h5>",
+              "type": "basic-section",
+              "item": {
+                  "items": [
+                      {
+                          "type": "description",
+                          "item": {
+                              "content": "
+                                <p>To install, you can download and double-click the <code>.wsl</code> image, or open the PowerShell terminal and run <code>wsl --install</code></p>
+                                <p class='link'>
+                                  <a href='https://documentation.ubuntu.com/wsl/stable/howto/install-ubuntu-wsl2/#install-and-enable-wsl'>
+                                    Detailed installation steps ›
+                                  </a>
+                                </p>
+                              "
+                          }
+                      }
+                  ]
+              }
+          }
+        
+          
+      ]
+  ) -}}
+
+  {{- vf_basic_section(
+    title={"text": "Ubuntu is the number 1 choice for organizations using WSL"},
+    items=[
+      {
+        "type": "logo-block",
+        "item": {
+          "logos": [
+            {
+              "attrs": {
+                "src": "https://assets.ubuntu.com/v1/d75acbee-ubuntu_pro_logo.png",
+                "alt": "Ubuntu Pro"
+              }
+            },
+          ]
+        }
+      },
+      {
+          "type": "description",
+          "item": {
+              "content": "
+                <p>
+                  <a href='/pro'>Ubuntu Pro</a> brings enterprise-grade security and compliance with up to 15 years of coverage.
+                </p>
+              "
+          }
+      },
+      {
+        "type": "list",
+        "item": {
+          "list_items": [
+            {
+              "list_item_type": "bullet",
+              "content": "Security updates for the full open source stack"
+            },
+            {
+              "list_item_type": "bullet",
+              "content": "Estate <a href='https://landscape.canonical.com/landscape-features'>monitoring and management</a> of WSL instances"
+            },
+            {
+              "list_item_type": "bullet",
+              "content": "Optional weekday or 24/7 support tiers"
+            },
+            {
+              "list_item_type": "bullet",
+              "content": "Ubuntu Pro subscriptions also cover security maintenance for popular toolchains on WSL, such as Python, Go, Rust, and more."
+            }
+          ]
+        }
+      },
+      {
+        "type": "cta-block",
+        "item": {
+          "secondaries": [
+            {
+              "content_html": "Download the Ubuntu Pro for WSL app",
+              "attrs": {
+                "href": "https://github.com/canonical/ubuntu-pro-for-wsl/releases/latest/download/UbuntuProForWSL.msixbundle"
+              }
+            }
+          ],
+          "link": {
+            "content_html": "Learn more about Ubuntu on WSL for enterprises ›",
+            "attrs": {
+              "href": "https://ubuntu.com/organizations"
+            }
+          }
+        }
+      },
+    ]
+  ) -}}
+
+  {%- call(slot) vf_equal_heights(
+    title_text="More from Canonical",
+    attrs={ "id": "4-columns-responsive" },
+    image_aspect_ratio_small="auto",
+    image_aspect_ratio_medium="auto",
+    image_aspect_ratio_large="auto",
+    highlight_images=true,
+    items=[
+      {
+        "image_html":  "<img src='https://assets.ubuntu.com/v1/2dfe5445-landscape_logo.png' class='p-image-container__image' alt='Landscape' />",
+        "description_html": "<p>A single pane of glass to manage Ubuntu instances, including Ubuntu on WSL.</p>",
+        "cta_html": "<a href='https://ubuntu.com/landscape'>Learn more about Landscape ›</a>"
+      },
+      {
+        "image_html":  "<img src='https://assets.ubuntu.com/v1/2eeb892c-lxd_logo.png' class='p-image-container__image' alt='LXD' />",
+        "description_html": "<p>Fast, dense, and secure container and VM management at any scale.</p>",
+        "cta_html": "<a href='https://canonical.com/lxd'>Learn more about LXD ›</a>"
+      },
+      {
+        "image_html":  "<img src='https://assets.ubuntu.com/v1/d893a4f8-juju_logo.png' class='p-image-container__image' alt='Juju' />",
+        "description_html": "<p>Design and deploy entire workloads in just a few clicks.</p>",
+        "cta_html": "<a href='https://juju.is'>Learn more about Juju ›</a>"
+      },
+      {
+        "image_html":  "<img src='https://assets.ubuntu.com/v1/b2b32ae9-multipass_logo.png' class='p-image-container__image' alt='Multipass' />",
+        "description_html": "<p>Spin up Ubuntu VMs on Windows, Mac and Linux.</p>",
+        "cta_html": "<a href='https://multipass.run/'>Learn more about Multipass ›</a>"
+      }
+    ]
+  ) -%}
+  {%- endcall -%}
+
+  {%- call(slot) vf_resources(
+      title={
+        "text": "Additional resources",
+      },
+      blocks=[
+        {
+          "type": "resources",
+          "render_images": false,
+          "categories": [
+            {
+              "title": "Documentation",
+              "items": [
+                {
+                  "title": {
+                    "text": "Ubuntu on WSL documentation",
+                    "link_attrs": {
+                      "href": "https://documentation.ubuntu.com/wsl/stable/"
+                    }
+                  },
+                  "description": {
+                    "text": "The Ubuntu on WSL documentation, curated by community and Ubuntu developers.",
+                    "attrs": {}
+                  }
+                }
+              ]
+            },
+            {
+              "title": "Community",
+              "items": [
+                {
+                  "title": {
+                    "text": "Ask Ubuntu",
+                    "link_attrs": {
+                      "href": "https://askubuntu.com/"
+                    }
+                  },
+                  "description": {
+                    "text": "Stuck somewhere? Get your Ubuntu questions answered by power users.",
+                    "attrs": {}
+                  }
+                },
+                {
+                  "title": {
+                    "text": "Community Discourse",
+                    "link_attrs": {
+                      "href": "https://discourse.ubuntu.com/"
+                    }
+                  },
+                  "description": {
+                    "text": "Join the Ubuntu developers community and make your voice heard.",
+                    "attrs": {}
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      ) -%}
+  {%- endcall -%}
+
+  {{- vf_latest_news(title_text='Latest from our blog ›',
+    tag_name="ubuntu-wsl",
+    tag_id=3332,
+    items=4)
+  -}}
+
+  <script type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
+
+{% endblock content %}
