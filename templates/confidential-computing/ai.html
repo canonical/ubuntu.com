@@ -1,3 +1,5 @@
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+
 {% extends "confidential-computing/base_confidential-computing.html" %}
 
 {% block title %}Confidential AI{% endblock %}
@@ -207,24 +209,59 @@
     </div>
   </section>
 
-  <section class="p-section">
-    <hr class="p-rule is-fixed-width" />
-    <div class="row--50-50">
-      <div class="col">
-        <h2>Use Ubuntu Pro to further harden your confidential&nbsp;VMs</h2>
-      </div>
-      <div class="col">
-        <p>
-          While confidential VMs can protect your workload from external threats, vulnerabilities from within their boundaries remain a concern. This is where Ubuntu Pro becomes essential, to keep your guest CVM software stack always patched and up-to-date.
-        </p>
 
-        <hr class="p-rule--muted" />
-        <p>
-          <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-    </div>
-  </section>
+{{ vf_basic_section(
+  title={"text": "Use Ubuntu Pro to further harden your confidential VMs"},
+  is_split_on_medium=true,
+  items=[
+    {
+      "type": "image",
+      "item": {
+        "aspect_ratio": "4-3",
+        "attrs": {
+          "src": "https://assets.ubuntu.com/v1/df38fad4-ubuntu-pro.png",
+          "alt": "Ubuntu Pro"
+        }
+      }
+    },
+    {
+      "type": "description",
+      "item": {
+        "type": "text",
+        "content": "While confidential VMs can protect your workload from external threats, vulnerabilities from within their boundaries
+        remain a concern. This is where Ubuntu Pro becomes essential, in order to keep your guest CVM software stack patched and
+        up to date."
+      }
+    },
+    {
+      "type": "description",
+      "item": {
+        "type": "text",
+        "content": "Ubuntu Pro is Canonical’s comprehensive subscription for open source security, support, and compliance. It gives you
+        access to a trusted open source repository, compliance profiles for the most stringent security standards, and up to 15
+        years of vulnerability fixes for your OS, infrastructure, and applications &ndash; and the AI and open source components you
+        build with."
+      }
+    },
+    {
+      "type": "cta-block",
+      "item": {
+        "primary": {
+          "content_html": "Get a 30-day free trial",
+          "attrs": {
+            "href": "/pro/free-trial"
+          }
+        },
+        "link": {
+          "content_html": "Learn more about Ubuntu Pro&nbsp;&rsaquo;",
+          "attrs": {
+            "href": "/pro"
+          }
+        }
+      }
+    }
+  ]
+) }}
 
   <section class="p-section">
     <hr class="p-rule is-fixed-width" />

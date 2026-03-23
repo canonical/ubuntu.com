@@ -3,7 +3,7 @@
 {% block title %}Ubuntu FIPS for AWS{% endblock %}
 
 {% block meta_description %}
-  Ubuntu Pro FIPS for AWS is an Ubuntu Pro image with FIPS certified modules enabled by default for FedRAMP, HIPAA, PCI and ISO compliance. Ubuntu Pro FIPS images are secure and optimied for production on public cloud.
+  Get an AWS-ready image with FIPS-certified modules enabled by default. Ubuntu Pro FIPS for AWS is optimized for FedRAMP compliance.
 {% endblock %}
 
 {% block meta_copydoc %}
@@ -13,6 +13,8 @@
 {% block body_class %}
   is-paper
 {% endblock body_class %}
+
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
 
 {% block content %}
   <section class="p-section--hero">
@@ -97,7 +99,7 @@
               <div class="list-matrix-container">
                 <p class="p-heading--5">HIPAA, PCI, ISO compliance</p>
                 <p>
-                  Healthcare, financial services, insurance and other organisations that operate in heavily-regulated industries ensure compliance with HIPAA, PCI and ISO.
+                  Healthcare, financial services, insurance and other organizations that operate in heavily-regulated industries ensure compliance with HIPAA, PCI and ISO.
                 </p>
               </div>
             </div>
@@ -108,7 +110,7 @@
               <div class="list-matrix-container">
                 <p class="p-heading--5">Predictable and Secure</p>
                 <p>
-                  Ubuntu Pro FIPS is based on <a href="/aws/pro">Ubuntu Pro premium images</a>, with AWS optimisations built in and the most comprehensive open source security coverage in the industry.
+                  Ubuntu Pro FIPS is based on <a href="/aws/pro">Ubuntu Pro premium images</a>, with AWS optimizations built in and the most comprehensive open source security coverage in the industry.
                 </p>
               </div>
             </div>
@@ -134,7 +136,7 @@
               <div class="list-matrix-container">
                 <p class="p-heading--5">Open source security</p>
                 <p>
-                  Ubuntu Pro adds security coverage for the most important open source applications like Apache Kafka, NGINX, MongoDB, Redis and PostgreSQL.
+                  Ubuntu Pro adds security coverage for the most important open source applications like Apache Kafka, NGINX, MongoDB, Redis, and PostgreSQL.
                 </p>
               </div>
             </div>
@@ -143,9 +145,9 @@
             <hr class="u-hide--large u-hide--medium p-rule--muted" />
             <div class="list-matrix">
               <div class="list-matrix-container">
-                <p class="p-heading--5">10-year lifetime</p>
+                <p class="p-heading--5">Up to 15-year lifetime</p>
                 <p>
-                  Canonical backs Ubuntu Pro FIPS for 10 years, ensuring security updates are available throughout, with a guaranteed upgrade path.
+                  Canonical backs Ubuntu Pro FIPS for up to 15 years, ensuring security updates are available throughout, with a guaranteed upgrade path.
                 </p>
               </div>
             </div>
@@ -180,7 +182,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              Ubuntu Pro FIPS 22.04 LTS includes an AWS-optimised FIPS-certified 5.15 kernel and other FIPS-certified modules pre-enabled out of the box. Ubuntu Pro FIPS provides extended security maintenance through April 2032.
+              Ubuntu Pro FIPS 22.04 LTS includes an AWS-optimized FIPS-certified 5.15 kernel and other FIPS-certified modules pre-enabled out of the box. Ubuntu Pro FIPS provides extended security maintenance through April 2032.
             </p>
             <hr class="p-rule--muted" />
             <div class="p-inline">
@@ -198,7 +200,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              Ubuntu Pro FIPS 20.04 LTS includes an AWS-optimised FIPS-certified 5.4 kernel and other FIPS-certified modules pre-enabled out of the box. Ubuntu Pro FIPS provides expanded security maintenance through April 2030.
+              Ubuntu Pro FIPS 20.04 LTS includes an AWS-optimized FIPS-certified 5.4 kernel and other FIPS-certified modules pre-enabled out of the box. Ubuntu Pro FIPS provides expanded security maintenance through April 2030.
             </p>
             <hr class="p-rule--muted" />
             <a href="https://aws.amazon.com/marketplace/pp/prodview-rqccuqnx2yla4"
@@ -212,7 +214,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              Ubuntu Pro FIPS 18.04 LTS includes an AWS-optimised FIPS-certified 4.15 kernel and other FIPS-certified modules pre-enabled out of the box. Ubuntu Pro FIPS provides expanded security maintenance through April 2028.
+              Ubuntu Pro FIPS 18.04 LTS includes an AWS-optimized FIPS-certified 4.15 kernel and other FIPS-certified modules pre-enabled out of the box. Ubuntu Pro FIPS provides expanded security maintenance through April 2028.
             </p>
             <hr class="p-rule--muted" />
             <a href="https://aws.amazon.com/marketplace/pp/B08GCSCZJK"
@@ -247,7 +249,7 @@
         <div class="p-section--shallow">
           <p class="p-heading--5">Ubuntu Pro FIPS: AWS compliance made easy</p>
           <p>
-            With AWS, US government agencies and their partners have been able to combine unparalleled flexibility, breakthrough innovation, world- class security and AWS compliance. However when it comes to running a secure and compliant enterprise Linux on AWS, IT departments are often left with expensive options that sacrifice innovation for compliance. Watch this webinar on demand to see how AWS and Canonical, the publisher of Ubuntu, have collaborated to create a new way for government agencies to consume Linux on AWS.
+            With AWS, US government agencies and their partners have been able to combine unparalleled flexibility, breakthrough innovation, world-class security, and AWS compliance. However when it comes to running a secure and compliant enterprise Linux on AWS, IT departments are often left with expensive options that sacrifice innovation for compliance. Watch this on-demand webinar to see how AWS and Canonical, the publisher of Ubuntu, have collaborated to create a new way for government agencies to consume Linux on AWS.
           </p>
         </div>
         <hr class="p-rule--muted" />
@@ -280,7 +282,7 @@
             <tr>
               <td>22.04</td>
               <td>AWS Kernel</td>
-              <td>Kernel optimised for use in AWS clouds</td>
+              <td>Kernel optimized for use in AWS clouds</td>
               <td class="u-align--right">5.15</td>
               <td class="u-align--right">
                 <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4894">4894*</a>
@@ -359,7 +361,7 @@
             <tr>
               <td>20.04</td>
               <td>AWS Kernel</td>
-              <td>Kernel optimised for use in AWS clouds</td>
+              <td>Kernel optimized for use in AWS clouds</td>
               <td class="u-align--right">5.4</td>
               <td class="u-align--right">
                 <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4132">4126</a>
@@ -416,7 +418,7 @@
             <tr>
               <td>18.04</td>
               <td>AWS Kernel</td>
-              <td>Kernel optimised for use in AWS clouds</td>
+              <td>Kernel optimized for use in AWS clouds</td>
               <td class="u-align--right">4.15</td>
               <td class="u-align--right">3664</td>
             </tr>
@@ -571,38 +573,74 @@
         </div>
         <hr class="p-rule--muted" />
         <p id="us-east-pricing">
-          *The above pricing is based on the US East (Northern Virginia) region. For complete pricing, see Ubuntu Pro FIPS 22.04 LTS on the AWS Marketplace (Coming soon)
+          *The above pricing is based on the US East (Northern Virginia) region. For complete pricing, see the Ubuntu Pro FIPS 22.04 LTS listings on the AWS Marketplace (<a href="https://aws.amazon.com/marketplace/pp/prodview-o5noqh44k3uxm">AMD64</a> | <a href="https://aws.amazon.com/marketplace/pp/prodview-chpq7ixu4cj7a">Graviton</a>)
         </p>
       </div>
     </div>
   </section>
 
-  <section class="p-section--deep">
-    <div class="row--50-50">
-      <hr />
-      <div class="col">
-        <h2>AWS compliance and the most comprehensive open-source security coverage &ndash; that's Ubuntu Pro FIPS</h2>
-      </div>
-      <div class="col">
-        <div class="p-image-container--16-9 is-highlighted">
-          {{ image(url="https://assets.ubuntu.com/v1/26c8a871-aws_workspaces.png",
-                    alt="",
-                    width="900",
-                    height="600",
-                    hi_def=True,
-                    loading="lazy",
-                    attrs={"class": "p-image-container__image"}) | safe
-          }}
-        </div>
-        <p>
-          Ubuntu Pro FIPS images are based on Ubuntu Pro premium images, with security coverage included for the entire collection of software packages shipped with Ubuntu, tracking high and critical CVEs. This makes it ideal for companies that have embraced open source for their new products and need to ensure security for production and mission-critical workloads.
-        </p>
-        <hr class="p-rule--muted" />
-        <p>
-          <a href="/aws/pro">Learn more about Ubuntu Pro on AWS&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-    </div>
-  </section>
+  {{ vf_basic_section(
+    title={"text": "AWS compliance and the most comprehensive open-source security coverage with Ubuntu Pro FIPS"},
+    padding="deep",
+    items=[
+      {
+        "type": "image",
+        "padding": "shallow",
+        "item": {
+          "aspect_ratio": "16-9",
+          "is_highlighted": true,
+          "attrs": image(url="https://assets.ubuntu.com/v1/26c8a871-aws_workspaces.png",
+                        alt="",
+                        width="900",
+                        height="600",
+                        hi_def=True,
+                        loading="auto",
+                        attrs={"class": "p-image-container__image"},
+                        output_mode="attrs")
+        }
+      },
+      {
+        "type": "description",
+        "item": {
+          "type": "html",
+          "content": "
+            <p>
+              Ubuntu Pro FIPS images are based on Ubuntu Pro premium images, with security coverage included for the entire collection of software packages shipped with Ubuntu, tracking high and critical CVEs. This makes it ideal for companies that have embraced open source for their new products and need to ensure long-term stability, reliability, and security for production and mission-critical workloads.
+            </p>
+          "
+        }
+      },
+      {
+        "type": "list",
+        "item": {
+          "list_items": [
+            {
+              "list_item_type": "tick",
+              "content": "Get up to 15 years of security updates"
+            },
+            {
+              "list_item_type": "tick",
+              "content": "Access tools, automations, and profiles for security hardening"
+            },
+            {
+              "list_item_type": "tick",
+              "content": "Maximize uptime with automated, rebootless kernel patches"
+            }
+          ]
+        }
+      },
+      {
+        "type": "cta-block",
+        "item": {
+          "link": {
+            "content_html": "Learn more about Ubuntu Pro on AWS ›",
+            "attrs": {
+              "href": "/aws/pro"
+            }
+          }
+        }
+      }
+    ],
+  ) }}
 
 {% endblock content %}

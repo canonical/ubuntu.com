@@ -62,7 +62,7 @@
             <li class="p-list__item is-ticked">Support for real-time compute with PREEMPT_RT</li>
             <li class="p-list__item is-ticked">Time-bound for mission-critical latency requirements</li>
             <li class="p-list__item is-ticked">More preemptive than mainline Linux</li>
-            <li class="p-list__item is-ticked">12 year security update commitment</li>
+            <li class="p-list__item is-ticked">Up to 15 years of security maintenance</li>
           </ul>
           <p>
             <a class="js-invoke-modal" href="/kernel/real-time/contact-us" aria-controls="realtime-contact-modal">Talk to our team about how Real-time Ubuntu can support your work&nbsp;&rsaquo;</a>
@@ -259,7 +259,22 @@
       </div>
       <div class="col">
         <p>
-          The real-time kernel is available via <a href="/pro">Ubuntu Pro</a>, Canonical's enterprise security and compliance subscription. Ubuntu Pro is free for personal and small scale commercial use in up to 5 machines.
+          With the PREEMPT_RT patches being fully upstreamed, the real-time kernel is freely available for everyone from the 26.04 release onwards. Simply use the command:
+        </p>
+        <pre><code>sudo apt install ubuntu-realtime</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Need earlier versions?</h2>
+      </div>
+      <div class="col">
+        <p>
+          All previous releases of the real-time kernel are available via <a href="/pro">Ubuntu Pro</a>, Canonical's enterprise security and compliance subscription. Ubuntu Pro is free for personal and small scale commercial use in up to 5 machines.
         </p>
         <p>With an Ubuntu Pro subscription, launching the real-time kernel is as easy as:</p>
         <pre><code>pro attach
@@ -279,10 +294,10 @@ pro enable realtime-kernel</code></pre>
       </div>
       <div class="col">
         <p>
-          <a href="/engage/realtime-webinar-ga">Optimised Real-time Ubuntu</a> is available on 12th Gen Intel&reg; Core&trade; processors. Coupled with Intel&reg; Time Coordinated Computing (Intel&reg; TCC) and Time Sensitive Networking (IEEE TSN), the real-time kernel delivers industrial-grade performance to meet stringent latency requirements:
+          <a href="/engage/realtime-webinar-ga">Optimized Real-time Ubuntu</a> is available on 12th Gen Intel&reg; Core&trade; processors. Coupled with Intel&reg; Time Coordinated Computing (Intel&reg; TCC) and Time Sensitive Networking (IEEE TSN), the real-time kernel delivers industrial-grade performance to meet stringent latency requirements:
         </p>
         <p>
-          Intel-optimised Real-time Ubuntu is available on Intel SoCs via <a href="/pro/dashboard">Ubuntu Pro</a>:
+          Intel-optimized Real-time Ubuntu is available on Intel SoCs via <a href="/pro/dashboard">Ubuntu Pro</a>:
         </p>
         <pre><code>pro attach
 pro enable realtime-kernel --variant=intel-iotg</code></pre>
@@ -298,7 +313,7 @@ pro enable realtime-kernel --variant=intel-iotg</code></pre>
       </div>
       <div class="col">
         <p>
-          Based on the upstream v6.8 kernel, the <a href="/blog/real-time-24.04">24.04 release of Real-time Ubuntu</a> includes optimised support for Raspberry Pi hardware. Discover the possibilities of optimised real-time compute with enhanced performance on Raspberry Pi 4 and 5:
+          Based on the upstream v6.8 kernel, the <a href="/blog/real-time-24.04">24.04 release of Real-time Ubuntu</a> includes optimized support for Raspberry Pi hardware. Discover the possibilities of optimized real-time compute with enhanced performance on Raspberry Pi 4 and 5:
         </p>
         <pre><code>pro attach
 pro enable realtime-kernel --variant=raspi</code></pre>

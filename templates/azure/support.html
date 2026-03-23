@@ -1,5 +1,8 @@
 {% extends "azure/base_azure.html" %}
 
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
 {% block title %}Ubuntu Pro with Support{% endblock %}
 
 {% block meta_description %}
@@ -15,77 +18,147 @@
 {% endblock body_class %}
 
 {% block content %}
-  <section class="p-section--hero">
-    <div class="row--50-50">
-      <div class="col">
-        <h1>Ubuntu Pro with Support</h1>
-        <div class="p-section--shallow">
-          <p>
-            Ubuntu Pro with Support provides a supported, secure foundation for modern applications by adding 24x7
-            technical support for your Ubuntu Pro workloads on Azure, metered by the hour as a Private Offer.
-          </p>
-        </div>
-        <hr class="is-muted" />
-        <p>
-          <a href="/azure/contact-us"
-             class="p-button--positive js-invoke-modal"
-             aria-controls="azure-modal">Contact us</a>
-        </p>
-      </div>
-      <div class="col">
-        <div class="p-image-container u-hide--small">
-          {{ image(url="https://assets.ubuntu.com/v1/3ec9a6b0-ubuntu-pro-azure-@3x.png",
-                    alt="Ubuntu pro and Azure logo",
-                    width="1800",
-                    height="1128",
-                    hi_def=True,
-                    loading="auto",
-                    attrs={"class": "p-image-container__image"}) | safe
-          }}
-        </div>
-      </div>
-    </div>
-  </section>
+  {% call(slot) vf_hero(
+    title_text='Ubuntu Pro with Support',
+    layout='50/50',
+    blocks=[
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "text",
+          "content": "
+            Ubuntu Pro with Support provides a supported, security-maintained foundation for modern
+            applications by adding 24x7 technical support for your Ubuntu Pro workloads on Azure,
+            metered by the hour as a Private Offer.
+          "
+        }
+      },
+      {
+        "type": "description",
+        "item": {
+          "type": "html",
+          "content": '<hr class="is-muted" />'
+        }
+      },
+      {
+        "type": "cta-block",
+        "padding": "shallow",
+        "item": {
+          "primary": {
+            "content_html": "Contact us",
+            "attrs": {
+              "href": "/azure/contact-us",
+              "class": "js-invoke-modal",
+              "aria-controls": "azure-modal"
+            }
+          },
+        }
+      },
+      {
+        "type": "image",
+        "item": {
+          "aspect_ratio": "3-2",
+          "is_highlighted": false,
+          "is_cover": true,
+          "attrs": image(url="https://assets.ubuntu.com/v1/3ec9a6b0-ubuntu-pro-azure-@3x.png",
+                      alt="Ubuntu pro and Azure logo",
+                      width="1800",
+                      height="1128",
+                      hi_def=True,
+                      loading="auto",
+                      attrs={"class": "p-image-container__image"},
+                      output_mode="attrs")
+        }
+      },
+    ]
+  ) -%}
+  {% endcall -%}
 
-  <section class="p-section">
-    <div class="row--50-50">
-      <hr />
-      <div class="col">
-        <h2>Ubuntu Pro</h2>
-      </div>
-      <div class="col">
-        <p>
-          Ubuntu Pro for Azure is a premium image delivering the most comprehensive open source security and Azure compliance. Ubuntu Pro is suitable for small to large-scale Linux enterprise operations offering pay-as-you-go billing on your existing Azure invoice.
-        </p>
-        <p>
-          For more information about Ubuntu Pro on Azure, see <a href="/azure/pro">https://ubuntu.com/azure/pro</a>.
-        </p>
-      </div>
-    </div>
-  </section>
+  {{ vf_basic_section(
+    title={"text": "Ubuntu Pro"},
+    is_split_on_medium=true,
+    items=[
+      {
+        "type": "description",
+        "item": {
+          "type": "text",
+          "content": "
+            Ubuntu Pro for Azure is a premium image of Ubuntu, designed for Azure and  including
+            up to 15 years of comprehensive open source security and Azure compliance. Ubuntu
+            Pro is suitable for small to large-scale Linux enterprise operations offering
+            pay-as-you-go billing on your existing Azure invoice.
+          "
+        }
+      },
+      {
+        "type": "cta-block",
+        "padding": "shallow",
+        "item": {
+          "link": {
+            "content_html": "Learn more about Ubuntu Pro on Azure&nbsp;&rsaquo;",
+            "attrs": {
+              "href": "/azure/pro",
+            }
+          },
+        }
+      },
+    ]
+  ) }}
 
-  <section class="p-section">
-    <div class="row--50-50">
-      <hr />
-      <div class="col">
-        <h2>Ubuntu Pro with 24x7 Support</h2>
-      </div>
-      <div class="col">
-        <p>
-          With 24x7 SLAed support and the widest open source security patching, teams can build on Ubuntu Pro with Support to secure their application's open source supply chain and receive expert assistance when they need it.
-        </p>
-        <p>
-          24x7 Support is available for the Ubuntu operating system (infrastructure) and can be extended to include application support for <a href="/support">key open source applications</a>.
-        </p>
-        <p>
-          See more details at <a href="/support">https://ubuntu.com/support</a>.
-        </p>
-        <p>
-          If you already purchase support from Azure, speak to us about adding and integrating Canonical's Support into your existing Azure support &mdash; ensuring you have vendor-backed, SLAed support above the hypervisor for your workloads, without having to make any changes to end user issue reporting.
-        </p>
-      </div>
-    </div>
-  </section>
+  {{ vf_basic_section(
+    title={"text": "Ubuntu Pro with 24x7 Support"},
+    is_split_on_medium=true,
+    items=[
+      {
+        "type": "description",
+        "item": {
+          "type": "text",
+          "content": "
+            With 24x7 SLAed support and the widest open source security patching, teams can build 
+            on Ubuntu Pro with Support to secure their application's open source supply chain and
+            receive expert assistance when they need it.
+          "
+        }
+      },
+      {
+        "type": "description",
+        "item": {
+          "type": "text",
+          "content": '
+            24x7 Support is available for the Ubuntu operating system (infrastructure) and can be
+            extended to include application support for
+            <a href="/support">key open source applications</a>.
+          '
+        }
+      },
+      {
+        "type": "cta-block",
+        "padding": "shallow",
+        "item": {
+          "link": {
+            "content_html": "Learn more about our support offering&nbsp;&rsaquo;",
+            "attrs": {
+              "href": "/support",
+            }
+          },
+        }
+      },
+      {
+        "type": "description",
+        "item": {
+          "type": "text",
+          "content": '
+            If you already purchase support from Azure, 
+            <a class="js-invoke-modal" aria-controls="azure-modal" href="/azure/contact-us">speak to us</a>
+            about adding and integrating Canonical&apos;s Support into your existing Azure support
+            &mdash; ensuring you have vendor-backed, SLAed support above the hypervisor for your
+            workloads, without having to make any changes to end user issue reporting.
+          '
+        }
+      },
+    ]
+  ) }}
 
   <section class="p-section--deep">
     <div class="u-fixed-width">
@@ -111,7 +184,9 @@
           </tr>
           <tr>
             <th>
-              Security patches for 28,000+ open source packages, including Apache Kafka, MongoDB, RabbitMQ, Redis and NodeJS and key language ecosystems including Java, Python, Ruby and Javascript/Node.js
+              Security patches for the widest selection of popular open source packages, including
+              Apache Kafka, MongoDB, RabbitMQ, Redis, and NodeJS, and key language ecosystems
+              including Java, Python, Ruby, and JavaScript/Node.js
             </th>
             <td>No</td>
             <td>Yes</td>
@@ -146,8 +221,8 @@
           <tr>
             <th>Maintenance period</th>
             <td>5 years</td>
-            <td>10 years</td>
-            <td>10 years</td>
+            <td>Up to 15 years</td>
+            <td>Up to 15 years</td>
           </tr>
           <tr>
             <th>Knowledge Base</th>
