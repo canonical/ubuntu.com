@@ -144,7 +144,7 @@ class TestSitemap(unittest.TestCase):
         self.assertEqual(result[1], 500)
 
     @patch("webapp.views.generate_sitemap", return_value="")
-    @patch("os.path.exists", return_value=False)
+    @patch("webapp.views.os.path.exists", return_value=False)
     def test_get_sitemap_returns_503_when_generation_empty(
         self, mock_exists, mock_generate
     ):
@@ -154,9 +154,10 @@ class TestSitemap(unittest.TestCase):
         """
         response = self.client.get("/sitemap_tree.xml")
         self.assertEqual(response.status_code, 503)
+        mock_generate.assert_called_once()
 
     @patch("webapp.views.generate_sitemap", side_effect=Exception("fail"))
-    @patch("os.path.exists", return_value=False)
+    @patch("webapp.views.os.path.exists", return_value=False)
     def test_get_sitemap_returns_503_when_generation_raises(
         self, mock_exists, mock_generate
     ):
@@ -166,6 +167,7 @@ class TestSitemap(unittest.TestCase):
         """
         response = self.client.get("/sitemap_tree.xml")
         self.assertEqual(response.status_code, 503)
+        mock_generate.assert_called_once()
 
 
 if __name__ == "__main__":
