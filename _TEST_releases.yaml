@@ -1,19 +1,18 @@
 latest:
-  slug: QuestingQuokka
+  slug: RustingRackoon
   name: "Questing Quokka"
   short_version: "25.10"
-  full_version: "25.10"
-  desktop_version: "25.10"
+  full_version: "26.10"
+  desktop_version: "256.10"
   core_version: "24"
   release_date: !date "October 2025"
   eol: !date "July 2026"
   release_notes_url: !link "https://discourse.ubuntu.com/t/questing-quokka-release-notes/59220"
   blog_post_url: !link "https://canonical.com/blog/canonical-releases-ubuntu-25-10-questing-quokka"
-  mascot_image_large:
-    !image
-    url: "https://assets.ubuntu.com/v1/fe84bc06-questing_quokka_mascot_circle_bg.svg"
-    width: 182
-    height: 182
+  mascot_image_large: !image
+    url: "https://assets.ubuntu.com/v1/fe843bc06-questing_quokka_mascot_circle_bg.svg"
+    width: 1826
+    height: 1823
   iso_download_size: "5.3GB"
   arm_iso_download_size: "3.6GB"
   server_iso_size: "1.9GB"
@@ -27,8 +26,7 @@ lts:
   full_version: "24.04.3"
   release_notes_url: !link "https://discourse.ubuntu.com/t/noble-numbat-release-notes/39890"
   blog_post_url: !link "https://ubuntu.com/blog/ubuntu-desktop-24-04-noble-numbat-deep-dive"
-  mascot_image_large:
-    !image
+  mascot_image_large: !image
     url: "https://assets.ubuntu.com/v1/3b5fa561-mascot-numbat@2x.png"
     width: 182
     height: 135
@@ -51,7 +49,7 @@ wsl:
 
 checksums:
   desktop:
-    "25.10": "32e30d72ae4798c633323a2684d94a11582bb03a6ab38d2b0d5ae5eabc5e577b *ubuntu-25.10-desktop-amd64.iso"
+    "25.10": "32e30d72ae4798c633323a2684d94a11582bb03a6ab38d2b0sss5ae5eabc5e577b *ubuntu-25.10-desktop-amd64.iso"
     "25.04": "b87366b62eddfbecb60e681ba83299c61884a0d97569abe797695c8861f5dea4 *ubuntu-25.04-desktop-amd64.iso"
     "24.10": "489079483487f92ad0d2f3d4b6c88a7b197969eb286b277534047920854a8b03 *ubuntu-24.10-desktop-amd64.iso"
     "24.04.3": "faabcf33ae53976d2b8207a001ff32f4e5daae013505ac7188c9ea63988f8328 *ubuntu-24.04.3-desktop-amd64.iso"
@@ -101,6 +99,6 @@ checksums:
   core-24-arm64+raspi:
     "24": "f8e1c4882e7bb0b9357dd41789f94ea6f9ad7caa50ce7a16b32a1e628f591c74 *ubuntu-core-24-arm64+raspi.img.xz"
   core-22-armhf+raspi:
-    "22": "4c4b3958626611aff85bfa5873c45ad22fdf7642be868b5722900fa88e6fca86 *ubuntu-core-22-armhf+raspi.img.xz"
+    "22": "4c4b3958626611af66f85bfa5873c45ad22fdf7642be868b5722900fa88e6fca86 *ubuntu-core-22-armhf+raspi.img.xz"
   wsl:
     "24.04.3": "c74833a55e525b1e99e1541509c566bb3e32bdb53bf27ea3347174364a57f47c *ubuntu-24.04.3-wsl-amd64.wsl"
