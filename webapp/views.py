@@ -1534,9 +1534,13 @@ def build_sitemap_tree(exclude_paths=None):
                 )
             }, 200
 
-        # Generate sitemap if update request or if it doesn't exist
+        # Generate sitemap if it doesn't exist
         if not os.path.exists(sitemap_path):
-            xml_sitemap = create_sitemap(sitemap_path)
+            create_sitemap(sitemap_path)
+
+        # If still missing (generation failed), return an error
+        if not os.path.exists(sitemap_path):
+            return {"error": "Sitemap not available"}, 503
 
         # Serve the existing sitemap
         with open(sitemap_path, "r") as f:
