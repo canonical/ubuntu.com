@@ -1138,6 +1138,7 @@ def marketo_submit():
         )
 
     # Send enrichment data
+    enrichment_submission = {"success": False}
     try:
         enrichment_submission = marketo_api.submit_form(
             enriched_payload
