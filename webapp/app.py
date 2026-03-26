@@ -223,6 +223,13 @@ DYNAMIC_SITEMAPS = [
     "security/certifications/docs",
     "security/livepatch/docs",
     "robotics/docs",
+    # These directories contain only detail-page templates rendered via
+    # dynamic routes (e.g. /certified/<id>) — not standalone pages
+    "certified/components",
+    "certified/platforms",
+    "certified/hardware-details",
+    "/certified/search-results",
+    "/certified/model-details",
 ]
 
 # Set up application
