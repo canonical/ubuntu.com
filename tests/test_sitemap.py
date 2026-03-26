@@ -143,6 +143,32 @@ class TestSitemap(unittest.TestCase):
         self.assertIn("Generate_sitemap error", result[0])
         self.assertEqual(result[1], 500)
 
+    @patch("webapp.views.generate_sitemap", return_value="")
+    @patch("webapp.views.os.path.exists", return_value=False)
+    def test_get_sitemap_returns_503_when_generation_empty(
+        self, mock_exists, mock_generate
+    ):
+        """
+        GET /sitemap_tree.xml returns 503 when generate_sitemap produces
+        an empty result and no cached file exists.
+        """
+        response = self.client.get("/sitemap_tree.xml")
+        self.assertEqual(response.status_code, 503)
+        mock_generate.assert_called_once()
+
+    @patch("webapp.views.generate_sitemap", side_effect=Exception("fail"))
+    @patch("webapp.views.os.path.exists", return_value=False)
+    def test_get_sitemap_returns_503_when_generation_raises(
+        self, mock_exists, mock_generate
+    ):
+        """
+        GET /sitemap_tree.xml returns 503 when generate_sitemap raises
+        an exception and no cached file exists.
+        """
+        response = self.client.get("/sitemap_tree.xml")
+        self.assertEqual(response.status_code, 503)
+        mock_generate.assert_called_once()
+
 
 if __name__ == "__main__":
     unittest.main()

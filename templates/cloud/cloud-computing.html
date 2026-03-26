@@ -22,10 +22,10 @@
       </div>
       <div class="col">
         <p>
-          Cloud computing is the on-demand delivery of IT resources over a network. In traditional data centres, compute and storage resources used to be allocated manually by a dedicated IT team. In the cloud, this process is fully automated, leading to increased agility and significant cost savings.
+          Cloud computing is the on-demand delivery of IT resources over a network. In traditional data centers, compute, and storage resources used to be allocated manually by a dedicated IT team. In the cloud, this process is fully automated, leading to increased agility and significant cost savings.
         </p>
         <p>
-          Cloud computing is a <em>de facto</em> standard for modern data centre implementation and a foundation for <a href="/blog/what-is-cloud-native">cloud-native application</a> deployments. It is used by the majority of organisations worldwide. There is no reason why yours shouldn’t be next.
+          Cloud computing is a <em>de facto</em> standard for modern data center implementation and a foundation for <a href="/blog/what-is-cloud-native">cloud-native application</a> deployments. It is used by the majority of organizations worldwide, as it replaces the high upfront costs and management burdens of physical hardware with a scalable, pay-as-you-go model that accelerates innovation.
         </p>
         <hr class="is-muted" />
         <p>
@@ -56,13 +56,13 @@
       </div>
       <div class="col">
         <h3 class="p-heading--5">
-          In essence, cloud computing is a modern way of delivering IT services for organisations and individuals. It hides the entire complexity of a data centre from an end user behind a self-service portal.
+          In essence, cloud computing is a modern way of delivering IT services for organizations and individuals. It hides the entire complexity of a data center from an end user behind a self-service portal.
         </h3>
         <p>
-          The name "cloud computing" comes from a common practice of representing complex IT systems on diagrams as a cloud. Modern data centres are complex. They consist of racks, power devices, network devices, servers, storage arrays, cables and many other components. The end user does not need to understand all these intricacies. All they need are resources that can be consumed quickly and on demand. Cloud computing abstracts all these complexities, turning the data centre into a resource rental store.
+          The name "cloud computing" comes from a common practice of representing complex IT systems on diagrams as a cloud. Modern data centers are typically extremely complex, consisting of hundreds of racks, power devices, network devices, servers, storage arrays, cables, and many other components. The end user does not want to understand all these intricacies – they just want resources that can be consumed quickly and on demand. Cloud computing abstracts all these complexities, turning the data center into a resource rental store.
         </p>
         <p>
-          Underneath, cloud computing uses numerous technologies, including <a href="/server/docs/virtualization-introduction">virtualisation</a>, <a href="/containers/what-are-containers">containerisation</a> and <a href="https://www.techtarget.com/searchitoperations/definition/IT-automation">automation</a>. At the heart of the cloud computing stack, there is <a href="/openstack/what-is-openstack">cloud management software</a>. This software manages compute, network and storage resources distributed across the entire data centre, aggregates them into pools and enables on-demand provisioning of resource chunks through a self-service portal. End users can request those resources to be provisioned in the form of virtual machines (VMs) or containers.
+          Cloud computing uses numerous technologies, including <a href="/server/docs/virtualization-introduction">virtualization</a>, <a href="/containers/what-are-containers">containerization</a>, and <a href="https://www.techtarget.com/searchitoperations/definition/IT-automation">automation</a>. At the heart of the cloud computing stack, there is <a href="/openstack/what-is-openstack">cloud management software</a>. This software manages compute, network, and storage resources distributed across the entire data center, aggregates them into pools, and enables on-demand provisioning of resource chunks through a self-service portal. End users can request those resources to be provisioned in the form of virtual machines (VMs) or containers.
         </p>
       </div>
     </div>
@@ -73,17 +73,14 @@
       <div class="row--50-50">
         <hr />
         <div class="col">
-          <h2>Cloud computing vs virtualisation</h2>
+          <h2>Cloud computing vs virtualization</h2>
         </div>
         <div class="col">
-          <h3 class="p-heading--5">
-            Even though cloud computing uses virtualisation underneath, it is much more than that. While virtualisation is more like an engine, cloud computing is more like a car.
-          </h3>
           <p>
-            People who are new to cloud computing often get confused with the cloud computing vs virtualisation dilemma. Virtualisation is a technology that divides the physical resources of a server, such as the central processing unit (CPU), random access memory (RAM), storage and network, into chunks. Those can further be aggregated into VMs, consisting of virtual resources and allocated to end users. Hardware virtualisation, VM creation and termination is handled by a dedicated software, firmware or hardware component called a <a href="/blog/kvm-hyphervisor">hypervisor</a>.
+            People who are new to cloud computing often get confused with the cloud computing vs virtualization dilemma. Virtualization is a technology that divides the physical resources of a server, such as the central processing unit (CPU), random access memory (RAM), storage and network, into chunks. Those can further be aggregated into VMs, consisting of virtual resources and allocated to end users. Hardware virtualization, VM creation, and termination is handled by a dedicated software, firmware, or hardware component called a <a href="/blog/kvm-hyphervisor">hypervisor</a>.
           </p>
           <p>
-            In turn, cloud computing expands the capabilities provided by the hypervisor. The cloud software manages all the hypervisors and automates the VM provisioning process. Whenever a cloud user requests a VM with specific parameters through the self-service portal, it tries to find the least utilised hypervisor (unless configured otherwise), schedules VM creation on this hypervisor and returns VM details back to the user. Likewise, it automates the creation of other types of virtual resources, such as block storage devices, virtual networks, and more.
+            In turn, cloud computing expands the capabilities provided by the hypervisor. The cloud software manages all the hypervisors and automates the VM provisioning process. Whenever a cloud user requests a VM with specific parameters through the self-service portal, the cloud software tries to find the least utilized hypervisor (unless configured otherwise), schedules VM creation on this hypervisor, and returns VM details back to the user. Furthermore, it automates the creation of other types of virtual resources, such as block storage devices, virtual networks, and more.
           </p>
         </div>
       </div>
@@ -99,7 +96,7 @@
         </div>
         <div class="col">
           <p>
-            Compared to legacy IT infrastructure based on mainframes, blades and "pet” servers, cloud computing transforms data centres into resource pools, providing end users with immediate access to hardware: <a href="https://maas.io">physical</a> or <a href="/openstack/features">virtual</a>. The primary benefits of cloud computing include:
+            Compared to legacy IT infrastructure based on mainframes, blades, and “pet” servers, cloud computing transforms data centers into resource pools, providing end users with immediate access to hardware: <a href=”https://maas.io”>physical</a> or <a href=”/openstack/features”>virtual</a>. The primary benefits of cloud computing include:
           </p>
         </div>
       </div>
@@ -143,7 +140,22 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              Building a data centre might take a lot of time. In turn, public clouds provide businesses with immediate access to theoretically infinite resources. This removes any constraints from developers and accelerates the time to market.
+              Building a data center might take a lot of time. In turn, public clouds provide businesses with immediate access to theoretically infinite resources. This removes many constraints from developers and accelerates the time to market.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Optimal resource consumption</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              In traditional data centers, physical resources are owned by dedicated entities leading to sub-optimal resource consumption. In the cloud, all resources are shared and equally distributed, leaving no single server underutilized.
             </p>
           </div>
         </div>
@@ -158,7 +170,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              Cloud computing can deliver long-term cost savings for every organisation. The cloud enables executives to focus on the business strategy, developers to focus on business applications and IT staff to leverage automation rather than wasting time on manual processes.
+              Cloud computing can deliver long-term cost savings for every organization. The cloud enables executives to focus on the business strategy, developers to focus on business applications, and IT staff to leverage automation rather than wasting time on manual processes.
             </p>
           </div>
         </div>
@@ -189,7 +201,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              While there are many migration-as-a-service tools available on the market which facilitate <a href="/engage/cloud-migration-strategy-lift-and-shift-or-rebuild">lift and shift migration</a>, moving production workloads to the cloud might still be challenging. Fortunately, various <a href="/engage/a-business-guide-to-cloud-migration">cloud migration strategies</a> exist which enable organisations to move to the cloud while ensuring the availability of their critical applications.
+              While there are many migration-as-a-service tools available on the market which facilitate <a href="/engage/cloud-migration-strategy-lift-and-shift-or-rebuild">lift and shift migration</a>, moving production workloads to the cloud might still be challenging. Fortunately, various <a href="/engage/a-business-guide-to-cloud-migration">cloud migration strategies</a> exist which enable organizations to move to the cloud while ensuring the availability of their critical applications.
             </p>
           </div>
         </div>
@@ -200,11 +212,11 @@
         <hr class="is-muted" />
         <div class="row">
           <div class="col-3 col-medium-2">
-            <h3 class="p-heading--5">Redesigning workloads</h3>
+            <h3 class="p-heading--5">Re-designing workloads</h3>
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              Even though it is possible to just lift and shift legacy workloads to the cloud, organisations often have to re-design their workloads in the long term to benefit from all advantages of the cloud. Some take it as an opportunity to standardise on a <a href="/blog/what-is-cloud-native">cloud-native architecture</a> which leads to higher granularity, better scalability and increased resiliency.
+              Even though it is possible to just lift and shift legacy workloads to the cloud, organizations often have to re-design their workloads in the long term to receive all the benefits of the cloud. Some take it as an opportunity to standardize on a <a href="/blog/what-is-cloud-native">cloud-native architecture</a>, which leads to higher granularity, better scalability, and increased resiliency.
             </p>
           </div>
         </div>
@@ -219,7 +231,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              Moving all workloads and data to the cloud results in digital sovereignty risks. Moreover, in some parts of the world, it might be impossible due to local regulations. In response to this challenge, organisations can <a href="https://canonical.com/openstack/support">build their own private cloud</a>, taking back control over privacy while benefiting from all the advantages that cloud computing brings.
+              Moving all workloads and data to the cloud results in digital sovereignty risks. Moreover, in some parts of the world, it might be impossible due to local regulations. In response to this challenge, organizations can <a href="https://canonical.com/openstack/support">build their own private cloud</a>, taking back control over privacy while benefiting from all the advantages that cloud computing brings.
             </p>
           </div>
         </div>
@@ -235,11 +247,11 @@
       </div>
       <div class="col">
         <p>
-          Cloud computing proves to be the most economical way to run modern business applications. Therefore, it has been adopted by the majority of organisations all over the world. However, achieving cost optimisation in cloud environments is a non-trivial task. It involves adopting cloud cost optimisation best practices, running a cost analysis and making data-driven decisions regarding the placement of workloads. Only when following those strict guidelines, can organisations achieve true total cost of ownership (TCO) reduction compared to legacy IT infrastructure.
+          Cloud computing proves to be the most economical way to run modern business applications. Therefore, it has been adopted by the majority of organizations all over the world. However, achieving cost optimization in cloud environments is a non-trivial task. It involves adopting cloud cost optimization best practices, running a cost benefits analysis, and making data-driven decisions regarding the placement of workloads. Only when following those strict guidelines, can organizations achieve true total cost of ownership (TCO) reduction compared to legacy IT infrastructure.
         </p>
         <hr class="is-muted" />
         <p>
-          <a href="/engage/cloud-cost-optimisation-best-practices">Discover cloud cost optimisation best practices&nbsp;&rsaquo;</a>
+          <a href="/engage/cloud-cost-optimisation-best-practices">Discover cloud cost optimization best practices&nbsp;&rsaquo;</a>
         </p>
       </div>
     </div>
@@ -285,7 +297,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              A private cloud is owned by an organisation or an individual. All resources are exclusively dedicated to a single entity or a service. It runs on the organisation's premises or in an external data centre. It is managed by the organisation's operations team or a <a href="/blog/what-is-a-managed-it-service">managed service provider</a>.
+              A private cloud is owned by an organization or an individual. All resources are exclusively dedicated to a single entity or a service. It runs on the organization's premises or in an external data center. It is managed by the organization's operations team or a <a href="/blog/what-is-a-managed-it-service">managed service provider</a>.
             </p>
             <hr class="is-muted" />
             <p>
@@ -304,7 +316,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              Managed clouds are private clouds that are fully managed by a third-party organisation (aka managed service provider). The customer provides the hardware, but cloud operations and maintenance tasks are outsourced. The cloud can either run on the organisation's premises or in the managed service provider's data centre.
+              Managed clouds are private clouds that are fully managed by a third-party organization (sometimes called a managed service provider). The customer provides the hardware, but cloud operations and maintenance tasks are outsourced. The cloud can either run on the organization's premises or in the managed service provider's data center.
             </p>
             <hr class="is-muted" />
             <p>
@@ -323,7 +335,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              Micro clouds are a new class of infrastructure for on-demand computing at the edge. They differ from the internet-of-things (IoT), which uses thousands of single machines or sensors to gather data, yet they perform computing tasks. Micro clouds reuse proven cloud primitives but with the unattended, autonomous and clustering features that resolve typical edge computing challenges.
+              Micro clouds are a new class of infrastructure for on-demand computing at the edge. Micro clouds reuse proven cloud primitives but come with unattended, autonomous, and clustering features that resolve typical edge computing challenges, making them a powerful tool for modern, distributed computing needs.
             </p>
             <hr class="is-muted" />
             <p>
@@ -342,7 +354,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              Hybrid cloud is a cloud computing architecture that consists of at least one public cloud, at least one private cloud and a hybrid cloud manager (HCM). It is one of the most popular trends in the IT industry, adopted by 82% of IT leaders, according to the <a href="https://www.cisco.com/c/en/us/solutions/hybrid-cloud/2022-trends.html">Cisco 2022 Global Hybrid Cloud Trends Report</a>.
+              Hybrid cloud is a cloud computing architecture that consists of at least one public cloud, at least one private cloud, and a hybrid cloud manager (HCM). It is one of the most popular trends in the IT industry, adopted by 82% of IT leaders, according to the <a href="https://www.cisco.com/c/en/us/solutions/hybrid-cloud/2022-trends.html">Cisco 2022 Global Hybrid Cloud Trends Report</a>.
             </p>
             <hr class="is-muted" />
             <p>
@@ -361,7 +373,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              Multi-cloud (also referred to as multi cloud or multicloud) is a concept that refers to using multiple clouds from more than one cloud service provider at the same time. The term is also used to refer to the simultaneous running of bare metal, virtualised and containerised workloads.
+              Multi-cloud (also referred to as multi cloud or multicloud) is a concept that refers to using multiple clouds from more than one cloud service provider at the same time. The term is also used to refer to the simultaneous running of bare metal, virtualized, and containerized workloads.
             </p>
             <hr class="is-muted" />
             <p>
@@ -382,7 +394,7 @@
         </div>
         <div class="col">
           <p>
-            Cloud computing services are usually available to end users in the form of three primary models. Those include infrastructure-as-a-service (IaaS), platform-as-a-service (PaaS) and software-as-a-service (SaaS). Some more specific use cases exist too, such as container-as-a-service (CaaS). However, in essence, they are a subset of the main three.
+            Cloud computing services are usually available to end users in the form of three primary models: infrastructure-as-a-service (IaaS), platform-as-a-service (PaaS), and software-as-a-service (SaaS).
           </p>
         </div>
       </div>
@@ -396,8 +408,9 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              In the IaaS model, you provision resources. Those include the number of virtual CPUs (vCPUs), the amount of RAM, storage, etc. They come in the form of VMs or containers with a pre-installed operating system (OS). You manage everything up from there. IaaS is the most common cloud computing model as it allows for more freedom.
+              In the IaaS model, you provision resources. Those include the number of virtual CPUs (vCPUs), the amount of RAM, storage, etc. They come in the form of VMs or containers with a pre-installed operating system (OS). You manage everything up from there.
             </p>
+            <p>IaaS is the most common cloud computing model as it allows for more freedom.</p>
           </div>
         </div>
       </div>
@@ -411,8 +424,9 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              In the PaaS model, you provision workloads. While you are still responsible for delivering application code and data management, the PaaS platform takes care of scheduling resources (usually containers) and manages them, including the OS, middleware and runtime. The PaaS model has never been widely adopted due to its overall complexity.
+              In the PaaS model, you provision workloads. While you are still responsible for delivering application code and data management, the PaaS platform takes care of scheduling resources (usually containers) and manages them, including the OS, middleware, and runtime.
             </p>
+            <p>The PaaS model has never been widely adopted due to its overall complexity.</p>
           </div>
         </div>
       </div>
@@ -426,8 +440,9 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              In the SaaS model, you provision applications. They are deployed from pre-defined templates and can be configured according to your needs. Everything is managed by the cloud provider. Interest in the SaaS model is constantly increasing as it allows for full automation from the ground up.
+              In the SaaS model, you provision applications. They are deployed from pre-defined templates and can be configured according to your needs. Everything is managed by the cloud provider.
             </p>
+            <p>Interest in the SaaS model is constantly increasing as it allows for full automation from the ground up.</p>
           </div>
         </div>
       </div>
@@ -438,7 +453,7 @@
           <thead>
             <tr style="border: 0">
               <td>&nbsp;</td>
-              <th>Legacy data centre</th>
+              <th>Legacy data center</th>
               <th>IaaS</th>
               <th>Paas</th>
               <th>Saas</th>
@@ -529,7 +544,7 @@
                          color: #f3f3f3">Cloud provider</td>
             </tr>
             <tr style="border: 0">
-              <th style="border: none">Virtualisation</th>
+              <th style="border: none">Virtualization</th>
               <td class="u-align--center"
                   style="border:0.5rem solid #f3f3f3;
                          background-color: #d9d9d9">You manage</td>
@@ -617,10 +632,10 @@
           The easiest way to get started with cloud computing is in a public cloud. All leading public cloud providers, including <a href="/blog/aws-pricing">Amazon</a>, <a href="/blog/azure-pricing">Azure</a> and <a href="/blog/gcp-pricing">Google</a>, provide a free tier for newcomers, enabling them to use cloud resources up to a specific limit free of charge. Canonical partners with all of them, ensuring a frictionless experience when running Ubuntu workloads in public clouds. It also provides <a href="/pro">Ubuntu Pro</a> images with an extra security advantage for running production workloads on Ubuntu with confidence.
         </p>
         <p>
-          However, public cloud costs tend to grow fast as the demand for workloads increases. As a result, organisations should consider adopting hybrid multi-cloud architecture when running cloud workloads in the long term and on a large scale. This involves building a <a href="/openstack">cost-effective private cloud platform</a> as an extension to hyperscaler infrastructure. Read <a href="/engage/cloud-pricing-report">Canonical's cloud pricing report</a> to learn more.
+          However, public cloud costs tend to grow fast as the demand for workloads increases. As a result, organizations should consider adopting hybrid multi-cloud architecture when running cloud workloads in the long term and on a large scale. This involves building a <a href="/openstack">cost-effective private cloud platform</a> as an extension to hyperscaler infrastructure. Read <a href="/engage/cloud-pricing-report">Canonical's cloud pricing report</a> to learn more.
         </p>
         <p>
-          When it comes to private cloud implementation, Canonical provides a number of solutions to build a cloud platform tailored to your needs. Refer to the official <a href="/openstack/install">installation instructions</a> to get a fully functional private cloud platform up and running in a few minutes. More demanding customers can also leverage Canonical's commercial services, including <a href="https://canonical.com/openstack/support">private cloud design & delivery</a>, full <a href="/openstack/support">commercial support</a> and <a href="https://canonical.com/openstack/support">fully-managed services</a>.
+          When it comes to private cloud implementation, Canonical provides a number of solutions to build a cloud platform tailored to your needs. More demanding customers can also leverage Canonical's commercial services, including <a href="https://canonical.com/openstack/support">private cloud design & delivery</a>, full <a href="/openstack/support">commercial support</a>, and <a href="https://canonical.com/openstack/support">fully managed services</a>.
         </p>
         <hr class="is-muted" />
         <p>
@@ -633,7 +648,7 @@
   <section class="p-section--deep">
     <div class="p-section--shallow u-fixed-width">
       <hr />
-      <h2>All you need for your cloud computing</h2>
+      <h2>All you need for cloud computing</h2>
     </div>
     <div class="row">
       <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
@@ -695,8 +710,9 @@
             </div>
           </div>
           <div class="col-6 col-medium-3">
+            <p>Ubuntu Pro is a comprehensive subscription for open source security, support and compliance.</p>
             <p>
-              Ubuntu Pro is the most comprehensive Linux enterprise subscription, covering all aspects of open source, including 10 years of security updates and compliance for production workloads.
+              Ubuntu Pro offers a unified security standard for your entire cloud journey &ndash from public hyperscalers like AWS, Azure, and Google Cloud, to private OpenStack or hybrid deployments –  with out-of-the-box FIPS, DISA-STIG, and FedRAMP hardening, and up to 15 years of security maintenance, ensuring your cloud security is consistent, governed, and maximized for uptime.
             </p>
             <hr class="is-muted" />
             <p>
