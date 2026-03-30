@@ -1,9 +1,9 @@
 name: Pack and Deploy
 
-on:
-  push:
-    branches:
-      - main
+on: pull_request
+  # push:
+  #   branches:
+  #     - main
 
 concurrency: 
   group: ubuntu-com-deploy
