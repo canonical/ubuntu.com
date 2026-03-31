@@ -165,7 +165,11 @@ def appliance_install(appliance, device):
 
 def releasenotes_redirect():
     """
-    View to redirect to https://wiki.ubuntu.com/ URLs for release notes.
+    View to redirect to release notes document URIs.
+    We use a different behavior depending on the requested version:
+     - Redirect to https://documentation.ubuntu.com/ for 22.04 and all the
+       versions later or equal than 24.04
+     - Redirect to https://wiki.ubuntu.com/ for versions earlier than 22.04.
 
     This used to be done in the Apache frontend, but that is going away
     to be replace by the content-cache.
@@ -173,18 +177,23 @@ def releasenotes_redirect():
     Old apache redirects: https://pastebin.canonical.com/p/3TXyyNkWkg/
     """
 
+    base_uri = "https://documentation.ubuntu.com/release-notes/"
     version = flask.request.args.get("ver", "")[:5]
 
     for codename, release in Data().releases.items():
-        short_version = ".".join(release.version.split(".")[:2])
+        version_id_parts = release.version.split(".")[:2]
+        short_version = ".".join(version_id_parts)
         if version == short_version:
-            release_slug = release.full_codename.replace(" ", "")
+            version_tuple = tuple(int(part) for part in version_id_parts)
+            if version_tuple == (22, 4) or version_tuple >= (24, 4):
+                return flask.redirect(f"{base_uri}{version}/")
 
+            release_slug = release.full_codename.replace(" ", "")
             return flask.redirect(
                 f"https://wiki.ubuntu.com/{release_slug}/ReleaseNotes"
             )
 
-    return flask.redirect("https://wiki.ubuntu.com/Releases")
+    return flask.redirect(base_uri)
 
 
 def account_query():

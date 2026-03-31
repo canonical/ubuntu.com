@@ -266,26 +266,26 @@ class TestRoutes(VCRTestCase):
     def test_release_notes_redirect(self):
         """
         Check that release notes redirect endpoint returns 302 redirect to the
-        generic wiki releases URL
+        generic documentation releases notes URL
         """
         response = self.client.get("/getubuntu/releasenotes?os=ubuntu")
         self.assertEqual(302, response.status_code)
         self.assertEqual(
-            "https://wiki.ubuntu.com/Releases",
+            "https://documentation.ubuntu.com/release-notes/",
             response.location,
         )
 
     def test_release_notes_redirect_invalid_version(self):
         """
         Check that release notes redirect endpoint returns 302 redirect to the
-        generic wiki releases URL
+        generic documentation releases notes URL
         """
         response = self.client.get(
             "/getubuntu/releasenotes?os=ubuntu&ver=00.04"
         )
         self.assertEqual(302, response.status_code)
         self.assertEqual(
-            "https://wiki.ubuntu.com/Releases",
+            "https://documentation.ubuntu.com/release-notes/",
             response.location,
         )
 
@@ -306,14 +306,14 @@ class TestRoutes(VCRTestCase):
     def test_release_notes_redirect_jammy(self):
         """
         Check that release notes redirect endpoint returns 302 redirect to the
-        wiki release URL for 22.04
+        documentation release URL for 22.04
         """
         response = self.client.get(
             "/getubuntu/releasenotes?os=ubuntu&ver=22.04"
         )
         self.assertEqual(302, response.status_code)
         self.assertEqual(
-            "https://wiki.ubuntu.com/JammyJellyfish/ReleaseNotes",
+            "https://documentation.ubuntu.com/release-notes/22.04/",
             response.location,
         )
 
@@ -341,7 +341,7 @@ class TestRoutes(VCRTestCase):
         )
         self.assertEqual(302, response.status_code)
         self.assertEqual(
-            "https://wiki.ubuntu.com/NobleNumbat/ReleaseNotes",
+            "https://documentation.ubuntu.com/release-notes/24.04/",
             response.location,
         )
 
@@ -355,7 +355,7 @@ class TestRoutes(VCRTestCase):
         )
         self.assertEqual(302, response.status_code)
         self.assertEqual(
-            "https://wiki.ubuntu.com/ResoluteRaccoon/ReleaseNotes",
+            "https://documentation.ubuntu.com/release-notes/26.04/",
             response.location,
         )
 
