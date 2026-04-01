@@ -226,6 +226,9 @@ def releasenotes_redirect():
     base_uri = "https://documentation.ubuntu.com/release-notes/"
     version = flask.request.args.get("ver", "")[:5]
 
+    if not version:
+        return flask.redirect(base_uri)
+
     try:
         releases = ubuntu_release_meta()
     except (ValueError, requests.exceptions.Timeout) as e:

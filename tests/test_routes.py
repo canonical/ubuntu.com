@@ -263,7 +263,7 @@ class TestRoutes(VCRTestCase):
             )
         )
 
-    def test_release_notes_redirect(self):
+    def test_release_notes_redirect_no_version(self):
         """
         Check that release notes redirect endpoint returns 302 redirect to the
         generic documentation releases notes URL
