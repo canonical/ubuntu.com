@@ -88,7 +88,6 @@ from webapp.shop.advantage.views import (
     put_account_user_role,
     put_contract_entitlements,
 )
-
 from webapp.shop.views import (
     account_view,
     checkout,
