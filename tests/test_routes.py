@@ -303,6 +303,48 @@ class TestRoutes(VCRTestCase):
             response.location,
         )
 
+    def test_release_notes_redirect_lacking_version_information(self):
+        """
+        Check that release notes redirect endpoint returns 302 redirect to the
+        generic documentation release URL
+        """
+        response = self.client.get(
+            "/getubuntu/releasenotes?os=ubuntu&ver=24.04"
+        )
+        self.assertEqual(302, response.status_code)
+        self.assertEqual(
+            "https://documentation.ubuntu.com/release-notes/",
+            response.location,
+        )
+
+    def test_release_notes_missing_values(self):
+        """
+        Check that release notes redirect endpoint returns 302 redirect to the
+        generic documentation release URL
+        """
+        response = self.client.get(
+            "/getubuntu/releasenotes?os=ubuntu&ver=99.04"
+        )
+        self.assertEqual(302, response.status_code)
+        self.assertEqual(
+            "https://documentation.ubuntu.com/release-notes/",
+            response.location,
+        )
+
+    def test_release_notes_missing_values_works_for_valid_ones(self):
+        """
+        Check that release notes redirect endpoint returns 302 redirect to the
+        wiki release URL for 24.04 if the data is invalid for other versions
+        """
+        response = self.client.get(
+            "/getubuntu/releasenotes?os=ubuntu&ver=26.04"
+        )
+        self.assertEqual(302, response.status_code)
+        self.assertEqual(
+            "https://documentation.ubuntu.com/release-notes/26.04/",
+            response.location,
+        )
+
     def test_release_notes_redirect_jammy(self):
         """
         Check that release notes redirect endpoint returns 302 redirect to the
