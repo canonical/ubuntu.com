@@ -39,6 +39,7 @@ test.describe("Form ID validation", () => {
   }
 
   test("should discover and validate all static /contact-us pages", async ({ page }) => {
+    test.setTimeout(10000);
     const contactUsPages = await discoverContactUsPages(page);
     for (const url of contactUsPages) {
       await test.step(`Validating form on ${url}`, async () => {
@@ -46,12 +47,10 @@ test.describe("Form ID validation", () => {
         await acceptCookiePolicy(page);
 
         // Check that formid and mktoForm input fields are present
-        const formIdInput = page.locator('input[name="formid"]');
-        await expect(formIdInput).not.toBeEmpty();        
-        const form = page.locator('form[id^="mktoForm_"]');
+        const form = page.locator('form[id^="mktoForm_"]').first();
         await expect(form).toBeVisible();
-        await page.waitForTimeout(1000);
-      
+        const formIdInput = form.locator('input[name="formid"]');
+        await expect(formIdInput).not.toBeEmpty();
       });
     }
   });
