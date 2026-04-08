@@ -29,6 +29,13 @@
       </li>
 
       {% include "shared/forms/_country.html" %}
+
+      {% if showCommentsField is defined and showCommentsField %}
+       <li>
+        <label for="Comments_from_lead__c">How can Canonical help you?</label>
+        <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
+      </li>
+      {% endif %}
       <li>
         <label class="p-checkbox">
           <input class="p-checkbox__input" name="canonicalUpdatesOptIn" aria-labelledby="canonicalUpdatesOptIn" value="yes" type="checkbox" />

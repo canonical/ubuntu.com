@@ -101,12 +101,13 @@
             {% endif %}
 
           {% else %}
+            {% set comments_form_ids = ["4709", "4925"] %}
             {% if "form_cta" in metadata and metadata["form_cta"] != '' %}
-              {% with id=form_id, returnURL=metadata['path']+"/thank-you", cta=metadata['form_cta'], noPreselectCountry=form_id in no_preselect_country_form_ids %}
+              {% with id=form_id, returnURL=metadata['path']+"/thank-you", cta=metadata['form_cta'], noPreselectCountry=form_id in no_preselect_country_form_ids, showCommentsField=form_id in comments_form_ids %}
                 {% include "engage/shared/_en_engage_form.html" %}
               {% endwith %}
             {% else %}
-              {% with id=form_id, returnURL=metadata['path']+"/thank-you", noPreselectCountry=form_id in no_preselect_country_form_ids %}
+              {% with id=form_id, returnURL=metadata['path']+"/thank-you", noPreselectCountry=form_id in no_preselect_country_form_ids, showCommentsField=form_id in comments_form_ids %}
                 {% include "engage/shared/_en_engage_form.html" %}
               {% endwith %}
             {% endif %}
