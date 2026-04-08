@@ -1107,11 +1107,18 @@ def marketo_submit():
     # non-essential cookies (functionality, performance, or all)
     cookie_consent = flask.request.cookies.get("_cookies_accepted", "unset")
     non_essential_consent = cookie_consent in {
-        "functionality", "performance", "all"}
+        "functionality",
+        "performance",
+        "all",
+    }
 
     utm_keys = {
-        "utm_source", "utm_medium", "utm_campaign",
-        "utm_content", "utm_term", "utmcontent",
+        "utm_source",
+        "utm_medium",
+        "utm_campaign",
+        "utm_content",
+        "utm_term",
+        "utmcontent",
     }
 
     encoded_utms = flask.request.cookies.get("utms") or flask.request.form.get(
@@ -1159,8 +1166,7 @@ def marketo_submit():
                 parsed = urlparse(acq_url)
                 params = parse_qs(parsed.query, keep_blank_values=True)
                 cleaned = {
-                    k: v for k, v in params.items()
-                    if not k.startswith("utm_")
+                    k: v for k, v in params.items() if not k.startswith("utm_")
                 }
                 target["acquisition_url"] = urlunparse(
                     parsed._replace(query=urlencode(cleaned, doseq=True))
@@ -1194,13 +1200,15 @@ def marketo_submit():
 
     # TODO: Remove after QA - returns payloads without hitting Marketo
     if flask.request.args.get("dry_run") == "true":
-        return flask.jsonify({
-            "dry_run": True,
-            "cookie_consent": cookie_consent,
-            "non_essential_consent": non_essential_consent,
-            "payload": payload,
-            "enriched_payload": enriched_payload,
-        })
+        return flask.jsonify(
+            {
+                "dry_run": True,
+                "cookie_consent": cookie_consent,
+                "non_essential_consent": non_essential_consent,
+                "payload": payload,
+                "enriched_payload": enriched_payload,
+            }
+        )
 
     try:
         # Send form data
