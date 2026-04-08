@@ -1103,32 +1103,16 @@ def marketo_submit():
     original_form_id = form_fields.get("formid", 4198)
     enrichment_fields["original_form_id"] = original_form_id
 
-    if "formid" not in form_fields:
-        flask.flash(
-            "There was a problem submitting your form.",
-            "contact-form-fail",
-        )
-        with sentry_sdk.push_scope() as scope:
-            scope.set_extra("enrichment_fields", enrichment_fields)
-            sentry_sdk.capture_message("Marketo form ID missing")
-        return flask.redirect(f"{referrer}#contact-form-fail")
-
-    payload = {
-        "formId": form_fields.pop("formid"),
-        "input": [
-            {
-                "leadFormFields": form_fields,
-                "visitorData": visitor_data,
-                "cookie": flask.request.args.get("mkt", None),
-            }
-        ],
-    }
-
     # Only attach UTM values when the user has consented to
     # non-essential cookies (functionality, performance, or all)
     cookie_consent = flask.request.cookies.get("_cookies_accepted", "unset")
     non_essential_consent = cookie_consent in {
         "functionality", "performance", "all"}
+
+    utm_keys = {
+        "utm_source", "utm_medium", "utm_campaign",
+        "utm_content", "utm_term", "utmcontent",
+    }
 
     encoded_utms = flask.request.cookies.get("utms") or flask.request.form.get(
         "utms"
@@ -1158,6 +1142,50 @@ def marketo_submit():
                     acquisition_url, utm_dict, approved_utms
                 )
                 enrichment_fields["acquisition_url"] = enriched_acquisition_url
+
+    if not non_essential_consent:
+        # Strip utm_* keys from form_fields (e.g. hidden inputs)
+        for key in utm_keys:
+            form_fields.pop(key, None)
+
+        # Strip utm_* keys from enrichment_fields
+        for key in utm_keys:
+            enrichment_fields.pop(key, None)
+
+        # Strip utm_* query params from acquisition_url
+        for target in (form_fields, enrichment_fields):
+            acq_url = target.get("acquisition_url")
+            if acq_url:
+                parsed = urlparse(acq_url)
+                params = parse_qs(parsed.query, keep_blank_values=True)
+                cleaned = {
+                    k: v for k, v in params.items()
+                    if not k.startswith("utm_")
+                }
+                target["acquisition_url"] = urlunparse(
+                    parsed._replace(query=urlencode(cleaned, doseq=True))
+                )
+
+    if "formid" not in form_fields:
+        flask.flash(
+            "There was a problem submitting your form.",
+            "contact-form-fail",
+        )
+        with sentry_sdk.push_scope() as scope:
+            scope.set_extra("enrichment_fields", enrichment_fields)
+            sentry_sdk.capture_message("Marketo form ID missing")
+        return flask.redirect(f"{referrer}#contact-form-fail")
+
+    payload = {
+        "formId": form_fields.pop("formid"),
+        "input": [
+            {
+                "leadFormFields": form_fields,
+                "visitorData": visitor_data,
+                "cookie": flask.request.args.get("mkt", None),
+            }
+        ],
+    }
 
     enriched_payload = {
         "formId": "4198",
