@@ -34,12 +34,12 @@ export async function prepareInputFields(phoneInput, countryInput) {
  */
 function preFormatCountry(countryCode, countryInput) {
   if (countryInput.dataset.skipCountryPrepopulate === "true") {
-    const matchingOption = countryInput.querySelector(
-      `option[value="${countryCode}"]`
-    );
+    const matchingOption = countryInput.querySelector(`option[value="${countryCode.toUpperCase()}"]`);
     if (matchingOption) {
-      const firstOption = countryInput.querySelector("option");
-      firstOption.after(matchingOption);
+      const selectOption = countryInput.querySelector('option[value=""]');
+      if (selectOption) {
+        selectOption.after(matchingOption);
+      }
     }
   } else {
     countryInput.value = countryCode;

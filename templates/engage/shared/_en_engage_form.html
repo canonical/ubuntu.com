@@ -28,9 +28,7 @@
         <input required id="phone" name="phone" maxlength="255" type="tel" />
       </li>
 
-      {% with skipCountryPrepopulate=skipCountryPrepopulate %}
-        {% include "shared/forms/_country.html" %}
-      {% endwith %}
+      {% include "shared/forms/_country.html" %}
       <li>
         <label class="p-checkbox">
           <input class="p-checkbox__input" name="canonicalUpdatesOptIn" aria-labelledby="canonicalUpdatesOptIn" value="yes" type="checkbox" />
