@@ -33,7 +33,17 @@ export async function prepareInputFields(phoneInput, countryInput) {
  * @param {HTMLElement} countryInput - The select element for the country.
  */
 function preFormatCountry(countryCode, countryInput) {
-  countryInput.value = countryCode;
+  if (countryInput.dataset.skipCountryPrepopulate === "true") {
+    const matchingOption = countryInput.querySelector(
+      `option[value="${countryCode}"]`
+    );
+    if (matchingOption) {
+      const firstOption = countryInput.querySelector("option");
+      firstOption.after(matchingOption);
+    }
+  } else {
+    countryInput.value = countryCode;
+  }
 }
 
 /**
