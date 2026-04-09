@@ -68,7 +68,7 @@ export const fillExistingFields = async (
   }
   for (const { field } of testCheckboxFields) {
     if (await isExistingField(page, field)) {
-      await page.locator(field).click({ force: true });
+      await page.locator(field).check({ force: true });
     }
   }
   for (const { field } of testRadioFields) {

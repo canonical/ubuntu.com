@@ -73,7 +73,8 @@ test.describe("Modal validation tests", () => {
 
   test("should disable submit button when required checkbox is not checked", async ({ page }) => {
     // Check that submit button is disabled
-    const submitButton = page.getByRole("button", { name: /Submit/ });
+    const modal = page.locator("#contact-modal");
+    const submitButton = modal.getByRole("button", { name: /Submit/ });
     await expect(submitButton).toBeDisabled();
   });
 
