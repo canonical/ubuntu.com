@@ -1198,18 +1198,6 @@ def marketo_submit():
         "input": [{"leadFormFields": enrichment_fields}],
     }
 
-    # TODO: Remove after QA - returns payloads without hitting Marketo
-    if flask.request.args.get("dry_run") == "true":
-        return flask.jsonify(
-            {
-                "dry_run": True,
-                "cookie_consent": cookie_consent,
-                "non_essential_consent": non_essential_consent,
-                "payload": payload,
-                "enriched_payload": enriched_payload,
-            }
-        )
-
     try:
         # Send form data
         r = marketo_api.submit_form(payload)
