@@ -387,6 +387,60 @@ class TestRoutes(VCRTestCase):
             response.location,
         )
 
+    def test_format_md_returns_markdown_content_type(self):
+        """
+        When ?format=md is set on an HTML page,
+        the response should have text/markdown content type
+        """
+        response = self.client.get("/?format=md")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("text/markdown", response.content_type)
+
+    def test_format_md_body_is_not_html(self):
+        """
+        When ?format=md is set on an HTML page,
+        the response body should not contain typical HTML tags
+        """
+        response = self.client.get("/?format=md")
+        self.assertEqual(response.status_code, 200)
+        data = response.get_data(as_text=True)
+        self.assertNotIn("<!doctype html>", data.lower())
+        self.assertNotIn("<html", data.lower())
+
+    def test_normal_request_returns_html(self):
+        """
+        A normal request without ?format=md should return text/html
+        """
+        response = self.client.get("/")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("text/html", response.content_type)
+
+    def test_format_md_does_not_transform_json(self):
+        """
+        JSON endpoints should not be transformed by ?format=md
+        """
+        response = self.client.get("/mirrors.json?format=md")
+        self.assertEqual(response.status_code, 200)
+        self.assertNotIn("text/markdown", response.content_type)
+
+    def test_format_md_does_not_transform_redirects(self):
+        """
+        Redirect responses should not be transformed by ?format=md
+        """
+        response = self.client.get(
+            "/getubuntu/releasenotes?os=ubuntu&format=md"
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertNotIn("text/markdown", response.content_type)
+
+    def test_format_md_does_not_transform_404(self):
+        """
+        404 responses should not be transformed by ?format=md
+        """
+        response = self.client.get("/not-found-url?format=md")
+        self.assertEqual(response.status_code, 404)
+        self.assertNotIn("text/markdown", response.content_type)
+
     def test_release_notes_redirect_resolute(self):
         """
         Check that release notes redirect endpoint returns 302 redirect to the
