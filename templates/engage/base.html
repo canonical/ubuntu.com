@@ -85,29 +85,28 @@
       </div>
       {% if "form_id" in metadata and metadata["form_id"] != "" %}
         {% set form_id = metadata["form_id"] %}
-        {# Form IDs that show the optional "How can Canonical help you?" field #}
-        {% set comments_form_ids = ["4709", "4925"] %}
-        {% set no_prepopulate_country_form_ids = ["7722"] %}
+        {# Form IDs for no preselected country value #}
+        {% set no_preselect_country_form_ids = ["7722"] %}
         <div class="col-5" id="the-form">
           {% if metadata["language"] != '' %}
             {% set form = "engage/shared/_" + metadata["language"] + "_engage_form.html" %}
             {% if "form_cta" in metadata and metadata["form_cta"] != '' %}
-              {% with id=form_id, returnURL=metadata['path']+"/thank-you", cta=metadata['form_cta'], showCommentsField=form_id in comments_form_ids, skipCountryPrepopulate=form_id in no_prepopulate_country_form_ids %}
+              {% with id=form_id, returnURL=metadata['path']+"/thank-you", cta=metadata['form_cta'], noPreselectCountry=form_id in no_preselect_country_form_ids %}
                 {% include form %}
               {% endwith %}
             {% else %}
-              {% with id=form_id, returnURL=metadata['path']+"/thank-you", showCommentsField=form_id in comments_form_ids, skipCountryPrepopulate=form_id in no_prepopulate_country_form_ids %}
+              {% with id=form_id, returnURL=metadata['path']+"/thank-you", noPreselectCountry=form_id in no_preselect_country_form_ids %}
                 {% include form %}
               {% endwith %}
             {% endif %}
 
           {% else %}
             {% if "form_cta" in metadata and metadata["form_cta"] != '' %}
-              {% with id=form_id, returnURL=metadata['path']+"/thank-you", cta=metadata['form_cta'], showCommentsField=form_id in comments_form_ids, skipCountryPrepopulate=form_id in no_prepopulate_country_form_ids %}
+              {% with id=form_id, returnURL=metadata['path']+"/thank-you", cta=metadata['form_cta'], noPreselectCountry=form_id in no_preselect_country_form_ids %}
                 {% include "engage/shared/_en_engage_form.html" %}
               {% endwith %}
             {% else %}
-              {% with id=form_id, returnURL=metadata['path']+"/thank-you", showCommentsField=form_id in comments_form_ids, skipCountryPrepopulate=form_id in no_prepopulate_country_form_ids %}
+              {% with id=form_id, returnURL=metadata['path']+"/thank-you", noPreselectCountry=form_id in no_preselect_country_form_ids %}
                 {% include "engage/shared/_en_engage_form.html" %}
               {% endwith %}
             {% endif %}

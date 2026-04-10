@@ -33,7 +33,7 @@ export async function prepareInputFields(phoneInput, countryInput) {
  * @param {HTMLElement} countryInput - The select element for the country.
  */
 function preFormatCountry(countryCode, countryInput) {
-  if (countryInput.dataset.skipCountryPrepopulate === "true") {
+  if (countryInput.dataset.noPreselectCountry === "true") {
     const matchingOption = countryInput.querySelector(
       `option[value="${countryCode.toUpperCase()}"]`,
     );
