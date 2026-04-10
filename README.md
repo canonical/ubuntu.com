@@ -42,6 +42,13 @@ Once the server has started, you can visit <http://127.0.0.1:8001> in your brows
 
 For more information on how to work with ubuntu.com project please refer to [HACKING.md](HACKING.md).
 
+## Markdown response (`?format=md`)
+
+Any HTML page on the site can be served as Markdown by appending the `?format=md` query parameter. This is provided by the [`canonicalwebteam.markdown-response`](https://github.com/canonical/canonicalwebteam.markdown-response) package for LLM and crawler optimisation.
+
+- `https://ubuntu.com/desktop?format=md` returns the page content as `text/markdown`
+- Only `200 OK` HTML responses are converted; JSON endpoints, redirects, and error pages are unaffected
+
 # Deploy
 
 You can find the deployment config in the deploy folder.
