@@ -39,6 +39,7 @@ import canonicalwebteam.directory_parser as directory_parser
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.form_generator import FormGenerator
+from canonicalwebteam.markdown_response import MarkdownResponse
 
 from webapp.certified.views import certified_routes
 from webapp.handlers import init_handlers
@@ -236,6 +237,10 @@ app = FlaskBase(
     template_500="500.html",
     static_folder="../static",
 )
+
+# Markdown endpoint for LLM/crawler optimization
+# Serves any page as Markdown via ?format=md query parameter
+MarkdownResponse(app)
 
 # ChoiceLoader attempts loading templates from each path in successive order
 directory_parser_templates = (
