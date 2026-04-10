@@ -32,7 +32,6 @@ from canonicalwebteam.directory_parser import generate_sitemap
 from geolite2 import geolite2
 from requests import Session
 from requests.exceptions import HTTPError
-from ubuntu_release_info.data import Data
 from werkzeug.exceptions import BadRequest
 from canonicalwebteam.flask_base.env import get_flask_env
 
@@ -143,7 +142,7 @@ def download_thank_you(category):
 def wsl_install_redirect():
     """
     View to redirect to the Ubuntu Pro for WSL GitHub release download.
-    Used on 'desktop/wsl' page.
+    Used on 'wsl' page.
     """
     download_url = (
         "https://github.com/canonical/ubuntu-pro-for-wsl/releases/"
@@ -163,9 +162,60 @@ def appliance_install(appliance, device):
     )
 
 
+def ubuntu_release_meta():
+    """
+    Returns the ubuntu releases information.
+    """
+    url_release = "https://changelogs.ubuntu.com/meta-release"
+    url_release_dev = "https://changelogs.ubuntu.com/meta-release-development"
+
+    def parse_meta_url(url):
+        releases = {}
+
+        meta_data = requests.get(url, timeout=5)
+        if not meta_data.ok:
+            raise ValueError(
+                f"Unable to download meta-release data from {url}"
+            )
+
+        for release in meta_data.content.decode("utf-8").split("\n\n"):
+            # use the baseloader to prevent it from munging the version
+            # from a string to some odd integer value
+            release_data = yaml.load(release, Loader=yaml.BaseLoader)
+
+            if (
+                "Version" not in release_data
+                or "Dist" not in release_data
+                or "Name" not in release_data
+            ):
+                continue
+
+            version_id_parts = (
+                release_data["Version"].removesuffix(" LTS").split(".")[:2]
+            )
+            release_data["Version"] = ".".join(version_id_parts)
+            release_data["VersionTuple"] = tuple(
+                int(part) for part in version_id_parts
+            )
+
+            releases[release_data["Dist"]] = release_data
+
+        return releases
+
+    releases = parse_meta_url(url_release)
+    releases_dev = parse_meta_url(url_release_dev)
+    releases.update(releases_dev)
+
+    return releases
+
+
 def releasenotes_redirect():
     """
-    View to redirect to https://wiki.ubuntu.com/ URLs for release notes.
+    View to redirect to release notes document URIs.
+    We use a different behavior depending on the requested version:
+     - Redirect to https://documentation.ubuntu.com/ for 22.04 and all the
+       versions later or equal than 24.04
+     - Redirect to https://wiki.ubuntu.com/ for versions earlier than 22.04.
 
     This used to be done in the Apache frontend, but that is going away
     to be replace by the content-cache.
@@ -173,18 +223,30 @@ def releasenotes_redirect():
     Old apache redirects: https://pastebin.canonical.com/p/3TXyyNkWkg/
     """
 
+    base_uri = "https://documentation.ubuntu.com/release-notes/"
     version = flask.request.args.get("ver", "")[:5]
 
-    for codename, release in Data().releases.items():
-        short_version = ".".join(release.version.split(".")[:2])
-        if version == short_version:
-            release_slug = release.full_codename.replace(" ", "")
+    if not version:
+        return flask.redirect(base_uri)
 
+    try:
+        releases = ubuntu_release_meta()
+    except (ValueError, requests.exceptions.Timeout) as e:
+        sentry_sdk.capture_exception(e)
+        return flask.redirect(base_uri)
+
+    for release in releases.values():
+        if version == release["Version"]:
+            version_tuple = release["VersionTuple"]
+            if version_tuple == (22, 4) or version_tuple >= (24, 4):
+                return flask.redirect(f"{base_uri}{version}/")
+
+            release_slug = release["Name"].replace(" ", "")
             return flask.redirect(
                 f"https://wiki.ubuntu.com/{release_slug}/ReleaseNotes"
             )
 
-    return flask.redirect("https://wiki.ubuntu.com/Releases")
+    return flask.redirect(base_uri)
 
 
 def account_query():
@@ -1041,6 +1103,75 @@ def marketo_submit():
     original_form_id = form_fields.get("formid", 4198)
     enrichment_fields["original_form_id"] = original_form_id
 
+    # Only attach UTM values when the user has consented to
+    # non-essential cookies (functionality, performance, or all)
+    cookie_consent = flask.request.cookies.get("_cookies_accepted", "unset")
+    non_essential_consent = cookie_consent in {
+        "functionality",
+        "performance",
+        "all",
+    }
+
+    utm_keys = {
+        "utm_source",
+        "utm_medium",
+        "utm_campaign",
+        "utm_content",
+        "utm_term",
+        "utmcontent",
+    }
+
+    encoded_utms = flask.request.cookies.get("utms") or flask.request.form.get(
+        "utms"
+    )
+    if encoded_utms:
+        form_fields.pop("utms", None)
+        if non_essential_consent:
+            utms = unquote(encoded_utms)
+            utm_dict = dict(i.split(":", 1) for i in utms.split("&"))
+            approved_utms = [
+                "utm_source",
+                "utm_medium",
+                "utm_campaign",
+                "utm_content",
+                "utm_term",
+            ]
+            for k, v in utm_dict.items():
+                if k in approved_utms:
+                    if k == "utm_content":
+                        k = "utmcontent"
+                    enrichment_fields[k] = v
+
+            # Append utm values in acquisition url
+            acquisition_url = enrichment_fields.get("acquisition_url")
+            if acquisition_url:
+                enriched_acquisition_url = enrich_acquisition_url(
+                    acquisition_url, utm_dict, approved_utms
+                )
+                enrichment_fields["acquisition_url"] = enriched_acquisition_url
+
+    if not non_essential_consent:
+        # Strip utm_* keys from form_fields (e.g. hidden inputs)
+        for key in utm_keys:
+            form_fields.pop(key, None)
+
+        # Strip utm_* keys from enrichment_fields
+        for key in utm_keys:
+            enrichment_fields.pop(key, None)
+
+        # Strip utm_* query params from acquisition_url
+        for target in (form_fields, enrichment_fields):
+            acq_url = target.get("acquisition_url")
+            if acq_url:
+                parsed = urlparse(acq_url)
+                params = parse_qs(parsed.query, keep_blank_values=True)
+                cleaned = {
+                    k: v for k, v in params.items() if not k.startswith("utm_")
+                }
+                target["acquisition_url"] = urlunparse(
+                    parsed._replace(query=urlencode(cleaned, doseq=True))
+                )
+
     if "formid" not in form_fields:
         flask.flash(
             "There was a problem submitting your form.",
@@ -1061,34 +1192,6 @@ def marketo_submit():
             }
         ],
     }
-
-    encoded_utms = flask.request.cookies.get("utms") or flask.request.form.get(
-        "utms"
-    )
-    if encoded_utms:
-        form_fields.pop("utms", None)
-        utms = unquote(encoded_utms)
-        utm_dict = dict(i.split(":", 1) for i in utms.split("&"))
-        approved_utms = [
-            "utm_source",
-            "utm_medium",
-            "utm_campaign",
-            "utm_content",
-            "utm_term",
-        ]
-        for k, v in utm_dict.items():
-            if k in approved_utms:
-                if k == "utm_content":
-                    k = "utmcontent"
-                enrichment_fields[k] = v
-
-        # Append utm values in acquisition url
-        acquisition_url = enrichment_fields.get("acquisition_url")
-        if acquisition_url:
-            enriched_acquisition_url = enrich_acquisition_url(
-                acquisition_url, utm_dict, approved_utms
-            )
-            enrichment_fields["acquisition_url"] = enriched_acquisition_url
 
     enriched_payload = {
         "formId": "4198",
@@ -1138,6 +1241,7 @@ def marketo_submit():
         )
 
     # Send enrichment data
+    enrichment_submission = {"success": False}
     try:
         enrichment_submission = marketo_api.submit_form(
             enriched_payload

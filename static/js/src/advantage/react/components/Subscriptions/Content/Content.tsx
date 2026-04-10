@@ -51,6 +51,10 @@ const Content = () => {
     [setSelectedId, hasUnsavedChanges],
   );
 
+  const onCloseModal = useCallback(() => {
+    onSetActive(null);
+  }, [onSetActive]);
+
   // Select a token on the first load.
   useEffect(() => {
     if (!selectedId && !isLoading && allSubscriptions?.length) {
@@ -151,9 +155,7 @@ const Content = () => {
         // kept when clicking on a different subscription.
         key={selectedId}
         modalActive={modalActive}
-        onCloseModal={() => {
-          onSetActive(null);
-        }}
+        onCloseModal={onCloseModal}
         ref={scrollTargetRef}
         selectedId={selectedId}
         setHasUnsavedChanges={setHasUnsavedChanges}

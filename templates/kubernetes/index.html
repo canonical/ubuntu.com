@@ -1,9 +1,9 @@
 {% extends "kubernetes/base_kubernetes.html" %}
 
-{% block title %}Secure, enterprise-grade Kubernetes for multi-cloud operations{% endblock %}
+{% block title %}Trusted Kubernetes for production at scale{% endblock %}
 
 {% block meta_description %}
-  Canonical's securely designed enterprise-grade Kubernetes builds up from Ubuntu OS to hybrid multi-cloud container orchestration clouds, edge and IoT, managed Kubernetes and enterprise support packages.
+  Canonical’s securely designed Kubernetes offers hassle-free installation and maintenance for your containerized workloads.
 {% endblock meta_description %}
 
 {% block meta_copydoc %}
@@ -19,12 +19,12 @@
 
 {% block content %}
   {% call(slot) vf_hero(
-    title_text='Enterprise-grade Kubernetes <br class="u-hide--small u-hide--medium" />for multi-cloud operations',
+    title_text='Enterprise Kubernetes <br class="u-hide--small u-hide--medium" />for production at scale',
     layout='50/50-full-width-image'
     ) -%}
     {%- if slot == 'description' -%}
       <p>
-        Secure your Kubernetes deployments long term and focus on applications, not infrastructure. With Canonical Kubernetes, you get hassle-free installation and maintenance, and peace of mind for your containerized workloads.
+        Try Canonical Kubernetes to simplify your deployments, and focus on applications, not infrastructure. With Canonical Kubernetes, you get hassle-free installation and maintenance, and peace of mind for your containerized workloads.
       </p>
     {%- endif -%}
     {%- if slot == 'cta' -%}
@@ -55,17 +55,17 @@
           <h2>
             Why choose
             <br />
-            Canonical Kubernetes Platform?
+            Canonical Kubernetes platform?
           </h2>
         </div>
       </div>
       <div class="col">
         <ul class="p-list--divided">
           <li class="p-list__item is-ticked">
-            12-year security maintenance and support gives you control over your upgrades schedule
+            Up to 15-year security maintenance and support gives you long term stability, reliability, and control over your upgrades schedule
           </li>
           <li class="p-list__item is-ticked">
-            Easy to use with built-in, best-of-breed open source components for networking, local storage, DNS, load-balancer, metrics server, gateway, and ingress
+            Easy to use with built-in, enterprise-grade open source components for networking, local storage, DNS, load-balancer, metrics server, gateway, and ingress
           </li>
           <li class="p-list__item is-ticked">
             Zero ops from Day 0 to Day 2 - add and manage nodes in small Kubernetes clusters with minimal effort
@@ -74,7 +74,7 @@
             Automated cluster operations for easier large scale maintenance with <a href="https://juju.is">Juju</a>
           </li>
           <li class="p-list__item is-ticked">
-            The same security-maintained Kubernetes that scales from your laptop to the cloud and the data centre
+            The same security-maintained Kubernetes that scales from your laptop to the cloud and the data center
           </li>
           <li class="p-list__item is-ticked">CNCF conformant</li>
         </ul>
@@ -92,7 +92,7 @@
     </div>
     {% call(slot) vf_quote_wrapper(
       quote_size="small",
-      quote_text="Kubernetes is both fast-moving and hard, so supporting it ourselves was not a viable option. The thought of having to support it would be daunting. To keep it supported and up to date, it's better to have experts who do this every day involved and manage it for us.",
+      quote_text="Kubernetes is both fast-moving and hard, so supporting it ourselves was not a viable option. To keep it supported and up to date, it's better to have experts who do this every day involved and manage it for us.",
       citation_source_name_text="Michael Hawkshaw",
       citation_source_title_text="Mission Operations Infrastructure IT Service Manager",
       citation_source_organisation_text="European Space Operations Centre",
@@ -143,9 +143,16 @@
         <div class="col">
           <h3>Canonical Kubernetes</h3>
           <p>
-            Secure and automate your Kubernetes infrastructure with a trusted provider. Build on the experience we gained since 2015.  Our new Kubernetes distribution offers hassle-free maintenance, single-line installation process, and more control over your upgrade cadence. It's secure by default and comes with a 12-year support commitment  offered with an Ubuntu Pro subscription.
+            Automate your Kubernetes infrastructure with a trusted provider. Our new Kubernetes distribution is secure by default, offers <a href="https://canonical.com/blog/canonical-releases-fips-enabled-kubernetes">a built-in FIPS 140-3 mode</a>, and features a single-line installation process along with greater control and simplicity in maintenance and upgrading.
           </p>
-
+          <p>
+            Ubuntu Pro elevates your Kubernetes security. Get up to 15 years of automated security patching that covers the underlying Ubuntu OS nodes and the Kubernetes software itself. Ubuntu Pro also provides enterprise-grade support, hardening tools, and compliance profiles for long-term stability and an easier path to compliance.
+          </p>
+          <p>
+            <a class="p-button js-invoke-modal"
+               href="/kubernetes/contact-us"
+               aria-controls="kubernetes-modal">Talk to us to learn more</a>
+          </p>
         </div>
         <div class="col">
           <div class="p-image-container">
@@ -174,7 +181,7 @@
             </div>
             <div class="col-6">
               <p>
-                Lightweight, low-touch Kubernetes for cloud, edge and IoT. It brings all Kubernetes services and the most popular addons in a single package, and requires minimal ops for easy clustering, self-healing HA and simpler upgrades. Secure by default and CNCF conformant.
+                Compact and low-touch, MicroK8s has been one of the most popular lightweight Kubernetes editions for cloud, edge, and IoT since 2016. MicroK8s combines all Kubernetes services and the most popular addons into a single package, and requires minimal ops for easy clustering, self-healing HA, and simpler upgrades. MicroK8s is secure by default and CNCF conformant.
               </p>
               <hr class="p-rule--muted" />
               <p>
@@ -189,7 +196,7 @@
             </div>
             <div class="col-6">
               <p>
-                Composable, operator-based Kubernetes for the enterprise, with full life-cycle management for host and in-cluster with <a href="https://juju.is/">Juju</a>. It provides carrier-grade and hardware acceleration features, and support for third-party components and services. It gives you fully customizable deployments, with pluggable CNI, CSI, CRI and monitoring components. Secure by default and CNCF conformant.
+                Composable, operator-based Kubernetes for the enterprise, with full life-cycle management for host and in-cluster with <a href="https://juju.is/">Juju</a>. Charmed Kubernetes provides carrier-grade and hardware acceleration features, and support for third-party components and services. It gives you fully customizable deployments, with pluggable CNI, CSI, CRI and monitoring components. Charmed Kubernetes is secure by default and CNCF conformant.
               </p>
               <hr class="p-rule--muted" />
               <p>
@@ -200,16 +207,6 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <hr class="p-rule--muted" />
-      <div class="col-start-large-7 col-6">
-        <p>
-          <a class="p-button js-invoke-modal"
-             href="/kubernetes/contact-us"
-             aria-controls="kubernetes-modal">Talk to us to learn more</a>
-        </p>
-      </div>
-    </div>
   </section>
 
   <section class="p-section">
@@ -217,11 +214,7 @@
       <hr class="p-rule" />
       <div class="col">
         <div class="p-section--shallow u-hide--large">
-          <h2>
-            Public cloud Kubernetes
-            <br />
-            powered by Ubuntu
-          </h2>
+          <h2>Get full integration for your Kubernetes on public clouds, powered by Ubuntu</h2>
         </div>
         <div class="p-image-container u-hide--small u-hide--medium">
           {{ image(url="https://assets.ubuntu.com/v1/5a2779e1-public%20cloud.png",
@@ -236,23 +229,25 @@
       </div>
       <div class="col">
         <div class="p-section--shallow u-hide--medium u-hide--small">
-          <h2>
-            Public cloud Kubernetes
-            <br />
-            powered by Ubuntu
-          </h2>
+          <h2>Get full integration for your Kubernetes on public clouds, powered by Ubuntu</h2>
         </div>
-        <p>Cloud-tailored experience, optimized kernels, unlimited options</p>
+        <p>
+          Get full integration and extensive optimizations for Kubernetes on all major public clouds when you use Ubuntu as your host OS.
+        </p>
         <hr class="p-rule--muted u-no-margin--bottom" />
         <ul class="p-list--divided">
           <li class="p-list__item is-ticked">Ubuntu is the host OS for the world's most popular cloud-hosted Kubernetes</li>
-          <li class="p-list__item is-ticked">Optimized for performance, boot speed, and drivers on all major public clouds</li>
           <li class="p-list__item is-ticked">
-            Out-of-the-box cloud integration with the option of enterprise-grade commercial support
+            Ubuntu is optimized for performance, boot speed, and drivers on all major public clouds
           </li>
-          <li class="p-list__item is-ticked">Ubuntu Pro provides deeper integrations with cloud services</li>
-          <li class="p-list__item is-ticked">In-cloud Ubuntu package mirrors for high bandwidth and local updates</li>
-          <li class="p-list__item is-ticked">Full control over kernel security patching with Canonical Livepatch</li>
+          <li class="p-list__item is-ticked">
+            Get out-of-the-box cloud integration with the option of enterprise-grade commercial support
+          </li>
+          <li class="p-list__item is-ticked">Get in-cloud Ubuntu package mirrors for high bandwidth and local updates</li>
+          <li class="p-list__item is-ticked">Get full control over kernel security patching with Canonical Livepatch</li>
+          <li class="p-list__item is-ticked">
+            Get up to 15 years of on-cloud security maintenance and additional features through <a href="/pro">Ubuntu Pro</a>
+          </li>
         </ul>
         <div class="p-cta-block">
           <p>
@@ -324,29 +319,39 @@
       <div class="col">
         <div class="p-section--shallow">
           <h2>
-            Integrated
+            Automated
             <br />
-            cluster management platforms
+            Kubernetes lifecycle
           </h2>
         </div>
-        <div class="u-hide--medium u-hide--small">
+        <div class="p-section--shallow">
           <p>Remove the toil of Kubernetes cluster management</p>
           <hr class="p-rule--muted u-no-margin--bottom" />
           <ul class="p-list--divided">
-            <li class="p-list__item is-ticked">No need to yaml and cli, we integrate with the most popular GUIs</li>
-            <li class="p-list__item is-ticked">Single pane of glass for your Kubernetes and container estate</li>
-            <li class="p-list__item is-ticked">Unified multi-cluster management and real-time monitoring</li>
+            <li class="p-list__item is-ticked">Declarative cluster provisioning and lifecycle management with Cluster API</li>
+            <li class="p-list__item is-ticked">
+              A consistent operating model for Kubernetes clusters across different infrastructures
+            </li>
+            <li class="p-list__item is-ticked">Open and vendor-neutral approach built around upstream Kubernetes tooling</li>
+            <li class="p-list__item is-ticked">Better automation, repeatability, and compliance for large-scale cluster fleets</li>
+            <li class="p-list__item is-ticked">
+              Observability on a single pane of glass for your Kubernetes and container estate
+            </li>
+            <li class="p-list__item is-ticked">Unified multi-cluster supervision and real-time cluster monitoring</li>
             <li class="p-list__item is-ticked">Policy-based management, governance, security and compliance</li>
             <li class="p-list__item is-ticked">GitOps at scale for application management and configuration</li>
             <li class="p-list__item is-ticked">Flexibility across environments from public cloud to edge</li>
+            <li class="p-list__item is-ticked">
+              Integration with <strong>Sylva</strong> for telecom, edge, and distributed cloud environments
+            </li>
           </ul>
           <div class="p-logo-section--dense">
             <div class="p-logo-section__items">
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/58440b6b-rancher-logo.png",
-                                alt="Rancher",
-                                width="107",
-                                height="96",
+                {{ image(url="https://assets.ubuntu.com/v1/6d7bc7fa-sylva-logo.png",
+                                alt="Sylva",
+                                width="151",
+                                height="312",
                                 hi_def=True,
                                 loading="lazy",
                                 attrs={"class": "p-logo-section__logo"}) | safe
@@ -377,52 +382,6 @@
         </div>
       </div>
       <div class="col">
-        <div class="u-hide--large">
-          <p>Remove the toil of Kubernetes cluster management</p>
-          <hr class="p-rule--muted u-no-margin--bottom" />
-          <ul class="p-list--divided">
-            <li class="p-list__item is-ticked">No need to yaml and cli, we integrate with the most popular GUIs</li>
-            <li class="p-list__item is-ticked">Single pane of glass for your Kubernetes and container estate</li>
-            <li class="p-list__item is-ticked">Unified multi-cluster management and real-time monitoring</li>
-            <li class="p-list__item is-ticked">Policy-based management, governance, security and compliance</li>
-            <li class="p-list__item is-ticked">GitOps at scale for application management and configuration</li>
-            <li class="p-list__item is-ticked">Flexibility across environments from public cloud to edge</li>
-          </ul>
-          <div class="p-logo-section--dense">
-            <div class="p-logo-section__items">
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/58440b6b-rancher-logo.png",
-                                alt="Rancher",
-                                width="107",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/19c3c265-spectrocloud-logo.png",
-                                alt="Spectro Cloud",
-                                width="87",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/9ffbe97e-azure-arc-logo.png",
-                                alt="Azure arc",
-                                width="42",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="p-image-container u-hide--medium u-hide--small">
           {{ image(url="https://assets.ubuntu.com/v1/9bcc23aa-on%20openstack.png",
                     alt="",
@@ -530,19 +489,19 @@
               </div>
               <div class="col-4">
                 <ul class="p-list--divided">
-                  <li class="p-list__item is-ticked">High Availability</li>
+                  <li class="p-list__item is-ticked">High Availability (HA)</li>
                   <li class="p-list__item is-ticked js-discoverer-item">
                     <a href="/public-cloud">Public clouds</a>, VMware, <a href="/openstack">OpenStack</a>
                   </li>
                   <li class="p-list__item is-ticked u-hide js-discoverer-pro-item">
-                    <a href="/public-cloud">Public clouds</a>, VMware, <a href="/openstack">OpenStack</a>, <a href="https://maas.io/">Bare Metal</a>
+                    <a href="/public-cloud">Public clouds</a>, VMware, <a href="/openstack">OpenStack</a>, <a href="https://maas.io/">bare metal</a>
                   </li>
                   <li class="p-list__item is-ticked js-discoverer-item">Storage and SDN basic options</li>
                   <li class="p-list__item is-ticked u-hide js-discoverer-pro-item">Storage and SDN extensive options</li>
                   <li class="p-list__item is-ticked">Logging, monitoring, alerting</li>
                   <li class="p-list__item is-ticked">Kubernetes lifecycle management</li>
                   <li class="p-list__item is-ticked">Security essentials</li>
-                  <li class="p-list__item is-ticked">Supported or Fully Managed</li>
+                  <li class="p-list__item is-ticked">Supported or fully managed</li>
 
                   <li class="p-list__item is-crossed u-text--muted js-discoverer-muted-item">Third-party integrations</li>
                   <li class="p-list__item is-crossed u-text--muted js-discoverer-muted-item">GPU Acceleration</li>
@@ -598,99 +557,6 @@
   </section>
 
   <section class="p-section">
-    <div class="u-fixed-width">
-      <hr class="p-rule" />
-      <h2 class="p-text--small-caps" id="full-support">Fully-supported Kubernetes clouds</h2>
-    </div>
-    <div class="u-fixed-width">
-      <div class="p-logo-section">
-        <div class="p-logo-section__items">
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/3948d6dd-openstack-logo.png",
-                        alt="OpenStack",
-                        width="182",
-                        height="138",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/4452b734-vmware-logo.png",
-                        alt="VMWare",
-                        width="140",
-                        height="135",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/d987ba27-Rackspace%20logo.png",
-                        alt="Rackspace",
-                        width="155",
-                        height="135",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/05285685-equinix-logo.png",
-                        alt="Equinix",
-                        width="113",
-                        height="135",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/dae49585-joyent-logo.png",
-                        alt="Joyent",
-                        width="105",
-                        height="135",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/b526fd14-cloud-sigma-logo.png",
-                        alt="CloudSigma",
-                        width="141",
-                        height="135",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/4ec1a195-maas-logo.png",
-                        alt="Canonical MAAS",
-                        width="87",
-                        height="135",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/cd584004-lxd-logo.png",
-                        alt="Canonical LXD",
-                        width="66",
-                        height="135",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe
-            }}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-section">
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
@@ -737,10 +603,10 @@
   <hr class="p-rule is-fixed-width" />
   <section class="p-strip is-deep">
     <div class="u-fixed-width">
-      <h2>Get your K8s questions answered today</h2>
+      <h2>Talk to an expert</h2>
       <a class="p-heading--2 js-invoke-modal"
          href="/kubernetes/contact-us"
-         aria-controls="kubernetes-modal">Contact us</a>
+         aria-controls="kubernetes-modal">Get in touch</a>
     </div>
   </section>
 

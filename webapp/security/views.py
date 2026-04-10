@@ -118,7 +118,8 @@ def notice(notice_id):
             cves_and_references = [
                 cve
                 for cve in cves_and_references
-                if cve_query.upper() in cve["id"]
+                if isinstance(cve, dict)
+                and cve_query.upper() in cve.get("id", "")
             ]
         cves_and_references = sorted(
             cves_and_references,

@@ -37,9 +37,9 @@
 		</tr>
 	</thead>
 	<tbody>
-  {% set versions_to_display = versions if version == "all" else [selected_version] %}
-
-  {% for version in versions_to_display %}
+    {% set versions_to_display = versions if version == "all" else [selected_version] %}
+    {% for version in versions_to_display %}
+    {% set is_cos_override = product == "cos" and version.release in ["Track 1", "Track 2"] %}
     <tr>
       <td style="overflow: visible;">
         <span class="p-heading--5">
@@ -73,25 +73,37 @@
           {{ version.supported.date }}
           {% if version.supported.is_past %}
             <br />
-            {% include "about/partials/_coverage-chip-standard.html" %}
+            {% if is_cos_override %}
+              <span class="p-chip--negative is-readonly u-horizontal-negative-nudge">
+                <span class="p-chip__value">No longer maintained</span>
+              </span>
+            {% else %}
+              {% include "about/partials/_coverage-chip-standard.html" %}
+            {% endif %}
           {% endif %}
         {% elif version.supported.notes %}
           {{ version.supported.notes | capitalize}}
         {% endif %}
       </td>
-
+      
+      <!-- Expanded security maintenance -->
       <td>
-        {% if version.pro_supported.date %}
-          {{ version.pro_supported.date }}
-          {% if version.pro_supported.is_past %}
-            <br />
-            {% include "about/partials/_coverage-chip-pro.html" %}
+        {% if is_cos_override %}
+          {{ "Not available" }}
+        {% else %}
+          {% if version.pro_supported.date %}
+            {{ version.pro_supported.date }}
+            {% if version.pro_supported.is_past %}
+              <br />
+              {% include "about/partials/_coverage-chip-pro.html" %}
+            {% endif %}
+          {% elif version.pro_supported.notes %}
+            {{ version.pro_supported.notes | capitalize}}
           {% endif %}
-        {% elif version.pro_supported.notes %}
-          {{ version.pro_supported.notes | capitalize}}
         {% endif %}
       </td>
-
+      
+      <!-- Break/bug support -->
       <td>
         {% if version.pro_supported.date %}
           {{ version.pro_supported.date }}
@@ -104,6 +116,7 @@
         {% endif %}
       </td>
 
+      <!-- Legacy support -->
       <td>
         {% if version.legacy_supported.date %}
           {{ version.legacy_supported.date }}

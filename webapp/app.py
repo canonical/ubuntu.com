@@ -583,7 +583,7 @@ app.add_url_rule(
     view_func=download_server_steps,
 )
 
-app.add_url_rule("/desktop/wsl/install", view_func=wsl_install_redirect)
+app.add_url_rule("/wsl/install", view_func=wsl_install_redirect)
 
 app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
 

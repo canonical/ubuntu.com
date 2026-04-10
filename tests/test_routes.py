@@ -255,12 +255,150 @@ class TestRoutes(VCRTestCase):
         Check WSL install redirect endpoint returns 302 redirect
         to the GitHub release URL
         """
-        response = self.client.get("/desktop/wsl/install")
+        response = self.client.get("/wsl/install")
         self.assertEqual(response.status_code, 302)
         self.assertTrue(
             response.location.startswith(
                 "https://github.com/canonical/ubuntu-pro-for-wsl/releases/"
             )
+        )
+
+    def test_release_notes_redirect_no_version(self):
+        """
+        Check that release notes redirect endpoint returns 302 redirect to the
+        generic documentation releases notes URL
+        """
+        response = self.client.get("/getubuntu/releasenotes?os=ubuntu")
+        self.assertEqual(302, response.status_code)
+        self.assertEqual(
+            "https://documentation.ubuntu.com/release-notes/",
+            response.location,
+        )
+
+    def test_release_notes_redirect_invalid_version(self):
+        """
+        Check that release notes redirect endpoint returns 302 redirect to the
+        generic documentation releases notes URL
+        """
+        response = self.client.get(
+            "/getubuntu/releasenotes?os=ubuntu&ver=00.04"
+        )
+        self.assertEqual(302, response.status_code)
+        self.assertEqual(
+            "https://documentation.ubuntu.com/release-notes/",
+            response.location,
+        )
+
+    def test_release_notes_redirect_focal(self):
+        """
+        Check that release notes redirect endpoint returns 302 redirect to the
+        wiki release URL for 20.04
+        """
+        response = self.client.get(
+            "/getubuntu/releasenotes?os=ubuntu&ver=20.04"
+        )
+        self.assertEqual(302, response.status_code)
+        self.assertEqual(
+            "https://wiki.ubuntu.com/FocalFossa/ReleaseNotes",
+            response.location,
+        )
+
+    def test_release_notes_redirect_lacking_version_information(self):
+        """
+        Check that release notes redirect endpoint returns 302 redirect to the
+        generic documentation release URL
+        """
+        response = self.client.get(
+            "/getubuntu/releasenotes?os=ubuntu&ver=24.04"
+        )
+        self.assertEqual(302, response.status_code)
+        self.assertEqual(
+            "https://documentation.ubuntu.com/release-notes/",
+            response.location,
+        )
+
+    def test_release_notes_missing_values(self):
+        """
+        Check that release notes redirect endpoint returns 302 redirect to the
+        generic documentation release URL
+        """
+        response = self.client.get(
+            "/getubuntu/releasenotes?os=ubuntu&ver=99.04"
+        )
+        self.assertEqual(302, response.status_code)
+        self.assertEqual(
+            "https://documentation.ubuntu.com/release-notes/",
+            response.location,
+        )
+
+    def test_release_notes_missing_values_works_for_valid_ones(self):
+        """
+        Check that release notes redirect endpoint returns 302 redirect to the
+        wiki release URL for 24.04 if the data is invalid for other versions
+        """
+        response = self.client.get(
+            "/getubuntu/releasenotes?os=ubuntu&ver=26.04"
+        )
+        self.assertEqual(302, response.status_code)
+        self.assertEqual(
+            "https://documentation.ubuntu.com/release-notes/26.04/",
+            response.location,
+        )
+
+    def test_release_notes_redirect_jammy(self):
+        """
+        Check that release notes redirect endpoint returns 302 redirect to the
+        documentation release URL for 22.04
+        """
+        response = self.client.get(
+            "/getubuntu/releasenotes?os=ubuntu&ver=22.04"
+        )
+        self.assertEqual(302, response.status_code)
+        self.assertEqual(
+            "https://documentation.ubuntu.com/release-notes/22.04/",
+            response.location,
+        )
+
+    def test_release_notes_redirect_mantic(self):
+        """
+        Check that release notes redirect endpoint returns 302 redirect to the
+        wiki release URL for 23.10
+        """
+        response = self.client.get(
+            "/getubuntu/releasenotes?os=ubuntu&ver=23.10"
+        )
+        self.assertEqual(302, response.status_code)
+        self.assertEqual(
+            "https://wiki.ubuntu.com/ManticMinotaur/ReleaseNotes",
+            response.location,
+        )
+
+    def test_release_notes_redirect_noble(self):
+        """
+        Check that release notes redirect endpoint returns 302 redirect to the
+        wiki release URL for 24.04
+        """
+        response = self.client.get(
+            "/getubuntu/releasenotes?os=ubuntu&ver=24.04"
+        )
+        self.assertEqual(302, response.status_code)
+        self.assertEqual(
+            "https://documentation.ubuntu.com/release-notes/24.04/",
+            response.location,
+        )
+
+    def test_release_notes_redirect_resolute(self):
+        """
+        Check that release notes redirect endpoint returns 302 redirect to the
+        wiki release URL for 26.04
+        """
+        response = self.client.get(
+            "/getubuntu/releasenotes?os=ubuntu&ver=26.04"
+        )
+        self.assertEqual(302, response.status_code)
+        self.assertEqual(
+            "https://documentation.ubuntu.com/release-notes/26.04/",
+            response.location,
         )
 
 

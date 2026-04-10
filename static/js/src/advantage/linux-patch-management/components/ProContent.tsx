@@ -94,7 +94,7 @@ const ProContent = ({
       <div className="p-section--shallow">
         <Row>
           <Col size={2}>
-            <p className="u-align--right">Seach packages</p>
+            <p className="u-align--right">Search packages</p>
           </Col>
           <Col size={4}>
             <SearchAndFilter

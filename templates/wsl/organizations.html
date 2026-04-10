@@ -1,0 +1,239 @@
+{% extends "templates/base.html" %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1E7ycafq7TujOeCkZqO3-sGhyFaU802NlliPCCDOR-kw/edit?tab=t.jijjhiya0no5
+{% endblock meta_copydoc %}
+
+{% block title %}Bring Ubuntu on WSL to your organization{% endblock %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_macros/vf_resources.jinja" import vf_resources %}
+{% from "_macros/vf_blog.jinja" import vf_blog %}
+{% from "macros/_vf-latest-news.jinja" import vf_latest_news with context %}
+
+{% block meta_description %}
+  Ubuntu on WSL combines enterprise-grade support, security, and functionality with the best of open source.
+{% endblock %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block outer_content %}
+  {% call(slot) vf_hero(
+    title_text='Ubuntu on WSL, <br class="u-hide--small" />built for your enterprise',
+    layout='50/50'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Ubuntu on Windows Subsystem for Linux combines enterprise-grade support, security, and functionality with the best of open source.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="/wsl/contact-us" class="p-button--positive js-invoke-modal" aria-controls="contact-modal" aria-expanded="false">
+        Contact us 
+      </a>
+      <a href="/engage/ubuntu-on-wsl-enterprise" class="p-button">
+        Watch our webinar
+      </a>
+      <p>
+        <a href="https://github.com/canonical/ubuntu-pro-for-wsl/releases/latest/download/UbuntuProForWSL.msixbundle">
+          Download the Ubuntu Pro for WSL app&nbsp;&rsaquo;
+        </a>
+      </p>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <p class="u-embedded-media">
+        <iframe title="Get started with Ubuntu Pro for WSL on Windows"
+                class="u-embedded-media__element"
+                src="https://www.youtube.com/embed/VKdAcrdjQKI"
+                allowfullscreen=""
+                frameborder="0">
+        </iframe>
+      </p>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
+    {%- if slot == 'title' -%}
+      <h2>Ubuntu is the number 1 choice <br class="u-hide--small" />for organizations using WSL</h2>
+    {%- endif -%}
+
+    {%- if slot == 'description' -%}
+      <p>
+        Experience the full power of the Linux desktop on Windows. Ubuntu on WSL provides near-native integration, enabling WSL for business users to innovate with the Ubuntu ecosystem and manage mixed infrastructure with ease.
+      </p>
+      <p>
+        Opt for Ubuntu Pro for WSL, a comprehensive subscription that provides turnkey security maintenance and enterprise support for Ubuntu instances in Windows, along with system management.
+      </p>
+      <p>
+        <a href="https://canonical.com/blog/canonical-announces-ubuntu-pro-for-wsl">
+          Learn more about Ubuntu Pro for WSL&nbsp;&rsaquo;
+        </a>
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_1' -%}
+    <h3 class="p-heading--5">Secure open source stack</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+    <p>
+    Get up to 15 years of security patches for Ubuntu on WSL through Expanded Security Maintenance (<a href="/security/esm">ESM</a>), with coverage for thousands of community-sourced packages from Ubuntu software repositories.
+    </p>
+    <p>
+      <a href="/pro">
+        Learn more about Ubuntu Pro&nbsp;&rsaquo;
+      </a>
+    </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_2' -%}
+    <h3 class="p-heading--5">Landscape fleet management</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+    <p>
+      Get Landscape, Canonical’s systems management tool, for software updates, configuration management, policy compliance, and permission control for your entire physical and virtual fleet. Landscape is easy to use and smoothly integrates with other tooling through a robust API.
+    </p>
+    <p>
+      <a href="/landscape">
+        Learn more about Landscape&nbsp;&rsaquo;
+      </a>
+    </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_3' -%}
+    <h3 class="p-heading--5">Centralized identity management</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_3' -%}
+    <p>
+      Install and configure Ubuntu on WSL using Microsoft’s enterprise tools such as Intune or via Group Policies defined in Active Directory.
+    </p>
+    <p>
+      <a href="/engage/ubuntu-enterprise-identity-management">
+        Learn more about enterprise identity management on Ubuntu&nbsp;&rsaquo;
+      </a>
+    </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_4' -%}
+    <h3 class="p-heading--5">Weekday or 24/7 support</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_4' -%}
+    <p>
+      Advanced support customers get direct 24/7 access to our enterprise open source support team through our web portal, knowledge base or via phone.
+    </p>
+    {%- endif -%}
+
+    {%- if slot == 'cta' -%}
+    <a href="/wsl#get-in-touch" class="p-button js-invoke-modal" aria-controls="contact-modal" aria-expanded="false">
+      Contact us
+    </a>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {% call(slot) vf_resources(
+      title={
+        "text": "Resources",
+      },
+      blocks=[
+        {
+          "type": "resources",
+          "render_images": false,
+          "categories": [
+            {
+              "title": "Documentation",
+              "items": [
+                {
+                  "title": {
+                    "text": "Official documentation for Ubuntu on WSL",
+                    "link_attrs": {
+                      "href": "https://documentation.ubuntu.com/wsl/stable/"
+                    }
+                  },
+                },
+                {
+                  "title": {
+                    "text": "Installing and configuring Ubuntu Pro for WSL",
+                    "link_attrs": {
+                      "href": "https://documentation.ubuntu.com/wsl/stable/tutorials/getting-started-with-up4w/"
+                    }
+                  },
+                },
+                {
+                  "title": {
+                    "text": "Remotely deploying WSL instances with Landscape",
+                    "link_attrs": {
+                      "href": "https://documentation.ubuntu.com/wsl/stable/tutorials/deployment/"
+                    }
+                  },
+                },
+                {
+                  "title": {
+                    "text": "Developing with Ubuntu on WSL",
+                    "link_attrs": {
+                      "href": "https://documentation.ubuntu.com/wsl/stable/tutorials/develop-with-ubuntu-wsl/"
+                    }
+                  },
+                }
+              ]
+            },
+            {
+              "title": "Contact us",
+              "items": [
+                {
+                  "title": {
+                    "text": "Join the conversation on the Ubuntu Discourse",
+                    "link_attrs": {
+                      "href": "https://discourse.ubuntu.com/c/wsl/27"
+                    }
+                  },
+                },
+                {
+                  "title": {
+                    "text": "Using Ubuntu in the enterprise? Get in touch",
+                    "link_attrs": {
+                      "href": "https://ubuntu.com/wsl#get-in-touch",
+                      "class": "js-invoke-modal",
+                      "aria-controls": "contact-modal",
+                      "aria-expanded": "false"
+                    }
+                  },
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      ) -%}
+  {%- endcall -%}
+
+  {{ vf_blog(
+    title={"text": '<a href="/blog/tag/ubuntu-wsl">Latest Ubuntu on WSL news from our blog</a>'},
+    template_config={"enabled": True, "template_container_id": "articles"},
+    padding="deep"
+  ) }}
+
+  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script>
+    canonicalLatestNews.fetchLatestNews({
+      imageClasses: ["p-image-container__image"],
+      /*
+        Make sure your article limit and `template_config.layout` match.
+        Use "4-blocks" (or no layout, as 4-blocks is the default) with `limit: "4"`.
+       */
+      limit: "4",
+      articlesContainerSelector: "#articles",
+      articleTemplateSelector: "#template",
+      excerptLength: 180,
+      gtmEventLabel: "Latest Ubuntu on WSL news from our blog",
+      tagId: 3332
+    })
+  </script>
+  
+  {{ load_form("/wsl") | safe }}
+{% endblock outer_content %}

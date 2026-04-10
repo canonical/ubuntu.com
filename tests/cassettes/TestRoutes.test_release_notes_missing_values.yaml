@@ -1,0 +1,116 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate, br
+    method: GET
+    uri: https://changelogs.ubuntu.com/meta-release
+  response:
+    body:
+      string: |
+        Name: No Dist
+        Version: 99.04
+        Date: Wed, 20 Oct 2099 07:28:17 UTC
+        Supported: 0
+        Description: This is the a no dist release
+
+        Dist: noversion
+        Name: No Version
+        Date: Fri, 08 Apr 2095 08:18:19 UTC
+        Supported: 0
+        Description: This is a no Dist release
+
+    headers:
+      access-control-allow-headers:
+      - Authorization, Content-Disposition, Content-MD5, Content-Type
+      allow:
+      - GET
+      content-type:
+      - application/yaml; charset=UTF-8
+      date:
+      - Thu, 31 Mar 2026 13:00:45 GMT
+      server:
+      - nginx/1.14.0 (Ubuntu)
+      strict-transport-security:
+      - max-age=15724800; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      x-cache-status:
+      - BYPASS from content-cache-il3/0
+      x-content-type-options:
+      - nosniff
+      x-robots-tag:
+      - noindex
+      x-wp-total:
+      - '218'
+      x-wp-totalpages:
+      - '73'
+    status:
+      code: 200
+      message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate, br
+    method: GET
+    uri: https://changelogs.ubuntu.com/meta-release-development
+  response:
+    body:
+      string: |
+        Dist: noname
+        Version: 99.10
+        Date: Fri, 08 Apr 2099 08:18:19 UTC
+        Supported: 0
+        Description: This is a No Name release
+
+        Dist: resolute
+        Name: Resolute Raccoon
+        Version: 26.04 LTS
+        Date: Thu, 23 April 2026 00:26:04 UTC
+        Supported: 0
+        Description: This is the 26.04 LTS release
+        Release-File: http://archive.ubuntu.com/ubuntu/dists/resolute/Release
+        ReleaseNotes: http://archive.ubuntu.com/ubuntu/dists/resolute/main/dist-upgrader-all/current/ReleaseAnnouncement
+        ReleaseNotesHtml: http://archive.ubuntu.com/ubuntu/dists/resolute/main/dist-upgrader-all/current/ReleaseAnnouncement.html
+        UpgradeTool: http://archive.ubuntu.com/ubuntu/dists/resolute/main/dist-upgrader-all/current/resolute.tar.gz
+        UpgradeToolSignature: http://archive.ubuntu.com/ubuntu/dists/resolute/main/dist-upgrader-all/current/resolute.tar.gz.gpg
+
+    headers:
+      access-control-allow-headers:
+      - Authorization, Content-Disposition, Content-MD5, Content-Type
+      allow:
+      - GET
+      content-type:
+      - application/yaml; charset=UTF-8
+      date:
+      - Thu, 31 Mar 2026 13:00:45 GMT
+      server:
+      - nginx/1.14.0 (Ubuntu)
+      strict-transport-security:
+      - max-age=15724800; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      x-cache-status:
+      - BYPASS from content-cache-il3/0
+      x-content-type-options:
+      - nosniff
+      x-robots-tag:
+      - noindex
+      x-wp-total:
+      - '218'
+      x-wp-totalpages:
+      - '73'
+    status:
+      code: 200
+      message: ''
+version: 1
