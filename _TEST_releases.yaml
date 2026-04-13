@@ -1,12 +1,12 @@
 latest:
-  slug: 'Bashingwebengineers'
-  name: "Questing Quokka"
+  slug: 'RockingRackoon'
+  name: "Rocking Rackoon"
   short_version: "25.10"
   full_version: "25.10.2"
   desktop_version: "25.10"
   core_version: "24"
-  release_date: !date "October 2025"
-  eol: !date "July 2026"
+  release_date: !date "November 2025"
+  eol: !date "August 2026"
   release_notes_url: !link "https://discourse.ubuntu.com/t/questing-quokka-release-notes/59220"
   blog_post_url: !link "https://canonical.com/blog/canonical-releases-ubuntu-25-10-questing-quokka"
   mascot_image_large: !image
@@ -14,7 +14,7 @@ latest:
     width: 1822
     height: 182
   iso_download_size: "5.3GB"
-  arm_iso_download_size: "3.6GB"
+  arm_iso_download_size: "3.5GB"
   server_iso_size: "1.9GB"
   raspi_desktop_iso_size: "2.9GB"
   raspi_server_iso_size: "1.2GB"
@@ -56,15 +56,13 @@ checksums:
     "22.04.5": "bfd1cee02bc4f35db939e69b934ba49a39a378797ce9aee20f6e3e3e728fefbf *ubuntu-22.04.5-desktop-amd64.iso"
     "21.10": "f8d3ab0faeaecb5d26628ae1aa21c9a13e0a242c381aa08157db8624d574b830 *ubuntu-21.10-desktop-amd64.iso"
     "20.04.6": "510ce77afcb9537f198bc7daa0e5b503b6e67aaed68146943c231baeaab94df1 *ubuntu-20.04.6-desktop-amd64.iso"
+    "25.10": "32e30d72ae4798c633323a2684d94a11582bb03a6ab"
   live-server:
     "25.10": "dc54870e5261c0abad19f74b8146659d10e625971792bd42d7ecde820b60a1d0 *ubuntu-25.10-live-server-amd64.iso"
     "25.04": "8b44046211118639c673335a80359f4b3f0d9e52c33fe61c59072b1b61bdecc5 *ubuntu-25.04-live-server-amd64.iso"
     "24.10": "4fce7c02a5e5dbe3426da4aa0f8b7845e9a36aff29c5884d206a08e51b2c4c47 *ubuntu-24.10-live-server-amd64.iso"
     "24.04.3": "c3514bf0056180d09376462a7a1b4f213c1d6e8ea67fae5c25099c6fd3d8274b *ubuntu-24.04.3-live-server-amd64.iso"
     "22.04.5": "9bc6028870aef3f74f4e16b900008179e78b130e6b0b9a140635434a46aa98b0 *ubuntu-22.04.5-live-server-amd64.iso"
-    "21.10": "e84f546dfc6743f24e8b1e15db9cc2d2c698ec57d9adfb852971772d1ce692d4 *ubuntu-21.10-live-server-amd64.iso"
-    "20.04.6": "b8f31413336b9393ad5d8ef0282717b2ab19f007df2e9ed5196c13d8f9153c8b *ubuntu-20.04.6-live-server-amd64.iso"
-    "18.04.6": "6c647b1ab4318e8c560d5748f908e108be654bad1e165f7cf4f3c1fc43995934 *ubuntu-18.04.6-live-server-amd64.iso"
   desktop-arm64+raspi:
     "25.10": "d35bc2aa6ed256293c4eab4d6066274364ddc790d327bb1ec1bfac117ec89dd3 *ubuntu-25.10-preinstalled-desktop-arm64+raspi.img.xz"
     "25.04": "278b1748c783a69edb526e7e29d51b4e55f505a1dcddcc8be3977df5b8d87088 *ubuntu-25.04-preinstalled-desktop-arm64+raspi.img.xz"
@@ -98,7 +96,6 @@ checksums:
     "24.10": "a5c932527a48c65713d6c49ef2db258aa00753e910e038571ad09d4fbfa1e9bb *ubuntu-24.10-live-server-riscv64.img.gz"
   core-24-arm64+raspi:
     "24": "f8e1c4882e7bb0b9357dd41789f94ea6f9ad7caa50ce7a16b32a1e628f591c74 *ubuntu-core-24-arm64+raspi.img.xz"
-  core-22-armhf+raspi:
-    "22": "4c4b3958626611aff85bfa5873c45ad22fdf7642be868b5722900fa88e6fca86 *ubuntu-core-22-armhf+raspi.img.xz"
+  core-22-armhf+raspi: {}
   wsl:
     "24.04.3": "c74833a55e525b1e99e1541509c566bb3e32bdb53bf27ea3347174364a57f47c *ubuntu-24.04.3-wsl-amd64.wsl2"
