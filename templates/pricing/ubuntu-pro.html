@@ -1,375 +1,895 @@
 {% extends "pricing/base_pricing.html" %}
-{% from "_macros/vf_hero.jinja" import vf_hero %}
 
 {% block title %}Ubuntu Pro | plans and pricing{% endblock %}
+
 {% block meta_description %}
-Ubuntu Pro, the expanded security maintenance and compliance subscription is now available for data centres and
-workstations. Ubuntu Pro expands security coverage for critical, high and medium Common Vulnerabilities and Exposures
-(CVEs) to thousands of applications and toolchains including Ansible, Apache Tomcat, Apache Zookeeper, Docker, Drupal,
-Nagios, Node.js, phpMyAdmin, Puppet, PowerDNS, Python 2, Redis, Rust, WordPress, and more.
+  Ubuntu Pro, the expanded security maintenance and compliance subscription is now available for data centres and workstations. Ubuntu Pro expands security coverage for critical, high and medium Common Vulnerabilities and Exposures (CVEs) to thousands of applications and toolchains including Ansible, Apache Tomcat, Apache Zookeeper, Docker, Drupal, Nagios, Node.js, phpMyAdmin, Puppet, PowerDNS, Python 2, Redis, Rust, WordPress, and more.
 {% endblock %}
 
 {% block meta_copydoc %}
-https://docs.google.com/document/d/1Ynk0iLa9hjrdich6ATTsybtPbDwW_k4vRI0nk_HNhcI/edit
+  https://docs.google.com/document/d/1Ynk0iLa9hjrdich6ATTsybtPbDwW_k4vRI0nk_HNhcI/edit
 {% endblock meta_copydoc %}
 
 {% block content %}
 
-<style>
-  .p-logo-section--dense .p-logo-section__logo {
-    height: 4.5rem;
-    max-width: 6rem;
-    object-fit: contain;
-  }
-  .p-logo-section--dense .p-logo-section__items {
-    line-height: 4.5rem;
-  }
-  .p-logo-section .p-logo-section__logo {
-    height: 6rem;
-    max-width: 10rem;
-    object-fit: contain;
-  }
-  .p-logo-section .p-logo-section__items {
-    line-height: 6rem;
-  }
-</style>
-
-{% call(slot) vf_hero(
-title_text='Ubuntu Pro pricing',
-subtitle_text='',
-layout='50/50'
-) -%}
-{%- if slot == 'description' -%}
-<p>
-  Evaluate Ubuntu Pro pricing and get comprehensive open source security and support. Find the subscription that fits
-  your needs.
-</p>
-{%- endif -%}
-{% if slot == 'cta' -%}
-<a href="/support/contact-us" class="p-button--positive">Get in touch</a>
-<a href="/pro/subscribe" class="p-button">Subscribe now</a>
-<a href="/pro/free-trial">Looking for a free trial? &nbsp;&rsaquo;</a>
-{%- endif -%}
-{% endcall -%}
-
-<section class="p-strip">
-  <div class="row">
-    <hr class="p-rule" />
-  </div>
-  <div class="grid-row--50-50">
-    <div class="grid-col">
-      <h2>Ubuntu Pro subscription</h2>
-    </div>
-    <div class="grid-col">
-      <div class="p-tabs js-tabbed-content">
-        <div class="p-tabs__list" role="tablist" aria-label="Ubuntu Pro subscription tabs">
-          <div class="p-tabs__item">
-            <h2 class="p-tabs__link" tabindex="0" role="tab" aria-selected="true" aria-controls="enterprise-tab"
-              id="enterprise">Enterprise</h2>
-          </div>
-          <div class="p-tabs__item">
-            <h2 class="p-tabs__link" tabindex="0" role="tab" aria-selected="false" aria-controls="personal-tab"
-              id="personal">Personal</h2>
-          </div>
+  <section id="ua-infra" class="p-section--hero">
+    <div class="row--50-50">
+      <div class="col">
+        <h1>Ubuntu Pro: security, compliance, and support</h1>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <p class="p-heading--2">Ubuntu Pro covers all aspects of open infrastructure and applications.</p>
+        </div>
+        <div class="p-cta-block">
+          <a href="/support/contact-us"
+             class="p-button--positive js-invoke-modal"
+             aria-controls="pricing-contact-modal">Get in touch</a>
+          <a href="/pro/subscribe">Purchase a subscription&nbsp;&rsaquo;</a>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div tabindex="0" role="tabpanel" id="enterprise-tab" aria-labelledby="enterprise">
-        <div class="grid-row--50-50">
-          <div class="grid-col">
-            <p class="p-text--small-caps">Workstation</p>
-            <div class="p-section--shallow">
-              <h1>$25</h1>
-              <p class="u-text--muted">per machine per year</p>
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <h2 class="u-no-margin--bottom">Ubuntu Pro pricing</h2>
+        <p>(including security coverage for Main + Universe)</p>
+      </div>
+    </div>
+    <div class="row">
+      <hr class="p-rule" />
+      <div class="col-2 col-medium-6">
+        <h3 class="p-heading--5">Ubuntu Pro for personal users</h3>
+      </div>
+      <div class="col-10 col-medium-6">
+        <p>
+          Ubuntu Pro is free for personal users on up to 5 machines, and on up to 50 machines for active <a href="/community/membership">Ubuntu Community members</a>.
+        </p>
+        <aside class="p-accordion">
+          <ul class="p-accordion__list">
+            <li class="p-accordion__group">
+              <div role="heading" aria-level="3" class="p-accordion__heading">
+                <button type="button"
+                        class="p-accordion__tab"
+                        id="tab1"
+                        aria-controls="tab1-section"
+                        aria-expanded="false">What is included in a free Pro subscription?</button>
+              </div>
+              <section class="p-accordion__panel"
+                       id="tab1-section"
+                       aria-hidden="true"
+                       aria-labelledby="tab1">
+                {% set free_data = [['Security patching for Ubuntu Main repository for 10 years (esm-infra)', None, True], ['Security patching for Ubuntu Universe repository for 10 years (esm-apps)', '(Ubuntu 16.04 LTS onwards)', True], ['Kernel Livepatch to avoid unscheduled reboots', None, True], ['Systems management at scale with Landscape', None, True], ['Real-time kernel', '(Ubuntu 22.04 LTS onwards)', True], ['NIST-certified FIPS crypto-modules', '(pending for Ubuntu 24.04 LTS)', True], ['USG hardening with CIS and DISA-STIG profiles', '(DISA-STIG tooling & automation for Ubuntu 20.04 LTS and 22.04 LTS)', True], ['Common Criteria EAL2', '(Ubuntu LTS 14.04 LTS and 16.04 LTS only)', True], ['Advanced Active Directory policies for Ubuntu Desktop', None, True], ['Certified Windows drivers for KVM guests', None, False], ['Knowledge base access', None, False], ['Ubuntu Assurance Program', None, False]] %}
+                <table aria-label="What is included in a free Pro subscription?">
+                  <thead>
+                    <tr>
+                      <th style="width: 79%;" scope="col">Security and Compliance</th>
+                      <th scope="col">
+                        Free tier
+                        <br />
+                        <span class="u-text--muted">(software only)</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for (title, muted, included) in free_data %}
+                      <tr>
+                        <th scope="row">
+                          {{ title }}
+                          {% if muted %}
+                            <br />
+                            <span class="u-text--muted">{{ muted }}</span>
+                          {% endif %}
+                        </th>
+                        <td>
+                          {% if included %}
+                            <i class="p-icon--success">yes</i>
+                          {% else %}
+                            <i class="p-icon--error">no</i>
+                          {% endif %}
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </section>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+    <div class="row">
+      <hr class="p-rule" />
+      <div class="col-2 col-medium-6">
+        <h3 class="p-heading--5">Ubuntu Pro for enterprises</h3>
+      </div>
+      <div class="col-10 col-medium-6 col-start-large-3">
+        <table aria-label="Ubuntu Pro Pricing">
+          <thead>
+            <tr>
+              <td style="width: 40%;" role="presentation">&nbsp;</td>
+              <th scope="col">
+                Self-Support
+                <br />
+                <span class="u-text--muted">(software only)</span>
+              </th>
+              <th scope="col">
+                With Infra support
+                <br />
+                <span class="u-text--muted">(24/7)</span>
+              </th>
+              <th scope="col">
+                With full support
+                <br />
+                <span class="u-text--muted">(24/7)</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">
+                Desktop or WSL
+                <br />
+                <span class="u-text--muted">(workstation/year)</span>
+              </th>
+              <td>$25</td>
+              <td aria-label="Not available">&ndash;</td>
+              <td>$300</td>
+            </tr>
+            <tr>
+              <th scope="row">
+                Server with unlimited VMs
+                <br />
+                <span class="u-text--muted">(machine/year)</span>
+              </th>
+              <td>$500</td>
+              <td>$1,775</td>
+              <td>$3,400</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <hr class="p-rule" />
+      <div class="col-2 col-medium-6">
+        <h3 class="p-heading--5">Security and compliance</h3>
+      </div>
+      <div class="col-10 col-medium-6">
+        <table aria-label="Ubuntu Pro security and compliance">
+          <thead>
+            <tr>
+              <td style="width: 40%;" role="presentation">&nbsp;</td>
+              <th scope="col">
+                Self-Support
+                <br />
+                <span class="u-text--muted">(software only)</span>
+              </th>
+              <th scope="col">
+                With Infra support
+                <br />
+                <span class="u-text--muted">(24/7)</span>
+              </th>
+              <th scope="col">
+                With full support
+                <br />
+                <span class="u-text--muted">(24/7)</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Security patching for Ubuntu Main repository for 10 years (esm-infra)</th>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                Security patching for Ubuntu Universe repository for 10 years (esm-apps)
+                <br />
+                <span class="u-text--muted">(Ubuntu 16.04 LTS onwards)</span>
+              </th>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Kernel Livepatch to avoid unscheduled reboots</th>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Systems management at scale with Landscape</th>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                Real-time kernel
+                <br />
+                <span class="u-text--muted">(Ubuntu 22.04 LTS onwards)</span>
+              </th>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                NIST-certified FIPS crypto-modules
+                <br />
+                <span class="u-text--muted">(pending for Ubuntu 24.04 LTS)</span>
+              </th>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                USG hardening with CIS and DISA-STIG profiles
+                <br />
+                <span class="u-text--muted">(DISA-STIG tooling &amp; automation for Ubuntu 20.04 LTS and 22.04 LTS)</span>
+              </th>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                Common Criteria EAL2
+                <br />
+                <span class="u-text--muted">(Ubuntu LTS 14.04 LTS and 16.04 LTS only)</span>
+              </th>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Advanced Active Directory policies for Ubuntu Desktop</th>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Certified Windows drivers for KVM guests</th>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Knowledge base access</th>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Ubuntu Assurance Program</th>
+              <td aria-label="no">&ndash;</td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <hr class="p-rule" />
+      <div class="col-2 col-medium-6">
+        <h2 class="p-heading--5">Phone and ticket support</h2>
+      </div>
+      <div class="col-10 col-medium-6">
+        <table aria-label="Phone and ticket support">
+          <thead>
+            <tr>
+              <td style="width: 40%;" role="presentation">&nbsp;</td>
+              <th scope="col">
+                Self-Support
+                <br />
+                <span class="u-text--muted">(software only)</span>
+              </th>
+              <th scope="col">
+                With Infra support
+                <br />
+                <span class="u-text--muted">(24/7)</span>
+              </th>
+              <th scope="col">
+                With full support
+                <br />
+                <span class="u-text--muted">(24/7)</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Support for over 2,300 packages in Ubuntu Main repository, incl. the Ubuntu operating system</th>
+              <td aria-label="no">&ndash;</td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                Support for over 23,000 packages in the Ubuntu Universe repository <span class="u-text--muted">(Ubuntu 18.04 LTS onwards)</span>
+              </th>
+              <td aria-label="no">&ndash;</td>
+              <td aria-label="no">&ndash;</td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Support for Kubernetes, LXD</th>
+              <td aria-label="no">&ndash;</td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Support for MAAS</th>
+              <td aria-label="no">&ndash;</td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Support for Openstack</th>
+              <td aria-label="no">&ndash;</td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Support for Ceph Storage</th>
+              <td aria-label="no">&ndash;</td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+              <td>
+                <i class="p-icon--success">yes</i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <hr class="p-rule" />
+      <div class="col-2 col-medium-6">
+        <h3 class="p-heading--5">Notes</h3>
+      </div>
+      <div class="col-10 col-medium-6">
+        <ul class="p-list--divided">
+          <li class="p-list__item">N.B.: Weekday support is half the price of 24/7 support</li>
+          <li class="p-list__item">N.B.: Legacy add-on is priced at +50% of the relevant Ubuntu Pro subscription</li>
+          <li class="p-list__item">
+            N.B.: Subscriptions are not just for enterprise customers. Anyone can get <a href="/pro" aria-label="Get a personal Ubuntu Pro subscription">a personal subscription</a> for free on up to 5 machines
+          </li>
+          <li class="p-list__item">
+            N.B.: If you need security patching for the Main repository only - <a href="/contact-us/form?product=pro"
+    aria-label="Contact us about Ubuntu Pro">contact us</a> and ask for Ubuntu Pro (Infra-only) subscriptions or go to <a href="/pro/subscribe" aria-label="Visit the Ubuntu Pro store">the store</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <h2 class="p-text--small-caps">Coverage options</h2>
+    </div>
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h3 class="p-heading--2">Infra-only coverage</h3>
+      </div>
+      <div class="col">
+        <p>Over 2,300 open source deb packages in Ubuntu Main repository for 10 years, including:</p>
+        <div class="p-logo-section--dense">
+          <div class="p-logo-section__items">
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/86eff716-systemd-logo.png",
+              alt="SystemMD logo",
+              width="582",
+              height="312",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/985ef1d5-rabbitmq-logo.png",
+              alt="RabbitMQ logo",
+              width="366",
+              height="312",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/5a065585-openssl-logo.png",
+              alt="OpenSSL logo",
+              width="294",
+              height="312",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/8fbf1ea2-ruby-on-rails-logo.png",
+              alt="Ruby on Rails logo",
+              width="237",
+              height="312",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class":"p-logo-section__logo"}
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/b6285037-php-logo.png",
+              alt="PHP logo",
+              width="144",
+              height="312",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/6163f66c-nginx-logo.png",
+              alt="NGinx logo",
+              width="202",
+              height="312",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/e023bb2d-mysql-logo.png",
+              alt="MySQL logo",
+              width="280",
+              height="312",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+              }}
             </div>
           </div>
-          <div class="grid-col">
-            <p class="p-text--small-caps">Server with unlimited VMs</p>
-            <div class="p-section--shallow">
-              <h1>$500</h1>
-              <p class="u-text--muted">per machine per year</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h3 class="p-heading--2">Full stack coverage</h3>
+      </div>
+      <div class="col">
+        <p>Also includes over 23,000 open source deb packages in Ubuntu Universe repository for 10 years, including:</p>
+        <div class="p-logo-section--dense">
+          <div class="p-logo-section__items">
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/ced77dbe-apache-tomcat-logo.png",
+              alt="Apache Tomcat logo",
+              width="144",
+              height="312",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class":"p-logo-section__logo"},
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/701a3561-nagios-logo.png",
+              alt="Nagios logo",
+              width="294",
+              height="312",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class":"p-logo-section__logo"},
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/bd8aac38-node-js-logo.png",
+              alt="Node J S logo",
+              width="170",
+              height="312",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class":"p-logo-section__logo"}
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/f9e2384b-puppet-logo.png",
+              alt="Puppet logo",
+              width="325",
+              height="312",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class":"p-logo-section__logo"},
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/649cbbf9-redis-logo.png",
+              alt="Redis logo",
+              width="280",
+              height="312",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class":"p-logo-section__logo"},
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/ed698e3d-rust-logo.png",
+              alt="Rust logo",
+              width="118",
+              height="312",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class":"p-logo-section__logo"},
+              ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/d0552bee-wp-logo.png",
+              alt="Wordpress logo",
+              width="121",
+              height="312",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class":"p-logo-section__logo"},
+              ) | safe
+              }}
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div tabindex="0" role="tabpanel" id="personal-tab" aria-labelledby="personal">
-        <div class="grid-row--50-50">
-          <div class="grid-col">
-            <div class="p-section--shallow">
-              <h1>Personal</h1>
-              <p class="u-text--muted">For up to 5 machines</p>
-            </div>
-          </div>
-          <div class="grid-col">
-            <div class="p-section--shallow">
-              <h1>Community</h1>
-              <p class="u-text--muted">up to 50 machines for active <br />
-                <a href="/community/membership">Ubuntu community members&nbsp;&rsaquo;</a>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <hr class="p-rule" />
-          <p>Does not include knowledge base access, Certified Windows drivers for KVM guests and Ubuntu Assurance
-            Program</p>
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <h2 class="p-text--small-caps">Software-defined storage</h2>
+    </div>
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h3 class="p-heading--2">Ceph</h3>
+        <p>
+          Only applies if attaching more than 384TB of raw Ceph capacity per node in the cluster.  Additional capacity is priced per node exceeding 384TB included in Ubuntu Pro.
+        </p>
+      </div>
+
+      <div class="col">
+        <table class="p-table is-not-indented">
+          <thead>
+            <tr>
+              <th width="40%" scope="col">Additional Cluster Capacity</th>
+              <th width="20%" scope="col">Tier Price</th>
+              <th width="30%" scope="col">Additional Per TB</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Up to 150 TB</td>
+              <td>0</td>
+              <td>&dollar;33.33</td>
+            </tr>
+            <tr>
+              <td>150 - 1,500 TB</td>
+              <td>&dollar;5,000</td>
+              <td>&dollar;25.00</td>
+            </tr>
+            <tr>
+              <td>1500 - 3,000 TB</td>
+              <td>&dollar;38,750</td>
+              <td>&dollar;13.33</td>
+            </tr>
+            <tr>
+              <td>3,000 to 15,000 TB</td>
+              <td>&dollar;58,750</td>
+              <td>&dollar;6.67</td>
+            </tr>
+            <tr>
+              <td>15,000 to 30,000 TB</td>
+              <td>&dollar;138,750</td>
+              <td>&dollar;3.33</td>
+            </tr>
+            <tr>
+              <td>Beyond 30,000 TB</td>
+              <td>&dollar;188,750</td>
+              <td>&dollar;0</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Prices are for Ubuntu Pro + 24/7 support contracts.
+          <br class="u-hide--small" />
+          Weekday support is discounted by 50%.
+        </p>
+        <div class="p-cta-block">
+          <a href="/support/contact-us"
+             class="p-button--positive js-invoke-modal"
+             aria-controls="pricing-contact-modal">Get in touch</a>
         </div>
       </div>
     </div>
+  </section>
 
-  </div>
-
-  <div class="grid-row--50-50" id="enterprise-support">
-    <hr class="p-rule" />
-    <div class="grid-col">
-      <h2>24/7 Enterprise support</h2>
-      <p>Weekday support is 50% price of 24/7 support</p>
-    </div>
-    <div class="grid-col">
-      <div class="grid-row--50-50">
-        <div class="grid-col">
-          <p class="p-text--small-caps">Workstation</p>
-          <div class="p-section--shallow">
-            <h1>$300</h1>
-            <p class="u-text--muted">full support per machine per year</p>
-          </div>
-        </div>
-        <div class="grid-col">
-          <p class="p-text--small-caps">Server with unlimited VMs</p>
-          <div class="p-section--shallow">
-            <h1>$3,400</h1>
-            <p class="u-text--muted">full support per machine per year<br />
-              $1775 infra support per machine per year
-            </p>
-          </div>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h3 class="p-heading--2">Fully managed services</h3>
+        <p>
+          We manage infrastructure at both the host and the guest level. Infrastructure includes Ceph and Swift storage, Kubernetes, OpenStack and the recommended logging, monitoring and alerting stack. This is complemented by our Managed Apps portfolio, which ensures operational excellence for your cloud-native applications (like databases and MLOps). Alternatively, you can also choose Firefighting Support, providing on-call Canonical engineers for critical, high-severity incidents while you maintain full operational control.
+        </p>
+      </div>
+      <div class="col">
+        <h3>Managed</h3>
+        <table class="p-table is-not-indented">
+          <thead>
+            <tr>
+              <th scope="col">Support tier</th>
+              <th scope="col">Physical</th>
+              <th scope="col">VMs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Infra</td>
+              <td>&dollar; 5,750</td>
+              <td aria-label="Not available">-</td>
+            </tr>
+            <tr>
+              <td>Apps</td>
+              <td>&dollar; 9,470</td>
+              <td>&dollar; 3,157</td>
+            </tr>
+            <tr>
+              <td>Full stack</td>
+              <td>&dollar; 11,790</td>
+              <td aria-label="Not available">-</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>Firefighting</h3>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Support tier</th>
+              <th scope="col">Physical</th>
+              <th scope="col">VMs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Infra</td>
+              <td>&dollar; 3,625</td>
+              <td>&dollar; 1,209</td>
+            </tr>
+            <tr>
+              <td>Apps</td>
+              <td>&dollar; 6,235</td>
+              <td>&dollar; 2,078</td>
+            </tr>
+            <tr>
+              <td>Full stack</td>
+              <td>&dollar; 7,600</td>
+              <td aria-label="Not available">-</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="p-cta-block">
+          <a href="/support/contact-us"
+             class="p-button--positive js-invoke-modal"
+             aria-controls="pricing-contact-modal">Get in touch</a>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip">
-  <div class="row">
-    <hr class="p-rule" />
-  </div>
-  <div class="grid-row--50-50">
-    <div class="grid-col">
-      <h2>Looking for Ubuntu Pro on public clouds?</h2>
-    </div>
-    <div class="grid-col">
-      <p>
-        Ubuntu Pro on public clouds is metered by the hour and charged through your cloud provider’s bill. Pricing is
-        relative to your compute cost, typically between 3–4.5% of the list price. For exact rates, please refer to the
-        pricing pages for <a href="/aws/pro">AWS</a>, <a href="/azure/pro">Azure</a> and <a href="/gcp/pro">GCP</a>.
-        Please note, you can also deprecate your committed spend with Ubuntu Pro.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="grid-row--50-50">
-    <hr class="p-rule" />
-    <div class="grid-col">
-      <h2>Coverage for both open source infrastructure and applications</h2>
-    </div>
-    <div class="grid-col">
-      <p>
-        Ubuntu Pro covers Canonical’s complete open source portfolio, including infrastructure automation, scalable
-        storage, private and edge clouds, container orchestration, and applications.
-      </p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="p-tabs js-tabbed-content">
-      <div class="p-tabs__list" role="tablist" aria-label="Feature section">
-        <div class="p-tabs__item">
-          <button class="p-tabs__link" tabindex="1" role="tab" aria-selected="true"
-            aria-controls="security-compliance-tab" id="security-compliance">Security and compliance</button>
-        </div>
-        <div class="p-tabs__item">
-          <button class="p-tabs__link" tabindex="1" role="tab" aria-selected="false"
-            aria-controls="operations-management-tab" id="operations-management">Operations and management</button>
-        </div>
-        <div class="p-tabs__item">
-          <button class="p-tabs__link" tabindex="1" role="tab" aria-selected="false" aria-controls="infrastructure-tab"
-            id="infrastructure">Infrastructure</button>
-        </div>
-        <div class="p-tabs__item">
-          <button class="p-tabs__link" tabindex="1" role="tab" aria-selected="false" aria-controls="application-tab"
-            id="application">Applications</button>
-        </div>
-        <div class="p-tabs__item">
-          <button class="p-tabs__link" tabindex="1" role="tab" aria-selected="false" aria-controls="services-tab"
-            id="services">Services</button>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h3 class="p-heading--2">MAAS</h3>
+        <p>
+          Support and commercial capabilities for MAAS are included with Ubuntu Pro and Ubuntu Pro (Infra-only). These additional charges apply for machines managed by MAAS and <em>not</em> covered by an Ubuntu Pro contract.
+        </p>
+      </div>
+      <div class="col">
+        <table class="p-table is-not-indented">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Self-Support</th>
+              <th>Weekday support</th>
+              <th>24/7 support</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Per managed machine - annual</td>
+              <td>&dollar;30</td>
+              <td>&dollar;50</td>
+              <td>&dollar;100</td>
+            </tr>
+            <tr>
+              <td>Phone and ticket support</td>
+              <td>None</td>
+              <td>Office hours</td>
+              <td>24/7</td>
+            </tr>
+            <tr>
+              <td>Response time - SLA Sev 1</td>
+              <td aria-label="Not available">&dash;</td>
+              <td>4 hours</td>
+              <td>1 hour</td>
+            </tr>
+            <tr>
+              <td>Knowledge base access</td>
+              <td>Included</td>
+              <td>Included</td>
+              <td>Included</td>
+            </tr>
+            <tr>
+              <td>Role based access controls (RBAC)</td>
+              <td>Included</td>
+              <td>Included</td>
+              <td>Included</td>
+            </tr>
+            <tr>
+              <td>High availability</td>
+              <td>Included</td>
+              <td>Included</td>
+              <td>Included</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="p-cta-block">
+          <a href="/support/contact-us"
+             class="p-button--positive js-invoke-modal"
+             aria-controls="pricing-contact-modal">Get in touch</a>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  {% include "pricing/pro/security-and-compliance.html" %}
-  {% include "pricing/pro/operations-and-management.html" %}
-  {% include "pricing/pro/infrastructure.html" %}
-  {% include "pricing/pro/application.html" %}
-  {% include "pricing/pro/services.html" %}
-  
-</section>
-
-<section class="p-strip">
-  <div class="row">
-    <hr class="p-rule" />
-  </div>
-  <div class="row p-section--shallow">
-    <p class="p-text--small-caps">Companies that trust Ubuntu Pro</p>
-  </div>
-  <div class="u-fixed-width">
-    <div class="p-logo-section">
-      <div class="p-logo-section__items">
-        <div class="p-logo-section__item">
-          {{ image(url="https://assets.ubuntu.com/v1/52bea08c-launchdarkly_logo_0_1.png",
-            alt="",
-            width="633",
-            height="99",
-            attrs={
-              "class": "p-logo-section__logo",
-            },
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image(url="https://assets.ubuntu.com/v1/12185d03-airlock_digital_idq1zqs8xz_1_1.png",
-            alt="",
-            width="339",
-            height="93",
-            attrs={
-              "class": "p-logo-section__logo",
-            },
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image(url="https://assets.ubuntu.com/v1/2d527312-tenable_idqwa8poda_0_2.png",
-            alt="",
-            width="327",
-            height="72",
-            attrs={
-              "class": "p-logo-section__logo",
-            },
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image(url="https://assets.ubuntu.com/v1/814b4ee5-vector.png",
-            alt="",
-            width="270",
-            height="57",
-            attrs={
-              "class": "p-logo-section__logo",
-            },
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image(url="https://assets.ubuntu.com/v1/41a7c3d0-lucid_software_id3o8kzxax_0_1.png",
-            alt="",
-            width="249",
-            height="312",
-            attrs={
-              "class": "p-logo-section__logo",
-            },
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image(url="https://assets.ubuntu.com/v1/db869316-vmware_logo_s.png",
-            alt="",
-            width="322",
-            height="312",
-            attrs={
-              "class": "p-logo-section__logo",
-            },
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image(url="https://assets.ubuntu.com/v1/b3e1e022-Grundium%20logo.png",
-            alt="",
-            width="355",
-            height="60",
-            attrs={
-              "class": "p-logo-section__logo",
-            },
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
+  <section>
+    <hr class="p-rule is-fixed-width" />
+    <div class="p-strip is-deep">
+      <div class="row u-vertically-center">
+        <div class="col-10">
+          <h2>
+            Any questions? <a href="/contact-us/form?product=pro"
+            class="js-invoke-modal" aria-controls="pricing-contact-modal"
+    aria-label="Contact us about Ubuntu Pro pricing">Contact us&nbsp;&rsaquo;</a>
+          </h2>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip u-no-padding--top">
-  <div class="row">
-    <hr class="p-rule" />
-  </div>
-  <div class="grid-row--50-50">
-    <div class="grid-col">
-      <h2>Education, Research and Academia</h2>
-    </div>
-    <div class="grid-col">
-      <p>
-        Ubuntu Pro is available for purchase through our website, or through our global network of partners. For more
-        information on purchasing Ubuntu Pro, please contact us.
-      </p>
-      <a href="/support/contact-us" class="p-button--positive">Get in touch</a>
-    </div>
-  </div>
-</section>
-<div class="row">
-  <hr class="p-rule" />
-</div>
+  {{ load_form("/pricing/pro") | safe }}
 
-<section class="p-strip is-deep">
-  <div class="u-fixed-width">
-    <h2>Get started with Ubuntu Pro today</h2>
-    <div class="p-cta-block">
-      <a href="/pricing/pro#get-in-touch" class="p-button--positive">Contact us</a>
-      <a href="/pro/subscribe" class="p-button">Subscribe now</a>
-      <a href="/cloud/public-cloud">Buy on public clouds ›</a>
-    </div>
-  </div>
+{% endblock content %}
 
-</section>
-
-<script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
-<script src="{{ versioned_static('js/dist/active-nav-scroll.js') }}"></script>
-<script>
-  const personalTab = document.getElementById('personal');
-  const enterpriseTab = document.getElementById('enterprise');
-  const toggleEnterpriseSupport = ()=>{
-    const enterpriseSupport = document.getElementById("enterprise-support");
-    if(enterpriseTab.getAttribute('aria-selected') === 'false'){
-      enterpriseSupport.style.display = "none";
-    } else {
-      enterpriseSupport.style.display = "grid";
-    }
-  }
-  personalTab.addEventListener('click', toggleEnterpriseSupport);
-  enterpriseTab.addEventListener('click', toggleEnterpriseSupport);
-</script>
-
-{% endblock %}
+{% block footer_extra %}
+{% endblock footer_extra %}
