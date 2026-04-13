@@ -406,12 +406,12 @@ def cve_index():
         "DNE": {"name": "Not in release", "icon": None},
         "needs-triage": {"name": "Needs evaluation", "icon": "help"},
         "not-affected": {"name": "Not affected", "icon": "success"},
-        "needed": {"name": "Vulnerable", "icon": "error"},
-        "deferred": {"name": "Vulnerable", "icon": "error"},
-        "pending": {"name": "Vulnerable", "icon": "error"},
-        "ignored": {"name": "Ignored", "icon": "error-grey"},
+        "needed": {"name": "Vulnerable", "icon": "vulnerable"},
+        "deferred": {"name": "Vulnerable", "icon": "vulnerable"},
+        "pending": {"name": "Vulnerable", "icon": "vulnerable"},
+        "ignored": {"name": "Ignored", "icon": "ignored"},
         "released": {"name": "Fixed", "icon": "success"},
-        "vulnerable": {"name": "Vulnerable", "icon": "error"},
+        "vulnerable": {"name": "Vulnerable", "icon": "vulnerable"},
     }
 
     cves = []

@@ -254,7 +254,6 @@ export const countries = [
   { value: "SE", label: "Sweden" },
   { value: "CH", label: "Switzerland" },
   { value: "SY", label: "Syrian Arab Republic" },
-  { value: "TW", label: "Taiwan" },
   { value: "TJ", label: "Tajikistan" },
   {
     value: "TZ",
@@ -284,7 +283,7 @@ export const countries = [
   { value: "UZ", label: "Uzbekistan" },
   { value: "VU", label: "Vanuatu" },
   { value: "VE", label: "Venezuela (Bolivarian Republic of)" },
-  { value: "VN", label: "Viet Nam" },
+  { value: "VN", label: "Vietnam" },
   { value: "VG", label: "Virgin Islands (British)" },
   { value: "VI", label: "Virgin Islands (U.S.)" },
   { value: "WF", label: "Wallis and Futuna" },

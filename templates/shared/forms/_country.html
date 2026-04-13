@@ -2,7 +2,7 @@
   <li class="p-list_item">
     <label {% if required %}class="is-required"{% endif %} for="country">{{ country or 'Country' }}:</label>
   {% endif %}
-  <select {% if required %}required{% endif %} id="country" name="country">
+  <select {% if required %}required{% endif %} id="country" name="country" {% if noPreselectCountry is defined and noPreselectCountry %}data-no-preselect-country="true"{% endif %}>
     <option value="">Select...</option>
     <option value="FR">France</option>
     <option value="DE">Germany</option>
