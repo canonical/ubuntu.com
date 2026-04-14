@@ -1,0 +1,99 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Thank you {{ "for downloading Ubuntu Pro for WSL" if architecture == "pro" else "for downloading Ubuntu on WSL" }}{% endblock %}
+
+{% block meta_copydoc %}{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block head_extra %}
+  <meta name="robots" content="noindex" />
+{% endblock %}
+
+{% set pro_download_url = "https://github.com/canonical/ubuntu-pro-for-wsl/releases/latest/download/UbuntuProForWSL.msixbundle" %}
+
+{% block content %}
+
+  {% if architecture == 'pro' %}
+    <meta http-equiv="refresh"
+          content="3;url={{ pro_download_url }}" />
+  {% elif version %}
+    {% if architecture == 'arm64' %}
+      <noscript>
+        <meta http-equiv="refresh"
+              content="3;url=https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-wsl-arm64.wsl" />
+      </noscript>
+    {% else %}
+      <noscript>
+        <meta http-equiv="refresh"
+              content="3;url=https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-wsl-amd64.wsl" />
+      </noscript>
+    {% endif %}
+  {% endif %}
+
+  <section class="p-strip is-shallow u-no-padding--bottom">
+    <div class="row--50-50">
+      <div class="col">
+        {% if architecture == 'pro' %}
+          <h1>Thank you for downloading Ubuntu Pro for WSL</h1>
+          <p>
+            Your download should start automatically. If it doesn't,
+            <a href="{{ pro_download_url }}">download now</a>.
+          </p>
+        {% elif version %}
+          <h1>Thank you for downloading Ubuntu {{ version }} on WSL</h1>
+          <p>
+            Your download should start automatically. If it doesn't,
+            {% if architecture == 'arm64' %}
+              <a href="https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-wsl-arm64.wsl">download now</a>.
+            {% else %}
+              <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-wsl-amd64.wsl">download now</a>.
+            {% endif %}
+            <br />
+            {% with version=version, system="wsl" if architecture != "arm64" else "wsl-arm64", architecture=architecture %}
+              {% include "download/shared/_verify-checksums.html" %}
+            {% endwith %}
+          </p>
+        {% else %}
+          <h1>You have not selected an image to download</h1>
+          <p>
+            Please <a href="/download/wsl">select an image</a> to download.
+          </p>
+        {% endif %}
+      </div>
+      <div class="col">
+        {% with returnUrl="/download/wsl", ga_event_title="Ubuntu WSL download" %}
+          {% include 'shared/_download-newsletter.html' %}
+        {% endwith %}
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}
+
+{% block footer_extra %}
+  {% if architecture == 'pro' %}
+    <script defer>
+      window.location.href = '{{ pro_download_url }}';
+    </script>
+  {% elif version %}
+    <script src="{{ versioned_static('js/dist/image-download.js') }}"></script>
+    <script defer>
+      var architecture = '{{ architecture }}';
+      var version = '{{ version }}';
+
+      if (version && architecture) {
+        var imageName = 'ubuntu-' + version + '-wsl-' + architecture + '.wsl';
+        var GAlabel = version + '-wsl-' + architecture;
+
+        if (architecture === 'arm64') {
+          window.location.href = 'https://cdimage.ubuntu.com/releases/' + version + '/release/' + imageName;
+        } else {
+          window.initImageDownload(version + '/' + imageName, GAlabel);
+        }
+      }
+    </script>
+  {% endif %}
+{% endblock footer_extra %}

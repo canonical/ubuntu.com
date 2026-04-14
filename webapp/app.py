@@ -577,7 +577,7 @@ app.add_url_rule(
 app.add_url_rule(
     (
         "/download"
-        "/<regex('server|desktop|cloud|raspberry-pi'):category>"
+        "/<regex('server|desktop|cloud|raspberry-pi|wsl'):category>"
         "/thank-you"
     ),
     view_func=download_thank_you,
