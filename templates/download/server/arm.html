@@ -35,13 +35,13 @@
           <div class="col-6 col-medium-3">
             <p>This is the default ISO image of the Ubuntu Server installer.</p>
             <hr class="p-rule" />
-            <a href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.lts.short_version }}/release/ubuntu-{{ releases_yaml.lts.full_version }}-live-server-arm64.iso"
+            <a href="/download/server/thank-you?version={{ releases_yaml.lts.full_version }}&amp;architecture=arm64&amp;lts=true"
                class="p-button--positive"
                onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases_yaml.lts.short_version }}', 'eventValue' : undefined });">
               Download {{ releases_yaml.lts.full_version }} LTS
             </a>
             {% if releases_yaml.latest.short_version > releases_yaml.lts.short_version %}
-              &nbsp;&nbsp;<a href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.latest.short_version }}/release/ubuntu-{{ releases_yaml.latest.full_version }}-live-server-arm64.iso"
+              <a href="/download/server/thank-you?version={{ releases_yaml.latest.full_version }}&amp;architecture=arm64"
    class="p-button"
    onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases_yaml.latest.short_version }}', 'eventValue' : undefined });">
               Download {{ releases_yaml.latest.full_version }}
