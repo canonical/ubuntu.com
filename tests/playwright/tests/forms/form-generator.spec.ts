@@ -1,6 +1,6 @@
 import { test, expect, Page } from "@playwright/test";
 import { fillExistingFields, acceptCookiePolicy } from "../../helpers/commands";
-import { formTextFields, formCheckboxFields, formRadioFields } from "../../helpers/form-fields";
+import { formTextFields, modalFormCheckboxFields, modalFormRadioFields } from "../../helpers/form-fields";
 
 const openModal = async (page: Page) => {
   await page.goto("/tests/_form-generator");
@@ -73,22 +73,25 @@ test.describe("Modal validation tests", () => {
 
   test("should disable submit button when required checkbox is not checked", async ({ page }) => {
     // Check that submit button is disabled
-    const submitButton = page.getByRole("button", { name: /Submit/ });
+    const modal = page.locator("#contact-modal");
+    const submitButton = modal.getByRole("button", { name: /Submit/ });
     await expect(submitButton).toBeDisabled();
   });
 
   test("should enable submit button when required checkbox is checked", async ({ page }) => {
-    // Check the required checkbox
-    await page.locator('input[aria-labelledby="physical-server"]').check({ force: true });
+    // Check the required checkbox (scoped to modal)
+    const modal = page.locator("#contact-modal");
+    await modal.locator('input[aria-label="physical-server"]').check({ force: true });
 
-    const submitButton = page.getByRole("button", { name: /Submit/ });
+    const submitButton = modal.getByRole("button", { name: /Submit/ });
     await expect(submitButton).toBeEnabled();
   });
 
   test("should fill and redirect to marketo submission endpoint", async ({ page }) => {
-    await fillExistingFields(page, formTextFields, formCheckboxFields, formRadioFields);
+    const modal = page.locator("#contact-modal");
+    await fillExistingFields(modal, formTextFields, modalFormCheckboxFields, modalFormRadioFields);
 
-    await page.getByRole("button", { name: /Submit/ }).click();
+    await modal.getByRole("button", { name: /Submit/ }).click();
     await page.waitForURL(/\/marketo\/submit/, { timeout: 10000 });
     await expect(page).toHaveURL('/marketo/submit');
   });
@@ -97,25 +100,27 @@ test.describe("Modal validation tests", () => {
     const responsePromise = page.waitForResponse(response =>
       response.url().includes('/marketo/submit') && response.status() === 400
     );
-    await fillExistingFields(page, formTextFields, formCheckboxFields, formRadioFields);
+    const modal = page.locator("#contact-modal");
+    await fillExistingFields(modal, formTextFields, modalFormCheckboxFields, modalFormRadioFields);
 
     // Honeypot fields
-    await page.fill('input[name="website"]', 'test');
-    await page.fill('input[name="name"]', 'test');
-    await page.getByRole("button", { name: /Submit/ }).click();
+    await modal.locator('input[name="website"]').fill('test');
+    await modal.locator('input[name="name"]').fill('test');
+    await modal.getByRole("button", { name: /Submit/ }).click();
 
     // Wait for 400 response
     const response = await responsePromise;
     expect(response.status()).toBe(400);
   });
 
-  test("should show textbox when 'Other' checkbox is checked", async ({ page }) => {
-    // Check the 'Other' checkbox
-    const otherCheckbox = page.locator('input[aria-labelledby="other"]');
-    await otherCheckbox.check({ force: true });
+  test("should show textbox when 'Other' radio is selected", async ({ page }) => {
+    // Select the 'Other' radio option (scoped to modal)
+    const modal = page.locator("#contact-modal");
+    const otherRadio = modal.locator('input[aria-label="other"]');
+    await otherRadio.check({ force: true });
 
     // Check that the textarea is visible
-    const otherTextarea = page.locator('textarea#other-textarea');
+    const otherTextarea = modal.locator('textarea#other-textarea');
     await expect(otherTextarea).toBeVisible();
   });
 });

@@ -24,3 +24,15 @@ export const formCheckboxFields = [
 export const formRadioFields = [
   { field: 'input[aria-labelledby="less-5-machines"]' },
 ];
+
+// Fields for the generated modal form, which renders inputs with aria-label
+// instead of aria-labelledby
+export const modalFormCheckboxFields = [
+  { field: 'input[aria-label="24-04"]' },
+  { field: 'input[aria-label="physical-server"]' },
+  { field: 'input[aria-labelledby="canonicalUpdatesOptIn"]' },
+];
+
+export const modalFormRadioFields = [
+  { field: 'input[aria-label="less-5-machines"]' },
+];

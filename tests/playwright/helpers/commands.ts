@@ -1,6 +1,6 @@
-import { Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 
-export const isExistingField = async (page: Page, fieldName: string) => {
+export const isExistingField = async (page: Page | Locator, fieldName: string) => {
   const field = page.locator(fieldName);
   return await field.isVisible();
 };
@@ -50,20 +50,20 @@ export const clickRecaptcha = async (page: Page) => {
 
 /**
  * Fills existing fields in the form
- * @param page Current page
+ * @param page Current page or locator to scope within
  * @param testTextFields List of text fields to fill
  * @param testCheckboxFields List of checkbox fields to fill
  * @param testRadioFields List of radio fields to fill
  */
 export const fillExistingFields = async (
-  page: Page,
+  page: Page | Locator,
   testTextFields: { field: string; value: string }[],
   testCheckboxFields: { field: string }[],
   testRadioFields: { field: string }[]
 ) => {
   for (const { field, value } of testTextFields) {
     if (await isExistingField(page, field)) {
-      await page.fill(field, value);
+      await page.locator(field).fill(value);
     }
   }
   for (const { field } of testCheckboxFields) {
