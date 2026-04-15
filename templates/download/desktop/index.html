@@ -71,6 +71,25 @@
             </div>
           </div>
 
+          <div class="row">
+            <div class="col-3">
+              <p class="p-heading--5">ARM 64-bit architecture</p>
+            </div>
+            <div class="col-3">
+              <a class="p-button"
+                 href="/download/desktop/thank-you?version={{ releases_yaml.lts.full_version }}&amp;architecture=arm64&amp;lts=true"
+                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases_yaml.lts.short_version }}', 'eventValue' : undefined });"
+                 aria-label="Download Ubuntu {{ releases_yaml.lts.short_version }} LTS arm64">Download</a>
+              {% if releases_yaml.lts.arm_iso_download_size %}
+                <span class="u-text--muted">{{ releases_yaml.lts.arm_iso_download_size }}</span>
+              {% endif %}
+
+              <script>
+                performance.mark("Download (Desktop ARM64) button rendered")
+              </script>
+            </div>
+          </div>
+
           <p class="p-text--small">
             For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors, and past releases <a href="/download/alternative-downloads">check out our alternative downloads</a>.
           </p>
@@ -115,17 +134,19 @@
              role="tabpanel"
              aria-labelledby="release-notes-tab-{{ releases_yaml.lts.slug }}">
           <ul class="p-list--divided">
-            <li class="p-list__item is-ticked">New Desktop installer with support for autoinstall</li>
-            <li class="p-list__item is-ticked">New App Center and Firmware Updater applications</li>
-            <li class="p-list__item is-ticked">GNOME 46 with support for quarter screen tiling</li>
-            <li class="p-list__item is-ticked">Advanced Active Directory Group Policy Object support for Ubuntu Pro users</li>
-            <li class="p-list__item is-ticked">Experimental support for TPM-backed Full Disc Encryption and ZFS encryption</li>
+            <li class="p-list__item is-ticked">GNOME 50 with optimized fractional scaling factors</li>
+            <li class="p-list__item is-ticked">New apps for the document viewer, image viewer, terminal emulator, and video player</li>
+            <li class="p-list__item is-ticked">Wide range of accessibility improvements</li>
+            <li class="p-list__item is-ticked">Authentication support for cloud identity providers</li>
+            <li class="p-list__item is-ticked">Support for TPM-backed full-disk encryption management</li>
+            <li class="p-list__item is-ticked">Experimental support for application permission prompting</li>
+            <li class="p-list__item is-ticked">Linux Kernel 7.0 with support for the latest hardware</li>
           </ul>
           <hr class="p-rule--muted" />
           <ul class="u-responsive-realign p-inline-list">
             <li class="p-inline-list__item">
               <a href="{{ releases_yaml.lts.blog_post_url }}"
-                 aria-label="{{ releases_yaml.lts.full_version }} LTS deep dive">Deep dive&nbsp;&rsaquo;</a>
+                 aria-label="{{ releases_yaml.lts.full_version }} LTS deep dive">Press Release&nbsp;&rsaquo;</a>
             </li>
             <li class="p-inline-list__item">
               <a href="{{ releases_yaml.lts.release_notes_url }}"
@@ -140,11 +161,14 @@
              aria-labelledby="system-requirements-tab-{{ releases_yaml.lts.slug }}">
           <ul class="p-list--divided">
             <li class="p-list__item is-ticked">2 GHz dual-core processor or better</li>
-            <li class="p-list__item is-ticked">4 GB system memory</li>
+            <li class="p-list__item is-ticked">6 GB system memory</li>
             <li class="p-list__item is-ticked">25 GB of free hard drive space</li>
             <li class="p-list__item is-ticked">Either a USB port or a DVD drive for the installer media</li>
             <li class="p-list__item is-ticked">Internet access is helpful</li>
           </ul>
+
+          <a href="{{ releases_yaml.lts.system_requirements_url }}"
+            aria-label="{{ releases_yaml.lts.full_version }} detailed system requirements">Detailed system requirements&nbsp;&rsaquo;</a>
         </div>
         <!-- tab 3 -->
         <div id="how-to-install-{{ releases_yaml.lts.slug }}"
@@ -167,6 +191,9 @@
       </div>
     </div>
   </section>
+
+  {# show the latest release only when it's not the same as current LTS #}
+  {% if releases_yaml.latest.slug != releases_yaml.lts.slug %}
   <section class="p-section">
     <div class="row--50-50">
       <hr class="p-rule" />
@@ -326,6 +353,8 @@
       </div>
     </div>
   </section>
+  {% endif %}
+
   {% include "download/shared/_downloads-resources.html" %}
   <section class="p-section">
     <div class="row--50-50">
