@@ -52,7 +52,7 @@
               <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-wsl-amd64.wsl">download now</a>.
             {% endif %}
             <br />
-            {% with version=version, system="wsl" if architecture != "arm64" else "wsl-arm64", architecture=architecture %}
+            {% with version=version, system="wsl", checksum_system="wsl-arm64" if architecture == "arm64" else "", architecture=architecture %}
               {% include "download/shared/_verify-checksums.html" %}
             {% endwith %}
           </p>

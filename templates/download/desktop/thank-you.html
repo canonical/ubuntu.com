@@ -70,7 +70,7 @@
               <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download now</a>.
             {% endif %}
             <br />
-            {% with version=version, system="desktop" if architecture != "arm64" else "desktop-arm64", architecture=architecture %}
+            {% with version=version, system="desktop", checksum_system="desktop-arm64" if architecture == "arm64" else "", architecture=architecture %}
               {% include "download/shared/_verify-checksums.html" %}
             {% endwith %}
           </p>

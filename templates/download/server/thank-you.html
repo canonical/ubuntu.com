@@ -13,15 +13,17 @@
 {% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 
 {% block content %}
-  <noscript>
-    {% if architecture == 'arm64' %}
-      <meta http-equiv="refresh"
-            content="3;url=https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-live-server-arm64.iso" />
-    {% else %}
-      <meta http-equiv="refresh"
-            content="3;url=https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-amd64.iso" />
-    {% endif %}
-  </noscript>
+  {% if version %}
+    <noscript>
+      {% if architecture == 'arm64' %}
+        <meta http-equiv="refresh"
+              content="3;url=https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-live-server-arm64.iso" />
+      {% else %}
+        <meta http-equiv="refresh"
+              content="3;url=https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-amd64.iso" />
+      {% endif %}
+    </noscript>
+  {% endif %}
 
   <section class="p-strip is-shallow u-no-padding--bottom">
     <div class="row--50-50">
@@ -36,7 +38,7 @@
               <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-amd64.iso">download&nbsp;now</a>.
             {% endif %}
             <br />
-            {% with version=version, system="live-server" if architecture != "arm64" else "live-server-arm64", architecture=architecture %}
+            {% with version=version, system="live-server", checksum_system="live-server-arm64" if architecture == "arm64" else "", architecture=architecture %}
               {% include "download/shared/_verify-checksums.html" %}
             {% endwith %}
           </p>
