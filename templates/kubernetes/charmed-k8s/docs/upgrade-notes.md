@@ -28,6 +28,29 @@ your container-based applications fail to work properly after an upgrade,
 please see this [topic on the troubleshooting
 page](/kubernetes/charmed-k8s/docs/troubleshooting#charms-deployed-to-lxd-containers-fail-after-upgradereboot)
 
+
+<a  id="1.35"> </a>
+
+## Upgrading to 1.35
+
+The `coredns` charm underwent a much-needed refactor which changes the way HA
+CoreDNS pods are deployed into the cluster. Existing installations which employ
+HA CoreDNS via charm unit scaling will need to adjust during its refresh.
+
+Before executing the charm refresh, count the number of CoreDNS units:
+
+```sh
+COREDNS_REPLICAS=$(juju status --format json | jq '.applications.coredns.units | keys | length')
+```
+
+This number represents how many units of CoreDNS are running -- or the replica
+count of the stateful set. When upgrading, make sure to apply that config during
+refresh to maintain the replica count.
+
+```sh
+juju refresh coredns --channel=1.35/stable --config coredns_replicas=${COREDNS_REPLICAS}
+```
+
 <a  id="1.29"> </a>
 
 ## Upgrading to 1.29
@@ -665,6 +688,6 @@ You can now proceed with the rest of the upgrade.
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/upgrade-notes.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack  channel</a>.</p>
+    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack channel</a>.</p>
   </div>
 </div>

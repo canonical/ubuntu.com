@@ -23,19 +23,19 @@ Charmed Kubernetes officially supports the three most recent minor releases
 of Kubernetes. The support window for Charmed Kubernetes is explained more
 fully on the [Ubuntu release cycle page](/about/release-cycle#canonical-kubernetes-release-cycle).
 
-Current release: **1.34**
+Current release: **1.35**
 
 Supported releases (click buttons for more information):
 
 <div class="row">
  <div class="col-2">
+  <span class="u-vertically-center"><a href="/kubernetes/charmed-k8s/docs/1.35/components" class="p-button--positive">1.35.x</a></span>
+ </div>
+ <div class="col-2">
   <span class="u-vertically-center"><a href="/kubernetes/charmed-k8s/docs/1.34/components" class="p-button--positive">1.34.x</a></span>
  </div>
  <div class="col-2">
   <span class="u-vertically-center"><a href="/kubernetes/charmed-k8s/docs/1.33/components" class="p-button--positive">1.33.x</a></span>
- </div>
- <div class="col-2">
-  <span class="u-vertically-center"><a href="/kubernetes/charmed-k8s/docs/1.32/components" class="p-button--positive">1.32.x</a></span>
  </div>
 </div>
 
@@ -90,6 +90,6 @@ professional support programmes.
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/supported-versions.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack  channel</a>.</p>
+    <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack channel</a>.</p>
   </div>
 </div>
