@@ -56,8 +56,8 @@
   {% endif %}
 
   <section class="p-strip is-shallow u-no-padding--bottom">
-    <div class="row--50-50">
-      <div class="col">
+    <div class="grid-row--50-50">
+      <div class="grid-col">
         {% if version %}
           <h1>Thank you for downloading Ubuntu Desktop {{ version }}{{ " LTS" if lts }}</h1>
           <p>
@@ -81,7 +81,7 @@
           </p>
         {% endif %}
       </div>
-      <div class="col">
+      <div class="grid-col">
         {% with returnUrl="/download/desktop", ga_event_title="Ubuntu Desktop download" %}
           {% include 'shared/_download-newsletter.html' %}
         {% endwith %}
@@ -97,11 +97,11 @@
 
   <section class="p-section">
     <hr class="p-rule is-fixed-width" />
-    <div class="row--50-50">
-      <div class="col">
+    <div class="grid-row--50-50">
+      <div class="grid-col">
         <h2>Help us to keep Ubuntu free to download, share and use by contributing to...</h2>
       </div>
-      <div class="col">
+      <div class="grid-col">
         <noscript>
           <p>Contributions require JavaScript. Please enable JavaScript if you want to contribute.</p>
         </noscript>

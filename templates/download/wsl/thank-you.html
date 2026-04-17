@@ -1,5 +1,7 @@
 {% extends "download/_base_download.html" %}
 
+{% set hide_inner_wrapper = True %}
+
 {% block title %}Thank you {{ "for downloading Ubuntu Pro for WSL" if architecture == "pro" else "for downloading Ubuntu on WSL" }}{% endblock %}
 
 {% block meta_copydoc %}{% endblock meta_copydoc %}
