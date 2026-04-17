@@ -239,12 +239,6 @@ app = FlaskBase(
 )
 
 
-# TODO: Remove before merging - temporary route for testing error pages
-@app.route("/_test-error/<int:code>")
-def _test_error_page(code):
-    flask.abort(code)
-
-
 # Markdown endpoint for LLM/crawler optimization
 # Serves any page as Markdown via ?format=md query parameter
 MarkdownResponse(app)
