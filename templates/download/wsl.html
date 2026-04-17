@@ -34,7 +34,7 @@
       <hr class="p-rule" />
       <div class="col">
         <div class="p-section">
-          <h2>Ubuntu 26.04 LTS</h2>
+          <h2>Ubuntu {{ releases_yaml.lts.full_version }} LTS</h2>
         </div>
         <div class="p-image-wrapper u-hide--small">
           {{ image(url=releases_yaml.lts.mascot_image_large.url,
@@ -117,8 +117,8 @@
           <p>An updated set of language toolchains and compilers.</p>
           <hr class="p-rule--muted" />
           <p>
-            <a href="https://ubuntu.com/blog/canonical-releases-ubuntu-26-04-resolute-raccoon">Press release&nbsp;&rsaquo;</a>&nbsp;&nbsp;
-            <a href="https://documentation.ubuntu.com/release-notes/26.04/">Release notes&nbsp;&rsaquo;</a>
+            <a href="{{ releases_yaml.lts.blog_post_url }}">Press release&nbsp;&rsaquo;</a>&nbsp;&nbsp;
+            <a href="{{ releases_yaml.lts.release_notes_url }}">Release notes&nbsp;&rsaquo;</a>
           </p>
         </div>
 
