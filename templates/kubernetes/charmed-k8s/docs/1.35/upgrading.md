@@ -128,6 +128,7 @@ Once you know the correct channel, set the **etcd** charm's channel config:
 ```bash
 juju config etcd channel=3.4/stable
 ```
+
 ### Upgrading MetalLB (if used)
 
 Previous versions of the Charmed Kubernetes bundle adopted a two charm approach, deployed in a K8s model with the suggested name `metallb-system`.
@@ -372,11 +373,12 @@ It is recommended that you run a [cluster validation][validation] to ensure that
 [k8s-release]: https://github.com/kubernetes/kubernetes/releases
 [backups]: /kubernetes/charmed-k8s/docs/backups
 [release-notes]: /kubernetes/charmed-k8s/docs/release-notes
+[bundle-repo]: https://github.com/charmed-kubernetes/bundle
 [notes]: /kubernetes/charmed-k8s/docs/upgrade-notes
 [snap-channels]: https://docs.snapcraft.io/reference/channels
 [blue-green]: https://martinfowler.com/bliki/BlueGreenDeployment.html
 [validation]: /kubernetes/charmed-k8s/docs/validation
-[supported-versions]: /kubernetes/charmed-k8s/docs/supported-versions
+[juju-controller-upgrade]: https://documentation.ubuntu.com/juju/3.6/howto/manage-models/#upgrade-a-model
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
