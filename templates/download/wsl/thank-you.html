@@ -34,8 +34,8 @@
   {% endif %}
 
   <section class="p-strip is-shallow u-no-padding--bottom">
-    <div class="row--50-50">
-      <div class="col">
+    <div class="grid-row--50-50">
+      <div class="grid-col">
         {% if architecture == 'pro' %}
           <h1>Thank you for downloading Ubuntu Pro for WSL</h1>
           <p>
@@ -63,7 +63,7 @@
           </p>
         {% endif %}
       </div>
-      <div class="col">
+      <div class="grid-col">
         {% with returnUrl="/download/wsl", ga_event_title="Ubuntu WSL download" %}
           {% include 'shared/_download-newsletter.html' %}
         {% endwith %}
