@@ -167,6 +167,7 @@
       </div>
     </div>
   </section>
+  {% if releases_yaml.latest.full_version != releases_yaml.lts.full_version %}
   <section class="p-section">
     <div class="row--50-50">
       <hr class="p-rule" />
@@ -326,6 +327,7 @@
       </div>
     </div>
   </section>
+  {% endif %}
   {% include "download/shared/_downloads-resources.html" %}
   <section class="p-section">
     <div class="row--50-50">
