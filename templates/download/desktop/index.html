@@ -71,6 +71,25 @@
             </div>
           </div>
 
+          <div class="row">
+            <div class="col-3">
+              <p class="p-heading--5">ARM 64-bit architecture</p>
+            </div>
+            <div class="col-3">
+              <a class="p-button"
+                 href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.lts.full_version }}/release/ubuntu-{{ releases_yaml.lts.full_version }}-desktop-arm64.iso"
+                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases_yaml.lts.short_version }}', 'eventValue' : undefined });"
+                 aria-label="Download Ubuntu {{ releases_yaml.lts.full_version }} arm64">Download</a>
+              {% if releases_yaml.lts.arm_iso_download_size %}
+                <span class="u-text--muted">{{ releases_yaml.lts.arm_iso_download_size }}</span>
+              {% endif %}
+
+              <script>
+                performance.mark("Download (Desktop) button rendered")
+              </script>
+            </div>
+          </div>
+
           <p class="p-text--small">
             For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors, and past releases <a href="/download/alternative-downloads">check out our alternative downloads</a>.
           </p>
@@ -334,7 +353,7 @@
   {% endif %}
 
   {% include "download/shared/_downloads-resources.html" %}
-  
+
   <section class="p-section">
     <div class="row--50-50">
       <hr class="p-rule" />
