@@ -95,7 +95,7 @@
         <p class="u-responsive-realign">
           <a href="/download/raspberry-pi/thank-you?version={{ releases_yaml.lts.full_version }}&amp;architecture=desktop-arm64+raspi"
              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Desktop', 'eventLabel' : '{{ releases_yaml.lts.full_version }}', 'eventValue' : undefined });"
-             class="p-button--positive u-no-margin--bottom">Download Ubuntu Desktop {{ releases_yaml.lts.full_version }} LTS</a>
+             class="p-button--positive u-no-margin--bottom">Download Ubuntu Desktop</a>
           {% if releases_yaml.lts.raspi_desktop_iso_size %}
             <span class="u-text--muted">{{ releases_yaml.lts.raspi_desktop_iso_size }}</span>
           {% endif %}
@@ -105,49 +105,15 @@
         <p class="u-responsive-realign">
           <a href="/download/raspberry-pi/thank-you?version={{ releases_yaml.lts.full_version }}&amp;architecture=server-arm64+raspi"
              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Server', 'eventLabel' : '{{ releases_yaml.lts.full_version }}', 'eventValue' : undefined });"
-             class="p-button">Download Ubuntu Server {{ releases_yaml.lts.full_version }} LTS</a>
+             class="p-button">Download Ubuntu Server</a>
           {% if releases_yaml.lts.raspi_server_iso_size %}
             <span class="u-text--muted">{{ releases_yaml.lts.raspi_server_iso_size }}</span>
           {% endif %}
-        </p>
-      </div>
-    </div>
-    <hr class="p-rule is-fixed-width" />
-    <div class="row--50-50 p-section">
-      <div class="col u-image-position">
-        <h2>Ubuntu {{ releases_yaml.latest.full_version }}</h2>
-        <div class="p-image-wrapper u-hide--small">
-          {{ image(url=releases_yaml.latest.mascot_image_large.url,
-                    alt=releases_yaml.latest.name,
-                    width=releases_yaml.latest.mascot_image_large.width,
-                    height=releases_yaml.latest.mascot_image_large.height,
-                    hi_def=True,
-                    loading="auto") | safe
-          }}
-        </div>
-      </div>
-      <div class="col">
-        <p>
-          The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{ releases_yaml.latest.full_version }} comes with nine months of security and maintenance updates, until {{ releases_yaml.latest.eol }}.
-        </p>
-        <hr />
-        <p class="u-responsive-realign">
-          <a href="/download/raspberry-pi/thank-you?version={{ releases_yaml.latest.full_version }}&amp;architecture=desktop-arm64+raspi"
-             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Desktop', 'eventLabel' : '{{ releases_yaml.latest.full_version }}', 'eventValue' : undefined });"
-             class="p-button--positive u-no-margin--bottom">Download Ubuntu Desktop {{ releases_yaml.latest.full_version }}</a>
-          {% if releases_yaml.latest.raspi_desktop_iso_size %}
-            <span class="u-text--muted">{{ releases_yaml.latest.raspi_desktop_iso_size }}</span>
-          {% endif %}
-        </p>
-        <p>Minimum 4GBs of RAM and 16GB storage required</p>
-        <hr />
-        <p class="u-responsive-realign">
-          <a href="/download/raspberry-pi/thank-you?version={{ releases_yaml.latest.full_version }}&amp;architecture=server-arm64+raspi"
-             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Server', 'eventLabel' : '{{ releases_yaml.latest.full_version }}', 'eventValue' : undefined });"
-             class="p-button">Download Ubuntu Server {{ releases_yaml.latest.full_version }}</a>
-          {% if releases_yaml.latest.raspi_server_iso_size %}
-            <span class="u-text--muted">{{ releases_yaml.latest.raspi_server_iso_size }}</span>
-          {% endif %}
+
+          <p>Raspberry Pi 5 requires an EEPROM date no earlier than 2025-02-11.</p>
+          <p>Raspberry Pi 4 requires an EEPROM date no earlier than 2022-11-25.</p>
+          <p>EEPROM can be updated by running <code>sudo rpi-eeprom-update -a</code> and rebooting.</p>
+          <p><a href="https://canonical-ubuntu-hardware-support.readthedocs-hosted.com/boards/how-to/ubuntu_supported/raspberry-pi/">Read more in our documentation&nbsp;&rsaquo;</a></p>
         </p>
       </div>
     </div>

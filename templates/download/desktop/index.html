@@ -191,9 +191,7 @@
       </div>
     </div>
   </section>
-
-  {# show the latest release only when it's not the same as current LTS #}
-  {% if releases_yaml.latest.slug != releases_yaml.lts.slug %}
+  {% if releases_yaml.latest.full_version != releases_yaml.lts.full_version %}
   <section class="p-section">
     <div class="row--50-50">
       <hr class="p-rule" />
@@ -354,7 +352,6 @@
     </div>
   </section>
   {% endif %}
-
   {% include "download/shared/_downloads-resources.html" %}
   <section class="p-section">
     <div class="row--50-50">
