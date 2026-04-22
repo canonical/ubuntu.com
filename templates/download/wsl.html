@@ -23,10 +23,10 @@
 {% block content %}
 
   {%- call(slot) vf_hero(
-      title_text='Get Ubuntu on WSL',
-      layout='fallback'
-    ) 
-  -%}
+    title_text='Get Ubuntu on WSL',
+    layout='fallback'
+    )
+    -%}
   {%- endcall -%}
 
   <section class="p-section">
@@ -51,36 +51,33 @@
           <p>
             The latest <abbr title="Long-term support">LTS</abbr> version of Ubuntu on WSL. LTS stands for long-term support &ndash; which means five years of free security and maintenance updates, extended to 15 years with <a href="/pro">Ubuntu Pro</a>.
           </p>
-
-            <div class="grid-row">
-              <div class="grid-col-2">
-                <p class="p-heading--5">Intel or AMD 64-bit architecture</p>
-              </div>
-              <div class="grid-col-2">
-                <a class="p-button--positive" href="/download/wsl/thank-you?version=24.04.4&architecture=amd64">Download</a>
-                <span class="u-text--muted">373MB</span>
-              </div>
+          <hr class="p-rule--muted" />
+          <div class="grid-row">
+            <div class="grid-col-2">
+              <p class="p-heading--5">Intel or AMD 64-bit architecture</p>
             </div>
             <div class="grid-col-2">
               <a class="p-button--positive"
-                 href="https://releases.ubuntu.com/resolute/ubuntu-26.04-wsl-amd64.wsl">Download</a>
-              <span class="u-text--muted">373MB</span>
+                 href="/download/wsl/thank-you?version={{ releases_yaml.lts.full_version }}&architecture=amd64">Download</a>
+              {% if releases_yaml.wsl.version == releases_yaml.lts.short_version %}
+                {% if releases_yaml.wsl.iso_download_size %}
+                  <span class="u-text--muted">{{ releases_yaml.wsl.iso_download_size }}</span>
+                {% endif %}
+              {% endif %}
             </div>
           </div>
-
-            <div class="grid-row">
-              <div class="grid-col-2">
-                <p class="p-heading--5">ARM 64-bit architecture</p>
-              </div>
-              <div class="grid-col-2">
-                <a class="p-button--positive" href="/download/wsl/thank-you?version=24.04.4&architecture=arm64">Download</a>
-                <span class="u-text--muted">374MB</span>
-              </div>
+          <div class="grid-row">
+            <div class="grid-col-2">
+              <p class="p-heading--5">ARM 64-bit architecture</p>
             </div>
             <div class="grid-col-2">
-              <a class="p-button--positive"
-                 href="https://cdimages.ubuntu.com/releases/resolute/release/ubuntu-26.04-wsl-arm64.wsl">Download</a>
-              <span class="u-text--muted">374MB</span>
+              <a class="p-button"
+                 href="/download/wsl/thank-you?version={{ releases_yaml.lts.full_version }}&architecture=arm64">Download</a>
+              {% if releases_yaml.wsl.version == releases_yaml.lts.short_version %}
+                {% if releases_yaml.wsl.arm_iso_download_size %}
+                  <span class="u-text--muted">{{ releases_yaml.wsl.arm_iso_download_size }}</span>
+                {% endif %}
+              {% endif %}
             </div>
           </div>
         </div>
@@ -159,6 +156,7 @@
     </div>
   </section>
 
+  {# djlint:off #}
   {{- vf_basic_section(
     title={"text": "Ubuntu is the number 1 choice<br class='u-hide--small u-hide--medium' /> for organizations using WSL"},
     items=[
@@ -229,7 +227,9 @@
       },
     ]
   ) -}}
+  {# djlint:on #}
 
+  {# djlint:off #}
   {%- call(slot) vf_equal_heights(
     title_text="More from Canonical",
     attrs={ "id": "4-columns-responsive" },
@@ -261,7 +261,9 @@
     ]
   ) -%}
   {%- endcall -%}
+  {# djlint:on #}
 
+  {# djlint:off #}
   {%- call(slot) vf_resources(
       title={
         "text": "Resources",
@@ -322,11 +324,12 @@
       ]
       ) -%}
   {%- endcall -%}
+  {# djlint:on #}
 
   {{- vf_latest_news(title_text='Latest from our blog ›',
     tag_name="ubuntu-wsl",
     tag_id=3332,
-    items=3)
+    items=3) 
   -}}
 
   <script type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>

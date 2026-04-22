@@ -2,25 +2,25 @@
 
 {% set hide_inner_wrapper = True %}
 
-{% block title %}Thank you {{ "for downloading Ubuntu Pro for WSL" if architecture == "pro" else "for downloading Ubuntu on WSL" }}{% endblock %}
+{% block title %}
+  Thank you {{ "for downloading Ubuntu Pro for WSL" if architecture == "pro" else "for downloading Ubuntu on WSL" }}
+{% endblock %}
 
-{% block meta_copydoc %}{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+{% endblock meta_copydoc %}
 
 {% block body_class %}
   is-paper
 {% endblock body_class %}
 
-{% block head_extra %}
-  <meta name="robots" content="noindex" />
-{% endblock %}
+{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 
 {% set pro_download_url = "https://github.com/canonical/ubuntu-pro-for-wsl/releases/latest/download/UbuntuProForWSL.msixbundle" %}
 
 {% block content %}
 
   {% if architecture == 'pro' %}
-    <meta http-equiv="refresh"
-          content="3;url={{ pro_download_url }}" />
+    <meta http-equiv="refresh" content="3;url={{ pro_download_url }}" />
   {% elif version %}
     {% if architecture == 'arm64' %}
       <noscript>
@@ -72,6 +72,20 @@
       </div>
     </div>
   </section>
+
+  {% include "download/shared/_downloads-resources.html" %}
+
+  {% include "download/shared/_secure-enterprise-management.html" %}
+
+  {% include "download/shared/_more-from-canonical.html" %}
+
+  {% if version %}
+
+    {% with title_link="/blog/desktop", group_id="1479" %}
+      {% include "download/shared/_latest-blogs_download.html" %}
+    {% endwith %}
+
+  {% endif %}
 
 {% endblock content %}
 
