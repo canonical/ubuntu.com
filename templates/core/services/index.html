@@ -21,7 +21,7 @@
 
 {% block content %}
   {% call(slot) vf_hero(
-    title_text='Power your device with our IoT professional services',
+    title_text='Power your device with our <br class="u-hide--medium u-hide--small" />IoT professional services',
     layout='50/50-full-width-image',
     blocks=[
       {
@@ -58,7 +58,7 @@
           "is_cover": false,
           "attrs": {
             "src": "https://assets.ubuntu.com/v1/dbc463a4-image-1.png",
-            "alt": "alt-text"
+            "alt": ""
           }
         }
       },
@@ -79,7 +79,7 @@
       </div>
     </div>
     <div class="p-section--shallow">
-      <div class="grid-row u-sv3">
+      <div class="grid-row">
         <div class="grid-col-2 grid-col-start-large-3">
           <h3 class="p-heading--5">Pick a board</h3>
         </div>
@@ -90,22 +90,26 @@
             <li class="p-list__item has-bullet">Support for RISC-V boards, and x86 (Intel)</li>
             <li class="p-list__item has-bullet">Wide variety of peripherals supported, with more added every week</li>
           </ul>
-          <div class="p-image-container--16-9 is-highlighted u-hide--small">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/eef96c5e-board.png",
-            alt="",
-            width="1200",
-            height="675",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-image-container__image"}
-            ) | safe
-            }}
+          <div class="u-hide--small u-sv3">
+            <div class="p-image-container--16-9 is-highlighted">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/eef96c5e-board.png",
+              alt="",
+              width="1200",
+              height="675",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-image-container__image"}
+              ) | safe
+              }}
+            </div>
           </div>
         </div>
       </div>
-      <div class="grid-row u-sv3">
-        <hr class="is-muted" />
+      <div class="grid-row">
+        <div class="grid-col-6 grid-col-start-large-3">
+          <hr class="p-rule--muted" />
+        </div>
         <div class="grid-col-2 grid-col-start-large-3">
           <h3 class="p-heading--5">Package your apps</h3>
         </div>
@@ -116,22 +120,26 @@
             <li class="p-list__item has-bullet">Tamper-proof containerisation</li>
             <li class="p-list__item has-bullet">Faster rollout with your preconfigured devices</li>
           </ul>
-          <div class="p-image-container--16-9 is-highlighted u-hide--small">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/50d12e1a-package_apps.png",
-            alt="",
-            width="1200",
-            height="675",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-image-container__image"}
-            ) | safe
-            }}
+          <div class="u-hide--small u-sv3">
+            <div class="p-image-container--16-9 is-highlighted">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/50d12e1a-package_apps.png",
+              alt="",
+              width="1200",
+              height="675",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-image-container__image"}
+              ) | safe
+              }}
+            </div>
           </div>
         </div>
       </div>
-      <div class="grid-row u-sv3">
-        <hr class="is-muted" />
+      <div class="grid-row">
+        <div class="grid-col-6 grid-col-start-large-3">
+          <hr class="p-rule--muted" />
+        </div>
         <div class="grid-col-2 grid-col-start-large-3">
           <h3 class="p-heading--5">Build your app store</h3>
         </div>
@@ -142,22 +150,26 @@
             <li class="p-list__item has-bullet">Global CDN for software delivery</li>
             <li class="p-list__item has-bullet">CI/CD pipeline integration</li>
           </ul>
-          <div class="p-image-container--16-9 is-highlighted u-hide--small">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/f9840932-build_store.png",
-            alt="",
-            width="1200",
-            height="675",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-image-container__image"}
-            ) | safe
-            }}
+          <div class="u-hide--small u-sv3">
+            <div class="p-image-container--16-9 is-highlighted">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/f9840932-build_store.png",
+              alt="",
+              width="1200",
+              height="675",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-image-container__image"}
+              ) | safe
+              }}
+            </div>
           </div>
         </div>
       </div>
-      <div class="grid-row u-sv3">
-        <hr class="is-muted" />
+      <div class="grid-row">
+        <div class="grid-col-6 grid-col-start-large-3">
+          <hr class="p-rule--muted" />
+        </div>
         <div class="grid-col-2 grid-col-start-large-3">
           <h3 class="p-heading--5">Manage software updates</h3>
         </div>
@@ -168,17 +180,19 @@
             <li class="p-list__item has-bullet">Manage your fleet of devices</li>
             <li class="p-list__item has-bullet">Operate in well-connected and air-gapped environments</li>
           </ul>
-          <div class="p-image-container--16-9 is-highlighted u-hide--small">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/bcba014f-manage_updates.png",
-            alt="",
-            width="1200",
-            height="675",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-image-container__image"}
-            ) | safe
-            }}
+          <div class="u-hide--small u-sv3">
+            <div class="p-image-container--16-9 is-highlighted">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/bcba014f-manage_updates.png",
+              alt="",
+              width="1200",
+              height="675",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-image-container__image"}
+              ) | safe
+              }}
+            </div>
           </div>
         </div>
       </div>
@@ -260,7 +274,7 @@
   </section>
 
   {{ vf_basic_section(
-    title={"text": "A powerful foundation for all things IoT"},
+    title={"text": "A powerful foundation <br class=\"u-hide--medium u-hide--small\" />for all things IoT"},
     is_split_on_medium=true,
     items=[
       {
@@ -287,7 +301,7 @@
   ) }}
 
   {{ vf_basic_section(
-    title={"text": "Up to 15 years of security coverage"},
+    title={"text": "Up to 15 years <br class=\"u-hide--medium u-hide--small\" />of security coverage"},
     is_split_on_medium=true,
     items=[
       {
