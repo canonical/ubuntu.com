@@ -80,14 +80,20 @@
             The latest <abbr title="Long-term support">LTS</abbr> version of Ubuntu Server. LTS stands for long-term support &mdash; which means five years of free security and maintenance updates, extended to up to 15 years with <a href="/pro">Ubuntu Pro</a>.
           </p>
           <hr class="p-rule" />
-          <p class="u-responsive-realign">
-            <span style="margin-right: 1rem;">Intel or AMD 64-bit architecture</span>
-            <a class="p-button--positive"
-               href="/download/server/thank-you?version={{ releases_yaml.lts.full_version }}&amp;architecture=amd64&amp;lts=true"
-               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases_yaml.lts.full_version }}', 'eventValue' : undefined });">Download {{ releases_yaml.lts.full_version }} LTS
-            </a>
-            {% if releases_yaml.lts.server_iso_size %}<span class="u-text--muted">{{ releases_yaml.lts.server_iso_size }}</span>{% endif %}
-          </p>
+          <div class="row">
+            <div class="col-3">
+              <p class="p-heading--5">Intel or AMD 64-bit architecture</p>
+            </div>
+            <div class="col-3">
+              <a class="p-button--positive"
+                 href="/download/server/thank-you?version={{ releases_yaml.lts.full_version }}&amp;architecture=amd64&amp;lts=true"
+                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases_yaml.lts.full_version }}', 'eventValue' : undefined });">Download
+              </a>
+              {% if releases_yaml.lts.server_iso_size %}
+                <span class="u-text--muted">{{ releases_yaml.lts.server_iso_size }}</span>
+              {% endif %}
+            </div>
+          </div>
           <p class="p-text--small">
             For other versions of Ubuntu Server including torrents, the network installer, a list of local mirrors, and past releases <a href="/download/alternative-downloads">check out our alternative downloads</a>.
           </p>
