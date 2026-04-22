@@ -73,19 +73,108 @@
     </div>
   </section>
 
-  {% include "download/shared/_downloads-resources.html" %}
+{# djlint:off #}
+  {%- call(slot) vf_equal_heights(
+    title_text="More from Canonical",
+    attrs={ "id": "4-columns-responsive" },
+    image_aspect_ratio_small="auto",
+    image_aspect_ratio_medium="auto",
+    image_aspect_ratio_large="auto",
+    highlight_images=true,
+    items=[
+      {
+        "image_html":  "<img src='https://assets.ubuntu.com/v1/2dfe5445-landscape_logo.png' class='p-image-container__image' alt='Landscape' />",
+        "description_html": "<p>A single pane of glass to manage Ubuntu instances, including Ubuntu on WSL.</p>",
+        "cta_html": "<a href='https://ubuntu.com/landscape'>Learn more about Landscape ›</a>"
+      },
+      {
+        "image_html":  "<img src='https://assets.ubuntu.com/v1/2eeb892c-lxd_logo.png' class='p-image-container__image' alt='LXD' />",
+        "description_html": "<p>Fast, dense, and secure container and VM management at any scale.</p>",
+        "cta_html": "<a href='https://canonical.com/lxd'>Learn more about LXD ›</a>"
+      },
+      {
+        "image_html":  "<img src='https://assets.ubuntu.com/v1/d893a4f8-juju_logo.png' class='p-image-container__image' alt='Juju' />",
+        "description_html": "<p>Design and deploy entire workloads in just a few clicks.</p>",
+        "cta_html": "<a href='https://juju.is'>Learn more about Juju ›</a>"
+      },
+      {
+        "image_html":  "<img src='https://assets.ubuntu.com/v1/b2b32ae9-multipass_logo.png' class='p-image-container__image' alt='Multipass' />",
+        "description_html": "<p>Spin up Ubuntu VMs on Windows, Mac and Linux.</p>",
+        "cta_html": "<a href='https://multipass.run/'>Learn more about Multipass ›</a>"
+      }
+    ]
+  ) -%}
+  {%- endcall -%}
+  {# djlint:on #}
 
-  {% include "download/shared/_secure-enterprise-management.html" %}
+  {# djlint:off #}
+  {%- call(slot) vf_resources(
+      title={
+        "text": "Resources",
+      },
+      blocks=[
+        {
+          "type": "resources",
+          "render_images": false,
+          "categories": [
+            {
+              "title": "Documentation",
+              "items": [
+                {
+                  "title": {
+                    "text": "Ubuntu on WSL documentation",
+                    "link_attrs": {
+                      "href": "https://documentation.ubuntu.com/wsl/stable/"
+                    }
+                  },
+                  "description": {
+                    "text": "The Ubuntu on WSL documentation, curated by community and Ubuntu developers.",
+                    "attrs": {}
+                  }
+                }
+              ]
+            },
+            {
+              "title": "Community",
+              "items": [
+                {
+                  "title": {
+                    "text": "Ask Ubuntu",
+                    "link_attrs": {
+                      "href": "https://askubuntu.com/"
+                    }
+                  },
+                  "description": {
+                    "text": "Stuck somewhere? Get your Ubuntu questions answered by power users.",
+                    "attrs": {}
+                  }
+                },
+                {
+                  "title": {
+                    "text": "Community Discourse",
+                    "link_attrs": {
+                      "href": "https://discourse.ubuntu.com/"
+                    }
+                  },
+                  "description": {
+                    "text": "Join the Ubuntu developers community and make your voice heard.",
+                    "attrs": {}
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      ) -%}
+  {%- endcall -%}
+  {# djlint:on #}
 
-  {% include "download/shared/_more-from-canonical.html" %}
-
-  {% if version %}
-
-    {% with title_link="/blog/desktop", group_id="1479" %}
-      {% include "download/shared/_latest-blogs_download.html" %}
-    {% endwith %}
-
-  {% endif %}
+  {{- vf_latest_news(title_text='Latest from our blog ›',
+    tag_name="ubuntu-wsl",
+    tag_id=3332,
+    items=3) 
+  -}}
 
 {% endblock content %}
 
