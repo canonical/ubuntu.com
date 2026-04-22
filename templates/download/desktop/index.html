@@ -115,17 +115,21 @@
              role="tabpanel"
              aria-labelledby="release-notes-tab-{{ releases_yaml.lts.slug }}">
           <ul class="p-list--divided">
-            <li class="p-list__item is-ticked">New Desktop installer with support for autoinstall</li>
-            <li class="p-list__item is-ticked">New App Center and Firmware Updater applications</li>
-            <li class="p-list__item is-ticked">GNOME 46 with support for quarter screen tiling</li>
-            <li class="p-list__item is-ticked">Advanced Active Directory Group Policy Object support for Ubuntu Pro users</li>
-            <li class="p-list__item is-ticked">Experimental support for TPM-backed Full Disc Encryption and ZFS encryption</li>
+            <li class="p-list__item is-ticked">GNOME 50 with optimized fractional scaling factors</li>
+            <li class="p-list__item is-ticked">
+              New apps for the document viewer, image viewer, terminal emulator, and video player
+            </li>
+            <li class="p-list__item is-ticked">Wide range of accessibility improvements</li>
+            <li class="p-list__item is-ticked">Authentication support for cloud identity providers</li>
+            <li class="p-list__item is-ticked">Support for TPM-backed full-disk encryption management</li>
+            <li class="p-list__item is-ticked">Experimental support for application permissions prompting</li>
+            <li class="p-list__item is-ticked">Linux Kernel 7.0 with support for the latest hardware</li>
           </ul>
           <hr class="p-rule--muted" />
           <ul class="u-responsive-realign p-inline-list">
             <li class="p-inline-list__item">
               <a href="{{ releases_yaml.lts.blog_post_url }}"
-                 aria-label="{{ releases_yaml.lts.full_version }} LTS deep dive">Deep dive&nbsp;&rsaquo;</a>
+                 aria-label="{{ releases_yaml.lts.full_version }} LTS press release">Press release&nbsp;&rsaquo;</a>
             </li>
             <li class="p-inline-list__item">
               <a href="{{ releases_yaml.lts.release_notes_url }}"
@@ -140,11 +144,13 @@
              aria-labelledby="system-requirements-tab-{{ releases_yaml.lts.slug }}">
           <ul class="p-list--divided">
             <li class="p-list__item is-ticked">2 GHz dual-core processor or better</li>
-            <li class="p-list__item is-ticked">4 GB system memory</li>
+            <li class="p-list__item is-ticked">6 GB system memory</li>
             <li class="p-list__item is-ticked">25 GB of free hard drive space</li>
             <li class="p-list__item is-ticked">Either a USB port or a DVD drive for the installer media</li>
             <li class="p-list__item is-ticked">Internet access is helpful</li>
           </ul>
+          <hr class="p-rule--muted" />
+          <a href="https://documentation.ubuntu.com/release-notes/26.04/#requirements-and-compatibility">Detailed system requirements&nbsp;&rsaquo;</a>
         </div>
         <!-- tab 3 -->
         <div id="how-to-install-{{ releases_yaml.lts.slug }}"
@@ -160,173 +166,171 @@
             <li class="p-list__item">Boot your laptop or PC from the USB flash drive</li>
           </ol>
           <hr class="p-rule--muted" />
-          <p>
-            <a href="https://documentation.ubuntu.com/desktop/en/latest/how-to/create-a-bootable-usb-stick/">Follow the step-by-step tutorial&nbsp;&rsaquo;</a>
-          </p>
+          <a href="https://documentation.ubuntu.com/desktop/en/latest/how-to/create-a-bootable-usb-stick/">Follow the step-by-step tutorial&nbsp;&rsaquo;</a>
         </div>
       </div>
     </div>
   </section>
   {% if releases_yaml.latest.full_version != releases_yaml.lts.full_version %}
-  <section class="p-section">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <div class="p-section">
-          <h2>Ubuntu {{ releases_yaml.latest.full_version }}</h2>
+    <section class="p-section">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <div class="p-section">
+            <h2>Ubuntu {{ releases_yaml.latest.full_version }}</h2>
+          </div>
+          <div class="p-image-wrapper u-hide--small">
+            {{ image(url=releases_yaml.latest.mascot_image_large.url,
+                        alt=releases_yaml.latest.name,
+                        width=releases_yaml.latest.mascot_image_large.width,
+                        height=releases_yaml.latest.mascot_image_large.height,
+                        hi_def=True,
+                        loading="auto") | safe
+            }}
+          </div>
         </div>
-        <div class="p-image-wrapper u-hide--small">
-          {{ image(url=releases_yaml.latest.mascot_image_large.url,
-                    alt=releases_yaml.latest.name,
-                    width=releases_yaml.latest.mascot_image_large.width,
-                    height=releases_yaml.latest.mascot_image_large.height,
-                    hi_def=True,
-                    loading="auto") | safe
-          }}
+        <div class="col">
+          <div class="p-section--shallow">
+            <p>
+              The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{ releases_yaml.latest.full_version }} comes with nine months of security and maintenance updates, until {{ releases_yaml.latest.eol }}.
+            </p>
+            <hr class="p-rule--muted" />
+
+            <div class="row">
+              <div class="col-3">
+                <p class="p-heading--5">Intel or AMD 64-bit architecture</p>
+              </div>
+              <div class="col-3">
+                <a class="p-button--positive"
+                   href="/download/desktop/thank-you?version={{ releases_yaml.latest.full_version }}&amp;architecture=amd64"
+                   onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases_yaml.latest.short_version }}', 'eventValue' : undefined });"
+                   aria-label="Download Ubuntu {{ releases_yaml.latest.full_version }} amd64">Download</a>
+                {% if releases_yaml.latest.iso_download_size %}
+                  <span class="u-text--muted">{{ releases_yaml.latest.iso_download_size }}</span>
+                {% endif %}
+
+                <script>
+                  performance.mark("Download (Desktop) button rendered")
+                </script>
+              </div>
+            </div>
+            <hr class="p-rule--muted" />
+            <div class="row">
+              <div class="col-3">
+                <p class="p-heading--5">ARM 64-bit architecture</p>
+              </div>
+              <div class="col-3">
+                <a class="p-button"
+                   href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.latest.full_version }}/release/ubuntu-{{ releases_yaml.latest.full_version }}-desktop-arm64.iso"
+                   onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases_yaml.latest.short_version }}', 'eventValue' : undefined });"
+                   aria-label="Download Ubuntu {{ releases_yaml.latest.full_version }} arm64">Download</a>
+                {% if releases_yaml.latest.arm_iso_download_size %}
+                  <span class="u-text--muted">{{ releases_yaml.latest.arm_iso_download_size }}</span>
+                {% endif %}
+
+                <script>
+                  performance.mark("Download (Desktop) button rendered")
+                </script>
+              </div>
+            </div>
+            <p class="p-text--small">
+              For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors, and past releases <a href="/download/alternative-downloads">check out our alternative downloads</a>.
+            </p>
+          </div>
+          <!-- Start tab container -->
+          <nav class="p-tabs js-tabbed-content">
+            <ul class="p-tabs__list u-no-margin--bottom"
+                role="tablist"
+                data-maintain-hash="true">
+              <li class="p-tabs__item">
+                <a class="p-tabs__link"
+                   role="tab"
+                   aria-selected="true"
+                   id="release-notes-tab-{{ releases_yaml.latest.slug }}"
+                   href="#release-notes-{{ releases_yaml.latest.slug }}"
+                   aria-controls="release-notes-{{ releases_yaml.latest.slug }}">What's new</a>
+              </li>
+              <li class="p-tabs__item">
+                <a class="p-tabs__link"
+                   role="tab"
+                   aria-selected="false"
+                   id="system-requirements-tab-{{ releases_yaml.latest.slug }}"
+                   href="#system-requirements-{{ releases_yaml.latest.slug }}"
+                   aria-controls="system-requirements-{{ releases_yaml.latest.slug }}"
+                   tabindex="-1">System requirements</a>
+              </li>
+              <li class="p-tabs__item">
+                <a class="p-tabs__link"
+                   role="tab"
+                   aria-selected="false"
+                   id="how-to-install-tab-{{ releases_yaml.latest.slug }}"
+                   href="#how-to-install-{{ releases_yaml.latest.slug }}"
+                   aria-controls="how-to-install-{{ releases_yaml.latest.slug }}"
+                   tabindex="-1">How to install</a>
+              </li>
+            </ul>
+          </nav>
+          <!-- End tab container -->
+          <!-- tab 1 -->
+          <div id="release-notes-{{ releases_yaml.latest.slug }}"
+               class="p-tabs__content"
+               role="tabpanel"
+               aria-labelledby="release-notes-tab-{{ releases_yaml.latest.slug }}">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked">Linux Kernel 6.17 with support for the latest hardware</li>
+              <li class="p-list__item is-ticked">
+                GNOME 49 desktop environment with new accessibility menu, lock screen media control and reboot/shutdown, HDR brightness controls
+              </li>
+              <li class="p-list__item is-ticked">Loupe, a modern image viewer</li>
+              <li class="p-list__item is-ticked">Ptyxis, a new terminal emulator</li>
+              <li class="p-list__item is-ticked">Major enhancements to TPM-Backed full disk encryption</li>
+            </ul>
+            <hr class="p-rule--muted" />
+            <ul class="u-responsive-realign p-inline-list">
+              <li class="p-inline-list__item">
+                <a href="{{ releases_yaml.latest.blog_post_url }}"
+                   aria-label="{{ releases_yaml.latest.full_version }} deep dive">Press release&nbsp;&rsaquo;</a>
+              </li>
+              <li class="p-inline-list__item">
+                <a href="{{ releases_yaml.latest.release_notes_url }}"
+                   aria-label="{{ releases_yaml.latest.full_version }} release notes">Release notes&nbsp;&rsaquo;</a>
+              </li>
+            </ul>
+          </div>
+          <!-- tab 2 -->
+          <div id="system-requirements-{{ releases_yaml.latest.slug }}"
+               class="p-tabs__content"
+               role="tabpanel"
+               aria-labelledby="system-requirements-tab-{{ releases_yaml.latest.slug }}">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked">2 GHz dual-core processor or better</li>
+              <li class="p-list__item is-ticked">4 GB system memory</li>
+              <li class="p-list__item is-ticked">25 GB of free hard drive space</li>
+              <li class="p-list__item is-ticked">Either a USB port or a DVD drive for the installer media</li>
+              <li class="p-list__item is-ticked">Internet access is helpful</li>
+            </ul>
+          </div>
+          <!-- tab 3 -->
+          <div id="how-to-install-{{ releases_yaml.latest.slug }}"
+               class="p-tabs__content"
+               role="tabpanel"
+               aria-labelledby="how-to-install-tab-{{ releases_yaml.latest.slug }}">
+            <p>To install or try Ubuntu Desktop:</p>
+            <ol class="p-list--divided">
+              <li class="p-list__item">Download the ISO image</li>
+              <li class="p-list__item">
+                Create a bootable USB flash drive with <a href="https://documentation.ubuntu.com/desktop/en/latest/how-to/create-a-bootable-usb-stick/">an image writer</a>
+              </li>
+              <li class="p-list__item">Boot your laptop or PC from the USB flash drive</li>
+            </ol>
+            <hr class="p-rule--muted" />
+            <p>
+              <a href="https://documentation.ubuntu.com/desktop/en/latest/tutorial/install-ubuntu-desktop/">Follow the step-by-step tutorial&nbsp;&rsaquo;</a>
+            </p>
+          </div>
         </div>
       </div>
-      <div class="col">
-        <div class="p-section--shallow">
-          <p>
-            The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{ releases_yaml.latest.full_version }} comes with nine months of security and maintenance updates, until {{ releases_yaml.latest.eol }}.
-          </p>
-          <hr class="p-rule--muted" />
-
-          <div class="row">
-            <div class="col-3">
-              <p class="p-heading--5">Intel or AMD 64-bit architecture</p>
-            </div>
-            <div class="col-3">
-              <a class="p-button--positive"
-                 href="/download/desktop/thank-you?version={{ releases_yaml.latest.full_version }}&amp;architecture=amd64"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases_yaml.latest.short_version }}', 'eventValue' : undefined });"
-                 aria-label="Download Ubuntu {{ releases_yaml.latest.full_version }} amd64">Download</a>
-              {% if releases_yaml.latest.iso_download_size %}
-                <span class="u-text--muted">{{ releases_yaml.latest.iso_download_size }}</span>
-              {% endif %}
-
-              <script>
-                performance.mark("Download (Desktop) button rendered")
-              </script>
-            </div>
-          </div>
-          <hr class="p-rule--muted" />
-          <div class="row">
-            <div class="col-3">
-              <p class="p-heading--5">ARM 64-bit architecture</p>
-            </div>
-            <div class="col-3">
-              <a class="p-button"
-                 href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.latest.full_version }}/release/ubuntu-{{ releases_yaml.latest.full_version }}-desktop-arm64.iso"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases_yaml.latest.short_version }}', 'eventValue' : undefined });"
-                 aria-label="Download Ubuntu {{ releases_yaml.latest.full_version }} arm64">Download</a>
-              {% if releases_yaml.latest.arm_iso_download_size %}
-                <span class="u-text--muted">{{ releases_yaml.latest.arm_iso_download_size }}</span>
-              {% endif %}
-
-              <script>
-                performance.mark("Download (Desktop) button rendered")
-              </script>
-            </div>
-          </div>
-          <p class="p-text--small">
-            For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors, and past releases <a href="/download/alternative-downloads">check out our alternative downloads</a>.
-          </p>
-        </div>
-        <!-- Start tab container -->
-        <nav class="p-tabs js-tabbed-content">
-          <ul class="p-tabs__list u-no-margin--bottom"
-              role="tablist"
-              data-maintain-hash="true">
-            <li class="p-tabs__item">
-              <a class="p-tabs__link"
-                 role="tab"
-                 aria-selected="true"
-                 id="release-notes-tab-{{ releases_yaml.latest.slug }}"
-                 href="#release-notes-{{ releases_yaml.latest.slug }}"
-                 aria-controls="release-notes-{{ releases_yaml.latest.slug }}">What's new</a>
-            </li>
-            <li class="p-tabs__item">
-              <a class="p-tabs__link"
-                 role="tab"
-                 aria-selected="false"
-                 id="system-requirements-tab-{{ releases_yaml.latest.slug }}"
-                 href="#system-requirements-{{ releases_yaml.latest.slug }}"
-                 aria-controls="system-requirements-{{ releases_yaml.latest.slug }}"
-                 tabindex="-1">System requirements</a>
-            </li>
-            <li class="p-tabs__item">
-              <a class="p-tabs__link"
-                 role="tab"
-                 aria-selected="false"
-                 id="how-to-install-tab-{{ releases_yaml.latest.slug }}"
-                 href="#how-to-install-{{ releases_yaml.latest.slug }}"
-                 aria-controls="how-to-install-{{ releases_yaml.latest.slug }}"
-                 tabindex="-1">How to install</a>
-            </li>
-          </ul>
-        </nav>
-        <!-- End tab container -->
-        <!-- tab 1 -->
-        <div id="release-notes-{{ releases_yaml.latest.slug }}"
-             class="p-tabs__content"
-             role="tabpanel"
-             aria-labelledby="release-notes-tab-{{ releases_yaml.latest.slug }}">
-          <ul class="p-list--divided">
-            <li class="p-list__item is-ticked">Linux Kernel 6.17 with support for the latest hardware</li>
-            <li class="p-list__item is-ticked">
-              GNOME 49 desktop environment with new accessibility menu, lock screen media control and reboot/shutdown, HDR brightness controls
-            </li>
-            <li class="p-list__item is-ticked">Loupe, a modern image viewer</li>
-            <li class="p-list__item is-ticked">Ptyxis, a new terminal emulator</li>
-            <li class="p-list__item is-ticked">Major enhancements to TPM-Backed full disk encryption</li>
-          </ul>
-          <hr class="p-rule--muted" />
-          <ul class="u-responsive-realign p-inline-list">
-            <li class="p-inline-list__item">
-              <a href="{{ releases_yaml.latest.blog_post_url }}"
-                 aria-label="{{ releases_yaml.latest.full_version }} deep dive">Press release&nbsp;&rsaquo;</a>
-            </li>
-            <li class="p-inline-list__item">
-              <a href="{{ releases_yaml.latest.release_notes_url }}"
-                 aria-label="{{ releases_yaml.latest.full_version }} release notes">Release notes&nbsp;&rsaquo;</a>
-            </li>
-          </ul>
-        </div>
-        <!-- tab 2 -->
-        <div id="system-requirements-{{ releases_yaml.latest.slug }}"
-             class="p-tabs__content"
-             role="tabpanel"
-             aria-labelledby="system-requirements-tab-{{ releases_yaml.latest.slug }}">
-          <ul class="p-list--divided">
-            <li class="p-list__item is-ticked">2 GHz dual-core processor or better</li>
-            <li class="p-list__item is-ticked">4 GB system memory</li>
-            <li class="p-list__item is-ticked">25 GB of free hard drive space</li>
-            <li class="p-list__item is-ticked">Either a USB port or a DVD drive for the installer media</li>
-            <li class="p-list__item is-ticked">Internet access is helpful</li>
-          </ul>
-        </div>
-        <!-- tab 3 -->
-        <div id="how-to-install-{{ releases_yaml.latest.slug }}"
-             class="p-tabs__content"
-             role="tabpanel"
-             aria-labelledby="how-to-install-tab-{{ releases_yaml.latest.slug }}">
-          <p>To install or try Ubuntu Desktop:</p>
-          <ol class="p-list--divided">
-            <li class="p-list__item">Download the ISO image</li>
-            <li class="p-list__item">
-              Create a bootable USB flash drive with <a href="https://documentation.ubuntu.com/desktop/en/latest/how-to/create-a-bootable-usb-stick/">an image writer</a>
-            </li>
-            <li class="p-list__item">Boot your laptop or PC from the USB flash drive</li>
-          </ol>
-          <hr class="p-rule--muted" />
-          <p>
-            <a href="https://documentation.ubuntu.com/desktop/en/latest/tutorial/install-ubuntu-desktop/">Follow the step-by-step tutorial&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
   {% endif %}
   {% include "download/shared/_downloads-resources.html" %}
   <section class="p-section">
