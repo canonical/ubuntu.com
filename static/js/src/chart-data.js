@@ -136,7 +136,7 @@ export var serverAndDesktopReleases = [
     endDate: new Date("2039-04-25T00:00:00"),
     taskName: "24.04 LTS (Noble Numbat)",
     status: "PRO_LEGACY_SUPPORT",
-  },  
+  },
   {
     startDate: new Date("2026-04-23T00:00:00"),
     endDate: new Date("2036-04-23T00:00:00"),
