@@ -97,8 +97,8 @@
           <p class="p-text--small">
             For other versions of Ubuntu Server including torrents, the network installer, a list of local mirrors, and past releases <a href="/download/alternative-downloads">check out our alternative downloads</a>.
           </p>
-          <p>
-            <a href="#architectures">Alternative architectures&nbsp;&rsaquo;</a>
+          <p class="p-text--small">
+            For other architectures, <a href="#architectures">click here.</a>
           </p>
         </div>
 
@@ -148,11 +148,17 @@
               Valkey 9, PostgreSQL 18, MySQL and MariaDB as long-term supported versions, and the introduction of DocumentDB
             </li>
           </ul>
-          <hr class="p-rule" />
-          <p>
-            <a href="{{ releases_yaml.lts.release_notes_url }}"
-               aria-label="{{ releases_yaml.lts.short_version }} LTS release notes">Release notes&nbsp;&rsaquo;</a>
-          </p>
+          <hr class="p-rule--muted" />
+          <ul class="u-responsive-realign p-inline-list">
+            <li class="p-inline-list__item">
+              <a href="{{ releases_yaml.lts.blog_post_url }}"
+                 aria-label="{{ releases_yaml.lts.full_version }} LTS press release">Press release&nbsp;&rsaquo;</a>
+            </li>
+            <li class="p-inline-list__item">
+              <a href="{{ releases_yaml.lts.release_notes_url }}"
+                 aria-label="{{ releases_yaml.lts.full_version }} LTS release notes">Release notes&nbsp;&rsaquo;</a>
+            </li>
+          </ul>
         </div>
 
         <div class="p-tabs__content p-section"
@@ -184,7 +190,7 @@
           </ol>
           <hr class="p-rule" />
           <p>
-            <a href="/tutorials/install-ubuntu-server">Follow the step-by-step tutorial&nbsp;&rsaquo;</a>
+            <a href="https://ubuntu.com/server/docs/tutorial/basic-installation/">Follow the step-by-step tutorial&nbsp;&rsaquo;</a>
           </p>
         </div>
       </div>
