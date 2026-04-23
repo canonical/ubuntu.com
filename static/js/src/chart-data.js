@@ -175,14 +175,14 @@ export var kernelReleases = [
     endDate: new Date("2031-04-01T00:00:00"),
     taskName: "26.04.0 LTS",
     taskVersion: "7.0 kernel",
-    status: "LTS"
+    status: "LTS",
   },
   {
     startDate: new Date("2031-04-01T00:00:00"),
     endDate: new Date("2036-03-30T00:00:00"),
     taskName: "26.04.0 LTS",
     taskVersion: "7.0 kernel",
-    status: "ESM"
+    status: "ESM",
   },
   {
     startDate: new Date("2036-03-30T00:00:00"),
