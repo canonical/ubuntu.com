@@ -1,5 +1,9 @@
 {% extends "download/_base_download.html" %}
 
+{% from "_macros/vf_equal-heights.jinja" import vf_equal_heights %}
+{% from "_macros/vf_resources.jinja" import vf_resources %}
+{% from "macros/_vf-latest-news.jinja" import vf_latest_news with context %}
+
 {% set hide_inner_wrapper = True %}
 
 {% block title %}
