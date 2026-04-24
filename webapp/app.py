@@ -358,6 +358,12 @@ init_forms()
 # Routes
 # ===
 
+
+@app.route("/_test-error/<int:code>")
+def _test_error_page(code):
+    flask.abort(code)
+
+
 # Simple routes
 app.add_url_rule("/asset/<file_name>", view_func=json_asset_query)
 app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
