@@ -117,10 +117,10 @@ const ProductSummary = () => {
             className={"u-align--right"}
             size={4}
             emptyLarge={9}
-            style={{ display: "flex", alignItems: "center" }}
+            style={{ display: "flex", alignItems: "flex-end" }}
           >
             {product?.canBeTrialled && productUser !== ProductUsers.myself ? (
-              <StatusLabel appearance="positive">
+              <StatusLabel appearance="positive" style={{ marginRight: "1rem" }}>
                 Free trial on checkout
               </StatusLabel>
             ) : null}
@@ -210,7 +210,7 @@ const ProductSummary = () => {
           </Col>
           {product?.canBeTrialled && productUser !== ProductUsers.myself ? (
             <Col size={12}>
-              <StatusLabel appearance="positive">
+              <StatusLabel appearance="positive" style={{ marginRight: "1rem" }}>
                 Free trial on checkout
               </StatusLabel>
             </Col>
