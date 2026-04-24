@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:experimental
+# syntax=docker/dockerfile:1
 
 # Build stage: Install python dependencies
 # ===
