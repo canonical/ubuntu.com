@@ -124,7 +124,7 @@ const ProductSummary = () => {
                 Free trial on checkout
               </StatusLabel>
             ) : null}
-            <PaymentButton />
+            <PaymentButton style={{ marginBottom: "0" }} />
           </Col>
         </Row>
       </section>
@@ -206,7 +206,7 @@ const ProductSummary = () => {
             </p>
           </Col>
           <Col size={12}>
-            <PaymentButton />
+            <PaymentButton style={{ marginBottom: "0" }} />
           </Col>
           {product?.canBeTrialled && productUser !== ProductUsers.myself ? (
             <Col size={12}>
