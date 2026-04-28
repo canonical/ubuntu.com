@@ -1,7 +1,6 @@
 {% extends "engage/base_engage.html" %}
 
-{% from "_macros/vf_hero.jinja" import vf_hero %}
-
+{% from "_macros/shared/vf_article_block.jinja" import vf_article_block %}
 
 {% set section_title = "Engage Page" %}
 {% set section_path = "/engage" %}
@@ -32,18 +31,31 @@
 
 {% block content %}
 
+  {# identify the last section to apply deep padding to #}
+  {% set last_section = "body" %}
+  {% if 'youtube_id' in metadata %}
+    {% set last_section = "youtube" %}
+  {% endif %}
+  {% if 'vimeo_id' in metadata %}
+    {% set last_section = "vimeo" %}
+  {% endif %}
+  {% if related_pages_metadata|length > 0 %}
+    {% set last_section = "related" %}
+  {% endif %}
+
   <span id="publish_date" class="u-hide">{{ metadata["publish_date"] }}</span>
   <span id="created_date" class="u-hide">{{ metadata["created_at"] }}</span>
 
   <section class="p-section--hero">
     <div class="grid-row">
-      <div class="grid-col-2">
+      <div class="grid-col-2 u-hide--small u-hide--medium">
         {% if metadata["image"] != '' %}
-          <div class="p-image-container" height>
-            <img class="p-image-container__image"
+          <div class="p-image-container--3-2" style="max-height: 240px;">
+            <img class="p-image-container__image u-no-margin--top"
                  src="{{ metadata['image'] }}"
                  alt=""
-                 width="{{ metadata['image_width'] }}" />
+                 width="{{ metadata['image_width'] }}"
+                 height="{{ metadata['image_height'] }}" />
           </div>
         {% endif %}
       </div>
@@ -70,10 +82,14 @@
     {% endif %}
   {% endif %}
 
-  <section class="p-section">
+  <section class="{% if last_section == 'body' %}p-section--deep{% else %}p-section{% endif %}">
     <div class="grid-row">
-      <div class="grid-col-4 grid-col-start-large-3">{{ metadata["body_html"] | safe }}</div>
-      <div class="grid-col-2 u-sticky-col">
+      <div class="grid-col-4 grid-col-start-large-3 grid-col-medium-4 engage-body-col">
+        {{ metadata["body_html"] | safe }}
+      </div>
+      <div class="grid-col-2 grid-col-medium-4 u-sticky-col engage-form-col"
+           style="max-height: 100vh;
+                  overflow-y: auto">
         {% if "form_id" in metadata and metadata["form_id"] != "" %}
           {% if metadata["language"] != '' %}
             {% set form = "engage/shared/_" + metadata["language"] + "_engage_form.html" %}
@@ -99,8 +115,17 @@
             {% endif %}
           {% endif %}
         {% elif "primary_link" in metadata and metadata["primary_link"] != "" %}
+          <div class="p-section--shallow u-hide--small u-hide--medium">
+            <div class="p-image-container--16-9 is-highlighted">
+              <img class="p-image-container__image"
+                   src="{{ metadata['meta_image'] }}"
+                   alt=""
+                   width="{{ metadata['image_width'] }}" />
+            </div>
+          </div>
           <button type="submit" class="p-button--positive">{{ metadata["primary_cta"] }}</button>
         {% endif %}
+        <hr class="p-rule u-hide--large" />
       </div>
     </div>
   </section>
@@ -113,7 +138,8 @@
 
   {% if "youtube_id" in metadata %}
     <!-- Youtube webinars -->
-    <section class="p-strip is-shallow" id="youtube-section">
+    <section class="p-strip is-shallow{% if last_section == 'youtube' %} p-section--deep{% endif %}"
+             id="youtube-section">
       <div class="row" id="webinar">
         <iframe title="Webinar"
                 width="560"
@@ -128,7 +154,8 @@
 
   {% if "vimeo_id" in metadata %}
     <!-- Vimeo webinars -->
-    <section class="p-strip is-shallow" id="vimeo-section">
+    <section class="p-strip is-shallow{% if last_section == 'vimeo' %} p-section--deep{% endif %}"
+             id="vimeo-section">
       <div class="row" id="webinar">
         <iframe title="Webinar"
                 src="https://player.vimeo.com/video/{{ metadata['vimeo_id'] }}"
@@ -141,82 +168,49 @@
     </section>
   {% endif %}
 
-  <div id="engage-resources"
-       class="u-hide"
-       data-tag="{{ metadata.resource_section_tag }}"
-       data-resource-type="{{ metadata.resource_section_type }}"
-       data-language="{{ metadata["language"] }}">
-    <div class="p-section">
-      <hr class="p-rule is-fixed-width" />
-      <div class="u-fixed-width">
-        <div class="p-section--shallow">
+  {% if related_pages_metadata|length > 0 %}
+    <div class="p-section--deep">
+      <div class="p-section--shallow">
+        <div class="u-fixed-width">
+          <hr class="p-rule" />
           <h2>Additional resources</h2>
         </div>
       </div>
-      <div id="engage-resources__list" class="u-fixed-width"></div>
-    </div>
-  </div>
-
-  <template id="engage-page-resources">
-    <div class="p-section--shallow">
-      <div class="grid-row">
-        <div class="grid-col-2">
-          <p class="p-text--small-caps u-no-padding--top" data-key="resource_type"></p>
-        </div>
-        <div class="grid-col-2 grid-col-medium-2">
-          <div class="p-image-container--16-9 is-cover"
-               data-key="meta_image_container">
-            <img class="p-image-container__image"
-                 data-key="meta_image"
-                 src="https://assets.ubuntu.com/v1/c797f1d7-og_%20canonical.png"
-                 alt="" />
+      {% for related in related_pages_metadata[:3] %}
+        <div class="p-section--shallow">
+          <div class="grid-row">
+            {% if not loop.first %}<hr class="p-rule--muted" />{% endif %}
+            <div class="grid-col-2">
+              <h3 class="p-text--small-caps">{{ related.type }}</h3>
+            </div>
+            <div class="grid-col-2 u-hide--small u-hide--medium">
+              <div class="p-image-container--16-9 is-highlighted">
+                <img class="p-image-container__image"
+                     src="{% if related.meta_image %}{{ related.meta_image }}{% else %}https://assets.ubuntu.com/v1/c797f1d7-og_%20canonical.png{% endif %}"
+                     alt="" />
+              </div>
+            </div>
+            <div class="grid-col-4">
+              {{- vf_article_block(article_config={
+                            "title": {"text": related.topic_name, "link_attrs": {"href": related.path }},
+                            "description": {"text": "It displays a title, description, and metadata (author and date)."},
+                            "metadata": {
+                            "authors": [
+                            {
+                            "text": "John Doe",
+                            "link": {"href": "#"}
+                            }
+                            ],
+                            "date": {
+                            "text": "15 March 2025"
+                            }
+                            }
+                            }) -}}
+            </div>
           </div>
         </div>
-        <div class="grid-col-4 grid-col-medium-2">
-          <p>
-            <strong><a data-key="path_name"></a></strong>
-          </p>
-          <p data-key="subtitle"></p>
-        </div>
-      </div>
+      {% endfor %}
     </div>
-  </template>
-
-  <script src="{{ versioned_static('js/src/resources.js') }}"></script>
-  <script>
-    const el = document.getElementById('engage-resources');
-    const tag = el.dataset.tag;
-    const resource = el.dataset.resourceType;
-    const customTemplateID = "engage-page-resources";
-    const language = metadata["language"]
-    fetchAndRenderResources(tag, resource, language, customTemplateID);
-  </script>
-
-  {% if related_pages_metadata %}
-    <section class="p-strip--light is-shallow">
-      <div class="row">
-        <div class="col-8">
-          <h2 class="p-heading--3">
-            {% if additional_resources_text %}
-              {{ additional_resources_text }}
-            {% else %}
-              Additional Resources
-            {% endif %}
-          </h2>
-        </div>
-      </div>
-
-      <div class="row p-divider">
-        {% for page in related_pages_metadata %}
-          <div class="col-4 p-divider__block">
-            <h3 class="p-heading--4">
-              <a href="{{ page["path"] }}">{{ page["topic_name"] }}</a>
-            </h3>
-            <p>{{ page["subtitle"] }}</p>
-          </div>
-        {% endfor %}
-      </div>
-    </section>
   {% endif %}
 
 {% endblock content %}
