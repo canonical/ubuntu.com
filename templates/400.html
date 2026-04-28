@@ -1,25 +1,11 @@
-{% extends "templates/one-column.html" %}
+{% extends 'templates/_error-template.html' %}
 
-{% block title %}400: Bad Request{% endblock %}
+{% set error_code = "400" %}
 
-{% block content %}
-  <div class="p-strip is-deep">
-    <div class="row u-equal-height">
-      <div class="col-6 u-vertically-center u-align--center">
-        {{ image(url="https://assets.ubuntu.com/v1/bcdcf2c8-image-404.svg",
-                alt="",
-                height="365",
-                width="360",
-                hi_def=True,
-                loading="auto") | safe
-        }}
-      </div>
-      <div class="col-6 u-vertically-center">
-        <div>
-          <h1>400: Bad request</h1>
-          <p class="p-heading--4">{{ error_msg if error_msg else "The server didn't understand the request." }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-{% endblock content %}
+{% set error_message = "Invalid request" %}
+
+{% block error_content %}
+  We can’t process this request.
+  <br class="u-hide--small" />
+  You can try refreshing the page or <a href="https://github.com/canonical/ubuntu.com/issues/new?template=ISSUE_TEMPLATE.yaml">file a bug</a>. Please note, this may be a <a href="https://github.com/canonical/ubuntu.com/issues">known issue</a> that we are working on.
+{% endblock error_content %}

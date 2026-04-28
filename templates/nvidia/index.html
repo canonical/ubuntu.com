@@ -1,5 +1,12 @@
 {% extends "templates/base.html" %}
 
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_divided-section.jinja" import vf_divided_section %}
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_logo-section.jinja" import vf_logo_section %}
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+
 {% block title %}Canonical and NVIDIA{% endblock %}
 
 {% block meta_copydoc %}
@@ -11,817 +18,545 @@
 {% endblock meta_description %}
 
 {% block outer_content %}
-  <section class="p-strip--square-darksuru is-dark">
 
-    <div class="row">
+  {% call(slot) vf_hero(
+    title_text='Adopt AI across the enterprise <br class="u-hide--small" /> with Canonical and NVIDIA',
+    layout='50/50',
+    is_split_on_medium=true,
+    blocks=[
+    {
+    "type": "description",
+    "padding": "shallow",
+    "item": {
+    "type": "text",
+    "content": "The publishers of the most popular open source OS meet the global innovators in AI. We put the future in your hands."
+    }
+    },
+    {
+    "type": "cta-block",
+    "padding": "shallow",
+    "item": {
+    "primary": {
+    "content_html": "Get in touch",
+    "attrs": {
+    "href": "/contact-us",
+    "class": "js-invoke-modal",
+    "aria-controls": "contact-modal"}},}
+    },
+    {
+    "type": "image",
+    "item": {
+    "aspect_ratio": "3-2",
+    "is_highlighted": true,
+    "is_cover": true,
+    "attrs": image(url="https://assets.ubuntu.com/v1/8843087c-canonical_nvidia.png",
+    alt="Canonical and NVIDIA logo",
+    width="1800",
+    height="1200",
+    hi_def=True,
+    loading="auto",
+    attrs={"class": "p-image-container__image"},
+    output_mode="attrs")
+    }
+    },
+    ]
+    ) -%}
+  {% endcall -%}
 
-      <div class="col-6">
+  {{ vf_basic_section(title={"text": 'Turnkey AI solutions for the <br class="u-hide--small u-hide--medium" /> enterprise powered by Canonical <br class="u-hide--small u-hide--medium" /> and NVIDIA'},
+    is_split_on_medium=true,
+    items=[
+    {
+    "type": "image",
+    "padding": "shallow",
+    "item": {
+    "aspect_ratio": "16-9",
+    "attrs": image(url="https://assets.ubuntu.com/v1/149e1bcd-turnkey_ai_solutions.jpg",
+    alt="Turnkey AI solutions for the enterprise powered by Canonical and NVIDIA",
+    width="1800",
+    height="1200",
+    hi_def=True,
+    loading="lazy",
+    attrs={"class": "p-image-container__image"},
+    output_mode="attrs") 
 
-        <h1 class="p-heading--2">
-          <strong>Adopt AI across the enterprise with Canonical and NVIDIA</strong>
-        </h1>
+  }
+  },
+  {
+  "type": "description",
+  "item": {
+  "type": "html",
+  "content": "
+  <p>
+    Canonical and NVIDIA partner up to build turnkey solutions for enterprises in various industries to optimise their AI journey. Develop, deploy and scale AI with unparalleled hardware performance and the power of open source.
+  </p>
+  "
+  }
+  },
+  {
+  "type": "cta-block",
+  "item": {
+  "link": {
+  "content_html": "Check out the Enterprise-Ready AI Solution powered by Canonical and NVIDIA &rsaquo;",
+  "attrs": {
+  "href": "https://pages.ubuntu.com/rs/066-EOV-335/images/Turnkey_AI_solutions_for_the_enterprise_powered_by_Canonical_and_NVIDIA.pdf"}}}}],) }}
 
-        <p>
-          The publishers of the most popular open-source OS meet the global innovators in AI. We put the future in your hands.
-        </p>
-        <a href="/contact-us" class="p-button--positive js-invoke-modal" aria-controls="contact-modal">Get in touch</a>
+  {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=false) -%}
+    {%- if slot == 'title' -%}
+      <h2 id="enterprise-ready-os">The enterprise-ready operating system loved by AI/ML developers</h2>
+    {%- endif -%}
 
-      </div>
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">Meet your AI/ML developers where they are</h3>
+    {%- endif -%}
 
-      <div class="col-6 col-medium-12 u-align--center u-vertically-center u-hide--small">
-        {{
-        image (
-        url="https://assets.ubuntu.com/v1/c07365f4-Canonicla old logo + nvidia.svg",
-        alt="",
-        width="448",
-        height="294",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-        }}
+    {%- if slot == 'list_item_description_1' -%}
+      <p>
+        Your developers are already on Ubuntu, so your production environment should be too. Unleash the power of AI, HPC and data science, with Ubuntu supported on NVIDIA DGX™ as well as third-party NVIDIA-Certified Systems running the NVIDIA AI Enterprise software suite.
+      </p>
+    {%- endif -%}
 
-      </div>
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">Why Ubuntu?</h3>
+    {%- endif -%}
 
-    </div>
-  </section>
-  <section class="p-strip">
+    {%- if slot == 'list_item_description_2' -%}
+      <ul class="p-list--divided-bulleted u-no-margin--bottom">
+        <li class="p-list__item">An enterprise-ready OS with unparalleled security</li>
+        <li class="p-list__item">Loved by developers and data scientists</li>
+        <li class="p-list__item">Unified experience from cloud to IoT</li>
+        <li class="p-list__item">Best-in-class integrations with NVIDIA hardware</li>
+        <li class="p-list__item">Seamless move from development to deployment</li>
+      </ul>
+    {%- endif -%}
 
-    <div class="row">
+    {%- if slot == 'list_item_title_3' -%}
+      <h3 class="p-heading--5">Fast. Secure. Best-in-class.</h3>
+    {%- endif -%}
 
-      <div class="col-6">
+    {%- if slot == 'list_item_description_3' -%}
 
-        <h2 class="u-sv2">Turnkey AI solutions for the enterprise powered by Canonical and NVIDIA</h2>
-
-        <p>
-          Canonical and NVIDIA partner up to build turnkey solutions for enterprises in various industries to optimise their AI journey. Develop, deploy and scale AI with unparalleled hardware performance and the power of open source.
-        </p>
-
-        <p>
-          <a href="https://assets.ubuntu.com/v1/49180a1d-AI%20enterprise%20solution%20powered%20by%20Canonical%20and%20NVIDIA.pdf">Check out the Enterprise-Ready AI solution powered by Canonical and NVIDIA.&nbsp;<i class="p-icon--begin-downloading"></i></a>
-        </p>
-
-      </div>
-
-      <div class="col-6 u-align--center u-vertically-center u-hide--small u-hide--medium">
-        <a href="https://assets.ubuntu.com/v1/49180a1d-AI%20enterprise%20solution%20powered%20by%20Canonical%20and%20NVIDIA.pdf"
-           target="_blank"
-           aria-hidden="true"
-           tabindex="-1">
-          {{
-          image (
-          url="https://assets.ubuntu.com/v1/9d5e5884-diagram-nvidia.png",
-          alt="Check out the Enterprise-Ready AI solution powered by Canonical and NVIDIA",
-          width="1144",
-          height="729",
-          hi_def=True,
-          loading="auto"
-          ) | safe
-          }}
-        </a>
-
-      </div>
-
-    </div>
-  </section>
-
-  <section class="p-strip u-no-padding--top u-no-padding--bottom">
-
-    <div class="row p-divider">
-
-      <hr class="is-fixed-width p-rule" />
-
-      <div class="col-6">
-
-        <h2>The enterprise-ready operating system loved by AI/ML developers</h2>
-
-      </div>
-
-    </div>
-
-    <div class="row">
-
-      <hr class="p-rule" />
-
-      <div class="col-6">
-
-        <h3 class="p-heading--4">Meet your AI/ML developers where they are</h3>
-
-      </div>
-
-      <div class="col-6">
-
-        <p>
-          Your developers are already on Ubuntu, so your production environment should be too. Unleash the power of AI, HPC and data science, with Ubuntu supported on NVIDIA DGX™ as well as third-party NVIDIA-Certified Systems running the NVIDIA AI Enterprise software suite.
-        </p>
-
-      </div>
-
-    </div>
-
-    <div class="row">
-
-      <hr class="is-fixed-width p-rule" />
-
-      <div class="col-6">
-
-        <h3 class="p-heading--4">Why Ubuntu?</h3>
-
-      </div>
-
-      <div class="col-6">
-
-        <ul class="p-list--divided-bulleted">
-
-          <li class="p-list__item">An enterprise-ready OS with unparalleled security</li>
-
-          <li class="p-list__item">Loved by developers and data scientists</li>
-
-          <li class="p-list__item">Unified experience from cloud to IoT</li>
-
-          <li class="p-list__item">Best-in-class integrations with NVIDIA hardware</li>
-
-          <li class="p-list__item no-border">Seamless move from development to deployment</li>
-
-        </ul>
-
-      </div>
-
-    </div>
-
-    <div class="row p-strip u-no-padding--top">
-
-      <hr class="is-fixed-width p-rule" />
-
-      <div class="col-6">
-
-        <h3 class="p-heading--4">
-          Fast.
-          <br />
-          Secure.
-          <br />
-          Best-in-class.
-        </h3>
-
-      </div>
-
-      <div class="col-6">
-
-        <div>
-
-          <div class="u-align--center u-hide--small u-hide--medium p-strip--light u-no-padding--top u-no-padding--bottom">
-            {{
-            image (
-            url="https://assets.ubuntu.com/v1/922211a9-nvidia-cloud-illustration.png",
+      {{ image(url="https://assets.ubuntu.com/v1/617b1da6-image_container.jpg",
             alt="",
-            width="1076",
-            height="527",
+            width="1800",
+            height="1200",
             hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
+            loading="lazy",) | safe
+      }}
+      <p>
+        Ubuntu powers a multitude of NVIDIA platforms - NVIDIA Fleet Command&trade;, BlueField&reg; DPUs or the gold standard for training in the datacenter - DGX. NVIDIA CUDA releases are continuously validated with Ubuntu to ensure you get the best performance, and signed NVIDIA GPU drivers ensure end-to-end security.
+      </p>
+      <div class="p-cta-block">
+        <a href="/ai">Learn how to set up Ubuntu for the best experience for AI/ML &rsaquo;</a>
+      </div>
+    {%- endif -%}
+  {%- endcall -%}
 
-          </div>
+  {% call(slot) vf_quote_wrapper(
+    title_text="What NVIDIA says",
+    quote_size="small",
+    quote_text="Enterprises, data scientists and developers building AI solutions require integrated systems and software that easily support MLOps workflows. Organisations can run NVIDIA AI on Ubuntu to help solve some of humanity’s biggest challenges with new products and systems that simplify operations, boost safety and improve communication.",
+    citation_source_name_text="Manuvir Das",
+    citation_source_title_text="Vice President of Enterprise Computing",
+    citation_source_organisation_text="NVIDIA"
+    ) -%}
 
-          <p>
-            Ubuntu powers a multitude of NVIDIA platforms - NVIDIA Fleet Command&trade;, Bluefield&reg; DPUs or the gold standard for training in the datacenter - DGX. NVIDIA CUDA releases are continuously validated with Ubuntu to ensure you get the best performance, and signed NVIDIA GPU drivers ensure end-to-end security.
-          </p>
+    {%- if slot == 'signpost_image' -%}
 
-          <p>
-            <a href="/ai">Learn how to set up Ubuntu for the best experience for AI/ML</a>
+      {{ image(url="https://assets.ubuntu.com/v1/4e355db6-nvidia_logo.png",
+            alt="NVIDIA logo",
+            width="852",
+            height="69",
+            hi_def=True,
+            loading="lazy") | safe
+      }}
+    {%- endif -%}
+  {% endcall -%}
 
-          </p>
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
+    {%- if slot == 'title' -%}
+      <h2 id="ai-from-concept-to-production">Take AI from concept to production effortlessly</h2>
+    {%- endif -%}
 
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">Unmatched container orchestration with NVIDIA GPU integration into Canonical Kubernetes</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+      <p>
+        Ubuntu provides an optimized platform for using NVIDIA hardware from the cloud to the edge, whether you are using bare-metal VMs or docker containers. Canonical Kubernetes builds on optimized Ubuntu images and provides unmatched integrations and operations, and is certified as part of the DGX-Ready Software program.
+      </p>
+      <p>
+        The NVIDIA GPU operator is integrated into Canonical Kubernetes, allowing automation of all software components required to provision NVIDIA GPUs.
+      </p>
+      <section class="p-section--shallow">
+        <div class="p-image-container is-highlighted">
+          {{ image(url="https://assets.ubuntu.com/v1/13f630de-umatched_container_orchestration.png",
+                    alt="",
+                    width="1800",
+                    height="750",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"},) | safe
+          }}
         </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <section class="p-strip--light is-shallow">
-
-    <div class="u-fixed-width">
-
-      <blockquote class="p-pull-quote--small">
-
-        <p class="p-pull-quote__quote" style="font-size: 1rem;">
-          Enterprises, data scientists and developers building AI solutions require integrated systems and software that easily support MLOps workflows. Organisations can run NVIDIA AI on Ubuntu to help solve some of humanity's biggest challenges with new products and systems that simplify operations, boost safety and improve communication.
-        </p>
-        <cite class="p-pull-quote__citation"> Manuvir Das, Vice President of Enterprise Computing at NVIDIA</cite>
-
-      </blockquote>
-
-    </div>
-  </section>
-  <section class="p-strip">
-
-    <div class="row p-divider">
-
-      <hr class="is-fixed-width p-rule" />
-
-      <div class="col-6">
-
-        <h2>Take AI from concept to production effortlessly</h2>
-
-      </div>
-
-    </div>
-
-    <div class="row p-divider">
-
-      <hr class="is-fixed-width p-rule" />
-
-      <div class="col-6">
-
-        <h3 class="p-heading--4">Unmatched container orchestration with NVIDIA GPU integration into Canonical Kubernetes</h3>
-
-      </div>
-
-      <div class="col-6">
-
-        <p>
-          Ubuntu provides an optimised platform for using NVIDIA hardware from the cloud to the edge, whether you are using bare-metal VMs or docker containers. Canonical Kubernetes builds on optimised Ubuntu images and provides unmatched integrations and operations, and is certified as part of the DGX-Ready Software program.
-        </p>
-
-        <p>
-          The NVIDIA GPU operator is integrated into Canonical Kubernetes, allowing automation of all software components required to provision NVIDIA GPUs.
-        </p>
-
-        <hr style="top: 8px;" />
-
-        <ul class="p-list--divided">
-
-          <li class="p-list__item">
-            <a href="/kubernetes/charmed-k8s">Learn more for Charmed Kubernetes</a>
-          </li>
-
-          <li class="p-list__item">
-            <a href="https://microk8s.io/resources?_ga=2.63950252.208025466.1654521646-1680362023.1652798743">Explore MicroK8s</a>
-          </li>
-
-          <li class="p-list__item">
-            <a href="https://www.nvidia.com/en-us/data-center/dgx-ready-software/">Check out certified MLOps software for NVIDIA DGX systems</a>
-          </li>
-
-          <li class="p-list__item">
-            <a href="/engage/kubernetes-by-canonical-delivered-on-nvidia-dgx-systems"> Download the solution brief: Kubernetes by Canonical delivered on NVIDIA DGX systems</a>
-          </li>
-
-          <li class="p-list__item no-border">
-            Read the blog: <a href="/blog/canonical-kubernetes-enhances-ai-ml-development-capabilities-with-nvidia-integrations">Canonical Kubernetes enhances AI/ML development capabilities with NVIDIA integrations</a>
-          </li>
-
-        </ul>
-
-      </div>
-
-    </div>
-
-    <div class="row p-strip u-no-margin-top u-no-padding--top u-hide--small u-hide--medium">
-      {{
-      image (
-      url="https://assets.ubuntu.com/v1/d998251a-workload-diagram.png",
-      alt="",
-      width="1242",
-      height="320",
-      hi_def=True,
-      loading="auto"
-      ) | safe
-      }}
-
-    </div>
-
-    <div class="row u-no-padding--top">
-
-      <hr class="p-rule" />
-
-      <div class="col-6">
-
-        <h3 class="p-heading--4">Take the fast track with certified hardware</h3>
-
-      </div>
-
-      <div class="col-6">
-
-        <p>
-          Get peace of mind with Ubuntu certified hardware from all major OEMs. Choosing validated platforms significantly reduces deployment time and costs for end-customers, in addition to improving reliability and providing bug-fixes faster.
-        </p>
-
-      </div>
-
-    </div>
-
-    <div class="row p-strip u-no-padding--top">
-
-      <div class="col-6 u-align--center u-vertically-center u-hide--small u-hide--medium">
-        {{ image (
-        url="https://assets.ubuntu.com/v1/20a610ea-Ubuntu_Certified_Hardware_partner.svg",
-        alt="",
-        width="114",
-        height="168",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-        }}
-
-      </div>
-
-      <div class="col-6">
-
-        <p>
-          Combined with NVIDIA DGX systems or NVIDIA-Certified systems, choosing an Ubuntu-certified platform provides secure, performant hardware that is guaranteed to deploy quickly and run smoothly.
-        </p>
-
-        <hr class="p-rule--muted" style="top: 8px;" />
-
-        <ul class="p-list--divided-bulleted">
-
-          <li class="p-list__item">NVIDIA DGX</li>
-
-          <li class="p-list__item">NVIDIA EGX servers</li>
-
-          <li class="p-list__item">Data-science workstations</li>
-
-          <li class="p-list__item">NVIDIA GPUs</li>
-
-          <li class="p-list__item">NVIDIA Bluefield DPUs</li>
-
-          <li class="p-list__item">ConnectX network adapters</li>
-
-        </ul>
-
-        <ul class="p-list--divided">
-
-          <li class="p-list__item">
-            <a href="/certified/servers">Check Ubuntu certified servers</a>
-          </li>
-
-          <li class="p-list__item no-border">
-            <a href="/certified/desktops">Check Ubuntu certified desktops</a>
-          </li>
-
-        </ul>
-
-      </div>
-
-    </div>
-
-    <div class="row p-divider">
-
-      <hr class="p-rule" />
-
-      <div class="col-6">
-
-        <h3 class="p-heading--4">Get enterprise-grade support and software maintenance</h3>
-
-      </div>
-
-      <div class="col-6">
-
-        <p>
-          End-to-end customer support is available when you need it for all Canonical software backed by NVIDIA across all NVIDIA hardware platforms. New Ubuntu releases are made available like clockwork with Canonical's periodic <a href="/about/release-cycle">release cycle</a>. Ubuntu's reliable maintenance cycle, with updates every 3-5 weeks fosters trust across the community.
-
-        </p>
-
-        {{ image(url="https://assets.ubuntu.com/v1/5b483842-cog_trimmed.svg",
-                alt="",
-                width="84",
-                height="65",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "u-no-margin-bottom", "style": "margin-bottom: -7px"}) | safe
-        }}
-
-        <hr class="p-rule--muted u-no-margin-top" />
-
-        <p>
-          <a href="/support">Learn more about enterprise open-source support</a>
-        </p>
-
-      </div>
-
-    </div>
-  </section>
-
-  <section class="p-strip u-no-padding--top u-no-padding--bottom"
-           style="overflow: hidden">
-
-    <div class="row p-divider">
-
-      <hr class="is-fixed-width p-rule" />
-
-      <div class="col-6">
-
-        <h2>Solutions for the software-defined data centre</h2>
-
-      </div>
-
-    </div>
-
-    <div class="row p-divider">
-
-      <hr class="is-fixed-width p-rule" />
-
-      <div class="col-6">
-
-        <h3 class="p-heading--4">AI-Ready platforms</h3>
-
-      </div>
-
-      <div class="col-6">
-
-        <p>
-          NVIDIA AI Enterprise is an end-to-end, secure, cloud-native suite of AI software, enabling organisations to solve new challenges while increasing operational efficiency. It accelerates the data science pipeline and streamlines the development and deployment of predictive AI models to automate essential processes and gain rapid insights from data. NVIDIA AI Enterprise includes an extensive library of full-stack software including AI solution workflows, frameworks, pretrained models and infrastructure optimization.
-        </p>
-
-        <p>
-          You can use all of Canonical's enterprise-grade software including Ubuntu LTS, <a href="/kubernetes">Canonical Kubernetes</a> and Openstack today, with the assurance that help is available through Canonical's support services if required.
-        </p>
-
-        <ul class="p-list--divided">
-
-          <li class="p-list__item">
-            <a href="https://www.nvidia.com/en-us/gpu-cloud/">Learn more about NVIDIA NGC</a>
-          </li>
-
-          <li class="p-list__item no-border">
-            <a href="https://www.nvidia.com/en-us/data-center/products/ai-enterprise/">Explore NVIDIA AI Enterprise</a>
-          </li>
-
-        </ul>
-
-      </div>
-
-    </div>
-
-    <div class="row p-strip u-no-padding--top u-hide--small">
-      {{
-      image (
-      url="https://assets.ubuntu.com/v1/12b2d293-NVIDIA%20and%20Canonical%20diagram.png",
-      alt="",
-      width="1922",
-      height="822",
-      hi_def=True,
-      loading="lazy"
-      ) | safe
-      }}
-
-    </div>
-
-    <div class="row p-strip u-no-padding--top u-hide--large u-hide--medium">
-
-      <h3>Canonical</h3>
-
-      <ul class="p-list">
-
-        <li class="p-list__item">Native vGPU integrations</li>
-
-        <li class="p-list__item">MIG support</li>
-
-        <li class="p-list__item">Hardened, conformant multi-cloud Kubernetes</li>
-
-        <li class="p-list__item">Work with the leaders in Openstack deployments</li>
-
-        <li class="p-list__item">Simplify your MLOps with Kubeflow</li>
-
+      </section>
+      <p>
+        <a href="/kubernetes/charmed-k8s">Learn more for Charmed Kubernetes &rsaquo;</a>
+      </p>
+      <p>
+        <a href="https://canonical.com/microk8s/resources?_ga=2.63950252.208025466.1654521646-1680362023.1652798743">Explore MicroK8s &rsaquo;</a>
+      </p>
+      <p>
+        <a href="https://www.nvidia.com/dgx-mlops">Check out certified MLOps software for NVIDIA DGX systems &rsaquo;</a>
+      </p>
+      <p>
+        <a href="/engage/kubernetes-by-canonical-delivered-on-nvidia-dgx-systems">Download the solution brief: Kubernetes by Canonical delivered on NVIDIA DGX systems &rsaquo;</a>
+      </p>
+      <p>
+        <a href="/blog/canonical-kubernetes-enhances-ai-ml-development-capabilities-with-nvidia-integrations">Read the blog: Canonical Kubernetes enhances AI/ML development capabilities with NVIDIA integrations &rsaquo;</a>
+      </p>
+    {%- endif -%}
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">Take the fast track with certified hardware</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+      {% call(slot) vf_logo_section(
+        title={},
+        mode="minimal",
+        padding="none",
+        blocks=[
+        {
+        "type": "logo-block",
+        "item": {
+        "logos": [
+        {
+        "src": "https://assets.ubuntu.com/v1/5183618c-ubuntu_certified_logo.png",
+        "alt": "Ubuntu certified logo",
+        "width": "183",
+        "height": "312",
+        "loading": "lazy"
+        }
+        ]
+        }
+        }
+        ]
+        ) %}
+      {% endcall %}
+      <p>
+        Get peace of mind with Ubuntu certified hardware from all major OEMs. Choosing validated platforms significantly reduces deployment time and costs for end-customers, in addition to improving reliability and providing bug-fixes faster.
+      </p>
+      <p>
+        Combined with NVIDIA DGX systems or NVIDIA-Certified systems, choosing an Ubuntu-certified platform provides secure, performant hardware that is guaranteed to deploy quickly and run smoothly.
+      </p>
+      <ul class="p-list--divided-bulleted">
+        <li class="p-list__item">NVIDIA DGX systems</li>
+        <li class="p-list__item">NVIDIA certified servers</li>
+        <li class="p-list__item">Data-science workstations</li>
+        <li class="p-list__item">NVIDIA GPUs</li>
+        <li class="p-list__item">NVIDIA BlueField DPUs</li>
+        <li class="p-list__item">NVIDIA ConnectX network adapters</li>
       </ul>
+      <hr class="p-rule--muted" />
+      <p>
+        <a href="/certified/servers">Check Ubuntu certified servers &rsaquo;</a>
+      </p>
+      <p>
+        <a href="/certified/desktops">Check Ubuntu certified desktops &rsaquo;</a>
+      </p>
+    {%- endif -%}
+    {%- if slot == 'list_item_title_3' -%}
+      <h3 class="p-heading--5">Get enterprise-grade support and software maintenance</h3>
+    {%- endif -%}
 
-      <h3>NVIDIA</h3>
+    {%- if slot == 'list_item_description_3' -%}
+      <p>
+        End-to-end customer support is available when you need it for all Canonical software backed by NVIDIA across all NVIDIA hardware platforms. New Ubuntu releases are made available like clockwork with Canonical’s periodic <a href="/about/release-cycle">release cycle</a>. Ubuntu’s reliable maintenance cycle, with updates every 3-5 weeks fosters trust across the community.
+      </p>
+      <p>
+        <a href="/support">Learn more about enterprise open source support &rsaquo;</a>
+      </p>
+    {%- endif -%}
+  {%- endcall -%}
 
-      <ul class="p-list">
+  {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=false) -%}
+    {%- if slot == 'title' -%}
+      <h2 id="software-defined-data-centre">Solutions for the software-defined data center</h2>
+    {%- endif -%}
 
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">AI-Ready platforms</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+      <p>
+        NVIDIA AI Enterprise is an end-to-end, secure, cloud-native suite of AI software, enabling organizations to solve new challenges while increasing operational efficiency. It accelerates the data science pipeline and streamlines the development and deployment of predictive AI models to automate essential processes and gain rapid insights from data. NVIDIA AI Enterprise includes an extensive library of full-stack software including AI solution workflows, frameworks, pretrained models and infrastructure optimization.
+      </p>
+      <p>
+        You can use all of Canonical's enterprise-grade software including Ubuntu LTS, <a href="/kubernetes">Canonical Kubernetes</a> and Openstack today, with the assurance that help is available through Canonical's support services if required.
+      </p>
+
+      <hr class="p-rule--muted" />
+      <strong>NVIDIA</strong>
+      <ul class="p-list--divided-bulleted">
         <li class="p-list__item">Unmatched hardware performance</li>
-
-        <li class="p-list__item">NVAIE for AI and data analytics software</li>
-
+        <li class="p-list__item">NVIDIA AI Enterprise for AI and data analytics</li>
         <li class="p-list__item">Global enterprise support</li>
-
         <li class="p-list__item">Extensive catalogue of ready-to-use containers</li>
-
       </ul>
 
-    </div>
-
-    <div class="row p-strip u-no-padding--top">
-
-      <hr class="p-rule" />
-
-      <div class="col-6">
-
-        <h3 class="p-heading--4">
-          Performance and efficiency
-          <br class="u-hide--small" />
-          in an heterogeneous world
-        </h3>
-
-      </div>
-
-      <div class="col-6">
-
-        <p>
-          The ever-evolving landscape that is driving massive increases in virtualisation and network traffic necessitates a modern approach to infrastructure operations. The NVIDIA BlueField data processing unit (DPU) ignites unprecedented innovation by offloading, accelerating, and isolating a broad range of advanced networking, storage, and security services, enabling BlueField DPUs to provide a secure and accelerated infrastructure from cloud to data centre to edge.
-        </p>
-
-        <p>
-          Through Mellanox's acquisition by NVIDIA, we have delivered a first-class optimised Ubuntu to every generation of the NVIDIA Bluefield DPUs, which are critical elements of NVIDIA's AI offerings.
-        </p>
-
-        <h5 class="u-no-margin--bottom">Ubuntu and Bluefield</h5>
-
-        <hr class="p-rule--muted" style="top: 8px;" />
-
-        <ul class="p-list--divided-bulleted">
-
-          <li class="p-list__item">First OS to be certified, since 2018</li>
-
-          <li class="p-list__item">OVN integrations for offload on to DPU</li>
-
-          <li class="p-list__item">Native Ubuntu kernel support for MOFED for ConnectX NICs (with planned DPU support)</li>
-
-        </ul>
-
-        <hr class="p-rule" />
-
-        <div class="row">
-
-          <div class="col-4">
-
-            <p>Learn more</p>
-
-          </div>
-
-          <div class="col-8">
-            <a href="https://www.nvidia.com/en-us/networking/products/data-processing-unit/">NVIDIA BlueField</a>
-
-          </div>
-
-          <hr class="p-rule" />
-
-        </div>
-
-        <div class="row">
-
-          <div class="col-4">
-
-            <p>Install</p>
-
-          </div>
-
-          <div class="col-8">
-            <a href="https://docs.nvidia.com/networking/display/BlueFieldSWv31011424/Installing+Popular+Linux+Distributions+on+BlueField#InstallingPopularLinuxDistributionsonBlueField-UbuntuInstallationInstallingUbuntuonBlueField">Ubuntu on BlueField</a>
-
-          </div>
-
-          <hr class="p-rule" />
-
-        </div>
-
-        <div class="row">
-
-          <div class="col-4">
-
-            <p>Read the blog</p>
-
-          </div>
-
-          <div class="col-8">
-            <a href="/blog/ai-based-cybersecurity-with-canonical-ubuntu-and-bluefield-2-dpu">Security at the Edge: hardware accelerated AI-based cybersecurity with Canonical Ubuntu and the BlueField-2 DPU</a>
-
-          </div>
-
-          <hr class="p-rule" />
-
-        </div>
-
-        <div class="row">
-
-          <div class="col-4">
-
-            <p>Read the reference deployment guide</p>
-
-          </div>
-
-          <div class="col-8">
-            <a href="https://docs.nvidia.com/networking/display/SOL/RDG+for+Canonical+Charmed+OpenStack+with+NVIDIA+Networking+and+Accelerated+OVN+for+High+Performance+Workloads">RDG for Canonical Charmed OpenStack with NVIDIA Networking and Accelerated OVN for High Performance Workloads</a>
-
-          </div>
-
-          <hr class="p-rule" />
-
-        </div>
-
-        <div class="row">
-
-          <div class="col-4">
-
-            <p>Read the e-book</p>
-
-          </div>
-
-          <div class="col-8">
-            <a href="https://www.nvidia.com/en-us/networking/data-center-transformation-with-bluefield-dpus/">Modernise Your Data Center with Accelerated Networking</a>
-
-          </div>
-
-          <hr style="background: transparent" />
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="row">
-
-      <hr class="p-rule" />
-
-      <div class="col-6">
-
-        <h3 class="p-heading--4">Software defined operations</h3>
-
-        <div class="u-align--center u-vertically-center u-hide--small u-hide--medium"
-             style="height: 100%">
-          {{
-          image (
-          url="https://assets.ubuntu.com/v1/1ec1605a-logo.svg",
-          alt="",
-          width="151",
-          height="150",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-          }}
-
-        </div>
-
-      </div>
-
-      <div class="col-6">
-
-        <p>
-          Standardising operations using ML workflows can significantly improve time-to-market and reduce the costs associated with your AI solutions. <a href="https://canonical.com/mlops/kubeflow">Charmed Kubeflow</a>, an open source machine learning platform built for Kubernetes, provides a unified environment where data scientists and data engineers can collaborate.
-        </p>
-
-        <p>
-          The solution bridges the gap between AI workloads and Kubernetes by providing the cloud-native interface for your ML libraries, frameworks, workflow pipelines and notebooks. This helps to rapidly turn the work of data scientists into production solutions running on top of Kubernetes.
-        </p>
-
-        <p>The Charmed Kubeflow solution integrates and operates seamlessly across multiple cloud and on-prem platforms.</p>
-
-        <br />
-
-        <ul class="p-list--divided">
-
-          <li class="p-list__item">
-            <a href="/ai/services">Explore Automated ML workflows with Charmed Kubeflow</a>
-
-          </li>
-
-          <li class="p-list__item">
-            <a href="https://canonical.com/blog/scale-enterprise-ai-with-canonical-and-nvidia">
-              Charmed Kubeflow is now certified in the NVIDIA DGX-Ready Software Program for MLOps!
-            </a>
-
-          </li>
-
-          <li class="p-list__item">
-            On-demand webinar: <a href="/engage/kubeflow-nvidia-dgx-webinar?_ga=2.173237093.778568722.1680051597-1310552537.1650462715">How Canonical and NVIDIA can help operationalise your AI models quickly</a>
-
-          </li>
-
-          <li class="p-list__item">
-            Solution brief: <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/NVIDIA_DGX_Kubeflow_solution_06_03_23.pdf">
-            Charmed Kubeflow delivered on NVIDIA DGX systems
-          </a>
-
-        </li>
-
-        <li class="p-list__item">
-          Whitepaper: <a href="/engage/run-ai-at-scale">Run AI at Scale - Build Your Performant ML Stack with NVIDIA DGX and Kubeflow</a>
-
-        </li>
-
-        <li class="p-list__item">
-          Reference architecture: <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/EGX_MicroK8s_Kubeflow_Reference_Architecture.pdf">
-          Run AI at the Edge: Use MicroK8s with Charmed Kubeflow on NVIDIA EGX platform
-        </a>
-
-      </li>
-
-      <li class="p-list__item no-border">
-        Learn more about Kubeflow &mdash; <a href="https://canonical.com/mlops/kubeflow">the fully supported MLOps platform for any cloud</a>
-
-      </li>
-
-    </ul>
-
-  </div>
-
-</div>
-</section>
-
-<section class="p-strip u-no-padding--top is-deep">
-
-  <div class="u-fixed-width">
-
-    <div class="p-logo-section">
-
-      <div class="p-logo-section__items">
-
-        <div class="p-logo-section__item">
-          {{ image (
-          url="https://assets.ubuntu.com/v1/70b45d0a-kubernetes-logomark-logo.png",
-          alt="",
-          width="288",
-          height="289",
-          hi_def=True,
-          attrs={"class": "p-logo-section__logo"},
-          loading="lazy"
-          ) | safe
-          }}
-
-        </div>
-
-        <div class="p-logo-section__item">
-          {{ image (
-          url="https://assets.ubuntu.com/v1/5a3b2944-Openstack-logo-2021.svg",
-          alt="",
-          width="144",
-          height="144",
-          hi_def=True,
-          attrs={"class": "p-logo-section__logo"},
-          loading="auto"
-          ) | safe
-          }}
-
-        </div>
-
-        <div class="p-logo-section__item">
-
-          {{ image (
-          url="https://assets.ubuntu.com/v1/59fff9df-microsoft-azure-new-logo.png",
-          alt="",
-          width="289",
-          height="289",
-          hi_def=True,
-          attrs={"class": "p-logo-section__logo"},
-          loading="auto"
-          ) | safe
-          }}
-
-        </div>
-
-        <div class="p-logo-section__item">
-
-          {{ image (
-          url="https://assets.ubuntu.com/v1/234dbea3-aws-logo.png",
-          alt="",
-          width="289",
-          height="289",
-          hi_def=True,
-          attrs={"class": "p-logo-section__logo"},
-          loading="auto"
-          ) | safe
-          }}
-
-        </div>
-
-        <div class="p-logo-section__item">
-
-          {{ image (
-          url="https://assets.ubuntu.com/v1/45a9032a-google-cloud-stacked-logo.png",
-          alt="",
-          width="289",
-          height="289",
-          hi_def=True,
-          attrs={"class": "p-logo-section__logo"},
-          loading="lazy"
-          ) | safe
-          }}
-
-        </div>
-
-        <div class="p-logo-section__item">
-          {{ image (
-          url="https://assets.ubuntu.com/v1/8347ea7c-vmware-logo.png",
-          alt="",
-          width="288",
-          height="289",
-          hi_def=True,
-          attrs={"class": "p-logo-section__logo"},
-          loading="lazy"
-          ) | safe
-          }}
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-{{ load_form("/nvidia") | safe }}
+      <hr class="p-rule--muted" />
+      <strong>Canonical</strong>
+      <ul class="p-list--divided-bulleted">
+        <li class="p-list__item">Native vGPU integrations</li>
+        <li class="p-list__item">MIG support</li>
+        <li class="p-list__item">Hardened, conformant multi-cloud Kubernetes</li>
+        <li class="p-list__item">Leaders in Openstack deployments</li>
+        <li class="p-list__item">MLOps simplified with Kubeflow</li>
+      </ul>
+
+      <hr class="p-rule--muted" />
+      <p>
+        <a href="https://www.nvidia.com/en-us/gpu-cloud/">Learn more about NVIDIA NGC &rsaquo;</a>
+      </p>
+      <p>
+        <a href="https://www.nvidia.com/en-us/data-center/products/ai-enterprise/">Explore NVIDIA AI Enterprise &rsaquo;</a>
+      </p>
+
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">Performance and efficiency in a heterogeneous world</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+      {% call(slot) vf_logo_section(
+        title={},
+        mode="minimal",
+        padding="none",
+        blocks=[
+        {
+        "type": "logo-block",
+        "item": {
+        "logos": [
+        {
+        "src": "https://assets.ubuntu.com/v1/c05ee365-kubeflow_logo.png",
+        "alt": "Charmed Kubeflow logo",
+        "width": "306",
+        "height": "312",
+        "loading": "lazy"
+        }
+        ]
+        }
+        }
+        ]
+        ) %}
+      {% endcall %}
+      <p>
+        The ever-evolving landscape that is driving massive increases in virtualization and network traffic necessitates a modern approach to infrastructure operations. The NVIDIA BlueField data processing unit (DPU) ignites unprecedented innovation by offloading, accelerating, and isolating a broad range of advanced networking, storage, and security services, enabling BlueField DPUs to provide a secure and accelerated infrastructure from cloud to data center to edge.
+      </p>
+      <p>
+        Through Mellanox’s acquisition by NVIDIA, we have delivered a first-class optimized Ubuntu to every generation of the NVIDIA BlueField DPUs, which are critical elements of NVIDIA’s AI offerings.
+      </p>
+      <strong>Ubuntu and BlueField</strong>
+      <ul class="p-list--divided-bulleted">
+        <li class="p-list__item">First OS to be certified, since 2018</li>
+        <li class="p-list__item">OVN integrations for offload on to DPU</li>
+        <li class="p-list__item">Native Ubuntu kernel support for MOFED for ConnectX NICs (with planned DPU support)</li>
+      </ul>
+
+      <hr class="p-rule--muted" />
+      <p>
+        <a href="https://www.nvidia.com/en-us/networking/products/data-processing-unit/">Learn more about NVIDIA BlueField &rsaquo;</a>
+      </p>
+      <p>
+        <a href="https://docs.nvidia.com/networking/display/BlueFieldSWv31011424/Installing+Popular+Linux+Distributions+on+BlueField#InstallingPopularLinuxDistributionsonBlueField-UbuntuInstallationInstallingUbuntuonBlueField">Install Ubuntu on BlueField &rsaquo;</a>
+      </p>
+      <p>
+        <a href="/blog/ai-based-cybersecurity-with-canonical-ubuntu-and-bluefield-2-dpu">Read the blog: Security at the Edge: hardware accelerated AI-based cybersecurity with Canonical Ubuntu and the BlueField-2 DPU &rsaquo;</a>
+      </p>
+      <p>
+        <a href="https://docs.nvidia.com/networking/display/SOL/RDG+for+Canonical+Charmed+OpenStack+with+NVIDIA+Networking+and+Accelerated+OVN+for+High+Performance+Workloads">Read the reference deployment guide: RDG for Canonical Charmed OpenStack with NVIDIA Networking and Accelerated OVN for High Performance Workloads &rsaquo;</a>
+      </p>
+      <p>
+        <a href="https://www.nvidia.com/en-us/networking/data-center-transformation-with-bluefield-dpus/">Read the e-book: Modernize Your Data Center with Accelerated Networking &rsaquo;</a>
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_3' -%}
+      <h3 class="p-heading--5">Software defined operations</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_3' -%}
+      {% call(slot) vf_logo_section(
+        title={},
+        mode="minimal",
+        padding="none",
+        blocks=[
+        {
+        "type": "logo-block",
+        "item": {
+        "logos": [
+        {
+        "src": "https://assets.ubuntu.com/v1/312231d8-openstack_logo.png",
+        "alt": "OpenStack logo",
+        "width": "132",
+        "height": "100",
+        "loading": "lazy"
+        },
+        {
+        "src": "https://assets.ubuntu.com/v1/0e122394-kubernetes_logomark_logo.png",
+        "alt": "Kubernetes logo",
+        "width": "160",
+        "height": "100",
+        "loading": "lazy"
+        },
+        {
+        "src": "https://assets.ubuntu.com/v1/b918fe24-aws_logo.png",
+        "alt": "AWS logo",
+        "width": "48",
+        "height": "100",
+        "loading": "lazy"
+        },
+        {
+        "src": "https://assets.ubuntu.com/v1/28175685-google_cloud_logo.png",
+        "alt": "Google Cloud logo",
+        "width": "118",
+        "height": "100",
+        "loading": "lazy"
+        },
+        {
+        "src": "https://assets.ubuntu.com/v1/655ecd38-microsoft_azure_logo.png",
+        "alt": "Microsoft Azure logo",
+        "width": "87",
+        "height": "100",
+        "loading": "lazy"
+        },
+        {
+        "src": "https://assets.ubuntu.com/v1/cf4bde95-vmware_logo.png",
+        "alt": "VMware logo",
+        "width": "103",
+        "height": "100",
+        "loading": "lazy"
+        }
+        ]
+        }
+        }
+        ]
+        ) %}
+      {% endcall %}
+      <p>
+        Standardizing operations using ML workflows can significantly improve time-to-market and reduce the costs associated with your AI solutions. <a href="https://charmed-kubeflow.io/">Charmed Kubeflow</a>, an open source machine learning platform built for Kubernetes, provides a unified environment where data scientists and data engineers can collaborate.
+      </p>
+      <p>
+        The solution bridges the gap between AI workloads and Kubernetes by providing the cloud-native interface for your ML libraries, frameworks, workflow pipelines and notebooks. This helps to rapidly turn the work of data scientists into production solutions running on top of Kubernetes. 
+      </p>
+      <p>The Charmed Kubeflow solution integrates and operates seamlessly across multiple cloud and on-prem platforms.</p>
+
+      <hr class="p-rule--muted" />
+      <p>
+        <a href="/ai/services">Explore Automated ML workflows with Charmed Kubeflow &rsaquo;</a>
+      </p>
+      <p>
+        <a href="https://canonical.com/blog/scale-enterprise-ai-with-canonical-and-nvidia">Charmed Kubeflow is now certified in the NVIDIA DGX-Ready Software Program for MLOps &rsaquo;</a>
+      </p>
+      <p>
+        <a href="/engage/kubeflow-nvidia-dgx-webinar?_ga=2.173237093.778568722.1680051597-1310552537.1650462715">On-demand webinar: How Canonical and NVIDIA can help operationalize your AI models quickly &rsaquo;</a>
+      </p>
+      <p>
+        <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/NVIDIA_DGX_Kubeflow_solution_06_03_23.pdf">Solution brief: Charmed Kubeflow delivered on NVIDIA DGX systems &rsaquo;</a>
+      </p>
+      <p>
+        <a href="/engage/run-ai-at-scale">Whitepaper: Run AI at Scale - Build Your Performant ML Stack with NVIDIA DGX and Kubeflow &rsaquo;</a>
+      </p>
+      <p>
+        <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/EGX_MicroK8s_Kubeflow_Reference_Architecture.pdf">Reference architecture: Run AI at the Edge: Use MicroK8s with Charmed Kubeflow on NVIDIA EGX platform &rsaquo;</a>
+      </p>
+      <p>
+        <a href="https://charmed-kubeflow.io/">Learn more about Charmed Kubeflow - the fully supported MLOps platform for any cloud &rsaquo;</a>
+      </p>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {#
+    TODO: move id to the title block once the template is updated
+    https://github.com/canonical/vanilla-framework/issues/5790
+  #}
+  <span id="nvidia-drive"></span>
+  {{ vf_divided_section(title={
+    "text": "NVIDIA DRIVE"
+    },
+    is_split_on_medium=true,
+    padding="deep",
+    blocks=[
+    {
+    "type": "description-block",
+    "items": [
+    {
+    "type": "logo-block",
+    "item": {
+    "logos": [
+    {
+    "attrs": image(
+    url="https://assets.ubuntu.com/v1/1f419e4d-accelerated_by_nvidia.png",
+    alt="NVIDIA DRIVE",
+    width="378",
+    height="312",
+    hi_def=True,
+    loading="lazy",
+    attrs={"class": "p-image-container__image"},
+    output_mode="attrs") }]}
+  },
+  {
+  "type": "description",
+  "item": {
+  "type": "html",
+  "content": "
+  <h3 class=\"p-heading--5\">Ubuntu is the open source software foundation for NVIDIA DRIVE&reg;.</h3>
+
+  <p>Canonical provides the production-grade Linux for NVIDIA DRIVE platforms. Ubuntu delivers a secure, maintained and widely adopted software environment that enables software-defined vehicle developers to deploy immersive experiences and autonomous driving applications at scale.</p>"}},
+  ]},
+  {
+  "type": "divided-block",
+  "bullet_type": "none",
+  "items": [
+  {
+  "title_text": "Partnership with NVIDIA DRIVE",
+  "contents": [
+  {
+  "type": "description",
+  "item": {
+  "content": "Ubuntu serves as the foundation for NVIDIA DriveOS Linux, which runs on NVIDIA DRIVE AGX Orin™ and NVIDIA DRIVE AGX Thor™ platforms. This enables developers to leverage a familiar, enterprise-grade Linux environment directly on DRIVE systems."}}]},
+  {
+  "title_text": "Long-term security and compliance for NVIDIA DRIVE",
+  "contents": [
+  {
+  "type": "description",
+  "item": {
+  "content": "Ubuntu provides the runtime environment for execution on top of NVIDIA DriveOS Linux. With long-term security maintenance through Ubuntu Pro, a rich ecosystem of packages, and seamless integration, Ubuntu accelerates development while ensuring stability and maintainability for production automotive systems. Canonical also works with NVIDIA to enable alignment of the DriveOS Linux with ISO/SAE 21434 cybersecurity requirements, supporting OEMs and tier 1s in building compliant and secure AI software platforms on DRIVE."}}]},
+  {
+  "contents": [
+  {
+  "type": "cta-block",
+  "padding": "shallow",
+  "item": {
+  "link": {
+  "content_html": "Get in touch to learn more about Ubuntu and NVIDIA DRIVE &rsaquo;",
+  "attrs": {
+  "href": "/contact-us",
+  "class": "js-invoke-modal",
+  "aria-controls": "contact-modal"}
+  },}},
+  {
+  "type": "cta-block",
+  "padding": "shallow",
+  "item": {
+  "link": {
+  "content_html": "Explore Canonical’s automotive solutions &rsaquo;",
+  "attrs": {
+  "href": "https://canonical.com/solutions/automotive"}
+  }}}]},]}] ) }}
+
+  {{ load_form("/nvidia") | safe }}
 {% endblock outer_content %}

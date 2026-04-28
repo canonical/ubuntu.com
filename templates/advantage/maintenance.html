@@ -1,5 +1,7 @@
 {% extends "templates/one-column.html" %}
 
+{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
+
 {% block title %}{{ title | default("Ubuntu Pro for Infrastructure: maintenance") }}{% endblock %}
 
 {% block content %}

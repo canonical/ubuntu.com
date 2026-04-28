@@ -1,7 +1,7 @@
 {% extends "core/base_core.html" %}
 
 {% block title %}Features | Ubuntu Core{% endblock %}
-{% block meta_description %}Explore Ubuntu Core's IoT features like strict confinement, 12 year updates, real-time, low-touch recovery, FDE, secure boot, fleet management and more.{% endblock %}
+{% block meta_description %}Explore Ubuntu Core's IoT features like strict confinement, 15 year updates, real-time, low-touch recovery, FDE, secure boot, fleet management and more.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/10S6FGVRA1R1qi9v859CnFrl8rS25Za2SjEmSpPVQkzY/edit{% endblock meta_copydoc %}
 
 {% block body_class %}is-paper{% endblock body_class %}
@@ -15,7 +15,7 @@
     </div>
     <div class="col">
       <div class="p-section--shallow u-no-padding--top">
-        <p class="p-heading--2">A minimal and secure OS for IoT, devices and embedded systems.</p>
+        <p class="p-heading--2">A minimal and secure OS for IoT, devices, and embedded systems.</p>
       </div>
       <hr class="p-rule--muted" />
       <p>
@@ -38,13 +38,13 @@
           <h3 class="p-heading--5 p-equal-height-row__item">
             <a href="https://snapcraft.io/docs/snap-confinement">Strict confinement&nbsp;&rsaquo;</a>
           </h3>
-          <p class="p-equal-height-row__item">12 years LTS with a whole new armoury of Linux security capabilities to ensure strict confinement. Leverage a clean separation between the kernel, OS image and the developers’ applications, providing a secure and immutable OS.</p>
+          <p class="p-equal-height-row__item">Build on top of a whole new armory of Linux security capabilities to ensure strict confinement. Leverage a clean separation between the kernel, OS image and the developers’ applications, providing a secure and immutable OS.</p>
         </div>
         <div class="p-equal-height-row__col">
           <h3 class="p-heading--5 p-equal-height-row__item">
             <a  href="/core/features/full-disk-encryption">Full disk encryption&nbsp;&rsaquo;</a>
           </h3>
-          <p class="p-equal-height-row__item">Disks are locked with private key-based cryptography. Private keys for hardware, TPM and other layers are securely stored. Symmetric key encryption is enabled by the use of specialised software-enabled stores.</p>
+          <p class="p-equal-height-row__item">Disks are locked with private key-based cryptography. Private keys for hardware, TPM and other layers are securely stored. Symmetric key encryption is enabled by the use of specialized software-enabled stores.</p>
         </div>
         <div class="p-equal-height-row__col">
           <h3 class="p-heading--5 p-equal-height-row__item">
@@ -82,13 +82,13 @@
           <h3 class="p-heading--5 p-equal-height-row__item">
             <a href="/core/features/ota-updates">OTA update control&nbsp;&rsaquo;</a>
           </h3>
-          <p class="p-equal-height-row__item">Over-the-air (OTA) updates guarantee secure and stable software in any location. You decide which updates are signed, certified and delivered to your devices. Plus, Ubuntu Core keeps the last working boot so you always have a safety net.</p>
+          <p class="p-equal-height-row__item">Over-the-air (OTA) updates guarantee secure and stable software in any location. You decide which updates are signed, certified, and delivered to your devices. Plus, Ubuntu Core keeps the last working boot so you always have a safety net.</p>
         </div>
         <div class="p-equal-height-row__col">
           <h3 class="p-heading--5 p-equal-height-row__item">
             <a href="/internet-of-things/management">Device management&nbsp;&rsaquo;</a>
           </h3>
-          <p class="p-equal-height-row__item">Landscape delivers comprehensive management capabilities across the full scope of your device fleets. Stay in control with features including canary releases, remote device remodelling and system monitoring.</p>
+          <p class="p-equal-height-row__item">Landscape delivers comprehensive management capabilities across the full scope of your device fleets. Stay in control with features including canary releases, remote device remodelling, and system monitoring.</p>
         </div>
         <div class="p-equal-height-row__col">
           <h3 class="p-heading--5 p-equal-height-row__item">
@@ -138,7 +138,7 @@
           <h3 class="p-heading--5 p-equal-height-row__item">
             <a href="/core/docs/remodelling">Device remodelling&nbsp;&rsaquo;</a>
           </h3>
-          <p class="p-equal-height-row__item">Ubuntu Core’s remodelling feature enables you to change any of the elements of your device’s model assertion. Brand, model, IoT App Store ID or version can be changed to simplify device rebranding for resellers.</p>
+          <p class="p-equal-height-row__item">Ubuntu Core’s remodelling feature enables you to change any of the elements of your device’s model assertion. Brand, model, IoT App Store ID, or version can be changed to simplify device rebranding for resellers.</p>
         </div>
       </div>
     </div>
@@ -165,7 +165,7 @@
       <h2>What's under the hood</h2>
     </div>
     <div class="col">
-      <p>Ubuntu Core is ideal for embedded devices because it manages itself.  Snaps, Snapd and Snapcraft bring security and robustness. Applications are easy to install, easy to maintain, and easy to upgrade.</p>
+      <p>Ubuntu Core is ideal for embedded devices because it manages itself.  Snaps, Snapd, and Snapcraft bring security and robustness. Applications are easy to install, easy to maintain, and easy to upgrade.</p>
     </div>
   </div>
   
@@ -217,7 +217,7 @@
               format. Snaps are entirely self-contained, even to the point of encapsulating their own file system. This
               means they include everything they need to run in any environment. They're used by Ubuntu Core to both
               compose the image that's run on a device, and to deliver consistent and reliable software updates, even to
-              low-powered, inaccessible and remotely administered embedded and IoT systems.</p>
+              low-powered, inaccessible, and remotely administered embedded and IoT systems.</p>
           </div>
           <hr class="p-rule is-muted" />
           <p>
@@ -246,7 +246,7 @@
             from other snaps</li>
           <li class="p-list__item is-ticked">Governs the interfaces that allow snaps to access specific system resources
             outside of their container</li>
-          <li class="p-list__item is-ticked">Integrates with Landscape for advanced fleet management</li>
+          <li class="p-list__item is-ticked">Integrates with <a href="/landscape">Landscape</a> for advanced fleet management</li>
         </ul>
         <hr class="p-rule is-muted" />
         <p>
@@ -299,8 +299,8 @@
           <li class="p-list__item is-ticked">Build production-ready images from a model assertion</li>
           <li class="p-list__item is-ticked">Specify sets of snaps, including fixed revisions, that must be installed
           </li>
-          <li class="p-list__item is-ticked">Dynamically customise and modify snap selection at build time</li>
-          <li class="p-list__item is-ticked">Optimise image boot speed by pre-installing and initialising specific snaps
+          <li class="p-list__item is-ticked">Dynamically customize and modify snap selection at build time</li>
+          <li class="p-list__item is-ticked">Optimize image boot speed by pre-installing and initializing specific snaps
           </li>
         </ul>
         <hr class="p-rule is-muted" />
@@ -320,12 +320,12 @@
     <div class="col">
       <div class="p-section--shallow">
         <p class="p-heading--5">Ubuntu Core simplifies your security compliance</p>
-        <p>You need to know your software is pristine; not just for installation, but for the lifetime of the device. Immutable packages and persistent digital signatures mean Ubuntu Core can verify any software component at any time, to guard against corruption and attack.</p> 
+        <p>You need to know your software is pristine; not just for installation, but for the lifetime of the device. Immutable packages and persistent digital signatures mean that Ubuntu Core can verify any software component at any time, to guard against corruption and attack.</p> 
         <p>Comply with cybersecurity requirements and build a reliable business.</p>
       </div>
       <hr class="p-rule--muted" />
       <p>
-        <a href="/engage/ubuntu-core-security-audit">Read an independent security audit of Ubuntu Core&nbsp;&rsaquo;</a>
+        <a href="https://assets.ubuntu.com/v1/2566b90c-ubuntu_core_security_whitepaper_2.pdf">Read our Ubuntu Core security deep dive whitepaper&nbsp;&rsaquo;</a>
       </p>
     </div>
   </div>
@@ -354,11 +354,11 @@
         <li class="p-list__item u-no-padding--top u-no-padding--bottom">
           <div class="row--50-50">
             <div class="col">
-              <h3 class="p-heading--5">Webinar</h3>
+              <h3 class="p-heading--5">Video</h3>
             </div>
             <div class="col">
               <p>
-                <a href="/engage/intro-to-ubuntu-core22-webinar#:~:text=With%204%20releases%20behind%2C%20Ubuntu,edge%20devices%20makers%20must%20face.">Introduction to Ubuntu&nbsp;Core&nbsp;22</a>
+                <a href="https://www.youtube.com/watch?v=zf9bapbzb8o">Introduction to Ubuntu&nbsp;Core&nbsp;</a>
               </p>
             </div>
           </div>

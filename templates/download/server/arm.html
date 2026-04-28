@@ -18,7 +18,7 @@
       </div>
       <div class="col p-section--shallow">
         <p>
-          Ubuntu {{ releases_yaml.lts.full_version }} <abbr title="Long-term support">LTS</abbr> includes support for the very latest ARM-based server systems powered by certified 64-bit processors.
+          Ubuntu Server includes support for the very latest ARM-based server systems powered by certified 64-bit processors.
         </p>
         <p>
           Develop and test using over 50,000 software packages and runtimes &mdash; including Go, Java, Javascript, PHP, Python and Ruby &mdash; and deploy at scale using our complete scale-out management suite including MAAS and Juju. Ubuntu delivers server-grade performance on ARM, while fully retaining the reliable and familiar Ubuntu experience.
@@ -35,163 +35,161 @@
           <div class="col-6 col-medium-3">
             <p>This is the default ISO image of the Ubuntu Server installer.</p>
             <hr class="p-rule" />
-            <a href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.lts.short_version }}/release/ubuntu-{{ releases_yaml.lts.full_version }}-live-server-arm64.iso"
+            <a href="/download/server/thank-you?version={{ releases_yaml.lts.full_version }}&amp;architecture=arm64&amp;lts=true"
                class="p-button--positive"
                onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases_yaml.lts.short_version }}', 'eventValue' : undefined });">
               Download {{ releases_yaml.lts.full_version }} LTS
             </a>
+            {% if releases_yaml.lts.arm_server_iso_size %}
+              <span class="u-text--muted">{{ releases_yaml.lts.arm_server_iso_size }}</span>
+            {% endif %}
             {% if releases_yaml.latest.short_version > releases_yaml.lts.short_version %}
-              &nbsp;&nbsp;<a href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.latest.short_version }}/release/ubuntu-{{ releases_yaml.latest.full_version }}-live-server-arm64.iso"
-   class="p-button"
-   onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases_yaml.latest.short_version }}', 'eventValue' : undefined });">
-              Download {{ releases_yaml.latest.full_version }}
+              <a href="/download/server/thank-you?version={{ releases_yaml.latest.full_version }}&amp;architecture=arm64"
+                 class="p-button"
+                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases_yaml.latest.short_version }}', 'eventValue' : undefined });">
+                Download {{ releases_yaml.latest.full_version }}
+              </a>
+            {% endif %}
+            <div class="p-section--shallow">
+              <a href="https://cdimage.ubuntu.com/releases">Alternative and previous releases&nbsp;&rsaquo;</a>
+              &nbsp;&nbsp;
+              <a href="/tutorials/install-ubuntu-server#1-overview">How to install&nbsp;&rsaquo;</a>
+            </div>
+          </div>
+        </div>
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h2 class="p-heading--5">Ubuntu Server (64k page size)</h2>
+          </div>
+          <div class="col-6 col-medium-3 p-section">
+            <p>This ISO image is suited for servers with ample memory running memory-intensive applications.</p>
+            <hr class="p-rule" />
+            <a href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.lts.short_version }}/release/ubuntu-{{ releases_yaml.lts.full_version }}-live-server-arm64+largemem.iso"
+               class="p-button"
+               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases_yaml.lts.short_version }}', 'eventValue' : undefined });">
+              Download {{ releases_yaml.lts.full_version }} LTS (64k page size)
             </a>
-          {% endif %}
-          <div class="p-section--shallow">
-            <a href="https://cdimage.ubuntu.com/releases">Alternative and previous releases&nbsp;&rsaquo;</a>
-            &nbsp;&nbsp;
-            <a href="/tutorials/install-ubuntu-server#1-overview">How to install&nbsp;&rsaquo;</a>
+            <p>
+              <a href="/server/docs/choosing-between-the-arm64-and-arm64-largemem-installer-options">Find out if 64k page size is for you&nbsp;&rsaquo;</a>
+            </p>
           </div>
         </div>
       </div>
-      <hr class="p-rule" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h2 class="p-heading--5">Ubuntu Server (64k page size)</h2>
-        </div>
-        <div class="col-6 col-medium-3 p-section">
-          <p>This ISO image is suited for servers with ample memory running memory-intensive applications.</p>
-          <hr class="p-rule" />
-          <a href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.lts.short_version }}/release/ubuntu-{{ releases_yaml.lts.full_version }}-live-server-arm64+largemem.iso"
-             class="p-button"
-             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases_yaml.lts.short_version }}', 'eventValue' : undefined });">
-            Download {{ releases_yaml.lts.full_version }} LTS (64k page size)
-          </a>
-          <a href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.latest.short_version }}/release/ubuntu-{{ releases_yaml.latest.full_version }}-live-server-arm64+largemem.iso"
-             class="p-button"
-             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases_yaml.lts.short_version }}', 'eventValue' : undefined });">
-            Download {{ releases_yaml.latest.full_version }} (64k page size)
-          </a>
-          <p>
-            <a href="/server/docs/choosing-between-the-arm64-and-arm64-largemem-installer-options">Find out if 64k page size is for you&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-section">
-  <hr class="p-rule is-fixed-width" />
-  <div class="row--50-50">
-    <div class="col">
-      <h2>
-        Containers, databases, web
-        <br class="u-hide--small u-hide--medium" />
-        and more
-      </h2>
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>
+          Containers, databases, web
+          <br class="u-hide--small u-hide--medium" />
+          and more
+        </h2>
+      </div>
+      <div class="col">
+        <p>Ubuntu Server for&nbsp;ARM includes everything you are looking for in a server operating system, including:</p>
+        <hr class="p-rule" />
+        <ul class="p-list--divided u-no-padding--bottom u-no-margin--bottom">
+          <li class="p-list__item is-ticked">
+            The LXD container hypervisor, giving you instant access to isolated, secured environments running with bare-metal performance.
+          </li>
+          <li class="p-list__item is-ticked">
+            Application container technology based on Docker and Kubernetes, including FAN-based networking.
+          </li>
+          <li class="p-list__item is-ticked">SQL and NoSQL databases including MySQL, PostgreSQL, Valkey and SQLite.</li>
+          <li class="p-list__item is-ticked">
+            A wide collection of web technologies, from HTTP servers to frameworks including Apache, Nginx, Django, and memcached.
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="col">
-      <p>Ubuntu Server for&nbsp;ARM includes everything you are looking for in a server operating system, including:</p>
-      <hr class="p-rule" />
-      <ul class="p-list--divided u-no-padding--bottom u-no-margin--bottom">
-        <li class="p-list__item is-ticked">
-          The LXD container hypervisor, giving you instant access to isolated, secured environments running with bare-metal performance.
-        </li>
-        <li class="p-list__item is-ticked">
-          Application container technology based on Docker and Kubernetes, including FAN-based networking.
-        </li>
-        <li class="p-list__item is-ticked">SQL and NoSQL databases including MySQL, PostgreSQL, Valkey and SQLite.</li>
-        <li class="p-list__item is-ticked">
-          A wide collection of web technologies, from HTTP servers to frameworks including Apache, Nginx, Django, and memcached.
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-section">
-  <hr class="p-rule is-fixed-width" />
-  <div class="row--50-50">
-    <div class="col">
-      <h2>Commercially supported and ready to deploy today</h2>
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Commercially supported and ready to deploy today</h2>
+      </div>
+      <div class="col">
+        <p>
+          Pair your ARM server deployment with enterprise-grade 24/7 support with <a href="/pro">Ubuntu Pro</a> to get the SLA-backed assurance that you are fully covered by our system and architecture experts &mdash; no matter what comes up.
+        </p>
+        <p>
+          Built for cutting-edge platforms, from cloud instances to arm servers and standard form-factor systems, Ubuntu and ARM Server provide truly compelling economics for scale deployments at scale.
+        </p>
+        <hr class="p-rule" />
+        <p>
+          <a href="/server/contact-us?product=server-arm">Contact us about your ARM server plans&nbsp;&rsaquo;</a>
+        </p>
+      </div>
     </div>
-    <div class="col">
-      <p>
-        Pair your ARM server deployment with enterprise-grade 24/7 support with <a href="/pro">Ubuntu Pro</a> to get the SLA-backed assurance that you are fully covered by our system and architecture experts &mdash; no matter what comes up.
-      </p>
-      <p>
-        Built for cutting-edge platforms, from cloud instances to arm servers and standard form-factor systems, Ubuntu and ARM Server provide truly compelling economics for scale deployments at scale.
-      </p>
-      <hr class="p-rule" />
-      <p>
-        <a href="/server/contact-us?product=server-arm">Contact us about your ARM server plans&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-section--deep">
-  <div class="u-fixed-width">
-    <hr class="p-rule" />
-    <div class="p-section--shallow">
-      <h2>Get started with Ubuntu today</h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-9 col-start-large-4 col-start-medium-2 col-medium-5">
+  <section class="p-section--deep">
+    <div class="u-fixed-width">
       <hr class="p-rule" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h3 class="p-heading--5">Installation guides</h3>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>For help with installing Ubuntu on an ARM-based platform, check out our step-by-step installation guides.</p>
-          <hr class="p-rule" />
-          <p>
-            <a href="https://wiki.ubuntu.com/ARM/Server/Install">ARM guides&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-      <hr class="p-rule" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h3 class="p-heading--5">Professional support for Ubuntu</h3>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>
-            Get professional support for Ubuntu from Canonical. We help organisations around the world to manage their
-            Ubuntu cloud, server and desktop deployments.
-          </p>
-          <hr class="p-rule" />
-          <p>
-            <a href="/pro">Ubuntu Pro&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-      <hr class="p-rule" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h3 class="p-heading--5">Helping hands</h3>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>If you get stuck, help is always at hand.</p>
-          <hr class="p-rule--muted" />
-          <p>
-            <a href="https://discourse.ubuntu.com/">Ubuntu Discourse</a>
-          </p>
-          <hr class="p-rule--muted" />
-          <p>
-            <a href="https://askubuntu.com/">Ask Ubuntu</a>
-          </p>
-          <hr class="p-rule--muted" />
-          <p>
-            <a href="https://answers.launchpad.net/ubuntu">Launchpad Answers</a>
-          </p>
-        </div>
+      <div class="p-section--shallow">
+        <h2>Get started with Ubuntu today</h2>
       </div>
     </div>
-  </div>
-</section>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-start-medium-2 col-medium-5">
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Installation guides</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>For help with installing Ubuntu on an ARM-based platform, check out our step-by-step installation guides.</p>
+            <hr class="p-rule" />
+            <p>
+              <a href="/tutorials/install-ubuntu-server#1-overview">ARM guides&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Professional support for Ubuntu</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Get professional support for Ubuntu from Canonical. We help organisations around the world to manage their
+              Ubuntu cloud, server and desktop deployments.
+            </p>
+            <hr class="p-rule" />
+            <p>
+              <a href="/pro">Ubuntu Pro&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h3 class="p-heading--5">Helping hands</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>If you get stuck, help is always at hand.</p>
+            <hr class="p-rule--muted" />
+            <p>
+              <a href="https://discourse.ubuntu.com/">Ubuntu Discourse</a>
+            </p>
+            <hr class="p-rule--muted" />
+            <p>
+              <a href="https://askubuntu.com/">Ask Ubuntu</a>
+            </p>
+            <hr class="p-rule--muted" />
+            <p>
+              <a href="https://answers.launchpad.net/ubuntu">Launchpad Answers</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 {% endblock content %}

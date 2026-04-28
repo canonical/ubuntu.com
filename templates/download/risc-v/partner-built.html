@@ -1,4 +1,5 @@
 {% extends "download/_base_download.html" %}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
 
 {% block title %}Download Partner-built Ubuntu for RISC-V Platforms{% endblock %}
 
@@ -20,39 +21,37 @@
 {% block content %}
 
   {% call(slot) vf_hero(
-      title_text='Download Partner-built Ubuntu for <br class="u-hide--medium" /> RISC-V platforms',
-      layout='25/75'
+    title_text='Download Partner-built Ubuntu for <br class="u-hide--medium" /> RISC-V platforms',
+    layout='25/75'
     ) -%}
 
     {%- if slot == 'signpost_image' -%}
       {{ image(url="https://assets.ubuntu.com/v1/4d5b8d51-riscv-color.svg",
-              alt="RISC-V",
-              width="200",
-              height="32",
-              hi_def=True,
-              loading="auto",
-              attrs={"style": "padding-top: 1rem"},) | safe
+            alt="RISC-V",
+            width="200",
+            height="32",
+            hi_def=True,
+            loading="auto",
+            attrs={"style": "padding-top: 1rem"},) | safe
       }}
     {%- endif -%}
 
     {%- if slot == 'description' -%}
       <p>
-        These Ubuntu images are built and hosted by Canonical’s partners, using Canonical’s tools and standard build processes. 
-        They are provided as developer previews only, are not production-ready, and do not include Canonical’s security updates or support. 
+        These Ubuntu images are built and hosted by Canonical’s partners, using Canonical’s tools and standard build processes.
+        They are provided as developer previews only, are not production-ready, and do not include Canonical’s security updates or support.
         If you’re building a commercial product and need support, please get in touch with Canonical.
       </p>
-      <p>
-        To run Ubuntu on your RISC‑V board, follow the Partner’s instructions for programming your platform.
-      </p>
+      <p>To run Ubuntu on your RISC‑V board, follow the Partner’s instructions for programming your platform.</p>
     {%- endif -%}
 
     {%- if slot == 'cta' -%}
-      <a href="/download/contact-us" class="p-button--positive js-invoke-modal">Contact us</a>
+      <a href="/download/contact-us"
+         class="p-button--positive js-invoke-modal">Contact us</a>
     {%- endif -%}
   {%- endcall -%}
 
-
-  <section class="p-strip is-deep u-no-padding--top">
+  <section class="p-section">
     <hr class="is-fixed-width p-rule" />
     <div class="grid-row--25-75">
       <div class="grid-col">
@@ -118,6 +117,21 @@
       </div>
     </div>
   </section>
+
+{% call(slot) vf_cta_section(
+    variant='default',
+    layout='100',
+    blocks=[
+      {
+        "type": "cta",
+        "item": {
+          "type": "html",
+          "content": "Don't see your platform?<br /><a href=\"/download/risc-v/canonical-built\">Find Ubuntu images built and hosted by Canonical</a>",
+        }
+      }
+    ]
+  ) -%}
+{% endcall -%}
 
   {{ load_form("/download/risc-v/partner-built") | safe }}
 

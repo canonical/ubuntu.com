@@ -1,4 +1,5 @@
 {% extends "download/_base_download.html" %}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
 
 {% block title %}Download Canonical-built Ubuntu for RISC-V Platforms{% endblock %}
 
@@ -41,7 +42,7 @@
         </p>
         <p>
           <strong>
-            Note: We have upgraded the required RISC-V ISA profile to RVA23S64 with the 25.10 release. Hardware that is not RVA23-ready continues to be supported by our 24.04 LTS release.
+            Note: We have upgraded the required RISC-V ISA profile to RVA23S64 with the 25.10 release. Hardware that is not RVA23-ready continues to be supported by our 24.04.4 LTS release.
           </strong>
         </p>
       {%- endif -%}
@@ -183,6 +184,23 @@
         </div>
       </div>
     </section>
+
+    {% call(slot) vf_cta_section(
+        title_text='Don’t see your platform?',
+        variant='default',
+        layout='100',
+        attrs={'id': 'full-width-default'},
+        blocks=[
+          {
+            "type": "cta",
+            "item": {
+              "type": "html",
+              "content": "<a href='/download/risc-v/partner-built'>Find Ubuntu images built and hosted by Canonical’s partners</a>"
+            }
+          }
+        ]
+      ) -%}
+    {% endcall -%}
 
     {{ load_form("/download/risc-v/canonical-built") | safe }}
 

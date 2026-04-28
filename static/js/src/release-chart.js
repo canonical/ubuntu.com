@@ -370,7 +370,7 @@ function getMaxNumberOfLines(svg, textList, width) {
   ));
   svg.style.position = "absolute";
   svg.style.visibility = "hidden";
-  svg.width = width;
+  svg.setAttribute("width", width);
   document.body.appendChild(svg);
 
   var maxNumberOfLines = 1;

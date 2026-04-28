@@ -11,7 +11,6 @@
 {% endblock meta_copydoc %}
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
-{% from "_macros/vf_tab-section.jinja" import vf_tab_section %}
 {% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
 {% from "_macros/vf_equal-heights.jinja" import vf_equal_heights %}
 {% from "_macros/vf_resources.jinja" import vf_resources %}
@@ -24,115 +23,140 @@
 {% block content %}
 
   {%- call(slot) vf_hero(
-      title_text='Get Ubuntu on WSL',
-      layout='fallback'
-    ) 
-  -%}
+    title_text='Get Ubuntu on WSL',
+    layout='fallback'
+    )
+    -%}
   {%- endcall -%}
 
-  {{- vf_tab_section(
-      title={
-          "text": "Ubuntu 24.04 LTS"
-      },
-      description={
-          "type": "html",
-          "content": "
-            <p>
-              The latest <abbr title='Long-term support'>LTS</abbr> version of Ubuntu on WSL.
-              LTS stands for long-term support – which means five years of free security and
-              maintenance updates, extended to 15 years with <a href='/pro'>Ubuntu Pro</a>.
-            </p>
-
-            <div class='grid-row'>
-              <div class='grid-col-2'>
-                <p class='p-heading--5'>Intel or AMD 64-bit architecture</p>
-              </div>
-              <div class='grid-col-2'>
-                <a class='p-button--positive' href='https://releases.ubuntu.com/noble/ubuntu-24.04.4-wsl-amd64.wsl'>Download</a>
-                <span class='u-text--muted'>373MB</span>
-              </div>
+  <section class="p-section">
+    <div class="grid-row--50-50">
+      <hr class="p-rule" />
+      <div class="grid-col">
+        <div class="p-section">
+          <h2>Ubuntu {{ releases_yaml.lts.full_version }} LTS</h2>
+        </div>
+        <div class="p-image-wrapper u-hide--small">
+          {{ image(url=releases_yaml.lts.mascot_image_large.url,
+                    alt=releases_yaml.lts.name,
+                    width=releases_yaml.lts.mascot_image_large.width,
+                    height=releases_yaml.lts.mascot_image_large.height,
+                    hi_def=True,
+                    loading="auto") | safe
+          }}
+        </div>
+      </div>
+      <div class="grid-col">
+        <div class="p-section--shallow">
+          <p>
+            The latest <abbr title="Long-term support">LTS</abbr> version of Ubuntu on WSL. LTS stands for long-term support &ndash; which means five years of free security and maintenance updates, extended to 15 years with <a href="/pro">Ubuntu Pro</a>.
+          </p>
+          <hr class="p-rule--muted" />
+          <div class="grid-row">
+            <div class="grid-col-2">
+              <p class="p-heading--5">Intel or AMD 64-bit architecture</p>
             </div>
-
-            <div class='grid-row'>
-              <div class='grid-col-2'>
-                <p class='p-heading--5'>ARM 64-bit architecture</p>
-              </div>
-              <div class='grid-col-2'>
-                <a class='p-button--positive' href='https://cdimages.ubuntu.com/releases/noble/release/ubuntu-24.04.4-wsl-arm64.wsl'>Download</a>
-                <span class='u-text--muted'>374MB</span>
-              </div>
+            <div class="grid-col-2">
+              <a class="p-button--positive"
+                 href="/download/wsl/thank-you?version={{ releases_yaml.lts.full_version }}&architecture=amd64">Download</a>
+              {% if releases_yaml.wsl.version == releases_yaml.lts.short_version %}
+                {% if releases_yaml.wsl.iso_download_size %}
+                  <span class="u-text--muted">{{ releases_yaml.wsl.iso_download_size }}</span>
+                {% endif %}
+              {% endif %}
             </div>
-          "
-      },
-      tabs=[
-          {
-              "tab_html": "<h5 class='u-no-margin--bottom'>What’s new</h5>",
-              "type": "basic-section",
-              "item": {
-                  "items": [
-                      {
-                          "type": "description",
-                          "item": {
-                              "content": "
-                                <p>Rust 1.78, .NET 8 and OpenJDK 21 with TCK certification in addition to other toolchain upgrades</p>
-                                <p class='link'>
-                                  <a href='https://discourse.ubuntu.com/t/noble-numbat-release-notes/39890'>
-                                    Release notes ›
-                                  </a>
-                                </p>
-                              "
-                          }
-                      }
-                  ]
-              }
-          },
-          {
-              "tab_html": "<h5 class='u-no-margin--bottom'>System requirements</h5>",
-              "type": "basic-section",
-              "item": {
-                  "items": [
-                      {
-                          "type": "description",
-                          "item": {
-                              "content": "
-                                <p>Windows 11 (recommended) or Windows 10 with minimum version 21H2 on a physical machine</p>
-                                <p class='link'>
-                                  <a href='https://documentation.ubuntu.com/wsl/stable/howto/install-ubuntu-wsl2/#what-you-will-need'>
-                                    Detailed requirements ›
-                                  </a>
-                                </p>
-                              "
-                          }
-                      }
-                  ]
-              }
-          },
-          {
-              "tab_html": "<h5 class='u-no-margin--bottom'>How to install</h5>",
-              "type": "basic-section",
-              "item": {
-                  "items": [
-                      {
-                          "type": "description",
-                          "item": {
-                              "content": "
-                                <p>To install, you can download and double-click the <code>.wsl</code> image, or open the PowerShell terminal and run <code>wsl --install</code></p>
-                                <p class='link'>
-                                  <a href='https://documentation.ubuntu.com/wsl/stable/howto/install-ubuntu-wsl2/#install-and-enable-wsl'>
-                                    Detailed installation steps ›
-                                  </a>
-                                </p>
-                              "
-                          }
-                      }
-                  ]
-              }
-          }
-        
-          
-      ]
-  ) -}}
+          </div>
+          <div class="grid-row">
+            <div class="grid-col-2">
+              <p class="p-heading--5">ARM 64-bit architecture</p>
+            </div>
+            <div class="grid-col-2">
+              <a class="p-button"
+                 href="/download/wsl/thank-you?version={{ releases_yaml.lts.full_version }}&architecture=arm64">Download</a>
+              {% if releases_yaml.wsl.version == releases_yaml.lts.short_version %}
+                {% if releases_yaml.wsl.arm_iso_download_size %}
+                  <span class="u-text--muted">{{ releases_yaml.wsl.arm_iso_download_size }}</span>
+                {% endif %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
 
+        <div class="p-section--shallow">
+          <nav class="p-tabs js-tabbed-content">
+            <ul class="p-tabs__list u-no-margin--bottom"
+                role="tablist"
+                data-maintain-hash="true">
+              <li class="p-tabs__item">
+                <a class="p-tabs__link"
+                   role="tab"
+                   aria-selected="true"
+                   id="release-notes-tab"
+                   href="#release-notes"
+                   aria-controls="release-notes">What's new</a>
+              </li>
+              <li class="p-tabs__item">
+                <a class="p-tabs__link"
+                   role="tab"
+                   aria-selected="false"
+                   id="system-requirements-tab"
+                   href="#system-requirements"
+                   aria-controls="system-requirements"
+                   tabindex="-1">System requirements</a>
+              </li>
+              <li class="p-tabs__item">
+                <a class="p-tabs__link"
+                   role="tab"
+                   aria-selected="false"
+                   id="how-to-install-tab"
+                   href="#how-to-install"
+                   aria-controls="how-to-install"
+                   tabindex="-1">How to install</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div id="release-notes"
+             class="p-tabs__content"
+             role="tabpanel"
+             aria-labelledby="release-notes-tab">
+          <p>An updated set of language toolchains and compilers.</p>
+          <hr class="p-rule--muted" />
+          <p>
+            <a href="{{ releases_yaml.lts.blog_post_url }}">Press release&nbsp;&rsaquo;</a>&nbsp;&nbsp;
+            <a href="{{ releases_yaml.lts.release_notes_url }}">Release notes&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+
+        <div id="system-requirements"
+             class="p-tabs__content"
+             role="tabpanel"
+             aria-labelledby="system-requirements-tab">
+          <p>Windows 11 (recommended) or Windows 10 with minimum version 21H2 on a physical machine</p>
+          <hr class="p-rule--muted" />
+          <p>
+            <a href="https://documentation.ubuntu.com/wsl/stable/howto/install-ubuntu-wsl2/#what-you-will-need">Detailed system requirements&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+
+        <div id="how-to-install"
+             class="p-tabs__content"
+             role="tabpanel"
+             aria-labelledby="how-to-install-tab">
+          <p>
+            To install, you can download and double-click the <code>.wsl</code> image, or open the PowerShell terminal and run <code>wsl --install</code>
+          </p>
+          <hr class="p-rule--muted" />
+          <p>
+            <a href="https://documentation.ubuntu.com/wsl/stable/howto/install-ubuntu-wsl2/#install-and-enable-wsl">Detailed installation steps&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# djlint:off #}
   {{- vf_basic_section(
     title={"text": "Ubuntu is the number 1 choice<br class='u-hide--small u-hide--medium' /> for organizations using WSL"},
     items=[
@@ -189,7 +213,7 @@
             {
               "content_html": "Download the Ubuntu Pro for WSL app",
               "attrs": {
-                "href": "/wsl/install"
+                "href": "/download/wsl/thank-you?architecture=pro"
               }
             }
           ],
@@ -203,7 +227,9 @@
       },
     ]
   ) -}}
+  {# djlint:on #}
 
+  {# djlint:off #}
   {%- call(slot) vf_equal_heights(
     title_text="More from Canonical",
     attrs={ "id": "4-columns-responsive" },
@@ -235,7 +261,9 @@
     ]
   ) -%}
   {%- endcall -%}
+  {# djlint:on #}
 
+  {# djlint:off #}
   {%- call(slot) vf_resources(
       title={
         "text": "Resources",
@@ -296,6 +324,7 @@
       ]
       ) -%}
   {%- endcall -%}
+  {# djlint:on #}
 
   {{- vf_latest_news(title_text='Latest from our blog ›',
     tag_name="ubuntu-wsl",
@@ -304,5 +333,6 @@
   -}}
 
   <script type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
+  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
 {% endblock content %}

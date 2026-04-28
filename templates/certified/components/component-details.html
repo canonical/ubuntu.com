@@ -1,5 +1,7 @@
 {% extends "templates/base.html" %}
 
+{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
+
 {% block title %}Ubuntu certified component: {{ component.vendor_name }} {{ component.model }}{% endblock %}
 
 {% block meta_description %}Hardware that have been certified for use with Ubuntu.{% endblock meta_description %}

@@ -1,6 +1,6 @@
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 
-{% extends "robotics/base_robotics.html" %}
+{% extends "templates/base.html" %}
 
 {% block title %}
   ROS Expanded
@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block meta_description %}
-  ROS ESM provides
+  ESM for ROS provides
   a hardened and long-term supported ROS environment for your robot and its
   applications.
 {% endblock meta_description %}
@@ -16,25 +16,27 @@
 {% block meta_copydoc %}
   https://docs.google.com/document/d/1oiz_006n9U1Ya50wdSkKIyj_jsxSr92FdCpkDU4kpHs/edit
 {% endblock meta_copydoc %}
-{% from "_macros/vf_hero.jinja" import vf_hero %} {%
-from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+{% from "_macros/vf_resources.jinja" import vf_resources %}
 
 {% block
   body_class %}
   is-paper
 {% endblock body_class %}
 
-{% block content %}
+{% block outer_content %}
 
   {%- call(slot) vf_hero(
-    title_text='Robot Operating System <br class="u-hide--small u-hide--medium" />Expanded Security Maintenance',
+    title_text='Expanded Security Maintenance <br class="u-hide--small u-hide--medium">for the Robot Operating System',
     layout='50/50-full-width-image'
     ) -%}
     {%- if slot == 'description' -%}
       <h2>
-        Same great ROS.
+        ROS security updates 
         <br class="u-hide--small u-hide--medium" />
-        More security updates.
+        for your entire product lifecycle.
       </h2>
     {%- endif -%}
     {%- if slot == 'cta' -%}
@@ -64,75 +66,30 @@ from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
     is_list_full_width_on_tablet=true
     ) -%}
     {%- if slot == 'title' -%}
-      <h2>What is ROS ESM?</h2>
+      <h2>What is ESM for ROS?</h2>
     {%- endif -%}
 
     {%- if slot == 'description' -%}
       <p>
-        Whether you want to be compliant with cybersecurity regulations like the CRA,
-        win more time before your migration, or reduce operational expenses, ROS ESM is here to make your work easier.
+        Expanded Security Maintenance for Robot Operating System (ESM for ROS) is a service that provides security 
+        and bug fixes for ROS versions that have reached End-of-Life.
       </p>
       <p>
-        Robot Operating System Expanded Security Maintenance (ROS ESM) is a service by Canonical that provides security
-        maintenance for ROS Long Term Support (LTS) releases and the underlying Ubuntu distributions, starting with ROS
-        Kinetic on Ubuntu 16.04.
+        ESM for ROS lengthens support for ROS LTS releases from 5 to 15 years, and broadens security patching to cover 
+        more than 10,000 packages from the wider open source universe. 
+        This includes more than 600 robotics packages across ROS 1 Kinetic, Melodic, and Noetic as well as ROS 2 Foxy.
       </p>
-      <p>This includes the underlying Ubuntu system and more than 23,000 packages from the Ubuntu Universe repository.</p>
       <p>
-        ROS ESM is available with your
-        <a href="/pro">Ubuntu Pro subscription</a> and it is compatible with
-        amd64, arm64, and armhf architectures.
+        As cybersecurity regulations, like the EU Cyber Resilience Act (CRA), come into force, ESM for ROS ensures 
+        that your devices running in the field remain compliant and continue to receive critical updates. 
+        Available as part of <a href="/pro">Ubuntu Pro</a>, ESM for ROS is compatible with amd64, arm64, and armhf architectures.
+      </p>
+      <p>
+        ESM for ROS is delivered by Canonical, the publisher of Ubuntu and a platinum member of OSRA 
+        (Open Source Robotics Alliance) &ndash; the governance organization behind ROS.
       </p>
     {%- endif -%}
   {%- endcall -%}
-
-  <section class="p-section--shallow">
-    <hr class="p-rule is-fixed-width" />
-    <div class="p-section--shallow u-fixed-width">
-      <h2>ROS ESM security coverage</h2>
-    </div>
-    <div class="row">
-      <div class="col-3"></div>
-      <div class="col-9">
-        <hr class="p-rule--muted" />
-        <ul class="p-list--divided">
-          <li class="p-list__item">
-            <div class="row">
-              <div class="col-3">
-                <h3 class="p-heading--5">Main</h3>
-              </div>
-              <div class="col-6">
-                <p>2,300 packages in the Ubuntu Main repo supported for 5 years after EOL</p>
-              </div>
-            </div>
-          </li>
-          <li class="p-list__item">
-            <div class="row">
-              <div class="col-3">
-                <h3 class="p-heading--5">Universe</h3>
-              </div>
-              <div class="col-6">
-                <p>An additional 23,000+ packages in the Ubuntu Universe repository for 10 years</p>
-              </div>
-            </div>
-          </li>
-          <li class="p-list__item">
-            <div class="row">
-              <div class="col-3">
-                <h3 class="p-heading--5">Security</h3>
-              </div>
-              <div class="col-6">
-                <p>
-                  More than 600 packages across ROS 1 Kinetic, Melodic and Noetic and ROS 2 Foxy.
-                  Other ROS 2 distributions continue to be added.
-                </p>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
 
   <section class="p-section--shallow">
     <hr class="p-rule is-fixed-width" />
@@ -184,7 +141,7 @@ from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
   <section class="p-section">
     <div class="row">
       <hr class="p-rule is-fixed-width" />
-      <p class="p-muted-heading">A few of the 23,000 packages included in Ubuntu Universe:</p>
+      <p class="p-muted-heading">A few of the tens of thousands of packages included in the Ubuntu Universe repository:</p>
       <div class="p-logo-section">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
@@ -267,7 +224,7 @@ from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
   <section class="p-section">
     <div class="row">
       <hr class="p-rule is-fixed-width" />
-      <p class="p-muted-heading">A few of the 2,300 packages included in Ubuntu Main:</p>
+      <p class="p-muted-heading">ESM for ROS covers patching for over 2,000 packages in the Ubuntu Main repository:</p>
       <div class="p-logo-section">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
@@ -345,24 +302,24 @@ from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
         <h2>
           Security maintenance
           <br class="u-hide--small u-hide--medium" />
-          You can trust
+          you can trust
         </h2>
       </div>
       <div class="col-6">
         <p>
           Prevent the risks of running unpatched and unmaintained ROS versions
-          for your robot, company and customers. Risks that increase when
+          for your robot, company, and customers. Risks that increase when
           working with End-Of-Life (EOL) ROS distributions or dependencies.
         </p>
         <p>
-          With ROS ESM, you can count on backports for critical security
-          updates, common vulnerabilities and exposures (CVE) fixes and bug
-          fixes for ROS and the Ubuntu base OS. Our security experts follow a
+          With ESM for ROS, you can count on backports for critical security
+          updates, fixes for <a href="/security/cves">common vulnerabilities and exposures (CVE)</a>, 
+          and bug fixes for both ROS and the Ubuntu base OS. Our security experts follow a
           standardized process to identify vulnerabilities and create and test
           security patches.
         </p>
         <p>
-          With ROS ESM, keeping core ROS packages secure is a fast and
+          With ESM for ROS, keeping core ROS packages secure is a fast and
           straightforward process.
         </p>
       </div>
@@ -386,16 +343,15 @@ from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
   <section class="p-section">
     <hr class="p-rule is-fixed-width" />
     <div class="p-section--shallow u-fixed-width">
-      <h2>ROS ESM and more benefits with your Ubuntu Pro subscription</h2>
+      <h2>The benefits of an Ubuntu Pro subscription</h2>
     </div>
     <div class="p-section--shallow">
-      <div class="row">
-        <div class="col-3"></div>
-        <div class="col-9">
-          <table aria-label="ROS ESM - Ubuntu Pro subscriptions">
+      <div class="grid-row">
+        <div class="grid-col-start-large-3 grid-col-6">
+          <table aria-label="ESM for ROS &ndsah; Ubuntu Pro subscriptions">
             <thead>
               <tr>
-                <th class="u-no-padding--left" style="width: 50%">&nbsp;</th>
+                <th class="u-no-padding--left" style="width: 39%">&nbsp;</th>
                 <th style="width: 25%">Ubuntu LTS</th>
                 <th style="width: 25%">Ubuntu Pro (Infra-only)</th>
                 <th style="width: 25%">Ubuntu Pro</th>
@@ -403,7 +359,7 @@ from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
             </thead>
             <tbody>
               <tr>
-                <td class="u-no-padding--left" data-heading="ROS ESM">ROS ESM</td>
+                <td class="u-no-padding--left" data-heading="ESM for ROS">ESM for ROS</td>
                 <td data-heading="Ubuntu LTS">No</td>
                 <td data-heading="Ubuntu Pro (Infra-only)">No</td>
                 <td data-heading="Ubuntu Pro">
@@ -465,6 +421,18 @@ from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
           </table>
         </div>
       </div>
+      <div class="grid-row">
+        <div class="grid-start-col-5 grid-col-4">
+          <hr class="p-rule--muted is-fixed-width" />
+          <span style="margin-right: 1rem;">Want to know more?</span>
+          <a href="/internet-of-things/contact-us?product=robotics"
+            class="p-button js-invoke-modal"
+            aria-controls="robotics-modal"
+            aria-expanded="false">
+              Get in touch
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -473,69 +441,45 @@ from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
     is_list_full_width_on_tablet=true
     ) -%}
     {%- if slot == 'title' -%}
-      <h2>Get ROS ESM</h2>
+      <h2>Get ESM for ROS</h2>
     {%- endif -%}
 
     {%- if slot == 'description' -%}
       <p class="p-heading--3">
-        30-day trial for enterprises.
-        <br />
+        <a href="/pro/free-trial">30-day trial for enterprises</a>.
+        <br class="u-hide--small u-hide--medium" />
         Always free for personal use.
       </p>
     {%- endif -%}
 
     {%- if slot == 'list_item_title_1' -%}
-      <h3 class="p-heading--5">Development stations?</h3>
+      <h3 class="p-heading--5">Deployed devices in the field?</h3>
     {%- endif -%}
 
     {%- if slot == 'list_item_description_1' -%}
       <p>
-        If you have a few development stations to cover with ROS ESM, we
-        recommend you purchase your Ubuntu Pro subscription directly
-        through the store.
+        If you already have a fleet of devices or need to support deployments, 
+        <a href="/pro/devices">Ubuntu Pro for Devices</a> may be the right solution. 
+        Ubuntu Pro for Devices includes a discount-based model and the option of a one–time–fee per device.
       </p>
-      <hr class="p-rule--muted" />
-      <a href="/pro/subscribe" class="p-button">Get Ubuntu Pro</a>
     {%- endif -%}
 
     {%- if slot == 'list_item_title_2' -%}
-      <h3 class="p-heading--5">Deployed devices in the field?</h3>
+      <h3 class="p-heading--5">Want to go beyond?</h3>
     {%- endif -%}
 
     {%- if slot == 'list_item_description_2' -%}
       <p>
-        If you have a fleet of devices or need to support deployments that
-        grow over time,
-        <a href="https://ubuntu.com/pro/devices">Ubuntu Pro for devices</a>
-        might be a better option.
+        Canonical offers <a href="/core">Ubuntu Core</a>, an open source minimal, 
+        secure and strictly confined operating system for embedded devices. 
+        Customers using Ubuntu Core get a Ubuntu Pro subscription for free as part of their contract.
       </p>
-      <p>
-        It will not only grant you access to the Ubuntu Pro subscription
-        but also apply a beneficial discount-based model and the option of
-        a one-time-fee per device.
-      </p>
-      <hr class="p-rule--muted" />
-      <a class="p-button--positive js-invoke-modal"
-         href="/internet-of-things/contact-us?product=robotics"
-         aria-controls="robotics-modal"
-         aria-expanded="false">Get in touch</a>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_title_3' -%}
-      <h3 class="p-heading--5">Using Ubuntu Core?</h3>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_description_3' -%}
-      <p>
-        <a href="https://ubuntu.com/core">Ubuntu Core</a> is an open
-        source minimal, secure and strictly confined operating system for
-        embedded devices.
-      </p>
-      <p>
-        Canonical customers using any of our
-        <a href="https://ubuntu.com/pricing/devices">enterprise IOT services</a>
-        get a Ubuntu Pro subscription for free as part of their contracts.
-      </p>
+      <a href="/internet-of-things/contact-us?product=robotics"
+        class="p-button js-invoke-modal"
+        aria-controls="robotics-modal"
+        aria-expanded="false">
+          Get in touch
+      </a>
     {%- endif -%}
   {%- endcall -%}
 
@@ -545,8 +489,8 @@ from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
       <div class="col">
         <h2 class="u-no-margin--bottom">Questions?</h2>
         <p class="p-heading--2">
-          Read our
-          <a href="/blog/ros-enterprise-support-15-things-you-need-to-know">FAQ about ROS ESM</a>,
+          Read our 
+          <a href="/blog/ros-enterprise-support-10-things-you-need-to-know">FAQ about ESM for ROS</a>,
           check out the <a href="https://canonical-robotics.readthedocs-hosted.com/en/latest/explanations/security/what-is-ros-esm/">docs</a>,
           or
           <a class="js-invoke-modal"
@@ -558,7 +502,113 @@ from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
     </div>
   </section>
 
-  {% include "robotics/shared/_learn-more-about-robotics.html" %}
+  <style>
+    .p-resources .p-article-block {
+      row-gap: 0;
+    }
+
+    .p-resources > .p-section > .p-section--shallow > div:last-child {
+      padding-bottom: 1.5rem;
+    }
+  </style>
+
+  <div class="p-resources">
+  {% call(slot) vf_resources(
+    title={
+      "text": 'Learn more <br class="u-hide--small u-hide--medium" /> about robotics solutions',
+    },
+    blocks=[
+      {
+        "type": "resources",
+        "render_images": false,
+        "categories": [
+          {
+            "title": "Blogs",
+            "items": [
+              {
+                "description": {
+                  "text": "Articles to go into more details about ESM for ROS",
+                  "attrs": {},
+                },
+              },
+              {
+                "title": {
+                  "text": "ESM for ROS: 10 things you need to know",
+                  "link_attrs": {
+                    "href": "https://canonical.com/blog/ros-enterprise-support-10-things-you-need-to-know"
+                  },
+                },
+              },
+              {
+                "title": {
+                  "text": "ROS 1 EOL: activate ESM to keep your fleet of devices secure and operational",
+                  "link_attrs": {
+                    "href": "https://canonical.com/blog/ubuntu-20-04-end-standard-support-for-devices"
+                  },
+                },
+              },
+            ],
+          },
+          {
+            "title": "Case Studies",
+            "items": [
+              {
+                "description": {
+                  "text": "Case studies from customers and partners who are using Ubuntu for their robots.",
+                  "attrs": {},
+                },
+              },
+              {
+                "title": {
+                  "text": "Cyberdyne keeps cleaning robots up-to-date",
+                  "link_attrs": {
+                    "href": "/engage/cyberdyne"
+                  },
+                },
+              },
+              {
+                "title": {
+                  "text": "Husarion blog - Beyond Docker: our journey to software deployment with snaps",
+                  "link_attrs": {
+                    "href": "https://husarion.com/blog/using%20snaps/"
+                  },
+                },
+              },
+            ],
+          },
+          {
+            "title": "Whitepapers",
+            "items": [
+              {
+                "description": {
+                  "text": "Examine the fundamentals of a successful robotics project that helps your organization achieve their ambitions.",
+                  "attrs": {},
+                },
+              },
+              {
+                "title": {
+                  "text": "Pick the right OS for your robotics platform",
+                  "link_attrs": {
+                    "href": "/whitepapers/beta/robotics"
+                  },
+                },
+              },
+              {
+                "title": {
+                  "text": "Docker & ROS: When all you have is a hammer, everything looks like a nail",
+                  "link_attrs": {
+                    "href": "/engage/dockerandros"
+                  },
+                },
+              },
+            ],
+          },
+        ]
+      }
+    ]
+    ) -%}
+  {% endcall -%}
+  </div>
 
   <section class="p-section">
     <hr class="p-rule is-fixed-width" />
@@ -587,11 +637,16 @@ from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
           <p>Build your production-grade Ubuntu Core image for your device.</p>
           <div class="p-cta-block">
             <a href="/core"
-               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'u.c/core', 'eventLabel' : 'Develop with Ubuntu core', 'eventValue' : undefined });">Discover Ubuntu Core ></a>
+               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'u.c/core', 'eventLabel' : 'Develop with Ubuntu core', 'eventValue' : undefined });"
+            >Discover Ubuntu Core ›</a>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  {% include "shared/contextual_footers/_robotics_further_reading.html" %}
+
   {{ load_form("/robotics") | safe }}
-{% endblock content %}
+
+{% endblock outer_content %}

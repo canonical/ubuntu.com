@@ -1,25 +1,9 @@
-{% extends "templates/one-column.html" %}
+{% extends 'templates/_error-template.html' %}
 
-{% block title %}403: Forbidden{% endblock %}
+{% set error_code = "403" %}
 
-{% block content %}
-  <div class="p-strip is-deep">
-    <div class="row u-equal-height">
-      <div class="col-6 u-vertically-center u-align--center">
-        {{ image(url="https://assets.ubuntu.com/v1/bcdcf2c8-image-404.svg",
-                alt="",
-                height="365",
-                width="360",
-                hi_def=True,
-                loading="auto") | safe
-        }}
-      </div>
-      <div class="col-6 u-vertically-center">
-        <div>
-          <h1>403: Forbidden</h1>
-          <p class="p-heading--4">You're not allowed to access this page</p>
-        </div>
-      </div>
-    </div>
-  </div>
-{% endblock content %}
+{% set error_message = "You don’t have access to this page" %}
+
+{% block error_content %}
+  We can’t show you this page because you don’t have the right permissions. You can <a href="https://github.com/canonical/ubuntu.com/issues/new?template=ISSUE_TEMPLATE.yaml">file a bug</a> if you think this might be an error.
+{% endblock error_content %}

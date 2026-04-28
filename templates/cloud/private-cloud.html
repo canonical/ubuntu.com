@@ -1,9 +1,9 @@
 {% extends "cloud/_base-cloud.html" %}
 
-{% block title %}What is private cloud?{% endblock %}
+{% block title %}What is a private cloud?{% endblock %}
 
 {% block meta_description %}
-  Private cloud is a cloud computing environment that is exclusively dedicated to a single entity or a service. Private clouds prove to be more cost-effective than public clouds when running workloads in the long term and at scale.
+  Private clouds are cloud environments dedicated to one entity. They are often more cost effective than public clouds for long-term, large-scale workloads.
 {% endblock meta_description %}
 
 {% block meta_copydoc %}
@@ -18,14 +18,14 @@
   <section class="p-section--hero">
     <div class="row--50-50">
       <div class="col">
-        <h1>What is private cloud?</h1>
+        <h1>What is a private cloud?</h1>
       </div>
       <div class="col">
         <p>
-          Private cloud is a <a href="/cloud/cloud-computing">cloud computing</a> environment that is exclusively dedicated to a single entity or a service. It runs on the organisation's premises or in an external data centre. It is managed by the organisation's operations team or a managed service provider.
+          A private cloud is a <a href="/cloud/cloud-computing">cloud computing</a> environment that is exclusively dedicated to a single entity or a service. Private clouds run on the organization's premises or in an external data center and are managed by the organization's operations team, or a managed service provider.
         </p>
         <p>
-          Private clouds prove to be more cost-effective than public clouds when running workloads in the long term and at scale. They are a building block in hybrid cloud and multi-cloud architectures, enabling bare metal, virtualisation, storage, container and serverless services.
+          Private clouds often prove to be more cost-effective than public clouds when running workloads in the long term and at scale, which you can learn more about in our <a href="/engage/cloud-pricing-report">whitepaper</a>. They are a building block in hybrid cloud and multi-cloud architectures, enabling bare metal, virtualization, storage, container and serverless services.
         </p>
         <hr class="is-muted" />
         <p>
@@ -55,13 +55,13 @@
       </div>
       <div class="col">
         <p class="p-heading--5">
-          Like other cloud architectures, a private cloud enables on-demand resource provisioning through a self-service portal. This improves developers' agility and simplifies the data centre management process.
+          Like other cloud architectures, a private cloud enables on-demand resource provisioning through a self-service portal. This improves developers' agility and simplifies the data center management process.
         </p>
         <p>
-          <a href="/openstack/what-is-openstack">Private cloud software</a> manages compute, network and storage resources that are available on individual servers, but are distributed across the entire data centre, aggregates them into pools and uses virtualisation technology to divide them into virtual resources that are then allocated to virtual machines (VMs). By adding a <a href="/kubernetes/what-is-kubernetes">containerisation layer</a> on the top, organisations can also provision containerised workloads on-demand.
+          <a href="/openstack/what-is-openstack">Private cloud software</a> manages compute, network and storage assets that are available on individual servers, but are distributed across the entire data center. The software aggregates this hardware capacity into pools, and uses virtualization technology to divide them into virtual resources that are then allocated to virtual machines (VMs). By adding a containerization layer on the top, organizations can also provision containerized workloads on-demand.
         </p>
         <p>
-          With the private cloud, all resources are available exclusively to a single entity or a service. They are not shared with other tenants, resulting in increased resource availability. Moreover, during heavy load periods private cloud can dynamically scale-out, providing the required number of resources. The private cloud software can either be installed on the existing servers in the data centre or a completely new infrastructure built solely for the purpose of the private cloud implementation project.
+          With private clouds, all resources are available exclusively to a single entity or a service. They are not shared with other tenants, resulting in increased resource availability. Moreover, during heavy load periods private cloud can dynamically scale-out, providing the required amount of resources. The private cloud software can either be installed on the existing servers in the data center or a completely new infrastructure built solely for the purpose of the private cloud implementation project.
         </p>
       </div>
     </div>
@@ -78,10 +78,10 @@
           In principle, the main difference between private and public clouds is in their tenancy model.
         </p>
         <p>
-          While private cloud is a single-tenant environment where all resources are available to a single entity or a service, public cloud is a multi-tenant environment where all resources are shared among various tenants (various organisations, services or end users) who typically do not know each other at all.
+          Private cloud is a single-tenant environment where all resources are available to a single entity or a service. In contrast, public cloud is a multi-tenant environment where all resources are shared among various tenants (various organizations, services or end users) who typically do not know each other at all.
         </p>
         <p>
-          Another significant difference is in the <a href="/engage/cloud-pricing-report-2021">total cost of ownership (TCO)</a>. As public clouds implement so-called pay-as-you-go (PAYG) billing, they tend to be more economical in the short term and on a small scale. However, once the number of workloads continues to grow, their costs grow too, leading to an inflation of TCO. Thus, using a <a href="/openstack">cost-effective private cloud</a> as an extension of the public cloud infrastructure in a <a href="/cloud/hybrid-cloud">hybrid cloud architecture</a> is key to achieving infrastructure cost optimisation.
+          Another significant difference is in the <a href="/engage/cloud-pricing-report-2021">total cost of ownership (TCO)</a>. Public clouds offer pay-as-you-go (PAYG) billing, which means they tend to be more economical in the short term, and on a small scale. However, as the number of workloads continues to grow, the costs of using the public cloud grow too, leading to an inflation of TCO. Thus, using a <a href="/openstack">cost-effective private cloud</a> as an extension of the public cloud infrastructure in a <a href="/cloud/hybrid-cloud">hybrid cloud architecture</a> is key to optimizing infrastructure costs.
         </p>
       </div>
     </div>
@@ -95,7 +95,7 @@
       </div>
       <div class="col">
         <p>
-          The main benefit of a private cloud is better economics compared to public clouds when running workloads long term and at scale. <a href="https://canonical.com/openstack/support">Well-designed private cloud</a> provides the same capabilities as leading public cloud providers, while advancing on other fronts. Those include:
+          The main benefit of a private cloud is better economics compared to public clouds when running workloads long term and at scale. <a href="https://canonical.com/openstack/support">Well-designed private clouds</a> provide the same capabilities as leading public cloud providers, while offering advantages in other areas over public cloud. These include:
         </p>
       </div>
     </div>
@@ -108,7 +108,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              While building a private cloud infrastructure requires significant upfront costs, this investment pays off after a couple of years. Even with dozens of lightweight VMs
+              While building a private cloud infrastructure requires significant upfront costs, this investment pays off after a couple of years - even with dozens of lightweight VMs
             </p>
           </div>
         </div>
@@ -138,7 +138,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              As private clouds usually run on an organisation's premises and there is no resource sharing, they usually provide better performance compared to public cloud infrastructure.
+              As private clouds usually run on an organization's premises and there is no resource sharing, they usually provide better performance compared to public cloud infrastructure.
             </p>
           </div>
         </div>
@@ -153,7 +153,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              When building a private cloud, the organisation decides which hardware and software to use, resulting in increased flexibility and architectural freedom.
+              When building a private cloud, the organization decides which hardware and software to use, resulting in increased flexibility and architectural freedom.
             </p>
           </div>
         </div>
@@ -168,7 +168,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              While public clouds are usually considered more secure than private clouds, in some cases having full control over the underlying infrastructure helps organisations to meet their <a href="/security/security-standards">compliance regulations</a>.
+              While public clouds are usually considered more secure than private clouds, in some cases having full control over the underlying infrastructure helps organizations to meet their <a href="/security/certifications">regulatory compliance requirements</a>.
             </p>
           </div>
         </div>
@@ -184,7 +184,7 @@
       </div>
       <div class="col">
         <p>
-          While private clouds bring a number of benefits to organisations, implementing a private cloud infrastructure entails a number of challenges. Those include:
+          While private clouds bring a number of benefits to organizations, implementing a private cloud infrastructure entails a number of challenges. Those include:
         </p>
       </div>
     </div>
@@ -197,7 +197,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              Due to significant hardware and software costs, private clouds are not as attractive on day 0 as public clouds. Their cost benefits come later. To deal with that, organisations should always <a href="/openstack">design the private cloud for price-performance</a>. <a href="/openstack/install">Start small</a> and evolve according to your needs.
+              Due to significant hardware and software costs, private clouds are not as attractive on day 0 as public clouds. The cost benefits are typically felt later in the project cycle. To deal with that, organizations should always <a href="/openstack">design the private cloud for price-performance</a> by starting small and evolving according to their needs.
             </p>
           </div>
         </div>
@@ -212,7 +212,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              In a private cloud environment, organisations are responsible for capacity management to ensure the desired resource consumption. This creates an additional overhead on the internal cloud operations team. Using a <a href="/openstack/features">proper observability stack</a> ensures constant private cloud monitoring and proactive capacity management.
+              In a private cloud environment, organizations are responsible for capacity management to ensure the desired resource consumption. This creates an additional overhead on the internal cloud operations team. Using an effective <a href="/openstack/features">observability stack</a> ensures constant private cloud monitoring and proactive capacity management.
             </p>
           </div>
         </div>
@@ -227,7 +227,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              when a private cloud is running out of resources, it can dynamically scale out as long as additional resources are available in the data centre. In the absence of these resources, it may take a while due to the long time of the procurement process.
+              When a private cloud is running out of resources, it can dynamically scale out as long as additional resources are available in the data center. Without these additional resources, it may take longer to scale to higher demands, due to the long delays associated with the procurement process for new hardware.
             </p>
           </div>
         </div>
@@ -239,17 +239,17 @@
     <div class="row--50-50">
       <hr />
       <div class="col">
-        <h2>Is private cloud right for you?</h2>
+        <h2>Is a private cloud right for you?</h2>
       </div>
       <div class="col">
         <p class="p-heading--5">
           The decision whether to host cloud workloads in a public cloud or in a private cloud is usually driven by economics.
         </p>
         <p>
-          While public clouds provide an immediate access to the infrastructure-as-a-service (IaaS) offering with no upfront costs, their TCO can grow very fast depending on the number of workloads and the timeframe.
+          While public clouds provide an immediate access to the infrastructure-as-a-service (IaaS) with no upfront costs, their TCO can grow rapidly depending on the number of workloads and the project timeframe.
         </p>
         <p>
-          On the other hand, private clouds prove to be more cost-effective when running workloads long term and at scale, but they require significant upfront investments. Therefore, using a <a href="/cloud/hybrid-cloud">hybrid cloud architecture</a> is usually the way to achieve infrastructure cost optimisation.
+          On the other hand, private clouds prove to be more cost-effective when running workloads long term and at scale, but they require significant upfront investments. Therefore, using a <a href="/cloud/hybrid-cloud">hybrid cloud architecture</a> is usually the way to achieve infrastructure cost optimization.
         </p>
         <hr class="is-muted" />
         <p>
@@ -271,6 +271,9 @@
           <div class="col-3">
             <hr class="is-muted" />
             <ul class="p-list--divided u-no-margin--bottom">
+              <li class="p-list__item">
+                <a href="https://canonical.com/solutions/infrastructure/sovereign-cloud">Sovereign clouds&nbsp;&rsaquo;</a>
+              </li>
               <li class="p-list__item">
                 <a href="https://canonical.com/solutions/telco">Telco NFV&nbsp;&rsaquo;</a>
               </li>
@@ -330,7 +333,7 @@
       </div>
       <div class="col">
         <p>
-          Private cloud architecture does not differ much from the architecture used by public clouds. In practice, private clouds resemble public cloud behaviour. They provide centralised management capabilities over compute, network and storage resources distributed across the data centre and enable on-demand provisioning of virtualised resources through a self-service portal. To fulfill this role, private clouds leverage the following technologies:
+          Private cloud architecture does not differ much from the architecture used by public clouds. In practice, private clouds resemble public cloud behavior. They provide centralized management capabilities over compute, network and storage resources distributed across the data center and enable on-demand provisioning of virtualized resources through a self-service portal. To fulfill this role, private clouds use several technologies:
         </p>
       </div>
     </div>
@@ -339,7 +342,7 @@
         <hr class="is-muted" />
         <div class="row">
           <div class="col-3 col-medium-2">
-            <p class="p-heading--5">Virtualisation</p>
+            <p class="p-heading--5">Virtualization</p>
           </div>
           <div class="col-6 col-medium-3">
             <p>
@@ -347,7 +350,7 @@
             </p>
             <hr class="is-muted" />
             <p>
-              <a href="/server/docs/virtualization-introduction">More about virtualisation&nbsp;&rsaquo;</a>
+              <a href="/server/docs/virtualization-introduction">More about virtualization&nbsp;&rsaquo;</a>
             </p>
           </div>
         </div>
@@ -362,7 +365,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              Enables organisations with centralised management capabilities of both the underlying infrastructure and workloads and handles provisioning, scheduling and termination tasks.
+              Grants organizations centralized management capabilities over both the underlying infrastructure and workloads and handles provisioning, scheduling and termination tasks.
             </p>
             <hr class="is-muted" />
             <p>
@@ -381,7 +384,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              Allows repetitive execution of complex tasks that would normally have to be performed manually, making private cloud faster, more reliable, and more flexible than <a href="/engage/vmware-to-charmed-openstack">traditional virtualisation environments</a>.
+              Allows repetitive execution of complex tasks that would normally have to be performed manually, making private cloud faster, more reliable, and more flexible than traditional virtualization environments.
             </p>
             <hr class="is-muted" />
             <p>
@@ -422,15 +425,15 @@
         <hr class="is-muted" />
         <div class="row">
           <div class="col-3 col-medium-2">
-            <p class="p-heading--5">On-prem</p>
+            <p class="p-heading--5">On-premises private cloud</p>
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              Private cloud &mdash; in this case the cloud is deployed on the organisation's premises, inside their own data centre. The customer provides hardware and hosting facilities, and usually takes care of the private cloud maintenance and operations. On-prem private clouds are best for big enterprises who have existing physical infrastructure and enough human resources to manage the cloud.
+              In this case the cloud is deployed on the organization's premises, inside their own data center. The customer provides hardware and hosting facilities, and usually takes care of the private cloud maintenance and operations. On-premises private clouds are best for large enterprises which have existing physical infrastructure and enough human resources to manage the cloud.
             </p>
             <hr class="is-muted" />
             <p>
-              <a href="/openstack">More about on-prem cloud&nbsp;&rsaquo;</a>
+              <a href="/openstack">More about on-premises cloud&nbsp;&rsaquo;</a>
             </p>
           </div>
         </div>
@@ -441,11 +444,11 @@
         <hr class="is-muted" />
         <div class="row">
           <div class="col-3 col-medium-2">
-            <p class="p-heading--5">Hosted</p>
+            <p class="p-heading--5">Hosted private cloud</p>
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              Private cloud &mdash; in this case the private cloud runs in a data centre that is outside the organisation's facilities. The customer is still responsible for providing the hardware, but all hosting facilities (space, electricity, cooling, etc.) are delivered by the service provider. Hosted private clouds are best for organisations who do not have their own data centre and are not going to build one in the foreseeable future.
+              In this case, the private cloud runs in a data center that is outside the organization's facilities. The customer is still responsible for providing the hardware, but all hosting facilities (space, electricity, cooling, etc.) are delivered by the service provider. Hosted private clouds are best for organizations that do not have their own data center and which are not going to build one in the foreseeable future.
             </p>
             <hr class="is-muted" />
             <p>
@@ -460,11 +463,11 @@
         <hr class="is-muted" />
         <div class="row">
           <div class="col-3 col-medium-2">
-            <p class="p-heading--5">Managed</p>
+            <p class="p-heading--5">Managed private cloud</p>
           </div>
           <div class="col-6 col-medium-3">
             <p>
-              Private cloud &mdash; the private cloud is fully managed by a third party organisation (aka managed service provider). The customer provides the hardware, but cloud operations and maintenance tasks are outsourced. The cloud can either run on the organisation's premises or in the managed service provider data centre. Managed private clouds prove to be more economical for up to hundreds of nodes, because they do not require hiring a dedicated operations team.
+              The private cloud is fully managed by a third party organization, sometimes called a managed service provider. The customer provides the hardware, but cloud operations and maintenance tasks are outsourced. The cloud can either run on the organization's premises or in the managed service provider data center. Managed private clouds prove to be more economical for up to hundreds of nodes, because they do not require hiring a dedicated operations team.
             </p>
             <hr class="is-muted" />
             <p>
@@ -480,13 +483,13 @@
     <div class="row--50-50">
       <hr />
       <div class="col">
-        <h2>How to build a private cloud?</h2>
+        <h2>How do you build a private cloud?</h2>
       </div>
       <div class="col">
         <p>Building a private cloud usually entails a number of challenges:</p>
         <ul class="p-list--divided">
           <li class="p-list__item">
-            <a href="https://canonical.com/openstack/compare">What private cloud platform to standardise on?</a>
+            <a href="https://canonical.com/openstack/compare">What private cloud platform to standardize on?</a>
           </li>
           <li class="p-list__item">
             <a href="/certified">What hardware to choose?</a>
@@ -497,7 +500,7 @@
         </ul>
         <hr class="is-muted" />
         <p>
-          Those are just examples of questions organisations have to ask themselves at the beginning of their private cloud journey. Fortunately, there are <a href="https://microstack.run">tools that enable single-node private cloud installation</a> for testing purposes or, in the case of more complex environments, private cloud providers like Canonical offer <a href="https://canonical.com/openstack/support">consulting services for private cloud deployment</a>. Those usually include existing workloads assessment, architecture guidance, TCO prediction, cloud deployment and workloads migration.
+          Those are just examples of questions organizations have to ask themselves at the beginning of their private cloud journey. Fortunately, there are <a href="https://canonical.com/openstack">tools that enable single-node private cloud installation</a> for testing purposes. In more complex environments, private cloud providers like Canonical offer <a href="https://canonical.com/openstack/support">consulting services for private cloud deployment</a>. Those usually include existing workloads assessment, architecture guidance, TCO prediction, cloud deployment and workloads migration.
         </p>
         <hr class="is-muted" />
         <p>
@@ -559,7 +562,8 @@
             </div>
           </div>
           <div class="col-6 col-medium-3">
-            <p>Ubuntu Pro is the most comprehensive subscription for open-source software security and compliance.</p>
+            <p>Ubuntu Pro is the most comprehensive subscription for open source software security and compliance on the cloud.</p>
+            <p>Ubuntu Pro offers a unified security standard for your entire cloud journey – from public hyperscalers like AWS, Azure, and Google Cloud, to private OpenStack or hybrid deployments. It provides out-of-the-box FIPS, DISA-STIG, and FedRAMP hardening, and up to 15 years of security maintenance, ensuring your cloud security is consistent, governed, and maximized for uptime.</p>
             <hr class="is-muted" />
             <p>
               <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>

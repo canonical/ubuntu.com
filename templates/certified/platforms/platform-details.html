@@ -1,5 +1,7 @@
 {% extends "templates/base.html" %}
 
+{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
+
 {% block title %} {{ platform.vendor }} {{ platform.name }} certified with Ubuntu.{% endblock %}
 
 {% block meta_description %}Platform that is certified for use with Ubuntu.{% endblock meta_description %}

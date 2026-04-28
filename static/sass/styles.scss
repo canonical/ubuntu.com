@@ -1098,7 +1098,15 @@ hr.p-separator.is-shallow {
   .p-img-cta__image {
     @extend %vf-strip;
 
+    height: 300px;
+    width: 100%;
+    object-fit: contain;
+    padding: 1rem;
     background-color: $color-light;
+
+    @media (max-width: $threshold-6-12-col) {
+      height: 150px;
+    }
   }
 
   &:hover {
@@ -1661,13 +1669,6 @@ ol.p-list--divided .p-list__item::before {
       margin-right: 2rem;
     }
   }
-}
-
-.u-center-illutrations {
-  align-items: center;
-  display: flex;
-  height: 21rem; // provided by design
-  justify-content: center;
 }
 
 // Following two classes can be removed once Github issue is completed

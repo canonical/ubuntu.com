@@ -4,20 +4,21 @@
      aria-labelledby="overview"
      aria-hidden="false">
   <div class="u-fixed-width p-strip is-shallow u-no-padding--top">
-    <div class="p-image-container">
-      {{ image(url="https://assets.ubuntu.com/v1/6e6a56d4-image-1.jpg",
-            alt="",
-            width="1800",
-            height="1044",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-image-container__image"}) | safe
-      }}
-    </div>
     <p>Deploying a device?</p>
     <p>
-      Ubuntu is your development environment. Ubuntu Core is your deployment OS. Whether you develop your application using C++, Rust, Python, or others – whatever tech stack you use, package and deploy it seamlessly on Ubuntu Core.
+      Ubuntu is your development environment. Ubuntu Core is your deployment OS.
+      Whatever language or tech stack you choose – C++, Rust, Python, or beyond
+      – you can package and deploy your application seamlessly on Ubuntu Core.
     </p>
+    <div class="p-image-container is-highlighted">
+      {{ image(url="https://assets.ubuntu.com/v1/f520bcaf-overview.png",
+            alt="",
+            width="1800",
+            height="1026",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-image-container__image"}) | safe }}
+    </div>
   </div>
 </div>
 <div tabindex="0"
@@ -26,20 +27,21 @@
      aria-labelledby="ubuntu-vision"
      aria-hidden="false">
   <div class="u-fixed-width p-strip is-shallow u-no-padding--top">
-    <div class="p-image-container">
-      {{ image(url="https://assets.ubuntu.com/v1/27f89818-image-2.jpg",
+    <p>
+      For more than 20 years, Ubuntu has provided the best development
+      environment. Every aspect of the development process benefits from
+      Ubuntu's responsiveness, ease of use, regular software updates, and a high
+      degree of security.
+    </p>
+    <div class="p-image-container is-highlighted">
+      {{ image(url="https://assets.ubuntu.com/v1/3043924c-ubuntu.png",
             alt="",
             width="1800",
-            height="1045",
+            height="1026",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-image-container__image"}) | safe
-      }}
+            attrs={"class": "p-image-container__image"}) | safe }}
     </div>
-    <p>
-      For more than 20 years, Ubuntu has provided the best development environment. Every aspect of the development process benefits from Ubuntu’s responsiveness, ease of use, regular software updates and a high degree of security.
-    </p>
-    <a href="/desktop">Learn more about Ubuntu&nbsp;&rsaquo;</a>
   </div>
 </div>
 <div tabindex="0"
@@ -48,20 +50,23 @@
      aria-labelledby="snapcraft"
      aria-hidden="false">
   <div class="u-fixed-width p-strip is-shallow u-no-padding--top">
-    <div class="p-image-container">
-      {{ image(url="https://assets.ubuntu.com/v1/1b84970e-image-3.jpg",
+    <p>
+      Snapcraft is the command-line tool for packaging your software as a snap.
+      Snaps are containerized packages designed for deploying embedded
+      applications, with increased performance compared to
+      <a href="/engage/docker-containers-for-IoT-whitepaper">other technologies</a>.
+      Ubuntu Core architecture is built on snaps and each element benefits from
+      its tooling.
+    </p>
+    <div class="p-image-container is-highlighted">
+      {{ image(url="https://assets.ubuntu.com/v1/ef607e4f-snapcraft.png",
             alt="",
             width="1800",
-            height="1045",
+            height="1026",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-image-container__image"}) | safe
-      }}
+            attrs={"class": "p-image-container__image"}) | safe }}
     </div>
-    <p>
-      Snapcraft is the command-line tool for packaging your software as a snap. Snaps are containerised packages designed for deploying embedded applications, with increased performance compared to <a href="/engage/docker-containers-for-IoT-whitepaper">other technologies</a>. Ubuntu Core architecture is built on snaps and each element benefits from its tooling.
-    </p>
-    <a href="/core/docs/snaps-in-ubuntu-core">Learn more about snaps in Ubuntu Core&nbsp;&rsaquo;</a>
   </div>
 </div>
 <div tabindex="0"
@@ -70,20 +75,22 @@
      aria-labelledby="snap-store"
      aria-hidden="false">
   <div class="u-fixed-width p-strip is-shallow u-no-padding--top">
-    <div class="p-image-container">
-      {{ image(url="https://assets.ubuntu.com/v1/27f8d290-image-6.jpg",
+    <p>
+      Canonical's Snap Store powers developers to host and manage software
+      updates for their devices. It provides a trusted update infrastructure,
+      including reliable OTA updates, delta updates, and more. Organisations can
+      also create private marketplaces, with advanced software management for
+      fleets of devices.
+    </p>
+    <div class="p-image-container is-highlighted">
+      {{ image(url="https://assets.ubuntu.com/v1/8c041f74-snap_store.png",
             alt="",
             width="1800",
-            height="1044",
+            height="1026",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-image-container__image"}) | safe
-      }}
+            attrs={"class": "p-image-container__image"}) | safe }}
     </div>
-    <p>
-      Canonical's Snap Store powers developers to host and manage software updates for their devices. It provides a trusted update infrastructure, including reliable OTA updates, delta updates, and more. Organisations can also create private marketplaces, with advanced software management for fleets of devices.
-    </p>
-    <a href="/internet-of-things/appstore">Learn more about Snap Stores&nbsp;&rsaquo;</a>
   </div>
 </div>
 <div tabindex="0"
@@ -92,19 +99,43 @@
      aria-labelledby="ubuntu-core"
      aria-hidden="false">
   <div class="u-fixed-width p-strip is-shallow u-no-padding--top">
-    <div class="p-image-container">
-      {{ image(url="https://assets.ubuntu.com/v1/60d58bf5-image-4.jpg",
+    <p>
+      The right OS for your devices. Ubuntu Core is a strictly confined and
+      immutable embedded Linux OS. Build your Ubuntu Core image for your
+      application and targeted hardware, and enjoy a fully managed and securely
+      designed production image.
+    </p>
+    <div class="p-image-container is-highlighted">
+      {{ image(url="https://assets.ubuntu.com/v1/42a82141-ubuntu_core.png",
             alt="",
             width="1800",
-            height="1045",
+            height="1026",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-image-container__image"}) | safe
-      }}
+            attrs={"class": "p-image-container__image"}) | safe }}
     </div>
+  </div>
+</div>
+<div tabindex="0"
+     role="tabpanel"
+     id="ubuntu-pro-tab"
+     aria-labelledby="ubuntu-pro"
+     aria-hidden="false">
+  <div class="u-fixed-width p-strip is-shallow u-no-padding--top">
     <p>
-      The right OS for your devices. Ubuntu Core is a strictly confined and immutable embedded Linux OS.  Build your Ubuntu Core image for your application and targeted hardware, and enjoy a fully managed, secure, and 12-year LTS production image.
+      Ubuntu Pro subscription delivers certified compliance (FIPS, DISA STIG),
+      Ubuntu Universe security maintenance, zero-touch management with
+      Landscape, and Livepatch kernel updates for Ubuntu Core devices. Included
+      for Core customers and free for personal use.
     </p>
-    <a href="https://documentation.ubuntu.com/core/">Learn more about Ubuntu Core&nbsp;&rsaquo;</a>
+    <div class="p-image-container is-highlighted">
+      {{ image(url="https://assets.ubuntu.com/v1/3ccbbf51-ubuntu_pro.png",
+            alt="",
+            width="1800",
+            height="1026",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-image-container__image"}) | safe }}
+    </div>
   </div>
 </div>

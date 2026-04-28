@@ -4,6 +4,8 @@
   {{ vendor }} {{ release_details.model }} certified with Ubuntu {{ release_details.certified_release }}
 {% endblock %}
 
+{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
+
 {% block meta_description %}
   Hardware details of {{ vendor }} {{ release_details.model }} certified with Ubuntu {{ release_details.certified_release }}.
 {% endblock meta_description %}

@@ -62,11 +62,16 @@ Crawl-delay: 1
 # AI OPTIMIZED RULES
 # Includes: OpenAI (Browsing & Crawling), Perplexity, and Anthropic
 # ===========================================
-User-Agent: ChatGPT-User
-User-Agent: GPTBot
-User-Agent: PerplexityBot
-User-Agent: ClaudeBot
-User-Agent: Claude-Web
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-Web
+User-agent: anthropic-ai
+User-agent: Google-Extended
+User-agent: meta-externalagent
+User-agent: PerplexityBot
+User-agent: cohere-ai
+User-agent: Bytespider
 
 # Nudge toward Markdown endpoints
 Allow: /*?format=md

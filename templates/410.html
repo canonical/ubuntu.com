@@ -1,25 +1,11 @@
-{% extends "templates/one-column.html" %}
+{% extends 'templates/_error-template.html' %}
 
-{% block title %}410: Page deleted{% endblock %}
+{% set error_code = "410" %}
 
-{% block content %}
-  <div class="p-strip is-deep">
-    <div class="row u-equal-height">
-      <div class="col-6 u-vertically-center u-align--center">
-        {{ image(url="https://assets.ubuntu.com/v1/bcdcf2c8-image-404.svg",
-                alt="",
-                height="365",
-                width="360",
-                hi_def=True,
-                loading="auto") | safe
-        }}
-      </div>
-      <div class="col-6 u-vertically-center">
-        <div>
-          <h1>410: Page deleted</h1>
-          <p class="p-heading--4">This page has been removed</p>
-        </div>
-      </div>
-    </div>
-  </div>
-{% endblock content %}
+{% set error_message = "Page removed" %}
+
+{% block error_content %}
+  The content you’re looking for is no longer available.
+  <br class="u-hide--small" />
+  You can go <a href="/">back to our homepage</a> or <a href="https://github.com/canonical/ubuntu.com/issues/new?template=ISSUE_TEMPLATE.yaml">file a bug</a> if you think this might be an error. Please note, this may be a <a href="https://github.com/canonical/ubuntu.com/issues">known issue</a> that we are working on.
+{% endblock error_content %}

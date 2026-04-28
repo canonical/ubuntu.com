@@ -1,18 +1,22 @@
 {% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_divided-section.jinja" import vf_divided_section %}
+{% from "_macros/vf_equal-heights.jinja" import vf_equal_heights %}
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_linked-logo-section.jinja" import vf_linked_logo_section %}
 
 {% extends "core/base_core.html" %}
 
 {% block title %}Ubuntu Core{% endblock %}
 
 {% block meta_description %}
-  Ubuntu Core is Ubuntu for IoT and embedded devices, optimised for security and reliable over-the-air (OTA) updates. Run your applications in a high-security, immutable and reliable embedded Linux OS.
-{% endblock
-meta_description %}
+  Ubuntu Core is Ubuntu for IoT and embedded devices, optimised for security and
+  reliable over-the-air (OTA) updates. Run your applications in a high-security,
+  immutable, and reliable embedded Linux OS.
+{% endblock meta_description %}
 
 {% block meta_copydoc %}
   https://docs.google.com/document/d/1UFpefDRSAcndNBnWp0hDyzqk74aciqhBWJEi05htWmU/edit
-{% endblock
-meta_copydoc %}
+{% endblock meta_copydoc %}
 
 {% block body_class %}
   is-paper
@@ -25,817 +29,740 @@ meta_copydoc %}
 
 {% block content %}
 
-  <section class="p-strip is-shallow u-no-padding--bottom">
-    <div class="p-section row--50-50">
-      <div class="col">
-        <h1 class="u-no-margin--bottom">Ubuntu Core</h1>
-        <div class="p-section--shallow">
-          <p class="p-heading--2">
-            The embedded Linux OS
-            <br class="u-hide--small u-hide--medium" />
-            for devices
-          </p>
-        </div>
-        <div class="p-section--shallow">
-          <p>
-            Ubuntu Core is a minimal, secure and strictly confined operating system powering devices around the world. Build your Ubuntu Core image today.
-          </p>
-        </div>
-        <hr class="p-rule--muted" />
-        <p>
-          <a class="p-button--positive" href="/core/docs/getting-started">Try Ubuntu Core</a>
-          <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/Ubuntu_Core_4_pager_DS_revised_may_2024.pdf?version=0">Read&nbsp;the&nbsp;Ubuntu&nbsp;Core&nbsp;datasheet</a>
-        </p>
-      </div>
-      <div class="col">
-        <div class="p-hero-video-container u-embedded-media">
-          <lite-youtube aria-label="What is Ubuntu Core" videoid="3C3Y0xVf8zw" videotitle="What is Ubuntu Core" class="u-embedded-media__element">
-          {{ image(url="https://assets.ubuntu.com/v1/3a0f24b8-video-thumbnail-suru-bg.png",
-                    alt="What is Ubuntu Core",
-                    width="600",
-                    height="376",
-                    hi_def=True,
-                    loading="auto",
-                    attrs={"class": "p-image-container__image", "slot":"image"}) | safe
-          }}
-          </lite-youtube>
-        </div>
-      </div>
-    </div>
-  </section>
+  {% call(slot) vf_hero(
+    title_text='Ubuntu Core',
+    subtitle_text='The immutable embedded <br class="u-hide--small" />Linux OS' | safe,
+    layout='50/50'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Ubuntu Core is a minimal, secure, and strictly confined operating system
+        powering devices around the world. Build your Ubuntu Core image today.
+      </p>
+    {%- endif -%} {%- if slot == 'cta' -%}
+    <hr class="p-rule--muted" />
+    <a class="p-button--positive" href="/core/docs/getting-started">Try Ubuntu Core</a>
+    <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/Ubuntu_Core_4_pager_DS_revised_may_2024.pdf?version=0">Read the Ubuntu Core datasheet</a>
+  {%- endif -%} {%- if slot == 'image' -%}
+  <div class="p-hero-video-container u-embedded-media">
+    <lite-youtube aria-label="What is Ubuntu Core" videoid="3C3Y0xVf8zw" videotitle="What is Ubuntu Core" class="u-embedded-media__element">
+    {{ image(url="https://assets.ubuntu.com/v1/3a0f24b8-video-thumbnail-suru-bg.png",
+        alt="What is Ubuntu Core",
+        width="600",
+        height="376",
+        hi_def=True,
+        loading="auto",
+        attrs={"class": "p-image-container__image", "slot":"image"}) | safe
+    }}
+    </lite-youtube>
+  </div>
+{%- endif -%}
+{% endcall -%}
+{% call(slot) vf_equal_heights(
+  title_text="An OS with all the infrastructure",
+  subtitle_heading_level=5,
+  highlight_images=true,
+  items=[
+  {
+  "title_text": "Continuous security",
+  "description_html": "<p>Imagine a world where every device is trustworthy. We created every aspect of Ubuntu Core to deliver the most securely designed embedded Linux ever, with an up to 15 year LTS commitment.</p>",
+  "cta_html": '<a href="/security">Learn more about Ubuntu security&nbsp;&rsaquo;</a>',
+  "image_html": image(url="https://assets.ubuntu.com/v1/f1888c9c-Kernelt%20industries-80%201.png",
+  alt="",
+  width="568",
+  height="932",
+  hi_def=True,
+  loading="lazy",
+  attrs={"class": "p-image-container__image"}),
+  },
+  {
+  "title_text": "Device management",
+  "description_html": "<p>Enjoy reliable, remotely accessible, and recoverable devices which are always up-to-date with mission-critical OTA updates. In connected or air-gapped environments.</p>",
+  "cta_html": '<a href="/internet-of-things/management">Learn more about fleet management&nbsp;&rsaquo;</a>',
+  "image_html": image(url="https://assets.ubuntu.com/v1/3493be78-Kernelt%20industries-80%201-1.png",
+  alt="",
+  width="568",
+  height="932",
+  hi_def=True,
+  loading="lazy",
+  attrs={"class": "p-image-container__image"}),
+  },
+  {
+  "title_text": "Agile containerization",
+  "description_html": "<p>Ubuntu Core is immutable and strictly confined. There is a clean separation between the kernel, OS image, and applications, each updated independently and protected against corruption.</p>",
+  "cta_html": '<a href="https://documentation.ubuntu.com/core/explanation/security-and-sandboxing">Learn more about confinement&nbsp;&rsaquo;</a>',
+  "image_html": image(url="https://assets.ubuntu.com/v1/97807e18-Kernelt%20industries-80%201-2.png",
+  alt="",
+  width="568",
+  height="932",
+  hi_def=True,
+  loading="lazy",
+  attrs={"class": "p-image-container__image"}),
+  },
+  {
+  "title_text": "A strong hardware ecosystem",
+  "description_html": "<p>We enable Ubuntu Core with the best ODMs and silicon vendors in the world. We continuously test it on leading IoT and edge devices and hardware.</p>",
+  "cta_html": '<a href="/certified">Browse all certified hardware&nbsp;&rsaquo;</a>',
+  "image_html": image(url="https://assets.ubuntu.com/v1/d5a229cb-Kernelt%20industries-80%201-3.png",
+  alt="",
+  width="568",
+  height="932",
+  hi_def=True,
+  loading="lazy",
+  attrs={"class": "p-image-container__image"}),
+  },
+  ]
+  ) %}
+  {%- if slot == 'description' -%}
+    <p>
+      Ubuntu Core is more than just your embedded Linux OS, it's your whole
+      deployment infrastructure. Build targeted production-ready images, unlock
+      over-the-air (OTA) updates, deploy in air-gapped environments, manage your
+      fleet of devices, achieve real-time operations, comply with cybersecurity
+      requirements and more.
+    </p>
+    <p>
+      Ubuntu Core will transform the way you deploy devices with the longest support
+      window in the industry: up to 15 years.
+    </p>
+  {%- endif -%}
+  {%- if slot == 'cta' -%}
+    <a href="/core/features">Discover the full feature list&nbsp;&rsaquo;</a>
+  {%- endif -%}
+{% endcall %}
 
-  <section class="p-section">
-    <div class="row--50-50 p-section--shallow">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>An OS with all the infrastructure</h2>
-      </div>
-      <div class="col">
-        <p>
-          Ubuntu Core is more than just your embedded Linux OS, it's your whole deployment infrastructure. Build targeted
-          production-ready images, unlock over-the air (OTA) updates, deploy in air gap environments, manage your fleet of
-          devices, achieve real-time operations, comply with cybersecurity requirements and more.
-        </p>
-        <p>
-          Ubuntu Core will transform the way you deploy devices with the longest support window in the industry &mdash; 12 years.
-        </p>
+<section class="p-section">
+  <div class="row--50-50 p-section--shallow">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>From development to deployment</h2>
+    </div>
+    <div class="col">
+      <p>
+        Use the same kernel, the same libraries, and the same system software
+        for a smooth transition from development to production. Once you have
+        created your application in Ubuntu Desktop or Server, build your
+        immutable Ubuntu Core image based on your developed applications and
+        targeted hardware.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <hr class="p-rule col-9 col-start-large-4" />
+    <div class="col-3 col-medium-3 col-start-large-4">
+      <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small"
+          role="tablist"
+          aria-label="Dev to deployment">
+        <li>
+          <button class="p-tabs__item"
+                  id="overview"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="overview-tab">Overview</button>
+        </li>
+        <li>
+          <button class="p-tabs__item"
+                  id="ubuntu-vision"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="ubuntu-vision-tab">Ubuntu</button>
+        </li>
+        <li>
+          <button class="p-tabs__item"
+                  id="snapcraft"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="snapcraft-tab">Snapcraft</button>
+        </li>
+        <li>
+          <button class="p-tabs__item"
+                  id="snap-store"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="snap-store-tab">Snap Store</button>
+        </li>
+        <li>
+          <button class="p-tabs__item"
+                  id="ubuntu-core"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="ubuntu-core-tab">Ubuntu Core</button>
+        </li>
+        <li>
+          <button class="p-tabs__item"
+                  id="ubuntu-pro"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="ubuntu-pro-tab">Ubuntu Pro</button>
+        </li>
+      </ul>
+      <div class="u-hide--large u-hide--medium">
+        <select name="boardSelect"
+                id="boardSelect"
+                aria-label="Select a deployment target">
+          <option value="overview-tab" selected="">Overview</option>
+          <option value="ubuntu-vision-tab">Ubuntu</option>
+          <option value="snapcraft-tab">Snapcraft</option>
+          <option value="snap-store-tab">Snap Store</option>
+          <option value="ubuntu-core-tab">Ubuntu Core</option>
+          <option value="ubuntu-pro-tab">Ubuntu Pro</option>
+        </select>
       </div>
     </div>
-    <div class="p-equal-height-row u-no-padding--bottom p-section--shallow">
-      <div class="p-equal-height-row__col">
-        <div class="p-equal-height-row__item">
-          <div class="p-media-container u-darker-background u-hide--small u-hide--medium">
-            {{ image(url="https://assets.ubuntu.com/v1/f1888c9c-Kernelt%20industries-80%201.png",
-                        alt="",
-                        width="568",
-                        height="932",
-                        hi_def=True,
-                        loading="auto",
-                        attrs={"class": "p-image-container__image", "style": "width:320px"}) | safe
-            }}
-          </div>
-          <div class="p-equal-height-row__item">
-            <hr class="p-rule--highlight u-hide--medium u-hide--small" />
-            <h3 class="p-heading--5">Continuous security</h3>
-          </div>
-        </div>
-        <p class="p-equal-height-row__item">
-          Imagine a world where every device is trustworthy. We designed every aspect of Ubuntu Core to create the most
-          secure embedded Linux ever, with a 12 year LTS commitment.
-        </p>
-        <div class="p-equal-height-row__item">
-          <hr class="p-rule--muted u-hide--small" />
-          <p>
-            <a href="/security">Learn more about Ubuntu security&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-      <div class="p-equal-height-row__col">
-        <div class="p-equal-height-row__item">
-          <div class="p-media-container u-darker-background u-hide--small u-hide--medium">
-            {{ image(url="https://assets.ubuntu.com/v1/3493be78-Kernelt%20industries-80%201-1.png",
-                        alt="",
-                        width="568",
-                        height="932",
-                        hi_def=True,
-                        loading="auto",
-                        attrs={"class": "p-image-container__image", "style": "width:320px"}) | safe
-            }}
-          </div>
-          <div class="p-equal-height-row__item">
-            <hr class="p-rule--highlight u-hide--medium u-hide--small" />
-            <h3 class="p-heading--5">Device management</h3>
-          </div>
-        </div>
-        <p class="p-equal-height-row__item">
-          Enjoy reliable, remotely accessible and recoverable devices which are always up-to-date with mission-critical
-          OTA updates. In connected or air-gap environments.
-        </p>
-        <div class="p-equal-height-row__item">
-          <hr class="p-rule--muted u-hide--small" />
-          <p>
-            <a href="/internet-of-things/management">Learn more about fleet management&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-      <div class="p-equal-height-row__col">
-        <div class="p-equal-height-row__item">
-          <div class="p-media-container u-darker-background u-hide--small u-hide--medium">
-            {{ image(url="https://assets.ubuntu.com/v1/97807e18-Kernelt%20industries-80%201-2.png",
-                        alt="",
-                        width="568",
-                        height="932",
-                        hi_def=True,
-                        loading="auto",
-                        attrs={"class": "p-image-container__image", "style": "width:320px"}) | safe
-            }}
-          </div>
-          <div class="p-equal-height-row__item">
-            <hr class="p-rule--highlight u-hide--medium u-hide--small" />
-            <h3 class="p-heading--5">Agile containerisation</h3>
-          </div>
-        </div>
-        <p class="p-equal-height-row__item">
-          Ubuntu Core is immutable and strictly confined. There is a clean separation between the kernel, OS image and
-          applications, each updated independently and protected against corruption.
-        </p>
-        <div class="p-equal-height-row__item">
-          <hr class="p-rule--muted u-hide--small" />
-          <p>
-            <a href="/core/docs/components#heading--confinement">Learn more about confinement&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-      <div class="p-equal-height-row__col">
-        <div class="p-equal-height-row__item">
-          <div class="p-media-container u-darker-background u-hide--small u-hide--medium">
-            {{ image(url="https://assets.ubuntu.com/v1/d5a229cb-Kernelt%20industries-80%201-3.png",
-                        alt="",
-                        width="568",
-                        height="932",
-                        hi_def=True,
-                        loading="auto",
-                        attrs={"class": "p-image-container__image", "style": "width:320px"}) | safe
-            }}
-          </div>
-          <div class="p-equal-height-row__item">
-            <hr class="p-rule--highlight u-hide--medium u-hide--small" />
-            <h3 class="p-heading--5">A strong hardware ecosystem</h3>
-          </div>
-        </div>
-        <p class="p-equal-height-row__item">
-          We enable Ubuntu Core with the best ODMs and silicon vendors in the world. We continuously test it on leading
-          IoT and edge devices and hardware.
-        </p>
-        <div class="p-equal-height-row__item">
-          <hr class="p-rule--muted u-hide--small" />
-          <p>
-            <a href="/certified">Browse all certified hardware&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="u-fixed-width">
+    <div class="col-6 col-medium-3">{% include "core/tabs.html" %}</div>
+  </div>
+  <div class="row">
+    <div class="col-6 col-medium-3 col-start-medium-4 col-start-large-7">
       <hr class="p-rule--muted" />
+      <p>
+        <a href="/core/docs">Get started with Ubuntu Core&nbsp;&rsaquo;</a>
+      </p>
     </div>
-    <div class="row">
-      <div class="col-3 col-start-large-7">
-        <p>
-          <a href="/core/features">Discover the full feature list&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <section class="p-section">
-    <div class="row--50-50 p-section--shallow">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>From development to deployment</h2>
-      </div>
-      <div class="col">
-        <p>
-          Use the same kernel, the same libraries, and the same system software for a smooth transition from development
-          to production. Once you have created your application in Ubuntu Desktop or Server, build your immutable Ubuntu
-          Core image based on your developed applications and targeted hardware.
-        </p>
-      </div>
+{{ vf_linked_logo_section(title_text="For smart use cases. Get Core. Get snaps. Get going.",
+layout="full-width",
+links=[
+{
+"href": "https://canonical.com/solutions/automotive",
+"text": "Automotive",
+"label": "Automotive use cases",
+"image_attrs": image(url="https://assets.ubuntu.com/v1/f867c883-For-smart-use-cases__Automotivew.png",
+alt="Automotive",
+width="852",
+height="480",
+hi_def=True,
+loading="lazy",
+output_mode="attrs") ,
+},
+{
+"href": "https://canonical.com/solutions/industrial",
+"text": "Industrial",
+"label": "Industrial use cases",
+"image_attrs": image(url="https://assets.ubuntu.com/v1/0162bc71-For-smart-use-cases__Industrial.png",
+alt="Industrial",
+width="852",
+height="480",
+hi_def=True,
+loading="lazy",
+output_mode="attrs"),
+},
+{
+"href": "/robotics",
+"text": "Robotics",
+"label": "Robotics use cases",
+"image_attrs": image(url="https://assets.ubuntu.com/v1/aeeeb32d-For-smart-use-cases__Robotics.png",
+alt="Robotics",
+width="852",
+height="480",
+hi_def=True,
+loading="lazy",
+output_mode="attrs"),
+},
+{
+"href": "/internet-of-things/smart-displays",
+"text": "Signage",
+"label": "Signage use cases",
+"image_attrs": image(url="https://assets.ubuntu.com/v1/9db3f004-For-smart-use-cases__Signage.png",
+alt="Signage",
+width="852",
+height="480",
+hi_def=True,
+loading="lazy",
+output_mode="attrs"),
+},
+{
+"href": "/internet-of-things/smart-city",
+"text": "Smart cities",
+"label": "Smart cities use cases",
+"image_attrs": image(url="https://assets.ubuntu.com/v1/8dd2f04d-For-smart-use-cases__Smart-cities.png",
+alt="Smart cities",
+width="852",
+height="480",
+hi_def=True,
+loading="lazy",
+output_mode="attrs"),
+},
+],
+) }}
+
+<section class="p-section">
+  <div class="row">
+    <hr class="p-rule--highlight" />
+    <div class="col-9 col-medium-4">
+      <h2 class="p-text--small-caps p-heading--5">Ubuntu core customer stories</h2>
     </div>
-    <div class="row">
-      <hr class="p-rule col-9 col-start-large-4" />
-      <div class="col-3 col-medium-3 col-start-large-4">
-        <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small"
-            role="tablist"
-            aria-label="Dev to deployment">
-          <li>
-            <button class="p-tabs__item"
-                    id="overview"
-                    role="tab"
-                    aria-selected="true"
-                    aria-controls="overview-tab">Overview</button>
-          </li>
-          <li>
-            <button class="p-tabs__item"
-                    id="ubuntu-vision"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="ubuntu-vision-tab">Ubuntu</button>
-          </li>
-          <li>
-            <button class="p-tabs__item"
-                    id="snapcraft"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="snapcraft-tab">Snapcraft</button>
-          </li>
-          <li>
-            <button class="p-tabs__item"
-                    id="snap-store"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="snap-store-tab">Snap Store</button>
-          </li>
-          <li>
-            <button class="p-tabs__item"
-                    id="ubuntu-core"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="ubuntu-core-tab">Ubuntu Core</button>
-          </li>
-        </ul>
-        <div class="u-hide--large u-hide--medium">
-          <select name="boardSelect" id="boardSelect" aria-label="Select a deployment target">
-            <option value="overview-tab" selected="">Overview</option>
-            <option value="ubuntu-vision-tab">Ubuntu</option>
-            <option value="snapcraft-tab">Snapcraft</option>
-            <option value="snap-store-tab">Snap Store</option>
-            <option value="ubuntu-core-tab">Ubuntu Core</option>
-          </select>
-        </div>
-      </div>
-      <div class="col-6 col-medium-3">{% include "core/tabs.html" %}</div>
+    <div class="col-3 col-medium-2 p-section--shallow">
+      <p>
+        <a href="/core/stories">All the success stories&nbsp;&rsaquo;</a>
+      </p>
     </div>
-    <div class="row">
-      <div class="col-6 col-start-large-4">
-        <hr class="p-rule--muted" />
-        <p>
-          <a href="/core/docs">Get started with Ubuntu Core&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-    </div>
-  </section>
- 
-  <section class="p-section">
-    <div class="u-fixed-width p-section--shallow">
-      <hr class="p-rule" />
-      <h2>For smart use cases. Get Core. Get snaps. Get going.</h2>
-    </div>
-    <div class="row--25-75 p-section--shallow">
-      <div class="col">
-        <hr class="u-hide--small p-rule" />
-        <div class="row">
-          <div class="col-3 col-medium-2">
-            <a href="https://canonical.com/solutions/automotive">
-              <h3 class="p-heading--5">Automotive</h3>
-              <div class="p-image-container">
-                {{ image(url="https://assets.ubuntu.com/v1/f867c883-For-smart-use-cases__Automotivew.png",
-                                alt="",
-                                width="852",
-                                height="480",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-image-container__image"}) | safe
-                }}
-              </div>
-            </a>
-          </div>
-          <div class="col-3 col-medium-2">
-            <a href="https://canonical.com/solutions/industrial">
-              <h3 class="p-heading--5">Industrial</h3>
-              <div class="p-image-container">
-                {{ image(url="https://assets.ubuntu.com/v1/0162bc71-For-smart-use-cases__Industrial.png",
-                                alt="",
-                                width="852",
-                                height="480",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-image-container__image"}) | safe
-                }}
-              </div>
-            </a>
-          </div>
-          <div class="col-3 col-medium-2">
-            <a href="/robotics">
-              <h3 class="p-heading--5">Robotics</h3>
-              <div class="p-image-container">
-                {{ image(url="https://assets.ubuntu.com/v1/aeeeb32d-For-smart-use-cases__Robotics.png",
-                                alt="",
-                                width="852",
-                                height="480",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-image-container__image"}) | safe
-                }}
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+  </div>
+  <div class="p-tabs">
     <div class="row--25-75">
       <div class="col">
-        <hr class="u-hide--small p-rule" />
-        <div class="row">
-          <div class="col-3 col-medium-2">
-            <a href="/internet-of-things/smart-displays">
-              <h3 class="p-heading--5">Signage</h3>
-              <div class="p-image-container">
-                {{ image(url="https://assets.ubuntu.com/v1/9db3f004-For-smart-use-cases__Signage.png",
-                                alt="",
-                                width="852",
-                                height="480",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-image-container__image"}) | safe
-                }}
-              </div>
-            </a>
-          </div>
-          <div class="col-3 col-medium-2">
-            <a href="/internet-of-things/smart-city">
-              <h3 class="p-heading--5">Smart cities</h3>
-              <div class="p-image-container">
-                {{ image(url="https://assets.ubuntu.com/v1/8dd2f04d-For-smart-use-cases__Smart-cities.png",
-                                alt="",
-                                width="852",
-                                height="480",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-image-container__image"}) | safe
-                }}
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-section">
-    <div class="row">
-      <hr class="p-rule--highlight" />
-      <div class="col-9 col-medium-4">
-        <h2 class="p-text--small-caps p-heading--5">Ubuntu core customer stories</h2>
-      </div>
-      <div class="col-3 col-medium-2 p-section--shallow">
-        <p>
-          <a href="/core/stories">All the success stories&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-    </div>
-    <div class="p-tabs">
-      <div class="row--25-75">
-        <div class="col">
-          <hr class="p-rule--muted" />
-          <div class="u-no-margin--bottom p-tabs__list js-tabbed-content"
-               role="tablist"
-               aria-label="Customer stories">
-            <div class="p-tabs__item">
-              <button class="p-tabs__link"
-                      role="tab"
-                      aria-selected="true"
-                      aria-controls="industrial-tab"
-                      id="industrial">Industrial</button>
-            </div>
-            <div class="p-tabs__item">
-              <button class="p-tabs__link"
-                      role="tab"
-                      aria-selected="false"
-                      aria-controls="smart-kiosk-tab"
-                      id="smart-kiosk"
-                      tabindex="-1">Smart Kiosk</button>
-            </div>
-            <div class="p-tabs__item">
-              <button class="p-tabs__link"
-                      role="tab"
-                      aria-selected="false"
-                      aria-controls="network-tab"
-                      id="network"
-                      tabindex="-1">Network</button>
-            </div>
-            <div class="p-tabs__item">
-              <button class="p-tabs__link"
-                      role="tab"
-                      aria-selected="false"
-                      aria-controls="cloud-tab"
-                      id="cloud"
-                      tabindex="-1">Cloud</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div tabindex="0"
-           role="tabpanel"
-           id="industrial-tab"
-           aria-labelledby="industrial">
-        <div class="row u-no-margin--bottom">
-          <div class="col-3 col-medium-2">
-            {{ image(url="https://assets.ubuntu.com/v1/ffd88101-rexroth-for-testimonial.png",
-                        alt="Rexroth",
-                        width="284",
-                        height="70",
-                        hi_def=True,
-                        loading="lazy",) | safe
-            }}
-          </div>
-          <div class="col-9 col-medium-4 u-no-margin--top">
-            <div class="row">
-              <div class="col-6 col-medium-4">
-                <h3 class="p-heading--2">Bosch Rexroth reinvents automation</h3>
-              </div>
-              <div class="col-3 col-medium-4">
-                <p>Bosch adopts Ubuntu Core and snaps for app-based ctrl-X industry 4.0 platform.</p>
-                <hr class="p-rule--muted" />
-                <p>
-                  <a href="/blog/bosch-rexroth-adopts-ubuntu-core-and-snaps-for-app-based-ctrlx-automation-platform">Read the press release&nbsp;&rsaquo;</a>
-                </p>
-              </div>
-            </div>
-            <div class="p-image-container">
-              {{ image(url="https://assets.ubuntu.com/v1/2d152c25-rexroth-testimonial-image.jpg",
-                            alt="Rexroth",
-                            width="2748",
-                            height="1048",
-                            hi_def=True,
-                            loading="lazy",
-                            attrs={"class": "p-image-container__image"}) | safe
-              }}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div tabindex="0"
-           role="tabpanel"
-           id="smart-kiosk-tab"
-           aria-labelledby="smart-kiosk"
-           aria-hidden="hidden">
-        <div class="row u-no-margin--bottom">
-          <div class="col-3 col-medium-2">
-            {{ image(url="https://assets.ubuntu.com/v1/36c27b25-pudo-testimonial-logo-new.png",
-                        alt="Pudo",
-                        width="125",
-                        height="56",
-                        hi_def=True,
-                        loading="lazy",) | safe
-            }}
-          </div>
-          <div class="col-9 col-medium-4 u-no-margin--top">
-            <div class="row">
-              <div class="col-6 col-medium-4">
-                <h3 class="p-heading--2">Pudo deploys fleet for robust last-mile logistics</h3>
-              </div>
-              <div class="col-3 col-medium-4">
-                <p>Pudo chooses Ubuntu Core as the foundation for its IoT-based APMs to maximise security and uptime.</p>
-                <hr class="p-rule" />
-                <p>
-                  <a href="/engage/pudo-case-study">Read the case study&nbsp;&rsaquo;</a>
-                </p>
-              </div>
-            </div>
-            <div class="p-image-container">
-              {{ image(url="https://assets.ubuntu.com/v1/576c8402-pudo-testimonial-image.jpg",
-                            alt="",
-                            width="2748",
-                            height="1177",
-                            hi_def=True,
-                            loading="lazy",
-                            attrs={"class": "p-image-container__image"}) | safe
-              }}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div tabindex="0"
-           role="tabpanel"
-           id="network-tab"
-           aria-labelledby="network"
-           aria-hidden="hidden">
-        <div class="row u-no-margin--bottom">
-          <div class="col-3 col-medium-2">
-            {{ image(url="https://assets.ubuntu.com/v1/80f5af45-rigado-testimonial-logo.png", alt="Rigado", width="217", height="51", hi_def=True, loading="lazy",) | safe }}
-          </div>
-          <div class="col-9 col-medium-4 u-no-margin--top">
-            <div class="row">
-              <div class="col-6 col-medium-4">
-                <h3 class="p-heading--2">Rigado cuts customers’ time to market</h3>
-              </div>
-              <div class="col-3 col-medium-4">
-                <p>Ubuntu Core enables Rigado to manage end-to-end security for commercial IoT gateways.</p>
-                <hr class="p-rule" />
-                <p>
-                  <a href="/engage/case-study-rigado">Read the case study&nbsp;&rsaquo;</a>
-                </p>
-              </div>
-            </div>
-            <div class="p-image-container">
-              {{ image(url="https://assets.ubuntu.com/v1/297369c0-rigado--testimonial-image.jpg",
-                            alt="",
-                            width="2748",
-                            height="1177",
-                            hi_def=True,
-                            loading="lazy",
-                            attrs={"class": "p-image-container__image"}) | safe
-              }}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div tabindex="0"
-           role="tabpanel"
-           id="cloud-tab"
-           aria-labelledby="cloud"
-           aria-hidden="hidden">
-        <div class="row u-no-margin--bottom">
-          <div class="col-3 col-medium-2">
-            {{ image(url="https://assets.ubuntu.com/v1/134756c3-ibm-cloud-testimonial-logo.png",
-                        alt="IBM",
-                        width="190",
-                        height="58",
-                        hi_def=True,
-                        loading="lazy",) | safe
-            }}
-          </div>
-          <div class="col-9 col-medium-4 u-no-margin--top">
-            <div class="row">
-              <div class="col-6 col-medium-4">
-                <h3 class="p-heading--2">IBM Cloud provides highly isolated and performant bare metal servers</h3>
-              </div>
-              <div class="col-3 col-medium-4">
-                <p>
-                  IBM Cloud's bare metal servers offer highly isolated and high-performing tenant-cloud isolation through the use of Ubuntu Core.
-                </p>
-                <hr class="p-rule" />
-                <p>
-                  <a href="https://canonical.com/blog/cloud-isolation-ibm-bare-metal-ubuntu-core">Read the press release&nbsp;&rsaquo;</a>
-                </p>
-              </div>
-            </div>
-            <div class="p-image-container">
-              {{ image(url="https://assets.ubuntu.com/v1/534be2a2-ibm-leadspace.jpg",
-                            alt="",
-                            width="1585",
-                            height="633",
-                            hi_def=True,
-                            loading="lazy",
-                            attrs={"class": "p-image-container__image"}) | safe
-              }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  {{ vf_basic_section(
-    title={"text": "Get to market fast with our hardware ecosystem"},
-    items=[
-      {
-        "type": "linked-logo-block",
-        "item": {
-          "links": [
-            {
-              "href": "https://ubuntu.com/certified?q=adlink&limit=20",
-              "text": "View ADLink Ubuntu certified hardware ›",
-              "label": "Adlink",
-              "image_attrs": {
-                "src": "https://assets.ubuntu.com/v1/6eff0263-adlink-logo.png",
-                "alt": "Adlink",
-                "width": "506",
-                "height": "481"
-              }
-            },
-            {
-              "href": "https://ubuntu.com/certified?q=advantech",
-              "text": "View ADVANTECH Ubuntu certified hardware ›",
-              "label": "Advantech",
-              "image_attrs": {
-                "src": "https://assets.ubuntu.com/v1/d65da7f3-advantech-logo.png",
-                "alt": "Advantech",
-                "width": "250",
-                "height": "481"
-              }
-            },
-            {
-              "href": "https://ubuntu.com/download/amd",
-              "text": "Install Ubuntu on AMD ›",
-              "label": "AMD",
-              "image_attrs": {
-                "src": "https://assets.ubuntu.com/v1/4bf8a9bc-amd-logo.png",
-                "alt": "AMD",
-                "width": "346",
-                "height": "481"
-              }
-            },
-            {
-              "href": "https://ubuntu.com/download/server/arm",
-              "text": "Learn more about Ubuntu Server for ARM ›",
-              "label": "Arm",
-              "image_attrs": {
-                "src": "https://assets.ubuntu.com/v1/e37f5aa1-arm_logo_black_rgb.svg",
-                "alt": "Arm",
-                "width": "294",
-                "height": "481"
-              }
-            },
-            {
-              "href": "https://ubuntu.com/download/iot/intel-iot",
-              "text": "Download Ubuntu for Intel IoT platforms ›",
-              "label": "Intel",
-              "image_attrs": {
-                "src": "https://assets.ubuntu.com/v1/59996fad-intel-new-logo.png",
-                "alt": "Intel",
-                "width": "250",
-                "height": "481"
-              }
-            },
-            {
-              "href": "https://ubuntu.com/download/mediatek-genio",
-              "text": "Install Ubuntu on MediaTek Genio ›",
-              "label": "MediaTek",
-              "image_attrs": {
-                "src": "https://assets.ubuntu.com/v1/96d65ee2-mediatek-logo.png",
-                "alt": "MediaTek",
-                "width": "386",
-                "height": "481"
-              }
-            }
-          ]
-        }
-      },
-      {
-        "type": "linked-logo-block",
-        "item": {
-          "links": [
-              {
-              "href": "https://ubuntu.com/download/nvidia-jetson",
-              "text": "Install Ubuntu on NVIDIA Jetson ›",
-              "label": "NVIDIA",
-              "image_attrs": {
-                "src": "https://assets.ubuntu.com/v1/e7b81879-nvidia-logo.png",
-                "alt": "NVIDIA",
-                "width": "471",
-                "height": "481"
-              }
-            },
-            {
-              "href": "https://www.nxp.com/",
-              "text": "Learn more about NXP ›",
-              "label": "NXP",
-              "image_attrs": {
-                "src": "https://assets.ubuntu.com/v1/be8db080-nxp-logo.png",
-                "alt": "NXP",
-                "width": "205",
-                "height": "481"
-              }
-            },
-            {
-              "href": "https://ubuntu.com/download/qualcomm-iot",
-              "text": "Install Ubuntu on Qualcomm IoT Platforms ›",
-              "label": "Qualcomm",
-              "image_attrs": {
-                "src": "https://assets.ubuntu.com/v1/31b259ec-qualcom-logo.png",
-                "alt": "Qualcomm",
-                "width": "481",
-                "height": "481"
-              }
-            },
-            {
-              "href": "https://ubuntu.com/download/renesas-iot",
-              "text": "Install Ubuntu on Renesas IoT Platforms ›",
-              "label": "Renesas",
-              "image_attrs": {
-                "src": "https://assets.ubuntu.com/v1/6e12ae75-renesas-logo.png",
-                "alt": "Renesas",
-                "width": "240",
-                "height": "481"
-              }
-            }
-          ]
-        }
-      },
-      {
-        "type": "cta-block",
-        "item": {
-          "primary": {
-            "content_html": "Browse all certified hardware",
-            "attrs": {
-              "href": "/certified"
-            }
-          },
-          "secondaries": [
-            {
-              "content_html": "Contact us",
-              "attrs": {
-                "href": "/core/contact-us",
-                "aria-controls": "contact-modal",
-                "class": "js-invoke-modal"
-              }
-            }
-          ],
-        }
-      }
-    ]
-  ) }}
-  <section class="p-section">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>Learn more about&nbsp;Ubuntu&nbsp;Core</h2>
-      </div>
-      <div class="col">
-        <div class="row">
-          <div class="col-3 col-medium-1">
-            <h5 class="p-heading--5">Docs</h5>
-          </div>
-          <div class="col-3 col-medium-2">
-            <p>
-              <a href="/core/docs/getting-started">Start your&nbsp;Core journey today</a>
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule" />
-        <div class="row">
-          <div class="col-3 col-medium-1">
-            <h5 class="p-heading--5">Features</h5>
-          </div>
-          <div class="col-3 col-medium-2">
-            <p>
-              <a href="/core/features">Discover everything that Core offers&nbsp;you</a>
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule" />
-        <div class="row">
-          <div class="col-3 col-medium-1">
-            <h5 class="p-heading--5">Customer stories</h5>
-          </div>
-          <div class="col-3 col-medium-2">
-            <p>
-              <a href="/core/stories">Find out how our users are finding success with&nbsp;Core</a>
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule" />
-        <div class="row">
-          <div class="col-3 col-medium-1">
-            <h5 class="p-heading--5">White papers</h5>
-          </div>
-          <div class="col-3 col-medium-2">
-            <p>
-              <a href="/engage/cra-yocto-core">Cyber Resilience Act: Yocto or Ubuntu Core for embedded devices?</a>
-            </p>
-            <hr class="p-rule--muted" />
-            <p>
-              <a href="/engage/securing-ubuntu-devices">Maximise the security of your Ubuntu devices</a>
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule" />
-        <div class="row">
-          <div class="col-3 col-medium-1">
-            <h5 class="p-heading--5">Video</h5>
-          </div>
-          <div class="col-3 col-medium-2">
-            <p>
-              <a href="https://www.youtube.com/watch?v=zf9bapbzb8o">Introduction to Ubuntu Core</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip is-deep u-no-padding--top">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>Ready to innovate?</h2>
-      </div>
-      <div class="col">
-        <div class="p-section--shallow">
-          <p>
-            Whether you are a startup bringing your concept to market or already have large fleets of devices deployed in the field, we have the expertise and infrastructure to launch and support you.
-          </p>
-        </div>
         <hr class="p-rule--muted" />
-        <p>
-          <a class="p-button--positive js-invoke-modal" href="/core/contact-us">Get in touch</a>
-        </p>
+        <div class="u-no-margin--bottom p-tabs__list js-tabbed-content"
+             role="tablist"
+             aria-label="Customer stories">
+          <div class="p-tabs__item">
+            <button class="p-tabs__link"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="industrial-tab"
+                    id="industrial">Industrial</button>
+          </div>
+          <div class="p-tabs__item">
+            <button class="p-tabs__link"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="smart-kiosk-tab"
+                    id="smart-kiosk"
+                    tabindex="-1">Edge AI</button>
+          </div>
+          <div class="p-tabs__item">
+            <button class="p-tabs__link"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="network-tab"
+                    id="network"
+                    tabindex="-1">Medical devices</button>
+          </div>
+          <div class="p-tabs__item">
+            <button class="p-tabs__link"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="cloud-tab"
+                    id="cloud"
+                    tabindex="-1">Cloud</button>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+    <div tabindex="0"
+         role="tabpanel"
+         id="industrial-tab"
+         aria-labelledby="industrial">
+      <div class="row u-no-margin--bottom">
+        <div class="col-3 col-medium-2">
+          {{ image(url="https://assets.ubuntu.com/v1/ffd88101-rexroth-for-testimonial.png",
+                    alt="Rexroth",
+                    width="284",
+                    height="70",
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
+        </div>
+        <div class="col-9 col-medium-4 u-no-margin--top">
+          <div class="row">
+            <div class="col-6 col-medium-4">
+              <h3 class="p-heading--2">Bosch Rexroth reinvents automation</h3>
+            </div>
+            <div class="col-3 col-medium-4">
+              <p>
+                Bosch adopts Ubuntu Core and snaps for app-based ctrl-X industry
+                4.0 platform.
+              </p>
+              <hr class="p-rule--muted" />
+              <p>
+                <a href="/blog/bosch-rexroth-adopts-ubuntu-core-and-snaps-for-app-based-ctrlx-automation-platform">Read the press release&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+          <div class="p-image-container">
+            {{ image(url="https://assets.ubuntu.com/v1/2d152c25-rexroth-testimonial-image.jpg",
+                        alt="Rexroth",
+                        width="2748",
+                        height="1048",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div tabindex="0"
+         role="tabpanel"
+         id="smart-kiosk-tab"
+         aria-labelledby="smart-kiosk"
+         aria-hidden="hidden">
+      <div class="row u-no-margin--bottom">
+        <div class="col-3 col-medium-2">
+          {{ image(url="https://assets.ubuntu.com/v1/c6e63812-elementary_logo.png",
+                    alt="Elementary",
+                    width="873",
+                    height="210",
+                    hi_def=True,
+                    loading="lazy") | safe }}
+        </div>
+        <div class="col-9 col-medium-4 u-no-margin--top">
+          <div class="row">
+            <div class="col-6 col-medium-4">
+              <h3 class="p-heading--2">Elementary scales AI machine vision</h3>
+            </div>
+            <div class="col-3 col-medium-4">
+              <p>
+                Elementary chooses Ubuntu Core to replace its server-based setup
+                and reduce provisioning time by 98%.
+              </p>
+              <hr class="p-rule" />
+              <p>
+                <a href="https://canonical.com/case-study/elementary-ai-machine-vision">Read the case study&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+          <div class="p-image-container">
+            {{ image(url="https://assets.ubuntu.com/v1/12e7f6ee-elementary_img.jpg",
+                        alt="",
+                        width="2748",
+                        height="1176",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div tabindex="0"
+         role="tabpanel"
+         id="network-tab"
+         aria-labelledby="network"
+         aria-hidden="hidden">
+      <div class="row u-no-margin--bottom">
+        <div class="col-3 col-medium-2">
+          {{ image(url="https://assets.ubuntu.com/v1/7387067e-bewell_logo.png",
+                    alt="BeWell",
+                    width="852",
+                    height="270",
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
+        </div>
+        <div class="col-9 col-medium-4 u-no-margin--top">
+          <div class="row">
+            <div class="col-6 col-medium-4">
+              <h3 class="p-heading--2">BeWell delivers smarter medical devices</h3>
+            </div>
+            <div class="col-3 col-medium-4">
+              <p>
+                Ubuntu Core enables BeWell to deliver a GDPR-compliant,
+                CE-marked self-service health kiosk.
+              </p>
+              <hr class="p-rule" />
+              <p>
+                <a href="/engage/bewell-ubuntu-core-case-study">Read the case study&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+          <div class="p-image-container">
+            {{ image(url="https://assets.ubuntu.com/v1/ecf240a3-bewell_image.jpg",
+                        alt="",
+                        width="2748",
+                        height="1176",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div tabindex="0"
+         role="tabpanel"
+         id="cloud-tab"
+         aria-labelledby="cloud"
+         aria-hidden="hidden">
+      <div class="row u-no-margin--bottom">
+        <div class="col-3 col-medium-2">
+          {{ image(url="https://assets.ubuntu.com/v1/134756c3-ibm-cloud-testimonial-logo.png",
+                    alt="IBM",
+                    width="190",
+                    height="58",
+                    hi_def=True,
+                    loading="lazy") | safe }}
+        </div>
+        <div class="col-9 col-medium-4 u-no-margin--top">
+          <div class="row">
+            <div class="col-6 col-medium-4">
+              <h3 class="p-heading--2">
+                IBM Cloud provides highly isolated and performant bare metal
+                servers
+              </h3>
+            </div>
+            <div class="col-3 col-medium-4">
+              <p>
+                IBM Cloud's bare metal servers offer highly isolated and
+                high-performing tenant-cloud isolation through the use of Ubuntu
+                Core.
+              </p>
+              <hr class="p-rule" />
+              <p>
+                <a href="https://canonical.com/blog/cloud-isolation-ibm-bare-metal-ubuntu-core">Read the press release&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+          <div class="p-image-container">
+            {{ image(url="https://assets.ubuntu.com/v1/534be2a2-ibm-leadspace.jpg",
+                        alt="",
+                        width="1585",
+                        height="633",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  {{ load_form("/core") | safe }}
+{{ vf_basic_section(title={"text": "Get to market fast with our hardware ecosystem"},
+items=[
+{
+"type": "linked-logo-block",
+"item": {
+"links": [
+{
+"href": "https://ubuntu.com/certified?q=adlink&limit=20",
+"text": "View ADLink Ubuntu certified hardware ›",
+"label": "Adlink",
+"image_attrs": image(url="https://assets.ubuntu.com/v1/6eff0263-adlink-logo.png",
+alt="Adlink",
+width="506",
+height="481",
+hi_def=True,
+loading="lazy",
+output_mode="attrs") ,
+},
+{
+"href": "https://ubuntu.com/certified?q=advantech",
+"text": "View ADVANTECH Ubuntu certified hardware ›",
+"label": "Advantech",
+"image_attrs": image(url="https://assets.ubuntu.com/v1/d65da7f3-advantech-logo.png",
+alt="Advantech",
+width="250",
+height="481",
+hi_def=True,
+loading="lazy",
+output_mode="attrs"),
+},
+{
+"href": "https://ubuntu.com/download/amd",
+"text": "Install Ubuntu on AMD ›",
+"label": "AMD",
+"image_attrs": image(url="https://assets.ubuntu.com/v1/4bf8a9bc-amd-logo.png",
+alt="AMD",
+width="346",
+height="481",
+hi_def=True,
+loading="lazy",
+output_mode="attrs"),
+},
+{
+"href": "https://ubuntu.com/download/server/arm",
+"text": "Learn more about Ubuntu for ARM ›",
+"label": "Arm",
+"image_attrs": image(url="https://assets.ubuntu.com/v1/e37f5aa1-arm_logo_black_rgb.svg",
+alt="Arm",
+width="294",
+height="481",
+hi_def=True,
+loading="lazy",
+output_mode="attrs"),
+},
+{
+"href": "https://ubuntu.com/download/iot/intel-iot",
+"text": "Download Ubuntu for Intel IoT platforms ›",
+"label": "Intel",
+"image_attrs": image(url="https://assets.ubuntu.com/v1/59996fad-intel-new-logo.png",
+alt="Intel",
+width="250",
+height="481",
+hi_def=True,
+loading="lazy",
+output_mode="attrs"),
+},
+{
+"href": "https://ubuntu.com/download/mediatek-genio",
+"text": "Install Ubuntu on MediaTek Genio ›",
+"label": "MediaTek",
+"image_attrs": image(url="https://assets.ubuntu.com/v1/96d65ee2-mediatek-logo.png",
+alt="MediaTek",
+width="386",
+height="481",
+hi_def=True,
+loading="lazy",
+output_mode="attrs"),
+},
+],
+},
+},
+{
+"type": "linked-logo-block",
+"item": {
+"links": [
+{
+"href": "https://ubuntu.com/download/nvidia-jetson",
+"text": "Install Ubuntu on NVIDIA Jetson ›",
+"label": "NVIDIA",
+"image_attrs": image(url="https://assets.ubuntu.com/v1/e7b81879-nvidia-logo.png",
+alt="NVIDIA",
+width="471",
+height="481",
+hi_def=True,
+loading="lazy",
+output_mode="attrs"),
+},
+{
+"href": "https://ubuntu.com/download/qualcomm-iot",
+"text": "Install Ubuntu on Qualcomm IoT Platforms ›",
+"label": "Qualcomm",
+"image_attrs": image(url="https://assets.ubuntu.com/v1/31b259ec-qualcom-logo.png",
+alt="Qualcomm",
+width="481",
+height="481",
+hi_def=True,
+loading="lazy",
+output_mode="attrs"),
+},
+{
+"href": "https://ubuntu.com/download/renesas-iot",
+"text": "Install Ubuntu on Renesas IoT Platforms ›",
+"label": "Renesas",
+"image_attrs": image(url="https://assets.ubuntu.com/v1/6e12ae75-renesas-logo.png",
+alt="Renesas",
+width="240",
+height="481",
+hi_def=True,
+loading="lazy",
+output_mode="attrs"),
+},
+],
+},
+},
+{
+"type": "cta-block",
+"item": {
+"primary": {
+"content_html": "Browse all certified hardware",
+"attrs": {"href": "/certified"},
+},
+"secondaries": [
+{
+"content_html": "Contact us",
+"attrs": {
+"href": "/core/contact-us",
+"aria-controls": "contact-modal",
+"class": "js-invoke-modal",
+},
+},
+],
+},
+},
+],
+) }}
+{{ vf_divided_section(title={"text": "Learn more about Ubuntu Core"},
+blocks=[
+{
+"type": "divided-block",
+"items": [
+{
+"title_text": "Docs",
+"contents": [
+{
+"type": "description",
+"item": {
+"type": "html",
+"content": '
+<p>
+  <a href="/core/docs/getting-started">Start your&nbsp;Core journey today</a>
+</p>',
+},
+},
+],
+},
+{
+"title_text": "Features",
+"contents": [
+{
+"type": "description",
+"item": {
+"type": "html",
+"content": '
+<p>
+  <a href="/core/features">Discover everything that Core offers&nbsp;you</a>
+</p>',
+},
+},
+],
+},
+{
+"title_text": "Whitepapers",
+"contents": [
+{
+"type": "description",
+"item": {
+"type": "html",
+"content": '
+<p>
+  <a href="/engage/cra-yocto-core">Cyber Resilience Act: Yocto or Ubuntu Core for embedded devices?</a>
+</p>
+<hr class="p-rule--muted" />
+<p>
+  <a href="/engage/securing-ubuntu-devices">Maximize the security of your Ubuntu devices</a>
+</p>',
+},
+},
+],
+},
+{
+"title_text": "Video",
+"contents": [
+{
+"type": "description",
+"item": {
+"type": "html",
+"content": '
+<p>
+  <a href="https://www.youtube.com/watch?v=zf9bapbzb8o">Introduction to Ubuntu Core</a>
+</p>',
+},
+},
+],
+},
+],
+},
+],) }}
 
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+{{ vf_basic_section(title={"text": "Ready to innovate?"},
+padding="deep",
+attrs={"class": "u-no-padding--top"},
+items=[
+{
+"type": "description",
+"item": {
+"type": "html",
+"content": "
+<p>
+  Whether you are a startup bringing your concept to market or already
+  have large fleets of devices deployed in the field, we have the
+  expertise and infrastructure to launch and support you.
+</p>",
+},
+},
+{
+"type": "cta-block",
+"item": {
+"primary": {
+"content_html": "Get in touch",
+"attrs": {"href": "/core/contact-us", "class": "js-invoke-modal"},
+},
+},
+},
+],) }}
+{{ load_form("/core") | safe }}
+
+<script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
 {% endblock content %}

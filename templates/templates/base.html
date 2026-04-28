@@ -154,7 +154,7 @@
           {% endif %}
 
           <div class="wrapper u-no-margin--top">
-            <main id="main-content" class="inner-wrapper">
+            <main id="main-content"{% if not hide_inner_wrapper %} class="inner-wrapper"{% endif %}>
 
               {% block content_head %}{% endblock %}
 

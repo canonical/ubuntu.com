@@ -58,7 +58,7 @@ layout='50/50'
   </div>
   <div class="grid-row--50-50">
     <div class="grid-col">
-      <h2>Ubuntu Pro subscription</h2>
+      <h2>Ubuntu Pro</h2>
     </div>
     <div class="grid-col">
       <div class="p-tabs js-tabbed-content">
@@ -123,7 +123,7 @@ layout='50/50'
   <div class="grid-row--50-50" id="enterprise-support">
     <hr class="p-rule" />
     <div class="grid-col">
-      <h2>24/7 Enterprise support</h2>
+      <h2>Ubuntu Pro with<br />24/7 Enterprise support</h2>
       <p>Weekday support is 50% price of 24/7 support</p>
     </div>
     <div class="grid-col">
@@ -131,16 +131,16 @@ layout='50/50'
         <div class="grid-col">
           <p class="p-text--small-caps">Workstation</p>
           <div class="p-section--shallow">
-            <h1>$300</h1>
+            <p class="p-heading--1">$300</p>
             <p class="u-text--muted">full support per machine per year</p>
           </div>
         </div>
         <div class="grid-col">
           <p class="p-text--small-caps">Server with unlimited VMs</p>
           <div class="p-section--shallow">
-            <h1>$3,400</h1>
-            <p class="u-text--muted">full support per machine per year<br />
-              $1775 infra support per machine per year
+            <p class="p-heading--1">$1,775</p>
+            <p class="u-text--muted">infra support per machine per year<br />
+              $3,400 full support per machine per year
             </p>
           </div>
         </div>
@@ -371,5 +371,7 @@ layout='50/50'
   personalTab.addEventListener('click', toggleEnterpriseSupport);
   enterpriseTab.addEventListener('click', toggleEnterpriseSupport);
 </script>
+
+  {{ load_form("/pricing/pro") | safe }}
 
 {% endblock %}

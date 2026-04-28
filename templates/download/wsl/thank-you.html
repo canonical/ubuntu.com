@@ -1,0 +1,208 @@
+{% extends "download/_base_download.html" %}
+
+{% from "_macros/vf_equal-heights.jinja" import vf_equal_heights %}
+{% from "_macros/vf_resources.jinja" import vf_resources %}
+{% from "macros/_vf-latest-news.jinja" import vf_latest_news with context %}
+
+{% set hide_inner_wrapper = True %}
+
+{% block title %}
+  Thank you {{ "for downloading Ubuntu Pro for WSL" if architecture == "pro" else "for downloading Ubuntu on WSL" }}
+{% endblock %}
+
+{% block meta_copydoc %}
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
+
+{% set pro_download_url = "https://github.com/canonical/ubuntu-pro-for-wsl/releases/latest/download/UbuntuProForWSL.msixbundle" %}
+
+{% block content %}
+
+  {% if architecture == 'pro' %}
+    <meta http-equiv="refresh" content="3;url={{ pro_download_url }}" />
+  {% elif version %}
+    {% if architecture == 'arm64' %}
+      <noscript>
+        <meta http-equiv="refresh"
+              content="3;url=https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-wsl-arm64.wsl" />
+      </noscript>
+    {% else %}
+      <noscript>
+        <meta http-equiv="refresh"
+              content="3;url=https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-wsl-amd64.wsl" />
+      </noscript>
+    {% endif %}
+  {% endif %}
+
+  <section class="p-strip is-shallow u-no-padding--bottom">
+    <div class="grid-row--50-50">
+      <div class="grid-col">
+        {% if architecture == 'pro' %}
+          <h1>Thank you for downloading Ubuntu Pro for WSL</h1>
+          <p>
+            Your download should start automatically. If it doesn't,
+            <a href="{{ pro_download_url }}">download now</a>.
+          </p>
+        {% elif version %}
+          <h1>Thank you for downloading Ubuntu {{ version }} on WSL</h1>
+          <p>
+            Your download should start automatically. If it doesn't,
+            {% if architecture == 'arm64' %}
+              <a href="https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-wsl-arm64.wsl">download now</a>.
+            {% else %}
+              <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-wsl-amd64.wsl">download now</a>.
+            {% endif %}
+            <br />
+            {% with version=version, system="wsl", checksum_system="wsl-arm64" if architecture == "arm64" else "", architecture=architecture %}
+              {% include "download/shared/_verify-checksums.html" %}
+            {% endwith %}
+          </p>
+        {% else %}
+          <h1>You have not selected an image to download</h1>
+          <p>
+            Please <a href="/download/wsl">select an image</a> to download.
+          </p>
+        {% endif %}
+      </div>
+      <div class="grid-col">
+        {% with returnUrl="/download/wsl", ga_event_title="Ubuntu WSL download" %}
+          {% include 'shared/_download-newsletter.html' %}
+        {% endwith %}
+      </div>
+    </div>
+  </section>
+
+{# djlint:off #}
+  {%- call(slot) vf_equal_heights(
+    title_text="More from Canonical",
+    attrs={ "id": "4-columns-responsive" },
+    image_aspect_ratio_small="auto",
+    image_aspect_ratio_medium="auto",
+    image_aspect_ratio_large="auto",
+    highlight_images=true,
+    items=[
+      {
+        "image_html":  "<img src='https://assets.ubuntu.com/v1/2dfe5445-landscape_logo.png' class='p-image-container__image' alt='Landscape' />",
+        "description_html": "<p>A single pane of glass to manage Ubuntu instances, including Ubuntu on WSL.</p>",
+        "cta_html": "<a href='https://ubuntu.com/landscape'>Learn more about Landscape ›</a>"
+      },
+      {
+        "image_html":  "<img src='https://assets.ubuntu.com/v1/2eeb892c-lxd_logo.png' class='p-image-container__image' alt='LXD' />",
+        "description_html": "<p>Fast, dense, and secure container and VM management at any scale.</p>",
+        "cta_html": "<a href='https://canonical.com/lxd'>Learn more about LXD ›</a>"
+      },
+      {
+        "image_html":  "<img src='https://assets.ubuntu.com/v1/d893a4f8-juju_logo.png' class='p-image-container__image' alt='Juju' />",
+        "description_html": "<p>Design and deploy entire workloads in just a few clicks.</p>",
+        "cta_html": "<a href='https://juju.is'>Learn more about Juju ›</a>"
+      },
+      {
+        "image_html":  "<img src='https://assets.ubuntu.com/v1/b2b32ae9-multipass_logo.png' class='p-image-container__image' alt='Multipass' />",
+        "description_html": "<p>Spin up Ubuntu VMs on Windows, Mac and Linux.</p>",
+        "cta_html": "<a href='https://multipass.run/'>Learn more about Multipass ›</a>"
+      }
+    ]
+  ) -%}
+  {%- endcall -%}
+  {# djlint:on #}
+
+  {# djlint:off #}
+  {%- call(slot) vf_resources(
+      title={
+        "text": "Resources",
+      },
+      blocks=[
+        {
+          "type": "resources",
+          "render_images": false,
+          "categories": [
+            {
+              "title": "Documentation",
+              "items": [
+                {
+                  "title": {
+                    "text": "Ubuntu on WSL documentation",
+                    "link_attrs": {
+                      "href": "https://documentation.ubuntu.com/wsl/stable/"
+                    }
+                  },
+                  "description": {
+                    "text": "The Ubuntu on WSL documentation, curated by community and Ubuntu developers.",
+                    "attrs": {}
+                  }
+                }
+              ]
+            },
+            {
+              "title": "Community",
+              "items": [
+                {
+                  "title": {
+                    "text": "Ask Ubuntu",
+                    "link_attrs": {
+                      "href": "https://askubuntu.com/"
+                    }
+                  },
+                  "description": {
+                    "text": "Stuck somewhere? Get your Ubuntu questions answered by power users.",
+                    "attrs": {}
+                  }
+                },
+                {
+                  "title": {
+                    "text": "Community Discourse",
+                    "link_attrs": {
+                      "href": "https://discourse.ubuntu.com/"
+                    }
+                  },
+                  "description": {
+                    "text": "Join the Ubuntu developers community and make your voice heard.",
+                    "attrs": {}
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      ) -%}
+  {%- endcall -%}
+  {# djlint:on #}
+
+  {{- vf_latest_news(title_text='Latest from our blog ›',
+    tag_name="ubuntu-wsl",
+    tag_id=3332,
+    items=3) 
+  -}}
+
+{% endblock content %}
+
+{% block footer_extra %}
+  {% if architecture == 'pro' %}
+    <script defer>
+      window.location.href = '{{ pro_download_url }}';
+    </script>
+  {% elif version %}
+    <script src="{{ versioned_static('js/dist/image-download.js') }}"></script>
+    <script defer>
+      var architecture = '{{ architecture }}';
+      var version = '{{ version }}';
+
+      if (version && architecture) {
+        var imageName = 'ubuntu-' + version + '-wsl-' + architecture + '.wsl';
+        var GAlabel = version + '-wsl-' + architecture;
+
+        if (architecture === 'arm64') {
+          window.location.href = 'https://cdimage.ubuntu.com/releases/' + version + '/release/' + imageName;
+        } else {
+          window.initImageDownload(version + '/' + imageName, GAlabel);
+        }
+      }
+    </script>
+  {% endif %}
+{% endblock footer_extra %}

@@ -35,15 +35,17 @@ meta_copydoc %}
         <div class="p-section">
           <h2>Ubuntu Core {{ releases_yaml.core_lts.version }}</h2>
         </div>
-        <div class="p-image-wrapper u-hide--small u-hide--medium">
-          {{ image(url=releases_yaml.lts.mascot_image_large.url,
-                    alt=releases_yaml.lts.name,
-                    width=releases_yaml.lts.mascot_image_large.width,
-                    height=releases_yaml.lts.mascot_image_large.height,
-                    hi_def=True,
-                    loading="auto") | safe
-          }}
-        </div>
+        {% if releases_yaml.core_lts.version | string == releases_yaml.lts.short_version.split('.')[0] %}
+          <div class="p-image-wrapper u-hide--small u-hide--medium">
+            {{ image(url=releases_yaml.lts.mascot_image_large.url,
+                        alt=releases_yaml.lts.name,
+                        width=releases_yaml.lts.mascot_image_large.width,
+                        height=releases_yaml.lts.mascot_image_large.height,
+                        hi_def=True,
+                        loading="auto") | safe
+            }}
+          </div>
+        {% endif %}
       </div>
       <div class="col">
         <div class="p-section--shallow">

@@ -1,0 +1,42 @@
+{% block outer_content %}
+  {% block content %}
+
+    <hr class="p-rule" />
+    <div class="row p-strip u-no-padding--top">
+
+      <div class="col-3">
+
+        <h3 class="u-no-padding--top">
+          <strong>Ubuntu Core 24 (Developer Preview)</strong>
+        </h3>
+
+      </div>
+
+      <div class="col-6">
+
+        <p>
+          This image of Ubuntu Core 24 is meant for evaluation and development purposes only. It should not be used in production systems.
+        </p>
+        <p>Works on:</p>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">AMD Kria&trade; KR260 Robotics Starter Kit</li>
+          <li class="p-list__item is-ticked">AMD Kria&trade; KV260 Vision AI Starter Kit</li>
+          <li class="p-list__item is-ticked">AMD Kria&trade; KD240 Drives Starter Kit</li>
+        </ul>
+        <hr class="p-rule" />
+        {% include "download/amd/_wiki_notification.html" %}
+        <p>
+          <a class="p-button--positive"
+             href="https://people.canonical.com/~platform/images/xilinx/kria-uc24/iot-limerick-kria-core24-kria-uc24-x01-20260120.img.xz">
+            Download Ubuntu Core 24
+          </a>
+        </p>
+        <p>
+          <a href="https://documentation.ubuntu.com/core/how-to-guides/deploy-an-image/install-on-amd/">Getting Started Guide for Ubuntu Core on Kria EVK</a>
+        </p>
+
+      </div>
+
+    </div>
+  {% endblock %}
+{% endblock %}

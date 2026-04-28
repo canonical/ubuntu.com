@@ -138,20 +138,77 @@ export var serverAndDesktopReleases = [
     status: "PRO_LEGACY_SUPPORT",
   },
   {
-    startDate: new Date("2025-04-01T00:00:00"),
-    endDate: new Date("2026-01-05T00:00:00"),
-    taskName: "25.04 (Plucky Puffin)",
-    status: "INTERIM_RELEASE",
+    startDate: new Date("2026-04-23T00:00:00"),
+    endDate: new Date("2036-04-23T00:00:00"),
+    taskName: "26.04 LTS (Resolute Raccoon)",
+    status: "MAIN_UNIVERSE",
   },
   {
-    startDate: new Date("2025-10-01T00:00:00"),
-    endDate: new Date("2026-07-07T00:00:00"),
-    taskName: "25.10 (Questing Quokka)",
-    status: "INTERIM_RELEASE",
+    startDate: new Date("2026-04-23T00:00:00"),
+    endDate: new Date("2031-04-23T00:00:00"),
+    taskName: "26.04 LTS (Resolute Raccoon)",
+    status: "HARDWARE_AND_MAINTENANCE_UPDATES",
+  },
+  {
+    startDate: new Date("2031-04-23T00:00:00"),
+    endDate: new Date("2036-04-23T00:00:00"),
+    taskName: "26.04 LTS (Resolute Raccoon)",
+    status: "ESM",
+  },
+  {
+    startDate: new Date("2036-04-23T00:00:00"),
+    endDate: new Date("2041-04-23T00:00:00"),
+    taskName: "26.04 LTS (Resolute Raccoon)",
+    status: "PRO_LEGACY_SUPPORT",
+  },
+  {
+    startDate: new Date("2026-04-23T00:00:00"),
+    endDate: new Date("2036-04-23T00:00:00"),
+    taskName: "26.04 LTS (Resolute Raccoon)",
+    status: "MAIN_UNIVERSE",
+  },
+  {
+    startDate: new Date("2026-04-23T00:00:00"),
+    endDate: new Date("2031-04-23T00:00:00"),
+    taskName: "26.04 LTS (Resolute Raccoon)",
+    status: "HARDWARE_AND_MAINTENANCE_UPDATES",
+  },
+  {
+    startDate: new Date("2031-04-23T00:00:00"),
+    endDate: new Date("2036-04-23T00:00:00"),
+    taskName: "26.04 LTS (Resolute Raccoon)",
+    status: "ESM",
+  },
+  {
+    startDate: new Date("2036-04-23T00:00:00"),
+    endDate: new Date("2041-04-23T00:00:00"),
+    taskName: "26.04 LTS (Resolute Raccoon)",
+    status: "PRO_LEGACY_SUPPORT",
   },
 ];
 
 export var kernelReleases = [
+  {
+    startDate: new Date("2026-04-01T00:00:00"),
+    endDate: new Date("2031-04-01T00:00:00"),
+    taskName: "26.04.0 LTS",
+    taskVersion: "7.0 kernel",
+    status: "LTS",
+  },
+  {
+    startDate: new Date("2031-04-01T00:00:00"),
+    endDate: new Date("2036-04-01T00:00:00"),
+    taskName: "26.04.0 LTS",
+    taskVersion: "7.0 kernel",
+    status: "ESM",
+  },
+  {
+    startDate: new Date("2036-04-01T00:00:00"),
+    endDate: new Date("2041-04-01T00:00:00"),
+    taskName: "26.04.0 LTS",
+    taskVersion: "7.0 kernel",
+    status: "PRO_LEGACY_SUPPORT",
+  },
   {
     startDate: new Date("2026-02-01T00:00:00"),
     endDate: new Date("2026-07-01T00:00:00"),
@@ -1286,8 +1343,7 @@ export var microStackStatus = {
 };
 
 export var desktopServerReleaseNames = [
-  "25.10 (Questing Quokka)",
-  "25.04 (Plucky Puffin)",
+  "26.04 LTS (Resolute Raccoon)",
   "24.04 LTS (Noble Numbat)",
   "22.04 LTS (Jammy Jellyfish)",
   "20.04 LTS (Focal Fossa)",
@@ -1297,6 +1353,7 @@ export var desktopServerReleaseNames = [
 ];
 
 export var kernelReleaseNames = [
+  "26.04.0 LTS",
   "24.04.4 LTS (HWE)",
   "25.10",
   "24.04.3 LTS (HWE)",
@@ -1315,6 +1372,7 @@ export var kernelReleaseNames = [
 ];
 
 export var kernelVersionNames = [
+  "7.0",
   "6.17",
   "",
   "6.14",

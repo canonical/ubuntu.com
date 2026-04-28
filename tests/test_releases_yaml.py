@@ -40,6 +40,11 @@ class TestReleasesYamlReferences(TestCase):
             # Clean up the path, removes trailing punctuation, brackets, etc.
             path = re.sub(r"[\s\|\}\)\]\,\:\;]+$", "", match)
             path = re.sub(r"\[.*$", "", path)
+            path = re.sub(
+                r"\.(split|lower|upper|replace|strip|title|capitalize)$",
+                "",
+                path,
+            )
             if path:
                 references.append(f"releases_yaml.{path}")
         return references

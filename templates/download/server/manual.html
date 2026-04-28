@@ -80,18 +80,25 @@
             The latest <abbr title="Long-term support">LTS</abbr> version of Ubuntu Server. LTS stands for long-term support &mdash; which means five years of free security and maintenance updates, extended to up to 15 years with <a href="/pro">Ubuntu Pro</a>.
           </p>
           <hr class="p-rule" />
-          <p class="u-responsive-realign">
-            <a class="p-button--positive"
-               href="/download/server/thank-you?version={{ releases_yaml.lts.full_version }}&amp;architecture=amd64&amp;lts=true"
-               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases_yaml.lts.full_version }}', 'eventValue' : undefined });">Download {{ releases_yaml.lts.full_version }} LTS
-            </a>
-            {% if releases_yaml.lts.server_iso_size %}<span class="u-text--muted">{{ releases_yaml.lts.server_iso_size }}</span>{% endif %}
+          <div class="row">
+            <div class="col-3">
+              <p class="p-heading--5">Intel or AMD 64-bit architecture</p>
+            </div>
+            <div class="col-3">
+              <a class="p-button--positive"
+                 href="/download/server/thank-you?version={{ releases_yaml.lts.full_version }}&amp;architecture=amd64&amp;lts=true"
+                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases_yaml.lts.full_version }}', 'eventValue' : undefined });">Download
+              </a>
+              {% if releases_yaml.lts.server_iso_size %}
+                <span class="u-text--muted">{{ releases_yaml.lts.server_iso_size }}</span>
+              {% endif %}
+            </div>
+          </div>
+          <p class="p-text--small">
+            For other versions of Ubuntu Server including torrents, the network installer, a list of local mirrors, and past releases <a href="/download/alternative-downloads">check out our alternative downloads</a>.
           </p>
-          <p>
-            <a href="/download/alternative-downloads">Alternative downloads&nbsp;&rsaquo;</a>
-          </p>
-          <p>
-            <a href="#architectures">Alternative architectures&nbsp;&rsaquo;</a>
+          <p class="p-text--small">
+            <a href="#architectures">Find our alternative architectures here</a>.
           </p>
         </div>
 
@@ -133,21 +140,25 @@
              role="tabpanel"
              aria-labelledby="release-notes-tab-lts">
           <ul class="p-list--divided">
-            <li class="p-list__item is-ticked">Linux 6.8 kernel with low latency kernel features enabled by default</li>
+            <li class="p-list__item is-ticked">Linux 7.0 kernel</li>
             <li class="p-list__item is-ticked">
-              Frame pointers enabled by default for the majority of packages on x86 architectures
+              Dual-track system for container stacks: traditional with regular major updates, or stable to maintain consistent versions of core components
             </li>
             <li class="p-list__item is-ticked">
-              Rust 1.75, .NET 8 and OpenJDK 21 with TCK certification in addition to other toolchain upgrades
+              Valkey 9, PostgreSQL 18, MySQL and MariaDB as long-term supported versions, and the introduction of DocumentDB
             </li>
-            <li class="p-list__item is-ticked">64-bit time_t by default on armhf to address the year 2038 issue</li>
-            <li class="p-list__item is-ticked">AppArmor-enforced unprivileged user namespaces restricted by default</li>
           </ul>
-          <hr class="p-rule" />
-          <p>
-            <a href="{{ releases_yaml.lts.release_notes_url }}"
-               aria-label="{{ releases_yaml.lts.short_version }} LTS release notes">Release notes&nbsp;&rsaquo;</a>
-          </p>
+          <hr class="p-rule--muted" />
+          <ul class="u-responsive-realign p-inline-list">
+            <li class="p-inline-list__item">
+              <a href="{{ releases_yaml.lts.blog_post_url }}"
+                 aria-label="{{ releases_yaml.lts.full_version }} LTS press release">Press release&nbsp;&rsaquo;</a>
+            </li>
+            <li class="p-inline-list__item">
+              <a href="{{ releases_yaml.lts.release_notes_url }}"
+                 aria-label="{{ releases_yaml.lts.full_version }} LTS release notes">Release notes&nbsp;&rsaquo;</a>
+            </li>
+          </ul>
         </div>
 
         <div class="p-tabs__content p-section"
@@ -155,8 +166,7 @@
              role="tabpanel"
              aria-labelledby="system-requirements-tab-lts">
           <ul class="p-list--divided">
-            <li class="p-list__item is-ticked">1 GHz processor or better</li>
-            <li class="p-list__item is-ticked">1 GB system memory</li>
+            <li class="p-list__item is-ticked">1.5 GB system memory</li>
             <li class="p-list__item is-ticked">5 GB of free hard drive space</li>
             <li class="p-list__item is-ticked">Either a USB port or a DVD drive for the installer media</li>
           </ul>
@@ -180,133 +190,7 @@
           </ol>
           <hr class="p-rule" />
           <p>
-            <a href="/tutorials/install-ubuntu-server">Follow the step-by-step tutorial&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <hr class="p-rule" />
-    </div>
-
-    <div class="row--50-50 p-section">
-      <div class="col">
-        <div class="p-section">
-          <h2>Ubuntu {{ releases_yaml.latest.full_version }}</h2>
-        </div>
-        <div class="p-image-wrapper u-hide--small">
-          {{ image(url=releases_yaml.latest.mascot_image_large.url,
-                    alt=releases_yaml.latest.name,
-                    width=releases_yaml.latest.mascot_image_large.width,
-                    height=releases_yaml.latest.mascot_image_large.height,
-                    hi_def=True,
-                    loading="auto") | safe
-          }}
-        </div>
-      </div>
-      <div class="col">
-        <div class="p-section--shallow">
-          <p>
-            The latest version of Ubuntu Server, including nine months of security and maintenance updates until {{ releases_yaml.latest.eol }}.
-          </p>
-          <hr />
-          <p class="u-responsive-realign">
-            <a class="p-button--positive"
-               href="/download/server/thank-you?version={{ releases_yaml.latest.full_version }}&amp;architecture=amd64"
-               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases_yaml.latest.full_version }}', 'eventValue' : undefined });">Download {{ releases_yaml.latest.full_version }}
-            </a>
-            {% if releases_yaml.latest.server_iso_size %}
-              <span class="u-text--muted">{{ releases_yaml.latest.server_iso_size }}</span>
-            {% endif %}
-          </p>
-        </div>
-
-        <nav class="p-tabs js-tabbed-content"
-             id="second-child-tab"
-             data-maintain-hash="true">
-          <ul class="p-tabs__list u-no-margin--bottom" role="tablist">
-            <li class="p-tabs__item">
-              <a class="p-tabs__link"
-                 role="tab"
-                 aria-selected="true"
-                 id="release-notes-tab-latest"
-                 href="#release-notes-latest"
-                 aria-controls="release-notes-latest">What's new</a>
-            </li>
-            <li class="p-tabs__item">
-              <a class="p-tabs__link"
-                 role="tab"
-                 aria-selected="false"
-                 id="system-requirements-tab-latest"
-                 href="#system-requirements-latest"
-                 aria-controls="system-requirements-latest"
-                 tabindex="-1">System requirements</a>
-            </li>
-            <li class="p-tabs__item">
-              <a class="p-tabs__link"
-                 role="tab"
-                 aria-selected="false"
-                 id="how-to-install-tab-latest"
-                 href="#how-to-install-latest"
-                 aria-controls="how-to-install-latest"
-                 tabindex="-1">How to install</a>
-            </li>
-          </ul>
-        </nav>
-
-        <div class="p-tabs__content p-section"
-             id="release-notes-latest"
-             role="tabpanel"
-             aria-labelledby="release-notes-tab-latest">
-          <ul class="p-list--divided">
-            <li class="p-list__item is-ticked">Linux 6.17 kernel</li>
-            <li class="p-list__item is-ticked">Updated Virtualization stack based on QEMU 10.1 and libvirt 11.6</li>
-          </ul>
-          <hr class="p-rule" />
-          <ul class="u-responsive-realign p-inline-list">
-            <li class="p-inline-list__item">
-              <a href="{{ releases_yaml.latest.blog_post_url }}"
-                 aria-label="{{ releases_yaml.latest.short_version }} Press Release">Press release&nbsp;&rsaquo;</a>
-            </li>
-            <li class="p-inline-list__item">
-              <a href="{{ releases_yaml.latest.release_notes_url }}"
-                 aria-label="{{ releases_yaml.latest.short_version }} release notes">Release notes&nbsp;&rsaquo;</a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="p-tabs__content p-section"
-             id="system-requirements-latest"
-             role="tabpanel"
-             aria-labelledby="system-requirements-tab-latest">
-          <ul class="p-list--divided">
-            <li class="p-list__item is-ticked">1 GHz processor or better</li>
-            <li class="p-list__item is-ticked">1 GB system memory</li>
-            <li class="p-list__item is-ticked">2.5 GB of free hard drive space</li>
-            <li class="p-list__item is-ticked">Either a USB port or a DVD drive for the installer media</li>
-          </ul>
-          <hr class="p-rule" />
-          <p>
-            <a href="https://documentation.ubuntu.com/server/reference/installation/system-requirements/">Detailed system requirements&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-
-        <div class="p-tabs__content p-section"
-             id="how-to-install-latest"
-             role="tabpanel"
-             aria-labelledby="how-to-install-tab-latest">
-          <p>To install Ubuntu Server:</p>
-          <ol class="p-list--divided">
-            <li class="p-list__item">Download the ISO image</li>
-            <li class="p-list__item">
-              Create a bootable USB flash drive with <a href="https://documentation.ubuntu.com/desktop/en/latest/how-to/create-a-bootable-usb-stick/">an image writer</a>
-            </li>
-            <li class="p-list__item">Boot from the USB flash drive</li>
-          </ol>
-          <hr class="p-rule" />
-          <p>
-            <a href="/tutorials/install-ubuntu-server">Follow the step-by-step tutorial&nbsp;&rsaquo;</a>
+            <a href="/server/docs/tutorial/basic-installation/">Follow the step-by-step tutorial&nbsp;&rsaquo;</a>
           </p>
         </div>
       </div>
@@ -327,9 +211,7 @@
               <p>BitTorrent sometimes enables higher download speeds and more reliable downloads of large files.</p>
               <hr class="p-rule" />
               <a class="p-button"
-                 href="https://releases.ubuntu.com/{{ releases_yaml.lts.short_version }}/ubuntu-{{ releases_yaml.lts.full_version }}-live-server-amd64.iso.torrent">Torrent for {{ releases_yaml.lts.full_version }} LTS</a>
-              <a class="p-button"
-                 href="https://releases.ubuntu.com/{{ releases_yaml.latest.short_version }}/ubuntu-{{ releases_yaml.latest.full_version }}-live-server-amd64.iso.torrent">Torrent for {{ releases_yaml.latest.full_version }}</a>
+                 href="https://releases.ubuntu.com/{{ releases_yaml.lts.short_version }}/ubuntu-{{ releases_yaml.lts.full_version }}-live-server-amd64.iso.torrent">Torrent for Server {{ releases_yaml.latest.full_version }}</a>
             </div>
           </div>
           <hr class="p-rule" />
