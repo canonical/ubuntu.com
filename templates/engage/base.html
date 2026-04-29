@@ -64,7 +64,7 @@
           <h1>{{ metadata["topic_name"] }}</h1>
           <p class="u-no-padding--top p-heading--4">{{ metadata['subtitle'] }}</p>
           {% if ("primary_cta" in metadata) and (metadata["primary_cta"] != "") %}
-            <p class="{% if ('show_cta_on_banner' in metadata) and (metadata["show_cta_on_banner"] == "true" ) %}u-show{% else %}u-hide{% endif %}">
+            <p class="{% if not (('show_cta_on_banner' in metadata) and (metadata["show_cta_on_banner"] == "true" )) %}u-hide--large{% endif %} u-hide--medium u-hide--small">
               <a href="{{ metadata['primary_link'] }}" class="p-button--positive">{{ metadata["primary_cta"] }}</a>
               {% if ("secondary_cta" in metadata) and (metadata["primary_cta"] != "") %}
                 <a href="{{ metadata['secondary_link'] }}" class="p-button">{{ metadata['secondary_cta'] }}</a>
