@@ -85,7 +85,6 @@ from webapp.shop.advantage.views import (
     post_offer,
     pro_activate_activation_key,
     pro_get_request_attributes,
-    pro_page_view,
     put_account_user_role,
     put_contract_entitlements,
 )
@@ -531,11 +530,7 @@ app.add_url_rule(
     "/account/last-purchase-ids/<account_id>",
     view_func=get_last_purchase_ids,
 )
-app.add_url_rule(
-    "/pro",
-    view_func=pro_page_view,
-    methods=["GET"],
-)
+
 app.add_url_rule(
     "/pro/purchase",
     view_func=post_advantage_purchase,
