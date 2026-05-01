@@ -196,7 +196,7 @@ def get_contract_token(advantage_mapper, **kwargs):
     return flask.jsonify({"contract_token": contract_token})
 
 
-@shop_decorator(area="advantage", response="html")
+@shop_decorator(area="advantage", permission="user", response="html")
 def advantage_shop_view(advantage_mapper, **kwargs):
     account = None
     if user_info(flask.session):
