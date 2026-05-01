@@ -1,6 +1,5 @@
 # Packages
 import json
-import sentry_sdk
 from typing import List
 
 import flask
