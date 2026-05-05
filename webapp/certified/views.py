@@ -87,6 +87,9 @@ def certified_routes(app):
     app.add_url_rule(
         "/certified/filters.json", view_func=get_vendors_releases_filters
     )
+    app.add_url_rule(
+        "/certified/202309-32027/contact-us", view_func=nxp_contact
+    )
 
 
 def _parse_query_params(all_releases, all_vendors):
@@ -955,6 +958,10 @@ def certified_why():
 def certified_devices():
     view = create_category_views("Ubuntu Core", "certified/devices.html")
     return view
+
+
+def nxp_contact():
+    return render_template("certified/202309-32027/contact-us.html")
 
 
 def certified_vendors(vendor):
