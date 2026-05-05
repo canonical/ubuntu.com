@@ -3,12 +3,14 @@
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 {% from "macros/_vf_rich-horizontal-list.jinja" import vf_rich_horizontal_list %}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+
 {% from "macros/_macros-resource.jinja" import resource_section %}
 
 {% block title %}Security standards{% endblock %}
 
 {% block meta_description %}
-  Automate hardening for critical workloads and meet cybersecurity standards like NIST 800-53, FedRAMP, CMMC, and CRA with Ubuntu Pro.
+  Automate hardening for critical workloads and meet cybersecurity standards like NIST 800-53, FedRAMP, CMMC 2.0, and EU CRA with Ubuntu Pro.
 {% endblock %}
 
 {% block meta_copydoc %}
@@ -87,15 +89,15 @@
         <a href="/security/cis">CIS</a>
       </h3>
       <p class="u-no-padding--top">
-        Harden your systems to CIS benchmark standards using the automation available with Ubuntu Security Guide (USG).
+        Harden your systems to CIS benchmark standards using the automation available with USG.
       </p>
     {%- endif -%}
     {%- if slot == 'list_item_4' -%}
       <h3 id="cra" class="p-heading--6 p-heading--bold u-no-padding--top">
-        <a href="https://canonical.com/solutions/open-source-security/cyber-resilience-act">CRA</a>
+        <a href="https://canonical.com/solutions/open-source-security/cyber-resilience-act">EU Cyber Resilience Act</a>
       </h3>
       <p class="u-no-padding--top">
-        Learn how Canonical’s security vulnerability management program enables you to comply with the requirements of the Cyber Resilience Act.
+        Learn how Canonical's security vulnerability management program enables you to comply with the requirements of the EU CRA.
       </p>
     {%- endif -%}
     {%- if slot == 'list_item_5' -%}
@@ -352,6 +354,28 @@
     {%- endcall -%}
   </section>
 
+  {{ vf_basic_section(title={"text": "Automate compliance with USG"},
+    items=[
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "Manual compliance is time consuming and prone to human error. Ubuntu Security Guide (USG) automates hardening and auditing for CIS Benchmarks and DISA-STIG profiles, covering hundreds of individual configuration rules that would otherwise require manual implementation, testing, and ongoing verification. Teams managing compliance across tens or hundreds of Ubuntu systems can reclaim significant engineering time, which is better spent on security improvements than repetitive audit work."
+    }
+    },
+    {
+    "type": "cta-block",
+    "item": {
+    "primary": {
+    "content_html": "Calculate your time savings",
+    "attrs": {
+    "href": "/security/compliance-automation-value-calculator"
+    }
+    }
+    }
+    },
+    ]) }}
+
   <section class="p-section">
     <div class="u-fixed-width">
       <hr class="p-rule" />
@@ -504,7 +528,7 @@
             }}
           </div>
           <p>
-            Ubuntu Pro provides an easy pathway to compliance. It delivers vulnerability patching for the entire Ubuntu Archive (Main and Universe repositories), along with automated, unattended, and restartless updates, and the best tools to secure and manage your Ubuntu infrastructure developed by the publisher of Ubuntu.
+            Ubuntu Pro is Canonical’s comprehensive subscription for open source security, support, and compliance. Get access to a trusted open source repository, hardened images and compliance profiles for security standards, and up to 15 years of timely and automated vulnerability fixes for your OS, infrastructure, and applications.
           </p>
           <hr class="p-rule--muted" />
           <p>
