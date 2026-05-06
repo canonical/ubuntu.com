@@ -14,7 +14,7 @@
   {% set show_download = metadata.resource_url and metadata.resource_url != "" and ("contact_form_only" not in metadata or metadata.contact_form_only != "true") %}
 
   {% if is_form_submission %}
-    {% set description_text = "We've emailed a copy of " ~ resource_name ~ " to " ~ form_details.email ~ ". Didn&rsquo;t get it? Check your spam folder and that you&rsquo;ve used the right email address." %}
+    {% set description_text = "We've emailed a copy of " ~ resource_name ~ " to " ~ form_details.email ~ ". Didn't get it? Check your spam folder and that you've used the right email address." %}
   {% elif "thank_you_text" in metadata %}
     {% set description_text = metadata["thank_you_text"] %}
   {% else %}
