@@ -1,8 +1,10 @@
 {% extends "engage/base_engage.html" %}
 
 {% set hide_nav = False %}
+{% set hide_inner_wrapper = True %}
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_resources.jinja" import vf_resources %}
 
 {% block title %}Download {{ resource_name }}{% endblock %}
 
@@ -99,6 +101,45 @@
     blocks=hero_blocks
   ) -%}
   {% endcall -%}
+
+
+  {% if related_pages_metadata %}
+    {% set ns = namespace(resource_items=[]) %}
+    {% for page in related_pages_metadata %}
+      {% set ns.resource_items = ns.resource_items + [{
+        "title": {
+          "text": page["topic_name"],
+          "link_attrs": {"href": page["path"]}
+        },
+        "description": {"text": page["subtitle"]},
+        "metadata": {
+          "date": {"text": page["updated"].strftime("%-d %B %Y")}
+        },
+        "image": {
+          "type": "default",
+          "attrs": {
+            "src": page["meta_image"],
+            "alt": page["topic_name"],
+            "width": page["image_width"],
+            "height": page["image_height"]
+          }
+        }
+      }] %}
+    {% endfor %}
+
+    {% call(slot) vf_resources(
+      title={"text": "Additional resources"},
+      blocks=[
+        {
+          "type": "resources",
+          "render_images": true,
+          "render_categories": false,
+          "categories": [{"items": ns.resource_items}]
+        }
+      ]
+    ) -%}
+    {% endcall -%}
+  {% endif %}
 
   {{ load_form("/contact-us") | safe }}
 

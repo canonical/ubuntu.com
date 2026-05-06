@@ -623,6 +623,18 @@ def engage_thank_you(engage_pages):
         except KeyError:
             form_details = None
 
+        related_pages_metadata = []
+        if "related_urls" in metadata:
+            if metadata["related_urls"].strip() != "":
+                related_urls = metadata["related_urls"].split(",")
+                # Only show maximum of 3 related pages
+                for url in related_urls[:3]:
+                    page_metadata = engage_pages.get_engage_page(
+                        url.strip()
+                    )
+                    if page_metadata is not None:
+                        related_pages_metadata.append(page_metadata)
+
         return flask.render_template(
             template_language,
             request_url=flask.request.referrer,
@@ -631,6 +643,7 @@ def engage_thank_you(engage_pages):
             resource_name=metadata["type"],
             resource_url=metadata["resource_url"],
             form_details=form_details,
+            related_pages_metadata=related_pages_metadata,
         )
 
     return render_template
