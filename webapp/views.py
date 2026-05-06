@@ -626,6 +626,7 @@ def engage_thank_you(engage_pages):
         return flask.render_template(
             template_language,
             request_url=flask.request.referrer,
+            engage_path=path,
             metadata=metadata,
             resource_name=metadata["type"],
             resource_url=metadata["resource_url"],
