@@ -6,7 +6,7 @@
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_resources.jinja" import vf_resources %}
 
-{% block title %}Download {{ resource_name }}{% endblock %}
+{% block title %}{{ translations.page_title.format(resource_name=resource_name) }}{% endblock %}
 
 {% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 
@@ -16,11 +16,11 @@
   {% set show_download = metadata.resource_url and metadata.resource_url != "" and ("contact_form_only" not in metadata or metadata.contact_form_only != "true") %}
 
   {% if is_form_submission %}
-    {% set description_text = "We've emailed a copy of " ~ resource_name ~ " to " ~ form_details.email ~ ". Didn't get it? Check your spam folder and that you've used the right email address." %}
+    {% set description_text = translations.email_sent.format(resource_name=resource_name, email=form_details.email) %}
   {% elif "thank_you_text" in metadata %}
     {% set description_text = metadata["thank_you_text"] %}
   {% else %}
-    {% set description_text = "The " ~ resource_name ~ " is now ready to download." %}
+    {% set description_text = translations.ready_to_download.format(resource_name=resource_name) %}
   {% endif %}
 
   {% set hero_image_block = {
@@ -46,14 +46,14 @@
       "padding": "shallow",
       "item": {
         "primary": {
-          "content_html": "Go back",
+          "content_html": translations.go_back,
           "attrs": {
             "href": engage_path
           }
         },
         "secondaries": [
           {
-            "content_html": "Contact us",
+            "content_html": translations.contact_us,
             "attrs": {
               "href": "/contact-us#get-in-touch",
               "class": "js-invoke-modal"
@@ -68,7 +68,7 @@
       "padding": "shallow",
       "item": {
         "primary": {
-          "content_html": "Download",
+          "content_html": translations.download,
           "attrs": {
             "href": resource_url
           }
@@ -98,7 +98,7 @@
 
   {% if not related_pages_metadata %}<div class="p-section">{% endif %}
     {% call(slot) vf_hero(
-      title_text='Thank you',
+      title_text=translations.heading,
       layout='50/50',
       is_split_on_medium=true,
       blocks=hero_blocks
@@ -135,7 +135,7 @@
     {% endfor %}
     <div class="p-section">
       {% call(slot) vf_resources(
-        title={"text": "Additional resources"},
+        title={"text": translations.additional_resources},
         blocks=[
         {
             "type": "resources",
