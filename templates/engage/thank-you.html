@@ -89,55 +89,64 @@
       }
     }
   ] %}
+
   {% if hero_cta_block %}
     {% set hero_blocks = hero_blocks + [hero_cta_block] %}
   {% endif %}
+
   {% set hero_blocks = hero_blocks + [hero_image_block] %}
 
-  {% call(slot) vf_hero(
-    title_text='Thank you',
-    layout='50/50',
-    is_split_on_medium=true,
-    blocks=hero_blocks
-  ) -%}
-  {% endcall -%}
-
-  {% if related_pages_metadata %}
-    {% set ns = namespace(resource_items=[]) %}
-    {% for page in related_pages_metadata %}
-      {% set ns.resource_items = ns.resource_items + [{
-        "title": {
-          "text": page["topic_name"],
-          "link_attrs": {"href": page["path"]}
-        },
-        "description": {"text": page.get("subtitle", "")},
-        "metadata": {
-          "date": {"text": page["updated"].strftime("%-d %B %Y") if page.get("updated") else ""}
-        },
-        "image": {
-          "type": "default",
-          "attrs": {
-            "src": page.get("meta_image", ""),
-            "alt": page["topic_name"],
-            "width": page.get("image_width", ""),
-            "height": page.get("image_height", "")
-          }
-        }
-      }] %}
-    {% endfor %}
-
-    {% call(slot) vf_resources(
-      title={"text": "Additional resources"},
-      blocks=[
-        {
-          "type": "resources",
-          "render_images": true,
-          "render_categories": false,
-          "categories": [{"items": ns.resource_items}]
-        }
-      ]
+  {% if not related_pages_metadata %}<div class="p-section">{% endif %}
+    {% call(slot) vf_hero(
+      title_text='Thank you',
+      layout='50/50',
+      is_split_on_medium=true,
+      blocks=hero_blocks
     ) -%}
     {% endcall -%}
+  {% if not related_pages_metadata %}</div>{% endif %}
+
+  <!-- Additional Resources -->
+  {% if related_pages_metadata %}
+    {% set ns = namespace(resource_categories=[]) %}
+    {% for page in related_pages_metadata %}
+      {% set ns.resource_categories = ns.resource_categories + [{
+        "title": page["type"],
+        "items":[{
+          "title": {
+            "text": page["topic_name"],
+            "link_attrs": {"href": page["path"]}
+          },
+          "description": {"text": page.get("subtitle", "")},
+          "metadata": {
+            "date": {"text": page["updated"].strftime("%-d %B %Y") if page.get("updated") else ""}
+          },
+          "image": {
+            "type": "default",
+            "attrs": {
+              "src": page.get("meta_image", ""),
+              "alt": page["topic_name"],
+              "width": page.get("image_width", ""),
+              "height": page.get("image_height", "")
+            }
+          }
+        }]
+      }] %}
+    {% endfor %}
+    <div class="p-section">
+      {% call(slot) vf_resources(
+        title={"text": "Additional resources"},
+        blocks=[
+        {
+            "type": "resources",
+            "render_images": true,
+            "render_categories": true,
+            "categories": ns.resource_categories
+          }
+        ]
+      ) -%}
+      {% endcall -%}
+    </div>
   {% endif %}
 
   {{ load_form("/contact-us") | safe }}
