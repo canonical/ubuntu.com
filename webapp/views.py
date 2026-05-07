@@ -640,7 +640,7 @@ def engage_thank_you(engage_pages):
 
         lang_raw = (metadata.get("language") or "en").strip()
         lang_base = lang_raw.split("-")[0].lower()
-        t = _thank_you_translations(lang_base)
+        translations = _thank_you_translations(lang_base)
 
         try:
             form_details = flask.session["form_details"]
@@ -660,7 +660,7 @@ def engage_thank_you(engage_pages):
             resource_url=metadata["resource_url"],
             form_details=form_details,
             related_pages_metadata=related_pages_metadata,
-            t=t,
+            translations=translations,
         )
 
     return render_template
