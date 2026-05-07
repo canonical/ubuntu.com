@@ -1369,6 +1369,9 @@ class TestEngageThankYouTranslations(BaseViewTestCase):
         ):
             view(language="fr", page="some-slug")
 
+        mock_render.assert_called_once()
+        template_name = mock_render.call_args.args[0]
         kwargs = mock_render.call_args.kwargs
+        self.assertEqual(template_name, "engage/thank-you.html")
         self.assertEqual(kwargs["translations"]["heading"], "Merci")
         self.assertEqual(kwargs["translations"]["download"], "Téléchargée")
