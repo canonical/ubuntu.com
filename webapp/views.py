@@ -589,6 +589,23 @@ def match_tags(tags_1, tags_2):
     return False
 
 
+def _thank_you_translations(lang_base):
+    """Resolve thank-you UI strings for a given normalized language code.
+
+    Strips the ``thank_you_`` prefix so templates can use ``{{ t.heading }}``
+    instead of ``{{ t.thank_you_heading }}``. Falls back to English per key
+    when the language has no entry for that key.
+    """
+    prefix = "thank_you_"
+    return {
+        key[len(prefix):]: ENGAGE_UI_TRANSLATIONS[key].get(
+            lang_base, ENGAGE_UI_TRANSLATIONS[key]["en"]
+        )
+        for key in ENGAGE_UI_TRANSLATIONS
+        if key.startswith(prefix)
+    }
+
+
 def engage_thank_you(engage_pages):
     """
     Renders an engage pages thank-you page
@@ -621,11 +638,9 @@ def engage_thank_you(engage_pages):
         ):
             return flask.abort(404)
 
-        language = metadata["language"]
-        if language and language != "en":
-            template_language = f"engage/shared/_{language}_thank-you.html"
-        else:
-            template_language = "engage/thank-you.html"
+        lang_raw = (metadata.get("language") or "en").strip()
+        lang_base = lang_raw.split("-")[0].lower()
+        t = _thank_you_translations(lang_base)
 
         try:
             form_details = flask.session["form_details"]
@@ -637,7 +652,7 @@ def engage_thank_you(engage_pages):
         )
 
         return flask.render_template(
-            template_language,
+            "engage/thank-you.html",
             request_url=flask.request.referrer,
             engage_path=path,
             metadata=metadata,
@@ -645,6 +660,7 @@ def engage_thank_you(engage_pages):
             resource_url=metadata["resource_url"],
             form_details=form_details,
             related_pages_metadata=related_pages_metadata,
+            t=t,
         )
 
     return render_template
