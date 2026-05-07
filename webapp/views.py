@@ -629,9 +629,7 @@ def engage_thank_you(engage_pages):
                 related_urls = metadata["related_urls"].split(",")
                 # Only show maximum of 3 related pages
                 for url in related_urls[:3]:
-                    page_metadata = engage_pages.get_engage_page(
-                        url.strip()
-                    )
+                    page_metadata = engage_pages.get_engage_page(url.strip())
                     if page_metadata is not None:
                         related_pages_metadata.append(page_metadata)
 
