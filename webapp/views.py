@@ -592,9 +592,10 @@ def match_tags(tags_1, tags_2):
 def _thank_you_translations(lang_base):
     """Resolve thank-you UI strings for a given normalized language code.
 
-    Strips the ``thank_you_`` prefix so templates can use ``{{ t.heading }}``
-    instead of ``{{ t.thank_you_heading }}``. Falls back to English per key
-    when the language has no entry for that key.
+    Strips the ``thank_you_`` prefix so templates can use
+    ``{{ translations.heading }}`` instead of
+    ``{{ translations.thank_you_heading }}``. Falls back to English per
+    key when the language has no entry for that key.
     """
     prefix = "thank_you_"
     return {
