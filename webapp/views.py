@@ -526,6 +526,23 @@ def build_engage_page_resources(engage_docs):
     return engage_page_resources
 
 
+def _get_related_pages_metadata(metadata, engage_pages, limit=3):
+    """
+    Resolve up to `limit` related-page metadata entries from a Discourse
+    engage page's `related_urls` field. Handles missing/None/empty values.
+    """
+    related_urls_raw = (metadata.get("related_urls") or "").strip()
+    if not related_urls_raw:
+        return []
+
+    related_pages_metadata = []
+    for url in related_urls_raw.split(",")[:limit]:
+        page_metadata = engage_pages.get_engage_page(url.strip())
+        if page_metadata is not None:
+            related_pages_metadata.append(page_metadata)
+    return related_pages_metadata
+
+
 def build_engage_page(engage_pages):
     def engage_page(language, page):
         if language:
@@ -536,17 +553,9 @@ def build_engage_page(engage_pages):
         if not metadata:
             flask.abort(404)
         else:
-            related_pages_metadata = []
-            if "related_urls" in metadata:
-                if metadata["related_urls"].strip() != "":
-                    related_urls = metadata["related_urls"].split(",")
-                    # Only show maximum of 3 related pages
-                    for url in related_urls[:3]:
-                        page_metadata = engage_pages.get_engage_page(
-                            url.strip()
-                        )
-                        if page_metadata is not None:
-                            related_pages_metadata.append(page_metadata)
+            related_pages_metadata = _get_related_pages_metadata(
+                metadata, engage_pages
+            )
 
             # Generate translated UI strings for template
             lang_raw = (metadata.get("language") or "en").strip()
@@ -623,15 +632,9 @@ def engage_thank_you(engage_pages):
         except KeyError:
             form_details = None
 
-        related_pages_metadata = []
-        if "related_urls" in metadata:
-            if metadata["related_urls"].strip() != "":
-                related_urls = metadata["related_urls"].split(",")
-                # Only show maximum of 3 related pages
-                for url in related_urls[:3]:
-                    page_metadata = engage_pages.get_engage_page(url.strip())
-                    if page_metadata is not None:
-                        related_pages_metadata.append(page_metadata)
+        related_pages_metadata = _get_related_pages_metadata(
+            metadata, engage_pages
+        )
 
         return flask.render_template(
             template_language,
