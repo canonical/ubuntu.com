@@ -1,6 +1,6 @@
 {% extends "advantage/base_advantage.html" %}
 
-{% block title %}Ubuntu Advantage - Magic Attach{% endblock %}
+{% block title %}Ubuntu Pro - Magic Attach{% endblock %}
 {% block meta_description %}Magically attach devices with your {% endblock %}
 
 {% block content %}
@@ -9,13 +9,13 @@
     {% if 'success' in status %}
     <div class="p-notification--positive m-auto w-50" id="notification-success">
         <div class="p-notification__content">
-            <h5 class="p-notification__title">Success</h5>
-            <p class="p-notification__message">Successfully Attached Machine</p>
+            <h5 class="p-notification__title">Continue on your machine</h5>
+            <p class="p-notification__message">You can go back to the app or terminal now.</p>
         </div>
         <div class="p-notification__meta">
             <div class="p-notification__actions">
                 <a class="p-notification__action"><button onclick="history.back()"> Try another code</button></a>
-                <a class="p-notification__action" href="/pro/dashboard"><button>Your Subscriptions</button></a>
+                <a class="p-notification__action" href="/pro/dashboard"><button>Your subscriptions</button></a>
             </div>
         </div>
     </div>
@@ -28,7 +28,7 @@
         <div class="p-notification__meta">
             <div class="p-notification__actions">
                 <a class="p-notification__action"><button onclick="history.back()"> Try another code</button></a>
-                <a class="p-notification__action" href="/pro/dashboard"><button>Your Subscriptions</button></a>
+                <a class="p-notification__action" href="/pro/dashboard"><button>Your subscriptions</button></a>
             </div>
         </div>
     </div>
