@@ -102,7 +102,6 @@
   ) -%}
   {% endcall -%}
 
-
   {% if related_pages_metadata %}
     {% set ns = namespace(resource_items=[]) %}
     {% for page in related_pages_metadata %}
@@ -111,17 +110,17 @@
           "text": page["topic_name"],
           "link_attrs": {"href": page["path"]}
         },
-        "description": {"text": page["subtitle"]},
+        "description": {"text": page.get("subtitle", "")},
         "metadata": {
-          "date": {"text": page["updated"].strftime("%-d %B %Y")}
+          "date": {"text": page["updated"].strftime("%-d %B %Y") if page.get("updated") else ""}
         },
         "image": {
           "type": "default",
           "attrs": {
-            "src": page["meta_image"],
+            "src": page.get("meta_image", ""),
             "alt": page["topic_name"],
-            "width": page["image_width"],
-            "height": page["image_height"]
+            "width": page.get("image_width", ""),
+            "height": page.get("image_height", "")
           }
         }
       }] %}
