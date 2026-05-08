@@ -597,14 +597,25 @@ def _thank_you_translations(lang_base):
     ``{{ translations.thank_you_heading }}``. Falls back to English per
     key when the language has no entry for that key.
     """
-    prefix = "thank_you_"
-    return {
-        key[len(prefix) :]: ENGAGE_UI_TRANSLATIONS[key].get(
-            lang_base, ENGAGE_UI_TRANSLATIONS[key]["en"]
-        )
-        for key in ENGAGE_UI_TRANSLATIONS
-        if key.startswith(prefix)
-    }
+    THANK_YOU_PREFIX = "thank_you_"
+    prefix_length = len(THANK_YOU_PREFIX)
+
+    translations = {}
+    for key in ENGAGE_UI_TRANSLATIONS:
+        if not key.startswith(THANK_YOU_PREFIX):
+            continue
+
+        translation_key = key[prefix_length:]
+        translation_data = ENGAGE_UI_TRANSLATIONS[key]
+
+        # Get translation with fallback to English
+        translation_value = translation_data.get(lang_base)
+        if translation_value is None:
+            translation_value = translation_data.get("en", "")
+
+        translations[translation_key] = translation_value
+
+    return translations
 
 
 def engage_thank_you(engage_pages):
@@ -654,7 +665,6 @@ def engage_thank_you(engage_pages):
 
         return flask.render_template(
             "engage/thank-you.html",
-            request_url=flask.request.referrer,
             engage_path=path,
             metadata=metadata,
             resource_name=metadata["type"],
