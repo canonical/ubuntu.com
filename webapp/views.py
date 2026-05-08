@@ -599,7 +599,7 @@ def _thank_you_translations(lang_base):
     """
     prefix = "thank_you_"
     return {
-        key[len(prefix):]: ENGAGE_UI_TRANSLATIONS[key].get(
+        key[len(prefix) :]: ENGAGE_UI_TRANSLATIONS[key].get(
             lang_base, ENGAGE_UI_TRANSLATIONS[key]["en"]
         )
         for key in ENGAGE_UI_TRANSLATIONS

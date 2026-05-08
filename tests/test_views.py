@@ -747,11 +747,7 @@ class TestGetRelatedPagesMetadata(TestCase):
             }
         )
         result = _get_related_pages_metadata(
-            {
-                "related_urls": (
-                    "/engage/a,/engage/b,/engage/c,/engage/d"
-                )
-            },
+            {"related_urls": ("/engage/a,/engage/b,/engage/c,/engage/d")},
             engage_pages,
         )
         self.assertEqual(

@@ -17,7 +17,9 @@ PLACEHOLDER_RE = re.compile(r"\{(\w+)\}")
 
 class TestThankYouTranslations(TestCase):
     def _thank_you_keys(self):
-        return [k for k in ENGAGE_UI_TRANSLATIONS if k.startswith("thank_you_")]
+        return [
+            k for k in ENGAGE_UI_TRANSLATIONS if k.startswith("thank_you_")
+        ]
 
     def test_every_thank_you_key_has_english(self):
         for key in self._thank_you_keys():
