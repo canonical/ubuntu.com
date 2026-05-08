@@ -121,15 +121,15 @@
           "metadata": {
             "date": {"text": page["updated"].strftime("%-d %B %Y") if page.get("updated") else ""}
           },
-          "image": {
+          "image": ({
             "type": "default",
             "attrs": {
-              "src": page.get("meta_image", ""),
+              "src": page["meta_image"],
               "alt": page["topic_name"],
               "width": page.get("image_width", ""),
               "height": page.get("image_height", "")
             }
-          }
+          } if page.get("meta_image") else None)
         }]
       }] %}
     {% endfor %}
