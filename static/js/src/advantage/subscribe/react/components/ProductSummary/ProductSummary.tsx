@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Col, Row, Select, StatusLabel } from "@canonical/react-components";
+import { Chip, Col, Row, Select } from "@canonical/react-components";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 import {
   isIoTDevice,
@@ -120,9 +120,12 @@ const ProductSummary = () => {
             style={{ display: "flex", alignItems: "flex-end" }}
           >
             {product?.canBeTrialled && productUser !== ProductUsers.myself ? (
-              <StatusLabel appearance="positive" style={{ marginRight: "1rem" }}>
-                Free trial on checkout
-              </StatusLabel>
+              <Chip
+                appearance="positive"
+                style={{ marginRight: "1rem", marginBottom: "0" }}
+                value="Free trial on checkout"
+              >
+              </Chip>
             ) : null}
             <PaymentButton style={{ marginBottom: "0" }} />
           </Col>
@@ -210,9 +213,12 @@ const ProductSummary = () => {
           </Col>
           {product?.canBeTrialled && productUser !== ProductUsers.myself ? (
             <Col size={12}>
-              <StatusLabel appearance="positive" style={{ marginRight: "1rem" }}>
-                Free trial on checkout
-              </StatusLabel>
+              <Chip
+                appearance="positive"
+                style={{ marginRight: "1rem", marginBottom: "0" }}
+                value="Free trial on checkout"
+              >
+              </Chip>
             </Col>
           ) : null}
         </Row>
