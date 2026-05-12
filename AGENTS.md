@@ -11,7 +11,7 @@
 
 ### Core application
 
-- `/app.py`: thin top-level entrypoint that wires the application together.
+- `/app.py`: thin WSGI/Gunicorn entrypoint that exposes `webapp.app:app`.
 - `/webapp/app.py`: main Flask app setup and route registration.
 - `/webapp/views.py`: primary view functions for most routes.
 - `/webapp/context.py`: shared template context, including navigation loading.
