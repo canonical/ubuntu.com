@@ -136,6 +136,30 @@ Important notes from validation:
 - If you need local overrides for browser tests, copy `.env` to `.env.local` and edit the copy.
 - The config excludes `tests/playwright/tests/pro/**` by default, and also excludes `forms/**` unless `INCLUDE_FORMS` is set.
 
+## Relevant env variables
+
+Use `/.env` as the checked-in local baseline. For machine-specific overrides, prefer `/.env.local`; Taskfile loads `.env.local` before `.env`, and Playwright also reads `.env.local`.
+
+This list is intentionally not exhaustive. It covers the variables agents most often need to understand when running locally, debugging, or reproducing CI behavior. For the larger deploy-time set, inspect `/konf/site.yaml`, `/rockcraft.yaml`, and `/charm/charmcraft.yaml`.
+
+- `SECRET_KEY`: required for Flask startup and sessions. If it is missing, `./entrypoint` fails immediately. For local and CI runs, an insecure test/dev value is fine; do not commit real secrets.
+- `PORT`: local port used by Taskfile and CI smoke tests. Default here is `8001`.
+- `FLASK_DEBUG`: toggles the debug/reload path in `/entrypoint`. Use it for local development only; it enables Gunicorn reload and verbose logs.
+- `FLASK_ENV`: runtime environment label used by app behavior such as Sentry environment tagging and some non-production checks. Set it when you need to mimic staging/production-specific branches.
+- `NODE_ENV`: frontend build mode. Set `NODE_ENV=development` when you want non-minified frontend assets or React Query devtools behavior during local debugging.
+- `CAPTCHA_TESTING_API_KEY`: test reCAPTCHA site key injected into the frontend build and templates. Keep this set locally/CI so forms do not depend on production captcha configuration.
+- `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD`: macOS-only workaround for some `dotrun` setups when Chromium download fails.
+- `INCLUDE_FORMS`: Playwright toggle. Set it when you want browser tests to include `tests/playwright/tests/forms/**`; otherwise those tests are skipped.
+- `PLAYWRIGHT_USER_ID` / `PLAYWRIGHT_USER_PASSWORD`: credentials used by Playwright helpers for login-required flows. Only needed for browser tests that authenticate.
+- `STRIPE_PUBLISHABLE_KEY`: public checkout key exposed to templates. Local/CI use the checked-in test key; production uses a deploy-time value.
+- `SEARCH_API_KEY`: enables search-backed routes and related tests. A fake key is enough for most local/CI runs unless you are validating the real integration.
+- `MARKETO_API_URL`: base URL for Marketo-backed pages/tests. The checked-in staging-style URL is sufficient for most local development.
+- `STORE_MAINTENANCE`, `STORE_MAINTENANCE_START`, `STORE_MAINTENANCE_END`: control the shop maintenance banner/window. Only change these when reproducing or testing store-maintenance behavior.
+- `CRED_MAINTENANCE`, `CRED_MAINTENANCE_START`, `CRED_MAINTENANCE_END`: equivalent maintenance controls for credentials flows.
+- `CREDENTIALS_CONFIDENTIALITY_ENABLED`, `CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME`, `CONFIDENTIALITY_AGREEMENT_WEBHOOK_PASSWORD`: credential-confidentiality feature toggle and local webhook auth placeholders for the credentials area.
+- `DISCOURSE_API_KEY` / `DISCOURSE_API_USERNAME`, `WORDPRESS_USERNAME` / `WORDPRESS_APPLICATION_PASSWORD`: content-integration credentials for Discourse/WordPress-backed pages. The checked-in local values are placeholders for development and tests.
+- `GOOGLE_CLOUD_DISABLE_GRPC`: local compatibility toggle for Google client usage in credential-related flows. Leave it enabled unless you are deliberately debugging the gRPC path.
+
 ## Running the tests
 
 Prefer Taskfile when possible:
