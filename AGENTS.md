@@ -79,7 +79,7 @@ Why this is the safest path:
 Use this when you cannot install Taskfile locally:
 
 ```bash
-cd /home/runner/work/ubuntu.com/ubuntu.com
+cd <repository-root>
 python3 -m venv .venv
 . .venv/bin/activate
 python -m pip install --upgrade pip
