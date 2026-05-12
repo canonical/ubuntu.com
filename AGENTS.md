@@ -45,7 +45,7 @@
 
 ### Tooling and CI
 
-- `/taskfile.yaml`: preferred local workflow. Installs Python 3.10 and Node 20 via `mise`, creates `.venv`, and wraps build/lint/test/start commands.
+- `/taskfile.yaml`: preferred local workflow. Bootstraps `mise` if needed, installs Python 3.10 and Node 20, creates `.venv`, and wraps build/lint/test/start commands.
 - `/package.json`: authoritative list of Yarn scripts for build, lint, and tests.
 - `/requirements.txt`: pinned Python dependencies.
 - `/.env`: checked-in local development defaults. The app will not boot via `./entrypoint` unless these variables are exported first.
@@ -58,7 +58,7 @@
 
 ### Preferred path: Taskfile
 
-1. Install Taskfile first. The repository expects the external `task` binary; it was **not** preinstalled in this environment.
+1. Install Taskfile first. The repository requires the external `task` binary.
 2. Run:
 
    ```bash
@@ -166,7 +166,7 @@ Observed behavior:
 
 ## Upgrading Python dependencies
 
-This repo does **not** use `uv`, `pip-tools`, or `poetry`. `requirements.txt` is the source of truth.
+This repo does **not** use `uv`, `pip-tools`, or `poetry`. `requirements.txt` is the checked-in list of pinned Python dependencies used by local setup and CI.
 
 To upgrade one dependency:
 
