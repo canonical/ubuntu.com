@@ -112,7 +112,7 @@ class RedisRequires(Object):
         """
         if not (relation_data := self.relation_data):
             return None
-            
+
         redis_host = relation_data.get("hostname")
 
         if app_data := self.app_data:
