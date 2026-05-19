@@ -87,10 +87,10 @@
           <picture>
             <source srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
                     media="(max-width: 1036px)" />
-            {{ image(url={{ releases_yaml.lts.mascot_image_large.url }},
+            {{ image(url=releases_yaml.lts.mascot_image_large.url,
                         alt="",
-                        width={{ releases_yaml.lts.mascot_image_large.width }},
-                        height={{ releases_yaml.lts.mascot_image_large.height }},
+                        width=releases_yaml.lts.mascot_image_large.width,
+                        height=releases_yaml.lts.mascot_image_large.height,
                         hi_def=True,
                         loading="auto",
                         attrs={"id": "takeover-image"}) | safe
