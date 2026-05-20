@@ -21,9 +21,22 @@ jobs:
     steps:
       - name: Checkout SCM
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+
+      - name: Get merge base commit SHA
+        id: base_commit
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          git fetch origin "$BASE_REF"
+          echo "sha=$(git merge-base HEAD origin/$BASE_REF)" >> $GITHUB_OUTPUT
 
       - uses: ./.github/actions/percy-snapshot
         with:
+          base_ref: ${{ github.base_ref }}
+          base_commit: ${{ steps.base_commit.outputs.sha }}
           branch_name: ${{ github.head_ref }}
-          commitsh: ${{ github.sha }}
+          commitsh: ${{ github.event.pull_request.head.sha }}
           percy_token_write: ${{ secrets.PERCY_TOKEN_WRITE }}
