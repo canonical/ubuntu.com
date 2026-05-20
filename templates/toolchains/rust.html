@@ -1,0 +1,196 @@
+{% extends "toolchains/base_toolchains.html" %}
+
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1lDWpKnBN2OKXx8JKjeFFuRwaLcLUBaZ7DDVk_FEHbN0
+{% endblock meta_copydoc %}
+
+{% block title %}Rust security and support – Canonical’s Rust offering for Ubuntu{% endblock %}
+
+{% block meta_description %}
+  Explore Canonical’s Rust for Ubuntu offering, and learn about how to get started
+{% endblock %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+
+  {% call(slot) vf_hero(
+    title_text='Rust for Ubuntu',
+    subtitle_text='Built on trust, built with Rust' | safe,
+    layout='25/75'
+    ) -%}
+    {%- if slot == 'signpost_image' -%}
+      {{ image(url="https://assets.ubuntu.com/v1/944c23e9-rust_logo.png",
+            alt="",
+            width="854",
+            height="216",
+            hi_def=True,
+            loading="auto") | safe
+      }}
+    {%- endif -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Whether you’re an enterprise looking for securely designed code, or a builder exploring the toolchain, Ubuntu is the best platform for Rust development.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="https://documentation.ubuntu.com/ubuntu-for-developers/howto/rust-setup/"
+         class="p-button--positive u-no-margin--bottom">Use Rust on Ubuntu</a>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {{ vf_basic_section(
+    title={"text": "Zero to Rust development in minutes"},
+    items=[
+      {
+        "type": "description",
+        "item": {
+          "type": "html",
+          "content": "
+            <p>
+              Trying out Rust for the first time? Or maybe you want bleeding-edge nightly builds? Whatever your use case, our rustup snap makes it easy to get any Rust toolchain onto your machine. Simply run the commands below:
+            </p>
+          "
+        }
+      },
+      {
+        "type": "code-block",
+        "item": {
+          "content": 'sudo snap install rustup; rustup install stable',
+          "is_code_snippet": true
+        }
+      },
+      {
+        "type": "description",
+        "item": {
+          "type": "html",
+          "content": "
+            <p>
+              rustup serves you a full compiler suite, alongside a language server, formatting, and linting. Batteries are included – just bring your favorite IDE.
+            </p>
+          "
+        }
+      },
+    ],
+  ) }}
+
+  {{ vf_basic_section(
+    title={"text": "You can count on us"},
+    items=[
+      {
+        "type": "description",
+        "item": {
+          "type": "html",
+          "content": "
+            <p>
+              Rust is still an evolving language, but that doesn’t mean you need to compromise on stability and reproducibility. We provide as-needed backports of the newest Rust toolchains for the two most recent Ubuntu LTS releases, helping to ensure that any fixes for bugs and vulnerabilities requiring newer Rust toolchains can be applied.
+            </p>
+          "
+        }
+      },
+      {
+        "type": "description",
+        "item": {
+          "type": "html",
+          "content": "
+            <p>
+              We also take care of security maintenance. With Ubuntu Pro, our support lifetime for Rust toolchain packages on Ubuntu LTS releases is consistent with other Universe packages (up to 15 years).
+            </p>
+          "
+        }
+      },
+      {
+        "type": "image",
+        "padding": "shallow",
+        "item": {
+          "aspect_ratio": "16-9",
+          "is_highlighted": false,
+          "attrs": image(url="https://assets.ubuntu.com/v1/f0bebac2-count_on_us.png",
+            alt="",
+            width="1800",
+            height="1200",
+            hi_def=True,
+            loading="lazy",
+            output_mode="attrs",
+            attrs={"class": "p-image-container__image"},
+            )
+        }
+      },
+      {
+        "type": "description",
+        "item": {
+          "type": "html",
+          "content": "
+            <p>
+              What’s more, Ubuntu 26.04 LTS comes with <a href='https://documentation.ubuntu.com/release-notes/26.04/changes-since-previous-interim/#rust-cargo-auditable'>cargo-auditable functionality</a> as opt-in for Rust binaries, giving you peace of mind when it comes to auditing bugs and security vulnerabilities in production.
+            </p>
+          "
+        }
+      },
+    ],
+  ) }}
+
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+    {%- if slot == 'title' -%}
+      <h2>And we’re not done yet…</h2>
+    {%- endif -%}
+
+    {%- if slot == 'description' -%}
+      <p>
+        We’re committed to <a href="https://discourse.ubuntu.com/t/carefully-but-purposefully-oxidising-ubuntu/56995">carefully but purposefully oxidizing Ubuntu</a>. From Kernel Space to Userland, we’re focusing our efforts on replacing legacy C code with Rust, setting up a solid foundation for building Rust tools, and sharing our results with the world.
+      </p>
+      <p>
+        Our team of Rust advocates are busy working on new features to improve the Rust developer experience on Ubuntu.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">Chiseled Rust containers</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+      <p>
+        Canonical’s answer to the distroless security gap, our chiseled Ubuntu containers are managed bottom-up using Chisel, a novel package manager that slices packages to create compact, securely designed software. Minimal in size, but retaining all the metadata needed for accurate security scans.
+      </p>
+      <div class="p-cta-block">
+        <a href="https://hub.docker.com/r/ubuntu/rust">Try out our chiseled Rust containers&nbsp;&rsaquo;</a>
+      </div>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">rustup snap</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+      <p>
+        The rustup snap installs Rust from the official release channels, enabling you to easily switch between stable, beta, and nightly compilers, running on all platforms supported by Rust.
+      </p>
+      <div class="p-cta-block">
+        <a href="https://snapcraft.io/rustup">Install rustup&nbsp;&rsaquo;</a>
+      </div>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {% call(slot) vf_cta_section(
+      variant='default',
+      layout='100',
+      blocks=[
+        {
+          "type": "cta",
+          "item": {
+            "type": "html",
+            "content": "To check out the latest updates from the Rust team and join the conversation, <a href='https://discourse.ubuntu.com/tags/c/project/foundations/25/rust'>visit our Rust space on Discourse</a>."
+          }
+        }
+      ]
+    ) -%}
+  {% endcall -%}
+
+{% endblock %}
