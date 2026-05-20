@@ -44,10 +44,12 @@ jobs:
         id: base_commit
         env:
           BASE_REF: ${{ github.base_ref }}
+          FORK_CLONE_URL: ${{ github.event.pull_request.head.repo.clone_url }}
+          FORK_REF: ${{ github.event.pull_request.head.ref }}
         run: |
           cd trusted-logic
           git fetch origin "$BASE_REF"
-          git fetch "${{ github.event.pull_request.head.repo.clone_url }}" "${{ github.event.pull_request.head.ref }}"
+          git fetch "$FORK_CLONE_URL" "$FORK_REF"
           echo "sha=$(git merge-base FETCH_HEAD origin/$BASE_REF)" >> $GITHUB_OUTPUT
 
       - uses: ./trusted-logic/.github/actions/percy-snapshot
