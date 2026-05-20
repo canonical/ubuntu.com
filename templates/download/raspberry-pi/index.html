@@ -110,10 +110,8 @@
             <span class="u-text--muted">{{ releases_yaml.lts.raspi_server_iso_size }}</span>
           {% endif %}
 
-          <p>Raspberry Pi 5 requires an EEPROM date no earlier than 2025-02-11.</p>
-          <p>Raspberry Pi 4 requires an EEPROM date no earlier than 2022-11-25.</p>
-          <p>EEPROM can be updated by running <code>sudo rpi-eeprom-update -a</code> and rebooting.</p>
-          <p><a href="https://canonical-ubuntu-hardware-support.readthedocs-hosted.com/boards/how-to/ubuntu_supported/raspberry-pi/">Read more in our documentation&nbsp;&rsaquo;</a></p>
+          <p>Certain releases of Ubuntu require a minimum EEPROM date for compatibility for the Raspberry Pi 4 and 5.</p>
+          <p><a href="https://canonical-ubuntu-hardware-support.readthedocs-hosted.com/boards/how-to/ubuntu_supported/raspberry-pi/">Learn more in our documentation&nbsp;&rsaquo;</a></p>
         </p>
       </div>
     </div>
@@ -175,9 +173,8 @@
               <th style="width: 15%;"></th>
               <th style="width: 10%;"></th>
               <th style="width: 18%">
-                Ubuntu 24.04 LTS <abbr title="Long-term support">LTS</abbr>
+                Ubuntu 26.04 <abbr title="Long-term support">LTS</abbr>
               </th>
-              <th style="width: 15%">Ubuntu 24.10</th>
               <th style="width: 15%">Ubuntu Core 24</th>
             </tr>
           </thead>
@@ -197,7 +194,6 @@
                 }}
               </td>
               <td>Yes, certified</td>
-              <td>Yes</td>
               <td>Yes, certified</td>
             </tr>
             <tr>
@@ -214,7 +210,6 @@
                                 attrs={"class": "u-hide--small"},) | safe
                 }}
               </td>
-              <td>Yes</td>
               <td>Yes</td>
               <td>Yes, certified</td>
             </tr>
@@ -233,7 +228,6 @@
                 }}
               </td>
               <td>Yes, certified</td>
-              <td>Yes</td>
               <td>Yes, certified</td>
             </tr>
             <tr>
@@ -250,13 +244,12 @@
                                 attrs={"class": "u-hide--small"},) | safe
                 }}
               </td>
-              <td>Yes, certified</td>
               <td>Yes</td>
               <td>Yes, certified</td>
             </tr>
             <tr>
               <th>
-                <p>Raspberry Pi 4</p>
+                <p>Raspberry Pi 4B</p>
               </th>
               <td>
                 {{ image(url="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png",
@@ -269,7 +262,6 @@
                 }}
               </td>
               <td>Yes, certified</td>
-              <td>Yes</td>
               <td>Yes, certified</td>
             </tr>
           </tbody>

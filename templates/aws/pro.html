@@ -3,7 +3,7 @@
 {% block title %}Ubuntu Pro for AWS{% endblock %}
 
 {% block meta_description %}
-  Ubuntu Pro for AWS, the Ubuntu image optimized for production and professional use on public cloud. Including live kernel patching, certified components with hardening profiles, and backed by up to 15 years of security maintenance.
+  Ubuntu Pro for AWS, the Ubuntu image optimized for production and professional use on public cloud. Including live kernel patching, certified components with hardening profiles, and backed by  up to 15 years of security maintenance.
 {% endblock %}
 
 {% block meta_copydoc %}
@@ -25,7 +25,7 @@
         <p>
           Ubuntu Pro for AWS is a premium image delivering the most comprehensive open source security and AWS compliance. Ubuntu Pro is suitable for small to large-scale Linux enterprise operations offering pay-as-you-go billing on your existing AWS invoice.
         </p>
-        <p>Available on AMD64 and Graviton architectures</p>
+        <p>Available on <a href="https://aws.amazon.com/marketplace/pp/prodview-e224rtfsy4mj4">AMD64</a> and <a href="https://aws.amazon.com/marketplace/pp/prodview-sqzrozpuvycoy?">Graviton</a> architectures</p>
       </div>
       <div class="col u-hide--small">
         <div class="p-image-container--16-9 is-highlighted">
@@ -47,16 +47,16 @@
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
-        <h2>Ubuntu Pro 24.04 LTS</h2>
+        <h2>Ubuntu Pro 26.04 LTS</h2>
       </div>
       <div class="col">
         <p>
-          Delivers additional layer of security and compliance services and security patches covering a wider range of packages, until 2034.
+          Delivers additional layer of security and compliance services and security patches covering a wider range of packages, until 2036.
         </p>
         <hr class="is-muted" />
         <ul class="p-inline-list">
           <li class="p-inline-list__item">
-            <a href="https://aws.amazon.com/marketplace/pp/prodview-kbkyvwyqubv2g"
+            <a href=" https://aws.amazon.com/marketplace/pp/prodview-e224rtfsy4mj4?sr=0-2"
                aria-label="Launch Ubuntu Pro for AWS now"
                class="p-button--positive">Launch now</a>
           </li>
@@ -76,6 +76,17 @@
           </div>
           <div class="col-6 col-medium-3 col-start-medium-4">
             <ul class="p-list--divided">
+              <li class="p-list__item">
+                <div class="row--50-50">
+                  <div class="col">
+                    <a href="https://aws.amazon.com/marketplace/pp/prodview-kbkyvwyqubv2g"
+                       aria-label="Get Ubuntu pro 24.04 LTS for AWS">24.04 LTS&nbsp;&rsaquo;</a>
+                  </div>
+                  <div class="col">
+                    <p class="u-no-margin--bottom u-no-padding">Maintained until 2034</p>
+                  </div>
+                </div>
+              </li>
               <li class="p-list__item">
                 <div class="row--50-50">
                   <div class="col">
@@ -106,17 +117,6 @@
                   </div>
                   <div class="col">
                     <p class="u-no-margin--bottom u-no-padding">Maintained until 2028</p>
-                  </div>
-                </div>
-              </li>
-              <li class="p-list__item">
-                <div class="row--50-50">
-                  <div class="col">
-                    <a href="https://aws.amazon.com/marketplace/pp/prodview-vmuff4yhmwfna"
-                       aria-label="Get Ubuntu pro 16.04 LTS for AWS">16.04 LTS&nbsp;&rsaquo;</a>
-                  </div>
-                  <div class="col">
-                    <p class="u-no-margin--bottom u-no-padding">Maintained until 2026</p>
                   </div>
                 </div>
               </li>
@@ -162,7 +162,7 @@
             <div class="list-matrix">
               <div class="list-matrix-container">
                 <p class="p-heading--5">FIPS &amp; CC-EAL2 certified</p>
-                <p>Certified components to enable operating environments under compliance regimes like FedRAMP, HIPAA, PCI, and ISO.</p>
+                <p>Officially certified components that enable compliance with FedRAMP, HIPAA, PCI, and ISO. <a href="https://aws.amazon.com/marketplace/pp/prodview-o5noqh44k3uxm">Access a FIPS 140-3 certified image for AWS.</a></p>
               </div>
             </div>
           </div>
@@ -304,7 +304,7 @@
             <tr>
               <td>Livepatch</td>
               <td>All LTS</td>
-              <td>Coming soon</td>
+              <td>26.04 LTS</td>
             </tr>
             <tr>
               <td>USG</td>
@@ -328,39 +328,6 @@
             </tr>
           </tbody>
         </table>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-section">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <p class="p-text--small-caps">Webinar</p>
-        <h2 class="u-no-padding--top">AWS compliance made easy</h2>
-      </div>
-      <div class="col">
-        <div class="p-section--shallow" style="padding-top: 1rem;">
-          <div class="p-image-container--16-9">
-            {{ image(url="https://assets.ubuntu.com/v1/7fc99412-Ubuntu%20Pro%20for%20AWS%20-%20Webinar.png",
-                        alt="Ubuntu Pro for AWS webinar",
-                        width="675",
-                        height="380",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class":"p-image-container__image"}) | safe
-            }}
-          </div>
-        </div>
-        <p>
-          The FIPS certified Ubuntu Pro image is now available on AWS. Ubuntu Pro FIPS is the critical foundation for state agencies administering federal programs and private sector companies with government contracts. Ubuntu Pro FIPS is built upon the power of Ubuntu Pro's enhanced stability, AWS compliance, and security features and is maintained to provide your organization with the strongest FIPS foundation now and in the future.
-        </p>
-        <hr class="is-muted" />
-        <p>
-          <a href="https://www.brighttalk.com/webcast/6793/449853"
-             area-label="Watch Ubuntu Pro for AWS webinar"
-             class="p-button--positive">Watch the webinar</a>
-        </p>
       </div>
     </div>
   </section>
@@ -458,7 +425,7 @@
             </tr>
             <tr>
               <td>
-                Security patches for hundreds of open source applications, including Apache Kafka, MongoDB, RabbitMQ, Redis and NodeJS
+                Security patches for hundreds of open source applications, including Apache Kafka, MongoDB, RabbitMQ, Redis, and NodeJS
               </td>
               <td>&nbsp;</td>
               <td class="u-align--center">
@@ -466,7 +433,7 @@
               </td>
             </tr>
             <tr>
-              <td>FIPS 140-2 and Common Criteria EAL2 certified components, with optional CIS hardening profile and DISA STIG</td>
+              <td>FIPS 140-3 and Common Criteria EAL2 certified components, with optional CIS hardening profile and DISA STIG</td>
               <td>&nbsp;</td>
               <td class="u-align--center">
                 <i class="p-icon--success"></i>
@@ -487,7 +454,7 @@
           </tbody>
         </table>
         <p>
-          <a href="https://assets.ubuntu.com/v1/f8087897-Ubuntu_Pro_AWS_07.12.21.1.pdf">Read the Ubuntu Pro datasheet&nbsp;&rsaquo;</a>
+          <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/Ubuntu_Pro_on_AWS.pdf?version=0">Read the Ubuntu Pro datasheet&nbsp;&rsaquo;</a>
         </p>
       </div>
     </div>

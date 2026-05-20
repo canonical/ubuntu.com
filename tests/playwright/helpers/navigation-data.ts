@@ -166,6 +166,7 @@ const EXCLUDED_SECTIONS = new Set([
   "account",     // Requires login — redirects to /login
   "Distributor", // Requires login — redirects to /login
   "credentials", // redirects to https://canonical.com/academy
+  "legal", // redirects to https://canonical.com/legal
 ]);
 
 const isValidSection = ([key, section]: [string, SecondaryNavSection]) =>

@@ -1,0 +1,217 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Install Ubuntu on NXP platforms | Ubuntu{% endblock %}
+
+{% block meta_description %}
+  Use Ubuntu optimized on NXP platforms for a familiar developer experience and an accelerated path to production
+{% endblock meta_description %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1BIR9Vc0WmAZqoBgD0TSZuJJwO2V1WbosB3fE8MmRRUo/edit
+{% endblock %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
+{% block outer_content %}
+
+{% call(slot) vf_hero(
+  title_text='Interested in optimized Ubuntu on NXP platforms?',
+  layout='fallback',
+  is_split_on_medium=true,
+) -%}
+{% endcall -%}
+
+<form action="/marketo/submit" method="post" id="mktoForm_7873" class="is-paper">
+  <legend class="u-off-screen">Contact information</legend>
+  <div class="p-section">
+    <div class="grid-row--50-50 js-formfield js-remove-radio-names">
+      <hr class="p-rule">
+      <div class="grid-col">
+        <legend class="p-heading--4 js-formfield-title " id="company-type-legend">Your company is:</legend>
+      </div>
+      <div class="grid-col">
+        <ul class="p-list">
+          <li class="p-list__item">   
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" id="odm-oem" name="company-type" aria-label="odm-oem" value="an ODM/OEM">
+              <span class="p-radio__label">an ODM/OEM </span>
+            </label>
+          </li>
+          <li class="p-list__item">              
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" id="end-customer" name="company-type" aria-label="end-customer" value="an end customer">
+              <span class="p-radio__label">an end customer</span>
+            </label>
+          </li>                
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-section">
+    <div class="grid-row--50-50 js-formfield js-remove-radio-names">
+      <hr class="p-rule">
+      <div class="grid-col">
+        <legend class="p-heading--4 js-formfield-title " id="commercial-project-legend">Do you have a commercial project?</legend>
+      </div>
+      <div class="grid-col">
+        <ul class="p-list">
+          <li class="p-list__item">
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" id="yes" name="commercial-project" aria-label="yes" value="Yes">
+              <span class="p-radio__label">Yes</span>
+            </label>
+          </li>
+          <li class="p-list__item">
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" id="no" name="commercial-project" aria-label="no" value="No">
+              <span class="p-radio__label">No</span>
+            </label>
+          </li>
+          <li class="p-list__item">
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" id="not-applicable" name="commercial-project" aria-label="not-applicable" value="Not applicable">
+              <span class="p-radio__label">Not applicable</span>
+            </label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-section">
+    <div class="grid-row--50-50 js-formfield js-remove-checkbox-names">
+      <hr class="p-rule">
+      <div class="grid-col">
+        <legend class="p-heading--4 js-formfield-title " id="nxp-platforms-legend">Which NXP platforms are you interested in?</legend>
+      </div>
+      <div class="grid-col">
+        <ul class="p-list">
+          <li class="p-list__item">
+            <label class="p-checkbox">
+              <input class="p-checkbox__input js-checkbox-visibility" type="checkbox" id="imx8mp-evk-server" name="nxp-platforms" aria-label="imx8mp-evk-server" value="i.MX8MP EVK (server)">
+              <span class="p-checkbox__label">i.MX8MP EVK (server)</span>
+            </label>
+          </li>
+          <li class="p-list__item">
+            <label class="p-checkbox">
+              <input class="p-checkbox__input js-checkbox-visibility" type="checkbox" id="imx8mp-evk-core" name="nxp-platforms" aria-label="imx8mp-evk-core" value="i.MX8MP EVK (core)">
+              <span class="p-checkbox__label">i.MX8MP EVK (core)</span>
+            </label>
+          </li>
+          <li class="p-list__item">
+            <label class="p-checkbox">
+              <input class="p-checkbox__input js-checkbox-visibility" type="checkbox" id="other" name="nxp-platforms" aria-label="other" value="Other">
+              <span class="p-checkbox__label">Other</span>
+            </label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-section">
+    <div class="grid-row--50-50 js-formfield">
+      <hr class="p-rule">
+      <div class="grid-col">
+        <legend class="p-heading--4 js-formfield-title ">Tell us more about your project (use case, volume, etc.):</legend>
+      </div>
+      <div class="grid-col">
+        <ul class="p-list">
+          <li class="p-list__item">
+              <textarea aria-label="Add details about your project" id="add-details-about-your-requirements" rows="5" maxlength="2000"></textarea>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-section">
+    <div class="grid-row--50-50">
+      <hr class="p-rule">
+      <div class="grid-col">
+        <legend class="p-heading--4" id="about-you-legend">Tell us more about your project (use case, volume, etc.):</legend>
+      </div>
+      <div class="grid-col">
+        <ul class="p-list">
+          <li class="p-list__item">
+            <label class="is-required" for="firstName">First name:</label>
+            <input required  id="firstName" name="firstName" maxlength="255" type="text" >
+          </li>
+          <li class="p-list__item">
+            <label class="is-required" for="lastName">Last name:</label>
+            <input required  id="lastName" name="lastName" maxlength="255" type="text">
+          </li>
+          <li class="p-list__item">
+            <label class="is-required" for="email">Email:</label>
+            <input required  id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$">
+          </li>
+          <li class="p-list__item">
+            <label class="is-required" for="company">Company:</label>
+            <input required  id="company" name="company" maxlength="255" type="text">
+          </li>
+          <li class="p-list__item">
+            <label class="is-required" for="title">Job Title:</label>
+            <input required id="title" name="title" maxlength="255" type="text" />
+          </li>
+          {% with required = true %}
+            {% include "shared/forms/_country.html" %}
+          {% endwith %}
+          <li class="p-list__item">
+            <label class="is-required" for="phone">Mobile/cell phone number:</label>
+            <input required  id="phone" name="phone" maxlength="255" type="tel">
+          </li>
+
+          <li class="p-list__item">
+            <label class="p-checkbox p-section--shallow">
+              <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+              <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+            </label>
+          </li>
+
+          <li class="p-list__item u-sv3">
+            By submitting this form, I confirm that I have read and agree to <a href="https://canonical.com/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="https://canonical.com/legal/data-privacy">Privacy Policy</a>.
+          </li>
+      
+          {# These are honey pot fields to catch bots #}
+          <li class="u-off-screen">
+            <label class="website" for="website">Website:</label>
+            <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+          </li>
+          <li class="u-off-screen">
+            <label class="name" for="name">Name:</label>
+            <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+          </li>
+          {# End of honey pots #}
+          <li class="p-list__item">
+            <button type="submit" class="p-button--positive js-submit-button">Submit</button>
+          </li>
+        </ul>
+        <div class="u-off-screen">
+          <label for="Comments_from_lead__c">
+            <h3 class="p-heading--4">Your comments</h3>
+            <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
+          </label>
+          <input type="hidden" name="formid" value="7873">
+          <input type="hidden" name="Consent_to_Processing__c" value="yes" />
+          <input type="hidden" name="returnURL" value="/certified/202309-32027/contact-us#success" aria-label="">
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+{% endblock outer_content %}
