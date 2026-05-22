@@ -11,7 +11,9 @@
 {% block body_class %}blog-article{% endblock %}
 
 {%- block canonical_url -%}
-  {%- if article.author and article.author.id == 217 -%}
+  {%- if article.group and article.group.id == 2100 -%}
+    https://canonical.com/blog/{{ article.slug }}
+  {%- elif article.author and article.author.id == 217 -%}
     https://canonical.com/blog/{{ article.slug }}
   {%- elif 2996 in article.tags -%}
     https://snapcraft.io/blog/{{ article.slug }}
@@ -25,6 +27,9 @@
 {%- endblock canonical_url -%}
 
 {% block extra_metatags %}
+  {% if article.group and article.group.id == 2100 %}
+  <meta name="robots" content="noindex, follow" />
+  {% endif %}
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",
