@@ -132,9 +132,14 @@ export class NavigationComponent {
       .waitFor({ state: "attached", timeout: 10000 });
     await link.click();
     await expect(this.sectionItem(sectionId)).toHaveClass(/is-active/);
-    await this.dropdownWindow.waitFor({ state: "visible", timeout: 5000 });
+    // .dropdown-window is always in the DOM and hidden via `transform`, which
+    // Playwright's visibility check ignores. Wait for the open-state classes
+    // and the overlay (hidden via `visibility: hidden`) instead, then wait
+    // for the slide animation to settle.
+    await expect(this.dropdownWindow).toHaveClass(/is-active/);
+    await this.dropdownOverlay.waitFor({ state: "visible", timeout: 5000 });
     const dropdownHandle = await this.dropdownWindow.elementHandle();
-    if (!dropdownHandle) throw new Error("Dropdown window not visible");
+    if (!dropdownHandle) throw new Error("Dropdown window not found");
     await dropdownHandle.waitForElementState("stable", { timeout: 5000 });
   }
 
