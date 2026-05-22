@@ -526,6 +526,23 @@ def build_engage_page_resources(engage_docs):
     return engage_page_resources
 
 
+def _get_related_pages_metadata(metadata, engage_pages, limit=3):
+    """
+    Resolve up to `limit` related-page metadata entries from a Discourse
+    engage page's `related_urls` field. Handles missing/None/empty values.
+    """
+    related_urls_raw = (metadata.get("related_urls") or "").strip()
+    if not related_urls_raw:
+        return []
+
+    related_pages_metadata = []
+    for url in related_urls_raw.split(",")[:limit]:
+        page_metadata = engage_pages.get_engage_page(url.strip())
+        if page_metadata is not None:
+            related_pages_metadata.append(page_metadata)
+    return related_pages_metadata
+
+
 def build_engage_page(engage_pages):
     def engage_page(language, page):
         if language:
@@ -536,17 +553,9 @@ def build_engage_page(engage_pages):
         if not metadata:
             flask.abort(404)
         else:
-            related_pages_metadata = []
-            if "related_urls" in metadata:
-                if metadata["related_urls"].strip() != "":
-                    related_urls = metadata["related_urls"].split(",")
-                    # Only show maximum of 3 related pages
-                    for url in related_urls[:3]:
-                        page_metadata = engage_pages.get_engage_page(
-                            url.strip()
-                        )
-                        if page_metadata is not None:
-                            related_pages_metadata.append(page_metadata)
+            related_pages_metadata = _get_related_pages_metadata(
+                metadata, engage_pages
+            )
 
             # Generate translated UI strings for template
             lang_raw = (metadata.get("language") or "en").strip()
@@ -578,6 +587,35 @@ def match_tags(tags_1, tags_2):
                 continue
 
     return False
+
+
+def _thank_you_translations(lang_base):
+    """Resolve thank-you UI strings for a given normalized language code.
+
+    Strips the ``thank_you_`` prefix so templates can use
+    ``{{ translations.heading }}`` instead of
+    ``{{ translations.thank_you_heading }}``. Falls back to English per
+    key when the language has no entry for that key.
+    """
+    THANK_YOU_PREFIX = "thank_you_"
+    prefix_length = len(THANK_YOU_PREFIX)
+
+    translations = {}
+    for key in ENGAGE_UI_TRANSLATIONS:
+        if not key.startswith(THANK_YOU_PREFIX):
+            continue
+
+        translation_key = key[prefix_length:]
+        translation_data = ENGAGE_UI_TRANSLATIONS[key]
+
+        # Get translation with fallback to English
+        translation_value = translation_data.get(lang_base)
+        if translation_value is None:
+            translation_value = translation_data.get("en", "")
+
+        translations[translation_key] = translation_value
+
+    return translations
 
 
 def engage_thank_you(engage_pages):
@@ -612,24 +650,28 @@ def engage_thank_you(engage_pages):
         ):
             return flask.abort(404)
 
-        language = metadata["language"]
-        if language and language != "en":
-            template_language = f"engage/shared/_{language}_thank-you.html"
-        else:
-            template_language = "engage/thank-you.html"
+        lang_raw = (metadata.get("language") or "en").strip()
+        lang_base = lang_raw.split("-")[0].lower()
+        translations = _thank_you_translations(lang_base)
 
         try:
             form_details = flask.session["form_details"]
         except KeyError:
             form_details = None
 
+        related_pages_metadata = _get_related_pages_metadata(
+            metadata, engage_pages
+        )
+
         return flask.render_template(
-            template_language,
-            request_url=flask.request.referrer,
+            "engage/thank-you.html",
+            engage_path=path,
             metadata=metadata,
             resource_name=metadata["type"],
             resource_url=metadata["resource_url"],
             form_details=form_details,
+            related_pages_metadata=related_pages_metadata,
+            translations=translations,
         )
 
     return render_template

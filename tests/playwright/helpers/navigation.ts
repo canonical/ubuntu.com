@@ -132,6 +132,10 @@ export class NavigationComponent {
       .waitFor({ state: "attached", timeout: 10000 });
     await link.click();
     await expect(this.sectionItem(sectionId)).toHaveClass(/is-active/);
+    await this.dropdownWindow.waitFor({ state: "visible", timeout: 5000 });
+    const dropdownHandle = await this.dropdownWindow.elementHandle();
+    if (!dropdownHandle) throw new Error("Dropdown window not visible");
+    await dropdownHandle.waitForElementState("stable", { timeout: 5000 });
   }
 
   async openSearch(): Promise<void> {

@@ -17,9 +17,11 @@ from webapp.views import (
     build_tutorials_query,
     match_tags,
     build_engage_page,
+    engage_thank_you,
     enrich_acquisition_url,
     build_engage_page_resources,
     append_utms_cookie_to_canonical_links,
+    _get_related_pages_metadata,
 )
 from webapp.certified.views import certified_platform_details_by_release
 
@@ -682,6 +684,90 @@ class TestEngageTranslations(TestCase):
         self.assertEqual(kwargs["language"], "xx")
 
 
+class TestGetRelatedPagesMetadata(TestCase):
+    """
+    Unit tests for `_get_related_pages_metadata`.
+
+    Covered behaviours:
+      • Returns [] when `related_urls` is missing, None, empty, or
+        whitespace-only (no AttributeError on null).
+      • Resolves up to `limit` related pages, trimming surrounding
+        whitespace on each URL.
+      • Filters out URLs whose `get_engage_page` lookup returns None.
+    """
+
+    def _engage_pages_returning(self, mapping):
+        mock = Mock()
+        mock.get_engage_page.side_effect = lambda url: mapping.get(url)
+        return mock
+
+    def test_related_urls_missing(self):
+        self.assertEqual(
+            _get_related_pages_metadata({}, Mock()),
+            [],
+        )
+
+    def test_related_urls_none(self):
+        self.assertEqual(
+            _get_related_pages_metadata({"related_urls": None}, Mock()),
+            [],
+        )
+
+    def test_related_urls_empty_string(self):
+        self.assertEqual(
+            _get_related_pages_metadata({"related_urls": ""}, Mock()),
+            [],
+        )
+
+    def test_related_urls_whitespace_only(self):
+        self.assertEqual(
+            _get_related_pages_metadata({"related_urls": "   "}, Mock()),
+            [],
+        )
+
+    def test_resolves_urls_and_trims_whitespace(self):
+        engage_pages = self._engage_pages_returning(
+            {
+                "/engage/a": {"title": "A"},
+                "/engage/b": {"title": "B"},
+            }
+        )
+        result = _get_related_pages_metadata(
+            {"related_urls": " /engage/a , /engage/b "}, engage_pages
+        )
+        self.assertEqual(result, [{"title": "A"}, {"title": "B"}])
+
+    def test_caps_at_default_limit_of_three(self):
+        engage_pages = self._engage_pages_returning(
+            {
+                "/engage/a": {"title": "A"},
+                "/engage/b": {"title": "B"},
+                "/engage/c": {"title": "C"},
+                "/engage/d": {"title": "D"},
+            }
+        )
+        result = _get_related_pages_metadata(
+            {"related_urls": ("/engage/a,/engage/b,/engage/c,/engage/d")},
+            engage_pages,
+        )
+        self.assertEqual(
+            result, [{"title": "A"}, {"title": "B"}, {"title": "C"}]
+        )
+
+    def test_skips_unresolved_pages(self):
+        engage_pages = self._engage_pages_returning(
+            {
+                "/engage/a": {"title": "A"},
+                "/engage/c": {"title": "C"},
+            }
+        )
+        result = _get_related_pages_metadata(
+            {"related_urls": "/engage/a,/engage/missing,/engage/c"},
+            engage_pages,
+        )
+        self.assertEqual(result, [{"title": "A"}, {"title": "C"}])
+
+
 class TestCertifiedPlatformDetailsByRelease(BaseViewTestCase):
     """
     Unit tests for certified_platform_details_by_release.
@@ -1234,3 +1320,54 @@ class TestAppendUtmsCookieToCanonicalLinks(BaseViewTestCase):
             updated_html = response.set_data.call_args[0][0]
             # Verify mailto link is unchanged
             self.assertEqual(updated_html, html)
+
+
+class TestEngageThankYouTranslations(BaseViewTestCase):
+    """View-level checks for the unified thank-you template."""
+
+    def _make_engage_pages(self, language):
+        engage_pages = Mock()
+        engage_pages.get_engage_page.return_value = {
+            "language": language,
+            "type": "whitepaper",
+            "resource_url": "https://example.com/wp.pdf",
+        }
+        return engage_pages
+
+    @patch("flask.render_template")
+    def test_unknown_language_renders_unified_template_with_english(
+        self, mock_render
+    ):
+        mock_render.return_value = ""
+        view = engage_thank_you(self._make_engage_pages("xx"))
+
+        with self.app.test_request_context(
+            "/engage/xx/some-slug/thank-you",
+            headers={"Referer": "https://example.com/prev"},
+        ):
+            view(language="xx", page="some-slug")
+
+        mock_render.assert_called_once()
+        template_name = mock_render.call_args.args[0]
+        kwargs = mock_render.call_args.kwargs
+        self.assertEqual(template_name, "engage/thank-you.html")
+        self.assertEqual(kwargs["translations"]["heading"], "Thank you")
+        self.assertEqual(kwargs["translations"]["download"], "Download")
+
+    @patch("flask.render_template")
+    def test_french_language_resolves_french_strings(self, mock_render):
+        mock_render.return_value = ""
+        view = engage_thank_you(self._make_engage_pages("fr"))
+
+        with self.app.test_request_context(
+            "/engage/fr/some-slug/thank-you",
+            headers={"Referer": "https://example.com/prev"},
+        ):
+            view(language="fr", page="some-slug")
+
+        mock_render.assert_called_once()
+        template_name = mock_render.call_args.args[0]
+        kwargs = mock_render.call_args.kwargs
+        self.assertEqual(template_name, "engage/thank-you.html")
+        self.assertEqual(kwargs["translations"]["heading"], "Merci")
+        self.assertEqual(kwargs["translations"]["download"], "Téléchargée")

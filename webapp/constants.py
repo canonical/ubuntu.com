@@ -9,7 +9,132 @@ ENGAGE_UI_TRANSLATIONS = {
         "de": "Zusätzliche Ressourcen",
         "tr": "Ek Kaynaklar",
         "it": "Risorse aggiuntive",
-    }
+    },
+    "thank_you_page_title": {
+        "en": "Download {resource_name}",
+        "de": "Herunterladen {resource_name}",
+        "es": "Descarga {resource_name}",
+        "fr": "Télécharger {resource_name}",
+        "it": "Download {resource_name}",
+        "kr": "다운로드 {resource_name}",
+        "pt": "Download {resource_name}",
+        "ru": "Загрузить {resource_name}",
+        "tr": "{resource_name} İndir",
+    },
+    "thank_you_heading": {
+        "en": "Thank you",
+        "de": "Danke",
+        "es": "Gracias",
+        "fr": "Merci",
+        "it": "Grazie",
+        "kr": "감사합니다",
+        "pt": "Obrigado",
+        "ru": "Спасибо",
+        "tr": "Teşekkürler",
+    },
+    "thank_you_ready_to_download": {
+        "en": "The {resource_name} is now ready to download.",
+        "de": "{resource_name} ist jetzt zum Download bereit.",
+        "es": "El {resource_name} está listo para descargar.",
+        "fr": "La {resource_name} est prête à être téléchargée.",
+        "it": "La {resource_name} risorsa è ora pronta per il scarica.",
+        "kr": "이제 {resource_name}을(를) 다운로드할 준비가 되었습니다.",
+        "pt": "{resource_name} está pronto para download.",
+        "ru": "{resource_name} готов к загрузке.",
+        "tr": "{resource_name} şimdi indirilmeye hazır.",
+    },
+    "thank_you_email_sent": {
+        "en": (
+            "We've emailed a copy of {resource_name} to {email}. "
+            "Didn't get it? Check your spam folder and that you've "
+            "used the right email address."
+        ),
+        "de": (
+            "Wir haben eine Kopie des Whitepapers per e-mail "
+            "{resource_name} an {email}. Nicht erhalten? Überprüfen Sie "
+            "Ihren Spam-Ordner und ob Sie die richtige E-Mail-Adresse "
+            "verwendet haben."
+        ),
+        "es": (
+            "Le hemos enviado una copia de {resource_name} a {email}. "
+            "¿No lo ha recibido? Revise la carpeta de spam y asegúrese "
+            "de haber introducido el e-mail correcto."
+        ),
+        "fr": (
+            "Nous avons envoyé une copie de {resource_name} à {email}. "
+            "Pas reçu? Vérifiez votre dossier spam et vérifiez que "
+            "vous avez utilisé la bonne adresse e-mail."
+        ),
+        "it": (
+            "Abbiamo inviato una copia di {resource_name} a {email}. "
+            "Non l'hai ricevuto? Controlla la tua cartella spam e di "
+            "aver utilizzato l'indirizzo email corretto."
+        ),
+        "kr": (
+            "다음의 {resource_name} 내용을 {email}로 보내드렸습니다. "
+            "받지 못하셨나요? 스팸 폴더를 확인하고 올바른 이메일 "
+            "주소를 사용했는지 확인하세요."
+        ),
+        "pt": (
+            "Enviamos uma cópia do e-mail {resource_name} para "
+            "{email}. Não recebeu? Verifique sua pasta de spam e se "
+            "você usou o endereço de e-mail correto."
+        ),
+        "ru": (
+            "Мы отправили вам копию {resource_name} по {email}. "
+            "Не получил? Проверьте папку со спамом и убедитесь, что "
+            "вы использовали правильный адрес электронной почты."
+        ),
+        "tr": (
+            "Bir kopyasını {resource_name} e-posta adresinize "
+            "gönderdik: {email}. E-postayı almadınız mı? Spam "
+            "klasörünüzü kontrol edin ve doğru e-posta adresini "
+            "kullandığınızdan emin olun."
+        ),
+    },
+    "thank_you_go_back": {
+        "en": "Go back",
+        "de": "Zurück zur letzten Seite",
+        "es": "A la página anterior",
+        "fr": "Retour à la dernière page",
+        "it": "Torna all'ultima pagina",
+        "kr": "마지막 페이지로 돌아가기",
+        "pt": "Voltar para a última página",
+        "ru": "Вернуться к последней странице",
+        "tr": "Önceki sayfaya dön",
+    },
+    "thank_you_contact_us": {
+        "en": "Contact us",
+        "de": "Kontaktiere uns",
+        "es": "Contáctanos",
+        "fr": "Contactez-nous",
+        "it": "Contattaci",
+        "kr": "문의하기",
+        "pt": "Contate-Nos",
+        "ru": "Свяжитесь с нами",
+        "tr": "Bize Ulaşın",
+    },
+    "thank_you_download": {
+        "en": "Download",
+        "de": "Herunterladen",
+        "es": "Descargar",
+        "fr": "Téléchargée",
+        "it": "Scarica",
+        "kr": "다운로드",
+        "pt": "Download",
+        "ru": "Загрузить",
+        "tr": "İndir",
+    },
+    "thank_you_additional_resources": {
+        "en": "Additional resources",
+        "de": "Das könnte Sie auch interessieren",
+        "es": "También te puede interesar",
+        "fr": "Vous pourriez également être intéressé par",
+        "it": "Ti potrebbero interessare anche",
+        "kr": "당신이 또 관심 있어야 할 주제는 다음과 같습니다",
+        "pt": "Você também pode estar interessado em",
+        "tr": "İlgilenebileceğiniz diğer içerikler",
+    },
 }
 
 # Content Security Policy configuration
