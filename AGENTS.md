@@ -2,12 +2,12 @@
 
 ## Project Overview
 
-Ubuntu.com is Canonical's main web presence — a high-traffic informational and e-commerce site built with a Flask backend and React frontend. It pulls content from Discourse, WordPress, and various APIs, and handles Ubuntu Pro subscriptions via Stripe.
+Ubuntu.com is Canonical's main web presence — a high-traffic informational and e-commerce site built with a Flask backend and Jinja. With elements of React frontend. It pulls content from Discourse, WordPress, and various APIs, and handles Ubuntu Pro subscriptions via Stripe.
 
 ## Tech Stack
 
 - **Backend:** Python 3.10+, Flask, Jinja2 templates
-- **Frontend:** React 18, TypeScript 5.5, Redux Toolkit, React Query, Vanilla Framework 4.x
+- **Frontend:** Jinja and some React 18, TypeScript 5.5, Redux Toolkit, React Query, Vanilla Framework 4.x
 - **Styling:** SCSS → Sass + PostCSS
 - **Build:** esbuild (JS), Sass (CSS), Yarn, Taskfile
 - **Testing:** unittest + VCR (Python), Jest (JS), Playwright (E2E), pa11y-ci (a11y), Percy (visual regression)
