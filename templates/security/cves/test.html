@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CVE-2025-12345 — Severity score breakdown (preview)</title>
+    <link rel="stylesheet" href="../../../static/css/styles.css" />
+    <style>
+      body {
+        padding: 2rem;
+        max-width: 60rem;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="p-strip">
+      <div class="row">
+        <div class="col-12">
+          <h1>CVE-2025-12345</h1>
+          <p class="u-text--muted">Severity score breakdown — preview with dummy data</p>
+
+          <div class="p-section">
+            <h2 id="impact-score" class="section-heading">Severity score breakdown</h2>
+
+            <p class="u-sv3 js-cvss-version-selector" style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="u-text--muted">CVSS version:</span>
+              <span class="p-contextual-menu--left">
+                <button type="button"
+                        class="p-button--base p-contextual-menu__toggle js-cvss-version-toggle u-no-margin--bottom u-no-padding"
+                        aria-controls="cvss-version-menu"
+                        aria-expanded="false"
+                        aria-haspopup="true">
+                  <span>
+                    <span class="js-cvss-version-label">CVSS v4.0</span>
+                    <i class="p-icon--chevron-down"></i>
+                  </span>
+                </button>
+                <span class="p-contextual-menu__dropdown"
+                      id="cvss-version-menu"
+                      aria-hidden="true">
+                  <span class="p-contextual-menu__group">
+                    <a href="#"
+                       class="p-contextual-menu__link js-cvss-option"
+                       data-cvss="v4">CVSS v4.0</a>
+                    <a href="#"
+                       class="p-contextual-menu__link js-cvss-option"
+                       data-cvss="v3">CVSS v3.0</a>
+                  </span>
+                </span>
+              </span>
+            </p>
+
+            <div id="cvss-v4-section">
+
+            <p class="u-sv1">
+              <span>
+                <strong>Base score</strong>&nbsp;&nbsp;<img
+                  src="https://assets.ubuntu.com/v1/c96f27b9-CVE-Priority-icon-Critical.svg"
+                  alt=""
+                  width="16"
+                  height="16"
+                  loading="auto" />&nbsp;&nbsp;9.3 &middot; Critical
+              </span>
+            </p>
+
+            <aside class="p-accordion u-sv1" data-multiple-expanded="true">
+              <ul class="p-accordion__list">
+                <li class="p-accordion__group">
+                  <div role="heading" aria-level="3" class="p-accordion__heading">
+                    <button
+                      type="button"
+                      class="p-accordion__tab"
+                      id="base-metrics-tab"
+                      aria-controls="base-metrics-section"
+                      aria-expanded="true">
+                      Base metrics
+                    </button>
+                  </div>
+                  <section
+                    class="p-accordion__panel"
+                    id="base-metrics-section"
+                    aria-hidden="false"
+                    aria-labelledby="base-metrics-tab">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th class="u-adjust-table-heading">Parameter</th>
+                          <th class="u-align--left">Value</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><th>Attack vector</th><td>Network</td></tr>
+                        <tr><th>Attack complexity</th><td>Low</td></tr>
+                        <tr><th>Attack requirements</th><td>None</td></tr>
+                        <tr><th>Privileges required</th><td>None</td></tr>
+                        <tr><th>User interaction</th><td>None</td></tr>
+                        <tr><th>Vulnerable system - Confidentiality impact</th><td>High</td></tr>
+                        <tr><th>Vulnerable system - Integrity impact</th><td>High</td></tr>
+                        <tr><th>Vulnerable system - Availability impact</th><td>High</td></tr>
+                        <tr><th>Subsequent system - Confidentiality impact</th><td>High</td></tr>
+                        <tr><th>Subsequent system - Integrity impact</th><td>High</td></tr>
+                        <tr><th>Subsequent system - Availability impact</th><td>High</td></tr>
+                      </tbody>
+                    </table>
+                  </section>
+                </li>
+
+                <li class="p-accordion__group">
+                  <div role="heading" aria-level="3" class="p-accordion__heading">
+                    <button
+                      type="button"
+                      class="p-accordion__tab"
+                      id="supplemental-metrics-tab"
+                      aria-controls="supplemental-metrics-section"
+                      aria-expanded="false">
+                      Supplemental metrics
+                    </button>
+                  </div>
+                  <section
+                    class="p-accordion__panel"
+                    id="supplemental-metrics-section"
+                    aria-hidden="true"
+                    aria-labelledby="supplemental-metrics-tab">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th class="u-adjust-table-heading">Parameter</th>
+                          <th class="u-align--left">Value</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><th>Safety</th><td>Present</td></tr>
+                        <tr><th>Automatable</th><td>Yes</td></tr>
+                        <tr><th>Recovery</th><td>User</td></tr>
+                        <tr><th>Value density</th><td>Diffuse</td></tr>
+                        <tr><th>Vulnerability response effort</th><td>High</td></tr>
+                        <tr><th>Provider urgency</th><td>Red</td></tr>
+                      </tbody>
+                    </table>
+                  </section>
+                </li>
+
+                <li class="p-accordion__group">
+                  <div role="heading" aria-level="3" class="p-accordion__heading">
+                    <button
+                      type="button"
+                      class="p-accordion__tab"
+                      id="environmental-metrics-tab"
+                      aria-controls="environmental-metrics-section"
+                      aria-expanded="false">
+                      Environmental metrics
+                    </button>
+                  </div>
+                  <section
+                    class="p-accordion__panel"
+                    id="environmental-metrics-section"
+                    aria-hidden="true"
+                    aria-labelledby="environmental-metrics-tab">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th class="u-adjust-table-heading">Parameter</th>
+                          <th class="u-align--left">Value</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><th>Modified attack vector</th><td>Network</td></tr>
+                        <tr><th>Modified attack complexity</th><td>Low</td></tr>
+                        <tr><th>Modified attack requirements</th><td>None</td></tr>
+                        <tr><th>Modified privileges required</th><td>None</td></tr>
+                        <tr><th>Modified user interaction</th><td>None</td></tr>
+                        <tr><th>Modified vulnerable system - Confidentiality impact</th><td>High</td></tr>
+                        <tr><th>Modified vulnerable system - Integrity impact</th><td>High</td></tr>
+                        <tr><th>Modified vulnerable system - Availability impact</th><td>High</td></tr>
+                        <tr><th>Modified subsequent system - Confidentiality impact</th><td>High</td></tr>
+                        <tr><th>Modified subsequent system - Integrity impact</th><td>High</td></tr>
+                        <tr><th>Modified subsequent system - Availability impact</th><td>High</td></tr>
+                        <tr><th>Security requirements - Confidentiality</th><td>High</td></tr>
+                        <tr><th>Security requirements - Integrity</th><td>High</td></tr>
+                        <tr><th>Security requirements - Availability</th><td>High</td></tr>
+                      </tbody>
+                    </table>
+                  </section>
+                </li>
+
+                <li class="p-accordion__group">
+                  <div role="heading" aria-level="3" class="p-accordion__heading">
+                    <button
+                      type="button"
+                      class="p-accordion__tab"
+                      id="threat-metrics-tab"
+                      aria-controls="threat-metrics-section"
+                      aria-expanded="false">
+                      Threat metrics
+                    </button>
+                  </div>
+                  <section
+                    class="p-accordion__panel"
+                    id="threat-metrics-section"
+                    aria-hidden="true"
+                    aria-labelledby="threat-metrics-tab">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th class="u-adjust-table-heading">Parameter</th>
+                          <th class="u-align--left">Value</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><th>Exploit maturity</th><td>Attacked</td></tr>
+                      </tbody>
+                    </table>
+                  </section>
+                </li>
+
+                <li class="p-accordion__group">
+                  <div role="heading" aria-level="3" class="p-accordion__heading">
+                    <button
+                      type="button"
+                      class="p-accordion__tab"
+                      id="scores-tab"
+                      aria-controls="scores-section"
+                      aria-expanded="false">
+                      Scores
+                    </button>
+                  </div>
+                  <section
+                    class="p-accordion__panel"
+                    id="scores-section"
+                    aria-hidden="true"
+                    aria-labelledby="scores-tab">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th class="u-adjust-table-heading">Parameter</th>
+                          <th class="u-align--left">Value</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><th>Base score</th><td>9.3 &middot; Critical</td></tr>
+                        <tr><th>Base + Threat score</th><td>9.3 &middot; Critical</td></tr>
+                        <tr><th>Base + Environmental score</th><td>9.3 &middot; Critical</td></tr>
+                        <tr><th>Base + Threat + Environmental score</th><td>-</td></tr>
+                      </tbody>
+                    </table>
+                  </section>
+                </li>
+              </ul>
+            </aside>
+
+            <p>
+              <strong>Vector:</strong>
+              CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/E:A/CR:H/IR:H/AR:H/MAV:N/MAC:L/MAT:N/MPR:N/MUI:N/MVC:H/MVI:H/MVA:H/MSC:H/MSI:H/MSA:H/S:P/AU:Y/R:U/V:D/RE:H/U:Red
+            </p>
+
+            </div>
+
+            <div id="cvss-v3-section" class="u-hide">
+              <p class="u-sv1">
+                <span>
+                  <strong>Base score</strong>&nbsp;&nbsp;<img
+                    src="https://assets.ubuntu.com/v1/c96f27b9-CVE-Priority-icon-Critical.svg"
+                    alt=""
+                    width="16"
+                    height="16"
+                    loading="auto" />&nbsp;&nbsp;9.8 &middot; Critical
+                </span>
+              </p>
+
+              <aside class="p-accordion u-sv1" data-multiple-expanded="true">
+                <ul class="p-accordion__list">
+                  <li class="p-accordion__group">
+                    <div role="heading" aria-level="3" class="p-accordion__heading">
+                      <button
+                        type="button"
+                        class="p-accordion__tab"
+                        id="v3-base-metrics-tab"
+                        aria-controls="v3-base-metrics-section"
+                        aria-expanded="true">
+                        Base metrics
+                      </button>
+                    </div>
+                    <section
+                      class="p-accordion__panel"
+                      id="v3-base-metrics-section"
+                      aria-hidden="false"
+                      aria-labelledby="v3-base-metrics-tab">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th class="u-adjust-table-heading">Parameter</th>
+                            <th class="u-align--left">Value</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr><th>Attack vector</th><td>Network</td></tr>
+                          <tr><th>Attack complexity</th><td>Low</td></tr>
+                          <tr><th>Privileges required</th><td>None</td></tr>
+                          <tr><th>User interaction</th><td>None</td></tr>
+                          <tr><th>Scope</th><td>Unchanged</td></tr>
+                          <tr><th>Confidentiality impact</th><td>High</td></tr>
+                          <tr><th>Integrity impact</th><td>High</td></tr>
+                          <tr><th>Availability impact</th><td>High</td></tr>
+                        </tbody>
+                      </table>
+                    </section>
+                  </li>
+                  <li class="p-accordion__group">
+                    <div role="heading" aria-level="3" class="p-accordion__heading">
+                      <button
+                        type="button"
+                        class="p-accordion__tab"
+                        id="v3-scores-tab"
+                        aria-controls="v3-scores-section"
+                        aria-expanded="false">
+                        Scores
+                      </button>
+                    </div>
+                    <section
+                      class="p-accordion__panel"
+                      id="v3-scores-section"
+                      aria-hidden="true"
+                      aria-labelledby="v3-scores-tab">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th class="u-adjust-table-heading">Parameter</th>
+                            <th class="u-align--left">Value</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr><th>Base score</th><td>9.8 &middot; Critical</td></tr>
+                          <tr><th>Exploitability score</th><td>3.9</td></tr>
+                          <tr><th>Impact score</th><td>5.9</td></tr>
+                        </tbody>
+                      </table>
+                    </section>
+                  </li>
+                </ul>
+              </aside>
+
+              <p>
+                <strong>Vector:</strong>
+                CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      function toggleExpanded(element, show) {
+        var target = document.getElementById(element.getAttribute("aria-controls"));
+        if (target) {
+          element.setAttribute("aria-expanded", show);
+          target.setAttribute("aria-hidden", !show);
+        }
+      }
+
+      function setupAccordion(accordionContainer) {
+        function closeAllPanels() {
+          var openPanels = accordionContainer.querySelectorAll("[aria-expanded=true]");
+          for (var i = 0; i < openPanels.length; i++) {
+            toggleExpanded(openPanels[i], false);
+          }
+        }
+        accordionContainer.addEventListener("click", function (event) {
+          var target = event.target.closest('[class*="p-accordion__tab"]');
+          if (!target) return;
+          var isOpen = target.getAttribute("aria-expanded") === "true";
+          if (!accordionContainer.getAttribute("data-multiple-expanded")) {
+            closeAllPanels();
+          }
+          toggleExpanded(target, !isOpen);
+        });
+      }
+
+      document.querySelectorAll(".p-accordion").forEach(setupAccordion);
+
+      function handleCvssVersionDropdown() {
+        const selector = document.querySelector(".js-cvss-version-selector");
+        if (!selector) return;
+        const toggle = selector.querySelector(".js-cvss-version-toggle");
+        const menu = selector.querySelector("#cvss-version-menu");
+        const label = selector.querySelector(".js-cvss-version-label");
+        const options = selector.querySelectorAll(".js-cvss-option");
+        const v3Section = document.getElementById("cvss-v3-section");
+        const v4Section = document.getElementById("cvss-v4-section");
+
+        function setOpen(open) {
+          if (!toggle || !menu) return;
+          toggle.setAttribute("aria-expanded", open);
+          menu.setAttribute("aria-hidden", !open);
+        }
+
+        if (toggle) {
+          toggle.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            const isOpen = toggle.getAttribute("aria-expanded") === "true";
+            setOpen(!isOpen);
+          });
+        }
+
+        options.forEach((option) => {
+          option.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            const version = option.dataset.cvss;
+            label.textContent = option.textContent;
+            setOpen(false);
+            if (version === "v4") {
+              v4Section && v4Section.classList.remove("u-hide");
+              v3Section && v3Section.classList.add("u-hide");
+            } else {
+              v3Section && v3Section.classList.remove("u-hide");
+              v4Section && v4Section.classList.add("u-hide");
+            }
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!selector.contains(event.target)) {
+            setOpen(false);
+          }
+        });
+      }
+      handleCvssVersionDropdown();
+    </script>
+  </body>
+</html>
