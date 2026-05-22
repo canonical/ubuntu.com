@@ -52,11 +52,13 @@ To re-record VCR HTTP cassettes: set `VCR_RECORD_MODE=all` in `.env.local`.
 ## Linting & Formatting
 
 ```bash
+task lint                # lint everything
 yarn run lint-python     # flake8 + black --check (line-length 79)
 yarn run lint-js         # ESLint
 yarn run lint-scss       # stylelint
 yarn run lint-ts         # tsc --noEmit
 
+task format              # format everything
 yarn run format-python   # black --line-length 79
 yarn run format-js       # prettier
 ```
