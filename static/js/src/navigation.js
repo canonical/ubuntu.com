@@ -432,12 +432,16 @@ function setTabIndex(target) {
   // In some cases there is no target so we don't need to update the tab index
   if (target) {
     const targetLiItems = target.querySelectorAll("li");
-    targetLiItems.forEach((element, index) => {
+    targetLiItems.forEach((element) => {
       if (
         element.parentNode === target ||
         element.parentNode.parentNode === target
       ) {
-        element.children[0].setAttribute("tabindex", "0");
+        // Some li items (#all-canonical, #canonical-login) are populated
+        // asynchronously and may be empty when setTabIndex runs.
+        element
+          .querySelector(":scope > a, :scope > button")
+          ?.setAttribute("tabindex", "0");
       }
     });
   }
@@ -450,10 +454,14 @@ function setTabIndex(target) {
       ".p-navigation__item--dropdown-toggle.is-active",
     );
     if (currActiveNavItem) {
-      currActiveNavItem.children[0].setAttribute("tabindex", "0");
+      currActiveNavItem
+        .querySelector(":scope > a, :scope > button")
+        ?.setAttribute("tabindex", "0");
     } else {
       mainList.querySelectorAll(":scope > li").forEach((element) => {
-        element.children[0].setAttribute("tabindex", "0");
+        element
+          .querySelector(":scope > a, :scope > button")
+          ?.setAttribute("tabindex", "0");
       });
     }
   }
