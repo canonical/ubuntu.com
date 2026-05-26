@@ -79,7 +79,7 @@
             <p>
               <a id="takeover-primary-url" href="/download" class="p-button--positive">Download for free</a>
               <a id="takeover-secondary-url"
-                 href="{{ releases_yaml.lts.blog_post_url }}">Read the deep dive&nbsp;&rsaquo;</a>
+                 href="{{ releases_yaml.lts.blog_post_url }}">Read the press release&nbsp;&rsaquo;</a>
             </p>
           </div>
         </div>
@@ -87,10 +87,10 @@
           <picture>
             <source srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
                     media="(max-width: 1036px)" />
-            {{ image(url="https://assets.ubuntu.com/v1/33b5133c-Noble-Numbat-optimised.svg",
+            {{ image(url=releases_yaml.lts.mascot_image_large.url,
                         alt="",
-                        width="197",
-                        height="150",
+                        width=releases_yaml.lts.mascot_image_large.width,
+                        height=releases_yaml.lts.mascot_image_large.height,
                         hi_def=True,
                         loading="auto",
                         attrs={"id": "takeover-image"}) | safe
