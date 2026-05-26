@@ -1,10 +1,6 @@
 name: Links on ubuntu.com live
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
   schedule:
     - cron: "20 7 * * *"
 
