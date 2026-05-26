@@ -5,8 +5,8 @@ on:
     branches:
       - main
   pull_request:
-  # schedule:
-  #   - cron: "20 7 * * *"
+  schedule:
+    - cron: "20 7 * * *"
 
 jobs:
   check-links:
@@ -22,11 +22,10 @@ jobs:
           mkdir -p ~/.linkchecker
           cat > ~/.linkchecker/linkcheckerrc <<EOF
           [checking]
-          maxrequestspersecond=5
+          maxrequestspersecond=2
           recursionlevel=2
           timeout=1000
           sslverify=0
-          useragent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 
           [filtering]
           checkextern=1
