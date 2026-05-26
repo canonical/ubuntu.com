@@ -70,16 +70,14 @@
 
   <section class="{% if last_section == 'body' %}p-section--deep{% else %}p-section{% endif %}">
     <div class="grid-row">
-      <div class="grid-col-6 grid-col-start-large-3">
-        <hr class="p-rule--muted">
-      </div>
-    </div>
-    <div class="grid-row">
-      <div class="grid-col-4 grid-col-start-large-3 grid-col-medium-4 engage-body-col">
-        {{ metadata["body_html"] | safe }}
-      </div>
-      <div class="grid-col-2 grid-col-medium-4 u-sticky-col engage-form-col">
+      <div class="grid-col-4 grid-col-start-large-3 grid-col-medium-4 p-engage-body">{{ metadata["body_html"] | safe }}</div>
+      <div class="grid-col-2 grid-col-medium-4 p-engage-form">
         {% if "form_id" in metadata and metadata["form_id"] != "" %}
+          {% set form_id = metadata["form_id"] %}
+          {# Form IDs for no preselected country value #}
+          {% set no_preselect_country_form_ids = ["7722"] %}
+          {# Form IDs that show the optional "How can Canonical help you?" field #}
+          {% set comments_form_ids = ["4709", "4925"] %}
           {% if metadata["language"] != '' %}
             {% set form = "engage/shared/_" + metadata["language"] + "_engage_form.html" %}
             {% if "form_cta" in metadata and metadata["form_cta"] != '' %}
@@ -103,15 +101,15 @@
               {% endwith %}
             {% endif %}
           {% endif %}
-        {% elif "primary_link" in metadata and metadata["primary_link"] != ""%}
+        {% elif "primary_link" in metadata and metadata["primary_link"] != "" %}
           {% if not metadata["webinar_code"] %}
             {% if metadata['meta_image'] %}
               <div class="p-section--shallow u-hide--small u-hide--medium">
                 <div class="p-image-container--16-9 is-highlighted">
                   <img class="p-image-container__image"
-                      src="{{ metadata['meta_image'] }}"
-                      alt=""
-                      width="{{ metadata['image_width'] }}" />
+                       src="{{ metadata['meta_image'] }}"
+                       alt=""
+                       width="{{ metadata['image_width'] }}" />
                 </div>
               </div>
             {% endif %}
