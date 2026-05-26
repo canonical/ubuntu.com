@@ -22,7 +22,7 @@ jobs:
           mkdir -p ~/.linkchecker
           cat > ~/.linkchecker/linkcheckerrc <<EOF
           [checking]
-          maxrequestspersecond=2
+          maxrequestspersecond=4
           recursionlevel=2
           timeout=1000
           sslverify=0
