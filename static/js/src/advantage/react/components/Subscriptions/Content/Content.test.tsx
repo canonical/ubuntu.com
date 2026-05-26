@@ -1,5 +1,5 @@
-import { act } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { waitFor } from "@testing-library/react";
 import { mount } from "enzyme";
 import * as contracts from "advantage/api/contracts";
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
@@ -68,16 +68,12 @@ describe("Content", () => {
       </QueryClientProvider>,
     );
 
-    // Use act and wrapper.update to force waiting  for the component to finish rendering.
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 0));
+    await waitFor(() => {
+      wrapper.update();
+      expect(
+        wrapper.find("Notification[data-test='loading-error']").exists(),
+      ).toBe(true);
     });
-
-    wrapper.update();
-
-    expect(
-      wrapper.find("Notification[data-test='loading-error']").exists(),
-    ).toBe(true);
     expect(wrapper.find("SubscriptionList").exists()).toBe(false);
     expect(wrapper.find("SubscriptionDetails").exists()).toBe(false);
   });
