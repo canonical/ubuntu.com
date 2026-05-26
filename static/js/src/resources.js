@@ -13,11 +13,17 @@
  * XXX: This is a hack until we have an individual resource component pattern.
  * https://github.com/canonical/vanilla-framework/issues/5771
  */
-const fetchAndRenderResources = (tag = "", resource = "", language = "",  customTemplateID) => {
+const fetchAndRenderResources = (
+  tag = "",
+  resource = "",
+  language = "",
+  customTemplateID,
+) => {
   tag = tag.replaceAll(" ", "+");
   resource = resource.replaceAll(" ", "+");
   let template = "";
-  const FALLBACK_META_IMAGE = "https://assets.ubuntu.com/v1/c797f1d7-og_%20canonical.png";
+  const FALLBACK_META_IMAGE =
+    "https://assets.ubuntu.com/v1/c797f1d7-og_%20canonical.png";
 
   if (customTemplateID) {
     template = document.getElementById(customTemplateID) || null;
