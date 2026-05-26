@@ -60,36 +60,25 @@
         {% endif %}
       </div>
       <div class="grid-col-4">
-        <div class="p-section--shallow">
+        <div class="p-section--shallow engage-page-hero">
           <h1>{{ metadata["topic_name"] }}</h1>
           <p class="u-no-padding--top p-heading--4">{{ metadata['subtitle'] }}</p>
-          {% if ("primary_cta" in metadata) and (metadata["primary_cta"] != "") %}
-            <p class="{% if not (('show_cta_on_banner' in metadata) and (metadata["show_cta_on_banner"] == "true" )) %}u-hide--large{% endif %} u-hide--medium u-hide--small">
-              <a href="{{ metadata['primary_link'] }}" class="p-button--positive">{{ metadata["primary_cta"] }}</a>
-              {% if ("secondary_cta" in metadata) and (metadata["primary_cta"] != "") %}
-                <a href="{{ metadata['secondary_link'] }}" class="p-button">{{ metadata['secondary_cta'] }}</a>
-              {% endif %}
-            </p>
-          {% endif %}
         </div>
       </div>
     </div>
   </section>
 
-  {% if metadata["webinar_date"] is defined %}
-    {% if metadata["webinar_date"] | date_has_passed %}
-      {% include "engage/shared/_webinar-embed.html" %}
-    {% endif %}
-  {% endif %}
-
   <section class="{% if last_section == 'body' %}p-section--deep{% else %}p-section{% endif %}">
+    <div class="grid-row">
+      <div class="grid-col-6 grid-col-start-large-3">
+        <hr class="p-rule--muted">
+      </div>
+    </div>
     <div class="grid-row">
       <div class="grid-col-4 grid-col-start-large-3 grid-col-medium-4 engage-body-col">
         {{ metadata["body_html"] | safe }}
       </div>
-      <div class="grid-col-2 grid-col-medium-4 u-sticky-col engage-form-col"
-           style="max-height: 100vh;
-                  overflow-y: auto">
+      <div class="grid-col-2 grid-col-medium-4 u-sticky-col engage-form-col">
         {% if "form_id" in metadata and metadata["form_id"] != "" %}
           {% if metadata["language"] != '' %}
             {% set form = "engage/shared/_" + metadata["language"] + "_engage_form.html" %}
@@ -114,26 +103,32 @@
               {% endwith %}
             {% endif %}
           {% endif %}
-        {% elif "primary_link" in metadata and metadata["primary_link"] != "" %}
-          <div class="p-section--shallow u-hide--small u-hide--medium">
-            <div class="p-image-container--16-9 is-highlighted">
-              <img class="p-image-container__image"
-                   src="{{ metadata['meta_image'] }}"
-                   alt=""
-                   width="{{ metadata['image_width'] }}" />
-            </div>
-          </div>
-          <button type="submit" class="p-button--positive">{{ metadata["primary_cta"] }}</button>
+        {% elif "primary_link" in metadata and metadata["primary_link"] != ""%}
+          {% if not metadata["webinar_code"] %}
+            {% if metadata['meta_image'] %}
+              <div class="p-section--shallow u-hide--small u-hide--medium">
+                <div class="p-image-container--16-9 is-highlighted">
+                  <img class="p-image-container__image"
+                      src="{{ metadata['meta_image'] }}"
+                      alt=""
+                      width="{{ metadata['image_width'] }}" />
+                </div>
+              </div>
+            {% endif %}
+            <a href="{{ metadata['primary_link'] }}" class="p-button--positive">{{ metadata["primary_cta"] }}</a>
+          {% endif %}
         {% endif %}
         <hr class="p-rule u-hide--large" />
       </div>
     </div>
   </section>
 
-  {% if metadata["webinar_date"] is defined and metadata["webinar_code"] is defined %}
+  {% if metadata["webinar_date"] is defined %}
     {% if not metadata["webinar_date"] | date_has_passed %}
       {% include "engage/shared/_webinar-embed.html" %}
     {% endif %}
+  {% else %}
+    {% include "engage/shared/_webinar-embed.html" %}
   {% endif %}
 
   {% if "youtube_id" in metadata %}

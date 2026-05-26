@@ -20,15 +20,17 @@ const fetchAndRenderResources = (tag = "", resource = "", language = "",  custom
   const FALLBACK_META_IMAGE = "https://assets.ubuntu.com/v1/c797f1d7-og_%20canonical.png";
 
   if (customTemplateID) {
-    template = document.getElementById(customTemplateID);
-  } else {
+    template = document.getElementById(customTemplateID) || null;
+  }
+
+  if (!template) {
     template = document.createElement("template");
     template.innerHTML = `
       <div class="p-section--shallow">
         <div class="grid-row">
           <div class="grid-col-2 grid-col-medium-2">
             <div class="p-image-container--16-9 is-cover" data-key="meta_image_container">
-              <img class="p-image-container__image" data-key="meta_image" src="${FALLBACK_META_IMAGE}" alt="test" />
+              <img class="p-image-container__image" data-key="meta_image" src="${FALLBACK_META_IMAGE}" alt="" />
             </div>
           </div>
           <div class="grid-col-4 grid-col-medium-2">

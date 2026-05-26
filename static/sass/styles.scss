@@ -1965,8 +1965,13 @@ ol.p-stepped-list.no-full-stop
   align-self: start;
 }
 
-// /engage: reorder form above body content on smaller screens
+.engage-form-col {
+  max-height: calc(100vh - #{$spv--strip-regular});
+  overflow-y: auto;
+}
+
 @media only screen and (max-width: $breakpoint-large) {
+  // reorder form above body content on smaller screens
   .engage-form-col {
     order: -1;
     // disable custom form behavior when stacked
@@ -1977,5 +1982,10 @@ ol.p-stepped-list.no-full-stop
 
   .engage-body-col {
     order: 0;
+  }
+
+  // reduce hero padding
+  .engage-page-hero {
+    padding-bottom: 0;
   }
 }
