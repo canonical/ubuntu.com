@@ -21,7 +21,7 @@
     is-paper
 {% endblock body_class %}
 
-{% block outer_content %}
+{% block content %}
     {% call(slot) vf_hero(
         title_text='Get development environments that just work, with Workshop',
         layout='50/50'
@@ -90,10 +90,6 @@
             <p>Workshop's interface system allocates host resources, without the need for extensive manual configuration.</p>
         {%- endif -%}
 
-        {%- if slot == 'list_item_title_4' -%}
-            <h3 class="p-heading--5">Weekday or 24/7 support</h3>
-        {%- endif -%}
-
     {%- endcall -%}
 
     {{ vf_basic_section(title={"text": "Get started <br class='u-hide--small u-hide--medium' />with Workshop today"},
@@ -112,9 +108,8 @@
         {
         "type": "code-block",
         "item": {
-        "content": '
-        $ sudo snap install --classic workshop
-        '
+        "is_code_snippet": true,
+        "content": "$ sudo snap install --classic workshop"
         }
         },
         {
@@ -195,25 +190,41 @@
         ) -%}
     {%- endcall -%}
 
-    {{ vf_blog(title={"text": '<a href="/blog/tag/ubuntu">Latest Ubuntu news from our blog</a>'},
-        template_config={"enabled": True, "template_container_id": "articles"},
-        padding="deep") }}
+    <section class="p-section--deep">
+        <hr class="p-rule is-fixed-width" />
+        <div class="u-fixed-width">
+            <div class="p-section--shallow">
+                <h2 class="p-text--small-caps">
+                    <a href="/blog/tag/ubuntu">Latest Ubuntu news from&nbsp;our&nbsp;blog&nbsp;&rsaquo;</a>
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="row p-section--shallow" id="ubuntu-latest"></div>
+            </div>
+        </div>
+        <template style="display:none" id="blog-template">
+            <div class="col-3 col-medium-2">
+                <div class="article-image u-blog-thumbnails p-image-wrapper"></div>
+                <h3 class="p-heading--5">
+                    <a class="article-link article-title"></a>
+                </h3>
+                <p class="article-excerpt"></p>
+            </div>
+        </template>
+    </section>
 
     <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
     <script>
       canonicalLatestNews.fetchLatestNews({
-        imageClasses: ["p-image-container__image"],
-        /*
-          Make sure your article limit and `template_config.layout` match.
-          Use "4-blocks" (or no layout, as 4-blocks is the default) with `limit: "4"`.
-         */
-        limit: "4",
-        articlesContainerSelector: "#articles",
-        articleTemplateSelector: "#template",
-        excerptLength: 180,
-        gtmEventLabel: "Latest Ubuntu news from our blog",
-        tagId: 1479
+        articlesContainerSelector: "#ubuntu-latest",
+        articleTemplateSelector: "#blog-template",
+        linkImage: true,
+        excerptLength: 200,
+        tagId: 1479,
+        limit: 4
       })
     </script>
 
-{% endblock outer_content %}
+{% endblock content %}
