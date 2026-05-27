@@ -19,21 +19,17 @@ const KVMDrivers = "Certified Windows Drivers for KVM guests";
 const CISBenchmark =
   "Certified CIS benchmark tooling and DISA-STIG configuration guide";
 const CISBenchmarkAndAutomation =
-  "Ubuntu Security Guide (USG) for certified CIS benchmark tooling and DISA-STIG tooling & automation";
+  "Ubuntu Security Guide (USG) for CIS benchmark tooling and DISA-STIG tooling & automation";
 const FIPS_140_2 =
   "FIPS 140-2 Level 1 cryptographic packages for FedRAMP, HIPAA and PCI-DSS compliance";
 const FIPS_140_3 =
   "FIPS 140-3 Level 1 cryptographic packages for FedRAMP, HIPAA and PCI-DSS compliance";
 const CIS =
   "Ubuntu Security Guide (USG) for CIS and DISA STIG benchmark tooling & automation";
-const CISComingSoon = (
-  <>
-    Ubuntu Security Guide (USG) for certified CIS benchmark tooling & automation
-  </>
-);
+const CISComingSoon = "Ubuntu Security Guide (USG) for CIS benchmark tooling & automation";
 const CommonCriteria = "Common Criteria EAL2";
 const ESMEndDate =
-  "Expanded Security Maintenance (ESM) for packages in 'main' repository until";
+  "Expanded Security Maintenance (ESM) for packages in 'main' and 'universe' repositories until";
 const DesktopESMEndDate =
   "Expanded Security Maintenance (ESM) for packages in 'main' and 'universe' repositories until";
 const AAD =
@@ -42,6 +38,15 @@ const AAD =
 const PhysicalServerVersionDetails: {
   [key in LTSVersions]: Array<React.ReactNode>;
 } = {
+  [LTSVersions.resolute]: [
+    `${ESMEndDate} 2036`,
+    livepatch,
+    `${CISComingSoon} [Coming soon]`,
+    KVMDrivers,
+    landscape,
+    knowledgeBase,
+    realtimeKernel,
+  ],
   [LTSVersions.noble]: [
     `${ESMEndDate} 2034`,
     livepatch,
@@ -80,21 +85,20 @@ const PhysicalServerVersionDetails: {
     landscape,
     knowledgeBase,
   ],
-  [LTSVersions.xenial]: [
-    `${ESMEndDate} 2026`,
-    livepatch,
-    FIPS_140_2,
-    CISBenchmark,
-    CommonCriteria,
-    KVMDrivers,
-    landscape,
-    knowledgeBase,
-  ],
 };
 
 const DesktopVersionDetails: {
   [key in LTSVersions]: Array<React.ReactNode>;
 } = {
+  [LTSVersions.resolute]: [
+    `${ESMEndDate} 2036`,
+    AAD,
+    livepatch,
+    `${CISComingSoon} [Coming soon]`,
+    landscape,
+    knowledgeBase,
+    realtimeKernel,
+  ],
   [LTSVersions.noble]: [
     `${DesktopESMEndDate} 2034`,
     AAD,
@@ -108,7 +112,7 @@ const DesktopVersionDetails: {
     `${DesktopESMEndDate} 2032`,
     AAD,
     livepatch,
-    FIPS_140_3,
+    "FIPS 140-3 Level 1 cryptographic packages for FedRAMP compliance",
     CIS,
     landscape,
     knowledgeBase,
@@ -118,22 +122,13 @@ const DesktopVersionDetails: {
     `${DesktopESMEndDate} 2030`,
     AAD,
     livepatch,
-    FIPS_140_2,
+    "FIPS 140-2 Level 1 cryptographic packages for FedRAMP compliance",
     CISBenchmarkAndAutomation,
     landscape,
     knowledgeBase,
   ],
   [LTSVersions.bionic]: [
     `${DesktopESMEndDate} 2028`,
-    livepatch,
-    FIPS_140_2,
-    CISBenchmark,
-    CommonCriteria,
-    landscape,
-    knowledgeBase,
-  ],
-  [LTSVersions.xenial]: [
-    `${DesktopESMEndDate} 2026`,
     livepatch,
     FIPS_140_2,
     CISBenchmark,

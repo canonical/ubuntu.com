@@ -134,7 +134,7 @@ export const FormProvider = ({
   }, [support, sla]);
 
   useEffect(() => {
-    if (version === LTSVersions.xenial) {
+    if (version === LTSVersions.bionic) {
       setSupport(Support.none);
     }
   }, [version, support]);
