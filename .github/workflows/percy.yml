@@ -9,15 +9,25 @@ on:
       - main
     types:
       - opened
-      - synchronize
       - reopened
       - ready_for_review
+      - labeled
+    paths:
+      - "templates/**"
+      - "static/sass/**"
+      - "static/js/src/**"
+      - "navigation.yaml"
+      - "secondary-navigation.yaml"
+      - "snapshots.js"
+      - "test-links.yaml"
 
 jobs:
   snapshot:
     name: Take Percy snapshots
     runs-on: ubuntu-latest
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    if: >
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      (github.event_name != 'labeled' || github.event.label.name == 'run-percy')
     steps:
       - name: Checkout SCM
         uses: actions/checkout@v4

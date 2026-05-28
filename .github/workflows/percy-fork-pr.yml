@@ -7,9 +7,17 @@ on:
       - main
     types:
       - opened
-      - synchronize
       - reopened
       - ready_for_review
+      - labeled
+    paths:
+      - "templates/**"
+      - "static/sass/**"
+      - "static/js/src/**"
+      - "navigation.yaml"
+      - "secondary-navigation.yaml"
+      - "snapshots.js"
+      - "test-links.yaml"
 
 permissions:
   contents: read
@@ -20,7 +28,9 @@ jobs:
     name: Take Percy snapshots
     runs-on: ubuntu-latest
     # Ensure we only run for forks (internal PRs use a different workflow)
-    if: github.event.pull_request.head.repo.full_name != github.repository
+    if: >
+      github.event.pull_request.head.repo.full_name != github.repository &&
+      (github.event_name != 'labeled' || github.event.label.name == 'run-percy')
 
     # The environment "percy-testing" handles the approval gate
     environment: percy-testing
