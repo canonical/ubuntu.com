@@ -26,7 +26,8 @@ const FIPS_140_3 =
   "FIPS 140-3 Level 1 cryptographic packages for FedRAMP, HIPAA and PCI-DSS compliance";
 const CIS =
   "Ubuntu Security Guide (USG) for CIS and DISA STIG benchmark tooling & automation";
-const CISComingSoon = "Ubuntu Security Guide (USG) for CIS benchmark tooling & automation";
+const CISComingSoon =
+  "Ubuntu Security Guide (USG) for CIS benchmark tooling & automation";
 const CommonCriteria = "Common Criteria EAL2";
 const ESMEndDate =
   "Expanded Security Maintenance (ESM) for packages in 'main' and 'universe' repositories until";

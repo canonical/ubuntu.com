@@ -37,9 +37,9 @@ test("Infra support is disabled if desktop is selected", () => {
   expect(screen.getByTestId("full-support")).not.toBeDisabled();
 });
 
-test("Infra and full support are disabled if Xenial is selected", () => {
+test("Infra and full support are disabled if Bionic is selected", () => {
   render(
-    <FormProvider initialVersion={LTSVersions.xenial}>
+    <FormProvider initialVersion={LTSVersions.bionic}>
       <Support />
     </FormProvider>,
   );
