@@ -31,8 +31,6 @@ const CISComingSoon =
 const CommonCriteria = "Common Criteria EAL2";
 const ESMEndDate =
   "Expanded Security Maintenance (ESM) for packages in 'main' and 'universe' repositories until";
-const DesktopESMEndDate =
-  "Expanded Security Maintenance (ESM) for packages in 'main' and 'universe' repositories until";
 const AAD =
   "Advanced Active Directory integration including native GPO policy support, custom script execution and privilege management";
 
@@ -101,7 +99,7 @@ const DesktopVersionDetails: {
     realtimeKernel,
   ],
   [LTSVersions.noble]: [
-    `${DesktopESMEndDate} 2034`,
+    `${ESMEndDate} 2034`,
     AAD,
     livepatch,
     CISComingSoon,
@@ -110,7 +108,7 @@ const DesktopVersionDetails: {
     realtimeKernel,
   ],
   [LTSVersions.jammy]: [
-    `${DesktopESMEndDate} 2032`,
+    `${ESMEndDate} 2032`,
     AAD,
     livepatch,
     "FIPS 140-3 Level 1 cryptographic packages for FedRAMP compliance",
@@ -120,7 +118,7 @@ const DesktopVersionDetails: {
     realtimeKernel,
   ],
   [LTSVersions.focal]: [
-    `${DesktopESMEndDate} 2030`,
+    `${ESMEndDate} 2030`,
     AAD,
     livepatch,
     "FIPS 140-2 Level 1 cryptographic packages for FedRAMP compliance",
@@ -129,7 +127,7 @@ const DesktopVersionDetails: {
     knowledgeBase,
   ],
   [LTSVersions.bionic]: [
-    `${DesktopESMEndDate} 2028`,
+    `${ESMEndDate} 2028`,
     livepatch,
     FIPS_140_2,
     CISBenchmark,
