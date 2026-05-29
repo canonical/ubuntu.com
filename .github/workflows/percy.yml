@@ -67,7 +67,7 @@ jobs:
     name: Take Percy snapshots
     runs-on: ubuntu-latest
     needs: decide
-    if: needs.decide.outputs.should_run == 'true'
+    if: needs.decide.result == 'success' && needs.decide.outputs.should_run == 'true'
     steps:
       - name: Checkout SCM
         uses: actions/checkout@v4
