@@ -7,11 +7,51 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
+  decide:
+    name: Decide whether to update baseline
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.evaluate.outputs.should_run }}
+    steps:
+      - name: Filter changed paths
+        id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            visual:
+              - 'static/sass/**'
+              - 'templates/**/*.html'
+              - 'package.json'
+              - 'yarn.lock'
+
+      - name: Evaluate gate
+        id: evaluate
+        env:
+          DISPATCHED: ${{ github.event_name == 'workflow_dispatch' }}
+          VISUAL_CHANGED: ${{ steps.filter.outputs.visual }}
+        run: |
+          set -e
+          if [ "$DISPATCHED" = "true" ]; then
+            echo "RUN: manually dispatched"
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ "$VISUAL_CHANGED" = "true" ]; then
+            echo "RUN: visual-affecting files changed on this push"
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "SKIP: no visual-affecting changes on this push"
+          echo "should_run=false" >> "$GITHUB_OUTPUT"
+
   snapshot:
     name: Take Percy snapshots
     runs-on: ubuntu-latest
+    needs: decide
+    if: needs.decide.result == 'success' && needs.decide.outputs.should_run == 'true'
     steps:
       - name: Checkout SCM
         uses: actions/checkout@v4
