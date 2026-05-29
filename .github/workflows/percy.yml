@@ -1,4 +1,3 @@
-
 name: Percy testing on PRs targeting main
 run-name: Testing Percy on branch ${{ github.head_ref }}
 
@@ -12,12 +11,63 @@ on:
       - synchronize
       - reopened
       - ready_for_review
+      - labeled
+      - unlabeled
+
+concurrency:
+  group: percy-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
+  decide:
+    name: Decide whether to run Percy
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    outputs:
+      should_run: ${{ steps.evaluate.outputs.should_run }}
+    steps:
+      - name: Filter changed paths
+        id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            visual:
+              - 'static/sass/**'
+              - 'templates/**/*.html'
+              - 'package.json'
+              - 'yarn.lock'
+
+      - name: Evaluate gate
+        id: evaluate
+        env:
+          HAS_LABEL: ${{ contains(github.event.pull_request.labels.*.name, 'run-percy') }}
+          ACTOR: ${{ github.event.pull_request.user.login }}
+          VISUAL_CHANGED: ${{ steps.filter.outputs.visual }}
+        run: |
+          set -e
+          if [ "$HAS_LABEL" = "true" ]; then
+            echo "RUN: run-percy label present"
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ "$ACTOR" = "dependabot[bot]" ] || [ "$ACTOR" = "renovate[bot]" ]; then
+            echo "SKIP: bot author ($ACTOR) without run-percy label"
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ "$VISUAL_CHANGED" = "true" ]; then
+            echo "RUN: visual-affecting files changed"
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "SKIP: no visual-affecting changes and no run-percy label"
+          echo "should_run=false" >> "$GITHUB_OUTPUT"
+
   snapshot:
     name: Take Percy snapshots
     runs-on: ubuntu-latest
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    needs: decide
+    if: needs.decide.outputs.should_run == 'true'
     steps:
       - name: Checkout SCM
         uses: actions/checkout@v4
