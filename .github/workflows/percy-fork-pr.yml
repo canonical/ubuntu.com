@@ -10,17 +10,68 @@ on:
       - synchronize
       - reopened
       - ready_for_review
+      - labeled
+      - unlabeled
 
 permissions:
   contents: read
   pull-requests: read
 
+concurrency:
+  group: percy-fork-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
+  decide:
+    name: Decide whether to run Percy
+    runs-on: ubuntu-latest
+    # Only run for forks; internal PRs use percy.yml
+    if: github.event.pull_request.head.repo.full_name != github.repository
+    outputs:
+      should_run: ${{ steps.evaluate.outputs.should_run }}
+    steps:
+      - name: Filter changed paths
+        id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            visual:
+              - 'static/sass/**'
+              - 'templates/**/*.html'
+              - 'package.json'
+              - 'yarn.lock'
+
+      - name: Evaluate gate
+        id: evaluate
+        env:
+          HAS_LABEL: ${{ contains(github.event.pull_request.labels.*.name, 'run-percy') }}
+          ACTOR: ${{ github.event.pull_request.user.login }}
+          VISUAL_CHANGED: ${{ steps.filter.outputs.visual }}
+        run: |
+          set -e
+          if [ "$HAS_LABEL" = "true" ]; then
+            echo "RUN: run-percy label present"
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ "$ACTOR" = "dependabot[bot]" ] || [ "$ACTOR" = "renovate[bot]" ]; then
+            echo "SKIP: bot author ($ACTOR) without run-percy label"
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ "$VISUAL_CHANGED" = "true" ]; then
+            echo "RUN: visual-affecting files changed"
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "SKIP: no visual-affecting changes and no run-percy label"
+          echo "should_run=false" >> "$GITHUB_OUTPUT"
+
   snapshot:
     name: Take Percy snapshots
     runs-on: ubuntu-latest
-    # Ensure we only run for forks (internal PRs use a different workflow)
-    if: github.event.pull_request.head.repo.full_name != github.repository
+    needs: decide
+    if: needs.decide.result == 'success' && needs.decide.outputs.should_run == 'true'
 
     # The environment "percy-testing" handles the approval gate
     environment: percy-testing
