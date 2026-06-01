@@ -16,43 +16,18 @@ jobs:
     permissions:
       contents: read
     outputs:
-      should_run: ${{ steps.evaluate.outputs.should_run }}
+      should_run: ${{ steps.gate.outputs.should_run }}
     steps:
-      - name: Filter changed paths
-        id: filter
-        uses: dorny/paths-filter@d1c1ffe0248fe513906c8e24db8ea791d46f8590 # v3.0.3
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
-          filters: |
-            visual:
-              - 'static/sass/**'
-              - 'static/js/src/**'
-              - 'templates/**'
-              - 'navigation.yaml'
-              - 'secondary-navigation.yaml'
-              - 'snapshots.js'
-              - 'test-links.yaml'
-              - 'package.json'
-              - 'yarn.lock'
+          sparse-checkout: .github/actions/percy-gate
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
 
-      - name: Evaluate gate
-        id: evaluate
-        env:
-          DISPATCHED: ${{ github.event_name == 'workflow_dispatch' }}
-          VISUAL_CHANGED: ${{ steps.filter.outputs.visual }}
-        run: |
-          set -e
-          if [ "$DISPATCHED" = "true" ]; then
-            echo "RUN: manually dispatched"
-            echo "should_run=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          if [ "$VISUAL_CHANGED" = "true" ]; then
-            echo "RUN: visual-affecting files changed on this push"
-            echo "should_run=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          echo "SKIP: no visual-affecting changes on this push"
-          echo "should_run=false" >> "$GITHUB_OUTPUT"
+      - id: gate
+        uses: ./.github/actions/percy-gate
+        with:
+          mode: baseline
 
   snapshot:
     name: Take Percy snapshots
