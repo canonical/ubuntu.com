@@ -23,7 +23,12 @@ jobs:
           filters: |
             visual:
               - 'static/sass/**'
-              - 'templates/**/*.html'
+              - 'static/js/src/**'
+              - 'templates/**'
+              - 'navigation.yaml'
+              - 'secondary-navigation.yaml'
+              - 'snapshots.js'
+              - 'test-links.yaml'
               - 'package.json'
               - 'yarn.lock'
 
