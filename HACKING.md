@@ -6,16 +6,37 @@ We use [Yarn](https://yarnpkg.com/lang/en/) for building static files like CSS t
 
 ## Running the site
 
-### With dotrun
+### With Taskfile (recommended)
 
-The recommended way to run the site is with [the `dotrun` snap](https://github.com/canonical-web-and-design/dotrun/):
+The recommended way to run the site is with [Taskfile](https://taskfile.dev/):
+
+```bash
+# Install Taskfile (see https://taskfile.dev/docs/installation for other options)
+sudo snap install task --classic
+
+# Build dependencies and run the server
+task
+```
+
+To see all available tasks:
+
+```bash
+task --list
+```
+
+### With dotrun (deprecated)
+
+> [!WARNING]
+> `dotrun` is no longer used in CI and is being phased out. New contributors should use Taskfile.
+
+If you still rely on `dotrun`:
 
 ```bash
 sudo snap install dotrun
 dotrun  # Build dependencies and run the server
 ```
 
-Then to learn about `dotrun`'s options, type:
+To learn about `dotrun`'s options:
 
 ```bash
 dotrun --help
@@ -61,6 +82,17 @@ You can use the `./run` script to use Node modules from a local folder on a one-
 ./run --node-module $HOME/projects/vanilla-framework watch  # Build CSS dynamically, using a local version of vanilla-framework
 ```
 
+### Overriding Python packages
+
+If you're maintaining one of the Canonical web team's Python packages (e.g. `canonicalwebteam.flask-base`, `canonicalwebteam.templatefinder`, `canonicalwebteam.blog`, `canonicalwebteam.search`) and want to test local changes against ubuntu.com without publishing a release, pass `MOUNT=<path>` to any Python-running task. The `start`, `build`, `test-python`, and `lint-python` tasks prepend that path to `PYTHONPATH`, so Python loads modules from your local checkout instead of the installed version:
+
+```bash
+task start MOUNT=$HOME/projects/canonicalwebteam.flask-base
+task test-python MOUNT=$HOME/projects/canonicalwebteam.blog
+```
+
+`MOUNT` is opt-in — leave it unset for normal runs. CI never sets it.
+
 ## Making changes to the site
 
 Guides for making changes to the ubuntu.com codebase.
@@ -105,7 +137,7 @@ To update cassettes, run the tests with the `VCR_RECORD_MODE` environment variab
 
 ```bash
 # Record new cassettes
-dotrun -e VCR_RECORD_MODE=all test-python
+VCR_RECORD_MODE=all task test-python
 ```
 
 Alternatively, add `VCR_RECORD_MODE=all` to your `.env.local` file temporarily while re-recording.
@@ -113,7 +145,7 @@ Alternatively, add `VCR_RECORD_MODE=all` to your `.env.local` file temporarily w
 After recording, verify the tests pass without the environment variable (using the recorded cassettes):
 
 ```bash
-dotrun test-python
+task test-python
 ```
 
 **Note:** Cassettes are stored in `tests/cassettes/`. Review the changes before committing to ensure no sensitive data was recorded.
@@ -136,7 +168,7 @@ BADGR_PASSWORD=<badgr_password>
 
 Parts of this site use [React Query](https://react-query.tanstack.com/overview) to manage data from the API.
 
-To enable the React Query devtools you need to add `NODE_ENV="development"` to your `.env.local` file or run: `dotrun -e NODE_ENV="development"`.
+To enable the React Query devtools you need to add `NODE_ENV="development"` to your `.env.local` file or run: `NODE_ENV="development" task`.
 
 ## Linting / formatting
 

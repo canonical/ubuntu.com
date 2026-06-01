@@ -1,19 +1,41 @@
-name: PR checks with taskfile
+name: PR checks
 on:
   push:
+    branches:
+      - main
   pull_request:
+env:
+  SECRET_KEY: insecure_test_key
+
+permissions:
+  contents: read
 
 jobs:
+  run-image:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Build image
+        run: DOCKER_BUILDKIT=1 docker build --tag ubuntu-com .
+
+      - name: Run image
+        run: |
+          docker run --env SECRET_KEY=insecure_secret_key --network host ubuntu-com &
+          sleep 1
+          curl --head --fail --retry-delay 1 --retry 30 --retry-connrefused http://localhost
+
   start:
     name: "Start Project"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup Taskfile
-        uses: arduino/setup-task@v2
         with:
-          version: 3.40.0
+          persist-credentials: false
+      - uses: ./.github/actions/setup-taskfile
 
       - name: Start server
         run: |
@@ -26,8 +48,7 @@ jobs:
 
       - name: Print server logs
         if: always()
-        run: |
-          cat server.log || true
+        run: cat server.log || true
 
       - name: Check server is returning 200
         run: |
@@ -45,46 +66,163 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup Taskfile
-        uses: arduino/setup-task@v2
         with:
-          version: 3.40.0
+          persist-credentials: false
+      - uses: ./.github/actions/setup-taskfile
+      - run: task build
 
-      - name: Build project
-        run: task build
-
-  test:
-    name: "Test Project"
+  lint-scss:
     runs-on: ubuntu-latest
     steps:
-      # TODO: Add codecov integration when this replaces the original PR.yaml workflow
       - uses: actions/checkout@v4
-
-      - name: Setup Taskfile
-        uses: arduino/setup-task@v2
         with:
-          version: 3.40.0
+          persist-credentials: false
+      - uses: ./.github/actions/setup-taskfile
+      - run: task lint-scss
 
-      - name: Test project
-        run: task test
+  lint-js:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-taskfile
+      - run: task lint-js
+
+  lint-ts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-taskfile
+      - run: task lint-ts
+
+  lint-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-taskfile
+      - run: task lint-python
+
+  check-prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-taskfile
+      - run: task check-prettier
+
+  lint-jinja:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.base_ref }}
+          persist-credentials: false
+
+      - name: Install node dependencies
+        run: yarn install --immutable
+
+      - name: Install djlint
+        run: python3 -m pip install "$(grep -E '^djlint==' requirements.txt)"
+
+      - name: Get changed HTML files in the templates folder
+        id: changed-files
+        run: |
+          TARGET_SHA=$(git rev-parse $GITHUB_BASE_REF)
+          CHANGED_FILES=$(git diff --diff-filter=ACMRd --name-only $TARGET_SHA $GITHUB_SHA -- 'templates/**.html' | tr '\n' ' ')
+          echo "CHANGED_FILES=$CHANGED_FILES" >> $GITHUB_ENV
+
+      - name: Lint jinja
+        if: env.CHANGED_FILES != ''
+        run: |
+          echo "The following files have changed: $CHANGED_FILES"
+          djlint $CHANGED_FILES --lint --profile="jinja"
+
+  test-python:
+    runs-on: ubuntu-latest
+    environment: ci
     env:
       MARKETO_API_URL: https://066-EOV-335.mktorest.com
       MARKETO_API_CLIENT: ${{ secrets.MARKETO_API_CLIENT }}
       MARKETO_API_SECRET: ${{ secrets.MARKETO_API_SECRET }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: ./.github/actions/setup-taskfile
 
-  lint:
-    name: "Lint Project"
+      - name: Run Python tests
+        run: task test-python
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@b9fd7d16f6d7d1b5d2bec1a2887e65ceed900238 # v4.6.0
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: python
+          commit_parent: ${{ github.event.pull_request.base.sha || github.event.before }}
+
+  test-js:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup Taskfile
-        uses: arduino/setup-task@v2
         with:
-          version: 3.40.0
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: ./.github/actions/setup-taskfile
 
-      - name: Lint project
-        run: task lint
+      - name: Run JS tests
+        run: task test-js
 
-  # TODO: Include inclusive naming check, which is currently in the original PR.yaml workflow
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@b9fd7d16f6d7d1b5d2bec1a2887e65ceed900238 # v4.6.0
+        with:
+          flags: javascript
+          commit_parent: ${{ github.event.pull_request.base.sha || github.event.before }}
+
+  validate-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Install konf
+        run: |
+          sudo snap install konf
+          sudo chown root:root /
+
+      - name: Install Kubeval
+        run: |
+          wget https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz
+          tar xf kubeval-linux-amd64.tar.gz
+          sudo cp kubeval /usr/local/bin
+
+      - name: Validate all sites
+        run: |
+          konf staging deploy/site.yaml | kubeval -f -
+          konf production deploy/site.yaml | kubeval -f -
+
+  Inclusive-naming-check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: woke
+        uses: canonical-web-and-design/inclusive-naming@7aa0f7a606f182bd03a7adb28e0d710216101ca5 # main
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-check
+          fail-on-error: false
