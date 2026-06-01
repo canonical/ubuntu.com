@@ -25,20 +25,39 @@ jobs:
         with:
           online-audits: true
 
-      - name: Run zizmor (plain output for PR comment)
+      - name: Build zizmor PR report (changed files only)
         if: github.event_name == 'pull_request'
-        id: zizmor_plain
         continue-on-error: true
+        env:
+          NO_COLOR: "1"
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
-          pipx install zizmor
+          # List workflow/action YAML files changed in this PR (skip removed files).
+          gh api "repos/$REPO/pulls/$PR_NUMBER/files" --paginate \
+            --jq '.[] | select(.status != "removed") | .filename' \
+            | grep -E '^\.github/(workflows|actions)/.*\.ya?ml$' \
+            > changed_files.txt || true
+
           {
-            echo '## :shield: zizmor security findings'
+            echo '## :shield: zizmor findings on workflow/action files changed in this PR'
             echo ''
             echo 'Rule descriptions and remediation guidance: <https://docs.zizmor.sh/audits/>'
             echo ''
-            echo '```'
-            zizmor --persona=auditor --format=plain . 2>&1 || true
-            echo '```'
+            if [ ! -s changed_files.txt ]; then
+              echo '_No workflow or action YAML files changed in this PR — nothing to scan._'
+            else
+              echo 'Scanned:'
+              while IFS= read -r file; do
+                echo "- \`$file\`"
+              done < changed_files.txt
+              echo ''
+              echo '```'
+              pipx install zizmor
+              xargs zizmor --persona=auditor --format=plain < changed_files.txt 2>/dev/null || true
+              echo '```'
+            fi
           } > zizmor-report.md
 
       - name: Post zizmor findings as sticky PR comment
