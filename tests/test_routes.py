@@ -455,7 +455,6 @@ class TestRoutes(VCRTestCase):
             response.location,
         )
 
-
     def test_csp_header_contains_nonce(self):
         """Test that CSP header includes a nonce in script directives"""
         response = self.client.get("/")
@@ -474,6 +473,7 @@ class TestRoutes(VCRTestCase):
 
     def test_csp_nonce_is_unique_per_request(self):
         """Test that a different nonce is generated for each request"""
+
         def get_nonce(csp):
             for part in csp.split():
                 if part.startswith("'nonce-"):
