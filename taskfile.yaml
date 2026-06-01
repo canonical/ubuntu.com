@@ -25,7 +25,7 @@ tasks:
     deps:
       - install
     cmds:
-      - '{{if .MOUNT}}PYTHONPATH="{{ .MOUNT }}:$PYTHONPATH" {{end}}PATH="{{ .VENV_BIN }}:$PATH" yarn start'
+      - '{{if .MOUNT}}PYTHONPATH="{{ .MOUNT }}:$PYTHONPATH" {{end}}yarn start'
 
   install:
     desc: "Install Python and Node.js binaries and their packages"
@@ -40,7 +40,7 @@ tasks:
     deps:
       - install
     cmds:
-      - PATH="{{ .VENV_BIN }}:$PATH" $SHELL
+      - $SHELL
 
   clean:
     cmds:
@@ -51,14 +51,14 @@ tasks:
     deps:
       - install
     cmds:
-      - '{{if .MOUNT}}PYTHONPATH="{{ .MOUNT }}:$PYTHONPATH" {{end}}PATH="{{ .VENV_BIN }}:$PATH" coverage run --source=webapp -m unittest $(find tests/ -name "test_*.py" ! -name "test_marketo.py")'
+      - '{{if .MOUNT}}PYTHONPATH="{{ .MOUNT }}:$PYTHONPATH" {{end}}coverage run --source=webapp -m unittest $(find tests/ -name "test_*.py" ! -name "test_marketo.py")'
 
   test-js:
     desc: "Run JS tests with coverage"
     deps:
       - install-yarn
     cmds:
-      - PATH="{{ .VENV_BIN }}:$PATH" yarn test-js --coverage
+      - yarn test-js --coverage
 
   test:
     desc: "Run all project tests"
@@ -71,35 +71,35 @@ tasks:
     deps:
       - install-yarn
     cmds:
-      - PATH="{{ .VENV_BIN }}:$PATH" yarn lint-scss
+      - yarn lint-scss
 
   lint-js:
     desc: "Lint JS"
     deps:
       - install-yarn
     cmds:
-      - PATH="{{ .VENV_BIN }}:$PATH" yarn lint-js
+      - yarn lint-js
 
   lint-ts:
     desc: "Lint TS"
     deps:
       - install-yarn
     cmds:
-      - PATH="{{ .VENV_BIN }}:$PATH" yarn lint-ts
+      - yarn lint-ts
 
   lint-python:
     desc: "Lint Python"
     deps:
       - install
     cmds:
-      - '{{if .MOUNT}}PYTHONPATH="{{ .MOUNT }}:$PYTHONPATH" {{end}}PATH="{{ .VENV_BIN }}:$PATH" yarn lint-python'
+      - '{{if .MOUNT}}PYTHONPATH="{{ .MOUNT }}:$PYTHONPATH" {{end}}yarn lint-python'
 
   check-prettier:
     desc: "Check Prettier formatting"
     deps:
       - install-yarn
     cmds:
-      - PATH="{{ .VENV_BIN }}:$PATH" yarn check-prettier
+      - yarn check-prettier
 
   lint:
     desc: "Run all project linting"
@@ -115,8 +115,8 @@ tasks:
     deps:
       - install
     cmds:
-      - PATH="{{ .VENV_BIN }}:$PATH" yarn format-python
-      - PATH="{{ .VENV_BIN }}:$PATH" yarn format-prettier
+      - yarn format-python
+      - yarn format-prettier
       - npx stylelint --fix static/**/*.scss
 
   build:
@@ -124,7 +124,7 @@ tasks:
     deps:
       - install
     cmds:
-      - '{{if .MOUNT}}PYTHONPATH="{{ .MOUNT }}:$PYTHONPATH" {{end}}PATH="{{ .VENV_BIN }}:$PATH" yarn build'
+      - '{{if .MOUNT}}PYTHONPATH="{{ .MOUNT }}:$PYTHONPATH" {{end}}yarn build'
 
   # Custom tools versioning setup (mise, python, node, etc.)
   setup-mise:
