@@ -6,7 +6,7 @@
 
 - Open the [DEMO](__DEMO_URL__)
 - Alternatively, check out this feature branch
-- Run the site using the command `./run serve` or `dotrun`
+- Run the site using the command `task start`
 - View the site locally in your web browser at: http://0.0.0.0:8001/
     - Be sure to test on mobile, tablet and desktop screen sizes
 - [List additional steps to QA the new features or prove the bug has been resolved]

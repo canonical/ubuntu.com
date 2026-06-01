@@ -32,7 +32,7 @@ task
 > [!WARNING]
 > Deprecated: dotrun
 
-Using the [`dotrun`](https://github.com/canonical-web-and-design/dotrun/) snap to run this project is now deprecated and will be removed in the future. If you still rely on it, please see the installation instructions in the dotrun README and run `dotrun` as before. On macOS, if `dotrun` errors due to Chromium, add the following to your local `.env.local` file:
+The [`dotrun`](https://github.com/canonical-web-and-design/dotrun/) snap is no longer used in CI. Taskfile is the recommended way to run this project locally. If you still rely on `dotrun`, see the installation instructions in the dotrun README and run `dotrun` as before. On macOS, if `dotrun` errors due to Chromium, add the following to your local `.env.local` file:
 
 ```
 PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
