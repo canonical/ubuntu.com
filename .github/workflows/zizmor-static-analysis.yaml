@@ -13,13 +13,37 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       security-events: write
+      pull-requests: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           persist-credentials: false
 
-      - name: Run zizmor
+      - name: Run zizmor (SARIF upload to code scanning)
         uses: zizmorcore/zizmor-action@71321a20a9ded102f6e9ce5718a2fcec2c4f70d8 # v0.5.2
         with:
           online-audits: true
+
+      - name: Run zizmor (plain output for PR comment)
+        if: github.event_name == 'pull_request'
+        id: zizmor_plain
+        continue-on-error: true
+        run: |
+          pipx install zizmor
+          {
+            echo '## :shield: zizmor security findings'
+            echo ''
+            echo 'Rule descriptions and remediation guidance: <https://docs.zizmor.sh/audits/>'
+            echo ''
+            echo '```'
+            zizmor --persona=auditor --format=plain . 2>&1 || true
+            echo '```'
+          } > zizmor-report.md
+
+      - name: Post zizmor findings as sticky PR comment
+        if: github.event_name == 'pull_request'
+        uses: marocchino/sticky-pull-request-comment@0ea0beb66eb9baf113663a64ec522f60e49231c0 # v3.0.4
+        with:
+          header: zizmor-findings
+          path: zizmor-report.md
