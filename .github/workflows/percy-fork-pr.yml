@@ -30,7 +30,9 @@ jobs:
     # Ensure we only run for forks (internal PRs use a different workflow)
     if: >
       github.event.pull_request.head.repo.full_name != github.repository &&
-      (github.event_name != 'labeled' || github.event.label.name == 'run-percy')
+      (github.event.action != 'labeled' || github.event.label.name == 'run-percy') &&
+      github.actor != 'renovate[bot]' &&
+      github.actor != 'dependabot[bot]'
 
     # The environment "percy-testing" handles the approval gate
     environment: percy-testing
