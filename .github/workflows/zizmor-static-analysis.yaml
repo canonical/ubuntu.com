@@ -29,8 +29,17 @@ jobs:
         with:
           online-audits: true
 
+      # The next three steps post a PR comment with findings scoped to the
+      # files changed in this PR. They are skipped on fork PRs because
+      # GITHUB_TOKEN is read-only on cross-repo PRs and the comment step
+      # would fail to authenticate.
+      - name: Install zizmor CLI
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        continue-on-error: true
+        run: pipx install zizmor==1.25.2
+
       - name: Build zizmor PR report (changed files only)
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         continue-on-error: true
         env:
           NO_COLOR: "1"
@@ -44,6 +53,8 @@ jobs:
             | grep -E '^\.github/(workflows|actions)/.*\.ya?ml$' \
             > changed_files.txt || true
 
+          # Always write the report file so the sticky-comment step has something
+          # to post even if a previous step failed.
           {
             echo '## :shield: zizmor findings on workflow/action files changed in this PR'
             echo ''
@@ -51,6 +62,8 @@ jobs:
             echo ''
             if [ ! -s changed_files.txt ]; then
               echo '_No workflow or action YAML files changed in this PR — nothing to scan._'
+            elif ! command -v zizmor >/dev/null 2>&1; then
+              echo '_zizmor CLI failed to install — see the workflow log. SARIF upload to Code Scanning is unaffected._'
             else
               echo 'Scanned:'
               while IFS= read -r file; do
@@ -58,14 +71,13 @@ jobs:
               done < changed_files.txt
               echo ''
               echo '```'
-              pipx install zizmor==1.25.2
               xargs zizmor --persona=auditor --format=plain < changed_files.txt 2>/dev/null || true
               echo '```'
             fi
           } > zizmor-report.md
 
       - name: Post zizmor findings as sticky PR comment
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         uses: marocchino/sticky-pull-request-comment@0ea0beb66eb9baf113663a64ec522f60e49231c0 # v3.0.4
         with:
           header: zizmor-findings
