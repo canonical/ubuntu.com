@@ -27,7 +27,9 @@ jobs:
     runs-on: ubuntu-latest
     if: >
       github.event.pull_request.head.repo.full_name == github.repository &&
-      (github.event_name != 'labeled' || github.event.label.name == 'run-percy')
+      (github.event_name != 'labeled' || github.event.label.name == 'run-percy') &&
+      github.actor != 'renovate[bot]' &&
+      github.actor != 'dependabot[bot]'
     steps:
       - name: Checkout SCM
         uses: actions/checkout@v4
