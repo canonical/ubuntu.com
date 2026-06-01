@@ -209,6 +209,8 @@ jobs:
           konf staging deploy/site.yaml | kubeval -f -
           konf production deploy/site.yaml | kubeval -f -
 
+  # Job name preserved verbatim (capital I, hyphenated) to match the
+  # required-status-check name on the main branch protection rule.
   Inclusive-naming-check:
     runs-on: ubuntu-latest
     permissions:

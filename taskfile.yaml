@@ -14,22 +14,7 @@ env:
 
 dotenv: [".env.local", ".env"]
 
-# Available tasks:
-# - start (default)
-# - install
-# - shell
-# - clean
-# - test (aggregator: test-python + test-js)
-# - test-python
-# - test-js
-# - lint (aggregator: lint-scss + lint-js + lint-ts + lint-python + check-prettier)
-# - lint-scss
-# - lint-js
-# - lint-ts
-# - lint-python
-# - check-prettier
-# - format
-# - build
+# Run "task --list" to see available tasks.
 tasks:
   default:
     cmds:
@@ -153,12 +138,14 @@ tasks:
       - curl https://mise.run | sh
 
   setup-python:
+    internal: true
     deps:
       - setup-mise
     cmds:
       - mise install python@{{ .PYTHON_VERSION }}
 
   setup-node:
+    internal: true
     deps:
       - setup-mise
     cmds:
