@@ -223,9 +223,11 @@ def init_handlers(app):
 
         nonce = flask.g.get("csp_nonce", "")
         csp = {
-            key: values + [f"'nonce-{nonce}'"]
-            if key in ("script-src-elem", "script-src")
-            else values
+            key: (
+                values + [f"'nonce-{nonce}'"]
+                if key in ("script-src-elem", "script-src")
+                else values
+            )
             for key, values in CSP.items()
         }
         response.headers["Content-Security-Policy"] = get_csp_as_str(csp)
