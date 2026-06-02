@@ -65,7 +65,7 @@
   {% include "/shared/forms/form-fields.html" %}
 {% endif %}
 
-<script>
+<script nonce="{{ csp_nonce }}">
   document.querySelector('form[id^="mktoForm_"]').addEventListener('submit', function(event) {
     dataLayer.push({
       'event': 'GAEvent',
