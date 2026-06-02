@@ -298,7 +298,7 @@
 </div>
 
 <script src="https://js.stripe.com/v3/"></script>
-<script>
+<script nonce="{{ csp_nonce }}">
   window.stripePublishableKey = "{{ get_stripe_publishable_key }}";
 </script>
 <script src="{{ versioned_static('js/dist/ua-payment-modal.js') }}" type="module" defer></script>

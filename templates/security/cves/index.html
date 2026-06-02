@@ -50,7 +50,7 @@
   {% endif %}
 
   {# djlint:off #}
-  <script type="text/javascript">
+  <script type="text/javascript" nonce="{{ csp_nonce }}">
     const maintainedReleasesObj = {{maintained_releases | tojson | safe}};
     const ltsReleasesObj = {{lts_releases | tojson | safe}};
     const unmaintainedReleasesObj = {{unmaintained_releases | tojson | safe}};
