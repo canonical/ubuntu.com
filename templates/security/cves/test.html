@@ -11,6 +11,13 @@
         max-width: 60rem;
         margin: 0 auto;
       }
+
+      #cvss-v3-section table th,
+      #cvss-v4-section table th,
+      #cvss-v3-section p,
+      #cvss-v4-section p {
+        overflow-wrap: anywhere;
+      }
     </style>
   </head>
   <body>
@@ -27,7 +34,7 @@
               <span class="u-text--muted">CVSS version:</span>
               <span class="p-contextual-menu--left">
                 <button type="button"
-                        class="p-button--base p-contextual-menu__toggle js-cvss-version-toggle u-no-margin--bottom u-no-padding"
+                        class="p-button--base is-small p-contextual-menu__toggle js-cvss-version-toggle u-no-margin--bottom"
                         aria-controls="cvss-version-menu"
                         aria-expanded="false"
                         aria-haspopup="true">
