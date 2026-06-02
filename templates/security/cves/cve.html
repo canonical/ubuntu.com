@@ -184,7 +184,9 @@
                 <p>
                   <a href="#impact-score">Score breakdown</a>
                 </p>
-              {% elif cve.cvss3 %}
+              </div>
+            {% elif cve.cvss3 %}
+              <div>
                 <p>CVSS 3 base score: {{ cve.cvss3 }}</p>
               </div>
             {% endif %}
