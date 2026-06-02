@@ -175,7 +175,7 @@
 
   <script src="{{ versioned_static('js/dist/prism.js') }}"></script>
 
-  <script>
+  <script nonce="{{ csp_nonce }}">
     // Allows the 'onchange' listener to be used on a select field, while still being accessible.
     (function initSelect() {
       var selectField = document.querySelector("#version-select");

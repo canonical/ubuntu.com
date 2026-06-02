@@ -65,7 +65,7 @@
                 <span class="u-text--muted">{{ releases_yaml.lts.iso_download_size }}</span>
               {% endif %}
 
-              <script>
+              <script nonce="{{ csp_nonce }}">
                 performance.mark("Download (Desktop) button rendered")
               </script>
             </div>
@@ -84,7 +84,7 @@
                 <span class="u-text--muted">{{ releases_yaml.lts.arm_iso_download_size }}</span>
               {% endif %}
 
-              <script>
+              <script nonce="{{ csp_nonce }}">
                 performance.mark("Download (Desktop) button rendered")
               </script>
             </div>
@@ -228,7 +228,7 @@
                   <span class="u-text--muted">{{ releases_yaml.latest.iso_download_size }}</span>
                 {% endif %}
 
-                <script>
+                <script nonce="{{ csp_nonce }}">
                   performance.mark("Download (Desktop) button rendered")
                 </script>
               </div>
@@ -247,7 +247,7 @@
                   <span class="u-text--muted">{{ releases_yaml.latest.arm_iso_download_size }}</span>
                 {% endif %}
 
-                <script>
+                <script nonce="{{ csp_nonce }}">
                   performance.mark("Download (Desktop) button rendered")
                 </script>
               </div>
