@@ -32,30 +32,32 @@
 
             <p class="u-sv3 js-cvss-version-selector">
               <span class="u-text--muted">CVSS version:</span>
-              <span class="p-contextual-menu--left">
-                <button type="button"
-                        class="p-button--base p-contextual-menu__toggle js-cvss-version-toggle u-no-margin--bottom"
-                        aria-controls="cvss-version-menu"
-                        aria-expanded="false"
-                        aria-haspopup="true">
-                  <span>
-                    <span class="js-cvss-version-label">CVSS v4.0</span>
-                    <i class="p-icon--chevron-down"></i>
-                  </span>
-                </button>
-                <span class="p-contextual-menu__dropdown"
-                      id="cvss-version-menu"
-                      aria-hidden="true">
-                  <span class="p-contextual-menu__group">
-                    <a href="#"
-                       class="p-contextual-menu__link js-cvss-option"
-                       data-cvss="v4">CVSS v4.0</a>
-                    <a href="#"
-                       class="p-contextual-menu__link js-cvss-option"
-                       data-cvss="v3">CVSS v3.0</a>
+              <small>
+                <span class="p-contextual-menu--left">
+                  <button type="button"
+                          class="p-button--base is-small is-inline p-contextual-menu__toggle js-cvss-version-toggle u-no-margin--bottom"
+                          aria-controls="cvss-version-menu"
+                          aria-expanded="false"
+                          aria-haspopup="true">
+                    <span>
+                      <span class="js-cvss-version-label">CVSS v4.0</span>
+                      <i class="p-icon--chevron-down"></i>
+                    </span>
+                  </button>
+                  <span class="p-contextual-menu__dropdown"
+                        id="cvss-version-menu"
+                        aria-hidden="true">
+                    <span class="p-contextual-menu__group">
+                      <a href="#"
+                         class="p-contextual-menu__link js-cvss-option"
+                         data-cvss="v4">CVSS v4.0</a>
+                      <a href="#"
+                         class="p-contextual-menu__link js-cvss-option"
+                         data-cvss="v3">CVSS v3.0</a>
+                    </span>
                   </span>
                 </span>
-              </span>
+              </small>
             </p>
 
             <div id="cvss-v4-section">
