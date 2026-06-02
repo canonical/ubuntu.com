@@ -550,7 +550,7 @@
 
   <script type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
   <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-  <script>
+  <script nonce="{{ csp_nonce }}">
     canonicalLatestNews.fetchLatestNews({
       imageClasses: ["p-image-container__image"],
       limit: "4",
