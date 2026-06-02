@@ -470,12 +470,12 @@
           <div class="p-section">
             <h2 id="impact-score" class="section-heading">Severity score breakdown</h2>
 
-            <p class="u-sv3 js-cvss-version-selector" style="display: flex; align-items: center; gap: 0.5rem;">
+            <p class="u-sv3 js-cvss-version-selector">
               <span class="u-text--muted">CVSS version:</span>
               {% if cvssV3 and cvssV4 %}
                 <span class="p-contextual-menu--left">
                   <button type="button"
-                          class="p-button--base is-small p-contextual-menu__toggle js-cvss-version-toggle u-no-margin--bottom"
+                          class="p-button--base p-contextual-menu__toggle js-cvss-version-toggle u-no-margin--bottom"
                           aria-controls="cvss-version-menu"
                           aria-expanded="false"
                           aria-haspopup="true">
