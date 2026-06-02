@@ -30,7 +30,7 @@
         integrity="sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ"
         crossorigin="anonymous"></script>
 
-<script>
+<script nonce="{{ csp_nonce }}">
   const ctx = document.getElementById('myChart');
   Chart.defaults.font.family = "Ubuntu";
   new Chart(ctx, {

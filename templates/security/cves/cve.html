@@ -620,7 +620,7 @@
     </div>
 
     <script src="{{ versioned_static('js/src/resources.js') }}"></script>
-    <script>
+    <script nonce="{{ csp_nonce }}">
       fetchAndRenderResources(tag = "vulnerability+patching", resource = "whitepaper");
     </script>
   </section>
@@ -629,7 +629,7 @@
   <script src="{{ versioned_static('js/dist/dynamic-toc.js') }}" defer></script>
   <script src="{{ versioned_static('js/dist/notices.js') }}" defer></script>
   
-  <script>
+  <script nonce="{{ csp_nonce }}">
     function handleHiddenReleasesSwitch() {
       const maintainedCount = {{ maintained_count | tojson | safe }};
       const isOnlyUpstream = {{ only_upstream | tojson | safe }};
