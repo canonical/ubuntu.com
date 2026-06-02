@@ -184,12 +184,12 @@
 
 {% block footer_extra %}
   {% if architecture == 'pro' %}
-    <script defer>
+    <script defer nonce="{{ csp_nonce }}">
       window.location.href = '{{ pro_download_url }}';
     </script>
   {% elif version %}
     <script src="{{ versioned_static('js/dist/image-download.js') }}"></script>
-    <script defer>
+    <script defer nonce="{{ csp_nonce }}">
       var architecture = '{{ architecture }}';
       var version = '{{ version }}';
 
