@@ -170,7 +170,7 @@ meta_copydoc %}
   <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
   <script src="{{ versioned_static('js/dist/leaflet.js') }}"></script>
   {# djlint:off #}
-  <script>
+  <script nonce="{{ csp_nonce }}">
     var mapMarker = {{ map_markers | tojson | e }}
 
     function initMap(mapSelector) {
