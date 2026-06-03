@@ -138,6 +138,10 @@ Parts of this site use [React Query](https://react-query.tanstack.com/overview) 
 
 To enable the React Query devtools you need to add `NODE_ENV="development"` to your `.env.local` file or run: `dotrun -e NODE_ENV="development"`.
 
+### Visual regression testing (Percy)
+
+Percy runs visual regression snapshots on PRs and on every merge to `main`, but only when the diff touches files that can affect rendered output (SCSS, JS source, templates, nav YAMLs, snapshot config, `package.json`/`yarn.lock`). See [.github/PERCY.md](.github/PERCY.md) for the full behaviour, watched-paths list, and how to force a run via the `run-percy` label.
+
 ## Linting / formatting
 
 When making changes to the codebase please make sure it's properly formatted and linted.

@@ -1,3 +1,4 @@
+# See .github/PERCY.md for when Percy runs, the watched-paths list, and how to force a run.
 
 name: Percy testing on PRs targeting main
 run-name: Testing Percy on branch ${{ github.head_ref }}
@@ -12,12 +13,42 @@ on:
       - synchronize
       - reopened
       - ready_for_review
+      - labeled
+      - unlabeled
+
+concurrency:
+  group: percy-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
+  decide:
+    name: Decide whether to run Percy
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      should_run: ${{ steps.gate.outputs.should_run }}
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          sparse-checkout: .github/actions/percy-gate
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+
+      - id: gate
+        uses: ./.github/actions/percy-gate
+        with:
+          mode: pr
+
   snapshot:
     name: Take Percy snapshots
     runs-on: ubuntu-latest
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    needs: decide
+    if: needs.decide.result == 'success' && needs.decide.outputs.should_run == 'true'
+    permissions:
+      contents: read
     steps:
       - name: Checkout SCM
         uses: actions/checkout@v4
