@@ -1397,7 +1397,7 @@
       {# include "ubuntu/takeovers/_footer_homepage.html" #}
     {% endblock footer_content %}
 
-    <script type="module">
+    <script type="module" nonce="{{ csp_nonce }}">
       const testTakeover = document.getElementById('test-takeover');
       const mainTakeover = document.getElementById('takeover');
 

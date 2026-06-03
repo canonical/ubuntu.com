@@ -555,7 +555,7 @@
   <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
   {# djlint:off #}
-  <script type="text/javascript">
+  <script type="text/javascript" nonce="{{ csp_nonce }}">
     const productsData = {{ products_data | tojson | safe }};
   </script>
   {# djlint:off #}

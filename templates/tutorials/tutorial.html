@@ -175,13 +175,13 @@
 
   <script src="{{ versioned_static('js/dist/prism.js') }}"></script>
 
-  <script>
+  <script nonce="{{ csp_nonce }}">
     if (window.location.hash == "#0") {
       window.location.hash == "#welcome";
     }
   </script>
 
-  <script>
+  <script nonce="{{ csp_nonce }}">
     (function() {
       var polls = document.querySelectorAll('.poll');
 
