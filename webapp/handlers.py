@@ -39,7 +39,7 @@ from canonicalwebteam.flask_base.env import get_flask_env
 def init_handlers(app):
     @app.before_request
     def generate_csp_nonce():
-        flask.g.csp_nonce = secrets.token_urlsafe(16)
+        flask.g.csp_nonce = secrets.token_hex(16)
 
     @app.after_request
     def cache_headers(response):
