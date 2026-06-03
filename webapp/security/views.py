@@ -728,7 +728,7 @@ def cve(cve_id):
                 reverse=True,
             )
 
-    impact = cve.get("impact", {})
+    impact = cve.get("impact") or {}
 
     cvss = {
         "v3": impact.get("baseMetricV3", {}).get("cvssV3"),
