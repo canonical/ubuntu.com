@@ -1,0 +1,49 @@
+{% block featured_articles %}
+  {% set article = featured_articles[0] %}
+  <div class="grid-row">
+    <div class="p-content-card-wrapper p-content-card-wrapper--8">
+      <div class="p-content-card p-content-card--cols-8{% if article.image and article.image.source_url %} has-image{% endif %}{% if article.excerpt and article.excerpt.rendered %} has-desc{% endif %}">
+        <a href="/blog/{{ article.slug }}"
+           class="p-content-card__overlay-link"
+           tabindex="-1"
+           aria-hidden="true"></a>
+
+        <div class="p-content-card__content">
+          <div class="p-content-card__body">
+            <div class="p-content-card__primary-content">
+              <h2 class="p-content-card__heading p-heading--2">
+                <a href="/blog/{{ article.slug }}" class="p-content-card__main-link">{{ article.title.rendered|safe }}</a>
+              </h2>
+            </div>
+
+            {% if article.excerpt and article.excerpt.rendered %}
+              <div class="p-content-card__hover-content">
+                <p class="p-content-card__description">{{ article.excerpt.rendered|striptags }}</p>
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="p-content-card__footer-container">
+            <hr class="p-rule--muted" />
+            <div class="p-content-card__footer-outer">
+              <div class="p-content-card__footer-inner" tabindex="-1">
+                <span class="p-chip--information is-readonly">
+                  {% if article.group %}
+                    {{ article.group.name }}
+                  {% else %}
+                    Company
+                  {% endif %}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% if article.image and article.image.source_url %}
+          <div class="p-content-card__image-wrapper">{{ article.image.rendered|safe }}</div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
