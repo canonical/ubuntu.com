@@ -728,9 +728,19 @@ def cve(cve_id):
                 reverse=True,
             )
 
+    impact = cve.get("impact", {})
+
+    cvss = {
+        "v3": impact.get("baseMetricV3", {}).get("cvssV3"),
+        # To be added when
+        # https://github.com/canonical/ubuntu.com/pull/16379 lands
+        # "v4": impact.get("baseMetricV4", {}).get("cvssV4"),
+    }
+
     return flask.render_template(
         "security/cves/cve.html",
         cve=cve,
+        cvss=cvss,
         patches=formatted_patches,
         tags=formatted_tags,
         maintained_count=maintained_count,
