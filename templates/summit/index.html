@@ -602,7 +602,7 @@
 
   <script src="{{ versioned_static('js/dist/flickity.pkgd.min.js') }}"></script>
 
-  <script>
+  <script nonce="{{ csp_nonce }}">
     initCarousel('#carousel_target', '#carousel-next', '#carousel-previous');
 
     function initCarousel(carouselSelector, nextSelector, previousSelector) {
