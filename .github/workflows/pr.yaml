@@ -119,9 +119,13 @@ jobs:
 
   check-csp-nonce:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Check inline scripts have CSP nonce attribute
         run: |
