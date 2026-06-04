@@ -1,0 +1,16 @@
+@mixin ubuntu-p-floating-image {
+  .p-floating-image {
+    position: relative;
+    z-index: 50;
+
+    .u-image-position--left {
+      position: absolute;
+      transform: translate(-100%, -35%);
+    }
+
+    .u-image-position--right {
+      position: absolute;
+      transform: translate(100%, -70%);
+    }
+  }
+}

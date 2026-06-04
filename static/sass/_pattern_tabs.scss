@@ -1,0 +1,107 @@
+@mixin ubuntu-p-tabs {
+  .p-tab {
+    color: $color-mid-dark;
+
+    &:hover {
+      background-color: $color-light;
+      text-decoration: none;
+    }
+
+    &.active {
+      background-color: $color-light;
+      overflow: visible;
+      position: relative;
+      text-decoration: none;
+
+      // Arrow
+      @media (min-width: $breakpoint-medium) {
+        &::after {
+          background: #f7f7f7;
+          border-left: solid 1px $color-mid-light;
+          border-top: solid 1px $color-mid-light;
+          bottom: -41px;
+          content: "";
+          display: block;
+          height: 2rem;
+          left: calc(50% - 1rem);
+          pointer-events: none;
+          position: absolute;
+          transform: rotate(45deg) skew(-10deg, -10deg);
+          width: 2rem;
+          z-index: 5;
+        }
+      }
+      @media (min-width: $breakpoint-x-large) {
+        &::after {
+          bottom: -46px;
+        }
+      }
+    }
+  }
+
+  .p-tabs--vertical {
+    list-style: none;
+
+    .p-tabs__item {
+      @extend %side-navigation__text;
+
+      border: 0;
+      display: initial;
+      text-align: left;
+      width: 100%;
+
+      &[aria-selected="true"] {
+        @include vf-highlight-bar($color-brand, left);
+      }
+    }
+
+    &.is-black {
+      margin-left: 0;
+      padding-left: 0;
+
+      .p-tabs__item {
+        &[aria-selected="true"] {
+          @include vf-highlight-bar($color-dark, left);
+        }
+      }
+    }
+
+    &.on-paper {
+      .p-tabs__item {
+        background-color: #f7f7f7;
+
+        &[aria-selected="true"] {
+          @include vf-highlight-bar($color-brand, left);
+
+          background-color: white;
+        }
+      }
+    }
+  }
+
+  // Override the highlighted tab colour for pages that need to use the brand
+  // colour.
+  .p-tabs--brand .p-tabs__link {
+    $color-tabs-active-bar: $color-brand;
+
+    %focus-visible {
+      // Display the highlight when focussing (in combination with the parent
+      // states) in modern browsers that support focus-visible.
+      &:focus:not(:focus-visible) {
+        @include vf-highlight-bar($color-tabs-active-bar, bottom, false);
+      }
+    }
+
+    &:active,
+    &[aria-selected="true"] {
+      @include vf-highlight-bar($color-tabs-active-bar, bottom, false);
+      @extend %focus-visible;
+    }
+
+    // Display the highlight when focussing in modern browsers that support
+    // focus-visible.
+    &:focus:not(:focus-visible) {
+      @include vf-highlight-bar($color-tabs-active-bar, bottom, false);
+    }
+  }
+}

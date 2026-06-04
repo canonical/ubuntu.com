@@ -1,0 +1,10 @@
+@mixin ubuntu-u-vertically-center {
+  // .u-vertically-center doesn't work if the child is a
+  // .u-embedded-media element, this class can be placed
+  // on the child directly to achieve the same effect
+
+  .u-vertically-center--direct {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

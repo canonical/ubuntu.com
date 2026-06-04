@@ -1,0 +1,19 @@
+@mixin ubuntu-p-buttons {
+  // For download buttons what need full width
+  [class*="p-button"].is-wide {
+    width: 100%;
+  }
+
+  .p-button--tag {
+    @extend %p-button-light !optional;
+
+    border-radius: 3px;
+    color: $color-mid-dark;
+    font-size: 14px;
+    padding: 0.1rem 0.4rem;
+
+    &:visited {
+      color: $color-mid-dark;
+    }
+  }
+}

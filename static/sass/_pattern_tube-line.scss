@@ -1,0 +1,52 @@
+@mixin ubuntu-p-tube-line {
+  .p-tube-line,
+  .p-tube-line--image {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    overflow: visible;
+    z-index: 1;
+    height: 100%;
+  }
+
+  .p-tube-line__heading {
+    @extend .p-heading--2;
+    margin-right: 56px;
+  }
+
+  .p-tube-line__circle {
+    width: 24px;
+    height: 24px;
+    background-color: $color-x-light;
+    border: 4px solid $color-x-dark;
+    border-radius: 50%;
+    position: absolute;
+    top: 0.55rem;
+  }
+
+  .p-tube-line__line {
+    content: "";
+    position: absolute;
+    right: 8px;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 110%;
+    background-color: $color-brand;
+    z-index: -1;
+    top: 0.65rem;
+  }
+
+  .p-tube-line--image {
+    .p-tube-line__circle {
+      background-color: $color-x-dark;
+    }
+
+    .p-tube-line__image {
+      width: 24px;
+      height: 24px;
+      z-index: 2;
+      position: relative;
+      top: 8px;
+    }
+  }
+}

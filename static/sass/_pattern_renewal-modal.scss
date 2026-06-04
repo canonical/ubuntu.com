@@ -1,0 +1,214 @@
+@mixin ubuntu-p-ua-payment-modal {
+  .p-modal--active {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .p-modal--ua-payment {
+    overflow: hidden;
+    position: fixed;
+    z-index: 100;
+
+    &.u-hide:target {
+      display: flex !important;
+    }
+
+    &.is-pay-mode {
+      #details-form,
+      #payment-error-dialog,
+      .js-payment-method,
+      .js-close-modal {
+        display: none;
+      }
+    }
+
+    &.is-details-mode {
+      #order-summary,
+      #order-terms,
+      #payment-error-dialog,
+      .js-process-payment,
+      .js-close-modal {
+        display: none;
+      }
+    }
+
+    &.is-dialog-mode {
+      #order-info,
+      #order-summary,
+      #order-terms,
+      #order-totals,
+      #details-form,
+      .js-cancel-modal,
+      .js-payment-method,
+      .js-process-payment {
+        display: none;
+      }
+    }
+
+    .p-modal__dialog {
+      display: flex;
+      flex-direction: column;
+      max-width: 50rem;
+      overflow: auto;
+      padding: 0;
+      position: static;
+      width: 100%;
+    }
+
+    .p-modal__body,
+    .p-modal__footer,
+    .p-modal__header {
+      padding: 1rem;
+    }
+
+    .p-modal__body {
+      overflow-y: scroll;
+    }
+
+    .p-modal__header {
+      box-shadow: 0 1px 1px rgba($color-dark, 0.2);
+    }
+
+    .p-modal__footer {
+      box-shadow: 0 -1px 1px rgba($color-dark, 0.2);
+      position: relative;
+    }
+
+    .p-modal__progress {
+      bottom: 0;
+      left: 1rem;
+      position: absolute;
+
+      @media (min-width: $breakpoint-medium) {
+        bottom: 1rem;
+      }
+    }
+
+    #order-processing {
+      bottom: 0;
+      display: none;
+      left: 0;
+      margin: auto;
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      .p-icon--spinner {
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+    }
+
+    .p-form__group {
+      align-items: start;
+      margin-bottom: 0;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      + .p-form__group {
+        margin-top: 0.3rem;
+      }
+    }
+
+    .row {
+      grid-gap: 0 1rem;
+    }
+
+    .col-3 {
+      @media (min-width: $breakpoint-medium) {
+        text-align: right;
+      }
+    }
+    .col-4 {
+      @media (min-width: $breakpoint-medium) {
+        text-align: right;
+      }
+    }
+
+    #card-element {
+      background: $color-x-light;
+      border: 1px solid #999;
+      border-radius: 0.125rem;
+      box-shadow: inset 0 1px 1px rgba($color-x-dark, 0.12);
+      padding: 9px 2rem 9px 9px;
+
+      &.StripeElement--focus {
+        outline: 0.1875rem solid #19b6ee;
+        outline-offset: -0.1875rem;
+
+        &.StripeElement--invalid {
+          outline-color: $color-negative;
+        }
+      }
+
+      &.StripeElement--invalid {
+        background-image: url("#{$assets-path}/4b0cd7fc-icon-error.svg");
+        background-position: calc(100% - 0.5rem) 50%;
+        background-repeat: no-repeat;
+        border-color: $color-negative;
+      }
+    }
+
+    .p-form-validation__message {
+      color: $color-negative;
+    }
+
+    &.is-processing {
+      .p-modal__body {
+        overflow: hidden;
+
+        section {
+          visibility: hidden;
+        }
+      }
+
+      #order-processing {
+        animation: 1s delayedShow;
+        animation-fill-mode: forwards;
+        display: block;
+        visibility: hidden;
+      }
+    }
+
+    button,
+    label {
+      @media (min-width: $breakpoint-medium) {
+        margin-bottom: 0;
+      }
+    }
+
+    img {
+      display: block;
+    }
+
+    label {
+      @media (min-width: $breakpoint-medium) {
+        float: right;
+      }
+
+      &.p-radio--inline {
+        float: none;
+        &:not(:first-child) {
+          // TODO: this should be "expressed as a sum of other variables"
+          margin-left: 1.5rem;
+        }
+      }
+    }
+  }
+}
+
+@keyframes delayedShow {
+  99% {
+    visibility: hidden;
+  }
+
+  100% {
+    visibility: visible;
+  }
+}

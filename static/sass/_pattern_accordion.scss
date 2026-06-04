@@ -1,0 +1,47 @@
+@mixin ubuntu-p-accordion {
+  .p-accordion {
+    .is-dense {
+      padding-left: 1rem;
+    }
+
+    .is-collapsed {
+      // when an accordion is collapsed we want a specific number of filters to still be visible,
+      // so we need to work out the height of the each filter, and multiply that by however many
+      // rows we want to be visible.
+      $visible-rows: 5;
+
+      // a label's height is made up of line height and top padding
+      // line heights are taken from default line height applied in Vanilla
+      // https://github.com/canonical-web-and-design/vanilla-framework/blob/master/scss/_base_typography.scss#L23
+      $label-line-height: map-get($line-heights, default-text);
+      $label-x-large-line-height: map-get($line-heights, default-text) *
+        $font-size-ratio--largescreen;
+
+      // label top padding is taken from
+      // https://github.com/canonical-web-and-design/vanilla-framework/blob/master/scss/_base_forms.scss#L100
+      $label-top-padding: map-get($nudges, nudge--p);
+
+      // total height:
+      $label-height: $label-line-height + $label-top-padding;
+      $label-x-large-height: $label-x-large-line-height + $label-top-padding;
+
+      // we also need to account for the bottom margin of one label
+      // as all but the first label's margin collapses into the padding of
+      // the label above it.
+      $label-margin-nudge: $spv--large - $spv-nudge;
+
+      max-height: calc(
+        #{$label-height} * #{$visible-rows} + #{$label-margin-nudge}
+      );
+      overflow: hidden;
+
+      @if ($increase-font-size-on-larger-screens) {
+        @media (min-width: $breakpoint-x-large) {
+          max-height: calc(
+            #{$label-x-large-height} * #{$visible-rows} + #{$label-margin-nudge}
+          );
+        }
+      }
+    }
+  }
+}

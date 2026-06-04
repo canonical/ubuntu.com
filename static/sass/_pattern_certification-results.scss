@@ -1,0 +1,94 @@
+@mixin ubuntu-p-certification-results {
+  .p-certification-filter {
+    > label {
+      margin-bottom: 0;
+    }
+  }
+
+  .p-certification-results {
+    th {
+      padding-top: 0.6rem;
+    }
+    th,
+    td {
+      &:nth-child(1) {
+        width: 20%;
+      }
+
+      &:nth-child(2) {
+        width: 35%;
+      }
+
+      &:nth-child(3) {
+        width: 10%;
+        @media only screen and (max-width: $breakpoint-small) {
+          width: 20%;
+        }
+      }
+    }
+  }
+
+  .p-update-results {
+    margin-left: 1rem;
+    width: fit-content;
+  }
+
+  .certified-filters {
+    .p-accordion__group {
+      &::after {
+        display: none;
+      }
+
+      padding-bottom: 1.5rem;
+      position: unset;
+    }
+
+    .certified-filters-footer {
+      background: #f3f3f3;
+      bottom: 0;
+      position: sticky;
+      z-index: 2;
+    }
+
+    .certified-filters-footer-buttons {
+      margin-left: 1rem;
+
+      @media screen and (min-width: $breakpoint-large) {
+        margin-left: 0;
+      }
+    }
+
+    .p-checkbox__label {
+      padding-left: 2.2rem;
+    }
+
+    .p-accordion__tab {
+      @extend .p-accordion__tab;
+
+      background-color: #f3f3f3;
+      z-index: 1;
+
+      &:hover,
+      &[aria-expanded="true"] {
+        background-color: #f3f3f3;
+      }
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      .p-accordion__panel,
+      .p-accordion__tab,
+      .p-button--link {
+        padding-left: 0;
+      }
+
+      .certified-filter-buttons {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .p-results-per-page {
+    max-width: 5.3rem;
+    min-width: 5.3rem;
+  }
+}

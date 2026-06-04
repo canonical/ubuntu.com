@@ -1,0 +1,57 @@
+@mixin layout-tutorials {
+  $color-highlight: #77216f !default;
+
+  .l-tutorials__breadcrumb {
+    display: none;
+
+    @media only screen and (min-width: $breakpoint-small) {
+      display: block;
+    }
+  }
+
+  .l-tutorials__filters {
+    background-color: $color-x-light;
+    box-shadow: 4px 0 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .blog-p-card__header--tutorial {
+    border-top-color: $color-highlight;
+  }
+
+  .l-tutorials-card__footer--inner {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .l-tutorials-meter {
+    background-image: url("#{$assets-path}19c4273e-level+of+difficulty.svg");
+    background-position-x: -75px;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: $sp-large;
+    margin-left: $sp-xx-small;
+    text-indent: -9999px;
+    width: 74px;
+  }
+
+  .l-tutorials-meter--1 {
+    background-position-x: -60px;
+  }
+
+  .l-tutorials-meter--2 {
+    background-position-x: -45px;
+  }
+
+  .l-tutorials-meter--3 {
+    background-position-x: -30px;
+  }
+
+  .l-tutorials-meter--4 {
+    background-position-x: -15px;
+  }
+
+  .l-tutorials-meter--5 {
+    background-position-x: 0;
+  }
+}

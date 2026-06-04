@@ -1,0 +1,51 @@
+@mixin ubuntu-p-strip-photos {
+  .p-strip-photos {
+    display: none;
+
+    @media only screen and (min-width: $breakpoint-medium) {
+      display: block;
+    }
+
+    &__container {
+      height: 1.6rem;
+      @media only screen and (min-width: $breakpoint-medium) {
+        margin-bottom: 10.6rem;
+        margin-top: 10.6rem;
+      }
+    }
+
+    &__credit {
+      @media only screen and (min-width: $breakpoint-medium) {
+        background-color: rgba(0, 0, 0, 0.6);
+        bottom: 0.6rem;
+        color: $color-light;
+        display: block;
+        margin-top: -$sp-xxx-large;
+        padding: $sp-small;
+        position: absolute;
+        right: 0.6rem;
+      }
+    }
+
+    &.photo-1 {
+      @media only screen and (min-width: $breakpoint-medium) {
+        background-image: url("#{$assets-path}6c84454e-desktop-photos-1.jpg?w=985");
+        background-size: cover;
+      }
+    }
+
+    &.photo-2 {
+      @media only screen and (min-width: $breakpoint-medium) {
+        background-image: url("#{$assets-path}25593e05-desktop-photos-2.jpg?w=985");
+        background-size: cover;
+      }
+    }
+
+    &.photo-3 {
+      @media only screen and (min-width: $breakpoint-medium) {
+        background-image: url("#{$assets-path}a6e14067-desktop-photos-3.jpg?w=985");
+        background-size: cover;
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+@mixin ubuntu-p-cube-animation {
+  $size: (
+    "width": 169,
+    "height": 195,
+  );
+  $speed: 2s;
+  $positions: (
+    "1": (
+      "x": 100,
+      "y": 1,
+      "to": "6",
+    ),
+    "2": (
+      "x": 183,
+      "y": 49,
+      "to": "1",
+    ),
+    "3": (
+      "x": 183,
+      "y": 145.5,
+      "to": "4",
+    ),
+    "4": (
+      "x": 100,
+      "y": 193,
+      "to": "5",
+    ),
+    "5": (
+      "x": 16,
+      "y": 145.5,
+      "to": "2",
+    ),
+    "6": (
+      "x": 16,
+      "y": 49,
+      "to": "3",
+    ),
+  );
+
+  .p-cube-animation {
+    margin-top: -2.9rem;
+
+    &.is-transformed {
+      @each $index, $position in $positions {
+        $to: map-get($position, "to");
+        $coords: map-get($positions, $to);
+        $xPos: map-get($coords, "x") * 1px;
+        $yPos: map-get($coords, "y") * 1px;
+        .p-cube-animation__cube--#{$index} {
+          @extend %cube-animation-item;
+
+          transform: translate(#{$xPos}, #{$yPos});
+        }
+      }
+    }
+
+    %cube-animation-item {
+      background: url(https://assets.ubuntu.com/v1/c3137d5a-CUBE-2.svg);
+      background-size: map-get($size, "width") * 1px map-get($size, "height") *
+        1px;
+      height: map-get($size, "height") * 1px;
+      position: absolute;
+      transition: transform $speed;
+      width: map-get($size, "width") * 1px;
+    }
+
+    @each $index, $position in $positions {
+      $xPos: map-get($position, "x") * 1px;
+      $yPos: map-get($position, "y") * 1px;
+      .p-cube-animation__cube--#{$index} {
+        @extend %cube-animation-item;
+
+        transform: translate(#{$xPos}, #{$yPos});
+      }
+    }
+  }
+}

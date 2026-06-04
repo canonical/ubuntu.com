@@ -1,0 +1,73 @@
+@mixin p-takeover-openstack-queens {
+  .p-takeover--openstack-queens {
+    background-color: $color-light;
+    position: relative;
+
+    @media (min-width: $breakpoint-medium) {
+      &::before,
+      &::after {
+        background-repeat: no-repeat;
+        background-size: contain;
+        content: "";
+        height: 100%;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+
+      &::before {
+        background-image: url("#{$assets-path}d3edfcd5-left.png");
+        background-position: top left;
+        left: 0;
+      }
+
+      &::after {
+        background-image: url("#{$assets-path}17508275-right.png");
+        background-position: top right;
+        right: 0;
+      }
+    }
+  }
+
+  .p-takeover__body {
+    padding-bottom: $sp-x-large;
+    padding-top: $sp-x-large;
+    position: relative;
+    z-index: 1;
+
+    @media (min-width: $breakpoint-medium) {
+      padding-bottom: $sp-x-large * 2;
+      padding-top: $sp-x-large * 2;
+    }
+  }
+
+  .p-takeover__title {
+    font-weight: 100;
+  }
+
+  .p-takeover__image {
+    display: block;
+    height: 101px;
+    margin: $sp-x-large auto 0;
+    width: 210px;
+
+    @media (min-width: $breakpoint-medium) {
+      height: 107px;
+      margin-top: 0;
+      width: 222px;
+    }
+  }
+
+  .p-takeover__cta {
+    margin-top: $sp-x-large;
+  }
+
+  .p-takeover__text {
+    font-size: 1rem;
+    max-width: 100% !important;
+
+    @media (min-width: $breakpoint-medium) {
+      font-size: 1.25rem;
+    }
+  }
+}

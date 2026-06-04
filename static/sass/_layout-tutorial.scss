@@ -1,0 +1,190 @@
+@mixin layout-tutorial {
+  .l-tutorial {
+    @media only screen and (min-width: $breakpoint-medium) {
+      min-height: calc(100vh - 225px); // minus header, nav and footer height
+    }
+  }
+
+  .l-tutorial__sidebar {
+    border-bottom: 1px solid $color-mid-light;
+
+    @media only screen and (min-width: $breakpoint-large) {
+      border-bottom: 0;
+      border-right: 1px solid $color-mid-light;
+    }
+  }
+
+  .l-tutorial__nav-toggle {
+    background-size: $sp-medium;
+    border: 0;
+    float: right;
+    margin: 0;
+    padding: $sp-large;
+
+    &[aria-expanded="true"] {
+      background-color: $color-x-light;
+    }
+  }
+
+  .l-tutorial__nav {
+    margin-left: 0;
+    padding-top: $sp-medium;
+
+    @media only screen and (min-width: $breakpoint-small) {
+      position: sticky;
+      top: 0;
+    }
+  }
+
+  .l-tutorial__nav-item {
+    padding-bottom: $sp-medium;
+  }
+
+  .l-tutorial__nav-title {
+    &::before {
+      border: 1px solid $colors--light-theme--text-default;
+      border-radius: 50%;
+      content: counter(list-item);
+      height: $sp-large;
+      // line height is calculated to vertically center the number, which is size of the circle minus the border
+      line-height: calc($sp-large - 2px);
+      margin-right: $sp-medium;
+      text-align: center;
+      width: $sp-large;
+    }
+
+    .is-active & {
+      font-weight: 400;
+
+      &::before {
+        background-color: $colors--light-theme--text-default;
+        color: $colors--dark-theme--text-default;
+        font-weight: 300;
+      }
+    }
+  }
+
+  .l-tutorial__nav-link {
+    color: $color-dark;
+
+    &:visited {
+      color: $color-dark;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .l-tutorial__content {
+    margin-top: -26rem; // ensure header is visible when navigating between steps (pt. 1 of 2)
+    overflow: hidden; // stops pre from stretching out the flex column
+    padding-top: $sp-large;
+  }
+
+  .l-tutorial-section {
+    display: none;
+
+    &:target {
+      display: block;
+      padding-top: 26rem; // ensure header is visible when navigating between steps (pt. 2 of 2)
+    }
+
+    h2 {
+      @extend .p-heading--3;
+    }
+
+    h3 {
+      @extend .p-heading--4;
+    }
+
+    h4 {
+      @extend .p-heading--5;
+    }
+
+    h5 {
+      @extend .p-heading--6;
+    }
+  }
+
+  .l-tutorial-section__footer {
+    margin-bottom: $sp-medium;
+  }
+
+  .l-tutorial__bug-link {
+    position: relative;
+    top: -1.38rem;
+
+    @media only screen and (min-width: $breakpoint-small) {
+      top: 0;
+    }
+  }
+
+  .l-tutorial__duration {
+    margin-bottom: $sp-small;
+
+    @media only screen and (min-width: $breakpoint-small) {
+      display: inline-block;
+      margin-bottom: 0;
+      margin-right: $sp-medium;
+    }
+  }
+
+  .l-tutorial__pagination {
+    @media only screen and (min-width: $breakpoint-small) {
+      display: inline-block;
+    }
+  }
+
+  %l-tutorial-pagination-item {
+    display: inline-block;
+    margin-right: $sp-small;
+    max-width: $sp-xxxx-large;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    @media only screen and (max-width: $breakpoint-small) {
+      width: auto;
+    }
+  }
+
+  .l-tutorial__pagination-item--prev {
+    @extend %l-tutorial-pagination-item;
+
+    .p-icon--chevron-down {
+      transform: rotate(90deg);
+    }
+  }
+
+  .l-tutorial__pagination-item--next {
+    @extend %l-tutorial-pagination-item;
+
+    .p-icon--chevron-down {
+      transform: rotate(-90deg);
+    }
+  }
+
+  .l-tutorial__feedback-icon {
+    cursor: pointer;
+  }
+
+  .l-tutorial__feedback-options {
+    .p-inline-list__item {
+      .has-color {
+        display: none;
+      }
+
+      &:hover {
+        .l-tutorial__feedback-icon {
+          display: none;
+        }
+
+        .has-color {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

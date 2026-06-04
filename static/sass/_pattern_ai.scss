@@ -1,0 +1,31 @@
+@mixin ubuntu-p-ai {
+  .ai-tooling .col-3 {
+    .p-section--shallow:first-of-type {
+      @media screen and (min-width: $breakpoint-large) {
+        height: 20rem;
+      }
+
+      @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-large - 1) {
+        height: 18rem;
+      }
+    }
+  }
+
+  .ai-iso-illustration {
+    background: rgb(0, 0, 0, 0.03);
+
+    .lazyloaded {
+      height: 25rem;
+      position: relative;
+
+      @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-large - 1) {
+        height: 15rem;
+      }
+
+      img {
+        bottom: 0;
+        position: absolute;
+      }
+    }
+  }
+}
