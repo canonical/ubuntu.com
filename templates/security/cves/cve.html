@@ -8,8 +8,9 @@
 
 {% block content %}
 
-  {% set cvss = cvss | default({}) %}
-  {% set cvssV3 = cvss.v3 | default(none) %}
+  {% if cve.impact %}
+    {% set cvssV3 = cve.impact.baseMetricV3.cvssV3 %}
+  {% endif %}
 
   <section class="p-strip is-shallow u-no-padding--bottom">
     <div class="row p-section">
