@@ -230,9 +230,16 @@
   }
 
   .u-adjust-table-heading {
-    width: 19rem;
-    @media screen and (max-width: $breakpoint-small) {
-      width: fit-content;
+    @media screen and (min-width: $breakpoint-large) {
+      width: 32rem;
+    }
+  }
+
+  #cvss-v3-section,
+  #cvss-v4-section {
+    table th,
+    p {
+      overflow-wrap: anywhere;
     }
   }
 
