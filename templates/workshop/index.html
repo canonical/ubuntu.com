@@ -1,0 +1,230 @@
+{% extends "workshop/base_workshop.html" %}
+
+{% block meta_copydoc %}
+    https://docs.google.com/document/d/1zPsNSeffR1y1bnX-VHPasAlv9Gc8nlQ4rdbMOn06yBI/edit
+{% endblock meta_copydoc %}
+
+{% block title %}Composable, fast, and secure dev environments | Workshop{% endblock %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_macros/vf_resources.jinja" import vf_resources %}
+{% from "_macros/vf_blog.jinja" import vf_blog %}
+{% from "macros/_vf-latest-news.jinja" import vf_latest_news with context %}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+
+{% block meta_description %}
+    Launch agent-ready, sandboxed development environments with a single command. Define them via simple YAML configs, share them to recreate on different machines.
+{% endblock %}
+
+{% block body_class %}
+    is-paper
+{% endblock body_class %}
+
+{% block content %}
+    {% call(slot) vf_hero(
+        title_text='Get development environments that just work, with Workshop',
+        layout='50/50'
+        ) -%}
+        {%- if slot == 'description' -%}
+            <p>Launch sandboxed development environments that are composable and repeatable with a single command.</p>
+            <p>Innovate with agentic workflows while keeping your host system isolated.</p>
+        {%- endif -%}
+        {%- if slot == 'cta' -%}
+            <a href="/workshop/docs/tutorial/part-1-get-started/"
+               class="p-button--positive">Get started</a>
+            <a href="/workshop/docs/"
+               class="p-button">Read the docs</a>
+        {%- endif -%}
+        {%- if slot == 'image' -%}
+            <img src="https://assets.ubuntu.com/v1/f9d33e5d-workshop_launch_list.png"
+                 alt="" />
+        {%- endif -%}
+    {%- endcall -%}
+
+    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
+        {%- if slot == 'title' -%}
+            <h2>
+                Repeatable environments,
+                <br class="u-hide--small u-hide--medium" />
+                from a single file
+            </h2>
+        {%- endif -%}
+
+        {%- if slot == 'description' -%}
+            <p>
+                Workshops are defined through YAML files, allowing them to be recreated on different machines, without spending time on complex configurations.
+            </p>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_title_1' -%}
+            <h3 class="p-heading--5">Composable and repeatable</h3>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_description_1' -%}
+            <p>
+                Add in SDKs to your workshop with only a few lines, including Ollama, OpenCode, NVIDIA CUDA, AMD ROCm, Intel OpenVino, and ROS 2.
+            </p>
+            <p>
+                Easily switch between stable and edge channels for SDKs, and run local experiments using sketch SDKs without compromising your development environment.
+            </p>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_title_2' -%}
+            <h3 class="p-heading--5">Built for agentic workflows</h3>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_description_2' -%}
+            <p>
+                Run experimental AI libraries or autonomous agents with a reduced attack surface to protect your host operating system.
+            </p>
+            <p>Move fast with cutting-edge tools in a sandbox, where you control what AI agents have access to.</p>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_title_3' -%}
+            <h3 class="p-heading--5">Simplified access to host resources</h3>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_description_3' -%}
+            <p>No need to know what to expose to the container, or how: a few lines in the configuration file are all you need.</p>
+            <p>Workshop's interface system allocates host resources, without the need for extensive manual configuration.</p>
+        {%- endif -%}
+
+    {%- endcall -%}
+
+    {{ vf_basic_section(title={"text": "Get started <br class='u-hide--small u-hide--medium' />with Workshop today"},
+        items=[
+        {
+        "type": "description",
+        "item": {
+        "type": "html",
+        "content": "
+        <p>
+            LXD 6.8+ is a prerequisite. <a href='/workshop/docs/tutorial/part-1-get-started/#prerequisites'>Once that's installed</a>, install the Workshop snap using the --classic option:
+        </p>
+        "
+        }
+        },
+        {
+        "type": "code-block",
+        "item": {
+        "is_code_snippet": true,
+        "content": "$ sudo snap install --classic workshop"
+        }
+        },
+        {
+        "type": "cta-block",
+        "item": {
+        "primary": {
+        "content_html": "Get started",
+        "attrs": {
+        "href": "/workshop/docs/tutorial/part-1-get-started/"
+        }
+        },
+        "secondaries": [
+        {
+        "content_html": "Read the docs",
+        "attrs": {
+        "href": "/workshop/docs/"
+        }
+        },
+        ],
+        }
+        }
+        ],) }}
+
+    {% call(slot) vf_resources(
+        title={
+        "text": "Resources",
+        },
+        blocks=[
+        {
+        "type": "resources",
+        "render_images": false,
+        "categories": [
+        {
+        "title": "Documentation",
+        "items": [
+        {
+        "title": {
+        "text": "Getting started with Workshop",
+        "link_attrs": {
+        "href": "/workshop/docs/tutorial/part-1-get-started/"
+        }
+        },
+        },
+        {
+        "title": {
+        "text": "Understand the Workshop architecture",
+        "link_attrs": {
+        "href": "/workshop/docs/explanation/architecture/components/"
+        }
+        },
+        },
+        ]
+        },
+        {
+        "title": "Contact us",
+        "items": [
+        {
+        "title": {
+        "text": "Join the conversation on Ubuntu Discourse",
+        "link_attrs": {
+        "href": "https://discourse.ubuntu.com/"
+        }
+        },
+        },
+        {
+        "title": {
+        "text": "Using Ubuntu in the enterprise? Get in touch",
+        "link_attrs": {
+        "href": "/desktop/contact-us",
+        }
+        },
+        }
+        ]
+        }
+        ]
+        }
+        ]
+        ) -%}
+    {%- endcall -%}
+
+    <section class="p-section--deep">
+        <hr class="p-rule is-fixed-width" />
+        <div class="u-fixed-width">
+            <div class="p-section--shallow">
+                <h2 class="p-text--small-caps">
+                    <a href="/blog/tag/ubuntu">Latest Ubuntu news from&nbsp;our&nbsp;blog&nbsp;&rsaquo;</a>
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="row p-section--shallow" id="ubuntu-latest"></div>
+            </div>
+        </div>
+        <template style="display:none" id="blog-template">
+            <div class="col-3 col-medium-2">
+                <div class="article-image u-blog-thumbnails p-image-wrapper"></div>
+                <h3 class="p-heading--5">
+                    <a class="article-link article-title"></a>
+                </h3>
+                <p class="article-excerpt"></p>
+            </div>
+        </template>
+    </section>
+
+    <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+    <script>
+      canonicalLatestNews.fetchLatestNews({
+        articlesContainerSelector: "#ubuntu-latest",
+        articleTemplateSelector: "#blog-template",
+        linkImage: true,
+        excerptLength: 200,
+        tagId: 1479,
+        limit: 4
+      })
+    </script>
+
+{% endblock content %}

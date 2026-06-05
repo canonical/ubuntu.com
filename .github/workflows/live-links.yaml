@@ -2,7 +2,7 @@ name: Links on ubuntu.com live
 
 on:
   schedule:
-    - cron: "20 7 * * *"
+    - cron: "20 7 * * 1-5"
 
 jobs:
   check-links:
@@ -52,6 +52,10 @@ jobs:
           warnings=0
           ignoreerrors=
             ^http?s://.* ^.*(471|500|503|504|400|403|401)
+            ^http?s://.* Connection aborted
+            ^http?s://.* Connection reset by peer
+            ^http?s://.* RemoteDisconnected
+            ^http?s://.* Read timed out
           EOF
 
       - name: Run linkchecker for 404 errors only
