@@ -34,7 +34,7 @@
           type="text/css"
           media="print"
           href="{{ versioned_static('css/print.css') }}" />
-    <script>
+    <script nonce="{{ csp_nonce }}">
       performance.mark("Stylesheets finished");
     </script>
 

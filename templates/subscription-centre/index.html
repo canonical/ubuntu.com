@@ -166,12 +166,12 @@
   </div>
 
   <script src="/static/js/src/modal.js"></script>
-  <script>
+  <script nonce="{{ csp_nonce }}">
     (function() {
       initModals('#modal', '[aria-controls=modal]', false)
     })();
   </script>
-  <script>
+  <script nonce="{{ csp_nonce }}">
     // Handles form submissions
     (function() {
       const form = document.querySelector("#subscription-centre");
@@ -209,7 +209,7 @@
       });
     })()
   </script>
-  <script>
+  <script nonce="{{ csp_nonce }}">
     // Setup search
     (function() {
       const subsContainer = document.querySelector("#subscriptions-list");

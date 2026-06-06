@@ -17,7 +17,7 @@
       </div>
     </div>
     <script src="{{ versioned_static('js/dist/distributor.js') }}" type="module" defer></script>
-    <script>
+    <script nonce="{{ csp_nonce }}">
       window.channelProductList = {{ product_listings | tojson }};
       
       var accountId = "{% if account %}{{ account.id }}{% endif %}";

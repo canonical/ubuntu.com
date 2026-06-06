@@ -361,7 +361,7 @@
     </section>
   
     <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-    <script>
+    <script nonce="{{ csp_nonce }}">
       canonicalLatestNews.fetchLatestNews({
         articlesContainerSelector: "#ubuntu-wsl-latest",
         articleTemplateSelector: "#blog-template",
@@ -373,7 +373,7 @@
     </script>
   
     <script src="/static/js/src/render-tutorials.js" type="text/javascript"></script>
-    <script>
+    <script nonce="{{ csp_nonce }}">
       document.addEventListener("DOMContentLoaded", function() {
         renderTutorials('wsl');
       });
