@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block outer_content %}
-  <div class="p-suru--25-75">
+  <div class="p-strip--suru-shallow">
     <div class="grid-row">
       <div class="grid-col-6 grid-col-start-large-3">
         <h1 class="p-heading--display">Ubuntu tech blog</h1>
@@ -37,6 +37,7 @@
           </li>
         </ul>
       </div>
+      <div class="p-suru u-hide--medium u-hide--small"></div>
     </div>
   </div>
 
@@ -56,7 +57,7 @@
     </div>
   </section>
 
-  <section class="p-strip is-shallow">
+  <section class="p-section">
     {% with %}
       {% set total_pages = total_pages %}
       {% set current_page = current_page %}
