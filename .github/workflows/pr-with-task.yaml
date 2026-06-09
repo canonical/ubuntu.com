@@ -198,16 +198,16 @@ jobs:
           sudo snap install konf
           sudo chown root:root /
 
-      - name: Install Kubeval
+      - name: Install kubeconform
         run: |
-          wget https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz
-          tar xf kubeval-linux-amd64.tar.gz
-          sudo cp kubeval /usr/local/bin
+          curl -sSLf https://github.com/yannh/kubeconform/releases/download/v0.6.7/kubeconform-linux-amd64.tar.gz \
+            | tar -xz
+          sudo cp kubeconform /usr/local/bin
 
       - name: Validate all sites
         run: |
-          konf staging deploy/site.yaml | kubeval -f -
-          konf production deploy/site.yaml | kubeval -f -
+          konf staging deploy/site.yaml | kubeconform -summary -
+          konf production deploy/site.yaml | kubeconform -summary -
 
   Inclusive-naming-check:
     runs-on: ubuntu-latest
