@@ -623,13 +623,6 @@ app.add_url_rule(
 blog_views = BlogViews(
     api=BlogAPI(session=session, thumbnail_width=555, thumbnail_height=311),
     excluded_tags=[3184, 3265, 3408, 3960, 4491],
-    per_page=11,
-    blog_title="Ubuntu blog",
-)
-
-tag_blog_views = BlogViews(
-    api=BlogAPI(session=session, thumbnail_width=555, thumbnail_height=311),
-    excluded_tags=[3184, 3265, 3408, 3960, 4491],
     per_page=16,
     blog_title="Ubuntu blog",
 )
@@ -654,19 +647,6 @@ app.add_url_rule(
     "/blog/<slug>",
     view_func=BlogRedirects.as_view("blog_redirects", blog_views=blog_views),
 )
-
-
-def blog_tag(slug):
-    page_param = flask.request.args.get("page", default=1, type=int)
-    context = tag_blog_views.get_tag(slug, page_param)
-
-    if not context:
-        flask.abort(404)
-
-    return flask.render_template("blog/tag.html", **context)
-
-
-app.add_url_rule("/blog/tag/<slug>", view_func=blog_tag)
 app.register_blueprint(build_blueprint(blog_views), url_prefix="/blog")
 
 # usn section

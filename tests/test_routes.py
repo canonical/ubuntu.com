@@ -75,38 +75,6 @@ class TestRoutes(VCRTestCase):
             self.client.get("/blog/installing-ros-in-lxd").status_code, 200
         )
 
-    @patch("webapp.app.flask.render_template")
-    @patch("webapp.app.tag_blog_views.get_tag")
-    def test_blog_tag(self, mock_get_tag, mock_render_template):
-        """
-        Check tag blog pages render for existing tags.
-        """
-        mock_get_tag.return_value = {"tag": "snapcraft"}
-        mock_render_template.return_value = "ok"
-
-        response = self.client.get("/blog/tag/snapcraft?page=2")
-
-        self.assertEqual(response.status_code, 200)
-        self.assertIn(b"ok", response.data)
-        mock_get_tag.assert_called_once_with("snapcraft", 2)
-        mock_render_template.assert_called_once_with(
-            "blog/tag.html", tag="snapcraft"
-        )
-
-    @patch("webapp.app.flask.render_template")
-    @patch("webapp.app.tag_blog_views.get_tag")
-    def test_blog_tag_not_found(self, mock_get_tag, mock_render_template):
-        """
-        Check tag blog pages return 404 when tag is missing.
-        """
-        mock_get_tag.return_value = None
-
-        response = self.client.get("/blog/tag/missing-tag")
-
-        self.assertEqual(response.status_code, 404)
-        mock_get_tag.assert_called_once_with("missing-tag", 1)
-        mock_render_template.assert_not_called()
-
     def test_tutorials_homepage(self):
         """
         Check the tutorials homepage loads
