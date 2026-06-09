@@ -206,8 +206,9 @@ jobs:
 
       - name: Validate all sites
         run: |
-          konf staging deploy/site.yaml | kubeconform -summary -
-          konf production deploy/site.yaml | kubeconform -summary -
+          set -o pipefail
+          konf staging konf/site.yaml | kubeconform -summary -
+          konf production konf/site.yaml | kubeconform -summary -
 
   Inclusive-naming-check:
     runs-on: ubuntu-latest
