@@ -16,14 +16,16 @@
   {% endif %}
 
   <p class="u-sv1">
-    <span>
-      <strong>Base score</strong>&nbsp;&nbsp;{{ image(url=severityIcon,
+    <span class="cve-score-summary">
+      <strong>Base score</strong>
+      {{ image(url=severityIcon,
                                 alt="",
                                 width="16",
                                 height="16",
                                 hi_def=True,
                                 loading="auto") | safe
-      }}&nbsp;&nbsp;{{ baseScore }} &middot; {{ severityLabel }}
+      }}
+      <span>{{ baseScore }} &middot; {{ severityLabel }}</span>
     </span>
   </p>
 

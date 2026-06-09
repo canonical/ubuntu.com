@@ -243,6 +243,17 @@
     }
   }
 
+  .cve-score-summary {
+    align-items: center;
+    display: inline-flex;
+    gap: $sph--small;
+  }
+
+  .cve-cvss-version-label,
+  .cve-status-chip {
+    margin-left: $sph--small;
+  }
+
   .cve-table-blur {
     position: relative;
 

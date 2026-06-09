@@ -320,8 +320,7 @@
                             {% if status.support_tag %}{{ status.support_tag }}{% endif %}
                             <span class="u-text--muted">{{ status.release_codename }}</span>
                             {% if status.pocket_desc and status.pocket_desc.label != "Ubuntu Pro" %}
-                              &nbsp;
-                              <button class="js-tooltip is-dense p-chip p-tooltip--top-center u-no-margin--bottom"
+                              <button class="js-tooltip is-dense p-chip p-tooltip--top-center u-no-margin--bottom cve-status-chip"
                                       aria-describedby="{{ status.pocket }}-tooltip"
                                       style="vertical-align: unset">
                                 <span class="p-chip__value">{{ status.pocket_desc.label }}</span>
@@ -495,7 +494,7 @@
                   </span>
                 </span>
               {% else %}
-                &nbsp;<span>{% if cvssV4 %}CVSS v4.0{% else %}CVSS v3.0{% endif %}</span>
+                <span class="cve-cvss-version-label">{% if cvssV4 %}CVSS v4.0{% else %}CVSS v3.0{% endif %}</span>
               {% endif %}
             </p>
 
