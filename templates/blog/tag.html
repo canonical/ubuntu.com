@@ -47,14 +47,14 @@
           },
           footer={
             "content_type": article.group.name
-          },
+          } if article.group.name else None,
           description=article.excerpt.raw
         ) }}
       {% endfor %}
     </div>
   </section>
 
-  <section class="p-section">
+  <section class="p-section--deep">
     {% with %}
       {% set total_pages = total_pages %}
       {% set current_page = current_page %}
