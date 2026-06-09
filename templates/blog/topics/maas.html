@@ -1,5 +1,10 @@
 {% extends "templates/one-column.html" %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_card.jinja" import vf_card %}
+
+{% block body_class %}is-paper{% endblock %}
+
 {% block title %}MAAS{% endblock %}
 
 {% block meta_description %}
@@ -7,34 +12,56 @@
 {% endblock %}
 
 {% block content %}
+  {% call(slot) vf_hero(
+    title_text='MAAS',
+    layout='25/75',
+    display_blank_signpost_image_space=True,
+    blocks=[
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "text",
+          "content": "All the latest news on MAAS – the smartest way to manage bare metal."
+        }
+      },
+      {
+        "type": "cta-block",
+        "padding": "shallow",
+        "item": {
+          "link": {
+            "content_html": "Learn more about MAAS ›",
+            "attrs": {
+              "href": "https://canonical.com/maas"
+            }
+          }
+        }
+      },
+    ]
+  ) -%}
+  {%- endcall -%}
 
-  <section class="p-strip--suru-blog-header is-dark">
-    <div class="u-fixed-width">
-      <h1>
-        {{ image(url="https://assets.ubuntu.com/v1/4fac1d52-MAAS-Logo.svg",
-                alt="MAAS",
-                height="50",
-                width="200",
-                hi_def=True,
-                loading="auto") | safe
-        }}
-      </h1>
-      <h2 class="p-heading--4">
-        All the latest news on MAAS
-        <br />
-        &ndash; the smartest way to manage bare metal.
-      </h2>
-      <p>
-        <a class="p-link--inverted" href="https://maas.io">Learn more about MAAS</a>
-      </p>
+  <section class="p-strip is-shallow">
+    <div class="grid-row">
+      {% for article in articles%}        
+        {{ vf_card(
+          columns="4",
+          link="/blog/" ~ article.slug,
+          heading=article.title.rendered|safe,
+          image={
+            "src": article.image.link,
+            "alt": article.image.alt_text
+          },
+          footer={
+            "content_type": article.group.name
+          } if article.group.name else None,
+          description=article.excerpt.raw
+        ) }}
+      {% endfor %}
     </div>
   </section>
 
-  <section class="p-strip is-shallow" id="posts-list">
-    {% include 'blog/posts.html' %}
-  </section>
-
-  <section class="p-strip is-shallow">
+  <section class="p-section--deep">
     {% with %}
       {% set total_pages = total_pages %}
       {% set current_page = current_page %}
