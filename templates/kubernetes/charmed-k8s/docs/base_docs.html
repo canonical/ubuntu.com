@@ -18,7 +18,7 @@
         </div>
       </aside>
 
-      <script>
+      <script nonce="{{ csp_nonce }}">
       // Select the active navigation item
       var navigation = document.getElementById('docs-navigation');
       var links = navigation.getElementsByTagName('a');
@@ -31,7 +31,7 @@
       };
       </script>
 
-      <script>
+      <script nonce="{{ csp_nonce }}">
       // Toggle mobile sidebar nav
       var toggle = document.querySelector('.p-sidebar__toggle');
       var sidebarContent = document.querySelector('.p-sidebar__content');

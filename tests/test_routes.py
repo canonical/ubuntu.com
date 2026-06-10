@@ -455,6 +455,41 @@ class TestRoutes(VCRTestCase):
             response.location,
         )
 
+    def test_csp_header_contains_nonce(self):
+        """Test that CSP header includes a non-empty nonce in script
+        directives"""
+        response = self.client.get("/")
+        csp = response.headers.get("Content-Security-Policy", "")
+        self.assertRegex(csp, r"'nonce-[a-f0-9]+'")
+
+    def test_csp_nonce_in_script_directives(self):
+        """Test that nonce appears in both script-src and
+        script-src-elem"""
+        response = self.client.get("/")
+        csp = response.headers.get("Content-Security-Policy", "")
+        directives = {
+            d.split()[0]: d for d in csp.rstrip(";").split(";") if d.strip()
+        }
+        self.assertRegex(
+            directives.get("script-src-elem", ""), r"'nonce-[a-f0-9]+'"
+        )
+        self.assertRegex(
+            directives.get("script-src", ""), r"'nonce-[a-f0-9]+'"
+        )
+
+    def test_csp_nonce_is_unique_per_request(self):
+        """Test that a different nonce is generated for each request"""
+
+        def get_nonce(csp):
+            for part in csp.split():
+                if part.startswith("'nonce-"):
+                    return part
+            return None
+
+        csp1 = self.client.get("/").headers.get("Content-Security-Policy", "")
+        csp2 = self.client.get("/").headers.get("Content-Security-Policy", "")
+        self.assertNotEqual(get_nonce(csp1), get_nonce(csp2))
+
 
 if __name__ == "__main__":
     unittest.main()

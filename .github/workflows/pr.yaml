@@ -117,6 +117,26 @@ jobs:
           echo "The following files have changed: $CHANGED_FILES"
           djlint $CHANGED_FILES --lint --profile="jinja"
 
+  check-csp-nonce:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Check inline scripts have CSP nonce attribute
+        run: |
+          if grep -rn '<script\b[^>]*>' templates/ \
+            | grep -v 'nonce=' \
+            | grep -v 'src=' \
+            | grep -v 'type="application/'; then
+            echo "Found inline <script> tags without nonce attribute"
+            exit 1
+          fi
+
   validate-deploy:
     runs-on: ubuntu-latest
 

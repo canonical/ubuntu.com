@@ -541,7 +541,7 @@
     <script type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
 
     <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-    <script>
+    <script nonce="{{ csp_nonce }}">
         canonicalLatestNews.fetchLatestNews({
             imageClasses: ["p-image-container__image"],
             limit: "4",
@@ -553,7 +553,7 @@
         })
     </script>
 
-    <script>
+    <script nonce="{{ csp_nonce }}">
         function stringifyCustomFields() {
             const checkboxes = document.querySelectorAll(".js-checkbox");
             const textarea = document.getElementById("ubuntu_desktop_usage");
@@ -576,7 +576,7 @@
 {% endblock content %}
 {% block footer_extra %}
 <!-- Google Code for Services Canonical - contact us Conversion Page -->
-<script>
+<script nonce="{{ csp_nonce }}">
 /* <![CDATA[ */
 var google_conversion_id = 1012391776;
 var google_conversion_language = "en";
