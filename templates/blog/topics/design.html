@@ -9,6 +9,8 @@
 
 {% block meta_description %}All the latest news on the design and web team at Canonical.{% endblock %}
 
+{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
+
 {% block content %}
   {% call(slot) vf_hero(
     title_text='Web engineering and design team',
@@ -26,7 +28,6 @@
       },
       {
         "type": "cta-block",
-        "padding": "shallow",
         "item": {
           "link": {
             "content_html": "Learn more from the web and design team portal ›",
