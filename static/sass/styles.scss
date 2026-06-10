@@ -52,6 +52,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 // import site specific patterns and overrides
 @import "pattern_accordion";
 @import "pattern_ai";
+@import "pattern_blog-author";
 @import "pattern_blog-featured";
 @import "pattern_blog-list";
 @import "pattern_blog-post";
@@ -112,6 +113,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "utility_vertically-center";
 
 @include additional-p-icons;
+@include blog-p-author;
 @include blog-p-card;
 @include blog-p-featured;
 @include blog-p-list;
