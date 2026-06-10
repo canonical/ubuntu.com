@@ -45,19 +45,7 @@
   <section class="p-strip is-shallow">
     <div class="grid-row">
       {% for article in articles%}        
-        {{ vf_card(
-          columns="4",
-          link="/blog/" ~ article.slug,
-          heading=article.title.rendered|safe,
-          image={
-            "src": article.image.link,
-            "alt": article.image.alt_text
-          },
-          footer={
-            "content_type": article.group.name
-          } if article.group.name else None,
-          description=article.excerpt.raw
-        ) }}
+        {% include "blog/blog-card.html" %}
       {% endfor %}
     </div>
   </section>
