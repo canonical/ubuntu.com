@@ -177,7 +177,7 @@
             </div>
             <div class="grid-col-2">
               <div class="p-image-container--16-9">
-                <a href="{{ page.path }}" aria-hidden="true">
+                <a href="{{ page.path }}" tabindex="-1" aria-label="Navigate to {{ page.topic_name }}">
                   <img class="p-image-container__image"
                        src="{% if page.meta_image %}{{ page.meta_image }}{% else %}https://assets.ubuntu.com/v1/c797f1d7-og_%20canonical.png{% endif %}"
                        alt="" />
