@@ -4,8 +4,12 @@
     position: sticky;
     top: $spv--strip-regular; // Account for navigation
     z-index: 1;
-    max-height: 100vh;
-    overflow-y: auto;
+    overflow-y: visible;
+
+    &.is-scrollable {
+      max-height: calc(100vh - #{$spv--strip-regular});
+      overflow-y: auto;
+    }
   }
 
   // /engage: reorder form above body content on smaller screens
