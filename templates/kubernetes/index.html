@@ -612,7 +612,7 @@
 
   {{ load_form("/kubernetes") | safe }}
 
-  <script nonce="{{ csp_nonce }}">
+  <script>
     document.addEventListener('DOMContentLoaded', function() {
       const switchElement = document.querySelector('.js-discoverer-switch');
       const discovererText = document.querySelector('.js-discoverer-text');

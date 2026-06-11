@@ -1,4 +1,3 @@
-import secrets
 from typing import List
 
 import flask
@@ -37,10 +36,6 @@ from canonicalwebteam.flask_base.env import get_flask_env
 
 
 def init_handlers(app):
-    @app.before_request
-    def generate_csp_nonce():
-        flask.g.csp_nonce = secrets.token_hex(16)
-
     @app.after_request
     def cache_headers(response):
         """
@@ -170,7 +165,6 @@ def init_handlers(app):
             "get_navigation": get_navigation,
             "split_list": split_list,
             "format_to_id": format_to_id,
-            "csp_nonce": flask.g.get("csp_nonce", ""),
         }
 
     def get_countries_list() -> List[dict]:
@@ -221,16 +215,7 @@ def init_handlers(app):
                 csp_str += f"{key} {csp_value}; "
             return csp_str.strip()
 
-        nonce = flask.g.get("csp_nonce", "")
-        csp = {
-            key: (
-                values + [f"'nonce-{nonce}'"]
-                if key in ("script-src-elem", "script-src")
-                else values
-            )
-            for key, values in CSP.items()
-        }
-        response.headers["Content-Security-Policy"] = get_csp_as_str(csp)
+        response.headers["Content-Security-Policy"] = get_csp_as_str(CSP)
 
         response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
         response.headers["Cross-Origin-Embedder-Policy"] = "unsafe-none"
