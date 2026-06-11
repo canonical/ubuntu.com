@@ -17,7 +17,7 @@
       opacity: 0 !important
     }
   </style>
-  <script nonce="{{ csp_nonce }}">
+  <script>
     (function(a, s, y, n, c, h, i, d, e) {
       s.className += ' ' + y;
       h.start = 1 * new Date;
@@ -314,7 +314,7 @@
 
   {% if version %}
     <script src="{{ versioned_static('js/dist/image-download.js') }}"></script>
-    <script defer nonce="{{ csp_nonce }}">
+    <script defer>
       var architecture = '{{ architecture }}';
       var version = '{{ version }}';
 

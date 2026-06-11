@@ -567,7 +567,7 @@
     </div>
 
     <script src="{{ versioned_static('js/src/resources.js') }}"></script>
-    <script nonce="{{ csp_nonce }}">
+    <script>
       fetchAndRenderResources(tag = "vulnerability+patching", resource = "whitepaper");
     </script>
   </section>
@@ -577,7 +577,7 @@
   <script src="{{ versioned_static('js/dist/notices.js') }}" defer></script>
   <script src="{{ versioned_static('js/dist/cve-detail.js') }}" defer></script>
 
-  <script nonce="{{ csp_nonce }}">
+  <script>
     function handleHiddenReleasesSwitch() {
       const maintainedCount = {{ maintained_count | tojson | safe }};
       const isOnlyUpstream = {{ only_upstream | tojson | safe }};

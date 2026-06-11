@@ -83,7 +83,7 @@
   {% endif %}
 
   <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-  <script nonce="{{ csp_nonce }}">
+  <script>
     canonicalLatestNews.fetchLatestNews(
       {
         articlesContainerSelector: "#horizontal-latest-articles",

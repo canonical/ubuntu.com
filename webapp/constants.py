@@ -63,6 +63,7 @@ CSP = {
         "*.g.doubleclick.net",
         "extend.vimeocdn.com",
         "tracking-api.g2.com",
+        "'unsafe-inline'",
     ],
     "font-src": [
         "'self'",
@@ -80,6 +81,7 @@ CSP = {
         "*.livechat-static.com",
         "'unsafe-eval'",
         "'unsafe-hashes'",
+        "'unsafe-inline'",
     ],
     "connect-src": [
         "'self'",

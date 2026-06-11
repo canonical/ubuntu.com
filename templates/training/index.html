@@ -904,7 +904,7 @@
   <!-- twitter tracking code -->
   <script src="https://platform.twitter.com/oct.js"></script>
   <script src="{{ versioned_static('js/dist/dynamic-toc.js') }}"></script>
-  <script nonce="{{ csp_nonce }}">
+  <script>
     document.addEventListener('DOMContentLoaded', function() {
       const tabGroups = document.querySelectorAll('.p-tabs');
 
@@ -935,7 +935,7 @@
       });
     });
   </script>
-  <script nonce="{{ csp_nonce }}">
+  <script>
     twttr.conversion.trackPid('l4pwm');
   </script>
   <noscript>

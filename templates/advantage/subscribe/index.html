@@ -35,7 +35,7 @@ endblock meta_copydoc %} {% block content %}
   defer
 ></script>
 
-<script defer nonce="{{ csp_nonce }}">
+<script defer>
   var productList = {
     {% for listing_id, listing in product_listings.items() %}
       "{{ listing.product.id }}-{{ listing.period }}": {

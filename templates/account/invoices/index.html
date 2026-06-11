@@ -102,7 +102,7 @@
   </section>
   {% include "account/invoices/_edit_billing_modal.html" %}
 
-  <script nonce="{{ csp_nonce }}">
+  <script>
     const prices = document.querySelectorAll('.js-format-price');
     prices.forEach(price => {
       const amount = price.innerText.split(' ')[0];
@@ -125,7 +125,7 @@
     })
   </script>
 
-  <script nonce="{{ csp_nonce }}">
+  <script>
     window.accountId = "{{ account_id }}";
   </script>
   <script src="{{ versioned_static('js/dist/account-billing.js') }}"></script>
