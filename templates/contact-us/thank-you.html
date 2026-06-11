@@ -377,7 +377,6 @@
             <div class="grid-col">
                 <p>Get the latest Ubuntu news and updates in your inbox.</p>
                 <form action="/marketo/submit"
-                    onsubmit="stringifyCustomFields(); ga('send', 'Newsletter', 'Signup', 'contact thank you newsletter signup');"
                     method="post"
                     id="mktoForm_4960"
                     class="modal-form">
@@ -571,6 +570,13 @@
                 textarea.value += usageOptions.join(', ').toLowerCase();
             }
         }
+
+        document
+            .getElementById("mktoForm_4960")
+            .addEventListener("submit", function() {
+                stringifyCustomFields();
+                ga('send', 'Newsletter', 'Signup', 'contact thank you newsletter signup');
+            });
   </script>
 
 {% endblock content %}

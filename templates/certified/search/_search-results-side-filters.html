@@ -42,13 +42,9 @@
           </section>
           <div class="js-show-expanded-vendor-filter-options">
             <button class="p-button--link js-vendor-count p-reveal-vendors is-dense js-show-all-vendors"
-                    name="vendor"
-                    onclick="toggleExpandFilters(event, this)"
-                    value="true">Show all vendors</button>
+                    name="vendor"                    value="true">Show all vendors</button>
             <button class="p-button--link p-reveal-vendors is-dense js-show-less-vendors u-hide"
-                    name="vendor"
-                    onclick="toggleExpandFilters(event, this)"
-                    value="false">Show fewer</button>
+                    name="vendor"                    value="false">Show fewer</button>
           </div>
         </li>
         <li class="p-accordion__group" id="version-section">
@@ -68,23 +64,17 @@
           </section>
           <div class="js-show-expanded-release-filter-options">
             <button class="p-button--link p-reveal-versions is-dense js-show-all-releases"
-                    name="release"
-                    onclick="toggleExpandFilters(event, this)"
-                    value="true">Show all versions</button>
+                    name="release"                    value="true">Show all versions</button>
             <button class="p-button--link p-reveal-versions is-dense js-show-less-releases u-hide"
-                    name="release"
-                    onclick="toggleExpandFilters(event, this)"
-                    value="false">Show fewer</button>
+                    name="release"                    value="false">Show fewer</button>
           </div>
         </li>
       </ul>
     </aside>
     <div class="certified-filters-footer">
       <div class="certified-filters-footer-buttons p-cta-block">
-        <button class="p-button--positive"
-                onclick="return submitFilters()">Apply filters</button>
-        <button class="p-button"
-                onclick="return clearFilters()">Clear all filters</button>
+        <button class="p-button--positive js-apply-filters">Apply filters</button>
+        <button class="p-button js-clear-filters">Clear all filters</button>
       </div>
     </div>
   </div>

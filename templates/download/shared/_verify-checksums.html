@@ -1,5 +1,5 @@
 You can
-<button class="p-button--link" onclick="verifyDownloadContent()">verify your download</button>
+<button class="p-button--link js-verify-download">verify your download</button>
 {%- if not 'raspi' in system -%}
   {%- if system == 'wsl' -%}
     {%- set install_help_url = 'https://documentation.ubuntu.com/wsl/stable/howto/install-ubuntu-wsl2/' -%}
@@ -40,4 +40,8 @@ You can
       targetControls.classList.toggle('u-hide');
     }
   }
+
+  document.querySelectorAll(".js-verify-download").forEach(function (button) {
+    button.addEventListener("click", verifyDownloadContent);
+  });
 </script>

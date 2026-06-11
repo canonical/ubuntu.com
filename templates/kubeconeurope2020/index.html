@@ -37,8 +37,7 @@
                   allowfullscreen></iframe>
         </div>
         <div style="padding-top: 2rem;">
-          <p class="p-button--positive p-button--inline"
-             onclick="LC_API.open_chat_window();return false">Private Livechat</p>
+          <p class="p-button--positive p-button--inline js-open-livechat">Private Livechat</p>
           <p class="p-button p-button--inline js-invoke-modal"
              href="/kubernetes/contact-us"
              aria-controls="kubernetes-contact-modal">Contact us</p>
@@ -208,5 +207,13 @@
 
   <!-- Set default Marketo information for contact form below-->
   {{ load_form("/kubeconeurope2020") | safe }}
+
+  <script nonce="{{ csp_nonce }}">
+    document.querySelectorAll(".js-open-livechat").forEach(function (button) {
+      button.addEventListener("click", function () {
+        LC_API.open_chat_window();
+      });
+    });
+  </script>
 
 {% endblock content %}

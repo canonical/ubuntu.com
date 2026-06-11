@@ -87,7 +87,6 @@
           </div>
           <button class="js-apply-filters p-button--positive u-no-margin--bottom">Apply filters</button>
           <button class="js-clear-filters u-no-margin--bottom"
-                  onclick="clearFilters()"
                   type="reset"
                   disabled>Clear filters</button>
         </div>
@@ -143,6 +142,8 @@
       if (urlObj.search !== "") {
         clearFiltersButton.removeAttribute("disabled");
       }
+
+      clearFiltersButton.addEventListener("click", clearFilters);
 
       function setFiltersDropdown(key, selector) {
         if (!selector) {

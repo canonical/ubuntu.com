@@ -4,7 +4,7 @@
   </header>
 
   <div class="blog-p-card__content">
-    <form action="/marketo/submit" method="post" id="mktoForm_4960" onsubmit="ga('send', 'Newsletter', 'Signup', 'New homepage newsletter signup');">
+    <form action="/marketo/submit" method="post" id="mktoForm_4960">
       <p>Get the latest Ubuntu news and updates in your inbox.</p>
       <div>
         <label for="email" class="u-no-margin--top u-no-margin--bottom is-required">Work email:</span>
@@ -69,3 +69,10 @@
     </form>
   </div>
 </div>
+<script nonce="{{ csp_nonce }}">
+  document
+    .getElementById("mktoForm_4960")
+    .addEventListener("submit", function() {
+      ga('send', 'Newsletter', 'Signup', 'New homepage newsletter signup');
+    });
+</script>

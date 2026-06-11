@@ -426,6 +426,26 @@ function hideDrawerPageReload() {
   }
 }
 
+// Wire up filter controls that previously used inline handlers,
+// which the CSP no longer allows
+filters1Elm
+  .querySelectorAll("input[name='category']")
+  .forEach((input) => input.addEventListener("click", handleCategoryClick));
+
+[showAllVendors, showLessVendors, showAllReleases, showLessReleases].forEach(
+  (button) =>
+    button?.addEventListener("click", (e) =>
+      toggleExpandFilters(e, e.currentTarget),
+    ),
+);
+
+document
+  .querySelector(".js-apply-filters")
+  ?.addEventListener("click", submitFilters);
+document
+  .querySelector(".js-clear-filters")
+  ?.addEventListener("click", clearFilters);
+
 loadFilters();
 updateResultsPerPage();
 hideDrawerPageReload();
