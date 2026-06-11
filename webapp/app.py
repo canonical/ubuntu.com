@@ -152,7 +152,7 @@ from webapp.shop.views import (
     support,
 )
 from webapp.views import (
-    BlogCustomGroup,
+    BlogArchivedGroup,
     BlogCustomTopic,
     BlogRedirects,
     BlogSitemapIndex,
@@ -632,7 +632,9 @@ app.add_url_rule(
 )
 app.add_url_rule(
     "/blog/<regex('cloud-and-server|desktop|internet-of-things|people-and-culture'):slug>",  # noqa: E501
-    view_func=BlogCustomGroup.as_view("blog_group", blog_views=blog_views),
+    view_func=BlogArchivedGroup.as_view(
+        "blog_group_archived", blog_views=blog_views
+    ),
 )
 app.add_url_rule(
     "/blog/sitemap.xml",
