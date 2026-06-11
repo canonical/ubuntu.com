@@ -172,7 +172,7 @@
                           </th>
                         {% endif %}
                         <td colspan="3"
-                          {% if package_name.pocket_info %}style="overflow: visible;"{% endif %}>
+                          {% if package_name.pocket_info %}class="u-overflow--visible"{% endif %}>
                             <a href={{ package_name['source_link'] }}>{{ package }}</a>&nbsp;&ndash;&nbsp;
                           {% if package_name['version_link'] %}
                             <a href={{ package_name['version_link'] }}>{{ package_name['version'] }}</a>

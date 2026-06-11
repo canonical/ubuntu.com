@@ -40,7 +40,7 @@
           <div class="row cve-hero-scores">
             {% if cve.priority %}
               <div>
-                <p class="p-text--small-caps" style="margin-bottom: 0.5rem;">Ubuntu priority</p>
+                <p class="p-text--small-caps u-margin-bottom--small">Ubuntu priority</p>
                 <div class="p-heading-icon--small">
                   <div class="p-heading-icon__header">
                     {% if cve.priority == 'unknown' %}
@@ -121,7 +121,7 @@
 
             {% if cvssV3 %}
               <div>
-                <h2 class="p-text--small-caps"  style="margin-bottom: 0.5rem;">Cvss 3 Severity Score</h2>
+                <h2 class="p-text--small-caps u-margin-bottom--small">Cvss 3 Severity Score</h2>
                 <div class="p-heading-icon--small">
                   <div class="p-heading-icon__header">
                     {% set baseScore = cvssV3.baseScore %}
@@ -194,10 +194,8 @@
   <section class="p-section">
     <div class="row">
       <aside class="col-3">
-        <div class="p-side-navigation--raw-html u-hide--small u-hide--medium"
-             id="drawer"
-             style="position: sticky;
-                    top: 4rem">
+        <div class="p-side-navigation--raw-html u-hide--small u-hide--medium u-sticky-below-header"
+             id="drawer">
           <button class="p-side-navigation__toggle js-drawer-toggle"
                   aria-controls="drawer">Toggle side navigation</button>
           <div class="p-side-navigation__overlay js-drawer-toggle"
@@ -280,11 +278,9 @@
         {% endif %}
 
         <div class="p-section">
-          <div class="u-fixed-width p-section--shallow"
-               style="display: flex;
-                      justify-content: space-between">
+          <div class="u-fixed-width p-section--shallow cve-section-header">
             <h2 class="section-heading" id="status">Status</h2>
-            <label class="p-switch" style="float: right;">
+            <label class="p-switch">
               <input type="checkbox"
                      class="p-switch__input js-toggle-maintained"
                      role="switch" />
@@ -303,9 +299,9 @@
               <table class="cve-table u-cve-table-horizontal-scroll__table">
                 <thead>
                   <tr>
-                    <th style="width: 12rem;">Package</th>
-                    <th style="width: 18rem;">Ubuntu Release</th>
-                    <th style="padding-left: 2rem; width:25rem">Status</th>
+                    <th>Package</th>
+                    <th>Ubuntu Release</th>
+                    <th>Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -314,15 +310,13 @@
                       <tr>
                         {% if status.release_codename and status.release_codename != "upstream" %}
                           {% if loop.index == 1 %}<th rowspan="{{ package.statuses | length }}">{{ package["name"] }}</th>{% endif %}
-                          <td {% if status.pocket_desc %}style="overflow: visible;"{% endif %}
-                              {% if status.maintained == False %}class="js-unmaintained-cell u-hide--cell"{% endif %}>
+                          <td class="{% if status.pocket_desc %}u-overflow--visible {% endif %}{% if status.maintained == False %}js-unmaintained-cell u-hide--cell{% endif %}">
                             {{ status.version }}
                             {% if status.support_tag %}{{ status.support_tag }}{% endif %}
                             <span class="u-text--muted">{{ status.release_codename }}</span>
                             {% if status.pocket_desc and status.pocket_desc.label != "Ubuntu Pro" %}
                               <button class="js-tooltip is-dense p-chip p-tooltip--top-center u-no-margin--bottom cve-status-chip"
-                                      aria-describedby="{{ status.pocket }}-tooltip"
-                                      style="vertical-align: unset">
+                                      aria-describedby="{{ status.pocket }}-tooltip">
                                 <span class="p-chip__value">{{ status.pocket_desc.label }}</span>
                                 <span class="p-tooltip__message cve-chip u-hide"
                                       role="tooltip"
@@ -332,9 +326,9 @@
                           </td>
                           {# djlint: off #}
                           {% if status.icon %}
-                            <td style="overflow: visible; display: flex;" class="{% if status.maintained == False %} js-unmaintained-cell u-hide--cell{% endif %} cve-td-status" >
-                              <i class="p-icon--{{ status.icon }}" style="margin-top: .2rem; margin-right: 0.5rem;"></i>
-                              <div style="display: block;">
+                            <td class="{% if status.maintained == False %} js-unmaintained-cell u-hide--cell{% endif %} cve-td-status cve-td-status--with-icon">
+                              <i class="p-icon--{{ status.icon }} cve-status-icon"></i>
+                              <div>
                                 {{ status.name }} {% if status.name == "Fixed" %}<span class="u-text--muted">{{ status.description }} </span>{% endif %}
                                 {% if status.pocket_desc and status.pocket_desc.label == "Ubuntu Pro" %}
                                   <div>
@@ -347,7 +341,7 @@
                               </div>
                             </td>     
                           {% else %}
-                            <td class="{% if status.maintained == False %}js-unmaintained-cell u-hide--cell{% endif %} cve-td-status {% if status.status == 'DNE' %}u-text--muted{% endif %}" style="padding-left: 2rem;">
+                            <td class="{% if status.maintained == False %}js-unmaintained-cell u-hide--cell{% endif %} cve-td-status u-padding-left--x-large {% if status.status == 'DNE' %}u-text--muted{% endif %}">
                               {{ status.name }} {% if status.status == "ignored" %} <span class="u-text--muted">{{ status.description }} </span> {% endif %}
                             </td>
                           {% endif %}

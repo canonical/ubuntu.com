@@ -107,6 +107,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_modals";
 @import "pattern_tube-line";
 @import "pattern_release_cycle";
+@import "utilities";
 @import "utility_animations";
 @import "utility_crop";
 @import "utility_vertically-center";
@@ -1157,6 +1158,29 @@ hr.p-separator.is-shallow {
     padding-right: 1.5rem;
     width: 100%;
   }
+
+  table {
+    table-layout: auto;
+  }
+
+  tr,
+  tbody th {
+    border: 0;
+  }
+
+  .cell--user-managed,
+  .cell--provider-managed {
+    border: 0.5rem solid #f3f3f3;
+  }
+
+  .cell--user-managed {
+    background-color: #d9d9d9;
+  }
+
+  .cell--provider-managed {
+    background-color: #333333;
+    color: #f3f3f3;
+  }
 }
 
 .p-strip--suru-cloud-computing {
@@ -1171,6 +1195,101 @@ hr.p-separator.is-shallow {
 
 .p-heading--bold {
   font-weight: $font-weight-bold;
+}
+
+// Lead-gen form fieldsets on engage pages
+// (templates/engage/shared/_*_engage_form.html)
+.p-engage-form__fieldset {
+  border-bottom-width: 1px;
+}
+
+// Card headers holding a centered partner logo
+// (openstack guest list, IoT digital signage)
+.p-card__logo-header {
+  min-height: 7rem;
+}
+
+// Compact full-height variant of the overlay card, used for
+// resource cards under a highlight rule
+.p-card--overlay-compact {
+  height: 95%;
+  overflow: hidden;
+  padding: 1.5rem;
+}
+
+// Centered fixed-width video embeds on /masters-conference
+.p-embedded-media--centered {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  width: 466px;
+}
+
+// FIPS certification tables (/azure/fips, /gcp/fips):
+// Ubuntu LTS | FIPS certified component | Description | Version | CMVP cert
+.p-table--fips {
+  th:nth-child(1) {
+    width: 9%;
+  }
+
+  th:nth-child(2) {
+    width: 30%;
+  }
+
+  th:nth-child(4) {
+    width: 10%;
+  }
+
+  th:nth-child(5) {
+    width: 15%;
+  }
+}
+
+// VM pricing table on /gcp/fips
+.p-table--vm-pricing {
+  th:nth-child(3),
+  th:nth-child(4) {
+    width: 7%;
+  }
+}
+
+// Feature comparison table with an empty leading label column (/aws/pro)
+.p-table--feature-comparison {
+  thead td:first-child {
+    width: 45%;
+  }
+}
+
+// Raspberry Pi support matrix on /download/raspberry-pi
+.p-table--rpi-support {
+  th:nth-child(1) {
+    width: 15%;
+  }
+
+  th:nth-child(2) {
+    width: 10%;
+  }
+
+  th:nth-child(3) {
+    width: 18%;
+  }
+
+  th:nth-child(4) {
+    width: 15%;
+  }
+}
+
+// Inline form stretched to fill its column (/certified search)
+.p-form--full-width {
+  width: 100%;
+
+  .p-form__group {
+    flex-grow: 1;
+  }
+
+  .p-form__control {
+    width: 100%;
+  }
 }
 
 // silicon custom styles

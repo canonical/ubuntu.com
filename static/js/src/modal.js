@@ -62,16 +62,20 @@ function initModals(modalId, ariaControls, open) {
   function toggleModal(modal, sourceEl, open) {
     if (modal && modal.classList.contains("p-modal")) {
       if (typeof open === "undefined") {
-        open = modal.style.display === "none";
+        open =
+          modal.classList.contains("u-hide") ||
+          modal.style.display === "none";
       }
 
       if (open) {
         currentDialog = modal;
+        modal.classList.remove("u-hide");
         modal.style.display = "flex";
         focusFirstDescendant(modal);
         focusAfterClose = sourceEl;
         document.addEventListener("focus", trapFocus, true);
       } else {
+        modal.classList.add("u-hide");
         modal.style.display = "none";
         if (focusAfterClose && focusAfterClose.focus) {
           focusAfterClose.focus();

@@ -41,7 +41,7 @@
     {% for version in versions_to_display %}
     {% set is_cos_override = product == "cos" and version.release in ["Track 1", "Track 2"] %}
     <tr>
-      <td style="overflow: visible;">
+      <td class="u-overflow--visible">
         <span class="p-heading--5">
           {{ version.release }}
         </span>

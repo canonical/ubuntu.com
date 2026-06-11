@@ -24,7 +24,7 @@
                 <input class="p-radio__input radio-organisation" type="radio" aria-labelledby="activate-organisation-input" name="activate-buy-for" value="organisation">
                 <span class="p-radio__label" id="activate-organisation">Organisation</span>
               </label>
-              <div class="p-form__group js-organisation-name-container" style="display:none">
+              <div class="p-form__group js-organisation-name-container u-hide">
                 <label for="activate-organisation-name" class="p-form__label">Organisation name: </label>
                 <input class="u-no-margin--bottom" type="text" id="activate-organisation-name" name="activate-organisation-name" placeholder="Ex: Canonical" style="margin-top: .25rem;" aria-label="What?">
               </div>
@@ -58,7 +58,7 @@
       </form>
     </div>
     <div class="u-fixed-width">
-      <div class="p-notification--negative" id="notification" style="display: none">
+      <div class="p-notification--negative u-hide" id="notification">
         <div class="p-notification__content">
           <h5 class="p-notification__title">Something went wrong</h5>
             <p class="p-notification__message" id="notification-message"></p>
