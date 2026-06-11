@@ -13,7 +13,7 @@
   {{ load_form("/appliance/contact-us",formId=3231, isModal=true) | safe }}
   <script src="{{ versioned_static('js/dist/appliance.js') }}" defer></script>
 
-  <style>
+  <style nonce="{{ csp_nonce }}">
     .p-stepped-list--detailed ol li {
       margin-bottom: 1rem;
     }

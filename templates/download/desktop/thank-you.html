@@ -12,7 +12,7 @@
 
 {% block head_extra %}
   <meta name="robots" content="noindex" />
-  <style>
+  <style nonce="{{ csp_nonce }}">
     .async-hide {
       opacity: 0 !important
     }

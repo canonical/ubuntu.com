@@ -137,6 +137,14 @@ jobs:
             exit 1
           fi
 
+      - name: Check inline styles have CSP nonce attribute
+        run: |
+          if grep -rn '<style\b[^>]*>' templates/ \
+            | grep -v 'nonce='; then
+            echo "Found inline <style> tags without nonce attribute"
+            exit 1
+          fi
+
   validate-deploy:
     runs-on: ubuntu-latest
 

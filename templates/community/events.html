@@ -19,7 +19,7 @@
 {% block content %}
   <!-- This is a temporary implementation of has-divider-0 for the specific design requirements.
   An issue has been created here: https://github.com/canonical/vanilla-framework/issues/5580 once it is merged this can be removed -->
-  <style>
+  <style nonce="{{ csp_nonce }}">
     /* Custom has-divider-0 implementation for events page */
     .p-equal-height-row.has-divider-0::before,
     .p-equal-height-row--wrap.has-divider-0::before {

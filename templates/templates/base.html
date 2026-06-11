@@ -119,7 +119,7 @@
           {% endif %}
 
           {% block extra_metatags %}{% endblock %}
-          <style>
+          <style nonce="{{ csp_nonce }}">
             #rememberMe {
               display: none;
             }

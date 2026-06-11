@@ -56,7 +56,7 @@
   </div>
 {% endif %}
 
-<style>
+<style nonce="{{ csp_nonce }}">
   .is-active::after {
     background: rgba(249, 155, 17, 0.5);
     content: "Active";

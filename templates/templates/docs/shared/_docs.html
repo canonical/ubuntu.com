@@ -227,7 +227,7 @@
   </script>
 
   <!-- These styles take care of the issue where the same page links for h2, h3 are cut-off from the top upon click and auto-scroll -->
-  <style>
+  <style nonce="{{ csp_nonce }}">
     h2,
     h3 {
       &[id] {

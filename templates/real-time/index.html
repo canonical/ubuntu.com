@@ -400,7 +400,7 @@ pro enable realtime-kernel --variant=raspi</code></pre>
   <!-- Set default Marketo information for contact form below-->
  {{ load_form("/real-time") | safe }}
 
-  <style>
+  <style nonce="{{ csp_nonce }}">
     @media (min-width: 1032px) {
       .p-cases {
         min-height: 130px;

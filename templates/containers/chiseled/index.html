@@ -12,7 +12,7 @@
 {% endblock body_class %}
 
 {% block content %}
-  <style>
+  <style nonce="{{ csp_nonce }}">
     .dimmed-text {
       color: #666666;
     }
