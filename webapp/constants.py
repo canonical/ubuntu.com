@@ -199,3 +199,26 @@ CSP = {
         "https://support.stripe.com",
     ],
 }
+
+# Trial policy for removing 'unsafe-inline' from style-src (WD-36638).
+# Sent as Content-Security-Policy-Report-Only: violations are reported,
+# never enforced. Once reports confirm it is safe, these directives move
+# into CSP above.
+CSP_REPORT_ONLY = {
+    # Covers <style> elements and <link rel="stylesheet">. A per-request
+    # nonce is appended in add_headers; 'unsafe-inline' is deliberately
+    # absent so un-nonced <style> elements (e.g. injected by third-party
+    # scripts such as VWO or LiveChat) generate violation reports.
+    "style-src-elem": [
+        "'self'",
+        "*.cloudfront.net",
+        "cdn.jsdelivr.net",
+        "*.livechatinc.com",
+        "*.youtube.com",
+        "*.google.com",
+    ],
+    # style="..." attributes cannot carry a nonce, so they stay allowed
+    # here to keep reports focused on style elements. They are being
+    # removed from templates separately.
+    "style-src-attr": ["'unsafe-inline'"],
+}
