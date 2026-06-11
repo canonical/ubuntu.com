@@ -59,6 +59,15 @@ function getAllElements(queryString) {
 
 // Attach initial event listeners
 mainList.addEventListener("click", function (e) {
+  // Plain links inside the navigation (dropdown items, the injected
+  // "Sign in" link) must navigate natively. They used to rely on inline
+  // stopPropagation handlers to bypass this listener, which the CSP no
+  // longer allows. Dropdown toggles are identified by their
+  // aria-controls attribute.
+  const link = e.target.closest("a[href]");
+  if (link && !link.hasAttribute("aria-controls")) {
+    return;
+  }
   e.preventDefault();
   let target = e.target;
   if (target.classList.contains("p-navigation__link")) {
@@ -100,6 +109,34 @@ window.addEventListener("resize", function () {
 dropdownWindowOverlay?.addEventListener("click", () => {
   if (dropdownWindow.classList.contains("is-active")) {
     closeAll();
+  }
+});
+
+// Fetch dropdown contents when a top-level item is hovered or focused.
+// The global-nav and account dropdowns are populated separately.
+topLevelNavDropdowns
+  .filter(
+    (dropdown) =>
+      !dropdown.classList.contains("global-nav") &&
+      !dropdown.classList.contains("js-account"),
+  )
+  .forEach((dropdown) => {
+    const url = "/templates/navigation/" + dropdown.id;
+    dropdown.addEventListener(
+      "mouseenter",
+      () => fetchDropdown(url, dropdown.id),
+      { once: true },
+    );
+    dropdown
+      .querySelector(".p-navigation__link")
+      ?.addEventListener("focus", () => fetchDropdown(url, dropdown.id));
+  });
+
+// Tab links in the desktop dropdowns are fetched after page load, so
+// handle their clicks with a delegated listener.
+dropdownWindow?.addEventListener("click", (e) => {
+  if (e.target.closest(".js-tabs .p-side-navigation__link")) {
+    toggleSection(e);
   }
 });
 
@@ -195,10 +232,11 @@ function escKeyPressHandler(e) {
 
 // Attaches to tab items in desktop dropdown and updates them,
 // also applies the same update to the mobile dropdown.
-// Is attached via HTML onclick attribute.
+// Is attached via a delegated click listener on the dropdown window.
 function toggleSection(e) {
   e.preventDefault();
-  const targetId = e.target.getAttribute("aria-controls");
+  const tabLink = e.target.closest(".p-side-navigation__link");
+  const targetId = tabLink.getAttribute("aria-controls");
   const el = document.querySelector(`.dropdown-content-desktop #${targetId}`);
   const currTabWindow = el.closest(".dropdown-window__content-container");
   const tabLinks = currTabWindow.querySelectorAll(".p-side-navigation__link");
@@ -796,7 +834,7 @@ if (accountContainer) {
     .then((response) => response.json())
     .then((data) => {
       if (data.account === null) {
-        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;" tabindex="0" role="button" onclick="event.stopPropagation()">Sign in</a>`;
+        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;" tabindex="0" role="button">Sign in</a>`;
       } else {
         window.accountJSONRes = data.account;
         if (data.account && data.account.email) {
@@ -813,15 +851,15 @@ if (accountContainer) {
               <strong>${escapedEmail}</strong></p>
               <hr class="is-dark u-no-margin" />
             </li>
-            <li class="p-navigation__dropdown-item"><a class="p-link--inverted" href="/pro/dashboard" onclick="event.stopPropagation()">Ubuntu Pro dashboard</a></li>
+            <li class="p-navigation__dropdown-item"><a class="p-link--inverted" href="/pro/dashboard">Ubuntu Pro dashboard</a></li>
             <li class="p-navigation__dropdown-item">
-              <a class="p-link--inverted" href="/account/invoices" onclick="event.stopPropagation()">Invoices & Payments</a>
+              <a class="p-link--inverted" href="/account/invoices">Invoices & Payments</a>
             </li>
             <li class="p-navigation__dropdown-item">
-              <a class="p-link--inverted" href="https://login.ubuntu.com/" onclick="event.stopPropagation()">Account settings</a>
+              <a class="p-link--inverted" href="https://login.ubuntu.com/">Account settings</a>
             </li>
             <li class="p-navigation__dropdown-item">
-              <a class="p-link--inverted" href="/logout" onclick="event.stopPropagation()">Logout</a>
+              <a class="p-link--inverted" href="/logout">Logout</a>
             </li>
           </ul>`;
         } else {
