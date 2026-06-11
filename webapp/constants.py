@@ -200,11 +200,12 @@ CSP = {
     ],
 }
 
-# Trial policy for removing 'unsafe-inline' from style-src (WD-36638).
-# Sent as Content-Security-Policy-Report-Only: violations are reported,
-# never enforced. Once reports confirm it is safe, these directives move
-# into CSP above.
-CSP_REPORT_ONLY = {
+# Strict style policy for removing 'unsafe-inline' from style-src
+# (WD-36638). Sent as Content-Security-Policy-Report-Only by default;
+# merged into the enforced CSP when CSP_ENFORCE_STRICT_STYLES is set.
+# Either way, style-src above stays unchanged as the fallback for
+# browsers without style-src-elem/-attr support.
+CSP_STRICT_STYLE_DIRECTIVES = {
     # Covers <style> elements and <link rel="stylesheet">. A per-request
     # nonce is appended in add_headers; 'unsafe-inline' is deliberately
     # absent so un-nonced <style> elements (e.g. injected by third-party
