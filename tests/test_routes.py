@@ -69,11 +69,22 @@ class TestRoutes(VCRTestCase):
             self.client.get("/blog/topics/design").status_code, 200
         )
         self.assertEqual(
-            self.client.get("/blog/internet-of-things").status_code, 200
-        )
-        self.assertEqual(
             self.client.get("/blog/installing-ros-in-lxd").status_code, 200
         )
+
+    def test_archived_blog_group_routes(self):
+        """Archived blog group routes should permanently redirect to /blog."""
+        archived_slugs = [
+            "cloud-and-server",
+            "desktop",
+            "internet-of-things",
+            "people-and-culture",
+        ]
+
+        for slug in archived_slugs:
+            response = self.client.get(f"/blog/{slug}")
+            self.assertEqual(response.status_code, 301)
+            self.assertEqual(response.location, "/blog")
 
     def test_tutorials_homepage(self):
         """
