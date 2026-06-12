@@ -26,7 +26,7 @@
         "padding": "shallow",
         "item": {
           "type": "html",
-          "content": '<p class="p-blog-author-post-count">' ~ total_posts ~ ' posts</p>'
+          "content": '<p class="p-text--small-caps">' ~ total_posts ~ ' posts</p>'
         }
       },
       {
@@ -35,7 +35,7 @@
           "is_highlighted": false,
           "attrs": {
             "src": 'https://assets.ubuntu.com/v1/f16c40d0-Favicon+-+CoF.svg' if author.id == 217 else author.avatar_urls['96'],
-            "alt": "alt-text",
+            "alt": "Canonical logo" if author.id == 217 else author.name,
             "width": "96",
             "height": "96"
           }
