@@ -26,14 +26,14 @@
     }
 
     @include vf-button-pattern(
-      $button-background-color: #cc420a,
-      $button-hover-background-color: #b23a09,
-      $button-active-background-color: #b23a09,
-      $button-disabled-background-color: #cc420a,
-      $button-border-color: #cc420a,
-      $button-hover-border-color: #b23a09,
-      $button-active-border-color: #b23a09,
-      $button-disabled-border-color: #cc420a,
+      $button-background-color: $color-brand,
+      $button-hover-background-color: $color-brand-dark,
+      $button-active-background-color: $color-brand-dark,
+      $button-disabled-background-color: $color-brand,
+      $button-border-color: $color-brand,
+      $button-hover-border-color: $color-brand-dark,
+      $button-active-border-color: $color-brand-dark,
+      $button-disabled-border-color: $color-brand,
       $button-text-color: $colors--theme--button-positive-text
     );
 
