@@ -165,18 +165,15 @@
               {% for child in breadcrumbs.children %}
                 {% if child.title != "Overview" %}
                   {% if child.path == '/blog/topics' %}
-                    <li class="p-navigation__item  {% if child.active %}is-selected{% endif %}"
-                        style="position: relative">
+                    <li class="p-navigation__item {% if child.active %}is-selected{% endif %} u-position--relative">
                       <a aria-controls="#topics"
                          data-trigger="hover"
                          class="p-navigation__link  p-contextual-menu__toggle"
                          href="#">{{ child.title }}</a>
-                      <span class="p-contextual-menu__dropdown"
+                      <span class="p-contextual-menu__dropdown p-navigation__topics-dropdown"
                             id="topics"
                             aria-hidden="true"
-                            aria-label="submenu"
-                            style="position: absolute;
-                                   font-size: .875rem">
+                            aria-label="submenu">
                         <span class="p-contextual-menu__group">
                           {% for item in child.children %}
                             <a href="{{ item.path }}"

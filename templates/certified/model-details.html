@@ -46,7 +46,7 @@
   </section>
   <div class="u-fixed-width">
     {% if release_details["releases"]|length > 1 %}
-      <div class="row model-details-row" style="margin-bottom: 7px;">
+      <div class="row model-details-row p-nudge-margin-bottom--7px">
         <div class="col-9 col-start-large-4">
           <nav class="p-tabs model-details-p-tabs" aria-label="Tabs example">
             <ul class="p-tabs__list model-details-p-tabs__list">
@@ -105,7 +105,7 @@
             {% for note in release.notes %}{{ note.comment | convert_markdown_to_html | safe }}{% endfor %}
 
             <div class="p-section--shallow">
-              <table aria-label="Software" style="margin-top:1.4rem">
+              <table class="p-nudge-margin-top--large" aria-label="Software">
                 <tbody>
                   {% if release.kernel %}
                     <tr>

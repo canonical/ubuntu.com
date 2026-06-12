@@ -38,7 +38,7 @@
               <p class="p-heading--5 u-no-margin--bottom">Releases</p>
             </div>
             <div class="col-7">
-              <div style="display: flex; overflow-x: auto;">
+              <div class="u-display--flex u-overflow-x--auto">
                 {% for release in notice.releases %}
                   <a href="/security/notices?release={{ release.codename }}"
                     class="p-chip u-no-margin--bottom">
@@ -154,8 +154,8 @@
               <table aria-label="Releases and package versions" class="cve-table u-cve-table-horizontal-scroll__table">
                 <thead>
                   <tr>
-                    <th style="width: 12rem;">Ubuntu Release</th>
-                    <th style="width: 18rem;">Package Version</th>
+                    <th class="u-width--12rem">Ubuntu Release</th>
+                    <th class="u-width--18rem">Package Version</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -181,8 +181,7 @@
                           {% endif %}
                           {% if package_name.pocket_info %}
                             &nbsp;
-                            <button class="js-tooltip p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center"
-                                    style="vertical-align: unset;"
+                            <button class="js-tooltip p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center u-vertical-align--baseline"
                                     aria-describedby="{{ package_name.pocket }}-tooltip">
                               <span class="p-chip__value">{{ package_name.pocket_info.label }}</span>
                               <span class="p-tooltip__message cve-chip u-hide"

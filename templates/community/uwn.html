@@ -28,16 +28,14 @@
             </div>
             <ul class="p-side-navigation__list">
               <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link"
+                <a class="p-side-navigation__link u-text--white"
                    {% if request.path == "/community/uwn" %}aria-current="page"{% endif %}
-                   href="/community/uwn"
-                   style="color:#FFFFFF">Introduction</a>
+                   href="/community/uwn">Introduction</a>
               </li>
               <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link"
+                <a class="p-side-navigation__link u-text--white"
                    {% if request.path == "/community/uwn/joining-the-ubuntu-weekly-newsletter-team" %}aria-current="page"{% endif %}
-                   href="/community/uwn/t/40929"
-                   style="color:#FFFFFF">Joining the Ubuntu Weekly Newsletter Team</a>
+                   href="/community/uwn/t/40929">Joining the Ubuntu Weekly Newsletter Team</a>
               </li>
             </ul>
 
@@ -45,23 +43,21 @@
             <ul class="p-side-navigation__list">
               {% for newsletter in newsletters_list %}
                 <li class="p-side-navigation__item">
-                  <a class="p-side-navigation__link"
+                  <a class="p-side-navigation__link u-text--white"
                      {% if request.path == "/community/uwn/" + newsletter.slug %}aria-current="page"{% endif %}
-                     href="/community/uwn/{{ newsletter.slug }}"
-                     style="color:#FFFFFF">{{ newsletter.title }}</a>
+                     href="/community/uwn/{{ newsletter.slug }}">{{ newsletter.title }}</a>
                 </li>
               {% endfor %}
               <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link"
-                   href="https://discourse.ubuntu.com/c/uwn/124"
-                   style="color:#FFFFFF">See all...</a>
+                <a class="p-side-navigation__link u-text--white"
+                   href="https://discourse.ubuntu.com/c/uwn/124">See all...</a>
               </li>
             </ul>
           </nav>
         </div>
       </aside>
 
-      <main class="grid-col-6" style="overflow-wrap: break-word;">
+      <main class="grid-col-6 u-overflow-wrap--break-word">
         {% if "sections" in newsletter_data and newsletter_data.sections %}
           {% for section in newsletter_data.sections %}
             <div class="p-section">

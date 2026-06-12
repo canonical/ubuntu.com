@@ -13,13 +13,9 @@
            role="dialog"
            aria-labelledby="modal-title"
            aria-describedby="modal-description">
-        <header class="p-modal__header"
-                style="display: block;
-                       border-bottom: 0;
-                       overflow: auto">
-          <button class="p-modal__close js-close"
-                  aria-label="Close active modal"
-                  style="margin-left: -1rem">Close</button>
+        <header class="p-modal__header p-modal__header--scroll">
+          <button class="p-modal__close js-close p-form-template__field"
+                  aria-label="Close active modal">Close</button>
           <div class="u-fixed-width">
             <h3>{{ formData.title }}</h3>
           </div>

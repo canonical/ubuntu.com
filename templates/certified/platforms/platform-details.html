@@ -64,7 +64,7 @@
       <tr>
         <th></th>
         {% for canonical_id, certificate in platform.certificates.items() %}
-        <td style="padding-bottom: 25px;"><a href="/certified/{{ canonical_id }}"><strong>{{ certificate.name }}&nbsp;&rsaquo;</strong></a></td>
+        <td class="p-nudge-bottom--25px"><a href="/certified/{{ canonical_id }}"><strong>{{ certificate.name }}&nbsp;&rsaquo;</strong></a></td>
         {% endfor %}
       </tr>
     </thead>
@@ -130,9 +130,9 @@
     </tbody>
   </table>
 
-  <hr style="margin-top: 25px;" class="p-rule"/>
+  <hr class="p-rule p-nudge-margin-top--25px"/>
 
-  <div style="display:flex; align-items: center; justify-content: right;">
+  <div class="p-flex--center-right">
     <i id="downButton" class="p-icon--chevron-left"></i>
     <div id="pageNumbers"></div>
     <i id="upButton" class="p-icon--chevron-right"></i>

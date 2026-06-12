@@ -36,7 +36,7 @@
               <p class="p-heading--5 u-no-margin--bottom">Releases</p>
             </div>
             <div class="col-7">
-              <div style="display: flex; overflow-x: auto;">
+              <div class="u-display--flex u-overflow-x--auto">
                 {% for release in notice.releases %}
                   <a href="/security/notices?release={{ release.codename }}"
                     class="p-chip u-no-margin--bottom">
@@ -145,7 +145,7 @@
               <p class="p-notification__message">
                 <p>To check your kernel type and Livepatch version, enter this command:</p>
                 <div class="p-code-snippet u-no-margin--bottom">
-                  <pre class="p-code-snippet__block--icon" style="white-space: pre-wrap;"><code>canonical-livepatch status</code></pre>
+                  <pre class="p-code-snippet__block--icon u-white-space--pre-wrap"><code>canonical-livepatch status</code></pre>
                 </div>
               </p>
             </div>
@@ -154,9 +154,9 @@
           <div class="u-cve-table-horizontal-scroll">
             <table aria-label="Livepatch versions" class="cve-table u-cve-table-horizontal-scroll__table">
               <thead>
-                <th style="width: 12rem;">Kernel type</th>
+                <th class="u-width--12rem">Kernel type</th>
                 {% for version in notice.release_packages.__reversed__() %}
-                  <th style="width: 6rem;">{{ version }}</th>
+                  <th class="u-width--6rem">{{ version }}</th>
                 {% endfor %}
               </thead>
               <tbody>

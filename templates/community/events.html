@@ -115,7 +115,7 @@
               </div>
               <div class="p-equal-height-row__item u-clamp--five-lines">{{ event.description | safe }}</div>
               <div class="p-equal-height-row__item">
-                <div style="padding-top:2.5rem;">
+                <div class="p-nudge-top--x-large">
                   <a href="https://discourse.ubuntu.com/{{ event.post.url }}"
                      aria-label="Learn more about {{ event.post.topic.title }}"
                      class="p-button">Learn more</a>
@@ -149,7 +149,7 @@
           {% endif %}
           <div class="p-equal-height-row__col js-event-card"
                data-index="{{ loop.index0 }}">
-            <div class="p-equal-height-row__item" style="padding-top:0.5rem;">
+            <div class="p-equal-height-row__item u-padding-top--small">
               <h3 class="u-clamp--two-lines">{{ event.post.topic.title }}</h3>
             </div>
             <div class="p-equal-height-row__item">
@@ -175,7 +175,7 @@
     <div class="js-show-pagination u-hide">
       <div class="u-fixed-width u-align--centre">
         <nav class="p-pagination js-events-pagination" aria-label="Pagination">
-          <ol class="p-pagination__items" style="justify-content:center;">
+          <ol class="p-pagination__items u-justify-content--center">
             <li class="p-pagination__item">
               <button class="p-pagination__link--previous js-previous-page"
                       href="#previous"

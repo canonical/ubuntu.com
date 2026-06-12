@@ -46,10 +46,8 @@
             </div>
           </div>
 
-          <div class="p-search-and-filter__panel"
-               aria-hidden="true"
-               style="background:#f7f7f7;
-                      padding-top:0"></div>
+          <div class="p-search-and-filter__panel u-background--light u-no-padding--top"
+               aria-hidden="true"></div>
 
           <template id="search-result-template">
             <div class="p-search-and-filter__search-prompt" role="button" tabindex="0">
@@ -72,7 +70,7 @@
                    {% if updatesOptIn %}checked{% endif %} />
             <span class="p-checkbox__label">I agree to receive information about Canonical's products and services</span>
           </label>
-          <hr style="margin-top:1rem;margin-bottom:0;" />
+          <hr class="u-margin-top--medium u-no-margin--bottom" />
           <div class="p-accordion">
             <ul class="p-accordion__list" id="subscriptions-list">
               {% for category in categories %}
