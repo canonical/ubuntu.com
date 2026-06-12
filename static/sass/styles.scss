@@ -38,6 +38,7 @@ $colors--light-theme--border-low-contrast: rgba(
 // import vanilla-framework
 @import "vanilla-framework";
 @include vanilla;
+@import "fonts"; // Include after 'vanilla' to override
 
 @import "vanilla-placeholders";
 
