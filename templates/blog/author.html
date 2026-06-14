@@ -26,7 +26,7 @@
         "padding": "shallow",
         "item": {
           "type": "html",
-          "content": '<p class="p-text--small-caps">' ~ total_posts ~ ' posts</p>'
+          "content": '<p class="p-text--small-caps">' ~ total_posts ~ ' post' ~ ('s' if total_posts|int != 1 else '') ~ '</p>'
         }
       },
       {
