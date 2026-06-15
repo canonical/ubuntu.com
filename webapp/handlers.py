@@ -46,7 +46,6 @@ def init_handlers(app):
             "/account",
             "/advantage",
             "/pro",
-            "/credentials",
             "/core/build",
             "/account.json",
         )
