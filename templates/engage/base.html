@@ -71,9 +71,7 @@
 
   <section class="{% if last_section == 'body' %}p-section--deep{% else %}p-section{% endif %}">
     <div class="grid-row">
-      <div class="grid-col-4 grid-col-start-large-3 grid-col-medium-4 p-engage-body">
-        {{ metadata }}
-        {{ metadata["body_html"] | safe }}</div>
+      <div class="grid-col-4 grid-col-start-large-3 grid-col-medium-4 p-engage-body">{{ metadata["body_html"] | safe }}</div>
       <div class="grid-col-2 grid-col-medium-4 p-engage-form">
         {% if "form_id" in metadata and metadata["form_id"] != "" %}
           {% set form_id = metadata["form_id"] %}
@@ -104,7 +102,7 @@
               {% endwith %}
             {% endif %}
           {% endif %}
-        {% elif "primary_link" in metadata and metadata["primary_link"] != "" %}
+        {% elif "primary_link" in metadata and metadata["primary_link"] != "" and metadata["primary_link"].startswith("https") %}
           {% if not metadata["webinar_code"] %}
             {% if metadata['meta_image'] %}
               <div class="p-section--shallow u-hide--small u-hide--medium">
@@ -179,7 +177,9 @@
             </div>
             <div class="grid-col-2">
               <div class="p-image-container--16-9">
-                <a href="{{ page.path }}" tabindex="-1" aria-label="Navigate to {{ page.topic_name }}">
+                <a href="{{ page.path }}"
+                   tabindex="-1"
+                   aria-label="Navigate to {{ page.topic_name }}">
                   <img class="p-image-container__image"
                        src="{% if page.meta_image %}{{ page.meta_image }}{% else %}https://assets.ubuntu.com/v1/c797f1d7-og_%20canonical.png{% endif %}"
                        alt="" />
@@ -199,7 +199,7 @@
   {% endif %}
 
   <script>
-    (function () {
+    (function() {
       var form = document.querySelector(".p-engage-form");
       var body = document.querySelector(".p-engage-body");
       if (!form || !body) return;
