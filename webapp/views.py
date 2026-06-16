@@ -1926,7 +1926,7 @@ def build_github_data_access():
 def build_release_cycle_view():
     get_combined_products = build_github_data_access()
 
-    # For QA, to be deleted once PR is approved 
+    # For QA, to be deleted once PR is approved
     def add_dummy_release_cycle_versions(raw_products):
         """
         Add test versions to validate release-date filtering.
@@ -2078,9 +2078,13 @@ def build_release_cycle_view():
                 raw_versions = deployment.get("versions", [])
                 shaped_versions = [shape_version(v) for v in raw_versions]
                 visible_versions = [
-                    v for v in shaped_versions
+                    v
+                    for v in shaped_versions
                     if not version_is_expired(v)
-                    and (v["release_date"]["raw"] is None or v["release_date"]["is_past"])
+                    and (
+                        v["release_date"]["raw"] is None
+                        or v["release_date"]["is_past"]
+                    )
                 ]
 
                 deployments.append(
