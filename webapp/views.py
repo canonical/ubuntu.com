@@ -1988,7 +1988,7 @@ def build_release_cycle_view():
                 try:
                     dt = datetime.strptime(raw, "%Y-%m-%d").date()
                     formatted = dt.strftime("%b %Y")  # Dec 2025
-                    is_past = dt < date.today()
+                    is_past = dt <= date.today()
                 except ValueError:
                     formatted = raw
 
@@ -2002,7 +2002,7 @@ def build_release_cycle_view():
             try:
                 dt = datetime.strptime(raw, "%Y-%m-%d").date()
                 formatted = dt.strftime("%b %Y")
-                is_past = dt < date.today()
+                is_past = dt <= date.today()
             except ValueError:
                 formatted = raw
             except Exception as e:
