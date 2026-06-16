@@ -31,7 +31,7 @@
 
 {% block content %}
 
-  {% if metadata["webinar_date"] is defined and metadata["webinar_code"] is defined and not metadata["webinar_date"] | date_has_passed %}
+  {% if metadata["webinar_code"] is defined %}
     {% set show_webinar = true %}
   {% endif %}
 
@@ -71,7 +71,9 @@
 
   <section class="{% if last_section == 'body' %}p-section--deep{% else %}p-section{% endif %}">
     <div class="grid-row">
-      <div class="grid-col-4 grid-col-start-large-3 grid-col-medium-4 p-engage-body">{{ metadata["body_html"] | safe }}</div>
+      <div class="grid-col-4 grid-col-start-large-3 grid-col-medium-4 p-engage-body">
+        {{ metadata }}
+        {{ metadata["body_html"] | safe }}</div>
       <div class="grid-col-2 grid-col-medium-4 p-engage-form">
         {% if "form_id" in metadata and metadata["form_id"] != "" %}
           {% set form_id = metadata["form_id"] %}
