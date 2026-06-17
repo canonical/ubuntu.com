@@ -881,11 +881,6 @@ class BlogCustomTopic(BlogView):
 
         return flask.render_template(f"blog/topics/{slug}.html", **context)
 
-class BlogArchivedGroup(BlogView):
-    def dispatch_request(self, slug):
-        return flask.redirect("/blog", code=301)
-
-
 class BlogSitemapIndex(BlogView):
     def dispatch_request(self):
         response = session.get(

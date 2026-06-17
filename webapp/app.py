@@ -152,7 +152,6 @@ from webapp.shop.views import (
     support,
 )
 from webapp.views import (
-    BlogArchivedGroup,
     BlogCustomTopic,
     BlogRedirects,
     BlogSitemapIndex,
@@ -629,12 +628,6 @@ blog_views = BlogViews(
 app.add_url_rule(
     "/blog/topics/<regex('maas|design|juju|robotics|snapcraft'):slug>",
     view_func=BlogCustomTopic.as_view("blog_topic", blog_views=blog_views),
-)
-app.add_url_rule(
-    "/blog/<regex('cloud-and-server|desktop|internet-of-things|people-and-culture'):slug>",  # noqa: E501
-    view_func=BlogArchivedGroup.as_view(
-        "blog_group_archived", blog_views=blog_views
-    ),
 )
 app.add_url_rule(
     "/blog/sitemap.xml",
