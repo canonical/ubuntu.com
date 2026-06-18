@@ -477,6 +477,37 @@ class TestRoutes(VCRTestCase):
             directives.get("script-src", ""), r"'nonce-[a-f0-9]+'"
         )
 
+    def test_csp_report_only_style_directives(self):
+        """Test that the report-only CSP trials the strict style policy:
+        nonce'd style-src-elem without 'unsafe-inline', while style
+        attributes stay allowed (WD-36638)"""
+        response = self.client.get("/")
+        csp_ro = response.headers.get(
+            "Content-Security-Policy-Report-Only", ""
+        )
+        directives = {
+            d.split()[0]: d for d in csp_ro.rstrip(";").split(";") if d.strip()
+        }
+        self.assertRegex(
+            directives.get("style-src-elem", ""), r"'nonce-[a-f0-9]+'"
+        )
+        self.assertNotIn(
+            "'unsafe-inline'", directives.get("style-src-elem", "")
+        )
+        self.assertIn("'unsafe-inline'", directives.get("style-src-attr", ""))
+
+    def test_csp_enforced_style_src_keeps_unsafe_inline(self):
+        """Test that the enforced style-src keeps 'unsafe-inline' and has
+        no nonce: a nonce makes browsers ignore 'unsafe-inline', which
+        would break the inline styles still present (WD-36638)"""
+        response = self.client.get("/")
+        csp = response.headers.get("Content-Security-Policy", "")
+        directives = {
+            d.split()[0]: d for d in csp.rstrip(";").split(";") if d.strip()
+        }
+        self.assertIn("'unsafe-inline'", directives.get("style-src", ""))
+        self.assertNotRegex(directives.get("style-src", ""), r"'nonce-")
+
     def test_csp_nonce_is_unique_per_request(self):
         """Test that a different nonce is generated for each request"""
 

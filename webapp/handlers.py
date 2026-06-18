@@ -1,3 +1,4 @@
+import random
 import secrets
 from typing import List
 
@@ -5,7 +6,7 @@ import flask
 from canonicalwebteam import image_template
 from slugify import slugify
 
-from webapp.constants import CSP
+from webapp.constants import CSP, CSP_REPORT_ONLY
 from webapp.context import (
     current_year,
     date_has_passed,
@@ -34,6 +35,17 @@ from webapp.shop.api.ua_contracts.api import (
 from webapp.shop.flaskparser import UAContractsValidationError
 from webapp.certified.helpers import convert_markdown_to_html
 from canonicalwebteam.flask_base.env import get_flask_env
+
+# CSP violation reporting endpoint (e.g. a Sentry security endpoint).
+# Reports are only sent on a sampled fraction of responses: every page
+# view can produce violations, which would flood the endpoint otherwise.
+CSP_REPORT_URI = get_flask_env("CSP_REPORT_URI", "")
+try:
+    CSP_REPORT_SAMPLE_RATE = float(
+        get_flask_env("CSP_REPORT_SAMPLE_RATE", "0.01")
+    )
+except ValueError:
+    CSP_REPORT_SAMPLE_RATE = 0.0
 
 
 def init_handlers(app):
@@ -231,6 +243,24 @@ def init_handlers(app):
             for key, values in CSP.items()
         }
         response.headers["Content-Security-Policy"] = get_csp_as_str(csp)
+
+        # Report-only trial of the strict style policy (WD-36638). The
+        # nonce must NOT be added to the enforced style-src above while
+        # it still needs 'unsafe-inline': browsers ignore 'unsafe-inline'
+        # in a directive that contains a nonce.
+        csp_report_only = {
+            key: (
+                values + [f"'nonce-{nonce}'"]
+                if key == "style-src-elem"
+                else values
+            )
+            for key, values in CSP_REPORT_ONLY.items()
+        }
+        if CSP_REPORT_URI and random.random() < CSP_REPORT_SAMPLE_RATE:
+            csp_report_only["report-uri"] = [CSP_REPORT_URI]
+        response.headers["Content-Security-Policy-Report-Only"] = (
+            get_csp_as_str(csp_report_only)
+        )
 
         response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
         response.headers["Cross-Origin-Embedder-Policy"] = "unsafe-none"
