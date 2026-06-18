@@ -1,59 +1,17 @@
-{% extends "templates/one-column.html" %}
+{% extends "blog/topics/_topic-page.html" %}
 
-{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% block topic_page_title %}Juju and JAAS{% endblock %}
 
-{% block body_class %}is-paper{% endblock %}
-
-{% block title %}Juju and JAAS{% endblock %}
-
-{% block meta_description %}
+{% block topic_meta_description %}
   Operate big software at scale on any cloud. All the latest news on Juju – the open source application modelling tool for public and private clouds.
 {% endblock %}
 
-{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
+{% block hero_title_text %}Juju{% endblock %}
 
-{% block content %}
-  {% call(slot) vf_hero(
-    title_text='Juju',
-    layout='25/75',
-    display_blank_signpost_image_space=True,
-    blocks=[
-      {
-        "type": "description",
-        "padding": "shallow",
-        "item": {
-          "type": "text",
-          "content": "All the latest news on Juju – the open source application modelling tool for public and private clouds."
-        }
-      },
-      {
-        "type": "cta-block",
-        "item": {
-          "link": {
-            "content_html": "Learn more about Juju ›",
-            "attrs": {
-              "href": "https://canonical.com/jaas"
-            }
-          }
-        }
-      },
-    ]
-  ) -%}
-  {%- endcall -%}
-
-  <section class="p-strip is-shallow">
-    <div class="grid-row">
-      {% for article in articles%}        
-        {% include "blog/blog-card.html" %}
-      {% endfor %}
-    </div>
-  </section>
-
-  <section class="p-section--deep">
-    {% with %}
-      {% set total_pages = total_pages %}
-      {% set current_page = current_page %}
-      {% include "shared/_pagination.html" %}
-    {% endwith %}
-  </section>
+{% block hero_description_text %}
+  All the latest news on Juju – the open source application modelling tool for public and private clouds.
 {% endblock %}
+
+{% block hero_cta_text %}Learn more about Juju ›{% endblock %}
+
+{% block hero_cta_href %}https://canonical.com/jaas{% endblock %}

@@ -1,58 +1,15 @@
-{% extends "templates/one-column.html" %}
+{% extends "blog/topics/_topic-page.html" %}
 
-{% from "_macros/vf_hero.jinja" import vf_hero %}
-{% from "_macros/vf_card.jinja" import vf_card %}
+{% block topic_page_title %}Robotics{% endblock %}
 
-{% block body_class %}is-paper{% endblock %}
+{% block topic_meta_description %}All the latest news on robotics from Canonical.{% endblock %}
 
-{% block title %}Robotics{% endblock %}
+{% block hero_title_text %}Robotics{% endblock %}
 
-{% block meta_description %}All the latest news on robotics from Canonical.{% endblock %}
-
-{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
-
-{% block content %}
-  {% call(slot) vf_hero(
-    title_text='Robotics',
-    layout='25/75',
-    display_blank_signpost_image_space=True,
-    blocks=[
-      {
-        "type": "description",
-        "padding": "shallow",
-        "item": {
-          "type": "text",
-          "content": "Whether you’re starting in the lab or already in production, Canonical can help manage the complexity of the open-source software underpinning your robot’s brains and personality."
-        }
-      },
-      {
-        "type": "cta-block",
-        "item": {
-          "link": {
-            "content_html": "Learn more about robotics from Canonical ›",
-            "attrs": {
-              "href": "https://ubuntu.com/robotics"
-            }
-          }
-        }
-      },
-    ]
-  ) -%}
-  {%- endcall -%}
-
-  <section class="p-strip is-shallow">
-    <div class="grid-row">
-      {% for article in articles%}        
-        {% include "blog/blog-card.html" %}
-      {% endfor %}
-    </div>
-  </section>
-
-  <section class="p-section--deep">
-    {% with %}
-      {% set total_pages = total_pages %}
-      {% set current_page = current_page %}
-      {% include "shared/_pagination.html" %}
-    {% endwith %}
-  </section>
+{% block hero_description_text %}
+  Whether you’re starting in the lab or already in production, Canonical can help manage the complexity of the open-source software underpinning your robot’s brains and personality.
 {% endblock %}
+
+{% block hero_cta_text %}Learn more about robotics from Canonical ›{% endblock %}
+
+{% block hero_cta_href %}https://ubuntu.com/robotics{% endblock %}
