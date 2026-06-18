@@ -149,10 +149,11 @@
       "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
     },
     "transformIgnorePatterns": [
-      "/node_modules/(?!@canonical/react-components).+\\.js$"
+      "/node_modules/(?!@canonical/react-components|cheerio).+\\.js$"
     ],
     "moduleNameMapper": {
-      "\\.(scss|sass)$": "identity-obj-proxy"
+      "\\.(scss|sass)$": "identity-obj-proxy",
+      "cheerio/lib/(.*)": "<rootDir>/node_modules/cheerio/dist/commonjs/$1"
     },
     "moduleFileExtensions": [
       "ts",
