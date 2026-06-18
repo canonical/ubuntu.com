@@ -1,5 +1,7 @@
 {% extends "ceph/base_ceph.html" %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
 {% block title %}Pricing Calculator | Ceph{% endblock %}
 
 {% block body_class %}
@@ -11,22 +13,24 @@
 {% endblock meta_copydoc %}
 
 {% block content %}
-  <section class="p-section--hero">
-    <div class="grid-row">
-      <div class="grid-col-4">
-        <h1>Calculate your storage costs</h1>
-      </div>
-      <div class="grid-col-4">
-        <p>
-          Cloud storage can make up a significant proportion of public cloud hosting costs, for some data sets it can be more cost effective to store them in a self-hosted storage system.
-        </p>
-        <p>
-          Learn more in our <a href="/engage/optimize-cloud-storage-costs">white paper</a>, <span class="u-hide js-show">and explore potential savings with the calculator below.</span>
-          <noscript>and <a href="/contact-us/form">get in touch with our team</a> for cost estimations.</noscript>
-        </p>
-      </div>
-    </div>
-  </section>
+  {% call(slot) vf_hero(
+    title_text="Calculate your storage costs",
+    layout="50/50",
+    is_split_on_medium=true
+    ) -%}
+    {%- if slot == "description" -%}
+      <p>
+        Cloud storage can make up a significant proportion of public cloud hosting costs, for some data sets it can be more cost effective to store them in a self-hosted storage system.
+      </p>
+      <p>
+        Learn more in our <a href="/engage/optimize-cloud-storage-costs">white paper</a>, <span class="u-hide js-show">and explore potential savings with the calculator below.</span>
+        <noscript>and <a href="/contact-us/form">get in touch with our team</a> for cost estimations.</noscript>
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="/ceph/contact-us" class="p-button--positive js-invoke-modal" aria-controls="contact-modal" aria-expanded="false">Contact us</a>
+    {%- endif -%}
+  {% endcall -%}
 
   <noscript>
     <div class="u-fixed-width">
@@ -241,5 +245,7 @@
     </section>
   </div>
   <script src="{{ versioned_static('js/src/ceph-pricing-calculator.js') }}"></script>
+
+  {{ load_form("/ceph/pricing-calculator") | safe }}
 
 {% endblock content %}

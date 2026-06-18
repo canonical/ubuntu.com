@@ -15,6 +15,7 @@ let entries = {
   "ua-payment-methods": "./static/js/src/ua-payment-methods.js",
   "account-billing": "./static/js/src/account-billing.js",
   cve: "./static/js/src/cve/cve.js",
+  "cve-detail": "./static/js/src/cve/cve-detail.js",
   notices: "./static/js/src/cve/notices.js",
   noticesLanding: "./static/js/src/cve/notices-landing.js",
   advantageAccountUsers: "./static/js/src/advantage/users/app.jsx",
