@@ -1,0 +1,61 @@
+@mixin blog-p-article {
+  // Newsletter signup card in the blog article sidebar.
+  .blog-article-newsletter {
+    align-items: flex-start;
+    border: 1px solid $colors--theme--border-low-contrast;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    transition: border-color 0.1s ease-in-out;
+
+    &:hover {
+      border-color: $colors--theme--border-default;
+    }
+
+    // Tighten the gap below the heading and before the submit button.
+    .p-section--shallow {
+      padding-bottom: $spv--small;
+    }
+  }
+
+  // "Share on" block below the newsletter card.
+  .blog-article-share {
+    margin-top: $spv--strip-shallow;
+  }
+
+  // Below the large breakpoint, render the article body with the same
+  // full-width, stacked layout as small screens by spanning every grid column
+  // across the full row. Scoped to <article> so the related-posts grid below
+  // keeps its normal multi-column card layout.
+  .blog-article article {
+    @media (width < $breakpoint-large) {
+      .row > [class*="col-"],
+      .grid-row > [class*="col-"] {
+        grid-column: 1 / -1;
+      }
+
+      // Stack the title above the author (matching small); the author is first
+      // in the DOM so it stays in the left column on large screens.
+      header .aside {
+        order: 1;
+      }
+
+      // Running text is capped at $text-max-width for readability, which keeps
+      // it from filling the now full-width column on tablet. Let it fill, to
+      // match the small-screen layout.
+      ol,
+      p,
+      ul {
+        max-width: none;
+      }
+    }
+
+    // Embedded media (e.g. YouTube) ships with a fixed iframe width; make it
+    // fill the content width while keeping a 16:9 ratio.
+    .wp-block-embed iframe {
+      aspect-ratio: 16 / 9;
+      height: auto;
+      width: 100%;
+    }
+  }
+}

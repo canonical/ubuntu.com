@@ -1,5 +1,7 @@
 {% extends "templates/one-column.html" %}
 
+{% from "_macros/vf_blog.jinja" import vf_blog %}
+
 {% block title %}{{ article.title.rendered|safe }}{% endblock %}
 
 {% block meta_description %}{{ article.meta_description }}{% endblock %}
@@ -8,7 +10,7 @@
 
 {# Change canonical URL for "snapcraft.io" articles (2996 is the ID of the "snapcraft.io" tag) #}
 
-{% block body_class %}blog-article{% endblock %}
+{% block body_class %}is-paper blog-article{% endblock %}
 
 {%- block canonical_url -%}
   {%- if article.group and article.group.id == 2100 -%}
@@ -42,15 +44,9 @@
         "name": "{{ article.author.name }}"
       },
       "datePublished": "{{ article.date_gmt }}",
-      {
-        %
-        if article.image and article.image.source_url %
-      }
+      {% if article.image and article.image.source_url %}
       "image": "{{ article.image.source_url }}",
-      {
-        %
-        endif %
-      }
+      {% endif %}
       "url": "{{ request.url }}",
       "publisher": {
         "@type": "Organization",
@@ -62,172 +58,255 @@
 {% endblock %}
 
 {% block content %}
-  <article>
-    <header class="p-strip--image is-shallow"
-            style="background-image: url(https://assets.ubuntu.com/v1/f8a323a7-image-background-paper.png)">
-      <div class="row">
-        <div class="col-8">
-          <h1>{{ article.title.rendered|safe }}</h1>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-8">
-          <div class="p-media-object">
-            {% if article.author %}
-              {% if article.author.id == 217 %}
-                {{ image(url="https://assets.ubuntu.com/v1/f16c40d0-Favicon+-+CoF.svg",
-                              alt="",
-                              width="16",
-                              height="16",
-                              hi_def=True,
-                              loading="auto",
-                              attrs={"class": "p-media-object__image"}) | safe
-                }}
-              {% else %}
+  {% set breadcrumbs = [{"name": "Blog", "href": "/blog"}, {"name": "Article"}] %}
+  {% include 'shared/_breadcrumbs.html' %}
+
+  <article class="p-section--shallow">
+    <header class="row">
+      <div class="aside col-3 col-medium-6">
+        <div class="p-media-object">
+          {% if article.author %}
+            {% if article.author.id == 217 %}
+              {{ image(url="https://assets.ubuntu.com/v1/f16c40d0-Favicon+-+CoF.svg",
+                            alt="",
+                            width="96",
+                            height="96",
+                            hi_def=True,
+                            loading="auto",
+                            attrs={"class": "p-media-object__image", "style": "align-self: center"}) | safe
+              }}
+            {% else %}
               <img src="{{ article.author.avatar_urls['96'] }}"
                    class="p-media-object__image is-round"
-                   alt="" />
-              {% endif %}
+                   alt=""
+                   style="align-self: center" />
             {% endif %}
+          {% endif %}
 
-            <div class="p-media-object__details">
+          <div class="p-media-object__details">
+            <p class="u-no-margin--bottom">
               {% if article.author %}
-                <h3 class="p-media-object__title">
+                <span class="p-heading--5">
                   <a href="/blog/author/{{ article.author.slug }}"
                      title="More about {{ article.author.name }}">{{ article.author.name }}</a>
-                </h3>
+                </span>
+                <br />
               {% endif %}
-              <p class="p-media-object__content">on {{ article.date }}</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-4">
-          <ul class="p-inline-list-icons u-no-padding--left u-no-margin--left">
-            <li class="p-inline-list__item">Share on:</li>
-
-            <li class="p-inline-list__item">
-              <a class="p-icon--facebook"
-                 aria-label="Share on Facebook"
-                 title="Share on Facebook"
-                 href="https://www.facebook.com/sharer/sharer.php?u=https://www.ubuntu.com/blog/{{ article.slug }}">
-                Facebook
-              </a>
-            </li>
-
-            <li class="p-inline-list__item">
-              <a class="p-icon--twitter"
-                 title="Share on Twitter"
-                 href="https://twitter.com/share?text={{ article.title.rendered|safe|urlencode }}&amp;url=https://www.ubuntu.com/blog/{{ article.slug }}&amp;hashtags=ubuntu">
-                Twitter
-              </a>
-            </li>
-
-            <li class="p-inline-list__item">
-              <a class="p-icon--linkedin"
-                 aria-label="Share on LinkedIn"
-                 title="Share on LinkedIn"
-                 href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.ubuntu.com/blog/{{ article.slug }}&amp;title={{ article.title.rendered|safe|urlencode }}">
-                LinkedIn
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      {% if tags %}
-        <div class="row">
-          <div class="col-10">
-            <p>
-              <strong>Tags:</strong>
-              {% for tag in tags %}
-                <a href="/blog/tag/{{ tag.slug }}">{{ tag.name }}</a>
-                {% if not loop.last %},{% endif %}
-              {% endfor %}
+              <span>on {{ article.date }}</span>
             </p>
           </div>
         </div>
-      {% endif %}
+      </div>
+      <div class="col-9 col-medium-6">
+        <div class="p-section--shallow">
+          <div class="p-section--shallow">
+            <h1>{{ article.title.rendered|safe }}</h1>
+          </div>
+
+          {% if tags %}
+            <div class="p-section--shallow">
+              {% for tag in tags %}
+                <a class="p-chip--information" href="/blog/tag/{{ tag.slug }}">
+                  <span class="p-chip__value">{{ tag.name }}</span>
+                </a>
+              {% endfor %}
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
     </header>
+    <div class="row">
+      <section class="p-section col-6 col-start-large-4 col-medium-6">
+        <hr class="p-rule" />
+        <button type="button"
+                id="shareArticle"
+                class="p-button--base has-icon u-hide--large">
+          <i class="p-icon--share"></i>
+          <span>Share the article</span>
+        </button>
 
-    <section class="p-strip is-shallow" style="overflow-x: initial;">
-      <div class="row u-equal-height">
-        <div class="col-8">
-          {% if 'difference_in_years' in blog_notice %}
-            <div class="p-notification--information is-borderless is-inline u-no-margin--bottom">
-              <div class="p-notification__content">
-                <p class="p-notification__message u-text--muted" id="date-notice">
-                  {% if blog_notice.updated %}
-                    This article was last updated <strong>{{ blog_notice.difference_in_years }} year
-                    {%- if blog_notice.difference_in_years > 1 -%}s{%- endif %}
-                      ago</strong>.
-                    {% else %}
-                      This article is more than <strong>{{ blog_notice.difference_in_years }} year
-                      {%- if blog_notice.difference_in_years > 1 -%}s{%- endif %}
-                        old</strong>.
-                      {% endif %}
-                    </p>
-                  </div>
-                </div>
-                <hr class="p-rule--muted" />
-              {% endif %}
-              <div class="p-post__content">{{ article.content.rendered|safe }}</div>
+        {% if 'difference_in_years' in blog_notice %}
+          <div class="p-notification--information is-borderless is-inline u-no-margin--bottom">
+            <div class="p-notification__content">
+              <p class="p-notification__message u-text--muted" id="date-notice">
+                {% if blog_notice.updated %}
+                  This article was last updated <strong>{{ blog_notice.difference_in_years }} year
+                  {%- if blog_notice.difference_in_years > 1 -%}s{%- endif %}
+                    ago</strong>.
+                {% else %}
+                  This article is more than <strong>{{ blog_notice.difference_in_years }} year
+                  {%- if blog_notice.difference_in_years > 1 -%}s{%- endif %}
+                    old</strong>.
+                {% endif %}
+              </p>
             </div>
-            {% if article.slug != 'canonical-standing-with-ukraine' %}
-              <div class="col-4">
-                {% include 'blog/product-cards.html' %}
-                <div>{% include 'blog/newsletter-form.html' %}</div>
-              </div>
-            {% endif %}
           </div>
-        </section>
-      </article>
-
-      {% for tag in tags %}
-        {% if tag.name == 'robotics' %}
-          <section class="p-strip--image is-dark"
-                   style="background-image: linear-gradient(44deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%)">
-            <div class="row">
-              <div class="col-8">
-                <h3>Are you building a robot on top of Ubuntu and looking for a partner? Talk to us!</h3>
-                <p>
-                  <a href="/internet-of-things/contact-us?product=robotics"
-                     class="p-button--positive">Contact Us</a>
-                </p>
-              </div>
-
-              <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
-                {{ image(url="https://assets.ubuntu.com/v1/39ebd977-robot.svg",
-                                alt="",
-                                height="157",
-                                width="100",
-                                hi_def=True,
-                                loading="lazy") | safe
-                }}
-              </div>
-            </div>
-          </section>
+          <hr class="p-rule--muted" />
         {% endif %}
-      {% endfor %}
 
-      {% if related_articles %}
-        <section class="p-strip--light is-shallow">
-          <div class="row">
-            <div class="col-8">
-              <h3>Related posts</h3>
+        <div class="p-post__content">{{ article.content.rendered|safe }}</div>
+      </section>
+      {% if article.slug != 'canonical-standing-with-ukraine' %}
+        <aside class="aside col-3 col-start-large-10 col-medium-6">
+          {% include 'blog/product-cards.html' %}
+          <div class="blog-article-newsletter">
+            <div class="p-section--shallow">
+              <hr class="p-rule u-hide--medium u-hide--large" />
+              <h2 class="p-muted-heading">Newsletter signup</h2>
             </div>
+            <form action="/marketo/submit"
+                  method="post"
+                  id="mktoForm_4960"
+                  onsubmit="ga('send', 'Newsletter', 'Signup', 'New homepage newsletter signup');">
+              <p>Get the latest Ubuntu news and updates in your inbox.</p>
+              <div>
+                <label for="email" class="is-required">Work email:</label>
+                <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
+              </div>
+
+              <div class="p-section--shallow">
+                <label class="p-checkbox">
+                  <input required class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn"
+                    name="canonicalUpdatesOptIn" type="checkbox">
+                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">&ast;I agree to receive information about Canonical's
+                    products and services.</span>
+                </label>
+                <p>By submitting this form, I confirm that I have read and agree to <a
+                    href="https://canonical.com/legal/data-privacy" target="_blank">Canonical's Privacy Policy</a>.</p>
+              </div>
+
+              {# These are honey pot fields to catch bots #}
+              <div class="u-off-screen">
+                <label class="website" for="website">Website:</label>
+                <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+                <label class="name" for="name">Name:</label>
+                <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+              </div>
+              {# End of honey pots #}
+
+              <button type="submit" class="u-no-margin--bottom">Sign up</button>
+              <input value="4960" name="formid" type="hidden">
+              <input type="hidden" name="Consent_to_Processing__c" value="yes" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="/blog#newsletter-signup" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />
+              <input type="hidden" name="thankyoumessage"
+                value="Thank you for signing up for our newsletter!<br/>In these regular emails you will find the latest updates from Ubuntu and upcoming events where you can meet our team.">
+            </form>
+          </div>
+          <div class="blog-article-share u-hide--medium u-hide--small">
+            <h2 class="p-muted-heading">Share on</h2>
+            <ul class="p-inline-list u-no-margin--bottom">
+              <li class="p-inline-list__item">
+                <a title="Share on X"
+                   href="https://twitter.com/share?text={{ article.title.rendered|safe|urlencode }}&amp;url=https://www.ubuntu.com/blog/{{ article.slug }}&amp;hashtags=ubuntu">
+                  <img src="https://assets.ubuntu.com/v1/4a485af7-x_icon.svg"
+                       alt="Share on X"
+                       width="24"
+                       height="24" />
+                </a>
+              </li>
+              <li class="p-inline-list__item">
+                <a title="Share on Facebook"
+                   href="https://www.facebook.com/sharer/sharer.php?u=https://www.ubuntu.com/blog/{{ article.slug }}">
+                  <img src="https://assets.ubuntu.com/v1/d78c98ff-fb_icon.svg"
+                       alt="Share on Facebook"
+                       width="24"
+                       height="24" />
+                </a>
+              </li>
+              <li class="p-inline-list__item">
+                <a title="Share on LinkedIn"
+                   href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.ubuntu.com/blog/{{ article.slug }}&amp;title={{ article.title.rendered|safe|urlencode }}">
+                  <img src="https://assets.ubuntu.com/v1/af14595b-li_icon.svg"
+                       alt="Share on LinkedIn"
+                       width="24"
+                       height="24" />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      {% endif %}
+    </div>
+  </article>
+
+  {% for tag in tags %}
+    {% if tag.name == 'robotics' %}
+      <section class="p-strip--image is-dark"
+               style="background-image: linear-gradient(44deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%)">
+        <div class="row">
+          <div class="col-8">
+            <h3>Are you building a robot on top of Ubuntu and looking for a partner? Talk to us!</h3>
+            <p>
+              <a href="/internet-of-things/contact-us?product=robotics"
+                 class="p-button--positive">Contact Us</a>
+            </p>
           </div>
 
-          <div class="row p-divider">
-            {% for related_article in related_articles %}
-              <div class="col-4 p-divider__block">
-                <h4>
-                  <a href="/blog/{{ related_article.slug }}">{{ related_article.title.rendered|safe }}</a>
-                </h4>
-                <p>{{ related_article.excerpt.raw.replace('[…]', '') |truncate(162) }}</p>
-              </div>
-            {% endfor %}
+          <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
+            {{ image(url="https://assets.ubuntu.com/v1/39ebd977-robot.svg",
+                            alt="",
+                            height="157",
+                            width="100",
+                            hi_def=True,
+                            loading="lazy") | safe
+            }}
           </div>
-        </section>
+        </div>
+      </section>
+    {% endif %}
+  {% endfor %}
+
+  {% if related_articles %}
+    {% set blog_articles = [] %}
+    {% for article in related_articles %}
+      {% set blog_article = {
+        "title": {
+          "text": article.title.rendered|safe,
+          "link_attrs": {"href": "/blog/" + article.slug}
+        },
+        "description": {
+          "text": article.excerpt.raw.replace('[…]', '')|striptags|truncate(180)
+        },
+        "metadata": {
+          "authors": [{
+            "text": article.author.name,
+            "link_attrs": {"href": "/blog/author/" + article.author.slug}
+          }],
+          "date": {"text": article.date}
+        }
+      } %}
+      {% if article.image and article.image.source_url %}
+        {% set _ = blog_article.update({"image": {"attrs": {"src": article.image.source_url, "alt": ""}}}) %}
       {% endif %}
-    {% endblock %}
+      {% set _ = blog_articles.append(blog_article) %}
+    {% endfor %}
+
+    {{ vf_blog(
+      title={"text": "Related posts"},
+      articles=blog_articles
+    ) }}
+  {% endif %}
+
+  <script>
+    document
+      .getElementById("shareArticle")
+      ?.addEventListener("click", function () {
+        if (navigator.share) {
+          navigator.share({
+            title: document.title,
+            url: window.location.href,
+          });
+        }
+      });
+  </script>
+{% endblock %}
