@@ -6,7 +6,7 @@ import flask
 from canonicalwebteam import image_template
 from slugify import slugify
 
-from webapp.constants import CSP, CSP_REPORT_ONLY
+from webapp.constants import CSP, CSP_STRICT_STYLE_DIRECTIVES
 from webapp.context import (
     current_year,
     date_has_passed,
@@ -46,6 +46,15 @@ try:
     )
 except ValueError:
     CSP_REPORT_SAMPLE_RATE = 0.0
+
+# WD-36638 Phase 3: when set, the strict style directives are enforced
+# instead of report-only. Only flip this on once report-only data has
+# confirmed the policy is safe (third-party tags such as VWO and
+# LiveChat inject <style> elements that a nonce'd style-src-elem will
+# block) and the inline-style nonce changes have shipped.
+CSP_ENFORCE_STRICT_STYLES = get_flask_env(
+    "CSP_ENFORCE_STRICT_STYLES", "false"
+).strip().lower() in ("1", "true", "yes", "on")
 
 
 def init_handlers(app):
@@ -242,25 +251,37 @@ def init_handlers(app):
             )
             for key, values in CSP.items()
         }
-        response.headers["Content-Security-Policy"] = get_csp_as_str(csp)
-
-        # Report-only trial of the strict style policy (WD-36638). The
-        # nonce must NOT be added to the enforced style-src above while
-        # it still needs 'unsafe-inline': browsers ignore 'unsafe-inline'
-        # in a directive that contains a nonce.
-        csp_report_only = {
+        # Strict style policy (WD-36638): enforced when
+        # CSP_ENFORCE_STRICT_STYLES is set, trialled via the report-only
+        # header otherwise. style-src stays unchanged in both modes: it
+        # is the fallback for browsers without style-src-elem support,
+        # and it must keep 'unsafe-inline' and never gain a nonce
+        # (browsers ignore 'unsafe-inline' in a directive containing a
+        # nonce).
+        strict_styles = {
             key: (
                 values + [f"'nonce-{nonce}'"]
                 if key == "style-src-elem"
                 else values
             )
-            for key, values in CSP_REPORT_ONLY.items()
+            for key, values in CSP_STRICT_STYLE_DIRECTIVES.items()
         }
-        if CSP_REPORT_URI and random.random() < CSP_REPORT_SAMPLE_RATE:
-            csp_report_only["report-uri"] = [CSP_REPORT_URI]
-        response.headers["Content-Security-Policy-Report-Only"] = (
-            get_csp_as_str(csp_report_only)
+        send_report = (
+            CSP_REPORT_URI and random.random() < CSP_REPORT_SAMPLE_RATE
         )
+
+        if CSP_ENFORCE_STRICT_STYLES:
+            csp.update(strict_styles)
+            if send_report:
+                csp["report-uri"] = [CSP_REPORT_URI]
+        response.headers["Content-Security-Policy"] = get_csp_as_str(csp)
+
+        if not CSP_ENFORCE_STRICT_STYLES:
+            if send_report:
+                strict_styles["report-uri"] = [CSP_REPORT_URI]
+            response.headers["Content-Security-Policy-Report-Only"] = (
+                get_csp_as_str(strict_styles)
+            )
 
         response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
         response.headers["Cross-Origin-Embedder-Policy"] = "unsafe-none"

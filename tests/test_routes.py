@@ -508,6 +508,31 @@ class TestRoutes(VCRTestCase):
         self.assertIn("'unsafe-inline'", directives.get("style-src", ""))
         self.assertNotRegex(directives.get("style-src", ""), r"'nonce-")
 
+    def test_csp_strict_styles_enforced_when_flag_on(self):
+        """Test that CSP_ENFORCE_STRICT_STYLES moves the strict style
+        directives into the enforced CSP and drops the report-only
+        header, while style-src stays as the legacy fallback
+        (WD-36638)"""
+        with patch("webapp.handlers.CSP_ENFORCE_STRICT_STYLES", True):
+            response = self.client.get("/")
+        self.assertNotIn(
+            "Content-Security-Policy-Report-Only", response.headers
+        )
+        csp = response.headers.get("Content-Security-Policy", "")
+        directives = {
+            d.split()[0]: d for d in csp.rstrip(";").split(";") if d.strip()
+        }
+        self.assertRegex(
+            directives.get("style-src-elem", ""), r"'nonce-[a-f0-9]+'"
+        )
+        self.assertNotIn(
+            "'unsafe-inline'", directives.get("style-src-elem", "")
+        )
+        self.assertIn("'unsafe-inline'", directives.get("style-src-attr", ""))
+        # the fallback style-src must stay exactly as before
+        self.assertIn("'unsafe-inline'", directives.get("style-src", ""))
+        self.assertNotRegex(directives.get("style-src", ""), r"'nonce-")
+
     def test_csp_nonce_is_unique_per_request(self):
         """Test that a different nonce is generated for each request"""
 
