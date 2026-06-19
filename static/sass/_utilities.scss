@@ -37,96 +37,100 @@
   width: 40% !important;
 }
 
-// Spacing helpers. Scale (rem):
-// small = 0.5 | medium = 1 | large = 1.5 | x-large = 2 | xx-large = 4
+// Spacing helpers mapped to Vanilla's named spacing tokens ($sp-*) so they
+// stay consistent with Vanilla's scale. Vanilla ships no directional
+// margin/padding utility classes of its own, hence this thin layer.
+// small = $sp-small (0.5rem) | medium = $sp-medium (1) | large = $sp-large
+// (1.5) | x-large = $sp-x-large (2) | xx-large = 4rem ($sp-unit * 8, beyond
+// Vanilla's named scale).
 .u-margin-top--small {
-  margin-top: 0.5rem !important;
+  margin-top: $sp-small !important;
 }
 
 .u-margin-top--medium {
-  margin-top: 1rem !important;
+  margin-top: $sp-medium !important;
 }
 
 .u-margin-top--x-large {
-  margin-top: 2rem !important;
+  margin-top: $sp-x-large !important;
 }
 
 .u-margin-top--xx-large {
-  margin-top: 4rem !important;
+  margin-top: $sp-unit * 8 !important;
 }
 
 .u-margin-bottom--small {
-  margin-bottom: 0.5rem !important;
+  margin-bottom: $sp-small !important;
 }
 
 .u-margin-bottom--medium {
-  margin-bottom: 1rem !important;
+  margin-bottom: $sp-medium !important;
 }
 
 .u-margin-right--medium {
-  margin-right: 1rem !important;
+  margin-right: $sp-medium !important;
 }
 
 .u-padding--medium {
-  padding: 1rem !important;
+  padding: $sp-medium !important;
 }
 
 .u-padding--large {
-  padding: 1.5rem !important;
+  padding: $sp-large !important;
 }
 
 .u-padding-top--small {
-  padding-top: 0.5rem !important;
+  padding-top: $sp-small !important;
 }
 
 .u-padding-top--medium {
-  padding-top: 1rem !important;
+  padding-top: $sp-medium !important;
 }
 
 .u-padding-left--medium {
-  padding-left: 1rem !important;
+  padding-left: $sp-medium !important;
 }
 
 .u-padding-bottom--xx-large {
-  padding-bottom: 4rem !important;
+  padding-bottom: $sp-unit * 8 !important;
 }
 
 .u-padding-bottom--small {
-  padding-bottom: 0.5rem !important;
+  padding-bottom: $sp-small !important;
 }
 
 .u-padding-bottom--x-large {
-  padding-bottom: 2rem !important;
+  padding-bottom: $sp-x-large !important;
 }
 
 .u-padding-top--x-large {
-  padding-top: 2rem !important;
+  padding-top: $sp-x-large !important;
 }
 
 .u-padding-left--small {
-  padding-left: 0.5rem !important;
+  padding-left: $sp-small !important;
 }
 
 // Vertical padding only (left/right untouched)
 .u-padding-y--xx-large {
-  padding-bottom: 4rem !important;
-  padding-top: 4rem !important;
+  padding-bottom: $sp-unit * 8 !important;
+  padding-top: $sp-unit * 8 !important;
 }
 
 .u-margin--medium {
-  margin: 1rem !important;
+  margin: $sp-medium !important;
 }
 
 .u-margin-bottom--large {
-  margin-bottom: 1.5rem !important;
+  margin-bottom: $sp-large !important;
 }
 
 // Vertical margin only (left/right reset to 0, matching `margin: 2rem 0`)
 .u-margin-y--x-large {
-  margin-bottom: 2rem !important;
+  margin-bottom: $sp-x-large !important;
   margin-left: 0 !important;
   margin-right: 0 !important;
-  margin-top: 2rem !important;
+  margin-top: $sp-x-large !important;
 }
 
 // Display
