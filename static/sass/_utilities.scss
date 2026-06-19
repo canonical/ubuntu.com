@@ -1,0 +1,315 @@
+// Generic single-purpose utility classes used to replace inline
+// style="..." attributes (WD-36638). Vanilla-style: one property each,
+// named by what they do; !important matches the specificity of the
+// inline styles they replace.
+
+.u-no-border {
+  border: 0 !important;
+}
+
+.u-overflow--auto {
+  overflow: auto !important;
+}
+
+.u-overflow--hidden {
+  overflow: hidden !important;
+}
+
+.u-overflow--visible {
+  overflow: visible !important;
+}
+
+.u-overflow-x--auto {
+  overflow-x: auto !important;
+}
+
+.u-width--auto {
+  width: auto !important;
+}
+
+// Table column width helpers, named as fractions of the table width
+// (cf. Vanilla's numeric grid columns)
+.u-table-col--half {
+  width: 50% !important;
+}
+
+.u-table-col--two-fifths {
+  width: 40% !important;
+}
+
+// Spacing helpers mapped to Vanilla's named spacing tokens ($sp-*) so they
+// stay consistent with Vanilla's scale. Vanilla ships no directional
+// margin/padding utility classes of its own, hence this thin layer.
+// small = $sp-small (0.5rem) | medium = $sp-medium (1) | large = $sp-large
+// (1.5) | x-large = $sp-x-large (2) | xx-large = 4rem ($sp-unit * 8, beyond
+// Vanilla's named scale).
+.u-margin-top--small {
+  margin-top: $sp-small !important;
+}
+
+.u-margin-top--medium {
+  margin-top: $sp-medium !important;
+}
+
+.u-margin-top--x-large {
+  margin-top: $sp-x-large !important;
+}
+
+.u-margin-top--xx-large {
+  margin-top: $sp-unit * 8 !important;
+}
+
+.u-margin-bottom--small {
+  margin-bottom: $sp-small !important;
+}
+
+.u-margin-bottom--medium {
+  margin-bottom: $sp-medium !important;
+}
+
+.u-margin-right--medium {
+  margin-right: $sp-medium !important;
+}
+
+.u-padding--medium {
+  padding: $sp-medium !important;
+}
+
+.u-padding--large {
+  padding: $sp-large !important;
+}
+
+.u-padding-top--small {
+  padding-top: $sp-small !important;
+}
+
+.u-padding-top--medium {
+  padding-top: $sp-medium !important;
+}
+
+.u-padding-left--medium {
+  padding-left: $sp-medium !important;
+}
+
+.u-padding-bottom--xx-large {
+  padding-bottom: $sp-unit * 8 !important;
+}
+
+.u-padding-bottom--small {
+  padding-bottom: $sp-small !important;
+}
+
+.u-padding-bottom--x-large {
+  padding-bottom: $sp-x-large !important;
+}
+
+.u-padding-top--x-large {
+  padding-top: $sp-x-large !important;
+}
+
+.u-padding-left--small {
+  padding-left: $sp-small !important;
+}
+
+// Vertical padding only (left/right untouched)
+.u-padding-y--xx-large {
+  padding-bottom: $sp-unit * 8 !important;
+  padding-top: $sp-unit * 8 !important;
+}
+
+.u-margin--medium {
+  margin: $sp-medium !important;
+}
+
+.u-margin-bottom--large {
+  margin-bottom: $sp-large !important;
+}
+
+// Vertical margin only (left/right reset to 0, matching `margin: 2rem 0`)
+.u-margin-y--x-large {
+  margin-bottom: $sp-x-large !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-top: $sp-x-large !important;
+}
+
+// Display
+.u-display--block {
+  display: block !important;
+}
+
+.u-display--flex {
+  display: flex !important;
+}
+
+.u-display--inline-block {
+  display: inline-block !important;
+}
+
+.u-display--inline-flex {
+  display: inline-flex !important;
+}
+
+// Overflow / wrapping
+.u-overflow-x--visible {
+  overflow-x: visible !important;
+}
+
+.u-overflow-wrap--break-word {
+  overflow-wrap: break-word !important;
+}
+
+.u-white-space--pre-wrap {
+  white-space: pre-wrap !important;
+}
+
+// Text
+.u-text-transform--none {
+  text-transform: none !important;
+}
+
+.u-text-transform--capitalize {
+  text-transform: capitalize !important;
+}
+
+.u-text-decoration--none {
+  text-decoration: none !important;
+}
+
+.u-text--white {
+  color: #fff !important;
+}
+
+.u-font-weight--normal {
+  font-weight: 400 !important;
+}
+
+.u-font-weight--bold {
+  font-weight: 800 !important;
+}
+
+// Flex / alignment
+.u-flex-wrap--wrap {
+  flex-wrap: wrap !important;
+}
+
+.u-justify-content--center {
+  justify-content: center !important;
+}
+
+.u-list-style--disc {
+  list-style-type: disc !important;
+}
+
+.u-vertical-align--baseline {
+  vertical-align: baseline !important;
+}
+
+// Misc resets
+.u-box-shadow--none {
+  box-shadow: none !important;
+}
+
+.u-border-left--none {
+  border-left: 0 !important;
+}
+
+.u-border-bottom--none {
+  border-bottom: 0 !important;
+}
+
+.u-opacity--full {
+  opacity: 1 !important;
+}
+
+.u-position--relative {
+  position: relative !important;
+}
+
+.u-visibility--hidden {
+  visibility: hidden !important;
+}
+
+.u-scroll-margin--large {
+  scroll-margin: 5rem !important;
+}
+
+// Backgrounds
+.u-background-size--full {
+  background-size: 100% !important;
+}
+
+.u-background--shade {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+}
+
+.u-background--shade-medium {
+  background-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+.u-background--light {
+  background-color: #f7f7f7 !important;
+}
+
+.u-background--white {
+  background-color: #fff !important;
+}
+
+// Widths
+.u-width--full {
+  width: 100% !important;
+}
+
+.u-width--max-content {
+  width: max-content !important;
+}
+
+.u-width--6rem {
+  width: 6rem !important;
+}
+
+.u-width--12rem {
+  width: 12rem !important;
+}
+
+.u-width--18rem {
+  width: 18rem !important;
+}
+
+.u-min-width--4rem {
+  min-width: 4rem !important;
+}
+
+.u-min-width--15rem {
+  min-width: 15rem !important;
+}
+
+// More table column fractions (cf. u-table-col--half / --two-fifths above)
+.u-table-col--one-fifth {
+  width: 20% !important;
+}
+
+.u-table-col--quarter {
+  width: 25% !important;
+}
+
+.u-table-col--third {
+  width: 33.33% !important;
+}
+
+// Arbitrary column widths that aren't clean fractions
+.u-width--34 {
+  width: 34% !important;
+}
+
+.u-width--35 {
+  width: 35% !important;
+}
+
+.u-width--39 {
+  width: 39% !important;
+}
+
+.u-width--79 {
+  width: 79% !important;
+}

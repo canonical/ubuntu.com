@@ -449,9 +449,9 @@
     </div>
     <div class="row">
       <div class="col-9 col-start-large-4 col-medium-6 p-strip p-table--cloud-computing">
-        <table aria-label="Model comparison matrix" style="table-layout: auto">
+        <table aria-label="Model comparison matrix" class="u-table-layout--auto">
           <thead>
-            <tr style="border: 0">
+            <tr>
               <td>&nbsp;</td>
               <th>Legacy data center</th>
               <th>IaaS</th>
@@ -460,160 +460,68 @@
             </tr>
           </thead>
           <tbody>
-            <tr style="border: 0">
-              <th style="border: none">Applications</th>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #d9d9d9">You manage</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #d9d9d9">You manage</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #d9d9d9">You manage</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #333333;
-                         color: #f3f3f3">Cloud provider</td>
+            <tr>
+              <th>Applications</th>
+              <td class="u-align--center cell--user-managed">You manage</td>
+              <td class="u-align--center cell--user-managed">You manage</td>
+              <td class="u-align--center cell--user-managed">You manage</td>
+              <td class="u-align--center cell--provider-managed">Cloud provider</td>
             </tr>
-            <tr style="border: 0">
-              <th style="border: none">Data</th>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #d9d9d9">You manage</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #d9d9d9">You manage</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #d9d9d9">You manage</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #333333;
-                         color: #f3f3f3">Cloud provider</td>
+            <tr>
+              <th>Data</th>
+              <td class="u-align--center cell--user-managed">You manage</td>
+              <td class="u-align--center cell--user-managed">You manage</td>
+              <td class="u-align--center cell--user-managed">You manage</td>
+              <td class="u-align--center cell--provider-managed">Cloud provider</td>
             </tr>
-            <tr style="border: 0">
-              <th style="border: none">Runtime</th>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #d9d9d9">You manage</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #d9d9d9">You manage</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #333333;
-                         color: #f3f3f3">Cloud provider</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #333333;
-                         color: #f3f3f3">Cloud provider</td>
+            <tr>
+              <th>Runtime</th>
+              <td class="u-align--center cell--user-managed">You manage</td>
+              <td class="u-align--center cell--user-managed">You manage</td>
+              <td class="u-align--center cell--provider-managed">Cloud provider</td>
+              <td class="u-align--center cell--provider-managed">Cloud provider</td>
             </tr>
-            <tr style="border: 0">
-              <th style="border: none">Middleware</th>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #d9d9d9">You manage</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #d9d9d9">You manage</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #333333;
-                         color: #f3f3f3">Cloud provider</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #333333;
-                         color: #f3f3f3">Cloud provider</td>
+            <tr>
+              <th>Middleware</th>
+              <td class="u-align--center cell--user-managed">You manage</td>
+              <td class="u-align--center cell--user-managed">You manage</td>
+              <td class="u-align--center cell--provider-managed">Cloud provider</td>
+              <td class="u-align--center cell--provider-managed">Cloud provider</td>
             </tr>
-            <tr style="border: 0">
-              <th style="border: none">O/S</th>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #d9d9d9">You manage</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #d9d9d9">You manage</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #333333;
-                         color: #f3f3f3">Cloud provider</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #333333;
-                         color: #f3f3f3">Cloud provider</td>
+            <tr>
+              <th>O/S</th>
+              <td class="u-align--center cell--user-managed">You manage</td>
+              <td class="u-align--center cell--user-managed">You manage</td>
+              <td class="u-align--center cell--provider-managed">Cloud provider</td>
+              <td class="u-align--center cell--provider-managed">Cloud provider</td>
             </tr>
-            <tr style="border: 0">
-              <th style="border: none">Virtualization</th>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #d9d9d9">You manage</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #333333;
-                         color: #f3f3f3">Cloud provider</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #333333;
-                         color: #f3f3f3">Cloud provider</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #333333;
-                         color: #f3f3f3">Cloud provider</td>
+            <tr>
+              <th>Virtualization</th>
+              <td class="u-align--center cell--user-managed">You manage</td>
+              <td class="u-align--center cell--provider-managed">Cloud provider</td>
+              <td class="u-align--center cell--provider-managed">Cloud provider</td>
+              <td class="u-align--center cell--provider-managed">Cloud provider</td>
             </tr>
-            <tr style="border: 0">
-              <th style="border: none">Servers</th>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #d9d9d9">You manage</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #333333;
-                         color: #f3f3f3">Cloud provider</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #333333;
-                         color: #f3f3f3">Cloud provider</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #333333;
-                         color: #f3f3f3">Cloud provider</td>
+            <tr>
+              <th>Servers</th>
+              <td class="u-align--center cell--user-managed">You manage</td>
+              <td class="u-align--center cell--provider-managed">Cloud provider</td>
+              <td class="u-align--center cell--provider-managed">Cloud provider</td>
+              <td class="u-align--center cell--provider-managed">Cloud provider</td>
             </tr>
-            <tr style="border: 0">
-              <th style="border: none">Storage</th>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #d9d9d9">You manage</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #333333;
-                         color: #f3f3f3">Cloud provider</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #333333;
-                         color: #f3f3f3">Cloud provider</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #333333;
-                         color: #f3f3f3">Cloud provider</td>
+            <tr>
+              <th>Storage</th>
+              <td class="u-align--center cell--user-managed">You manage</td>
+              <td class="u-align--center cell--provider-managed">Cloud provider</td>
+              <td class="u-align--center cell--provider-managed">Cloud provider</td>
+              <td class="u-align--center cell--provider-managed">Cloud provider</td>
             </tr>
-            <tr style="border: 0">
-              <th style="border: none">Networking</th>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #d9d9d9">You manage</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #333333;
-                         color: #f3f3f3">Cloud provider</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #333333;
-                         color: #f3f3f3">Cloud provider</td>
-              <td class="u-align--center"
-                  style="border:0.5rem solid #f3f3f3;
-                         background-color: #333333;
-                         color: #f3f3f3">Cloud provider</td>
+            <tr>
+              <th>Networking</th>
+              <td class="u-align--center cell--user-managed">You manage</td>
+              <td class="u-align--center cell--provider-managed">Cloud provider</td>
+              <td class="u-align--center cell--provider-managed">Cloud provider</td>
+              <td class="u-align--center cell--provider-managed">Cloud provider</td>
             </tr>
           </tbody>
         </table>

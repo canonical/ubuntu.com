@@ -142,14 +142,14 @@ if (shouldCreateAccount) {
   );
   radioOrganisation.addEventListener("change", function (e) {
     if (e.target.checked) {
-      organisationNameContainer.style.display = "block";
+      organisationNameContainer.classList.remove("u-hide");
       organisationNameContainer.focus();
       organisationNameInput.setAttribute("required", true);
     }
   });
   radioMyself.addEventListener("change", function (e) {
     if (e.target.checked) {
-      organisationNameContainer.style.display = "none";
+      organisationNameContainer.classList.add("u-hide");
       organisationNameInput.removeAttribute("required");
     }
   });
@@ -228,7 +228,7 @@ activateKeyForm.addEventListener("submit", function (event) {
         const meta = document.querySelector(".p-notification__meta");
         const message = document.querySelector("#notification-message");
         const errorMessage = JSON.parse(err?.message)?.errors;
-        notification.style.display = "block";
+        notification.classList.remove("u-hide");
         message.innerHTML = errorMessage;
 
         if (errorMessage === "activation key already used") {
