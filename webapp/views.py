@@ -1926,54 +1926,6 @@ def build_github_data_access():
 def build_release_cycle_view():
     get_combined_products = build_github_data_access()
 
-    # For QA, to be deleted once PR is approved
-    def add_dummy_release_cycle_versions(raw_products):
-        """
-        Add test versions to validate release-date filtering.
-        """
-        ubuntu_product = raw_products.get("ubuntu")
-        if not ubuntu_product:
-            return
-
-        deployments = ubuntu_product.get("deployment", [])
-        if not deployments:
-            return
-
-        target_deployment = None
-        for deployment in deployments:
-            if deployment.get("name", "").lower() == "ubuntu":
-                target_deployment = deployment
-                break
-
-        if target_deployment is None:
-            target_deployment = deployments[0]
-
-        versions = target_deployment.setdefault("versions", [])
-        versions.extend(
-            [
-                {
-                    "release": "9.9-unreleased-dummy",
-                    "architecture": ["amd64"],
-                    "supported": "2099-12-01",
-                    "pro-supported": "2104-12-01",
-                    "legacy-supported": "2109-12-01",
-                    "release-date": "2099-01-01",
-                    "upgrade-path": [],
-                    "compatible-ubuntu-lts": [],
-                },
-                {
-                    "release": "9.8-released-dummy",
-                    "architecture": ["amd64"],
-                    "supported": "2032-12-01",
-                    "pro-supported": "2037-12-01",
-                    "legacy-supported": "2042-12-01",
-                    "release-date": "2024-01-01",
-                    "upgrade-path": [],
-                    "compatible-ubuntu-lts": [],
-                },
-            ]
-        )
-
     def format_date(value):
         """Convert YYYY-MM-DD or {date:..., notes:...} to a normalized dict."""
         raw = None
@@ -2149,8 +2101,6 @@ def build_release_cycle_view():
             ["products-data/25.10/products.json"]
         )
         raw_products = raw_files.get("products", {})
-
-        add_dummy_release_cycle_versions(raw_products)
 
         products_data = build_ui_products(raw_products)
 
