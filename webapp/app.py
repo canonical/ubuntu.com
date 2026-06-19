@@ -625,6 +625,7 @@ blog_views = BlogViews(
     per_page=16,
     blog_title="Ubuntu blog",
 )
+
 app.add_url_rule(
     "/blog/topics/<regex('maas|design|juju|robotics|snapcraft'):slug>",
     view_func=BlogCustomTopic.as_view("blog_topic", blog_views=blog_views),
