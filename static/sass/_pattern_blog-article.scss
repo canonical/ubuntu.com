@@ -9,7 +9,7 @@
     transition: border-color 0.1s ease-in-out;
 
     &:hover {
-      border-color: $colors--theme--border-default;
+      border-color: $colors--theme--border-high-contrast;
     }
 
     // Tighten the gap below the heading and before the submit button.
@@ -18,9 +18,22 @@
     }
   }
 
-  // "Share on" block below the newsletter card.
+  // "Share on" block below the newsletter card. Stays sticky as the article
+  // scrolls.
   .blog-article-share {
     margin-top: $spv--strip-shallow;
+    position: sticky;
+    top: 2rem;
+
+    // 8px gap between the share icons.
+    .p-inline-list__item {
+      margin-right: $sph--small;
+    }
+
+    // Remove the link underline that shows beside the icon on hover.
+    a {
+      text-decoration: none;
+    }
   }
 
   // Below the large breakpoint, render the article body with the same
@@ -38,6 +51,11 @@
       // in the DOM so it stays in the left column on large screens.
       header .aside {
         order: 1;
+      }
+
+      // Drop the extra shallow padding under the heading and the chips.
+      header .p-section--shallow {
+        padding-bottom: 0;
       }
 
       // Running text is capped at $text-max-width for readability, which keeps
