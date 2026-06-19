@@ -1,4 +1,7 @@
 {% extends "download/_base_download.html" %}
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 
 {% block title %}Alternative downloads{% endblock %}
 
@@ -16,271 +19,352 @@ meta_copydoc %}
 {% endblock body_class %}
 
 {% block content %}
-  <div class="p-strip--suru-shape-light is-shallow">
-    <div class="p-section">
-      <div class="row">
-        <div class="col-9 col-start-large-4">
-          <h1>Alternative downloads</h1>
-          <p>
-            There are several other ways to get Ubuntu including torrents, our network installer for older systems, and special configurations and links to our regional mirrors for our older (and newer) releases.
-          </p>
-          <p>
-            If you don't specifically require any of these installers, we recommend using our <a href="/download">standard downloads</a>.
-          </p>
-        </div>
+<section class="p-strip is-shallow u-no-padding--bottom">
+  {% call(slot) vf_hero(
+    title_text='Alternative downloads',
+    layout='50/50',
+    blocks=[
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "html",
+          "content": "<p>There are several other ways to get Ubuntu including torrents, our network installer for older systems, and special configurations and links to our regional mirrors for our older (and newer) releases.</p><p>If you don't specifically require any of these installers, we recommend using our <a href='/download'>standard downloads</a>.</p>"
+        }
+      },
+    ]
+  ) -%}
+  {% endcall -%}
+  <div class="u-fixed-width">
+    <div class="p-tabs__list" role="tablist" aria-label="Alternative downloads">
+      <div class="p-tabs__item">
+        <button class="p-tabs__link"
+                role="tab"
+                aria-selected="true"
+                aria-controls="bittorrent-tab"
+                id="bittorrent">BitTorrent</button>
+      </div>
+      <div class="p-tabs__item">
+        <button class="p-tabs__link"
+                role="tab"
+                aria-selected="false"
+                aria-controls="otherimages-tab"
+                id="otherimages"
+                tabindex="-1">Other images and mirrors</button>
+      </div>
+      <div class="p-tabs__item">
+        <button class="p-tabs__link"
+                role="tab"
+                aria-selected="false"
+                aria-controls="pastreleases-tab"
+                id="pastreleases"
+                tabindex="-1">Past releases</button>
+      </div>
+      <div class="p-tabs__item">
+        <button class="p-tabs__link"
+                role="tab"
+                aria-selected="false"
+                aria-controls="networkinstaller-tab"
+                id="networkinstaller"
+                tabindex="-1">Network installer</button>
       </div>
     </div>
   </div>
 
-  <div class="p-section">
-    <div class="row">
-      <div class="col-3">
-        <div class="p-side-navigation--raw-html is-sticky"
-             id="drawer"
-             style="top: 80px">
-          <button class="p-side-navigation__toggle js-drawer-toggle"
-                  aria-controls="drawer">Toggle table of contents</button>
-          <div class="p-side-navigation__overlay js-drawer-toggle"
-               aria-controls="drawer"></div>
-          <nav class="p-side-navigation__drawer"
-               aria-label="documentation side navigation">
-            <div class="p-side-navigation__drawer-header">
-              <button class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
-                      aria-controls="drawer">Toggle table of contents</button>
-            </div>
-            <ul>
-              <li class="p-side-navigation__item">
-                <a class="highlight-link is-active" href="#bit-torrent">BitTorrent</a>
-              </li>
-              <li class="p-side-navigation__item">
-                <a class="highlight-link" href="#other-images-and-mirrors">Other images and mirrors</a>
-              </li>
-              <li class="p-side-navigation__item">
-                <a class="highlight-link" href="#past-releases-and-other-flavours">Past releases and other flavours</a>
-              </li>
-              <li class="p-side-navigation__item">
-                <a class="highlight-link" href="#network-installer">Network installer</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-      <div class="col-9">
-        <div class="p-section">
-          <hr class="p-rule" />
-          <div class="p-section--shallow">
-            <h2 id="bit-torrent"
-                class="question-heading">BitTorrent</h2>
-          </div>
-          <div class="p-section--shallow">
-            <p>
-              BitTorrent is a peer-to-peer download network that sometimes enables higher download speeds and more reliable downloads of large files. You need a BitTorrent client on your computer to enable this download method.
-            </p>
-          </div>
-          <hr class="p-rule" />
-          <div class="row">
-            {% if releases_yaml.latest.short_version > releases_yaml.lts.short_version %}
-              <div class="col-3 col-medium-2">
-                <h3 class="p-heading--5">Ubuntu {{ releases_yaml.latest.full_version }}</h3>
-                <p>
-                  <a class="download-torrent"
-                     href="https://releases.ubuntu.com/{{ releases_yaml.latest.desktop_version }}/ubuntu-{{ releases_yaml.latest.desktop_version }}-desktop-amd64.iso.torrent">Ubuntu
-                  Desktop {{ releases_yaml.latest.full_version }} (64-bit)</a>
-                </p>
-                <p>
-                  <a class="download-torrent"
-                     href="https://releases.ubuntu.com/{{ releases_yaml.latest.short_version }}/ubuntu-{{ releases_yaml.latest.full_version }}-live-server-amd64.iso.torrent">Ubuntu
-                  Server {{ releases_yaml.latest.full_version }}</a>
-                </p>
-              </div>
-            {% endif %}
-            <div class="col-3 col-medium-2">
-              <h3 class="p-heading--5">
-                Ubuntu {{ releases_yaml.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
-              </h3>
-              <p>
-                <a class="download-torrent"
-                   href="https://releases.ubuntu.com/{{ releases_yaml.lts.short_version }}/ubuntu-{{ releases_yaml.lts.full_version }}-desktop-amd64.iso.torrent">Ubuntu
-                Desktop {{ releases_yaml.lts.full_version }} (64-bit)</a>
-              </p>
-              <p>
-                <a class="download-torrent"
-                   href="https://releases.ubuntu.com/{{ releases_yaml.lts.short_version }}/ubuntu-{{ releases_yaml.lts.full_version }}-live-server-amd64.iso.torrent">Ubuntu
-                Server {{ releases_yaml.lts.full_version }} LTS</a>
-              </p>
-            </div>
-            <div class="col-3 col-medium-2">
-              <h3 class="p-heading--5">
-                Ubuntu {{ releases_yaml.previous_lts.full_version }} <abbr title="Long-term support">LTS</abbr>
-              </h3>
-              <p>
-                <a class="download-lts"
-                   href="https://releases.ubuntu.com/{{ releases_yaml.previous_lts.short_version }}/ubuntu-{{ releases_yaml.previous_lts.full_version }}-desktop-amd64.iso.torrent">Ubuntu
-                Desktop {{ releases_yaml.previous_lts.full_version }} (64-bit)</a>
-              </p>
-              <p>
-                <a class="download-lts"
-                   href="https://releases.ubuntu.com/{{ releases_yaml.previous_lts.short_version }}/ubuntu-{{ releases_yaml.previous_lts.full_version }}-live-server-amd64.iso.torrent">Ubuntu
-                Server {{ releases_yaml.previous_lts.full_version }} LTS</a>
-              </p>
-            </div>
-          </div>
-        </div>
+    <div class="alt-downloads__bittorrent-tab" tabindex="0"
+         role="tabpanel"
+         id="bittorrent-tab"
+         aria-labelledby="bittorrent">
+      {%- call(slot) vf_tiered_list(
+        is_description_full_width_on_desktop=false,
+        is_list_full_width_on_tablet=false
+      ) -%}
+        {%- if slot == 'title' -%}
+          <h2>BitTorrent</h2>
+        {%- endif -%}
 
-        <div class="p-section">
-          <div class="row">
-            <hr class="p-rule" />
-            <div class="col-7">
-              <div class="p-section--shallow">
-                <h2 id="other-images-and-mirrors"
-                    class="question-heading">Other images and mirrors</h2>
-              </div>
-              <p>For the full list of available Ubuntu images, we recommend you select a mirror local to you.</p>
-              <hr class="p-rule--muted" />
-              <p>
-                <a href="https://launchpad.net/ubuntu/+cdmirrors">All Ubuntu mirrors&nbsp;&rsaquo;</a>
-              </p>
-            </div>
-          </div>
-        </div>
+        {%- if slot == 'description' -%}
+          <p>
+            BitTorrent is a peer-to-peer download network that sometimes enables
+            higher download speeds and more reliable downloads of large files.
+            You need a BitTorrent client on your computer to enable this
+            download method.
+          </p>
+        {%- endif -%}
 
-        <div class="p-section">
-          <div class="row">
-            <hr class="p-rule" />
-            <div class="col-7">
-              <div class="p-section--shallow">
-                <h2 id="past-releases-and-other-flavours"
-                    class="question-heading">Past releases and other flavours</h2>
-              </div>
-              <p>
-                Looking for an older release of Ubuntu? Whether you need a POWER, IBMz (s390x), ARM, an obsolete release or a previous LTS point release with its original stack, you can find them in past releases.
-              </p>
-              <hr class="p-rule--muted" />
-              <p>
-                <a href="https://releases.ubuntu.com/24.04/?_gl=1*19ip6hm*_gcl_au*MTE4NTIyOTI0MS4xNzA3MTMxMDQx&_ga=2.149898549.2084151835.1707729318-1126754318.1683186906">Ubuntu 24.04 LTS (Noble Numbat)</a>
-              </p>
-              <hr class="p-rule--muted" />
-              <p>
-                <a href="https://releases.ubuntu.com/22.04/?_gl=1*19ip6hm*_gcl_au*MTE4NTIyOTI0MS4xNzA3MTMxMDQx&_ga=2.149898549.2084151835.1707729318-1126754318.1683186906">Ubuntu 22.04 LTS (Jammy Jellyfish)</a>
-              </p>
-              <hr class="p-rule--muted" />
-              <p>
-                <a href="https://releases.ubuntu.com/20.04.6/?_gl=1*19ip6hm*_gcl_au*MTE4NTIyOTI0MS4xNzA3MTMxMDQx&_ga=2.149898549.2084151835.1707729318-1126754318.1683186906">Ubuntu 20.04 LTS (Focal Fossa)</a>
-                <br/>
-                <small><a href="https://ubuntu.com/20-04">Standard support ended, now secured with Ubuntu Pro</a></small>
-              </p>
-              <hr class="p-rule--muted" />
-              <p>
-                <a href="https://releases.ubuntu.com/18.04.6/?_gl=1*19ip6hm*_gcl_au*MTE4NTIyOTI0MS4xNzA3MTMxMDQx&_ga=2.149898549.2084151835.1707729318-1126754318.1683186906">Ubuntu 18.04 LTS (Bionic Beaver)</a>
-                <br/>
-                <small><a href="https://ubuntu.com/18-04">Standard support ended, now secured with Ubuntu Pro</a></small>
-              </p>
-              <hr class="p-rule--muted" />
-              <p>
-                <a href="https://releases.ubuntu.com/?_gl=1*19ip6hm*_gcl_au*MTE4NTIyOTI0MS4xNzA3MTMxMDQx&_ga=2.149898549.2084151835.1707729318-1126754318.1683186906">All past releases&nbsp;&rsaquo;</a>
-              </p>
-            </div>
-          </div>
-        </div>
+        {%- if slot == 'list_item_title_1' -%}
+          <h3 class="p-heading--5">
+            Ubuntu Desktop {{ releases_yaml.lts.short_version }} LTS (64-bit)
+          </h3>
+        {%- endif -%}
 
-        <div class="p-section">
-          <div class="row">
-            <hr class="p-rule" />
-            <div class="col-7">
-              <div class="p-section--shallow">
-                <h2 id="network-installer"
-                    class="question-heading">Network installer</h2>
+        {%- if slot == 'list_item_description_1' -%}
+          <ul class="p-list--divided">
+            <li class="p-list__item">
+              <div class="grid-row ">
+                <div class="grid-col-3">
+                  <p>Intel or AMD 64-bit architecture</p>
+                </div>
+                <div class="grid-col-1">
+                  <a
+                    class="p-button"
+                    href="https://releases.ubuntu.com/{{ releases_yaml.lts.short_version }}/ubuntu-{{ releases_yaml.lts.full_version }}-desktop-amd64.iso.torrent"
+                  >
+                    Download
+                  </a>
+                </div>
               </div>
-              <p>
-                The network installer lets you install Ubuntu over a network. It includes the minimal set of packages needed to start and the rest of the packages are downloaded over the network. Since only current packages are downloaded, there is no need to upgrade packages immediately after installation.
-              </p>
-              <p>
-                The network installer is ideal if you have a computer that cannot run the graphical installer. It is also useful if you want to install Ubuntu on a large number of computers at once.
-              </p>
-              <hr class="p-rule--muted" />
-              <p>
-                <a href="https://ubuntu.com/server/docs/how-to/installation/how-to-netboot-the-server-installer-on-amd64/">Ubuntu live installer instructions for 26.04 LTS, 24.04 LTS, 22.04 LTS, and 20.04 LTS&nbsp;&rsaquo;</a>
-                <br/>
-                <small><a href="https://ubuntu.com/20-04">Standard support has ended for 20.04 LTS, now secured with Ubuntu Pro</a></small>
-              </p>
-              <hr class="p-rule--muted" />
-              <p>
-                <a href="https://cdimage.ubuntu.com/netboot/18.04/">Download the network installer for Ubuntu 18.04 LTS&nbsp;&rsaquo;</a>
-                <br/>
-                <small><a href="https://ubuntu.com/18-04">Standard support has ended for 18.04 LTS ended, now secured with Ubuntu Pro</a></small>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+            </li>
+            <li class="p-list__item">
+              <div class="grid-row ">
+                <div class="grid-col-3">
+                  <p>ARM 64-bit architecture</p>
+                </div>
+                <div class="grid-col-1">
+                  <a
+                    class="p-button"
+                    href="https://cdimage.ubuntu.com/ubuntu/releases/resolute/release/ubuntu-{{ releases_yaml.lts.full_version }}-desktop-arm64.iso.torrent"
+                  >
+                    Download
+                  </a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_title_2' -%}
+          <h3 class="p-heading--5">
+            Ubuntu Desktop {{ releases_yaml.previous_lts.full_version }} LTS
+          </h3>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_description_2' -%}
+          <ul class="p-list--divided">
+            <li class="p-list__item">
+              <div class="grid-row ">
+                <div class="grid-col-3">
+                  <p>Intel or AMD 64-bit architecture</p>
+                </div>
+                <div class="grid-col-1">
+                  <a
+                    class="p-button"
+                    href="https://releases.ubuntu.com/{{ releases_yaml.previous_lts.short_version }}/ubuntu-{{ releases_yaml.previous_lts.full_version }}-desktop-amd64.iso.torrent"
+                  >
+                    Download
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li class="p-list__item">
+              <div class="grid-row ">
+                <div class="grid-col-3">
+                  <p>ARM 64-bit architecture</p>
+                </div>
+                <div class="grid-col-1">
+                  <a
+                    class="p-button"
+                    href="https://cdimage.ubuntu.com/ubuntu/releases/noble/release/ubuntu-{{ releases_yaml.previous_lts.full_version }}-desktop-arm64.iso.torrent"
+                  >
+                    Download
+                  </a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_title_3' -%}
+          <h3 class="p-heading--5">
+            Ubuntu Server {{ releases_yaml.lts.short_version }} LTS
+          </h3>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_description_3' -%}
+          <ul class="p-list--divided">
+            <li class="p-list__item">
+              <div class="grid-row ">
+                <div class="grid-col-3">
+                  <p>Intel or AMD 64-bit architecture</p>
+                </div>
+                <div class="grid-col-1">
+                  <a
+                    class="p-button"
+                    href="https://releases.ubuntu.com/{{ releases_yaml.lts.short_version }}/ubuntu-{{ releases_yaml.lts.full_version }}-live-server-amd64.iso.torrent"
+                  >
+                    Download
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li class="p-list__item">
+              <div class="grid-row ">
+                <div class="grid-col-3">
+                  <p>ARM 64-bit architecture</p>
+                </div>
+                <div class="grid-col-1">
+                  <a
+                    class="p-button"
+                    href="https://cdimage.ubuntu.com/ubuntu/releases/resolute/release/ubuntu-{{ releases_yaml.lts.full_version }}-live-server-arm64.iso.torrent"
+                  >
+                    Download
+                  </a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_title_4' -%}
+          <h3 class="p-heading--5">
+            Ubuntu Server {{ releases_yaml.previous_lts.full_version }} LTS
+          </h3>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_description_4' -%}
+          <ul class="p-list--divided">
+            <li class="p-list__item">
+              <div class="grid-row ">
+                <div class="grid-col-3">
+                  <p>Intel or AMD 64-bit architecture</p>
+                </div>
+                <div class="grid-col-1">
+                  <a
+                    class="p-button"
+                    href="https://releases.ubuntu.com/{{ releases_yaml.previous_lts.short_version }}/ubuntu-{{ releases_yaml.previous_lts.full_version }}-live-server-amd64.iso.torrent"
+                  >
+                    Download
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li class="p-list__item">
+              <div class="grid-row ">
+                <div class="grid-col-3">
+                  <p>ARM 64-bit architecture</p>
+                </div>
+                <div class="grid-col-1">
+                  <a
+                    class="p-button"
+                    href="https://cdimage.ubuntu.com/ubuntu/releases/noble/release/ubuntu-{{ releases_yaml.previous_lts.full_version }}-live-server-arm64.iso.torrent"
+                  >
+                    Download
+                  </a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        {%- endif -%}
+      {%- endcall -%}
     </div>
-  </div>
+
+    <div tabindex="0"
+         role="tabpanel"
+         id="otherimages-tab"
+         aria-labelledby="otherimages"
+         hidden="hidden">
+      {{ vf_basic_section(
+        top_rule_variant="none",
+        title={"text": "Other images and mirrors "},
+        items=[
+          {
+            "type": "description",
+            "item": {
+              "type": "text",
+              "content": "For the full list of available Ubuntu images, we recommend you select a mirror local to you. "
+            }
+          },
+          {
+            "type": "description",
+            "item": {
+              "type": "html",
+              "content": '<p><a href="https://launchpad.net/ubuntu/+cdmirrors">All Ubuntu mirrors &nbsp;&rsaquo;</a></p>'
+            }
+          }
+        ]
+      ) }}
+    </div>
+
+    <div tabindex="0"
+         role="tabpanel"
+         id="pastreleases-tab"
+         aria-labelledby="pastreleases"
+         hidden="hidden">
+      {{ vf_basic_section(
+        top_rule_variant="none",
+        title={"text": "Past releases and other flavors "},
+        items=[
+          {
+            "type": "description",
+            "item": {
+              "type": "text",
+              "content": "Looking for an older release of Ubuntu? Whether you need a POWER, IBMz (s390x), ARM, an obsolete release or a previous LTS point release with its original stack, you can find them in past releases. "
+            }
+          },
+          {
+            "type": "description",
+            "item": {
+              "type": "html",
+              "content": '<ul class="p-list--divided">
+    <li class="p-list__item">
+      <a href="https://releases.ubuntu.com/24.04/">Ubuntu 24.04 LTS Noble Numbat</a>
+    </li>
+    <li class="p-list__item"><a href="https://releases.ubuntu.com/22.04/">Ubuntu 22.04 LTS Jammy Jellyfish</a>
+    </li>
+    <li class="p-list__item">
+      <a href="https://old-releases.ubuntu.com/releases/20.04/">Ubuntu 20.04 LTS Focal Fossa</a>
+      <p class="u-text--muted">Standard support has ended for 20.04 LTS, now secured with <a href="https://ubuntu.com/20-04">Ubuntu Pro</a></p>
+    </li>
+    <li class="p-list__item"><a href="https://releases.ubuntu.com/18.04.4/">Ubuntu 18.04 LTS Bionic Beaver</a>
+      <p class="u-text--muted">Standard support has ended for 18.04 LTS ended, now secured with <a href="https://ubuntu.com/18-04">Ubuntu Pro</a></p>
+    </li>
+  </ul>'
+            }
+          }
+        ]
+      ) }}
+    </div>
+
+    <div tabindex="0"
+         role="tabpanel"
+         id="networkinstaller-tab"
+         aria-labelledby="networkinstaller"
+         hidden="hidden">
+      {{ vf_basic_section(
+        top_rule_variant="none",
+        title={"text": "Network installer"},
+        items=[
+          {
+            "type": "description",
+            "item": {
+              "type": "text",
+              "content": "The network installer lets you install Ubuntu over a network. It includes the minimal set of packages needed to start and the rest of the packages are downloaded over the network. Since only current packages are downloaded, there is no need to upgrade packages immediately after installation. "
+            }
+          },
+          {
+            "type": "description",
+            "item": {
+              "type": "html",
+              "content": '
+    <p>The network installer is ideal if you have a computer that cannot run the graphical installer. It is also useful if you want to install Ubuntu on a large number of computers at once.</p>
+    <p>Starting with 22.04 LTS, users can use the Ubuntu Live installer to setup and configure a network install.</p>
+    <ul class="p-list--divided">
+      <li class="p-list__item ">
+        <a href="https://ubuntu.com/server/docs/how-to/installation/how-to-netboot-the-server-installer-on-amd64/">Ubuntu live installer instructions for 26.04 LTS, 24.04 LTS, 22.04 LTS, and 20.04 LTS</a>
+        <p class="u-text--muted">Standard support has ended for 20.04 LTS, now secured with <a href="https://ubuntu.com/20-04">Ubuntu Pro</a></p>
+      </li>
+      <li class="p-list__item"><a href="https://cdimage.ubuntu.com/netboot/18.04/">Get the network installer for 18.04 LTS</a>
+        <p class="u-text--muted">Standard support has ended for 18.04 LTS, now secured with <a href="https://ubuntu.com/18-04">Ubuntu Pro</a></p>
+      </li>
+    </ul>'
+            }
+          }
+        ]
+      ) }}
+    </div>
 
   {% include "download/shared/_footer.html" %}
-
-  <script type="text/javascript">
-    function setUpTogglableSideNav() {
-      var navigationDrawer = document.querySelector("#drawer");
-      var navigationDrawerToggles = Array.prototype.slice.call(
-        document.querySelectorAll(".js-drawer-toggle")
-      );
-
-      if (navigationDrawer) {
-        var navigationLinks = Array.prototype.slice.call(
-          navigationDrawer.querySelectorAll("a")
-        );
-
-        navigationDrawerToggles.forEach(function(toggle) {
-          toggle.addEventListener("click", function() {
-            navigationDrawer.classList.toggle("is-expanded");
-          });
-        });
-
-        navigationLinks.forEach(function(link) {
-          link.addEventListener("click", function() {
-            navigationDrawer.classList.remove("is-expanded");
-          });
-        });
-      }
-    };
-
-    function setUpDynamicSideNav(viewPortHeight) {
-      const questions = Array.prototype.slice.call(
-        document.querySelectorAll(".question-heading")
-      );
-
-      const navigationLinks = Array.prototype.slice.call(
-        document.querySelectorAll(".highlight-link")
-      );
-
-      questions.forEach(function(question) {
-        const observer = new IntersectionObserver(function(entry) {
-          if (entry[0].isIntersecting) {
-            const questionId = entry[0].target.id;
-            navigationLinks.forEach(function(link) {
-              if (link.getAttribute("href") === `#${questionId}`) {
-                link.classList.add("is-active");
-              } else {
-                link.classList.remove("is-active");
-              }
-            });
-          }
-        }, {
-          rootMargin: `0px 0px -80%`,
-          threshold: 0.5,
-        });
-
-        observer.observe(question);
-      });
-    };
-
-    (function() {
-      setUpTogglableSideNav();
-      setUpDynamicSideNav();
-    })();
-
-
-    // start observing a DOM node
-  </script>
+</section>
+  <script type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
 
 {% endblock content %}
