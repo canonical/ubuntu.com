@@ -83,7 +83,7 @@ class TestRoutes(VCRTestCase):
 
         for slug in archived_slugs:
             response = self.client.get(f"/blog/{slug}")
-            self.assertEqual(response.status_code, 301)
+            self.assertEqual(response.status_code, 302)
             self.assertEqual(response.location, "/blog")
 
     def test_tutorials_homepage(self):

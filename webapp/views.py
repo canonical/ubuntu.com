@@ -881,6 +881,7 @@ class BlogCustomTopic(BlogView):
 
         return flask.render_template(f"blog/topics/{slug}.html", **context)
 
+
 class BlogSitemapIndex(BlogView):
     def dispatch_request(self):
         response = session.get(
