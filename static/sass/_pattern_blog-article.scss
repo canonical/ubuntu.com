@@ -16,6 +16,11 @@
     .p-section--shallow {
       padding-bottom: $spv--small;
     }
+
+    // On tablet/mobile the card is full-width; stretch the fields to fill it.
+    @media (width < $breakpoint-large) {
+      align-items: stretch;
+    }
   }
 
   // "Share on" block below the newsletter card. Stays sticky as the article
@@ -66,14 +71,14 @@
       ul {
         max-width: none;
       }
-    }
 
-    // Embedded media (e.g. YouTube) ships with a fixed iframe width; make it
-    // fill the content width while keeping a 16:9 ratio.
-    .wp-block-embed iframe {
-      aspect-ratio: 16 / 9;
-      height: auto;
-      width: 100%;
+      // The embed ships with a fixed iframe width; make it fill the content
+      // width (16:9) so the video hugs the blog space on tablet/mobile.
+      .wp-block-embed iframe {
+        aspect-ratio: 16 / 9;
+        height: auto;
+        width: 100%;
+      }
     }
   }
 }
