@@ -26,7 +26,7 @@
   <div class="row">
     <div class="{% if spotlight %}col-9{% else %}col-12{% endif %}">
       <div id="horizontal-latest-articles" class="p-equal-height-row--wrap">
-        <div style="min-height: 9.1rem"><i class="p-icon--spinner u-animation--spin">Loading...</i></div>
+        <div class="p-loading-placeholder"><i class="p-icon--spinner u-animation--spin">Loading...</i></div>
       </div>
     </div>
     {% if spotlight %}
@@ -35,7 +35,7 @@
     {% endif %}
   </div>
 
-  <template style="display:none" id="horizontal-articles-template">
+  <template id="horizontal-articles-template">
     <div class="p-equal-height-row__col">
       {% if not hide_date %}
         <div class="p-equal-height-row__item">
@@ -65,7 +65,7 @@
   </template>
 
   {% if spotlight %}
-  <template style="display:none" id="spotlight-template">
+  <template id="spotlight-template">
     <hr class="p-rule--muted u-hide--large" />
     <div class="row">
       <div class="col-medium-2 col-small-4 col-3">

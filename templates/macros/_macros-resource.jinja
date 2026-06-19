@@ -32,11 +32,11 @@
       <div class="col-6 col-medium-3">
         {%- if title_link|trim|length > 0 -%}
           {%- if title_header == "h3" -%}
-            <h3 class="p-heading--4 u-hide--medium" style="padding-top: 0.275rem;">
+            <h3 class="p-heading--4 u-hide--medium p-nudge-top--x-small">
               {{ title_link | safe }}
             </h3>
           {%- else -%}
-            <h2 class="p-heading--4 u-hide--medium" style="padding-top: 0.275rem;">
+            <h2 class="p-heading--4 u-hide--medium p-nudge-top--x-small">
               {{ title_link | safe }}
             </h2>
           {%- endif -%}

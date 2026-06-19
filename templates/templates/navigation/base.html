@@ -192,7 +192,7 @@
             {% endfor %}
           {% else %}
             {% for links_section in sections.highlighted_secondary_links %}
-              <p class="p-muted-heading" style="padding-left:0.5rem;">{{ links_section.title }}</p>
+              <p class="p-muted-heading u-padding-left--small">{{ links_section.title }}</p>
               <ul class="p-list">
                 {% for link in links_section.links %}
                   {% with
@@ -298,7 +298,7 @@
     {% if "highlighted_secondary_links" in sections %}
       {% for links_section in sections.highlighted_secondary_links %}
         {% if links_section.title %}
-          <p class="p-muted-heading is-muted" style="padding-top: 1rem;">{{ links_section.title }}</p>
+          <p class="p-muted-heading is-muted u-padding-top--medium">{{ links_section.title }}</p>
         {% endif %}
         {% for link in links_section.links %}
           {% with

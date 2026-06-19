@@ -53,7 +53,7 @@
     <div class="row">
       <div class="{% if items == 4 %}col-12 {% else %}col-9 col-start-large-4{% endif %}">
         <div id="latest-articles-container" class="p-equal-height-row--wrap">
-          <div class="u-vertically-center u-align--center" style="min-height: 9.1rem">
+          <div class="u-vertically-center u-align--center p-loading-placeholder">
             <i class="p-icon--spinner u-animation--spin">Loading...</i>
           </div>
         </div>
@@ -61,7 +61,7 @@
     </div>
 
     {# The template used by latest-news.js to render each article #}
-    <template style="display:none" id="latest-articles-template">
+    <template id="latest-articles-template">
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
           <div class="u-crop--16-9">

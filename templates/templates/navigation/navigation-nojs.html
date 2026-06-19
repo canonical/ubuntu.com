@@ -194,7 +194,7 @@
                   {% endfor %}
                 {% else %}
                   {% for links_section in nav[section].highlighted_secondary_links %}
-                    <p class="p-muted-heading" style="padding-left:0.5rem;">{{ links_section.title }}</p>
+                    <p class="p-muted-heading u-padding-left--small">{{ links_section.title }}</p>
                     <ul class="p-list">
                       {% for link in links_section.links %}
                         {% with
