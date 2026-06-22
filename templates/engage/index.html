@@ -1,6 +1,7 @@
 {% set hide_nav = False %}
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_card.jinja" import vf_card %}
 
 {% extends "engage/base_engage.html" %}
 
@@ -59,17 +60,42 @@
                   id="engage-language-menu"
                   aria-hidden="true">
               <span class="p-contextual-menu__group">
-                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="all">All languages</button>
-                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="zh-TW">Chinese (Traditional)</button>
-                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="de">Deutsch</button>
-                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="en">English</button>
-                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="es">Espa&ntilde;ol</button>
-                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="fr">Fran&ccedil;ais</button>
-                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="it">Italiano</button>
-                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="kr">Korean</button>
-                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="pt">Portugu&ecirc;s</button>
-                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="ru">Русс&#1082;&#1080;&#1081;</button>
-                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="tr">T&uuml;rk&ccedil;e</button>
+                <button type="button"
+                        class="p-contextual-menu__link p-engage-menu__link"
+                        data-value="all">All languages</button>
+                <button type="button"
+                        class="p-contextual-menu__link p-engage-menu__link"
+                        data-value="zh-TW">Chinese (Traditional)</button>
+                <button type="button"
+                        class="p-contextual-menu__link p-engage-menu__link"
+                        data-value="de">Deutsch</button>
+                <button type="button"
+                        class="p-contextual-menu__link p-engage-menu__link"
+                        data-value="en">English</button>
+                <button type="button"
+                        class="p-contextual-menu__link p-engage-menu__link"
+                        data-value="es">Espa&ntilde;ol</button>
+                <button type="button"
+                        class="p-contextual-menu__link p-engage-menu__link"
+                        data-value="fr">Fran&ccedil;ais</button>
+                <button type="button"
+                        class="p-contextual-menu__link p-engage-menu__link"
+                        data-value="it">Italiano</button>
+                <button type="button"
+                        class="p-contextual-menu__link p-engage-menu__link"
+                        data-value="jp">Japanese</button>
+                <button type="button"
+                        class="p-contextual-menu__link p-engage-menu__link"
+                        data-value="kr">Korean</button>
+                <button type="button"
+                        class="p-contextual-menu__link p-engage-menu__link"
+                        data-value="pt">Portugu&ecirc;s</button>
+                <button type="button"
+                        class="p-contextual-menu__link p-engage-menu__link"
+                        data-value="ru">Русс&#1082;&#1080;&#1081;</button>
+                <button type="button"
+                        class="p-contextual-menu__link p-engage-menu__link"
+                        data-value="tr">T&uuml;rk&ccedil;e</button>
               </span>
             </span>
           </span>
@@ -87,11 +113,17 @@
                   id="engage-resource-menu"
                   aria-hidden="true">
               <span class="p-contextual-menu__group">
-                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="all">All resource types</button>
+                <button type="button"
+                        class="p-contextual-menu__link p-engage-menu__link"
+                        data-value="all">All resource types</button>
                 {% for type in resource_types %}
-                  <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="{{ type | lower }}">{{ type }}</button>
+                  <button type="button"
+                          class="p-contextual-menu__link p-engage-menu__link"
+                          data-value="{{ type | lower }}">{{ type }}</button>
                 {% endfor %}
-                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="guide">Guide</button>
+                <button type="button"
+                        class="p-contextual-menu__link p-engage-menu__link"
+                        data-value="guide">Guide</button>
               </span>
             </span>
           </span>
@@ -125,9 +157,7 @@
                     </label>
                   {% endif %}
                 {% endfor %}
-                {% if selected_count > 0 and unselected_count > 0 %}
-                  <hr class="p-rule--muted u-no-margin--bottom" />
-                {% endif %}
+                {% if selected_count > 0 and unselected_count > 0 %}<hr class="p-rule--muted u-no-margin--bottom" />{% endif %}
                 <!-- Unselected tags -->
                 {% for tag in tags %}
                   {% if tag != "" and tag not in selected_tags %}
@@ -151,24 +181,63 @@
     </div>
   </div>
 
-  <section class="p-strip is-shallow" id="posts-list">
+  <section id="posts-list">
     {% if metadata | length > 0 %}
-      <div class="row u-equal-height">
-        {% for item in metadata %}
-          {% with
-            title=item.topic_name,
-            title_link=item.path,
-            description=item.subtitle,
-            type=item.type,
-            preview=preview,
-            active=item.active,
-            tags=item.tags
-            %}
-            {% include "engage/_article-card.html" %}
-          {% endwith %}
-        {% endfor %}
+      <div {% if total_pages > 1 %}class="p-section--shallow"{% endif %}>
+        <div class="grid-row">
+          {% for item in metadata %}
+            {%- if item.language == 'zh-TW' -%}
+              {%- set item_link = 'https://cn.ubuntu.com' ~ item.path -%}
+            {%- elif item.language == 'jp' -%}
+              {%- set item_link = 'https://jp.ubuntu.com' ~ item.path -%}
+            {%- else -%}
+              {%- set item_link = item.path -%}
+            {%- endif -%}
+            {%- if item.active == 'false' and preview != None -%}
+              {%- set item_link = item_link ~ '?preview' -%}
+            {%- endif -%}
+            {%- if 'whitepaper' in item.type %}
+              {%- set type_icon = "topic" -%}
+            {%- elif 'webinar' in item.type -%}
+              {%- set type_icon = "video-play" -%}
+            {%- elif 'case study' in item.type -%}
+              {%- set type_icon = "units" -%}
+            {%- else -%}
+              {%- set type_icon = "topic" -%}
+            {%- endif -%}
+            {% if loop.index <= 2 %}
+              {{ vf_card(columns="4",
+                            link=item_link,
+                            heading=item.topic_name,
+                            image={
+                            "src": item.image,
+                            "alt": item.topic_name
+                            } if item.image else None,
+                            footer={
+                            "resource_type": {
+                            "icon": type_icon,
+                            "text": item.type
+                            },
+                            "content_type": item.tags
+                            } if item.type or item.tags else None,
+                            description=item.subtitle) }}
+            {% else %}
+              {{ vf_card(columns="4",
+                            link=item_link,
+                            heading=item.topic_name,
+                            footer={
+                            "resource_type": {
+                            "icon": type_icon,
+                            "text": item.type
+                            },
+                            "content_type": item.tags
+                            } if item.type or item.tags else None,
+                            description=item.subtitle) }}
+            {% endif %}
+          {% endfor %}
+        </div>
       </div>
-      <section class="p-strip is-shallow">
+      <section class="p-section--deep">
         {% with %}
           {% set total_pages = total_pages %}
           {% set current_page = current_page %}

@@ -1,3 +1,7 @@
+/* Custom implementation for contextual menu on /engage.
+ * https://vanillaframework.io/docs/patterns/contextual-menu 
+*/
+
 import { debounce } from "./utils/debounce.js";
 
 const QUERY_KEYS = {
@@ -53,7 +57,7 @@ function menuIdFor(paramKey) {
     }
   }
 
-  // Set the dropdown toggle as the current selection
+  // Set the dropdown toggle label as the current selection
   function setToggleLabel(toggle, text) {
     const label = toggle.querySelector("span");
     if (label) {
