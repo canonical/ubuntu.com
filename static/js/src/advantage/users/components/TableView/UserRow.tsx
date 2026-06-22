@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import CSS from "csstype";
+import { CSSProperties } from "react";
 import { Formik, Field } from "formik";
 
 import { Button, Select, TableRow } from "@canonical/react-components";
@@ -57,7 +57,7 @@ const UserEmail = ({
 
 type UserRoleProps = UserVariantProps;
 
-const getVisibilityStyles = (isVisible: boolean): CSS.Properties => ({
+const getVisibilityStyles = (isVisible: boolean): CSSProperties => ({
   display: "flex",
   alignItems: "center",
   height: "100%",
