@@ -16,7 +16,6 @@
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
-{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 
 {% block content %}
   {% call(slot) vf_hero(
@@ -132,35 +131,6 @@
       {% include "download/mediatek-genio/tabs/genio-350-evk.html" %}
     </div>
   </section>
-
-{%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
-  {%- if slot == 'title' -%}
-    <h2>Release Maturity Levels Explained</h2>
-  {%- endif -%}
-  {%- if slot == 'list_item_title_1' -%}
-    <h3 class="p-heading--5">Early Access</h3>
-  {%- endif -%}
-  {%- if slot == 'list_item_description_1' -%}
-    <p>A preliminary Ubuntu image* for early adopters and developers.
-    <em>Use to validate hardware enablement and start development early.</em></p>
-  {%- endif -%}
-  {%- if slot == 'list_item_title_2' -%}
-    <h3 class="p-heading--5">Beta</h3>
-  {%- endif -%}
-  {%- if slot == 'list_item_description_2' -%}
-    <p>A stable Ubuntu image* with the majority of features integrated and validated.
-    <em>Use to build prototypes and test applications. Not for production deployment.</em></p>
-  {%- endif -%}
-  {%- if slot == 'list_item_title_3' -%}
-    <h3 class="p-heading--5">Certified</h3>
-  {%- endif -%}
-  {%- if slot == 'list_item_description_3' -%}
-    <p>A production-grade Ubuntu image*. This is a feature-complete, quality-assured release. Long-term support from Canonical
-  available with Ubuntu Pro.
-    <em>Use for production deployments.</em></p>
-    <p>*check the release notes for supported features and known issues.</p>
-  {%- endif -%}
-{%- endcall -%}
 
   {{ vf_basic_section(
     title={"text": 'Are you working on a <br class="u-hide--small u-hide--medium" /> commercial project?'},
