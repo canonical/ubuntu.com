@@ -41,7 +41,11 @@
     ) -%}
   {%- endcall -%}
 
-  <div class="grid-row--25-75">
+  <noscript>
+    {% include "engage/_filters-nojs.html" %}
+  </noscript>
+
+  <div class="grid-row--25-75 u-hide" id="js-engage-filters">
     <div class="grid-col">
       <form class="p-form p-form--inline p-engage-menu-form">
         <p>

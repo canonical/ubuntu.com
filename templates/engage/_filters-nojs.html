@@ -1,0 +1,64 @@
+<section class="p-strip is-shallow">
+  <form action="/engage">
+    <div class="row">
+      <div class="col-3">
+        <div class="p-form__group">
+          <label for="language-selector">Select language:</label>
+          <select id="language-selector"
+                  name="language"
+                  class="u-no-margin--bottom">
+            <option value="">All languages</option>
+            <option value="zh-TW" {% if request.args.get('language') == 'zh-TW' %}selected{% endif %}>Chinese (Traditional)</option>
+            <option value="de" {% if request.args.get('language') == 'de' %}selected{% endif %}>Deutsch</option>
+            <option value="en" {% if request.args.get('language') == 'en' %}selected{% endif %}>English</option>
+            <option value="es" {% if request.args.get('language') == 'es' %}selected{% endif %}>Espa&ntilde;ol</option>
+            <option value="fr" {% if request.args.get('language') == 'fr' %}selected{% endif %}>Fran&ccedil;ais</option>
+            <option value="it" {% if request.args.get('language') == 'it' %}selected{% endif %}>Italiano</option>
+            <option value="jp" {% if request.args.get('language') == 'jp' %}selected{% endif %}>Japanese</option>
+            <option value="kr" {% if request.args.get('language') == 'kr' %}selected{% endif %}>Korean</option>
+            <option value="pt" {% if request.args.get('language') == 'pt' %}selected{% endif %}>Portugu&ecirc;s</option>
+            <option value="ru" {% if request.args.get('language') == 'ru' %}selected{% endif %}>Русс&#1082;&#1080;&#1081;</option>
+            <option value="tr" {% if request.args.get('language') == 'tr' %}selected{% endif %}>T&uuml;rk&ccedil;e</option>
+          </select>
+        </div>
+      </div>
+      {% if resource_types %}
+        <div class="col-3">
+          <div class="p-form__group">
+            <label for="resource-selector">Select resource type:</label>
+            <select id="resource-selector"
+                    name="resource"
+                    class="u-no-margin--bottom">
+              <option value="">All resource types</option>
+              {% for type in resource_types %}
+                <option value="{{ type | lower }}" {% if request.args.get('resource') == type | lower %}selected{% endif %}>{{ type }}</option>
+              {% endfor %}
+              <option value="guide" {% if request.args.get('resource') == 'guide' %}selected{% endif %}>Guide</option>
+            </select>
+          </div>
+        </div>
+      {% endif %}
+      {% if tags %}
+        <div class="col-3">
+          <div class="p-form__group">
+            <label for="tag-selector">Select tag:</label>
+            <select id="tag-selector"
+                    name="tag"
+                    class="u-no-margin--bottom">
+              <option value="">All tags</option>
+              {% for tag in tags %}
+                {% if tag != "" %}
+                  <option value="{{ tag }}" {% if tag in request.args.getlist('tag') %}selected{% endif %}>{{ tag }}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+      {% endif %}
+      <div class="col-3" style="display: flex; align-items: flex-end;">
+        <button type="submit" class="p-button--positive u-no-margin--bottom">Apply filters</button>
+        <a href="/engage" class="p-button u-no-margin--bottom">Clear filters</a>
+      </div>
+    </div>
+  </form>
+</section>

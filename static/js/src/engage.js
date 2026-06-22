@@ -32,6 +32,11 @@ function menuIdFor(paramKey) {
 }
 
 (function initEngageFilters() {
+  const jsFilters = document.getElementById("js-engage-filters");
+  if (jsFilters) {
+    jsFilters.classList.remove("u-hide");
+  }
+
   const tagMenu = document.getElementById(menuIdFor(QUERY_KEYS.tag));
   const tagToggle = document.querySelector(SELECTORS.tagToggle);
 
