@@ -56,6 +56,7 @@ function menuIdFor(paramKey) {
     if (isOpen) {
       closeAllMenus();
     } else {
+      closeAllMenus();
       toggle.setAttribute("aria-expanded", "true");
       const menu = document.getElementById(menuId);
       if (menu) {
