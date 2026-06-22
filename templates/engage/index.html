@@ -1,5 +1,7 @@
 {% set hide_nav = False %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
 {% extends "engage/base_engage.html" %}
 
 {% block title %}Ubuntu case studies, whitepapers and webinars{% endblock %}
@@ -14,86 +16,140 @@
   {% if preview != None %}<meta name="robots" content="noindex" />{% endif %}
 {% endblock %}
 
-{% block content %}
-  <section class="p-strip--suru-blog-header is-dark">
-    <div class="row">
-      <div class="col-6">
-        <h1>Engage pages</h1>
-        <p>Ubuntu case studies, whitepapers and webinars.</p>
-      </div>
-    </div>
-  </section>
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
-  <section class="p-strip is-shallow">
-    <form action="/">
-      <div class="row">
-        <div class="col-3">
-          <div class="p-form__group">
-            <label for="language-selector">Select language:</label>
-            <select name="language-selector"
-                    class="js-language-selector u-no-margin--bottom">
-              <option value="all">All languages</option>
-              <option value="zh-TW">Chinese (Traditional)</option>
-              <option value="de">Deutsch</option>
-              <option value="en">English</option>
-              <option value="es">Espa&ntilde;ol</option>
-              <option value="fr">Fran&ccedil;ais</option>
-              <option value="it">Italiano</option>
-              <option value="kr">Korean</option>
-              <option value="pt">Portugu&ecirc;s</option>
-              <option value="ru">Русс&#1082;&#1080;&#1081;</option>
-              <option value="tr">T&uuml;rk&ccedil;e</option>
-            </select>
-          </div>
+{% block content %}
+
+  {% call(slot) vf_hero(
+    title_text='Engage pages',
+    subtitle_text='Ubuntu case studies, whitepapers, and webinars.',
+    layout='25/75',
+    display_blank_signpost_image_space='true',
+    blocks=[
+    {
+    'type': 'description',
+    'item': {
+    'type': 'html',
+    'content':
+    ''
+    }
+    },
+    ]
+    ) -%}
+  {%- endcall -%}
+
+  <div class="grid-row--25-75">
+    <div class="grid-col">
+      <form class="p-form p-form--inline p-engage-menu-form">
+        <p>
+          <strong>Filter by</strong>
+        </p>
+        <div class="p-form__group p-form__control">
+          <span class="p-contextual-menu--left p-engage-menu p-engage-menu--language">
+            <button type="button"
+                    class="p-contextual-menu__toggle p-engage-menu__toggle has-icon"
+                    aria-controls="engage-language-menu"
+                    aria-expanded="false"
+                    aria-haspopup="true">
+              <span>Language</span><i class="p-icon--chevron-down p-contextual-menu__indicator"></i>
+            </button>
+            <span class="p-contextual-menu__dropdown p-engage-menu__dropdown"
+                  id="engage-language-menu"
+                  aria-hidden="true">
+              <span class="p-contextual-menu__group">
+                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="all">All languages</button>
+                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="zh-TW">Chinese (Traditional)</button>
+                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="de">Deutsch</button>
+                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="en">English</button>
+                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="es">Espa&ntilde;ol</button>
+                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="fr">Fran&ccedil;ais</button>
+                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="it">Italiano</button>
+                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="kr">Korean</button>
+                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="pt">Portugu&ecirc;s</button>
+                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="ru">Русс&#1082;&#1080;&#1081;</button>
+                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="tr">T&uuml;rk&ccedil;e</button>
+              </span>
+            </span>
+          </span>
         </div>
-        {% if resource_types %}
-          <div class="col-3">
-            <div class="p-form__group">
-              <label for="resource-selector">Select resource type:</label>
-              <select name="resource-selector"
-                      class="js-resource-selector u-no-margin--bottom">
-                <option value="all">All resource types</option>
-                {% for type in resource_types %}<option value="{{ type | lower }}">{{ type }}</option>{% endfor %}
-              </select>
-            </div>
-          </div>
-        {% endif %}
-        {% if tags %}
-          <div class="col-3">
-            <div class="p-form__group">
-              <label for="tag-selector">Select tag:</label>
-              <select name="tag-selector" class="js-tag-selector u-no-margin--bottom">
-                <option value="all">All tags</option>
-                {% for tag in tags %}
-                  <option {% if tag == "" %}disabled{% endif %} value="{{ tag }}">
-                    {% if tag == "" %}
-                      -
-                    {% else %}
-                      {{ tag }}
-                    {% endif %}
-                  </option>
+        <div class="p-form__group p-form__control">
+          <span class="p-contextual-menu--left p-engage-menu p-engage-menu--resource">
+            <button type="button"
+                    class="p-contextual-menu__toggle p-engage-menu__toggle has-icon"
+                    aria-controls="engage-resource-menu"
+                    aria-expanded="false"
+                    aria-haspopup="true">
+              <span>Resource type</span><i class="p-icon--chevron-down p-contextual-menu__indicator"></i>
+            </button>
+            <span class="p-contextual-menu__dropdown p-engage-menu__dropdown"
+                  id="engage-resource-menu"
+                  aria-hidden="true">
+              <span class="p-contextual-menu__group">
+                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="all">All resource types</button>
+                {% for type in resource_types %}
+                  <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="{{ type | lower }}">{{ type }}</button>
                 {% endfor %}
-              </select>
-            </div>
-          </div>
-        {% endif %}
-        <div class="col-3"
-             style="display: flex;
-                    align-items: flex-end;
-                    justify-content: flex-end">
-          <div class="u-hide u-show--small">
-            <br />
-            <br />
-          </div>
-          <button class="js-apply-filters p-button--positive u-no-margin--bottom">Apply filters</button>
-          <button class="js-clear-filters u-no-margin--bottom"
-                  onclick="clearFilters()"
-                  type="reset"
-                  disabled>Clear filters</button>
+                <button type="button" class="p-contextual-menu__link p-engage-menu__link" data-value="guide">Guide</button>
+              </span>
+            </span>
+          </span>
         </div>
-      </div>
-    </form>
-  </section>
+        <div class="p-form__group p-form__control">
+          <span class="p-contextual-menu--left p-engage-menu p-engage-menu--tags">
+            <button type="button"
+                    class="p-contextual-menu__toggle p-engage-menu__toggle p-engage-menu__toggle--tags has-icon"
+                    aria-controls="engage-tag-menu"
+                    aria-expanded="false"
+                    aria-haspopup="true">
+              <span>Tag</span><span class="p-engage-menu__count" aria-live="polite" hidden>0</span><i class="p-icon--chevron-down p-contextual-menu__indicator"></i>
+            </button>
+            <span class="p-contextual-menu__dropdown p-engage-menu__dropdown p-engage-menu__dropdown--tags"
+                  id="engage-tag-menu"
+                  aria-hidden="true">
+              {% set selected_tags = request.args.getlist('tag') %}
+              {% set non_empty_tags = tags | reject('equalto', '') | list %}
+              {% set selected_count = selected_tags | length %}
+              {% set unselected_count = non_empty_tags | length - selected_count %}
+              <span class="p-contextual-menu__group p-engage-menu__group p-engage-menu__group--tags">
+                <!-- Selected tags -->
+                {% for tag in tags %}
+                  {% if tag != "" and tag in selected_tags %}
+                    <label class="p-checkbox p-engage-menu__tag-item">
+                      <input type="checkbox"
+                             class="p-checkbox__input p-engage-menu__checkbox"
+                             value="{{ tag }}"
+                             checked />
+                      <span class="p-checkbox__label"><span class="p-engage-menu__label-text">{{ tag }}</span></span>
+                    </label>
+                  {% endif %}
+                {% endfor %}
+                {% if selected_count > 0 and unselected_count > 0 %}
+                  <hr class="p-rule--muted u-no-margin--bottom" />
+                {% endif %}
+                <!-- Unselected tags -->
+                {% for tag in tags %}
+                  {% if tag != "" and tag not in selected_tags %}
+                    <label class="p-checkbox p-engage-menu__tag-item">
+                      <input type="checkbox"
+                             class="p-checkbox__input p-engage-menu__checkbox"
+                             value="{{ tag }}" />
+                      <span class="p-checkbox__label"><span class="p-engage-menu__label-text">{{ tag }}</span></span>
+                    </label>
+                  {% endif %}
+                {% endfor %}
+              </span>
+              <span class="p-engage-menu__actions">
+                <button type="button" class="p-engage-menu__action js-engage-tag-select-all">Select all</button>
+                <button type="button" class="p-engage-menu__action js-engage-tag-clear">Clear</button>
+              </span>
+            </span>
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <section class="p-strip is-shallow" id="posts-list">
     {% if metadata | length > 0 %}
@@ -126,56 +182,5 @@
       </div>
     {% endif %}
   </section>
-  <script>
-    function clearFilters() {
-      const clearFiltersButton = document.querySelector(".js-clear-filters");
-      window.location.assign("/engage");
-    }
-    (function() {
-      const languageSelector = document.querySelector(".js-language-selector");
-      const resourceSelector = document.querySelector(".js-resource-selector");
-      const tagSelector = document.querySelector(".js-tag-selector");
-
-      const applyFiltersButton = document.querySelector(".js-apply-filters");
-      const clearFiltersButton = document.querySelector(".js-clear-filters");
-      const urlObj = new URL(window.location);
-
-      if (urlObj.search !== "") {
-        clearFiltersButton.removeAttribute("disabled");
-      }
-
-      function setFiltersDropdown(key, selector) {
-        if (!selector) {
-          return;
-        }
-        if (urlObj.searchParams.has(key)) {
-          selector.value = urlObj.searchParams.get(key);
-        }
-      }
-
-      setFiltersDropdown("language", languageSelector);
-      setFiltersDropdown("resource", resourceSelector);
-      setFiltersDropdown("tag", tagSelector);
-
-      function setFilters(key, selector) {
-        if (selector.value != "all") {
-          urlObj.searchParams.set(key, selector.value);
-        } else {
-          urlObj.searchParams.delete(key);
-        }
-      }
-
-      function applyFilters(event) {
-        event.preventDefault();
-
-        setFilters("language", languageSelector);
-        setFilters("resource", resourceSelector);
-        setFilters("tag", tagSelector);
-
-        urlObj.searchParams.delete("page");
-        window.location = urlObj.href;
-      }
-      applyFiltersButton.addEventListener("click", applyFilters);
-    })()
-  </script>
+  <script src="/static/js/dist/engage.js"></script>
 {% endblock content %}
