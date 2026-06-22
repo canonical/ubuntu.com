@@ -1,6 +1,6 @@
 /* Custom implementation for contextual menu on /engage.
- * https://vanillaframework.io/docs/patterns/contextual-menu 
-*/
+ * https://vanillaframework.io/docs/patterns/contextual-menu
+ */
 
 import { debounce } from "./utils/debounce.js";
 
@@ -43,7 +43,9 @@ function menuIdFor(paramKey) {
   function closeAllMenus() {
     document.querySelectorAll(SELECTORS.menuToggle).forEach((toggle) => {
       toggle.setAttribute("aria-expanded", "false");
-      const menu = document.getElementById(toggle.getAttribute("aria-controls"));
+      const menu = document.getElementById(
+        toggle.getAttribute("aria-controls"),
+      );
       if (menu) {
         menu.setAttribute("aria-hidden", "true");
       }
@@ -71,8 +73,11 @@ function menuIdFor(paramKey) {
     toggle.classList.add("is-active");
   }
 
-  function navigateWithFilters(singleValueUpdates = {}, multiValueKey = null,
-    multiValues = []) {
+  function navigateWithFilters(
+    singleValueUpdates = {},
+    multiValueKey = null,
+    multiValues = [],
+  ) {
     const nextUrl = new URL(window.location);
 
     Object.keys(singleValueUpdates).forEach((key) => {
