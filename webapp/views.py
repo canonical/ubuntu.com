@@ -1232,7 +1232,7 @@ def marketo_submit():
                 error_msg="Please ensure the form exists and try again.",
             )
 
-        if "result" not in data:
+        if not data.get("result"):
             marketo_sentry_report(
                 "Marketo form API Issue",
                 payload=payload,
@@ -1247,17 +1247,10 @@ def marketo_submit():
                 400,
             )
 
-        if data["result"][0]["status"] == "skipped":
-            marketo_sentry_report(
-                f"Marketo form {payload['formId']} failed to submit",
-                payload=payload,
-                response=data,
-                enrichment_fields=enrichment_fields,
-            )
-
     except Exception:
         marketo_sentry_report(
             "Marketo form submission failed with Exception",
+            exception=True,
             payload=payload,
             enrichment_fields=enrichment_fields,
         )
@@ -1277,9 +1270,10 @@ def marketo_submit():
         ).json()
     except Exception:
         marketo_sentry_report(
-            "Marketo enrichment form submission failed",
+            "Marketo enrichment form submission failed with Exception",
+            exception=True,
             enriched_payload=enriched_payload,
-            payload=payload
+            payload=payload,
         )
 
     # Redirect to success page only if both submissions were successful.
@@ -1288,7 +1282,7 @@ def marketo_submit():
     # even though the top-level API response still reports success. Treat it
     # as an explicit failure so it can never be silently reported as success.
     payload_status = data["result"][0]["status"]
-    
+
     if (
         enrichment_submission["success"] is True
         and data["success"] is True
@@ -1374,15 +1368,25 @@ def marketo_submit():
     return flask.redirect("/thank-you")
 
 
-def marketo_sentry_report(message, **extras):
+def marketo_sentry_report(message, exception=False, **extras):
     """
-    Report a Marketo event to Sentry as a captured message, attaching any
-    keyword arguments as extra context (e.g. payload=payload, response=data).
+    Report a Marketo event to Sentry, attaching any keyword arguments as extra
+    context (e.g. payload=payload, response=data).
+
+    Pass ``exception=True`` when calling from within an ``except`` block to
+    capture the active exception (preserving its traceback) with ``message``
+    attached as extra context. Otherwise the human-readable ``message`` is
+    captured directly.
     """
     with sentry_sdk.push_scope() as scope:
         for key, value in extras.items():
             scope.set_extra(key, value)
-        sentry_sdk.capture_message(message)
+
+        if exception:
+            scope.set_extra("message", message)
+            sentry_sdk.capture_exception()
+        else:
+            sentry_sdk.capture_message(message)
 
 
 def thank_you():
