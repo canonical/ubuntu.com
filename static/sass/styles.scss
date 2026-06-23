@@ -53,9 +53,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 // import site specific patterns and overrides
 @import "pattern_accordion";
 @import "pattern_ai";
-@import "pattern_blog-featured";
-@import "pattern_blog-list";
-@import "pattern_blog-post";
 @import "pattern_blog-card";
 @import "pattern_blog-article";
 @import "pattern_blog-suru";
@@ -148,6 +145,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-navigation-reduced;
 @include ubuntu-p-nojs-navigation;
 @include ubuntu-p-strip;
+@include ubuntu-p-strip-suru-shallow;
 @include ubuntu-p-ua-payment-modal;
 @include ubuntu-p-pie-chart;
 @include ubuntu-p-ua-shop-cart;
@@ -180,6 +178,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include vf-p-icon-credit-card;
 @include vf-p-icon-vulnerable;
 @include vf-p-icon-ignored;
+@include vf-themed-icons;
 @include openstack-carousel;
 
 // Layouts:
