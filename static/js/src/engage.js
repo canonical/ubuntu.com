@@ -256,7 +256,7 @@ function menuIdFor(paramKey) {
       navigateWithFilters({}, QUERY_KEYS.tag, getCheckedTagValues());
     }
 
-    // Debounce tag selection so the user has time to select mutliple
+    // Debounce tag selection so the user has time to select multiple
     const debouncedSubmitTagsFilter = debounce(
       submitTagsFilter,
       TAG_SUBMIT_DEBOUNCE_MS,

@@ -33,7 +33,6 @@
               {% for type in resource_types %}
                 <option value="{{ type | lower }}" {% if request.args.get('resource') == type | lower %}selected{% endif %}>{{ type }}</option>
               {% endfor %}
-              <option value="guide" {% if request.args.get('resource') == 'guide' %}selected{% endif %}>Guide</option>
             </select>
           </div>
         </div>
