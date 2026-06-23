@@ -1262,12 +1262,24 @@ def marketo_submit():
             enriched_payload
         ).json()
     except Exception:
-        pass
+        with sentry_sdk.push_scope() as scope:
+            scope.set_extra("enriched_payload", enriched_payload)
+            sentry_sdk.capture_message(
+                "Marketo enrichment form submission failed"
+            )
 
-    # Redirect to success page only if both submissions were successful
+    # Redirect to success page only if both submissions were successful.
+    # A "skipped" payload status means Marketo rejected the main form
+    # submission (e.g. an unexpected field such as a stray hidden input),
+    # even though the top-level API response still reports success. Treat it
+    # as an explicit failure so it can never be silently reported as success.
     payload_status = data["result"][0]["status"]
 
-    if enrichment_submission["success"] is True and data["success"] is True:
+    if (
+        enrichment_submission["success"] is True
+        and data["success"] is True
+        and payload_status != "skipped"
+    ):
         flask.flash(
             "Your form was submitted successfully.", "contact-form-success"
         )
@@ -1295,42 +1307,41 @@ def marketo_submit():
 
             return flask.redirect(return_url)
     else:
-        # Log failed form submissions to Sentry and display error notification
+        # Log every failed submission to Sentry with the tried payload, then
+        # display an error notification to the user.
         if (
             payload_status == "skipped"
             and enrichment_submission["success"] is False
         ):
-            with sentry_sdk.push_scope() as scope:
-                scope.set_extra("payload", payload)
-                scope.set_extra("enriched_payload", enriched_payload)
-                sentry_sdk.capture_message(
-                    (
-                        f"Marketo form {payload['formId']} and "
-                        "enrichment payload failed to submit"
-                    )
-                )
-            flask.flash(
-                (
-                    "There was an issue submitting the form contact details "
-                    "and payload."
-                ),
-                "contact-form-fail",
+            sentry_message = (
+                f"Marketo form {payload['formId']} and "
+                "enrichment payload failed to submit"
+            )
+            flash_message = (
+                "There was an issue submitting the form contact details "
+                "and payload."
             )
         elif payload_status == "skipped":
-            with sentry_sdk.push_scope() as scope:
-                scope.set_extra("payload", payload)
-                scope.set_extra("response", data)
-                scope.set_extra("enriched_payload", enriched_payload)
-                sentry_sdk.capture_message(
-                    (
-                        f"Marketo form {payload['formId']} "
-                        "payload failed to submit"
-                    )
-                )
-            flask.flash(
-                "There was an issue submitting the form payload.",
-                "contact-form-fail",
+            sentry_message = (
+                f"Marketo form {payload['formId']} payload failed to submit"
             )
+            flash_message = "There was an issue submitting the form payload."
+        else:
+            # Payload was accepted but enrichment failed, or the API
+            # reported failure for another reason.
+            sentry_message = (
+                f"Marketo form {payload['formId']} submission failed"
+            )
+            flash_message = "There was an issue submitting the form."
+
+        with sentry_sdk.push_scope() as scope:
+            scope.set_extra("payload", payload)
+            scope.set_extra("response", data)
+            scope.set_extra("enriched_payload", enriched_payload)
+            scope.set_extra("enrichment_response", enrichment_submission)
+            sentry_sdk.capture_message(sentry_message)
+
+        flask.flash(flash_message, "contact-form-fail")
 
         if return_url:
             # Remove anchor from url
