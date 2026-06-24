@@ -882,17 +882,6 @@ class BlogCustomTopic(BlogView):
         return flask.render_template(f"blog/topics/{slug}.html", **context)
 
 
-class BlogCustomGroup(BlogView):
-    def dispatch_request(self, slug):
-        page_param = flask.request.args.get("page", default=1, type=int)
-        category_param = flask.request.args.get(
-            "category", default="", type=str
-        )
-        context = self.blog_views.get_group(slug, page_param, category_param)
-
-        return flask.render_template(f"blog/{slug}.html", **context)
-
-
 class BlogSitemapIndex(BlogView):
     def dispatch_request(self):
         response = session.get(
