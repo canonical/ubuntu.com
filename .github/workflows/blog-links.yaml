@@ -1,8 +1,6 @@
 name: Blog Links
 
 on:
-  # QA
-  pull_request:
   schedule:
     - cron: "20 7 * * 1"
 
@@ -21,9 +19,6 @@ jobs:
           cat > ~/.linkchecker/linkcheckerrc <<EOF
           [checking]
           maxrequestspersecond=5
-          recursionlevel=2
-          timeout=1000
-          sslverify=0
 
           [filtering]
           checkextern=1
@@ -44,7 +39,7 @@ jobs:
           status=0
           warnings=0
           ignoreerrors=
-            ^https?://.* ^.*(471|503|504)
+            ^https?://.* ^.*(503|504)
             ^https?://.* Connection aborted
             ^https?://.* Connection reset by peer
             ^https?://.* RemoteDisconnected
