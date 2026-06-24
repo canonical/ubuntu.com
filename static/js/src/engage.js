@@ -23,7 +23,7 @@ const SELECTORS = {
   tagCount: ".p-engage-menu__count",
 };
 
-const TAG_SUBMIT_DEBOUNCE_MS = 3000;
+const TAG_SUBMIT_DEBOUNCE_MS = 1500;
 
 const SINGLE_SELECT_PARAMS = [QUERY_KEYS.language, QUERY_KEYS.resource];
 
