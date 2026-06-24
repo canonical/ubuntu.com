@@ -184,6 +184,7 @@
 
   <section id="posts-list">
     {% if metadata | length > 0 %}
+      {% set both_have_images = metadata | length >= 2 and metadata[0].image and metadata[1].image %}
       <div {% if total_pages > 1 %}class="p-section--shallow"{% endif %}>
         <div class="grid-row">
           {% for item in metadata %}
@@ -206,7 +207,7 @@
             {%- else -%}
               {%- set type_icon = "topic" -%}
             {%- endif -%}
-            {% if loop.index <= 2 %}
+            {% if loop.index <= 2 and both_have_images %}
               {{ vf_card(columns="4",
                             link=item_link,
                             heading=item.topic_name,
@@ -219,9 +220,10 @@
                             "icon": type_icon,
                             "text": item.type
                             },
-                            "content_type": item.tags
+                            "content_type": item.tags.split(',') | map('trim') | list if item.tags else []
                             } if item.type or item.tags else None,
-                            description=item.subtitle) }}
+                            description=item.subtitle,
+                            stacked_image=true) }}
             {% else %}
               {{ vf_card(columns="4",
                             link=item_link,
@@ -231,7 +233,7 @@
                             "icon": type_icon,
                             "text": item.type
                             },
-                            "content_type": item.tags
+                            "content_type": item.tags.split(',') | map('trim') | list if item.tags else []
                             } if item.type or item.tags else None,
                             description=item.subtitle) }}
             {% endif %}
