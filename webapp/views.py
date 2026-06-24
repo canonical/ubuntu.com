@@ -1386,7 +1386,9 @@ def marketo_sentry_report(message, exception=False, **extras):
             scope.set_extra("message", message)
             sentry_sdk.capture_exception()
         else:
-            sentry_sdk.capture_message(message)
+            sentry_sdk.capture_message(message, level="error")
+
+        sentry_sdk.flush(timeout=2)
 
 
 def thank_you():
