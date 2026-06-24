@@ -1940,7 +1940,7 @@ def build_release_cycle_view():
                 try:
                     dt = datetime.strptime(raw, "%Y-%m-%d").date()
                     formatted = dt.strftime("%b %Y")  # Dec 2025
-                    is_past = dt < date.today()
+                    is_past = dt <= date.today()
                 except ValueError:
                     formatted = raw
 
@@ -1954,7 +1954,7 @@ def build_release_cycle_view():
             try:
                 dt = datetime.strptime(raw, "%Y-%m-%d").date()
                 formatted = dt.strftime("%b %Y")
-                is_past = dt < date.today()
+                is_past = dt <= date.today()
             except ValueError:
                 formatted = raw
             except Exception as e:
@@ -2030,7 +2030,13 @@ def build_release_cycle_view():
                 raw_versions = deployment.get("versions", [])
                 shaped_versions = [shape_version(v) for v in raw_versions]
                 visible_versions = [
-                    v for v in shaped_versions if not version_is_expired(v)
+                    v
+                    for v in shaped_versions
+                    if not version_is_expired(v)
+                    and (
+                        v["release_date"]["raw"] is None
+                        or v["release_date"]["is_past"]
+                    )
                 ]
 
                 deployments.append(
@@ -2094,7 +2100,6 @@ def build_release_cycle_view():
         raw_files = get_combined_products(
             ["products-data/25.10/products.json"]
         )
-
         raw_products = raw_files.get("products", {})
 
         products_data = build_ui_products(raw_products)
