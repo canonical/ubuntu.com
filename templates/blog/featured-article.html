@@ -1,0 +1,21 @@
+<div class="grid-row">
+    {# djlint:off #}
+{% set article = featured_articles[0] %}
+
+{% from "_macros/vf_card.jinja" import vf_card %}
+
+{{ vf_card(
+  columns="8",
+  link="/blog/" ~ article.slug,
+  heading=article.title.rendered | safe,
+  image={
+    "src": article.image.source_url,
+    "alt": article.title.rendered | striptags
+  },
+  footer={
+    "content_type": article.group.name if article.group else "Company"
+  },
+  description=article.excerpt.raw | replace("[…]", "") | truncate(162)
+) }}
+    {# djlint:on #}
+</div>
