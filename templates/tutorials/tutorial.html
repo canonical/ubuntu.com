@@ -141,15 +141,13 @@
               </div>
               <div class="l-tutorial__pagination">
                 {% if loop.first %}
-                  <button class="l-tutorial__pagination-item--prev p-button has-icon u-no-margin--bottom"
-                          disabled
-                          style="margin-right: 1rem">
+                  <button class="l-tutorial__pagination-item--prev p-button has-icon u-no-margin--bottom u-margin-right--medium"
+                          disabled>
                     <i class="p-icon--chevron-down">Previous step</i>
                   </button>
                 {% else %}
                   <a href="#{{ loop.index - 1 }}-{{ loop.previtem['slug'] }}"
-                     class="l-tutorial__pagination-item--prev p-button has-icon u-no-margin--bottom"
-                     style="margin-right: 1rem">
+                     class="l-tutorial__pagination-item--prev p-button has-icon u-no-margin--bottom u-margin-right--medium">
                     <i class="p-icon--chevron-down">Previous step</i>
                   </a>
                 {% endif %}
