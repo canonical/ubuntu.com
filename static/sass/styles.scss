@@ -107,6 +107,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_modals";
 @import "pattern_tube-line";
 @import "pattern_release_cycle";
+@import "utilities";
 @import "utility_animations";
 @import "utility_crop";
 @import "utility_vertically-center";
@@ -1157,6 +1158,25 @@ hr.p-separator.is-shallow {
     padding-right: 1.5rem;
     width: 100%;
   }
+
+  tr,
+  tbody th {
+    border: 0;
+  }
+
+  .cell--user-managed,
+  .cell--provider-managed {
+    border: 0.5rem solid #f3f3f3;
+  }
+
+  .cell--user-managed {
+    background-color: #d9d9d9;
+  }
+
+  .cell--provider-managed {
+    background-color: #333333;
+    color: #f3f3f3;
+  }
 }
 
 .p-strip--suru-cloud-computing {
@@ -1171,6 +1191,414 @@ hr.p-separator.is-shallow {
 
 .p-heading--bold {
   font-weight: $font-weight-bold;
+}
+
+// Lead-gen form fieldsets on engage pages
+// (templates/engage/shared/_*_engage_form.html)
+.p-engage-form__fieldset {
+  border-bottom-width: 1px;
+}
+
+// Card headers holding a centered partner logo
+// (openstack guest list, IoT digital signage)
+.p-card__logo-header {
+  min-height: 7rem;
+}
+
+// Compact full-height variant of the overlay card, used for
+// resource cards under a highlight rule
+.p-card--overlay-compact {
+  height: 95%;
+  overflow: hidden;
+  padding: 1.5rem;
+}
+
+// Centered fixed-width video embeds on /masters-conference
+.p-embedded-media--centered {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  width: 466px;
+}
+
+// FIPS certification tables (/azure/fips, /gcp/fips):
+// Ubuntu LTS | FIPS certified component | Description | Version | CMVP cert
+.p-table--fips {
+  th:nth-child(1) {
+    width: 9%;
+  }
+
+  th:nth-child(2) {
+    width: 30%;
+  }
+
+  th:nth-child(4) {
+    width: 10%;
+  }
+
+  th:nth-child(5) {
+    width: 15%;
+  }
+}
+
+// VM pricing table on /gcp/fips
+.p-table--vm-pricing {
+  th:nth-child(3),
+  th:nth-child(4) {
+    width: 7%;
+  }
+}
+
+// Feature comparison table with an empty leading label column (/aws/pro)
+.p-table--feature-comparison {
+  thead td:first-child {
+    width: 45%;
+  }
+}
+
+// Raspberry Pi support matrix on /download/raspberry-pi
+.p-table--rpi-support {
+  th:nth-child(1) {
+    width: 15%;
+  }
+
+  th:nth-child(2) {
+    width: 10%;
+  }
+
+  th:nth-child(3) {
+    width: 18%;
+  }
+
+  th:nth-child(4) {
+    width: 15%;
+  }
+}
+
+// Inline form stretched to fill its column (/certified search)
+.p-form--full-width {
+  width: 100%;
+
+  .p-form__group {
+    flex-grow: 1;
+  }
+
+  .p-form__control {
+    width: 100%;
+  }
+}
+
+// --- Inline-style replacements: contextual cases (WD-36638) ---
+// Multi-property, background-image or pixel-exact rules that don't
+// generalise into a utility. Grouped by the component they belong to.
+
+// Fixed background-image artwork lifted out of inline styles.
+.p-strip--blog-paper {
+  background-image: url("https://assets.ubuntu.com/v1/f8a323a7-image-background-paper.png");
+}
+
+.p-strip--blog-robotics {
+  background-image: linear-gradient(
+    44deg,
+    #171717 0%,
+    #181818 9%,
+    #262626 34%,
+    #2d2d2d 67%,
+    #383838 88%,
+    #2e2e2e 100%,
+    #393939 100%
+  );
+}
+
+.p-product-hero--maas {
+  background-image: url("https://assets.ubuntu.com/v1/a328d904-MAAS-background-desktop-large-screen.png");
+  background-size: 100% 100%;
+}
+
+.p-aspect-ratio-image--dell-reference {
+  background-image: url("https://assets.ubuntu.com/v1/cb3ad1d2-reference-archtecture-dell (1).png");
+}
+
+.p-aspect-ratio-image--dell-glance {
+  background-image: url("https://assets.ubuntu.com/v1/e7ddfcd4-canonical-glance-dellpsd (1).png");
+}
+
+// Checksum verification dropdown (appliance verify-checksums partials)
+.p-contextual-menu__dropdown--checksum {
+  max-width: 70vw;
+  padding: 1rem;
+  width: 600px;
+  z-index: 10;
+}
+
+// Row of inline checkbox/option labels (contact-us, download newsletter)
+.p-inline-options {
+  align-items: center;
+  display: flex;
+  gap: 1.5rem;
+}
+
+// Right-aligned inline action row (certified platform details)
+.p-flex--center-right {
+  align-items: center;
+  display: flex;
+  justify-content: right;
+}
+
+// Managed services highlight panel (templates/managed/apps/index.html)
+.p-managed-services-panel {
+  background-color: #ebebeb;
+  padding: 0 1rem 1rem;
+}
+
+// BrightTALK webinar embed wrapper (engage / 0_docs)
+.p-webinar-embed {
+  background: #fff;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+// Facebook "like" iframe (templates/shared/_share_this.html)
+.p-facebook-like {
+  border: 0;
+  height: 21px;
+  overflow: hidden;
+  padding-right: 23px;
+}
+
+// Loading placeholder reserving spinner height (latest news strips)
+.p-loading-placeholder {
+  min-height: 9.1rem;
+}
+
+// Large credit-card icon on empty payment-methods state
+.p-icon--credit-card-large {
+  height: 4rem;
+  margin-top: 0.4rem;
+  width: 4rem;
+}
+
+// Shaded "What's included" table header (templates/advantage/_table.html)
+.p-table__cell--shaded {
+  background-color: #f7f7f7;
+  padding: 0.75rem;
+}
+
+// Invoices table cells (templates/account/invoices/index.html)
+.p-invoices__total {
+  padding: 0.75rem 0;
+}
+
+.p-invoices__cell {
+  padding-right: 5%;
+}
+
+// Blog filters spacing (templates/blog/filters.html)
+.p-blog-filters {
+  padding-right: 40px;
+}
+
+// Secondary contract metadata (templates/advantage/table/_contract-name.html)
+.p-contract-name__meta {
+  color: #666;
+  font-size: 14px;
+}
+
+// Dark page-chrome backgrounds lifted from inline styles
+.u-background--charcoal {
+  background-color: #2d2d2d;
+}
+
+.u-background--dark {
+  background-color: #333;
+}
+
+// Pulled-up strip overlapping the section above (0_docs/strips.html)
+.p-strip--pulled-up {
+  position: relative;
+  top: -2rem;
+}
+
+// Negative inset for a form field (shared/forms/form-template.html)
+.p-form-template__field {
+  margin-left: -1rem;
+}
+
+// Component spec tooltip hint (templates/about/partials/_component-tooltip.html)
+.p-component-tooltip__hint {
+  color: grey;
+  padding-top: 0.2rem;
+}
+
+// Small, exact alignment nudges kept verbatim to preserve current
+// rendering (icons/labels optically centred against adjacent content).
+.p-nudge-top--x-small {
+  padding-top: 0.275rem;
+}
+
+.p-nudge-top--small {
+  padding-top: 0.375rem;
+}
+
+.p-nudge-top--medium {
+  padding-top: 0.4rem;
+}
+
+.p-nudge-top--large {
+  padding-top: 1.9rem;
+}
+
+.p-nudge-top--x-large {
+  padding-top: 2.5rem;
+}
+
+.p-nudge-margin-top--x-small {
+  margin-top: 0.25rem;
+}
+
+.p-nudge-margin-top--small {
+  margin-top: 0.55rem;
+}
+
+.p-nudge-margin-top--medium {
+  margin-top: 0.7rem;
+}
+
+.p-nudge-margin-top--large {
+  margin-top: 1.4rem;
+}
+
+.p-nudge-margin-top--x-large {
+  margin-top: 2.5rem;
+}
+
+.p-nudge-margin-top--25px {
+  margin-top: 25px;
+}
+
+.p-nudge-margin-top--negative {
+  margin-top: -40px;
+}
+
+.p-nudge-margin-bottom--7px {
+  margin-bottom: 7px;
+}
+
+.p-nudge-bottom--7px {
+  padding-bottom: 7px;
+}
+
+.p-nudge-bottom--25px {
+  padding-bottom: 25px;
+}
+
+// Release-cycle chart inset (templates/about/index.html)
+.p-release-chart-inset {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+}
+
+// Billing page header row (templates/account/invoices/index.html)
+.p-invoices__header {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+}
+
+// Shaded, top-bordered "Price per year" header (templates/advantage/_table.html)
+.p-table__cell--shaded-bordered {
+  background-color: #f7f7f7;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.75rem;
+}
+
+// Full-width Suru hero banner image (ai/index, ai/data-science)
+.p-suru-banner-image {
+  aspect-ratio: 5.1775700934579;
+  width: 100%;
+}
+
+// Certified photo backgrounds
+.p-strip--certified-lab {
+  background-image: url("https://assets.ubuntu.com/v1/b7ecd8a2-lab-1.jpg");
+  background-size: cover;
+}
+
+.p-certified-why-image {
+  background-image: url("https://assets.ubuntu.com/v1/4c88715b-why-certified.jpg");
+  background-size: cover;
+}
+
+// Circles map caption (templates/community/circles.html)
+.p-circles__map-caption {
+  font-style: normal;
+  padding-top: 6px;
+}
+
+// Vertically-stacked, self-centered flex column (dell hero)
+.p-flex-column--center {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+}
+
+// Bottom/right-aligned flex cell (templates/engage/index.html)
+.p-flex--end {
+  align-items: flex-end;
+  display: flex;
+  justify-content: flex-end;
+}
+
+// Clipped full-height overlay card (gcp pricing cards)
+.p-card--clipped {
+  height: 95%;
+  overflow: hidden;
+}
+
+// IBM hero background (templates/ibm/index.html)
+.p-strip--ibm-hero {
+  background-image: url("https://assets.ubuntu.com/v1/3978eb15-cloud-lifestyle-with-screens.png?w=1500");
+  background-position: right bottom;
+  background-size: 1246px auto;
+}
+
+// Padded plan toggle switch (templates/kubernetes/index.html)
+.p-switch--spaced {
+  display: inline-block;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+// RFP hero background (templates/rfp/index.html)
+.p-strip--rfp-hero {
+  background-image: url("https://assets.ubuntu.com/v1/78c2eae0-image-server-room.jpg");
+  background-position: 77% 0%;
+}
+
+// Dark gradient call-sales strip (templates/shared/_call-sales.html)
+.p-strip--call-sales-dark {
+  background-blend-mode: color;
+  background-image: linear-gradient(-45deg, #5e2750 0%, #2c001e 100%);
+}
+
+// Scrollable modal header (templates/shared/forms/form-template.html)
+.p-modal__header--scroll {
+  border-bottom: 0;
+  display: block;
+  overflow: auto;
+}
+
+// Absolutely-positioned topics submenu (templates/templates/_navigation.html)
+.p-navigation__topics-dropdown {
+  font-size: 0.875rem;
+  position: absolute;
+}
+
+// Auto-width, collapsed-border comparison table (support/firefighting)
+.p-table--auto-collapse {
+  border-collapse: collapse;
+  width: auto;
 }
 
 // silicon custom styles

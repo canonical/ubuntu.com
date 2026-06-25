@@ -62,6 +62,7 @@ function createModal({ modalSelector, triggerButton }) {
 
   function open() {
     currentDialog = modal;
+    modal.classList.remove("u-hide");
     modal.style.display = "flex";
     focusFirstDescendant(modal);
     focusAfterClose = triggerButton;
@@ -69,6 +70,7 @@ function createModal({ modalSelector, triggerButton }) {
   }
 
   function close() {
+    modal.classList.add("u-hide");
     modal.style.display = "none";
     if (focusAfterClose && focusAfterClose.focus) {
       focusAfterClose.focus();

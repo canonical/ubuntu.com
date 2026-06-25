@@ -254,6 +254,23 @@
     margin-left: $sph--small;
   }
 
+  // Status section layout, lifted out of inline styles (WD-36638).
+  // templates/security/cves/cve.html
+  .cve-section-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .cve-td-status--with-icon {
+    display: flex;
+    overflow: visible;
+  }
+
+  .cve-status-icon {
+    margin-right: 0.5rem;
+    margin-top: 0.2rem;
+  }
+
   .cve-table-blur {
     position: relative;
 
