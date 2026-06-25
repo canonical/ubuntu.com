@@ -97,6 +97,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_subscriptions";
 @import "pattern_subscribe";
 @import "pattern_distributor";
+@import "pattern_engage";
 @import "pattern_tabs";
 @import "pattern_takeunders";
 @import "pattern_takeovers";
@@ -160,7 +161,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-takeunders;
 @include ubuntu-p-takeovers;
 @include ubuntu-p-tco-calculator;
-@include ubuntu-p-engage-banner;
+@include ubuntu-p-engage;
 @include ubuntu-p-ubuntu-intro;
 @include ubuntu-p-tabs;
 @include ubuntu-u-animations;
@@ -1954,4 +1955,13 @@ ol.p-stepped-list.no-full-stop
 //Will be removed after VF 4.52 is released and top_rule_variant=none is added to tiered_list
 .alt-downloads__bittorrent-tab hr {
   display: none;
+}
+
+// Apply to `grid-col-*` element to make it sticky within its 
+// parent container.
+.u-sticky-col {
+  position: sticky; 
+  top: $spv--strip-regular; // Account for navigation
+  z-index: 1; 
+  align-self: start;
 }
