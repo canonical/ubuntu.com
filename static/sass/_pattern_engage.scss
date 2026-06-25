@@ -36,6 +36,16 @@
 }
 
 @mixin ubuntu-p-engage {
+  .p-engage-webinar {
+    background: #f3f3f3;
+  }
+  .p-engage-webinar__container {
+    background: #f3f3f3;
+    height: 100%;
+    position: relative;
+    width: 100%;
+  }
+
   .p-engage-page-hero {
     @media only screen and (max-width: $breakpoint-large) {
       padding-bottom: 0;
