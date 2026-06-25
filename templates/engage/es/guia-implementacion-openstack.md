@@ -9,7 +9,7 @@ context:
   header_subtitle: "Descubre el probado proceso de implementación de OpenStack de Canonical"
   header_url: "#register-section"
   header_cta: Lea el documento técnico
-  header_class: p-engage-banner--dark
+  header_class: p-section
   header_image: "https://assets.ubuntu.com/v1/dcb2963c-openstack+cloud+outlines.svg"
   header_lang: es
   form_include: es
