@@ -135,7 +135,7 @@
              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Core', 'eventLabel' : '{{ releases_yaml.latest.core_version }}', 'eventValue' : undefined });"
              class="p-button">Download Ubuntu Core {{ releases_yaml.latest.core_version }}</a>
           {% if releases_yaml.latest.rasp_pi_core_24_size %}
-            <span class="u-text--muted" style="margin-top: 0.5rem;">{{ releases_yaml.latest.rasp_pi_core_24_size }}</span>
+            <span class="u-text--muted u-margin-top--small">{{ releases_yaml.latest.rasp_pi_core_24_size }}</span>
           {% endif %}
         </p>
       </div>
@@ -166,16 +166,16 @@
   <section class="p-section">
     <div class="row">
       <div class="col-medium-6 col-9 col-start-large-4 u-table-scroll--medium u-table-scroll--small">
-        <table class="u-table-horizontal-scroll__table"
+        <table class="u-table-horizontal-scroll__table p-table--rpi-support"
                aria-label="Raspberry Pi support with Ubuntu">
           <thead>
             <tr>
-              <th style="width: 15%;"></th>
-              <th style="width: 10%;"></th>
-              <th style="width: 18%">
+              <th></th>
+              <th></th>
+              <th>
                 Ubuntu 26.04 <abbr title="Long-term support">LTS</abbr>
               </th>
-              <th style="width: 15%">Ubuntu Core 24</th>
+              <th>Ubuntu Core 24</th>
             </tr>
           </thead>
           <tbody>
@@ -307,7 +307,7 @@
         <div class="row p-section--shallow" id="blog-latest"></div>
       </div>
     </div>
-    <template style="display:none" id="blog-template">
+    <template id="blog-template">
       <div class="col-3 col-medium-2">
         <div class="article-image u-blog-thumbnails p-image-wrapper"></div>
         <h3 class="p-heading--5">
