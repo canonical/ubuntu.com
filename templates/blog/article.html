@@ -63,8 +63,8 @@
   {% include 'shared/_breadcrumbs.html' %}
 
   <article>
-    <header class="row">
-      <div class="aside col-3 col-medium-6">
+    <header class="grid-row">
+      <div class="aside grid-col-2 grid-col-medium-4">
         <div class="p-media-object">
           {% if article.author %}
             {% if article.author.id == 217 %}
@@ -98,7 +98,7 @@
           </div>
         </div>
       </div>
-      <div class="col-9 col-medium-6">
+      <div class="grid-col-6 grid-col-medium-4">
         <div class="p-section--shallow">
           <div class="p-section--shallow">
             <h1>{{ article.title.rendered|safe }}</h1>
@@ -117,8 +117,8 @@
         </div>
       </div>
     </header>
-    <div class="row">
-      <section class="col-6 col-start-large-4 col-medium-6">
+    <div class="grid-row">
+      <section class="grid-col-4 grid-col-start-large-3 grid-col-medium-4">
         <hr class="p-rule" />
         <button type="button"
                 id="shareArticle"
@@ -149,7 +149,7 @@
         <div class="p-post__content">{{ article.content.rendered|safe }}</div>
       </section>
       {% if article.slug != 'canonical-standing-with-ukraine' %}
-        <aside class="aside col-3 col-start-large-10 col-medium-6">
+        <aside class="aside grid-col-2 grid-col-start-large-7 grid-col-medium-4">
           {% include 'blog/product-cards.html' %}
           <div class="blog-article-newsletter">
             <div class="p-section--shallow">
@@ -242,8 +242,8 @@
     {% if tag.name == 'robotics' %}
       <section class="p-strip--image is-dark"
                style="background-image: linear-gradient(44deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%)">
-        <div class="row">
-          <div class="col-8">
+        <div class="grid-row">
+          <div class="grid-col-6">
             <h3>Are you building a robot on top of Ubuntu and looking for a partner? Talk to us!</h3>
             <p>
               <a href="/internet-of-things/contact-us?product=robotics"
@@ -251,7 +251,7 @@
             </p>
           </div>
 
-          <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
+          <div class="grid-col-2 u-align--center u-vertically-center u-hide--medium u-hide--small">
             {{ image(url="https://assets.ubuntu.com/v1/39ebd977-robot.svg",
                             alt="",
                             height="157",

@@ -47,8 +47,7 @@
   // keeps its normal multi-column card layout.
   .blog-article article {
     @media (width < $breakpoint-large) {
-      .row > [class*="col-"],
-      .grid-row > [class*="col-"] {
+      .grid-row > [class*="grid-col-"] {
         grid-column: 1 / -1;
       }
 
