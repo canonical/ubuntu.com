@@ -1,0 +1,108 @@
+@mixin ubuntu-p-engage-menu {
+  .p-engage-menu-form {
+    > * {
+      margin-right: $spv--small;
+    }
+
+    .p-engage-menu__toggle {
+      align-items: center;
+      border: 0;
+      display: flex;
+      margin-bottom: $spv--small;
+      padding: $spv--x-small $spv--small $spv--x-small $spv--large;
+
+      > span {
+        margin-right: $spv--small;
+      }
+
+      &.is-active {
+        background-color: #d9d9d9;
+      }
+    }
+
+    .p-engage-menu__count {
+      align-items: center;
+      background-color: #111;
+      border-radius: 99px;
+      color: #fff;
+      display: inline-flex;
+      font-size: $spv--medium;
+      font-weight: $font-weight-bold;
+      height: 1.1rem;
+      justify-content: center;
+      margin-right: $spv--small;
+      min-width: 1.1rem;
+      vertical-align: middle;
+    }
+
+    .p-engage-menu__dropdown {
+      background: #f7f7f7;
+      box-shadow: none;
+      width: 274px; // Matches longest text content at implementation
+
+      &--tags {
+        min-width: 100%;
+        width: max-content;
+      }
+    }
+
+    .p-engage-menu__group {
+      &--tags {
+        display: block;
+        max-height: 20rem;
+        min-width: 100%;
+        overflow-y: auto;
+        padding: $spv--small 0;
+        width: max-content;
+      }
+    }
+
+    .p-engage-menu__tag-item {
+      display: block;
+      margin: 0;
+      padding: $spv--x-small $spv--medium;
+      width: 100%;
+      text-indent: 0;
+
+      .p-checkbox__label {
+        margin: 0;
+        white-space: nowrap;
+      }
+
+      &:hover {
+        background-color: #e2e2e2;
+      }
+    }
+
+    .p-engage-menu__actions {
+      background-color: transparent;
+      border-top: 1px solid #d3d3d3;
+      display: flex;
+      justify-content: space-between;
+      padding: $spv--medium;
+    }
+
+    .p-engage-menu__action {
+      background: transparent;
+      border: 0;
+      color: #0066cc;
+      cursor: pointer;
+      margin: 0;
+      padding: 0;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .p-contextual-menu__indicator {
+      align-self: center;
+    }
+  }
+
+  .p-enage-menu-nojs-buttons {
+    align-items: flex-end;
+    display: flex;
+  }
+}
