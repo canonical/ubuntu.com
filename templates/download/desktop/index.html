@@ -65,6 +65,20 @@
                 <span class="u-text--muted">{{ releases_yaml.lts.iso_download_size }}</span>
               {% endif %}
 
+              {# === CHECKSUM: LTS amd64 === #}
+              {% if releases_yaml.checksums.desktop[releases_yaml.lts.full_version] is defined %}
+                <div class="p-code-snippet" style="margin-top:0.5rem;">
+                  <p class="u-text--muted u-no-margin--bottom" style="font-size:0.75rem;">
+                    <strong>SHA256 checksum:</strong>
+                  </p>
+                  <pre class="p-code-snippet__block" style="font-size:0.65rem;word-break:break-all;white-space:pre-wrap;"><code>{{ releases_yaml.checksums.desktop[releases_yaml.lts.full_version].split(' ')[0] }}</code></pre>
+                  <p class="u-text--muted" style="font-size:0.75rem;margin-top:0.25rem;">
+                    <a href="/tutorials/how-to-verify-ubuntu">How to verify your download&nbsp;&rsaquo;</a>
+                  </p>
+                </div>
+              {% endif %}
+              {# === END CHECKSUM: LTS amd64 === #}
+
               <script>
                 performance.mark("Download (Desktop) button rendered")
               </script>
@@ -83,6 +97,20 @@
               {% if releases_yaml.lts.arm_iso_download_size %}
                 <span class="u-text--muted">{{ releases_yaml.lts.arm_iso_download_size }}</span>
               {% endif %}
+
+              {# === CHECKSUM: LTS arm64 === #}
+              {% if releases_yaml.checksums['desktop-arm64'][releases_yaml.lts.full_version] is defined %}
+                <div class="p-code-snippet" style="margin-top:0.5rem;">
+                  <p class="u-text--muted u-no-margin--bottom" style="font-size:0.75rem;">
+                    <strong>SHA256 checksum:</strong>
+                  </p>
+                  <pre class="p-code-snippet__block" style="font-size:0.65rem;word-break:break-all;white-space:pre-wrap;"><code>{{ releases_yaml.checksums['desktop-arm64'][releases_yaml.lts.full_version].split(' ')[0] }}</code></pre>
+                  <p class="u-text--muted" style="font-size:0.75rem;margin-top:0.25rem;">
+                    <a href="/tutorials/how-to-verify-ubuntu">How to verify your download&nbsp;&rsaquo;</a>
+                  </p>
+                </div>
+              {% endif %}
+              {# === END CHECKSUM: LTS arm64 === #}
 
               <script>
                 performance.mark("Download (Desktop) button rendered")
@@ -228,6 +256,20 @@
                   <span class="u-text--muted">{{ releases_yaml.latest.iso_download_size }}</span>
                 {% endif %}
 
+                {# === CHECKSUM: Latest amd64 === #}
+                {% if releases_yaml.checksums.desktop[releases_yaml.latest.full_version] is defined %}
+                  <div class="p-code-snippet" style="margin-top:0.5rem;">
+                    <p class="u-text--muted u-no-margin--bottom" style="font-size:0.75rem;">
+                      <strong>SHA256 checksum:</strong>
+                    </p>
+                    <pre class="p-code-snippet__block" style="font-size:0.65rem;word-break:break-all;white-space:pre-wrap;"><code>{{ releases_yaml.checksums.desktop[releases_yaml.latest.full_version].split(' ')[0] }}</code></pre>
+                    <p class="u-text--muted" style="font-size:0.75rem;margin-top:0.25rem;">
+                      <a href="/tutorials/how-to-verify-ubuntu">How to verify your download&nbsp;&rsaquo;</a>
+                    </p>
+                  </div>
+                {% endif %}
+                {# === END CHECKSUM: Latest amd64 === #}
+
                 <script>
                   performance.mark("Download (Desktop) button rendered")
                 </script>
@@ -246,6 +288,20 @@
                 {% if releases_yaml.latest.arm_iso_download_size %}
                   <span class="u-text--muted">{{ releases_yaml.latest.arm_iso_download_size }}</span>
                 {% endif %}
+
+                {# === CHECKSUM: Latest arm64 === #}
+                {% if releases_yaml.checksums['desktop-arm64'][releases_yaml.latest.full_version] is defined %}
+                  <div class="p-code-snippet" style="margin-top:0.5rem;">
+                    <p class="u-text--muted u-no-margin--bottom" style="font-size:0.75rem;">
+                      <strong>SHA256 checksum:</strong>
+                    </p>
+                    <pre class="p-code-snippet__block" style="font-size:0.65rem;word-break:break-all;white-space:pre-wrap;"><code>{{ releases_yaml.checksums['desktop-arm64'][releases_yaml.latest.full_version].split(' ')[0] }}</code></pre>
+                    <p class="u-text--muted" style="font-size:0.75rem;margin-top:0.25rem;">
+                      <a href="/tutorials/how-to-verify-ubuntu">How to verify your download&nbsp;&rsaquo;</a>
+                    </p>
+                  </div>
+                {% endif %}
+                {# === END CHECKSUM: Latest arm64 === #}
 
                 <script>
                   performance.mark("Download (Desktop) button rendered")
