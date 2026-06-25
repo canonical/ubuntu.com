@@ -14,7 +14,7 @@
     
     {% if contract["renewal"] %}
       {% if contract["renewal"]["renewable"] or contract["renewal"]["actionable"] == false %}
-        <div class="u-toggle__supplemental" style="color: #666; font-size: 14px;"><i class="p-icon--{% if expired_renewable %}error u-disable{% else %}warning{% endif %}"></i>&nbsp;&nbsp;
+        <div class="u-toggle__supplemental p-contract-name__meta"><i class="p-icon--{% if expired_renewable %}error u-disable{% else %}warning{% endif %}"></i>&nbsp;&nbsp;
           {% if contract["contractInfo"]["daysTillExpiry"] < 0 %}
             Expired
           {% elif contract["contractInfo"]["daysTillExpiry"] == 0 %}

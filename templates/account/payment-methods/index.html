@@ -35,14 +35,13 @@
       <h1>Payment method</h1>
 
       <div id="default-payment-method-section"
-           class="row {% if not default_payment_method.id %}u-hide{% endif %}"
-           style="margin-top: 2rem">
+           class="row {% if not default_payment_method.id %}u-hide{% endif %} u-margin-top--x-large">
         <div class="col-4 current-payment-method">
           {% with brand=default_payment_method["brand"] %}
             {% include "account/payment-methods/_card-logo.html" %}
           {% endwith %}
           <p>
-            <span style="text-transform: capitalize;">{{ default_payment_method["brand"] }}</span> ending in {{ default_payment_method["last4"] }}
+            <span class="u-text-transform--capitalize">{{ default_payment_method["brand"] }}</span> ending in {{ default_payment_method["last4"] }}
           </p>
         </div>
         <p class="col-4 u-text--muted">Default payment method</p>
@@ -55,8 +54,7 @@
       </div>
 
       <div id="edit-payment-method-section"
-           class="row u-hide"
-           style="margin-top: 2rem">
+           class="row u-hide u-margin-top--x-large">
         <div class="col-8">
           <div id="card-element"></div>
           <span id="card-errors" class="p-form-validation__message u-hide"></span>
@@ -72,11 +70,10 @@
            class="p-strip {% if default_payment_method.id %}u-hide{% endif %}">
         <div class="row">
           <div class="u-align--right col-4">
-            <i style="width: 4rem; height: 4rem; margin-top: 0.4rem;" 
-               class="p-icon--credit-card u-hide--medium u-hide--small"></i>
+            <i class="p-icon--credit-card u-hide--medium u-hide--small p-icon--credit-card-large"></i>
           </div>
           <div class="u-align--left col-8 col-medium-4 col-small-3">
-            <p style="margin-bottom: 0;" class="p-heading--4">You have no payment method saved</p>
+            <p class="p-heading--4 u-no-margin--bottom">You have no payment method saved</p>
             <p>Add a card to resize and automatically renew your subscriptions.</p>
             <button class="p-button--positive" id="add-payment-method">Add card</button>
           </div>

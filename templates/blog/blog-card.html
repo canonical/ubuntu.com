@@ -22,7 +22,7 @@
     </p>
 
       {% if summary_visible or not article.image.source_url %}
-      <p class="{% if summary_visible %}u-hide--small{% endif %}" style="padding-top:1rem;">{{ article.excerpt.raw.replace("[…]", "")|truncate(162) }}</p>
+      <p class="{% if summary_visible %}u-hide--small{% endif %} u-padding-top--medium">{{ article.excerpt.raw.replace("[…]", "")|truncate(162) }}</p>
       {% endif %}
   </div>
 
