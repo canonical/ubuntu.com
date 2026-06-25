@@ -1,0 +1,29 @@
+@mixin ubuntu-p-engage {
+  .p-engage-form {
+    align-self: start;
+    position: sticky;
+    top: $spv--strip-regular; // Account for navigation
+    z-index: 1;
+    overflow-y: visible;
+
+    &.is-scrollable {
+      max-height: calc(100vh - #{$spv--strip-regular});
+      overflow-y: auto;
+    }
+  }
+
+  // /engage: reorder form above body content on smaller screens
+  @media only screen and (max-width: $breakpoint-large) {
+    .p-engage-form {
+      order: 1;
+      // disable custom form behavior when stacked
+      position: static;
+      max-height: none;
+      overflow-y: visible;
+    }
+
+    .p-engage-body {
+      order: 2;
+    }
+  }
+}
