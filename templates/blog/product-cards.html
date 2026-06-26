@@ -2,9 +2,7 @@
   <a class="p-card p-card--product{{ ' js-product-card u-hide' if selectable else '' }}" href="{{ url }}">
     <p class="p-heading--5">{{ heading }}</p>
     <p>{{ content }}</p>
-    <svg class="product-card__arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 14" fill="none" aria-hidden="true">
-      <path d="M0 6.92383H16M10 13.4238L16 6.92383L10 0.423828" />
-    </svg>
+    <i class="product-card__arrow" aria-hidden="true"></i>
   </a>
 {%- endmacro %}
 

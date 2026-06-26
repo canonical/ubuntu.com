@@ -38,16 +38,16 @@
       text-decoration: none;
     }
 
-    // Arrow shown at the end of each card, in place of the removed CTA link.
+    // Arrow icon at the end of each card, in place of the removed CTA link.
+    // A recolourable mask, so the colour lives here rather than in inline SVG
+    // markup repeated in the template.
     .product-card__arrow {
+      background-color: $color-brand;
+      display: inline-block;
       height: 13px;
+      mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 14" fill="none"><path d="M0 6.92383H16M10 13.4238L16 6.92383L10 0.423828" stroke="%23fff" stroke-width="1.25"/></svg>') no-repeat center / contain;
       transition: transform 0.1s ease-in-out;
       width: 16px;
-
-      path {
-        stroke: $color-brand;
-        stroke-width: 1.25px;
-      }
     }
 
     // Nudge the arrow to the right on hover.
