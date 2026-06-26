@@ -24,9 +24,9 @@
   }
 
   // Product card(s) in the blog article sidebar, above the newsletter card.
-  // The whole card is now an anchor (the CTA links were removed), so render it
-  // as a block and match the newsletter card's border hover transition.
-  #product-card .p-card {
+  // The whole card is an anchor (no CTA link), so render it as a block and
+  // match the newsletter card's border hover transition.
+  .p-card--product {
     border-color: $colors--theme--border-low-contrast;
     color: $colors--theme--text-default;
     display: block;
@@ -36,11 +36,6 @@
       border-color: $colors--theme--border-high-contrast;
       // Don't underline the whole card; the border highlight is the affordance.
       text-decoration: none;
-
-      // Nudge the arrow to the right on hover.
-      .product-card__arrow {
-        transform: translateX(8px);
-      }
     }
 
     // Arrow shown at the end of each card, in place of the removed CTA link.
@@ -53,6 +48,11 @@
         stroke: $color-brand;
         stroke-width: 1.25px;
       }
+    }
+
+    // Nudge the arrow to the right on hover.
+    &:hover .product-card__arrow {
+      transform: translateX(8px);
     }
   }
 
