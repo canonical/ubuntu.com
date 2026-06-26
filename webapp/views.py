@@ -1192,9 +1192,11 @@ def marketo_submit():
             "There was a problem submitting your form.",
             "contact-form-fail",
         )
-        with sentry_sdk.push_scope() as scope:
-            scope.set_extra("enrichment_fields", enrichment_fields)
-            sentry_sdk.capture_message("Marketo form ID missing")
+        marketo_sentry_report(
+            "Marketo form ID missing",
+            enrichment_fields=enrichment_fields,
+            form_fields=form_fields,
+        )
         return flask.redirect(f"{referrer}#contact-form-fail")
 
     payload = {
@@ -1219,16 +1221,24 @@ def marketo_submit():
         data = r.json()
 
         if "errors" in data and data["errors"][0]["code"] == "609":
+            marketo_sentry_report(
+                "Marketo form ID does not exist",
+                payload=payload,
+                response=data,
+                enrichment_fields=enrichment_fields,
+            )
             return flask.render_template(
                 "/400.html",
                 error_msg="Please ensure the form exists and try again.",
             )
 
-        if "result" not in data:
-            with sentry_sdk.push_scope() as scope:
-                scope.set_extra("payload", payload)
-                scope.set_extra("response", data)
-                sentry_sdk.capture_message("Marketo form API Issue")
+        if not data.get("result"):
+            marketo_sentry_report(
+                "Marketo form API Issue",
+                payload=payload,
+                response=data,
+                enrichment_fields=enrichment_fields,
+            )
 
             return (
                 flask.jsonify(
@@ -1237,16 +1247,13 @@ def marketo_submit():
                 400,
             )
 
-        if data["result"][0]["status"] == "skipped":
-            with sentry_sdk.push_scope() as scope:
-                scope.set_extra("payload", payload)
-                scope.set_extra("response", data)
-                sentry_sdk.capture_message(
-                    (f"Marketo form {payload['formId']} failed to submit")
-                )
-
     except Exception:
-        sentry_sdk.capture_exception(extra={"payload": payload})
+        marketo_sentry_report(
+            "Marketo form submission failed with Exception",
+            exception=True,
+            payload=payload,
+            enrichment_fields=enrichment_fields,
+        )
 
         return (
             flask.jsonify(
@@ -1262,12 +1269,25 @@ def marketo_submit():
             enriched_payload
         ).json()
     except Exception:
-        pass
+        marketo_sentry_report(
+            "Marketo enrichment form submission failed with Exception",
+            exception=True,
+            enriched_payload=enriched_payload,
+            payload=payload,
+        )
 
-    # Redirect to success page only if both submissions were successful
+    # Redirect to success page only if both submissions were successful.
+    # A "skipped" payload status means Marketo rejected the main form
+    # submission (e.g. an unexpected field such as a stray hidden input),
+    # even though the top-level API response still reports success. Treat it
+    # as an explicit failure so it can never be silently reported as success.
     payload_status = data["result"][0]["status"]
 
-    if enrichment_submission["success"] is True and data["success"] is True:
+    if (
+        enrichment_submission["success"] is True
+        and data["success"] is True
+        and payload_status != "skipped"
+    ):
         flask.flash(
             "Your form was submitted successfully.", "contact-form-success"
         )
@@ -1295,42 +1315,42 @@ def marketo_submit():
 
             return flask.redirect(return_url)
     else:
-        # Log failed form submissions to Sentry and display error notification
+        # Log every failed submission to Sentry with the tried payload, then
+        # display an error notification to the user.
         if (
             payload_status == "skipped"
             and enrichment_submission["success"] is False
         ):
-            with sentry_sdk.push_scope() as scope:
-                scope.set_extra("payload", payload)
-                scope.set_extra("enriched_payload", enriched_payload)
-                sentry_sdk.capture_message(
-                    (
-                        f"Marketo form {payload['formId']} and "
-                        "enrichment payload failed to submit"
-                    )
-                )
-            flask.flash(
-                (
-                    "There was an issue submitting the form contact details "
-                    "and payload."
-                ),
-                "contact-form-fail",
+            sentry_message = (
+                f"Marketo form {payload['formId']} and "
+                "enrichment payload failed to submit"
+            )
+            flash_message = (
+                "There was an issue submitting the form contact details "
+                "and payload."
             )
         elif payload_status == "skipped":
-            with sentry_sdk.push_scope() as scope:
-                scope.set_extra("payload", payload)
-                scope.set_extra("response", data)
-                scope.set_extra("enriched_payload", enriched_payload)
-                sentry_sdk.capture_message(
-                    (
-                        f"Marketo form {payload['formId']} "
-                        "payload failed to submit"
-                    )
-                )
-            flask.flash(
-                "There was an issue submitting the form payload.",
-                "contact-form-fail",
+            sentry_message = (
+                f"Marketo form {payload['formId']} payload failed to submit"
             )
+            flash_message = "There was an issue submitting the form payload."
+        else:
+            # Payload was accepted but enrichment failed, or the API
+            # reported failure for another reason.
+            sentry_message = (
+                f"Marketo form {payload['formId']} submission failed"
+            )
+            flash_message = "There was an issue submitting the form."
+
+        marketo_sentry_report(
+            sentry_message,
+            payload=payload,
+            response=data,
+            enriched_payload=enriched_payload,
+            enrichment_response=enrichment_submission,
+        )
+
+        flask.flash(flash_message, "contact-form-fail")
 
         if return_url:
             # Remove anchor from url
@@ -1346,6 +1366,29 @@ def marketo_submit():
         return flask.redirect(f"/thank-you?referrer={referrer}")
 
     return flask.redirect("/thank-you")
+
+
+def marketo_sentry_report(message, exception=False, **extras):
+    """
+    Report a Marketo event to Sentry, attaching any keyword arguments as extra
+    context (e.g. payload=payload, response=data).
+
+    Pass ``exception=True`` when calling from within an ``except`` block to
+    capture the active exception (preserving its traceback) with ``message``
+    attached as extra context. Otherwise the human-readable ``message`` is
+    captured directly.
+    """
+    with sentry_sdk.push_scope() as scope:
+        for key, value in extras.items():
+            scope.set_extra(key, value)
+
+        if exception:
+            scope.set_extra("message", message)
+            sentry_sdk.capture_exception()
+        else:
+            sentry_sdk.capture_message(message, level="error")
+
+        sentry_sdk.flush(timeout=2)
 
 
 def thank_you():

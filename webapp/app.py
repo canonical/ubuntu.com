@@ -284,6 +284,7 @@ def sentry_before_send(event, hint):
 if sentry_dsn:
     sentry_sdk.init(
         dsn=sentry_dsn,
+        debug=True,
         send_default_pii=True,
         environment=environment,
         integrations=[FlaskIntegration()],
