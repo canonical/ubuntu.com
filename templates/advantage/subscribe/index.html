@@ -1,23 +1,36 @@
 {% extends "advantage/base_advantage.html" %}
 
 {% block head_extra %}
-<!-- TEMP GA analytics implementation to full requirement laid out in this ticket:
- https://warthogs.atlassian.net/browse/WD-37201 -->
+  <!-- TEMP GA analytics implementation to full requirement laid out in this ticket:
+https://warthogs.atlassian.net/browse/WD-37201 -->
 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-N384JMX2');</script>
-<!-- End Google Tag Manager -->
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-N384JMX2');
+  </script>
+  <!-- End Google Tag Manager -->
 {% endblock %}
 
 {% block title %}Get Ubuntu Pro{% endblock %}
 
 {% block meta_description %}The online shop for getting your Ubuntu Pro subscription.{% endblock %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1UqL8YJH9ywvOXnrt3syY0U8fiOakfAGWmLS9uerwAWk/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1UqL8YJH9ywvOXnrt3syY0U8fiOakfAGWmLS9uerwAWk/edit
+{% endblock meta_copydoc %}
 
 {% block content %}
   <div class="p-strip is-shallow u-no-padding--bottom is-paper">
@@ -26,9 +39,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="col-medium-6 col-9 col-start-large-4">
           <div class="p-block">
             <h1 class="u-no-margin--bottom">Get Ubuntu Pro</h1>
-            <p class="p-heading--2">
-              Subscribe to Ubuntu Pro or start a free trial below
-            </p>
+            <p class="p-heading--2">Subscribe to Ubuntu Pro or start a free trial below</p>
           </div>
         </div>
       </div>
@@ -36,54 +47,96 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </section>
   </div>
 
-<div id="react-root" class="is-paper">
-  <section class="p-strip u-no-padding--top">
-    <div class="row">
-      <div class="col-12 u-no-margin--bottom p-card">
-        <i class="p-icon--spinner u-animation--spin"></i> Loading&hellip;
+  <div id="react-root" class="is-paper">
+    <section class="p-strip u-no-padding--top">
+      <div class="row">
+        <div class="col-12 u-no-margin--bottom p-card">
+          <i class="p-icon--spinner u-animation--spin"></i> Loading&hellip;
+        </div>
       </div>
-    </div>
-  </section>
-</div>
+    </section>
+  </div>
 
-<!-- form app -->
-<script
-  src="{{ versioned_static('js/dist/uaSubscribe.js') }}"
-  type="module"
-  defer
-></script>
+  <!-- form app -->
+  <script src="{{ versioned_static('js/dist/uaSubscribe.js') }}"
+          type="module"
+          defer></script>
 
-<script defer>
-  var productList = {
-    {% for listing_id, listing in product_listings.items() %}
+  <script defer>
+    var productList = {
+      {
+        %
+        for listing_id, listing in product_listings.items() %
+      }
       "{{ listing.product.id }}-{{ listing.period }}": {
         id: "{{ listing.product.id }}-{{ listing.period }}",
         longId: "{{ listing.id }}",
         name: "{{ listing.product.name }}",
         price: {
-          value: {{ listing.price }},
+          value: {
+            {
+              listing.price
+            }
+          },
           currency: "{{ listing.currency }}"
         },
         period: "{{ listing.period }}",
         productID: "{{ listing.product.id }}",
-        canBeTrialled: {% if listing.can_be_trialled %}true{% else %}false{% endif %},
+        canBeTrialled: {
+          %
+          if listing.can_be_trialled %
+        }
+        true {
+          %
+          else %
+        }
+        false {
+          % endif %
+        },
         private: false,
         marketplace: "canonical-ua",
       },
-    {% endfor %}
-  };
+      {
+        % endfor %
+      }
+    };
 
-  var accountId = "{% if account %}{{ account.id }}{% endif %}";
-  var isLoggedIn = {% if user_info %}true{% else %}false{% endif %};
-  var isTrialling = {% if is_trialling %}true{% else %}false{% endif %};
-  var accountName = "{% if account %}{{ account.name }}{% endif %}";
-  var previousPurchaseIds = {
-    {% for period, id in previous_purchase_ids.items() %}
+    var accountId = "{% if account %}{{ account.id }}{% endif %}";
+    var isLoggedIn = {
+      %
+      if user_info %
+    }
+    true {
+      %
+      else %
+    }
+    false {
+      % endif %
+    };
+    var isTrialling = {
+      %
+      if is_trialling %
+    }
+    true {
+      %
+      else %
+    }
+    false {
+      % endif %
+    };
+    var accountName = "{% if account %}{{ account.name }}{% endif %}";
+    var previousPurchaseIds = {
+      {
+        %
+        for period, id in previous_purchase_ids.items() %
+      }
       "{{ period }}": "{{ id }}",
-    {% endfor %}
-  }
+      {
+        % endfor %
+      }
+    }
 
-  window.stripePublishableKey = "{{ get_stripe_publishable_key }}";
-</script>
+    window.stripePublishableKey = "{{ get_stripe_publishable_key }}";
+  </script>
 
 {% endblock %}
