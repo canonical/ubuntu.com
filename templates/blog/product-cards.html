@@ -28,7 +28,11 @@
     {% include "blog/product-cards/_community.html" %}
 
     {# cyber resilience act tag cards #}
-  {% elif article.tags and (4632 in article.tags or 1665 in article.tags) %}
+  {% elif article.tags and 4632 in article.tags %}
+    {% include "blog/product-cards/_cyber_resilience_act.html" %}
+
+    {# community tag cards (IoT/embedded articles) #}
+  {% elif article.tags and 1665 in article.tags %}
     {% include "blog/product-cards/_community.html" %}
 
     {# OpenSearch tag cards #}
@@ -97,7 +101,6 @@
     {# Kubeflow tag cards #}
   {% elif article.tags and (2609 in article.tags or 4018 in article.tags or 4062 in article.tags or 2067 in article.tags) %}
     {% include "blog/product-cards/_kubeflow_what-is-kubeflow.html" %}
-    {% include "blog/product-cards/_kubeflow_deploy-tutorial.html" %}
 
     {# Bootstack tag cards #}
   {% elif article.tags and (1327 in article.tags or 4315 in article.tags) %}
@@ -126,25 +129,28 @@
 
     {# Legacy fallback content #}
   {% elif article.group and article.group.slug == "support" %}
-    <div class="p-card" id="rtp-support">
-      <h3>
-        <a href="/support">Enterprise support for your full open source stack</a>
-      </h3>
+    <a class="p-card" id="rtp-support" href="/support">
+      <h5>
+        Enterprise support for your full open source stack
+      </h5>
       <p>
         Build with confidence and operate at scale with enterprise support from Canonical.
         Our global team of experts is available 24/7 to provide the best support experience for Ubuntu and your full open source stack, from infrastructure to applications.
       </p>
-      <p>
-        <a href="/support">Learn more&nbsp;&rsaquo;</a>
-      </p>
-    </div>
+      <svg class="product-card__arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 14" fill="none" aria-hidden="true">
+        <path d="M0 6.92383H16M10 13.4238L16 6.92383L10 0.423828"/>
+      </svg>
+    </a>
   {% else %}
-    <div class="p-card" id="rtp-contact-us">
-      <h3>
-        <a href="/about/contact-us/form">Talk to us today</a>
-      </h3>
-      <p>Interested in running Ubuntu in your organisation?</p>
-    </div>
+    <a class="p-card" id="rtp-contact-us" href="/about/contact-us/form">
+      <h5>
+        Get in touch
+      </h5>
+      <p>Interested in running Ubuntu in your organization?</p>
+      <svg class="product-card__arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 14" fill="none" aria-hidden="true">
+        <path d="M0 6.92383H16M10 13.4238L16 6.92383L10 0.423828"/>
+      </svg>
+    </a>
   {% endif %}
 </div>
 
