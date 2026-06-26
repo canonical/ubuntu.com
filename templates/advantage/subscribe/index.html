@@ -1,28 +1,6 @@
+{% set gtm_container_id = "GTM-N384JMX2" %}
+
 {% extends "advantage/base_advantage.html" %}
-
-{% block head_extra %}
-  <!-- TEMP GA analytics implementation to full requirement laid out in this ticket:
-https://warthogs.atlassian.net/browse/WD-37201 -->
-
-  <!-- Google Tag Manager -->
-  <script>
-    (function(w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js'
-      });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != 'dataLayer' ? '&l=' + l : '';
-      j.async = true;
-      j.src =
-        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-N384JMX2');
-  </script>
-  <!-- End Google Tag Manager -->
-{% endblock %}
 
 {% block title %}Get Ubuntu Pro{% endblock %}
 
