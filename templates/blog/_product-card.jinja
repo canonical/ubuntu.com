@@ -1,0 +1,7 @@
+{% macro product_card(url, heading, content, selectable=true) -%}
+  <a class="p-card p-card--product{{ ' js-product-card u-hide' if selectable else '' }}" href="{{ url }}">
+    <p class="p-heading--5">{{ heading }}</p>
+    <p>{{ content }}</p>
+    <i class="product-card__arrow" aria-hidden="true"></i>
+  </a>
+{%- endmacro %}

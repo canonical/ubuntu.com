@@ -38,6 +38,11 @@
       text-decoration: none;
     }
 
+    // The whole card is a link; don't apply the visited colour to its text.
+    &:visited {
+      color: $colors--theme--text-default;
+    }
+
     // Arrow icon at the end of each card, in place of the removed CTA link.
     // A recolourable mask, so the colour lives here rather than in inline SVG
     // markup repeated in the template.
