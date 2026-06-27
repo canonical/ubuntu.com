@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Col, Row, Select, StatusLabel } from "@canonical/react-components";
+import { Chip, Col, Row, Select } from "@canonical/react-components";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 import {
   isIoTDevice,
@@ -117,14 +117,17 @@ const ProductSummary = () => {
             className={"u-align--right"}
             size={4}
             emptyLarge={9}
-            style={{ display: "flex", alignItems: "center" }}
+            style={{ display: "flex", alignItems: "flex-end" }}
           >
             {product?.canBeTrialled && productUser !== ProductUsers.myself ? (
-              <StatusLabel appearance="positive">
-                Free trial on checkout
-              </StatusLabel>
+              <Chip
+                appearance="positive"
+                style={{ marginRight: "1rem", marginBottom: "0" }}
+                value="Free trial on checkout"
+              >
+              </Chip>
             ) : null}
-            <PaymentButton />
+            <PaymentButton style={{ marginBottom: "0" }} />
           </Col>
         </Row>
       </section>
@@ -206,13 +209,16 @@ const ProductSummary = () => {
             </p>
           </Col>
           <Col size={12}>
-            <PaymentButton />
+            <PaymentButton style={{ marginBottom: "0" }} />
           </Col>
           {product?.canBeTrialled && productUser !== ProductUsers.myself ? (
             <Col size={12}>
-              <StatusLabel appearance="positive">
-                Free trial on checkout
-              </StatusLabel>
+              <Chip
+                appearance="positive"
+                style={{ marginRight: "1rem", marginBottom: "0" }}
+                value="Free trial on checkout"
+              >
+              </Chip>
             </Col>
           ) : null}
         </Row>
