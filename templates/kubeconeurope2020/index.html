@@ -42,7 +42,7 @@
              href="/kubernetes/contact-us"
              aria-controls="kubernetes-contact-modal">Contact us</p>
         </div>
-        <script>
+        <script nonce="{{ csp_nonce }}">
           document.addEventListener("DOMContentLoaded", function () {
             var livechatButton = document.querySelector(".js-livechat-open");
             if (livechatButton) {

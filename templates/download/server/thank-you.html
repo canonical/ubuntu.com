@@ -236,8 +236,8 @@
     </template>
   </section>
 
-  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-  <script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script nonce="{{ csp_nonce }}">
     canonicalLatestNews.fetchLatestNews({
       articlesContainerSelector: "#ubuntu-server-latest",
       articleTemplateSelector: "#ubuntu-server-template",
@@ -250,9 +250,9 @@
 {% endblock content %}
 
 {% block footer_extra %}
-  <script src="{{ versioned_static('js/dist/image-download.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/image-download.js') }}"></script>
 
-  <script defer>
+  <script nonce="{{ csp_nonce }}" defer>
     var architecture = '{{ architecture }}';
     var version = '{{ version }}';
     if (version) {

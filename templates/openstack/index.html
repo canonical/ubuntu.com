@@ -20,7 +20,7 @@
 {% endblock meta_copydoc %}
 
 {% block extra_metatags %}
-  <script type="module"
+  <script nonce="{{ csp_nonce }}" type="module"
           src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"></script>
 {% endblock extra_metatags %}
 

@@ -108,6 +108,7 @@ CSP = {
     ],
     "script-src-elem": [
         "'self'",
+        "'strict-dynamic'",
         "assets.ubuntu.com",
         "www.google-analytics.com",
         "www.googletagmanager.com",
@@ -148,7 +149,6 @@ CSP = {
         "*.g.doubleclick.net",
         "extend.vimeocdn.com",
         "tracking-api.g2.com",
-        "'unsafe-inline'",
     ],
     "font-src": [
         "'self'",
@@ -165,8 +165,6 @@ CSP = {
         "*.google.com",
         "*.livechat-static.com",
         "'unsafe-eval'",
-        "'unsafe-hashes'",
-        "'unsafe-inline'",
     ],
     "connect-src": [
         "'self'",
@@ -290,3 +288,9 @@ CSP = {
         "https://support.stripe.com",
     ],
 }
+
+
+# CSP directives that receive the per-request nonce. With 'strict-dynamic' in
+# script-src-elem, the nonce authorises page scripts (and scripts they load),
+# replacing the removed 'unsafe-inline'.
+NONCED_DIRECTIVES = ("script-src", "script-src-elem")
