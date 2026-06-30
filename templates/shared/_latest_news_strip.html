@@ -20,7 +20,7 @@
     {% if not is_title_link %}
         Latest {{ heading_topic }} news from
     {% endif %}
-    <a href="/blog{% if tag_name %}/tag/{{ tag_name }}{% endif %}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com{% if tag_name %}/{{ tag_name }}{% else %} homepage{% endif %}', 'eventValue' : undefined });">{% if is_title_link %}Latest {{ heading_topic }} news from {% endif %}our blog&nbsp;&rsaquo;</a>
+    <a href="/blog{% if tag_name %}/tag/{{ tag_name }}{% endif %}" data-ga-category="blog" data-ga-action="clicks blog feed link" data-ga-label="ubuntu.com{% if tag_name %}/{{ tag_name }}{% else %} homepage{% endif %}">{% if is_title_link %}Latest {{ heading_topic }} news from {% endif %}our blog&nbsp;&rsaquo;</a>
     </h2>
   </div>
   <div class="row">

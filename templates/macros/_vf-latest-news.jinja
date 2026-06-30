@@ -46,7 +46,7 @@
     <div class="row p-section--shallow">
       <h2>
         <a href="{{ heading_url }}"
-           onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : '{{ gtm_event_label }}', 'eventValue' : undefined });">{{ title_text }}</a>
+           data-ga-category="blog" data-ga-action="clicks blog feed link" data-ga-label="{{ gtm_event_label }}">{{ title_text }}</a>
       </h2>
     </div>
 

@@ -9,7 +9,7 @@
     {# Multipass #}
     <div class="col-4 js-everywhere js-windows js-macos js-linux">
       <h4>
-        <a href="https://multipass.run" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'Multipass', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
+        <a href="https://multipass.run" data-ga-category="Download everywhere" data-ga-action="Multipass" data-ga-label="{{ request.path }}">
           {{
             image(
             url="https://assets.ubuntu.com/v1/ea34f006-Multipass+logomark_rgb.svg",
@@ -26,7 +26,7 @@
             On-demand VMs for cloud devs on Windows, Mac and Linux desktops with Multipass.
           </p>
           <p class="u-align--right">
-            <a class="p-button" href="https://multipass.run"  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'Multipass', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
+            <a class="p-button" href="https://multipass.run"  data-ga-category="Download everywhere" data-ga-action="Multipass" data-ga-label="{{ request.path }}">
               Get Multipass
             </a>
           </p>
@@ -35,7 +35,7 @@
         {# MircoK8s #}
         <div class="col-4 u-hide">
           <h4>
-            <a href="https://microk8s.io" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'MicroK8s', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
+            <a href="https://microk8s.io" data-ga-category="Download everywhere" data-ga-action="MicroK8s" data-ga-label="{{ request.path }}">
               {{
                 image(
                 url="https://assets.ubuntu.com/v1/9309d097-MicroK8s_SnapStore_icon.svg",
@@ -54,7 +54,7 @@
             The smallest, simplest, pure production K8s. For clusters, laptops, IoT and Edge.
           </p>
           <p class="u-align--right">
-            <a class="p-button" href="https://microk8s.io" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'MicroK8s', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
+            <a class="p-button" href="https://microk8s.io" data-ga-category="Download everywhere" data-ga-action="MicroK8s" data-ga-label="{{ request.path }}">
               Get MicroK8s
             </a>
           </p>
@@ -63,7 +63,7 @@
         {# Raspberry pi #}
         <div class="col-4 js-everywhere js-macos js-linux">
           <h4>
-            <a href="/raspberry-pi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'Raspberry pi', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
+            <a href="/raspberry-pi" data-ga-category="Download everywhere" data-ga-action="Raspberry pi" data-ga-label="{{ request.path }}">
               {{
                 image(
                 url="https://assets.ubuntu.com/v1/a8a6238c-RGB+RPi.svg",
@@ -82,7 +82,7 @@
             Running Ubuntu Desktop or Server on your Raspberry Pi is easy.
           </p>
           <p class="u-align--right">
-            <a class="p-button" href="/raspberry-pi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'Raspberry pi', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
+            <a class="p-button" href="/raspberry-pi" data-ga-category="Download everywhere" data-ga-action="Raspberry pi" data-ga-label="{{ request.path }}">
               Get Ubuntu on your Raspberry Pi
             </a>
           </p>
@@ -91,7 +91,7 @@
         {# WSL #}
         <div class="col-4 js-everywhere js-windows">
           <h4>
-            <a href="/wsl" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'WSL', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
+            <a href="/wsl" data-ga-category="Download everywhere" data-ga-action="WSL" data-ga-label="{{ request.path }}">
               {{
                 image(
                 url="https://assets.ubuntu.com/v1/08563efa-picto-windows.svg",
@@ -110,7 +110,7 @@
             Install a Ubuntu terminal environment with Windows Subsystem for Linux (WSL).
           </p>
           <p class="u-align--right">
-            <a class="p-button" href="/wsl" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'WSL', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
+            <a class="p-button" href="/wsl" data-ga-category="Download everywhere" data-ga-action="WSL" data-ga-label="{{ request.path }}">
               Get started with WSL
             </a>
           </p>
@@ -119,7 +119,7 @@
         {# Appliances #}
         <div class="col-4 js-everywhere js-windows js-macos js-linux">
           <h4>
-            <a href="/appliance" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'appliance', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
+            <a href="/appliance" data-ga-category="Download everywhere" data-ga-action="appliance" data-ga-label="{{ request.path }}">
               {{
                 image(
                 url="https://assets.ubuntu.com/v1/88733b21-appliance.svg",
@@ -138,7 +138,7 @@
             Download a free appliance image for your PC, Raspberry Pi or a virtual machine.
           </p>
           <p class="u-align--right">
-            <a class="p-button" href="/appliance" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'appliance', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
+            <a class="p-button" href="/appliance" data-ga-category="Download everywhere" data-ga-action="appliance" data-ga-label="{{ request.path }}">
               Try an instant appliance now
             </a>
           </p>
