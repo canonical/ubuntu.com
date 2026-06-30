@@ -9,9 +9,8 @@
         <hr />
       </div>
       <div class="col">
-        <button class="p-modal__close"
-                aria-label="Close active modal"
-                onclick="toggleModal()">Close</button>
+        <button class="p-modal__close js-toggle-cheatsheet-modal"
+                aria-label="Close active modal">Close</button>
         <form action="/marketo/submit" method="post" id="mktoForm_3485">
           <div class="p-section--shallow">
             <label class="is-required" for="firstName">First name:</label>
@@ -144,4 +143,10 @@
       targetControls.classList.toggle('u-hide');
     }
   }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".js-toggle-cheatsheet-modal").forEach(function (button) {
+      button.addEventListener("click", toggleModal);
+    });
+  });
 </script>
