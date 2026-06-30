@@ -173,7 +173,7 @@
     rel="noopener noreferrer">privacy policy</a>. Your use of Ubuntu on IBM Z and LinuxONE in production constitutes <a href="https://canonical.com/legal">acceptance of these terms</a>.
             </p>
 
-            <button onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'LinuxONE server', 'eventLabel' : '{{ releases_yaml.lts.short_version }}', 'eventValue' : undefined });"
+            <button data-ga-category="Download" data-ga-action="LinuxONE server" data-ga-label="{{ releases_yaml.lts.short_version }}"
                     type="submit"
                     class="p-button--positive">Accept terms and download</button>
             <input type="hidden" aria-hidden="true" name="formid" value="1400" />
