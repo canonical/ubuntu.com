@@ -15,7 +15,7 @@
 {% endblock body_class %}
 
 {% block extra_metatags %}
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1.9.0/lite-youtube.min.js"
+  <script nonce="{{ csp_nonce }}" type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1.9.0/lite-youtube.min.js"
           integrity="sha384-krUlgvxdz2iSLnbpvxj8zLWWUCa3QxzwLbW3EXmbzXCoAQ+ANH1cWJYRMc/TErh+"
           crossorigin="anonymous"></script>
 {% endblock extra_metatags %}
@@ -497,8 +497,8 @@
     </div>
   </section>
 
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
-  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
 
   {{ load_form("/security-standards", 6306) | safe }}
 

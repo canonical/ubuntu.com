@@ -125,7 +125,7 @@
       </div>
     {% endif %}
   </section>
-  <script>
+  <script nonce="{{ csp_nonce }}">
     function clearFilters() {
       const clearFiltersButton = document.querySelector(".js-clear-filters");
       window.location.assign("/engage");

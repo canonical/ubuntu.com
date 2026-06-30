@@ -394,8 +394,8 @@
 
   {{ load_form("/security/compliance-automation-value-calculator") | safe }}
 
-  <script src="{{ versioned_static('js/src/slider-base.js') }}"></script>
-  <script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/src/slider-base.js') }}"></script>
+  <script nonce="{{ csp_nonce }}">
     // Profile definitions based on actual benchmark specifications
     const profiles = {
       1: {

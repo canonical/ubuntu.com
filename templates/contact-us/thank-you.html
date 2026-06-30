@@ -540,10 +540,10 @@
         </div>
     </template>
 
-    <script type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
+    <script nonce="{{ csp_nonce }}" type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
 
-    <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-    <script>
+    <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+    <script nonce="{{ csp_nonce }}">
         canonicalLatestNews.fetchLatestNews({
             imageClasses: ["p-image-container__image"],
             limit: "4",
@@ -555,7 +555,7 @@
         })
     </script>
 
-    <script>
+    <script nonce="{{ csp_nonce }}">
         document.addEventListener("DOMContentLoaded", function () {
             var stringifyForm = document.querySelector(".js-stringify-form");
             if (stringifyForm) {
@@ -585,7 +585,7 @@
 {% endblock content %}
 {% block footer_extra %}
 <!-- Google Code for Services Canonical - contact us Conversion Page -->
-<script>
+<script nonce="{{ csp_nonce }}">
 /* <![CDATA[ */
 var google_conversion_id = 1012391776;
 var google_conversion_language = "en";
@@ -595,7 +595,7 @@ var google_conversion_label = "utP4CMDOwQMQ4L7f4gM";
 var google_conversion_value = 0;
 /* ]]> */
 </script>
-<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+<script nonce="{{ csp_nonce }}" type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
 </script>
 <noscript>
 <div style="display:inline;">
