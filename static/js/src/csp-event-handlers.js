@@ -8,7 +8,10 @@
  *  - data-ga-extra-category / -action / -label (secondary click on same element)
  *  - data-ga-submit-category / -action / -label (form submit events)
  *
- * Each handler pushes a `GAEvent` to window.dataLayer for Google Tag Manager.
+ * Each GA handler pushes a `GAEvent` to window.dataLayer for Google Tag Manager.
+ *
+ * Also wires CSP-safe replacements for inline UI handlers:
+ *  - data-js-back navigates back to the referring page (notification close)
  */
 (function () {
   "use strict";
@@ -62,5 +65,13 @@
           );
         });
       });
+
+    // Notification "Close" links: navigate back to the referring page.
+    document.querySelectorAll("[data-js-back]").forEach(function (el) {
+      el.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.location.href = document.referrer || "/";
+      });
+    });
   });
 })();

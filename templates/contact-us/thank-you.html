@@ -377,10 +377,12 @@
             <div class="grid-col">
                 <p>Get the latest Ubuntu news and updates in your inbox.</p>
                 <form action="/marketo/submit"
-                    onsubmit="stringifyCustomFields(); ga('send', 'Newsletter', 'Signup', 'contact thank you newsletter signup');"
+                    data-ga-submit-category="Newsletter"
+                    data-ga-submit-action="Signup"
+                    data-ga-submit-label="contact thank you newsletter signup"
                     method="post"
                     id="mktoForm_4960"
-                    class="modal-form">
+                    class="modal-form js-stringify-form">
                     <label class="is-required" for="email">Email:</label>
                     <input required
                             id="email"
@@ -554,6 +556,13 @@
     </script>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var stringifyForm = document.querySelector(".js-stringify-form");
+            if (stringifyForm) {
+                stringifyForm.addEventListener("submit", stringifyCustomFields);
+            }
+        });
+
         function stringifyCustomFields() {
             const checkboxes = document.querySelectorAll(".js-checkbox");
             const textarea = document.getElementById("ubuntu_desktop_usage");
