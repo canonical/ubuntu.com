@@ -36,7 +36,7 @@ export var serverAndDesktopReleases = [
     status: "MAIN_UNIVERSE",
   },
   {
-    startDate: new Date("2026-05-01T00:00:00"),
+    startDate: new Date("2026-05-02T00:00:00"),
     endDate: new Date("2031-05-02T00:00:00"),
     taskName: "16.04 LTS (Xenial Xerus)",
     status: "PRO_LEGACY_SUPPORT",
@@ -84,7 +84,7 @@ export var serverAndDesktopReleases = [
     status: "MAIN_UNIVERSE",
   },
   {
-    startDate: new Date("2030-05-01T00:00:00"),
+    startDate: new Date("2030-05-02T00:00:00"),
     endDate: new Date("2035-05-02T00:00:00"),
     taskName: "20.04 LTS (Focal Fossa)",
     status: "PRO_LEGACY_SUPPORT",
@@ -135,30 +135,6 @@ export var serverAndDesktopReleases = [
     startDate: new Date("2034-05-25T00:00:00"),
     endDate: new Date("2039-05-25T00:00:00"),
     taskName: "24.04 LTS (Noble Numbat)",
-    status: "PRO_LEGACY_SUPPORT",
-  },
-  {
-    startDate: new Date("2026-04-23T00:00:00"),
-    endDate: new Date("2036-05-23T00:00:00"),
-    taskName: "26.04 LTS (Resolute Raccoon)",
-    status: "MAIN_UNIVERSE",
-  },
-  {
-    startDate: new Date("2026-04-23T00:00:00"),
-    endDate: new Date("2031-05-23T00:00:00"),
-    taskName: "26.04 LTS (Resolute Raccoon)",
-    status: "HARDWARE_AND_MAINTENANCE_UPDATES",
-  },
-  {
-    startDate: new Date("2031-05-23T00:00:00"),
-    endDate: new Date("2036-05-23T00:00:00"),
-    taskName: "26.04 LTS (Resolute Raccoon)",
-    status: "ESM",
-  },
-  {
-    startDate: new Date("2036-05-23T00:00:00"),
-    endDate: new Date("2041-05-23T00:00:00"),
-    taskName: "26.04 LTS (Resolute Raccoon)",
     status: "PRO_LEGACY_SUPPORT",
   },
   {
