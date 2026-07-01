@@ -603,6 +603,7 @@ def certified_model_details(canonical_id):
             "notes": model_release["notes"],
             "version": ubuntu_version,
             "download_url": get_download_url(model_release),
+            "release_notes_url": model_release.get("release_notes_url"),
             "components": {},
         }
 
