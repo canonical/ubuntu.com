@@ -1,5 +1,5 @@
 ---
-# GH agentic workflow frontmatter docs: 
+# GH agentic workflow frontmatter docs:
 # https://github.github.com/gh-aw/reference/frontmatter-full/#complete-frontmatter-reference
 # Triggered when the "copilot" label is added to an issue.
 # Only runs for users with write access (admin, maintainer, write roles).
