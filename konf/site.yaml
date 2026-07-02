@@ -626,7 +626,7 @@ production:
     if ($http_user_agent ~* "(GPTBot|ChatGPT-User|OAI-SearchBot|ClaudeBot|Claude-Web|anthropic-ai|CCBot|Google-Extended|PerplexityBot|Bytespider|Amazonbot|Diffbot|DataForSeoBot|ImagesiftBot|Omgili|meta-externalagent|cohere-ai|MJ12bot)") {
       set $disc_bot "b";
     }
-    if ($request_uri ~* "^/(engage(/|$|\?)|ceph/docs|openstack/docs|security/livepatch/docs|security/certifications/docs|takeovers\.json)") {
+    if ($request_uri ~* "^/(engage|ceph/docs|openstack/docs|security/livepatch/docs|security/certifications/docs|takeovers\.json)(/|$|\?)") {
       set $disc_bot "${disc_bot}p";
     }
     if ($disc_bot = "bp") {
@@ -1223,7 +1223,7 @@ staging:
     if ($http_user_agent ~* "(GPTBot|ChatGPT-User|OAI-SearchBot|ClaudeBot|Claude-Web|anthropic-ai|CCBot|Google-Extended|PerplexityBot|Bytespider|Amazonbot|Diffbot|DataForSeoBot|ImagesiftBot|Omgili|meta-externalagent|cohere-ai|MJ12bot)") {
       set $disc_bot "b";
     }
-    if ($request_uri ~* "^/(engage(/|$|\?)|ceph/docs|openstack/docs|security/livepatch/docs|security/certifications/docs|takeovers\.json)") {
+    if ($request_uri ~* "^/(engage|ceph/docs|openstack/docs|security/livepatch/docs|security/certifications/docs|takeovers\.json)(/|$|\?)") {
       set $disc_bot "${disc_bot}p";
     }
     if ($disc_bot = "bp") {
