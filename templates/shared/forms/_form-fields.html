@@ -31,44 +31,44 @@
             <div class="col">
               <ul class="p-list">
                 {% if fieldset_id == "about-you" %}
-                  <label class="is-required" for="firstName">First name:</label>
-                  <input required
+                  <label for="firstName">First name:</label>
+                  <input
                          id="firstName"
                          name="firstName"
                          maxlength="255"
                          autocomplete="given-name"
                          type="text" />
-                  <label class="is-required" for="lastName">Last name:</label>
-                  <input required
+                  <label for="lastName">Last name:</label>
+                  <input
                          id="lastName"
                          name="lastName"
                          maxlength="255"
                          autocomplete="family-name"
                          type="text" />
-                  <label class="is-required" for="email">Email:</label>
-                  <input required
+                  <label for="email">Email:</label>
+                  <input 
                          id="email"
                          name="email"
                          maxlength="255"
                          autocomplete="email"
                          type="email"
                          pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
-                  <label class="is-required" for="company">Company:</label>
-                  <input required
+                  <label for="company">Company:</label>
+                  <input
                          id="company"
                          name="company"
                          maxlength="255"
                          autocomplete="organization"
                          type="text" />
-                  <label class="is-required" for="title">Job Title:</label>
-                  <input required
+                  <label for="title">Job Title:</label>
+                  <input
                          id="title"
                          name="title"
                          maxlength="255"
                          autocomplete="organization-title"
                          type="text" />
 
-                  {% with required = true %}
+                  {% with required = false %}
                     {% include "shared/forms/_country.html" %}
                   {% endwith %}
 
