@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - WD-37012/blog-categories
 
 concurrency: 
   group: ubuntu-com-deploy
@@ -127,6 +128,7 @@ jobs:
           juju wait-for application $CHARM_NAME --query="name=='$CHARM_NAME' && (status=='active' || status=='idle')"
 
   deploy-production:
+    if: github.ref == 'refs/heads/main'
     runs-on:
       [self-hosted, self-hosted-linux-amd64-jammy-private-endpoint-medium]
     needs: [pack-charm, publish-image, deploy-staging]
