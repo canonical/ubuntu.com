@@ -8,6 +8,8 @@ on:
   issues:
     types: [labeled]
   roles: [admin, maintainer, write]
+  permissions:
+    contents: read
 
 if: github.event.label.name == 'copilot'
 
