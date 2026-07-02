@@ -1076,6 +1076,32 @@ def marketo_submit():
         if flask.request.referrer
         else "https://ubuntu.com"
     )
+
+    # Reject submissions missing any mandatory field. Empty values are
+    # dropped from form_fields above, so this catches both missing and
+    # blank fields (e.g. spam that only posts a valid formid).
+    required_fields = {
+        "firstName": "First name",
+        "lastName": "Last name",
+        "email": "Email",
+        "company": "Company",
+        "title": "Job title",
+        "country": "Country",
+        "phone": "Phone number",
+    }
+    missing_required = [
+        label
+        for field, label in required_fields.items()
+        if not form_fields.get(field, "").strip()
+    ]
+    if missing_required:
+        flask.flash(
+            "There was a problem submitting your form. Please complete the "
+            f"following required fields: {', '.join(missing_required)}.",
+            "contact-form-fail",
+        )
+        return flask.redirect(f"{referrer}#contact-form-fail")
+
     client_ip = flask.request.headers.get(
         "X-Real-IP", flask.request.remote_addr
     )
