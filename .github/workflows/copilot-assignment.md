@@ -28,6 +28,7 @@ safe-outputs:
     name: copilot
     target: triggering
     model: gpt-5
+    github-token: ${{ secrets.GH_AW_AGENT_TOKEN }}
 ---
 
 Assign the GitHub Copilot coding agent to this issue. The agent will read the issue, implement a solution, and open a pull request for review.
