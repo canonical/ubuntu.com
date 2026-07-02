@@ -32,7 +32,7 @@ from canonicalwebteam.directory_parser import generate_sitemap
 from geolite2 import geolite2
 from requests import Session
 from requests.exceptions import HTTPError
-from werkzeug.exceptions import BadRequest
+from werkzeug.exceptions import BadRequest, ServiceUnavailable
 from canonicalwebteam.flask_base.env import get_flask_env
 
 # Local
@@ -52,6 +52,74 @@ marketo_api = MarketoAPI(
     marketo_session,
 )
 GITHUB_TOKEN = get_flask_env("GITHUB_TOKEN")
+
+
+# Circuit breaker + response cache shared across Discourse-backed views (per
+# worker process). discourse.ubuntu.com rate-limits our admin Data Explorer
+# API; when it returns HTTP 429 we open a short circuit breaker and serve
+# stale data instead of hammering it, which is what turns a burst of crawler
+# traffic into a self-sustaining 429 storm.
+_DISCOURSE_COOLDOWN = {"until": 0.0}
+_DISCOURSE_COOLDOWN_MIN = 60
+_DISCOURSE_COOLDOWN_MAX = 600
+
+
+def _http_error_status_code(error):
+    response = getattr(error, "response", None)
+    if response is None:
+        return None
+    return response.status_code
+
+
+def _start_discourse_cooldown(error):
+    delay = _DISCOURSE_COOLDOWN_MIN
+    response = getattr(error, "response", None)
+    if response is not None:
+        retry_after = response.headers.get("Retry-After", "")
+        if retry_after.isdigit():
+            delay = int(retry_after)
+    delay = min(max(delay, _DISCOURSE_COOLDOWN_MIN), _DISCOURSE_COOLDOWN_MAX)
+    _DISCOURSE_COOLDOWN["until"] = time.time() + delay
+
+
+def _cached_fetch(cache, key, fetcher, ttl):
+    """Return cached data, refreshing via ``fetcher`` when stale.
+
+    Fresh data is served from ``cache`` for ``ttl`` seconds. When Discourse
+    rate-limits us (HTTP 429) we open a circuit breaker: subsequent calls
+    serve stale data if available, otherwise raise ``ServiceUnavailable``
+    (503) without calling Discourse until the cooldown expires.
+    """
+    cached = cache.get(key)
+    now = time.time()
+
+    if cached and now - cached["ts"] < ttl:
+        return cached["data"]
+
+    if now < _DISCOURSE_COOLDOWN["until"]:
+        if cached:
+            return cached["data"]
+        raise ServiceUnavailable(
+            "Discourse is rate-limiting requests; please retry shortly."
+        )
+
+    try:
+        data = fetcher()
+    except HTTPError as error:
+        sentry_sdk.capture_exception(error)
+        if _http_error_status_code(error) == 429:
+            _start_discourse_cooldown(error)
+            if cached:
+                return cached["data"]
+            raise ServiceUnavailable(
+                "Discourse is rate-limiting requests; please retry shortly."
+            )
+        if cached:
+            return cached["data"]
+        raise
+
+    cache[key] = {"data": data, "ts": now}
+    return data
 
 
 def _build_mirror_list(local=False, country_code=None):
@@ -428,6 +496,9 @@ def build_tutorials_index(session, tutorials_docs):
 
 
 def build_engage_index(engage_docs):
+    index_cache = {}
+    tags_cache = {}
+
     def engage_index():
         page = flask.request.args.get("page", default=1, type=int)
         preview = flask.request.args.get("preview")
@@ -437,30 +508,32 @@ def build_engage_index(engage_docs):
         limit = 21  # adjust as needed
         offset = (page - 1) * limit
 
-        if tag or resource or language:
-            (
-                metadata,
-                count,
-                active_count,
-                current_total,
-            ) = engage_docs.get_index(
-                limit,
-                offset,
-                tag_value=tag,
-                key="type",
-                value=resource,
-                second_key="language",
-                second_value=language,
-            )
-        else:
-            (
-                metadata,
-                count,
-                active_count,
-                current_total,
-            ) = engage_docs.get_index(
+        def _fetch_index():
+            if tag or resource or language:
+                return engage_docs.get_index(
+                    limit,
+                    offset,
+                    tag_value=tag,
+                    key="type",
+                    value=resource,
+                    second_key="language",
+                    second_value=language,
+                )
+            return engage_docs.get_index(
                 limit, offset, key="is_static", value=None
             )
+
+        (
+            metadata,
+            count,
+            active_count,
+            current_total,
+        ) = _cached_fetch(
+            index_cache,
+            (page, language, resource, tag),
+            _fetch_index,
+            ttl=300,
+        )
 
         # Fixed so that engage page authors don't create random resource types
         resource_types = [
@@ -471,7 +544,12 @@ def build_engage_index(engage_docs):
             "Form",
             "Event",
         ]
-        tags_list = engage_docs.get_engage_pages_tags()
+        tags_list = _cached_fetch(
+            tags_cache,
+            "engage-tags",
+            engage_docs.get_engage_pages_tags,
+            ttl=900,
+        )
         tags_list = sorted(set(tags_list), key=str.lower)
         total_pages = math.ceil(current_total / limit)
 
@@ -503,21 +581,25 @@ def build_engage_page_resources(engage_docs):
     resource: is the resource type, e.g. "Webinar", "Whitepaper", "Case Study"
     """
 
+    cache = {}
+
     def engage_page_resources():
         tag = flask.request.args.get("tag", default=None, type=str)
         resource = flask.request.args.get("resource", default=None, type=str)
 
-        if tag or resource:
-            metadata, *_ = engage_docs.get_index(
-                limit=3,
-                tag_value=tag,
-                key="type",
-                value=resource,
-            )
-        else:
-            metadata, *_ = engage_docs.get_index(
-                limit=3, key="is_static", value=None
-            )
+        def _fetch_resources():
+            if tag or resource:
+                return engage_docs.get_index(
+                    limit=3,
+                    tag_value=tag,
+                    key="type",
+                    value=resource,
+                )
+            return engage_docs.get_index(limit=3, key="is_static", value=None)
+
+        metadata, *_ = _cached_fetch(
+            cache, (tag, resource), _fetch_resources, ttl=900
+        )
 
         response = flask.jsonify(metadata)
         response.headers["Cache-Control"] = "public, max-age=900"
@@ -527,12 +609,19 @@ def build_engage_page_resources(engage_docs):
 
 
 def build_engage_page(engage_pages):
+    page_cache = {}
+
     def engage_page(language, page):
         if language:
             path = f"/engage/{language}/{page}"
         else:
             path = f"/engage/{page}"
-        metadata = engage_pages.get_engage_page(path)
+        metadata = _cached_fetch(
+            page_cache,
+            path,
+            lambda: engage_pages.get_engage_page(path),
+            ttl=900,
+        )
         if not metadata:
             flask.abort(404)
         else:
@@ -542,9 +631,21 @@ def build_engage_page(engage_pages):
                     related_urls = metadata["related_urls"].split(",")
                     # Only show maximum of 3 related pages
                     for url in related_urls[:3]:
-                        page_metadata = engage_pages.get_engage_page(
-                            url.strip()
-                        )
+                        related_url = url.strip()
+                        try:
+                            page_metadata = _cached_fetch(
+                                page_cache,
+                                related_url,
+                                lambda related_url=related_url: (
+                                    engage_pages.get_engage_page(related_url)
+                                ),
+                                ttl=900,
+                            )
+                        except ServiceUnavailable:
+                            # Related pages are best-effort; skip when
+                            # Discourse is cooling down rather than 503 the
+                            # whole page.
+                            continue
                         if page_metadata is not None:
                             related_pages_metadata.append(page_metadata)
 

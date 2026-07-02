@@ -614,6 +614,24 @@ production:
     location ^~ /usn-db-stg/ {
       proxy_pass http://seceng-people.internal/%7Eubuntu-security/usn/;
     }
+    # Throttle aggressive AI/scraper bots on expensive Discourse-backed
+    # routes. /engage, /takeovers.json and the *-docs paths proxy to
+    # ubuntu-com-discourse, which calls the discourse.ubuntu.com Data
+    # Explorer API per request; bots crawling many distinct URLs cause a
+    # 429 storm. These bots already ignore our robots.txt Disallow rules.
+    # nginx has no AND for `if`, so we combine two flags into one variable.
+    # Deliberately NOT matched: Googlebot/Bingbot (search indexing) and our
+    # own uptime monitors (Pingdom, Site24x7).
+    set $disc_bot "";
+    if ($http_user_agent ~* "(GPTBot|ChatGPT-User|OAI-SearchBot|ClaudeBot|Claude-Web|anthropic-ai|CCBot|Google-Extended|PerplexityBot|Bytespider|Amazonbot|Diffbot|DataForSeoBot|ImagesiftBot|Omgili|meta-externalagent|cohere-ai|MJ12bot)") {
+      set $disc_bot "b";
+    }
+    if ($request_uri ~* "^/(engage(/|$|\?)|ceph/docs|openstack/docs|security/livepatch/docs|security/certifications/docs|takeovers\.json)") {
+      set $disc_bot "${disc_bot}p";
+    }
+    if ($disc_bot = "bp") {
+      return 429;
+    }
 
 # Overrides for staging
 staging:
@@ -1198,6 +1216,18 @@ staging:
   nginxServerSnippet: |
     location ^~ /wp-content/uploads/ {
       proxy_pass https://admin.insights.ubuntu.com/wp-content/uploads/;
+    }
+    # Throttle aggressive AI/scraper bots on expensive Discourse-backed
+    # routes (see production nginxServerSnippet for rationale).
+    set $disc_bot "";
+    if ($http_user_agent ~* "(GPTBot|ChatGPT-User|OAI-SearchBot|ClaudeBot|Claude-Web|anthropic-ai|CCBot|Google-Extended|PerplexityBot|Bytespider|Amazonbot|Diffbot|DataForSeoBot|ImagesiftBot|Omgili|meta-externalagent|cohere-ai|MJ12bot)") {
+      set $disc_bot "b";
+    }
+    if ($request_uri ~* "^/(engage(/|$|\?)|ceph/docs|openstack/docs|security/livepatch/docs|security/certifications/docs|takeovers\.json)") {
+      set $disc_bot "${disc_bot}p";
+    }
+    if ($disc_bot = "bp") {
+      return 429;
     }
 
 demo:
