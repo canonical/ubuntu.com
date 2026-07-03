@@ -210,6 +210,9 @@ class _FakeAPI:
             raise self.error
         return {"id": topic_id}
 
+    def check_for_topic_updates(self, topic_id, last_updated=None):
+        return False, None
+
 
 class TestInstallTopicCache(TestCase):
     def setUp(self):
