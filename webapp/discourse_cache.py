@@ -44,7 +44,7 @@ def _start_discourse_cooldown(error):
     _DISCOURSE_COOLDOWN["until"] = time.time() + delay
 
 
-def cached_fetch(cache, key, fetcher, ttl):
+def cached_fetch(cache, key, fetcher, ttl, max_size=512):
     """Return cached data, refreshing via ``fetcher`` when stale.
 
     Fresh data is served from ``cache`` for ``ttl`` seconds. When Discourse
@@ -54,6 +54,9 @@ def cached_fetch(cache, key, fetcher, ttl):
 
     ``cache`` is any dict-like object owned by the caller (typically a
     per-view dict living in a closure, so it is scoped to the worker process).
+    ``max_size`` caps the number of entries: once reached, the oldest entry
+    (by insertion order) is evicted to keep per-worker memory bounded even
+    when bots crawl large numbers of distinct query-parameter combinations.
     """
     cached = cache.get(key)
     now = time.time()
@@ -90,7 +93,12 @@ def cached_fetch(cache, key, fetcher, ttl):
             "Discourse is unavailable; please retry shortly."
         )
 
+    # Move key to insertion-order tail so the oldest unrefreshed entry is
+    # always evicted first, then enforce the size cap.
+    cache.pop(key, None)
     cache[key] = {"data": data, "ts": time.time()}
+    while len(cache) > max_size:
+        cache.pop(next(iter(cache)))
     return data
 
 

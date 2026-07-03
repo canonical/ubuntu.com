@@ -60,6 +60,36 @@ class TestCachedFetch(TestCase):
             "second",
         )
 
+    def test_max_size_evicts_oldest_entry(self):
+        cache = {}
+        for i in range(5):
+            discourse_cache.cached_fetch(
+                cache, f"k{i}", lambda i=i: i, ttl=100, max_size=3
+            )
+        self.assertEqual(len(cache), 3)
+        self.assertNotIn("k0", cache, "oldest entry should have been evicted")
+        self.assertNotIn("k1", cache)
+        self.assertIn("k4", cache)
+
+    def test_refreshed_entry_moves_to_tail(self):
+        # k0 refreshed after k1, k2 are written → k1 should be evicted next.
+        cache = {}
+        for i in range(3):
+            discourse_cache.cached_fetch(
+                cache, f"k{i}", lambda i=i: i, ttl=100, max_size=3
+            )
+        # Re-fetch k0 (ttl=0 forces a refresh) → moves k0 to tail.
+        discourse_cache.cached_fetch(
+            cache, "k0", lambda: "k0-refreshed", ttl=0, max_size=3
+        )
+        # Add a 4th entry → oldest (k1) should be evicted, not k0.
+        discourse_cache.cached_fetch(
+            cache, "k3", lambda: 3, ttl=100, max_size=3
+        )
+        self.assertNotIn("k1", cache)
+        self.assertIn("k0", cache)
+        self.assertIn("k3", cache)
+
     def test_429_serves_stale_and_opens_breaker(self):
         cache = {}
         discourse_cache.cached_fetch(cache, "k", lambda: "stale", ttl=100)
