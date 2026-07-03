@@ -141,6 +141,33 @@ class TestCachedFetch(TestCase):
         with self.assertRaises(HTTPError):
             discourse_cache.cached_fetch({}, "k", server_error, ttl=0)
 
+    def test_connection_error_serves_stale_when_available(self):
+        from requests.exceptions import (
+            ConnectionError as RequestsConnectionError,
+        )
+
+        cache = {}
+        discourse_cache.cached_fetch(cache, "k", lambda: "stale", ttl=100)
+
+        def connection_error():
+            raise RequestsConnectionError("connection refused")
+
+        self.assertEqual(
+            discourse_cache.cached_fetch(cache, "k", connection_error, ttl=0),
+            "stale",
+        )
+        # Connection errors must NOT open the circuit breaker.
+        self.assertEqual(discourse_cache._DISCOURSE_COOLDOWN["until"], 0.0)
+
+    def test_connection_error_without_cache_raises_service_unavailable(self):
+        from requests.exceptions import Timeout
+
+        def timed_out():
+            raise Timeout("read timeout")
+
+        with self.assertRaises(ServiceUnavailable):
+            discourse_cache.cached_fetch({}, "k", timed_out, ttl=0)
+
 
 class _FakeAPI:
     def __init__(self, error=None):

@@ -16,7 +16,8 @@ import time
 
 # Packages
 import sentry_sdk
-from requests.exceptions import HTTPError
+from requests.exceptions import ConnectionError as RequestsConnectionError
+from requests.exceptions import HTTPError, RequestException, Timeout
 from werkzeug.exceptions import ServiceUnavailable
 
 # Circuit breaker state, shared across all Discourse-backed views in a worker.
@@ -81,6 +82,13 @@ def cached_fetch(cache, key, fetcher, ttl):
         if cached:
             return cached["data"]
         raise
+    except (RequestsConnectionError, Timeout, RequestException) as error:
+        sentry_sdk.capture_exception(error)
+        if cached:
+            return cached["data"]
+        raise ServiceUnavailable(
+            "Discourse is rate-limiting requests; please retry shortly."
+        )
 
     cache[key] = {"data": data, "ts": now}
     return data

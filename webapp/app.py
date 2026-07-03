@@ -787,7 +787,7 @@ def takeovers_json():
         ttl=300,
     )
     response = flask.jsonify(active_takeovers)
-    response.cache_control.max_age = "300"
+    response.cache_control.max_age = 300
 
     return response
 

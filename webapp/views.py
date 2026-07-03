@@ -463,7 +463,7 @@ def build_engage_index(engage_docs):
             current_total,
         ) = cached_fetch(
             index_cache,
-            (page, language, resource, tag),
+            (page, language, resource, tag, preview is not None),
             _fetch_index,
             ttl=300,
         )
@@ -552,7 +552,7 @@ def build_engage_page(engage_pages):
         metadata = cached_fetch(
             page_cache,
             path,
-            lambda: engage_pages.get_engage_page(path),
+            lambda: engage_pages.get_engage_page(path) or flask.abort(404),
             ttl=900,
         )
         if not metadata:
