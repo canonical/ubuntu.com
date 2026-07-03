@@ -24,6 +24,8 @@ from werkzeug.exceptions import ServiceUnavailable
 _DISCOURSE_COOLDOWN = {"until": 0.0}
 _DISCOURSE_COOLDOWN_MIN = 60
 _DISCOURSE_COOLDOWN_MAX = 600
+# While Discourse is erroring, retry a stale entry at most this often
+_ERROR_RETRY = 30
 
 
 def _http_error_status_code(error):
@@ -31,6 +33,27 @@ def _http_error_status_code(error):
     if response is None:
         return None
     return response.status_code
+
+
+def _cooldown_retry_after():
+    """Seconds until the breaker closes, for Retry-After headers."""
+    remaining = _DISCOURSE_COOLDOWN["until"] - time.time()
+    if remaining <= 0:
+        return _DISCOURSE_COOLDOWN_MIN
+    # min() before int() so an unbounded cooldown doesn't overflow
+    return max(1, int(min(remaining, _DISCOURSE_COOLDOWN_MAX)))
+
+
+def _serve_stale(cache, key, cached, ttl):
+    """Serve a stale entry, re-stamped so the next retry against a
+    failing Discourse happens after _ERROR_RETRY instead of per request.
+    """
+    entry_ttl = ttl if cached["data"] else min(ttl, 60)
+    cache[key] = {
+        "data": cached["data"],
+        "ts": time.time() - entry_ttl + _ERROR_RETRY,
+    }
+    return cached["data"]
 
 
 def _start_discourse_cooldown(error):
@@ -74,7 +97,8 @@ def cached_fetch(cache, key, fetcher, ttl, max_size=512):
         if cached:
             return cached["data"]
         raise ServiceUnavailable(
-            "Discourse is rate-limiting requests; please retry shortly."
+            "Discourse is rate-limiting requests; please retry shortly.",
+            retry_after=_cooldown_retry_after(),
         )
 
     try:
@@ -84,19 +108,21 @@ def cached_fetch(cache, key, fetcher, ttl, max_size=512):
         if _http_error_status_code(error) == 429:
             _start_discourse_cooldown(error)
             if cached:
-                return cached["data"]
+                return _serve_stale(cache, key, cached, ttl)
             raise ServiceUnavailable(
-                "Discourse is rate-limiting requests; please retry shortly."
+                "Discourse is rate-limiting requests; please retry shortly.",
+                retry_after=_cooldown_retry_after(),
             )
         if cached:
-            return cached["data"]
+            return _serve_stale(cache, key, cached, ttl)
         raise
     except (RequestsConnectionError, Timeout, RequestException) as error:
         sentry_sdk.capture_exception(error)
         if cached:
-            return cached["data"]
+            return _serve_stale(cache, key, cached, ttl)
         raise ServiceUnavailable(
-            "Discourse is unavailable; please retry shortly."
+            "Discourse is unavailable; please retry shortly.",
+            retry_after=_ERROR_RETRY,
         )
 
     # Move key to insertion-order tail so the oldest unrefreshed entry is

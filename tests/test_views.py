@@ -7,6 +7,7 @@ from unittest.mock import Mock, patch, MagicMock
 
 from werkzeug.exceptions import NotFound, InternalServerError
 
+from webapp import discourse_cache
 from webapp.app import app
 from webapp.views import (
     shorten_acquisition_url,
@@ -17,6 +18,8 @@ from webapp.views import (
     build_tutorials_query,
     match_tags,
     build_engage_page,
+    community_landing_page,
+    engage_thank_you,
     enrich_acquisition_url,
     build_engage_page_resources,
     append_utms_cookie_to_canonical_links,
@@ -1234,3 +1237,106 @@ class TestAppendUtmsCookieToCanonicalLinks(BaseViewTestCase):
             updated_html = response.set_data.call_args[0][0]
             # Verify mailto link is unchanged
             self.assertEqual(updated_html, html)
+
+
+class TestEngageThankYouCaching(TestCase):
+    """
+    Unit tests for `engage_thank_you` Discourse caching.
+    """
+
+    def setUp(self):
+        discourse_cache._DISCOURSE_COOLDOWN["until"] = 0.0
+        self.addCleanup(
+            discourse_cache._DISCOURSE_COOLDOWN.__setitem__, "until", 0.0
+        )
+
+    def test_thank_you_caches_page_lookup(self):
+        engage_pages = Mock()
+        engage_pages.get_engage_page.return_value = None
+        view = engage_thank_you(engage_pages)
+
+        for _ in range(2):
+            with self.assertRaises(NotFound):
+                view(None, "missing-page")
+
+        engage_pages.get_engage_page.assert_called_once()
+
+
+class TestCommunityLandingEvents(TestCase):
+    """
+    The community landing page should degrade to an empty events list
+    when Discourse errors, instead of failing the whole page.
+    """
+
+    def setUp(self):
+        discourse_cache._DISCOURSE_COOLDOWN["until"] = 0.0
+        self.addCleanup(
+            discourse_cache._DISCOURSE_COOLDOWN.__setitem__, "until", 0.0
+        )
+
+    def _build_view(self, community_events):
+        local_communities = Mock()
+        local_communities.get_category_index_metadata.return_value = []
+        newsletter = Mock()
+        newsletter.get_topics_in_category.return_value = []
+        return community_landing_page(
+            community_events, local_communities, newsletter
+        )
+
+    def test_events_degrade_when_discourse_errors(self):
+        community_events = Mock()
+        community_events.get_featured_events.side_effect = ValueError(
+            "HTTP error occurred: 429 Client Error: Too Many Requests"
+        )
+        view = self._build_view(community_events)
+
+        with patch(
+            "webapp.views.flask.render_template", return_value=""
+        ) as render:
+            with app.test_request_context("/community"):
+                view()
+
+        self.assertEqual(render.call_args.kwargs["featured_events"], [])
+
+    def test_events_are_cached_across_requests(self):
+        community_events = Mock()
+        community_events.get_featured_events.return_value = []
+        community_events.get_events.return_value = []
+        view = self._build_view(community_events)
+
+        with patch("webapp.views.flask.render_template", return_value=""):
+            with app.test_request_context("/community"):
+                view()
+                view()
+
+        community_events.get_featured_events.assert_called_once()
+
+
+class TestTakeoversIndexCaching(TestCase):
+    """
+    /takeovers should not hit Discourse on every request.
+    """
+
+    def setUp(self):
+        discourse_cache._DISCOURSE_COOLDOWN["until"] = 0.0
+        self.addCleanup(
+            discourse_cache._DISCOURSE_COOLDOWN.__setitem__, "until", 0.0
+        )
+
+    def test_takeovers_index_caches_get_index(self):
+        from webapp import app as app_module
+
+        app.testing = True
+        client = app.test_client()
+
+        with patch.object(
+            app_module.discourse_takeovers,
+            "get_index",
+            return_value=([], 0, 0, 0),
+        ) as get_index:
+            first = client.get("/takeovers")
+            second = client.get("/takeovers")
+
+        self.assertEqual(first.status_code, 200)
+        self.assertEqual(second.status_code, 200)
+        get_index.assert_called_once()

@@ -273,3 +273,90 @@ class TestServiceUnavailableRendering(TestCase):
         body = response.get_data(as_text=True)
         self.assertIn("Server error", body)
         self.assertNotIn("Discourse is rate-limiting", body)
+
+
+class TestErrorBackoff(TestCase):
+    def setUp(self):
+        discourse_cache._DISCOURSE_COOLDOWN["until"] = 0.0
+        self.addCleanup(
+            discourse_cache._DISCOURSE_COOLDOWN.__setitem__, "until", 0.0
+        )
+
+    def test_stale_serve_backs_off_refetching(self):
+        cache = {}
+        discourse_cache.cached_fetch(cache, "k", lambda: "stale", ttl=100)
+        # Expire the entry so the next call attempts a refresh
+        cache["k"]["ts"] -= 200
+
+        calls = []
+
+        def failing():
+            calls.append(1)
+            raise _http_error(500)
+
+        self.assertEqual(
+            discourse_cache.cached_fetch(cache, "k", failing, ttl=100),
+            "stale",
+        )
+        # The stale entry was re-stamped: an immediate retry must be
+        # served from cache without hitting Discourse again
+        self.assertEqual(
+            discourse_cache.cached_fetch(cache, "k", failing, ttl=100),
+            "stale",
+        )
+        self.assertEqual(len(calls), 1)
+
+
+class TestRetryAfter(TestCase):
+    def setUp(self):
+        discourse_cache._DISCOURSE_COOLDOWN["until"] = 0.0
+        self.addCleanup(
+            discourse_cache._DISCOURSE_COOLDOWN.__setitem__, "until", 0.0
+        )
+
+    def test_open_breaker_503_carries_retry_after(self):
+        discourse_cache._DISCOURSE_COOLDOWN["until"] = time.time() + 120
+
+        with self.assertRaises(ServiceUnavailable) as context:
+            discourse_cache.cached_fetch({}, "k", lambda: "x", ttl=0)
+
+        self.assertIsNotNone(context.exception.retry_after)
+        self.assertGreater(int(context.exception.retry_after), 60)
+        self.assertLessEqual(int(context.exception.retry_after), 121)
+
+    def test_429_503_carries_retry_after(self):
+        def rate_limited():
+            raise _http_error(429, retry_after=300)
+
+        with self.assertRaises(ServiceUnavailable) as context:
+            discourse_cache.cached_fetch({}, "k", rate_limited, ttl=0)
+
+        self.assertIsNotNone(context.exception.retry_after)
+        self.assertGreaterEqual(int(context.exception.retry_after), 250)
+
+
+class TestServiceUnavailableResponseHeaders(TestCase):
+    def setUp(self):
+        from webapp.app import app
+
+        app.testing = True
+        self.client = app.test_client()
+        discourse_cache._DISCOURSE_COOLDOWN["until"] = time.time() + 120
+        self.addCleanup(
+            discourse_cache._DISCOURSE_COOLDOWN.__setitem__, "until", 0.0
+        )
+
+    def test_503_response_has_retry_after_header(self):
+        response = self.client.get("/engage/__breaker-retry-after__")
+
+        self.assertEqual(response.status_code, 503)
+        self.assertIn("Retry-After", response.headers)
+
+    def test_json_endpoint_gets_json_503(self):
+        response = self.client.get("/engage/resources.json?tag=__breaker__")
+
+        self.assertEqual(response.status_code, 503)
+        self.assertTrue(
+            response.content_type.startswith("application/json"),
+            response.content_type,
+        )

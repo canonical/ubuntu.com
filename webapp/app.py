@@ -792,6 +792,9 @@ def takeovers_json():
     return response
 
 
+_takeovers_index_cache = {}
+
+
 def takeovers_index():
     page = flask.request.args.get("page", default=1, type=int)
     limit = 50
@@ -801,7 +804,12 @@ def takeovers_index():
         count,
         active_count,
         total_current,
-    ) = discourse_takeovers.get_index(limit=limit, offset=offset)
+    ) = cached_fetch(
+        _takeovers_index_cache,
+        page,
+        lambda: discourse_takeovers.get_index(limit=limit, offset=offset),
+        ttl=300,
+    )
     total_pages = math.ceil(count / limit)
 
     return flask.render_template(

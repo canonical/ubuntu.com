@@ -31,7 +31,7 @@ from canonicalwebteam.search.views import NoAPIKeyError
 from canonicalwebteam.directory_parser import generate_sitemap
 from geolite2 import geolite2
 from requests import Session
-from requests.exceptions import HTTPError
+from requests.exceptions import HTTPError, RequestException
 from werkzeug.exceptions import BadRequest, ServiceUnavailable
 from canonicalwebteam.flask_base.env import get_flask_env
 
@@ -627,13 +627,20 @@ def engage_thank_you(engage_pages):
     @returns: a function that renders a template
     """
 
+    thank_you_cache = {}
+
     def render_template(language, page):
         if language:
             path = f"/engage/{language}/{page}"
         else:
             path = f"/engage/{page}"
 
-        metadata = engage_pages.get_engage_page(path)
+        metadata = cached_fetch(
+            thank_you_cache,
+            path,
+            lambda: engage_pages.get_engage_page(path),
+            ttl=900,
+        )
         if not metadata:
             flask.abort(404)
 
@@ -1847,7 +1854,9 @@ def process_community_events(community_events):
 def community_landing_page(
     community_events, local_communities, ubuntu_weekly_newsletter
 ):
-    def display_community_landing_page():
+    events_cache = {}
+
+    def _fetch_events_to_display():
         featured_events = community_events.get_featured_events()
         events_to_display = []
 
@@ -1872,6 +1881,22 @@ def community_landing_page(
 
         for event in events_to_display:
             format_community_event_time(event)
+
+        return events_to_display
+
+    def display_community_landing_page():
+        try:
+            events_to_display = cached_fetch(
+                events_cache,
+                "events-to-display",
+                _fetch_events_to_display,
+                ttl=300,
+            )
+        except (ServiceUnavailable, RequestException, ValueError):
+            # Events are decorative on this page; the DiscourseAPI wraps
+            # upstream failures (including 429) in ValueError, so degrade
+            # to an empty list rather than failing the whole page
+            events_to_display = []
 
         communities_data = local_communities.get_category_index_metadata(
             "locos"

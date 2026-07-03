@@ -98,8 +98,24 @@ def init_handlers(app):
         500 template (the directory_parser sitemap excludes it, and it is the
         app's standard "couldn't load this page" error) rather than leaking
         the internal reason to users.
+
+        JSON endpoints get a JSON body so their fetch() consumers don't
+        choke on HTML, and Retry-After tells well-behaved clients and
+        crawlers when to come back.
         """
-        return flask.render_template("500.html"), 503
+        if flask.request.path.endswith(".json"):
+            response = flask.make_response(
+                flask.jsonify(error="Service temporarily unavailable"),
+                503,
+            )
+        else:
+            response = flask.make_response(
+                flask.render_template("500.html"), 503
+            )
+
+        retry_after = getattr(error, "retry_after", None)
+        response.headers["Retry-After"] = str(retry_after or 60)
+        return response
 
     @app.errorhandler(SecurityAPIError)
     def security_api_error(error):
