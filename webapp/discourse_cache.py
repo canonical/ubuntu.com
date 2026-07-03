@@ -61,8 +61,14 @@ def cached_fetch(cache, key, fetcher, ttl, max_size=512):
     cached = cache.get(key)
     now = time.time()
 
-    if cached and now - cached["ts"] < ttl:
-        return cached["data"]
+    if cached:
+        # "Not found" results expire quickly so newly published
+        # pages appear promptly
+        entry_ttl = ttl if cached["data"] else min(ttl, 60)
+        if now - cached["ts"] < entry_ttl:
+            cache.pop(key, None)
+            cache[key] = cached
+            return cached["data"]
 
     if now < _DISCOURSE_COOLDOWN["until"]:
         if cached:
@@ -116,14 +122,25 @@ def install_topic_cache(api, ttl=600):
     """
     topic_cache = {}
     fetch_topic = api.get_topic
+    check_updates = api.check_for_topic_updates
 
     def get_topic(topic_id):
         return cached_fetch(
             topic_cache,
-            topic_id,
+            # str() so int and str topic ids share one cache entry
+            str(topic_id),
             lambda: fetch_topic(topic_id),
             ttl=ttl,
         )
 
+    def check_for_topic_updates(topic_id, last_updated=None):
+        updated, updated_at = check_updates(topic_id, last_updated)
+        if updated:
+            # Drop the cached topic so the caller's re-parse sees the
+            # new content instead of latching the stale cached copy
+            topic_cache.pop(str(topic_id), None)
+        return updated, updated_at
+
     api.get_topic = get_topic
+    api.check_for_topic_updates = check_for_topic_updates
     return topic_cache

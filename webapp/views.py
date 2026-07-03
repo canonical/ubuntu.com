@@ -574,7 +574,7 @@ def build_engage_page(engage_pages):
                                 ),
                                 ttl=900,
                             )
-                        except ServiceUnavailable:
+                        except (ServiceUnavailable, HTTPError):
                             # Related pages are best-effort; skip when
                             # Discourse is cooling down rather than 503 the
                             # whole page.
