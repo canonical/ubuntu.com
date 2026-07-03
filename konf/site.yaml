@@ -605,7 +605,7 @@ production:
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
 
   nginxServerSnippet: |
-    if ($http_user_agent ~* "YisouSpider") {
+    if ($http_user_agent ~* "(YisouSpider|Bytespider|PetalBot|Amazonbot|MJ12bot|DotBot|DataForSeoBot|BelleaireCrawler|yacybot|jscrawler)") {
       return 403;
     }
     location ^~ /wp-content/uploads/ {
