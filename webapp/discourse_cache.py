@@ -37,7 +37,7 @@ def _start_discourse_cooldown(error):
     delay = _DISCOURSE_COOLDOWN_MIN
     response = getattr(error, "response", None)
     if response is not None:
-        retry_after = response.headers.get("Retry-After", "")
+        retry_after = response.headers.get("Retry-After", "").strip()
         if retry_after.isdigit():
             delay = int(retry_after)
     delay = min(max(delay, _DISCOURSE_COOLDOWN_MIN), _DISCOURSE_COOLDOWN_MAX)
@@ -87,10 +87,10 @@ def cached_fetch(cache, key, fetcher, ttl):
         if cached:
             return cached["data"]
         raise ServiceUnavailable(
-            "Discourse is rate-limiting requests; please retry shortly."
+            "Discourse is unavailable; please retry shortly."
         )
 
-    cache[key] = {"data": data, "ts": now}
+    cache[key] = {"data": data, "ts": time.time()}
     return data
 
 
