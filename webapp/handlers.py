@@ -89,6 +89,18 @@ def init_handlers(app):
         custom_error = f"{error.description}. Please try again tomorrow."
         return flask.render_template("429.html", message=custom_error), 429
 
+    @app.errorhandler(503)
+    def service_unavailable(error):
+        """
+        Rendered when the Discourse circuit breaker
+        (webapp/discourse_cache.py) is open: an upstream API is rate-limiting
+        us and there is no cached response to fall back on. Reuses the styled
+        500 template (the directory_parser sitemap excludes it, and it is the
+        app's standard "couldn't load this page" error) rather than leaking
+        the internal reason to users.
+        """
+        return flask.render_template("500.html"), 503
+
     @app.errorhandler(SecurityAPIError)
     def security_api_error(error):
         message = "An error occurred while fetching security data"
