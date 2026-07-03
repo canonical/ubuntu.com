@@ -32,10 +32,11 @@ from canonicalwebteam.directory_parser import generate_sitemap
 from geolite2 import geolite2
 from requests import Session
 from requests.exceptions import HTTPError
-from werkzeug.exceptions import BadRequest
+from werkzeug.exceptions import BadRequest, ServiceUnavailable
 from canonicalwebteam.flask_base.env import get_flask_env
 
 # Local
+from webapp.discourse_cache import cached_fetch
 from webapp.login import user_info
 from webapp.marketo import MarketoAPI
 from webapp.utils import format_community_event_time
@@ -428,6 +429,9 @@ def build_tutorials_index(session, tutorials_docs):
 
 
 def build_engage_index(engage_docs):
+    index_cache = {}
+    tags_cache = {}
+
     def engage_index():
         page = flask.request.args.get("page", default=1, type=int)
         preview = flask.request.args.get("preview")
@@ -437,30 +441,32 @@ def build_engage_index(engage_docs):
         limit = 21  # adjust as needed
         offset = (page - 1) * limit
 
-        if tag or resource or language:
-            (
-                metadata,
-                count,
-                active_count,
-                current_total,
-            ) = engage_docs.get_index(
-                limit,
-                offset,
-                tag_value=tag,
-                key="type",
-                value=resource,
-                second_key="language",
-                second_value=language,
-            )
-        else:
-            (
-                metadata,
-                count,
-                active_count,
-                current_total,
-            ) = engage_docs.get_index(
+        def _fetch_index():
+            if tag or resource or language:
+                return engage_docs.get_index(
+                    limit,
+                    offset,
+                    tag_value=tag,
+                    key="type",
+                    value=resource,
+                    second_key="language",
+                    second_value=language,
+                )
+            return engage_docs.get_index(
                 limit, offset, key="is_static", value=None
             )
+
+        (
+            metadata,
+            count,
+            active_count,
+            current_total,
+        ) = cached_fetch(
+            index_cache,
+            (page, language, resource, tag),
+            _fetch_index,
+            ttl=300,
+        )
 
         # Fixed so that engage page authors don't create random resource types
         resource_types = [
@@ -471,7 +477,12 @@ def build_engage_index(engage_docs):
             "Form",
             "Event",
         ]
-        tags_list = engage_docs.get_engage_pages_tags()
+        tags_list = cached_fetch(
+            tags_cache,
+            "engage-tags",
+            engage_docs.get_engage_pages_tags,
+            ttl=900,
+        )
         tags_list = sorted(set(tags_list), key=str.lower)
         total_pages = math.ceil(current_total / limit)
 
@@ -503,21 +514,25 @@ def build_engage_page_resources(engage_docs):
     resource: is the resource type, e.g. "Webinar", "Whitepaper", "Case Study"
     """
 
+    cache = {}
+
     def engage_page_resources():
         tag = flask.request.args.get("tag", default=None, type=str)
         resource = flask.request.args.get("resource", default=None, type=str)
 
-        if tag or resource:
-            metadata, *_ = engage_docs.get_index(
-                limit=3,
-                tag_value=tag,
-                key="type",
-                value=resource,
-            )
-        else:
-            metadata, *_ = engage_docs.get_index(
-                limit=3, key="is_static", value=None
-            )
+        def _fetch_resources():
+            if tag or resource:
+                return engage_docs.get_index(
+                    limit=3,
+                    tag_value=tag,
+                    key="type",
+                    value=resource,
+                )
+            return engage_docs.get_index(limit=3, key="is_static", value=None)
+
+        metadata, *_ = cached_fetch(
+            cache, (tag, resource), _fetch_resources, ttl=900
+        )
 
         response = flask.jsonify(metadata)
         response.headers["Cache-Control"] = "public, max-age=900"
@@ -527,12 +542,19 @@ def build_engage_page_resources(engage_docs):
 
 
 def build_engage_page(engage_pages):
+    page_cache = {}
+
     def engage_page(language, page):
         if language:
             path = f"/engage/{language}/{page}"
         else:
             path = f"/engage/{page}"
-        metadata = engage_pages.get_engage_page(path)
+        metadata = cached_fetch(
+            page_cache,
+            path,
+            lambda: engage_pages.get_engage_page(path),
+            ttl=900,
+        )
         if not metadata:
             flask.abort(404)
         else:
@@ -542,9 +564,21 @@ def build_engage_page(engage_pages):
                     related_urls = metadata["related_urls"].split(",")
                     # Only show maximum of 3 related pages
                     for url in related_urls[:3]:
-                        page_metadata = engage_pages.get_engage_page(
-                            url.strip()
-                        )
+                        related_url = url.strip()
+                        try:
+                            page_metadata = cached_fetch(
+                                page_cache,
+                                related_url,
+                                lambda related_url=related_url: (
+                                    engage_pages.get_engage_page(related_url)
+                                ),
+                                ttl=900,
+                            )
+                        except (ServiceUnavailable, HTTPError):
+                            # Related pages are best-effort; skip when
+                            # Discourse is cooling down rather than 503 the
+                            # whole page.
+                            continue
                         if page_metadata is not None:
                             related_pages_metadata.append(page_metadata)
 

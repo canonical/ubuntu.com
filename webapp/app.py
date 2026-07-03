@@ -42,6 +42,7 @@ from canonicalwebteam.form_generator import FormGenerator
 from canonicalwebteam.markdown_response import MarkdownResponse
 
 from webapp.certified.views import certified_routes
+from webapp.discourse_cache import cached_fetch, install_topic_cache
 from webapp.handlers import init_handlers
 from webapp.login import login_handler, logout, user_info
 from webapp.decorators import login_required
@@ -228,6 +229,12 @@ discourse_api = DiscourseAPI(
     api_username=DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
 )
+
+# Cache Discourse topic fetches and share the circuit breaker across all
+# discourse.ubuntu.com docs / tutorials / community views, so a 429 storm on
+# our Data Explorer credentials stops them hammering Discourse (and 500ing)
+# rather than each request re-fetching the index and document topics.
+install_topic_cache(discourse_api)
 
 charmhub_discourse_api = DiscourseAPI(
     base_url="https://discourse.charmhub.io/",
@@ -769,10 +776,18 @@ app.add_url_rule(
 )
 
 
+_takeovers_cache = {}
+
+
 def takeovers_json():
-    active_takeovers = discourse_takeovers.parse_active_takeovers()
+    active_takeovers = cached_fetch(
+        _takeovers_cache,
+        "active-takeovers",
+        discourse_takeovers.parse_active_takeovers,
+        ttl=300,
+    )
     response = flask.jsonify(active_takeovers)
-    response.cache_control.max_age = "300"
+    response.cache_control.max_age = 300
 
     return response
 
