@@ -7,7 +7,6 @@ from unittest.mock import Mock, patch, MagicMock
 
 from werkzeug.exceptions import NotFound, InternalServerError
 
-from webapp import discourse_cache
 from webapp.app import app
 from webapp.views import (
     shorten_acquisition_url,
@@ -19,7 +18,6 @@ from webapp.views import (
     match_tags,
     build_engage_page,
     community_landing_page,
-    engage_thank_you,
     enrich_acquisition_url,
     build_engage_page_resources,
     append_utms_cookie_to_canonical_links,
@@ -1239,40 +1237,11 @@ class TestAppendUtmsCookieToCanonicalLinks(BaseViewTestCase):
             self.assertEqual(updated_html, html)
 
 
-class TestEngageThankYouCaching(TestCase):
-    """
-    Unit tests for `engage_thank_you` Discourse caching.
-    """
-
-    def setUp(self):
-        discourse_cache._DISCOURSE_COOLDOWN["until"] = 0.0
-        self.addCleanup(
-            discourse_cache._DISCOURSE_COOLDOWN.__setitem__, "until", 0.0
-        )
-
-    def test_thank_you_caches_page_lookup(self):
-        engage_pages = Mock()
-        engage_pages.get_engage_page.return_value = None
-        view = engage_thank_you(engage_pages)
-
-        for _ in range(2):
-            with self.assertRaises(NotFound):
-                view(None, "missing-page")
-
-        engage_pages.get_engage_page.assert_called_once()
-
-
 class TestCommunityLandingEvents(TestCase):
     """
     The community landing page should degrade to an empty events list
     when Discourse errors, instead of failing the whole page.
     """
-
-    def setUp(self):
-        discourse_cache._DISCOURSE_COOLDOWN["until"] = 0.0
-        self.addCleanup(
-            discourse_cache._DISCOURSE_COOLDOWN.__setitem__, "until", 0.0
-        )
 
     def _build_view(self, community_events):
         local_communities = Mock()
@@ -1298,32 +1267,35 @@ class TestCommunityLandingEvents(TestCase):
 
         self.assertEqual(render.call_args.kwargs["featured_events"], [])
 
-    def test_events_are_cached_across_requests(self):
-        community_events = Mock()
-        community_events.get_featured_events.return_value = []
-        community_events.get_events.return_value = []
-        view = self._build_view(community_events)
 
-        with patch("webapp.views.flask.render_template", return_value=""):
-            with app.test_request_context("/community"):
-                view()
-                view()
-
-        community_events.get_featured_events.assert_called_once()
-
-
-class TestTakeoversIndexCaching(TestCase):
+class TestRateLimitedErrorHandling(TestCase):
     """
-    /takeovers should not hit Discourse on every request.
+    RateLimitedError from the discourse package must surface as a
+    branded 503 with Retry-After, never a 500.
     """
 
-    def setUp(self):
-        discourse_cache._DISCOURSE_COOLDOWN["until"] = 0.0
-        self.addCleanup(
-            discourse_cache._DISCOURSE_COOLDOWN.__setitem__, "until", 0.0
+    def test_rate_limited_json_endpoint_returns_503(self):
+        from canonicalwebteam.discourse import RateLimitedError
+        from webapp import app as app_module
+
+        app.testing = True
+        client = app.test_client()
+
+        with patch.object(
+            app_module.discourse_takeovers,
+            "parse_active_takeovers",
+            side_effect=RateLimitedError(retry_after=77),
+        ):
+            response = client.get("/takeovers.json")
+
+        self.assertEqual(response.status_code, 503)
+        self.assertEqual(response.headers.get("Retry-After"), "77")
+        self.assertTrue(
+            response.content_type.startswith("application/json")
         )
 
-    def test_takeovers_index_caches_get_index(self):
+    def test_rate_limited_page_returns_styled_503(self):
+        from canonicalwebteam.discourse import RateLimitedError
         from webapp import app as app_module
 
         app.testing = True
@@ -1332,11 +1304,60 @@ class TestTakeoversIndexCaching(TestCase):
         with patch.object(
             app_module.discourse_takeovers,
             "get_index",
-            return_value=([], 0, 0, 0),
-        ) as get_index:
-            first = client.get("/takeovers")
-            second = client.get("/takeovers")
+            side_effect=RateLimitedError(retry_after=88),
+        ):
+            response = client.get("/takeovers")
 
-        self.assertEqual(first.status_code, 200)
-        self.assertEqual(second.status_code, 200)
-        get_index.assert_called_once()
+        self.assertEqual(response.status_code, 503)
+        self.assertEqual(response.headers.get("Retry-After"), "88")
+        self.assertIn("Server error", response.get_data(as_text=True))
+
+    def test_community_events_degrade_on_rate_limit(self):
+        from canonicalwebteam.discourse import RateLimitedError
+
+        community_events = Mock()
+        community_events.get_featured_events.side_effect = RateLimitedError(
+            retry_after=60
+        )
+        local_communities = Mock()
+        local_communities.get_category_index_metadata.return_value = []
+        newsletter = Mock()
+        newsletter.get_topics_in_category.return_value = []
+        view = community_landing_page(
+            community_events, local_communities, newsletter
+        )
+
+        with patch(
+            "webapp.views.flask.render_template", return_value=""
+        ) as render:
+            with app.test_request_context("/community"):
+                view()
+
+        self.assertEqual(render.call_args.kwargs["featured_events"], [])
+
+    def test_related_engage_pages_skipped_on_rate_limit(self):
+        from canonicalwebteam.discourse import RateLimitedError
+
+        engage_pages = Mock()
+        engage_pages.api.base_url = "https://discourse.example.com"
+        metadata = {
+            "topic_name": "Main",
+            "related_urls": "/engage/other",
+            "language": "en",
+            "type": "webinar",
+        }
+        engage_pages.get_engage_page.side_effect = [
+            metadata,
+            RateLimitedError(retry_after=60),
+        ]
+        view = build_engage_page(engage_pages)
+
+        with patch(
+            "webapp.views.flask.render_template", return_value=""
+        ) as render:
+            with app.test_request_context("/engage/main"):
+                view(None, "main")
+
+        self.assertEqual(
+            render.call_args.kwargs["related_pages_metadata"], []
+        )

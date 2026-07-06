@@ -25,7 +25,13 @@ import flask
 import jinja2
 import yaml
 from bs4 import BeautifulSoup
-from canonicalwebteam.discourse import DiscourseAPI, DocParser, Docs
+from canonicalwebteam.discourse import (
+    DiscourseAPI,
+    DocParser,
+    Docs,
+    RateLimitedError,
+    ResponseCache,
+)
 from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
 from canonicalwebteam.directory_parser import generate_sitemap
@@ -36,7 +42,6 @@ from werkzeug.exceptions import BadRequest, ServiceUnavailable
 from canonicalwebteam.flask_base.env import get_flask_env
 
 # Local
-from webapp.discourse_cache import cached_fetch
 from webapp.login import user_info
 from webapp.marketo import MarketoAPI
 from webapp.utils import format_community_event_time
@@ -429,9 +434,6 @@ def build_tutorials_index(session, tutorials_docs):
 
 
 def build_engage_index(engage_docs):
-    index_cache = {}
-    tags_cache = {}
-
     def engage_index():
         page = flask.request.args.get("page", default=1, type=int)
         preview = flask.request.args.get("preview")
@@ -441,32 +443,30 @@ def build_engage_index(engage_docs):
         limit = 21  # adjust as needed
         offset = (page - 1) * limit
 
-        def _fetch_index():
-            if tag or resource or language:
-                return engage_docs.get_index(
-                    limit,
-                    offset,
-                    tag_value=tag,
-                    key="type",
-                    value=resource,
-                    second_key="language",
-                    second_value=language,
-                )
-            return engage_docs.get_index(
+        if tag or resource or language:
+            (
+                metadata,
+                count,
+                active_count,
+                current_total,
+            ) = engage_docs.get_index(
+                limit,
+                offset,
+                tag_value=tag,
+                key="type",
+                value=resource,
+                second_key="language",
+                second_value=language,
+            )
+        else:
+            (
+                metadata,
+                count,
+                active_count,
+                current_total,
+            ) = engage_docs.get_index(
                 limit, offset, key="is_static", value=None
             )
-
-        (
-            metadata,
-            count,
-            active_count,
-            current_total,
-        ) = cached_fetch(
-            index_cache,
-            (page, language, resource, tag),
-            _fetch_index,
-            ttl=300,
-        )
 
         # Fixed so that engage page authors don't create random resource types
         resource_types = [
@@ -477,12 +477,7 @@ def build_engage_index(engage_docs):
             "Form",
             "Event",
         ]
-        tags_list = cached_fetch(
-            tags_cache,
-            "engage-tags",
-            engage_docs.get_engage_pages_tags,
-            ttl=900,
-        )
+        tags_list = engage_docs.get_engage_pages_tags()
         tags_list = sorted(set(tags_list), key=str.lower)
         total_pages = math.ceil(current_total / limit)
 
@@ -514,25 +509,21 @@ def build_engage_page_resources(engage_docs):
     resource: is the resource type, e.g. "Webinar", "Whitepaper", "Case Study"
     """
 
-    cache = {}
-
     def engage_page_resources():
         tag = flask.request.args.get("tag", default=None, type=str)
         resource = flask.request.args.get("resource", default=None, type=str)
 
-        def _fetch_resources():
-            if tag or resource:
-                return engage_docs.get_index(
-                    limit=3,
-                    tag_value=tag,
-                    key="type",
-                    value=resource,
-                )
-            return engage_docs.get_index(limit=3, key="is_static", value=None)
-
-        metadata, *_ = cached_fetch(
-            cache, (tag, resource), _fetch_resources, ttl=900
-        )
+        if tag or resource:
+            metadata, *_ = engage_docs.get_index(
+                limit=3,
+                tag_value=tag,
+                key="type",
+                value=resource,
+            )
+        else:
+            metadata, *_ = engage_docs.get_index(
+                limit=3, key="is_static", value=None
+            )
 
         response = flask.jsonify(metadata)
         response.headers["Cache-Control"] = "public, max-age=900"
@@ -542,19 +533,12 @@ def build_engage_page_resources(engage_docs):
 
 
 def build_engage_page(engage_pages):
-    page_cache = {}
-
     def engage_page(language, page):
         if language:
             path = f"/engage/{language}/{page}"
         else:
             path = f"/engage/{page}"
-        metadata = cached_fetch(
-            page_cache,
-            path,
-            lambda: engage_pages.get_engage_page(path),
-            ttl=900,
-        )
+        metadata = engage_pages.get_engage_page(path)
         if not metadata:
             flask.abort(404)
         else:
@@ -564,20 +548,18 @@ def build_engage_page(engage_pages):
                     related_urls = metadata["related_urls"].split(",")
                     # Only show maximum of 3 related pages
                     for url in related_urls[:3]:
-                        related_url = url.strip()
                         try:
-                            page_metadata = cached_fetch(
-                                page_cache,
-                                related_url,
-                                lambda related_url=related_url: (
-                                    engage_pages.get_engage_page(related_url)
-                                ),
-                                ttl=900,
+                            page_metadata = engage_pages.get_engage_page(
+                                url.strip()
                             )
-                        except (ServiceUnavailable, HTTPError):
+                        except (
+                            RateLimitedError,
+                            ServiceUnavailable,
+                            HTTPError,
+                        ):
                             # Related pages are best-effort; skip when
-                            # Discourse is cooling down rather than 503 the
-                            # whole page.
+                            # Discourse is unavailable rather than fail
+                            # the whole page.
                             continue
                         if page_metadata is not None:
                             related_pages_metadata.append(page_metadata)
@@ -627,20 +609,13 @@ def engage_thank_you(engage_pages):
     @returns: a function that renders a template
     """
 
-    thank_you_cache = {}
-
     def render_template(language, page):
         if language:
             path = f"/engage/{language}/{page}"
         else:
             path = f"/engage/{page}"
 
-        metadata = cached_fetch(
-            thank_you_cache,
-            path,
-            lambda: engage_pages.get_engage_page(path),
-            ttl=900,
-        )
+        metadata = engage_pages.get_engage_page(path)
         if not metadata:
             flask.abort(404)
 
@@ -783,13 +758,20 @@ def build_engage_pages_metadata(engage_pages):
     return get_metadata
 
 
+# Module-level so the cache survives across requests even though the
+# view constructs a fresh DiscourseAPI per request
+_openstack_install_cache = ResponseCache(ttl=600)
+
+
 def openstack_install():
     """
     OpenStack install docs
     Instructions for OpenStack installation pulled from Discourse
     """
     discourse_api = DiscourseAPI(
-        base_url="https://discourse.ubuntu.com/", session=session
+        base_url="https://discourse.ubuntu.com/",
+        session=session,
+        cache=_openstack_install_cache,
     )
     openstack_install_parser = DocParser(
         api=discourse_api,
@@ -1854,8 +1836,6 @@ def process_community_events(community_events):
 def community_landing_page(
     community_events, local_communities, ubuntu_weekly_newsletter
 ):
-    events_cache = {}
-
     def _fetch_events_to_display():
         featured_events = community_events.get_featured_events()
         events_to_display = []
@@ -1886,16 +1866,17 @@ def community_landing_page(
 
     def display_community_landing_page():
         try:
-            events_to_display = cached_fetch(
-                events_cache,
-                "events-to-display",
-                _fetch_events_to_display,
-                ttl=300,
-            )
-        except (ServiceUnavailable, RequestException, ValueError):
+            events_to_display = _fetch_events_to_display()
+        except (
+            RateLimitedError,
+            ServiceUnavailable,
+            RequestException,
+            ValueError,
+        ):
             # Events are decorative on this page; the DiscourseAPI wraps
-            # upstream failures (including 429) in ValueError, so degrade
-            # to an empty list rather than failing the whole page
+            # some upstream failures in ValueError and raises
+            # RateLimitedError on 429, so degrade to an empty list
+            # rather than failing the whole page
             events_to_display = []
 
         communities_data = local_communities.get_category_index_metadata(

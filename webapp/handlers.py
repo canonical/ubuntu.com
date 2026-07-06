@@ -2,6 +2,7 @@ from typing import List
 
 import flask
 from canonicalwebteam import image_template
+from canonicalwebteam.discourse import RateLimitedError
 from slugify import slugify
 
 from webapp.constants import CSP
@@ -92,12 +93,11 @@ def init_handlers(app):
     @app.errorhandler(503)
     def service_unavailable(error):
         """
-        Rendered when the Discourse circuit breaker
-        (webapp/discourse_cache.py) is open: an upstream API is rate-limiting
-        us and there is no cached response to fall back on. Reuses the styled
-        500 template (the directory_parser sitemap excludes it, and it is the
-        app's standard "couldn't load this page" error) rather than leaking
-        the internal reason to users.
+        Rendered when an upstream API (e.g. Discourse) is rate-limiting
+        us and there is no cached response to fall back on. Reuses the
+        styled 500 template (the directory_parser sitemap excludes it,
+        and it is the app's standard "couldn't load this page" error)
+        rather than leaking the internal reason to users.
 
         JSON endpoints get a JSON body so their fetch() consumers don't
         choke on HTML, and Retry-After tells well-behaved clients and
@@ -116,6 +116,15 @@ def init_handlers(app):
         retry_after = getattr(error, "retry_after", None)
         response.headers["Retry-After"] = str(retry_after or 60)
         return response
+
+    @app.errorhandler(RateLimitedError)
+    def discourse_rate_limited(error):
+        """
+        The discourse package raises RateLimitedError when Discourse
+        returns 429 and no cached response is available; serve the same
+        503 as any other upstream outage.
+        """
+        return service_unavailable(error)
 
     @app.errorhandler(SecurityAPIError)
     def security_api_error(error):

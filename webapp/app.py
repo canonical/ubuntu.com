@@ -31,6 +31,7 @@ from canonicalwebteam.discourse import (
     Category,
     EventsParser,
     Events,
+    ResponseCache,
 )
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.flask_base.env import get_flask_env
@@ -42,7 +43,6 @@ from canonicalwebteam.form_generator import FormGenerator
 from canonicalwebteam.markdown_response import MarkdownResponse
 
 from webapp.certified.views import certified_routes
-from webapp.discourse_cache import cached_fetch, install_topic_cache
 from webapp.handlers import init_handlers
 from webapp.login import login_handler, logout, user_info
 from webapp.decorators import login_required
@@ -222,19 +222,18 @@ app.jinja_loader = loader
 session = requests.Session()
 charmhub_session = requests.Session()
 
+# Each DiscourseAPI gets its own ResponseCache (one cache per API key,
+# i.e. one rate-limit quota): responses are cached per worker, stale data
+# is served while Discourse errors, and a 429 opens that instance's
+# circuit breaker so we stop hammering Discourse until it recovers.
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
     session=session,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
+    cache=ResponseCache(ttl=600),
 )
-
-# Cache Discourse topic fetches and share the circuit breaker across all
-# discourse.ubuntu.com docs / tutorials / community views, so a 429 storm on
-# our Data Explorer credentials stops them hammering Discourse (and 500ing)
-# rather than each request re-fetching the index and document topics.
-install_topic_cache(discourse_api)
 
 charmhub_discourse_api = DiscourseAPI(
     base_url="https://discourse.charmhub.io/",
@@ -242,6 +241,7 @@ charmhub_discourse_api = DiscourseAPI(
     api_key=CHARMHUB_DISCOURSE_API_KEY,
     api_username=CHARMHUB_DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
+    cache=ResponseCache(ttl=600),
 )
 
 # Web tribe websites custom search ID
@@ -702,6 +702,7 @@ engage_pages_discourse_api = DiscourseAPI(
     get_topics_query_id=14,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
+    cache=ResponseCache(ttl=300),
 )
 takeovers_path = "/takeovers"
 discourse_takeovers = EngagePages(
@@ -776,23 +777,12 @@ app.add_url_rule(
 )
 
 
-_takeovers_cache = {}
-
-
 def takeovers_json():
-    active_takeovers = cached_fetch(
-        _takeovers_cache,
-        "active-takeovers",
-        discourse_takeovers.parse_active_takeovers,
-        ttl=300,
-    )
+    active_takeovers = discourse_takeovers.parse_active_takeovers()
     response = flask.jsonify(active_takeovers)
     response.cache_control.max_age = 300
 
     return response
-
-
-_takeovers_index_cache = {}
 
 
 def takeovers_index():
@@ -804,12 +794,7 @@ def takeovers_index():
         count,
         active_count,
         total_current,
-    ) = cached_fetch(
-        _takeovers_index_cache,
-        page,
-        lambda: discourse_takeovers.get_index(limit=limit, offset=offset),
-        ttl=300,
-    )
+    ) = discourse_takeovers.get_index(limit=limit, offset=offset)
     total_pages = math.ceil(count / limit)
 
     return flask.render_template(
