@@ -1029,6 +1029,48 @@ def enrich_acquisition_url(acquisition_url, utm_dict, approved_utms):
     return enriched_url
 
 
+# Cache Marketo form field definitions to avoid fetching them from the
+# Marketo asset API on every submission. Keyed by form id, each entry stores
+# a (expiry_timestamp, required_fields) tuple.
+_marketo_required_fields_cache = {}
+_MARKETO_REQUIRED_FIELDS_TTL = 60 * 60  # 1 hour
+
+
+def get_marketo_required_fields(form_id):
+    """Return a ``{field_id: label}`` dict of a Marketo form's required
+    fields.
+    """
+    cache_key = str(form_id)
+    cached = _marketo_required_fields_cache.get(cache_key)
+    if cached and cached[0] > time.time():
+        return cached[1]
+
+    try:
+        data = marketo_api.get_form_fields(form_id).json()
+    except Exception:
+        marketo_sentry_report(
+            "Failed to fetch Marketo form field definitions",
+            exception=True,
+            form_id=form_id,
+        )
+        return cached[1] if cached else {}
+
+    required_fields = {}
+    for field in data.get("result", []):
+        if field.get("required"):
+            field_id = field.get("id")
+            if field_id:
+                label = field.get("label") or field_id
+                # Marketo labels end with a colon
+                required_fields[field_id] = label.rstrip(": ").strip()
+
+    _marketo_required_fields_cache[cache_key] = (
+        time.time() + _MARKETO_REQUIRED_FIELDS_TTL,
+        required_fields,
+    )
+    return required_fields
+
+
 def marketo_submit():
     form_fields = {}
     for key in flask.request.form:
@@ -1077,30 +1119,25 @@ def marketo_submit():
         else "https://ubuntu.com"
     )
 
-    # Reject submissions missing any mandatory field. Empty values are
-    # dropped from form_fields above, so this catches both missing and
-    # blank fields (e.g. spam that only posts a valid formid).
-    required_fields = {
-        "firstName": "First name",
-        "lastName": "Last name",
-        "email": "Email",
-        "company": "Company",
-        "title": "Job title",
-        "country": "Country",
-        "phone": "Phone number",
-    }
-    missing_required = [
-        label
-        for field, label in required_fields.items()
-        if not form_fields.get(field, "").strip()
-    ]
-    if missing_required:
-        flask.flash(
-            "There was a problem submitting your form. Please complete the "
-            f"following required fields: {', '.join(missing_required)}.",
-            "contact-form-fail",
-        )
-        return flask.redirect(f"{referrer}#contact-form-fail")
+    # Reject submissions missing Marketo required fields.
+    # Calls cached Marketo API to get required fields for the form ID
+    # check if any fields are missing.
+    form_id = form_fields.get("formid")
+    if form_id:
+        required_fields = get_marketo_required_fields(form_id)
+        missing_required = [
+            label
+            for field, label in required_fields.items()
+            if not form_fields.get(field, "").strip()
+        ]
+        if missing_required:
+            flask.flash(
+                "There was a problem submitting your form. Please complete "
+                "the following required fields: "
+                f"{', '.join(missing_required)}.",
+                "contact-form-fail",
+            )
+            return flask.redirect(f"{referrer}#contact-form-fail")
 
     client_ip = flask.request.headers.get(
         "X-Real-IP", flask.request.remote_addr
