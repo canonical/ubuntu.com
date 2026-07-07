@@ -1740,7 +1740,11 @@ def build_sitemap_tree(exclude_paths=None):
 
 def process_local_communities(local_communities):
     def display_local_communities():
-        metadata_table = local_communities.get_category_index_metadata("locos")
+        # get_category_index_metadata returns None when Discourse
+        # errors and nothing was fetched before
+        metadata_table = (
+            local_communities.get_category_index_metadata("locos") or []
+        )
 
         # Group communities by continent
         valid_continents = [
@@ -1879,11 +1883,12 @@ def community_landing_page(
             # rather than failing the whole page
             events_to_display = []
 
-        communities_data = local_communities.get_category_index_metadata(
-            "locos"
+        # Both fallbacks below cover Discourse erroring before a first
+        # successful fetch: get_category_index_metadata returns None
+        # and get_topics_in_category returns {}
+        communities_data = (
+            local_communities.get_category_index_metadata("locos") or []
         )
-        # get_topics_in_category returns {} when Discourse errors and
-        # nothing was fetched before; treat that as no newsletters
         newsletter_data = (
             ubuntu_weekly_newsletter.get_topics_in_category() or []
         )

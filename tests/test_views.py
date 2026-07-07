@@ -1378,6 +1378,42 @@ class TestRateLimitedErrorHandling(TestCase):
         self.assertEqual(response.headers.get("Retry-After"), "99")
         self.assertTrue(response.content_type.startswith("application/json"))
 
+    def test_community_communities_none_fallback_does_not_crash(self):
+        # get_category_index_metadata("locos") returns None when
+        # Discourse errors and nothing was fetched before; the page
+        # must render with no communities instead of crashing
+        community_events = Mock()
+        community_events.get_featured_events.return_value = []
+        community_events.get_events.return_value = []
+        local_communities = Mock()
+        local_communities.get_category_index_metadata.return_value = None
+        newsletter = Mock()
+        newsletter.get_topics_in_category.return_value = []
+        view = community_landing_page(
+            community_events, local_communities, newsletter
+        )
+
+        with patch(
+            "webapp.views.flask.render_template", return_value=""
+        ) as render:
+            with app.test_request_context("/community"):
+                view()
+
+        self.assertEqual(render.call_args.kwargs["communities"], [])
+
+    def test_local_communities_none_fallback_does_not_crash(self):
+        local_communities = Mock()
+        local_communities.get_category_index_metadata.return_value = None
+        view = process_local_communities(local_communities)
+
+        with patch(
+            "webapp.views.flask.render_template", return_value=""
+        ) as render:
+            with app.test_request_context("/community/local-communities"):
+                view()
+
+        self.assertEqual(render.call_args.kwargs["map_markers"], [])
+
     def test_community_newsletter_dict_fallback_does_not_crash(self):
         # get_topics_in_category returns {} when Discourse errors and
         # nothing was fetched before; the page must render without it
