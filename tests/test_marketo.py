@@ -202,7 +202,7 @@ class TestStaticContactForms(MarketoFormTestCase):
 
 class TestMarketoSubmit(unittest.TestCase):
     """
-    Tests for market_submit()
+    Tests for marketo_submit()
     Two form submissions (payload + enrichment) have to go through
     to be considered successful and avoid a Sentry alert.
 
@@ -304,9 +304,7 @@ class TestMarketoSubmit(unittest.TestCase):
             ["Marketo form 1234 and enrichment payload failed to submit"],
         )
         self.assertEqual(http_response.status_code, 302)
-        self.assertIn(
-            "contact-form-fail", http_response.headers["Location"]
-        )
+        self.assertIn("contact-form-fail", http_response.headers["Location"])
 
     def test_payload_succeeds_enrichment_fails_single_alert(self):
         """
@@ -326,9 +324,7 @@ class TestMarketoSubmit(unittest.TestCase):
             ["Marketo form 1234 enrichment payload failed"],
         )
         self.assertEqual(http_response.status_code, 302)
-        self.assertIn(
-            "contact-form-fail", http_response.headers["Location"]
-        )
+        self.assertIn("contact-form-fail", http_response.headers["Location"])
 
     def test_enrichment_succeeds_payload_skipped_single_alert(self):
         """
@@ -349,9 +345,7 @@ class TestMarketoSubmit(unittest.TestCase):
             ["Marketo form 1234 payload failed to submit"],
         )
         self.assertEqual(http_response.status_code, 302)
-        self.assertIn(
-            "contact-form-fail", http_response.headers["Location"]
-        )
+        self.assertIn("contact-form-fail", http_response.headers["Location"])
 
 
 if __name__ == "__main__":

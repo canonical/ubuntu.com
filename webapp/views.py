@@ -1318,10 +1318,7 @@ def marketo_submit():
     enrichment_succeeded = enrichment_submission["success"] is True
 
     # Verify that both payload and enrichment submissions went through
-    if (
-        payload_succeeded is True
-        and enrichment_succeeded is True
-    ):
+    if payload_succeeded is True and enrichment_succeeded is True:
         flask.flash(
             "Your form was submitted successfully.", "contact-form-success"
         )
@@ -1351,10 +1348,7 @@ def marketo_submit():
     else:
 
         # Both payload and enrichment submissions failed
-        if (
-            enrichment_succeeded is False
-            and payload_succeeded is False
-        ):
+        if enrichment_succeeded is False and payload_succeeded is False:
             sentry_message = (
                 f"Marketo form {payload['formId']} and "
                 "enrichment payload failed to submit"
