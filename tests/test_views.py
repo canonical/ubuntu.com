@@ -17,6 +17,7 @@ from webapp.views import (
     build_tutorials_query,
     match_tags,
     build_engage_page,
+    community_landing_page,
     enrich_acquisition_url,
     build_engage_page_resources,
     append_utms_cookie_to_canonical_links,
@@ -1234,3 +1235,203 @@ class TestAppendUtmsCookieToCanonicalLinks(BaseViewTestCase):
             updated_html = response.set_data.call_args[0][0]
             # Verify mailto link is unchanged
             self.assertEqual(updated_html, html)
+
+
+class TestCommunityLandingEvents(TestCase):
+    """
+    The community landing page should degrade to an empty events list
+    when Discourse errors, instead of failing the whole page.
+    """
+
+    def _build_view(self, community_events):
+        local_communities = Mock()
+        local_communities.get_category_index_metadata.return_value = []
+        newsletter = Mock()
+        newsletter.get_topics_in_category.return_value = []
+        return community_landing_page(
+            community_events, local_communities, newsletter
+        )
+
+    def test_events_degrade_when_discourse_errors(self):
+        community_events = Mock()
+        community_events.get_featured_events.side_effect = ValueError(
+            "HTTP error occurred: 429 Client Error: Too Many Requests"
+        )
+        view = self._build_view(community_events)
+
+        with patch(
+            "webapp.views.flask.render_template", return_value=""
+        ) as render:
+            with app.test_request_context("/community"):
+                view()
+
+        self.assertEqual(render.call_args.kwargs["featured_events"], [])
+
+
+class TestRateLimitedErrorHandling(TestCase):
+    """
+    RateLimitedError from the discourse package must surface as a
+    branded 503 with Retry-After, never a 500.
+    """
+
+    def test_rate_limited_json_endpoint_returns_503(self):
+        from canonicalwebteam.discourse import RateLimitedError
+        from webapp import app as app_module
+
+        app.testing = True
+        client = app.test_client()
+
+        with patch.object(
+            app_module.discourse_takeovers,
+            "parse_active_takeovers",
+            side_effect=RateLimitedError(retry_after=77),
+        ):
+            response = client.get("/takeovers.json")
+
+        self.assertEqual(response.status_code, 503)
+        self.assertEqual(response.headers.get("Retry-After"), "77")
+        self.assertTrue(response.content_type.startswith("application/json"))
+
+    def test_rate_limited_page_returns_styled_503(self):
+        from canonicalwebteam.discourse import RateLimitedError
+        from webapp import app as app_module
+
+        app.testing = True
+        client = app.test_client()
+
+        with patch.object(
+            app_module.discourse_takeovers,
+            "get_index",
+            side_effect=RateLimitedError(retry_after=88),
+        ):
+            response = client.get("/takeovers")
+
+        self.assertEqual(response.status_code, 503)
+        self.assertEqual(response.headers.get("Retry-After"), "88")
+        self.assertIn("Server error", response.get_data(as_text=True))
+
+    def test_community_events_degrade_on_rate_limit(self):
+        from canonicalwebteam.discourse import RateLimitedError
+
+        community_events = Mock()
+        community_events.get_featured_events.side_effect = RateLimitedError(
+            retry_after=60
+        )
+        local_communities = Mock()
+        local_communities.get_category_index_metadata.return_value = []
+        newsletter = Mock()
+        newsletter.get_topics_in_category.return_value = []
+        view = community_landing_page(
+            community_events, local_communities, newsletter
+        )
+
+        with patch(
+            "webapp.views.flask.render_template", return_value=""
+        ) as render:
+            with app.test_request_context("/community"):
+                view()
+
+        self.assertEqual(render.call_args.kwargs["featured_events"], [])
+
+    def test_related_engage_pages_skipped_on_rate_limit(self):
+        from canonicalwebteam.discourse import RateLimitedError
+
+        engage_pages = Mock()
+        engage_pages.api.base_url = "https://discourse.example.com"
+        metadata = {
+            "topic_name": "Main",
+            "related_urls": "/engage/other",
+            "language": "en",
+            "type": "webinar",
+        }
+        engage_pages.get_engage_page.side_effect = [
+            metadata,
+            RateLimitedError(retry_after=60),
+        ]
+        view = build_engage_page(engage_pages)
+
+        with patch(
+            "webapp.views.flask.render_template", return_value=""
+        ) as render:
+            with app.test_request_context("/engage/main"):
+                view(None, "main")
+
+        self.assertEqual(render.call_args.kwargs["related_pages_metadata"], [])
+
+    def test_rate_limited_json_accept_header_returns_json_503(self):
+        from canonicalwebteam.discourse import RateLimitedError
+        from webapp import app as app_module
+
+        app.testing = True
+        client = app.test_client()
+
+        with patch.object(
+            app_module.discourse_takeovers,
+            "get_index",
+            side_effect=RateLimitedError(retry_after=99),
+        ):
+            response = client.get(
+                "/takeovers", headers={"Accept": "application/json"}
+            )
+
+        self.assertEqual(response.status_code, 503)
+        self.assertEqual(response.headers.get("Retry-After"), "99")
+        self.assertTrue(response.content_type.startswith("application/json"))
+
+    def test_community_communities_none_fallback_does_not_crash(self):
+        # get_category_index_metadata("locos") returns None when
+        # Discourse errors and nothing was fetched before; the page
+        # must render with no communities instead of crashing
+        community_events = Mock()
+        community_events.get_featured_events.return_value = []
+        community_events.get_events.return_value = []
+        local_communities = Mock()
+        local_communities.get_category_index_metadata.return_value = None
+        newsletter = Mock()
+        newsletter.get_topics_in_category.return_value = []
+        view = community_landing_page(
+            community_events, local_communities, newsletter
+        )
+
+        with patch(
+            "webapp.views.flask.render_template", return_value=""
+        ) as render:
+            with app.test_request_context("/community"):
+                view()
+
+        self.assertEqual(render.call_args.kwargs["communities"], [])
+
+    def test_local_communities_none_fallback_does_not_crash(self):
+        local_communities = Mock()
+        local_communities.get_category_index_metadata.return_value = None
+        view = process_local_communities(local_communities)
+
+        with patch(
+            "webapp.views.flask.render_template", return_value=""
+        ) as render:
+            with app.test_request_context("/community/local-communities"):
+                view()
+
+        self.assertEqual(render.call_args.kwargs["map_markers"], [])
+
+    def test_community_newsletter_dict_fallback_does_not_crash(self):
+        # get_topics_in_category returns {} when Discourse errors and
+        # nothing was fetched before; the page must render without it
+        community_events = Mock()
+        community_events.get_featured_events.return_value = []
+        community_events.get_events.return_value = []
+        local_communities = Mock()
+        local_communities.get_category_index_metadata.return_value = []
+        newsletter = Mock()
+        newsletter.get_topics_in_category.return_value = {}
+        view = community_landing_page(
+            community_events, local_communities, newsletter
+        )
+
+        with patch(
+            "webapp.views.flask.render_template", return_value=""
+        ) as render:
+            with app.test_request_context("/community"):
+                view()
+
+        self.assertEqual(render.call_args.kwargs["newsletters"], [])
