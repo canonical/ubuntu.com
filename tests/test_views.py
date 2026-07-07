@@ -1357,3 +1357,45 @@ class TestRateLimitedErrorHandling(TestCase):
                 view(None, "main")
 
         self.assertEqual(render.call_args.kwargs["related_pages_metadata"], [])
+
+    def test_rate_limited_json_accept_header_returns_json_503(self):
+        from canonicalwebteam.discourse import RateLimitedError
+        from webapp import app as app_module
+
+        app.testing = True
+        client = app.test_client()
+
+        with patch.object(
+            app_module.discourse_takeovers,
+            "get_index",
+            side_effect=RateLimitedError(retry_after=99),
+        ):
+            response = client.get(
+                "/takeovers", headers={"Accept": "application/json"}
+            )
+
+        self.assertEqual(response.status_code, 503)
+        self.assertEqual(response.headers.get("Retry-After"), "99")
+        self.assertTrue(response.content_type.startswith("application/json"))
+
+    def test_community_newsletter_dict_fallback_does_not_crash(self):
+        # get_topics_in_category returns {} when Discourse errors and
+        # nothing was fetched before; the page must render without it
+        community_events = Mock()
+        community_events.get_featured_events.return_value = []
+        community_events.get_events.return_value = []
+        local_communities = Mock()
+        local_communities.get_category_index_metadata.return_value = []
+        newsletter = Mock()
+        newsletter.get_topics_in_category.return_value = {}
+        view = community_landing_page(
+            community_events, local_communities, newsletter
+        )
+
+        with patch(
+            "webapp.views.flask.render_template", return_value=""
+        ) as render:
+            with app.test_request_context("/community"):
+                view()
+
+        self.assertEqual(render.call_args.kwargs["newsletters"], [])

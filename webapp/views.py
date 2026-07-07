@@ -1882,7 +1882,11 @@ def community_landing_page(
         communities_data = local_communities.get_category_index_metadata(
             "locos"
         )
-        newsletter_data = ubuntu_weekly_newsletter.get_topics_in_category()
+        # get_topics_in_category returns {} when Discourse errors and
+        # nothing was fetched before; treat that as no newsletters
+        newsletter_data = (
+            ubuntu_weekly_newsletter.get_topics_in_category() or []
+        )
 
         return flask.render_template(
             "community/index.html",

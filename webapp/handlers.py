@@ -103,7 +103,11 @@ def init_handlers(app):
         choke on HTML, and Retry-After tells well-behaved clients and
         crawlers when to come back.
         """
-        if flask.request.path.endswith(".json"):
+        accepts = flask.request.accept_mimetypes
+        wants_json = flask.request.path.endswith(".json") or (
+            accepts.accept_json and not accepts.accept_html
+        )
+        if wants_json:
             response = flask.make_response(
                 flask.jsonify(error="Service temporarily unavailable"),
                 503,
