@@ -31,8 +31,9 @@
       </p>
     {%- endif -%}
     {%- if slot == 'cta' -%}
-      <a href="/contact-us/form?product=pro"
-         class="p-button--positive">Contact us</a>
+      <a href="/security/contact-us"
+         class="p-button--positive js-invoke-modal"
+         aria-controls="security-modal">Contact us</a>
       <a href="https://documentation.ubuntu.com/security/compliance/">Learn more about compliance automation&nbsp;&rsaquo;</a>
     {%- endif -%}
   {% endcall -%}
@@ -200,8 +201,9 @@
     <div class="grid-row">
       <div class="grid-col-4 grid-col-start-large-5">
         <div class="p-cta-block">
-          <a href="/contact-us/form?product=pro"
-             class="p-button--positive">Contact us</a>
+          <a href="/security/contact-us"
+             class="p-button--positive js-invoke-modal"
+             aria-controls="security-modal">Contact us</a>
         </div>
       </div>
     </div>
@@ -390,7 +392,7 @@
     {%- endif -%}
   {% endcall -%}
 
-  {{ load_form("/security/compliance-automation-value-calculator") | safe }}
+  {{ load_form('/security') | safe }}
 
   <script src="{{ versioned_static('js/src/slider-base.js') }}"></script>
   <script>
