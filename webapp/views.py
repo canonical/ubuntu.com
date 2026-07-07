@@ -1310,17 +1310,17 @@ def marketo_submit():
             payload=payload,
         )
 
-    # Redirect to success page only if both submissions were successful.
-    # A "skipped" payload status means Marketo rejected the main form
-    # submission (e.g. an unexpected field such as a stray hidden input),
-    # even though the top-level API response still reports success. Treat it
-    # as an explicit failure so it can never be silently reported as success.
+    # Skipped payload means Marketo rejected the submission
+    # API-level success does not mean the submission was successful
+    # https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/error-codes#error-types
     payload_status = data["result"][0]["status"]
+    payload_succeeded = data["success"] is True and payload_status != "skipped"
+    enrichment_succeeded = enrichment_submission["success"] is True
 
+    # Verify that both payload and enrichment submissions went through
     if (
-        enrichment_submission["success"] is True
-        and data["success"] is True
-        and payload_status != "skipped"
+        payload_succeeded is True
+        and enrichment_succeeded is True
     ):
         flask.flash(
             "Your form was submitted successfully.", "contact-form-success"
@@ -1349,11 +1349,11 @@ def marketo_submit():
 
             return flask.redirect(return_url)
     else:
-        # Log every failed submission to Sentry with the tried payload, then
-        # display an error notification to the user.
+
+        # Both payload and enrichment submissions failed
         if (
-            payload_status == "skipped"
-            and enrichment_submission["success"] is False
+            enrichment_succeeded is False
+            and payload_succeeded is False
         ):
             sentry_message = (
                 f"Marketo form {payload['formId']} and "
@@ -1363,14 +1363,25 @@ def marketo_submit():
                 "There was an issue submitting the form contact details "
                 "and payload."
             )
-        elif payload_status == "skipped":
+
+        # Payload submission failed only
+        elif payload_succeeded is False:
             sentry_message = (
                 f"Marketo form {payload['formId']} payload failed to submit"
             )
             flash_message = "There was an issue submitting the form payload."
+
+        # Enrichment submission failed only
+        elif enrichment_succeeded is False:
+            sentry_message = (
+                f"Marketo form {payload['formId']} enrichment payload failed"
+            )
+            flash_message = (
+                "There was an issue submitting the form contact details."
+            )
+
+        # API reported failure for another reason.
         else:
-            # Payload was accepted but enrichment failed, or the API
-            # reported failure for another reason.
             sentry_message = (
                 f"Marketo form {payload['formId']} submission failed"
             )
