@@ -1,5 +1,7 @@
 name: Form e2e integration tests on ubuntu.com
 on:
+  # TODO: Undo changes on this file before merging
+  pull_request:
   push:
     branches:
       - main
@@ -77,7 +79,7 @@ jobs:
           MARKETO_API_CLIENT: ${{ secrets.MARKETO_API_CLIENT }}
           MARKETO_API_SECRET: ${{ secrets.MARKETO_API_SECRET }}
         run: |
-          python -m unittest tests.test_marketo
+          python -m unittest tests.test_marketo.TestMarketoSubmit
 
       - name: Send message on failure
         env:
