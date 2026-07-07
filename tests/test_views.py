@@ -1290,9 +1290,7 @@ class TestRateLimitedErrorHandling(TestCase):
 
         self.assertEqual(response.status_code, 503)
         self.assertEqual(response.headers.get("Retry-After"), "77")
-        self.assertTrue(
-            response.content_type.startswith("application/json")
-        )
+        self.assertTrue(response.content_type.startswith("application/json"))
 
     def test_rate_limited_page_returns_styled_503(self):
         from canonicalwebteam.discourse import RateLimitedError
@@ -1358,6 +1356,4 @@ class TestRateLimitedErrorHandling(TestCase):
             with app.test_request_context("/engage/main"):
                 view(None, "main")
 
-        self.assertEqual(
-            render.call_args.kwargs["related_pages_metadata"], []
-        )
+        self.assertEqual(render.call_args.kwargs["related_pages_metadata"], [])
