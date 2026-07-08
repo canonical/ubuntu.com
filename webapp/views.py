@@ -37,7 +37,7 @@ from canonicalwebteam.search.views import NoAPIKeyError
 from canonicalwebteam.directory_parser import generate_sitemap
 from geolite2 import geolite2
 from requests import Session
-from requests.exceptions import HTTPError
+from requests.exceptions import HTTPError, RequestException
 from werkzeug.exceptions import BadRequest, ServiceUnavailable
 from canonicalwebteam.flask_base.env import get_flask_env
 
@@ -1842,19 +1842,66 @@ def process_community_events(community_events):
     return display_community_events
 
 
-def community_landing_page(ubuntu_weekly_newsletter):
+def community_landing_page(
+    community_events, local_communities, ubuntu_weekly_newsletter
+):
+    def _fetch_events_to_display():
+        featured_events = community_events.get_featured_events()
+        events_to_display = []
+
+        # If there are less than 4 featured events,
+        # fill the rest with regular events
+        if len(featured_events) < 4:
+            events_data = community_events.get_events()
+            needed_events = 4 - len(featured_events)
+            events_to_display.extend(featured_events)
+
+            featured_event_ids = {event.get("id") for event in featured_events}
+            regular_events = [
+                event
+                for event in events_data
+                if event.get("id") not in featured_event_ids
+            ]
+
+            events_to_display.extend(regular_events[:needed_events])
+            events_to_display.sort(key=lambda x: x.get("starts_at", ""))
+        else:
+            events_to_display = featured_events[:4]
+
+        for event in events_to_display:
+            format_community_event_time(event)
+
+        return events_to_display
+
     def display_community_landing_page():
-        # The Community events and Circles sections are rendered as a
-        # static snapshot in community/index.html, so no Discourse fetch
-        # is needed for them here. Newsletters remain dynamic.
-        # The fallback covers Discourse erroring before a first successful
-        # fetch: get_topics_in_category returns {}.
+        try:
+            events_to_display = _fetch_events_to_display()
+        except (
+            RateLimitedError,
+            ServiceUnavailable,
+            RequestException,
+            ValueError,
+        ):
+            # Events are decorative on this page; the DiscourseAPI wraps
+            # some upstream failures in ValueError and raises
+            # RateLimitedError on 429, so degrade to an empty list
+            # rather than failing the whole page
+            events_to_display = []
+
+        # Both fallbacks below cover Discourse erroring before a first
+        # successful fetch: get_category_index_metadata returns None
+        # and get_topics_in_category returns {}
+        communities_data = (
+            local_communities.get_category_index_metadata("locos") or []
+        )
         newsletter_data = (
             ubuntu_weekly_newsletter.get_topics_in_category() or []
         )
 
         return flask.render_template(
             "community/index.html",
+            featured_events=events_to_display,
+            communities=communities_data,
             newsletters=newsletter_data[:3],  # Limit to 3 newsletters
         )
 
