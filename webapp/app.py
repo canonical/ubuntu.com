@@ -884,15 +884,10 @@ app.add_url_rule(
 
 
 def community_static_landing_page():
-    # Static version of /community. The Community events and Circles
-    # sections are baked into community/index-static.html as a snapshot,
-    # so no Discourse fetch is needed for them. The newsletter list stays
-    # dynamic to mirror the live page.
-    newsletter_data = ubuntu_weekly_newsletter.get_topics_in_category() or []
-    return flask.render_template(
-        "community/index-static.html",
-        newsletters=newsletter_data[:3],
-    )
+    # Static version of /community. The Community events, Circles and
+    # newsletter sections are baked into community/index-static.html as a
+    # snapshot, so no Discourse fetch is needed to render the page.
+    return flask.render_template("community/index-static.html")
 
 
 app.add_url_rule(

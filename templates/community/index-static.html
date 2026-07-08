@@ -286,12 +286,17 @@ meta_copydoc %}
         <h2>Ubuntu Weekly Newsletter</h2>
       </div>
       <div class="col">
+        {# Static snapshot of the latest Ubuntu Weekly Newsletter issues (previously fetched from Discourse). #}
         <ul class="p-list--divided">
-          {% for newsletter in newsletters %}
-            <li class="p-list__item">
-              <a href="community/uwn/{{ newsletter.slug }}">{{ newsletter.title }}</a>
-            </li>
-          {% endfor %}
+          <li class="p-list__item">
+            <a href="/community/uwn/ubuntu-weekly-newsletter-issue-952">Ubuntu Weekly Newsletter Issue 952</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/community/uwn/ubuntu-weekly-newsletter-issue-951">Ubuntu Weekly Newsletter Issue 951</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/community/uwn/ubuntu-weekly-newsletter-issue-950">Ubuntu Weekly Newsletter Issue 950</a>
+          </li>
         </ul>
         <a href="/community/uwn" class="p-button">View all newsletter issues</a>
       </div>
