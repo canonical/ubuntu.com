@@ -42,6 +42,7 @@ from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.form_generator import FormGenerator
 from canonicalwebteam.markdown_response import MarkdownResponse
 
+from webapp.constants import CACHE_TTL
 from webapp.certified.views import certified_routes
 from webapp.handlers import init_handlers
 from webapp.login import login_handler, logout, user_info
@@ -232,7 +233,7 @@ discourse_api = DiscourseAPI(
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
-    cache=ResponseCache(ttl=600),
+    cache=ResponseCache(ttl=CACHE_TTL),
 )
 
 charmhub_discourse_api = DiscourseAPI(
@@ -241,7 +242,7 @@ charmhub_discourse_api = DiscourseAPI(
     api_key=CHARMHUB_DISCOURSE_API_KEY,
     api_username=CHARMHUB_DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
-    cache=ResponseCache(ttl=600),
+    cache=ResponseCache(ttl=CACHE_TTL),
 )
 
 # Web tribe websites custom search ID
@@ -702,7 +703,7 @@ engage_pages_discourse_api = DiscourseAPI(
     get_topics_query_id=14,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
-    cache=ResponseCache(ttl=300),
+    cache=ResponseCache(ttl=CACHE_TTL),
 )
 takeovers_path = "/takeovers"
 discourse_takeovers = EngagePages(
