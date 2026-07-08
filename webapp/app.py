@@ -241,6 +241,16 @@ charmhub_discourse_api = DiscourseAPI(
     cache=None,  # caching disabled for raw-log testing
 )
 
+# Anonymous reads for public content. No key means these GET /t/{id}.json
+# reads don't count against the shared 60/min admin API bucket. Own
+# session — DiscourseAPI overwrites session.headers on authenticated
+# instances, which would otherwise leak the key onto a shared session.
+discourse_api_anon = DiscourseAPI(
+    base_url="https://discourse.ubuntu.com/",
+    session=requests.Session(),
+    cache=None,
+)
+
 # Web tribe websites custom search ID
 search_engine_id = "adb2397a224a1fe55"
 
@@ -915,7 +925,7 @@ app.add_url_rule(
 tutorials_path = "/tutorials"
 tutorials_docs = Tutorials(
     parser=TutorialParser(
-        api=discourse_api,
+        api=discourse_api_anon,
         index_topic_id=13611,
         url_prefix=tutorials_path,
     ),
