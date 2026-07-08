@@ -35,48 +35,12 @@ from webapp.shop.flaskparser import UAContractsValidationError
 from webapp.certified.helpers import convert_markdown_to_html
 from canonicalwebteam.flask_base.env import get_flask_env
 
-# Setting long cache headers for pages that are backed by Discourse and
-# don't change often, to reduce revalidation
-# traffic to the app and Discourse.
-# Default cache-control headers are set in flask_base, and are 60s
-# max-age, with stale-while-revalidate and stale-if-error.
-
-LONG_CACHE_SECONDS = 1800  # 30 minutes
-
-# Exact paths (no trailing segment) that should get the longer cache.
-LONG_CACHE_EXACT = frozenset(
-    {
-        "/engage",
-        "/takeovers",
-        "/tutorials",
-        "/tutorials.json",
-        "/community",
-        "/community/docs",
-        "/community/events",
-        "/community/circles",
-        "/community/uwn",
-        "/openstack/install",
-    }
-)
-
-# Path prefixes whose sub-pages should get the longer cache
-LONG_CACHE_PREFIXES = (
-    "/engage/",
-    "/tutorials/",
-    "/community/docs/",
-    "/community/uwn/",
-)
-
-
-def _should_long_cache(path):
-    return path in LONG_CACHE_EXACT or path.startswith(LONG_CACHE_PREFIXES)
-
 
 def init_handlers(app):
     @app.after_request
     def cache_headers(response):
         """
-        Adjust cache-control for specific routes.
+        Set cache expiry to 60 seconds for homepage and blog page
         """
 
         disable_cache_on = (
@@ -93,26 +57,6 @@ def init_handlers(app):
         # Prevent XSS
         if flask.request.path.startswith("/certified"):
             response.headers["X-Frame-Options"] = "DENY"
-
-        # Longer cache for Discourse-backed content pages.
-        path = flask.request.path
-        if (
-            response.status_code == 200
-            and flask.request.method == "GET"
-            # Editors append ?preview to see unpublished engage pages;
-            # never cache those.
-            and not flask.request.args.get("preview")
-            # Thank-you pages read personalised data from the session.
-            and not path.endswith("/thank-you")
-            # Respect any view that opted out or set its own directives.
-            and not response.cache_control.no_store
-            and not response.cache_control.no_cache
-            and not response.cache_control.private
-            and response.cache_control.max_age is None
-            and _should_long_cache(path)
-        ):
-            response.cache_control.public = True
-            response.cache_control.max_age = LONG_CACHE_SECONDS
 
         return response
 
