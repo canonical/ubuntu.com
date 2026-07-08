@@ -1402,22 +1402,20 @@ class TestRateLimitedErrorHandling(TestCase):
 
         self.assertEqual(render.call_args.kwargs["communities"], [])
 
-    def test_vulnerabilities_list_none_metadata_does_not_crash(self):
-        # get_category_index_metadata / get_topics_in_category return
-        # None when Discourse errors on a cold cache; the vulnerabilities
-        # page must not crash iterating over None
+    def test_vulnerabilities_list_aborts_503_when_unavailable(self):
+        # get_category_index_metadata returns None when Discourse errors
+        # on a cold cache. The vulnerabilities page must surface a 503
+        # rather than crash on None or render a misleading empty list.
+        from werkzeug.exceptions import ServiceUnavailable
+
         security = Mock()
         security.get_topics_in_category.return_value = None
         security.get_category_index_metadata.return_value = None
         view = build_vulnerabilities_list(security)
 
-        with patch(
-            "webapp.views.flask.render_template", return_value=""
-        ) as render:
-            with app.test_request_context("/security/vulnerabilities"):
+        with app.test_request_context("/security/vulnerabilities"):
+            with self.assertRaises(ServiceUnavailable):
                 view()
-
-        self.assertEqual(render.call_args.kwargs["vulnerabilities"], [])
 
     def test_local_communities_none_fallback_does_not_crash(self):
         local_communities = Mock()

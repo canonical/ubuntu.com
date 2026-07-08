@@ -1611,8 +1611,12 @@ def build_vulnerabilities_list(security_vulnerabilities, path=None):
                 security_vulnerabilities.get_category_index_metadata(
                     "vulnerabilities"
                 )
-                or []
             )
+            if vulnerabilities is None:
+                # Couldn't load from Discourse (e.g. rate limited on a
+                # cold cache). Surface a 503 rather than a misleading
+                # empty list that reads as "no vulnerabilities".
+                flask.abort(503)
             for vuln in vulnerabilities:
                 # Add slug
                 vuln_id = str(vuln["id"])
