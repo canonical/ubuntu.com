@@ -94,10 +94,9 @@ def init_handlers(app):
     def service_unavailable(error):
         """
         Rendered when an upstream API (e.g. Discourse) is rate-limiting
-        us and there is no cached response to fall back on. Reuses the
-        styled 500 template (the directory_parser sitemap excludes it,
-        and it is the app's standard "couldn't load this page" error)
-        rather than leaking the internal reason to users.
+        us and there is no cached response to fall back on. The 503
+        template tells users the page is temporarily unavailable and to
+        retry, rather than leaking the internal reason.
 
         JSON endpoints get a JSON body so their fetch() consumers don't
         choke on HTML, and Retry-After tells well-behaved clients and
@@ -114,7 +113,7 @@ def init_handlers(app):
             )
         else:
             response = flask.make_response(
-                flask.render_template("500.html"), 503
+                flask.render_template("503.html"), 503
             )
 
         retry_after = getattr(error, "retry_after", None)
