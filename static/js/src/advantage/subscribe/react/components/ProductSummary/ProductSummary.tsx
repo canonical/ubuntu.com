@@ -124,8 +124,7 @@ const ProductSummary = () => {
                 appearance="positive"
                 style={{ marginRight: "1rem", marginBottom: "0" }}
                 value="Free trial on checkout"
-              >
-              </Chip>
+              ></Chip>
             ) : null}
             <PaymentButton style={{ marginBottom: "0" }} />
           </Col>
@@ -217,8 +216,7 @@ const ProductSummary = () => {
                 appearance="positive"
                 style={{ marginRight: "1rem", marginBottom: "0" }}
                 value="Free trial on checkout"
-              >
-              </Chip>
+              ></Chip>
             </Col>
           ) : null}
         </Row>
