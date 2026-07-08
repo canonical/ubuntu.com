@@ -241,6 +241,16 @@ charmhub_discourse_api = DiscourseAPI(
     cache=None,  # caching disabled for raw-log testing
 )
 
+# Anonymous reads for public Docs: no key means these GET /t/{id}.json
+# reads don't count against the shared 60/min admin API bucket. Own
+# session — DiscourseAPI overwrites session.headers on authenticated
+# instances, which would otherwise leak the key onto a shared session.
+discourse_api_anon = DiscourseAPI(
+    base_url="https://discourse.ubuntu.com/",
+    session=requests.Session(),
+    cache=None,
+)
+
 # Web tribe websites custom search ID
 search_engine_id = "adb2397a224a1fe55"
 
@@ -818,7 +828,7 @@ app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 url_prefix = "/community/docs"
 community_docs = Docs(
     parser=DocParser(
-        api=discourse_api,
+        api=discourse_api_anon,
         index_topic_id=33115,
         url_prefix=url_prefix,
     ),
@@ -936,7 +946,9 @@ app.add_url_rule(
 # Ceph docs
 ceph_docs = Docs(
     parser=DocParser(
-        api=discourse_api, index_topic_id=17250, url_prefix="/ceph/docs"
+        api=discourse_api_anon,
+        index_topic_id=17250,
+        url_prefix="/ceph/docs",
     ),
     document_template="/ceph/docs/document.html",
     url_prefix="/ceph/docs",
@@ -960,7 +972,7 @@ app.add_url_rule(
 # Charmed OpenStack docs
 openstack_docs = Docs(
     parser=DocParser(
-        api=discourse_api,
+        api=discourse_api_anon,
         index_topic_id=20991,
         url_prefix="/openstack/docs",
     ),
@@ -987,7 +999,7 @@ openstack_docs.init_app(app)
 # Security Livepatch docs
 security_livepatch_docs = Docs(
     parser=DocParser(
-        api=discourse_api,
+        api=discourse_api_anon,
         index_topic_id=22723,
         url_prefix="/security/livepatch/docs",
     ),
@@ -1014,7 +1026,7 @@ security_livepatch_docs.init_app(app)
 # Security Certifications docs
 security_certs_docs = Docs(
     parser=DocParser(
-        api=discourse_api,
+        api=discourse_api_anon,
         index_topic_id=22810,
         url_prefix="/security/certifications/docs",
     ),
