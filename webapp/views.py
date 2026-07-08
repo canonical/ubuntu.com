@@ -45,7 +45,7 @@ from canonicalwebteam.flask_base.env import get_flask_env
 from webapp.login import user_info
 from webapp.marketo import MarketoAPI
 from webapp.utils import format_community_event_time
-from webapp.constants import ENGAGE_UI_TRANSLATIONS
+from webapp.constants import ENGAGE_UI_TRANSLATIONS, CACHE_TTL
 
 ip_reader = geolite2.reader()
 session = Session()
@@ -760,7 +760,7 @@ def build_engage_pages_metadata(engage_pages):
 
 # Module-level so the cache survives across requests even though the
 # view constructs a fresh DiscourseAPI per request
-_openstack_install_cache = ResponseCache(ttl=600)
+_openstack_install_cache = ResponseCache(ttl=CACHE_TTL)
 
 
 def openstack_install():
