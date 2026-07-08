@@ -25,7 +25,12 @@ class TestBlogNotice(VCRTestCase):
         return {
             "record_mode": os.environ.get("VCR_RECORD_MODE", "none"),
             "decode_compressed_response": True,
-            "filter_headers": ["Authorization", "Cookie"],
+            "filter_headers": [
+                "Authorization",
+                "Cookie",
+                "Api-Key",
+                "Api-Username",
+            ],
         }
 
     def setUp(self):
