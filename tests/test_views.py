@@ -1414,6 +1414,24 @@ class TestRateLimitedErrorHandling(TestCase):
 
         self.assertEqual(render.call_args.kwargs["map_markers"], [])
 
+    def test_discourse_auth_scope_configuration(self):
+        # The shared instance reads public content anonymously (its
+        # requests must not spend the shared admin API quota); the
+        # security instance reads a private category so it must stay
+        # authenticated. They must not share a session object, or the
+        # authenticated instance would stamp credentials on both.
+        from webapp import app as app_module
+
+        self.assertNotIn("Api-Key", app_module.discourse_api.session.headers)
+        self.assertEqual(
+            app_module.security_discourse_api.session.headers.get("Api-Key"),
+            app_module.security_discourse_api.api_key,
+        )
+        self.assertIsNot(
+            app_module.discourse_api.session,
+            app_module.security_discourse_api.session,
+        )
+
     def test_community_newsletter_dict_fallback_does_not_crash(self):
         # get_topics_in_category returns {} when Discourse errors and
         # nothing was fetched before; the page must render without it

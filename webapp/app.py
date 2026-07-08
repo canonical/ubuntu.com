@@ -221,14 +221,36 @@ app.jinja_loader = loader
 
 session = requests.Session()
 charmhub_session = requests.Session()
+security_session = requests.Session()
+# Dedicated session for the anonymous-reads instance below: it must not
+# be shared with any authenticated DiscourseAPI, or that instance would
+# stamp the API credentials onto it and defeat the anonymous reads.
+discourse_session = requests.Session()
 
 # Each DiscourseAPI gets its own ResponseCache (one cache per API key,
 # i.e. one rate-limit quota): responses are cached per worker, stale data
 # is served while Discourse errors, and a 429 opens that instance's
 # circuit breaker so we stop hammering Discourse until it recovers.
+# authenticated_reads=False: the content this instance serves (community,
+# tutorials, ceph/openstack/livepatch/certs docs) is publicly visible, so
+# plain GETs go out anonymously - they stop counting against the shared
+# admin API quota and can be served by the caching proxy in front of
+# Discourse. Data Explorer queries still authenticate. Security
+# vulnerabilities content is NOT public, so it gets its own
+# authenticated instance below.
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
-    session=session,
+    session=discourse_session,
+    api_key=DISCOURSE_API_KEY,
+    api_username=DISCOURSE_API_USERNAME,
+    get_topics_query_id=2,
+    cache=ResponseCache(ttl=600),
+    authenticated_reads=False,
+)
+
+security_discourse_api = DiscourseAPI(
+    base_url="https://discourse.ubuntu.com/",
+    session=security_session,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
@@ -653,7 +675,7 @@ app.add_url_rule(
 # Security vulnerabilities
 security_vulnerabilities = Category(
     parser=CategoryParser(
-        api=discourse_api,
+        api=security_discourse_api,
         index_topic_id=53193,
         url_prefix="/security/vulnerabilities",
     ),
