@@ -86,24 +86,68 @@ meta_copydoc %}
       </div>
     </div>
     <hr class="p-rule--muted is-fixed-width" />
+    {# Static snapshot of Community events (previously fetched from Discourse). #}
     <div class="p-equal-height-row--wrap">
-      {% for event in featured_events[:4] %}
-        <div class="p-equal-height-row__col is-borderless">
-          <div class="p-equal-height-row__item">
-            <h3 class="u-clamp--two-lines">{{ event.post.topic.title }}</h3>
-          </div>
-          <div class="p-equal-height-row__item">
-            <p class="u-text--muted u-no-margin--bottom u-no-padding--top">{{ event.formatted_time }}</p>
-            <p>
-              <a href="https://discourse.ubuntu.com/u/{{ event.creator.username }}">{{ event.creator.name }}</a>
-            </p>
-          </div>
-          <div class="p-equal-height-row__item">
-            <a href="https://discourse.ubuntu.com/{{ event.post.url }}"
-               class="p-button">Learn more</a>
-          </div>
+      <div class="p-equal-height-row__col is-borderless">
+        <div class="p-equal-height-row__item">
+          <h3 class="u-clamp--two-lines">Lubuntu Weekly Standup</h3>
         </div>
-      {% endfor %}
+        <div class="p-equal-height-row__item">
+          <p class="u-text--muted u-no-margin--bottom u-no-padding--top">09 Jul, 9:00-10:00 PM (UTC)</p>
+          <p>
+            <a href="https://discourse.ubuntu.com/u/teward">Thomas Ward</a>
+          </p>
+        </div>
+        <div class="p-equal-height-row__item">
+          <a href="https://discourse.ubuntu.com/t/lubuntu-weekly-standup/43699/1"
+             class="p-button">Learn more</a>
+        </div>
+      </div>
+      <div class="p-equal-height-row__col is-borderless">
+        <div class="p-equal-height-row__item">
+          <h3 class="u-clamp--two-lines">Ubuntu @ DebConf26</h3>
+        </div>
+        <div class="p-equal-height-row__item">
+          <p class="u-text--muted u-no-margin--bottom u-no-padding--top">13 Jul, 10:00AM - 25 Jul, 06:00PM (-03)</p>
+          <p>
+            <a href="https://discourse.ubuntu.com/u/ilvipero">Mauro Gaspari</a>
+          </p>
+        </div>
+        <div class="p-equal-height-row__item">
+          <a href="https://discourse.ubuntu.com/t/ubuntu-debconf26/77115/1"
+             class="p-button">Learn more</a>
+        </div>
+      </div>
+      <div class="p-equal-height-row__col is-borderless">
+        <div class="p-equal-height-row__item">
+          <h3 class="u-clamp--two-lines">Starcraft Clinics (1st Option)</h3>
+        </div>
+        <div class="p-equal-height-row__item">
+          <p class="u-text--muted u-no-margin--bottom u-no-padding--top">16 Jul, 3:00-4:00 PM (-03)</p>
+          <p>
+            <a href="https://discourse.ubuntu.com/u/tigarmo">Tiago Nobrega</a>
+          </p>
+        </div>
+        <div class="p-equal-height-row__item">
+          <a href="https://discourse.ubuntu.com/t/starcraft-clinics-1st-option/43649/1"
+             class="p-button">Learn more</a>
+        </div>
+      </div>
+      <div class="p-equal-height-row__col is-borderless">
+        <div class="p-equal-height-row__item">
+          <h3 class="u-clamp--two-lines">Starcraft Clinics (2nd Option)</h3>
+        </div>
+        <div class="p-equal-height-row__item">
+          <p class="u-text--muted u-no-margin--bottom u-no-padding--top">20 Jul, 11:00-11:50 AM (-03)</p>
+          <p>
+            <a href="https://discourse.ubuntu.com/u/tigarmo">Tiago Nobrega</a>
+          </p>
+        </div>
+        <div class="p-equal-height-row__item">
+          <a href="https://discourse.ubuntu.com/t/starcraft-clinics-2nd-option/48031/1"
+             class="p-button">Learn more</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -120,29 +164,72 @@ meta_copydoc %}
       </div>
     </div>
     <hr class="p-rule--muted is-fixed-width" />
+    {# Static snapshot of featured Circles (previously fetched from Discourse). #}
     <div class="row--25-25-25-25">
-      {% set ns = namespace(community_cards=0) %}
-      {% for community in communities %}
-        {% if community.featured == "True" and ns.community_cards < 4 %}
-          {% set ns.community_cards = ns.community_cards + 1 %}
-          <div class="col">
-            <div class="p-image-container--16-9 is-cover">
-              {{ image(url=community.image.url if community.image and community.image.url else 'https://assets.ubuntu.com/v1/37387afc-loco-thumbnail.png',
-                            alt="",
-                            width="600",
-                            height="300",
-                            hi_def=True,
-                            loading="lazy",
-                            attrs={"class": "p-image-container__image"}) | safe
-              }}
-            </div>
-            <hr class="p-rule--highlight" />
-            <p class="p-heading--5">
-              <a href="{{ community.link.url }}">{{ community.name }}</a>
-            </p>
-          </div>
-        {% endif %}
-      {% endfor %}
+      <div class="col">
+        <div class="p-image-container--16-9 is-cover">
+          {{ image(url='https://assets.ubuntu.com/v1/de5eca3f-ubuntu-portugal.jpeg',
+                        alt="",
+                        width="600",
+                        height="300",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+          }}
+        </div>
+        <hr class="p-rule--highlight" />
+        <p class="p-heading--5">
+          <a href="https://discourse.ubuntu.com/c/community/circles/ubuntu-pt/">Ubuntu Portugal</a>
+        </p>
+      </div>
+      <div class="col">
+        <div class="p-image-container--16-9 is-cover">
+          {{ image(url='https://assets.ubuntu.com/v1/48cc7283-ubuntu-korea.jpeg',
+                        alt="",
+                        width="600",
+                        height="300",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+          }}
+        </div>
+        <hr class="p-rule--highlight" />
+        <p class="p-heading--5">
+          <a href="https://discourse.ubuntu.com/c/community/circles/ubuntu-kr/">Ubuntu Korea</a>
+        </p>
+      </div>
+      <div class="col">
+        <div class="p-image-container--16-9 is-cover">
+          {{ image(url='https://assets.ubuntu.com/v1/d21b6002-ubuntu-africa.jpeg',
+                        alt="",
+                        width="600",
+                        height="300",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+          }}
+        </div>
+        <hr class="p-rule--highlight" />
+        <p class="p-heading--5">
+          <a href="https://discourse.ubuntu.com/c/community/circles/ubuntu-ng/">Ubuntu Nigeria</a>
+        </p>
+      </div>
+      <div class="col">
+        <div class="p-image-container--16-9 is-cover">
+          {{ image(url='https://assets.ubuntu.com/v1/e0926885-ubuntu-nepal.jpeg',
+                        alt="",
+                        width="600",
+                        height="300",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+          }}
+        </div>
+        <hr class="p-rule--highlight" />
+        <p class="p-heading--5">
+          <a href="https://discourse.ubuntu.com/c/community/circles/ubuntu-np/">Ubuntu Nepal</a>
+        </p>
+      </div>
     </div>
   </section>
 

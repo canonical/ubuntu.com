@@ -885,9 +885,7 @@ app.add_url_rule(
 
 app.add_url_rule(
     "/community",
-    view_func=community_landing_page(
-        community_events, local_communities, ubuntu_weekly_newsletter
-    ),
+    view_func=community_landing_page(ubuntu_weekly_newsletter),
 )
 
 app.add_url_rule(
