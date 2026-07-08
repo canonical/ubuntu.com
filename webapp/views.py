@@ -757,7 +757,6 @@ def build_engage_pages_metadata(engage_pages):
     return get_metadata
 
 
-
 def openstack_install():
     """
     OpenStack install docs
