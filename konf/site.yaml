@@ -418,7 +418,7 @@ production:
       name: ubuntu-com-discourse
       app_name: ubuntu.com-discourse
       image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
-      replicas: 5
+      replicas: 2
       memoryLimit: 512Mi
       env:
         - name: SEARCH_API_KEY
