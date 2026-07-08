@@ -1955,3 +1955,8 @@ ol.p-stepped-list.no-full-stop
 .alt-downloads__bittorrent-tab hr {
   display: none;
 }
+
+// Applying tab-section--no-title-space to a tab section will reduce the gap between the section title and the tabs.
+.tab-section--no-title-space > .p-section--shallow {
+  padding-bottom: 0;
+}

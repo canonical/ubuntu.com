@@ -31,6 +31,7 @@ from canonicalwebteam.discourse import (
     Category,
     EventsParser,
     Events,
+    ResponseCache,
 )
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.flask_base.env import get_flask_env
@@ -221,12 +222,17 @@ app.jinja_loader = loader
 session = requests.Session()
 charmhub_session = requests.Session()
 
+# Each DiscourseAPI gets its own ResponseCache (one cache per API key,
+# i.e. one rate-limit quota): responses are cached per worker, stale data
+# is served while Discourse errors, and a 429 opens that instance's
+# circuit breaker so we stop hammering Discourse until it recovers.
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
     session=session,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
+    cache=ResponseCache(ttl=600),
 )
 
 charmhub_discourse_api = DiscourseAPI(
@@ -235,6 +241,7 @@ charmhub_discourse_api = DiscourseAPI(
     api_key=CHARMHUB_DISCOURSE_API_KEY,
     api_username=CHARMHUB_DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
+    cache=ResponseCache(ttl=600),
 )
 
 # Web tribe websites custom search ID
@@ -695,6 +702,7 @@ engage_pages_discourse_api = DiscourseAPI(
     get_topics_query_id=14,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
+    cache=ResponseCache(ttl=300),
 )
 takeovers_path = "/takeovers"
 discourse_takeovers = EngagePages(
@@ -772,7 +780,7 @@ app.add_url_rule(
 def takeovers_json():
     active_takeovers = discourse_takeovers.parse_active_takeovers()
     response = flask.jsonify(active_takeovers)
-    response.cache_control.max_age = "300"
+    response.cache_control.max_age = 300
 
     return response
 
