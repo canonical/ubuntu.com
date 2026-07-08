@@ -1268,6 +1268,52 @@ class TestCommunityLandingEvents(TestCase):
         self.assertEqual(render.call_args.kwargs["featured_events"], [])
 
 
+class TestDiscourseCacheControl(TestCase):
+    """
+    Discourse-backed pages are cached longer at the content-cache, but
+    community pages (which degrade to an empty 200 on Discourse error)
+    get a shorter window, and all get a long stale-if-error.
+    """
+
+    def test_community_pages_get_shorter_cache(self):
+        from webapp.handlers import (
+            _long_cache_seconds,
+            LONG_CACHE_SECONDS,
+            COMMUNITY_CACHE_SECONDS,
+        )
+
+        for path in ("/community", "/community/events", "/community/circles"):
+            self.assertEqual(
+                _long_cache_seconds(path), COMMUNITY_CACHE_SECONDS, path
+            )
+
+        # docs 503 on error rather than degrading, so keep the long cache
+        self.assertEqual(
+            _long_cache_seconds("/community/docs"), LONG_CACHE_SECONDS
+        )
+        self.assertEqual(_long_cache_seconds("/engage"), LONG_CACHE_SECONDS)
+
+    def test_long_cache_page_sets_stale_if_error(self):
+        from webapp import app as app_module
+
+        app.testing = True
+        client = app.test_client()
+
+        with patch.object(
+            app_module.discourse_takeovers,
+            "get_index",
+            return_value=([], 0, 0, 0),
+        ):
+            response = client.get("/takeovers")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.cache_control.max_age, 1800)
+        self.assertEqual(
+            response.headers["Cache-Control"].count("stale-if-error=3600"),
+            1,
+        )
+
+
 class TestRateLimitedErrorHandling(TestCase):
     """
     RateLimitedError from the discourse package must surface as a

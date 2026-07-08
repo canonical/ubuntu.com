@@ -43,6 +43,19 @@ from canonicalwebteam.flask_base.env import get_flask_env
 
 LONG_CACHE_SECONDS = 1800  # 30 minutes
 
+# The community landing and its Discourse-backed sub-pages degrade to
+# an empty (but still 200) render when Discourse errors, instead of
+# raising. A long cache would freeze that empty page at the CDN for the
+# full window, so they get a shorter max-age. /community/docs is not
+# included: it 503s on error rather than rendering empty, so it keeps
+# the longer cache.
+COMMUNITY_CACHE_SECONDS = 300
+
+# Serve the last good copy for up to an hour when the origin errors,
+# rather than the flask-base default (300s), so a prolonged Discourse
+# outage doesn't surface errors while a cached copy exists.
+LONG_CACHE_STALE_IF_ERROR = 3600
+
 # Exact paths (no trailing segment) that should get the longer cache.
 LONG_CACHE_EXACT = frozenset(
     {
@@ -70,6 +83,14 @@ LONG_CACHE_PREFIXES = (
 
 def _should_long_cache(path):
     return path in LONG_CACHE_EXACT or path.startswith(LONG_CACHE_PREFIXES)
+
+
+def _long_cache_seconds(path):
+    if (
+        path == "/community" or path.startswith("/community/")
+    ) and not path.startswith("/community/docs"):
+        return COMMUNITY_CACHE_SECONDS
+    return LONG_CACHE_SECONDS
 
 
 def init_handlers(app):
@@ -112,7 +133,10 @@ def init_handlers(app):
             and _should_long_cache(path)
         ):
             response.cache_control.public = True
-            response.cache_control.max_age = LONG_CACHE_SECONDS
+            response.cache_control.max_age = _long_cache_seconds(path)
+            response.cache_control._set_cache_value(
+                "stale-if-error", str(LONG_CACHE_STALE_IF_ERROR), int
+            )
 
         return response
 
