@@ -1554,9 +1554,10 @@ def process_active_vulnerabilities(security_vulnerabilities):
                 security_vulnerabilities.get_category_index_metadata(
                     "vulnerabilities"
                 )
+                or []
             )
             vulnerability_topics_array = (
-                security_vulnerabilities.get_topics_in_category()
+                security_vulnerabilities.get_topics_in_category() or []
             )
 
             # Convert array of topic objects to dict for quick lookup
@@ -1599,7 +1600,9 @@ def build_vulnerabilities_list(security_vulnerabilities, path=None):
     def vulnerabilities_list():
         try:
             template_path = "security/vulnerabilities/view-all.html"
-            topics_array = security_vulnerabilities.get_topics_in_category()
+            topics_array = (
+                security_vulnerabilities.get_topics_in_category() or []
+            )
             # Convert array of topic objects to dict for quick lookup
             topics = {
                 str(topic["id"]): topic["slug"] for topic in topics_array
@@ -1608,6 +1611,7 @@ def build_vulnerabilities_list(security_vulnerabilities, path=None):
                 security_vulnerabilities.get_category_index_metadata(
                     "vulnerabilities"
                 )
+                or []
             )
             for vuln in vulnerabilities:
                 # Add slug
@@ -1655,6 +1659,7 @@ def build_vulnerabilities(security_vulnerabilities):
                 security_vulnerabilities.get_category_index_metadata(
                     "vulnerabilities"
                 )
+                or []
             )
 
             for item in metadata_table:

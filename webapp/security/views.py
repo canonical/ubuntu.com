@@ -25,7 +25,6 @@ from webapp.security.helpers import (
     get_attention_banner,
 )
 
-
 markdown_parser = Markdown(
     hard_wrap=True, parse_block_html=True, parse_inline_html=True
 )
@@ -104,7 +103,7 @@ def notice(notice_id):
         ).strftime("%-d %B %Y")
 
     processed_instructions = notice["instructions"]
-    (attention_banner, instructions) = get_attention_banner(
+    attention_banner, instructions = get_attention_banner(
         processed_instructions
     )
     if attention_banner:
@@ -812,11 +811,14 @@ def cves_sitemap():
 def vulnerabilities_sitemap(security_vulnerabilities):
 
     def build_vulnerabilities_sitemap():
-        topics_array = security_vulnerabilities.get_topics_in_category()
+        topics_array = security_vulnerabilities.get_topics_in_category() or []
         # Convert array of topic objects to dict for quick lookup
         topics = {str(topic["id"]): topic["slug"] for topic in topics_array}
-        vulnerabilities = security_vulnerabilities.get_category_index_metadata(
-            "vulnerabilities"
+        vulnerabilities = (
+            security_vulnerabilities.get_category_index_metadata(
+                "vulnerabilities"
+            )
+            or []
         )
         for vuln in vulnerabilities:
             # Add slug
