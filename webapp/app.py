@@ -31,7 +31,6 @@ from canonicalwebteam.discourse import (
     Category,
     EventsParser,
     Events,
-    ResponseCache,
 )
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.flask_base.env import get_flask_env
@@ -42,7 +41,6 @@ from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.form_generator import FormGenerator
 from canonicalwebteam.markdown_response import MarkdownResponse
 
-from webapp.constants import CACHE_TTL
 from webapp.certified.views import certified_routes
 from webapp.handlers import init_handlers
 from webapp.login import login_handler, logout, user_info
@@ -223,17 +221,16 @@ app.jinja_loader = loader
 session = requests.Session()
 charmhub_session = requests.Session()
 
-# Each DiscourseAPI gets its own ResponseCache (one cache per API key,
-# i.e. one rate-limit quota): responses are cached per worker, stale data
-# is served while Discourse errors, and a 429 opens that instance's
-# circuit breaker so we stop hammering Discourse until it recovers.
+# TEST BRANCH: caching and the circuit breaker are disabled (cache=None)
+# so every request hits Discourse directly and every 429 shows in the
+# logs. Do not merge — revert to cache=ResponseCache(...) after testing.
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
     session=session,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
-    cache=ResponseCache(ttl=CACHE_TTL),
+    cache=None,  # caching disabled for raw-log testing
 )
 
 charmhub_discourse_api = DiscourseAPI(
@@ -242,7 +239,7 @@ charmhub_discourse_api = DiscourseAPI(
     api_key=CHARMHUB_DISCOURSE_API_KEY,
     api_username=CHARMHUB_DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
-    cache=ResponseCache(ttl=CACHE_TTL),
+    cache=None,  # caching disabled for raw-log testing
 )
 
 # Web tribe websites custom search ID
@@ -703,7 +700,7 @@ engage_pages_discourse_api = DiscourseAPI(
     get_topics_query_id=14,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
-    cache=ResponseCache(ttl=CACHE_TTL),
+    cache=None,  # caching disabled for raw-log testing
 )
 takeovers_path = "/takeovers"
 discourse_takeovers = EngagePages(

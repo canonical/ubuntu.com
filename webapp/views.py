@@ -30,7 +30,6 @@ from canonicalwebteam.discourse import (
     DocParser,
     Docs,
     RateLimitedError,
-    ResponseCache,
 )
 from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
@@ -45,7 +44,7 @@ from canonicalwebteam.flask_base.env import get_flask_env
 from webapp.login import user_info
 from webapp.marketo import MarketoAPI
 from webapp.utils import format_community_event_time
-from webapp.constants import ENGAGE_UI_TRANSLATIONS, CACHE_TTL
+from webapp.constants import ENGAGE_UI_TRANSLATIONS
 
 ip_reader = geolite2.reader()
 session = Session()
@@ -758,11 +757,6 @@ def build_engage_pages_metadata(engage_pages):
     return get_metadata
 
 
-# Module-level so the cache survives across requests even though the
-# view constructs a fresh DiscourseAPI per request
-_openstack_install_cache = ResponseCache(ttl=CACHE_TTL)
-
-
 def openstack_install():
     """
     OpenStack install docs
@@ -771,7 +765,7 @@ def openstack_install():
     discourse_api = DiscourseAPI(
         base_url="https://discourse.ubuntu.com/",
         session=session,
-        cache=_openstack_install_cache,
+        cache=None,  # caching disabled for raw-log testing
     )
     openstack_install_parser = DocParser(
         api=discourse_api,
