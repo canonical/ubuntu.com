@@ -43,17 +43,11 @@ from canonicalwebteam.flask_base.env import get_flask_env
 
 LONG_CACHE_SECONDS = 1800  # 30 minutes
 
-# The community landing and its Discourse-backed sub-pages degrade to
-# an empty (but still 200) render when Discourse errors, instead of
-# raising. A long cache would freeze that empty page at the CDN for the
-# full window, so they get a shorter max-age. /community/docs is not
-# included: it 503s on error rather than rendering empty, so it keeps
-# the longer cache.
+# Community pages degrade to an empty 200 on Discourse error, so cache
+# them shorter to avoid freezing a degraded render (docs 503 instead).
 COMMUNITY_CACHE_SECONDS = 300
 
-# Serve the last good copy for up to an hour when the origin errors,
-# rather than the flask-base default (300s), so a prolonged Discourse
-# outage doesn't surface errors while a cached copy exists.
+# Serve the last good copy during an origin outage (flask-base default 300s).
 LONG_CACHE_STALE_IF_ERROR = 3600
 
 # Exact paths (no trailing segment) that should get the longer cache.
