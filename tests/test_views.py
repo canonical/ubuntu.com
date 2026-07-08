@@ -1450,6 +1450,21 @@ class TestRateLimitedErrorHandling(TestCase):
             app_module.security_discourse_api.session,
         )
 
+        # Authenticated Discourse instances must not share the session
+        # used by BlogAPI / search / image clients, or the Discourse
+        # admin key would be sent to those unrelated hosts.
+        self.assertNotIn("Api-Key", app_module.session.headers)
+        self.assertEqual(
+            app_module.engage_pages_discourse_api.session.headers.get(
+                "Api-Key"
+            ),
+            app_module.engage_pages_discourse_api.api_key,
+        )
+        self.assertIsNot(
+            app_module.engage_pages_discourse_api.session,
+            app_module.session,
+        )
+
     def test_community_newsletter_dict_fallback_does_not_crash(self):
         # get_topics_in_category returns {} when Discourse errors and
         # nothing was fetched before; the page must render without it

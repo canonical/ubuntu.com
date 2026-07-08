@@ -222,10 +222,14 @@ app.jinja_loader = loader
 session = requests.Session()
 charmhub_session = requests.Session()
 security_session = requests.Session()
-# Dedicated session for the anonymous-reads instance below: it must not
-# be shared with any authenticated DiscourseAPI, or that instance would
-# stamp the API credentials onto it and defeat the anonymous reads.
+# Authenticated DiscourseAPI instances get their own sessions: the
+# package stamps the Discourse admin credentials onto the session, so
+# sharing one with the BlogAPI / search / image clients (which talk to
+# other hosts) would leak the key to them. The anonymous instance also
+# needs an isolated session, or an authenticated one would stamp its
+# credentials there and defeat the anonymous reads.
 discourse_session = requests.Session()
+engage_session = requests.Session()
 
 # Each DiscourseAPI gets its own ResponseCache (one cache per API key,
 # i.e. one rate-limit quota): responses are cached per worker, stale data
@@ -720,7 +724,7 @@ app.add_url_rule("/logout", view_func=logout)
 # This section needs to provide takeover data for /
 engage_pages_discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
-    session=session,
+    session=engage_session,
     get_topics_query_id=14,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
