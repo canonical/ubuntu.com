@@ -302,7 +302,7 @@ init_handlers(app)
 
 # Prepare forms
 def init_forms():
-    form_template_path = "shared/forms/form-template.html"
+    form_template_path = "shared/forms/_form-template.html"
 
     try:
         template_full_path = (
