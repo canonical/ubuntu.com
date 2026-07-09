@@ -765,7 +765,7 @@ def openstack_install():
     discourse_api = DiscourseAPI(
         base_url="https://discourse.ubuntu.com/",
         session=session,
-        cache=None,  # caching disabled for raw-log testing
+        cache=None,
     )
     openstack_install_parser = DocParser(
         api=discourse_api,
