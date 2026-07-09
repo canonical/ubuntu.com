@@ -3,7 +3,7 @@
 {% block title %}Ubuntu 16.04 LTS (Xenial Xerus){% endblock %}
 
 {% block meta_description %}
-  Ubuntu 16.04 LTS (Xenial Xerus) entered the Expanded Security Maintenance (ESM) period on 30 April 2021. ESM provides Ubuntu 16.04 LTS continued support and coverage beyond EOL with security patches for an additional five years.
+  Ubuntu 16.04 LTS (Xenial Xerus) entered its Legacy period in April 2026. The Legacy add-on provides Ubuntu 16.04 LTS with continued security patches for an additional five years.
 {% endblock %}
 
 {% block meta_copydoc %}
@@ -13,6 +13,7 @@
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 {% from "macros/_vf-latest-news.jinja" import vf_latest_news with context %}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
 
 {% block body_class %}
   is-paper
@@ -41,7 +42,7 @@
                 attrs={"class": "p-image-container__image"},) | safe
         }}
       </div>
-      <p class="u-text--muted">Out of standard support, upgrade to ESM support.</p>
+      <p class="u-text--muted">Ubuntu 16.04 is out of ESM support. In order to get support, please activate the Legacy add-on.</p>
     {%- endif -%}
   {% endcall -%}
 
@@ -59,12 +60,11 @@
         <div class="col">
           <div class="p-section--shallow">
             <p>
-              Yes, Ubuntu 16.04 LTS is supported until 2026 through Canonical's Expanded Security Maintenance (ESM) product. Xenial entered the ESM period in April 2021, with security patches for five additional years, beyond the five years of standard support.
+              Yes, Ubuntu 16.04 LTS is supported until 2031 through Canonical's Legacy add-on with Ubuntu Pro. Ubuntu 16.04 entered its Legacy period in April 2026, and will receive security patches for five additional years through the Legacy add-on.
             </p>
           </div>
           <div class="p-cta-block">
-            <a href="/pro" class="p-button--positive">Get started with ESM for Ubuntu 16.04 LTS</a>
-            <a href="#esm-public-cloud">Learn more about ESM on public clouds&nbsp;&rsaquo;</a>
+            <a href="/pro" class="p-button--positive">Contact us to get Legacy for Ubuntu 16.04 LTS</a>
           </div>
         </div>
       </div>
@@ -86,7 +86,7 @@
         </div>
         <div class="col">
           <p>
-            The Ubuntu Security Team continues its dedication to providing security updates for Ubuntu 16.04 LTS beyond the five-year standard support with Expanded Security Maintenance (ESM).
+            The Ubuntu Security Team continues its dedication to securing Ubuntu 16.04 LTS. After providing five years of standard support followed by five years of Expanded Security Maintenance (ESM), we are now extending this commitment through the Legacy add-on, ensuring your systems remain protected for a total of 15 years.
           </p>
         </div>
       </div>
@@ -97,14 +97,14 @@
           <div class="row">
             <div class="col-3 col-medium-3">
               <hr class="p-rule--highlight" />
-              <p class="p-heading--1">900&plus;</p>
+              <p class="p-heading--1">2.9k&plus;</p>
               <p class="u-no-padding--top">
                 <a href="/security/notices?release=xenial">Security notices</a> issued* <span class="u-off-screen">Since the start of the ESM phase</span>
               </p>
             </div>
             <div class="col-3 col-medium-3">
               <hr class="p-rule--highlight" />
-              <p class="p-heading--1">300&plus;</p>
+              <p class="p-heading--1">5.7k&plus;</p>
               <p class="u-no-padding--top">
                 <a href="/security/cves?version=xenial">CVES</a> addressed* <span class="u-off-screen">Since the start of the ESM phase</span>
               </p>
@@ -122,9 +122,9 @@
       <hr class="p-rule" />
       <div class="col">
         <h2>
-          Ubuntu 16.04 LTS Expanded
+          Ubuntu 16.04 LTS
           <br class="u-hide--small u-hide--medium" />
-          Security Maintenance (ESM)
+          Legacy add-on
         </h2>
       </div>
       <div class="col-6">
@@ -137,16 +137,13 @@
                     loading="lazy") | safe
           }}
         </div>
-        <h3 class="p-heading--5 u-no-padding--top">What is Ubuntu ESM?</h3>
+        <h3 class="p-heading--5 u-no-padding--top">What is Ubuntu Legacy add-on?</h3>
         <p>
-          <a href="/security/esm">Expanded Security Maintenance</a> (ESM) provides expanded Linux kernel and open-source security updates for the Ubuntu base OS, key infrastructure components, like Ceph, OpenStack and Kubernetes, as well as open-source applications, like PostgreSQL and NGINX.
+          Legacy add-on is the specialized extension phase for Ubuntu LTS releases that have completed their initial 10-year lifecycle (5 years Standard + 5 years ESM). For Ubuntu 16.04, this provides a critical bridge from 2026 through April 2031, offering continued security patches for the Linux kernel, critical infrastructure, and thousands of popular open source packages.
         </p>
         <p>
-          ESM is available for free on up to three machines and for broader enterprise use through an Ubuntu Advantage subscription. The subscription includes additional services such as FIPS-compliant modules and the Ubuntu Livepatch Service to apply critical kernel patches without unplanned downtime.
+          The Legacy add-on is available as an add-on to an Ubuntu Pro subscription. It ensures that legacy environments, especially those involving specialized hardware or older proprietary stacks, remain compliant and protected against vulnerabilities  without requiring a full OS migration.
         </p>
-        <div class="p-cta-block">
-          <a href="/security/livepatch">Learn more about Ubuntu Livepatch&nbsp;&rsaquo;</a>
-        </div>
       </div>
     </div>
   </section>
@@ -156,14 +153,14 @@
       <h2>
         What is covered
         <br class="u-hide--small u-hide--medium" />
-        by Ubuntu 16.04 ESM?
+        by Ubuntu 16.04 Legacy add-on?
       </h2>
     {%- endif -%}
 
     {%- if slot == 'description' -%}
       <div class="p-section--shallow">
         <p>
-          Standard Security Maintenance of an Ubuntu LTS release covers binary packages that reside in the 'main' Ubuntu repository for a period of five years. For continued security beyond the standard five-year maintenance period, Canonical provides security maintenance to a wide range of binary packages that are commonly used in cloud and server workloads on 64-bit x86 AMD/Intel architectures for a period of five years beyond the normal end of life.
+          The Legacy add-on covers years 10 to 15 of an Ubuntu LTS release’s life cycle, maximizing the lifespan, usability, and security of popular past LTSes.  During the Legacy period, Canonical provides security maintenance for binary packages across both the 'main' and 'universe' repositories for 64-bit x86 AMD/Intel architectures.
         </p>
       </div>
     {%- endif -%}
@@ -213,10 +210,6 @@
             <td data-heading="16.04 LTS version">4.2.6</td>
           </tr>
           <tr>
-            <td data-heading="Application">Elasticsearch</td>
-            <td data-heading="16.04 LTS version">1.7</td>
-          </tr>
-          <tr>
             <td data-heading="Application">PHP</td>
             <td data-heading="16.04 LTS version">7.0</td>
           </tr>
@@ -238,7 +231,7 @@
 
     {%- if slot == 'list_item_description_3' -%}
       <p>
-        For Ubuntu 16.04 LTS, where technically feasible, Canonical provides expanded security maintenance to all binary packages that reside in the Ubuntu Main Repository.
+        For Ubuntu 16.04 LTS, where technically feasible, Canonical provides the Legacy add-on to all binary packages that reside in the Ubuntu Main Repository.
       </p>
       <p>
         OpenStack Mitaka packages are supported in Ubuntu 16.04 ESM for those with an Ubuntu Advantage for Infrastructure subscription.
@@ -246,101 +239,36 @@
     {%- endif -%}
   {%- endcall -%}
 
-  <section class="p-section" id="esm-public-cloud">
-    <div class="row">
-      <hr class="p-rule" />
-      <div class="col-3">
-        <h2>FAQs</h2>
-      </div>
-      <div class="col-9">
-        <hr class="p-rule--muted u-hide--large" />
-        <div class="row">
-          <div class="col-3 col-medium-3">
-            <h3 class="p-heading--5">
-              How can I get ESM for
-              <br class="u-hide--small u-hide--medium" />
-              Ubuntu 16.04 LTS on a Public Cloud?
-            </h3>
-          </div>
-          <div class="col-6 col-medium-3">
-            <p>
-              ESM for Ubuntu 16.04 LTS is available for free for personal use on up to three machines, or through paid subscriptions on the public cloud with Ubuntu Pro premium images.
-            </p>
-            <hr class="p-rule--muted u-no-margin--bottom" />
-            <p>
-              Ubuntu Pro on <a href="/16-04/azure">Azure</a> | <a href="/aws/pro">AWS</a> | <a href="/gcp/pro">GCP</a>
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3 col-medium-3">
-            <h3 class="p-heading--5">How can I get ESM for Ubuntu 16.04 LTS on-premises?</h3>
-          </div>
-          <div class="col-6 col-medium-3">
-            <p>
-              ESM for Ubuntu 16.04 LTS is available, free for personal use (you need to set up an UbuntuOne account) on up to three machines or through an <a href="/pro">Ubuntu Pro subscription</a>.
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3 col-medium-3">
-            <h3 class="p-heading--5">I have a UA subscription, how do I activate ESM?</h3>
-          </div>
-          <div class="col-6 col-medium-3">
-            <p>
-              If you have an Ubuntu Advantage subscription, log into <a href="/pro">ubuntu.com/pro</a> to get your activation token and activate ESM on your machines directly.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-section">
-    <div class="u-fixed-width">
-      <div class="p-image-container--cinematic">
-        {{ image(url="https://assets.ubuntu.com/v1/3f0a23c5-faqs.jpg",
-                alt="",
-                width="2464",
-                height="1028",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-image-container__image"},) | safe
-        }}
-      </div>
-    </div>
-  </section>
+  {% call(slot) vf_cta_section(
+      variant='default',
+      layout='100',
+      blocks=[
+        {
+          "type": "cta",
+          "item": {
+            "type": "html",
+            "content": "Get Legacy add-on for Ubuntu 16.04 LTS<br /><a href='/contact-us/form?product=pro'>Get in touch with us</a>"
+          }
+        }
+      ]
+    ) -%}
+  {% endcall -%}
 
   {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
     {%- if slot == 'title' -%}
-      <h2>Download Ubuntu 16.04 LTS</h2>
+      <h2>Upgrade from Ubuntu 16.04 LTS</h2>
     {%- endif -%}
 
     {%- if slot == 'list_item_title_1' -%}
-      <h3 class="p-heading--5">Download options</h3>
+      <h3 class="p-heading--5">Upgrading to Ubuntu 18.04 LTS/20.04 LTS/22.04 LTS/24.04 LTS/26.04 LTS</h3>
     {%- endif -%}
 
     {%- if slot == 'list_item_description_1' -%}
-
-      <ul class="p-list--divided">
-        <li class="p-list__item">
-          <a href="https://cloud-images.ubuntu.com/locator/">Ubuntu cloud image finder</a>
-        </li>
-        <li class="p-list__item">
-          <a href="https://releases.ubuntu.com/xenial/">releases.ubuntu</a>
-        </li>
-      </ul>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_title_2' -%}
-      <h3 class="p-heading--5">Upgrading to Ubuntu 18.04 LTS, Ubuntu 20.04 LTS</h3>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_description_2' -%}
       <p>
-        You might want to consider upgrading to a new LTS release, you can either upgrade to Ubuntu 18.04 LTS or freshly install Ubuntu 20.04 LTS. There is no direct upgrade path from 16.04 LTS to Ubuntu 20.04 LTS, so you can either move to Ubuntu 18.04 LTS and then to Ubuntu 20.04 LTS, or directly install Ubuntu 20.04 LTS.
+        You might want to consider upgrading to a new LTS release. If you are currently using Ubuntu 16.04 LTS you can upgrade 
+        to Ubuntu 18.04 LTS or freshly install Ubuntu 20.04 LTS/22.04 LTS/24.04 LTS/26.04 LTS. There is no direct upgrade path 
+        from 16.04 LTS to Ubuntu 20.04 LTS/22.04 LTS/24.04 LTS/26.04 LTS. In order to upgrade, you can either move to Ubuntu 18.04 LTS, 
+        or directly install Ubuntu 20.04 LTS/22.04 LTS/24.04 LTS/26.04 LTS.
       </p>
 
       <hr class="p-rule--muted u-no-margin--bottom" />
@@ -355,16 +283,19 @@
 
     {%- endif -%}
 
-    {%- if slot == 'list_item_title_3' -%}
-      <h3 class="p-heading--5">Upgrading Ubuntu 16.04 LTS on Azure, AWS</h3>
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">Upgrading Ubuntu 16.04 LTS on Azure, AWS, Google Cloud</h3>
     {%- endif -%}
 
-    {%- if slot == 'list_item_description_3' -%}
+    {%- if slot == 'list_item_description_2' -%}
       <p>
-        If you are looking to upgrade your Ubuntu 16.04 LTS public cloud instance, it is recommended to launch new, Ubuntu Pro images. Ubuntu Pro for <a href="/azure/pro">Azure</a> and <a href="/aws/pro">AWS</a> are premium images with security and compliance features built-in, and optimized for the public cloud.
+        If you are looking to upgrade your Ubuntu 16.04 LTS public cloud instance, it is recommended to launch new Ubuntu Pro images. 
+        Ubuntu Pro for <a href="/azure/pro">Azure</a> and Ubuntu Pro for <a href="/aws/pro">AWS</a> are premium images with security 
+        and compliance features built-in, and optimized for the public cloud.
       </p>
       <p>
-        Ubuntu Pro includes security coverage for the entire collection of software packages shipped with Ubuntu, tracking high and critical CVEs. Ideal for companies that have embraced open source for their new products.
+        Ubuntu Pro includes security coverage for the entire collection of software packages shipped with Ubuntu, tracking high and critical CVEs. 
+        It is ideal for companies that have embraced open source for their new products.
       </p>
       <hr class="p-rule--muted u-no-margin--bottom" />
       <ul class="p-list--divided">
@@ -374,7 +305,15 @@
         <li class="p-list__item">
           <a href="https://aws.amazon.com/marketplace/pp/prodview-vmuff4yhmwfna">Launch Ubuntu Pro 16.04 LTS on AWS</a>
         </li>
+        <li class="p-list__item">
+          <a href="https://console.cloud.google.com/marketplace/product/canonical-public/ubuntu-pro-1604-xenial">Launch Ubuntu Pro 16.04 LTS on Google Cloud</a>
+        </li>
       </ul>
+      <p>
+        While Ubuntu Pro images provide coverage through the ESM phase (until April 2026), Legacy Support for years 11–15 is available on public clouds 
+        as a specialized add-on. To enable Legacy Support for your cloud instances and extend coverage through 2031, please 
+        <a href="/contact-us/form?product=pro">get in touch with us</a>.
+      </p>
     {%- endif -%}
   {%- endcall -%}
 
@@ -399,58 +338,19 @@
           }}
         </div>
         <p>
-          This webinar explores all of the factors that should be taken into account to deliver successful migration at the right pace, covering the most popular infrastructure components such as OpenStack, Kubernetes and Ceph.
+          Learn how to migrate to Ubuntu 20.04 LTS. This webinar explores all of the factors that should be 
+          taken into account to deliver successful migration at the right pace, covering the most popular infrastructure 
+          components such as OpenStack, Kubernetes and Ceph.
         </p>
         <div class="p-cta-block">
-          <a href="/engage/migrating-to-20.04" class="p-button">Watch the webinar</a>
+          <a href="/engage/migrating-to-20.04" class="p-button--positive">Watch the webinar</a>
         </div>
       </div>
     </div>
   </section>
 
-  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
-    {%- if slot == 'title' -%}
-      <h2>Ubuntu 16.04 LTS kernel lifecycle and enablement stack</h2>
-    {%- endif -%}
-
-    {%- if slot == 'description' -%}
-      <div class="p-section--shallow">
-        <p>
-          The Ubuntu LTS enablement, or Hardware Enablement (HWE), stacks provide the newer kernel and X.Org support for existing Ubuntu LTS releases. These stacks can be installed manually, but are also installed with an Ubuntu LTS point release.
-        </p>
-        <p>
-          The 16.04.2 and newer point releases ship with an updated kernel and X.Org stack by default for the desktop. Server installations default to the General Availability (GA) kernel and provide the enablement kernel as optional.
-        </p>
-        <p>
-          Ubuntu 16.04 ESM includes support for v4.4 and v4.15 based generic, low-latency, hwe-16.04, aws and azure Linux kernel flavours.
-        </p>
-      </div>
-      <hr class="p-rule--muted u-no-margin--bottom" />
-      <p class="p-heading--5">Installing the Ubuntu 16.04 LTS HWE stack:</p>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_title_1' -%}
-      <h3 class="p-heading--5">Desktop</h3>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_description_1' -%}
-      <pre class="p-code-snippet__block"><code><i class="p-icon--code"></i> sudo apt-get install --install-recommends linux-generic-
-hwe-16.04 xserver-xorg-hwe-16.04</code></pre>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_title_2' -%}
-      <h3 class="p-heading--5">Server</h3>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_description_2' -%}
-      <pre class="p-code-snippet__block"><code><i class="p-icon--code"></i> sudo apt-get install --install-recommends linux-generic-
-hwe-16.04</code></pre>
-    {%- endif -%}
-  {%- endcall -%}
-
-  {{ vf_latest_news(title_text='Latest from our blog&nbsp;&rsaquo;',
+  {{ vf_latest_news(title_text='Ubuntu 16.04 LTS news from our blog&nbsp;&rsaquo;',
     tag_name="ubuntu-16-04",
     tag_id="2563") }}
-
 
 {% endblock content %}
