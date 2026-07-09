@@ -1,5 +1,6 @@
 {% set nav = get_navigation("careers") %}
 {% set sections = nav.sections %}
+{% set careers_role_counts = get_careers_role_counts() %}
 
 {# Desktop #}
 <div class="p-navigation__dropdown-content--full-width desktop-dropdown-content">
@@ -21,7 +22,7 @@
                       <ul class="p-list">
                         {% for link in links_list %}
                           <li class="p-navigation__dropdown-item">
-                            <a href="https://canonical.com{{ link.url }}"
+                            <a href="{{ link.url }}"
                                class="p-link--inverted"
                                onclick="event.stopPropagation()"
                                tabindex="0"><span>{{ link.title }}</span>
@@ -49,7 +50,7 @@
                     {% for link in links_section.links %}
                       <li class="p-list__item">
                         <a class="dropdown-window__side-panel-link"
-                           href="https://canonical.com{{ link.url }}">{{ link.title }}</a>
+                           href="{{ link.url }}">{{ link.title }}</a>
                       </li>
                     {% endfor %}
                   </ul>

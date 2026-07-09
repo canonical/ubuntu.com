@@ -184,10 +184,10 @@ def get_careers_role_counts():
         response = api_session.get(
             "https://canonical.com/careers/roles.json", timeout=10
         )
-        roles = json.loads(response.text)
+        response.raise_for_status()
+        roles = response.json()
         return {dept["slug"]: dept["count"] for dept in roles}
     except (
-        json.JSONDecodeError,
         requests.exceptions.RequestException,
         KeyError,
     ) as e:
