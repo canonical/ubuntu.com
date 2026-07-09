@@ -62,6 +62,16 @@
                tabindex="0">Support</a>
           </li>
           <li class="p-navigation__item--dropdown-toggle"
+              id="careers"
+              onmouseenter="fetchDropdown('/templates/navigation/careers', 'careers', event); this.onmouseenter = null;">
+            <a class="p-navigation__link"
+               role="menuitem"
+               href="/navigation#careers-navigation"
+               aria-controls="careers-content"
+               tabindex="0"
+               onfocus="fetchDropdown('/templates/navigation/careers', 'careers');">Careers</a>
+          </li>
+          <li class="p-navigation__item--dropdown-toggle"
               id="community"
               data-js-dropdown-url="/templates/navigation/community">
             <a class="p-navigation__link"
@@ -77,7 +87,7 @@
                role="menuitem"
                href="/navigation#download-ubuntu-navigation"
                aria-controls="download-ubuntu-content"
-               tabindex="0">Download Ubuntu</a>
+               tabindex="0">Get Ubuntu</a>
           </li>
           <li class="p-navigation__item--dropdown-toggle"
               id="careers"
