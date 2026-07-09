@@ -35,44 +35,16 @@ from webapp.shop.flaskparser import UAContractsValidationError
 from webapp.certified.helpers import convert_markdown_to_html
 from canonicalwebteam.flask_base.env import get_flask_env
 
-# Cache Discourse-backed pages longer than the 60s flask-base default;
+# Cache pages longer than the 60s flask-base default;
 # our after_request runs first so this max-age wins.
 LONG_CACHE_SECONDS = 3600  # 1 hour
 
 # Community pages degrade to an empty 200 on Discourse error, so cache
 # them shorter to avoid freezing a degraded page (docs 503 instead).
-COMMUNITY_CACHE_SECONDS = 300
+COMMUNITY_CACHE_SECONDS = 1800
 
 # Serve the last good copy during an origin outage (flask-base default 300s).
 LONG_CACHE_STALE_IF_ERROR = 3600
-
-# Exact paths (no trailing segment) that should get the longer cache.
-LONG_CACHE_EXACT = frozenset(
-    {
-        "/engage",
-        "/takeovers",
-        "/tutorials",
-        "/tutorials.json",
-        "/community",
-        "/community/docs",
-        "/community/events",
-        "/community/circles",
-        "/community/uwn",
-        "/openstack/install",
-    }
-)
-
-# Path prefixes whose sub-pages should get the longer cache.
-LONG_CACHE_PREFIXES = (
-    "/engage/",
-    "/tutorials/",
-    "/community/docs/",
-    "/community/uwn/",
-)
-
-
-def _should_long_cache(path):
-    return path in LONG_CACHE_EXACT or path.startswith(LONG_CACHE_PREFIXES)
 
 
 def _long_cache_seconds(path):
@@ -105,8 +77,8 @@ def init_handlers(app):
         if flask.request.path.startswith("/certified"):
             response.headers["X-Frame-Options"] = "DENY"
 
-        # Longer cache for Discourse-backed pages. Skip previews and
-        # thank-you (personalised), and defer to any view's own headers.
+        # Longer cache for all pages. Skip previews and thank-you
+        # (personalised), and defer to any view's own headers.
         path = flask.request.path
         if (
             response.status_code == 200
@@ -117,7 +89,6 @@ def init_handlers(app):
             and not response.cache_control.no_cache
             and not response.cache_control.private
             and response.cache_control.max_age is None
-            and _should_long_cache(path)
         ):
             response.cache_control.public = True
             response.cache_control.max_age = _long_cache_seconds(path)
