@@ -11,18 +11,14 @@
 {% block body_class %}blog-article{% endblock %}
 
 {%- block canonical_url -%}
-  {%- if article.group and article.group.id == 2100 -%}
-    https://canonical.com/blog/{{ article.slug }}
-  {%- elif article.author and article.author.id == 217 -%}
-    https://canonical.com/blog/{{ article.slug }}
-  {%- elif 2996 in article.tags -%}
+  {%- if 2996 in article.tags -%}
     https://snapcraft.io/blog/{{ article.slug }}
   {%- elif 4059 in article.tags -%}
     https://juju.is/blog/{{ article.slug }}
   {%- elif 1304 in article.tags or 3681 in article.tags -%}
     https://maas.io/blog/{{ article.slug }}
   {%- else -%}
-    https://ubuntu.com/blog/{{ article.slug }}
+    https://canonical.com/blog/{{ article.slug }}
   {%- endif -%}
 {%- endblock canonical_url -%}
 
@@ -33,7 +29,7 @@
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",
-      "@id": "https://ubuntu.com/#article",
+      "@id": "https://canonical.com/#article",
       "@type": "Article",
       "name": "{{ article.title.renderered|safe }}",
       "headline": "{{ article.excerpt.raw }}",
@@ -42,19 +38,13 @@
         "name": "{{ article.author.name }}"
       },
       "datePublished": "{{ article.date_gmt }}",
-      {
-        %
-        if article.image and article.image.source_url %
-      }
+      {% if article.image and article.image.source_url %}
       "image": "{{ article.image.source_url }}",
-      {
-        %
-        endif %
-      }
-      "url": "{{ request.url }}",
+      {% endif %}
+      "url": "{{ self.canonical_url() }}",
       "publisher": {
         "@type": "Organization",
-        "name": "Ubuntu"
+        "name": "Canonical"
       }
     }
   </script>
