@@ -79,6 +79,16 @@
                aria-controls="download-ubuntu-content"
                tabindex="0">Download Ubuntu</a>
           </li>
+          <li class="p-navigation__item--dropdown-toggle"
+              id="careers"
+              onmouseenter="fetchDropdown('/templates/navigation/careers', 'careers', event); this.onmouseenter = null;">
+            <a class="p-navigation__link"
+               role="menuitem"
+               href="/navigation#careers-navigation"
+               aria-controls="careers-content"
+               tabindex="0"
+               onfocus="fetchDropdown('/templates/navigation/careers', 'careers');">Careers</a>
+          </li>
           <li class="p-navigation__item--dropdown-toggle global-nav-mobile global-nav"
               role="menuitem"
               id="all-canonical"></li>
@@ -128,6 +138,7 @@
   <div class="u-hide dropdown-content-desktop" id="support-content"></div>
   <div class="u-hide dropdown-content-desktop" id="community-content"></div>
   <div class="u-hide dropdown-content-desktop" id="download-ubuntu-content"></div>
+  <div class="u-hide dropdown-content-desktop" id="careers-content"></div>
   <div class="u-hide dropdown-content-desktop global-nav-desktop"
        id="all-canonical-content"></div>
 </div>

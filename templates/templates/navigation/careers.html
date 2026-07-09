@@ -1,0 +1,104 @@
+{% set nav = get_navigation("careers") %}
+{% set sections = nav.sections %}
+
+{# Desktop #}
+<div class="p-navigation__dropdown-content--full-width desktop-dropdown-content">
+  <div class="row--25-75">
+    <div class="p-navigation__content-panel--full-width">
+      <div class="p-section--shallow">
+        <hr class="p-rule--muted" />
+        {% if sections.primary_links %}
+          <div class="row u-no-padding">
+            <div class="col-9 dropdown-window__main-panel">
+              {% for links_section in sections.primary_links %}
+                {% if links_section.title %}
+                  <p class="p-muted-heading">{{ links_section.title }}</p>
+                {% endif %}
+                <div class="row">
+                  {% set split_links_lists = split_list(links_section.links, 3) %}
+                  {% for links_list in split_links_lists %}
+                    <div class="col-3">
+                      <ul class="p-list">
+                        {% for link in links_list %}
+                          <li class="p-navigation__dropdown-item">
+                            <a href="https://canonical.com{{ link.url }}"
+                               class="p-link--inverted"
+                               onclick="event.stopPropagation()"
+                               tabindex="0"><span>{{ link.title }}</span>
+                            <br />
+                            {% set role_count = careers_role_counts.get(link.slug) %}
+                            {% if role_count %}
+                              <small class="u-text--muted">{{ role_count }} role{{ 's' if role_count != 1 }}</small>
+                            {% endif %}
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {% endfor %}
+                </div>
+              {% endfor %}
+            </div>
+            {% if sections.secondary_links %}
+              <div class="col-3 dropdown-window__side-panel">
+                {% for links_section in sections.secondary_links %}
+                  {% if links_section.title %}
+                    <p class="p-muted-heading">{{ links_section.title }}</p>
+                  {% endif %}
+                  <ul class="p-list">
+                    {% for link in links_section.links %}
+                      <li class="p-list__item">
+                        <a class="dropdown-window__side-panel-link"
+                           href="https://canonical.com{{ link.url }}">{{ link.title }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{# Mobile #}
+<ul class="p-navigation__dropdown dropdown-content-mobile"
+    id="careers-content-mobile"
+    aria-hidden="true"
+    data-level="1">
+  <li class="p-navigation__item--dropdown-close" id="careers-back">
+    <button class="p-navigation__link js-back"
+            href="careers-content-mobile"
+            aria-controls="careers-content-mobile"
+            tabindex="-1">Back</button>
+  </li>
+
+  {% for links_section in sections.primary_links %}
+    {% if links_section.title %}
+      <p class="p-muted-heading is-muted u-no-padding--top">{{ links_section.title }}</p>
+    {% endif %}
+    {% for link in links_section.links %}
+      <li class="p-navigation__dropdown-item">
+        <a href="{{ link.url }}"
+           class="p-link--inverted"
+           onclick="event.stopPropagation()"
+           tabindex="-1"><span>{{ link.title }}</span></a>
+      </li>
+    {% endfor %}
+  {% endfor %}
+
+  {% for links_section in sections.secondary_links %}
+    <ul class="p-list p-navigation__secondary-links">
+      <p class="p-muted-heading is-muted">{{ links_section.title }}</p>
+      {% for link in links_section.links %}
+        <li class="p-list__item">
+          <a class="p-navigation__secondary-link"
+             href="{{ link.url }}"
+             tabindex="-1">{{ link.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+</ul>
