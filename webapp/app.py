@@ -31,6 +31,7 @@ from canonicalwebteam.discourse import (
     Category,
     EventsParser,
     Events,
+    ResponseCache,
 )
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.flask_base.env import get_flask_env
@@ -220,16 +221,17 @@ app.jinja_loader = loader
 session = requests.Session()
 charmhub_session = requests.Session()
 
-# TEST BRANCH: caching and the circuit breaker are disabled (cache=None)
-# so every request hits Discourse directly and every 429 shows in the
-# logs. Do not merge — revert to cache=ResponseCache(...) after testing.
+# Each DiscourseAPI gets its own ResponseCache (one cache per API key,
+# i.e. one rate-limit quota): responses are cached per worker, stale data
+# is served while Discourse errors, and a 429 opens that instance's
+# circuit breaker so we stop hammering Discourse until it recovers.
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
     session=session,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
-    cache=None,  # caching disabled for raw-log testing
+    cache=ResponseCache(ttl=600),
 )
 
 charmhub_discourse_api = DiscourseAPI(
@@ -238,7 +240,7 @@ charmhub_discourse_api = DiscourseAPI(
     api_key=CHARMHUB_DISCOURSE_API_KEY,
     api_username=CHARMHUB_DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
-    cache=None,  # caching disabled for raw-log testing
+    cache=ResponseCache(ttl=600),
 )
 
 # Anonymous reads for public Docs: no key means these GET /t/{id}.json
@@ -709,7 +711,7 @@ engage_pages_discourse_api = DiscourseAPI(
     get_topics_query_id=14,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
-    cache=None,  # caching disabled for raw-log testing
+    cache=ResponseCache(ttl=300),
 )
 takeovers_path = "/takeovers"
 discourse_takeovers = EngagePages(

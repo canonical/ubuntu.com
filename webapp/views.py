@@ -432,6 +432,38 @@ def build_tutorials_index(session, tutorials_docs):
     return tutorials_index
 
 
+_engage_tags_cache = {}
+_ENGAGE_TAGS_TTL = 3600
+
+
+def _get_cached_engage_tags(engage_docs):
+    """
+    engage_docs.get_engage_pages_tags() is a full, unpaginated Discourse
+    query (the client's own docstring calls it "not performant") used
+    only to populate the tag filter dropdown. Tag lists change rarely,
+    so cache it far longer than the per-request listing data to avoid
+    doubling the Discourse calls made by every /engage request.
+    """
+    now = time.monotonic()
+    cached = _engage_tags_cache.get(engage_docs.category_id)
+    if cached and now - cached[0] < _ENGAGE_TAGS_TTL:
+        return cached[1]
+
+    try:
+        tags_list = engage_docs.get_engage_pages_tags()
+    except (RateLimitedError, ServiceUnavailable, RequestException):
+        if cached:
+            # Discourse is unavailable and the tag list is stale but
+            # harmless to keep showing; re-stamp so we don't retry on
+            # every request while the outage continues.
+            _engage_tags_cache[engage_docs.category_id] = (now, cached[1])
+            return cached[1]
+        raise
+
+    _engage_tags_cache[engage_docs.category_id] = (now, tags_list)
+    return tags_list
+
+
 def build_engage_index(engage_docs):
     def engage_index():
         page = flask.request.args.get("page", default=1, type=int)
@@ -476,7 +508,7 @@ def build_engage_index(engage_docs):
             "Form",
             "Event",
         ]
-        tags_list = engage_docs.get_engage_pages_tags()
+        tags_list = _get_cached_engage_tags(engage_docs)
         tags_list = sorted(set(tags_list), key=str.lower)
         total_pages = math.ceil(current_total / limit)
 
