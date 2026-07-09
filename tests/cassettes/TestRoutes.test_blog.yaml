@@ -1256,4 +1256,31 @@ interactions:
     status:
       code: 200
       message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate, br
+    method: GET
+    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=true&_fields=id%2Cslug%2Cdate_gmt%2Cmodified_gmt%2Ccategories%2Ctags%2C_start_day%2C_start_month%2C_start_year%2C_end_day%2C_end_month%2C_end_year%2Cauthor%2Ctitle.rendered%2Cexcerpt.rendered%2Cgroup%2C_links.author%2C_links.wp%3Afeaturedmedia%2C_links.wp%3Aterm%2C_embedded&page=1&per_page=3&sticky=true&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
+  response:
+    body:
+      string: '<html><body><h1>403 Forbidden</h1>
+
+        Request forbidden by administrative rules.
+
+        </body></html>
+
+
+        '
+    headers:
+      cache-control:
+      - no-cache
+      content-type:
+      - text/html
+    status:
+      code: 403
+      message: Forbidden
 version: 1
