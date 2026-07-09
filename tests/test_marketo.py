@@ -326,6 +326,32 @@ class TestMarketoSubmit(unittest.TestCase):
         self.assertEqual(http_response.status_code, 302)
         self.assertIn("contact-form-fail", http_response.headers["Location"])
 
+    def test_injection_attempt_blocked_without_marketo_call(self):
+        """
+        A submission whose data contains a script/command injection probe
+        is never forwarded to Marketo. The requester is redirected to the
+        thank-you page as if the submission succeeded, and no Sentry alert
+        is raised.
+        """
+        with patch(
+            "webapp.views.marketo_api.submit_form"
+        ) as mock_submit, patch(
+            "webapp.views.marketo_sentry_report"
+        ) as mock_sentry:
+            http_response = self.client.post(
+                "/marketo/submit",
+                data={
+                    "formid": "1234",
+                    "email": "test@example.com",
+                    "firstName": "Test",
+                    "Comments_from_lead__c": "<svg onload=alert(1)>",
+                },
+            )
+        mock_submit.assert_not_called()
+        mock_sentry.assert_not_called()
+        self.assertEqual(http_response.status_code, 302)
+        self.assertIn("/thank-you", http_response.headers["Location"])
+
     def test_enrichment_succeeds_payload_skipped_single_alert(self):
         """
         When only the enrichment submission goes through (the payload was

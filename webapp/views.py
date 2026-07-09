@@ -44,7 +44,7 @@ from canonicalwebteam.flask_base.env import get_flask_env
 from webapp.login import user_info
 from webapp.marketo import MarketoAPI
 from webapp.utils import format_community_event_time
-from webapp.constants import ENGAGE_UI_TRANSLATIONS
+from webapp.constants import ENGAGE_UI_TRANSLATIONS, MARKETO_INJECTION_PATTERNS
 
 ip_reader = geolite2.reader()
 session = Session()
@@ -1029,6 +1029,19 @@ def enrich_acquisition_url(acquisition_url, utm_dict, approved_utms):
     return enriched_url
 
 
+def contains_injection_attempt(form_fields):
+    """
+    Return True if any submitted field value contains a substring
+    associated with script/command injection probes (path traversal, XSS,
+    SSRF, SQLi, etc.) rather than genuine lead data.
+    """
+    for value in form_fields.values():
+        lowered = value.lower()
+        if any(pattern in lowered for pattern in MARKETO_INJECTION_PATTERNS):
+            return True
+    return False
+
+
 def marketo_submit():
     form_fields = {}
     for key in flask.request.form:
@@ -1058,6 +1071,19 @@ def marketo_submit():
             form_fields.pop("website", None)
             form_fields.pop("name", None)
 
+    referrer = (
+        flask.request.referrer
+        if flask.request.referrer
+        else "https://ubuntu.com"
+    )
+
+    # Silently drop submissions that look like script/command injection
+    # probes instead of forwarding them to Marketo. The requester is
+    # redirected to the thank-you page as if the submission succeeded, so
+    # scanners get no signal that their payload was detected.
+    if contains_injection_attempt(form_fields):
+        return flask.redirect(f"/thank-you?referrer={referrer}")
+
     form_fields.pop("thankyoumessage", None)
     return_url = form_fields.pop("returnURL", None)
 
@@ -1071,11 +1097,6 @@ def marketo_submit():
     visitor_data = {
         "userAgentString": flask.request.headers.get("User-Agent"),
     }
-    referrer = (
-        flask.request.referrer
-        if flask.request.referrer
-        else "https://ubuntu.com"
-    )
     client_ip = flask.request.headers.get(
         "X-Real-IP", flask.request.remote_addr
     )

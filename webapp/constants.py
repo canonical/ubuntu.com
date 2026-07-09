@@ -15,6 +15,30 @@ ENGAGE_UI_TRANSLATIONS = {
     }
 }
 
+# Substrings that indicate a Marketo form submission is a script/command
+# injection attempt (path traversal, XSS, SSRF, SQLi probes, etc.) rather
+# than a genuine lead. Matched case-insensitively against every submitted
+# field value in webapp.views.marketo_submit.
+MARKETO_INJECTION_PATTERNS = [
+    "etc/passwd",
+    "%2fetc%2fpasswd",
+    "../",
+    "..%2f",
+    "script",
+    "onload",
+    "alert(",
+    "md5(",
+    "nslookup",
+    "bxss.me",
+    "curl",
+    "esi:include",
+    "bcc:",
+    "to@example.com",
+    "%2527",
+    "%2522",
+    "<svg",
+]
+
 # Content Security Policy configuration
 CSP = {
     "default-src": ["'self'"],
