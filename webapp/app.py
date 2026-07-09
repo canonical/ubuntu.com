@@ -221,6 +221,7 @@ app.jinja_loader = loader
 
 session = requests.Session()
 charmhub_session = requests.Session()
+ubuntu_discourse_cache = ResponseCache(ttl=CACHE_TTL)
 
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
@@ -228,7 +229,7 @@ discourse_api = DiscourseAPI(
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
-    cache=ResponseCache(ttl=CACHE_TTL),
+    cache=ubuntu_discourse_cache,
 )
 
 charmhub_discourse_api = DiscourseAPI(
@@ -708,7 +709,7 @@ engage_pages_discourse_api = DiscourseAPI(
     get_topics_query_id=14,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
-    cache=ResponseCache(ttl=CACHE_TTL),
+    cache=ubuntu_discourse_cache,
 )
 takeovers_path = "/takeovers"
 discourse_takeovers = EngagePages(
