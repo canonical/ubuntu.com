@@ -1,0 +1,559 @@
+{% extends "security/base_security.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_macros/vf_tab-section.jinja" import vf_tab_section %}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_divided-section.jinja" import vf_divided_section %}
+{% from "_macros/vf_blog.jinja" import vf_blog %}
+
+
+{% block title %}NIS2 compliance with Ubuntu Pro | Security{% endblock %}
+
+{% block meta_description %}
+How to achieve NIS2 compliance on Linux with Ubuntu Pro
+{% endblock %}
+
+{% block meta_copydoc %}
+https://docs.google.com/document/d/1M3VyC1W3Vq4LBMVCjTB_jYNquUCVOsJjBJXUsnOlNZo/edit?tab=t.0
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+is-paper
+{% endblock body_class %}
+
+{% block content %}
+
+{% call(slot) vf_hero(
+  title_text='Supporting your NIS2 compliance journey with Ubuntu Pro',
+  layout='50/50'
+) -%}
+  {%- if slot == 'description' -%}
+    <p>
+      Take advantage of a complete ecosystem of open source tools and applications, ensuring supply chain security for all of
+      your open source software. Using Canonical software also means accessing up to 15 years of security maintenance to keep
+      systems compliant and stable in the long run.
+    </p>
+  {%- endif -%}
+  {%- if slot == 'cta' -%}
+    <a href="/security/nis2#get-in-touch" class="p-button--positive js-invoke-modal u-no-margin--bottom" aria-controls="nis2-modal"
+      aria-expanded="false">Contact us</a>
+    <a href="/pro" class="p-button u-no-margin--bottom">Get Ubuntu Pro</a>
+  {%- endif -%}
+  {%- if slot == 'image' -%}
+    <div class="u-embedded-media">
+      <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/4DhX_hcLLd0"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+  {%- endif -%}
+{% endcall -%}
+
+<section class="p-section--shallow">
+  {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=true) -%}
+    {%- if slot == 'title' -%}
+      <h2>How Ubuntu Pro enables NIS2</h2>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">Supply chain security</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+      <p>
+        Canonical brings trust and stability to open source through our rigorous process for choosing packages to be included in
+        the distribution. This allows us to prevent malicious dependencies and upstream backdoors impacting your infrastructure.
+        As a one-stop shop, you can rely on us for software and ongoing maintenance of your open source infrastructure.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">Patch management</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+      <p>
+        Canonical provides up to 15 years of security patching for software applications and infrastructure components within
+        the Ubuntu ecosystem, keeping your entire open source estate up-to-date. Ubuntu Pro also includes Livepatch, enabling
+        kernel patching without downtime.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_3' -%}
+      <h3 class="p-heading--5">Monitoring at scale</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_3' -%}
+      <p>
+        Monitor and secure your infrastructure at scale on-prem, in the cloud, and in offline environments with Landscape.
+        Landscape is a fleet management tool that allows you to manage your fleet through a single pane of glass and keep it
+        updated.
+      </p>
+    {%- endif -%}
+  {%- endcall -%}
+</section>
+
+{{- vf_tab_section(
+  title={
+    "text": "Security compliance in action"
+  },
+  tabs=[
+    {
+      "tab_html": "Lucid Software",
+      "type": "basic-section",
+      "item": {
+        "items": [
+          {
+            "type": "logo-block",
+            "item": {
+              "logos": [
+                {
+                  "attrs": image(url="https://assets.ubuntu.com/v1/5e0f8073-lucid_logo.png",
+                  alt="Lucid Software",
+                  width="267",
+                  height="311",
+                  hi_def=True,
+                  loading="auto",
+                  output_mode="attrs") ,
+                },
+              ]
+            }
+          },
+          {
+            "type": "description",
+            "item": {
+              "type": "html",
+              "content": '
+                <p class="p-heading--5">Ubuntu Pro helps Lucid Software meet FedRAMP compliance for government contracts</p>
+                <p>
+                  By deploying Ubuntu Pro, Lucid acquired AWS-compatible and FIPS certified packages and became FedRAMP compliant.
+                </p>
+              '
+            }
+          },
+          {
+            "type": "cta-block",
+            "item": {
+              "link": {
+                "content_html": "Read the case study&nbsp;&rsaquo;",
+                "attrs": {
+                  "href": "https://canonical.com/case-study/lucid-aws-fedramp-compliance-case-study"
+                },
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tab_html": "Grundium",
+      "type": "basic-section",
+      "item": {
+        "items": [
+          {
+            "type": "logo-block",
+            "item": {
+              "logos": [
+                {
+                  "attrs": image(url="https://assets.ubuntu.com/v1/76a67d40-grundium_logo.png",
+                  alt="Grundium",
+                  width="533",
+                  height="312",
+                  hi_def=True,
+                  loading="auto",
+                  output_mode="attrs") ,
+                },
+              ]
+            }
+          },
+          {
+            "type": "description",
+            "item": {
+              "type": "html",
+              "content": '
+                <p class="p-heading--5">Grundium secures critical systems and improves health outcomes with Ubuntu Pro for Devices</p>
+                <p>
+                  Learn how Grundium must meet stringent security requirements around patient data and confidentiality with Ubuntu Pro.
+                </p>
+              '
+            }
+          },
+          {
+            "type": "cta-block",
+            "item": {
+              "link": {
+                "content_html": "Read the case study&nbsp;&rsaquo;",
+                "attrs": {
+                  "href": "https://canonical.com/case-study/grundium-ubuntu-pro-for-devices"
+                },
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tab_html": "OEDIV",
+      "type": "basic-section",
+      "item": {
+        "items": [
+          {
+            "type": "logo-block",
+            "item": {
+              "logos": [
+                {
+                  "attrs": image(url="https://assets.ubuntu.com/v1/a2947028-oediv_logo.png",
+                  alt="OEDIV",
+                  width="366",
+                  height="312",
+                  hi_def=True,
+                  loading="auto",
+                  output_mode="attrs") ,
+                },
+              ]
+            }
+          },
+          {
+            "type": "description",
+            "item": {
+              "type": "html",
+              "content": '
+                <p class="p-heading--5">OEDIV reduces upgrade time by 60% and unlocks 6 years of zero downtime with Ubuntu Pro</p>
+                <p>
+                  By adopting Ubuntu Pro, OEDIV shrank critical maintenance windows from 3 hours down to 45 minutes and reduced manual
+                  engineering tasks by 70%.
+                </p>
+              '
+            }
+          },
+          {
+            "type": "cta-block",
+            "item": {
+              "link": {
+                "content_html": "Read the case study&nbsp;&rsaquo;",
+                "attrs": {
+                  "href": "https://canonical.com/case-study/oediv"
+                },
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+) -}}
+
+{{- vf_basic_section(
+  title={"text": "What is NIS2?"},
+  items=[
+    {
+      "type": "description",
+      "item": {
+        "type": "text",
+        "content": "The NIS2 Directive (Network and Information Security Directive 2) is a European Union cybersecurity regulation that
+        applies to all EU Member States which aims to strengthen cybersecurity by harmonizing security requirements, improving
+        cooperation among countries, and introducing new focus areas such as supply chain security. Implemented into national
+        law by 17 October 2024, NIS2 expands the scope of regulated organizations to include more critical infrastructure and
+        essential service providers across multiple sectors. Although it applies within the EU, its impact is global:
+        organizations using open source software must manage and secure it with the same rigor as any other critical third-party
+        software."
+      }
+    }
+  ]
+) -}}
+
+{{- vf_divided_section(
+  title={
+    "text": "Ubuntu Pro supports NIS2 compliance everywhere",
+  },
+  blocks=[
+    {
+      "type": "divided-block",
+      "bullet_type": "none",
+      "items": [
+        {
+          "title_text": "On-prem",
+          "contents": [
+            {
+              "type": "description",
+              "item": {
+                "type": "html",
+                "content": "
+                <p>
+                  <a href='/pro'>Ubuntu Pro</a> enables compliance on Ubuntu desktops and servers in private clouds and Virtual Machines.
+                </p>
+                "
+              }
+            }
+          ]
+        },
+        {
+          "title_text": "In the cloud",
+          "contents": [
+            {
+              "type": "description",
+              "item": {
+                "type": "text",
+                "content": "Get pre-hardened Ubuntu Pro images in the public cloud."
+              }
+            },
+            {
+              "type": "linked-logo-block",
+              "item": {
+                "links": [
+                  {
+                    "href": "/aws",
+                    "text": "Learn more&nbsp;&rsaquo;",
+                    "label": "Learn more about Ubuntu on AWS",
+                    "image_attrs": image(
+                      url="https://assets.ubuntu.com/v1/1611d5ca-aws_logo.png",
+                      alt="Amazon Web Services",
+                      width="852",
+                      height="480",
+                      hi_def=True,
+                      loading="lazy",
+                      output_mode="attrs"
+                    )
+                  },
+                  {
+                    "href": "/azure",
+                    "text": "Learn more&nbsp;&rsaquo;",
+                    "label": "Learn more about Ubuntu on Azure",
+                    "image_attrs": image(
+                      url="https://assets.ubuntu.com/v1/c3e1a351-azure_logo.png",
+                      alt="Azure",
+                      width="852",
+                      height="480",
+                      hi_def=True,
+                      loading="lazy",
+                      output_mode="attrs"
+                    )
+                  },
+                  {
+                    "href": "/gcp",
+                    "text": "Learn more&nbsp;&rsaquo;",
+                    "label": "Learn more about Ubuntu on Google Cloud Platform",
+                    "image_attrs": image(
+                      url="https://assets.ubuntu.com/v1/e0db1c3a-google_cloud_logo.png",
+                      alt="Google Cloud",
+                      width="852",
+                      height="480",
+                      hi_def=True,
+                      loading="lazy",
+                      output_mode="attrs"
+                    )
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title_text": "In air-gapped environments",
+          "contents": [
+            {
+              "type": "description",
+              "item": {
+                "type": "text",
+                "content": 'All Ubuntu Pro features are also available in air-gapped or offline deployments. <a href="https://documentation.ubuntu.com/airgapped/">Explore our documentation here</a>.'
+              }
+            },
+          ]
+        },
+      ]
+    },
+  ],
+) -}}
+
+{{- vf_basic_section(
+  title={"text": 'Take the next step<br class="u-hide--small u-hide--medium" />towards NIS2 compliance'},
+  items=[
+    {
+      "type": "description",
+      "item": {
+        "type": "html",
+        "content": '
+        <p>
+          <a href="/security/certifications">Learn about all our security certifications</a>
+        </p>
+        <p>
+          <a href="/pricing/pro">Explore pricing and find the right subscription for your needs</a>
+        </p>
+        <hr class="p-rule--muted" />
+        '
+      }
+    },
+    {
+      "type": "description",
+      "item": {
+        "type": "text",
+        "content": "Ubuntu Pro provides a strong foundation to achieve NIS2 compliance. It delivers vulnerability patching for Ubuntu OS and
+        Applications; automated, unattended, and restartless security updates; and the best tools needed to secure and manage
+        your Ubuntu infrastructure."
+      }
+    },
+    {
+      "type": "cta-block",
+      "item": {
+        "primary": {
+          "content_html": "Contact us",
+          "attrs": {
+            "href": "/security/nis2#get-in-touch",
+            "class": "js-invoke-modal",
+            "aria-controls": "nis2-modal"
+          }
+        },
+        "secondaries": [
+          {
+            "content_html": "Access a 30-day free trial",
+            "attrs": {
+              "href": "/pro/free-trial"
+            }
+          }
+        ]
+      }
+    }
+  ]
+) -}}
+
+{{- vf_tab_section(
+    attrs={
+      "class": "tab-section--no-title-space",
+    },
+    title={
+      "text": "Resources"
+    },
+    layout="full-width",
+    padding="deep",
+    tabs=[
+      {
+        "tab_html": "Blog",
+        "type": "blog",
+        "item": {
+          "template_config": {
+            "enabled": True, 
+            "template_container_id": "nis2-articles"
+          },
+        }
+      },
+      {
+        "tab_html": "Whitepapers",
+        "type": "blog",
+        "item": {
+          "articles": [
+            {
+              "title": {
+                "text": "A guide to Infrastructure Hardening",
+                "link_attrs": {
+                  "href": "https://ubuntu.com/engage/a-guide-to-infrastructure-hardening"
+                },
+              },
+              "image": {
+                "attrs": {
+                  "src": "https://assets.ubuntu.com/v1/e672ca4a-infra_hardening.jpg",
+                  "alt": "A guide to Infrastructure Hardening",
+                },
+              },
+            },
+            {
+              "title": {
+                "text": "A guide to open source vulnerability management",
+                "link_attrs": {
+                  "href": "https://ubuntu.com/engage/vulnerability-management"
+                },
+              },
+              "image": {
+                "attrs": {
+                  "src": "https://assets.ubuntu.com/v1/f716080e-os_vulnerability_management.jpg",
+                  "alt": "A guide to open source vulnerability management",
+                },
+              },
+            },
+            {
+              "title": {
+                "text": "Cyber Resilience Act: Yocto or Ubuntu Core for embedded devices?",
+                "link_attrs": {
+                  "href": "https://ubuntu.com/engage/cra-yocto-core"
+                },
+              },
+              "image": {
+                "attrs": {
+                  "src": "https://assets.ubuntu.com/v1/3cb955b6-cra.jpg",
+                  "alt": "Cyber Resilience Act: Yocto or Ubuntu Core for embedded devices?",
+                },
+              },
+            }
+          ]
+        }
+      },
+      {
+        "tab_html": "Webinars",
+        "type": "blog",
+        "item": {
+          "articles": [
+            {
+              "title": {
+                "text": "NIS2 Compliance: Open source software supply chain security for critical infrastructure providers within the EU",
+                "link_attrs": {
+                  "href": "https://ubuntu.com/engage/nis2-compliance"
+                },
+              },
+              "image": {
+                "attrs": {
+                  "src": "https://assets.ubuntu.com/v1/67053e2b-nist2_compliance.jpg",
+                  "alt": "NIS2 Compliance: Open source software supply chain security for critical infrastructure providers within the EU",
+                },
+              },
+            },
+            {
+              "title": {
+                "text": "Securing the software supply chain: What every IT leader must know",
+                "link_attrs": {
+                  "href": "https://ubuntu.com/engage/idc-gcp-wbnr"
+                },
+              },
+              "image": {
+                "attrs": {
+                  "src": "https://assets.ubuntu.com/v1/e9d060c3-securing_software_supply.jpg",
+                  "alt": "Securing the software supply chain: What every IT leader must know",
+                },
+              },
+            },
+            {
+              "title": {
+                "text": "How Ubuntu keeps your system secure, stable and current",
+                "link_attrs": {
+                  "href": "https://ubuntu.com/engage/how-ubuntu-keeps-your-system-secure-stable-and-current"
+                },
+              },
+              "image": {
+                "attrs": {
+                  "src": "https://assets.ubuntu.com/v1/b50ef04f-how_ubuntu_keeps.jpg",
+                  "alt": "How Ubuntu keeps your system secure, stable and current",
+                },
+              },
+            }
+          ]
+        }
+      }
+    ]
+) -}}
+
+<script type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
+<script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+<script>
+  canonicalLatestNews.fetchLatestNews({
+    imageClasses: ["p-image-container__image"],
+    limit: "4",
+    articlesContainerSelector: "#nis2-articles",
+    articleTemplateSelector: "#template",
+    excerptLength: 200,
+    tagIds: "4633,4869,3586,4632",
+    gtmEventLabel: "Latest from our blog"
+  })
+</script>
+
+{{ load_form('/security/nis2/contact') | safe }}
+
+{% endblock content %}

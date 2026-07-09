@@ -38,6 +38,7 @@ $colors--light-theme--border-low-contrast: rgba(
 // import vanilla-framework
 @import "vanilla-framework";
 @include vanilla;
+@import "fonts"; // Include after 'vanilla' to override
 
 @import "vanilla-placeholders";
 
@@ -1948,4 +1949,14 @@ ol.p-stepped-list.no-full-stop
 .p-side-navigation.is-sticky {
   position: sticky;
   top: 0;
+}
+
+//Will be removed after VF 4.52 is released and top_rule_variant=none is added to tiered_list
+.alt-downloads__bittorrent-tab hr {
+  display: none;
+}
+
+// Applying tab-section--no-title-space to a tab section will reduce the gap between the section title and the tabs.
+.tab-section--no-title-space > .p-section--shallow {
+  padding-bottom: 0;
 }

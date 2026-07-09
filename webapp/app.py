@@ -89,47 +89,6 @@ from webapp.shop.advantage.views import (
     put_account_user_role,
     put_contract_entitlements,
 )
-from webapp.shop.cred.views import (
-    activate_activation_key,
-    confidentiality_agreement_webhook,
-    cred_assessments,
-    cred_beta_activation,
-    cred_cancel_exam,
-    cred_dashboard,
-    cred_dashboard_upcoming_exams,
-    cred_dashboard_exam_results,
-    cred_dashboard_system_statuses,
-    cred_exam,
-    cred_home,
-    cred_manage_shop,
-    cred_redeem_code,
-    cred_schedule,
-    cred_self_study,
-    cred_shop,
-    cred_shop_keys,
-    cred_shop_thank_you,
-    cred_shop_webhook_responses,
-    cred_sign_up,
-    cred_thank_you,
-    cred_submit_form,
-    cred_syllabus_data,
-    cred_your_exams,
-    get_activation_key_info,
-    cred_user_ban,
-    get_activation_keys,
-    get_cue_products,
-    get_issued_badges,
-    get_issued_badges_bulk,
-    get_test_taker_stats,
-    issue_credly_badge,
-    get_cred_user_permissions,
-    get_my_issued_badges,
-    get_webhook_response,
-    issue_badges,
-    rotate_activation_key,
-    cancel_scheduled_exam,
-    cred_faq,
-)
 from webapp.shop.views import (
     account_view,
     checkout,
@@ -166,7 +125,6 @@ from webapp.views import (
     process_active_vulnerabilities,
     process_local_communities,
     process_community_events,
-    community_landing_page,
     build_ubuntu_weekly_newsletter,
     build_engage_index,
     build_engage_page,
@@ -262,12 +220,16 @@ app.jinja_loader = loader
 session = requests.Session()
 charmhub_session = requests.Session()
 
+# TEST BRANCH: caching and the circuit breaker are disabled (cache=None)
+# so every request hits Discourse directly and every 429 shows in the
+# logs. Do not merge — revert to cache=ResponseCache(...) after testing.
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
     session=session,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
+    cache=None,  # caching disabled for raw-log testing
 )
 
 charmhub_discourse_api = DiscourseAPI(
@@ -276,6 +238,17 @@ charmhub_discourse_api = DiscourseAPI(
     api_key=CHARMHUB_DISCOURSE_API_KEY,
     api_username=CHARMHUB_DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
+    cache=None,  # caching disabled for raw-log testing
+)
+
+# Anonymous reads for public Docs: no key means these GET /t/{id}.json
+# reads don't count against the shared 60/min admin API bucket. Own
+# session — DiscourseAPI overwrites session.headers on authenticated
+# instances, which would otherwise leak the key onto a shared session.
+discourse_api_anon = DiscourseAPI(
+    base_url="https://discourse.ubuntu.com/",
+    session=requests.Session(),
+    cache=None,
 )
 
 # Web tribe websites custom search ID
@@ -336,7 +309,7 @@ init_handlers(app)
 
 # Prepare forms
 def init_forms():
-    form_template_path = "shared/forms/form-template.html"
+    form_template_path = "shared/forms/_form-template.html"
 
     try:
         template_full_path = (
@@ -736,6 +709,7 @@ engage_pages_discourse_api = DiscourseAPI(
     get_topics_query_id=14,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
+    cache=None,  # caching disabled for raw-log testing
 )
 takeovers_path = "/takeovers"
 discourse_takeovers = EngagePages(
@@ -813,7 +787,7 @@ app.add_url_rule(
 def takeovers_json():
     active_takeovers = discourse_takeovers.parse_active_takeovers()
     response = flask.jsonify(active_takeovers)
-    response.cache_control.max_age = "300"
+    response.cache_control.max_age = 300
 
     return response
 
@@ -854,7 +828,7 @@ app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 url_prefix = "/community/docs"
 community_docs = Docs(
     parser=DocParser(
-        api=discourse_api,
+        api=discourse_api_anon,
         index_topic_id=33115,
         url_prefix=url_prefix,
     ),
@@ -915,11 +889,17 @@ app.add_url_rule(
     view_func=process_community_events(community_events),
 )
 
+
+def community_static_landing_page():
+    # Static version of /community. The Community events, Circles and
+    # newsletter sections are baked into community/index-static.html as a
+    # snapshot, so no Discourse fetch is needed to render the page.
+    return flask.render_template("community/index-static.html")
+
+
 app.add_url_rule(
     "/community",
-    view_func=community_landing_page(
-        community_events, local_communities, ubuntu_weekly_newsletter
-    ),
+    view_func=community_static_landing_page,
 )
 
 app.add_url_rule(
@@ -966,7 +946,9 @@ app.add_url_rule(
 # Ceph docs
 ceph_docs = Docs(
     parser=DocParser(
-        api=discourse_api, index_topic_id=17250, url_prefix="/ceph/docs"
+        api=discourse_api_anon,
+        index_topic_id=17250,
+        url_prefix="/ceph/docs",
     ),
     document_template="/ceph/docs/document.html",
     url_prefix="/ceph/docs",
@@ -987,170 +969,10 @@ app.add_url_rule(
     ),
 )
 
-# Credentials
-app.add_url_rule("/credentials", view_func=cred_home)
-app.add_url_rule("/credentials/self-study", view_func=cred_self_study)
-app.add_url_rule("/credentials/exam-content", view_func=cred_syllabus_data)
-app.add_url_rule("/credentials/faq", view_func=cred_faq)
-app.add_url_rule(
-    "/credentials/sign-up", view_func=cred_sign_up, methods=["GET", "POST"]
-)
-app.add_url_rule(
-    "/credentials/thank-you", view_func=cred_thank_you, methods=["GET"]
-)
-app.add_url_rule(
-    "/credentials/schedule",
-    view_func=cred_schedule,
-    methods=["GET", "POST"],
-)
-app.add_url_rule("/credentials/your-exams", view_func=cred_your_exams)
-app.add_url_rule("/credentials/cancel-exam", view_func=cred_cancel_exam)
-app.add_url_rule("/credentials/assessments", view_func=cred_assessments)
-app.add_url_rule("/credentials/exam", view_func=cred_exam)
-app.add_url_rule(
-    "/credentials/<string:type>/products",
-    view_func=get_cue_products,
-    methods=["GET"],
-)
-app.add_url_rule(
-    "/credentials/exit-survey",
-    view_func=cred_submit_form,
-    methods=["GET", "POST"],
-)
-app.add_url_rule("/credentials/shop/", view_func=cred_shop)
-app.add_url_rule(
-    "/credentials/shop/manage/", view_func=cred_manage_shop, methods=["GET"]
-)
-app.add_url_rule("/credentials/shop/<p>", view_func=cred_shop)
-app.add_url_rule("/credentials/shop/keys", view_func=cred_shop_keys)
-app.add_url_rule(
-    "/credentials/shop/order-thank-you", view_func=cred_shop_thank_you
-)
-app.add_url_rule(
-    "/credentials/shop/webhook_responses",
-    view_func=cred_shop_webhook_responses,
-)
-app.add_url_rule(
-    "/credentials/redeem", view_func=cred_redeem_code, methods=["GET", "POST"]
-)
-app.add_url_rule(
-    "/credentials/redeem/<code>",
-    view_func=cred_redeem_code,
-    methods=["GET", "POST"],
-)
-app.add_url_rule(
-    "/credentials/keys/list",
-    view_func=get_activation_keys,
-    methods=["GET"],
-)
-app.add_url_rule(
-    "/credentials/keys/rotate/<activation_key>",
-    view_func=rotate_activation_key,
-    methods=["GET"],
-)
-app.add_url_rule(
-    "/credentials/keys/activate",
-    view_func=activate_activation_key,
-    methods=["POST"],
-)
-app.add_url_rule(
-    "/credentials/keys/<key_id>",
-    view_func=get_activation_key_info,
-    methods=["GET"],
-)
-app.add_url_rule(
-    "/credentials/beta/activation",
-    view_func=cred_beta_activation,
-    methods=["GET", "POST"],
-)
-app.add_url_rule(
-    "/credentials/get_webhook_response",
-    view_func=get_webhook_response,
-    methods=["GET"],
-)
-app.add_url_rule(
-    "/credentials/assessment_passed",
-    view_func=issue_badges,
-    methods=["POST"],
-)
-app.add_url_rule(
-    "/credentials/dashboard",
-    view_func=cred_dashboard,
-    methods=["GET"],
-)
-app.add_url_rule(
-    "/credentials/dashboard/<path:path>",
-    view_func=cred_dashboard,
-    methods=["GET"],
-    defaults={"path": ""},
-)
-app.add_url_rule(
-    "/credentials/api/upcoming-exams",
-    view_func=cred_dashboard_upcoming_exams,
-    methods=["GET"],
-)
-app.add_url_rule(
-    "/credentials/api/exam-results",
-    view_func=cred_dashboard_exam_results,
-    methods=["GET"],
-)
-app.add_url_rule(
-    "/credentials/api/system-statuses",
-    view_func=cred_dashboard_system_statuses,
-    methods=["GET"],
-)
-app.add_url_rule(
-    "/credentials/api/issued-badges",
-    view_func=get_issued_badges,
-    methods=["GET"],
-)
-app.add_url_rule(
-    "/credentials/api/issued-badges-bulk",
-    view_func=get_issued_badges_bulk,
-    methods=["GET"],
-)
-app.add_url_rule(
-    "/credentials/api/test-taker-stats",
-    view_func=get_test_taker_stats,
-    methods=["GET"],
-)
-app.add_url_rule(
-    "/credentials/api/issue-credly-badge",
-    view_func=issue_credly_badge,
-    methods=["POST"],
-)
-app.add_url_rule(
-    "/credentials/api/user-permissions",
-    view_func=get_cred_user_permissions,
-    methods=["GET"],
-)
-app.add_url_rule(
-    "/credentials/api/cancel-scheduled-exam/<reservation_id>",
-    view_func=cancel_scheduled_exam,
-    methods=["DELETE"],
-)
-app.add_url_rule(
-    "/credentials/api/user-bans",
-    view_func=cred_user_ban,
-    methods=["GET", "PUT"],
-)
-
-app.add_url_rule(
-    "/credentials/your-badges",
-    view_func=get_my_issued_badges,
-    methods=["GET"],
-)
-
-app.add_url_rule(
-    "/credentials/confidentiality-agreement",
-    view_func=confidentiality_agreement_webhook,
-    methods=["POST"],
-)
-
 # Charmed OpenStack docs
 openstack_docs = Docs(
     parser=DocParser(
-        api=discourse_api,
+        api=discourse_api_anon,
         index_topic_id=20991,
         url_prefix="/openstack/docs",
     ),
@@ -1177,7 +999,7 @@ openstack_docs.init_app(app)
 # Security Livepatch docs
 security_livepatch_docs = Docs(
     parser=DocParser(
-        api=discourse_api,
+        api=discourse_api_anon,
         index_topic_id=22723,
         url_prefix="/security/livepatch/docs",
     ),
@@ -1204,7 +1026,7 @@ security_livepatch_docs.init_app(app)
 # Security Certifications docs
 security_certs_docs = Docs(
     parser=DocParser(
-        api=discourse_api,
+        api=discourse_api_anon,
         index_topic_id=22810,
         url_prefix="/security/certifications/docs",
     ),

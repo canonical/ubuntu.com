@@ -1,0 +1,324 @@
+<div id="cvss-v4-section">
+
+  {% set baseScore = cvssV4.baseScore %}
+  {% if baseScore <= 3.9 %}
+    {% set severityLabel = "Low" %}
+    {% set severityIcon = "https://assets.ubuntu.com/v1/03ac6f86-CVE-Priority-icon-Low.svg" %}
+  {% elif baseScore <= 6.9 %}
+    {% set severityLabel = "Medium" %}
+    {% set severityIcon = "https://assets.ubuntu.com/v1/8010f9e0-CVE-Priority-icon-Medium.svg" %}
+  {% elif baseScore <= 8.9 %}
+    {% set severityLabel = "High" %}
+    {% set severityIcon = "https://assets.ubuntu.com/v1/3887354e-CVE-Priority-icon-High.svg" %}
+  {% elif baseScore <= 10 %}
+    {% set severityLabel = "Critical" %}
+    {% set severityIcon = "https://assets.ubuntu.com/v1/c96f27b9-CVE-Priority-icon-Critical.svg" %}
+  {% endif %}
+
+  <p class="u-sv1">
+    <span class="cve-score-summary">
+      <strong>Base score</strong>
+      {{ image(url=severityIcon,
+                                alt="",
+                                width="16",
+                                height="16",
+                                hi_def=True,
+                                loading="auto") | safe
+      }}
+      <span>{{ baseScore }} &middot; {{ severityLabel }}</span>
+    </span>
+  </p>
+
+  <aside class="p-accordion u-sv1" data-multiple-expanded="true">
+    <ul class="p-accordion__list">
+      {% set baseMetrics = cvssV4.baseMetrics %}
+      {% if baseMetrics %}
+        <li class="p-accordion__group">
+          <div role="heading" aria-level="3" class="p-accordion__heading">
+            <button type="button"
+                    class="p-accordion__tab"
+                    id="base-metrics-tab"
+                    aria-controls="base-metrics-section"
+                    aria-expanded="true">Base metrics</button>
+          </div>
+          <section class="p-accordion__panel"
+                   id="base-metrics-section"
+                   aria-hidden="false"
+                   aria-labelledby="base-metrics-tab">
+            <table>
+              <thead>
+                <tr>
+                  <th class="u-adjust-table-heading">Parameter</th>
+                  <th class="u-align--left">Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Attack vector</th>
+                  <td>{{ baseMetrics.exploitabilityMetrics.attackVector | default('-', true) | capitalize }}</td>
+                </tr>
+                <tr>
+                  <th>Attack complexity</th>
+                  <td>{{ baseMetrics.exploitabilityMetrics.attackComplexity | default('-', true) | capitalize }}</td>
+                </tr>
+                <tr>
+                  <th>Attack requirements</th>
+                  <td>{{ baseMetrics.exploitabilityMetrics.attackRequirements | default('-', true) | capitalize }}</td>
+                </tr>
+                <tr>
+                  <th>Privileges required</th>
+                  <td>{{ baseMetrics.exploitabilityMetrics.privilegesRequired | default('-', true) | capitalize }}</td>
+                </tr>
+                <tr>
+                  <th>User interaction</th>
+                  <td>{{ baseMetrics.exploitabilityMetrics.userInteraction | default('-', true) | capitalize }}</td>
+                </tr>
+                <tr>
+                  <th>Vulnerable system - Confidentiality impact</th>
+                  <td>{{ baseMetrics.vulnerableSystemImpactMetrics.confidentialityImpact | default('-', true) | capitalize }}</td>
+                </tr>
+                <tr>
+                  <th>Vulnerable system - Integrity impact</th>
+                  <td>{{ baseMetrics.vulnerableSystemImpactMetrics.integrityImpact | default('-', true) | capitalize }}</td>
+                </tr>
+                <tr>
+                  <th>Vulnerable system - Availability impact</th>
+                  <td>{{ baseMetrics.vulnerableSystemImpactMetrics.availabilityImpact | default('-', true) | capitalize }}</td>
+                </tr>
+                <tr>
+                  <th>Subsequent system - Confidentiality impact</th>
+                  <td>{{ baseMetrics.subsequentSystemImpactMetrics.confidentialityImpact | default('-', true) | capitalize }}</td>
+                </tr>
+                <tr>
+                  <th>Subsequent system - Integrity impact</th>
+                  <td>{{ baseMetrics.subsequentSystemImpactMetrics.integrityImpact | default('-', true) | capitalize }}</td>
+                </tr>
+                <tr>
+                  <th>Subsequent system - Availability impact</th>
+                  <td>{{ baseMetrics.subsequentSystemImpactMetrics.availabilityImpact | default('-', true) | capitalize }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </li>
+      {% endif %}
+
+      {% set supplementalMetrics = cvssV4.supplementalMetrics %}
+      {% if supplementalMetrics %}
+        <li class="p-accordion__group">
+          <div role="heading" aria-level="3" class="p-accordion__heading">
+            <button type="button"
+                    class="p-accordion__tab"
+                    id="supplemental-metrics-tab"
+                    aria-controls="supplemental-metrics-section"
+                    aria-expanded="false">Supplemental metrics</button>
+          </div>
+          <section class="p-accordion__panel"
+                   id="supplemental-metrics-section"
+                   aria-hidden="true"
+                   aria-labelledby="supplemental-metrics-tab">
+            <table>
+              <thead>
+                <tr>
+                  <th class="u-adjust-table-heading">Parameter</th>
+                  <th class="u-align--left">Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Safety</th>
+                  <td>{{ supplementalMetrics.safety | default('-', true) | capitalize }}</td>
+                </tr>
+                <tr>
+                  <th>Automatable</th>
+                  <td>{{ supplementalMetrics.automatable | default('-', true) | capitalize }}</td>
+                </tr>
+                <tr>
+                  <th>Recovery</th>
+                  <td>{{ supplementalMetrics.recovery | default('-', true) | capitalize }}</td>
+                </tr>
+                <tr>
+                  <th>Value density</th>
+                  <td>{{ supplementalMetrics.valueDensity | default('-', true) | capitalize }}</td>
+                </tr>
+                <tr>
+                  <th>Vulnerability response effort</th>
+                  <td>{{ supplementalMetrics.vulnerabilityResponseEffort | default('-', true) | capitalize }}</td>
+                </tr>
+                <tr>
+                  <th>Provider urgency</th>
+                  <td>{{ supplementalMetrics.providerUrgency | default('-', true) | capitalize }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </li>
+      {% endif %}
+
+      {% set environmentalMetrics = cvssV4.environmentalMetrics %}
+      {% if environmentalMetrics %}
+        <li class="p-accordion__group">
+          <div role="heading" aria-level="3" class="p-accordion__heading">
+            <button type="button"
+                    class="p-accordion__tab"
+                    id="environmental-metrics-tab"
+                    aria-controls="environmental-metrics-section"
+                    aria-expanded="false">Environmental metrics</button>
+          </div>
+          <section class="p-accordion__panel"
+                   id="environmental-metrics-section"
+                   aria-hidden="true"
+                   aria-labelledby="environmental-metrics-tab">
+            <table>
+              <thead>
+                <tr>
+                  <th class="u-adjust-table-heading">Parameter</th>
+                  <th class="u-align--left">Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% set modifiedBase = environmentalMetrics.modifiedBaseMetrics %}
+                {% set securityRequirements = environmentalMetrics.securityRequirements %}
+                <tr>
+                  <th>Modified attack vector</th>
+                  <td>{{ modifiedBase.exploitabilityMetrics.attackVector | default('-', true) | capitalize if modifiedBase else '-' }}</td>
+                </tr>
+                <tr>
+                  <th>Modified attack complexity</th>
+                  <td>{{ modifiedBase.exploitabilityMetrics.attackComplexity | default('-', true) | capitalize if modifiedBase else '-' }}</td>
+                </tr>
+                <tr>
+                  <th>Modified attack requirements</th>
+                  <td>{{ modifiedBase.exploitabilityMetrics.attackRequirements | default('-', true) | capitalize if modifiedBase else '-' }}</td>
+                </tr>
+                <tr>
+                  <th>Modified privileges required</th>
+                  <td>{{ modifiedBase.exploitabilityMetrics.privilegesRequired | default('-', true) | capitalize if modifiedBase else '-' }}</td>
+                </tr>
+                <tr>
+                  <th>Modified user interaction</th>
+                  <td>{{ modifiedBase.exploitabilityMetrics.userInteraction | default('-', true) | capitalize if modifiedBase else '-' }}</td>
+                </tr>
+                <tr>
+                  <th>Modified vulnerable system - Confidentiality impact</th>
+                  <td>{{ modifiedBase.vulnerableSystemImpactMetrics.confidentialityImpact | default('-', true) | capitalize if modifiedBase else '-' }}</td>
+                </tr>
+                <tr>
+                  <th>Modified vulnerable system - Integrity impact</th>
+                  <td>{{ modifiedBase.vulnerableSystemImpactMetrics.integrityImpact | default('-', true) | capitalize if modifiedBase else '-' }}</td>
+                </tr>
+                <tr>
+                  <th>Modified vulnerable system - Availability impact</th>
+                  <td>{{ modifiedBase.vulnerableSystemImpactMetrics.availabilityImpact | default('-', true) | capitalize if modifiedBase else '-' }}</td>
+                </tr>
+                <tr>
+                  <th>Modified subsequent system - Confidentiality impact</th>
+                  <td>{{ modifiedBase.subsequentSystemImpactMetrics.confidentialityImpact | default('-', true) | capitalize if modifiedBase else '-' }}</td>
+                </tr>
+                <tr>
+                  <th>Modified subsequent system - Integrity impact</th>
+                  <td>{{ modifiedBase.subsequentSystemImpactMetrics.integrityImpact | default('-', true) | capitalize if modifiedBase else '-' }}</td>
+                </tr>
+                <tr>
+                  <th>Modified subsequent system - Availability impact</th>
+                  <td>{{ modifiedBase.subsequentSystemImpactMetrics.availabilityImpact | default('-', true) | capitalize if modifiedBase else '-' }}</td>
+                </tr>
+                <tr>
+                  <th>Security requirements - Confidentiality</th>
+                  <td>{{ securityRequirements.confidentialityRequirements | default('-', true) | capitalize if securityRequirements else '-' }}</td>
+                </tr>
+                <tr>
+                  <th>Security requirements - Integrity</th>
+                  <td>{{ securityRequirements.integrityRequirements | default('-', true) | capitalize if securityRequirements else '-' }}</td>
+                </tr>
+                <tr>
+                  <th>Security requirements - Availability</th>
+                  <td>{{ securityRequirements.availabilityRequirements | default('-', true) | capitalize if securityRequirements else '-' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </li>
+      {% endif %}
+
+      {% set threatMetrics = cvssV4.threatMetrics %}
+      {% if threatMetrics %}
+        <li class="p-accordion__group">
+          <div role="heading" aria-level="3" class="p-accordion__heading">
+            <button type="button"
+                    class="p-accordion__tab"
+                    id="threat-metrics-tab"
+                    aria-controls="threat-metrics-section"
+                    aria-expanded="false">Threat metrics</button>
+          </div>
+          <section class="p-accordion__panel"
+                   id="threat-metrics-section"
+                   aria-hidden="true"
+                   aria-labelledby="threat-metrics-tab">
+            <table>
+              <thead>
+                <tr>
+                  <th class="u-adjust-table-heading">Parameter</th>
+                  <th class="u-align--left">Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Exploit maturity</th>
+                  <td>{{ threatMetrics.exploitMaturity | default('-', true) | capitalize }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </li>
+      {% endif %}
+
+      <li class="p-accordion__group">
+        <div role="heading" aria-level="3" class="p-accordion__heading">
+          <button type="button"
+                  class="p-accordion__tab"
+                  id="scores-tab"
+                  aria-controls="scores-section"
+                  aria-expanded="false">Scores</button>
+        </div>
+        <section class="p-accordion__panel"
+                 id="scores-section"
+                 aria-hidden="true"
+                 aria-labelledby="scores-tab">
+          <table>
+            <thead>
+              <tr>
+                <th class="u-adjust-table-heading">Parameter</th>
+                <th class="u-align--left">Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Base score</th>
+                <td>{% if cvssV4.baseScore %}{{ cvssV4.baseScore }} &middot; {{ cvssV4.baseSeverity | default('-', true) | capitalize }}{% else %}-{% endif %}</td>
+              </tr>
+              <tr>
+                <th>Base + Threat score</th>
+                <td>{% if cvssV4.baseThreatScore %}{{ cvssV4.baseThreatScore }} &middot; {{ cvssV4.baseThreatSeverity | default('-', true) | capitalize }}{% else %}-{% endif %}</td>
+              </tr>
+              <tr>
+                <th>Base + Environmental score</th>
+                <td>{% if cvssV4.baseEnvironmentalScore %}{{ cvssV4.baseEnvironmentalScore }} &middot; {{ cvssV4.baseEnvironmentalSeverity | default('-', true) | capitalize }}{% else %}-{% endif %}</td>
+              </tr>
+              <tr>
+                <th>Base + Threat + Environmental score</th>
+                <td>{% if cvssV4.baseThreatEnvironmentalScore %}{{ cvssV4.baseThreatEnvironmentalScore }} &middot; {{ cvssV4.baseThreatEnvironmentalSeverity | default('-', true) | capitalize }}{% else %}-{% endif %}</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </li>
+    </ul>
+  </aside>
+
+  {% if cvssV4.vectorString %}
+    <p>
+      <strong>Vector:</strong> {{ cvssV4.vectorString }}
+    </p>
+  {% endif %}
+</div>
