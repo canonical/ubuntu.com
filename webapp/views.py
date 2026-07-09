@@ -1033,7 +1033,7 @@ def enrich_acquisition_url(acquisition_url, utm_dict, approved_utms):
 # Marketo asset API on every submission. Keyed by form id, each entry stores
 # a (expiry_timestamp, required_fields) tuple.
 _marketo_required_fields_cache = {}
-_MARKETO_REQUIRED_FIELDS_TTL = 60 * 60  # 1 hour
+_MARKETO_REQUIRED_FIELDS_TTL = 6 * 60 * 60  # 6 hours
 
 
 def get_marketo_required_fields(form_id):
