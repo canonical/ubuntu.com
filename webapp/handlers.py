@@ -13,6 +13,7 @@ from webapp.context import (
     descending_years,
     format_date,
     format_to_id,
+    get_careers_role_counts,
     get_json_feed,
     get_navigation,
     get_secondary_navigation,
@@ -284,6 +285,7 @@ def init_handlers(app):
             "get_navigation": get_navigation,
             "split_list": split_list,
             "format_to_id": format_to_id,
+            "careers_role_counts": get_careers_role_counts(),
         }
 
     def get_countries_list() -> List[dict]:
