@@ -61,6 +61,21 @@ tasks:
     cmds:
       - rm -rf static/css static/js/dist node_modules {{ .VENV_DIR }} .task
 
+  start-db:
+    desc: "Start a local Postgres for the Discourse response cache"
+    cmds:
+      - docker compose up -d
+
+  stop-db:
+    desc: "Stop the local Postgres container"
+    cmds:
+      - docker compose stop
+
+  delete-db:
+    desc: "Stop and delete the local Postgres container and its data"
+    cmds:
+      - docker compose down -v
+
   test-python:
     desc: "Run Python tests with coverage"
     deps:

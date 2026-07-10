@@ -1,0 +1,12 @@
+services:
+  discourse_cache_db:
+    container_name: ubuntu_com_discourse_cache_db
+    ports: ["5432:5432"]
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    image: postgres
+    volumes:
+      - discourse_cache_db_data:/var/lib/postgresql/data
+
+volumes:
+  discourse_cache_db_data:
