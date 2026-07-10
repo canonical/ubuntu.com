@@ -246,7 +246,7 @@ $navigation-height: 3rem;
         top: 1.25rem;
 
         @media (max-width: $breakpoint-navigation-threshold - 1) {
-          right: 1.5rem;
+          right: $sph--x-large;
           top: 1rem;
         }
       }
@@ -263,7 +263,7 @@ $navigation-height: 3rem;
     }
 
     .p-navigation__nav {
-      margin-right: -1rem;
+      margin-right: $sph--large;
       max-height: calc(100vh - 3rem);
       width: auto;
 
@@ -271,8 +271,8 @@ $navigation-height: 3rem;
         width: 100%;
 
         & > .p-navigation__item--dropdown-toggle > .p-navigation__link {
-          padding-left: 0.5rem;
-          padding-right: 2rem;
+          padding-left: $sph--small;
+          padding-right: calc($sph--large * 2);
 
           &::before {
             left: $row-margin-small;
@@ -281,10 +281,10 @@ $navigation-height: 3rem;
 
         @media (max-width: $breakpoint-navigation-threshold - 1) {
           .p-navigation__link {
-            padding-left: calc(1.5rem + $row-margin-medium);
+            padding-left: calc($sph--x-large + $row-margin-medium);
 
             &::before {
-              left: calc(1.5rem + $row-margin-medium);
+              left: calc($sph--x-large + $row-margin-medium);
             }
 
             &.js-back::after {
@@ -328,20 +328,20 @@ $navigation-height: 3rem;
           }
 
           .p-navigation__dropdown-item {
-            padding-left: calc(1.5rem + $row-margin-medium);
+            padding-left: calc($sph--x-large + $row-margin-medium);
 
             &::before {
-              left: calc(1.5rem + $row-margin-medium);
+              left: calc($sph--x-large + $row-margin-medium);
             }
           }
         }
 
         @media (max-width: $breakpoint-medium) {
           .p-navigation__link {
-            padding-left: calc(1.5rem + $row-margin-small);
+            padding-left: calc($sph--x-large + $row-margin-small);
 
             &::before {
-              left: calc(1.5rem + $row-margin-small);
+              left: calc($sph--x-large + $row-margin-small);
             }
 
             &.js-back::after {
@@ -358,10 +358,10 @@ $navigation-height: 3rem;
           }
 
           .p-navigation__dropdown-item {
-            padding-left: calc(1.5rem + $row-margin-small);
+            padding-left: calc($sph--x-large + $row-margin-small);
 
             &::before {
-              left: calc(1.5rem + $row-margin-small);
+              left: calc($sph--x-large + $row-margin-small);
             }
           }
         }

@@ -18,22 +18,6 @@ class TestContextFunctions(TestCase):
 
 
 class TestGetCareersRoleCounts(TestCase):
-    MOCK_RESPONSE = [
-        {
-            "slug": "engineering",
-            "count": 163,
-            "name": "Engineering",
-            "icon": "eng.svg",
-        },
-        {
-            "slug": "marketing",
-            "count": 15,
-            "name": "Marketing",
-            "icon": "mkt.svg",
-        },
-        {"slug": "legal", "count": 1, "name": "Legal", "icon": "legal.svg"},
-    ]
-
     @patch("webapp.context.api_session")
     def test_returns_slug_to_count_mapping(self, mock_session):
         mock_response = MagicMock()
