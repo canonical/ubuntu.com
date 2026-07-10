@@ -214,13 +214,19 @@ class TestRoutes(VCRTestCase):
         response = self.client.get("/rfp")
         self.assertEqual(response.status_code, 200)
         self.assertNotIn(
-            b'<form action="/marketo/submit" method="post" id="mktoForm_3285" />',
+            (
+                b'<form action="/marketo/submit" method="post" '
+                b'id="mktoForm_3285" />'
+            ),
             response.data,
         )
 
     def test_magic_attach_markup_uses_valid_labels(self):
-        with app.app_context():
-            html = app.jinja_env.get_template("pro/attach/index.html").render(
+        import flask
+
+        with app.test_request_context("/pro/attach"):
+            html = flask.render_template(
+                "pro/attach/index.html",
                 subscriptions=[
                     SimpleNamespace(
                         contract_id="contract-1",
@@ -237,7 +243,9 @@ class TestRoutes(VCRTestCase):
         subscription_label = soup.find(
             "label", {"for": "magic-attach-subscription"}
         )
-        subscription_select = soup.find("select", {"id": "magic-attach-subscription"})
+        subscription_select = soup.find(
+            "select", {"id": "magic-attach-subscription"}
+        )
 
         self.assertIsNotNone(magic_attach_input)
         self.assertNotIn("label", magic_attach_input.attrs)
