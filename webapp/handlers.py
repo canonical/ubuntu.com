@@ -75,7 +75,15 @@ LONG_CACHE_PREFIXES = (
 
 
 def _should_long_cache(path):
-    return path in LONG_CACHE_EXACT or path.startswith(LONG_CACHE_PREFIXES)
+    # Any /docs route is public Discourse/markdown documentation, so match
+    # it generally: this covers the charmed docs (ceph, openstack, security)
+    # and any future /<product>/docs section without listing each one.
+    return (
+        path in LONG_CACHE_EXACT
+        or path.startswith(LONG_CACHE_PREFIXES)
+        or path.endswith("/docs")
+        or "/docs/" in path
+    )
 
 
 def _long_cache_seconds(path):
