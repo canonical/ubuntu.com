@@ -37,14 +37,17 @@ from canonicalwebteam.flask_base.env import get_flask_env
 
 # Cache Discourse-backed pages longer than the 60s flask-base default;
 # our after_request runs first so this max-age wins.
-LONG_CACHE_SECONDS = 3600  # 1 hour
+# 6h: CDN cache survives deploys, so it keeps serving popular docs/engage
+# pages while per-worker app caches are cold, cutting origin query-16 load.
+LONG_CACHE_SECONDS = 21600  # 6 hours
 
 # Community pages degrade to an empty 200 on Discourse error, so cache
 # them shorter to avoid freezing a degraded page (docs 503 instead).
 COMMUNITY_CACHE_SECONDS = 300
 
-# Serve the last good copy during an origin outage (flask-base default 300s).
-LONG_CACHE_STALE_IF_ERROR = 3600
+# Serve the last good copy for 6h during origin outages, so the breaker's
+# 503s don't reach users while it cycles (flask-base default 300s).
+LONG_CACHE_STALE_IF_ERROR = 21600
 
 # Exact paths (no trailing segment) that should get the longer cache.
 LONG_CACHE_EXACT = frozenset(
