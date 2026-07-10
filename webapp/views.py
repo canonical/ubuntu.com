@@ -1125,10 +1125,13 @@ def marketo_submit():
     form_id = form_fields.get("formid")
     if form_id:
         required_fields = get_marketo_required_fields(form_id)
+        form_fields_lower = {
+            key.lower(): value for key, value in form_fields.items()
+        }
         missing_required = [
             label
             for field, label in required_fields.items()
-            if not form_fields.get(field, "").strip()
+            if not form_fields_lower.get(field.lower(), "").strip()
         ]
         if missing_required:
             flask.flash(
