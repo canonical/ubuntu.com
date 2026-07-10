@@ -31,6 +31,11 @@ env:
       key: ubuntu-api-key
       name: discourse-api
 
+  - name: DATABASE_URL
+    secretKeyRef:
+      key: database-url
+      name: discourse-cache-db
+
   - name: DISCOURSE_API_USERNAME
     secretKeyRef:
       key: ubuntu-api-username
@@ -398,6 +403,11 @@ production:
             key: ubuntu-api-key
             name: discourse-api
 
+        - name: DATABASE_URL
+          secretKeyRef:
+            key: database-url
+            name: discourse-cache-db
+
         - name: DISCOURSE_API_USERNAME
           secretKeyRef:
             key: ubuntu-api-username
@@ -430,6 +440,11 @@ production:
           secretKeyRef:
             key: ubuntu-api-key
             name: discourse-api
+
+        - name: DATABASE_URL
+          secretKeyRef:
+            key: database-url
+            name: discourse-cache-db
 
         - name: DISCOURSE_API_USERNAME
           secretKeyRef:
@@ -492,6 +507,11 @@ production:
             key: ubuntu-api-key
             name: discourse-api
 
+        - name: DATABASE_URL
+          secretKeyRef:
+            key: database-url
+            name: discourse-cache-db
+
         - name: DISCOURSE_API_USERNAME
           secretKeyRef:
             key: ubuntu-api-username
@@ -525,6 +545,11 @@ production:
           secretKeyRef:
             key: ubuntu-api-key
             name: discourse-api
+
+        - name: DATABASE_URL
+          secretKeyRef:
+            key: database-url
+            name: discourse-cache-db
 
         - name: DISCOURSE_API_USERNAME
           secretKeyRef:
@@ -650,6 +675,11 @@ staging:
       secretKeyRef:
         key: ubuntu-api-key
         name: discourse-api
+
+    - name: DATABASE_URL
+      secretKeyRef:
+        key: database-url
+        name: discourse-cache-db
 
     - name: DISCOURSE_API_USERNAME
       secretKeyRef:
@@ -1020,6 +1050,11 @@ staging:
             key: ubuntu-api-key
             name: discourse-api
 
+        - name: DATABASE_URL
+          secretKeyRef:
+            key: database-url
+            name: discourse-cache-db
+
         - name: DISCOURSE_API_USERNAME
           secretKeyRef:
             key: ubuntu-api-username
@@ -1052,6 +1087,11 @@ staging:
           secretKeyRef:
             key: ubuntu-api-key
             name: discourse-api
+
+        - name: DATABASE_URL
+          secretKeyRef:
+            key: database-url
+            name: discourse-cache-db
 
         - name: DISCOURSE_API_USERNAME
           secretKeyRef:
@@ -1110,6 +1150,11 @@ staging:
             key: ubuntu-api-key
             name: discourse-api
 
+        - name: DATABASE_URL
+          secretKeyRef:
+            key: database-url
+            name: discourse-cache-db
+
         - name: DISCOURSE_API_USERNAME
           secretKeyRef:
             key: ubuntu-api-username
@@ -1146,6 +1191,11 @@ staging:
           secretKeyRef:
             key: ubuntu-api-key
             name: discourse-api
+
+        - name: DATABASE_URL
+          secretKeyRef:
+            key: database-url
+            name: discourse-cache-db
 
         - name: DISCOURSE_API_USERNAME
           secretKeyRef:
@@ -1248,6 +1298,11 @@ demo:
       secretKeyRef:
         key: ubuntu-api-key
         name: discourse-api
+
+    - name: DATABASE_URL
+      secretKeyRef:
+        key: database-url
+        name: discourse-cache-db
 
     - name: DISCOURSE_API_USERNAME
       secretKeyRef:

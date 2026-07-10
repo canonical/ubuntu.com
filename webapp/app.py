@@ -41,6 +41,7 @@ from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.form_generator import FormGenerator
 from canonicalwebteam.markdown_response import MarkdownResponse
 
+from webapp.database import build_cache
 from webapp.certified.views import certified_routes
 from webapp.handlers import init_handlers
 from webapp.login import login_handler, logout, user_info
@@ -220,16 +221,13 @@ app.jinja_loader = loader
 session = requests.Session()
 charmhub_session = requests.Session()
 
-# TEST BRANCH: caching and the circuit breaker are disabled (cache=None)
-# so every request hits Discourse directly and every 429 shows in the
-# logs. Do not merge — revert to cache=ResponseCache(...) after testing.
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
     session=session,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
-    cache=None,  # caching disabled for raw-log testing
+    cache=build_cache("ubuntu-com-discourse"),
 )
 
 charmhub_discourse_api = DiscourseAPI(
@@ -238,7 +236,7 @@ charmhub_discourse_api = DiscourseAPI(
     api_key=CHARMHUB_DISCOURSE_API_KEY,
     api_username=CHARMHUB_DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
-    cache=None,  # caching disabled for raw-log testing
+    cache=build_cache("ubuntu-com-charmhub"),
 )
 
 # Anonymous reads for public Docs: no key means these GET /t/{id}.json
@@ -248,7 +246,7 @@ charmhub_discourse_api = DiscourseAPI(
 discourse_api_anon = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
     session=requests.Session(),
-    cache=None,
+    cache=build_cache("ubuntu-com-discourse-anon"),
 )
 
 # Web tribe websites custom search ID
@@ -709,7 +707,7 @@ engage_pages_discourse_api = DiscourseAPI(
     get_topics_query_id=14,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
-    cache=None,  # caching disabled for raw-log testing
+    cache=build_cache("ubuntu-com-engage"),
 )
 takeovers_path = "/takeovers"
 discourse_takeovers = EngagePages(

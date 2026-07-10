@@ -54,6 +54,9 @@ config:
     discourse-api:
       type: secret
       description: "Discourse API"
+    database-url:
+      type: secret
+      description: "Postgres connection string for the Discourse response cache"
     charmhub-discourse-api:
       type: secret
       description: "Charmhub Discourse API"
