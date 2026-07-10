@@ -1029,17 +1029,19 @@ def enrich_acquisition_url(acquisition_url, utm_dict, approved_utms):
     return enriched_url
 
 
-def contains_injection_attempt(form_fields):
+def find_injection_attempt(form_fields):
     """
-    Return True if any submitted field value contains a substring
-    associated with script/command injection probes (path traversal, XSS,
-    SSRF, SQLi, etc.) rather than genuine lead data.
+    Return the (field, pattern) of the first submitted field value that
+    contains a substring associated with script/command injection probes
+    (path traversal, XSS, SSRF, SQLi, etc.) rather than genuine lead data,
+    or None if no match is found.
     """
-    for value in form_fields.values():
+    for field, value in form_fields.items():
         lowered = value.lower()
-        if any(pattern in lowered for pattern in MARKETO_INJECTION_PATTERNS):
-            return True
-    return False
+        for pattern in MARKETO_INJECTION_PATTERNS:
+            if pattern in lowered:
+                return field, pattern
+    return None
 
 
 def marketo_submit():
@@ -1080,8 +1082,17 @@ def marketo_submit():
     # Silently drop submissions that look like script/command injection
     # probes instead of forwarding them to Marketo. The requester is
     # redirected to the thank-you page as if the submission succeeded, so
-    # scanners get no signal that their payload was detected.
-    if contains_injection_attempt(form_fields):
+    # scanners get no signal that their payload was detected, but the
+    # attempt is still reported to Sentry so the pattern list can be tuned.
+    injection_match = find_injection_attempt(form_fields)
+    if injection_match:
+        field, pattern = injection_match
+        marketo_sentry_report(
+            "Marketo form submission blocked: injection attempt detected",
+            field=field,
+            pattern=pattern,
+            form_fields=form_fields,
+        )
         return flask.redirect(f"/thank-you?referrer={referrer}")
 
     form_fields.pop("thankyoumessage", None)

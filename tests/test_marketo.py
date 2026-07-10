@@ -330,8 +330,8 @@ class TestMarketoSubmit(unittest.TestCase):
         """
         A submission whose data contains a script/command injection probe
         is never forwarded to Marketo. The requester is redirected to the
-        thank-you page as if the submission succeeded, and no Sentry alert
-        is raised.
+        thank-you page as if the submission succeeded, but the attempt is
+        still reported to Sentry for visibility.
         """
         with patch(
             "webapp.views.marketo_api.submit_form"
@@ -348,7 +348,14 @@ class TestMarketoSubmit(unittest.TestCase):
                 },
             )
         mock_submit.assert_not_called()
-        mock_sentry.assert_not_called()
+        self.assertEqual(mock_sentry.call_count, 1)
+        _, kwargs = mock_sentry.call_args
+        self.assertEqual(
+            mock_sentry.call_args.args[0],
+            "Marketo form submission blocked: injection attempt detected",
+        )
+        self.assertEqual(kwargs["field"], "Comments_from_lead__c")
+        self.assertEqual(kwargs["pattern"], "onload")
         self.assertEqual(http_response.status_code, 302)
         self.assertIn("/thank-you", http_response.headers["Location"])
 
