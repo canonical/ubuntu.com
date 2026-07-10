@@ -1,6 +1,8 @@
 import unittest
 import os
 import json
+import sentry_sdk
+from unittest.mock import Mock, patch
 
 from webapp.app import app
 from tests.helpers import MarketoFormTestCase
@@ -196,6 +198,154 @@ class TestStaticContactForms(MarketoFormTestCase):
                             "Template not found in "
                             "contact_us_template_fields: " + template,
                         )
+
+
+class TestMarketoSubmit(unittest.TestCase):
+    """
+    Tests for marketo_submit()
+    Two form submissions (payload + enrichment) have to go through
+    to be considered successful and avoid a Sentry alert.
+
+    The Marketo API and Sentry reporting are mocked, so these tests do not
+    require live Marketo credentials.
+    """
+
+    def setUp(self):
+        app.testing = True
+        if not app.config.get("SECRET_KEY"):
+            app.config["SECRET_KEY"] = "test-secret-key"
+        self.client = app.test_client()
+
+    @staticmethod
+    def _mock_response(json_body):
+        """Build a fake requests.Response whose .json() returns json_body."""
+        response = Mock()
+        response.json.return_value = json_body
+        return response
+
+    @classmethod
+    def setUpClass(cls):
+        # Drop Sentry client so test alerts do not get sent to Sentry
+        cls._sentry_client = sentry_sdk.get_client()
+        sentry_sdk.get_global_scope().set_client(None)
+
+    @classmethod
+    def tearDownClass(cls):
+        # Reinstantiate Sentry client
+        sentry_sdk.get_global_scope().set_client(cls._sentry_client)
+
+    def _submit(self, payload_response, enrichment_response):
+        """
+        POST a minimal valid form to /marketo/submit with the two Marketo
+        API calls (payload first, then enrichment) mocked to return the given
+        responses. Returns (http_response, mock_sentry_report).
+        """
+        with patch(
+            "webapp.views.marketo_api.submit_form"
+        ) as mock_submit, patch(
+            "webapp.views.marketo_sentry_report"
+        ) as mock_sentry:
+            mock_submit.side_effect = [
+                self._mock_response(payload_response),
+                self._mock_response(enrichment_response),
+            ]
+            http_response = self.client.post(
+                "/marketo/submit",
+                data={
+                    "formid": "1234",
+                    "email": "test@example.com",
+                    "firstName": "Test",
+                },
+            )
+        return http_response, mock_sentry
+
+    @staticmethod
+    def _sentry_messages(mock_sentry):
+        """
+        Return the list of human-readable messages passed to
+        marketo_sentry_report (the first positional argument of each call).
+        """
+        return [
+            call.args[0] if call.args else ""
+            for call in mock_sentry.call_args_list
+        ]
+
+    def test_both_submissions_succeed_no_alert(self):
+        """
+        When both the payload and enrichment submissions succeed, no Sentry
+        alert is raised and the user is redirected to the thank-you page.
+        """
+        http_response, mock_sentry = self._submit(
+            payload_response={
+                "success": True,
+                "result": [{"status": "created"}],
+            },
+            enrichment_response={"success": True},
+        )
+        mock_sentry.assert_not_called()
+        self.assertEqual(http_response.status_code, 302)
+        self.assertIn("/thank-you", http_response.headers["Location"])
+
+    def test_both_submissions_fail_single_alert(self):
+        """
+        When both submissions fail (payload skipped and enrichment
+        unsuccessful), a single combined-failure Sentry alert is raised.
+        """
+        http_response, mock_sentry = self._submit(
+            payload_response={
+                "success": True,
+                "result": [{"status": "skipped"}],
+            },
+            enrichment_response={"success": False},
+        )
+        self.assertEqual(mock_sentry.call_count, 1)
+        self.assertEqual(
+            self._sentry_messages(mock_sentry),
+            ["Marketo form 1234 and enrichment payload failed to submit"],
+        )
+        self.assertEqual(http_response.status_code, 302)
+        self.assertIn("contact-form-fail", http_response.headers["Location"])
+
+    def test_payload_succeeds_enrichment_fails_single_alert(self):
+        """
+        When only the payload submission goes through, exactly one Sentry
+        alert is raised, identifying the enrichment submission as the failure.
+        """
+        http_response, mock_sentry = self._submit(
+            payload_response={
+                "success": True,
+                "result": [{"status": "created"}],
+            },
+            enrichment_response={"success": False},
+        )
+        self.assertEqual(mock_sentry.call_count, 1)
+        self.assertEqual(
+            self._sentry_messages(mock_sentry),
+            ["Marketo form 1234 enrichment payload failed"],
+        )
+        self.assertEqual(http_response.status_code, 302)
+        self.assertIn("contact-form-fail", http_response.headers["Location"])
+
+    def test_enrichment_succeeds_payload_skipped_single_alert(self):
+        """
+        When only the enrichment submission goes through (the payload was
+        skipped), exactly one Sentry alert is raised, identifying the payload
+        submission as the failure.
+        """
+        http_response, mock_sentry = self._submit(
+            payload_response={
+                "success": True,
+                "result": [{"status": "skipped"}],
+            },
+            enrichment_response={"success": True},
+        )
+        self.assertEqual(mock_sentry.call_count, 1)
+        self.assertEqual(
+            self._sentry_messages(mock_sentry),
+            ["Marketo form 1234 payload failed to submit"],
+        )
+        self.assertEqual(http_response.status_code, 302)
+        self.assertIn("contact-form-fail", http_response.headers["Location"])
 
 
 if __name__ == "__main__":
