@@ -23,19 +23,18 @@
                         <div class="col-8">
                             <div class="p-form__control u-clearfix">
                                 <input class="p-form-validation__input" type="text" aria-invalid="false"
-                                    id="magic-attach-code" name="userCode" maxlength="6" value="{{ magic_attach_code }}"
-                                    label="Enter the code displayed in your installation">
+                                    id="magic-attach-code" name="userCode" maxlength="6" value="{{ magic_attach_code }}">
                             </div>
                         </div>
                     </div>
                     <div class="p-form__group p-form-validation row">
                         <div class="col-4">
-                            <label class="p-form__label">Choose a subscription to attach</label>
+                            <label class="p-form__label" for="magic-attach-subscription">Choose a subscription to attach</label>
                         </div>
                         <div class="col-8">
                             <div class="p-form__control u-clearfix">
                                 <div class="p-form-validation__select-wrapper">
-                                    <select aria-invalid="false" name="contractID" class="p-form-validation__input">
+                                    <select aria-invalid="false" name="contractID" class="p-form-validation__input" id="magic-attach-subscription">
                                         {% for subscription in subscriptions %}
                                         <option value={{ subscription.contract_id }} {{ "selected" if
                                             selected_id==subscription.contract_id }}>{{

@@ -1,6 +1,7 @@
 # Standard library
 import os
 import unittest
+from types import SimpleNamespace
 from unittest.mock import patch
 
 # Packages
@@ -195,6 +196,10 @@ class TestRoutes(VCRTestCase):
 
         response = self.client.get("/18-04/aws")
         self.assertEqual(response.status_code, 200)
+        soup = BeautifulSoup(response.data, "html.parser")
+        upgrade_pro_headings = soup.find_all(id="upgrade-pro")
+        self.assertEqual(len(upgrade_pro_headings), 1)
+        self.assertIsNotNone(soup.find(id="esm-18-04"))
 
         response = self.client.get("/18-04/azure")
         self.assertEqual(response.status_code, 200)
@@ -204,6 +209,40 @@ class TestRoutes(VCRTestCase):
 
         response = self.client.get("/18-04/ibm")
         self.assertEqual(response.status_code, 200)
+
+    def test_rfp_form_is_not_self_closing(self):
+        response = self.client.get("/rfp")
+        self.assertEqual(response.status_code, 200)
+        self.assertNotIn(
+            b'<form action="/marketo/submit" method="post" id="mktoForm_3285" />',
+            response.data,
+        )
+
+    def test_magic_attach_markup_uses_valid_labels(self):
+        with app.app_context():
+            html = app.jinja_env.get_template("pro/attach/index.html").render(
+                subscriptions=[
+                    SimpleNamespace(
+                        contract_id="contract-1",
+                        product_name="Ubuntu Pro",
+                        number_of_machines=1,
+                    )
+                ],
+                selected_id="contract-1",
+                magic_attach_code="ABC123",
+            )
+
+        soup = BeautifulSoup(html, "html.parser")
+        magic_attach_input = soup.find("input", {"id": "magic-attach-code"})
+        subscription_label = soup.find(
+            "label", {"for": "magic-attach-subscription"}
+        )
+        subscription_select = soup.find("select", {"id": "magic-attach-subscription"})
+
+        self.assertIsNotNone(magic_attach_input)
+        self.assertNotIn("label", magic_attach_input.attrs)
+        self.assertIsNotNone(subscription_label)
+        self.assertIsNotNone(subscription_select)
 
     def test_get_country_code(self):
         """
