@@ -205,6 +205,10 @@ CSP = {
         "*.text.com",
         "*.youtube.com",
         "*.google.com",
+        "jspm.dev",
+        "cdn.jsdelivr.net",
+        "bat.bing.com",
+        "z.clarity.ms",
     ],
     "frame-src": [
         "'self'",
