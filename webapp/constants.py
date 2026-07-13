@@ -21,7 +21,7 @@ ENGAGE_UI_TRANSLATIONS = {
 # field value in webapp.views.marketo_submit.
 MARKETO_INJECTION_PATTERNS = [
     "etc/passwd",
-    "%2fetc%2fpasswd",
+    "%2fetc%2f",
     "../",
     "..%2f",
     "script",
@@ -29,7 +29,6 @@ MARKETO_INJECTION_PATTERNS = [
     "alert(",
     "md5(",
     "nslookup",
-    "bxss.me",
     "curl",
     "esi:include",
     "bcc:",
@@ -37,6 +36,12 @@ MARKETO_INJECTION_PATTERNS = [
     "%2527",
     "%2522",
     "<svg",
+    # Known automated-scanner tokens/domains (blind XSS callbacks, scanner
+    # fingerprints) reported against public Marketo forms.
+    "bxss.me",
+    "virustester",
+    "h9e6.top",
+    "wordpressbin",
 ]
 
 # Content Security Policy configuration

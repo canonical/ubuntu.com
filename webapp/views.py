@@ -1093,7 +1093,9 @@ def marketo_submit():
             pattern=pattern,
             form_fields=form_fields,
         )
-        return flask.redirect(f"/thank-you?referrer={referrer}")
+        return flask.redirect(
+            f"/thank-you?{urlencode({'referrer': referrer})}"
+        )
 
     form_fields.pop("thankyoumessage", None)
     return_url = form_fields.pop("returnURL", None)
@@ -1417,7 +1419,9 @@ def marketo_submit():
         return flask.redirect("/#contact-form-fail")
 
     if referrer:
-        return flask.redirect(f"/thank-you?referrer={referrer}")
+        return flask.redirect(
+            f"/thank-you?{urlencode({'referrer': referrer})}"
+        )
 
     return flask.redirect("/thank-you")
 
