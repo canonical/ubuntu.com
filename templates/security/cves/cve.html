@@ -250,7 +250,7 @@
             <h2 id="description" class="section-heading">Description</h2>
           {% endif %}
 
-          {% if cve.description %}<p>{{ cve.description }}</p>{% endif %}
+          {% if cve.description %}<p style="white-space: pre-wrap;">{{ cve.description | trim }}</p>{% endif %}
 
           {% if cve.ubuntu_description %}
             <h3>From the Ubuntu Security Team</h3>
