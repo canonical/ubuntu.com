@@ -30,7 +30,7 @@
   {% if article.group and article.group.id == 2100 %}
   <meta name="robots" content="noindex, follow" />
   {% endif %}
-  <script type="application/ld+json">
+  <script nonce="{{ csp_nonce }}" type="application/ld+json">
     {
       "@context": "http://schema.org",
       "@id": "https://ubuntu.com/#article",
@@ -58,7 +58,7 @@
       }
     }
   </script>
-  <script src="{{ versioned_static('js/dist/prism.js') }}" defer></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/prism.js') }}" defer></script>
 {% endblock %}
 
 {% block content %}

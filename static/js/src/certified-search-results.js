@@ -426,6 +426,38 @@ function hideDrawerPageReload() {
   }
 }
 
+// Bind the statically-rendered filter controls (category checkboxes, the
+// vendor/release show-all / show-less toggles, and the apply / clear buttons)
+// that previously used inline on* handlers, now disallowed under our CSP.
+function wireStaticFilterHandlers() {
+  if (filters1Elm) {
+    filters1Elm.querySelectorAll("input").forEach((input) => {
+      input.addEventListener("click", handleCategoryClick);
+    });
+  }
+
+  [showAllVendors, showLessVendors, showAllReleases, showLessReleases].forEach(
+    (button) => {
+      if (button) {
+        button.addEventListener("click", (e) => {
+          toggleExpandFilters(e, button);
+        });
+      }
+    },
+  );
+
+  const submitFiltersButton = document.querySelector(".js-submit-filters");
+  if (submitFiltersButton) {
+    submitFiltersButton.addEventListener("click", submitFilters);
+  }
+
+  const clearFiltersButton = document.querySelector(".js-clear-filters");
+  if (clearFiltersButton) {
+    clearFiltersButton.addEventListener("click", clearFilters);
+  }
+}
+
 loadFilters();
 updateResultsPerPage();
 hideDrawerPageReload();
+wireStaticFilterHandlers();

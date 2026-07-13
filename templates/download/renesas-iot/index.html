@@ -185,6 +185,6 @@
   <!-- Set default Marketo information for contact form below-->
   {{ load_form("/download/renesas-iot") | safe }}
 
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
 {% endblock content %}

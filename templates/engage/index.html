@@ -87,7 +87,6 @@
           </div>
           <button class="js-apply-filters p-button--positive u-no-margin--bottom">Apply filters</button>
           <button class="js-clear-filters u-no-margin--bottom"
-                  onclick="clearFilters()"
                   type="reset"
                   disabled>Clear filters</button>
         </div>
@@ -126,7 +125,7 @@
       </div>
     {% endif %}
   </section>
-  <script>
+  <script nonce="{{ csp_nonce }}">
     function clearFilters() {
       const clearFiltersButton = document.querySelector(".js-clear-filters");
       window.location.assign("/engage");
@@ -176,6 +175,7 @@
         window.location = urlObj.href;
       }
       applyFiltersButton.addEventListener("click", applyFilters);
+      clearFiltersButton.addEventListener("click", clearFilters);
     })()
   </script>
 {% endblock content %}

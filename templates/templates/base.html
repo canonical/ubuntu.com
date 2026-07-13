@@ -19,11 +19,13 @@
     <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
     <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
 
-    <script src="https://assets.ubuntu.com/v1/703e23c9-lazysizes+noscript+native-loading.5.1.2.min.js"
+    <script nonce="{{ csp_nonce }}" src="https://assets.ubuntu.com/v1/703e23c9-lazysizes+noscript+native-loading.5.1.2.min.js"
             defer></script>
-    <script src="{{ versioned_static('js/src/navigation.js') }}" defer></script>
-    <script src="{{ versioned_static('js/dist/main.js') }}" defer></script>
-    <script src="{{ versioned_static('js/src/infer-preferred-language.js')}}"
+    <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/src/navigation.js') }}" defer></script>
+    <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/main.js') }}" defer></script>
+    <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/src/infer-preferred-language.js')}}"
+            defer></script>
+    <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/src/csp-event-handlers.js') }}"
             defer></script>
 
     <link rel="stylesheet"
@@ -34,7 +36,7 @@
           type="text/css"
           media="print"
           href="{{ versioned_static('css/print.css') }}" />
-    <script>
+    <script nonce="{{ csp_nonce }}">
       performance.mark("Stylesheets finished");
     </script>
 
@@ -128,9 +130,8 @@
           <!-- Cookie policy -->
           <link rel="stylesheet"
                 href="{{ versioned_static('css/cookie-policy.css') }}" />
-          <script src="{{ versioned_static('js/dist/cookie-policy.js') }}"></script>
-          <script src="{{ versioned_static('js/src/cookie-policy-with-callback.js') }}"
-                  type="module"></script>
+          <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/cookie-policy.js') }}"></script>
+          <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/cookie-policy-with-callback.js') }}"></script>
         </head>
 
         <body class="
