@@ -81,6 +81,40 @@
       
       {%- block head_extra %}{% endblock %}
 
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "@id": "https://ubuntu.com/#organization",
+          "name": "Ubuntu",
+          "url": "https://ubuntu.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://assets.ubuntu.com/v1/c55060fd-COF%20android-chrome-512x512.png",
+            "width": 512,
+            "height": 512
+          },
+          "sameAs": [
+            "https://x.com/ubuntu",
+            "https://www.linkedin.com/company/canonical/",
+            "https://www.youtube.com/user/celebrateubuntu",
+            "https://www.facebook.com/ubuntulinux/",
+            "https://www.instagram.com/ubuntu_os/",
+            "https://www.tiktok.com/@canonical_ubuntu",
+            "https://ubuntu.social/@ubuntu",
+            "https://github.com/canonical",
+            "https://launchpad.net/ubuntu",
+            "https://www.wikidata.org/wiki/Q381"
+          ],
+          "parentOrganization": {
+            "@type": "Organization",
+            "@id": "https://canonical.com/#organization",
+            "name": "Canonical",
+            "url": "https://canonical.com/"
+          }
+        }
+      </script>
+
       <meta name="description" content="
         {% block meta_description %}Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things.{% endblock %}" />
         <meta name="facebook-domain-verification"

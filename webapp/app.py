@@ -22,6 +22,7 @@ from sentry_sdk.integrations.flask import FlaskIntegration
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
     DiscourseAPI,
+    ResponseCache,
     DocParser,
     Docs,
     EngagePages,
@@ -42,6 +43,7 @@ from canonicalwebteam.form_generator import FormGenerator
 from canonicalwebteam.markdown_response import MarkdownResponse
 
 from webapp.certified.views import certified_routes
+from webapp.constants import CACHE_TTL
 from webapp.handlers import init_handlers
 from webapp.login import login_handler, logout, user_info
 from webapp.decorators import login_required
@@ -220,6 +222,7 @@ app.jinja_loader = loader
 
 session = requests.Session()
 charmhub_session = requests.Session()
+ubuntu_discourse_cache = ResponseCache(ttl=CACHE_TTL)
 
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
@@ -227,6 +230,7 @@ discourse_api = DiscourseAPI(
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
+    cache=ubuntu_discourse_cache,
 )
 
 charmhub_discourse_api = DiscourseAPI(
@@ -235,6 +239,17 @@ charmhub_discourse_api = DiscourseAPI(
     api_key=CHARMHUB_DISCOURSE_API_KEY,
     api_username=CHARMHUB_DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
+    cache=ResponseCache(ttl=CACHE_TTL),
+)
+
+# Anonymous reads for public Docs: no key means these GET /t/{id}.json
+# reads don't count against the shared 60/min admin API bucket. Own
+# session — DiscourseAPI overwrites session.headers on authenticated
+# instances, which would otherwise leak the key onto a shared session.
+discourse_api_anon = DiscourseAPI(
+    base_url="https://discourse.ubuntu.com/",
+    session=requests.Session(),
+    cache=None,
 )
 
 # Web tribe websites custom search ID
@@ -295,7 +310,7 @@ init_handlers(app)
 
 # Prepare forms
 def init_forms():
-    form_template_path = "shared/forms/form-template.html"
+    form_template_path = "shared/forms/_form-template.html"
 
     try:
         template_full_path = (
@@ -695,6 +710,7 @@ engage_pages_discourse_api = DiscourseAPI(
     get_topics_query_id=14,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
+    cache=ubuntu_discourse_cache,
 )
 takeovers_path = "/takeovers"
 discourse_takeovers = EngagePages(
@@ -772,7 +788,7 @@ app.add_url_rule(
 def takeovers_json():
     active_takeovers = discourse_takeovers.parse_active_takeovers()
     response = flask.jsonify(active_takeovers)
-    response.cache_control.max_age = "300"
+    response.cache_control.max_age = 300
 
     return response
 
@@ -813,7 +829,7 @@ app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 url_prefix = "/community/docs"
 community_docs = Docs(
     parser=DocParser(
-        api=discourse_api,
+        api=discourse_api_anon,
         index_topic_id=33115,
         url_prefix=url_prefix,
     ),
@@ -925,7 +941,9 @@ app.add_url_rule(
 # Ceph docs
 ceph_docs = Docs(
     parser=DocParser(
-        api=discourse_api, index_topic_id=17250, url_prefix="/ceph/docs"
+        api=discourse_api_anon,
+        index_topic_id=17250,
+        url_prefix="/ceph/docs",
     ),
     document_template="/ceph/docs/document.html",
     url_prefix="/ceph/docs",
@@ -949,7 +967,7 @@ app.add_url_rule(
 # Charmed OpenStack docs
 openstack_docs = Docs(
     parser=DocParser(
-        api=discourse_api,
+        api=discourse_api_anon,
         index_topic_id=20991,
         url_prefix="/openstack/docs",
     ),
@@ -976,7 +994,7 @@ openstack_docs.init_app(app)
 # Security Livepatch docs
 security_livepatch_docs = Docs(
     parser=DocParser(
-        api=discourse_api,
+        api=discourse_api_anon,
         index_topic_id=22723,
         url_prefix="/security/livepatch/docs",
     ),
@@ -1003,7 +1021,7 @@ security_livepatch_docs.init_app(app)
 # Security Certifications docs
 security_certs_docs = Docs(
     parser=DocParser(
-        api=discourse_api,
+        api=discourse_api_anon,
         index_topic_id=22810,
         url_prefix="/security/certifications/docs",
     ),

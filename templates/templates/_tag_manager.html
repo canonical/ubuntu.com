@@ -30,19 +30,25 @@
       return false;
     }
     window.gtmDidInit = true; // flag to ensure script does not get added to DOM more than once.
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.async = true;
-    // ensure PageViews is always tracked (on script load)
-    script.onload = () => {
-      dataLayer.push({
-        event: 'gtm.js',
-        'gtm.start': new Date().getTime(),
-        'gtm.uniqueEventId': 0
-      });
-    };
-    script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-K92JCQ';
-    document.head.appendChild(script);
+    var containersToLoad = ['GTM-K92JCQ'];
+    {% if gtm_container_id %}
+    containersToLoad.push('{{ gtm_container_id }}');
+    {% endif %}
+    containersToLoad.forEach((containerId) => {
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      // ensure PageViews is always tracked (on script load)
+      script.onload = () => {
+        dataLayer.push({
+          event: 'gtm.js',
+          'gtm.start': new Date().getTime(),
+          'gtm.uniqueEventId': 0
+        });
+      };
+      script.src = 'https://www.googletagmanager.com/gtm.js?id=' + containerId;
+      document.head.appendChild(script);
+    });
   }
 </script>
 <!-- End Google Tag Manager -->

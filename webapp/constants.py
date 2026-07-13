@@ -7,6 +7,9 @@ logger = logging.getLogger(__name__)
 
 # Centralised UI translations for Engage pages and other shared constants
 
+# Default time-to-live for ResponseCache instances, in seconds (24 hours)
+CACHE_TTL = 60 * 60 * 24
+
 ENGAGE_UI_TRANSLATIONS = {
     "additional_resources": {
         "en": "Additional Resources",

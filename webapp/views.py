@@ -25,14 +25,19 @@ import flask
 import jinja2
 import yaml
 from bs4 import BeautifulSoup
-from canonicalwebteam.discourse import DiscourseAPI, DocParser, Docs
+from canonicalwebteam.discourse import (
+    DiscourseAPI,
+    DocParser,
+    Docs,
+    RateLimitedError,
+)
 from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
 from canonicalwebteam.directory_parser import generate_sitemap
 from geolite2 import geolite2
 from requests import Session
-from requests.exceptions import HTTPError
-from werkzeug.exceptions import BadRequest
+from requests.exceptions import HTTPError, RequestException
+from werkzeug.exceptions import BadRequest, ServiceUnavailable
 from canonicalwebteam.flask_base.env import get_flask_env
 
 # Local
@@ -542,9 +547,19 @@ def build_engage_page(engage_pages):
                     related_urls = metadata["related_urls"].split(",")
                     # Only show maximum of 3 related pages
                     for url in related_urls[:3]:
-                        page_metadata = engage_pages.get_engage_page(
-                            url.strip()
-                        )
+                        try:
+                            page_metadata = engage_pages.get_engage_page(
+                                url.strip()
+                            )
+                        except (
+                            RateLimitedError,
+                            ServiceUnavailable,
+                            HTTPError,
+                        ):
+                            # Related pages are best-effort; skip when
+                            # Discourse is unavailable rather than fail
+                            # the whole page.
+                            continue
                         if page_metadata is not None:
                             related_pages_metadata.append(page_metadata)
 
@@ -748,7 +763,9 @@ def openstack_install():
     Instructions for OpenStack installation pulled from Discourse
     """
     discourse_api = DiscourseAPI(
-        base_url="https://discourse.ubuntu.com/", session=session
+        base_url="https://discourse.ubuntu.com/",
+        session=session,
+        cache=None,
     )
     openstack_install_parser = DocParser(
         api=discourse_api,
@@ -1012,6 +1029,48 @@ def enrich_acquisition_url(acquisition_url, utm_dict, approved_utms):
     return enriched_url
 
 
+# Cache Marketo form field definitions to avoid fetching them from the
+# Marketo asset API on every submission. Keyed by form id, each entry stores
+# a (expiry_timestamp, required_fields) tuple.
+_marketo_required_fields_cache = {}
+_MARKETO_REQUIRED_FIELDS_TTL = 6 * 60 * 60  # 6 hours
+
+
+def get_marketo_required_fields(form_id):
+    """Return a ``{field_id: label}`` dict of a Marketo form's required
+    fields.
+    """
+    cache_key = str(form_id)
+    cached = _marketo_required_fields_cache.get(cache_key)
+    if cached and cached[0] > time.time():
+        return cached[1]
+
+    try:
+        data = marketo_api.get_form_fields(form_id).json()
+    except Exception:
+        marketo_sentry_report(
+            "Failed to fetch Marketo form field definitions",
+            exception=True,
+            form_id=form_id,
+        )
+        return cached[1] if cached else {}
+
+    required_fields = {}
+    for field in data.get("result", []):
+        if field.get("required"):
+            field_id = field.get("id")
+            if field_id:
+                label = field.get("label") or field_id
+                # Marketo labels end with a colon
+                required_fields[field_id] = label.rstrip(": ").strip()
+
+    _marketo_required_fields_cache[cache_key] = (
+        time.time() + _MARKETO_REQUIRED_FIELDS_TTL,
+        required_fields,
+    )
+    return required_fields
+
+
 def marketo_submit():
     form_fields = {}
     for key in flask.request.form:
@@ -1059,6 +1118,30 @@ def marketo_submit():
         if flask.request.referrer
         else "https://ubuntu.com"
     )
+
+    # Reject submissions missing Marketo required fields.
+    # Calls cached Marketo API to get required fields for the form ID
+    # check if any fields are missing.
+    form_id = form_fields.get("formid")
+    if form_id:
+        required_fields = get_marketo_required_fields(form_id)
+        form_fields_lower = {
+            key.lower(): value for key, value in form_fields.items()
+        }
+        missing_required = [
+            label
+            for field, label in required_fields.items()
+            if not form_fields_lower.get(field.lower(), "").strip()
+        ]
+        if missing_required:
+            flask.flash(
+                "There was a problem submitting your form. Please complete "
+                "the following required fields: "
+                f"{', '.join(missing_required)}.",
+                "contact-form-fail",
+            )
+            return flask.redirect(f"{referrer}#contact-form-fail")
+
     client_ip = flask.request.headers.get(
         "X-Real-IP", flask.request.remote_addr
     )
@@ -1276,18 +1359,15 @@ def marketo_submit():
             payload=payload,
         )
 
-    # Redirect to success page only if both submissions were successful.
-    # A "skipped" payload status means Marketo rejected the main form
-    # submission (e.g. an unexpected field such as a stray hidden input),
-    # even though the top-level API response still reports success. Treat it
-    # as an explicit failure so it can never be silently reported as success.
+    # Skipped payload means Marketo rejected the submission
+    # API-level success does not mean the submission was successful
+    # https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/error-codes#error-types
     payload_status = data["result"][0]["status"]
+    payload_succeeded = data["success"] is True and payload_status != "skipped"
+    enrichment_succeeded = enrichment_submission["success"] is True
 
-    if (
-        enrichment_submission["success"] is True
-        and data["success"] is True
-        and payload_status != "skipped"
-    ):
+    # Verify that both payload and enrichment submissions went through
+    if payload_succeeded is True and enrichment_succeeded is True:
         flask.flash(
             "Your form was submitted successfully.", "contact-form-success"
         )
@@ -1315,12 +1395,9 @@ def marketo_submit():
 
             return flask.redirect(return_url)
     else:
-        # Log every failed submission to Sentry with the tried payload, then
-        # display an error notification to the user.
-        if (
-            payload_status == "skipped"
-            and enrichment_submission["success"] is False
-        ):
+
+        # Both payload and enrichment submissions failed
+        if enrichment_succeeded is False and payload_succeeded is False:
             sentry_message = (
                 f"Marketo form {payload['formId']} and "
                 "enrichment payload failed to submit"
@@ -1329,14 +1406,25 @@ def marketo_submit():
                 "There was an issue submitting the form contact details "
                 "and payload."
             )
-        elif payload_status == "skipped":
+
+        # Payload submission failed only
+        elif payload_succeeded is False:
             sentry_message = (
                 f"Marketo form {payload['formId']} payload failed to submit"
             )
             flash_message = "There was an issue submitting the form payload."
+
+        # Enrichment submission failed only
+        elif enrichment_succeeded is False:
+            sentry_message = (
+                f"Marketo form {payload['formId']} enrichment payload failed"
+            )
+            flash_message = (
+                "There was an issue submitting the form contact details."
+            )
+
+        # API reported failure for another reason.
         else:
-            # Payload was accepted but enrichment failed, or the API
-            # reported failure for another reason.
             sentry_message = (
                 f"Marketo form {payload['formId']} submission failed"
             )
@@ -1717,7 +1805,11 @@ def build_sitemap_tree(exclude_paths=None):
 
 def process_local_communities(local_communities):
     def display_local_communities():
-        metadata_table = local_communities.get_category_index_metadata("locos")
+        # get_category_index_metadata returns None when Discourse
+        # errors and nothing was fetched before
+        metadata_table = (
+            local_communities.get_category_index_metadata("locos") or []
+        )
 
         # Group communities by continent
         valid_continents = [
@@ -1813,7 +1905,7 @@ def process_community_events(community_events):
 def community_landing_page(
     community_events, local_communities, ubuntu_weekly_newsletter
 ):
-    def display_community_landing_page():
+    def _fetch_events_to_display():
         featured_events = community_events.get_featured_events()
         events_to_display = []
 
@@ -1839,10 +1931,32 @@ def community_landing_page(
         for event in events_to_display:
             format_community_event_time(event)
 
-        communities_data = local_communities.get_category_index_metadata(
-            "locos"
+        return events_to_display
+
+    def display_community_landing_page():
+        try:
+            events_to_display = _fetch_events_to_display()
+        except (
+            RateLimitedError,
+            ServiceUnavailable,
+            RequestException,
+            ValueError,
+        ):
+            # Events are decorative on this page; the DiscourseAPI wraps
+            # some upstream failures in ValueError and raises
+            # RateLimitedError on 429, so degrade to an empty list
+            # rather than failing the whole page
+            events_to_display = []
+
+        # Both fallbacks below cover Discourse erroring before a first
+        # successful fetch: get_category_index_metadata returns None
+        # and get_topics_in_category returns {}
+        communities_data = (
+            local_communities.get_category_index_metadata("locos") or []
         )
-        newsletter_data = ubuntu_weekly_newsletter.get_topics_in_category()
+        newsletter_data = (
+            ubuntu_weekly_newsletter.get_topics_in_category() or []
+        )
 
         return flask.render_template(
             "community/index.html",
@@ -1983,7 +2097,7 @@ def build_release_cycle_view():
                 try:
                     dt = datetime.strptime(raw, "%Y-%m-%d").date()
                     formatted = dt.strftime("%b %Y")  # Dec 2025
-                    is_past = dt < date.today()
+                    is_past = dt <= date.today()
                 except ValueError:
                     formatted = raw
 
@@ -1997,7 +2111,7 @@ def build_release_cycle_view():
             try:
                 dt = datetime.strptime(raw, "%Y-%m-%d").date()
                 formatted = dt.strftime("%b %Y")
-                is_past = dt < date.today()
+                is_past = dt <= date.today()
             except ValueError:
                 formatted = raw
             except Exception as e:
@@ -2073,7 +2187,13 @@ def build_release_cycle_view():
                 raw_versions = deployment.get("versions", [])
                 shaped_versions = [shape_version(v) for v in raw_versions]
                 visible_versions = [
-                    v for v in shaped_versions if not version_is_expired(v)
+                    v
+                    for v in shaped_versions
+                    if not version_is_expired(v)
+                    and (
+                        v["release_date"]["raw"] is None
+                        or v["release_date"]["is_past"]
+                    )
                 ]
 
                 deployments.append(
@@ -2137,7 +2257,6 @@ def build_release_cycle_view():
         raw_files = get_combined_products(
             ["products-data/25.10/products.json"]
         )
-
         raw_products = raw_files.get("products", {})
 
         products_data = build_ui_products(raw_products)

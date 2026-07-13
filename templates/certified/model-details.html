@@ -99,6 +99,9 @@
               </p>
               <p>
                 <a href="{{ release.download_url }}" class="p-button">Download</a>
+                {% if release.release_notes_url %}
+                  <a href="{{ release.release_notes_url }}" class="p-button">Release Notes</a>
+                {% endif %}
               </p>
             {% endif %}
 

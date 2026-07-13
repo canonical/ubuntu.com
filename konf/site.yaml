@@ -418,7 +418,7 @@ production:
       name: ubuntu-com-discourse
       app_name: ubuntu.com-discourse
       image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
-      replicas: 5
+      replicas: 1
       memoryLimit: 512Mi
       env:
         - name: SEARCH_API_KEY
@@ -605,6 +605,9 @@ production:
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
 
   nginxServerSnippet: |
+    if ($http_user_agent ~* "(YisouSpider|Bytespider|PetalBot|Amazonbot|MJ12bot|DotBot|DataForSeoBot|BelleaireCrawler|yacybot|jscrawler)") {
+      return 403;
+    }
     location ^~ /wp-content/uploads/ {
       proxy_pass https://admin.insights.ubuntu.com/wp-content/uploads/;
     }
