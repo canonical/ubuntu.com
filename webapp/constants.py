@@ -206,7 +206,7 @@ CSP = {
         "*.google.com",
         "cdn.jsdelivr.net",
         "bat.bing.com",
-        "z.clarity.ms",
+        "*.clarity.ms",
     ],
     "frame-src": [
         "'self'",
