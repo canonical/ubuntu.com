@@ -599,7 +599,7 @@
   </div>
 </section>
 
-<script>
+<script nonce="{{ csp_nonce }}">
   document.querySelector('form').addEventListener('submit', function(event) {
     dataLayer.push({
       'event': 'GAEvent',

@@ -449,8 +449,8 @@
       </div>
     </div>
   </div>
-  <script src="https://assets.ubuntu.com/v1/6d64bd2f-d3.min.js"></script>
-  <script src="{{ versioned_static('js/dist/release-chart-manager.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="https://assets.ubuntu.com/v1/6d64bd2f-d3.min.js"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/release-chart-manager.js') }}"></script>
 
   <section class="p-section">
     <div class="row--50-50">
@@ -710,6 +710,6 @@
     {% include "server/partial/_latest-blogs-server.html" %}
   {% endwith %}
 
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
   {{ load_form("/server") | safe }}
 {% endblock content %}

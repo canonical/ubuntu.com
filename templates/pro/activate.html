@@ -66,7 +66,7 @@
       </div>
     </div>
   </section>
-  <script src="{{ versioned_static('js/dist/activate.js') }}" defer></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/activate.js') }}" defer></script>
 
   {% endblock %}
 {% endblock %}
