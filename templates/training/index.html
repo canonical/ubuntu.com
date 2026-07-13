@@ -879,9 +879,9 @@
     </div>
   </div>
   <!-- twitter tracking code -->
-  <script src="https://platform.twitter.com/oct.js"></script>
-  <script src="{{ versioned_static('js/dist/dynamic-toc.js') }}"></script>
-  <script>
+  <script nonce="{{ csp_nonce }}" src="https://platform.twitter.com/oct.js"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/dynamic-toc.js') }}"></script>
+  <script nonce="{{ csp_nonce }}">
     document.addEventListener('DOMContentLoaded', function() {
       const tabGroups = document.querySelectorAll('.p-tabs');
 
@@ -912,7 +912,7 @@
       });
     });
   </script>
-  <script>
+  <script nonce="{{ csp_nonce }}">
     twttr.conversion.trackPid('l4pwm');
   </script>
   <noscript>

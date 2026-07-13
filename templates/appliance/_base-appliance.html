@@ -11,7 +11,7 @@
 
   {% block content %}{% endblock %}
   {{ load_form("/appliance/contact-us",formId=3231, isModal=true) | safe }}
-  <script src="{{ versioned_static('js/dist/appliance.js') }}" defer></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/appliance.js') }}" defer></script>
 
   <style>
     .p-stepped-list--detailed ol li {

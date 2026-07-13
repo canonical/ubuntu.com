@@ -17,7 +17,7 @@
     </div>
 
     {% if not lite_youtube_script_loaded %}
-        <script type="module"
+        <script nonce="{{ csp_nonce }}" type="module"
                 src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"></script>
         {% set lite_youtube_script_loaded = true %}
     {% endif %}

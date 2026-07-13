@@ -365,6 +365,6 @@ meta_copydoc %}
 
   {% include "download/shared/_footer.html" %}
 </section>
-  <script type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
+  <script nonce="{{ csp_nonce }}" type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
 
 {% endblock content %}

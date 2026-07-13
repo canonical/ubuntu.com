@@ -107,7 +107,7 @@
     </div>
   </form>
 
-  <script>
+  <script nonce="{{ csp_nonce }}">
     document.addEventListener("DOMContentLoaded", function () {
       var stringifyForm = document.querySelector(".js-stringify-form");
       if (stringifyForm) {

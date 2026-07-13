@@ -49,8 +49,8 @@
   </div>
 </section>
 
-<script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-<script>
+<script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+<script nonce="{{ csp_nonce }}">
   canonicalLatestNews.fetchLatestNews(
     {
       articlesContainerSelector: "#latest-articles",
