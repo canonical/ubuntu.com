@@ -127,6 +127,7 @@ from webapp.views import (
     process_active_vulnerabilities,
     process_local_communities,
     process_community_events,
+    community_landing_page,
     build_ubuntu_weekly_newsletter,
     build_engage_index,
     build_engage_page,
@@ -889,17 +890,11 @@ app.add_url_rule(
     view_func=process_community_events(community_events),
 )
 
-
-def community_static_landing_page():
-    # Static version of /community. The Community events, Circles and
-    # newsletter sections are baked into community/index-static.html as a
-    # snapshot, so no Discourse fetch is needed to render the page.
-    return flask.render_template("community/index-static.html")
-
-
 app.add_url_rule(
     "/community",
-    view_func=community_static_landing_page,
+    view_func=community_landing_page(
+        community_events, local_communities, ubuntu_weekly_newsletter
+    ),
 )
 
 app.add_url_rule(
