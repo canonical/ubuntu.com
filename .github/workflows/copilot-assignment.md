@@ -15,7 +15,7 @@ if: github.event.label.name == 'copilot'
 
 engine:
   id: copilot
-  model: gpt-5
+  model: gpt-5.5
 
 permissions:
   issues: read
@@ -27,7 +27,7 @@ safe-outputs:
   assign-to-agent:
     name: copilot
     target: triggering
-    model: gpt-5
+    model: gpt-5.5
     github-token: ${{ secrets.GH_AW_AGENT_TOKEN }}
 ---
 
