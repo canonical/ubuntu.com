@@ -605,7 +605,7 @@ production:
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
 
   nginxServerSnippet: |
-    location / {
+    location ~ ^/(login/|pro/|account/) {
       proxy_buffer_size 16k;
     }
     if ($http_user_agent ~* "(YisouSpider|Bytespider|PetalBot|Amazonbot|MJ12bot|DotBot|DataForSeoBot|BelleaireCrawler|yacybot|jscrawler)") {
@@ -1391,6 +1391,6 @@ demo:
       value: 1
 
   nginxServerSnippet: |
-    location / {
+    location ~ ^/(login/|pro/|account/) {
       proxy_buffer_size 16k;
     }
