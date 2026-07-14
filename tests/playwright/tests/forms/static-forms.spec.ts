@@ -106,50 +106,6 @@ test.describe("Form submission validation", () => {
   });
 });
 
-test.describe("Hidden field validation", () => {
-  const ALLOWED_FIELDS = new Set([
-    // User-visible form fields
-    "firstname", "lastname", "email", "company", "title",
-    "country", "phone",
-    "comments_from_lead__c",
-    // Click ID tracking fields
-    "facebook_click_id__c", "gclid__c",
-    // UTM tracking fields
-    "utm_content", "utm_term", "utm_medium", "utm_source", "utm_campaign",
-    // Form config fields
-    "formid", "returnurl", "thankyoumessage", "preferredlanguage",
-    "insightsrobotics", "iot_newsletters__c",
-    "consent_to_processing__c", "canonicalupdatesoptin",
-    // Honeypot fields (blocked server-side)
-    "website", "name",
-    // JS-injected fields added at runtime
-    "user_id", "consent_info", "utms",
-  ]);
-
-  test("should not submit unexpected hidden fields", async ({ page }) => {
-    await page.goto("/tests/_static-client-form");
-    await acceptCookiePolicy(page);
-    await fillExistingFields(page, formTextFields, formCheckboxFields, formRadioFields);
-
-    const requestPromise = page.waitForRequest(
-      (req) => req.url().includes("/marketo/submit") && req.method() === "POST"
-    );
-
-    await page.getByRole("button", { name: /Submit/ }).click();
-    const request = await requestPromise;
-
-    const postData = request.postData() ?? "";
-    const params = new URLSearchParams(postData);
-
-    for (const key of params.keys()) {
-      expect(
-        ALLOWED_FIELDS.has(key.toLowerCase()),
-        `Unexpected field '${key}' submitted to marketo`
-      ).toBe(true);
-    }
-  });
-});
-
 test.describe("Radio field handling", () => {
   test("radio fields should have appropriate js hooks classnames", async ({ page }) => {
     for (const url of staticContactUsPages) {

@@ -73,4 +73,17 @@ describe("setupIntlTelInput", () => {
     const errorMsg = document.querySelector(".p-form-validation__message");
     expect(errorMsg).toBeTruthy();
   });
+
+  // Fields that intlTelInput is allowed to inject as hidden inputs.
+  // Matches ALLOWED_HIDDEN_FIELDS in tests/helpers.py.
+  const ALLOWED_HIDDEN_FIELDS = new Set(["phone"]);
+
+  it("hiddenInput callback only returns allowed field names", () => {
+    setupIntlTelInput(countryCode, phoneInput);
+    const config = intlTelInput.mock.calls[0][1];
+    const hiddenFields = config.hiddenInput("phone");
+    Object.keys(hiddenFields).forEach((key) => {
+      expect(ALLOWED_HIDDEN_FIELDS.has(key)).toBe(true);
+    });
+  });
 });
