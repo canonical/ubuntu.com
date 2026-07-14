@@ -1,0 +1,22 @@
+# Params
+# items: list of (question, answer) pairs. Each pair must match a Q&A
+# already visible on the page — this is manually authored per page,
+# not auto-detected from accordion/markup.
+
+{%- macro faqpage_schema(items) -%}
+  {%- set ns = namespace(entities=[]) -%}
+  {%- for question, answer in items -%}
+    {%- set ns.entities = ns.entities + [{
+      "@type": "Question",
+      "name": question,
+      "acceptedAnswer": {"@type": "Answer", "text": answer}
+    }] -%}
+  {%- endfor -%}
+  <script type="application/ld+json">
+    {{ {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": ns.entities
+    } | tojson | safe }}
+  </script>
+{%- endmacro -%}

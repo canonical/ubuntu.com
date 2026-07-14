@@ -1,5 +1,7 @@
 {% extends "user-research/base_user-research.html" %}
 
+{% from "macros/_macros-faq-schema.jinja" import faqpage_schema %}
+
 {% block meta_copydoc %}
   https://docs.google.com/document/d/1gOoOJNnrUVWOhpYlkShq0FAbMqDZsj-CXuOGT_S8Xl4/edit#heading=h.hfhqccyix5vw
 {% endblock meta_copydoc %}
@@ -139,6 +141,25 @@
       </div>
     </section>
 
+    {% set faq_items = [
+      ["Do I need to be a Canonical customer to join?",
+      "No, you do not. Everyone is welcome!"],
+      ["Where can I be located?",
+      "You can be anywhere in the world. All our studies are conducted remotely."],
+      ["What types of research do you do?",
+      "We do interviews, usability-tests, surveys, and more. We need your thoughts, to guide us in building better product-experiences."],
+      ["What does participating look like?",
+      "Our 1:1 interview sessions are done remotely, and usually take 30-minutes to an hour. Typically you'll share your screen. Surveys only take a few minutes. Other tests may involve completing a task with a prototype and answering online questions."],
+      ["How often will I be contacted?",
+      "Usually less than three times a year."],
+      ["Will I receive something for participating?",
+      "When participating in some lengthy moderated sessions, such as 1-1 interviews or usability tests, we'll send you a thank you gift."],
+      ["What will you do with my personal information?",
+      "Our data privacy policy defines how we collect <a href=\"https://canonical.com/legal/data-privacy\">the minimum amount</a> of personal information necessary to match you with suitable research studies."],
+      ["Can I leave the group?",
+      "Absolutely. Just email <a href=\"mailto:userresearch@canonical.com\">userresearch@canonical.com</a> and we'll delete your info from our database."]
+    ] %}
+
     <section class="p-section is-deep">
       <hr class="p-rule is-fixed-width" />
       <div class="row">
@@ -146,106 +167,24 @@
           <h2 class="p-muted-heading">FAQ</h2>
         </div>
         <div class="col-9 col-medium-4">
-          <div class="row p-block">
-            <div class="col-3">
-              <h3 class="u-no-margin--bottom p-text--default">
-                <strong>Do I need to be a Canonical customer to join?</strong>
-              </h3>
+          {% for question, answer in faq_items %}
+            {% if not loop.first %}<hr class="p-rule" />{% endif %}
+            <div class="row p-block">
+              <div class="col-3">
+                <h3 class="u-no-margin--bottom p-text--default">
+                  <strong>{{ question }}</strong>
+                </h3>
+              </div>
+              <div class="col-6">
+                <p>{{ answer | safe }}</p>
+              </div>
             </div>
-            <div class="col-6">
-              <p>No, you do not. Everyone is welcome!</p>
-            </div>
-          </div>
-          <hr class="p-rule" />
-          <div class="row p-block">
-            <div class="col-3">
-              <h3 class="u-no-margin--bottom p-text--default">
-                <strong>Where can I be located?</strong>
-              </h3>
-            </div>
-            <div class="col-6">
-              <p>You can be anywhere in the world. All our studies are conducted remotely.</p>
-            </div>
-          </div>
-          <hr class="p-rule" />
-          <div class="row p-block">
-            <div class="col-3">
-              <h3 class="u-no-margin--bottom p-text--default">
-                <strong>What types of research do you do?</strong>
-              </h3>
-            </div>
-            <div class="col-6">
-              <p>
-                We do interviews, usability-tests, surveys, and more. We need your thoughts, to guide us in building better product-experiences.
-              </p>
-            </div>
-          </div>
-          <hr class="p-rule" />
-          <div class="row p-block">
-            <div class="col-3">
-              <h3 class="u-no-margin--bottom p-text--default">
-                <strong>What does participating look like?</strong>
-              </h3>
-            </div>
-            <div class="col-6">
-              <p>
-                Our 1:1 interview sessions are done remotely, and usually take 30-minutes to an hour. Typically you'll share your screen. Surveys only take a few minutes. Other tests may involve completing a task with a prototype and answering online questions.
-              </p>
-            </div>
-          </div>
-          <hr class="p-rule" />
-          <div class="row p-block">
-            <div class="col-3">
-              <h3 class="u-no-margin--bottom p-text--default">
-                <strong>How often will I be contacted?</strong>
-              </h3>
-            </div>
-            <div class="col-6">
-              <p>Usually less than three times a year.</p>
-            </div>
-          </div>
-          <hr class="p-rule" />
-          <div class="row p-block">
-            <div class="col-3">
-              <h3 class="u-no-margin--bottom p-text--default">
-                <strong>Will I receive something for participating?</strong>
-              </h3>
-            </div>
-            <div class="col-6">
-              <p>
-                When participating in some lengthy moderated sessions, such as 1-1 interviews or usability tests, we'll send you a thank you gift.
-              </p>
-            </div>
-          </div>
-          <hr class="p-rule" />
-          <div class="row p-block">
-            <div class="col-3">
-              <h3 class="u-no-margin--bottom p-text--default">
-                <strong>What will you do with my personal information?</strong>
-              </h3>
-            </div>
-            <div class="col-6">
-              <p>
-                Our data privacy policy defines how we collect <a href="https://canonical.com/legal/data-privacy">the minimum amount</a> of personal information necessary to match you with suitable research studies.
-              </p>
-            </div>
-          </div>
-          <hr class="p-rule" />
-          <div class="row p-block">
-            <div class="col-3">
-              <h3 class="u-no-margin--bottom p-text--default">
-                <strong>Can I leave the group?</strong>
-              </h3>
-            </div>
-            <div class="col-6">
-              <p>
-                Absolutely. Just email <a href="mailto:userresearch@canonical.com">userresearch@canonical.com</a> and we'll delete your info from our database.
-              </p>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
     </section>
+
+    {{ faqpage_schema(faq_items) }}
 
     <section class="p-section is-deep">
       <hr class="p-rule is-fixed-width" />
