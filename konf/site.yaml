@@ -605,6 +605,7 @@ production:
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
 
   nginxServerSnippet: |
+    proxy_buffer_size 16k;
     if ($http_user_agent ~* "(YisouSpider|Bytespider|PetalBot|Amazonbot|MJ12bot|DotBot|DataForSeoBot|BelleaireCrawler|yacybot|jscrawler)") {
       return 403;
     }
@@ -616,9 +617,6 @@ production:
     }
     location ^~ /usn-db-stg/ {
       proxy_pass http://seceng-people.internal/%7Eubuntu-security/usn/;
-    }
-    location ^~ /login {
-      proxy_buffer_size 16k;
     }
 
 # Overrides for staging
@@ -1202,6 +1200,7 @@ staging:
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
 
   nginxServerSnippet: |
+    proxy_buffer_size 16k;
     location ^~ /wp-content/uploads/ {
       proxy_pass https://admin.insights.ubuntu.com/wp-content/uploads/;
     }
@@ -1390,6 +1389,4 @@ demo:
       value: 1
 
   nginxServerSnippet: |
-    location ^~ /login {
-      proxy_buffer_size 16k;
-    }
+    proxy_buffer_size 16k;
