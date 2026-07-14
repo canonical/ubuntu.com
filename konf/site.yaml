@@ -540,7 +540,17 @@ production:
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_live_68aXqowUeX574aGsVck8eiIE
 
+  # Raise nginx's response-header buffer above the 4k default. The app emits a
+  # large Content-Security-Policy header (built from the CSP dict in
+  # webapp/constants.py, whose connect-src is expanded by the live-fetched
+  # Google supported-domains list). Combined with the other security headers
+  # and the /login session cookie it overflows the default proxy_buffer_size,
+  # so nginx returns 502 with "upstream sent too big header". proxy_buffers
+  # must be raised alongside proxy_buffer_size to keep the implicit
+  # proxy_busy_buffers_size within nginx's limits.
   nginxConfigurationSnippet: |
+    proxy_buffer_size 16k;
+    proxy_buffers 4 16k;
     if ($host = 'apps.ubuntu.com' ) {
       rewrite ^ https://snapcraft.io/ permanent;
     }
@@ -1165,6 +1175,8 @@ staging:
           value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
 
   nginxConfigurationSnippet: |
+    proxy_buffer_size 16k;
+    proxy_buffers 4 16k;
     if ($host = 'staging.cloud.ubuntu.com' ) {
       rewrite ^ https://staging.ubuntu.com/public-cloud$request_uri? permanent;
     }
