@@ -1308,7 +1308,9 @@ class TestRateLimitedErrorHandling(TestCase):
 
         self.assertEqual(response.status_code, 503)
         self.assertEqual(response.headers.get("Retry-After"), "88")
-        self.assertIn("Server error", response.get_data(as_text=True))
+        body = response.get_data(as_text=True)
+        self.assertIn("503", body)
+        self.assertIn("temporarily unavailable", body)
 
     def test_community_events_degrade_on_rate_limit(self):
         from canonicalwebteam.discourse import RateLimitedError
