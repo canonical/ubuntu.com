@@ -1388,3 +1388,8 @@ demo:
         
     - name: FLASK_DEBUG
       value: 1
+
+  nginxServerSnippet: |
+    location ^~ /login {
+      proxy_buffer_size 16k;
+    }
