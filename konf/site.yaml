@@ -617,6 +617,9 @@ production:
     location ^~ /usn-db-stg/ {
       proxy_pass http://seceng-people.internal/%7Eubuntu-security/usn/;
     }
+    location ^~ /login {
+      proxy_buffer_size 16k;
+    }
 
 # Overrides for staging
 staging:

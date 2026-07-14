@@ -13,8 +13,6 @@ from webapp.macaroons import (
 from canonicalwebteam.flask_base.env import get_flask_env
 
 COMMUNITY_TEAM = "ubuntumembers"
-CREDENTIALS_TEAM = "canonical-credentials"
-CREDENTIALS_SUPPORT = "canonical-credentials-support"
 
 login_url = get_flask_env("CANONICAL_LOGIN_URL", "https://login.ubuntu.com")
 
@@ -39,12 +37,6 @@ def user_info(user_session):
             "authentication_token": user_session["authentication_token"],
             "is_community_member": (
                 user_session["openid"].get("is_community_member", False)
-            ),
-            "is_credentials_admin": (
-                user_session["openid"].get("is_credentials_admin", False)
-            ),
-            "is_credentials_support": (
-                user_session["openid"].get("is_credentials_support", False)
             ),
         }
     else:
@@ -97,8 +89,6 @@ def login_handler():
             TeamsRequest(
                 query_membership=[
                     COMMUNITY_TEAM,
-                    CREDENTIALS_TEAM,
-                    CREDENTIALS_SUPPORT,
                 ],
                 lp_ns_uri="http://ns.launchpad.net/2007/openid-teams",
             ),
@@ -129,10 +119,6 @@ def after_login(resp):
         return flask.redirect(login_url)
 
     is_community_member = COMMUNITY_TEAM in resp.extensions["lp"].is_member
-    is_credentials_admin = CREDENTIALS_TEAM in resp.extensions["lp"].is_member
-    is_credentials_support = (
-        CREDENTIALS_SUPPORT in resp.extensions["lp"].is_member
-    )
 
     flask.session["openid"] = {
         "identity_url": resp.identity_url,
@@ -141,8 +127,6 @@ def after_login(resp):
         "image": resp.image,
         "email": resp.email,
         "is_community_member": is_community_member,
-        "is_credentials_admin": is_credentials_admin,
-        "is_credentials_support": is_credentials_support,
     }
 
     return flask.redirect(open_id.get_next_url())
