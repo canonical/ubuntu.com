@@ -1,0 +1,547 @@
+{% extends "containers/base_containers.html" %}
+
+{% block title %}Rockcraft – Canonical’s CLI tool for container images{% endblock %}
+
+{% block meta_description %}
+  Discover Rockcraft and get started building minimal, hardened, OCI-compliant Ubuntu container images.
+{% endblock meta_description %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1uyCIxgdCcos3XM_qoK2qH0kNeRYOn7zMngrjSi9CfMc/edit?tab=t.jijjhiya0no5
+{% endblock meta_copydoc %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_macros/vf_divided-section.jinja" import vf_divided_section %}
+{% from "_macros/vf_tab-section.jinja" import vf_tab_section %}
+{% from "_macros/vf_equal-heights.jinja" import vf_equal_heights %}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+  {% call(slot) vf_hero(
+    title_text='Rockcraft',
+    subtitle_text='A rock solid foundation for crafting containers',
+    layout='50/50',
+    blocks=[
+      {
+        "type": "description",
+        "padding": "none",
+        "item": {
+          "type": "text",
+          "content": "Build minimal, hardened, OCI-compliant Ubuntu container images with Rockcraft."
+        }
+      },
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "text",
+          "content": "Let Rockcraft handle the boilerplate of your container builds so you can focus on your application’s code."
+        }
+      },
+      {
+        "type": "cta-block",
+        "padding": "shallow",
+        "item": {
+          "primary": {
+            "content_html": "Read the docs",
+            "attrs": {
+              "href": "https://documentation.ubuntu.com/rockcraft/stable/"
+            }
+          }
+        }
+      },
+      {
+        "type": "image",
+        "item": {
+          "aspect_ratio": "3-2",
+          "is_highlighted": true,
+          "is_cover": true,
+          "attrs": {
+            "src": "https://assets.ubuntu.com/v1/6992ffb7-hero_img.png",
+            "alt": "alt-text"
+          }
+        }
+      },
+    ]
+  ) -%}
+  {% endcall -%}
+
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+    {%- if slot == 'title' -%}
+    <h2>Why Rockcraft?</h2>
+    {%- endif -%}
+
+    {%- if slot == 'description' -%}
+    <p>
+      Rockcraft is Canonical’s specialized CLI tool for creating rocks, a new generation of securely-designed, 
+      stable, and OCI-compliant container images, based on Ubuntu.
+    </p>
+    <div class="p-cta-block">
+      <a href="https://documentation.ubuntu.com/rockcraft/stable/explanation/rocks/">Learn more about rocks&nbsp;&rsaquo;</a>
+    </div>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_1' -%}
+    <h3 class="p-heading--5">Minimal setup</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+    <p>
+      Rockcraft supports a variety of language-specific plugins, removing the overhead for a developer 
+      to set up their own language environment in order to build and stage their application into the final container image.
+    </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_2' -%}
+    <h3 class="p-heading--5">Seamless chiseling</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+    <p>
+      Rockcraft integrates with Canonical’s <a href="/chisel/docs/latest/">Chisel tool</a> to build minimal container 
+      images from slices of the Ubuntu distribution, ensuring that customers package only what is needed for their application, and nothing more.
+    </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_3' -%}
+    <h3 class="p-heading--5">Declarative simplicity</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_3' -%}
+    <p>
+      Rockcraft uses a declarative, rather than imperative, approach to build containers. This lowers the barrier to entry for new 
+      container developers, while saving time and reducing maintenance overhead for experienced engineers.
+    </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_4' -%}
+    <h3 class="p-heading--5">Ecosystem integration</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_4' -%}
+    <p>
+      Rockcraft is built on top of existing concepts within the same family as <a href="https://documentation.ubuntu.com/snapcraft/9.0/#">Snapcraft</a> 
+      and <a href="https://documentation.ubuntu.com/charmcraft/4.2/">Charmcraft</a>, making adoption seamless for developers that are already building snaps and charms.
+    </p>
+    {%- endif -%}
+
+  {%- endcall -%}
+
+  {{ vf_divided_section(
+    title={
+      "text": "Developer workflow",
+    },
+    blocks=[
+    {
+      "type": "description-block",
+      "items": [
+        {
+          "type": "description",
+          "item": {
+            "type": "text",
+            "content": "Learn about some of the high-level commands you can use to build a rock, from generating the base configuration file to publishing a rock to a registry."
+          }
+        }
+      ]
+    },
+    {
+      "type": "divided-block",
+      "bullet_type": "number",
+      "items": [
+          {
+            "title_text": "Initialize (without extension)",
+            "contents": [
+              {
+                "type": "code-block",
+                "item": {
+                  "content": "rockcraft init"
+                }
+              },
+              {
+                "type": "description",
+                "item": {
+                  "type": "text",
+                  "content": "Run <code>rockcraft init</code> to generate a base <code>rockcraft.yaml</code>"
+                }
+              },
+              {
+                "type": "cta-block",
+                "item": {
+                  "link": {
+                    "content_html": "Follow our quickstart guide&nbsp;&rsaquo;",
+                    "attrs": {
+                      "href": "https://documentation.ubuntu.com/rockcraft/stable/how-to/get-started/"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "title_text": "Initialize (with extension)",
+            "contents": [
+              {
+                "type": "code-block",
+                "item": {
+                  "content": "rockcraft init --profile spring-boot-framework"
+                }
+              },
+              {
+                "type": "description",
+                "item": {
+                  "type": "text",
+                  "content": "Rockcraft offers various extensions, including <code>spring-boot-framework</code>. Using the above command, Rockcraft automates the creation of a <code>rockcraft.yaml</code> file and tailors the file for a Spring Boot application."
+                }
+              },
+              {
+                "type": "cta-block",
+                "item": {
+                  "link": {
+                    "content_html": "Build a rock for a Spring Boot application&nbsp;&rsaquo;",
+                    "attrs": {
+                      "href": "https://documentation.ubuntu.com/rockcraft/stable/tutorial/springboot/#tutorial-build-a-rock-for-a-spring-boot-app"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "title_text": "Declare",
+            "contents": [
+              {
+                "type": "code-block",
+                "item": {
+                  "content": "
+                    name: hello
+                    summary: Hello World
+                    description: The most basic example of a rock.
+                    version: \"latest\"
+                    license: Apache-2.0
+
+                    base: bare
+                    build-base: ubuntu@26.04
+                    platforms:
+                      amd64: # Make sure this value matches your computer's architecture
+
+                    # Parts section
+
+                    parts:
+                      hello:
+                        plugin: nil
+                        stage-packages:
+                          - hello
+
+                  "
+                }
+              },
+              {
+                "type": "description",
+                "item": {
+                  "type": "text",
+                  "content": "Define your application dependencies, base OS, and parts in the <code>rockcraft.yaml</code> file."
+                }
+              },
+              {
+                "type": "cta-block",
+                "item": {
+                  "link": {
+                    "content_html": "Learn more about rockcraft.yaml files&nbsp;&rsaquo;",
+                    "attrs": {
+                      "href": "https://documentation.ubuntu.com/rockcraft/stable/reference/rockcraft-yaml/"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "title_text": "Pack",
+            "contents": [
+              {
+                "type": "code-block",
+                "item": {
+                  "content": "rockcraft pack"
+                }
+              },
+              {
+                "type": "description",
+                "item": {
+                  "type": "text",
+                  "content": "Run <code>rockcraft pack</code> to process parts and create the final artefact."
+                }
+              },
+              {
+                "type": "cta-block",
+                "item": {
+                  "link": {
+                    "content_html": "Learn more about Rockcraft commands&nbsp;&rsaquo;",
+                    "attrs": {
+                      "href": "https://documentation.ubuntu.com/rockcraft/stable/reference/"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "title_text": "Pack",
+            "contents": [
+              {
+                "type": "code-block",
+                "item": {
+                  "content": "rockcraft pack"
+                }
+              },
+              {
+                "type": "description",
+                "item": {
+                  "type": "text",
+                  "content": "Run <code>rockcraft pack</code> to process parts and create the final artefact."
+                }
+              },
+              {
+                "type": "cta-block",
+                "item": {
+                  "link": {
+                    "content_html": "Learn more about Rockcraft commands&nbsp;&rsaquo;",
+                    "attrs": {
+                      "href": "https://documentation.ubuntu.com/rockcraft/stable/reference/"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "title_text": "Publish",
+            "contents": [
+              {
+                "type": "code-block",
+                "item": {
+                  "content": "
+                    rockcraft.skopeo --insecure-policy copy
+                    oci-archive:&lt;your_rock_file.rock&gt;
+                    docker://&lt;container_registry&gt;/&lt;repo&gt;:&lt;tag&gt;
+                  "
+                }
+              },
+              {
+                "type": "description",
+                "item": {
+                  "type": "text",
+                  "content": "Publish a rock to a registry."
+                }
+              },
+              {
+                "type": "cta-block",
+                "item": {
+                  "link": {
+                    "content_html": "Learn more about publishing rocks&nbsp;&rsaquo;",
+                    "attrs": {
+                      "href": "https://documentation.ubuntu.com/rockcraft/stable/how-to/crafting/publish-a-rock/"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+          ]
+        },
+      ],
+    ) 
+  }}
+
+  {{- vf_tab_section(
+    title={ "text": "Developer-friendly, <br/>enterprise-ready" },
+    layout="50-50",
+    tabs=[
+      {
+        "tab_html": "Cloud-native developers",
+        "type": "basic-section",
+        "item": {
+          "items": [
+            {
+              "type": "list",
+              "item": {
+                "list_items": [
+                  {
+                    "list_item_type": "bullet",
+                    "content": "<strong>Ultra-small chiseled images:</strong> Rockcraft’s native integration with Chisel means that developers can build minimal images containing only the exact dependencies the application needs to run at runtime, stripping out shells, package managers, and unused libraries."
+                  },
+                  {
+                    "list_item_type": "bullet",
+                    "content": "<strong>Reduced attack surface:</strong> Because chiseled images contain no unused utilities or package contents, entire classes of supply-chain attacks are mitigated by default."
+                  },
+                  {
+                    "list_item_type": "bullet",
+                    "content": "<strong>Superior init process:</strong> Rockcraft embeds Pebble as the standard entrypoint (PID 1). Pebble orchestrates services natively using declarative YAML. This prevents the security risks associated with using imperative shell scripts to manage local service processes."
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "tab_html": "Independent software vendors",
+        "type": "basic-section",
+        "item": {
+          "items": [
+            {
+              "type": "list",
+              "item": {
+                "list_items": [
+                  {
+                    "list_item_type": "bullet",
+                    "content": "<strong>Streamlined CI/CD:</strong> Rockcraft integrates directly with GitHub Actions (through the Rockcraft Pack action), and allows you to outsource remote builds to Canonical’s Launchpad build farm."
+                  },
+                  {
+                    "list_item_type": "bullet",
+                    "content": "<strong>No heavy lifting:</strong> Instead of writing messy wrapper scripts to manage how your application starts, Rockcraft uses Pebble as the built-in entrypoint. It automatically handles signal forwarding, graceful shutdowns, and log rotation for you."
+                  },
+                  {
+                    "list_item_type": "bullet",
+                    "content": "<strong>Cross-compilation made easy:</strong> Need to ship your app for ARM servers or Raspberry Pis? Rockcraft handles cross-compilation seamlessly without requiring you to maintain separate build environments."
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "tab_html": "Individual developers",
+        "type": "basic-section",
+        "item": {
+          "items": [
+            {
+              "type": "list",
+              "item": {
+                "list_items": [
+                  {
+                    "list_item_type": "bullet",
+                    "content": "<strong>No more boilerplate:</strong> You don't need to string together complex shell scripts or worry about the exact order of <code>RUN</code>, <code>APT</code>, and <code>ENV</code> commands. Rockcraft uses a clean, declarative <code>rockcraft.yaml</code> file that handles the boilerplate for you."
+                  },
+                  {
+                    "list_item_type": "bullet",
+                    "content": "<strong>Quick start with extensions:</strong> Rockcraft includes built-in extensions for 12-factor apps. Just tell Rockcraft which framework you are using, and it automatically configures the environment, dependencies, and entrypoints."
+                  },
+                  {
+                    "list_item_type": "bullet",
+                    "content": "<strong>Familiar Ubuntu environment:</strong> If you know how to use Ubuntu, you know how to use Rockcraft. The underlying bases are the exact same Ubuntu LTS releases you are used to, meaning your code runs the same way in the container as it does on your local machine."
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  ) -}}
+
+  {% call(slot) vf_equal_heights(
+    title_text="Technical deep dive",
+    image_aspect_ratio_medium="2-3",
+    image_aspect_ratio_small="2-3",
+    highlight_images=True,
+    items=[
+      {
+        "title_text": "The parts lifecycle",
+        "image_html":  '<img src="https://assets.ubuntu.com/v1/6bfadfe2-equal_heights_1.png"
+        class="p-image-container__image"
+        width="568"
+        height="853"
+        alt="" />',
+        "description_html": "<p>Rockcraft divides your app into modular blocks called parts. When a part is processed, it performs steps from the parts lifecycle: <em>pull</em>, <em>overlay</em>, <em>build</em>, <em>stage</em>, and <em>prime</em>.</p>",
+        "cta_html": "<a href='https://documentation.ubuntu.com/rockcraft/stable/common/craft-parts/explanation/parts/'>Learn more about parts&nbsp;&rsaquo;</a>"
+      },
+      {
+        "title_text": "Declarative chiseling",
+        "image_html":  '<img src="https://assets.ubuntu.com/v1/a0796b2b-equal_heights_2.png"
+        class="p-image-container__image"
+        width="568"
+        height="853"
+        alt="" />',
+        "description_html": "<p>Rockcraft natively integrates with <a href='/chisel/docs/latest/'>Chisel</a> directly inside the YAML. Rather than starting with a full OS layer, developers can select the <code>bare</code> base and define precise slices.</p>",
+        "cta_html": "<a href='https://documentation.ubuntu.com/rockcraft/stable/reference/rockcraft-yaml/'>Learn more about rockcraft.yaml&nbsp;&rsaquo;</a>"
+      },
+      {
+        "title_text": "Built-in plugins",
+        "image_html":  '<img src="https://assets.ubuntu.com/v1/e612ca69-equal_heights_3.png"
+        class="p-image-container__image"
+        width="568"
+        height="853"
+        alt="" />',
+        "description_html": "<p>You do not need to write custom build scripts or manually configure virtual environments. Rockcraft handles ecosystem-specific build logic natively through its plugin ecosystem.</p>",
+        "cta_html": "<a href='https://documentation.ubuntu.com/rockcraft/stable/reference/plugins/'>Explore Rockcraft plugins&nbsp;&rsaquo;</a>"
+      },
+      {
+        "title_text": "12-factor app ready",
+        "image_html":  '<img src="https://assets.ubuntu.com/v1/d7371d84-updated_web_and_mobile_applications.png"
+        class="p-image-container__image"
+        width="568"
+        height="853"
+        alt="" />',
+        "description_html": "<p>Rockcraft provides built-in extensions for modern cloud-native web apps (Django, Flask, FastAPI, Node.js, Go), which silently inject a pre-configured underlying part.</p>",
+        "cta_html": "<a href='https://documentation.ubuntu.com/rockcraft/latest/how-to/web-app-rocks/set-up-web-app-rock/'>Set up a 12-factor app rock&nbsp;&rsaquo;</a>"
+      }
+    ]
+  ) %}
+  {% if slot == "description" %}
+  <p>
+    Rockcraft forgoes the traditional, linear execution of Dockerfiles in favor of a declarative, component-based architecture.
+  </p>
+  {% endif %}
+
+  {% endcall %}
+
+  {% call(slot) vf_cta_section(
+      title_text='Try it out for yourself',
+      variant='block',
+      layout='100',
+      blocks=[
+        {
+          "type": "description",
+          "item": {
+            "type": "text",
+            "content": "Get started with Rockcraft."
+          }
+        },
+        {
+          "type": "cta",
+          "item": {
+            "primary": {
+              "content_html": "Try the tutorials",
+              "attrs": {
+                "href": "https://documentation.ubuntu.com/rockcraft/latest/tutorial/"
+              }
+            },
+            "secondaries": [
+              {
+                "content_html": "Read the how-to guides",
+                "attrs": {
+                  "href": "https://documentation.ubuntu.com/rockcraft/latest/how-to/"
+                }
+              }
+            ],
+            "link": {
+              "content_html": "Explore the GitHub repo&#32;&rsaquo;",
+              "attrs": {
+                "href": "https://github.com/canonical/rockcraft"
+              }
+            }
+          }
+        }
+      ]
+    ) -%}
+  {% endcall -%}
+
+  <script type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
+
+{% endblock content %}
