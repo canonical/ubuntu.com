@@ -361,6 +361,8 @@ class TestAccountQuery(BaseViewTestCase):
                     "email": "alice@example.com",
                     "authentication_token": "tok123",
                     "is_community_member": False,
+                    "is_credentials_admin": False,
+                    "is_credentials_support": False,
                 }
             },
         )
