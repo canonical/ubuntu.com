@@ -32,29 +32,29 @@
   {% endif %}
   <script type="application/ld+json">
     {
-      "@context": "http://schema.org",
-      "@id": "https://ubuntu.com/#article",
+      "@context": "https://schema.org",
+      "@id": "{{ self.canonical_url() }}",
       "@type": "Article",
-      "name": "{{ article.title.renderered|safe }}",
+      "name": "{{ article.title.rendered|safe }}",
       "headline": "{{ article.excerpt.raw }}",
       "author": {
         "@type": "Person",
         "name": "{{ article.author.name }}"
       },
       "datePublished": "{{ article.date_gmt }}",
-      {
-        %
-        if article.image and article.image.source_url %
-      }
+      "dateModified": "{{ article.modified_gmt }}",
+      {% if article.image and article.image.source_url %}
       "image": "{{ article.image.source_url }}",
-      {
-        %
-        endif %
-      }
-      "url": "{{ request.url }}",
+      {% endif %}
+      "url": "{{ self.canonical_url() }}",
       "publisher": {
         "@type": "Organization",
-        "name": "Ubuntu"
+        "@id": "https://ubuntu.com/#organization",
+        "name": "Ubuntu",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://assets.ubuntu.com/v1/c55060fd-COF%20android-chrome-512x512.png"
+        }
       }
     }
   </script>
