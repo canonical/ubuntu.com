@@ -123,7 +123,7 @@
     {% include "ceph/shared/_latest-news-ceph.html" %}
   {% endwith %}
 
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
   {{ load_form("/ceph/install") | safe }}
 

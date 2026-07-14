@@ -34,7 +34,7 @@
          href="/security#get-in-touch"
          aria-controls="security-modal">Contact us</a>
       <a href="/engage/defense-in-depth"
-         onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Watch the Ubuntu security webinar', 'eventLabel' : 'Watch the Ubuntu security webinar', 'eventValue' : undefined });">Watch the webinar&nbsp;&rsaquo;</a>
+         data-ga-category="External Link" data-ga-action="Watch the Ubuntu security webinar" data-ga-label="Watch the Ubuntu security webinar">Watch the webinar&nbsp;&rsaquo;</a>
     {%- endif -%}
     {%- if slot == 'image' -%}
       <div class="p-image-container--cinematic is-cover">
@@ -398,11 +398,11 @@
         <ul class="p-list">
           <li class="p-list__item">
             <a href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-hardened"
-               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Ubuntu security updates mailing list', 'eventLabel' : 'Join the discussion', 'eventValue' : undefined });">Ubuntu security updates mailing list&nbsp;&rsaquo;</a>
+               data-ga-category="Contextual footer link" data-ga-action="Ubuntu security updates mailing list" data-ga-label="Join the discussion">Ubuntu security updates mailing list&nbsp;&rsaquo;</a>
           </li>
           <li class="p-list__item">
             <a href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-security-announce"
-               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Security announcements mailing list', 'eventLabel' : 'Join the discussion', 'eventValue' : undefined });">Security announcements mailing list&nbsp;&rsaquo;</a>
+               data-ga-category="Contextual footer link" data-ga-action="Security announcements mailing list" data-ga-label="Join the discussion">Security announcements mailing list&nbsp;&rsaquo;</a>
           </li>
         </ul>
       </div>

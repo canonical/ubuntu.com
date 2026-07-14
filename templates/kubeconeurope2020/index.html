@@ -37,12 +37,23 @@
                   allowfullscreen></iframe>
         </div>
         <div style="padding-top: 2rem;">
-          <p class="p-button--positive p-button--inline"
-             onclick="LC_API.open_chat_window();return false">Private Livechat</p>
+          <p class="p-button--positive p-button--inline js-livechat-open">Private Livechat</p>
           <p class="p-button p-button--inline js-invoke-modal"
              href="/kubernetes/contact-us"
              aria-controls="kubernetes-contact-modal">Contact us</p>
         </div>
+        <script nonce="{{ csp_nonce }}">
+          document.addEventListener("DOMContentLoaded", function () {
+            var livechatButton = document.querySelector(".js-livechat-open");
+            if (livechatButton) {
+              livechatButton.addEventListener("click", function () {
+                if (window.LC_API) {
+                  window.LC_API.open_chat_window();
+                }
+              });
+            }
+          });
+        </script>
       </div>
     </div>
   </section>
