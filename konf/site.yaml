@@ -1217,15 +1217,6 @@ staging:
 
 demo:
   useProxy: false
-
-  # Demos hit the same 4k proxy_buffer_size overflow as production (see the
-  # production snippet above). konf strips the inherited staging snippets for
-  # demos (they contain staging host redirects), so the buffer directives must
-  # be declared here explicitly.
-  nginxConfigurationSnippet: |
-    proxy_buffer_size 16k;
-    proxy_buffers 4 16k;
-
   env:
     - name: HTTP_PROXY
       value: http://squid.ps6.internal:3128
