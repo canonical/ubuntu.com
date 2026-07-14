@@ -39,6 +39,7 @@ ALLOWED_HIDDEN_FIELDS = frozenset(
         "iot_newsletters__c",
         "consent_to_processing__c",
         "canonicalupdatesoptin",
+        "productcontext"
         # JS-injected fields added at runtime
         "user_id",
         "consent_info",
