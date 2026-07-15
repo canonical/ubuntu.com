@@ -33,7 +33,7 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@id": "{{ self.canonical_url() }}",
+      "@id": "{{ request.url }}",
       "@type": "Article",
       "name": "{{ article.title.rendered|safe }}",
       "headline": "{{ article.excerpt.raw }}",
@@ -46,15 +46,9 @@
       {% if article.image and article.image.source_url %}
       "image": "{{ article.image.source_url }}",
       {% endif %}
-      "url": "{{ self.canonical_url() }}",
+      "url": "{{ request.url }}",
       "publisher": {
-        "@type": "Organization",
-        "@id": "https://ubuntu.com/#organization",
-        "name": "Ubuntu",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://assets.ubuntu.com/v1/c55060fd-COF%20android-chrome-512x512.png"
-        }
+        "@id": "https://ubuntu.com/#organization"
       }
     }
   </script>
