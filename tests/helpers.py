@@ -12,7 +12,7 @@ from webapp.marketo import MarketoAPI
 from webapp.decorators import handle_api_error
 from canonicalwebteam.flask_base.env import get_flask_env
 
-# Hidden/unprocessed fields that are allowed in Marketo form templates/payloads.
+# Hidden/unprocessed fields that are allowed in Marketo form payloads.
 # Update this constant when intentionally introducing a new hidden field.
 ALLOWED_HIDDEN_FIELDS = frozenset(
     {

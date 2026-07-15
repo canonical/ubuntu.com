@@ -60,7 +60,7 @@ export function setupIntlTelInput(countryCode, phoneInput) {
     separateDialCode: true,
     hiddenInput: (phoneInputName) => ({
       phone: phoneInputName,
-      invalid: "field"
+      invalid: "field",
     }),
     initialCountry: countryCode.toLowerCase(),
   });
