@@ -75,7 +75,7 @@ describe("setupIntlTelInput", () => {
   });
 
   // Fields that intlTelInput is allowed to inject as hidden inputs.
-  // Matches ALLOWED_HIDDEN_FIELDS in tests/helpers.py.
+  // Kept consistent with the relevant subset of ALLOWED_HIDDEN_FIELDS in tests/helpers.py.
   const ALLOWED_HIDDEN_FIELDS = new Set(["phone"]);
 
   it("hiddenInput callback only returns allowed field names", () => {

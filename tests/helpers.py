@@ -12,8 +12,8 @@ from webapp.marketo import MarketoAPI
 from webapp.decorators import handle_api_error
 from canonicalwebteam.flask_base.env import get_flask_env
 
-# Fields that are allowed in a Marketo form payload.
-# Add to this set when intentionally introducing a new hidden field.
+# Hidden/unprocessed fields that are allowed in Marketo form templates/payloads.
+# Update this constant when intentionally introducing a new hidden field.
 ALLOWED_HIDDEN_FIELDS = frozenset(
     {
         "firstname",
@@ -55,7 +55,7 @@ def get_marketo_template_files():
     result = []
     for ext in ("*.html", "*.jinja"):
         for f in Path("templates").rglob(ext):
-            if "templates/tests" in str(f):
+            if f.parts[:2] == ("templates", "tests"):
                 continue
             if "/marketo/submit" in f.read_text():
                 result.append(f)
