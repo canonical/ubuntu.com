@@ -358,6 +358,9 @@ describe("RenewalSettings", () => {
     await act(async () => {
       wrapper.find("Formik form").simulate("submit");
     });
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
     wrapper.update();
     expect(
       wrapper.find("Notification[data-test='update-error']").exists(),

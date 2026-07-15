@@ -115,7 +115,11 @@ class MarketoFormTestCase(unittest.TestCase):
 
         def collect(node):
             name = node.get("name")
-            if name and name != "/contact-us" and name.endswith("/contact-us"):
+            if (
+                name
+                and name != "/contact-us"
+                and name.endswith("/contact-us")
+            ):  # fmt: skip
                 results.append(name)
             for child in node.get("children", []):
                 collect(child)
