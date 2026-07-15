@@ -770,14 +770,14 @@ function toggleSearch(e) {
 
 function openSearch(e) {
   e.preventDefault();
-  const searchInput = navigation.querySelector(
-    ".p-search-box__input:not(.u-hide)",
-  );
+  const searchInput =
+    navigation.querySelector(".p-search-box__input:not(.u-hide)") ||
+    navigation.querySelector(".p-search-box__input");
   Array.from(searchButtons).forEach((searchButton) => {
     searchButton.setAttribute("aria-pressed", true);
   });
   addClassesToElements([navigation], ["has-search-open"]);
-  searchInput.focus();
+  searchInput?.focus();
   document.addEventListener("keyup", escKeyPressHandler);
 }
 

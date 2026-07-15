@@ -24,7 +24,7 @@
                              tabindex="0"><span>{{ link.title }}</span>
                             <br />
                             {% set role_count = careers_role_counts.get(link.slug) %}
-                            {% if role_count %}<small class="u-text--muted">{{ role_count }} role{{ 's' if role_count != 1 }}</small>{% endif %}
+                            {% if role_count is not none %}<small class="u-text--muted">{{ role_count }} role{{ 's' if role_count != 1 }}</small>{% endif %}
                           </a>
                         </li>
                       {% endfor %}
