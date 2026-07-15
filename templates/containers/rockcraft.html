@@ -62,8 +62,7 @@
           "is_highlighted": true,
           "is_cover": true,
           "attrs": {
-            "src": "https://assets.ubuntu.com/v1/6992ffb7-hero_img.png",
-            "alt": "alt-text"
+            "src": "https://assets.ubuntu.com/v1/6992ffb7-hero_img.png"
           }
         }
       },
@@ -154,7 +153,7 @@
       "bullet_type": "number",
       "items": [
           {
-            "title_text": "Initialize (without extension)",
+            "title_text": "a. Initialize (without extension)",
             "contents": [
               {
                 "type": "code-block",
@@ -171,6 +170,7 @@
               },
               {
                 "type": "cta-block",
+                "padding": "shallow",
                 "item": {
                   "link": {
                     "content_html": "Follow our quickstart guide&nbsp;&rsaquo;",
@@ -179,12 +179,14 @@
                     }
                   }
                 }
-              }
-            ]
-          },
-          {
-            "title_text": "Initialize (with extension)",
-            "contents": [
+              },
+              {
+                "type": "description",
+                "item": {
+                  "type": "text",
+                  "content": "<h3 class=\"p-heading--5 u-no-padding\">b. Initialize (with extension)</h3>"
+                }
+              },
               {
                 "type": "code-block",
                 "item": {
@@ -218,6 +220,7 @@
                 "type": "code-block",
                 "item": {
                   "content": "
+                    # Metadata section
                     name: hello
                     summary: Hello World
                     description: The most basic example of a rock.
@@ -254,35 +257,6 @@
                     "content_html": "Learn more about rockcraft.yaml files&nbsp;&rsaquo;",
                     "attrs": {
                       "href": "https://documentation.ubuntu.com/rockcraft/stable/reference/rockcraft-yaml/"
-                    }
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "title_text": "Pack",
-            "contents": [
-              {
-                "type": "code-block",
-                "item": {
-                  "content": "rockcraft pack"
-                }
-              },
-              {
-                "type": "description",
-                "item": {
-                  "type": "text",
-                  "content": "Run <code>rockcraft pack</code> to process parts and create the final artefact."
-                }
-              },
-              {
-                "type": "cta-block",
-                "item": {
-                  "link": {
-                    "content_html": "Learn more about Rockcraft commands&nbsp;&rsaquo;",
-                    "attrs": {
-                      "href": "https://documentation.ubuntu.com/rockcraft/stable/reference/"
                     }
                   }
                 }
@@ -457,7 +431,7 @@
         class="p-image-container__image"
         width="568"
         height="853"
-        alt="" />',
+        />',
         "description_html": "<p>Rockcraft divides your app into modular blocks called parts. When a part is processed, it performs steps from the parts lifecycle: <em>pull</em>, <em>overlay</em>, <em>build</em>, <em>stage</em>, and <em>prime</em>.</p>",
         "cta_html": "<a href='https://documentation.ubuntu.com/rockcraft/stable/common/craft-parts/explanation/parts/'>Learn more about parts&nbsp;&rsaquo;</a>"
       },
@@ -466,8 +440,8 @@
         "image_html":  '<img src="https://assets.ubuntu.com/v1/a0796b2b-equal_heights_2.png"
         class="p-image-container__image"
         width="568"
-        height="853"
-        alt="" />',
+        height="853" 
+        />',
         "description_html": "<p>Rockcraft natively integrates with <a href='/chisel/docs/latest/'>Chisel</a> directly inside the YAML. Rather than starting with a full OS layer, developers can select the <code>bare</code> base and define precise slices.</p>",
         "cta_html": "<a href='https://documentation.ubuntu.com/rockcraft/stable/reference/rockcraft-yaml/'>Learn more about rockcraft.yaml&nbsp;&rsaquo;</a>"
       },
@@ -477,7 +451,7 @@
         class="p-image-container__image"
         width="568"
         height="853"
-        alt="" />',
+        />',
         "description_html": "<p>You do not need to write custom build scripts or manually configure virtual environments. Rockcraft handles ecosystem-specific build logic natively through its plugin ecosystem.</p>",
         "cta_html": "<a href='https://documentation.ubuntu.com/rockcraft/stable/reference/plugins/'>Explore Rockcraft plugins&nbsp;&rsaquo;</a>"
       },
@@ -487,7 +461,7 @@
         class="p-image-container__image"
         width="568"
         height="853"
-        alt="" />',
+        />',
         "description_html": "<p>Rockcraft provides built-in extensions for modern cloud-native web apps (Django, Flask, FastAPI, Node.js, Go), which silently inject a pre-configured underlying part.</p>",
         "cta_html": "<a href='https://documentation.ubuntu.com/rockcraft/latest/how-to/web-app-rocks/set-up-web-app-rock/'>Set up a 12-factor app rock&nbsp;&rsaquo;</a>"
       }
