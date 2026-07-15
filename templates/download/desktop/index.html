@@ -59,13 +59,13 @@
             <div class="col-3">
               <a class="p-button--positive"
                  href="/download/desktop/thank-you?version={{ releases_yaml.lts.full_version }}&amp;architecture=amd64&amp;lts=true"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases_yaml.lts.short_version }}', 'eventValue' : undefined });"
+                 data-ga-category="Download" data-ga-action="Desktop" data-ga-label="{{ releases_yaml.lts.short_version }}"
                  aria-label="Download Ubuntu {{ releases_yaml.lts.short_version }} LTS amd64">Download</a>
               {% if releases_yaml.lts.iso_download_size %}
                 <span class="u-text--muted">{{ releases_yaml.lts.iso_download_size }}</span>
               {% endif %}
 
-              <script>
+              <script nonce="{{ csp_nonce }}">
                 performance.mark("Download (Desktop) button rendered")
               </script>
             </div>
@@ -78,13 +78,13 @@
             <div class="col-3">
               <a class="p-button"
                  href="/download/desktop/thank-you?version={{ releases_yaml.lts.full_version }}&amp;architecture=arm64&amp;lts=true"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases_yaml.lts.short_version }}', 'eventValue' : undefined });"
+                 data-ga-category="Download" data-ga-action="Desktop" data-ga-label="{{ releases_yaml.lts.short_version }}"
                  aria-label="Download Ubuntu {{ releases_yaml.lts.full_version }} arm64">Download</a>
               {% if releases_yaml.lts.arm_iso_download_size %}
                 <span class="u-text--muted">{{ releases_yaml.lts.arm_iso_download_size }}</span>
               {% endif %}
 
-              <script>
+              <script nonce="{{ csp_nonce }}">
                 performance.mark("Download (Desktop) button rendered")
               </script>
             </div>
@@ -222,13 +222,13 @@
               <div class="col-3">
                 <a class="p-button--positive"
                    href="/download/desktop/thank-you?version={{ releases_yaml.latest.full_version }}&amp;architecture=amd64"
-                   onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases_yaml.latest.short_version }}', 'eventValue' : undefined });"
+                   data-ga-category="Download" data-ga-action="Desktop" data-ga-label="{{ releases_yaml.latest.short_version }}"
                    aria-label="Download Ubuntu {{ releases_yaml.latest.full_version }} amd64">Download</a>
                 {% if releases_yaml.latest.iso_download_size %}
                   <span class="u-text--muted">{{ releases_yaml.latest.iso_download_size }}</span>
                 {% endif %}
 
-                <script>
+                <script nonce="{{ csp_nonce }}">
                   performance.mark("Download (Desktop) button rendered")
                 </script>
               </div>
@@ -241,13 +241,13 @@
               <div class="col-3">
                 <a class="p-button"
                    href="/download/desktop/thank-you?version={{ releases_yaml.latest.full_version }}&amp;architecture=arm64"
-                   onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases_yaml.latest.short_version }}', 'eventValue' : undefined });"
+                   data-ga-category="Download" data-ga-action="Desktop" data-ga-label="{{ releases_yaml.latest.short_version }}"
                    aria-label="Download Ubuntu {{ releases_yaml.latest.full_version }} arm64">Download</a>
                 {% if releases_yaml.latest.arm_iso_download_size %}
                   <span class="u-text--muted">{{ releases_yaml.latest.arm_iso_download_size }}</span>
                 {% endif %}
 
-                <script>
+                <script nonce="{{ csp_nonce }}">
                   performance.mark("Download (Desktop) button rendered")
                 </script>
               </div>
@@ -420,6 +420,6 @@
     {% include "download/shared/_latest-blogs_download.html" %}
   {% endwith %}
 
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
 {% endblock content %}

@@ -1,3 +1,4 @@
+import secrets
 from typing import List
 
 import flask
@@ -5,7 +6,7 @@ from canonicalwebteam import image_template
 from canonicalwebteam.discourse import RateLimitedError
 from slugify import slugify
 
-from webapp.constants import CSP
+from webapp.constants import CSP, NONCED_DIRECTIVES
 from webapp.context import (
     current_year,
     date_has_passed,
@@ -307,6 +308,14 @@ def init_handlers(app):
             "get_countries_list": get_countries_list,
         }
 
+    @app.before_request
+    def set_csp_nonce():
+        flask.g.csp_nonce = secrets.token_urlsafe(16)
+
+    @app.context_processor
+    def inject_csp_nonce():
+        return {"csp_nonce": getattr(flask.g, "csp_nonce", "")}
+
     @app.after_request
     def add_headers(response):
         """
@@ -326,14 +335,20 @@ def init_handlers(app):
         - X-Robots-Tag: prevents search engines from indexing the page
         """
 
-        def get_csp_as_str(csp={}):
+        def get_csp_as_str(csp={}, nonce=None):
             csp_str = ""
             for key, values in csp.items():
-                csp_value = " ".join(values)
+                directive_values = list(values)
+                if nonce and key in NONCED_DIRECTIVES:
+                    directive_values.append(f"'nonce-{nonce}'")
+                csp_value = " ".join(directive_values)
                 csp_str += f"{key} {csp_value}; "
             return csp_str.strip()
 
-        response.headers["Content-Security-Policy"] = get_csp_as_str(CSP)
+        nonce = getattr(flask.g, "csp_nonce", None)
+        response.headers["Content-Security-Policy"] = get_csp_as_str(
+            CSP, nonce=nonce
+        )
 
         response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
         response.headers["Cross-Origin-Embedder-Policy"] = "unsafe-none"

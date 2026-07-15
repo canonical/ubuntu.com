@@ -106,8 +106,8 @@
           </div>
           <div class="col-6">
             <ul class="p-list--divided">
-              <li class="p-list__item"><a href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-hardened" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Ubuntu security updates mailing list', 'eventLabel' : 'Join the discussion', 'eventValue' : undefined });">Ubuntu security updates mailing list</a></li>
-              <li class="p-list__item"><a href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-security-announce" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Security announcements mailing list', 'eventLabel' : 'Join the discussion', 'eventValue' : undefined });">Security announcements mailing list</a></li>
+              <li class="p-list__item"><a href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-hardened" data-ga-category="Contextual footer link" data-ga-action="Ubuntu security updates mailing list" data-ga-label="Join the discussion">Ubuntu security updates mailing list</a></li>
+              <li class="p-list__item"><a href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-security-announce" data-ga-category="Contextual footer link" data-ga-action="Security announcements mailing list" data-ga-label="Join the discussion">Security announcements mailing list</a></li>
             </ul>
           </div>
         </div>
@@ -145,11 +145,11 @@
   </section>
 
 {# djlint:off #}
-<script type="text/javascript">
+<script nonce="{{ csp_nonce }}" type="text/javascript">
   const maintainedReleasesObj = {{maintained_releases | tojson | safe}};
   const ltsReleasesObj = {{lts_releases | tojson | safe}};
   const unmaintainedReleasesObj = {{unmaintained_releases | tojson | safe}};
 </script>
 {# djlint:off #}
-<script src="{{ versioned_static('js/dist/noticesLanding.js') }}" defer></script>
+<script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/noticesLanding.js') }}" defer></script>
 {% endblock %}

@@ -11,7 +11,7 @@
             <p class="p-notification__message">
               Your preferences have been successfully updated. <a href="#"
     alt="Close notification"
-    onclick="location.href = document.referrer; return false;"><i class="p-notification__close">Close</i></a>
+    data-js-back><i class="p-notification__close">Close</i></a>
             </p>
           </div>
         </div>
@@ -165,13 +165,13 @@
     </section>
   </div>
 
-  <script src="/static/js/src/modal.js"></script>
-  <script>
+  <script nonce="{{ csp_nonce }}" src="/static/js/src/modal.js"></script>
+  <script nonce="{{ csp_nonce }}">
     (function() {
       initModals('#modal', '[aria-controls=modal]', false)
     })();
   </script>
-  <script>
+  <script nonce="{{ csp_nonce }}">
     // Handles form submissions
     (function() {
       const form = document.querySelector("#subscription-centre");
@@ -209,7 +209,7 @@
       });
     })()
   </script>
-  <script>
+  <script nonce="{{ csp_nonce }}">
     // Setup search
     (function() {
       const subsContainer = document.querySelector("#subscriptions-list");
