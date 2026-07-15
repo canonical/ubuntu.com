@@ -1424,6 +1424,28 @@ $color-link-dark: #69c !default;
   }
 }
 
+// Override height for very wide logos to prevent horizontal overflow
+.p-logo-section__item.is-wide {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 4.5rem;
+  vertical-align: bottom;
+  width: fit-content;
+
+  @media (min-width: $breakpoint-small) {
+    height: 6.5rem;
+  }
+
+  .p-logo-section__logo {
+    height: 0.8rem;
+
+    @media (min-width: $breakpoint-small) {
+      height: 1rem;
+    }
+  }
+}
+
 // XXX: pete f: vanilla issue here -
 // https://github.com/canonical/vanilla-framework/issues/4877
 .p-divider {
