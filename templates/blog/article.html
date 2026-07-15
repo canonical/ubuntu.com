@@ -48,7 +48,13 @@
       {% endif %}
       "url": "{{ request.url }}",
       "publisher": {
-        "@id": "https://ubuntu.com/#organization"
+        "@type": "Organization",
+        "@id": "https://ubuntu.com/#organization",
+        "name": "Ubuntu",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://assets.ubuntu.com/v1/c55060fd-COF%20android-chrome-512x512.png"
+        }
       }
     }
   </script>
