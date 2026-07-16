@@ -47,6 +47,18 @@ def releases():
         return yaml.load(releases, Loader=yaml.FullLoader)
 
 
+def products():
+    """
+    Read products as a dictionary from products.yaml,
+    and provide the contents as a dictionary in the global
+    template context.
+    Exposes them as "products_yaml".
+    """
+
+    with open("products.yaml") as products_file:
+        return yaml.load(products_file, Loader=yaml.FullLoader)
+
+
 def get_navigation(section):
     """
     Set "navigation_section" as global template variable

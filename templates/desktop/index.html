@@ -10,6 +10,20 @@
   https://docs.google.com/document/d/1ZhMkLlkXcimHTIe1taXy24vbbR9pBkZd49H2sJqeQH0/edit
 {% endblock meta_copydoc %}
 
+{% block head_extra %}
+  <script type="application/ld+json" nonce="{{ csp_nonce }}">
+    {
+      "@context": "https://schema.org",
+      "@type": ["SoftwareApplication", "Product"],
+      "name": {{ products_yaml.desktop.name | tojson }},
+      "description": {{ products_yaml.desktop.description | tojson }},
+      "operatingSystem": {{ products_yaml.desktop.operatingSystem | tojson }},
+      "applicationCategory": {{ products_yaml.desktop.applicationCategory | tojson }},
+      "url": {{ products_yaml.desktop.url | tojson }}
+    }
+  </script>
+{% endblock %}
+
 {% block body_class %}
   is-paper
 {% endblock body_class %}

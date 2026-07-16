@@ -16,6 +16,20 @@
   https://docs.google.com/document/d/1vxLhtbjgPs9PCNEhr7fbhEoErCPMXYFfU4UTKH7Kbq4/edit
 {% endblock meta_copydoc %}
 
+{% block head_extra %}
+  <script type="application/ld+json" nonce="{{ csp_nonce }}">
+    {
+      "@context": "https://schema.org",
+      "@type": ["SoftwareApplication", "Product"],
+      "name": {{ products_yaml.server.name | tojson }},
+      "description": {{ products_yaml.server.description | tojson }},
+      "operatingSystem": {{ products_yaml.server.operatingSystem | tojson }},
+      "applicationCategory": {{ products_yaml.server.applicationCategory | tojson }},
+      "url": {{ products_yaml.server.url | tojson }}
+    }
+  </script>
+{% endblock %}
+
 {% block body_class %}
   is-paper
 {% endblock body_class %}
