@@ -2,14 +2,19 @@
 # items: list of (question, answer) pairs. Each pair must match a Q&A
 # already visible on the page — this is manually authored per page,
 # not auto-detected from accordion/markup.
+# base_url: origin used to absolutize root-relative links inside answer
+# HTML so schema consumers can resolve links outside page context.
 
-{%- macro faqpage_schema(items) -%}
+{%- macro faqpage_schema(items, base_url="https://ubuntu.com") -%}
   {%- set ns = namespace(entities=[]) -%}
   {%- for question, answer in items -%}
+    {%- set answer_abs = answer
+      | replace('href="/', 'href="' ~ base_url ~ '/')
+      | replace("href='/", "href='" ~ base_url ~ "/") -%}
     {%- set ns.entities = ns.entities + [{
       "@type": "Question",
       "name": question,
-      "acceptedAnswer": {"@type": "Answer", "text": answer}
+      "acceptedAnswer": {"@type": "Answer", "text": answer_abs}
     }] -%}
   {%- endfor -%}
   <script type="application/ld+json">
