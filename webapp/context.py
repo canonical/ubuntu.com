@@ -72,6 +72,12 @@ def get_navigation(section):
         if section_name == section:
             sections = navigation_section
 
+    # Infer slug from the last URL path segment
+    for link_group in sections.get("primary_links", []):
+        for link in link_group.get("links", []):
+            if "slug" not in link and link.get("url"):
+                link["slug"] = link["url"].rstrip("/").split("/")[-1]
+
     return {"sections": sections}
 
 
@@ -181,6 +187,31 @@ def get_json_feed(url, offset=0, limit=None):
         return False
 
     return content[offset:end]
+
+
+def get_careers_role_counts():
+    """
+    Return a dict mapping department slug to open-role count,
+    fetched from canonical.com/careers/roles.json.
+    Results are cached for 1 hour via the shared CachedSession.
+    Returns an empty dict on any error so the template degrades
+    gracefully.
+    """
+    try:
+        response = api_session.get(
+            "https://canonical.com/careers/roles.json", timeout=10
+        )
+        response.raise_for_status()
+        roles = response.json()
+        return {dept["slug"]: dept["count"] for dept in roles}
+    except (
+        requests.exceptions.RequestException,
+        ValueError,
+        TypeError,
+        KeyError,
+    ) as e:
+        logger.warning("Error fetching careers role counts: {}".format(e))
+        return {}
 
 
 def schedule_banner(start_date: str, end_date: str):

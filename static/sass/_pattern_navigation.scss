@@ -11,7 +11,7 @@ $navigation-height: 3rem;
 
   #all-canonical-mobile .global-nav__header-link-anchor::after {
     @media (max-width: $breakpoint-small) {
-      right: 1rem !important;
+      right: $sph--large !important;
       top: 1.25rem !important;
     }
   }
@@ -42,7 +42,7 @@ $navigation-height: 3rem;
   .p-navigation__row--25-75 {
     @media (min-width: $breakpoint-navigation-threshold) {
       .p-navigation__items:first-child {
-        margin-left: -1rem;
+        margin-left: -$sph--large;
       }
     }
   }
@@ -81,7 +81,7 @@ $navigation-height: 3rem;
     .p-navigation__row--25-75 {
       @media (min-width: $breakpoint-navigation-threshold - 1) {
         .p-navigation__items:first-child {
-          margin-left: -1rem;
+          margin-left: -$sph--large;
         }
       }
 
@@ -126,11 +126,11 @@ $navigation-height: 3rem;
       }
 
       .p-navigation__secondary-links {
-        margin-top: 1.5rem;
-        padding-left: calc(1.5rem + $row-margin-medium);
+        margin-top: $spv--x-large;
+        padding-left: calc($sph--x-large + $row-margin-medium);
 
         @media (max-width: $breakpoint-medium) {
-          padding-left: calc(1.5rem + $row-margin-small);
+          padding-left: calc($sph--x-large + $row-margin-small);
         }
 
         a {
@@ -142,14 +142,14 @@ $navigation-height: 3rem;
         li.p-navigation__dropdown-item {
           line-height: 1.5rem;
           margin: 0;
-          padding-bottom: 0.25rem;
-          padding-top: 0.25rem;
+          padding-bottom: $spv--x-small;
+          padding-top: $spv--x-small;
           position: relative;
 
           a {
             &:not(.p-button--positive) {
               display: block;
-              padding: 0.25rem 0;
+              padding: $spv--x-small 0;
               white-space: normal;
             }
 
@@ -169,7 +169,7 @@ $navigation-height: 3rem;
           @extend .p-navigation__dropdown-item;
 
           @media (max-width: $breakpoint-medium) {
-            padding-left: calc(1.5rem + $row-margin-small);
+            padding-left: calc($sph--x-large + $row-margin-small);
           }
 
           pointer-events: none;
@@ -191,8 +191,8 @@ $navigation-height: 3rem;
 
         &.js-account {
           .p-navigation__dropdown-item {
-            padding-bottom: 0.75rem;
-            padding-top: 0.75rem;
+            padding-bottom: $spv--medium;
+            padding-top: $spv--medium;
           }
 
           @media (min-width: $breakpoint-navigation-threshold - 1) {
@@ -204,9 +204,7 @@ $navigation-height: 3rem;
 
           a.p-navigation__link {
             &::after {
-              @media (min-width: $breakpoint-navigation-threshold - 1) {
-                content: none;
-              }
+              content: none;
             }
           }
 
@@ -237,24 +235,24 @@ $navigation-height: 3rem;
       }
 
       a.p-navigation__dropdown-item {
-        padding-bottom: 0.75rem;
-        padding-top: 0.75rem;
+        padding-bottom: $spv--medium;
+        padding-top: $spv--medium;
       }
 
       .p-navigation__link::after {
-        right: 0.5rem;
+        right: $sph--small;
         top: 1.25rem;
 
         @media (max-width: $breakpoint-navigation-threshold - 1) {
-          right: 1.5rem;
-          top: 1rem;
+          right: $sph--x-large;
+          top: $spv--large;
         }
       }
     }
 
     .p-navigation--sliding:not(.js-enabled) {
       .p-navigation__item--dropdown-toggle > .p-navigation__link {
-        padding-right: 1rem;
+        padding-right: $sph--large;
 
         &::after {
           content: none;
@@ -263,7 +261,7 @@ $navigation-height: 3rem;
     }
 
     .p-navigation__nav {
-      margin-right: -1rem;
+      margin-right: -$sph--large;
       max-height: calc(100vh - 3rem);
       width: auto;
 
@@ -271,8 +269,8 @@ $navigation-height: 3rem;
         width: 100%;
 
         & > .p-navigation__item--dropdown-toggle > .p-navigation__link {
-          padding-left: $row-margin-small;
-          padding-right: 2rem;
+          padding-left: $sph--small;
+          padding-right: calc($sph--large * 2);
 
           &::before {
             left: $row-margin-small;
@@ -281,10 +279,10 @@ $navigation-height: 3rem;
 
         @media (max-width: $breakpoint-navigation-threshold - 1) {
           .p-navigation__link {
-            padding-left: calc(1.5rem + $row-margin-medium);
+            padding-left: calc($sph--x-large + $row-margin-medium);
 
             &::before {
-              left: calc(1.5rem + $row-margin-medium);
+              left: calc($sph--x-large + $row-margin-medium);
             }
 
             &.js-back::after {
@@ -328,20 +326,20 @@ $navigation-height: 3rem;
           }
 
           .p-navigation__dropdown-item {
-            padding-left: calc(1.5rem + $row-margin-medium);
+            padding-left: calc($sph--x-large + $row-margin-medium);
 
             &::before {
-              left: calc(1.5rem + $row-margin-medium);
+              left: calc($sph--x-large + $row-margin-medium);
             }
           }
         }
 
         @media (max-width: $breakpoint-medium) {
           .p-navigation__link {
-            padding-left: calc(1.5rem + $row-margin-small);
+            padding-left: calc($sph--x-large + $row-margin-small);
 
             &::before {
-              left: calc(1.5rem + $row-margin-small);
+              left: calc($sph--x-large + $row-margin-small);
             }
 
             &.js-back::after {
@@ -358,10 +356,10 @@ $navigation-height: 3rem;
           }
 
           .p-navigation__dropdown-item {
-            padding-left: calc(1.5rem + $row-margin-small);
+            padding-left: calc($sph--x-large + $row-margin-small);
 
             &::before {
-              left: calc(1.5rem + $row-margin-small);
+              left: calc($sph--x-large + $row-margin-small);
             }
           }
         }
@@ -463,10 +461,10 @@ $navigation-height: 3rem;
     .p-navigation__tagged-logo {
       .p-navigation__link {
         padding-left: 0;
-        padding-top: 0.5rem;
+        padding-top: $spv--small;
 
         @media (max-width: $breakpoint-navigation-threshold - 1) {
-          padding-top: 0.75rem;
+          padding-top: $spv--medium;
         }
       }
     }
@@ -480,17 +478,17 @@ $navigation-height: 3rem;
     @media (min-width: $breakpoint-navigation-threshold - 1) {
       .p-navigation__link span {
         display: initial;
-        padding-right: 0.5rem;
+        padding-right: $sph--small;
       }
 
       .p-navigation__link::after {
-        top: 0.5rem;
+        top: $spv--small;
       }
     }
 
     @media (max-width: $breakpoint-navigation-threshold - 1) {
       .p-navigation__link::after {
-        top: 1rem;
+        top: $spv--large;
       }
     }
 
@@ -500,8 +498,8 @@ $navigation-height: 3rem;
       }
 
       .js-menu-button.p-navigation__link {
-        padding-left: 1rem;
-        padding-right: 1rem;
+        padding-left: $sph--large;
+        padding-right: $sph--large;
       }
     }
 
@@ -518,7 +516,7 @@ $navigation-height: 3rem;
         font-size: 0.875rem;
         font-weight: 300;
         line-height: 1rem;
-        padding: 0.5rem 2rem 0.5rem 1rem;
+        padding: $spv--small 2rem $spv--small $sph--large;
         transition: none;
       }
 
@@ -566,7 +564,7 @@ $navigation-height: 3rem;
 
       .p-navigation__item--dropdown-toggle {
         &::after {
-          top: 0.5rem;
+          top: $spv--small;
         }
 
         &.is-selected {
@@ -578,7 +576,7 @@ $navigation-height: 3rem;
 
           .p-navigation__link {
             color: $color-x-light;
-            padding-left: 1rem;
+            padding-left: $sph--large;
           }
 
           .p-navigation__link::before {
@@ -680,11 +678,11 @@ $navigation-height: 3rem;
 
     h2 {
       color: $color-light;
-      padding-left: 1.5rem;
+      padding-left: $sph--x-large;
     }
 
     .p-side-navigation {
-      padding-top: 1rem;
+      padding-top: $spv--large;
     }
 
     .dropdown-window__tab-panel {

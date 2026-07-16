@@ -30,7 +30,7 @@ class TestRoutes(VCRTestCase):
                 "X-Discourse-Username",
                 "Api-Username",
             ],
-            "filter_query_parameters": ["key"],
+            "filter_query_parameters": ["key", "api_key", "api_username"],
         }
 
     def setUp(self):

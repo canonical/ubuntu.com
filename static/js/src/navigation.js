@@ -416,11 +416,13 @@ function fetchDropdown(url, id) {
         this.responseText,
         ".dropdown-content-mobile",
       );
-      mobileContainer.appendChild(mobileContent);
+      if (mobileContent) {
+        mobileContainer.appendChild(mobileContent);
+      }
 
-      const targetDropdowns = mobileContent.querySelectorAll(
-        "ul.p-navigation__dropdown",
-      );
+      const targetDropdowns = mobileContent
+        ? mobileContent.querySelectorAll("ul.p-navigation__dropdown")
+        : [];
       dropdowns = [...dropdowns, ...targetDropdowns];
 
       const activeCTAs = mobileContainer.querySelectorAll("a.is-active");
@@ -712,8 +714,10 @@ function closeMobileDropdown() {
     if (dropdown.classList.contains("is-active")) {
       toggleIsActiveState(dropdown, false);
       const listItem = dropdown.querySelector("ul.p-navigation__dropdown");
-      listItem.setAttribute("aria-hidden", true);
-      toggleIsActiveState(listItem, false);
+      if (listItem) {
+        listItem.setAttribute("aria-hidden", true);
+        toggleIsActiveState(listItem, false);
+      }
     }
   });
 }
@@ -766,12 +770,14 @@ function toggleSearch(e) {
 
 function openSearch(e) {
   e.preventDefault();
-  const searchInput = navigation.querySelector(".p-search-box__input");
+  const searchInput =
+    navigation.querySelector(".p-search-box__input:not(.u-hide)") ||
+    navigation.querySelector(".p-search-box__input");
   Array.from(searchButtons).forEach((searchButton) => {
     searchButton.setAttribute("aria-pressed", true);
   });
   addClassesToElements([navigation], ["has-search-open"]);
-  searchInput.focus();
+  searchInput?.focus();
   document.addEventListener("keyup", escKeyPressHandler);
 }
 
