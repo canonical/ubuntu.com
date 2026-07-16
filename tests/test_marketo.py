@@ -388,8 +388,6 @@ class TestMarketoSubmit(unittest.TestCase):
         self.assertEqual(kwargs["pattern"], "etc/passwd")
         self.assertEqual(http_response.status_code, 302)
         self.assertIn("/thank-you", http_response.headers["Location"])
-        self.assertEqual(http_response.status_code, 302)
-        self.assertIn("/thank-you", http_response.headers["Location"])
 
     def test_enrichment_succeeds_payload_skipped_single_alert(self):
         """
