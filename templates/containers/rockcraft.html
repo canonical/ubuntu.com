@@ -24,7 +24,7 @@
 {% block content %}
   {% call(slot) vf_hero(
     title_text='Rockcraft',
-    subtitle_text='A rock solid foundation for crafting containers',
+    subtitle_text='A rock solid foundation <br/>for crafting containers',
     layout='50/50',
     blocks=[
       {
@@ -153,11 +153,19 @@
       "bullet_type": "number",
       "items": [
           {
-            "title_text": "a. Initialize (without extension)",
             "contents": [
+
+              {
+                "type": "description",
+                "item": {
+                  "type": "text",
+                  "content": "<h3 class=\"p-heading--5 u-no-padding\">a. Initialize (without extension)</h3>"
+                }
+              },
               {
                 "type": "code-block",
                 "item": {
+                  "is_code_snippet": true,
                   "content": "rockcraft init"
                 }
               },
@@ -190,6 +198,7 @@
               {
                 "type": "code-block",
                 "item": {
+                  "is_code_snippet": true,
                   "content": "rockcraft init --profile spring-boot-framework"
                 }
               },
@@ -219,6 +228,7 @@
               {
                 "type": "code-block",
                 "item": {
+                  "is_code_snippet": true,
                   "content": "
                     # Metadata section
                     name: hello
@@ -269,6 +279,7 @@
               {
                 "type": "code-block",
                 "item": {
+                  "is_code_snippet": true,
                   "content": "rockcraft pack"
                 }
               },
@@ -298,6 +309,7 @@
               {
                 "type": "code-block",
                 "item": {
+                  "is_code_snippet": true,
                   "content": "
                     rockcraft.skopeo --insecure-policy copy
                     oci-archive:&lt;your_rock_file.rock&gt;
@@ -457,7 +469,7 @@
       },
       {
         "title_text": "12-factor app ready",
-        "image_html":  '<img src="https://assets.ubuntu.com/v1/d7371d84-updated_web_and_mobile_applications.png"
+        "image_html":  '<img src="https://assets.ubuntu.com/v1/d1170bef-equal_heights_4.png"
         class="p-image-container__image"
         width="568"
         height="853"
