@@ -118,6 +118,7 @@ from webapp.views import (
     BlogRedirects,
     BlogSitemapIndex,
     BlogSitemapPage,
+    RoboticsDocsSitemapIndex,
     account_query,
     append_utms_cookie_to_canonical_links,
     appliance_install,
@@ -1335,6 +1336,10 @@ app.add_url_rule(
     methods=["GET", "POST"],
 )
 
+app.add_url_rule(
+    "/robotics/docs/sitemap.xml",
+    view_func=RoboticsDocsSitemapIndex.as_view("robotics_docs_sitemap"),
+)
 
 # Create endpoints for testing environment only
 if app.config.get("TESTING") or os.getenv("TESTING") or app.debug:

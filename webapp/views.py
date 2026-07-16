@@ -39,6 +39,7 @@ from requests import Session
 from requests.exceptions import HTTPError, RequestException
 from werkzeug.exceptions import BadRequest, ServiceUnavailable
 from canonicalwebteam.flask_base.env import get_flask_env
+from flask.views import View
 
 # Local
 from webapp.login import user_info
@@ -936,6 +937,29 @@ class BlogSitemapPage(BlogView):
 
         xml = response.text.replace(
             "https://admin.insights.ubuntu.com/", "https://ubuntu.com/blog/"
+        )
+        xml = re.sub(r"<\?xml-stylesheet.*\?>", "", xml)
+
+        response = flask.make_response(xml)
+        response.headers["Content-Type"] = "application/xml"
+        return response
+
+
+class RoboticsDocsSitemapIndex(View):
+    def dispatch_request(self):
+        try:
+            response = session.get(
+                "https://canonical-robotics.readthedocs-hosted.com/"
+                "en/latest/sitemap.xml",
+                timeout=10,
+            )
+            response.raise_for_status()
+        except RequestException:
+            return flask.abort(502)
+
+        xml = response.text.replace(
+            "https://canonical-robotics.readthedocs-hosted.com/en/latest/",
+            "https://ubuntu.com/robotics/docs/",
         )
         xml = re.sub(r"<\?xml-stylesheet.*\?>", "", xml)
 
