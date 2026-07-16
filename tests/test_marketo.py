@@ -326,12 +326,13 @@ class TestMarketoSubmit(unittest.TestCase):
         self.assertEqual(http_response.status_code, 302)
         self.assertIn("contact-form-fail", http_response.headers["Location"])
 
-    def test_injection_attempt_blocked_without_marketo_call(self):
+    def test_html_injection_attempt_blocked_without_marketo_call(self):
         """
-        A submission whose data contains a script/command injection probe
-        is never forwarded to Marketo. The requester is redirected to the
-        thank-you page as if the submission succeeded, but the attempt is
-        still reported to Sentry for visibility.
+        A submission containing HTML markup (detected structurally via
+        nh3, regardless of the exact tag/attribute used) is never forwarded
+        to Marketo. The requester is redirected to the thank-you page as if
+        the submission succeeded, but the attempt is still reported to
+        Sentry for visibility.
         """
         with patch(
             "webapp.views.marketo_api.submit_form"
@@ -355,7 +356,38 @@ class TestMarketoSubmit(unittest.TestCase):
             "Marketo form submission blocked: injection attempt detected",
         )
         self.assertEqual(kwargs["field"], "Comments_from_lead__c")
-        self.assertEqual(kwargs["pattern"], "onload")
+        self.assertEqual(kwargs["pattern"], "html-injection")
+        self.assertEqual(http_response.status_code, 302)
+        self.assertIn("/thank-you", http_response.headers["Location"])
+
+    def test_non_html_injection_attempt_blocked_without_marketo_call(self):
+        """
+        A submission containing a non-HTML injection signature (path
+        traversal, command injection, scanner-domain fingerprint, etc.) is
+        matched against the literal MARKETO_INJECTION_PATTERNS list and
+        blocked the same way, since nh3 has no HTML to detect there.
+        """
+        with patch(
+            "webapp.views.marketo_api.submit_form"
+        ) as mock_submit, patch(
+            "webapp.views.marketo_sentry_report"
+        ) as mock_sentry:
+            http_response = self.client.post(
+                "/marketo/submit",
+                data={
+                    "formid": "1234",
+                    "email": "test@example.com",
+                    "firstName": "Test",
+                    "Comments_from_lead__c": "../../../etc/passwd",
+                },
+            )
+        mock_submit.assert_not_called()
+        self.assertEqual(mock_sentry.call_count, 1)
+        _, kwargs = mock_sentry.call_args
+        self.assertEqual(kwargs["field"], "Comments_from_lead__c")
+        self.assertEqual(kwargs["pattern"], "etc/passwd")
+        self.assertEqual(http_response.status_code, 302)
+        self.assertIn("/thank-you", http_response.headers["Location"])
         self.assertEqual(http_response.status_code, 302)
         self.assertIn("/thank-you", http_response.headers["Location"])
 

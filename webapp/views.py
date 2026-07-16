@@ -23,6 +23,7 @@ import dateutil
 import feedparser
 import flask
 import jinja2
+import nh3
 import yaml
 from bs4 import BeautifulSoup
 from canonicalwebteam.discourse import (
@@ -1032,11 +1033,16 @@ def enrich_acquisition_url(acquisition_url, utm_dict, approved_utms):
 def find_injection_attempt(form_fields):
     """
     Return the (field, pattern) of the first submitted field value that
-    contains a substring associated with script/command injection probes
-    (path traversal, XSS, SSRF, SQLi, etc.) rather than genuine lead data,
-    or None if no match is found.
+    looks like a script/command injection probe rather than genuine lead
+    data, or None if no match is found. Values containing HTML markup are
+    caught structurally via nh3 (robust against tag/attribute/casing
+    variation); everything else (path traversal, command/header injection,
+    known scanner domains, etc.) is matched against the literal substrings
+    in MARKETO_INJECTION_PATTERNS.
     """
     for field, value in form_fields.items():
+        if nh3.is_html(value):
+            return field, "html-injection"
         lowered = value.lower()
         for pattern in MARKETO_INJECTION_PATTERNS:
             if pattern in lowered:

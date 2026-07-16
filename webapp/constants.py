@@ -16,17 +16,15 @@ ENGAGE_UI_TRANSLATIONS = {
 }
 
 # Substrings that indicate a Marketo form submission is a script/command
-# injection attempt (path traversal, XSS, SSRF, SQLi probes, etc.) rather
-# than a genuine lead. Matched case-insensitively against every submitted
-# field value in webapp.views.marketo_submit.
+# injection attempt (path traversal, SSRF, command/header injection probes,
+# etc.) rather than a genuine lead. Matched case-insensitively against every
+# submitted field value in webapp.views.marketo_submit. HTML/XSS payloads
+# are detected separately and more robustly via nh3.is_html().
 MARKETO_INJECTION_PATTERNS = [
     "etc/passwd",
     "%2fetc%2f",
     "../",
     "..%2f",
-    "script",
-    "onload",
-    "alert(",
     "md5(",
     "nslookup",
     "curl",
@@ -35,7 +33,6 @@ MARKETO_INJECTION_PATTERNS = [
     "to@example.com",
     "%2527",
     "%2522",
-    "<svg",
     # Known automated-scanner tokens/domains (blind XSS callbacks, scanner
     # fingerprints) reported against public Marketo forms.
     "bxss.me",
