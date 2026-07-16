@@ -15,7 +15,6 @@ import dateutil.parser
 from slugify import slugify
 from canonicalwebteam.http import CachedSession
 
-
 logger = logging.getLogger(__name__)
 
 api_session = CachedSession(fallback_cache_duration=3600)
