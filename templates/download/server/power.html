@@ -47,14 +47,14 @@
             <p>
               <a class="p-button--positive"
                  href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.lts.short_version }}/release/ubuntu-{{ releases_yaml.lts.full_version }}-live-server-ppc64el.iso"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases_yaml.lts.short_version }}', 'eventValue' : undefined });">
+                 data-ga-category="Download" data-ga-action="POWER server" data-ga-label="{{ releases_yaml.lts.short_version }}">
                 Download {{ releases_yaml.lts.full_version }} LTS
               </a>
               {% if releases_yaml.latest.short_version > releases_yaml.lts.short_version %}
                 &nbsp;&nbsp;
                 <a class="p-button"
                    href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.latest.short_version }}/release/ubuntu-{{ releases_yaml.latest.full_version }}-live-server-ppc64el.iso"
-                   onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases_yaml.latest.short_version }}', 'eventValue' : undefined });">
+                   data-ga-category="Download" data-ga-action="POWER server" data-ga-label="{{ releases_yaml.latest.short_version }}">
                   Download {{ releases_yaml.latest.full_version }}
                 </a>
               {% endif %}

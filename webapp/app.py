@@ -22,6 +22,7 @@ from sentry_sdk.integrations.flask import FlaskIntegration
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
     DiscourseAPI,
+    ResponseCache,
     DocParser,
     Docs,
     EngagePages,
@@ -42,6 +43,7 @@ from canonicalwebteam.form_generator import FormGenerator
 from canonicalwebteam.markdown_response import MarkdownResponse
 
 from webapp.certified.views import certified_routes
+from webapp.constants import CACHE_TTL
 from webapp.handlers import init_handlers
 from webapp.login import login_handler, logout, user_info
 from webapp.decorators import login_required
@@ -116,6 +118,7 @@ from webapp.views import (
     BlogRedirects,
     BlogSitemapIndex,
     BlogSitemapPage,
+    RoboticsDocsSitemapIndex,
     account_query,
     append_utms_cookie_to_canonical_links,
     appliance_install,
@@ -125,6 +128,7 @@ from webapp.views import (
     process_active_vulnerabilities,
     process_local_communities,
     process_community_events,
+    community_landing_page,
     build_ubuntu_weekly_newsletter,
     build_engage_index,
     build_engage_page,
@@ -219,17 +223,15 @@ app.jinja_loader = loader
 
 session = requests.Session()
 charmhub_session = requests.Session()
+ubuntu_discourse_cache = ResponseCache(ttl=CACHE_TTL)
 
-# TEST BRANCH: caching and the circuit breaker are disabled (cache=None)
-# so every request hits Discourse directly and every 429 shows in the
-# logs. Do not merge — revert to cache=ResponseCache(...) after testing.
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
     session=session,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
-    cache=None,  # caching disabled for raw-log testing
+    cache=ubuntu_discourse_cache,
 )
 
 charmhub_discourse_api = DiscourseAPI(
@@ -238,7 +240,7 @@ charmhub_discourse_api = DiscourseAPI(
     api_key=CHARMHUB_DISCOURSE_API_KEY,
     api_username=CHARMHUB_DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
-    cache=None,  # caching disabled for raw-log testing
+    cache=ResponseCache(ttl=CACHE_TTL),
 )
 
 # Anonymous reads for public Docs: no key means these GET /t/{id}.json
@@ -709,7 +711,7 @@ engage_pages_discourse_api = DiscourseAPI(
     get_topics_query_id=14,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
-    cache=None,  # caching disabled for raw-log testing
+    cache=ubuntu_discourse_cache,
 )
 takeovers_path = "/takeovers"
 discourse_takeovers = EngagePages(
@@ -889,17 +891,11 @@ app.add_url_rule(
     view_func=process_community_events(community_events),
 )
 
-
-def community_static_landing_page():
-    # Static version of /community. The Community events, Circles and
-    # newsletter sections are baked into community/index-static.html as a
-    # snapshot, so no Discourse fetch is needed to render the page.
-    return flask.render_template("community/index-static.html")
-
-
 app.add_url_rule(
     "/community",
-    view_func=community_static_landing_page,
+    view_func=community_landing_page(
+        community_events, local_communities, ubuntu_weekly_newsletter
+    ),
 )
 
 app.add_url_rule(
@@ -1340,6 +1336,10 @@ app.add_url_rule(
     methods=["GET", "POST"],
 )
 
+app.add_url_rule(
+    "/robotics/docs/sitemap.xml",
+    view_func=RoboticsDocsSitemapIndex.as_view("robotics_docs_sitemap"),
+)
 
 # Create endpoints for testing environment only
 if app.config.get("TESTING") or os.getenv("TESTING") or app.debug:

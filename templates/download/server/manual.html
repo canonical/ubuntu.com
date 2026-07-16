@@ -87,7 +87,7 @@
             <div class="col-3">
               <a class="p-button--positive"
                  href="/download/server/thank-you?version={{ releases_yaml.lts.full_version }}&amp;architecture=amd64&amp;lts=true"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases_yaml.lts.full_version }}', 'eventValue' : undefined });">Download
+                 data-ga-category="Server download" data-ga-action="Select option" data-ga-label="{{ releases_yaml.lts.full_version }}">Download
               </a>
               {% if releases_yaml.lts.server_iso_size %}
                 <span class="u-text--muted">{{ releases_yaml.lts.server_iso_size }}</span>
@@ -184,7 +184,7 @@
           <ol class="p-list--divided">
             <li class="p-list__item">Download the ISO image</li>
             <li class="p-list__item">
-              Create a bootable USB flash drive with <a href="https://documentation.ubuntu.com/desktop/en/latest/how-to/create-a-bootable-usb-stick/">an image writer</a>
+              Create a bootable USB flash drive with <a href="https://ubuntu.com/desktop/docs/en/latest/how-to/create-a-bootable-usb-stick/">an image writer</a>
             </li>
             <li class="p-list__item">Boot from the USB flash drive</li>
           </ol>
@@ -224,11 +224,11 @@
               <hr class="p-rule" />
               <a class="p-button"
                  href="/download/server/thank-you?version={{ releases_yaml.previous_lts.full_version }}&amp;architecture=amd64&amp;lts=true"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases_yaml.previous_lts.full_version }}', 'eventValue' : undefined });">Download {{ releases_yaml.previous_lts.full_version }} LTS
+                 data-ga-category="Server download" data-ga-action="Select option" data-ga-label="{{ releases_yaml.previous_lts.full_version }}">Download {{ releases_yaml.previous_lts.full_version }} LTS
               </a>
               <a class="p-button"
                  href="/download/server/thank-you?version={{ releases_yaml.previous_previous_lts.full_version }}&amp;architecture=amd64&amp;lts=true"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases_yaml.previous_previous_lts.full_version }}', 'eventValue' : undefined });">Download {{ releases_yaml.previous_previous_lts.full_version }} LTS
+                 data-ga-category="Server download" data-ga-action="Select option" data-ga-label="{{ releases_yaml.previous_previous_lts.full_version }}">Download {{ releases_yaml.previous_previous_lts.full_version }} LTS
               </a>
             </div>
           </div>
@@ -480,9 +480,9 @@
     </template>
   </section>
 
-  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
-  <script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script nonce="{{ csp_nonce }}">
     canonicalLatestNews.fetchLatestNews({
       articlesContainerSelector: "#ubuntu-server-latest",
       articleTemplateSelector: "#ubuntu-server-template",

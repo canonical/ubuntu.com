@@ -13,13 +13,13 @@
   </section>
 </div>
 
-<script
+<script nonce="{{ csp_nonce }}"
   src="{{ versioned_static('js/dist/blender.js') }}"
   type="module"
   defer
 ></script>
 
-<script>
+<script nonce="{{ csp_nonce }}">
   window.blenderProductList = {
     {% for listing_id, listing in product_listings.items() %}
       "{{ listing.product.id }}-{{ listing.period }}": {

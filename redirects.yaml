@@ -1161,6 +1161,7 @@ tutorials/electron-kiosk/?: https://canonical.com/mir/docs/make-a-secure-ubuntu-
 tutorials/get-started-with-edgex-as-snaps?: /internet-of-things
 tutorials/how-to-install-adguard-home-raspberry-pi/?: /appliance/adguard/raspberry-pi
 tutorials/how-to-use-the-nextcloud-ubuntu-appliance-with-collabora-online-on-intel-nuc/?: /appliance/nextcloud/intel-nuc
+tutorials/blocking-software-package-installation-with-landscape/?: /landscape/docs
 
 # Image builder
 build: /core/build
@@ -1250,6 +1251,7 @@ robotics/docs/application-orchestration/?: "https://canonical-robotics.readthedo
 robotics/docs/vcstool-and-rosinstall-file/?: "https://canonical-robotics.readthedocs-hosted.com/en/latest/explanations/snaps/vcstool-and-rosinstall-file/"
 robotics/docs/debug-the-build-of-a-snap/?: "https://canonical-robotics.readthedocs-hosted.com/en/latest/explanations/snaps/debug-the-build-of-a-snap/"
 robotics/docs/debug-a-snap-application/?: "https://canonical-robotics.readthedocs-hosted.com/en/latest/explanations/snaps/debug-a-snap-application/"
+robotics/docs/(?!sitemap\.xml)(?P<path>.*)/?: "https://canonical-robotics.readthedocs-hosted.com/en/latest/{path}"
 
 # Credentials redirects
 credentials/?: "https://canonical.com/academy"
@@ -1295,7 +1297,7 @@ resolute/mini.iso: "https://cdimage.ubuntu.com/ubuntu-mini-iso/releases/resolute
 AMI/MiniISO: "https://cdimage.ubuntu.com/ubuntu-mini-iso/releases/noble/release/ubuntu-mini-iso-24.04.4-mini-iso-amd64.iso"
 
 # Redirects for TPM/FDE documentation
-desktop/tpm-fde-requirements/?: "https://documentation.ubuntu.com/desktop/en/latest/reference/hardware-backed-disk-encryption-requirements/"
+desktop/tpm-fde-requirements/?: "https://ubuntu.com/desktop/docs/en/latest/reference/hardware-backed-disk-encryption-requirements/"
 
 # Hiring blog redirect
 blog/how-we-hire-at-canonical: https://canonical.com/careers/hiring-process

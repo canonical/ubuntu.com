@@ -40,6 +40,7 @@ from requests import Session
 from requests.exceptions import HTTPError, RequestException
 from werkzeug.exceptions import BadRequest, ServiceUnavailable
 from canonicalwebteam.flask_base.env import get_flask_env
+from flask.views import View
 
 # Local
 from webapp.login import user_info
@@ -766,7 +767,7 @@ def openstack_install():
     discourse_api = DiscourseAPI(
         base_url="https://discourse.ubuntu.com/",
         session=session,
-        cache=None,  # caching disabled for raw-log testing
+        cache=None,
     )
     openstack_install_parser = DocParser(
         api=discourse_api,
@@ -945,6 +946,29 @@ class BlogSitemapPage(BlogView):
         return response
 
 
+class RoboticsDocsSitemapIndex(View):
+    def dispatch_request(self):
+        try:
+            response = session.get(
+                "https://canonical-robotics.readthedocs-hosted.com/"
+                "en/latest/sitemap.xml",
+                timeout=10,
+            )
+            response.raise_for_status()
+        except RequestException:
+            return flask.abort(502)
+
+        xml = response.text.replace(
+            "https://canonical-robotics.readthedocs-hosted.com/en/latest/",
+            "https://ubuntu.com/robotics/docs/",
+        )
+        xml = re.sub(r"<\?xml-stylesheet.*\?>", "", xml)
+
+        response = flask.make_response(xml)
+        response.headers["Content-Type"] = "application/xml"
+        return response
+
+
 def sitemap_index():
     xml_sitemap = flask.render_template("sitemap_index.xml")
     response = flask.make_response(xml_sitemap)
@@ -1048,6 +1072,46 @@ def find_injection_attempt(form_fields):
             if pattern in lowered:
                 return field, pattern
     return None
+# Cache Marketo form field definitions to avoid fetching them from the
+# Marketo asset API on every submission. Keyed by form id, each entry stores
+# a (expiry_timestamp, required_fields) tuple.
+_marketo_required_fields_cache = {}
+_MARKETO_REQUIRED_FIELDS_TTL = 6 * 60 * 60  # 6 hours
+
+
+def get_marketo_required_fields(form_id):
+    """Return a ``{field_id: label}`` dict of a Marketo form's required
+    fields.
+    """
+    cache_key = str(form_id)
+    cached = _marketo_required_fields_cache.get(cache_key)
+    if cached and cached[0] > time.time():
+        return cached[1]
+
+    try:
+        data = marketo_api.get_form_fields(form_id).json()
+    except Exception:
+        marketo_sentry_report(
+            "Failed to fetch Marketo form field definitions",
+            exception=True,
+            form_id=form_id,
+        )
+        return cached[1] if cached else {}
+
+    required_fields = {}
+    for field in data.get("result", []):
+        if field.get("required"):
+            field_id = field.get("id")
+            if field_id:
+                label = field.get("label") or field_id
+                # Marketo labels end with a colon
+                required_fields[field_id] = label.rstrip(": ").strip()
+
+    _marketo_required_fields_cache[cache_key] = (
+        time.time() + _MARKETO_REQUIRED_FIELDS_TTL,
+        required_fields,
+    )
+    return required_fields
 
 
 def marketo_submit():
@@ -1116,6 +1180,35 @@ def marketo_submit():
     visitor_data = {
         "userAgentString": flask.request.headers.get("User-Agent"),
     }
+    referrer = (
+        flask.request.referrer
+        if flask.request.referrer
+        else "https://ubuntu.com"
+    )
+
+    # Reject submissions missing Marketo required fields.
+    # Calls cached Marketo API to get required fields for the form ID
+    # check if any fields are missing.
+    form_id = form_fields.get("formid")
+    if form_id:
+        required_fields = get_marketo_required_fields(form_id)
+        form_fields_lower = {
+            key.lower(): value for key, value in form_fields.items()
+        }
+        missing_required = [
+            label
+            for field, label in required_fields.items()
+            if not form_fields_lower.get(field.lower(), "").strip()
+        ]
+        if missing_required:
+            flask.flash(
+                "There was a problem submitting your form. Please complete "
+                "the following required fields: "
+                f"{', '.join(missing_required)}.",
+                "contact-form-fail",
+            )
+            return flask.redirect(f"{referrer}#contact-form-fail")
+
     client_ip = flask.request.headers.get(
         "X-Real-IP", flask.request.remote_addr
     )

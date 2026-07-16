@@ -1,4 +1,4 @@
-<script>
+<script nonce="{{ csp_nonce }}">
   const userIDCookie = document.cookie.match(new RegExp("(^| )" + "user_id" + "=([^;]+)"));
   if (userIDCookie !== null) {
     let idValue = userIDCookie[2];
@@ -10,7 +10,7 @@
   }
 </script>
 <!-- Google Tag Manager -->
-<script>
+<script nonce="{{ csp_nonce }}">
   document.addEventListener('DOMContentLoaded', () => {
     /** init gtm after 2 seconds - can be adjusted */
     setTimeout(initGTM, 2000);

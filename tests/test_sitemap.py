@@ -1,7 +1,7 @@
 import unittest
 import re
 import os
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 import xml.etree.ElementTree as ET
 from webapp.app import app
 from webapp.views import build_sitemap_tree
@@ -168,6 +168,46 @@ class TestSitemap(unittest.TestCase):
         response = self.client.get("/sitemap_tree.xml")
         self.assertEqual(response.status_code, 503)
         mock_generate.assert_called_once()
+
+    @patch("webapp.views.session.get")
+    def test_robotics_docs_sitemap(self, mock_get):
+        """
+        Check that /robotics/docs/sitemap.xml rewrites the upstream
+        Read the Docs URLs, strips the stylesheet declaration and returns
+        a valid XML response.
+        """
+        upstream_xml = (
+            '<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>\n'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+            "<url><loc>"
+            "https://canonical-robotics.readthedocs-hosted.com/en/latest/"
+            "getting-started.html"
+            "</loc></url>"
+            "</urlset>"
+        )
+        mock_response = MagicMock()
+        mock_response.text = upstream_xml
+        mock_response.raise_for_status.return_value = None
+        mock_get.return_value = mock_response
+
+        response = self.client.get("/robotics/docs/sitemap.xml")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.headers["Content-Type"], "application/xml")
+
+        body = response.data.decode("utf-8")
+        self.assertIn(
+            "https://ubuntu.com/robotics/docs/getting-started.html", body
+        )
+        self.assertNotIn("canonical-robotics.readthedocs-hosted.com", body)
+        self.assertNotIn("xml-stylesheet", body)
+
+        mock_get.assert_called_once_with(
+            "https://canonical-robotics.readthedocs-hosted.com/"
+            "en/latest/sitemap.xml",
+            timeout=10,
+        )
 
 
 if __name__ == "__main__":

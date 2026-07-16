@@ -1,3 +1,4 @@
+import secrets
 from typing import List
 
 import flask
@@ -5,19 +6,21 @@ from canonicalwebteam import image_template
 from canonicalwebteam.discourse import RateLimitedError
 from slugify import slugify
 
-from webapp.constants import CSP
+from webapp.constants import CSP, NONCED_DIRECTIVES
 from webapp.context import (
     current_year,
     date_has_passed,
     descending_years,
     format_date,
     format_to_id,
+    get_careers_role_counts,
     get_json_feed,
     get_navigation,
     get_secondary_navigation,
     modify_query,
     month_name,
     months_list,
+    products,
     releases,
     schedule_banner,
     sort_by_key_and_ordered_list,
@@ -37,7 +40,7 @@ from canonicalwebteam.flask_base.env import get_flask_env
 
 # Cache Discourse-backed pages longer than the 60s flask-base default;
 # our after_request runs first so this max-age wins.
-LONG_CACHE_SECONDS = 3600  # 1 hour
+LONG_CACHE_SECONDS = 10800  # 3 hours
 
 # Community pages degrade to an empty 200 on Discourse error, so cache
 # them shorter to avoid freezing a degraded page (docs 503 instead).
@@ -59,6 +62,10 @@ LONG_CACHE_EXACT = frozenset(
         "/community/circles",
         "/community/uwn",
         "/openstack/install",
+        "/ceph/docs",
+        "/openstack/docs",
+        "/security/livepatch/docs",
+        "/security/certifications/docs",
     }
 )
 
@@ -68,6 +75,10 @@ LONG_CACHE_PREFIXES = (
     "/tutorials/",
     "/community/docs/",
     "/community/uwn/",
+    "/ceph/docs/",
+    "/openstack/docs/",
+    "/security/livepatch/docs/",
+    "/security/certifications/docs/",
 )
 
 
@@ -87,7 +98,7 @@ def init_handlers(app):
     @app.after_request
     def cache_headers(response):
         """
-        Set cache expiry to 60 seconds for homepage and blog page
+        Adjust Cache-Control for specific routes
         """
 
         disable_cache_on = (
@@ -113,6 +124,9 @@ def init_handlers(app):
             and flask.request.method == "GET"
             and not flask.request.args.get("preview")
             and not path.endswith("/thank-you")
+            # Docs blueprints expose Google-backed search under their
+            # prefix (e.g. /ceph/docs/search); those are not Discourse.
+            and not path.endswith("/search")
             and not response.cache_control.no_store
             and not response.cache_control.no_cache
             and not response.cache_control.private
@@ -256,6 +270,7 @@ def init_handlers(app):
                 "pk_live_68aXqowUeX574aGsVck8eiIE",
             ),
             "product": flask.request.args.get("product", ""),
+            "products_yaml": products(),
             "request": flask.request,
             "releases_yaml": releases(),
             "user_info": user_info(flask.session),
@@ -272,6 +287,7 @@ def init_handlers(app):
             "get_navigation": get_navigation,
             "split_list": split_list,
             "format_to_id": format_to_id,
+            "get_careers_role_counts": get_careers_role_counts,
         }
 
     def get_countries_list() -> List[dict]:
@@ -296,6 +312,14 @@ def init_handlers(app):
             "get_countries_list": get_countries_list,
         }
 
+    @app.before_request
+    def set_csp_nonce():
+        flask.g.csp_nonce = secrets.token_urlsafe(16)
+
+    @app.context_processor
+    def inject_csp_nonce():
+        return {"csp_nonce": getattr(flask.g, "csp_nonce", "")}
+
     @app.after_request
     def add_headers(response):
         """
@@ -315,14 +339,20 @@ def init_handlers(app):
         - X-Robots-Tag: prevents search engines from indexing the page
         """
 
-        def get_csp_as_str(csp={}):
+        def get_csp_as_str(csp={}, nonce=None):
             csp_str = ""
             for key, values in csp.items():
-                csp_value = " ".join(values)
+                directive_values = list(values)
+                if nonce and key in NONCED_DIRECTIVES:
+                    directive_values.append(f"'nonce-{nonce}'")
+                csp_value = " ".join(directive_values)
                 csp_str += f"{key} {csp_value}; "
             return csp_str.strip()
 
-        response.headers["Content-Security-Policy"] = get_csp_as_str(CSP)
+        nonce = getattr(flask.g, "csp_nonce", None)
+        response.headers["Content-Security-Policy"] = get_csp_as_str(
+            CSP, nonce=nonce
+        )
 
         response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
         response.headers["Cross-Origin-Embedder-Policy"] = "unsafe-none"

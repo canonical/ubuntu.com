@@ -88,4 +88,57 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: params=%7B%22category_id%22%3A+%2251%22%2C+%22limit%22%3A+%2250%22%2C+%22offset%22%3A+%220%22%2C+%22keyword%22%3A+%22path%22%2C+%22value%22%3A+%22%2Fengage%2Fmicro-clouds%22%7D
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate, br
+      Content-Length:
+      - '176'
+      Content-Type:
+      - multipart/form-data;
+    method: POST
+    uri: https://discourse.ubuntu.com/admin/plugins/explorer/queries/16/run
+  response:
+    body:
+      string: "{\"errors\":[\"You\u2019ve performed this action too many times. Please
+        wait a few seconds before trying again.\"],\"error_type\":\"rate_limit\",\"extras\":{\"wait_seconds\":1,\"time_left\":\"a
+        few seconds\"}}"
+    headers:
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Thu, 09 Jul 2026 08:50:47 GMT
+      discourse-rate-limit-error-code:
+      - admin_api_key_rate_limit
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      retry-after:
+      - '1'
+      server:
+      - nginx/1.24.0 (Ubuntu)
+      set-cookie:
+      - DISCOURSE-K8S_AFFINITY=1783587048.459.1136.755741|078f402a49fdc959a550ab8a5dea4dd5;
+        Max-Age=3600; Path=/; Secure; HttpOnly; SameSite=Lax
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-permitted-cross-domain-policies:
+      - none
+      x-request-id:
+      - 089c3786332dcedc4c6f16049ff1833c
+      x-runtime:
+      - '0.032748'
+      x-xss-protection:
+      - '0'
+    status:
+      code: 429
+      message: Too Many Requests
 version: 1

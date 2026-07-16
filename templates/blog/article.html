@@ -30,35 +30,35 @@
   {% if article.group and article.group.id == 2100 %}
   <meta name="robots" content="noindex, follow" />
   {% endif %}
-  <script type="application/ld+json">
+  <script nonce="{{ csp_nonce }}" type="application/ld+json">
     {
-      "@context": "http://schema.org",
-      "@id": "https://ubuntu.com/#article",
+      "@context": "https://schema.org",
+      "@id": "{{ request.url }}",
       "@type": "Article",
-      "name": "{{ article.title.renderered|safe }}",
+      "name": "{{ article.title.rendered|safe }}",
       "headline": "{{ article.excerpt.raw }}",
       "author": {
         "@type": "Person",
         "name": "{{ article.author.name }}"
       },
       "datePublished": "{{ article.date_gmt }}",
-      {
-        %
-        if article.image and article.image.source_url %
-      }
+      "dateModified": "{{ article.modified_gmt }}",
+      {% if article.image and article.image.source_url %}
       "image": "{{ article.image.source_url }}",
-      {
-        %
-        endif %
-      }
+      {% endif %}
       "url": "{{ request.url }}",
       "publisher": {
         "@type": "Organization",
-        "name": "Ubuntu"
+        "@id": "https://ubuntu.com/#organization",
+        "name": "Ubuntu",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://assets.ubuntu.com/v1/c55060fd-COF%20android-chrome-512x512.png"
+        }
       }
     }
   </script>
-  <script src="{{ versioned_static('js/dist/prism.js') }}" defer></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/prism.js') }}" defer></script>
 {% endblock %}
 
 {% block content %}

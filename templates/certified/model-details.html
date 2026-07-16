@@ -197,7 +197,7 @@
     {% endwith %}
   {% endif %}
 
-  <script>
+  <script nonce="{{ csp_nonce }}">
     document.addEventListener('DOMContentLoaded', function() {
       const tabs = document.querySelectorAll('.p-tabs__link');
       const panels = document.querySelectorAll('[role="tabpanel"]');

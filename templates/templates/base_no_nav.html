@@ -48,7 +48,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="{{ versioned_static("css/styles.css") }}" />
         <link rel="stylesheet" type="text/css" media="print" href="{{ versioned_static("css/print.css") }}" />
 
-        <script>
+        <script nonce="{{ csp_nonce }}">
           var html = document.documentElement
           html.classList.replace("no-js", "js");
         </script>

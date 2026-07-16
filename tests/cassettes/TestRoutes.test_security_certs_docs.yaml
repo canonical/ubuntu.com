@@ -726,4 +726,729 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate, br
+    method: GET
+    uri: https://discourse.ubuntu.com/t/22810.json
+  response:
+    body:
+      string: '{"post_stream":{"posts":[{"id":61313,"name":"Carlos Wu Fei","username":"carkod","avatar_template":"/letter_avatar/carkod/{size}/5_341fea102a12413267ee9cca6a635b61.png","created_at":"2021-06-23T10:29:48.034Z","cooked":"\u003cp\u003eUbuntu
+        goes through several rigorous security certifications and programs and these
+        pages are dedicated to them. All certification artefacts are available with
+        an \u003ca href=\"https://ubuntu.com/pro\"\u003eUbuntu Pro subscription\u003c/a\u003e.\u003c/p\u003e\n\u003ch2\u003e\u003ca
+        name=\"p-61313-fips-140httpsdiscourseubuntucomtfips-for-ubuntu22814-1\" class=\"anchor\"
+        href=\"#p-61313-fips-140httpsdiscourseubuntucomtfips-for-ubuntu22814-1\"\u003e\u003c/a\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/fips-for-ubuntu/22814\"\u003eFIPS 140\u003c/a\u003e\u003c/h2\u003e\n\u003cp\u003eFederal
+        Information Processing Standards Publications (FIPS) are issued by the National
+        Institute of Standards and Technology (NIST). FIPS 140-2 specifies the security
+        requirements for cryptographic modules. These requirements address the areas
+        of secure design and implementation.\u003c/p\u003e\n\u003cp\u003eUbuntu LTS
+        releases starting with 16.04 (Xenial) come with FIPS validated cryptographic
+        packages, including the Linux kernel and OpenSSL. The full list of packages
+        and certificates \u003ca href=\"https://ubuntu.com/security/fips#modules\"\u003eis
+        available here\u003c/a\u003e.\u003c/p\u003e\n\u003cp\u003eFor more information
+        on FIPS certification on Ubuntu see the \u003ca href=\"https://discourse.ubuntu.com/t/fips-for-ubuntu/22814\"\u003eFIPS
+        Information and Installation Guide\u003c/a\u003e.\u003c/p\u003e\n\u003ch2\u003e\u003ca
+        name=\"p-61313-cishttpsdiscourseubuntucomtcustomizing-the-cis-profile26088-2\"
+        class=\"anchor\" href=\"#p-61313-cishttpsdiscourseubuntucomtcustomizing-the-cis-profile26088-2\"\u003e\u003c/a\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/customizing-the-cis-profile/26088\"\u003eCIS\u003c/a\u003e\u003c/h2\u003e\n\u003cp\u003eUbuntu
+        LTS releases starting with 16.04 (Xenial) have compliance benchmark documents
+        developed by the Center for Internet Security (CIS). Ubuntu with has developed
+        the \u003ca href=\"https://discourse.ubuntu.com/t/ubuntu-security-guide/26078\"\u003eUbuntu
+        Security Guide\u003c/a\u003e to automate hardening Ubuntu LTS systems based
+        off of the published CIS benchmarks.\u003c/p\u003e\n\u003cp\u003eFor more
+        information see\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\"https://discourse.ubuntu.com/t/cis-compliance/26084\"\u003eCIS
+        Compliance with Ubuntu Security Guide for Ubuntu 20.04 and later\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/cis-compliance-for-ubuntu/22818\"\u003eCIS
+        Compliance for Ubuntu 16.04 and 18.04\u003c/a\u003e.\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2\u003e\u003ca
+        name=\"p-61313-disa-stighttpsdiscourseubuntucomtdisa-stig-on-ubuntu26080-3\"
+        class=\"anchor\" href=\"#p-61313-disa-stighttpsdiscourseubuntucomtdisa-stig-on-ubuntu26080-3\"\u003e\u003c/a\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/disa-stig-on-ubuntu/26080\"\u003eDISA-STIG\u003c/a\u003e\u003c/h2\u003e\n\u003cp\u003eSecurity
+        Technical Implementation Guides (STIG) are developed by the Defense Information
+        System Agency (DISA) for the U.S. Department of Defense (DoD). Ubuntu with
+        \u003ca href=\"https://ubuntu.com/cloud/public-cloud\"\u003eUbuntu Pro\u003c/a\u003e
+        and \u003ca href=\"https://ubuntu.com/advantage\"\u003eUbuntu Advantage\u003c/a\u003e
+        have the necessary \u003ca href=\"https://ubuntu.com/security/fips\"\u003ecertifications\u003c/a\u003e
+        and controls to comply with DISA-STIG guidelines.\u003c/p\u003e\n\u003cp\u003eThe
+        \u003ca href=\"https://discourse.ubuntu.com/t/disa-stig-on-ubuntu/26080\"\u003eDISA-STIG
+        section\u003c/a\u003e demonstrates how to automatically apply the DISA-STIG
+        rules for 20.04, as well as how to audit the system.\u003c/p\u003e\n\u003ch2\u003e\u003ca
+        name=\"p-61313-common-criteriahttpsdiscourseubuntucomtcommon-criteria-for-ubuntu22817-4\"
+        class=\"anchor\" href=\"#p-61313-common-criteriahttpsdiscourseubuntucomtcommon-criteria-for-ubuntu22817-4\"\u003e\u003c/a\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/common-criteria-for-ubuntu/22817\"\u003eCommon
+        Criteria\u003c/a\u003e\u003c/h2\u003e\n\u003cp\u003eCommon Criteria for Information
+        Technology Security Evaluation (CC) is an international standard. The CC provides
+        a common set of requirements for the security functionality of IT products
+        and for assurance measures applied to these IT products during a security
+        evaluation.\u003c/p\u003e\n\u003cp\u003eCommon Criteria certified packages
+        are available for Ubuntu 16.04 \u0026amp; 18.04 LTS. Later releases have not
+        been evaluated against this standard.\u003c/p\u003e\n\u003cp\u003eFor more
+        information on the Common Criteria certification on Ubuntu see the \u003ca
+        href=\"https://discourse.ubuntu.com/t/common-criteria-for-ubuntu/22817\"\u003eCommon
+        Criteria Guide\u003c/a\u003e.\u003c/p\u003e\n\u003ch2\u003e\u003ca name=\"p-61313-navigation-5\"
+        class=\"anchor\" href=\"#p-61313-navigation-5\"\u003e\u003c/a\u003eNavigation\u003c/h2\u003e\n\u003cdetails\u003e\n\u003csummary\u003e\nDocumentation
+        versions\u003c/summary\u003e\n\u003cdiv class=\"md-table\"\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003ePath\u003c/th\u003e\n\u003cth\u003eVersion\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd\u003e2404\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/security-compliance-certifications-for-24-04/56165\"\u003e24.04\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2204\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/security-compliance-certifications-for-22-04/35840\"\u003e22.04\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/about-the-documentation-category/22810\"\u003e20.04\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e16-18\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/security-certifications-for-16-04-and-18-04/26241\"\u003e16.04
+        / 18.04\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003c/div\u003e\u003c/details\u003e\n\u003cdetails\u003e\n\u003csummary\u003e\nNavigation\u003c/summary\u003e\n\u003cdiv
+        class=\"md-table\"\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003eLevel\u003c/th\u003e\n\u003cth\u003ePath\u003c/th\u003e\n\u003cth\u003eNavlink\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd\u003e0\u003c/td\u003e\n\u003ctd\u003esecurity-certifications\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/about-the-documentation-category/22810\"\u003eSecurity
+        Certifications\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e1\u003c/td\u003e\n\u003ctd\u003efips\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/fips-for-ubuntu/22814\"\u003e FIPS 140\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003efips-enablement\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/enable-fips-with-the-ubuntu-advantage-tool/24743\"\u003eEnabling
+        FIPS\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003efips-updates\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/security-patching/24779\"\u003eSecurity
+        patching\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003efips-details\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/fips-certification-information/24745\"\u003eDetailed
+        certification information\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003efips-cloud-containers\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/latest-xenial-kernels/22815\"\u003eFIPS
+        for clouds and containers\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003efips-devel\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/developing-for-fips/24860\"\u003eDeveloping
+        for FIPS\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003efips-faq\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/ubuntu-fips-140-2-modules-faq/22816\"\u003eFIPS
+        FAQ\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e1\u003c/td\u003e\n\u003ctd\u003eusg\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/ubuntu-security-guide/26078\"\u003eUbuntu
+        Security Guide\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003eusg/installation\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/ubuntu-security-guide-installation/26081\"\u003eInstallation\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003eusg/cis\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/cis-compliance/26084\"\u003eCIS compliance\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e3\u003c/td\u003e\n\u003ctd\u003eusg/cis/audit\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/cis-auditing/26086\"\u003eAudit\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e3\u003c/td\u003e\n\u003ctd\u003eusg/cis/compliance\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/cis-compliance-with-ubuntu-security-guide/26079\"\u003eCompliance\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e3\u003c/td\u003e\n\u003ctd\u003eusg/cis/customization\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/customizing-the-cis-profile/26088\"\u003eCustomization\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e1\u003c/td\u003e\n\u003ctd\u003edisa-stig\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/disa-stig-on-ubuntu/26080\"\u003eDISA-STIG
+        compliance\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003edisa-stig/installation\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/ubuntu-security-guide-installation/26081\"\u003eInstallation\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003edisa-stig/audit\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/disa-stig-auditing-and-tailoring/26082\"\u003eAudit\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003edisa-stig/compliance\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/disa-stig-compliance/26083\"\u003eCompliance\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003c/div\u003e\u003c/details\u003e\n\u003ch2\u003e\u003ca
+        name=\"p-61313-redirects-6\" class=\"anchor\" href=\"#p-61313-redirects-6\"\u003e\u003c/a\u003eRedirects\u003c/h2\u003e\n\u003cdetails\u003e\n\u003csummary\u003e\nMapping
+        table\u003c/summary\u003e\n\u003cdiv class=\"md-table\"\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003ePath\u003c/th\u003e\n\u003cth\u003eLocation\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis-20-18-16\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/cis\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis-manual-requirements\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/cis/customization\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis-ruleset-params\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/cis/customization2\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis-juju\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/cis/juju\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis-18-16\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/cis\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cc-16\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/cc\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cc\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/cc\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/fips-updates\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/fips\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/fips-16\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/fips\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis-audit\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/usg/cis/audit\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis-compliance\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/usg/cis/compliance\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/usg/cis\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003c/div\u003e\u003c/details\u003e","post_number":1,"post_type":1,"posts_count":1,"updated_at":"2026-01-26T22:40:39.563Z","reply_count":0,"reply_to_post_number":null,"quote_count":0,"incoming_link_count":271,"reads":42,"readers_count":41,"score":1363.4,"yours":false,"topic_id":22810,"topic_slug":"security-compliance-certifications-for-20-04","display_username":"Carlos
+        Wu Fei","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_bg_color":"","flair_color":"","flair_group_id":49,"badges_granted":[],"version":74,"can_edit":true,"can_delete":false,"can_recover":false,"can_see_hidden_post":true,"can_wiki":true,"link_counts":[{"url":"https://discourse.ubuntu.com/t/fips-for-ubuntu/22814","internal":true,"reflection":false,"title":"FIPS
+        for Ubuntu","clicks":13},{"url":"https://discourse.ubuntu.com/t/disa-stig-on-ubuntu/26080","internal":true,"reflection":false,"title":"DISA-STIG
+        on Ubuntu","clicks":5},{"url":"https://ubuntu.com/security/fips#modules","internal":false,"reflection":false,"title":"Ubuntu
+        fips certifications | Security | Ubuntu","clicks":4},{"url":"https://ubuntu.com/advantage","internal":false,"reflection":false,"title":"Ubuntu
+        Advantage for Infrastructure | Ubuntu","clicks":2},{"url":"https://discourse.ubuntu.com/t/common-criteria-for-ubuntu/22817","internal":true,"reflection":false,"title":"Common
+        Criteria for Ubuntu","clicks":2},{"url":"https://ubuntu.com/security/fips","internal":false,"reflection":false,"title":"Ubuntu
+        fips certifications | Security | Ubuntu","clicks":1},{"url":"https://ubuntu.com/pro","internal":false,"reflection":false,"title":"Ubuntu
+        Pro | Ubuntu","clicks":1},{"url":"https://discourse.ubuntu.com/t/cis-compliance-for-ubuntu/22818","internal":true,"reflection":false,"title":"CIS
+        Compliance for Ubuntu","clicks":1},{"url":"https://discourse.ubuntu.com/t/installation-of-the-ubuntu-security-guide/26081","internal":true,"reflection":false,"title":"Installation
+        of the Ubuntu Security Guide","clicks":0},{"url":"https://discourse.ubuntu.com/t/the-ubuntu-security-guide/26078","internal":true,"reflection":false,"title":"The
+        Ubuntu Security Guide","clicks":0},{"url":"https://discourse.ubuntu.com/t/cis-compliance-with-ubuntu-lts/26084","internal":true,"reflection":false,"title":"CIS
+        compliance with Ubuntu LTS","clicks":0},{"url":"https://discourse.ubuntu.com/t/auditing-an-ubuntu-system-for-disa-stig-compliance/26082","internal":true,"reflection":false,"title":"Auditing
+        an Ubuntu System for DISA-STIG compliance","clicks":0},{"url":"https://discourse.ubuntu.com/t/auditing-an-ubuntu-20-04-or-22-04-system-for-cis-compliance/26086","internal":true,"reflection":false,"title":"Auditing
+        an Ubuntu 20.04 or 22.04 System for CIS compliance","clicks":0},{"url":"https://discourse.ubuntu.com/t/cis-compliance-with-ubuntu-20-04-lts-and-22-04-lts/26079","internal":true,"reflection":false,"title":"CIS
+        compliance with Ubuntu 20.04 LTS and 22.04 LTS","clicks":0},{"url":"https://discourse.ubuntu.com/t/customizing-the-cis-profile/26088","internal":true,"reflection":false,"title":"Customizing
+        the CIS profile","clicks":0},{"url":"https://ubuntu.com/cloud/public-cloud","internal":false,"reflection":false,"title":"Ubuntu
+        on Public Clouds | Ubuntu","clicks":0},{"url":"https://discourse.ubuntu.com/t/security-patching/24779","internal":true,"reflection":false,"title":"Security
+        patching","clicks":0},{"url":"https://discourse.ubuntu.com/t/fips-certification-information/24745","internal":true,"reflection":false,"title":"FIPS
+        certification information","clicks":0},{"url":"https://discourse.ubuntu.com/t/fips-in-containers-and-vms/22815","internal":true,"reflection":false,"title":"FIPS
+        in containers and VMs","clicks":0},{"url":"https://discourse.ubuntu.com/t/developing-for-fips/24860","internal":true,"reflection":false,"title":"Developing
+        for FIPS","clicks":0},{"url":"https://discourse.ubuntu.com/t/ubuntu-fips-140-2-modules-faq/22816","internal":true,"reflection":false,"title":"Ubuntu
+        FIPS 140-2 Modules FAQ","clicks":0},{"url":"https://discourse.ubuntu.com/t/compliance-with-the-disa-stig-rules/26083","internal":true,"reflection":false,"title":"Compliance
+        with the DISA-STIG rules","clicks":0},{"url":"https://discourse.ubuntu.com/t/enabling-fips-with-the-pro-tool/24743","internal":true,"reflection":false,"title":"Enabling
+        FIPS with the pro tool","clicks":0},{"url":"https://discourse.ubuntu.com/t/security-compliance-certifications-for-22-04/35840","internal":true,"reflection":true,"title":"Security
+        Compliance \u0026 Certifications for 22.04","clicks":7},{"url":"https://discourse.ubuntu.com/t/security-compliance-certifications-for-24-04/56165","internal":true,"reflection":true,"title":"Security
+        Compliance \u0026 Certifications for 24.04","clicks":6},{"url":"https://discourse.ubuntu.com/t/security-certifications-for-16-04-and-18-04/26241","internal":true,"reflection":true,"title":"Security
+        Certifications for 16.04 and 18.04","clicks":1}],"read":true,"user_title":"","bookmarked":false,"actions_summary":[{"id":2,"can_act":true},{"id":6,"can_act":true},{"id":3,"can_act":true},{"id":4,"can_act":true},{"id":8,"can_act":true},{"id":10,"can_act":true},{"id":7,"can_act":true}],"moderator":false,"admin":false,"staff":false,"user_id":9642,"hidden":false,"trust_level":3,"deleted_at":null,"user_deleted":false,"edit_reason":"Update
+        Table with Table Editor","can_view_edit_history":true,"wiki":false,"reviewable_id":0,"reviewable_score_count":0,"reviewable_score_pending_count":0,"post_url":"/t/security-compliance-certifications-for-20-04/22810/1","event":null,"calendar_details":[],"reactions":[],"current_user_reaction":null,"reaction_users_count":0,"current_user_used_main_reaction":false,"user_signature":null,"can_accept_answer":false,"can_unaccept_answer":false,"accepted_answer":false,"topic_accepted_answer":null,"can_vote":false}],"stream":[61313]},"timeline_lookup":[[1,1842]],"suggested_topics":[{"fancy_title":"[Case
+        study] EpiSensor accelerates the sustainable energy transition with Ubuntu
+        Core","id":54981,"title":"[Case study] EpiSensor accelerates the sustainable
+        energy transition with Ubuntu Core","slug":"case-study-episensor-accelerates-the-sustainable-energy-transition-with-ubuntu-core","posts_count":3,"reply_count":0,"highest_post_number":3,"image_url":null,"created_at":"2025-02-11T03:08:01.123Z","last_posted_at":"2026-05-22T09:12:42.889Z","bumped":true,"bumped_at":"2025-02-11T03:08:01.273Z","archetype":"regular","unseen":false,"last_read_post_number":2,"unread":0,"new_posts":1,"unread_posts":1,"pinned":false,"unpinned":null,"visible":true,"closed":false,"archived":false,"notification_level":3,"bookmarked":false,"liked":false,"visibility_reason_id":4,"tags":[],"tags_descriptions":{},"like_count":0,"views":12,"category_id":51,"featured_link":null,"has_accepted_answer":false,"posters":[{"extras":null,"description":"Original
+        Poster","user":{"id":29441,"username":"britneywwc","name":"Britney Wang","avatar_template":"/letter_avatar/britneywwc/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"admin":true,"moderator":true,"trust_level":4}},{"extras":"latest","description":"Most
+        Recent Poster","user":{"id":34102,"username":"elaineliman","name":"Elaine
+        Liman","avatar_template":"/letter_avatar/elaineliman/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"trust_level":3}}]},{"fancy_title":"[Case
+        study] ESA Boosts Mission Capacity with Canonical Infrastructure","id":53387,"title":"[Case
+        study] ESA Boosts Mission Capacity with Canonical Infrastructure","slug":"case-study-esa-boosts-mission-capacity-with-canonical-infrastructure","posts_count":5,"reply_count":0,"highest_post_number":5,"image_url":null,"created_at":"2025-01-16T06:28:18.802Z","last_posted_at":"2026-05-22T09:16:24.344Z","bumped":true,"bumped_at":"2025-01-16T06:42:22.956Z","archetype":"regular","unseen":false,"last_read_post_number":4,"unread":0,"new_posts":1,"unread_posts":1,"pinned":false,"unpinned":null,"visible":true,"closed":false,"archived":false,"notification_level":3,"bookmarked":false,"liked":false,"visibility_reason_id":4,"tags":[],"tags_descriptions":{},"like_count":0,"views":11,"category_id":51,"featured_link":null,"has_accepted_answer":false,"posters":[{"extras":null,"description":"Original
+        Poster","user":{"id":29441,"username":"britneywwc","name":"Britney Wang","avatar_template":"/letter_avatar/britneywwc/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"admin":true,"moderator":true,"trust_level":4}},{"extras":"latest","description":"Most
+        Recent Poster","user":{"id":34102,"username":"elaineliman","name":"Elaine
+        Liman","avatar_template":"/letter_avatar/elaineliman/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"trust_level":3}}]},{"fancy_title":"[Case
+        study] Grundium Ubuntu Pro for Devices","id":53393,"title":"[Case study] Grundium
+        Ubuntu Pro for Devices","slug":"case-study-grundium-ubuntu-pro-for-devices","posts_count":3,"reply_count":0,"highest_post_number":3,"image_url":null,"created_at":"2025-01-16T06:38:14.877Z","last_posted_at":"2026-05-22T09:14:12.527Z","bumped":true,"bumped_at":"2025-01-16T06:41:55.080Z","archetype":"regular","unseen":false,"last_read_post_number":2,"unread":0,"new_posts":1,"unread_posts":1,"pinned":false,"unpinned":null,"visible":true,"closed":false,"archived":false,"notification_level":3,"bookmarked":false,"liked":false,"visibility_reason_id":4,"tags":[],"tags_descriptions":{},"like_count":0,"views":6,"category_id":51,"featured_link":null,"has_accepted_answer":false,"posters":[{"extras":null,"description":"Original
+        Poster","user":{"id":29441,"username":"britneywwc","name":"Britney Wang","avatar_template":"/letter_avatar/britneywwc/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"admin":true,"moderator":true,"trust_level":4}},{"extras":"latest","description":"Most
+        Recent Poster","user":{"id":34102,"username":"elaineliman","name":"Elaine
+        Liman","avatar_template":"/letter_avatar/elaineliman/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"trust_level":3}}]},{"fancy_title":"[Case
+        study] Lucid AWS FedRAMP Compliance","id":53391,"title":"[Case study] Lucid
+        AWS FedRAMP Compliance","slug":"case-study-lucid-aws-fedramp-compliance","posts_count":3,"reply_count":0,"highest_post_number":3,"image_url":null,"created_at":"2025-01-16T06:37:31.134Z","last_posted_at":"2026-05-22T09:15:32.241Z","bumped":true,"bumped_at":"2025-01-16T06:37:31.321Z","archetype":"regular","unseen":false,"last_read_post_number":2,"unread":0,"new_posts":1,"unread_posts":1,"pinned":false,"unpinned":null,"visible":true,"closed":false,"archived":false,"notification_level":3,"bookmarked":false,"liked":false,"visibility_reason_id":4,"tags":["aws"],"tags_descriptions":{"aws":"Posts
+        about using Ubuntu on Amazon Web Services (AWS)"},"like_count":0,"views":11,"category_id":51,"featured_link":null,"has_accepted_answer":false,"posters":[{"extras":null,"description":"Original
+        Poster","user":{"id":29441,"username":"britneywwc","name":"Britney Wang","avatar_template":"/letter_avatar/britneywwc/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"admin":true,"moderator":true,"trust_level":4}},{"extras":"latest","description":"Most
+        Recent Poster","user":{"id":34102,"username":"elaineliman","name":"Elaine
+        Liman","avatar_template":"/letter_avatar/elaineliman/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"trust_level":3}}]},{"fancy_title":"[Case
+        study] SBI Bits","id":53390,"title":"[Case study] SBI Bits","slug":"case-study-sbi-bits","posts_count":3,"reply_count":0,"highest_post_number":3,"image_url":null,"created_at":"2025-01-16T06:36:16.302Z","last_posted_at":"2026-05-22T09:13:07.215Z","bumped":true,"bumped_at":"2025-01-16T06:36:57.264Z","archetype":"regular","unseen":false,"last_read_post_number":2,"unread":0,"new_posts":1,"unread_posts":1,"pinned":false,"unpinned":null,"visible":true,"closed":false,"archived":false,"notification_level":3,"bookmarked":false,"liked":false,"visibility_reason_id":4,"tags":[],"tags_descriptions":{},"like_count":0,"views":7,"category_id":51,"featured_link":null,"has_accepted_answer":false,"posters":[{"extras":null,"description":"Original
+        Poster","user":{"id":29441,"username":"britneywwc","name":"Britney Wang","avatar_template":"/letter_avatar/britneywwc/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"admin":true,"moderator":true,"trust_level":4}},{"extras":"latest","description":"Most
+        Recent Poster","user":{"id":34102,"username":"elaineliman","name":"Elaine
+        Liman","avatar_template":"/letter_avatar/elaineliman/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"trust_level":3}}]}],"tags":[],"tags_descriptions":{},"fancy_title":"Security
+        Compliance \u0026amp; Certifications for 20.04","id":22810,"title":"Security
+        Compliance \u0026 Certifications for 20.04","posts_count":1,"created_at":"2021-06-23T10:29:48.019Z","views":5684,"reply_count":0,"like_count":0,"last_posted_at":"2021-06-23T10:29:48.034Z","visible":true,"closed":false,"archived":false,"has_summary":false,"archetype":"regular","slug":"security-compliance-certifications-for-20-04","category_id":87,"word_count":931,"deleted_at":null,"user_id":9642,"featured_link":null,"pinned_globally":false,"pinned_at":"2021-06-23T10:29:48.014Z","pinned_until":null,"image_url":null,"slow_mode_seconds":0,"draft":null,"draft_key":"topic_22810","draft_sequence":0,"posted":false,"unpinned":true,"pinned":false,"current_post_number":1,"highest_post_number":1,"last_read_post_number":1,"last_read_post_id":61313,"deleted_by":null,"has_deleted":false,"actions_summary":[{"id":4,"count":0,"hidden":false,"can_act":true},{"id":8,"count":0,"hidden":false,"can_act":true},{"id":10,"count":0,"hidden":false,"can_act":true},{"id":7,"count":0,"hidden":false,"can_act":true},{"id":1001,"count":0,"hidden":false,"can_act":false},{"id":1003,"count":0,"hidden":false,"can_act":false}],"chunk_size":20,"bookmarked":false,"topic_timer":null,"message_bus_last_id":0,"participant_count":1,"queued_posts_count":0,"show_read_indicator":false,"thumbnails":null,"slow_mode_enabled_until":null,"valid_reactions":["heart","+1","clap","tada","raising_hands","confetti_ball"],"can_vote":false,"vote_count":0,"user_voted":false,"discourse_zendesk_plugin_zendesk_id":null,"discourse_zendesk_plugin_zendesk_url":"https://your-url.zendesk.com/agent/tickets/","details":{"can_edit":true,"notification_level":1,"notifications_reason_id":null,"can_move_posts":true,"can_remove_allowed_users":true,"can_invite_to":true,"can_create_post":true,"can_reply_as_new_topic":true,"can_flag_topic":true,"can_review_topic":true,"can_close_topic":true,"can_archive_topic":true,"can_split_merge_topic":true,"can_edit_staff_notes":true,"can_toggle_topic_visibility":true,"can_pin_unpin_topic":true,"can_moderate_category":true,"can_remove_self_id":29441,"participants":[{"id":9642,"username":"carkod","name":"Carlos
+        Wu Fei","avatar_template":"/letter_avatar/carkod/{size}/5_341fea102a12413267ee9cca6a635b61.png","post_count":1,"primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_color":"","flair_bg_color":"","flair_group_id":49,"trust_level":3}],"created_by":{"id":9642,"username":"carkod","name":"Carlos
+        Wu Fei","avatar_template":"/letter_avatar/carkod/{size}/5_341fea102a12413267ee9cca6a635b61.png"},"last_poster":{"id":9642,"username":"carkod","name":"Carlos
+        Wu Fei","avatar_template":"/letter_avatar/carkod/{size}/5_341fea102a12413267ee9cca6a635b61.png"},"links":[{"url":"https://discourse.ubuntu.com/t/fips-for-ubuntu/22814","title":"FIPS
+        for Ubuntu","internal":true,"attachment":false,"reflection":false,"clicks":13,"user_id":9642,"domain":"discourse.ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://discourse.ubuntu.com/t/security-compliance-certifications-for-22-04/35840","title":"Security
+        Compliance \u0026 Certifications for 22.04","internal":true,"attachment":false,"reflection":true,"clicks":7,"user_id":18201,"domain":"discourse.ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://discourse.ubuntu.com/t/security-compliance-certifications-for-24-04/56165","title":"Security
+        Compliance \u0026 Certifications for 24.04","internal":true,"attachment":false,"reflection":true,"clicks":6,"user_id":18201,"domain":"discourse.ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://discourse.ubuntu.com/t/disa-stig-on-ubuntu/26080","title":"DISA-STIG
+        on Ubuntu","internal":true,"attachment":false,"reflection":false,"clicks":5,"user_id":9642,"domain":"discourse.ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://ubuntu.com/security/fips#modules","title":"Ubuntu
+        fips certifications | Security | Ubuntu","internal":false,"attachment":false,"reflection":false,"clicks":4,"user_id":9642,"domain":"ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://discourse.ubuntu.com/t/common-criteria-for-ubuntu/22817","title":"Common
+        Criteria for Ubuntu","internal":true,"attachment":false,"reflection":false,"clicks":2,"user_id":9642,"domain":"discourse.ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://ubuntu.com/advantage","title":"Ubuntu
+        Advantage for Infrastructure | Ubuntu","internal":false,"attachment":false,"reflection":false,"clicks":2,"user_id":9642,"domain":"ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://discourse.ubuntu.com/t/security-certifications-for-16-04-and-18-04/26241","title":"Security
+        Certifications for 16.04 and 18.04","internal":true,"attachment":false,"reflection":true,"clicks":1,"user_id":14522,"domain":"discourse.ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://ubuntu.com/pro","title":"Ubuntu
+        Pro | Ubuntu","internal":false,"attachment":false,"reflection":false,"clicks":1,"user_id":9642,"domain":"ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://ubuntu.com/security/fips","title":"Ubuntu
+        fips certifications | Security | Ubuntu","internal":false,"attachment":false,"reflection":false,"clicks":1,"user_id":9642,"domain":"ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://discourse.ubuntu.com/t/cis-compliance-for-ubuntu/22818","title":"CIS
+        Compliance for Ubuntu","internal":true,"attachment":false,"reflection":false,"clicks":1,"user_id":9642,"domain":"discourse.ubuntu.com","root_domain":"ubuntu.com"}]},"pending_posts":[],"bookmarks":[]}'
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Thu, 09 Jul 2026 08:51:10 GMT
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      server:
+      - nginx/1.24.0 (Ubuntu)
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      x-cache-status:
+      - MISS from content-cache/7
+      x-content-type-options:
+      - nosniff
+      x-discourse-route:
+      - topics/show
+      x-discourse-username:
+      - britneywwc
+      x-frame-options:
+      - SAMEORIGIN
+      x-permitted-cross-domain-policies:
+      - none
+      x-request-id:
+      - 6e611d9925db4bf6daf5c96321f33e37
+      x-runtime:
+      - '0.205682'
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate, br
+    method: GET
+    uri: https://discourse.ubuntu.com/t/56165.json
+  response:
+    body:
+      string: '{"post_stream":{"posts":[{"id":142510,"name":"Henry Coggill","username":"henrycoggill","avatar_template":"/letter_avatar/henrycoggill/{size}/5_341fea102a12413267ee9cca6a635b61.png","created_at":"2025-02-28T16:44:58.588Z","cooked":"\u003cp\u003eUbuntu
+        goes through several rigorous security certifications and programs to meet
+        common compliance requirements. All these security features are available
+        with an \u003ca href=\"https://ubuntu.com/pro\"\u003eUbuntu Pro subscription
+        \u003c/a\u003e.\u003c/p\u003e\n\u003ch2\u003e\u003ca name=\"p-142510-fips-140-3-1\"
+        class=\"anchor\" href=\"#p-142510-fips-140-3-1\"\u003e\u003c/a\u003eFIPS 140-3\u003c/h2\u003e\n\u003cp\u003eFederal
+        Information Processing Standards Publications (FIPS) are issued by the National
+        Institute of Standards and Technology (NIST). FIPS 140 specifies the security
+        requirements for cryptographic modules. These requirements address the areas
+        of secure design and implementation.\u003c/p\u003e\n\u003cp\u003eThe FIPS
+        140-3 modules for Ubuntu 24.04 LTS are being assessed by our CST lab partner
+        and by CMVP. We will make them available for preview when the modules are
+        all submitted for final validation.\u003c/p\u003e\n\u003ch2\u003e\u003ca name=\"p-142510-cis-2\"
+        class=\"anchor\" href=\"#p-142510-cis-2\"\u003e\u003c/a\u003eCIS\u003c/h2\u003e\n\u003cp\u003eUbuntu
+        LTS releases have compliance benchmark documents developed by the Center for
+        Internet Security (CIS). Ubuntu has developed the \u003ca href=\"https://discourse.ubuntu.com/t/ubuntu-security-guide/26078\"\u003eUbuntu
+        Security Guide\u003c/a\u003e to automate hardening Ubuntu LTS systems based
+        off of the published CIS benchmarks. CIS benchmarks are available with the
+        Ubuntu Security Guide for 24.04 LTS.\u003c/p\u003e\n\u003cp\u003eFor more
+        information see\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\"https://discourse.ubuntu.com/t/cis-compliance-with-usg-for-ubuntu-24-04-lts/56178\"\u003eCIS
+        Compliance with USG for Ubuntu 24.04 LTS\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2\u003e\u003ca
+        name=\"p-142510-disa-stig-httpsdiscourseubuntucomtdisa-stig-on-ubuntu26080-3\"
+        class=\"anchor\" href=\"#p-142510-disa-stig-httpsdiscourseubuntucomtdisa-stig-on-ubuntu26080-3\"\u003e\u003c/a\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/disa-stig-on-ubuntu/26080\"\u003eDISA-STIG
+        \u003c/a\u003e\u003c/h2\u003e\n\u003cp\u003eSecurity Technical Implementation
+        Guides (STIG) are developed by the Defense Information System Agency (DISA)
+        for the U.S. Department of Defense (DoD). Ubuntu 24.04 has undergone evaluation
+        by DISA; they have published the first version of the STIG, and we will release
+        a Ubuntu Security Guide hardening profile soon.\u003c/p\u003e\n\u003ch2\u003e\u003ca
+        name=\"p-142510-navigation-4\" class=\"anchor\" href=\"#p-142510-navigation-4\"\u003e\u003c/a\u003eNavigation\u003c/h2\u003e\n\u003cp\u003eDocumentation
+        versions\u003c/p\u003e\n\u003cdiv class=\"md-table\"\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003ePath\u003c/th\u003e\n\u003cth\u003eVersion\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd\u003e2404\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/security-compliance-certifications-for-24-04/56165\"\u003e24.04\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2204\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/security-compliance-certifications-for-22-04/35840\"\u003e22.04\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/about-the-documentation-category/22810\"\u003e20.04\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e16-18\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/security-certifications-for-16-04-and-18-04/26241\"\u003e16.04
+        / 18.04\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003c/div\u003e\u003cp\u003eNavigation\u003c/p\u003e\n\u003cdiv
+        class=\"md-table\"\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003eLevel\u003c/th\u003e\n\u003cth\u003ePath\u003c/th\u003e\n\u003cth\u003eNavlink\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd\u003e0\u003c/td\u003e\n\u003ctd\u003esecurity-certifications\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/security-compliance-certifications-for-22-04/35840\"\u003eSecurity
+        Certifications\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003c/div\u003e\u003ch2\u003e\u003ca
+        name=\"p-142510-redirects-5\" class=\"anchor\" href=\"#p-142510-redirects-5\"\u003e\u003c/a\u003eRedirects\u003c/h2\u003e\n\u003cp\u003eMapping
+        table\u003c/p\u003e\n\u003cdiv class=\"md-table\"\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003ePath\u003c/th\u003e\n\u003cth\u003eLocation\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis-20-18-16\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/cis\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis-manual-requirements\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/cis/customization\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis-ruleset-params\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/cis/customization2\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis-juju\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/cis/juju\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis-18-16\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/cis\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cc-16\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/cc\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cc\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/cc\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/fips-updates\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/fips\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/fips-16\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/fips\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis-audit\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/usg/cis/audit\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis-compliance\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/usg/cis/compliance\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/usg/cis\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003c/div\u003e","post_number":1,"post_type":1,"posts_count":3,"updated_at":"2025-02-28T18:47:23.361Z","reply_count":0,"reply_to_post_number":null,"quote_count":0,"incoming_link_count":2020,"reads":29,"readers_count":28,"score":10060.8,"yours":false,"topic_id":56165,"topic_slug":"security-compliance-certifications-for-24-04","display_username":"Henry
+        Coggill","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_bg_color":"","flair_color":"","flair_group_id":49,"badges_granted":[],"version":3,"can_edit":true,"can_delete":false,"can_recover":false,"can_see_hidden_post":true,"can_wiki":true,"link_counts":[{"url":"https://discourse.ubuntu.com/t/cis-compliance-with-usg-for-ubuntu-24-04-lts/56178","internal":true,"reflection":false,"title":"CIS
+        Compliance with USG for Ubuntu 24.04 LTS","clicks":166},{"url":"https://discourse.ubuntu.com/t/security-compliance-certifications-for-22-04/35840","internal":true,"reflection":false,"title":"Security
+        Compliance \u0026 Certifications for 22.04","clicks":92},{"url":"https://discourse.ubuntu.com/t/disa-stig-on-ubuntu/26080","internal":true,"reflection":false,"title":"DISA-STIG
+        on Ubuntu","clicks":40},{"url":"https://ubuntu.com/pro","internal":false,"reflection":false,"title":"Ubuntu
+        Pro | Ubuntu","clicks":29},{"url":"https://discourse.ubuntu.com/t/security-certifications-for-16-04-and-18-04/26241","internal":true,"reflection":false,"title":"Security
+        Certifications for 16.04 and 18.04","clicks":1},{"url":"https://discourse.ubuntu.com/t/security-compliance-certifications-for-20-04/22810","internal":true,"reflection":false,"title":"Security
+        Compliance \u0026 Certifications for 20.04","clicks":0},{"url":"https://discourse.ubuntu.com/t/the-ubuntu-security-guide/26078","internal":true,"reflection":false,"title":"The
+        Ubuntu Security Guide","clicks":0}],"read":false,"user_title":"","bookmarked":false,"actions_summary":[{"id":2,"count":1,"can_act":true},{"id":6,"can_act":true},{"id":3,"can_act":true},{"id":4,"can_act":true},{"id":8,"can_act":true},{"id":10,"can_act":true},{"id":7,"can_act":true}],"moderator":true,"admin":false,"staff":true,"user_id":18201,"hidden":false,"trust_level":2,"deleted_at":null,"user_deleted":false,"edit_reason":null,"can_view_edit_history":true,"wiki":false,"notice":{"type":"returning_user","last_posted_at":"2024-06-20T16:24:57Z"},"reviewable_id":0,"reviewable_score_count":0,"reviewable_score_pending_count":0,"post_url":"/t/security-compliance-certifications-for-24-04/56165/1","event":null,"calendar_details":[],"reactions":[{"id":"heart","type":"emoji","count":1}],"current_user_reaction":null,"reaction_users_count":1,"current_user_used_main_reaction":false,"user_signature":null,"can_accept_answer":false,"can_unaccept_answer":false,"accepted_answer":false,"topic_accepted_answer":null,"can_vote":false},{"id":192742,"name":"Tam
+        T. Pham","username":"ttpham-10","avatar_template":"/letter_avatar/ttpham-10/{size}/5_341fea102a12413267ee9cca6a635b61.png","created_at":"2026-01-03T00:26:44.313Z","cooked":"\u003cp\u003eFrom
+        the URL\u003cbr\u003e\n\u003ca href=\"https://ubuntu.com/security/disa-stig\"
+        class=\"onebox\" target=\"_blank\" rel=\"noopener nofollow ugc\"\u003ehttps://ubuntu.com/security/disa-stig\u003c/a\u003e\u003cbr\u003e\n\u003ca
+        href=\"https://documentation.ubuntu.com/security/compliance/usg/disa-audit/\"
+        rel=\"noopener nofollow ugc\"\u003ehttps://documentation.ubuntu.com/security/compliance/usg/disa-audit/\u003c/a\u003e)\u003c/p\u003e\n\u003cp\u003eIt
+        shows support for 16.04 LTS to 22.04 LTS\u003cbr\u003e\nI have downloaded
+        and am attempting to configure the STIGS for 24.04 but after running the commands\u003cbr\u003e\nsudo
+        usg audit disa_stig\u003cbr\u003e\nsudo usg fix disa_stig\u003c/p\u003e\n\u003cp\u003eAnd
+        rebooting it gives me the error message when I try to login:\u003cbr\u003e\nERROR:
+        pam_pkcs11.c:365 no suitable token available\u003cbr\u003e\nError 2308L No
+        smart card found.\u003c/p\u003e\n\u003cp\u003eWhen I enter in my password
+        it logs me in for a split second and then kicks me out again.\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eOnce
+        I have enabled the dis_stig fix does it require a smart card reader and card
+        to function?\u003c/li\u003e\n\u003cli\u003eWhen will the 24.04 LTS officially
+        support the usg fix feature?\u003c/li\u003e\n\u003cli\u003eShould I go to
+        22.04 LTS?\u003c/li\u003e\n\u003c/ul\u003e","post_number":2,"post_type":1,"posts_count":3,"updated_at":"2026-01-03T00:26:44.313Z","reply_count":0,"reply_to_post_number":null,"quote_count":0,"incoming_link_count":4,"reads":6,"readers_count":5,"score":21.2,"yours":false,"topic_id":56165,"topic_slug":"security-compliance-certifications-for-24-04","display_username":"Tam
+        T. Pham","primary_group_name":null,"flair_name":null,"flair_url":null,"flair_bg_color":null,"flair_color":null,"flair_group_id":null,"badges_granted":[],"version":1,"can_edit":true,"can_delete":true,"can_recover":false,"can_see_hidden_post":true,"can_wiki":true,"link_counts":[{"url":"https://documentation.ubuntu.com/security/compliance/usg/disa-audit/","internal":false,"reflection":false,"clicks":8},{"url":"https://ubuntu.com/security/disa-stig","internal":false,"reflection":false,"title":"Ubuntu
+        DISA-STIG compliance | Security | Ubuntu","clicks":3}],"read":false,"user_title":null,"bookmarked":false,"actions_summary":[{"id":2,"can_act":true},{"id":6,"can_act":true},{"id":3,"can_act":true},{"id":4,"can_act":true},{"id":8,"can_act":true},{"id":10,"can_act":true},{"id":7,"can_act":true}],"moderator":false,"admin":false,"staff":false,"user_id":46018,"hidden":false,"trust_level":1,"deleted_at":null,"user_deleted":false,"edit_reason":null,"can_view_edit_history":true,"wiki":false,"notice":{"type":"new_user"},"reviewable_id":0,"reviewable_score_count":0,"reviewable_score_pending_count":0,"post_url":"/t/security-compliance-certifications-for-24-04/56165/2","event":null,"reactions":[],"current_user_reaction":null,"reaction_users_count":0,"current_user_used_main_reaction":false,"user_signature":null,"can_accept_answer":true,"can_unaccept_answer":false,"accepted_answer":false,"topic_accepted_answer":null},{"id":192743,"name":"Tam
+        T. Pham","username":"ttpham-10","avatar_template":"/letter_avatar/ttpham-10/{size}/5_341fea102a12413267ee9cca6a635b61.png","created_at":"2026-01-03T00:42:14.546Z","cooked":"\u003cp\u003eNote
+        that it seems like FIPS for Ubuntu has been published but I am unable to enable
+        it.\u003cbr\u003e\n\u003ca href=\"https://discourse.ubuntu.com/t/fips-for-ubuntu-24-04/67066\"\u003eFIPS
+        for Ubuntu 24.04 - Project Discussion / Security Certification - Ubuntu Community
+        Hub\u003c/a\u003e\u003c/p\u003e\n\u003cp\u003e\u003ca href=\"https://documentation.ubuntu.com/pro-client/en/v30/howtoguides/enable_fips/\"
+        rel=\"noopener nofollow ugc\"\u003eHow to enable FIPS - Ubuntu Pro Client
+        documentation\u003c/a\u003e\u003c/p\u003e\n\u003cp\u003eCommand\u003cbr\u003e\nsudo
+        pro enable fips\u003c/p\u003e\n\u003cp\u003eGenerates this message:\u003cbr\u003e\nFIPS
+        is not available for Ubuntu 24.0.4\u003c/p\u003e\n\u003cp\u003eWhen will it
+        be supported on 24.04?\u003c/p\u003e","post_number":3,"post_type":1,"posts_count":3,"updated_at":"2026-01-03T00:42:14.546Z","reply_count":0,"reply_to_post_number":null,"quote_count":0,"incoming_link_count":14,"reads":6,"readers_count":5,"score":71.2,"yours":false,"topic_id":56165,"topic_slug":"security-compliance-certifications-for-24-04","display_username":"Tam
+        T. Pham","primary_group_name":null,"flair_name":null,"flair_url":null,"flair_bg_color":null,"flair_color":null,"flair_group_id":null,"badges_granted":[],"version":1,"can_edit":true,"can_delete":true,"can_recover":false,"can_see_hidden_post":true,"can_wiki":true,"link_counts":[{"url":"https://discourse.ubuntu.com/t/fips-for-ubuntu-24-04/67066","internal":true,"reflection":false,"title":"FIPS
+        for Ubuntu 24.04","clicks":39},{"url":"https://documentation.ubuntu.com/pro-client/en/v30/howtoguides/enable_fips/","internal":false,"reflection":false,"clicks":9}],"read":false,"user_title":null,"bookmarked":false,"actions_summary":[{"id":2,"can_act":true},{"id":6,"can_act":true},{"id":3,"can_act":true},{"id":4,"can_act":true},{"id":8,"can_act":true},{"id":10,"can_act":true},{"id":7,"can_act":true}],"moderator":false,"admin":false,"staff":false,"user_id":46018,"hidden":false,"trust_level":1,"deleted_at":null,"user_deleted":false,"edit_reason":null,"can_view_edit_history":true,"wiki":false,"reviewable_id":0,"reviewable_score_count":0,"reviewable_score_pending_count":0,"post_url":"/t/security-compliance-certifications-for-24-04/56165/3","event":null,"reactions":[],"current_user_reaction":null,"reaction_users_count":0,"current_user_used_main_reaction":false,"user_signature":null,"can_accept_answer":true,"can_unaccept_answer":false,"accepted_answer":false,"topic_accepted_answer":null}],"stream":[142510,192742,192743]},"timeline_lookup":[[1,496],[2,187]],"suggested_topics":[{"fancy_title":"[Case
+        study] EpiSensor accelerates the sustainable energy transition with Ubuntu
+        Core","id":54981,"title":"[Case study] EpiSensor accelerates the sustainable
+        energy transition with Ubuntu Core","slug":"case-study-episensor-accelerates-the-sustainable-energy-transition-with-ubuntu-core","posts_count":3,"reply_count":0,"highest_post_number":3,"image_url":null,"created_at":"2025-02-11T03:08:01.123Z","last_posted_at":"2026-05-22T09:12:42.889Z","bumped":true,"bumped_at":"2025-02-11T03:08:01.273Z","archetype":"regular","unseen":false,"last_read_post_number":2,"unread":0,"new_posts":1,"unread_posts":1,"pinned":false,"unpinned":null,"visible":true,"closed":false,"archived":false,"notification_level":3,"bookmarked":false,"liked":false,"visibility_reason_id":4,"tags":[],"tags_descriptions":{},"like_count":0,"views":12,"category_id":51,"featured_link":null,"has_accepted_answer":false,"posters":[{"extras":null,"description":"Original
+        Poster","user":{"id":29441,"username":"britneywwc","name":"Britney Wang","avatar_template":"/letter_avatar/britneywwc/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"admin":true,"moderator":true,"trust_level":4}},{"extras":"latest","description":"Most
+        Recent Poster","user":{"id":34102,"username":"elaineliman","name":"Elaine
+        Liman","avatar_template":"/letter_avatar/elaineliman/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"trust_level":3}}]},{"fancy_title":"[Case
+        study] ESA Boosts Mission Capacity with Canonical Infrastructure","id":53387,"title":"[Case
+        study] ESA Boosts Mission Capacity with Canonical Infrastructure","slug":"case-study-esa-boosts-mission-capacity-with-canonical-infrastructure","posts_count":5,"reply_count":0,"highest_post_number":5,"image_url":null,"created_at":"2025-01-16T06:28:18.802Z","last_posted_at":"2026-05-22T09:16:24.344Z","bumped":true,"bumped_at":"2025-01-16T06:42:22.956Z","archetype":"regular","unseen":false,"last_read_post_number":4,"unread":0,"new_posts":1,"unread_posts":1,"pinned":false,"unpinned":null,"visible":true,"closed":false,"archived":false,"notification_level":3,"bookmarked":false,"liked":false,"visibility_reason_id":4,"tags":[],"tags_descriptions":{},"like_count":0,"views":11,"category_id":51,"featured_link":null,"has_accepted_answer":false,"posters":[{"extras":null,"description":"Original
+        Poster","user":{"id":29441,"username":"britneywwc","name":"Britney Wang","avatar_template":"/letter_avatar/britneywwc/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"admin":true,"moderator":true,"trust_level":4}},{"extras":"latest","description":"Most
+        Recent Poster","user":{"id":34102,"username":"elaineliman","name":"Elaine
+        Liman","avatar_template":"/letter_avatar/elaineliman/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"trust_level":3}}]},{"fancy_title":"[Case
+        study] Grundium Ubuntu Pro for Devices","id":53393,"title":"[Case study] Grundium
+        Ubuntu Pro for Devices","slug":"case-study-grundium-ubuntu-pro-for-devices","posts_count":3,"reply_count":0,"highest_post_number":3,"image_url":null,"created_at":"2025-01-16T06:38:14.877Z","last_posted_at":"2026-05-22T09:14:12.527Z","bumped":true,"bumped_at":"2025-01-16T06:41:55.080Z","archetype":"regular","unseen":false,"last_read_post_number":2,"unread":0,"new_posts":1,"unread_posts":1,"pinned":false,"unpinned":null,"visible":true,"closed":false,"archived":false,"notification_level":3,"bookmarked":false,"liked":false,"visibility_reason_id":4,"tags":[],"tags_descriptions":{},"like_count":0,"views":6,"category_id":51,"featured_link":null,"has_accepted_answer":false,"posters":[{"extras":null,"description":"Original
+        Poster","user":{"id":29441,"username":"britneywwc","name":"Britney Wang","avatar_template":"/letter_avatar/britneywwc/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"admin":true,"moderator":true,"trust_level":4}},{"extras":"latest","description":"Most
+        Recent Poster","user":{"id":34102,"username":"elaineliman","name":"Elaine
+        Liman","avatar_template":"/letter_avatar/elaineliman/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"trust_level":3}}]},{"fancy_title":"[Case
+        study] Lucid AWS FedRAMP Compliance","id":53391,"title":"[Case study] Lucid
+        AWS FedRAMP Compliance","slug":"case-study-lucid-aws-fedramp-compliance","posts_count":3,"reply_count":0,"highest_post_number":3,"image_url":null,"created_at":"2025-01-16T06:37:31.134Z","last_posted_at":"2026-05-22T09:15:32.241Z","bumped":true,"bumped_at":"2025-01-16T06:37:31.321Z","archetype":"regular","unseen":false,"last_read_post_number":2,"unread":0,"new_posts":1,"unread_posts":1,"pinned":false,"unpinned":null,"visible":true,"closed":false,"archived":false,"notification_level":3,"bookmarked":false,"liked":false,"visibility_reason_id":4,"tags":["aws"],"tags_descriptions":{"aws":"Posts
+        about using Ubuntu on Amazon Web Services (AWS)"},"like_count":0,"views":11,"category_id":51,"featured_link":null,"has_accepted_answer":false,"posters":[{"extras":null,"description":"Original
+        Poster","user":{"id":29441,"username":"britneywwc","name":"Britney Wang","avatar_template":"/letter_avatar/britneywwc/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"admin":true,"moderator":true,"trust_level":4}},{"extras":"latest","description":"Most
+        Recent Poster","user":{"id":34102,"username":"elaineliman","name":"Elaine
+        Liman","avatar_template":"/letter_avatar/elaineliman/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"trust_level":3}}]},{"fancy_title":"[Case
+        study] SBI Bits","id":53390,"title":"[Case study] SBI Bits","slug":"case-study-sbi-bits","posts_count":3,"reply_count":0,"highest_post_number":3,"image_url":null,"created_at":"2025-01-16T06:36:16.302Z","last_posted_at":"2026-05-22T09:13:07.215Z","bumped":true,"bumped_at":"2025-01-16T06:36:57.264Z","archetype":"regular","unseen":false,"last_read_post_number":2,"unread":0,"new_posts":1,"unread_posts":1,"pinned":false,"unpinned":null,"visible":true,"closed":false,"archived":false,"notification_level":3,"bookmarked":false,"liked":false,"visibility_reason_id":4,"tags":[],"tags_descriptions":{},"like_count":0,"views":7,"category_id":51,"featured_link":null,"has_accepted_answer":false,"posters":[{"extras":null,"description":"Original
+        Poster","user":{"id":29441,"username":"britneywwc","name":"Britney Wang","avatar_template":"/letter_avatar/britneywwc/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"admin":true,"moderator":true,"trust_level":4}},{"extras":"latest","description":"Most
+        Recent Poster","user":{"id":34102,"username":"elaineliman","name":"Elaine
+        Liman","avatar_template":"/letter_avatar/elaineliman/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"trust_level":3}}]}],"tags":[],"tags_descriptions":{},"fancy_title":"Security
+        Compliance \u0026amp; Certifications for 24.04","id":56165,"title":"Security
+        Compliance \u0026 Certifications for 24.04","posts_count":3,"created_at":"2025-02-28T16:44:58.297Z","views":1896,"reply_count":0,"like_count":1,"last_posted_at":"2026-01-03T00:42:14.546Z","visible":true,"closed":false,"archived":false,"has_summary":false,"archetype":"regular","slug":"security-compliance-certifications-for-24-04","category_id":87,"word_count":704,"deleted_at":null,"user_id":18201,"featured_link":null,"pinned_globally":false,"pinned_at":null,"pinned_until":null,"image_url":null,"slow_mode_seconds":0,"draft":null,"draft_key":"topic_56165","draft_sequence":0,"unpinned":null,"pinned":false,"current_post_number":1,"highest_post_number":3,"deleted_by":null,"has_deleted":false,"actions_summary":[{"id":4,"count":0,"hidden":false,"can_act":true},{"id":8,"count":0,"hidden":false,"can_act":true},{"id":10,"count":0,"hidden":false,"can_act":true},{"id":7,"count":0,"hidden":false,"can_act":true},{"id":1001,"count":0,"hidden":false,"can_act":false},{"id":1003,"count":0,"hidden":false,"can_act":false}],"chunk_size":20,"bookmarked":false,"topic_timer":null,"message_bus_last_id":0,"participant_count":2,"queued_posts_count":0,"show_read_indicator":false,"thumbnails":null,"slow_mode_enabled_until":null,"valid_reactions":["heart","+1","clap","tada","raising_hands","confetti_ball"],"can_vote":false,"vote_count":0,"user_voted":false,"discourse_zendesk_plugin_zendesk_id":null,"discourse_zendesk_plugin_zendesk_url":"https://your-url.zendesk.com/agent/tickets/","details":{"can_edit":true,"notification_level":1,"can_move_posts":true,"can_delete":true,"can_remove_allowed_users":true,"can_invite_to":true,"can_create_post":true,"can_reply_as_new_topic":true,"can_flag_topic":true,"can_convert_topic":true,"can_review_topic":true,"can_close_topic":true,"can_archive_topic":true,"can_split_merge_topic":true,"can_edit_staff_notes":true,"can_toggle_topic_visibility":true,"can_pin_unpin_topic":true,"can_moderate_category":true,"can_remove_self_id":29441,"participants":[{"id":46018,"username":"ttpham-10","name":"Tam
+        T. Pham","avatar_template":"/letter_avatar/ttpham-10/{size}/5_341fea102a12413267ee9cca6a635b61.png","post_count":2,"primary_group_name":null,"flair_name":null,"flair_url":null,"flair_color":null,"flair_bg_color":null,"flair_group_id":null,"trust_level":1},{"id":18201,"username":"henrycoggill","name":"Henry
+        Coggill","avatar_template":"/letter_avatar/henrycoggill/{size}/5_341fea102a12413267ee9cca6a635b61.png","post_count":1,"primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_color":"","flair_bg_color":"","flair_group_id":49,"moderator":true,"trust_level":2}],"created_by":{"id":18201,"username":"henrycoggill","name":"Henry
+        Coggill","avatar_template":"/letter_avatar/henrycoggill/{size}/5_341fea102a12413267ee9cca6a635b61.png"},"last_poster":{"id":46018,"username":"ttpham-10","name":"Tam
+        T. Pham","avatar_template":"/letter_avatar/ttpham-10/{size}/5_341fea102a12413267ee9cca6a635b61.png"},"links":[{"url":"https://discourse.ubuntu.com/t/cis-compliance-with-usg-for-ubuntu-24-04-lts/56178","title":"CIS
+        Compliance with USG for Ubuntu 24.04 LTS","internal":true,"attachment":false,"reflection":false,"clicks":166,"user_id":18201,"domain":"discourse.ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://discourse.ubuntu.com/t/security-compliance-certifications-for-22-04/35840","title":"Security
+        Compliance \u0026 Certifications for 22.04","internal":true,"attachment":false,"reflection":false,"clicks":92,"user_id":18201,"domain":"discourse.ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://discourse.ubuntu.com/t/disa-stig-on-ubuntu/26080","title":"DISA-STIG
+        on Ubuntu","internal":true,"attachment":false,"reflection":false,"clicks":40,"user_id":18201,"domain":"discourse.ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://discourse.ubuntu.com/t/fips-for-ubuntu-24-04/67066","title":"FIPS
+        for Ubuntu 24.04","internal":true,"attachment":false,"reflection":false,"clicks":39,"user_id":46018,"domain":"discourse.ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://ubuntu.com/pro","title":"Ubuntu
+        Pro | Ubuntu","internal":false,"attachment":false,"reflection":false,"clicks":29,"user_id":18201,"domain":"ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://documentation.ubuntu.com/pro-client/en/v30/howtoguides/enable_fips/","title":null,"internal":false,"attachment":false,"reflection":false,"clicks":9,"user_id":46018,"domain":"documentation.ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://documentation.ubuntu.com/security/compliance/usg/disa-audit/","title":null,"internal":false,"attachment":false,"reflection":false,"clicks":8,"user_id":46018,"domain":"documentation.ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://ubuntu.com/security/disa-stig","title":"Ubuntu
+        DISA-STIG compliance | Security | Ubuntu","internal":false,"attachment":false,"reflection":false,"clicks":3,"user_id":46018,"domain":"ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://discourse.ubuntu.com/t/security-certifications-for-16-04-and-18-04/26241","title":"Security
+        Certifications for 16.04 and 18.04","internal":true,"attachment":false,"reflection":false,"clicks":1,"user_id":18201,"domain":"discourse.ubuntu.com","root_domain":"ubuntu.com"}]},"pending_posts":[],"bookmarks":[]}'
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Thu, 09 Jul 2026 08:51:11 GMT
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      server:
+      - nginx/1.24.0 (Ubuntu)
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      x-cache-status:
+      - MISS from content-cache/6
+      x-content-type-options:
+      - nosniff
+      x-discourse-route:
+      - topics/show
+      x-discourse-username:
+      - britneywwc
+      x-frame-options:
+      - SAMEORIGIN
+      x-permitted-cross-domain-policies:
+      - none
+      x-request-id:
+      - 2f55d96fe467521baeb00ed4689b3546
+      x-runtime:
+      - '0.223877'
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate, br
+    method: GET
+    uri: https://discourse.ubuntu.com/t/35840.json
+  response:
+    body:
+      string: '{"post_stream":{"posts":[{"id":89888,"name":"Henry Coggill","username":"henrycoggill","avatar_template":"/letter_avatar/henrycoggill/{size}/5_341fea102a12413267ee9cca6a635b61.png","created_at":"2023-05-18T10:28:06.397Z","cooked":"\u003cp\u003eUbuntu
+        goes through several rigorous security certifications and programs to meet
+        common compliance requirements.  All these security features are available
+        with an \u003ca href=\"https://ubuntu.com/pro\"\u003eUbuntu Pro subscription\u003c/a\u003e.\u003c/p\u003e\n\u003ch2\u003e\u003ca
+        name=\"p-89888-fips-140-3httpsdiscourseubuntucomtfips-for-ubuntu-22-0439869-1\"
+        class=\"anchor\" href=\"#p-89888-fips-140-3httpsdiscourseubuntucomtfips-for-ubuntu-22-0439869-1\"\u003e\u003c/a\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/fips-for-ubuntu-22-04/39869\"\u003eFIPS
+        140-3\u003c/a\u003e\u003c/h2\u003e\n\u003cp\u003eFederal Information Processing
+        Standards Publications (FIPS) are issued by the National Institute of Standards
+        and Technology (NIST). FIPS 140 specifies the security requirements for cryptographic
+        modules. These requirements address the areas of secure design and implementation.\u003c/p\u003e\n\u003cp\u003eUbuntu
+        LTS releases have optional FIPS validated cryptographic packages, including
+        the Linux kernel and OpenSSL, which are available with Ubuntu Pro. The full
+        list of packages and certificates \u003ca href=\"https://ubuntu.com/security/fips#modules\"\u003eis
+        available here\u003c/a\u003e.\u003c/p\u003e\n\u003cp\u003e\u003ca href=\"https://discourse.ubuntu.com/t/fips-for-ubuntu-22-04/39869\"\u003eUbuntu
+        22.04 LTS\u003c/a\u003e is certified against the new FIPS 140-3 standard.
+        The cryptographic modules have been reviewed by an independent testing lab
+        and officially certified by NIST. The list of validated modules is \u003ca
+        href=\"https://csrc.nist.gov/projects/cryptographic-module-validation-program/validated-modules/search?SearchMode=Basic\u0026amp;Vendor=canonical\u0026amp;CertificateStatus=Active\u0026amp;ValidationYear=0\"\u003ehere\u003c/a\u003e.\u003c/p\u003e\n\u003ch2\u003e\u003ca
+        name=\"p-89888-cishttpsdiscourseubuntucomtcustomizing-the-cis-profile26088-2\"
+        class=\"anchor\" href=\"#p-89888-cishttpsdiscourseubuntucomtcustomizing-the-cis-profile26088-2\"\u003e\u003c/a\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/customizing-the-cis-profile/26088\"\u003eCIS\u003c/a\u003e\u003c/h2\u003e\n\u003cp\u003eUbuntu
+        LTS releases have compliance benchmark documents developed by the Center for
+        Internet Security (CIS). Ubuntu has developed the \u003ca href=\"https://discourse.ubuntu.com/t/ubuntu-security-guide/26078\"\u003eUbuntu
+        Security Guide\u003c/a\u003e to automate hardening Ubuntu LTS systems based
+        off of the published CIS benchmarks. CIS benchmarks are available with the
+        Ubuntu Security Guide for 22.04 LTS.\u003c/p\u003e\n\u003cp\u003eFor more
+        information see\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\"https://discourse.ubuntu.com/t/cis-compliance/26084\"\u003eCIS
+        Compliance with Ubuntu Security Guide for Ubuntu 20.04 and later\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/cis-compliance-for-ubuntu/22818\"\u003eCIS
+        Compliance for Ubuntu 16.04 and 18.04\u003c/a\u003e.\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2\u003e\u003ca
+        name=\"p-89888-disa-stighttpsdiscourseubuntucomtdisa-stig-on-ubuntu26080-3\"
+        class=\"anchor\" href=\"#p-89888-disa-stighttpsdiscourseubuntucomtdisa-stig-on-ubuntu26080-3\"\u003e\u003c/a\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/disa-stig-on-ubuntu/26080\"\u003eDISA-STIG\u003c/a\u003e\u003c/h2\u003e\n\u003cp\u003eSecurity
+        Technical Implementation Guides (STIG) are developed by the Defense Information
+        System Agency (DISA) for the U.S. Department of Defense (DoD). Ubuntu 22.04
+        has undergone evaluation by DISA; they have published the first version of
+        the STIG, and we have incorporated it into the Ubuntu Security Guide.\u003c/p\u003e\n\u003ch2\u003e\u003ca
+        name=\"p-89888-navigation-4\" class=\"anchor\" href=\"#p-89888-navigation-4\"\u003e\u003c/a\u003eNavigation\u003c/h2\u003e\n\u003cdetails\u003e\n\u003csummary\u003e\nDocumentation
+        versions\u003c/summary\u003e\n\u003cdiv class=\"md-table\"\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003ePath\u003c/th\u003e\n\u003cth\u003eVersion\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd\u003e2404\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/security-compliance-certifications-for-24-04/56165\"\u003e24.04\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2204\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/security-compliance-certifications-for-22-04/35840\"\u003e22.04\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/about-the-documentation-category/22810\"\u003e20.04\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e16-18\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/security-certifications-for-16-04-and-18-04/26241\"\u003e16.04
+        / 18.04\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003c/div\u003e\u003c/details\u003e\n\u003cdetails\u003e\n\u003csummary\u003e\nNavigation\u003c/summary\u003e\n\u003cdiv
+        class=\"md-table\"\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003eLevel\u003c/th\u003e\n\u003cth\u003ePath\u003c/th\u003e\n\u003cth\u003eNavlink\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd\u003e0\u003c/td\u003e\n\u003ctd\u003esecurity-certifications\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/security-compliance-certifications-for-22-04/35840\"\u003eSecurity
+        Certifications\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e1\u003c/td\u003e\n\u003ctd\u003efips\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/fips-for-ubuntu-22-04/39869\"\u003eFIPS
+        140-3\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e1\u003c/td\u003e\n\u003ctd\u003eusg\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/ubuntu-security-guide/26078\"\u003eUbuntu
+        Security Guide\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003eusg/installation\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/ubuntu-security-guide-installation/26081#1\"\u003eInstallation\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003eusg/cis\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/cis-compliance/26084\"\u003eCIS compliance\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e3\u003c/td\u003e\n\u003ctd\u003eusg/cis/audit\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/cis-auditing/26086\"\u003eAudit\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e3\u003c/td\u003e\n\u003ctd\u003eusg/cis/compliance\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/cis-compliance-with-ubuntu-security-guide/26079\"\u003eCompliance\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e3\u003c/td\u003e\n\u003ctd\u003eusg/cis/customization\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/customizing-the-cis-profile/26088\"\u003eCustomization\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e1\u003c/td\u003e\n\u003ctd\u003edisa-stig\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/disa-stig-on-ubuntu/26080\"\u003eDISA-STIG
+        compliance\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003edisa-stig/installation\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/ubuntu-security-guide-installation/26081#2\"\u003eInstallation\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003edisa-stig/audit\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/disa-stig-auditing-and-tailoring/26082\"\u003eAudit\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003edisa-stig/compliance\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/disa-stig-compliance/26083\"\u003eCompliance\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003c/div\u003e\u003c/details\u003e\n\u003ch2\u003e\u003ca
+        name=\"p-89888-redirects-5\" class=\"anchor\" href=\"#p-89888-redirects-5\"\u003e\u003c/a\u003eRedirects\u003c/h2\u003e\n\u003cdetails\u003e\n\u003csummary\u003e\nMapping
+        table\u003c/summary\u003e\n\u003cdiv class=\"md-table\"\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003ePath\u003c/th\u003e\n\u003cth\u003eLocation\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis-20-18-16\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/cis\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis-manual-requirements\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/cis/customization\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis-ruleset-params\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/cis/customization2\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis-juju\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/cis/juju\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis-18-16\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/cis\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cc-16\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/cc\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cc\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/cc\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/fips-updates\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/fips\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/fips-16\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/16-18/fips\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis-audit\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/usg/cis/audit\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis-compliance\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/usg/cis/compliance\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e/security/certifications/docs/cis\u003c/td\u003e\n\u003ctd\u003e/security/certifications/docs/usg/cis\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003c/div\u003e\u003c/details\u003e","post_number":1,"post_type":1,"posts_count":2,"updated_at":"2026-01-23T16:20:37.617Z","reply_count":0,"reply_to_post_number":null,"quote_count":0,"incoming_link_count":763,"reads":45,"readers_count":44,"score":3854.0,"yours":false,"topic_id":35840,"topic_slug":"security-compliance-certifications-for-22-04","display_username":"Henry
+        Coggill","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_bg_color":"","flair_color":"","flair_group_id":49,"badges_granted":[],"version":18,"can_edit":true,"can_delete":false,"can_recover":false,"can_see_hidden_post":true,"can_wiki":true,"link_counts":[{"url":"https://discourse.ubuntu.com/t/disa-stig-on-ubuntu/26080","internal":true,"reflection":false,"title":"DISA-STIG
+        on Ubuntu","clicks":47},{"url":"https://ubuntu.com/security/fips#modules","internal":false,"reflection":false,"title":"Ubuntu
+        fips certifications | Security | Ubuntu","clicks":38},{"url":"https://discourse.ubuntu.com/t/fips-for-ubuntu-22-04/39869","internal":true,"reflection":false,"title":"FIPS
+        for Ubuntu 22.04","clicks":30},{"url":"https://ubuntu.com/pro","internal":false,"reflection":false,"title":"Ubuntu
+        Pro | Ubuntu","clicks":18},{"url":"https://discourse.ubuntu.com/t/customizing-the-cis-profile/26088","internal":true,"reflection":false,"title":"Customizing
+        the CIS profile","clicks":10},{"url":"https://csrc.nist.gov/projects/cryptographic-module-validation-program/validated-modules/search?SearchMode=Basic\u0026Vendor=canonical\u0026CertificateStatus=Active\u0026ValidationYear=0","internal":false,"reflection":false,"clicks":8},{"url":"https://discourse.ubuntu.com/t/cis-compliance-for-ubuntu/22818","internal":true,"reflection":false,"title":"CIS
+        Compliance for Ubuntu","clicks":1},{"url":"https://discourse.ubuntu.com/t/cis-compliance-with-ubuntu-20-04-lts-and-22-04-lts/26079","internal":true,"reflection":false,"title":"CIS
+        compliance with Ubuntu 20.04 LTS and 22.04 LTS","clicks":0},{"url":"https://discourse.ubuntu.com/t/auditing-an-ubuntu-system-for-disa-stig-compliance/26082","internal":true,"reflection":false,"title":"Auditing
+        an Ubuntu System for DISA-STIG compliance","clicks":0},{"url":"https://discourse.ubuntu.com/t/compliance-with-the-disa-stig-rules/26083","internal":true,"reflection":false,"title":"Compliance
+        with the DISA-STIG rules","clicks":0},{"url":"https://discourse.ubuntu.com/t/auditing-an-ubuntu-20-04-or-22-04-system-for-cis-compliance/26086","internal":true,"reflection":false,"title":"Auditing
+        an Ubuntu 20.04 or 22.04 System for CIS compliance","clicks":0},{"url":"https://discourse.ubuntu.com/t/installation-of-the-ubuntu-security-guide/26081","internal":true,"reflection":false,"title":"Installation
+        of the Ubuntu Security Guide","clicks":0},{"url":"https://discourse.ubuntu.com/t/the-ubuntu-security-guide/26078","internal":true,"reflection":false,"title":"The
+        Ubuntu Security Guide","clicks":0},{"url":"https://discourse.ubuntu.com/t/security-certifications-for-16-04-and-18-04/26241","internal":true,"reflection":false,"title":"Security
+        Certifications for 16.04 and 18.04","clicks":0},{"url":"https://discourse.ubuntu.com/t/security-compliance-certifications-for-20-04/22810","internal":true,"reflection":false,"title":"Security
+        Compliance \u0026 Certifications for 20.04","clicks":0},{"url":"https://discourse.ubuntu.com/t/cis-compliance-with-ubuntu-lts/26084","internal":true,"reflection":false,"title":"CIS
+        compliance with Ubuntu LTS","clicks":0},{"url":"https://discourse.ubuntu.com/t/security-compliance-certifications-for-24-04/56165","internal":true,"reflection":true,"title":"Security
+        Compliance \u0026 Certifications for 24.04","clicks":16}],"read":false,"user_title":"","bookmarked":false,"actions_summary":[{"id":2,"count":2,"can_act":true},{"id":6,"can_act":true},{"id":3,"can_act":true},{"id":4,"can_act":true},{"id":8,"can_act":true},{"id":10,"can_act":true},{"id":7,"can_act":true}],"moderator":true,"admin":false,"staff":true,"user_id":18201,"hidden":false,"trust_level":2,"deleted_at":null,"user_deleted":false,"edit_reason":"Update
+        Table with Table Editor","can_view_edit_history":true,"wiki":false,"reviewable_id":0,"reviewable_score_count":0,"reviewable_score_pending_count":0,"post_url":"/t/security-compliance-certifications-for-22-04/35840/1","event":null,"calendar_details":[],"reactions":[{"id":"heart","type":"emoji","count":2}],"current_user_reaction":null,"reaction_users_count":2,"current_user_used_main_reaction":false,"user_signature":null,"can_accept_answer":false,"can_unaccept_answer":false,"accepted_answer":false,"topic_accepted_answer":null,"can_vote":false},{"id":90173,"name":"Gary
+        Krause","username":"garyKrause","avatar_template":"/letter_avatar/garykrause/{size}/5_341fea102a12413267ee9cca6a635b61.png","created_at":"2023-05-24T13:26:59.044Z","cooked":"\u003cp\u003eThis
+        is great to hear! Is there any way to get notifications for when 22.04 has
+        the relevant FIPS compliance modules released? Or is there some beta channel
+        I can use for dev/test environments?\u003c/p\u003e","post_number":2,"post_type":1,"posts_count":2,"updated_at":"2023-05-24T13:26:59.044Z","reply_count":0,"reply_to_post_number":null,"quote_count":0,"incoming_link_count":10,"reads":31,"readers_count":30,"score":56.2,"yours":false,"topic_id":35840,"topic_slug":"security-compliance-certifications-for-22-04","display_username":"Gary
+        Krause","primary_group_name":null,"flair_name":null,"flair_url":null,"flair_bg_color":null,"flair_color":null,"flair_group_id":null,"badges_granted":[],"version":1,"can_edit":true,"can_delete":true,"can_recover":false,"can_see_hidden_post":true,"can_wiki":true,"read":false,"user_title":null,"bookmarked":false,"actions_summary":[{"id":2,"can_act":true},{"id":6,"can_act":true},{"id":3,"can_act":true},{"id":4,"can_act":true},{"id":8,"can_act":true},{"id":10,"can_act":true},{"id":7,"can_act":true}],"moderator":false,"admin":false,"staff":false,"user_id":23212,"hidden":false,"trust_level":0,"deleted_at":null,"user_deleted":false,"edit_reason":null,"can_view_edit_history":true,"wiki":false,"reviewable_id":0,"reviewable_score_count":0,"reviewable_score_pending_count":0,"post_url":"/t/security-compliance-certifications-for-22-04/35840/2","event":null,"reactions":[],"current_user_reaction":null,"reaction_users_count":0,"current_user_used_main_reaction":false,"user_signature":null,"can_accept_answer":true,"can_unaccept_answer":false,"accepted_answer":false,"topic_accepted_answer":null}],"stream":[89888,90173]},"timeline_lookup":[[1,1148],[2,1142]],"suggested_topics":[{"fancy_title":"[Case
+        study] EpiSensor accelerates the sustainable energy transition with Ubuntu
+        Core","id":54981,"title":"[Case study] EpiSensor accelerates the sustainable
+        energy transition with Ubuntu Core","slug":"case-study-episensor-accelerates-the-sustainable-energy-transition-with-ubuntu-core","posts_count":3,"reply_count":0,"highest_post_number":3,"image_url":null,"created_at":"2025-02-11T03:08:01.123Z","last_posted_at":"2026-05-22T09:12:42.889Z","bumped":true,"bumped_at":"2025-02-11T03:08:01.273Z","archetype":"regular","unseen":false,"last_read_post_number":2,"unread":0,"new_posts":1,"unread_posts":1,"pinned":false,"unpinned":null,"visible":true,"closed":false,"archived":false,"notification_level":3,"bookmarked":false,"liked":false,"visibility_reason_id":4,"tags":[],"tags_descriptions":{},"like_count":0,"views":12,"category_id":51,"featured_link":null,"has_accepted_answer":false,"posters":[{"extras":null,"description":"Original
+        Poster","user":{"id":29441,"username":"britneywwc","name":"Britney Wang","avatar_template":"/letter_avatar/britneywwc/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"admin":true,"moderator":true,"trust_level":4}},{"extras":"latest","description":"Most
+        Recent Poster","user":{"id":34102,"username":"elaineliman","name":"Elaine
+        Liman","avatar_template":"/letter_avatar/elaineliman/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"trust_level":3}}]},{"fancy_title":"[Case
+        study] ESA Boosts Mission Capacity with Canonical Infrastructure","id":53387,"title":"[Case
+        study] ESA Boosts Mission Capacity with Canonical Infrastructure","slug":"case-study-esa-boosts-mission-capacity-with-canonical-infrastructure","posts_count":5,"reply_count":0,"highest_post_number":5,"image_url":null,"created_at":"2025-01-16T06:28:18.802Z","last_posted_at":"2026-05-22T09:16:24.344Z","bumped":true,"bumped_at":"2025-01-16T06:42:22.956Z","archetype":"regular","unseen":false,"last_read_post_number":4,"unread":0,"new_posts":1,"unread_posts":1,"pinned":false,"unpinned":null,"visible":true,"closed":false,"archived":false,"notification_level":3,"bookmarked":false,"liked":false,"visibility_reason_id":4,"tags":[],"tags_descriptions":{},"like_count":0,"views":11,"category_id":51,"featured_link":null,"has_accepted_answer":false,"posters":[{"extras":null,"description":"Original
+        Poster","user":{"id":29441,"username":"britneywwc","name":"Britney Wang","avatar_template":"/letter_avatar/britneywwc/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"admin":true,"moderator":true,"trust_level":4}},{"extras":"latest","description":"Most
+        Recent Poster","user":{"id":34102,"username":"elaineliman","name":"Elaine
+        Liman","avatar_template":"/letter_avatar/elaineliman/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"trust_level":3}}]},{"fancy_title":"[Case
+        study] Grundium Ubuntu Pro for Devices","id":53393,"title":"[Case study] Grundium
+        Ubuntu Pro for Devices","slug":"case-study-grundium-ubuntu-pro-for-devices","posts_count":3,"reply_count":0,"highest_post_number":3,"image_url":null,"created_at":"2025-01-16T06:38:14.877Z","last_posted_at":"2026-05-22T09:14:12.527Z","bumped":true,"bumped_at":"2025-01-16T06:41:55.080Z","archetype":"regular","unseen":false,"last_read_post_number":2,"unread":0,"new_posts":1,"unread_posts":1,"pinned":false,"unpinned":null,"visible":true,"closed":false,"archived":false,"notification_level":3,"bookmarked":false,"liked":false,"visibility_reason_id":4,"tags":[],"tags_descriptions":{},"like_count":0,"views":6,"category_id":51,"featured_link":null,"has_accepted_answer":false,"posters":[{"extras":null,"description":"Original
+        Poster","user":{"id":29441,"username":"britneywwc","name":"Britney Wang","avatar_template":"/letter_avatar/britneywwc/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"admin":true,"moderator":true,"trust_level":4}},{"extras":"latest","description":"Most
+        Recent Poster","user":{"id":34102,"username":"elaineliman","name":"Elaine
+        Liman","avatar_template":"/letter_avatar/elaineliman/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"trust_level":3}}]},{"fancy_title":"[Case
+        study] Lucid AWS FedRAMP Compliance","id":53391,"title":"[Case study] Lucid
+        AWS FedRAMP Compliance","slug":"case-study-lucid-aws-fedramp-compliance","posts_count":3,"reply_count":0,"highest_post_number":3,"image_url":null,"created_at":"2025-01-16T06:37:31.134Z","last_posted_at":"2026-05-22T09:15:32.241Z","bumped":true,"bumped_at":"2025-01-16T06:37:31.321Z","archetype":"regular","unseen":false,"last_read_post_number":2,"unread":0,"new_posts":1,"unread_posts":1,"pinned":false,"unpinned":null,"visible":true,"closed":false,"archived":false,"notification_level":3,"bookmarked":false,"liked":false,"visibility_reason_id":4,"tags":["aws"],"tags_descriptions":{"aws":"Posts
+        about using Ubuntu on Amazon Web Services (AWS)"},"like_count":0,"views":11,"category_id":51,"featured_link":null,"has_accepted_answer":false,"posters":[{"extras":null,"description":"Original
+        Poster","user":{"id":29441,"username":"britneywwc","name":"Britney Wang","avatar_template":"/letter_avatar/britneywwc/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"admin":true,"moderator":true,"trust_level":4}},{"extras":"latest","description":"Most
+        Recent Poster","user":{"id":34102,"username":"elaineliman","name":"Elaine
+        Liman","avatar_template":"/letter_avatar/elaineliman/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"trust_level":3}}]},{"fancy_title":"[Case
+        study] SBI Bits","id":53390,"title":"[Case study] SBI Bits","slug":"case-study-sbi-bits","posts_count":3,"reply_count":0,"highest_post_number":3,"image_url":null,"created_at":"2025-01-16T06:36:16.302Z","last_posted_at":"2026-05-22T09:13:07.215Z","bumped":true,"bumped_at":"2025-01-16T06:36:57.264Z","archetype":"regular","unseen":false,"last_read_post_number":2,"unread":0,"new_posts":1,"unread_posts":1,"pinned":false,"unpinned":null,"visible":true,"closed":false,"archived":false,"notification_level":3,"bookmarked":false,"liked":false,"visibility_reason_id":4,"tags":[],"tags_descriptions":{},"like_count":0,"views":7,"category_id":51,"featured_link":null,"has_accepted_answer":false,"posters":[{"extras":null,"description":"Original
+        Poster","user":{"id":29441,"username":"britneywwc","name":"Britney Wang","avatar_template":"/letter_avatar/britneywwc/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"admin":true,"moderator":true,"trust_level":4}},{"extras":"latest","description":"Most
+        Recent Poster","user":{"id":34102,"username":"elaineliman","name":"Elaine
+        Liman","avatar_template":"/letter_avatar/elaineliman/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"trust_level":3}}]}],"tags":[],"tags_descriptions":{},"fancy_title":"Security
+        Compliance \u0026amp; Certifications for 22.04","id":35840,"title":"Security
+        Compliance \u0026 Certifications for 22.04","posts_count":2,"created_at":"2023-05-18T10:28:06.188Z","views":4163,"reply_count":0,"like_count":2,"last_posted_at":"2023-05-24T13:26:59.044Z","visible":true,"closed":false,"archived":false,"has_summary":false,"archetype":"regular","slug":"security-compliance-certifications-for-22-04","category_id":87,"word_count":790,"deleted_at":null,"user_id":18201,"featured_link":null,"pinned_globally":false,"pinned_at":null,"pinned_until":null,"image_url":null,"slow_mode_seconds":0,"draft":null,"draft_key":"topic_35840","draft_sequence":0,"unpinned":null,"pinned":false,"current_post_number":1,"highest_post_number":2,"deleted_by":null,"has_deleted":false,"actions_summary":[{"id":4,"count":0,"hidden":false,"can_act":true},{"id":8,"count":0,"hidden":false,"can_act":true},{"id":10,"count":0,"hidden":false,"can_act":true},{"id":7,"count":0,"hidden":false,"can_act":true},{"id":1001,"count":0,"hidden":false,"can_act":false},{"id":1003,"count":0,"hidden":false,"can_act":false}],"chunk_size":20,"bookmarked":false,"topic_timer":null,"message_bus_last_id":0,"participant_count":2,"queued_posts_count":0,"show_read_indicator":false,"thumbnails":null,"slow_mode_enabled_until":null,"valid_reactions":["heart","+1","clap","tada","raising_hands","confetti_ball"],"can_vote":false,"vote_count":0,"user_voted":false,"discourse_zendesk_plugin_zendesk_id":null,"discourse_zendesk_plugin_zendesk_url":"https://your-url.zendesk.com/agent/tickets/","details":{"can_edit":true,"notification_level":1,"can_move_posts":true,"can_delete":true,"can_remove_allowed_users":true,"can_invite_to":true,"can_create_post":true,"can_reply_as_new_topic":true,"can_flag_topic":true,"can_convert_topic":true,"can_review_topic":true,"can_close_topic":true,"can_archive_topic":true,"can_split_merge_topic":true,"can_edit_staff_notes":true,"can_toggle_topic_visibility":true,"can_pin_unpin_topic":true,"can_moderate_category":true,"can_remove_self_id":29441,"participants":[{"id":18201,"username":"henrycoggill","name":"Henry
+        Coggill","avatar_template":"/letter_avatar/henrycoggill/{size}/5_341fea102a12413267ee9cca6a635b61.png","post_count":1,"primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_color":"","flair_bg_color":"","flair_group_id":49,"moderator":true,"trust_level":2},{"id":23212,"username":"garyKrause","name":"Gary
+        Krause","avatar_template":"/letter_avatar/garykrause/{size}/5_341fea102a12413267ee9cca6a635b61.png","post_count":1,"primary_group_name":null,"flair_name":null,"flair_url":null,"flair_color":null,"flair_bg_color":null,"flair_group_id":null,"trust_level":0}],"created_by":{"id":18201,"username":"henrycoggill","name":"Henry
+        Coggill","avatar_template":"/letter_avatar/henrycoggill/{size}/5_341fea102a12413267ee9cca6a635b61.png"},"last_poster":{"id":23212,"username":"garyKrause","name":"Gary
+        Krause","avatar_template":"/letter_avatar/garykrause/{size}/5_341fea102a12413267ee9cca6a635b61.png"},"links":[{"url":"https://discourse.ubuntu.com/t/disa-stig-on-ubuntu/26080","title":"DISA-STIG
+        on Ubuntu","internal":true,"attachment":false,"reflection":false,"clicks":47,"user_id":18201,"domain":"discourse.ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://ubuntu.com/security/fips#modules","title":"Ubuntu
+        fips certifications | Security | Ubuntu","internal":false,"attachment":false,"reflection":false,"clicks":38,"user_id":18201,"domain":"ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://discourse.ubuntu.com/t/fips-for-ubuntu-22-04/39869","title":"FIPS
+        for Ubuntu 22.04","internal":true,"attachment":false,"reflection":false,"clicks":30,"user_id":18201,"domain":"discourse.ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://ubuntu.com/pro","title":"Ubuntu
+        Pro | Ubuntu","internal":false,"attachment":false,"reflection":false,"clicks":18,"user_id":18201,"domain":"ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://discourse.ubuntu.com/t/security-compliance-certifications-for-24-04/56165","title":"Security
+        Compliance \u0026 Certifications for 24.04","internal":true,"attachment":false,"reflection":true,"clicks":16,"user_id":18201,"domain":"discourse.ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://discourse.ubuntu.com/t/customizing-the-cis-profile/26088","title":"Customizing
+        the CIS profile","internal":true,"attachment":false,"reflection":false,"clicks":10,"user_id":18201,"domain":"discourse.ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://csrc.nist.gov/projects/cryptographic-module-validation-program/validated-modules/search?SearchMode=Basic\u0026Vendor=canonical\u0026CertificateStatus=Active\u0026ValidationYear=0","title":null,"internal":false,"attachment":false,"reflection":false,"clicks":8,"user_id":18201,"domain":"csrc.nist.gov","root_domain":"nist.gov"},{"url":"https://discourse.ubuntu.com/t/cis-compliance-for-ubuntu/22818","title":"CIS
+        Compliance for Ubuntu","internal":true,"attachment":false,"reflection":false,"clicks":1,"user_id":18201,"domain":"discourse.ubuntu.com","root_domain":"ubuntu.com"}]},"pending_posts":[],"bookmarks":[]}'
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Thu, 09 Jul 2026 08:51:12 GMT
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      server:
+      - nginx/1.24.0 (Ubuntu)
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      x-cache-status:
+      - MISS from content-cache/7
+      x-content-type-options:
+      - nosniff
+      x-discourse-route:
+      - topics/show
+      x-discourse-username:
+      - britneywwc
+      x-frame-options:
+      - SAMEORIGIN
+      x-permitted-cross-domain-policies:
+      - none
+      x-request-id:
+      - a48834f9128497f900220bb3ea15b014
+      x-runtime:
+      - '0.221637'
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate, br
+    method: GET
+    uri: https://discourse.ubuntu.com/t/26241.json
+  response:
+    body:
+      string: '{"post_stream":{"posts":[{"id":69233,"name":"Nikos Mavrogiannopoulos","username":"nmavrogiannopoulos","avatar_template":"/user_avatar/discourse.ubuntu.com/nmavrogiannopoulos/{size}/12873_2.png","created_at":"2022-01-19T16:17:58.142Z","cooked":"\u003ch2\u003e\u003ca
+        name=\"p-69233-ubuntu-1604-and-1804-1\" class=\"anchor\" href=\"#p-69233-ubuntu-1604-and-1804-1\"\u003e\u003c/a\u003eUbuntu
+        16.04 and 18.04\u003c/h2\u003e\n\u003cp\u003eUbuntu goes through several rigorous
+        security certifications and programs and these pages are dedicated to them.
+        All certification artifacts are available with an \u003ca href=\"https://ubuntu.com/advantage\"\u003eUbuntu
+        Advantage subscription\u003c/a\u003e.\u003c/p\u003e\n\u003ch2\u003e\u003ca
+        name=\"p-69233-fips-140httpsdiscourseubuntucomtfips-for-ubuntu22814-2\" class=\"anchor\"
+        href=\"#p-69233-fips-140httpsdiscourseubuntucomtfips-for-ubuntu22814-2\"\u003e\u003c/a\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/fips-for-ubuntu/22814\"\u003eFIPS 140\u003c/a\u003e\u003c/h2\u003e\n\u003cp\u003eFederal
+        Information Processing Standards Publications (FIPS) are issued by the National
+        Institute of Standards and Technology (NIST). FIPS 140-2 specifies the security
+        requirements for cryptographic modules. These requirements address the areas
+        of secure design and implementation.\u003c/p\u003e\n\u003cp\u003eUbuntu LTS
+        releases starting with 16.04 (Xenial) come with FIPS validated cryptographic
+        packages, including the Linux kernel and OpenSSL. The full list of packages
+        and certificates \u003ca href=\"https://ubuntu.com/security/fips#modules\"\u003eis
+        available here\u003c/a\u003e.\u003c/p\u003e\n\u003cp\u003eFor more information
+        on FIPS certification on Ubuntu see the \u003ca href=\"https://discourse.ubuntu.com/t/fips-for-ubuntu/22814\"\u003eFIPS
+        Information and Installation Guide\u003c/a\u003e.\u003c/p\u003e\n\u003ch2\u003e\u003ca
+        name=\"p-69233-cishttpsdiscourseubuntucomtcustomizing-the-cis-profile26088-3\"
+        class=\"anchor\" href=\"#p-69233-cishttpsdiscourseubuntucomtcustomizing-the-cis-profile26088-3\"\u003e\u003c/a\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/customizing-the-cis-profile/26088\"\u003eCIS\u003c/a\u003e\u003c/h2\u003e\n\u003cp\u003eUbuntu
+        LTS releases starting with 16.04 (Xenial) have compliance benchmark documents
+        developed by the Center for Internet Security (CIS).\u003c/p\u003e\n\u003cp\u003eFor
+        more information see the \u003ca href=\"https://discourse.ubuntu.com/t/cis-compliance-for-ubuntu/22818\"\u003eCIS
+        Compliance for Ubuntu 16.04 and 18.04\u003c/a\u003e.\u003c/p\u003e\n\u003ch2\u003e\u003ca
+        name=\"p-69233-common-criteriahttpsdiscourseubuntucomtcommon-criteria-for-ubuntu22817-4\"
+        class=\"anchor\" href=\"#p-69233-common-criteriahttpsdiscourseubuntucomtcommon-criteria-for-ubuntu22817-4\"\u003e\u003c/a\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/common-criteria-for-ubuntu/22817\"\u003eCommon
+        Criteria\u003c/a\u003e\u003c/h2\u003e\n\u003cp\u003eCommon Criteria for Information
+        Technology Security Evaluation (CC) is an international standard. The CC provides
+        a common set of requirements for the security functionality of IT products
+        and for assurance measures applied to these IT products during a security
+        evaluation.\u003c/p\u003e\n\u003cp\u003eThe evaluation process establishes
+        a level of confidence that the security functionality of these IT products
+        and the assurance measures applied to these IT products meet these requirements:\u003c/p\u003e\n\u003cp\u003eFor
+        more information on the Common Criteria certification on Ubuntu see the \u003ca
+        href=\"https://discourse.ubuntu.com/t/common-criteria-for-ubuntu/22817\"\u003eCommon
+        Criteria Guide\u003c/a\u003e.\u003c/p\u003e\n\u003ch2\u003e\u003ca name=\"p-69233-navigation-5\"
+        class=\"anchor\" href=\"#p-69233-navigation-5\"\u003e\u003c/a\u003eNavigation\u003c/h2\u003e\n\u003cdetails\u003e\n\u003csummary\u003e\nDocumentation
+        versions\u003c/summary\u003e\n\u003cdiv class=\"md-table\"\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003ePath\u003c/th\u003e\n\u003cth\u003eVersion\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd\u003e2404\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/security-compliance-certifications-for-24-04/56165\"\u003e24.04\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2204\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/security-compliance-certifications-for-22-04/35840\"\u003e22.04\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/about-the-documentation-category/22810\"\u003e20.04\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e16-18\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/security-certifications-for-16-04-and-18-04/26241\"\u003e16.04
+        / 18.04\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003c/div\u003e\u003c/details\u003e\n\u003cdetails\u003e\n\u003csummary\u003e\nNavigation\u003c/summary\u003e\n\u003cdiv
+        class=\"md-table\"\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003eLevel\u003c/th\u003e\n\u003cth\u003ePath\u003c/th\u003e\n\u003cth\u003eNavlink\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd\u003e0\u003c/td\u003e\n\u003ctd\u003esecurity-certifications\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/security-certifications-for-16-04-and-18-04/26241\"\u003eSecurity
+        Certifications\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e1\u003c/td\u003e\n\u003ctd\u003efips\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/fips-for-ubuntu/22814\"\u003e FIPS 140\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003efips-enablement\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/enable-fips-with-the-ubuntu-advantage-tool/24743\"\u003eEnabling
+        FIPS\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003efips-updates\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/security-patching/24779\"\u003eSecurity
+        patching\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003efips-details\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/fips-certification-information/24745\"\u003eDetailed
+        certification information\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003efips-cloud-containers\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/latest-xenial-kernels/22815\"\u003eFIPS
+        for clouds and containers\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003efips-devel\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/developing-for-fips/24860\"\u003eDeveloping
+        for FIPS\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003efips-faq\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/ubuntu-fips-140-2-modules-faq/22816\"\u003eFIPS
+        FAQ\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e1\u003c/td\u003e\n\u003ctd\u003ecis\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/cis-compliance-for-ubuntu/22818\"\u003eCIS
+        compliance\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003ecis/installation\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/install-the-compliance-tooling/24895\"\u003eInstallation\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003ecis/audit\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/auditing-a-cis-hardened-ubuntu-system/22822\"\u003eAudit\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003ecis/compliance\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/cis-compliance-with-ubuntu-16-04-and-18-04/26085\"\u003eCompliance\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003ecis/customization\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/cis-compliance-for-ubuntu-required-manual-configuration/22819\"\u003eCustomization\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003ecis/juju\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/cis-benchmark-via-juju/22820\"\u003eHardening
+        via Juju\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003ecis/customization2\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/cis-compliance-for-ubuntu-ruleset-params-conf-parameter-information/22821\"\u003eruleset-params.conf\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e1\u003c/td\u003e\n\u003ctd\u003ecc\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://discourse.ubuntu.com/t/common-criteria-for-ubuntu/22817\"\u003eCommon
+        Criteria\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003c/div\u003e\u003c/details\u003e\n\u003ch2\u003e\u003ca
+        name=\"p-69233-redirects-6\" class=\"anchor\" href=\"#p-69233-redirects-6\"\u003e\u003c/a\u003eRedirects\u003c/h2\u003e\n\u003cdetails\u003e\n\u003csummary\u003e\nMapping
+        table\u003c/summary\u003e\n\u003cdiv class=\"md-table\"\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003ePath\u003c/th\u003e\n\u003cth\u003eLocation\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003c/table\u003e\n\u003c/div\u003e\u003c/details\u003e","post_number":1,"post_type":1,"posts_count":1,"updated_at":"2025-03-07T16:28:41.657Z","reply_count":0,"reply_to_post_number":null,"quote_count":0,"incoming_link_count":33,"reads":18,"readers_count":17,"score":183.6,"yours":false,"topic_id":26241,"topic_slug":"security-certifications-for-16-04-and-18-04","display_username":"Nikos
+        Mavrogiannopoulos","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_bg_color":"","flair_color":"","flair_group_id":49,"badges_granted":[],"version":12,"can_edit":true,"can_delete":false,"can_recover":false,"can_see_hidden_post":true,"can_wiki":true,"link_counts":[{"url":"https://discourse.ubuntu.com/t/fips-for-ubuntu/22814","internal":true,"reflection":false,"title":"FIPS
+        for Ubuntu","clicks":3},{"url":"https://discourse.ubuntu.com/t/cis-compliance-for-ubuntu/22818","internal":true,"reflection":false,"title":"CIS
+        Compliance for Ubuntu","clicks":3},{"url":"https://ubuntu.com/security/fips#modules","internal":false,"reflection":false,"title":"Ubuntu
+        fips certifications | Security | Ubuntu","clicks":2},{"url":"https://discourse.ubuntu.com/t/common-criteria-for-ubuntu/22817","internal":true,"reflection":false,"title":"Common
+        Criteria for Ubuntu","clicks":1},{"url":"https://ubuntu.com/advantage","internal":false,"reflection":false,"title":"Ubuntu
+        Advantage for Infrastructure | Ubuntu","clicks":1},{"url":"https://discourse.ubuntu.com/t/ubuntu-fips-140-2-modules-faq/22816","internal":true,"reflection":false,"title":"Ubuntu
+        FIPS 140-2 Modules FAQ","clicks":0},{"url":"https://discourse.ubuntu.com/t/install-the-compliance-tooling/24895","internal":true,"reflection":false,"title":"Install
+        the compliance tooling","clicks":0},{"url":"https://discourse.ubuntu.com/t/auditing-a-cis-hardened-ubuntu-system/22822","internal":true,"reflection":false,"title":"Auditing
+        a CIS-Hardened Ubuntu System","clicks":0},{"url":"https://discourse.ubuntu.com/t/cis-compliance-with-ubuntu-16-04-and-18-04/26085","internal":true,"reflection":false,"title":"CIS
+        Compliance with Ubuntu 16.04 and 18.04","clicks":0},{"url":"https://discourse.ubuntu.com/t/manual-configuration-for-cis/22819","internal":true,"reflection":false,"title":"Manual
+        Configuration for CIS","clicks":0},{"url":"https://discourse.ubuntu.com/t/customizing-the-cis-profile/26088","internal":true,"reflection":false,"title":"Customizing
+        the CIS profile","clicks":0},{"url":"https://discourse.ubuntu.com/t/cis-benchmark-via-juju/22820","internal":true,"reflection":false,"title":"CIS
+        Benchmark via Juju","clicks":0},{"url":"https://discourse.ubuntu.com/t/security-patching/24779","internal":true,"reflection":false,"title":"Security
+        patching","clicks":0},{"url":"https://discourse.ubuntu.com/t/fips-certification-information/24745","internal":true,"reflection":false,"title":"FIPS
+        certification information","clicks":0},{"url":"https://discourse.ubuntu.com/t/fips-in-containers-and-vms/22815","internal":true,"reflection":false,"title":"FIPS
+        in containers and VMs","clicks":0},{"url":"https://discourse.ubuntu.com/t/developing-for-fips/24860","internal":true,"reflection":false,"title":"Developing
+        for FIPS","clicks":0},{"url":"https://discourse.ubuntu.com/t/enabling-fips-with-the-pro-tool/24743","internal":true,"reflection":false,"title":"Enabling
+        FIPS with the pro tool","clicks":0},{"url":"https://discourse.ubuntu.com/t/security-compliance-certifications-for-24-04/56165","internal":true,"reflection":true,"title":"Security
+        Compliance \u0026 Certifications for 24.04","clicks":0},{"url":"https://discourse.ubuntu.com/t/security-compliance-certifications-for-20-04/22810","internal":true,"reflection":true,"title":"Security
+        Compliance \u0026 Certifications for 20.04","clicks":0},{"url":"https://discourse.ubuntu.com/t/security-compliance-certifications-for-22-04/35840","internal":true,"reflection":true,"title":"Security
+        Compliance \u0026 Certifications for 22.04","clicks":0}],"read":false,"user_title":null,"bookmarked":false,"actions_summary":[{"id":2,"count":1,"can_act":true},{"id":6,"can_act":true},{"id":3,"can_act":true},{"id":4,"can_act":true},{"id":8,"can_act":true},{"id":10,"can_act":true},{"id":7,"can_act":true}],"moderator":false,"admin":false,"staff":false,"user_id":14522,"hidden":false,"trust_level":3,"deleted_at":null,"user_deleted":false,"edit_reason":null,"can_view_edit_history":true,"wiki":false,"reviewable_id":0,"reviewable_score_count":0,"reviewable_score_pending_count":0,"post_url":"/t/security-certifications-for-16-04-and-18-04/26241/1","event":null,"calendar_details":[],"reactions":[{"id":"heart","type":"emoji","count":1}],"current_user_reaction":null,"reaction_users_count":1,"current_user_used_main_reaction":false,"user_signature":null,"can_accept_answer":false,"can_unaccept_answer":false,"accepted_answer":false,"topic_accepted_answer":null,"can_vote":false}],"stream":[69233]},"timeline_lookup":[[1,1632]],"suggested_topics":[{"fancy_title":"[Case
+        study] EpiSensor accelerates the sustainable energy transition with Ubuntu
+        Core","id":54981,"title":"[Case study] EpiSensor accelerates the sustainable
+        energy transition with Ubuntu Core","slug":"case-study-episensor-accelerates-the-sustainable-energy-transition-with-ubuntu-core","posts_count":3,"reply_count":0,"highest_post_number":3,"image_url":null,"created_at":"2025-02-11T03:08:01.123Z","last_posted_at":"2026-05-22T09:12:42.889Z","bumped":true,"bumped_at":"2025-02-11T03:08:01.273Z","archetype":"regular","unseen":false,"last_read_post_number":2,"unread":0,"new_posts":1,"unread_posts":1,"pinned":false,"unpinned":null,"visible":true,"closed":false,"archived":false,"notification_level":3,"bookmarked":false,"liked":false,"visibility_reason_id":4,"tags":[],"tags_descriptions":{},"like_count":0,"views":12,"category_id":51,"featured_link":null,"has_accepted_answer":false,"posters":[{"extras":null,"description":"Original
+        Poster","user":{"id":29441,"username":"britneywwc","name":"Britney Wang","avatar_template":"/letter_avatar/britneywwc/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"admin":true,"moderator":true,"trust_level":4}},{"extras":"latest","description":"Most
+        Recent Poster","user":{"id":34102,"username":"elaineliman","name":"Elaine
+        Liman","avatar_template":"/letter_avatar/elaineliman/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"trust_level":3}}]},{"fancy_title":"[Case
+        study] ESA Boosts Mission Capacity with Canonical Infrastructure","id":53387,"title":"[Case
+        study] ESA Boosts Mission Capacity with Canonical Infrastructure","slug":"case-study-esa-boosts-mission-capacity-with-canonical-infrastructure","posts_count":5,"reply_count":0,"highest_post_number":5,"image_url":null,"created_at":"2025-01-16T06:28:18.802Z","last_posted_at":"2026-05-22T09:16:24.344Z","bumped":true,"bumped_at":"2025-01-16T06:42:22.956Z","archetype":"regular","unseen":false,"last_read_post_number":4,"unread":0,"new_posts":1,"unread_posts":1,"pinned":false,"unpinned":null,"visible":true,"closed":false,"archived":false,"notification_level":3,"bookmarked":false,"liked":false,"visibility_reason_id":4,"tags":[],"tags_descriptions":{},"like_count":0,"views":11,"category_id":51,"featured_link":null,"has_accepted_answer":false,"posters":[{"extras":null,"description":"Original
+        Poster","user":{"id":29441,"username":"britneywwc","name":"Britney Wang","avatar_template":"/letter_avatar/britneywwc/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"admin":true,"moderator":true,"trust_level":4}},{"extras":"latest","description":"Most
+        Recent Poster","user":{"id":34102,"username":"elaineliman","name":"Elaine
+        Liman","avatar_template":"/letter_avatar/elaineliman/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"trust_level":3}}]},{"fancy_title":"[Case
+        study] Grundium Ubuntu Pro for Devices","id":53393,"title":"[Case study] Grundium
+        Ubuntu Pro for Devices","slug":"case-study-grundium-ubuntu-pro-for-devices","posts_count":3,"reply_count":0,"highest_post_number":3,"image_url":null,"created_at":"2025-01-16T06:38:14.877Z","last_posted_at":"2026-05-22T09:14:12.527Z","bumped":true,"bumped_at":"2025-01-16T06:41:55.080Z","archetype":"regular","unseen":false,"last_read_post_number":2,"unread":0,"new_posts":1,"unread_posts":1,"pinned":false,"unpinned":null,"visible":true,"closed":false,"archived":false,"notification_level":3,"bookmarked":false,"liked":false,"visibility_reason_id":4,"tags":[],"tags_descriptions":{},"like_count":0,"views":6,"category_id":51,"featured_link":null,"has_accepted_answer":false,"posters":[{"extras":null,"description":"Original
+        Poster","user":{"id":29441,"username":"britneywwc","name":"Britney Wang","avatar_template":"/letter_avatar/britneywwc/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"admin":true,"moderator":true,"trust_level":4}},{"extras":"latest","description":"Most
+        Recent Poster","user":{"id":34102,"username":"elaineliman","name":"Elaine
+        Liman","avatar_template":"/letter_avatar/elaineliman/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"trust_level":3}}]},{"fancy_title":"[Case
+        study] Lucid AWS FedRAMP Compliance","id":53391,"title":"[Case study] Lucid
+        AWS FedRAMP Compliance","slug":"case-study-lucid-aws-fedramp-compliance","posts_count":3,"reply_count":0,"highest_post_number":3,"image_url":null,"created_at":"2025-01-16T06:37:31.134Z","last_posted_at":"2026-05-22T09:15:32.241Z","bumped":true,"bumped_at":"2025-01-16T06:37:31.321Z","archetype":"regular","unseen":false,"last_read_post_number":2,"unread":0,"new_posts":1,"unread_posts":1,"pinned":false,"unpinned":null,"visible":true,"closed":false,"archived":false,"notification_level":3,"bookmarked":false,"liked":false,"visibility_reason_id":4,"tags":["aws"],"tags_descriptions":{"aws":"Posts
+        about using Ubuntu on Amazon Web Services (AWS)"},"like_count":0,"views":11,"category_id":51,"featured_link":null,"has_accepted_answer":false,"posters":[{"extras":null,"description":"Original
+        Poster","user":{"id":29441,"username":"britneywwc","name":"Britney Wang","avatar_template":"/letter_avatar/britneywwc/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"admin":true,"moderator":true,"trust_level":4}},{"extras":"latest","description":"Most
+        Recent Poster","user":{"id":34102,"username":"elaineliman","name":"Elaine
+        Liman","avatar_template":"/letter_avatar/elaineliman/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"trust_level":3}}]},{"fancy_title":"[Case
+        study] SBI Bits","id":53390,"title":"[Case study] SBI Bits","slug":"case-study-sbi-bits","posts_count":3,"reply_count":0,"highest_post_number":3,"image_url":null,"created_at":"2025-01-16T06:36:16.302Z","last_posted_at":"2026-05-22T09:13:07.215Z","bumped":true,"bumped_at":"2025-01-16T06:36:57.264Z","archetype":"regular","unseen":false,"last_read_post_number":2,"unread":0,"new_posts":1,"unread_posts":1,"pinned":false,"unpinned":null,"visible":true,"closed":false,"archived":false,"notification_level":3,"bookmarked":false,"liked":false,"visibility_reason_id":4,"tags":[],"tags_descriptions":{},"like_count":0,"views":7,"category_id":51,"featured_link":null,"has_accepted_answer":false,"posters":[{"extras":null,"description":"Original
+        Poster","user":{"id":29441,"username":"britneywwc","name":"Britney Wang","avatar_template":"/letter_avatar/britneywwc/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"admin":true,"moderator":true,"trust_level":4}},{"extras":"latest","description":"Most
+        Recent Poster","user":{"id":34102,"username":"elaineliman","name":"Elaine
+        Liman","avatar_template":"/letter_avatar/elaineliman/{size}/5_341fea102a12413267ee9cca6a635b61.png","primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_group_id":49,"trust_level":3}}]}],"tags":[],"tags_descriptions":{},"fancy_title":"Security
+        Certifications for 16.04 and 18.04","id":26241,"title":"Security Certifications
+        for 16.04 and 18.04","posts_count":1,"created_at":"2022-01-19T16:17:57.954Z","views":4299,"reply_count":0,"like_count":1,"last_posted_at":"2022-01-19T16:17:58.142Z","visible":true,"closed":false,"archived":false,"has_summary":false,"archetype":"regular","slug":"security-certifications-for-16-04-and-18-04","category_id":87,"word_count":645,"deleted_at":null,"user_id":14522,"featured_link":null,"pinned_globally":false,"pinned_at":null,"pinned_until":null,"image_url":null,"slow_mode_seconds":0,"draft":null,"draft_key":"topic_26241","draft_sequence":0,"unpinned":null,"pinned":false,"current_post_number":1,"highest_post_number":1,"deleted_by":null,"has_deleted":false,"actions_summary":[{"id":4,"count":0,"hidden":false,"can_act":true},{"id":8,"count":0,"hidden":false,"can_act":true},{"id":10,"count":0,"hidden":false,"can_act":true},{"id":7,"count":0,"hidden":false,"can_act":true},{"id":1001,"count":0,"hidden":false,"can_act":false},{"id":1003,"count":0,"hidden":false,"can_act":false}],"chunk_size":20,"bookmarked":false,"topic_timer":null,"message_bus_last_id":0,"participant_count":1,"queued_posts_count":0,"show_read_indicator":false,"thumbnails":null,"slow_mode_enabled_until":null,"valid_reactions":["heart","+1","clap","tada","raising_hands","confetti_ball"],"can_vote":false,"vote_count":0,"user_voted":false,"discourse_zendesk_plugin_zendesk_id":null,"discourse_zendesk_plugin_zendesk_url":"https://your-url.zendesk.com/agent/tickets/","details":{"can_edit":true,"notification_level":1,"can_move_posts":true,"can_delete":true,"can_remove_allowed_users":true,"can_invite_to":true,"can_create_post":true,"can_reply_as_new_topic":true,"can_flag_topic":true,"can_convert_topic":true,"can_review_topic":true,"can_close_topic":true,"can_archive_topic":true,"can_split_merge_topic":true,"can_edit_staff_notes":true,"can_toggle_topic_visibility":true,"can_pin_unpin_topic":true,"can_moderate_category":true,"can_remove_self_id":29441,"participants":[{"id":14522,"username":"nmavrogiannopoulos","name":"Nikos
+        Mavrogiannopoulos","avatar_template":"/user_avatar/discourse.ubuntu.com/nmavrogiannopoulos/{size}/12873_2.png","post_count":1,"primary_group_name":"Canonical","flair_name":"Canonical","flair_url":"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/3X/4/0/40b1afea19a293ffea50c87a121a97eb888f710b.png","flair_color":"","flair_bg_color":"","flair_group_id":49,"trust_level":3}],"created_by":{"id":14522,"username":"nmavrogiannopoulos","name":"Nikos
+        Mavrogiannopoulos","avatar_template":"/user_avatar/discourse.ubuntu.com/nmavrogiannopoulos/{size}/12873_2.png"},"last_poster":{"id":14522,"username":"nmavrogiannopoulos","name":"Nikos
+        Mavrogiannopoulos","avatar_template":"/user_avatar/discourse.ubuntu.com/nmavrogiannopoulos/{size}/12873_2.png"},"links":[{"url":"https://discourse.ubuntu.com/t/cis-compliance-for-ubuntu/22818","title":"CIS
+        Compliance for Ubuntu","internal":true,"attachment":false,"reflection":false,"clicks":3,"user_id":14522,"domain":"discourse.ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://discourse.ubuntu.com/t/fips-for-ubuntu/22814","title":"FIPS
+        for Ubuntu","internal":true,"attachment":false,"reflection":false,"clicks":3,"user_id":14522,"domain":"discourse.ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://ubuntu.com/security/fips#modules","title":"Ubuntu
+        fips certifications | Security | Ubuntu","internal":false,"attachment":false,"reflection":false,"clicks":2,"user_id":14522,"domain":"ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://discourse.ubuntu.com/t/common-criteria-for-ubuntu/22817","title":"Common
+        Criteria for Ubuntu","internal":true,"attachment":false,"reflection":false,"clicks":1,"user_id":14522,"domain":"discourse.ubuntu.com","root_domain":"ubuntu.com"},{"url":"https://ubuntu.com/advantage","title":"Ubuntu
+        Advantage for Infrastructure | Ubuntu","internal":false,"attachment":false,"reflection":false,"clicks":1,"user_id":14522,"domain":"ubuntu.com","root_domain":"ubuntu.com"}]},"pending_posts":[],"bookmarks":[]}'
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Thu, 09 Jul 2026 08:51:13 GMT
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      server:
+      - nginx/1.24.0 (Ubuntu)
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      x-cache-status:
+      - MISS from content-cache/8
+      x-content-type-options:
+      - nosniff
+      x-discourse-route:
+      - topics/show
+      x-discourse-username:
+      - britneywwc
+      x-frame-options:
+      - SAMEORIGIN
+      x-permitted-cross-domain-policies:
+      - none
+      x-request-id:
+      - 5c1f9c34e0c63655f0dae87b5750dddd
+      x-runtime:
+      - '0.224672'
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
 version: 1
