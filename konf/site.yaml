@@ -178,6 +178,13 @@ env:
 
 memoryLimit: 512Mi
 
+# Our CSP header (~4KB, webapp/constants.py) plus /login's session cookie
+# overflows nginx's 4k header buffer → 502. Needs konf with
+# https://github.com/canonical/konf/pull/53; older konf ignores the key.
+# Never set proxy_buffer_size via the snippets below: ingress-nginx already
+# renders it per location, and the duplicate blocks all ingress reloads.
+nginxProxyBufferSize: 16k
+
 extraHosts:
   - domain: ubuntu.net
   - domain: tutorials.ubuntu.com
