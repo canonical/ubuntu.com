@@ -1072,6 +1072,8 @@ def find_injection_attempt(form_fields):
             if pattern in lowered:
                 return field, pattern
     return None
+
+
 # Cache Marketo form field definitions to avoid fetching them from the
 # Marketo asset API on every submission. Keyed by form id, each entry stores
 # a (expiry_timestamp, required_fields) tuple.
