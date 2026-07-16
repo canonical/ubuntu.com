@@ -178,15 +178,11 @@ env:
 
 memoryLimit: 512Mi
 
-# Raise nginx's response-header buffer above the 4k default: the app's
-# Content-Security-Policy header (webapp/constants.py, ~190 Google domains in
-# connect-src) plus the /login session cookie overflows it, causing 502s
-# ("upstream sent too big header"). Top-level so it applies to production,
-# staging and demos. Requires konf >= the release with
+# Our CSP header (~4KB, webapp/constants.py) plus /login's session cookie
+# overflows nginx's 4k header buffer → 502. Needs konf with
 # https://github.com/canonical/konf/pull/53; older konf ignores the key.
-# Do NOT set proxy_buffer_size via the nginx snippets instead — ingress-nginx
-# already renders that directive per location, so a snippet copy is a
-# duplicate-directive error that blocks all config reloads on the cluster.
+# Never set proxy_buffer_size via the snippets below: ingress-nginx already
+# renders it per location, and the duplicate blocks all ingress reloads.
 nginxProxyBufferSize: 16k
 
 extraHosts:
