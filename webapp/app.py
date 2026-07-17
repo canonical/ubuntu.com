@@ -173,21 +173,8 @@ WORDPRESS_APPLICATION_PASSWORD = get_flask_env(
 
 # Sitemaps that are already generated and don't need to be updated.
 # Can be seen on sitemap_index.xml
-DYNAMIC_SITEMAPS = [
-    "templates",
-    "tutorials",
-    "engage",
-    "ceph/docs",
-    "community/docs",
-    "openstack/docs",
-    "blog",
-    "security/notices",
-    "security/cves",
-    "security/vulnerabilities",
-    "security/certifications/docs",
-    "security/livepatch/docs",
-    "robotics/docs",
-]
+with open("dynamic-sitemaps.yaml") as sitemaps_file:
+    DYNAMIC_SITEMAPS = yaml.load(sitemaps_file.read(), Loader=yaml.FullLoader)
 
 # Set up application
 # ===
