@@ -23,6 +23,7 @@ import dateutil
 import feedparser
 import flask
 import jinja2
+import nh3
 import yaml
 from bs4 import BeautifulSoup
 from canonicalwebteam.discourse import (
@@ -45,7 +46,7 @@ from flask.views import View
 from webapp.login import user_info
 from webapp.marketo import MarketoAPI
 from webapp.utils import format_community_event_time
-from webapp.constants import ENGAGE_UI_TRANSLATIONS
+from webapp.constants import ENGAGE_UI_TRANSLATIONS, MARKETO_INJECTION_PATTERNS
 
 ip_reader = geolite2.reader()
 session = Session()
@@ -1053,6 +1054,26 @@ def enrich_acquisition_url(acquisition_url, utm_dict, approved_utms):
     return enriched_url
 
 
+def find_injection_attempt(form_fields):
+    """
+    Return the (field, pattern) of the first submitted field value that
+    looks like a script/command injection probe rather than genuine lead
+    data, or None if no match is found. Values containing HTML markup are
+    caught structurally via nh3 (robust against tag/attribute/casing
+    variation); everything else (path traversal, command/header injection,
+    known scanner domains, etc.) is matched against the literal substrings
+    in MARKETO_INJECTION_PATTERNS.
+    """
+    for field, value in form_fields.items():
+        if nh3.is_html(value):
+            return field, "html-injection"
+        lowered = value.lower()
+        for pattern in MARKETO_INJECTION_PATTERNS:
+            if pattern in lowered:
+                return field, pattern
+    return None
+
+
 # Cache Marketo form field definitions to avoid fetching them from the
 # Marketo asset API on every submission. Keyed by form id, each entry stores
 # a (expiry_timestamp, required_fields) tuple.
@@ -1124,6 +1145,23 @@ def marketo_submit():
             form_fields.pop("website", None)
             form_fields.pop("name", None)
 
+    referrer = (
+        flask.request.referrer
+        if flask.request.referrer
+        else "https://ubuntu.com"
+    )
+
+    # Drop submissions that look like script/command injection probes
+    # instead of forwarding them to Marketo. No Sentry report is raised
+    # here, since a public endpoint like this can be hit by scanners
+    # repeatedly and would otherwise bloat alerts with spam attempts.
+    if find_injection_attempt(form_fields):
+        flask.flash(
+            "There was an issue submitting the form.",
+            "contact-form-fail",
+        )
+        return flask.redirect("/#contact-form-fail")
+
     form_fields.pop("thankyoumessage", None)
     return_url = form_fields.pop("returnURL", None)
 
@@ -1137,11 +1175,6 @@ def marketo_submit():
     visitor_data = {
         "userAgentString": flask.request.headers.get("User-Agent"),
     }
-    referrer = (
-        flask.request.referrer
-        if flask.request.referrer
-        else "https://ubuntu.com"
-    )
 
     # Reject submissions missing Marketo required fields.
     # Calls cached Marketo API to get required fields for the form ID
@@ -1475,7 +1508,9 @@ def marketo_submit():
         return flask.redirect("/#contact-form-fail")
 
     if referrer:
-        return flask.redirect(f"/thank-you?referrer={referrer}")
+        return flask.redirect(
+            f"/thank-you?{urlencode({'referrer': referrer})}"
+        )
 
     return flask.redirect("/thank-you")
 
