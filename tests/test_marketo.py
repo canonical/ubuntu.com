@@ -330,9 +330,9 @@ class TestMarketoSubmit(unittest.TestCase):
         """
         A submission containing HTML markup (detected structurally via
         nh3, regardless of the exact tag/attribute used) is never forwarded
-        to Marketo. The requester is redirected to the thank-you page as if
-        the submission succeeded, but the attempt is still reported to
-        Sentry for visibility.
+        to Marketo. The requester is redirected back with a contact-form-
+        fail flash message, and no Sentry alert is raised (this endpoint
+        is public and can be hit by scanners repeatedly).
         """
         with patch(
             "webapp.views.marketo_api.submit_form"
@@ -349,16 +349,9 @@ class TestMarketoSubmit(unittest.TestCase):
                 },
             )
         mock_submit.assert_not_called()
-        self.assertEqual(mock_sentry.call_count, 1)
-        _, kwargs = mock_sentry.call_args
-        self.assertEqual(
-            mock_sentry.call_args.args[0],
-            "Marketo form submission blocked: injection attempt detected",
-        )
-        self.assertEqual(kwargs["field"], "Comments_from_lead__c")
-        self.assertEqual(kwargs["pattern"], "html-injection")
+        mock_sentry.assert_not_called()
         self.assertEqual(http_response.status_code, 302)
-        self.assertIn("/thank-you", http_response.headers["Location"])
+        self.assertIn("contact-form-fail", http_response.headers["Location"])
 
     def test_non_html_injection_attempt_blocked_without_marketo_call(self):
         """
@@ -382,12 +375,9 @@ class TestMarketoSubmit(unittest.TestCase):
                 },
             )
         mock_submit.assert_not_called()
-        self.assertEqual(mock_sentry.call_count, 1)
-        _, kwargs = mock_sentry.call_args
-        self.assertEqual(kwargs["field"], "Comments_from_lead__c")
-        self.assertEqual(kwargs["pattern"], "etc/passwd")
+        mock_sentry.assert_not_called()
         self.assertEqual(http_response.status_code, 302)
-        self.assertIn("/thank-you", http_response.headers["Location"])
+        self.assertIn("contact-form-fail", http_response.headers["Location"])
 
     def test_enrichment_succeeds_payload_skipped_single_alert(self):
         """

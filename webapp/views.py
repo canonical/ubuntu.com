@@ -1151,23 +1151,16 @@ def marketo_submit():
         else "https://ubuntu.com"
     )
 
-    # Silently drop submissions that look like script/command injection
-    # probes instead of forwarding them to Marketo. The requester is
-    # redirected to the thank-you page as if the submission succeeded, so
-    # scanners get no signal that their payload was detected, but the
-    # attempt is still reported to Sentry so the pattern list can be tuned.
-    injection_match = find_injection_attempt(form_fields)
-    if injection_match:
-        field, pattern = injection_match
-        marketo_sentry_report(
-            "Marketo form submission blocked: injection attempt detected",
-            field=field,
-            pattern=pattern,
-            form_fields=form_fields,
+    # Drop submissions that look like script/command injection probes
+    # instead of forwarding them to Marketo. No Sentry report is raised
+    # here, since a public endpoint like this can be hit by scanners
+    # repeatedly and would otherwise bloat alerts with spam attempts.
+    if find_injection_attempt(form_fields):
+        flask.flash(
+            "There was an issue submitting the form.",
+            "contact-form-fail",
         )
-        return flask.redirect(
-            f"/thank-you?{urlencode({'referrer': referrer})}"
-        )
+        return flask.redirect(f"{referrer}#contact-form-fail")
 
     form_fields.pop("thankyoumessage", None)
     return_url = form_fields.pop("returnURL", None)
