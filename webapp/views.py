@@ -1160,7 +1160,7 @@ def marketo_submit():
             "There was an issue submitting the form.",
             "contact-form-fail",
         )
-        return flask.redirect(f"{referrer}#contact-form-fail")
+        return flask.redirect("/#contact-form-fail")
 
     form_fields.pop("thankyoumessage", None)
     return_url = form_fields.pop("returnURL", None)
@@ -1175,11 +1175,6 @@ def marketo_submit():
     visitor_data = {
         "userAgentString": flask.request.headers.get("User-Agent"),
     }
-    referrer = (
-        flask.request.referrer
-        if flask.request.referrer
-        else "https://ubuntu.com"
-    )
 
     # Reject submissions missing Marketo required fields.
     # Calls cached Marketo API to get required fields for the form ID
