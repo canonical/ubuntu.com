@@ -24,7 +24,7 @@
 {% block content %}
   {% call(slot) vf_hero(
     title_text='Rockcraft',
-    subtitle_text='A rock solid foundation <br/>for crafting containers',
+    subtitle_text='A rock solid foundation <br />for crafting containers',
     layout='50/50',
     blocks=[
       {
@@ -72,87 +72,86 @@
 
   {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
     {%- if slot == 'title' -%}
-    <h2>Why Rockcraft?</h2>
+      <h2>Why Rockcraft?</h2>
     {%- endif -%}
 
     {%- if slot == 'description' -%}
-    <p>
-      Rockcraft is Canonical’s specialized CLI tool for creating rocks, a new generation of securely-designed, 
-      stable, and OCI-compliant container images, based on Ubuntu.
-    </p>
-    <div class="p-cta-block">
-      <a href="https://documentation.ubuntu.com/rockcraft/stable/explanation/rocks/">Learn more about rocks&nbsp;&rsaquo;</a>
-    </div>
+      <p>
+        Rockcraft is Canonical’s specialized CLI tool for creating rocks, a new generation of securely-designed,
+        stable, and OCI-compliant container images, based on Ubuntu.
+      </p>
+      <div class="p-cta-block">
+        <a href="https://documentation.ubuntu.com/rockcraft/stable/explanation/rocks/">Learn more about rocks&nbsp;&rsaquo;</a>
+      </div>
     {%- endif -%}
 
     {%- if slot == 'list_item_title_1' -%}
-    <h3 class="p-heading--5">Minimal setup</h3>
+      <h3 class="p-heading--5">Minimal setup</h3>
     {%- endif -%}
 
     {%- if slot == 'list_item_description_1' -%}
-    <p>
-      Rockcraft supports a variety of language-specific plugins, removing the overhead for a developer 
-      to set up their own language environment in order to build and stage their application into the final container image.
-    </p>
+      <p>
+        Rockcraft supports a variety of language-specific plugins, removing the overhead for a developer
+        to set up their own language environment in order to build and stage their application into the final container image.
+      </p>
     {%- endif -%}
 
     {%- if slot == 'list_item_title_2' -%}
-    <h3 class="p-heading--5">Seamless chiseling</h3>
+      <h3 class="p-heading--5">Seamless chiseling</h3>
     {%- endif -%}
 
     {%- if slot == 'list_item_description_2' -%}
-    <p>
-      Rockcraft integrates with Canonical’s <a href="/chisel/docs/latest/">Chisel tool</a> to build minimal container 
-      images from slices of the Ubuntu distribution, ensuring that customers package only what is needed for their application, and nothing more.
-    </p>
+      <p>
+        Rockcraft integrates with Canonical’s <a href="/chisel/docs/latest/">Chisel tool</a> to build minimal container
+        images from slices of the Ubuntu distribution, ensuring that customers package only what is needed for their application, and nothing more.
+      </p>
     {%- endif -%}
 
     {%- if slot == 'list_item_title_3' -%}
-    <h3 class="p-heading--5">Declarative simplicity</h3>
+      <h3 class="p-heading--5">Declarative simplicity</h3>
     {%- endif -%}
 
     {%- if slot == 'list_item_description_3' -%}
-    <p>
-      Rockcraft uses a declarative, rather than imperative, approach to build containers. This lowers the barrier to entry for new 
-      container developers, while saving time and reducing maintenance overhead for experienced engineers.
-    </p>
+      <p>
+        Rockcraft uses a declarative, rather than imperative, approach to build containers. This lowers the barrier to entry for new
+        container developers, while saving time and reducing maintenance overhead for experienced engineers.
+      </p>
     {%- endif -%}
 
     {%- if slot == 'list_item_title_4' -%}
-    <h3 class="p-heading--5">Ecosystem integration</h3>
+      <h3 class="p-heading--5">Ecosystem integration</h3>
     {%- endif -%}
 
     {%- if slot == 'list_item_description_4' -%}
-    <p>
-      Rockcraft is built on top of existing concepts within the same family as <a href="https://documentation.ubuntu.com/snapcraft/9.0/#">Snapcraft</a> 
-      and <a href="https://documentation.ubuntu.com/charmcraft/4.2/">Charmcraft</a>, making adoption seamless for developers that are already building snaps and charms.
-    </p>
+      <p>
+        Rockcraft is built on top of existing concepts within the same family as <a href="https://documentation.ubuntu.com/snapcraft/9.0/#">Snapcraft</a>
+        and <a href="https://documentation.ubuntu.com/charmcraft/4.2/">Charmcraft</a>, making adoption seamless for developers that are already building snaps and charms.
+      </p>
     {%- endif -%}
 
   {%- endcall -%}
 
-  {{ vf_divided_section(
-    title={
+  {{ vf_divided_section(title={
       "text": "Developer workflow",
     },
     blocks=[
-    {
-      "type": "description-block",
-      "items": [
-        {
-          "type": "description",
-          "padding": "shallow",
-          "item": {
-            "type": "text",
-            "content": "Learn about some of the high-level commands you can use to build a rock, from generating the base configuration file to publishing a rock to a registry."
+      {
+        "type": "description-block",
+        "items": [
+          {
+            "type": "description",
+            "padding": "shallow",
+            "item": {
+              "type": "text",
+              "content": "Learn about some of the high-level commands you can use to build a rock, from generating the base configuration file to publishing a rock to a registry."
+            }
           }
-        }
-      ]
-    },
-    {
-      "type": "divided-block",
-      "bullet_type": "number",
-      "items": [
+        ]
+      },
+      {
+        "type": "divided-block",
+        "bullet_type": "number",
+        "items": [
           {
             "contents": [
 
@@ -193,7 +192,7 @@
                 "type": "description",
                 "item": {
                   "type": "text",
-                  "content": "<h3 class=\"p-heading--5 u-no-padding\">b. Initialize (with extension)</h3>"
+                  "content": "<hr class=\"p-rule--muted\"/><h3 class=\"p-heading--5 u-no-padding\">b. Initialize (with extension)</h3>"
                 }
               },
               {
@@ -231,25 +230,26 @@
                 "item": {
                   "is_code_snippet": true,
                   "content": "
-                    # Metadata section
-                    name: hello
-                    summary: Hello World
-                    description: The most basic example of a rock.
-                    version: \"latest\"
-                    license: Apache-2.0
+                  # Metadata section
 
-                    base: bare
-                    build-base: ubuntu@26.04
-                    platforms:
-                      amd64: # Make sure this value matches your computer's architecture
+                  name: hello
+                  summary: Hello World
+                  description: The most basic example of a rock.
+                  version: \"latest\"
+                  license: Apache-2.0
 
-                    # Parts section
+                  base: bare
+                  build-base: ubuntu@26.04
+                  platforms:
+                  amd64: # Make sure this value matches your computer's architecture
 
-                    parts:
-                      hello:
-                        plugin: nil
-                        stage-packages:
-                          - hello
+                  # Parts section
+
+                  parts:
+                  hello:
+                  plugin: nil
+                  stage-packages:
+                  - hello
 
                   "
                 }
@@ -312,9 +312,9 @@
                 "item": {
                   "is_code_snippet": true,
                   "content": "
-                    rockcraft.skopeo --insecure-policy copy
-                    oci-archive:&lt;your_rock_file.rock&gt;
-                    docker://&lt;container_registry&gt;/&lt;repo&gt;:&lt;tag&gt;
+                  rockcraft.skopeo --insecure-policy copy
+                  oci-archive:&lt;your_rock_file.rock&gt;
+                  docker://&lt;container_registry&gt;/&lt;repo&gt;:&lt;tag&gt;
                   "
                 }
               },
@@ -338,14 +338,12 @@
               }
             ]
           }
-          ]
-        },
-      ],
-    ) 
+        ]
+      },
+    ],)
   }}
 
-  {{- vf_tab_section(
-    title={ "text": "Developer-friendly, <br/>enterprise-ready" },
+  {{- vf_tab_section(title={ "text": "Developer-friendly, <br />enterprise-ready" },
     layout="50-50",
     tabs=[
       {
@@ -429,8 +427,7 @@
           ]
         }
       }
-    ]
-  ) -}}
+    ]) -}}
 
   {% call(slot) vf_equal_heights(
     title_text="Technical deep dive",
@@ -441,92 +438,88 @@
       {
         "title_text": "The parts lifecycle",
         "image_html":  '<img src="https://assets.ubuntu.com/v1/6bfadfe2-equal_heights_1.png"
-        class="p-image-container__image"
-        width="568"
-        height="853"
-        />',
+     class="p-image-container__image"
+     width="568"
+     height="853" />',
         "description_html": "<p>Rockcraft divides your app into modular blocks called <em>parts</em>. When a part is processed, it performs steps from the parts lifecycle: <em>pull</em>, <em>overlay</em>, <em>build</em>, <em>stage</em>, and <em>prime</em>.</p>",
         "cta_html": "<a href='https://documentation.ubuntu.com/rockcraft/stable/common/craft-parts/explanation/parts/'>Learn more about parts&nbsp;&rsaquo;</a>"
       },
       {
         "title_text": "Declarative chiseling",
         "image_html":  '<img src="https://assets.ubuntu.com/v1/a0796b2b-equal_heights_2.png"
-        class="p-image-container__image"
-        width="568"
-        height="853" 
-        />',
+     class="p-image-container__image"
+     width="568"
+     height="853" />',
         "description_html": "<p>Rockcraft natively integrates with <a href='/chisel/docs/latest/'>Chisel</a> directly inside the YAML. Rather than starting with a full OS layer, developers can select the <code>bare</code> base and define precise slices.</p>",
         "cta_html": "<a href='https://documentation.ubuntu.com/rockcraft/stable/reference/rockcraft-yaml/'>Learn about rockcraft.yaml&nbsp;&rsaquo;</a>"
       },
       {
         "title_text": "Built-in plugins",
         "image_html":  '<img src="https://assets.ubuntu.com/v1/e612ca69-equal_heights_3.png"
-        class="p-image-container__image"
-        width="568"
-        height="853"
-        />',
+     class="p-image-container__image"
+     width="568"
+     height="853" />',
         "description_html": "<p>You do not need to write custom build scripts or manually configure virtual environments. Rockcraft handles ecosystem-specific build logic natively through its plugin ecosystem.</p>",
         "cta_html": "<a href='https://documentation.ubuntu.com/rockcraft/stable/reference/plugins/'>Explore Rockcraft plugins&nbsp;&rsaquo;</a>"
       },
       {
         "title_text": "12-factor app ready",
         "image_html":  '<img src="https://assets.ubuntu.com/v1/d1170bef-equal_heights_4.png"
-        class="p-image-container__image"
-        width="568"
-        height="853"
-        />',
+     class="p-image-container__image"
+     width="568"
+     height="853" />',
         "description_html": "<p>Rockcraft provides built-in extensions for modern cloud-native web apps (Django, Flask, FastAPI, Node.js, Go), which silently inject a pre-configured underlying part.</p>",
         "cta_html": "<a href='https://documentation.ubuntu.com/rockcraft/latest/how-to/web-app-rocks/set-up-web-app-rock/'>Set up a 12-factor app rock&nbsp;&rsaquo;</a>"
       }
     ]
   ) %}
-  {% if slot == "description" %}
-  <p>
-    Rockcraft forgoes the traditional, linear execution of Dockerfiles in favor of a declarative, component-based architecture.
-  </p>
-  {% endif %}
+    {% if slot == "description" %}
+      <p>
+        Rockcraft forgoes the traditional, linear execution of Dockerfiles in favor of a declarative, component-based architecture.
+      </p>
+    {% endif %}
 
   {% endcall %}
 
   {% call(slot) vf_cta_section(
-      title_text='Try it out for yourself',
-      variant='block',
-      layout='100',
-      blocks=[
-        {
-          "type": "description",
-          "item": {
-            "type": "text",
-            "content": "Get started with Rockcraft."
-          }
-        },
-        {
-          "type": "cta",
-          "item": {
-            "primary": {
-              "content_html": "Try the tutorials",
+    title_text='Try it out for yourself',
+    variant='block',
+    layout='100',
+    blocks=[
+      {
+        "type": "description",
+        "item": {
+          "type": "text",
+          "content": "Get started with Rockcraft."
+        }
+      },
+      {
+        "type": "cta",
+        "item": {
+          "primary": {
+            "content_html": "Try the tutorials",
+            "attrs": {
+              "href": "https://documentation.ubuntu.com/rockcraft/latest/tutorial/"
+            }
+          },
+          "secondaries": [
+            {
+              "content_html": "Read the how-to guides",
               "attrs": {
-                "href": "https://documentation.ubuntu.com/rockcraft/latest/tutorial/"
+                "href": "https://documentation.ubuntu.com/rockcraft/latest/how-to/"
               }
-            },
-            "secondaries": [
-              {
-                "content_html": "Read the how-to guides",
-                "attrs": {
-                  "href": "https://documentation.ubuntu.com/rockcraft/latest/how-to/"
-                }
-              }
-            ],
-            "link": {
-              "content_html": "Explore the GitHub repo&#32;&rsaquo;",
-              "attrs": {
-                "href": "https://github.com/canonical/rockcraft"
-              }
+            }
+          ],
+          "link": {
+            "content_html": "Explore the GitHub repo&#32;&rsaquo;",
+            "attrs": {
+              "href": "https://github.com/canonical/rockcraft"
             }
           }
         }
-      ]
-    ) -%}
+      }
+    ]
+  ) -%}
   {% endcall -%}
 
   <script type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
