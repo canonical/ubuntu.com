@@ -43,7 +43,7 @@ from canonicalwebteam.form_generator import FormGenerator
 from canonicalwebteam.markdown_response import MarkdownResponse
 
 from webapp.certified.views import certified_routes
-from webapp.constants import CACHE_TTL
+from webapp.constants import CACHE_TTL, ENGAGE_CACHE_TTL
 from webapp.handlers import init_handlers
 from webapp.login import login_handler, logout, user_info
 from webapp.decorators import login_required
@@ -692,13 +692,18 @@ app.add_url_rule("/logout", view_func=logout)
 
 # Engage pages and takeovers from Discourse
 # This section needs to provide takeover data for /
+# Engage uses its own shorter-TTL cache: EngagePages has no freshness
+# probe, so nothing invalidates the cache when an editor changes a page.
+# The 24h default masked edits for hours; ENGAGE_CACHE_TTL bounds that.
+engage_pages_discourse_cache = ResponseCache(ttl=ENGAGE_CACHE_TTL)
+
 engage_pages_discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
     session=session,
     get_topics_query_id=14,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
-    cache=ubuntu_discourse_cache,
+    cache=engage_pages_discourse_cache,
 )
 takeovers_path = "/takeovers"
 discourse_takeovers = EngagePages(
