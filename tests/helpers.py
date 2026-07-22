@@ -12,34 +12,60 @@ from webapp.marketo import MarketoAPI
 from webapp.decorators import handle_api_error
 from canonicalwebteam.flask_base.env import get_flask_env
 
+# Hidden/unprocessed fields that are allowed in Marketo form payloads.
+# Update this constant when intentionally introducing a new hidden field.
+ALLOWED_HIDDEN_FIELDS = frozenset(
+    {
+        "firstname",
+        "lastname",
+        "email",
+        "company",
+        "title",
+        "country",
+        "phone",
+        "comments_from_lead__c",
+        "facebook_click_id__c",
+        "gclid__c",
+        "utm_content",
+        "utm_term",
+        "utm_medium",
+        "utm_source",
+        "utm_campaign",
+        "formid",
+        "returnurl",
+        "thankyoumessage",
+        "preferredlanguage",
+        "insightsrobotics",
+        "iot_newsletters__c",
+        "consent_to_processing__c",
+        "canonicalupdatesoptin",
+        "productcontext",
+        # JS-injected fields added at runtime
+        "user_id",
+        "consent_info",
+        "utms",
+    }
+)
+
+
+def get_marketo_template_files():
+    """
+    Returns template files that contain Marketo forms.
+    """
+    result = []
+    for ext in ("*.html", "*.jinja"):
+        for f in Path("templates").rglob(ext):
+            if f.parts[:2] == ("templates", "tests"):
+                continue
+            if "/marketo/submit" in f.read_text():
+                result.append(f)
+    return result
+
 
 class MarketoFormTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        # Fields that are allowed in payload
-        cls.SET_FIELDS = set(
-            {
-                "firstname",
-                "lastname",
-                "email",
-                "company",
-                "title",
-                "country",
-                "phone",
-                "comments_from_lead__c",
-                "facebook_click_id__c",
-                "gclid__c",
-                "utm_content",
-                "utm_term",
-                "utm_medium",
-                "utm_source",
-                "utm_campaign",
-                "formid",
-                "returnurl",
-                "consent_to_processing__c",
-                "canonicalupdatesoptin",
-            }
-        )
+        cls.SET_FIELDS = ALLOWED_HIDDEN_FIELDS
 
         marketo_session = Session()
 
