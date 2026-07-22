@@ -1,6 +1,7 @@
 <style>
-  .chart-legend-lts::before, .chart-legend-pro::before {
-    content:"";
+  .chart-legend-lts::before,
+  .chart-legend-pro::before {
+    content: "";
     display: inline-block;
     width: 24px;
     height: 24px;
@@ -13,7 +14,7 @@
   .chart-legend-lts::before {
     background-color: #656565;
   }
-  .chart-legend-subtext{
+  .chart-legend-subtext {
     margin-left: 32px;
   }
   #myChart {
@@ -23,15 +24,29 @@
 
 <canvas id="myChart"></canvas>
 <div class="chart-legend">
-  <p class="chart-legend-lts"><span class="p-heading--5">Packages covered with LTS</span><br/><span class="chart-legend-subtext">Standard security maintenance, packages with CVE fixes available for 5 years</span></p>
-  <p class="chart-legend-pro"><span class="p-heading--5">Packages covered with Ubuntu Pro</span><br/><span class="chart-legend-subtext">ESM and Legacy, packages with CVE fixes available for 10+5 years</span></p>
+  <p class="chart-legend-lts">
+    <span class="p-heading--5">Packages covered with LTS</span><br /><span
+      class="chart-legend-subtext"
+      >Standard security maintenance, packages with CVE fixes available for 5
+      years</span
+    >
+  </p>
+  <p class="chart-legend-pro">
+    <span class="p-heading--5">Packages covered with Ubuntu Pro</span
+    ><br /><span class="chart-legend-subtext"
+      >ESM and Legacy, packages with CVE fixes available for 10+5 years</span
+    >
+  </p>
 </div>
-<script nonce="{{ csp_nonce }}" src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"
-        integrity="sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ"
-        crossorigin="anonymous"></script>
+<script
+  nonce="{{ csp_nonce }}"
+  src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"
+  integrity="sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ"
+  crossorigin="anonymous"
+></script>
 
 <script nonce="{{ csp_nonce }}">
-  const ctx = document.getElementById('myChart');
+  const ctx = document.getElementById("myChart");
   Chart.defaults.font.family = "Ubuntu";
   new Chart(ctx, {
     options: {
@@ -39,17 +54,17 @@
       scales: {
         y: {
           beginAtZero: false,
-          ticks:{
+          ticks: {
             callback: (value, index, values) => {
-              return value%1000 === 0 ? value : null;
-            }
-          }
+              return value % 1000 === 0 ? value : null;
+            },
+          },
         },
         x: {
           grid: {
             display: false,
-          }
-        }
+          },
+        },
       },
       plugins: {
         legend: {
@@ -57,21 +72,29 @@
         },
       },
     },
-    type: 'bar',
+    type: "bar",
     data: {
-      labels: ['14.04 LTS','16.04 LTS', '18.04 LTS', '20.04 LTS', '22.04 LTS', '24.04 LTS'],
+      labels: [
+        "14.04 LTS",
+        "16.04 LTS",
+        "18.04 LTS",
+        "20.04 LTS",
+        "22.04 LTS",
+        "24.04 LTS",
+        "26.04 LTS",
+      ],
       datasets: [
         {
-          label: 'Packages covered with LTS',
-          data: [0, 0, 0, 0, 2372, 2390],
-          backgroundColor: '#656565',
+          label: "Packages covered with LTS",
+          data: [0, 0, 0, 0, 2623, 2580, 2414],
+          backgroundColor: "#656565",
         },
         {
-          label: 'Packages covered with Ubuntu Pro',
-          data: [1627, 25063, 28540, 30287, 33728, 36777],
-          backgroundColor: '#e95420',
-        }
-      ]
-    }
+          label: "Packages covered with Ubuntu Pro",
+          data: [21890, 25175, 28734, 30682, 34070, 37029, 39745],
+          backgroundColor: "#e95420",
+        },
+      ],
+    },
   });
 </script>
