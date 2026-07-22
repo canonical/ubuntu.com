@@ -80,8 +80,8 @@ describe("CVETable", () => {
     const options = getByTestId("table-status-filter").querySelectorAll(
       "option",
     );
-    expect(options).toHaveLength(6); // Only one option for the test data
-    expect(options[0].textContent).toBe("24.04 LTS");
+    expect(options).toHaveLength(7); // Only one option for the test data
+    expect(options[0].textContent).toBe("26.04 LTS");
     expect(getByTestId("table-package-filter")).toHaveValue("");
     const packageOptions = getByTestId("table-package-filter").querySelectorAll(
       "option",
