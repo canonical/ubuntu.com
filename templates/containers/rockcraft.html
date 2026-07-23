@@ -343,7 +343,7 @@
     ],)
   }}
 
-  {{- vf_tab_section(title={ "text": "Developer-friendly, <br />enterprise-ready" },
+  {{- vf_tab_section(title={ "text": "Developer-friendly, <br/> enterprise-ready" },
     layout="50-50",
     tabs=[
       {
@@ -522,6 +522,6 @@
   ) -%}
   {% endcall -%}
 
-  <script type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
+  <script nonce="{{ csp_nonce }}" type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
 
 {% endblock content %}
