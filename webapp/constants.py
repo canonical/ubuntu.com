@@ -329,7 +329,7 @@ CSP = {
 # These sources have no remaining reference anywhere in this repo, but
 # marketing/analytics tags can be injected at runtime via Google Tag
 # Manager, whose container config lives outside this repo, so static
-# analysis alone can't prove they're unused. Put them in a report-only CSP
+# analysis alone can't prove they're unused. We put them in a report-only CSP
 # so we can watch Sentry for violations (see webapp.handlers.csp_report)
 # during a bake-in period before removing them from the enforced CSP above.
 _CSP_REPORT_ONLY_REMOVALS = {
@@ -380,6 +380,10 @@ CSP_REPORT_IGNORED_HOSTS = frozenset()
 
 # Forward at most one Sentry event per unique violation signature per window.
 CSP_REPORT_DEDUP_WINDOW = 3600  # seconds (1 hour)
+
+# Real CSP violation reports are a few hundred bytes; /csp-report is
+# unauthenticated, so reject anything wildly larger before parsing it.
+CSP_REPORT_MAX_BYTES = 8192
 
 
 # CSP directives that receive the per-request nonce. With 'strict-dynamic' in

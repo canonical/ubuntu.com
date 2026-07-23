@@ -14,6 +14,7 @@ from webapp.constants import (
     CSP,
     CSP_REPORT_DEDUP_WINDOW,
     CSP_REPORT_IGNORED_HOSTS,
+    CSP_REPORT_MAX_BYTES,
     CSP_REPORT_ONLY,
     CSP_REPORT_PATH,
     NONCED_DIRECTIVES,
@@ -228,13 +229,26 @@ def init_handlers(app):
         Content-Security-Policy-Report-Only header (report bodies include
         a "disposition" field of "enforce" or "report" to tell them apart).
 
-        These reports arrive on nearly every request, so we drop
-        known-noisy hosts outright and de-duplicate everything else before
-        forwarding to Sentry.
+        This endpoint is unauthenticated by necessity (browsers send these
+        reports with no credentials), so it's a public write target: we cap
+        the body size and only forward reports whose document-uri names
+        this host, then drop known-noisy hosts outright and de-duplicate
+        everything else before forwarding to Sentry.
         """
+        content_length = flask.request.content_length
+        if (
+            content_length is not None
+            and content_length > CSP_REPORT_MAX_BYTES
+        ):
+            return "", 413
+
         report = flask.request.get_json(silent=True, force=True) or {}
         violation = report.get("csp-report")
         if not violation:
+            return "", 204
+
+        document_host = urlparse(violation.get("document-uri", "")).hostname
+        if document_host != flask.request.host.split(":")[0]:
             return "", 204
 
         host = _csp_blocked_host(violation.get("blocked-uri", ""))
