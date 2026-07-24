@@ -284,6 +284,9 @@ CSP = {
         # this separate .net host, distinct from the .com tracking pixel.
         "bat.bing.net",
         "*.clarity.ms",
+        # G2's attribution-tracking script (already allowed in
+        # script-src-elem) beacons conversion data back here.
+        "tracking-api.g2.com",
     ],
     "frame-src": [
         "'self'",
