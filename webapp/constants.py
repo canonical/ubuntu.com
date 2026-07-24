@@ -247,7 +247,9 @@ CSP = {
         "ubuntu.com",
         "analytics.google.com",
         "www.googletagmanager.com",
-        "sentry.is.canonical.com",
+        # Sentry JS SDK's ingest host — the DSN configured in the advantage
+        # React apps (e.g. linux-patch-management/app.tsx) posts here.
+        "o4510662863749120.ingest.de.sentry.io",
         "www.google-analytics.com",
         "*.crazyegg.com",
         "scout.salesloft.com",
