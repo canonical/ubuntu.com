@@ -1175,29 +1175,6 @@ def marketo_submit():
         "userAgentString": flask.request.headers.get("User-Agent"),
     }
 
-    # Reject submissions missing Marketo required fields.
-    # Calls cached Marketo API to get required fields for the form ID
-    # check if any fields are missing.
-    form_id = form_fields.get("formid")
-    if form_id:
-        required_fields = get_marketo_required_fields(form_id)
-        form_fields_lower = {
-            key.lower(): value for key, value in form_fields.items()
-        }
-        missing_required = [
-            label
-            for field, label in required_fields.items()
-            if not form_fields_lower.get(field.lower(), "").strip()
-        ]
-        if missing_required:
-            flask.flash(
-                "There was a problem submitting your form. Please complete "
-                "the following required fields: "
-                f"{', '.join(missing_required)}.",
-                "contact-form-fail",
-            )
-            return flask.redirect(f"{referrer}#contact-form-fail")
-
     client_ip = flask.request.headers.get(
         "X-Real-IP", flask.request.remote_addr
     )
