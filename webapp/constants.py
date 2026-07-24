@@ -238,6 +238,9 @@ CSP = {
         "*.google.com",
         "cdn.jsdelivr.net",
         "bat.bing.com",
+        # Bing UET's consent-mode beacon (navigator.sendBeacon) is sent to
+        # this separate .net host, distinct from the .com tracking pixel.
+        "bat.bing.net",
         "*.clarity.ms",
     ],
     "frame-src": [
