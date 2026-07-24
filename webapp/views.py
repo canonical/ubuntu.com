@@ -1152,15 +1152,14 @@ def marketo_submit():
     )
 
     # Drop submissions that look like script/command injection probes
-    # instead of forwarding them to Marketo. No Sentry report is raised
-    # here, since a public endpoint like this can be hit by scanners
-    # repeatedly and would otherwise bloat alerts with spam attempts.
-    if find_injection_attempt(form_fields):
-        flask.flash(
-            "There was an issue submitting the form.",
-            "contact-form-fail",
-        )
-        return flask.redirect("/#contact-form-fail")
+    # instead of forwarding them to Marketo.
+    # TODO: re-enable this once we have a better way to handle false positives
+    # if find_injection_attempt(form_fields):
+    #     flask.flash(
+    #         "There was an issue submitting the form.",
+    #         "contact-form-fail",
+    #     )
+    #     return flask.redirect("/#contact-form-fail")
 
     form_fields.pop("thankyoumessage", None)
     return_url = form_fields.pop("returnURL", None)
