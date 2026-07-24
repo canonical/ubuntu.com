@@ -96,6 +96,51 @@ _GOOGLE_DOMAINS_FALLBACK = [
     "www.google.com.sg",
     "www.google.com.tw",
     "www.google.com.vn",
+    # Africa
+    "www.google.bf",
+    "www.google.bi",
+    "www.google.bj",
+    "www.google.cd",
+    "www.google.cf",
+    "www.google.cg",
+    "www.google.ci",
+    "www.google.cm",
+    "www.google.co.ao",
+    "www.google.co.bw",
+    "www.google.co.ke",
+    "www.google.co.ls",
+    "www.google.co.ma",
+    "www.google.co.mz",
+    "www.google.co.tz",
+    "www.google.co.ug",
+    "www.google.co.za",
+    "www.google.co.zm",
+    "www.google.co.zw",
+    "www.google.com.eg",
+    "www.google.com.et",
+    "www.google.com.gh",
+    "www.google.com.ly",
+    "www.google.com.na",
+    "www.google.com.ng",
+    "www.google.com.sl",
+    "www.google.cv",
+    "www.google.dj",
+    "www.google.dz",
+    "www.google.ga",
+    "www.google.gm",
+    "www.google.mg",
+    "www.google.ml",
+    "www.google.mu",
+    "www.google.mw",
+    "www.google.ne",
+    "www.google.rw",
+    "www.google.sc",
+    "www.google.sn",
+    "www.google.so",
+    "www.google.st",
+    "www.google.td",
+    "www.google.tg",
+    "www.google.tn",
 ]
 
 
@@ -124,6 +169,11 @@ def _fetch_google_supported_domains():
 
 
 GOOGLE_DOMAINS = _fetch_google_supported_domains()
+
+# Same-origin endpoint registered in webapp.handlers.init_handlers();
+# browsers send CSP violation reports here for both the enforced CSP and
+# the report-only CSP below, regardless of the page's own connect-src.
+CSP_REPORT_PATH = "/csp-report"
 
 
 # Content Security Policy configuration
@@ -174,7 +224,6 @@ CSP = {
         "api.usabilla.com",
         "*.cloudfront.net",
         "cdn.jsdelivr.net",
-        "*.g.doubleclick.net",
         "extend.vimeocdn.com",
         "tracking-api.g2.com",
     ],
@@ -225,7 +274,6 @@ CSP = {
         "api.text.com",
         "raw.githubusercontent.com",
         "*.analytics.google.com",
-        "*.g.doubleclick.net",
         "ad.doubleclick.net",
         "www.googleadservices.com",
         "www.facebook.com",
@@ -235,6 +283,9 @@ CSP = {
         "*.google.com",
         "cdn.jsdelivr.net",
         "bat.bing.com",
+        # Bing UET's consent-mode beacon (navigator.sendBeacon) is sent to
+        # this separate .net host, distinct from the .com tracking pixel.
+        "bat.bing.net",
         "*.clarity.ms",
     ],
     "frame-src": [
@@ -254,6 +305,7 @@ CSP = {
         "app3.trueability.com",
         "app.trueability.com",
         "pay.stripe.com",
+        "www.facebook.com",
     ],
     "style-src": [
         "*.cloudfront.net",
@@ -318,7 +370,68 @@ CSP = {
         "https://support-conversations.stripe.com",
         "https://support.stripe.com",
     ],
+    "report-uri": [CSP_REPORT_PATH],
 }
+
+
+# These sources have no remaining reference anywhere in this repo, but
+# marketing/analytics tags can be injected at runtime via Google Tag
+# Manager, whose container config lives outside this repo, so static
+# analysis alone can't prove they're unused. We put them in a report-only CSP
+# so we can watch Sentry for violations (see webapp.handlers.csp_report)
+# during a bake-in period before removing them from the enforced CSP above.
+_CSP_REPORT_ONLY_REMOVALS = {
+    "script-src-elem": [
+        "script.crazyegg.com",
+        "js.zi-scripts.com",
+        "snap.licdn.com",
+        "munchkin.marketo.net",
+        "ml314.com",
+        "scout-cdn.salesloft.com",
+        "snippet.maze.co",
+        "*.cdn.digitaloceanspaces.com",
+        "tracking-api.g2.com",
+        "extend.vimeocdn.com",
+        "d3js.org",
+        "www.tfaforms.com",
+    ],
+    "connect-src": [
+        "*.crazyegg.com",
+        "js.zi-scripts.com",
+        "ws.zoominfo.com",
+        "px.ads.linkedin.com",
+        "scout.salesloft.com",
+        "prompts.maze.co",
+        "pixel-config.reddit.com",
+        "www.redditstatic.com",
+        "conversions-config.reddit.com",
+        "*.clarity.ms",
+    ],
+}
+
+
+def _build_csp_report_only(csp):
+    stricter = {directive: list(values) for directive, values in csp.items()}
+    for directive, stale_values in _CSP_REPORT_ONLY_REMOVALS.items():
+        stricter[directive] = [
+            value for value in stricter[directive] if value not in stale_values
+        ]
+    return stricter
+
+
+CSP_REPORT_ONLY = _build_csp_report_only(CSP)
+
+# Hosts already triaged as noise get added here so their reports are
+# dropped outright rather than forwarded to Sentry. Starts empty: we have
+# no real violation traffic yet to triage against.
+CSP_REPORT_IGNORED_HOSTS = frozenset()
+
+# Forward at most one Sentry event per unique violation signature per window.
+CSP_REPORT_DEDUP_WINDOW = 3600  # seconds (1 hour)
+
+# Real CSP violation reports are a few hundred bytes; /csp-report is
+# unauthenticated, so reject anything wildly larger before parsing it.
+CSP_REPORT_MAX_BYTES = 8192
 
 
 # CSP directives that receive the per-request nonce. With 'strict-dynamic' in

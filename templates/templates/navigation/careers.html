@@ -20,7 +20,7 @@
                         <li class="p-navigation__dropdown-item">
                           <a href="{{ link.url }}"
                              class="p-link--inverted"
-                             onclick="event.stopPropagation()"
+                             data-js-stop-propagation
                              tabindex="0"><span>{{ link.title }}</span>
                             <br />
                             {% set role_count = careers_role_counts.get(link.slug) %}
@@ -74,7 +74,7 @@
       <li>
         <a href="{{ link.url }}"
            class="p-navigation__dropdown-item"
-           onclick="event.stopPropagation()"
+           data-js-stop-propagation
            tabindex="-1"><span>{{ link.title }}</span></a>
       </li>
     {% endfor %}
