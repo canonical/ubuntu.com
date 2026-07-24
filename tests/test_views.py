@@ -1268,6 +1268,45 @@ class TestCommunityLandingEvents(TestCase):
         self.assertEqual(render.call_args.kwargs["featured_events"], [])
 
 
+class TestTakeoversJson(TestCase):
+    """
+    /takeovers.json must only return takeovers whose metadata is
+    active=true. The upstream data-explorer query matches the active
+    value loosely, so active=false takeovers with another boolean
+    metadata key set to true leak through and must be filtered out.
+    """
+
+    def test_inactive_takeovers_are_filtered_out(self):
+        from webapp import app as app_module
+
+        app.testing = True
+        client = app.test_client()
+
+        mixed = [
+            {"title": "Active one", "active": "true"},
+            # active=false but another boolean key is true: this is the
+            # record that leaked through query #16's loose matching.
+            {
+                "title": "Leaks via equal_cols",
+                "active": "false",
+                "equal_cols": "true",
+            },
+            {"title": "Active upper/space", "active": " True "},
+            {"title": "Inactive", "active": "false"},
+        ]
+
+        with patch.object(
+            app_module.discourse_takeovers,
+            "parse_active_takeovers",
+            return_value=mixed,
+        ):
+            response = client.get("/takeovers.json")
+
+        self.assertEqual(response.status_code, 200)
+        titles = [t["title"] for t in response.get_json()]
+        self.assertEqual(titles, ["Active one", "Active upper/space"])
+
+
 class TestRateLimitedErrorHandling(TestCase):
     """
     RateLimitedError from the discourse package must surface as a

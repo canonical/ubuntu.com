@@ -775,6 +775,15 @@ app.add_url_rule(
 
 def takeovers_json():
     active_takeovers = discourse_takeovers.parse_active_takeovers()
+    # Defence-in-depth: the upstream data-explorer query matches the
+    # "active" value loosely (any metadata cell equal to "true"), so
+    # takeovers with active=false but another boolean key set to true
+    # leak through. Filter on the parsed metadata value here.
+    active_takeovers = [
+        takeover
+        for takeover in active_takeovers
+        if str(takeover.get("active", "")).strip().lower() == "true"
+    ]
     response = flask.jsonify(active_takeovers)
     response.cache_control.max_age = 300
 
