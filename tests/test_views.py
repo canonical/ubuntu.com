@@ -1284,7 +1284,13 @@ class TestTakeoversJson(TestCase):
 
         mixed = [
             {"title": "Active one", "active": "true"},
-            {"title": "Leaks via equal_cols", "active": "false"},
+            # active=false but another boolean key is true: this is the
+            # record that leaked through query #16's loose matching.
+            {
+                "title": "Leaks via equal_cols",
+                "active": "false",
+                "equal_cols": "true",
+            },
             {"title": "Active upper/space", "active": " True "},
             {"title": "Inactive", "active": "false"},
         ]
