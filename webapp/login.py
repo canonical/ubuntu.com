@@ -77,7 +77,7 @@ def login_handler():
         return flask.redirect(open_id.get_next_url())
 
     response = session.request(
-        method="get", url=f"{api_url}/v1/canonical-sso-macaroon"
+        method="get", url=f"{api_url}v1/canonical-sso-macaroon"
     )
     flask.session["macaroon_root"] = response.json()["macaroon"]
 
