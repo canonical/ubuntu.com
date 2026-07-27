@@ -46,7 +46,11 @@ from flask.views import View
 from webapp.login import user_info
 from webapp.marketo import MarketoAPI
 from webapp.utils import format_community_event_time
-from webapp.constants import ENGAGE_UI_TRANSLATIONS, MARKETO_INJECTION_PATTERNS
+from webapp.constants import (
+    ENGAGE_UI_TRANSLATIONS,
+    MARKETO_INJECTION_PATTERNS,
+    MARKETO_NON_LEAD_FIELDS,
+)
 
 ip_reader = geolite2.reader()
 session = Session()
@@ -1056,21 +1060,19 @@ def enrich_acquisition_url(acquisition_url, utm_dict, approved_utms):
 
 def find_injection_attempt(form_fields):
     """
-    Return the (field, pattern) of the first submitted field value that
-    looks like a script/command injection probe rather than genuine lead
-    data, or None if no match is found. Values containing HTML markup are
-    caught structurally via nh3 (robust against tag/attribute/casing
-    variation); everything else (path traversal, command/header injection,
-    known scanner domains, etc.) is matched against the literal substrings
-    in MARKETO_INJECTION_PATTERNS.
+    Injection checks against fields for non user-typed lead data
     """
     for field, value in form_fields.items():
-        # Not user provided field, may contain HTML markup for formatting
-        if field == "thankyoumessage":
+        # Non user-typed fields are skipped to avoid false positives
+        if field in MARKETO_NON_LEAD_FIELDS:
             continue
+
+        # User-typed fields that contain HTML are considered injection attempts
         if nh3.is_html(value):
             return field, "html-injection"
         lowered = value.lower()
+
+        # Check against known Marketo injection patterns
         for pattern in MARKETO_INJECTION_PATTERNS:
             if pattern in lowered:
                 return field, pattern
