@@ -226,6 +226,7 @@ CSP = {
     ],
     "font-src": [
         "'self'",
+        "data:",
         "assets.ubuntu.com",
         "cdn.livechatinc.com",
         "secure.livechatinc.com",
