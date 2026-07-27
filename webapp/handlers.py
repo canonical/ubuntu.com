@@ -526,9 +526,15 @@ def init_handlers(app):
         response.headers["Content-Security-Policy"] = get_csp_as_str(
             CSP, nonce=nonce
         )
-        response.headers["Content-Security-Policy-Report-Only"] = (
-            get_csp_as_str(CSP_REPORT_ONLY, nonce=nonce)
-        )
+        # Off by default: this doubles the CSP bytes on every response and
+        # the proxy in front of production caps response headers at ~12k,
+        # which /login (2.1k Location + 2k cookie) can't spare. Enable per
+        # environment via CSP_REPORT_ONLY_ENABLED to run the bake-in.
+        report_only = get_flask_env("CSP_REPORT_ONLY_ENABLED", "false")
+        if str(report_only).lower() == "true":
+            response.headers["Content-Security-Policy-Report-Only"] = (
+                get_csp_as_str(CSP_REPORT_ONLY, nonce=nonce)
+            )
 
         response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
         response.headers["Cross-Origin-Embedder-Policy"] = "unsafe-none"
