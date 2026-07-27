@@ -70,7 +70,7 @@ def empty_session(user_session):
 @open_id.loginhandler
 def login_handler():
     api_url = get_flask_env(
-        "CONTRACTS_API_URL", "https://contracts.canonical.com"
+        "CONTRACTS_API_URL", "https://contracts.canonical.com/"
     )
 
     if user_info(flask.session):
