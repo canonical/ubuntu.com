@@ -418,13 +418,9 @@ NONCED_DIRECTIVES = ("script-src", "script-src-elem")
 
 def _build_csp_report_only(csp):
     """
-    Carry only the directives the bake-in needs: the ones with suspected
-    stale sources removed, the nonced script directives, and report-uri.
-    A directive absent from a policy is unrestricted and reports nothing,
-    so the rest cost bytes without adding signal — and these bytes are
-    duplicated on every response. The enforced + report-only pair already
-    overflowed a 16k response-header buffer at the edge proxy in front of
-    the cluster, 502-ing /login for logged-out users.
+    Only the directives under test, plus the nonced ones and report-uri:
+    absent directives report nothing, so the rest were duplicated bytes
+    that pushed /login past the edge proxy's 16k header buffer.
     """
     keep = set(_CSP_REPORT_ONLY_REMOVALS) | set(NONCED_DIRECTIVES)
     stricter = {}
