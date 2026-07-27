@@ -211,9 +211,7 @@ CSP = {
         "js.stripe.com",
         "d3js.org",
         "www.brighttalk.com",
-        "cdnjs.cloudflare.com",
         "static.ads-twitter.com",
-        "*.cdn.digitaloceanspaces.com",
         "www.redditstatic.com",
         "snap.licdn.com",
         "connect.facebook.net",
@@ -222,13 +220,13 @@ CSP = {
         "secure.livechatinc.com",
         "www.tfaforms.com",
         "api.usabilla.com",
-        "*.cloudfront.net",
         "cdn.jsdelivr.net",
         "extend.vimeocdn.com",
         "tracking-api.g2.com",
     ],
     "font-src": [
         "'self'",
+        "data:",
         "assets.ubuntu.com",
         "cdn.livechatinc.com",
         "secure.livechatinc.com",
@@ -250,7 +248,9 @@ CSP = {
         "ubuntu.com",
         "analytics.google.com",
         "www.googletagmanager.com",
-        "sentry.is.canonical.com",
+        # Sentry JS SDK's ingest host — the DSN configured in the advantage
+        # React apps (e.g. linux-patch-management/app.tsx) posts here.
+        "o4510662863749120.ingest.de.sentry.io",
         "www.google-analytics.com",
         "*.crazyegg.com",
         "scout.salesloft.com",
@@ -287,6 +287,9 @@ CSP = {
         # this separate .net host, distinct from the .com tracking pixel.
         "bat.bing.net",
         "*.clarity.ms",
+        # G2's attribution-tracking script (already allowed in
+        # script-src-elem) beacons conversion data back here.
+        "tracking-api.g2.com",
     ],
     "frame-src": [
         "'self'",
@@ -301,14 +304,12 @@ CSP = {
         "cdn.livechatinc.com",
         "secure.livechatinc.com",
         "cdn.livechat-static.com",
-        "*.cloudfront.net",
         "app3.trueability.com",
         "app.trueability.com",
         "pay.stripe.com",
         "www.facebook.com",
     ],
     "style-src": [
-        "*.cloudfront.net",
         "cdn.jsdelivr.net",
         "'self'",
         "*.livechatinc.com",
@@ -389,7 +390,6 @@ _CSP_REPORT_ONLY_REMOVALS = {
         "ml314.com",
         "scout-cdn.salesloft.com",
         "snippet.maze.co",
-        "*.cdn.digitaloceanspaces.com",
         "tracking-api.g2.com",
         "extend.vimeocdn.com",
         "d3js.org",
