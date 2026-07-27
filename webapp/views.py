@@ -1065,6 +1065,9 @@ def find_injection_attempt(form_fields):
     in MARKETO_INJECTION_PATTERNS.
     """
     for field, value in form_fields.items():
+        # Not user provided field, may contain HTML markup for formatting
+        if field == "thankyoumessage":
+            continue
         if nh3.is_html(value):
             return field, "html-injection"
         lowered = value.lower()
@@ -1153,13 +1156,12 @@ def marketo_submit():
 
     # Drop submissions that look like script/command injection probes
     # instead of forwarding them to Marketo.
-    # TODO: re-enable this once we have a better way to handle false positives
-    # if find_injection_attempt(form_fields):
-    #     flask.flash(
-    #         "There was an issue submitting the form.",
-    #         "contact-form-fail",
-    #     )
-    #     return flask.redirect("/#contact-form-fail")
+    if find_injection_attempt(form_fields):
+        flask.flash(
+            "There was an issue submitting the form.",
+            "contact-form-fail",
+        )
+        return flask.redirect("/#contact-form-fail")
 
     form_fields.pop("thankyoumessage", None)
     return_url = form_fields.pop("returnURL", None)
