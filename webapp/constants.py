@@ -410,12 +410,32 @@ _CSP_REPORT_ONLY_REMOVALS = {
 }
 
 
+# CSP directives that receive the per-request nonce. With 'strict-dynamic' in
+# script-src-elem, the nonce authorises page scripts (and scripts they load),
+# replacing the removed 'unsafe-inline'.
+NONCED_DIRECTIVES = ("script-src", "script-src-elem")
+
+
 def _build_csp_report_only(csp):
-    stricter = {directive: list(values) for directive, values in csp.items()}
-    for directive, stale_values in _CSP_REPORT_ONLY_REMOVALS.items():
+    """
+    Carry only the directives the bake-in needs: the ones with suspected
+    stale sources removed, the nonced script directives, and report-uri.
+    A directive absent from a policy is unrestricted and reports nothing,
+    so the rest cost bytes without adding signal — and these bytes are
+    duplicated on every response. The enforced + report-only pair already
+    overflowed a 16k response-header buffer at the edge proxy in front of
+    the cluster, 502-ing /login for logged-out users.
+    """
+    keep = set(_CSP_REPORT_ONLY_REMOVALS) | set(NONCED_DIRECTIVES)
+    stricter = {}
+    for directive, values in csp.items():
+        if directive not in keep:
+            continue
+        stale_values = _CSP_REPORT_ONLY_REMOVALS.get(directive, ())
         stricter[directive] = [
-            value for value in stricter[directive] if value not in stale_values
+            value for value in values if value not in stale_values
         ]
+    stricter["report-uri"] = list(csp["report-uri"])
     return stricter
 
 
@@ -432,9 +452,3 @@ CSP_REPORT_DEDUP_WINDOW = 3600  # seconds (1 hour)
 # Real CSP violation reports are a few hundred bytes; /csp-report is
 # unauthenticated, so reject anything wildly larger before parsing it.
 CSP_REPORT_MAX_BYTES = 8192
-
-
-# CSP directives that receive the per-request nonce. With 'strict-dynamic' in
-# script-src-elem, the nonce authorises page scripts (and scripts they load),
-# replacing the removed 'unsafe-inline'.
-NONCED_DIRECTIVES = ("script-src", "script-src-elem")
