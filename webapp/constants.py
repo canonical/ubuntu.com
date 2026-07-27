@@ -410,12 +410,28 @@ _CSP_REPORT_ONLY_REMOVALS = {
 }
 
 
+# CSP directives that receive the per-request nonce. With 'strict-dynamic' in
+# script-src-elem, the nonce authorises page scripts (and scripts they load),
+# replacing the removed 'unsafe-inline'.
+NONCED_DIRECTIVES = ("script-src", "script-src-elem")
+
+
 def _build_csp_report_only(csp):
-    stricter = {directive: list(values) for directive, values in csp.items()}
-    for directive, stale_values in _CSP_REPORT_ONLY_REMOVALS.items():
+    """
+    Only the directives under test, plus the nonced ones and report-uri:
+    absent directives report nothing, so the rest were duplicated bytes
+    that pushed /login past the edge proxy's 16k header buffer.
+    """
+    keep = set(_CSP_REPORT_ONLY_REMOVALS) | set(NONCED_DIRECTIVES)
+    stricter = {}
+    for directive, values in csp.items():
+        if directive not in keep:
+            continue
+        stale_values = _CSP_REPORT_ONLY_REMOVALS.get(directive, ())
         stricter[directive] = [
-            value for value in stricter[directive] if value not in stale_values
+            value for value in values if value not in stale_values
         ]
+    stricter["report-uri"] = list(csp["report-uri"])
     return stricter
 
 
@@ -432,9 +448,3 @@ CSP_REPORT_DEDUP_WINDOW = 3600  # seconds (1 hour)
 # Real CSP violation reports are a few hundred bytes; /csp-report is
 # unauthenticated, so reject anything wildly larger before parsing it.
 CSP_REPORT_MAX_BYTES = 8192
-
-
-# CSP directives that receive the per-request nonce. With 'strict-dynamic' in
-# script-src-elem, the nonce authorises page scripts (and scripts they load),
-# replacing the removed 'unsafe-inline'.
-NONCED_DIRECTIVES = ("script-src", "script-src-elem")
