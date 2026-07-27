@@ -828,6 +828,9 @@ staging:
     - name: FLASK_ENV
       value: "staging"
 
+    - name: CSP_REPORT_ONLY_ENABLED
+      value: true
+
     - name: GITHUB_TOKEN
       secretKeyRef:
         key: GITHUB_TOKEN

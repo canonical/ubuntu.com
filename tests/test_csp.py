@@ -83,6 +83,15 @@ class TestCSPHeader(unittest.TestCase):
         second_script = self._get_directive(second_csp, "script-src")
         self.assertNotEqual(first_script, second_script)
 
+    def test_report_only_header_absent_unless_enabled(self):
+        # Off by default so the header block stays within the response
+        # header buffer of the proxy in front of production.
+        response = self.client.get("/non-existent-csp-test-path")
+        self.assertIsNone(
+            response.headers.get("Content-Security-Policy-Report-Only")
+        )
+
+    @patch.dict("os.environ", {"CSP_REPORT_ONLY_ENABLED": "true"})
     def test_report_only_header_present_with_nonce_and_report_uri(self):
         response = self.client.get("/non-existent-csp-test-path")
         csp_ro = response.headers.get("Content-Security-Policy-Report-Only")
