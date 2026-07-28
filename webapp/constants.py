@@ -48,6 +48,15 @@ MARKETO_INJECTION_PATTERNS = [
     "wordpressbin",
 ]
 
+# Template-controlled fields submitted to /marketo/submit that are not
+# user-typed lead data.
+MARKETO_NON_LEAD_FIELDS = frozenset(
+    {
+        "thankyoumessage",
+        "formid",
+    }
+)
+
 
 # Used if the live fetch from Google fails at startup. Covers the regions
 # we've historically seen in CSP reports.
