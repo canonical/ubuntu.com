@@ -53,7 +53,6 @@ MARKETO_INJECTION_PATTERNS = [
 MARKETO_NON_LEAD_FIELDS = frozenset(
     {
         "thankyoumessage",
-        "returnURL",
         "formid",
     }
 )

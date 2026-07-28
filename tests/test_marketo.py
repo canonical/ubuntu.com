@@ -379,6 +379,40 @@ class TestMarketoSubmit(unittest.TestCase):
         self.assertEqual(http_response.status_code, 302)
         self.assertIn("contact-form-fail", http_response.headers["Location"])
 
+    def test_thankyoumessage_html_not_blocked(self):
+        """
+        ``thankyoumessage`` is a template-controlled, non user-typed field
+        (listed in MARKETO_NON_LEAD_FIELDS) that legitimately contains HTML
+        markup. Its markup must not be treated as an injection attempt, so
+        the submission is still forwarded to Marketo and succeeds.
+        """
+        with patch(
+            "webapp.views.marketo_api.submit_form"
+        ) as mock_submit, patch(
+            "webapp.views.marketo_sentry_report"
+        ) as mock_sentry:
+            mock_submit.side_effect = [
+                self._mock_response(
+                    {"success": True, "result": [{"status": "created"}]}
+                ),
+                self._mock_response({"success": True}),
+            ]
+            http_response = self.client.post(
+                "/marketo/submit",
+                data={
+                    "formid": "1234",
+                    "email": "test@example.com",
+                    "firstName": "Test",
+                    "thankyoumessage": (
+                        "<p>Thanks for <strong>subscribing</strong>!</p>"
+                    ),
+                },
+            )
+        mock_submit.assert_called()
+        mock_sentry.assert_not_called()
+        self.assertEqual(http_response.status_code, 302)
+        self.assertIn("/thank-you", http_response.headers["Location"])
+
     def test_enrichment_succeeds_payload_skipped_single_alert(self):
         """
         When only the enrichment submission goes through (the payload was

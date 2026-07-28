@@ -1060,7 +1060,8 @@ def enrich_acquisition_url(acquisition_url, utm_dict, approved_utms):
 
 def find_injection_attempt(form_fields):
     """
-    Injection checks against fields for non user-typed lead data
+    Checks user-typed fields for injection signatures and explicitly
+    skips fields in MARKETO_NON_LEAD_FIELDS
     """
     for field, value in form_fields.items():
         # Non user-typed fields are skipped to avoid false positives
@@ -1163,7 +1164,7 @@ def marketo_submit():
             "There was an issue submitting the form.",
             "contact-form-fail",
         )
-        return flask.redirect("/#contact-form-fail")
+        return flask.redirect(f"{referrer}#contact-form-fail")
 
     form_fields.pop("thankyoumessage", None)
     return_url = form_fields.pop("returnURL", None)
