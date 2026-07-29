@@ -10,12 +10,8 @@ logger = logging.getLogger(__name__)
 # Default time-to-live for ResponseCache instances, in seconds (24 hours)
 CACHE_TTL = 60 * 60 * 24
 
-# Shorter TTL for the Engage/Takeovers app cache. EngagePages has no
-# freshness probe (unlike Docs/Category), so nothing invalidates its
-# cache when an editor changes a page — the only thing that bounds how
-# long a stale copy is served is this TTL. Keep it short so edits appear
-# without waiting out the 24h default. Tunable: lower = fresher, but more
-# query-16 calls against the shared Discourse rate limit.
+# EngagePages has no freshness probe, so this TTL is the only bound on
+# how long an edited page serves stale. Keep it short.
 ENGAGE_CACHE_TTL = 60 * 30  # 30 minutes
 
 ENGAGE_UI_TRANSLATIONS = {

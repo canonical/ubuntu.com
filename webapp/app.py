@@ -692,9 +692,8 @@ app.add_url_rule("/logout", view_func=logout)
 
 # Engage pages and takeovers from Discourse
 # This section needs to provide takeover data for /
-# Engage uses its own shorter-TTL cache: EngagePages has no freshness
-# probe, so nothing invalidates the cache when an editor changes a page.
-# The 24h default masked edits for hours; ENGAGE_CACHE_TTL bounds that.
+# Own short-TTL cache: EngagePages has no freshness probe, so the shared
+# 24h cache would hide edits for a day.
 engage_pages_discourse_cache = ResponseCache(ttl=ENGAGE_CACHE_TTL)
 
 engage_pages_discourse_api = DiscourseAPI(

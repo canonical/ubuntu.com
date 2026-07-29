@@ -46,20 +46,15 @@ LONG_CACHE_SECONDS = 10800  # 3 hours
 # them shorter to avoid freezing a degraded page (docs 503 instead).
 COMMUNITY_CACHE_SECONDS = 300
 
-# Engage/Takeovers are editor-facing marketing pages with no freshness
-# probe, so a long CDN cache hides edits for hours. Keep the CDN max-age
-# short (in step with the shorter engage app cache, ENGAGE_CACHE_TTL) so
-# edits surface promptly. Editors can also append ?preview=true to bypass
-# the long cache entirely and verify a change immediately.
+# Short CDN max-age for engage pages (matches the engage app cache) so
+# edits surface fast. ?preview=true bypasses it.
 ENGAGE_CACHE_SECONDS = 1800  # 30 minutes
 
 # Serve the last good copy during an origin outage (flask-base default 300s).
 LONG_CACHE_STALE_IF_ERROR = 3600
 
-# Cap how long the CDN serves a stale copy while revalidating in the
-# background. flask-base defaults this to 86400 (24h), which — stacked on
-# max-age — let edits stay invisible for up to a day. 60s keeps the
-# fast-response benefit without the long stale tail.
+# flask-base defaults stale-while-revalidate to 24h, which keeps edits
+# hidden well past max-age. Cap it.
 LONG_CACHE_STALE_WHILE_REVALIDATE = 60
 
 # Exact paths (no trailing segment) that should get the longer cache.
