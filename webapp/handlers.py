@@ -67,9 +67,9 @@ ENGAGE_CACHE_SECONDS = 1800  # 30 minutes
 # Serve the last good copy during an origin outage (flask-base default 300s).
 LONG_CACHE_STALE_IF_ERROR = 3600
 
-# flask-base defaults stale-while-revalidate to 24h, which keeps edits
-# hidden well past max-age. Cap it.
-LONG_CACHE_STALE_WHILE_REVALIDATE = 60
+# Cap flask-base's 24h stale-while-revalidate default, but keep enough
+# that pages serve stale-fast during refresh instead of blocking.
+LONG_CACHE_STALE_WHILE_REVALIDATE = 300  # 5 minutes
 
 # Exact paths (no trailing segment) that should get the longer cache.
 LONG_CACHE_EXACT = frozenset(
