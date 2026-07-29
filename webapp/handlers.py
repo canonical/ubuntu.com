@@ -94,16 +94,20 @@ def _should_long_cache(path):
     return path in LONG_CACHE_EXACT or path.startswith(LONG_CACHE_PREFIXES)
 
 
+def _is_engage_path(path):
+    return (
+        path == "/engage"
+        or path.startswith("/engage/")
+        or path == "/takeovers"
+    )
+
+
 def _long_cache_seconds(path):
     if (
         path == "/community" or path.startswith("/community/")
     ) and not path.startswith("/community/docs"):
         return COMMUNITY_CACHE_SECONDS
-    if (
-        path == "/engage"
-        or path.startswith("/engage/")
-        or path == "/takeovers"
-    ):
+    if _is_engage_path(path):
         return ENGAGE_CACHE_SECONDS
     return LONG_CACHE_SECONDS
 
@@ -152,12 +156,15 @@ def init_handlers(app):
             response.cache_control._set_cache_value(
                 "stale-if-error", str(LONG_CACHE_STALE_IF_ERROR), int
             )
-            # Set explicitly so flask-base doesn't fill in its 86400 default.
-            response.cache_control._set_cache_value(
-                "stale-while-revalidate",
-                str(LONG_CACHE_STALE_WHILE_REVALIDATE),
-                int,
-            )
+            # Engage only: cap SWR for freshness. Other long-cache routes
+            # keep flask-base's long default, which protects the origin
+            # after expiry.
+            if _is_engage_path(path):
+                response.cache_control._set_cache_value(
+                    "stale-while-revalidate",
+                    str(LONG_CACHE_STALE_WHILE_REVALIDATE),
+                    int,
+                )
 
         return response
 
