@@ -10,10 +10,6 @@ logger = logging.getLogger(__name__)
 # Default time-to-live for ResponseCache instances, in seconds (1 hour)
 CACHE_TTL = 60 * 60
 
-# EngagePages has no freshness probe, so this TTL is the only bound on
-# how long an edited page serves stale. Keep it short.
-ENGAGE_CACHE_TTL = 60 * 30  # 30 minutes
-
 ENGAGE_UI_TRANSLATIONS = {
     "additional_resources": {
         "en": "Additional Resources",
