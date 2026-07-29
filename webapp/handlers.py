@@ -46,8 +46,9 @@ LONG_CACHE_SECONDS = 10800  # 3 hours
 # them shorter to avoid freezing a degraded page (docs 503 instead).
 COMMUNITY_CACHE_SECONDS = 300
 
-# Short CDN max-age for engage pages (matches the engage app cache) so
-# edits surface fast. ?preview=true bypasses it.
+# Short CDN max-age for engage; the app cache self-invalidates on edit
+# (discourse>=7.9.0), so this bounds how soon an edit shows publicly.
+# ?preview=true bypasses it.
 ENGAGE_CACHE_SECONDS = 1800  # 30 minutes
 
 # Serve the last good copy during an origin outage (flask-base default 300s).
