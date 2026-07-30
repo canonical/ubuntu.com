@@ -389,12 +389,15 @@ def init_handlers(app):
         except (ValueError, AttributeError):
             pass
 
+        # A missing response is a gateway timeout rather than an internal error
+        status_code = 504 if error.response is None else 500
+
         return (
             flask.render_template(
                 "security-error-500.html",
                 message=message,
             ),
-            500,
+            status_code,
         )
 
     @app.errorhandler(UAContractsValidationError)
