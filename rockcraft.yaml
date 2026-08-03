@@ -32,6 +32,12 @@ parts:
       mkdir -p "$CRAFT_PART_INSTALL/flask/app"
       cp -r static "$CRAFT_PART_INSTALL/flask/app/"
   flask-framework/install-app:
+    # The built JS/CSS assets are provided exclusively by the `build-ui` part
+    # (which runs `yarn run build` inside the container). Exclude them here so
+    # we don't stage stale, locally-built copies that conflict with build-ui.
+    stage:
+      - -flask/app/static/js/dist
+      - -flask/app/static/css
     prime:
       # by default, only the files in app/, templates/, static/, migrate, migrate.sh,
       # migrate.py and app.py are copied into the image. You can modify the list
