@@ -22,10 +22,15 @@
   {% call(slot) vf_hero(
     title_text='Take control <br />of your infrastructure',
     subtitle_text='',
-    layout='50/50-full-width-image'
-    ) -%}
-    {%- if slot == 'description' -%}
-      <p>
+    chip_text='Available with Ubuntu Pro',
+    layout='50/50-full-width-image',
+    blocks=[
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "html",
+          "content": '<p>
         Landscape is a systems management tool that can be used as a web-based service or through an API. Landscape Server is available through Canonical either as a managed solution or Software-as-a-Service model, or it can be self-hosted. Landscape Client is installed on Ubuntu to enroll with Landscape Server.
       </p>
       <p>
@@ -33,26 +38,41 @@
       </p>
       <p>
         Landscape is available with an <a href="/pro">Ubuntu Pro</a> subscription.
-      </p>
-    {%- endif -%}
-    {%- if slot == 'cta' -%}
-      <a href="/landscape/pricing" class="p-button--positive">Get Landscape</a>
-      <a href="/contact-us"
-         class="p-button js-invoke-modal"
-         aria-controls="landscape-modal">Contact us</a>
-    {%- endif -%}
-    {%- if slot == 'image' -%}
-      <div class="p-image-container--cinematic is-cover">
-        {{ image(url="https://assets.ubuntu.com/v1/8776d218-hero-img-iot.png",
-                alt="",
-                width="3696",
-                height="1541",
-                hi_def=True,
-                loading="auto",
-                attrs={"class": "p-image-container__image"}) | safe
-        }}
-      </div>
-    {% endif -%}
+      </p>'
+        }
+      },
+      {
+        "type": "cta-block",
+        "padding": "shallow",
+        "item": {
+          "primary": {
+            "content_html": "Get Landscape",
+            "attrs": {"href": "/landscape/pricing"}
+          },
+          "secondaries": [
+            {
+              "content_html": "Contact us",
+              "attrs": {"href": "/contact-us", "class": "js-invoke-modal", "aria-controls": "landscape-modal"}
+            }
+          ]
+        }
+      },
+      {
+        "type": "image",
+        "item": {
+          "aspect_ratio": "cinematic",
+          "is_cover": true,
+          "attrs": {
+            "src": "https://assets.ubuntu.com/v1/8776d218-hero-img-iot.png",
+            "alt": "",
+            "width": "3696",
+            "height": "1541",
+            "loading": "auto"
+          }
+        }
+      },
+    ]
+  ) -%}
   {% endcall -%}
 
   <section class="p-section">
@@ -322,9 +342,9 @@
   </section>
 
   {{ vf_basic_section(
-    title={"text": "Discover Landscape
-            <br class='u-hide--small' />
-            for IoT device management"},
+    title={"text": 'Discover Landscape
+            <br class="u-hide--small" />
+            for IoT device management'},
     items=[
         {
         "type": "description",
@@ -360,7 +380,6 @@
       },
     ],
   ) }}
-
 
   <section class="p-section">
     <div class="row--50-50">
