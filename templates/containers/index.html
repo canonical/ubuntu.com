@@ -15,29 +15,41 @@
 {% endblock body_class %}
 
 {% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+{% from "_macros/vf_hero.jinja" import vf_hero %}
 
 {% block content %}
 
-  <section class="p-section--hero">
-    <div class="row">
-      <div class="col-start-large-4 col-9">
-        <div class="p-section--shallow">
-          <h1>
-            Securely designed, minimal Docker images
-            <br class="u-hide--small" />
-            from your trusted distro
-          </h1>
-        </div>
-        <p>
-          Build enterprise-grade applications on your preferred platform &ndash; cloud, on-premises, or hybrid. Improve your resource efficiency with ultra-small, OCI-compliant, production-ready containers, supported by Canonical, or use our open source tooling to create your own.
-        </p>
-        <div class="p-cta-block">
-          <a class="p-button--positive" href="https://hub.docker.com/_/ubuntu">Deploy our base image</a>
-          <a href="/containers/contact-us" class="js-invoke-modal">Get a securely designed, custom-built container&nbsp;&rsaquo;</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  {% call(slot) vf_hero(
+    title_text='Securely designed, minimal Docker images <br class="u-hide--small" />from your trusted distro',
+    chip_text='Secured with Ubuntu Pro',
+    layout='25/75',
+    display_blank_signpost_image_space=true,
+    blocks=[
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "text",
+          "content": 'Build enterprise-grade applications on your preferred platform &ndash; cloud, on-premises, or hybrid. Improve your resource efficiency with ultra-small, OCI-compliant, production-ready containers, supported by Canonical, or use our open source tooling to create your own.'
+        }
+      },
+      {
+        "type": "cta-block",
+        "padding": "shallow",
+        "item": {
+          "primary": {
+            "content_html": "Deploy our base image",
+            "attrs": {"href": "https://hub.docker.com/_/ubuntu"}
+          },
+          "link": {
+            "content_html": "Get a securely designed, custom-built container&nbsp;&rsaquo;",
+            "attrs": {"href": "/containers/contact-us", "class": "js-invoke-modal"}
+          }
+        }
+      },
+    ]
+    ) -%}
+  {% endcall -%}
 
   <section class="p-section">
     <div class="row--25-75">

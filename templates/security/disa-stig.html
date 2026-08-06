@@ -31,19 +31,36 @@
 
   {% call(slot) vf_hero(
     title_text='Enable DISA STIG compliance with Ubuntu Pro',
-    layout='50/50'
+    chip_text='Available with Ubuntu Pro',
+    layout='50/50',
+    blocks=[
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "text",
+          "content": '
+        Simplify and speed up STIG compliance to achieve ATO for your DOD workloads with Ubuntu Pro. Get access to the Ubuntu Security Guide (USG), an automation tool that hardens and audits systems at scale on-prem, on the cloud, and in air-gapped environments.'
+        }
+      },
+      {
+        "type": "cta-block",
+        "padding": "shallow",
+        "item": {
+          "primary": {
+            "content_html": "Contact us",
+            "attrs": {"href": "/security/contact-us", "class": "js-invoke-modal", "aria-controls": "security-standards-modal"}
+          },
+          "secondaries": [
+            {
+              "content_html": "Get Ubuntu Pro",
+              "attrs": {"href": "/pro"}
+            }
+          ]
+        }
+      },
+    ]
     ) -%}
-    {%- if slot == 'description' -%}
-      <p>
-        Simplify and speed up STIG compliance to achieve ATO for your DOD workloads with Ubuntu Pro. Get access to the Ubuntu Security Guide (USG), an automation tool that hardens and audits systems at scale on-prem, on the cloud, and in air-gapped environments.
-      </p>
-    {%- endif -%}
-    {%- if slot == 'cta' -%}
-      <a href="/security/contact-us"
-         class="p-button--positive js-invoke-modal"
-         aria-controls="security-standards-modal">Contact us</a>
-      <a href="/pro" class="p-button">Get Ubuntu Pro</a>
-    {%- endif -%}
     {%- if slot == 'image' -%}
       <div class="u-embedded-media">
         <lite-youtube videoid="dWJFBuEn6y4" width="560" height="315" posterquality="maxresdefault" videotitle="STIG hardening on Ubuntu 22.04 with Ubuntu Security Guide" class="u-embedded-media__element">

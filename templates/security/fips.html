@@ -27,19 +27,34 @@
 {% block content %}
   {% call(slot) vf_hero(
     title_text='Enable FIPS compliance with Ubuntu Pro',
-    layout='50/50'
+    chip_text='Available with Ubuntu Pro',
+    layout='50/50',
+    blocks=[
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "text",
+          "content": '
+        Get easy access to FIPS 140-3 certified modules, required by US federal standards. Run Ubuntu workloads in high-security environments on-prem, in the cloud, and at the edge. Enjoy 1-step access with an Ubuntu Pro subscription.'
+        }
+      },
+      {
+        "type": "cta-block",
+        "padding": "shallow",
+        "item": {
+          "primary": {
+            "content_html": "Contact us",
+            "attrs": {"href": "/security/contact-us", "class": "js-invoke-modal", "aria-controls": "security-standards-modal"}
+          },
+          "link": {
+            "content_html": "Access a 30-day free trial&nbsp;&rsaquo;",
+            "attrs": {"href": "/pro/free-trial"}
+          }
+        }
+      },
+    ]
     ) -%}
-    {%- if slot == 'description' -%}
-      <p>
-        Get easy access to FIPS 140-3 certified modules, required by US federal standards. Run Ubuntu workloads in high-security environments on-prem, in the cloud, and at the edge. Enjoy 1-step access with an Ubuntu Pro subscription.
-      </p>
-    {%- endif -%}
-    {%- if slot == 'cta' -%}
-      <a href="/security/contact-us"
-         class="p-button--positive js-invoke-modal"
-         aria-controls="security-standards-modal">Contact us</a>
-      <a href="/pro/free-trial" class="p-link">Access a 30-day free trial&nbsp;&rsaquo;</a>
-    {%- endif -%}
     {%- if slot == 'image' -%}
       <div class="u-embedded-media">
         <lite-youtube
@@ -483,7 +498,7 @@
           <a href="https://documentation.ubuntu.com/security/docs/compliance/fips/fips-overview/">Read the documentation about FIPS for Ubuntu</a>
         </p>
 
-        <hr class="p-rule--muted">
+        <hr class="p-rule--muted" />
 
         <p class="p-section--shallow">
           Ubuntu Pro provides an easy pathway to FIPS compliance in addition to vulnerability patching for Ubuntu OS and Applications. Get automated, unattended, and restartless security updates; and the best tools needed to securely manage your Ubuntu infrastructure, and simplify FIPS and FedRAMP compliance.
