@@ -1,4 +1,5 @@
 import importlib.util
+import tempfile
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
@@ -82,6 +83,31 @@ class TestMainDryRun(unittest.TestCase):
     def test_missing_credentials_exit_non_zero(self):
         exit_code = marketo_cli.main(["--days", "7"], env={})
         self.assertEqual(exit_code, 2)
+
+
+class TestMainCsvWriteFailure(unittest.TestCase):
+    def test_unwritable_out_path_exits_three(self):
+        def fake_fetch(url):
+            if "/identity/oauth/token" in url:
+                return {"access_token": "tok", "expires_in": 3600}
+            if "pagingtoken" in url:
+                return {"nextPageToken": "PAGE0"}
+            return {"result": [], "moreResult": False, "success": True}
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            bad_path = str(Path(tmpdir) / "missing-subdir" / "report.csv")
+
+            exit_code = marketo_cli.main(
+                ["--days", "7", "--out", bad_path],
+                fetch=fake_fetch,
+                env={
+                    "MARKETO_API_URL": "https://example.mktorest.com",
+                    "MARKETO_API_CLIENT": "id",
+                    "MARKETO_API_SECRET": "secret",
+                },
+            )
+            self.assertEqual(exit_code, 3)
+            self.assertFalse(Path(bad_path).exists())
 
 
 if __name__ == "__main__":

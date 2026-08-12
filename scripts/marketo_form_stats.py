@@ -164,7 +164,15 @@ def main(argv=None, fetch=None, env=None):
     )
 
     if args.out:
-        write_csv(args.out, csv_rows(rows, form_names(activities)))
+        try:
+            write_csv(args.out, csv_rows(rows, form_names(activities)))
+        except OSError as error:
+            print(
+                f"Fetched {len(activities):,} activities but could not "
+                f"write {args.out}: {error}",
+                file=sys.stderr,
+            )
+            return 3
         print(f"Wrote {args.out}")
         if client.hit_page_cap:
             print(
