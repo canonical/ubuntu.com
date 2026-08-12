@@ -68,6 +68,13 @@ tasks:
     cmds:
       - '{{if .MOUNT}}PYTHONPATH="{{ .MOUNT }}:$PYTHONPATH" {{end}}PATH="{{ .VENV_BIN }}:$PATH" coverage run --source=webapp -m unittest $(find tests/ -name "test_*.py" ! -name "test_marketo.py")'
 
+  form-stats:
+    desc: "Report Marketo form submissions from our marketing sites"
+    deps:
+      - install
+    cmds:
+      - PATH="{{ .VENV_BIN }}:$PATH" python3 scripts/marketo_form_stats.py {{ .CLI_ARGS }}
+
   test-js:
     desc: "Run JS tests with coverage"
     deps:
