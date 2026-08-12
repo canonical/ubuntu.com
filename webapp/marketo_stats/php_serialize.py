@@ -27,7 +27,8 @@ def loads(blob):
 
 
 def _parse(data, offset):
-    marker = data[offset : offset + 2]
+    end = offset + 2
+    marker = data[offset:end]
     if marker == b"a:":
         return _parse_array(data, offset)
     if marker == b"s:":
@@ -43,7 +44,8 @@ def _parse(data, offset):
 
 def _parse_array(data, offset):
     count, cursor = _read_int_until(data, offset + 2, b":")
-    if data[cursor : cursor + 1] != b"{":
+    end = cursor + 1
+    if data[cursor:end] != b"{":
         raise ValueError(f"expected '{{' at byte {cursor}")
     cursor += 1
 
@@ -53,19 +55,22 @@ def _parse_array(data, offset):
         value, cursor = _parse(data, cursor)
         result[key] = value
 
-    if data[cursor : cursor + 1] != b"}":
+    end = cursor + 1
+    if data[cursor:end] != b"}":
         raise ValueError(f"expected '}}' at byte {cursor}")
     return result, cursor + 1
 
 
 def _parse_string(data, offset):
     length, cursor = _read_int_until(data, offset + 2, b":")
-    if data[cursor : cursor + 1] != b'"':
+    end = cursor + 1
+    if data[cursor:end] != b'"':
         raise ValueError(f"expected opening quote at byte {cursor}")
 
     start = cursor + 1
     end = start + length
-    if data[end : end + 2] != b'";':
+    term_end = end + 2
+    if data[end:term_end] != b'";':
         raise ValueError(f"string not terminated at byte {end}")
     return data[start:end].decode("utf-8"), end + 2
 
@@ -75,7 +80,8 @@ def _parse_number(data, offset, cast):
     if end == -1:
         raise ValueError(f"unterminated value at byte {offset}")
     try:
-        return cast(data[offset + 2 : end]), end + 1
+        start = offset + 2
+        return cast(data[start:end]), end + 1
     except ValueError:
         raise ValueError(f"bad numeric value at byte {offset}")
 
