@@ -218,6 +218,31 @@ class TestAggregations(unittest.TestCase):
             [("https://ubuntu.com/a", 2), ("https://canonical.com/b", 1)],
         )
 
+    def test_top_referrers_breaks_count_ties_by_url_ascending(self):
+        # Verify the secondary sort by URL is real: include two referrers with
+        # the same count where the alphabetically-earlier one is inserted LATER
+        # so insertion order and alphabetical order diverge.
+        rows = self.rows + [
+            SubmissionRow("2026-08-06", "5883", "https://aaa.com/z", "other")
+        ]
+        # After the additions, referrer counts are:
+        # "https://ubuntu.com/a": 2
+        # "https://canonical.com/b": 1
+        # "https://ubuntu.com/c": 1
+        # "https://aaa.com/z": 1
+        # Alphabetically among the count-1 ties, "https://aaa.com/z" should
+        # come first despite being inserted last.
+        result = top_referrers(rows, limit=4)
+        self.assertEqual(
+            result,
+            [
+                ("https://ubuntu.com/a", 2),
+                ("https://aaa.com/z", 1),
+                ("https://canonical.com/b", 1),
+                ("https://ubuntu.com/c", 1),
+            ],
+        )
+
     def test_top_referrers_respects_limit(self):
         self.assertEqual(len(top_referrers(self.rows, limit=1)), 1)
 
