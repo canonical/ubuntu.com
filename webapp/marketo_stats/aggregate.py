@@ -17,7 +17,11 @@ def normalise_referrer(url):
     if not url:
         return ""
 
-    parsed = urlparse(url)
+    try:
+        parsed = urlparse(url)
+    except ValueError:
+        return ""
+
     if not parsed.scheme or not parsed.hostname:
         return ""
 
@@ -33,7 +37,11 @@ def classify_site(url):
     if not url:
         return OTHER_SITE
 
-    hostname = urlparse(url).hostname
+    try:
+        hostname = urlparse(url).hostname
+    except ValueError:
+        return OTHER_SITE
+
     if not hostname:
         return OTHER_SITE
 

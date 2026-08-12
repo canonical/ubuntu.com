@@ -39,6 +39,12 @@ class TestNormaliseReferrer(unittest.TestCase):
         self.assertEqual(normalise_referrer(""), "")
         self.assertEqual(normalise_referrer("not a url"), "")
 
+    def test_returns_empty_string_for_malformed_ipv6(self):
+        # Malformed IPv6 literals should not raise ValueError
+        self.assertEqual(normalise_referrer("https://[::1"), "")
+        self.assertEqual(normalise_referrer("https://[gg]/x"), "")
+        self.assertEqual(normalise_referrer("//[bad"), "")
+
 
 class TestClassifySite(unittest.TestCase):
     def test_recognises_ubuntu_and_canonical(self):
@@ -64,6 +70,12 @@ class TestClassifySite(unittest.TestCase):
     def test_unknown_and_junk_are_other(self):
         self.assertEqual(classify_site("https://example.com"), "other")
         self.assertEqual(classify_site(""), "other")
+
+    def test_returns_other_for_malformed_ipv6(self):
+        # Malformed IPv6 literals should not raise ValueError
+        self.assertEqual(classify_site("https://[::1"), "other")
+        self.assertEqual(classify_site("https://[gg]/x"), "other")
+        self.assertEqual(classify_site("//[bad"), "other")
 
 
 if __name__ == "__main__":
