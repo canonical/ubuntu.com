@@ -3,8 +3,13 @@ import unittest
 from webapp.marketo_stats.aggregate import (
     SubmissionRow,
     classify_site,
+    counts_by_site,
+    daily_counts_by_form,
+    form_names,
     normalise_referrer,
+    raw_form_totals,
     row_from_activity,
+    top_referrers,
 )
 
 
@@ -169,6 +174,76 @@ class TestRowFromActivity(unittest.TestCase):
         row = row_from_activity(activity)
         self.assertNotIn("person@example.com", str(row))
         self.assertNotIn("Ada", str(row))
+
+
+class TestAggregations(unittest.TestCase):
+    def setUp(self):
+        self.rows = [
+            SubmissionRow(
+                "2026-08-05", "5883", "https://ubuntu.com/a", "ubuntu.com"
+            ),
+            SubmissionRow(
+                "2026-08-05", "5883", "https://ubuntu.com/a", "ubuntu.com"
+            ),
+            SubmissionRow(
+                "2026-08-05",
+                "1240",
+                "https://canonical.com/b",
+                "canonical.com",
+            ),
+            SubmissionRow(
+                "2026-08-06", "5883", "https://ubuntu.com/c", "ubuntu.com"
+            ),
+        ]
+
+    def test_daily_counts_by_form(self):
+        self.assertEqual(
+            daily_counts_by_form(self.rows),
+            {
+                ("2026-08-05", "5883"): 2,
+                ("2026-08-05", "1240"): 1,
+                ("2026-08-06", "5883"): 1,
+            },
+        )
+
+    def test_counts_by_site(self):
+        self.assertEqual(
+            counts_by_site(self.rows),
+            {"ubuntu.com": 3, "canonical.com": 1},
+        )
+
+    def test_top_referrers_sorted_by_count_then_url(self):
+        self.assertEqual(
+            top_referrers(self.rows, limit=2),
+            [("https://ubuntu.com/a", 2), ("https://canonical.com/b", 1)],
+        )
+
+    def test_top_referrers_respects_limit(self):
+        self.assertEqual(len(top_referrers(self.rows, limit=1)), 1)
+
+    def test_top_referrers_skips_blank_urls(self):
+        rows = self.rows + [SubmissionRow("2026-08-06", "5883", "", "other")]
+        self.assertNotIn("", dict(top_referrers(rows, limit=10)))
+
+    def test_raw_form_totals_excludes_the_enrichment_form(self):
+        activities = [
+            {"primaryAttributeValueId": 5883},
+            {"primaryAttributeValueId": 5883},
+            {"primaryAttributeValueId": 4198},
+        ]
+        self.assertEqual(raw_form_totals(activities), {"5883": 2})
+
+    def test_form_names_maps_ids_to_marketo_names(self):
+        activities = [
+            {
+                "primaryAttributeValueId": 5883,
+                "primaryAttributeValue": "Form: Microk8sconfinement",
+            }
+        ]
+        self.assertEqual(
+            form_names(activities),
+            {"5883": "Form: Microk8sconfinement"},
+        )
 
 
 if __name__ == "__main__":

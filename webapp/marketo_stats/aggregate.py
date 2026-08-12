@@ -1,5 +1,6 @@
 """Turn raw Marketo activity records into countable rows."""
 
+from collections import Counter
 from dataclasses import dataclass
 from urllib.parse import urlparse
 
@@ -102,3 +103,48 @@ def row_from_activity(activity):
         referrer=normalise_referrer(url),
         site=classify_site(url),
     )
+
+
+def daily_counts_by_form(rows):
+    """Count submissions per (date, form id)."""
+    return dict(Counter((row.date, row.form_id) for row in rows))
+
+
+def counts_by_site(rows):
+    """Count submissions per originating site."""
+    return dict(Counter(row.site for row in rows))
+
+
+def top_referrers(rows, limit):
+    """Return the most common referrer URLs, highest count first."""
+    counts = Counter(row.referrer for row in rows if row.referrer)
+    ordered = sorted(counts.items(), key=lambda item: (-item[1], item[0]))
+    return ordered[:limit]
+
+
+def raw_form_totals(activities):
+    """Count every Fill Out Form activity per form, from any source.
+
+    Excludes form 4198, which is our own enrichment beacon rather than a
+    form anybody fills in. Presented alongside the enrichment-derived
+    counts so that a gap between the two is visible: webapp/views.py
+    tolerates a failed enrichment submission, so enrichment-derived
+    counts undercount by construction.
+    """
+    counts = Counter()
+    for activity in activities:
+        form_id = str(activity.get("primaryAttributeValueId"))
+        if form_id != ENRICHMENT_FORM_ID:
+            counts[form_id] += 1
+    return dict(counts)
+
+
+def form_names(activities):
+    """Map form ids to the form names Marketo reports for them."""
+    names = {}
+    for activity in activities:
+        form_id = str(activity.get("primaryAttributeValueId"))
+        name = activity.get("primaryAttributeValue")
+        if name and form_id not in names:
+            names[form_id] = name
+    return names
