@@ -52,9 +52,17 @@ def parse_args(argv):
         help="Look back this many days (default: 30).",
     )
     parser.add_argument("--from", dest="from", help="Start date, YYYY-MM-DD.")
-    parser.add_argument("--to", dest="to", help="End date, YYYY-MM-DD.")
     parser.add_argument(
-        "--out", help="Write CSV here instead of printing tables."
+        "--to",
+        dest="to",
+        help=(
+            "End date, YYYY-MM-DD. Inclusive: the whole of this day is "
+            "counted."
+        ),
+    )
+    parser.add_argument(
+        "--out",
+        help="Write CSV here as well as printing the tables to stdout.",
     )
     parser.add_argument(
         "--top-referrers",
@@ -90,10 +98,19 @@ def _parse_date(value, label):
 
 
 def resolve_window(args, now):
+    """Return the half-open window [since, until) to walk.
+
+    --to names an inclusive day: the returned until is midnight UTC at
+    the *start of the following day*, so that activities timestamped
+    during the named day fall inside the window. --from 2026-07-01 --to
+    2026-07-31 therefore covers all of July. Callers reporting the
+    window to a human must show the inclusive date the user asked for,
+    not this exclusive bound.
+    """
     explicit_from = getattr(args, "from")
     if explicit_from and args.to:
         since = _parse_date(explicit_from, "--from")
-        until = _parse_date(args.to, "--to")
+        until = _parse_date(args.to, "--to") + timedelta(days=1)
     elif explicit_from or args.to:
         raise SystemExit("--from and --to must be given together")
     else:
@@ -111,8 +128,11 @@ def main(argv=None, fetch=None, env=None):
 
     since, until = resolve_window(args, datetime.now(timezone.utc))
 
+    # until is exclusive-at-midnight-after when --to was given, so print
+    # the inclusive date the user actually asked for.
+    shown_until = f"{args.to} (inclusive)" if args.to else f"{until:%Y-%m-%d}"
     print(
-        f"Window: {since:%Y-%m-%d} to {until:%Y-%m-%d}  "
+        f"Window: {since:%Y-%m-%d} to {shown_until}  "
         f"(page ceiling {args.max_pages}, up to "
         f"{args.max_pages * ACTIVITIES_PER_PAGE:,} activities)"
     )
@@ -160,12 +180,20 @@ def main(argv=None, fetch=None, env=None):
 
     print(
         f"Read {len(activities):,} activities over "
-        f"{client.pages_fetched} pages; {len(rows):,} from our sites.\n"
+        f"{client.pages_fetched} pages; "
+        f"{len(rows):,} usable enrichment records.\n"
     )
 
     if args.out:
         try:
-            write_csv(args.out, csv_rows(rows, form_names(activities)))
+            write_csv(
+                args.out,
+                csv_rows(
+                    rows,
+                    form_names(activities),
+                    truncated=client.hit_page_cap,
+                ),
+            )
         except OSError as error:
             print(
                 f"Fetched {len(activities):,} activities but could not "
@@ -179,15 +207,19 @@ def main(argv=None, fetch=None, env=None):
                 "WARNING: page cap reached -- this CSV is incomplete.",
                 file=sys.stderr,
             )
-    else:
-        print(
-            format_report(
-                rows,
-                activities,
-                args.top_referrers,
-                truncated=client.hit_page_cap,
-            )
+
+    # Printed on both paths. The CSV is per (date, form id, site,
+    # referrer) and cannot carry the raw per-form totals, so whoever ran
+    # the command must still see the gap table and any truncation
+    # warning, whichever artefact goes on to travel.
+    print(
+        format_report(
+            rows,
+            activities,
+            args.top_referrers,
+            truncated=client.hit_page_cap,
         )
+    )
 
     return 0
 
