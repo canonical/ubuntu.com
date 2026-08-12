@@ -690,11 +690,10 @@ app.add_url_rule(
 app.add_url_rule("/login", methods=["GET", "POST"], view_func=login_handler)
 app.add_url_rule("/logout", view_func=logout)
 
-# Engage pages and takeovers from Discourse
-# This section needs to provide takeover data for /
-# Shares ubuntu_discourse_cache so a 429 opens one breaker across every
-# consumer of the shared quota. EngagePages self-invalidates on edit
-# (discourse>=7.9.0), so it doesn't need a shorter TTL to stay fresh.
+# Engage pages and takeovers from Discourse (takeover data feeds /).
+# Shares ubuntu_discourse_cache so a 429 opens one breaker across the
+# shared quota. EngagePages self-invalidates on edit (discourse>=7.9.0),
+# so it stays fresh without a shorter TTL.
 engage_pages_discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
     session=session,

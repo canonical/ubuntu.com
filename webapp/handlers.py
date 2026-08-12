@@ -157,9 +157,8 @@ def init_handlers(app):
             response.cache_control._set_cache_value(
                 "stale-if-error", str(LONG_CACHE_STALE_IF_ERROR), int
             )
-            # Engage only: cap SWR for freshness. Other long-cache routes
-            # keep flask-base's long default, which protects the origin
-            # after expiry.
+            # Engage only: cap SWR for freshness. Others keep flask-base's
+            # long default to protect the origin after expiry.
             if _is_engage_path(path):
                 response.cache_control._set_cache_value(
                     "stale-while-revalidate",
