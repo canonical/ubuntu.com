@@ -128,7 +128,16 @@ class MarketoActivityClient:
             self.pages_fetched += 1
 
             for record in payload.get("result") or []:
-                if str(record.get("activityDate") or "") > until_stamp:
+                activity_date = record.get("activityDate")
+                if not activity_date:
+                    # Marketo's schema guarantees activityDate on every
+                    # activity, so this should never fire. If it does,
+                    # the data is genuinely wrong -- silently folding an
+                    # unknown-date record into a windowed count would be
+                    # quiet corruption of the reported stats, so raise
+                    # instead of guessing whether it belongs in range.
+                    raise MarketoError("activity record missing activityDate")
+                if activity_date > until_stamp:
                     return
                 yield record
 

@@ -78,7 +78,15 @@ class TestMarketoActivityClient(unittest.TestCase):
         self.assertFalse(client.hit_page_cap)
 
     def test_sleeps_between_pages(self):
-        client, _ = self.build(
+        # Sleep and fetch are independent injected callables with no
+        # shared timeline of their own, so recording their call counts
+        # separately can't prove ordering -- a regression that moved the
+        # sleep to fire once *after* all pages are fetched would still
+        # produce the same counts and pass. Log both into one shared,
+        # ordered list instead, tagged by kind, and assert the sleep
+        # entry falls strictly between the two fetch entries.
+        log = []
+        base_fetch = FakeMarketo(
             [
                 {
                     "result": [activity()],
@@ -91,12 +99,30 @@ class TestMarketoActivityClient(unittest.TestCase):
                     "moreResult": False,
                     "success": True,
                 },
-            ],
+            ]
+        )
+
+        def fetch(url):
+            payload = base_fetch(url)
+            if "/rest/v1/activities.json" in url:
+                log.append("fetch")
+            return payload
+
+        def sleeper(seconds):
+            self.assertEqual(seconds, 0.5)
+            log.append("sleep")
+
+        client = MarketoActivityClient(
+            "https://example.mktorest.com",
+            "id",
+            "secret",
+            fetch=fetch,
+            sleeper=sleeper,
             sleep_seconds=0.5,
         )
         since, until = self.window()
         list(client.iter_activities(since, until))
-        self.assertEqual(self.slept, [0.5])
+        self.assertEqual(log, ["fetch", "sleep", "fetch"])
 
     def test_stops_at_max_pages_and_flags_truncation(self):
         endless = [
@@ -116,7 +142,7 @@ class TestMarketoActivityClient(unittest.TestCase):
         self.assertEqual(client.pages_fetched, 3)
 
     def test_stops_once_activities_pass_the_until_bound(self):
-        client, _ = self.build(
+        client, fake = self.build(
             [
                 {
                     "result": [
@@ -132,6 +158,19 @@ class TestMarketoActivityClient(unittest.TestCase):
         since, until = self.window()
         rows = list(client.iter_activities(since, until))
         self.assertEqual(len(rows), 1)
+        # Filtering alone doesn't prove pagination actually halted: if
+        # the implementation used `continue` instead of `return` on the
+        # out-of-window record (skip it but keep paginating), this would
+        # still yield 1 row, because the fake returns an empty,
+        # moreResult=False page once its page list is exhausted. Assert
+        # on the call count itself -- the safety-critical behaviour --
+        # so a regression that keeps paginating past the bound is
+        # actually caught.
+        activity_calls = [
+            url for url in fake.urls if "/rest/v1/activities.json" in url
+        ]
+        self.assertEqual(len(activity_calls), 1)
+        self.assertEqual(client.pages_fetched, 1)
 
     def test_requests_only_the_given_activity_type(self):
         client, fake = self.build(
@@ -154,6 +193,25 @@ class TestMarketoActivityClient(unittest.TestCase):
         with self.assertRaises(MarketoError) as caught:
             list(client.iter_activities(since, until))
         self.assertIn("603", str(caught.exception))
+
+    def test_raises_on_missing_activity_date(self):
+        client, _ = self.build(
+            [
+                {
+                    "result": [
+                        {
+                            "primaryAttributeValueId": 4198,
+                            "attributes": [],
+                        }
+                    ],
+                    "moreResult": False,
+                    "success": True,
+                }
+            ]
+        )
+        since, until = self.window()
+        with self.assertRaises(MarketoError):
+            list(client.iter_activities(since, until))
 
     def test_raises_when_authentication_returns_no_token(self):
         fake = FakeMarketo([], token_response={"error": "unauthorized"})
