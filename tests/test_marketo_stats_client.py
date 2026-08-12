@@ -1,6 +1,11 @@
+import contextlib
+import io
 import unittest
+import urllib.error
 from datetime import datetime, timezone
+from unittest import mock
 
+from webapp.marketo_stats import client as client_module
 from webapp.marketo_stats.client import (
     MarketoActivityClient,
     MarketoError,
@@ -213,6 +218,28 @@ class TestMarketoActivityClient(unittest.TestCase):
         with self.assertRaises(MarketoError):
             list(client.iter_activities(since, until))
 
+    def test_raises_when_more_results_but_no_paging_token(self):
+        # Carrying the old token forward would re-fetch the same page up
+        # to max_pages times and multiply every activity on it. An
+        # overcount nobody notices is worse than a loud stop.
+        client, fake = self.build(
+            [
+                {
+                    "result": [activity()],
+                    "moreResult": True,
+                    "success": True,
+                }
+            ]
+        )
+        since, until = self.window()
+        with self.assertRaises(MarketoError) as caught:
+            list(client.iter_activities(since, until))
+        self.assertIn("nextPageToken", str(caught.exception))
+        activity_calls = [
+            url for url in fake.urls if "/rest/v1/activities.json" in url
+        ]
+        self.assertEqual(len(activity_calls), 1)
+
     def test_raises_when_authentication_returns_no_token(self):
         fake = FakeMarketo([], token_response={"error": "unauthorized"})
         client = MarketoActivityClient(
@@ -225,6 +252,69 @@ class TestMarketoActivityClient(unittest.TestCase):
         since, until = self.window()
         with self.assertRaises(MarketoError):
             list(client.iter_activities(since, until))
+
+
+class TestDefaultFetchErrorHandling(unittest.TestCase):
+    """The real fetch path, which the FakeMarketo tests never exercise.
+
+    A transient 5xx on page 40 of 50 used to abort with a raw traceback
+    and discard 40 pages of already-spent quota. It also means the
+    authentication test above is optimistic: a bad client secret really
+    returns HTTP 401, so urlopen raises before any payload is inspected.
+    """
+
+    def fetch_with(self, error):
+        @contextlib.contextmanager
+        def fake_urlopen(url, timeout=None):
+            raise error
+            yield  # pragma: no cover
+
+        with mock.patch("urllib.request.urlopen", fake_urlopen):
+            return client_module._http_get_json(
+                "https://example.mktorest.com/rest/v1/activities.json"
+            )
+
+    def test_http_error_becomes_a_marketo_error(self):
+        error = urllib.error.HTTPError(
+            "https://example.mktorest.com/identity/oauth/token",
+            401,
+            "Unauthorized",
+            {},
+            None,
+        )
+        with self.assertRaises(MarketoError) as caught:
+            self.fetch_with(error)
+        self.assertIn("401", str(caught.exception))
+
+    def test_url_error_becomes_a_marketo_error(self):
+        with self.assertRaises(MarketoError) as caught:
+            self.fetch_with(urllib.error.URLError("name resolution failed"))
+        self.assertIn("could not reach Marketo", str(caught.exception))
+
+    def test_a_non_json_body_becomes_a_marketo_error(self):
+        @contextlib.contextmanager
+        def fake_urlopen(url, timeout=None):
+            yield io.BytesIO(b"<html>502 Bad Gateway</html>")
+
+        with mock.patch("urllib.request.urlopen", fake_urlopen):
+            with self.assertRaises(MarketoError) as caught:
+                client_module._http_get_json(
+                    "https://example.mktorest.com/rest/v1/activities.json"
+                )
+        self.assertIn("not JSON", str(caught.exception))
+
+    def test_the_failure_message_never_leaks_the_credentials(self):
+        secret_url = (
+            "https://example.mktorest.com/identity/oauth/token"
+            "?client_secret=s3cr3t&access_token=t0ken"
+        )
+        error = urllib.error.HTTPError(
+            secret_url, 500, "Server Error", {}, None
+        )
+        with self.assertRaises(MarketoError) as caught:
+            self.fetch_with(error)
+        self.assertNotIn("s3cr3t", str(caught.exception))
+        self.assertNotIn("t0ken", str(caught.exception))
 
 
 if __name__ == "__main__":

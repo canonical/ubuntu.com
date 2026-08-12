@@ -9,6 +9,7 @@ is capped so a runaway window cannot burn the daily quota.
 
 import json
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -22,8 +23,30 @@ class MarketoError(Exception):
 
 
 def _http_get_json(url):
-    with urllib.request.urlopen(url, timeout=30) as response:
-        return json.loads(response.read())
+    """Fetch and decode JSON, raising MarketoError on any failure.
+
+    A raise here throws away every page already paid for, so the caller
+    gets one line naming the cause rather than a raw traceback: a
+    transient 502 on page 40 of 50 should read as a Marketo failure,
+    not as a crash. The URL is never quoted back -- it carries the
+    client secret and the access token in its query string. HTTPError
+    subclasses URLError, so it has to be caught first.
+    """
+    try:
+        with urllib.request.urlopen(url, timeout=30) as response:
+            return json.loads(response.read())
+    except urllib.error.HTTPError as error:
+        raise MarketoError(
+            f"HTTP {error.code} from Marketo ({error.reason})"
+        ) from error
+    except urllib.error.URLError as error:
+        raise MarketoError(
+            f"could not reach Marketo ({error.reason})"
+        ) from error
+    except json.JSONDecodeError as error:
+        raise MarketoError(
+            f"Marketo returned a body that is not JSON ({error})"
+        ) from error
 
 
 class MarketoActivityClient:
@@ -144,4 +167,15 @@ class MarketoActivityClient:
             if not payload.get("moreResult"):
                 return
 
-            page_token = payload.get("nextPageToken") or page_token
+            next_token = payload.get("nextPageToken")
+            if not next_token:
+                # Reusing the current token would silently re-fetch the
+                # same page up to max_pages times, multiplying every
+                # activity on it. An overcount nobody notices is worse
+                # than a loud stop.
+                raise MarketoError(
+                    "Marketo reported more results but returned no "
+                    "nextPageToken; stopping rather than re-fetching "
+                    "the same page and double-counting"
+                )
+            page_token = next_token
