@@ -36,9 +36,8 @@ ENRICHMENT_BLIND_WARNING = (
 
 MERGED_TABLE_TITLE = (
     "Submissions per form (window total)\n"
-    "(a gap between the our-sites and all-sources counts means the "
-    "submission did not come through our sites,\n"
-    "or it did and its enrichment call failed)"
+    "(a gap = the submission bypassed our sites, or its enrichment "
+    "call failed)"
 )
 
 # Display-only cap on the form-name column. The form id is always shown
@@ -179,7 +178,16 @@ def _rule(title):
     return "-" * max(len(line) for line in title.splitlines())
 
 
-def _table(title, headings, body_rows):
+def _table(title, headings, body_rows, numeric_columns=frozenset()):
+    """Render a title, rule, heading row and body rows as fixed columns.
+
+    Columns named in `numeric_columns` (by index) are right-aligned --
+    including their heading -- so counts of differing digit widths
+    line up on their units digit; every other column stays
+    left-aligned. Every rendered line is stripped of trailing
+    whitespace, since padding a column that happens to be last in a
+    row is otherwise invisible noise.
+    """
     if not body_rows:
         return f"{title}\n{_rule(title)}\n  (nothing)\n"
 
@@ -190,11 +198,15 @@ def _table(title, headings, body_rows):
     ]
     lines = [title, _rule(title)]
     for row in columns:
-        lines.append(
-            "  ".join(
-                cell.ljust(widths[index]) for index, cell in enumerate(row)
+        rendered = "  ".join(
+            (
+                cell.rjust(widths[index])
+                if index in numeric_columns
+                else cell.ljust(widths[index])
             )
+            for index, cell in enumerate(row)
         )
+        lines.append(rendered.rstrip())
     return "\n".join(lines) + "\n"
 
 
@@ -203,9 +215,10 @@ def format_report(
 ):
     """Build the full human-readable report.
 
-    The date x form breakdown is thousands of rows over a wide window
-    and is opt-in via `daily`; the per-form window totals below always
-    render, since they are the compact default view.
+    Section order is the per-form table (the headline), then the
+    per-site split, then top referrers, then -- only with `daily` --
+    the date x form breakdown, since that one is thousands of rows
+    over a wide window and is opt-in.
     """
     sections = []
     if truncated:
@@ -214,62 +227,6 @@ def format_report(
     names = form_names(activities)
     raw_totals = raw_form_totals(activities)
     our_totals = form_totals(rows)
-
-    if not rows:
-        # Additive, not an early return: the totals table below is the
-        # only evidence distinguishing a quiet window from a dead
-        # enrichment beacon, so it has to render either way.
-        sections.append(
-            "No submissions found from our sites in this window.\n"
-        )
-        if raw_totals:
-            sections.append(ENRICHMENT_BLIND_WARNING + "\n")
-    else:
-        if daily:
-            daily_counts = daily_counts_by_form(rows)
-            sections.append(
-                _table(
-                    "Submissions per form per day "
-                    "(dates are UTC calendar days)",
-                    ["date", "form id", "form name", "count"],
-                    [
-                        [
-                            date,
-                            form_id,
-                            _display_name(names, form_id),
-                            _fmt(count),
-                        ]
-                        for (date, form_id), count in sorted(
-                            daily_counts.items()
-                        )
-                    ],
-                )
-            )
-
-        site_counts = counts_by_site(rows)
-        site_body = [
-            [site, _fmt(count)]
-            for site, count in sorted(
-                site_counts.items(), key=lambda item: (-item[1], item[0])
-            )
-        ]
-        site_body.append(["TOTAL", _fmt(sum(site_counts.values()))])
-        sections.append(
-            _table("Submissions per site", ["site", "count"], site_body)
-        )
-
-        sections.append(
-            _table(
-                "Top referrer URLs",
-                ["referrer", "count"],
-                [
-                    [referrer, _fmt(count)]
-                    for referrer, count in top_referrers(
-                        rows, top_referrers_limit
-                    )
-                ],
-            )
-        )
 
     merged = _merge_form_totals(our_totals, raw_totals)
     merged_body = [
@@ -300,8 +257,72 @@ def format_report(
             MERGED_TABLE_TITLE,
             ["form id", "form name", "our sites", "all sources", "gap"],
             merged_body,
+            numeric_columns={2, 3, 4},
         )
     )
+
+    if not rows:
+        # Additive, not an early return: the totals table above is the
+        # only evidence distinguishing a quiet window from a dead
+        # enrichment beacon, so it has to render either way.
+        sections.append(
+            "No submissions found from our sites in this window.\n"
+        )
+        if raw_totals:
+            sections.append(ENRICHMENT_BLIND_WARNING + "\n")
+    else:
+        site_counts = counts_by_site(rows)
+        site_body = [
+            [site, _fmt(count)]
+            for site, count in sorted(
+                site_counts.items(), key=lambda item: (-item[1], item[0])
+            )
+        ]
+        site_body.append(["TOTAL", _fmt(sum(site_counts.values()))])
+        sections.append(
+            _table(
+                "Submissions per site",
+                ["site", "count"],
+                site_body,
+                numeric_columns={1},
+            )
+        )
+
+        sections.append(
+            _table(
+                "Top referrer URLs",
+                ["referrer", "count"],
+                [
+                    [referrer, _fmt(count)]
+                    for referrer, count in top_referrers(
+                        rows, top_referrers_limit
+                    )
+                ],
+                numeric_columns={1},
+            )
+        )
+
+        if daily:
+            daily_counts = daily_counts_by_form(rows)
+            sections.append(
+                _table(
+                    "Submissions per form per day "
+                    "(dates are UTC calendar days)",
+                    ["date", "form id", "form name", "count"],
+                    [
+                        [
+                            date,
+                            form_id,
+                            _display_name(names, form_id),
+                            _fmt(count),
+                        ]
+                        for (date, form_id), count in sorted(
+                            daily_counts.items()
+                        )
+                    ],
+                    numeric_columns={3},
+                )
+            )
 
     return "\n".join(sections)
 

@@ -101,8 +101,77 @@ class TestFormatReport(unittest.TestCase):
         # instance, including pages that never touch our app, so
         # attributing every gap to enrichment invents a failure rate.
         report = format_report(ROWS, ACTIVITIES, 10, truncated=False)
-        self.assertIn("did not come through our sites", report)
+        self.assertIn("bypassed our sites", report)
         self.assertIn("enrichment call failed", report)
+
+    def test_caption_lines_fit_comfortably_in_an_80_column_terminal(self):
+        report = format_report(ROWS, ACTIVITIES, 10, truncated=False)
+        merged_section = report.split("Submissions per form (window total)")[1]
+        lines = merged_section.splitlines()
+        caption_line, rule_line = lines[1], lines[2]
+        self.assertLess(len(caption_line), 80)
+        # The rule line is as wide as the widest heading line, so
+        # bounding it independently catches a rule that has blown out
+        # even if the caption text itself looks short.
+        self.assertLess(len(rule_line), 80)
+        self.assertEqual(len(rule_line), len(caption_line))
+
+    def test_sections_are_ordered_per_form_then_site_then_referrers(self):
+        report = format_report(ROWS, ACTIVITIES, 10, truncated=False)
+        form_pos = report.index("Submissions per form (window total)")
+        site_pos = report.index("Submissions per site")
+        referrers_pos = report.index("Top referrer URLs")
+        self.assertLess(form_pos, site_pos)
+        self.assertLess(site_pos, referrers_pos)
+
+    def test_daily_breakdown_comes_last_when_requested(self):
+        report = format_report(
+            ROWS, ACTIVITIES, 10, truncated=False, daily=True
+        )
+        referrers_pos = report.index("Top referrer URLs")
+        daily_pos = report.index("Submissions per form per day")
+        self.assertLess(referrers_pos, daily_pos)
+
+    def test_no_line_has_trailing_whitespace(self):
+        report = format_report(
+            ROWS, ACTIVITIES, 10, truncated=False, daily=True
+        )
+        for line in report.splitlines():
+            self.assertEqual(line, line.rstrip(), repr(line))
+
+    def test_numeric_columns_are_right_aligned(self):
+        # Right-aligned counts of differing digit widths produce equal
+        # line lengths once trailing whitespace is stripped; a
+        # left-aligned column would not, since a shorter count leaves
+        # less padding before the (stripped) line end.
+        rows = [
+            SubmissionRow(
+                "2026-08-05",
+                "5883",
+                "https://ubuntu.com/a",
+                "ubuntu.com",
+            )
+        ] * 123 + [
+            SubmissionRow(
+                "2026-08-05",
+                "1240",
+                "https://canonical.com/b",
+                "canonical.com",
+            )
+        ] * 4
+        report = format_report(rows, ACTIVITIES, 10, truncated=False)
+        site_section = report.split("Submissions per site")[1].split(
+            "Top referrer URLs"
+        )[0]
+        body_lines = [
+            line
+            for line in site_section.splitlines()
+            if line.strip() and not line.startswith("-")
+        ]
+        lengths = {len(line) for line in body_lines}
+        self.assertEqual(
+            len(lengths), 1, f"lines are not aligned: {body_lines}"
+        )
 
     def test_dates_are_labelled_utc(self):
         report = format_report(
