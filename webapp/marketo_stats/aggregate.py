@@ -115,6 +115,15 @@ def counts_by_site(rows):
     return dict(Counter(row.site for row in rows))
 
 
+def form_totals(rows):
+    """Count submissions per form id, across the whole window.
+
+    This is the our-sites half of the per-form gap table in render.py;
+    raw_form_totals(activities) below is the all-sources half.
+    """
+    return dict(Counter(row.form_id for row in rows))
+
+
 def top_referrers(rows, limit):
     """Return the most common referrer URLs, highest count first."""
     counts = Counter(row.referrer for row in rows if row.referrer)

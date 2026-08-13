@@ -11,6 +11,7 @@ from webapp.marketo_stats.render import (
     CSV_HEADER,
     csv_rows,
     format_report,
+    short_form_name,
     write_csv,
 )
 
@@ -47,15 +48,24 @@ ACTIVITIES = [
 
 
 class TestFormatReport(unittest.TestCase):
-    def test_includes_all_three_sections(self):
+    def test_omits_the_daily_breakdown_by_default(self):
         report = format_report(ROWS, ACTIVITIES, 10, truncated=False)
-        self.assertIn("Submissions per form per day", report)
+        self.assertNotIn("Submissions per form per day", report)
         self.assertIn("Submissions per site", report)
         self.assertIn("Top referrer URLs", report)
+        self.assertIn("Submissions per form (window total)", report)
+
+    def test_daily_flag_adds_the_date_by_form_breakdown(self):
+        report = format_report(
+            ROWS, ACTIVITIES, 10, truncated=False, daily=True
+        )
+        self.assertIn("Submissions per form per day", report)
 
     def test_shows_form_names_when_known(self):
         report = format_report(ROWS, ACTIVITIES, 10, truncated=False)
-        self.assertIn("Form: Microk8sconfinement", report)
+        # "Form: " is stripped by the name-shortening rule; the
+        # informative remainder must still show up.
+        self.assertIn("Microk8sconfinement", report)
 
     def test_warns_loudly_when_truncated(self):
         report = format_report(ROWS, ACTIVITIES, 10, truncated=True)
@@ -74,7 +84,7 @@ class TestFormatReport(unittest.TestCase):
         # state this tool can detect. It must not render as a quiet
         # window: the evidence is the raw totals table.
         report = format_report([], ACTIVITIES, 10, truncated=False)
-        self.assertIn("Marketo totals per form", report)
+        self.assertIn("Submissions per form (window total)", report)
         self.assertIn("5883", report)
         self.assertIn("NO ENRICHMENT RECORDS AT ALL", report)
 
@@ -95,7 +105,9 @@ class TestFormatReport(unittest.TestCase):
         self.assertIn("enrichment call failed", report)
 
     def test_dates_are_labelled_utc(self):
-        report = format_report(ROWS, ACTIVITIES, 10, truncated=False)
+        report = format_report(
+            ROWS, ACTIVITIES, 10, truncated=False, daily=True
+        )
         self.assertIn("UTC", report)
 
     def test_totals_table_breaks_ties_deterministically(self):
@@ -104,9 +116,151 @@ class TestFormatReport(unittest.TestCase):
             for form_id in ("300", "100", "200")
         ]
         report = format_report(ROWS, tied, 10, truncated=False)
-        totals = report.split("Marketo totals per form")[1]
+        totals = report.split("Submissions per form (window total)")[1]
         self.assertLess(totals.index("100"), totals.index("200"))
         self.assertLess(totals.index("200"), totals.index("300"))
+
+    def test_per_site_table_has_a_total_row(self):
+        report = format_report(ROWS, ACTIVITIES, 10, truncated=False)
+        site_section = report.split("Submissions per site")[1].split(
+            "Top referrer URLs"
+        )[0]
+        self.assertIn("TOTAL", site_section)
+        self.assertIn("3", site_section)  # 2 ubuntu.com + 1 canonical.com
+
+    def test_merged_table_has_a_total_row(self):
+        report = format_report(ROWS, ACTIVITIES, 10, truncated=False)
+        merged_section = report.split("Submissions per form (window total)")[1]
+        self.assertIn("TOTAL", merged_section)
+
+    def test_counts_get_thousands_separators(self):
+        big_rows = [ROWS[0]] * 1234
+        report = format_report(big_rows, ACTIVITIES, 10, truncated=False)
+        self.assertIn("1,234", report)
+
+
+class TestMergedFormTable(unittest.TestCase):
+    """The per-form table unions enrichment-derived and all-sources ids."""
+
+    def test_form_only_in_enrichment_rows_still_appears(self):
+        # 9999 has an enrichment row but no matching "Fill Out Form"
+        # activity anywhere in `activities` -- all_sources is 0.
+        rows = [
+            SubmissionRow(
+                "2026-08-05", "9999", "https://ubuntu.com/x", "ubuntu.com"
+            )
+        ]
+        activities = [
+            {"primaryAttributeValueId": 4198},
+        ]
+        report = format_report(rows, activities, 10, truncated=False)
+        merged = report.split("Submissions per form (window total)")[1]
+        line = [row for row in merged.splitlines() if row.startswith("9999")][
+            0
+        ]
+        # all_sources is 0: the percentage is undefined, never a
+        # ZeroDivisionError, and must render as "-" rather than a bogus
+        # percentage.
+        self.assertIn("(-)", line)
+
+    def test_form_only_in_all_sources_still_appears_with_zero_our_sites(self):
+        rows = []
+        activities = [
+            {"primaryAttributeValueId": 5883, "primaryAttributeValue": "f"},
+        ]
+        report = format_report(rows, activities, 10, truncated=False)
+        merged = report.split("Submissions per form (window total)")[1]
+        self.assertIn("5883", merged)
+
+    def test_negative_gap_shows_the_number_without_a_percentage(self):
+        # our-sites exceeds all-sources: an enrichment call succeeded but
+        # the main "Fill Out Form" activity never landed, or fell
+        # outside the window boundary.
+        rows = [
+            SubmissionRow(
+                "2026-08-05", "5883", "https://ubuntu.com/x", "ubuntu.com"
+            ),
+            SubmissionRow(
+                "2026-08-05", "5883", "https://ubuntu.com/x", "ubuntu.com"
+            ),
+        ]
+        activities = [
+            {"primaryAttributeValueId": 5883, "primaryAttributeValue": "f"},
+        ]
+        report = format_report(rows, activities, 10, truncated=False)
+        merged = report.split("Submissions per form (window total)")[1]
+        merged_form_line = [
+            line for line in merged.splitlines() if line.startswith("5883")
+        ][0]
+        self.assertIn("-1", merged_form_line)
+        self.assertNotIn("%", merged_form_line)
+
+    def test_sorted_by_our_sites_desc_then_all_sources_desc_then_form_id(self):
+        rows = [
+            SubmissionRow(
+                "2026-08-05", "100", "https://ubuntu.com/x", "ubuntu.com"
+            ),
+        ]
+        activities = [
+            {"primaryAttributeValueId": "300", "primaryAttributeValue": "a"},
+            {"primaryAttributeValueId": "200", "primaryAttributeValue": "b"},
+        ]
+        report = format_report(rows, activities, 10, truncated=False)
+        merged = report.split("Submissions per form (window total)")[1]
+        # our-sites=1 (form 100) sorts ahead of the two all-sources-only
+        # forms (our-sites=0), which then break the tie by form id.
+        self.assertLess(merged.index("100"), merged.index("200"))
+        self.assertLess(merged.index("200"), merged.index("300"))
+
+
+class TestShortFormName(unittest.TestCase):
+    def test_program_and_form_are_redundant_keeps_the_longer_original(self):
+        # form is "Form: <same as program>" once the prefix is stripped
+        # -- displaying both would just repeat the same text twice.
+        name = (
+            "CY19_DC_UbuntuServer_eBook_CLI_CheatSheet.Form: "
+            "CY19_DC_UbuntuServer_eBook_CLI_CheatSheet"
+        )
+        self.assertEqual(
+            short_form_name(name),
+            "CY19_DC_UbuntuServer_eBook_CLI_CheatSheet",
+        )
+
+    def test_uninformative_form_half_keeps_the_program_name_visible(self):
+        # The obvious "take everything after the first dot" approach
+        # would reduce this to "form fieldsets (2.0)", discarding the
+        # only informative part of the name.
+        name = "Cloud_Form - Contact us Management.form fieldsets (2.0)"
+        result = short_form_name(name)
+        self.assertTrue(result.startswith("Cloud_Form - Contact us"))
+        self.assertNotEqual(result, "form fieldsets (2.0)")
+
+    def test_strips_leading_form_colon_prefix(self):
+        name = "Global_marketing_optin.Form: Microk8sconfinement"
+        self.assertEqual(
+            short_form_name(name),
+            "Global_marketing_optin.Microk8sconfinement",
+        )
+
+    def test_name_with_no_dot_is_used_as_is(self):
+        name = "StandaloneFormNameWithNoDotAtAll"
+        self.assertEqual(short_form_name(name), name)
+
+    def test_name_with_no_dot_still_strips_form_prefix(self):
+        self.assertEqual(
+            short_form_name("Form: Microk8sconfinement"),
+            "Microk8sconfinement",
+        )
+
+    def test_result_never_exceeds_the_max_width(self):
+        long_name = "A" * 40 + "." + "B" * 40
+        result = short_form_name(long_name)
+        self.assertLessEqual(len(result), 48)
+        self.assertTrue(result.endswith("…"))
+
+    def test_empty_name_is_returned_unchanged(self):
+        self.assertEqual(short_form_name(""), "")
+        self.assertIsNone(short_form_name(None))
 
 
 class TestCsv(unittest.TestCase):
@@ -149,6 +303,17 @@ class TestCsv(unittest.TestCase):
 
     def test_no_marker_by_default(self):
         self.assertEqual(csv_rows(ROWS, {})[0], CSV_HEADER)
+
+    def test_counts_stay_raw_integers_without_thousands_separators(self):
+        # Table rendering formats counts with commas; the CSV must not,
+        # or a downstream parser expecting an int column silently
+        # breaks. This pins the grouped count as a plain digit string
+        # even well past 1,000, so a refactor that routes both through
+        # one shared formatting helper gets caught here.
+        big = [ROWS[0]] * 1234
+        body = csv_rows(big, {})[1:]
+        self.assertEqual(body[0][-1], "1234")
+        self.assertNotIn(",", body[0][-1])
 
     def test_marker_row_is_not_shared_state(self):
         first = csv_rows(ROWS, {}, truncated=True)[0]

@@ -6,6 +6,7 @@ from webapp.marketo_stats.aggregate import (
     counts_by_site,
     daily_counts_by_form,
     form_names,
+    form_totals,
     normalise_referrer,
     raw_form_totals,
     row_from_activity,
@@ -249,6 +250,12 @@ class TestAggregations(unittest.TestCase):
     def test_top_referrers_skips_blank_urls(self):
         rows = self.rows + [SubmissionRow("2026-08-06", "5883", "", "other")]
         self.assertNotIn("", dict(top_referrers(rows, limit=10)))
+
+    def test_form_totals_counts_per_form_across_the_window(self):
+        self.assertEqual(
+            form_totals(self.rows),
+            {"5883": 3, "1240": 1},
+        )
 
     def test_raw_form_totals_excludes_the_enrichment_form(self):
         activities = [

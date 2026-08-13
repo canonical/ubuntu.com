@@ -88,6 +88,14 @@ class TestParseArgs(unittest.TestCase):
         )
         self.assertEqual(getattr(args, "from"), "2026-07-01")
 
+    def test_daily_flag_defaults_to_false(self):
+        args = marketo_cli.parse_args([])
+        self.assertFalse(args.daily)
+
+    def test_daily_flag_can_be_set(self):
+        args = marketo_cli.parse_args(["--daily"])
+        self.assertTrue(args.daily)
+
 
 class TestResolveWindow(unittest.TestCase):
     def test_days_counts_back_from_now(self):
@@ -282,8 +290,54 @@ class TestMainReportsTruncation(unittest.TestCase):
         # The CSV cannot carry the raw per-form totals, so the operator
         # only ever sees the undercount evidence on stdout.
         _, out = self.read_csv_with_out(self.CAPPED_PAGE)
-        self.assertIn("Marketo totals per form", out)
+        self.assertIn("Submissions per form (window total)", out)
         self.assertIn("INCOMPLETE", out)
+
+
+class TestDailyFlag(unittest.TestCase):
+    """Per-form totals are the default; the daily grain is opt-in."""
+
+    PAGE = {
+        "result": [enrichment_activity()],
+        "moreResult": False,
+        "success": True,
+    }
+
+    def run_cli(self, extra_args=()):
+        with captured() as out:
+            exit_code = marketo_cli.main(
+                [
+                    "--from",
+                    "2026-07-01",
+                    "--to",
+                    "2026-07-31",
+                    *extra_args,
+                ],
+                fetch=fake_marketo(self.PAGE),
+                env=ENV,
+            )
+        return exit_code, out.getvalue()
+
+    def test_daily_table_is_hidden_by_default(self):
+        _, out = self.run_cli()
+        self.assertNotIn("Submissions per form per day", out)
+        self.assertIn("Submissions per form (window total)", out)
+
+    def test_daily_flag_shows_the_daily_table(self):
+        _, out = self.run_cli(["--daily"])
+        self.assertIn("Submissions per form per day", out)
+
+    def test_csv_grain_is_unaffected_by_the_daily_flag(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            path_a = Path(tmpdir) / "a.csv"
+            path_b = Path(tmpdir) / "b.csv"
+            self.run_cli(["--out", str(path_a)])
+            self.run_cli(["--daily", "--out", str(path_b)])
+            with open(path_a, newline="", encoding="utf-8") as handle:
+                csv_a = handle.read()
+            with open(path_b, newline="", encoding="utf-8") as handle:
+                csv_b = handle.read()
+        self.assertEqual(csv_a, csv_b)
 
 
 if __name__ == "__main__":

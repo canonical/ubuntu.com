@@ -85,6 +85,15 @@ def parse_args(argv):
         action="store_true",
         help="Print the window and page ceiling, then exit.",
     )
+    parser.add_argument(
+        "--daily",
+        action="store_true",
+        help=(
+            "Also print the date x form breakdown (thousands of rows "
+            "over a wide window). The CSV always keeps its daily grain "
+            "regardless of this flag."
+        ),
+    )
     return parser.parse_args(argv)
 
 
@@ -218,6 +227,7 @@ def main(argv=None, fetch=None, env=None):
             activities,
             args.top_referrers,
             truncated=client.hit_page_cap,
+            daily=args.daily,
         )
     )
 
