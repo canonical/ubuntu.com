@@ -17,6 +17,12 @@ FILL_OUT_FORM_ACTIVITY_ID = 2
 DEFAULT_SLEEP_SECONDS = 0.5
 DEFAULT_MAX_PAGES = 50
 
+# Marketo's codes for an invalid or expired access token. A shared
+# token carries only its remaining lifetime, not a fresh hour on every
+# request, so it can expire minutes into a long walk. Mirrors the retry
+# webapp/marketo.py already does for live form submissions.
+EXPIRED_TOKEN_CODES = ("601", "602")
+
 
 class MarketoError(Exception):
     """Marketo reported a failure, or returned something unusable."""
@@ -70,9 +76,21 @@ class MarketoActivityClient:
         self.hit_page_cap = False
 
     def _get(self, path, params):
-        url = f"{self.base_url}{path}?{urllib.parse.urlencode(params)}"
-        payload = self.fetch(url)
+        payload = self._request(path, params)
         errors = payload.get("errors")
+
+        # A token can expire minutes into a walk regardless of page
+        # count (a shared token carries only its remaining lifetime).
+        # Re-authenticate and retry this exact request -- same path,
+        # same page token -- exactly once. A second consecutive expiry
+        # falls straight through to the raise below rather than looping.
+        if errors and str(errors[0].get("code")) in EXPIRED_TOKEN_CODES:
+            self.authenticate()
+            if "access_token" in params:
+                params = {**params, "access_token": self.token}
+            payload = self._request(path, params)
+            errors = payload.get("errors")
+
         if errors:
             detail = ", ".join(
                 f"{error.get('code')}: {error.get('message')}"
@@ -80,6 +98,10 @@ class MarketoActivityClient:
             )
             raise MarketoError(f"{path} failed -- {detail}")
         return payload
+
+    def _request(self, path, params):
+        url = f"{self.base_url}{path}?{urllib.parse.urlencode(params)}"
+        return self.fetch(url)
 
     def authenticate(self):
         payload = self.fetch(

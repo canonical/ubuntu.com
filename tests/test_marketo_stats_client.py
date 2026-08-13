@@ -254,6 +254,131 @@ class TestMarketoActivityClient(unittest.TestCase):
             list(client.iter_activities(since, until))
 
 
+class TestTokenExpiryRetry(unittest.TestCase):
+    """A shared token can expire mid-walk regardless of page count --
+
+    Marketo returns 601/602 for an invalid/expired token, and the
+    remaining lifetime on a shared token can be minutes, not a fresh
+    hour. Abandoning the whole walk (and the quota already spent on it)
+    on the first expiry is what actually happened in production. The
+    fix mirrors webapp/marketo.py's existing retry-once pattern: on
+    601/602, re-authenticate and retry the same request exactly once.
+    """
+
+    def window(self):
+        return (
+            datetime(2026, 8, 1, tzinfo=timezone.utc),
+            datetime(2026, 8, 31, tzinfo=timezone.utc),
+        )
+
+    def test_retries_once_after_token_expiry_then_succeeds(self):
+        token_calls = []
+        activities_calls = []
+
+        def fetch(url):
+            if "/identity/oauth/token" in url:
+                token_calls.append(url)
+                return {
+                    "access_token": f"tok{len(token_calls)}",
+                    "expires_in": 3600,
+                }
+            if "pagingtoken" in url:
+                return {"nextPageToken": "PAGE0"}
+            activities_calls.append(url)
+            if len(activities_calls) == 1:
+                return {
+                    "success": False,
+                    "errors": [
+                        {"code": "601", "message": "Access token invalid"}
+                    ],
+                }
+            return {
+                "result": [activity()],
+                "moreResult": False,
+                "success": True,
+            }
+
+        client = MarketoActivityClient(
+            "https://example.mktorest.com",
+            "id",
+            "secret",
+            fetch=fetch,
+            sleeper=lambda _: None,
+        )
+        since, until = self.window()
+        rows = list(client.iter_activities(since, until))
+
+        self.assertEqual(len(rows), 1)
+        # Re-authenticated once: the initial auth plus one retry auth.
+        self.assertEqual(len(token_calls), 2)
+        # The retried request is not a second page.
+        self.assertEqual(client.pages_fetched, 1)
+        self.assertFalse(client.hit_page_cap)
+
+    def test_raises_after_two_consecutive_token_errors(self):
+        def fetch(url):
+            if "/identity/oauth/token" in url:
+                return {"access_token": "tok", "expires_in": 3600}
+            if "pagingtoken" in url:
+                return {"nextPageToken": "PAGE0"}
+            return {
+                "success": False,
+                "errors": [{"code": "601", "message": "Access token invalid"}],
+            }
+
+        client = MarketoActivityClient(
+            "https://example.mktorest.com",
+            "id",
+            "secret",
+            fetch=fetch,
+            sleeper=lambda _: None,
+        )
+        since, until = self.window()
+        with self.assertRaises(MarketoError) as caught:
+            list(client.iter_activities(since, until))
+        self.assertIn("601", str(caught.exception))
+
+    def test_retries_paging_token_request_after_token_expiry(self):
+        token_calls = []
+        paging_calls = []
+
+        def fetch(url):
+            if "/identity/oauth/token" in url:
+                token_calls.append(url)
+                return {
+                    "access_token": f"tok{len(token_calls)}",
+                    "expires_in": 3600,
+                }
+            if "pagingtoken" in url:
+                paging_calls.append(url)
+                if len(paging_calls) == 1:
+                    return {
+                        "success": False,
+                        "errors": [
+                            {
+                                "code": "602",
+                                "message": "Access token expired",
+                            }
+                        ],
+                    }
+                return {"nextPageToken": "PAGE0"}
+            return {"result": [], "moreResult": False, "success": True}
+
+        client = MarketoActivityClient(
+            "https://example.mktorest.com",
+            "id",
+            "secret",
+            fetch=fetch,
+            sleeper=lambda _: None,
+        )
+        since, until = self.window()
+        rows = list(client.iter_activities(since, until))
+
+        self.assertEqual(rows, [])
+        self.assertEqual(len(token_calls), 2)
+        self.assertEqual(len(paging_calls), 2)
+
+
 class TestDefaultFetchErrorHandling(unittest.TestCase):
     """The real fetch path, which the FakeMarketo tests never exercise.
 
