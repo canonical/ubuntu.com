@@ -1,4 +1,4 @@
-{% if metadata["webinar_code"] is defined %}
+{% if metadata["webinar_code"] %}
   {% if "channel_id" in metadata %}
     {% set channel_id = metadata["channel_id"] %}
   {% else %}
