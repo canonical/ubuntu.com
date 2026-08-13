@@ -84,7 +84,14 @@ class MarketoActivityClient:
         # Re-authenticate and retry this exact request -- same path,
         # same page token -- exactly once. A second consecutive expiry
         # falls straight through to the raise below rather than looping.
+        # Paced with the same sleep as between pages: unlike the
+        # single-request live form submission this pattern mirrors
+        # (webapp/marketo.py), this client walks hundreds of pages
+        # unattended, and a short-lived shared token that keeps
+        # expiring would otherwise double the request rate against the
+        # same quota this client exists to protect.
         if errors and str(errors[0].get("code")) in EXPIRED_TOKEN_CODES:
+            self.sleeper(self.sleep_seconds)
             self.authenticate()
             if "access_token" in params:
                 params = {**params, "access_token": self.token}

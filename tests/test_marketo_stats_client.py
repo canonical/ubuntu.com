@@ -316,11 +316,16 @@ class TestTokenExpiryRetry(unittest.TestCase):
         self.assertFalse(client.hit_page_cap)
 
     def test_raises_after_two_consecutive_token_errors(self):
+        token_calls = []
+        activities_calls = []
+
         def fetch(url):
             if "/identity/oauth/token" in url:
+                token_calls.append(url)
                 return {"access_token": "tok", "expires_in": 3600}
             if "pagingtoken" in url:
                 return {"nextPageToken": "PAGE0"}
+            activities_calls.append(url)
             return {
                 "success": False,
                 "errors": [{"code": "601", "message": "Access token invalid"}],
@@ -337,6 +342,58 @@ class TestTokenExpiryRetry(unittest.TestCase):
         with self.assertRaises(MarketoError) as caught:
             list(client.iter_activities(since, until))
         self.assertIn("601", str(caught.exception))
+        # Pins "retries at most once": the original attempt plus
+        # exactly one retry, not a bounded loop that keeps trying a
+        # few times before giving up. A regression that widened the
+        # single retry into e.g. a 3-iteration loop would still raise
+        # MarketoError mentioning "601" but would fail these counts.
+        self.assertEqual(len(activities_calls), 2)
+        # One re-authentication for the one retry, on top of the
+        # initial auth before the walk started.
+        self.assertEqual(len(token_calls), 2)
+
+    def test_sleeps_before_reauthenticating_after_token_expiry(self):
+        # The retry itself must not burst against the shared quota:
+        # sleep the same inter-page pause before re-authenticating,
+        # not fire the failed request, the re-auth, and the retry
+        # back-to-back. Log calls into one shared, ordered list (as in
+        # test_sleeps_between_pages) so the ordering -- not just the
+        # count -- is proven.
+        log = []
+
+        def fetch(url):
+            if "/identity/oauth/token" in url:
+                log.append("auth")
+                return {"access_token": "tok", "expires_in": 3600}
+            if "pagingtoken" in url:
+                return {"nextPageToken": "PAGE0"}
+            log.append("fetch")
+            if log.count("fetch") == 1:
+                return {
+                    "success": False,
+                    "errors": [
+                        {"code": "601", "message": "Access token invalid"}
+                    ],
+                }
+            return {"result": [], "moreResult": False, "success": True}
+
+        def sleeper(seconds):
+            self.assertEqual(seconds, 0.5)
+            log.append("sleep")
+
+        client = MarketoActivityClient(
+            "https://example.mktorest.com",
+            "id",
+            "secret",
+            fetch=fetch,
+            sleeper=sleeper,
+            sleep_seconds=0.5,
+        )
+        since, until = self.window()
+        list(client.iter_activities(since, until))
+        # initial auth -> failed page fetch -> paced pause -> re-auth
+        # -> retried fetch (succeeds).
+        self.assertEqual(log, ["auth", "fetch", "sleep", "auth", "fetch"])
 
     def test_retries_paging_token_request_after_token_expiry(self):
         token_calls = []
