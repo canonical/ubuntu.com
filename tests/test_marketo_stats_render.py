@@ -67,6 +67,23 @@ class TestFormatReport(unittest.TestCase):
         # informative remainder must still show up.
         self.assertIn("Microk8sconfinement", report)
 
+    def test_falls_back_to_the_form_id_when_no_name_is_known(self):
+        # A form with enrichment records but zero raw Marketo
+        # activities in the window never gets a name from
+        # form_names(). "(unknown)" reads like an error; "form <id>"
+        # still identifies the row.
+        rows = [
+            SubmissionRow(
+                "2026-08-05", "2816", "https://ubuntu.com/x", "ubuntu.com"
+            )
+        ]
+        report = format_report(rows, [], 10, truncated=False)
+        merged_form_line = [
+            line for line in report.splitlines() if line.startswith("2816")
+        ][0]
+        self.assertIn("form 2816", merged_form_line)
+        self.assertNotIn("(unknown)", report)
+
     def test_warns_loudly_when_truncated(self):
         report = format_report(ROWS, ACTIVITIES, 10, truncated=True)
         self.assertIn("INCOMPLETE", report)
@@ -227,10 +244,11 @@ class TestMergedFormTable(unittest.TestCase):
         line = [row for row in merged.splitlines() if row.startswith("9999")][
             0
         ]
-        # all_sources is 0: the percentage is undefined, never a
-        # ZeroDivisionError, and must render as "-" rather than a bogus
-        # percentage.
-        self.assertIn("(-)", line)
+        # all_sources is 0 and our-sites is positive, so the gap is
+        # negative: this is the enrichment beacon firing for a
+        # submission Marketo never has a Fill Out Form activity for.
+        # Never a ZeroDivisionError, never a bogus percentage.
+        self.assertIn("(excess)", line)
 
     def test_form_only_in_all_sources_still_appears_with_zero_our_sites(self):
         rows = []
@@ -241,10 +259,12 @@ class TestMergedFormTable(unittest.TestCase):
         merged = report.split("Submissions per form (window total)")[1]
         self.assertIn("5883", merged)
 
-    def test_negative_gap_shows_the_number_without_a_percentage(self):
-        # our-sites exceeds all-sources: an enrichment call succeeded but
-        # the main "Fill Out Form" activity never landed, or fell
-        # outside the window boundary.
+    def test_negative_gap_is_labelled_excess_not_a_missing_percentage(self):
+        # our-sites exceeds all-sources: the enrichment beacon recorded
+        # more submissions than Marketo has Fill Out Form activities
+        # for, i.e. Marketo skipped or dropped the real submission.
+        # This is a distinct, named condition, not missing data -- it
+        # must not render as an undefined "(-)".
         rows = [
             SubmissionRow(
                 "2026-08-05", "5883", "https://ubuntu.com/x", "ubuntu.com"
@@ -262,7 +282,42 @@ class TestMergedFormTable(unittest.TestCase):
             line for line in merged.splitlines() if line.startswith("5883")
         ][0]
         self.assertIn("-1", merged_form_line)
+        self.assertIn("(excess)", merged_form_line)
         self.assertNotIn("%", merged_form_line)
+
+    def test_positive_gap_still_shows_a_percentage(self):
+        rows = [
+            SubmissionRow(
+                "2026-08-05", "5883", "https://ubuntu.com/x", "ubuntu.com"
+            )
+        ]
+        activities = [
+            {"primaryAttributeValueId": 5883, "primaryAttributeValue": "f"}
+        ] * 4  # our=1, all_sources=4, gap=3 -> 75%
+        report = format_report(rows, activities, 10, truncated=False)
+        merged = report.split("Submissions per form (window total)")[1]
+        merged_form_line = [
+            line for line in merged.splitlines() if line.startswith("5883")
+        ][0]
+        self.assertIn("3 (75%)", merged_form_line)
+        self.assertNotIn("excess", merged_form_line)
+
+    def test_zero_gap_shows_zero_percent(self):
+        rows = [
+            SubmissionRow(
+                "2026-08-05", "5883", "https://ubuntu.com/x", "ubuntu.com"
+            )
+        ]
+        activities = [
+            {"primaryAttributeValueId": 5883, "primaryAttributeValue": "f"}
+        ]  # our=1, all_sources=1, gap=0
+        report = format_report(rows, activities, 10, truncated=False)
+        merged = report.split("Submissions per form (window total)")[1]
+        merged_form_line = [
+            line for line in merged.splitlines() if line.startswith("5883")
+        ][0]
+        self.assertIn("0 (0%)", merged_form_line)
+        self.assertNotIn("excess", merged_form_line)
 
     def test_sorted_by_our_sites_desc_then_all_sources_desc_then_form_id(self):
         rows = [
@@ -337,6 +392,26 @@ class TestCsv(unittest.TestCase):
         self.assertEqual(
             csv_rows(ROWS, {})[0],
             ["date", "form_id", "form_name", "site", "referrer", "count"],
+        )
+
+    def test_unknown_name_stays_empty_in_the_csv(self):
+        # The table falls back to "form <id>" for display, but the CSV
+        # is raw data: form_id is already its own column, and the
+        # form_name column should carry only what Marketo actually
+        # reported -- a real name, or nothing -- rather than a
+        # synthesised display string. See the report file for the full
+        # rationale.
+        body = csv_rows(ROWS, {})[1:]
+        self.assertIn(
+            [
+                "2026-08-05",
+                "5883",
+                "",
+                "ubuntu.com",
+                "https://ubuntu.com/a",
+                "2",
+            ],
+            body,
         )
 
     def test_groups_identical_rows_into_a_count(self):

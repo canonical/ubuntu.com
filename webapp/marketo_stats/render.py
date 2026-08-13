@@ -132,9 +132,16 @@ def short_form_name(raw_name):
 
 
 def _display_name(names, form_id):
+    """Return a display label for form_id, falling back to the id itself.
+
+    A form with enrichment records but zero raw Marketo activities in
+    the window never appears in `names` (form_names() only sees the id
+    on an activity). "(unknown)" would read like an error; the form id
+    is always a real, useful label on its own.
+    """
     raw = names.get(form_id)
     if not raw:
-        return "(unknown)"
+        return f"form {form_id}"
     return short_form_name(raw)
 
 
@@ -160,17 +167,20 @@ def _merge_form_totals(our_totals, raw_totals):
 
 
 def _format_gap(gap, all_sources):
-    """Render a gap cell, never dividing by zero or a negative gap.
+    """Render a gap cell, never dividing by zero, never a bogus percentage.
 
-    The percentage is only meaningful when all_sources is positive and
-    the gap is non-negative; both named edge cases (all_sources == 0,
-    and our-sites exceeding all-sources) fall through to the plain "-"
-    form.
+    A negative gap is not missing data -- it is the enrichment beacon
+    recording more submissions than Marketo has Fill Out Form
+    activities for, i.e. Marketo skipped or dropped the real
+    submission. That is named explicitly as "(excess)" rather than
+    forced through the percentage math (which would otherwise need
+    all_sources > 0 to avoid a ZeroDivisionError, and produces a
+    meaningless number for a negative numerator regardless).
     """
-    if all_sources > 0 and gap >= 0:
-        pct = round(gap / all_sources * 100)
-        return f"{_fmt(gap)} ({pct}%)"
-    return f"{_fmt(gap)} (-)"
+    if gap < 0:
+        return f"{_fmt(gap)} (excess)"
+    pct = round(gap / all_sources * 100) if all_sources > 0 else 0
+    return f"{_fmt(gap)} ({pct}%)"
 
 
 def _rule(title):
