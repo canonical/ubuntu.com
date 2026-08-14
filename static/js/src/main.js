@@ -9,4 +9,5 @@ import "./static-forms.js";
 import "./core.js";
 import "./smart-quotes.js";
 import "./prepare-form-inputs.js";
+import "./email-validation.js";
 import "./search.js";
