@@ -1,0 +1,11 @@
+<div class="p-notification--caution is-inline">
+  <div class="p-notification__content">
+    <span class="p-notification__title">Warning:</span>
+    <p class="p-notification__message">Canonical is decommissioning the <code>rocks.canonical.com</code> container image registry as part of our infrastructure modernization. The registry will be unavailable after <strong>August 31, 2026</strong>. This affects Charmed Kubernetes releases 1.35 and earlier. New Charmed Kubernetes 1.36+ deployments use <code>ghcr.io/canonical/cdk</code> by default. Existing deployments, or deployments with an overridden <code>image-registry</code> value, must be migrated. Configure the <code>image-registry</code> value for each deployed component charm that uses Canonical images, including CNI and CSI charms. See the <a href="/kubernetes/charmed-k8s/docs/rocks-registry-affected-charms">list of affected charms</a>.</p>
+    <pre><code class="lang-bash">juju config &lt;charm-name&gt; image-registry=ghcr.io/canonical/cdk
+</code></pre>
+    <p>For example:</p>
+    <pre><code class="lang-bash">juju config kubernetes-control-plane image-registry=ghcr.io/canonical/cdk
+</code></pre>
+  </div>
+</div>
