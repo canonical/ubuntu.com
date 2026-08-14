@@ -306,7 +306,7 @@
         <ul class="p-list--divided">
           <li class="p-list__item">
             <h3 class="p-heading--6">
-              <a href="/openstack/tutorials" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'openstack documentation', 'eventLabel' : 'OpenStack tutorials for beginners', 'eventValue' : undefined });">
+              <a href="/openstack/tutorials" data-ga-category="Contextual footer link" data-ga-action="openstack documentation" data-ga-label="OpenStack tutorials for beginners">
                 OpenStack tutorials for beginners
               </a>
             </h3>
@@ -316,7 +316,7 @@
           </li>
           <li class="p-list__item">
             <h3 class="p-heading--6">
-              <a href="/engage/openstack-ebook-beginners" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'openstack documentation', 'eventLabel' : 'OpenStack e-book for beginners', 'eventValue' : undefined });">
+              <a href="/engage/openstack-ebook-beginners" data-ga-category="Contextual footer link" data-ga-action="openstack documentation" data-ga-label="OpenStack e-book for beginners">
                 OpenStack e-book for beginners
               </a>
             </h3>
@@ -326,7 +326,7 @@
           </li>
           <li class="p-list__item">
             <h3 class="p-heading--6">
-              <a href="/engage/canonical-openstack-reference-architecture" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'openstack documentation', 'eventLabel' : 'Canonical OpenStack reference architecture', 'eventValue' : undefined });">
+              <a href="/engage/canonical-openstack-reference-architecture" data-ga-category="Contextual footer link" data-ga-action="openstack documentation" data-ga-label="Canonical OpenStack reference architecture">
                 Canonical OpenStack reference architecture
               </a>
             </h3>
@@ -340,6 +340,6 @@
   </section>
 
   {{ load_form("/openstack") | safe }}
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
 {% endblock content %}

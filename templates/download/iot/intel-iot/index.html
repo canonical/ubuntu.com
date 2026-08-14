@@ -1178,7 +1178,7 @@
     </div>
   </section>
 
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
   {{ load_form("/download/iot/intel-iot") | safe }}
 
 {% endblock content %}

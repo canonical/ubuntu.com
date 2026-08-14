@@ -33,7 +33,7 @@
     {%- if slot == 'cta' -%}
       <a href="/contact-us/form?product=pro"
          class="p-button--positive js-invoke-modal"
-         aria-controls="compliance-automation-value-calculator-modal">Contact us</a>
+         aria-controls="security-modal">Contact us</a>
       <a href="https://documentation.ubuntu.com/security/compliance/">Learn more about compliance automation&nbsp;&rsaquo;</a>
     {%- endif -%}
   {% endcall -%}
@@ -203,7 +203,7 @@
         <div class="p-cta-block">
           <a href="/contact-us/form?product=pro"
              class="p-button--positive js-invoke-modal"
-             aria-controls="compliance-automation-value-calculator-modal">Contact us</a>
+             aria-controls="security-modal">Contact us</a>
         </div>
       </div>
     </div>
@@ -392,10 +392,10 @@
     {%- endif -%}
   {% endcall -%}
 
-  {{ load_form("/security/compliance-automation-value-calculator") | safe }}
+  {{ load_form('/security') | safe }}
 
-  <script src="{{ versioned_static('js/src/slider-base.js') }}"></script>
-  <script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/src/slider-base.js') }}"></script>
+  <script nonce="{{ csp_nonce }}">
     // Profile definitions based on actual benchmark specifications
     const profiles = {
       1: {

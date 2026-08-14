@@ -1,3 +1,5 @@
+{% set gtm_container_id = "GTM-N384JMX2" %}
+
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 
 {% extends "templates/base.html" %}
@@ -29,36 +31,58 @@
 {% block outer_content %}
 
   {%- call(slot) vf_hero(
-    title_text='Expanded Security Maintenance <br class="u-hide--small u-hide--medium">for the Robot Operating System',
-    layout='50/50-full-width-image'
-    ) -%}
-    {%- if slot == 'description' -%}
-      <h2>
+    title_text='Expanded Security Maintenance <br class="u-hide--small u-hide--medium" />for the Robot Operating System',
+    chip_text='Available with Ubuntu Pro',
+    layout='50/50-full-width-image',
+    blocks=[
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "html",
+          "content": '<h2>
         ROS security updates 
         <br class="u-hide--small u-hide--medium" />
         for your entire product lifecycle.
-      </h2>
-    {%- endif -%}
-    {%- if slot == 'cta' -%}
-      <a href="/internet-of-things/contact-us?product=robotics"
-         class="js-invoke-modal p-button--positive"
-         aria-controls="robotics-modal"
-         aria-expanded="false">Get in touch</a>
-      <a href="https://canonical-robotics.readthedocs-hosted.com/en/latest/explanations/security/what-is-ros-esm/"
-        class="p-button">Read the docs</a>
-      <a href="https://assets.ubuntu.com/v1/4dedff79-ROS%20ESM%20datasheet.pdf">Read the datasheet&nbsp;&rsaquo;</a>
-    {%- endif -%}
-    {%- if slot == 'image' -%}
-      <div class="p-image-container--cinematic is-cover">
-        {{ image(url="https://assets.ubuntu.com/v1/cd562538-hero.png", alt="",
-                width="1848",
-                height="771",
-                hi_def=True,
-                loading="auto",
-                attrs={"class":"p-image-container__image"}) | safe
-        }}
-      </div>
-    {%- endif -%}
+      </h2>'
+        }
+      },
+      {
+        "type": "cta-block",
+        "padding" : "shallow",
+        "item": {
+          "primary": {
+            "content_html": "Get in touch",
+            "attrs": {"href": "/internet-of-things/contact-us?product=robotics", "class": "js-invoke-modal", "aria-controls": "robotics-modal", "aria-expanded": "false"}
+          },
+          "secondaries": [
+            {
+              "content_html": "Read the docs",
+              "attrs": {"href": "https://canonical-robotics.readthedocs-hosted.com/en/latest/explanations/security/what-is-ros-esm/"}
+            }
+          ],
+          "link": {
+            "content_html": "Read the datasheet&nbsp;&rsaquo;",
+            "attrs": {"href": "https://assets.ubuntu.com/v1/4dedff79-ROS%20ESM%20datasheet.pdf"}
+          }
+        }
+      },
+      {
+        "type": "image",
+        "item": {
+          "aspect_ratio": "cinematic",
+          "is_cover": true,
+          "attrs": {
+            "src": "https://assets.ubuntu.com/v1/cd562538-hero.png",
+            "alt": "",
+            "width": "1848",
+            "height": "771",
+            "loading": "auto"
+          }
+        }
+      },
+    ]
+    ) -%}
   {%- endcall -%}
 
   {%- call(slot) vf_tiered_list(
@@ -637,7 +661,7 @@
           <p>Build your production-grade Ubuntu Core image for your device.</p>
           <div class="p-cta-block">
             <a href="/core"
-               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'u.c/core', 'eventLabel' : 'Develop with Ubuntu core', 'eventValue' : undefined });"
+               data-ga-category="Contextual footer link" data-ga-action="u.c/core" data-ga-label="Develop with Ubuntu core"
             >Discover Ubuntu Core ›</a>
           </div>
         </div>

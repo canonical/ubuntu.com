@@ -86,8 +86,8 @@
     </div>
   </div>
 
-  <script src="{{ versioned_static('js/dist/side-navigation.js') }}" defer></script>
-  <script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/side-navigation.js') }}" defer></script>
+  <script nonce="{{ csp_nonce }}">
     document.addEventListener("DOMContentLoaded", () => {
       document.querySelector(".js-drawer-toggle").classList.remove("u-hide");
     })

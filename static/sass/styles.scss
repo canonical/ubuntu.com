@@ -1425,6 +1425,28 @@ $color-link-dark: #69c !default;
   }
 }
 
+// Override height for very wide logos to prevent horizontal overflow
+.p-logo-section__item.is-wide {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 4.5rem;
+  vertical-align: bottom;
+  width: fit-content;
+
+  @media (min-width: $breakpoint-small) {
+    height: 6.5rem;
+  }
+
+  .p-logo-section__logo {
+    height: 0.8rem;
+
+    @media (min-width: $breakpoint-small) {
+      height: 1rem;
+    }
+  }
+}
+
 // XXX: pete f: vanilla issue here -
 // https://github.com/canonical/vanilla-framework/issues/4877
 .p-divider {
@@ -1867,11 +1889,11 @@ ol.p-stepped-list.no-full-stop
   }
 }
 
-// Custom styling for training page that ensures
-// CTA buttons/links are stacked on small screens
+// Custom styling for training page CTA link groups.
 .training-cta--stacked {
   display: flex;
   flex-wrap: wrap;
+  column-gap: 1rem;
 }
 
 // Truncates text to two lines with ellipsis
@@ -1964,4 +1986,9 @@ ol.p-stepped-list.no-full-stop
   top: $spv--strip-regular; // Account for navigation
   z-index: 1; 
   align-self: start;
+}
+
+// Applying tab-section--no-title-space to a tab section will reduce the gap between the section title and the tabs.
+.tab-section--no-title-space > .p-section--shallow {
+  padding-bottom: 0;
 }

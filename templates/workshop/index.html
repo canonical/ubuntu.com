@@ -37,7 +37,7 @@
                class="p-button">Read the docs</a>
         {%- endif -%}
         {%- if slot == 'image' -%}
-            <img src="https://assets.ubuntu.com/v1/c5c25f45-workshop_init_launch_shell_my_project.png"
+            <img src="https://assets.ubuntu.com/v1/f1b5b3ca-workshop_init_launch_shell_my_project_nh.png"
                  alt="" />
         {%- endif -%}
     {%- endcall -%}
@@ -215,8 +215,8 @@
         </template>
     </section>
 
-    <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-    <script>
+    <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+    <script nonce="{{ csp_nonce }}">
       canonicalLatestNews.fetchLatestNews({
         articlesContainerSelector: "#ubuntu-latest",
         articleTemplateSelector: "#blog-template",

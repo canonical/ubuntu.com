@@ -24,7 +24,7 @@ export const NAV_SECTIONS = [
   },
   {
     id: "download-ubuntu",
-    label: "Download Ubuntu",
+    label: "Get Ubuntu",
     endpoint: "/templates/navigation/download-ubuntu",
   },
 ] as const;

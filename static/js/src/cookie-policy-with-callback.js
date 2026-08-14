@@ -3,7 +3,7 @@
   If the user has not set their cookie preference, wait for the cookie policy to run first. 
 */
 
-import { v4 as uuidv4 } from "https://jspm.dev/uuid";
+import { v4 as uuidv4 } from "uuid";
 
 const getCookie = (targetCookie) =>
   document.cookie.match(new RegExp("(^| )" + targetCookie + "=([^;]+)"));

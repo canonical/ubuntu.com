@@ -332,7 +332,7 @@
     items=3)
   -}}
 
-  <script type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
 {% endblock content %}

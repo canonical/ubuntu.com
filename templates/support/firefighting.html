@@ -2,6 +2,7 @@
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "macros/_macros-faq-schema.jinja" import faqpage_schema %}
 
 {% block title %}Firefighting Support: enhanced cloud support from Canonical{% endblock %}
 
@@ -332,6 +333,17 @@
     </div>
   </section>
 
+  {% set faq_items = [
+    ["What's the difference between Firefighting Support and Ubuntu Pro + Support?",
+    "<p>Ubuntu Pro is the security, compliance, and maintenance subscription that extends security updates for Ubuntu LTS, adds hardening profiles, and provides access to trusted open source repositories. Firefighting Support includes Ubuntu Pro + <a href=\"/support\">Support</a> for all covered products and adds a dedicated Managed Solutions engineering team on top, with faster SLAs and experts who get to know your environment before helping you in high‑severity incidents.​</p><p>With Firefighting support you get all the benefits of Ubuntu Pro, plus additional incident response and guidance capabilities tailored to your cloud.</p>"],
+    ["Can I get Firefighting Support if I already have Ubuntu Pro?",
+    "Yes, you can. Your cloud may need to undergo a cloud validation from our team, and you will only pay an additional upgrade fee to add Firefighting Support on top of your existing Ubuntu Pro (or Ubuntu Pro + Support) subscription."],
+    ["How much does it cost?",
+    "This depends on the products you want to cover and the number of nodes. Our pricing model is simple, intuitive, and works on a per node per year basis. <a href=\"/support/contact-us\" class=\"js-invoke-modal\" aria-controls=\"firefighting-form-modal\">Get in touch with our team to find out more.</a>"],
+    ["Which products does Firefighting Support cover?",
+    "Firefighting Support covers <a href=\"/openstack\">Charmed OpenStack</a>, <a href=\"/kubernetes\">Canonical Kubernetes</a>, and our entire <a href=\"/managed/apps\">Managed Apps</a> portfolio."]
+  ] %}
+
   <section class="p-section">
     <div class="grid-row--25-75">
       <hr class="p-rule" />
@@ -339,61 +351,20 @@
         <h2>FAQ</h2>
       </div>
       <div class="grid-col">
-        <div class="grid-row">
-          <div class="grid-col-2">
-            <p class="p-heading--5">
-              What's the difference between
-              <br class="u-hide--small" />
-              Firefighting Support and Ubuntu Pro + Support?
-            </p>
+        {% for question, answer in faq_items %}
+          {% if not loop.first %}<hr class="p-rule--muted" />{% endif %}
+          <div class="grid-row">
+            <div class="grid-col-2">
+              <p class="p-heading--5">{{ question }}</p>
+            </div>
+            <div class="grid-col-4">{{ answer | safe }}</div>
           </div>
-          <div class="grid-col-4">
-            <p>
-              Ubuntu Pro is the security, compliance, and maintenance subscription that extends security updates for Ubuntu LTS, adds hardening profiles, and provides access to trusted open source repositories. Firefighting Support includes Ubuntu Pro + <a href="/support">Support</a> for all covered products and adds a dedicated Managed Solutions engineering team on top, with faster SLAs and experts who get to know your environment before helping you in high‑severity incidents.​
-            </p>
-            <p>
-              With Firefighting support you get all the benefits of Ubuntu Pro, plus additional incident response and guidance capabilities tailored to your cloud.
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="grid-row">
-          <div class="grid-col-2">
-            <p class="p-heading--5">Can I get Firefighting Support if I already have Ubuntu Pro?</p>
-          </div>
-          <div class="grid-col-4">
-            <p>
-              Yes, you can. Your cloud may need to undergo a cloud validation from our team, and you will only pay an additional upgrade fee to add Firefighting Support on top of your existing Ubuntu Pro (or Ubuntu Pro + Support) subscription.
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="grid-row">
-          <div class="grid-col-2">
-            <p class="p-heading--5">How much does it cost?</p>
-          </div>
-          <div class="grid-col-4">
-            <p>
-              This depends on the products you want to cover and the number of nodes. Our pricing model is simple, intuitive, and works on a per node per year basis. <a href="/support/contact-us"
-    class="js-invoke-modal"
-    aria-controls="firefighting-form-modal">Get in touch with our team to find out more.</a>
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="grid-row">
-          <div class="grid-col-2">
-            <p class="p-heading--5">Which products does Firefighting Support cover?</p>
-          </div>
-          <div class="grid-col-4">
-            <p>
-              Firefighting Support covers <a href="/openstack">Charmed OpenStack</a>, <a href="/kubernetes">Canonical Kubernetes</a>, and our entire <a href="/managed/apps">Managed Apps</a> portfolio.
-            </p>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </section>
+
+  {{ faqpage_schema(faq_items) }}
 
   <section class="p-section">
     <div class="p-section--shallow">

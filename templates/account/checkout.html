@@ -37,9 +37,9 @@
       </div>
     </div>
 
-    <script>
+    <script nonce="{{ csp_nonce }}">
       window.stripePublishableKey = "{{ get_stripe_publishable_key }}";
     </script>
-    <script src="{{ versioned_static('js/dist/shopCheckout.js') }}" type="module"></script>
+    <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/shopCheckout.js') }}" type="module"></script>
 
   {% endblock %}

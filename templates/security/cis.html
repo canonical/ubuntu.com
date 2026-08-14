@@ -19,28 +19,48 @@
   {% call(slot) vf_hero(
     title_text='CIS Benchmark on Ubuntu',
     subtitle_text='Comply with the most widely accepted Linux baseline',
-    layout='25/75'
-    ) -%}
-    {%- if slot == 'signpost_image' -%}
-      {{ image(url="https://assets.ubuntu.com/v1/f98af83d-cis-logo-removebg-preview.png",
-            alt="",
-            width="144",
-            height="144",
-            hi_def=True,
-            loading="auto") | safe
-      }}
-    {%- endif -%}
-    {%- if slot == 'description' -%}
-      <p>
+    chip_text='Available with Ubuntu Pro',
+    layout='25/75',
+    blocks=[
+      {
+        "type": "signpost_image",
+        "item": {
+          "is_highlighted": false,
+          "attrs": {
+            "src": "https://assets.ubuntu.com/v1/f98af83d-cis-logo-removebg-preview.png",
+            "alt": "",
+            "width": "144",
+            "height": "144",
+            "loading": "auto"
+          }
+        }
+      },
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "html",
+          "content": '<p>
         The CIS benchmark has hundreds of configuration recommendations, so hardening and auditing a Linux system or a kubernetes cluster manually can be very tedious. To drastically improve this process for enterprises, Canonical provides Ubuntu Security Guide (USG) for automated audit and compliance with the CIS benchmarks. Available with <a href="/pro">Ubuntu Pro on-premise</a> or on <a href="/public-cloud">public clouds</a>.
-      </p>
-    {%- endif -%}
-    {%- if slot == 'cta' -%}
-      <a href="/security/contact-us"
-         class="p-button--positive js-invoke-modal"
-         aria-controls="security-standards-modal">Contact us</a>
-      <a href="/pro">Get Ubuntu Pro&nbsp;&rsaquo;</a>
-    {%- endif -%}
+      </p>'
+        }
+      },
+      {
+        "type": "cta-block",
+        "padding": "shallow",
+        "item": {
+          "primary": {
+            "content_html": "Contact us",
+            "attrs": {"href": "/security/contact-us", "class": "js-invoke-modal", "aria-controls": "security-standards-modal"}
+          },
+          "link": {
+            "content_html": "Get Ubuntu Pro&nbsp;&rsaquo;",
+            "attrs": {"href": "/pro"}
+          }
+        }
+      },
+    ]
+    ) -%}
   {%- endcall -%}
 
   <section class="p-section">

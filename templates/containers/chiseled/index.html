@@ -516,7 +516,7 @@
           <div class="col-4 col-medium-3">
             <ul class="p-list--divided">
               <li class="p-list__item">
-                <a href="https://documentation.ubuntu.com/rockcraft/latest/how-to/chiselling/chisel-existing-rock/">Using Chisel in Rockcraft</a>
+                <a href="https://documentation.ubuntu.com/rockcraft/latest/how-to/chiseling/chisel-existing-rock/">Using Chisel in Rockcraft</a>
               </li>
               <li class="p-list__item">
                 <a href="https://documentation.ubuntu.com/chisel/en/latest/tutorial/getting-started/">Create
@@ -591,6 +591,6 @@
   <!-- Set default Marketo information for contact form below-->
   {{ load_form("/containers") | safe }}
 
-  <script src="https://assets.ubuntu.com/v1/6d64bd2f-d3.min.js" defer></script>
-  <script src="{{ versioned_static('js/dist/chiseled-chart.js') }}" defer></script>
+  <script nonce="{{ csp_nonce }}" src="https://assets.ubuntu.com/v1/6d64bd2f-d3.min.js" defer></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/chiseled-chart.js') }}" defer></script>
 {% endblock %}

@@ -600,9 +600,9 @@
     {% include "/summit/shared/_latest-blogs_summit.html" %}
   {% endwith %}
 
-  <script src="{{ versioned_static('js/dist/flickity.pkgd.min.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/flickity.pkgd.min.js') }}"></script>
 
-  <script>
+  <script nonce="{{ csp_nonce }}">
     initCarousel('#carousel_target', '#carousel-next', '#carousel-previous');
 
     function initCarousel(carouselSelector, nextSelector, previousSelector) {

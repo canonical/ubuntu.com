@@ -26,6 +26,7 @@ navigation.classList.add("js-enabled");
 nav.classList.remove("u-hide");
 document.addEventListener("DOMContentLoaded", () => {
   setUpGlobalNav();
+  wireDropdownFetchTriggers();
 });
 window.addEventListener("load", () => {
   handleUrlHash();
@@ -59,6 +60,11 @@ function getAllElements(queryString) {
 
 // Attach initial event listeners
 mainList.addEventListener("click", function (e) {
+  // Links carrying data-js-stop-propagation (e.g. the account dropdown items)
+  // must keep their default navigation and not trigger the nav dropdown logic.
+  if (e.target.closest("[data-js-stop-propagation]")) {
+    return;
+  }
   e.preventDefault();
   let target = e.target;
   if (target.classList.contains("p-navigation__link")) {
@@ -398,21 +404,54 @@ function fetchDropdown(url, id) {
       );
       desktopContainer.appendChild(desktopContent);
 
+      // The fetched desktop dropdown's side-navigation links previously used
+      // inline onclick="toggleSection(event)"; bind them here instead.
+      desktopContainer
+        .querySelectorAll(".p-side-navigation__link")
+        .forEach((link) => {
+          link.addEventListener("click", toggleSection);
+        });
+
       const mobileContent = convertHTMLToNode(
         this.responseText,
         ".dropdown-content-mobile",
       );
-      mobileContainer.appendChild(mobileContent);
+      if (mobileContent) {
+        mobileContainer.appendChild(mobileContent);
+      }
 
-      const targetDropdowns = mobileContent.querySelectorAll(
-        "ul.p-navigation__dropdown",
-      );
+      const targetDropdowns = mobileContent
+        ? mobileContent.querySelectorAll("ul.p-navigation__dropdown")
+        : [];
       dropdowns = [...dropdowns, ...targetDropdowns];
 
       const activeCTAs = mobileContainer.querySelectorAll("a.is-active");
       activeCTAs.forEach(deactivateActiveCTA);
     });
   }
+}
+
+/**
+  Binds hover/focus triggers that lazy-fetch each top-level nav dropdown's
+  contents. Replaces inline onmouseenter/onfocus="fetchDropdown(...)" handlers.
+*/
+function wireDropdownFetchTriggers() {
+  document.querySelectorAll("[data-js-dropdown-url]").forEach((item) => {
+    const url = item.getAttribute("data-js-dropdown-url");
+    item.addEventListener(
+      "mouseenter",
+      function () {
+        fetchDropdown(url, item.id);
+      },
+      { once: true },
+    );
+    const link = item.querySelector(".p-navigation__link");
+    if (link) {
+      link.addEventListener("focus", function () {
+        fetchDropdown(url, item.id);
+      });
+    }
+  });
 }
 
 /**
@@ -675,8 +714,10 @@ function closeMobileDropdown() {
     if (dropdown.classList.contains("is-active")) {
       toggleIsActiveState(dropdown, false);
       const listItem = dropdown.querySelector("ul.p-navigation__dropdown");
-      listItem.setAttribute("aria-hidden", true);
-      toggleIsActiveState(listItem, false);
+      if (listItem) {
+        listItem.setAttribute("aria-hidden", true);
+        toggleIsActiveState(listItem, false);
+      }
     }
   });
 }
@@ -729,12 +770,14 @@ function toggleSearch(e) {
 
 function openSearch(e) {
   e.preventDefault();
-  const searchInput = navigation.querySelector(".p-search-box__input");
+  const searchInput =
+    navigation.querySelector(".p-search-box__input:not(.u-hide)") ||
+    navigation.querySelector(".p-search-box__input");
   Array.from(searchButtons).forEach((searchButton) => {
     searchButton.setAttribute("aria-pressed", true);
   });
   addClassesToElements([navigation], ["has-search-open"]);
-  searchInput.focus();
+  searchInput?.focus();
   document.addEventListener("keyup", escKeyPressHandler);
 }
 
@@ -796,7 +839,7 @@ if (accountContainer) {
     .then((response) => response.json())
     .then((data) => {
       if (data.account === null) {
-        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;" tabindex="0" role="button" onclick="event.stopPropagation()">Sign in</a>`;
+        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;" tabindex="0" role="button" data-js-stop-propagation>Sign in</a>`;
       } else {
         window.accountJSONRes = data.account;
         if (data.account && data.account.email) {
@@ -813,15 +856,15 @@ if (accountContainer) {
               <strong>${escapedEmail}</strong></p>
               <hr class="is-dark u-no-margin" />
             </li>
-            <li class="p-navigation__dropdown-item"><a class="p-link--inverted" href="/pro/dashboard" onclick="event.stopPropagation()">Ubuntu Pro dashboard</a></li>
+            <li class="p-navigation__dropdown-item"><a class="p-link--inverted" href="/pro/dashboard" data-js-stop-propagation>Ubuntu Pro dashboard</a></li>
             <li class="p-navigation__dropdown-item">
-              <a class="p-link--inverted" href="/account/invoices" onclick="event.stopPropagation()">Invoices & Payments</a>
+              <a class="p-link--inverted" href="/account/invoices" data-js-stop-propagation>Invoices & Payments</a>
             </li>
             <li class="p-navigation__dropdown-item">
-              <a class="p-link--inverted" href="https://login.ubuntu.com/" onclick="event.stopPropagation()">Account settings</a>
+              <a class="p-link--inverted" href="https://login.ubuntu.com/" data-js-stop-propagation>Account settings</a>
             </li>
             <li class="p-navigation__dropdown-item">
-              <a class="p-link--inverted" href="/logout" onclick="event.stopPropagation()">Logout</a>
+              <a class="p-link--inverted" href="/logout" data-js-stop-propagation>Logout</a>
             </li>
           </ul>`;
         } else {

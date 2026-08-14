@@ -22,17 +22,29 @@
 {% block content %}
   {% call(slot) vf_hero(
     title_text='Expanded Security Maintenance <br />for Ubuntu and open source',
-    layout='50/50'
+    chip_text='Ubuntu Pro',
+    layout='50/50',
+    blocks=[
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "text",
+          "content": 'Extend the lifetime of your favorite Linux and the open source you use on top with reliable security maintenance for up to 15 years.'
+        }
+      },
+      {
+        "type": "cta-block",
+        "padding": "shallow",
+        "item": {
+          "primary": {
+            "content_html": "Speak to an expert",
+            "attrs": {"href": "/security/contact-us", "class": "js-invoke-modal", "aria-controls": "security-modal"}
+          }
+        }
+      },
+    ]
     ) -%}
-    {%- if slot == 'description' -%}
-      <p>
-        Extend the lifetime of your favorite Linux and the open source you use on top with reliable security maintenance for up to 15 years.
-      </p>
-    {%- endif -%}
-    {%- if slot == 'cta' -%}
-      <a href="/security/contact-us" aria-controls="security-modal"
-         class="js-invoke-modal p-button--positive">Speak to an expert</a>
-    {%- endif -%}
   {% endcall -%}
 
   <section class="p-section">
@@ -162,8 +174,8 @@
 
     </div>
   </section>
-  <script src="https://assets.ubuntu.com/v1/6d64bd2f-d3.min.js"></script>
-  <script src="{{ versioned_static('js/dist/release-chart-manager.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="https://assets.ubuntu.com/v1/6d64bd2f-d3.min.js"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/release-chart-manager.js') }}"></script>
 
   <section class="p-section">
     <div class="row--50-50">

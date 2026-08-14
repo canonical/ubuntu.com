@@ -3,7 +3,7 @@ import { Button } from "@canonical/react-components";
 import { FormContext } from "../../utils/FormContext";
 import { ProductUsers } from "../../utils/utils";
 
-export default function PaymentButton() {
+export default function PaymentButton({ ...props }) {
   const { quantity, product, productUser } = useContext(FormContext);
   let params = new URLSearchParams(document.location.search);
   let referral_id = params.get("referral_id") || "";
@@ -26,6 +26,7 @@ export default function PaymentButton() {
             e.preventDefault();
             location.href = "/pro/dashboard";
           }}
+          {...props}
         >
           Register
         </Button>
@@ -41,6 +42,7 @@ export default function PaymentButton() {
             localStorage.setItem("referral_id", referral_id);
             location.href = "/account/checkout";
           }}
+          {...props}
         >
           Continue to checkout
         </Button>

@@ -50,12 +50,12 @@
   {% endif %}
 
   {# djlint:off #}
-  <script type="text/javascript">
+  <script nonce="{{ csp_nonce }}" type="text/javascript">
     const maintainedReleasesObj = {{maintained_releases | tojson | safe}};
     const ltsReleasesObj = {{lts_releases | tojson | safe}};
     const unmaintainedReleasesObj = {{unmaintained_releases | tojson | safe}};
   </script>
   {# djlint:off #}
-  <script src="{{ versioned_static('js/dist/cve.js') }}" defer></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/cve.js') }}" defer></script>
 
 {% endblock %}

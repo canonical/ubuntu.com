@@ -244,7 +244,7 @@
       </div>
     </section>
   </div>
-  <script src="{{ versioned_static('js/src/ceph-pricing-calculator.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/src/ceph-pricing-calculator.js') }}"></script>
 
   {{ load_form("/ceph/pricing-calculator") | safe }}
 

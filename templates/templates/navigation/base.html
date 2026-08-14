@@ -15,8 +15,7 @@
                      id="{{ id }}-{{ format_to_id(side_nav_section.title) }}-tab"
                      aria-controls="{{ id }}-{{ format_to_id(side_nav_section.title) }}-tab-content"
                      role="tab"
-                     aria-selected="{{ 'true' if loop.index == 1 else 'false' }}"
-                     onclick="toggleSection(event);">{{ side_nav_section.title }}</a>
+                     aria-selected="{{ 'true' if loop.index == 1 else 'false' }}">{{ side_nav_section.title }}</a>
                 </li>
               {% endfor %}
             </ul>

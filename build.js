@@ -42,6 +42,8 @@ let entries = {
   "active-nav-scroll": "./static/js/src/active-nav-scroll.js",
   resources: "./static/js/src/resources.js",
   engage: "./static/js/src/engage.js",
+  "cookie-policy-with-callback":
+    "./static/js/src/cookie-policy-with-callback.js",
 };
 
 const isDev = process && process.env && process.env.NODE_ENV === "development";
