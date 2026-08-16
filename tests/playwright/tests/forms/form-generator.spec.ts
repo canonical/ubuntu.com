@@ -71,21 +71,11 @@ test.describe("Modal validation tests", () => {
     await expect(mktoForm).toBeVisible();
   });  
 
-  test("should disable submit button when required checkbox is not checked", async ({ page }) => {
-    // Check that submit button is disabled
-    const modal = page.locator("#contact-modal");
-    const submitButton = modal.getByRole("button", { name: /Submit/ });
-    await expect(submitButton).toBeDisabled();
-  });
-
-  test("should enable submit button when required checkbox is checked", async ({ page }) => {
-    // Check the required checkbox (scoped to modal)
-    const modal = page.locator("#contact-modal");
-    await modal.locator('input[aria-label="physical-server"]').check({ force: true });
-
-    const submitButton = modal.getByRole("button", { name: /Submit/ });
-    await expect(submitButton).toBeEnabled();
-  });
+  // Required-field submit gating coverage (disable-until-answered, then
+  // enable-once-answered) moved to required-field-gate.spec.ts under Task 6,
+  // which asserts against the new aria-disabled-based mechanism. The old
+  // js-required-checkbox/disabled-attribute mechanism these two tests
+  // targeted no longer exists as of Task 2.
 
   test("should fill and redirect to marketo submission endpoint", async ({ page }) => {
     const modal = page.locator("#contact-modal");

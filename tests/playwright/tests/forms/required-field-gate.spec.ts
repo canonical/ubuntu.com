@@ -89,11 +89,15 @@ test.describe("Template markers", () => {
     page,
   }) => {
     await page.goto(INLINE_FORM);
-    // #required-details-team-size has field.isRequired: true, so its label
-    // must carry is-required. Before the fix the label read fieldset.isRequired.
+    // field.isRequired: true -> label marked required
     await expect(
       page.locator('label[for="required-details-team-size"]'),
     ).toHaveClass(/is-required/);
+    // field.isRequired absent, but its fieldset IS required. Before the fix the
+    // label read fieldset.isRequired and wrongly showed as required.
+    await expect(
+      page.locator('label[for="required-details-referral"]'),
+    ).not.toHaveClass(/is-required/);
   });
 
   test.describe("No gated styling is server-rendered", () => {
