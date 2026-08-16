@@ -1,4 +1,9 @@
-import { findUnanswered, isComplete } from "./required-field-gate.js";
+import {
+  findUnanswered,
+  isComplete,
+  initRequiredFieldGate,
+  destroyRequiredFieldGate,
+} from "./required-field-gate.js";
 
 function buildForm(innerHTML) {
   document.body.innerHTML = `<form data-required-gate>${innerHTML}
@@ -132,5 +137,192 @@ describe("findUnanswered", () => {
     form.querySelector("#mixed-desktop").checked = true;
     form.querySelector("#mixed-details").value = "Two laptops and a server.";
     expect(findUnanswered(form)).toHaveLength(0);
+  });
+});
+
+function submit(form) {
+  return form.dispatchEvent(
+    new Event("submit", { bubbles: true, cancelable: true }),
+  );
+}
+
+describe("initRequiredFieldGate", () => {
+  afterEach(() => {
+    document.body.innerHTML = "";
+  });
+
+  it("gates an untouched form on initialisation", () => {
+    const form = buildForm(REQUIRED_TEXT);
+    initRequiredFieldGate(form);
+    const button = form.querySelector("button[type=submit]");
+    expect(button.getAttribute("aria-disabled")).toBe("true");
+    expect(button.classList.contains("is-disabled")).toBe(true);
+    // Never the disabled attribute — the button must stay focusable.
+    expect(button.disabled).toBe(false);
+  });
+
+  it("applies novalidate so the gate owns all validation feedback", () => {
+    const form = buildForm(REQUIRED_TEXT);
+    initRequiredFieldGate(form);
+    expect(form.hasAttribute("novalidate")).toBe(true);
+  });
+
+  it("points the button at the summary with aria-describedby", () => {
+    const form = buildForm(REQUIRED_TEXT);
+    initRequiredFieldGate(form);
+    expect(
+      form
+        .querySelector("button[type=submit]")
+        .getAttribute("aria-describedby"),
+    ).toBe("required-field-summary-1");
+  });
+
+  it("un-gates when the last required answer arrives", () => {
+    const form = buildForm(REQUIRED_TEXT);
+    initRequiredFieldGate(form);
+    const input = form.querySelector("#company");
+    input.value = "Canonical";
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+
+    const button = form.querySelector("button[type=submit]");
+    expect(button.hasAttribute("aria-disabled")).toBe(false);
+    expect(button.classList.contains("is-disabled")).toBe(false);
+  });
+
+  it("re-gates when a required answer is cleared", () => {
+    const form = buildForm(REQUIRED_TEXT);
+    initRequiredFieldGate(form);
+    const input = form.querySelector("#company");
+    input.value = "Canonical";
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+    input.value = "";
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+
+    expect(
+      form.querySelector("button[type=submit]").getAttribute("aria-disabled"),
+    ).toBe("true");
+  });
+
+  it("un-gates on a checkbox question via the change event", () => {
+    const form = buildForm(CHECKBOX_QUESTION);
+    initRequiredFieldGate(form);
+    const box = form.querySelector("#server");
+    box.checked = true;
+    box.dispatchEvent(new Event("change", { bubbles: true }));
+    expect(
+      form.querySelector("button[type=submit]").hasAttribute("aria-disabled"),
+    ).toBe(false);
+  });
+
+  it("blocks a gated submit and renders the summary", () => {
+    const form = buildForm(REQUIRED_TEXT + CHECKBOX_QUESTION);
+    initRequiredFieldGate(form);
+
+    const notCancelled = submit(form);
+    expect(notCancelled).toBe(false);
+
+    const summary = form.querySelector("[data-required-summary]");
+    expect(summary.textContent).toContain("2 answers still needed");
+    expect(summary.textContent).toContain("What kind of device are you using?");
+    expect(summary.textContent).toContain("Company");
+    expect(summary.classList.contains("p-notification--caution")).toBe(true);
+  });
+
+  it("singularises the summary heading for a single miss", () => {
+    const form = buildForm(REQUIRED_TEXT);
+    initRequiredFieldGate(form);
+    submit(form);
+    expect(form.querySelector("[data-required-summary]").textContent).toContain(
+      "1 answer still needed",
+    );
+  });
+
+  it("moves focus to the summary heading on a blocked submit", () => {
+    const form = buildForm(REQUIRED_TEXT);
+    initRequiredFieldGate(form);
+    submit(form);
+    const heading = form.querySelector("[data-required-summary] h3");
+    expect(heading.getAttribute("tabindex")).toBe("-1");
+    expect(document.activeElement).toBe(heading);
+  });
+
+  it("stops other submit listeners from running on a blocked submit", () => {
+    // Without stopImmediatePropagation the spinner listener fires and the
+    // button sticks showing a spinner for a submission that never happened.
+    const form = buildForm(REQUIRED_TEXT);
+    const spinner = jest.fn();
+    initRequiredFieldGate(form);
+    form.addEventListener("submit", spinner);
+    submit(form);
+    expect(spinner).not.toHaveBeenCalled();
+  });
+
+  it("lets a complete form submit and clears the summary", () => {
+    const form = buildForm(REQUIRED_TEXT);
+    initRequiredFieldGate(form);
+    submit(form); // populate the summary first
+    expect(
+      form.querySelector("[data-required-summary]"),
+    ).not.toBeEmptyDOMElement();
+
+    const input = form.querySelector("#company");
+    input.value = "Canonical";
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+
+    expect(form.querySelector("[data-required-summary]")).toBeEmptyDOMElement();
+    expect(submit(form)).toBe(true);
+  });
+
+  it("is idempotent — re-initialising does not double-bind", () => {
+    const form = buildForm(REQUIRED_TEXT);
+    initRequiredFieldGate(form);
+    initRequiredFieldGate(form);
+    const spinner = jest.fn();
+    form.addEventListener("submit", spinner);
+    submit(form);
+    expect(spinner).not.toHaveBeenCalled();
+    // One summary, not two.
+    expect(form.querySelectorAll("[data-required-summary] h3")).toHaveLength(1);
+  });
+
+  it("destroy removes every trace of the gate", () => {
+    const form = buildForm(REQUIRED_TEXT);
+    const gate = initRequiredFieldGate(form);
+    gate.destroy();
+
+    const button = form.querySelector("button[type=submit]");
+    expect(button.hasAttribute("aria-disabled")).toBe(false);
+    expect(button.classList.contains("is-disabled")).toBe(false);
+    expect(form.hasAttribute("novalidate")).toBe(false);
+    expect(form.querySelector("[data-required-summary]")).toBeEmptyDOMElement();
+    // And the submit listener is gone.
+    expect(submit(form)).toBe(true);
+  });
+
+  it("recomputes on pageshow so bfcache restores land gated correctly", () => {
+    // static-forms.js resets the spinner on a persisted pageshow; the gate
+    // recomputes independently rather than trusting a captured button state.
+    const form = buildForm(REQUIRED_TEXT);
+    initRequiredFieldGate(form);
+    const button = form.querySelector("button[type=submit]");
+
+    form.querySelector("#company").value = "Canonical";
+    window.dispatchEvent(new Event("pageshow"));
+    expect(button.hasAttribute("aria-disabled")).toBe(false);
+
+    form.querySelector("#company").value = "";
+    window.dispatchEvent(new Event("pageshow"));
+    expect(button.getAttribute("aria-disabled")).toBe("true");
+  });
+
+  it("destroyRequiredFieldGate is safe on an ungated form", () => {
+    const form = buildForm(REQUIRED_TEXT);
+    expect(() => destroyRequiredFieldGate(form)).not.toThrow();
+  });
+
+  it("returns null when the form has no summary container", () => {
+    document.body.innerHTML = `<form data-required-gate>${REQUIRED_TEXT}
+      <button type="submit">Submit</button></form>`;
+    expect(initRequiredFieldGate(document.querySelector("form"))).toBeNull();
   });
 });

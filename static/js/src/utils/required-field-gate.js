@@ -104,3 +104,128 @@ export function findUnanswered(form) {
 export function isComplete(form) {
   return findUnanswered(form).length === 0;
 }
+
+const GATE_KEY = "__requiredFieldGate";
+const GATED_CLASS = "is-disabled";
+const SUMMARY_CLASS = "p-notification--caution";
+
+function clearSummary(summary) {
+  summary.textContent = "";
+  summary.classList.remove(SUMMARY_CLASS);
+}
+
+/** Focus the control a summary entry points at, or a question's first box. */
+function focusTarget(target) {
+  const control =
+    target.tagName === "FIELDSET"
+      ? target.querySelector("input:not(:disabled), select, textarea")
+      : target;
+  if (!control) return;
+  control.focus();
+  control.scrollIntoView({ block: "center" });
+}
+
+function renderSummary(summary, missing) {
+  clearSummary(summary);
+  summary.classList.add(SUMMARY_CLASS);
+
+  const heading = document.createElement("h3");
+  heading.className = "p-heading--5";
+  heading.setAttribute("tabindex", "-1");
+  heading.textContent = `${missing.length} answer${
+    missing.length === 1 ? "" : "s"
+  } still needed`;
+
+  const list = document.createElement("ul");
+  list.className = "p-list";
+  missing.forEach(({ target, label }) => {
+    const item = document.createElement("li");
+    item.className = "p-list__item";
+    const link = document.createElement("a");
+    link.href = "#";
+    link.textContent = label;
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      focusTarget(target);
+    });
+    item.appendChild(link);
+    list.appendChild(item);
+  });
+
+  summary.appendChild(heading);
+  summary.appendChild(list);
+  return heading;
+}
+
+/**
+ * Gate a form's submit button until every required question has an answer.
+ * Idempotent — re-initialising tears down the previous handle first, which the
+ * modal path needs because initialiseForm() runs on every open.
+ */
+export function initRequiredFieldGate(form) {
+  destroyRequiredFieldGate(form);
+
+  const button = form.querySelector('button[type="submit"]');
+  const summary = form.querySelector("[data-required-summary]");
+  if (!button || !summary) return null;
+
+  // Applied here, never in the template: with JS off the visitor keeps a
+  // normal button and full native validation.
+  form.setAttribute("novalidate", "");
+  if (summary.id) button.setAttribute("aria-describedby", summary.id);
+
+  const refresh = () => {
+    const missing = findUnanswered(form);
+    if (missing.length) {
+      button.setAttribute("aria-disabled", "true");
+      button.classList.add(GATED_CLASS);
+    } else {
+      button.removeAttribute("aria-disabled");
+      button.classList.remove(GATED_CLASS);
+      clearSummary(summary);
+    }
+    return missing;
+  };
+
+  const onSubmit = (event) => {
+    const missing = refresh();
+    if (!missing.length) return;
+    event.preventDefault();
+    // Without this the spinner and consent listeners fire on a submission
+    // that never happens, and the button sticks on a spinner forever.
+    event.stopImmediatePropagation();
+    renderSummary(summary, missing).focus();
+  };
+
+  const onInteraction = () => refresh();
+
+  form.addEventListener("submit", onSubmit);
+  form.addEventListener("input", onInteraction);
+  form.addEventListener("change", onInteraction);
+  window.addEventListener("pageshow", onInteraction);
+
+  refresh();
+
+  const handle = {
+    refresh,
+    destroy() {
+      form.removeEventListener("submit", onSubmit);
+      form.removeEventListener("input", onInteraction);
+      form.removeEventListener("change", onInteraction);
+      window.removeEventListener("pageshow", onInteraction);
+      form.removeAttribute("novalidate");
+      button.removeAttribute("aria-disabled");
+      button.removeAttribute("aria-describedby");
+      button.classList.remove(GATED_CLASS);
+      clearSummary(summary);
+      delete form[GATE_KEY];
+    },
+  };
+
+  form[GATE_KEY] = handle;
+  return handle;
+}
+
+export function destroyRequiredFieldGate(form) {
+  if (form && form[GATE_KEY]) form[GATE_KEY].destroy();
+}
