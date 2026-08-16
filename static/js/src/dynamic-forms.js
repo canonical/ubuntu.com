@@ -7,6 +7,10 @@
  */
 import "infer-preferred-language.js";
 import { prepareInputFields } from "./prepare-form-inputs.js";
+import {
+  initRequiredFieldGate,
+  destroyRequiredFieldGate,
+} from "./utils/required-field-gate.js";
 
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
@@ -108,7 +112,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       if (modalTrigger && modalTrigger !== document.body)
         modalTrigger.setAttribute("aria-expanded", "true");
       updateHash(triggeringHash);
-      checkRequiredCheckboxes();
       dataLayer.push({
         event: "interactive-forms",
         action: "open",
@@ -234,6 +237,8 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         contactModal.querySelectorAll(".pagination a");
       const paginationContent = contactModal.querySelectorAll(".js-pagination");
       const submitButton = contactModal.querySelector('button[type="submit"]');
+      const gatedForm = contactModal.querySelector("form[data-required-gate]");
+      if (gatedForm) initRequiredFieldGate(gatedForm);
       const comment = contactModal.querySelector("#Comments_from_lead__c");
       const otherContainers = document.querySelectorAll(".js-other-container");
       const phoneNumberInput = document.querySelector("#phone");
@@ -330,6 +335,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
         // clean up event listeners when the modal is closed
         if (contactModal) {
+          if (gatedForm) destroyRequiredFieldGate(gatedForm);
           contactModal.removeEventListener("submit", submitForm);
           contactModal.removeEventListener("mousedown", handleModalMouseDown);
           contactModal.removeEventListener("mouseup", handleModalMouseUp);
@@ -582,31 +588,12 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       fireLoadedEvent();
 
-      // Disable submit button if there are required checkboxes
-      const requiredFieldsets = document.querySelectorAll(
-        "fieldset.js-required-checkbox",
-      );
-      if (requiredFieldsets.length) {
-        submitButton.disabled = true;
-      }
-
       // Add event listeners to toggle checkbox visibility
       const ubuntuVersionCheckboxes = document.querySelector(
         "fieldset.js-toggle-checkbox-visibility",
       );
       ubuntuVersionCheckboxes?.addEventListener("change", function (event) {
         toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
-      });
-
-      // Add event listeners if there are required fieldsets present
-      if (requiredFieldsets.length > 0) {
-        const submitButton = document.querySelector(".js-submit-button");
-        submitButton.disabled = true;
-      }
-      requiredFieldsets?.forEach((fieldset) => {
-        fieldset.addEventListener("change", function (event) {
-          checkRequiredCheckboxes();
-        });
       });
 
       // Prefill user names and email address if they are logged in
@@ -759,33 +746,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
           });
         }
       }
-    }
-
-    /**
-     * Check all required fieldsets and enable/disable submit button accordingly
-     * Submit button is only enabled when ALL required fieldsets have at least one checkbox checked
-     */
-    function checkRequiredCheckboxes() {
-      const submitButton = document.querySelector(".js-submit-button");
-      const allRequiredFieldsets = document.querySelectorAll(
-        "fieldset.js-required-checkbox",
-      );
-      let allFieldsetsValid = true;
-
-      allRequiredFieldsets?.forEach((fieldset) => {
-        const checkboxes = fieldset.querySelectorAll("input[type='checkbox']");
-        let hasCheckedCheckbox = false;
-
-        checkboxes?.forEach((checkbox) => {
-          if (checkbox.checked) {
-            hasCheckedCheckbox = true;
-          }
-        });
-        if (!hasCheckedCheckbox) {
-          allFieldsetsValid = false;
-        }
-      });
-      submitButton.disabled = !allFieldsetsValid;
     }
   });
 })();

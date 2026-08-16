@@ -226,3 +226,117 @@ test.describe("Inline form gating", () => {
     );
   });
 });
+
+test.describe("Modal form gating", () => {
+  // Pre-accept cookies for every test in this block: the site-wide consent
+  // banner is fixed to the bottom of the viewport and the modal's submit
+  // button sits near the bottom of a long modal, so the banner physically
+  // overlaps it. Playwright's force:true click bypasses actionability
+  // checks but still dispatches at real coordinates, so an unaccepted
+  // banner silently swallows the click — same root cause as the inline
+  // suite's "un-gates" test above, but it affects every click here because
+  // of the modal's layout, not just field-heavy tests.
+  test.beforeEach(async ({ page }) => {
+    await page.context().addCookies([
+      {
+        name: "_cookies_accepted",
+        value: "all",
+        domain: "0.0.0.0",
+        path: "/",
+      },
+    ]);
+  });
+
+  async function openModal(page) {
+    await page.goto(MODAL_FORM);
+    await page.locator(".js-invoke-modal").first().click();
+    await expect(page.locator("#contact-modal")).toBeVisible();
+    return page.locator("#contact-modal form");
+  }
+
+  test("button is gated when the modal opens", async ({ page }) => {
+    const form = await openModal(page);
+    const button = form.locator("button[type=submit]");
+    await expect(button).toHaveAttribute("aria-disabled", "true");
+    // Must stay focusable: Playwright's toBeDisabled()/not.toBeDisabled()
+    // treats aria-disabled as disabled (elementState() -> getAriaDisabled(),
+    // which fires for role=button), so it can never pass here. Assert the
+    // underlying contract directly instead, as the inline suite does above.
+    expect(await button.evaluate((el: HTMLButtonElement) => el.disabled)).toBe(
+      false,
+    );
+    await button.focus();
+    await expect(button).toBeFocused();
+  });
+
+  test("a gated press explains what is missing inside the modal", async ({
+    page,
+  }) => {
+    const form = await openModal(page);
+    // force: true — aria-disabled, not natively disabled; see above.
+    await form.locator("button[type=submit]").click({ force: true });
+    await expect(form.locator("[data-required-summary]")).toContainText(
+      "still needed",
+    );
+  });
+
+  test("re-opening recomputes rather than assuming a blank form", async ({
+    page,
+  }) => {
+    const form = await openModal(page);
+    await form
+      .locator("#kind-of-device-field input[type=checkbox]")
+      .first()
+      .check({ force: true });
+
+    await page.locator("#contact-modal .js-close").first().click();
+    await page.locator(".js-invoke-modal").first().click();
+
+    // The tick is retained, so that question must not be listed again.
+    await form.locator("button[type=submit]").click({ force: true });
+    await expect(form.locator("[data-required-summary]")).not.toContainText(
+      "What kind of device are you using?",
+    );
+  });
+
+  test("listeners do not accumulate across open/close cycles", async ({
+    page,
+  }) => {
+    const form = await openModal(page);
+    for (let i = 0; i < 3; i++) {
+      await page.locator("#contact-modal .js-close").first().click();
+      await page.locator(".js-invoke-modal").first().click();
+    }
+    await form.locator("button[type=submit]").click({ force: true });
+    // One summary heading, not four.
+    await expect(form.locator("[data-required-summary] h3")).toHaveCount(1);
+  });
+
+  test("un-gates once every required answer is supplied", async ({ page }) => {
+    const form = await openModal(page);
+    const button = form.locator("button[type=submit]");
+
+    await form.locator("#firstName").fill("Benjamin");
+    await form.locator("#lastName").fill("Oni");
+    await form.locator("#email").fill("benjo@canonical.com");
+    await form.locator("#company").fill("Canonical");
+    await form.locator("#title").fill("Engineer");
+    await form.locator("#required-details-project-name").fill("Gating");
+    await form.locator("#required-details-team-size").selectOption("1-10");
+    await form.locator("#required-details-summary").fill("Testing the gate.");
+    // force: true — these are custom-styled checkboxes/radios whose visible
+    // control overlaps the native input's hit target; same precedent as the
+    // inline suite above (and static-forms.spec.ts, form-generator.spec.ts).
+    await form
+      .locator("#kind-of-device-field input[type=checkbox]")
+      .first()
+      .check({ force: true });
+    await form
+      .locator("#how-many-devices-field input[type=radio]")
+      .first()
+      .check({ force: true });
+
+    await expect(button).not.toHaveAttribute("aria-disabled", "true");
+    await expect(button).not.toHaveClass(/is-disabled/);
+  });
+});
