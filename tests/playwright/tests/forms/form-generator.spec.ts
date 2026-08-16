@@ -1,6 +1,6 @@
 import { test, expect, Page } from "@playwright/test";
 import { fillExistingFields, acceptCookiePolicy } from "../../helpers/commands";
-import { formTextFields, modalFormCheckboxFields, modalFormRadioFields } from "../../helpers/form-fields";
+import { formTextFields, modalFormCheckboxFields, modalFormRadioFields, formSelectFields } from "../../helpers/form-fields";
 
 const openModal = async (page: Page) => {
   await page.goto("/tests/_form-generator");
@@ -89,7 +89,7 @@ test.describe("Modal validation tests", () => {
 
   test("should fill and redirect to marketo submission endpoint", async ({ page }) => {
     const modal = page.locator("#contact-modal");
-    await fillExistingFields(modal, formTextFields, modalFormCheckboxFields, modalFormRadioFields);
+    await fillExistingFields(modal, formTextFields, modalFormCheckboxFields, modalFormRadioFields, formSelectFields);
 
     await modal.getByRole("button", { name: /Submit/ }).click();
     await page.waitForURL(/\/marketo\/submit/, { timeout: 10000 });
@@ -101,7 +101,7 @@ test.describe("Modal validation tests", () => {
       response.url().includes('/marketo/submit') && response.status() === 400
     );
     const modal = page.locator("#contact-modal");
-    await fillExistingFields(modal, formTextFields, modalFormCheckboxFields, modalFormRadioFields);
+    await fillExistingFields(modal, formTextFields, modalFormCheckboxFields, modalFormRadioFields, formSelectFields);
 
     // Honeypot fields
     await modal.locator('input[name="website"]').fill('test');
