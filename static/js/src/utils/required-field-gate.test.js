@@ -31,6 +31,13 @@ const RADIO_QUESTION = `
     <label class="p-radio"><input required class="p-radio__input" type="radio" id="many" name="_radio_how-many-devices" value="11+" /><span>11+</span></label>
   </fieldset>`;
 
+const MIXED_QUESTION = `
+  <fieldset data-required-question id="mixed-field">
+    <legend class="p-heading--4 js-formfield-title is-required">Tell us about your setup</legend>
+    <label class="p-checkbox"><input class="p-checkbox__input" type="checkbox" id="mixed-desktop" value="Desktop" /><span>Desktop</span></label>
+    <textarea required aria-label="Tell us about your setup" id="mixed-details" rows="5"></textarea>
+  </fieldset>`;
+
 describe("findUnanswered", () => {
   it("reports an empty required text field by its label", () => {
     const form = buildForm(REQUIRED_TEXT);
@@ -111,6 +118,19 @@ describe("findUnanswered", () => {
     const form = buildForm(`
       <input type="hidden" name="formid" value="9998" required />
       <input type="text" id="off" name="off" required disabled />`);
+    expect(findUnanswered(form)).toHaveLength(0);
+  });
+
+  it("does not count a checkbox tick as answering a required textarea beside it", () => {
+    const form = buildForm(MIXED_QUESTION);
+    form.querySelector("#mixed-desktop").checked = true;
+    expect(findUnanswered(form)).toHaveLength(1);
+  });
+
+  it("accepts a mixed question only when both parts are answered", () => {
+    const form = buildForm(MIXED_QUESTION);
+    form.querySelector("#mixed-desktop").checked = true;
+    form.querySelector("#mixed-details").value = "Two laptops and a server.";
     expect(findUnanswered(form)).toHaveLength(0);
   });
 });

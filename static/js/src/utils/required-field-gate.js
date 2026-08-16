@@ -41,21 +41,40 @@ function isEligible(control) {
 }
 
 /**
- * A required question is answered when at least one enabled box is ticked.
- * HTML cannot express "at least one of this group", which is why this clause
- * exists at all — form.checkValidity() is blind to it.
- *
- * Questions whose answer slot is a radio group, textarea or select carry
- * native `required`, so they fall through to constraint validation.
+ * Whether a single control's own answer satisfies constraint validation.
+ * Controls that never validate (e.g. checkboxes, which have no per-box
+ * `required`) are vacuously valid here — checkbox groups are judged as a
+ * group by isQuestionAnswered instead.
+ */
+function isValid(control) {
+  return !control.willValidate || control.checkValidity();
+}
+
+/**
+ * A required question is answered when every part of it is answered:
+ * at least one enabled checkbox is ticked (HTML cannot express "at least
+ * one of this group", which is why this clause exists at all —
+ * form.checkValidity() is blind to it) AND every other eligible control in
+ * the fieldset (radio group, textarea, select — anything that carries
+ * native `required`) passes constraint validation. A fieldset with no
+ * checkboxes is judged purely on the latter; a fieldset with no other
+ * controls is judged purely on the former — the `every`/vacuous-true clause
+ * keeps both cases correct without a branch.
  */
 function isQuestionAnswered(fieldset) {
   const checkboxes = fieldset.querySelectorAll('input[type="checkbox"]');
-  if (checkboxes.length) {
-    return Array.from(checkboxes).some((box) => box.checked && !box.disabled);
-  }
-  return Array.from(fieldset.querySelectorAll("input, select, textarea"))
+  const checkboxAnswered =
+    !checkboxes.length ||
+    Array.from(checkboxes).some((box) => box.checked && !box.disabled);
+
+  const othersAnswered = Array.from(
+    fieldset.querySelectorAll("input, select, textarea"),
+  )
+    .filter((control) => control.type !== "checkbox")
     .filter(isEligible)
-    .every((control) => !control.willValidate || control.checkValidity());
+    .every(isValid);
+
+  return checkboxAnswered && othersAnswered;
 }
 
 /**
@@ -73,7 +92,7 @@ export function findUnanswered(form) {
 
   form.querySelectorAll("input, select, textarea").forEach((control) => {
     if (!isEligible(control)) return;
-    if (!control.willValidate || control.checkValidity()) return;
+    if (isValid(control)) return;
     // Controls inside a required question are reported as that question.
     if (control.closest(QUESTION_SELECTOR)) return;
     missing.push({ target: control, label: controlLabel(control) });
