@@ -129,7 +129,12 @@ function renderSummary(summary, missing) {
   clearSummary(summary);
   summary.classList.add(SUMMARY_CLASS);
 
-  const heading = document.createElement("h3");
+  // h2, not h3: axe's heading-order rule caught this summary being the
+  // first heading-level element after the page's own h1 (fieldset legends
+  // and .js-formfield-title labels are not headings), which skipped a
+  // level. h2 keeps the hierarchy valid without a visual change — the
+  // class, not the tag, carries the size.
+  const heading = document.createElement("h2");
   heading.className = "p-heading--5";
   heading.setAttribute("tabindex", "-1");
   heading.textContent = `${missing.length} answer${

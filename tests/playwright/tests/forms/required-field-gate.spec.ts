@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
 
 export const INLINE_FORM = "/tests/_inline-form-generator";
 export const MODAL_FORM = "/tests/_form-generator";
@@ -170,7 +171,7 @@ test.describe("Inline form gating", () => {
     await page
       .locator("form[data-required-gate] button[type=submit]")
       .click({ force: true });
-    const heading = page.locator("[data-required-summary] h3");
+    const heading = page.locator("[data-required-summary] h2");
     await expect(heading).toBeFocused();
   });
 
@@ -383,9 +384,9 @@ test.describe("Opt-in scoping", () => {
     await page.goto("/tests/_static-default-form");
     const button = page.locator("form[data-required-gate] button[type=submit]");
     await expect(button).toHaveAttribute("aria-disabled", "true");
-    expect(
-      await button.evaluate((el: HTMLButtonElement) => el.disabled),
-    ).toBe(false);
+    expect(await button.evaluate((el: HTMLButtonElement) => el.disabled)).toBe(
+      false,
+    );
     await button.focus();
     await expect(button).toBeFocused();
 
@@ -393,6 +394,49 @@ test.describe("Opt-in scoping", () => {
     await expect(page.locator("[data-required-summary]")).toContainText(
       "What kind of device are you using?",
     );
+  });
+
+  test("the default contact-us form un-gates once every required answer is supplied", async ({
+    page,
+  }) => {
+    // The inline/modal "un-gates" tests exercise the generated fixture
+    // forms, not this template. _default-contact-us-form.html has a
+    // different field mix — no required-details project/team/summary
+    // fields, an unmarked (no id) required checkbox fieldset, and a native
+    // `required` radio (input[name="_radio_how-many-machines-do-you-have"])
+    // instead of a data-required-question fieldset — so it needs its own
+    // coverage that this template genuinely opens once answered.
+    await page.context().addCookies([
+      {
+        name: "_cookies_accepted",
+        value: "all",
+        domain: "0.0.0.0",
+        path: "/",
+      },
+    ]);
+    await page.goto("/tests/_static-default-form");
+    const form = page.locator("form[data-required-gate]");
+    const button = form.locator("button[type=submit]");
+    await expect(button).toHaveAttribute("aria-disabled", "true");
+
+    await form.locator("#firstName").fill("Benjamin");
+    await form.locator("#lastName").fill("Oni");
+    await form.locator("#company").fill("Canonical");
+    await form.locator("#title").fill("Engineer");
+    await form.locator("#email").fill("benjo@canonical.com");
+    // force: true — custom-styled checkbox/radio, same precedent as the
+    // rest of this suite.
+    await form
+      .locator("fieldset[data-required-question] input[type=checkbox]")
+      .first()
+      .check({ force: true });
+    await form
+      .locator('input[name="_radio_how-many-machines-do-you-have"]')
+      .first()
+      .check({ force: true });
+
+    await expect(button).not.toHaveAttribute("aria-disabled", "true");
+    await expect(button).not.toHaveClass(/is-disabled/);
   });
 
   test("a hand-written form without the marker is not gated", async ({
@@ -406,5 +450,225 @@ test.describe("Opt-in scoping", () => {
       "aria-disabled",
       "true",
     );
+  });
+});
+
+test.describe("Accessibility of the gated state", () => {
+  test("gated form has no axe violations", async ({ page }) => {
+    await page.goto(INLINE_FORM);
+    const results = await new AxeBuilder({ page })
+      .include("form[data-required-gate]")
+      .analyze();
+    expect(results.violations).toEqual([]);
+  });
+
+  test("summary after a failed press has no axe violations", async ({
+    page,
+  }) => {
+    await page.goto(INLINE_FORM);
+    // force: true — aria-disabled, not natively disabled; see the "Inline
+    // form gating" block above.
+    await page
+      .locator("form[data-required-gate] button[type=submit]")
+      .click({ force: true });
+    const results = await new AxeBuilder({ page })
+      .include("form[data-required-gate]")
+      .analyze();
+    expect(results.violations).toEqual([]);
+  });
+
+  test("the gated button is keyboard reachable and announces its state", async ({
+    page,
+  }) => {
+    // Axe will happily pass a button that is focusable and says nothing useful,
+    // so assert the mechanism directly.
+    await page.goto(INLINE_FORM);
+    const button = page.locator("form[data-required-gate] button[type=submit]");
+
+    await button.focus();
+    await expect(button).toBeFocused();
+    await expect(button).toHaveAttribute("aria-disabled", "true");
+
+    const describedBy = await button.getAttribute("aria-describedby");
+    expect(describedBy).toBeTruthy();
+    await expect(page.locator(`#${describedBy}`)).toHaveAttribute(
+      "role",
+      "alert",
+    );
+  });
+
+  test("a summary link moves focus to the question it names", async ({
+    page,
+  }) => {
+    await page.goto(INLINE_FORM);
+    await page
+      .locator("form[data-required-gate] button[type=submit]")
+      .click({ force: true });
+    await page
+      .locator("[data-required-summary] a", {
+        hasText: "What kind of device are you using?",
+      })
+      .click();
+    // This exercises focusTarget's FIELDSET branch: the summary entry's
+    // target is the "kind of device" fieldset (a required checkbox
+    // question, not a single control), so the assertion must land on an
+    // actual focusable control inside it — the first checkbox — not merely
+    // confirm the link exists.
+    await expect(
+      page.locator("#kind-of-device-field input[type=checkbox]").first(),
+    ).toBeFocused();
+  });
+});
+
+test.describe("The no-JS floor", () => {
+  test.use({ javaScriptEnabled: false });
+
+  test("the button is neither muted nor disabled with JS off", async ({
+    page,
+  }) => {
+    await page.goto(INLINE_FORM);
+    const button = page.locator("form[data-required-gate] button[type=submit]");
+    await expect(button).not.toHaveAttribute("aria-disabled", /.*/);
+    await expect(button).not.toHaveClass(/is-disabled/);
+    // Not the R10 substitution: with JS off there is no aria-disabled at
+    // all, so Playwright's aria-disabled-aware toBeDisabled() is exactly
+    // the right check here — this block asserts the absence of gating.
+    await expect(button).not.toBeDisabled();
+    await expect(page.locator("form[data-required-gate]")).not.toHaveAttribute(
+      "novalidate",
+      /.*/,
+    );
+  });
+
+  test("native validation blocks an empty required text field", async ({
+    page,
+  }) => {
+    await page.goto(INLINE_FORM);
+    const url = page.url();
+    await page.locator("form[data-required-gate] button[type=submit]").click();
+    expect(page.url()).toBe(url); // browser refused to submit
+  });
+
+  test("native validation blocks a required radio group", async ({ page }) => {
+    await page.goto(INLINE_FORM);
+    const valid = await page
+      .locator("#how-many-devices-field input[type=radio]")
+      .first()
+      .evaluate((el: HTMLInputElement) => el.checkValidity());
+    expect(valid).toBe(false);
+  });
+
+  test("native validation blocks a required textarea and select", async ({
+    page,
+  }) => {
+    await page.goto(INLINE_FORM);
+    for (const id of [
+      "#required-details-summary",
+      "#required-details-team-size",
+      "#required-details-project-name",
+    ]) {
+      const valid = await page
+        .locator(id)
+        .evaluate((el: HTMLInputElement) => el.checkValidity());
+      expect(valid, `${id} should be invalid while empty`).toBe(false);
+    }
+  });
+
+  test("KNOWN GAP: required checkbox groups are NOT blocked with JS off", async ({
+    page,
+  }) => {
+    // Not a bug in this feature — HTML cannot express "at least one of this
+    // group", so a required checkbox group has no native floor and none is
+    // faked. Documented in spec §4. The real fix is server-side validation,
+    // tracked as the marketo-forms-no-js-data-loss effort.
+    //
+    // This test asserts the gap so it shows up in test output rather than
+    // living only in prose. If it ever fails, someone added a floor and this
+    // test plus spec §4 should be updated together.
+    await page.goto(INLINE_FORM);
+    const boxes = page.locator("#kind-of-device-field input[type=checkbox]");
+    const count = await boxes.count();
+    expect(count).toBeGreaterThan(0);
+    for (let i = 0; i < count; i++) {
+      await expect(boxes.nth(i)).not.toHaveAttribute("required", /.*/);
+    }
+  });
+});
+
+test.describe("Button scoping", () => {
+  test("each form's gating drives only its own button", async ({ page }) => {
+    // TWO_FORM renders two independent generated forms in one document: an
+    // inline form (#mktoForm_9998) and a modal form (#mktoForm_9999, inside
+    // #contact-modal). Both render the hardcoded about-you fields under the
+    // SAME ids (firstName, email, company, title — _form-fields.html), so
+    // every field locator below is scoped to one form's element, never a
+    // bare id selector.
+    //
+    // Before this work, both entry points resolved the submit button with
+    // document.querySelector(".js-submit-button") — first match in document
+    // order, i.e. always the inline form's button. Filling in the MODAL
+    // form's required fields would therefore have incorrectly un-gated the
+    // untouched INLINE form's button, while the modal's own button was never
+    // correctly wired at all. This test fills the modal and asserts the
+    // opposite: the modal's own button un-gates, and the inline form's
+    // button — never touched — stays gated throughout.
+    await page.context().addCookies([
+      {
+        name: "_cookies_accepted",
+        value: "all",
+        domain: "0.0.0.0",
+        path: "/",
+      },
+    ]);
+    await page.goto(TWO_FORM);
+
+    const inlineForm = page.locator("#mktoForm_9998");
+    const inlineButton = inlineForm.locator("button[type=submit]");
+    await expect(inlineButton).toHaveAttribute("aria-disabled", "true");
+
+    await page.locator(".js-invoke-modal").first().click();
+    const modalForm = page.locator("#contact-modal form");
+    await expect(modalForm).toBeVisible();
+    const modalButton = modalForm.locator("button[type=submit]");
+    await expect(modalButton).toHaveAttribute("aria-disabled", "true");
+
+    // Fully answer the MODAL form's required questions only.
+    await modalForm.locator("#firstName").fill("Benjamin");
+    await modalForm.locator("#lastName").fill("Oni");
+    await modalForm.locator("#email").fill("benjo@canonical.com");
+    await modalForm.locator("#company").fill("Canonical");
+    await modalForm.locator("#title").fill("Engineer");
+    // Explicit, not relying on prepare-form-inputs.js's geoip pre-fill: that
+    // module resolves its target with document.querySelector("select#country")
+    // (the same first-match-in-document class of bug this test is about, just
+    // in an unrelated module) so on a two-country-select page it only ever
+    // reaches the inline form's #country, leaving the modal's unfilled. Out
+    // of scope for the required-field-gate feature this task audits — select
+    // it directly here, exactly as a real visitor on this page would have to.
+    await modalForm.locator("#country").selectOption("US");
+    await modalForm.locator("#required-details-project-name").fill("Gating");
+    await modalForm.locator("#required-details-team-size").selectOption("1-10");
+    await modalForm
+      .locator("#required-details-summary")
+      .fill("Testing the gate.");
+    // force: true — custom-styled checkbox/radio, same precedent as the
+    // rest of this suite.
+    await modalForm
+      .locator("#kind-of-device-field input[type=checkbox]")
+      .first()
+      .check({ force: true });
+    await modalForm
+      .locator("#how-many-devices-field input[type=radio]")
+      .first()
+      .check({ force: true });
+
+    // The modal's own button un-gates...
+    await expect(modalButton).not.toHaveAttribute("aria-disabled", "true");
+    await expect(modalButton).not.toHaveClass(/is-disabled/);
+
+    // ...while the untouched inline form's button, on the same page, stays
+    // gated. Under the old document-order bug this would have flipped too.
+    await expect(inlineButton).toHaveAttribute("aria-disabled", "true");
+    await expect(inlineButton).toHaveClass(/is-disabled/);
   });
 });

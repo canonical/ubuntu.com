@@ -33,42 +33,52 @@
             <div class="col">
               <ul class="p-list">
                 {% if fieldset_id == "about-you" %}
-                  <label class="is-required" for="firstName">First name:</label>
-                  <input required
-                         id="firstName"
-                         name="firstName"
-                         maxlength="255"
-                         autocomplete="given-name"
-                         type="text" />
-                  <label class="is-required" for="lastName">Last name:</label>
-                  <input required
-                         id="lastName"
-                         name="lastName"
-                         maxlength="255"
-                         autocomplete="family-name"
-                         type="text" />
-                  <label class="is-required" for="email">Email:</label>
-                  <input required
-                         id="email"
-                         name="email"
-                         maxlength="255"
-                         autocomplete="email"
-                         type="email"
-                         pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
-                  <label class="is-required" for="company">Company:</label>
-                  <input required
-                         id="company"
-                         name="company"
-                         maxlength="255"
-                         autocomplete="organization"
-                         type="text" />
-                  <label class="is-required" for="title">Job Title:</label>
-                  <input required
-                         id="title"
-                         name="title"
-                         maxlength="255"
-                         autocomplete="organization-title"
-                         type="text" />
+                  <li class="p-list__item">
+                    <label class="is-required" for="firstName">First name:</label>
+                    <input required
+                           id="firstName"
+                           name="firstName"
+                           maxlength="255"
+                           autocomplete="given-name"
+                           type="text" />
+                  </li>
+                  <li class="p-list__item">
+                    <label class="is-required" for="lastName">Last name:</label>
+                    <input required
+                           id="lastName"
+                           name="lastName"
+                           maxlength="255"
+                           autocomplete="family-name"
+                           type="text" />
+                  </li>
+                  <li class="p-list__item">
+                    <label class="is-required" for="email">Email:</label>
+                    <input required
+                           id="email"
+                           name="email"
+                           maxlength="255"
+                           autocomplete="email"
+                           type="email"
+                           pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
+                  </li>
+                  <li class="p-list__item">
+                    <label class="is-required" for="company">Company:</label>
+                    <input required
+                           id="company"
+                           name="company"
+                           maxlength="255"
+                           autocomplete="organization"
+                           type="text" />
+                  </li>
+                  <li class="p-list__item">
+                    <label class="is-required" for="title">Job Title:</label>
+                    <input required
+                           id="title"
+                           name="title"
+                           maxlength="255"
+                           autocomplete="organization-title"
+                           type="text" />
+                  </li>
 
                   {% with required = true %}
                     {% include "shared/forms/_country.html" %}
@@ -222,7 +232,12 @@
         </ul>
         <div class="u-off-screen">
           <label for="Comments_from_lead__c">
-            <h3 class="p-heading--4">Your comments</h3>
+            <!-- h2, not h3: this is the first heading after the page's h1
+                 (fieldset legends and .js-formfield-title labels above are
+                 not headings), so h3 here skipped a level. Axe's
+                 heading-order rule caught it; off-screen only, so the
+                 level change has no visual effect. -->
+            <h2 class="p-heading--4">Your comments</h2>
             <textarea id="Comments_from_lead__c"
                       name="Comments_from_lead__c"
                       rows="5"

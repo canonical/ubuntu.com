@@ -147,7 +147,10 @@ test.describe("Required checkbox validation", () => {
   // data-required-gate, ticking one checkbox still leaves the form's
   // other required fields empty, so the button stays aria-disabled and
   // Playwright reports it disabled — the test's whole premise, that one
-  // checkbox is the deciding factor, is no longer true. That coverage
-  // moved to required-field-gate.spec.ts's "un-gates once every required
-  // answer is supplied".
+  // checkbox is the deciding factor, is no longer true. That coverage now
+  // lives in required-field-gate.spec.ts's "Opt-in scoping" block, in the
+  // test "the default contact-us form un-gates once every required answer
+  // is supplied" — not the identically-named tests in the Inline/Modal
+  // form gating blocks, which exercise the generated fixture forms, not
+  // this template.
 });

@@ -241,7 +241,7 @@ describe("initRequiredFieldGate", () => {
     const form = buildForm(REQUIRED_TEXT);
     initRequiredFieldGate(form);
     submit(form);
-    const heading = form.querySelector("[data-required-summary] h3");
+    const heading = form.querySelector("[data-required-summary] h2");
     expect(heading.getAttribute("tabindex")).toBe("-1");
     expect(document.activeElement).toBe(heading);
   });
@@ -282,7 +282,7 @@ describe("initRequiredFieldGate", () => {
     submit(form);
     expect(spinner).not.toHaveBeenCalled();
     // One summary, not two.
-    expect(form.querySelectorAll("[data-required-summary] h3")).toHaveLength(1);
+    expect(form.querySelectorAll("[data-required-summary] h2")).toHaveLength(1);
   });
 
   it("destroy removes every trace of the gate", () => {
