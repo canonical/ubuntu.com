@@ -302,14 +302,51 @@ test.describe("Modal form gating", () => {
   test("listeners do not accumulate across open/close cycles", async ({
     page,
   }) => {
-    const form = await openModal(page);
-    for (let i = 0; i < 3; i++) {
-      await page.locator("#contact-modal .js-close").first().click();
+    // The original version of this test asserted a single rendered <h3> on
+    // a gated press, which cannot fail regardless of whether destroy() is
+    // ever wired: initRequiredFieldGate() self-destroys any prior handle on
+    // the same physical <form> node (the modal reuses that node across
+    // opens, which is also why field values persist), so leaked handlers
+    // never accumulate to begin with; and even N leaked submit listeners
+    // would still render exactly one <h3>, because the first one to run
+    // calls stopImmediatePropagation(), which — per the DOM spec — stops
+    // every other listener on that node, and renderSummary() clears the
+    // summary before appending. Neither path exercises destroy()-in-close().
+    //
+    // Instead, instrument window.addEventListener/removeEventListener to
+    // track the net count of "pageshow" listeners — the one listener the
+    // gate registers on `window` (not on the form), which destroy() is
+    // responsible for removing. Take a baseline reading before the first
+    // open (other code may register its own pageshow listeners, so don't
+    // assume zero), run several full open/close cycles, and assert the net
+    // count returns to that baseline rather than growing per cycle.
+    await page.addInitScript(() => {
+      (window as any).__pageshowNet = 0;
+      const add = window.addEventListener.bind(window);
+      const remove = window.removeEventListener.bind(window);
+      window.addEventListener = function (type: string, ...rest: any[]) {
+        if (type === "pageshow") (window as any).__pageshowNet++;
+        return (add as any)(type, ...rest);
+      };
+      window.removeEventListener = function (type: string, ...rest: any[]) {
+        if (type === "pageshow") (window as any).__pageshowNet--;
+        return (remove as any)(type, ...rest);
+      };
+    });
+
+    await page.goto(MODAL_FORM);
+    const baseline = await page.evaluate(() => (window as any).__pageshowNet);
+
+    for (let i = 0; i < 4; i++) {
       await page.locator(".js-invoke-modal").first().click();
+      await expect(page.locator("#contact-modal")).toBeVisible();
+      await page.locator("#contact-modal .js-close").first().click();
     }
-    await form.locator("button[type=submit]").click({ force: true });
-    // One summary heading, not four.
-    await expect(form.locator("[data-required-summary] h3")).toHaveCount(1);
+
+    const afterCycles = await page.evaluate(
+      () => (window as any).__pageshowNet,
+    );
+    expect(afterCycles).toBe(baseline);
   });
 
   test("un-gates once every required answer is supplied", async ({ page }) => {
