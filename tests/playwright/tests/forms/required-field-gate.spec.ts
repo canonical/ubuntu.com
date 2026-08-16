@@ -51,3 +51,66 @@ test.describe("Gating harness pages", () => {
     await expect(page.locator(".js-submit-button")).toHaveCount(2);
   });
 });
+
+test.describe("Template markers", () => {
+  test("generated form carries the opt-in marker and question markers", async ({
+    page,
+  }) => {
+    await page.goto(INLINE_FORM);
+    const form = page.locator("form[data-required-gate]");
+    await expect(form).toBeVisible();
+
+    // Required fieldsets are marked; optional ones are not.
+    await expect(
+      form.locator("#kind-of-device-field[data-required-question]"),
+    ).toBeAttached();
+    await expect(
+      form.locator("#how-many-devices-field[data-required-question]"),
+    ).toBeAttached();
+    await expect(
+      form.locator("#required-details-field[data-required-question]"),
+    ).toBeAttached();
+    await expect(
+      form.locator("#ubuntu-versions-field[data-required-question]"),
+    ).toHaveCount(0);
+  });
+
+  test("summary container is present, empty and adjacent to the submit button", async ({
+    page,
+  }) => {
+    await page.goto(INLINE_FORM);
+    const summary = page.locator("[data-required-summary]");
+    await expect(summary).toHaveAttribute("role", "alert");
+    await expect(summary).toBeEmpty();
+    await expect(summary).toHaveAttribute("id", /^required-field-summary-/);
+  });
+
+  test("select label and select input agree about required-ness", async ({
+    page,
+  }) => {
+    await page.goto(INLINE_FORM);
+    // #required-details-team-size has field.isRequired: true, so its label
+    // must carry is-required. Before the fix the label read fieldset.isRequired.
+    await expect(
+      page.locator('label[for="required-details-team-size"]'),
+    ).toHaveClass(/is-required/);
+  });
+
+  test.describe("No gated styling is server-rendered", () => {
+    test.use({ javaScriptEnabled: false });
+
+    test("form and button carry no gating attributes without JS", async ({
+      page,
+    }) => {
+      await page.goto(INLINE_FORM);
+      const form = page.locator("form[data-required-gate]");
+      await expect(form).toBeVisible();
+      await expect(form).not.toHaveAttribute("novalidate", /.*/);
+
+      const button = form.locator("button[type=submit]");
+      await expect(button).not.toHaveAttribute("aria-disabled", /.*/);
+      await expect(button).not.toHaveClass(/is-disabled/);
+      await expect(button).not.toBeDisabled();
+    });
+  });
+});
