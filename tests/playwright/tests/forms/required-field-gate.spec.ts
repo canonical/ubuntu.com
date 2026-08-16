@@ -377,3 +377,34 @@ test.describe("Modal form gating", () => {
     await expect(button).not.toHaveClass(/is-disabled/);
   });
 });
+
+test.describe("Opt-in scoping", () => {
+  test("the default contact-us form is gated", async ({ page }) => {
+    await page.goto("/tests/_static-default-form");
+    const button = page.locator("form[data-required-gate] button[type=submit]");
+    await expect(button).toHaveAttribute("aria-disabled", "true");
+    expect(
+      await button.evaluate((el: HTMLButtonElement) => el.disabled),
+    ).toBe(false);
+    await button.focus();
+    await expect(button).toBeFocused();
+
+    await button.click({ force: true });
+    await expect(page.locator("[data-required-summary]")).toContainText(
+      "What kind of device are you using?",
+    );
+  });
+
+  test("a hand-written form without the marker is not gated", async ({
+    page,
+  }) => {
+    // The guard against shipping a behaviour change to unexamined templates.
+    await page.goto("/tests/_static-client-form");
+    const form = page.locator("form[action='/marketo/submit']").first();
+    await expect(form).not.toHaveAttribute("data-required-gate", /.*/);
+    await expect(form.locator("button[type=submit]")).not.toHaveAttribute(
+      "aria-disabled",
+      "true",
+    );
+  });
+});

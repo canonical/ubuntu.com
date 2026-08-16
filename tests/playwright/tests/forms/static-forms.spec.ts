@@ -141,15 +141,13 @@ test.describe("Required checkbox validation", () => {
   // toBeDisabled() against a native disabled attribute the design
   // deliberately never sets, which would start passing again for the
   // wrong reason.
-
-  test("should enable submit button when required checkbox is checked", async ({ page }) => {
-    await page.goto("/tests/_static-default-form");
-    await acceptCookiePolicy(page);
-
-    // Check the required checkbox
-    await page.locator('input[aria-labelledby="physical-server"]').check({ force: true });
-
-    const submitButton = page.getByRole("button", { name: /Submit/ });
-    await expect(submitButton).toBeEnabled();
-  });
+  //
+  // Task 7 also removed its sibling, "should enable submit button when
+  // required checkbox is checked". Once the template carries
+  // data-required-gate, ticking one checkbox still leaves the form's
+  // other required fields empty, so the button stays aria-disabled and
+  // Playwright reports it disabled — the test's whole premise, that one
+  // checkbox is the deciding factor, is no longer true. That coverage
+  // moved to required-field-gate.spec.ts's "un-gates once every required
+  // answer is supplied".
 });

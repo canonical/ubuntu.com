@@ -10,7 +10,7 @@
 </section>
 
 <section class="p-section">
-  <form action="/marketo/submit" method="post" id="mktoForm_{{ formid }}">
+  <form action="/marketo/submit" method="post" data-required-gate id="mktoForm_{{ formid }}">
     <div class="p-section">
       <hr class="p-rule is-fixed-width" />
       <div class="row--50-50 js-formfield">
@@ -121,7 +121,8 @@
     </div>
     <div class="p-section">
       <hr class="p-rule is-fixed-width" />
-      <fieldset class="p-fieldset-section js-formfield js-required-checkbox"
+      <fieldset class="p-fieldset-section js-formfield"
+                data-required-question
                 aria-required="true"
                 aria-labelledby="kind-of-device-legend">
         <div class="row--50-50">
@@ -488,6 +489,11 @@
                        tabindex="-1" />
               </li>
               {# End of honey pots #}
+              <li class="p-list__item">
+                <div id="required-field-summary-{{ formid }}"
+                     data-required-summary
+                     role="alert"></div>
+              </li>
               <li class="p-list__item">
                 <button type="submit" class="p-button--positive js-submit-button">Submit</button>
               </li>
