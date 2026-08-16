@@ -132,21 +132,15 @@ test.describe("Radio field handling", () => {
 
 test.describe("Required checkbox validation", () => {
   // Task 5 removed the legacy fieldset.js-required-checkbox /
-  // checkRequiredCheckboxes gating from static-forms.js, but
-  // _default-contact-us-form.html (which _static-default-form renders)
-  // hasn't been migrated onto the new required-field gate yet — that's
-  // Task 7. Until then this template is temporarily ungated by design.
-  test.fixme(
-    "should disable submit button when required checkbox is not checked",
-    async ({ page }) => {
-      await page.goto("/tests/_static-default-form");
-      await acceptCookiePolicy(page);
-
-      // Check that submit button is disabled
-      const submitButton = page.getByRole("button", { name: /Submit/ });
-      await expect(submitButton).toBeDisabled();
-    },
-  );
+  // checkRequiredCheckboxes gating from static-forms.js. The
+  // "disable-until-checked" coverage this used to provide for
+  // _default-contact-us-form.html moves to Task 7's "the default
+  // contact-us form is gated" test in required-field-gate.spec.ts, which
+  // asserts against the real mechanism (aria-disabled, is-disabled, the
+  // summary) once that template is migrated onto the new gate — not
+  // toBeDisabled() against a native disabled attribute the design
+  // deliberately never sets, which would start passing again for the
+  // wrong reason.
 
   test("should enable submit button when required checkbox is checked", async ({ page }) => {
     await page.goto("/tests/_static-default-form");
