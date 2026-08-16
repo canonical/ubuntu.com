@@ -36,6 +36,18 @@ const RADIO_QUESTION = `
     <label class="p-radio"><input required class="p-radio__input" type="radio" id="many" name="_radio_how-many-devices" value="11+" /><span>11+</span></label>
   </fieldset>`;
 
+// A hand-written form that forgot data-required-question on a required radio
+// fieldset — the exact defect found in _default-contact-us-form.html. No
+// question marker, so the fieldset never reaches isQuestionAnswered(); the
+// module's second loop, which walks individual controls, must still collapse
+// the group to one entry rather than reporting once per radio.
+const UNMARKED_RADIO_QUESTION = `
+  <fieldset id="how-many-machines">
+    <legend class="p-heading--2 js-formfield-title is-required">How many machines?</legend>
+    <label class="p-radio"><input required class="p-radio__input" type="radio" id="few-machines" name="_radio_how-many-machines" value="less than 5" /><span>&lt; 5 machines</span></label>
+    <label class="p-radio"><input class="p-radio__input" type="radio" id="many-machines" name="_radio_how-many-machines" value="5-15 machines" /><span>5-15 machines</span></label>
+  </fieldset>`;
+
 const MIXED_QUESTION = `
   <fieldset data-required-question id="mixed-field">
     <legend class="p-heading--4 js-formfield-title is-required">Tell us about your setup</legend>
@@ -108,6 +120,17 @@ describe("findUnanswered", () => {
     const form = buildForm(RADIO_QUESTION);
     form.querySelector("#many").checked = true;
     expect(findUnanswered(form)).toHaveLength(0);
+  });
+
+  it("reports an unmarked required radio group once, by its fieldset legend", () => {
+    // Regression test: before the fix this reported one entry per radio
+    // (five, in the real-world form), each labelled from its own option
+    // text instead of the question, because the fieldset carries no
+    // data-required-question marker for isQuestionAnswered() to key off.
+    const form = buildForm(UNMARKED_RADIO_QUESTION);
+    const missing = findUnanswered(form);
+    expect(missing).toHaveLength(1);
+    expect(missing[0].label).toBe("How many machines?");
   });
 
   it("lists every miss across a mixed form", () => {

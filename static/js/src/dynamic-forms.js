@@ -238,7 +238,7 @@ import {
       const paginationContent = contactModal.querySelectorAll(".js-pagination");
       const submitButton = contactModal.querySelector('button[type="submit"]');
       const gatedForm = contactModal.querySelector("form[data-required-gate]");
-      if (gatedForm) initRequiredFieldGate(gatedForm);
+      const gateHandle = gatedForm ? initRequiredFieldGate(gatedForm) : null;
       const comment = contactModal.querySelector("#Comments_from_lead__c");
       const otherContainers = document.querySelectorAll(".js-other-container");
       const phoneNumberInput = document.querySelector("#phone");
@@ -616,6 +616,10 @@ import {
         lastNameFields.forEach((field) => {
           field.value = lastName;
         });
+
+        // Programmatic value assignment fires no input/change event, so the
+        // gate never sees these prefilled values without an explicit nudge.
+        gateHandle?.refresh();
       }
 
       function submitForm(e) {

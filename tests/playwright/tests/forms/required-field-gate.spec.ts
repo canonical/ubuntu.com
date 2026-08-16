@@ -166,6 +166,24 @@ test.describe("Inline form gating", () => {
     await expect(button.locator(".p-icon--spinner")).toHaveCount(0);
   });
 
+  test("Enter in a text field triggers implicit submission and is gated the same way", async ({
+    page,
+  }) => {
+    // Spec §2 names this — Enter in a text field submits with no click at
+    // all — as one of three reasons the gate intercepts the form's submit
+    // event rather than the button's click. The unit suite dispatches a
+    // synthetic submit Event, which jsdom never generates from a real
+    // implicit-submission keystroke, so only Playwright proves this path.
+    await page.goto(INLINE_FORM);
+    const url = page.url();
+    await page.fill("#firstName", "Benjamin");
+    await page.locator("#firstName").press("Enter");
+
+    const summary = page.locator("[data-required-summary]");
+    await expect(summary).toContainText("still needed");
+    expect(page.url()).toBe(url); // no navigation
+  });
+
   test("focus lands on the summary heading", async ({ page }) => {
     await page.goto(INLINE_FORM);
     await page
@@ -393,6 +411,12 @@ test.describe("Opt-in scoping", () => {
     await button.click({ force: true });
     await expect(page.locator("[data-required-summary]")).toContainText(
       "What kind of device are you using?",
+    );
+    // Regression guard: the "how many machines" radio group must be marked
+    // with data-required-question and reported once as its own question, not
+    // once per radio labelled from an arbitrary option's text.
+    await expect(page.locator("[data-required-summary]")).not.toContainText(
+      "< 5 machines",
     );
   });
 

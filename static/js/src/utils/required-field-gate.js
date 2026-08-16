@@ -90,12 +90,26 @@ export function findUnanswered(form) {
     }
   });
 
+  const reportedRadioGroups = new Set();
   form.querySelectorAll("input, select, textarea").forEach((control) => {
     if (!isEligible(control)) return;
     if (isValid(control)) return;
     // Controls inside a required question are reported as that question.
     if (control.closest(QUESTION_SELECTOR)) return;
-    missing.push({ target: control, label: controlLabel(control) });
+    let label = controlLabel(control);
+    // An unmarked required radio group is still one question: report it once,
+    // preferring its fieldset's legend over an arbitrary option's own label.
+    // Scoped to radios — other control types already have a correct label
+    // from controlLabel() and may share a fieldset with unrelated questions
+    // (e.g. the "about-you" fieldset wrapping several individually-labeled
+    // fields under one legend).
+    if (control.type === "radio") {
+      if (reportedRadioGroups.has(control.name)) return;
+      reportedRadioGroups.add(control.name);
+      const legend = control.closest("fieldset")?.querySelector("legend");
+      if (legend) label = legend.textContent.trim().replace(/:$/, "");
+    }
+    missing.push({ target: control, label });
   });
 
   return missing;
@@ -118,7 +132,9 @@ function clearSummary(summary) {
 function focusTarget(target) {
   const control =
     target.tagName === "FIELDSET"
-      ? target.querySelector("input:not(:disabled), select, textarea")
+      ? target.querySelector(
+          "input:not(:disabled), select:not(:disabled), textarea:not(:disabled)",
+        )
       : target;
   if (!control) return;
   control.focus();
@@ -170,13 +186,11 @@ function renderSummary(summary, missing) {
 export function initRequiredFieldGate(form) {
   destroyRequiredFieldGate(form);
 
-  const button = form.querySelector('button[type="submit"]');
+  // Spec §5's opt-in checklist promises either marker resolves the button.
+  const button = form.querySelector('.js-submit-button, button[type="submit"]');
   const summary = form.querySelector("[data-required-summary]");
   if (!button || !summary) return null;
 
-  // Applied here, never in the template: with JS off the visitor keeps a
-  // normal button and full native validation.
-  form.setAttribute("novalidate", "");
   if (summary.id) button.setAttribute("aria-describedby", summary.id);
 
   const refresh = () => {
@@ -210,6 +224,13 @@ export function initRequiredFieldGate(form) {
   window.addEventListener("pageshow", onInteraction);
 
   refresh();
+  // Applied only after a successful first refresh, and never in the
+  // template: if findUnanswered() ever threw here, novalidate must not
+  // already be set, or the submit listener's own refresh() call would throw
+  // before reaching preventDefault() while nothing else validates the form.
+  // Fail closed — native `required` validation stays the floor until the
+  // gate proves it can compute validity at least once.
+  form.setAttribute("novalidate", "");
 
   const handle = {
     refresh,
