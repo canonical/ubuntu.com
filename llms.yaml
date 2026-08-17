@@ -1,0 +1,27 @@
+# =============================================================================
+#  llms.yaml  —  extra curated links for /llms.txt
+# =============================================================================
+#
+#  WHAT IS THIS FILE?
+#  ------------------
+#  templates/llms.txt is the hand-written, canonical version of
+#  https://ubuntu.com/llms.txt (see https://llmstxt.org/). This file lets
+#  you add extra curated links to that page — for example, links to product
+#  documentation or community sites that live outside this repo — without
+#  editing templates/llms.txt directly.
+#
+#  Links are grouped into sections. Each section has:
+#      heading:   the section title (e.g. "Documentation")
+#      links:     a list of links, each with:
+#                     title:        the link text                 (required)
+#                     url:          the full web address          (required)
+#                     description:  one short sentence about it    (required)
+#
+#  EXAMPLE (uncomment and edit to use):
+#
+# extra:
+#   - heading: Documentation
+#     links:
+#       - title: Ubuntu Server documentation
+#         url: https://documentation.ubuntu.com/server/
+#         description: Documentation for Ubuntu Server.
