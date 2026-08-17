@@ -1,5 +1,10 @@
 {% extends "architecture/base_architecture.html" %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_resources.jinja" import vf_resources %}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
+
 {% block title %}Ubuntu CPU architecture support{% endblock %}
 
 {% block meta_description %}
@@ -9,3 +14,346 @@
 {% block meta_copydoc %}
   https://docs.google.com/document/d/1Zcj1F5_z17ygHi9r35FuzsFo2apIuo0aOMNkn3xpRfk/edit
 {% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+  {% call(slot) vf_hero(
+    title_text='Innovate on all major CPU architectures with Ubuntu',
+    subtitle_text='Target any silicon. Deploy anywhere.',
+    layout='50/50',
+    is_split_on_medium=true,
+    blocks=[
+    {
+    "type": "description",
+    "item": {
+    "type": "text",
+    "content": "
+    From the largest servers and data centers, to edge IoT devices, Ubuntu architecture support spans x86, Arm, RISC-V, and more, delivering a consistent, secure, and optimized platform, wherever you deploy.
+    "
+    }
+    },
+    {
+    "type": "cta-block",
+    "item": {
+    "link":
+    {
+    "content_html": "Find out more about our supported architectures&nbsp;&rsaquo;",
+    "attrs": {
+    "href": "/project/docs/how-ubuntu-is-made/concepts/supported-architectures"
+    }
+    }
+    }
+    },
+    {
+    "type": "image",
+    "item": {
+    "aspect_ratio": "3-2",
+    "attrs": {
+    "src": "https://assets.ubuntu.com/v1/01968612-hero_img.png",
+    "alt":"",
+    "height":"400",
+    }
+    }
+    },
+    ],
+    ) -%}
+  {% endcall -%}
+
+  {{ vf_basic_section(title={"text": "Our philosophy: why Ubuntu’s multi-architecture support matters"},
+    items=[
+    {
+    "type": "description",
+    "item": {
+    "type": "html",
+    "content": "
+    <p>
+      The diversification of silicon is driving the next generation of computing. All the major public cloud providers now provide support for both x86 and Arm silicon, and we are increasingly seeing providers offering RISC-V options. Deploying AI at the edge sees edge IoT devices running Ubuntu while using a wider mix of CPUs than ever before.
+    </p>
+    <p>
+      Canonical believes that your choice of hardware should never dictate your software capabilities. That's why Ubuntu is built to support a wide range of architectures, giving you:
+    </p>
+    "
+    }
+    },
+    {
+    "type": "list",
+    "item": {
+    "list_items": [
+    {
+    "list_item_type": "bullet",
+    "content": "Silicon independence: providing a first-class developer and production experience across all major Instruction Set Architectures (ISAs)."
+    },
+    {
+    "list_item_type": "bullet",
+    "content": "Right tool for the job: enabling developers to use the software they want, on whichever hardware is best suited to their use case."
+    },
+    {
+    "list_item_type": "bullet",
+    "content": "Unified operations: Maintain consistent security patching timelines, enterprise support (delivered through Ubuntu Pro), workflows and orchestration, regardless of the underlying CPU."
+    }
+    ]
+    }
+    },
+    {
+    "type": "cta-block",
+    "padding": "shallow",
+    "item": {
+    "link": {
+    "content_html": "Learn more about supported architectures on Ubuntu&nbsp;&rsaquo;",
+    "attrs": {
+    "href": "/project/docs/how-ubuntu-is-made/concepts/supported-architectures",
+    }
+    },
+    }
+    },
+    {
+    "type": "description",
+    "item": {
+    "content": "
+    All supported architectures benefit from the same levels of support and security updates. For Ubuntu LTS releases, this is 5 years for our “Main” package archive. With Ubuntu Pro, Canonical’s comprehensive subscription for security and support, we also cover the “Universe” package archive, and support is expanded to up to 15 years.
+    "
+    }
+    },
+    {
+    "type": "cta-block",
+    "item": {
+    "primary": {
+    "content_html": "Learn about Ubuntu Pro",
+    "attrs": {
+    "href": "/pro"
+    }
+    },
+    "secondaries": [
+    {
+    "content_html": "Find Ubuntu Desktop for your platform",
+    "attrs": {
+    "href": "/download/desktop"
+    }
+    }
+    ],
+    }
+    },
+    ]) 
+  }}
+
+  {{ vf_basic_section(title={"text": "Maximizing silicon performance through architecture variants"},
+    items=[
+    {
+    "type": "description",
+    "item": {
+    "type": "html",
+    "content": "
+    <p>
+      Historically, Linux distributions have faced a difficult choice: compile software for the oldest supported CPU to ensure maximum compatibility, or compile for modern CPUs and leave older machines behind.
+    </p>
+    <p>
+      Ubuntu solves this through architecture variants, which are builds of the same software package compiled to target specific CPU generations, natively integrated into dpkg, apt, and Launchpad, so both old and new hardware get the best possible performance.
+    </p>
+    "
+    }
+    },
+    {
+    "type": "description",
+  
+    "item": {
+    "content": "
+    <p class=\"p-heading--5\">Support for the latest hardware, including amd64v3</p>
+    "
+    }
+    },
+    {
+    "type": "description",
+    "item": {
+    "type": "html",
+    "content": "
+    <p>
+      While the standard Ubuntu image maintains its universally compatible x86-64 baseline, users on newer hardware can seamlessly opt-in to the amd64v3 CPU architecture variant.
+    </p>
+    <p>
+      Ubuntu draws upon advanced X86 vector extensions delivering performance boosts across the archive, with significant gains for numerical, mathematical, and cryptographic workloads.
+    </p>
+    <p>
+      Rather than requiring a separate OS image, apt detects your hardware capabilities automatically and swaps in optimized binaries on top of your existing installation.
+    </p>
+    "
+    }
+    },
+    {
+    "type": "image",
+    "padding": "shallow",
+    "item": {
+    "aspect_ratio": "3-2",
+    "attrs": {
+    "src": "https://assets.ubuntu.com/v1/1912d4ae-silicon_performance.jpg",
+    "alt":"",
+    "height":"400",
+    }
+    }
+    },
+    {
+    "type": "cta-block",
+    "item": {
+    "secondaries": [
+    {
+    "content_html": "Learn more about AMD64v3",
+    "attrs": {
+    "href": "https://discourse.ubuntu.com/t/introducing-architecture-variants-amd64v3-now-available-in-ubuntu-25-10/71312"
+    }
+    }
+    ],
+    }
+    },
+    ]) 
+  }}
+
+  {{ vf_basic_section(title={"text": "Architecture vs. certification"},
+    items=[
+    {
+    "type": "description",
+    "item": {
+    "type": "html",
+    "content": "
+    <p>
+      A CPU is just one part of the hardware stack. Ubuntu's architecture support guarantees the OS runs on a given processor family, but a reliable, production-ready system depends on the entire platform working together: the motherboard, chipset, storage, networking, and peripherals. That's what Ubuntu Certification covers.
+    </p>
+    <p>
+      Ubuntu Certified hardware is rigorously tested to ensure everything works reliably out of the box. Certified devices receive up to 15 years of security and stability updates, with all patches and fixes maintained to preserve the high-quality user experience.
+    </p>
+    <p>
+      If you are an enterprise looking for pre-tested, out-of-the-box reliability on specific laptops, desktops, IoT devices, or servers, please explore our
+      <a href=\"/certified\">certified hardware catalog</a>
+      .
+    </p>
+    "
+    }
+    },
+    {
+    "type": "image",
+    "padding": "shallow",
+    "item": {
+    "aspect_ratio": "3-2",
+    "attrs": {
+    "src": "https://assets.ubuntu.com/v1/22d3d84d-architecture_certification.jpg",
+    "alt":"",
+    "height":"400",
+    }
+    }
+    },
+    {
+    "type": "cta-block",
+    "item": {
+    "secondaries": [
+    {
+    "content_html": "Find certified hardware",
+    "attrs": {
+    "href": "/certified"
+    }
+    }
+    ],
+    },
+    "link": {
+    "content_html": "Learn about our program&nbsp;&rsaquo;",
+    "attrs": {
+    "href": "/project/docs/how-ubuntu-is-made/concepts/supported-architectures"
+    }
+    }
+  
+    },
+    ]) 
+  }}
+
+  {% call(slot) vf_resources(
+    title={
+      "text": "Further reading",
+    },
+    blocks=[
+      {
+        "type": "resources",
+        "render_images": true,
+        "categories": [
+          {
+            "items": [
+              {
+                "title": {
+                  "text": "Canonical Silicon partner program",
+                  "link_attrs": {
+                    "href": "https://canonical.com/partners/silicon"
+                  },
+                },
+                "description": {
+                  "text": "Enhance the developer experience on your silicon by enabling one of the most popular operating systems for developers through enablement and certification programs.",
+                  "attrs": {}
+                },
+                "image": {
+                  "type": "default",
+                  "attrs": {
+                    "src": "https://assets.ubuntu.com/v1/b65211df-silicon_parter_program.jpg",
+                    "alt": ""
+                  }
+                }
+              },
+              {
+                "title": {
+                  "text": "Find Ubuntu Server for your architecture",
+                  "link_attrs": {
+                    "href": "/download/server#manual-install-tab"
+                  },
+                },
+                "description": {
+                  "text": "Ubuntu server supports all major CPU architectures, including x86 (with support for the amd64v3 variant), arm64, RISC-V, IBM Power and IBM Z (s390x).",
+                  "attrs": {}
+                },
+                "image": {
+                  "type": "default",
+                  "attrs": {
+                    "src": "https://assets.ubuntu.com/v1/6a4db80d-ubuntu_server.jpg",
+                    "alt": ""
+                  }
+                }
+              },
+              {
+                "title": {
+                  "text": "Ubuntu for the Internet of things",
+                  "link_attrs": {
+                    "href": "/internet-of-things"
+                  },
+                },
+                "description": {
+                  "text": "Find out more about how Canonical can help all industry verticals with IoT needs, from Automotive to Industrial or smart homes to smart cities.",
+                  "attrs": {}
+                },
+                "image": {
+                  "type": "default",
+                  "attrs": {
+                    "src": "https://assets.ubuntu.com/v1/49e7d36f-ubuntu_for_iot.jpg",
+                    "alt": ""
+                  }
+                }
+              },
+            ]
+          },
+        ]
+      }
+    ]
+    ) -%}
+{% endcall -%}
+
+{% call(slot) vf_cta_section(
+    variant='default',
+    layout='100',
+    blocks=[
+      {
+        "type": "cta",
+        "item": {
+          "type": "html",
+          "content": "If you have anything else we can help with, please <a href=\"/contact-us#get-in-touch\">contact us.</a>"
+        }
+      }
+    ]
+  ) -%}
+{% endcall -%}
+
+{% endblock content %}
