@@ -7,7 +7,6 @@
 {% from "_macros/vf_divided-section.jinja" import vf_divided_section %}
 {% from "macros/_macros-faq-schema.jinja" import faqpage_schema %}
 
-
 {% block title %}Livepatch | Security{% endblock %}
 
 {% block meta_description %}
@@ -28,20 +27,35 @@ meta_copydoc %}
   {% call(slot) vf_hero(
     title_text='Linux Kernel Livepatch',
     subtitle_text='Mitigate Linux kernel exploits<br /> with Livepatch',
-    layout='50/50'
-    ) -%}
-    {%- if slot == 'description' -%}
-      <p>
+    chip_text='Available with Ubuntu Pro',
+    layout='50/50',
+    blocks=[
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "html",
+          "content": ' <p>
         Livepatch shrinks the exploit window for critical and high severity Linux kernel vulnerabilities, by patching the Linux kernel between security maintenance windows, while the system runs.
       </p>
       <p>
-        Livepatch provides security coverage for 10 years with <a href="/pro">Ubuntu Pro</a>, and an additional five years with Ubuntu Pro's Legacy add-on, for a total of 15 years.
-      </p>
-    {%- endif -%}
-    {%- if slot == 'cta' -%}
-      <a href="/pro/subscribe" class="p-button--positive">Get Ubuntu Pro</a>
-    {%- endif -%}
-    {%- if slot == 'image' -%}
+        Livepatch provides security coverage for 10 years with <a href="/pro">Ubuntu Pro</a>, and an additional five years with Ubuntu Pro\'s Legacy add-on, for a total of 15 years.
+      </p>'
+        }
+      },
+      {
+        "type": "cta-block",
+        "padding": "shallow",
+        "item": {
+          "primary": {
+            "content_html": "Get Ubuntu Pro",
+            "attrs": {"href": "/pro/subscribe"}
+          }
+        }
+      },
+    ]
+  ) -%}
+{%- if slot == 'image' -%}
       <div class="u-embedded-media">
         <iframe class="u-embedded-media__element"
                 width="560"
@@ -491,6 +505,7 @@ meta_copydoc %}
     ) 
   }}
 
+  {# djlint:off #}
   {% set faq_items = [
     ["Should every vulnerability be Livepatched?",
     "<p>Canonical Livepatch patches kernel vulnerabilities with critical and high Common Vulnerability Scoring System (CVSS) and <a href=\"/security/cves/about#priority\">Ubuntu Priority</a> ratings. Canonical targets vulnerabilities that have security implications, such as privilege escalation or remote code execution, and are practical to patch safely in-memory.</p><p>Canonical Livepatch does not patch userspace libraries like OpenSSL or glibc, because that is the responsibility of <a href=\"https://manpages.ubuntu.com/manpages/man8/unattended-upgrade.8.html\">unattended-upgrades</a> or a systems management tool, like <a href=\"/landscape\">Canonical Landscape</a>.</p>"],
@@ -499,6 +514,7 @@ meta_copydoc %}
     ["Is Livepatch a substitute for upgrade and reboot?",
     "<p>Canonical Livepatch is not a replacement for rebooting. It is a tool that gives you more control by preventing unscheduled reboots. Reboots cleanly flush accumulated state inconsistencies from memory leaks, hung file handles, and other problems that could fester with long uptime. Eliminating reboots would expose any operating system to these inefficiencies over time. Trying to avoid all reboots results in incomplete security patching coverage, and leads to fragile patching strategies that involve service restarts and error prone dependency tracing. Scheduling reboots ensures a guaranteed clean slate.</p>"]
   ] %}
+  {# djlint:on #}
 
   {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
 

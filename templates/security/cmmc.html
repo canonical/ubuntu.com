@@ -17,44 +17,53 @@
 
 {% block content %}
 
-  <section class="p-section--hero">
-    <div class="row--50-50-on-large">
-      <div class="col">
-        <div class="p-section--shallow">
-          <h1>
-            Enable CMMC 2.0 compliance
-            <br class="u-hide u-show--large" />
-            with Ubuntu Pro
-          </h1>
-        </div>
-        <div class="p-section--shallow">
-          <p>
-            Meet CMMC compliance requirements and improve vulnerability management with Ubuntu Pro. Strengthen your security posture to protect Controlled Unclassified Information.
-          </p>
-        </div>
-        <div class="p-cta-block">
-          <p>
-            <a href="/security/contact-us"
-               class="p-button--positive js-invoke-modal"
-               aria-controls="security-standards-modal">Contact us</a>
-            <a class="p-button" href="/pro/free-trial">Access a 30-day free trial</a>
-          </p>
-        </div>
-      </div>
-      <div class="col">
-        <div class="p-image-container--3-2 is-cover">
-          {{ image(url="https://assets.ubuntu.com/v1/0a4cf754-hero-img.jpg",
-                    alt="",
-                    width="600",
-                    height="400",
-                    hi_def=True,
-                    loading="auto",
-                    attrs={"class": "p-image-container__image"},) | safe
-          }}
-        </div>
-      </div>
-    </div>
-  </section>
+  {% call(slot) vf_hero(
+    title_text='Enable CMMC 2.0 compliance <br class="u-hide u-show--large" />with Ubuntu Pro',
+    chip_text='Supported with Ubuntu Pro',
+    layout='50/50',
+    blocks=[
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "text",
+          "content": '
+            Meet CMMC compliance requirements and improve vulnerability management with Ubuntu Pro. Strengthen your security posture to protect Controlled Unclassified Information.'
+        }
+      },
+      {
+        "type": "cta-block",
+        "padding": "shallow",
+        "item": {
+          "primary": {
+            "content_html": "Contact us",
+            "attrs": {"href": "/security/contact-us", "class": "js-invoke-modal", "aria-controls": "security-standards-modal"}
+          },
+          "secondaries": [
+            {
+              "content_html": "Access a 30-day free trial",
+              "attrs": {"href": "/pro/free-trial"}
+            }
+          ]
+        }
+      },
+      {
+        "type": "image",
+        "item": {
+          "aspect_ratio": "3-2",
+          "is_cover": true,
+          "attrs": {
+            "src": "https://assets.ubuntu.com/v1/0a4cf754-hero-img.jpg",
+            "alt": "",
+            "width": "600",
+            "height": "400",
+            "loading": "auto"
+          }
+        }
+      },
+    ]
+    ) -%}
+  {% endcall -%}
 
   <section class="p-section--shallow">
     <div class="row--50-50">

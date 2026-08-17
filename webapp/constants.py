@@ -7,8 +7,8 @@ logger = logging.getLogger(__name__)
 
 # Centralised UI translations for Engage pages and other shared constants
 
-# Default time-to-live for ResponseCache instances, in seconds (24 hours)
-CACHE_TTL = 60 * 60 * 24
+# Default time-to-live for ResponseCache instances, in seconds (1 hour)
+CACHE_TTL = 60 * 60
 
 ENGAGE_UI_TRANSLATIONS = {
     "additional_resources": {
@@ -47,6 +47,15 @@ MARKETO_INJECTION_PATTERNS = [
     "h9e6.top",
     "wordpressbin",
 ]
+
+# Template-controlled fields submitted to /marketo/submit that are not
+# user-typed lead data.
+MARKETO_NON_LEAD_FIELDS = frozenset(
+    {
+        "thankyoumessage",
+        "formid",
+    }
+)
 
 
 # Used if the live fetch from Google fails at startup. Covers the regions
@@ -96,6 +105,51 @@ _GOOGLE_DOMAINS_FALLBACK = [
     "www.google.com.sg",
     "www.google.com.tw",
     "www.google.com.vn",
+    # Africa
+    "www.google.bf",
+    "www.google.bi",
+    "www.google.bj",
+    "www.google.cd",
+    "www.google.cf",
+    "www.google.cg",
+    "www.google.ci",
+    "www.google.cm",
+    "www.google.co.ao",
+    "www.google.co.bw",
+    "www.google.co.ke",
+    "www.google.co.ls",
+    "www.google.co.ma",
+    "www.google.co.mz",
+    "www.google.co.tz",
+    "www.google.co.ug",
+    "www.google.co.za",
+    "www.google.co.zm",
+    "www.google.co.zw",
+    "www.google.com.eg",
+    "www.google.com.et",
+    "www.google.com.gh",
+    "www.google.com.ly",
+    "www.google.com.na",
+    "www.google.com.ng",
+    "www.google.com.sl",
+    "www.google.cv",
+    "www.google.dj",
+    "www.google.dz",
+    "www.google.ga",
+    "www.google.gm",
+    "www.google.mg",
+    "www.google.ml",
+    "www.google.mu",
+    "www.google.mw",
+    "www.google.ne",
+    "www.google.rw",
+    "www.google.sc",
+    "www.google.sn",
+    "www.google.so",
+    "www.google.st",
+    "www.google.td",
+    "www.google.tg",
+    "www.google.tn",
 ]
 
 
@@ -124,6 +178,11 @@ def _fetch_google_supported_domains():
 
 
 GOOGLE_DOMAINS = _fetch_google_supported_domains()
+
+# Same-origin endpoint registered in webapp.handlers.init_handlers();
+# browsers send CSP violation reports here for both the enforced CSP and
+# the report-only CSP below, regardless of the page's own connect-src.
+CSP_REPORT_PATH = "/csp-report"
 
 
 # Content Security Policy configuration
@@ -161,9 +220,7 @@ CSP = {
         "js.stripe.com",
         "d3js.org",
         "www.brighttalk.com",
-        "cdnjs.cloudflare.com",
         "static.ads-twitter.com",
-        "*.cdn.digitaloceanspaces.com",
         "www.redditstatic.com",
         "snap.licdn.com",
         "connect.facebook.net",
@@ -172,14 +229,13 @@ CSP = {
         "secure.livechatinc.com",
         "www.tfaforms.com",
         "api.usabilla.com",
-        "*.cloudfront.net",
         "cdn.jsdelivr.net",
-        "*.g.doubleclick.net",
         "extend.vimeocdn.com",
         "tracking-api.g2.com",
     ],
     "font-src": [
         "'self'",
+        "data:",
         "assets.ubuntu.com",
         "cdn.livechatinc.com",
         "secure.livechatinc.com",
@@ -201,7 +257,9 @@ CSP = {
         "ubuntu.com",
         "analytics.google.com",
         "www.googletagmanager.com",
-        "sentry.is.canonical.com",
+        # Sentry JS SDK's ingest host — the DSN configured in the advantage
+        # React apps (e.g. linux-patch-management/app.tsx) posts here.
+        "o4510662863749120.ingest.de.sentry.io",
         "www.google-analytics.com",
         "*.crazyegg.com",
         "scout.salesloft.com",
@@ -225,7 +283,6 @@ CSP = {
         "api.text.com",
         "raw.githubusercontent.com",
         "*.analytics.google.com",
-        "*.g.doubleclick.net",
         "ad.doubleclick.net",
         "www.googleadservices.com",
         "www.facebook.com",
@@ -235,7 +292,13 @@ CSP = {
         "*.google.com",
         "cdn.jsdelivr.net",
         "bat.bing.com",
+        # Bing UET's consent-mode beacon (navigator.sendBeacon) is sent to
+        # this separate .net host, distinct from the .com tracking pixel.
+        "bat.bing.net",
         "*.clarity.ms",
+        # G2's attribution-tracking script (already allowed in
+        # script-src-elem) beacons conversion data back here.
+        "tracking-api.g2.com",
     ],
     "frame-src": [
         "'self'",
@@ -250,13 +313,12 @@ CSP = {
         "cdn.livechatinc.com",
         "secure.livechatinc.com",
         "cdn.livechat-static.com",
-        "*.cloudfront.net",
         "app3.trueability.com",
         "app.trueability.com",
         "pay.stripe.com",
+        "www.facebook.com",
     ],
     "style-src": [
-        "*.cloudfront.net",
         "cdn.jsdelivr.net",
         "'self'",
         "*.livechatinc.com",
@@ -318,6 +380,42 @@ CSP = {
         "https://support-conversations.stripe.com",
         "https://support.stripe.com",
     ],
+    "report-uri": [CSP_REPORT_PATH],
+}
+
+
+# These sources have no remaining reference anywhere in this repo, but
+# marketing/analytics tags can be injected at runtime via Google Tag
+# Manager, whose container config lives outside this repo, so static
+# analysis alone can't prove they're unused. We put them in a report-only CSP
+# so we can watch Sentry for violations (see webapp.handlers.csp_report)
+# during a bake-in period before removing them from the enforced CSP above.
+_CSP_REPORT_ONLY_REMOVALS = {
+    "script-src-elem": [
+        "script.crazyegg.com",
+        "js.zi-scripts.com",
+        "snap.licdn.com",
+        "munchkin.marketo.net",
+        "ml314.com",
+        "scout-cdn.salesloft.com",
+        "snippet.maze.co",
+        "tracking-api.g2.com",
+        "extend.vimeocdn.com",
+        "d3js.org",
+        "www.tfaforms.com",
+    ],
+    "connect-src": [
+        "*.crazyegg.com",
+        "js.zi-scripts.com",
+        "ws.zoominfo.com",
+        "px.ads.linkedin.com",
+        "scout.salesloft.com",
+        "prompts.maze.co",
+        "pixel-config.reddit.com",
+        "www.redditstatic.com",
+        "conversions-config.reddit.com",
+        "*.clarity.ms",
+    ],
 }
 
 
@@ -325,3 +423,37 @@ CSP = {
 # script-src-elem, the nonce authorises page scripts (and scripts they load),
 # replacing the removed 'unsafe-inline'.
 NONCED_DIRECTIVES = ("script-src", "script-src-elem")
+
+
+def _build_csp_report_only(csp):
+    """
+    Only the directives under test, plus the nonced ones and report-uri:
+    absent directives report nothing, so the rest were duplicated bytes
+    that pushed /login past the edge proxy's 16k header buffer.
+    """
+    keep = set(_CSP_REPORT_ONLY_REMOVALS) | set(NONCED_DIRECTIVES)
+    stricter = {}
+    for directive, values in csp.items():
+        if directive not in keep:
+            continue
+        stale_values = _CSP_REPORT_ONLY_REMOVALS.get(directive, ())
+        stricter[directive] = [
+            value for value in values if value not in stale_values
+        ]
+    stricter["report-uri"] = list(csp["report-uri"])
+    return stricter
+
+
+CSP_REPORT_ONLY = _build_csp_report_only(CSP)
+
+# Hosts already triaged as noise get added here so their reports are
+# dropped outright rather than forwarded to Sentry. Starts empty: we have
+# no real violation traffic yet to triage against.
+CSP_REPORT_IGNORED_HOSTS = frozenset()
+
+# Forward at most one Sentry event per unique violation signature per window.
+CSP_REPORT_DEDUP_WINDOW = 3600  # seconds (1 hour)
+
+# Real CSP violation reports are a few hundred bytes; /csp-report is
+# unauthenticated, so reject anything wildly larger before parsing it.
+CSP_REPORT_MAX_BYTES = 8192
