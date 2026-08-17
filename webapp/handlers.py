@@ -390,7 +390,9 @@ def init_handlers(app):
             pass
 
         # A missing response is a gateway timeout rather than an internal error
-        status_code = 504 if error.response is None else 500
+        status_code = (
+            504 if error.response is None else error.response.status_code
+        )
 
         return (
             flask.render_template(
