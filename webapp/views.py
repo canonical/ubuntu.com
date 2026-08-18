@@ -2400,3 +2400,15 @@ def append_utms_cookie_to_canonical_links(response):
             response.set_data(data)
 
     return response
+
+
+def google_ads_verification():
+    """
+    Serve the Google Ads account-access verification token from the domain
+    root. Google fetches /Google-Ads.txt directly and does not reliably
+    follow redirects, so this is served in place rather than through a
+    redirects.yaml entry like robots.txt uses.
+    """
+    return flask.send_from_directory(
+        flask.current_app.static_folder, "files/Google-Ads.txt"
+    )

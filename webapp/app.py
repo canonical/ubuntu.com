@@ -143,6 +143,7 @@ from webapp.views import (
     french_why_openstack,
     german_why_openstack,
     get_user_country_by_tz,
+    google_ads_verification,
     json_asset_query,
     marketo_submit,
     mirrors_query,
@@ -325,6 +326,7 @@ init_forms()
 # Simple routes
 app.add_url_rule("/asset/<file_name>", view_func=json_asset_query)
 app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
+app.add_url_rule("/Google-Ads.txt", view_func=google_ads_verification)
 app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/mirrors.json", view_func=mirrors_query)
 app.add_url_rule("/mirror-check", view_func=mirror_check)
