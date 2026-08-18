@@ -47,20 +47,20 @@
     }
     }
     },
-    {
-    "type": "image",
-    "item": {
-    "aspect_ratio": "3-2",
-    "is_highlighted": false,
-    "attrs": {
-    "src": "https://assets.ubuntu.com/v1/01968612-hero_img.png",
-    "alt":"",
-    "height":"400",
-    }
-    }
-    },
     ],
     ) -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--3-2 is-highlighted u-hide--medium u-hide--small">
+        {{ image(url="https://assets.ubuntu.com/v1/01968612-hero_img.png",
+                alt="",
+                width="600",
+                height="400",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image"},) | safe
+        }}
+      </div>
+    {%- endif -%}
   {% endcall -%}
 
   {{ vf_basic_section(title={"text": "Our philosophy: why Ubuntu’s multi-architecture support matters"},
@@ -183,15 +183,15 @@
     }
     },
     {
-    "type": "image",
+    "type": "description",
     "padding": "shallow",
     "item": {
-    "aspect_ratio": "3-2",
-    "attrs": {
-    "src": "https://assets.ubuntu.com/v1/1912d4ae-silicon_performance.jpg",
-    "alt":"",
-    "height":"400",
-    }
+    "type": "html",
+    "content": "
+    <div class=\"p-image-container--3-2 is-highlighted u-hide--medium\">
+      <img class=\"p-image-container__image \" src=\"https://assets.ubuntu.com/v1/1912d4ae-silicon_performance.jpg\" alt=\"\" height=\"400\" />
+    </div>
+    "
     }
     },
     {
@@ -233,15 +233,15 @@
     }
     },
     {
-    "type": "image",
+    "type": "description",
     "padding": "shallow",
     "item": {
-    "aspect_ratio": "3-2",
-    "attrs": {
-    "src": "https://assets.ubuntu.com/v1/22d3d84d-architecture_certification.jpg",
-    "alt":"",
-    "height":"400",
-    }
+    "type": "html",
+    "content": "
+    <div class=\"p-image-container--3-2 is-highlighted u-hide--medium\">
+      <img class=\"p-image-container__image \" src=\"https://assets.ubuntu.com/v1/22d3d84d-architecture_certification.jpg\" alt=\"\" height=\"400\" />
+    </div>
+    "
     }
     },
     {
