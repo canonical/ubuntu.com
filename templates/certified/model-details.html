@@ -19,7 +19,7 @@
       <div class="col-9 col-medium-4 col-start-medium-3 col-start-large-4">
         <h1 class="p-muted-heading">
           <a href="/certified/{{ category_pathname }}">{{ category_pathname }}</a> &rsaquo; <a href="/certified/platforms/{{ platform_id }}">{{ platform_name }}</a>
-          {% if platform_name != name %}&rsaquo; {{ name }}{% endif %}
+          &rsaquo; {{ name }}
         </h1>
       </div>
     </div>
@@ -65,17 +65,17 @@
         </div>
       </div>
     {% else %}
-      <hr class="p-rule"/>
+      <hr class="p-rule" />
     {% endif %}
 
     <div class="row--25-75">
       <div class="col u-hide--small">
         {{ image(url="https://assets.ubuntu.com/v1/d9c2c5bf-ubuntu_certified.png",
-                  alt="Ubuntu Hardware Certification",
-                  width="112",
-                  height="157",
-                  hi_def=True,
-                  loading="auto") | safe
+                alt="Ubuntu Hardware Certification",
+                width="112",
+                height="157",
+                hi_def=True,
+                loading="auto") | safe
         }}
       </div>
       <div class="col">
@@ -93,7 +93,7 @@
               {% if vendor == "NXP" %}
                 <a href="/certified/202309-32027/contact-us" class="p-button">Get in touch</a>
               {% endif %}
-              {% elif release.level == "Certified" %}
+            {% elif release.level == "Certified" %}
               <p>
                 The {{ vendor }} {{ name }} with the components described below has been awarded the status of certified for Ubuntu.
               </p>
