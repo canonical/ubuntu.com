@@ -254,5 +254,5 @@
       </div>
     {% endif %}
   </section>
-  <script src="{{ versioned_static('js/dist/engage.js') }}" defer></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/engage.js') }}" defer></script>
 {% endblock content %}
