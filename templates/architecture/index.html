@@ -24,10 +24,10 @@
     title_text='Innovate on all major CPU architectures with Ubuntu',
     subtitle_text='Target any silicon. Deploy anywhere.',
     layout='50/50',
-    is_split_on_medium=true,
     blocks=[
     {
     "type": "description",
+    "padding": "shallow",
     "item": {
     "type": "text",
     "content": "
@@ -51,6 +51,7 @@
     "type": "image",
     "item": {
     "aspect_ratio": "3-2",
+    "is_highlighted": false,
     "attrs": {
     "src": "https://assets.ubuntu.com/v1/01968612-hero_img.png",
     "alt":"",
@@ -213,6 +214,7 @@
     items=[
     {
     "type": "description",
+    "padding": "shallow",
     "item": {
     "type": "html",
     "content": "
@@ -253,13 +255,13 @@
     }
     }
     ],
-    },
     "link": {
     "content_html": "Learn about our program&nbsp;&rsaquo;",
     "attrs": {
     "href": "/project/docs/how-ubuntu-is-made/concepts/supported-architectures"
     }
     }
+    },
   
     },
     ]) 
@@ -267,93 +269,93 @@
 
   {% call(slot) vf_resources(
     title={
-      "text": "Further reading",
+    "text": "Further reading",
     },
     blocks=[
-      {
-        "type": "resources",
-        "render_images": true,
-        "categories": [
-          {
-            "items": [
-              {
-                "title": {
-                  "text": "Canonical Silicon partner program",
-                  "link_attrs": {
-                    "href": "https://canonical.com/partners/silicon"
-                  },
-                },
-                "description": {
-                  "text": "Enhance the developer experience on your silicon by enabling one of the most popular operating systems for developers through enablement and certification programs.",
-                  "attrs": {}
-                },
-                "image": {
-                  "type": "default",
-                  "attrs": {
-                    "src": "https://assets.ubuntu.com/v1/b65211df-silicon_parter_program.jpg",
-                    "alt": ""
-                  }
-                }
-              },
-              {
-                "title": {
-                  "text": "Find Ubuntu Server for your architecture",
-                  "link_attrs": {
-                    "href": "/download/server#manual-install-tab"
-                  },
-                },
-                "description": {
-                  "text": "Ubuntu server supports all major CPU architectures, including x86 (with support for the amd64v3 variant), arm64, RISC-V, IBM Power and IBM Z (s390x).",
-                  "attrs": {}
-                },
-                "image": {
-                  "type": "default",
-                  "attrs": {
-                    "src": "https://assets.ubuntu.com/v1/6a4db80d-ubuntu_server.jpg",
-                    "alt": ""
-                  }
-                }
-              },
-              {
-                "title": {
-                  "text": "Ubuntu for the Internet of things",
-                  "link_attrs": {
-                    "href": "/internet-of-things"
-                  },
-                },
-                "description": {
-                  "text": "Find out more about how Canonical can help all industry verticals with IoT needs, from Automotive to Industrial or smart homes to smart cities.",
-                  "attrs": {}
-                },
-                "image": {
-                  "type": "default",
-                  "attrs": {
-                    "src": "https://assets.ubuntu.com/v1/49e7d36f-ubuntu_for_iot.jpg",
-                    "alt": ""
-                  }
-                }
-              },
-            ]
-          },
-        ]
-      }
+    {
+    "type": "resources",
+    "render_images": true,
+    "categories": [
+    {
+    "items": [
+    {
+    "title": {
+    "text": "Canonical Silicon partner program",
+    "link_attrs": {
+    "href": "https://canonical.com/partners/silicon"
+    },
+    },
+    "description": {
+    "text": "Enhance the developer experience on your silicon by enabling one of the most popular operating systems for developers through enablement and certification programs.",
+    "attrs": {}
+    },
+    "image": {
+    "type": "default",
+    "attrs": {
+    "src": "https://assets.ubuntu.com/v1/b65211df-silicon_parter_program.jpg",
+    "alt": ""
+    }
+    }
+    },
+    {
+    "title": {
+    "text": "Find Ubuntu Server for your architecture",
+    "link_attrs": {
+    "href": "/download/server#manual-install-tab"
+    },
+    },
+    "description": {
+    "text": "Ubuntu server supports all major CPU architectures, including x86 (with support for the amd64v3 variant), arm64, RISC-V, IBM Power and IBM Z (s390x).",
+    "attrs": {}
+    },
+    "image": {
+    "type": "default",
+    "attrs": {
+    "src": "https://assets.ubuntu.com/v1/6a4db80d-ubuntu_server.jpg",
+    "alt": ""
+    }
+    }
+    },
+    {
+    "title": {
+    "text": "Ubuntu for the Internet of things",
+    "link_attrs": {
+    "href": "/internet-of-things"
+    },
+    },
+    "description": {
+    "text": "Find out more about how Canonical can help all industry verticals with IoT needs, from Automotive to Industrial or smart homes to smart cities.",
+    "attrs": {}
+    },
+    "image": {
+    "type": "default",
+    "attrs": {
+    "src": "https://assets.ubuntu.com/v1/49e7d36f-ubuntu_for_iot.jpg",
+    "alt": ""
+    }
+    }
+    },
+    ]
+    },
+    ]
+    }
     ]
     ) -%}
-{% endcall -%}
+  {% endcall -%}
 
-{% call(slot) vf_cta_section(
+  {% call(slot) vf_cta_section(
     variant='default',
     layout='100',
     blocks=[
-      {
-        "type": "cta",
-        "item": {
-          "type": "html",
-          "content": "If you have anything else we can help with, please <a href=\"/contact-us#get-in-touch\">contact us.</a>"
-        }
-      }
+    {
+    "type": "cta",
+    "item": {
+    "type": "html",
+    "content": "If you have anything else we can help with, please <a href=\"/contact-us#get-in-touch\">contact us.</a>"
+    }
+    }
     ]
-  ) -%}
-{% endcall -%}
+    ) -%}
+  {% endcall -%}
 
 {% endblock content %}
