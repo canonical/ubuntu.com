@@ -192,6 +192,20 @@
                         </span>
                       </span>
                     </li>
+                  {# Nav item with sub-children renders as an inline Vanilla dropdown. #}
+                  {% elif child.children %}
+                    <li class="p-navigation__item--dropdown-toggle {% if child.active %}is-selected{% endif %}" id="secondary-nav-dropdown-{{ loop.index }}">
+                      <a href="#secondary-nav-dropdown-{{ loop.index }}-menu"
+                         aria-controls="secondary-nav-dropdown-{{ loop.index }}-menu"
+                         class="p-navigation__link">{{ child.title }}</a>
+                      <ul class="p-navigation__dropdown" id="secondary-nav-dropdown-{{ loop.index }}-menu" aria-hidden="true">
+                        {% for item in child.children %}
+                          <li>
+                            <a href="{{ item.path }}" class="p-navigation__dropdown-item">{{ item.title }}</a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </li>
                   {% elif child.path != '/blog/archives' %}
                     {% set has_access = not child.login_required or child.login_required and user_info %}
                     {% if has_access %}
