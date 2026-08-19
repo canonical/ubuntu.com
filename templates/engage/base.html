@@ -102,7 +102,7 @@
               {% endwith %}
             {% endif %}
           {% endif %}
-        {% elif "primary_link" in metadata and metadata["primary_link"] != "" %}
+        {% elif metadata.get("primary_link", "").startswith("https://") %}
           {% if not metadata["webinar_code"] %}
             {% if metadata['meta_image'] %}
               <div class="p-section--shallow u-hide--small u-hide--medium">
