@@ -692,8 +692,7 @@ app.add_url_rule(
 app.add_url_rule("/login", methods=["GET", "POST"], view_func=login_handler)
 app.add_url_rule("/logout", view_func=logout)
 
-# Engage pages and takeovers from Discourse
-# This section needs to provide takeover data for /
+# Engage pages and takeovers from Discourse (takeover data feeds /).
 engage_pages_discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
     session=session,
