@@ -269,8 +269,8 @@ function handleFilterClick(e) {
       urlParams.delete(name);
       // Only category pages
       if (pathCategory === id) {
-        const newURL = `/certified?${urlParams.toString()}`;
-        window.history.pushState({ path: newURL }, "", newURL);
+        window.location.replace(`/certified?${urlParams.toString()}`);
+        return;
       }
       // Append back deleted params
       // If multiple selected
@@ -319,11 +319,7 @@ function handleFilterClick(e) {
   }
 
   const newURL = `${window.location.pathname}?${urlParams.toString()}`;
-  window.history.pushState({ path: newURL }, "", newURL);
-}
-
-function submitFilters() {
-  window.location.replace(window.location.href);
+  window.location.replace(newURL);
 }
 
 /**
@@ -393,7 +389,7 @@ function clearFilters() {
   } else {
     objUrl.search = "";
   }
-  window.history.pushState({ url: objUrl }, "", objUrl);
+  window.location.replace(objUrl.toString());
 }
 
 // function to ensure only the option which has been changed is appended to the URL
@@ -445,11 +441,6 @@ function wireStaticFilterHandlers() {
       }
     },
   );
-
-  const submitFiltersButton = document.querySelector(".js-submit-filters");
-  if (submitFiltersButton) {
-    submitFiltersButton.addEventListener("click", submitFilters);
-  }
 
   const clearFiltersButton = document.querySelector(".js-clear-filters");
   if (clearFiltersButton) {
