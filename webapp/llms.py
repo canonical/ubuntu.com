@@ -1,4 +1,4 @@
-"""Build the LLM-friendly site index served at /llms.txt and /llms-full.txt.
+"""Build the LLM-friendly site index served at /llms.txt.
 
 ``templates/llms.txt`` is hand-written and committed to git; it is the
 source of truth for https://ubuntu.com/llms.txt (see https://llmstxt.org/).
@@ -6,14 +6,10 @@ source of truth for https://ubuntu.com/llms.txt (see https://llmstxt.org/).
 sections - e.g. product docs sites that live outside this repo's own
 template tree - without touching the manual file directly.
 
-``llms-full.txt`` concatenates the full Markdown content (``?format=md``) of
-every same-site page linked from llms.txt. It is generated at build time
-(see ``_generate`` below, run in the ``pack-rock`` job of
-``.github/workflows/deploy.yaml``) because rendering every page is too slow
-to redo on every app worker's cold start.
+``templates/llms-full.txt``, served at /llms-full.txt, is also hand-written
+and committed to git - see webapp/app.py.
 
 CLI usage:
-    python3 webapp/llms.py generate   # write templates/llms-full.txt
     python3 webapp/llms.py lint       # check llms.txt/llms.yaml formatting
 """
 
@@ -26,39 +22,11 @@ import yaml
 
 logger = logging.getLogger(__name__)
 
-BASE_URL = "https://ubuntu.com"
-BASE_URL_LEN = len(BASE_URL)
-
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_LLMS_TXT_PATH = os.path.join(REPO_ROOT, "templates", "llms.txt")
 DEFAULT_LLMS_YAML_PATH = os.path.join(REPO_ROOT, "llms.yaml")
-LLMS_FULL_TXT_PATH = os.path.join(REPO_ROOT, "templates", "llms-full.txt")
 
 URL_RE = re.compile(r"^https?://")
-
-# Path prefixes served live from Discourse (docs, tutorials, community and
-# engage pages - see the Docs/Tutorials/Category/Events/EngagePages
-# blueprint registrations in webapp/app.py) or from the security API
-# (CVEs and USNs, which SecurityAPI fetches from ubuntu.com itself - see
-# webapp/security/api.py), plus the Pro dashboard, which renders a
-# logged-in account view and needs a real session. llms-full.txt must not
-# fetch any of these: the build environment has no Discourse API
-# keys/allowlisting, hitting the live security API mid-build is slow and
-# flaky, and there's no logged-in session to render the dashboard with.
-EXCLUDED_PATH_PREFIXES = (
-    "/community",
-    "/tutorials",
-    "/ceph/docs",
-    "/openstack/docs",
-    "/security/livepatch/docs",
-    "/security/certifications/docs",
-    "/security/vulnerabilities",
-    "/security/notices",
-    "/security/cves",
-    "/engage",
-    "/takeovers",
-    "/pro/dashboard",
-)
 
 
 def _clean(text):
@@ -166,108 +134,6 @@ def build_llms_txt(llms_txt_path, llms_yaml_path):
 
 
 _LINK_RE = re.compile(r"^-\s+\[(?P<title>[^\]]+)\]\((?P<url>[^)]+)\)")
-
-
-def _iter_links(llms_txt_content):
-    """Yield (title, url) for every markdown link bullet in *content*."""
-    for line in llms_txt_content.splitlines():
-        match = _LINK_RE.match(line.strip())
-        if match:
-            yield match.group("title"), match.group("url")
-
-
-def _is_renderable(url):
-    """True if *url* is safe to fetch for llms-full.txt.
-
-    Must be a ``?format=md`` link on this site (the manual llms.txt already
-    only marks a link that way when it renders from our own templates) and
-    must not fall under a Discourse- or security-API-backed path - see
-    EXCLUDED_PATH_PREFIXES.
-    """
-    if not url.startswith(BASE_URL) or "?format=md" not in url:
-        return False
-    path = url[BASE_URL_LEN:].split("?", 1)[0]
-    return not any(
-        path == prefix or path.startswith(prefix + "/")
-        for prefix in EXCLUDED_PATH_PREFIXES
-    )
-
-
-def build_llms_full_txt(app, llms_txt_content):
-    """Render every renderable page linked from *llms_txt_content* to Markdown.
-
-    Pages on other domains, without ``?format=md``, or served live from
-    Discourse or the security API (docs, tutorials, community, engage,
-    CVEs, USNs) are skipped - see _is_renderable. A page that fails to
-    render is skipped with a warning rather than failing the whole build.
-    """
-    client = app.test_client()
-    parts = [
-        "# Ubuntu",
-        "",
-        "> Full Markdown content of the pages listed in "
-        f"{BASE_URL}/llms.txt. Product documentation, tutorials, community "
-        "and engage pages, and the CVE/USN trackers are omitted here "
-        "(follow their links in llms.txt instead) since they are served "
-        "live from Discourse or the security API.",
-    ]
-
-    seen_urls = set()
-    for title, url in _iter_links(llms_txt_content):
-        if url in seen_urls or not _is_renderable(url):
-            continue
-        seen_urls.add(url)
-
-        path = url[BASE_URL_LEN:]
-        try:
-            response = client.get(path, base_url=BASE_URL)
-        except Exception:
-            logger.exception("Skipping %s in llms-full.txt", path)
-            continue
-
-        if response.status_code != 200 or "markdown" not in (
-            response.content_type or ""
-        ):
-            logger.warning(
-                "Skipping %s in llms-full.txt (status %s)",
-                path,
-                response.status_code,
-            )
-            continue
-
-        body = response.get_data(as_text=True).strip()
-        if not body:
-            continue
-
-        parts.extend(
-            ["", "---", "", f"# {title}", "", f"Source: {url}", "", body]
-        )
-
-    return "\n".join(parts).rstrip() + "\n"
-
-
-def _generate():
-    """Pre-generate llms-full.txt at build time.
-
-    Renders every renderable page linked from llms.txt, which is too slow
-    to redo on every app worker's cold start. Invoked from
-    .github/workflows/deploy.yaml before `rockcraft pack`, so the file is
-    baked into the image (it lives under templates/, which the rock
-    primes).
-    """
-    # Imported lazily: webapp.app imports this module at startup, so
-    # importing it back here at module load time would be circular. A
-    # direct `python3 webapp/llms.py generate` invocation only puts
-    # webapp/ itself on sys.path, not the repo root, so `webapp` isn't
-    # importable as a package without this.
-    sys.path.insert(0, REPO_ROOT)
-    from webapp.app import LLMS_TXT, app
-
-    content = build_llms_full_txt(app, LLMS_TXT)
-    with open(LLMS_FULL_TXT_PATH, "w") as f:
-        f.write(content)
-    print(f"generated {LLMS_FULL_TXT_PATH} ({len(content)} bytes)")
-    return 0
 
 
 def lint_llms_yaml(llms_yaml_path=DEFAULT_LLMS_YAML_PATH):
@@ -444,10 +310,10 @@ def _lint():
 
 
 def main():
-    if len(sys.argv) != 2 or sys.argv[1] not in ("generate", "lint"):
-        print("usage: python3 webapp/llms.py {generate|lint}", file=sys.stderr)
+    if len(sys.argv) != 2 or sys.argv[1] != "lint":
+        print("usage: python3 webapp/llms.py lint", file=sys.stderr)
         return 1
-    return _generate() if sys.argv[1] == "generate" else _lint()
+    return _lint()
 
 
 if __name__ == "__main__":

@@ -2,7 +2,6 @@
 A Flask application for ubuntu.com
 """
 
-import logging
 import math
 import os
 
@@ -178,8 +177,6 @@ WORDPRESS_APPLICATION_PASSWORD = get_flask_env(
 with open("dynamic-sitemaps.yaml") as sitemaps_file:
     DYNAMIC_SITEMAPS = yaml.load(sitemaps_file.read(), Loader=yaml.FullLoader)
 
-logger = logging.getLogger(__name__)
-
 # LLM-friendly site index (https://llmstxt.org/): templates/llms.txt (hand
 # written) plus curated extra links from llms.yaml. Built once at startup,
 # like the config above, rather than on every request.
@@ -218,21 +215,10 @@ def llms_txt():
 @app.route("/llms-full.txt")
 def llms_full_txt():
     """
-    Serve the full Markdown content of every renderable page linked from
-    /llms.txt (https://llmstxt.org/). Pre-generated at build time
-    (`python3 webapp/llms.py generate`) and shipped in the image, so a
-    normal request is a fast disk read; generated on demand if missing
-    (e.g. local dev, where the build-time step has not run).
+    Serve the hand-written templates/llms-full.txt (https://llmstxt.org/),
+    committed to git alongside templates/llms.txt.
     """
     file_path = os.path.join(os.getcwd(), "templates", "llms-full.txt")
-
-    if not os.path.exists(file_path):
-        try:
-            content = llms.build_llms_full_txt(app, LLMS_TXT)
-            with open(file_path, "w") as f:
-                f.write(content)
-        except Exception:
-            logger.exception("Failed to generate llms-full.txt")
 
     if not os.path.exists(file_path):
         return {"error": "llms-full.txt not available"}, 503

@@ -2,10 +2,8 @@ import logging
 import os
 import tempfile
 import unittest
+from unittest.mock import patch
 
-import flask
-
-from webapp import llms
 from webapp.app import app
 from webapp.llms import build_llms_txt
 
@@ -173,28 +171,13 @@ class TestBuildLlmsTxt(unittest.TestCase):
 
 class TestLlmsFullTxt(unittest.TestCase):
     def setUp(self):
-        """
-        Pre-seed templates/llms-full.txt so the route serves it straight
-        from disk instead of triggering a full-site render.
-        """
-
         app.testing = True
         self.client = app.test_client()
-        self.file_path = os.path.join(
-            os.getcwd(), "templates", "llms-full.txt"
-        )
-        self.pre_existing = os.path.exists(self.file_path)
-        if not self.pre_existing:
-            with open(self.file_path, "w") as f:
-                f.write("# Ubuntu\n\n> Stub content for testing.\n")
 
-    def tearDown(self):
-        if not self.pre_existing and os.path.exists(self.file_path):
-            os.remove(self.file_path)
-
-    def test_llms_full_txt_serves_existing_file(self):
+    def test_llms_full_txt_serves_hardcoded_file(self):
         """
-        Check that /llms-full.txt serves the pre-generated file as-is
+        Check that /llms-full.txt serves the hand-written, committed
+        templates/llms-full.txt
         """
 
         response = self.client.get("/llms-full.txt")
@@ -202,115 +185,16 @@ class TestLlmsFullTxt(unittest.TestCase):
         self.assertEqual(
             response.headers["Content-Type"], "text/plain; charset=utf-8"
         )
-        self.assertIn(
-            "Stub content for testing.", response.data.decode("utf-8")
-        )
+        self.assertTrue(response.data.decode("utf-8").startswith("# Ubuntu"))
 
-
-class TestIterLinks(unittest.TestCase):
-    def test_iter_links(self):
+    @patch("webapp.app.os.path.exists", return_value=False)
+    def test_llms_full_txt_missing_returns_503(self, mock_exists):
         """
-        Only markdown link bullets are picked up; plain bullets are ignored
+        Check that /llms-full.txt returns 503 if the file is missing
         """
 
-        content = (
-            "# Ubuntu\n\n"
-            "## Main pages\n\n"
-            "- [Foo](https://ubuntu.com/foo?format=md): Foo page.\n"
-            "- Not a link, just text.\n"
-            "- [Bar](https://ubuntu.com/bar?format=md)\n"
-        )
-        result = list(llms._iter_links(content))
-        self.assertEqual(
-            result,
-            [
-                ("Foo", "https://ubuntu.com/foo?format=md"),
-                ("Bar", "https://ubuntu.com/bar?format=md"),
-            ],
-        )
-
-
-class TestIsRenderable(unittest.TestCase):
-    def test_external_domain_excluded(self):
-        self.assertFalse(
-            llms._is_renderable("https://example.com/foo?format=md")
-        )
-
-    def test_missing_format_md_excluded(self):
-        self.assertFalse(llms._is_renderable("https://ubuntu.com/foo"))
-
-    def test_excluded_paths(self):
-        self.assertFalse(
-            llms._is_renderable("https://ubuntu.com/tutorials?format=md")
-        )
-        self.assertFalse(
-            llms._is_renderable("https://ubuntu.com/community?format=md")
-        )
-        self.assertFalse(
-            llms._is_renderable("https://ubuntu.com/security/cves?format=md")
-        )
-        self.assertFalse(
-            llms._is_renderable(
-                "https://ubuntu.com/security/notices?format=md"
-            )
-        )
-        self.assertFalse(
-            llms._is_renderable("https://ubuntu.com/engage?format=md")
-        )
-        self.assertFalse(
-            llms._is_renderable("https://ubuntu.com/pro/dashboard?format=md")
-        )
-
-    def test_own_renderable_page_included(self):
-        self.assertTrue(
-            llms._is_renderable("https://ubuntu.com/about?format=md")
-        )
-
-
-def _stub_app():
-    """A tiny Flask app standing in for the real site, for fast tests."""
-
-    stub_app = flask.Flask(__name__)
-
-    @stub_app.route("/foo")
-    def foo():
-        response = flask.make_response("Foo content.")
-        response.headers["Content-Type"] = "text/markdown; charset=utf-8"
-        return response
-
-    @stub_app.route("/bar")
-    def bar():
-        # Not served as markdown, so build_llms_full_txt should skip it.
-        return "Bar content."
-
-    return stub_app
-
-
-class TestBuildLlmsFullTxt(unittest.TestCase):
-    def test_renders_own_pages_and_skips_others(self):
-        """
-        Own markdown-rendered pages are included; external domains,
-        non-markdown responses, and Discourse/security-API-backed paths
-        are skipped
-        """
-
-        content = (
-            "# Ubuntu\n\n"
-            "## Main pages\n\n"
-            "- [Foo](https://ubuntu.com/foo?format=md): Foo page.\n"
-            "- [Bar](https://ubuntu.com/bar?format=md): Bar page.\n"
-            "- [External](https://example.com/other?format=md): Elsewhere.\n"
-            "- [Tutorials](https://ubuntu.com/tutorials?format=md): "
-            "Tutorials.\n"
-        )
-
-        result = llms.build_llms_full_txt(_stub_app(), content)
-
-        self.assertIn("Foo content.", result)
-        self.assertIn("Source: https://ubuntu.com/foo?format=md", result)
-        self.assertNotIn("Bar content.", result)
-        self.assertNotIn("example.com", result)
-        self.assertNotIn("Source: https://ubuntu.com/tutorials", result)
+        response = self.client.get("/llms-full.txt")
+        self.assertEqual(response.status_code, 503)
 
 
 if __name__ == "__main__":
