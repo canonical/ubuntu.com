@@ -5,6 +5,28 @@
 
 import { v4 as uuidv4 } from "uuid";
 
+// The cookie banner markup comes from the @canonical/cookie-policy package,
+// so it can't be tagged in our templates. Watch for it being inserted (and
+// re-inserted, since it's recreated each time it's opened) and mark it
+// nosnippet so it isn't pulled into search/AI page summaries.
+function watchCookieBanner() {
+  new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      for (const node of mutation.addedNodes) {
+        if (node.nodeType === 1 && node.matches(".cookie-policy")) {
+          node.setAttribute("data-nosnippet", "");
+        }
+      }
+    }
+  }).observe(document.body, { childList: true });
+}
+
+if (document.body) {
+  watchCookieBanner();
+} else {
+  document.addEventListener("DOMContentLoaded", watchCookieBanner);
+}
+
 const getCookie = (targetCookie) =>
   document.cookie.match(new RegExp("(^| )" + targetCookie + "=([^;]+)"));
 let cookieAcceptanceValue = getCookie("_cookies_accepted");
