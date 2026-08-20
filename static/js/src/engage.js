@@ -2,8 +2,6 @@
  * https://vanillaframework.io/docs/patterns/contextual-menu
  */
 
-import { debounce } from "./utils/debounce.js";
-
 const QUERY_KEYS = {
   language: "language",
   resource: "resource",
@@ -21,9 +19,9 @@ const SELECTORS = {
   tagClear: ".js-engage-tag-clear",
   tagLabelText: ".p-engage-menu__label-text",
   tagCount: ".p-engage-menu__count",
+  submitButton: ".js-engage-filters-submit",
+  clearButton: ".js-engage-filters-clear",
 };
-
-const TAG_SUBMIT_DEBOUNCE_MS = 1500;
 
 const SINGLE_SELECT_PARAMS = [QUERY_KEYS.language, QUERY_KEYS.resource];
 
@@ -119,6 +117,7 @@ function menuIdFor(paramKey) {
       return;
     }
 
+    toggle.dataset.selectedValue = value;
     setToggleLabel(toggle, option.textContent);
   }
 
@@ -192,11 +191,8 @@ function menuIdFor(paramKey) {
           toggle.setAttribute("aria-expanded", "false");
           dropdown.setAttribute("aria-hidden", "true");
 
-          const paramValue = optionLink.getAttribute("data-value");
-          const updates = {
-            [paramKey]: paramValue === "all" ? null : paramValue,
-          };
-          navigateWithFilters(updates);
+          toggle.dataset.selectedValue = optionLink.getAttribute("data-value");
+          updateClearFiltersVisibility();
         });
       });
     });
@@ -252,20 +248,10 @@ function menuIdFor(paramKey) {
       return;
     }
 
-    function submitTagsFilter() {
-      navigateWithFilters({}, QUERY_KEYS.tag, getCheckedTagValues());
-    }
-
-    // Debounce tag selection so the user has time to select multiple
-    const debouncedSubmitTagsFilter = debounce(
-      submitTagsFilter,
-      TAG_SUBMIT_DEBOUNCE_MS,
-    );
-
     tagMenu.querySelectorAll(SELECTORS.tagCheckbox).forEach((checkbox) => {
       checkbox.addEventListener("change", () => {
         updateTagsVisualState();
-        debouncedSubmitTagsFilter();
+        updateClearFiltersVisibility();
       });
     });
 
@@ -275,7 +261,7 @@ function menuIdFor(paramKey) {
         e.preventDefault();
         setAllTagCheckboxes(true);
         updateTagsVisualState();
-        debouncedSubmitTagsFilter();
+        updateClearFiltersVisibility();
       });
     }
 
@@ -285,9 +271,93 @@ function menuIdFor(paramKey) {
         e.preventDefault();
         setAllTagCheckboxes(false);
         updateTagsVisualState();
-        debouncedSubmitTagsFilter();
+        updateClearFiltersVisibility();
       });
     }
+  }
+
+  function hasActiveSelections() {
+    const singleSelected = SINGLE_SELECT_PARAMS.some((paramKey) => {
+      const toggle = document.querySelector(
+        `[aria-controls="${menuIdFor(paramKey)}"]`,
+      );
+      const value = toggle ? toggle.dataset.selectedValue : null;
+      return value && value !== "all";
+    });
+
+    return singleSelected || getCheckedTagValues().length > 0;
+  }
+
+  function updateClearFiltersVisibility() {
+    const clearButton = document.querySelector(SELECTORS.clearButton);
+    if (!clearButton) {
+      return;
+    }
+    clearButton.classList.toggle("u-hide", !hasActiveSelections());
+  }
+
+  function setSubmitButtonLoading(button) {
+    button.classList.add("has-icon");
+    const spinnerIcon = document.createElement("i");
+    spinnerIcon.className = "p-icon--spinner u-animation--spin is-light";
+    const buttonRect = button.getBoundingClientRect();
+    button.style.width = buttonRect.width + "px";
+    button.style.height = buttonRect.height + "px";
+    button.disabled = true;
+    button.replaceChildren(spinnerIcon);
+  }
+
+  function submitFilters() {
+    const singleValueUpdates = {};
+    SINGLE_SELECT_PARAMS.forEach((paramKey) => {
+      const toggle = document.querySelector(
+        `[aria-controls="${menuIdFor(paramKey)}"]`,
+      );
+      const value = toggle ? toggle.dataset.selectedValue : null;
+      singleValueUpdates[paramKey] = value && value !== "all" ? value : null;
+    });
+
+    navigateWithFilters(
+      singleValueUpdates,
+      QUERY_KEYS.tag,
+      getCheckedTagValues(),
+    );
+  }
+
+  function initSubmitButton() {
+    const submitButton = document.querySelector(SELECTORS.submitButton);
+    if (!submitButton) {
+      return;
+    }
+
+    submitButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      setSubmitButtonLoading(submitButton);
+      submitFilters();
+    });
+  }
+
+  function initClearButton() {
+    const clearButton = document.querySelector(SELECTORS.clearButton);
+    if (!clearButton) {
+      return;
+    }
+
+    clearButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      clearButton.disabled = true;
+
+      const submitButton = document.querySelector(SELECTORS.submitButton);
+      if (submitButton) {
+        setSubmitButtonLoading(submitButton);
+      }
+
+      const singleValueUpdates = {};
+      SINGLE_SELECT_PARAMS.forEach((paramKey) => {
+        singleValueUpdates[paramKey] = null;
+      });
+      navigateWithFilters(singleValueUpdates, QUERY_KEYS.tag, []);
+    });
   }
 
   restoreFilterState();
@@ -295,5 +365,8 @@ function menuIdFor(paramKey) {
   setupTagMenuToggle();
   setupTagMenuStopPropagation();
   initTagMenu();
+  initSubmitButton();
+  initClearButton();
+  updateClearFiltersVisibility();
   document.addEventListener("click", closeAllMenus);
 })();

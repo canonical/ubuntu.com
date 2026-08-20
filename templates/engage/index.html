@@ -178,6 +178,13 @@
             </span>
           </span>
         </div>
+        <div class="p-form__group">
+          <button type="button"
+                  class="p-button--positive is-dense js-engage-filters-submit">Apply filters</button>
+        </div>
+        <div class="p-form__group">
+          <button type="button" class="p-button--link js-engage-filters-clear u-hide">Clear filters</button>
+        </div>
       </form>
     </div>
   </div>
@@ -221,9 +228,9 @@
                             "text": item.type
                             },
                             "content_type": item.tags.split(',') | map('trim') | list if item.tags else []
-                            } if item.type or item.tags else None,
-                            description=item.subtitle,
-                            stacked_image=true) }}
+              } if item.type or item.tags else None,
+              description=item.subtitle,
+              stacked_image=true) }}
             {% else %}
               {{ vf_card(columns="4",
                             link=item_link,
@@ -234,8 +241,8 @@
                             "text": item.type
                             },
                             "content_type": item.tags.split(',') | map('trim') | list if item.tags else []
-                            } if item.type or item.tags else None,
-                            description=item.subtitle) }}
+              } if item.type or item.tags else None,
+              description=item.subtitle) }}
             {% endif %}
           {% endfor %}
         </div>
@@ -254,5 +261,7 @@
       </div>
     {% endif %}
   </section>
-  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/engage.js') }}" defer></script>
+  <script nonce="{{ csp_nonce }}"
+          src="{{ versioned_static('js/dist/engage.js') }}"
+          defer></script>
 {% endblock content %}
