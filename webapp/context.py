@@ -110,7 +110,8 @@ def get_secondary_navigation(path):
                 # Include all siblings
                 breadcrumbs["children"] = nav_section.get("children", [])
 
-            # Mark the parent nav item active when the current path matches a dropdown sub-item.
+            # Mark the parent nav item active when the current path matches
+            # a dropdown sub-item.
             for grandchild in child.get("children", []):
                 if (
                     grandchild["path"] == path
@@ -119,6 +120,7 @@ def get_secondary_navigation(path):
                     if len(grandchild["path"]) > longest_match_path:
                         longest_match_path = len(grandchild["path"])
                         child_to_set_active = child
+                    grandchild["active"] = True
 
                     nav_section["active"] = True
                     breadcrumbs["section"] = nav_section

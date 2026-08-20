@@ -197,11 +197,14 @@
                     <li class="p-navigation__item--dropdown-toggle {% if child.active %}is-selected{% endif %}" id="secondary-nav-dropdown-{{ loop.index }}">
                       <a href="#secondary-nav-dropdown-{{ loop.index }}-menu"
                          aria-controls="secondary-nav-dropdown-{{ loop.index }}-menu"
+                         aria-expanded="false"
+                         aria-haspopup="true"
                          class="p-navigation__link">{{ child.title }}</a>
                       <ul class="p-navigation__dropdown" id="secondary-nav-dropdown-{{ loop.index }}-menu" aria-hidden="true">
                         {% for item in child.children %}
                           <li>
-                            <a href="{{ item.path }}" class="p-navigation__dropdown-item">{{ item.title }}</a>
+                            <a href="{{ item.path }}" class="p-navigation__dropdown-item"
+                               {% if item.active %}aria-current="page"{% endif %}>{{ item.title }}</a>
                           </li>
                         {% endfor %}
                       </ul>

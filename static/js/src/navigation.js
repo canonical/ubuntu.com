@@ -39,6 +39,7 @@ function toggleSecondaryNavDropdown(toggle, open) {
     toggle.getAttribute("aria-controls"),
   );
   dropdown?.setAttribute("aria-hidden", !open);
+  toggle.setAttribute("aria-expanded", open);
   toggleIsActiveState(toggle.parentNode, open);
 }
 
