@@ -10,7 +10,7 @@ template tree - without touching the manual file directly.
 and committed to git - see webapp/app.py.
 
 CLI usage:
-    python3 webapp/llms.py lint       # check llms.txt/llms.yaml formatting
+    task lint-llms       # check llms.txt/llms.yaml formatting
 """
 
 import logging
