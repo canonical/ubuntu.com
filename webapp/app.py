@@ -177,10 +177,10 @@ WORDPRESS_APPLICATION_PASSWORD = get_flask_env(
 with open("dynamic-sitemaps.yaml") as sitemaps_file:
     DYNAMIC_SITEMAPS = yaml.load(sitemaps_file.read(), Loader=yaml.FullLoader)
 
-# LLM-friendly site index (https://llmstxt.org/): templates/llms.txt (hand
-# written) plus curated extra links from llms.yaml. Built once at startup,
-# like the config above, rather than on every request.
-LLMS_TXT = llms.build_llms_txt("templates/llms.txt", "llms.yaml")
+# LLM-friendly site index (https://llmstxt.org/): the hand-written
+# templates/llms.txt. Built once at startup, like the config above, rather
+# than on every request.
+LLMS_TXT = llms.build_llms_txt("templates/llms.txt")
 
 # Set up application
 # ===
@@ -204,7 +204,7 @@ MarkdownResponse(app)
 def llms_txt():
     """
     Serve the LLM-friendly site index (https://llmstxt.org/): the manually
-    maintained templates/llms.txt plus curated extra links from llms.yaml.
+    maintained templates/llms.txt.
     """
     response = flask.make_response(LLMS_TXT)
     response.headers["Content-Type"] = "text/plain; charset=utf-8"

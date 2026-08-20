@@ -45,33 +45,21 @@ BASE_WITH_MAIN_PAGES = (
     "- [Other](https://example.com/other): Other page.\n"
 )
 
-BASE_WITHOUT_MAIN_PAGES = (
-    "# Example\n\n"
-    "> Description.\n\n"
-    "## Other section\n\n"
-    "- [Other](https://example.com/other): Other page.\n"
-)
-
 
 class TestBuildLlmsTxt(unittest.TestCase):
     def setUp(self):
         self.tmpdir = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmpdir.cleanup)
         self.llms_txt_path = os.path.join(self.tmpdir.name, "llms.txt")
-        self.llms_yaml_path = os.path.join(self.tmpdir.name, "llms.yaml")
         with open(self.llms_txt_path, "w") as f:
             f.write(BASE_WITH_MAIN_PAGES)
 
-    def _write_yaml(self, contents):
-        with open(self.llms_yaml_path, "w") as f:
-            f.write(contents)
-
-    def test_no_config_file(self):
+    def test_reads_file_untouched(self):
         """
-        Missing llms.yaml just returns the base file untouched
+        build_llms_txt returns the file's contents as-is
         """
 
-        result = build_llms_txt(self.llms_txt_path, self.llms_yaml_path)
+        result = build_llms_txt(self.llms_txt_path)
         self.assertEqual(result, BASE_WITH_MAIN_PAGES)
 
     def test_missing_base_file_does_not_raise(self):
@@ -83,90 +71,8 @@ class TestBuildLlmsTxt(unittest.TestCase):
 
         missing_path = os.path.join(self.tmpdir.name, "does-not-exist.txt")
 
-        result = build_llms_txt(missing_path, self.llms_yaml_path)
+        result = build_llms_txt(missing_path)
         self.assertEqual(result, "# Ubuntu\n")
-
-    def test_malformed_config_file(self):
-        """
-        Malformed llms.yaml is ignored rather than breaking the base file
-        """
-
-        self._write_yaml("extra: [this is not: valid: yaml")
-
-        result = build_llms_txt(self.llms_txt_path, self.llms_yaml_path)
-        self.assertEqual(result, BASE_WITH_MAIN_PAGES)
-
-    def test_extra_sections_inserted_after_main_pages(self):
-        """
-        Extra sections from llms.yaml are inserted right after "Main
-        pages", ahead of the rest of the manually written content
-        """
-
-        self._write_yaml(
-            "extra:\n"
-            "  - heading: Documentation\n"
-            "    links:\n"
-            "      - title: Server docs\n"
-            "        url: https://example.com/server-docs\n"
-            "        description: Server documentation.\n"
-        )
-
-        result = build_llms_txt(self.llms_txt_path, self.llms_yaml_path)
-        self.assertEqual(
-            result,
-            (
-                "# Example\n\n"
-                "> Description.\n\n"
-                "## Main pages\n\n"
-                "- [Home](https://example.com): Home page.\n\n"
-                "## Documentation\n\n"
-                "- [Server docs](https://example.com/server-docs): "
-                "Server documentation.\n\n"
-                "## Other section\n\n"
-                "- [Other](https://example.com/other): Other page.\n"
-            ),
-        )
-
-    def test_extra_link_missing_title_or_url_is_dropped(self):
-        """
-        Links without both a title and a url are skipped
-        """
-
-        self._write_yaml(
-            "extra:\n"
-            "  - heading: Documentation\n"
-            "    links:\n"
-            "      - title: No URL\n"
-            "        description: Missing a url.\n"
-        )
-
-        result = build_llms_txt(self.llms_txt_path, self.llms_yaml_path)
-        self.assertEqual(result, BASE_WITH_MAIN_PAGES)
-
-    def test_no_main_pages_heading_appends_at_end(self):
-        """
-        Without a "Main pages" section to anchor on, extras are appended
-        at the end instead
-        """
-
-        with open(self.llms_txt_path, "w") as f:
-            f.write(BASE_WITHOUT_MAIN_PAGES)
-        self._write_yaml(
-            "extra:\n"
-            "  - heading: Documentation\n"
-            "    links:\n"
-            "      - title: Server docs\n"
-            "        url: https://example.com/server-docs\n"
-            "        description: Server documentation.\n"
-        )
-
-        result = build_llms_txt(self.llms_txt_path, self.llms_yaml_path)
-        self.assertEqual(
-            result,
-            BASE_WITHOUT_MAIN_PAGES.rstrip("\n") + "\n\n## Documentation\n\n"
-            "- [Server docs](https://example.com/server-docs): "
-            "Server documentation.\n",
-        )
 
 
 class TestLlmsFullTxt(unittest.TestCase):
