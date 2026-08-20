@@ -36,6 +36,15 @@ tabBtn3.addEventListener("click", (e) => {
 // Set global filter limit for vendors and releases
 let filterLimit = 5;
 
+let filterNavigateTimer = null;
+
+function scheduleFilterNavigation() {
+  clearTimeout(filterNavigateTimer);
+  filterNavigateTimer = setTimeout(() => {
+    window.location.assign(window.location.href);
+  }, 300);
+}
+
 function loadFilters() {
   const { category, vendor, release } = retrieveSelectedFilters();
   renderFilters(category, vendor, release);
@@ -271,6 +280,8 @@ function handleFilterClick(e) {
       if (pathCategory === id) {
         const newURL = `/certified?${urlParams.toString()}`;
         window.history.pushState({ path: newURL }, "", newURL);
+        scheduleFilterNavigation();
+        return;
       }
       // Append back deleted params
       // If multiple selected
@@ -320,10 +331,7 @@ function handleFilterClick(e) {
 
   const newURL = `${window.location.pathname}?${urlParams.toString()}`;
   window.history.pushState({ path: newURL }, "", newURL);
-}
-
-function submitFilters() {
-  window.location.replace(window.location.href);
+  scheduleFilterNavigation();
 }
 
 /**
@@ -393,7 +401,7 @@ function clearFilters() {
   } else {
     objUrl.search = "";
   }
-  window.history.pushState({ url: objUrl }, "", objUrl);
+  window.location.assign(objUrl.toString());
 }
 
 // function to ensure only the option which has been changed is appended to the URL
@@ -445,11 +453,6 @@ function wireStaticFilterHandlers() {
       }
     },
   );
-
-  const submitFiltersButton = document.querySelector(".js-submit-filters");
-  if (submitFiltersButton) {
-    submitFiltersButton.addEventListener("click", submitFilters);
-  }
 
   const clearFiltersButton = document.querySelector(".js-clear-filters");
   if (clearFiltersButton) {
