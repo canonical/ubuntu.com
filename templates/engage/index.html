@@ -87,9 +87,6 @@
                         data-value="it">Italiano</button>
                 <button type="button"
                         class="p-contextual-menu__link p-engage-menu__link"
-                        data-value="jp">Japanese</button>
-                <button type="button"
-                        class="p-contextual-menu__link p-engage-menu__link"
                         data-value="kr">Korean</button>
                 <button type="button"
                         class="p-contextual-menu__link p-engage-menu__link"
@@ -197,8 +194,6 @@
           {% for item in metadata %}
             {%- if item.language == 'zh-TW' -%}
               {%- set item_link = 'https://cn.ubuntu.com' ~ item.path -%}
-            {%- elif item.language == 'jp' -%}
-              {%- set item_link = 'https://jp.ubuntu.com' ~ item.path -%}
             {%- else -%}
               {%- set item_link = item.path -%}
             {%- endif -%}
