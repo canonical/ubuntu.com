@@ -42,6 +42,7 @@ from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.form_generator import FormGenerator
 from canonicalwebteam.markdown_response import MarkdownResponse
 
+from webapp import llms
 from webapp.certified.views import certified_routes
 from webapp.constants import CACHE_TTL
 from webapp.handlers import init_handlers
@@ -177,6 +178,11 @@ WORDPRESS_APPLICATION_PASSWORD = get_flask_env(
 with open("dynamic-sitemaps.yaml") as sitemaps_file:
     DYNAMIC_SITEMAPS = yaml.load(sitemaps_file.read(), Loader=yaml.FullLoader)
 
+# LLM-friendly site index (https://llmstxt.org/): the hand-written
+# templates/llms.txt. Built once at startup, like the config above, rather
+# than on every request.
+LLMS_TXT = llms.build_llms_txt("templates/llms.txt")
+
 # Set up application
 # ===
 
@@ -193,6 +199,39 @@ app = FlaskBase(
 # Markdown endpoint for LLM/crawler optimization
 # Serves any page as Markdown via ?format=md query parameter
 MarkdownResponse(app)
+
+
+@app.route("/llms.txt")
+def llms_txt():
+    """
+    Serve the LLM-friendly site index (https://llmstxt.org/): the manually
+    maintained templates/llms.txt.
+    """
+    response = flask.make_response(LLMS_TXT)
+    response.headers["Content-Type"] = "text/plain; charset=utf-8"
+    response.headers["Cache-Control"] = "public, max-age=21600"
+    return response
+
+
+@app.route("/llms-full.txt")
+def llms_full_txt():
+    """
+    Serve the hand-written templates/llms-full.txt (https://llmstxt.org/),
+    committed to git alongside templates/llms.txt.
+    """
+    file_path = os.path.join(os.getcwd(), "templates", "llms-full.txt")
+
+    if not os.path.exists(file_path):
+        return {"error": "llms-full.txt not available"}, 503
+
+    with open(file_path) as f:
+        content = f.read()
+
+    response = flask.make_response(content)
+    response.headers["Content-Type"] = "text/plain; charset=utf-8"
+    response.headers["Cache-Control"] = "public, max-age=86400"
+    return response
+
 
 # ChoiceLoader attempts loading templates from each path in successive order
 directory_parser_templates = (

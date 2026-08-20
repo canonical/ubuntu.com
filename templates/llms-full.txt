@@ -1,0 +1,308 @@
+# Ubuntu
+
+> Ubuntu is the world's most popular Linux operating system, published by Canonical. It runs from the desktop to the cloud, to containers and IoT devices. Ubuntu LTS releases receive five years of free security updates, extendable to up to 15 years with Ubuntu Pro.
+
+---
+
+## About Ubuntu
+
+### About Ubuntu
+
+Ubuntu is a free, open source Linux operating system developed by Canonical. First released in 2004, Ubuntu is designed to be accessible, reliable, and securely designed for everyone, from individual developers and students to the world's largest enterprises and governments. According to several industry surveys, Ubuntu is the most widely used Linux distribution among professional developers.
+
+Ubuntu can be used across your entire stack. Ubuntu Desktop provides a polished experience for workstations and laptops. Ubuntu Server powers data centers and cloud infrastructure. Ubuntu Core delivers a locked-down, containerized OS for embedded devices. Whichever image you use, the underlying OS is the same: the same package archive, security infrastructure, and release cadence.
+
+Ubuntu follows a predictable release cadence. New versions ship every six months in April and October. Every two years, an LTS (Long Term Support) release provides five years of free security updates, with the option to extend to up to 15 years through Ubuntu Pro. Non-LTS releases receive nine months of support and serve as a preview of features coming to the next LTS.
+
+Ubuntu is supported by Canonical and shaped by its community. Governance structures include the Ubuntu Technical Board, the Community Council, and elected delegates.
+
+Source: https://ubuntu.com/about
+
+### Ubuntu community
+
+The Ubuntu community is a global network of developers, users, translators, testers, and advocates who contribute to making Ubuntu better. Community participation includes contributing code and bug fixes to Ubuntu packages, translating Ubuntu into hundreds of languages, writing and maintaining documentation, running local community teams (LoCo teams), and organizing events like Ubuntu Summit.
+
+Getting involved is straightforward: new contributors can start by filing and triaging bugs on Launchpad, proposing fixes to packages, contributing translations through the Ubuntu Translations portal, writing or improving documentation, or helping other users on Ubuntu Discourse, Ask Ubuntu, and Matrix channels. LoCo teams organize regional meetups and release events, and the Ubuntu Membership program recognizes sustained contributors with voting rights in community governance.
+
+Ubuntu's Code of Conduct sets expectations for respectful, constructive collaboration across all community spaces.
+
+Source: https://ubuntu.com/community
+
+### Ubuntu Summit
+
+Ubuntu Summit is Canonical's bi-annual community conference, bringing together open source innovators, for talks, workshops, and collaborative sessions. The event covers innovation and the latest developments in open source, including hardware, security, development frameworks, AI and cloud, as well as Ubuntu developments. As of October 2025, Ubuntu Summit streams from Canonical's London office and is optimized for a remote viewing experience, live-streamed on YouTube. Members of the Ubuntu Community also organize watch parties to participate in the event.
+
+Source: https://ubuntu.com/community
+
+### Ubuntu documentation
+
+Ubuntu provides comprehensive documentation for all its products. Documentation is available at ubuntu.com/desktop/docs for Desktop, ubuntu.com/server/docs for Server, ubuntu.com/core/docs for Ubuntu Core, and ubuntu.com/landscape/docs for Landscape. Each product's documentation covers installation, configuration, security, and administration.
+
+---
+
+## Download
+
+### Downloading Ubuntu
+
+Ubuntu is freely available to download and use. Downloads are organized by product:
+
+**Ubuntu Desktop**: Available as an ISO image for PCs and laptops. The latest LTS version provides five years of free security updates.
+
+**Ubuntu Server**: Available as an ISO for bare metal and virtual machine installations. Also available as optimized images for public clouds including AWS, Azure, Google Cloud, IBM Cloud, and Oracle Cloud.
+
+**Ubuntu for public cloud**: Optimized and certified Ubuntu images for all major public clouds, tuned for each cloud's hypervisor and hardware.
+
+**Ubuntu Core**: Available as pre-built images for IoT and embedded devices, or as custom images built with the snapcraft toolchain.
+
+Source: https://ubuntu.com/download
+
+---
+
+## Ubuntu Desktop
+
+### Ubuntu Desktop
+
+Ubuntu Desktop is a free, open source Linux operating system designed for elegance, security, and customizability. It provides a polished, intuitive desktop experience for developers, organizations, and everyday users, with built-in productivity tools including LibreOffice, Thunderbird, and the Firefox browser, alongside access to thousands of applications through the Snap Store.
+
+New releases of Ubuntu Desktop come out every six months, with LTS versions every two years receiving five years of free security updates, extendable to up to 15 years with Ubuntu Pro.
+
+Key features include native support for development toolchains (Python, Rust, Go, Node.js, Java, C/C++), container and VM support via Multipass, GPU acceleration for AI/ML workloads with NVIDIA CUDA and ROCm, Active Directory integration for enterprise fleet management via ADSys, and accessibility tools. Ubuntu Desktop is certified on hardware from vendors including Dell, HP, and Lenovo, with preinstalled options available.
+
+Source: https://ubuntu.com/desktop
+
+### Ubuntu Desktop for developers
+
+Ubuntu is the Linux distribution of choice for millions of developers worldwide. It provides a native development platform with first-class support for all major languages, frameworks, and tools. The Ubuntu ecosystem includes extensive packages from the Ubuntu archive, snaps for sandboxed application distribution, and seamless integration with containers, cloud-init, and AI/ML frameworks.
+
+Ubuntu's developer mindshare means that most open source projects, SDKs, and tutorials target Ubuntu first, making it the path of least resistance for development environments, CI/CD pipelines, and production deployments.
+
+Source: https://ubuntu.com/desktop/developers
+
+### Ubuntu on WSL
+
+Ubuntu on WSL provides a full Ubuntu terminal and toolchain within Windows. Ubuntu is the default distribution for Windows Subsystem for Linux, enabling developers to run Linux command-line tools, utilities, and applications alongside their Windows environment without the overhead of a traditional virtual machine. It supports the same package repositories and development tools as a native Ubuntu installation, and integrates with VS Code, Docker Desktop, and GPU passthrough for CUDA workloads.
+
+Source: https://ubuntu.com/desktop/wsl
+
+### Ubuntu flavors
+
+Ubuntu flavors are community-maintained variants of Ubuntu that offer different desktop environments, default applications, and visual styles while sharing the same Ubuntu base, package archive, and release cadence. Official flavors include Kubuntu (KDE Plasma), Xubuntu (Xfce), Lubuntu (LXQt), Ubuntu MATE, Ubuntu Budgie, Ubuntu Cinnamon, Ubuntu Studio (optimized for creative workflows including audio, video, and graphic design), Ubuntu Unity, and Edubuntu (designed for education).
+
+Source: https://ubuntu.com/desktop/flavors
+
+---
+
+## Ubuntu Server
+
+### Ubuntu Server
+
+Ubuntu Server is the most widely deployed Linux distribution for cloud and data center workloads. It combines developer familiarity with enterprise reliability, making it the natural choice for hosting web applications, databases, container platforms, private clouds, and enterprise services at scale.
+
+Ubuntu Server is available for x86-64, ARM64, and RISC-V architectures. LTS releases receive five years of free security updates, extendable to up to 15 years with Ubuntu Pro.
+
+Ubuntu Server includes support for KVM virtualization, LXD containers, ZFS and Btrfs file systems, and automated provisioning via tools like MAAS. It is the reference operating system for OpenStack and is certified on server hardware from vendors including Dell, HP Enterprise, Lenovo, and Supermicro.
+
+Source: https://ubuntu.com/server
+
+---
+
+## Cloud
+
+### Ubuntu on public clouds
+
+Ubuntu is the most widely used operating system on major public clouds, including AWS, Microsoft Azure, Google Cloud, IBM Cloud, and Oracle Cloud. Canonical publishes optimized Ubuntu images for each cloud, tuned for the cloud's hypervisor and hardware, and certified by both Canonical and the cloud provider.
+
+Ubuntu Pro is available on all major clouds, adding security patching for packages from the wider open source ecosystem, kernel Livepatch, FIPS 140 certified cryptographic modules, and CIS hardening profiles. Ubuntu Pro can be activated on any Ubuntu instance, either by launching a Pro-enabled image from the cloud marketplace or by attaching an existing Ubuntu instance using the `pro attach` command with a subscription token.
+
+Source: https://ubuntu.com/cloud/public-cloud
+
+### Ubuntu on private clouds
+
+Ubuntu Server is widely used across private clouds and is the reference operating system for OpenStack, the world's most popular open source cloud platform. Organizations building private clouds deploy OpenStack on Ubuntu Server to provide cloud-like self-service compute, storage, and networking within their own data centers. Canonical provides up to 15 years of security maintenance for Ubuntu Server. The company also provides private cloud consulting, deployment, and managed services, as well as its own distribution of OpenStack and an easy-to-use cloud solution called MicroCloud.
+
+Source: https://ubuntu.com/cloud/private-cloud
+
+---
+
+## Ubuntu Core and IoT
+
+### Ubuntu for IoT
+
+Canonical provides a complete platform for building, securing, and managing IoT and edge devices at scale. Developers can choose between standard Ubuntu for devices that benefit from a familiar Linux environment, or Ubuntu Core for deployments requiring a fully containerized, locked-down OS.
+
+Device management is handled through Landscape, which provides remote monitoring, security patching, and configuration management for device fleets. Applications are distributed and updated via the Snap Store, with fine-grained update control including canary releases, staged rollouts, and mandatory update enforcement. The Enterprise Store provides organizations with a dedicated, controlled distribution channel.
+
+Canonical's IoT solutions are used in production across digital signage, industrial gateways, networking equipment, robotics, and automotive applications. Canonical solutions also integrate with third-party platforms such as Azure IoT.
+
+Source: https://ubuntu.com/internet-of-things
+
+### Ubuntu Core
+
+Ubuntu Core is an immutable Ubuntu variant designed for IoT, embedded, and edge devices. It is built for developers and device manufacturers who need a security-hardened OS for devices deployed in the field, from industrial gateways and digital signage to robotics.
+
+Every component of Ubuntu Core, including the kernel and OS itself, is packaged as a snap, providing strict confinement, transactional over-the-air (OTA) updates, automatic rollback on failure, and hardware-rooted secure boot via full disk encryption and TPM 2.0. Ubuntu Core supports x86-64, and ARM (armhf and arm64) architectures.
+
+Device manufacturers can build custom Ubuntu Core images using the snapcraft toolchain and distribute updates through the Snap Store or an Enterprise Store.
+
+Source: https://ubuntu.com/core
+
+### Snaps and Snapcraft
+
+Snaps are universal Linux packages designed for security, portability, and consistency. Each snap runs in strict confinement using AppArmor and seccomp, isolating it from the host system and other applications. Snaps are cross-distribution compatible, running on Ubuntu, Fedora, Debian, Arch, and other Linux distributions without repackaging.
+
+Snapcraft is the build tool for creating snaps. The public Snap Store hosts thousands of applications and is the primary software distribution channel for both Ubuntu Desktop and Ubuntu Core devices. Enterprise customers can use the Enterprise Store to host and control snap distribution within their organization.
+
+Source: https://snapcraft.io
+
+---
+
+## Ubuntu Pro
+
+### Ubuntu Pro
+
+Ubuntu Pro is Canonical's comprehensive subscription for open source security, support and compliance. It extends Ubuntu LTS security maintenance from 5 to up to 15 years (with the Legacy add-on) and expands patching coverage from the base OS to the wider open source ecosystem, including popular application dependencies that enterprises rely on.
+
+Ubuntu Pro includes kernel Livepatch (live kernel security patching without reboot), FIPS 140 certified cryptographic modules, CIS and DISA-STIG hardening profiles, and Common Criteria certification artifacts. These compliance features enable Ubuntu Pro to meet requirements for FedRAMP, HIPAA, PCI-DSS, and other regulatory frameworks.
+
+Ubuntu Pro is free for personal use on up to 5 machines and is available as a paid subscription for enterprises on a per-node basis. Pricing varies by coverage level: Infrastructure-only (OS, virtualization, and cloud tools) and Full-stack (adds application coverage). Ubuntu Pro is also available on AWS, Azure, and Google Cloud.
+
+Source: https://ubuntu.com/pro
+
+### Ubuntu Pro for Devices
+
+Ubuntu Pro for Devices provides the same security and compliance coverage as Ubuntu Pro, tailored for IoT and embedded deployments. It includes up to 15 years of security maintenance for the OS and applications, Landscape-based device management for fleet monitoring and updates, and compliance tooling for regulated industries.
+
+Source: https://ubuntu.com/pro/devices
+
+### Ubuntu Pro + Support
+
+Ubuntu Pro + Support adds SLA-backed enterprise support to the Ubuntu Pro subscription. It provides break-fix support with guaranteed response times, available as 24/7 or weekday coverage. Support spans the full open source stack from the kernel through infrastructure tools (OpenStack, Kubernetes, Ceph, MAAS, LXD) to application-layer products (databases, MLOps, observability). Support channels include phone and ticket-based systems, with access to Canonical's knowledge base and direct engineering expertise.
+
+Source: https://ubuntu.com/support
+
+### Expanded Security Maintenance (ESM)
+
+ESM expands security patching for Ubuntu LTS releases beyond the standard five years included with every release, extending total coverage to up to 15 years (with the Legacy add-on). It broadens coverage to include the wider universe of open source packages available through Ubuntu's repositories, covering the full breadth of open source software that enterprises depend on beyond the core OS. ESM is included with every Ubuntu Pro subscription.
+
+Source: https://ubuntu.com/security/esm
+
+---
+
+## Landscape
+
+### Landscape
+
+Landscape is Canonical's systems management tool for monitoring, patching, and managing Ubuntu machines at scale. It provides a web-based dashboard and API for managing package updates, security compliance, users, and configuration across fleets of physical servers, virtual machines, cloud instances, and IoT devices.
+
+Key features include automated security patching with compliance reporting, role-based access control, repository management and custom package hosting, integration with Ubuntu Pro for subscription management, and support for managing Ubuntu Core devices via snap updates. Landscape is available as a SaaS service, a Managed service or as a self-hosted deployment. It is included with Ubuntu Pro.
+
+Source: https://ubuntu.com/landscape
+
+---
+
+## Security and compliance
+
+### Ubuntu security
+
+Canonical maintains a dedicated security team that triages, patches, and discloses vulnerabilities across the Ubuntu archive. Security updates are published as Ubuntu Security Notices (USNs) and are available for all supported Ubuntu releases. The team works with upstream open source projects, industry CERTs, and the wider security community to ensure timely response to vulnerabilities.
+
+When the security team patches a vulnerability, it backports the fix to the affected Ubuntu release. This preserves application compatibility while closing the security gap. Every security update undergoes regression testing before publication, helping users preserve stability.
+
+Ubuntu's security architecture includes AppArmor mandatory access control, seccomp system call filtering, and snap confinement for application-level isolation among other features. These layers work together to reduce the attack surface at the OS, kernel, and application levels. For vulnerability tracking, see the CVE tracker and Ubuntu Security Notices entries below.
+
+Source: https://ubuntu.com/security
+
+### CVE tracker
+
+Ubuntu's CVE tracker provides a searchable database of Common Vulnerabilities and Exposures (CVEs) affecting Ubuntu packages. Each entry shows the affected packages, Ubuntu releases, patch status, and priority level. The tracker is updated in real time as the security team triages new vulnerabilities, and is available at ubuntu.com/security/cves.
+
+Source: https://ubuntu.com/security/cves
+
+### Ubuntu Security Notices (USNs)
+
+Ubuntu Security Notices are advisories published by the Ubuntu security team when security updates are released. Each USN describes the vulnerability, lists the affected packages and Ubuntu releases, and provides instructions for applying the update. USNs are published at ubuntu.com/security/notices and are available via RSS feed and mailing list.
+
+Source: https://ubuntu.com/security/notices
+
+### Ubuntu Security Guide (USG)
+
+The Ubuntu Security Guide is a tool for auditing and hardening Ubuntu systems against industry security benchmarks. USG can assess a system's compliance with CIS (Center for Internet Security) benchmarks and DISA-STIG (Security Technical Implementation Guides) profiles, generate compliance reports, and automatically address non-compliant settings. USG is available with Ubuntu Pro.
+
+Source: https://ubuntu.com/security/certifications
+
+### Livepatch
+
+Canonical Livepatch applies critical kernel security patches to running Ubuntu systems without requiring a reboot. This reduces downtime for servers, cloud instances, and devices that cannot be easily taken offline for maintenance. Livepatch is included with Ubuntu Pro and is supported on Ubuntu LTS releases running on compatible hardware and kernel configurations.
+
+Source: https://ubuntu.com/security/livepatch
+
+### Certification and compliance
+
+Canonical provides a range of security certifications and compliance tools for Ubuntu, enabling enterprises and government agencies to meet regulatory requirements across frameworks including FedRAMP, HIPAA, PCI-DSS, FISMA, the EU Cyber Resilience Act (CRA), and others.
+
+FIPS 140 are available for compliance with US federal government and regulated industry requirements.
+
+CIS hardening profiles automate the application of Center for Internet Security benchmarks to Ubuntu systems. DISA-STIG profiles implement the US Department of Defense's Security Technical Implementation Guides. Both are delivered via the Ubuntu Security Guide (USG) tool, which can audit and configure systems for these benchmarks. Ubuntu also supports Common Criteria.
+
+Canonical actively supports organizations preparing for EU Cyber Resilience Act compliance, providing long-term security maintenance and vulnerability management for open source components.
+
+Source: https://ubuntu.com/security/certifications
+
+---
+
+## Identity management
+
+### Active Directory integration
+
+Ubuntu Desktop and Server integrate with Active Directory using ADSys, Canonical's Group Policy client for Ubuntu. ADSys enables IT teams to manage Ubuntu machines using the same Group Policy Objects (GPOs) they use for Windows, including desktop configuration via dconf, login policies, and basic fleet management. Basic AD join and dconf management are available to all Ubuntu users. Advanced features including privilege escalation management, script execution, AppArmor profiles, certificate auto-enrollment, network shares, and proxy configuration require an Ubuntu Pro subscription (free for up to 5 machines).
+
+Source: https://ubuntu.com/desktop/organisations
+
+### Authd
+
+Authd is a cloud-native authentication daemon for Ubuntu Desktop and Server. It enables direct integration with cloud identity providers including Microsoft Entra ID, Google Cloud IAM, and other OIDC-compliant providers via the OAuth Device Authorization Grant. Authd replaces the need for traditional domain joins by authenticating users directly against cloud identity platforms, supporting multi-factor authentication and token-based session management.
+
+Source: https://documentation.ubuntu.com/authd
+
+---
+
+## Hardware
+
+### Ubuntu certified hardware
+
+Canonical's hardware certification program tests and validates laptops, desktops, servers, and IoT devices for compatibility with Ubuntu. Certified hardware carries a guarantee that Ubuntu works out of the box, with all key components tested and validated.
+
+Major certification partners include Dell (PowerEdge servers, XPS and Precision workstations with preinstalled Ubuntu), HP (ProBook, EliteBook, and ZBook product lines), and Lenovo (ThinkPad, ThinkStation, and ThinkSystem with preinstalled options available). Certification also covers servers from Supermicro, IoT and embedded devices including System-on-Chip validation for ARM and RISC-V platforms, and Raspberry Pi.
+
+Enterprises can search the full catalog at ubuntu.com/certified, filtering by vendor, form factor, Ubuntu release, and component.
+
+Source: https://ubuntu.com/certified
+---
+
+## Knowledge hub
+
+### Knowledge hub
+
+The Canonical knowledge hub at canonical.com/knowledge provides in-depth educational articles about Ubuntu, open source technologies, security, compliance, and infrastructure. Topics include the Linux kernel, Ubuntu Pro, open source security, container security, vulnerability management, IoT security, the EU Cyber Resilience Act, and comparisons such as Yocto vs Ubuntu Core.
+
+Source: https://canonical.com/knowledge
+
+---
+
+## Blog
+
+### Blog
+
+The Ubuntu blog publishes news and technical articles about Ubuntu and open source. It also includes security advisories, product updates, engineering insights, and community stories. It is maintained by Canonical.
+
+Source: https://ubuntu.com/blog
+
+---
+
+## Canonical and Ubuntu
+
+### About Canonical
+
+Canonical is the company behind Ubuntu and a provider of open source security, support and services. It provides commercial open source solutions across infrastructure, databases, AI, and IoT. Canonical publishes and maintains Ubuntu, develops the products built around it, and offers Ubuntu Pro subscriptions for long-term security, compliance, and support. To learn more about Canonical's full product portfolio, visit canonical.com.
+
+Source: https://canonical.com/company
