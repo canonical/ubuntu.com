@@ -192,11 +192,7 @@
       <div {% if total_pages > 1 %}class="p-section--shallow"{% endif %}>
         <div class="grid-row">
           {% for item in metadata %}
-            {%- if item.language == 'zh-TW' -%}
-              {%- set item_link = 'https://cn.ubuntu.com' ~ item.path -%}
-            {%- else -%}
-              {%- set item_link = item.path -%}
-            {%- endif -%}
+            {%- set item_link = item.path -%}
             {%- if item.active == 'false' and preview != None -%}
               {%- set item_link = item_link ~ '?preview' -%}
             {%- endif -%}
