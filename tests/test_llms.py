@@ -4,6 +4,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
+from webapp import llms
 from webapp.app import app
 from webapp.llms import build_llms_txt
 
@@ -73,6 +74,57 @@ class TestBuildLlmsTxt(unittest.TestCase):
 
         result = build_llms_txt(missing_path)
         self.assertEqual(result, "# Ubuntu\n")
+
+    def test_corrupted_file_does_not_raise(self):
+        """
+        A llms.txt containing invalid UTF-8 bytes degrades to a minimal
+        header instead of raising
+        """
+
+        with open(self.llms_txt_path, "wb") as f:
+            f.write(b"\xff\xfe not valid utf-8")
+
+        result = build_llms_txt(self.llms_txt_path)
+        self.assertEqual(result, "# Ubuntu\n")
+
+
+class TestLint(unittest.TestCase):
+    @patch("webapp.llms.lint_llms_txt")
+    def test_errors_and_warnings_are_logged(self, mock_lint_llms_txt):
+        """
+        Errors and warnings from lint_llms_txt are logged (not printed),
+        so they can be picked up by Sentry
+        """
+
+        mock_lint_llms_txt.return_value = (
+            ["llms.txt: malformed link bullet"],
+            ["llms.txt: url repeated"],
+        )
+
+        with self.assertLogs("webapp.llms", level="WARNING") as logs:
+            result = llms._lint()
+
+        self.assertEqual(result, 1)
+        self.assertIn(
+            "WARNING:webapp.llms:llms.txt: url repeated", logs.output
+        )
+        self.assertIn(
+            "ERROR:webapp.llms:llms.txt: malformed link bullet", logs.output
+        )
+
+    @patch("webapp.llms.lint_llms_txt")
+    def test_ok_result_is_logged(self, mock_lint_llms_txt):
+        """
+        A clean lint result logs an OK summary at info level
+        """
+
+        mock_lint_llms_txt.return_value = ([], [])
+
+        with self.assertLogs("webapp.llms", level="INFO") as logs:
+            result = llms._lint()
+
+        self.assertEqual(result, 0)
+        self.assertIn("INFO:webapp.llms:llms lint: OK", logs.output)
 
 
 class TestLlmsFullTxt(unittest.TestCase):

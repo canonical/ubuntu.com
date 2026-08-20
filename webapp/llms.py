@@ -32,7 +32,7 @@ def build_llms_txt(llms_txt_path):
     try:
         with open(llms_txt_path) as llms_txt_file:
             return llms_txt_file.read().rstrip("\n") + "\n"
-    except OSError:
+    except (OSError, UnicodeDecodeError):
         logger.exception("Failed to read %s", llms_txt_path)
         return "# Ubuntu\n"
 
