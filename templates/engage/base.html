@@ -35,15 +35,6 @@
     {% set show_webinar = true %}
   {% endif %}
 
-  {# identify the last section to apply deep padding to #}
-  {% set last_section = "body" %}
-  {% if show_webinar or 'youtube_id' in metadata or 'vimeo_id' in metadata %}
-    {% set last_section = "embedded_video" %}
-  {% endif %}
-  {% if related_pages_metadata|length > 0 %}
-    {% set last_section = "related" %}
-  {% endif %}
-
   <span id="publish_date" class="u-hide">{{ metadata["publish_date"] }}</span>
   <span id="created_date" class="u-hide">{{ metadata["created_at"] }}</span>
 
@@ -69,134 +60,135 @@
     </div>
   </section>
 
-  <section class="{% if last_section == 'body' %}p-section--deep{% else %}p-section{% endif %}">
-    <div class="grid-row">
-      <div class="grid-col-4 grid-col-start-large-3 grid-col-medium-4 p-engage-body">{{ metadata["body_html"] | safe }}</div>
-      <div class="grid-col-2 grid-col-medium-4 p-engage-form">
-        {% if "form_id" in metadata and metadata["form_id"] != "" %}
-          {% set form_id = metadata["form_id"] %}
-          {# Form IDs for no preselected country value #}
-          {% set no_preselect_country_form_ids = ["7722"] %}
-          {# Form IDs that show the optional "How can Canonical help you?" field #}
-          {% set comments_form_ids = ["4709", "4925"] %}
-          {% if metadata["language"] != '' %}
-            {% set form = "engage/shared/_" + metadata["language"] + "_engage_form.html" %}
-            {% if "form_cta" in metadata and metadata["form_cta"] != '' %}
-              {% with id=form_id, returnURL=metadata['path']+"/thank-you", cta=metadata['form_cta'], noPreselectCountry=form_id in no_preselect_country_form_ids, showCommentsField=form_id in comments_form_ids %}
-                {% include form %}
-              {% endwith %}
-            {% else %}
-              {% with id=form_id, returnURL=metadata['path']+"/thank-you", noPreselectCountry=form_id in no_preselect_country_form_ids, showCommentsField=form_id in comments_form_ids %}
-                {% include form %}
-              {% endwith %}
-            {% endif %}
-
-          {% else %}
-            {% if "form_cta" in metadata and metadata["form_cta"] != '' %}
-              {% with id=form_id, returnURL=metadata['path']+"/thank-you", cta=metadata['form_cta'], noPreselectCountry=form_id in no_preselect_country_form_ids, showCommentsField=form_id in comments_form_ids %}
-                {% include "engage/shared/_en_engage_form.html" %}
-              {% endwith %}
-            {% else %}
-              {% with id=form_id, returnURL=metadata['path']+"/thank-you", noPreselectCountry=form_id in no_preselect_country_form_ids, showCommentsField=form_id in comments_form_ids %}
-                {% include "engage/shared/_en_engage_form.html" %}
-              {% endwith %}
-            {% endif %}
-          {% endif %}
-        {% elif metadata.get("primary_link", "").startswith(("https://", "/")) %}
-          {% if not metadata["webinar_code"] %}
-            {% if metadata['meta_image'] %}
-              <div class="p-section--shallow u-hide--small u-hide--medium">
-                <div class="p-image-container--16-9 is-highlighted">
-                  <img class="p-image-container__image"
-                       src="{{ metadata['meta_image'] }}"
-                       alt=""
-                       width="{{ metadata['image_width'] }}" />
-                </div>
-              </div>
-            {% endif %}
-            <a href="{{ metadata['primary_link'] }}" class="p-button--positive">{{ metadata["primary_cta"] }}</a>
-          {% endif %}
-        {% endif %}
-        <hr class="p-rule u-hide--large" />
-      </div>
-    </div>
-  </section>
-
-  {% if show_webinar %}
-    {% with last_section=last_section %}
-      {% include "engage/shared/_webinar-embed.html" %}
-    {% endwith %}
-  {% endif %}
-
-  {% if "youtube_id" in metadata %}
-    <!-- Youtube webinars -->
-    <section class="p-strip is-shallow{% if last_section == 'embedded_video' %} p-section--deep{% endif %}"
-             id="youtube-section">
-      <div class="row" id="webinar">
-        <iframe title="Webinar"
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/{{ metadata['youtube_id'] }}"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
-      </div>
-    </section>
-  {% endif %}
-
-  {% if "vimeo_id" in metadata %}
-    <!-- Vimeo webinars -->
-    <section class="p-strip is-shallow{% if last_section == 'embedded_video' %} p-section--deep{% endif %}"
-             id="vimeo-section">
-      <div class="row" id="webinar">
-        <iframe title="Webinar"
-                src="https://player.vimeo.com/video/{{ metadata['vimeo_id'] }}"
-                width="560"
-                height="315"
-                frameborder="0"
-                allow="autoplay; fullscreen"
-                allowfullscreen></iframe>
-      </div>
-    </section>
-  {% endif %}
-
-  {% if related_pages_metadata|length > 0 %}
-    <div class="p-section--deep">
-      <div class="p-section--shallow">
-        <div class="u-fixed-width">
+  <div class="p-engage-page-content">
+    <section class="p-section">
+      <div class="grid-row">
+        <div class="u-fixed-width u-hide--small u-hide--medium grid-col-start-large-3">
           <hr class="p-rule" />
-          <h2>Additional resources</h2>
+        </div>
+        <div class="grid-col-4 grid-col-start-large-3 grid-col-medium-4 p-engage-body">{{ metadata["body_html"] | safe }}</div>
+        <div class="grid-col-2 grid-col-medium-4 p-engage-form">
+          {% if "form_id" in metadata and metadata["form_id"] != "" %}
+            {% set form_id = metadata["form_id"] %}
+            {# Form IDs for no preselected country value #}
+            {% set no_preselect_country_form_ids = ["7722"] %}
+            {# Form IDs that show the optional "How can Canonical help you?" field #}
+            {% set comments_form_ids = ["4709", "4925"] %}
+            {% if metadata["language"] != '' %}
+              {% set form = "engage/shared/_" + metadata["language"] + "_engage_form.html" %}
+              {% if "form_cta" in metadata and metadata["form_cta"] != '' %}
+                {% with id=form_id, returnURL=metadata['path']+"/thank-you", cta=metadata['form_cta'], noPreselectCountry=form_id in no_preselect_country_form_ids, showCommentsField=form_id in comments_form_ids %}
+                  {% include form %}
+                {% endwith %}
+              {% else %}
+                {% with id=form_id, returnURL=metadata['path']+"/thank-you", noPreselectCountry=form_id in no_preselect_country_form_ids, showCommentsField=form_id in comments_form_ids %}
+                  {% include form %}
+                {% endwith %}
+              {% endif %}
+
+            {% else %}
+              {% if "form_cta" in metadata and metadata["form_cta"] != '' %}
+                {% with id=form_id, returnURL=metadata['path']+"/thank-you", cta=metadata['form_cta'], noPreselectCountry=form_id in no_preselect_country_form_ids, showCommentsField=form_id in comments_form_ids %}
+                  {% include "engage/shared/_en_engage_form.html" %}
+                {% endwith %}
+              {% else %}
+                {% with id=form_id, returnURL=metadata['path']+"/thank-you", noPreselectCountry=form_id in no_preselect_country_form_ids, showCommentsField=form_id in comments_form_ids %}
+                  {% include "engage/shared/_en_engage_form.html" %}
+                {% endwith %}
+              {% endif %}
+            {% endif %}
+          {% elif metadata.get("primary_link", "").startswith(("https://", "/")) %}
+            {% if not metadata["webinar_code"] %}
+              {% if metadata['meta_image'] %}
+                <div class="p-section--shallow u-hide--small u-hide--medium">
+                  <div class="p-image-container--16-9 is-highlighted">
+                    <img class="p-image-container__image"
+                         src="{{ metadata['meta_image'] }}"
+                         alt=""
+                         width="{{ metadata['image_width'] }}" />
+                  </div>
+                </div>
+              {% endif %}
+              <a href="{{ metadata['primary_link'] }}" class="p-button--positive">{{ metadata["primary_cta"] }}</a>
+            {% endif %}
+          {% endif %}
+          <hr class="p-rule u-hide--large" />
         </div>
       </div>
-      {% for page in related_pages_metadata[:3] %}
+    </section>
+
+    {% if show_webinar %}
+      {% include "engage/shared/_webinar-embed.html" %}
+    {% endif %}
+
+    {% if "youtube_id" in metadata %}
+      <!-- Youtube webinars -->
+      <section class="p-strip is-shallow" id="youtube-section">
+        <div class="row" id="webinar">
+          <iframe title="Webinar"
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/{{ metadata['youtube_id'] }}"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen></iframe>
+        </div>
+      </section>
+    {% endif %}
+
+    {% if "vimeo_id" in metadata %}
+      <!-- Vimeo webinars -->
+      <section class="p-strip is-shallow" id="vimeo-section">
+        <div class="row" id="webinar">
+          <iframe title="Webinar"
+                  src="https://player.vimeo.com/video/{{ metadata['vimeo_id'] }}"
+                  width="560"
+                  height="315"
+                  frameborder="0"
+                  allow="autoplay; fullscreen"
+                  allowfullscreen></iframe>
+        </div>
+      </section>
+    {% endif %}
+
+    {% if related_pages_metadata|length > 0 %}
+      <div class="p-section">
         <div class="p-section--shallow">
-          <div class="grid-row">
-            {% if not loop.first %}<hr class="p-rule--muted" />{% endif %}
-            <div class="grid-col-2">
-              <h3 class="p-text--small-caps">{{ page.type }}</h3>
-            </div>
-            <div class="grid-col-2">
-              <div class="p-image-container--16-9">
-                <a href="{{ page.path }}"
-                   tabindex="-1"
-                   aria-label="Navigate to {{ page.topic_name }}">
-                  <img class="p-image-container__image"
-                       src="{% if page.meta_image %}{{ page.meta_image }}{% else %}https://assets.ubuntu.com/v1/c797f1d7-og_%20canonical.png{% endif %}"
-                       alt="" />
-                </a>
-              </div>
-            </div>
-            <div class="grid-col-4">
-              {{- vf_article_block(article_config={
-                            "title": {"text": page.topic_name, "link_attrs": {"href": page.path }},
-                            "description": {"text": page.subtitle},
-                            }) -}}
-            </div>
+          <div class="u-fixed-width">
+            <hr class="p-rule" />
+            <h2>Additional resources</h2>
           </div>
         </div>
-      {% endfor %}
-    </div>
-  {% endif %}
+        {% for page in related_pages_metadata[:3] %}
+          <div class="p-section--shallow">
+            <div class="grid-row">
+              {% if not loop.first %}<hr class="p-rule--muted" />{% endif %}
+              <div class="grid-col-2">
+                <h3 class="p-text--small-caps">{{ page.type }}</h3>
+              </div>
+              <div class="grid-col-2">
+                <div class="p-image-container--16-9">
+                  <a href="{{ page.path }}"
+                     tabindex="-1"
+                     aria-label="Navigate to {{ page.topic_name }}">
+                    <img class="p-image-container__image"
+                         src="{% if page.meta_image %}{{ page.meta_image }}{% else %}https://assets.ubuntu.com/v1/c797f1d7-og_%20canonical.png{% endif %}"
+                         alt="" />
+                  </a>
+                </div>
+              </div>
+              <div class="grid-col-4">
+                {{- vf_article_block(article_config={
+                                "title": {"text": page.topic_name, "link_attrs": {"href": page.path }},
+                                "description": {"text": page.subtitle},
+                                }) -}}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
 
   <script>
     (function() {

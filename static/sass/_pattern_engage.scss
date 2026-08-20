@@ -52,6 +52,14 @@
     }
   }
 
+  .p-engage-page-content > :last-child {
+    padding-bottom: $spv--strip-deep * 0.5;
+
+    @media (min-width: $breakpoint-large) {
+      padding-bottom: $spv--strip-deep;
+    }
+  }
+
   @include ubuntu-p-engage-form;
   @include ubuntu-p-engage-menu;
 }
