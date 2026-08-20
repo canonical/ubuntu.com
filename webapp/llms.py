@@ -21,8 +21,6 @@ logger = logging.getLogger(__name__)
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_LLMS_TXT_PATH = os.path.join(REPO_ROOT, "templates", "llms.txt")
 
-URL_RE = re.compile(r"^https?://")
-
 
 def build_llms_txt(llms_txt_path):
     """Return the /llms.txt body, read straight from *llms_txt_path*.
@@ -39,9 +37,6 @@ def build_llms_txt(llms_txt_path):
         return "# Ubuntu\n"
 
 
-_LINK_RE = re.compile(r"^-\s+\[(?P<title>[^\]]+)\]\((?P<url>[^)]+)\)")
-
-
 def lint_llms_txt(llms_txt_path=DEFAULT_LLMS_TXT_PATH):
     """Return (errors, warnings) checking templates/llms.txt's formatting.
 
@@ -49,6 +44,9 @@ def lint_llms_txt(llms_txt_path=DEFAULT_LLMS_TXT_PATH):
     pages" section; a section with no links; a malformed or non-absolute
     link. Warnings: a url repeated across sections.
     """
+    link_re = re.compile(r"^-\s+\[(?P<title>[^\]]+)\]\((?P<url>[^)]+)\)")
+    url_re = re.compile(r"^https?://")
+
     if not os.path.exists(llms_txt_path):
         return [f"{llms_txt_path}: not found"], []
 
@@ -88,7 +86,7 @@ def lint_llms_txt(llms_txt_path=DEFAULT_LLMS_TXT_PATH):
         if not stripped.startswith("- "):
             continue
 
-        link_match = _LINK_RE.match(stripped)
+        link_match = link_re.match(stripped)
         if not link_match:
             errors.append(
                 f"llms.txt: malformed link bullet under "
@@ -98,7 +96,7 @@ def lint_llms_txt(llms_txt_path=DEFAULT_LLMS_TXT_PATH):
 
         section_links += 1
         url = link_match.group("url")
-        if not URL_RE.match(url):
+        if not url_re.match(url):
             errors.append(
                 f"llms.txt: url must be absolute under '{section}' ({url})"
             )
@@ -140,7 +138,7 @@ def main():
         level=logging.INFO, format="%(levelname)s: %(message)s"
     )
     if len(sys.argv) != 2 or sys.argv[1] != "lint":
-        print("usage: python3 webapp/llms.py lint", file=sys.stderr)
+        logger.error("usage: python3 webapp/llms.py lint")
         return 1
     return _lint()
 
