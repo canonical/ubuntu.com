@@ -52,7 +52,7 @@ test.describe("Engage filters", () => {
     ).toHaveAttribute("aria-hidden", "true");
   });
 
-  test("navigates with resource param when an option is selected", async ({
+  test("navigates with resource param only after the submit button is clicked", async ({
     page,
   }) => {
     const toggle = page
@@ -61,12 +61,18 @@ test.describe("Engage filters", () => {
     await toggle.click();
 
     const option = page
-      .locator('#engage-resource-menu .p-contextual-menu__link[data-value]')
-      .filter({ hasNot: page.locator('[data-value="all"]') })
+      .locator(
+        '#engage-resource-menu .p-contextual-menu__link[data-value]:not([data-value="all"])',
+      )
       .first();
 
     const paramValue = await option.getAttribute("data-value");
     await option.click();
+
+    // Selection should not navigate until the Apply button is clicked.
+    expect(new URL(page.url()).searchParams.has("resource")).toBe(false);
+
+    await page.locator(".js-engage-filters-submit").click();
 
     await page.waitForURL((url) =>
       url.searchParams.get("resource") === paramValue,
@@ -74,7 +80,7 @@ test.describe("Engage filters", () => {
     expect(new URL(page.url()).searchParams.get("resource")).toBe(paramValue);
   });
 
-  test("removes resource param from URL when 'All' option is selected", async ({
+  test("removes resource param from URL when 'All' option is selected and submitted", async ({
     page,
   }) => {
     await page.goto("/engage?resource=webinar");
@@ -90,6 +96,11 @@ test.describe("Engage filters", () => {
     );
     await allOption.click();
 
+    // Selection should not navigate until the Apply button is clicked.
+    expect(new URL(page.url()).searchParams.get("resource")).toBe("webinar");
+
+    await page.locator(".js-engage-filters-submit").click();
+
     await page.waitForURL((url) => !url.searchParams.has("resource"));
     expect(new URL(page.url()).searchParams.has("resource")).toBe(false);
   });
@@ -98,8 +109,9 @@ test.describe("Engage filters", () => {
     page,
   }) => {
     const resourceOption = page
-      .locator('#engage-resource-menu .p-contextual-menu__link[data-value]')
-      .filter({ hasNot: page.locator('[data-value="all"]') })
+      .locator(
+        '#engage-resource-menu .p-contextual-menu__link[data-value]:not([data-value="all"])',
+      )
       .first();
 
     const paramValue = await resourceOption.getAttribute("data-value");
@@ -114,7 +126,7 @@ test.describe("Engage filters", () => {
     await expect(toggle.locator("span")).toHaveText(labelText.trim());
   });
 
-  test("resets page param when a filter is changed", async ({ page }) => {
+  test("resets page param when a filter is applied", async ({ page }) => {
     await page.goto("/engage?page=3");
     await acceptCookiePolicy(page);
 
@@ -124,10 +136,16 @@ test.describe("Engage filters", () => {
     await toggle.click();
 
     const option = page
-      .locator('#engage-resource-menu .p-contextual-menu__link[data-value]')
-      .filter({ hasNot: page.locator('[data-value="all"]') })
+      .locator(
+        '#engage-resource-menu .p-contextual-menu__link[data-value]:not([data-value="all"])',
+      )
       .first();
     await option.click();
+
+    // Selection should not navigate until the Apply button is clicked.
+    expect(new URL(page.url()).searchParams.get("page")).toBe("3");
+
+    await page.locator(".js-engage-filters-submit").click();
 
     await page.waitForURL((url) => !url.searchParams.has("page"));
     expect(new URL(page.url()).searchParams.has("page")).toBe(false);
@@ -159,7 +177,9 @@ test.describe("Engage tag filters", () => {
     const firstCheckbox = page
       .locator("#engage-tag-menu .p-engage-menu__checkbox")
       .first();
-    await firstCheckbox.check();
+    // The visible checkbox is the label; clicking it toggles the hidden input.
+    await firstCheckbox.locator("~ .p-checkbox__label").click();
+    await expect(firstCheckbox).toBeChecked();
 
     const badge = tagToggle.locator(".p-engage-menu__count");
     await expect(badge).toBeVisible();
@@ -183,7 +203,9 @@ test.describe("Engage tag filters", () => {
     const firstCheckbox = page
       .locator("#engage-tag-menu .p-engage-menu__checkbox")
       .first();
-    await firstCheckbox.check();
+    // The visible checkbox is the label; clicking it toggles the hidden input.
+    await firstCheckbox.locator("~ .p-checkbox__label").click();
+    await expect(firstCheckbox).toBeChecked();
 
     const labelText = firstCheckbox
       .locator("~ .p-checkbox__label .p-engage-menu__label-text")
@@ -251,6 +273,7 @@ test.describe("Engage tag filters", () => {
     await page
       .locator("#engage-tag-menu .p-engage-menu__checkbox")
       .first()
+      .locator("~ .p-checkbox__label")
       .click();
 
     await expect(
