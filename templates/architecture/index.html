@@ -350,11 +350,13 @@
     "type": "cta",
     "item": {
     "type": "html",
-    "content": "If you have anything else we can help with, please <a href=\"/contact-us#get-in-touch\">contact us.</a>"
+    "content": "If you have anything else we can help with, please <a class=\"js-invoke-modal\" href=\"/contact-us#get-in-touch\">contact us.</a>"
     }
     }
     ]
     ) -%}
   {% endcall -%}
+
+  {{ load_form("/contact-us") | safe }}
 
 {% endblock content %}
