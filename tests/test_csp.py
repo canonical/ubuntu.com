@@ -4,6 +4,7 @@ from unittest.mock import patch
 from webapp.app import app
 from webapp.constants import (
     CSP,
+    CSP_REPORT_IGNORED_HOSTS,
     CSP_REPORT_MAX_BYTES,
     CSP_REPORT_ONLY,
     CSP_REPORT_PATH,
@@ -163,6 +164,41 @@ class TestCSPReportEndpoint(unittest.TestCase):
             CSP_REPORT_PATH, json=report, base_url="https://localhost"
         )
         self.assertEqual(response.status_code, 413)
+
+    @patch("webapp.handlers._forward_csp_violation")
+    def test_data_blocked_uri_is_dropped(self, forward_mock):
+        report = {
+            "csp-report": {
+                **self.valid_report["csp-report"],
+                "violated-directive": "font-src",
+                "blocked-uri": "data:font/woff2;base64,abc123",
+            }
+        }
+        response = self.client.post(
+            CSP_REPORT_PATH, json=report, base_url="https://localhost"
+        )
+        self.assertEqual(response.status_code, 204)
+        forward_mock.assert_not_called()
+
+    @patch("webapp.handlers._forward_csp_violation")
+    def test_data_scheme_token_blocked_uri_is_dropped(self, forward_mock):
+        report = {
+            "csp-report": {
+                **self.valid_report["csp-report"],
+                "violated-directive": "font-src",
+                "blocked-uri": "data",
+            }
+        }
+        response = self.client.post(
+            CSP_REPORT_PATH, json=report, base_url="https://localhost"
+        )
+        self.assertEqual(response.status_code, 204)
+        forward_mock.assert_not_called()
+
+
+class TestCSPReportIgnoredHosts(unittest.TestCase):
+    def test_data_in_ignored_hosts(self):
+        self.assertIn("data", CSP_REPORT_IGNORED_HOSTS)
 
 
 if __name__ == "__main__":
