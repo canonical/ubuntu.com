@@ -1,0 +1,103 @@
+#!/bin/bash
+
+show_usage() {
+  cat << EOF
+Usage: $0 <command> [options] [files...]
+
+Commands:
+  lint      Lint HTML files
+  format    Format HTML files
+
+Options:
+  --cached      Use staged files from git
+  --committed   Use files from last commit
+  
+If no options are provided, uses unstaged and staged changes.
+If files are provided as arguments, lints/formats those specific files.
+
+Examples:
+  $0 lint
+  $0 lint --cached
+  $0 lint --committed
+  $0 lint templates/file1.html templates/file2.html
+  $0 format --cached
+EOF
+}
+
+lint_html() {
+  local diff_option=$1
+  shift
+  
+  # If files are passed as arguments, use them directly
+  if [ $# -gt 0 ]; then
+    CHANGED_FILES="$@"
+  elif [ "$diff_option" == "--cached" ]; then
+    CHANGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
+  elif [ "$diff_option" == "--committed" ]; then
+    CHANGED_FILES=$(git diff HEAD~1 --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
+  elif [ -n "$diff_option" ] && [ "$diff_option" != "--cached" ] && [ "$diff_option" != "--committed" ]; then
+    echo "Error: Unknown option '$diff_option'"
+    show_usage
+    exit 1
+  else
+    CHANGED_FILES=$(git diff --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
+    STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
+    CHANGED_FILES=$(echo -e "$CHANGED_FILES\n$STAGED_FILES" | sort -u)
+  fi
+
+  if [ -n "$CHANGED_FILES" ]; then
+    printf "Linting HTML files: \n$CHANGED_FILES\n"
+    djlint $CHANGED_FILES --lint --profile=jinja
+  else
+    printf "No HTML files to lint\n"
+  fi
+}
+
+format_html() {
+  local diff_option=$1
+  shift
+  
+  # If files are passed as arguments, use them directly
+  if [ $# -gt 0 ]; then
+    CHANGED_FILES="$@"
+  elif [ "$diff_option" == "--cached" ]; then
+    CHANGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
+  elif [ "$diff_option" == "--committed" ]; then
+    CHANGED_FILES=$(git diff HEAD~1 --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
+  elif [ -n "$diff_option" ] && [ "$diff_option" != "--cached" ] && [ "$diff_option" != "--committed" ]; then
+    echo "Error: Unknown option '$diff_option'"
+    show_usage
+    exit 1
+  else
+    CHANGED_FILES=$(git diff --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
+    STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
+    CHANGED_FILES=$(echo -e "$CHANGED_FILES\n$STAGED_FILES" | sort -u)
+  fi
+
+  if [ -n "$CHANGED_FILES" ]; then
+    printf "Formatting HTML files: \n$CHANGED_FILES\n"
+    djlint $CHANGED_FILES --reformat --profile=jinja
+  else
+    printf "No HTML files to format\n"
+  fi
+}
+
+case "$1" in
+  lint)
+    shift
+    lint_html "$@"
+    ;;
+  format)
+    shift
+    format_html "$@"
+    ;;
+  -h|--help|help)
+    show_usage
+    exit 0
+    ;;
+  *)
+    echo "Error: Unknown command '$1'"
+    show_usage
+    exit 1
+    ;;
+esac
