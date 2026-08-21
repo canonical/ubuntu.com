@@ -449,7 +449,7 @@ CSP_REPORT_ONLY = _build_csp_report_only(CSP)
 # Hosts already triaged as noise get added here so their reports are
 # dropped outright rather than forwarded to Sentry. Starts empty: we have
 # no real violation traffic yet to triage against.
-CSP_REPORT_IGNORED_HOSTS = frozenset()
+CSP_REPORT_IGNORED_HOSTS = frozenset({"data"})
 
 # Forward at most one Sentry event per unique violation signature per window.
 CSP_REPORT_DEDUP_WINDOW = 3600  # seconds (1 hour)
