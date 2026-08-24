@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - charming-fixes # remove before merging to main
 
 concurrency: 
   group: ubuntu-com-deploy
