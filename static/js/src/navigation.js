@@ -27,10 +27,47 @@ nav.classList.remove("u-hide");
 document.addEventListener("DOMContentLoaded", () => {
   setUpGlobalNav();
   wireDropdownFetchTriggers();
+  setupSecondaryNavDropdowns();
 });
 window.addEventListener("load", () => {
   handleUrlHash();
 });
+
+// Opens or closes a single secondary-nav dropdown toggle.
+function toggleSecondaryNavDropdown(toggle, open) {
+  const dropdown = document.getElementById(
+    toggle.getAttribute("aria-controls"),
+  );
+  dropdown?.setAttribute("aria-hidden", !open);
+  toggle.setAttribute("aria-expanded", open);
+  toggleIsActiveState(toggle.parentNode, open);
+}
+
+// Wires inline dropdowns inside the secondary navigation bar.
+function setupSecondaryNavDropdowns() {
+  const toggles = [].slice.call(
+    secondaryNav?.querySelectorAll(
+      ".p-navigation__item--dropdown-toggle [aria-controls]",
+    ) ?? [],
+  );
+
+  // Close all secondary dropdowns when the user clicks outside the secondary nav.
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".p-navigation.is-secondary")) {
+      toggles.forEach((toggle) => toggleSecondaryNavDropdown(toggle, false));
+    }
+  });
+
+  toggles.forEach((toggle) => {
+    toggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      const shouldOpen = !toggle.parentNode.classList.contains("is-active");
+      // Close siblings before opening the clicked one.
+      toggles.forEach((t) => toggleSecondaryNavDropdown(t, false));
+      toggleSecondaryNavDropdown(toggle, shouldOpen);
+    });
+  });
+}
 
 //Helper functions
 
