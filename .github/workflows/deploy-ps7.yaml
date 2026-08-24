@@ -3,7 +3,7 @@ name: Deploy to PS7
 run-name: Deploy ${{ inputs.commit || inputs.branch || github.ref_name }} (ps7)
 
 # Deployment to ProdStack 7.
-# - Push to main / charming-fixes: auto-deploys to staging, then production.
+# - Push to main / WD-38425-set-up-continuous-deployment-for-ubuntu-com-on-ps-7: auto-deploys to staging, then production.
 # - Manual dispatch: choose branch, commit and environment (staging, production, both).
 # Builds the requested commit once (via pack.yaml) and deploys the same image
 # to each environment using JAAS OAuth credentials.
@@ -12,7 +12,7 @@ on:
   push:
     branches:
       - main
-      - charming-fixes
+      - WD-38425-set-up-continuous-deployment-for-ubuntu-com-on-ps-7 # remove after testing
   workflow_dispatch:
     inputs:
       branch:
