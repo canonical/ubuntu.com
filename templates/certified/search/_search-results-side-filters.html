@@ -1,3 +1,5 @@
+{# filter_limit mirrors filterLimit in certified-search-results.js #}
+{% set filter_limit = 5 %}
 <h2 class="p-muted-heading">Filters</h2>
 <a href="#drawer"
    class="p-side-navigation__toggle js-drawer-toggle"
@@ -39,9 +41,21 @@
                    id="tab2-section"
                    aria-hidden="false"
                    aria-labelledby="tab2">
+            {% if vendor_filters and vendor_filters.data %}
+              {% for make in vendor_filters.data %}
+                <label class="p-checkbox">
+                  <input type="checkbox"
+                         name="vendor"
+                         class="p-checkbox__input"
+                         value="{{ make }}"
+                         {% if make in request.args.getlist("vendor") %}checked{% endif %} />
+                  <span class="p-checkbox__label" id="{{ make|replace(' ', '-') }}">{{ make }}</span>
+                </label>
+              {% endfor %}
+            {% endif %}
           </section>
           <div class="js-show-expanded-vendor-filter-options">
-            <button class="p-button--link js-vendor-count p-reveal-vendors is-dense js-show-all-vendors"
+            <button class="p-button--link js-vendor-count p-reveal-vendors is-dense js-show-all-vendors{% if vendor_filters and vendor_filters.total <= filter_limit %} u-hide{% endif %}"
                     name="vendor"
                     value="true">Show all vendors</button>
             <button class="p-button--link p-reveal-vendors is-dense js-show-less-vendors u-hide"
@@ -63,9 +77,21 @@
                    id="tab3-section"
                    aria-hidden="false"
                    aria-labelledby="tab3">
+            {% if release_filters and release_filters.data %}
+              {% for version in release_filters.data %}
+                <label class="p-checkbox">
+                  <input type="checkbox"
+                         name="release"
+                         class="p-checkbox__input"
+                         value="{{ version }}"
+                         {% if version in request.args.getlist("release") %}checked{% endif %} />
+                  <span class="p-checkbox__label" id="{{ version|replace(' ', '-') }}">{{ version }}</span>
+                </label>
+              {% endfor %}
+            {% endif %}
           </section>
           <div class="js-show-expanded-release-filter-options">
-            <button class="p-button--link p-reveal-versions is-dense js-show-all-releases"
+            <button class="p-button--link p-reveal-versions is-dense js-show-all-releases{% if release_filters and release_filters.total <= filter_limit %} u-hide{% endif %}"
                     name="release"
                     value="true">Show all versions</button>
             <button class="p-button--link p-reveal-versions is-dense js-show-less-releases u-hide"

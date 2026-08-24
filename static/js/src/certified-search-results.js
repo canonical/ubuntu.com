@@ -38,10 +38,21 @@ let filterLimit = 5;
 
 let filterNavigateTimer = null;
 
+// certified_home() falls back to the certified homepage when a request has
+// neither `q` nor `category`. Keep an empty `q` so filter changes never
+// bounce the user off the search results view.
+function searchResultsUrl(href) {
+  const url = new URL(href);
+  if (!url.searchParams.has("q") && !url.searchParams.has("category")) {
+    url.searchParams.set("q", "");
+  }
+  return url.toString();
+}
+
 function scheduleFilterNavigation() {
   clearTimeout(filterNavigateTimer);
   filterNavigateTimer = setTimeout(() => {
-    window.location.assign(window.location.href);
+    window.location.assign(searchResultsUrl(window.location.href));
   }, 300);
 }
 
@@ -440,7 +451,7 @@ function hideDrawerPageReload() {
 function wireStaticFilterHandlers() {
   if (filters1Elm) {
     filters1Elm.querySelectorAll("input").forEach((input) => {
-      input.addEventListener("click", handleCategoryClick);
+      input.addEventListener("click", handleFilterClick);
     });
   }
 
@@ -460,7 +471,17 @@ function wireStaticFilterHandlers() {
   }
 }
 
-loadFilters();
+// Vendor/release options are now server-rendered; only fetch them if
+// they're missing, and bind clicks to the ones already on the page.
+if (filters2Elm.querySelector("input") || filters3Elm.querySelector("input")) {
+  [filters2Elm, filters3Elm].forEach((section) => {
+    section.querySelectorAll("input").forEach((input) => {
+      input.addEventListener("click", handleFilterClick);
+    });
+  });
+} else {
+  loadFilters();
+}
 updateResultsPerPage();
 hideDrawerPageReload();
 wireStaticFilterHandlers();
