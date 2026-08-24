@@ -1,0 +1,71 @@
+name: Deploy to PS6
+description: Deploy the ubuntu-com charm to a ProdStack 6 Juju model using Vault-issued credentials.
+
+inputs:
+  image-url:
+    description: "Full GHCR image URL to deploy as the flask-app-image resource"
+    required: true
+  app-name:
+    description: "Juju application name"
+    required: true
+  controller-name:
+    description: "Juju controller name"
+    required: true
+  model-name:
+    description: "Juju model name"
+    required: true
+  vault-role-id:
+    description: "Vault AppRole role id"
+    required: true
+  vault-secret-id:
+    description: "Vault AppRole secret id"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Install dependencies
+      shell: bash
+      run: |
+        sudo snap install juju --classic
+        sudo snap install vault --classic
+
+    - name: Download charm artifact
+      uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v4
+      with:
+        name: charm
+
+    - name: Configure Vault and Juju
+      shell: bash
+      env:
+        VAULT_ADDR: "https://vault.admin.canonical.com:8200"
+        VAULT_ROLE_ID: ${{ inputs.vault-role-id }}
+        VAULT_SECRET_ID: ${{ inputs.vault-secret-id }}
+        CONTROLLER_NAME: ${{ inputs.controller-name }}
+        MODEL_NAME: ${{ inputs.model-name }}
+      run: |
+        set -e
+        export VAULT_SECRET_PATH_ROLE=secret/prodstack6/roles/${MODEL_NAME}
+        export VAULT_SECRET_PATH_COMMON=secret/prodstack6/juju/common
+        export VAULT_TOKEN=$(vault write -f -field=token auth/approle/login role_id="$VAULT_ROLE_ID" secret_id="$VAULT_SECRET_ID")
+        mkdir -p ~/.local/share/juju
+        vault read -field=controller_config "${VAULT_SECRET_PATH_COMMON}/controllers/${CONTROLLER_NAME}" | base64 -d > ~/.local/share/juju/controllers.yaml
+        USERNAME=$(vault read -field=username "${VAULT_SECRET_PATH_ROLE}/juju")
+        PASSWORD=$(vault read -field=password "${VAULT_SECRET_PATH_ROLE}/juju")
+        printf "controllers:\n  %s:\n    user: %s\n    password: %s\n" "$CONTROLLER_NAME" "$USERNAME" "$PASSWORD" > ~/.local/share/juju/accounts.yaml
+
+    - name: Deploy charm
+      shell: bash
+      env:
+        JUJU_MODEL: admin/${{ inputs.model-name }}
+        APP_NAME: ${{ inputs.app-name }}
+        IMAGE_URL: ${{ inputs.image-url }}
+      run: |
+        set -e
+        CHARM_FILE=$(ls ./*.charm | head -1)
+        if juju status --relations | grep -q "^$APP_NAME\s"; then
+          juju refresh "$APP_NAME" --path "./$CHARM_FILE" --resource flask-app-image="$IMAGE_URL"
+        else
+          juju deploy "./$CHARM_FILE" "$APP_NAME" --resource flask-app-image="$IMAGE_URL"
+        fi
+        juju wait-for application "$APP_NAME" --query="name=='$APP_NAME' && (status=='active' || status=='idle')"

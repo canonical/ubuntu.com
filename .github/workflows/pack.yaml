@@ -1,0 +1,94 @@
+name: Pack
+
+# Reusable workflow: builds the rock + charm for a given git ref.
+# - The rock is pushed to GHCR tagged with the commit SHA (immutable,
+#   so every deployment is tracked by commit id).
+# - The charm is uploaded as a run artifact for the calling workflow to deploy.
+
+on:
+  workflow_call:
+    inputs:
+      ref:
+        description: "Git ref (branch, tag, or commit SHA) to build"
+        required: true
+        type: string
+    outputs:
+      image_url:
+        description: "Full GHCR image URL that was pushed"
+        value: ${{ jobs.pack-rock.outputs.image_url }}
+      sha:
+        description: "Short commit SHA that was built"
+        value: ${{ jobs.pack-rock.outputs.sha }}
+
+env:
+  CHARMCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS: true
+  ROCKCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS: true
+
+permissions: {}
+
+jobs:
+  pack-rock:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      image_url: ${{ steps.image.outputs.image_url }}
+      sha: ${{ steps.resolve.outputs.sha }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v4
+        with:
+          ref: ${{ inputs.ref }}
+          persist-credentials: false
+
+      - name: Resolve commit SHA
+        id: resolve
+        run: echo "sha=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Setup LXD
+        uses: canonical/setup-lxd@main
+
+      - name: Setup Rockcraft
+        run: sudo snap install rockcraft --classic --channel=latest/edge
+
+      - name: Pack rock
+        run: rockcraft pack -v
+
+      - name: Set image URL
+        id: image
+        run: echo "image_url=ghcr.io/${{ github.repository }}:${{ steps.resolve.outputs.sha }}" >> "$GITHUB_OUTPUT"
+
+      - name: Push rock to GHCR
+        run: |
+          skopeo --insecure-policy copy \
+            oci-archive:"$(ls ./*.rock)" \
+            docker://${{ steps.image.outputs.image_url }} \
+            --dest-creds "canonical:${{ secrets.GITHUB_TOKEN }}"
+
+  pack-charm:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v4
+        with:
+          ref: ${{ inputs.ref }}
+          persist-credentials: false
+
+      - name: Setup LXD
+        uses: canonical/setup-lxd@main
+
+      - name: Setup Charmcraft
+        run: sudo snap install charmcraft --classic --channel=latest/edge
+
+      - name: Pack charm
+        run: charmcraft pack -v --project-dir ./charm
+
+      - name: Upload charm artifact
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v4
+        with:
+          name: charm
+          path: ./charm/*.charm
+          if-no-files-found: error

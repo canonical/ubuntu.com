@@ -1,0 +1,91 @@
+name: Deploy to PS7
+description: Deploy the ubuntu-com charm to a ProdStack 7 Juju model using JAAS OAuth credentials.
+
+inputs:
+  image-url:
+    description: "Full GHCR image URL to deploy as the flask-app-image resource"
+    required: true
+  app-name:
+    description: "Juju application name"
+    required: true
+  controller-name:
+    description: "Juju controller name"
+    required: true
+  controller-address:
+    description: "Juju controller address for juju login"
+    required: true
+  model-name:
+    description: "Juju model short name"
+    required: true
+  juju-version:
+    description: "Juju snap channel"
+    required: false
+    default: "3/stable"
+  juju-client-id:
+    description: "JAAS OAuth client id"
+    required: true
+  juju-client-secret:
+    description: "JAAS OAuth client secret"
+    required: true
+  ghcr-username:
+    description: "GHCR read username for the private image resource"
+    required: true
+  ghcr-token:
+    description: "GHCR read token for the private image resource"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Install Juju
+      shell: bash
+      run: sudo snap install juju --channel="${{ inputs.juju-version }}"
+
+    - name: Download charm artifact
+      uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v4
+      with:
+        name: charm
+
+    - name: Authenticate with JAAS
+      shell: bash
+      env:
+        JUJU_CLIENT_ID: ${{ inputs.juju-client-id }}
+        JUJU_CLIENT_SECRET: ${{ inputs.juju-client-secret }}
+        JUJU_CONTROLLER_ADDRESS: ${{ inputs.controller-address }}
+        JUJU_CONTROLLER_NAME: ${{ inputs.controller-name }}
+      run: juju login "$JUJU_CONTROLLER_ADDRESS" -c "$JUJU_CONTROLLER_NAME"
+
+    - name: Switch to model
+      shell: bash
+      env:
+        JUJU_CONTROLLER_NAME: ${{ inputs.controller-name }}
+        JUJU_MODEL_NAME: ${{ inputs.model-name }}
+      run: |
+        FULL_MODEL=$(juju models -c "$JUJU_CONTROLLER_NAME" --format json | \
+          jq -r --arg model "$JUJU_MODEL_NAME" '.models[] | select(.["short-name"] == $model) | .name')
+        juju switch "$JUJU_CONTROLLER_NAME:${FULL_MODEL}"
+
+    - name: Deploy charm
+      shell: bash
+      env:
+        APP_NAME: ${{ inputs.app-name }}
+        IMAGE_URL: ${{ inputs.image-url }}
+        GHCR_READ_USERNAME: ${{ inputs.ghcr-username }}
+        GHCR_READ_TOKEN: ${{ inputs.ghcr-token }}
+      run: |
+        set -e
+        CHARM_FILE=$(ls ./*.charm | head -1)
+        RESOURCE_NAME=flask-app-image
+        umask 077
+        trap 'rm -f ./image_metadata.json' EXIT
+        jq -n \
+          --arg image "$IMAGE_URL" \
+          --arg user "$GHCR_READ_USERNAME" \
+          --arg pass "$GHCR_READ_TOKEN" \
+          '{"ImageName": $image, "username": $user, "password": $pass}' > ./image_metadata.json
+        if juju show-application "$APP_NAME" &>/dev/null; then
+          juju refresh "$APP_NAME" --path="./$CHARM_FILE" --resource "$RESOURCE_NAME=./image_metadata.json"
+        else
+          juju deploy "./$CHARM_FILE" "$APP_NAME" --resource "$RESOURCE_NAME=./image_metadata.json"
+        fi
+        juju wait-for application "$APP_NAME" --query="name=='$APP_NAME' && (status=='active' || status=='idle')"
