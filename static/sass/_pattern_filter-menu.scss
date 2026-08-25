@@ -2,7 +2,7 @@
 // Renders single-select and multi-select dropdown filters. See
 // templates/macros/_filter-menu.jinja and static/js/src/filter-menu.js.
 @mixin ubuntu-p-filter-menu {
-  .p-filter-menu-form {
+  .p-filter-menu {
     > * {
       margin-right: $spv--small;
     }
@@ -101,6 +101,12 @@
 
     .p-contextual-menu__indicator {
       align-self: center;
+    }
+
+    .p-filter-menu__submit,
+    .p-filter-menu__clear {
+      padding-bottom: calc($spv--x-small - $input-border-thickness);
+      padding-top: calc($spv--x-small - $input-border-thickness);
     }
   }
 }

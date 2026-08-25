@@ -14,7 +14,7 @@
 {% macro single_select_menu(param_key, default_label, options, menu_id=None) %}
   {% set menu_id = menu_id or param_key ~ "-menu" %}
   <div class="p-form__group p-form__control">
-    <span class="p-contextual-menu--left p-filter-menu p-filter-menu--{{ param_key }}">
+    <span class="p-contextual-menu--left p-filter-menu__item p-filter-menu__item--{{ param_key }}">
       <button type="button"
               class="p-contextual-menu__toggle p-filter-menu__toggle has-icon"
               aria-controls="{{ menu_id }}"
@@ -52,7 +52,7 @@
   {% set selected_options = options | selectattr("value", "in", selected) | list %}
   {% set unselected_options = options | rejectattr("value", "in", selected) | list %}
   <div class="p-form__group p-form__control">
-    <span class="p-contextual-menu--left p-filter-menu p-filter-menu--{{ param_key }}">
+    <span class="p-contextual-menu--left p-filter-menu__item p-filter-menu__item--{{ param_key }}">
       <button type="button"
               class="p-contextual-menu__toggle p-filter-menu__toggle p-filter-menu__toggle--multi has-icon"
               aria-controls="{{ menu_id }}"
@@ -102,7 +102,7 @@
 # label: button text (default: "Apply filters")
 {% macro filter_submit(label="Apply filters") %}
   <div class="p-form__group">
-    <button type="button" class="p-button--positive is-dense" data-filter-submit>{{ label }}</button>
+    <button type="button" class="p-button--positive p-filter-menu__submit" data-filter-submit>{{ label }}</button>
   </div>
 {% endmacro %}
 
@@ -111,6 +111,6 @@
 # Hidden by default; shown by JS when there is an active selection.
 {% macro filter_clear(label="Clear filters") %}
   <div class="p-form__group">
-    <button type="button" class="p-button--link u-hide" data-filter-clear>{{ label }}</button>
+    <button type="button" class="p-button--link p-filter-menu__clear u-hide" data-filter-clear>{{ label }}</button>
   </div>
 {% endmacro %}
