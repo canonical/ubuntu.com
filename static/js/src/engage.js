@@ -276,6 +276,36 @@ function menuIdFor(paramKey) {
     }
   }
 
+  // A query is considered "submitted" when the URL already carries filters.
+  function hasSubmittedQuery() {
+    const params = new URL(window.location).searchParams;
+    return (
+      SINGLE_SELECT_PARAMS.some((paramKey) => params.has(paramKey)) ||
+      params.has(QUERY_KEYS.tag)
+    );
+  }
+
+  function clearSelections() {
+    SINGLE_SELECT_PARAMS.forEach((paramKey) => {
+      const toggle = document.querySelector(
+        `[aria-controls="${menuIdFor(paramKey)}"]`,
+      );
+      if (!toggle) {
+        return;
+      }
+      delete toggle.dataset.selectedValue;
+      const label = toggle.querySelector("span");
+      if (label && toggle.dataset.defaultLabel !== undefined) {
+        label.textContent = toggle.dataset.defaultLabel;
+      }
+      toggle.classList.remove("is-active");
+    });
+
+    setAllTagCheckboxes(false);
+    updateTagsVisualState();
+    updateClearFiltersVisibility();
+  }
+
   function hasActiveSelections() {
     const singleSelected = SINGLE_SELECT_PARAMS.some((paramKey) => {
       const toggle = document.querySelector(
@@ -345,6 +375,12 @@ function menuIdFor(paramKey) {
 
     clearButton.addEventListener("click", (e) => {
       e.preventDefault();
+
+      if (!hasSubmittedQuery()) {
+        clearSelections();
+        return;
+      }
+
       clearButton.disabled = true;
 
       const submitButton = document.querySelector(SELECTORS.submitButton);
