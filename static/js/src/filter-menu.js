@@ -127,7 +127,7 @@ function setupFilterBar(bar) {
     const count = toggle.querySelector(HOOKS.count);
     if (count) {
       count.textContent = String(checked.length);
-      count.style.display = checked.length === 0 ? "none" : "";
+      count.hidden = checked.length === 0;
     }
     toggle.classList.toggle("is-active", checked.length > 0);
   }
@@ -141,7 +141,9 @@ function setupFilterBar(bar) {
     if (!menu) {
       return;
     }
-    const option = menu.querySelector(`[data-value="${value}"]`);
+    const option = Array.from(menu.querySelectorAll(HOOKS.option)).find(
+      (candidate) => candidate.dataset.value === value,
+    );
     if (!option) {
       return;
     }
