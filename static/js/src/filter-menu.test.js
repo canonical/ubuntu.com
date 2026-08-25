@@ -147,12 +147,12 @@ describe("filter-menu on load", () => {
         bar({ id: "bar-b", menus: [multiMenu(TAG_MENU)] }),
     );
 
-    expect(
-      document.getElementById("bar-a").classList.contains("u-hide"),
-    ).toBe(false);
-    expect(
-      document.getElementById("bar-b").classList.contains("u-hide"),
-    ).toBe(false);
+    expect(document.getElementById("bar-a").classList.contains("u-hide")).toBe(
+      false,
+    );
+    expect(document.getElementById("bar-b").classList.contains("u-hide")).toBe(
+      false,
+    );
   });
 });
 

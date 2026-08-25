@@ -240,7 +240,10 @@ function setupFilterBar(bar) {
   }
 
   function submitFilters() {
-    navigateWithFilters(collectSingleUpdates(false), collectMultiUpdates(false));
+    navigateWithFilters(
+      collectSingleUpdates(false),
+      collectMultiUpdates(false),
+    );
   }
 
   function clearSelections() {
@@ -352,7 +355,10 @@ function setupFilterBar(bar) {
       if (submitButton) {
         setButtonLoading(submitButton);
       }
-      navigateWithFilters(collectSingleUpdates(true), collectMultiUpdates(true));
+      navigateWithFilters(
+        collectSingleUpdates(true),
+        collectMultiUpdates(true),
+      );
     });
   }
 
