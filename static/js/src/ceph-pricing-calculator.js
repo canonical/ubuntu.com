@@ -227,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const publicCloudCost =
       (50 * 1024 * 0.023 +
         450 * 1024 * 0.022 +
-        (selectedStorage * 1024 * 1024 - 500) * 0.021) *
+        (((selectedStorage * 1024)-500) * 1024) * 0.021) *
       selectedMonths;
 
     function formatCurrency(value) {
