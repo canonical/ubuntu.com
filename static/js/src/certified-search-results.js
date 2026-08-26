@@ -51,23 +51,11 @@ function loadFilters() {
 function retrieveSelectedFilters() {
   const url = new URL(window.location.href);
   const urlParams = new URLSearchParams(url.search);
-  const path = window.location.pathname;
-  const pathCategory = path.replace("/certified/", "");
 
-  let selectedCategories = [];
-  let selectedVendors = urlParams.getAll("vendor");
-  let selectedReleases = urlParams.getAll("release");
-
-  if (pathCategory !== "/certified") {
-    selectedCategories = urlParams.getAll("category");
-    selectedCategories.push(pathCategory);
-  } else {
-    selectedCategories = urlParams.getAll("category");
-  }
   return {
-    category: selectedCategories,
-    vendor: selectedVendors,
-    release: selectedReleases,
+    category: urlParams.getAll("category"),
+    vendor: urlParams.getAll("vendor"),
+    release: urlParams.getAll("release"),
   };
 }
 
@@ -256,22 +244,16 @@ async function handleCategoryClick(e) {
 }
 
 function handleFilterClick(e) {
-  const { value, name, checked, dataset, id } = e.target;
+  const { value, name, checked, dataset } = e.target;
   let url = new URL(window.location.href);
   let urlParams = url.searchParams;
   const vendorParams = urlParams.getAll("vendor");
   const releasesParams = urlParams.getAll("release");
   const categoryParams = urlParams.getAll("category");
-  const pathCategory = window.location.pathname.replace("/certified/", "");
 
   if (name === "category") {
-    if (categoryParams.includes(value) || pathCategory === id) {
+    if (categoryParams.includes(value)) {
       urlParams.delete(name);
-      // Only category pages
-      if (pathCategory === id) {
-        const newURL = `/certified?${urlParams.toString()}`;
-        window.history.pushState({ path: newURL }, "", newURL);
-      }
       // Append back deleted params
       // If multiple selected
       if (categoryParams.length > 1) {

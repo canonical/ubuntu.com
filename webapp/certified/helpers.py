@@ -114,3 +114,32 @@ def _get_category_pathname(form_factor):
         return "socs"
     else:
         return form_factor.lower() + "s"
+
+
+def _normalize_categories(categories):
+    """
+    Map legacy category aliases (old pathname slugs, UX-only labels)
+    to the certification API's own category vocabulary.
+    """
+    aliases = {
+        "laptop": "Laptop",
+        "laptops": "Laptop",
+        "desktop": "Desktop",
+        "desktops": "Desktop",
+        "server": "Server",
+        "servers": "Server",
+        "soc": "Server SoC",
+        "socs": "Server SoC",
+        "server soc": "Server SoC",
+        "device": "Ubuntu Core",
+        "iot": "Ubuntu Core",
+        "ubuntu core": "Ubuntu Core",
+    }
+
+    normalized = []
+    for category in categories:
+        value = aliases.get(category.lower(), category)
+        if value not in normalized:
+            normalized.append(value)
+
+    return normalized

@@ -30,9 +30,21 @@ class TestCertification(VCRTestCase):
         response = self.client.get("/certified")
         self.assertEqual(response.status_code, 200)
 
-    def test_search_results(self):
+    def test_search_redirect(self):
         response = self.client.get(
             "/certified?q=xps&category=Laptop&category=Desktop&vendor=Dell"
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(
+            response.headers.get("Location"),
+            "/certified/search"
+            "?q=xps&category=Laptop&category=Desktop&vendor=Dell",
+        )
+
+    def test_search_results(self):
+        response = self.client.get(
+            "/certified/search"
+            "?q=xps&category=Laptop&category=Desktop&vendor=Dell"
         )
         self.assertEqual(response.status_code, 200)
 
@@ -52,8 +64,15 @@ class TestCertification(VCRTestCase):
         response = self.client.get("/certified/platforms/14169")
         self.assertEqual(response.status_code, 200)
 
-    def test_vendor_pages(self):
+    def test_vendor_redirect(self):
         response = self.client.get("/certified/vendors/HP")
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(
+            response.headers.get("Location"), "/certified/search?vendor=HP"
+        )
+
+    def test_vendor_pages(self):
+        response = self.client.get("/certified/search?vendor=HP")
         self.assertEqual(response.status_code, 200)
 
     def test_filters_json(self):

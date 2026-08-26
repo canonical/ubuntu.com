@@ -119,6 +119,48 @@ interactions:
       User-Agent:
       - python-requests/2.28.2
     method: GET
+    uri: https://certification.canonical.com/api/v2/certified-vendors/?format=json&limit=0&pagination=limitoffset
+  response:
+    body:
+      string: '{"count":52,"next":null,"previous":null,"results":[{"make":"Dell","desktops":164,"laptops":507,"servers":15,"soc":0,"smart_core":14,"total":716},{"make":"Lenovo","desktops":171,"laptops":275,"servers":123,"soc":0,"smart_core":5,"total":575},{"make":"HP","desktops":170,"laptops":222,"servers":2,"soc":0,"smart_core":0,"total":394}]}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '340'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 03 Sep 2024 15:26:46 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Vary:
+      - Accept, Cookie
+      X-QueryInspect-Duplicate-SQL-Queries:
+      - '0'
+      X-QueryInspect-Num-SQL-Queries:
+      - '2'
+      X-QueryInspect-Total-Request-Time:
+      - 108 ms
+      X-QueryInspect-Total-SQL-Time:
+      - 97 ms
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.2
+    method: GET
     uri: https://certification.canonical.com/api/v2/certified-configurations/?format=json&limit=20&offset=0&vendor=HP&pagination=limitoffset
   response:
     body:

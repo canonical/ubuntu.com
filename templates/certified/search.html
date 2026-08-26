@@ -1,0 +1,157 @@
+{% extends "templates/base.html" %}
+
+{% block title %}
+    {% if vendor_data %}
+        Certified {{ vendor }} hardware
+    {% elif hero_category == "Laptop" %}
+        Certified laptops
+    {% elif hero_category == "Desktop" %}
+        Certified desktops
+    {% elif hero_category == "Server" %}
+        Certified servers
+    {% elif hero_category == "Server SoC" %}
+        Certified SoCs
+    {% elif hero_category == "Ubuntu Core" %}
+        Certified devices
+    {% else %}
+        Search certified hardware
+    {% endif %}
+{% endblock %}
+
+{% block meta_description %}
+    {% if vendor_data %}
+        Hardware by {{ vendor }} that have been certified for use with Ubuntu.
+    {% elif hero_category == "Laptop" %}
+        Laptops that have been certified for use with Ubuntu.
+    {% elif hero_category == "Desktop" %}
+        Ubuntu certifies thousands of desktops to guarantee they work well with Ubuntu.
+    {% elif hero_category == "Server" %}
+        Servers that have been certified for use with Ubuntu.
+    {% elif hero_category == "Server SoC" %}
+        SoCs that have been certified for use with Ubuntu.
+    {% elif hero_category == "Ubuntu Core" %}
+        Devices that have been certified for use with Ubuntu.
+    {% else %}
+        Hardware that have been certified for use with Ubuntu.
+    {% endif %}
+{% endblock meta_description %}
+
+{% block body_class %}
+    is-paper
+{% endblock body_class %}
+
+{% block outer_content %}
+    <section class="p-section--deep">
+        <form class="js-search-results">
+            {% if vendor_data %}
+                <section class="p-section--hero">
+                    <div class="row--25-75">
+                        <div class="col u-hide--small">
+                            <img src="{{ vendor_data.logo }}" alt="{{ vendor }}" />
+                        </div>
+                        <div class="col">
+                            <div class="p-section--shallow">
+                                <h1>Ubuntu certified {{ vendor }} hardware</h1>
+                            </div>
+                            <div class="p-section--shallow">
+                                <p>{{ vendor_data.short_description }}</p>
+                            </div>
+                            <div class="p-cta-block">
+                                <a {% if vendor == 'Dell' %}href="https://www.dell.com/" {% else %}href="{{ vendor_data.partner_website }}" {% endif %}
+                                   target="blank"
+                                   class="p-button">Visit vendor website</a>
+                            </div>
+                            <div class="p-section--shallow">
+                                {% with query=query, placeholder="Search in all " + vendor + " certified devices" %}
+                                    {% include "/certified/search/_query-search-box.html" %}
+                                {% endwith %}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            {% elif hero_category %}
+                <section class="p-section--hero">
+                    <div class="row--25-75">
+                        <div class="col {% if hero_category not in ["Server", "Server SoC"] %}u-hide--small{% endif %}">
+                            {% with category=hero_category %}
+                                {% include "certified/shared/category-image.html" %}
+                            {% endwith %}
+                        </div>
+                        <div class="col">
+                            <div class="p-section--shallow">
+                                <h1>
+                                    {% if hero_category == "Laptop" %}
+                                        Ubuntu certified laptops
+                                    {% elif hero_category == "Desktop" %}
+                                        Ubuntu certified desktops
+                                    {% elif hero_category == "Server" %}
+                                        Ubuntu certified servers
+                                    {% elif hero_category == "Server SoC" %}
+                                        Ubuntu certified SoCs
+                                    {% elif hero_category == "Ubuntu Core" %}
+                                        Ubuntu certified IoT devices
+                                    {% endif %}
+                                </h1>
+                            </div>
+                            <div class="p-section--shallow">
+                                {% if hero_category == "Laptop" %}
+                                    <p>Many of the world's biggest PC manufacturers certify their laptops for Ubuntu.</p>
+                                {% elif hero_category == "Desktop" %}
+                                    <p>Many of the world's biggest PC manufacturers certify their desktops for Ubuntu.</p>
+                                {% elif hero_category == "Server" %}
+                                    <p>Using Ubuntu Server speeds up the ability to deploy physical infrastructure on bare metal as it is in the cloud.</p>
+                                    <p>Deploying on certified servers saves you time in choosing and testing what hardware you will use from a single server instance to the largest scale-out data-center environments.</p>
+                                {% elif hero_category == "Server SoC" %}
+                                    <p>Low-power small-footprint System on a Chip (SoC) hardware is redefining the future of sustainable data centers.</p>
+                                {% elif hero_category == "Ubuntu Core" %}
+                                    <p>IoT vendors rely on Ubuntu for their devices, from drones and robots to edge gateways and development boards. Ubuntu Core delivers bullet-proof security, reliable updates and access to a rich ecosystem on 32 and 64-bit ARM and X86 platforms.</p>
+                                {% endif %}
+                                {% with
+                                    query=query,
+                                    placeholder="Search in certified " + (
+                                    "laptops" if hero_category == "Laptop" else
+                                    "desktops" if hero_category == "Desktop" else
+                                    "servers" if hero_category == "Server" else
+                                    "SoCs" if hero_category == "Server SoC" else
+                                    "devices"
+                                    )
+                                    %}
+                                    {% include "/certified/search/_query-search-box.html" %}
+                                {% endwith %}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            {% else %}
+                <section class="p-section--hero">
+                    <div class="row">
+                        <div class="col-9 col-start-large-4 col-start-medium-3 col-medium-4">
+                            <div class="p-section--shallow">
+                                <h1>Search Ubuntu certified hardware</h1>
+                            </div>
+                            <div class="p-section--shallow">
+                                {% with query=query, placeholder=placeholder %}
+                                    {% include "/certified/search/_query-search-box.html" %}
+                                {% endwith %}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            {% endif %}
+            <hr class="p-rule is-fixed-width" />
+
+            {% with
+                total_results=total_results,
+                total_pages=total_pages,
+                offset=offset,
+                limit=limit,
+                vendor_filters=vendor_filters,
+                release_filters=release_filters,
+                results=results,
+                vendor_page="true" if vendor_data else False
+                %}
+                {% include "certified/search/_search-results-main-block.html" %}
+            {% endwith %}
+        </form>
+    </section>
+{% endblock %}

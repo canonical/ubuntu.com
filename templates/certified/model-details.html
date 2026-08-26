@@ -18,7 +18,7 @@
     <div class="row">
       <div class="col-9 col-medium-4 col-start-medium-3 col-start-large-4">
         <h1 class="p-muted-heading">
-          <a href="/certified/{{ category_pathname }}">{{ category_pathname }}</a> &rsaquo; <a href="/certified/platforms/{{ platform_id }}">{{ platform_name }}</a>
+          <a href="/certified/search?category={{ category | urlencode }}">{{ category_pathname }}</a> &rsaquo; <a href="/certified/platforms/{{ platform_id }}">{{ platform_name }}</a>
           &rsaquo; {{ name }}
         </h1>
       </div>
