@@ -36,6 +36,10 @@
       margin-right: $spv--small;
       min-width: 1.1rem;
       vertical-align: middle;
+
+      &[hidden] {
+        display: none;
+      }
     }
 
     .p-filter-menu__dropdown {

@@ -42,7 +42,7 @@
     <div class="grid-row">
       <div class="grid-col-2 u-hide--small u-hide--medium">
         {% if metadata["image"] != '' %}
-          <div class="p-image-container--3-2" style="max-height: 240px;">
+          <div class="p-image-container--3-2 p-engage-image-container{% if metadata.get('banner_class') == 'dark' %} p-engage-image-container--dark{% endif %}">
             <img class="p-image-container__image u-no-margin--top"
                  src="{{ metadata['image'] }}"
                  alt=""
