@@ -21,7 +21,7 @@
 {% endblock body_class %}
 
 {% block extra_metatags %}
-  <script type="module"
+  <script nonce="{{ csp_nonce }}" type="module"
           src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1.9.0/lite-youtube.min.js"
           integrity="sha384-krUlgvxdz2iSLnbpvxj8zLWWUCa3QxzwLbW3EXmbzXCoAQ+ANH1cWJYRMc/TErh+"
           crossorigin="anonymous"></script>
@@ -31,19 +31,36 @@
 
   {% call(slot) vf_hero(
     title_text='Enable DISA STIG compliance with Ubuntu Pro',
-    layout='50/50'
+    chip_text='Available with Ubuntu Pro',
+    layout='50/50',
+    blocks=[
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "text",
+          "content": '
+        Simplify and speed up STIG compliance to achieve ATO for your DOD workloads with Ubuntu Pro. Get access to the Ubuntu Security Guide (USG), an automation tool that hardens and audits systems at scale on-prem, on the cloud, and in air-gapped environments.'
+        }
+      },
+      {
+        "type": "cta-block",
+        "padding": "shallow",
+        "item": {
+          "primary": {
+            "content_html": "Contact us",
+            "attrs": {"href": "/security/contact-us", "class": "js-invoke-modal", "aria-controls": "security-standards-modal"}
+          },
+          "secondaries": [
+            {
+              "content_html": "Get Ubuntu Pro",
+              "attrs": {"href": "/pro"}
+            }
+          ]
+        }
+      },
+    ]
     ) -%}
-    {%- if slot == 'description' -%}
-      <p>
-        Simplify and speed up STIG compliance to achieve ATO for your DOD workloads with Ubuntu Pro. Get access to the Ubuntu Security Guide (USG), an automation tool that hardens and audits systems at scale on-prem, on the cloud, and in air-gapped environments.
-      </p>
-    {%- endif -%}
-    {%- if slot == 'cta' -%}
-      <a href="/security/contact-us"
-         class="p-button--positive js-invoke-modal"
-         aria-controls="security-standards-modal">Contact us</a>
-      <a href="/pro" class="p-button">Get Ubuntu Pro</a>
-    {%- endif -%}
     {%- if slot == 'image' -%}
       <div class="u-embedded-media">
         <lite-youtube videoid="dWJFBuEn6y4" width="560" height="315" posterquality="maxresdefault" videotitle="STIG hardening on Ubuntu 22.04 with Ubuntu Security Guide" class="u-embedded-media__element">
@@ -548,9 +565,9 @@
   {{ vf_blog(title={"text": "Latest from our blog"}, padding="deep",
     template_config={"enabled": True, "template_container_id": "disa-stig-articles"},) }}
 
-  <script type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
-  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-  <script>
+  <script nonce="{{ csp_nonce }}" type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script nonce="{{ csp_nonce }}">
     canonicalLatestNews.fetchLatestNews({
       imageClasses: ["p-image-container__image"],
       limit: "4",

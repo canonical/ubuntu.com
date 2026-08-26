@@ -22,11 +22,12 @@ dotenv: [".env.local", ".env"]
 # - test (aggregator: test-python + test-js)
 # - test-python
 # - test-js
-# - lint (aggregator: lint-scss + lint-js + lint-ts + lint-python + check-prettier)
+# - lint (aggregator: lint-scss + lint-js + lint-ts + lint-python + lint-llms + check-prettier)
 # - lint-scss
 # - lint-js
 # - lint-ts
 # - lint-python
+# - lint-llms
 # - check-prettier
 # - format
 # - build
@@ -109,6 +110,13 @@ tasks:
     cmds:
       - '{{if .MOUNT}}PYTHONPATH="{{ .MOUNT }}:$PYTHONPATH" {{end}}PATH="{{ .VENV_BIN }}:$PATH" yarn lint-python'
 
+  lint-llms:
+    desc: "Lint llms.txt"
+    deps:
+      - install
+    cmds:
+      - '{{if .MOUNT}}PYTHONPATH="{{ .MOUNT }}:$PYTHONPATH" {{end}}PATH="{{ .VENV_BIN }}:$PATH" yarn lint-llms'
+
   check-prettier:
     desc: "Check Prettier formatting"
     deps:
@@ -123,6 +131,7 @@ tasks:
       - task: lint-js
       - task: lint-ts
       - task: lint-python
+      - task: lint-llms
       - task: check-prettier
 
   format:

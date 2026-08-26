@@ -6,7 +6,10 @@
 <form action="/marketo/submit"
       method="post"
       id="mktoForm_5883"
-      onsubmit="stringifyCustomFields(); ga('send', 'Newsletter', 'Signup', '{{ ga_event_title }} newsletter signup');">
+      class="js-stringify-form"
+      data-ga-submit-category="Newsletter"
+      data-ga-submit-action="Signup"
+      data-ga-submit-label="{{ ga_event_title }} newsletter signup">
   <label class="is-required" for="email">Email:</label>
   <input required
          id="email"
@@ -104,7 +107,14 @@
     </div>
   </form>
 
-  <script>
+  <script nonce="{{ csp_nonce }}">
+    document.addEventListener("DOMContentLoaded", function () {
+      var stringifyForm = document.querySelector(".js-stringify-form");
+      if (stringifyForm) {
+        stringifyForm.addEventListener("submit", stringifyCustomFields);
+      }
+    });
+
     function stringifyCustomFields() {
       const checkboxes = document.querySelectorAll(".js-checkbox");
       const textarea = document.getElementById("ubuntu_desktop_usage");

@@ -33,9 +33,9 @@ let config = {
       extractors: [
         {
           extractor: (content) => {
-            const matches = content.match(/class=["']([^"']+)["']|class=([^\s>]+)|class:\s*{([^}]+)}/g) || [];
+            const matches = content.match(/class=["']([^"']+)["']|class=([^\s>]+)|class:\s*{([^}]+)}|["']class["']:\s*["']([^"']+)["']/g) || [];
             return matches.map(match => {
-              return match.replace(/class=["']|class=|class:\s*{|["'}]/g, '').split(/\s+/);
+              return match.replace(/class=["']|class=|class:\s*{|["']class["']:\s*|["'}]/g, '').split(/\s+/);
             }).flat();
           },
           extensions: ['html']

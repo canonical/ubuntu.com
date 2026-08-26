@@ -16,6 +16,20 @@
   https://docs.google.com/document/d/1vxLhtbjgPs9PCNEhr7fbhEoErCPMXYFfU4UTKH7Kbq4/edit
 {% endblock meta_copydoc %}
 
+{% block head_extra %}
+  <script type="application/ld+json" nonce="{{ csp_nonce }}">
+    {
+      "@context": "https://schema.org",
+      "@type": ["SoftwareApplication", "Product"],
+      "name": {{ products_yaml.server.name | tojson }},
+      "description": {{ products_yaml.server.description | tojson }},
+      "operatingSystem": {{ products_yaml.server.operatingSystem | tojson }},
+      "applicationCategory": {{ products_yaml.server.applicationCategory | tojson }},
+      "url": {{ products_yaml.server.url | tojson }}
+    }
+  </script>
+{% endblock %}
+
 {% block body_class %}
   is-paper
 {% endblock body_class %}
@@ -449,8 +463,8 @@
       </div>
     </div>
   </div>
-  <script src="https://assets.ubuntu.com/v1/6d64bd2f-d3.min.js"></script>
-  <script src="{{ versioned_static('js/dist/release-chart-manager.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="https://assets.ubuntu.com/v1/6d64bd2f-d3.min.js"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/release-chart-manager.js') }}"></script>
 
   <section class="p-section">
     <div class="row--50-50">
@@ -710,6 +724,6 @@
     {% include "server/partial/_latest-blogs-server.html" %}
   {% endwith %}
 
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
   {{ load_form("/server") | safe }}
 {% endblock content %}

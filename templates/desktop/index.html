@@ -10,12 +10,26 @@
   https://docs.google.com/document/d/1ZhMkLlkXcimHTIe1taXy24vbbR9pBkZd49H2sJqeQH0/edit
 {% endblock meta_copydoc %}
 
+{% block head_extra %}
+  <script type="application/ld+json" nonce="{{ csp_nonce }}">
+    {
+      "@context": "https://schema.org",
+      "@type": ["SoftwareApplication", "Product"],
+      "name": {{ products_yaml.desktop.name | tojson }},
+      "description": {{ products_yaml.desktop.description | tojson }},
+      "operatingSystem": {{ products_yaml.desktop.operatingSystem | tojson }},
+      "applicationCategory": {{ products_yaml.desktop.applicationCategory | tojson }},
+      "url": {{ products_yaml.desktop.url | tojson }}
+    }
+  </script>
+{% endblock %}
+
 {% block body_class %}
   is-paper
 {% endblock body_class %}
 
 {% block extra_metatags %}
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1.9.0/lite-youtube.min.js"
+  <script nonce="{{ csp_nonce }}" type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1.9.0/lite-youtube.min.js"
           integrity="sha384-krUlgvxdz2iSLnbpvxj8zLWWUCa3QxzwLbW3EXmbzXCoAQ+ANH1cWJYRMc/TErh+"
           crossorigin="anonymous"></script>
 {% endblock extra_metatags %}
@@ -292,11 +306,21 @@
                             attrs={"class": "p-logo-section__logo"}) | safe
               }}
             </div>
-            <div class="p-logo-section__item u-no-margin--right">
+            <div class="p-logo-section__item">
               {{ image(url="https://assets.ubuntu.com/v1/3b24973b-lenovo-logo.png",
                             alt="Lenovo",
                             width="169",
                             height="256",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item is-wide u-no-margin--right">
+              {{ image(url="https://assets.ubuntu.com/v1/c77b39e1-framework_logo_black.png",
+                            alt="Framework",
+                            width="228",
+                            height="30",
                             hi_def=True,
                             loading="lazy",
                             attrs={"class": "p-logo-section__logo"}) | safe

@@ -3,7 +3,7 @@
 {% block title %}Ubuntu FIPS certifications | Security{% endblock %}
 
 {% block meta_description %}
-  Meet FIPS compliance with Ubuntu Pro. Get easy access to FIPS 140-2 and FIPS 140-3 certified modules on any cloud, on prem, and at the edge.
+  Meet FIPS compliance with Ubuntu Pro. Get easy access to FIPS 140-3 certified modules on any cloud, on prem, and at the edge.
 {% endblock %}
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
@@ -15,7 +15,7 @@
 {% endblock body_class %}
 
 {% block extra_metatags %}
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1.9.0/lite-youtube.min.js"
+  <script nonce="{{ csp_nonce }}" type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1.9.0/lite-youtube.min.js"
           integrity="sha384-krUlgvxdz2iSLnbpvxj8zLWWUCa3QxzwLbW3EXmbzXCoAQ+ANH1cWJYRMc/TErh+"
           crossorigin="anonymous"></script>
 {% endblock extra_metatags %}
@@ -27,19 +27,34 @@
 {% block content %}
   {% call(slot) vf_hero(
     title_text='Enable FIPS compliance with Ubuntu Pro',
-    layout='50/50'
+    chip_text='Available with Ubuntu Pro',
+    layout='50/50',
+    blocks=[
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "text",
+          "content": '
+        Get easy access to FIPS 140-3 certified modules, required by US federal standards. Run Ubuntu workloads in high-security environments on-prem, in the cloud, and at the edge. Enjoy 1-step access with an Ubuntu Pro subscription.'
+        }
+      },
+      {
+        "type": "cta-block",
+        "padding": "shallow",
+        "item": {
+          "primary": {
+            "content_html": "Contact us",
+            "attrs": {"href": "/security/contact-us", "class": "js-invoke-modal", "aria-controls": "security-standards-modal"}
+          },
+          "link": {
+            "content_html": "Access a 30-day free trial&nbsp;&rsaquo;",
+            "attrs": {"href": "/pro/free-trial"}
+          }
+        }
+      },
+    ]
     ) -%}
-    {%- if slot == 'description' -%}
-      <p>
-        Get easy access to FIPS 140-2 and FIPS 140-3 certified modules, required by US federal standards. Run Ubuntu workloads in high-security environments on-prem, in the cloud, and at the edge. Enjoy 1-step access with an Ubuntu Pro subscription.
-      </p>
-    {%- endif -%}
-    {%- if slot == 'cta' -%}
-      <a href="/security/contact-us"
-         class="p-button--positive js-invoke-modal"
-         aria-controls="security-standards-modal">Contact us</a>
-      <a href="/pro/free-trial" class="p-link">Access a 30-day free trial&nbsp;&rsaquo;</a>
-    {%- endif -%}
     {%- if slot == 'image' -%}
       <div class="u-embedded-media">
         <lite-youtube
@@ -152,7 +167,7 @@
             </div>
             <h3>Ubuntu Pro helps Lucid Software meet FedRAMP compliance for government contracts</h3>
             <p>
-              By deploying Ubuntu Pro, Lucid acquired AWS-compatible and FIPS 140-2 certified packages and became FedRAMP compliant.
+              By deploying Ubuntu Pro, Lucid acquired AWS-compatible and FIPS certified packages and became FedRAMP compliant.
             </p>
             <hr class="p-rule--muted" />
             <a href="https://canonical.com/case-study/lucid-aws-fedramp-compliance-case-study"
@@ -294,14 +309,14 @@
       <hr class="p-rule" />
       <div class="col">
         <h2>
-          What you need to know
+          What is going to happen to
           <br />
-          about FIPS 140-3
+          FIPS 140-2
         </h2>
       </div>
       <div class="col">
         <p>
-          FIPS 140-3 came into effect in 2020 and supersedes 140-2, which will be sunsetted in September 2026. From Ubuntu 22.04 onwards, we will enable compliance for FIPS 140-3. However, for previous Ubuntu LTS versions, certified for 140-2, it is acceptable to continue using them in existing installations. At Canonical, we are committed to continuing the security maintenance for those LTS versions for the lifetime of their support, with additional years offered with Ubuntu Pro. For more details, explore the release cycle details <a href="/about/release-cycle">here</a>.
+          FIPS 140-2 will be sunsetted in September 2026. From Ubuntu 22.04 LTS onwards, we have enabled compliance for FIPS 140-3. However, existing installations using FIPS 140-2, will still be supported and security maintained for the lifetime of those releases. The NIST CMVP guidelines suggest that it is acceptable to continue using sunset certificates for existing deployments. Any new systems must use valid FIPS 140-3 modules. Starting with Ubuntu 22.04 LTS, Canonical will maintain active FIPS 140-3 certificates for the lifetime of each release as long as the FIPS standard doesn’t change. For more details, explore the release cycle details <a href="/about/release-cycle">here</a>.
         </p>
       </div>
     </div>
@@ -483,7 +498,7 @@
           <a href="https://documentation.ubuntu.com/security/docs/compliance/fips/fips-overview/">Read the documentation about FIPS for Ubuntu</a>
         </p>
 
-        <hr class="p-rule--muted">
+        <hr class="p-rule--muted" />
 
         <p class="p-section--shallow">
           Ubuntu Pro provides an easy pathway to FIPS compliance in addition to vulnerability patching for Ubuntu OS and Applications. Get automated, unattended, and restartless security updates; and the best tools needed to securely manage your Ubuntu infrastructure, and simplify FIPS and FedRAMP compliance.
@@ -497,8 +512,8 @@
     </div>
   </section>
 
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
-  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
 
   {{ load_form("/security-standards", 6306) | safe }}
 

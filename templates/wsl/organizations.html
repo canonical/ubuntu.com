@@ -218,8 +218,8 @@
     padding="deep"
   ) }}
 
-  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-  <script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script nonce="{{ csp_nonce }}">
     canonicalLatestNews.fetchLatestNews({
       imageClasses: ["p-image-container__image"],
       /*

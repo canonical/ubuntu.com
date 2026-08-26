@@ -25,7 +25,6 @@ from webapp.security.helpers import (
     get_attention_banner,
 )
 
-
 markdown_parser = Markdown(
     hard_wrap=True, parse_block_html=True, parse_inline_html=True
 )
@@ -104,7 +103,7 @@ def notice(notice_id):
         ).strftime("%-d %B %Y")
 
     processed_instructions = notice["instructions"]
-    (attention_banner, instructions) = get_attention_banner(
+    attention_banner, instructions = get_attention_banner(
         processed_instructions
     )
     if attention_banner:

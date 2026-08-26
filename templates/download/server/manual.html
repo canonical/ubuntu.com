@@ -87,7 +87,7 @@
             <div class="col-3">
               <a class="p-button--positive"
                  href="/download/server/thank-you?version={{ releases_yaml.lts.full_version }}&amp;architecture=amd64&amp;lts=true"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases_yaml.lts.full_version }}', 'eventValue' : undefined });">Download
+                 data-ga-category="Server download" data-ga-action="Select option" data-ga-label="{{ releases_yaml.lts.full_version }}">Download
               </a>
               {% if releases_yaml.lts.server_iso_size %}
                 <span class="u-text--muted">{{ releases_yaml.lts.server_iso_size }}</span>
@@ -184,7 +184,7 @@
           <ol class="p-list--divided">
             <li class="p-list__item">Download the ISO image</li>
             <li class="p-list__item">
-              Create a bootable USB flash drive with <a href="https://documentation.ubuntu.com/desktop/en/latest/how-to/create-a-bootable-usb-stick/">an image writer</a>
+              Create a bootable USB flash drive with <a href="https://ubuntu.com/desktop/docs/en/latest/how-to/create-a-bootable-usb-stick/">an image writer</a>
             </li>
             <li class="p-list__item">Boot from the USB flash drive</li>
           </ol>
@@ -224,11 +224,11 @@
               <hr class="p-rule" />
               <a class="p-button"
                  href="/download/server/thank-you?version={{ releases_yaml.previous_lts.full_version }}&amp;architecture=amd64&amp;lts=true"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases_yaml.previous_lts.full_version }}', 'eventValue' : undefined });">Download {{ releases_yaml.previous_lts.full_version }} LTS
+                 data-ga-category="Server download" data-ga-action="Select option" data-ga-label="{{ releases_yaml.previous_lts.full_version }}">Download {{ releases_yaml.previous_lts.full_version }} LTS
               </a>
               <a class="p-button"
                  href="/download/server/thank-you?version={{ releases_yaml.previous_previous_lts.full_version }}&amp;architecture=amd64&amp;lts=true"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases_yaml.previous_previous_lts.full_version }}', 'eventValue' : undefined });">Download {{ releases_yaml.previous_previous_lts.full_version }} LTS
+                 data-ga-category="Server download" data-ga-action="Select option" data-ga-label="{{ releases_yaml.previous_previous_lts.full_version }}">Download {{ releases_yaml.previous_previous_lts.full_version }} LTS
               </a>
             </div>
           </div>
@@ -242,6 +242,19 @@
             <div class="col-6 col-medium-3">
               <p>
                 Other versions of Ubuntu Server, including torrents, the network installer, a list of local mirrors, and past releases.
+              </p>
+            </div>
+          </div>
+          <hr class="p-rule" />
+          <div class="row p-section--shallow">
+            <div class="col-3 col-medium-3">
+              <h4 class="p-heading--5">
+                <a href="/download/core">Ubuntu Core&nbsp;&rsaquo;</a>
+              </h4>
+            </div>
+            <div class="col-6 col-medium-3">
+              <p>
+                As an alternative, you may consider running your workloads encapsulated in containers (such as <a href="https://canonical.com/lxd">LXD</a>) inside <a href="/core">Ubuntu Core</a>, as a strictly confined and immutable Linux host OS.
               </p>
             </div>
           </div>
@@ -480,9 +493,9 @@
     </template>
   </section>
 
-  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
-  <script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script nonce="{{ csp_nonce }}">
     canonicalLatestNews.fetchLatestNews({
       articlesContainerSelector: "#ubuntu-server-latest",
       articleTemplateSelector: "#ubuntu-server-template",

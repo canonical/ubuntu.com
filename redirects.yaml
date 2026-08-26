@@ -377,9 +377,9 @@ containers/kubernetes/?: "/kubernetes"
 containers/lxd/?: "https://canonical.com/lxd"
 containers/chiselled/?: "/containers/chiseled"
 containers/chiselled/dotnet?: "/containers/chiseled/dotnet"
+containers/docs: "/containers/rockcraft/docs"
 core/services/guide(?P<path>.*)/?: "https://documentation.ubuntu.com/dedicated-snap-store/{path}"
 core/smartstart(?P<path>.*)/?: "/core/services{path}"
-core/docs(?P<path>.*)/?: "https://documentation.ubuntu.com/core{path}"
 credentialing/?: "/credentials"
 credentialling/(?P<path>.*)/?: "/credentials/{path}"
 credentialling/?: "/credentials"
@@ -710,7 +710,7 @@ kubeflow/contact-us/?: "/ai/contact-us"
 kubeflow/thank-you/?: "/ai/thank-you"
 kubuntu/simple/oneiric/desktop/kubuntu-11\.10-desktop-amd64\.iso\.torrent/?: "https://kubuntu.org/download/"
 kubernetes/docs/?: "/kubernetes/charmed-k8s/docs"
-kubernetes/docs/(?P<path>.*)/?: "/kubernetes/charmed-k8s/docs/{path}"
+kubernetes/docs/(?!(latest|(release-|v)\d+\.\d+)?(?:/|$))(?P<path>.*): "/kubernetes/charmed-k8s/docs/{path}"
 kubernetes/features/?: "/kubernetes/charmed-k8s"
 kubernetes/partners/?: "/kubernetes"
 kubernetes/cloud-native-kubernetes-usage-report-2021/?: "https://juju.is/cloud-native-kubernetes-usage-report-2021"
@@ -908,7 +908,6 @@ release-notes/precise-pangolin/?: "https://wiki.ubuntu.com/PrecisePangolin/Relea
 releases/?: "https://releases.ubuntu.com"
 releaseendoflife/?: "/about/release-cycle"
 risc-v/?: /download/risc-v/canonical-built
-robots.txt?: "/static/files/robots.txt"
 robotics/esm/?: "/robotics/ros-esm"
 rss\.xml/?: "/blog/feed"
 rss\.xmlsubscribe=feed/?: "/blog/feed"
@@ -1165,6 +1164,7 @@ tutorials/electron-kiosk/?: https://canonical.com/mir/docs/make-a-secure-ubuntu-
 tutorials/get-started-with-edgex-as-snaps?: /internet-of-things
 tutorials/how-to-install-adguard-home-raspberry-pi/?: /appliance/adguard/raspberry-pi
 tutorials/how-to-use-the-nextcloud-ubuntu-appliance-with-collabora-online-on-intel-nuc/?: /appliance/nextcloud/intel-nuc
+tutorials/blocking-software-package-installation-with-landscape/?: /landscape/docs
 
 # Image builder
 build: /core/build
@@ -1254,6 +1254,7 @@ robotics/docs/application-orchestration/?: "https://canonical-robotics.readthedo
 robotics/docs/vcstool-and-rosinstall-file/?: "https://canonical-robotics.readthedocs-hosted.com/en/latest/explanations/snaps/vcstool-and-rosinstall-file/"
 robotics/docs/debug-the-build-of-a-snap/?: "https://canonical-robotics.readthedocs-hosted.com/en/latest/explanations/snaps/debug-the-build-of-a-snap/"
 robotics/docs/debug-a-snap-application/?: "https://canonical-robotics.readthedocs-hosted.com/en/latest/explanations/snaps/debug-a-snap-application/"
+robotics/docs/(?!sitemap\.xml)(?P<path>.*)/?: "https://canonical-robotics.readthedocs-hosted.com/en/latest/{path}"
 
 # Credentials redirects
 credentials/?: "https://canonical.com/academy"
@@ -1299,4 +1300,7 @@ resolute/mini.iso: "https://cdimage.ubuntu.com/ubuntu-mini-iso/releases/resolute
 AMI/MiniISO: "https://cdimage.ubuntu.com/ubuntu-mini-iso/releases/noble/release/ubuntu-mini-iso-24.04.4-mini-iso-amd64.iso"
 
 # Redirects for TPM/FDE documentation
-desktop/tpm-fde-requirements/?: "https://documentation.ubuntu.com/desktop/en/latest/reference/hardware-backed-disk-encryption-requirements/"
+desktop/tpm-fde-requirements/?: "https://ubuntu.com/desktop/docs/en/latest/reference/hardware-backed-disk-encryption-requirements/"
+
+# Hiring blog redirect
+blog/how-we-hire-at-canonical: https://canonical.com/careers/hiring-process

@@ -153,6 +153,6 @@
 
   {{ load_form("/download/risc-v/partner-built") | safe }}
 
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
 {% endblock content %}

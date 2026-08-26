@@ -55,7 +55,7 @@
     </div>
   </div>
 
-  <script>
+  <script nonce="{{ csp_nonce }}">
     var links = [].slice.call(document.querySelectorAll('.p-side-navigation--raw-html li > a'));
     var currentPath = window.location.pathname;
 
@@ -143,6 +143,6 @@
 {% endblock %}
 
 {% block footer_extra %}
-  <script src="{{ versioned_static('js/dist/prism.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/prism.js') }}"></script>
   {{ load_form("/templates/docs/markdown") | safe }}
 {% endblock footer_extra %}

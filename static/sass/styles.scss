@@ -94,6 +94,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_subscriptions";
 @import "pattern_subscribe";
 @import "pattern_distributor";
+@import "pattern_engage";
 @import "pattern_tabs";
 @import "pattern_takeunders";
 @import "pattern_takeovers";
@@ -155,7 +156,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-takeunders;
 @include ubuntu-p-takeovers;
 @include ubuntu-p-tco-calculator;
-@include ubuntu-p-engage-banner;
+@include ubuntu-p-engage;
 @include ubuntu-p-ubuntu-intro;
 @include ubuntu-p-tabs;
 @include ubuntu-u-animations;
@@ -1420,6 +1421,28 @@ $color-link-dark: #69c !default;
   }
 }
 
+// Override height for very wide logos to prevent horizontal overflow
+.p-logo-section__item.is-wide {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 4.5rem;
+  vertical-align: bottom;
+  width: fit-content;
+
+  @media (min-width: $breakpoint-small) {
+    height: 6.5rem;
+  }
+
+  .p-logo-section__logo {
+    height: 0.8rem;
+
+    @media (min-width: $breakpoint-small) {
+      height: 1rem;
+    }
+  }
+}
+
 // XXX: pete f: vanilla issue here -
 // https://github.com/canonical/vanilla-framework/issues/4877
 .p-divider {
@@ -1862,11 +1885,11 @@ ol.p-stepped-list.no-full-stop
   }
 }
 
-// Custom styling for training page that ensures
-// CTA buttons/links are stacked on small screens
+// Custom styling for training page CTA link groups.
 .training-cta--stacked {
   display: flex;
   flex-wrap: wrap;
+  column-gap: 1rem;
 }
 
 // Truncates text to two lines with ellipsis
@@ -1950,4 +1973,18 @@ ol.p-stepped-list.no-full-stop
 //Will be removed after VF 4.52 is released and top_rule_variant=none is added to tiered_list
 .alt-downloads__bittorrent-tab hr {
   display: none;
+}
+
+// Apply to `grid-col-*` element to make it sticky within its
+// parent container.
+.u-sticky-col {
+  position: sticky;
+  top: $spv--strip-regular; // Account for navigation
+  z-index: 1;
+  align-self: start;
+}
+
+// Applying tab-section--no-title-space to a tab section will reduce the gap between the section title and the tabs.
+.tab-section--no-title-space > .p-section--shallow {
+  padding-bottom: 0;
 }

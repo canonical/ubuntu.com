@@ -167,10 +167,10 @@ meta_copydoc %}
 
   {{ vf_highlighted_cta(cta_text="Are you stuck and need help? <br /> <a href='https://ubuntu.com/community/support'>Take a look at how our community can support you.</a>") | safe }}
 
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
-  <script src="{{ versioned_static('js/dist/leaflet.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/leaflet.js') }}"></script>
   {# djlint:off #}
-  <script>
+  <script nonce="{{ csp_nonce }}">
     var mapMarker = {{ map_markers | tojson | e }}
 
     function initMap(mapSelector) {

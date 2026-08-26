@@ -49,7 +49,7 @@
     {% if not disableSearch %}
       {% include "templates/docs/shared/_search-box.html" %}
     {% endif %}
-    <script src="{{ versioned_static('js/dist/side-navigation.js') }}" defer></script>
+    <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/side-navigation.js') }}" defer></script>
   {% endwith %}
 
   <div class="p-strip is-shallow">
@@ -173,9 +173,9 @@
     </div>
   </div>
 
-  <script src="{{ versioned_static('js/dist/prism.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/prism.js') }}"></script>
 
-  <script>
+  <script nonce="{{ csp_nonce }}">
     // Allows the 'onchange' listener to be used on a select field, while still being accessible.
     (function initSelect() {
       var selectField = document.querySelector("#version-select");

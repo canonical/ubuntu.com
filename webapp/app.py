@@ -22,6 +22,7 @@ from sentry_sdk.integrations.flask import FlaskIntegration
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
     DiscourseAPI,
+    ResponseCache,
     DocParser,
     Docs,
     EngagePages,
@@ -41,7 +42,9 @@ from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.form_generator import FormGenerator
 from canonicalwebteam.markdown_response import MarkdownResponse
 
+from webapp import llms
 from webapp.certified.views import certified_routes
+from webapp.constants import CACHE_TTL
 from webapp.handlers import init_handlers
 from webapp.login import login_handler, logout, user_info
 from webapp.decorators import login_required
@@ -115,6 +118,7 @@ from webapp.views import (
     BlogRedirects,
     BlogSitemapIndex,
     BlogSitemapPage,
+    RoboticsDocsSitemapIndex,
     account_query,
     append_utms_cookie_to_canonical_links,
     appliance_install,
@@ -139,6 +143,7 @@ from webapp.views import (
     french_why_openstack,
     german_why_openstack,
     get_user_country_by_tz,
+    google_ads_verification,
     json_asset_query,
     marketo_submit,
     mirrors_query,
@@ -169,21 +174,13 @@ WORDPRESS_APPLICATION_PASSWORD = get_flask_env(
 
 # Sitemaps that are already generated and don't need to be updated.
 # Can be seen on sitemap_index.xml
-DYNAMIC_SITEMAPS = [
-    "templates",
-    "tutorials",
-    "engage",
-    "ceph/docs",
-    "community/docs",
-    "openstack/docs",
-    "blog",
-    "security/notices",
-    "security/cves",
-    "security/vulnerabilities",
-    "security/certifications/docs",
-    "security/livepatch/docs",
-    "robotics/docs",
-]
+with open("dynamic-sitemaps.yaml") as sitemaps_file:
+    DYNAMIC_SITEMAPS = yaml.load(sitemaps_file.read(), Loader=yaml.FullLoader)
+
+# LLM-friendly site index (https://llmstxt.org/): the hand-written
+# templates/llms.txt. Built once at startup, like the config above, rather
+# than on every request.
+LLMS_TXT = llms.build_llms_txt("templates/llms.txt")
 
 # Set up application
 # ===
@@ -202,6 +199,39 @@ app = FlaskBase(
 # Serves any page as Markdown via ?format=md query parameter
 MarkdownResponse(app)
 
+
+@app.route("/llms.txt")
+def llms_txt():
+    """
+    Serve the LLM-friendly site index (https://llmstxt.org/): the manually
+    maintained templates/llms.txt.
+    """
+    response = flask.make_response(LLMS_TXT)
+    response.headers["Content-Type"] = "text/plain; charset=utf-8"
+    response.headers["Cache-Control"] = "public, max-age=21600"
+    return response
+
+
+@app.route("/llms-full.txt")
+def llms_full_txt():
+    """
+    Serve the hand-written templates/llms-full.txt (https://llmstxt.org/),
+    committed to git alongside templates/llms.txt.
+    """
+    file_path = os.path.join(os.getcwd(), "templates", "llms-full.txt")
+
+    if not os.path.exists(file_path):
+        return {"error": "llms-full.txt not available"}, 503
+
+    with open(file_path) as f:
+        content = f.read()
+
+    response = flask.make_response(content)
+    response.headers["Content-Type"] = "text/plain; charset=utf-8"
+    response.headers["Cache-Control"] = "public, max-age=86400"
+    return response
+
+
 # ChoiceLoader attempts loading templates from each path in successive order
 directory_parser_templates = (
     Path(directory_parser.__file__).parent / "templates"
@@ -219,6 +249,7 @@ app.jinja_loader = loader
 
 session = requests.Session()
 charmhub_session = requests.Session()
+ubuntu_discourse_cache = ResponseCache(ttl=CACHE_TTL)
 
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
@@ -226,6 +257,7 @@ discourse_api = DiscourseAPI(
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
+    cache=ubuntu_discourse_cache,
 )
 
 charmhub_discourse_api = DiscourseAPI(
@@ -234,6 +266,17 @@ charmhub_discourse_api = DiscourseAPI(
     api_key=CHARMHUB_DISCOURSE_API_KEY,
     api_username=CHARMHUB_DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
+    cache=ResponseCache(ttl=CACHE_TTL),
+)
+
+# Anonymous reads for public Docs: no key means these GET /t/{id}.json
+# reads don't count against the shared 60/min admin API bucket. Own
+# session — DiscourseAPI overwrites session.headers on authenticated
+# instances, which would otherwise leak the key onto a shared session.
+discourse_api_anon = DiscourseAPI(
+    base_url="https://discourse.ubuntu.com/",
+    session=requests.Session(),
+    cache=None,
 )
 
 # Web tribe websites custom search ID
@@ -294,7 +337,7 @@ init_handlers(app)
 
 # Prepare forms
 def init_forms():
-    form_template_path = "shared/forms/form-template.html"
+    form_template_path = "shared/forms/_form-template.html"
 
     try:
         template_full_path = (
@@ -321,6 +364,7 @@ init_forms()
 # Simple routes
 app.add_url_rule("/asset/<file_name>", view_func=json_asset_query)
 app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
+app.add_url_rule("/Google-Ads.txt", view_func=google_ads_verification)
 app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/mirrors.json", view_func=mirrors_query)
 app.add_url_rule("/mirror-check", view_func=mirror_check)
@@ -691,6 +735,7 @@ engage_pages_discourse_api = DiscourseAPI(
     get_topics_query_id=14,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
+    cache=ubuntu_discourse_cache,
 )
 takeovers_path = "/takeovers"
 discourse_takeovers = EngagePages(
@@ -767,8 +812,17 @@ app.add_url_rule(
 
 def takeovers_json():
     active_takeovers = discourse_takeovers.parse_active_takeovers()
+    # Defence-in-depth: the upstream data-explorer query matches the
+    # "active" value loosely (any metadata cell equal to "true"), so
+    # takeovers with active=false but another boolean key set to true
+    # leak through. Filter on the parsed metadata value here.
+    active_takeovers = [
+        takeover
+        for takeover in active_takeovers
+        if str(takeover.get("active", "")).strip().lower() == "true"
+    ]
     response = flask.jsonify(active_takeovers)
-    response.cache_control.max_age = "300"
+    response.cache_control.max_age = 300
 
     return response
 
@@ -809,7 +863,7 @@ app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 url_prefix = "/community/docs"
 community_docs = Docs(
     parser=DocParser(
-        api=discourse_api,
+        api=discourse_api_anon,
         index_topic_id=33115,
         url_prefix=url_prefix,
     ),
@@ -921,7 +975,9 @@ app.add_url_rule(
 # Ceph docs
 ceph_docs = Docs(
     parser=DocParser(
-        api=discourse_api, index_topic_id=17250, url_prefix="/ceph/docs"
+        api=discourse_api_anon,
+        index_topic_id=17250,
+        url_prefix="/ceph/docs",
     ),
     document_template="/ceph/docs/document.html",
     url_prefix="/ceph/docs",
@@ -945,7 +1001,7 @@ app.add_url_rule(
 # Charmed OpenStack docs
 openstack_docs = Docs(
     parser=DocParser(
-        api=discourse_api,
+        api=discourse_api_anon,
         index_topic_id=20991,
         url_prefix="/openstack/docs",
     ),
@@ -972,7 +1028,7 @@ openstack_docs.init_app(app)
 # Security Livepatch docs
 security_livepatch_docs = Docs(
     parser=DocParser(
-        api=discourse_api,
+        api=discourse_api_anon,
         index_topic_id=22723,
         url_prefix="/security/livepatch/docs",
     ),
@@ -999,7 +1055,7 @@ security_livepatch_docs.init_app(app)
 # Security Certifications docs
 security_certs_docs = Docs(
     parser=DocParser(
-        api=discourse_api,
+        api=discourse_api_anon,
         index_topic_id=22810,
         url_prefix="/security/certifications/docs",
     ),
@@ -1313,6 +1369,10 @@ app.add_url_rule(
     methods=["GET", "POST"],
 )
 
+app.add_url_rule(
+    "/robotics/docs/sitemap.xml",
+    view_func=RoboticsDocsSitemapIndex.as_view("robotics_docs_sitemap"),
+)
 
 # Create endpoints for testing environment only
 if app.config.get("TESTING") or os.getenv("TESTING") or app.debug:

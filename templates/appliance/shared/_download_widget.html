@@ -11,7 +11,7 @@
     <a href="/appliance/{{app}}/raspberry-pi" class="p-button--positive p-form__control js-download-button">Download</a>
   </div>
 </form>
-<script>
+<script nonce="{{ csp_nonce }}">
   (function () {
     var downloadForm = document.querySelector(".js-download");
     if (downloadForm) {

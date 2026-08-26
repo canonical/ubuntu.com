@@ -1,4 +1,4 @@
-<script>
+<script nonce="{{ csp_nonce }}">
   const userIDCookie = document.cookie.match(new RegExp("(^| )" + "user_id" + "=([^;]+)"));
   if (userIDCookie !== null) {
     let idValue = userIDCookie[2];
@@ -10,7 +10,7 @@
   }
 </script>
 <!-- Google Tag Manager -->
-<script>
+<script nonce="{{ csp_nonce }}">
   document.addEventListener('DOMContentLoaded', () => {
     /** init gtm after 2 seconds - can be adjusted */
     setTimeout(initGTM, 2000);
@@ -30,19 +30,22 @@
       return false;
     }
     window.gtmDidInit = true; // flag to ensure script does not get added to DOM more than once.
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.async = true;
-    // ensure PageViews is always tracked (on script load)
-    script.onload = () => {
-      dataLayer.push({
-        event: 'gtm.js',
-        'gtm.start': new Date().getTime(),
-        'gtm.uniqueEventId': 0
-      });
-    };
-    script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-K92JCQ';
-    document.head.appendChild(script);
+    var containersToLoad = ['GTM-N384JMX2'];
+    containersToLoad.forEach((containerId) => {
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      // ensure PageViews is always tracked (on script load)
+      script.onload = () => {
+        dataLayer.push({
+          event: 'gtm.js',
+          'gtm.start': new Date().getTime(),
+          'gtm.uniqueEventId': 0
+        });
+      };
+      script.src = 'https://www.googletagmanager.com/gtm.js?id=' + containerId;
+      document.head.appendChild(script);
+    });
   }
 </script>
 <!-- End Google Tag Manager -->

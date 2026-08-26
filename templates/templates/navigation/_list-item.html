@@ -1,7 +1,7 @@
 <li class="p-navigation__dropdown-item">
   <a href="{{ url }}"
      class="p-link--inverted"
-     onclick="event.stopPropagation()"
+     data-js-stop-propagation
      tabindex="{% if tabindex %}{{ tabindex }}{% else %}0{% endif %}">
     <span>{{ title }}</span>
     <br />

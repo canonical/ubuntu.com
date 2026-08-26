@@ -252,7 +252,7 @@
     </div>
   </section>
 
-  <script src="{{ versioned_static('js/dist/notices.js') }}" defer></script>
-  <script src="{{ versioned_static('js/dist/dynamic-toc.js') }}" defer></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/notices.js') }}" defer></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/dynamic-toc.js') }}" defer></script>
 
 {% endblock %}

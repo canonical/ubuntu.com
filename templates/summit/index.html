@@ -1,6 +1,6 @@
 {% extends "summit/_base_summit.html" %}
 
-{% block title %}Ubuntu Summit 26.04{% endblock %}
+{% block title %}Ubuntu Summit{% endblock %}
 
 {% block meta_copydoc %}
   https://docs.google.com/document/d/1lj-xPVQjWqo2J_eZ-3ldKhJHj6RQ0Cwmk_Mr4QA4UTY
@@ -32,7 +32,7 @@
             Tune in to our London livestream from the comfort of your home, from an Ubuntu release watch party, or from anywhere else around the world.
           </p>
           <div class="p-cta-block">
-            <a href="https://discourse.ubuntu.com/t/register-for-ubuntu-summit/65270" class="p-button--positive">Register for the Summit</a>
+            <a href="https://discourse.ubuntu.com/c/ubuntu-summit/" class="p-button--positive">Register for the Summit</a>
             <a href="/summit/call-for-collaboration" class="p-button">Find out how you can contribute</a>
           </div>
         </div>
@@ -90,10 +90,6 @@
         <p>
           While the physical event takes place in London, watch parties and Summit extended events are hosted all over the world by local communities.
         </p>
-        <div class="p-cta-block">
-          <a href="/blog/ubuntu-summit-26-04-is-coming-save-the-date-and-share-your-story" aria-label="Learn more about The Ubuntu Summit">
-            Learn more&nbsp;&rsaquo;
-          </a>
         </div>
       </div>
     </div>
@@ -600,9 +596,9 @@
     {% include "/summit/shared/_latest-blogs_summit.html" %}
   {% endwith %}
 
-  <script src="{{ versioned_static('js/dist/flickity.pkgd.min.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/flickity.pkgd.min.js') }}"></script>
 
-  <script>
+  <script nonce="{{ csp_nonce }}">
     initCarousel('#carousel_target', '#carousel-next', '#carousel-previous');
 
     function initCarousel(carouselSelector, nextSelector, previousSelector) {

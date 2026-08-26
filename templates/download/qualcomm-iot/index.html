@@ -65,7 +65,7 @@
                     role="tab"
                     aria-selected="true"
                     aria-controls="rb3-gen2-tab">
-              Qualcomm Dragonwing™ RB3 Gen 2 Vision Development Kit (QCS6490)
+              Qualcomm Dragonwing&trade; RB3 Gen 2 Vision Development Kit (QCS6490)
             </button>
           </li>
           <li>
@@ -74,7 +74,7 @@
                     role="tab"
                     aria-selected="false"
                     aria-controls="rb3-gen2-lite-tab">
-              Qualcomm Dragonwing™ RB3 Gen 2 Lite Vision Development Kit (QCS5430)
+              Qualcomm Dragonwing&trade; RB3 Gen 2 Lite Vision Development Kit (QCS5430)
             </button>
           </li>
           <li>
@@ -83,7 +83,7 @@
                     role="tab"
                     aria-selected="false"
                     aria-controls="evaluation-kit-tab">
-              Qualcomm Dragonwing™ IQ-9075 Evaluation Kit (EVK)
+              Qualcomm Dragonwing&trade; IQ-9075 Evaluation Kit (EVK)
             </button>
           </li>
           <li>
@@ -92,7 +92,7 @@
                     role="tab"
                     aria-selected="false"
                     aria-controls="evaluation-kit2-tab">
-              Qualcomm Dragonwing™ IQ-8275 Evaluation Kit (EVK)
+              Qualcomm Dragonwing&trade; IQ-8275 Evaluation Kit (EVK)
             </button>
           </li>
           <li>
@@ -101,7 +101,16 @@
                     role="tab"
                     aria-selected="false"
                     aria-controls="evaluation-kit3-tab">
-              Qualcomm Dragonwing™ IQ-X7181 Evaluation Kit (EVK)
+              Qualcomm Dragonwing&trade; IQ-X7181 Evaluation Kit (EVK)
+            </button>
+          </li>
+          <li>
+            <button class="p-tabs__item"
+                    id="ventunoq"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="arduino-ventuno-q-tab">
+              Arduino VENTUNO&trade; Q
             </button>
           </li>
           <li>
@@ -121,6 +130,7 @@
         {% include "download/qualcomm-iot/tabs/evaluation-kit-tab.html" %}
         {% include "download/qualcomm-iot/tabs/evaluation-kit2-tab.html" %}
         {% include "download/qualcomm-iot/tabs/evaluation-kit3-tab.html" %}
+        {% include "download/qualcomm-iot/tabs/arduino-ventuno-q-tab.html" %}
         {% include "download/qualcomm-iot/tabs/development-board-tab.html" %}
       </div>
     </div>
@@ -157,6 +167,6 @@
 
   {{ load_form("/download/qualcomm-iot") | safe }}
 
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
 {% endblock content %}
