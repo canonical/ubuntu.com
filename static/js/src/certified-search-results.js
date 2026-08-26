@@ -38,6 +38,15 @@ let filterLimit = 5;
 
 let filterNavigateTimer = null;
 
+const SCROLL_POSITION_KEY = "certifiedFiltersScrollY";
+
+// Filter changes reload the page, which otherwise resets the scroll position
+// to the top. Stash it before navigating away; an early inline script in
+// base.html restores it as soon as the new page starts loading.
+function saveScrollPosition() {
+  sessionStorage.setItem(SCROLL_POSITION_KEY, window.scrollY);
+}
+
 // certified_home() falls back to the certified homepage when a request has
 // neither `q` nor `category`. Keep an empty `q` so filter changes never
 // bounce the user off the search results view.
@@ -52,6 +61,7 @@ function searchResultsUrl(href) {
 function scheduleFilterNavigation() {
   clearTimeout(filterNavigateTimer);
   filterNavigateTimer = setTimeout(() => {
+    saveScrollPosition();
     window.location.assign(searchResultsUrl(window.location.href));
   }, 300);
 }
@@ -447,6 +457,7 @@ function clearFilters() {
   } else {
     objUrl.search = "";
   }
+  saveScrollPosition();
   window.location.assign(objUrl.toString());
 }
 
