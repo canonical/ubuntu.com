@@ -14,6 +14,7 @@ const HOOKS = {
   checkedCheckbox: "[data-filter-option]:checked",
   labelText: ".p-filter-menu__label-text",
   count: "[data-filter-count]",
+  chevron: ".p-contextual-menu__indicator",
   selectAll: "[data-filter-select-all]",
   clearSelection: "[data-filter-clear-selection]",
   submit: "[data-filter-submit]",
@@ -128,6 +129,10 @@ function setupFilterBar(bar) {
     if (count) {
       count.textContent = String(checked.length);
       count.hidden = checked.length === 0;
+    }
+    const chevron = toggle.querySelector(HOOKS.chevron);
+    if (chevron) {
+      chevron.hidden = checked.length > 0;
     }
     toggle.classList.toggle("is-active", checked.length > 0);
   }

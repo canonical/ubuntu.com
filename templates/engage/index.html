@@ -56,20 +56,53 @@
           <strong>Filter by</strong>
         </p>
         {% set language_options = [
-          {'value': 'all', 'label': 'All languages'},
-          {'value': 'zh-TW', 'label': 'Chinese (Traditional)'},
-          {'value': 'de', 'label': 'Deutsch'},
-          {'value': 'en', 'label': 'English'},
-          {'value': 'es', 'label': 'Español'},
-          {'value': 'fr', 'label': 'Français'},
-          {'value': 'it', 'label': 'Italiano'},
-          {'value': 'kr', 'label': 'Korean'},
-          {'value': 'pt', 'label': 'Português'},
-          {'value': 'ru', 'label': 'Русский'},
-          {'value': 'tr', 'label': 'Türkçe'},
+          {
+            "value": "all",
+            "label": "All languages"
+          },
+          {
+            "value": "zh-TW",
+            "label": "Chinese (Traditional)"
+          },
+          {
+            "value": "de",
+            "label": "Deutsch"
+          },
+          {
+            "value": "en",
+            "label": "English"
+          },
+          {
+            "value": "es",
+            "label": "Español"
+          },
+          {
+            "value": "fr",
+            "label": "Français"
+          },
+          {
+            "value": "it",
+            "label": "Italiano"
+          },
+          {
+            "value": "kr",
+            "label": "Korean"
+          },
+          {
+            "value": "pt",
+            "label": "Português"
+          },
+          {
+            "value": "ru",
+            "label": "Русский"
+          },
+          {
+            "value": "tr",
+            "label": "Türkçe"
+          }
         ] %}
         {{ single_select_menu('language', 'Language', language_options) }}
-        {% set resource_options = [{'value': 'all', 'label': 'All resource types'}] %}
+        {% set resource_options = [{"value": "all", "label": "All resource types"}] %}
         {% for type in resource_types %}
           {% set _ = resource_options.append({'value': type | lower, 'label': type}) %}
         {% endfor %}
@@ -80,9 +113,9 @@
             {% set _ = tag_options.append({'value': tag, 'label': tag}) %}
           {% endif %}
         {% endfor %}
-        {{ multi_select_menu('tag', 'Tag', tag_options, request.args.getlist('tag')) }}
-        {{ filter_submit('Apply filters') }}
-        {{ filter_clear('Clear filters') }}
+        {{ multi_select_menu('tag', 'Tag', tag_options, request.args.getlist('tag') ) }}
+        {{ filter_submit("Apply filters") }}
+        {{ filter_clear("Clear filters") }}
       </form>
     </div>
   </div>
@@ -147,9 +180,11 @@
         {% endwith %}
       </section>
     {% else %}
-      <div class="u-fixed-width">
-        <h3>No results &mdash; why not try widening your search?</h3>
-        <p>You can do this by clearing and selecting new filters.</p>
+      <div class="grid-row--25-75">
+        <div class="grid-col">
+          <h3>No results &ndash; why not try widening your search?</h3>
+          <p>You can do this by clearing and selecting new filters.</p>
+        </div>
       </div>
     {% endif %}
   </section>

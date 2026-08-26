@@ -3,6 +3,13 @@
 // templates/macros/_filter-menu.jinja and static/js/src/filter-menu.js.
 @mixin ubuntu-p-filter-menu {
   .p-filter-menu {
+    @media (min-width: $breakpoint-small) {
+      align-items: baseline;
+      display: inline-flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
     > * {
       margin-right: $spv--small;
     }
@@ -44,7 +51,9 @@
 
     .p-filter-menu__dropdown {
       background: #f7f7f7;
-      box-shadow: none;
+      border: 1px solid #d3d3d3;
+      box-shadow: 0 4px 6px -1px oklch(0% 0 0 / 0.1);
+      box-sizing: border-box;
       width: 274px; // Matches longest text content at implementation
 
       &--multi {
@@ -59,7 +68,7 @@
         max-height: 20rem;
         min-width: 100%;
         overflow-y: auto;
-        padding: $spv--small 0;
+        padding: 0 0 $spv--small 0;
         width: max-content;
       }
     }
@@ -76,8 +85,19 @@
         white-space: nowrap;
       }
 
-      &:hover {
+      &:hover,
+      &:focus-within {
         background-color: #e2e2e2;
+      }
+
+      &:focus-within {
+        outline: $bar-thickness solid $colors--light-theme--focus;
+        outline-offset: -#{$bar-thickness};
+      }
+
+      // Suppress checkbox's own focus indicator; the row outline/background serves instead
+      .p-checkbox__input:focus + .p-checkbox__label::before {
+        outline: 0;
       }
     }
 
@@ -105,6 +125,10 @@
 
     .p-contextual-menu__indicator {
       align-self: center;
+
+      &[hidden] {
+        display: none;
+      }
     }
 
     .p-filter-menu__submit,
