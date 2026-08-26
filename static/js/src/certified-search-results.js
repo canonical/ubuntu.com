@@ -356,13 +356,24 @@ function toggleExpandFilters(e, element) {
   const { name, value } = element;
   const { category, vendor, release } = retrieveSelectedFilters();
 
+  setFilterLinkLoading(element, true);
+  let request;
+
   if (name === "vendor") {
     if (value === "true") {
       // Show all
-      renderFilters(category, vendor, release, -1, filterLimit, true, false);
+      request = renderFilters(
+        category,
+        vendor,
+        release,
+        -1,
+        filterLimit,
+        true,
+        false,
+      );
     } else {
       // Show default filterLimit
-      renderFilters(
+      request = renderFilters(
         category,
         vendor,
         release,
@@ -375,10 +386,18 @@ function toggleExpandFilters(e, element) {
   } else if (name === "release") {
     if (value === "true") {
       // Show all
-      renderFilters(category, vendor, release, filterLimit, -1, false, true);
+      request = renderFilters(
+        category,
+        vendor,
+        release,
+        filterLimit,
+        -1,
+        false,
+        true,
+      );
     } else {
       // Show default filterLimit
-      renderFilters(
+      request = renderFilters(
         category,
         vendor,
         release,
@@ -388,6 +407,22 @@ function toggleExpandFilters(e, element) {
         true,
       );
     }
+  }
+
+  request.finally(() => setFilterLinkLoading(element, false));
+}
+
+// /certified/filters.json can take a couple of seconds; without this the
+// "Show all" link looks unresponsive until the list suddenly appears.
+function setFilterLinkLoading(button, isLoading) {
+  if (isLoading) {
+    button.dataset.originalText = button.textContent;
+    button.disabled = true;
+    button.innerHTML =
+      '<i class="p-icon--spinner u-animation--spin"></i> ' + button.textContent;
+  } else {
+    button.disabled = false;
+    button.textContent = button.dataset.originalText;
   }
 }
 
