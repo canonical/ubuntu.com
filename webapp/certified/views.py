@@ -808,10 +808,10 @@ def certified_search():
     )
 
     # Single-vendor pages used to have their own hero (logo, description,
-    # CTA) - preserve that when exactly one vendor and no category is picked
+    # CTA) - preserve that whenever exactly one vendor is picked
     vendor_data = None
     vendor_name = None
-    if len(selected_vendors) == 1 and not selected_categories:
+    if len(selected_vendors) == 1:
         vendor_name = selected_vendors[0]
         partners_data = partners_api.get_partner_by_name(vendor_name)
         if partners_data:
