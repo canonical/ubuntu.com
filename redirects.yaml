@@ -147,23 +147,23 @@ chisel/?: "/containers/chiseled"
 # old certification.ubuntu.com redirects
 certified/desktop/?: "/certified/search?category=Desktop"
 certified/server/?: "/certified/search?category=Server"
-certified/soc/?: "/certified/search?category=Server%20SoC"
+certified/soc/?: "/certified/search?category=SoC"
 certified/hardware/(?P<canonical_id>.*): "/certified/{canonical_id}"
 certified/catalog/search/?: "/certified/search"
 certified/desktop/models/?: "/certified/search?category=Desktop"
 certified/server/models/?: "/certified/search?category=Server"
-certified/iot/models/?: "/certified/search?category=Ubuntu%20Core"
-certified/soc/models/?: "/certified/search?category=Server%20SoC"
+certified/iot/models/?: "/certified/search?category=IoT"
+certified/soc/models/?: "/certified/search?category=SoC"
 certified/why-certified/?: "/certified/why-certify"
-certified/devices/?: "/certified/search?category=Ubuntu%20Core"
+certified/devices/?: "/certified/search?category=IoT"
 certified/vendors/nVidia/?: "/certified/search?vendor=NVIDIA"
 certification/?: "/certified"
 # old /certified/<category> and /certified/vendors/<vendor> pages
 certified/laptops/?: /certified/search?category=Laptop
 certified/desktops/?: /certified/search?category=Desktop
 certified/servers/?: /certified/search?category=Server
-certified/socs/?: /certified/search?category=Server%20SoC
-certified/iot/?: /certified/search?category=Ubuntu%20Core
+certified/socs/?: /certified/search?category=SoC
+certified/iot/?: /certified/search?category=IoT
 certified/vendors/(?P<vendor>[^/]+)/?: /certified/search?vendor={vendor}
 
 cc/?: "/security/security-standards"

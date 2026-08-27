@@ -27,7 +27,7 @@ test.describe("Certified search results", () => {
   });
 
   test("should clear filters when clear is selected", async ({ page }) => {
-    await page.goto("/certified/search?category=Server%20SoC");
+    await page.goto("/certified/search?category=SoC");
     await acceptCookiePolicy(page);
 
     await page.getByText(/20.04 LTS/i).click();

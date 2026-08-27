@@ -116,25 +116,44 @@ def _get_category_pathname(form_factor):
         return form_factor.lower() + "s"
 
 
+# Single source of truth for the categories where our own /certified/search
+# URLs use a friendlier value than the certification API's own category.
+_CATEGORY_URL_ALIASES = {
+    "Ubuntu Core": "IoT",
+    "Server SoC": "SoC",
+}
+
+
+def _get_category_url_value(category):
+    """
+    Convert a certification API category value to the value used in our
+    own /certified/search URLs (e.g. "Ubuntu Core" -> "IoT").
+    """
+    return _CATEGORY_URL_ALIASES.get(category, category)
+
+
 def _normalize_categories(categories):
     """
-    Map legacy category aliases (old pathname slugs, UX-only labels)
-    to the certification API's own category vocabulary.
+    Map legacy category aliases (old pathname slugs, UX-only labels,
+    and our own /certified/search URL values) to the certification
+    API's own category vocabulary.
     """
     aliases = {
+        # Legacy spellings from before the /certified/search unification -
+        # unrelated to the URL-naming choice above, kept for old bookmarks
         "laptop": "Laptop",
         "laptops": "Laptop",
         "desktop": "Desktop",
         "desktops": "Desktop",
         "server": "Server",
         "servers": "Server",
-        "soc": "Server SoC",
         "socs": "Server SoC",
         "server soc": "Server SoC",
         "device": "Ubuntu Core",
-        "iot": "Ubuntu Core",
         "ubuntu core": "Ubuntu Core",
     }
+    for api_value, url_value in _CATEGORY_URL_ALIASES.items():
+        aliases[url_value.lower()] = api_value
 
     normalized = []
     for category in categories:

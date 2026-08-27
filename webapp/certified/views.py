@@ -16,6 +16,7 @@ from urllib.parse import urlencode
 
 from webapp.certified.helpers import (
     _get_category_pathname,
+    _get_category_url_value,
     _normalize_categories,
     get_download_url,
 )
@@ -158,6 +159,7 @@ def certified_platform_details(platform_id):
     return render_template(
         "certified/platforms/platform-details.html",
         category_pathname=_get_category_pathname(platform.get("category", "")),
+        category_url=_get_category_url_value(platform.get("category", "")),
         platform=platform,
         releases=releases,
         selected_release=None,
@@ -186,6 +188,7 @@ def certified_platform_details_by_release(platform_id, release):
             category_pathname=_get_category_pathname(
                 platform.get("category", "")
             ),
+            category_url=_get_category_url_value(platform.get("category", "")),
             platform=platform,
             releases=releases,
             selected_release=None,
@@ -204,6 +207,7 @@ def certified_platform_details_by_release(platform_id, release):
     return render_template(
         "certified/platforms/platform-details.html",
         category_pathname=_get_category_pathname(platform.get("category", "")),
+        category_url=_get_category_url_value(platform.get("category", "")),
         platform=platform,
         releases=releases,
         selected_release=release,
@@ -544,6 +548,7 @@ def certified_hardware_details(canonical_id, release):
     return render_template(
         "certified/hardware-details/hardware-details.html",
         category_pathname=_get_category_pathname(models["category"]),
+        category_url=_get_category_url_value(models["category"]),
         canonical_id=canonical_id,
         model_name=models["model"],
         form=models["category"],
@@ -627,6 +632,7 @@ def certified_model_details(canonical_id):
         name=model_release["model"],
         category=model_release["category"],
         category_pathname=_get_category_pathname(model_release["category"]),
+        category_url=_get_category_url_value(model_release["category"]),
         form_factor=form_factor,
         vendor=model_release["make"],
         platform_name=model_release["platform_name"],

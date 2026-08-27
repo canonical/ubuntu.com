@@ -14,11 +14,11 @@
 		<span class="p-checkbox__label">Server</span>
 	</label>
 	<label class="p-checkbox">
-		<input id="iot" type="checkbox" data-filter="smart_core" class="p-checkbox__input" name="category" value="Ubuntu Core" {% if "Ubuntu Core" in request.args.getlist("category") %}checked{% endif %} />
+		<input id="iot" type="checkbox" data-filter="smart_core" class="p-checkbox__input" name="category" value="IoT" {% if "IoT" in request.args.getlist("category") %}checked{% endif %} />
 		<span class="p-checkbox__label">IoT</span>
 	</label>
 	<label class="p-checkbox">
-		<input id="socs" type="checkbox" data-filter="soc" class="p-checkbox__input" name="category" value="Server SoC" {% if "Server SoC" in request.args.getlist("category") %}checked{% endif %} />
+		<input id="socs" type="checkbox" data-filter="soc" class="p-checkbox__input" name="category" value="SoC" {% if "SoC" in request.args.getlist("category") %}checked{% endif %} />
 		<span class="p-checkbox__label">SoC</span>
 	</label>
 </section>

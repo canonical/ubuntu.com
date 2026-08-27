@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-9 col-medium-4 col-start-medium-3 col-start-large-4">
       <h1 class="p-muted-heading">
-        <a href="/certified/search?category={{ release_details.category | urlencode }}">{{ category_pathname }}</a> &rsaquo; <a href="/certified/platforms/{{ release_details.platform_id }}">{{ release_details.platform_name }}</a>
+        <a href="/certified/search?category={{ category_url | urlencode }}">{{ category_pathname }}</a> &rsaquo; <a href="/certified/platforms/{{ release_details.platform_id }}">{{ release_details.platform_name }}</a>
         &rsaquo; <a href="/certified/{{ release_details.canonical_id }}">{{ release_details.model }}</a>
       </h1>
     </div>
