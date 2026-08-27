@@ -195,8 +195,18 @@ sudo apt update && sudo apt install python3-pip nodejs
 # (for macOS hopefully these can be installed with brew instead?)
 sudo pip3 install black flake8
 sudo npm install -g prettier eslint stylelint
-python -m pip install -U djlint
 ```
+
+Do **not** install djLint globally. Its version is pinned in `requirements.txt`
+and lives in the project virtualenv, so that everyone's editor formats templates
+identically. Taskfile installs it for you: `install-python` is fingerprinted
+against `requirements.txt`, so `task start` (or any task depending on `install`)
+reinstalls the requirements whenever the pin changes.
+
+The djLint editor extensions below shell out to whichever `djlint` they find,
+preferring the activated virtualenv. If a stale global djLint is on your `PATH`
+and no virtualenv is active, your editor will silently format templates with the
+wrong version.
 
 ### Configuring editors
 
