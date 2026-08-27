@@ -36,6 +36,36 @@ tabBtn3.addEventListener("click", (e) => {
 // Set global filter limit for vendors and releases
 let filterLimit = 5;
 
+let filterNavigateTimer = null;
+
+const SCROLL_POSITION_KEY = "certifiedFiltersScrollY";
+
+// Filter changes reload the page, which otherwise resets the scroll position
+// to the top. Stash it before navigating away; an early inline script in
+// base.html restores it as soon as the new page starts loading.
+function saveScrollPosition() {
+  sessionStorage.setItem(SCROLL_POSITION_KEY, window.scrollY);
+}
+
+// certified_home() falls back to the certified homepage when a request has
+// neither `q` nor `category`. Keep an empty `q` so filter changes never
+// bounce the user off the search results view.
+function searchResultsUrl(href) {
+  const url = new URL(href);
+  if (!url.searchParams.has("q") && !url.searchParams.has("category")) {
+    url.searchParams.set("q", "");
+  }
+  return url.toString();
+}
+
+function scheduleFilterNavigation() {
+  clearTimeout(filterNavigateTimer);
+  filterNavigateTimer = setTimeout(() => {
+    saveScrollPosition();
+    window.location.assign(searchResultsUrl(window.location.href));
+  }, 300);
+}
+
 function loadFilters() {
   const { category, vendor, release } = retrieveSelectedFilters();
   renderFilters(category, vendor, release);
@@ -271,6 +301,8 @@ function handleFilterClick(e) {
       if (pathCategory === id) {
         const newURL = `/certified?${urlParams.toString()}`;
         window.history.pushState({ path: newURL }, "", newURL);
+        scheduleFilterNavigation();
+        return;
       }
       // Append back deleted params
       // If multiple selected
@@ -320,10 +352,7 @@ function handleFilterClick(e) {
 
   const newURL = `${window.location.pathname}?${urlParams.toString()}`;
   window.history.pushState({ path: newURL }, "", newURL);
-}
-
-function submitFilters() {
-  window.location.replace(window.location.href);
+  scheduleFilterNavigation();
 }
 
 /**
@@ -337,13 +366,24 @@ function toggleExpandFilters(e, element) {
   const { name, value } = element;
   const { category, vendor, release } = retrieveSelectedFilters();
 
+  setFilterLinkLoading(element, true);
+  let request;
+
   if (name === "vendor") {
     if (value === "true") {
       // Show all
-      renderFilters(category, vendor, release, -1, filterLimit, true, false);
+      request = renderFilters(
+        category,
+        vendor,
+        release,
+        -1,
+        filterLimit,
+        true,
+        false,
+      );
     } else {
       // Show default filterLimit
-      renderFilters(
+      request = renderFilters(
         category,
         vendor,
         release,
@@ -356,10 +396,18 @@ function toggleExpandFilters(e, element) {
   } else if (name === "release") {
     if (value === "true") {
       // Show all
-      renderFilters(category, vendor, release, filterLimit, -1, false, true);
+      request = renderFilters(
+        category,
+        vendor,
+        release,
+        filterLimit,
+        -1,
+        false,
+        true,
+      );
     } else {
       // Show default filterLimit
-      renderFilters(
+      request = renderFilters(
         category,
         vendor,
         release,
@@ -369,6 +417,22 @@ function toggleExpandFilters(e, element) {
         true,
       );
     }
+  }
+
+  request.finally(() => setFilterLinkLoading(element, false));
+}
+
+// /certified/filters.json can take a couple of seconds; without this the
+// "Show all" link looks unresponsive until the list suddenly appears.
+function setFilterLinkLoading(button, isLoading) {
+  if (isLoading) {
+    button.dataset.originalText = button.textContent;
+    button.disabled = true;
+    button.innerHTML =
+      '<i class="p-icon--spinner u-animation--spin"></i> ' + button.textContent;
+  } else {
+    button.disabled = false;
+    button.textContent = button.dataset.originalText;
   }
 }
 
@@ -393,7 +457,8 @@ function clearFilters() {
   } else {
     objUrl.search = "";
   }
-  window.history.pushState({ url: objUrl }, "", objUrl);
+  saveScrollPosition();
+  window.location.assign(objUrl.toString());
 }
 
 // function to ensure only the option which has been changed is appended to the URL
@@ -432,7 +497,7 @@ function hideDrawerPageReload() {
 function wireStaticFilterHandlers() {
   if (filters1Elm) {
     filters1Elm.querySelectorAll("input").forEach((input) => {
-      input.addEventListener("click", handleCategoryClick);
+      input.addEventListener("click", handleFilterClick);
     });
   }
 
@@ -446,18 +511,23 @@ function wireStaticFilterHandlers() {
     },
   );
 
-  const submitFiltersButton = document.querySelector(".js-submit-filters");
-  if (submitFiltersButton) {
-    submitFiltersButton.addEventListener("click", submitFilters);
-  }
-
   const clearFiltersButton = document.querySelector(".js-clear-filters");
   if (clearFiltersButton) {
     clearFiltersButton.addEventListener("click", clearFilters);
   }
 }
 
-loadFilters();
+// Vendor/release options are now server-rendered; only fetch them if
+// they're missing, and bind clicks to the ones already on the page.
+if (filters2Elm.querySelector("input") || filters3Elm.querySelector("input")) {
+  [filters2Elm, filters3Elm].forEach((section) => {
+    section.querySelectorAll("input").forEach((input) => {
+      input.addEventListener("click", handleFilterClick);
+    });
+  });
+} else {
+  loadFilters();
+}
 updateResultsPerPage();
 hideDrawerPageReload();
 wireStaticFilterHandlers();
