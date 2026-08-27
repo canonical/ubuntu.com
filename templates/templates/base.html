@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 
-<html prefix="og: http://ogp.me/ns#"
-      class="{%- block extra_html_class %}{% endblock -%}"
-      lang="{%- block meta_lang %}en{% endblock -%}"
-      dir="ltr">
+<html
+  prefix="og: http://ogp.me/ns#"
+  class="{%- block extra_html_class %}{% endblock -%}"
+  lang="{%- block meta_lang %}en{% endblock -%}"
+  dir="ltr"
+>
   <head>
     <meta charset="UTF-8" />
     <meta name="keywords" content="index, follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>
-      {% block title %}{% endblock %}
-    | Ubuntu</title>
+    <title>{% block title %}{% endblock %} | Ubuntu</title>
     <link rel="preconnect" href="https://res.cloudinary.com" />
     <link rel="preconnect" href="https://assets.ubuntu.com" crossorigin />
 
@@ -19,201 +19,263 @@
     <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
     <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
 
-    <script nonce="{{ csp_nonce }}" src="https://assets.ubuntu.com/v1/703e23c9-lazysizes+noscript+native-loading.5.1.2.min.js"
-            defer></script>
-    <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/src/navigation.js') }}" defer></script>
-    <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/main.js') }}" defer></script>
-    <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/src/infer-preferred-language.js')}}"
-            defer></script>
-    <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/src/csp-event-handlers.js') }}"
-            defer></script>
+    <script
+      nonce="{{ csp_nonce }}"
+      src="https://assets.ubuntu.com/v1/703e23c9-lazysizes+noscript+native-loading.5.1.2.min.js"
+      defer
+    ></script>
+    <script
+      nonce="{{ csp_nonce }}"
+      src="{{ versioned_static('js/src/navigation.js') }}"
+      defer
+    ></script>
+    <script
+      nonce="{{ csp_nonce }}"
+      src="{{ versioned_static('js/dist/main.js') }}"
+      defer
+    ></script>
+    <script
+      nonce="{{ csp_nonce }}"
+      src="{{ versioned_static('js/src/infer-preferred-language.js')}}"
+      defer
+    ></script>
+    <script
+      nonce="{{ csp_nonce }}"
+      src="{{ versioned_static('js/src/csp-event-handlers.js') }}"
+      defer
+    ></script>
 
-    <link rel="stylesheet"
-          type="text/css"
-          media="screen"
-          href="{{ versioned_static('css/styles.css') }}" />
-    <link rel="stylesheet"
-          type="text/css"
-          media="print"
-          href="{{ versioned_static('css/print.css') }}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="{{ versioned_static('css/styles.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="print"
+      href="{{ versioned_static('css/print.css') }}"
+    />
     <script nonce="{{ csp_nonce }}">
       performance.mark("Stylesheets finished");
     </script>
 
-    <link rel="canonical" href="
-      {% block canonical_url %}{{ request.url }}{% endblock %}" />
+    <link
+      rel="canonical"
+      href="
+      {% block canonical_url %}{{ request.url }}{% endblock %}"
+    />
+    <link
+      rel="alternate"
+      type="text/markdown"
+      href="{{ request.base_url }}?format=md"
+    />
+    <link rel="describedby" href="{{ request.url_root }}llms.txt" />
 
-      <link rel="apple-touch-icon"
-            sizes="180x180"
-            href="https://assets.ubuntu.com/v1/f38b9c7e-COF%20apple-touch-icon.png" />
-      <link rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="https://assets.ubuntu.com/v1/be7e4cc6-COF-favicon-32x32.png" />
-      <link rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="https://assets.ubuntu.com/v1/16c27f81-COF%20favicon-16x16.png" />
-      <link rel="manifest"
-            href="{{ versioned_static('files/site.webmanifest') }}" />
-      <!-- Serving favicon for search engines locally -->
-      <link rel="icon"
-            type="image/png"
-            sizes="48x48"
-            href="{{ versioned_static('favicons/COF-favicon-48x48.png') }}" />
-      
-      <!-- Preload core fonts to reduce FOUT -->
-      <link rel="preload"
-            as="font"
-            type="font/woff2"
-            href="{{ versioned_static('fonts/ubuntu-variable-latin.woff2') }}"
-            crossorigin />
-      <link rel="preload"
-            as="font"
-            type="font/woff2"
-            href="{{ versioned_static('fonts/ubuntu-variable-latin-italic.woff2') }}"
-            crossorigin />
-      <link rel="preload"
-            as="font"
-            type="font/woff2"
-            href="{{ versioned_static('fonts/ubuntu-mono-variable.woff2') }}"
-            crossorigin />
-      
-      {%- block head_extra %}{% endblock %}
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://assets.ubuntu.com/v1/f38b9c7e-COF%20apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://assets.ubuntu.com/v1/be7e4cc6-COF-favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="https://assets.ubuntu.com/v1/16c27f81-COF%20favicon-16x16.png"
+    />
+    <link
+      rel="manifest"
+      href="{{ versioned_static('files/site.webmanifest') }}"
+    />
+    <!-- Serving favicon for search engines locally -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="{{ versioned_static('favicons/COF-favicon-48x48.png') }}"
+    />
 
-      <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
+    <!-- Preload core fonts to reduce FOUT -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="{{ versioned_static('fonts/ubuntu-variable-latin.woff2') }}"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="{{ versioned_static('fonts/ubuntu-variable-latin-italic.woff2') }}"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="{{ versioned_static('fonts/ubuntu-mono-variable.woff2') }}"
+      crossorigin
+    />
+
+    {%- block head_extra %}{% endblock %}
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://ubuntu.com/#organization",
+        "name": "Ubuntu",
+        "url": "https://ubuntu.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://assets.ubuntu.com/v1/c55060fd-COF%20android-chrome-512x512.png",
+          "width": 512,
+          "height": 512
+        },
+        "sameAs": [
+          "https://x.com/ubuntu",
+          "https://www.linkedin.com/company/canonical/",
+          "https://www.youtube.com/user/celebrateubuntu",
+          "https://www.facebook.com/ubuntulinux/",
+          "https://www.instagram.com/ubuntu_os/",
+          "https://www.tiktok.com/@canonical_ubuntu",
+          "https://ubuntu.social/@ubuntu",
+          "https://github.com/canonical",
+          "https://launchpad.net/ubuntu",
+          "https://www.wikidata.org/wiki/Q381"
+        ],
+        "parentOrganization": {
           "@type": "Organization",
-          "@id": "https://ubuntu.com/#organization",
-          "name": "Ubuntu",
-          "url": "https://ubuntu.com/",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://assets.ubuntu.com/v1/c55060fd-COF%20android-chrome-512x512.png",
-            "width": 512,
-            "height": 512
-          },
-          "sameAs": [
-            "https://x.com/ubuntu",
-            "https://www.linkedin.com/company/canonical/",
-            "https://www.youtube.com/user/celebrateubuntu",
-            "https://www.facebook.com/ubuntulinux/",
-            "https://www.instagram.com/ubuntu_os/",
-            "https://www.tiktok.com/@canonical_ubuntu",
-            "https://ubuntu.social/@ubuntu",
-            "https://github.com/canonical",
-            "https://launchpad.net/ubuntu",
-            "https://www.wikidata.org/wiki/Q381"
-          ],
-          "parentOrganization": {
-            "@type": "Organization",
-            "@id": "https://canonical.com/#organization",
-            "name": "Canonical",
-            "url": "https://canonical.com/"
-          }
+          "@id": "https://canonical.com/#organization",
+          "name": "Canonical",
+          "url": "https://canonical.com/"
         }
-      </script>
+      }
+    </script>
 
-      <meta name="description" content="
-        {% block meta_description %}Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things.{% endblock %}" />
-        <meta name="facebook-domain-verification"
-              content="zxp9j79g1gy2xenbu9ll964pttk5hu" />
-        <meta name="twitter:account_id" content="4503599627481511" />
-        <meta name="twitter:site" content="@ubuntu" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="{{ request.url }}" />
-        <meta property="og:site_name" content="Ubuntu" />
-        <meta name="copydoc" content="
-          {% block meta_copydoc %}https://drive.google.com/drive/folders/0B4s80tIYQW4BMjNiMGFmNzQtNDkxZC00YmQ0LWJiZWUtNTk2YThlY2MzZmJh{% endblock %}" />
-          <meta name="google-site-verification"
-                content="ddh2iq7ZuKf1LpkL_gtM_T7DkKDVD7ibq6Ceue4a_3M" />
+    <meta
+      name="description"
+      content="
+        {% block meta_description %}Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things.{% endblock %}"
+    />
+    <meta
+      name="facebook-domain-verification"
+      content="zxp9j79g1gy2xenbu9ll964pttk5hu"
+    />
+    <meta name="twitter:account_id" content="4503599627481511" />
+    <meta name="twitter:site" content="@ubuntu" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ request.url }}" />
+    <meta property="og:site_name" content="Ubuntu" />
+    <meta
+      name="copydoc"
+      content="
+          {% block meta_copydoc %}https://drive.google.com/drive/folders/0B4s80tIYQW4BMjNiMGFmNzQtNDkxZC00YmQ0LWJiZWUtNTk2YThlY2MzZmJh{% endblock %}"
+    />
+    <meta
+      name="google-site-verification"
+      content="ddh2iq7ZuKf1LpkL_gtM_T7DkKDVD7ibq6Ceue4a_3M"
+    />
 
-          {% if self.title() %}
-            <meta name="twitter:title" content="{{ self.title() }} | Ubuntu" />
-            <meta property="og:title" content="{{ self.title() }} | Ubuntu" />
-          {% endif %}
+    {% if self.title() %}
+    <meta name="twitter:title" content="{{ self.title() }} | Ubuntu" />
+    <meta property="og:title" content="{{ self.title() }} | Ubuntu" />
+    {% endif %} {% if self.meta_description() %}
+    <meta name="twitter:description" content="{{ self.meta_description() }}" />
+    <meta property="og:description" content="{{ self.meta_description() }}" />
+    {% endif %} {# Define the required meta_image block #}
+    <!-- Meta image: {% block meta_image %}{% endblock %} -->
+    {%- if self.meta_image() %}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:image"
+      content="{% if 'http' not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}"
+    />
+    <meta
+      property="og:image"
+      content="{% if 'http' not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}"
+    />
+    {% else %}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:image"
+      content="https://assets.ubuntu.com/v1/47f12466-og_%20ubuntu.png"
+    />
+    <meta
+      property="og:image"
+      content="https://assets.ubuntu.com/v1/47f12466-og_%20ubuntu.png"
+    />
+    {% endif %} {% block extra_metatags %}{% endblock %}
+    <style>
+      #rememberMe {
+        display: none;
+      }
+    </style>
 
-          {% if self.meta_description() %}
-            <meta name="twitter:description" content="{{ self.meta_description() }}" />
-            <meta property="og:description" content="{{ self.meta_description() }}" />
-          {% endif %}
-          {# Define the required meta_image block #}
-          <!-- Meta image: {% block meta_image %}{% endblock %} -->
-          {%- if self.meta_image() %}
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:image"
-                  content="{% if 'http' not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}" />
-            <meta property="og:image"
-                  content="{% if 'http' not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}" />
-          {% else %}
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:image"
-                  content="https://assets.ubuntu.com/v1/47f12466-og_%20ubuntu.png" />
-            <meta property="og:image"
-                  content="https://assets.ubuntu.com/v1/47f12466-og_%20ubuntu.png" />
-          {% endif %}
+    <!-- Cookie policy -->
+    <link
+      rel="stylesheet"
+      href="{{ versioned_static('css/cookie-policy.css') }}"
+    />
+    <script
+      nonce="{{ csp_nonce }}"
+      src="{{ versioned_static('js/dist/cookie-policy.js') }}"
+    ></script>
+    <script
+      nonce="{{ csp_nonce }}"
+      src="{{ versioned_static('js/dist/cookie-policy-with-callback.js') }}"
+    ></script>
+  </head>
 
-          {% block extra_metatags %}{% endblock %}
-          <style>
-            #rememberMe {
-              display: none;
-            }
-          </style>
+  <body class="{% block body_class %}{% endblock %}">
+    <!-- google tag manager -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-N384JMX2"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+        title="Google Tag Manager"
+      ></iframe>
+    </noscript>
+    <!-- end google tag manager -->
 
-          <!-- Cookie policy -->
-          <link rel="stylesheet"
-                href="{{ versioned_static('css/cookie-policy.css') }}" />
-          <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/cookie-policy.js') }}"></script>
-          <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/cookie-policy-with-callback.js') }}"></script>
-        </head>
+    {% include "templates/_getfeedback.html" %} {% include
+    "templates/_notifications.html" %} {% if not(hide_nav == True) %} {% include
+    "templates/_navigation.html" %} {% endif %}
 
-        <body class="
-          {% block body_class %}{% endblock %}">
-          <!-- google tag manager -->
-          <noscript>
-            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N384JMX2"
-                    height="0"
-                    width="0"
-                    style="display: none;
-                           visibility: hidden"
-                    title="Google Tag Manager"></iframe>
-          </noscript>
-          <!-- end google tag manager -->
+    <div class="wrapper u-no-margin--top">
+      <main
+        id="main-content"
+        {%
+        if
+        not
+        hide_inner_wrapper
+        %}
+        class="inner-wrapper"
+        {%
+        endif
+        %}
+      >
+        {% block content_head %}{% endblock %} {% block content_container %} {%
+        block outer_content %} {% endblock outer_content %} {% endblock
+        content_container %}
+      </main>
+    </div>
 
-          {% include "templates/_getfeedback.html" %}
-          {% include "templates/_notifications.html" %}
-
-          {% if not(hide_nav == True) %}
-            {% include "templates/_navigation.html" %}
-          {% endif %}
-
-          <div class="wrapper u-no-margin--top">
-            <main id="main-content"{% if not hide_inner_wrapper %} class="inner-wrapper"{% endif %}>
-
-              {% block content_head %}{% endblock %}
-
-              {% block content_container %}
-                {% block outer_content %}
-                {% endblock outer_content %}
-              {% endblock content_container %}
-            </main>
-          </div>
-
-          <!-- footer content goes here -->
-          {% if not(hide_footer == True) %}
-            {% if small_footer %}
-              {% include "templates/small-footer.html" %}
-            {% else %}
-              {% include "templates/footer.html" %}
-              {% if "/whitepapers" not in
-                request.path %}
-              {% endif %}
-
-              {% block footer_extra %}{% endblock %}
-            {% endif %}
-          {% endif %}
-
-          {%- include "templates/_tag_manager.html" %}
-        </body>
-      </html>
+    <!-- footer content goes here -->
+    {% if not(hide_footer == True) %} {% if small_footer %} {% include
+    "templates/small-footer.html" %} {% else %} {% include
+    "templates/footer.html" %} {% if "/whitepapers" not in request.path %} {%
+    endif %} {% block footer_extra %}{% endblock %} {% endif %} {% endif %} {%-
+    include "templates/_tag_manager.html" %}
+  </body>
+</html>

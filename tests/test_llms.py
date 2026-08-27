@@ -36,6 +36,23 @@ class TestLlmsTxt(unittest.TestCase):
         self.assertTrue(body.startswith("# Ubuntu"))
         self.assertIn("## Main pages", body)
 
+    def test_html_pages_publish_llms_txt_v2_links(self):
+        response = self.client.get("/about")
+
+        self.assertEqual(response.status_code, 200)
+        body = response.data.decode("utf-8")
+        self.assertIn(
+            '<link rel="alternate"\n'
+            '          type="text/markdown"\n'
+            '          href="http://localhost/about?format=md" />',
+            body,
+        )
+        self.assertIn(
+            '<link rel="describedby"\n'
+            '          href="http://localhost/llms.txt" />',
+            body,
+        )
+
 
 BASE_WITH_MAIN_PAGES = (
     "# Example\n\n"
