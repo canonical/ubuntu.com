@@ -627,6 +627,7 @@ blog_views = BlogViews(
     excluded_tags=[3408, 3960, 4491],
     per_page=16,
     category_ids=[4877],
+    featured_category_ids=[4881],
     blog_title="Ubuntu blog",
 )
 
