@@ -42,7 +42,10 @@
     <div class="grid-row">
       <div class="grid-col-2 u-hide--small u-hide--medium">
         {% if metadata["image"] != '' %}
-          <div class="p-image-container--3-2 p-engage-image-container{% if metadata.get('banner_class') == 'dark' %} p-engage-image-container--dark{% endif %}">
+          {% set _cutoff = "2026-08-24" %}
+          {% set _pub = metadata.get('publish_date', '') %}
+          {% set _is_dark = metadata.get('banner_class') == 'dark' and _pub and _pub < _cutoff %}
+          <div class="p-image-container--3-2 p-engage-image-container{% if _is_dark %} p-engage-image-container--dark{% endif %}">
             <img class="p-image-container__image u-no-margin--top"
                  src="{{ metadata['image'] }}"
                  alt=""
