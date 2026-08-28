@@ -1,44 +1,17 @@
-{% extends "templates/one-column.html" %}
+{% extends "blog/topics/_topic-page.html" %}
 
-{% block title %}MAAS{% endblock %}
+{% block topic_page_title %}MAAS{% endblock %}
 
-{% block meta_description %}
+{% block topic_meta_description %}
   All the latest news on MAAS (Metal as a Service) - the smartest way to manage bare metal.
 {% endblock %}
 
-{% block content %}
+{% block hero_title_text %}MAAS{% endblock %}
 
-  <section class="p-strip--suru-blog-header is-dark">
-    <div class="u-fixed-width">
-      <h1>
-        {{ image(url="https://assets.ubuntu.com/v1/4fac1d52-MAAS-Logo.svg",
-                alt="MAAS",
-                height="50",
-                width="200",
-                hi_def=True,
-                loading="auto") | safe
-        }}
-      </h1>
-      <h2 class="p-heading--4">
-        All the latest news on MAAS
-        <br />
-        &ndash; the smartest way to manage bare metal.
-      </h2>
-      <p>
-        <a class="p-link--inverted" href="https://maas.io">Learn more about MAAS</a>
-      </p>
-    </div>
-  </section>
-
-  <section class="p-strip is-shallow" id="posts-list">
-    {% include 'blog/posts.html' %}
-  </section>
-
-  <section class="p-strip is-shallow">
-    {% with %}
-      {% set total_pages = total_pages %}
-      {% set current_page = current_page %}
-      {% include "shared/_pagination.html" %}
-    {% endwith %}
-  </section>
+{% block hero_description_text %}
+  All the latest news on MAAS – the smartest way to manage bare metal.
 {% endblock %}
+
+{% block hero_cta_text %}Learn more about MAAS ›{% endblock %}
+
+{% block hero_cta_href %}https://canonical.com/maas{% endblock %}
