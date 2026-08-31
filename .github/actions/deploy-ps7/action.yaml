@@ -27,12 +27,6 @@ inputs:
   juju-client-secret:
     description: "JAAS OAuth client secret"
     required: true
-  ghcr-username:
-    description: "GHCR read username for the private image resource"
-    required: true
-  ghcr-token:
-    description: "GHCR read token for the private image resource"
-    required: true
 
 runs:
   using: composite
@@ -70,22 +64,12 @@ runs:
       env:
         APP_NAME: ${{ inputs.app-name }}
         IMAGE_URL: ${{ inputs.image-url }}
-        GHCR_READ_USERNAME: ${{ inputs.ghcr-username }}
-        GHCR_READ_TOKEN: ${{ inputs.ghcr-token }}
       run: |
         set -e
         CHARM_FILE=$(ls ./*.charm | head -1)
-        RESOURCE_NAME=flask-app-image
-        umask 077
-        trap 'rm -f ./image_metadata.json' EXIT
-        jq -n \
-          --arg image "$IMAGE_URL" \
-          --arg user "$GHCR_READ_USERNAME" \
-          --arg pass "$GHCR_READ_TOKEN" \
-          '{"ImageName": $image, "username": $user, "password": $pass}' > ./image_metadata.json
         if juju show-application "$APP_NAME" &>/dev/null; then
-          juju refresh "$APP_NAME" --path="./$CHARM_FILE" --resource "$RESOURCE_NAME=./image_metadata.json"
+          juju refresh "$APP_NAME" --path="./$CHARM_FILE" --resource flask-app-image="$IMAGE_URL"
         else
-          juju deploy "./$CHARM_FILE" "$APP_NAME" --resource "$RESOURCE_NAME=./image_metadata.json"
+          juju deploy "./$CHARM_FILE" "$APP_NAME" --resource flask-app-image="$IMAGE_URL"
         fi
         juju wait-for application "$APP_NAME" --query="name=='$APP_NAME' && (status=='active' || status=='idle')"

@@ -63,6 +63,8 @@ jobs:
       name: ps6-staging
       url: ${{ vars.WEBSITE_URL }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Deploy
         uses: ./.github/actions/deploy-ps6
         with:
@@ -88,6 +90,8 @@ jobs:
       name: ps6-production
       url: ${{ vars.WEBSITE_URL }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Deploy
         uses: ./.github/actions/deploy-ps6
         with:
