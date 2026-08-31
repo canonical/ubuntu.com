@@ -197,16 +197,31 @@ sudo pip3 install black flake8
 sudo npm install -g prettier eslint stylelint
 ```
 
-Do **not** install djLint globally. Its version is pinned in `requirements.txt`
-and lives in the project virtualenv, so that everyone's editor formats templates
-identically. Taskfile installs it for you: `install-python` is fingerprinted
-against `requirements.txt`, so `task start` (or any task depending on `install`)
-reinstalls the requirements whenever the pin changes.
+djLint is missing from that list on purpose. Its version is pinned in
+`requirements.txt`, because djLint's formatting output changes between releases
+and two people on different versions will undo each other's work.
 
-The djLint editor extensions below shell out to whichever `djlint` they find,
-preferring the activated virtualenv. If a stale global djLint is on your `PATH`
-and no virtualenv is active, your editor will silently format templates with the
-wrong version.
+Which copy your editor uses depends on how you run the project. The editor
+extensions below do not bundle djLint; they run whichever one they find,
+preferring a usable project virtualenv.
+
+- **With Taskfile**, `.venv` is on your machine and your editor uses the pinned
+  version. `install-python` is fingerprinted against `requirements.txt`, so
+  `task start` reinstalls whenever the pin changes. Check with
+  `.venv/bin/djlint --version`.
+- **With dotrun**, `.venv` is built inside the container and your editor cannot
+  run it, so your global djLint is what formats your templates.
+
+Keep any global djLint on **1.41.0 or later**. Older versions flatten the
+contents of multiline jinja macro calls and then report the file as correctly
+formatted, so the damage is silent:
+
+``` bash
+python -m pip install -U djlint
+```
+
+A global install is still worth having, since some of our other repos do not pin
+djLint at all. It only needs to stay off the old versions.
 
 ### Configuring editors
 
