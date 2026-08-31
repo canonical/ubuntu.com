@@ -47,7 +47,13 @@ runs:
         JUJU_CLIENT_SECRET: ${{ inputs.juju-client-secret }}
         JUJU_CONTROLLER_ADDRESS: ${{ inputs.controller-address }}
         JUJU_CONTROLLER_NAME: ${{ inputs.controller-name }}
-      run: juju login "$JUJU_CONTROLLER_ADDRESS" -c "$JUJU_CONTROLLER_NAME"
+      run: |
+        set -e
+        if [ -z "$JUJU_CLIENT_ID" ] || [ -z "$JUJU_CLIENT_SECRET" ]; then
+          echo "::error::JUJU_CLIENT_ID or JUJU_CLIENT_SECRET is empty. Check that the corresponding secrets are set in this GitHub Environment."
+          exit 1
+        fi
+        juju login "$JUJU_CONTROLLER_ADDRESS" -c "$JUJU_CONTROLLER_NAME" --debug
 
     - name: Switch to model
       shell: bash
