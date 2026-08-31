@@ -62,6 +62,8 @@ jobs:
       name: ps7-staging
       url: ${{ vars.WEBSITE_URL }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Deploy
         uses: ./.github/actions/deploy-ps7
         with:
@@ -73,8 +75,6 @@ jobs:
           juju-version: ${{ vars.JUJU_VERSION || '3/stable' }}
           juju-client-id: ${{ secrets.JUJU_CLIENT_ID }}
           juju-client-secret: ${{ secrets.JUJU_CLIENT_SECRET }}
-          ghcr-username: ${{ secrets.GHCR_READ_USERNAME }}
-          ghcr-token: ${{ secrets.GHCR_READ_TOKEN }}
 
   deploy-production:
     needs: [pack, deploy-staging]
@@ -90,6 +90,8 @@ jobs:
       name: ps7-production
       url: ${{ vars.WEBSITE_URL }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Deploy
         uses: ./.github/actions/deploy-ps7
         with:
@@ -101,5 +103,3 @@ jobs:
           juju-version: ${{ vars.JUJU_VERSION || '3/stable' }}
           juju-client-id: ${{ secrets.JUJU_CLIENT_ID }}
           juju-client-secret: ${{ secrets.JUJU_CLIENT_SECRET }}
-          ghcr-username: ${{ secrets.GHCR_READ_USERNAME }}
-          ghcr-token: ${{ secrets.GHCR_READ_TOKEN }}
