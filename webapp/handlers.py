@@ -60,8 +60,17 @@ LONG_CACHE_SECONDS = 10800  # 3 hours
 # them shorter to avoid freezing a degraded page (docs 503 instead).
 COMMUNITY_CACHE_SECONDS = 300
 
+# Short CDN max-age for engage; the app cache self-invalidates on edit
+# (discourse>=7.9.0), so this bounds how soon an edit shows publicly.
+# ?preview=true bypasses it.
+ENGAGE_CACHE_SECONDS = 1800  # 30 minutes
+
 # Serve the last good copy during an origin outage (flask-base default 300s).
 LONG_CACHE_STALE_IF_ERROR = 3600
+
+# Cap flask-base's 24h stale-while-revalidate default, but keep enough
+# that pages serve stale-fast during refresh instead of blocking.
+LONG_CACHE_STALE_WHILE_REVALIDATE = 300  # 5 minutes
 
 # Exact paths (no trailing segment) that should get the longer cache.
 LONG_CACHE_EXACT = frozenset(
@@ -100,11 +109,21 @@ def _should_long_cache(path):
     return path in LONG_CACHE_EXACT or path.startswith(LONG_CACHE_PREFIXES)
 
 
+def _is_engage_path(path):
+    return (
+        path == "/engage"
+        or path.startswith("/engage/")
+        or path == "/takeovers"
+    )
+
+
 def _long_cache_seconds(path):
     if (
         path == "/community" or path.startswith("/community/")
     ) and not path.startswith("/community/docs"):
         return COMMUNITY_CACHE_SECONDS
+    if _is_engage_path(path):
+        return ENGAGE_CACHE_SECONDS
     return LONG_CACHE_SECONDS
 
 
@@ -307,6 +326,14 @@ def init_handlers(app):
             response.cache_control._set_cache_value(
                 "stale-if-error", str(LONG_CACHE_STALE_IF_ERROR), int
             )
+            # Engage only: cap SWR for freshness. Others keep flask-base's
+            # long default to protect the origin after expiry.
+            if _is_engage_path(path):
+                response.cache_control._set_cache_value(
+                    "stale-while-revalidate",
+                    str(LONG_CACHE_STALE_WHILE_REVALIDATE),
+                    int,
+                )
 
         return response
 
