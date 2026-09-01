@@ -1,4 +1,9 @@
 name: ubuntu-com
+# NOTE: the "pack-rock" job in .github/workflows/pack.yaml runs
+# `rockcraft pack --destructive-mode` directly on the GitHub Actions runner
+# (no LXD container) to speed up CI. That only works because the runner is
+# pinned to `ubuntu-22.04`, matching the base below. If this base is ever
+# bumped, update the runner OS in pack.yaml to match.
 base: ubuntu@22.04
 version: "0.1"
 summary: Ubuntu website https://ubuntu.com

@@ -1,59 +1,32 @@
 name: Deploy to PS7
 
-run-name: Deploy ${{ inputs.commit || inputs.branch || github.ref_name }} (ps7)
-
-# Deployment to ProdStack 7.
+# Reusable workflow: deploys a pre-built rock + charm to ProdStack 7.
+# Called by .github/workflows/deploy.yaml, which packs the rock/charm once
+# and fans out to both PS6 and PS7 in parallel.
+#
 # - Push to main / WD-38425-set-up-continuous-deployment-for-ubuntu-com-on-ps-7: auto-deploys to staging, then production.
 # - Manual dispatch: choose branch, commit and environment (staging, production, both).
-# Builds the requested commit once (via pack.yaml) and deploys the same image
-# to each environment using JAAS OAuth credentials.
+# Deploys the image built by the caller to each environment using JAAS
+# OAuth credentials.
 
 on:
-  push:
-    branches:
-      - main
-      - WD-38425-set-up-continuous-deployment-for-ubuntu-com-on-ps-7 # remove after testing
-  workflow_dispatch:
+  workflow_call:
     inputs:
-      branch:
-        description: "Branch to deploy"
+      image-url:
+        description: "Full GHCR image URL to deploy as the flask-app-image resource"
         required: true
-        type: string
-        default: "main"
-      commit:
-        description: "Commit SHA to deploy (optional, defaults to tip of branch)"
-        required: false
         type: string
       environment:
-        description: "Target environment"
+        description: "Target environment: both, staging or production"
         required: true
-        type: choice
-        options:
-          - both
-          - staging
-          - production
-        default: both
-
-concurrency:
-  group: deploy-ps7
-  cancel-in-progress: false
+        type: string
 
 permissions: {}
 
 jobs:
-  pack:
-    permissions:
-      contents: read
-      packages: write
-    uses: ./.github/workflows/pack.yaml
-    with:
-      ref: ${{ inputs.commit || inputs.branch || github.sha }}
-
   deploy-staging:
-    needs: pack
     if: >-
-      ${{ github.event_name == 'push'
-      || inputs.environment == 'staging'
+      ${{ inputs.environment == 'staging'
       || inputs.environment == 'both' }}
     runs-on: [self-hosted-linux-amd64-noble-private-endpoint-medium]
     permissions:
@@ -67,7 +40,7 @@ jobs:
       - name: Deploy
         uses: ./.github/actions/deploy-ps7
         with:
-          image-url: ${{ needs.pack.outputs.image_url }}
+          image-url: ${{ inputs.image-url }}
           app-name: ${{ vars.CHARM_NAME }}
           controller-name: ${{ vars.JUJU_CONTROLLER_NAME }}
           controller-address: ${{ vars.JUJU_CONTROLLER_ADDRESS }}
@@ -77,12 +50,11 @@ jobs:
           juju-client-secret: ${{ secrets.JUJU_CLIENT_SECRET }}
 
   deploy-production:
-    needs: [pack, deploy-staging]
+    needs: deploy-staging
     if: >-
       ${{ !cancelled()
-      && needs.pack.result == 'success'
       && (needs.deploy-staging.result == 'success' || needs.deploy-staging.result == 'skipped')
-      && (github.event_name == 'push' || inputs.environment == 'production' || inputs.environment == 'both') }}
+      && (inputs.environment == 'production' || inputs.environment == 'both') }}
     runs-on: [self-hosted-linux-amd64-noble-private-endpoint-medium]
     permissions:
       contents: read
@@ -95,7 +67,7 @@ jobs:
       - name: Deploy
         uses: ./.github/actions/deploy-ps7
         with:
-          image-url: ${{ needs.pack.outputs.image_url }}
+          image-url: ${{ inputs.image-url }}
           app-name: ${{ vars.CHARM_NAME }}
           controller-name: ${{ vars.JUJU_CONTROLLER_NAME }}
           controller-address: ${{ vars.JUJU_CONTROLLER_ADDRESS }}
@@ -103,3 +75,4 @@ jobs:
           juju-version: ${{ vars.JUJU_VERSION || '3/stable' }}
           juju-client-id: ${{ secrets.JUJU_CLIENT_ID }}
           juju-client-secret: ${{ secrets.JUJU_CLIENT_SECRET }}
+

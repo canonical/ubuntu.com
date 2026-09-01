@@ -58,9 +58,12 @@ runs:
     - name: Switch to model
       shell: bash
       env:
+        JUJU_CLIENT_ID: ${{ inputs.juju-client-id }}
+        JUJU_CLIENT_SECRET: ${{ inputs.juju-client-secret }}
         JUJU_CONTROLLER_NAME: ${{ inputs.controller-name }}
         JUJU_MODEL_NAME: ${{ inputs.model-name }}
       run: |
+        set -e
         FULL_MODEL=$(juju models -c "$JUJU_CONTROLLER_NAME" --format json | \
           jq -r --arg model "$JUJU_MODEL_NAME" '.models[] | select(.["short-name"] == $model) | .name')
         juju switch "$JUJU_CONTROLLER_NAME:${FULL_MODEL}"
@@ -68,6 +71,8 @@ runs:
     - name: Deploy charm
       shell: bash
       env:
+        JUJU_CLIENT_ID: ${{ inputs.juju-client-id }}
+        JUJU_CLIENT_SECRET: ${{ inputs.juju-client-secret }}
         APP_NAME: ${{ inputs.app-name }}
         IMAGE_URL: ${{ inputs.image-url }}
       run: |
