@@ -1,2 +1,4 @@
-ops==2.23.5
+# ops must be >=3,<4: paas-charm 1.12.3 pulls in dpcharmlibs-interfaces==1.0.2,
+# which requires ops>=3,<4. Pinned to the latest release in that range.
+ops==3.8.2
 paas-charm==1.12.3

@@ -106,7 +106,12 @@ jobs:
         # --destructive-mode builds directly on the runner instead of
         # spinning up an LXD container, which removes ~2-3 min of instance
         # provisioning and lets the yarn/pip caches above take effect.
-        run: rockcraft pack --destructive-mode -v
+        # Requires root: unpacking the base image's OCI layers needs to
+        # chown/lchown files, which a non-root user cannot do. -E preserves
+        # the job's environment (e.g. ROCKCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS,
+        # HOME) across the privilege escalation so the yarn/pip caches above
+        # (keyed on the runner user's HOME) still apply.
+        run: sudo -E rockcraft pack --destructive-mode -v
 
       - name: Push rock to GHCR
         if: steps.check-image.outputs.exists != 'true'
