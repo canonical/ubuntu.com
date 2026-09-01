@@ -81,29 +81,13 @@ def _parse_query_params(all_releases, all_vendors):
 
     if request.args.getlist("category"):
         category_params = []
-        # These include UX replacements
-        # Filters, navigation and pathnames
-        for category in [
-            "Laptop",
-            "Desktop",
-            "Server",
-            "IoT",
-            "SoC",
-            "laptops",
-            "desktops",
-            "servers",
-            "iot",
-            "socs",
-            "Ubuntu Core",
-            "Server SoC",
-        ]:
-            for item in request.args.getlist("category"):
-                if item in category_params:
-                    continue
-                if item == category:
-                    new_query_params["category"] = category_params.append(
-                        category
-                    )
+        # Route through the same central alias conversion certified_search()
+        # uses, so any recognized legacy/API value redirects to its
+        # canonical /certified/search URL value instead of being dropped
+        for value in _normalize_categories(request.args.getlist("category")):
+            url_value = _get_category_url_value(value)
+            if url_value not in category_params:
+                category_params.append(url_value)
         new_query_params["category"] = category_params
 
     if request.args.getlist("vendor"):
