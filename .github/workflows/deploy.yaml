@@ -1,0 +1,95 @@
+name: Deploy
+
+run-name: Deploy ${{ inputs.commit || inputs.branch || github.ref_name }}
+
+# Orchestrator: packs the rock + charm ONCE (via pack.yaml) and fans out
+# to PS6 and PS7 in parallel, each as a reusable workflow
+# (deploy-ps6.yaml / deploy-ps7.yaml). This avoids paying for the rock/charm
+# build twice, since both clouds deploy the exact same image and charm.
+#
+# - Push to main / WD-38425-set-up-continuous-deployment-for-ubuntu-com-on-ps-7: auto-deploys to staging, then production, on both clouds.
+# - Manual dispatch: choose branch, commit, environment (staging, production, both) and target cloud (ps6, ps7, both).
+
+on:
+  push:
+    branches:
+      - main
+      - WD-38425-set-up-continuous-deployment-for-ubuntu-com-on-ps-7 # remove after testing
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Branch to deploy"
+        required: true
+        type: string
+        default: "main"
+      commit:
+        description: "Commit SHA to deploy (optional, defaults to tip of branch)"
+        required: false
+        type: string
+      environment:
+        description: "Target environment"
+        required: true
+        type: choice
+        options:
+          - both
+          - staging
+          - production
+        default: both
+      target:
+        description: "Target cloud"
+        required: true
+        type: choice
+        options:
+          - both
+          - ps6
+          - ps7
+        default: both
+      force-charm-rebuild:
+        description: "Bypass the charm cache and force a rebuild"
+        required: false
+        type: boolean
+        default: false
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+permissions: {}
+
+jobs:
+  pack:
+    permissions:
+      contents: read
+      packages: write
+    uses: ./.github/workflows/pack.yaml
+    with:
+      ref: ${{ inputs.commit || inputs.branch || github.sha }}
+      force-charm-rebuild: ${{ inputs.force-charm-rebuild == true }}
+
+  ps6:
+    needs: pack
+    if: >-
+      ${{ github.event_name == 'push'
+      || inputs.target == 'ps6'
+      || inputs.target == 'both' }}
+    permissions:
+      contents: read
+    uses: ./.github/workflows/deploy-ps6.yaml
+    secrets: inherit
+    with:
+      image-url: ${{ needs.pack.outputs.image_url }}
+      environment: ${{ inputs.environment || 'both' }}
+
+  ps7:
+    needs: pack
+    if: >-
+      ${{ github.event_name == 'push'
+      || inputs.target == 'ps7'
+      || inputs.target == 'both' }}
+    permissions:
+      contents: read
+    uses: ./.github/workflows/deploy-ps7.yaml
+    secrets: inherit
+    with:
+      image-url: ${{ needs.pack.outputs.image_url }}
+      environment: ${{ inputs.environment || 'both' }}

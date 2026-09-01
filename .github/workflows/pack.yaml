@@ -2,8 +2,16 @@ name: Pack
 
 # Reusable workflow: builds the rock + charm for a given git ref.
 # - The rock is pushed to GHCR tagged with the commit SHA (immutable,
-#   so every deployment is tracked by commit id).
-# - The charm is uploaded as a run artifact for the calling workflow to deploy.
+#   so every deployment is tracked by commit id). If an image for this SHA
+#   already exists in GHCR, the build is skipped entirely.
+# - The charm is uploaded as a run artifact for the calling workflow to
+#   deploy. Since the charm only depends on the charm/ directory (not on
+#   app source), it is restored from an actions/cache entry whenever
+#   possible instead of being rebuilt from scratch.
+#
+# This workflow is intended to be called ONCE per deploy run (see
+# .github/workflows/deploy.yaml), which then fans out the same rock image
+# and charm artifact to both PS6 and PS7 deploy jobs.
 
 on:
   workflow_call:
@@ -12,6 +20,11 @@ on:
         description: "Git ref (branch, tag, or commit SHA) to build"
         required: true
         type: string
+      force-charm-rebuild:
+        description: "Bypass the charm cache and force a rebuild"
+        required: false
+        type: boolean
+        default: false
     outputs:
       image_url:
         description: "Full GHCR image URL that was pushed"
@@ -28,7 +41,10 @@ permissions: {}
 
 jobs:
   pack-rock:
-    runs-on: ubuntu-latest
+    # Pinned to match `base: ubuntu@22.04` in rockcraft.yaml, since we build
+    # in --destructive-mode directly on the runner (no LXD container). If
+    # the rock base is ever bumped, update this to match.
+    runs-on: ubuntu-22.04
     permissions:
       contents: read
       packages: write
@@ -46,20 +62,54 @@ jobs:
         id: resolve
         run: echo "sha=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
 
-      - name: Setup LXD
-        uses: canonical/setup-lxd@main
-
-      - name: Setup Rockcraft
-        run: sudo snap install rockcraft --classic --channel=latest/edge
-
-      - name: Pack rock
-        run: rockcraft pack -v
-
       - name: Set image URL
         id: image
         run: echo "image_url=ghcr.io/${{ github.repository }}:${{ steps.resolve.outputs.sha }}" >> "$GITHUB_OUTPUT"
 
+      - name: Check if image already exists in GHCR
+        id: check-image
+        run: |
+          set -e
+          sudo apt-get update -qq && sudo apt-get install -y skopeo
+          if skopeo inspect --creds "canonical:${{ secrets.GITHUB_TOKEN }}" \
+            "docker://${{ steps.image.outputs.image_url }}" &>/dev/null; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Image ${{ steps.image.outputs.image_url }} already exists in GHCR, skipping rock build."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Cache yarn dependencies
+        if: steps.check-image.outputs.exists != 'true'
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.cache/yarn
+          key: yarn-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            yarn-${{ runner.os }}-
+
+      - name: Cache pip dependencies
+        if: steps.check-image.outputs.exists != 'true'
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            pip-${{ runner.os }}-
+
+      - name: Setup Rockcraft
+        if: steps.check-image.outputs.exists != 'true'
+        run: sudo snap install rockcraft --classic --channel=latest/stable
+
+      - name: Pack rock
+        if: steps.check-image.outputs.exists != 'true'
+        # --destructive-mode builds directly on the runner instead of
+        # spinning up an LXD container, which removes ~2-3 min of instance
+        # provisioning and lets the yarn/pip caches above take effect.
+        run: rockcraft pack --destructive-mode -v
+
       - name: Push rock to GHCR
+        if: steps.check-image.outputs.exists != 'true'
         run: |
           skopeo --insecure-policy copy \
             oci-archive:"$(ls ./*.rock)" \
@@ -77,16 +127,51 @@ jobs:
           ref: ${{ inputs.ref }}
           persist-credentials: false
 
+      - name: Setup Charmcraft
+        run: sudo snap install charmcraft --classic --channel=latest/stable
+
+      - name: Resolve charmcraft version
+        id: charmcraft-version
+        run: echo "version=$(charmcraft version)" >> "$GITHUB_OUTPUT"
+
+      - name: Compute cache week bucket
+        id: week
+        # Belt-and-braces: force a rebuild at least once a week even if
+        # nothing under charm/ changed, so the charm can never drift more
+        # than 7 days from upstream base images.
+        run: echo "value=$(date -u +%G-W%V)" >> "$GITHUB_OUTPUT"
+
+      - name: Restore charm cache
+        id: charm-cache
+        if: inputs.force-charm-rebuild != true
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ./charm/*.charm
+          key: charm-${{ steps.charmcraft-version.outputs.version }}-${{ steps.week.outputs.value }}-${{ hashFiles('charm/**', '!charm/*.charm') }}
+
       - name: Setup LXD
+        if: steps.charm-cache.outputs.cache-hit != 'true'
         uses: canonical/setup-lxd@main
 
-      - name: Setup Charmcraft
-        run: sudo snap install charmcraft --classic --channel=latest/edge
-
       - name: Pack charm
+        if: steps.charm-cache.outputs.cache-hit != 'true'
         run: charmcraft pack -v --project-dir ./charm
 
+      - name: Save charm cache
+        if: steps.charm-cache.outputs.cache-hit != 'true' && inputs.force-charm-rebuild != true
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ./charm/*.charm
+          key: charm-${{ steps.charmcraft-version.outputs.version }}-${{ steps.week.outputs.value }}-${{ hashFiles('charm/**', '!charm/*.charm') }}
+
+      # actions/cache is branch-scoped: a cache written on a feature branch
+      # is not visible from main. The first run on a new branch (or the
+      # first run on main after this change merges) will always rebuild;
+      # subsequent runs on that same branch will hit the cache.
+
       - name: Upload charm artifact
+        # Always runs, whether the charm came from cache or was just built,
+        # since the deploy jobs unconditionally download this artifact.
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v4
         with:
           name: charm
