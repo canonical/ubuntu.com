@@ -223,6 +223,28 @@ python -m pip install -U djlint
 A global install is still worth having, since some of our other repos do not pin
 djLint at all. It only needs to stay off the old versions.
 
+Note that `.djlintrc` is read from the project directory by whichever `djlint`
+runs, so config changes reach your editor even when the pin does not. Options
+that need a recent djLint, such as `ignore_blocks`, will be read by an old one
+and applied incorrectly.
+
+#### Macro formatting
+
+`.djlintrc` sets `ignore_blocks: macro` so djLint leaves the body of a
+`{% macro %}` at column 0, which is the style our macro files use. The trade-off
+is that reformatting a macro file also pulls its parameters back to column 0:
+
+``` jinja
+{% macro vf_highlighted_cta(     {% macro vf_highlighted_cta(
+  cta_text                  ->   cta_text
+) -%}                            ) -%}
+```
+
+Without the option djLint indents the closing `) -%}` and the whole macro body
+instead, which is worse. Both settings are stable, neither reproduces the hand
+formatting currently in the files, so expect a small diff either way when you
+reformat one.
+
 ### Configuring editors
 
 These are instructions for setting up various editors to use the above tools:
