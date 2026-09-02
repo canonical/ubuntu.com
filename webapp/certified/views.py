@@ -16,6 +16,8 @@ from urllib.parse import urlencode
 
 from webapp.certified.helpers import (
     _get_category_pathname,
+    _get_category_url_value,
+    _normalize_categories,
     get_download_url,
 )
 
@@ -57,28 +59,8 @@ def certified_routes(app):
         view_func=certified_component_details,
     )
     app.add_url_rule(
-        "/certified/vendors/<vendor>",
-        view_func=certified_vendors,
-    )
-    app.add_url_rule(
-        "/certified/desktops",
-        view_func=certified_desktops,
-    )
-    app.add_url_rule(
-        "/certified/laptops",
-        view_func=certified_laptops,
-    )
-    app.add_url_rule(
-        "/certified/servers",
-        view_func=certified_servers,
-    )
-    app.add_url_rule(
-        "/certified/iot",
-        view_func=certified_devices,
-    )
-    app.add_url_rule(
-        "/certified/socs",
-        view_func=certified_socs,
+        "/certified/search",
+        view_func=certified_search,
     )
     app.add_url_rule(
         "/certified/why-certify",
@@ -99,29 +81,13 @@ def _parse_query_params(all_releases, all_vendors):
 
     if request.args.getlist("category"):
         category_params = []
-        # These include UX replacements
-        # Filters, navigation and pathnames
-        for category in [
-            "Laptop",
-            "Desktop",
-            "Server",
-            "IoT",
-            "SoC",
-            "laptops",
-            "desktops",
-            "servers",
-            "iot",
-            "socs",
-            "Ubuntu Core",
-            "Server SoC",
-        ]:
-            for item in request.args.getlist("category"):
-                if item in category_params:
-                    continue
-                if item == category:
-                    new_query_params["category"] = category_params.append(
-                        category
-                    )
+        # Route through the same central alias conversion certified_search()
+        # uses, so any recognized legacy/API value redirects to its
+        # canonical /certified/search URL value instead of being dropped
+        for value in _normalize_categories(request.args.getlist("category")):
+            url_value = _get_category_url_value(value)
+            if url_value not in category_params:
+                category_params.append(url_value)
         new_query_params["category"] = category_params
 
     if request.args.getlist("vendor"):
@@ -177,6 +143,7 @@ def certified_platform_details(platform_id):
     return render_template(
         "certified/platforms/platform-details.html",
         category_pathname=_get_category_pathname(platform.get("category", "")),
+        category_url=_get_category_url_value(platform.get("category", "")),
         platform=platform,
         releases=releases,
         selected_release=None,
@@ -205,6 +172,7 @@ def certified_platform_details_by_release(platform_id, release):
             category_pathname=_get_category_pathname(
                 platform.get("category", "")
             ),
+            category_url=_get_category_url_value(platform.get("category", "")),
             platform=platform,
             releases=releases,
             selected_release=None,
@@ -223,6 +191,7 @@ def certified_platform_details_by_release(platform_id, release):
     return render_template(
         "certified/platforms/platform-details.html",
         category_pathname=_get_category_pathname(platform.get("category", "")),
+        category_url=_get_category_url_value(platform.get("category", "")),
         platform=platform,
         releases=releases,
         selected_release=release,
@@ -255,7 +224,7 @@ def get_vendors_releases_filters():
         vendors,
         releases,
     ) = get_filters(request.args)
-    new_certified_params = _parse_query_params(vendors, releases)
+    new_certified_params = _parse_query_params(releases, vendors)
     if not new_certified_params:
         filters = build_filter_options(
             certified_makes,
@@ -599,6 +568,7 @@ def certified_hardware_details(canonical_id, release):
     return render_template(
         "certified/hardware-details/hardware-details.html",
         category_pathname=_get_category_pathname(models["category"]),
+        category_url=_get_category_url_value(models["category"]),
         canonical_id=canonical_id,
         model_name=models["model"],
         form=models["category"],
@@ -682,6 +652,7 @@ def certified_model_details(canonical_id):
         name=model_release["model"],
         category=model_release["category"],
         category_pathname=_get_category_pathname(model_release["category"]),
+        category_url=_get_category_url_value(model_release["category"]),
         form_factor=form_factor,
         vendor=model_release["make"],
         platform_name=model_release["platform_name"],
@@ -726,227 +697,120 @@ def certified_home():
     if new_certified_params:
         return redirect(url_for(request.endpoint, **new_certified_params))
 
-    if (
-        "category" in request.args
-        and len(request.args.getlist("category")) == 1
-    ):
+    # Search results now live on their own shareable page, so old links
+    # that searched from here (e.g. /certified?q=...&category=...) redirect
+    if "q" in request.args or "category" in request.args:
+        query_string = request.query_string.decode()
+        target = "/certified/search"
+        if query_string:
+            target += f"?{query_string}"
+        return redirect(target)
+
+    return render_template(
+        "certified/index.html",
+        laptop_releases=laptop_releases,
+        laptop_vendors=laptop_vendors,
+        desktop_releases=desktop_releases,
+        desktop_vendors=desktop_vendors,
+        server_releases=server_releases,
+        server_vendors=server_vendors,
+        iot_releases=iot_releases,
+        iot_vendors=iot_vendors,
+        soc_releases=soc_releases,
+        soc_vendors=soc_vendors,
+    )
+
+
+def certified_why():
+    return render_template("certified/why-certify.html")
+
+
+def nxp_contact():
+    return render_template("certified/202309-32027/contact-us.html")
+
+
+def certified_search():
+    """
+    Unified /certified/search page.
+
+    Replaces the old separate category pages (desktops/laptops/servers/
+    socs/iot), vendor pages, and /certified's implicit search mode with a
+    single page driven entirely by query params (category, vendor, release,
+    q, offset, limit) so any given combination of filters is one shareable
+    URL.
+    """
+    # Legacy alias, previously only handled on vendor pages. Must run
+    # before get_filters()/_parse_query_params() below, otherwise the
+    # untranslated "query" param is silently dropped by canonicalization
+    if "query" in request.args:
         parameters = request.args.to_dict(flat=False)
-        parameters.pop("category")
-        new_params = ""
-        for key in parameters:
-            for value in parameters[key]:
-                new_params += f"{key}={value}&"
-
-        # Pathname replacements (UX requirement for consistency)
-        if request.args["category"] == "Ubuntu Core":
-            pathname = "iot"
-        elif request.args["category"] == "Server SoC":
-            pathname = "socs"
-        else:
-            pathname = request.args["category"].lower() + "s"
-
-        return redirect(f"/certified/{pathname}?{new_params}")
-
-    selected_categories = request.args.getlist("category")
-    if "q" in request.args or len(selected_categories) > 0:
-        query = request.args.get("q", default=None, type=str)
-        limit = request.args.get("limit", default=20, type=int)
-        offset = request.args.get("offset", default=0, type=int)
-
-        if "SoC" in selected_categories:
-            selected_categories.remove("SoC")
-            selected_categories.append("Server SoC")
-
-        if "Device" in selected_categories:
-            # Ubuntu Core is replaced by Device for UX purposes
-            # Ubuntu Core is an operating system not a category
-            selected_categories.remove("Device")
-            # Put back Ubuntu Core, as required by API endpoint
-            selected_categories.append("Ubuntu Core")
-
-        categories = (
-            ",".join(selected_categories) if selected_categories else None
-        )
-        if categories and "All" in categories:
-            categories = None
-        releases = (
-            ",".join(request.args.getlist("release"))
-            if request.args.getlist("release")
-            else None
-        )
-        vendors = (
-            request.args.getlist("vendor")
-            if request.args.getlist("vendor")
-            else None
+        parameters["q"] = parameters.pop("query")
+        return redirect(
+            f"/certified/search?{urlencode(parameters, doseq=True)}"
         )
 
-        models_response = api.certified_configurations(
-            category__in=categories,
-            major_release__in=releases,
-            vendor=vendors,
-            query=query,
-            offset=offset,
-            limit=limit,
-        )
+    certified_releases = api.certified_releases(limit="0")["results"]
+    certified_makes = api.certified_vendors(limit="0")["results"]
 
-        results = models_response["results"]
+    (
+        laptop_releases,
+        laptop_vendors,
+        desktop_releases,
+        desktop_vendors,
+        soc_releases,
+        soc_vendors,
+        iot_releases,
+        iot_vendors,
+        server_releases,
+        server_vendors,
+        all_releases,
+        all_vendors,
+        vendor_filters,
+        release_filters,
+    ) = get_filters(
+        request.args,
+        certified_releases=certified_releases,
+        certified_makes=certified_makes,
+    )
 
-        # UX improvement: selected filter on top
-        vendor_filters.extend(all_vendors)
-        release_filters.extend(all_releases)
-
-        for index, model in enumerate(results):
-            # Replace "Ubuntu Core" with "Device"
-            if model["category"] == "Ubuntu Core":
-                results[index]["category"] = "Device"
-
-        # Pagination
-        total_results = models_response["count"]
-
-        filter_options = build_filter_options(
-            certified_makes,
-            certified_releases,
-            selected_categories,
-            request.args.getlist("vendor"),
-            request.args.getlist("release"),
-        )
-
-        return render_template(
-            "certified/search-results.html",
-            results=results,
-            query=query,
-            category=categories,
-            releases=releases,
-            vendors=vendors,
-            vendor_filters=filter_options["vendor_filters"],
-            release_filters=filter_options["release_filters"],
-            total_results=total_results,
-            total_pages=math.ceil(total_results / limit),
-            offset=offset,
-            limit=limit,
-        )
-
-    else:
-        return render_template(
-            "certified/index.html",
-            laptop_releases=laptop_releases,
-            laptop_vendors=laptop_vendors,
-            desktop_releases=desktop_releases,
-            desktop_vendors=desktop_vendors,
-            server_releases=server_releases,
-            server_vendors=server_vendors,
-            iot_releases=iot_releases,
-            iot_vendors=iot_vendors,
-            soc_releases=soc_releases,
-            soc_vendors=soc_vendors,
-        )
-
-
-def create_category_views(category, template_path):
-    """
-    Helper function to create multiple /certified/<page> category views
-
-    Keyword arguments:
-    category -- must be categories accepted by API (Desktop, Laptop, \
-    Server, Ubuntu Core, Server SoC)
-    template_path -- full template path (e.g. certified/search-results.html)
-    """
-    # This page always implies its own `category` via the path, not a query
-    # param, so any additional `category` selected means 2+ are now active.
-    if len(request.args.getlist("category")) > 0:
-        url = f"/certified?{request.query_string.decode()}&category={category}"
-        # UX requirement
-        return redirect(url)
-
-    if category == "Desktop":
-        certified_releases = api.certified_releases(
-            limit="0", desktops__gte=1
-        )["results"]
-        certified_makes = api.certified_vendors(limit="0", desktops__gte=1)[
-            "results"
-        ]
-    elif category == "Laptop":
-        certified_releases = api.certified_releases(limit="0", laptops__gte=1)[
-            "results"
-        ]
-        certified_makes = api.certified_vendors(limit="0", laptops__gte=1)[
-            "results"
-        ]
-    elif category == "Server SoC":
-        certified_releases = api.certified_releases(limit="0", soc__gte=1)[
-            "results"
-        ]
-        certified_makes = api.certified_vendors(limit="0", soc__gte=1)[
-            "results"
-        ]
-    elif category == "Ubuntu Core":
-        certified_releases = api.certified_releases(
-            limit="0", smart_core__gte=1
-        )["results"]
-        certified_makes = api.certified_vendors(limit="0", smart_core__gte=1)[
-            "results"
-        ]
-    elif category == "Server":
-        certified_releases = api.certified_releases(limit="0", servers__gte=1)[
-            "results"
-        ]
-        certified_makes = api.certified_vendors(limit="0", servers__gte=1)[
-            "results"
-        ]
-    else:
-        certified_releases = api.certified_releases(limit="0")["results"]
-        certified_makes = api.certified_vendors(limit="0")["results"]
-
-    # Search results filters
-    all_releases = []
-    release_filters = []
-    all_vendors = []
-    vendor_filters = []
-
-    for release in certified_releases:
-        version = release["release"]
-
-        if release not in all_releases:
-            # UX improvement: selected filter on top
-            if version not in request.args.getlist("release"):
-                all_releases.append(version)
-                all_releases = sorted(all_releases, reverse=True)
-            else:
-                release_filters.append(version)
-
-    for vendor in certified_makes:
-        make = vendor["make"]
-
-        if make not in all_vendors:
-            # UX improvement: selected filter on top
-            if make not in request.args.getlist("vendor"):
-                all_vendors.append(make)
-                all_vendors = sorted(all_vendors)
-            else:
-                vendor_filters.append(make)
+    new_certified_params = _parse_query_params(release_filters, vendor_filters)
+    if new_certified_params:
+        return redirect(url_for(request.endpoint, **new_certified_params))
 
     query = request.args.get("q", default=None, type=str)
     limit = request.args.get("limit", default=20, type=int)
     offset = request.args.get("offset", default=0, type=int)
 
-    # Parse url
-    new_cert_params = _parse_query_params(release_filters, vendor_filters)
-    if new_cert_params:
-        return redirect(url_for(request.endpoint, **new_cert_params))
+    selected_categories = _normalize_categories(
+        request.args.getlist("category")
+    )
+    selected_vendors = request.args.getlist("vendor")
+    selected_releases = request.args.getlist("release")
 
-    releases = (
-        ",".join(request.args.getlist("release"))
-        if request.args.getlist("release")
-        else None
+    # Category pages used to have their own hero banner (image, title,
+    # description) - preserve that when exactly one category is picked
+    hero_category = (
+        selected_categories[0] if len(selected_categories) == 1 else None
     )
-    vendors = (
-        request.args.getlist("vendor")
-        if request.args.getlist("vendor")
-        else None
-    )
+
+    # Single-vendor pages used to have their own hero (logo, description,
+    # CTA) - preserve that whenever exactly one vendor is picked
+    vendor_data = None
+    vendor_name = None
+    if len(selected_vendors) == 1:
+        vendor_name = selected_vendors[0]
+        partners_data = partners_api.get_partner_by_name(vendor_name)
+        if partners_data:
+            vendor_data = partners_data[0]
+        # else: no partner profile for this vendor - just skip the hero,
+        # the vendor filter itself still applies to the search below
+
+    categories = ",".join(selected_categories) if selected_categories else None
+    releases = ",".join(selected_releases) if selected_releases else None
+    vendors = selected_vendors if selected_vendors else None
 
     models_response = api.certified_configurations(
-        category__in=category,
+        category__in=categories,
         major_release__in=releases,
         vendor=vendors,
         query=query,
@@ -956,138 +820,6 @@ def create_category_views(category, template_path):
 
     results = models_response["results"]
 
-    # UX improvement: selected filter on top
-    vendor_filters.extend(all_vendors)
-    release_filters.extend(all_releases)
-
-    for index, model in enumerate(results):
-        # Replace "Ubuntu Core" with "Device"
-        if model["category"] == "Ubuntu Core":
-            results[index]["category"] = "Device"
-
-    # Pagination
-    total_results = models_response["count"]
-
-    filter_options = build_filter_options(
-        certified_makes,
-        certified_releases,
-        [category],
-        request.args.getlist("vendor"),
-        request.args.getlist("release"),
-    )
-
-    return render_template(
-        template_path,
-        results=results,
-        query=query,
-        releases=releases,
-        release_filters=filter_options["release_filters"],
-        vendor_filters=filter_options["vendor_filters"],
-        vendors=vendors,
-        total_results=total_results,
-        total_pages=math.ceil(total_results / limit),
-        offset=offset,
-        limit=limit,
-    )
-
-
-# View functions must be unique
-# so must create one for each
-def certified_desktops():
-    view = create_category_views("Desktop", "certified/desktops.html")
-    return view
-
-
-def certified_laptops():
-    view = create_category_views("Laptop", "certified/laptops.html")
-    return view
-
-
-def certified_servers():
-    view = create_category_views("Server", "certified/servers.html")
-    return view
-
-
-def certified_socs():
-    view = create_category_views("Server SoC", "certified/socs.html")
-    return view
-
-
-def certified_why():
-    view = create_category_views("Why", "certified/why-certify.html")
-    return view
-
-
-def certified_devices():
-    view = create_category_views("Ubuntu Core", "certified/devices.html")
-    return view
-
-
-def nxp_contact():
-    return render_template("certified/202309-32027/contact-us.html")
-
-
-def certified_vendors(vendor):
-    partners_data = partners_api.get_partner_by_name(vendor)
-    try:
-        vendor_data = partners_data[0]
-    except Exception:
-        # Most likely all exceptions are related to not having data
-        return redirect("/certified?q=" + vendor)
-
-    # Pagination
-    limit = request.args.get("limit", default=20, type=int)
-    offset = request.args.get("offset", default=0, type=int)
-
-    certified_releases = api.certified_releases(limit="0")["results"]
-    releases = (
-        ",".join(request.args.getlist("release"))
-        if request.args.getlist("release")
-        else None
-    )
-
-    category_filters = ["Laptop", "Desktop", "Server", "Device", "SoC"]
-    selected_categories = request.args.getlist("category")
-    if "SoC" in selected_categories:
-        selected_categories.remove("SoC")
-        selected_categories.append("Server SoC")
-
-    if "Device" in selected_categories:
-        selected_categories.remove("Device")
-        selected_categories.append("Ubuntu Core")
-
-    categories = ",".join(selected_categories) if selected_categories else None
-
-    # Vendor is fixed by the page, so only release options are relevant here.
-    # Same {data, total} shape as every other certified page's filters.
-    release_filters = build_filter_options(
-        [],
-        certified_releases,
-        selected_categories,
-        [],
-        request.args.getlist("release"),
-    )["release_filters"]
-
-    query = request.args.get("q", default=None, type=str)
-
-    if set(request.args) & set(["query"]):
-        parameters = request.args.to_dict()
-        if "query" in parameters:
-            parameters["q"] = parameters["query"]
-            del parameters["query"]
-
-        return redirect(f"/certified?{urlencode(parameters)}", 301)
-
-    models = api.certified_configurations(
-        vendor=vendor,
-        category__in=categories,
-        limit=limit,
-        query=query,
-        offset=offset,
-        major_release__in=releases,
-    )
-
-    results = models["results"]
     for index, model in enumerate(results):
         # Replace "Ubuntu Core" with "Device"
         if model["category"] == "Ubuntu Core":
@@ -1097,20 +829,33 @@ def certified_vendors(vendor):
         if model["make"] == "nVidia":
             model["make"] = "NVIDIA"
 
-    total_results = models["count"]
+    total_results = models_response["count"]
+
+    # Vendor/release checkboxes are server-rendered up front, matching the
+    # same {data, total} shape /certified/filters.json returns
+    filter_options = build_filter_options(
+        certified_makes,
+        certified_releases,
+        selected_categories,
+        selected_vendors,
+        selected_releases,
+    )
 
     return render_template(
-        "certified/vendors/vendor.html",
+        "certified/search.html",
         vendor_data=vendor_data,
-        vendor=vendor,
+        vendor=vendor_name,
+        hero_category=hero_category,
         results=results,
-        releases=releases,
-        release_filters=release_filters,
-        category_filters=category_filters,
-        category=",".join(request.args.getlist("category")),
         query=query,
-        limit=limit,
-        offset=offset,
+        category=categories,
+        releases=releases,
+        vendors=vendors,
+        vendor_filters=filter_options["vendor_filters"],
+        release_filters=filter_options["release_filters"],
         total_results=total_results,
-        total_pages=math.ceil(total_results / limit),
+        # Guard against diving by zero
+        total_pages=math.ceil(total_results / limit) if limit else 1,
+        offset=offset,
+        limit=limit,
     )

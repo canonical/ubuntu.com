@@ -573,20 +573,20 @@ certification:
     - title: Overview
       path: /certified
     - title: Search hardware
-      path: /certified/laptops
+      path: /certified/search
     - title: Category
       path: /certified/category
       children:
         - title: Laptops
-          path: /certified/laptops
+          path: /certified/search?category=Laptop
         - title: Desktops
-          path: /certified/desktops
+          path: /certified/search?category=Desktop
         - title: Servers
-          path: /certified/servers
+          path: /certified/search?category=Server
         - title: IoT
-          path: /certified/iot
+          path: /certified/search?category=IoT
         - title: SoCs
-          path: /certified/socs
+          path: /certified/search?category=SoC
     - title: Why certify?
       path: /certified/why-certify
 

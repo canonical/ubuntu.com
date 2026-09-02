@@ -203,4 +203,42 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.2
+    method: GET
+    uri: https://partners.ubuntu.com/partners.json?name=Dell
+  response:
+    body:
+      string: '[]'
+    headers:
+      accept-ranges:
+      - bytes
+      content-length:
+      - '2'
+      content-type:
+      - application.json
+      cross-origin-opener-policy:
+      - same-origin
+      referrer-policy:
+      - same-origin
+      server:
+      - nginx/1.14.0 (Ubuntu)
+      strict-transport-security:
+      - max-age=15724800
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - DENY
+    status:
+      code: 200
+      message: ''
 version: 1

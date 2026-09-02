@@ -3,19 +3,19 @@ import { acceptCookiePolicy } from "../helpers/commands";
 
 test.describe("Certified search results", () => {
   test("should update results per page when pagination is selected", async ({ page }) => {
-    await page.goto("/certified?q=dell");
+    await page.goto("/certified/search?q=dell");
     await acceptCookiePolicy(page);
     
     await page.locator('#page-size-top').waitFor({ state: 'visible' });
     await page.locator('#page-size-top').selectOption({ label: '40' });
 
-    await page.waitForURL(/\/certified\?q=dell&limit=40/, { timeout: 10000 });
-    await expect(page).toHaveURL('/certified?q=dell&limit=40');
+    await page.waitForURL(/\/certified\/search\?q=dell&limit=40/, { timeout: 10000 });
+    await expect(page).toHaveURL('/certified/search?q=dell&limit=40');
     await expect(page.getByText(/results/)).toContainText('40');
   });
 
   test("should update results when Apply is selected", async ({ page }) => {
-    await page.goto("/certified/laptops");
+    await page.goto("/certified/search?category=Laptop");
     await acceptCookiePolicy(page);
 
     await page.getByLabel('Vendor').getByText('Dell').click();
@@ -27,7 +27,7 @@ test.describe("Certified search results", () => {
   });
 
   test("should clear filters when clear is selected", async ({ page }) => {
-    await page.goto("/certified/socs");
+    await page.goto("/certified/search?category=SoC");
     await acceptCookiePolicy(page);
 
     await page.getByText(/20.04 LTS/i).click();
@@ -43,7 +43,7 @@ test.describe("Certified search results", () => {
   });
   
   test("should keep query string when filters are cleared", async ({ page }) => {
-    await page.goto("/certified?q=hp");
+    await page.goto("/certified/search?q=hp");
     await acceptCookiePolicy(page);
 
     await page.getByText("Show all versions").click({ force: true });

@@ -4,7 +4,8 @@
       {% if offset >= total_results %}
         {% set current_page = 1 %}
       {% else %}
-        {% set current_page = ((offset / limit) + 1) | int %}
+        {# Guard against diving by zero #}
+        {% set current_page = ((offset / limit) + 1) | int if limit else 1 %}
       {% endif %}
       {% if total_results > limit %}
         {% include "shared/_pagination.html" %}
