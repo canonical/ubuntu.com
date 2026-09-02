@@ -224,7 +224,7 @@ def get_vendors_releases_filters():
         vendors,
         releases,
     ) = get_filters(request.args)
-    new_certified_params = _parse_query_params(vendors, releases)
+    new_certified_params = _parse_query_params(releases, vendors)
     if not new_certified_params:
         filters = build_filter_options(
             certified_makes,
@@ -852,7 +852,8 @@ def certified_search():
         vendor_filters=filter_options["vendor_filters"],
         release_filters=filter_options["release_filters"],
         total_results=total_results,
-        total_pages=math.ceil(total_results / limit),
+        # Guard against diving by zero
+        total_pages=math.ceil(total_results / limit) if limit else 1,
         offset=offset,
         limit=limit,
     )

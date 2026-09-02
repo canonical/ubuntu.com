@@ -18,23 +18,23 @@
     {% endif %}
 {% endblock %}
 
-{% block meta_description %}
-    {% if vendor_data %}
+{% block meta_description -%}
+    {% if vendor_data -%}
         Hardware by {{ vendor }} that have been certified for use with Ubuntu.
-    {% elif hero_category == "Laptop" %}
+    {%- elif hero_category == "Laptop" -%}
         Laptops that have been certified for use with Ubuntu.
-    {% elif hero_category == "Desktop" %}
+    {%- elif hero_category == "Desktop" -%}
         Ubuntu certifies thousands of desktops to guarantee they work well with Ubuntu.
-    {% elif hero_category == "Server" %}
+    {%- elif hero_category == "Server" -%}
         Servers that have been certified for use with Ubuntu.
-    {% elif hero_category == "Server SoC" %}
+    {%- elif hero_category == "Server SoC" -%}
         SoCs that have been certified for use with Ubuntu.
-    {% elif hero_category == "Ubuntu Core" %}
+    {%- elif hero_category == "Ubuntu Core" -%}
         Devices that have been certified for use with Ubuntu.
-    {% else %}
+    {%- else -%}
         Hardware that have been certified for use with Ubuntu.
-    {% endif %}
-{% endblock meta_description %}
+    {%- endif -%}
+{%- endblock meta_description %}
 
 {% block body_class %}
     is-paper

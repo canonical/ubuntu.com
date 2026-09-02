@@ -251,28 +251,6 @@ async function fetchFilters(
   return await fetch(url).then((res) => res.json());
 }
 
-async function handleCategoryClick(e) {
-  // Reset every time category is clicked
-  filters2Elm.innerHTML = "";
-  filters3Elm.innerHTML = "";
-
-  handleFilterClick(e);
-  const url = new URL(window.location.href);
-  const newURLParams = new URLSearchParams(url.search);
-  if (newURLParams.getAll("category").length === 0) {
-    renderFilters([]);
-  } else {
-    const checkbox = filters1Elm.querySelectorAll("input");
-    let categories = [];
-    checkbox.forEach((box) => {
-      if (box.checked) {
-        categories.push(box.dataset.filter);
-      }
-    });
-    renderFilters(categories);
-  }
-}
-
 function handleFilterClick(e) {
   const { value, name, checked, dataset } = e.target;
   let url = new URL(window.location.href);
