@@ -739,6 +739,16 @@ def certified_search():
     q, offset, limit) so any given combination of filters is one shareable
     URL.
     """
+    # Legacy alias, previously only handled on vendor pages. Must run
+    # before get_filters()/_parse_query_params() below, otherwise the
+    # untranslated "query" param is silently dropped by canonicalization
+    if "query" in request.args:
+        parameters = request.args.to_dict(flat=False)
+        parameters["q"] = parameters.pop("query")
+        return redirect(
+            f"/certified/search?{urlencode(parameters, doseq=True)}"
+        )
+
     certified_releases = api.certified_releases(limit="0")["results"]
     certified_makes = api.certified_vendors(limit="0")["results"]
 
@@ -766,14 +776,6 @@ def certified_search():
     new_certified_params = _parse_query_params(release_filters, vendor_filters)
     if new_certified_params:
         return redirect(url_for(request.endpoint, **new_certified_params))
-
-    # Legacy alias, previously only handled on vendor pages
-    if "query" in request.args:
-        parameters = request.args.to_dict(flat=False)
-        parameters["q"] = parameters.pop("query")
-        return redirect(
-            f"/certified/search?{urlencode(parameters, doseq=True)}"
-        )
 
     query = request.args.get("q", default=None, type=str)
     limit = request.args.get("limit", default=20, type=int)
