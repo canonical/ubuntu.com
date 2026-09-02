@@ -33,10 +33,12 @@ runs:
   steps:
     - name: Install Juju
       shell: bash
-      run: sudo snap install juju --channel="${{ inputs.juju-version }}"
+      env:
+        JUJU_VERSION: ${{ inputs.juju-version }}
+      run: sudo snap install juju --channel="$JUJU_VERSION"
 
     - name: Download charm artifact
-      uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v4
+      uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
       with:
         name: charm
 
@@ -49,10 +51,6 @@ runs:
         JUJU_CONTROLLER_NAME: ${{ inputs.controller-name }}
       run: |
         set -e
-        if [ -z "$JUJU_CLIENT_ID" ] || [ -z "$JUJU_CLIENT_SECRET" ]; then
-          echo "::error::JUJU_CLIENT_ID or JUJU_CLIENT_SECRET is empty. Check that the corresponding secrets are set in this GitHub Environment."
-          exit 1
-        fi
         juju login "$JUJU_CONTROLLER_ADDRESS" -c "$JUJU_CONTROLLER_NAME" --debug
 
     - name: Switch to model

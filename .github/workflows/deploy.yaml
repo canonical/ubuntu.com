@@ -2,14 +2,9 @@ name: Deploy
 
 run-name: Deploy ${{ inputs.commit || inputs.branch || github.ref_name }}
 
-# Orchestrator: packs the rock + charm ONCE (via pack.yaml) and fans out
+# Orchestrator: packs the rock + charm (via pack.yaml) and fans out
 # to PS6 and PS7 in parallel, each as a reusable workflow
-# (deploy-ps6.yaml / deploy-ps7.yaml). This avoids paying for the rock/charm
-# build twice, since both clouds deploy the exact same image and charm.
-#
-# - Push to main / WD-38425-set-up-continuous-deployment-for-ubuntu-com-on-ps-7: auto-deploys to staging, then production, on both clouds.
-# - Manual dispatch: choose branch, commit, environment (staging, production, both) and target cloud (ps6, ps7, both).
-
+# (deploy-ps6.yaml / deploy-ps7.yaml). 
 on:
   push:
     branches:
@@ -65,6 +60,7 @@ jobs:
     with:
       ref: ${{ inputs.commit || inputs.branch || github.sha }}
       force-charm-rebuild: ${{ inputs.force-charm-rebuild == true }}
+      disable-charm-cache: ${{ github.event_name == 'workflow_dispatch' }}
 
   ps6:
     needs: pack
