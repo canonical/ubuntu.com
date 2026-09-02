@@ -27,6 +27,12 @@ api = CertificationAPI(
 )
 partners_api = PartnersAPI(session=session)
 
+AUTOCOMPLETE_MIN_CHARS = 3
+AUTOCOMPLETE_MAX_SUGGESTIONS = 5
+# Fetched larger than AUTOCOMPLETE_MAX_SUGGESTIONS since multiple
+# certificates (different releases) commonly share the same model name
+AUTOCOMPLETE_FETCH_LIMIT = 25
+
 
 def certified_routes(app):
     """
@@ -68,6 +74,9 @@ def certified_routes(app):
     )
     app.add_url_rule(
         "/certified/filters.json", view_func=get_vendors_releases_filters
+    )
+    app.add_url_rule(
+        "/certified/autocomplete.json", view_func=certified_autocomplete
     )
     app.add_url_rule(
         "/certified/202309-32027/contact-us", view_func=nxp_contact
@@ -727,6 +736,56 @@ def certified_why():
 
 def nxp_contact():
     return render_template("certified/202309-32027/contact-us.html")
+
+
+def certified_autocomplete():
+    """
+    Search-box suggestions for /certified/search, scoped to the same
+    category/vendor/release filters currently applied on that page.
+    """
+    query = request.args.get("q", default="", type=str).strip()
+    if len(query) < AUTOCOMPLETE_MIN_CHARS:
+        return jsonify({"suggestions": []})
+
+    selected_categories = _normalize_categories(
+        request.args.getlist("category")
+    )
+    selected_vendors = request.args.getlist("vendor")
+    selected_releases = request.args.getlist("release")
+
+    try:
+        response = api.certified_configurations(
+            model__icontains=query,
+            category__in=(
+                ",".join(selected_categories) if selected_categories else None
+            ),
+            major_release__in=(
+                ",".join(selected_releases) if selected_releases else None
+            ),
+            vendor=selected_vendors or None,
+            ordering="model",
+            limit=AUTOCOMPLETE_FETCH_LIMIT,
+            offset=0,
+        )
+    except Exception:
+        # Suggestions are a non-essential enhancement - never break the
+        # search box over a flaky upstream API call
+        sentry_sdk.capture_exception()
+        return jsonify({"suggestions": []})
+
+    seen = set()
+    suggestions = []
+    for result in response.get("results", []):
+        name = (result.get("model") or "").strip()
+        key = name.lower()
+        if not name or key in seen:
+            continue
+        seen.add(key)
+        suggestions.append(name)
+        if len(suggestions) == AUTOCOMPLETE_MAX_SUGGESTIONS:
+            break
+
+    return jsonify({"suggestions": suggestions})
 
 
 def certified_search():

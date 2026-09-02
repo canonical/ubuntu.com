@@ -83,6 +83,32 @@ class TestCertification(VCRTestCase):
         self.assertIn("release_filters", response.json.keys())
         self.assertIn("vendor_filters", response.json.keys())
 
+    def test_autocomplete_min_chars(self):
+        response = self.client.get("/certified/autocomplete.json?q=ab")
+        self.assertEqual(response.json, {"suggestions": []})
+
+    def test_autocomplete_dedupes_and_caps(self):
+        response = self.client.get("/certified/autocomplete.json?q=lat")
+        self.assertEqual(
+            response.json,
+            {
+                "suggestions": [
+                    "Latitude 5420",
+                    "latitude 5421",
+                    "Latitude 7420",
+                    "Latitude 9420",
+                    "Latitude 5430",
+                ]
+            },
+        )
+
+    def test_autocomplete_passes_through_filters(self):
+        response = self.client.get(
+            "/certified/autocomplete.json"
+            "?q=lat&category=Laptop&vendor=Dell&release=22.04"
+        )
+        self.assertEqual(response.json, {"suggestions": ["Latitude 5420"]})
+
     def test_note_rendering(self):
         """
         Test that basic markdown elements are rendered correctly.

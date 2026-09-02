@@ -5,7 +5,10 @@
          type="text"
          name="q"
          value="{{ query or '' }}"
-         placeholder="{{ placeholder or 'Search' }}" />
+         placeholder="{{ placeholder or 'Search' }}"
+         list="certified-search-suggestions"
+         autocomplete="off" />
+  <datalist id="certified-search-suggestions"></datalist>
   <button type="submit" class="p-search-box__button">
     <i class="p-icon--search">Submit</i>
   </button>

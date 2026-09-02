@@ -38,6 +38,16 @@ let filterLimit = 5;
 
 let filterNavigateTimer = null;
 
+const searchInput = document.querySelector("#certified-search");
+const searchSuggestionsList = document.querySelector(
+  "#certified-search-suggestions",
+);
+const AUTOCOMPLETE_MIN_CHARS = 3;
+const AUTOCOMPLETE_MAX_SUGGESTIONS = 5;
+const AUTOCOMPLETE_DEBOUNCE_MS = 200;
+let autocompleteDebounceTimer = null;
+let autocompleteAbortController = null;
+
 const SCROLL_POSITION_KEY = "certifiedFiltersScrollY";
 
 // Filter changes reload the page, which otherwise resets the scroll position
@@ -87,6 +97,56 @@ function retrieveSelectedFilters() {
     vendor: urlParams.getAll("vendor"),
     release: urlParams.getAll("release"),
   };
+}
+
+function scheduleAutocompleteFetch() {
+  clearTimeout(autocompleteDebounceTimer);
+  autocompleteDebounceTimer = setTimeout(
+    fetchAutocompleteSuggestions,
+    AUTOCOMPLETE_DEBOUNCE_MS,
+  );
+}
+
+async function fetchAutocompleteSuggestions() {
+  const term = searchInput.value.trim();
+  if (term.length < AUTOCOMPLETE_MIN_CHARS) {
+    searchSuggestionsList.innerHTML = "";
+    return;
+  }
+
+  if (autocompleteAbortController) {
+    autocompleteAbortController.abort();
+  }
+  autocompleteAbortController = new AbortController();
+
+  const { category, vendor, release } = retrieveSelectedFilters();
+  const url = new URL(`${window.location.origin}/certified/autocomplete.json`);
+  url.searchParams.set("q", term);
+  category.forEach((value) => url.searchParams.append("category", value));
+  vendor.forEach((value) => url.searchParams.append("vendor", value));
+  release.forEach((value) => url.searchParams.append("release", value));
+
+  try {
+    const response = await fetch(url, {
+      signal: autocompleteAbortController.signal,
+    });
+    const data = await response.json();
+    renderAutocompleteSuggestions(data.suggestions || []);
+  } catch (error) {
+    // A newer request superseding this one is expected, not a failure
+    if (error.name !== "AbortError") {
+      searchSuggestionsList.innerHTML = "";
+    }
+  }
+}
+
+function renderAutocompleteSuggestions(suggestions) {
+  searchSuggestionsList.innerHTML = "";
+  suggestions.slice(0, AUTOCOMPLETE_MAX_SUGGESTIONS).forEach((value) => {
+    const option = document.createElement("option");
+    option.value = value;
+    searchSuggestionsList.appendChild(option);
+  });
 }
 
 function toggleFilterExpandLinks(data, total, elementMore, elementLess) {
@@ -489,3 +549,7 @@ if (filters2Elm.querySelector("input") || filters3Elm.querySelector("input")) {
 updateResultsPerPage();
 hideDrawerPageReload();
 wireStaticFilterHandlers();
+
+if (searchInput && searchSuggestionsList) {
+  searchInput.addEventListener("input", scheduleAutocompleteFetch);
+}
