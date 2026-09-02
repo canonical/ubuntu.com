@@ -38,16 +38,6 @@ let filterLimit = 5;
 
 let filterNavigateTimer = null;
 
-const searchInput = document.querySelector("#certified-search");
-const searchSuggestionsList = document.querySelector(
-  "#certified-search-suggestions",
-);
-const AUTOCOMPLETE_MIN_CHARS = 3;
-const AUTOCOMPLETE_MAX_SUGGESTIONS = 5;
-const AUTOCOMPLETE_DEBOUNCE_MS = 200;
-let autocompleteDebounceTimer = null;
-let autocompleteAbortController = null;
-
 const SCROLL_POSITION_KEY = "certifiedFiltersScrollY";
 
 // Filter changes reload the page, which otherwise resets the scroll position
@@ -97,56 +87,6 @@ function retrieveSelectedFilters() {
     vendor: urlParams.getAll("vendor"),
     release: urlParams.getAll("release"),
   };
-}
-
-function scheduleAutocompleteFetch() {
-  clearTimeout(autocompleteDebounceTimer);
-  autocompleteDebounceTimer = setTimeout(
-    fetchAutocompleteSuggestions,
-    AUTOCOMPLETE_DEBOUNCE_MS,
-  );
-}
-
-async function fetchAutocompleteSuggestions() {
-  const term = searchInput.value.trim();
-  if (term.length < AUTOCOMPLETE_MIN_CHARS) {
-    searchSuggestionsList.innerHTML = "";
-    return;
-  }
-
-  if (autocompleteAbortController) {
-    autocompleteAbortController.abort();
-  }
-  autocompleteAbortController = new AbortController();
-
-  const { category, vendor, release } = retrieveSelectedFilters();
-  const url = new URL(`${window.location.origin}/certified/autocomplete.json`);
-  url.searchParams.set("q", term);
-  category.forEach((value) => url.searchParams.append("category", value));
-  vendor.forEach((value) => url.searchParams.append("vendor", value));
-  release.forEach((value) => url.searchParams.append("release", value));
-
-  try {
-    const response = await fetch(url, {
-      signal: autocompleteAbortController.signal,
-    });
-    const data = await response.json();
-    renderAutocompleteSuggestions(data.suggestions || []);
-  } catch (error) {
-    // A newer request superseding this one is expected, not a failure
-    if (error.name !== "AbortError") {
-      searchSuggestionsList.innerHTML = "";
-    }
-  }
-}
-
-function renderAutocompleteSuggestions(suggestions) {
-  searchSuggestionsList.innerHTML = "";
-  suggestions.slice(0, AUTOCOMPLETE_MAX_SUGGESTIONS).forEach((value) => {
-    const option = document.createElement("option");
-    option.value = value;
-    searchSuggestionsList.appendChild(option);
-  });
 }
 
 function toggleFilterExpandLinks(data, total, elementMore, elementLess) {
@@ -550,6 +490,155 @@ updateResultsPerPage();
 hideDrawerPageReload();
 wireStaticFilterHandlers();
 
-if (searchInput && searchSuggestionsList) {
-  searchInput.addEventListener("input", scheduleAutocompleteFetch);
+// ---- Search box autocomplete (model name suggestions) ----
+
+const AUTOCOMPLETE_MIN_CHARS = 3;
+const AUTOCOMPLETE_MAX_SUGGESTIONS = 5;
+const AUTOCOMPLETE_DEBOUNCE_MS = 200;
+
+function initCertifiedAutocomplete() {
+  const searchInput = document.querySelector("#certified-search");
+  const suggestionsList = document.querySelector(
+    "#certified-search-suggestions",
+  );
+
+  if (!searchInput || !suggestionsList) {
+    return;
+  }
+
+  let debounceTimer = null;
+  let abortController = null;
+  let activeIndex = -1;
+
+  function closeSuggestions() {
+    suggestionsList.innerHTML = "";
+    suggestionsList.classList.add("u-hide");
+    searchInput.setAttribute("aria-expanded", "false");
+    searchInput.removeAttribute("aria-activedescendant");
+    activeIndex = -1;
+  }
+
+  function selectSuggestion(value) {
+    searchInput.value = value;
+    closeSuggestions();
+    searchInput.focus();
+  }
+
+  function setActiveOption(index) {
+    const options = suggestionsList.querySelectorAll("li");
+    if (!options.length) {
+      return;
+    }
+
+    options.forEach((option) => {
+      option.setAttribute("aria-selected", "false");
+      option.classList.remove("is-active");
+    });
+
+    activeIndex = (index + options.length) % options.length;
+    const activeOption = options[activeIndex];
+    activeOption.setAttribute("aria-selected", "true");
+    activeOption.classList.add("is-active");
+    searchInput.setAttribute("aria-activedescendant", activeOption.id);
+  }
+
+  function renderSuggestions(suggestions) {
+    suggestionsList.innerHTML = "";
+    activeIndex = -1;
+
+    if (!suggestions || suggestions.length === 0) {
+      closeSuggestions();
+      return;
+    }
+
+    suggestions
+      .slice(0, AUTOCOMPLETE_MAX_SUGGESTIONS)
+      .forEach((suggestion, index) => {
+        const option = document.createElement("li");
+        option.id = `certified-search-option-${index}`;
+        option.setAttribute("role", "option");
+        option.setAttribute("aria-selected", "false");
+        option.textContent = suggestion;
+        // mousedown fires before the input's blur event, so the click
+        // still registers before the dropdown would otherwise be closed
+        option.addEventListener("mousedown", (e) => {
+          e.preventDefault();
+          selectSuggestion(suggestion);
+        });
+        suggestionsList.appendChild(option);
+      });
+
+    suggestionsList.classList.remove("u-hide");
+    searchInput.setAttribute("aria-expanded", "true");
+  }
+
+  function fetchSuggestions(term) {
+    if (abortController) {
+      abortController.abort();
+    }
+    abortController = new AbortController();
+
+    const { category, vendor, release } = retrieveSelectedFilters();
+    const url = new URL(
+      `${window.location.origin}/certified/autocomplete.json`,
+    );
+    url.searchParams.set("q", term);
+    category.forEach((value) => url.searchParams.append("category", value));
+    vendor.forEach((value) => url.searchParams.append("vendor", value));
+    release.forEach((value) => url.searchParams.append("release", value));
+
+    fetch(url, { signal: abortController.signal })
+      .then((res) => res.json())
+      .then((data) => renderSuggestions(data.suggestions))
+      .catch((error) => {
+        // A newer request superseding this one is expected, not a failure
+        if (error.name !== "AbortError") {
+          closeSuggestions();
+        }
+      });
+  }
+
+  searchInput.addEventListener("input", () => {
+    const term = searchInput.value.trim();
+
+    clearTimeout(debounceTimer);
+
+    if (term.length < AUTOCOMPLETE_MIN_CHARS) {
+      closeSuggestions();
+      return;
+    }
+
+    debounceTimer = setTimeout(
+      () => fetchSuggestions(term),
+      AUTOCOMPLETE_DEBOUNCE_MS,
+    );
+  });
+
+  searchInput.addEventListener("keydown", (e) => {
+    const options = suggestionsList.querySelectorAll("li");
+    if (!options.length) {
+      return;
+    }
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActiveOption(activeIndex + 1);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActiveOption(activeIndex - 1);
+    } else if (e.key === "Enter" && activeIndex > -1) {
+      e.preventDefault();
+      selectSuggestion(options[activeIndex].textContent);
+    } else if (e.key === "Escape") {
+      closeSuggestions();
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".p-certified-autocomplete")) {
+      closeSuggestions();
+    }
+  });
 }
+
+initCertifiedAutocomplete();
