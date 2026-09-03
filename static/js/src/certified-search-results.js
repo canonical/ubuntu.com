@@ -511,6 +511,11 @@ function initCertifiedAutocomplete() {
   let activeIndex = -1;
 
   function closeSuggestions() {
+    clearTimeout(debounceTimer);
+    if (abortController) {
+      abortController.abort();
+      abortController = null;
+    }
     suggestionsList.innerHTML = "";
     suggestionsList.classList.add("u-hide");
     searchInput.setAttribute("aria-expanded", "false");
@@ -602,6 +607,10 @@ function initCertifiedAutocomplete() {
     const term = searchInput.value.trim();
 
     clearTimeout(debounceTimer);
+    if (abortController) {
+      abortController.abort();
+      abortController = null;
+    }
 
     if (term.length < AUTOCOMPLETE_MIN_CHARS) {
       closeSuggestions();
@@ -633,6 +642,10 @@ function initCertifiedAutocomplete() {
       closeSuggestions();
     }
   });
+
+  // Ensures keyboard users (tabbing away) also dismiss the popup, not just
+  // pointer clicks outside it
+  searchInput.addEventListener("blur", closeSuggestions);
 
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".p-certified-autocomplete")) {
