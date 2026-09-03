@@ -30,23 +30,8 @@
       }
     }
 
-    .p-filter-menu__count {
-      align-items: center;
-      background-color: #111;
-      border-radius: 99px;
-      color: #fff;
-      display: inline-flex;
-      font-size: $spv--medium;
-      font-weight: $font-weight-bold;
-      height: 1.1rem;
-      justify-content: center;
-      margin-right: $spv--small;
-      min-width: 1.1rem;
-      vertical-align: middle;
-
-      &[hidden] {
-        display: none;
-      }
+    .p-badge[hidden] {
+      display: none;
     }
 
     .p-filter-menu__dropdown {
