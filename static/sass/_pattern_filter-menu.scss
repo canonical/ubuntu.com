@@ -26,7 +26,7 @@
       }
 
       &.is-active {
-        background-color: #d9d9d9;
+        background-color: $colors--theme--background-active;
       }
     }
 
@@ -35,8 +35,8 @@
     }
 
     .p-filter-menu__dropdown {
-      background: #f7f7f7;
-      border: 1px solid #d3d3d3;
+      background: $colors--theme--background-alt;
+      border: 1px solid $colors--theme--border-default;
       box-shadow: 0 4px 6px -1px oklch(0% 0 0 / 0.1);
       box-sizing: border-box;
       width: 274px; // Matches longest text content at implementation
@@ -72,7 +72,7 @@
 
       &:hover,
       &:focus-within {
-        background-color: #e2e2e2;
+        background-color: $colors--theme--background-hover;
       }
 
       &:focus-within {
@@ -88,7 +88,7 @@
 
     .p-filter-menu__actions {
       background-color: transparent;
-      border-top: 1px solid #d3d3d3;
+      border-top: 1px solid $colors--theme--border-default;
       display: flex;
       justify-content: space-between;
       padding: $spv--medium;
@@ -97,7 +97,7 @@
     .p-filter-menu__action {
       background: transparent;
       border: 0;
-      color: #0066cc;
+      color: $colors--theme--link-default;
       cursor: pointer;
       margin: 0;
       padding: 0;
