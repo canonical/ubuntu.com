@@ -8,10 +8,15 @@
   columns="8",
   link="/blog/" ~ article.slug,
   heading=article.title.rendered | safe,
-  image={
-    "src": article.image.source_url,
-    "alt": article.title.rendered | striptags
-  },
+  image=image(
+    url=article.image.source_url,
+    alt=article.title.rendered | striptags,
+    width="768",
+    height="432",
+    hi_def=True,
+    loading="auto",
+    output_mode="attrs"
+  ),
   footer={
     "content_type": article.group.name if article.group else "Company"
   },
