@@ -1121,7 +1121,7 @@ draft_blogs = BlogViews(
         wordpress_password=WORDPRESS_APPLICATION_PASSWORD,
     ),
     excluded_tags=[],
-    tag_ids=[4794],
+    tag_ids=[4905],
     per_page=3,
     blog_title="Draft blogs",
     status="draft",
