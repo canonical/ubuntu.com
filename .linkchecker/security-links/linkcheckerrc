@@ -1,0 +1,20 @@
+[checking]
+recursionlevel=2
+timeout=1000
+
+[filtering]
+checkextern=1
+nofollow=
+  !https://ubuntu.com/security
+ignore=
+  https://res.cloudinary.com
+  q_auto
+  fl_sanitize
+  c_fill
+  e_sharpen
+  w_[0-9]*
+  h_[0-9]*
+
+[output]
+status=0
+warnings=0
