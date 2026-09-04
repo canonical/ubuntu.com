@@ -349,27 +349,14 @@
   }
   /* stylelint-enable no-descending-specificity */
 
-  .p-product-selector-form {
-    .p-form-validation__message {
-      display: none;
-    }
+  .p-product-releases-filters {
+    margin-bottom: 1.5rem;
 
-    .p-form-validation.is-error .p-form-validation__message {
-      display: block;
+    // Disabled child toggles (e.g. Release before a Product is chosen)
+    .p-filter-menu__toggle.is-disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
     }
-
-    select {
-      max-width: 100%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: block;
-    }
-  }
-
-  .p-button--positive.is-processing {
-    width: auto;
-    height: auto;
   }
 
   .u-horizontal-negative-nudge {
