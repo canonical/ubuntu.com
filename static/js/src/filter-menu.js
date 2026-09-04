@@ -176,7 +176,7 @@ function setupFilterBar(bar) {
       // since they may already show a server-selected value (e.g. "ubuntu")
       const baseline = toggle.dataset.filterDefaultValue;
       if (baseline !== undefined) {
-        return value !== baseline;
+        return value !== "" && value !== baseline;
       }
       return value && value !== "all";
     });
