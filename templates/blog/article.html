@@ -4,7 +4,7 @@
 
 {% set is_canonical_announcement = article.group and article.group.slug == "canonical-announcements" %}
 
-{# Canonical announcements published after 31 August 2026 stay on ubuntu.com; earlier ones point at canonical.com #}
+{# Articles published after 31 August 2026 all live on ubuntu.com; earlier ones only if they are not Canonical announcements #}
 {% set is_published_after_migration = article.date_gmt and article.date_gmt[:10] > "2026-08-31" %}
 
 {% block title %}{{ article.title.rendered|safe }}{% endblock %}
