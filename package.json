@@ -1,8 +1,9 @@
 {
   "scripts": {
-    "test": "yarn run lint-scss && yarn run lint-python && yarn run test-python",
+    "test": "yarn run lint-scss && yarn run lint-python && yarn run lint-llms && yarn run test-python",
     "test-python": "python3 -m unittest discover tests",
     "lint-python": "flake8 webapp tests && black --check --line-length 79 webapp tests",
+    "lint-llms": "python3 webapp/llms.py lint",
     "format-python": "black --line-length 79 webapp tests",
     "format-js": "prettier -w 'static/js/src/**/*.{js,jsx,ts,tsx}'",
     "lint-scss": "stylelint 'static/sass/**/*.scss'",
@@ -128,7 +129,7 @@
     "url-search-params-polyfill": "8.2.5",
     "use-query-params": "^2.2.1",
     "uuid": "^14.0.1",
-    "vanilla-framework": "4.56.0",
+    "vanilla-framework": "4.58.1",
     "yup": "1.4.0"
   },
   "resolutions": {
@@ -150,10 +151,11 @@
       "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
     },
     "transformIgnorePatterns": [
-      "/node_modules/(?!@canonical/react-components).+\\.js$"
+      "/node_modules/(?!@canonical/react-components|cheerio).+\\.js$"
     ],
     "moduleNameMapper": {
-      "\\.(scss|sass)$": "identity-obj-proxy"
+      "\\.(scss|sass)$": "identity-obj-proxy",
+      "cheerio/lib/(.*)": "<rootDir>/node_modules/cheerio/dist/commonjs/$1"
     },
     "moduleFileExtensions": [
       "ts",

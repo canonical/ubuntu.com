@@ -8,6 +8,17 @@ const switchCost = 11308.0;
 const cephDeploymentCost = 50000;
 const hardwareMaintenanceCost = 25000;
 
+// Public cloud cost, see the formula in the spreadsheet copydoc
+// https://docs.google.com/spreadsheets/d/1cn5daIlWGpKF5557ERFY4Ok4_0IlJKTDbZjRXcXyhjk/edit?
+function calculatePublicCloudCost(selectedStorage, selectedMonths) {
+  return (
+    (50 * 1024 * 0.023 +
+      450 * 1024 * 0.022 +
+      (selectedStorage * 1024 - 500) * 1024 * 0.021) *
+    selectedMonths
+  );
+}
+
 const capacityTable = [
   {
     capacity: 2.25,
@@ -223,12 +234,10 @@ document.addEventListener("DOMContentLoaded", function () {
       additionalStorageCost +
       hardwareCost;
 
-    // Public cloud cost, see the formula in the spreadsheet copydoc
-    const publicCloudCost =
-      (50 * 1024 * 0.023 +
-        450 * 1024 * 0.022 +
-        (selectedStorage * 1024 * 1024 - 500) * 0.021) *
-      selectedMonths;
+    const publicCloudCost = calculatePublicCloudCost(
+      selectedStorage,
+      selectedMonths,
+    );
 
     function formatCurrency(value) {
       return `$${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
@@ -278,3 +287,11 @@ document.querySelectorAll(".js-show").forEach((ele) => {
   ele.classList.remove("u-hide");
 });
 initializeSliders();
+
+// This file is loaded as a plain (non-module) browser script, so it can't use
+// `export`. `module` is only defined under CommonJS (e.g. Jest/Node), so this
+// is a no-op in the browser and only exposes `calculatePublicCloudCost` for
+// unit testing.
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = { calculatePublicCloudCost };
+}

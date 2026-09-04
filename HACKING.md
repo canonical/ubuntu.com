@@ -195,8 +195,55 @@ sudo apt update && sudo apt install python3-pip nodejs
 # (for macOS hopefully these can be installed with brew instead?)
 sudo pip3 install black flake8
 sudo npm install -g prettier eslint stylelint
+```
+
+djLint is missing from that list on purpose. Its version is pinned in
+`requirements.txt`, because djLint's formatting output changes between releases
+and two people on different versions will undo each other's work.
+
+Which copy your editor uses depends on how you run the project. The editor
+extensions below do not bundle djLint; they run whichever one they find,
+preferring a usable project virtualenv.
+
+- **With Taskfile**, `.venv` is on your machine and your editor uses the pinned
+  version. `install-python` is fingerprinted against `requirements.txt`, so
+  `task start` reinstalls whenever the pin changes. Check with
+  `.venv/bin/djlint --version`.
+- **With dotrun**, `.venv` is built inside the container and your editor cannot
+  run it, so your global djLint is what formats your templates.
+
+Keep any global djLint on **1.41.0 or later**. Older versions flatten the
+contents of multiline jinja macro calls and then report the file as correctly
+formatted, so the damage is silent:
+
+``` bash
 python -m pip install -U djlint
 ```
+
+A global install is still worth having, since some of our other repos do not pin
+djLint at all. It only needs to stay off the old versions.
+
+Note that `.djlintrc` is read from the project directory by whichever `djlint`
+runs, so config changes reach your editor even when the pin does not. Options
+that need a recent djLint, such as `ignore_blocks`, will be read by an old one
+and applied incorrectly.
+
+#### Macro formatting
+
+`.djlintrc` sets `ignore_blocks: macro` so djLint leaves the body of a
+`{% macro %}` at column 0, which is the style our macro files use. The trade-off
+is that reformatting a macro file also pulls its parameters back to column 0:
+
+``` jinja
+{% macro vf_highlighted_cta(     {% macro vf_highlighted_cta(
+  cta_text                  ->   cta_text
+) -%}                            ) -%}
+```
+
+Without the option djLint indents the closing `) -%}` and the whole macro body
+instead, which is worse. Both settings are stable, neither reproduces the hand
+formatting currently in the files, so expect a small diff either way when you
+reformat one.
 
 ### Configuring editors
 

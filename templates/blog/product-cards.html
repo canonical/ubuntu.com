@@ -1,150 +1,111 @@
+{% from "blog/_product-card.jinja" import product_card %}
+
 <div id="product-card">
-  {# Real-time Linux tag cards #}
   {% if article.tags and 4296 in article.tags %}
-    {% include "blog/product-cards/_real-time_linux.html" %}
-
-    {# Multi-cloud tag cards #}
+    {# Real-time Linux #}
+    {{ product_card("/kernel/real-time/contact-us", "Talk to us about real-time Ubuntu", "Interested in running real-time Ubuntu in production? Tell us more about your needs") }}
   {% elif article.tags and 4378 in article.tags %}
-    {% include "blog/product-cards/_multi_cloud.html" %}
-
-    {# AI/ML tag cards #}
+    {# Multi-cloud #}
+    {{ product_card("/cloud/multi-cloud", "Find out if a multi-cloud setup is right for you", "There is no one size fits all for cloud architecture. Developing the optimal cloud strategy requires evaluating your business needs and aligning them with the different solutions available.") }}
   {% elif article.tags and (1912 in article.tags or 4062 in article.tags or 4786 in article.tags) %}
-    {% include "blog/product-cards/_ai-solutions.html" %}
-
-    {# AI infrastructure tag cards #}
+    {# AI/ML #}
+    {{ product_card("https://pages.ubuntu.com/rs/066-EOV-335/images/Open%20Source%20AI%20Infrastructure%20Whitepaper.pdf?version=0", "Your blueprint for a private AI cloud", "In this guide, explore the layers of the AI infrastructure stack, the technologies behind each layer, and the principles for building your own private AI cloud using open source.") }}
   {% elif article.tags and 4787 in article.tags %}
-    {% include "blog/product-cards/_ai-infrastructure.html" %}
-
-    {# Soverign clouds tag cards #}
+    {# AI infrastructure #}
+    {{ product_card("https://canonical.com/solutions/ai/infrastructure", "Build AI infrastructure with open source", "From silicon to software. From development to production. Explore all the open source components you need to build your AI infrastructure.") }}
   {% elif article.tags and 4579 in article.tags %}
-    {% include "blog/product-cards/_soverign-clouds.html" %}
-
-    {# life at canonical tag cards #}
+    {# Sovereign clouds #}
+    {{ product_card("https://canonical.com/solutions/infrastructure/sovereign-cloud", "Learn more about the quickest path to a sovereign cloud", "In a world of growing compliance challenges and security risks, a sovereign cloud helps you safeguard your data and infrastructure. Find out why organizations like the UN trust Canonical with their sovereign cloud.") }}
   {% elif article.tags and 4530 in article.tags %}
-    {% include "blog/product-cards/_life-at-canonical.html" %}
-
-    {# community tag cards #}
+    {# Life at Canonical #}
+    {{ product_card("https://canonical.com/careers/company-culture", "Read about our company culture", "Canonical’s story is closely linked to the communities that shape us, including the global community of open source contributors and enthusiasts who are part of our team.") }}
   {% elif article.tags and 1227 in article.tags %}
-    {% include "blog/product-cards/_community.html" %}
-
-    {# cyber resilience act tag cards #}
-  {% elif article.tags and (4632 in article.tags or 1665 in article.tags) %}
-    {% include "blog/product-cards/_community.html" %}
-
-    {# OpenSearch tag cards #}
+    {# Community #}
+    {{ product_card("https://canonical.com/projects", "Learn about the projects we support", "We believe in the power of open source software. Besides driving projects like Ubuntu, we contribute staff, code, and funding to many more.") }}
+  {% elif article.tags and 4632 in article.tags %}
+    {# Cyber Resilience Act / community #}
+    {{ product_card("https://canonical.com/solutions/open-source-security/cyber-resilience-act", "Prepared for the Cyber Resilience Act?", "The EU’s Cyber Resilience Act will place more stringent security and compliance requirements on devices and products with digital elements. Learn about the regulation and how Canonical and Ubuntu Pro for Devices can help.") }}
+    {{ product_card("https://canonical.com/projects", "Learn about the projects we support", "We believe in the power of open source software. Besides driving projects like Ubuntu, we contribute staff, code, and funding to many more.") }}
+  {% elif article.tags and 1665 in article.tags %}
+    {# Community (IoT/embedded articles) #}
+    {{ product_card("https://canonical.com/projects", "Learn about the projects we support", "We believe in the power of open source software. Besides driving projects like Ubuntu, we contribute staff, code, and funding to many more.") }}
   {% elif article.tags and 4353 in article.tags %}
-    {% include "blog/product-cards/_opensearch.html" %}
-
-    {# MongoDB tag cards #}
+    {# OpenSearch #}
+    {{ product_card("https://canonical.com/data/opensearch/managed", "OpenSearch support and managed services", "Get automation, enterprise-grade security, scalability, availability, monitoring, and support for OpenSearch. Our deep expertise in open source software underpins your SLA.") }}
   {% elif article.tags and (3949 in article.tags or 3951 in article.tags) %}
-    {% include "blog/product-cards/_charmed_mongodb.html" %}
-
-    {# MicroCloud tag cards #}
+    {# MongoDB #}
+    {{ product_card("https://canonical.com/data/mongodb", "Looking for MongoDB support?", "Get experts to deploy and support your MongoDB database. With our database experts and fast response times, you can stop fighting fires and focus on gaining insights from your data.") }}
   {% elif article.tags and (1397 in article.tags or 1342 in article.tags or 2544 in article.tags) %}
-    {% include "blog/product-cards/_microcloud.html" %}
-
-    {# OpenStack tag cards #}
+    {# MicroCloud #}
+    {{ product_card("https://canonical.com/microcloud", "Learn more about Canonical MicroCloud", "Deploy highly available, secure, and dense microcloud environments anywhere, with a lightweight cloud infrastructure that’s designed for the edge.") }}
   {% elif article.tags and 1327 in article.tags %}
-    {% include "blog/product-cards/_openstack.html" %}
-
-    {# LXD tag cards #}
+    {# OpenStack #}
+    {{ product_card("https://canonical.com/openstack", "Learn about Canonical OpenStack", "OpenStack and Ubuntu bring automated deployment and management that help you optimize infrastructure costs &ndash; no matter your industry or use case.") }}
   {% elif article.tags and (1397 in article.tags or 1743 in article.tags) %}
-    {% include "blog/product-cards/_lxd.html" %}
-
-    {# Infrastructure tag cards #}
+    {# LXD #}
+    {{ product_card("https://canonical.com/lxd", "Find out how LXD simplifies VM management", "LXD brings flexible resource limits, advanced snapshot and networking support, and better security &ndash; all making for easier, leaner and more robust containerised solutions and VMs.") }}
   {% elif article.tags and 1342 in article.tags %}
-    {% include "blog/product-cards/_infrastructure_optimised-costs-across-any-cloud.html" %}
-    {% include "blog/product-cards/_infrastructure_maximise-your-cloud-infrastructure.html" %}
-
-    {# Ubuntu desktop tag cards #}
+    {# Infrastructure #}
+    {{ product_card("https://www.canonical.com/solutions/infrastructure", "Explore Canonical's infrastructure solutions", "Deploy and control your cloud environment seamlessly, with secure, stable, and performant cloud infrastructure that maximizes CapEx and OpEx savings.") }}
+    {{ product_card("https://www.canonical.com/solutions/infrastructure", "Explore Canonical's infrastructure portfolio", "Canonical lets you take control of your cloud, cutting costs and preventing vendor-lock in. Unlock new paths for scalability with supported open source.") }}
   {% elif article.tags and 1920 in article.tags %}
-    {% include "blog/product-cards/_desktop_ubuntu-for-desktops.html" %}
-    {% include "blog/product-cards/_desktop_ubuntu-desktop-for-organisations.html" %}
-
-    {# Ubuntu Server tag cards #}
+    {# Ubuntu desktop #}
+    {{ product_card("/desktop", "Explore Ubuntu Desktop", "Ubuntu powers millions of PCs and laptops around the world. Ubuntu brings security, usability and stability together, offering you a platform for innovation, combined with the freedom that transparent, open source code offers.") }}
+    {{ product_card("/desktop/organizations", "Bring Ubuntu to your organization", "Ubuntu Desktop combines enterprise-grade support, security, and functionality with the best of open source. Seamlessly integrate Ubuntu machines with your existing infrastructure and tools.") }}
   {% elif article.tags and 1610 in article.tags %}
-    {% include "blog/product-cards/_server_scale-out-with-ubuntu-server.html" %}
-
-    {# Ubuntu WSL tag cards #}
+    {# Ubuntu Server #}
+    {{ product_card("/server", "Explore Ubuntu Server", "Ubuntu Server brings economic and technical scalability to your data centre, public, or private cloud. Whether you want to deploy an OpenStack cloud, a Kubernetes cluster, or a 50,000-node render farm, Ubuntu Server delivers the best value scale-out performance available.") }}
   {% elif article.tags and 3332 in article.tags %}
-    {% include "blog/product-cards/_wsl_ubuntu-on-windows.html" %}
-
-    {# Private-cloud tag cards #}
+    {# Ubuntu WSL #}
+    {{ product_card("/wsl", "Explore Ubuntu on WSL", "Access the power of a full Ubuntu terminal environment on Windows with Windows Subsystem for Linux (WSL). Streamline web application development, build with cutting-edge AI/ML tooling, develop cross-platform applications, and manage IT infrastructure without leaving Windows.") }}
   {% elif article.tags and (1327 in article.tags or 1342 in article.tags) %}
-    {% include "blog/product-cards/_private_cloud.html" %}
-
-    {# Public cloud tag cards #}
+    {# Private cloud #}
+    {{ product_card("/cloud/private-cloud", "What is a private cloud?", "A private cloud is a cloud computing environment that is exclusively dedicated to a single organization or a specific service. It can run on the organization’s premises or in an external data centre. Looking to build a private cloud?") }}
   {% elif article.tags and 1350 in article.tags %}
-    {% include "blog/product-cards/_public_cloud.html" %}
-
-    {# Docker tag cards #}
+    {# Public cloud #}
+    {{ product_card("/cloud/public-cloud", "Looking to run Linux on public clouds?", "Did you know Ubuntu is the world’s most popular Linux operating system across public clouds? Canonical publishes official images on Amazon AWS, Microsoft Azure, Google Cloud, IBM Cloud, and Oracle Cloud. Learn about the available features and our support commitment") }}
   {% elif article.tags and (1695 in article.tags or 1567 in article.tags) %}
-    {% include "blog/product-cards/_docker-security.html" %}
-
-    {# Telco tag cards #}
+    {# Docker #}
+    {{ product_card("/containers", "Learn more about ultra efficient, securely designed containers", "Having a trusted source for your dependencies is critical for a secure software supply chain. How confident are you in your container security? See how Ubuntu and Canonical can help.") }}
   {% elif article.tags and 1377 in article.tags %}
-    {% include "blog/product-cards/_telco.html" %}
-
-    {# IoT tag cards #}
+    {# Telco #}
+    {{ product_card("https://canonical.com/solutions/telco/5g-core", "Learn more about scalable telco clouds", "Designed with economics in mind, Canonical's infrastructure solutions for telecommunications ensure ROI and reliability. Save costs by operating your infrastructure and applications the smart way, ensuring full automation from day 0 to day N. See why industry leaders like BT Group prefer Canonical.") }}
   {% elif article.tags and 1665 in article.tags %}
-    {% include "blog/product-cards/_services.html" %}
-    {% include "blog/product-cards/_IoT_appstore.html" %}
-
-    {# Finance tag cards #}
+    {# IoT #}
+    {{ product_card("/core/services", "Learn about IoT as a service", "Bring an IoT device to market fast. Focus on your apps, we handle the rest. Canonical offers hardware enablement, app integration, knowledge transfer, and engineering support to get your first device to market. App store and security updates guaranteed.") }}
+    {{ product_card("/internet-of-things/appstore", "Build your IoT app ecosystem", "Build a platform ecosystem for connected devices to unlock new avenues for revenue generation. Get a secure, hosted, and managed multi-tenant app store for your IoT devices.") }}
   {% elif article.tags and 3955 in article.tags %}
-    {% include "blog/product-cards/_financialservices-awerness.html" %}
-
-    {# Kubeflow tag cards #}
+    {# Finance #}
+    {{ product_card("https://canonical.com/solutions/financial-services", "Adopt open source with confidence in financial services", "Modernize your infrastructure and applications without breaking the bank. Start with Ubuntu, get trusted and compliant open source at both infrastructure and application layers.") }}
   {% elif article.tags and (2609 in article.tags or 4018 in article.tags or 4062 in article.tags or 2067 in article.tags) %}
-    {% include "blog/product-cards/_kubeflow_what-is-kubeflow.html" %}
-    {% include "blog/product-cards/_kubeflow_deploy-tutorial.html" %}
-
-    {# Bootstack tag cards #}
+    {# Kubeflow #}
+    {{ product_card("https://canonical.com/mlops/kubeflow", "Enterprise Kubeflow support", "Learn more about our enterprise Kubeflow solution. Get security, automation, and SLA-backed expertise for your clusters across private and public clouds.") }}
   {% elif article.tags and (1327 in article.tags or 4315 in article.tags) %}
-    {% include "blog/product-cards/_bootstack_managed-private-cloud.html" %}
-
-    {# Kubernetes tag cards #}
+    {# Bootstack #}
+    {{ product_card("https://canonical.com/openstack/support", "Learn more about Managed OpenStack", "Designed with economics in mind, Canonical's Managed OpenStack is the most cost-efficient path to a fully managed private cloud.") }}
   {% elif article.tags and 1833 in article.tags %}
-    {% include "blog/product-cards/_kubernetes_what-is-kubernetes.html" %}
-    {% include "blog/product-cards/_kubernetes.html" %}
-
-    {# Ceph tag cards #}
+    {# Kubernetes #}
+    {{ product_card("/kubernetes/what-is-kubernetes", "Learn more about Kubernetes", "Kubernetes, or K8s for short, is an open source platform pioneered by Google, which started as a simple container orchestration tool but has grown into a platform for deploying, monitoring, and managing apps and services across clouds.") }}
+    {{ product_card("/kubernetes", "Discover Canonical Kubernetes", "Everything you love about the upstream, with enterprise-grade assurance. Canonical Kubernetes offers hassle-free installation and maintenance, and peace of mind for your containerized workloads. Maximize performance and deliver security updates across any cloud.") }}
   {% elif article.tags and (1780 in article.tags or 1774 in article.tags) %}
-    {% include "blog/product-cards/_ceph_what-is-ceph.html" %}
-    {% include "blog/product-cards/_ceph_optimise-storage-costs.html" %}
-    {% include "blog/product-cards/_ceph_guide-sds-for-ent.html" %}
-    {% include "blog/product-cards/_ceph.html" %}
-
-    {# Bosch tag cards #}
+    {# Ceph #}
+    {{ product_card("/ceph/what-is-ceph", "What is Ceph?", "Ceph is a software-defined storage (SDS) solution designed to address the object, block, and file storage needs of both small and large data centers. It's an optimized and easy-to-integrate solution for companies adopting open source as the new norm for high-growth block storage, object stores, and data lakes.") }}
+    {{ product_card("/engage/cloud-adjacent-storage", "Access the whitepaper on how to optimize your cloud storage costs", "Cloud storage is amazing, it's on demand, easy to implement, but is it the most cost effective approach for large, predictable data sets? Understand the true costs of storing data in a public cloud, and how open source Ceph can provide a cost effective alternative.") }}
+    {{ product_card("/engage/software-defined-storage-for-enterprises", "A guide to software-defined storage for enterprises", "Ceph is a software-defined storage (SDS) solution designed to address the object, block, and file storage needs of both small and large data centres. Explore how Ceph can replace proprietary storage systems in the enterprise.") }}
+    {{ product_card("/ceph", "Find out how Ceph scales effortlessly and cost-effectively", "Canonical Ceph simplifies the entire management lifecycle of deployment, configuration, and operation of a Ceph cluster, no matter its size or complexity. Install, monitor, and scale cloud storage with extensive interoperability.") }}
   {% elif article.tags and 1665 in article.tags %}
-    {% include "blog/product-cards/_bosch_ubuntu-for-iot.html" %}
-
-    {# end of support tag cards #}
+    {# Bosch #}
+    {{ product_card("/internet-of-things", "Learn more about Ubuntu for the Internet of Things", "From smart homes to smart drones, robots, and industrial systems, Ubuntu is the standard for embedded Linux. Get the world’s best security maintenance, a custom app store, a huge developer community, and reliable updates.") }}
   {% elif article.tags and (3178 in article.tags or 3335 in article.tags) %}
-    {% include "blog/product-cards/_ubuntu_18.04_end_of_support.html" %}
-    {% include "blog/product-cards/_ubuntu_20.04_end_of_support.html" %}
-
-    {# Legacy fallback content #}
+    {# End of support #}
+    {{ product_card("/18-04", "Ubuntu 18.04 LTS has reached the end of standard support", "Bionic Beaver reached the end of the standard, five-year maintenance window for Long-Term Support (LTS) releases on 31 May 2023. Migrate to the latest LTS or get extended coverage until 2028 with Ubuntu Pro.") }}
+    {{ product_card("/20-04", "Ubuntu 20.04 LTS has reached the end of Standard Support", "Focal Fossa reached the end of the standard, five-year maintenance window for Long Term Support (LTS) releases on May 31, 2025. Migrate to the latest LTS or get extended coverage until 2030 with Ubuntu Pro.") }}
   {% elif article.group and article.group.slug == "support" %}
-    <div class="p-card" id="rtp-support">
-      <h3>
-        <a href="/support">Enterprise support for your full open source stack</a>
-      </h3>
-      <p>
-        Build with confidence and operate at scale with enterprise support from Canonical.
-        Our global team of experts is available 24/7 to provide the best support experience for Ubuntu and your full open source stack, from infrastructure to applications.
-      </p>
-      <p>
-        <a href="/support">Learn more&nbsp;&rsaquo;</a>
-      </p>
-    </div>
+    {# Legacy fallback: support #}
+    {{ product_card("/support", "Enterprise support for your full open source stack", "Build with confidence and operate at scale with enterprise support from Canonical. Our global team of experts is available 24/7 to provide the best support experience for Ubuntu and your full open source stack, from infrastructure to applications.", selectable=false) }}
   {% else %}
-    <div class="p-card" id="rtp-contact-us">
-      <h3>
-        <a href="/about/contact-us/form">Talk to us today</a>
-      </h3>
-      <p>Interested in running Ubuntu in your organisation?</p>
-    </div>
+    {# Legacy fallback: contact us #}
+    {{ product_card("/about/contact-us/form", "Get in touch", "Interested in running Ubuntu in your organization?", selectable=false) }}
   {% endif %}
 </div>
 

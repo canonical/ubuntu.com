@@ -53,11 +53,8 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 // import site specific patterns and overrides
 @import "pattern_accordion";
 @import "pattern_ai";
-@import "pattern_blog-featured";
-@import "pattern_blog-list";
-@import "pattern_blog-post";
 @import "pattern_blog-card";
-@import "pattern_blog-suru";
+@import "pattern_blog-article";
 @import "pattern_blog-topic";
 @import "pattern_buttons";
 @import "pattern_calculator";
@@ -97,6 +94,8 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_subscriptions";
 @import "pattern_subscribe";
 @import "pattern_distributor";
+@import "pattern_engage";
+@import "pattern_filter-menu";
 @import "pattern_tabs";
 @import "pattern_takeunders";
 @import "pattern_takeovers";
@@ -114,10 +113,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 
 @include additional-p-icons;
 @include blog-p-card;
-@include blog-p-featured;
-@include blog-p-list;
-@include blog-p-post;
-@include blog-p-strips-suru;
+@include blog-p-article;
 @include blog-p-topic;
 @include blog-u-crop;
 @include ubuntu-p-accordion;
@@ -146,6 +142,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-navigation-reduced;
 @include ubuntu-p-nojs-navigation;
 @include ubuntu-p-strip;
+@include ubuntu-p-strip-suru-shallow;
 @include ubuntu-p-ua-payment-modal;
 @include ubuntu-p-pie-chart;
 @include ubuntu-p-ua-shop-cart;
@@ -160,7 +157,8 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-takeunders;
 @include ubuntu-p-takeovers;
 @include ubuntu-p-tco-calculator;
-@include ubuntu-p-engage-banner;
+@include ubuntu-p-engage;
+@include ubuntu-p-filter-menu;
 @include ubuntu-p-ubuntu-intro;
 @include ubuntu-p-tabs;
 @include ubuntu-u-animations;
@@ -178,6 +176,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include vf-p-icon-credit-card;
 @include vf-p-icon-vulnerable;
 @include vf-p-icon-ignored;
+@include vf-themed-icons;
 @include openstack-carousel;
 
 // Layouts:
@@ -1976,6 +1975,15 @@ ol.p-stepped-list.no-full-stop
 //Will be removed after VF 4.52 is released and top_rule_variant=none is added to tiered_list
 .alt-downloads__bittorrent-tab hr {
   display: none;
+}
+
+// Apply to `grid-col-*` element to make it sticky within its
+// parent container.
+.u-sticky-col {
+  position: sticky;
+  top: $spv--strip-regular; // Account for navigation
+  z-index: 1;
+  align-self: start;
 }
 
 // Applying tab-section--no-title-space to a tab section will reduce the gap between the section title and the tabs.
