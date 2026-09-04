@@ -16,6 +16,7 @@
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "macros/_filter-menu.jinja" import single_select_menu, multi_select_menu, filter_submit, filter_clear %}
 
 {% block content %}
 
@@ -44,108 +45,43 @@
     ]
   ) }}
   <section class="p-section">
-    <div class="p-section--shallow">
-      <form id="js-product-selector-form" class="p-product-selector-form">
-        <div class="grid-row">
-          <!-- Product select -->
-          <div class="grid-col-2 grid-col-medium-2">
-            <div class="p-form-validation" id="js-product-validation">
-              <label for="js-product-selector">Product</label>
-              <div class="p-form-validation__select-wrapper">
-                <select
-                  name="product"
-                  id="js-product-selector"
-                  aria-invalid="false"
-                  aria-describedby="js-product-validation-message"
-                  class="p-form-validation__input"
-                >
-                  <option value="">Select a product</option>
-                  {% for key, data in products_data.items() %}
-                    <option value="{{ key }}" {% if key == product %}selected{% endif %}>
-                      {{ data.product }}
-                    </option>
-                  {% endfor %}
-                </select>
-              </div>
-              <p class="p-form-validation__message" id="js-product-validation-message">
-                Please select a product.
-              </p>
-            </div>
-          </div>
-          <!-- Release select -->
-          <div class="grid-col-2 grid-col-medium-2">
-            <div class="p-form-validation" id="js-release-validation">
-              <label for="js-release-selector">Release type</label>
-              <div class="p-form-validation__select-wrapper">
-                <select
-                  name="release"
-                  id="js-release-selector"
-                  {% if not product %}disabled{% endif %}
-                  aria-invalid="false"
-                  aria-describedby="js-release-validation-message"
-                  class="p-form-validation__input"
-                >
-                  <option value="">Select a release</option>
+    <div class="u-fixed-width">
+      <div class="p-section--shallow">
+        {% set product_options = [] %}
+        {% for key, data in products_data.items() %}
+          {% set _ = product_options.append({"value": key, "label": data.product}) %}
+        {% endfor %}
 
-                  {% if product in products_data %}
-                    {% for deployment in products_data[product]["deployment"] %}
-                      <option
-                        value="{{ deployment.slug }}"
-                        {% if deployment.slug == release_name %}selected{% endif %}
-                      >
-                        {{ deployment.name }}
-                      </option>
-                    {% endfor %}
-                  {% endif %}
-                </select>
-              </div>
-              <p class="p-form-validation__message" id="js-release-validation-message">
-                Please select a release type.
-              </p>
-            </div>
-          </div>
-          <!-- Version select -->
-          <div class="grid-col-2 grid-col-medium-2">
-            <div>
-              <label for="js-version-selector">Version</label>
-              <div class="p-form-validation__select-wrapper">
-                <select
-                  name="version"
-                  id="js-version-selector"
-                  {% if not versions %}disabled{% endif %}
-                  aria-invalid="false"
-                >
-                  <option value="all" {% if version == "all" %}selected{% endif %}>
-                    All versions
-                  </option>
+        {% set release_options = [] %}
+        {% for key, data in products_data.items() %}
+          {% for deployment in data.deployment %}
+            {% set _ = release_options.append({"value": deployment.slug, "label": deployment.name, "data": {"product": key}}) %}
+          {% endfor %}
+        {% endfor %}
 
-                  {% for v in versions %}
-                    <option
-                      value="{{ v.release }}"
-                      {% if v.release == version %}selected{% endif %}
-                    >
-                      {{ v.release }}
-                    </option>
-                  {% endfor %}
-                </select>
-              </div>
-              <p class="p-form-validation__message" id="js-version-validation-message">
-                Please select a version.
-              </p>
-            </div>
-          </div>
-          <div class="grid-col-2 grid-col-medium-2">
-            <button
-              class="p-button--positive u-no-margin--bottom"
-              id="js-product-selector-submit"
-              disabled
-              style="margin-top: 2.5rem;">
-                <i class="p-icon--spinner u-animation--spin is-light u-hide"></i>
-                <span class="js-button-label">View coverage</span>
-            </button>
-          </div>
+        {% set version_options = [{"value": "all", "label": "All versions"}] %}
+        {% for key, data in products_data.items() %}
+          {% for deployment in data.deployment %}
+            {% for v in deployment.versions %}
+              {% set _ = version_options.append({"value": v.release, "label": v.release, "data": {"product": key, "release": deployment.slug}}) %}
+            {% endfor %}
+          {% endfor %}
+        {% endfor %}
+
+        <div class="p-product-releases-filters" data-js-filters data-js-release-cycle-filters>
+          <form class="p-form p-form--inline p-filter-menu">
+            <p>
+              <strong>Filter by</strong>
+            </p>
+            {{ single_select_menu('product', 'Select a product', product_options, key_label='Product', selected=product, default_value='ubuntu') }}
+            {{ single_select_menu('release', 'Select a release', release_options, key_label='Release type', selected=release_name if deployment else none, default_value='ubuntu') }}
+            {{ single_select_menu('version', 'All versions', version_options, key_label='Version', selected=version if versions else none, default_value='all') }}
+            {{ multi_select_menu('compliance', 'Compliance standards', compliance_options, selected_compliance, key_label='Compliance standards') }}
+            {{ filter_submit("View coverage") }}
+            {{ filter_clear() }}
+          </form>
         </div>
-      </form>
+      </div>
     </div>
     <div class="u-fixed-width">
       {% include "about/partials/_desktop-releases-table.html" %}
@@ -554,10 +490,6 @@
 
   <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
-  {# djlint:off #}
-  <script nonce="{{ csp_nonce }}" type="text/javascript">
-    const productsData = {{ products_data | tojson | safe }};
-  </script>
-  {# djlint:off #}
-  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/src/product-releases.js') }}" defer></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/filter-menu.js') }}" defer></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/src/release-cycle.js') }}" defer></script>
 {% endblock content %}
