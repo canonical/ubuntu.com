@@ -1,7 +1,7 @@
 <table aria-label="Selected product coverage details" class="release-cycle-table is-desktop js-sticky-table u-hide--medium u-hide--small">
 	<thead>
 			<tr style="border-bottom: none;">
-				<th scope="col"></th>
+				<th scope="col"><span class="u-off-screen">Version</span></th>
 				<th scope="colgroup"
 						colspan="1"
 						class="p-heading--5" style="text-transform: none;">
@@ -15,6 +15,7 @@
 						</span>
 					<p class="p-text--small p-header-subtext">Subscribe to Ubuntu Pro to stay secure and supported. <a href="/pro/free-trial">Start a 30-day Ubuntu Pro free trial&nbsp;&rsaquo;</a> </p>
 				</th>
+				<th scope="col"><span class="u-off-screen">Compliance</span></th>
 			</tr>
 			<tr>
 			<th>Version</th>
@@ -33,6 +34,9 @@
 			</th>
 			<th>
 				Legacy add on<br/> for security maintenance and support
+			</th>
+			<th>
+				Compliance <br /> Standards met
 			</th>
 		</tr>
 	</thead>
@@ -127,6 +131,13 @@
           <br />
           {% include "about/partials/_coverage-chip-pro.html" %}
         {% endif %}
+      </td>
+
+      <!-- Compliance standards met -->
+      <td>
+        {% with version=version %}
+          {% include "about/partials/_compliance-list.html" %}
+        {% endwith %}
       </td>
     </tr>
   {% endfor %}
