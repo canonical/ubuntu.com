@@ -19,9 +19,10 @@ dotenv: [".env.local", ".env"]
 # - install
 # - shell
 # - clean
-# - test (aggregator: test-python + test-js)
+# - test (aggregator: test-python + test-js + test-shell)
 # - test-python
 # - test-js
+# - test-shell
 # - lint (aggregator: lint-scss + lint-js + lint-ts + lint-python + lint-llms + check-prettier)
 # - lint-scss
 # - lint-js
@@ -76,11 +77,17 @@ tasks:
     cmds:
       - PATH="{{ .VENV_BIN }}:$PATH" yarn test-js --coverage
 
+  test-shell:
+    desc: "Run shell script tests"
+    cmds:
+      - yarn test-shell
+
   test:
     desc: "Run all project tests"
     cmds:
       - task: test-python
       - task: test-js
+      - task: test-shell
 
   lint-scss:
     desc: "Lint SCSS"

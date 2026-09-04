@@ -1,7 +1,8 @@
 {
   "scripts": {
-    "test": "yarn run lint-scss && yarn run lint-python && yarn run lint-llms && yarn run test-python",
+    "test": "yarn run lint-scss && yarn run lint-python && yarn run lint-llms && yarn run test-python && yarn run test-shell",
     "test-python": "python3 -m unittest discover tests",
+    "test-shell": "for f in tests/shell/*.sh; do bash \"$f\" || exit 1; done",
     "lint-python": "flake8 webapp tests && black --check --line-length 79 webapp tests",
     "lint-llms": "python3 webapp/llms.py lint",
     "format-python": "black --line-length 79 webapp tests",
