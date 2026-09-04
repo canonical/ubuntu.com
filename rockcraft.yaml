@@ -31,6 +31,13 @@ parts:
       yarn run build
       mkdir -p "$CRAFT_PART_INSTALL/flask/app"
       cp -r static "$CRAFT_PART_INSTALL/flask/app/"
+  fetch-mirrors-rss:
+    # Fetches the Ubuntu mirror list, used to build the mirror list served
+    plugin: dump
+    source: http://launchpad.net/ubuntu/+cdmirrors-rss
+    source-type: file
+    organize:
+      "+cdmirrors-rss": flask/app/etc/ubuntu-mirrors-rss.xml
   flask-framework/install-app:
     # The built JS/CSS assets are provided exclusively by the `build-ui` part
     # (which runs `yarn run build` inside the container). Exclude them here so
@@ -50,6 +57,7 @@ parts:
       - flask/app/templates
       - flask/app/static
       - flask/app/scripts
+      - flask/app/etc
       - flask/app/redirects.yaml
       - flask/app/deleted.yaml
       - flask/app/releases.yaml
