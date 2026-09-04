@@ -5,6 +5,7 @@
 {% from "_macros/vf_data-spotlight.jinja" import vf_data_spotlight %}
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "macros/_macros-faq-schema.jinja" import faqpage_schema %}
 
 {% block title %}Firefighting Support | Canonical{% endblock %}
 
@@ -130,6 +131,91 @@
       },
     ],
   ) }}
+
+  {% set faq_answer_1 %}
+    <p>
+      Ubuntu Pro is the security, compliance, and maintenance subscription that
+      extends security updates for Ubuntu LTS, adds hardening profiles, and provides
+      access to trusted open source repositories. Ubuntu Pro + 24/7 Support is the
+      break-fix and bug-fix foundation, with a one-hour first ticket response for
+      Severity 1 incidents. Firefighting Support builds on that same foundation. It
+      adds a Canonical Managed Solutions engineer on your video call within the
+      hour. You also get quarterly planning hours, with a team that already knows
+      your environment.
+    </p>
+    <p>
+      With Firefighting Support you get all the benefits of Ubuntu Pro + Support,
+      plus additional incident response and guidance capabilities tailored to your
+      cloud.
+    </p>
+    <p>
+      <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
+    </p>
+  {% endset %}
+
+  {% set faq_answer_2 %}
+    <p>
+      A Dedicated Support Engineer (DSE) or Technical Account Manager (TAM) is an
+      ongoing relationship and your first point of contact for all support
+      enquiries, day to day. Firefighting Support is more targeted: a dedicated team
+      specifically for high-severity incident response, plus a defined quarterly
+      allowance of planning time around specific changes, rather than day-to-day
+      support ownership.
+    </p>
+    <p>
+      <a href="/blog/dedicated-linux-support">Read more about what named Linux specialists do&nbsp;&rsaquo;</a>
+    </p>
+  {% endset %}
+
+  {% set faq_answer_3 %}
+    <p>
+      Ops Consulting is pay-as-you-go time with our engineers. Book it whenever you
+      need it, independent of incident coverage. Firefighting Support includes 5
+      hours for every 10 nodes of that same consulting time every quarter, as part
+      of the subscription. It also includes a Canonical engineer on your video call
+      within the hour for Severity 1 incidents. Need more planning time in a
+      quarter? Top up with additional Ops Consulting hours at any time.
+    </p>
+  {% endset %}
+
+  {% set faq_answer_4 %}
+    <p>
+      Yes, you can. Your cloud may need to undergo a cloud validation from our team,
+      and you will only pay an additional upgrade fee to add Firefighting Support on
+      top of your existing Ubuntu Pro (or Ubuntu Pro + Support) subscription.
+    </p>
+  {% endset %}
+
+  {% set faq_answer_5 %}
+    <p>
+      This depends on the products you want to cover and the number of nodes. Our
+      pricing model is simple, intuitive, and works on a per node per year basis,
+      for your Infrastructure layer, your application layer, or both. Get in touch
+      with our team to find out more.
+    </p>
+    <p>
+      <a href="/support/contact-us"
+         class="js-invoke-modal"
+         aria-controls="firefighting-form-modal">Get in touch to learn more&nbsp;&rsaquo;</a>
+    </p>
+  {% endset %}
+
+  {% set faq_answer_6 %}
+    <p>
+      Firefighting Support covers Canonical’s Infra product portfolio
+      (Charmed OpenStack, Sunbeam, Canonical Kubernetes, MicroCloud and Ceph,
+      Landscape) and our entire Managed Apps portfolio on-prem or in public clouds.
+    </p>
+  {% endset %}
+
+  {% set faq_items = [
+    ["How does it compare with Ubuntu Pro + 24/7 support?", faq_answer_1],
+    ["What is the difference with named support resources?", faq_answer_2],
+    ["What is the difference with Ops Consulting?", faq_answer_3],
+    ["Can I get Firefighting Support if I already have Ubuntu Pro?", faq_answer_4],
+    ["How much does it cost?", faq_answer_5],
+    ["Which products does Firefighting Support cover?", faq_answer_6]
+  ] %}
 
   {% call(slot) vf_tiered_list(
     is_description_full_width_on_desktop=false,
@@ -310,95 +396,21 @@
            aria-controls="firefighting-form-modal">Get in touch&nbsp;&rsaquo;</a>
       </p>
     {%- endif -%}
-    {%- if slot == "list_item_title_1" -%}
-      <h3 class="p-heading--5">How does it compare with Ubuntu Pro + 24/7 support?</h3>
+    {%- if slot.startswith("list_item_title_") -%}
+      {%- set item_index = slot.split("_")[-1] | int -%}
+      {%- if item_index <= faq_items | length -%}
+        <h3 class="p-heading--5">{{ faq_items[item_index - 1][0] }}</h3>
+      {%- endif -%}
     {%- endif -%}
-    {%- if slot == "list_item_description_1" -%}
-      <p>
-        Ubuntu Pro is the security, compliance, and maintenance subscription that
-        extends security updates for Ubuntu LTS, adds hardening profiles, and provides
-        access to trusted open source repositories. Ubuntu Pro + 24/7 Support is the
-        break-fix and bug-fix foundation, with a one-hour first ticket response for
-        Severity 1 incidents. Firefighting Support builds on that same foundation. It
-        adds a Canonical Managed Solutions engineer on your video call within the
-        hour. You also get quarterly planning hours, with a team that already knows
-        your environment.
-      </p>
-      <p>
-        With Firefighting Support you get all the benefits of Ubuntu Pro + Support,
-        plus additional incident response and guidance capabilities tailored to your
-        cloud.
-      </p>
-      <p>
-        <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
-      </p>
-    {%- endif -%}
-    {%- if slot == "list_item_title_2" -%}
-      <h3 class="p-heading--5">What is the difference with named support resources?</h3>
-    {%- endif -%}
-    {%- if slot == "list_item_description_2" -%}
-      <p>
-        A Dedicated Support Engineer (DSE) or Technical Account Manager (TAM) is an
-        ongoing relationship and your first point of contact for all support
-        enquiries, day to day. Firefighting Support is more targeted: a dedicated team
-        specifically for high-severity incident response, plus a defined quarterly
-        allowance of planning time around specific changes, rather than day-to-day
-        support ownership.
-      </p>
-      <p>
-        <a href="/blog/dedicated-linux-support">Read more about what named Linux specialists do&nbsp;&rsaquo;</a>
-      </p>
-    {%- endif -%}
-    {%- if slot == "list_item_title_3" -%}
-      <h3 class="p-heading--5">What is the difference with Ops Consulting?</h3>
-    {%- endif -%}
-    {%- if slot == "list_item_description_3" -%}
-      <p>
-        Ops Consulting is pay-as-you-go time with our engineers. Book it whenever you
-        need it, independent of incident coverage. Firefighting Support includes 5
-        hours for every 10 nodes of that same consulting time every quarter, as part
-        of the subscription. It also includes a Canonical engineer on your video call
-        within the hour for Severity 1 incidents. Need more planning time in a
-        quarter? Top up with additional Ops Consulting hours at any time.
-      </p>
-    {%- endif -%}
-    {%- if slot == "list_item_title_4" -%}
-      <h3 class="p-heading--5">Can I get Firefighting Support if I already have Ubuntu Pro?</h3>
-    {%- endif -%}
-    {%- if slot == "list_item_description_4" -%}
-      <p>
-        Yes, you can. Your cloud may need to undergo a cloud validation from our team,
-        and you will only pay an additional upgrade fee to add Firefighting Support on
-        top of your existing Ubuntu Pro (or Ubuntu Pro + Support) subscription.
-      </p>
-    {%- endif -%}
-    {%- if slot == "list_item_title_5" -%}
-      <h3 class="p-heading--5">How much does it cost?</h3>
-    {%- endif -%}
-    {%- if slot == "list_item_description_5" -%}
-      <p>
-        This depends on the products you want to cover and the number of nodes. Our
-        pricing model is simple, intuitive, and works on a per node per year basis,
-        for your Infrastructure layer, your application layer, or both. Get in touch
-        with our team to find out more.
-      </p>
-      <p>
-        <a href="/support/contact-us"
-           class="js-invoke-modal"
-           aria-controls="firefighting-form-modal">Get in touch to learn more&nbsp;&rsaquo;</a>
-      </p>
-    {%- endif -%}
-    {%- if slot == "list_item_title_6" -%}
-      <h3 class="p-heading--5">Which products does Firefighting Support cover?</h3>
-    {%- endif -%}
-    {%- if slot == "list_item_description_6" -%}
-      <p>
-        Firefighting Support covers Canonical’s Infra product portfolio
-        (Charmed OpenStack, Sunbeam, Canonical Kubernetes, MicroCloud and Ceph,
-        Landscape) and our entire Managed Apps portfolio on-prem or in public clouds.
-      </p>
+    {%- if slot.startswith("list_item_description_") -%}
+      {%- set item_index = slot.split("_")[-1] | int -%}
+      {%- if item_index <= faq_items | length -%}
+        {{ faq_items[item_index - 1][1] | safe }}
+      {%- endif -%}
     {%- endif -%}
   {% endcall -%}
+
+  {{ faqpage_schema(faq_items) }}
 
   {% call(slot) vf_tiered_list(
     is_description_full_width_on_desktop=false,
