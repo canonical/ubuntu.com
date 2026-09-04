@@ -2288,6 +2288,7 @@ def build_release_cycle_view():
                 "compatible-ubuntu-lts", []
             ),
             "has_compatible_components": has_compatible_components,
+            "compliance": version_dict.get("compliance", []),
         }
 
     def display_github_data():

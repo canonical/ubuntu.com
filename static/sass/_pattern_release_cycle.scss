@@ -12,36 +12,43 @@
       border-bottom: none !important;
     }
 
-    // Left outer edge for the Pro block
+    // Left outer edge for the "Ubuntu Pro" components box
     tbody th:nth-child(3),
     tbody td:nth-child(3),
     thead tr:nth-child(2) th:nth-child(3) {
       box-shadow: inset 1px 0 0 rgba($color-brand, 0.5);
     }
 
-    // Right outer edge for the Pro block
-    tbody th:nth-child(5),
-    tbody td:nth-child(5),
-    thead tr:nth-child(2) th:nth-child(5) {
+    // Right outer edge for the "Ubuntu Pro" components box
+    tbody th:nth-child(6),
+    tbody td:nth-child(6),
+    thead tr:nth-child(2) th:nth-child(6) {
       box-shadow: inset -1px 0 0 rgba($color-brand, 0.5);
     }
 
-    // Top-level heading borders for Pro columns
+    // Top-level heading top+left edge for the "Ubuntu Pro" components box
     thead tr:first-child th:nth-child(3) {
       box-shadow:
         inset 0 1px 0 rgba($color-brand, 0.5),
         // top edge
-        inset 1px 0 0 rgba($color-brand, 0.5),
-        // left edge
+        inset 1px 0 0 rgba($color-brand, 0.5); // left edge
+    }
+
+    // Top-level heading top+right edge for the "Ubuntu Pro" components box
+    thead tr:first-child th:nth-child(4) {
+      box-shadow:
+        inset 0 1px 0 rgba($color-brand, 0.5),
+        // top edge
         inset -1px 0 0 rgba($color-brand, 0.5); // right edge
     }
 
-    // Bottom border for center Pro column
-    tbody tr:last-child td:nth-child(4) {
+    // Bottom border for center "Ubuntu Pro" components box
+    tbody tr:last-child td:nth-child(4),
+    tbody tr:last-child td:nth-child(5) {
       box-shadow: inset 0 -1px 0 rgba($color-brand, 0.5); // bottom edge
     }
 
-    // Closing bottom edges for Pro block
+    // Closing bottom edges for "Ubuntu Pro" components box
     tbody tr:last-child td:nth-child(3) {
       box-shadow:
         inset 1px 0 0 rgba($color-brand, 0.5),
@@ -49,8 +56,8 @@
         inset 0 -1px 0 rgba($color-brand, 0.5); // bottom edge
     }
 
-    // Closing bottom edge and right edge of the Pro block
-    tbody tr:last-child td:nth-child(5) {
+    // Closing bottom edge and right edge of the "Ubuntu Pro" components box
+    tbody tr:last-child td:nth-child(6) {
       box-shadow:
         inset -1px 0 0 rgba($color-brand, 0.5),
         // right edge
@@ -61,9 +68,9 @@
       border-bottom: 1px solid var(--vf-color-border-low-contrast);
     }
 
-    // Background fill for Ubuntu Pro columns
-    th:nth-child(n + 3):nth-child(-n + 5),
-    td:nth-child(n + 3):nth-child(-n + 5) {
+    // Background fill for "Ubuntu Pro" components box
+    th:nth-child(n + 3):nth-child(-n + 6),
+    td:nth-child(n + 3):nth-child(-n + 6) {
       background-color: rgba($color-brand, 0.05);
     }
     /* stylelint-enable no-descending-specificity */
@@ -91,9 +98,54 @@
     }
 
     @media screen and (max-width: $breakpoint-large) {
-      // Right border on column 3 for medium screens and smaller
-      tbody td:nth-child(3) {
+      // Right border on the last column for "Ubuntu Pro" components box for medium screens and smaller
+      tbody td:nth-child(4) {
         border-right: 1px solid rgba($color-brand, 0.5);
+      }
+    }
+  }
+
+  // Compliance standards list, with a status-colored dot per item
+  .p-release-compliance-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .p-release-compliance-list__item {
+      position: relative;
+      padding-left: 1rem;
+      margin-bottom: 0.25rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.4em;
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        // No color by default, for any unrecognised status value
+        background-color: transparent;
+      }
+
+      &.is-achieved::before {
+        background-color: $color-positive;
+      }
+
+      &.is-pending::before {
+        background-color: $color-caution;
+      }
+
+      &.is-expired::before {
+        background-color: $color-negative;
+      }
+
+      &.is-none::before {
+        background-color: $color-mid;
       }
     }
   }
