@@ -1,13 +1,17 @@
 {% extends "support/base_support.html" %}
 
-{% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
+{% from "_macros/vf_data-spotlight.jinja" import vf_data_spotlight %}
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 {% from "macros/_macros-faq-schema.jinja" import faqpage_schema %}
 
-{% block title %}Firefighting Support: enhanced cloud support from Canonical{% endblock %}
+{% block title %}Firefighting Support | Canonical{% endblock %}
 
 {% block meta_description %}
-  Get enhanced cloud support from Canonical. Firefighting Support is an alternative to managed services that keeps cloud or AI infrastructure running smoothly.
+  A dedicated team for Severity 1 incidents, plus quarterly planning hours for
+  migrations and upgrades — without giving up control of your systems.
 {% endblock %}
 
 {% block meta_copydoc %}
@@ -20,135 +24,98 @@
 
 {% block content %}
 
-  {# djlint:off #}
   {% call(slot) vf_hero(
-    title_text="Firefighting Support",
+    title_text="Firefighting support",
+    subtitle_text='Dedicated engineers<br class="u-hide--small" /> to help your infrastructure team' | safe,
     layout="50/50",
-    blocks=[
-      {
-        "type": "description",
-        "padding": "shallow",
-        "item": {
-          "type": "text",
-          "content": "The best self-managed alternative to <a href=\"/managed-infrastructure\">Canonical Managed Services</a>. Get Canonical engineers on call to help you resolve the most critical issues, while continuing to manage your own environments.",
-        },
-      },
-      {
-        "type": "cta-block",
-        "padding": "shallow",
-        "item": {
-          "primary": {
-            "content_html": "Enhance your cloud support now",
-            "attrs": {
-              "href": "/support/contact-us",
-              "class": "js-invoke-modal",
-              "aria-controls": "firefighting-form-modal",
-            },
-          },
-        },
-      },
-    ]
-  ) -%}
+    is_split_on_medium=true
+    ) -%}
+    {%- if slot == "description" -%}
+      <p>
+        Running your own environment takes confidence. Firefighting Support puts a
+        dedicated team of experts behind you. Get a video call within the hour for
+        Severity 1 incidents. Plus, quarterly hours to plan migrations, upgrades, and
+        other key moments for your business. You stay in control, we’re here to help.
+      </p>
+    {%- endif -%}
+    {%- if slot == "cta" -%}
+      <a href="/support/contact-us"
+         class="p-button--positive js-invoke-modal"
+         aria-controls="firefighting-form-modal">Talk to sales</a>
+      <a href="https://drive.google.com/file/d/1f9E9qHsB1cUFT6PgESKgQSZ11LKfg9iQ/view">Compare support tiers&nbsp;&rsaquo;</a>
+    {%- endif -%}
+    {%- if slot == "image" -%}
+      <div class="p-image-container--3-2 is-highlighted">
+        {{ image(url="https://assets.ubuntu.com/v1/54289e34-hero_img.png",
+                  alt="",
+                  width="1200",
+                  height="800",
+                  hi_def=True,
+                  loading="auto",
+                  attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    {%- endif -%}
   {% endcall -%}
-  {# djlint:on #}
 
-  <section class="p-section">
-    <div class="grid-row--50-50">
-      <hr class="p-rule" />
-      <div class="grid-col">
-        <h2>
-          Alternative to
-          <br class="u-hide--small" />
-          direct management
-        </h2>
-      </div>
-      <div class="grid-col">
-        <div class="p-section--shallow">
-          <div class="p-image-container is-highlighted">
-            {{ image(url="https://assets.ubuntu.com/v1/88b745c8-direct_op_management_alt.png",
-                        alt="",
-                        width="601",
-                        height="400.6",
-                        hi_def=True,
-                        attrs={"class": "p-image-container__image"},
-                        loading="auto") | safe
-            }}
-          </div>
-        </div>
-        <p>
-          Running a cloud on <a href="/openstack">OpenStack</a> or <a href="https://canonical.com/microcloud">MicroCloud</a>, or operating applications such as Kafka, Kubeflow, Spark, or OpenSearch, is complex and demanding. Canonical’s <a href="/managed">fully managed services</a> take that responsibility off your hands &ndash; but in some environments, security or compliance rules mean our engineers can’t access your systems directly.
-        </p>
-        <p>
-          Firefighting Support is the answer to these restrictions: it gives the support, protection, and confidence you need, while allowing you to operate your own environments with full control and privacy.
-        </p>
-      </div>
-    </div>
-  </section>
+  {% set readiness_title %}
+    Two kinds of readiness,
+    <br class="u-hide--small" />
+    one dedicated team
+  {% endset %}
 
-  <section class="p-section">
-    <div class="grid-row--50-50">
-      <hr class="p-rule" />
-      <div class="grid-col">
-        <h2>Key benefits</h2>
-      </div>
-      <div class="grid-col">
-        <p>We’ve designed Firefighting Support to give you an enhanced support service during critical incidents.</p>
-        <hr class="p-rule--muted" />
-        <ul class="p-list--divided">
-          <li class="p-list__item is-ticked">
-            Access to a video call with a Canonical Managed Solutions engineer within 1 hour of flagging a high severity incident
-          </li>
-          <li class="p-list__item is-ticked">
-            <a href="/pro">Ubuntu Pro</a> with 24/7 support included for other severity incidentsDual team cloud support for your products: the Support and Managed Solutions teams work together to resolve your issues
+  {% set readiness_content %}
+    <p class="u-no-margin--bottom">
+      Firefighting Support is an enhanced response for the immediate incident and
+      reduces the chance of the next one. Severity 1 incidents already get a
+      one-hour first response under Ubuntu Pro + Support. Firefighting Support adds
+      a video call with a Canonical engineer within that hour.
+    </p>
+    <p>
+      On top of that, a quarterly allowance of planned coverage and consulting hours
+      with our engineers (Ops Consulting) is included. The same team helps you plan
+      migrations, architectural changes, launches, peak-demand events, and more,
+      before they become incidents.
+    </p>
+    <p>
+      From reactive response to strategic planning, one team has you covered:
+    </p>
+    <ul class="p-list--divided">
+      <li class="p-list__item has-bullet">
+        Video call with a Canonical engineer within the hour for Severity 1
+        incidents
+      </li>
+      <li class="p-list__item has-bullet">
+        Up to 30 hours per quarter of planned coverage and Ops Consulting included,
+        for migration planning, upgrade rehearsal, launch readiness, peak-demand
+        prep, and more
+      </li>
+      <li class="p-list__item has-bullet">
+        Ubuntu Pro + Support 24/7 included for all other severities, at standard
+        SLAs
+      </li>
+      <li class="p-list__item has-bullet">
+        Dual-team model: Support and Managed Solutions engineers work your cases
+      </li>
+      <li class="p-list__item has-bullet">
+        Keep control of your environment – we don't need admin access
+      </li>
+    </ul>
+    <p>
+      Need more planning time this quarter? Top up with additional Ops Consulting
+      hours any time.
+    </p>
+  {% endset %}
 
-          </li>
-          <li class="p-list__item is-ticked">Access to Ops Consulting packages</li>
-          <li class="p-list__item is-ticked">Full control of your environments</li>
-        </ul>
-        <hr class="p-rule--muted" />
-        <a href="/support/contact-us"
-           class="p-button--positive js-invoke-modal"
-           aria-controls="firefighting-form-modal">Get Firefighting Support</a>
-      </div>
-    </div>
-  </section>
-
-  {% set ubuntu_pro_logo_attrs = image(
-      url="https://assets.ubuntu.com/v1/13f2ddf6-ubuntu_pro_logo.png",
-      alt="Ubuntu Pro",
-      width="194",
-      height="150",
-      hi_def=True,
-      loading="lazy",
-      output_mode="attrs",
-    ) %}
-  {% set _ = ubuntu_pro_logo_attrs.update({"style": "display: inline;"}) %}
-
-  {# djlint:off #}
   {{ vf_basic_section(
-    title={"text": "What is Ubuntu Pro?"},
+    title={"text": readiness_title | safe},
     is_split_on_medium=true,
     items=[
-      {
-        "type": "image",
-        "item": {
-          "aspect_ratio": "",
-          "is_highlighted": false,
-          "attrs": ubuntu_pro_logo_attrs,
-        },
-      },
       {
         "type": "description",
         "item": {
           "type": "html",
-          "content": "
-    <p>
-      Ubuntu Pro is Canonical’s comprehensive subscription for open source security, support, and compliance. Get access to a trusted open source repository, compliance profiles for the most stringent security standards, and up to 15 years of vulnerability fixes for your OS, infrastructure, and applications.
-    </p>
-    <p>
-      With Ubuntu Pro + Support, you complement this security and compliance foundation with 24/7 enterprise break and bug-fix support from Canonical engineers, backed by SLAs for your infrastructure and applications.
-    </p>
-    ",
+          "content": readiness_content,
         },
       },
       {
@@ -156,354 +123,436 @@
         "item": {
           "secondaries": [
             {
-              "content_html": "Learn more about Ubuntu Pro",
-              "attrs": {
-                "href": "/pro",
-              },
+              "content_html": "More on Ops Consulting",
+              "attrs": {"href": "#ops-consulting"},
             },
           ],
         },
       },
     ],
   ) }}
-  {# djlint:on #}
+
+  {% set faq_answer_1 %}
+    <p>
+      Ubuntu Pro is the security, compliance, and maintenance subscription that
+      extends security updates for Ubuntu LTS, adds hardening profiles, and provides
+      access to trusted open source repositories. Ubuntu Pro + 24/7 Support is the
+      break-fix and bug-fix foundation, with a one-hour first ticket response for
+      Severity 1 incidents. Firefighting Support builds on that same foundation. It
+      adds a Canonical Managed Solutions engineer on your video call within the
+      hour. You also get quarterly planning hours, with a team that already knows
+      your environment.
+    </p>
+    <p>
+      With Firefighting Support you get all the benefits of Ubuntu Pro + Support,
+      plus additional incident response and guidance capabilities tailored to your
+      cloud.
+    </p>
+    <p>
+      <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
+    </p>
+  {% endset %}
+
+  {% set faq_answer_2 %}
+    <p>
+      A Dedicated Support Engineer (DSE) or Technical Account Manager (TAM) is an
+      ongoing relationship and your first point of contact for all support
+      enquiries, day to day. Firefighting Support is more targeted: a dedicated team
+      specifically for high-severity incident response, plus a defined quarterly
+      allowance of planning time around specific changes, rather than day-to-day
+      support ownership.
+    </p>
+    <p>
+      <a href="/blog/dedicated-linux-support">Read more about what named Linux specialists do&nbsp;&rsaquo;</a>
+    </p>
+  {% endset %}
+
+  {% set faq_answer_3 %}
+    <p>
+      Ops Consulting is pay-as-you-go time with our engineers. Book it whenever you
+      need it, independent of incident coverage. Firefighting Support includes 5
+      hours for every 10 nodes of that same consulting time every quarter, as part
+      of the subscription. It also includes a Canonical engineer on your video call
+      within the hour for Severity 1 incidents. Need more planning time in a
+      quarter? Top up with additional Ops Consulting hours at any time.
+    </p>
+  {% endset %}
+
+  {% set faq_answer_4 %}
+    <p>
+      Yes, you can. Your cloud may need to undergo a cloud validation from our team,
+      and you will only pay an additional upgrade fee to add Firefighting Support on
+      top of your existing Ubuntu Pro (or Ubuntu Pro + Support) subscription.
+    </p>
+  {% endset %}
+
+  {% set faq_answer_5 %}
+    <p>
+      This depends on the products you want to cover and the number of nodes. Our
+      pricing model is simple, intuitive, and works on a per node per year basis,
+      for your Infrastructure layer, your application layer, or both. Get in touch
+      with our team to find out more.
+    </p>
+    <p>
+      <a href="/support/contact-us"
+         class="js-invoke-modal"
+         aria-controls="firefighting-form-modal">Get in touch to learn more&nbsp;&rsaquo;</a>
+    </p>
+  {% endset %}
+
+  {% set faq_answer_6 %}
+    <p>
+      Firefighting Support covers Canonical’s Infra product portfolio
+      (Charmed OpenStack, Sunbeam, Canonical Kubernetes, MicroCloud and Ceph,
+      Landscape) and our entire Managed Apps portfolio on-prem or in public clouds.
+    </p>
+  {% endset %}
+
+  {% set faq_items = [
+    ["How does it compare with Ubuntu Pro + 24/7 support?", faq_answer_1],
+    ["What is the difference with named support resources?", faq_answer_2],
+    ["What is the difference with Ops Consulting?", faq_answer_3],
+    ["Can I get Firefighting Support if I already have Ubuntu Pro?", faq_answer_4],
+    ["How much does it cost?", faq_answer_5],
+    ["Which products does Firefighting Support cover?", faq_answer_6]
+  ] %}
+
+  {% call(slot) vf_tiered_list(
+    is_description_full_width_on_desktop=false,
+    is_list_full_width_on_tablet=false
+    ) -%}
+    {%- if slot == "title" -%}
+      <h2>
+        Is Firefighting Support
+        <br class="u-hide--medium" />
+        right for you?
+      </h2>
+    {%- endif -%}
+    {%- if slot == "description" -%}
+      <p>
+        Built for teams who manage their own environment, by choice or by regulation,
+        and want a dedicated team behind them for incidents and for the changes
+        they’re planning.
+      </p>
+    {%- endif -%}
+    {%- if slot == "list_item_title_1" -%}
+      <h3 class="p-heading--5">Government clouds</h3>
+    {%- endif -%}
+    {%- if slot == "list_item_description_1" -%}
+      <p>
+        Regulatory restrictions mean we can’t operate your systems directly.
+        Firefighting Support gives you the safety net without the access requirements.
+      </p>
+    {%- endif -%}
+    {%- if slot == "list_item_title_2" -%}
+      <h3 class="p-heading--5">Highly private telecom networks</h3>
+    {%- endif -%}
+    {%- if slot == "list_item_description_2" -%}
+      <p>
+        The workloads even a trusted third party can’t touch, backed by a team that’s
+        ready when you need us.
+      </p>
+    {%- endif -%}
+    {%- if slot == "list_item_title_3" -%}
+      <h3 class="p-heading--5">Cloud upgrades</h3>
+    {%- endif -%}
+    {%- if slot == "list_item_description_3" -%}
+      <p>
+        Go into your next version upgrade with engineers on standby. They fix what
+        comes up, in real time.
+      </p>
+    {%- endif -%}
+    {%- if slot == "list_item_title_4" -%}
+      <h3 class="p-heading--5">Planned change and peak demand</h3>
+    {%- endif -%}
+    {%- if slot == "list_item_description_4" -%}
+      <p>
+        Migrations, launches, seasonal traffic spikes: the moments where you want a
+        second set of hands thinking it through with you.
+      </p>
+    {%- endif -%}
+  {% endcall -%}
+
+  {{ vf_data_spotlight(
+    title={"text": "Firefighting Support at a glance"},
+    blocks=[
+      {
+        "stat": "1 hour",
+        "headline": "Engineer on call",
+        "description": "Time for a Canonical engineer to join your video call, once a Sev 1 is flagged.",
+      },
+      {
+        "stat": "Up to 30",
+        "headline": "Quarterly hours",
+        "description": "Planned coverage and Ops Consulting time included for planning ahead.",
+      },
+      {
+        "stat": "24/7",
+        "headline": "Support coverage",
+        "description": "Standard Ubuntu Pro + Support for all severity levels.",
+      },
+    ],
+  ) }}
 
   <section class="p-section">
-    <div class="p-section--shallow">
-      <div class="grid-row--50-50">
-        <hr class="p-rule" />
-        <div class="grid-col">
-          <h2>
-            Is Firefighting Support
-            <br class="u-hide--small u-hide--medium" />
-            right for you?
-          </h2>
-        </div>
-        <div class="grid-col">
-          <p>Firefighting Support adds value in many situations, but we’ve designed it with three primary use cases in mind.</p>
-        </div>
-      </div>
-    </div>
-    <div class="grid-row--25-75">
-      <div class="grid-col">
-        <div class="grid-row u-hide--small">
-          <div class="grid-col-2 grid-col-medium-1 grid-col-start-medium-2">
-            {{ image(url="https://assets.ubuntu.com/v1/a5f69f96-File system type@2x 1.png",
-                        alt="",
-                        width="561",
-                        height="562",
-                        hi_def=True,
-                        loading="lazy") | safe
-            }}
-          </div>
-          <div class="grid-col-2 grid-col-medium-1">
-            {{ image(url="https://assets.ubuntu.com/v1/79fba6f3-Create a security key@3x 1.png",
-                        alt="",
-                        width="561",
-                        height="562",
-                        hi_def=True,
-                        loading="lazy") | safe
-            }}
-          </div>
-          <div class="grid-col-2 grid-col-medium-1">
-            {{ image(url="https://assets.ubuntu.com/v1/d2a8836e-wifi.png",
-                        alt="",
-                        width="561",
-                        height="562",
-                        hi_def=True,
-                        loading="lazy") | safe
-            }}
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="grid-row">
-          <div class="grid-col-2 grid-col-medium-1 grid-col-start-medium-2">
-            <h3 class="p-heading--5">Government clouds</h3>
-            <p>
-              Generally, governments and intergovernmental institutions have stringent regulations that forbid third parties from providing direct operational management. This can make operations harder. Firefighting Support gives you extra peace of mind while allowing you to remain fully compliant with your security policies and these government requirements.
-            </p>
-          </div>
-          <hr class="p-rule--muted u-hide--medium u-hide--large" />
-          <div class="grid-col-2 grid-col-medium-1">
-            <h3 class="p-heading--5">
-              Highly private
-              <br />
-              telecommunications networks
-            </h3>
-            <p>
-              There are telco networks that even the most secure third parties can't touch. But managing their workloads can be tough to do alone. Canonical's Firefighting Support can allow your private networks to operate more smoothly by having your back in urgent situations.
-            </p>
-          </div>
-          <hr class="p-rule--muted u-hide--medium u-hide--large" />
-
-          <div class="grid-col-2 grid-col-medium-1">
-            <h3 class="p-heading--5">Cloud upgrades</h3>
-            <p>
-              It's time to upgrade your cloud to the newest version, and it's rightfully intimidating. Firefighting Support can allow you to benefit from the expertise and experience of our Managed Solutions engineers, who will help you immediately fix any issues that may arise during the upgrade.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-section">
-    <div class="grid-row--25-75-on-large">
+    <div class="u-fixed-width">
       <hr class="p-rule" />
-      <div class="grid-col">
-        <h2>Your options</h2>
-      </div>
-      <div class="grid-col" style="overflow: auto;">
-        <table aria-label="Comparison between fully managed solutions and firefighting support"
-               style="width: auto;
-                      border-collapse: collapse">
+      <h2>Compare your options</h2>
+      <div style="overflow-x: auto">
+        <table aria-label="Comparison of fully managed solutions, Firefighting Support, and standard support"
+               style="min-width: 64rem">
           <thead>
             <tr>
-              <th></th>
-              <th class="p-text--small-caps">
-                <a href="/managed-infrastructure">Fully managed solutions</a>
-              </th>
-              <th class="p-text--small-caps">Firefighting Support</th>
+              <th scope="col">Feature</th>
+              <th scope="col"><a href="/managed-infrastructure">Fully managed solutions</a></th>
+              <th scope="col">Firefighting Support</th>
+              <th scope="col">Standard Support</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th>What it is</th>
+              <th scope="row">What it is</th>
               <td>
-                Canonical engineers deploy your environment and manage all operations. We maintain admin rights and a permanent connection.
+                Canonical engineers deploy your environment and manage all
+                operations. We maintain admin rights and a permanent connection.
               </td>
               <td>
-                Canonical engineers provide cloud support and guidance in high-severity situations, while you manage your operations.
+                Canonical engineers provide support in high-severity situations
+                and guidance during key moments in your business, while you manage
+                your operations.
+              </td>
+              <td>
+                Canonical engineers for around-the-clock coverage for break-fix
+                and bug-fix issues.
               </td>
             </tr>
             <tr>
-              <th>
-                <a href="/pro">Ubuntu Pro</a> + <a href="/support">Support</a> 24/7
-              </th>
-              <td>Included</td>
-              <td>Included</td>
+              <th scope="row"><a href="/pro">Ubuntu Pro</a> + <a href="/support">Support</a></th>
+              <td>24/7 included</td>
+              <td>24/7 included</td>
+              <td>24/7 or 24/5</td>
             </tr>
             <tr>
-              <th>Service levels</th>
-              <td>1-hour SLA for high severity cases, all other cases addressed in under 24 hours</td>
-              <td>1-hour SLA for high severity cases</td>
-            </tr>
-            <tr>
-              <th>Incident management</th>
+              <th scope="row">Incident management &amp; Service requests</th>
               <td>Unlimited, covering cases we identify ourselves or flagged by you</td>
-              <td>Only for high severity cases that impact the product's core functionality</td>
+              <td>
+                Video call only for one high severity case at a time. Unlimited
+                ticket support for other cases
+              </td>
+              <td>Unlimited, covering cases opened by you through the Support portal</td>
             </tr>
             <tr>
-              <th>Service requests</th>
+              <th scope="row">Quarterly planned coverage &amp; Ops Consulting</th>
+              <td>No</td>
+              <td>5 hours for every 10 nodes, capped at 30 hours</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <th scope="row">Backup and recovery</th>
               <td>Unlimited</td>
-              <td>One at a time per environment for enhanced support, unlimited for standard 24/7 support service</td>
+              <td>Offered as advisory services</td>
+              <td>No</td>
             </tr>
             <tr>
-              <th>Backup and recovery</th>
+              <th scope="row">Software and package updates</th>
               <td>Unlimited</td>
-              <td>Not covered</td>
+              <td>Offered as advisory services</td>
+              <td>No</td>
             </tr>
             <tr>
-              <th>Software and package updates</th>
-              <td>Unlimited</td>
-              <td>Not covered</td>
-            </tr>
-            <tr>
-              <th>Capacity reports</th>
+              <th scope="row">Capacity reports</th>
               <td>Available</td>
-              <td>Unavailable</td>
+              <td>No</td>
+              <td>No</td>
             </tr>
             <tr>
-              <th>Admin access</th>
-              <td>Required</td>
-              <td>Not required</td>
+              <th scope="row">Admin access required</th>
+              <td>Yes</td>
+              <td>No</td>
+              <td>No</td>
             </tr>
           </tbody>
         </table>
-        <div class="p-section--shallow u-hide--small">
-          {{ image(url="https://assets.ubuntu.com/v1/530afcbc-GettyImages-1340944503 1.png",
-                    alt="",
-                    width="1832",
-                    height="745",
-                    hi_def=True,
-                    loading="lazy") | safe
-          }}
-        </div>
       </div>
     </div>
   </section>
 
-  {% set faq_items = [
-    ["What's the difference between Firefighting Support and Ubuntu Pro + Support?",
-    "<p>Ubuntu Pro is the security, compliance, and maintenance subscription that extends security updates for Ubuntu LTS, adds hardening profiles, and provides access to trusted open source repositories. Firefighting Support includes Ubuntu Pro + <a href=\"/support\">Support</a> for all covered products and adds a dedicated Managed Solutions engineering team on top, with faster SLAs and experts who get to know your environment before helping you in high‑severity incidents.​</p><p>With Firefighting support you get all the benefits of Ubuntu Pro, plus additional incident response and guidance capabilities tailored to your cloud.</p>"],
-    ["Can I get Firefighting Support if I already have Ubuntu Pro?",
-    "Yes, you can. Your cloud may need to undergo a cloud validation from our team, and you will only pay an additional upgrade fee to add Firefighting Support on top of your existing Ubuntu Pro (or Ubuntu Pro + Support) subscription."],
-    ["How much does it cost?",
-    "This depends on the products you want to cover and the number of nodes. Our pricing model is simple, intuitive, and works on a per node per year basis. <a href=\"/support/contact-us\" class=\"js-invoke-modal\" aria-controls=\"firefighting-form-modal\">Get in touch with our team to find out more.</a>"],
-    ["Which products does Firefighting Support cover?",
-    "Firefighting Support covers <a href=\"/openstack\">Charmed OpenStack</a>, <a href=\"/kubernetes\">Canonical Kubernetes</a>, and our entire <a href=\"/managed/apps\">Managed Apps</a> portfolio."]
-  ] %}
-
-  <section class="p-section">
-    <div class="grid-row--25-75">
-      <hr class="p-rule" />
-      <div class="grid-col">
-        <h2>FAQ</h2>
-      </div>
-      <div class="grid-col">
-        {% for question, answer in faq_items %}
-          {% if not loop.first %}<hr class="p-rule--muted" />{% endif %}
-          <div class="grid-row">
-            <div class="grid-col-2">
-              <p class="p-heading--5">{{ question }}</p>
-            </div>
-            <div class="grid-col-4">{{ answer | safe }}</div>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
+  {% call(slot) vf_tiered_list(
+    is_description_full_width_on_desktop=false,
+    is_list_full_width_on_tablet=false
+    ) -%}
+    {%- if slot == "title" -%}
+      <h2>Frequently asked questions</h2>
+    {%- endif -%}
+    {%- if slot == "description" -%}
+      <p>
+        Still deciding whether Firefighting Support is right for you? Here is how it
+        compares with other Ubuntu Pro add-ons, plus answers on eligibility, pricing,
+        and product coverage.
+      </p>
+      <p>
+        <a href="/support/contact-us"
+           class="js-invoke-modal"
+           aria-controls="firefighting-form-modal">Get in touch&nbsp;&rsaquo;</a>
+      </p>
+    {%- endif -%}
+    {%- if slot.startswith("list_item_title_") -%}
+      {%- set item_index = slot.split("_")[-1] | int -%}
+      {%- if item_index <= faq_items | length -%}
+        <h3 class="p-heading--5">{{ faq_items[item_index - 1][0] }}</h3>
+      {%- endif -%}
+    {%- endif -%}
+    {%- if slot.startswith("list_item_description_") -%}
+      {%- set item_index = slot.split("_")[-1] | int -%}
+      {%- if item_index <= faq_items | length -%}
+        {{ faq_items[item_index - 1][1] | safe }}
+      {%- endif -%}
+    {%- endif -%}
+  {% endcall -%}
 
   {{ faqpage_schema(faq_items) }}
 
-  <section class="p-section">
-    <div class="p-section--shallow">
-      <div class="grid-row--50-50">
-        <hr class="p-rule" />
-        <div class="grid-col">
-          <h2>Unlock Ops Consulting</h2>
-        </div>
-        <div class="grid-col">
-          <p>
-            Want to discuss your tech plans in more depth? Curious about how you can start managing your environments yourself? Or do you simply want to learn more about the products in your stack?
-          </p>
-          <p>
-            Talk to Canonical Managed Solutions engineers through Ops Consulting, a package that gives you access to one-to-one calls with our topic experts.
-          </p>
-          <div class="p-cta-section">
-            <a href="https://canonical.com/consulting" class="p-button">Learn more</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="grid-row--25-75">
-      <div class="grid-col">
-        <div class="grid-row u-hide--small">
-          <div class="grid-col-2 grid-col-medium-1 grid-col-start-medium-2">
-            {{ image(url="https://assets.ubuntu.com/v1/7c4e7c58-Summary of installation settings@2x.png",
-                        alt="",
-                        width="561",
-                        height="562",
-                        hi_def=True,
-                        loading="lazy") | safe
-            }}
-          </div>
-          <div class="grid-col-2 grid-col-medium-1">
-            {{ image(url="https://assets.ubuntu.com/v1/cd172f35-Hardware Check@2x.png",
-                        alt="",
-                        width="561",
-                        height="562",
-                        hi_def=True,
-                        loading="lazy") | safe
-            }}
-          </div>
-          <div class="grid-col-2 grid-col-medium-1">
-            {{ image(url="https://assets.ubuntu.com/v1/745df342-Accessibility@2x.png",
-                        alt="",
-                        width="561",
-                        height="562",
-                        hi_def=True,
-                        loading="lazy") | safe
-            }}
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="grid-row">
-          <div class="grid-col-2 grid-col-medium-1 grid-col-start-medium-2">
-            <h3 class="p-heading--5">Upgrade support</h3>
-            <p>
-              We understand that upgrading infrastructure or apps can be challenging. If we can't upgrade it for you via Managed Services, you can still discuss the best upgrade practices with our engineers through Ops Consulting and get guidance on how to do it yourself.
-            </p>
-          </div>
-          <hr class="p-rule--muted u-hide--medium u-hide--large" />
-          <div class="grid-col-2 grid-col-medium-1">
-            <h3 class="p-heading--5">Operational experience</h3>
-            <p>
-              If there are topics that give you headaches when managing your environments, our engineers can advise you on how to avoid common mistakes and how to fix recurrent problems, drawing on over 20 years of open source expertise.
-            </p>
-          </div>
-          <hr class="p-rule--muted u-hide--medium u-hide--large" />
+  {% call(slot) vf_tiered_list(
+    is_description_full_width_on_desktop=false,
+    is_list_full_width_on_tablet=false
+    ) -%}
+    {%- if slot == "title" -%}
+      <h2 id="ops-consulting">Unlock Ops Consulting</h2>
+    {%- endif -%}
+    {%- if slot == "description" -%}
+      <p>
+        Want to talk through your tech plans, learn to manage your environment
+        yourself, or just understand your stack better? Talk to Canonical engineers
+        through Ops Consulting: one-to-one calls with our topic experts. Available to
+        customers with an active Firefighting Support or fully managed subscription,
+        as a top-up to your included quarterly hours.
+      </p>
+    {%- endif -%}
+    {%- if slot == "list_item_title_1" -%}
+      <h3 class="p-heading--5">Upgrade support</h3>
+    {%- endif -%}
+    {%- if slot == "list_item_description_1" -%}
+      <p>
+        We understand upgrading infrastructure or apps can be challenging. If we can’t
+        upgrade it for you through Managed Services, our engineers can guide you
+        through doing it yourself.
+      </p>
+    {%- endif -%}
+    {%- if slot == "list_item_title_2" -%}
+      <h3 class="p-heading--5">Operational experience</h3>
+    {%- endif -%}
+    {%- if slot == "list_item_description_2" -%}
+      <p>
+        Get advice on avoiding common mistakes and fixing recurring problems, drawing
+        on over 20 years of open source expertise.
+      </p>
+    {%- endif -%}
+    {%- if slot == "list_item_title_3" -%}
+      <h3 class="p-heading--5">Team training</h3>
+    {%- endif -%}
+    {%- if slot == "list_item_description_3" -%}
+      <p>
+        Already confident in managing your own environment? We can still help with
+        training material and best practices shared in consulting sessions.
+      </p>
+    {%- endif -%}
+    {%- if slot == "cta" -%}
+      <a href="/support/contact-us"
+          class="p-button js-invoke-modal"
+          aria-controls="firefighting-form-modal">Contact Sales</a>
+      <p>
+        <a href="https://canonical.com/consulting">Need a full build instead of hourly guidance? Explore consulting&nbsp;&rsaquo;</a>
+      </p>
+    {%- endif -%}
+  {% endcall -%}
 
-          <div class="grid-col-2 grid-col-medium-1">
-            <h3 class="p-heading--5">Team training</h3>
-            <p>
-              Have you already benefited from our Managed Solutions offering, and feel confident to manage your environments by yourself? We’ve still got you covered, with training material and best practices to be shared in consulting sessions.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-section">
-    <div class="p-section--shallow">
-      <div class="grid-row--50-50">
-        <hr class="p-rule" />
-        <div class="grid-col">
-          <h2>Ops Consulting packages</h2>
-        </div>
-        <div class="grid-col">
-          <p>
-            You can access Ops Consulting regardless of the size of your infrastructure or current projects, as long as you've got one of our Firefighting Support or <a href="/managed-infrastructure">fully managed</a> services active.
-          </p>
-          <p>
-            We offer three packages that give you a number of consulting hours you can book in a month to discuss topics of your choice with our engineers. The hours do not roll over, but you never have to commit for more than a month.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="grid-row--25-75">
-      <div class="grid-col">
-        <div class="grid-row">
-          <div class="grid-col-2 grid-col-medium-1 grid-col-start-medium-2">
-            <hr class="p-rule--highlight" />
-            <p class="p-heading--3">10h/month</p>
-            <p class="p-heading--4">$3,500</p>
-            <p>
-              Occasional meetings for non-urgent matters, allowing you to discuss concerns and improve the efficiency of your operations.
-            </p>
-          </div>
-          <div class="grid-col-2 grid-col-medium-1">
-            <hr class="p-rule--highlight" />
-            <p class="p-heading--3">20h/month</p>
-            <p class="p-heading--4">$6,000</p>
-            <p>
-              Regular meetings that allow you to have in-depth discussions on pressing matters, or get a baseline training in operational management for your products.
-            </p>
-          </div>
-          <div class="grid-col-2 grid-col-medium-1">
-            <hr class="p-rule--highlight" />
-            <p class="p-heading--3">40h/month</p>
-            <p class="p-heading--4">$10,000</p>
-            <p>
-              Daily or highly recurrent meetings with engineers, helping you gain skills quickly or prepare for a significant change in your environment.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="p-rule is-fixed-width" />
-  <section class="p-strip is-deep">
+  <section class="p-section" aria-labelledby="ops-consulting-packages">
     <div class="u-fixed-width">
-      <h2>
-        <a href="/support/contact-us"
-           class="js-invoke-modal"
-           aria-controls="firefighting-form-modal">Contact us and discuss your options&nbsp;&rsaquo;</a>
-      </h2>
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <div class="grid-row--50-50-on-large">
+          <div class="grid-col">
+            <h2 id="ops-consulting-packages">Ops Consulting packages</h2>
+          </div>
+          <div class="grid-col">
+            <p>
+              Available to customers with an active Firefighting Support or fully
+              managed subscription, as a top-up beyond your included quarterly
+              hours. Hours don’t roll over, and you never commit for more than a
+              quarter.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="grid-row--25-75-on-large">
+        <div class="grid-col"></div>
+        <div class="grid-col">
+          <div class="p-equal-height-row--wrap p-data-spotlight--3-blocks">
+            <div class="p-equal-height-row__col p-data-spotlight__block">
+              <div class="p-equal-height-row__item">
+                <hr class="p-rule--highlight" />
+                <p class="p-heading--2 u-no-margin"><strong>10h/quarter</strong></p>
+                <p class="p-heading--4 u-no-margin--bottom u-no-padding--top u-sv1"><strong>$3,500</strong></p>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>
+                  Occasional meetings for non-urgent matters, allowing you to
+                  discuss concerns and improve the efficiency of your operations.
+                </p>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col p-data-spotlight__block">
+              <div class="p-equal-height-row__item">
+                <hr class="p-rule--highlight" />
+                <p class="p-heading--2 u-no-margin"><strong>20h/quarter</strong></p>
+                <p class="p-heading--4 u-no-margin--bottom u-no-padding--top u-sv1"><strong>$6,000</strong></p>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>
+                  Regular meetings that allow you to have in-depth discussions on
+                  pressing matters, or get baseline training in operational
+                  management for your products.
+                </p>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col p-data-spotlight__block">
+              <div class="p-equal-height-row__item">
+                <hr class="p-rule--highlight" />
+                <p class="p-heading--2 u-no-margin"><strong>40h/quarter</strong></p>
+                <p class="p-heading--4 u-no-margin--bottom u-no-padding--top u-sv1"><strong>$10,000</strong></p>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>
+                  Daily or highly recurring meetings with engineers, helping you
+                  gain skills quickly or prepare for a significant change in your
+                  environment.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
+
+  {% call(slot) vf_cta_section(
+    title_text="Ready for expertise you can count on?",
+    variant="block",
+    layout="100",
+    attrs={"id": "get-in-touch"}
+    ) -%}
+    {%- if slot == "description" -%}
+      <p>
+        Talk to us about Firefighting Support or contact us to compare support plans
+        and find the best fit for you.
+      </p>
+    {%- endif -%}
+    {%- if slot == "cta" -%}
+      <a href="/support/contact-us"
+         class="p-button--positive js-invoke-modal"
+         aria-controls="firefighting-form-modal">Get firefighting support</a>
+    {%- endif -%}
+  {% endcall -%}
 
   {{ load_form("/support/firefighting") | safe }}
 
