@@ -1,0 +1,188 @@
+name: Pack
+
+# Reusable workflow: builds the rock + charm for a given git ref.
+# - The rock is pushed to GHCR tagged with the commit SHA (immutable,
+#   so every deployment is tracked by commit id). If an image for this SHA
+#   already exists in GHCR, the build is skipped entirely.
+# - The charm is uploaded as a run artifact for the calling workflow to
+#   deploy. Since the charm only depends on the charm/ directory (not on
+#   app source), it is restored from an actions/cache entry whenever
+#   possible instead of being rebuilt from scratch.
+#
+# This workflow is intended to be called ONCE per deploy run (see
+# .github/workflows/deploy.yaml), which then fans out the same rock image
+# and charm artifact to both PS6 and PS7 deploy jobs.
+
+on:
+  workflow_call:
+    inputs:
+      ref:
+        description: "Git ref (branch, tag, or commit SHA) to build"
+        required: true
+        type: string
+      force-charm-rebuild:
+        description: "Bypass the charm cache and force a rebuild"
+        required: false
+        type: boolean
+        default: false
+      disable-charm-cache:
+        description: "Skip restore/save of charm cache for this run"
+        required: false
+        type: boolean
+        default: false
+    outputs:
+      image_url:
+        description: "Full GHCR image URL that was pushed"
+        value: ${{ jobs.pack-rock.outputs.image_url }}
+      sha:
+        description: "Short commit SHA that was built"
+        value: ${{ jobs.pack-rock.outputs.sha }}
+
+# env:
+#   CHARMCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS: true
+#   ROCKCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS: true
+# Not needed for ubuntu-22.04 
+
+permissions: {}
+
+jobs:
+  pack-rock:
+    # Pinned to match `base: ubuntu@22.04` in rockcraft.yaml, since we build
+    # in --destructive-mode directly on the runner (no LXD container)(saves time). If
+    # the rock base is ever bumped, update this to match.
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      image_url: ${{ steps.image.outputs.image_url }}
+      sha: ${{ steps.resolve.outputs.sha }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          ref: ${{ inputs.ref }}
+          persist-credentials: false
+
+      - name: Resolve commit SHA
+        id: resolve
+        run: echo "sha=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Set image URL
+        id: image
+        env:
+          REPOSITORY: ${{ github.repository }}
+          SHA: ${{ steps.resolve.outputs.sha }}
+        run: echo "image_url=ghcr.io/${REPOSITORY}:${SHA}" >> "$GITHUB_OUTPUT"
+
+      - name: Check if image already exists in GHCR
+        id: check-image
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IMAGE_URL: ${{ steps.image.outputs.image_url }}
+        run: |
+          set -e
+          sudo apt-get update -qq && sudo apt-get install -y skopeo
+          if skopeo inspect --creds "canonical:${GH_TOKEN}" \
+            "docker://${IMAGE_URL}" &>/dev/null; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Image ${IMAGE_URL} already exists in GHCR, skipping rock build."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+      # caching dependencies to save time
+      - name: Cache yarn dependencies
+        if: steps.check-image.outputs.exists != 'true'
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.cache/yarn
+          key: yarn-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            yarn-${{ runner.os }}-
+
+      - name: Cache pip dependencies
+        if: steps.check-image.outputs.exists != 'true'
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            pip-${{ runner.os }}-
+
+      - name: Setup Rockcraft
+        if: steps.check-image.outputs.exists != 'true'
+        run: sudo snap install rockcraft --classic --channel=latest/stable
+
+      - name: Pack rock
+        if: steps.check-image.outputs.exists != 'true'
+        # --destructive-mode builds directly on the runner instead of
+        # spinning up an LXD container, which removes ~2-3 min of instance
+        run: sudo -E rockcraft pack --destructive-mode -v
+
+      - name: Push rock to GHCR
+        if: steps.check-image.outputs.exists != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IMAGE_URL: ${{ steps.image.outputs.image_url }}
+        run: |
+          skopeo --insecure-policy copy \
+            oci-archive:"$(ls ./*.rock)" \
+            docker://"${IMAGE_URL}" \
+            --dest-creds "canonical:${GH_TOKEN}"
+
+  pack-charm:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          ref: ${{ inputs.ref }}
+          persist-credentials: false
+
+      - name: Setup Charmcraft
+        run: sudo snap install charmcraft --classic --channel=latest/stable
+
+      - name: Resolve charmcraft version
+        id: charmcraft-version
+        run: echo "version=$(charmcraft version)" >> "$GITHUB_OUTPUT"
+
+      - name: Compute cache week bucket
+        id: week
+        # Belt-and-braces: force a rebuild at least once a week even if
+        # nothing under charm/ changed, so the charm can never drift more
+        # than 7 days from upstream base images.
+        run: echo "value=$(date -u +%G-W%V)" >> "$GITHUB_OUTPUT"
+
+      - name: Restore charm cache
+        id: charm-cache
+        if: inputs.force-charm-rebuild != true && inputs.disable-charm-cache != true
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ./charm/*.charm
+          key: charm-${{ steps.charmcraft-version.outputs.version }}-${{ steps.week.outputs.value }}-${{ hashFiles('charm/**', '!charm/*.charm') }}
+
+      - name: Setup LXD
+        if: steps.charm-cache.outputs.cache-hit != 'true'
+        uses: canonical/setup-lxd@8c6a87bfb56aa48f3fb9b830baa18562d8bfd4ee # v1
+
+      - name: Pack charm
+        if: steps.charm-cache.outputs.cache-hit != 'true'
+        run: charmcraft pack -v --project-dir ./charm
+
+      - name: Save charm cache
+        if: steps.charm-cache.outputs.cache-hit != 'true' && inputs.force-charm-rebuild != true && inputs.disable-charm-cache != true
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ./charm/*.charm
+          key: charm-${{ steps.charmcraft-version.outputs.version }}-${{ steps.week.outputs.value }}-${{ hashFiles('charm/**', '!charm/*.charm') }}
+
+      - name: Upload charm artifact
+        # Always runs, whether the charm came from cache or was just built,
+        # since the deploy jobs unconditionally download this artifact.
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: charm
+          path: ./charm/*.charm
+          if-no-files-found: error

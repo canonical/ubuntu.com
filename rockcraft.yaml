@@ -1,4 +1,9 @@
 name: ubuntu-com
+# NOTE: the "pack-rock" job in .github/workflows/pack.yaml runs
+# `rockcraft pack --destructive-mode` directly on the GitHub Actions runner
+# (no LXD container) to speed up CI. That only works because the runner is
+# pinned to `ubuntu-22.04`, matching the base below. If this base is ever
+# bumped, update the runner OS in pack.yaml to match.
 base: ubuntu@22.04
 version: "0.1"
 summary: Ubuntu website https://ubuntu.com
@@ -32,6 +37,12 @@ parts:
       mkdir -p "$CRAFT_PART_INSTALL/flask/app"
       cp -r static "$CRAFT_PART_INSTALL/flask/app/"
   flask-framework/install-app:
+    # The built JS/CSS assets are provided exclusively by the `build-ui` part
+    # (which runs `yarn run build` inside the container). Exclude them here so
+    # we don't stage stale, locally-built copies that conflict with build-ui.
+    stage:
+      - -flask/app/static/js/dist
+      - -flask/app/static/css
     prime:
       # by default, only the files in app/, templates/, static/, migrate, migrate.sh,
       # migrate.py and app.py are copied into the image. You can modify the list

@@ -1,0 +1,75 @@
+name: Deploy to PS7
+
+# Reusable workflow: deploys a pre-built rock + charm to ProdStack 7.
+
+on:
+  workflow_call:
+    inputs:
+      image-url:
+        description: "Full GHCR image URL to deploy as the flask-app-image resource"
+        required: true
+        type: string
+      environment:
+        description: "Target environment: both, staging or production"
+        required: true
+        type: string
+
+permissions: {}
+
+jobs:
+  deploy-staging:
+    if: >-
+      ${{ inputs.environment == 'staging'
+      || inputs.environment == 'both' }}
+    runs-on: [self-hosted-linux-amd64-noble-private-endpoint-medium]
+    permissions:
+      contents: read
+    environment:
+      name: ps7-staging
+      url: ${{ vars.WEBSITE_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Deploy
+        uses: ./.github/actions/deploy-ps7
+        with:
+          image-url: ${{ inputs.image-url }}
+          app-name: ${{ vars.CHARM_NAME }}
+          controller-name: ${{ vars.JUJU_CONTROLLER_NAME }}
+          controller-address: ${{ vars.JUJU_CONTROLLER_ADDRESS }}
+          model-name: ${{ vars.JUJU_MODEL_NAME }}
+          juju-version: ${{ vars.JUJU_VERSION || '3/stable' }}
+          juju-client-id: ${{ secrets.JUJU_CLIENT_ID }}
+          juju-client-secret: ${{ secrets.JUJU_CLIENT_SECRET }}
+
+  deploy-production:
+    needs: deploy-staging
+    if: >-
+      ${{ !cancelled()
+      && (needs.deploy-staging.result == 'success' || needs.deploy-staging.result == 'skipped')
+      && (inputs.environment == 'production' || inputs.environment == 'both') }}
+    runs-on: [self-hosted-linux-amd64-noble-private-endpoint-medium]
+    permissions:
+      contents: read
+    environment:
+      name: ps7-production
+      url: ${{ vars.WEBSITE_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Deploy
+        uses: ./.github/actions/deploy-ps7
+        with:
+          image-url: ${{ inputs.image-url }}
+          app-name: ${{ vars.CHARM_NAME }}
+          controller-name: ${{ vars.JUJU_CONTROLLER_NAME }}
+          controller-address: ${{ vars.JUJU_CONTROLLER_ADDRESS }}
+          model-name: ${{ vars.JUJU_MODEL_NAME }}
+          juju-version: ${{ vars.JUJU_VERSION || '3/stable' }}
+          juju-client-id: ${{ secrets.JUJU_CLIENT_ID }}
+          juju-client-secret: ${{ secrets.JUJU_CLIENT_SECRET }}
+

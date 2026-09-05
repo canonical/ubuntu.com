@@ -1,0 +1,72 @@
+name: Deploy to PS6
+
+# Reusable workflow: deploys a pre-built rock + charm to ProdStack 6.
+
+on:
+  workflow_call:
+    inputs:
+      image-url:
+        description: "Full GHCR image URL to deploy as the flask-app-image resource"
+        required: true
+        type: string
+      environment:
+        description: "Target environment: both, staging or production"
+        required: true
+        type: string
+
+permissions: {}
+
+jobs:
+  deploy-staging:
+    if: >-
+      ${{ inputs.environment == 'staging'
+      || inputs.environment == 'both' }}
+    runs-on:
+      [self-hosted, self-hosted-linux-amd64-jammy-private-endpoint-medium]
+    permissions:
+      contents: read
+    environment:
+      name: ps6-staging
+      url: ${{ vars.WEBSITE_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Deploy
+        uses: ./.github/actions/deploy-ps6
+        with:
+          image-url: ${{ inputs.image-url }}
+          app-name: ${{ vars.CHARM_NAME }}
+          controller-name: ${{ vars.JUJU_CONTROLLER_NAME }}
+          model-name: ${{ vars.JUJU_MODEL_NAME }}
+          vault-role-id: ${{ secrets.VAULT_APPROLE_ROLE_ID }}
+          vault-secret-id: ${{ secrets.VAULT_APPROLE_SECRET_ID }}
+
+  deploy-production:
+    needs: deploy-staging
+    if: >-
+      ${{ !cancelled()
+      && (needs.deploy-staging.result == 'success' || needs.deploy-staging.result == 'skipped')
+      && (inputs.environment == 'production' || inputs.environment == 'both') }}
+    runs-on:
+      [self-hosted, self-hosted-linux-amd64-jammy-private-endpoint-medium]
+    permissions:
+      contents: read
+    environment:
+      name: ps6-production
+      url: ${{ vars.WEBSITE_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Deploy
+        uses: ./.github/actions/deploy-ps6
+        with:
+          image-url: ${{ inputs.image-url }}
+          app-name: ${{ vars.CHARM_NAME }}
+          controller-name: ${{ vars.JUJU_CONTROLLER_NAME }}
+          model-name: ${{ vars.JUJU_MODEL_NAME }}
+          vault-role-id: ${{ secrets.VAULT_APPROLE_ROLE_ID }}
+          vault-secret-id: ${{ secrets.VAULT_APPROLE_SECRET_ID }}
