@@ -1,0 +1,179 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.0
+    method: GET
+    uri: https://certification.canonical.com/api/v2/certified-configurations/?format=json&limit=25&offset=0&model__icontains=dell+xps&ordering=model&pagination=limitoffset
+  response:
+    body:
+      string: '{"count":0,"next":null,"previous":null,"results":[]}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '52'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 06 Sep 2026 14:07:20 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Vary:
+      - Accept, Cookie
+      X-QueryInspect-Duplicate-SQL-Queries:
+      - '0'
+      X-QueryInspect-Num-SQL-Queries:
+      - '1'
+      X-QueryInspect-Total-Request-Time:
+      - 68 ms
+      X-QueryInspect-Total-SQL-Time:
+      - 58 ms
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.0
+    method: GET
+    uri: https://certification.canonical.com/api/v2/certified-configurations/?format=json&limit=25&offset=0&make__icontains=dell+xps&ordering=model&pagination=limitoffset
+  response:
+    body:
+      string: '{"count":0,"next":null,"previous":null,"results":[]}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '52'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 06 Sep 2026 14:07:21 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Vary:
+      - Accept, Cookie
+      X-QueryInspect-Duplicate-SQL-Queries:
+      - '0'
+      X-QueryInspect-Num-SQL-Queries:
+      - '1'
+      X-QueryInspect-Total-Request-Time:
+      - 30 ms
+      X-QueryInspect-Total-SQL-Time:
+      - 22 ms
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.0
+    method: GET
+    uri: https://certification.canonical.com/api/v2/certified-configurations/?format=json&limit=25&offset=0&make__icontains=dell&model__icontains=xps&ordering=model&pagination=limitoffset
+  response:
+    body:
+      string: '{"count":46,"next":"https://certification.canonical.com/api/v2/certified-configurations/?format=json&limit=25&make__icontains=dell&model__icontains=xps&offset=25&ordering=model&pagination=limitoffset","previous":null,"results":[{"canonical_id":"201906-27119","make":"Dell","model":"XPS
+        13 7390","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
+        LTS","completed":"2019-09-27T21:22:33.103146+01:00","resource_uri":"/api/v2/certified-configurations/201906-27119"},{"canonical_id":"201906-27131","make":"Dell","model":"XPS
+        13 7390","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
+        LTS","completed":"2019-09-27T21:20:13.682473+01:00","resource_uri":"/api/v2/certified-configurations/201906-27131"},{"canonical_id":"201906-27151","make":"Dell","model":"XPS
+        13 7390","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
+        LTS","completed":"2019-09-27T21:23:47.568870+01:00","resource_uri":"/api/v2/certified-configurations/201906-27151"},{"canonical_id":"201910-27449","make":"Dell","model":"XPS
+        13 9300","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
+        LTS","completed":"2020-05-14T00:56:30.180711+01:00","resource_uri":"/api/v2/certified-configurations/201910-27449"},{"canonical_id":"201910-27450","make":"Dell","model":"XPS
+        13 9300","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
+        LTS","completed":"2020-05-14T00:55:14.224520+01:00","resource_uri":"/api/v2/certified-configurations/201910-27450"},{"canonical_id":"201911-27454","make":"Dell","model":"XPS
+        13 9300","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
+        LTS","completed":"2020-05-14T00:57:11.782255+01:00","resource_uri":"/api/v2/certified-configurations/201911-27454"},{"canonical_id":"201911-27457","make":"Dell","model":"XPS
+        13 9300","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
+        LTS","completed":"2020-05-14T00:57:50.195277+01:00","resource_uri":"/api/v2/certified-configurations/201911-27457"},{"canonical_id":"201911-27469","make":"Dell","model":"XPS
+        13 9300","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
+        LTS","completed":"2020-02-18T21:29:09.773765Z","resource_uri":"/api/v2/certified-configurations/201911-27469"},{"canonical_id":"202007-28040","make":"Dell","model":"XPS
+        13 9310","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
+        LTS","completed":"2020-10-02T18:40:33.552657+01:00","resource_uri":"/api/v2/certified-configurations/202007-28040"},{"canonical_id":"202007-28045","make":"Dell","model":"XPS
+        13 9310","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
+        LTS","completed":"2020-10-02T18:39:43.223649+01:00","resource_uri":"/api/v2/certified-configurations/202007-28045"},{"canonical_id":"202007-28046","make":"Dell","model":"XPS
+        13 9310","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
+        LTS","completed":"2020-10-02T18:38:09.374209+01:00","resource_uri":"/api/v2/certified-configurations/202007-28046"},{"canonical_id":"202007-28063","make":"Dell","model":"XPS
+        13 9310","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
+        LTS","completed":"2020-10-02T18:38:51.561750+01:00","resource_uri":"/api/v2/certified-configurations/202007-28063"},{"canonical_id":"202405-34051","make":"Dell","model":"XPS
+        13 9340 (3K OLED Touchscreen)","level":"Certified Pre-Install","release":"24.04
+        LTS","category":"Laptop","major_release":"24.04 LTS","completed":"2024-09-12T15:53:19.342086+01:00","resource_uri":"/api/v2/certified-configurations/202405-34051"},{"canonical_id":"202407-34207","make":"Dell","model":"XPS
+        13 9340 (Full HD Screen)","level":"Certified Pre-Install","release":"24.04
+        LTS","category":"Laptop","major_release":"24.04 LTS","completed":"2024-09-12T15:53:31.058909+01:00","resource_uri":"/api/v2/certified-configurations/202407-34207"},{"canonical_id":"202407-34216","make":"Dell","model":"XPS
+        13 9350 (Core Ultra 5 226V)","level":"Certified Pre-Install","release":"24.04
+        LTS","category":"Laptop","major_release":"24.04 LTS","completed":"2025-03-28T16:09:11.794384Z","resource_uri":"/api/v2/certified-configurations/202407-34216"},{"canonical_id":"202407-34214","make":"Dell","model":"XPS
+        13 9350 (Core Ultra 7 258V)","level":"Certified Pre-Install","release":"24.04
+        LTS","category":"Laptop","major_release":"24.04 LTS","completed":"2025-03-28T15:56:36.744558Z","resource_uri":"/api/v2/certified-configurations/202407-34214"},{"canonical_id":"202407-34215","make":"Dell","model":"XPS
+        13 9350 (Core Ultra 7 268V)","level":"Certified Pre-Install","release":"24.04
+        LTS","category":"Laptop","major_release":"24.04 LTS","completed":"2025-03-28T16:04:58.890490Z","resource_uri":"/api/v2/certified-configurations/202407-34215"},{"canonical_id":"202507-36962","make":"Dell","model":"XPS
+        13 9350 (Core Ultra 9 288V)","level":"Certified Pre-Install","release":"24.04
+        LTS","category":"Laptop","major_release":"24.04 LTS","completed":"2025-10-24T15:04:16.029448+01:00","resource_uri":"/api/v2/certified-configurations/202507-36962"},{"canonical_id":"202510-38027","make":"Dell","model":"XPS
+        13 9350 (Intel Core Ultra 9 288V, Intel Lunar Lake Graphics, Intel BE201)","level":"Certified
+        Pre-Install","release":"24.04 LTS","category":"Laptop","major_release":"24.04
+        LTS","completed":"2026-04-16T16:40:48.651120+01:00","resource_uri":"/api/v2/certified-configurations/202510-38027"},{"canonical_id":"201708-25695","make":"Dell","model":"XPS
+        13 9370","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
+        LTS","completed":"2018-07-26T16:58:21.731947+01:00","resource_uri":"/api/v2/certified-configurations/201708-25695"},{"canonical_id":"201712-26015","make":"Dell","model":"XPS
+        13 9370","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
+        LTS","completed":"2018-07-26T16:57:05.823353+01:00","resource_uri":"/api/v2/certified-configurations/201712-26015"},{"canonical_id":"201712-26038","make":"Dell","model":"XPS
+        13 9370","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
+        LTS","completed":"2018-07-26T16:56:05.088761+01:00","resource_uri":"/api/v2/certified-configurations/201712-26038"},{"canonical_id":"201810-26510","make":"Dell","model":"XPS
+        13 9380","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
+        LTS","completed":"2019-01-11T21:53:46.964184Z","resource_uri":"/api/v2/certified-configurations/201810-26510"},{"canonical_id":"201810-26512","make":"Dell","model":"XPS
+        13 9380","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
+        LTS","completed":"2019-01-11T21:54:44.236586Z","resource_uri":"/api/v2/certified-configurations/201810-26512"},{"canonical_id":"201810-26515","make":"Dell","model":"XPS
+        13 9380","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
+        LTS","completed":"2019-01-11T21:52:46.041281Z","resource_uri":"/api/v2/certified-configurations/201810-26515"}]}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '7379'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 06 Sep 2026 14:07:21 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Vary:
+      - Accept, Cookie
+      X-QueryInspect-Duplicate-SQL-Queries:
+      - '0'
+      X-QueryInspect-Num-SQL-Queries:
+      - '2'
+      X-QueryInspect-Total-Request-Time:
+      - 134 ms
+      X-QueryInspect-Total-SQL-Time:
+      - 119 ms
+    status:
+      code: 200
+      message: OK
+version: 1

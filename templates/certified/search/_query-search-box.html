@@ -1,12 +1,20 @@
-<div class="p-search-box">
+<div class="p-search-box p-certified-autocomplete">
   <label for="certified-search" class="u-off-screen">{{ placeholder or "Search Ubuntu certified hardware" }}</label>
   <input class="p-search-box__input"
          id="certified-search"
          type="text"
          name="q"
          value="{{ query or '' }}"
-         placeholder="{{ placeholder or 'Search' }}" />
+         placeholder="{{ placeholder or 'Search' }}"
+         autocomplete="off"
+         role="combobox"
+         aria-autocomplete="list"
+         aria-expanded="false"
+         aria-controls="certified-search-suggestions" />
   <button type="submit" class="p-search-box__button">
     <i class="p-icon--search">Submit</i>
   </button>
+  <ul id="certified-search-suggestions"
+      class="p-certified-autocomplete__list u-hide"
+      role="listbox"></ul>
 </div>

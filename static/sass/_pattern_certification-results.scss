@@ -95,4 +95,34 @@
     max-width: 5.3rem;
     min-width: 5.3rem;
   }
+
+  .p-certified-autocomplete {
+    position: relative;
+
+    &__list {
+      background: #fff;
+      border: 1px solid $colors--light-theme--border-default;
+      border-top: none;
+      left: 0;
+      list-style: none;
+      margin: 0;
+      max-height: 15rem;
+      overflow-y: auto;
+      padding: 0;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      z-index: 10;
+
+      li {
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+
+        &:hover,
+        &.is-active {
+          background: #f3f3f3;
+        }
+      }
+    }
+  }
 }
