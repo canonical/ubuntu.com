@@ -122,23 +122,33 @@ class TestCertification(VCRTestCase):
             {
                 "suggestions": [
                     {
-                        "model": "16 Aurora (Core 5 210H, GeForce RTX 3050 6GB)",
+                        "model": (
+                            "16 Aurora (Core 5 210H, GeForce RTX 3050 6GB)"
+                        ),
                         "make": "Alienware",
                     },
                     {
-                        "model": "16 Aurora (Core 7 240H, GeForce RTX 4050 Max-Q)",
+                        "model": (
+                            "16 Aurora (Core 7 240H, GeForce RTX 4050 Max-Q)"
+                        ),
                         "make": "Alienware",
                     },
                     {
-                        "model": "16 Aurora (Core 7 240H, GeForce RTX 5050 Max-Q)",
+                        "model": (
+                            "16 Aurora (Core 7 240H, GeForce RTX 5050 Max-Q)"
+                        ),
                         "make": "Alienware",
                     },
                     {
-                        "model": "16 Aurora (Core 9 270H, GeForce RTX 5060 Max-Q)",
+                        "model": (
+                            "16 Aurora (Core 9 270H, GeForce RTX 5060 Max-Q)"
+                        ),
                         "make": "Alienware",
                     },
                     {
-                        "model": "16 Aurora (Core 9 270H, GeForce RTX 5070 Max-Q)",
+                        "model": (
+                            "16 Aurora (Core 9 270H, GeForce RTX 5070 Max-Q)"
+                        ),
                         "make": "Alienware",
                     },
                 ]
