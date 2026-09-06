@@ -529,6 +529,16 @@ function initCertifiedAutocomplete() {
     searchInput.focus();
   }
 
+  // Model names rarely repeat the vendor name (e.g. "XPS 13", not "Dell XPS
+  // 13") - prefix it for display so it's clear which vendor a suggestion is
+  // from, without duplicating it when the model name already includes it
+  function suggestionLabel(make, model) {
+    if (make && !model.toLowerCase().startsWith(make.toLowerCase())) {
+      return `${make} ${model}`;
+    }
+    return model;
+  }
+
   function setActiveOption(index) {
     const options = suggestionsList.querySelectorAll("li");
     if (!options.length) {
@@ -558,17 +568,19 @@ function initCertifiedAutocomplete() {
 
     suggestions
       .slice(0, AUTOCOMPLETE_MAX_SUGGESTIONS)
-      .forEach((suggestion, index) => {
+      .forEach(({ model, make }, index) => {
         const option = document.createElement("li");
         option.id = `certified-search-option-${index}`;
         option.setAttribute("role", "option");
         option.setAttribute("aria-selected", "false");
-        option.textContent = suggestion;
+        const label = suggestionLabel(make, model);
+        option.textContent = label;
+        option.dataset.value = label;
         // mousedown fires before the input's blur event, so the click
         // still registers before the dropdown would otherwise be closed
         option.addEventListener("mousedown", (e) => {
           e.preventDefault();
-          selectSuggestion(suggestion);
+          selectSuggestion(label);
         });
         suggestionsList.appendChild(option);
       });
@@ -637,7 +649,7 @@ function initCertifiedAutocomplete() {
       setActiveOption(activeIndex - 1);
     } else if (e.key === "Enter" && activeIndex > -1) {
       e.preventDefault();
-      selectSuggestion(options[activeIndex].textContent);
+      selectSuggestion(options[activeIndex].dataset.value);
     } else if (e.key === "Escape") {
       closeSuggestions();
     }

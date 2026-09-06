@@ -93,11 +93,11 @@ class TestCertification(VCRTestCase):
             response.json,
             {
                 "suggestions": [
-                    "Latitude 5420",
-                    "latitude 5421",
-                    "Latitude 7420",
-                    "Latitude 9420",
-                    "Latitude 5430",
+                    {"model": "Latitude 5420", "make": "Dell"},
+                    {"model": "latitude 5421", "make": "Dell"},
+                    {"model": "Latitude 7420", "make": "Dell"},
+                    {"model": "Latitude 9420", "make": "Dell"},
+                    {"model": "Latitude 5430", "make": "Dell"},
                 ]
             },
         )
@@ -107,7 +107,40 @@ class TestCertification(VCRTestCase):
             "/certified/autocomplete.json"
             "?q=lat&category=Laptop&vendor=Dell&release=22.04"
         )
-        self.assertEqual(response.json, {"suggestions": ["Latitude 5420"]})
+        self.assertEqual(
+            response.json,
+            {"suggestions": [{"model": "Latitude 5420", "make": "Dell"}]},
+        )
+
+    def test_autocomplete_matches_vendor_name(self):
+        # "alienware" matches no model name directly, only the make field -
+        # suggestions must still carry the full model name, never just the
+        # vendor name
+        response = self.client.get("/certified/autocomplete.json?q=alienware")
+        self.assertEqual(
+            response.json,
+            {
+                "suggestions": [
+                    {"model": "Aurora R16", "make": "Alienware"},
+                    {"model": "m18", "make": "Alienware"},
+                ]
+            },
+        )
+
+    def test_autocomplete_matches_vendor_and_model(self):
+        # "dell xps" spans both fields - neither "make" nor "model" alone
+        # contains the whole phrase, so this requires the word-boundary
+        # split fallback (make="dell", model="xps")
+        response = self.client.get("/certified/autocomplete.json?q=dell+xps")
+        self.assertEqual(
+            response.json,
+            {
+                "suggestions": [
+                    {"model": "XPS 13 7390", "make": "Dell"},
+                    {"model": "XPS 13 9300", "make": "Dell"},
+                ]
+            },
+        )
 
     def test_note_rendering(self):
         """

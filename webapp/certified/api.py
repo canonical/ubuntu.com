@@ -85,6 +85,7 @@ class CertificationAPI:
         major_release__in=None,
         vendor=None,
         make__iexact=None,
+        make__icontains=None,
         query=None,
         model__icontains=None,
         category__in=None,
@@ -106,6 +107,7 @@ class CertificationAPI:
                 # &vendor=item&vendor=item
                 "vendor": vendor,
                 "make__iexact": make__iexact,
+                "make__icontains": make__icontains,
                 "query": query,
                 "model__icontains": model__icontains,
                 "canonical_id": canonical_id,

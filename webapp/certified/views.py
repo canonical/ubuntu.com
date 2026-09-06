@@ -32,6 +32,8 @@ AUTOCOMPLETE_MAX_SUGGESTIONS = 5
 # Fetched larger than AUTOCOMPLETE_MAX_SUGGESTIONS since multiple
 # certificates (different releases) commonly share the same model name
 AUTOCOMPLETE_FETCH_LIMIT = 25
+# Caps word-boundary split attempts for "<vendor> <model>"-style queries
+AUTOCOMPLETE_MAX_QUERY_TOKENS = 4
 
 
 def certified_routes(app):
@@ -742,6 +744,11 @@ def certified_autocomplete():
     """
     Search-box suggestions for /certified/search, scoped to the same
     category/vendor/release filters currently applied on that page.
+
+    Matches on configuration model name (e.g. "XPS 13") as well as vendor/
+    make name (e.g. "Alienware"). Each suggestion carries both fields so the
+    frontend can display "<make> <model>" while still filling/searching on
+    the model name alone (the vendor name alone would never match anything).
     """
     query = request.args.get("q", default="", type=str).strip()
     if len(query) < AUTOCOMPLETE_MIN_CHARS:
@@ -752,38 +759,66 @@ def certified_autocomplete():
     )
     selected_vendors = request.args.getlist("vendor")
     selected_releases = request.args.getlist("release")
+    category__in = (
+        ",".join(selected_categories) if selected_categories else None
+    )
+    major_release__in = (
+        ",".join(selected_releases) if selected_releases else None
+    )
+    vendor = selected_vendors or None
 
-    try:
-        response = api.certified_configurations(
-            model__icontains=query,
-            category__in=(
-                ",".join(selected_categories) if selected_categories else None
-            ),
-            major_release__in=(
-                ",".join(selected_releases) if selected_releases else None
-            ),
-            vendor=selected_vendors or None,
-            ordering="model",
-            limit=AUTOCOMPLETE_FETCH_LIMIT,
-            offset=0,
-        )
-    except Exception:
-        # Suggestions are a non-essential enhancement - never break the
-        # search box over a flaky upstream API call
-        sentry_sdk.capture_exception()
-        return jsonify({"suggestions": []})
+    def fetch_models(**field_filter):
+        try:
+            response = api.certified_configurations(
+                category__in=category__in,
+                major_release__in=major_release__in,
+                vendor=vendor,
+                ordering="model",
+                limit=AUTOCOMPLETE_FETCH_LIMIT,
+                offset=0,
+                **field_filter,
+            )
+        except Exception:
+            # Suggestions are a non-essential enhancement - never break the
+            # search box over a flaky upstream API call
+            sentry_sdk.capture_exception()
+            return []
+        return response.get("results", [])
 
     seen = set()
     suggestions = []
-    for result in response.get("results", []):
-        name = (result.get("model") or "").strip()
-        key = name.lower()
-        if not name or key in seen:
-            continue
-        seen.add(key)
-        suggestions.append(name)
+
+    def add_unique(results):
+        for result in results:
+            name = (result.get("model") or "").strip()
+            key = name.lower()
+            if not name or key in seen:
+                continue
+            seen.add(key)
+            suggestions.append(
+                {"model": name, "make": (result.get("make") or "").strip()}
+            )
+            if len(suggestions) == AUTOCOMPLETE_MAX_SUGGESTIONS:
+                break
+
+    add_unique(fetch_models(model__icontains=query))
+    if len(suggestions) < AUTOCOMPLETE_MAX_SUGGESTIONS:
+        add_unique(fetch_models(make__icontains=query))
+
+    # A query like "dell xps" spans both fields - neither single-field
+    # filter above matches the whole phrase, so try splitting it into a
+    # vendor part and a model part at each word boundary (capped to avoid
+    # unbounded extra requests on unusually long queries)
+    tokens = query.split()[:AUTOCOMPLETE_MAX_QUERY_TOKENS]
+    for i in range(1, len(tokens)):
         if len(suggestions) == AUTOCOMPLETE_MAX_SUGGESTIONS:
             break
+        add_unique(
+            fetch_models(
+                make__icontains=" ".join(tokens[:i]),
+                model__icontains=" ".join(tokens[i:]),
+            )
+        )
 
     return jsonify({"suggestions": suggestions})
 
