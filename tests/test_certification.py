@@ -121,8 +121,26 @@ class TestCertification(VCRTestCase):
             response.json,
             {
                 "suggestions": [
-                    {"model": "Aurora R16", "make": "Alienware"},
-                    {"model": "m18", "make": "Alienware"},
+                    {
+                        "model": "16 Aurora (Core 5 210H, GeForce RTX 3050 6GB)",
+                        "make": "Alienware",
+                    },
+                    {
+                        "model": "16 Aurora (Core 7 240H, GeForce RTX 4050 Max-Q)",
+                        "make": "Alienware",
+                    },
+                    {
+                        "model": "16 Aurora (Core 7 240H, GeForce RTX 5050 Max-Q)",
+                        "make": "Alienware",
+                    },
+                    {
+                        "model": "16 Aurora (Core 9 270H, GeForce RTX 5060 Max-Q)",
+                        "make": "Alienware",
+                    },
+                    {
+                        "model": "16 Aurora (Core 9 270H, GeForce RTX 5070 Max-Q)",
+                        "make": "Alienware",
+                    },
                 ]
             },
         )
@@ -138,6 +156,15 @@ class TestCertification(VCRTestCase):
                 "suggestions": [
                     {"model": "XPS 13 7390", "make": "Dell"},
                     {"model": "XPS 13 9300", "make": "Dell"},
+                    {"model": "XPS 13 9310", "make": "Dell"},
+                    {
+                        "model": "XPS 13 9340 (3K OLED Touchscreen)",
+                        "make": "Dell",
+                    },
+                    {
+                        "model": "XPS 13 9340 (Full HD Screen)",
+                        "make": "Dell",
+                    },
                 ]
             },
         )
