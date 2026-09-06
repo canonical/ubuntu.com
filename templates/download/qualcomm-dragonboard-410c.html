@@ -70,7 +70,9 @@
         </div>
       </li>
       {% include "download/shared/_first-boot-setup.html" %}
-      {% include "download/shared/_login.html" %}
+      {% with device_name="Qualcomm DragonBoard 410c" %}
+        {% include "download/shared/_login.html" %}
+      {% endwith %}
     </ol>
   </div>
 </section>
@@ -94,7 +96,7 @@
           </ol>
         </div>
       </div>
-      <hr class="p-rule">
+      <hr class="p-rule" />
       <div class="row">
         <div class="col-3 col-medium-2">
           <h3 class="p-heading--5">Get started with snaps</h3>
