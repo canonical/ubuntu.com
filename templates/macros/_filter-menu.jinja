@@ -6,10 +6,10 @@
 # options:       [{"value", "label"}, ...]; first entry should be the "all"
 #                reset option. Each may include "data" for extra data-*
 #                attributes on the option button (e.g. tagging a parent group)
-# menu_id:       dropdown id, defaults to "<param_key>-menu"
-# key_label:     optional static bold prefix (e.g. "Product: Ubuntu")
-# selected:      pre-select an option server-side, skipping the JS URL restore
-# default_value: baseline value used to detect "actively filtered" for Clear
+# menu_id:       (optional) dropdown id, defaults to "<param_key>-menu"
+# key_label:     (optional) static bold prefix (e.g. "Product: Ubuntu")
+# selected:      (optional) pre-select an option server-side, skipping the JS URL restore
+# default_value: (optional) baseline value used to detect "actively filtered" for Clear
 {% macro single_select_menu(param_key, default_label, options, menu_id=None, key_label=None, selected=None, default_value=None) %}
   {% set menu_id = menu_id or param_key ~ "-menu" %}
   {% set selected_option = (options | selectattr("value", "equalto", selected) | list | first) if selected is not none else none %}
@@ -45,7 +45,7 @@
 {% endmacro %}
 
 # See single_select_menu for param_key/default_label/options/menu_id/key_label.
-# selected: list of currently-selected values; shown first, above a rule
+# selected: (optional) list of currently-selected values; shown first, above a rule
 {% macro multi_select_menu(param_key, default_label, options, selected=[], menu_id=None, key_label=None) %}
   {% set menu_id = menu_id or param_key ~ "-menu" %}
   {% set selected_options = options | selectattr("value", "in", selected) | list %}
@@ -97,14 +97,14 @@
   </label>
 {% endmacro %}
 
-# label: submit button text
+# label: (optional) submit button text
 {% macro filter_submit(label="Apply filters") %}
   <div class="p-form__group">
     <button type="button" class="p-button--positive p-filter-menu__submit" data-filter-submit>{{ label }}</button>
   </div>
 {% endmacro %}
 
-# label: clear-filters button text; hidden until JS shows it
+# label: (optional) clear-filters button text; hidden until JS shows it
 {% macro filter_clear(label="Clear filters") %}
   <div class="p-form__group">
     <button type="button" class="p-button--link p-filter-menu__clear u-hide" data-filter-clear>{{ label }}</button>
