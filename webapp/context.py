@@ -162,7 +162,7 @@ def split_list(array, parts):
     """
     Split the elements in `array` into `parts` sub-arrays.
 
-    Mirrors the behavior of numpy.split_array, as implemented in numpy v1.26:
+    Mirrors the behavior of numpy.array_split, as implemented in numpy v1.26:
     https://numpy.org/doc/1.26/reference/generated/numpy.array_split.html
     """
 
@@ -181,7 +181,7 @@ def split_list(array, parts):
         remainder -= 1
 
     if len(result) < parts:
-        result += (parts - len(result)) * [[]]
+        result.extend([[] for _ in range(parts - len(result))])
 
     return result
 
