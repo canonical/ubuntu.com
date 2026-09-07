@@ -147,3 +147,7 @@ config:
     github:
       type: secret
       description: "GitHub API token for the products API (secret field: token)"
+    csp-report-only-enabled:
+      type: boolean
+      default: False
+      description: "Enable the Content-Security-Policy-Report-Only header"
