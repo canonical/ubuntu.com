@@ -181,7 +181,7 @@ test.describe("Engage tag filters", () => {
     await firstCheckbox.locator("~ .p-checkbox__label").click();
     await expect(firstCheckbox).toBeChecked();
 
-    const badge = tagToggle.locator(".p-filter-menu__count");
+    const badge = tagToggle.locator("[data-filter-count]");
     await expect(badge).toBeVisible();
     await expect(badge).toHaveText("1");
   });
@@ -190,7 +190,7 @@ test.describe("Engage tag filters", () => {
     const tagToggle = page.locator(".p-filter-menu__toggle--multi").first();
     await tagToggle.click();
 
-    const badge = tagToggle.locator(".p-filter-menu__count");
+    const badge = tagToggle.locator("[data-filter-count]");
     await expect(badge).toHaveCSS("display", "none");
   });
 
