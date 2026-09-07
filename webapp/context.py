@@ -4,7 +4,6 @@ import datetime
 import calendar
 import logging
 import json
-import numpy
 from urllib.parse import parse_qs, urlencode
 
 # Packages
@@ -160,7 +159,17 @@ def descending_years(end_year):
 
 
 def split_list(array, parts):
-    return numpy.array_split(array, parts)
+    N = len(array)
+    part_size = N // parts
+    remainder = N % parts # number of parts that have an additional element
+    result = []
+    low = 0
+    while low < N:
+        high = low + part_size + (remainder > 0)
+        result.append(array[low:high])
+        low = high
+        remainder -= 1
+    return result
 
 
 def format_to_id(string):
