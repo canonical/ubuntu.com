@@ -159,6 +159,16 @@ def descending_years(end_year):
 
 
 def split_list(array, parts):
+    """
+    Split the elements in `array` into `parts` sub-arrays.
+
+    Mirrors the behavior of numpy.split_array, as implemented in numpy v1.26:
+    https://numpy.org/doc/1.26/reference/generated/numpy.array_split.html
+    """
+
+    if parts <= 0:
+        raise ValueError("parts must be larger than 0")
+
     N = len(array)
     part_size = N // parts
     remainder = N % parts  # number of parts that have an additional element
@@ -169,6 +179,10 @@ def split_list(array, parts):
         result.append(array[low:high])
         low = high
         remainder -= 1
+
+    if len(result) < parts:
+        result += (parts - len(result)) * [[]]
+
     return result
 
 
