@@ -161,7 +161,7 @@ def descending_years(end_year):
 def split_list(array, parts):
     N = len(array)
     part_size = N // parts
-    remainder = N % parts # number of parts that have an additional element
+    remainder = N % parts  # number of parts that have an additional element
     result = []
     low = 0
     while low < N:
