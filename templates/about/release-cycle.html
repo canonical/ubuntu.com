@@ -16,7 +16,7 @@
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
-{% from "macros/_filter-menu.jinja" import single_select_menu, multi_select_menu, filter_submit, filter_clear %}
+{% from "macros/_filter-menu.jinja" import single_select_menu, multi_select_menu, filter_submit %}
 
 {% block content %}
 
@@ -78,7 +78,6 @@
             {{ single_select_menu('version', 'All versions', version_options, key_label='Version', selected=version if versions else none, default_value='all') }}
             {{ multi_select_menu('compliance', 'Compliance standards', compliance_options, selected_compliance, key_label='Compliance standards') }}
             {{ filter_submit("View coverage") }}
-            {{ filter_clear() }}
           </form>
         </div>
       </div>
