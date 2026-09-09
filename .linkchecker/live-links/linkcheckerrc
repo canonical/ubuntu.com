@@ -1,0 +1,39 @@
+[checking]
+maxrequestspersecond=5
+recursionlevel=2
+timeout=60
+sslverify=0
+
+[filtering]
+checkextern=1
+ignore=
+  https://res.cloudinary.com
+  q_auto
+  fl_sanitize
+  c_fill
+  e_sharpen
+  w_[0-9]*
+  h_[0-9]*
+  https://ubuntu.com/blog
+  https://ubuntu.com/security
+  https://ubuntu.com/static/css/*
+  http://www.brendangregg.com
+  http://www.adlinktech.com/en/index
+  https://www.zoominfo.com/legal/privacy-policy
+  https://player.vimeo.com/video/*
+  /flags.png
+  /flags@2x.png
+  https?://[a-z0-9]*\.example\.com
+  https://lenovopress.lenovo.com/*
+  https://www.xilinx.com/applications/*
+  https://www.amd.com/*
+
+[output]
+status=0
+warnings=0
+ignoreerrors=
+  ^https?://.* ^.*(471|500|503|504|400|403|401)
+  ^https?://.* Connection aborted
+  ^https?://.* Connection reset by peer
+  ^https?://.* RemoteDisconnected
+  ^https?://.* Read timed out
