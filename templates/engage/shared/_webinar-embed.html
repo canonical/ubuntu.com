@@ -5,7 +5,7 @@
     {% set channel_id = 6793 %}
   {% endif %}
   <!-- webinar -->
-  <section class="p-strip is-shallow {% if last_section == 'embedded_video' %} p-section--deep{% endif %} p-engage-webinar" id="register-section">
+  <section class="p-strip is-shallow p-engage-webinar" id="register-section">
     <div class="row" id="brighttalk-webinar">
       <div class="jsBrightTALKEmbedWrapper p-engage-webinar__container">
         <script nonce="{{ csp_nonce }}" class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : {{channel_id}}, "language": "en-US", "commId" : {{ metadata["webinar_code"] }}, "displayMode" : "standalone", "height" : "auto" }</script>

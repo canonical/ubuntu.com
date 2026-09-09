@@ -41,7 +41,7 @@ let entries = {
   prism: "./static/js/src/prism.js",
   "active-nav-scroll": "./static/js/src/active-nav-scroll.js",
   resources: "./static/js/src/resources.js",
-  engage: "./static/js/src/engage.js",
+  "filter-menu": "./static/js/src/filter-menu.js",
   "cookie-policy-with-callback":
     "./static/js/src/cookie-policy-with-callback.js",
 };
