@@ -4,14 +4,14 @@ name: Pack
 # - The rock is pushed to GHCR tagged with the commit SHA (immutable,
 #   so every deployment is tracked by commit id). If an image for this SHA
 #   already exists in GHCR, the build is skipped entirely.
+#
 # - The charm is uploaded as a run artifact for the calling workflow to
 #   deploy. Since the charm only depends on the charm/ directory (not on
 #   app source), it is restored from an actions/cache entry whenever
 #   possible instead of being rebuilt from scratch.
 #
 # This workflow is intended to be called ONCE per deploy run (see
-# .github/workflows/deploy.yaml), which then fans out the same rock image
-# and charm artifact to both PS6 and PS7 deploy jobs.
+# .github/workflows/deploy.yaml)
 
 on:
   workflow_call:
@@ -38,19 +38,39 @@ on:
         description: "Short commit SHA that was built"
         value: ${{ jobs.pack-rock.outputs.sha }}
 
-# env:
-#   CHARMCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS: true
-#   ROCKCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS: true
-# Not needed for ubuntu-22.04 
-
 permissions: {}
 
 jobs:
+  resolve-base:
+    # We build the rock with `rockcraft pack --destructive-mode` directly on
+    # the runner (no LXD container) to save time, so the runner's Ubuntu
+    # version must match rockcraft.yaml's `base:`.
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      runner-os: ${{ steps.parse.outputs.runner-os }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          ref: ${{ inputs.ref }}
+          persist-credentials: false
+
+      - name: Derive runner OS from rockcraft.yaml base
+        id: parse
+        run: |
+          set -euo pipefail
+          BASE_VERSION=$(sed -nE 's/^base:[[:space:]]*ubuntu@([0-9.]+)[[:space:]]*$/\1/p' rockcraft.yaml)
+          if [ -z "$BASE_VERSION" ]; then
+            echo "::error::Could not parse an 'ubuntu@x.y' base from rockcraft.yaml" >&2
+            exit 1
+          fi
+          echo "runner-os=ubuntu-${BASE_VERSION}" >> "$GITHUB_OUTPUT"
+
   pack-rock:
-    # Pinned to match `base: ubuntu@22.04` in rockcraft.yaml, since we build
-    # in --destructive-mode directly on the runner (no LXD container)(saves time). If
-    # the rock base is ever bumped, update this to match.
-    runs-on: ubuntu-22.04
+    needs: resolve-base
+    runs-on: ${{ needs.resolve-base.outputs.runner-os }}
     permissions:
       contents: read
       packages: write

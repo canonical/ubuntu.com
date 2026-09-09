@@ -34,7 +34,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Deploy
-        uses: ./.github/actions/deploy-ps6
+        uses: ./.github/actions/juju-deploy-charm-ps6
         with:
           image-url: ${{ inputs.image-url }}
           app-name: ${{ vars.CHARM_NAME }}
@@ -62,7 +62,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Deploy
-        uses: ./.github/actions/deploy-ps6
+        uses: ./.github/actions/juju-deploy-charm-ps6
         with:
           image-url: ${{ inputs.image-url }}
           app-name: ${{ vars.CHARM_NAME }}
