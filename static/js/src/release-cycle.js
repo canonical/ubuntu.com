@@ -1,29 +1,11 @@
 /*
+ * Extension of the filter-menu.js script.
  * Page-specific behaviour for /about/release-cycle:
+ * - Show/hide the relevent menu items
  * - Cascade behaviour for the filter bar (Product > Release > Version) and
- *   the Compliance menu's "Any" semantics.
+ *   the Compliance menu's "Any" semantics, e.g. if there is one option, autoselect it
  * - Tooltip close/reopen, sticky table header, and horizontal-scroll fade
  *   for the coverage tables.
- */
-
-/*
- * Supplementary cascade behaviour for the release-cycle filter bar.
- *
- * The Product, Release and Version menus are rendered with the shared
- * single_select_menu macro and wired up by filter-menu.js. Every Release and
- * Version option for every product/deployment is pre-rendered and tagged with
- * its parent group (data-product / data-release). This script only toggles the
- * visibility of those options (and enables/disables the child toggles) based on
- * the current parent selection, and resets child menus when a parent changes.
- *
- * It never rebuilds option DOM or rebinds filter-menu.js handlers; it relies on
- * filter-menu.js having already restored data-selected-value from the URL and
- * set it synchronously on option clicks.
- *
- * It also owns the Compliance menu's "Any" behaviour (nothing checked or
- * everything checked both mean "no restriction"). That policy is specific to
- * this page, not a generic property of multi-select filter menus, so it lives
- * here rather than in the shared filter-menu.js.
  */
 (function initReleaseCycleCascade() {
   const bar = document.querySelector("[data-js-release-cycle-filters]");
@@ -55,6 +37,21 @@
       : [];
   }
 
+  function applyChildVisibility(menu, matches) {
+    const keys = Object.keys(matches);
+    const visibleOptions = [];
+    optionsOf(menu).forEach((option) => {
+      const isTagged = keys.some((key) => option.dataset[key] !== undefined);
+      const visible =
+        !isTagged || keys.every((key) => option.dataset[key] === matches[key]);
+      option.hidden = !visible;
+      if (visible && isTagged) {
+        visibleOptions.push(option);
+      }
+    });
+    return visibleOptions;
+  }
+
   function setToggleDisabled(toggle, disabled) {
     if (!toggle) {
       return;
@@ -83,8 +80,7 @@
   }
 
   // Directly mark an option as selected without simulating a click, used to
-  // auto-select a menu's only available option (mirrors filter-menu.js's own
-  // setToggleLabel, kept local since that function is private to its closure).
+  // auto-select a menu's only available option
   function autoSelectOption(toggle, option) {
     if (!toggle || !option) {
       return;
@@ -106,20 +102,10 @@
 
   function applyReleaseVisibility() {
     const product = selectedValue(productToggle);
-    const visibleOptions = [];
-    optionsOf(releaseMenu).forEach((option) => {
-      const optionProduct = option.dataset.product;
-      // Options without a product tag (if any) are always shown.
-      const visible = !optionProduct || optionProduct === product;
-      option.hidden = !visible;
-      if (visible && optionProduct) {
-        visibleOptions.push(option);
-      }
-    });
+    const visibleOptions = applyChildVisibility(releaseMenu, { product });
     setToggleDisabled(releaseToggle, !product || visibleOptions.length === 0);
 
-    // Auto-select the release when it's the only one available for this
-    // product, so Version can become usable without an extra click.
+    // Auto-select the release when it's the only one available
     if (
       product &&
       visibleOptions.length === 1 &&
@@ -130,42 +116,15 @@
   }
 
   function applyVersionVisibility() {
-    const product = selectedValue(productToggle);
     const release = selectedValue(releaseToggle);
-    const visibleVersionOptions = [];
-    optionsOf(versionMenu).forEach((option) => {
-      const optionProduct = option.dataset.product;
-      const optionRelease = option.dataset.release;
-      // The "All versions" reset option has no parent tags: always visible.
-      const visible =
-        !optionProduct ||
-        (optionProduct === product && optionRelease === release);
-      option.hidden = !visible;
-      if (visible && optionProduct) {
-        visibleVersionOptions.push(option);
-      }
+    applyChildVisibility(versionMenu, {
+      product: selectedValue(productToggle),
+      release,
     });
     // Version can be chosen once a release is selected ("All versions" default).
     setToggleDisabled(versionToggle, !release);
-
-    // Auto-select the lone version when a release has exactly one available
-    // version (mirrors the release auto-select above). This overrides the
-    // "all versions" default too, matching the previous native-select
-    // behaviour of auto-picking a release's only version.
-    const currentVersion = selectedValue(versionToggle);
-    if (
-      release &&
-      visibleVersionOptions.length === 1 &&
-      (!currentVersion || currentVersion === "all")
-    ) {
-      autoSelectOption(versionToggle, visibleVersionOptions[0]);
-    }
   }
 
-  // --- Compliance "Any" behaviour -------------------------------------
-  // Page-specific policy: nothing checked or everything checked both mean
-  // "no restriction" for Compliance, rendered as the "Any" label. This is
-  // deliberately not a filter-menu.js feature (see module comment above).
   const ANY_LABEL = "Any";
   const complianceToggle = bar.querySelector(
     '[data-filter-param="compliance"][data-filter-type="multi"]',
@@ -189,9 +148,6 @@
     });
   }
 
-  // Recompute the compliance toggle's label/badge/active state. Runs after
-  // filter-menu.js's own generic handling on the same events (script load
-  // order), overriding it with the "Any" policy.
   function updateComplianceVisualState() {
     if (!complianceToggle) {
       return;
@@ -222,16 +178,13 @@
     complianceToggle.classList.add("is-active");
   }
 
-  // Whether compliance itself is actively filtering (a strict subset
-  // checked); none-checked and all-checked both mean "no restriction".
   function complianceIsActive() {
     const total = complianceCheckboxes().length;
     const checkedCount = complianceCheckedCount();
     return checkedCount > 0 && checkedCount < total;
   }
 
-  // Mirrors filter-menu.js's own (generic) single-toggle active-detection,
-  // so this override combines correctly with it rather than replacing it.
+  // Mirrors filter-menu.js's own (generic) single-toggle active-detection
   function otherTogglesActive() {
     return [productToggle, releaseToggle, versionToggle].some((toggle) => {
       if (!toggle) {
@@ -243,10 +196,6 @@
     });
   }
 
-  // filter-menu.js's own updateClearVisibility() runs first on every shared
-  // event (attached before this script's listeners) and knows nothing about
-  // the "Any" policy, so it treats compliance's default (all checked) state
-  // as an active filter. Recompute the correct visibility afterwards.
   function updateClearButtonVisibility() {
     const clearButton = bar.querySelector("[data-filter-clear]");
     if (!clearButton) {
@@ -262,8 +211,7 @@
     }
 
     // No explicit ?compliance= param in the URL: default to "Any", shown as
-    // every checkbox checked. filter-menu.js's own generic URL restore
-    // leaves them unchecked when the URL has no matching param at all.
+    // every checkbox checked
     const params = new URL(window.location).searchParams;
     if (!params.has("compliance")) {
       setAllComplianceCheckboxes(true);
@@ -298,7 +246,6 @@
 
   optionsOf(productMenu).forEach((option) => {
     option.addEventListener("click", () => {
-      // filter-menu.js has already set productToggle.dataset.selectedValue.
       resetToggle(releaseToggle);
       resetToggle(versionToggle);
       applyReleaseVisibility();
@@ -324,18 +271,13 @@
   const outerClearButton = bar.querySelector("[data-filter-clear]");
   if (outerClearButton) {
     outerClearButton.addEventListener("click", () => {
-      // filter-menu.js's own handler (attached first) either navigates away
-      // (submitted query: nothing left to fix up here) or, for the
-      // "not yet submitted" in-place reset, unchecks every compliance box.
-      // Re-check them to restore the "Any" default rather than leaving
-      // compliance empty.
       setAllComplianceCheckboxes(true);
       updateComplianceVisualState();
       updateClearButtonVisibility();
     });
   }
 
-  // Initial state (filter-menu.js has already restored selections from the URL).
+  // Initial state
   applyReleaseVisibility();
   applyVersionVisibility();
   initComplianceAnyBehaviour();
