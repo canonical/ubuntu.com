@@ -8,24 +8,19 @@ jobs:
   check-links:
     if: github.repository == 'canonical/ubuntu.com'
     runs-on: ubuntu-latest
+    timeout-minutes: 60
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
       - name: Install linkchecker
         run: sudo pip install LinkChecker
 
-      - name: Run linkchecker
-        run: |
-          linkchecker --recursion-level=2 \
-            --check-extern --no-warnings https://ubuntu.com/security \
-            --timeout 1000 \
-            --no-follow-url '!https:\/\/ubuntu.com\/security' \
-            --ignore-url https://res.cloudinary.com \
-            --ignore-url q_auto \
-            --ignore-url fl_sanitize \
-            --ignore-url c_fill \
-            --ignore-url e_sharpen \
-            --ignore-url w_[0-9]* \
-            --ignore-url h_[0-9]*
+      - name: Run linkchecker with retry for transient failures
+        run: bash scripts/check-links.sh .linkchecker/security-links/linkcheckerrc https://ubuntu.com/security
 
       - name: Send message on failure
         if: failure()

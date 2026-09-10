@@ -1,5 +1,9 @@
 {% set hide_nav = False %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_card.jinja" import vf_card %}
+{% from "macros/_filter-menu.jinja" import single_select_menu, multi_select_menu, filter_submit, filter_clear %}
+
 {% extends "engage/base_engage.html" %}
 
 {% block title %}Ubuntu case studies, whitepapers and webinars{% endblock %}
@@ -14,104 +18,161 @@
   {% if preview != None %}<meta name="robots" content="noindex" />{% endif %}
 {% endblock %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block content %}
-  <section class="p-strip--suru-blog-header is-dark">
-    <div class="row">
-      <div class="col-6">
-        <h1>Engage pages</h1>
-        <p>Ubuntu case studies, whitepapers and webinars.</p>
-      </div>
-    </div>
-  </section>
 
-  <section class="p-strip is-shallow">
-    <form action="/">
-      <div class="row">
-        <div class="col-3">
-          <div class="p-form__group">
-            <label for="language-selector">Select language:</label>
-            <select name="language-selector"
-                    class="js-language-selector u-no-margin--bottom">
-              <option value="all">All languages</option>
-              <option value="zh-TW">Chinese (Traditional)</option>
-              <option value="de">Deutsch</option>
-              <option value="en">English</option>
-              <option value="es">Espa&ntilde;ol</option>
-              <option value="fr">Fran&ccedil;ais</option>
-              <option value="it">Italiano</option>
-              <option value="kr">Korean</option>
-              <option value="pt">Portugu&ecirc;s</option>
-              <option value="ru">Русс&#1082;&#1080;&#1081;</option>
-              <option value="tr">T&uuml;rk&ccedil;e</option>
-            </select>
-          </div>
-        </div>
-        {% if resource_types %}
-          <div class="col-3">
-            <div class="p-form__group">
-              <label for="resource-selector">Select resource type:</label>
-              <select name="resource-selector"
-                      class="js-resource-selector u-no-margin--bottom">
-                <option value="all">All resource types</option>
-                {% for type in resource_types %}<option value="{{ type | lower }}">{{ type }}</option>{% endfor %}
-              </select>
-            </div>
-          </div>
-        {% endif %}
-        {% if tags %}
-          <div class="col-3">
-            <div class="p-form__group">
-              <label for="tag-selector">Select tag:</label>
-              <select name="tag-selector" class="js-tag-selector u-no-margin--bottom">
-                <option value="all">All tags</option>
-                {% for tag in tags %}
-                  <option {% if tag == "" %}disabled{% endif %} value="{{ tag }}">
-                    {% if tag == "" %}
-                      -
-                    {% else %}
-                      {{ tag }}
-                    {% endif %}
-                  </option>
-                {% endfor %}
-              </select>
-            </div>
-          </div>
-        {% endif %}
-        <div class="col-3"
-             style="display: flex;
-                    align-items: flex-end;
-                    justify-content: flex-end">
-          <div class="u-hide u-show--small">
-            <br />
-            <br />
-          </div>
-          <button class="js-apply-filters p-button--positive u-no-margin--bottom">Apply filters</button>
-          <button class="js-clear-filters u-no-margin--bottom"
-                  type="reset"
-                  disabled>Clear filters</button>
-        </div>
-      </div>
-    </form>
-  </section>
+  {% call(slot) vf_hero(
+    title_text='Engage pages',
+    subtitle_text='Ubuntu case studies, whitepapers, and webinars.',
+    layout='25/75',
+    display_blank_signpost_image_space='true',
+    blocks=[
+    {
+    'type': 'description',
+    'item': {
+    'type': 'html',
+    'content':
+    ''
+    }
+    },
+    ]
+    ) -%}
+  {%- endcall -%}
 
-  <section class="p-strip is-shallow" id="posts-list">
-    {% if metadata | length > 0 %}
-      <div class="row u-equal-height">
-        {% for item in metadata %}
-          {% with
-            title=item.topic_name,
-            title_link=item.path,
-            description=item.subtitle,
-            type=item.type,
-            preview=preview,
-            active=item.active,
-            tags=item.tags
-            %}
-            {% include "engage/_article-card.html" %}
-          {% endwith %}
+  <noscript>
+    {% include "engage/_filters-nojs.html" %}
+  </noscript>
+
+  <div class="grid-row--25-75 u-hide"
+       id="js-engage-filters"
+       data-js-filters
+       data-filter-reset-params="page">
+    <div class="grid-col">
+      <form class="p-form p-form--inline p-filter-menu">
+        <p>
+          <strong>Filter by</strong>
+        </p>
+        {% set language_options = [
+          {
+            "value": "all",
+            "label": "All languages"
+          },
+          {
+            "value": "zh-TW",
+            "label": "Chinese (Traditional)"
+          },
+          {
+            "value": "de",
+            "label": "Deutsch"
+          },
+          {
+            "value": "en",
+            "label": "English"
+          },
+          {
+            "value": "es",
+            "label": "Español"
+          },
+          {
+            "value": "fr",
+            "label": "Français"
+          },
+          {
+            "value": "it",
+            "label": "Italiano"
+          },
+          {
+            "value": "kr",
+            "label": "Korean"
+          },
+          {
+            "value": "pt",
+            "label": "Português"
+          },
+          {
+            "value": "ru",
+            "label": "Русский"
+          },
+          {
+            "value": "tr",
+            "label": "Türkçe"
+          }
+        ] %}
+        {{ single_select_menu('language', 'Language', language_options) }}
+        {% set resource_options = [{"value": "all", "label": "All resource types"}] %}
+        {% for type in resource_types %}
+          {% set _ = resource_options.append({'value': type | lower, 'label': type}) %}
         {% endfor %}
+        {{ single_select_menu('resource', 'Resource type', resource_options) }}
+        {% set tag_options = [] %}
+        {% for tag in tags %}
+          {% if tag != "" %}
+            {% set _ = tag_options.append({'value': tag, 'label': tag}) %}
+          {% endif %}
+        {% endfor %}
+        {{ multi_select_menu('tag', 'Tag', tag_options, request.args.getlist('tag') ) }}
+        {{ filter_submit("Apply filters") }}
+        {{ filter_clear("Clear filters") }}
+      </form>
+    </div>
+  </div>
+
+  <section id="posts-list">
+    {% if metadata | length > 0 %}
+      {% set both_have_images = metadata | length >= 2 and metadata[0].image and metadata[1].image %}
+      <div {% if total_pages > 1 %}class="p-section--shallow"{% endif %}>
+        <div class="grid-row">
+          {% for item in metadata %}
+            {%- set item_link = item.path -%}
+            {%- if item.active == 'false' and preview != None -%}
+              {%- set item_link = item_link ~ '?preview' -%}
+            {%- endif -%}
+            {%- if 'whitepaper' in item.type %}
+              {%- set type_icon = "topic" -%}
+            {%- elif 'webinar' in item.type -%}
+              {%- set type_icon = "video-play" -%}
+            {%- elif 'case study' in item.type -%}
+              {%- set type_icon = "units" -%}
+            {%- else -%}
+              {%- set type_icon = "topic" -%}
+            {%- endif -%}
+            {% if loop.index <= 2 and both_have_images %}
+              {{ vf_card(columns="4",
+                            link=item_link,
+                            heading=item.topic_name,
+                            image={
+                            "src": item.image,
+                            "alt": item.topic_name
+                            } if item.image else None,
+                            footer={
+                            "resource_type": {
+                            "icon": type_icon,
+                            "text": item.type
+                            },
+                            "content_type": item.tags.split(',') | map('trim') | list if item.tags else []
+              } if item.type or item.tags else None,
+              description=item.subtitle,
+              stacked_image=true) }}
+            {% else %}
+              {{ vf_card(columns="4",
+                            link=item_link,
+                            heading=item.topic_name,
+                            footer={
+                            "resource_type": {
+                            "icon": type_icon,
+                            "text": item.type
+                            },
+                            "content_type": item.tags.split(',') | map('trim') | list if item.tags else []
+              } if item.type or item.tags else None,
+              description=item.subtitle) }}
+            {% endif %}
+          {% endfor %}
+        </div>
       </div>
-      <section class="p-strip is-shallow">
+      <section class="p-section--deep">
         {% with %}
           {% set total_pages = total_pages %}
           {% set current_page = current_page %}
@@ -119,63 +180,15 @@
         {% endwith %}
       </section>
     {% else %}
-      <div class="u-fixed-width">
-        <h3>No results &mdash; why not try widening your search?</h3>
-        <p>You can do this by clearing and selecting new filters.</p>
+      <div class="grid-row--25-75">
+        <div class="grid-col">
+          <h3>No results &ndash; why not try widening your search?</h3>
+          <p>You can do this by clearing and selecting new filters.</p>
+        </div>
       </div>
     {% endif %}
   </section>
-  <script nonce="{{ csp_nonce }}">
-    function clearFilters() {
-      const clearFiltersButton = document.querySelector(".js-clear-filters");
-      window.location.assign("/engage");
-    }
-    (function() {
-      const languageSelector = document.querySelector(".js-language-selector");
-      const resourceSelector = document.querySelector(".js-resource-selector");
-      const tagSelector = document.querySelector(".js-tag-selector");
-
-      const applyFiltersButton = document.querySelector(".js-apply-filters");
-      const clearFiltersButton = document.querySelector(".js-clear-filters");
-      const urlObj = new URL(window.location);
-
-      if (urlObj.search !== "") {
-        clearFiltersButton.removeAttribute("disabled");
-      }
-
-      function setFiltersDropdown(key, selector) {
-        if (!selector) {
-          return;
-        }
-        if (urlObj.searchParams.has(key)) {
-          selector.value = urlObj.searchParams.get(key);
-        }
-      }
-
-      setFiltersDropdown("language", languageSelector);
-      setFiltersDropdown("resource", resourceSelector);
-      setFiltersDropdown("tag", tagSelector);
-
-      function setFilters(key, selector) {
-        if (selector.value != "all") {
-          urlObj.searchParams.set(key, selector.value);
-        } else {
-          urlObj.searchParams.delete(key);
-        }
-      }
-
-      function applyFilters(event) {
-        event.preventDefault();
-
-        setFilters("language", languageSelector);
-        setFilters("resource", resourceSelector);
-        setFilters("tag", tagSelector);
-
-        urlObj.searchParams.delete("page");
-        window.location = urlObj.href;
-      }
-      applyFiltersButton.addEventListener("click", applyFilters);
-      clearFiltersButton.addEventListener("click", clearFilters);
-    })()
-  </script>
+  <script nonce="{{ csp_nonce }}"
+          src="{{ versioned_static('js/dist/filter-menu.js') }}"
+          defer></script>
 {% endblock content %}

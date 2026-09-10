@@ -1,5 +1,6 @@
 {% set breadcrumbs = get_secondary_navigation(request.path).breadcrumbs %}
 <header id="navigation"
+        data-nosnippet
         class="p-navigation--sliding is-dark {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced {% elif breadcrumbs == 'tutorials' %}is-reduced{% endif %}">
 
   {% block header_banner %}
@@ -131,7 +132,8 @@
   <div id="control-height"></div>
 </header>
 <div class="dropdown-window-overlay fade-animation"></div>
-<div class="dropdown-window  is-dark slide-animation {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced {% elif breadcrumbs == 'tutorials' %}is-reduced{% endif %}">
+<div class="dropdown-window  is-dark slide-animation {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced {% elif breadcrumbs == 'tutorials' %}is-reduced{% endif %}"
+     data-nosnippet>
   <div class="u-hide dropdown-content-desktop" id="products-content"></div>
   <div class="u-hide dropdown-content-desktop" id="use-case-content"></div>
   <div class="u-hide dropdown-content-desktop" id="support-content"></div>
@@ -143,7 +145,7 @@
 </div>
 {% if not(hide_subnav == True) %}
   {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}
-    <div id="secondary-navigation" class="p-navigation is-secondary is-dark">
+    <div id="secondary-navigation" class="p-navigation is-secondary is-dark" data-nosnippet>
       <div class="p-navigation__row--25-75">
         <div class="p-navigation__banner">
           <div class="p-navigation__tagged-logo">

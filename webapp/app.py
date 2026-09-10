@@ -42,6 +42,7 @@ from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.form_generator import FormGenerator
 from canonicalwebteam.markdown_response import MarkdownResponse
 
+from webapp import llms
 from webapp.certified.views import certified_routes
 from webapp.constants import CACHE_TTL
 from webapp.handlers import init_handlers
@@ -113,7 +114,6 @@ from webapp.shop.views import (
     support,
 )
 from webapp.views import (
-    BlogCustomGroup,
     BlogCustomTopic,
     BlogRedirects,
     BlogSitemapIndex,
@@ -143,6 +143,7 @@ from webapp.views import (
     french_why_openstack,
     german_why_openstack,
     get_user_country_by_tz,
+    google_ads_verification,
     json_asset_query,
     marketo_submit,
     mirrors_query,
@@ -176,6 +177,11 @@ WORDPRESS_APPLICATION_PASSWORD = get_flask_env(
 with open("dynamic-sitemaps.yaml") as sitemaps_file:
     DYNAMIC_SITEMAPS = yaml.load(sitemaps_file.read(), Loader=yaml.FullLoader)
 
+# LLM-friendly site index (https://llmstxt.org/): the hand-written
+# templates/llms.txt. Built once at startup, like the config above, rather
+# than on every request.
+LLMS_TXT = llms.build_llms_txt("templates/llms.txt")
+
 # Set up application
 # ===
 
@@ -192,6 +198,39 @@ app = FlaskBase(
 # Markdown endpoint for LLM/crawler optimization
 # Serves any page as Markdown via ?format=md query parameter
 MarkdownResponse(app)
+
+
+@app.route("/llms.txt")
+def llms_txt():
+    """
+    Serve the LLM-friendly site index (https://llmstxt.org/): the manually
+    maintained templates/llms.txt.
+    """
+    response = flask.make_response(LLMS_TXT)
+    response.headers["Content-Type"] = "text/plain; charset=utf-8"
+    response.headers["Cache-Control"] = "public, max-age=21600"
+    return response
+
+
+@app.route("/llms-full.txt")
+def llms_full_txt():
+    """
+    Serve the hand-written templates/llms-full.txt (https://llmstxt.org/),
+    committed to git alongside templates/llms.txt.
+    """
+    file_path = os.path.join(os.getcwd(), "templates", "llms-full.txt")
+
+    if not os.path.exists(file_path):
+        return {"error": "llms-full.txt not available"}, 503
+
+    with open(file_path) as f:
+        content = f.read()
+
+    response = flask.make_response(content)
+    response.headers["Content-Type"] = "text/plain; charset=utf-8"
+    response.headers["Cache-Control"] = "public, max-age=86400"
+    return response
+
 
 # ChoiceLoader attempts loading templates from each path in successive order
 directory_parser_templates = (
@@ -325,6 +364,7 @@ init_forms()
 # Simple routes
 app.add_url_rule("/asset/<file_name>", view_func=json_asset_query)
 app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
+app.add_url_rule("/Google-Ads.txt", view_func=google_ads_verification)
 app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/mirrors.json", view_func=mirrors_query)
 app.add_url_rule("/mirror-check", view_func=mirror_check)
@@ -584,17 +624,16 @@ app.add_url_rule(
 
 blog_views = BlogViews(
     api=BlogAPI(session=session, thumbnail_width=555, thumbnail_height=311),
-    excluded_tags=[3184, 3265, 3408, 3960, 4491],
-    per_page=11,
+    excluded_tags=[3408, 3960, 4491],
+    per_page=16,
+    category_ids=[4877],
+    featured_category_ids=[4881],
     blog_title="Ubuntu blog",
 )
+
 app.add_url_rule(
     "/blog/topics/<regex('maas|design|juju|robotics|snapcraft'):slug>",
     view_func=BlogCustomTopic.as_view("blog_topic", blog_views=blog_views),
-)
-app.add_url_rule(
-    "/blog/<regex('cloud-and-server|desktop|internet-of-things|people-and-culture'):slug>",  # noqa: E501
-    view_func=BlogCustomGroup.as_view("blog_group", blog_views=blog_views),
 )
 app.add_url_rule(
     "/blog/sitemap.xml",
@@ -1058,7 +1097,8 @@ def render_blogs():
         api=BlogAPI(
             session=session, thumbnail_width=555, thumbnail_height=311
         ),
-        excluded_tags=[3184, 3265, 3408, 3960, 4491, 3599],
+        excluded_tags=[3408, 3960, 4491, 3599],
+        category_ids=[4877],
         tag_ids=[4307],
         per_page=3,
         blog_title="HPE blogs",
@@ -1081,7 +1121,7 @@ draft_blogs = BlogViews(
         wordpress_password=WORDPRESS_APPLICATION_PASSWORD,
     ),
     excluded_tags=[],
-    tag_ids=[4794],
+    tag_ids=[4905],
     per_page=3,
     blog_title="Draft blogs",
     status="draft",
@@ -1124,7 +1164,8 @@ def render_public_cloud_blogs():
         api=BlogAPI(
             session=session, thumbnail_width=1000, thumbnail_height=700
         ),
-        excluded_tags=[3184, 3265, 3408, 3960, 4491, 3599],
+        excluded_tags=[3408, 3960, 4491, 3599],
+        category_ids=[4877],
         tag_ids=[1205, 1350, 1748, 4191, 4478, 4540, 4387],
         per_page=3,
         blog_title="Public-cloud blogs",
@@ -1161,7 +1202,7 @@ def render_security_standards_blogs():
             4633,
             4749,
         ],
-        excluded_tags=[3184, 3265],
+        category_ids=[4877],
         per_page=4,
         blog_title="Security standards blogs",
     )
@@ -1200,7 +1241,7 @@ def render_security_fips_blogs():
             4633,
             4749,
         ],
-        excluded_tags=[3184, 3265],
+        category_ids=[4877],
         per_page=4,
         blog_title="Security FIPS blogs",
     )
@@ -1241,7 +1282,7 @@ def render_security_pci_dds_blogs():
             4633,
             4749,
         ],
-        excluded_tags=[3184, 3265],
+        category_ids=[4877],
         per_page=4,
         blog_title="Security standards blogs",
     )
@@ -1281,7 +1322,7 @@ def render_cmmc_blogs():
             4633,
             4749,
         ],
-        excluded_tags=[3184, 3265],
+        category_ids=[4877],
         per_page=4,
         blog_title="CMMC blogs",
     )
@@ -1301,7 +1342,8 @@ def render_supermicro_blogs():
             session=session, thumbnail_width=555, thumbnail_height=311
         ),
         tag_ids=[2247],
-        excluded_tags=[3184, 3265, 3408, 3960, 4491, 3599],
+        excluded_tags=[3408, 3960, 4491, 3599],
+        category_ids=[4877],
         per_page=3,
         blog_title="Supermicro blogs",
     )

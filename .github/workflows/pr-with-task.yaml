@@ -107,6 +107,15 @@ jobs:
       - uses: ./.github/actions/setup-taskfile
       - run: task lint-python
 
+  lint-llms:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-taskfile
+      - run: task lint-llms
+
   check-prettier:
     runs-on: ubuntu-latest
     steps:
@@ -185,6 +194,16 @@ jobs:
         with:
           flags: javascript
           commit_parent: ${{ github.event.pull_request.base.sha || github.event.before }}
+
+  test-shell:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Run shell tests
+        run: yarn test-shell
 
   validate-deploy:
     runs-on: ubuntu-latest

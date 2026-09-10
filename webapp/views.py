@@ -444,8 +444,14 @@ def build_engage_index(engage_docs):
         preview = flask.request.args.get("preview")
         language = flask.request.args.get("language", default=None, type=str)
         resource = flask.request.args.get("resource", default=None, type=str)
-        tag = flask.request.args.get("tag", default=None, type=str)
-        limit = 21  # adjust as needed
+        tags = flask.request.args.getlist("tag")
+        if len(tags) == 1:
+            tag = tags[0]
+        elif len(tags) > 1:
+            tag = tags
+        else:
+            tag = None
+        limit = 14  # adjust as needed
         offset = (page - 1) * limit
 
         if tag or resource or language:
@@ -481,6 +487,8 @@ def build_engage_index(engage_docs):
             "Whitepaper",
             "Form",
             "Event",
+            "Roadshow",
+            "Guide",
         ]
         tags_list = engage_docs.get_engage_pages_tags()
         tags_list = sorted(set(tags_list), key=str.lower)
@@ -515,7 +523,13 @@ def build_engage_page_resources(engage_docs):
     """
 
     def engage_page_resources():
-        tag = flask.request.args.get("tag", default=None, type=str)
+        page_tags = flask.request.args.getlist("tag")
+        if len(page_tags) == 1:
+            tag = page_tags[0]
+        elif len(page_tags) > 1:
+            tag = page_tags
+        else:
+            tag = None
         resource = flask.request.args.get("resource", default=None, type=str)
 
         if tag or resource:
@@ -903,17 +917,6 @@ class BlogCustomTopic(BlogView):
         context = self.blog_views.get_topic(slug, page_param)
 
         return flask.render_template(f"blog/topics/{slug}.html", **context)
-
-
-class BlogCustomGroup(BlogView):
-    def dispatch_request(self, slug):
-        page_param = flask.request.args.get("page", default=1, type=int)
-        category_param = flask.request.args.get(
-            "category", default="", type=str
-        )
-        context = self.blog_views.get_group(slug, page_param, category_param)
-
-        return flask.render_template(f"blog/{slug}.html", **context)
 
 
 class BlogSitemapIndex(BlogView):
@@ -2400,3 +2403,14 @@ def append_utms_cookie_to_canonical_links(response):
             response.set_data(data)
 
     return response
+
+
+def google_ads_verification():
+    """
+    Serve the Google Ads account-access verification token from the domain
+    root. Google fetches /Google-Ads.txt directly and does not reliably
+    follow redirects, so this is served in place via a dedicated route.
+    """
+    return flask.send_from_directory(
+        flask.current_app.static_folder, "files/Google-Ads.txt"
+    )
