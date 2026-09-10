@@ -22,6 +22,8 @@ In this guide, we will create a manual cloud with 3 existing machines. We will t
 deploy a minimal installation of **Charmed Kubernetes** to this cloud using the
 [Kubernetes Core][kubernetes-core] bundle.
 
+{% include "kubernetes/charmed-k8s/docs/shared/_rocks-registry-decommission-warning.html" %}
+
 <div class="p-notification--positive is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Note:</span>

@@ -981,8 +981,8 @@
 
   {{ load_form('/openstack') | safe }}
 
-  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-  <script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script nonce="{{ csp_nonce }}">
     canonicalLatestNews.fetchLatestNews({
       articlesContainerSelector: "#latest-articles",
       articleTemplateSelector: "#article-template",
@@ -990,6 +990,6 @@
       tagId: "1959, 4138, 3741, 3739",
     })
   </script>
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
 {% endblock content %}

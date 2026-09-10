@@ -258,7 +258,7 @@
       {%- endif -%}
     {% endcall -%}
 
-  <script src="{{ versioned_static('js/dist/linux-patch-management.js') }}"
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/linux-patch-management.js') }}"
           type="module"
           defer></script>
 

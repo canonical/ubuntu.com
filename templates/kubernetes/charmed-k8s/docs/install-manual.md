@@ -24,6 +24,8 @@ customise the install:
   - Testing a pre-release version
   - ...and many more
 
+{% include "kubernetes/charmed-k8s/docs/shared/_rocks-registry-decommission-warning.html" %}
+
 ## What you will need
 
 The rest of this page assumes you already have Juju installed and have added

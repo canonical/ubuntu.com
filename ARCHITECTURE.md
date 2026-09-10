@@ -11,7 +11,7 @@ ubuntu.com is a [Flask v1](https://flask.palletsprojects.com/_/downloads/en/1.1.
 
 ### Local development
 
-It uses [dotrun](https://github.com/canonical/dotrun) for local development, defining standard endpoints for `serve`, `build`, `test`, `watch` etc. within the [`package.json`](https://github.com/canonical/ubuntu.com/blob/main/package.json). For more information, see the [README.md](README.md).
+It uses [Taskfile](https://taskfile.dev/) for local development, with standard tasks defined in [`taskfile.yaml`](https://github.com/canonical/ubuntu.com/blob/main/taskfile.yaml) (`start`, `build`, `test`, `lint`, etc.). For more information, see the [README.md](README.md).
 
 ### Deployment
 

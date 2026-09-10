@@ -3,7 +3,7 @@
 {% block title %}Ubuntu on Azure{% endblock %}
 
 {% block meta_description %}
-  Ubuntu is the OS of choice for Azure, powering innovation on dev/test and mission-critical environments. Run Ubuntu on Azure, benefit from worldwide mirroring and publication; optimize your cloud workloads.
+  Run Ubuntu on Microsoft Azure with optimized images, enterprise support, and security compliance for cloud workloads.
 {% endblock %}
 
 {% block meta_copydoc %}
@@ -15,9 +15,6 @@
 {% endblock body_class %}
 
 {% block content %}
-  <div class="p-strip is-shallow u-no-padding--bottom">
-    <div class="u-fixed-width">{% include "shared/_azure-banner.html" %}</div>
-  </div>
   <section class="p-section--hero">
     <div class="row--50-50">
       <div class="col">
@@ -324,8 +321,8 @@
     </div>
   </template>
 
-  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-  <script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script nonce="{{ csp_nonce }}">
     canonicalLatestNews.fetchLatestNews({
       articlesContainerSelector: "#blog-posts",
       articleTemplateSelector: "#articles-template",

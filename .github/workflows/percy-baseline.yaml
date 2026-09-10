@@ -1,5 +1,5 @@
-# This workflow updates the Percy baseline on every push to main.
-# This allows pull requests to be compared against baseline test results.
+# Updates the Percy baseline on pushes to main that touch visual-affecting files.
+# See .github/PERCY.md for when this runs, the watched-paths list, and how to refresh manually.
 
 name: Update Percy Baseline
 
@@ -7,11 +7,35 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
+  decide:
+    name: Decide whether to update baseline
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      should_run: ${{ steps.gate.outputs.should_run }}
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          sparse-checkout: .github/actions/percy-gate
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+
+      - id: gate
+        uses: ./.github/actions/percy-gate
+        with:
+          mode: baseline
+
   snapshot:
     name: Take Percy snapshots
     runs-on: ubuntu-latest
+    needs: decide
+    if: needs.decide.result == 'success' && needs.decide.outputs.should_run == 'true'
+    permissions:
+      contents: read
     steps:
       - name: Checkout SCM
         uses: actions/checkout@v4

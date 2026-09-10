@@ -18,6 +18,8 @@ for your cluster, taking care of the storage and distribution of
 container images. There are a few reasons why this may be a useful option
 for your cluster:
 
+{% include "kubernetes/charmed-k8s/docs/shared/_rocks-registry-decommission-warning.html" %}
+
 -  Providing the images required by Charmed Kubernetes without requiring
    access to a public registry (e.g. in environments where network access
    is controlled, expensive or otherwise problematic).
@@ -196,4 +198,3 @@ juju config kubernetes-control-plane image-registry=$REGISTRY
     <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://kubernetes.slack.com/archives/CG1V2CAMB"> public Slack  channel</a>.</p>
   </div>
 </div>
-

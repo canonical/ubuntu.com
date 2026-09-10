@@ -12,8 +12,8 @@
         </div>
         <div class="col-6 col-medium-3">
           <ul class="p-list--divided">
-            <li class="p-list__item"><a href="http://docs.ubuntu.com/core" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'docs.ubuntu.com/core', 'eventLabel' : 'Ubuntu Core Docs', 'eventValue' : undefined });">Read the docs</a><li>
-            <li class="p-list__item"><a href="http://askubuntu.com/search?q=snap" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'ask.ubuntu.com', 'eventLabel' : 'ask.ubuntu.com', 'eventValue' : undefined });">Visit ask.ubuntu.com</a></li>
+            <li class="p-list__item"><a href="http://docs.ubuntu.com/core" data-ga-category="Contextual footer link" data-ga-action="docs.ubuntu.com/core" data-ga-label="Ubuntu Core Docs">Read the docs</a><li>
+            <li class="p-list__item"><a href="http://askubuntu.com/search?q=snap" data-ga-category="Contextual footer link" data-ga-action="ask.ubuntu.com" data-ga-label="ask.ubuntu.com">Visit ask.ubuntu.com</a></li>
           </ul>
         </div>
       </div>
@@ -24,8 +24,8 @@
         </div>
         <div class="col-6 col-medium-3">
           <ul class="p-list--divided">
-            <li class="p-list__item"><a href="https://snapcraft.io/first-snap" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'snapcraft.io/docs/build-snaps/your-first-snap', 'eventLabel' : 'Contribute to Ubuntu Core', 'eventValue' : undefined });">Learn how to create a snap</a></li>
-            <li class="p-list__item"><a href="https://github.com/snapcore/snapd" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'github.com/snapcore/snapd', 'eventLabel' : 'Contribute to Ubuntu Core', 'eventValue' : undefined });">Check out the project on GitHub</a></li>
+            <li class="p-list__item"><a href="https://snapcraft.io/first-snap" data-ga-category="Contextual footer link" data-ga-action="snapcraft.io/docs/build-snaps/your-first-snap" data-ga-label="Contribute to Ubuntu Core">Learn how to create a snap</a></li>
+            <li class="p-list__item"><a href="https://github.com/snapcore/snapd" data-ga-category="Contextual footer link" data-ga-action="github.com/snapcore/snapd" data-ga-label="Contribute to Ubuntu Core">Check out the project on GitHub</a></li>
           </ul>
         </div>
       </div>
@@ -49,8 +49,8 @@
   </div>
 </section>
 
-<script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-<script>
+<script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+<script nonce="{{ csp_nonce }}">
   canonicalLatestNews.fetchLatestNews(
     {
       articlesContainerSelector: "#latest-articles",

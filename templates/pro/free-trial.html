@@ -1,5 +1,6 @@
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "macros/_macros-faq-schema.jinja" import faqpage_schema %}
 
 {% extends "templates/base.html" %}
 
@@ -11,14 +12,16 @@
 meta_copydoc %}
 
 {% block meta_description %}
-  Ubuntu Pro is a single, comprehensive subscription for open source security and compliance. Try it out for 30 days and see first-hand how your organisation can benefit from it.
+  Try Ubuntu Pro free for 30 days. Security patching, compliance, and support for your full open source stack.
 {% endblock meta_description %}
 
 {% block body_class %}
   is-paper
 {% endblock body_class %}
 
+{% set faq_ns = namespace(entities=[]) %}
 {% macro accordion(prefix, items, is_first_open=False ) %}
+  {% set faq_ns.entities = faq_ns.entities + items %}
   <aside class="p-accordion">
     <ul class="p-accordion__list">
       {% for title, description in items %}
@@ -313,6 +316,8 @@ meta_copydoc %}
         </div>
       </div>
     </section>
+
+    {{ faqpage_schema(faq_ns.entities) }}
 
   {% endblock content %}
 {% endblock outer_content %}

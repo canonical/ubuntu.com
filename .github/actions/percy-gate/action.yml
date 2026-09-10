@@ -1,0 +1,81 @@
+name: Percy Gate
+description: >
+  Decides whether a Percy snapshot run should proceed. Combines a path filter
+  with a label override and a bot-author skip for PR contexts, and a
+  workflow_dispatch override for baseline (push) contexts.
+
+inputs:
+  mode:
+    description: >
+      'pr' for PR workflows (checks label, bot author, then paths). 'baseline'
+      for the main-push workflow (checks workflow_dispatch, then paths).
+    required: true
+
+outputs:
+  should_run:
+    description: 'true if the calling workflow should proceed to take snapshots'
+    value: ${{ steps.evaluate.outputs.should_run }}
+
+runs:
+  using: composite
+  steps:
+    - name: Filter changed paths
+      id: filter
+      uses: dorny/paths-filter@d1c1ffe0248fe513906c8e24db8ea791d46f8590 # v3.0.3
+      with:
+        filters: |
+          visual:
+            - 'static/sass/**'
+            - 'static/js/src/**'
+            - 'static/js/data/**'
+            - 'templates/**'
+            - 'navigation.yaml'
+            - 'secondary-navigation.yaml'
+            - 'snapshots.js'
+            - 'test-links.yaml'
+            - 'package.json'
+            - 'yarn.lock'
+
+    - name: Evaluate gate
+      id: evaluate
+      shell: bash
+      env:
+        MODE: ${{ inputs.mode }}
+        HAS_LABEL: ${{ contains(github.event.pull_request.labels.*.name, 'run-percy') }}
+        ACTOR: ${{ github.event.pull_request.user.login }}
+        VISUAL_CHANGED: ${{ steps.filter.outputs.visual }}
+        DISPATCHED: ${{ github.event_name == 'workflow_dispatch' }}
+      run: |
+        set -e
+        if [ "$MODE" = "baseline" ]; then
+          if [ "$DISPATCHED" = "true" ]; then
+            echo "RUN: manually dispatched"
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ "$VISUAL_CHANGED" = "true" ]; then
+            echo "RUN: visual-affecting files changed on this push"
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "SKIP: no visual-affecting changes on this push"
+          echo "should_run=false" >> "$GITHUB_OUTPUT"
+          exit 0
+        fi
+        if [ "$HAS_LABEL" = "true" ]; then
+          echo "RUN: run-percy label present"
+          echo "should_run=true" >> "$GITHUB_OUTPUT"
+          exit 0
+        fi
+        if [ "$ACTOR" = "dependabot[bot]" ] || [ "$ACTOR" = "renovate[bot]" ]; then
+          echo "SKIP: bot author ($ACTOR) without run-percy label"
+          echo "should_run=false" >> "$GITHUB_OUTPUT"
+          exit 0
+        fi
+        if [ "$VISUAL_CHANGED" = "true" ]; then
+          echo "RUN: visual-affecting files changed"
+          echo "should_run=true" >> "$GITHUB_OUTPUT"
+          exit 0
+        fi
+        echo "SKIP: no visual-affecting changes and no run-percy label"
+        echo "should_run=false" >> "$GITHUB_OUTPUT"

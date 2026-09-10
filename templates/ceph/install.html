@@ -30,7 +30,7 @@
       <p>Looking for help running Ceph?</p>
     {%- endif -%}
     {%- if slot == "cta" -%}
-      <a href="/ceph/contact-us" class="p-button--positive js-invoke-modal" aria-label="contact-modal">Get in touch</a>
+      <a href="/ceph/contact-us" class="p-button--positive js-invoke-modal" aria-controls="contact-modal" aria-expanded="false">Get in touch</a>
     {%- endif -%}
     {%- if slot == "image" -%}
 
@@ -123,7 +123,7 @@
     {% include "ceph/shared/_latest-news-ceph.html" %}
   {% endwith %}
 
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
   {{ load_form("/ceph/install") | safe }}
 

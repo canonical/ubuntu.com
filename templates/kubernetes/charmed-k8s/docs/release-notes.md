@@ -13,6 +13,8 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+{% include "kubernetes/charmed-k8s/docs/shared/_rocks-registry-decommission-warning.html" %}
+
 # 1.35
 
 ### Apr 16, 2026 - `charmed-kubernetes --channel 1.35/stable`

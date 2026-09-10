@@ -5,7 +5,7 @@
 {% block title %}Ubuntu Pro for Azure{% endblock %}
 
 {% block meta_description %}
-  Ubuntu Pro for Azure is an Ubuntu image optimized for security. It includes broad security coverage, live kernel patching, certified components with hardening profiles, and is backed by up to 15 years.
+  Ubuntu Pro for Azure: Expanded Security Maintenance, kernel Livepatch, FIPS compliance, and CIS hardening for production workloads.
 {% endblock %}
 
 {% block meta_copydoc %}
@@ -17,7 +17,9 @@
 {% endblock body_class %}
 
 {% block extra_metatags %}
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"></script>
+  <script nonce="{{ csp_nonce }}" type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1.9.0/lite-youtube.min.js"
+          integrity="sha384-krUlgvxdz2iSLnbpvxj8zLWWUCa3QxzwLbW3EXmbzXCoAQ+ANH1cWJYRMc/TErh+"
+          crossorigin="anonymous"></script>
 {% endblock extra_metatags %}
 
 {% block content %}
@@ -323,7 +325,7 @@
     {% include "azure/shared/_latest-blogs-azure.html" %}
   {% endwith %}
 
-  <script src="{{ versioned_static('js/dist/utmInheritance.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/utmInheritance.js') }}"></script>
 
   {{ load_form("/azure") | safe }}
   

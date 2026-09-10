@@ -18,6 +18,8 @@ Charmed Kubernetes, additional guides are available to take you through the
 installation steps for a number of different substrates. The 'Cloud' install
 page covers many different scenarios with Juju-supported clouds.
 
+{% include "kubernetes/charmed-k8s/docs/shared/_rocks-registry-decommission-warning.html" %}
+
 - [Install on a cloud](/kubernetes/charmed-k8s/docs/install-manual)
 - [Install on existing machines](/kubernetes/charmed-k8s/docs/install-existing)
 - [Install locally with LXD](/kubernetes/charmed-k8s/docs/install-local)

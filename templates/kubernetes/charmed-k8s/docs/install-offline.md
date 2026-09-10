@@ -25,6 +25,8 @@ services in a restricted environment you may already have some 'air-gap'
 resources available, and may only need to configure Charmed Kubernetes to
 make use of them.
 
+{% include "kubernetes/charmed-k8s/docs/shared/_rocks-registry-decommission-warning.html" %}
+
 <div class="p-notification--positive is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Shrinkwrap</span>

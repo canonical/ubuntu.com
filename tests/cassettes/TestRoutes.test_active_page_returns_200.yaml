@@ -88,4 +88,96 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: params=%7B%22category_id%22%3A+%2251%22%2C+%22limit%22%3A+%2250%22%2C+%22offset%22%3A+%220%22%2C+%22keyword%22%3A+%22path%22%2C+%22value%22%3A+%22%2Fengage%2Fmicro-clouds%22%7D
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate, br
+      Content-Length:
+      - '176'
+      Content-Type:
+      - multipart/form-data;
+    method: POST
+    uri: https://discourse.ubuntu.com/admin/plugins/explorer/queries/16/run
+  response:
+    body:
+      string: '{"success":true,"errors":[],"duration":132.0,"result_count":1,"params":{"category_id":"51","limit":"50","offset":"0","keyword":"path","value":"/engage/micro-clouds"},"columns":["cooked","raw","deleted_at","title","created_at","updated_at","id","slug","full_count","active_count","current_total"],"default_limit":1000,"relations":{},"colrender":{},"rows":[["\u003cdiv
+        class=\"md-table\"\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003eKey\u003c/th\u003e\n\u003cth\u003eValue\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd\u003eimage\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://assets.ubuntu.com/v1/d90b0f36-Edge+Cloud-white.svg\"\u003ehttps://assets.ubuntu.com/v1/d90b0f36-Edge+Cloud-white.svg\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003eimage_width\u003c/td\u003e\n\u003ctd\u003e280\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003eimage_height\u003c/td\u003e\n\u003ctd\u003e250\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003emeta_image\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://assets.ubuntu.com/v1/e5acd2cc-twitter_wide_banner+%2816%29.jpeg\"\u003ehttps://assets.ubuntu.com/v1/e5acd2cc-twitter_wide_banner+(16).jpeg\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003emeta_copydoc\u003c/td\u003e\n\u003ctd\u003e\u003ca
+        href=\"https://docs.google.com/document/d/1YnrhsBMTJYBtnx8kv5kBk3C06oM_Cyj45xaVCBSMx3Y/edit#\"\u003ehttps://docs.google.com/document/d/1YnrhsBMTJYBtnx8kv5kBk3C06oM_Cyj45xaVCBSMx3Y/edit#\u003c/a\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003ebanner_class\u003c/td\u003e\n\u003ctd\u003egrad\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003ewebinar_code\u003c/td\u003e\n\u003ctd\u003e451745\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003eprimary_cta\u003c/td\u003e\n\u003ctd\u003eRegister
+        now\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003eprimary_link\u003c/td\u003e\n\u003ctd\u003e\u003cspan
+        class=\"hashtag-raw\"\u003e#register-section\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003etopic_name\u003c/td\u003e\n\u003ctd\u003eMicro
+        clouds\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003epath\u003c/td\u003e\n\u003ctd\u003e/engage/micro-clouds\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003etype\u003c/td\u003e\n\u003ctd\u003ewebinar\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003etags\u003c/td\u003e\n\u003ctd\u003eCloud
+        and Infrastructure,Edge computing\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003epublish_date\u003c/td\u003e\n\u003ctd\u003e2020-11-19\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003elanguage\u003c/td\u003e\n\u003ctd\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003esubtitle\u003c/td\u003e\n\u003ctd\u003eBuilding
+        your Kubernetes edge computing strategy\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003eactive\u003c/td\u003e\n\u003ctd\u003etrue\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003c/div\u003e\u003cp\u003eEdge
+        strategy is a challenge for many organisations working to define priorities,
+        budgets and connect the edge fleet to their existing cloud infrastructure.
+        Join Dell and Canonical to hear about how to maximise infrastructure benefits
+        with an automated, micro cloud stack for running and scaling distributed computing.\u003c/p\u003e\n\u003cp\u003eWe
+        will discuss:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eThe data centre
+        at the edge, developed specifically for low-footprint, remote computing environments\u003c/li\u003e\n\u003cli\u003eLightweight
+        deployments at scale\u003c/li\u003e\n\u003cli\u003eClustering Microk8s to
+        create a base station\u003c/li\u003e\n\u003cli\u003eAutomatic high availability
+        with Microk8s for mission-critical workloads\u003c/li\u003e\n\u003cli\u003eContinuation
+        of the edge strategy in the multi-cloud environment\u003c/li\u003e\n\u003cli\u003eCustomer
+        use case\u003c/li\u003e\n\u003c/ul\u003e","| Key | Value |\n| --- | --- |\n|
+        image | \u003chttps://assets.ubuntu.com/v1/d90b0f36-Edge+Cloud-white.svg\u003e
+        |\n| image_width | 280 |\n| image_height | 250 |\n| meta_image | [https://assets.ubuntu.com/v1/e5acd2cc-twitter_wide_banner+(16).jpeg](https://assets.ubuntu.com/v1/e5acd2cc-twitter_wide_banner+%2816%29.jpeg)
+        |\n| meta_copydoc | \u003chttps://docs.google.com/document/d/1YnrhsBMTJYBtnx8kv5kBk3C06oM_Cyj45xaVCBSMx3Y/edit#\u003e
+        |\n| banner_class | grad |\n| webinar_code | 451745 |\n| primary_cta | Register
+        now |\n| primary_link | #register-section |\n| topic_name | Micro clouds |\n|
+        path | /engage/micro-clouds |\n| type | webinar |\n| tags | Cloud and Infrastructure,Edge
+        computing |\n| publish_date | 2020-11-19 |\n| language |  |\n| subtitle |
+        Building your Kubernetes edge computing strategy |\n| active | true |\n\n\nEdge
+        strategy is a challenge for many organisations working to define priorities,
+        budgets and connect the edge fleet to their existing cloud infrastructure.
+        Join Dell and Canonical to hear about how to maximise infrastructure benefits
+        with an automated, micro cloud stack for running and scaling distributed computing.\n\n\nWe
+        will discuss:\n\n\n* The data centre at the edge, developed specifically for
+        low-footprint, remote computing environments\n* Lightweight deployments at
+        scale\n* Clustering Microk8s to create a base station\n* Automatic high availability
+        with Microk8s for mission-critical workloads\n* Continuation of the edge strategy
+        in the multi-cloud environment\n* Customer use case",null,"Micro clouds:","2020-11-19T12:43:19.126Z","2026-05-22T15:29:22.816Z",19424,"micro-clouds",963,1,1]]}'
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Tue, 14 Jul 2026 15:20:41 GMT
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      server:
+      - nginx/1.24.0 (Ubuntu)
+      set-cookie:
+      - DISCOURSE-K8S_AFFINITY=1784042442.079.1136.257651|078f402a49fdc959a550ab8a5dea4dd5;
+        Max-Age=3600; Path=/; Secure; HttpOnly; SameSite=Lax
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      x-cache-status:
+      - from content-cache/6
+      x-content-type-options:
+      - nosniff
+      x-discourse-route:
+      - discourse_data_explorer/query/run
+      x-discourse-username:
+      - britneywwc
+      x-frame-options:
+      - SAMEORIGIN
+      x-permitted-cross-domain-policies:
+      - none
+      x-request-id:
+      - 98e3ce34b0bd0fc17f9d732022866bd3
+      x-runtime:
+      - '0.186732'
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
 version: 1

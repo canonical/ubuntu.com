@@ -1764,6 +1764,6 @@
     </div>
   </section>
   {{ load_form("/20years") | safe }}
-  <script src="{{ versioned_static('js/third-party/typer.js') }}" defer></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/third-party/typer.js') }}" defer></script>
 
 {% endblock content %}

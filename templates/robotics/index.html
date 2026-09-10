@@ -666,7 +666,7 @@
     attrs={"class": "p-image-container__image",}) | safe
   }}
 </div>
-<script>
+<script nonce="{{ csp_nonce }}">
   function rotateRoboticsHeroImage() {
     const roboticsImages = [
       "https://assets.ubuntu.com/v1/b4316d3f-hero-drone.png",
@@ -714,6 +714,6 @@
     rotateRoboticsHeroImage();
   });
 </script>
-<script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+<script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 {{ load_form("/robotics") | safe }}
 {% endblock content %}

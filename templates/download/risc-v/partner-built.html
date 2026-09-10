@@ -4,8 +4,7 @@
 {% block title %}Download Partner-built Ubuntu for RISC-V Platforms{% endblock %}
 
 {% block meta_description %}
-  Get partner-built Ubuntu images from companies who host their own Ubuntu images and  who have followed the RISC-V Image Cookbook.
-  All images hosted here do not have Canonical support and maintenance and should be for development/preview purposes only.
+  Download partner-built Ubuntu images for RISC-V hardware from certified hardware partners.
 {% endblock meta_description %}
 
 {% block meta_copydoc %}
@@ -97,6 +96,20 @@
                     aria-selected="false"
                     aria-controls="sifive-hifive-premier-p550-tab">SiFive HiFive Premier P550</button>
           </li>
+          <li>
+            <button class="p-tabs__item"
+                    id="spacemit-k3-com260-kit"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="spacemit-k3-com260-kit-tab">SpacemiT K3 CoM260 Kit</button>
+          </li>
+          <li>
+            <button class="p-tabs__item"
+                    id="spacemit-k3-pico-itx"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="spacemit-k3-pico-itx-tab">SpacemiT K3 Pico-ITX</button>
+          </li>
         </ul>
         <form class="u-hide--large u-hide--medium">
           <select name="boardSelect" id="boardSelect" data-maintain-hash="true">
@@ -105,6 +118,8 @@
             <option value="eswin-ebc7702-mini-dtx-mainboard-tab">ESWIN EBC7702 Mini-DTX Mainboard</option>
             <option value="milk-v-titan-tab">Milk-V Titan</option>
             <option value="sifive-hifive-premier-p550-tab">SiFive HiFive Premier P550</option>
+            <option value="spacemit-k3-com260-kit-tab">SpacemiT K3 CoM260 Kit</option>
+            <option value="spacemit-k3-pico-itx-tab">SpacemiT K3 Pico-ITX</option>
           </select>
         </form>
       </div>
@@ -114,6 +129,8 @@
         {% include "download/risc-v/eswin-ebc7702-mini-dtx-mainboard.html" %}
         {% include "download/risc-v/milk-v-titan.html" %}
         {% include "download/risc-v/sifive-hifive-premier-p550.html" %}
+        {% include "download/risc-v/spacemit-k3-com260-kit.html" %}
+        {% include "download/risc-v/spacemit-k3-pico-itx.html" %}
       </div>
     </div>
   </section>
@@ -135,6 +152,6 @@
 
   {{ load_form("/download/risc-v/partner-built") | safe }}
 
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
 {% endblock content %}

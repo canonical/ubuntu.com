@@ -1,6 +1,14 @@
 You can
-<button class="p-button--link" onclick="verifyDownloadContent()">verify your download</button>
-{%- if not 'raspi' in system -%}, or get <a href="/tutorials/tutorial-install-ubuntu-{% if system == 'live-server' %}server{% else %}{{ system }}{% endif %}?backURL=https://ubuntu.com/download/{% if system == 'live-server' %}server{% else %}{{ system }}{% endif %}/thank-you">help on installing</a>
+<button class="p-button--link js-verify-download">verify your download</button>
+{%- if not 'raspi' in system -%}
+  {%- if system == 'wsl' -%}
+    {%- set install_help_url = 'https://documentation.ubuntu.com/wsl/stable/howto/install-ubuntu-wsl2/' -%}
+  {%- elif system == 'live-server' -%}
+    {%- set install_help_url = '/tutorials/tutorial-install-ubuntu-server?backURL=https://ubuntu.com/download/server/thank-you' -%}
+  {%- else -%}
+    {%- set install_help_url = '/tutorials/tutorial-install-ubuntu-' ~ system ~ '?backURL=https://ubuntu.com/download/' ~ system ~ '/thank-you' -%}
+  {%- endif -%}
+  , or get <a href="{{ install_help_url }}">help on installing</a>
 {%- endif -%}
 .
 
@@ -25,11 +33,17 @@ You can
 </div>
 
 
-<script type="text/javascript">
+<script nonce="{{ csp_nonce }}" type="text/javascript">
   function verifyDownloadContent() {
     var targetControls = document.getElementById("menu-4");
     if (targetControls) {
       targetControls.classList.toggle('u-hide');
     }
   }
+
+  // Bound immediately rather than on DOMContentLoaded: arm64 pages redirect to
+  // cdimage during load, which aborts the document and DOMContentLoaded never fires.
+  document.querySelectorAll(".js-verify-download").forEach(function (button) {
+    button.addEventListener("click", verifyDownloadContent);
+  });
 </script>

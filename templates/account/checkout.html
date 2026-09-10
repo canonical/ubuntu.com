@@ -3,10 +3,7 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block meta_description %}
-  Ubuntu Pro offers a single, per-node packaging of the most comprehensive
-  software, security and IaaS support in the industry, with OpenStack support,
-  Kubernetes support included, and Livepatch, Landscape and Expanded Security
-  Maintenance to address security and compliance concerns.
+  Complete your Ubuntu Pro purchase. Secure checkout for subscriptions and support plans.
 {% endblock %}
 
 {% block
@@ -37,9 +34,9 @@
       </div>
     </div>
 
-    <script>
+    <script nonce="{{ csp_nonce }}">
       window.stripePublishableKey = "{{ get_stripe_publishable_key }}";
     </script>
-    <script src="{{ versioned_static('js/dist/shopCheckout.js') }}" type="module"></script>
+    <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/shopCheckout.js') }}" type="module"></script>
 
   {% endblock %}

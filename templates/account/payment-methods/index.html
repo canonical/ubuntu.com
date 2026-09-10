@@ -87,19 +87,19 @@
 
   {% include "account/payment-methods/_confirm-remove-modal.html" %}
 
-  <script src="https://js.stripe.com/v3/"></script>
-  <script>
+  <script nonce="{{ csp_nonce }}" src="https://js.stripe.com/v3/"></script>
+  <script nonce="{{ csp_nonce }}">
     window.stripePublishableKey = "{{ get_stripe_publishable_key }}";
     window.accountId = "{{ account_id }}";
     window.pendingPurchaseId = "{{ pending_purchase_id }}";
     window.hasPaymentMethod = {% if default_payment_method.id %}true{% else %}false{% endif %};
   </script>
-  <script src="/static/js/src/modal.js"></script>
-  <script>
+  <script nonce="{{ csp_nonce }}" src="/static/js/src/modal.js"></script>
+  <script nonce="{{ csp_nonce }}">
     initModals('#remove-payment-modal', '[aria-controls=remove-payment-modal]', false)
   </script>
 
-  <script src="{{ versioned_static('js/dist/ua-payment-methods.js') }}"
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/ua-payment-methods.js') }}"
           type="module"
           defer></script>
 

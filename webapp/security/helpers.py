@@ -2,7 +2,6 @@
 from datetime import datetime
 import re
 
-
 """
 Return the summarized status for a CVE
 """

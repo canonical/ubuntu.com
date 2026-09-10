@@ -1,0 +1,52 @@
+name: Verify dynamically generated sitemaps for ubuntu.com
+
+on:
+  schedule:
+    - cron: "0 7 * * 1" # every Monday at 07:00 UTC
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      targets: ${{ steps.extract_targets.outputs.targets }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Extract targets
+        id: extract_targets
+        run: |
+          echo "targets=$(yq -o=json -I=0 '.' dynamic-sitemaps.yaml)" >> "$GITHUB_OUTPUT"
+
+  verify:
+    needs: setup
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target: ${{ fromJSON(needs.setup.outputs.targets) }}
+    steps:
+      - name: Verify sitemap for ${{ env.TARGET }}
+        env:
+          TARGET: ${{ matrix.target }}
+        if: env.TARGET != 'templates'
+        run: |
+          curl --fail-with-body -X GET "https://ubuntu.com/$TARGET/sitemap.xml" \
+            --connect-timeout 30 \
+            --max-time 300 \
+            --retry 3 \
+            --retry-delay 10 \
+            --retry-all-errors
+
+      - name: Send message on failure
+        env:
+          BOT_URL: ${{ secrets.BOT_URL }}
+        if: failure()
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" $BOT_URL?room=web-alerts

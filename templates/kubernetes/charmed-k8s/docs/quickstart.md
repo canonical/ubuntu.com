@@ -52,7 +52,7 @@ clouds. It can be installed with a snap:
           <div class="p-code-snippet">
             <pre class="p-code-snippet__block--icon"><code>sudo snap install juju --channel=3.1/stable</code></pre>
           </div>
-          <script id="asciicast-254739" src="https://asciinema.org/a/254739.js" async data-autoplay="true" data-rows="4"></script>
+          <script nonce="{{ csp_nonce }}" id="asciicast-254739" src="https://asciinema.org/a/254739.js" async data-autoplay="true" data-rows="4"></script>
         </div>
       </li>
 
@@ -66,7 +66,7 @@ Google. You can see which ones are ready to use by running this command:
           <div class="p-code-snippet">
             <pre class="p-code-snippet__block--icon"><code>juju clouds</code></pre>
           </div>
-          <script id="asciicast-254740" src="https://asciinema.org/a/254740.js" async data-rows="18" ></script>
+          <script nonce="{{ csp_nonce }}" id="asciicast-254740" src="https://asciinema.org/a/254740.js" async data-rows="18" ></script>
 
           <p><a href="https://documentation.ubuntu.com/juju/3.6/reference/juju-cli/list-of-juju-cli-commands/clouds/">Find out more about Clouds in Juju</a></p>
         </div>
@@ -82,7 +82,7 @@ Google. You can see which ones are ready to use by running this command:
           </div>
 <p>For a different cloud, just substitute in the name from the previous
   list output by Juju. The data you need to supply will vary depending on the cloud. </p>
-            <script id="asciicast-Wo12W39et3IJzF15rAyVunbbl" src="https://asciinema.org/a/Wo12W39et3IJzF15rAyVunbbl.js" async data-rows="18" ></script>
+            <script nonce="{{ csp_nonce }}" id="asciicast-Wo12W39et3IJzF15rAyVunbbl" src="https://asciinema.org/a/Wo12W39et3IJzF15rAyVunbbl.js" async data-rows="18" ></script>
         </div>
 
       </li>
@@ -94,7 +94,7 @@ Google. You can see which ones are ready to use by running this command:
           <div class="p-code-snippet">
             <pre class="p-code-snippet__block--icon"><code>juju bootstrap aws my-controller</code></pre>
           </div>
-          <script id="asciicast-2FOd2qvaJL0wWqvZqFeVbwUsz" src="https://asciinema.org/a/2FOd2qvaJL0wWqvZqFeVbwUsz.js" async data-rows="18"></script>
+          <script nonce="{{ csp_nonce }}" id="asciicast-2FOd2qvaJL0wWqvZqFeVbwUsz" src="https://asciinema.org/a/2FOd2qvaJL0wWqvZqFeVbwUsz.js" async data-rows="18"></script>
         </div>
       </li>
 
@@ -116,7 +116,7 @@ Google. You can see which ones are ready to use by running this command:
           <div class="p-code-snippet">
             <pre class="p-code-snippet__block--icon"><code>juju deploy charmed-kubernetes</code></pre>
           </div>
-          <script id="asciicast-8YAPb63aB9kfB7j1M9X6COGer" src="https://asciinema.org/a/8YAPb63aB9kfB7j1M9X6COGer.js" async></script>
+          <script nonce="{{ csp_nonce }}" id="asciicast-8YAPb63aB9kfB7j1M9X6COGer" src="https://asciinema.org/a/8YAPb63aB9kfB7j1M9X6COGer.js" async></script>
         </div>
       </li>
       <li class="p-stepped-list__item">

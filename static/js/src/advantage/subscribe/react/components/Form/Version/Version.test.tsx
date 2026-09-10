@@ -24,9 +24,9 @@ test("Version section displays the matching features to the selected version", a
     screen.getByText(/^All subscriptions for Ubuntu Pro 22.04 LTS include:/),
   );
 
-  await userEvent.click(screen.getByText("16.04 LTS"));
+  await userEvent.click(screen.getByText("18.04 LTS"));
   expect(
-    screen.getByText(/^All subscriptions for Ubuntu Pro 16.04 LTS include:/),
+    screen.getByText(/^All subscriptions for Ubuntu Pro 18.04 LTS include:/),
   );
 });
 

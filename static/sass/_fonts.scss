@@ -1,0 +1,25 @@
+// Ubuntu variable fonts bundled locally to avoid assets.ubuntu.com dependency
+// These declarations appear after the vanilla-framework import and therefore
+// override the default @font-face rules that point to assets.ubuntu.com.
+@font-face {
+  font-family: "Ubuntu variable";
+  font-stretch: 100%;
+  font-style: normal;
+  font-weight: 100 800;
+  src: url("/static/fonts/ubuntu-variable-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Ubuntu variable";
+  font-stretch: 100%;
+  font-style: italic;
+  font-weight: 100 800;
+  src: url("/static/fonts/ubuntu-variable-latin-italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Ubuntu Mono variable";
+  font-style: normal;
+  font-weight: 100 800;
+  src: url("/static/fonts/ubuntu-mono-variable.woff2") format("woff2");
+}

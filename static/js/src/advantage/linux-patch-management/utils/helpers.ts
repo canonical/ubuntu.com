@@ -17,6 +17,8 @@ export const useFetchCVEData = (release: string) => {
 
 export const LTSReleasesFromName = (release: string): string => {
   switch (release) {
+    case "resolute":
+      return "26.04";
     case "noble":
       return "24.04";
     case "jammy":
@@ -36,6 +38,8 @@ export const LTSReleasesFromName = (release: string): string => {
 
 export const releaseToLTSEndYear = (release: string): number => {
   switch (release) {
+    case "resolute":
+      return 2031;
     case "noble":
       return 2029;
     case "jammy":
@@ -55,6 +59,8 @@ export const releaseToLTSEndYear = (release: string): number => {
 
 export const releaseToProEndYear = (release: string): string => {
   switch (release) {
+    case "resolute":
+      return "2036";
     case "noble":
       return "2034";
     case "jammy":

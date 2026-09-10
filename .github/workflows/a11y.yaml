@@ -40,6 +40,7 @@ jobs:
       - name: Run a11y tests
         env:
           URL_LIST: ${{ needs.read-config.outputs.urls }}
+          PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
         run: |
           yarn pa11y-ci $URL_LIST
 

@@ -13,6 +13,7 @@
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "macros/_macros-faq-schema.jinja" import faqpage_schema %}
 
 {% block body_class %}
   is-paper
@@ -360,6 +361,21 @@
     </div>
   </div>
 
+  {% set faq_items = [
+    ["Can I manage all my devices?",
+    "With Landscape you can manage all Ubuntu devices from a single portal."],
+    ["Will I have full control over how and when my devices get updates?",
+    "Landscape allows you to take complete control over your devices. Restrict automatic updates, schedule deployments or use groups to create a coordinated roll-out strategy."],
+    ["Are my devices secure and healthy?",
+    "Track security vulnerabilities, USNS, CVEs and updates applicable to your devices from within Landscape. You can use Landscape’s monitoring features to keep an eye on their health and be notified when devices appear to be struggling, and its scripting interface allows you to interrogate and debug devices remotely with minimal effort."],
+    ["Can I group my devices for easy administration?",
+    "Yes. With Landscape you can group by tags or custom searches and apply actions as appropriate to those groups."],
+    ["Can I bring my updates to the edge?",
+    "Yes, Landscape offers the ability to mirror a repository locally or interact with a dedicated snap store to bring your latest updates closer to your fleet and ensure quick, efficient update delivery to all your fleet."],
+    ["What else can I do?",
+    "With the Landscape API, you have full access to your fleet and can incorporate Landscape in your own bespoke tools and workflows with ease."]
+  ] %}
+
   <section class="p-section">
     <div class="row u-hide--medium u-hide--large">
       <hr class="p-rule" />
@@ -367,67 +383,21 @@
     {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
       {%- if slot == 'title' -%}
         <h2>FAQ’s: Landscape for Device Management</h2>
-      {%- endif -%}
-
-      {%- if slot == 'list_item_title_1' -%}
-        <h3 class="p-heading--5">Can I manage all my devices?</h3>
-      {%- endif -%}
-
-      {%- if slot == 'list_item_description_1' -%}
-        <p>With Landscape you can manage all Ubuntu devices from a single portal.</p>
-      {%- endif -%}
-
-      {%- if slot == 'list_item_title_2' -%}
-        <h3 class="p-heading--5">Will I have full control over how and when my devices get updates?</h3>
-      {%- endif -%}
-
-      {%- if slot == 'list_item_description_2' -%}
-        <p>
-          Landscape allows you to take complete control over your devices. Restrict automatic updates, schedule deployments or use groups to create a coordinated roll-out strategy.
-        </p>
-      {%- endif -%}
-
-      {%- if slot == 'list_item_title_3' -%}
-        <h3 class="p-heading--5">Are my devices secure and healthy?</h3>
-      {%- endif -%}
-
-      {%- if slot == 'list_item_description_3' -%}
-        <p>
-          Track security vulnerabilities, USNS, CVEs and updates applicable to your devices from within Landscape. You can use Landscape’s monitoring features to keep an eye on their health and be notified when devices appear to be struggling, and its scripting interface allows you to interrogate and debug devices remotely with minimal effort.
-        </p>
-      {%- endif -%}
-
-      {%- if slot == 'list_item_title_4' -%}
-        <h3 class="p-heading--5">Can I group my devices for easy administration?</h3>
-      {%- endif -%}
-
-      {%- if slot == 'list_item_description_4' -%}
-        <p>Yes. With Landscape you can group by tags or custom searches and apply actions as appropriate to those groups.</p>
-      {%- endif -%}
-
-      {%- if slot == 'list_item_title_5' -%}
-        <h3 class="p-heading--5">Can I bring my updates to the edge?</h3>
-      {%- endif -%}
-
-      {%- if slot == 'list_item_description_5' -%}
-        <p>
-          Yes, Landscape offers the ability to mirror a repository locally or interact with a dedicated snap store to bring
-          your latest updates closer to your fleet and ensure quick, efficient update delivery to all your fleet.
-        </p>
-      {%- endif -%}
-
-      {%- if slot == 'list_item_title_6' -%}
-        <h3 class="p-heading--5">What else can I do?</h3>
-      {%- endif -%}
-
-      {%- if slot == 'list_item_description_6' -%}
-        <p>
-          With the Landscape API, you have full access to your fleet and can incorporate Landscape in your own bespoke tools
-          and workflows with ease.
-        </p>
+      {%- elif slot.startswith('list_item_title_') -%}
+        {%- set idx = slot.split('_')[-1] | int -%}
+        {%- if idx <= faq_items|length -%}
+          <h3 class="p-heading--5">{{ faq_items[idx - 1][0] }}</h3>
+        {%- endif -%}
+      {%- elif slot.startswith('list_item_description_') -%}
+        {%- set idx = slot.split('_')[-1] | int -%}
+        {%- if idx <= faq_items|length -%}
+          <p>{{ faq_items[idx - 1][1] | safe }}</p>
+        {%- endif -%}
       {%- endif -%}
     {%- endcall -%}
   </section>
+
+  {{ faqpage_schema(faq_items) }}
 
   <section class="p-section">
     <div class="row--50-50">

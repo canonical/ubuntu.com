@@ -3,7 +3,7 @@
     <div class="p-notification__content">
       <p class="p-notification__message">
         Your submission was sent successfully!
-        <a href="#" onclick="location.href = document.referrer; return false;"><i class="p-notification__close">Close</i></a>
+        <a href="#" data-js-back><i class="p-notification__close">Close</i></a>
       </p>
     </div>
   </div>
@@ -13,7 +13,7 @@
     <div class="p-notification__content">
       <p class="p-notification__message">
         Thank you for contacting us. A member of our team will be in touch shortly.
-        <a href="#" onclick="location.href = document.referrer; return false;"><i class="p-notification__close">Close</i></a>
+        <a href="#" data-js-back><i class="p-notification__close">Close</i></a>
       </p>
     </div>
   </div>
@@ -23,7 +23,7 @@
     <div class="p-notification__content">
       <p class="p-notification__message">
         You have successfully unsubscribed!
-        <a href="#" onclick="location.href = ''; return false;"><i class="p-notification__close">Close</i></a>
+        <a href="#" data-js-back><i class="p-notification__close">Close</i></a>
       </p>
     </div>
   </div>
@@ -35,7 +35,7 @@
         Thank you for signing up for our newsletter!
         <br />
         In these regular emails you will find the latest updates about
-        Ubuntu and upcoming events where you can meet our team.<a href="#" onclick="(e) => e.preventDefault()"><i class="p-notification__close">Close</i></a>
+        Ubuntu and upcoming events where you can meet our team.<a href="#" data-js-back><i class="p-notification__close">Close</i></a>
       </p>
     </div>
   </div>
@@ -44,7 +44,7 @@
   <div class="p-notification--positive u-no-margin--bottom">
     <div class="p-notification__content">
       <p class="p-notification__message">
-        Your preferences have been successfully updated. <a href="#" onclick="location.href = document.referrer; return false;"><i class="p-notification__close">Close notification</i></a>
+        Your preferences have been successfully updated. <a href="#" data-js-back><i class="p-notification__close">Close notification</i></a>
       </p>
     </div>
   </div>
@@ -60,7 +60,7 @@
           Please try again or 
           <a href="https://github.com/canonical/ubuntu.com/issues/new?template=ISSUE_TEMPLATE.yaml">file a bug report.</a>
         {% endwith %}
-        <a href="#" onclick="location.href = document.referrer; return false;"><i class="p-notification__close">Close</i></a>
+        <a href="#" data-js-back><i class="p-notification__close">Close</i></a>
       </p>
     </div>
   </div>

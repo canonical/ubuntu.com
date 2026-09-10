@@ -94,7 +94,7 @@
         <hr class="p-rule" />
         <p class="u-responsive-realign">
           <a href="/download/raspberry-pi/thank-you?version={{ releases_yaml.lts.full_version }}&amp;architecture=desktop-arm64+raspi"
-             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Desktop', 'eventLabel' : '{{ releases_yaml.lts.full_version }}', 'eventValue' : undefined });"
+             data-ga-category="Download" data-ga-action="Raspberry Pi 64-bit - Ubuntu Desktop" data-ga-label="{{ releases_yaml.lts.full_version }}"
              class="p-button--positive u-no-margin--bottom">Download Ubuntu Desktop</a>
           {% if releases_yaml.lts.raspi_desktop_iso_size %}
             <span class="u-text--muted">{{ releases_yaml.lts.raspi_desktop_iso_size }}</span>
@@ -104,7 +104,7 @@
         <hr class="p-rule" />
         <p class="u-responsive-realign">
           <a href="/download/raspberry-pi/thank-you?version={{ releases_yaml.lts.full_version }}&amp;architecture=server-arm64+raspi"
-             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Server', 'eventLabel' : '{{ releases_yaml.lts.full_version }}', 'eventValue' : undefined });"
+             data-ga-category="Download" data-ga-action="Raspberry Pi 64-bit - Ubuntu Server" data-ga-label="{{ releases_yaml.lts.full_version }}"
              class="p-button">Download Ubuntu Server</a>
           {% if releases_yaml.lts.raspi_server_iso_size %}
             <span class="u-text--muted">{{ releases_yaml.lts.raspi_server_iso_size }}</span>
@@ -132,7 +132,7 @@
         </p>
         <p class="u-responsive-realign">
           <a href="/download/raspberry-pi/thank-you?version={{ releases_yaml.latest.core_version }}&amp;architecture=core-24-arm64+raspi"
-             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Core', 'eventLabel' : '{{ releases_yaml.latest.core_version }}', 'eventValue' : undefined });"
+             data-ga-category="Download" data-ga-action="Raspberry Pi 64-bit - Ubuntu Core" data-ga-label="{{ releases_yaml.latest.core_version }}"
              class="p-button">Download Ubuntu Core {{ releases_yaml.latest.core_version }}</a>
           {% if releases_yaml.latest.rasp_pi_core_24_size %}
             <span class="u-text--muted" style="margin-top: 0.5rem;">{{ releases_yaml.latest.rasp_pi_core_24_size }}</span>
@@ -317,8 +317,8 @@
       </div>
     </template>
   </section>
-  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-  <script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script nonce="{{ csp_nonce }}">
     canonicalLatestNews.fetchLatestNews({
       articlesContainerSelector: "#blog-latest",
       articleTemplateSelector: "#blog-template",

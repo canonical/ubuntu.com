@@ -47,7 +47,7 @@
       </li>
       {# End of honey pots #}
       <li class="p-list__item">
-        <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'cloud contact-us', 'eventLabel' : 'server-esm', 'eventValue' : undefined });">{% if cta %}{{ cta }}{% else %}Télécharger le livre blanc{% endif %}</button>
+        <button type="submit" class="p-button--positive" data-ga-category="Form" data-ga-action="cloud contact-us" data-ga-label="server-esm">{% if cta %}{{ cta }}{% else %}Télécharger le livre blanc{% endif %}</button>
       </li>
     </ul>
     <!-- hidden fields -->

@@ -12,8 +12,9 @@ def get_download_url(model_details):
     """
     platform_category = model_details.get("category", "").lower()
     architecture = model_details.get("architecture", "").lower()
-    make = model_details.get("make", "").lower()
-    configuration_name = model_details.get("model", "").lower()
+
+    if model_details.get("download_instructions_url"):
+        return model_details.get("download_instructions_url")
 
     if model_details.get("level") == "Enabled":
         # Enabled systems use oem images without download links.
@@ -22,22 +23,7 @@ def get_download_url(model_details):
     if platform_category in ["desktop", "laptop"]:
         return "https://ubuntu.com/download/desktop"
 
-    if make == "nvidia" and "jetson" in configuration_name:
-        return "https://ubuntu.com/download/nvidia-jetson"
-
-    if "qualcomm" in make and "dragonwing" in configuration_name:
-        return "https://ubuntu.com/download/qualcomm-iot#evaluation-kit"
-
-    if "thundercomm" in make and "rubik pi 3" in configuration_name:
-        return "https://ubuntu.com/download/qualcomm-iot#rubikpi3"
-
-    if "renesas" in make and "rz/g" in configuration_name:
-        return "https://ubuntu.com/download/renesas-iot"
-
     if "core" in platform_category:
-        if make == "xilinx":
-            return "https://ubuntu.com/download/amd"
-
         return "https://ubuntu.com/download/iot/"
 
     if "server" in platform_category:

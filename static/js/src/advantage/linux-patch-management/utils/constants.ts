@@ -1,4 +1,5 @@
 export const LTSReleases = [
+  { value: "resolute", label: "26.04" },
   { value: "noble", label: "24.04" },
   { value: "jammy", label: "22.04" },
   { value: "focal", label: "20.04" },

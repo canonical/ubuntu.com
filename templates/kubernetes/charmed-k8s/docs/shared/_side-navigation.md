@@ -25,6 +25,7 @@
 ## Reference
 - [Version info](/kubernetes/charmed-k8s/docs/supported-versions)
 - [Release notes](/kubernetes/charmed-k8s/docs/release-notes)
+- [Rocks registry affected charms](/kubernetes/charmed-k8s/docs/rocks-registry-affected-charms)
 - [Snap refresh settings](/kubernetes/charmed-k8s/docs/snap-refresh)
 - [Kubernetes Packages](/kubernetes/charmed-k8s/docs/packages)
 - [Inclusive naming](/kubernetes/charmed-k8s/docs/inclusive-naming)

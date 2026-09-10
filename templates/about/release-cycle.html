@@ -5,7 +5,7 @@
 {% endblock meta_copydoc %}
 
 {% block meta_description %}
-  Overview of the Ubuntu release cycle - maintenance, support and security coverage, lifetime, upgrade paths, kernel versions and the range of editions and images published by Canonical.
+  Ubuntu release cadence, LTS and interim releases, support timelines, upgrade paths, and kernel versions.
 {% endblock %}
 
 {% block title %}Ubuntu release cycle{% endblock %}
@@ -552,12 +552,12 @@
     </div>
   </section>
 
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
   {# djlint:off #}
-  <script type="text/javascript">
+  <script nonce="{{ csp_nonce }}" type="text/javascript">
     const productsData = {{ products_data | tojson | safe }};
   </script>
   {# djlint:off #}
-  <script src="{{ versioned_static('js/src/product-releases.js') }}" defer></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/src/product-releases.js') }}" defer></script>
 {% endblock content %}

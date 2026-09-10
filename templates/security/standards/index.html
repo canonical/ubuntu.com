@@ -21,47 +21,58 @@
 
 {% block content %}
 
-  <section class="p-section--hero">
-    <div class="row--50-50-on-large">
-      <div class="col">
-        <div class="p-section--shallow">
-          <h1>Security standards</h1>
-        </div>
-        <div class="p-section--shallow">
-          <p>
+  {% call(slot) vf_hero(
+    title_text='Security standards',
+    chip_text='Available with Ubuntu Pro',
+    layout='50/50',
+    blocks=[
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "html",
+          "content": '<p>
             <strong>Run Ubuntu in high-security environments</strong>. Confidently deploy critical workloads while meeting rigorous cybersecurity standards like NIST 800-53, FedRAMP, and CMMC with Ubuntu Pro. As the publishers of Ubuntu, we’ve also developed automated hardening solutions enabling you to run Ubuntu in any environment.
-          </p>
-        </div>
-        <div class="p-cta-block">
-          <p>
-            <a href="/security/contact-us"
-               class="p-button--positive js-invoke-modal"
-               aria-controls="security-standards-modal">Contact us</a>
-            <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
-          </p>
-        </div>
+          </p>'
+        }
+      },
+      {
+        "type": "cta-block",
+        "padding": "shallow",
+        "item": {
+          "primary": {
+            "content_html": "Contact us",
+            "attrs": {"href": "/security/contact-us", "class": "js-invoke-modal", "aria-controls": "security-standards-modal"}
+          },
+          "link": {
+            "content_html": "Learn more about Ubuntu Pro&nbsp;&rsaquo;",
+            "attrs": {"href": "/pro"}
+          }
+        }
+      },
+    ]
+    ) -%}
+    {%- if slot == 'image' -%}
+      <div class="u-embedded-media">
+        <iframe title="Navigating Compliance and Agility | LaunchDarkly's FedRAMP Journey with Ubuntu Pro FIPS"
+                class="u-embedded-media__element"
+                src="https://www.youtube.com/embed/3pGy8KIt78k?si=b6cEk2OZek1p91LC"
+                allowfullscreen=""
+                frameborder="0"></iframe>
       </div>
-      <div class="col">
-        <div class="u-embedded-media">
-          <iframe title="Navigating Compliance and Agility | LaunchDarkly's FedRAMP Journey with Ubuntu Pro FIPS"
-                  class="u-embedded-media__element"
-                  src="https://www.youtube.com/embed/3pGy8KIt78k?si=b6cEk2OZek1p91LC"
-                  allowfullscreen=""
-                  frameborder="0"></iframe>
-        </div>
-      </div>
-    </div>
-    <div class="u-fixed-width">
-      <div class="p-notification--information is-light">
-        <div class="p-notification__content">
-          <div class="p-notification__message">
-            FIPS 140-3 is now available for Ubuntu 22.04 LTS. Learn more <a href="/blog/fips-140-3-for-ubuntu-22-04lts"
+    {%- endif -%}
+  {% endcall -%}
+
+  <div class="u-fixed-width">
+    <div class="p-notification--information is-light">
+      <div class="p-notification__content">
+        <div class="p-notification__message">
+          FIPS 140-3 is now available for Ubuntu 22.04 LTS. Learn more <a href="/blog/fips-140-3-for-ubuntu-22-04lts"
     aria-label="Learn more about FIPS 140-3 for Ubuntu 22.04 LTS">here</a>.
-          </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <div class="u-fixed-width">
     <hr class="p-rule" />
@@ -135,7 +146,7 @@
     {%- endif -%}
     {%- if slot == 'list_item_10' -%}
       <h3 id="nis2" class="p-heading--6 p-heading--bold u-no-padding--top">
-        <a href="/blog/a-comprehensive-guide-to-nis2-compliance-part-3-setting-the-roadmap-and-demonstrating-nis2-compliance">NIS2</a>
+        <a href="/security/nis2">NIS2</a>
       </h3>
       <p class="u-no-padding--top">Canonical can help you with your compliance needs related to EU NIS2.</p>
     {%- endif -%}
@@ -542,8 +553,8 @@
     </div>
   </section>
 
-  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
-  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
 
   {{ load_form("/security-standards") | safe }}
 

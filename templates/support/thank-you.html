@@ -5,7 +5,7 @@
 {% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 
 {% block meta_description %}
-  Ubuntu Advantage for Infrastructure provides a single subscription for security maintenance and support for your open source infrastructure, including OpenStack and Kubernetes.
+  Thank you for contacting Canonical. Our support team will be in touch shortly.
 {% endblock %}
 
 {% block meta_copydoc %}
@@ -26,7 +26,7 @@
 
 {% block footer_extra %}
   <!-- Google Code for Services Canonical &mdash; contact us Conversion Page -->
-  <script>
+  <script nonce="{{ csp_nonce }}">
     /* <![CDATA[ */
     var google_conversion_id = 1012391776;
     var google_conversion_language = "en";
@@ -36,7 +36,7 @@
     var google_conversion_value = 0;
     /* ]]> */
   </script>
-  <script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js"></script>
+  <script nonce="{{ csp_nonce }}" type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js"></script>
   <noscript>
     <div style="display:inline;">
       <img height="1"

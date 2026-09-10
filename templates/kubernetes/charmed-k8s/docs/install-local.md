@@ -21,6 +21,8 @@ requirements which may exceed a standard laptop or desktop machine. It is only
 recommended on a machine running at least Ubuntu 20.04 with 32GB RAM and 128GB of
 SSD storage.
 
+{% include "kubernetes/charmed-k8s/docs/shared/_rocks-registry-decommission-warning.html" %}
+
 <div class="p-notification--positive is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Note:</span>
