@@ -479,6 +479,13 @@ def build_engage_index(engage_docs):
                 limit, offset, key="is_static", value=None
             )
 
+        # Don't render pages marked as active=false
+        metadata = [
+            page
+            for page in metadata
+            if str(page.get("active", "")).strip().lower() != "false"
+        ]
+
         # Fixed so that engage page authors don't create random resource types
         resource_types = [
             "Blog",
@@ -559,6 +566,8 @@ def build_engage_page(engage_pages):
             path = f"/engage/{page}"
         metadata = engage_pages.get_engage_page(path)
         if not metadata:
+            flask.abort(404)
+        elif str(metadata.get("active", "")).strip().lower() == "false":
             flask.abort(404)
         else:
             related_pages_metadata = []
