@@ -1480,6 +1480,37 @@ def render_cmmc_blogs():
 app.add_url_rule("/security/cmmc", view_func=render_cmmc_blogs)
 
 
+# NCSC Code of Practice resources blogs tab
+def render_ncsc_code_of_practice_blogs():
+    blogs = BlogViews(
+        api=BlogAPI(
+            session=session, thumbnail_width=640, thumbnail_height=340
+        ),
+        tag_ids=[
+            4632,
+            4554,
+            4869,
+            4580,
+            4579,
+        ],
+        excluded_tags=[3184, 3265],
+        per_page=4,
+        blog_title="NCSC Code of Practice blogs",
+    )
+    sorted_articles = sorted(
+        blogs.get_index()["articles"], key=lambda x: x["date"]
+    )
+    return flask.render_template(
+        "/security/ncsc-code-of-practice.html", blogs=sorted_articles
+    )
+
+
+app.add_url_rule(
+    "/security/ncsc-code-of-practice",
+    view_func=render_ncsc_code_of_practice_blogs,
+)
+
+
 # Supermicro blog section
 def render_supermicro_blogs():
     blogs = BlogViews(
