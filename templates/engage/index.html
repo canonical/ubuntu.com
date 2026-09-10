@@ -126,49 +126,51 @@
       <div {% if total_pages > 1 %}class="p-section--shallow"{% endif %}>
         <div class="grid-row">
           {% for item in metadata %}
-            {%- set item_link = item.path -%}
-            {%- if item.active == 'false' and preview != None -%}
-              {%- set item_link = item_link ~ '?preview' -%}
+            {%- if item.active != 'false' or preview != None -%}
+              {%- set item_link = item.path -%}
+              {%- if item.active == 'false' and preview != None -%}
+                {%- set item_link = item_link ~ '?preview' -%}
+              {%- endif -%}
+              {%- if 'whitepaper' in item.type %}
+                {%- set type_icon = "topic" -%}
+              {%- elif 'webinar' in item.type -%}
+                {%- set type_icon = "video-play" -%}
+              {%- elif 'case study' in item.type -%}
+                {%- set type_icon = "units" -%}
+              {%- else -%}
+                {%- set type_icon = "topic" -%}
+              {%- endif -%}
+              {% if loop.index <= 2 and both_have_images %}
+                {{ vf_card(columns="4",
+                              link=item_link,
+                              heading=item.topic_name,
+                              image={
+                              "src": item.image,
+                              "alt": item.topic_name
+                              } if item.image else None,
+                              footer={
+                              "resource_type": {
+                              "icon": type_icon,
+                              "text": item.type
+                              },
+                              "content_type": item.tags.split(',') | map('trim') | list if item.tags else []
+                } if item.type or item.tags else None,
+                description=item.subtitle,
+                stacked_image=true) }}
+              {% else %}
+                {{ vf_card(columns="4",
+                              link=item_link,
+                              heading=item.topic_name,
+                              footer={
+                              "resource_type": {
+                              "icon": type_icon,
+                              "text": item.type
+                              },
+                              "content_type": item.tags.split(',') | map('trim') | list if item.tags else []
+                } if item.type or item.tags else None,
+                description=item.subtitle) }}
+              {% endif %}
             {%- endif -%}
-            {%- if 'whitepaper' in item.type %}
-              {%- set type_icon = "topic" -%}
-            {%- elif 'webinar' in item.type -%}
-              {%- set type_icon = "video-play" -%}
-            {%- elif 'case study' in item.type -%}
-              {%- set type_icon = "units" -%}
-            {%- else -%}
-              {%- set type_icon = "topic" -%}
-            {%- endif -%}
-            {% if loop.index <= 2 and both_have_images %}
-              {{ vf_card(columns="4",
-                            link=item_link,
-                            heading=item.topic_name,
-                            image={
-                            "src": item.image,
-                            "alt": item.topic_name
-                            } if item.image else None,
-                            footer={
-                            "resource_type": {
-                            "icon": type_icon,
-                            "text": item.type
-                            },
-                            "content_type": item.tags.split(',') | map('trim') | list if item.tags else []
-              } if item.type or item.tags else None,
-              description=item.subtitle,
-              stacked_image=true) }}
-            {% else %}
-              {{ vf_card(columns="4",
-                            link=item_link,
-                            heading=item.topic_name,
-                            footer={
-                            "resource_type": {
-                            "icon": type_icon,
-                            "text": item.type
-                            },
-                            "content_type": item.tags.split(',') | map('trim') | list if item.tags else []
-              } if item.type or item.tags else None,
-              description=item.subtitle) }}
-            {% endif %}
           {% endfor %}
         </div>
       </div>
