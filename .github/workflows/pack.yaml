@@ -25,11 +25,6 @@ on:
         required: false
         type: boolean
         default: false
-      disable-charm-cache:
-        description: "Skip restore/save of charm cache for this run"
-        required: false
-        type: boolean
-        default: false
     outputs:
       image_url:
         description: "Full GHCR image URL that was pushed"
@@ -177,7 +172,7 @@ jobs:
 
       - name: Restore charm cache
         id: charm-cache
-        if: inputs.force-charm-rebuild != true && inputs.disable-charm-cache != true
+        if: inputs.force-charm-rebuild != true
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ./charm/*.charm
@@ -192,7 +187,11 @@ jobs:
         run: charmcraft pack -v --project-dir ./charm
 
       - name: Save charm cache
-        if: steps.charm-cache.outputs.cache-hit != 'true' && inputs.force-charm-rebuild != true && inputs.disable-charm-cache != true
+        # Cache-poisoning guard: only cache on a push trigger on main branch
+        if: >-
+          steps.charm-cache.outputs.cache-hit != 'true' &&
+          inputs.force-charm-rebuild != true &&
+          github.event_name == 'push'
         uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ./charm/*.charm
