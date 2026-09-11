@@ -108,7 +108,7 @@ jobs:
       # caching dependencies to save time
       - name: Cache yarn dependencies
         if: steps.check-image.outputs.exists != 'true'
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: ~/.cache/yarn
           key: yarn-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
@@ -117,7 +117,7 @@ jobs:
 
       - name: Cache pip dependencies
         if: steps.check-image.outputs.exists != 'true'
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: ~/.cache/pip
           key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
@@ -173,7 +173,7 @@ jobs:
       - name: Restore charm cache
         id: charm-cache
         if: inputs.force-charm-rebuild != true
-        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: ./charm/*.charm
           key: charm-${{ steps.charmcraft-version.outputs.version }}-${{ steps.week.outputs.value }}-${{ hashFiles('charm/**', '!charm/*.charm') }}
@@ -192,7 +192,7 @@ jobs:
           steps.charm-cache.outputs.cache-hit != 'true' &&
           inputs.force-charm-rebuild != true &&
           github.event_name == 'push'
-        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: ./charm/*.charm
           key: charm-${{ steps.charmcraft-version.outputs.version }}-${{ steps.week.outputs.value }}-${{ hashFiles('charm/**', '!charm/*.charm') }}
