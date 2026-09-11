@@ -1,4 +1,8 @@
 name: ubuntu-com
+# NOTE: the "pack-rock" job in .github/workflows/pack.yaml runs
+# `rockcraft pack --destructive-mode` directly on the GitHub Actions runner 
+# hence it derives the `base:` field below (see the "resolve-base" job in
+# pack.yaml)
 base: ubuntu@22.04
 version: "0.1"
 summary: Ubuntu website https://ubuntu.com
