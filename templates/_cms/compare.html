@@ -1,0 +1,114 @@
+{#
+  Published and draft, side by side, for a CMS page.
+
+  Deliberately standalone rather than extending the site layout: the two
+  panes are the site, and a wrapper with its own navigation would just
+  get in the way.
+#}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{{ route }} — draft vs published</title>
+    <link rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="{{ versioned_static('css/styles.css') }}" />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      .cms-compare {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      .cms-compare__bar {
+        align-items: baseline;
+        background: #262626;
+        color: #fff;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 1.5rem;
+        padding: 0.5rem 1rem;
+      }
+
+      .cms-compare__bar a {
+        color: #fff;
+      }
+
+      .cms-compare__panes {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+      }
+
+      .cms-compare__pane {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        min-width: 0;
+      }
+
+      .cms-compare__pane+.cms-compare__pane {
+        border-left: 1px solid #666;
+      }
+
+      .cms-compare__label {
+        background: #f7f7f7;
+        border-bottom: 1px solid #d9d9d9;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        padding: 0.35rem 1rem;
+        text-transform: uppercase;
+      }
+
+      .cms-compare__label--draft {
+        background: #fdeee9;
+      }
+
+      .cms-compare__pane iframe {
+        border: 0;
+        flex: 1;
+        width: 100%;
+      }
+
+      .cms-compare__missing {
+        padding: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cms-compare">
+      <div class="cms-compare__bar">
+        <strong>{{ route }}</strong>
+        <span>Draft and published, side by side. Scroll each pane on its own.</span>
+        <a href="{{ route }}">Open published</a>
+        <a href="{{ draft_url }}">Open draft</a>
+      </div>
+      <div class="cms-compare__panes">
+        <div class="cms-compare__pane">
+          <p class="cms-compare__label">
+            Published
+            {% if not is_published %}— nothing published at this route yet{% endif %}
+          </p>
+          {% if is_published %}
+            <iframe src="{{ published_url }}" title="Published version of {{ route }}"></iframe>
+          {% else %}
+            <p class="cms-compare__missing">This page has never been published, so there is nothing to compare against.</p>
+          {% endif %}
+        </div>
+        <div class="cms-compare__pane">
+          <p class="cms-compare__label cms-compare__label--draft">Draft</p>
+          <iframe src="{{ draft_url }}" title="Draft version of {{ route }}"></iframe>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

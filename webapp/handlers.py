@@ -528,8 +528,24 @@ def init_handlers(app):
             return csp_str.strip()
 
         nonce = getattr(flask.g, "csp_nonce", None)
+
+        # A view can widen frame-ancestors for its own response: the CMS
+        # preview needs the page to be framable by the Strapi admin, and
+        # by the side-by-side compare view.
+        csp = CSP
+        extra_ancestors = getattr(flask.g, "cms_frame_ancestors", None)
+
+        if extra_ancestors:
+            csp = {
+                **CSP,
+                "frame-ancestors": [
+                    *CSP["frame-ancestors"],
+                    *extra_ancestors,
+                ],
+            }
+
         response.headers["Content-Security-Policy"] = get_csp_as_str(
-            CSP, nonce=nonce
+            csp, nonce=nonce
         )
         # Off by default: this doubles the CSP bytes on every response and
         # the proxy in front of production caps response headers at ~12k,

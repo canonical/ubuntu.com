@@ -21,6 +21,12 @@
 {% block body_class %}{{ page.body_class }}{% endblock body_class %}
 
 {% block head_extra %}
+  {% if page.is_preview %}
+    {# Talks to Strapi's preview panel, so edits refresh the frame. #}
+    <script nonce="{{ csp_nonce }}"
+            src="{{ versioned_static('js/src/cms-preview.js') }}"
+            defer></script>
+  {% endif %}
   {# base.html only renders footer_extra when the footer is shown, so page
      scripts belong here. #}
   {% if page.needs_tabs_js %}

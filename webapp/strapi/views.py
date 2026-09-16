@@ -7,7 +7,13 @@ rendered from the CMS instead of 404ing.
 """
 
 # Standard library
+import json
 import logging
+import os
+import re
+import secrets
+import tempfile
+import time
 
 # Packages
 import flask
@@ -26,6 +32,88 @@ from webapp.strapi.routing import (
 logger = logging.getLogger(__name__)
 
 PAGE_TEMPLATE = "_cms/page.html"
+COMPARE_TEMPLATE = "_cms/compare.html"
+
+# Unsaved drafts posted from the CMS while someone is typing.
+#
+# Kept on disk rather than in memory: the site runs under gunicorn with
+# several workers, and the worker that stores a draft is rarely the one
+# asked to render it. Files are small, short-lived, and pruned on write.
+DRAFT_TTL = 300
+MAX_DRAFTS = 50
+DRAFT_DIR = os.path.join(tempfile.gettempdir(), "ubuntu-com-cms-drafts")
+
+
+def _draft_path(key):
+    # The key is generated here, but never trust it off the wire.
+    if not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", key or ""):
+        return None
+
+    return os.path.join(DRAFT_DIR, f"{key}.json")
+
+
+def _prune_drafts():
+    now = time.time()
+
+    try:
+        entries = sorted(
+            (
+                (os.path.getmtime(os.path.join(DRAFT_DIR, name)), name)
+                for name in os.listdir(DRAFT_DIR)
+                if name.endswith(".json")
+            ),
+            reverse=True,
+        )
+    except OSError:
+        return
+
+    for index, (modified, name) in enumerate(entries):
+        if now - modified > DRAFT_TTL or index >= MAX_DRAFTS:
+            try:
+                os.remove(os.path.join(DRAFT_DIR, name))
+            except OSError:
+                pass
+
+
+def _store_draft(document):
+    """Keep a posted draft briefly and return the key to fetch it with."""
+    os.makedirs(DRAFT_DIR, exist_ok=True)
+    _prune_drafts()
+
+    key = secrets.token_urlsafe(12)
+    path = _draft_path(key)
+
+    # Written then moved, so a reader never sees half a file.
+    with tempfile.NamedTemporaryFile(
+        "w", dir=DRAFT_DIR, suffix=".tmp", delete=False
+    ) as handle:
+        json.dump(document, handle)
+        temporary = handle.name
+
+    os.replace(temporary, path)
+
+    return key
+
+
+def _read_draft(key):
+    path = _draft_path(key)
+
+    if not path or not os.path.exists(path):
+        return None
+
+    if time.time() - os.path.getmtime(path) > DRAFT_TTL:
+        try:
+            os.remove(path)
+        except OSError:
+            pass
+
+        return None
+
+    try:
+        with open(path) as handle:
+            return json.load(handle)
+    except (OSError, ValueError):
+        return None
 
 
 def cms_takes_priority():
@@ -39,7 +127,24 @@ def cms_takes_priority():
     return str(setting).lower() == "true"
 
 
-def is_preview_request():
+def preview_frame_ancestors():
+    """
+    Who may frame a preview: the Strapi admin, so its preview panel
+    works, and the site itself, for the compare view. Only ever applied
+    to preview responses, never to a published page.
+    """
+    origins = ["'self'"]
+    cms_origin = get_flask_env("STRAPI_ADMIN_URL") or get_flask_env(
+        "STRAPI_API_URL"
+    )
+
+    if cms_origin:
+        origins.append(cms_origin.rstrip("/"))
+
+    return origins
+
+
+def has_preview_token():
     """
     True when the request carries the preview token, which lets an editor
     see an unpublished page from Strapi's preview button.
@@ -52,13 +157,44 @@ def is_preview_request():
     return flask.request.args.get("preview") == token
 
 
-def render_cms_page(strapi_api, route, preview=False):
-    document = strapi_api.get_page(route, preview=preview)
+def is_preview_request():
+    """
+    True when the draft should be shown. A token holder can ask for the
+    published version instead with `version=published`, which the compare
+    view uses for its left-hand pane: same content as the live page, but
+    in a response the compare page is allowed to frame.
+    """
+    if not has_preview_token():
+        return False
+
+    return flask.request.args.get("version") != "published"
+
+
+def render_cms_page(
+    strapi_api, route, preview=False, framable=False, document=None
+):
+    """
+    Render the page at `route`. `preview` picks the draft over the
+    published version; `framable` relaxes frame-ancestors so the CMS and
+    the compare view can show it in an iframe.
+
+    `document` renders the page from content supplied by the caller
+    instead of anything stored — that is how the CMS shows edits that
+    have not been saved yet.
+    """
+    if framable:
+        # Read by the CSP builder in webapp.handlers.
+        flask.g.cms_frame_ancestors = preview_frame_ancestors()
+
+    if document is None:
+        document = strapi_api.get_page(route, preview=preview)
 
     if not document:
         flask.abort(404, f"Can't find page for: {route}")
 
     page = normalise_page(document, media_url=strapi_api.media_url)
+    # Only a framed preview loads the Strapi handshake script.
+    page["is_preview"] = framable
 
     response = flask.make_response(
         flask.render_template(
@@ -70,7 +206,7 @@ def render_cms_page(strapi_api, route, preview=False):
         )
     )
 
-    if preview or page["is_draft"]:
+    if preview or framable or page["is_draft"]:
         response.headers["Cache-Control"] = "no-store"
         response.headers["X-Robots-Tag"] = "noindex, nofollow"
     elif page["seo"]["no_index"]:
@@ -105,12 +241,32 @@ class CMSTemplateFinder(TemplateFinder):
     def dispatch_request(self, *args, **kwargs):
         path = normalise_path(flask.request.path)
         preview = is_preview_request()
+        framable = has_preview_token()
+
+        # An unsaved draft posted by the CMS wins over anything stored,
+        # so the preview can show edits as they are typed. Needs the same
+        # token as any other preview.
+        draft_key = flask.request.args.get("draft")
+
+        if framable and draft_key:
+            document = _read_draft(draft_key)
+
+            if document is not None:
+                return render_cms_page(
+                    self.strapi_api,
+                    cms_route(path),
+                    preview=True,
+                    framable=True,
+                    document=document,
+                )
 
         if cms_takes_priority():
             route = self._cms_route_for(path, preview)
 
             if route:
-                return render_cms_page(self.strapi_api, route, preview)
+                return render_cms_page(
+                    self.strapi_api, route, preview, framable
+                )
 
         if matching_template(path):
             return super().dispatch_request(*args, **kwargs)
@@ -118,7 +274,7 @@ class CMSTemplateFinder(TemplateFinder):
         route = self._cms_route_for(path, preview)
 
         if route:
-            return render_cms_page(self.strapi_api, route, preview)
+            return render_cms_page(self.strapi_api, route, preview, framable)
 
         flask.abort(404, f"Can't find page for: {path}")
 
@@ -189,6 +345,105 @@ def build_sitemap_view(strapi_api):
     return cms_sitemap
 
 
+def build_draft_preview_view():
+    """
+    POST /_cms/preview
+
+    Takes a page as it currently stands in the CMS form — including edits
+    that have not been saved — and keeps it just long enough to render.
+    Answers with a key the preview URL carries as `?draft=`.
+
+    Called cross-origin from the CMS, so it answers a preflight too.
+    """
+
+    def draft_preview():
+        origins = preview_frame_ancestors()
+        allowed = [origin for origin in origins if origin != "'self'"]
+        cors = {
+            "Access-Control-Allow-Origin": allowed[0] if allowed else "null",
+            "Access-Control-Allow-Headers": "content-type",
+            "Access-Control-Allow-Methods": "POST, OPTIONS",
+            "Access-Control-Max-Age": "600",
+        }
+
+        if flask.request.method == "OPTIONS":
+            return flask.make_response("", 204, cors)
+
+        token = get_flask_env("STRAPI_PREVIEW_TOKEN")
+
+        if not token or flask.request.args.get("preview") != token:
+            return flask.jsonify({"error": "A preview token is required"}), 403
+
+        document = flask.request.get_json(silent=True)
+
+        if not isinstance(document, dict):
+            return flask.jsonify({"error": "A page document is required"}), 400
+
+        response = flask.jsonify({"draft": _store_draft(document)})
+        response.headers.extend(cors)
+        response.headers["Cache-Control"] = "no-store"
+
+        return response
+
+    return draft_preview
+
+
+def build_compare_view(strapi_api):
+    """
+    GET /_cms/compare?path=/some-page
+
+    The published page and the draft, in two panes, so an editor can see
+    what a change does before publishing it. Requires the preview token,
+    the same as viewing a draft directly.
+    """
+
+    def compare():
+        token = get_flask_env("STRAPI_PREVIEW_TOKEN")
+
+        if not token:
+            return (
+                flask.jsonify({"error": "Previewing is not enabled"}),
+                404,
+            )
+
+        if flask.request.args.get("preview") != token:
+            return flask.jsonify({"error": "A preview token is required"}), 403
+
+        if not strapi_api:
+            return flask.jsonify({"error": "No CMS is configured"}), 404
+
+        route = cms_route(flask.request.args.get("path", ""))
+
+        if not route:
+            return (
+                flask.jsonify(
+                    {"error": "A 'path' query parameter is required"}
+                ),
+                400,
+            )
+
+        if not strapi_api.has_route(route, preview=True):
+            flask.abort(404, f"The CMS has no page at {route}")
+
+        flask.g.cms_frame_ancestors = preview_frame_ancestors()
+
+        response = flask.make_response(
+            flask.render_template(
+                COMPARE_TEMPLATE,
+                route=route,
+                draft_url=f"{route}?preview={token}",
+                published_url=f"{route}?preview={token}&version=published",
+                is_published=strapi_api.has_route(route),
+            )
+        )
+        response.headers["Cache-Control"] = "no-store"
+        response.headers["X-Robots-Tag"] = "noindex, nofollow"
+
+        return response
+
+    return compare
+
+
 def build_cache_purge_view(strapi_api):
     """
     POST /_cms/cache/purge
@@ -239,6 +494,17 @@ def init_cms(app, strapi_api):
         view_func=build_cache_purge_view(strapi_api),
         endpoint="cms_cache_purge",
         methods=["POST"],
+    )
+    app.add_url_rule(
+        "/_cms/preview",
+        view_func=build_draft_preview_view(),
+        endpoint="cms_draft_preview",
+        methods=["POST", "OPTIONS"],
+    )
+    app.add_url_rule(
+        "/_cms/compare",
+        view_func=build_compare_view(strapi_api),
+        endpoint="cms_compare",
     )
     app.add_url_rule(
         "/_cms/sitemap.xml",
