@@ -1,0 +1,41 @@
+{# vanilla.accordion — p-accordion, driven by static/js/src/accordion.js #}
+{% set block = section.data %}
+
+<section class="{{ block.section_class }}">
+  <div class="{{ block.row_class }}">
+    {% if block.layout != "full_width" %}
+      <hr class="p-rule" />
+      <div class="col">
+        {% if block.title %}<h2>{{ block.title }}</h2>{% endif %}
+      </div>
+    {% elif block.title %}
+      <h2>{{ block.title }}</h2>
+    {% endif %}
+
+    <div {% if block.layout != "full_width" %}class="col"{% endif %}>
+      <aside class="p-accordion"
+             {% if block.allow_multiple_open %}data-multiple-expanded="true"{% endif %}>
+        <ul class="p-accordion__list">
+          {% for item in block["items"] %}
+            {% set panel_id = "cms-accordion-" ~ section.index ~ "-" ~ loop.index %}
+            <li class="p-accordion__group">
+              <div role="heading" aria-level="3">
+                <button type="button"
+                        class="p-accordion__tab"
+                        id="{{ panel_id }}-tab"
+                        aria-controls="{{ panel_id }}"
+                        aria-expanded="{{ 'true' if item.is_expanded else 'false' }}">{{ item.title }}</button>
+              </div>
+              <section class="p-accordion__panel"
+                       id="{{ panel_id }}"
+                       aria-hidden="{{ 'false' if item.is_expanded else 'true' }}"
+                       aria-labelledby="{{ panel_id }}-tab">
+                {{ item.content | safe }}
+              </section>
+            </li>
+          {% endfor %}
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>

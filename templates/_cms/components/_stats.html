@@ -1,0 +1,23 @@
+{# vanilla.stats — a row of headline numbers #}
+{% set block = section.data %}
+
+<section class="{{ block.section_class }}">
+  {% if block.title or block.intro %}
+    <div class="u-fixed-width p-section--shallow">
+      <hr class="p-rule" />
+      {% if block.title %}<h2>{{ block.title }}</h2>{% endif %}
+      {{ block.intro | safe }}
+    </div>
+  {% endif %}
+
+  <div class="row">
+    {% for item in block["items"] %}
+      <div class="{{ block.column_class }}">
+        <hr class="p-rule--muted" />
+        <p class="p-heading--2 u-no-margin--bottom">{{ item.value }}</p>
+        <p class="u-text--muted">{{ item.label }}</p>
+        {% if item.description %}<p>{{ item.description }}</p>{% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>

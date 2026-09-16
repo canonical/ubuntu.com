@@ -1,0 +1,18 @@
+{# vanilla.code-snippet — p-code-snippet #}
+{% set block = section.data %}
+
+<section class="{{ block.section_class }}">
+  <div class="{{ block.width_class }}">
+    {% if block.title %}<h2>{{ block.title }}</h2>{% endif %}
+    <div class="p-code-snippet">
+      {% for code in block.blocks %}
+        {% if code.title %}
+          <div class="p-code-snippet__header">
+            <h5 class="p-code-snippet__title">{{ code.title }}</h5>
+          </div>
+        {% endif %}
+        <pre class="{{ code.class }}"><code>{{ code.content }}</code></pre>
+      {% endfor %}
+    </div>
+  </div>
+</section>

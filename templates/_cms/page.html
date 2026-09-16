@@ -1,0 +1,55 @@
+{#
+  A page authored in Strapi.
+
+  The page is a list of sections, each one a Vanilla Framework pattern.
+  webapp/strapi/content.py decides which partial renders each section, so
+  the component name from the API never reaches this include path.
+#}
+
+{% extends "templates/base.html" %}
+
+{% block title %}{{ page.seo.title }}{% endblock %}
+
+{% block meta_description %}{{ page.seo.description }}{% endblock meta_description %}
+
+{% block meta_copydoc %}{{ page.seo.copydoc }}{% endblock meta_copydoc %}
+
+{% block meta_image %}{{ page.seo.image }}{% endblock meta_image %}
+
+{% block canonical_url %}{{ page.seo.canonical_url or request.url }}{% endblock canonical_url %}
+
+{% block body_class %}{{ page.body_class }}{% endblock body_class %}
+
+{% block head_extra %}
+  {# base.html only renders footer_extra when the footer is shown, so page
+     scripts belong here. #}
+  {% if page.needs_tabs_js %}
+    <script nonce="{{ csp_nonce }}"
+            src="{{ versioned_static('js/dist/tabbedContent.js') }}"
+            defer></script>
+  {% endif %}
+{% endblock head_extra %}
+
+{% block extra_metatags %}
+  {% if page.seo.no_index or page.is_draft %}<meta name="robots" content="noindex, nofollow" />{% endif %}
+{% endblock extra_metatags %}
+
+{% block outer_content %}
+
+  {% if page.is_draft %}
+    <div class="u-fixed-width">
+      <div class="p-notification--caution">
+        <div class="p-notification__content">
+          <p class="p-notification__message">
+            This is an unpublished draft, visible because of the preview link. It is not indexed and not live.
+          </p>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% for section in page.sections %}
+    {% include section.template %}
+  {% endfor %}
+
+{% endblock outer_content %}

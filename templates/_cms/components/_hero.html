@@ -1,0 +1,20 @@
+{# vanilla.hero — rendered by Vanilla Framework's own vf_hero macro #}
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_cms/_macros.html" import cms_image, cms_cta with context %}
+{% set hero = section.data %}
+
+{% call(slot) vf_hero(title_text=hero.title,
+  subtitle_text=hero.subtitle or "",
+  layout=hero.vf_layout,
+  is_split_on_medium=hero.is_split_on_medium,
+  display_blank_signpost_image_space=hero.vf_blank_signpost) %}
+  {%- if slot == "description" -%}
+    {{ hero.content | safe }}
+  {%- endif -%}
+  {%- if slot == "cta" -%}
+    {{ cms_cta(hero.links) }}
+  {%- endif -%}
+  {%- if slot == "image" and hero.image -%}
+    {{ cms_image(hero.image) }}
+  {%- endif -%}
+{% endcall %}

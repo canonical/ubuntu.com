@@ -1,0 +1,30 @@
+{# vanilla.tiered-list — rendered by Vanilla Framework's vf_tiered_list macro #}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_cms/_macros.html" import cms_link, cms_cta with context %}
+{% set block = section.data %}
+
+{% call(slot) vf_tiered_list(padding=block.vf_padding,
+  top_rule_variant=block.vf_rule,
+  is_description_full_width_on_desktop=block.is_description_full_width,
+  is_list_full_width_on_tablet=block.is_list_full_width_on_tablet) %}
+  {%- if slot == "title" -%}
+    <h2>{{ block.title }}</h2>
+  {%- endif -%}
+  {%- if slot == "description" -%}
+    {{ block.intro | safe }}
+  {%- endif -%}
+  {%- if slot == "cta" -%}
+    {{ cms_cta(block.links) }}
+  {%- endif -%}
+  {%- for item in block["items"] -%}
+    {%- if slot == "list_item_title_" ~ loop.index -%}
+      <h3 class="p-heading--5">{{ item.title }}</h3>
+    {%- endif -%}
+    {%- if slot == "list_item_description_" ~ loop.index -%}
+      {{ item.content | safe }}
+      {%- if item.link -%}
+        <div class="p-cta-block">{{ cms_link(item.link) }}</div>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{% endcall %}

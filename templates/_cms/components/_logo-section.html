@@ -1,0 +1,22 @@
+{# vanilla.logo-section — p-logo-section #}
+{% from "_cms/_macros.html" import cms_image with context %}
+{% set block = section.data %}
+
+<section class="{{ block.section_class }}">
+  <div class="u-fixed-width">
+    <div class="p-logo-section">
+      {% if block.title %}<h2 class="p-logo-section__title p-text--small-caps">{{ block.title }}</h2>{% endif %}
+      <div class="p-logo-section__items">
+        {% for logo in block.logos %}
+          <div class="p-logo-section__item">
+            {% if logo.url %}
+              <a href="{{ logo.url }}">{{ cms_image(logo.image, "p-logo-section__logo") }}</a>
+            {% else %}
+              {{ cms_image(logo.image, "p-logo-section__logo") }}
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

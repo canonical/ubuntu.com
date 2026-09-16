@@ -1,0 +1,16 @@
+{# vanilla.image-block — p-image-container #}
+{% from "_cms/_macros.html" import cms_image with context %}
+{% set block = section.data %}
+
+<section class="{{ block.section_class }}">
+  <div class="{{ block.width_class }}">
+    {% if block.aspect_ratio_class %}
+      <div class="p-image-container {{ block.aspect_ratio_class }}">
+        {{ cms_image(block.image, "p-image-container__image") }}
+      </div>
+    {% else %}
+      {{ cms_image(block.image) }}
+    {% endif %}
+    {% if block.caption %}<p class="p-text--small u-text--muted">{{ block.caption }}</p>{% endif %}
+  </div>
+</section>

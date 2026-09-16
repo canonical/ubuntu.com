@@ -1,0 +1,6 @@
+{# vanilla.html — the escape hatch, sanitised in webapp/strapi/content.py #}
+{% set block = section.data %}
+
+<section class="{{ block.section_class }}">
+  <div class="{{ block.width_class }}">{{ block.content | safe }}</div>
+</section>

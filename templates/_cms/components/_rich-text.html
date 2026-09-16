@@ -1,0 +1,12 @@
+{# vanilla.rich-text — a standalone block of Markdown #}
+{% set block = section.data %}
+
+<section class="{{ block.section_class }}">
+  {% if block.width == "narrow" %}
+    <div class="row">
+      <div class="col-start-large-4 col-9">{{ block.content | safe }}</div>
+    </div>
+  {% else %}
+    <div class="{{ block.width_class }}">{{ block.content | safe }}</div>
+  {% endif %}
+</section>

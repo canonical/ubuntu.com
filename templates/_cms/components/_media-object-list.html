@@ -1,0 +1,29 @@
+{# vanilla.media-object-list — p-media-object #}
+{% from "_cms/_macros.html" import cms_image, cms_link with context %}
+{% set block = section.data %}
+
+<section class="{{ block.section_class }}">
+  {% if block.title or block.intro %}
+    <div class="u-fixed-width p-section--shallow">
+      <hr class="p-rule" />
+      {% if block.title %}<h2>{{ block.title }}</h2>{% endif %}
+      {{ block.intro | safe }}
+    </div>
+  {% endif %}
+
+  <div class="row">
+    {% for item in block.cards %}
+      <div class="{{ block.column_class }}">
+        <div class="p-media-object">
+          {% if item.image %}{{ cms_image(item.image, "p-media-object__image") }}{% endif %}
+          <div>
+            {% if item.title %}<h3 class="p-media-object__title">{{ item.title }}</h3>{% endif %}
+            {% if item.subtitle %}<p class="u-text--muted u-no-margin--bottom">{{ item.subtitle }}</p>{% endif %}
+            <div class="p-media-object__content">{{ item.content | safe }}</div>
+            {% if item.link %}{{ cms_link(item.link) }}{% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>

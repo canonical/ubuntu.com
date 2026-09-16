@@ -1,0 +1,9 @@
+{# vanilla.divided-list — rendered by Vanilla Framework's vf_divided_section macro #}
+{% from "_macros/vf_divided-section.jinja" import vf_divided_section %}
+{% set block = section.data %}
+
+{{ vf_divided_section(title={"text": block.title},
+  blocks=block.vf_blocks,
+  padding=block.vf_padding,
+  is_split_on_medium=block.is_split_on_medium,
+  top_rule_variant=block.vf_rule) }}

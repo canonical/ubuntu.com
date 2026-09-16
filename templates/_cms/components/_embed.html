@@ -1,0 +1,16 @@
+{# vanilla.embed — u-embedded-media #}
+{% set block = section.data %}
+
+<section class="{{ block.section_class }}">
+  <div class="{{ block.width_class }}">
+    <div class="u-embedded-media">
+      <iframe class="u-embedded-media__element"
+              title="{{ block.title }}"
+              src="{{ block.url }}"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+    </div>
+    {% if block.caption %}<p class="p-text--small u-text--muted">{{ block.caption }}</p>{% endif %}
+  </div>
+</section>

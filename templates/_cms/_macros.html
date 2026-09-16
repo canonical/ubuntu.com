@@ -1,0 +1,63 @@
+{#
+  Shared helpers for CMS-rendered pages.
+
+  Images authored as a URL on assets.ubuntu.com go through the standard
+  image macro, which serves optimised, responsive variants. Images
+  uploaded to Strapi are served by Strapi, so they stay plain <img> tags.
+#}
+
+{% macro cms_image(img, classes="") %}
+{%- if img -%}
+  {%- if img.use_macro -%}
+    {{ image(url=img.url,
+      alt=img.alt,
+      width=img.width,
+      height=img.height,
+      hi_def=img.hi_def,
+      loading=img.loading,
+      attrs={"class": classes}) | safe }}
+  {%- else -%}
+    <img src="{{ img.url }}"
+         alt="{{ img.alt }}"
+         {%- if img.width %} width="{{ img.width }}"{% endif %}
+         {%- if img.height %} height="{{ img.height }}"{% endif %}
+         {%- if classes %} class="{{ classes }}"{% endif %}
+         loading="{{ img.loading }}" />
+  {%- endif -%}
+{%- endif -%}
+{% endmacro %}
+
+{% macro cms_link(link) %}
+<a href="{{ link.url }}"
+   {%- if link.class %} class="{{ link.class }}"{% endif %}
+   {%- if link.target %} target="{{ link.target }}" rel="{{ link.rel }}"{% endif %}>{{ link.label }}</a>
+{% endmacro %}
+
+{# The contents of a Vanilla CTA slot: buttons first, then plain links. #}
+{% macro cms_cta(links) %}
+{%- for link in links or [] -%}
+  {{ cms_link(link) }}
+{%- endfor -%}
+{% endmacro %}
+
+{% macro cms_links(links) %}
+{%- if links -%}
+  <p>
+    {% for link in links %}
+      {{ cms_link(link) }}
+    {% endfor %}
+  </p>
+{%- endif -%}
+{% endmacro %}
+
+{% macro cms_heading(title, level, classes="") %}
+{%- if title -%}
+  {% if level == "h3" %}
+    <h3{% if classes %} class="{{ classes }}"{% endif %}>{{ title }}</h3>
+  {% elif level == "h4" %}
+    <h4{% if classes %} class="{{ classes }}"{% endif %}>{{ title }}</h4>
+  {% else %}
+    <h2{% if classes %} class="{{ classes }}"{% endif %}>{{ title }}</h2>
+  {% endif %}
+{%- endif -%}
+{% endmacro %}

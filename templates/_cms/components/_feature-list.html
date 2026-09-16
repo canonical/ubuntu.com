@@ -1,0 +1,9 @@
+{# vanilla.feature-list — a ticked list inside Vanilla's basic section #}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% set block = section.data %}
+
+{{ vf_basic_section(title={"text": block.title},
+  items=([{"type": "description", "item": {"type": "html", "content": block.intro}}] if block.intro else []) + [block.vf_list],
+padding=block.vf_padding,
+is_split_on_medium=(block.layout != "full_width"),
+top_rule_variant=block.vf_rule) }}

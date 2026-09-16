@@ -1,0 +1,24 @@
+{# vanilla.section — rendered by Vanilla Framework's vf_basic_section macro #}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section, vf_basic_section_blocks %}
+{% set block = section.data %}
+
+{% if block.layout == "full_width" %}
+  <section class="{{ block.section_class }}"
+           {% if block.anchor %}id="{{ block.anchor }}"{% endif %}>
+    <div class="u-fixed-width">
+      {% if block.vf_rule != "none" %}
+        <hr class="p-rule{% if block.vf_rule != 'default' %}--{{ block.vf_rule }}{% endif %}" />
+      {% endif %}
+      {% if block.title %}<h2>{{ block.title }}</h2>{% endif %}
+      {{ vf_basic_section_blocks(items=block.vf_items) }}
+    </div>
+  </section>
+{% else %}
+  {{ vf_basic_section(title={"text": block.title},
+    label_text=block.label or "",
+    items=block.vf_items,
+    padding=block.vf_padding,
+    is_split_on_medium=block.is_split_on_medium,
+    top_rule_variant=block.vf_rule,
+    attrs={"id": block.anchor} if block.anchor else {}) }}
+{% endif %}

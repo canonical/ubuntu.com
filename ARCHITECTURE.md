@@ -32,8 +32,10 @@ Merging a pull request (PR) into the `main` branch will automatically trigger a 
   - [`app.py`](webapp/app.py) is entrypoint for the parent application, and defines URL routes
   - [`views.py`](webapp/views.py) contains the view functions for handing routed URL paths
   - [`certified/`](webapp/certified/), [`shop/`](webapp/shop/) and [`security/`](webapp/security/) contain blueprints for the sub-paths of ubuntu.com
+  - [`strapi/`](webapp/strapi/) resolves and renders pages authored in the Strapi CMS
   - [`login.py`](webapp/login.py) and [`macaroons.py`](webapp/macaroons.py) contain the logic for authentication and login
 - [`./templates/`](templates/): Jinja2 templates, used by the Flask app for serving HTTP pages
+  - [`_cms/`](templates/_cms/): the layout and Vanilla pattern partials used to render CMS pages. The leading underscore keeps templatefinder from serving these directly.
 - [`./konf/site.yaml`](konf/site.yaml): Kubernetes configuration files to be interpreted by [Konf](https://github.com/canonical/konf), our custom config manager. Used in our [standard deployment flow](https://discourse.canonical.com/t/how-the-standard-website-deployment-flow-is-set-up-in-github-jenkins-and-kubernetes/2112) to release the site to Kubernetes.
 - [`./scripts/`](scripts/): Local utility scripts, not used by the production application
 
@@ -76,6 +78,42 @@ There are still a number of documentation areas on ubuntu.com (complete at the t
 Each of these is served with [our Discourse module](https://github.com/canonical/canonicalwebteam.discourse), and pulls its content from a set of topics in Discourse, as with the takeovers and engage pages.
 
 For more information, see the [Creating Discourse based documentation pages](https://discourse.canonical.com/t/creating-discourse-based-documentation-pages/159) guide.
+
+### CMS pages
+
+Pages can also be authored outside this codebase, in [the Strapi CMS](../strapi). An editor assembles a page from Vanilla Framework patterns and gives it a route; anything the site does not already serve at that route is then served from the CMS.
+
+Resolution order for a request, implemented in [`webapp/strapi/routing.py`](webapp/strapi/routing.py):
+
+1. a URL rule registered by the app
+2. a redirect or deletion in `redirects.yaml` / `deleted.yaml`
+3. a template on disk, via templatefinder
+4. a published page in the CMS
+5. otherwise, a 404
+
+Templates win over the CMS, so nothing already on the site can be replaced by accident. Set `STRAPI_OVERRIDE_TEMPLATES=true` to reverse that while moving an existing page into the CMS.
+
+The catch-all view is [`CMSTemplateFinder`](webapp/strapi/views.py), a subclass of templatefinder that falls back to the CMS. The CMS is optional: with `STRAPI_API_URL` unset, `build_api()` returns `None` and the view behaves exactly like templatefinder.
+
+Two endpoints support the CMS:
+
+- `GET /_cms/route-check?path=/some-page` — tells Strapi whether a route is free, so an editor finds out about a conflict while they are still editing. Strapi calls this before every save.
+- `POST /_cms/cache/purge` — called by Strapi when a page is saved, so an edit is live immediately rather than at the end of the cache TTL. Requires the `CMS_PURGE_SECRET` shared secret.
+
+[`webapp/strapi/content.py`](webapp/strapi/content.py) turns an API response into template context: it maps each component to a partial in `templates/_cms/components/` through an allowlist, renders Markdown, and sanitises the result. A component name from the API never reaches an include path.
+
+Relevant environment variables:
+
+| Variable | Purpose |
+| --- | --- |
+| `STRAPI_API_URL` | The CMS API. Unset disables CMS pages entirely. |
+| `STRAPI_MEDIA_URL` | Where uploaded media is served from, if not the API host |
+| `STRAPI_API_TOKEN` | Optional read token, if the CMS is not publicly readable |
+| `STRAPI_PREVIEW_TOKEN` | Enables `?preview=<token>` for unpublished drafts |
+| `STRAPI_CACHE_TTL` | Seconds to cache pages and the route list (default 60) |
+| `STRAPI_OVERRIDE_TEMPLATES` | `true` lets a CMS page win over a template |
+| `STRAPI_SANITIZE_HTML` | `false` turns off HTML sanitisation of CMS content |
+| `CMS_PURGE_SECRET` | Shared secret for `POST /_cms/cache/purge` |
 
 ### Search
 

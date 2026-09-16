@@ -1,0 +1,8 @@
+{# vanilla.separator — p-rule #}
+{% set block = section.data %}
+
+<div class="{{ block.section_class }}">
+  <div class="u-fixed-width">
+    {% if block.rule_class %}<hr class="{{ block.rule_class }}" />{% endif %}
+  </div>
+</div>

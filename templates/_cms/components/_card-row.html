@@ -1,0 +1,33 @@
+{# vanilla.card-row — rendered by Vanilla Framework's vf_equal_heights macro #}
+{% from "_macros/vf_equal-heights.jinja" import vf_equal_heights %}
+{% from "_cms/_macros.html" import cms_image, cms_link, cms_cta with context %}
+{% set block = section.data %}
+
+{% set ns = namespace(items=[]) %}
+{% for card in block.cards %}
+  {% set image_html %}
+    {%- if card.image %}{{ cms_image(card.image, "p-image-container__image") }}{% endif -%}
+  {% endset %}
+  {% set description_html %}{{ card.content | safe }}{% endset %}
+    {% set cta_html %}
+      {%- if card.link %}{{ cms_link(card.link) }}{% endif -%}
+    {% endset %}
+    {% set ns.items = ns.items + [{"image_html": image_html,
+      "title_text": card.title,
+      "description_html": description_html,
+    "cta_html": cta_html}] %}
+  {% endfor %}
+
+  {% call(slot) vf_equal_heights(title_text=block.title or "",
+    items=ns.items,
+    highlight_images=block.highlight_images,
+    image_aspect_ratio_small=block.vf_aspect_ratio,
+    image_aspect_ratio_medium=block.vf_aspect_ratio,
+    image_aspect_ratio_large=block.vf_aspect_ratio) %}
+    {%- if slot == "description" -%}
+      {{ block.intro | safe }}
+    {%- endif -%}
+    {%- if slot == "cta" -%}
+      {{ cms_cta(block.links) }}
+    {%- endif -%}
+  {% endcall %}

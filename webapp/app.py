@@ -38,11 +38,11 @@ from canonicalwebteam.flask_base.env import get_flask_env
 from pathlib import Path
 import canonicalwebteam.directory_parser as directory_parser
 from canonicalwebteam.search import build_search_view
-from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.form_generator import FormGenerator
 from canonicalwebteam.markdown_response import MarkdownResponse
 
 from webapp import llms
+from webapp.strapi import build_api, init_cms
 from webapp.certified.views import certified_routes
 from webapp.constants import CACHE_TTL
 from webapp.handlers import init_handlers
@@ -856,8 +856,12 @@ app.add_url_rule("/takeovers", view_func=takeovers_index)
 app.add_url_rule("/user-country-tz.json", view_func=get_user_country_by_tz)
 
 # All other routes
-template_finder_view = TemplateFinder.as_view("template_finder")
-template_finder_view._exclude_xframe_options_header = True
+#
+# A path with no template may still have a page in the CMS, so the
+# catch-all is templatefinder plus a Strapi lookup. With STRAPI_API_URL
+# unset build_api() returns None and this is exactly templatefinder, so
+# the site behaves as it did before.
+template_finder_view = init_cms(app, build_api())
 app.add_url_rule("/", view_func=template_finder_view)
 app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 

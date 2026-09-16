@@ -1,0 +1,13 @@
+{# vanilla.notification — p-notification #}
+{% set block = section.data %}
+
+<section class="{{ block.section_class }}">
+  <div class="u-fixed-width">
+    <div class="{{ block.notification_class }}">
+      <div class="p-notification__content">
+        {% if block.title %}<h3 class="p-notification__title">{{ block.title }}</h3>{% endif %}
+        <div class="p-notification__message">{{ block.message | safe }}</div>
+      </div>
+    </div>
+  </div>
+</section>

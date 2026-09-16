@@ -1,0 +1,13 @@
+{# vanilla.cta-block — rendered by Vanilla Framework's vf_cta_section macro #}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
+{% from "_cms/_macros.html" import cms_cta with context %}
+{% set block = section.data %}
+
+{% call(slot) vf_cta_section(title_text=block.title, variant="default", layout="100") %}
+  {%- if slot == "description" -%}
+    {{ block.content | safe }}
+  {%- endif -%}
+  {%- if slot == "cta" -%}
+    {{ cms_cta(block.links) }}
+  {%- endif -%}
+{% endcall %}

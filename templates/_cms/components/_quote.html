@@ -1,0 +1,16 @@
+{# vanilla.quote — rendered by Vanilla Framework's vf_quote_wrapper macro #}
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+{% from "_cms/_macros.html" import cms_image with context %}
+{% set block = section.data %}
+
+{% call(slot) vf_quote_wrapper(title_text=block.title or "",
+  quote_size=block.size or "small",
+  quote_text=block.quote,
+  citation_source_name_text=block.citation or "",
+  citation_source_title_text=block.citation_title or "",
+  citation_source_organisation_text=block.citation_organisation or "",
+  is_shallow=block.is_shallow) %}
+  {%- if slot == "signpost_image" and block.logo -%}
+    {{ cms_image(block.logo) }}
+  {%- endif -%}
+{% endcall %}
