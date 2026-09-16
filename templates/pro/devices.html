@@ -2,14 +2,23 @@
 
 {% block title %}Ubuntu Pro for Devices{% endblock %}
 
+{% block meta_description %}
+  Ubuntu Pro for devices is a comprehensive subscription service for IoT security, support, and compliance, allowing customers to secure their embedded IoT devices for up to 15 years.
+{% endblock meta_description %}
+
 {% block meta_copydoc %}
   https://docs.google.com/document/d/1i_3nPkSpCQJ4jfOwN380sdfuTxaiDuDIgDfk01wVPqo/edit
 {% endblock
 meta_copydoc %}
 
-{% block meta_description %}
-  Ubuntu Pro for Devices: up to 15 years of security maintenance, fleet management, and compliance for IoT deployments.
-{% endblock meta_description %}
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_divided-section.jinja" import vf_divided_section %}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_macros/vf_logo-section.jinja" import vf_logo_section %}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
+{% from "_macros/vf_resources.jinja" import vf_resources %}
 
 {% block body_class %}
   is-paper
@@ -18,559 +27,570 @@ meta_copydoc %}
 {% block outer_content %}
 
   {% block content %}
-    <section class="p-strip p-suru">
-      <div class="row">
-        <div class="col-medium-6 col-9 col-start-large-4">
-          <h1>IoT security with Ubuntu Pro for Devices</h1>
-          <h2>
-            Pay a one&ndash;time&ndash;fee per device and
-            <br />
-            get up to 15 years of security maintenance.
-          </h2>
-          <span class="p-chip--branded">
-            <i class="p-icon--circle-of-friends"></i>
-            <span class="p-chip__value">Ubuntu Pro</span>
-          </span>
-          <p>
-            In a single subscription, benefit from patching for thousands of popular software packages, and harness automation tools for compliance with multiple standards, including the Cyber Resilience Act.
-          </p>
-          <a href="/pro/devices#get-in-touch" class="p-button--positive">Contact us</a>
-        </div>
-      </div>
-    </section>
-    <section class="p-section">
-      <div class="row">
-        <hr class="p-rule--muted" />
-        <div class="col-6 col-medium-3">
-          <h2>Why Ubuntu Pro for Devices?</h2>
-        </div>
-        <div class="col-6 col-medium-3">
-          <ul class="p-list--divided">
-            <li class="p-list__item is-ticked">Get timely fixes for critical vulnerabilities</li>
-            <li class="p-list__item is-ticked">Make your compliance efforts faster and easier</li>
-            <li class="p-list__item is-ticked">Device management and patching automation included</li>
-            <li class="p-list__item is-ticked">Long-term maintenance for real-time kernel and ROS</li>
-            <li class="p-list__item is-ticked">A single subscription for fleet-wide IoT security</li>
-          </ul>
-        </div>
-      </div>
-    </section>
 
-    <section class="p-section">
-      <div class="row">
-        <hr class="p-rule--muted" />
-      </div>
-      <div class="row--50-50">
-        <div class="col">
-          <h2>For security maintained, compliant IoT device deployments</h2>
-        </div>
-        <div class="col">
-          <div class="p-section--shallow">
-            <div>
-              <p>
-                Security in IoT is a serious challenge. Addressing the security requirements of connected devices is essential for organizations and manufacturers looking to ship and maintain compliant, market-ready devices. With Ubuntu Pro you get:
-              </p>
-              <div>
-                <div class="row">
-                  <p class="col-6">
-                    <span class="col-6 p-heading--2">
-                      <strong>1,800+</strong>
-                    </span>
-                    additional high and critical patches only available with Ubuntu&nbsp;Pro
-                  </p>
-                </div>
-                <hr class="p-rule--muted" />
-                <div class="row">
-                  <p class="col-6">
-                    <span class="col-6 p-heading--2">
-                      <strong>Up to 15 years</strong>
-                    </span>
-                    of maintenance for the whole stack
-                  </p>
-                </div>
-                <hr class="p-rule--muted" />
-                <div class="row">
-                  <p class="col-6">
-                    <span class="col-6 p-heading--2">
-                      <strong>24/7</strong>
-                    </span>
-                    optional enterprise-grade support
-                  </p>
-                </div>
-              </div>
-              <hr class="p-rule--muted" />
-              <p>
-                Security updates are critical to comply with key device regulations such as the Cyber Resilience Act. Ensure compliance with Ubuntu Pro.
-              </p>
-              <p>
-                <a href="https://canonical.com/solutions/open-source-security/cyber-resilience-act">Understand the Cyber Resilience Act&nbsp;&rsaquo;</a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="u-fixed-width u-align--center">
-        <div class="u-embedded-media">
-          <iframe class="u-embedded-media__element"
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/tNECRG5r2sg"
-                  title="Ubuntu Pro explained in 2 minutes"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe>
-        </div>
-      </div>
-    </section>
+    {% call(slot) vf_hero(
+      title_text='IoT security with Ubuntu Pro for Devices',
+      subtitle_text='One subscription for the security maintenance your devices need to stay compliant for up to 15 years.',
+      display_blank_signpost_image_space=True,
+      layout='25/75',
+      blocks=[
+        {
+          "type": "description",
+          "padding": "shallow",
+          "item": {
+            "type": "text",
+            "content": "You get security patches for tens of thousands of open source packages, fleet-wide management from a single pane of glass, and automation tools for compliance with multiple standards, including the Cyber Resilience Act (CRA)."
+          }
+        },
+        {
+          "type": "cta-block",
+          "padding": "shallow",
+          "item": {
+            "primary": {
+              "content_html": "Contact us",
+              "attrs": {
+                "href": "#get-in-touch"
+              }
+            },
+          }
+        },
+      ]
+    ) -%}
+    {% endcall -%}
 
-    <section class="p-section">
-      <div class="row">
-        <hr class="p-rule--muted" />
-        <div class="col-9">
-          <h2>Pull all your software from a secure source</h2>
-        </div>
-      </div>
-      <div class="u-fixed-width">
-        <p>
-          Access thousands of packages and open source applications, already built into your development environment and benefit from updates and security patches for the applications you use on your device. It's securely maintained IoT, as standard.
-        </p>
-        <div class="p-logo-section--dense">
-          <div class="p-logo-section__items">
-            <div class="p-logo-section__item">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/f59d6ec6-ros-logo.png",
-              alt="ros logo",
-              width="100",
-              height="100",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/880b97f2-python-logo.png",
-              alt="python logo",
-              width="92",
-              height="100",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/fa78f5b4-openjdk%20logo.png",
-              alt="openjdk logo",
-              width="100",
-              height="100",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/56d8741e-node-logo.png",
-              alt="node logo",
-              width="77",
-              height="100",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/5dbf023e-docker%20logo.png",
-              alt="docker logo",
-              width="100",
-              height="100",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/cd765ccc-nvidia-logo.png",
-              alt="nvidia logo",
-              width="100",
-              height="100",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/a11eb1de-tensor-flow-logo.png",
-              alt="tensorflow logo",
-              width="100",
-              height="100",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/81bb28f1-mqtt-logo.png",
-              alt="mqtt logo",
-              width="100",
-              height="100",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/2440746d-go-logo.png",
-              alt="go logo",
-              width="50",
-              height="100",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/86fdc1d7-openssl-logo.png",
-              alt="openssl logo",
-              width="68",
-              height="100",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/d540aea5-OpenCV-logo.png",
-              alt="OpenCV logo",
-              width="80",
-              height="80",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-              }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="p-section">
-      <div class="row">
-        <hr class="p-rule--muted" />
-        <div class="col-6">
-          <h2>Develop at speed with the Ubuntu ecosystem</h2>
-          <p>
-            Use Ubuntu Pro on certified hardware from
-            <br />
-            our vast ecosystem of partners and benefit
-            <br />
-            from:
-          </p>
-        </div>
-        <div class="col-6">
-          <ul class="p-list--ticked">
-            <li class="p-list__item">
-              <p class="p-heading--5 u-no-margin--bottom">Optimized Ubuntu images</p>
-              <p>
-                Benefit from optimized Ubuntu images for your specific piece of hardware. Canonical continually works to certify the latest hardware for Ubuntu, as well as testing for reliability and performance, ensuring you have the best out-of-the-box experience.
-              </p>
-            </li>
-            <li class="p-list__item">
-              <p class="p-heading--5 u-no-margin--bottom">Lower costs</p>
-              <p>
-                Simplify the implementation of your solutions by choosing reliable, certified hardware. Reduce operating system development and support costs.
-              </p>
-            </li>
-            <li class="p-list__item">
-              <p class="p-heading--5 u-no-margin--bottom">Speed up go-to-market</p>
-              <p>Build on the combined expertise of Canonical and hardware partners to get your solution to market faster.</p>
-            </li>
-          </ul>
-          <p>
-            <a href="/certified/iot">Discover certified hardware&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-    </section>
-    <section class="p-section">
-      <div class="row">
-        <hr class="p-rule--muted" />
-        <div class="col-6">
-          <h2>Meet your compliance requirements faster</h2>
-        </div>
-        <div class="col-6">
-          <p>
-            Ubuntu Pro includes automation tooling and  packages for FIPS 140, CIS and DISA-STIG hardening. Canonical is also committed to compliance with the Cyber Resilience Act.
-          </p>
-          <p>Meet the most rigorous standards:</p>
-          <ul class="p-list--ticked--small">
-            <li class="p-list__item is-ticked">Defense Information Systems Agency (DISA-STIG)</li>
-            <li class="p-list__item is-ticked">FedRAMP</li>
-            <li class="p-list__item is-ticked">NIST</li>
-            <li class="p-list__item is-ticked">HIPAA</li>
-            <li class="p-list__item is-ticked">FISMA</li>
-            <li class="p-list__item is-ticked">Center for Internet Security (CIS)</li>
-            <li class="p-list__item is-ticked">FIPS 140</li>
-            <li class="p-list__item is-ticked">Cyber Essentials</li>
-          </ul>
-          <p>
-            <a href="/security/security-standards">Explore our security standards&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-    </section>
-    <section class="p-section">
-      <div class="row p-section--shallow">
-        <hr class="p-rule--muted" />
-        <p class="p-text--small-caps u-no-margin--bottom">Device management included</p>
-      </div>
-      <div class="row">
-        <div class="col-6">
-          <h2>
-            Manage, deploy, monitor, and
-            <br />
-            scale your fleet with Landscape
-          </h2>
-        </div>
-        <div class="col-6">
-          <p>Remotely monitor, update, and manage IoT devices with a clearly defined rollout policy.</p>
-          <p>
-            Landscape reduces the cost of managing open source and enables you to proactively manage security for your IoT devices:
-          </p>
-          <ul class="p-list--ticked--small">
-            <li class="p-list__item is-ticked">
-              Get a single pane of glass for managing any Ubuntu instances including system containers, virtual machines, and physical nodes.
-            </li>
-            <li class="p-list__item is-ticked">
-              Scan packages automatically for vulnerable versions, and create reports for any cross-section of your Ubuntu estate.
-            </li>
-            <li class="p-list__item is-ticked">Perform hardening and auditing at scale in air-gapped environments.</li>
-          </ul>
-          <p>
-            <a href="/landscape">Discover Landscape&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-    </section>
-    <div class="row">
-      <hr class="p-rule--muted" />
-    </div>
-    <div class="p-strip u-no-padding--top">
-      <div class="row">
-        <div class="col-3">
-          <h2 class="p-text--small-caps">Backed by leading ODMs</h2>
-        </div>
-        <div class="col-9">
-          <div class="row">
-            <div class="col-3">
-              <div style="padding-top:1rem;">
-                {{ image (
-                url="https://assets.ubuntu.com/v1/9c8bfd51-Aaeon-Logo.png",
-                alt="AAEON logo",
-                width="138",
-                height="36",
-                hi_def=True,
-                loading="lazy"
-                ) | safe
-                }}
-              </div>
-              <div>
-                <p>
-                  <span>Jason Huang</span>
-                  <br />
-                  <span class="u-text--muted">Director of AAEON's UP Division</span>
-                </p>
-              </div>
-            </div>
-            <div class="col-6">
-              <p>
-                <i>
-                  &ldquo;Many of our customers from across different sectors are using computer vision software that requires regulatory approval.
-                  <br />
-                  <br />
-                  In particular, the latest US regulation makes it important to provide timely CVE fixes for all of the components used in our products. Thanks to Ubuntu Pro for Devices, this is now covered.&rdquo;
-                </i>
-              </p>
-            </div>
-          </div>
-          <hr class="p-rule--muted is-fixed-width" />
-          <div class="row">
-            <div class="col-3">
-              <div style="padding-top:1rem;">
-                {{ image (
-                url="https://assets.ubuntu.com/v1/4ed674b0-advantech-logo.png",
-                alt="advantech logo",
-                width="176",
-                height="36",
-                hi_def=True,
-                loading="lazy"
-                ) | safe
-                }}
-              </div>
-              <div>
-                <p>
-                  <span>Joe Chen</span>
-                  <br />
-                  <span class="u-text--muted">Director at Advantech</span>
-                </p>
-              </div>
-            </div>
-            <div class="col-6 u-vertically-center">
-              <p>
-                <i>
-                  &ldquo;Ubuntu is the most popular Linux distribution. Many of our public sector customers in the US need FIPS compliance, and Ubuntu Pro for Devices is a perfect solution for them.&rdquo;
-                </i>
-              </p>
-            </div>
-          </div>
-          <hr class="p-rule--muted is-fixed-width" />
-          <div class="row">
-            <div class="col-3">
-              <div style="padding-top:1rem;">
-                {{ image (
-                url="https://assets.ubuntu.com/v1/8b7059c4-DFI-logo.png",
-                alt="DFI logo",
-                width="73",
-                height="36",
-                hi_def=True,
-                loading="lazy"
-                ) | safe
-                }}
-              </div>
-              <div>
-                <p>
-                  <span>Jarry Chang</span>
-                  <br />
-                  <span class="u-text--muted">DFI Product Center General Manager</span>
-                </p>
-              </div>
-            </div>
-            <div class="col-6">
-              <p>
-                <i>
-                  &ldquo;DFI leverages virtualization technology to introduce a robust Workload Consolidation platform integrated with our embedded solutions for EV charging stations and other cutting-edge industrial applications.
-                  <br />
-                  <br />
-                  With the ability to use Landscape to manage devices built with DFI boards, we can now provide more reliable solutions to our customers with 10 years of security updates and streamlined fleet maintenance.&rdquo;
-                </i>
-              </p>
-            </div>
-          </div>
-          <hr class="p-rule--muted is-fixed-width" />
-          <div class="row">
-            <div class="col-3">
-              <div style="padding-top:1rem;">
-                {{ image (
-                url="https://assets.ubuntu.com/v1/0ed224e1-adlink-logo.png",
-                alt="adlink logo",
-                width="165",
-                height="36",
-                hi_def=True,
-                loading="lazy"
-                ) | safe
-                }}
-              </div>
-              <div>
-                <p>
-                  <span>Ethan Chen</span>
-                  <br />
-                  <span class="u-text--muted">General Manager of the Edge Computing Platforms BU at ADLINK</span>
-                </p>
-              </div>
-            </div>
-            <div class="col-6 u-vertically-center">
-              <p>
-                <i>
-                  &ldquo;As new legislation is introduced for IoT embedded devices, it is crucial that our customers have a means to securely maintain the operating system along with commonly used applications and dependencies.
-                  <br />
-                  <br />
-                  Ubuntu Pro ensures that IoT devices receive reliable security patches from a trusted source.&rdquo;
-                </i>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <hr class="p-rule--muted" />
-    </div>
-    <div class="p-strip is-deep">
-      <div class="row u-vertically-center">
-        <div class="col-10">
-          <h2>
-            <a href="/pro/devices#get-in-touch">Want to know more? Contact our team&nbsp;&rsaquo;</a>
-          </h2>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <hr class="p-rule--muted" />
-    </div>
-    <section class="p-section">
-      <div class="row--50-50">
-        <div class="col">
-          <h2 class="u-no-padding--top">Resources</h2>
-        </div>
-        <div class="col">
-          <div class="p-section--shallow">
-            <div>
-              <p>Check out the press release to discover more about Pro for Devices and our launch partners.</p>
-              <p class="p-heading--3 u-no-padding--top">
-                <a href="https://canonical.com/blog/ubuntu-pro-for-devices">Announcing Ubuntu Pro for Devices&nbsp;&rsaquo;</a>
-              </p>
-            </div>
-            <hr class="p-rule--muted" />
-            <div>
-              <p>
-                Get a comprehensive guide to understanding the new global compliance landscape for IoT devices and manufacturers, and meet compliance in every regional market with our Ubuntu blueprint for secure devices.
-              </p>
-              <p class="p-heading--3 u-no-padding--top">
-                <a href="/engage/iot-compliance-in-the-global-market-a-guide-for-iot-device-manufacturers">Understand IoT security and IoT compliance across global markets&nbsp;&rsaquo;</a>
-              </p>
-            </div>
-            <hr class="p-rule--muted" />
-            <div>
-              <p>
-                On average, organisations developing IoT products will spend 50% more resources on software than hardware. Read our whitepaper to get ahead of costs and design your device, software first.
-              </p>
-              <p class="p-heading--3 u-no-padding--top">
-                <a href="/engage/software-defined-iot">Software defined IoT&nbsp;&rsaquo;</a>
-              </p>
-            </div>
-            <hr class="p-rule--muted" />
-            <div>
-              <p>
-                30% of the world's data will need real-time processing by 2025. Discover what this means for your business in our guide.
-              </p>
-              <p class="p-heading--3 u-no-padding--top">
-                <a href="/engage/cto-guide-real-time-kernel">Introduction to real-time kernel&nbsp;&rsaquo;</a>
-              </p>
-            </div>
-            <hr class="p-rule--muted" />
-            <div>
-              <p>
-                AI is breaking out of the data centre and moving to the edge. From self-driving cars to industrial assembly lines, the ability to deploy machine learning models on embedded devices and generate real-time, AI-driven insight out in the field offers tremendous potential.
-              </p>
-              <p class="p-heading--3 u-no-padding--top">
-                <a href="/engage/guide-to-deploying-ai-at-the-edge">Discover AI at the Edge&nbsp;&rsaquo;</a>
-              </p>
-            </div>
-            <hr class="p-rule--muted" />
-          </div>
+    {{ vf_divided_section(
+        title={
+          "text": "Why Ubuntu Pro for Devices?",
+        },
+        blocks=[
+          {
+            "type": "divided-block",
+            "bullet_type": "none",
+            "items": [
+              {
+                "title_text": "<h3>Up to 15 years</h3>",
+                "contents": [
+                  {
+                    "type": "description",
+                    "item": {
+                      "type": "text",
+                      "content": "of security maintenance for the kernel, user space and open source libraries"
+                    }
+                  }
+                ]
+              },
+              {
+                "title_text": "<h3>Lower TCO</h3>",
+                "contents": [
+                  {
+                    "type": "description",
+                    "item": {
+                      "type": "text",
+                      "content": "avoid the engineering time spent on OS upgrades CVE patching, and related application maintenance"
+                    }
+                  }
+                ]
+              },
+              {
+                "title_text": "<h3>Tens of thousands</h3>",
+                "contents": [
+                  {
+                    "type": "description",
+                    "item": {
+                      "type": "text",
+                      "content": "open source packages covered in addition to Ubuntu OS, including real-time kernel and <a href='/robotics/ros-esm'>ROS</a>"
+                    }
+                  }
+                ]
+              },
+              {
+                "title_text": "<h3>Scalable device management</h3>",
+                "contents": [
+                  {
+                    "type": "description",
+                    "item": {
+                      "type": "text",
+                      "content": "from a single pane of glass across the lifecycle"
+                    }
+                  }
+                ]
+              },
+              {
+                "title_text": "<h3>24/7</h3>",
+                "contents": [
+                  {
+                    "type": "description",
+                    "item": {
+                      "type": "text",
+                      "content": "optional enterprise-grade support"
+                    }
+                  }
+                ]
+              },
+            ]
+          },
+        ],
+    ) }}
 
-          <p>Need to discuss your need with our experts?</p>
-          <a href="/pro/devices#get-in-touch" class="p-button--positive">Contact us</a>
-        </div>
+    {{ vf_basic_section(
+      title={"text": "Meet your compliance requirements faster"},
+      items=[
+        {
+          "type": "image",
+          "item": {
+            "aspect_ratio": "3-2",
+            "attrs": {
+              "src": "https://assets.ubuntu.com/v1/fb88f555-meet_your_compliance.png",
+              "alt": ""
+            }
+          }
+        },
+        {
+          "type": "description",
+          "item": {
+            "type": "text",
+            "content": "Ubuntu Pro for Devices includes automation tooling and packages for FIPS 140, CIS, and DISA-STIG hardening. Canonical is also committed to compliance with the <a href='https://canonical.com/solutions/open-source-security/cyber-resilience-act'>Cyber Resilience Act</a>."
+          }
+        },
+        {
+          "type": "description",
+          "item": {
+            "type": "html",
+            "content": "
+              <p class='u-no-margin--bottom'>
+                Meet the most rigorous standards:
+                <ul>
+                  <li>Defense Information<br/>Systems Agency (DISA-STIG)</li>
+                  <li>FedRAMP</li>
+                  <li>NIST</li>
+                  <li>HIPAA</li>
+                  <li>FISMA</li>
+                  <li>Center for Internet Security (CIS)</li>
+                  <li>FIPS 140</li>
+                  <li>Cyber Essentials</li>
+                  <li>CRA</li>
+                </ul>
+              </p>
+            "
+          }
+        },
+        {
+          "type": "cta-block",
+          "item": {
+            "link": {
+              "content_html": "Explore our security standards&#32;&rsaquo;",
+              "attrs": {
+                "href": "/security/security-standards"
+              }
+            }
+          }
+        }
+      ]
+    ) }}
+
+    {% call(slot) vf_quote_wrapper(
+      title_text="Backed by leading manufacturers",
+      quote_size="small",
+      quote_text="As new legislation is introduced for IoT embedded devices, it is crucial that our customers have a means to securely maintain the operating system along with commonly used applications and dependencies. Ubuntu Pro ensures that IoT devices receive reliable security patches from a trusted source.",
+      citation_source_name_text="Ethan Chen",
+      citation_source_title_text="General Manager of the Edge Computing Platforms BU at ADLINK",
+    ) -%}
+
+    {%- if slot == 'signpost_image' -%}
+      {{ image(url="https://assets.ubuntu.com/v1/0ed224e1-adlink-logo.png",
+            alt="adlink logo",
+            width="106",
+            height="22",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "u-hide--small"}) | safe
+      }}
+    {%- endif -%}
+
+    {% endcall -%}
+
+    {% call(slot) vf_quote_wrapper(
+      quote_size="small",
+      quote_text="Many of our customers from across different sectors are using computer vision software that requires regulatory approval. In particular, the latest US regulation makes it important to provide timely CVE fixes for all of the components used in our products. Thanks to Ubuntu Pro for Devices, this is now covered.",
+      citation_source_name_text="Jason Huang",
+      citation_source_title_text="Director of AAEON's UP Division",
+    ) -%}
+
+    {%- if slot == 'signpost_image' -%}
+      {{ image(url="https://assets.ubuntu.com/v1/9c8bfd51-Aaeon-Logo.png",
+            alt="Aaeon logo",
+            width="77",
+            height="18",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "u-hide--small"}) | safe
+      }}
+    {%- endif -%}
+
+    {% endcall -%}
+
+    {% call(slot) vf_quote_wrapper(
+      quote_size="small",
+      quote_text="Ubuntu is the most popular Linux distribution. Many of our public sector customers in the US need FIPS compliance, and Ubuntu Pro for Devices is a perfect solution for them.",
+      citation_source_name_text="Joe Chen",
+      citation_source_title_text="Director at Advantech",
+    ) -%}
+
+    {%- if slot == 'signpost_image' -%}
+      {{ image(url="https://assets.ubuntu.com/v1/4ed674b0-advantech-logo.png",
+            alt="advantech logo",
+            width="102",
+            height="21",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "u-hide--small"}) | safe
+      }}
+    {%- endif -%}
+
+    {% endcall -%}
+
+    {% call(slot) vf_quote_wrapper(
+      quote_size="small",
+      quote_text="DFI leverages virtualization technology to introduce a robust Workload Consolidation platform integrated with our embedded solutions for EV charging stations and other cutting-edge industrial applications. With the ability to use Landscape to manage devices built with DFI boards, we can now provide more reliable solutions to our customers with 10 years of security updates and streamlined fleet maintenance.",
+      citation_source_name_text="Jarry Chang",
+      citation_source_title_text="DFI Product Center General Manager",
+    ) -%}
+
+    {%- if slot == 'signpost_image' -%}
+      {{ image(url="https://assets.ubuntu.com/v1/8b7059c4-DFI-logo.png",
+            alt="DFI logo",
+            width="30",
+            height="15",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "u-hide--small"}) | safe
+      }}
+    {%- endif -%}
+
+    {% endcall -%}
+
+    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=true, is_list_full_width_on_tablet=true) -%}
+      {%- if slot == 'title' -%}
+      <h2>Everything you get in one subscription</h2>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">Expanded Security Maintenance (ESM)</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+      <p>ESM provides 10 years of vulnerability fixes for critical, high and selected medium vulnerabilities across the whole Ubuntu archive, as defined by Ubuntu Priority. Expand this to 15 years with the Legacy add-on.</p>
+
+      <div class="p-cta-block">
+        <a href="/security/esm">Learn about ESM &rsaquo;</a>
       </div>
-    </section>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">Fleet management with Landscape</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+      <p>Remote patching, update rollout policies, asset inventory, hardening, compliance auditing and reporting across your whole Ubuntu estate, from one interface.</p>
+
+      <div class="p-cta-block">
+        <a href="/internet-of-things/management">Learn about IoT device management &rsaquo;</a>
+      </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_3' -%}
+      <h3 class="p-heading--5">Kernel Livepatch</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_3' -%}
+      <p>Livepatch offers a rebootless security patching automation to address high and critical kernel vulnerabilities that surface between scheduled maintenance windows. Eliminate unexpected required reboots for machines requiring mission-critical uptime and maximum security.</p>
+
+      <div class="p-cta-block">
+        <a href="/security/livepatch">Learn about Livepatch &rsaquo;</a>
+      </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_4' -%}
+      <h3 class="p-heading--5">Compliance and hardening tools</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_4' -%}
+      <p>FIPS 140 certified modules, CIS and DISA-STIG hardening profiles, and the automation to apply and audit them at scale, including in air-gapped environments.</p>
+
+      <div class="p-cta-block">
+        <a href="/security/security-standards">Learn about supported security standards &rsaquo;</a>
+      </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_5' -%}
+      <h3 class="p-heading--5">Real-time and robotics coverage</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_5' -%}
+      <p>Long-term maintenance for <a href="/real-time">Real-time Ubuntu</a> and <a href="/robotics/ros-esm">ROS ESM</a>, for latency-critical and robotics workloads.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_6' -%}
+      <h3 class="p-heading--5">Pay once per device</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_6' -%}
+      <p>Ubuntu Pro for Devices can be purchased for a one-time fee per device, covering security maintenance for its entire lifecycle.</p>
+
+      <div class="p-cta-block">
+        <a href="#get-in-touch">Talk to an expert &rsaquo;</a>
+      </div>
+      {%- endif -%}
+
+    {%- endcall -%}
+
+    {{ vf_basic_section(
+      title={"text": "Device management included"},
+      subtitle={"text": "Manage, deploy, monitor, and scale your fleet with Landscape", "heading_level": 5},
+      items=[
+        {
+          "type": "description",
+          "item": {
+            "type": "text",
+            "content": "Remotely monitor, update, and manage IoT devices with a clearly defined rollout policy."
+          }
+        },
+        {
+          "type": "description",
+          "item": {
+            "type": "text",
+            "content": "Landscape reduces the cost of managing open source and enables you to proactively manage security for your IoT devices:"
+          }
+        },
+        {
+          "type": "list",
+          "item": {
+            "list_items": [
+              {
+                "list_item_type": "bullet",
+                "content": "Get a single pane of glass for managing any Ubuntu instances including system containers, virtual machines, and physical nodes."
+              },
+              {
+                "list_item_type": "bullet",
+                "content": "Scan packages automatically for vulnerable versions, and create reports for any cross-section of your Ubuntu estate."
+              },
+              {
+                "list_item_type": "bullet",
+                "content": "Perform hardening and auditing at scale in air-gapped environments."
+              },
+            ],
+          }
+        },
+        {
+          "type": "cta-block",
+          "item": {
+            "link": {
+              "content_html": "Discover Landscape&#32;&rsaquo;",
+              "attrs": {
+                "href": "/landscape"
+              }
+            }
+          }
+        }
+      ]
+    ) }}
+
+    {% call(slot) vf_logo_section(
+      mode="default",
+      title={
+        "text": "Pull all your software from a secure source"
+      },
+      blocks=[
+        {
+          "type": "logo-block",
+          "item": {
+            "logos": [
+              {
+                "src": "https://assets.ubuntu.com/v1/51bfcd4d-ros-logo.png",
+                "alt": "ROS"
+              },
+              {
+                "src": "https://assets.ubuntu.com/v1/880b97f2-python-logo.png",
+                "alt": "Python"
+              },
+              {
+                "src": "https://assets.ubuntu.com/v1/fa78f5b4-openjdk%20logo.png",
+                "alt": "OpenJDK"
+              },
+              {
+                "src": "https://assets.ubuntu.com/v1/5dbf023e-docker%20logo.png",
+                "alt": "Docker"
+              },
+              {
+                "src": "https://assets.ubuntu.com/v1/81bb28f1-mqtt-logo.png",
+                "alt": "Mqtt"
+              },
+              {
+                "src": "https://assets.ubuntu.com/v1/56d8741e-node-logo.png",
+                "alt": "Node"
+              },
+              {
+                "src": "https://assets.ubuntu.com/v1/afce88f0-ubuntu-frame-logo%2520false.png",
+                "alt": "Ubuntu Frame"
+              },
+              {
+                "src": "https://assets.ubuntu.com/v1/86fdc1d7-openssl-logo.png",
+                "alt": "OpenSSL"
+              },
+              {
+                "src": "https://assets.ubuntu.com/v1/cd765ccc-nvidia-logo.png",
+                "alt": "Nvidia"
+              },
+              {
+                "src": "https://assets.ubuntu.com/v1/a11eb1de-tensor-flow-logo.png",
+                "alt": "TensorFlow"
+              },
+              {
+                "src": "https://assets.ubuntu.com/v1/2440746d-go-logo.png",
+                "alt": "Go"
+              },
+              {
+                "src": "https://assets.ubuntu.com/v1/d540aea5-OpenCV-logo.png",
+                "alt": "OpenCV"
+              },
+            ]
+          }
+        }
+      ]
+    ) -%}
+
+    {%- if slot == 'description' -%}
+    <p>Access thousands of packages and open source applications, already built into your development environment and benefit from updates and security patches for the applications you use on your device. It's securely maintained IoT, as standard.</p>
+    {%- endif -%}
+    {% endcall -%}
+
+    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=true, is_list_full_width_on_tablet=true) -%}
+      {%- if slot == 'title' -%}
+      <h2>Develop at speed<br/>with the Ubuntu ecosystem</h2>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">Speed up go-to-market</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+      <p>Build on the combined expertise of Canonical and hardware partners to get your solution to market faster. Benefit from optimized Ubuntu images for your specific piece of hardware. Canonical continually works to certify the latest hardware for Ubuntu, as well as testing for reliability and performance, ensuring you have the best out-of-the-box experience.</p>
+
+      <div class="p-cta-block">
+        <a href="/certified/iot">Discover certified hardware &rsaquo;</a>
+      </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">Ubuntu Core</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+      <p>Ubuntu Core is more than just your embedded Linux OS, it's your whole deployment infrastructure. Build targeted production-ready images, unlock over-the-air (OTA) updates, deploy in air-gapped environments, manage your fleet of devices, achieve real-time operations, comply with cybersecurity requirements and more.</p>
+
+      <div class="p-cta-block">
+        <a href="/core">Explore Ubuntu Core &rsaquo;</a>
+      </div>
+      {%- endif -%}
+    {%- endcall -%}
+
+    {% call(slot) vf_cta_section(
+        variant='default',
+        layout='100',
+        blocks=[
+          {
+            "type": "cta",
+            "item": {
+              "type": "html",
+              "content": "Want to know more? <a href='#get-in-touch'>Contact our team &rsaquo;</a>"
+            }
+          }
+        ]
+      ) -%}
+    {% endcall -%}
+
+    {% call(slot) vf_resources(
+        title={
+          "text": "Resources",
+        },
+        blocks=[
+          {
+            "type": "resources",
+            "render_images": false,
+            "render_categories": false,
+            "categories": [
+              {
+                "items": [
+                  {
+                    "title": {
+                      "text": "Understand IoT security and IoT compliance across global markets",
+                      "link_attrs": {
+                        "href": "/engage/iot-compliance-in-the-global-market-a-guide-for-iot-device-manufacturers"
+                      }
+                    },
+                    "description": {
+                      "text": "Get a comprehensive guide to understanding the new global compliance landscape for IoT devices and manufacturers, and meet compliance in every regional market with our Ubuntu blueprint for secure devices.",
+                    },
+                  },
+                  {
+                    "title": {
+                      "text": "Software-defined IoT",
+                      "link_attrs": {
+                        "href": "/engage/software-defined-iot"
+                      }
+                    },
+                    "description": {
+                      "text": "On average, organizations developing IoT products will spend 50% more resources on software than hardware. Read our whitepaper to get ahead of costs and design your device, software first.",
+                    },
+                  },
+                  {
+                    "title": {
+                      "text": "A practical guide to IoT lifecycle management",
+                      "link_attrs": {
+                        "href": "/engage/a-practical-guide-to-iot-lifecycle-management"
+                      }
+                    },
+                    "description": {
+                      "text": "Defining success across the different stages of the lifecycle: how to plan, implement, operate and retire.",
+                    },
+                  },
+                  {
+                    "title": {
+                      "text": "Introduction to real-time kernel",
+                      "link_attrs": {
+                        "href": "/engage/a-practical-guide-to-iot-lifecycle-management"
+                      }
+                    },
+                    "description": {
+                      "text": "A real-time system ensures the execution of high-priority processes with deterministic response times. Discover what this means for your business in our guide.",
+                    },
+                  },
+                  {
+                    "title": {
+                      "text": "Discover AI at the Edge",
+                      "link_attrs": {
+                        "href": "/engage/guide-to-deploying-ai-at-the-edge"
+                      }
+                    },
+                    "description": {
+                      "text": "
+                          AI is breaking out of the data centre and moving to the edge. From self-driving cars to industrial assembly lines, the ability to deploy machine learning models on embedded devices and generate real-time, AI-driven insight out in the field offers tremendous potential.
+                          <br/>
+                          <br/>
+                          Need to discuss your need with our experts?
+                          <br/>
+                          <a href='#get-in-touch'>Contact us</a>
+                      ",
+                    },
+                  },
+                ]
+              }
+            ]
+          },
+        ]
+        ) -%}
+    {% endcall -%}
+
     <!-- Set default Marketo information for contact form below --> 
     {{ load_form("/pro/devices") | safe }}
   {% endblock content %}
