@@ -479,6 +479,15 @@ def build_engage_index(engage_docs):
                 limit, offset, key="is_static", value=None
             )
 
+        # Only show active items, unless previewing
+        if preview is None:
+            metadata = [
+                item
+                for item in metadata
+                if str(item.get("active", "")).strip().lower() == "true"
+            ]
+            current_total = active_count
+
         # Fixed so that engage page authors don't create random resource types
         resource_types = [
             "Blog",
