@@ -22,6 +22,7 @@ from canonicalwebteam.templatefinder import TemplateFinder
 
 # Local
 from webapp.strapi.content import normalise_page
+from webapp.strapi.sso import build_sso_start_view
 from webapp.strapi.routing import (
     cms_route,
     matching_template,
@@ -479,10 +480,13 @@ def build_cache_purge_view(strapi_api):
     return purge_cache
 
 
-def init_cms(app, strapi_api):
+def init_cms(app, strapi_api, user_info=None):
     """
     Register the CMS views. Returns the catch-all view function, which the
     caller binds to "/" and "/<path:subpath>" in place of templatefinder's.
+
+    "user_info" is this site's own session reader, used to tell the CMS who
+    has signed in. Leave it out and the single sign-on endpoint is skipped.
     """
     app.add_url_rule(
         "/_cms/route-check",
@@ -495,6 +499,15 @@ def init_cms(app, strapi_api):
         endpoint="cms_cache_purge",
         methods=["POST"],
     )
+    if user_info:
+        # The CMS borrows this site's Ubuntu SSO login. Without a way to
+        # read the signed-in user there is nothing to assert, so the
+        # endpoint simply does not exist.
+        app.add_url_rule(
+            "/_cms/sso/start",
+            view_func=build_sso_start_view(user_info),
+            endpoint="cms_sso_start",
+        )
     app.add_url_rule(
         "/_cms/preview",
         view_func=build_draft_preview_view(),

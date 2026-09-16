@@ -1,13 +1,20 @@
 # Standard library
+import base64
+import hashlib
+import hmac
+import json
 import os
+import time
 import unittest
 from unittest.mock import patch
+from urllib.parse import parse_qs, quote, urlparse
 
 # Local
 from webapp.app import app
 from webapp.strapi.api import StrapiAPI, StrapiError
 from webapp.strapi.content import normalise_page, render_markdown
 from webapp.strapi.routing import cms_route, normalise_path, resolve
+from webapp.strapi.sso import build_sso_start_view
 from webapp.strapi.views import CMSTemplateFinder
 
 
@@ -462,6 +469,131 @@ class TestCMSEndpoints(unittest.TestCase):
             response = self.client.post("/_cms/cache/purge", json={})
 
         self.assertEqual(response.status_code, 404)
+
+
+class TestCMSSingleSignOn(unittest.TestCase):
+    """
+    The website half of Ubuntu SSO for the CMS: it vouches for whoever is
+    signed in here, and refuses to vouch to anyone else.
+    """
+
+    secret = "a-shared-secret"
+    callback = "http://cms.test/ubuntu-sso/callback"
+
+    def setUp(self):
+        app.testing = True
+        self.client = app.test_client()
+
+    def environment(self, **overrides):
+        """os.environ with the CMS sign-on settings pinned for a test."""
+        environment = dict(os.environ)
+
+        for name in ("CMS_SSO_SECRET", "STRAPI_ADMIN_URL", "STRAPI_API_URL"):
+            environment.pop(name, None)
+            environment.pop(f"FLASK_{name}", None)
+
+        environment.update(overrides)
+
+        return environment
+
+    def start(self, callback, **overrides):
+        settings = self.environment(
+            **{
+                "CMS_SSO_SECRET": self.secret,
+                "STRAPI_ADMIN_URL": "http://cms.test",
+                **overrides,
+            }
+        )
+
+        with patch.dict(os.environ, settings, clear=True):
+            return self.client.get(
+                "/_cms/sso/start", query_string={"callback": callback}
+            )
+
+    def test_signing_on_is_off_without_a_secret(self):
+        with patch.dict(os.environ, self.environment(), clear=True):
+            response = self.client.get(
+                "/_cms/sso/start", query_string={"callback": self.callback}
+            )
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_an_unknown_callback_is_refused(self):
+        response = self.start("http://evil.test/steal")
+
+        self.assertEqual(response.status_code, 400)
+
+    def test_a_missing_callback_is_refused(self):
+        response = self.start("")
+
+        self.assertEqual(response.status_code, 400)
+
+    def test_a_callback_matches_a_setting_carrying_a_path(self):
+        response = self.start(
+            self.callback, STRAPI_ADMIN_URL="http://cms.test/admin/"
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertIn("/login", response.headers["Location"])
+
+    def test_a_callback_that_is_not_a_url_is_refused(self):
+        response = self.start("javascript:alert(1)")
+
+        self.assertEqual(response.status_code, 400)
+
+    def test_a_visitor_who_is_not_signed_in_is_sent_to_login(self):
+        response = self.start(self.callback)
+
+        self.assertEqual(response.status_code, 302)
+
+        location = response.headers["Location"]
+
+        self.assertIn("/login", location)
+        # …and back here once they are, so the CMS still gets an answer.
+        self.assertIn(quote("/_cms/sso/start", safe=""), location)
+
+    def test_a_signed_in_visitor_gets_a_signed_assertion(self):
+        user = {
+            "email": "Editor@canonical.com",
+            "fullname": "An Editor",
+            "is_community_member": True,
+            "is_credentials_admin": False,
+        }
+
+        settings = self.environment(
+            CMS_SSO_SECRET=self.secret, STRAPI_ADMIN_URL="http://cms.test"
+        )
+
+        with patch.dict(os.environ, settings, clear=True):
+            view = build_sso_start_view(lambda session: user)
+
+            with app.test_request_context(
+                "/_cms/sso/start", query_string={"callback": self.callback}
+            ):
+                response = view()
+
+            query = parse_qs(urlparse(response.headers["Location"]).query)
+            payload = query["assertion"][0]
+
+            expected = hmac.new(
+                self.secret.encode(), payload.encode(), hashlib.sha256
+            ).hexdigest()
+
+        self.assertTrue(
+            response.headers["Location"].startswith(f"{self.callback}?")
+        )
+        self.assertEqual(query["signature"][0], expected)
+
+        claims = json.loads(base64.urlsafe_b64decode(payload))
+
+        self.assertEqual(claims["email"], "Editor@canonical.com")
+        self.assertEqual(claims["fullname"], "An Editor")
+        # Bound to the callback it was issued for, and short-lived.
+        self.assertEqual(claims["callback"], self.callback)
+        self.assertGreater(claims["exp"], time.time())
+        self.assertLessEqual(claims["exp"], time.time() + 120)
+        # Team membership travels as information, never as permission.
+        self.assertEqual(claims["teams"], ["is_community_member"])
 
 
 if __name__ == "__main__":

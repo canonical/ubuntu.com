@@ -102,6 +102,14 @@ Two endpoints support the CMS:
 
 [`webapp/strapi/content.py`](webapp/strapi/content.py) turns an API response into template context: it maps each component to a partial in `templates/_cms/components/` through an allowlist, renders Markdown, and sanitises the result. A component name from the API never reaches an include path.
 
+#### Signing in to the CMS
+
+Strapi's own admin single sign-on is an Enterprise feature, so the CMS borrows this site's login instead. `GET /_cms/sso/start?callback=…`, in [`webapp/strapi/sso.py`](webapp/strapi/sso.py), sends anyone who is not signed in through the ordinary Ubuntu SSO handshake, then redirects back to the CMS with a short-lived HMAC-signed assertion naming the person who signed in.
+
+The assertion is signed with `CMS_SSO_SECRET`, expires after two minutes, and is bound to the callback it was issued for. Callbacks are checked against `STRAPI_ADMIN_URL` / `STRAPI_API_URL`, so the endpoint cannot be used to hand someone's identity to a site of an attacker's choosing.
+
+It authenticates but does not authorise: the CMS signs in only people who already have an account there, and nobody is registered automatically. Unset `CMS_SSO_SECRET` and the endpoint does not exist.
+
 Relevant environment variables:
 
 | Variable | Purpose |
@@ -114,6 +122,8 @@ Relevant environment variables:
 | `STRAPI_OVERRIDE_TEMPLATES` | `true` lets a CMS page win over a template |
 | `STRAPI_SANITIZE_HTML` | `false` turns off HTML sanitisation of CMS content |
 | `CMS_PURGE_SECRET` | Shared secret for `POST /_cms/cache/purge` |
+| `CMS_SSO_SECRET` | Shared secret signing the sign-on assertion. Unset disables it. |
+| `STRAPI_ADMIN_URL` | The CMS admin origin: may frame a preview, and may receive an assertion |
 
 ### Search
 

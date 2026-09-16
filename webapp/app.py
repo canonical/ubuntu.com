@@ -861,7 +861,7 @@ app.add_url_rule("/user-country-tz.json", view_func=get_user_country_by_tz)
 # catch-all is templatefinder plus a Strapi lookup. With STRAPI_API_URL
 # unset build_api() returns None and this is exactly templatefinder, so
 # the site behaves as it did before.
-template_finder_view = init_cms(app, build_api())
+template_finder_view = init_cms(app, build_api(), user_info)
 app.add_url_rule("/", view_func=template_finder_view)
 app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 
