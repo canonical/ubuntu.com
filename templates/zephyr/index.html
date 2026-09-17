@@ -1,0 +1,304 @@
+{% extends "templates/base.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_resources.jinja" import vf_resources %}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
+
+{% block title %}Zephyr LTS – up to 15 years of security maintenance{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1PvpEqGRZU3lFJiToCvT_-1iAVV479qfDy3Fs_ZKS520
+{% endblock meta_copydoc %}
+
+{% block meta_description %}
+  Expand Zephyr RTOS support to up to 15 years with Zephyr LTS. OTA updates to support CRA readiness, expanded security maintenance, and faster dev onboarding.
+{% endblock %}
+
+
+{% block outer_content %}
+  {% call(slot) vf_hero(
+    title_text='Zephyr LTS',
+    subtitle_text='Security maintenance built for the full device lifecycle',
+    layout='50/50',
+    blocks=[
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "text",
+          "content": "
+            Zephyr LTS expands security maintenance for Zephyr RTOS to up to 15 years, giving you the confidence to build long-life devices that meet both customer and regulatory requirements.
+          "
+        }
+      },
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "text",
+          "content": "
+            Innovate at pace by spinning up a ready-to-use Zephyr dev environment with Canonical Workshop, and benefit from seamless OTA security updates, powered by Golioth’s IoT cloud platform.
+          "
+        }
+      },
+
+      {
+        "type": "cta-block",
+        "padding": "shallow",
+        "item": {
+          "primary": {
+            "content_html": "Get started with Zephyr LTS",
+            "attrs": {
+              "href": "/zephyr/docs/tutorials/get-started-with-workshop"
+            }
+          },
+          "secondaries": [
+            {
+              "content_html": "Contact our IoT team",
+              "attrs": {
+                "href": "/contact-us",
+                "class": "js-invoke-modal",
+                "aria-controls": "zephyr-contact-modal"
+              }
+            }
+          ],
+          "link": {
+            "content_html": "Read the announcement&nbsp;&rsaquo;",
+            "attrs": {
+              "href": "https://canonical.com/blog/zephyr-lts-announcement",
+            }
+          }
+        }
+      },
+      {
+        "type": "image",
+        "item": {
+          "aspect_ratio": "3-2",
+          "is_highlighted": false,
+          "is_cover": true,
+          "attrs": {
+            "src": "https://assets.ubuntu.com/v1/b35e957c-image.png",
+            "alt": "zephyr_hero_image"
+          }
+        }
+      }
+    ]
+  ) -%}
+  {% endcall -%}
+
+  {%- call(slot) vf_tiered_list(padding="shallow", is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
+    {%- if slot == 'title' -%}
+    <h2>Long-term support for long-lived devices</h2>
+    {%- endif -%}
+
+    {%- if slot == 'description' -%}
+      <p>
+        Focus on a great customer experience, not compliance. Available as part of <a href="/pro/devices">Ubuntu Pro for Devices</a>, Zephyr LTS brings the predictability of the Ubuntu release cycle to microcontroller devices. Starting with <a href="/zephyr/docs/tutorials/get-started-with-workshop">Zephyr 26.04 LTS</a>, Canonical will release a Zephyr distribution every 2 years for long-term supported releases, and every 6 months for interim releases.
+      </p>
+    {%- endif -%}
+
+
+    {%- if slot == 'list_item_title_1' -%}
+    <h3 class="p-heading--5">Exceed the requirements of the Cyber Resilience Act</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+    <p>
+      Upstream Zephyr offers 5 years of support. However, embedded devices are often designed for longer lifecycles. Zephyr LTS bridges the gap and offers up to 15 years of patching and maintenance, exceeding the CRA mandate and freeing your teams up to focus on delivering for customers – not compliance.
+    </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_2' -%}
+    <h3 class="p-heading--5">Native OTA, with Golioth</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+    <p>
+      Zephyr LTS provides you with a built-in pipeline, to deliver patches and updates, through the Golioth SDK: an out-of-the-box solution for turnkey over-the-air (OTA) updates, unique credential provisioning, and remote device management. In a single command, you have everything you need to satisfy CRA requirements in an easier way, without building custom tools.
+    </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_3' -%}
+    <h3 class="p-heading--5">Launch sandboxed development environments</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_3' -%}
+    <p>
+      Avoid custom configurations and vendor-locked extensions. Canonical Workshop provides repeatable, sandboxed development environments for Zephyr LTS in a single command. It's agent-ready and containerized, isn't locked to any specific hardware vendor, and lets developers run west build immediately, cutting the time from first install to first build.
+    </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_4' -%}
+    <h3 class="p-heading--5">One provider for Linux and MCU-class devices</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_4' -%}
+    <p>
+      Most connected products aren't just one device, they're a fleet, with Linux-class gateways and edge compute running alongside microcontroller-class sensors and actuators. Moreover, hybrid architectures based on MPU and MCU combined in one SoC are becoming more and more present in the market.
+    </p>
+    <p>
+      As part of <a href="/pro/devices">Ubuntu Pro for Devices</a>, Zephyr LTS enables manufacturers to source support for both MCU-class and Linux-class devices from a single, trusted provider.
+    </p>
+    <p>
+      That means one point of contact, one procurement process, and one trusted supplier standing behind every device in your product line, regardless of which OS or RTOS it runs.
+    </p>
+    {%- endif -%}
+  {%- endcall -%}
+
+  <hr class="p-rule--muted is-fixed-width u-no-margin--bottom" />
+  <div class="p-section--shallow zephyr-tiered-cta">
+    <div class="u-fixed-width">
+      <div class="grid-row">
+        <div class="grid-col-4 grid-col-start-large-5">
+          <div class="p-cta-block">
+            <a href="/zephyr/docs/tutorials/get-started-with-workshop"
+               class="p-button">Get started</a>
+            <a href="/contact-us" class="js-invoke-modal" aria-controls="zephyr-contact-modal">Contact our IoT team &rsaquo;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{ vf_basic_section(
+    title={"text": "Available starting with Zephyr 26.04 LTS"},
+    items=[
+      {
+        "type": "description",
+        "item": {
+          "type": "html",
+          "content": "
+            <p>
+              Long-term support releases of Zephyr will come out every two years, following the same timing as Ubuntu and giving certainty to developers with up to 15 years of support.
+            </p>
+            <p>
+              As with Ubuntu, interim releases will be published every 6 months for developers needing cutting edge features, with these being supported for 9 months.
+            </p>
+          "
+        }
+      },
+      {
+        "type": "cta-block",
+        "item": {
+          "secondaries": [
+            {
+              "content_html": "Learn more  ›",
+              "attrs": {
+                "href": "/zephyr/docs/"
+              }
+            }
+          ]
+        }
+      },
+    ]
+  ) }}
+
+  {% call(slot) vf_resources(
+      title={
+        "text": "Resources",
+      },
+      blocks=[
+        {
+          "type": "resources",
+          "render_images": false,
+          "categories": [
+            {
+              "title": "Documentation",
+              "items": [
+                {
+                  "title": {
+                    "text": "Getting started with Zephyr LTS",
+                    "link_attrs": {
+                      "href": "/zephyr/docs/tutorials/get-started-with-workshop"
+                    }
+                  },
+                },
+              ]
+            },
+            {
+              "title": "Blogs and further reading",
+              "items": [
+                {
+                  "title": {
+                    "text": "Ubuntu Pro for Devices: get up to 15 years of security maintenance",
+                    "link_attrs": {
+                      "href": "/pro/devices"
+                    }
+                  },
+                },
+                {
+                  "title": {
+                    "text": "So you need to add microcontrollers to your fleet – now what?",
+                    "link_attrs": {
+                      "href": "/blog/microcontrollers-ubuntu-core-golioth"
+                    }
+                  },
+                },
+              ]
+            },
+            {
+              "title": "Contact us",
+              "items": [
+                {
+                  "title": {
+                    "text": "Join the conversation on Ubuntu Discourse",
+                    "link_attrs": {
+                      "href": "https://discourse.ubuntu.com/"
+                    }
+                  },
+                },
+                {
+                  "title": {
+                    "text": "Get in touch",
+                    "link_attrs": {
+                      "href": "/contact-us",
+                      "class": "js-invoke-modal",
+                      "aria-controls": "zephyr-contact-modal"
+                    }
+                  },
+                },
+              ]
+            },
+          ]
+        }
+      ]
+      ) -%}
+  {% endcall -%}
+
+  {% call(slot) vf_cta_section(
+    title_text='Talk to us about your device management needs',
+    variant='block',
+    layout='100',
+    blocks=[
+      {
+        "type": "description",
+        "item": {
+          "type": "html",
+          "content": "
+                <p>
+                  Want to know more about Zephyr LTS? Are you looking for advice on your next IoT project? Our team would love to hear from you. Get in touch by clicking the button below.
+                </p>
+          "
+        }
+      },
+      {
+        "type": "cta",
+        "item": {
+          "primary": {
+            "content_html": "Contact us",
+            "attrs": {
+              "href": "/contact-us",
+              "class": "js-invoke-modal",
+              "aria-controls": "zephyr-contact-modal"
+            }
+          }
+        }
+      }
+    ]
+  ) -%}
+  {% endcall -%}
+
+  {{ load_form("/zephyr", isModal=True) | safe }}
+{% endblock outer_content %}
