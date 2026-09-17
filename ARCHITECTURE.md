@@ -81,7 +81,7 @@ For more information, see the [Creating Discourse based documentation pages](htt
 
 ### CMS pages
 
-Pages can also be authored outside this codebase, in [the Strapi CMS](../strapi). An editor assembles a page from Vanilla Framework patterns and gives it a route; anything the site does not already serve at that route is then served from the CMS.
+Pages can also be authored outside this codebase, in [the Strapi CMS](../strapi). [CMS.md](CMS.md) covers both halves in detail. An editor assembles a page from Vanilla Framework patterns and gives it a route; anything the site does not already serve at that route is then served from the CMS.
 
 Resolution order for a request, implemented in [`webapp/strapi/routing.py`](webapp/strapi/routing.py):
 
