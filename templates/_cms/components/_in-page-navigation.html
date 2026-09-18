@@ -1,0 +1,12 @@
+{# vf_in-page-navigation — generated from Vanilla's vf_in_page_navigation #}
+{% from "_macros/vf_in-page-navigation.jinja" import vf_in_page_navigation %}
+{% set block = section.data %}
+
+{{ vf_in_page_navigation(
+  title=block.title,
+  navigation_items=block.navigation_items,
+  scope=block.scope,
+  primary_heading=block.primary_heading,
+  secondary_heading=block.secondary_heading,
+  excludes=block.excludes
+) }}

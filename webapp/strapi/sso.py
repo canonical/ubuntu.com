@@ -19,8 +19,9 @@ a secret. It says who signed in, is valid for a couple of minutes, and
 is bound to the CMS callback it was issued for.
 
 It authenticates; it does not authorise. The CMS signs in only people
-who already have an account there, so holding an Ubuntu One account is
-not by itself a way in.
+who already have an account there, and what they may then edit is
+decided on that side, from the access list on each bubble. So this
+assertion says who somebody is and nothing about what they can do.
 """
 
 # Standard library
@@ -38,16 +39,6 @@ from canonicalwebteam.flask_base.env import get_flask_env
 # Long enough to survive a redirect, short enough that a leaked URL in a
 # log or history is worthless.
 ASSERTION_TTL = 120
-
-# Launchpad team flags this site already resolves at login, passed on
-# for information. Access itself is not decided here: the CMS only signs
-# in people who already have an account there, so nobody gains admin
-# rights just by holding an Ubuntu One account.
-TEAM_FLAGS = (
-    "is_community_member",
-    "is_credentials_admin",
-    "is_credentials_support",
-)
 
 
 def _secret():
@@ -141,7 +132,6 @@ def build_sso_start_view(user_info):
         claims = {
             "email": user["email"],
             "fullname": user.get("fullname") or "",
-            "teams": [flag for flag in TEAM_FLAGS if user.get(flag)],
             "callback": callback,
             "exp": int(time.time()) + ASSERTION_TTL,
         }

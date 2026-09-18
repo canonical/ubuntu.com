@@ -302,6 +302,22 @@ class TestPageNormalisation(unittest.TestCase):
 
         self.assertEqual(indexes, [1, 2])
 
+    def test_sections_keep_their_place_in_the_cms_list(self):
+        # A review comment points at a section by where it sits in the
+        # CMS, so dropping an unknown component must not renumber the
+        # ones after it.
+        document = a_page(
+            sections=[
+                {"__component": "vanilla.separator", "style": "muted"},
+                {"__component": "vanilla.not-a-real-pattern", "title": "?"},
+                {"__component": "vanilla.separator", "style": "muted"},
+            ]
+        )
+
+        sections = normalise_page(document)["sections"]
+
+        self.assertEqual([s["position"] for s in sections], [0, 2])
+
 
 class TestCMSTemplateFinder(unittest.TestCase):
     def test_a_template_is_served_before_the_cms(self):
@@ -553,12 +569,7 @@ class TestCMSSingleSignOn(unittest.TestCase):
         self.assertIn(quote("/_cms/sso/start", safe=""), location)
 
     def test_a_signed_in_visitor_gets_a_signed_assertion(self):
-        user = {
-            "email": "Editor@canonical.com",
-            "fullname": "An Editor",
-            "is_community_member": True,
-            "is_credentials_admin": False,
-        }
+        user = {"email": "Editor@canonical.com", "fullname": "An Editor"}
 
         settings = self.environment(
             CMS_SSO_SECRET=self.secret, STRAPI_ADMIN_URL="http://cms.test"
@@ -592,8 +603,9 @@ class TestCMSSingleSignOn(unittest.TestCase):
         self.assertEqual(claims["callback"], self.callback)
         self.assertGreater(claims["exp"], time.time())
         self.assertLessEqual(claims["exp"], time.time() + 120)
-        # Team membership travels as information, never as permission.
-        self.assertEqual(claims["teams"], ["is_community_member"])
+        # The assertion says who signed in and nothing about what they
+        # may do: access is decided on the CMS side, per bubble.
+        self.assertNotIn("teams", claims)
 
 
 if __name__ == "__main__":

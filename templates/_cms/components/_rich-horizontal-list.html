@@ -1,0 +1,14 @@
+{# vf_rich-horizontal-list — generated from Vanilla's vf_rich_horizontal_list #}
+{% from "_macros/vf_rich-horizontal-list.jinja" import vf_rich_horizontal_list %}
+{% set block = section.data %}
+
+{% call(slot) vf_rich_horizontal_list(
+  title_text=block.title_text,
+  layout=block.layout,
+  list_item_style=block.list_item_style
+) %}
+  {%- if slot == "image" -%}{{ block.slot_image | safe }}{%- endif -%}
+  {%- if slot == "description" -%}{{ block.slot_description | safe }}{%- endif -%}
+  {%- if slot == "logo_section_items" -%}{{ block.slot_logo_section_items | safe }}{%- endif -%}
+  {%- if slot == "cta" -%}{{ block.slot_cta | safe }}{%- endif -%}
+{% endcall %}

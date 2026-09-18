@@ -1,0 +1,22 @@
+{# vf_newsletter-signup — generated from Vanilla's vf_newsletter_signup #}
+{% from "_macros/vf_newsletter-signup.jinja" import vf_newsletter_signup %}
+{% set block = section.data %}
+
+{% call(slot) vf_newsletter_signup(
+  form_id=block.form_id,
+  return_url=block.return_url,
+  title_text=block.title_text,
+  form_action=block.form_action,
+  input_label=block.input_label,
+  checkbox_id=block.checkbox_id,
+  checkbox_label=block.checkbox_label,
+  layout=block.layout,
+  top_rule_variant=block.top_rule_variant,
+  hide_newsletter_block_rule=block.hide_newsletter_block_rule,
+  submit_btn_class=block.submit_btn_class
+) %}
+  {%- if slot == "description" -%}{{ block.slot_description | safe }}{%- endif -%}
+  {%- if slot == "addendum" -%}{{ block.slot_addendum | safe }}{%- endif -%}
+  {%- if slot == "hidden_fields" -%}{{ block.slot_hidden_fields | safe }}{%- endif -%}
+  {%- if slot == "honeypot_fields" -%}{{ block.slot_honeypot_fields | safe }}{%- endif -%}
+{% endcall %}

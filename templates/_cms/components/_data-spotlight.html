@@ -1,0 +1,8 @@
+{# vf_data-spotlight — generated from Vanilla's vf_data_spotlight #}
+{% from "_macros/vf_data-spotlight.jinja" import vf_data_spotlight %}
+{% set block = section.data %}
+
+{{ vf_data_spotlight(
+  title=block.title,
+  blocks=block.blocks
+) }}

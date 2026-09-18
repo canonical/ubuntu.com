@@ -1,0 +1,12 @@
+{# vf_blog — generated from Vanilla's vf_blog #}
+{% from "_macros/vf_blog.jinja" import vf_blog %}
+{% set block = section.data %}
+
+{{ vf_blog(
+  title=block.title,
+  articles=block.articles,
+  template_config=block.template_config,
+  padding=block.padding,
+  top_rule_variant=block.top_rule_variant,
+  fallback_image_url=block.fallback_image_url
+) }}

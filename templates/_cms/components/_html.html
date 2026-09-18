@@ -1,6 +1,7 @@
 {# vanilla.html — the escape hatch, sanitised in webapp/strapi/content.py #}
+{% from "_cms/_macros.html" import cms_width %}
 {% set block = section.data %}
 
 <section class="{{ block.section_class }}">
-  <div class="{{ block.width_class }}">{{ block.content | safe }}</div>
+  {% call cms_width(block) %}{{ block.content | safe }}{% endcall %}
 </section>

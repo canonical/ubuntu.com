@@ -1,0 +1,9 @@
+{# vf_resources — generated from Vanilla's vf_resources #}
+{% from "_macros/vf_resources.jinja" import vf_resources %}
+{% set block = section.data %}
+
+{{ vf_resources(
+  title=block.title,
+  blocks=block.blocks,
+  padding=block.padding
+) }}

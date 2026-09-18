@@ -51,6 +51,21 @@ COMPONENT_TEMPLATES = {
     "vanilla.cta-block": "_cms/components/_cta-block.html",
     "vanilla.separator": "_cms/components/_separator.html",
     "vanilla.html": "_cms/components/_html.html",
+    "vanilla.blog": "_cms/components/_blog.html",
+    "vanilla.card": "_cms/components/_card.html",
+    "vanilla.data-spotlight": "_cms/components/_data-spotlight.html",
+    "vanilla.in-page-navigation": "_cms/components/_in-page-navigation.html",
+    "vanilla.linked-logo-section": (
+        "_cms/components/_linked-logo-section.html"
+    ),
+    "vanilla.newsletter-signup": "_cms/components/_newsletter-signup.html",
+    "vanilla.pricing-block": "_cms/components/_pricing-block.html",
+    "vanilla.resources": "_cms/components/_resources.html",
+    "vanilla.rich-horizontal-list": (
+        "_cms/components/_rich-horizontal-list.html"
+    ),
+    "vanilla.rich-vertical-list": "_cms/components/_rich-vertical-list.html",
+    "vanilla.text-spotlight": "_cms/components/_text-spotlight.html",
 }
 
 # Components that need a page-level script or body class.
@@ -478,12 +493,50 @@ def _vf_description(html):
     return {"type": "description", "item": {"type": "html", "content": html}}
 
 
+def _vf_video(url, title):
+    """
+    A section's embedded video, as vf_basic_section's "video" item.
+
+    The macro spreads `attrs` straight onto the iframe, so everything the
+    embed needs is named here rather than in a template.
+    """
+    if not url:
+        return None
+
+    return {
+        "type": "video",
+        "item": {
+            "attrs": {
+                "src": url,
+                "title": title or "",
+                "loading": "lazy",
+                "frameborder": "0",
+                "allow": (
+                    "accelerometer; autoplay; clipboard-write; "
+                    "encrypted-media; gyroscope; picture-in-picture"
+                ),
+                "referrerpolicy": "strict-origin-when-cross-origin",
+                "allowfullscreen": "true",
+            }
+        },
+    }
+
+
 def _vf_items(data):
     """
-    The second column of a Vanilla basic section: the body copy, then any
-    call to action.
+    The second column of a Vanilla basic section: an optional video, the
+    body copy, then any call to action.
+
+    The video comes first because that is where the hand-written pages
+    put it — the heading sits in the first column and the second opens
+    with the embed.
     """
     items = []
+
+    embed = _vf_video(data.get("embed_url"), data.get("embed_title"))
+
+    if embed:
+        items.append(embed)
 
     for html in (data.get("content"), data.get("aside_content")):
         block = _vf_description(html)
@@ -752,14 +805,19 @@ def normalise_page(document, media_url=""):
     if not document:
         return None
 
-    sections = [
-        section
-        for section in (
-            _normalise_component(component, media_url)
-            for component in document.get("sections") or []
-        )
-        if section
-    ]
+    sections = []
+
+    for position, component in enumerate(document.get("sections") or []):
+        section = _normalise_component(component, media_url)
+
+        if not section:
+            continue
+
+        # Where the section sits in the CMS's own list. Not the same as
+        # its place here once an unrecognised component has been dropped,
+        # and a review comment points at the CMS's numbering.
+        section["position"] = position
+        sections.append(section)
 
     # Accordions and tabs need ids that are unique across the whole page,
     # not just within their own component.

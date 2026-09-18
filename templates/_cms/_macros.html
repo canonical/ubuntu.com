@@ -61,3 +61,21 @@
   {% endif %}
 {%- endif -%}
 {% endmacro %}
+
+{#
+  A block's width wrapper.
+
+  "narrow" is a grid column, and Vanilla's column classes only do
+  anything inside a .row — without one the block silently falls back to
+  full width. Every partial that offers a width goes through here so
+  that knowledge lives in one place rather than in each of them.
+#}
+{% macro cms_width(block) %}
+  {%- if block.width == "narrow" -%}
+    <div class="row">
+      <div class="col-start-large-4 col-9">{{ caller() }}</div>
+    </div>
+  {%- else -%}
+    <div class="{{ block.width_class }}">{{ caller() }}</div>
+  {%- endif -%}
+{% endmacro %}

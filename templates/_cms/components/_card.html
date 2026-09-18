@@ -1,0 +1,15 @@
+{# vf_card — generated from Vanilla's vf_card #}
+{% from "_macros/vf_card.jinja" import vf_card %}
+{% set block = section.data %}
+
+{{ vf_card(
+  columns=block.columns,
+  link=block.link,
+  heading=block.heading,
+  image=block.image,
+  author=block.author,
+  date=block.date,
+  footer=block.footer,
+  description=block.description,
+  stacked_image=block.stacked_image
+) }}

@@ -55,7 +55,11 @@
   {% endif %}
 
   {% for section in page.sections %}
+    {# Only in a framed preview: gives a review comment something to point
+       at. The live page keeps its sections as direct children. #}
+    {% if page.is_preview %}<div data-cms-section="{{ section.position }}">{% endif %}
     {% include section.template %}
+    {% if page.is_preview %}</div>{% endif %}
   {% endfor %}
 
 {% endblock outer_content %}

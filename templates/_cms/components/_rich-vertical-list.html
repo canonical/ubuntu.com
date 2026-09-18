@@ -1,0 +1,12 @@
+{# vf_rich-vertical-list — generated from Vanilla's vf_rich_vertical_list #}
+{% from "_macros/vf_rich-vertical-list.jinja" import vf_rich_vertical_list %}
+{% set block = section.data %}
+
+{{ vf_rich_vertical_list(
+  title=block.title,
+  items=block.items,
+  media=block.media,
+  is_flipped=block.is_flipped,
+  padding=block.padding,
+  top_rule_variant=block.top_rule_variant
+) }}

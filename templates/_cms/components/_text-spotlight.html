@@ -1,0 +1,9 @@
+{# vf_text-spotlight — generated from Vanilla's vf_text_spotlight #}
+{% from "_macros/vf_text-spotlight.jinja" import vf_text_spotlight %}
+{% set block = section.data %}
+
+{{ vf_text_spotlight(
+  title_text=block.title_text,
+  item_heading_level=block.item_heading_level,
+  list_items=block.list_items
+) }}

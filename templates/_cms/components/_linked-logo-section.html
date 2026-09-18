@@ -1,0 +1,11 @@
+{# vf_linked-logo-section — generated from Vanilla's vf_linked_logo_section #}
+{% from "_macros/vf_linked-logo-section.jinja" import vf_linked_logo_section %}
+{% set block = section.data %}
+
+{{ vf_linked_logo_section(
+  title_text=block.title_text,
+  links=block.links,
+  layout=block.layout,
+  top_rule_variant=block.top_rule_variant,
+  padding=block.padding
+) }}
