@@ -16,6 +16,9 @@
   Expand Zephyr RTOS support to up to 15 years with Zephyr LTS. OTA updates to support CRA readiness, expanded security maintenance, and faster dev onboarding.
 {% endblock %}
 
+{% block body_class %}
+  is-paper zephyr-page
+{% endblock body_class %}
 
 {% block outer_content %}
   {% call(slot) vf_hero(
@@ -27,23 +30,17 @@
         "type": "description",
         "padding": "shallow",
         "item": {
-          "type": "text",
+          "type": "html",
           "content": "
-            Zephyr LTS expands security maintenance for Zephyr RTOS to up to 15 years, giving you the confidence to build long-life devices that meet both customer and regulatory requirements.
+            <p>
+              Zephyr LTS expands security maintenance for Zephyr RTOS to up to 15 years, giving you the confidence to build long-life devices that meet both customer and regulatory requirements.
+            </p>
+            <p>
+              Innovate at pace by spinning up a ready-to-use Zephyr dev environment with Canonical Workshop, and benefit from seamless OTA security updates, powered by Golioth’s IoT cloud platform.
+            </p>
           "
         }
       },
-      {
-        "type": "description",
-        "padding": "shallow",
-        "item": {
-          "type": "text",
-          "content": "
-            Innovate at pace by spinning up a ready-to-use Zephyr dev environment with Canonical Workshop, and benefit from seamless OTA security updates, powered by Golioth’s IoT cloud platform.
-          "
-        }
-      },
-
       {
         "type": "cta-block",
         "padding": "shallow",
@@ -80,7 +77,7 @@
           "is_cover": true,
           "attrs": {
             "src": "https://assets.ubuntu.com/v1/b35e957c-image.png",
-            "alt": "zephyr_hero_image"
+            "alt": ""
           }
         }
       }
@@ -99,6 +96,15 @@
       </p>
     {%- endif -%}
 
+    {%- if slot == 'cta' -%}
+      <div class="p-cta-block">
+        <a href="/zephyr/docs/tutorials/get-started-with-workshop"
+           class="p-button">Get started</a>
+        <a href="/contact-us"
+           class="js-invoke-modal"
+           aria-controls="zephyr-contact-modal">Contact our IoT team &rsaquo;</a>
+      </div>
+    {%- endif -%}
 
     {%- if slot == 'list_item_title_1' -%}
     <h3 class="p-heading--5">Exceed the requirements of the Cyber Resilience Act</h3>
@@ -147,20 +153,6 @@
     {%- endif -%}
   {%- endcall -%}
 
-  <hr class="p-rule--muted is-fixed-width u-no-margin--bottom" />
-  <div class="p-section--shallow zephyr-tiered-cta">
-    <div class="u-fixed-width">
-      <div class="grid-row">
-        <div class="grid-col-4 grid-col-start-large-5">
-          <div class="p-cta-block">
-            <a href="/zephyr/docs/tutorials/get-started-with-workshop"
-               class="p-button">Get started</a>
-            <a href="/contact-us" class="js-invoke-modal" aria-controls="zephyr-contact-modal">Contact our IoT team &rsaquo;</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   {{ vf_basic_section(
     title={"text": "Available starting with Zephyr 26.04 LTS"},
@@ -184,7 +176,7 @@
         "item": {
           "secondaries": [
             {
-              "content_html": "Learn more  ›",
+              "content_html": "Learn more",
               "attrs": {
                 "href": "/zephyr/docs/"
               }
@@ -195,6 +187,8 @@
     ]
   ) }}
 
+
+  <div class="p-resources zephyr-resources">
   {% call(slot) vf_resources(
       title={
         "text": "Resources",
@@ -266,6 +260,7 @@
       ]
       ) -%}
   {% endcall -%}
+  </div>
 
   {% call(slot) vf_cta_section(
     title_text='Talk to us about your device management needs',

@@ -1894,6 +1894,16 @@ ol.p-stepped-list.no-full-stop
   column-gap: 1rem;
 }
 
+.zephyr-resources {
+  .p-article-block {
+    row-gap: 0;
+  }
+
+  > .p-section > .p-section--shallow > div:last-child {
+    padding-bottom: 1.5rem;
+  }
+}
+
 // Truncates text to two lines with ellipsis
 .u-clamp--two-lines {
   display: -webkit-box;
