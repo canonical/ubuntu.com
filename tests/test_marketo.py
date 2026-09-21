@@ -441,16 +441,12 @@ class TestMarketoSubmit(unittest.TestCase):
 class TestMarketoAPIClient(unittest.TestCase):
     """
     Tests for MarketoAPI, the client wrapping the Marketo REST API.
-
-    The session is mocked, so these tests need neither live Marketo
-    credentials nor network access.
+    The session is mocked, so no credentials or network access are needed.
     """
 
     @staticmethod
     def _api(token="token"):
-        """
-        Build a MarketoAPI with a mocked session, returning both.
-        """
+        """Build a MarketoAPI with a mocked session, returning both."""
         session = Mock()
         api = MarketoAPI("https://marketo.test", "id", "secret", session)
         api.token = token
@@ -460,7 +456,7 @@ class TestMarketoAPIClient(unittest.TestCase):
     def _mock_response(json_body=None, status_code=200, text=""):
         """
         Build a fake requests.Response. Passing no json_body makes .json()
-        raise, as it does for an HTML error page or an empty body.
+        raise, as an HTML error page or empty body would.
         """
         response = Mock()
         response.status_code = status_code
@@ -472,10 +468,7 @@ class TestMarketoAPIClient(unittest.TestCase):
         return response
 
     def test_non_json_response_raises_marketo_error(self):
-        """
-        A non-JSON body, such as a gateway error page, is reported as a
-        MarketoAPIError naming the status, not as a JSONDecodeError.
-        """
+        """A gateway error page is reported as a MarketoAPIError."""
         api, session = self._api()
         session.request.return_value = self._mock_response(
             status_code=502, text="<html>Bad gateway</html>"
@@ -488,10 +481,7 @@ class TestMarketoAPIClient(unittest.TestCase):
         self.assertIn("Bad gateway", str(error.exception))
 
     def test_missing_access_token_raises_marketo_error(self):
-        """
-        When the token endpoint rejects or throttles the credentials, the
-        reason is reported instead of a KeyError on the missing token.
-        """
+        """Rejected credentials report why, instead of a KeyError."""
         api, session = self._api(token=None)
         session.get.return_value = self._mock_response(
             {
@@ -507,10 +497,7 @@ class TestMarketoAPIClient(unittest.TestCase):
         self.assertIn("Bad client credentials", str(error.exception))
 
     def test_requests_are_sent_with_a_timeout(self):
-        """
-        Every call carries a timeout, so a stalled connection cannot hold a
-        worker open indefinitely.
-        """
+        """A stalled connection cannot hold a worker open."""
         api, session = self._api()
         session.request.return_value = self._mock_response(
             {"success": True, "result": [{"status": "created"}]}
@@ -523,10 +510,7 @@ class TestMarketoAPIClient(unittest.TestCase):
         )
 
     def test_expired_token_is_refreshed_and_the_call_replayed(self):
-        """
-        An expired token (error 602) triggers one re-authentication and a
-        replay of the original call.
-        """
+        """Error 602 triggers one re-authentication and a replay."""
         api, session = self._api()
         succeeded = self._mock_response(
             {"success": True, "result": [{"status": "created"}]}
@@ -544,10 +528,7 @@ class TestMarketoAPIClient(unittest.TestCase):
         self.assertEqual(api.token, "fresh-token")
 
     def test_throttled_call_is_replayed_after_backing_off(self):
-        """
-        Marketo's concurrency limit (error 615) is transient, so the call is
-        replayed after a pause rather than failing the submission.
-        """
+        """The concurrency limit (615) is transient, so replay it."""
         api, session = self._api()
         throttled = self._mock_response({"errors": [{"code": "615"}]})
         succeeded = self._mock_response(
@@ -564,8 +545,8 @@ class TestMarketoAPIClient(unittest.TestCase):
 
     def test_persistent_throttling_returns_the_last_response(self):
         """
-        When the rate limit (error 606) outlasts every backoff, the last
-        response is handed back so the view can report it to Sentry.
+        When the rate limit (606) outlasts every backoff, the last response
+        is handed back for the view to report to Sentry.
         """
         api, session = self._api()
         throttled = self._mock_response({"errors": [{"code": "606"}]})
@@ -577,9 +558,7 @@ class TestMarketoAPIClient(unittest.TestCase):
         self.assertEqual(session.request.call_count, 3)
 
     def test_other_errors_are_returned_without_a_replay(self):
-        """
-        Errors that retrying cannot fix are handed straight back.
-        """
+        """Errors that retrying cannot fix are handed straight back."""
         api, session = self._api()
         failed = self._mock_response(
             {"success": False, "errors": [{"code": "1003"}]}
@@ -590,9 +569,7 @@ class TestMarketoAPIClient(unittest.TestCase):
         self.assertEqual(session.request.call_count, 1)
 
     def test_malformed_errors_are_returned_without_raising(self):
-        """
-        An unexpected errors shape does not break the client.
-        """
+        """An unexpected errors shape does not break the client."""
         api, session = self._api()
         malformed = self._mock_response({"errors": "not-a-list"})
         session.request.return_value = malformed
@@ -601,8 +578,7 @@ class TestMarketoAPIClient(unittest.TestCase):
 
     def test_server_errors_are_replayed_for_get_only(self):
         """
-        A POST that reached Marketo may already have created a lead, so only
-        GET requests are replayed on a 5xx response.
+        A POST may already have created a lead, so only GET is replayed.
         """
         session = Session()
         MarketoAPI("https://marketo.test", "id", "secret", session)

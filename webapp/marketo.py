@@ -4,18 +4,14 @@ from requests.adapters import HTTPAdapter
 from urllib.parse import urlencode
 from urllib3.util.retry import Retry
 
-# (connect, read) timeout for every call to Marketo. Without one a stalled
-# connection holds a worker until gunicorn kills it. Connecting is quick
-# when Marketo is reachable at all, so that half is kept short: a form
-# submission makes two calls, and both have to finish inside the worker
-# timeout even when each is retried.
+# (connect, read) timeout for every call. A submission makes two calls, so
+# both have to fit inside the gunicorn worker timeout, retries included.
 REQUEST_TIMEOUT = (3, 10)
 
-# Error codes meaning the access token has to be refreshed
+# Token expired or revoked
 AUTH_ERROR_CODES = ("601", "602")
 
-# Transient error codes: rate limit (100 calls/20s), API temporarily
-# unavailable, and concurrency limit (10 calls at once). See
+# Rate limit, API unavailable, concurrency limit. See
 # https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/error-codes
 THROTTLE_ERROR_CODES = ("606", "608", "615")
 
@@ -24,10 +20,7 @@ THROTTLE_BACKOFF = (1, 3)
 
 
 class MarketoAPIError(Exception):
-    """
-    Raised when Marketo answers with something we cannot use, so the reason
-    reaches Sentry instead of a bare KeyError or JSONDecodeError.
-    """
+    """Marketo answered with something we cannot use."""
 
 
 class MarketoAPI:
@@ -44,10 +37,8 @@ class MarketoAPI:
         self.session = session
         self.token = None
 
-        # The session is long-lived and shared, so its pooled connections go
-        # stale and get dropped: retry those on any method. Only replay 5xx
-        # responses for GET, as a POST that reached Marketo may already have
-        # created a lead.
+        # Pooled connections go stale, so retry dropped ones on any method.
+        # Only replay 5xx for GET: a POST may already have created a lead.
         retries = Retry(
             total=2,
             connect=2,
@@ -63,10 +54,7 @@ class MarketoAPI:
         self.session.mount("http://", adapter)
 
     def _parse_json(self, response, context):
-        """
-        Marketo's edge can answer with an HTML error page or an empty body;
-        report that as a MarketoAPIError rather than a JSONDecodeError.
-        """
+        """Report an HTML error page or empty body as a MarketoAPIError."""
         try:
             return response.json()
         except ValueError:
@@ -77,9 +65,7 @@ class MarketoAPI:
 
     @staticmethod
     def _error_code(data):
-        """
-        The first Marketo error code, or None when there are no errors.
-        """
+        """First Marketo error code, or None when there are no errors."""
         errors = data.get("errors") if isinstance(data, dict) else None
 
         if not isinstance(errors, list) or not errors:
@@ -101,8 +87,7 @@ class MarketoAPI:
         token = data.get("access_token")
 
         if not token:
-            # Rejected or throttled credentials: report why, instead of a
-            # KeyError on the missing token
+            # Credentials rejected or throttled
             raise MarketoAPIError(
                 "No access token returned by Marketo (status "
                 f"{response.status_code}): {data.get('error')} - "
@@ -129,13 +114,11 @@ class MarketoAPI:
             )
             code = self._error_code(self._parse_json(response, url))
 
-            # The token expired or was revoked: refresh it and replay once
             if code in AUTH_ERROR_CODES and not reauthenticated:
                 reauthenticated = True
                 self._authenticate()
                 continue
 
-            # Rate or concurrency limit: back off and replay
             throttled = code in THROTTLE_ERROR_CODES
             if throttled and throttle_retries < len(THROTTLE_BACKOFF):
                 time.sleep(THROTTLE_BACKOFF[throttle_retries])
