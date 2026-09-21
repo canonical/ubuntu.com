@@ -1403,9 +1403,11 @@ def marketo_submit():
     # Skipped payload means Marketo rejected the submission
     # API-level success does not mean the submission was successful
     # https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/error-codes#error-types
-    payload_status = data["result"][0]["status"]
-    payload_succeeded = data["success"] is True and payload_status != "skipped"
-    enrichment_succeeded = enrichment_submission["success"] is True
+    payload_status = data["result"][0].get("status")
+    payload_succeeded = (
+        data.get("success") is True and payload_status != "skipped"
+    )
+    enrichment_succeeded = enrichment_submission.get("success") is True
 
     # Verify that both payload and enrichment submissions went through
     if payload_succeeded is True and enrichment_succeeded is True:
