@@ -1,0 +1,552 @@
+{% extends "security/base_security.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tab-section.jinja" import vf_tab_section %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
+
+{% block title %}NCSC Software Security Code of Practice | Security{% endblock %}
+
+{% block meta_description %}
+  How Canonical meets the requirements of the UK NCSC Software Security Code of Practice
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1v4R6pnWx0iNJVSg4ZSYEZdF9xci_lSYppSOyoVeGs9g/edit
+{% endblock meta_copydoc %}
+
+{% block body_class %}is-paper{% endblock %}
+
+{% block content %}
+
+  {% call(slot) vf_hero(
+    title_text='Alignment with the UK NCSC<br class="u-hide--small" /> Software Security Code of Practice',
+    layout='50/50-full-width-image'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        The <a href="https://www.ncsc.gov.uk/section/software-security-code-of-practice/overview">Software Security Code of
+        Practice</a> is a voluntary framework published by the UK Department for Science, Innovation and Technology (DSIT)
+        and the National Cyber Security Centre (NCSC), which outlines 14 principles across four themes designed to help
+        software vendors mitigate supply chain attacks and embed security-by-design from the ground up.
+      </p>
+      <p>
+        Because Canonical builds and distributes the open source Ubuntu platform, it qualifies primarily as a "software
+        developer and distributor". We have been building and shipping open source software for over 20 years, and the <a href="/security/assurances">security practices</a> we’ve developed over that time align well with the 14 principles
+        laid out in the Code. This page explains how.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="/security/contact-us"
+         class="p-button--positive js-invoke-modal"
+         aria-controls="security-standards-modal">Contact us</a>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--cinematic is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/7f7e6ea6-hero_img.jpg",
+                alt="",
+                width="2464",
+                height="1027",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    {%- endif -%}
+  {%- endcall %}
+
+  {{- vf_tab_section(title={
+    "text": "See how the four main themes of the framework map to Canonical solutions"
+    },
+    layout="50-50",
+    tabs=[
+    {
+    "tab_html": "Theme 1",
+    "type": "divided-section",
+    "item": {
+    "blocks": [
+    {
+    "type": "divided-block",
+    "bullet_type": "none",
+    "items": [
+    {
+    "contents": [
+    {
+    "type": "description",
+    "item": {
+    "type": "html",
+    "content": '<h3 class="p-heading--5 p-text--small-caps u-no-margin--bottom u-sv2">Theme 1: Secure design and development</h3>
+    <h4 class="p-heading--5 u-no-padding">1.1 Established secure development framework</h4>
+    <p>Canonical utilizes well-established code quality management practices, such as the <a href="https://ubuntu.com/project/docs/MIR/main-inclusion-review/">Main Inclusion Review</a> and <a href="https://ubuntu.com/project/docs/SRU/stable-release-updates/">Stable Release Updates</a> processes for auditing
+      and maintaining software packages, alongside a modern <a href="https://trust.canonical.com/resources?s=lphww1td7e64gc9k5rfr8&name=secure-software-development-lifecycle-datasheet">Secure
+      Software Development Lifecycle</a> that aligns with the NIST SP800-218 Secure Software Development Framework.</p>'
+      }
+      }
+      ]
+      },
+      {
+      "contents": [
+      {
+      "type": "description",
+      "item": {
+      "type": "html",
+      "content": '<h4 class="p-heading--5 u-no-padding">1.2 Software composition & third-party risk assessment</h4>
+      <p>Canonical’s security team explicitly <a href="/blog/securing-open-source-through-cve-prioritisation">monitors third-party vulnerabilities</a> across the
+        whole Ubuntu Archive (covering both the Main and Universe repositories) to assess risks linked to the ingestion of
+        outside components.</p>'
+        }
+        }
+        ]
+        },
+        {
+        "contents": [
+        {
+        "type": "description",
+        "item": {
+        "type": "html",
+        "content": '<h4 class="p-heading--5 u-no-padding">1.3 Pre-distribution testing process</h4>
+        <p>Every software update and security patch undergoes <a href="https://ubuntu.com/project/docs/how-ubuntu-is-made/processes/automatic-package-testing-autopkgtest/">comprehensive
+          regression testing</a> before being pushed to production mirrors, fulfilling the mandate to test software and
+          updates thoroughly before distribution.</p>'
+          }
+          }
+          ]
+          },
+          {
+          "contents": [
+          {
+          "type": "description",
+          "item": {
+          "type": "html",
+          "content": '<h4 class="p-heading--5 u-no-padding">1.4 Secure by design and secure by default</h4>
+          <p>Canonical treats security as an <a href="https://documentation.ubuntu.com/security/security-features/security-features-overview/">embedded core
+            fundamental</a> rather than a follow-up activity. Ubuntu enforces mandatory compiler-level protections, kernel-level
+            application hardening, and isolation mechanisms like AppArmor out of the box. Furthermore, the unattended-upgrades
+            feature is enabled by default on installations to automate security coverage without user intervention.</p>'
+            }
+            }
+            ]
+            }
+            ]
+            }
+            ]
+            }
+            },
+            {
+            "tab_html": "Theme 2",
+            "type": "divided-section",
+            "item": {
+            "blocks": [
+            {
+            "type": "divided-block",
+            "bullet_type": "none",
+            "items": [
+            {
+            "contents": [
+            {
+            "type": "description",
+            "item": {
+            "type": "html",
+            "content": '<h3 class="p-heading--5 p-text--small-caps u-no-margin--bottom u-sv2">Theme 2: Build environment security</h3>
+            <h4 class="p-heading--5 u-no-padding">2.1 Protect build environment against unauthorized access</h4>
+            <p>Canonical’s <a href="https://documentation.ubuntu.com/launchpad/developer/explanation/ideas-behind-launchpad/security/">Launchpad
+              build system</a> adheres to a strict principle of least privilege to protect the environment against unauthorized
+              access. Engineers lack direct access to production instances. Crucially, Launchpad utilizes an isolated ephemeral VM
+              model for builds: every virtual machine is torn down and restarted from a clean image at the conclusion of each build,
+              preventing persistent cross-build contamination.</p>'
+              }
+              }
+              ]
+              },
+              {
+              "contents": [
+              {
+              "type": "description",
+              "item": {
+              "type": "html",
+              "content": '<h4 class="p-heading--5 u-no-padding">2.2 Control and log changes to build environment</h4>
+              <p>Restrictive network setups isolate untrusted builders, satisfying the call to control changes to the
+                build environment. All non-trivial code and infrastructure alterations require multi-peer reviews before entering
+                production.</p>'
+                }
+                }
+                ]
+                }
+                ]
+                }
+                ]
+                }
+                },
+                {
+                "tab_html": "Theme 3",
+                "type": "divided-section",
+                "item": {
+                "blocks": [
+                {
+                "type": "divided-block",
+                "bullet_type": "none",
+                "items": [
+                {
+                "contents": [
+                {
+                "type": "description",
+                "item": {
+                "type": "html",
+                "content": '<h3 class="p-heading--5 p-text--small-caps u-no-margin--bottom u-sv2">Theme 3: Secure deployment and maintenance</h3>
+                <h4 class="p-heading--5 u-no-padding">3.1 Secure software distribution</h4>
+                <p>Ubuntu software is distributed via Canonical servers and third-party mirrors utilizing strong cryptographic integrity
+                  protections. Packages are cryptographically validated on the client-side to mitigate supply chain tampering and
+                  provide a complete chain of trust.</p>'
+                  }
+                  }
+                  ]
+                  },
+                  {
+                  "contents": [
+                  {
+                  "type": "description",
+                  "item": {
+                  "type": "html",
+                  "content": '<h4 class="p-heading--5 u-no-padding">3.2 Effective vulnerability disclosure process</h4>
+                  <p>Canonical governs vulnerability disclosures via the official <a href="/security/disclosure-policy">Ubuntu
+                    Security Disclosure Policy</a> and strictly adheres to Coordinated Vulnerability Disclosure (CVD) frameworks,
+                    satisfying the recommendation to implement and publish an effective vulnerability disclosure process.</p>'
+                    }
+                    }
+                    ]
+                    },
+                    {
+                    "contents": [
+                    {
+                    "type": "description",
+                    "item": {
+                    "type": "html",
+                    "content": '<h4 class="p-heading--5 u-no-padding">3.3 Proactive component vulnerability management</h4>
+                    <p>Canonical maps its entire software estate into a multi-layered risk model (from critical foundations like
+                      the kernel down to the broader application ecosystem) and tracks known bugs via the public <a href="/security/cves">Ubuntu CVE Tracker</a> to proactively detect, prioritize, and ultimately fix, vulnerabilities.
+                    </p>'
+                    }
+                    }
+                    ]
+                    },
+                    {
+                    "contents": [
+                    {
+                    "type": "description",
+                    "item": {
+                    "type": "html",
+                    "content": '<h4 class="p-heading--5 u-no-padding">3.4 Vulnerability reporting to relevant parties</h4>
+                    <p>The Canonical security team routinely collaborates with security researchers, upstream open source
+                      maintainers, and industry groups, actively managing fixes under closed embargoes until public disclosure. <a href="/security/disclosure-policy">You can read Canonical’s Disclosure Policy here</a>.</p>'
+                      }
+                      }
+                      ]
+                      },
+                      {
+                      "contents": [
+                      {
+                      "type": "description",
+                      "item": {
+                      "type": "html",
+                      "content": '<h4 class="p-heading--5 u-no-padding">3.5 Timely security updates, patches, and notifications</h4>
+                      <p>Canonical’s security team works directly with upstream projects and communities to backport vulnerability
+                        fixes to the supported stable Ubuntu releases. The patching process has been underway for over 20 years, we patch all
+                        critical, high and selected medium CVEs within a timely manner.</p>'
+                        }
+                        }
+                        ]
+                        }
+                        ]
+                        }
+                        ]
+                        }
+                        },
+                        {
+                        "tab_html": "Theme 4",
+                        "type": "divided-section",
+                        "item": {
+                        "blocks": [
+                        {
+                        "type": "divided-block",
+                        "bullet_type": "none",
+                        "items": [
+                        {
+                        "contents": [
+                        {
+                        "type": "description",
+                        "item": {
+                        "type": "html",
+                        "content": '<h3 class="p-heading--5 p-text--small-caps u-no-margin--bottom u-sv2">Theme 4: Communication with customers</h3>
+                        <h4 class="p-heading--5 u-no-padding">4.1 Specify support and maintenance levels</h4>
+                        <p>Canonical provides explicit, highly publicized maintenance commitments: standard <a href="/about/release-cycle">Ubuntu LTS releases</a> offer 5 years of standard security maintenance, which is
+                          extended to 10 years (for both Main and Universe archives) under <a href="/pro">Ubuntu Pro</a>, and up to 15 years
+                          with the Legacy add-on, specifying the exact level of support provided.</p>'
+                          }
+                          }
+                          ]
+                          },
+                          {
+                          "contents": [
+                          {
+                          "type": "description",
+                          "item": {
+                          "type": "html",
+                          "content": '<h4 class="p-heading--5 u-no-padding">4.2 Provide at least 1 year’s notice for end of support</h4>
+                          <p>Because Ubuntu operates on a predictable, fixed-schedule LTS release cadence (every 2 years) with known
+                            5-, 10-, or 15-year lifespans, customers essentially receive years of notice before software reaches end of support.
+                          </p>'
+                          }
+                          }
+                          ]
+                          },
+                          {
+                          "contents": [
+                          {
+                          "type": "description",
+                          "item": {
+                          "type": "html",
+                          "content": '<h4 class="p-heading--5 u-no-padding">4.3 Disseminate information on notable incidents</h4>
+                          <p>Every security resolution is documented and published via <a href="/security/notices">Ubuntu Security
+                            Notices (USNs)</a> to make information available about notable incidents that may cause a significant impact.
+                            Canonical also publishes vulnerability feeds using open data standards like OVAL, OSV, and VEX. High-impact CVEs are
+                            individually described in the <a href="/security/vulnerabilities">Vulnerability knowledge base</a>.</p>'
+                            }
+                            }
+                            ]
+                            }
+                            ]
+                            }
+                            ]
+                            }
+                            }
+                            ]) -}}
+
+                          {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+                            {%- if slot == 'title' -%}
+                              <h2>How Canonical supports organizations in adopting the practice</h2>
+                            {%- endif -%}
+
+                            {%- if slot == 'description' -%}
+                              <p>
+                                If your organization is trying to satisfy the UK Government's voluntary Code of Practice (or prepare for the upcoming
+                                certification scheme), Canonical acts as a trusted source of open source code.
+                              </p>
+                            {%- endif -%}
+
+                            {%- if slot == 'list_item_title_1' -%}
+                              <h3 class="p-heading--5">Securing your software supply chain</h3>
+                            {%- endif -%}
+
+                            {%- if slot == 'list_item_description_1' -%}
+                              <p>
+                                Instead of manually tracking and patching thousands of open-source libraries (which is heavily emphasized in Themes 1
+                                and 3), subscribing to <a href="/pro">Ubuntu Pro</a> offloads CVE management entirely to Canonical for up to 15 years,
+                                establishing an instant, verifiable compliance baseline.
+                              </p>
+                            {%- endif -%}
+
+                            {%- if slot == 'list_item_title_2' -%}
+                              <h3 class="p-heading--5">Available in all software stacks</h3>
+                            {%- endif -%}
+
+                            {%- if slot == 'list_item_description_2' -%}
+                              <p>
+                                Ubuntu Pro covers the whole open source ecosystem, and can be deployed on <a href="/desktop">desktops</a>, on <a href="/server">servers</a>, in the <a href="/cloud/public-cloud">cloud</a> or <a href="https://canonical.com/solutions/infrastructure">on-premises</a>, as well as in <a href="/containers">containers</a> and <a href="/kubernetes">Kubernetes</a>. Ubuntu Pro is also available for <a href="/pro/devices">edge devices with Ubuntu Core</a>, our immutable Ubuntu OS designed for IoT and edge
+                                deployments. One subscription for any environment.
+                              </p>
+                            {%- endif -%}
+
+                            {%- if slot == 'list_item_title_3' -%}
+                              <h3 class="p-heading--5">Centralized estate auditing via Landscape</h3>
+                            {%- endif -%}
+
+                            {%- if slot == 'list_item_description_3' -%}
+                              <p>
+                                For organizations requiring clear internal monitoring or evidence to fill out the UK government's self-assessment
+                                form, Canonical's <a href="/landscape">Landscape</a> tool acts as a single pane of glass to automate patch deployment,
+                                manage staged updates, and run system audits across all data centers, cloud instances, and IoT devices.
+                              </p>
+                            {%- endif -%}
+
+                            {%- if slot == 'list_item_title_4' -%}
+                              <h3 class="p-heading--5">Aligning with the EU Cyber Resilience Act</h3>
+                            {%- endif -%}
+
+                            {%- if slot == 'list_item_description_4' -%}
+                              <p>
+                                Many organizations will be operating in the EU as well, and the UK’s Code of Practice is influenced by the EU’s CRA.
+                                <a href="https://canonical.com/solutions/open-source-security/cyber-resilience-act">Canonical is fully aligned with
+                                  the CRA Annex requirements</a>, enabling you to meet both sets of security standards at the same time.
+                                </p>
+                              {%- endif -%}
+                            {%- endcall -%}
+
+                            <section class="p-section">
+                              <div class="u-fixed-width">
+                                <hr class="p-rule" />
+                                <h2>Resources</h2>
+                              </div>
+                              <div class="u-fixed-width">
+                                <nav class="p-tabs js-tabbed-content">
+                                  <ul class="p-tabs__list"
+                                      role="tablist"
+                                      aria-label="Resources"
+                                      data-maintain-hash="true">
+                                    <li class="p-tabs__item">
+                                      <a href="#resources-blogs"
+                                         class="p-tabs__link"
+                                         role="tab"
+                                         aria-selected="true"
+                                         aria-controls="resources-blogs-tab"
+                                         id="resources-blogs">Blogs</a>
+                                    </li>
+                                    <li class="p-tabs__item">
+                                      <a href="#resources-whitepapers"
+                                         class="p-tabs__link"
+                                         role="tab"
+                                         aria-selected="false"
+                                         aria-controls="resources-whitepapers-tab"
+                                         id="resources-whitepapers"
+                                         tabindex="-1">Whitepapers</a>
+                                    </li>
+                                  </ul>
+                                </nav>
+
+                                <div class="p-tabs__content"
+                                     tabindex="0"
+                                     role="tabpanel"
+                                     id="resources-blogs-tab"
+                                     aria-labelledby="resources-blogs">
+                                  <div class="row">
+                                    {% for article in blogs %}
+                                      <div class="col-3 col-medium-2 u-equal-height-items">
+                                        <div class="u-crop--16-9">
+                                          <div class="p-image-wrapper">
+                                            <a href="/blog/{{ article.slug }}">
+                                              {{ image(url=article.image.source_url,
+                                                                                            alt=article.title.rendered,
+                                                                                            width="568",
+                                                                                            height="380",
+                                                                                            hi_def=True,
+                                                                                            loading="lazy",
+                                                                                            attrs={"class": "p-image-container__image"}) | safe
+                                              }}
+                                            </a>
+                                          </div>
+                                        </div>
+                                        <h3 class="p-text--default">
+                                          <a href="/blog/{{ article.slug }}">{{ article.title.rendered | safe }}</a>
+                                        </h3>
+                                        <p>{{ article.excerpt.rendered | truncate(200) | safe }}</p>
+                                      </div>
+                                    {% endfor %}
+                                  </div>
+                                </div>
+
+                                <div class="p-tabs__content u-hide"
+                                     tabindex="0"
+                                     role="tabpanel"
+                                     id="resources-whitepapers-tab"
+                                     aria-labelledby="resources-whitepapers">
+                                  <div class="row">
+                                    <div class="col-3 col-medium-2 u-equal-height-items">
+                                      <div class="u-crop--16-9">
+                                        <div class="p-image-wrapper">
+                                          {{ image(url="https://assets.ubuntu.com/v1/a250fcab-infra_hardening.jpg",
+                                                                                    alt="",
+                                                                                    width="852",
+                                                                                    height="570",
+                                                                                    hi_def=True,
+                                                                                    loading="lazy") | safe
+                                          }}
+                                        </div>
+                                      </div>
+                                      <h3 class="p-text--default">
+                                        <a href="/engage/a-guide-to-infrastructure-hardening">A guide to Infrastructure Hardening</a>
+                                      </h3>
+                                    </div>
+                                    <div class="col-3 col-medium-2 u-equal-height-items">
+                                      <div class="u-crop--16-9">
+                                        <div class="p-image-wrapper">
+
+                                          {{ image(url="https://assets.ubuntu.com/v1/8debe9ed-understand_iot_security.jpg",
+                                                                                    alt="",
+                                                                                    width="852",
+                                                                                    height="570",
+                                                                                    hi_def=True,
+                                                                                    loading="lazy") | safe
+                                          }}
+                                        </div>
+                                      </div>
+                                      <h3 class="p-text--default">
+                                        <a href="/engage/iot-compliance-in-the-global-market-a-guide-for-iot-device-manufacturers">Understand IoT
+                                        security and IoT compliance across global markets</a>
+                                      </h3>
+                                    </div>
+                                    <div class="col-3 col-medium-2 u-equal-height-items">
+                                      <div class="u-crop--16-9">
+                                        <div class="p-image-wrapper">
+                                          {{ image(url="https://assets.ubuntu.com/v1/fe572422-os_vulnerability_management.jpg",
+                                                                                    alt="",
+                                                                                    width="852",
+                                                                                    height="570",
+                                                                                    hi_def=True,
+                                                                                    loading="lazy") | safe
+                                          }}
+                                        </div>
+                                      </div>
+                                      <h3 class="p-text--default">
+                                        <a href="/engage/vulnerability-management">A guide to open source vulnerability management</a>
+                                      </h3>
+                                    </div>
+                                    <div class="col-3 col-medium-2 u-equal-height-items">
+                                      <div class="u-crop--16-9">
+                                        <div class="p-image-wrapper">
+
+                                          {{ image(url="https://assets.ubuntu.com/v1/953de11a-prepare_your_devices.jpg",
+                                                                                    alt="",
+                                                                                    width="852",
+                                                                                    height="570",
+                                                                                    hi_def=True,
+                                                                                    loading="auto|lazy") | safe
+                                          }}
+                                        </div>
+                                      </div>
+                                      <h3 class="p-text--default">
+                                        <a href="/engage/cra-regulations-for-ubuntu">Prepare your devices for the European Union’s Cyber Resilience
+                                        Act</a>
+                                      </h3>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </section>
+
+                            {% call(slot) vf_cta_section(
+                              title_text='Get coverage with Ubuntu Pro',
+                              variant='block',
+                              layout='100'
+                              ) -%}
+                              {%- if slot == 'description' -%}
+                                <p>
+                                  Ubuntu Pro provides the essential building blocks for building a securely designed software stack and aligns with the
+                                  UK NCSC Security Code of Practice. Talk to us about securing your open-source software supply chain with Ubuntu Pro.
+                                </p>
+                              {%- endif -%}
+                              {%- if slot == 'cta' -%}
+                                <a href="/security/contact-us"
+                                   class="p-button--positive js-invoke-modal"
+                                   aria-controls="security-standards-modal">Contact us</a>
+                                <a class="p-button" href="/pro/subscribe">Access a free trial</a>
+                                <a href="/security/security-standards">Learn about all our security certifications&nbsp;&rsaquo;</a>
+                              {%- endif -%}
+                            {%- endcall %}
+
+                            <script type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
+                            <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+                            <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+
+                            {{ load_form("/security-standards", formId=7990, title="Contact us about Canonical solutions for NCSC Software Security
+                                                        Code of Practice", returnUrl="/security/ncsc-code-of-practice#contact-form-success") | safe }}
+
+                          {% endblock content %}
