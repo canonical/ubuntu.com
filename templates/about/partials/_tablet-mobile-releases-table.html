@@ -10,7 +10,6 @@
           Subscribe to Ubuntu Pro to stay secure and supported. <a href="/pro/free-trial">Start a 30-day Ubuntu Pro free trial&nbsp;&rsaquo;</a>
         </p>
       </th>
-      <th>Compliance Standards met</th>
     </tr>
   </thead>
   <tbody>
@@ -87,10 +86,8 @@
           {% elif version.legacy_supported.notes %}
             {{ version.legacy_supported.notes | capitalize }}
           {% endif %}
-        </td>
 
-        <!-- Compliance standards -->
-        <td>
+          <!-- Compliance standards -->
           <p class="p-text--small-caps u-no-margin--bottom">Compliance standards met</p>
           {% with version=version %}
             {% include "about/partials/_compliance-list.html" %}

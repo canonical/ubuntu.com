@@ -112,6 +112,17 @@
       &:hover {
         text-decoration: underline;
       }
+
+      &:disabled,
+      &[aria-disabled="true"] {
+        color: $colors--theme--text-muted;
+        cursor: default;
+        pointer-events: none;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
     }
 
     .p-contextual-menu__indicator {

@@ -176,33 +176,16 @@
     }
 
     complianceToggle.classList.add("is-active");
-  }
 
-  function complianceIsActive() {
-    const total = complianceCheckboxes().length;
-    const checkedCount = complianceCheckedCount();
-    return checkedCount > 0 && checkedCount < total;
-  }
-
-  // Mirrors filter-menu.js's own (generic) single-toggle active-detection
-  function otherTogglesActive() {
-    return [productToggle, releaseToggle, versionToggle].some((toggle) => {
-      if (!toggle) {
-        return false;
-      }
-      const value = toggle.dataset.selectedValue || "";
-      const baseline = toggle.dataset.filterDefaultValue;
-      return baseline !== undefined ? value !== baseline : Boolean(value);
-    });
-  }
-
-  function updateClearButtonVisibility() {
-    const clearButton = bar.querySelector("[data-filter-clear]");
-    if (!clearButton) {
-      return;
+    // Nothing left to select once every option is already checked
+    const selectAll = complianceMenu?.querySelector(
+      "[data-filter-select-all]",
+    );
+    if (selectAll) {
+      const allSelected = total > 0 && checkedCount === total;
+      selectAll.disabled = allSelected;
+      selectAll.setAttribute("aria-disabled", String(allSelected));
     }
-    const isActive = otherTogglesActive() || complianceIsActive();
-    clearButton.classList.toggle("u-hide", !isActive);
   }
 
   function initComplianceAnyBehaviour() {
@@ -221,7 +204,6 @@
     complianceCheckboxes().forEach((checkbox) => {
       checkbox.addEventListener("change", () => {
         updateComplianceVisualState();
-        updateClearButtonVisibility();
       });
     });
 
@@ -229,17 +211,6 @@
     if (selectAll) {
       selectAll.addEventListener("click", () => {
         updateComplianceVisualState();
-        updateClearButtonVisibility();
-      });
-    }
-
-    const clearSelection = complianceMenu.querySelector(
-      "[data-filter-clear-selection]",
-    );
-    if (clearSelection) {
-      clearSelection.addEventListener("click", () => {
-        updateComplianceVisualState();
-        updateClearButtonVisibility();
       });
     }
   }
@@ -250,7 +221,6 @@
       resetToggle(versionToggle);
       applyReleaseVisibility();
       applyVersionVisibility();
-      updateClearButtonVisibility();
     });
   });
 
@@ -258,30 +228,13 @@
     option.addEventListener("click", () => {
       resetToggle(versionToggle);
       applyVersionVisibility();
-      updateClearButtonVisibility();
     });
   });
-
-  optionsOf(versionMenu).forEach((option) => {
-    option.addEventListener("click", () => {
-      updateClearButtonVisibility();
-    });
-  });
-
-  const outerClearButton = bar.querySelector("[data-filter-clear]");
-  if (outerClearButton) {
-    outerClearButton.addEventListener("click", () => {
-      setAllComplianceCheckboxes(true);
-      updateComplianceVisualState();
-      updateClearButtonVisibility();
-    });
-  }
 
   // Initial state
   applyReleaseVisibility();
   applyVersionVisibility();
   initComplianceAnyBehaviour();
-  updateClearButtonVisibility();
 })();
 
 /*
