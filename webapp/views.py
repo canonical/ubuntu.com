@@ -2382,6 +2382,8 @@ def build_release_cycle_view():
                 if selected_version is None:
                     version = "all"
 
+        show_release_notice = bool(product) and not deployment
+
         return flask.render_template(
             "about/release-cycle.html",
             products_data=products_data,
@@ -2391,6 +2393,7 @@ def build_release_cycle_view():
             versions=versions,
             selected_version=selected_version,
             deployment=deployment,
+            show_release_notice=show_release_notice,
             compliance_options=compliance_options,
             selected_compliance=selected_compliance,
             now=datetime.utcnow(),

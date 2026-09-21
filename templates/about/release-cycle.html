@@ -79,6 +79,14 @@
             {{ multi_select_menu('compliance', 'Compliance standards', compliance_options, selected_compliance, key_label='Compliance standards', show_clear_selection=false) }}
             {{ filter_submit("View coverage") }}
           </form>
+          {% if show_release_notice %}
+            <div class="p-notification--negative" data-filter-error>
+              <div class="p-notification__content">
+                <h5 class="p-notification__title">Invalid input</h5>
+                <p class="p-notification__message">Select a release type before viewing coverage.</p>
+              </div>
+            </div>
+          {% endif %}
         </div>
       </div>
     </div>
