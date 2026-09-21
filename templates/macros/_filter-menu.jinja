@@ -46,7 +46,10 @@
 
 # See single_select_menu for param_key/default_label/options/menu_id/key_label.
 # selected: (optional) list of currently-selected values; shown first, above a rule
-{% macro multi_select_menu(param_key, default_label, options, selected=[], menu_id=None, key_label=None) %}
+# show_clear_selection: (optional) set to false to hide the dropdown's own
+#                        "Clear" action, e.g. when at least one option must
+#                        always stay selected
+{% macro multi_select_menu(param_key, default_label, options, selected=[], menu_id=None, key_label=None, show_clear_selection=true) %}
   {% set menu_id = menu_id or param_key ~ "-menu" %}
   {% set selected_options = options | selectattr("value", "in", selected) | list %}
   {% set unselected_options = options | rejectattr("value", "in", selected) | list %}
@@ -79,7 +82,9 @@
         </span>
         <span class="p-filter-menu__actions">
           <button type="button" class="p-filter-menu__action" data-filter-select-all>Select all</button>
-          <button type="button" class="p-filter-menu__action" data-filter-clear-selection>Clear</button>
+          {% if show_clear_selection %}
+            <button type="button" class="p-filter-menu__action" data-filter-clear-selection>Clear</button>
+          {% endif %}
         </span>
       </span>
     </span>

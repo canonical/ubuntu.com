@@ -12,6 +12,13 @@
       border-bottom: none !important;
     }
 
+    // Narrow the "Version" column so more space goes to the other columns
+    thead tr:first-child th:first-child,
+    thead tr:nth-child(2) th:first-child,
+    tbody td:first-child {
+      width: 155px;
+    }
+
     // Left outer edge for the "Ubuntu Pro" components box
     tbody th:nth-child(3),
     tbody td:nth-child(3),
