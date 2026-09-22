@@ -434,6 +434,77 @@ class TestMarketoSubmit(unittest.TestCase):
         self.assertEqual(http_response.status_code, 302)
         self.assertIn("contact-form-fail", http_response.headers["Location"])
 
+    def _submit_and_capture(self, data, headers=None):
+        """
+        POST ``data`` to /marketo/submit with both Marketo calls mocked as
+        successful, and return the (payload, enrichment) dicts that were
+        handed to the Marketo API.
+        """
+        with patch(
+            "webapp.views.marketo_api.submit_form"
+        ) as mock_submit, patch("webapp.views.marketo_sentry_report"):
+            mock_submit.side_effect = [
+                self._mock_response(
+                    {"success": True, "result": [{"status": "created"}]}
+                ),
+                self._mock_response({"success": True}),
+            ]
+            self.client.post("/marketo/submit", data=data, headers=headers)
+
+        self.assertEqual(mock_submit.call_count, 2)
+        payload, enrichment = (c.args[0] for c in mock_submit.call_args_list)
+        return payload, enrichment
+
+    def test_acquisition_url_is_sent_to_enrichment_form_only(self):
+        """
+        ``acquisition_url`` is an enrichment field. Marketo skips a whole
+        submission whose payload carries a field the form does not define,
+        so a template-supplied acquisition_url must reach the enrichment
+        form (4198) and never the form payload.
+        """
+        acquisition_url = "https://jp.ubuntu.com/engage/an-engage-page"
+        payload, enrichment = self._submit_and_capture(
+            {
+                "formid": "1234",
+                "email": "test@example.com",
+                "firstName": "Test",
+                "acquisition_url": acquisition_url,
+            }
+        )
+
+        self.assertNotIn(
+            "acquisition_url", payload["input"][0]["leadFormFields"]
+        )
+        self.assertEqual(payload["formId"], "1234")
+        self.assertEqual(enrichment["formId"], "4198")
+        self.assertEqual(
+            enrichment["input"][0]["leadFormFields"]["acquisition_url"],
+            acquisition_url,
+        )
+
+    def test_acquisition_url_falls_back_to_referrer(self):
+        """
+        With no acquisition_url in the form, the enrichment submission still
+        records one, taken from the referrer.
+        """
+        referrer = "https://ubuntu.com/engage/an-engage-page"
+        payload, enrichment = self._submit_and_capture(
+            {
+                "formid": "1234",
+                "email": "test@example.com",
+                "firstName": "Test",
+            },
+            headers={"Referer": referrer},
+        )
+
+        self.assertNotIn(
+            "acquisition_url", payload["input"][0]["leadFormFields"]
+        )
+        self.assertEqual(
+            enrichment["input"][0]["leadFormFields"]["acquisition_url"],
+            referrer,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

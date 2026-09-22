@@ -1198,13 +1198,13 @@ def marketo_submit():
             "email": form_fields["email"],
         }
 
-    if "acquisition_url" in form_fields:
-        shortened_url = shorten_acquisition_url(form_fields["acquisition_url"])
-        form_fields["acquisition_url"] = shortened_url
-        enrichment_fields["acquisition_url"] = shortened_url
-    else:
-        shortened_url = shorten_acquisition_url(referrer)
-        enrichment_fields["acquisition_url"] = shortened_url
+    # acquisition_url is an enrichment field: Marketo skips a submission
+    # whose payload carries a field the form does not define, so it is only
+    # ever sent to the enrichment form, never in the form payload.
+    acquisition_url = form_fields.pop("acquisition_url", None) or referrer
+    enrichment_fields["acquisition_url"] = shorten_acquisition_url(
+        acquisition_url
+    )
 
     if "preferredLanguage" in form_fields:
         enrichment_fields["preferredLanguage"] = form_fields[
