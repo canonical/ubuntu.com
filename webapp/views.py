@@ -1160,15 +1160,6 @@ def marketo_submit():
         else "https://ubuntu.com"
     )
 
-    # Drop submissions that look like script/command injection probes
-    # instead of forwarding them to Marketo.
-    if find_injection_attempt(form_fields):
-        flask.flash(
-            "There was an issue submitting the form.",
-            "contact-form-fail",
-        )
-        return flask.redirect(f"{referrer}#contact-form-fail")
-
     form_fields.pop("thankyoumessage", None)
     return_url = form_fields.pop("returnURL", None)
 
