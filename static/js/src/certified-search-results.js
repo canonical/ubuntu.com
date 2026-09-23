@@ -1,3 +1,5 @@
+import { initAutocomplete } from "./autocomplete.js";
+
 // New filters
 const filters2Elm = document.querySelector("#tab2-section");
 const filters3Elm = document.querySelector("#tab3-section");

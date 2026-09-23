@@ -2,7 +2,7 @@
 // nav, click-outside/blur-to-close). Reusable for any input + suggestions
 // list pair on any page - the caller supplies what to fetch and how to
 // label/fill each suggestion.
-function initAutocomplete({
+export function initAutocomplete({
   inputSelector,
   suggestionsSelector,
   containerSelector,
