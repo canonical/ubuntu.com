@@ -542,9 +542,9 @@
                               {%- endif -%}
                             {%- endcall %}
 
-                            <script type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
-                            <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
-                            <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+                            <script nonce="{{ csp_nonce }}" type="module" src="/static/js/modules/vanilla-framework/js/tabs.js"></script>
+                            <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+                            <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
 
                             {{ load_form("/security-standards", formId=7990, title="Contact us about Canonical solutions for NCSC Software Security
                                                         Code of Practice", returnUrl="/security/ncsc-code-of-practice#contact-form-success") | safe }}
