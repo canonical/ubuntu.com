@@ -1,4 +1,3 @@
-{# filter_limit mirrors filterLimit in certified-search-results.js #}
 {% set filter_limit = 5 %}
 <h2 class="p-muted-heading">Filters</h2>
 <a href="#drawer"
@@ -13,97 +12,80 @@
        id="toggle-filters">Toggle filters</a>
   </div>
   <div>
-    <aside class="p-accordion js-filter-count" data-multiple-expanded="true">
+    <aside class="p-accordion js-certified-filters"
+           data-filter-limit="{{ filter_limit }}"
+           data-multiple-expanded="true">
       <ul class="p-accordion__list">
-        <li class="p-accordion__group">
-          <div role="heading" aria-level="2">
-            <button type="button"
-                    class="p-accordion__tab u-no-padding--right"
-                    id="tab1"
-                    aria-controls="tab1-section"
-                    aria-expanded="true">
-              <span class="p-heading--5">Category</span>
-            </button>
-          </div>
-          {% include "/certified/search/_category-filters.html" %}
-        </li>
-        <li class="p-accordion__group" id="vendor-section">
-          <div role="heading" aria-level="2">
-            <button type="button"
-                    class="p-accordion__tab u-no-padding--right"
-                    id="tab2"
-                    aria-controls="tab2-section"
-                    aria-expanded="true">
-              <span class="p-heading--5">Vendor</span>
-            </button>
-          </div>
-          <section class="p-accordion__panel is-dense"
-                   id="tab2-section"
-                   aria-hidden="false"
-                   aria-labelledby="tab2">
-            {% if vendor_filters and vendor_filters.data %}
-              {% for make in vendor_filters.data %}
-                <label class="p-checkbox">
-                  <input type="checkbox"
-                         name="vendor"
-                         class="p-checkbox__input"
-                         value="{{ make }}"
-                         {% if make in request.args.getlist("vendor") %}checked{% endif %} />
-                  <span class="p-checkbox__label" id="{{ make|replace(' ', '-') }}">{{ make }}</span>
-                </label>
-              {% endfor %}
-            {% endif %}
-          </section>
-          <div class="js-show-expanded-vendor-filter-options">
-            <button class="p-button--link js-vendor-count p-reveal-vendors is-dense js-show-all-vendors{% if vendor_filters and vendor_filters.total <= filter_limit %} u-hide{% endif %}"
-                    name="vendor"
-                    value="true">Show all vendors</button>
-            <button class="p-button--link p-reveal-vendors is-dense js-show-less-vendors u-hide"
-                    name="vendor"
-                    value="false">Show fewer</button>
-          </div>
-        </li>
-        <li class="p-accordion__group" id="version-section">
-          <div role="heading" aria-level="2">
-            <button type="button"
-                    class="p-accordion__tab u-no-padding--right"
-                    aria-controls="tab3-section"
-                    id="tab3"
-                    aria-expanded="true">
-              <span class="p-heading--5">Certified ubuntu release</span>
-            </button>
-          </div>
-          <section class="p-accordion__panel is-dense"
-                   id="tab3-section"
-                   aria-hidden="false"
-                   aria-labelledby="tab3">
-            {% if release_filters and release_filters.data %}
-              {% for version in release_filters.data %}
-                <label class="p-checkbox">
-                  <input type="checkbox"
-                         name="release"
-                         class="p-checkbox__input"
-                         value="{{ version }}"
-                         {% if version in request.args.getlist("release") %}checked{% endif %} />
-                  <span class="p-checkbox__label" id="{{ version|replace(' ', '-') }}">{{ version }}</span>
-                </label>
-              {% endfor %}
-            {% endif %}
-          </section>
-          <div class="js-show-expanded-release-filter-options">
-            <button class="p-button--link p-reveal-versions is-dense js-show-all-releases{% if release_filters and release_filters.total <= filter_limit %} u-hide{% endif %}"
-                    name="release"
-                    value="true">Show all versions</button>
-            <button class="p-button--link p-reveal-versions is-dense js-show-less-releases u-hide"
-                    name="release"
-                    value="false">Show fewer</button>
-          </div>
-        </li>
+        {% for filter in filters %}
+          <li class="p-accordion__group js-filter-group"
+              data-filter-key="{{ filter.key }}">
+            <div role="heading" aria-level="2">
+              <button type="button"
+                      class="p-accordion__tab u-no-padding--right"
+                      id="filter-{{ filter.key }}-tab"
+                      aria-controls="filter-{{ filter.key }}-panel"
+                      aria-expanded="{{ 'true' if filter.expanded else 'false' }}">
+                <span class="p-heading--5 certified-filter-heading">
+                  {{ filter.title }}
+                  <span class="p-badge js-filter-count{% if not filter.selected_count %} u-hide{% endif %}"
+                        aria-label="{{ filter.selected_count }} selected">{{ filter.selected_count }}</span>
+                </span>
+              </button>
+            </div>
+            <section class="p-accordion__panel is-dense"
+                     id="filter-{{ filter.key }}-panel"
+                     aria-hidden="{{ 'false' if filter.expanded else 'true' }}"
+                     aria-labelledby="filter-{{ filter.key }}-tab">
+              {% if filter.show_option_search %}
+                <div class="p-search-box certified-filter-search">
+                  <label class="u-off-screen" for="filter-{{ filter.key }}-search">Search {{ filter.plural }}</label>
+                  <input type="search"
+                         id="filter-{{ filter.key }}-search"
+                         class="p-search-box__input js-filter-search"
+                         placeholder="Search"
+                         autocomplete="off" />
+                  <button type="button"
+                          class="p-search-box__reset js-filter-search-reset"
+                          aria-label="Clear {{ filter.plural }} search">
+                    <i class="p-icon--close">Clear</i>
+                  </button>
+                  <button type="button"
+                          class="p-search-box__button"
+                          aria-label="Search {{ filter.plural }}"
+                          tabindex="-1">
+                    <i class="p-icon--search">Search</i>
+                  </button>
+                </div>
+              {% endif %}
+              <div class="js-filter-options">
+                {% for option in filter.options %}
+                  <label class="p-checkbox js-filter-option{% if option.disabled %} is-disabled{% endif %}{% if loop.index > filter_limit %} u-hide{% endif %}"
+                         data-filter-label="{{ option.label|lower }}">
+                    <input type="checkbox"
+                           name="{{ filter.key }}"
+                           class="p-checkbox__input"
+                           value="{{ option.value }}"
+                           {% if option.selected %}checked{% endif %}
+                           {% if option.disabled %}disabled{% endif %} />
+                    <span class="p-checkbox__label">{{ option.label }}</span>
+                  </label>
+                {% endfor %}
+              </div>
+              <p class="js-filter-no-results u-hide">No matching {{ filter.plural }}.</p>
+              {% if filter.show_option_search %}
+                <button type="button"
+                        class="p-button--link is-dense js-toggle-filter-options"
+                        data-expanded="false"
+                        data-plural="{{ filter.plural }}">Show all {{ filter.plural }}</button>
+              {% endif %}
+            </section>
+          </li>
+        {% endfor %}
       </ul>
     </aside>
     <div class="certified-filters-footer">
       <div class="certified-filters-footer-buttons p-cta-block">
-        <button class="p-button js-clear-filters">Clear all filters</button>
+        <button type="button" class="p-button js-clear-filters">Clear all filters</button>
       </div>
     </div>
   </div>

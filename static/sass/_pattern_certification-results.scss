@@ -34,6 +34,28 @@
   }
 
   .certified-filters {
+    .certified-filter-heading {
+      align-items: center;
+      display: flex;
+      flex: 1;
+      justify-content: space-between;
+      margin-bottom: 0;
+      padding-top: 0;
+    }
+
+    .certified-filter-search {
+      margin-bottom: 1rem;
+    }
+
+    .js-filter-option.is-disabled {
+      color: $colors--theme--text-muted;
+      cursor: not-allowed;
+    }
+
+    .js-filter-no-results {
+      color: $colors--theme--text-muted;
+    }
+
     .p-accordion__group {
       &::after {
         display: none;
@@ -69,7 +91,9 @@
     .p-accordion__tab {
       @extend .p-accordion__tab;
 
+      align-items: center;
       background-color: #f3f3f3;
+      display: flex;
       z-index: 1;
 
       &:hover,

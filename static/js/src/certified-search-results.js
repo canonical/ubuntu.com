@@ -1,491 +1,216 @@
-// New filters
-const filters2Elm = document.querySelector("#tab2-section");
-const filters3Elm = document.querySelector("#tab3-section");
-const filters1Elm = document.querySelector("#tab1-section");
-const showAllVendors = document.querySelector(".js-show-all-vendors");
-const showAllReleases = document.querySelector(".js-show-all-releases");
-const showLessVendors = document.querySelector(".js-show-less-vendors");
-const showLessReleases = document.querySelector(".js-show-less-releases");
-const tabBtn2 = document.querySelector("#tab2");
-const tabBtn3 = document.querySelector("#tab3");
-
-const showExpandedVendorFilterOptions = document.querySelector(
-  ".js-show-expanded-vendor-filter-options",
-);
-const showExpandedReleaseFilterOptions = document.querySelector(
-  ".js-show-expanded-release-filter-options",
-);
-
-// Hide more/less links when tabs are collapsed
-tabBtn2.addEventListener("click", (e) => {
-  if (tabBtn2.ariaExpanded === "true") {
-    showExpandedVendorFilterOptions.classList.add("u-hide");
-  } else {
-    showExpandedVendorFilterOptions.classList.remove("u-hide");
-  }
-});
-
-tabBtn3.addEventListener("click", (e) => {
-  if (tabBtn3.ariaExpanded === "true") {
-    showExpandedReleaseFilterOptions.classList.add("u-hide");
-  } else {
-    showExpandedReleaseFilterOptions.classList.remove("u-hide");
-  }
-});
-
-// Set global filter limit for vendors and releases
-let filterLimit = 5;
-
-let filterNavigateTimer = null;
+export const DEFAULT_FILTER_LIMIT = 5;
 
 const SCROLL_POSITION_KEY = "certifiedFiltersScrollY";
+let filterNavigateTimer = null;
 
-// Filter changes reload the page, which otherwise resets the scroll position
-// to the top. Stash it before navigating away; an early inline script in
-// base.html restores it as soon as the new page starts loading.
 function saveScrollPosition() {
   sessionStorage.setItem(SCROLL_POSITION_KEY, window.scrollY);
-}
-
-// certified_home() falls back to the certified homepage when a request has
-// neither `q` nor `category`. Keep an empty `q` so filter changes never
-// bounce the user off the search results view.
-function searchResultsUrl(href) {
-  const url = new URL(href);
-  if (!url.searchParams.has("q") && !url.searchParams.has("category")) {
-    url.searchParams.set("q", "");
-  }
-  return url.toString();
 }
 
 function scheduleFilterNavigation() {
   clearTimeout(filterNavigateTimer);
   filterNavigateTimer = setTimeout(() => {
     saveScrollPosition();
-    window.location.assign(searchResultsUrl(window.location.href));
+    window.location.assign(window.location.href);
   }, 300);
 }
 
-function loadFilters() {
-  const { category, vendor, release } = retrieveSelectedFilters();
-  renderFilters(category, vendor, release);
+export function setFilterValue(url, key, value, isSelected) {
+  const selectedValues = url.searchParams
+    .getAll(key)
+    .filter((selectedValue) => selectedValue !== value);
+
+  if (isSelected) {
+    selectedValues.push(value);
+  }
+
+  url.searchParams.delete(key);
+  selectedValues.forEach((selectedValue) => {
+    url.searchParams.append(key, selectedValue);
+  });
+  url.searchParams.delete("offset");
+  return url;
 }
 
-/**
- *
- * @returns {object} current state of filters in a flat object
- *
- * This function is used as state management
- * It provides the current state of all filters (category, vendor and release)
- */
-function retrieveSelectedFilters() {
-  const url = new URL(window.location.href);
-  const urlParams = new URLSearchParams(url.search);
-
-  return {
-    category: urlParams.getAll("category"),
-    vendor: urlParams.getAll("vendor"),
-    release: urlParams.getAll("release"),
-  };
+export function clearFilterValues(url, filterKeys) {
+  filterKeys.forEach((key) => url.searchParams.delete(key));
+  url.searchParams.delete("offset");
+  return url;
 }
 
-function toggleFilterExpandLinks(data, total, elementMore, elementLess) {
-  if (data.length < total) {
-    // Not surpassing length so hide all
-    elementMore.classList.remove("u-hide");
-    elementLess.classList.add("u-hide");
-    return;
-  } else {
-    elementMore.classList.add("u-hide");
-    elementLess.classList.remove("u-hide");
-  }
-
-  if (data.length <= filterLimit) {
-    elementMore.classList.add("u-hide");
-    elementLess.classList.add("u-hide");
-  }
-}
-
-async function renderFilters(
-  categories,
-  vendors,
-  releases,
-  vendorLimit,
-  releaseLimit,
-  renderVendorFilters = true,
-  renderReleaseFilters = true,
-) {
-  const filters = await fetchFilters(
-    categories,
-    vendors,
-    releases,
-    vendorLimit,
-    releaseLimit,
-  );
-  if (categories && categories.length > 0) {
-    if (renderVendorFilters && filters.vendor_filters) {
-      filters2Elm.innerHTML = "";
-      filters.vendor_filters.data.forEach((item) => {
-        renderCheckboxes(item, "vendor", filters2Elm);
-      });
-      // Show and hide links not needed
-      toggleFilterExpandLinks(
-        filters.vendor_filters.data,
-        filters.vendor_filters.total,
-        showAllVendors,
-        showLessVendors,
-      );
-    }
-
-    if (renderReleaseFilters && filters.release_filters) {
-      filters3Elm.innerHTML = "";
-      filters.release_filters.data.forEach((item) => {
-        renderCheckboxes(item, "release", filters3Elm);
-      });
-      // Show and hide links not needed
-      toggleFilterExpandLinks(
-        filters.release_filters.data,
-        filters.release_filters.total,
-        showAllReleases,
-        showLessReleases,
-      );
-    }
-  } else {
-    if (renderVendorFilters && filters.vendor_filters) {
-      filters2Elm.innerHTML = "";
-      filters.vendor_filters.data.forEach((item) => {
-        renderCheckboxes(item, "vendor", filters2Elm);
-      });
-      // Show and hide links not needed
-      toggleFilterExpandLinks(
-        filters.vendor_filters.data,
-        filters.vendor_filters.total,
-        showAllVendors,
-        showLessVendors,
-      );
-    }
-
-    if (renderReleaseFilters && filters.release_filters) {
-      filters3Elm.innerHTML = "";
-      filters.release_filters.data.forEach((item) => {
-        renderCheckboxes(item, "release", filters3Elm);
-      });
-      // Show and hide links not needed
-      toggleFilterExpandLinks(
-        filters.release_filters.data,
-        filters.release_filters.total,
-        showAllReleases,
-        showLessReleases,
-      );
-    }
-  }
-}
-
-function renderCheckboxes(value, name, parentElement) {
-  const label = document.createElement("label");
-  const input = document.createElement("input");
-  const span = document.createElement("span");
-  let urlParams = new URLSearchParams(window.location.search);
-  label.className = "p-checkbox";
-  input.type = "checkbox";
-  input.name = name;
-  input.className = "p-checkbox__input";
-  input.value = value;
-  input.addEventListener("click", handleFilterClick);
-
-  if (name === "vendor") {
-    const vendorParams = urlParams.getAll("vendor");
-    if (vendorParams && vendorParams.includes(value)) {
-      input.checked = true;
-    }
-  }
-
-  if (name === "release") {
-    const releaseParams = urlParams.getAll("release");
-    if (releaseParams && releaseParams.includes(value)) {
-      input.checked = true;
-    }
-  }
-
-  span.className = "p-checkbox__label";
-  span.innerHTML = value;
-  span.id = value.replace(" ", "-");
-  label.appendChild(input);
-  label.appendChild(span);
-  parentElement.appendChild(label);
-}
-
-/**
- *
- * @param {array} category
- * @returns json
- */
-async function fetchFilters(
-  categoriesList = [],
-  selectedVendors = [],
-  selectedReleases = [],
-  vendorLimit = filterLimit,
-  releaseLimit = filterLimit,
-) {
-  let url = new URL(`${window.location.origin}/certified/filters.json`);
-  if (categoriesList.length > 0) {
-    categoriesList.forEach((cat) => {
-      url.searchParams.append("category", cat);
-    });
-  }
-  if (selectedVendors.length > 0) {
-    selectedVendors.forEach((cat) => {
-      url.searchParams.append("vendor", cat);
-    });
-  }
-
-  if (selectedReleases.length > 0) {
-    selectedReleases.forEach((cat) => {
-      url.searchParams.append("release", cat);
-    });
-  }
-
-  url.searchParams.append("vendors_limit", vendorLimit);
-  url.searchParams.append("releases_limit", releaseLimit);
-
-  return await fetch(url).then((res) => res.json());
-}
-
-function handleFilterClick(e) {
-  const { value, name, checked, dataset } = e.target;
-  let url = new URL(window.location.href);
-  let urlParams = url.searchParams;
-  const vendorParams = urlParams.getAll("vendor");
-  const releasesParams = urlParams.getAll("release");
-  const categoryParams = urlParams.getAll("category");
-
-  if (name === "category") {
-    if (categoryParams.includes(value)) {
-      urlParams.delete(name);
-      // Append back deleted params
-      // If multiple selected
-      if (categoryParams.length > 1) {
-        categoryParams.forEach((param) => {
-          if (param !== value) {
-            urlParams.append(name, param);
-          }
-        });
-      }
-    } else {
-      urlParams.append(name, value);
-    }
-  }
-
-  if (name === "vendor") {
-    if (vendorParams.includes(value)) {
-      urlParams.delete(name);
-      if (vendorParams.length > 1) {
-        // Append back deleted params
-        vendorParams.forEach((param) => {
-          if (param !== value) {
-            urlParams.append(name, param);
-          }
-        });
-      }
-    } else {
-      urlParams.append(name, value);
-    }
-  }
-
-  if (name === "release") {
-    if (releasesParams.includes(value)) {
-      urlParams.delete(name);
-      if (releasesParams.length > 1) {
-        // Append back deleted params
-        releasesParams.forEach((param) => {
-          if (param !== value) {
-            urlParams.append(name, param);
-          }
-        });
-      }
-    } else {
-      urlParams.append(name, value);
-    }
-  }
-
-  const newURL = `${window.location.pathname}?${urlParams.toString()}`;
-  window.history.pushState({ path: newURL }, "", newURL);
+function navigateTo(url) {
+  const relativeUrl = `${url.pathname}${url.search}${url.hash}`;
+  window.history.pushState({ path: relativeUrl }, "", relativeUrl);
   scheduleFilterNavigation();
 }
 
-/**
- *
- * @param {Event} e JS event
- * @param {Element} element context, which contains the DOM element
- * the value true/false of the button element represents show/hide
- */
-function toggleExpandFilters(e, element) {
-  e.preventDefault();
-  const { name, value } = element;
-  const { category, vendor, release } = retrieveSelectedFilters();
+function filterLimit(filterRoot) {
+  return Number(filterRoot.dataset.filterLimit) || DEFAULT_FILTER_LIMIT;
+}
 
-  setFilterLinkLoading(element, true);
-  let request;
+function optionElements(group) {
+  return [...group.querySelectorAll(".js-filter-option")];
+}
 
-  if (name === "vendor") {
-    if (value === "true") {
-      // Show all
-      request = renderFilters(
-        category,
-        vendor,
-        release,
-        -1,
-        filterLimit,
-        true,
-        false,
-      );
-    } else {
-      // Show default filterLimit
-      request = renderFilters(
-        category,
-        vendor,
-        release,
-        filterLimit,
-        filterLimit,
-        true,
-        false,
-      );
+export function updateOptionVisibility(group, limit = DEFAULT_FILTER_LIMIT) {
+  const options = optionElements(group);
+  const searchInput = group.querySelector(".js-filter-search");
+  const resetButton = group.querySelector(".js-filter-search-reset");
+  const toggleButton = group.querySelector(".js-toggle-filter-options");
+  const noResults = group.querySelector(".js-filter-no-results");
+  const query = searchInput?.value.trim().toLocaleLowerCase() || "";
+  const isExpanded = toggleButton?.dataset.expanded === "true";
+  let matchingIndex = 0;
+  let visibleCount = 0;
+
+  options.forEach((option) => {
+    const matches = option.dataset.filterLabel.includes(query);
+    const withinLimit = query || isExpanded || matchingIndex < limit;
+    const isVisible = matches && withinLimit;
+
+    option.classList.toggle("u-hide", !isVisible);
+    if (matches) {
+      matchingIndex += 1;
     }
-  } else if (name === "release") {
-    if (value === "true") {
-      // Show all
-      request = renderFilters(
-        category,
-        vendor,
-        release,
-        filterLimit,
-        -1,
-        false,
-        true,
-      );
-    } else {
-      // Show default filterLimit
-      request = renderFilters(
-        category,
-        vendor,
-        release,
-        filterLimit,
-        filterLimit,
-        false,
-        true,
-      );
+    if (isVisible) {
+      visibleCount += 1;
     }
+  });
+
+  if (resetButton) {
+    resetButton.classList.toggle("u-hide", !query);
   }
-
-  request.finally(() => setFilterLinkLoading(element, false));
-}
-
-// /certified/filters.json can take a couple of seconds; without this the
-// "Show all" link looks unresponsive until the list suddenly appears.
-function setFilterLinkLoading(button, isLoading) {
-  if (isLoading) {
-    button.dataset.originalText = button.textContent;
-    button.disabled = true;
-    button.innerHTML =
-      '<i class="p-icon--spinner u-animation--spin"></i> ' + button.textContent;
-  } else {
-    button.disabled = false;
-    button.textContent = button.dataset.originalText;
+  if (noResults) {
+    noResults.classList.toggle("u-hide", visibleCount > 0);
+  }
+  if (toggleButton) {
+    toggleButton.classList.toggle("u-hide", Boolean(query));
+    toggleButton.textContent = isExpanded
+      ? `Show fewer ${toggleButton.dataset.plural}`
+      : `Show all ${toggleButton.dataset.plural}`;
   }
 }
 
-function clearFilters() {
-  filters1Elm
-    .querySelectorAll("input")
-    .forEach((item) => (item.checked = false));
-  filters2Elm
-    .querySelectorAll("input")
-    .forEach((item) => (item.checked = false));
-  filters3Elm
-    .querySelectorAll("input")
-    .forEach((item) => (item.checked = false));
+function updateSelectedCount(group) {
+  const count = group.querySelectorAll('input[type="checkbox"]:checked').length;
+  const badge = group.querySelector(".js-filter-count");
 
-  let objUrl = new URL(window.location);
-  const { href } = window.location;
-  if (href.includes("q=") && !href.includes("q=&")) {
-    const startOfQuery = href.indexOf("q");
-    const endOfQuery = href.indexOf("&");
-    const searchQuery = href.substring(startOfQuery, endOfQuery);
-    objUrl.search = searchQuery;
-  } else {
-    objUrl.search = "";
-  }
-  saveScrollPosition();
-  window.location.assign(objUrl.toString());
+  badge.textContent = count;
+  badge.setAttribute("aria-label", `${count} selected`);
+  badge.classList.toggle("u-hide", count === 0);
 }
 
-// function to ensure only the option which has been changed is appended to the URL
+function handleFilterChange(event) {
+  const input = event.target.closest('input[type="checkbox"]');
+  if (!input) {
+    return;
+  }
+
+  updateSelectedCount(input.closest(".js-filter-group"));
+  navigateTo(
+    setFilterValue(
+      new URL(window.location.href),
+      input.name,
+      input.value,
+      input.checked,
+    ),
+  );
+}
+
+function handleFilterInput(event, limit) {
+  if (event.target.matches(".js-filter-search")) {
+    updateOptionVisibility(event.target.closest(".js-filter-group"), limit);
+  }
+}
+
+function handleFilterKeydown(event) {
+  if (event.target.matches(".js-filter-search") && event.key === "Enter") {
+    event.preventDefault();
+  }
+}
+
+function handleFilterClick(event, limit) {
+  const resetButton = event.target.closest(".js-filter-search-reset");
+  if (resetButton) {
+    const group = resetButton.closest(".js-filter-group");
+    const input = group.querySelector(".js-filter-search");
+    input.value = "";
+    input.focus();
+    updateOptionVisibility(group, limit);
+    return;
+  }
+
+  const toggleButton = event.target.closest(".js-toggle-filter-options");
+  if (toggleButton) {
+    const isExpanded = toggleButton.dataset.expanded === "true";
+    toggleButton.dataset.expanded = String(!isExpanded);
+    updateOptionVisibility(toggleButton.closest(".js-filter-group"), limit);
+  }
+}
+
+function filterKeys(filterRoot) {
+  return [...filterRoot.querySelectorAll(".js-filter-group")].map(
+    (group) => group.dataset.filterKey,
+  );
+}
+
+function initClearFilters(filterRoot) {
+  const clearButton = document.querySelector(".js-clear-filters");
+  clearButton?.addEventListener("click", () => {
+    saveScrollPosition();
+    window.location.assign(
+      clearFilterValues(
+        new URL(window.location.href),
+        filterKeys(filterRoot),
+      ).toString(),
+    );
+  });
+}
+
+export function initCertifiedFilters() {
+  const filterRoot = document.querySelector(".js-certified-filters");
+  if (!filterRoot) {
+    return;
+  }
+
+  const limit = filterLimit(filterRoot);
+  filterRoot.querySelectorAll(".js-filter-group").forEach((group) => {
+    updateOptionVisibility(group, limit);
+  });
+
+  filterRoot.addEventListener("change", handleFilterChange);
+  filterRoot.addEventListener("input", (event) => {
+    handleFilterInput(event, limit);
+  });
+  filterRoot.addEventListener("keydown", handleFilterKeydown);
+  filterRoot.addEventListener("click", (event) => {
+    handleFilterClick(event, limit);
+  });
+
+  initClearFilters(filterRoot);
+}
+
 function updateResultsPerPage() {
   const searchResults = document.querySelector(".js-search-results");
   const pageSizeTop = document.getElementById("page-size-top");
   const pageSizeBottom = document.getElementById("page-size-bottom");
 
-  if (pageSizeTop) {
-    pageSizeTop.addEventListener("change", (e) => {
-      // Needs to be set because the other dropdown is a placeholder
-      searchResults.submit();
-    });
-  }
+  pageSizeTop?.addEventListener("change", () => {
+    searchResults.submit();
+  });
 
-  if (pageSizeBottom) {
-    pageSizeBottom.addEventListener("change", (e) => {
-      // Avoids submitting 2 redundant fields
-      const pageSizeTopChange = new Event("change");
-      pageSizeTop.value = e.target.value;
-      pageSizeTop.dispatchEvent(pageSizeTopChange);
-    });
-  }
+  pageSizeBottom?.addEventListener("change", (event) => {
+    pageSizeTop.value = event.target.value;
+    pageSizeTop.dispatchEvent(new Event("change"));
+  });
 }
 
 function hideDrawerPageReload() {
   if (window.location.href.includes("drawer")) {
-    const closeDrawerButton = document.querySelector("#toggle-filters");
-    closeDrawerButton.click();
+    document.querySelector("#toggle-filters")?.click();
   }
 }
 
-// Bind the statically-rendered filter controls (category checkboxes, the
-// vendor/release show-all / show-less toggles, and the apply / clear buttons)
-// that previously used inline on* handlers, now disallowed under our CSP.
-function wireStaticFilterHandlers() {
-  if (filters1Elm) {
-    filters1Elm.querySelectorAll("input").forEach((input) => {
-      input.addEventListener("click", handleFilterClick);
-    });
-  }
-
-  [showAllVendors, showLessVendors, showAllReleases, showLessReleases].forEach(
-    (button) => {
-      if (button) {
-        button.addEventListener("click", (e) => {
-          toggleExpandFilters(e, button);
-        });
-      }
-    },
-  );
-
-  const clearFiltersButton = document.querySelector(".js-clear-filters");
-  if (clearFiltersButton) {
-    clearFiltersButton.addEventListener("click", clearFilters);
-  }
-}
-
-// Vendor/release options are now server-rendered; only fetch them if
-// they're missing, and bind clicks to the ones already on the page.
-if (filters2Elm.querySelector("input") || filters3Elm.querySelector("input")) {
-  [filters2Elm, filters3Elm].forEach((section) => {
-    section.querySelectorAll("input").forEach((input) => {
-      input.addEventListener("click", handleFilterClick);
-    });
-  });
-} else {
-  loadFilters();
-}
+initCertifiedFilters();
 updateResultsPerPage();
 hideDrawerPageReload();
-wireStaticFilterHandlers();

@@ -12,6 +12,15 @@ from flask import (
 )
 from requests import Session
 from webapp.certified.api import CertificationAPI, PartnersAPI
+from webapp.certified.filters import (
+    build_api_filter_params,
+    build_canonical_query_params,
+    build_filter_catalog,
+    build_filter_view_models,
+    build_options_by_key,
+    canonicalize_selected_filters,
+    parse_selected_filters,
+)
 from urllib.parse import urlencode
 
 from webapp.certified.helpers import (
@@ -67,7 +76,7 @@ def certified_routes(app):
         view_func=certified_why,
     )
     app.add_url_rule(
-        "/certified/filters.json", view_func=get_vendors_releases_filters
+        "/certified/filters.json", view_func=get_certified_filters
     )
     app.add_url_rule(
         "/certified/202309-32027/contact-us", view_func=nxp_contact
@@ -198,144 +207,17 @@ def certified_platform_details_by_release(platform_id, release):
     )
 
 
-def get_vendors_releases_filters():
-    categories = request.args.getlist("category")
-    selected_vendors = request.args.getlist("vendor")
-    selected_releases = request.args.getlist("release")
-    releases_limit = request.args.get("releases_limit", default=4, type=int)
-    vendors_limit = request.args.get("vendors_limit", default=4, type=int)
-
+def _get_certified_filter_options():
     certified_releases = api.certified_releases(limit="0")["results"]
     certified_makes = api.certified_vendors(limit="0")["results"]
 
-    (
-        laptop_releases,
-        laptop_vendors,
-        desktop_releases,
-        desktop_vendors,
-        soc_releases,
-        soc_vendors,
-        iot_releases,
-        iot_vendors,
-        server_releases,
-        server_vendors,
-        all_releases,
-        all_vendors,
-        vendors,
-        releases,
-    ) = get_filters(request.args)
-    new_certified_params = _parse_query_params(releases, vendors)
-    if not new_certified_params:
-        filters = build_filter_options(
-            certified_makes,
-            certified_releases,
-            categories,
-            selected_vendors,
-            selected_releases,
-            vendors_limit=vendors_limit,
-            releases_limit=releases_limit,
-        )
-
-        return jsonify(filters)
-    else:
-        return redirect(url_for(request.endpoint, **new_certified_params))
+    return build_options_by_key(certified_makes, certified_releases)
 
 
-def build_filter_options(
-    certified_makes,
-    certified_releases,
-    categories,
-    selected_vendors,
-    selected_releases,
-    vendors_limit=5,
-    releases_limit=5,
-):
-    """Build vendor/release filter options for the given categories.
-
-    Returns the same shape as ``/certified/filters.json`` so the options can be
-    rendered server-side or fetched by the client. A limit of ``-1`` returns
-    every option.
-    """
-    # Copy so the caller's request.args lists are not mutated
-    selected_vendors = list(selected_vendors)
-    selected_releases = list(selected_releases)
-    vendor_filters = []
-    release_filters = []
-
-    if len(categories) == 0:
-        categories = [
-            "smart_core",
-            "soc",
-            "laptops",
-            "desktops",
-            "servers",
-        ]
-
-    for cat in categories:
-        cat = cat.lower()
-        # pathname replacements
-        if cat == "iot":
-            cat = "smart_core"
-        elif cat == "ubuntu core":
-            cat = "smart_core"
-        elif cat == "socs":
-            cat = "soc"
-        elif cat == "laptop":
-            cat = "laptops"
-        elif cat == "desktop":
-            cat = "desktops"
-        elif cat == "server":
-            cat = "servers"
-        elif cat == "server soc":
-            cat = "soc"
-
-        for vendor in certified_makes:
-            if vendor["make"] == "nVidia":
-                vendor["make"] = "NVIDIA"
-            make = vendor["make"]
-
-            if (
-                int(vendor.get(cat, 0) or 0) > 0
-                and make not in vendor_filters
-                and make not in selected_vendors
-            ):
-                vendor_filters.append(make)
-
-        for release in certified_releases:
-            version = release["release"]
-
-            if (
-                int(release.get(cat, 0) or 0) > 0
-                and version not in release_filters
-                and version != "18.04"
-                and version not in selected_releases
-            ):
-                release_filters.append(version)
-
-    # Reorder and put selected filters on top
-    vendor_filters.sort()
-    selected_vendors.extend(vendor_filters)
-    vendor_filters = selected_vendors
-    release_filters.sort(reverse=True)
-    selected_releases.extend(release_filters)
-    release_filters = selected_releases
-
-    total_vendors = len(vendor_filters)
-    total_releases = len(release_filters)
-
-    if vendors_limit != -1:
-        vendor_filters = vendor_filters[:vendors_limit]
-
-    if releases_limit != -1:
-        release_filters = release_filters[:releases_limit]
-
-    return {
-        "vendor_filters": {"data": vendor_filters, "total": total_vendors},
-        "release_filters": {
-            "data": release_filters,
-            "total": total_releases,
-        },
-    }
+def get_certified_filters():
+    return jsonify(
+        {"filters": build_filter_catalog(_get_certified_filter_options())}
+    )
 
 
 def get_filters(
@@ -749,43 +631,22 @@ def certified_search():
             f"/certified/search?{urlencode(parameters, doseq=True)}"
         )
 
-    certified_releases = api.certified_releases(limit="0")["results"]
-    certified_makes = api.certified_vendors(limit="0")["results"]
-
-    (
-        laptop_releases,
-        laptop_vendors,
-        desktop_releases,
-        desktop_vendors,
-        soc_releases,
-        soc_vendors,
-        iot_releases,
-        iot_vendors,
-        server_releases,
-        server_vendors,
-        all_releases,
-        all_vendors,
-        vendor_filters,
-        release_filters,
-    ) = get_filters(
-        request.args,
-        certified_releases=certified_releases,
-        certified_makes=certified_makes,
+    options_by_key = _get_certified_filter_options()
+    selected_filters = canonicalize_selected_filters(
+        parse_selected_filters(request.args), options_by_key
     )
-
-    new_certified_params = _parse_query_params(release_filters, vendor_filters)
-    if new_certified_params:
-        return redirect(url_for(request.endpoint, **new_certified_params))
+    canonical_query = build_canonical_query_params(
+        request.args, selected_filters
+    )
+    if canonical_query != request.args.to_dict(flat=False):
+        return redirect(url_for(request.endpoint, **canonical_query))
 
     query = request.args.get("q", default=None, type=str)
     limit = request.args.get("limit", default=20, type=int)
     offset = request.args.get("offset", default=0, type=int)
 
-    selected_categories = _normalize_categories(
-        request.args.getlist("category")
-    )
-    selected_vendors = request.args.getlist("vendor")
-    selected_releases = request.args.getlist("release")
+    selected_categories = _normalize_categories(selected_filters["category"])
+    selected_vendors = selected_filters["vendor"]
 
     # Category pages used to have their own hero banner (image, title,
     # description) - preserve that when exactly one category is picked
@@ -805,17 +666,11 @@ def certified_search():
         # else: no partner profile for this vendor - just skip the hero,
         # the vendor filter itself still applies to the search below
 
-    categories = ",".join(selected_categories) if selected_categories else None
-    releases = ",".join(selected_releases) if selected_releases else None
-    vendors = selected_vendors if selected_vendors else None
-
     models_response = api.certified_configurations(
-        category__in=categories,
-        major_release__in=releases,
-        vendor=vendors,
         query=query,
         offset=offset,
         limit=limit,
+        **build_api_filter_params(selected_filters),
     )
 
     results = models_response["results"]
@@ -831,14 +686,8 @@ def certified_search():
 
     total_results = models_response["count"]
 
-    # Vendor/release checkboxes are server-rendered up front, matching the
-    # same {data, total} shape /certified/filters.json returns
-    filter_options = build_filter_options(
-        certified_makes,
-        certified_releases,
-        selected_categories,
-        selected_vendors,
-        selected_releases,
+    filter_view_models = build_filter_view_models(
+        options_by_key, selected_filters
     )
 
     return render_template(
@@ -848,11 +697,7 @@ def certified_search():
         hero_category=hero_category,
         results=results,
         query=query,
-        category=categories,
-        releases=releases,
-        vendors=vendors,
-        vendor_filters=filter_options["vendor_filters"],
-        release_filters=filter_options["release_filters"],
+        filters=filter_view_models,
         total_results=total_results,
         # Guard against diving by zero
         total_pages=math.ceil(total_results / limit) if limit else 1,
