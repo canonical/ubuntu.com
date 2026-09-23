@@ -27,6 +27,14 @@ api = CertificationAPI(
 )
 partners_api = PartnersAPI(session=session)
 
+AUTOCOMPLETE_MIN_CHARS = 3
+AUTOCOMPLETE_MAX_SUGGESTIONS = 5
+# Fetched larger than AUTOCOMPLETE_MAX_SUGGESTIONS since multiple
+# certificates (different releases) commonly share the same model name
+AUTOCOMPLETE_FETCH_LIMIT = 25
+# Caps word-boundary split attempts for "<vendor> <model>"-style queries
+AUTOCOMPLETE_MAX_QUERY_TOKENS = 4
+
 
 def certified_routes(app):
     """
@@ -68,6 +76,9 @@ def certified_routes(app):
     )
     app.add_url_rule(
         "/certified/filters.json", view_func=get_vendors_releases_filters
+    )
+    app.add_url_rule(
+        "/certified/autocomplete.json", view_func=certified_autocomplete
     )
     app.add_url_rule(
         "/certified/202309-32027/contact-us", view_func=nxp_contact
@@ -727,6 +738,133 @@ def certified_why():
 
 def nxp_contact():
     return render_template("certified/202309-32027/contact-us.html")
+
+
+def _fetch_autocomplete_results(
+    category__in, major_release__in, vendor, **field_filter
+):
+    """
+    Query certified-configurations for autocomplete suggestions.
+
+    Suggestions are a non-essential enhancement - fail soft to an empty
+    list rather than break the search box over a flaky upstream API call.
+    """
+    try:
+        response = api.certified_configurations(
+            category__in=category__in,
+            major_release__in=major_release__in,
+            vendor=vendor,
+            ordering="model",
+            limit=AUTOCOMPLETE_FETCH_LIMIT,
+            offset=0,
+            **field_filter,
+        )
+    except Exception:
+        sentry_sdk.capture_exception()
+        return []
+    return response.get("results", [])
+
+
+def _merge_unique_suggestions(existing, results, limit):
+    """
+    Return `existing` plus any `results` whose model name isn't already
+    present (case-insensitively), up to `limit` total. Pure function - takes
+    the current suggestions and returns the merged list, rather than
+    mutating anything the caller passed in.
+    """
+    seen = {suggestion["model"].lower() for suggestion in existing}
+    suggestions = list(existing)
+    for result in results:
+        if len(suggestions) == limit:
+            break
+        name = (result.get("model") or "").strip()
+        key = name.lower()
+        if not name or key in seen:
+            continue
+        seen.add(key)
+        suggestions.append(
+            {"model": name, "make": (result.get("make") or "").strip()}
+        )
+    return suggestions
+
+
+def certified_autocomplete():
+    """
+    Search-box suggestions for /certified/search, scoped to the same
+    category/vendor/release filters currently applied on that page.
+
+    Matches on configuration model name (e.g. "XPS 13") as well as vendor/
+    make name (e.g. "Alienware"). Each suggestion carries both fields so the
+    frontend can display "<make> <model>" while still filling/searching on
+    the model name alone (the vendor name alone would never match anything).
+    """
+    query = request.args.get("q", default="", type=str).strip()
+    if len(query) < AUTOCOMPLETE_MIN_CHARS:
+        return jsonify({"suggestions": []})
+
+    selected_categories = _normalize_categories(
+        request.args.getlist("category")
+    )
+    selected_vendors = request.args.getlist("vendor")
+    selected_releases = request.args.getlist("release")
+    category__in = (
+        ",".join(selected_categories) if selected_categories else None
+    )
+    major_release__in = (
+        ",".join(selected_releases) if selected_releases else None
+    )
+    vendor = selected_vendors or None
+
+    suggestions = _merge_unique_suggestions(
+        [],
+        _fetch_autocomplete_results(
+            category__in, major_release__in, vendor, model__icontains=query
+        ),
+        AUTOCOMPLETE_MAX_SUGGESTIONS,
+    )
+
+    # Only spend a second request on the vendor/make field if the model
+    # search above didn't already fill every suggestion slot
+    if len(suggestions) < AUTOCOMPLETE_MAX_SUGGESTIONS:
+        suggestions = _merge_unique_suggestions(
+            suggestions,
+            _fetch_autocomplete_results(
+                category__in,
+                major_release__in,
+                vendor,
+                make__icontains=query,
+            ),
+            AUTOCOMPLETE_MAX_SUGGESTIONS,
+        )
+
+    # Workaround for a Certified API limitation, similar to the one above:
+    # it can't search "make" and "model" together as one phrase, only as
+    # separate fields. So a query spanning both, like "dell xps", matches
+    # neither field on its own and both single-field calls above return
+    # nothing. We can't change the API to search across both fields at
+    # once, so instead we split the query at each word boundary and retry
+    # it as a combined request (e.g. for "dell xps 13", first try
+    # "dell" / "xps 13", then "dell xps" / "13", and so on). We try every
+    # split point, rather than just splitting after the first word, because
+    # some vendor names have multiple words. Capped to the first 4 words so
+    # an unusually long query can't trigger unbounded extra requests.
+    tokens = query.split()[:AUTOCOMPLETE_MAX_QUERY_TOKENS]
+    for i in range(1, len(tokens)):
+        if len(suggestions) == AUTOCOMPLETE_MAX_SUGGESTIONS:
+            break
+        suggestions = _merge_unique_suggestions(
+            suggestions,
+            _fetch_autocomplete_results(
+                category__in,
+                major_release__in,
+                vendor,
+                make__icontains=" ".join(tokens[:i]),
+                model__icontains=" ".join(tokens[i:]),
+            ),
+            AUTOCOMPLETE_MAX_SUGGESTIONS,
+        )
+
+    return jsonify({"suggestions": suggestions})
 
 
 def certified_search():

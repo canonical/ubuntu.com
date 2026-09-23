@@ -1,3 +1,5 @@
+import { initAutocomplete } from "./autocomplete.js";
+
 // New filters
 const filters2Elm = document.querySelector("#tab2-section");
 const filters3Elm = document.querySelector("#tab3-section");
@@ -489,3 +491,44 @@ if (filters2Elm.querySelector("input") || filters3Elm.querySelector("input")) {
 updateResultsPerPage();
 hideDrawerPageReload();
 wireStaticFilterHandlers();
+
+// initAutocomplete() is a generic, reusable widget defined in autocomplete.js
+const AUTOCOMPLETE_MIN_CHARS = 3;
+const AUTOCOMPLETE_MAX_SUGGESTIONS = 5;
+const AUTOCOMPLETE_DEBOUNCE_MS = 200;
+
+function initCertifiedAutocomplete() {
+  // Model names rarely repeat the vendor name (e.g. "XPS 13", not "Dell
+  // XPS 13") - prefix it for display (and fill/search on it too) so it's
+  // clear which vendor a suggestion is from, without duplicating it when
+  // the model name already includes it
+  function suggestionLabel({ make, model }) {
+    if (make && !model.toLowerCase().startsWith(make.toLowerCase())) {
+      return `${make} ${model}`;
+    }
+    return model;
+  }
+
+  initAutocomplete({
+    inputSelector: "#certified-search",
+    suggestionsSelector: "#certified-search-suggestions",
+    containerSelector: ".p-certified-autocomplete",
+    minChars: AUTOCOMPLETE_MIN_CHARS,
+    maxSuggestions: AUTOCOMPLETE_MAX_SUGGESTIONS,
+    debounceMs: AUTOCOMPLETE_DEBOUNCE_MS,
+    getLabel: suggestionLabel,
+    buildUrl(term) {
+      const { category, vendor, release } = retrieveSelectedFilters();
+      const url = new URL(
+        `${window.location.origin}/certified/autocomplete.json`,
+      );
+      url.searchParams.set("q", term);
+      category.forEach((value) => url.searchParams.append("category", value));
+      vendor.forEach((value) => url.searchParams.append("vendor", value));
+      release.forEach((value) => url.searchParams.append("release", value));
+      return url;
+    },
+  });
+}
+
+initCertifiedAutocomplete();

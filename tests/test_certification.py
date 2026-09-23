@@ -83,6 +83,102 @@ class TestCertification(VCRTestCase):
         self.assertIn("release_filters", response.json.keys())
         self.assertIn("vendor_filters", response.json.keys())
 
+    def test_autocomplete_min_chars(self):
+        response = self.client.get("/certified/autocomplete.json?q=ab")
+        self.assertEqual(response.json, {"suggestions": []})
+
+    def test_autocomplete_dedupes_and_caps(self):
+        response = self.client.get("/certified/autocomplete.json?q=lat")
+        self.assertEqual(
+            response.json,
+            {
+                "suggestions": [
+                    {"model": "Latitude 5420", "make": "Dell"},
+                    {"model": "latitude 5421", "make": "Dell"},
+                    {"model": "Latitude 7420", "make": "Dell"},
+                    {"model": "Latitude 9420", "make": "Dell"},
+                    {"model": "Latitude 5430", "make": "Dell"},
+                ]
+            },
+        )
+
+    def test_autocomplete_passes_through_filters(self):
+        response = self.client.get(
+            "/certified/autocomplete.json"
+            "?q=lat&category=Laptop&vendor=Dell&release=22.04"
+        )
+        self.assertEqual(
+            response.json,
+            {"suggestions": [{"model": "Latitude 5420", "make": "Dell"}]},
+        )
+
+    def test_autocomplete_matches_vendor_name(self):
+        # "alienware" matches no model name directly, only the make field -
+        # suggestions must still carry the full model name, never just the
+        # vendor name
+        response = self.client.get("/certified/autocomplete.json?q=alienware")
+        self.assertEqual(
+            response.json,
+            {
+                "suggestions": [
+                    {
+                        "model": (
+                            "16 Aurora (Core 5 210H, GeForce RTX 3050 6GB)"
+                        ),
+                        "make": "Alienware",
+                    },
+                    {
+                        "model": (
+                            "16 Aurora (Core 7 240H, GeForce RTX 4050 Max-Q)"
+                        ),
+                        "make": "Alienware",
+                    },
+                    {
+                        "model": (
+                            "16 Aurora (Core 7 240H, GeForce RTX 5050 Max-Q)"
+                        ),
+                        "make": "Alienware",
+                    },
+                    {
+                        "model": (
+                            "16 Aurora (Core 9 270H, GeForce RTX 5060 Max-Q)"
+                        ),
+                        "make": "Alienware",
+                    },
+                    {
+                        "model": (
+                            "16 Aurora (Core 9 270H, GeForce RTX 5070 Max-Q)"
+                        ),
+                        "make": "Alienware",
+                    },
+                ]
+            },
+        )
+
+    def test_autocomplete_matches_vendor_and_model(self):
+        # "dell xps" spans both fields - neither "make" nor "model" alone
+        # contains the whole phrase, so this requires the word-boundary
+        # split fallback (make="dell", model="xps")
+        response = self.client.get("/certified/autocomplete.json?q=dell+xps")
+        self.assertEqual(
+            response.json,
+            {
+                "suggestions": [
+                    {"model": "XPS 13 7390", "make": "Dell"},
+                    {"model": "XPS 13 9300", "make": "Dell"},
+                    {"model": "XPS 13 9310", "make": "Dell"},
+                    {
+                        "model": "XPS 13 9340 (3K OLED Touchscreen)",
+                        "make": "Dell",
+                    },
+                    {
+                        "model": "XPS 13 9340 (Full HD Screen)",
+                        "make": "Dell",
+                    },
+                ]
+            },
+        )
+
     def test_note_rendering(self):
         """
         Test that basic markdown elements are rendered correctly.
