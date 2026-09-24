@@ -14,11 +14,14 @@
   <div>
     <aside class="p-accordion js-certified-filters"
            data-filter-limit="{{ filter_limit }}"
+           data-derived-filters-pending="{{ 'true' if derived_filters_pending else 'false' }}"
            data-multiple-expanded="true">
       <ul class="p-accordion__list">
         {% for filter in filters %}
           <li class="p-accordion__group js-filter-group"
-              data-filter-key="{{ filter.key }}">
+              data-filter-key="{{ filter.key }}"
+              data-filter-selection="{{ filter.selection }}"
+              data-filter-url-keys="{{ filter.url_keys|join(',') }}">
             <div role="heading" aria-level="2">
               <button type="button"
                       class="p-accordion__tab u-no-padding--right"
@@ -36,52 +39,114 @@
                      id="filter-{{ filter.key }}-panel"
                      aria-hidden="{{ 'false' if filter.expanded else 'true' }}"
                      aria-labelledby="filter-{{ filter.key }}-tab">
-              {% if filter.show_option_search %}
-                <div class="p-search-box certified-filter-search">
-                  <label class="u-off-screen" for="filter-{{ filter.key }}-search">Search {{ filter.plural }}</label>
-                  <input type="search"
-                         id="filter-{{ filter.key }}-search"
-                         class="p-search-box__input js-filter-search"
-                         placeholder="Search"
-                         autocomplete="off" />
-                  <button type="button"
-                          class="p-search-box__reset js-filter-search-reset"
-                          aria-label="Clear {{ filter.plural }} search">
-                    <i class="p-icon--close">Clear</i>
-                  </button>
-                  <button type="button"
-                          class="p-search-box__button"
-                          aria-label="Search {{ filter.plural }}"
-                          tabindex="-1">
-                    <i class="p-icon--search">Search</i>
-                  </button>
+              {% if filter.control == "checkbox" %}
+                {% if filter.show_option_search %}
+                  <div class="p-search-box certified-filter-search">
+                    <label class="u-off-screen" for="filter-{{ filter.key }}-search">Search {{ filter.plural }}</label>
+                    <input type="search"
+                           id="filter-{{ filter.key }}-search"
+                           class="p-search-box__input js-filter-search"
+                           placeholder="Search"
+                           autocomplete="off" />
+                    <button type="button"
+                            class="p-search-box__reset js-filter-search-reset"
+                            aria-label="Clear {{ filter.plural }} search">
+                      <i class="p-icon--close">Clear</i>
+                    </button>
+                    <button type="button"
+                            class="p-search-box__button"
+                            aria-label="Search {{ filter.plural }}"
+                            tabindex="-1">
+                      <i class="p-icon--search">Search</i>
+                    </button>
+                  </div>
+                {% endif %}
+                <div class="js-filter-options">
+                  {% for option in filter.options %}
+                    <label class="p-checkbox js-filter-option{% if option.disabled %} is-disabled{% endif %}{% if loop.index > filter_limit %} u-hide{% endif %}"
+                           data-filter-label="{{ option.label|lower }}">
+                      <input type="checkbox"
+                             name="{{ filter.key }}"
+                             class="p-checkbox__input"
+                             value="{{ option.value }}"
+                             {% if option.selected %}checked{% endif %}
+                             {% if option.disabled %}disabled{% endif %} />
+                      <span class="p-checkbox__label">{{ option.label }}</span>
+                    </label>
+                  {% endfor %}
                 </div>
-              {% endif %}
-              <div class="js-filter-options">
-                {% for option in filter.options %}
-                  <label class="p-checkbox js-filter-option{% if option.disabled %} is-disabled{% endif %}{% if loop.index > filter_limit %} u-hide{% endif %}"
-                         data-filter-label="{{ option.label|lower }}">
-                    <input type="checkbox"
-                           name="{{ filter.key }}"
-                           class="p-checkbox__input"
-                           value="{{ option.value }}"
-                           {% if option.selected %}checked{% endif %}
-                           {% if option.disabled %}disabled{% endif %} />
-                    <span class="p-checkbox__label">{{ option.label }}</span>
-                  </label>
-                {% endfor %}
-              </div>
-              <p class="js-filter-no-results u-hide">No matching {{ filter.plural }}.</p>
-              {% if filter.show_option_search %}
-                <button type="button"
-                        class="p-button--link is-dense js-toggle-filter-options"
-                        data-expanded="false"
-                        data-plural="{{ filter.plural }}">Show all {{ filter.plural }}</button>
+                <p class="js-filter-no-results u-hide">No matching {{ filter.plural }}.</p>
+                {% if filter.show_option_search %}
+                  <button type="button"
+                          class="p-button--link is-dense js-toggle-filter-options"
+                          data-expanded="false"
+                          data-plural="{{ filter.plural }}">Show all {{ filter.plural }}</button>
+                {% endif %}
+              {% elif filter.control == "range" %}
+                <div class="certified-memory-range js-memory-range">
+                  <div class="certified-memory-range__control">
+                    <label for="filter-memory-min">
+                      Minimum: <output class="js-memory-min-output">{{ filter.memory_min }}</output> GB
+                    </label>
+                    <div class="p-slider__wrapper">
+                      <input type="range"
+                             class="certified-memory-range__input js-memory-min"
+                             id="filter-memory-min"
+                             min="{{ filter.memory_min_limit }}"
+                             max="{{ filter.memory_max_limit }}"
+                             step="{{ filter.memory_step }}"
+                             value="{{ filter.memory_min }}"
+                             aria-valuetext="{{ filter.memory_min }} GB" />
+                    </div>
+                  </div>
+                  <div class="certified-memory-range__control">
+                    <label for="filter-memory-max">
+                      Maximum: <output class="js-memory-max-output">{{ filter.memory_max }}</output> GB
+                    </label>
+                    <div class="p-slider__wrapper">
+                      <input type="range"
+                             class="certified-memory-range__input js-memory-max"
+                             id="filter-memory-max"
+                             min="{{ filter.memory_min_limit }}"
+                             max="{{ filter.memory_max_limit }}"
+                             step="{{ filter.memory_step }}"
+                             value="{{ filter.memory_max }}"
+                             aria-valuetext="{{ filter.memory_max }} GB" />
+                    </div>
+                  </div>
+                  {% if filter.memory_min > filter.memory_min_limit %}
+                    <input type="hidden" name="memory_min" value="{{ filter.memory_min }}" />
+                  {% endif %}
+                  {% if filter.memory_max < filter.memory_max_limit %}
+                    <input type="hidden" name="memory_max" value="{{ filter.memory_max }}" />
+                  {% endif %}
+                </div>
+              {% elif filter.control == "year" %}
+                <div class="certified-year-validation{% if filter.year_is_invalid %} is-error{% endif %}">
+                  <label class="u-off-screen" for="filter-certified-year">{{ filter.title }}</label>
+                  <input type="text"
+                         class="certified-year-validation__input js-certified-year"
+                         id="filter-certified-year"
+                         name="certified_year"
+                         value="{{ filter.value }}"
+                         inputmode="numeric"
+                         pattern="[0-9]{4}"
+                         maxlength="4"
+                         aria-invalid="{{ 'true' if filter.year_is_invalid else 'false' }}"
+                         aria-describedby="filter-certified-year-error" />
+                  <p class="certified-year-validation__message js-certified-year-error{% if not filter.year_is_invalid %} u-hide{% endif %}"
+                     id="filter-certified-year-error"
+                     aria-live="polite">Please insert a four-digit year.</p>
+                </div>
               {% endif %}
             </section>
           </li>
         {% endfor %}
       </ul>
+      {% if derived_filters_pending %}
+        <p class="certified-derived-filters-status js-derived-filters-status"
+           role="status">Model family, GPU and processor options are loading...</p>
+      {% endif %}
     </aside>
     <div class="certified-filters-footer">
       <div class="certified-filters-footer-buttons p-cta-block">

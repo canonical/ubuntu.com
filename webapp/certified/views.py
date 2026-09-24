@@ -12,6 +12,11 @@ from flask import (
 )
 from requests import Session
 from webapp.certified.api import CertificationAPI, PartnersAPI
+from webapp.certified.filter_cache import (
+    DERIVED_OPTION_KEYS,
+    FilterOptionCache,
+    build_derived_filter_options,
+)
 from webapp.certified.filters import (
     build_api_filter_params,
     build_canonical_query_params,
@@ -34,6 +39,10 @@ session = Session()
 api = CertificationAPI(
     base_url="https://certification.canonical.com/api/v2", session=session
 )
+filter_api = CertificationAPI(
+    base_url="https://certification.canonical.com/api/v2", session=Session()
+)
+filter_option_cache = FilterOptionCache()
 partners_api = PartnersAPI(session=session)
 
 
@@ -210,14 +219,68 @@ def certified_platform_details_by_release(platform_id, release):
 def _get_certified_filter_options():
     certified_releases = api.certified_releases(limit="0")["results"]
     certified_makes = api.certified_vendors(limit="0")["results"]
+    derived_options = filter_option_cache.get_or_refresh(
+        lambda: build_derived_filter_options(filter_api)
+    )
 
-    return build_options_by_key(certified_makes, certified_releases)
+    return build_options_by_key(
+        certified_makes, certified_releases, derived_options
+    )
+
+
+def _derived_filter_options_pending(options_by_key):
+    return any(not options_by_key.get(key) for key in DERIVED_OPTION_KEYS)
 
 
 def get_certified_filters():
+    if request.args.get("derived_status") == "1":
+        return jsonify(
+            {
+                "derived_filters_pending": (
+                    not filter_option_cache.has_options()
+                )
+            }
+        )
+
+    options_by_key = _get_certified_filter_options()
     return jsonify(
-        {"filters": build_filter_catalog(_get_certified_filter_options())}
+        {
+            "filters": build_filter_catalog(options_by_key),
+            "derived_filters_pending": _derived_filter_options_pending(
+                options_by_key
+            ),
+        }
     )
+
+
+def _canonical_ids_for_model_families(platform_ids):
+    canonical_ids = set()
+
+    for platform_id in platform_ids:
+        try:
+            platform = api.certified_platform_certificates(platform_id)
+        except requests.exceptions.HTTPError as error:
+            if error.response.status_code == 404:
+                continue
+            sentry_sdk.capture_exception()
+            abort(500)
+        except (requests.exceptions.RequestException, ValueError):
+            sentry_sdk.capture_exception()
+            abort(500)
+
+        certificates = platform.get("certificates", {})
+        if not isinstance(certificates, dict):
+            continue
+
+        for key, certificate in certificates.items():
+            if isinstance(certificate, dict):
+                canonical_id = certificate.get("canonical_id", key)
+            else:
+                canonical_id = key
+            if canonical_id:
+                canonical_ids.add(str(canonical_id))
+
+    return sorted(canonical_ids)
 
 
 def get_filters(
@@ -617,8 +680,8 @@ def certified_search():
 
     Replaces the old separate category pages (desktops/laptops/servers/
     socs/iot), vendor pages, and /certified's implicit search mode with a
-    single page driven entirely by query params (category, vendor, release,
-    q, offset, limit) so any given combination of filters is one shareable
+    single page driven entirely by query params so any combination of search,
+    pagination, hardware, memory, and certification filters is one shareable
     URL.
     """
     # Legacy alias, previously only handled on vendor pages. Must run
@@ -632,6 +695,7 @@ def certified_search():
         )
 
     options_by_key = _get_certified_filter_options()
+    derived_filters_pending = _derived_filter_options_pending(options_by_key)
     selected_filters = canonicalize_selected_filters(
         parse_selected_filters(request.args), options_by_key
     )
@@ -666,12 +730,30 @@ def certified_search():
         # else: no partner profile for this vendor - just skip the hero,
         # the vendor filter itself still applies to the search below
 
-    models_response = api.certified_configurations(
-        query=query,
-        offset=offset,
-        limit=limit,
-        **build_api_filter_params(selected_filters),
-    )
+    certified_parameters = build_api_filter_params(selected_filters)
+    selected_model_families = selected_filters["model_family"]
+
+    if selected_model_families:
+        canonical_ids = _canonical_ids_for_model_families(
+            selected_model_families
+        )
+        if not canonical_ids:
+            models_response = {"count": 0, "results": []}
+        else:
+            certified_parameters["canonical_id__in"] = canonical_ids
+            models_response = api.certified_configurations(
+                query=query,
+                offset=offset,
+                limit=limit,
+                **certified_parameters,
+            )
+    else:
+        models_response = api.certified_configurations(
+            query=query,
+            offset=offset,
+            limit=limit,
+            **certified_parameters,
+        )
 
     results = models_response["results"]
 
@@ -698,6 +780,7 @@ def certified_search():
         results=results,
         query=query,
         filters=filter_view_models,
+        derived_filters_pending=derived_filters_pending,
         total_results=total_results,
         # Guard against diving by zero
         total_pages=math.ceil(total_results / limit) if limit else 1,

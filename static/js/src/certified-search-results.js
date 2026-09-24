@@ -1,16 +1,12 @@
 export const DEFAULT_FILTER_LIMIT = 5;
 
-const SCROLL_POSITION_KEY = "certifiedFiltersScrollY";
+const DERIVED_FILTER_REFRESH_INTERVAL = 10000;
+const DERIVED_FILTER_REFRESH_ATTEMPTS = 90;
 let filterNavigateTimer = null;
-
-function saveScrollPosition() {
-  sessionStorage.setItem(SCROLL_POSITION_KEY, window.scrollY);
-}
 
 function scheduleFilterNavigation() {
   clearTimeout(filterNavigateTimer);
   filterNavigateTimer = setTimeout(() => {
-    saveScrollPosition();
     window.location.assign(window.location.href);
   }, 300);
 }
@@ -28,6 +24,16 @@ export function setFilterValue(url, key, value, isSelected) {
   selectedValues.forEach((selectedValue) => {
     url.searchParams.append(key, selectedValue);
   });
+  url.searchParams.delete("offset");
+  return url;
+}
+
+function setSingleFilterValue(url, key, value) {
+  if (value) {
+    url.searchParams.set(key, value);
+  } else {
+    url.searchParams.delete(key);
+  }
   url.searchParams.delete("offset");
   return url;
 }
@@ -103,29 +109,56 @@ function updateSelectedCount(group) {
 function handleFilterChange(event) {
   const input = event.target.closest('input[type="checkbox"]');
   if (!input) {
+    if (event.target.closest(".js-memory-range")) {
+      applyMemoryRange(event.target.closest(".js-filter-group"), event.target);
+    }
     return;
   }
 
-  updateSelectedCount(input.closest(".js-filter-group"));
-  navigateTo(
-    setFilterValue(
-      new URL(window.location.href),
-      input.name,
-      input.value,
-      input.checked,
-    ),
-  );
+  const group = input.closest(".js-filter-group");
+  const url = new URL(window.location.href);
+
+  if (group.dataset.filterSelection === "single") {
+    if (input.checked) {
+      group
+        .querySelectorAll('input[type="checkbox"]:checked')
+        .forEach((selectedInput) => {
+          selectedInput.checked = selectedInput === input;
+        });
+    }
+    updateSelectedCount(group);
+    navigateTo(
+      setSingleFilterValue(url, input.name, input.checked ? input.value : ""),
+    );
+    return;
+  }
+
+  updateSelectedCount(group);
+  navigateTo(setFilterValue(url, input.name, input.value, input.checked));
 }
 
 function handleFilterInput(event, limit) {
   if (event.target.matches(".js-filter-search")) {
     updateOptionVisibility(event.target.closest(".js-filter-group"), limit);
+  } else if (event.target.matches(".js-memory-min, .js-memory-max")) {
+    updateMemoryRange(event.target.closest(".js-memory-range"), event.target);
+  } else if (event.target.matches(".js-certified-year")) {
+    event.target.value = event.target.value.replace(/\D/g, "").slice(0, 4);
+    if (!event.target.value || isValidYear(event.target.value)) {
+      setYearValidity(event.target, true);
+    }
   }
 }
 
 function handleFilterKeydown(event) {
   if (event.target.matches(".js-filter-search") && event.key === "Enter") {
     event.preventDefault();
+  } else if (
+    event.target.matches(".js-certified-year") &&
+    event.key === "Enter"
+  ) {
+    event.preventDefault();
+    applyCertifiedYear(event.target);
   }
 }
 
@@ -149,15 +182,18 @@ function handleFilterClick(event, limit) {
 }
 
 function filterKeys(filterRoot) {
-  return [...filterRoot.querySelectorAll(".js-filter-group")].map(
-    (group) => group.dataset.filterKey,
-  );
+  return [
+    ...new Set(
+      [...filterRoot.querySelectorAll(".js-filter-group")].flatMap((group) =>
+        group.dataset.filterUrlKeys.split(",").filter(Boolean),
+      ),
+    ),
+  ];
 }
 
 function initClearFilters(filterRoot) {
   const clearButton = document.querySelector(".js-clear-filters");
   clearButton?.addEventListener("click", () => {
-    saveScrollPosition();
     window.location.assign(
       clearFilterValues(
         new URL(window.location.href),
@@ -165,6 +201,53 @@ function initClearFilters(filterRoot) {
       ).toString(),
     );
   });
+}
+
+async function derivedFiltersAreReady() {
+  const response = await fetch("/certified/filters.json?derived_status=1", {
+    cache: "no-store",
+    headers: { Accept: "application/json" },
+  });
+  if (!response.ok) {
+    return false;
+  }
+
+  const payload = await response.json();
+  return payload.derived_filters_pending === false;
+}
+
+function initDerivedFilterRefresh(filterRoot) {
+  if (filterRoot.dataset.derivedFiltersPending !== "true") {
+    return;
+  }
+
+  let attemptsRemaining = DERIVED_FILTER_REFRESH_ATTEMPTS;
+  const checkForOptions = async () => {
+    let optionsAreReady = false;
+    try {
+      optionsAreReady = await derivedFiltersAreReady();
+    } catch {
+      optionsAreReady = false;
+    }
+
+    if (optionsAreReady) {
+      window.location.reload();
+      return;
+    }
+
+    attemptsRemaining -= 1;
+    if (attemptsRemaining > 0) {
+      window.setTimeout(checkForOptions, DERIVED_FILTER_REFRESH_INTERVAL);
+    } else {
+      const status = filterRoot.querySelector(".js-derived-filters-status");
+      if (status) {
+        status.textContent =
+          "Model family, GPU and processor options are temporarily unavailable.";
+      }
+    }
+  };
+
+  window.setTimeout(checkForOptions, DERIVED_FILTER_REFRESH_INTERVAL);
 }
 
 export function initCertifiedFilters() {
@@ -177,6 +260,9 @@ export function initCertifiedFilters() {
   filterRoot.querySelectorAll(".js-filter-group").forEach((group) => {
     updateOptionVisibility(group, limit);
   });
+  filterRoot.querySelectorAll(".js-memory-range").forEach((container) => {
+    updateMemoryRange(container);
+  });
 
   filterRoot.addEventListener("change", handleFilterChange);
   filterRoot.addEventListener("input", (event) => {
@@ -186,8 +272,106 @@ export function initCertifiedFilters() {
   filterRoot.addEventListener("click", (event) => {
     handleFilterClick(event, limit);
   });
+  filterRoot.addEventListener(
+    "blur",
+    (event) => {
+      if (event.target.matches(".js-certified-year")) {
+        applyCertifiedYear(event.target);
+      }
+    },
+    true,
+  );
 
   initClearFilters(filterRoot);
+  initDerivedFilterRefresh(filterRoot);
+}
+
+function updateMemoryRange(container, changedInput) {
+  const minimum = container.querySelector(".js-memory-min");
+  const maximum = container.querySelector(".js-memory-max");
+
+  if (Number(minimum.value) > Number(maximum.value)) {
+    if (changedInput === minimum) {
+      maximum.value = minimum.value;
+    } else {
+      minimum.value = maximum.value;
+    }
+  }
+
+  container.querySelector(".js-memory-min-output").value = minimum.value;
+  container.querySelector(".js-memory-max-output").value = maximum.value;
+  updateSliderProgress(minimum);
+  updateSliderProgress(maximum);
+}
+
+function updateSliderProgress(input) {
+  const minimum = Number(input.min);
+  const maximum = Number(input.max);
+  const progress =
+    ((Number(input.value) - minimum) / (maximum - minimum)) * 100;
+
+  input.style.setProperty("--slider-progress", `${progress}%`);
+  input.setAttribute("aria-valuetext", `${input.value} GB`);
+}
+
+function applyMemoryRange(group, changedInput) {
+  const container = group.querySelector(".js-memory-range");
+  const minimum = container.querySelector(".js-memory-min");
+  const maximum = container.querySelector(".js-memory-max");
+  const url = new URL(window.location.href);
+
+  updateMemoryRange(container, changedInput);
+
+  if (minimum.value === minimum.min) {
+    url.searchParams.delete("memory_min");
+  } else {
+    url.searchParams.set("memory_min", minimum.value);
+  }
+
+  if (maximum.value === maximum.max) {
+    url.searchParams.delete("memory_max");
+  } else {
+    url.searchParams.set("memory_max", maximum.value);
+  }
+
+  url.searchParams.delete("offset");
+  navigateTo(url);
+}
+
+function isValidYear(value) {
+  return /^\d{4}$/.test(value);
+}
+
+function setYearValidity(input, isValid) {
+  const validation = input.closest(".certified-year-validation");
+  const message = validation.querySelector(".js-certified-year-error");
+
+  validation.classList.toggle("is-error", !isValid);
+  input.setAttribute("aria-invalid", String(!isValid));
+  message.classList.toggle("u-hide", isValid);
+}
+
+function applyCertifiedYear(input) {
+  const value = input.value;
+  const url = new URL(window.location.href);
+
+  if (!value) {
+    setYearValidity(input, true);
+    if (url.searchParams.has("certified_year")) {
+      navigateTo(setSingleFilterValue(url, "certified_year", ""));
+    }
+    return;
+  }
+
+  if (!isValidYear(value)) {
+    setYearValidity(input, false);
+    return;
+  }
+
+  setYearValidity(input, true);
+  if (url.searchParams.get("certified_year") !== value) {
+    navigateTo(setSingleFilterValue(url, "certified_year", value));
+  }
 }
 
 function updateResultsPerPage() {
@@ -196,6 +380,9 @@ function updateResultsPerPage() {
   const pageSizeBottom = document.getElementById("page-size-bottom");
 
   pageSizeTop?.addEventListener("change", () => {
+    if (!searchResults.reportValidity()) {
+      return;
+    }
     searchResults.submit();
   });
 

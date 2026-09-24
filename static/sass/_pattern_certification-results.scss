@@ -47,6 +47,11 @@
       margin-bottom: 1rem;
     }
 
+    .certified-derived-filters-status {
+      color: $colors--theme--text-muted;
+      margin-bottom: 1.5rem;
+    }
+
     .js-filter-option.is-disabled {
       color: $colors--theme--text-muted;
       cursor: not-allowed;
@@ -63,6 +68,10 @@
 
       padding-bottom: 1.5rem;
       position: unset;
+    }
+
+    .p-accordion__panel[aria-hidden="false"] {
+      overflow: visible;
     }
 
     .certified-filters-footer {
@@ -82,6 +91,56 @@
 
     .p-checkbox__label {
       padding-left: 2.2rem;
+    }
+
+    .certified-memory-range {
+      &__control + &__control {
+        margin-top: 1.5rem;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      .p-slider__wrapper {
+        display: block;
+        padding: 0.5rem 0;
+      }
+
+      &__input {
+        --slider-progress: 0%;
+
+        width: 100%;
+
+        &::-webkit-slider-runnable-track {
+          background: linear-gradient(
+            to right,
+            $colors--theme--link-default 0,
+            $colors--theme--link-default var(--slider-progress),
+            $colors--theme--border-default var(--slider-progress),
+            $colors--theme--border-default 100%
+          );
+        }
+      }
+    }
+
+    .certified-year-validation {
+      &__input {
+        margin-bottom: 0;
+        max-width: none;
+        width: 100%;
+      }
+
+      &.is-error &__input {
+        background-color: $colors--theme--background-default;
+        border: 1px solid $colors--theme--border-negative;
+      }
+
+      &__message {
+        color: $colors--theme--border-negative;
+        margin: 0.25rem 0 0;
+      }
     }
 
     .p-button--link:disabled {
