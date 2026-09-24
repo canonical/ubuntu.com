@@ -21,7 +21,8 @@
       margin-bottom: $spv--small;
       padding: $spv--x-small $spv--small $spv--x-small $spv--large;
 
-      > span {
+      > span,
+      > .p-filter-menu__key-label {
         margin-right: $spv--small;
       }
 
@@ -31,6 +32,11 @@
     }
 
     .p-badge[hidden] {
+      display: none;
+    }
+
+    // Options hidden by a dependent/cascading menu
+    .p-filter-menu__link[hidden] {
       display: none;
     }
 
@@ -105,6 +111,17 @@
 
       &:hover {
         text-decoration: underline;
+      }
+
+      &:disabled,
+      &[aria-disabled="true"] {
+        color: $colors--theme--text-muted;
+        cursor: default;
+        pointer-events: none;
+
+        &:hover {
+          text-decoration: none;
+        }
       }
     }
 
