@@ -359,8 +359,66 @@
   .p-product-releases-filters {
     margin-bottom: 1.5rem;
 
+    .p-filter-menu {
+      display: block;
+
+      > * {
+        margin-right: 0;
+      }
+    }
+
+    .p-product-releases-filters__select {
+      label {
+        display: block;
+      }
+
+      .p-contextual-menu--left {
+        display: block;
+        width: 100%;
+      }
+
+      .p-contextual-menu__dropdown {
+        width: 100%;
+      }
+
+      .p-filter-menu__dropdown--multi {
+        width: max-content;
+      }
+    }
+
+    .p-product-releases-filters__toggle {
+      @extend select;
+
+      align-items: center;
+      background-image: none;
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      text-align: left;
+      width: 100%;
+
+      > span:first-child {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .p-contextual-menu__indicator {
+        position: absolute;
+        right: $sph--small;
+      }
+    }
+
+    .p-product-releases-filters__submit {
+      @media (min-width: $threshold-4-8-col) {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+
     // Disabled child toggles (e.g. Release before a Product is chosen)
-    .p-filter-menu__toggle.is-disabled {
+    .p-product-releases-filters__toggle.is-disabled {
       cursor: not-allowed;
       opacity: 0.5;
     }

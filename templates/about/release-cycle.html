@@ -16,8 +16,6 @@
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
-{% from "macros/_filter-menu.jinja" import single_select_menu, multi_select_menu, filter_submit %}
-
 {% block content %}
 
   {% call(slot) vf_hero(
@@ -69,15 +67,166 @@
         {% endfor %}
 
         <div class="p-product-releases-filters" data-js-filters data-js-release-cycle-filters>
-          <form class="p-form p-form--inline p-filter-menu">
-            <p>
-              <strong>Filter by</strong>
-            </p>
-            {{ single_select_menu('product', 'Select a product', product_options, key_label='Product', selected=product, default_value='ubuntu') }}
-            {{ single_select_menu('release', 'Select a release', release_options, key_label='Release type', selected=release_name if deployment else none, default_value='ubuntu') }}
-            {{ single_select_menu('version', 'All versions', version_options, key_label='Version', selected=version if versions else none, default_value='all') }}
-            {{ multi_select_menu('compliance', 'Compliance standards', compliance_options, selected_compliance, key_label='Active compliance standards', show_clear_selection=false) }}
-            {{ filter_submit("View coverage") }}
+          <form class="p-filter-menu">
+            <div class="grid-row">
+              {% set selected_product_option = product_options | selectattr("value", "equalto", product) | list | first %}
+              <div class="grid-col-2 grid-col-medium-2">
+                <div class="p-form__group p-product-releases-filters__select">
+                  <label for="product-filter">Product</label>
+                  <span class="p-contextual-menu--left p-filter-menu__item p-filter-menu__item--product">
+                    <button type="button"
+                            id="product-filter"
+                            class="p-contextual-menu__toggle p-product-releases-filters__toggle has-icon{% if selected_product_option %} is-active{% endif %}"
+                            aria-controls="product-menu"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            data-filter-param="product"
+                            data-filter-type="single"
+                            data-default-label="Select a product"
+                            data-filter-default-value="ubuntu"
+                            {% if selected_product_option %}data-selected-value="{{ selected_product_option.value }}"{% endif %}>
+                      <span>{{ selected_product_option.label if selected_product_option else "Select a product" }}</span><i class="p-icon--chevron-down p-contextual-menu__indicator"></i>
+                    </button>
+                    <span class="p-contextual-menu__dropdown p-filter-menu__dropdown"
+                          id="product-menu"
+                          aria-hidden="true">
+                      <span class="p-contextual-menu__group">
+                        {% for option in product_options %}
+                          <button type="button"
+                                  class="p-contextual-menu__link p-filter-menu__link"
+                                  data-value="{{ option.value }}"
+                                  {% for data_key, data_value in (option.data or {}).items() %}data-{{ data_key }}="{{ data_value }}"{% endfor %}>{{ option.label }}</button>
+                        {% endfor %}
+                      </span>
+                    </span>
+                  </span>
+                </div>
+              </div>
+
+              {% set selected_release_option = release_options | selectattr("value", "equalto", release_name if deployment else none) | list | first %}
+              <div class="grid-col-2 grid-col-medium-2">
+                <div class="p-form__group p-product-releases-filters__select">
+                  <label for="release-filter">Release type</label>
+                  <span class="p-contextual-menu--left p-filter-menu__item p-filter-menu__item--release">
+                    <button type="button"
+                            id="release-filter"
+                            class="p-contextual-menu__toggle p-product-releases-filters__toggle has-icon{% if selected_release_option %} is-active{% endif %}"
+                            aria-controls="release-menu"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            data-filter-param="release"
+                            data-filter-type="single"
+                            data-default-label="Select a release"
+                            data-filter-default-value="ubuntu"
+                            {% if selected_release_option %}data-selected-value="{{ selected_release_option.value }}"{% endif %}>
+                      <span>{{ selected_release_option.label if selected_release_option else "Select a release" }}</span><i class="p-icon--chevron-down p-contextual-menu__indicator"></i>
+                    </button>
+                    <span class="p-contextual-menu__dropdown p-filter-menu__dropdown"
+                          id="release-menu"
+                          aria-hidden="true">
+                      <span class="p-contextual-menu__group">
+                        {% for option in release_options %}
+                          <button type="button"
+                                  class="p-contextual-menu__link p-filter-menu__link"
+                                  data-value="{{ option.value }}"
+                                  {% for data_key, data_value in (option.data or {}).items() %}data-{{ data_key }}="{{ data_value }}"{% endfor %}>{{ option.label }}</button>
+                        {% endfor %}
+                      </span>
+                    </span>
+                  </span>
+                </div>
+              </div>
+
+              {% set selected_version_option = version_options | selectattr("value", "equalto", version if versions else none) | list | first %}
+              <div class="grid-col-2 grid-col-medium-2">
+                <div class="p-form__group p-product-releases-filters__select">
+                  <label for="version-filter">Version</label>
+                  <span class="p-contextual-menu--left p-filter-menu__item p-filter-menu__item--version">
+                    <button type="button"
+                            id="version-filter"
+                            class="p-contextual-menu__toggle p-product-releases-filters__toggle has-icon{% if selected_version_option %} is-active{% endif %}"
+                            aria-controls="version-menu"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            data-filter-param="version"
+                            data-filter-type="single"
+                            data-default-label="All versions"
+                            data-filter-default-value="all"
+                            {% if selected_version_option %}data-selected-value="{{ selected_version_option.value }}"{% endif %}>
+                      <span>{{ selected_version_option.label if selected_version_option else "All versions" }}</span><i class="p-icon--chevron-down p-contextual-menu__indicator"></i>
+                    </button>
+                    <span class="p-contextual-menu__dropdown p-filter-menu__dropdown"
+                          id="version-menu"
+                          aria-hidden="true">
+                      <span class="p-contextual-menu__group">
+                        {% for option in version_options %}
+                          <button type="button"
+                                  class="p-contextual-menu__link p-filter-menu__link"
+                                  data-value="{{ option.value }}"
+                                  {% for data_key, data_value in (option.data or {}).items() %}data-{{ data_key }}="{{ data_value }}"{% endfor %}>{{ option.label }}</button>
+                        {% endfor %}
+                      </span>
+                    </span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="grid-col-2 grid-col-medium-2">
+                <div class="p-form__group p-product-releases-filters__select">
+                  <label for="compliance-filter">Active compliance standards</label>
+                  {% set selected_compliance_options = compliance_options | selectattr("value", "in", selected_compliance) | list %}
+                  {% set unselected_compliance_options = compliance_options | rejectattr("value", "in", selected_compliance) | list %}
+                  <span class="p-contextual-menu--left p-filter-menu__item p-filter-menu__item--compliance">
+                    <button type="button"
+                            id="compliance-filter"
+                            class="p-contextual-menu__toggle p-product-releases-filters__toggle has-icon"
+                            aria-controls="compliance-filter-menu"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            data-filter-param="compliance"
+                            data-filter-type="multi"
+                            data-default-label="Compliance standards">
+                      <span>Compliance standards</span><i class="p-icon--chevron-down p-contextual-menu__indicator"></i>
+                    </button>
+                    <span class="p-contextual-menu__dropdown p-filter-menu__dropdown p-filter-menu__dropdown--multi"
+                          id="compliance-filter-menu"
+                          aria-hidden="true">
+                      <span class="p-contextual-menu__group p-filter-menu__group p-filter-menu__group--multi">
+                        {% for option in selected_compliance_options %}
+                          <label class="p-checkbox p-filter-menu__option">
+                            <input type="checkbox"
+                                   class="p-checkbox__input p-filter-menu__checkbox"
+                                   data-filter-option
+                                   value="{{ option.value }}"
+                                   checked />
+                            <span class="p-checkbox__label"><span class="p-filter-menu__label-text">{{ option.label }}</span></span>
+                          </label>
+                        {% endfor %}
+                        {% if selected_compliance_options and unselected_compliance_options %}<hr class="p-rule--muted u-no-margin--bottom" />{% endif %}
+                        {% for option in unselected_compliance_options %}
+                          <label class="p-checkbox p-filter-menu__option">
+                            <input type="checkbox"
+                                   class="p-checkbox__input p-filter-menu__checkbox"
+                                   data-filter-option
+                                   value="{{ option.value }}" />
+                            <span class="p-checkbox__label"><span class="p-filter-menu__label-text">{{ option.label }}</span></span>
+                          </label>
+                        {% endfor %}
+                      </span>
+                      <span class="p-filter-menu__actions">
+                        <button type="button" class="p-filter-menu__action" data-filter-select-all>Select all</button>
+                      </span>
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid-row">
+              <div class="grid-col-2 grid-col-medium-2 grid-col-start-large-7 p-product-releases-filters__submit">
+                <button type="button" class="p-button--positive" data-filter-submit>View coverage</button>
+              </div>
+            </div>
           </form>
           {% if show_release_notice %}
             <div class="p-notification--negative" data-filter-error>
