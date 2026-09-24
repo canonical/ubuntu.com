@@ -76,7 +76,7 @@
             {{ single_select_menu('product', 'Select a product', product_options, key_label='Product', selected=product, default_value='ubuntu') }}
             {{ single_select_menu('release', 'Select a release', release_options, key_label='Release type', selected=release_name if deployment else none, default_value='ubuntu') }}
             {{ single_select_menu('version', 'All versions', version_options, key_label='Version', selected=version if versions else none, default_value='all') }}
-            {{ multi_select_menu('compliance', 'Compliance standards', compliance_options, selected_compliance, key_label='Compliance standards', show_clear_selection=false) }}
+            {{ multi_select_menu('compliance', 'Compliance standards', compliance_options, selected_compliance, key_label='Active compliance standards', show_clear_selection=false) }}
             {{ filter_submit("View coverage") }}
           </form>
           {% if show_release_notice %}
