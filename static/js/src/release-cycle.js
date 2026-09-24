@@ -158,21 +158,21 @@
 
     const labelSpan = complianceToggle.querySelector("span");
     if (labelSpan) {
-      // Partial selection shows only the count badge, no label text.
-      labelSpan.textContent = isAnyState ? ANY_LABEL : "";
-    }
+      const selectedLabels = complianceCheckboxes()
+        .filter((checkbox) => checkbox.checked)
+        .map((checkbox) => checkbox.nextElementSibling?.textContent.trim())
+        .filter(Boolean);
 
-    const count = complianceToggle.querySelector("[data-filter-count]");
-    if (count) {
-      count.textContent = String(isAnyState ? total : checkedCount);
-      count.hidden = false;
+      labelSpan.textContent = isAnyState
+        ? ANY_LABEL
+        : selectedLabels.join(", ");
     }
 
     const chevron = complianceToggle.querySelector(
       ".p-contextual-menu__indicator",
     );
     if (chevron) {
-      chevron.hidden = true;
+      chevron.hidden = false;
     }
 
     complianceToggle.classList.add("is-active");
