@@ -258,6 +258,23 @@ tooltips.forEach((tooltip) => {
   });
 });
 
+function closeOpenFilterMenus() {
+  const bar = document.querySelector("[data-js-release-cycle-filters]");
+  if (!bar) return;
+
+  bar.querySelectorAll('[data-filter-param][aria-expanded="true"]').forEach(
+    (toggle) => {
+      toggle.setAttribute("aria-expanded", "false");
+      const menu = document.getElementById(
+        toggle.getAttribute("aria-controls"),
+      );
+      if (menu) {
+        menu.setAttribute("aria-hidden", "true");
+      }
+    },
+  );
+}
+
 function initStickyHeader() {
   const stickyTables = document.querySelectorAll(".js-sticky-table");
   if (!stickyTables.length) return;
@@ -265,6 +282,8 @@ function initStickyHeader() {
   stickyTables.forEach((table) => {
     const thead = table.querySelector("thead");
     if (!thead) return;
+
+    let wasSticky = false;
 
     const updateHeaderShadow = () => {
       const computed = getComputedStyle(thead);
@@ -277,6 +296,12 @@ function initStickyHeader() {
         rect.bottom > stickyTop + 1; // header still visible
 
       thead.classList.toggle("is-sticky", isSticky);
+
+      // Close any open dropdowns as the header becomes sticky
+      if (isSticky && !wasSticky) {
+        closeOpenFilterMenus();
+      }
+      wasSticky = isSticky;
     };
 
     window.addEventListener("scroll", updateHeaderShadow, { passive: true });
