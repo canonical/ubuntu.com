@@ -439,9 +439,9 @@
                               {% elif patch.type == "break-fix" %}
                                 <li class="p-list__item has-bullet">
                                   Introduced by
-                                  <a href="https://git.kernel.org/linus/{{ patch.content.introduced }}">{{ patch.content.introduced[:7] }}</a>,
+                                  <a href="https://git.kernel.org/linus/{{ patch.content.introduced.split()[0] }}">{{ patch.content.introduced[:7] }}</a>,
                                   fixed by
-                                  <a href="https://git.kernel.org/linus/{{ patch.content.fixed }}">{{ patch.content.fixed[:7] }}</a>
+                                  <a href="https://git.kernel.org/linus/{{ patch.content.fixed.split()[0] }}">{{ patch.content.fixed[:7] }}</a>
                                 </li>
                               {% elif patch.type == "link" %}
                                 {% if patch.content.suffix %}
