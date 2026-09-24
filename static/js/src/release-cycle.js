@@ -1,7 +1,7 @@
 /*
  * Extension of the filter-menu.js script.
  * Page-specific behaviour for /about/release-cycle:
- * - Show/hide the relevent menu items
+ * - Show/hide the relevant menu items
  * - Cascade behaviour for the filter bar (Product > Release > Version) and
  *   the Compliance menu's "Any" semantics, e.g. if there is one option, autoselect it
  * - Tooltip close/reopen, sticky table header, and horizontal-scroll fade
@@ -137,11 +137,6 @@
       : [];
   }
 
-  function complianceCheckedCount() {
-    return complianceCheckboxes().filter((checkbox) => checkbox.checked)
-      .length;
-  }
-
   function setAllComplianceCheckboxes(isChecked) {
     complianceCheckboxes().forEach((checkbox) => {
       checkbox.checked = isChecked;
@@ -152,14 +147,15 @@
     if (!complianceToggle) {
       return;
     }
-    const total = complianceCheckboxes().length;
-    const checkedCount = complianceCheckedCount();
+    const checkboxes = complianceCheckboxes();
+    const checkedCheckboxes = checkboxes.filter((checkbox) => checkbox.checked);
+    const total = checkboxes.length;
+    const checkedCount = checkedCheckboxes.length;
     const isAnyState = checkedCount === 0 || checkedCount === total;
 
     const labelSpan = complianceToggle.querySelector("span");
     if (labelSpan) {
-      const selectedLabels = complianceCheckboxes()
-        .filter((checkbox) => checkbox.checked)
+      const selectedLabels = checkedCheckboxes
         .map((checkbox) => checkbox.nextElementSibling?.textContent.trim())
         .filter(Boolean);
 
