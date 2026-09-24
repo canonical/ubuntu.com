@@ -1,0 +1,50 @@
+name: Marketo form submission canary
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  marketo-canary:
+    if: github.repository == 'canonical/ubuntu.com'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Install Playwright Browsers
+        run: yarn playwright install --with-deps chromium
+
+      - name: Submit canary forms on ubuntu.com
+        env:
+          PLAYWRIGHT_BASE_URL: https://ubuntu.com
+          INCLUDE_CANARY: true
+          CI: true
+        run: yarn playwright test canary --reporter=line,html
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: marketo-canary-report
+          path: playwright-report/
+          retention-days: 7
+
+      - name: Send message on failure
+        env:
+          BOT_URL: ${{ secrets.BOT_URL }}
+        if: failure()
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" $BOT_URL?room=web-alerts
