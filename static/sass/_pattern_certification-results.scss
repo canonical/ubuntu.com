@@ -6,24 +6,46 @@
   }
 
   .p-certification-results {
-    th {
-      padding-top: 0.6rem;
+    &__heading {
+      position: relative;
+
+      .p-accordion__tab {
+        width: 100%;
+      }
     }
-    th,
-    td {
-      &:nth-child(1) {
-        width: 20%;
+
+    &__details-link {
+      // higher specificity than Vanilla's base `a:visited` rule, which
+      // would otherwise win over a plain class color override
+      &,
+      &:link,
+      &:visited,
+      &:hover,
+      &:active {
+        color: $colors--light-theme--text-default;
       }
 
-      &:nth-child(2) {
-        width: 35%;
+      i.p-icon--arrow-top-right {
+        @extend %icon;
+        @include vf-icon-arrow-top-right($colors--light-theme--text-default);
       }
 
-      &:nth-child(3) {
-        width: 10%;
-        @media only screen and (max-width: $breakpoint-small) {
-          width: 20%;
-        }
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      white-space: nowrap;
+      // above the accordion tab button (z-index: 2), so it stays clickable
+      z-index: 3;
+    }
+
+    &__configurations {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        padding: 0.5rem 0;
       }
     }
   }
