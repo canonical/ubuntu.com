@@ -4,7 +4,10 @@ import json
 import sentry_sdk
 from unittest.mock import Mock, patch
 
+from requests import Session
+
 from webapp.app import app
+from webapp.marketo import REQUEST_TIMEOUT, MarketoAPI, MarketoAPIError
 from tests.helpers import MarketoFormTestCase
 
 
@@ -433,6 +436,158 @@ class TestMarketoSubmit(unittest.TestCase):
         )
         self.assertEqual(http_response.status_code, 302)
         self.assertIn("contact-form-fail", http_response.headers["Location"])
+
+
+class TestMarketoAPIClient(unittest.TestCase):
+    """
+    Tests for MarketoAPI, the client wrapping the Marketo REST API.
+    The session is mocked, so no credentials or network access are needed.
+    """
+
+    @staticmethod
+    def _api(token="token"):
+        """Build a MarketoAPI with a mocked session, returning both."""
+        session = Mock()
+        api = MarketoAPI("https://marketo.test", "id", "secret", session)
+        api.token = token
+        return api, session
+
+    @staticmethod
+    def _mock_response(json_body=None, status_code=200, text=""):
+        """
+        Build a fake requests.Response. Passing no json_body makes .json()
+        raise, as an HTML error page or empty body would.
+        """
+        response = Mock()
+        response.status_code = status_code
+        response.text = text
+        if json_body is None:
+            response.json.side_effect = ValueError("No JSON object")
+        else:
+            response.json.return_value = json_body
+        return response
+
+    def test_non_json_response_raises_marketo_error(self):
+        """A gateway error page is reported as a MarketoAPIError."""
+        api, session = self._api()
+        session.request.return_value = self._mock_response(
+            status_code=502, text="<html>Bad gateway</html>"
+        )
+
+        with self.assertRaises(MarketoAPIError) as error:
+            api.submit_form({})
+
+        self.assertIn("502", str(error.exception))
+        self.assertIn("Bad gateway", str(error.exception))
+
+    def test_missing_access_token_raises_marketo_error(self):
+        """Rejected credentials report why, instead of a KeyError."""
+        api, session = self._api(token=None)
+        session.get.return_value = self._mock_response(
+            {
+                "error": "invalid_client",
+                "error_description": "Bad client credentials",
+            },
+            status_code=401,
+        )
+
+        with self.assertRaises(MarketoAPIError) as error:
+            api.submit_form({})
+
+        self.assertIn("Bad client credentials", str(error.exception))
+
+    def test_requests_are_sent_with_a_timeout(self):
+        """A stalled connection cannot hold a worker open."""
+        api, session = self._api()
+        session.request.return_value = self._mock_response(
+            {"success": True, "result": [{"status": "created"}]}
+        )
+
+        api.submit_form({})
+
+        self.assertEqual(
+            session.request.call_args.kwargs["timeout"], REQUEST_TIMEOUT
+        )
+
+    def test_expired_token_is_refreshed_and_the_call_replayed(self):
+        """Error 602 triggers one re-authentication and a replay."""
+        api, session = self._api()
+        succeeded = self._mock_response(
+            {"success": True, "result": [{"status": "created"}]}
+        )
+        session.request.side_effect = [
+            self._mock_response({"errors": [{"code": "602"}]}),
+            succeeded,
+        ]
+        session.get.return_value = self._mock_response(
+            {"access_token": "fresh-token"}
+        )
+
+        self.assertIs(api.submit_form({}), succeeded)
+        self.assertEqual(session.request.call_count, 2)
+        self.assertEqual(api.token, "fresh-token")
+
+    def test_throttled_call_is_replayed_after_backing_off(self):
+        """The concurrency limit (615) is transient, so replay it."""
+        api, session = self._api()
+        throttled = self._mock_response({"errors": [{"code": "615"}]})
+        succeeded = self._mock_response(
+            {"success": True, "result": [{"status": "created"}]}
+        )
+        session.request.side_effect = [throttled, throttled, succeeded]
+
+        with patch("webapp.marketo.time.sleep") as mock_sleep:
+            self.assertIs(api.submit_form({}), succeeded)
+
+        self.assertEqual(
+            [call.args[0] for call in mock_sleep.call_args_list], [1, 3]
+        )
+
+    def test_persistent_throttling_returns_the_last_response(self):
+        """
+        When the rate limit (606) outlasts every backoff, the last response
+        is handed back for the view to report to Sentry.
+        """
+        api, session = self._api()
+        throttled = self._mock_response({"errors": [{"code": "606"}]})
+        session.request.return_value = throttled
+
+        with patch("webapp.marketo.time.sleep"):
+            self.assertIs(api.submit_form({}), throttled)
+
+        self.assertEqual(session.request.call_count, 3)
+
+    def test_other_errors_are_returned_without_a_replay(self):
+        """Errors that retrying cannot fix are handed straight back."""
+        api, session = self._api()
+        failed = self._mock_response(
+            {"success": False, "errors": [{"code": "1003"}]}
+        )
+        session.request.return_value = failed
+
+        self.assertIs(api.submit_form({}), failed)
+        self.assertEqual(session.request.call_count, 1)
+
+    def test_malformed_errors_are_returned_without_raising(self):
+        """An unexpected errors shape does not break the client."""
+        api, session = self._api()
+        malformed = self._mock_response({"errors": "not-a-list"})
+        session.request.return_value = malformed
+
+        self.assertIs(api.submit_form({}), malformed)
+
+    def test_server_errors_are_replayed_for_get_only(self):
+        """
+        A POST may already have created a lead, so only GET is replayed.
+        """
+        session = Session()
+        MarketoAPI("https://marketo.test", "id", "secret", session)
+
+        retries = session.get_adapter("https://marketo.test").max_retries
+
+        self.assertEqual(retries.connect, 2)
+        self.assertTrue(retries.is_retry("GET", 503))
+        self.assertFalse(retries.is_retry("POST", 503))
 
 
 if __name__ == "__main__":
