@@ -454,7 +454,26 @@ def build_engage_index(engage_docs):
         limit = 14  # adjust as needed
         offset = (page - 1) * limit
 
-        if tag or resource or language:
+        # Only show active items unless previewing. get_index only
+        # supports 2 key/value filter slots (+ tag_value), so push
+        # active=true into whichever of key/second_key isn't already
+        # claimed by resource/language, keeping pagination (current_total)
+        # accurate. If both slots are taken, fall back to filtering the
+        # returned page in Python (current_total stays unfiltered, so
+        # total_pages may include a short trailing page rather than
+        # hiding real pages of content).
+        key, value = "type", resource
+        second_key, second_value = "language", language
+        filter_active_in_query = False
+        if preview is None:
+            if not resource:
+                key, value = "active", "true"
+                filter_active_in_query = True
+            elif not language:
+                second_key, second_value = "active", "true"
+                filter_active_in_query = True
+
+        if tag or resource or language or filter_active_in_query:
             (
                 metadata,
                 count,
@@ -464,10 +483,10 @@ def build_engage_index(engage_docs):
                 limit,
                 offset,
                 tag_value=tag,
-                key="type",
-                value=resource,
-                second_key="language",
-                second_value=language,
+                key=key,
+                value=value,
+                second_key=second_key,
+                second_value=second_value,
             )
         else:
             (
@@ -479,14 +498,12 @@ def build_engage_index(engage_docs):
                 limit, offset, key="is_static", value=None
             )
 
-        # Only show active items, unless previewing
-        if preview is None:
+        if preview is None and not filter_active_in_query:
             metadata = [
                 item
                 for item in metadata
                 if str(item.get("active", "")).strip().lower() == "true"
             ]
-            current_total = active_count
 
         # Fixed so that engage page authors don't create random resource types
         resource_types = [
