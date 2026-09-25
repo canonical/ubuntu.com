@@ -55,6 +55,10 @@ def certified_routes(app):
     and independent, so they don't need to reside on app.py
     """
 
+    filter_option_cache.get_or_refresh(
+        lambda: build_derived_filter_options(filter_api)
+    )
+
     app.add_url_rule("/certified", view_func=certified_home)
     app.add_url_rule(
         "/certified/platforms/<platform_id>",
