@@ -1,0 +1,16 @@
+{% extends 'templates/_error-template.html' %}
+
+{% set error_code = "503" %}
+
+{% set error_message = "We can’t load this page right now" %}
+
+{# Keep the noindex meta in this file literally: the sitemap generator
+   scans raw templates for it to exclude error pages (503 is not in the
+   directory_parser ERROR_PAGES list). #}
+{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
+
+{% block error_content %}
+  This page relies on a service that is temporarily unavailable, usually because it is briefly overloaded.
+  <br class="u-hide--small" />
+  Please try again in a minute. If it keeps happening, this may be a <a href="https://github.com/canonical/ubuntu.com/issues">known issue</a> we are working on, or you can <a href="https://github.com/canonical/ubuntu.com/issues/new?template=ISSUE_TEMPLATE.yaml">file a bug</a>.
+{% endblock error_content %}
