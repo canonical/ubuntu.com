@@ -1,3 +1,5 @@
+import { initRequiredFieldGate } from "./utils/required-field-gate.js";
+
 function setUpStaticForms(form, formId) {
   /**
    *
@@ -214,14 +216,6 @@ function setUpStaticForms(form, formId) {
     form.addEventListener("submit", () => attachLoadingSpinner(submitButton));
   }
 
-  // Disable submit button if there are required checkboxes
-  const requiredCheckboxes = document.querySelectorAll(
-    "fieldset.js-required-checkbox",
-  );
-  if (requiredCheckboxes.length) {
-    submitButton.disabled = true;
-  }
-
   form.addEventListener("submit", function (e) {
     setDataLayerConsentInfo();
   });
@@ -243,6 +237,13 @@ function extractMarketoID(str) {
 const forms = document.querySelectorAll(
   "form[action='/marketo/submit']:not(.js-modal-form)",
 );
+
+// Gating is opt-in and must bind before setUpStaticForms attaches the spinner
+// and consent submit listeners, so its stopImmediatePropagation() reaches them.
+document
+  .querySelectorAll("form[data-required-gate]:not(.js-modal-form)")
+  .forEach((form) => initRequiredFieldGate(form));
+
 if (forms.length) {
   forms.forEach((form) => setUpStaticForms(form, extractMarketoID(form.id)));
 }
@@ -303,43 +304,6 @@ const ubuntuVersionCheckboxes = document.querySelector(
 ubuntuVersionCheckboxes?.addEventListener("change", function (event) {
   toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
 });
-
-// Add event listeners to required fieldsets
-const requiredFieldsets = document.querySelectorAll(
-  "fieldset.js-required-checkbox",
-);
-requiredFieldsets?.forEach((fieldset) => {
-  fieldset.addEventListener("change", function (event) {
-    checkRequiredCheckboxes();
-  });
-});
-
-/**
- * Check all required fieldsets and enable/disable submit button accordingly
- * Submit button is only enabled when ALL required fieldsets have at least one checkbox checked
- */
-function checkRequiredCheckboxes() {
-  const submitButton = document.querySelector(".js-submit-button");
-  const allRequiredFieldsets = document.querySelectorAll(
-    "fieldset.js-required-checkbox",
-  );
-  let allFieldsetsValid = true;
-
-  allRequiredFieldsets.forEach((fieldset) => {
-    const checkboxes = fieldset.querySelectorAll("input[type='checkbox']");
-    let hasCheckedCheckbox = false;
-
-    checkboxes.forEach((checkbox) => {
-      if (checkbox.checked) {
-        hasCheckedCheckbox = true;
-      }
-    });
-    if (!hasCheckedCheckbox) {
-      allFieldsetsValid = false;
-    }
-  });
-  submitButton.disabled = !allFieldsetsValid;
-}
 
 /**
  * Sets the consent info from the data layer into the consent_info cookie

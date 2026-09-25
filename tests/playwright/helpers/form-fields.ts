@@ -10,6 +10,19 @@ export const formTextFields = [
     value: "Test project description",
   },
   { field: 'textarea[id="advice"]', value: "Test advice" },
+  {
+    field: 'input[id="required-details-project-name"]',
+    value: "Test Project",
+  },
+  {
+    field: 'textarea[id="required-details-summary"]',
+    value: "Test summary",
+  },
+];
+
+// Fields for <select> elements, filled via selectOption rather than fill
+export const formSelectFields = [
+  { field: 'select[id="required-details-team-size"]', value: "1-10" },
 ];
 
 export const formCheckboxFields = [
