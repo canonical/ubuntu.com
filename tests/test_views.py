@@ -17,6 +17,7 @@ from webapp.views import (
     build_tutorials_query,
     match_tags,
     build_engage_page,
+    engage_thank_you,
     community_landing_page,
     enrich_acquisition_url,
     build_engage_page_resources,
@@ -592,6 +593,72 @@ class TestBuildEngagePageResources(BaseViewTestCase):
         engage_docs.get_index.assert_called_once_with(
             limit=3, key="is_static", value=None
         )
+
+
+class TestEngageThankYou(BaseViewTestCase):
+    """
+    Unit tests for `engage_thank_you`.
+
+    `resource_url` is optional for engage pages that have a form. These tests
+    verify that:
+      • A page with a form but no `resource_url` renders (no 404 or 500)
+      • Missing `resource_url`/`type` metadata keys do not raise a KeyError
+      • A page with neither a form, a `resource_url`, nor `contact_form_only`
+        still 404s (to prevent spam)
+    """
+
+    def _make_engage_pages(self, metadata):
+        mock = Mock()
+        mock.get_engage_page.return_value = metadata
+        return mock
+
+    def test_form_page_without_resource_url_renders(self):
+        engage_pages = self._make_engage_pages(
+            {
+                "path": "/engage/test-event",
+                "language": "en",
+                "type": "event",
+                "form_id": "1234",
+            }
+        )
+        view = engage_thank_you(engage_pages)
+
+        with self.app.test_request_context("/engage/test-event/thank-you"):
+            response = view(language=None, page="test-event")
+
+        status = getattr(response, "status_code", 200)
+        self.assertEqual(status, 200)
+
+    def test_contact_form_only_without_resource_url_renders(self):
+        engage_pages = self._make_engage_pages(
+            {
+                "path": "/engage/test-event",
+                "language": "en",
+                "type": "event",
+                "contact_form_only": "true",
+            }
+        )
+        view = engage_thank_you(engage_pages)
+
+        with self.app.test_request_context("/engage/test-event/thank-you"):
+            response = view(language=None, page="test-event")
+
+        status = getattr(response, "status_code", 200)
+        self.assertEqual(status, 200)
+
+    def test_page_without_form_or_resource_returns_404(self):
+        engage_pages = self._make_engage_pages(
+            {
+                "path": "/engage/test-event",
+                "language": "en",
+                "type": "event",
+            }
+        )
+        view = engage_thank_you(engage_pages)
+
+        with self.app.test_request_context("/engage/test-event/thank-you"):
+            with self.assertRaises(NotFound):
+                view(language=None, page="test-event")
 
 
 class TestMatchTags(TestCase):

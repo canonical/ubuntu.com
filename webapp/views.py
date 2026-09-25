@@ -639,12 +639,10 @@ def engage_thank_you(engage_pages):
             flask.abort(404)
 
         # Stop potential spamming of /engage/<engage-page>/thank-you
-        if (
-            "resource_url" not in metadata or metadata["resource_url"] == ""
-        ) and (
-            "contact_form_only" not in metadata
-            or metadata["contact_form_only"] != "true"
-        ):
+        has_resource_url = bool(metadata.get("resource_url", ""))
+        has_form = bool(metadata.get("form_id", ""))
+        is_contact_form_only = metadata.get("contact_form_only") == "true"
+        if not (has_resource_url or has_form or is_contact_form_only):
             return flask.abort(404)
 
         language = metadata["language"]
@@ -662,8 +660,8 @@ def engage_thank_you(engage_pages):
             template_language,
             request_url=flask.request.referrer,
             metadata=metadata,
-            resource_name=metadata["type"],
-            resource_url=metadata["resource_url"],
+            resource_name=metadata.get("type", ""),
+            resource_url=metadata.get("resource_url", ""),
             form_details=form_details,
         )
 
