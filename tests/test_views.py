@@ -617,7 +617,6 @@ class TestEngageThankYou(BaseViewTestCase):
             {
                 "path": "/engage/test-event",
                 "language": "en",
-                "type": "event",
                 "form_id": "1234",
             }
         )
@@ -626,8 +625,7 @@ class TestEngageThankYou(BaseViewTestCase):
         with self.app.test_request_context("/engage/test-event/thank-you"):
             response = view(language=None, page="test-event")
 
-        status = getattr(response, "status_code", 200)
-        self.assertEqual(status, 200)
+self.assertEqual(response.status_code, 200)
 
     def test_contact_form_only_without_resource_url_renders(self):
         engage_pages = self._make_engage_pages(
