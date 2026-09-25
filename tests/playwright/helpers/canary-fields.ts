@@ -1,4 +1,4 @@
-// Fixed email so Marketo updates one lead instead of creating new ones
+// Marketo auto-deletes leads with this email
 export const CANARY_EMAIL = "marketocron24@canonical.com";
 
 // Plain text only, see MARKETO_INJECTION_PATTERNS
