@@ -1,0 +1,30 @@
+{
+  "form": {
+    "/vmware": {
+      "templatePath": "/vmware/index.html",
+      "isModal": true,
+      "modalId": "vmware-modal",
+      "formData": {
+        "title": "Get in touch with the Canonical team",
+        "introText": "Want to know more about how you can use VCF and VKS with Ubuntu? Looking to explore support options? Contact our team to learn more.",
+        "formId": "7991",
+        "returnUrl": "/vmware#contact-form-success",
+        "product": "vmware"
+      },
+      "fieldsets": [
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Phone number"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
