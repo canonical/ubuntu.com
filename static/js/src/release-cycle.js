@@ -2,19 +2,19 @@
  * Extension of the filter-menu.js script.
  * Page-specific behaviour for /about/release-cycle:
  * - Show/hide the relevant menu items
- * - Cascade behaviour for the filter bar (Product > Release > Version) and
+ * - Cascade behaviour for the filter filterBar (Product > Release > Version) and
  *   the Compliance menu's "Any" semantics, e.g. if there is one option, autoselect it
  * - Tooltip close/reopen, sticky table header, and horizontal-scroll fade
  *   for the coverage tables.
  */
 (function initReleaseCycleCascade() {
-  const bar = document.querySelector("[data-js-release-cycle-filters]");
-  if (!bar) {
+  const filterBar = document.querySelector("[data-js-release-cycle-filters]");
+  if (!filterBar) {
     return;
   }
 
   function singleToggle(param) {
-    return bar.querySelector(
+    return filterBar.querySelector(
       '[data-filter-param="' + param + '"][data-filter-type="single"]',
     );
   }
@@ -126,7 +126,7 @@
   }
 
   const ANY_LABEL = "Any";
-  const complianceToggle = bar.querySelector(
+  const complianceToggle = filterBar.querySelector(
     '[data-filter-param="compliance"][data-filter-type="multi"]',
   );
   const complianceMenu = menuFor(complianceToggle);
@@ -207,6 +207,15 @@
         updateComplianceVisualState();
       });
     }
+
+    // "Any" (every box checked) submits no compliance params, matching the
+    // backend's no-filter state
+    filterBar.addEventListener("filters:beforesubmit", (event) => {
+      const checkboxes = complianceCheckboxes();
+      if (checkboxes.length && checkboxes.every((box) => box.checked)) {
+        event.detail.multi.compliance = [];
+      }
+    });
   }
 
   optionsOf(productMenu).forEach((option) => {
@@ -253,10 +262,10 @@ tooltips.forEach((tooltip) => {
 });
 
 function closeOpenFilterMenus() {
-  const bar = document.querySelector("[data-js-release-cycle-filters]");
-  if (!bar) return;
+  const filterBar = document.querySelector("[data-js-release-cycle-filters]");
+  if (!filterBar) return;
 
-  bar
+  filterBar
     .querySelectorAll('[data-filter-param][aria-expanded="true"]')
     .forEach((toggle) => {
       toggle.setAttribute("aria-expanded", "false");
