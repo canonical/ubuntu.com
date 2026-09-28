@@ -2292,11 +2292,7 @@ def build_release_cycle_view():
         }
 
     def build_compliance_options(raw_products):
-        """Return [{"value","label"}] options: a synthetic "None" option
-        first (matching the table's own fallback, shown when a version has
-        no compliance entries with an achieved status), followed by the
-        sorted union of all compliance frameworks found across every
-        version in the dataset."""
+        """Build filter options from the available compliance frameworks."""
         frameworks = set()
         for product in raw_products.values():
             for deployment in product.get("deployment", []):
@@ -2311,17 +2307,12 @@ def build_release_cycle_view():
         ]
 
     def version_has_no_compliance(version):
-        """True when the version's displayed compliance list would read
-        "None" (entries with status "None" don't count as achieved, matching
-        templates/about/partials/_compliance-list.html)."""
+        """Return whether the version has no achieved compliance entries."""
         entries = version.get("compliance", [])
         return not any(entry.get("status") != "None" for entry in entries)
 
     def filter_versions_by_compliance(versions, selected_frameworks):
-        """Keep versions that have at least one of the selected frameworks
-        present in their compliance list (regardless of status). Selecting
-        "None" instead keeps versions whose compliance list would display as
-        "None" in the table (no entries, or every entry's status is "None")."""
+        """Filter versions by selected compliance frameworks."""
         if not selected_frameworks:
             return versions
 

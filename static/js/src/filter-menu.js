@@ -175,9 +175,8 @@ function setupFilterBar(bar) {
   function hasActiveSelections() {
     const single = singleToggles.some((toggle) => {
       const value = toggle.dataset.selectedValue || "";
-      // Menus that declare a default_value (see single_select_menu) only
-      // count as "actively filtered" once they diverge from that baseline,
-      // since they may already show a server-selected value (e.g. "ubuntu")
+      // A configured baseline is not an active filter until the value differs
+      // from it.
       const baseline = toggle.dataset.filterDefaultValue;
       if (baseline !== undefined) {
         return value !== "" && value !== baseline;
