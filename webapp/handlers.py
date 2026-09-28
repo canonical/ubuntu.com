@@ -48,6 +48,7 @@ from webapp.shop.api.ua_contracts.api import (
 )
 from webapp.shop.flaskparser import UAContractsValidationError
 from webapp.certified.helpers import convert_markdown_to_html
+from webapp.announcement_bar import get_announcement_bar_context
 from canonicalwebteam.flask_base.env import get_flask_env
 
 logger = logging.getLogger(__name__)
@@ -462,6 +463,7 @@ def init_handlers(app):
             "split_list": split_list,
             "format_to_id": format_to_id,
             "get_careers_role_counts": get_careers_role_counts,
+            "announcement_bar": get_announcement_bar_context(),
         }
 
     def get_countries_list() -> List[dict]:

@@ -1,0 +1,26 @@
+{% if announcement_bar.show %}
+  <div class="announcement-bar is-dark"
+       data-announcement-id="{{ announcement_bar.id }}"
+       data-href="{{ announcement_bar.cta_url }}">
+    <div class="announcement-bar__grid grid-row">
+      <div class="announcement-bar__container grid-col-2 grid-col-medium-1 grid-col-small-1">
+        <i class="p-icon--information"></i>
+        <p class="announcement-bar__message">
+          <strong>{{ announcement_bar.title }}</strong>
+        </p>
+      </div>
+      <div class="announcement-bar__container grid-col-5 grid-col-medium-2 grid-col-small-2">
+        <p class="announcement-bar__message">
+          {{ announcement_bar.message }}
+          <a href="{{ announcement_bar.cta_url }}">&nbsp;{{ announcement_bar.cta_text }}&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+      <div class="announcement-bar__container grid-col-1 grid-col-medium-1 grid-col-small-1">
+        <button type="button" class="announcement-bar__close">
+          <i class="p-icon--close"></i>
+          <span class="u-off-screen">Close</span>
+        </button>
+      </div>
+    </div>
+  </div>
+{% endif %}
