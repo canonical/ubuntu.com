@@ -8,7 +8,7 @@
 
 // Width reserved as horizontal padding so the centered message isn't
 // pushed off-center by the close button (see .announcement-bar__close).
-$announcement-bar-close-width: 3rem;
+$announcement-bar-close-width: $sp-xxx-large;
 
 .announcement-bar {
   align-items: center;
@@ -32,11 +32,7 @@ $announcement-bar-close-width: 3rem;
   }
 
   &__grid {
-    margin: 0;
-    max-width: 100%;
-    height: 100%;
-    padding-top: $spv--medium;
-    padding-bottom: $spv--medium;
+    height: $sp-xxx-large;
   }
 
   &__container {
@@ -44,12 +40,21 @@ $announcement-bar-close-width: 3rem;
     align-items: center;
     flex-wrap: nowrap;
     gap: $sph--small;
+
+    &-reverse {
+      flex-direction: row-reverse;
+    }
   }
 
   &__message {
     margin: 0;
     max-width: fit-content;
     padding: 0;
+
+    &-main {
+      padding-left: $sp-small;
+      margin-left: -$sp-medium;
+    }
   }
 
   // Enlarge the close button hitbox to span the full bar height.
@@ -57,17 +62,12 @@ $announcement-bar-close-width: 3rem;
     align-items: center;
     background: none;
     border: 0;
-    display: flex;
+    margin: 0;
+    padding: 0;
     height: 100%;
+    display: flex;
     justify-content: center;
-    position: absolute;
-    right: 0;
-    top: 0;
     width: $announcement-bar-close-width;
-    margin-right: $sp-medium !important;
-
-    @media (min-width: $breakpoint-large) {
-      margin-right: $sp-xxxx-large !important;
-    }
+    margin-right: -$sp-large !important;
   }
 }
