@@ -35,7 +35,7 @@ It renders responsive markup with Cloudinary optimisation (`f_auto,q_auto,fl_san
 
 ## Video: use the lite-video pattern
 
-YouTube videos should be embedded with the Lite YouTube player, not a raw `<iframe src="https://www.youtube.com/embed/...">` or `<video>` tag — the lite player defers loading the full YouTube iframe until interaction, which is much lighter for page performance.
+YouTube videos should be embedded with the Lite YouTube player, not a raw `<iframe src="https://www.youtube.com/embed/...">` tag — the lite player defers loading the full YouTube iframe until interaction, which is much lighter for page performance.
 
 Preferred, for new video embeds: import and call the shared macro:
 

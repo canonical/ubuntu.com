@@ -373,7 +373,7 @@ You should import all required macros at the beginning of the Jinja template bef
     - `title.link_attrs` (Object, optional): Article link attributes.
   - `articles[].description` (Object, required): Description with `text`.
     - `description.text` (string, required): Article description text.
-  - `articles[].image_url` (string, optional): Article cover image URL.
+  - `articles[].image` (Object, optional): Image object with `attrs` containing `src` and `alt`.
   - `articles[].metadata` (Object, optional): Article metadata.
     - `metadata.authors` (Array, optional): Array of author objects with `text` and optional `link_attrs`.
     - `metadata.date` (Object, optional): Date object with `text`.
@@ -1626,10 +1626,10 @@ canonicalLatestNews.fetchLatestNews({
 
 **Key points:**
 - Required param: `title_text`.
-- Optional slots: `image`, `description`, `logo_section_items`, `cta`, `list_item_1` through `list_item_8`.
+- Optional slots: `image`, `description`, `logo_section_items`, `cta`, `list_item_1` through `list_item_12`.
 - List item styles: bullet, tick, number, or empty (no styling).
 - Layout variants: 'full-width' (default) or '50-50' (text/logo on left, list on right).
-- Up to 8 list items supported.
+- Up to 12 list items supported.
 - Uses Jinja call syntax with slots.
 
 **Jinja import:**

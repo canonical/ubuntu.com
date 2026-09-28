@@ -201,7 +201,7 @@ Referring to a product by its full name throughout a document can make the text 
 | Ubuntu Server 21.04 | Ubuntu Server | Ubuntu |
 | Ubuntu 21.04 | Ubuntu | N/A |
 | Ubuntu Desktop 23.04 Lunar Lobster | Ubuntu Desktop or Lunar Lobster | N/A |
-| Ubuntu 22.04 LTS (the long-term supported version of Ubuntu) Ubuntu Server 22.04 LTS Ubuntu Desktop 22.04 LTS | Ubuntu 22.04 LTS | N/A22.04 LTS |
+| Ubuntu 22.04 LTS (the long-term supported version of Ubuntu) Ubuntu Server 22.04 LTS Ubuntu Desktop 22.04 LTS | Ubuntu 22.04 LTS | N/A |
 | Ubuntu Server on Amazon EC2 | N/A | N/A |
 | Ubuntu Core 24 | Ubuntu Core or Core 24  | N/A |
 
