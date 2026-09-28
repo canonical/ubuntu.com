@@ -25,6 +25,7 @@
               data-filter-type="single"
               data-default-label="{{ default_label }}"
               {%- if selected_option %} data-selected-value="{{ selected_option.value }}"{% endif %}
+              {%- if selected is not none %} data-filter-server-managed{% endif %}
               {%- if default_value is not none %} data-filter-default-value="{{ default_value }}"{% endif %}>
         {% if key_label %}<strong class="p-filter-menu__key-label">{{ key_label }}:</strong>{% endif %}<span>{{ toggle_label }}</span><i class="p-icon--chevron-down p-contextual-menu__indicator"></i>
       </button>

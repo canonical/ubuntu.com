@@ -138,6 +138,10 @@ function setupFilterBar(bar) {
   }
 
   function restoreSingleToggle(toggle) {
+    // Ignore this filter as it resolved server side
+    if (toggle.dataset.filterServerManaged !== undefined) {
+      return;
+    }
     const value = urlParams().get(toggle.dataset.filterParam);
     if (!value) {
       return;
