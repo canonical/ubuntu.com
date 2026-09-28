@@ -255,11 +255,15 @@ function setupFilterBar(bar) {
     return updates;
   }
 
+  // Pages can adjust the outgoing params by listening for
+  // "filters:beforesubmit" on the bar and editing event.detail.single/multi
   function submitFilters() {
-    navigateWithFilters(
-      collectSingleUpdates(false),
-      collectMultiUpdates(false),
-    );
+    const detail = {
+      single: collectSingleUpdates(false),
+      multi: collectMultiUpdates(false),
+    };
+    bar.dispatchEvent(new CustomEvent("filters:beforesubmit", { detail }));
+    navigateWithFilters(detail.single, detail.multi);
   }
 
   function clearSelections() {
