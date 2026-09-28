@@ -1,0 +1,30 @@
+{
+  "form": {
+    "/zephyr": {
+      "templatePath": "/zephyr/index.html",
+      "isModal": true,
+      "modalId": "zephyr-contact-modal",
+      "formData": {
+        "title": "Get in touch with the IoT team",
+        "introText": "Fill in this form and a member of our team will be in touch shortly.",
+        "formId": "8013",
+        "returnUrl": "/zephyr#contact-form-success",
+        "product": "zephyr"
+      },
+      "fieldsets": [
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Phone number"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

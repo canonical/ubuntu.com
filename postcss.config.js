@@ -61,6 +61,7 @@ let config = {
           /^cc-/, // Cookie consent related
           /^optanon/, // Cookie consent related
           /^has-/, // State-related classes
+          /blog-article/, // Blog article layout (scoped descendant rules)
         ],
         deep: [/form-.+/],
         keyframes: true,

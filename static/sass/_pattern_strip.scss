@@ -1191,3 +1191,13 @@
     }
   }
 }
+
+@mixin ubuntu-p-strip-suru-shallow {
+  .p-strip--suru-shallow {
+    padding-top: 1.5rem;
+
+    @media (max-width: $breakpoint-large - 1) {
+      padding: 1.5rem 0;
+    }
+  }
+}

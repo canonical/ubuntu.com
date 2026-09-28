@@ -41,9 +41,9 @@ You can
     }
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".js-verify-download").forEach(function (button) {
-      button.addEventListener("click", verifyDownloadContent);
-    });
+  // Bound immediately rather than on DOMContentLoaded: arm64 pages redirect to
+  // cdimage during load, which aborts the document and DOMContentLoaded never fires.
+  document.querySelectorAll(".js-verify-download").forEach(function (button) {
+    button.addEventListener("click", verifyDownloadContent);
   });
 </script>

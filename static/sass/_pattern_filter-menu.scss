@@ -1,0 +1,125 @@
+// Reusable contextual filter-menu component.
+// Renders single-select and multi-select dropdown filters. See
+// templates/macros/_filter-menu.jinja and static/js/src/filter-menu.js.
+@mixin ubuntu-p-filter-menu {
+  .p-filter-menu {
+    @media (min-width: $breakpoint-small) {
+      align-items: baseline;
+      display: inline-flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    > * {
+      margin-right: $spv--small;
+    }
+
+    .p-filter-menu__toggle {
+      align-items: center;
+      border: 0;
+      display: flex;
+      margin-bottom: $spv--small;
+      padding: $spv--x-small $spv--small $spv--x-small $spv--large;
+
+      > span {
+        margin-right: $spv--small;
+      }
+
+      &.is-active {
+        background-color: $colors--theme--background-active;
+      }
+    }
+
+    .p-badge[hidden] {
+      display: none;
+    }
+
+    .p-filter-menu__dropdown {
+      background: $colors--theme--background-alt;
+      border: 1px solid $colors--theme--border-default;
+      box-shadow: 0 4px 6px -1px oklch(0% 0 0 / 0.1);
+      box-sizing: border-box;
+      width: 274px; // Matches longest text content at implementation
+
+      &--multi {
+        min-width: 100%;
+        width: max-content;
+      }
+    }
+
+    .p-filter-menu__group {
+      &--multi {
+        display: block;
+        max-height: 20rem;
+        min-width: 100%;
+        overflow-y: auto;
+        padding: 0 0 $spv--small 0;
+        width: max-content;
+      }
+    }
+
+    .p-filter-menu__option {
+      display: block;
+      margin: 0;
+      padding: $spv--x-small $spv--medium;
+      width: 100%;
+      text-indent: 0;
+
+      .p-checkbox__label {
+        margin: 0;
+        white-space: nowrap;
+      }
+
+      &:hover,
+      &:focus-within {
+        background-color: $colors--theme--background-hover;
+      }
+
+      &:focus-within {
+        outline: $bar-thickness solid $colors--light-theme--focus;
+        outline-offset: -#{$bar-thickness};
+      }
+
+      // Suppress checkbox's own focus indicator; the row outline/background serves instead
+      .p-checkbox__input:focus + .p-checkbox__label::before {
+        outline: 0;
+      }
+    }
+
+    .p-filter-menu__actions {
+      background-color: transparent;
+      border-top: 1px solid $colors--theme--border-default;
+      display: flex;
+      justify-content: space-between;
+      padding: $spv--medium;
+    }
+
+    .p-filter-menu__action {
+      background: transparent;
+      border: 0;
+      color: $colors--theme--link-default;
+      cursor: pointer;
+      margin: 0;
+      padding: 0;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .p-contextual-menu__indicator {
+      align-self: center;
+
+      &[hidden] {
+        display: none;
+      }
+    }
+
+    .p-filter-menu__submit,
+    .p-filter-menu__clear {
+      padding-bottom: calc($spv--x-small - $input-border-thickness);
+      padding-top: calc($spv--x-small - $input-border-thickness);
+    }
+  }
+}

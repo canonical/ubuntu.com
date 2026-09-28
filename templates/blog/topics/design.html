@@ -1,35 +1,17 @@
-{% extends "templates/one-column.html" %}
+{% extends "blog/topics/_topic-page.html" %}
 
-{% block title %}Design{% endblock %}
+{% block topic_page_title %}Design{% endblock %}
 
-{% block meta_description %}All the latest news on the design and web team at Canonical.{% endblock %}
+{% block topic_meta_description %}All the latest news on the design and web team at Canonical.{% endblock %}
 
-{% block content %}
+{% block hero_title_text %}Web engineering and design team{% endblock %}
 
-  <section class="p-strip--suru is-dark">
-    <div class="row">
-      <div class="col-10">
-        <h1>Web engineering and design team</h1>
-        <p class="p-heading--4">Discover the latest news and work from the web and design team</p>
-        <p>
-          The Web and design team at Canonical pride themselves on building things properly, not quickly. Always looking for creative ways to push the bounderies of the web.
-        </p>
-        <p class="u-no-margin--bottom">
-          <a class="p-link--inverted" href="https://webteam.canonical.com/">Learn more from the web and design team portal&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-    </div>
-  </section>
+{% block hero_subtitle_text %}Discover the latest news and work from the web and design team{% endblock %}
 
-  <section class="p-strip is-shallow">
-    {% include 'blog/posts.html' %}
-  </section>
-
-  <section class="p-strip is-shallow">
-    {% with %}
-      {% set total_pages = total_pages %}
-      {% set current_page = current_page %}
-      {% include "shared/_pagination.html" %}
-    {% endwith %}
-  </section>
+{% block hero_description_text %}
+  The Web and design team at Canonical pride themselves on building things properly, not quickly. Always looking for creative ways to push the boundaries of the web.
 {% endblock %}
+
+{% block hero_cta_text %}Learn more from the web and design team portal ›{% endblock %}
+
+{% block hero_cta_href %}https://webteam.canonical.com/{% endblock %}

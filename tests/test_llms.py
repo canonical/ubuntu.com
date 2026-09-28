@@ -36,6 +36,28 @@ class TestLlmsTxt(unittest.TestCase):
         self.assertTrue(body.startswith("# Ubuntu"))
         self.assertIn("## Main pages", body)
 
+    def test_html_pages_publish_llms_txt_v2_links(self):
+        from bs4 import BeautifulSoup
+
+        response = self.client.get("/about")
+
+        self.assertEqual(response.status_code, 200)
+        soup = BeautifulSoup(response.data, "html.parser")
+
+        markdown_link = soup.find(
+            "link", rel="alternate", attrs={"type": "text/markdown"}
+        )
+        self.assertIsNotNone(markdown_link)
+        self.assertEqual(
+            markdown_link.get("href"), "http://localhost/about?format=md"
+        )
+
+        describedby_link = soup.find("link", rel="describedby")
+        self.assertIsNotNone(describedby_link)
+        self.assertEqual(
+            describedby_link.get("href"), "http://localhost/llms.txt"
+        )
+
 
 BASE_WITH_MAIN_PAGES = (
     "# Example\n\n"

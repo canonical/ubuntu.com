@@ -33,9 +33,14 @@ jobs:
         sudo chmod -R 777 .
         dotrun install
 
+    - name: Replay recorded Discourse responses
+      # CI has no Discourse credentials, so /engage is served from a VCR
+      # cassette. See "Playwright cassette" in HACKING.md to re-record it.
+      run: echo "GUNICORN_CMD_ARGS=-c tests/playwright/cassette.py" >> .env.local
+
     - name: Build assets and run dotrun
       run: |
-        dotrun & sleep 5
+        dotrun > dotrun.log 2>&1 & sleep 5
           curl --head --fail --retry-delay 2 --retry 30 --retry-connrefused http://localhost:8001
 
     - name: Install Playwright Browsers
@@ -47,3 +52,7 @@ jobs:
         PLAYWRIGHT_USER_PASSWORD : ${{ secrets.PLAYWRIGHT_USER_PASSWORD }}
         TESTING: true
       run: yarn playwright test
+
+    - name: Show server log
+      if: failure()
+      run: cat dotrun.log

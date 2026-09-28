@@ -1,0 +1,27 @@
+[checking]
+maxrequestspersecond=5
+
+[filtering]
+checkextern=1
+nofollow=
+  !https://ubuntu.com/blog
+ignore=
+  https://res.cloudinary.com
+  q_auto
+  fl_sanitize
+  c_fill
+  e_sharpen
+  w_[0-9]*
+  h_[0-9]*
+  https://ubuntu.com/.*sitemap.*\.xml
+  https://www.amd.com/*
+
+[output]
+status=0
+warnings=0
+ignoreerrors=
+  ^https?://.* ^.*(503|504)
+  ^https?://.* Connection aborted
+  ^https?://.* Connection reset by peer
+  ^https?://.* RemoteDisconnected
+  ^https?://.* Read timed out

@@ -16,4 +16,27 @@
       color: $color-mid-dark;
     }
   }
+
+  .p-button--themed {
+    @extend %vf-button-base;
+    @extend %vf-button-white-success-icon;
+
+    @media screen and (width < $breakpoint-small) {
+      width: 100%;
+    }
+
+    @include vf-button-pattern(
+      $button-background-color: $color-brand,
+      $button-hover-background-color: $color-brand-dark,
+      $button-active-background-color: $color-brand-dark,
+      $button-disabled-background-color: $color-brand,
+      $button-border-color: $color-brand,
+      $button-hover-border-color: $color-brand-dark,
+      $button-active-border-color: $color-brand-dark,
+      $button-disabled-border-color: $color-brand,
+      $button-text-color: $colors--theme--button-positive-text
+    );
+
+    @include vf-focus($color-focus-positive);
+  }
 }

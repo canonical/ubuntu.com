@@ -28,7 +28,6 @@ Canonical is decommissioning the `rocks.canonical.com` container image registry.
 - [charm-sriov-cni](https://github.com/charmed-kubernetes/charm-sriov-cni)
 - [charm-sriov-network-device-plugin](https://github.com/charmed-kubernetes/charm-sriov-network-device-plugin)
 - [cinder-csi-operator](https://github.com/canonical/cinder-csi-operator)
-- [k8s-operator](https://github.com/canonical/k8s-operator)
 - [keystone-k8s-auth-operator](https://github.com/canonical/keystone-k8s-auth-operator)
 - [kubernetes-metrics-server-operator](https://github.com/charmed-kubernetes/kubernetes-metrics-server-operator)
 - [layer-canal](https://github.com/charmed-kubernetes/layer-canal)

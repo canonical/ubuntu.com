@@ -43,6 +43,13 @@
     <link rel="canonical" href="
       {% block canonical_url %}{{ request.url }}{% endblock %}" />
 
+    <link
+      rel="alternate"
+      type="text/markdown"
+      href="{{ request.base_url }}?format=md"
+    />
+    <link rel="describedby" href="{{ request.url_root }}llms.txt" />
+
       <link rel="apple-touch-icon"
             sizes="180x180"
             href="https://assets.ubuntu.com/v1/f38b9c7e-COF%20apple-touch-icon.png" />

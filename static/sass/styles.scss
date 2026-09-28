@@ -53,11 +53,8 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 // import site specific patterns and overrides
 @import "pattern_accordion";
 @import "pattern_ai";
-@import "pattern_blog-featured";
-@import "pattern_blog-list";
-@import "pattern_blog-post";
 @import "pattern_blog-card";
-@import "pattern_blog-suru";
+@import "pattern_blog-article";
 @import "pattern_blog-topic";
 @import "pattern_buttons";
 @import "pattern_calculator";
@@ -98,6 +95,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_subscribe";
 @import "pattern_distributor";
 @import "pattern_engage";
+@import "pattern_filter-menu";
 @import "pattern_tabs";
 @import "pattern_takeunders";
 @import "pattern_takeovers";
@@ -115,10 +113,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 
 @include additional-p-icons;
 @include blog-p-card;
-@include blog-p-featured;
-@include blog-p-list;
-@include blog-p-post;
-@include blog-p-strips-suru;
+@include blog-p-article;
 @include blog-p-topic;
 @include blog-u-crop;
 @include ubuntu-p-accordion;
@@ -147,6 +142,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-navigation-reduced;
 @include ubuntu-p-nojs-navigation;
 @include ubuntu-p-strip;
+@include ubuntu-p-strip-suru-shallow;
 @include ubuntu-p-ua-payment-modal;
 @include ubuntu-p-pie-chart;
 @include ubuntu-p-ua-shop-cart;
@@ -162,6 +158,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-takeovers;
 @include ubuntu-p-tco-calculator;
 @include ubuntu-p-engage;
+@include ubuntu-p-filter-menu;
 @include ubuntu-p-ubuntu-intro;
 @include ubuntu-p-tabs;
 @include ubuntu-u-animations;
@@ -179,6 +176,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include vf-p-icon-credit-card;
 @include vf-p-icon-vulnerable;
 @include vf-p-icon-ignored;
+@include vf-themed-icons;
 @include openstack-carousel;
 
 // Layouts:
@@ -1894,6 +1892,16 @@ ol.p-stepped-list.no-full-stop
   display: flex;
   flex-wrap: wrap;
   column-gap: 1rem;
+}
+
+.zephyr-resources {
+  .p-article-block {
+    row-gap: 0;
+  }
+
+  > .p-section > .p-section--shallow > div:last-child {
+    padding-bottom: 1.5rem;
+  }
 }
 
 // Truncates text to two lines with ellipsis

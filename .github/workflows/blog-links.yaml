@@ -8,46 +8,19 @@ jobs:
   check-links:
     if: github.repository == 'canonical/ubuntu.com'
     runs-on: ubuntu-latest
+    timeout-minutes: 60
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
       - name: Install linkchecker
         run: sudo pip install LinkChecker
 
-      - name: Write linkchecker config file
-        run: |
-          mkdir -p ~/.linkchecker
-          cat > ~/.linkchecker/linkcheckerrc <<EOF
-          [checking]
-          maxrequestspersecond=5
-
-          [filtering]
-          checkextern=1
-          nofollow=
-            !https://ubuntu.com/blog
-          ignore=
-            https://res.cloudinary.com
-            q_auto
-            fl_sanitize
-            c_fill
-            e_sharpen
-            w_[0-9]*
-            h_[0-9]*
-            https://ubuntu.com/.*sitemap.*\.xml
-            https://www.amd.com/*
-
-          [output]
-          status=0
-          warnings=0
-          ignoreerrors=
-            ^https?://.* ^.*(503|504)
-            ^https?://.* Connection aborted
-            ^https?://.* Connection reset by peer
-            ^https?://.* RemoteDisconnected
-            ^https?://.* Read timed out
-          EOF
-
-      - name: Run linkchecker on ubuntu.com/blog
-        run: linkchecker --no-warnings https://ubuntu.com/blog
+      - name: Run linkchecker with retry for transient failures
+        run: bash scripts/check-links.sh .linkchecker/blog-links/linkcheckerrc https://ubuntu.com/blog
 
       - name: Send message on failure
         if: failure()

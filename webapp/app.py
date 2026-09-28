@@ -114,7 +114,6 @@ from webapp.shop.views import (
     support,
 )
 from webapp.views import (
-    BlogCustomGroup,
     BlogCustomTopic,
     BlogRedirects,
     BlogSitemapIndex,
@@ -625,17 +624,16 @@ app.add_url_rule(
 
 blog_views = BlogViews(
     api=BlogAPI(session=session, thumbnail_width=555, thumbnail_height=311),
-    excluded_tags=[3184, 3265, 3408, 3960, 4491],
-    per_page=11,
+    excluded_tags=[3408, 3960, 4491],
+    per_page=16,
+    category_ids=[4877],
+    featured_category_ids=[4881],
     blog_title="Ubuntu blog",
 )
+
 app.add_url_rule(
     "/blog/topics/<regex('maas|design|juju|robotics|snapcraft'):slug>",
     view_func=BlogCustomTopic.as_view("blog_topic", blog_views=blog_views),
-)
-app.add_url_rule(
-    "/blog/<regex('cloud-and-server|desktop|internet-of-things|people-and-culture'):slug>",  # noqa: E501
-    view_func=BlogCustomGroup.as_view("blog_group", blog_views=blog_views),
 )
 app.add_url_rule(
     "/blog/sitemap.xml",
@@ -1099,7 +1097,8 @@ def render_blogs():
         api=BlogAPI(
             session=session, thumbnail_width=555, thumbnail_height=311
         ),
-        excluded_tags=[3184, 3265, 3408, 3960, 4491, 3599],
+        excluded_tags=[3408, 3960, 4491, 3599],
+        category_ids=[4877],
         tag_ids=[4307],
         per_page=3,
         blog_title="HPE blogs",
@@ -1122,7 +1121,7 @@ draft_blogs = BlogViews(
         wordpress_password=WORDPRESS_APPLICATION_PASSWORD,
     ),
     excluded_tags=[],
-    tag_ids=[4794],
+    tag_ids=[4905],
     per_page=3,
     blog_title="Draft blogs",
     status="draft",
@@ -1165,7 +1164,8 @@ def render_public_cloud_blogs():
         api=BlogAPI(
             session=session, thumbnail_width=1000, thumbnail_height=700
         ),
-        excluded_tags=[3184, 3265, 3408, 3960, 4491, 3599],
+        excluded_tags=[3408, 3960, 4491, 3599],
+        category_ids=[4877],
         tag_ids=[1205, 1350, 1748, 4191, 4478, 4540, 4387],
         per_page=3,
         blog_title="Public-cloud blogs",
@@ -1202,7 +1202,7 @@ def render_security_standards_blogs():
             4633,
             4749,
         ],
-        excluded_tags=[3184, 3265],
+        category_ids=[4877],
         per_page=4,
         blog_title="Security standards blogs",
     )
@@ -1241,7 +1241,7 @@ def render_security_fips_blogs():
             4633,
             4749,
         ],
-        excluded_tags=[3184, 3265],
+        category_ids=[4877],
         per_page=4,
         blog_title="Security FIPS blogs",
     )
@@ -1282,7 +1282,7 @@ def render_security_pci_dds_blogs():
             4633,
             4749,
         ],
-        excluded_tags=[3184, 3265],
+        category_ids=[4877],
         per_page=4,
         blog_title="Security standards blogs",
     )
@@ -1322,7 +1322,7 @@ def render_cmmc_blogs():
             4633,
             4749,
         ],
-        excluded_tags=[3184, 3265],
+        category_ids=[4877],
         per_page=4,
         blog_title="CMMC blogs",
     )
@@ -1335,6 +1335,37 @@ def render_cmmc_blogs():
 app.add_url_rule("/security/cmmc", view_func=render_cmmc_blogs)
 
 
+# NCSC Code of Practice resources blogs tab
+def render_ncsc_code_of_practice_blogs():
+    blogs = BlogViews(
+        api=BlogAPI(
+            session=session, thumbnail_width=640, thumbnail_height=340
+        ),
+        tag_ids=[
+            4632,
+            4554,
+            4869,
+            4580,
+            4579,
+        ],
+        excluded_tags=[3184, 3265],
+        per_page=4,
+        blog_title="NCSC Code of Practice blogs",
+    )
+    sorted_articles = sorted(
+        blogs.get_index()["articles"], key=lambda x: x["date"]
+    )
+    return flask.render_template(
+        "/security/ncsc-code-of-practice.html", blogs=sorted_articles
+    )
+
+
+app.add_url_rule(
+    "/security/ncsc-code-of-practice",
+    view_func=render_ncsc_code_of_practice_blogs,
+)
+
+
 # Supermicro blog section
 def render_supermicro_blogs():
     blogs = BlogViews(
@@ -1342,7 +1373,8 @@ def render_supermicro_blogs():
             session=session, thumbnail_width=555, thumbnail_height=311
         ),
         tag_ids=[2247],
-        excluded_tags=[3184, 3265, 3408, 3960, 4491, 3599],
+        excluded_tags=[3408, 3960, 4491, 3599],
+        category_ids=[4877],
         per_page=3,
         blog_title="Supermicro blogs",
     )
