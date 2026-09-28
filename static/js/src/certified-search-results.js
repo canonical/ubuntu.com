@@ -71,7 +71,7 @@ export function updateOptionVisibility(group, limit = DEFAULT_FILTER_LIMIT) {
 
   options.forEach((option) => {
     const matches = option.dataset.filterLabel.includes(query);
-    const withinLimit = query || isExpanded || matchingIndex < limit;
+    const withinLimit = isExpanded || matchingIndex < limit;
     const isVisible = matches && withinLimit;
 
     option.classList.toggle("u-hide", !isVisible);
@@ -90,7 +90,7 @@ export function updateOptionVisibility(group, limit = DEFAULT_FILTER_LIMIT) {
     noResults.classList.toggle("u-hide", visibleCount > 0);
   }
   if (toggleButton) {
-    toggleButton.classList.toggle("u-hide", Boolean(query));
+    toggleButton.classList.toggle("u-hide", matchingIndex <= limit);
     toggleButton.textContent = isExpanded
       ? `Show fewer ${toggleButton.dataset.plural}`
       : `Show all ${toggleButton.dataset.plural}`;
