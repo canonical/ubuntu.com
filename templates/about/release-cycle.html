@@ -34,6 +34,7 @@
                 data-filter-param="{{ param_key }}"
                 data-filter-type="single"
                 data-default-label="{{ default_label }}"
+                data-filter-server-managed
                 {% if default_value is not none %}data-filter-default-value="{{ default_value }}"{% endif %}
                 {% if selected_option %}data-selected-value="{{ selected_option.value }}"{% endif %}>
           <span>{{ selected_option.label if selected_option else default_label }}</span><i class="p-icon--chevron-down p-contextual-menu__indicator"></i>
