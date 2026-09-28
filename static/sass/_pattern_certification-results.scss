@@ -30,6 +30,7 @@
         @include vf-icon-arrow-top-right($colors--light-theme--text-default);
       }
 
+      font-size: 0.875rem;
       position: absolute;
       right: 1rem;
       top: 50%;
@@ -37,6 +38,13 @@
       white-space: nowrap;
       // above the accordion tab button (z-index: 2), so it stays clickable
       z-index: 3;
+
+      @media only screen and (max-width: $breakpoint-small) {
+        display: block;
+        padding: 0 $sp-medium $sp-medium $sp-xxx-large;
+        position: static;
+        transform: none;
+      }
     }
 
     &__configurations {
