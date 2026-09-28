@@ -174,9 +174,7 @@
     complianceToggle.classList.add("is-active");
 
     // Nothing left to select once every option is already checked
-    const selectAll = complianceMenu?.querySelector(
-      "[data-filter-select-all]",
-    );
+    const selectAll = complianceMenu?.querySelector("[data-filter-select-all]");
     if (selectAll) {
       const allSelected = total > 0 && checkedCount === total;
       selectAll.disabled = allSelected;
@@ -258,8 +256,9 @@ function closeOpenFilterMenus() {
   const bar = document.querySelector("[data-js-release-cycle-filters]");
   if (!bar) return;
 
-  bar.querySelectorAll('[data-filter-param][aria-expanded="true"]').forEach(
-    (toggle) => {
+  bar
+    .querySelectorAll('[data-filter-param][aria-expanded="true"]')
+    .forEach((toggle) => {
       toggle.setAttribute("aria-expanded", "false");
       const menu = document.getElementById(
         toggle.getAttribute("aria-controls"),
@@ -267,8 +266,7 @@ function closeOpenFilterMenus() {
       if (menu) {
         menu.setAttribute("aria-hidden", "true");
       }
-    },
-  );
+    });
 }
 
 function initStickyHeader() {

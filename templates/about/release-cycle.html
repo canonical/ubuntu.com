@@ -199,6 +199,7 @@
         </div>
       </div>
     </div>
+    {% if not show_release_notice %}
     <div class="u-fixed-width">
       {% include "about/partials/_desktop-releases-table.html" %}
 
@@ -208,6 +209,7 @@
         </div>
       </div>
     </div>
+    {% endif %}
   </section>
 
   <section class="p-section--deep">

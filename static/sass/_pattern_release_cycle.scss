@@ -89,18 +89,12 @@
         top: 3.4rem;
         z-index: 3;
         background: $color-paper;
-        box-shadow: none;
-        transition: box-shadow 0.2s ease;
       }
 
       thead th {
         background: inherit;
         border-bottom: 1px solid var(--vf-color-border-default);
         transition: border-bottom-color 0.2s ease;
-      }
-
-      thead.is-sticky {
-        box-shadow: 0px 1.5rem 1rem -15px rgba(0, 0, 0, 0.2);
       }
     }
 
@@ -379,6 +373,7 @@
 
       .p-contextual-menu__dropdown {
         width: 100%;
+        margin-top: -$input-margin-bottom;
       }
 
       .p-filter-menu__dropdown--multi {
