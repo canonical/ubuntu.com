@@ -3,6 +3,11 @@ on:
   schedule:
     - cron: "0 * * * *"
   workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/marketo-canary.yaml"
+      - "tests/playwright/tests/canary/**"
+      - "tests/playwright/helpers/canary-fields.ts"
 
 permissions:
   contents: read
