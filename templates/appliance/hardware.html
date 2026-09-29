@@ -44,14 +44,6 @@
                 aria-controls="intel-tab"
                 id="intel">Intel Nuc</h2>
           </div>
-          <div class="p-tabs__item">
-            <h2 class="p-tabs__link p-heading--3"
-                tabindex="0"
-                role="tab"
-                aria-selected="false"
-                aria-controls="vm-tab"
-                id="vm">VM</h2>
-          </div>
         </div>
       </div>
     </div>
@@ -470,39 +462,6 @@
     </section>
 
     {% with hardware="Intel NUC" %}
-      {% include "/appliance/shared/_certified-appliances.html" %}
-    {% endwith %}
-  </div>
-
-  <div tabindex="0" role="tabpanel" id="vm-tab" aria-labelledby="vm">
-    <section class="p-section--shallow">
-      <div class="row--50-50">
-        <div class="col">
-          <h3>
-            Try out Ubuntu Appliances
-            <br class="u-hide--small" />
-            on Ubuntu, Windows or macOS
-          </h3>
-        </div>
-        <div class="col">
-          <p>Try out Ubuntu Appliance images in an isolated virtual machine on your PC or Mac with Multipass.</p>
-        </div>
-      </div>
-    </section>
-    <section class="p-section--shallow">
-      <hr class="is-fixed-width p-rule--muted" />
-      <div class="row--50-50">
-        <div class="col"></div>
-        <div class="col">
-          <p class="p-heading--5">Try before you Pi</p>
-          <p>
-            Maybe your hardware is still in the post or you’re still wondering if you should give Ubuntu Appliances a try? These appliances can all be run inside of a virtual machine, on your workstation, no extras required.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    {% with hardware="VM" %}
       {% include "/appliance/shared/_certified-appliances.html" %}
     {% endwith %}
   </div>
