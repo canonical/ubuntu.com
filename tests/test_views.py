@@ -10,6 +10,7 @@ from requests.exceptions import HTTPError
 from werkzeug.exceptions import NotFound, InternalServerError
 
 from webapp.app import app
+from webapp.shop.api.ua_contracts.api import UAContractsAPIError
 from webapp.views import (
     shorten_acquisition_url,
     process_local_communities,
@@ -702,6 +703,33 @@ class TestReleaseCycleView(BaseViewTestCase):
 
         status = getattr(response, "status_code", 200)
         self.assertEqual(status, 200)
+
+
+class TestUAContractsAPIErrorHandler(BaseViewTestCase):
+    """
+    The UA Contracts API can return error responses with non-JSON
+    bodies (e.g. HTML error pages from a gateway during an outage).
+    The error handler should return the upstream status code with a
+    JSON error message instead of raising a JSONDecodeError.
+    """
+
+    def test_non_json_error_response_returns_upstream_status(self):
+        response_mock = Mock()
+        response_mock.json.side_effect = ValueError("No JSON")
+        response_mock.status_code = 503
+
+        error = UAContractsAPIError(
+            HTTPError(request=Mock(), response=response_mock)
+        )
+
+        with self.app.test_request_context("/"):
+            body, status = app.handle_user_exception(error)
+
+        self.assertEqual(status, 503)
+        self.assertEqual(
+            body.get_json(),
+            {"errors": "An error occurred while processing your request"},
+        )
 
 
 class TestMatchTags(TestCase):

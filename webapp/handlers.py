@@ -412,8 +412,14 @@ def init_handlers(app):
         if error.response.status_code == 401:
             empty_session(flask.session)
 
+        message = "An error occurred while processing your request"
+        try:
+            message = error.response.json()["message"]
+        except (ValueError, KeyError):
+            pass
+
         return (
-            flask.jsonify({"errors": error.response.json()["message"]}),
+            flask.jsonify({"errors": message}),
             error.response.status_code or 500,
         )
 
