@@ -45,6 +45,15 @@ class TestCSPConstants(unittest.TestCase):
         self.assertEqual(CSP["report-uri"], [CSP_REPORT_PATH])
         self.assertEqual(CSP_REPORT_ONLY["report-uri"], [CSP_REPORT_PATH])
 
+    def test_first_party_marketing_and_font_hosts_allowed(self):
+        # Sources loaded by our own pages (GTM tags, Google Fonts)
+        # must be allowed by the enforced CSP.
+        self.assertIn("fonts.gstatic.com", CSP["font-src"])
+        self.assertIn("fonts.googleapis.com", CSP["style-src"])
+        self.assertIn("rtp-static.marketo.com", CSP["style-src"])
+        self.assertIn("*.mktoutil.com", CSP["connect-src"])
+        self.assertIn("bat.bing.com", CSP["script-src"])
+
 
 class TestCSPHeader(unittest.TestCase):
     """The response header should carry a per-request nonce on the script
