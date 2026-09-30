@@ -272,6 +272,26 @@ def account_query():
     )
 
 
+def pro_feature_flags():
+    """
+    A JSON endpoint exposing Ubuntu Pro feature flags configured through
+    APP_PRO_FEATURE* environment variables. The APP_PRO_FEATURE prefix is
+    stripped and the remaining name is lowercased to build each flag key.
+    """
+    prefix = "APP_PRO_FEATURE"
+    feature_flags = {}
+
+    for key, value in os.environ.items():
+        if not key.startswith(prefix):
+            continue
+
+        flag_name = key[len(prefix) :].lstrip("_").lower()
+        if flag_name:
+            feature_flags[flag_name] = value
+
+    return flask.jsonify(feature_flags)
+
+
 def json_asset_query(file_name):
     """
     A JSON endpoint to request JSON assets from the asset manager

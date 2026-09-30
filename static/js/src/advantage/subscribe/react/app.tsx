@@ -1,5 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useGetProFeatureFlags } from "advantage/api/featureFlags";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import * as Sentry from "@sentry/react";
 import { Elements } from "@stripe/react-stripe-js";
@@ -42,6 +43,14 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+  useGetProFeatureFlags();
+  const contractsEnabled =
+    window.appConfig?.featureFlags?.contracts_enabled === "true";
+
+  if (!contractsEnabled) {
+    return null;
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <FormProvider>

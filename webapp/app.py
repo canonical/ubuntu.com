@@ -149,6 +149,7 @@ from webapp.views import (
     mirrors_query,
     mirror_check,
     navigation_nojs,
+    pro_feature_flags,
     releasenotes_redirect,
     show_template,
     sitemap_index,
@@ -367,6 +368,7 @@ app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
 app.add_url_rule("/Google-Ads.txt", view_func=google_ads_verification)
 app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/mirrors.json", view_func=mirrors_query)
+app.add_url_rule("/pro/feature-flags.json", view_func=pro_feature_flags)
 app.add_url_rule("/mirror-check", view_func=mirror_check)
 app.add_url_rule("/marketo/submit", view_func=marketo_submit, methods=["POST"])
 app.add_url_rule("/thank-you", view_func=thank_you)

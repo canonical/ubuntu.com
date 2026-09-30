@@ -12,5 +12,8 @@ declare global {
   interface Window {
     // The tag manager is included as a global variable in the base template.
     dataLayer?: DataLayerEvent[];
+    appConfig?: {
+      featureFlags?: Record<string, string>;
+    };
   }
 }

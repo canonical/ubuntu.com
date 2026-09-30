@@ -2,6 +2,7 @@ export { useCancelContract } from "./useCancelContract";
 export { useContractToken } from "./useContractToken";
 export { useLastPurchaseIds } from "./useLastPurchaseIds";
 export { useLoadWindowData } from "./useLoadWindowData";
+export { useProFeatureFlags } from "./useProFeatureFlags";
 export { useResizeContract } from "./useResizeContract";
 export { usePreviewResizeContract } from "./usePreviewResizeContract";
 export { useSetAutoRenewal } from "./useSetAutoRenewal";
