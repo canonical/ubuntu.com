@@ -13,6 +13,7 @@ import {
   Support,
 } from "./utils";
 import { PRO_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
+import { useGetProFeatureFlags } from "advantage/api/featureFlags";
 
 interface FormContext {
   productUser: ProductUsers;
@@ -178,6 +179,8 @@ export const FormProvider = ({
       setPeriod(Periods.yearly);
     }
   }, [product]);
+
+  useGetProFeatureFlags();
 
   return (
     <FormContext.Provider
