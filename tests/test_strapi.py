@@ -177,6 +177,65 @@ class TestPageNormalisation(unittest.TestCase):
             page["sections"][0]["template"], "_cms/components/_hero.html"
         )
 
+    def test_custom_html_keeps_vanilla_markup(self):
+        """The escape hatch has to pass patterns that have no macro."""
+        document = a_page(
+            sections=[
+                {
+                    "__component": "vanilla.html",
+                    "width": "raw",
+                    "content": (
+                        '<section class="p-section--deep">'
+                        '<table class="p-table">'
+                        '<tr><th style="width: 50%;">Feature</th></tr>'
+                        "</table>"
+                        '<button class="p-button" aria-expanded="false"'
+                        ' data-target="x">Go</button>'
+                        "</section>"
+                    ),
+                }
+            ]
+        )
+
+        html = normalise_page(document)["sections"][0]["data"]["content"]
+
+        self.assertIn('<section class="p-section--deep">', html)
+        self.assertIn('class="p-table"', html)
+        self.assertIn("width:50%", html)
+        self.assertIn('aria-expanded="false"', html)
+        self.assertIn('data-target="x"', html)
+
+    def test_custom_html_still_drops_scripts(self):
+        document = a_page(
+            sections=[
+                {
+                    "__component": "vanilla.html",
+                    "width": "fixed",
+                    "content": (
+                        "<script>alert(1)</script>"
+                        '<p onclick="alert(2)" style="color: red">Safe</p>'
+                    ),
+                }
+            ]
+        )
+
+        html = normalise_page(document)["sections"][0]["data"]["content"]
+
+        self.assertNotIn("<script>", html)
+        self.assertNotIn("alert", html)
+        self.assertNotIn("onclick", html)
+        self.assertNotIn("color", html)
+        self.assertIn("Safe", html)
+
+    def test_rich_text_does_not_get_the_wider_allowlist(self):
+        """Only the HTML component may carry sectioning markup."""
+        html = render_markdown(
+            '<section class="p-section">x</section>' '<p data-track="1">y</p>'
+        )
+
+        self.assertNotIn("<section", html)
+        self.assertNotIn("data-track", html)
+
     def test_unknown_components_are_dropped(self):
         document = a_page(
             sections=[

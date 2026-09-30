@@ -10,6 +10,7 @@ markup on the page until it is mapped here.
 
 # Standard library
 import logging
+from html import escape
 
 # Packages
 import markdown
@@ -277,8 +278,27 @@ ALLOWED_ATTRIBUTES = {
 }
 
 # The custom HTML component is an explicit escape hatch, so it may also
-# carry the embeds Vanilla patterns do not cover.
-HTML_COMPONENT_TAGS = ALLOWED_TAGS | {"iframe", "video", "audio", "track"}
+# carry the embeds Vanilla patterns do not cover, and the sectioning
+# elements its patterns are written against: a Vanilla pattern is a
+# <section class="p-section"> around a grid, and without these tags the
+# markup collapses into unstyled <div>s.
+HTML_COMPONENT_TAGS = ALLOWED_TAGS | {
+    "article",
+    "aside",
+    "audio",
+    "button",
+    "footer",
+    "header",
+    "hgroup",
+    "iframe",
+    "label",
+    "main",
+    "nav",
+    "section",
+    "time",
+    "track",
+    "video",
+}
 HTML_COMPONENT_ATTRIBUTES = dict(ALLOWED_ATTRIBUTES)
 HTML_COMPONENT_ATTRIBUTES["iframe"] = {
     "src",
@@ -302,6 +322,20 @@ HTML_COMPONENT_ATTRIBUTES["video"] = {
     "muted",
 }
 HTML_COMPONENT_ATTRIBUTES["audio"] = {"src", "controls", "preload", "loop"}
+HTML_COMPONENT_ATTRIBUTES["button"] = {"type", "disabled", "name", "value"}
+HTML_COMPONENT_ATTRIBUTES["label"] = {"for"}
+# Vanilla's comparison tables set their first column's width inline, and
+# there is no utility class for it. STYLE_PROPERTIES keeps that the only
+# declaration that survives, so "style" cannot be used for anything else.
+HTML_COMPONENT_ATTRIBUTES["col"] = {"span", "style"}
+HTML_COMPONENT_ATTRIBUTES["td"] = ALLOWED_ATTRIBUTES["td"] | {"style"}
+HTML_COMPONENT_ATTRIBUTES["th"] = ALLOWED_ATTRIBUTES["th"] | {"style"}
+HTML_COMPONENT_STYLE_PROPERTIES = {"width"}
+
+# Vanilla's interactive patterns are driven by aria state and data
+# attributes, so an accordion or a tabbed section written by hand needs
+# both to survive the clean.
+HTML_COMPONENT_PREFIXES = {"aria-", "data-"}
 
 MARKDOWN_EXTENSIONS = ["extra", "sane_lists", "admonition"]
 
@@ -312,7 +346,7 @@ def _sanitising_enabled():
     return str(setting).lower() != "false"
 
 
-def sanitise(html, tags=None, attributes=None):
+def sanitise(html, tags=None, attributes=None, prefixes=None, styles=None):
     if not html:
         return ""
 
@@ -323,6 +357,8 @@ def sanitise(html, tags=None, attributes=None):
         html,
         tags=tags or ALLOWED_TAGS,
         attributes=attributes or ALLOWED_ATTRIBUTES,
+        generic_attribute_prefixes=prefixes,
+        filter_style_properties=styles,
         url_schemes={"http", "https", "mailto", "tel"},
     )
 
@@ -522,6 +558,41 @@ def _vf_video(url, title):
     }
 
 
+def _vf_image_item(image):
+    """
+    A section's picture, as vf_basic_section's "image" item.
+
+    The macro asks for the `<img>` itself rather than a URL, so the
+    shared image component is rendered here and handed over whole.
+    """
+    if not image or not image.get("url"):
+        return None
+
+    attrs = {
+        "src": image["url"],
+        "alt": image.get("alt") or "",
+        "loading": image.get("loading") or "lazy",
+    }
+
+    for key in ("width", "height"):
+        if image.get(key):
+            attrs[key] = str(image[key])
+
+    markup = (
+        "<img "
+        + " ".join(
+            f'{name}="{escape(value, quote=True)}"'
+            for name, value in attrs.items()
+        )
+        + " />"
+    )
+
+    return {
+        "type": "image",
+        "item": {"image_html": markup, "is_highlighted": False},
+    }
+
+
 def _vf_items(data):
     """
     The second column of a Vanilla basic section: an optional video, the
@@ -537,6 +608,11 @@ def _vf_items(data):
 
     if embed:
         items.append(embed)
+
+    picture = _vf_image_item(data.get("image"))
+
+    if picture:
+        items.append(picture)
 
     for html in (data.get("content"), data.get("aside_content")):
         block = _vf_description(html)
@@ -793,6 +869,8 @@ def _normalise_component(component, media_url=""):
             data.get("content"),
             tags=HTML_COMPONENT_TAGS,
             attributes=HTML_COMPONENT_ATTRIBUTES,
+            prefixes=HTML_COMPONENT_PREFIXES,
+            styles=HTML_COMPONENT_STYLE_PROPERTIES,
         )
 
     return {"template": template, "name": name, "data": data}

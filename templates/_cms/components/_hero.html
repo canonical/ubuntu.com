@@ -14,7 +14,18 @@
   {%- if slot == "cta" -%}
     {{ cms_cta(hero.links) }}
   {%- endif -%}
-  {%- if slot == "image" and hero.image -%}
+  {#
+    A 25/75 hero puts its picture in the signpost column, not the image
+    one: the macro only reads `signpost_image` for that layout, so a
+    25/75 hero filling `image` rendered no picture at all. The macro
+    takes the layout with either separator and normalises it, so the
+    check has to as well.
+  #}
+  {%- set is_signpost = hero.vf_layout | replace("/", "-") == "25-75" -%}
+  {%- if slot == "signpost_image" and hero.image and is_signpost -%}
+    {{ cms_image(hero.image, "u-no-margin") }}
+  {%- endif -%}
+  {%- if slot == "image" and hero.image and not is_signpost -%}
     {{ cms_image(hero.image) }}
   {%- endif -%}
 {% endcall %}
