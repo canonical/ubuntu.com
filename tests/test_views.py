@@ -2,9 +2,11 @@
 Unit tests for webapp.views helper functions.
 """
 
+import json
 from unittest import TestCase
 from unittest.mock import Mock, patch, MagicMock
 
+from requests.exceptions import HTTPError
 from werkzeug.exceptions import NotFound, InternalServerError
 
 from webapp.app import app
@@ -22,6 +24,7 @@ from webapp.views import (
     enrich_acquisition_url,
     build_engage_page_resources,
     append_utms_cookie_to_canonical_links,
+    build_release_cycle_view,
 )
 from webapp.certified.views import certified_platform_details_by_release
 
@@ -659,6 +662,46 @@ class TestEngageThankYou(BaseViewTestCase):
         with self.app.test_request_context("/engage/test-event/thank-you"):
             with self.assertRaises(NotFound):
                 view(language=None, page="test-event")
+
+
+class TestReleaseCycleView(BaseViewTestCase):
+    """
+    Unit tests for the `/about/release-cycle` view.
+
+    The products.json file for the latest release cycle is not always
+    available in the product-architecture repository yet. The page
+    should render without product data instead of returning a 500.
+    """
+
+    def test_missing_products_file_renders_page(self):
+        view = build_release_cycle_view()
+
+        response_mock = Mock()
+        response_mock.status_code = 404
+        response_mock.raise_for_status.side_effect = HTTPError("404")
+
+        with patch("webapp.views.requests.get", return_value=response_mock):
+            with self.app.test_request_context("/about/release-cycle"):
+                response = view()
+
+        status = getattr(response, "status_code", 200)
+        self.assertEqual(status, 200)
+
+    def test_products_file_fetch_renders_page(self):
+        view = build_release_cycle_view()
+
+        response_mock = Mock()
+        response_mock.status_code = 200
+        response_mock.headers = {}
+        response_mock.content = json.dumps(
+            {"products": {"ubuntu": {"product": "Ubuntu"}}}
+        ).encode()
+        with patch("webapp.views.requests.get", return_value=response_mock):
+            with self.app.test_request_context("/about/release-cycle"):
+                response = view()
+
+        status = getattr(response, "status_code", 200)
+        self.assertEqual(status, 200)
 
 
 class TestMatchTags(TestCase):
