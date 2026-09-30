@@ -16,6 +16,12 @@
 
 {% block content %}
 
+  <script nonce="{{ csp_nonce }}">
+    if (window.location.hash === "#vm") {
+      window.location.replace("/appliance");
+    }
+  </script>
+
   <section class="p-section--hero">
     <div class="u-fixed-width">
       <div class="u-sv-3">
