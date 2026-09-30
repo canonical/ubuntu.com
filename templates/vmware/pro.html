@@ -1,0 +1,64 @@
+{% extends "vmware/base_vmware.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_resources.jinja" import vf_resources %}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
+
+{% block title %}Ubuntu Pro on VCF{% endblock %}
+
+{% block meta_description %}
+  Ubuntu Pro on VCF delivers security coverage, compliance tooling and fleet management at scale for platform teams.
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1F2GX4weHAEcb5YUBoH8eZj_OXTVcqX9qXvDIm58Plzs/edit
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+  {% call(slot) vf_hero(
+    title_text='Innovate on all major CPU architectures with Ubuntu',
+    subtitle_text='Security maintenance, compliance hardening, and fleet management for your VCF stack',
+    layout='50/50',
+    blocks=[
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "text",
+          "content": "
+          Benefit from enterprise-grade assurance, wherever you use Ubuntu, available natively on VMware Cloud Foundation (VCF). 
+          "
+        }
+      },
+      {
+        "type": "cta-block",
+        "item": {
+          "link":
+          {
+            "content_html": "Find out more about our supported architectures&nbsp;&rsaquo;",
+            "attrs": {
+              "href": "https://ubuntu.com/project/docs/how-ubuntu-is-made/concepts/supported-architectures/"
+            }
+          }
+        }
+      },
+    ],
+  ) -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--3-2 is-highlighted u-hide--medium u-hide--small">
+        {{ image(url="https://assets.ubuntu.com/v1/01968612-hero_img.png",
+          alt="",
+          width="600",
+          height="400",
+          hi_def=True,
+          loading="auto",
+          attrs={"class": "p-image-container__image"},) | safe
+        }}
+      </div>
+    {%- endif -%}
+  {% endcall -%}
