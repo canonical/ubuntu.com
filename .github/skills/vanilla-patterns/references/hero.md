@@ -10,14 +10,14 @@
 **Preferred invocation:**
 ```jinja
 {% call(slot) vf_hero(
-  title_text,                              # (required) H1 title text
-  subtitle_text='',                        # (optional) Subtitle text
-  chip_text='',                            # (optional) Branded chip text
-  chip_aria_label='',                      # (optional) Label for icon-only chip
-  layout='fallback',                       # (optional) Layout: '50/50', '50/50-full-width-image', '75/25', '25/75', 'fallback'
-  is_split_on_medium=false,                # (optional) Layout split on medium screens
-  display_blank_signpost_image_space=false,# (optional) For 25/75 layout
-  blocks=[]                                # (optional) Array of content blocks
+  title_text,
+  subtitle_text='',
+  chip_text='',
+  chip_aria_label='',
+  layout='fallback',
+  is_split_on_medium=false,
+  display_blank_signpost_image_space=false,
+  blocks=[]
 ) %}
 {% endcall %}
 ```
