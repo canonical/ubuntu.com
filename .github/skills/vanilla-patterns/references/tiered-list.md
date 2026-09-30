@@ -16,7 +16,7 @@
 - `top_rule_variant`: `default`, `muted`, `highlighted`, or `none`.
 - `img_attrs`: Image attributes. `video_attrs`: use `src` for iframe or `video_id` and preferably `video_title` for `lite-youtube`; video wins over image.
 - `is_media_full_width`: Full-width row; images become cinematic and videos remain 16:9.
-- `media_placement`: `before_description`, `after_description`, or `after_cta`. Docs 4.59.0 default to `after_cta`; installed 4.58.1 defaults to `after_description`, so pass explicitly.
+- `media_placement`: `before_description`, `after_description`, or `after_cta`. Documentation and installed-macro defaults may differ, so pass this explicitly.
 - `media_aspect_ratio`: `3-2` or `16-9` for non-full-width images.
 - `hide_media_on_small_medium_breakpoints` and `is_media_highlighted` default false.
 - Slots: `title`, optional `description`, `list_item_title_[1-25]`, `list_item_description_[1-25]`, optional `cta`. At least one title/description item pair is required.

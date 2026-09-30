@@ -13,4 +13,4 @@
 - `blocks`: Structured `description` and `cta` blocks.
 - `attrs`: Section attributes.
 
-Do not use deprecated `description` or `cta` caller content. Installed 4.58.1 still calls `caller()`, so retain the empty call wrapper.
+Do not use deprecated `description` or `cta` caller content. If the installed macro still calls `caller()`, retain the empty call wrapper.

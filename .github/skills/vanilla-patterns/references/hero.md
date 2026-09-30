@@ -42,4 +42,4 @@
 - `layout` uses forward slash in user input ('25/75') but normalizes internally to dash ('25-75')
 - For 25/75 layout with signpost images, `display_blank_signpost_image_space` should be false (default)
 - The legacy `description`, `cta`, `image`, and `signpost_image` caller slots are deprecated. Do not use them in new implementations; use `blocks` instead.
-- Vanilla Framework 4.58.1 still invokes `caller()` internally, so retain the empty `{% call(slot) %}...{% endcall %}` wrapper even though no slot content is supplied.
+- If the installed macro invokes `caller()` internally, retain the empty `{% call(slot) %}...{% endcall %}` wrapper even though no slot content is supplied.

@@ -45,4 +45,4 @@
 - `secondary_heading`: `h3` or `h4`. Keep it one level below `primary_heading` for semantic heading order.
 - `excludes`: Full-page list of CSS selectors or case-insensitive text matches prefixed with `text:`.
 
-The macro cannot be a standalone section. Place it in the default grid with a grid column as its direct parent, preferably two columns on large screens and four on medium and small screens. Load the associated in-page-navigation JavaScript for active-item highlighting and full-page generation. The pattern is marked work in progress in Vanilla 4.59.0.
+The macro cannot be a standalone section. Place it in the default grid with a grid column as its direct parent, preferably two columns on large screens and four on medium and small screens. Load the associated in-page-navigation JavaScript for active-item highlighting and full-page generation. Check the [current pattern status](https://vanillaframework.io/docs/whats-new) before relying on work-in-progress behavior.

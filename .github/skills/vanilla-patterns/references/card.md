@@ -30,4 +30,4 @@
 - `footer.content_type`: Optional string or list of strings, rendered as read-only chips.
 - `stacked_image`: Default `false`. When true, places the image above the content at every breakpoint instead of using the horizontal layout for wider cards.
 
-Cards must be direct children of an element with the `grid-row` class. The Card pattern is marked work in progress in Vanilla 4.59.0.
+Cards must be direct children of an element with the `grid-row` class. Check the [current pattern status](https://vanillaframework.io/docs/whats-new) before relying on work-in-progress behavior.

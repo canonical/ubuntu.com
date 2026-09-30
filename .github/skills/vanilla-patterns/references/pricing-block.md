@@ -13,4 +13,4 @@
 - Offering: `{list_item_style: "ticked"|"crossed"|undefined, list_item_content_html: "..."}`.
 - `top_rule_variant`: `default`, `muted`, `highlighted`, or `none`; default `default`.
 - Layout: one tier single column; two 50/50; three 25/75; four equal columns.
-- Slot: `section_description`. The 4.59.0 API table calls it `description`, but official examples and installed 4.58.1 use `section_description`; use the runtime-compatible name.
+- Slot: `section_description`. If the current API table calls it `description`, verify the discrepancy against the official examples and installed macro; use the runtime-compatible name.

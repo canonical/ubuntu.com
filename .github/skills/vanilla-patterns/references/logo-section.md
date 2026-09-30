@@ -11,7 +11,7 @@
 - `title` required: `{text, link_attrs?}`.
 - `padding`: `default`, `deep`, or `none`.
 - `blocks` required: `cta-block` and `logo-block`.
-- Installed 4.58.1 logo shape: `{type: "logo-block", item: {logos: [{src, alt}]}}`; attributes are forwarded directly. Basic and Tab logo blocks instead nest attributes under `attrs`.
+- Installed-macro logo shape: `{type: "logo-block", item: {logos: [{src, alt}]}}`; attributes are forwarded directly. Recheck this against the installed macro after a Vanilla upgrade. Basic and Tab logo blocks instead nest attributes under `attrs`.
 - `top_rule_variant`: `default` or `none`.
 - `mode`: `default` renders a section with title/description/CTA; `minimal` renders a compact div with only logos.
 - Slot: optional `description` in default mode.

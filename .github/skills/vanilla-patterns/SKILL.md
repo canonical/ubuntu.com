@@ -12,7 +12,7 @@ Use this skill to select and implement the repository's shared Vanilla Jinja mac
 1. Identify the pattern being created, edited, or reviewed.
 2. Read only its linked reference below.
 3. If that reference embeds another pattern's structured block, read the nested pattern's reference only when its detailed schema is needed.
-4. Compare the implementation with the installed macro before using fields that differ between documented Vanilla 4.59.0 and this repository's pinned Vanilla 4.58.1.
+4. Read the installed `vanilla-framework` version from `package.json`, then compare the installed macro with the current official documentation before using version-sensitive fields.
 5. Preserve the surrounding template's established import and formatting style.
 
 ## Pattern References
@@ -44,16 +44,18 @@ Use this skill to select and implement the repository's shared Vanilla Jinja mac
 
 - Prefer structured parameters and block arrays over deprecated caller slots.
 - Only seven patterns use meaningful caller content: Equal heights, Tiered list, Logo section, Quote wrapper, Pricing block, Newsletter signup, and Rich list (horizontal).
-- Hero and CTA section use structured blocks, but installed Vanilla 4.58.1 still invokes `caller()`. Use an empty `{% call(slot) ... %}{% endcall %}` wrapper.
+- Hero and CTA section use structured blocks. If the installed macros still invoke `caller()`, use an empty `{% call(slot) ... %}{% endcall %}` wrapper.
 - Text spotlight and Resources have no meaningful content slots, but their documented/runtime-compatible usage uses an empty call wrapper.
 - Import macros from their `_macros/vf_*.jinja` module; do not reproduce pattern markup by hand.
 - Use Jinja dictionaries and arrays for structured APIs. Treat raw HTML fields as trusted content and sanitize untrusted values before rendering.
 - Use `attrs` and `link_attrs` dictionaries rather than concatenating HTML attributes.
-- Omit optional empty blocks only when the installed macro handles their absence. The Resources 4.58.1 compatibility exception is documented in its reference.
-- Pattern defaults and accepted values are version-sensitive. The references use current 4.59.0 documentation and call out known 4.58.1 runtime differences.
+- Omit optional empty blocks only when the installed macro handles their absence. The Resources compatibility exception is documented in its reference.
+- Pattern defaults and accepted values are version-sensitive. Treat compatibility notes as prompts to inspect the installed macro, not permanent claims about the latest Vanilla release.
 
 ## Sources
 
-- Current pattern guidance: Vanilla Framework 4.59.0 documentation.
-- Runtime compatibility: the repository's installed `vanilla-framework` 4.58.1 Jinja macros.
-- When these disagree, follow the installed macro for executable behavior and retain the documented API direction as an explicit compatibility note.
+- [Current pattern documentation](https://vanillaframework.io/docs/patterns)
+- [What's new in Vanilla](https://vanillaframework.io/docs/whats-new)
+- [Upstream Jinja macro source](https://github.com/canonical/vanilla-framework/tree/main/templates/_macros)
+- Runtime compatibility: read the pinned `vanilla-framework` version from `package.json` and inspect its macros under `node_modules/vanilla-framework/templates/_macros/`.
+- When current docs and the installed macro disagree, follow the installed macro for executable behavior and retain the documented API direction as an explicit compatibility note.

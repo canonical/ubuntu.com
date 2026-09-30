@@ -15,4 +15,4 @@
 - Resources: `{type: "resources", render_images: bool, render_categories: bool, categories: [...]}`; render flags default true.
 - Category has `title` and `items`. Each item requires `title: {text, link_attrs?, attrs?}` and may have `image: {type: "image"|"logo", attrs}`, `description: {text, attrs?, class?}`, and `metadata: {authors: [{text, link_attrs?}], date: {text, attrs?}}`.
 
-There are no content slots; official examples use an empty wrapper. Installed 4.58.1 assumes both a `description` and `cta-block` entry exist, so include empty-safe entries when absent; 4.59.0 documents them as optional.
+There are no content slots; official examples use an empty wrapper. If the installed macro assumes both a `description` and `cta-block` entry exist, include empty-safe entries when absent even when current docs describe them as optional.

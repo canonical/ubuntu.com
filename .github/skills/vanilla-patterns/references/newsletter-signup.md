@@ -8,7 +8,7 @@
 {% endcall %}
 ```
 
-- Required: `form_id`, `return_url`, `title_text`. Docs 4.59.0 also require `input_label` and `checkbox_label`; installed 4.58.1 defaults them, but pass explicitly.
+- Required: `form_id`, `return_url`, `title_text`. Current docs also require `input_label` and `checkbox_label`; the installed macro may default them, but pass them explicitly.
 - `layout`: `25-75`, `50-50`, `2-col`, or `4-col`.
 - `top_rule_variant`: `default`, `muted`, `highlighted`, or `none`.
 - `hide_newsletter_block_rule` applies to grid variants; default false.
