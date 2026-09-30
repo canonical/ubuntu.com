@@ -3,7 +3,7 @@
 **Import:** `{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}`
 
 ```jinja
-{% call(slot) vf_quote_wrapper(title_text="", quote_size="medium", quote_text, citation_source_name_text="", citation_source_title_text="", citation_source_organisation_text="", is_shallow=false) %}
+{% call(slot) vf_quote_wrapper(quote_text="Quote text", title_text="", quote_size="medium", citation_source_name_text="", citation_source_title_text="", citation_source_organisation_text="", is_shallow=false) %}
   {% if slot == 'heading_link' %}...{% endif %}
   {% if slot == 'signpost_image' %}...{% endif %}
   {% if slot == 'cta' %}...{% endif %}
