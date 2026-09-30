@@ -752,7 +752,7 @@ engage_pages = EngagePages(
     api=engage_pages_discourse_api,
     category_id=51,
     page_type="engage-pages",
-    exclude_topics=[17229, 18033, 17250],
+    exclude_topics=[17229, 18033, 17250, 87342, 87639, 87962],
 )
 
 
