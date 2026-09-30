@@ -1,13 +1,9 @@
-// Sticky wrapper for the main navigation and the announcement bar beneath
-// it, so they stick to the top of the viewport together while scrolling.
 .l-sticky-header {
   position: sticky;
   top: 0;
   z-index: 40;
 }
 
-// Width reserved as horizontal padding so the centered message isn't
-// pushed off-center by the close button (see .announcement-bar__close).
 $announcement-bar-close-width: $sp-xxx-large;
 
 .announcement-bar {
@@ -20,24 +16,22 @@ $announcement-bar-close-width: $sp-xxx-large;
   position: sticky;
   text-align: center;
 
-  @media (min-width: $breakpoint-large) {
-    padding-left: $sp-xxx-large;
-    padding-right: $sp-xxx-large;
-  }
-
-  // Ubuntu orange, matching the Figma design regardless of site brand color
   .p-icon--information {
     background-image: vf-icon-info-url($color-ubuntu);
     flex-shrink: 0;
+    margin-top: $sp-medium;
   }
 
   &__grid {
-    height: $sp-xxx-large;
+    min-height: $sp-xxx-large;
+
+    @media (max-width: ($viewport-threshold - 1)) {
+      display: block;
+    }
   }
 
   &__container {
     display: flex;
-    align-items: center;
     flex-wrap: nowrap;
     gap: $sph--small;
 
@@ -50,24 +44,51 @@ $announcement-bar-close-width: $sp-xxx-large;
     margin: 0;
     max-width: fit-content;
     padding: 0;
+    padding-top: $spv--medium;
+    padding-bottom: $spv--medium;
+    text-align: start;
+
+    @media (max-width: ($viewport-threshold - 1)) {
+      margin-right: $sp-xxx-large;
+    }
+
+    &-title {
+      padding-left: $sp-small;
+    }
 
     &-main {
-      padding-left: $sp-small;
-      margin-left: -$sp-medium;
+      padding-left: $sp-x-large;
+
+      @media (max-width: ($viewport-threshold - 1)) {
+        padding-top: 0;
+      }
+
+      @media (min-width: $viewport-threshold) {
+        padding-left: $sp-small;
+        margin-left: -$sp-medium;
+      }
     }
   }
 
-  // Enlarge the close button hitbox to span the full bar height.
   &__close {
     align-items: center;
     background: none;
     border: 0;
     margin: 0;
     padding: 0;
-    height: 100%;
     display: flex;
     justify-content: center;
     width: $announcement-bar-close-width;
-    margin-right: -$sp-large !important;
+    height: $announcement-bar-close-width;
+
+    @media (max-width: ($viewport-threshold - 1)) {
+      position: absolute;
+      top: $sp-small;
+      right: $sp-medium;
+    }
+
+    @media (min-width: $viewport-threshold) {
+      margin-right: -$sp-large !important;
+    }
   }
 }
