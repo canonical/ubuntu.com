@@ -1,13 +1,13 @@
 ---
 name: vanilla-patterns
-description: Reference guide for correctly implementing Vanilla Framework Jinja macro patterns. Use whenever creating or editing any of the following patterns in a Jinja template - hero, basic section, equal heights, blog, data spotlight, divided section, tiered list, text spotlight, logo section, linked logo section, quote wrapper, pricing block, CTA section, tab section, newsletter signup, resources, rich list (horizontal), rich list (vertical) - to confirm the correct macro import, required parameters, and slot usage, or to check a pattern's structure/macro signature hasn't been changed during review.
+description: Reference guide for correctly implementing Vanilla Framework Jinja macro patterns. Use whenever creating or editing any of the following patterns in a Jinja template - hero, basic section, equal heights, blog, data spotlight, divided section, tiered list, text spotlight, logo section, linked logo section, quote wrapper, pricing block, CTA section, tab section, newsletter signup, resources, rich list (horizontal), rich list (vertical) - to confirm the correct macro import, required parameters, structured blocks, and any caller slots that are still required, or to check a pattern's structure/macro signature hasn't been changed during review.
 ---
 
 # Vanilla Patterns - LLM Agent Guide
 
-This document serves as a comprehensive reference for implementing Vanilla Framework patterns as Jinja macros, derived from the actual macro implementations. Each pattern is documented with its precise macro signature, parameters, and usage.
+This document serves as a reference for implementing Vanilla Framework patterns as Jinja macros. It is cross-checked against the official Vanilla Framework 4.59.0 pattern documentation and the 4.58.1 macros installed in this repository.
 
-**Important:** This guide is auto-generated from actual macro code. When reviewing code, use this as the authoritative reference for macro signatures, required parameters, and correct usage patterns.
+**Important:** Prefer structured parameters and block arrays wherever they are available. Use caller slots only for patterns explicitly listed as slot-based in this guide. Where the live documentation and the installed package differ, this guide calls out the 4.58.1 compatibility requirement.
 
 ## Overview
 
@@ -44,27 +44,26 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 ```
 
-**Macro signature:**
+**Preferred invocation:**
 ```jinja
 {% call(slot) vf_hero(
   title_text,                              # (required) H1 title text
   subtitle_text='',                        # (optional) Subtitle text
+  chip_text='',                            # (optional) Branded chip text
+  chip_aria_label='',                      # (optional) Label for icon-only chip
   layout='fallback',                       # (optional) Layout: '50/50', '50/50-full-width-image', '75/25', '25/75', 'fallback'
   is_split_on_medium=false,                # (optional) Layout split on medium screens
   display_blank_signpost_image_space=false,# (optional) For 25/75 layout
   blocks=[]                                # (optional) Array of content blocks
 ) %}
-  {# Deprecated: These slots are no longer preferred. Use blocks array instead. #}
-  {% if slot == 'description' %}...{% endif %}
-  {% if slot == 'cta' %}...{% endif %}
-  {% if slot == 'image' %}...{% endif %}
-  {% if slot == 'signpost_image' %}...{% endif %}
 {% endcall %}
 ```
 
 **Parameters:**
 - `title_text` (string, required): The H1 heading text.
 - `subtitle_text` (string, optional): Optional H2-styled subtitle. Default: "".
+- `chip_text` (string, optional): Text for a branded Ubuntu Pro chip. Default: "".
+- `chip_aria_label` (string, optional): Accessible label for an icon-only branded chip. Default: "".
 - `layout` (string, optional): Layout variant. Options: 'fallback' (default), '50/50', '50/50-full-width-image', '75/25', '25/75'.
 - `is_split_on_medium` (boolean, optional): Whether to split layout on tablet screens. Default: false.
 - `display_blank_signpost_image_space` (boolean, optional): For 25/75 layout, indent content to leave signpost space. Default: false.
@@ -79,7 +78,8 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
 **Notes:**
 - `layout` uses forward slash in user input ('25/75') but normalizes internally to dash ('25-75')
 - For 25/75 layout with signpost images, `display_blank_signpost_image_space` should be false (default)
-- Use blocks array instead of deprecated caller slots
+- The legacy `description`, `cta`, `image`, and `signpost_image` caller slots are deprecated. Do not use them in new implementations; use `blocks` instead.
+- Vanilla Framework 4.58.1 still invokes `caller()` internally, so retain the empty `{% call(slot) %}...{% endcall %}` wrapper even though no slot content is supplied.
 
 ---
 
@@ -101,7 +101,7 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
   items=[],                              # (optional) Array of content block objects
   padding="default",                     # (optional) 'default', 'deep', or 'shallow'
   is_split_on_medium=false,              # (optional) 50/50 grid on medium+ screens
-  top_rule_variant="default",            # (optional) 'default' or 'muted'
+  top_rule_variant="default",            # (optional) 'default', 'muted', 'highlighted', or 'none'
   override_last_item_padding=false,      # (optional) Add padding to last item
   attrs={}                               # (optional) HTML attributes for section
 ) }}
@@ -110,20 +110,20 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
 **Parameters:**
 - `title` (object, required): {text: "title" (required), link_attrs: {...} (optional)}
 - `label_text` (string, optional): Muted heading above title. Default: "".
-- `subtitle` (object, optional): {text: "subtitle", heading_level: 4|5}. Default: {}.
+- `subtitle` (object, optional): {text: "subtitle", heading_level: 4|5}. The heading level defaults to 4.
 - `items` (array, optional): Content blocks. Each has `type` and `item`. Default: [].
 - `is_split_on_medium` (boolean, optional): Splits 50/50 on medium screens. Default: false (splits only on large).
-- `top_rule_variant` (string, optional): 'default' or 'muted'. Default: 'default'.
+- `top_rule_variant` (string, optional): 'default', 'muted', 'highlighted', or 'none'. Default: 'default'.
 - `padding` (string, optional): 'default', 'deep', or 'shallow'. Default: 'default'.
 - `override_last_item_padding` (boolean, optional): Override no-padding on last item. Default: false.
 - `attrs` (object, optional): HTML attributes for section element.
 
 **Supported item types:**
 - `description`: {type: "text"|"html", content: "..."}
-- `image`: {aspect_ratio: "16-9"|"3-2"|"2-3"|"cinematic", is_highlighted: bool, is_cover: bool, caption_html: "...", attrs: {...}}
+- `image`: {aspect_ratio: "16-9"|"3-2"|"2-3"|"cinematic"|"", is_highlighted: bool, is_cover: bool, caption_html: "...", attrs: {...}}. `is_highlighted` defaults to true and `is_cover` to false.
 - `video`: {attrs: {for iframe}}
 - `notification`: {type: "information"|"caution"|"negative"|"positive", title: "...", content: "..."}
-- `list`: {list_items: [{list_item_type: "bullet"|"tick"|"cross"|"number", content: "..."}]}
+- `list`: {list_items: [{list_item_type: "bullet"|"tick"|"cross"|"number"|"", content: "...", sublist: {list_items: [...]}}]}
 - `code-block`: {content: "...", is_code_snippet: bool}
 - `logo-block`: Rendered via shared macro
 - `linked-logo-block`: Rendered via shared macro
@@ -220,9 +220,12 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
 ```
 
 **Parameters:**
-- `title` (object, required): {text: "...", link_attrs: {...} (optional)}
+- `title` (object, optional): {text: "...", link_attrs: {...} (optional)}. Default: {}.
 - `articles` (array, optional): Static articles. Default: [].
-  - Each: {title: {text, link_attrs?}, description: {text}, image: {attrs: {src, alt}}, metadata: {authors: [...], date: {text}}}
+  - `title` (required): `{text, link_attrs?, attrs?, heading_level?}`; heading level is 3 or 4 and defaults to 3.
+  - `image` (optional): `{attrs: {src, alt, ...}}`.
+  - `description` (optional): `{text, attrs?, class?}`.
+  - `metadata` (optional): `{authors: [{text, link_attrs?}], date: {text, attrs?}}`.
 - `template_config` (object, optional): For dynamic loading.
   - enabled (bool): true to enable template mode
   - layout (string): "3-blocks" or "4-blocks"
@@ -230,6 +233,7 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
   - template_id (string): Template ID
 - `padding` (string, optional): 'default', 'deep', or 'shallow'. Default: 'default'.
 - `top_rule_variant` (string, optional): 'default' or 'muted'. Default: 'default'.
+- `fallback_image_url` (string, optional): Image used when an article has no image. Defaults to Vanilla's blog fallback image.
 
 **Layout:** Automatically inferred from article count (3 → 3-blocks, 4 → 4-blocks).
 
@@ -280,19 +284,22 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
 ```jinja
 {{ vf_divided_section(
   title,                                 # (required) Title dict with 'text'
-  blocks=[],                             # (optional) Array of block objects
+  blocks=[],                             # (required) Array of block objects
   padding="default",                     # (optional) 'default', 'deep', or 'shallow'
   is_split_on_medium=false,              # (optional) 50/50 on medium+
-  top_rule_variant="default"             # (optional) 'default' or 'muted'
+  top_rule_variant="default"             # (optional) 'default', 'muted', 'highlighted', or 'none'
 ) }}
 ```
 
 **Parameters:**
 - `title` (object, required): {text: "...", link_attrs: {...} (optional)}
-- `blocks` (array, optional): Content blocks (same structure as basic section).
+- `blocks` (array, required): `description-block` and `divided-block` objects. Default: [].
+  - `description-block`: `{type: "description-block", items: [basic-section content blocks]}`.
+  - `divided-block`: `{type: "divided-block", bullet_type: "number"|"bullet"|"status"|"none", items: [{title_text?, contents: [basic-section content blocks]}]}`.
+  - Prefer one description block and 1-9 divided blocks; each divided item supports 1-5 content entries.
 - `padding` (string, optional): 'default', 'deep', or 'shallow'. Default: 'default'.
 - `is_split_on_medium` (boolean, optional): 50/50 split on medium+. Default: false.
-- `top_rule_variant` (string, optional): 'default' or 'muted'. Default: 'default'.
+- `top_rule_variant` (string, optional): 'default', 'muted', 'highlighted', or 'none'. Default: 'default'.
 
 ---
 
@@ -311,14 +318,19 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
   padding="default",                     # (optional) 'default', 'deep', or 'shallow'
   is_description_full_width_on_desktop=true,  # (optional) Full-width description
   is_list_full_width_on_tablet=true,     # (optional) Full-width list on tablet
-  top_rule_variant="default"             # (optional) 'default', 'muted', 'highlighted', 'none'
+  top_rule_variant="default",            # (optional) 'default', 'muted', 'highlighted', 'none'
+  img_attrs={},                           # (optional) Image attributes
+  video_attrs={},                         # (optional) Iframe or lite-youtube attributes
+  is_media_full_width=false,              # (optional) Put media in its own row
+  media_placement="after_cta",            # (optional) Placement relative to description/CTA
+  media_aspect_ratio="3-2",               # (optional) '3-2' or '16-9' for images
+  hide_media_on_small_medium_breakpoints=false,
+  is_media_highlighted=false
 ) %}
   {% if slot == 'title' %}...{% endif %}
   {% if slot == 'description' %}...{% endif %}
-  {% if slot == 'description_cta' %}...{% endif %}
   {% if slot == 'list_item_title_1' %}...{% endif %}
   {% if slot == 'list_item_description_1' %}...{% endif %}
-  {% if slot == 'list_item_cta_1' %}...{% endif %}
   {# ... list_item_title_N through list_item_description_N (supports up to 25 items) #}
   {% if slot == 'cta' %}...{% endif %}
 {% endcall %}
@@ -329,14 +341,19 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
 - `is_description_full_width_on_desktop` (boolean, optional): Description full-width on desktop. Default: true.
 - `is_list_full_width_on_tablet` (boolean, optional): List full-width on tablet. Default: true.
 - `top_rule_variant` (string, optional): 'default', 'muted', 'highlighted', 'none'. Default: 'default'.
+- `img_attrs` (object, optional): Attributes for an image displayed near the description. Default: {}.
+- `video_attrs` (object, optional): Use `src` for an iframe, or `video_id` and preferably `video_title` for `lite-youtube`. Default: {}. If supplied, video takes precedence over image.
+- `is_media_full_width` (boolean, optional): Render media in a full-width row. Default: false. Full-width images use a cinematic ratio; videos remain 16:9.
+- `media_placement` (string, optional): 'before_description', 'after_description', or 'after_cta'. The 4.59.0 docs default to 'after_cta'; installed 4.58.1 defaults to 'after_description', so pass this explicitly.
+- `media_aspect_ratio` (string, optional): '3-2' or '16-9' for non-full-width images. Default: '3-2'.
+- `hide_media_on_small_medium_breakpoints` (boolean, optional): Hide media below large screens. Default: false.
+- `is_media_highlighted` (boolean, optional): Highlight the image container. Default: false; images only.
 
 **Slots (up to 25 list items):**
 - `title`: Top-level title (h2)
 - `description`: Top-level description
-- `description_cta`: CTA in description area
 - `list_item_title_N`: Title for item N
 - `list_item_description_N`: Description for item N
-- `list_item_cta_N`: CTA for item N
 - `cta`: Bottom CTA
 
 ---
@@ -365,7 +382,7 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
 - `list_items` (array, required): Text or HTML strings. Must have 2-7 items.
 - `item_heading_level` (int, optional): 2 or 4. Default: 2.
 
-**Notes:** Items are rendered with specified heading level and separated by horizontal rules.
+**Notes:** Items are rendered with the specified heading level and separated by horizontal rules. The macro has no documented slots, but official examples use an empty call wrapper.
 
 ---
 
@@ -382,7 +399,7 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
 ```jinja
 {% call(slot) vf_logo_section(
   title,                                 # (required) Title dict with 'text' and optional 'link_attrs'
-  padding="default",                     # (optional) 'default' or 'deep'
+  padding="default",                     # (optional) 'default', 'deep', or 'none'
   blocks=[],                             # (required) Array of block objects
   top_rule_variant="default",            # (optional) 'default' or 'none'
   mode="default",                        # (optional) 'default' or 'minimal'
@@ -394,10 +411,12 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
 
 **Parameters:**
 - `title` (object, required): {text: "...", link_attrs: {...} (optional)}
-- `padding` (string, optional): 'default' or 'deep'. Default: 'default'.
+- `padding` (string, optional): 'default', 'deep', or 'none'. Default: 'default'.
 - `blocks` (array, required): Block objects.
   - `cta-block`: {type: "cta-block", item: {primary: {...}, secondaries: [...], link: {...}}}
   - `logo-block`: {type: "logo-block", item: {logos: [{src: "...", alt: "..."}]}}
+
+The Logo section's installed 4.58.1 macro forwards each logo dictionary directly to `<img>`. This differs from Basic section and Tab section logo blocks, which nest image attributes under `attrs`.
 - `top_rule_variant` (string, optional): 'default' or 'none'. Default: 'default'.
 - `mode` (string, optional): 'default' (renders section tag, includes title) or 'minimal' (renders div, no title). Default: 'default'.
 
@@ -432,7 +451,7 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
   - `href` (string, required): Link URL
   - `text` (string, required): Link text
   - `label` (string, required): aria-label
-  - `image_html` (string, required): Logo image HTML
+  - `image_attrs` or `image_html` (required): Prefer an image attribute dictionary; raw image HTML is also accepted. If both are supplied, `image_attrs` wins.
 - `layout` (string, optional): 'full-width' (8 max), '50-50' (6 max), '25-75' (9 max). Default: 'full-width'.
 - `top_rule_variant` (string, optional): 'default', 'muted', 'highlighted', 'none'. Default: 'default'.
 - `padding` (string, optional): 'default', 'deep', 'shallow', 'none'. Default: 'default'.
@@ -511,13 +530,13 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
 - `tiers` (array, required): Each tier has:
   - `tier_name_text` (string, optional): Tier name
   - `tier_price_text` (string, required): Price
-  - `tier_price_explanation` (string, optional): Price details
+  - `tier_price_explanation` (string, required): Price details
   - `tier_description_html` (string, optional): Tier description
-  - `tier_label_text` (string, optional): Label text
+  - `tier_label_text` (string, required): Label text
   - `tier_offerings` (array, required): Features list
     - Each item: {list_item_style: "ticked"|"crossed"|undefined, list_item_content_html: "..."}
   - `cta_html` (string, optional): CTA button HTML
-- `top_rule_variant` (string, optional): 'default', 'muted', 'highlighted', 'none'. Default: 'highlighted'.
+- `top_rule_variant` (string, optional): 'default', 'muted', 'highlighted', 'none'. Default: 'default'.
 - `attrs` (object, optional): HTML attributes.
 
 **Layout:** Determined by tier count:
@@ -527,7 +546,7 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
 - 4+ tiers → equal columns
 
 **Slots:**
-- `section_description`: Description text below title
+- `section_description`: Description text below title. The 4.59.0 API table calls this slot `description`, but both its official examples and the installed 4.58.1 macro use `section_description`; use the runtime-compatible name shown here.
 
 ---
 
@@ -540,31 +559,28 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
 {% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
 ```
 
-**Macro signature:**
+**Preferred invocation:**
 ```jinja
 {% call(slot) vf_cta_section(
-  title_text,                            # (required) H2 title
+  title_text='',                         # required only for the 'block' variant
   variant='default',                     # (optional) 'default' or 'block'
   layout='100',                          # (optional) '100' or '25-75'
-  caller=None,                           # Internal parameter
   attrs={},                              # (optional) HTML attributes
   blocks=[]                              # (optional) Array of blocks
 ) %}
-  {% if slot == 'description' %}...{% endif %}
-  {% if slot == 'cta' %}...{% endif %}
 {% endcall %}
 ```
 
 **Parameters:**
-- `title_text` (string, required): H2 title.
+- `title_text` (string, conditionally required): H2 title; required for the 'block' variant.
 - `variant` (string, optional): 'default' (title + link) or 'block' (title + description + CTA). Default: 'default'.
 - `layout` (string, optional): '100' (full-width) or '25-75' (split). Default: '100'.
-- `blocks` (array, optional): Content blocks (description, cta types).
+- `blocks` (array, optional): Content blocks. Supported types are `description` and `cta`.
 - `attrs` (object, optional): HTML attributes.
 
-**Slots:**
-- `description`: Description content
-- `cta`: CTA content/buttons
+**Notes:**
+- The legacy `description` and `cta` caller slots are deprecated. Do not use them in new implementations; use `blocks` instead.
+- Vanilla Framework 4.58.1 still invokes `caller()` internally, so retain the empty `{% call(slot) %}...{% endcall %}` wrapper even though no slot content is supplied.
 
 ---
 
@@ -604,6 +620,13 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
   - `tab_html` (string, required): HTML for tab label
 - `attrs` (object, optional): HTML attributes.
 
+**Layout support:**
+- `full-width`: `quote`, `linked-logo`, `logo-block`, `blog`
+- `50-50`: `linked-logo`, `logo-block`, `divided-section`, `blog`, `basic-section`
+- `25-75`: `linked-logo`, `logo-block`, `blog`
+
+Unsupported block types are silently skipped. The tabs JavaScript module must be loaded and initialized for the interface to function.
+
 ---
 
 ## Newsletter signup
@@ -622,7 +645,7 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
   return_url,                            # (required) Return URL after submission
   title_text,                            # (required) H2/H3 title
   form_action="https://ubuntu.com/marketo/submit",  # (optional) Form endpoint
-  input_label="Work email",              # (optional) Email input label
+  input_label="Work email",              # required by docs; 4.58.1 defaults to 'Work email'
   checkbox_id="canonicalUpdatesOptIn",   # (optional) Checkbox name
   checkbox_label="I agree...",           # (optional) Checkbox label
   layout="25-75",                        # (optional) '50-50', '25-75', '2-col', '4-col'
@@ -646,9 +669,9 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
 - `return_url` (string, required): URL to return to after submission.
 - `title_text` (string, required): Form title (H2 for section layout, H3 for grid).
 - `form_action` (string, optional): Form submission endpoint. Default: "https://ubuntu.com/marketo/submit".
-- `input_label` (string, optional): Email input label. Default: "Work email".
+- `input_label` (string, required by the 4.59.0 docs): Email input label. The installed 4.58.1 macro defaults to "Work email"; pass it explicitly for forward compatibility.
 - `checkbox_id` (string, optional): Checkbox field name. Default: "canonicalUpdatesOptIn".
-- `checkbox_label` (string, optional): Checkbox label text.
+- `checkbox_label` (string, required by the 4.59.0 docs): Checkbox label text. The installed 4.58.1 macro supplies a default.
 - `layout` (string, optional): '50-50', '25-75' (section layouts), '2-col', '4-col' (grid layouts). Default: '25-75'.
 - `top_rule_variant` (string, optional): 'default', 'muted', 'highlighted', 'none'. Default: 'default'.
 - `hide_newsletter_block_rule` (boolean, optional): Hide divider on small screens. Default: false.
@@ -659,7 +682,7 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
 - `addendum`: Additional content (disclaimer, etc.)
 - `hidden_fields`: Extra hidden form fields
 - `honeypot_fields`: Spam-prevention honeypot fields
-- `col_N`: Column content for grid layouts (2-col, 4-col)
+- `col_N`: Column content for grid layouts: `col_1` through `col_3` for `2-col`, and `col_1` through `col_2` for `4-col`.
 
 ---
 
@@ -672,7 +695,32 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
 {% from "_macros/vf_resources.jinja" import vf_resources %}
 ```
 
-**Note:** This pattern uses internal helper macros and the basic section structure. Refer to basic section for parameter details.
+**Macro signature:**
+```jinja
+{% call(slot) vf_resources(
+  title={},                              # (required) {text, link_attrs?}
+  blocks=[],                             # (required) Content blocks
+  padding="default"                      # (optional) 'default', 'deep', 'shallow'
+) %}
+{% endcall %}
+```
+
+**Parameters:**
+- `title` (object, required): `{text, link_attrs?}`.
+- `blocks` (array, required): Supports `description`, `cta-block`, and `resources`.
+- `padding` (string, optional): 'default', 'deep', or 'shallow'. Default: 'default'.
+
+**Block configuration:**
+- `description`: `{type: "description", item: {type: "text"|"html", content: "..."}}`.
+- `cta-block`: Uses the Basic section CTA block structure.
+- `resources`: `{type: "resources", render_images: bool, render_categories: bool, categories: [...]}`. Both render flags default to true.
+- Each category has a `title` and `items`.
+- Each item has required `title: {text, link_attrs?, attrs?}` and optional `image`, `description`, and `metadata`.
+- `image`: `{type: "image"|"logo", attrs: {...}}`; `image` is the default type and uses a 16:9 container.
+- `description`: `{text, attrs?, class?}`.
+- `metadata`: `{authors: [{text, link_attrs?}], date: {text, attrs?}}`.
+
+The official examples use an empty call wrapper, but there are no documented content slots; all content belongs in `blocks`. Installed 4.58.1 also assumes both a `description` and a `cta-block` entry exist, so include empty-safe entries when either has no content; 4.59.0 documents those blocks as optional.
 
 ---
 
@@ -711,7 +759,7 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
 - `description`: Description text
 - `logo_section_items`: Logo section content
 - `cta`: CTA area
-- `list_item_N`: List items (1-8)
+- `list_item_N`: List items (1-8); at least four are required.
 
 ---
 
@@ -745,7 +793,7 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
   - `ratio.large` (string, optional): '16-9', '3-2', '1-1', '2-3', 'auto-height'. Default: '3-2'.
   - `ratio.medium_small` (string, optional): '16-9', '3-2', '1-1'. Default: '3-2'.
   - `fit` (string, optional): 'cover' or 'contain'. Default: 'cover'.
-  - `attrs` (object, optional): HTML attributes for img/iframe.
+  - `attrs` (object, optional): HTML attributes for img/iframe. Default: {}.
 - `is_flipped` (boolean, optional): Swap content/media order. Default: false.
 - `padding` (string, optional): 'default', 'deep', 'shallow'. Default: 'default'.
 - `top_rule_variant` (string, optional): 'default' or 'muted'. Default: 'default'.
@@ -754,6 +802,7 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
 **Notes:**
 - 'auto-height' ratio is only valid for large screens (side-by-side layout)
 - Media types must match their corresponding attributes (image requires img attrs, video requires iframe attrs)
+- Videos render as 16:9 iframe embeds; `media.ratio` and `media.fit` are ignored for video
 
 ---
 
@@ -764,10 +813,19 @@ Vanilla Framework provides reusable Jinja macros that render common content layo
 2. **Parameter types matter**: strings vs objects vs arrays
 3. **Required parameters**: Will error if omitted
 4. **Optional parameters**: Have documented defaults
-5. **Slots vs. direct params**: Each pattern uses one approach; review carefully
+5. **Prefer structured APIs**: Use direct parameters and block arrays unless the pattern is listed below as slot-based
 
 ### Caller/Slot Patterns
-Patterns using `{% call(slot) %}` must provide all required slots via `{% if slot == 'name' %}...{% endif %}`.
+Only these documented patterns still require caller slots for some or all content:
+- Equal heights
+- Tiered list
+- Logo section
+- Quote wrapper
+- Pricing block
+- Newsletter signup
+- Rich list (horizontal)
+
+For these slot-based patterns, provide caller content via `{% if slot == 'name' %}...{% endif %}`. Hero and CTA section are not on this list because their content should use `blocks`; however, Vanilla Framework 4.58.1 still requires an empty `{% call(slot) %}` wrapper around them for compatibility with the deprecated slots.
 
 ### Block Arrays
 Patterns using blocks arrays expect: `{type: "...", item: {...}, padding: "shallow" (optional)}`
@@ -780,4 +838,4 @@ Content marked `html` is rendered with `| safe` filter. Ensure all user input is
 
 ---
 
-**Last updated:** 2025-09-28 (derived from actual macro implementations)
+**Last updated:** 2026-09-30 (cross-checked against the Vanilla Framework 4.59.0 documentation and the repository's installed 4.58.1 macros)
