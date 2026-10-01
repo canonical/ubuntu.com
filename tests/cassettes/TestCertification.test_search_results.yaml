@@ -5,35 +5,36 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, br
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.33.0
     method: GET
     uri: https://certification.canonical.com/api/v2/certified-releases/?format=json&limit=0&pagination=limitoffset
   response:
     body:
-      string: '{"count":9,"next":null,"previous":null,"results":[{"release":"Core
-        22","desktops":5,"laptops":0,"servers":0,"soc":0,"smart_core":13,"total":18},{"release":"24.04
-        LTS","desktops":0,"laptops":0,"servers":140,"soc":1,"smart_core":8,"total":149},{"release":"20.04
-        LTS","desktops":208,"laptops":431,"servers":455,"soc":5,"smart_core":45,"total":1159},{"release":"Core
-        20","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":26,"total":26},{"release":"Core
-        18","desktops":2,"laptops":0,"servers":0,"soc":0,"smart_core":5,"total":7},{"release":"18.04
-        LTS","desktops":115,"laptops":254,"servers":397,"soc":10,"smart_core":6,"total":792},{"release":"18.04","desktops":0,"laptops":0,"servers":2,"soc":0,"smart_core":0,"total":2},{"release":"22.04
-        LTS","desktops":229,"laptops":366,"servers":509,"soc":0,"smart_core":52,"total":1158},{"release":"Core
-        24","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":8,"total":8}]}'
+      string: '{"count":10,"next":null,"previous":null,"results":[{"release":"18.04","desktops":0,"laptops":0,"servers":2,"soc":0,"smart_core":0,"total":2},{"release":"18.04
+        LTS","desktops":116,"laptops":254,"servers":401,"soc":11,"smart_core":6,"total":792},{"release":"20.04
+        LTS","desktops":212,"laptops":436,"servers":462,"soc":5,"smart_core":43,"total":1166},{"release":"22.04
+        LTS","desktops":247,"laptops":407,"servers":656,"soc":0,"smart_core":65,"total":1375},{"release":"24.04
+        LTS","desktops":204,"laptops":360,"servers":535,"soc":2,"smart_core":27,"total":1132},{"release":"26.04
+        LTS","desktops":0,"laptops":7,"servers":293,"soc":0,"smart_core":1,"total":301},{"release":"Core
+        18","desktops":2,"laptops":0,"servers":0,"soc":0,"smart_core":5,"total":7},{"release":"Core
+        20","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":24,"total":24},{"release":"Core
+        22","desktops":5,"laptops":0,"servers":0,"soc":0,"smart_core":22,"total":27},{"release":"Core
+        24","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":13,"total":13}]}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '922'
+      - '1029'
       Content-Type:
       - application/json
       Date:
-      - Tue, 03 Sep 2024 15:26:45 GMT
+      - Thu, 24 Sep 2026 08:08:07 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Vary:
@@ -43,9 +44,9 @@ interactions:
       X-QueryInspect-Num-SQL-Queries:
       - '2'
       X-QueryInspect-Total-Request-Time:
-      - 116 ms
+      - 118 ms
       X-QueryInspect-Total-SQL-Time:
-      - 107 ms
+      - 109 ms
     status:
       code: 200
       message: OK
@@ -55,57 +56,65 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, br
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.33.0
     method: GET
     uri: https://certification.canonical.com/api/v2/certified-vendors/?format=json&limit=0&pagination=limitoffset
   response:
     body:
-      string: '{"count":52,"next":null,"previous":null,"results":[{"make":"Dell","desktops":164,"laptops":507,"servers":15,"soc":0,"smart_core":14,"total":716},{"make":"Lenovo","desktops":171,"laptops":275,"servers":123,"soc":0,"smart_core":5,"total":575},{"make":"HP","desktops":170,"laptops":222,"servers":2,"soc":0,"smart_core":0,"total":394},{"make":"Supermicro","desktops":0,"laptops":0,"servers":111,"soc":0,"smart_core":0,"total":111},{"make":"Dell
-        Technologies","desktops":0,"laptops":0,"servers":107,"soc":0,"smart_core":0,"total":107},{"make":"HPE","desktops":0,"laptops":0,"servers":94,"soc":0,"smart_core":0,"total":94},{"make":"ASUSTeK
-        Computer Inc.","desktops":0,"laptops":0,"servers":74,"soc":0,"smart_core":1,"total":75},{"make":"New
-        H3C Technologies Co., Ltd","desktops":0,"laptops":0,"servers":64,"soc":0,"smart_core":0,"total":64},{"make":"IBM","desktops":0,"laptops":0,"servers":56,"soc":0,"smart_core":0,"total":56},{"make":"Huawei
-        Technologies Co., Ltd.","desktops":0,"laptops":0,"servers":44,"soc":6,"smart_core":0,"total":50},{"make":"Cisco
-        UCS","desktops":0,"laptops":0,"servers":36,"soc":0,"smart_core":0,"total":36},{"make":"Fujitsu
-        Limited.","desktops":0,"laptops":0,"servers":35,"soc":0,"smart_core":0,"total":35},{"make":"QUANTA
-        Computer Inc","desktops":0,"laptops":0,"servers":35,"soc":0,"smart_core":0,"total":35},{"make":"Inspur
-        Electronic Information Industry Co., Ltd.","desktops":0,"laptops":0,"servers":26,"soc":0,"smart_core":0,"total":26},{"make":"xFusion
-        Digital Technologies Co., Ltd.","desktops":0,"laptops":0,"servers":25,"soc":0,"smart_core":0,"total":25},{"make":"ADVANTECH","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":23,"total":23},{"make":"Giga
-        Computing","desktops":0,"laptops":0,"servers":22,"soc":0,"smart_core":0,"total":22},{"make":"Raspberry
-        Pi Foundation","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":18,"total":18},{"make":"IEIT
-        SYSTEMS Co.,Ltd.","desktops":0,"laptops":0,"servers":18,"soc":0,"smart_core":0,"total":18},{"make":"Asus","desktops":0,"laptops":0,"servers":11,"soc":0,"smart_core":1,"total":12},{"make":"NEC
-        Corporation","desktops":0,"laptops":0,"servers":12,"soc":0,"smart_core":0,"total":12},{"make":"Fujitsu","desktops":0,"laptops":0,"servers":8,"soc":0,"smart_core":0,"total":8},{"make":"NVIDIA","desktops":0,"laptops":0,"servers":5,"soc":1,"smart_core":0,"total":8},{"make":"Ericsson,
-        Inc.","desktops":0,"laptops":0,"servers":7,"soc":0,"smart_core":0,"total":7},{"make":"Netweb","desktops":0,"laptops":0,"servers":7,"soc":0,"smart_core":0,"total":7},{"make":"Intel
-        Corp.","desktops":2,"laptops":0,"servers":0,"soc":0,"smart_core":4,"total":6},{"make":"Xilinx","desktops":2,"laptops":0,"servers":0,"soc":0,"smart_core":4,"total":6},{"make":"Eurotech","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":5,"total":5},{"make":"Kontron","desktops":0,"laptops":0,"servers":5,"soc":0,"smart_core":0,"total":5},{"make":"AAEON
-        Technology Inc.","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":5,"total":5},{"make":"ADLink
-        Technology, Inc.","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":5,"total":5},{"make":"Cavium,
-        Inc.","desktops":0,"laptops":0,"servers":3,"soc":2,"smart_core":0,"total":5},{"make":"DFI","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":4,"total":4},{"make":"OnLogic","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":4,"total":4},{"make":"Mediatek
-        Inc.","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":4,"total":4},{"make":"Cisco
-        Systems","desktops":0,"laptops":0,"servers":3,"soc":0,"smart_core":0,"total":3},{"make":"Mellanox
-        Technologies","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":1,"total":3},{"make":"Honeywell,
-        Inc.","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":3,"total":3},{"make":"Wiwynn","desktops":0,"laptops":0,"servers":2,"soc":0,"smart_core":0,"total":2},{"make":"Tyrone
-        Systems","desktops":0,"laptops":0,"servers":2,"soc":0,"smart_core":0,"total":2},{"make":"GIGA-BYTE
-        TECHNOLOGY CO., LTD.","desktops":0,"laptops":0,"servers":2,"soc":0,"smart_core":0,"total":2},{"make":"ZTE","desktops":0,"laptops":0,"servers":2,"soc":0,"smart_core":0,"total":2},{"make":"Rigado","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":2,"total":2},{"make":"Ampere
-        Computing, LLC","desktops":0,"laptops":0,"servers":0,"soc":2,"smart_core":0,"total":2},{"make":"ASRock
-        Industrial","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":2,"total":2},{"make":"IEI","desktops":1,"laptops":0,"servers":0,"soc":0,"smart_core":0,"total":1},{"make":"Element
-        Biosciences","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":1,"total":1},{"make":"Interactive
-        Strength Inc","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":1,"total":1},{"make":"FETCi","desktops":0,"laptops":0,"servers":1,"soc":0,"smart_core":0,"total":1},{"make":"Axiomtek","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":1,"total":1},{"make":"InoNet
-        Computer GmbH","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":1,"total":1},{"make":"Avnet
-        IoT Gateway","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":1,"total":1}]}'
+      string: '{"count":66,"next":null,"previous":null,"results":[{"make":"AAEON Technology
+        Inc.","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":5,"total":5},{"make":"ADLink
+        Technology, Inc.","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":5,"total":5},{"make":"ADVANTECH","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":24,"total":24},{"make":"AMD
+        AECG","desktops":3,"laptops":0,"servers":0,"soc":0,"smart_core":4,"total":7},{"make":"ASRock
+        Industrial","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":2,"total":2},{"make":"ASUSTeK
+        Computer Inc.","desktops":1,"laptops":0,"servers":74,"soc":0,"smart_core":1,"total":76},{"make":"Aivres
+        Systems Inc.","desktops":0,"laptops":0,"servers":13,"soc":0,"smart_core":0,"total":13},{"make":"Alienware","desktops":0,"laptops":7,"servers":0,"soc":0,"smart_core":0,"total":7},{"make":"Ampere
+        Computing, LLC","desktops":0,"laptops":0,"servers":0,"soc":3,"smart_core":0,"total":3},{"make":"Asus","desktops":0,"laptops":0,"servers":35,"soc":0,"smart_core":1,"total":36},{"make":"Avnet
+        IoT Gateway","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":1,"total":1},{"make":"Cavium,
+        Inc.","desktops":0,"laptops":0,"servers":2,"soc":3,"smart_core":0,"total":5},{"make":"Cisco
+        Systems","desktops":0,"laptops":0,"servers":15,"soc":0,"smart_core":0,"total":15},{"make":"Cisco
+        UCS","desktops":0,"laptops":0,"servers":38,"soc":0,"smart_core":0,"total":38},{"make":"DFI","desktops":1,"laptops":0,"servers":0,"soc":0,"smart_core":4,"total":5},{"make":"Dell","desktops":236,"laptops":683,"servers":17,"soc":0,"smart_core":12,"total":958},{"make":"Dell
+        Technologies","desktops":0,"laptops":0,"servers":143,"soc":0,"smart_core":0,"total":143},{"make":"Element
+        Biosciences","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":1,"total":1},{"make":"Ericsson,
+        Inc.","desktops":0,"laptops":0,"servers":7,"soc":0,"smart_core":0,"total":7},{"make":"Eurotech","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":5,"total":5},{"make":"FETCi","desktops":0,"laptops":0,"servers":1,"soc":0,"smart_core":0,"total":1},{"make":"Framework","desktops":0,"laptops":4,"servers":0,"soc":0,"smart_core":0,"total":4},{"make":"Fujitsu","desktops":0,"laptops":0,"servers":16,"soc":0,"smart_core":0,"total":16},{"make":"Fujitsu
+        Limited.","desktops":0,"laptops":0,"servers":35,"soc":0,"smart_core":0,"total":35},{"make":"Giga
+        Computing","desktops":1,"laptops":0,"servers":33,"soc":0,"smart_core":0,"total":34},{"make":"HP","desktops":263,"laptops":367,"servers":5,"soc":0,"smart_core":0,"total":635},{"make":"HPE","desktops":0,"laptops":0,"servers":138,"soc":0,"smart_core":0,"total":138},{"make":"Honeywell,
+        Inc.","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":3,"total":3},{"make":"Huawei
+        Technologies Co., Ltd.","desktops":0,"laptops":0,"servers":44,"soc":6,"smart_core":0,"total":50},{"make":"IBM","desktops":0,"laptops":0,"servers":62,"soc":0,"smart_core":0,"total":62},{"make":"IEI","desktops":1,"laptops":0,"servers":0,"soc":0,"smart_core":0,"total":1},{"make":"IEIT
+        SYSTEMS Co.,Ltd.","desktops":0,"laptops":0,"servers":22,"soc":0,"smart_core":0,"total":22},{"make":"InoNet
+        Computer GmbH","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":1,"total":1},{"make":"Inspur
+        Electronic Information Industry Co., Ltd.","desktops":0,"laptops":0,"servers":22,"soc":0,"smart_core":0,"total":22},{"make":"Intel
+        Corp.","desktops":2,"laptops":0,"servers":0,"soc":0,"smart_core":4,"total":6},{"make":"Interactive
+        Strength Inc","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":1,"total":1},{"make":"Inventec","desktops":0,"laptops":0,"servers":2,"soc":0,"smart_core":0,"total":2},{"make":"Kaytus","desktops":0,"laptops":0,"servers":11,"soc":0,"smart_core":0,"total":11},{"make":"Kontron","desktops":0,"laptops":0,"servers":5,"soc":0,"smart_core":0,"total":5},{"make":"Lenovo","desktops":219,"laptops":356,"servers":173,"soc":0,"smart_core":7,"total":755},{"make":"MSI","desktops":1,"laptops":0,"servers":0,"soc":0,"smart_core":0,"total":1},{"make":"Mediatek
+        Inc.","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":14,"total":14},{"make":"Mellanox
+        Technologies","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":1,"total":3},{"make":"MiTAC
+        Computing Technology Corp.","desktops":0,"laptops":0,"servers":9,"soc":0,"smart_core":0,"total":9},{"make":"NEC
+        Corporation","desktops":0,"laptops":0,"servers":13,"soc":0,"smart_core":0,"total":13},{"make":"NVIDIA","desktops":2,"laptops":0,"servers":7,"soc":1,"smart_core":7,"total":17},{"make":"NXP","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":2,"total":2},{"make":"Netas","desktops":0,"laptops":0,"servers":1,"soc":0,"smart_core":0,"total":1},{"make":"Netweb","desktops":1,"laptops":0,"servers":22,"soc":0,"smart_core":0,"total":23},{"make":"New
+        H3C Technologies Co., Ltd","desktops":0,"laptops":0,"servers":161,"soc":0,"smart_core":0,"total":161},{"make":"OnLogic","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":4,"total":4},{"make":"Phoenix
+        Contact Ltd","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":2,"total":2},{"make":"QUANTA
+        Computer Inc","desktops":0,"laptops":0,"servers":42,"soc":0,"smart_core":0,"total":42},{"make":"Qualcomm
+        Inc","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":4,"total":4},{"make":"Raspberry
+        Pi Foundation","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":18,"total":18},{"make":"Renesas
+        Electronics Corporation","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":2,"total":2},{"make":"Renesas
+        Technology Corp.","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":2,"total":2},{"make":"Rigado","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":2,"total":2},{"make":"Schneider
+        Electric","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":3,"total":3},{"make":"Super
+        Micro Computer Inc","desktops":1,"laptops":0,"servers":0,"soc":0,"smart_core":0,"total":1},{"make":"Supermicro","desktops":0,"laptops":0,"servers":113,"soc":0,"smart_core":0,"total":113},{"make":"Thundercomm","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":1,"total":1},{"make":"Tyrone
+        Systems","desktops":1,"laptops":0,"servers":32,"soc":0,"smart_core":0,"total":33},{"make":"Wiwynn","desktops":0,"laptops":0,"servers":2,"soc":0,"smart_core":0,"total":2},{"make":"ZTE","desktops":0,"laptops":0,"servers":2,"soc":0,"smart_core":0,"total":2},{"make":"xFusion
+        Digital Technologies Co., Ltd.","desktops":0,"laptops":0,"servers":36,"soc":0,"smart_core":0,"total":36}]}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '5104'
+      - '6468'
       Content-Type:
       - application/json
       Date:
-      - Tue, 03 Sep 2024 15:26:45 GMT
+      - Thu, 24 Sep 2026 08:08:08 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Vary:
@@ -115,9 +124,9 @@ interactions:
       X-QueryInspect-Num-SQL-Queries:
       - '2'
       X-QueryInspect-Total-Request-Time:
-      - 90 ms
+      - 329 ms
       X-QueryInspect-Total-SQL-Time:
-      - 76 ms
+      - 320 ms
     status:
       code: 200
       message: OK
@@ -127,93 +136,11 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, br
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.2
-    method: GET
-    uri: https://certification.canonical.com/api/v2/certified-configurations/?format=json&limit=20&offset=0&vendor=Dell&query=xps&category__in=Laptop%2CDesktop&pagination=limitoffset
-  response:
-    body:
-      string: '{"count":37,"next":"https://certification.canonical.com/api/v2/certified-configurations/?category__in=Laptop%2CDesktop&format=json&limit=20&offset=20&pagination=limitoffset&query=xps&vendor=Dell","previous":null,"results":[{"canonical_id":"201906-27119","make":"Dell","model":"XPS
-        13 7390","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
-        LTS","completed":"2019-09-27T21:22:33.103146+01:00","resource_uri":"/api/v2/certified-configurations/201906-27119"},{"canonical_id":"201906-27131","make":"Dell","model":"XPS
-        13 7390","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
-        LTS","completed":"2019-09-27T21:20:13.682473+01:00","resource_uri":"/api/v2/certified-configurations/201906-27131"},{"canonical_id":"201906-27151","make":"Dell","model":"XPS
-        13 7390","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
-        LTS","completed":"2019-09-27T21:23:47.568870+01:00","resource_uri":"/api/v2/certified-configurations/201906-27151"},{"canonical_id":"201910-27449","make":"Dell","model":"XPS
-        13 9300","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
-        LTS","completed":"2020-05-14T00:56:30.180711+01:00","resource_uri":"/api/v2/certified-configurations/201910-27449"},{"canonical_id":"201910-27450","make":"Dell","model":"XPS
-        13 9300","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
-        LTS","completed":"2020-05-14T00:55:14.224520+01:00","resource_uri":"/api/v2/certified-configurations/201910-27450"},{"canonical_id":"201911-27454","make":"Dell","model":"XPS
-        13 9300","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
-        LTS","completed":"2020-05-14T00:57:11.782255+01:00","resource_uri":"/api/v2/certified-configurations/201911-27454"},{"canonical_id":"201911-27457","make":"Dell","model":"XPS
-        13 9300","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
-        LTS","completed":"2020-02-18T21:26:25.078396Z","resource_uri":"/api/v2/certified-configurations/201911-27457"},{"canonical_id":"201911-27469","make":"Dell","model":"XPS
-        13 9300","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
-        LTS","completed":"2020-02-18T21:29:09.773765Z","resource_uri":"/api/v2/certified-configurations/201911-27469"},{"canonical_id":"202007-28040","make":"Dell","model":"XPS
-        13 9310","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
-        LTS","completed":"2020-10-02T18:40:33.552657+01:00","resource_uri":"/api/v2/certified-configurations/202007-28040"},{"canonical_id":"202007-28045","make":"Dell","model":"XPS
-        13 9310","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
-        LTS","completed":"2020-10-02T18:39:43.223649+01:00","resource_uri":"/api/v2/certified-configurations/202007-28045"},{"canonical_id":"202007-28046","make":"Dell","model":"XPS
-        13 9310","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
-        LTS","completed":"2020-10-02T18:38:09.374209+01:00","resource_uri":"/api/v2/certified-configurations/202007-28046"},{"canonical_id":"202007-28063","make":"Dell","model":"XPS
-        13 9310","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
-        LTS","completed":"2020-10-02T18:38:51.561750+01:00","resource_uri":"/api/v2/certified-configurations/202007-28063"},{"canonical_id":"201708-25695","make":"Dell","model":"XPS
-        13 9370","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
-        LTS","completed":"2018-07-26T16:58:21.731947+01:00","resource_uri":"/api/v2/certified-configurations/201708-25695"},{"canonical_id":"201712-26015","make":"Dell","model":"XPS
-        13 9370","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
-        LTS","completed":"2018-07-26T16:57:05.823353+01:00","resource_uri":"/api/v2/certified-configurations/201712-26015"},{"canonical_id":"201712-26038","make":"Dell","model":"XPS
-        13 9370","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
-        LTS","completed":"2018-07-26T16:56:05.088761+01:00","resource_uri":"/api/v2/certified-configurations/201712-26038"},{"canonical_id":"201810-26510","make":"Dell","model":"XPS
-        13 9380","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
-        LTS","completed":"2019-01-11T21:53:46.964184Z","resource_uri":"/api/v2/certified-configurations/201810-26510"},{"canonical_id":"201810-26512","make":"Dell","model":"XPS
-        13 9380","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
-        LTS","completed":"2019-01-11T21:54:44.236586Z","resource_uri":"/api/v2/certified-configurations/201810-26512"},{"canonical_id":"201810-26515","make":"Dell","model":"XPS
-        13 9380","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
-        LTS","completed":"2019-01-11T21:52:46.041281Z","resource_uri":"/api/v2/certified-configurations/201810-26515"},{"canonical_id":"201810-26535","make":"Dell","model":"XPS
-        13 9380","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
-        LTS","completed":"2019-01-11T21:55:47.382570Z","resource_uri":"/api/v2/certified-configurations/201810-26535"},{"canonical_id":"202112-29801","make":"Dell","model":"XPS
-        13 Plus (Core i5-1240P)","level":"Certified Pre-Install","release":"22.04
-        LTS","category":"Laptop","major_release":"22.04 LTS","completed":"2022-07-18T14:15:12.019364+01:00","resource_uri":"/api/v2/certified-configurations/202112-29801"}]}'
-    headers:
-      Allow:
-      - GET, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '5810'
-      Content-Type:
-      - application/json
-      Date:
-      - Tue, 03 Sep 2024 15:26:45 GMT
-      Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
-      Vary:
-      - Accept, Cookie
-      X-QueryInspect-Duplicate-SQL-Queries:
-      - '0'
-      X-QueryInspect-Num-SQL-Queries:
-      - '8'
-      X-QueryInspect-Total-Request-Time:
-      - 241 ms
-      X-QueryInspect-Total-SQL-Time:
-      - 221 ms
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.33.0
     method: GET
     uri: https://partners.ubuntu.com/partners.json?name=Dell
   response:
@@ -228,17 +155,448 @@ interactions:
       - application.json
       cross-origin-opener-policy:
       - same-origin
+      date:
+      - Thu, 24 Sep 2026 08:08:13 GMT
       referrer-policy:
       - same-origin
       server:
       - nginx/1.14.0 (Ubuntu)
       strict-transport-security:
       - max-age=15724800
+      x-cache-status:
+      - HIT from content-cache-il3/0
       x-content-type-options:
       - nosniff
       x-frame-options:
       - DENY
+      x-request-id:
+      - 5d65e3df5f9a46dd503b7e64f3f4ad38
+      x-vcs-revision:
+      - 1697765408-2f1353b
     status:
       code: 200
-      message: ''
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.0
+    method: GET
+    uri: https://certification.canonical.com/api/v2/certified-configurations/?format=json&limit=20&offset=0&vendor=Dell&query=xps&category__in=Laptop%2CDesktop&pagination=limitoffset
+  response:
+    body:
+      string: '{"count":46,"next":"https://certification.canonical.com/api/v2/certified-configurations/?category__in=Laptop%2CDesktop&format=json&limit=20&offset=20&pagination=limitoffset&query=xps&vendor=Dell","previous":null,"results":[{"canonical_id":"201906-27119","make":"Dell","model":"XPS
+        13 7390","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
+        LTS","completed":"2019-09-27T21:22:33.103146+01:00","resource_uri":"/api/v2/certified-configurations/201906-27119"},{"canonical_id":"201906-27131","make":"Dell","model":"XPS
+        13 7390","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
+        LTS","completed":"2019-09-27T21:20:13.682473+01:00","resource_uri":"/api/v2/certified-configurations/201906-27131"},{"canonical_id":"201906-27151","make":"Dell","model":"XPS
+        13 7390","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
+        LTS","completed":"2019-09-27T21:23:47.568870+01:00","resource_uri":"/api/v2/certified-configurations/201906-27151"},{"canonical_id":"201910-27449","make":"Dell","model":"XPS
+        13 9300","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
+        LTS","completed":"2020-05-14T00:56:30.180711+01:00","resource_uri":"/api/v2/certified-configurations/201910-27449"},{"canonical_id":"201910-27450","make":"Dell","model":"XPS
+        13 9300","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
+        LTS","completed":"2020-05-14T00:55:14.224520+01:00","resource_uri":"/api/v2/certified-configurations/201910-27450"},{"canonical_id":"201911-27454","make":"Dell","model":"XPS
+        13 9300","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
+        LTS","completed":"2020-05-14T00:57:11.782255+01:00","resource_uri":"/api/v2/certified-configurations/201911-27454"},{"canonical_id":"201911-27457","make":"Dell","model":"XPS
+        13 9300","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
+        LTS","completed":"2020-05-14T00:57:50.195277+01:00","resource_uri":"/api/v2/certified-configurations/201911-27457"},{"canonical_id":"201911-27469","make":"Dell","model":"XPS
+        13 9300","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
+        LTS","completed":"2020-02-18T21:29:09.773765Z","resource_uri":"/api/v2/certified-configurations/201911-27469"},{"canonical_id":"202007-28040","make":"Dell","model":"XPS
+        13 9310","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
+        LTS","completed":"2020-10-02T18:40:33.552657+01:00","resource_uri":"/api/v2/certified-configurations/202007-28040"},{"canonical_id":"202007-28045","make":"Dell","model":"XPS
+        13 9310","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
+        LTS","completed":"2020-10-02T18:39:43.223649+01:00","resource_uri":"/api/v2/certified-configurations/202007-28045"},{"canonical_id":"202007-28046","make":"Dell","model":"XPS
+        13 9310","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
+        LTS","completed":"2020-10-02T18:38:09.374209+01:00","resource_uri":"/api/v2/certified-configurations/202007-28046"},{"canonical_id":"202007-28063","make":"Dell","model":"XPS
+        13 9310","level":"Certified Pre-Install","release":"20.04 LTS","category":"Laptop","major_release":"20.04
+        LTS","completed":"2020-10-02T18:38:51.561750+01:00","resource_uri":"/api/v2/certified-configurations/202007-28063"},{"canonical_id":"202405-34051","make":"Dell","model":"XPS
+        13 9340 (3K OLED Touchscreen)","level":"Certified Pre-Install","release":"24.04
+        LTS","category":"Laptop","major_release":"24.04 LTS","completed":"2024-09-12T15:53:19.342086+01:00","resource_uri":"/api/v2/certified-configurations/202405-34051"},{"canonical_id":"202407-34207","make":"Dell","model":"XPS
+        13 9340 (Full HD Screen)","level":"Certified Pre-Install","release":"24.04
+        LTS","category":"Laptop","major_release":"24.04 LTS","completed":"2024-09-12T15:53:31.058909+01:00","resource_uri":"/api/v2/certified-configurations/202407-34207"},{"canonical_id":"202407-34216","make":"Dell","model":"XPS
+        13 9350 (Core Ultra 5 226V)","level":"Certified Pre-Install","release":"24.04
+        LTS","category":"Laptop","major_release":"24.04 LTS","completed":"2025-03-28T16:09:11.794384Z","resource_uri":"/api/v2/certified-configurations/202407-34216"},{"canonical_id":"202407-34214","make":"Dell","model":"XPS
+        13 9350 (Core Ultra 7 258V)","level":"Certified Pre-Install","release":"24.04
+        LTS","category":"Laptop","major_release":"24.04 LTS","completed":"2025-03-28T15:56:36.744558Z","resource_uri":"/api/v2/certified-configurations/202407-34214"},{"canonical_id":"202407-34215","make":"Dell","model":"XPS
+        13 9350 (Core Ultra 7 268V)","level":"Certified Pre-Install","release":"24.04
+        LTS","category":"Laptop","major_release":"24.04 LTS","completed":"2025-03-28T16:04:58.890490Z","resource_uri":"/api/v2/certified-configurations/202407-34215"},{"canonical_id":"202507-36962","make":"Dell","model":"XPS
+        13 9350 (Core Ultra 9 288V)","level":"Certified Pre-Install","release":"24.04
+        LTS","category":"Laptop","major_release":"24.04 LTS","completed":"2025-10-24T15:04:16.029448+01:00","resource_uri":"/api/v2/certified-configurations/202507-36962"},{"canonical_id":"202510-38027","make":"Dell","model":"XPS
+        13 9350 (Intel Core Ultra 9 288V, Intel Lunar Lake Graphics, Intel BE201)","level":"Certified
+        Pre-Install","release":"24.04 LTS","category":"Laptop","major_release":"24.04
+        LTS","completed":"2026-04-16T16:40:48.651120+01:00","resource_uri":"/api/v2/certified-configurations/202510-38027"},{"canonical_id":"201708-25695","make":"Dell","model":"XPS
+        13 9370","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
+        LTS","completed":"2018-07-26T16:58:21.731947+01:00","resource_uri":"/api/v2/certified-configurations/201708-25695"}]}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '5989'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 24 Sep 2026 08:08:14 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Vary:
+      - Accept, Cookie
+      X-QueryInspect-Duplicate-SQL-Queries:
+      - '0'
+      X-QueryInspect-Num-SQL-Queries:
+      - '2'
+      X-QueryInspect-Total-Request-Time:
+      - 196 ms
+      X-QueryInspect-Total-SQL-Time:
+      - 182 ms
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.0
+    method: GET
+    uri: https://certification.canonical.com/api/v2/certified-configuration-details/?format=json&limit=0&canonical_id__in=201906-27119%2C201906-27131%2C201906-27151%2C201910-27449%2C201910-27450%2C201911-27454%2C201911-27457%2C201911-27469%2C202007-28040%2C202007-28045%2C202007-28046%2C202007-28063%2C202405-34051%2C202407-34207%2C202407-34216%2C202407-34214%2C202407-34215%2C202507-36962%2C202510-38027%2C201708-25695&pagination=limitoffset
+  response:
+    body:
+      string: "{\"count\":25,\"next\":null,\"previous\":null,\"results\":[{\"id\":17379,\"canonical_id\":\"202510-38027\",\"architecture\":\"amd64\",\"bios\":\"Dell
+        Inc.: 1.15.1 (UEFI)\",\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"6.14.0-1013-oem\",\"notes\":[],\"make\":\"Dell\",\"model\":\"XPS
+        13 9350 (Intel Core Ultra 9 288V, Intel Lunar Lake Graphics, Intel BE201)\",\"platform_name\":\"XPS
+        13 9350 (0CC9)\",\"platform_id\":\"14923\",\"processor\":[{\"name\":\"Intel(R)
+        Core(TM) Ultra 9 288V\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:Intel(R)Core(TM)Ultra9288V\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[{\"name\":\"USB
+        10/100/1000 LAN\",\"make\":\"Realtek Semiconductor Co., Ltd.\",\"bus\":\"usb\",\"identifier\":\"0bda:8153\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":286,\"subvendor_id\":\"\",\"category\":\"NETWORK\"}],\"video\":[{\"name\":\"8086:64a0\",\"make\":\"Intel
+        Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:64a0\",\"subsystem\":\"1028:0dab\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":4755,\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"BE201
+        320MHz\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:a840\",\"subsystem\":\"8086:40e0\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":4103,\"category\":\"WIRELESS\"}],\"certified_release\":\"24.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"2604-17379\",\"form_factor\":\"Notebook\",\"platform_certified_configuration_count\":4,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":17093,\"canonical_id\":\"202507-36962\",\"architecture\":\"amd64\",\"bios\":\"Dell
+        Inc.: 1.14.0 (UEFI)\",\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"6.14.0-1008-oem\",\"notes\":[],\"make\":\"Dell\",\"model\":\"XPS
+        13 9350 (Core Ultra 9 288V)\",\"platform_name\":\"XPS 13 9350\",\"platform_id\":\"7518\",\"processor\":[{\"name\":\"Intel(R)
+        Core(TM) Ultra 9 288V\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:Intel(R)Core(TM)Ultra9288V\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[{\"name\":\"USB
+        10/100/1000 LAN\",\"make\":\"Realtek Semiconductor Co., Ltd.\",\"bus\":\"usb\",\"identifier\":\"0bda:8153\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":286,\"subvendor_id\":\"\",\"category\":\"NETWORK\"}],\"video\":[{\"name\":\"8086:64a0\",\"make\":\"Intel
+        Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:64a0\",\"subsystem\":\"1028:0dab\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":4755,\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"BE201
+        320MHz\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:a840\",\"subsystem\":\"8086:40e0\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":4103,\"category\":\"WIRELESS\"}],\"certified_release\":\"24.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"2510-17093\",\"form_factor\":\"Laptop\",\"platform_certified_configuration_count\":1,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":16525,\"canonical_id\":\"202407-34216\",\"architecture\":\"amd64\",\"bios\":\"Dell
+        Inc.: 1.7.1 (UEFI)\",\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"6.11.0-1011-oem\",\"notes\":[{\"title\":\"Light
+        sensor does not work\",\"comment\":\"The light sensor is not supported on
+        this hardware\"}],\"make\":\"Dell\",\"model\":\"XPS 13 9350 (Core Ultra 5
+        226V)\",\"platform_name\":\"XPS 13 9350 (0CC9)\",\"platform_id\":\"14923\",\"processor\":[{\"name\":\"Intel(R)
+        Core(TM) Ultra 5 226V\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:Intel(R)Core(TM)Ultra5226V\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[{\"name\":\"USB
+        10/100/1000 LAN\",\"make\":\"Realtek Semiconductor Co., Ltd.\",\"bus\":\"usb\",\"identifier\":\"0bda:8153\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":286,\"subvendor_id\":\"\",\"category\":\"NETWORK\"}],\"video\":[{\"name\":\"Lunar
+        Lake [Intel Graphics]\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:64a0\",\"subsystem\":\"1028:0cc9\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":4755,\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"BE201
+        320MHz\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:a840\",\"subsystem\":\"8086:40e0\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":4103,\"category\":\"WIRELESS\"}],\"certified_release\":\"24.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"2503-16525\",\"form_factor\":\"Notebook\",\"platform_certified_configuration_count\":4,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":16524,\"canonical_id\":\"202407-34215\",\"architecture\":\"amd64\",\"bios\":\"Dell
+        Inc.: 1.7.1 (UEFI)\",\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"6.11.0-1011-oem\",\"notes\":[{\"title\":\"Light
+        sensor does not work\",\"comment\":\"The light sensor is not supported on
+        this hardware\"},{\"title\":\"Docking Support\",\"comment\":\"The system has
+        been certified to work with the following docking stations: \\r\\n* Atomic\"}],\"make\":\"Dell\",\"model\":\"XPS
+        13 9350 (Core Ultra 7 268V)\",\"platform_name\":\"XPS 13 9350 (0CC9)\",\"platform_id\":\"14923\",\"processor\":[{\"name\":\"Intel(R)
+        Core(TM) Ultra 7 268V\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:Intel(R)Core(TM)Ultra7268V\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[{\"name\":\"USB
+        10/100 LAN\",\"make\":\"Realtek Semiconductor Co., Ltd.\",\"bus\":\"usb\",\"identifier\":\"0bda:8152\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":286,\"subvendor_id\":\"\",\"category\":\"NETWORK\"}],\"video\":[{\"name\":\"Lunar
+        Lake [Intel Graphics]\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:64a0\",\"subsystem\":\"1028:0cc9\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":4755,\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"BE201
+        320MHz\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:a840\",\"subsystem\":\"8086:40e0\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":4103,\"category\":\"WIRELESS\"}],\"certified_release\":\"24.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"2503-16524\",\"form_factor\":\"Notebook\",\"platform_certified_configuration_count\":4,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":16523,\"canonical_id\":\"202407-34214\",\"architecture\":\"amd64\",\"bios\":\"Dell
+        Inc.: 1.7.1 (UEFI)\",\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"6.11.0-1011-oem\",\"notes\":[{\"title\":\"Light
+        sensor\",\"comment\":\"The light sensor is not supported on this hardware\"},{\"title\":\"Docking
+        Support\",\"comment\":\"The system has been certified to work with the following
+        docking stations: \\r\\n* WD22TB4\"}],\"make\":\"Dell\",\"model\":\"XPS 13
+        9350 (Core Ultra 7 258V)\",\"platform_name\":\"XPS 13 9350 (0CC9)\",\"platform_id\":\"14923\",\"processor\":[{\"name\":\"Intel(R)
+        Core(TM) Ultra 7 258V\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:Intel(R)Core(TM)Ultra7258V\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[],\"video\":[{\"name\":\"Lunar
+        Lake [Intel Graphics]\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:64a0\",\"subsystem\":\"1028:0cc9\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":4755,\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"BE201
+        320MHz\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:a840\",\"subsystem\":\"8086:40e0\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":4103,\"category\":\"WIRELESS\"}],\"certified_release\":\"24.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"2503-16523\",\"form_factor\":\"Notebook\",\"platform_certified_configuration_count\":4,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":16100,\"canonical_id\":\"202407-34207\",\"architecture\":\"amd64\",\"bios\":\"Dell
+        Inc.: 1.7.0 (UEFI)\",\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"6.8.0-1009-oem\",\"notes\":[{\"title\":\"Graphics
+        performance regression on MTL platform in 6.8 kernel (on battery)\",\"comment\":\"When
+        the system is running on battery in a very low computational state, the E-Cores\xB9
+        switch between C1 and C6 states\xB2, resulting in additional latency which
+        may result in graphics slow down. As long as the user is actively using the
+        desktop environment, the CPU exits the sleep state and this issue does not
+        appear.\\r\\n\\r\\nMore information is available in the public bug report\xB3.\\r\\n\\r\\n\xB9
+        https://www.intel.com/content/www/us/en/gaming/resources/how-hybrid-design-works.html\\r\\n\xB2
+        https://en.wikipedia.org/wiki/ACPI#Processor_states\\r\\n\xB3 https://bugzilla.kernel.org/show_bug.cgi?id=219179\"}],\"make\":\"Dell\",\"model\":\"XPS
+        13 9340 (Full HD Screen)\",\"platform_name\":\"XPS 13 9340\",\"platform_id\":\"14945\",\"processor\":[{\"name\":\"Intel(R)
+        Core(TM) Ultra 7 155H\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:Intel(R)Core(TM)Ultra7155H\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[{\"name\":\"USB
+        10/100/1000 LAN\",\"make\":\"Realtek Semiconductor Co., Ltd.\",\"bus\":\"usb\",\"identifier\":\"0bda:8153\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":286,\"subvendor_id\":\"\",\"category\":\"NETWORK\"}],\"video\":[{\"name\":\"Meteor
+        Lake-P [Intel Arc Graphics]\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:7d55\",\"subsystem\":\"1028:0c87\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":4755,\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"Wi-Fi
+        7(802.11be) AX1775*/AX1790*/BE20*/BE401/BE1750* 2x2\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:272b\",\"subsystem\":\"8086:40f0\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":4103,\"category\":\"WIRELESS\"}],\"certified_release\":\"24.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"2409-16100\",\"form_factor\":\"Notebook\",\"platform_certified_configuration_count\":2,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":16099,\"canonical_id\":\"202405-34051\",\"architecture\":\"amd64\",\"bios\":\"Dell
+        Inc.: 1.7.0 (UEFI)\",\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"6.8.0-1009-oem\",\"notes\":[{\"title\":\"Graphics
+        performance regression on MTL platform in 6.8 kernel (on battery)\",\"comment\":\"When
+        the system is running on battery in a very low computational state, the E-Cores\xB9
+        switch between C1 and C6 states\xB2, resulting in additional latency which
+        may result in graphics slow down. As long as the user is actively using the
+        desktop environment, the CPU exits the sleep state and this issue does not
+        appear.\\r\\n\\r\\nMore information is available in the public bug report\xB3.\\r\\n\\r\\n\xB9
+        https://www.intel.com/content/www/us/en/gaming/resources/how-hybrid-design-works.html\\r\\n\xB2
+        https://en.wikipedia.org/wiki/ACPI#Processor_states\\r\\n\xB3 https://bugzilla.kernel.org/show_bug.cgi?id=219179\"}],\"make\":\"Dell\",\"model\":\"XPS
+        13 9340 (3K OLED Touchscreen)\",\"platform_name\":\"XPS 13 9340\",\"platform_id\":\"14945\",\"processor\":[{\"name\":\"Intel(R)
+        Core(TM) Ultra 7 155H\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:Intel(R)Core(TM)Ultra7155H\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[{\"name\":\"USB
+        10/100/1000 LAN\",\"make\":\"Realtek Semiconductor Co., Ltd.\",\"bus\":\"usb\",\"identifier\":\"0bda:8153\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":286,\"subvendor_id\":\"\",\"category\":\"NETWORK\"}],\"video\":[{\"name\":\"Meteor
+        Lake-P [Intel Arc Graphics]\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:7d55\",\"subsystem\":\"1028:0c87\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":4755,\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"Wi-Fi
+        7(802.11be) AX1775*/AX1790*/BE20*/BE401/BE1750* 2x2\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:272b\",\"subsystem\":\"8086:40f0\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":4103,\"category\":\"WIRELESS\"}],\"certified_release\":\"24.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"2409-16099\",\"form_factor\":\"Notebook\",\"platform_certified_configuration_count\":2,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":12161,\"canonical_id\":\"202007-28040\",\"architecture\":\"amd64\",\"bios\":\"Dell
+        Inc.: 0.2.11\",\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"5.6.0-1022-oem\",\"notes\":[],\"make\":\"Dell\",\"model\":\"XPS
+        13 9310\",\"platform_name\":\"XPS 13 9310\",\"platform_id\":\"10476\",\"processor\":[{\"name\":\"11th
+        Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:11thGenIntel(R)Core(TM)i5-1135G7@2.40GHz\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[],\"video\":[{\"name\":\"UHD
+        Graphics\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:9a49\",\"subsystem\":\"1028:0991\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"Wi-Fi
+        6 AX201\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:a0f0\",\"subsystem\":\"1a56:1651\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"WIRELESS\"}],\"certified_release\":\"20.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"2010-12161\",\"form_factor\":\"Laptop\",\"platform_certified_configuration_count\":4,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":12160,\"canonical_id\":\"202007-28045\",\"architecture\":\"amd64\",\"bios\":\"Dell
+        Inc.: 0.2.11\",\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"5.6.0-1022-oem\",\"notes\":[],\"make\":\"Dell\",\"model\":\"XPS
+        13 9310\",\"platform_name\":\"XPS 13 9310\",\"platform_id\":\"10476\",\"processor\":[{\"name\":\"11th
+        Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:11thGenIntel(R)Core(TM)i7-1165G7@2.80GHz\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[],\"video\":[{\"name\":\"UHD
+        Graphics\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:9a49\",\"subsystem\":\"1028:0991\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"Wi-Fi
+        6 AX201\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:a0f0\",\"subsystem\":\"1a56:1651\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"WIRELESS\"}],\"certified_release\":\"20.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"2010-12160\",\"form_factor\":\"Laptop\",\"platform_certified_configuration_count\":4,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":12159,\"canonical_id\":\"202007-28063\",\"architecture\":\"amd64\",\"bios\":\"Dell
+        Inc.: 0.2.11\",\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"5.6.0-1022-oem\",\"notes\":[],\"make\":\"Dell\",\"model\":\"XPS
+        13 9310\",\"platform_name\":\"XPS 13 9310\",\"platform_id\":\"10476\",\"processor\":[{\"name\":\"11th
+        Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:11thGenIntel(R)Core(TM)i7-1165G7@2.80GHz\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[],\"video\":[{\"name\":\"UHD
+        Graphics\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:9a49\",\"subsystem\":\"1028:0991\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"VIDEO\"}],\"wireless\":[],\"certified_release\":\"20.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"2010-12159\",\"form_factor\":\"Laptop\",\"platform_certified_configuration_count\":4,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":12158,\"canonical_id\":\"202007-28046\",\"architecture\":\"amd64\",\"bios\":\"Dell
+        Inc.: 0.2.11\",\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"5.6.0-1022-oem\",\"notes\":[],\"make\":\"Dell\",\"model\":\"XPS
+        13 9310\",\"platform_name\":\"XPS 13 9310\",\"platform_id\":\"10476\",\"processor\":[{\"name\":\"11th
+        Gen Intel(R) Core(TM) i3-1115G4 @ 3.00GHz\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:11thGenIntel(R)Core(TM)i3-1115G4@3.00GHz\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[],\"video\":[{\"name\":\"Tiger
+        Lake-LP GT2 [UHD Graphics G4]\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:9a78\",\"subsystem\":\"1028:0991\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"Wi-Fi
+        6 AX201\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:a0f0\",\"subsystem\":\"1a56:1651\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"WIRELESS\"}],\"certified_release\":\"20.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"2010-12158\",\"form_factor\":\"Laptop\",\"platform_certified_configuration_count\":4,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":11782,\"canonical_id\":\"201911-27457\",\"architecture\":\"amd64\",\"bios\":\"Dell
+        Inc.: 1.0.8\",\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"5.4.0-28-generic\",\"notes\":[{\"title\":\"Qualcomm
+        Killer AX500 Not Supported\",\"comment\":\"Please note this system was tested
+        with Intel Killer WiFi, the Qualcomm Killer AX500 is not supported on this
+        system.\"}],\"make\":\"Dell\",\"model\":\"XPS 13 9300\",\"platform_name\":\"XPS
+        13 9300\",\"platform_id\":\"10098\",\"processor\":[{\"name\":\"Intel(R) Core(TM)
+        i5-1035G1 CPU @ 1.00GHz\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:Intel(R)Core(TM)i5-1035G1CPU@1.00GHz\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[],\"video\":[{\"name\":\"Iris
+        Plus Graphics G1 (Ice Lake)\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:8a56\",\"subsystem\":\"1028:096d\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"Killer
+        Wi-Fi 6 AX1650i 160MHz Wireless Network Adapter (201NGW)\",\"make\":\"Intel
+        Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:34f0\",\"subsystem\":\"1a56:1651\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"WIRELESS\"}],\"certified_release\":\"20.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"2005-11782\",\"form_factor\":\"Laptop\",\"platform_certified_configuration_count\":5,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":11781,\"canonical_id\":\"201911-27454\",\"architecture\":\"amd64\",\"bios\":\"Dell
+        Inc.: 1.0.8\",\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"5.4.0-28-generic\",\"notes\":[{\"title\":\"Qualcomm
+        Killer AX500 Not Supported\",\"comment\":\"Please note this system was tested
+        with Intel Killer WiFi, the Qualcomm Killer AX500 is not supported on this
+        system.\"}],\"make\":\"Dell\",\"model\":\"XPS 13 9300\",\"platform_name\":\"XPS
+        13 9300\",\"platform_id\":\"10098\",\"processor\":[{\"name\":\"Intel(R) Core(TM)
+        i3-1005G1 CPU @ 1.20GHz\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:Intel(R)Core(TM)i3-1005G1CPU@1.20GHz\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[],\"video\":[{\"name\":\"Iris
+        Plus Graphics G1 (Ice Lake)\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:8a56\",\"subsystem\":\"1028:096d\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"Killer
+        Wi-Fi 6 AX1650i 160MHz Wireless Network Adapter (201NGW)\",\"make\":\"Intel
+        Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:34f0\",\"subsystem\":\"1a56:1651\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"WIRELESS\"}],\"certified_release\":\"20.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"2005-11781\",\"form_factor\":\"Laptop\",\"platform_certified_configuration_count\":5,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":11780,\"canonical_id\":\"201910-27449\",\"architecture\":\"amd64\",\"bios\":\"Dell
+        Inc.: 1.0.8\",\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"5.4.0-28-generic\",\"notes\":[{\"title\":\"Qualcomm
+        Killer AX500 Not Supported\",\"comment\":\"Please note this system was tested
+        with Intel Killer WiFi, the Qualcomm Killer AX500 is not supported on this
+        system.\"}],\"make\":\"Dell\",\"model\":\"XPS 13 9300\",\"platform_name\":\"XPS
+        13 9300\",\"platform_id\":\"10098\",\"processor\":[{\"name\":\"Intel(R) Core(TM)
+        i7-1065G7 CPU @ 1.30GHz\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:Intel(R)Core(TM)i7-1065G7CPU@1.30GHz\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[],\"video\":[{\"name\":\"Iris
+        Plus Graphics G7\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:8a52\",\"subsystem\":\"1028:096d\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"Killer
+        Wi-Fi 6 AX1650i 160MHz Wireless Network Adapter (201NGW)\",\"make\":\"Intel
+        Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:34f0\",\"subsystem\":\"1a56:1651\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"WIRELESS\"}],\"certified_release\":\"20.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"2005-11780\",\"form_factor\":\"Laptop\",\"platform_certified_configuration_count\":5,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":11779,\"canonical_id\":\"201910-27450\",\"architecture\":\"amd64\",\"bios\":\"Dell
+        Inc.: 1.0.8\",\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"5.4.0-28-generic\",\"notes\":[{\"title\":\"Qualcomm
+        Killer AX500 Not Supported\",\"comment\":\"Please note this system was tested
+        with Intel Killer WiFi, the Qualcomm Killer AX500 is not supported on this
+        system.\"}],\"make\":\"Dell\",\"model\":\"XPS 13 9300\",\"platform_name\":\"XPS
+        13 9300\",\"platform_id\":\"10098\",\"processor\":[{\"name\":\"Intel(R) Core(TM)
+        i7-1065G7 CPU @ 1.30GHz\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:Intel(R)Core(TM)i7-1065G7CPU@1.30GHz\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[],\"video\":[{\"name\":\"Iris
+        Plus Graphics G7\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:8a52\",\"subsystem\":\"1028:096d\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"Killer
+        Wi-Fi 6 AX1650i 160MHz Wireless Network Adapter (201NGW)\",\"make\":\"Intel
+        Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:34f0\",\"subsystem\":\"1a56:1651\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"WIRELESS\"}],\"certified_release\":\"20.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"2005-11779\",\"form_factor\":\"Laptop\",\"platform_certified_configuration_count\":5,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":11778,\"canonical_id\":\"201911-27469\",\"architecture\":\"amd64\",\"bios\":\"Dell
+        Inc.: 1.0.8\",\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"5.4.0-28-generic\",\"notes\":[{\"title\":\"Qualcomm
+        Killer AX500 Not Supported\",\"comment\":\"Please note this system was tested
+        with Intel Killer WiFi, the Qualcomm Killer AX500 is not supported on this
+        system.\"}],\"make\":\"Dell\",\"model\":\"XPS 13 9300\",\"platform_name\":\"XPS
+        13 9300\",\"platform_id\":\"10098\",\"processor\":[{\"name\":\"Intel(R) Core(TM)
+        i5-1035G1 CPU @ 1.00GHz\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:Intel(R)Core(TM)i5-1035G1CPU@1.00GHz\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[],\"video\":[{\"name\":\"Iris
+        Plus Graphics G1 (Ice Lake)\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:8a56\",\"subsystem\":\"1028:096d\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"Killer
+        Wi-Fi 6 AX1650i 160MHz Wireless Network Adapter (201NGW)\",\"make\":\"Intel
+        Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:34f0\",\"subsystem\":\"1a56:1651\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"WIRELESS\"}],\"certified_release\":\"20.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"2005-11778\",\"form_factor\":\"Laptop\",\"platform_certified_configuration_count\":5,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":11693,\"canonical_id\":\"201911-27454\",\"architecture\":\"amd64\",\"bios\":\"Dell
+        Inc.: 0.1.32\",\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"5.0.0-1031-oem-osp1\",\"notes\":[{\"title\":\"Qualcomm
+        Killer AX500 Not Supported\",\"comment\":\"Please note this system was tested
+        with Intel Killer WiFi, the Qualcomm Killer AX500 is not supported on this
+        system.\"}],\"make\":\"Dell\",\"model\":\"XPS 13 9300\",\"platform_name\":\"XPS
+        13 9300\",\"platform_id\":\"10098\",\"processor\":[{\"name\":\"Intel(R) Core(TM)
+        i3-1005G1 CPU @ 1.20GHz\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:Intel(R)Core(TM)i3-1005G1CPU@1.20GHz\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[],\"video\":[{\"name\":\"Iris
+        Plus Graphics G1 (Ice Lake)\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:8a56\",\"subsystem\":\"1028:096d\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"Killer
+        Wi-Fi 6 AX1650i 160MHz Wireless Network Adapter (201NGW)\",\"make\":\"Intel
+        Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:34f0\",\"subsystem\":\"1a56:1651\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"WIRELESS\"}],\"certified_release\":\"18.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"2002-11693\",\"form_factor\":\"Laptop\",\"platform_certified_configuration_count\":5,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":11692,\"canonical_id\":\"201911-27469\",\"architecture\":\"amd64\",\"bios\":\"Dell
+        Inc.: 0.1.32\",\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"5.0.0-1031-oem-osp1\",\"notes\":[{\"title\":\"Qualcomm
+        Killer AX500 Not Supported\",\"comment\":\"Please note this system was tested
+        with Intel Killer WiFi, the Qualcomm Killer AX500 is not supported on this
+        system.\"}],\"make\":\"Dell\",\"model\":\"XPS 13 9300\",\"platform_name\":\"XPS
+        13 9300\",\"platform_id\":\"10098\",\"processor\":[{\"name\":\"Intel(R) Core(TM)
+        i5-1035G1 CPU @ 1.00GHz\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:Intel(R)Core(TM)i5-1035G1CPU@1.00GHz\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[],\"video\":[{\"name\":\"Iris
+        Plus Graphics G1 (Ice Lake)\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:8a56\",\"subsystem\":\"1028:096d\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"Killer
+        Wi-Fi 6 AX1650i 160MHz Wireless Network Adapter (201NGW)\",\"make\":\"Intel
+        Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:34f0\",\"subsystem\":\"1a56:1651\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"WIRELESS\"}],\"certified_release\":\"18.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"2002-11692\",\"form_factor\":\"Laptop\",\"platform_certified_configuration_count\":5,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":11691,\"canonical_id\":\"201911-27457\",\"architecture\":\"amd64\",\"bios\":\"Dell
+        Inc.: 0.1.32\",\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"5.0.0-1031-oem-osp1\",\"notes\":[{\"title\":\"Qualcomm
+        Killer AX500 Not Supported\",\"comment\":\"Please note this system was tested
+        with Intel Killer WiFi, the Qualcomm Killer AX500 is not supported on this
+        system.\"}],\"make\":\"Dell\",\"model\":\"XPS 13 9300\",\"platform_name\":\"XPS
+        13 9300\",\"platform_id\":\"10098\",\"processor\":[{\"name\":\"Intel(R) Core(TM)
+        i5-1035G1 CPU @ 1.00GHz\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:Intel(R)Core(TM)i5-1035G1CPU@1.00GHz\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[],\"video\":[{\"name\":\"Iris
+        Plus Graphics G1 (Ice Lake)\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:8a56\",\"subsystem\":\"1028:096d\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"Killer
+        Wi-Fi 6 AX1650i 160MHz Wireless Network Adapter (201NGW)\",\"make\":\"Intel
+        Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:34f0\",\"subsystem\":\"1a56:1651\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"WIRELESS\"}],\"certified_release\":\"18.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"2002-11691\",\"form_factor\":\"Laptop\",\"platform_certified_configuration_count\":5,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":11690,\"canonical_id\":\"201910-27449\",\"architecture\":\"amd64\",\"bios\":\"Dell
+        Inc.: 0.1.32\",\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"5.0.0-1031-oem-osp1\",\"notes\":[{\"title\":\"Qualcomm
+        Killer AX500 Not Supported\",\"comment\":\"Please note this system was tested
+        with Intel Killer WiFi, the Qualcomm Killer AX500 is not supported on this
+        system.\"}],\"make\":\"Dell\",\"model\":\"XPS 13 9300\",\"platform_name\":\"XPS
+        13 9300\",\"platform_id\":\"10098\",\"processor\":[{\"name\":\"Intel(R) Core(TM)
+        i7-1065G7 CPU @ 1.30GHz\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:Intel(R)Core(TM)i7-1065G7CPU@1.30GHz\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[],\"video\":[{\"name\":\"Iris
+        Plus Graphics G7\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:8a52\",\"subsystem\":\"1028:096d\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"Killer
+        Wi-Fi 6 AX1650i 160MHz Wireless Network Adapter (201NGW)\",\"make\":\"Intel
+        Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:34f0\",\"subsystem\":\"1a56:1651\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"WIRELESS\"}],\"certified_release\":\"18.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"2002-11690\",\"form_factor\":\"Laptop\",\"platform_certified_configuration_count\":5,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":11689,\"canonical_id\":\"201910-27450\",\"architecture\":\"amd64\",\"bios\":\"Dell
+        Inc.: 0.1.32\",\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"5.0.0-1031-oem-osp1\",\"notes\":[{\"title\":\"Qualcomm
+        Killer AX500 Not Supported\",\"comment\":\"Please note this system was tested
+        with Intel Killer WiFi, the Qualcomm Killer AX500 is not supported on this
+        system.\"}],\"make\":\"Dell\",\"model\":\"XPS 13 9300\",\"platform_name\":\"XPS
+        13 9300\",\"platform_id\":\"10098\",\"processor\":[{\"name\":\"Intel(R) Core(TM)
+        i7-1065G7 CPU @ 1.30GHz\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:Intel(R)Core(TM)i7-1065G7CPU@1.30GHz\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[],\"video\":[{\"name\":\"Iris
+        Plus Graphics G7\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:8a52\",\"subsystem\":\"1028:096d\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"Killer
+        Wi-Fi 6 AX1650i 160MHz Wireless Network Adapter (201NGW)\",\"make\":\"Intel
+        Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:34f0\",\"subsystem\":\"1a56:1651\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"WIRELESS\"}],\"certified_release\":\"18.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"2002-11689\",\"form_factor\":\"Laptop\",\"platform_certified_configuration_count\":5,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":11537,\"canonical_id\":\"201906-27151\",\"architecture\":\"amd64\",\"bios\":null,\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"4.15.0-1042-oem\",\"notes\":[],\"make\":\"Dell\",\"model\":\"XPS
+        13 7390\",\"platform_name\":\"XPS 13 7390\",\"platform_id\":\"9932\",\"processor\":[{\"name\":\"Intel(R)
+        Core(TM) i5-10210U CPU @ 1.60GHz\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:Intel(R)Core(TM)i5-10210UCPU@1.60GHz\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[],\"video\":[{\"name\":\"UHD
+        Graphics\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:9b41\",\"subsystem\":\"1028:0962\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"Wi-Fi
+        6 AX200\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:2723\",\"subsystem\":\"1a56:1653\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"WIRELESS\"}],\"certified_release\":\"18.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"1909-11537\",\"form_factor\":\"Laptop\",\"platform_certified_configuration_count\":3,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":11536,\"canonical_id\":\"201906-27119\",\"architecture\":\"amd64\",\"bios\":null,\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"4.15.0-1042-oem\",\"notes\":[],\"make\":\"Dell\",\"model\":\"XPS
+        13 7390\",\"platform_name\":\"XPS 13 7390\",\"platform_id\":\"9932\",\"processor\":[{\"name\":\"Intel(R)
+        Core(TM) i7-10510U CPU @ 1.80GHz\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:Intel(R)Core(TM)i7-10510UCPU@1.80GHz\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[],\"video\":[{\"name\":\"UHD
+        Graphics\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:9b41\",\"subsystem\":\"1028:0962\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"Wi-Fi
+        6 AX200\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:2723\",\"subsystem\":\"1a56:1653\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"WIRELESS\"}],\"certified_release\":\"18.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"1909-11536\",\"form_factor\":\"Laptop\",\"platform_certified_configuration_count\":3,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":11535,\"canonical_id\":\"201906-27131\",\"architecture\":\"amd64\",\"bios\":null,\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"4.15.0-1042-oem\",\"notes\":[],\"make\":\"Dell\",\"model\":\"XPS
+        13 7390\",\"platform_name\":\"XPS 13 7390\",\"platform_id\":\"9932\",\"processor\":[{\"name\":\"Intel(R)
+        Core(TM) i5-10210U CPU @ 1.60GHz\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:Intel(R)Core(TM)i5-10210UCPU@1.60GHz\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[],\"video\":[{\"name\":\"UHD
+        Graphics\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:9b41\",\"subsystem\":\"1028:0962\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"Wi-Fi
+        6 AX200\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:2723\",\"subsystem\":\"1a56:1653\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"WIRELESS\"}],\"certified_release\":\"18.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"1909-11535\",\"form_factor\":\"Laptop\",\"platform_certified_configuration_count\":3,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"},{\"id\":10916,\"canonical_id\":\"201708-25695\",\"architecture\":\"amd64\",\"bios\":null,\"hardware_website\":\"\",\"category\":\"Laptop\",\"kernel_version\":\"4.15.0-1008-oem\",\"notes\":[{\"title\":\"Docking
+        Support\",\"comment\":\"This system has been certified to work with the following
+        docking stations:\\r\\n* Dell WD15\\r\\n* Dell TB16\\r\\n\"}],\"make\":\"Dell\",\"model\":\"XPS
+        13 9370\",\"platform_name\":\"XPS 13 9370\",\"platform_id\":\"9044\",\"processor\":[{\"name\":\"Intel(R)
+        Core(TM) i5-7200U CPU @ 2.50GHz\",\"make\":\"Intel Corp.\",\"bus\":\"dmi\",\"identifier\":\"dmi:Intel(R)Core(TM)i5-7200UCPU@2.50GHz\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"PROCESSOR\"}],\"network\":[],\"video\":[{\"name\":\"HD
+        Graphics 620\",\"make\":\"Intel Corp.\",\"bus\":\"pci\",\"identifier\":\"8086:5916\",\"subsystem\":\"1028:07e6\",\"subproduct_name\":\"\",\"vendor_id\":4103,\"subvendor_id\":\"\",\"category\":\"VIDEO\"}],\"wireless\":[{\"name\":\"Killer
+        N1525 Wireless-AC\",\"make\":\"Qualcomm Atheros\",\"bus\":\"pci\",\"identifier\":\"168c:003e\",\"subsystem\":\"\",\"subproduct_name\":\"\",\"vendor_id\":4797,\"subvendor_id\":\"\",\"category\":\"WIRELESS\"}],\"certified_release\":\"18.04
+        LTS\",\"level\":\"Certified Pre-Install\",\"name\":\"1807-10916\",\"form_factor\":\"Laptop\",\"platform_certified_configuration_count\":3,\"download_instructions_url\":\"\",\"release_notes_url\":\"\"}]}"
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '34021'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 24 Sep 2026 08:08:15 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Vary:
+      - Accept, Cookie
+      X-QueryInspect-Duplicate-SQL-Queries:
+      - '0'
+      X-QueryInspect-Num-SQL-Queries:
+      - '56'
+      X-QueryInspect-Total-Request-Time:
+      - 594 ms
+      X-QueryInspect-Total-SQL-Time:
+      - 251 ms
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.0
+    method: GET
+    uri: https://certification.canonical.com/api/v2/certified-configuration-devices/?format=json&limit=0&canonical_id__in=201906-27119%2C201906-27131%2C201906-27151%2C201910-27449%2C201910-27450%2C201911-27454%2C201911-27457%2C201911-27469%2C202007-28040%2C202007-28045%2C202007-28046%2C202007-28063%2C202405-34051%2C202407-34207%2C202407-34216%2C202407-34214%2C202407-34215%2C202507-36962%2C202510-38027%2C201708-25695&category=DISK&pagination=limitoffset
+  response:
+    body:
+      string: '{"count":22,"next":null,"previous":null,"results":[{"canonical_id":"202510-38027","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":4859,"subvendor_id":null,"make":"SAMSUNG
+        Electronics","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"SAMSUNG
+        Electronics"},{"canonical_id":"202507-36962","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":5855,"subvendor_id":null,"make":"KIOXIA
+        Corporation","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"KIOXIA
+        Corporation"},{"canonical_id":"202407-34216","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":5855,"subvendor_id":null,"make":"KIOXIA
+        Corporation","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"KIOXIA
+        Corporation"},{"canonical_id":"202407-34215","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":5688,"subvendor_id":null,"make":"SK
+        hynix","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"SK
+        hynix"},{"canonical_id":"202407-34214","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":5855,"subvendor_id":null,"make":"KIOXIA
+        Corporation","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"KIOXIA
+        Corporation"},{"canonical_id":"202407-34207","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":5855,"subvendor_id":null,"make":"KIOXIA
+        Corporation","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"KIOXIA
+        Corporation"},{"canonical_id":"202405-34051","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":5855,"subvendor_id":null,"make":"KIOXIA
+        Corporation","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"KIOXIA
+        Corporation"},{"canonical_id":"202007-28063","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":2454,"subvendor_id":null,"make":"Toshiba","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"Toshiba"},{"canonical_id":"202007-28046","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":4103,"subvendor_id":null,"make":"Intel
+        Corp.","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"Intel
+        Corp."},{"canonical_id":"202007-28045","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":2356,"subvendor_id":null,"make":"Micron
+        Technology, Inc.","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"Micron
+        Technology, Inc."},{"canonical_id":"202007-28040","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":4103,"subvendor_id":null,"make":"Intel
+        Corp.","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"Intel
+        Corp."},{"canonical_id":"201911-27469","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":4103,"subvendor_id":null,"make":"Intel
+        Corp.","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"Intel
+        Corp."},{"canonical_id":"201911-27457","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":2454,"subvendor_id":null,"make":"Toshiba","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"Toshiba"},{"canonical_id":"201911-27457","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":424,"subvendor_id":null,"make":"Toshiba
+        America Info Systems","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"Toshiba
+        America Info Systems"},{"canonical_id":"201911-27454","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":4103,"subvendor_id":null,"make":"Intel
+        Corp.","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"Intel
+        Corp."},{"canonical_id":"201910-27450","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":4859,"subvendor_id":null,"make":"SAMSUNG
+        Electronics","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"SAMSUNG
+        Electronics"},{"canonical_id":"201910-27449","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":424,"subvendor_id":null,"make":"Toshiba
+        America Info Systems","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"Toshiba
+        America Info Systems"},{"canonical_id":"201910-27449","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":2454,"subvendor_id":null,"make":"Toshiba","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"Toshiba"},{"canonical_id":"201906-27151","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":2089,"subvendor_id":null,"make":"Lite-On
+        Technology Corp.","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"Lite-On
+        Technology Corp."},{"canonical_id":"201906-27131","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":424,"subvendor_id":null,"make":"Toshiba
+        America Info Systems","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"Toshiba
+        America Info Systems"},{"canonical_id":"201906-27119","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":424,"subvendor_id":null,"make":"Toshiba
+        America Info Systems","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"Toshiba
+        America Info Systems"},{"canonical_id":"201708-25695","bus":"nvme","identifier":"nvme:nvme0n1","subsystem":null,"vendor_id":4859,"subvendor_id":null,"make":"SAMSUNG
+        Electronics","name":"nvme0n1","subproduct_name":null,"category":"DISK","raw_name":"nvme0n1","raw_make":"SAMSUNG
+        Electronics"}]}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '5866'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 24 Sep 2026 08:08:16 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Vary:
+      - Accept, Cookie
+      X-QueryInspect-Duplicate-SQL-Queries:
+      - '0'
+      X-QueryInspect-Num-SQL-Queries:
+      - '2'
+      X-QueryInspect-Total-Request-Time:
+      - 171 ms
+      X-QueryInspect-Total-SQL-Time:
+      - 159 ms
+    status:
+      code: 200
+      message: OK
 version: 1

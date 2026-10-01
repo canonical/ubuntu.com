@@ -9,8 +9,7 @@
       {% endwith %}
 
       {% with
-        results=results,
-        vendor_page=vendor_page
+        grouped_results=grouped_results
         %}
         {% include "/certified/search/_search-results-table.html" %}
       {% endwith %}
@@ -24,5 +23,6 @@
   </div>
 </div>
 
-<script nonce="{{ csp_nonce }}" type="module"
+<script nonce="{{ csp_nonce }}"
+        type="module"
         src="/static/js/src/certified-search-results.js"></script>
