@@ -12,6 +12,7 @@
 {% endblock meta_copydoc %}
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 
 {% block body_class %}
   is-paper
@@ -53,8 +54,169 @@
       {%- endif -%}
     {%- endcall -%}
 
+    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+      {%- if slot == 'title' -%}
+      <h2>Supported since 26.04 (RVA23)</h2>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">Next-generation platforms (RVA23)</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+      <ul class="p-list--divided">
+        <li class="p-list__item has-bullet">SiFive BigSky</li>
+        <li class="p-list__item has-bullet">
+          Spacemit K3 based: CoM260, picoITX, DeepComputing FML13V05 (supported since 26.10, <a href="/hardware/docs/boards/how-to/ubuntu_supported/spacemit-k3/">installation instructions</a>)
+        </li>
+        <li class="p-list__item has-bullet">QEMU (<a href="https://canonical-ubuntu-hardware-support.readthedocs-hosted.com/boards/how-to/qemu-riscv/">installation instructions</a>)</li>
+      </ul>
+      {%- endif -%}
+
+      {% set is_latest_lts = releases_yaml.latest.full_version == releases_yaml.lts.full_version %}
+      {%- if is_latest_lts -%}
+        {% set lts_label = "LTS" %}
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">Ubuntu Desktop live installer</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+      <ul class="p-list--divided">
+        <li class="p-list__item">
+          <div class="row">
+            <div class="col-6 col-medium-3 col-small-2">
+              {{ releases_yaml.latest.full_version }} {{ lts_label }} live installer
+            </div>
+            <div class="col-6 col-medium-3 col-small-2">
+              <a
+                class="p-button--positive u-no-margin"
+                href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.latest.full_version }}/release/ubuntu-{{ releases_yaml.latest.full_version }}-desktop-riscv64.iso"
+                title="Download {{ releases_yaml.latest.full_version }}"
+              >
+                Download
+              </a>
+            </div>
+          </div>
+        </li>
+
+        {%- if not is_latest_lts -%}
+        <li class="p-list__item">
+          <div class="row">
+            <div class="col-6 col-medium-3 col-small-2">
+              {{ releases_yaml.lts.full_version }} LTS live installer
+            </div>
+            <div class="col-6 col-medium-3 col-small-2">
+              <a
+                class="p-button u-no-margin"
+                href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.lts.full_version }}/release/ubuntu-{{ releases_yaml.lts.full_version }}-desktop-riscv64.iso"
+                title="Download {{ releases_yaml.lts.full_version }}"
+              >
+                Download
+              </a>
+            </div>
+          </div>
+        </li>
+        {%- endif -%}
+      </ul>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_3' -%}
+      <h3 class="p-heading--5">Ubuntu Server live installer</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_3' -%}
+      <ul class="p-list--divided">
+        <li class="p-list__item">
+          <div class="row">
+            <div class="col-6 col-medium-3 col-small-2">
+              {{ releases_yaml.latest.full_version }} {{ lts_label }} live installer
+            </div>
+            <div class="col-6 col-medium-3 col-small-2">
+              <a
+                class="p-button--positive u-no-margin"
+                href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.latest.full_version }}/release/ubuntu-{{ releases_yaml.latest.full_version }}-server-riscv64.iso"
+                title="Download {{ releases_yaml.latest.full_version }}"
+              >
+                Download
+              </a>
+            </div>
+          </div>
+        </li>
+
+        {%- if not is_latest_lts -%}
+        <li class="p-list__item">
+          <div class="row">
+            <div class="col-6 col-medium-3 col-small-2">
+              {{ releases_yaml.lts.full_version }} LTS live installer
+            </div>
+            <div class="col-6 col-medium-3 col-small-2">
+              <a
+                class="p-button u-no-margin"
+                href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.lts.full_version }}/release/ubuntu-{{ releases_yaml.lts.full_version }}-server-riscv64.iso"
+                title="Download {{ releases_yaml.lts.full_version }}"
+              >
+                Download
+              </a>
+            </div>
+          </div>
+        </li>
+        {%- endif -%}
+      </ul>
+      {%- endif -%}
+
+
+      {%- if slot == 'list_item_title_4' -%}
+      <h3 class="p-heading--5">Ubuntu Server preinstalled image</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_4' -%}
+      <ul class="p-list--divided">
+        <li class="p-list__item">
+          <div class="row">
+            <div class="col-6 col-medium-3 col-small-2">
+              {{ releases_yaml.latest.full_version }} {{ lts_label }}
+            </div>
+            <div class="col-6 col-medium-3 col-small-2">
+              <a
+                class="p-button--positive u-no-margin"
+                href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.latest.full_version }}/release/ubuntu-{{ releases_yaml.latest.full_version }}-preinstalled-server-riscv64.img.xz"
+                title="Download {{ releases_yaml.latest.full_version }}"
+              >
+                Download
+              </a>
+            </div>
+          </div>
+        </li>
+
+        {%- if not is_latest_lts -%}
+        <li class="p-list__item">
+          <div class="row">
+            <div class="col-6 col-medium-3 col-small-2">
+              {{ releases_yaml.lts.full_version }}
+            </div>
+            <div class="col-6 col-medium-3 col-small-2">
+              <a
+                class="p-button u-no-margin"
+                href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.lts.full_version }}/release/ubuntu-{{ releases_yaml.lts.full_version }}-preinstalled-server-riscv64.img.xz"
+                title="Download {{ releases_yaml.lts.full_version }}"
+              >
+                Download
+              </a>
+            </div>
+          </div>
+        </li>
+        {%- endif -%}
+      </ul>
+      {%- endif -%}
+    {%- endcall -%}
+
     <section class="p-section">
-      <hr class="is-fixed-width p-rule" />
+      <div class="p-section--shallow u-fixed-width">
+        <hr class="p-rule" />
+        <h2>Continued support on Ubuntu 24.04 LTS (RVA20)</h2>
+      </div>
       <div class="row">
         <div class="col-3 col-medium-2">
           <div class="p-strip is-shallow u-no-padding--top">
@@ -117,13 +279,6 @@
             </li>
             <li>
               <button class="p-tabs__item"
-                      id="qemu"
-                      role="tab"
-                      aria-selected="false"
-                      aria-controls="qemu-tab">QEMU emulator</button>
-            </li>
-            <li>
-              <button class="p-tabs__item"
                       id="quemu-sifive-image"
                       role="tab"
                       aria-selected="false"
@@ -160,7 +315,6 @@
               <option value="milk-v-mars-tab">Milk-V Mars</option>
               <option value="milk-v-mars-cm-tab">Milk-V Mars CM</option>
               <option value="pine64-star64-tab">Pine64 Star64</option>
-              <option value="qemu-tab">QEMU emulator</option>
               <option value="quemu-sifive-image-tab">SiFive Unmatched</option>
               <option value="sipeed-licheerv-dock-tab">Sipeed LicheeRV Dock</option>
               <option value="starfive-visionfive-2-tab">StarFive VisionFive 2</option>
@@ -176,7 +330,6 @@
           {% include "download/risc-v/milk-v-mars.html" %}
           {% include "download/risc-v/milk-v-mars-cm.html" %}
           {% include "download/risc-v/pine64-star64.html" %}
-          {% include "download/risc-v/qemu-emulator.html" %}
           {% include "download/risc-v/sifive-unmatched.html" %}
           {% include "download/risc-v/sipeed-licheerv.html" %}
           {% include "download/risc-v/starfive-visionfive.html" %}
