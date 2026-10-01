@@ -3,6 +3,11 @@ on:
   schedule:
     - cron: "0 * * * *"
   workflow_dispatch:
+    inputs:
+      force_failure:
+        description: "Also run the forced-failure tests (QA the alert)"
+        type: boolean
+        default: false
   pull_request:
     paths:
       - ".github/workflows/marketo-canary.yaml"
@@ -38,6 +43,7 @@ jobs:
           PLAYWRIGHT_BASE_URL: https://ubuntu.com
           INCLUDE_CANARY: true
           CI: true
+          CANARY_FORCE_FAIL: ${{ inputs.force_failure && 'true' || '' }}
         run: yarn playwright test canary --reporter=line,html
 
       - name: Upload Playwright report

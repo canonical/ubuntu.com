@@ -55,6 +55,7 @@ const submitAndVerify = async (
   page: Page,
   form: Locator,
   config: CanaryForm,
+  expectedFormId = config.formId,
 ) => {
   const returnURL = await form.locator('input[name="returnURL"]').inputValue();
 
@@ -78,7 +79,7 @@ const submitAndVerify = async (
   // What the page JS prepared
   const posted = new URLSearchParams((await requestPromise).postData() || "");
   expect(posted.get("formid"), "JS field prep: wrong formid").toBe(
-    config.formId,
+    expectedFormId,
   );
   expect(
     posted.get("Comments_from_lead__c"),
@@ -124,27 +125,70 @@ const submitAndVerify = async (
   ).toBeLessThan(MAX_SUBMIT_MS);
 };
 
+// tamper runs after filling, before submit
+const runCanary = async (
+  page: Page,
+  config: CanaryForm,
+  tamper?: (form: Locator) => Promise<void>,
+  expectedFormId?: string,
+) => {
+  await page.goto(config.modalId ? `${config.path}#get-in-touch` : config.path);
+  await acceptCookiePolicy(page);
+
+  if (config.modalId) {
+    await expect(
+      page.locator(`#${config.modalId}`),
+      "Contact modal did not open",
+    ).toBeVisible();
+  }
+
+  const form = page.locator(`form#mktoForm_${config.formId}`);
+  await expect(form, "Contact form not found").toBeVisible();
+  await fillCanaryForm(form, config);
+  if (tamper) {
+    await tamper(form);
+  }
+  await submitAndVerify(page, form, config, expectedFormId);
+};
+
 test.describe("Marketo canary", () => {
   for (const config of canaryForms) {
     test(`form ${config.formId} on ${config.path} submits to Marketo`, async ({
       page,
     }) => {
-      await page.goto(
-        config.modalId ? `${config.path}#get-in-touch` : config.path,
-      );
-      await acceptCookiePolicy(page);
-
-      if (config.modalId) {
-        await expect(
-          page.locator(`#${config.modalId}`),
-          "Contact modal did not open",
-        ).toBeVisible();
-      }
-
-      const form = page.locator(`form#mktoForm_${config.formId}`);
-      await expect(form, "Contact form not found").toBeVisible();
-      await fillCanaryForm(form, config);
-      await submitAndVerify(page, form, config);
+      await runCanary(page, config);
     });
   }
+});
+
+// QA only: these are expected to fail and trigger the alert
+test.describe("Marketo canary forced failures", () => {
+  test.skip(!process.env.CANARY_FORCE_FAIL, "Set CANARY_FORCE_FAIL to run");
+
+  const config = canaryForms[0];
+
+  test("[FORCED FAILURE] nonexistent formid 0", async ({ page }) => {
+    await runCanary(
+      page,
+      config,
+      async (form) => {
+        await form
+          .locator('input[name="formid"]')
+          .evaluate((input: HTMLInputElement) => (input.value = "0"));
+      },
+      "0",
+    );
+  });
+
+  test("[FORCED FAILURE] buggy injected field", async ({ page }) => {
+    await runCanary(page, config, async (form) => {
+      await form.evaluate((formEl) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "canaryUnexpectedField__c";
+        input.value = "injected";
+        formEl.appendChild(input);
+      });
+    });
+  });
 });
