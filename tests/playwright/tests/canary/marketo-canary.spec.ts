@@ -2,10 +2,10 @@ import { test, expect, Locator, Page } from "@playwright/test";
 import { acceptCookiePolicy } from "../../helpers/commands";
 import {
   CANARY_COUNTRY,
+  CANARY_OTHER_TEXT,
   CANARY_PHONE,
-  canaryCheckboxFields,
-  canaryRadioFields,
-  canaryTextFields,
+  CanaryForm,
+  canaryForms,
 } from "../../helpers/canary-fields";
 
 // Hourly prod canary, see .github/workflows/marketo-canary.yaml
@@ -15,18 +15,31 @@ const MAX_SUBMIT_MS = 15000;
 // intl-tel-input picks its country from the timezone
 test.use({ timezoneId: "Europe/London" });
 
+const selectChoice = async (form: Locator, field: string) => {
+  const input = form.locator(field);
+  await expect(input, `Field missing: ${field}`).toHaveCount(1);
+  // Inputs are visually hidden
+  await input.locator("xpath=ancestor::label[1]").click();
+  await expect(input, `Could not select ${field}`).toBeChecked();
+};
+
 // Fails if a field is missing, i.e. the live form changed
-const fillCanaryForm = async (form: Locator) => {
-  for (const { field, value } of canaryTextFields) {
+const fillCanaryForm = async (form: Locator, config: CanaryForm) => {
+  for (const { field, value } of config.textFields) {
     await expect(form.locator(field), `Field missing: ${field}`).toHaveCount(1);
     await form.locator(field).fill(value);
   }
-  for (const { field } of [...canaryCheckboxFields, ...canaryRadioFields]) {
-    const input = form.locator(field);
-    await expect(input, `Field missing: ${field}`).toHaveCount(1);
-    // Inputs are visually hidden
-    await input.locator("xpath=ancestor::label[1]").click();
-    await expect(input, `Could not select ${field}`).toBeChecked();
+  for (const field of config.choiceFields) {
+    await selectChoice(form, field);
+  }
+  if (config.otherField) {
+    const { field, textarea } = config.otherField;
+    await selectChoice(form, field);
+    await expect(
+      form.locator(textarea),
+      `"Other" textarea did not appear for ${field}`,
+    ).toBeVisible();
+    await form.locator(textarea).fill(CANARY_OTHER_TEXT);
   }
   await form.locator('select[name="country"]').selectOption(CANARY_COUNTRY);
 
@@ -38,10 +51,12 @@ const fillCanaryForm = async (form: Locator) => {
   await form.locator("input#phone").blur();
 };
 
-const submitAndVerify = async (page: Page, form: Locator, formId: string) => {
-  const returnURL = await form
-    .locator('input[name="returnURL"]')
-    .inputValue();
+const submitAndVerify = async (
+  page: Page,
+  form: Locator,
+  config: CanaryForm,
+) => {
+  const returnURL = await form.locator('input[name="returnURL"]').inputValue();
 
   const submitButton = form.getByRole("button", { name: /Submit/ });
   await expect(submitButton, "Submit button is disabled").toBeEnabled();
@@ -62,11 +77,19 @@ const submitAndVerify = async (page: Page, form: Locator, formId: string) => {
 
   // What the page JS prepared
   const posted = new URLSearchParams((await requestPromise).postData() || "");
-  expect(posted.get("formid"), "JS field prep: wrong formid").toBe(formId);
+  expect(posted.get("formid"), "JS field prep: wrong formid").toBe(
+    config.formId,
+  );
   expect(
     posted.get("Comments_from_lead__c"),
     "JS field prep: Comments_from_lead__c was not built",
   ).toBeTruthy();
+  if (config.otherField) {
+    expect(
+      posted.get("Comments_from_lead__c"),
+      'JS field prep: "Other" text missing from Comments_from_lead__c',
+    ).toContain(CANARY_OTHER_TEXT);
+  }
   expect(
     [...posted.keys()].filter((key) => key.startsWith("_radio_")),
     "JS field prep: _radio_ fields were not stripped",
@@ -94,9 +117,7 @@ const submitAndVerify = async (page: Page, form: Locator, formId: string) => {
     location,
     "Marketo rejected the submission (redirected to contact-form-fail)",
   ).not.toContain("contact-form-fail");
-  expect(location, "Unexpected redirect after submission").toContain(
-    returnURL,
-  );
+  expect(location, "Unexpected redirect after submission").toContain(returnURL);
   expect(
     elapsed,
     `/marketo/submit took ${elapsed}ms (limit ${MAX_SUBMIT_MS}ms)`,
@@ -104,33 +125,26 @@ const submitAndVerify = async (page: Page, form: Locator, formId: string) => {
 };
 
 test.describe("Marketo canary", () => {
-  test("form generator modal on /pricing/pro submits to Marketo", async ({
-    page,
-  }) => {
-    await page.goto("/pricing/pro");
-    await acceptCookiePolicy(page);
+  for (const config of canaryForms) {
+    test(`form ${config.formId} on ${config.path} submits to Marketo`, async ({
+      page,
+    }) => {
+      await page.goto(
+        config.modalId ? `${config.path}#get-in-touch` : config.path,
+      );
+      await acceptCookiePolicy(page);
 
-    await page
-      .locator('a.js-invoke-modal[aria-controls="pricing-contact-modal"]')
-      .first()
-      .click();
-    const modal = page.locator("#pricing-contact-modal");
-    await expect(modal, "Contact modal did not open").toBeVisible();
+      if (config.modalId) {
+        await expect(
+          page.locator(`#${config.modalId}`),
+          "Contact modal did not open",
+        ).toBeVisible();
+      }
 
-    const form = modal.locator("form#mktoForm_1240");
-    await fillCanaryForm(form);
-    await submitAndVerify(page, form, "1240");
-  });
-
-  test("static form on /kubernetes/contact-us submits to Marketo", async ({
-    page,
-  }) => {
-    await page.goto("/kubernetes/contact-us");
-    await acceptCookiePolicy(page);
-
-    const form = page.locator("form#mktoForm_3230");
-    await expect(form, "Contact form not found").toBeVisible();
-    await fillCanaryForm(form);
-    await submitAndVerify(page, form, "3230");
-  });
+      const form = page.locator(`form#mktoForm_${config.formId}`);
+      await expect(form, "Contact form not found").toBeVisible();
+      await fillCanaryForm(form, config);
+      await submitAndVerify(page, form, config);
+    });
+  }
 });
