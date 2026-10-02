@@ -21,13 +21,20 @@
     <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
     <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
 
-    <script nonce="{{ csp_nonce }}" src="https://assets.ubuntu.com/v1/703e23c9-lazysizes+noscript+native-loading.5.1.2.min.js"
+    <script nonce="{{ csp_nonce }}"
+            src="https://assets.ubuntu.com/v1/703e23c9-lazysizes+noscript+native-loading.5.1.2.min.js"
             defer></script>
-    <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/src/navigation.js') }}" defer></script>
-    <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/main.js') }}" defer></script>
-    <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/src/infer-preferred-language.js')}}"
+    <script nonce="{{ csp_nonce }}"
+            src="{{ versioned_static('js/src/navigation.js') }}"
             defer></script>
-    <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/src/csp-event-handlers.js') }}"
+    <script nonce="{{ csp_nonce }}"
+            src="{{ versioned_static('js/dist/main.js') }}"
+            defer></script>
+    <script nonce="{{ csp_nonce }}"
+            src="{{ versioned_static('js/src/infer-preferred-language.js')}}"
+            defer></script>
+    <script nonce="{{ csp_nonce }}"
+            src="{{ versioned_static('js/src/csp-event-handlers.js') }}"
             defer></script>
 
     <link rel="stylesheet"
@@ -42,15 +49,13 @@
       performance.mark("Stylesheets finished");
     </script>
 
-    <link rel="canonical" href="
+    <link rel="canonical" href=" 
       {% block canonical_url %}{{ request.url }}{% endblock %}" />
 
-    <link
-      rel="alternate"
-      type="text/markdown"
-      href="{{ request.base_url }}?format=md"
-    />
-    <link rel="describedby" href="{{ request.url_root }}llms.txt" />
+      <link rel="alternate"
+            type="text/markdown"
+            href="{{ request.base_url }}?format=md" />
+      <link rel="describedby" href="{{ request.url_root }}llms.txt" />
 
       <link rel="apple-touch-icon"
             sizes="180x180"
@@ -70,7 +75,7 @@
             type="image/png"
             sizes="48x48"
             href="{{ versioned_static('favicons/COF-favicon-48x48.png') }}" />
-      
+
       <!-- Preload core fonts to reduce FOUT -->
       <link rel="preload"
             as="font"
@@ -87,7 +92,7 @@
             type="font/woff2"
             href="{{ versioned_static('fonts/ubuntu-mono-variable.woff2') }}"
             crossorigin />
-      
+
       {%- block head_extra %}{% endblock %}
 
       <script type="application/ld+json">
@@ -124,7 +129,7 @@
         }
       </script>
 
-      <meta name="description" content="
+      <meta name="description" content=" 
         {% block meta_description %}Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things.{% endblock %}" />
         <meta name="facebook-domain-verification"
               content="zxp9j79g1gy2xenbu9ll964pttk5hu" />
@@ -133,7 +138,7 @@
         <meta property="og:type" content="website" />
         <meta property="og:url" content="{{ request.base_url }}" />
         <meta property="og:site_name" content="Ubuntu" />
-        <meta name="copydoc" content="
+        <meta name="copydoc" content=" 
           {% block meta_copydoc %}https://drive.google.com/drive/folders/0B4s80tIYQW4BMjNiMGFmNzQtNDkxZC00YmQ0LWJiZWUtNTk2YThlY2MzZmJh{% endblock %}" />
           <meta name="google-site-verification"
                 content="ddh2iq7ZuKf1LpkL_gtM_T7DkKDVD7ibq6Ceue4a_3M" />
@@ -163,7 +168,8 @@
                   content="https://assets.ubuntu.com/v1/47f12466-og_%20ubuntu.png" />
           {% endif %}
 
-          {% block extra_metatags %}{% endblock %}
+          {% block extra_metatags %}
+          {% endblock %}
           <style>
             #rememberMe {
               display: none;
@@ -173,11 +179,13 @@
           <!-- Cookie policy -->
           <link rel="stylesheet"
                 href="{{ versioned_static('css/cookie-policy.css') }}" />
-          <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/cookie-policy.js') }}"></script>
-          <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/cookie-policy-with-callback.js') }}"></script>
+          <script nonce="{{ csp_nonce }}"
+                  src="{{ versioned_static('js/dist/cookie-policy.js') }}"></script>
+          <script nonce="{{ csp_nonce }}"
+                  src="{{ versioned_static('js/dist/cookie-policy-with-callback.js') }}"></script>
         </head>
 
-        <body class="
+        <body class=" 
           {% block body_class %}{% endblock %}">
           <!-- google tag manager -->
           <noscript>
@@ -194,15 +202,20 @@
           {% include "templates/_notifications.html" %}
 
           {% if not(hide_nav == True) %}
-            {% include "templates/_navigation.html" %}
+            <div class="l-sticky-header">
+              {% include "templates/_navigation.html" %}
+              {% include "templates/_announcement_bar.html" %}
+            </div>
           {% endif %}
 
           <div class="wrapper u-no-margin--top">
-            <main id="main-content"{% if not hide_inner_wrapper %} class="inner-wrapper"{% endif %}>
+            <main id="main-content"
+                  {% if not hide_inner_wrapper %}class="inner-wrapper"{% endif %}>
 
               {% block content_head %}{% endblock %}
 
               {% block content_container %}
+
                 {% block outer_content %}
                 {% endblock outer_content %}
               {% endblock content_container %}
