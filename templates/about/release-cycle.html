@@ -47,7 +47,7 @@
               <button type="button"
                       class="p-contextual-menu__link p-filter-menu__link"
                       data-value="{{ option.value }}"
-                      {% for data_key, data_value in (option.data or {}).items() %}data-{{ data_key }}="{{ data_value }}"{% endfor %}>{{ option.label }}</button>
+                      {% for data_key, data_value in (option.data or {}).items() %} data-{{ data_key }}="{{ data_value }}"{% endfor %}>{{ option.label }}</button>
             {% endfor %}
           </span>
         </span>
