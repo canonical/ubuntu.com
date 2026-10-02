@@ -2321,9 +2321,12 @@ def build_release_cycle_view():
         )
         version = flask.request.args.get("version", type=str, default="all")
 
-        raw_files = get_combined_products(
-            ["products-data/25.10/products.json"]
-        )
+        try:
+            raw_files = get_combined_products(
+                ["products-data/25.10/products.json"]
+            )
+        except HTTPError:
+            raw_files = {}
         raw_products = raw_files.get("products", {})
 
         products_data = build_ui_products(raw_products)
