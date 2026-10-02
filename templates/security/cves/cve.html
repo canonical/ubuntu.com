@@ -335,7 +335,9 @@
                             <td style="overflow: visible; display: flex;" class="{% if status.maintained == False %} js-unmaintained-cell u-hide--cell{% endif %} cve-td-status" >
                               <i class="p-icon--{{ status.icon }}" style="margin-top: .2rem; margin-right: 0.5rem;"></i>
                               <div style="display: block;">
-                                {{ status.name }} {% if status.name == "Fixed" %}<span class="u-text--muted">{{ status.description }} </span>{% endif %}
+                                {{ status.name }}
+                                {%- if status.status == "released" %} <span class="u-text--muted">{{ status.description }} </span>{% endif %}
+                                {%- if status.status == "pending" and status.description %} in <span class="u-text--muted">{{ status.description }} </span>{% endif %}
                                 {% if status.pocket_desc and status.pocket_desc.label == "Ubuntu Pro" %}
                                   <div>
                                     <button href="{{ status.pocket_desc.href }}" class="js-tooltip p-chip p-tooltip--top-center u-no-margin--bottom" aria-describedby="{{ status.pocket }}-tooltip">
