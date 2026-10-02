@@ -1,7 +1,6 @@
 {% if announcement_bar.show %}
   <div class="announcement-bar is-dark"
-       data-announcement-id="{{ announcement_bar.id }}"
-       data-href="{{ announcement_bar.cta_url }}">
+       data-announcement-id="{{ announcement_bar.id }}">
     <div class="announcement-bar__grid grid-row">
       <div class="announcement-bar__container grid-col-2 grid-col-medium-1 grid-col-small-1">
         <i class="p-icon--information"></i>
@@ -12,7 +11,7 @@
       <div class="announcement-bar__container grid-col-5 grid-col-medium-2 grid-col-small-2">
         <p class="announcement-bar__message announcement-bar__message-main">
           {{ announcement_bar.message }}
-          <a href="{{ announcement_bar.cta_url }}">{{ announcement_bar.cta_text }}&nbsp;&rsaquo;</a>
+          <a class="announcement-bar__link" href="{{ announcement_bar.cta_url }}">{{ announcement_bar.cta_text }}&nbsp;&rsaquo;</a>
         </p>
       </div>
       <div class="announcement-bar__container announcement-bar__container-reverse grid-col-1 grid-col-medium-1 grid-col-small-1">

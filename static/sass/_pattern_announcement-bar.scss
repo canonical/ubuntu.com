@@ -89,6 +89,16 @@
     }
   }
 
+  // Makes the whole bar keyboard-operable via this one real link, instead
+  // of relying on a JS click handler on a non-focusable div.
+  &__link {
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
+  }
+
   &__close {
     align-items: center;
     background: none;
@@ -97,6 +107,8 @@
     padding: 0;
     display: flex;
     justify-content: center;
+    position: relative;
+    z-index: 1;
     width: $sp-xxx-large;
     height: $sp-xxx-large;
 
