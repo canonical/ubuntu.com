@@ -202,13 +202,22 @@
     </div>
     {% if not show_release_notice %}
     <div class="u-fixed-width">
-      {% include "about/partials/_desktop-releases-table.html" %}
+      {% if versions %}
+        {% include "about/partials/_desktop-releases-table.html" %}
 
-      <div class="release-cycle-table-scroll">
-        <div class="release-cycle-table-scroll-inner">
-          {% include "about/partials/_tablet-mobile-releases-table.html" %} 
+        <div class="release-cycle-table-scroll">
+          <div class="release-cycle-table-scroll-inner">
+            {% include "about/partials/_tablet-mobile-releases-table.html" %}
+          </div>
         </div>
-      </div>
+      {% else %}
+        <div class="p-notification--information">
+          <div class="p-notification__content">
+            <h5 class="p-notification__title">There are no results matching your search.</h5>
+            <p class="p-notification__message">Search for another product, release type, version, or compliance standard, or <a href="/about/release-cycle">reset your input</a>.</p>
+          </div>
+        </div>
+      {% endif %}
     </div>
     {% endif %}
   </section>
