@@ -615,7 +615,7 @@ app.add_url_rule(
 app.add_url_rule(
     (
         "/appliance/<regex('[a-z-]+'):appliance>/"
-        "<regex('(raspberry-pi2?|intel-nuc|vm)'):device>"
+        "<regex('(raspberry-pi2?|intel-nuc)'):device>"
     ),
     view_func=appliance_install,
 )
