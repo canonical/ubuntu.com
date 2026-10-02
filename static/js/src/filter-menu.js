@@ -138,6 +138,10 @@ function setupFilterBar(bar) {
   }
 
   function restoreSingleToggle(toggle) {
+    // Ignore this filter as it resolved server side
+    if (toggle.dataset.filterServerManaged !== undefined) {
+      return;
+    }
     const value = urlParams().get(toggle.dataset.filterParam);
     if (!value) {
       return;
@@ -170,7 +174,13 @@ function setupFilterBar(bar) {
 
   function hasActiveSelections() {
     const single = singleToggles.some((toggle) => {
-      const value = toggle.dataset.selectedValue;
+      const value = toggle.dataset.selectedValue || "";
+      // A configured baseline is not an active filter until the value differs
+      // from it.
+      const baseline = toggle.dataset.filterDefaultValue;
+      if (baseline !== undefined) {
+        return value !== "" && value !== baseline;
+      }
       return value && value !== "all";
     });
     const multi = multiToggles.some(
@@ -244,11 +254,15 @@ function setupFilterBar(bar) {
     return updates;
   }
 
+  // Pages can adjust the outgoing params by listening for
+  // "filters:beforesubmit" on the bar and editing event.detail.single/multi
   function submitFilters() {
-    navigateWithFilters(
-      collectSingleUpdates(false),
-      collectMultiUpdates(false),
-    );
+    const detail = {
+      single: collectSingleUpdates(false),
+      multi: collectMultiUpdates(false),
+    };
+    bar.dispatchEvent(new CustomEvent("filters:beforesubmit", { detail }));
+    navigateWithFilters(detail.single, detail.multi);
   }
 
   function clearSelections() {

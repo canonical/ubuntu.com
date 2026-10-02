@@ -5,6 +5,7 @@ Unit tests for webapp.views helper functions.
 from unittest import TestCase
 from unittest.mock import Mock, patch, MagicMock
 
+from bs4 import BeautifulSoup
 from werkzeug.exceptions import NotFound, InternalServerError
 
 from webapp.app import app
@@ -22,6 +23,7 @@ from webapp.views import (
     enrich_acquisition_url,
     build_engage_page_resources,
     append_utms_cookie_to_canonical_links,
+    build_release_cycle_view,
 )
 from webapp.certified.views import certified_platform_details_by_release
 
@@ -32,6 +34,75 @@ class BaseViewTestCase(TestCase):
     def setUp(self):
         self.app = app
         self.app.testing = True
+
+
+class TestReleaseCycleEmptyResults(BaseViewTestCase):
+    def setUp(self):
+        super().setUp()
+        products = {
+            "ubuntu": {
+                "product": "Ubuntu",
+                "deployment": [
+                    {
+                        "name": "Ubuntu",
+                        "versions": [
+                            {
+                                "release": "24.04 LTS",
+                                "release-date": "2024-04-25",
+                                "supported": "2099-04-25",
+                                "pro-supported": "2099-04-25",
+                                "legacy-supported": "2099-04-25",
+                                "compliance": [],
+                            }
+                        ],
+                    }
+                ],
+            }
+        }
+        with patch("webapp.views.build_github_data_access") as mock_access:
+            mock_access.return_value.return_value = {"products": products}
+            self.view = build_release_cycle_view()
+
+    def render_page(self, query=""):
+        with self.app.test_request_context("/about/release-cycle" + query):
+            return BeautifulSoup(self.view(), "html.parser")
+
+    def test_no_matching_compliance_shows_notification(self):
+        page = self.render_page("?compliance=FIPS")
+        notification = page.select_one(".p-notification--information")
+        self.assertIsNotNone(notification)
+        self.assertEqual(
+            notification.select_one(".p-notification__title").get_text(),
+            "There are no results matching your search.",
+        )
+        self.assertEqual(
+            notification.select_one(".p-notification__message").get_text(),
+            "Search for another product, release type, version, or "
+            "compliance standard, or reset your input.",
+        )
+        reset_link = notification.find("a", string="reset your input")
+        self.assertEqual(reset_link["href"], "/about/release-cycle")
+        self.assertFalse(page.select(".release-cycle-table"))
+
+        defaults = self.render_page()
+        self.assertFalse(defaults.select(".p-notification--information"))
+        self.assertEqual(len(defaults.select(".release-cycle-table")), 2)
+        for param, value in (
+            ("product", "ubuntu"),
+            ("release", "ubuntu"),
+            ("version", "all"),
+        ):
+            toggle = defaults.select_one(f'[data-filter-param="{param}"]')
+            self.assertEqual(toggle["data-selected-value"], value)
+        self.assertFalse(
+            defaults.select('[data-filter-option][checked]')
+        )
+
+    def test_missing_release_preserves_invalid_input_notice(self):
+        page = self.render_page("?release=")
+        self.assertIsNotNone(page.select_one("[data-filter-error]"))
+        self.assertFalse(page.select(".p-notification--information"))
+        self.assertFalse(page.select(".release-cycle-table"))
 
 
 class TestShortenAcquisitionURL(BaseViewTestCase):

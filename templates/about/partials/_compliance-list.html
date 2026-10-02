@@ -1,0 +1,16 @@
+<ul class="p-release-compliance-list u-no-margin--bottom">
+  {% set achieved_standards = version.compliance | rejectattr("status", "equalto", "None") | list %}
+  {% for standard in achieved_standards %}
+    {% set status_lower = standard.status | lower %}
+    {% set status_class =
+      "achieved" if status_lower == "achieved"
+      else "expired" if status_lower == "expired"
+      else "pending" if status_lower in ["pending", "planned"]
+      else "" %}
+    <li class="p-release-compliance-list__item{% if status_class %} is-{{ status_class }}{% endif %}">
+      {{ standard.framework }}: {{ standard.status }}
+    </li>
+  {% else %}
+    <li class="p-release-compliance-list__item is-none">None</li>
+  {% endfor %}
+</ul>
