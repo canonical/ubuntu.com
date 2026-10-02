@@ -43,7 +43,7 @@ jobs:
           PLAYWRIGHT_BASE_URL: https://ubuntu.com
           INCLUDE_CANARY: true
           CI: true
-          CANARY_FORCE_FAIL: "true" # TEMP: QA web-alerts, revert
+          CANARY_FORCE_FAIL: ${{ inputs.force_failure && 'true' || '' }}
         run: yarn playwright test canary --reporter=line,html
 
       - name: Upload Playwright report
@@ -58,4 +58,4 @@ jobs:
         env:
           BOT_URL: ${{ secrets.BOT_URL }}
         if: failure()
-        run: curl --fail -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" $BOT_URL?room=web-alerts
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" $BOT_URL?room=web-alerts
