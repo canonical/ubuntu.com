@@ -19,7 +19,7 @@
     flex-shrink: 0;
     margin-top: $sp-medium;
 
-    @media (max-width: ($viewport-threshold - 1)) {
+    @media (width < $viewport-threshold) {
       margin-top: $sp-small;
     }
   }
@@ -27,7 +27,11 @@
   &__grid {
     min-height: $sp-xxx-large;
 
-    @media (max-width: ($viewport-threshold - 1)) {
+    @media (width >= $viewport-threshold) {
+      gap: $sp-medium;
+    }
+
+    @media (width < $viewport-threshold) {
       display: block;
       padding-top: $spv--small;
       padding-bottom: $spv--large;
@@ -44,7 +48,7 @@
     flex-wrap: nowrap;
     gap: $sph--small;
 
-    @media (max-width: ($viewport-threshold - 1)) {
+    @media (width < $viewport-threshold) {
       gap: $sp-medium;
     }
 
@@ -61,22 +65,26 @@
     padding-bottom: $spv--medium;
     text-align: start;
 
-    @media (max-width: ($viewport-threshold - 1)) {
+    @media (width < $viewport-threshold) {
       margin-right: $sp-xxx-large;
       padding-top: $sp-x-small;
       padding-bottom: 0;
     }
 
     &-title {
-      @media (min-width: $viewport-threshold) {
+      @media (width >= $viewport-threshold) {
         padding-left: $sp-small;
       }
     }
 
     &-main {
-      @media (max-width: ($viewport-threshold - 1)) {
+      @media (width < $viewport-threshold) {
         padding-top: $sp-x-small;
         padding-left: $sp-x-large;
+      }
+
+      @media (width >= $viewport-threshold) {
+        margin-left: -$sp-x-small;
       }
     }
   }
@@ -97,11 +105,11 @@
       background-color: transparent;
     }
 
-    @media (min-width: $viewport-threshold) {
+    @media (width >= $viewport-threshold) {
       margin-right: -$sp-large !important;
     }
 
-    @media (max-width: ($viewport-threshold - 1)) {
+    @media (width < $viewport-threshold) {
       width: $sp-xx-large;
       height: $sp-xx-large;
       position: absolute;
@@ -109,7 +117,7 @@
       right: $spv--medium;
     }
 
-    @media (max-width: ($breakpoint-small)) {
+    @media (width <= $breakpoint-small) {
       right: $sp-x-small;
     }
   }

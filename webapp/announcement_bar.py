@@ -48,20 +48,38 @@ def is_announcement_dismissed():
     return dismissed_id == _config.get("id")
 
 
+def _ensure_trailing_period(text):
+    """
+    So the message always reads as a full sentence before the CTA.
+    """
+
+    text = text.rstrip()
+
+    if text and text[-1] not in ".!?":
+        text += "."
+
+    return text
+
+
 def get_announcement_bar_context():
     """
     "announcement_bar" template context: the YAML content plus a "show"
     flag combining path eligibility and dismissal state.
     """
 
+    content = {
+        **_config,
+        "message": _ensure_trailing_period(_config.get("message", "")),
+    }
+
     # Some templates are rendered outside of a request (e.g. sitemap
     # generation), where there's no path or cookies to check against.
     if not flask.has_request_context():
-        return {"show": False, **_config}
+        return {"show": False, **content}
 
     show = (
         should_show_announcement_bar(flask.request.path)
         and not is_announcement_dismissed()
     )
 
-    return {"show": show, **_config}
+    return {"show": show, **content}
