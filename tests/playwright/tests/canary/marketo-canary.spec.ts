@@ -10,7 +10,7 @@ import {
 
 // Hourly prod canary, see .github/workflows/marketo-canary.yaml
 
-const MAX_SUBMIT_MS = 15000;
+const MAX_SUBMIT_MS = 10000;
 
 // intl-tel-input picks its country from the timezone
 test.use({ timezoneId: "Europe/London" });
