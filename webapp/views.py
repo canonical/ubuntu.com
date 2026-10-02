@@ -454,7 +454,26 @@ def build_engage_index(engage_docs):
         limit = 14  # adjust as needed
         offset = (page - 1) * limit
 
-        if tag or resource or language:
+        # Only show active items unless previewing. get_index only
+        # supports 2 key/value filter slots (+ tag_value), so push
+        # active=true into whichever of key/second_key isn't already
+        # claimed by resource/language, keeping pagination (current_total)
+        # accurate. If both slots are taken, fall back to filtering the
+        # returned page in Python (current_total stays unfiltered, so
+        # total_pages may include a short trailing page rather than
+        # hiding real pages of content).
+        key, value = "type", resource
+        second_key, second_value = "language", language
+        filter_active_in_query = False
+        if preview is None:
+            if not resource:
+                key, value = "active", "true"
+                filter_active_in_query = True
+            elif not language:
+                second_key, second_value = "active", "true"
+                filter_active_in_query = True
+
+        if tag or resource or language or filter_active_in_query:
             (
                 metadata,
                 count,
@@ -464,10 +483,10 @@ def build_engage_index(engage_docs):
                 limit,
                 offset,
                 tag_value=tag,
-                key="type",
-                value=resource,
-                second_key="language",
-                second_value=language,
+                key=key,
+                value=value,
+                second_key=second_key,
+                second_value=second_value,
             )
         else:
             (
@@ -478,6 +497,13 @@ def build_engage_index(engage_docs):
             ) = engage_docs.get_index(
                 limit, offset, key="is_static", value=None
             )
+
+        if preview is None and not filter_active_in_query:
+            metadata = [
+                item
+                for item in metadata
+                if str(item.get("active", "")).strip().lower() == "true"
+            ]
 
         # Fixed so that engage page authors don't create random resource types
         resource_types = [
@@ -639,12 +665,10 @@ def engage_thank_you(engage_pages):
             flask.abort(404)
 
         # Stop potential spamming of /engage/<engage-page>/thank-you
-        if (
-            "resource_url" not in metadata or metadata["resource_url"] == ""
-        ) and (
-            "contact_form_only" not in metadata
-            or metadata["contact_form_only"] != "true"
-        ):
+        has_resource_url = bool(metadata.get("resource_url", ""))
+        has_form = bool(metadata.get("form_id", ""))
+        is_contact_form_only = metadata.get("contact_form_only") == "true"
+        if not (has_resource_url or has_form or is_contact_form_only):
             return flask.abort(404)
 
         language = metadata["language"]
@@ -662,8 +686,8 @@ def engage_thank_you(engage_pages):
             template_language,
             request_url=flask.request.referrer,
             metadata=metadata,
-            resource_name=metadata["type"],
-            resource_url=metadata["resource_url"],
+            resource_name=metadata.get("type", ""),
+            resource_url=metadata.get("resource_url", ""),
             form_details=form_details,
         )
 
