@@ -30,7 +30,7 @@
       <div class="col p-section--shallow">
         <div class="p-section--shallow">
           <p>
-            Ubuntu's platform security features are carefully designed to enhance security while providing an intuitive user experience &ndash; from hardware roots of trust to secure boot and confidential computing.
+            Ubuntu's platform security features are carefully designed to enhance security while providing an intuitive user experience &ndash; from hardware roots of trust, to secure boot and confidential computing.
           </p>
         </div>
         <hr class="p-rule--muted" />
@@ -84,7 +84,7 @@
   <section class="p-section">
     {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
       {%- if slot == 'title' -%}
-        <h2>Full-disk encryption</h2>
+        <h2>Full Disk Encryption</h2>
       {%- endif -%}
 
       {%- if slot == 'description' -%}
@@ -99,30 +99,36 @@
       {%- endif -%}
 
       {%- if slot == 'list_item_title_1' -%}
-        <h3 class="p-heading--5">Full Disk Encryption with passphrases</h3>
+        <h3 class="p-heading--5">Full-disk encryption</h3>
       {%- endif -%}
 
       {%- if slot == 'list_item_description_1' -%}
         <p>
-          Ubuntu has designed Full Disk Encryption (FDE) to allow  users to encrypt their data while stored on the device’s  hard drive or storage disk.
-        </p>
-        <p>
-          Today, this is achieved using the Linux Unified Key Setup (LUKS) framework, which provides disk encryption at the block level. The data is  then only decrypted if the correct passphrase is provided by the user.
+          Ubuntu’s full-disk encryption (FDE) protects data at rest against unauthorized access if a device is lost or stolen.
         </p>
       {%- endif -%}
 
       {%- if slot == 'list_item_title_2' -%}
-        <h3 class="p-heading--5">TPM backed Full Disk Encryption</h3>
+        <h3 class="p-heading--5">Passphrase-based FDE</h3>
       {%- endif -%}
 
       {%- if slot == 'list_item_description_2' -%}
         <p>
-          Tomorrow’s next generation FDE is already underway and will be backed by a Trusted Platform Module. This eliminates the need to manually enter passphrases and lowers barriers to encryption on shared devices in enterprise environments,  simplifying the boot process for large-scale deployments.
+          Available on Ubuntu Desktop and Server, this option uses Linux Unified Key Setup (LUKS) to encrypt the disk, which users unlock by entering a passphrase at startup.
         </p>
       {%- endif -%}
 
-      {%- if slot == 'cta' -%}
-        <a href="/blog/tpm-backed-full-disk-encryption-is-coming-to-ubuntu">Learn more about Ubuntu upcoming TPM-backed FDE &rsaquo;</a>
+      {%- if slot == 'list_item_title_3' -%}
+        <h3 class="p-heading--5">TPM-backed FDE</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_3' -%}
+        <p>
+          Available on supported hardware in Ubuntu Desktop 26.04 LTS and coming to Ubuntu Server, TPM-backed FDE uses the device’s Trusted Platform Module (TPM) to protect encryption keys and automatically unlock the disk when the boot state matches what’s expected. Users can add a PIN or passphrase for extra protection.
+        </p>
+        <p>
+          <a href="https://documentation.ubuntu.com/security/security-features/storage/encryption-full-disk/">Learn more about Ubuntu TPM-backed FDE&nbsp;&rsaquo;</a>
+        </p>
       {%- endif -%}
     {%- endcall -%}
   </section>
@@ -196,7 +202,7 @@
             </div>
             <div class="p-equal-height-row__item">
               <p>
-                For your private cloud deployment,  we offer Intel TDX-optimized Ubuntu images for both guest and host. With confidential computing, you can protect your sensitive on-premises data with hardware-rooted primitives, ensuring confidentiality and integrity beyond traditional measures.
+                Ubuntu is the first enterprise Linux distribution to support both Intel TDX and AMD SEV-SNP across host and guest. With Ubuntu 26.04 LTS, deploy enterprise-ready confidential VMs on your own infrastructure, protecting sensitive data during processing with hardware-backed isolation.
               </p>
             </div>
           </div>
