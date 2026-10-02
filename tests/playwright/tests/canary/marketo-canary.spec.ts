@@ -132,7 +132,11 @@ const runCanary = async (
   tamper?: (form: Locator) => Promise<void>,
   expectedFormId?: string,
 ) => {
-  await page.goto(config.modalId ? `${config.path}#get-in-touch` : config.path);
+  // Don't wait on third-party scripts, the form checks below wait for us
+  await page.goto(
+    config.modalId ? `${config.path}#get-in-touch` : config.path,
+    { waitUntil: "domcontentloaded" },
+  );
   await acceptCookiePolicy(page);
 
   if (config.modalId) {
