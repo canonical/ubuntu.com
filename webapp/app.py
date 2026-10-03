@@ -82,6 +82,7 @@ from webapp.shop.advantage.views import (
     get_renewal,
     get_user_subscriptions,
     magic_attach_view,
+    portal_proxy,
     post_account_user_role,
     post_advantage_purchase,
     post_auto_renewal_settings,
@@ -551,6 +552,11 @@ app.add_url_rule(
     view_func=post_advantage_purchase,
     methods=["POST"],
     defaults={"preview": True},
+)
+app.add_url_rule(
+    "/portal-proxy/<path:portal_path>",
+    view_func=portal_proxy,
+    methods=["GET", "POST", "PUT", "DELETE", "PATCH"],
 )
 app.add_url_rule(
     "/account/checkout",

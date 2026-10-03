@@ -292,3 +292,20 @@ export const getLabel = (
 ) => {
   return array.find((element) => element.value === toFind)?.label;
 };
+
+export type PurchaseSession = {
+  id: string;
+  createdAt: string;
+  orderInformation: {
+    productUser: ProductUsers;
+    productType: ProductTypes;
+    iotDevice?: IoTDevices;
+    publicClouds: PublicClouds;
+    LTSVersions: LTSVersions;
+    support: Support;
+    SLA: SLA;
+    features: Features;
+    quantity: number;
+  };
+};
+export type PurchaseSessionCreateInput = Pick<PurchaseSession, `orderInformation`>;

@@ -5,6 +5,7 @@ import concurrent.futures
 
 import flask
 import pytz
+import requests
 import sentry_sdk
 from dateutil.parser import parse
 from requests.exceptions import HTTPError
@@ -411,7 +412,6 @@ def get_shop_status_page(**kwargs):
         end_date=end_date.strftime("%-d %B %Y at %H:%M"),
         time_now=time_now.strftime("%-d %B %Y %H:%M"),
     )
-
 
 @shop_decorator(area="account", response="html")
 def maintenance_check(**kwargs):

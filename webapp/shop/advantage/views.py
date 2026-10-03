@@ -5,6 +5,8 @@ from typing import List
 
 import flask
 from webargs.fields import String
+from canonicalwebteam.flask_base.env import get_flask_env
+import requests
 
 from webapp.login import user_info
 from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
@@ -786,3 +788,27 @@ def pro_get_request_attributes(ua_contracts_api, **kwargs):
     Get the request attributes for the pro request form.
     """
     return flask.jsonify(ua_contracts_api.get_attributes())
+
+
+@shop_decorator(area="advantage", response="json")
+def portal_proxy(portal_path, **kwargs):
+    portal_url = "http://localhost:8999/"
+    # portal_url = get_flask_env("APP_PRO_FEATURE_PORTAL_URL")
+    macaroon = flask.session.get("macaroon")
+    headers = dict(flask.request.headers)
+    if macaroon:
+        headers["Authorization"] = f"Macaroon {macaroon}"
+    print(f"Proxying request to: {portal_url+portal_path}")
+    response = requests.request(
+        method=flask.request.method,
+        url=portal_url+portal_path,
+        params=flask.request.args,
+        json=flask.request.get_json(silent=True),
+        data=None if flask.request.is_json else flask.request.get_data(),
+        headers=headers,
+    )
+    return flask.Response(
+        response.content,
+        status=response.status_code,
+        content_type=response.headers.get("Content-Type"),
+    )
