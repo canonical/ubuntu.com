@@ -88,6 +88,7 @@ from webapp.shop.advantage.views import (
     post_auto_renewal_settings,
     post_offer,
     pro_activate_activation_key,
+    pro_check_user_contracts,
     pro_get_request_attributes,
     pro_page_view,
     put_account_user_role,
@@ -558,6 +559,12 @@ app.add_url_rule(
     view_func=portal_proxy,
     methods=["GET", "POST", "PUT", "DELETE", "PATCH"],
 )
+app.add_url_rule(
+    "/pro/check-user-contracts",
+    view_func=pro_check_user_contracts,
+    methods=["GET"],
+)
+
 app.add_url_rule(
     "/account/checkout",
     view_func=checkout,

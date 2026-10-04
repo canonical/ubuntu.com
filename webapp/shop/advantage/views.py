@@ -789,12 +789,22 @@ def pro_get_request_attributes(ua_contracts_api, **kwargs):
     """
     return flask.jsonify(ua_contracts_api.get_attributes())
 
+@shop_decorator(area="advantage", permission="user", response="json")
+def pro_check_user_contracts(advantage_mapper, **kwargs):
+    account = advantage_mapper.get_purchase_account("canonical-ua")
+    subscriptions = advantage_mapper.get_account_subscriptions(
+        account_id=account.id,
+        marketplace="canonical-ua",
+        filters={"status": "active"},
+    )
+    return flask.jsonify({"has_active_ua_contracts": len(subscriptions) > 0})
+
 
 @shop_decorator(area="advantage", response="json")
 def portal_proxy(portal_path, **kwargs):
     portal_url = "http://localhost:8999/"
     # portal_url = get_flask_env("APP_PRO_FEATURE_PORTAL_URL")
-    macaroon = flask.session.get("macaroon")
+    macaroon = flask.session.get("authentication_token")
     headers = dict(flask.request.headers)
     if macaroon:
         headers["Authorization"] = f"Macaroon {macaroon}"
