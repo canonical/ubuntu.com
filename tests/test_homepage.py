@@ -194,6 +194,33 @@ class TestHomepageRender(VCRTestCase):
         ]:
             self.assertNotIn(placeholder, text)
 
+    def test_closer_section(self):
+        heading = next(
+            (
+                h2
+                for h2 in self.get_soup().select("section.p-strip.is-deep h2")
+                if "Discover more about Canonical" in h2.get_text()
+            ),
+            None,
+        )
+        self.assertIsNotNone(heading, "Missing closer heading")
+        self.assertEqual(
+            list(heading.stripped_strings),
+            [
+                "Discover more about Canonical",
+                "Trusted source for your whole stack",
+            ],
+        )
+        self.assertIsNotNone(heading.find("br"))
+
+        section = heading.find_parent("section")
+        self.assertIn(
+            "covered through Ubuntu Pro", section.get_text(" ", strip=True)
+        )
+        self.assertEqual(
+            self.arrow_link_hrefs(section), ["https://canonical.com/"]
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
