@@ -1,7 +1,4 @@
-import {
-  prefersReducedMotion,
-  onReducedMotionChange,
-} from "./reduced-motion";
+import { prefersReducedMotion, onReducedMotionChange } from "./reduced-motion";
 
 function mockMatchMedia(matches) {
   const mediaQueryList = {
@@ -47,8 +44,7 @@ describe("onReducedMotionChange", () => {
     const callback = jest.fn();
     onReducedMotionChange(callback);
 
-    const [eventName, handler] =
-      mediaQueryList.addEventListener.mock.calls[0];
+    const [eventName, handler] = mediaQueryList.addEventListener.mock.calls[0];
     expect(eventName).toBe("change");
     handler({ matches: true });
 
