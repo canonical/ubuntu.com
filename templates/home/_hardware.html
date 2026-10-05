@@ -1,1 +1,48 @@
 {# Certified hardware: HP-09 #}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/shared/vf_logo-block.jinja" import vf_logo_block %}
+{% from "home/_macros.html" import arrow_link_icon %}
+
+{% set description_html %}
+  <h3 class="p-heading--5">Longstanding hardware partnerships</h3>
+  <p>
+    Canonical works directly with hardware and silicon vendors to test, optimize, and certify Ubuntu for their latest platforms.
+  </p>
+  <p>
+    Benefit from a straightforward, out-of-the-box experience. Browse over 1,000 pieces of hardware, from laptops and servers to IoT boards.
+  </p>
+  <p>With certified hardware, it’s ready, set, build.</p>
+{% endset %}
+
+{{ vf_basic_section(
+  title={"text": "Go further and faster with certified hardware"},
+  items=[
+    {
+      "type": "description",
+      "item": {"type": "html", "content": description_html}
+    },
+    {
+      "type": "cta-block",
+      "item": {
+        "link": {
+          "content_html": "Discover certified hardware " ~ arrow_link_icon(),
+          "attrs": {"class": "p-arrow-link", "href": "/certified"}
+        }
+      }
+    }
+  ]
+) }}
+
+{% set logos = [
+  {"attrs": {"src": "https://assets.ubuntu.com/v1/cc247653-amd-logo.png", "alt": "AMD", "loading": "lazy"}},
+  {"attrs": {"src": "https://assets.ubuntu.com/v1/0d5fc741-arm-logo.png", "alt": "Arm", "loading": "lazy"}},
+  {"attrs": {"src": "https://assets.ubuntu.com/v1/703330cd-dell-technologies-logo-white.png", "alt": "Dell Technologies", "loading": "lazy"}},
+  {"attrs": {"src": "https://assets.ubuntu.com/v1/af7e6fff-hp-logo.png", "alt": "HP", "loading": "lazy"}},
+  {"attrs": {"src": "https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png", "alt": "Intel", "loading": "lazy"}},
+  {"attrs": {"src": "https://assets.ubuntu.com/v1/dc74391e-lenovo-logo.png", "alt": "Lenovo", "loading": "lazy"}},
+  {"attrs": {"src": "https://assets.ubuntu.com/v1/3e3e698b-nvidia-logo.png", "alt": "NVIDIA", "loading": "lazy"}}
+] %}
+
+<div class="p-section">
+  {{ vf_logo_block(logo_block_config={"logos": logos}) }}
+</div>

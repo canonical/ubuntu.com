@@ -1,3 +1,40 @@
 @mixin ubuntu-p-homepage {
-  // Homepage redesign section styles
+  // Orange text link whose trailing arrow nudges right on hover and focus
+  .p-arrow-link {
+    color: #fc764c;
+    text-decoration: none;
+
+    &:visited {
+      color: #fc764c;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: #fe8a66;
+      text-decoration: none;
+    }
+  }
+
+  .p-arrow-link__icon {
+    display: inline-block;
+    margin-left: 0.5rem;
+    transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+    vertical-align: middle;
+  }
+
+  .p-arrow-link:hover .p-arrow-link__icon,
+  .p-arrow-link:focus-visible .p-arrow-link__icon {
+    transform: translateX(3px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .p-arrow-link__icon {
+      transition: none;
+    }
+
+    .p-arrow-link:hover .p-arrow-link__icon,
+    .p-arrow-link:focus-visible .p-arrow-link__icon {
+      transform: none;
+    }
+  }
 }

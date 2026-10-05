@@ -4,6 +4,7 @@ import re
 import unittest
 
 # Packages
+from bs4 import BeautifulSoup
 from vcr_unittest import VCRTestCase
 
 # Local
@@ -72,7 +73,25 @@ class TestHomepageRender(VCRTestCase):
     def setUp(self):
         app.testing = True
         self.client = app.test_client()
+        self._soup = None
         return super().setUp()
+
+    def get_soup(self):
+        if self._soup is None:
+            response = self.client.get("/")
+            self._soup = BeautifulSoup(response.get_data(as_text=True), "lxml")
+        return self._soup
+
+    def get_section(self, heading_text):
+        soup = self.get_soup()
+        heading = soup.find(
+            "h2", string=lambda text: text and text.strip() == heading_text
+        )
+        self.assertIsNotNone(heading, f"Missing heading: {heading_text}")
+        return heading.find_parent(["section", "div"], class_="p-section")
+
+    def arrow_link_hrefs(self, root):
+        return [link["href"] for link in root.select("a.p-arrow-link")]
 
     def test_renders_redesign_shell(self):
         """
@@ -97,6 +116,35 @@ class TestHomepageRender(VCRTestCase):
             "Carrier–grade private cloud",
         ]:
             self.assertFalse(removed in html, f"Still present: {removed}")
+
+    def test_hardware_section(self):
+        section = self.get_section(
+            "Go further and faster with certified hardware"
+        )
+        self.assertEqual(self.arrow_link_hrefs(section), ["/certified"])
+
+        logos = self.get_soup().select("img.p-logo-section__logo")
+        self.assertEqual(
+            [logo["alt"] for logo in logos],
+            [
+                "AMD",
+                "Arm",
+                "Dell Technologies",
+                "HP",
+                "Intel",
+                "Lenovo",
+                "NVIDIA",
+            ],
+        )
+
+    def test_arrow_links_hide_icon_from_screen_readers(self):
+        links = self.get_soup().select("a.p-arrow-link")
+        self.assertTrue(links, "No arrow links found")
+        for link in links:
+            icons = link.find_all("svg")
+            self.assertEqual(len(icons), 1, link)
+            self.assertEqual(icons[0].get("aria-hidden"), "true")
+            self.assertEqual(icons[0].get("focusable"), "false")
 
 
 if __name__ == "__main__":
