@@ -1,1 +1,48 @@
 {# Modern containers: HP-14 #}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "home/_macros.html" import arrow_link_icon %}
+
+{%- call(slot) vf_tiered_list() -%}
+    {%- if slot == 'title' -%}
+      <h2>The standard for modern containers</h2>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">1 billion Docker image pulls and counting</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+      <p>
+        Get the most out of your hardware stack and deploy lightweight, efficient applications at scale. Ubuntu is the most popular base image for containerized applications.
+      </p>
+      <p>
+        <a class="p-arrow-link" href="https://hub.docker.com/_/ubuntu">Download your Ubuntu image {{ arrow_link_icon() }}</a>
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">An efficient, minimal footprint</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+      <p>
+        Chiseled Ubuntu images are small, ensuring quick boot and a minimal attack surface. Spin up new images in a matter of seconds as you scale to meet demand.
+      </p>
+      <p>
+        <a class="p-arrow-link" href="/chisel/docs/latest/">Learn about chisel {{ arrow_link_icon() }}</a>
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_3' -%}
+      <h3 class="p-heading--5">Build minimal, OCI-compliant containers</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_3' -%}
+      <p>
+        Discover Rockcraft, a new tool to create next-generation OCI-compliant container images, based on Ubuntu.
+      </p>
+      <p>
+        <a class="p-arrow-link" href="/containers/rockcraft">Learn about Rockcraft {{ arrow_link_icon() }}</a>
+      </p>
+    {%- endif -%}
+{%- endcall -%}

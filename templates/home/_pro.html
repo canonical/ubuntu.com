@@ -1,1 +1,35 @@
 {# Ubuntu Pro: HP-10 #}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "home/_macros.html" import arrow_link_icon %}
+
+{%- call(slot) vf_tiered_list() -%}
+    {%- if slot == 'title' -%}
+      <h2>15 years of peace of mind with Ubuntu Pro</h2>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">Enterprise-grade security, support and compliance</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+      <p>
+        Join millions of Ubuntu Pro users and benefit from enterprise-grade security and support through a single, comprehensive subscription priced per node. Ubuntu Pro offers enterprise features like expanded security maintenance (ESM), patching automation, compliance, hardening, and 24/7 support. Your open source is covered for 15 years.
+      </p>
+      <p>
+        <a class="p-arrow-link" href="/pro">Discover Ubuntu Pro {{ arrow_link_icon() }}</a>
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">A unified Ubuntu experience</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+      <p>
+        The underlying Ubuntu codebase, packages, and tools remain the same. Whether you opt for an Ubuntu Pro subscription, or you choose to use Ubuntu without it. It's the same platform for development and production with no mandatory license fees.
+      </p>
+      <p>
+        <a class="p-arrow-link" href="/what-is-enterprise-linux">Read more about our approach {{ arrow_link_icon() }}</a>
+      </p>
+    {%- endif -%}
+{%- endcall -%}

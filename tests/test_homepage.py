@@ -146,6 +146,54 @@ class TestHomepageRender(VCRTestCase):
             self.assertEqual(icons[0].get("aria-hidden"), "true")
             self.assertEqual(icons[0].get("focusable"), "false")
 
+    def row_titles(self, section):
+        return [
+            title.get_text(strip=True)
+            for title in section.select("h3.p-heading--5")
+        ]
+
+    def test_pro_section(self):
+        section = self.get_section("15 years of peace of mind with Ubuntu Pro")
+        self.assertEqual(
+            self.row_titles(section),
+            [
+                "Enterprise-grade security, support and compliance",
+                "A unified Ubuntu experience",
+            ],
+        )
+        self.assertEqual(
+            self.arrow_link_hrefs(section),
+            ["/pro", "/what-is-enterprise-linux"],
+        )
+
+    def test_containers_section(self):
+        section = self.get_section("The standard for modern containers")
+        self.assertEqual(
+            self.row_titles(section),
+            [
+                "1 billion Docker image pulls and counting",
+                "An efficient, minimal footprint",
+                "Build minimal, OCI-compliant containers",
+            ],
+        )
+        self.assertEqual(
+            self.arrow_link_hrefs(section),
+            [
+                "https://hub.docker.com/_/ubuntu",
+                "/chisel/docs/latest/",
+                "/containers/rockcraft",
+            ],
+        )
+
+    def test_tiered_list_placeholders_do_not_render(self):
+        text = self.get_soup().get_text()
+        for placeholder in [
+            "Tiered List",
+            "This is a tiered list.",
+            "No CTA provided.",
+        ]:
+            self.assertNotIn(placeholder, text)
+
 
 if __name__ == "__main__":
     unittest.main()
