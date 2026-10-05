@@ -1,17 +1,35 @@
 @mixin ubuntu-p-homepage {
+  $homepage-link: #fc764c;
+  $homepage-link-hover: #fe8a66;
+
   // Orange text link whose trailing arrow nudges right on hover and focus
   .p-arrow-link {
-    color: #fc764c;
     text-decoration: none;
 
+    &,
+    &:link,
     &:visited {
-      color: #fc764c;
+      color: $homepage-link;
     }
 
     &:hover,
     &:focus-visible {
-      color: #fe8a66;
+      color: $homepage-link-hover;
       text-decoration: none;
+    }
+  }
+
+  // Outranks the dark theme's `.inner-wrapper a:not([class^="p-button"])`
+  // link colour in styles.scss
+  .is-dark .inner-wrapper a.p-arrow-link:not([class^="p-button"]) {
+    &,
+    &:visited {
+      color: $homepage-link;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: $homepage-link-hover;
     }
   }
 
@@ -36,5 +54,10 @@
     .p-arrow-link:focus-visible .p-arrow-link__icon {
       transform: none;
     }
+  }
+
+  // Shows full-colour vendor logos as flat white, until white assets exist
+  .p-logo-section__logo.is-monochrome {
+    filter: brightness(0) invert(1);
   }
 }
