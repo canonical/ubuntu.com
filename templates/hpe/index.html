@@ -21,10 +21,10 @@
   <section class="p-strip">
     <div class="row">
       <div class="col-3 col-medium-2">
-        {{ image(url="https://assets.ubuntu.com/v1/0ad256cf-hpe_pri_grn_pos_rgb.png",
+        {{ image(url="https://assets.ubuntu.com/v1/f7fc3bfc-hpe_signpost_logo.png",
                 alt="",
-                width="157",
-                height="66",
+                width="852",
+                height="156",
                 hi_def=True,
                 loading="auto",) | safe
         }}
@@ -66,9 +66,6 @@
             the combined expertise from HPE and Canonical throughout the project lifecycle.
           </li>
         </ul>
-        <p>
-          As an active member of the HPE Technology Partner Program, Canonical participates in <a href="#events">HPE events</a> to share joint solutions.
-        </p>
       </div>
     </div>
   </section>
@@ -93,13 +90,16 @@
       </div>
     </div>
     <div class="u-fixed-width">
-      {{ image(url="https://assets.ubuntu.com/v1/93b54e0a-Rectangle 558.png",
-            alt="",
-            width="2438",
-            height="861",
-            hi_def=True,
-            loading="lazy") | safe
-      }}
+      <div class="p-image-container--cinematic">
+        {{ image(url="https://assets.ubuntu.com/v1/88d38c0b-tier1_os.png",
+              alt="",
+              width="1232",
+              height="513",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
     </div>
   </section>
 
@@ -110,10 +110,10 @@
     <div class="row">
       <div class="col-6 u-hide--medium u-hide--small">
         <div class="u-image-separation">
-          {{ image(url="https://assets.ubuntu.com/v1/07620fe2-image-on-paper.png",
+          {{ image(url="https://assets.ubuntu.com/v1/6c1eac81-reliable_solutions.jpg",
                     alt="",
-                    width="1614",
-                    height="1076",
+                    width="600",
+                    height="400",
                     hi_def=True,
                     loading="lazy",) | safe
           }}
@@ -145,13 +145,6 @@
       </div>
       <div class="col-6 col-medium-4">
         <div class="u-image-separation">
-          {{ image(url="https://assets.ubuntu.com/v1/941754b0-dell server image1.png",
-                    alt="",
-                    width="1614",
-                    height="1076",
-                    hi_def=True,
-                    loading="lazy",) | safe
-          }}
           <p>
             Canonical and HPE have collaborated to develop Telco Validated Designs. These powerful solutions for the telecommunications industry include:
           </p>
@@ -166,6 +159,13 @@
               Anbox Cloud Appliance, which lets you securely stream mobile apps, at any scale, to any device.
             </li>
           </ul>
+          {{ image(url="https://assets.ubuntu.com/v1/941754b0-dell%20server%20image1.png",
+                    alt="",
+                    width="1614",
+                    height="1076",
+                    hi_def=True,
+                    loading="lazy",) | safe
+          }}
         </div>
       </div>
     </div>
@@ -175,11 +175,11 @@
     <div class="u-fixed-width">
       <hr class="p-rule" />
     </div>
-    <div class="u-fixed-width">
-      <h2>Proven results from collaborative solutions</h2>
-    </div>
     <div class="row">
-      <div class="col-6">
+      <div class="col-6 col-medium-2">
+        <h2 class="p-text--small-caps">Proven results from collaborative solutions</h2>
+      </div>
+      <div class="col-6 col-medium-4">
         <p>Canonical and HPE collaborate to offer proven open-source solutions that have benefited numerous global clients.</p>
       </div>
     </div>
@@ -187,115 +187,53 @@
       <div class="p-logo-section">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/6cd78b57-at%26t-logo.png",
-                        alt="AT&T",
-                        width="288",
-                        height="288",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/a3bb7ca4-mercedes-benz-group-logo.png",
+            {{ image(url="https://assets.ubuntu.com/v1/9b48c021-mercedes_logo.png",
                         alt="Mercedes-Benz",
-                        width="288",
-                        height="288",
+                        width="160",
+                        height="40",
                         hi_def=True, loading="lazy",
                         attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/d6df40cd-tmn_logo.png",
-                        alt="TMN",
-                        width="874",
-                        height="611",
+            {{ image(url="https://assets.ubuntu.com/v1/b7f0ab75-at_t_logo.png",
+                        alt="AT&T",
+                        width="96",
+                        height="42",
                         hi_def=True,
                         loading="lazy",
                         attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/1dc7af1e-panasonic-logo.png",
-                        alt="Panasonic",
-                        width="288",
-                        height="288",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/4af3ad39-barclays-logo.png",
+            {{ image(url="https://assets.ubuntu.com/v1/4bab4f7b-barclays_logo.png",
                         alt="Barclays",
-                        width="288",
-                        height="288",
+                        width="122",
+                        height="22",
                         hi_def=True,
                         loading="lazy",
                         attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-section">
-    <hr class="p-rule is-fixed-width" />
-    <div class="row">
-      <div class="col-6 col-medium-2">
-        <div class="p-block">
-          <h2 id="events">Events</h2>
-        </div>
-      </div>
-      <div class="col-6 col-medium-4">
-        <div class="p-block">
-          <div class="u-embedded-media">
-            <iframe class="u-embedded-media__element"
-                    width="560"
-                    height="315"
-                    src="https://www.youtube.com/embed/iUwyJvFM5w4"
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/228a75f7-panasonic_logo.png",
+                        alt="Panasonic",
+                        width="107",
+                        height="18",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
           </div>
-          <p>
-            Canonical participates in international events with HPE to show the partnership's value and the offerings we provide, from private cloud to edge, to AI/ML, to open source applications security.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-9 col-start-large-4 col-medium-4 col-start-medium-3">
-        <hr class="p-rule is-fixed-width" />
-        <div class="row">
-          <div class="col-3 col-medium-2">
-            <div class="p-block">
-              <h2 class="p-text--small-caps">Recent events</h2>
-            </div>
-          </div>
-          <div class="col-6 col-medium-4">
-            <div class="p-block">
-              <h5>
-                <a href="https://www.hpe.com/us/en/discover.html">HPE Discover 2023</a>
-              </h5>
-              <p>
-                HPE Discover is the best place to stay ahead of the trends and technologies that will move your business forward, faster.
-              </p>
-              <p>
-                Visit our booth and see how Canonical and HPE ​can offer a more cost-effective, better performing and secure pure upstream open source stack.
-              </p>
-            </div>
-            <div class="p-block">
-              <hr class="p-rule is-fixed-width" />
-              <h5>
-                <a href="/blog/canonical-at-hpe-apac-outcome-based-solutions-2023">HPE OBSS APAC 2023</a>
-              </h5>
-              <p>
-                Canonical is sponsoring the Outcome-Based Solutions Summit (OBSS) with HPE. OBSS is an annual knowledge transfer event for the HPE and Partner technology community in Asia Pacific, India, and Japan.
-              </p>
-            </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/da73e6c3-tnm_logo.png",
+                        alt="TMN",
+                        width="77",
+                        height="104",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
           </div>
         </div>
       </div>
@@ -320,7 +258,7 @@
       <div class="col-6 col-medium-3">
         <div class="u-embedded-media">
           <a href="/engage/telco-cloud-implementation">
-            {{ image(url="https://cdn.brighttalk.com/ams/california/images/communication/582711/image_917101.png",
+            {{ image(url="https://assets.ubuntu.com/v1/bc0f7eca-canonical_hpe_webinar_telco_cloud_implementation_1.png",
                         alt="",
                         width="640",
                         height="360",
@@ -336,25 +274,6 @@
         <p>
           Join this webinar to learn how to build carrier-grade infrastructure using open-source solutions from Canonical and HPE.
         </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-section">
-    <div class="u-fixed-width p-block">
-      <hr class="p-rule" />
-      <h5 class="p-text--x-small-capitalised">Resources</h5>
-    </div>
-    <div class="u-fixed-width">
-      <div class="u-vertically-center u-align--center"
-           style="background-color: #fff">
-        {{ image(url="https://assets.ubuntu.com/v1/5b5a466c-dell server image-2.png",
-                alt="",
-                width="2438",
-                height="840",
-                hi_def=True,
-                loading="lazy",) | safe
-        }}
       </div>
     </div>
   </section>
@@ -385,7 +304,18 @@
             <a href="https://techlibrary.hpe.com/us/en/enterprise/servers/supportmatrix/ubuntu.aspx">HPE Certification Matrix</a>
           </li>
         </ul>
-
+        <div class="u-fixed-width">
+          <div class="p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/890d457c-certified_hardware.jpg",
+                    alt="",
+                    width="600",
+                    height="400",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
+        </div>
       </div>
 
     </div>
@@ -399,7 +329,7 @@
       </div>
       <div class="col-6 col-medium-4">
         <div class="u-image-separation">
-          {{ image(url="https://assets.ubuntu.com/v1/62b49438-Rectangle 558-1.png",
+          {{ image(url="https://assets.ubuntu.com/v1/62b49438-Rectangle%20558-1.png",
                     alt="",
                     width="1184",
                     height="711",
@@ -415,14 +345,13 @@
     </div>
     <div class="row">
       <div class="col-9 col-start-large-4">
-        <hr class="is-fixed-width p-rule--muted" />
         <div class="row">
           <div class="col-3">
             <p class="p-heading--5">Solutions</p>
           </div>
           <div class="col-6">
-            <ul class="p-list--divided">
-              <li class="p-list__item has-bullet">
+            <ul class="p-list">
+              <li class="p-list__item">
                 <a href="/engage/hpe-vdi-solution-hp-anyware-canonical-microcloud">MicroCloud for HPE VDI</a>
               </li>
             </ul>
@@ -438,18 +367,18 @@
             <p class="p-heading--5">Servers</p>
           </div>
           <div class="col-6">
-            <ul class="p-list--divided">
-              <li class="p-list__item has-bullet">
+            <ul class="p-list">
+              <li class="p-list__item">
                 <a href="/engage/hpe-telco-validated-design-with-canonical-anbox">Anbox
                 Reference Design</a>
               </li>
-              <li class="p-list__item has-bullet">
+              <li class="p-list__item">
                 <a href="/engage/hpe-telco-validated-design-with-canonical-kubernetes">Kubernetes Reference Design</a>
               </li>
-              <li class="p-list__item has-bullet">
+              <li class="p-list__item">
                 <a href="/engage/hpe-telco-validated-design-with-canonical-microcloud">MicroCloud Reference Design</a>
               </li>
-              <li class="p-list__item has-bullet">
+              <li class="p-list__item">
                 <a href="/engage/hpe-telco-validated-design-with-canonical-openstack">OpenStack Reference Design</a>
               </li>
             </ul>
@@ -465,27 +394,27 @@
             <p class="p-heading--5">Storage</p>
           </div>
           <div class="col-6">
-            <ul class="p-list--divided">
-              <li class="p-list__item has-bullet">
+            <ul class="p-list">
+              <li class="p-list__item">
                 <a href="/engage/hpe-charmed-openstack-integration-hpe-greenlake-block-storage-mp">OpenStack
                 integration with HPE GreenLake</a>
               </li>
-              <li class="p-list__item has-bullet">
+              <li class="p-list__item">
                 <a href="/engage/hpe-alletra-6000-validated-design-openstack">OpenStack
                 for HPE Alletra Storage 6000</a>
               </li>
-              <li class="p-list__item has-bullet">
+              <li class="p-list__item">
                 <a href="/engage/hpe-alletra-9000-validated-design-openstack">OpenStack
                 for HPE Alletra Storage 9000</a>
               </li>
-              <li class="p-list__item has-bullet">
+              <li class="p-list__item">
                 <a href="/engage/hpe-charmed-openstack-integration-hpe-greenlake-block-storage-mp">Kubernetes
                 integration with HPE GreenLake</a>
               </li>
-              <li class="p-list__item has-bullet">
+              <li class="p-list__item">
                 <a href="/engage/hpe-alletra-6000-validated-design-kubernetes">Kubernetes for HPE Alletra Storage 6000</a>
               </li>
-              <li class="p-list__item has-bullet">
+              <li class="p-list__item">
                 <a href="/engage/hpe-alletra-9000-validated-design-kubernetes">Kubernetes for HPE Alletra Storage 9000</a>
               </li>
             </ul>
@@ -507,7 +436,7 @@
       </div>
       <div class="col-6 col-medium-4">
         <div class="u-image-separation">
-          {{ image(url="https://assets.ubuntu.com/v1/bf7d0182-Rectangle 558-2.png",
+          {{ image(url="https://assets.ubuntu.com/v1/bf7d0182-Rectangle%20558-2.png",
                     alt="",
                     width="1184",
                     height="709",
@@ -532,7 +461,7 @@
       <div class="col-9 col-medium-4">
         {% for article in blogs %}
           {% if loop.index <= 3 %}
-            {% if loop.index > 0 %}<hr class="is-fixed-width p-rule" />{% endif %}
+            {% if loop.index > 1 %}<hr class="is-fixed-width p-rule" />{% endif %}
             <div class="p-block">
               <h2>
                 <a href="/blog/{{ article.slug }}">{{ article.title.rendered | safe }}</a>
@@ -561,23 +490,16 @@
     </div>
   </section>
 
-  <section class="p-section">
-    <div class="u-fixed-width">
-      <hr class="p-rule" />
-    </div>
+  <hr class="is-fixed-width p-rule" />
+  <section class="p-strip is-deep">
     <div class="row">
-      <div class="col-3 col-medium-2">
-        <h5 class="p-muted-heading">Contact</h5>
-      </div>
-      <div class="col-9 col-medium-4">
-        <p>Contact us for more information about the Canonical and HPE partnership or how to purchase our joint solutions.</p>
-        <div class="p-strip">
-          <h3 class="p-heading--2">
-            <a href="/contact-us"
-               class="js-invoke-modal"
-               aria-controls="contact-modal">Send us a message&nbsp;&rsaquo;</a>
-          </h3>
-        </div>
+      <div class="col-9 col-start-large-4 col-medium-4 col-start-medium-3">
+        <h2>Get more information about the Canonical and HPE partnership or how to purchase our joint solutions.</h2>
+        <h2>
+          <a href="/contact-us"
+             class="js-invoke-modal"
+             aria-controls="contact-modal">Send us a message&nbsp;&rsaquo;</a>
+        </h2>
       </div>
     </div>
   </section>
