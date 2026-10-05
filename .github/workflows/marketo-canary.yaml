@@ -8,11 +8,6 @@ on:
         description: "Also run the forced-failure tests (QA the alert)"
         type: boolean
         default: false
-  pull_request:
-    paths:
-      - ".github/workflows/marketo-canary.yaml"
-      - "tests/playwright/tests/canary/**"
-      - "tests/playwright/helpers/canary-fields.ts"
 
 permissions:
   contents: read
