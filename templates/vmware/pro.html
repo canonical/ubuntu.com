@@ -46,7 +46,8 @@
             "content_html": "Contact us",
             "attrs": {
               "href": "/vmware#get-in-touch",
-              "class": "js-invoke-modal"
+              "class": "js-invoke-modal",
+              "aria-controls": "vmware-modal"
             }
           },
           "link":
@@ -105,7 +106,9 @@
         Ubuntu Pro brings security maintenance, compliance tooling, and management capabilities at scale to platform teams running Ubuntu on VCF.
       </p>
       <div class="p-cta-block">
-        <a href="/vmware#get-in-touch" class="p-button js-invoke-modal">Contact us</a>
+        <a href="/vmware#get-in-touch"
+           class="p-button js-invoke-modal"
+           aria-controls="vmware-modal">Contact us</a>
         <a href="/pro">Discover Ubuntu Pro&nbsp;&rsaquo;</a>
       </div>
     {%- endif -%}
@@ -210,6 +213,7 @@
         {
           "type": "code-block",
           "item": {
+            "is_code_snippet": true,
             "content": 'sudo pro attach [YOUR_TOKEN]'
           }
         },
@@ -251,7 +255,8 @@
             "content_html": "Talk to our team",
             "attrs": {
               "href": "/vmware#get-in-touch",
-              "class": "js-invoke-modal"
+              "class": "js-invoke-modal",
+              "aria-controls": "vmware-modal"
             }
           },
           "link":
