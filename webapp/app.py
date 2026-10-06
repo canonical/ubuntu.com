@@ -46,6 +46,7 @@ from canonicalwebteam.markdown_response import MarkdownResponse
 from webapp import llms
 from webapp.certified.views import certified_routes
 from webapp.constants import CACHE_TTL
+from webapp.developer_diaries_dummy import DummyDeveloperDiaries
 from webapp.handlers import init_handlers
 from webapp.login import login_handler, logout, user_info
 from webapp.decorators import login_required
@@ -972,6 +973,14 @@ app.add_url_rule(
     "/community/developer-diaries/<slug>",
     view_func=build_developer_diaries_article(developer_diaries),
 )
+
+# Dummy articles to QA the filters and pagination, never in production
+if environment != "production" or app.debug:
+    app.add_url_rule(
+        "/community/developer-diaries/dummy",
+        view_func=build_developer_diaries_index(DummyDeveloperDiaries()),
+        endpoint="developer_diaries_dummy",
+    )
 
 
 # Allow templates to be queried from discourse.ubuntu.com
