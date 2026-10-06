@@ -25,7 +25,9 @@
   {{ load_form("/vmware") | safe }}
 
   {% call(slot) vf_hero(
-    title_text='Ubuntu Pro on VMware Cloud Foundation',
+    title_text='Ubuntu Pro on
+    <br class="u-hide--medium u-hide--small" />
+    VMware Cloud Foundation',
     subtitle_text='Security maintenance, compliance hardening, and fleet management for your VCF stack',
     layout='50/50',
     blocks=[
@@ -63,7 +65,12 @@
   ) -%}
   {% endcall -%}
 
-  {{ vf_basic_section(title={"text": "What Ubuntu Pro adds to your VCF environment"},
+  {{ vf_basic_section(
+    title={
+      "text": 'What Ubuntu Pro adds
+      <br class="u-hide--medium u-hide--small" />
+      to your VCF environment'
+    },
     items=[
       {
         "type": "description",
@@ -98,14 +105,14 @@
 
   {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
     {%- if slot == 'title' -%}
-      <h2>Security maintenance across your VCF estate</h2>
+      <h2>Security maintenance<br class="u-hide--medium u-hide--small" />across your VCF estate</h2>
     {%- endif -%}
 
     {%- if slot == 'description' -%}
       <p>
         Ubuntu Pro brings security maintenance, compliance tooling, and management capabilities at scale to platform teams running Ubuntu on VCF.
       </p>
-      <div class="p-cta-block">
+      <div class="p-cta-block u-no-padding--bottom">
         <a href="/vmware#get-in-touch"
            class="p-button js-invoke-modal"
            aria-controls="vmware-modal">Contact us</a>
@@ -180,7 +187,7 @@
     },
     {
       "stat": "Zero downtime",
-      "headline": "for critical kernel CVEs",
+      "headline": 'for critical <br class="u-hide--medium u-hide--small" />kernel CVEs',
       "description": "Canonical Livepatch minimizes downtime by tackling critical and high kernel CVEs at runtime.",
     }
   ],) }}
