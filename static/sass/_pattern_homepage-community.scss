@@ -1,8 +1,10 @@
-// "Built by you. For you." tiles. On large screens with a hovering pointer,
+// "Built by you. For you." tiles. On wide screens with a hovering pointer,
 // hovering or focusing a tile dims and blurs its media and reveals the text
 // over it. Everywhere else the text sits under the media, always visible.
 @mixin ubuntu-p-homepage-community {
   $community-easing: cubic-bezier(0.22, 1, 0.36, 1);
+  // Below this width the wide tiles are too short for the overlay text
+  $community-overlay-min-width: 1280px;
 
   .p-community__hint {
     display: none;
@@ -43,7 +45,7 @@
     padding-top: 1rem;
   }
 
-  @media (hover: hover) and (min-width: $breakpoint-large) {
+  @media (hover: hover) and (min-width: $community-overlay-min-width) {
     .p-community__hint {
       display: block;
     }
@@ -61,6 +63,11 @@
       height: 100%;
     }
 
+    // Match the stacked tiles' height rather than forcing a square
+    .p-community-tile.is-square .p-community-tile__frame {
+      aspect-ratio: auto;
+    }
+
     .p-community-tile__media {
       transition: filter 200ms $community-easing;
     }
@@ -72,6 +79,9 @@
       justify-content: space-between;
       opacity: 0;
       padding: 2rem;
+      // Click-through until revealed, so a first tap on a touch laptop
+      // can't hit the hidden button; still focusable for :focus-within
+      pointer-events: none;
       position: absolute;
       transition: opacity 400ms $community-easing;
     }
@@ -84,6 +94,7 @@
 
       .p-community-tile__content {
         opacity: 1;
+        pointer-events: auto;
         transition-delay: 80ms;
       }
     }
