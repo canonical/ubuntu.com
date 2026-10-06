@@ -337,7 +337,7 @@
                               <div style="display: block;">
                                 {{ status.name }}
                                 {%- if status.status == "released" %} <span class="u-text--muted">{{ status.description }} </span>{% endif %}
-                                {%- if status.status == "pending" and status.description %} in <span class="u-text--muted">{{ status.description }} </span>{% endif %}
+                                {%- if status.status == "pending" %} <span class="u-text--muted">work in progress{% if status.description %} in {{ status.description }}{% endif %} </span>{% endif %}
                                 {% if status.pocket_desc and status.pocket_desc.label == "Ubuntu Pro" %}
                                   <div>
                                     <button href="{{ status.pocket_desc.href }}" class="js-tooltip p-chip p-tooltip--top-center u-no-margin--bottom" aria-describedby="{{ status.pocket }}-tooltip">
