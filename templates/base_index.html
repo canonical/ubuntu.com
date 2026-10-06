@@ -26,72 +26,7 @@
       </style>
     </noscript>
 
-    <section id="test-takeover" class="p-section--hero" hidden>
-      <div class="row p-takeover-animation" id="test-takeover-animation">
-        <div class="row--50-50 p-section--shallow">
-          <div class="col">
-            <h1 class="u-no-margin--bottom" id="test-takeover-title">A CTO's guide to real-time Linux</h1>
-          </div>
-          <div class="col">
-            <div class="p-section--shallow u-no-padding--top">
-              <h2 id="test-takeover-subtitle">Understanding real-time systems, their use cases and inner workings.</h2>
-            </div>
-            <hr class="p-rule--muted" />
-            <p>
-              <a id="test-takeover-primary-url"
-                 href="/download"
-                 class="p-button--positive">Download now</a>
-            </p>
-          </div>
-        </div>
-        <div class="u-align--center">
-          {{ image(url="https://assets.ubuntu.com/v1/fb1ea84e-Kernelt%20industries@2x.png",
-                    alt="",
-                    width="2382",
-                    height="1684",
-                    hi_def=True,
-                    loading="lazy",
-                    attrs={"id": "test-takeover-image"}) | safe
-          }}
-        </div>
-      </div>
-    </section>
-
-    <!-- Default Takeover: Download the latest Ubuntu -->
-    <section data-lang="all" id="takeover" class="p-section--hero">
-      <div class="row p-takeover-animation" id="takeover-animation">
-        <div class="col-6">
-          <div class="p-section--shallow">
-            <h1 id="takeover-title" class="u-no-margin--bottom">Ubuntu {{ releases_yaml.lts.short_version }} LTS {{ releases_yaml.lts.name }} is available for download</h1>
-            <p class="p-heading--2" id="takeover-subtitle">
-              Discover the latest and greatest features in our most recent long term supported release.
-            </p>
-          </div>
-          <hr class="p-rule--muted" />
-          <div id="takeover-ctas">
-            <p>
-              <a id="takeover-primary-url" href="/download" class="p-button--positive">Download for free</a>
-              <a id="takeover-secondary-url"
-                 href="{{ releases_yaml.lts.blog_post_url }}">Read the deep dive&nbsp;&rsaquo;</a>
-            </p>
-          </div>
-        </div>
-        <div class="col-6 u-vertically-center u-align--center u-hide--medium u-hide--small">
-          <picture>
-            <source srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-                    media="(max-width: 1036px)" />
-            {{ image(url="https://assets.ubuntu.com/v1/21bcdd1e-resolute_raccoon_white.png",
-                        alt="",
-                        width=197,
-                        height=197,
-                        hi_def=True,
-                        loading="auto",
-                        attrs={"id": "takeover-image"}) | safe
-            }}
-          </picture>
-        </div>
-      </div>
-    </section>
+    {% include "home/_latest.html" %}
 
     <div class="p-section">
       <div class="u-fixed-width">
@@ -111,7 +46,6 @@
     {% block notices_content %}
     {% endblock notices_content %}
 
-    {% include "home/_latest.html" %}
     {% include "home/_performance.html" %}
     {% include "home/_hardware.html" %}
     {% include "home/_pro.html" %}
@@ -343,7 +277,8 @@
 
         if (secondaryUrl && selectedTakeover.secondary_url && selectedTakeover.secondary_url !== "") {
           secondaryUrl.href = selectedTakeover.secondary_url;
-          secondaryUrl.innerHTML = selectedTakeover.secondary_cta + "&nbsp;&rsaquo;";
+          // Set the text only, keeping the arrow icon after it
+          secondaryUrl.querySelector("span").textContent = selectedTakeover.secondary_cta;
         } else {
           secondaryUrl?.remove();
         }
