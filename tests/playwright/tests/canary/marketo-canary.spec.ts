@@ -129,8 +129,18 @@ test.describe("Marketo canary", () => {
     test(`form ${config.formId} on ${config.path} submits to Marketo`, async ({
       page,
     }) => {
+      // intl-tel-input only loads its utils after "load"; without them the
+      // phone is posted empty
+      const phoneUtilsLoaded = page.waitForEvent("requestfinished", {
+        predicate: (req) =>
+          new URL(req.url()).pathname === "/static/js/dist/utils.js",
+        timeout: 30000,
+      });
+
+      // Third-party scripts can stall "load", the form checks wait for us
       await page.goto(
         config.modalId ? `${config.path}#get-in-touch` : config.path,
+        { waitUntil: "domcontentloaded" },
       );
       await acceptCookiePolicy(page);
 
@@ -143,6 +153,11 @@ test.describe("Marketo canary", () => {
 
       const form = page.locator(`form#mktoForm_${config.formId}`);
       await expect(form, "Contact form not found").toBeVisible();
+      await phoneUtilsLoaded.catch(() => {
+        throw new Error(
+          "Phone formatter never loaded (page load event stalled)",
+        );
+      });
       await fillCanaryForm(form, config);
       await submitAndVerify(page, form, config);
     });
