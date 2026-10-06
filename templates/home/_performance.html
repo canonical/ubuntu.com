@@ -1,1 +1,110 @@
-{# Performance as standard: HP-07, HP-08 #}
+{# Performance as standard: HP-07 (layout), HP-08 (scroll motion, WD-39512) #}
+{% from "_macros/shared/vf_section_top_rule.jinja" import vf_section_top_rule %}
+{% from "home/_macros.html" import arrow_link_icon, icon_with_name %}
+{% from "home/_performance-icons.html" import performance_icon %}
+
+<section class="p-section js-performance-rail">
+  <div class="grid-row--50-50-on-large">
+    {{ vf_section_top_rule() }}
+    <div class="grid-col">
+      <h2>Performance as standard, across your stack</h2>
+    </div>
+    <div class="grid-col">
+      <p>
+        Benefit from an intuitive interface, accessible package ecosystem and robust performance – from installation, to development, to production – supported by extensive documentation.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid-row p-performance__row">
+    <div class="grid-col-2 grid-col-medium-1">
+      <h3 class="p-heading--4">Desktop</h3>
+    </div>
+    <div class="grid-col-2 grid-col-medium-1 u-hide--small p-performance__rail"
+         aria-hidden="true">
+      <span class="p-performance__ring is-active">{{ performance_icon("laptop") }}</span>
+      <span class="p-performance__track"><span class="p-performance__fill"></span></span>
+    </div>
+    <div class="grid-col-4 grid-col-medium-2">
+      <h4 class="p-heading--5">Where elegance and functionality intersect</h4>
+      <p>
+        Access the world’s most popular open source apps and toolchains. Get innovation at your fingertips in a familiar environment.
+      </p>
+      <p>
+        <a class="p-arrow-link" href="/download/desktop">Download Ubuntu Desktop {{ arrow_link_icon() }}</a>
+      </p>
+      <p class="p-performance__apps">
+        {{ icon_with_name("https://assets.ubuntu.com/v1/fbce8950-git-kraken.png", "GitKraken", "performance-app-gitkraken", class="p-performance__app-icon") }}
+        {{ icon_with_name("https://assets.ubuntu.com/v1/11d81b4e-IntelliJ_IDEA_Logo.svg", "IntelliJ", "performance-app-intellij", class="p-performance__app-icon") }}
+        {{ icon_with_name("https://assets.ubuntu.com/v1/8f85ef3f-microsoft-teams.png", "Microsoft Teams", "performance-app-microsoft-teams", class="p-performance__app-icon") }}
+        {{ icon_with_name("https://assets.ubuntu.com/v1/8a2851df-slack-icon-vanilla.svg", "Slack", "performance-app-slack", class="p-performance__app-icon") }}
+        {{ icon_with_name("https://assets.ubuntu.com/v1/034147e9-code_ozwVHSV.png", "Visual Studio Code", "performance-app-visual-studio-code", class="p-performance__app-icon") }}
+      </p>
+    </div>
+  </div>
+
+  <div class="grid-row p-performance__row">
+    <div class="grid-col-2 grid-col-medium-1">
+      <h3 class="p-heading--4">Data centers</h3>
+    </div>
+    <div class="grid-col-2 grid-col-medium-1 u-hide--small p-performance__rail"
+         aria-hidden="true">
+      <span class="p-performance__ring is-active">{{ performance_icon("server") }}</span>
+      <span class="p-performance__track"><span class="p-performance__fill"></span></span>
+    </div>
+    <div class="grid-col-4 grid-col-medium-2">
+      <h4 class="p-heading--5">Straightforward deployment and scalability</h4>
+      <p>
+        Deploy workloads quickly, efficiently, and at scale with Ubuntu Server. Benefit from pre-integrated tools that simplify deployment of a complex network of services.
+      </p>
+      <p>
+        Get the best open source and commercial workloads built in, including Apache Hadoop, PostgreSQL, OpenStack, Ceph, and Kubernetes.
+      </p>
+      <p>
+        <a class="p-arrow-link" href="/server">Download Ubuntu Server {{ arrow_link_icon() }}</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="grid-row p-performance__row">
+    <div class="grid-col-2 grid-col-medium-1">
+      <h3 class="p-heading--4">Public cloud</h3>
+    </div>
+    <div class="grid-col-2 grid-col-medium-1 u-hide--small p-performance__rail"
+         aria-hidden="true">
+      <span class="p-performance__ring is-active">{{ performance_icon("cloud") }}</span>
+      <span class="p-performance__track"><span class="p-performance__fill"></span></span>
+    </div>
+    <div class="grid-col-4 grid-col-medium-2">
+      <h4 class="p-heading--5">Optimized for all clouds</h4>
+      <p>
+        Canonical works hand-in-hand with cloud vendors to create optimized, pre-configured images for AWS, Azure, IBM Cloud, Oracle Cloud, and Google Cloud. Users benefit from lightweight, hardened base images that can be spun-up in seconds.
+      </p>
+      <p>
+        <a class="p-arrow-link" href="/cloud/public-cloud">Learn about Ubuntu on public clouds {{ arrow_link_icon() }}</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="grid-row p-performance__row">
+    <div class="grid-col-2 grid-col-medium-1">
+      <h3 class="p-heading--4">IoT and edge</h3>
+    </div>
+    <div class="grid-col-2 grid-col-medium-1 u-hide--small p-performance__rail"
+         aria-hidden="true">
+      <span class="p-performance__ring is-active">{{ performance_icon("chip") }}</span>
+    </div>
+    <div class="grid-col-4 grid-col-medium-2">
+      <h4 class="p-heading--5">The best of open source for embedded applications</h4>
+      <p>
+        Use the same OS from development to deployment. Speed up time to market, manage device fleets with ease, and keep control with remote, over-the-air updates.
+      </p>
+      <p>
+        Develop on Ubuntu and deploy to devices with <a href="/core">Ubuntu Core</a> for a locked-down, low-touch approach with minimal attack surface.
+      </p>
+      <p>
+        <a class="p-arrow-link" href="/core">Discover Ubuntu Core {{ arrow_link_icon() }}</a>
+      </p>
+    </div>
+  </div>
+</section>
