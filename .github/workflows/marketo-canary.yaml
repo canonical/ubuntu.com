@@ -3,6 +3,11 @@ on:
   schedule:
     - cron: "0 * * * *"
   workflow_dispatch:
+  # TEMP: QA on PR, remove before merge
+  pull_request:
+    paths:
+      - ".github/workflows/marketo-canary.yaml"
+      - "tests/playwright/tests/canary/**"
 
 permissions:
   contents: read
