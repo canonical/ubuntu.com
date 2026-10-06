@@ -62,4 +62,76 @@
       color: $homepage-link-hover;
     }
   }
+
+  // Shows full-colour vendor logos as flat white, until white assets exist
+  .u-monochrome-logos .p-logo-section__logo {
+    filter: brightness(0) invert(1);
+  }
+
+  // Performance as standard: label, decorative ring rail, content.
+  // Rows touch so each track reaches the next ring; spacing sits inside rows.
+  $performance-orange: #e95420;
+  $performance-ring-easing: cubic-bezier(0.22, 1, 0.36, 1);
+
+  .p-performance__row {
+    padding-bottom: 3rem;
+  }
+
+  .p-performance__rail {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .p-performance__ring {
+    align-items: center;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    flex-shrink: 0;
+    height: 5rem;
+    justify-content: center;
+    transition:
+      border-color 0.4s $performance-ring-easing,
+      color 0.4s $performance-ring-easing;
+    width: 5rem;
+
+    &.is-active {
+      border-color: $performance-orange;
+      color: #fff;
+    }
+  }
+
+  .p-performance__track {
+    background-color: rgba(255, 255, 255, 0.1);
+    flex: 1 1 auto;
+    margin-bottom: -3rem;
+    overflow: hidden;
+    position: relative;
+    width: 2px;
+  }
+
+  .p-performance__fill {
+    background: linear-gradient($performance-orange, #ff9b5a);
+    inset: 0;
+    position: absolute;
+    transform-origin: top;
+  }
+
+  .p-performance__apps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .p-performance__app-icon {
+    filter: brightness(0) invert(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .p-performance__ring {
+      transition: none;
+    }
+  }
 }

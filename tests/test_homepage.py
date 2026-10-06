@@ -256,6 +256,85 @@ class TestHomepageRender(VCRTestCase):
             self.arrow_link_hrefs(section), ["https://canonical.com/"]
         )
 
+    def get_performance_section(self):
+        return self.get_section("Performance as standard, across your stack")
+
+    def test_performance_section(self):
+        section = self.get_performance_section()
+        self.assertIn("js-performance-rail", section["class"])
+        self.assertEqual(
+            [label.get_text(strip=True) for label in section.select("h3")],
+            ["Desktop", "Data centers", "Public cloud", "IoT and edge"],
+        )
+        self.assertEqual(
+            [
+                title.get_text(strip=True)
+                for title in section.select("h4.p-heading--5")
+            ],
+            [
+                "Where elegance and functionality intersect",
+                "Straightforward deployment and scalability",
+                "Optimized for all clouds",
+                "The best of open source for embedded applications",
+            ],
+        )
+        self.assertEqual(
+            self.arrow_link_hrefs(section),
+            [
+                "/download/desktop",
+                "/server",
+                "/cloud/public-cloud",
+                "/core",
+            ],
+        )
+        inline_links = [
+            link
+            for link in section.select('a[href="/core"]')
+            if "p-arrow-link" not in link.get("class", [])
+        ]
+        self.assertEqual(
+            [link.get_text(strip=True) for link in inline_links],
+            ["Ubuntu Core"],
+        )
+
+    def test_performance_rail_renders_filled_without_js(self):
+        section = self.get_performance_section()
+        rails = section.select(".p-performance__rail")
+        self.assertEqual(len(rails), 4)
+        for rail in rails:
+            self.assertEqual(rail.get("aria-hidden"), "true")
+
+        rings = section.select(".p-performance__ring")
+        self.assertEqual(len(rings), 4)
+        for ring in rings:
+            self.assertIn("is-active", ring["class"])
+        self.assertEqual(len(section.select(".p-performance__fill")), 3)
+
+    def test_performance_app_icons(self):
+        section = self.get_performance_section()
+        names = []
+        for icon in section.select(".js-icon-tooltip"):
+            self.assertEqual(icon.get("tabindex"), "0")
+            self.assertEqual(icon.get("role"), "img")
+            message = section.find(id=icon["aria-labelledby"])
+            self.assertEqual(message.get("role"), "tooltip")
+            names.append(message.get_text(strip=True))
+
+            image = icon.find("img")
+            self.assertEqual(image.get("alt"), "")
+            self.assertIsNone(image.get("title"))
+
+        self.assertEqual(
+            names,
+            [
+                "GitKraken",
+                "IntelliJ",
+                "Microsoft Teams",
+                "Slack",
+                "Visual Studio Code",
+            ],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
