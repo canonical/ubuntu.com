@@ -174,6 +174,9 @@ class TestHomepageRender(VCRTestCase):
     def test_containers_section(self):
         section = self.get_section("The standard for modern containers")
         self.assertEqual(
+            len(section.select(".p-divided__block .p-divided__heading")), 3
+        )
+        self.assertEqual(
             self.row_titles(section),
             [
                 "1 billion Docker image pulls and counting",

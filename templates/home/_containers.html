@@ -1,46 +1,75 @@
-{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_macros/vf_divided-section.jinja" import vf_divided_section %}
 
-{%- call(slot) vf_tiered_list() -%}
-    {%- if slot == 'title' -%}
-      <h2>The standard for modern containers</h2>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_title_1' -%}
-      <h3 class="p-heading--5">1 billion Docker image pulls and counting</h3>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_description_1' -%}
-      <p>
-        Get the most out of your hardware stack and deploy lightweight, efficient applications at scale. Ubuntu is the most popular base image for containerized applications.
-      </p>
-      <p>
-        <a class="p-cta-text" href="https://hub.docker.com/_/ubuntu">Download your Ubuntu image<i class="p-icon--arrow-right"></i></a>
-      </p>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_title_2' -%}
-      <h3 class="p-heading--5">An efficient, minimal footprint</h3>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_description_2' -%}
-      <p>
-        Chiseled Ubuntu images are small, ensuring quick boot and a minimal attack surface. Spin up new images in a matter of seconds as you scale to meet demand.
-      </p>
-      <p>
-        <a class="p-cta-text" href="/chisel/docs/latest/">Learn about chisel<i class="p-icon--arrow-right"></i></a>
-      </p>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_title_3' -%}
-      <h3 class="p-heading--5">Build minimal, OCI-compliant containers</h3>
-    {%- endif -%}
-
-    {%- if slot == 'list_item_description_3' -%}
-      <p>
-        Discover Rockcraft, a new tool to create next-generation OCI-compliant container images, based on Ubuntu.
-      </p>
-      <p>
-        <a class="p-cta-text" href="/containers/rockcraft">Learn about Rockcraft<i class="p-icon--arrow-right"></i></a>
-      </p>
-    {%- endif -%}
-{%- endcall -%}
+{{ vf_divided_section(
+  title={"text": "The standard for modern containers"},
+  blocks=[
+    {
+      "type": "divided-block",
+      "items": [
+          {
+            "title_text": "1 billion Docker image pulls and counting",
+            "contents": [
+              {
+                "type": "description",
+                "item": {
+                  "type": "text",
+                  "content": "Get the most out of your hardware stack and deploy lightweight, efficient applications at scale. Ubuntu is the most popular base image for containerized applications."
+                }
+              },
+              {
+                "type": "cta-block",
+                "item": {
+                  "link": {
+                    "content_html": "Download your Ubuntu image<i class='p-icon--arrow-right'></i>",
+                    "attrs": {"class": "p-cta-text", "href": "https://hub.docker.com/_/ubuntu"}
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "title_text": "An efficient, minimal footprint",
+            "contents": [
+              {
+                "type": "description",
+                "item": {
+                  "type": "text",
+                  "content": "Chiseled Ubuntu images are small, ensuring quick boot and a minimal attack surface. Spin up new images in a matter of seconds as you scale to meet demand."
+                }
+              },
+              {
+                "type": "cta-block",
+                "item": {
+                  "link": {
+                    "content_html": "Learn about chisel<i class='p-icon--arrow-right'></i>",
+                    "attrs": {"class": "p-cta-text", "href": "/chisel/docs/latest/"}
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "title_text": "Build minimal, OCI-compliant containers",
+            "contents": [
+              {
+                "type": "description",
+                "item": {
+                  "type": "text",
+                  "content": "Discover Rockcraft, a new tool to create next-generation OCI-compliant container images, based on Ubuntu."
+                }
+              },
+              {
+                "type": "cta-block",
+                "item": {
+                  "link": {
+                    "content_html": "Learn about Rockcraft<i class='p-icon--arrow-right'></i>",
+                    "attrs": {"class": "p-cta-text", "href": "/containers/rockcraft"}
+                  }
+                }
+              }
+            ]
+          }
+      ]
+    }
+  ]
+) }}
