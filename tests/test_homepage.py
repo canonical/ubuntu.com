@@ -123,7 +123,9 @@ class TestHomepageRender(VCRTestCase):
         )
         self.assertEqual(self.arrow_link_hrefs(section), ["/certified"])
 
-        logos = self.get_soup().select("img.p-logo-section__logo")
+        logos = self.get_soup().select(
+            ".p-logo-section__items img.p-logo-section__logo"
+        )
         self.assertEqual(
             [logo["alt"] for logo in logos],
             [

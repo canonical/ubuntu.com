@@ -1,4 +1,5 @@
 {% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_logo-section.jinja" import vf_logo_section %}
 
 {% set description_html %}
   <h3 class="p-heading--5">Longstanding hardware partnerships</h3>
@@ -30,32 +31,69 @@
   ]
 ) }}
 
-{% set logos = [
-  {"url": "https://assets.ubuntu.com/v1/cc247653-amd-logo.png", "alt": "AMD", "width": "278", "height": "385"},
-  {"url": "https://assets.ubuntu.com/v1/0d5fc741-arm-logo.png", "alt": "Arm", "width": "188", "height": "385"},
-  {"url": "https://assets.ubuntu.com/v1/703330cd-dell-technologies-logo-white.png", "alt": "Dell Technologies", "width": "172", "height": "312"},
-  {"url": "https://assets.ubuntu.com/v1/af7e6fff-hp-logo.png", "alt": "HP", "width": "164", "height": "385"},
-  {"url": "https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png", "alt": "Intel", "width": "200", "height": "385"},
-  {"url": "https://assets.ubuntu.com/v1/dc74391e-lenovo-logo.png", "alt": "Lenovo", "width": "277", "height": "385"},
-  {"url": "https://assets.ubuntu.com/v1/3e3e698b-nvidia-logo.png", "alt": "NVIDIA", "width": "380", "height": "385"}
-] %}
-
-{#- Vanilla logo section markup, with each logo served through image() -#}
-<div class="p-section">
-  <div class="u-fixed-width">
-    <div class="p-logo-section">
-      {%- for logo in logos %}
-        <div class="p-logo-section__item">
-          {{ image(url=logo.url,
-                    alt=logo.alt,
-                    width=logo.width,
-                    height=logo.height,
-                    hi_def=True,
-                    loading="lazy",
-                    attrs={"class": "p-logo-section__logo is-monochrome"}) | safe
-          }}
-        </div>
-      {%- endfor %}
-    </div>
-  </div>
+{#- White filter is applied through the wrapper: the logo macro drops img classes -#}
+<div class="u-monochrome-logos">
+  {%- call(slot) vf_logo_section(
+    title={},
+    mode="minimal",
+    blocks=[
+      {
+        "type": "logo-block",
+        "item": {
+          "logos": [
+          image(url="https://assets.ubuntu.com/v1/cc247653-amd-logo.png",
+                alt="AMD",
+                width="278",
+                height="385",
+                hi_def=True,
+                loading="lazy",
+                output_mode="attrs"),
+          image(url="https://assets.ubuntu.com/v1/0d5fc741-arm-logo.png",
+                alt="Arm",
+                width="188",
+                height="385",
+                hi_def=True,
+                loading="lazy",
+                output_mode="attrs"),
+          image(url="https://assets.ubuntu.com/v1/703330cd-dell-technologies-logo-white.png",
+                alt="Dell Technologies",
+                width="172",
+                height="312",
+                hi_def=True,
+                loading="lazy",
+                output_mode="attrs"),
+          image(url="https://assets.ubuntu.com/v1/af7e6fff-hp-logo.png",
+                alt="HP",
+                width="164",
+                height="385",
+                hi_def=True,
+                loading="lazy",
+                output_mode="attrs"),
+          image(url="https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png",
+                alt="Intel",
+                width="200",
+                height="385",
+                hi_def=True,
+                loading="lazy",
+                output_mode="attrs"),
+          image(url="https://assets.ubuntu.com/v1/dc74391e-lenovo-logo.png",
+                alt="Lenovo",
+                width="277",
+                height="385",
+                hi_def=True,
+                loading="lazy",
+                output_mode="attrs"),
+          image(url="https://assets.ubuntu.com/v1/3e3e698b-nvidia-logo.png",
+                alt="NVIDIA",
+                width="380",
+                height="385",
+                hi_def=True,
+                loading="lazy",
+                output_mode="attrs")
+          ]
+        }
+      }
+    ]
+  ) -%}
+  {%- endcall -%}
 </div>
