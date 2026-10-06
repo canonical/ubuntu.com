@@ -1,0 +1,103 @@
+// "Built by you. For you." tiles. On large screens with a hovering pointer,
+// hovering or focusing a tile dims and blurs its media and reveals the text
+// over it. Everywhere else the text sits under the media, always visible.
+@mixin ubuntu-p-homepage-community {
+  $community-easing: cubic-bezier(0.22, 1, 0.36, 1);
+
+  .p-community__hint {
+    display: none;
+  }
+
+  .p-community__tiles {
+    row-gap: 2rem;
+  }
+
+  .p-community__stack {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .p-community-tile__frame {
+    aspect-ratio: 600 / 288;
+    overflow: hidden;
+  }
+
+  // Square on phones and desktop; on tablet a full-width square is too tall
+  .p-community-tile.is-square .p-community-tile__frame {
+    aspect-ratio: 1;
+
+    @media (min-width: $breakpoint-small) and (max-width: $breakpoint-large - 1) {
+      aspect-ratio: 600 / 288;
+    }
+  }
+
+  .p-community-tile__media {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .p-community-tile__content {
+    padding-top: 1rem;
+  }
+
+  @media (hover: hover) and (min-width: $breakpoint-large) {
+    .p-community__hint {
+      display: block;
+    }
+
+    .p-community__stack {
+      gap: 1.5rem;
+    }
+
+    .p-community-tile {
+      position: relative;
+    }
+
+    .p-community-tile.is-square,
+    .p-community-tile.is-square .p-community-tile__frame {
+      height: 100%;
+    }
+
+    .p-community-tile__media {
+      transition: filter 200ms $community-easing;
+    }
+
+    .p-community-tile__content {
+      display: flex;
+      flex-direction: column;
+      inset: 0;
+      justify-content: space-between;
+      opacity: 0;
+      padding: 2rem;
+      position: absolute;
+      transition: opacity 400ms $community-easing;
+    }
+
+    .p-community-tile:hover,
+    .p-community-tile:focus-within {
+      .p-community-tile__media {
+        filter: brightness(0.1) blur(10px);
+      }
+
+      .p-community-tile__content {
+        opacity: 1;
+        transition-delay: 80ms;
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .p-community-tile__media,
+    .p-community-tile__content {
+      transition: none;
+    }
+
+    .p-community-tile:hover .p-community-tile__content,
+    .p-community-tile:focus-within .p-community-tile__content {
+      transition-delay: 0s;
+    }
+  }
+}
