@@ -1,6 +1,5 @@
 {# Canonical closer: HP-19 #}
 {% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
-{% from "home/_macros.html" import arrow_link_icon %}
 
 {%- call(slot) vf_cta_section(
   title_text="Discover more about Canonical<br />Trusted source for your whole stack" | safe,
@@ -18,8 +17,8 @@
       "type": "cta",
       "item": {
         "link": {
-          "content_html": "Learn more about Canonical " ~ arrow_link_icon(),
-          "attrs": {"class": "p-arrow-link", "href": "https://canonical.com/"}
+          "content_html": "Learn more about Canonical<i class=\"p-icon--arrow-right\"></i>",
+          "attrs": {"class": "p-cta-text", "href": "https://canonical.com/"}
         }
       }
     }

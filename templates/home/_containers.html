@@ -1,6 +1,5 @@
 {# Modern containers: HP-14 #}
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
-{% from "home/_macros.html" import arrow_link_icon %}
 
 {%- call(slot) vf_tiered_list() -%}
     {%- if slot == 'title' -%}
@@ -16,7 +15,7 @@
         Get the most out of your hardware stack and deploy lightweight, efficient applications at scale. Ubuntu is the most popular base image for containerized applications.
       </p>
       <p>
-        <a class="p-arrow-link" href="https://hub.docker.com/_/ubuntu">Download your Ubuntu image {{ arrow_link_icon() }}</a>
+        <a class="p-cta-text" href="https://hub.docker.com/_/ubuntu">Download your Ubuntu image<i class="p-icon--arrow-right"></i></a>
       </p>
     {%- endif -%}
 
@@ -29,7 +28,7 @@
         Chiseled Ubuntu images are small, ensuring quick boot and a minimal attack surface. Spin up new images in a matter of seconds as you scale to meet demand.
       </p>
       <p>
-        <a class="p-arrow-link" href="/chisel/docs/latest/">Learn about chisel {{ arrow_link_icon() }}</a>
+        <a class="p-cta-text" href="/chisel/docs/latest/">Learn about chisel<i class="p-icon--arrow-right"></i></a>
       </p>
     {%- endif -%}
 
@@ -42,7 +41,7 @@
         Discover Rockcraft, a new tool to create next-generation OCI-compliant container images, based on Ubuntu.
       </p>
       <p>
-        <a class="p-arrow-link" href="/containers/rockcraft">Learn about Rockcraft {{ arrow_link_icon() }}</a>
+        <a class="p-cta-text" href="/containers/rockcraft">Learn about Rockcraft<i class="p-icon--arrow-right"></i></a>
       </p>
     {%- endif -%}
 {%- endcall -%}

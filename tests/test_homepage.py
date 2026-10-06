@@ -91,7 +91,7 @@ class TestHomepageRender(VCRTestCase):
         return heading.find_parent(["section", "div"], class_="p-section")
 
     def arrow_link_hrefs(self, root):
-        return [link["href"] for link in root.select("a.p-arrow-link")]
+        return [link["href"] for link in root.select("a.p-cta-text")]
 
     def test_renders_redesign_shell(self):
         """
@@ -137,14 +137,19 @@ class TestHomepageRender(VCRTestCase):
             ],
         )
 
-    def test_arrow_links_hide_icon_from_screen_readers(self):
-        links = self.get_soup().select("a.p-arrow-link")
+    def test_arrow_links_use_an_empty_vanilla_icon(self):
+        links = self.get_soup().select("a.p-cta-text")
         self.assertTrue(links, "No arrow links found")
         for link in links:
-            icons = link.find_all("svg")
+            icons = link.select("i.p-icon--arrow-right")
             self.assertEqual(len(icons), 1, link)
-            self.assertEqual(icons[0].get("aria-hidden"), "true")
-            self.assertEqual(icons[0].get("focusable"), "false")
+            self.assertEqual(icons[0].get_text(strip=True), "")
+
+    def test_images_go_through_the_image_template(self):
+        logos = self.get_soup().select("img.p-logo-section__logo")
+        self.assertTrue(logos, "No logos found")
+        for logo in logos:
+            self.assertIn("res.cloudinary.com", logo["src"], logo)
 
     def row_titles(self, section):
         return [

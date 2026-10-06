@@ -1,7 +1,5 @@
 {# Certified hardware: HP-09 #}
 {% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
-{% from "_macros/shared/vf_logo-block.jinja" import vf_logo_block %}
-{% from "home/_macros.html" import arrow_link_icon %}
 
 {% set description_html %}
   <h3 class="p-heading--5">Longstanding hardware partnerships</h3>
@@ -25,8 +23,8 @@
       "type": "cta-block",
       "item": {
         "link": {
-          "content_html": "Discover certified hardware " ~ arrow_link_icon(),
-          "attrs": {"class": "p-arrow-link", "href": "/certified"}
+          "content_html": "Discover certified hardware<i class=\"p-icon--arrow-right\"></i>",
+          "attrs": {"class": "p-cta-text", "href": "/certified"}
         }
       }
     }
@@ -34,15 +32,31 @@
 ) }}
 
 {% set logos = [
-  {"attrs": {"src": "https://assets.ubuntu.com/v1/cc247653-amd-logo.png", "alt": "AMD", "loading": "lazy", "class": "is-monochrome"}},
-  {"attrs": {"src": "https://assets.ubuntu.com/v1/0d5fc741-arm-logo.png", "alt": "Arm", "loading": "lazy", "class": "is-monochrome"}},
-  {"attrs": {"src": "https://assets.ubuntu.com/v1/703330cd-dell-technologies-logo-white.png", "alt": "Dell Technologies", "loading": "lazy", "class": "is-monochrome"}},
-  {"attrs": {"src": "https://assets.ubuntu.com/v1/af7e6fff-hp-logo.png", "alt": "HP", "loading": "lazy", "class": "is-monochrome"}},
-  {"attrs": {"src": "https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png", "alt": "Intel", "loading": "lazy", "class": "is-monochrome"}},
-  {"attrs": {"src": "https://assets.ubuntu.com/v1/dc74391e-lenovo-logo.png", "alt": "Lenovo", "loading": "lazy", "class": "is-monochrome"}},
-  {"attrs": {"src": "https://assets.ubuntu.com/v1/3e3e698b-nvidia-logo.png", "alt": "NVIDIA", "loading": "lazy", "class": "is-monochrome"}}
+  {"url": "https://assets.ubuntu.com/v1/cc247653-amd-logo.png", "alt": "AMD", "width": "278", "height": "385"},
+  {"url": "https://assets.ubuntu.com/v1/0d5fc741-arm-logo.png", "alt": "Arm", "width": "188", "height": "385"},
+  {"url": "https://assets.ubuntu.com/v1/703330cd-dell-technologies-logo-white.png", "alt": "Dell Technologies", "width": "172", "height": "312"},
+  {"url": "https://assets.ubuntu.com/v1/af7e6fff-hp-logo.png", "alt": "HP", "width": "164", "height": "385"},
+  {"url": "https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png", "alt": "Intel", "width": "200", "height": "385"},
+  {"url": "https://assets.ubuntu.com/v1/dc74391e-lenovo-logo.png", "alt": "Lenovo", "width": "277", "height": "385"},
+  {"url": "https://assets.ubuntu.com/v1/3e3e698b-nvidia-logo.png", "alt": "NVIDIA", "width": "380", "height": "385"}
 ] %}
 
+{#- Vanilla logo section markup, with each logo served through image() -#}
 <div class="p-section">
-  {{ vf_logo_block(logo_block_config={"logos": logos}) }}
+  <div class="u-fixed-width">
+    <div class="p-logo-section">
+      {%- for logo in logos %}
+        <div class="p-logo-section__item">
+          {{ image(url=logo.url,
+                    alt=logo.alt,
+                    width=logo.width,
+                    height=logo.height,
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-logo-section__logo is-monochrome"}) | safe
+          }}
+        </div>
+      {%- endfor %}
+    </div>
+  </div>
 </div>
