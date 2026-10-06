@@ -1,0 +1,41 @@
+// Developer diaries: /community/developer-diaries and its articles, scoped
+// to the body class those pages set.
+@mixin ubuntu-p-developer-diaries {
+  .developer-diaries {
+    // Likes count on the article cards and headers
+    @include vf-p-icon-thumbs-up;
+
+    // Keep the in-page navigation below the sticky secondary navigation
+    // (3.5rem tall), like the side navigation TOCs elsewhere (top: 4rem)
+    .p-in-page-navigation {
+      max-height: calc(100vh - 4rem);
+      top: 4rem;
+    }
+
+    @media screen and (width < $threshold-4-8-col) {
+      [class^="grid-col"]:has(> .p-in-page-navigation) {
+        top: 3.5rem;
+      }
+
+      // Only the horizontally scrolling list, without the dropdown toggle
+      .p-in-page-navigation__dropdown-toggle {
+        display: none;
+      }
+    }
+
+    // Keep Vanilla's in-page navigation colours over the dark theme link
+    // colours (.is-dark .inner-wrapper a): muted, and white when hovered or
+    // active, even once visited
+    &.is-dark .inner-wrapper a.p-in-page-navigation__link {
+      &,
+      &:visited {
+        color: $colors--dark-theme--text-muted;
+      }
+
+      &:hover,
+      &.is-active {
+        color: $colors--dark-theme--text-default;
+      }
+    }
+  }
+}

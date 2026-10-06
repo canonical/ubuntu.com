@@ -21,6 +21,7 @@ import random
 from sentry_sdk.integrations.flask import FlaskIntegration
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
+    Articles,
     DiscourseAPI,
     ResponseCache,
     DocParser,
@@ -130,6 +131,8 @@ from webapp.views import (
     process_community_events,
     community_landing_page,
     build_ubuntu_weekly_newsletter,
+    build_developer_diaries_index,
+    build_developer_diaries_article,
     build_engage_index,
     build_engage_page,
     build_engage_pages_sitemap,
@@ -943,6 +946,31 @@ app.add_url_rule(
     "/community/uwn/<path:path>",
     view_func=build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter),
     endpoint="uwn_page",
+)
+
+# Developer diaries: articles from the Discourse topics tagged
+# "developer-diaries". Anonymous reads, so only public topics are
+# published and the admin API bucket is left alone. Own session, as
+# the shared one carries the admin API key headers.
+developer_diaries = Articles(
+    api=DiscourseAPI(
+        base_url="https://discourse.ubuntu.com/",
+        session=requests.Session(),
+        cache=ResponseCache(ttl=300),
+    ),
+    tag="developer-diaries",
+    url_prefix="/community/developer-diaries",
+    hidden_tags=["blog", "featured"],
+)
+
+app.add_url_rule(
+    "/community/developer-diaries",
+    view_func=build_developer_diaries_index(developer_diaries),
+)
+
+app.add_url_rule(
+    "/community/developer-diaries/<slug>",
+    view_func=build_developer_diaries_article(developer_diaries),
 )
 
 

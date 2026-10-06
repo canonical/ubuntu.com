@@ -1,0 +1,110 @@
+{% extends "community/_base_community.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
+
+{% block title %}Developer diaries{% endblock %}
+
+{% block meta_description %}
+  Developer blog: practical insights and tools for Ubuntu. Discover tools, optimize your environment, and build everything from modern apps to cloud infra and AI
+{% endblock
+meta_description %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1fv0CsmBwXeElciuLLl9erfbXliQzUgsIsHbJNFyw1ag/edit?tab=t.jijjhiya0no5
+{% endblock
+meta_copydoc %}
+
+{% block body_class %}
+  {% if not(no_dark == True) %}is-dark{% endif %} developer-diaries
+{% endblock body_class %}
+
+{% block content %}
+
+  {% call(slot) vf_hero(
+    title_text='Developer diaries',
+    subtitle_text='How do you build great software?',
+    layout='50/50-full-width-image'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Hear from fellow developers, discover tools, explore new concepts, and unlock the full potential of Ubuntu as a development platform. Whether you’re building cloud native applications, AI powered systems, open source projects or anything in between.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--cinematic is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/9624938b-hero_img.jpg",
+                alt="",
+                width="2464",
+                height="1027",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    {% endif -%}
+  {% endcall -%}
+
+  <section class="p-section" id="articles">
+    <hr class="p-rule is-fixed-width" />
+    <div class="u-fixed-width">
+      <div class="p-section--shallow">
+        <h2>Browse our latest articles</h2>
+      </div>
+    </div>
+    <div class="grid-row">
+      <div class="grid-col-2 grid-col-medium-4">
+        <form class="js-topic-filters" method="get" action="#articles">
+          <div role="group" aria-labelledby="topics-heading">
+            <p class="p-text--small-caps" id="topics-heading">Topics</p>
+            {% for topic in topics %}
+              <label class="p-checkbox">
+                <input class="p-checkbox__input"
+                       type="checkbox"
+                       name="topic"
+                       value="{{ topic.tag }}"
+                       {% if topic.tag in selected_topics %}checked{% endif %} />
+                <span class="p-checkbox__label">{{ topic.name }}</span>
+              </label>
+            {% endfor %}
+          </div>
+          <noscript>
+            <button class="p-button" type="submit">Filter</button>
+          </noscript>
+        </form>
+      </div>
+
+      <div class="grid-col-6 grid-col-medium-4">
+        {% if articles %}
+          <div class="grid-row">
+            {% for article in articles %}
+              {% include "community/developer-diaries/_article-card.html" %}
+            {% endfor %}
+          </div>
+        {% else %}
+          <p>No articles match these topics yet.</p>
+        {% endif %}
+
+        {% with align="u-align--left" %}
+          {% include "shared/_pagination.html" %}
+        {% endwith %}
+      </div>
+    </div>
+  </section>
+
+  {% call(slot) vf_cta_section(
+    title_text='Are you stuck and need help?',
+    variant='default',
+    layout='100'
+    ) -%}
+    {%- if slot == 'cta' -%}
+      <a href="/community/docs/support">Take a look at how our community can support you.</a>
+    {%- endif -%}
+  {%- endcall %}
+
+  <script nonce="{{ csp_nonce }}">
+    document.querySelector(".js-topic-filters").addEventListener("change", (event) => {
+      event.currentTarget.submit();
+    });
+  </script>
+{% endblock content %}

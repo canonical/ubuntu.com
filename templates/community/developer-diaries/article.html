@@ -1,0 +1,137 @@
+{% extends "community/_base_community.html" %}
+
+{% from "_macros/vf_in-page-navigation.jinja" import vf_in_page_navigation %}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block meta_description %}{{ article.excerpt | truncate(160) }}{% endblock %}
+
+{% block meta_image %}{{ article.image or "" }}{% endblock %}
+
+{% block body_class %}
+  {% if not(no_dark == True) %}is-dark{% endif %} developer-diaries
+{% endblock body_class %}
+
+{% block content %}
+
+  {% set breadcrumbs = [{"name": "Developer diaries", "href": "/community/developer-diaries"}, {"name": "Article"}] %}
+  <div class="u-sv3">
+    {% include "shared/_breadcrumbs.html" %}
+  </div>
+
+  <article>
+    <header class="p-section">
+      <div class="grid-row">
+        <div class="grid-col-2 grid-col-medium-4">
+          {% if article.author %}
+            <div class="p-media-object">
+              <img class="p-media-object__image is-round"
+                   src="{{ article.author.avatar_url }}"
+                   alt=""
+                   width="48"
+                   height="48" />
+              <div class="p-media-object__details">
+                <p class="p-heading--5 u-no-margin--bottom">
+                  <a href="{{ article.author.url }}">{{ article.author.name }}</a>
+                </p>
+                <p class="u-no-padding--top">{{ article.created.strftime("%-d %B %Y") }}</p>
+              </div>
+            </div>
+          {% endif %}
+          <p class="p-text--small">Want to share your thoughts on this article?</p>
+          <a class="p-button" href="{{ article.forum_url }}">Join the discussion</a>
+        </div>
+
+        <div class="grid-col-4 grid-col-medium-4">
+          <h1 class="p-heading--2">{{ article.title }}</h1>
+          <ul class="p-inline-list">
+            <li class="p-inline-list__item">
+              <span class="p-heading--5">{{ article.read_time }} min read</span>
+            </li>
+            <li class="p-inline-list__item">
+              <i class="p-icon--thumbs-up">Likes</i>
+              <small>{{ article.likes }}</small>
+            </li>
+          </ul>
+          {% for tag in article.tags %}
+            <span class="p-chip is-readonly">
+              <span class="p-chip__value">{{ tag | capitalize }}</span>
+            </span>
+          {% endfor %}
+        </div>
+      </div>
+    </header>
+
+    <div class="grid-row">
+      <div class="grid-col-2 grid-col-medium-4">
+        {% if article.navigation %}
+          {{ vf_in_page_navigation(
+            title="On this page",
+            navigation_items=article.navigation,
+            scope="manual"
+          ) }}
+        {% endif %}
+      </div>
+
+      <div class="grid-col-4 grid-col-medium-4">
+        <hr class="p-rule" />
+        {{ article.body_html | safe }}
+      </div>
+
+      <aside class="grid-col-2 grid-col-medium-4">
+        <div class="p-section--shallow">
+          <hr class="p-rule" />
+          <p class="p-text--small">Want to share your thoughts on this article?</p>
+          <a class="p-button" href="{{ article.forum_url }}">Join the discussion</a>
+        </div>
+        <hr class="p-rule" />
+        <p class="p-text--small-caps">Share on</p>
+        <ul class="p-inline-list u-no-margin--bottom">
+          <li class="p-inline-list__item">
+            <a title="Share on X"
+               href="https://twitter.com/share?text={{ article.title | urlencode }}&amp;url=https://ubuntu.com{{ article.path }}&amp;hashtags=ubuntu">
+              <img src="https://assets.ubuntu.com/v1/4a485af7-x_icon.svg"
+                   alt="Share on X"
+                   width="24"
+                   height="24" />
+            </a>
+          </li>
+          <li class="p-inline-list__item">
+            <a title="Share on Facebook"
+               href="https://www.facebook.com/sharer/sharer.php?u=https://ubuntu.com{{ article.path }}">
+              <img src="https://assets.ubuntu.com/v1/d78c98ff-fb_icon.svg"
+                   alt="Share on Facebook"
+                   width="24"
+                   height="24" />
+            </a>
+          </li>
+          <li class="p-inline-list__item">
+            <a title="Share on LinkedIn"
+               href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://ubuntu.com{{ article.path }}&amp;title={{ article.title | urlencode }}">
+              <img src="https://assets.ubuntu.com/v1/af14595b-li_icon.svg"
+                   alt="Share on LinkedIn"
+                   width="24"
+                   height="24" />
+            </a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </article>
+
+  {% call(slot) vf_cta_section(
+    title_text='Join the conversation',
+    variant='block',
+    layout='100'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>If you’d like to comment or reply to this blog, head over to the Ubuntu Discourse.</p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a class="p-button--positive" href="{{ article.forum_url }}">Click here to reply</a>
+    {%- endif -%}
+  {%- endcall %}
+
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/in-page-navigation.js') }}" defer></script>
+{% endblock content %}

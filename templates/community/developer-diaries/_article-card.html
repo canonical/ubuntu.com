@@ -1,0 +1,17 @@
+{% from "_macros/vf_card.jinja" import vf_card %}
+
+{{ vf_card(
+  columns="2",
+  link=article.path,
+  heading=article.title,
+  image={
+    "src": article.image or "https://assets.ubuntu.com/v1/94c82a15-blog_fallback_image.png",
+    "alt": ""
+  },
+  author=article.author_html,
+  date=article.created.strftime("%-d %b %Y"),
+  footer={
+    "resource_type": {"icon": "thumbs-up", "text": article.likes},
+    "content_type": article.tags | map("capitalize") | list
+  }
+) }}

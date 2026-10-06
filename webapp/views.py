@@ -36,6 +36,7 @@ from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
 from canonicalwebteam.directory_parser import generate_sitemap
 from geolite2 import geolite2
+from markupsafe import Markup
 from requests import Session
 from requests.exceptions import HTTPError, RequestException
 from werkzeug.exceptions import BadRequest, ServiceUnavailable
@@ -2077,6 +2078,70 @@ def build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter):
         )
 
     return display_ubuntu_weekly_newsletter
+
+
+# Topic filters on /community/developer-diaries, matched against the
+# Discourse tags of each article
+DEVELOPER_DIARIES_TOPICS = [
+    {"name": "Snaps", "tag": "snaps"},
+    {"name": "Charms", "tag": "charms"},
+    {"name": "Rocks", "tag": "rocks"},
+]
+
+
+def build_developer_diaries_index(developer_diaries):
+    def developer_diaries_index():
+        page = max(flask.request.args.get("page", default=1, type=int), 1)
+        topic_tags = [topic["tag"] for topic in DEVELOPER_DIARIES_TOPICS]
+        selected_topics = [
+            topic
+            for topic in flask.request.args.getlist("topic")
+            if topic in topic_tags
+        ]
+        limit = 12
+
+        articles, total = developer_diaries.get_index(
+            limit=limit, offset=(page - 1) * limit, tags=selected_topics
+        )
+
+        # vf_card joins the author into raw HTML, so it needs a plain
+        # str with the user-chosen name already escaped: unescaped
+        # would allow injection, a Markup would escape the card itself
+        for article in articles:
+            if article["author"]:
+                article["author_html"] = str(
+                    Markup(
+                        '<a class="p-content-card__author-link" '
+                        'href="{}">{}</a>'
+                    ).format(
+                        article["author"]["url"], article["author"]["name"]
+                    )
+                )
+
+        return flask.render_template(
+            "community/developer-diaries/index.html",
+            articles=articles,
+            topics=DEVELOPER_DIARIES_TOPICS,
+            selected_topics=selected_topics,
+            current_page=page,
+            total_pages=math.ceil(total / limit),
+        )
+
+    return developer_diaries_index
+
+
+def build_developer_diaries_article(developer_diaries):
+    def developer_diaries_article(slug):
+        article = developer_diaries.get_article(slug)
+
+        if not article:
+            flask.abort(404)
+
+        return flask.render_template(
+            "community/developer-diaries/article.html", article=article
+        )
+
+    return developer_diaries_article
 
 
 # TODO: remove this after CI check is added to target repo
