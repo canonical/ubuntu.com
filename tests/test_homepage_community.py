@@ -4,6 +4,7 @@ import unittest
 
 # Packages
 from bs4 import BeautifulSoup
+from flask import render_template_string
 from vcr_unittest import VCRTestCase
 
 # Local
@@ -74,6 +75,54 @@ class TestHomepageCommunity(VCRTestCase):
         self.assertEqual(len(images), 3)
         for image in images:
             self.assertIn("res.cloudinary.com", image["src"])
+
+
+class TestCommunityTileMacro(unittest.TestCase):
+    def render_tile(self, video):
+        tile = {
+            "title": "Title",
+            "body": "Body",
+            "button": {"text": "Go", "href": "/go"},
+            "image": {
+                "url": "https://assets.ubuntu.com/v1/b129df29-community.jpg",
+                "width": "2048",
+                "height": "807",
+            },
+            "video": video,
+            "is_square": False,
+        }
+        with app.test_request_context("/"):
+            html = render_template_string(
+                '{% from "home/_community-tile.html" import community_tile '
+                "with context %}{{ community_tile(tile) }}",
+                tile=tile,
+            )
+        return BeautifulSoup(html, "lxml")
+
+    def test_tile_with_video_renders_a_muted_looping_video(self):
+        soup = self.render_tile(
+            {
+                "webm": "https://example.com/a.webm",
+                "mp4": "https://e.com/a.mp4",
+            }
+        )
+        video = soup.select_one("video.p-community-tile__media")
+        self.assertIsNotNone(video)
+        for attribute in ["muted", "loop", "playsinline"]:
+            self.assertTrue(video.has_attr(attribute), attribute)
+        self.assertEqual(video["preload"], "none")
+        self.assertEqual(video["aria-hidden"], "true")
+        self.assertIn("res.cloudinary.com", video["poster"])
+        self.assertEqual(
+            [source["type"] for source in video.find_all("source")],
+            ["video/webm", "video/mp4"],
+        )
+        self.assertIsNone(soup.find("img"))
+
+    def test_tile_without_video_renders_the_image(self):
+        soup = self.render_tile(None)
+        self.assertIsNone(soup.find("video"))
+        self.assertIsNotNone(soup.select_one("img.p-community-tile__media"))
 
 
 if __name__ == "__main__":

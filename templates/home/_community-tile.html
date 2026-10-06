@@ -1,0 +1,44 @@
+{#
+  A "Built by you" tile. With a "video" dict ({"webm": url, "mp4": url}) it
+  renders a muted looping <video> with the image as its poster; without one
+  it renders the image. Uses image(), so import with context.
+#}
+{% macro community_tile(tile) -%}
+  <article class="p-community-tile{% if tile.is_square %} is-square{% endif %}">
+    <div class="p-community-tile__frame">
+      {%- if tile.video %}
+        {%- set poster = image(url=tile.image.url,
+                alt="",
+                width="1200",
+                hi_def=False,
+                output_mode="attrs") %}
+        <video class="p-community-tile__media"
+               muted
+               loop
+               playsinline
+               preload="none"
+               poster="{{ poster.src }}"
+               aria-hidden="true">
+          <source src="{{ tile.video.webm }}" type="video/webm" />
+          <source src="{{ tile.video.mp4 }}" type="video/mp4" />
+        </video>
+      {%- else %}
+        {{ image(url=tile.image.url,
+                alt="",
+                width=tile.image.width,
+                height=tile.image.height,
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-community-tile__media"}) | safe
+        }}
+      {%- endif %}
+    </div>
+    <div class="p-community-tile__content">
+      <h3 class="p-heading--5 u-no-padding--top p-community-tile__title">{{ tile.title }}</h3>
+      <div class="p-community-tile__details">
+        <p>{{ tile.body }}</p>
+        <a class="p-button u-no-margin--bottom" href="{{ tile.button.href }}">{{ tile.button.text }}</a>
+      </div>
+    </div>
+  </article>
+{%- endmacro %}
