@@ -1,20 +1,39 @@
-// Vanilla shows the tooltip on :hover and :focus; this adds Escape to hide it
-// until the pointer or focus leaves.
+// Vanilla shows the tooltip on :hover and :focus; this adds Escape to hide it,
+// whether the icon is hovered or focused, until both pointer and focus leave.
 export function startIconTooltip(root) {
   const message = root.querySelector(".p-tooltip__message");
   if (!message) {
     return;
   }
 
-  const reset = () => {
-    message.style.display = "";
-  };
+  let isHovered = false;
+  const hasFocus = () => root.contains(document.activeElement);
 
-  root.addEventListener("keydown", (event) => {
+  const hide = (event) => {
     if (event.key === "Escape") {
       message.style.display = "none";
     }
+  };
+
+  const resetUnlessActive = () => {
+    if (!isHovered && !hasFocus()) {
+      message.style.display = "";
+    }
+  };
+
+  root.addEventListener("keydown", hide);
+  root.addEventListener("mouseenter", () => {
+    isHovered = true;
+    document.addEventListener("keydown", hide);
   });
-  root.addEventListener("mouseleave", reset);
-  root.addEventListener("focusout", reset);
+  root.addEventListener("mouseleave", () => {
+    isHovered = false;
+    document.removeEventListener("keydown", hide);
+    resetUnlessActive();
+  });
+  root.addEventListener("focusout", (event) => {
+    if (!root.contains(event.relatedTarget) && !isHovered) {
+      message.style.display = "";
+    }
+  });
 }
