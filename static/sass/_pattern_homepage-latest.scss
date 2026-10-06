@@ -1,0 +1,74 @@
+// Latest stories: four blog cards filled in by the latest-news package.
+// The whole card is one link; its title takes the link colour on hover.
+@mixin ubuntu-p-homepage-latest {
+  .p-latest-stories {
+    row-gap: 2rem;
+  }
+
+  // Scoped to outrank the blog's `.article-title` clamp of 3 lines
+  .p-story-card .p-story-card__title {
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+  }
+
+  .p-story-card {
+    border: 1px solid $colors--dark-theme--border-low-contrast;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: none;
+
+      .p-story-card__title {
+        color: $colors--dark-theme--link-default;
+      }
+    }
+
+  }
+
+  // Outranks the dark theme's `.inner-wrapper a:not([class^="p-button"])`
+  // link colour in styles.scss, so card text stays white at rest
+  .is-dark .inner-wrapper a.p-story-card:not([class^="p-button"]) {
+    &,
+    &:visited {
+      color: $colors--dark-theme--text-default;
+    }
+  }
+
+  // The package inserts the image; the 16:9 box holds its space while loading
+  .p-story-card__image {
+    aspect-ratio: 16 / 9;
+    background-color: $colors--dark-theme--background-alt;
+    overflow: hidden;
+
+    img {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+
+  .p-story-card__body {
+    flex: 1 1 auto;
+    padding: 1rem 1rem 0;
+  }
+
+  .p-story-card__date {
+    color: #fc764c;
+  }
+
+  .p-story-card__footer {
+    border-top: 1px solid $colors--dark-theme--border-low-contrast;
+    padding: 0.5rem 1rem;
+
+    .p-chip {
+      margin: 0;
+    }
+  }
+}

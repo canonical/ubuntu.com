@@ -80,6 +80,49 @@ class TestHomepageLatest(VCRTestCase):
             self.html.index("Go further and faster with certified hardware"),
         )
 
+    def get_stories(self):
+        heading = self.soup.find(
+            "h2", string=lambda text: text and text.strip() == "Latest stories"
+        )
+        self.assertIsNotNone(heading, "Missing Latest stories heading")
+        return heading.find_parent("section")
+
+    def test_stories_use_their_own_card_template(self):
+        stories = self.get_stories()
+        self.assertEqual(stories.get("data-js"), "latest-news")
+
+        card = stories.find("template").select_one("a.article-link")
+        self.assertIsNotNone(card)
+        for hook in [".article-image", ".article-title", "time.article-time"]:
+            self.assertIsNotNone(card.select_one(hook), hook)
+        self.assertIsNotNone(card.select_one(".p-chip .article-group"))
+
+        script = stories.find("script", src=False).get_text()
+        self.assertIn('limit: "4"', script)
+
+    def test_homepage_does_not_use_the_shared_strip(self):
+        self.assertIsNone(self.soup.find(id="horizontal-latest-articles"))
+
+    def test_stories_keep_a_no_js_blog_link(self):
+        self.assertTrue(
+            any(
+                'href="/blog"' in str(noscript)
+                for noscript in self.soup.find_all("noscript")
+            )
+        )
+
+
+class TestSharedLatestNewsStrip(unittest.TestCase):
+    """The other pages that include the shared strip keep it unchanged"""
+
+    def test_other_pages_still_render_the_shared_strip(self):
+        app.testing = True
+        client = app.test_client()
+        for path in ["/20-04", "/20-04/aws", "/hpc", "/embedded"]:
+            html = client.get(path).get_data(as_text=True)
+            self.assertIn('id="horizontal-latest-articles"', html, path)
+            self.assertIn('id="horizontal-articles-template"', html, path)
+
 
 if __name__ == "__main__":
     unittest.main()

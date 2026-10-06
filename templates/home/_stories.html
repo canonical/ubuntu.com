@@ -1,4 +1,60 @@
-{# Latest stories: HP-15 #}
-{% with section_classes='p-section', spotlight='True', article_date='True' %}
-  {% include "shared/_latest_news_strip.html" %}
-{% endwith %}
+{#
+  Latest stories: four blog posts from the latest-news package
+  (admin.insights API). Homepage-only markup, so the shared
+  shared/_latest_news_strip.html used by other pages stays unchanged.
+#}
+{% from "_macros/shared/vf_section_top_rule.jinja" import vf_section_top_rule %}
+
+<noscript>
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <h2>
+        <a href="/blog">Read the latest news on our blog&nbsp;&rsaquo;</a>
+      </h2>
+    </div>
+  </section>
+</noscript>
+
+<section class="p-section u-hide" data-js="latest-news">
+  <div class="grid-row">
+    {{ vf_section_top_rule() }}
+    <div class="grid-col-8">
+      <h2>Latest stories</h2>
+    </div>
+  </div>
+  <div class="grid-row p-latest-stories" id="homepage-latest-articles">
+    <div class="grid-col-8 p-latest-stories__loading">
+      <i class="p-icon--spinner u-animation--spin">Loading...</i>
+    </div>
+  </div>
+
+  <template id="homepage-latest-article-template">
+    <div class="grid-col-2 grid-col-medium-2">
+      <a class="p-story-card article-link">
+        <div class="p-story-card__image article-image"></div>
+        <div class="p-story-card__body">
+          <h3 class="p-heading--4">
+            <span class="p-story-card__title article-title"></span>
+          </h3>
+          <p class="p-story-card__date">
+            <time datetime="" class="article-time"></time>
+          </p>
+        </div>
+        <div class="p-story-card__footer">
+          <span class="p-chip is-readonly is-dense"><span class="p-chip__value article-group"></span></span>
+        </div>
+      </a>
+    </div>
+  </template>
+
+  <script nonce="{{ csp_nonce }}"
+          src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script nonce="{{ csp_nonce }}">
+    canonicalLatestNews.fetchLatestNews({
+      articlesContainerSelector: "#homepage-latest-articles",
+      articleTemplateSelector: "#homepage-latest-article-template",
+      gtmEventLabel: "ubuntu.com homepage",
+      limit: "4",
+    });
+  </script>
+</section>
