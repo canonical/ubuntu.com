@@ -50,4 +50,33 @@ describe("startIconTooltip", () => {
 
     expect(message.style.display).toBe("");
   });
+
+  it("hides the message on Escape anywhere while the pointer is over it", () => {
+    const { root, message } = renderTooltip();
+    root.dispatchEvent(new MouseEvent("mouseenter"));
+
+    pressKey(document.body, "Escape");
+
+    expect(message.style.display).toBe("none");
+  });
+
+  it("ignores Escape elsewhere once the pointer has left", () => {
+    const { root, message } = renderTooltip();
+    root.dispatchEvent(new MouseEvent("mouseenter"));
+    root.dispatchEvent(new MouseEvent("mouseleave"));
+
+    pressKey(document.body, "Escape");
+
+    expect(message.style.display).toBe("");
+  });
+
+  it("keeps the message hidden while focus stays after the pointer leaves", () => {
+    const { root, message } = renderTooltip();
+    root.focus();
+    pressKey(root, "Escape");
+
+    root.dispatchEvent(new MouseEvent("mouseleave"));
+
+    expect(message.style.display).toBe("none");
+  });
 });
