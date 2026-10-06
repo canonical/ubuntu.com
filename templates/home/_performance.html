@@ -1,6 +1,6 @@
 {# Performance as standard: HP-07 (layout), HP-08 (scroll motion, WD-39512) #}
 {% from "_macros/shared/vf_section_top_rule.jinja" import vf_section_top_rule %}
-{% from "home/_macros.html" import arrow_link_icon, icon_with_name %}
+{% from "home/_macros.html" import icon_with_name with context %}
 {% from "home/_performance-icons.html" import performance_icon %}
 
 <section class="p-section js-performance-rail">
@@ -31,7 +31,7 @@
         Access the world’s most popular open source apps and toolchains. Get innovation at your fingertips in a familiar environment.
       </p>
       <p>
-        <a class="p-arrow-link" href="/download/desktop">Download Ubuntu Desktop {{ arrow_link_icon() }}</a>
+        <a class="p-cta-text" href="/download/desktop">Download Ubuntu Desktop<i class="p-icon--arrow-right"></i></a>
       </p>
       <p class="p-performance__apps">
         {{ icon_with_name("https://assets.ubuntu.com/v1/fbce8950-git-kraken.png", "GitKraken", "performance-app-gitkraken", class="p-performance__app-icon") }}
@@ -61,7 +61,7 @@
         Get the best open source and commercial workloads built in, including Apache Hadoop, PostgreSQL, OpenStack, Ceph, and Kubernetes.
       </p>
       <p>
-        <a class="p-arrow-link" href="/server">Download Ubuntu Server {{ arrow_link_icon() }}</a>
+        <a class="p-cta-text" href="/server">Download Ubuntu Server<i class="p-icon--arrow-right"></i></a>
       </p>
     </div>
   </div>
@@ -81,7 +81,7 @@
         Canonical works hand-in-hand with cloud vendors to create optimized, pre-configured images for AWS, Azure, IBM Cloud, Oracle Cloud, and Google Cloud. Users benefit from lightweight, hardened base images that can be spun-up in seconds.
       </p>
       <p>
-        <a class="p-arrow-link" href="/cloud/public-cloud">Learn about Ubuntu on public clouds {{ arrow_link_icon() }}</a>
+        <a class="p-cta-text" href="/cloud/public-cloud">Learn about Ubuntu on public clouds<i class="p-icon--arrow-right"></i></a>
       </p>
     </div>
   </div>
@@ -103,7 +103,7 @@
         Develop on Ubuntu and deploy to devices with <a href="/core">Ubuntu Core</a> for a locked-down, low-touch approach with minimal attack surface.
       </p>
       <p>
-        <a class="p-arrow-link" href="/core">Discover Ubuntu Core {{ arrow_link_icon() }}</a>
+        <a class="p-cta-text" href="/core">Discover Ubuntu Core<i class="p-icon--arrow-right"></i></a>
       </p>
     </div>
   </div>
