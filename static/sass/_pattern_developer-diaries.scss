@@ -23,18 +23,28 @@
       }
     }
 
-    // Keep Vanilla's in-page navigation colours over the dark theme link
-    // colours (.is-dark .inner-wrapper a): muted, and white when hovered or
-    // active, even once visited
-    &.is-dark .inner-wrapper a.p-in-page-navigation__link {
-      &,
-      &:visited {
-        color: $colors--dark-theme--text-muted;
+    // Keep Vanilla's colours over the dark theme link colours
+    // (.is-dark .inner-wrapper a), even once visited
+    &.is-dark .inner-wrapper {
+      // In-page navigation: muted, and white when hovered or active
+      a.p-in-page-navigation__link {
+        &,
+        &:visited {
+          color: $colors--dark-theme--text-muted;
+        }
+
+        &:hover,
+        &.is-active {
+          color: $colors--dark-theme--text-default;
+        }
       }
 
-      &:hover,
-      &.is-active {
-        color: $colors--dark-theme--text-default;
+      // Pagination: white page numbers
+      a.p-pagination__link {
+        &,
+        &:visited {
+          color: $colors--dark-theme--text-default;
+        }
       }
     }
   }

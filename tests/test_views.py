@@ -1647,10 +1647,58 @@ class TestDeveloperDiariesIndex(BaseViewTestCase):
             "https://assets.ubuntu.com/v1/94c82a15-blog_fallback_image.png",
         )
 
+    def test_pagination_truncates_and_keeps_filters(self):
+        _, soup = self._get(
+            "/community/developer-diaries?topic=rocks&page=5",
+            articles=[_developer_diaries_article()],
+            total=120,
+        )
+
+        items = [
+            item.get_text(strip=True)
+            for item in soup.select(".p-pagination__items > li")
+        ]
+        self.assertEqual(
+            items,
+            [
+                "Previous page",
+                "1",
+                "…",
+                "4",
+                "5",
+                "6",
+                "…",
+                "10",
+                "Next page",
+            ],
+        )
+        current = soup.select_one(".p-pagination__link[aria-current=page]")
+        self.assertEqual(current.text, "5")
+        self.assertEqual(
+            soup.select_one(".p-pagination__link--next")["href"],
+            "?topic=rocks&page=6#articles",
+        )
+
+    def test_pagination_disables_previous_on_first_page(self):
+        _, soup = self._get(
+            "/community/developer-diaries",
+            articles=[_developer_diaries_article()],
+            total=30,
+        )
+
+        previous = soup.select_one(".p-pagination__link--previous")
+        self.assertEqual(previous.name, "span")
+        self.assertEqual(previous["aria-disabled"], "true")
+        self.assertEqual(
+            [link.text for link in soup.select(".p-pagination__link")],
+            ["1", "2", "3"],
+        )
+
     def test_renders_without_articles(self):
         _, soup = self._get("/community/developer-diaries?topic=charms")
 
         self.assertIsNone(soup.select_one(".p-content-card"))
+        self.assertIsNone(soup.select_one(".p-pagination"))
         self.assertIn("No articles match", soup.text)
 
 
