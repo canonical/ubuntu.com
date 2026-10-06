@@ -290,7 +290,7 @@ class TestHomepageRender(VCRTestCase):
         inline_links = [
             link
             for link in section.select('a[href="/core"]')
-            if "p-arrow-link" not in link.get("class", [])
+            if "p-cta-text" not in link.get("class", [])
         ]
         self.assertEqual(
             [link.get_text(strip=True) for link in inline_links],
@@ -323,6 +323,7 @@ class TestHomepageRender(VCRTestCase):
             image = icon.find("img")
             self.assertEqual(image.get("alt"), "")
             self.assertIsNone(image.get("title"))
+            self.assertIn("res.cloudinary.com", image["src"])
 
         self.assertEqual(
             names,
