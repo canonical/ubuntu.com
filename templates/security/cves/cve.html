@@ -304,8 +304,8 @@
                 <thead>
                   <tr>
                     <th style="width: 12rem;">Package</th>
-                    <th style="width: 18rem;">Ubuntu Release</th>
-                    <th style="padding-left: 2rem; width:25rem">Status</th>
+                    <th style="width: 12rem;">Ubuntu Release</th>
+                    <th style="padding-left: 2rem; width:31rem">Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -336,7 +336,7 @@
                               <i class="p-icon--{{ status.icon }}" style="margin-top: .2rem; margin-right: 0.5rem;"></i>
                               <div style="display: block;">
                                 {{ status.name }}
-                                {%- if status.status == "released" %} <span class="u-text--muted">{{ status.description }} </span>{% endif %}
+                                {%- if status.status == "released" and status.description %} <span class="u-text--muted">in {{ status.description }} </span>{% endif %}
                                 {%- if status.status == "pending" %} <span class="u-text--muted">work in progress{% if status.description %} in {{ status.description }}{% endif %} </span>{% endif %}
                                 {% if status.pocket_desc and status.pocket_desc.label == "Ubuntu Pro" %}
                                   <div>
