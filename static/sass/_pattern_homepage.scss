@@ -82,19 +82,25 @@
     align-items: center;
     border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: 50%;
-    color: rgba(255, 255, 255, 0.6);
     display: flex;
     flex-shrink: 0;
     height: 5rem;
     justify-content: center;
     transition:
-      border-color 0.4s $performance-ring-easing,
-      color 0.4s $performance-ring-easing;
+      border-color 0.4s $performance-ring-easing;
     width: 5rem;
+
+    img {
+      opacity: 0.6;
+      transition: opacity 0.4s $performance-ring-easing;
+    }
 
     &.is-active {
       border-color: $performance-orange;
-      color: #fff;
+
+      img {
+        opacity: 1;
+      }
     }
   }
 
@@ -120,12 +126,9 @@
     gap: 1rem;
   }
 
-  .p-performance__app-icon {
-    filter: brightness(0) invert(1);
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .p-performance__ring {
+    .p-performance__ring,
+    .p-performance__ring img {
       transition: none;
     }
   }
