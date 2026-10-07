@@ -10,8 +10,7 @@ import {
 
 // Hourly prod canary, see .github/workflows/marketo-canary.yaml
 
-const SLOW_SUBMIT_WARN_MS = 15000;
-const MAX_SUBMIT_MS = 30000;
+const MAX_SUBMIT_MS = 20000;
 const TIMEOUT_MS = 5000;
 
 // intl-tel-input picks its country from the timezone
@@ -109,13 +108,6 @@ const submitAndVerify = async (
     type: "submit-duration-ms",
     description: String(elapsed),
   });
-  if (elapsed > SLOW_SUBMIT_WARN_MS) {
-    // Flag slow submissions
-    test.info().annotations.push({
-      type: "slow-submit-warning",
-      description: `Submission took ${elapsed}ms (soft threshold ${SLOW_SUBMIT_WARN_MS}ms)`,
-    });
-  }
   expect(
     elapsed,
     `/marketo/submit took ${elapsed}ms (limit ${MAX_SUBMIT_MS}ms)`,
