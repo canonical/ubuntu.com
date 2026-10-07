@@ -18,15 +18,22 @@ export function startPerformanceRail(root) {
   const wideQuery = window.matchMedia(WIDE_QUERY);
   let stopCurrent = null;
 
+  // Read every rect before writing, so the frame forces at most one style recalc
   function update() {
     const tip = window.innerHeight * TIP_RATIO;
-    fills.forEach((fill) => {
+    const progress = fills.map((fill) => {
       const { top, height } = fill.parentElement.getBoundingClientRect();
-      fill.style.transform = `scaleY(${fillProgress(tip, top, height)})`;
+      return fillProgress(tip, top, height);
     });
-    rings.forEach((ring) => {
+    const lit = rings.map((ring) => {
       const { top, height } = ring.getBoundingClientRect();
-      ring.classList.toggle("is-active", top + height / 2 < tip);
+      return top + height / 2 < tip;
+    });
+    fills.forEach((fill, index) => {
+      fill.style.transform = `scaleY(${progress[index]})`;
+    });
+    rings.forEach((ring, index) => {
+      ring.classList.toggle("is-active", lit[index]);
     });
   }
 
