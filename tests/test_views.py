@@ -93,9 +93,7 @@ class TestReleaseCycleEmptyResults(BaseViewTestCase):
         ):
             toggle = defaults.select_one(f'[data-filter-param="{param}"]')
             self.assertEqual(toggle["data-selected-value"], value)
-        self.assertFalse(
-            defaults.select('[data-filter-option][checked]')
-        )
+        self.assertFalse(defaults.select("[data-filter-option][checked]"))
 
     def test_missing_release_preserves_invalid_input_notice(self):
         page = self.render_page("?release=")
