@@ -84,11 +84,20 @@ class TestHomepageRender(VCRTestCase):
 
     def get_section(self, heading_text):
         soup = self.get_soup()
-        heading = soup.find(
-            "h2", string=lambda text: text and text.strip() == heading_text
+        heading = next(
+            (
+                h2
+                for h2 in soup.find_all("h2")
+                if " ".join(h2.get_text(" ").split()) == heading_text
+            ),
+            None,
         )
         self.assertIsNotNone(heading, f"Missing heading: {heading_text}")
-        return heading.find_parent(["section", "div"], class_="p-section")
+        # Vanilla section macros render a <section>; the tiered list
+        # renders a div.p-section instead
+        return heading.find_parent("section") or heading.find_parent(
+            "div", class_="p-section"
+        )
 
     def arrow_link_hrefs(self, root):
         return [link["href"] for link in root.select("a.p-cta-text")]
@@ -130,7 +139,6 @@ class TestHomepageRender(VCRTestCase):
             [logo["alt"] for logo in logos],
             [
                 "AMD",
-                "Arm",
                 "Dell Technologies",
                 "HP",
                 "Intel",

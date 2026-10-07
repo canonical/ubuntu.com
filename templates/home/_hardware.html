@@ -9,10 +9,11 @@
   <p>
     Benefit from a straightforward, out-of-the-box experience. Browse over 1,000 pieces of hardware, from laptops and servers to IoT boards.
   </p>
-  <p>With certified hardware, it’s ready, set, build.</p>
+  <p>With certified hardware, it's ready, set, build.</p>
 {% endset %}
 
-{{ vf_basic_section(title={"text": "Go further and faster <br class='u-hide--small u-hide--medium' /> with certified hardware"},
+{{ vf_basic_section(
+  title={"text": "Go further and faster <br class='u-hide--small u-hide--medium' /> with certified hardware"},
   padding="shallow",
   items=[
     {
@@ -28,7 +29,8 @@
         }
       }
     }
-  ]) }}
+  ]
+) }}
 
 {%- call(slot) vf_logo_section(
   title={},
@@ -79,7 +81,7 @@
                 height="312",
                 hi_def=True,
                 loading="lazy",
-                output_mode="attrs"),
+                output_mode="attrs")
         ]
       }
     }
