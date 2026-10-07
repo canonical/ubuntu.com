@@ -63,60 +63,62 @@
       </div>
     </header>
 
-    <div class="grid-row">
-      <div class="grid-col-2 grid-col-medium-4">
-        {% if article.navigation %}
-          {{ vf_in_page_navigation(
-            title="On this page",
-            navigation_items=article.navigation,
-            scope="manual"
-          ) }}
-        {% endif %}
-      </div>
-
-      <div class="grid-col-4 grid-col-medium-4">
-        <hr class="p-rule" />
-        {{ article.body_html | safe }}
-      </div>
-
-      <aside class="grid-col-2 grid-col-medium-4">
-        <div class="p-section--shallow">
-          <hr class="p-rule" />
-          <p class="p-text--small">Want to share your thoughts on this article?</p>
-          <a class="p-button" href="{{ article.forum_url }}">Join the discussion</a>
+    <div class="p-section">
+      <div class="grid-row">
+        <div class="grid-col-2 grid-col-medium-4">
+          {% if article.navigation %}
+            {{ vf_in_page_navigation(
+              title="On this page",
+              navigation_items=article.navigation,
+              scope="manual"
+            ) }}
+          {% endif %}
         </div>
-        <hr class="p-rule" />
-        <p class="p-text--small-caps">Share on</p>
-        <ul class="p-inline-list u-no-margin--bottom">
-          <li class="p-inline-list__item">
-            <a title="Share on X"
-               href="https://twitter.com/share?text={{ article.title | urlencode }}&amp;url=https://ubuntu.com{{ article.path }}&amp;hashtags=ubuntu">
-              <img src="https://assets.ubuntu.com/v1/4a485af7-x_icon.svg"
-                   alt="Share on X"
-                   width="24"
-                   height="24" />
-            </a>
-          </li>
-          <li class="p-inline-list__item">
-            <a title="Share on Facebook"
-               href="https://www.facebook.com/sharer/sharer.php?u=https://ubuntu.com{{ article.path }}">
-              <img src="https://assets.ubuntu.com/v1/d78c98ff-fb_icon.svg"
-                   alt="Share on Facebook"
-                   width="24"
-                   height="24" />
-            </a>
-          </li>
-          <li class="p-inline-list__item">
-            <a title="Share on LinkedIn"
-               href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://ubuntu.com{{ article.path }}&amp;title={{ article.title | urlencode }}">
-              <img src="https://assets.ubuntu.com/v1/af14595b-li_icon.svg"
-                   alt="Share on LinkedIn"
-                   width="24"
-                   height="24" />
-            </a>
-          </li>
-        </ul>
-      </aside>
+
+        <div class="grid-col-4 grid-col-medium-4">
+          <hr class="p-rule" />
+          {{ article.body_html | safe }}
+        </div>
+
+        <aside class="grid-col-2 grid-col-medium-4">
+          <div class="p-section--shallow">
+            <hr class="p-rule" />
+            <p class="p-text--small">Want to share your thoughts on this article?</p>
+            <a class="p-button" href="{{ article.forum_url }}">Join the discussion</a>
+          </div>
+          <hr class="p-rule" />
+          <p class="p-text--small-caps">Share on</p>
+          <ul class="p-inline-list u-no-margin--bottom">
+            <li class="p-inline-list__item">
+              <a title="Share on X"
+                 href="https://twitter.com/share?text={{ article.title | urlencode }}&amp;url=https://ubuntu.com{{ article.path }}&amp;hashtags=ubuntu">
+                <img src="https://assets.ubuntu.com/v1/4a485af7-x_icon.svg"
+                     alt="Share on X"
+                     width="24"
+                     height="24" />
+              </a>
+            </li>
+            <li class="p-inline-list__item">
+              <a title="Share on Facebook"
+                 href="https://www.facebook.com/sharer/sharer.php?u=https://ubuntu.com{{ article.path }}">
+                <img src="https://assets.ubuntu.com/v1/d78c98ff-fb_icon.svg"
+                     alt="Share on Facebook"
+                     width="24"
+                     height="24" />
+              </a>
+            </li>
+            <li class="p-inline-list__item">
+              <a title="Share on LinkedIn"
+                 href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://ubuntu.com{{ article.path }}&amp;title={{ article.title | urlencode }}">
+                <img src="https://assets.ubuntu.com/v1/af14595b-li_icon.svg"
+                     alt="Share on LinkedIn"
+                     width="24"
+                     height="24" />
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </div>
     </div>
   </article>
 
