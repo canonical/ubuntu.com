@@ -274,6 +274,34 @@ describe("startPerformanceRail", () => {
     );
   });
 
+  it("reads every rect before writing any style in a frame", () => {
+    const { root, rings, fills } = renderRail();
+    const log = [];
+    [...rings, fills[0].parentElement].forEach((element) => {
+      const read = element.getBoundingClientRect;
+      element.getBoundingClientRect = () => {
+        log.push("read");
+        return read();
+      };
+    });
+    const toggle = DOMTokenList.prototype.toggle;
+    jest.spyOn(DOMTokenList.prototype, "toggle").mockImplementation(function (
+      ...args
+    ) {
+      log.push("write");
+      return toggle.apply(this, args);
+    });
+    Object.defineProperty(fills[0].style, "transform", {
+      set: () => {
+        log.push("write");
+      },
+    });
+    startPerformanceRail(root);
+    setIntersecting(true);
+
+    expect(log.lastIndexOf("read")).toBeLessThan(log.indexOf("write"));
+  });
+
   it("listens straight away without IntersectionObserver", () => {
     delete window.IntersectionObserver;
     const { root, fills, layout } = renderRail();
