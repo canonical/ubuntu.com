@@ -74,7 +74,7 @@ meta_copydoc %}
         </form>
       </div>
 
-      <div class="grid-col-6 grid-col-medium-4">
+      <div class="grid-col-6 grid-col-medium-4 js-articles-results">
         {% if articles %}
           <div class="grid-row">
             {% for article in articles %}
@@ -100,9 +100,5 @@ meta_copydoc %}
     {%- endif -%}
   {%- endcall %}
 
-  <script nonce="{{ csp_nonce }}">
-    document.querySelector(".js-topic-filters").addEventListener("change", (event) => {
-      event.currentTarget.submit();
-    });
-  </script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/developer-diaries.js') }}" defer></script>
 {% endblock content %}

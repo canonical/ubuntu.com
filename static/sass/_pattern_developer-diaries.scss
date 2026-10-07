@@ -5,6 +5,12 @@
     // Likes count on the article cards and headers
     @include vf-p-icon-thumbs-up;
 
+    // Dim the articles while the next filtered page or page of results loads
+    [aria-busy="true"] {
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+
     // Keep the in-page navigation below the sticky secondary navigation
     // (3.5rem tall), like the side navigation TOCs elsewhere (top: 4rem)
     .p-in-page-navigation {
