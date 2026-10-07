@@ -77,7 +77,7 @@ class TestHomepageLatest(VCRTestCase):
     def test_latest_block_comes_before_the_sections(self):
         self.assertLess(
             self.html.index('id="takeover"'),
-            self.html.index("Go further and faster with certified hardware"),
+            self.html.index("Longstanding hardware partnerships"),
         )
 
     def get_stories(self):
