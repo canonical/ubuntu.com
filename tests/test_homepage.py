@@ -2,6 +2,7 @@
 import os
 import re
 import unittest
+from urllib.parse import unquote
 
 # Packages
 from bs4 import BeautifulSoup
@@ -310,9 +311,28 @@ class TestHomepageRender(VCRTestCase):
             self.assertIn("is-active", ring["class"])
         self.assertEqual(len(section.select(".p-performance__fill")), 3)
 
+    def test_performance_rings_use_asset_images(self):
+        section = self.get_performance_section()
+        self.assertEqual(section.select(".p-performance__ring svg"), [])
+        images = section.select(".p-performance__ring img")
+        self.assertEqual(len(images), 4)
+        for image in images:
+            self.assertEqual(image.get("alt"), "")
+            self.assertIn("res.cloudinary.com", image["src"])
+        self.assertEqual(
+            [unquote(image["src"]).rsplit("/", 1)[-1] for image in images],
+            [
+                "388636e0-laptop.png",
+                "24321a0e-server.png",
+                "9629cd21-cloud.png",
+                "22d309b2-cpu.png",
+            ],
+        )
+
     def test_performance_app_icons(self):
         section = self.get_performance_section()
         names = []
+        sources = []
         for icon in section.select(".js-icon-tooltip"):
             self.assertEqual(icon.get("tabindex"), "0")
             self.assertEqual(icon.get("role"), "img")
@@ -324,7 +344,18 @@ class TestHomepageRender(VCRTestCase):
             self.assertEqual(image.get("alt"), "")
             self.assertIsNone(image.get("title"))
             self.assertIn("res.cloudinary.com", image["src"])
+            sources.append(unquote(image["src"]).rsplit("/", 1)[-1])
 
+        self.assertEqual(
+            sources,
+            [
+                "01826f67-gitkraken.png",
+                "37359d31-intellijidea.png",
+                "fae26e39-msteams.png",
+                "3d93e0f9-slack.png",
+                "a90b78a2-vscode.png",
+            ],
+        )
         self.assertEqual(
             names,
             [
