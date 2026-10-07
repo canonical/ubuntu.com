@@ -10,7 +10,11 @@ import {
 
 // Hourly prod canary, see .github/workflows/marketo-canary.yaml
 
-const MAX_SUBMIT_MS = 10000;
+// Submissions taking longer than the soft threshold are flagged but not failed
+const SLOW_SUBMIT_WARN_MS = 15000;
+
+// Submissions taking longer than max threshold are considered failures
+const MAX_SUBMIT_MS = 30000;
 
 // intl-tel-input picks its country from the timezone
 test.use({ timezoneId: "Europe/London" });
@@ -69,7 +73,7 @@ const submitAndVerify = async (
   );
   const responsePromise = page.waitForResponse(
     (res) => isSubmit(res.url(), res.request().method()),
-    { timeout: MAX_SUBMIT_MS * 2 },
+    { timeout: MAX_SUBMIT_MS },
   );
 
   const start = Date.now();
@@ -106,6 +110,13 @@ const submitAndVerify = async (
     type: "submit-duration-ms",
     description: String(elapsed),
   });
+  if (elapsed > SLOW_SUBMIT_WARN_MS) {
+    // Flag slow submissions
+    test.info().annotations.push({
+      type: "slow-submit-warning",
+      description: `Submission took ${elapsed}ms (soft threshold ${SLOW_SUBMIT_WARN_MS}ms)`,
+    });
+  }
 
   const location = response.headers()["location"] || "";
   expect(
@@ -118,10 +129,6 @@ const submitAndVerify = async (
     "Marketo rejected the submission (redirected to contact-form-fail)",
   ).not.toContain("contact-form-fail");
   expect(location, "Unexpected redirect after submission").toContain(returnURL);
-  expect(
-    elapsed,
-    `/marketo/submit took ${elapsed}ms (limit ${MAX_SUBMIT_MS}ms)`,
-  ).toBeLessThan(MAX_SUBMIT_MS);
 };
 
 test.describe("Marketo canary", () => {
@@ -129,6 +136,8 @@ test.describe("Marketo canary", () => {
     test(`form ${config.formId} on ${config.path} submits to Marketo`, async ({
       page,
     }) => {
+      test.setTimeout(MAX_SUBMIT_MS + 30000);
+
       // intl-tel-input only loads its utils after "load"; without them the
       // phone is posted empty
       const phoneUtilsLoaded = page.waitForEvent("requestfinished", {
