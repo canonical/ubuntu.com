@@ -14,6 +14,9 @@ BASE_INDEX = os.path.join(
     os.path.dirname(__file__), "..", "templates", "base_index.html"
 )
 
+# The homepage sections, in page order. If you reorder, add or remove a
+# section, update this list to match the home/_*.html includes in
+# templates/base_index.html.
 EXPECTED_ORDER = [
     "latest",
     "performance",
@@ -40,7 +43,13 @@ class TestHomepageTemplate(unittest.TestCase):
                 template.read(),
             )
 
-        self.assertEqual(found, EXPECTED_ORDER)
+        self.assertEqual(
+            found,
+            EXPECTED_ORDER,
+            "The homepage sections changed. If that was intended, update "
+            "EXPECTED_ORDER in tests/test_homepage.py to match the "
+            "home/_*.html includes in templates/base_index.html.",
+        )
 
 
 class TestHomepageRender(VCRTestCase):
