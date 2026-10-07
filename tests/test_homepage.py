@@ -131,6 +131,9 @@ class TestHomepageRender(VCRTestCase):
             "Go further and faster with certified hardware"
         )
         self.assertEqual(self.arrow_link_hrefs(section), ["/certified"])
+        # Split 50/50 from medium up, not only on large
+        self.assertIsNotNone(section.select_one(".grid-row--50-50"))
+        self.assertIsNone(section.select_one(".grid-row--50-50-on-large"))
 
         logos = self.get_soup().select(
             ".p-logo-section__items img.p-logo-section__logo"
