@@ -10,11 +10,9 @@ import {
 
 // Hourly prod canary, see .github/workflows/marketo-canary.yaml
 
-// Submissions taking longer than the soft threshold are flagged but not failed
 const SLOW_SUBMIT_WARN_MS = 15000;
-
-// Submissions taking longer than max threshold are considered failures
 const MAX_SUBMIT_MS = 30000;
+const TIMEOUT_MS = 5000;
 
 // intl-tel-input picks its country from the timezone
 test.use({ timezoneId: "Europe/London" });
@@ -68,8 +66,9 @@ const submitAndVerify = async (
   // Prod may append ?mkt=... to the action
   const isSubmit = (url: string, method: string) =>
     new URL(url).pathname === "/marketo/submit" && method === "POST";
-  const requestPromise = page.waitForRequest((req) =>
-    isSubmit(req.url(), req.method()),
+  const requestPromise = page.waitForRequest(
+    (req) => isSubmit(req.url(), req.method()),
+    { timeout: TIMEOUT_MS },
   );
   const responsePromise = page.waitForResponse(
     (res) => isSubmit(res.url(), res.request().method()),
@@ -140,15 +139,10 @@ test.describe("Marketo canary", () => {
     test(`form ${config.formId} on ${config.path} submits to Marketo`, async ({
       page,
     }) => {
-      test.setTimeout(MAX_SUBMIT_MS + 30000);
-
-      // intl-tel-input only loads its utils after "load"; without them the
-      // phone is posted empty
-      const phoneUtilsLoaded = page.waitForEvent("requestfinished", {
-        predicate: (req) =>
-          new URL(req.url()).pathname === "/static/js/dist/utils.js",
-        timeout: 30000,
-      });
+      const phoneUtilsLoaded = page.waitForResponse(
+        (res) => new URL(res.url()).pathname === "/static/js/dist/utils.js",
+        { timeout: TIMEOUT_MS },
+      );
 
       // Third-party scripts can stall "load", the form checks wait for us
       await page.goto(
@@ -166,11 +160,17 @@ test.describe("Marketo canary", () => {
 
       const form = page.locator(`form#mktoForm_${config.formId}`);
       await expect(form, "Contact form not found").toBeVisible();
-      await phoneUtilsLoaded.catch(() => {
+      const phoneUtilsResponse = await phoneUtilsLoaded.catch(() => {
         throw new Error(
           "Phone formatter never loaded (page load event stalled)",
         );
       });
+
+      expect(
+        phoneUtilsResponse.ok(),
+        `Phone formatter script failed to load: ${phoneUtilsResponse.status()} ${phoneUtilsResponse.url()}`,
+      ).toBe(true);
+
       await fillCanaryForm(form, config);
       await submitAndVerify(page, form, config);
     });
