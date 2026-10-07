@@ -12,8 +12,7 @@
   <p>With certified hardware, it’s ready, set, build.</p>
 {% endset %}
 
-{{ vf_basic_section(
-  title={"text": "Go further and faster with certified hardware"},
+{{ vf_basic_section(title={"text": "Go further and faster <br class='u-hide--small u-hide--medium' /> with certified hardware"},
   items=[
     {
       "type": "description",
@@ -28,72 +27,61 @@
         }
       }
     }
-  ]
-) }}
+  ]) }}
 
-{#- White filter is applied through the wrapper: the logo macro drops img classes -#}
-<div class="u-monochrome-logos">
-  {%- call(slot) vf_logo_section(
-    title={},
-    mode="minimal",
-    blocks=[
-      {
-        "type": "logo-block",
-        "item": {
-          "logos": [
-          image(url="https://assets.ubuntu.com/v1/cc247653-amd-logo.png",
+{%- call(slot) vf_logo_section(
+  title={},
+  mode="minimal",
+  blocks=[
+    {
+      "type": "logo-block",
+      "item": {
+        "logos": [
+          image(url="https://assets.ubuntu.com/v1/9bb95650-amd_logo.png",
                 alt="AMD",
-                width="278",
-                height="385",
-                hi_def=True,
-                loading="lazy",
-                output_mode="attrs"),
-          image(url="https://assets.ubuntu.com/v1/0d5fc741-arm-logo.png",
-                alt="Arm",
-                width="188",
-                height="385",
-                hi_def=True,
-                loading="lazy",
-                output_mode="attrs"),
-          image(url="https://assets.ubuntu.com/v1/703330cd-dell-technologies-logo-white.png",
-                alt="Dell Technologies",
-                width="172",
+                width="246",
                 height="312",
                 hi_def=True,
                 loading="lazy",
                 output_mode="attrs"),
-          image(url="https://assets.ubuntu.com/v1/af7e6fff-hp-logo.png",
+          image(url="https://assets.ubuntu.com/v1/bea5df02-dell_logo.png",
+                alt="Dell Technologies",
+                width="546",
+                height="312",
+                hi_def=True,
+                loading="lazy",
+                output_mode="attrs"),
+          image(url="https://assets.ubuntu.com/v1/0e1d412a-hp_logo.png",
                 alt="HP",
-                width="164",
-                height="385",
+                width="130",
+                height="312",
                 hi_def=True,
                 loading="lazy",
                 output_mode="attrs"),
-          image(url="https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png",
+          image(url="https://assets.ubuntu.com/v1/5df474dd-intel_new_logo.png",
                 alt="Intel",
-                width="200",
-                height="385",
+                width="186",
+                height="312",
                 hi_def=True,
                 loading="lazy",
                 output_mode="attrs"),
-          image(url="https://assets.ubuntu.com/v1/dc74391e-lenovo-logo.png",
+          image(url="https://assets.ubuntu.com/v1/107480b5-lenovo_logo.png",
                 alt="Lenovo",
-                width="277",
-                height="385",
+                width="291",
+                height="312",
                 hi_def=True,
                 loading="lazy",
                 output_mode="attrs"),
-          image(url="https://assets.ubuntu.com/v1/3e3e698b-nvidia-logo.png",
+          image(url="https://assets.ubuntu.com/v1/d08fd6c8-nvidia_logo.png",
                 alt="NVIDIA",
-                width="380",
-                height="385",
+                width="411",
+                height="312",
                 hi_def=True,
                 loading="lazy",
-                output_mode="attrs")
-          ]
-        }
+                output_mode="attrs"),
+        ]
       }
-    ]
-  ) -%}
-  {%- endcall -%}
-</div>
+    }
+  ]
+) -%}
+{%- endcall -%}
