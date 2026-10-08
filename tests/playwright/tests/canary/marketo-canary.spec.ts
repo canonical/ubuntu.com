@@ -131,10 +131,12 @@ test.describe("Marketo canary", () => {
     test(`form ${config.formId} on ${config.path} submits to Marketo`, async ({
       page,
     }) => {
-      const phoneUtilsLoaded = page.waitForResponse(
-        (res) => new URL(res.url()).pathname === "/static/js/dist/utils.js",
-        { timeout: TIMEOUT_MS },
-      );
+      let phoneUtilsStatus: number | undefined;
+      page.on("response", (res) => {
+        if (new URL(res.url()).pathname === "/static/js/dist/utils.js") {
+          phoneUtilsStatus = res.status();
+        }
+      });
 
       // Third-party scripts can stall "load", the form checks wait for us
       await page.goto(
@@ -152,16 +154,13 @@ test.describe("Marketo canary", () => {
 
       const form = page.locator(`form#mktoForm_${config.formId}`);
       await expect(form, "Contact form not found").toBeVisible();
-      const phoneUtilsResponse = await phoneUtilsLoaded.catch(() => {
-        throw new Error(
-          "Phone formatter never loaded (page load event stalled)",
-        );
-      });
 
-      expect(
-        phoneUtilsResponse.ok(),
-        `Phone formatter script failed to load: ${phoneUtilsResponse.status()} ${phoneUtilsResponse.url()}`,
-      ).toBe(true);
+      await expect
+        .poll(() => phoneUtilsStatus, {
+          message: "Phone formatter utils.js was not loaded",
+          timeout: MAX_SUBMIT_MS,
+        })
+        .toBe(200);
 
       await fillCanaryForm(form, config);
       await submitAndVerify(page, form, config);
