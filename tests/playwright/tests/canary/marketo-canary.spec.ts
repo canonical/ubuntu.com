@@ -42,12 +42,19 @@ const fillCanaryForm = async (form: Locator, config: CanaryForm) => {
     ).toBeVisible();
     await form.locator(textarea).fill(CANARY_OTHER_TEXT);
   }
-  await form.locator('select[name="country"]').selectOption(CANARY_COUNTRY);
 
+  // Async checks for phone and country input
   await expect(
     form.locator(".iti input#phone"),
     "intl-tel-input did not initialise on the phone field",
   ).toHaveCount(1);
+
+  await form.locator('select[name="country"]').selectOption(CANARY_COUNTRY);
+  await expect(
+    form.locator('select[name="country"]'),
+    "Country selection was overwritten",
+  ).toHaveValue(CANARY_COUNTRY);
+
   await form.locator("input#phone").fill(CANARY_PHONE);
   await form.locator("input#phone").blur();
 };
