@@ -1,6 +1,7 @@
 import unittest
 import json
 import re
+import time
 from requests import Session
 from pathlib import Path
 from bs4 import BeautifulSoup
@@ -46,6 +47,10 @@ ALLOWED_HIDDEN_FIELDS = frozenset(
         "utms",
     }
 )
+
+
+MARKETO_MAX_ATTEMPTS = 5
+MARKETO_RETRY_DELAY_S = 5
 
 
 def get_marketo_template_files():
@@ -113,13 +118,24 @@ class MarketoFormTestCase(unittest.TestCase):
         """
         Helper function to get Marketo fields for a form ID.
         """
-        marketo_response = self.marketo_api.get_form_fields(form_id)
-        self.assertEqual(marketo_response.status_code, 200)
-        self.assertIsNotNone(
-            marketo_response,
-            f"Marketo response should not be None for form ID {form_id}",
+        body = {}
+        for attempt in range(MARKETO_MAX_ATTEMPTS):
+            marketo_response = self.marketo_api.get_form_fields(form_id)
+            self.assertEqual(marketo_response.status_code, 200)
+            body = marketo_response.json()
+
+            # Check success message (could be true/false)
+            if body.get("success") and body.get("result"):
+                return body["result"]
+
+            if attempt < MARKETO_MAX_ATTEMPTS - 1:
+                time.sleep(MARKETO_RETRY_DELAY_S * (attempt + 1))
+
+        self.fail(
+            f"Marketo returned no fields for form ID {form_id} after "
+            f"{MARKETO_MAX_ATTEMPTS} attempts. "
+            f"success={body.get('success')} errors={body.get('errors')}"
         )
-        return marketo_response.json().get("result", [])
 
     def _get_form_gen_files(self):
         """
