@@ -53,12 +53,11 @@ class TestHomepageOpenSource(VCRTestCase):
         for image in images:
             self.assertIn("res.cloudinary.com", image["src"])
 
-    def test_developers_logos_have_names(self):
-        logos = self.slides[0].select(".js-icon-tooltip")
-        names = [logo.select_one(".p-tooltip__message") for logo in logos]
+    def test_developers_logos_are_named_images(self):
+        logos = self.slides[0].select(".p-open-source__logos img")
         self.assertEqual(
-            [n.get_text(strip=True) for n in names],
-            ["Jenkins", "Juju", "Kubernetes", "Spring", "Terraform"],
+            [logo["alt"] for logo in logos],
+            ["Helm", "Jenkins", "Juju", "Kubernetes", "Spring", "Terraform"],
         )
 
 
