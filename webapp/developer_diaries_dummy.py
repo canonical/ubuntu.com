@@ -6,15 +6,19 @@ Dummy Developer diaries articles, to QA the topic filters and pagination of
 
 from datetime import datetime, timedelta
 
-# Every topic filter alone and combined, plus tags no filter matches
+# Every topic filter's tags, alone and combined, plus tags no filter matches
+# and no tags at all
 TAG_SETS = [
-    ["snaps"],
-    ["charms"],
-    ["rocks"],
-    ["snaps", "charms"],
-    ["rocks", "docker"],
-    ["charms", "juju", "kubernetes"],
-    ["snaps", "rocks", "security"],
+    ["snap"],
+    ["rock", "docker"],
+    ["ai"],
+    ["foundations"],
+    ["lxd"],
+    ["snapcraft", "chisel"],
+    ["container", "security"],
+    ["multipass", "ai"],
+    ["rockcraft"],
+    ["workshop", "foundations"],
     ["python"],
     [],
 ]

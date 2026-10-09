@@ -1,5 +1,7 @@
 {% from "_macros/vf_card.jinja" import vf_card %}
 
+{# Likes only show on the article page. Without tags, there's no footer
+   (nor its rule) at all. #}
 {{ vf_card(
   columns="2",
   link=article.path,
@@ -10,8 +12,5 @@
   },
   author=article.author_html,
   date=article.created.strftime("%-d %b %Y"),
-  footer={
-    "resource_type": {"icon": "thumbs-up", "text": article.likes},
-    "content_type": article.tags | map("capitalize") | list
-  }
+  footer={"content_type": article.tag_names} if article.tag_names else None
 ) }}

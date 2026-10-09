@@ -39,8 +39,6 @@
               </div>
             </div>
           {% endif %}
-          <p class="p-text--small">Want to share your thoughts on this article?</p>
-          <a class="p-button" href="{{ article.forum_url }}">Join the discussion</a>
         </div>
 
         <div class="grid-col-4 grid-col-medium-4">
@@ -54,9 +52,9 @@
               <small>{{ article.likes }}</small>
             </li>
           </ul>
-          {% for tag in article.tags %}
+          {% for tag in article.tag_names %}
             <span class="p-chip is-readonly">
-              <span class="p-chip__value">{{ tag | capitalize }}</span>
+              <span class="p-chip__value">{{ tag }}</span>
             </span>
           {% endfor %}
         </div>

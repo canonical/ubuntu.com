@@ -2080,34 +2080,62 @@ def build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter):
     return display_ubuntu_weekly_newsletter
 
 
-# Topic filters on /community/developer-diaries, matched against the
-# Discourse tags of each article
+# Topic filters on /community/developer-diaries: an article matches a topic
+# when it has any of the topic's Discourse tags
 DEVELOPER_DIARIES_TOPICS = [
-    {"name": "Snaps", "tag": "snaps"},
-    {"name": "Charms", "tag": "charms"},
-    {"name": "Rocks", "tag": "rocks"},
+    {"name": "Snaps", "slug": "snaps", "tags": ["snap", "snapcraft"]},
+    {
+        "name": "Containers",
+        "slug": "containers",
+        "tags": ["rock", "rockcraft", "container", "chisel"],
+    },
+    {"name": "AI", "slug": "ai", "tags": ["ai"]},
+    {
+        "name": "Devpacks and toolchains",
+        "slug": "devpacks-and-toolchains",
+        "tags": ["foundations"],
+    },
+    {
+        "name": "Local development",
+        "slug": "local-development",
+        "tags": ["multipass", "lxd", "workshop"],
+    },
 ]
+
+
+# Tag names capitalize() gets wrong
+DEVELOPER_DIARIES_TAG_NAMES = {"ai": "AI", "lxd": "LXD"}
+
+
+def _developer_diaries_tag_names(tags):
+    return [
+        DEVELOPER_DIARIES_TAG_NAMES.get(tag, tag.capitalize()) for tag in tags
+    ]
 
 
 def build_developer_diaries_index(developer_diaries):
     def developer_diaries_index():
         page = max(flask.request.args.get("page", default=1, type=int), 1)
-        topic_tags = [topic["tag"] for topic in DEVELOPER_DIARIES_TOPICS]
-        selected_topics = [
-            topic
-            for topic in flask.request.args.getlist("topic")
-            if topic in topic_tags
+        selected_topics = flask.request.args.getlist("topic")
+        tags = [
+            tag
+            for topic in DEVELOPER_DIARIES_TOPICS
+            if topic["slug"] in selected_topics
+            for tag in topic["tags"]
         ]
         limit = 12
 
         articles, total = developer_diaries.get_index(
-            limit=limit, offset=(page - 1) * limit, tags=selected_topics
+            limit=limit, offset=(page - 1) * limit, tags=tags
         )
 
         # vf_card joins the author into raw HTML, so it needs a plain
         # str with the user-chosen name already escaped: unescaped
         # would allow injection, a Markup would escape the card itself
         for article in articles:
+            article["tag_names"] = _developer_diaries_tag_names(
+                article["tags"]
+            )
             if article["author"]:
                 article["author_html"] = str(
                     Markup(
@@ -2136,6 +2164,8 @@ def build_developer_diaries_article(developer_diaries):
 
         if not article:
             flask.abort(404)
+
+        article["tag_names"] = _developer_diaries_tag_names(article["tags"])
 
         return flask.render_template(
             "community/developer-diaries/article.html", article=article

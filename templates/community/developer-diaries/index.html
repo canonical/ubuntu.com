@@ -24,7 +24,7 @@ meta_copydoc %}
   {% call(slot) vf_hero(
     title_text='Developer diaries',
     subtitle_text='How do you build great software?',
-    layout='50/50-full-width-image'
+    layout='50/50'
     ) -%}
     {%- if slot == 'description' -%}
       <p>
@@ -32,11 +32,11 @@ meta_copydoc %}
       </p>
     {%- endif -%}
     {%- if slot == 'image' -%}
-      <div class="p-image-container--cinematic is-cover">
-        {{ image(url="https://assets.ubuntu.com/v1/9624938b-hero_img.jpg",
+      <div class="p-image-container--3-2 is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/1f1db76b-new_hero.jpg",
                 alt="",
-                width="2464",
-                height="1027",
+                width="1200",
+                height="800",
                 hi_def=True,
                 loading="auto",
                 attrs={"class": "p-image-container__image"}) | safe
@@ -63,8 +63,8 @@ meta_copydoc %}
                   <input class="p-checkbox__input"
                          type="checkbox"
                          name="topic"
-                         value="{{ topic.tag }}"
-                         {% if topic.tag in selected_topics %}checked{% endif %} />
+                         value="{{ topic.slug }}"
+                         {% if topic.slug in selected_topics %}checked{% endif %} />
                   <span class="p-checkbox__label">{{ topic.name }}</span>
                 </label>
               {% endfor %}
