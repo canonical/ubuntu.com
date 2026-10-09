@@ -5,7 +5,7 @@
   $carousel-easing: cubic-bezier(0.22, 1, 0.36, 1);
   $carousel-slide-count: 6;
 
-  .p-carousel__images {
+  .p-open-source__images {
     aspect-ratio: 4 / 3;
     overflow: hidden;
     position: relative;
@@ -19,7 +19,7 @@
     }
   }
 
-  .p-carousel__image {
+  .p-open-source__image {
     height: 100%;
     inset: 0;
     object-fit: cover;
@@ -33,7 +33,7 @@
     }
   }
 
-  .p-carousel__controls {
+  .p-open-source__controls {
     align-items: center;
     display: flex;
     justify-content: space-between;
@@ -43,7 +43,7 @@
     }
   }
 
-  .p-carousel__button {
+  .p-open-source__button {
     align-items: center;
     background: none;
     border: 0;
@@ -55,7 +55,7 @@
     width: $sp-unit * 5.5;
   }
 
-  .p-carousel__progress {
+  .p-open-source__progress {
     background-color: $colors--theme--border-low-contrast;
     bottom: 0;
     height: 2px;
@@ -64,8 +64,8 @@
     right: 0;
   }
 
-  .p-carousel__bar {
-    background-color: $colors--dark-theme--text-default;
+  .p-open-source__bar {
+    background-color: $colors--theme--text-default;
     display: block;
     height: 2px;
     transform: scaleX(0);
@@ -73,16 +73,17 @@
     width: 100%;
   }
 
-  .p-carousel__slide {
+  .p-open-source__slide {
     border-top: 1px solid $colors--theme--border-low-contrast;
     position: relative;
 
-    &.is-active {
+    &.is-active,
+    &:target {
       border-top-width: 2px;
     }
 
     // The progress bar sits on the active slide's rule
-    .p-carousel__bar {
+    .p-open-source__bar {
       left: 0;
       position: absolute;
       top: -2px;
@@ -94,14 +95,14 @@
   }
 
   // Same specificity trick as .p-cta-text: beats the dark theme link colour
-  .inner-wrapper a.p-carousel__title:not([class^="p-button"]) {
+  .inner-wrapper a.p-open-source__title:not([class^="p-button"]) {
     display: block;
     padding: $sp-unit * 2 0;
     text-decoration: none;
 
     &,
     &:visited {
-      color: $colors--dark-theme--text-default;
+      color: $colors--theme--text-default;
     }
 
     &:hover,
@@ -110,24 +111,30 @@
     }
   }
 
-  .p-carousel__panel {
+  .p-open-source__panel {
     display: none;
     padding-bottom: $sp-unit * 3;
   }
 
-  .p-carousel__slide.is-active .p-carousel__panel,
-  .p-carousel__slide:target .p-carousel__panel {
+  .p-open-source__slide.is-active .p-open-source__panel,
+  .p-open-source__slide:target .p-open-source__panel {
     display: block;
   }
 
-  .p-carousel__command {
+  .p-open-source__command {
     background-color: $colors--theme--background-hover;
-    overflow-wrap: anywhere;
+    overflow-wrap: normal;
     padding: $sp-unit * 2;
     white-space: pre-wrap;
+    word-break: normal;
   }
 
-  .p-carousel__logos {
+  // Hyphens are break opportunities too, keep each path part whole
+  .p-open-source__nowrap {
+    white-space: nowrap;
+  }
+
+  .p-open-source__logos {
     display: flex;
     flex-wrap: wrap;
     gap: $sp-unit * 2;
@@ -135,23 +142,23 @@
   }
 
   // No JS: the targeted slide replaces the first one
-  .js-open-source-carousel:has(.p-carousel__slide:target) {
-    .p-carousel__image.is-active {
+  .js-open-source-carousel:has(.p-open-source__slide:target) {
+    .p-open-source__image.is-active {
       opacity: 0;
     }
 
-    .p-carousel__slide.is-active:not(:target) {
+    .p-open-source__slide.is-active:not(:target) {
       border-top-width: 1px;
 
-      .p-carousel__panel {
+      .p-open-source__panel {
         display: none;
       }
     }
 
     @for $i from 1 through $carousel-slide-count {
       // Slides follow the pause controls, so they are offset by one
-      &:has(.p-carousel__slide:nth-child(#{$i + 1}):target)
-        .p-carousel__image:nth-child(#{$i}) {
+      &:has(.p-open-source__slide:nth-child(#{$i + 1}):target)
+        .p-open-source__image:nth-child(#{$i}) {
         opacity: 1;
       }
     }
@@ -159,13 +166,13 @@
 
   // Once WD-39511 adds is-enhanced, phones show only the active slide
   @media (max-width: $breakpoint-small - 1) {
-    .js-open-source-carousel.is-enhanced .p-carousel__slide:not(.is-active) {
+    .js-open-source-carousel.is-enhanced .p-open-source__slide:not(.is-active) {
       display: none;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .p-carousel__image {
+    .p-open-source__image {
       transition: none;
     }
   }

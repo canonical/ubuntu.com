@@ -34,7 +34,7 @@ class TestHomepageOpenSource(VCRTestCase):
         app.testing = True
         response = app.test_client().get("/")
         self.soup = BeautifulSoup(response.get_data(as_text=True), "lxml")
-        self.slides = self.soup.select(".p-carousel__slide")
+        self.slides = self.soup.select(".p-open-source__slide")
 
     def test_renders_six_slides_with_first_active(self):
         titles = [s.select_one("h3").get_text(strip=True) for s in self.slides]
@@ -43,13 +43,12 @@ class TestHomepageOpenSource(VCRTestCase):
         self.assertEqual(active, self.slides[:1])
 
     def test_titles_link_to_their_slides(self):
-        self.assertEqual(len(self.slides), 6)
         for slide in self.slides:
-            link = slide.select_one("a.p-carousel__title")
+            link = slide.select_one("a.p-open-source__title")
             self.assertEqual(link["href"], "#" + slide["id"])
 
     def test_images_go_through_image_template(self):
-        images = self.soup.select("img.p-carousel__image")
+        images = self.soup.select("img.p-open-source__image")
         self.assertEqual(len(images), 6)
         for image in images:
             self.assertIn("res.cloudinary.com", image["src"])
