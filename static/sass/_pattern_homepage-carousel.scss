@@ -134,13 +134,6 @@
     white-space: nowrap;
   }
 
-  .p-open-source__logos {
-    display: flex;
-    flex-wrap: wrap;
-    gap: $sp-unit * 2;
-    justify-content: space-between;
-  }
-
   // No JS: the targeted slide replaces the first one
   .js-open-source-carousel:has(.p-open-source__slide:target) {
     .p-open-source__image.is-active {

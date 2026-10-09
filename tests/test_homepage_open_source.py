@@ -54,7 +54,7 @@ class TestHomepageOpenSource(VCRTestCase):
             self.assertIn("res.cloudinary.com", image["src"])
 
     def test_developers_logos_are_named_images(self):
-        logos = self.slides[0].select(".p-open-source__logos img")
+        logos = self.slides[0].select(".p-logo-section__logo")
         self.assertEqual(
             [logo["alt"] for logo in logos],
             ["Helm", "Jenkins", "Juju", "Kubernetes", "Spring", "Terraform"],
