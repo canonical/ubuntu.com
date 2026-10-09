@@ -93,52 +93,52 @@
     </div>
   </div>
 
-  <div class="grid-row p-carousel">
-    <div class="grid-col-4 grid-col-medium-4 p-carousel__media">
-      <div class="p-carousel__controls u-hide--medium u-hide--large">
+  <div class="grid-row p-open-source">
+    <div class="grid-col-4 grid-col-medium-4 p-open-source__media">
+      <div class="p-open-source__controls u-hide--medium u-hide--large">
         <span>
-          <button type="button" class="p-carousel__button" aria-label="Previous slide">
+          <button type="button" class="p-open-source__button" aria-label="Previous slide">
             <i class="p-icon--chevron-left"></i>
           </button>
-          <button type="button" class="p-carousel__button" aria-label="Next slide">
+          <button type="button" class="p-open-source__button" aria-label="Next slide">
             <i class="p-icon--chevron-right"></i>
           </button>
         </span>
-        <button type="button" class="p-carousel__button" aria-label="Pause">
+        <button type="button" class="p-open-source__button" aria-label="Pause">
           <i class="p-icon--pause"></i>
         </button>
       </div>
-      <div class="p-carousel__images">
+      <div class="p-open-source__images">
         {% for slide in slides %}
           {{ image(url=photo,
             alt="",
-            width="1200",
-            height="1800",
+            width="600",
+            height="900",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-carousel__image" ~ (" is-active" if loop.first else "")}) | safe
+            attrs={"class": "p-open-source__image" ~ (" is-active" if loop.first else "")}) | safe
           }}
         {% endfor %}
-        <div class="p-carousel__progress u-hide--medium u-hide--large">
-          <span class="p-carousel__bar"></span>
+        <div class="p-open-source__progress u-hide--medium u-hide--large">
+          <span class="p-open-source__bar"></span>
         </div>
       </div>
     </div>
 
-    <div class="grid-col-4 grid-col-medium-4 p-carousel__slides">
-      <div class="p-carousel__controls u-hide--small">
-        <button type="button" class="p-carousel__button" aria-label="Pause">
+    <div class="grid-col-4 grid-col-medium-4 p-open-source__slides">
+      <div class="p-open-source__controls u-hide--small">
+        <button type="button" class="p-open-source__button" aria-label="Pause">
           <i class="p-icon--pause"></i>
         </button>
       </div>
       {% for slide in slides %}
-        <div class="p-carousel__slide{{ ' is-active' if loop.first }}"
+        <div class="p-open-source__slide{{ ' is-active' if loop.first }}"
              id="open-source-{{ slide.id }}">
-          <span class="p-carousel__bar"></span>
+          <span class="p-open-source__bar"></span>
           <h3 class="p-heading--5">
-            <a class="p-carousel__title" href="#open-source-{{ slide.id }}">{{ slide.title }}</a>
+            <a class="p-open-source__title" href="#open-source-{{ slide.id }}">{{ slide.title }}</a>
           </h3>
-          <div class="p-carousel__panel">
+          <div class="p-open-source__panel">
             {% for block in slide.blocks %}
               {% if block.p %}
                 <p>{{ block.p }}</p>
@@ -147,9 +147,9 @@
                   <a class="p-cta-text" href="{{ block.link.href }}">{{ block.link.text }}<i class="p-icon--arrow-right"></i></a>
                 </p>
               {% elif block.command %}
-                <pre class="p-carousel__command"><code>$ {{ block.command }}</code></pre>
+                <pre class="p-open-source__command"><code>$ {% for part in block.command.split("/") %}<span class="p-open-source__nowrap">{{ part }}{{ "/" if not loop.last }}</span>{{ "<wbr>" | safe if not loop.last }}{% endfor %}</code></pre>
               {% elif block.logos %}
-                <p class="p-carousel__logos">
+                <p class="p-open-source__logos">
                   {% for name in block.logos %}
                     {{ icon_with_name(logo, name, "open-source-logo-" ~ name | lower, width="48", height="48") }}
                   {% endfor %}
