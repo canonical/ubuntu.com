@@ -109,12 +109,57 @@
           {% if releases_yaml.lts.raspi_server_iso_size %}
             <span class="u-text--muted">{{ releases_yaml.lts.raspi_server_iso_size }}</span>
           {% endif %}
-
-          <p>Certain releases of Ubuntu require a minimum EEPROM date for compatibility for the Raspberry Pi 4 and 5.</p>
-          <p><a href="https://canonical-ubuntu-hardware-support.readthedocs-hosted.com/boards/how-to/ubuntu_supported/raspberry-pi/">Learn more in our documentation&nbsp;&rsaquo;</a></p>
         </p>
+
+        <p>Certain releases of Ubuntu require a minimum EEPROM date for compatibility for the Raspberry Pi 4 and 5.</p>
+        <p><a href="https://canonical-ubuntu-hardware-support.readthedocs-hosted.com/boards/how-to/ubuntu_supported/raspberry-pi/">Learn more in our documentation&nbsp;&rsaquo;</a></p>
       </div>
     </div>
+  </section>
+  <hr class="p-rule is-fixed-width" />
+  <section class="p-section">
+    <div class="row--50-50 p-section">
+      <div class="col u-image-position">
+        <h2>Ubuntu 26.10</h2>
+        <div class="p-image-wrapper u-hide--small">
+          {{ image(url="https://assets.ubuntu.com/v1/252fa96b-stingray_black.png",
+                    alt="Stonking Stingray",
+                    width="182",
+                    height="182",
+                    hi_def=True,
+                    loading="auto") | safe
+          }}
+        </div>
+      </div>
+      <div class="col">
+        <p>
+          The latest version of Ubuntu. Ubuntu 26.10 comes with nine months of security and maintenance updates, until July 2027.
+        </p>
+        <hr class="p-rule" />
+        <p class="u-responsive-realign">
+          <a href="/download/raspberry-pi/thank-you?version={{ releases_yaml.latest.full_version }}&amp;architecture=desktop-arm64+raspi"
+             data-ga-category="Download" data-ga-action="Raspberry Pi 64-bit - Ubuntu Desktop" data-ga-label="{{ releases_yaml.latest.full_version }}"
+             class="p-button--positive u-no-margin--bottom">Download Ubuntu Desktop</a>
+          {% if releases_yaml.latest.raspi_desktop_iso_size %}
+            <span class="u-text--muted">{{ releases_yaml.latest.raspi_desktop_iso_size }}</span>
+          {% endif %}
+        </p>
+        <p>Minimum 4GB of RAM and 16GB of storage required</p>
+        <hr class="p-rule" />
+        <p class="u-responsive-realign">
+          <a href="/download/raspberry-pi/thank-you?version={{ releases_yaml.latest.full_version }}&amp;architecture=server-arm64+raspi"
+             data-ga-category="Download" data-ga-action="Raspberry Pi 64-bit - Ubuntu Server" data-ga-label="{{ releases_yaml.latest.full_version }}"
+             class="p-button">Download Ubuntu Server</a>
+          {% if releases_yaml.latest.raspi_server_iso_size %}
+            <span class="u-text--muted">{{ releases_yaml.latest.raspi_server_iso_size }}</span>
+          {% endif %}
+        </p>
+        <p>Certain releases of Ubuntu require a minimum EEPROM date for compatibility for the Raspberry Pi 4 and 5.</p>
+        <p><a href="https://canonical-ubuntu-hardware-support.readthedocs-hosted.com/boards/how-to/ubuntu_supported/raspberry-pi/">Learn more in our documentation&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+  </section>
+  <section class="p-section">
     <hr class="p-rule is-fixed-width" />
     <div class="row--50-50">
       <div class="col">
