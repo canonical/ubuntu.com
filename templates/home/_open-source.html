@@ -1,1 +1,164 @@
-{# A world of open source: HP-11, HP-12, HP-13 #}
+{# A world of open source: HP-11 markup and layouts. HP-12 behaviour (WD-39511), HP-13 rotating command still to come #}
+{% from "_macros/shared/vf_section_top_rule.jinja" import vf_section_top_rule %}
+{% from "home/_macros.html" import icon_with_name with context %}
+
+{# Placeholder assets, swap for the real uploads here #}
+{% set photo = "https://assets.ubuntu.com/v1/6feb3ff1-community-booths.jpg" %}
+{% set logo = "https://assets.ubuntu.com/v1/35f593dd-Juju-logo.svg" %}
+{% set arrow_links = {
+  "ai": {
+    "text": "Learn more about Ubuntu for AI",
+    "href": "https://ubuntu.com/ai"
+  },
+  "ai_portfolio": {
+    "text": "Discover Canonical's AI portfolio",
+    "href": "https://canonical.com/solutions/ai"
+  },
+  "landscape": {
+    "text": "Learn about Landscape",
+    "href": "https://ubuntu.com/landscape"
+  },
+  "authd": {
+    "text": "Discover AuthD",
+    "href": "https://documentation.ubuntu.com/authd/stable-docs/"
+  },
+  "adsys": {
+    "text": "Learn about ADSys",
+    "href": "https://documentation.ubuntu.com/adsys/stable/"
+  },
+  "observability": {
+    "text": "Learn about Canonical Observability Stack",
+    "href": "https://documentation.ubuntu.com/observability/track-2/"
+  },
+  "data": {
+    "text": "Discover Canonical's data portfolio",
+    "href": "https://canonical.com/data"
+  },
+  "pro": {
+    "text": "Why Ubuntu Pro",
+    "href": "https://ubuntu.com/pro/why-pro"
+  }
+} %}
+{% set slides = [
+  {"id": "developers", "title": "Developers", "blocks": [
+    {"p": "Ubuntu is the #1 Linux amongst developers. Benefit from seamless integration with familiar tools for development and deployment, and access a growing range of toolchains."},
+    {"command": "sudo snap install docker/vscode/git/github/dev-pack-for-spring/dev-pack-for-go"},
+    {"logos": ["Jenkins", "Juju", "Kubernetes", "Spring", "Terraform"]},
+  ]},
+  {"id": "devops", "title": "DevOps engineers", "blocks": [
+    {"p": "Orchestrate and streamline software operations. Use the best practice tools for version control, CI/CD, containerization, orchestration and configuration management."},
+    {"command": "sudo snap install kubectl/jenkins/terraform/juju/helm"},
+  ]},
+  {"id": "data-ai", "title": "Data analysts and AI engineers", "blocks": [
+    {"p": "Benefit from deep optimization at the silicon level with optimized kernels, and built-in AI libraries like CUDA and ROCm."},
+    {"p": "Ubuntu delivers a dependable software stack for data work: a stable OS base, predictable runtimes, and consistent performance characteristics across desktops, servers, and cloud images."},
+    {"link": arrow_links.ai},
+    {"link": arrow_links.ai_portfolio},
+  ]},
+  {"id": "sysadmins", "title": "System administrators", "blocks": [
+    {"p": "Manage fleets of devices, from laptops and servers to edge devices, with Landscape – Canonical's systems management tool."},
+    {"link": arrow_links.landscape},
+    {"p": "Ensure your teams have the tools they need to be productive and secure. Ubuntu integrates with popular cloud identity management platforms like EntraID and Google IAM through AuthD – Canonical's identity broker."},
+    {"link": arrow_links.authd},
+    {"p": "Manage Ubuntu machines with Microsoft Active Directory, through ADSys - Canonical's Active Directory Group Policy client for Ubuntu."},
+    {"link": arrow_links.adsys},
+  ]},
+  {"id": "sre", "title": "Site reliability engineers", "blocks": [
+    {"p": "Access everything you need for seamless deployment, monitoring, orchestration, and observability."},
+    {"command": "sudo snap install k8s/prometheus/grafana/otel-ebpf-profiler/parca-agent/opentelemetry-collector"},
+    {"link": arrow_links.observability},
+    {"p": "Deploy a comprehensive portfolio of hardened, production-ready database clusters optimized for Kubernetes, virtual machines, bare metal, and multi-cloud deployments."},
+    {"link": arrow_links.data},
+  ]},
+  {"id": "ctos", "title": "CTOs, CIOs and CISOs", "blocks": [
+    {"p": "Get all the open source you need to empower your team, while meeting your security requirements and compliance audits. Benefit from operational stability and Canonical's extensive open source expertise at simple and transparent pricing."},
+    {"link": arrow_links.pro},
+  ]},
+] %}
+
+<section class="p-section js-open-source-carousel">
+  <div class="grid-row--50-50-on-large">
+    {{ vf_section_top_rule() }}
+    <div class="grid-col">
+      <h2>
+        A world of open source.
+        <br />
+        At your command.
+      </h2>
+    </div>
+    <div class="grid-col">
+      <p>
+        If it runs, you can run it on Ubuntu. Access thousands of open source packages from your OS, get security maintenance with Ubuntu Pro.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid-row p-carousel">
+    <div class="grid-col-4 grid-col-medium-4 p-carousel__media">
+      <div class="p-carousel__controls u-hide--medium u-hide--large">
+        <span>
+          <button type="button" class="p-carousel__button" aria-label="Previous slide">
+            <i class="p-icon--chevron-left"></i>
+          </button>
+          <button type="button" class="p-carousel__button" aria-label="Next slide">
+            <i class="p-icon--chevron-right"></i>
+          </button>
+        </span>
+        <button type="button" class="p-carousel__button" aria-label="Pause">
+          <i class="p-icon--pause"></i>
+        </button>
+      </div>
+      <div class="p-carousel__images">
+        {% for slide in slides %}
+          {{ image(url=photo,
+            alt="",
+            width="1200",
+            height="1800",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-carousel__image" ~ (" is-active" if loop.first else "")}) | safe
+          }}
+        {% endfor %}
+        <div class="p-carousel__progress u-hide--medium u-hide--large">
+          <span class="p-carousel__bar"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-col-4 grid-col-medium-4 p-carousel__slides">
+      <div class="p-carousel__controls u-hide--small">
+        <button type="button" class="p-carousel__button" aria-label="Pause">
+          <i class="p-icon--pause"></i>
+        </button>
+      </div>
+      {% for slide in slides %}
+        <div class="p-carousel__slide{{ ' is-active' if loop.first }}"
+             id="open-source-{{ slide.id }}">
+          <span class="p-carousel__bar"></span>
+          <h3 class="p-heading--5">
+            <a class="p-carousel__title" href="#open-source-{{ slide.id }}">{{ slide.title }}</a>
+          </h3>
+          <div class="p-carousel__panel">
+            {% for block in slide.blocks %}
+              {% if block.p %}
+                <p>{{ block.p }}</p>
+              {% elif block.link %}
+                <p>
+                  <a class="p-cta-text" href="{{ block.link.href }}">{{ block.link.text }}<i class="p-icon--arrow-right"></i></a>
+                </p>
+              {% elif block.command %}
+                <pre class="p-carousel__command"><code>$ {{ block.command }}</code></pre>
+              {% elif block.logos %}
+                <p class="p-carousel__logos">
+                  {% for name in block.logos %}
+                    {{ icon_with_name(logo, name, "open-source-logo-" ~ name | lower, width="48", height="48") }}
+                  {% endfor %}
+                </p>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
