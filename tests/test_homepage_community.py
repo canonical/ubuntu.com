@@ -48,6 +48,7 @@ class TestHomepageCommunity(VCRTestCase):
     def test_community_section(self):
         section = self.get_section()
         self.assertIn("js-community-tiles", section["class"])
+        self.assertIn("p-homepage", section.find_parent("body")["class"])
         self.assertIn(
             "Hover over the media below to see more.", section.get_text()
         )

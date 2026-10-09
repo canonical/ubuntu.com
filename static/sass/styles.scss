@@ -134,7 +134,10 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-grid;
 @include ubuntu-p-heading-icon;
 @include ubuntu-p-homepage;
-@include ubuntu-p-homepage-community;
+// Homepage-only patterns, scoped by the class templates/index.html adds to <body>
+.p-homepage {
+  @include ubuntu-p-homepage-community;
+}
 @include ubuntu-p-inline-list-midline;
 @include ubuntu-p-invoices;
 @include ubuntu-p-attention-icon;
