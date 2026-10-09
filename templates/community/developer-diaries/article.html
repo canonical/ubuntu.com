@@ -74,13 +74,16 @@
         </div>
 
         <div class="grid-col-4 grid-col-medium-4">
-          <hr class="p-rule" />
+          {# The in-page navigation already has a rule on tablet and mobile #}
+          <hr class="p-rule u-hide--small u-hide--medium" />
           {{ article.body_html | safe }}
         </div>
 
         <aside class="grid-col-2 grid-col-medium-4">
           <div class="developer-diaries__sidebar">
-            <div class="p-section--shallow">
+            {# The "Join the conversation" CTA follows right below on tablet
+               and mobile #}
+            <div class="p-section--shallow u-hide--small u-hide--medium">
               <hr class="p-rule" />
               <p class="p-text--small">Want to share your thoughts on this article?</p>
               <a class="p-button" href="{{ article.forum_url }}">Join the discussion</a>
