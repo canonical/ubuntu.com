@@ -3,7 +3,6 @@
   (admin.insights API). Homepage-only markup, so the shared
   shared/_latest_news_strip.html used by other pages stays unchanged.
 #}
-{% from "_macros/shared/vf_section_top_rule.jinja" import vf_section_top_rule %}
 
 <noscript>
   <section class="p-section">
@@ -17,7 +16,7 @@
 
 <section class="p-section u-hide" data-js="latest-news">
   <div class="grid-row">
-    {{ vf_section_top_rule() }}
+    <hr class="p-rule" />
     <div class="grid-col-8">
       <h2>Latest stories</h2>
     </div>
