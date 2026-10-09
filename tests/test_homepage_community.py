@@ -1,6 +1,7 @@
 # Standard library
 import os
 import unittest
+from urllib.parse import unquote
 
 # Packages
 from bs4 import BeautifulSoup
@@ -71,10 +72,42 @@ class TestHomepageCommunity(VCRTestCase):
         )
 
     def test_community_media_goes_through_the_image_template(self):
-        images = self.get_section().select("img.p-community-tile__media")
-        self.assertEqual(len(images), 3)
-        for image in images:
-            self.assertIn("res.cloudinary.com", image["src"])
+        section = self.get_section()
+        images = section.select("img.p-community-tile__media")
+        self.assertEqual(len(images), 1)
+        self.assertIn("res.cloudinary.com", images[0]["src"])
+        for video in section.select("video.p-community-tile__media"):
+            self.assertIn("res.cloudinary.com", video["poster"])
+
+    def test_community_videos_use_the_encoded_assets(self):
+        videos = self.get_section().select("video.p-community-tile__media")
+        self.assertEqual(
+            [
+                [source["src"] for source in video.find_all("source")]
+                for video in videos
+            ],
+            [
+                [
+                    f"https://assets.ubuntu.com/v1/{name}"
+                    for name in [
+                        "0a97871a-community_square.webm",
+                        "3028ccff-community_square_hevc.mp4",
+                        "2cef91fa-community_square.mp4",
+                    ]
+                ],
+                [
+                    f"https://assets.ubuntu.com/v1/{name}"
+                    for name in [
+                        "3d238b5e-community_summit.webm",
+                        "bc4cf331-community_summit_hevc.mp4",
+                        "bbddfc33-community_summit.mp4",
+                    ]
+                ],
+            ],
+        )
+        posters = [unquote(video["poster"]) for video in videos]
+        self.assertTrue(posters[0].endswith("community_square_poster.jpg"))
+        self.assertTrue(posters[1].endswith("community_summit_poster.jpg"))
 
 
 class TestCommunityTileMacro(unittest.TestCase):
@@ -103,7 +136,8 @@ class TestCommunityTileMacro(unittest.TestCase):
         soup = self.render_tile(
             {
                 "webm": "https://example.com/a.webm",
-                "mp4": "https://e.com/a.mp4",
+                "hevc": "https://example.com/a-hevc.mp4",
+                "mp4": "https://example.com/a.mp4",
             }
         )
         video = soup.select_one("video.p-community-tile__media")
@@ -113,9 +147,24 @@ class TestCommunityTileMacro(unittest.TestCase):
         self.assertEqual(video["preload"], "none")
         self.assertEqual(video["aria-hidden"], "true")
         self.assertIn("res.cloudinary.com", video["poster"])
+        # Codec strings let a browser skip a file it can't decode, such as
+        # AV1 on older Safari, and fall through to the next source
         self.assertEqual(
-            [source["type"] for source in video.find_all("source")],
-            ["video/webm", "video/mp4"],
+            [
+                (source["src"], source["type"])
+                for source in video.find_all("source")
+            ],
+            [
+                (
+                    "https://example.com/a.webm",
+                    'video/webm; codecs="av01.0.05M.08"',
+                ),
+                (
+                    "https://example.com/a-hevc.mp4",
+                    'video/mp4; codecs="hvc1.1.6.L93.B0"',
+                ),
+                ("https://example.com/a.mp4", "video/mp4"),
+            ],
         )
         self.assertIsNone(soup.find("img"))
 

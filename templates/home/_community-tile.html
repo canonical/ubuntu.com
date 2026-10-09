@@ -1,7 +1,8 @@
 {#
-  A "Built by you" tile. With a "video" dict ({"webm": url, "mp4": url}) it
-  renders a muted looping <video> with the image as its poster; without one
-  it renders the image. Uses image(), so import with context.
+  A "Built by you" tile. With a "video" dict ({"webm": AV1 url, "hevc": url,
+  "mp4": H.264 url}) it renders a muted looping <video> with the image as its
+  poster; without one it renders the image. Browsers take the first source
+  whose codec they can decode. Uses image(), so import with context.
 #}
 {% macro community_tile(tile) -%}
   <article class="p-community-tile{% if tile.is_square %} is-square{% endif %}">
@@ -19,7 +20,8 @@
                preload="none"
                poster="{{ poster.src }}"
                aria-hidden="true">
-          <source src="{{ tile.video.webm }}" type="video/webm" />
+          <source src="{{ tile.video.webm }}" type='video/webm; codecs="av01.0.05M.08"' />
+          <source src="{{ tile.video.hevc }}" type='video/mp4; codecs="hvc1.1.6.L93.B0"' />
           <source src="{{ tile.video.mp4 }}" type="video/mp4" />
         </video>
       {%- else %}
