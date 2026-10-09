@@ -71,14 +71,21 @@ jobs:
       - name: Install Python requirements
         run: |
           sudo apt update
-          sudo apt-get install --yes python3-setuptools
+          sudo apt-get install --yes \
+            build-essential \
+            python3-dev \
+            python3-setuptools \
+            python3-venv
 
-          pip install \
-          -r requirements.txt \
-          coverage \
-          pylint \
-          flake8 \
-          --break-system-packages
+          python3 -m venv .venv
+          .venv/bin/python -m pip install --upgrade pip
+          .venv/bin/python -m pip install \
+            -r requirements.txt \
+            coverage \
+            pylint \
+            flake8
+
+          echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
 
       - name: Install node dependencies
         run: yarn install --immutable
