@@ -296,13 +296,13 @@
                role="tabpanel"
                aria-labelledby="release-notes-tab-{{ releases_yaml.latest.slug }}">
             <ul class="p-list--divided">
-              <li class="p-list__item is-ticked">Linux Kernel 6.17 with support for the latest hardware</li>
               <li class="p-list__item is-ticked">
-                GNOME 49 desktop environment with new accessibility menu, lock screen media control and reboot/shutdown, HDR brightness controls
+                GNOME 51 with a smoother, more responsive desktop, better display handling, improved accessibility, and refinements across core applications
               </li>
-              <li class="p-list__item is-ticked">Loupe, a modern image viewer</li>
-              <li class="p-list__item is-ticked">Ptyxis, a new terminal emulator</li>
-              <li class="p-list__item is-ticked">Major enhancements to TPM-Backed full disk encryption</li>
+              <li class="p-list__item is-ticked">Myna, a built-in speech-to-text agent based on local models</li>
+              <li class="p-list__item is-ticked">Improve Microsoft identity integration supporting Entra ID, MFA, and passwordless login</li>
+              <li class="p-list__item is-ticked">Expanded TPM-backed full-disk encryption for devices without a Hardware Root of Trust</li>
+              <li class="p-list__item is-ticked">Linux Kernel 7.3 with support for the latest hardware</li>
             </ul>
             <hr class="p-rule--muted" />
             <ul class="u-responsive-realign p-inline-list">
@@ -323,11 +323,15 @@
                aria-labelledby="system-requirements-tab-{{ releases_yaml.latest.slug }}">
             <ul class="p-list--divided">
               <li class="p-list__item is-ticked">2 GHz dual-core processor or better</li>
-              <li class="p-list__item is-ticked">4 GB system memory</li>
+              <li class="p-list__item is-ticked">6 GB system memory</li>
               <li class="p-list__item is-ticked">25 GB of free hard drive space</li>
               <li class="p-list__item is-ticked">Either a USB port or a DVD drive for the installer media</li>
               <li class="p-list__item is-ticked">Internet access is helpful</li>
             </ul>
+            <p>
+              <a href="{{ releases_yaml.latest.release_notes_url }}"
+                 aria-label="{{ releases_yaml.latest.full_version }} release notes">Detailed system requirements&nbsp;&rsaquo;</a>
+            </p>
           </div>
           <!-- tab 3 -->
           <div id="how-to-install-{{ releases_yaml.latest.slug }}"
