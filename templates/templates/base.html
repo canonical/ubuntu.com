@@ -204,7 +204,9 @@
           {% if not(hide_nav == True) %}
             <div class="l-sticky-header">
               {% include "templates/_navigation.html" %}
-              {% include "templates/_announcement_bar.html" %}
+              {% block announcement_bar %}
+                {% include "templates/_announcement_bar.html" %}
+              {% endblock announcement_bar %}
             </div>
           {% endif %}
 
