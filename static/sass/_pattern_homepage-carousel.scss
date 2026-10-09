@@ -2,7 +2,6 @@
   // Open source carousel: portrait image beside a list of slide titles, the
   // active slide expanded in place. Phone swaps the list for one slide.
   // Without JS the targeted slide (:target) takes over from slide 1.
-  $carousel-easing: cubic-bezier(0.22, 1, 0.36, 1);
   $carousel-slide-count: 6;
 
   .p-open-source__images {
@@ -25,7 +24,7 @@
     object-fit: cover;
     opacity: 0;
     position: absolute;
-    transition: opacity 0.4s $carousel-easing;
+    transition: opacity 0.5s ease-out;
     width: 100%;
 
     &.is-active {
@@ -119,6 +118,17 @@
   .p-open-source__slide.is-active .p-open-source__panel,
   .p-open-source__slide:target .p-open-source__panel {
     display: block;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: p-open-source-fade-in 0.45s ease-out;
+    }
+  }
+
+  // The outgoing text fades before the next slide takes over
+  .p-open-source__slide.is-leaving .p-open-source__panel {
+    animation: none;
+    opacity: 0;
+    transition: opacity 0.45s ease-out;
   }
 
   .p-open-source__command {
@@ -157,7 +167,7 @@
     }
   }
 
-  // Once WD-39511 adds is-enhanced, phones show only the active slide
+  // is-enhanced is set by the carousel script
   @media (max-width: $breakpoint-small - 1) {
     .js-open-source-carousel.is-enhanced .p-open-source__slide:not(.is-active) {
       display: none;
@@ -167,6 +177,16 @@
   @media (prefers-reduced-motion: reduce) {
     .p-open-source__image {
       transition: none;
+    }
+  }
+
+  @keyframes p-open-source-fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
     }
   }
 }
