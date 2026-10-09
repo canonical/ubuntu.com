@@ -48,30 +48,32 @@ meta_copydoc %}
   <section class="p-section" id="articles">
     <hr class="p-rule is-fixed-width" />
     <div class="u-fixed-width">
-      <div class="p-section--shallow">
+      <div class="p-section--shallow developer-diaries__heading">
         <h2>Browse our latest articles</h2>
       </div>
     </div>
     <div class="grid-row">
       <div class="grid-col-2 grid-col-medium-4">
-        <form class="js-topic-filters" method="get" action="#articles">
-          <div role="group" aria-labelledby="topics-heading">
-            <p class="p-text--small-caps" id="topics-heading">Topics</p>
-            {% for topic in topics %}
-              <label class="p-checkbox">
-                <input class="p-checkbox__input"
-                       type="checkbox"
-                       name="topic"
-                       value="{{ topic.tag }}"
-                       {% if topic.tag in selected_topics %}checked{% endif %} />
-                <span class="p-checkbox__label">{{ topic.name }}</span>
-              </label>
-            {% endfor %}
-          </div>
-          <noscript>
-            <button class="p-button" type="submit">Filter</button>
-          </noscript>
-        </form>
+        <div class="p-section--shallow">
+          <form class="js-topic-filters" method="get" action="#articles">
+            <div role="group" aria-labelledby="topics-heading">
+              <p class="p-text--small-caps" id="topics-heading">Topics</p>
+              {% for topic in topics %}
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input"
+                         type="checkbox"
+                         name="topic"
+                         value="{{ topic.tag }}"
+                         {% if topic.tag in selected_topics %}checked{% endif %} />
+                  <span class="p-checkbox__label">{{ topic.name }}</span>
+                </label>
+              {% endfor %}
+            </div>
+            <noscript>
+              <button class="p-button" type="submit">Filter</button>
+            </noscript>
+          </form>
+        </div>
       </div>
 
       <div class="grid-col-6 grid-col-medium-4 js-articles-results">

@@ -18,6 +18,15 @@
       top: 4rem;
     }
 
+    @media screen and (width >= $threshold-4-8-col) {
+      // Keep the article sidebar (discussion and share links) in view, like
+      // the blog article's share links, level with the in-page navigation
+      .developer-diaries__sidebar {
+        position: sticky;
+        top: 4rem;
+      }
+    }
+
     @media screen and (width < $threshold-4-8-col) {
       [class^="grid-col"]:has(> .p-in-page-navigation) {
         top: 3.5rem;
@@ -27,6 +36,18 @@
       .p-in-page-navigation__dropdown-toggle {
         display: none;
       }
+
+      // Shallow spacing below the "Browse our latest articles" heading on
+      // large screens only
+      .developer-diaries__heading {
+        padding-bottom: 0;
+      }
+    }
+
+    // cookie-policy.css, loaded after styles.css, redeclares the dark theme
+    // code background with its own older value: restore Vanilla's
+    &.is-dark {
+      --vf-color-background-code: #{$colors--dark-theme--background-code};
     }
 
     // Keep Vanilla's colours over the dark theme link colours
