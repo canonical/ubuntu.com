@@ -348,7 +348,7 @@ export async function deletePaymentMethod(accountID, paymentMethodId) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      account_id: window.accountId,
+      account_id: accountID,
     }),
   });
 

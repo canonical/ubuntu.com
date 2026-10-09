@@ -12,7 +12,7 @@ let entries = {
   "release-chart-manager": "./static/js/src/release-chart-manager.js",
   "developer-chart": "./static/js/src/developer-chart.js",
   appliance: "./static/js/src/appliance.js",
-  "ua-payment-methods": "./static/js/src/ua-payment-methods.js",
+  "ua-payment-methods": "./static/js/src/advantage/payment-methods/app.tsx",
   "account-billing": "./static/js/src/account-billing.js",
   cve: "./static/js/src/cve/cve.js",
   "cve-detail": "./static/js/src/cve/cve-detail.js",
