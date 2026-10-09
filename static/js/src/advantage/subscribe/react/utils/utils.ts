@@ -308,4 +308,7 @@ export type PurchaseSession = {
     quantity: number;
   };
 };
-export type PurchaseSessionCreateInput = Pick<PurchaseSession, `orderInformation`>;
+export type PurchaseSessionCreateInput = Pick<
+  PurchaseSession,
+  `orderInformation`
+>;

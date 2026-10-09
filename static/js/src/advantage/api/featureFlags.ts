@@ -26,5 +26,8 @@ async function getProFeatureFlags(): Promise<ProFeatureFlags> {
 }
 
 export const useGetProFeatureFlags = () => {
-  return useQuery({ queryKey: ["proFeatureFlags"], queryFn: getProFeatureFlags });
+  return useQuery({
+    queryKey: ["proFeatureFlags"],
+    queryFn: getProFeatureFlags,
+  });
 };

@@ -134,11 +134,36 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
 
     start_page = (page - 1) * per_page
     end_page = page * per_page
+    page_payments = payments[start_page:end_page]
+    invoice_rows = []
+    marketplace_names = {
+        "canonical-ua": "Ubuntu Pro",
+        "blender": "Blender Support",
+        "canonical-cube": "Canonical CUBE",
+    }
+
+    for payment in page_payments:
+        invoice = payment.invoice
+        period = None
+        if payment.items and payment.items[0].listing:
+            period = payment.get_period()
+
+        invoice_rows.append(
+            {
+                "service": marketplace_names.get(payment.marketplace, ""),
+                "period": period,
+                "date": payment.get_formatted_date(),
+                "invoiceStatus": invoice.status if invoice else None,
+                "purchaseStatus": payment.status,
+                "total": payment.get_total(),
+                "receiptUrl": invoice.receipt_url if invoice else None,
+            }
+        )
 
     return flask.render_template(
         "account/invoices/index.html",
         account_id=account.id if account else None,
-        invoices=payments[start_page:end_page],
+        invoices_data=invoice_rows,
         marketplace=marketplace,
         total_pages=(len(payments) // per_page) + 1,
         current_page=page,
