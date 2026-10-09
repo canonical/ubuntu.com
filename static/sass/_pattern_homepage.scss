@@ -1,3 +1,65 @@
 @mixin ubuntu-p-homepage {
-  // Homepage redesign section styles
+  $homepage-link: #fc764c;
+  $homepage-link-hover: #fe8a66;
+
+  // Orange text link with a trailing arrow, matching canonical.com's
+  // `.p-cta-text` + `.p-icon--arrow-right`. The arrow nudges 3px on hover and
+  // focus (transform rather than canonical.com's padding, to avoid layout).
+  .p-cta-text {
+    text-decoration: none;
+
+    &,
+    &:link,
+    &:visited {
+      color: $homepage-link;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: $homepage-link-hover;
+      text-decoration: none;
+    }
+
+    .p-icon--arrow-right {
+      @extend %icon;
+      @include vf-themed-icon(
+        $light-value: vf-icon-arrow-right-url($colors--light-theme--icon),
+        $dark-value: vf-icon-arrow-right-url($homepage-link)
+      );
+
+      margin-left: 0.5rem;
+      transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    &:hover .p-icon--arrow-right,
+    &:focus-visible .p-icon--arrow-right {
+      transform: translateX(3px);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .p-icon--arrow-right {
+        transition: none;
+      }
+
+      &:hover .p-icon--arrow-right,
+      &:focus-visible .p-icon--arrow-right {
+        transform: none;
+      }
+    }
+  }
+
+  // Outranks the dark theme's `.is-dark .inner-wrapper a:not([class^="p-button"])`
+  // link colour in styles.scss. `.p-homepage` sits on the same <body> as
+  // `.is-dark`, so this selector can't include `.is-dark`.
+  .inner-wrapper a.p-cta-text:not([class^="p-button"]) {
+    &,
+    &:visited {
+      color: $homepage-link;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: $homepage-link-hover;
+    }
+  }
 }

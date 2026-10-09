@@ -4,6 +4,7 @@ import re
 import unittest
 
 # Packages
+from bs4 import BeautifulSoup
 from vcr_unittest import VCRTestCase
 
 # Local
@@ -72,7 +73,48 @@ class TestHomepageRender(VCRTestCase):
     def setUp(self):
         app.testing = True
         self.client = app.test_client()
+        self._soup = None
         return super().setUp()
+
+    def get_soup(self):
+        if self._soup is None:
+            response = self.client.get("/")
+            self._soup = BeautifulSoup(response.get_data(as_text=True), "lxml")
+        return self._soup
+
+    def get_section(self, heading_text):
+        soup = self.get_soup()
+        heading = next(
+            (
+                h2
+                for h2 in soup.find_all("h2")
+                if " ".join(h2.get_text(" ").split()) == heading_text
+            ),
+            None,
+        )
+        self.assertIsNotNone(heading, f"Missing heading: {heading_text}")
+        # Vanilla section macros render a <section>; the tiered list
+        # renders a div.p-section instead
+        return heading.find_parent("section") or heading.find_parent(
+            "div", class_="p-section"
+        )
+
+    def arrow_link_hrefs(self, root):
+        return [link["href"] for link in root.select("a.p-cta-text")]
+
+    def test_homepage_body_is_scoped(self):
+        """
+        Only the homepage body carries the class that scopes homepage styles
+        """
+
+        body_classes = self.get_soup().body.get("class", [])
+        self.assertIn("p-homepage", body_classes)
+        self.assertIn("is-dark", body_classes)
+
+        response = self.client.get("/what-is-enterprise-linux")
+        self.assertEqual(response.status_code, 200)
+        other = BeautifulSoup(response.get_data(as_text=True), "lxml")
+        self.assertNotIn("p-homepage", other.body.get("class", []))
 
     def test_renders_redesign_shell(self):
         """
@@ -97,6 +139,122 @@ class TestHomepageRender(VCRTestCase):
             "Carrier–grade private cloud",
         ]:
             self.assertFalse(removed in html, f"Still present: {removed}")
+
+    def test_hardware_section(self):
+        section = self.get_section(
+            "Go further and faster with certified hardware"
+        )
+        self.assertEqual(self.arrow_link_hrefs(section), ["/certified"])
+        # Split 50/50 from medium up, not only on large
+        self.assertIsNotNone(section.select_one(".grid-row--50-50"))
+        self.assertIsNone(section.select_one(".grid-row--50-50-on-large"))
+
+        logos = self.get_soup().select(
+            ".p-logo-section__items img.p-logo-section__logo"
+        )
+        self.assertEqual(
+            [logo["alt"] for logo in logos],
+            [
+                "AMD",
+                "Dell Technologies",
+                "HP",
+                "Intel",
+                "Lenovo",
+                "NVIDIA",
+            ],
+        )
+
+    def test_arrow_links_use_an_empty_vanilla_icon(self):
+        links = self.get_soup().select("a.p-cta-text")
+        self.assertTrue(links, "No arrow links found")
+        for link in links:
+            icons = link.select("i.p-icon--arrow-right")
+            self.assertEqual(len(icons), 1, link)
+            self.assertEqual(icons[0].get_text(strip=True), "")
+
+    def test_images_go_through_the_image_template(self):
+        logos = self.get_soup().select("img.p-logo-section__logo")
+        self.assertTrue(logos, "No logos found")
+        for logo in logos:
+            self.assertIn("res.cloudinary.com", logo["src"], logo)
+
+    def row_titles(self, section):
+        return [
+            title.get_text(strip=True)
+            for title in section.select("h3.p-heading--5")
+        ]
+
+    def test_pro_section(self):
+        section = self.get_section("15 years of peace of mind with Ubuntu Pro")
+        self.assertEqual(
+            self.row_titles(section),
+            [
+                "Enterprise-grade security, support and compliance",
+                "A unified Ubuntu experience",
+            ],
+        )
+        self.assertEqual(
+            self.arrow_link_hrefs(section),
+            ["/pro", "/what-is-enterprise-linux"],
+        )
+
+    def test_containers_section(self):
+        section = self.get_section("The standard for modern containers")
+        self.assertEqual(
+            len(section.select(".p-divided__block .p-divided__heading")), 3
+        )
+        self.assertEqual(
+            self.row_titles(section),
+            [
+                "1 billion Docker image pulls and counting",
+                "An efficient, minimal footprint",
+                "Build minimal, OCI-compliant containers",
+            ],
+        )
+        self.assertEqual(
+            self.arrow_link_hrefs(section),
+            [
+                "https://hub.docker.com/_/ubuntu",
+                "/chisel/docs/latest/",
+                "/containers/rockcraft",
+            ],
+        )
+
+    def test_tiered_list_placeholders_do_not_render(self):
+        text = self.get_soup().get_text()
+        for placeholder in [
+            "Tiered List",
+            "This is a tiered list.",
+            "No CTA provided.",
+        ]:
+            self.assertNotIn(placeholder, text)
+
+    def test_closer_section(self):
+        heading = next(
+            (
+                h2
+                for h2 in self.get_soup().select("section.p-strip.is-deep h2")
+                if "Discover more about Canonical" in h2.get_text()
+            ),
+            None,
+        )
+        self.assertIsNotNone(heading, "Missing closer heading")
+        self.assertEqual(
+            list(heading.stripped_strings),
+            [
+                "Discover more about Canonical",
+                "Trusted source for your whole stack",
+            ],
+        )
+        self.assertIsNotNone(heading.find("br"))
+
+        section = heading.find_parent("section")
+        self.assertIn(
+            "covered through Ubuntu Pro", section.get_text(" ", strip=True)
+        )
+        self.assertEqual(
+            self.arrow_link_hrefs(section), ["https://canonical.com/"]
+        )
 
 
 if __name__ == "__main__":
