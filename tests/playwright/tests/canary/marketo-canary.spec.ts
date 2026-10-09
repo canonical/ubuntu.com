@@ -12,10 +12,36 @@ import {
 
 const MAX_SUBMIT_MS = 20000;
 const TIMEOUT_MS = 5000;
+const GOTO_ATTEMPT_MS = 15000;
+const GOTO_ATTEMPTS = 3;
 
-test.use({ timezoneId: "Europe/London" });
+test.use({ timezoneId: "Europe/London", trace: "retain-on-failure" });
 
 // Helper functions
+
+// The first load on prod sometimes stalls or aborts, so retry quickly
+const loadPage = async (page: Page, url: string) => {
+  let lastError: unknown;
+  for (let attempt = 1; attempt <= GOTO_ATTEMPTS; attempt++) {
+    try {
+      // Same URL+hash after a stall would be a hash change, not a reload
+      if (attempt > 1) await page.goto("about:blank");
+      await page.goto(url, {
+        waitUntil: "domcontentloaded",
+        timeout: GOTO_ATTEMPT_MS,
+      });
+      return;
+    } catch (error) {
+      lastError = error;
+      const reason = String((error as Error).message).split("\n")[0];
+      // Remove after QA
+      console.log(
+        `goto attempt ${attempt}/${GOTO_ATTEMPTS} failed for ${url}: ${reason}`,
+      );
+    }
+  }
+  throw lastError;
+};
 
 const selectChoice = async (form: Locator, field: string) => {
   const input = form.locator(field);
@@ -161,6 +187,9 @@ const verifyResponse = async (
 
 // Marketo canary test suite
 test.describe("Marketo canary", () => {
+  // Leaves room for navigation retries
+  test.describe.configure({ timeout: 90000 });
+
   for (const config of canaryForms) {
 
     const formId = config.formId;
@@ -178,12 +207,8 @@ test.describe("Marketo canary", () => {
 
       const form = page.locator(`form#mktoForm_${formId}`);
 
-      await test.step("Navigation: load page", async () => {
-        await page.goto(
-          modalId ? `${config.path}#get-in-touch` : config.path,
-          { waitUntil: "domcontentloaded" },
-        );
-      });
+      await test.step("Navigation: load page", () =>
+        loadPage(page, modalId ? `${config.path}#get-in-touch` : config.path));
 
       await test.step("Cookie banner: accept", () => acceptCookiePolicy(page));
 
