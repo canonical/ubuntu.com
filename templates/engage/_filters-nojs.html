@@ -5,13 +5,14 @@
         <div class="p-form__group">
           <label for="language-selector">Select language:</label>
           <select id="language-selector" name="language" class="u-no-margin--bottom">
-            <option value="">All languages</option>
+            <option value="all"
+                    {% if request.args.get('language') == 'all' %}selected{% endif %}>All languages</option>
             <option value="zh-TW"
                     {% if request.args.get('language') == 'zh-TW' %}selected{% endif %}>Chinese (Traditional)</option>
             <option value="de"
                     {% if request.args.get('language') == 'de' %}selected{% endif %}>Deutsch</option>
             <option value="en"
-                    {% if request.args.get('language') == 'en' %}selected{% endif %}>English</option>
+                    {% if request.args.get('language', 'en') == 'en' %}selected{% endif %}>English</option>
             <option value="es"
                     {% if request.args.get('language') == 'es' %}selected{% endif %}>Espa&ntilde;ol</option>
             <option value="fr"

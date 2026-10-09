@@ -6,7 +6,7 @@
  * isolated from any page or API.
  */
 
-function singleMenu({ param, label, options }) {
+function singleMenu({ param, label, options, preserveAll = false }) {
   const menuId = `${param}-menu`;
   const optionButtons = options
     .map(
@@ -22,6 +22,7 @@ function singleMenu({ param, label, options }) {
               aria-expanded="false"
               data-filter-param="${param}"
               data-filter-type="single"
+              data-preserve-all="${preserveAll}"
               data-default-label="${label}">
         <span>${label}</span>
       </button>
@@ -216,6 +217,33 @@ describe("filter-menu clear behaviour", () => {
     const navigated = new URL(window.location);
     expect(navigated.searchParams.has("resource")).toBe(false);
     expect(navigated.searchParams.has("page")).toBe(false);
+  });
+
+  it("shows clear for all languages before and after submitting", () => {
+    const filterBar = bar({
+      menus: [
+        singleMenu({
+          param: "language",
+          label: "English",
+          preserveAll: true,
+          options: [
+            { value: "all", label: "All languages" },
+            { value: "en", label: "English" },
+          ],
+        }),
+      ],
+    });
+    loadFilterMenu("http://localhost/engage", filterBar);
+
+    document.querySelector('#language-menu [data-value="all"]').click();
+    expect(clearButton().classList.contains("u-hide")).toBe(false);
+
+    document.querySelector("[data-filter-submit]").click();
+
+    expect(new URL(window.location).searchParams.get("language")).toBe("all");
+
+    loadFilterMenu(window.location, filterBar);
+    expect(clearButton().classList.contains("u-hide")).toBe(false);
   });
 });
 

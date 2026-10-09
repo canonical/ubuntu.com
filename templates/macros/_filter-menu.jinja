@@ -11,7 +11,9 @@
 # menu_id:       optional id for the dropdown element. Defaults to
 #                "<param_key>-menu"; pass an explicit id if the same param
 #                appears more than once on a page
-{% macro single_select_menu(param_key, default_label, options, menu_id=None) %}
+{% macro single_select_menu(
+  param_key, default_label, options, menu_id=None, preserve_all=false
+) %}
   {% set menu_id = menu_id or param_key ~ "-menu" %}
   <div class="p-form__group p-form__control">
     <span class="p-contextual-menu--left p-filter-menu__item p-filter-menu__item--{{ param_key }}">
@@ -22,6 +24,7 @@
               aria-haspopup="true"
               data-filter-param="{{ param_key }}"
               data-filter-type="single"
+              data-preserve-all="{{ preserve_all | lower }}"
               data-default-label="{{ default_label }}">
         <span>{{ default_label }}</span><i class="p-icon--chevron-down p-contextual-menu__indicator"></i>
       </button>

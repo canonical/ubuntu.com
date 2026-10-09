@@ -16,6 +16,7 @@ from webapp.views import (
     account_query,
     build_tutorials_query,
     match_tags,
+    build_engage_index,
     build_engage_page,
     engage_thank_you,
     community_landing_page,
@@ -566,6 +567,51 @@ class TestBuildEngagePageResources(BaseViewTestCase):
         self.assertEqual(
             response.headers["Cache-Control"], "public, max-age=900"
         )
+
+    @patch("webapp.views.flask.render_template")
+    def test_resource_language_filters_are_applied_before_pagination(
+        self, render_template
+    ):
+        active_items = [
+            {
+                "topic_name": f"English webinar {index}",
+                "active": "true",
+                "language": "en",
+            }
+            for index in range(15)
+        ]
+        active_items.append(
+            {
+                "topic_name": "French webinar",
+                "active": "true",
+                "language": "fr",
+            }
+        )
+        engage_docs = Mock()
+        engage_docs.api.base_url = "https://discourse.ubuntu.com/"
+        engage_docs.get_index.return_value = (
+            active_items,
+            len(active_items),
+            len(active_items),
+            len(active_items),
+        )
+        engage_docs.get_engage_pages_tags.return_value = []
+
+        with self.app.test_request_context("/engage?resource=webinar&page=2"):
+            build_engage_index(engage_docs)()
+
+        engage_docs.get_index.assert_called_once_with(
+            100,
+            0,
+            tag_value=None,
+            key="active",
+            value="true",
+            second_key="type",
+            second_value="webinar",
+        )
+        template_context = render_template.call_args.kwargs
+        self.assertEqual(template_context["total_pages"], 2)
+        self.assertEqual(template_context["metadata"], [active_items[14]])
 
     def test_filters_by_tag_and_resource(self):
         engage_docs = self._make_engage_docs([])
