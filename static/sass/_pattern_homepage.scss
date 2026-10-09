@@ -48,9 +48,10 @@
     }
   }
 
-  // Outranks the dark theme's `.inner-wrapper a:not([class^="p-button"])`
-  // link colour in styles.scss
-  .is-dark .inner-wrapper a.p-cta-text:not([class^="p-button"]) {
+  // Outranks the dark theme's `.is-dark .inner-wrapper a:not([class^="p-button"])`
+  // link colour in styles.scss. `.p-homepage` sits on the same <body> as
+  // `.is-dark`, so this selector can't include `.is-dark`.
+  .inner-wrapper a.p-cta-text:not([class^="p-button"]) {
     &,
     &:visited {
       color: $homepage-link;

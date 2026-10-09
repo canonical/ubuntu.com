@@ -102,6 +102,20 @@ class TestHomepageRender(VCRTestCase):
     def arrow_link_hrefs(self, root):
         return [link["href"] for link in root.select("a.p-cta-text")]
 
+    def test_homepage_body_is_scoped(self):
+        """
+        Only the homepage body carries the class that scopes homepage styles
+        """
+
+        body_classes = self.get_soup().body.get("class", [])
+        self.assertIn("p-homepage", body_classes)
+        self.assertIn("is-dark", body_classes)
+
+        response = self.client.get("/what-is-enterprise-linux")
+        self.assertEqual(response.status_code, 200)
+        other = BeautifulSoup(response.get_data(as_text=True), "lxml")
+        self.assertNotIn("p-homepage", other.body.get("class", []))
+
     def test_renders_redesign_shell(self):
         """
         The homepage loads the redesign bundle, keeps the takeovers,
