@@ -1,0 +1,172 @@
+@mixin ubuntu-p-homepage-carousel {
+  // Open source carousel: portrait image beside a list of slide titles, the
+  // active slide expanded in place. Phone swaps the list for one slide.
+  // Without JS the targeted slide (:target) takes over from slide 1.
+  $carousel-easing: cubic-bezier(0.22, 1, 0.36, 1);
+  $carousel-slide-count: 6;
+
+  .p-carousel__images {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    position: relative;
+
+    @media (min-width: $breakpoint-small) {
+      aspect-ratio: 16 / 9;
+    }
+
+    @media (min-width: $breakpoint-large) {
+      aspect-ratio: 2 / 3;
+    }
+  }
+
+  .p-carousel__image {
+    height: 100%;
+    inset: 0;
+    object-fit: cover;
+    opacity: 0;
+    position: absolute;
+    transition: opacity 0.4s $carousel-easing;
+    width: 100%;
+
+    &.is-active {
+      opacity: 1;
+    }
+  }
+
+  .p-carousel__controls {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    @media (min-width: $breakpoint-small) {
+      justify-content: flex-end;
+    }
+  }
+
+  .p-carousel__button {
+    align-items: center;
+    background: none;
+    border: 0;
+    display: inline-flex;
+    height: $sp-unit * 5.5;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: $sp-unit * 5.5;
+  }
+
+  .p-carousel__progress {
+    background-color: $colors--theme--border-low-contrast;
+    bottom: 0;
+    height: 2px;
+    left: 0;
+    position: absolute;
+    right: 0;
+  }
+
+  .p-carousel__bar {
+    background-color: $colors--dark-theme--text-default;
+    display: block;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    width: 100%;
+  }
+
+  .p-carousel__slide {
+    border-top: 1px solid $colors--theme--border-low-contrast;
+    position: relative;
+
+    &.is-active {
+      border-top-width: 2px;
+    }
+
+    // The progress bar sits on the active slide's rule
+    .p-carousel__bar {
+      left: 0;
+      position: absolute;
+      top: -2px;
+    }
+
+    h3 {
+      margin: 0;
+    }
+  }
+
+  // Same specificity trick as .p-cta-text: beats the dark theme link colour
+  .inner-wrapper a.p-carousel__title:not([class^="p-button"]) {
+    display: block;
+    padding: $sp-unit * 2 0;
+    text-decoration: none;
+
+    &,
+    &:visited {
+      color: $colors--dark-theme--text-default;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: $color-brand;
+    }
+  }
+
+  .p-carousel__panel {
+    display: none;
+    padding-bottom: $sp-unit * 3;
+  }
+
+  .p-carousel__slide.is-active .p-carousel__panel,
+  .p-carousel__slide:target .p-carousel__panel {
+    display: block;
+  }
+
+  .p-carousel__command {
+    background-color: $colors--theme--background-hover;
+    overflow-wrap: anywhere;
+    padding: $sp-unit * 2;
+    white-space: pre-wrap;
+  }
+
+  .p-carousel__logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $sp-unit * 2;
+    justify-content: space-between;
+  }
+
+  // No JS: the targeted slide replaces the first one
+  .js-open-source-carousel:has(.p-carousel__slide:target) {
+    .p-carousel__image.is-active {
+      opacity: 0;
+    }
+
+    .p-carousel__slide.is-active:not(:target) {
+      border-top-width: 1px;
+
+      .p-carousel__panel {
+        display: none;
+      }
+    }
+
+    @for $i from 1 through $carousel-slide-count {
+      // Slides follow the pause controls, so they are offset by one
+      &:has(.p-carousel__slide:nth-child(#{$i + 1}):target)
+        .p-carousel__image:nth-child(#{$i}) {
+        opacity: 1;
+      }
+    }
+  }
+
+  // Once WD-39511 adds is-enhanced, phones show only the active slide
+  @media (max-width: $breakpoint-small - 1) {
+    .js-open-source-carousel.is-enhanced .p-carousel__slide:not(.is-active) {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .p-carousel__image {
+      transition: none;
+    }
+  }
+}
