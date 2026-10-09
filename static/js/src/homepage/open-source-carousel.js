@@ -1,8 +1,13 @@
 import { prefersReducedMotion, onReducedMotionChange } from "./reduced-motion";
+import { createTypewriter } from "./typewriter";
 
 export const SLIDE_MS = 8000;
 // Matches the CSS fade, so the outgoing text finishes before the next shows
 const FADE_MS = 450;
+
+// Vanilla's large breakpoint: the command only types on desktop
+const DESKTOP_QUERY = "(min-width: 1036px)";
+const COMMAND_PREFIX = "$ sudo snap install ";
 
 const NAV_KEYS = {
   ArrowUp: -1,
@@ -45,6 +50,17 @@ export function startOpenSourceCarousel(root) {
     ),
   );
 
+  // One typewriter per slide that has a command, null otherwise
+  const typewriters = slides.map((slide) => {
+    const code = slide.querySelector(".p-open-source__command code");
+    if (!code) {
+      return null;
+    }
+    const words = code.textContent.replace(COMMAND_PREFIX, "").split("/");
+    return createTypewriter(code, words);
+  });
+  const desktop = window.matchMedia(DESKTOP_QUERY);
+
   let index = 0;
   let shown = 0;
   let playing = true;
@@ -55,6 +71,23 @@ export function startOpenSourceCarousel(root) {
   let swapTimer = null;
 
   const held = () => !onScreen || document.hidden;
+
+  // Only the active slide types, and only while playing on desktop
+  function syncCommand() {
+    const animate = desktop.matches && !prefersReducedMotion();
+    typewriters.forEach((writer, i) => {
+      if (!writer) {
+        return;
+      }
+      if (i !== index || !animate) {
+        writer.reset();
+      } else if (playing && !held()) {
+        writer.start();
+      } else {
+        writer.stop();
+      }
+    });
+  }
 
   function draw() {
     const scale = `scaleX(${Math.min(elapsed / SLIDE_MS, 1)})`;
@@ -87,6 +120,7 @@ export function startOpenSourceCarousel(root) {
       frame = null;
       last = null;
     }
+    syncCommand();
   }
 
   function showSlide() {
@@ -95,6 +129,7 @@ export function startOpenSourceCarousel(root) {
       slide.classList.remove("is-leaving");
     });
     shown = index;
+    syncCommand();
   }
 
   function go(target, instant = false) {
@@ -183,6 +218,7 @@ export function startOpenSourceCarousel(root) {
       schedule();
     }).observe(root);
   }
+  desktop.addEventListener("change", syncCommand);
   onReducedMotionChange((reduced) => reduced && setPlaying(false));
 
   // The no-JS :target state is replaced by this one

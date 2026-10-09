@@ -53,8 +53,8 @@ beforeEach(() => {
   jest.useFakeTimers();
   reduced = false;
   observe = null;
-  window.matchMedia = () => ({
-    matches: reduced,
+  window.matchMedia = (query) => ({
+    matches: reduced && query.includes("reduced"),
     addEventListener: () => {},
     removeEventListener: () => {},
   });
