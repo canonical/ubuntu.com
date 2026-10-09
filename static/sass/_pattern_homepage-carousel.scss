@@ -94,10 +94,17 @@
   }
 
   // Same specificity trick as .p-cta-text: beats the dark theme link colour
-  .inner-wrapper a.p-open-source__title:not([class^="p-button"]) {
+  .inner-wrapper a.p-open-source__title:not([class^="p-button"]),
+  .inner-wrapper button.p-open-source__title {
+    background: none;
+    border: 0;
     display: block;
+    font: inherit;
+    margin: 0;
     padding: $sp-unit * 2 0;
+    text-align: left;
     text-decoration: none;
+    width: 100%;
 
     &,
     &:visited {
@@ -137,6 +144,19 @@
     padding: $sp-unit * 2;
     white-space: pre-wrap;
     word-break: normal;
+  }
+
+  // Block cursor while the command types (desktop, script-driven)
+  .p-open-source__cursor {
+    background-color: currentcolor;
+    display: inline-block;
+    height: 1.1em;
+    vertical-align: text-bottom;
+    width: 0.6em;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: p-open-source-blink 1s steps(1) infinite;
+    }
   }
 
   // Hyphens are break opportunities too, keep each path part whole
@@ -187,6 +207,12 @@
 
     to {
       opacity: 1;
+    }
+  }
+
+  @keyframes p-open-source-blink {
+    50% {
+      opacity: 0;
     }
   }
 }
