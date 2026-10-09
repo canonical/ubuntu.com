@@ -1,4 +1,3 @@
-{% from "_macros/shared/vf_section_top_rule.jinja" import vf_section_top_rule %}
 {% from "home/_community-tile.html" import community_tile with context %}
 
 {% set tiles = [
@@ -38,7 +37,7 @@
 
 <section class="p-section js-community-tiles">
   <div class="grid-row--50-50-on-large">
-    {{ vf_section_top_rule() }}
+    <hr class="p-rule" />
     <div class="grid-col">
       <h2>Built by you. For you.</h2>
     </div>
