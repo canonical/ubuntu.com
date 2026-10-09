@@ -1,10 +1,21 @@
 {# A world of open source: HP-11 markup and layouts. HP-12 behaviour (WD-39511), HP-13 rotating command still to come #}
 {% from "_macros/shared/vf_section_top_rule.jinja" import vf_section_top_rule %}
-{% from "home/_macros.html" import icon_with_name with context %}
 
-{# Placeholder assets, swap for the real uploads here #}
-{% set photo = "https://assets.ubuntu.com/v1/6feb3ff1-community-booths.jpg" %}
-{% set logo = "https://assets.ubuntu.com/v1/35f593dd-Juju-logo.svg" %}
+{% set photos = {
+  "developers": "https://assets.ubuntu.com/v1/e4aedcc1-image_1.jpg",
+  "devops": "https://assets.ubuntu.com/v1/26d47972-image_2.jpg",
+  "data_ai": "https://assets.ubuntu.com/v1/b4dc734b-image_3.jpg",
+  "sysadmins": "https://assets.ubuntu.com/v1/2a7567bd-image_4.jpg"
+} %}
+{# Logos are 312px tall with built-in padding; shown 75px tall, as in the design #}
+{% set logos = [
+  {"name": "Helm", "url": "https://assets.ubuntu.com/v1/969c190d-helm_logo.png", "width": "35"},
+  {"name": "Jenkins", "url": "https://assets.ubuntu.com/v1/ee56db04-jenkins_logo.png", "width": "33"},
+  {"name": "Juju", "url": "https://assets.ubuntu.com/v1/c405abe8-juju_logo.png", "width": "59"},
+  {"name": "Kubernetes", "url": "https://assets.ubuntu.com/v1/f0ecc28c-kubernetes_logo.png", "width": "25"},
+  {"name": "Spring", "url": "https://assets.ubuntu.com/v1/052dcf06-spring_logo.png", "width": "25"},
+  {"name": "Terraform", "url": "https://assets.ubuntu.com/v1/6526645e-terraform_logo.png", "width": "113"}
+] %}
 {% set arrow_links = {
   "ai": {
     "text": "Learn more about Ubuntu for AI",
@@ -39,23 +50,24 @@
     "href": "https://ubuntu.com/pro/why-pro"
   }
 } %}
+{# SRE and CTO photos reuse others until their own are uploaded #}
 {% set slides = [
-  {"id": "developers", "title": "Developers", "blocks": [
+  {"id": "developers", "title": "Developers", "photo": photos.developers, "blocks": [
     {"p": "Ubuntu is the #1 Linux amongst developers. Benefit from seamless integration with familiar tools for development and deployment, and access a growing range of toolchains."},
     {"command": "sudo snap install docker/vscode/git/github/dev-pack-for-spring/dev-pack-for-go"},
-    {"logos": ["Jenkins", "Juju", "Kubernetes", "Spring", "Terraform"]},
+    {"logos": logos},
   ]},
-  {"id": "devops", "title": "DevOps engineers", "blocks": [
+  {"id": "devops", "title": "DevOps engineers", "photo": photos.devops, "blocks": [
     {"p": "Orchestrate and streamline software operations. Use the best practice tools for version control, CI/CD, containerization, orchestration and configuration management."},
     {"command": "sudo snap install kubectl/jenkins/terraform/juju/helm"},
   ]},
-  {"id": "data-ai", "title": "Data analysts and AI engineers", "blocks": [
+  {"id": "data-ai", "title": "Data analysts and AI engineers", "photo": photos.data_ai, "blocks": [
     {"p": "Benefit from deep optimization at the silicon level with optimized kernels, and built-in AI libraries like CUDA and ROCm."},
     {"p": "Ubuntu delivers a dependable software stack for data work: a stable OS base, predictable runtimes, and consistent performance characteristics across desktops, servers, and cloud images."},
     {"link": arrow_links.ai},
     {"link": arrow_links.ai_portfolio},
   ]},
-  {"id": "sysadmins", "title": "System administrators", "blocks": [
+  {"id": "sysadmins", "title": "System administrators", "photo": photos.sysadmins, "blocks": [
     {"p": "Manage fleets of devices, from laptops and servers to edge devices, with Landscape – Canonical's systems management tool."},
     {"link": arrow_links.landscape},
     {"p": "Ensure your teams have the tools they need to be productive and secure. Ubuntu integrates with popular cloud identity management platforms like EntraID and Google IAM through AuthD – Canonical's identity broker."},
@@ -63,14 +75,14 @@
     {"p": "Manage Ubuntu machines with Microsoft Active Directory, through ADSys - Canonical's Active Directory Group Policy client for Ubuntu."},
     {"link": arrow_links.adsys},
   ]},
-  {"id": "sre", "title": "Site reliability engineers", "blocks": [
+  {"id": "sre", "title": "Site reliability engineers", "photo": photos.developers, "blocks": [
     {"p": "Access everything you need for seamless deployment, monitoring, orchestration, and observability."},
     {"command": "sudo snap install k8s/prometheus/grafana/otel-ebpf-profiler/parca-agent/opentelemetry-collector"},
     {"link": arrow_links.observability},
     {"p": "Deploy a comprehensive portfolio of hardened, production-ready database clusters optimized for Kubernetes, virtual machines, bare metal, and multi-cloud deployments."},
     {"link": arrow_links.data},
   ]},
-  {"id": "ctos", "title": "CTOs, CIOs and CISOs", "blocks": [
+  {"id": "ctos", "title": "CTOs, CIOs and CISOs", "photo": photos.devops, "blocks": [
     {"p": "Get all the open source you need to empower your team, while meeting your security requirements and compliance audits. Benefit from operational stability and Canonical's extensive open source expertise at simple and transparent pricing."},
     {"link": arrow_links.pro},
   ]},
@@ -110,7 +122,7 @@
       </div>
       <div class="p-open-source__images">
         {% for slide in slides %}
-          {{ image(url=photo,
+          {{ image(url=slide.photo,
             alt="",
             width="600",
             height="900",
@@ -150,8 +162,14 @@
                 <pre class="p-open-source__command"><code>$ {% for part in block.command.split("/") %}<span class="p-open-source__nowrap">{{ part }}{{ "/" if not loop.last }}</span>{{ "<wbr>" | safe if not loop.last }}{% endfor %}</code></pre>
               {% elif block.logos %}
                 <p class="p-open-source__logos">
-                  {% for name in block.logos %}
-                    {{ icon_with_name(logo, name, "open-source-logo-" ~ name | lower, width="48", height="48") }}
+                  {% for logo in block.logos %}
+                    {{ image(url=logo.url,
+                      alt=logo.name,
+                      width=logo.width,
+                      height="75",
+                      hi_def=True,
+                      loading="lazy") | safe
+                    }}
                   {% endfor %}
                 </p>
               {% endif %}
