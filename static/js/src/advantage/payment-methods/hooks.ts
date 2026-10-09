@@ -1,11 +1,12 @@
 import type { Stripe, StripeCardElement } from "@stripe/stripe-js";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   deletePaymentMethod,
   getPurchase,
   retryPurchase,
   setPaymentMethod,
 } from "../api/contracts";
+import { listSubscriptions } from "advantage/api/cancon";
 
 type RetryPaymentVariables = {
   pendingPurchaseId: string;
@@ -76,4 +77,10 @@ export const useDeletePaymentMethodMutation = () =>
       const response = await deletePaymentMethod(accountId);
       if (response.errors) throw new Error("Unable to remove payment method");
     },
+  });
+
+export const useListSubscriptions = () =>
+  useQuery({
+    queryKey: ["subscriptions"],
+    queryFn: listSubscriptions,
   });

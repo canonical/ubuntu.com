@@ -7,12 +7,17 @@
 {% block head_extra %}<meta name="robots" content="noindex, nofollow" />{% endblock %}
 
 {% block content %}
-  <div id="account-pages-app"
-       data-account-id="{{ account_id or '' }}"
-       data-invoices="{{ invoices_data | tojson | forceescape }}"
-       data-marketplace="{{ marketplace or '' }}"
-       data-current-page="{{ current_page }}"
-       data-total-pages="{{ total_pages }}"></div>
+     <div id="account-pages-app"></div>
+
+     <script nonce="{{ csp_nonce }}">
+          window.APP_CONFIG = {
+            "accountId": "{{account_id or ''}}",
+            "invoices": "{{ invoices_data | tojson }}",
+            "marketplace": "{{ marketplace or '' }}",
+            "currentPage": "{{ current_page }}",
+            "totalPages": "{{ total_pages }}"
+          }
+     </script>
 
   <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/ua-payment-methods.js') }}"
           type="module"

@@ -25,24 +25,37 @@ Sentry.init({
   allowUrls: ["ubuntu.com"],
 });
 
+type AccountPageData = Partial<PaymentMethodProps> & {
+  invoices?: InvoiceRow[];
+  marketplace?: string;
+  currentPage?: number;
+  totalPages?: number;
+};
+
+declare global {
+  interface Window {
+    APP_CONFIG?: AccountPageData;
+  }
+}
+
 const root = document.getElementById("account-pages-app");
 if (root) {
-  const accountId = root.dataset.accountId ?? "";
-  const invoices = JSON.parse(root.dataset.invoices ?? "[]") as InvoiceRow[];
+  const data = window.APP_CONFIG ?? {};
+  const accountId = data.accountId ?? "";
   const paymentMethodProps: PaymentMethodProps = {
-    stripeKey: root.dataset.stripeKey ?? "",
+    stripeKey: data.stripeKey ?? "",
     accountId,
-    pendingPurchaseId: root.dataset.pendingPurchaseId ?? "",
-    initialHasPaymentMethod: root.dataset.hasPaymentMethod === "true",
-    cardBrand: root.dataset.cardBrand ?? "",
-    cardLast4: root.dataset.cardLast4 ?? "",
+    pendingPurchaseId: data.pendingPurchaseId ?? "",
+    initialHasPaymentMethod: data.initialHasPaymentMethod ?? false,
+    cardBrand: data.cardBrand ?? "",
+    cardLast4: data.cardLast4 ?? "",
   };
   const invoiceProps = {
     accountId,
-    invoices,
-    marketplace: root.dataset.marketplace ?? "",
-    currentPage: Number(root.dataset.currentPage ?? "1"),
-    totalPages: Number(root.dataset.totalPages ?? "1"),
+    invoices: data.invoices ?? [],
+    marketplace: data.marketplace ?? "",
+    currentPage: data.currentPage ?? 1,
+    totalPages: data.totalPages ?? 1,
   };
 
   createRoot(root).render(

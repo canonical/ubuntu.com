@@ -8,13 +8,19 @@
 
 {% block content %}
 
-     <div id="account-pages-app"
-       data-stripe-key="{{ get_stripe_publishable_key }}"
-       data-account-id="{{ account_id }}"
-       data-pending-purchase-id="{{ pending_purchase_id }}"
-       data-has-payment-method="{{ 'true' if default_payment_method and default_payment_method.id else 'false' }}"
-       data-card-brand="{{ default_payment_method.brand if default_payment_method else '' }}"
-       data-card-last4="{{ default_payment_method.last4 if default_payment_method else '' }}"></div>
+     <div id="account-pages-app"></div>
+
+     {% set payment_method = default_payment_method or {} %}
+     <script id="account-pages-data" nonce="{{ csp_nonce }}">
+        window.APP_CONFIG = {
+            "stripeKey": "{{get_stripe_publishable_key}}",
+            "accountId": "{{account_id or ''}}",
+            "pendingPurchaseId": "{{pending_purchase_id or ''}}",
+            "initialHasPaymentMethod": "{{not not payment_method.get('id')}}",
+            "cardBrand": "{{payment_method.get('brand', '')}}",
+            "cardLast4": "{{payment_method.get('last4', '')}}"
+          };
+     </script>
 
   <script nonce="{{ csp_nonce }}" src="https://js.stripe.com/v3/"></script>
 
