@@ -1,0 +1,136 @@
+.l-sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.announcement-bar {
+  align-items: center;
+  background-color: #000;
+  color: $colors--dark-theme--text-default;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  text-align: center;
+
+  .p-icon--information {
+    background-image: vf-icon-info-url($color-ubuntu);
+    flex-shrink: 0;
+    margin-top: $sp-medium;
+
+    @media (width < $viewport-threshold) {
+      margin-top: $sp-small;
+    }
+  }
+
+  &__grid {
+    min-height: $sp-xxx-large;
+
+    @media (width >= $viewport-threshold) {
+      gap: $sp-medium;
+    }
+
+    @media (width < $viewport-threshold) {
+      display: block;
+      padding-top: $spv--small;
+      padding-bottom: $spv--large;
+    }
+
+    @media ($breakpoint-small <= width < $breakpoint-medium) {
+      padding-left: $sp-medium;
+      padding-right: $sp-medium;
+    }
+  }
+
+  &__container {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: $sph--small;
+
+    @media (width < $viewport-threshold) {
+      gap: $sp-medium;
+    }
+
+    &-reverse {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__message {
+    margin: 0;
+    max-width: fit-content;
+    padding: 0;
+    padding-top: $spv--medium;
+    padding-bottom: $spv--medium;
+    text-align: start;
+
+    @media (width < $viewport-threshold) {
+      margin-right: $sp-xxx-large;
+      padding-top: $sp-x-small;
+      padding-bottom: 0;
+    }
+
+    &-title {
+      @media (width >= $viewport-threshold) {
+        padding-left: $sp-small;
+      }
+    }
+
+    &-main {
+      @media (width < $viewport-threshold) {
+        padding-top: $sp-x-small;
+        padding-left: $sp-x-large;
+      }
+
+      @media (width >= $viewport-threshold) {
+        margin-left: -$sp-x-small;
+      }
+    }
+  }
+
+  // Makes the whole bar keyboard-operable via this one real link, instead
+  // of relying on a JS click handler on a non-focusable div.
+  &__link {
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
+  }
+
+  &__close {
+    align-items: center;
+    background: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    width: $sp-xxx-large;
+    height: $sp-xxx-large;
+
+    // Override vanilla's global button:hover background highlight
+    &:hover {
+      background-color: transparent;
+    }
+
+    @media (width >= $viewport-threshold) {
+      margin-right: -$sp-large !important;
+    }
+
+    @media (width < $viewport-threshold) {
+      width: $sp-xx-large;
+      height: $sp-xx-large;
+      position: absolute;
+      top: $sp-x-small;
+      right: $spv--medium;
+    }
+
+    @media (width <= $breakpoint-small) {
+      right: $sp-x-small;
+    }
+  }
+}

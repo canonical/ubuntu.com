@@ -1,0 +1,52 @@
+# Sticky announcement bar shown below the main navigation.
+#
+# - enabled: turn the whole bar on/off.
+# - id: bump this whenever the content changes to re-surface the bar to
+#   users who already dismissed a previous announcement (dismissal is
+#   remembered per announcement id, not just a boolean).
+# - exclude_paths: opt-out list of top-level path segments the bar should
+#   NOT show on (e.g. "pro" excludes /pro and every page under it). Any path
+#   not listed here shows the bar by default. Paths containing a "docs"
+#   segment are always excluded, regardless of this list.
+enabled: true
+id: ubuntu-summit-2604
+title: "Register for Ubuntu Summit 26.04"
+message: "Live on Nov 12-13. Join us in celebrating the world of open source"
+cta_text: "Learn more"
+cta_url: "https://ubuntu.com/summit?utm_source=announcebar&utm_medium=referral&utm_campaign=701N100000qk8UUIAY"
+
+exclude_paths:
+  - 0_docs
+  - 400
+  - 403
+  - 404
+  - 410
+  - 429
+  - 500
+  - _image-testing
+  - about
+  - account
+  - advantage
+  - blog
+  - contact-us
+  - credentials
+  - engage
+  - kubeconeurope2020
+  - legal
+  - managed
+  - masters-conference
+  - pricing
+  - pro
+  - security
+  - security-error-500
+  - security-series
+  - subscription-centre
+  - summit
+  - support
+  - takeovers
+  - templates
+  - tests
+  - thank-you
+  - training
+  - tutorials
+  - user-research
