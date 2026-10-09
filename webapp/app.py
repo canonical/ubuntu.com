@@ -7,7 +7,7 @@ import os
 
 import flask
 import requests
-from jinja2 import ChoiceLoader, FileSystemLoader
+from jinja2 import ChoiceLoader, FileSystemLoader, PrefixLoader
 import yaml
 import sentry_sdk
 from werkzeug.exceptions import HTTPException
@@ -243,7 +243,15 @@ directory_parser_templates = (
 loader = ChoiceLoader(
     [
         FileSystemLoader("templates"),
-        FileSystemLoader("node_modules/vanilla-framework/templates/"),
+        # Only Vanilla's macros, as its npm package ships: installed from
+        # git, Vanilla also has its docs templates, which mustn't be served
+        PrefixLoader(
+            {
+                "_macros": FileSystemLoader(
+                    "node_modules/vanilla-framework/templates/_macros"
+                )
+            }
+        ),
         FileSystemLoader("static/js/modules/vanilla-framework/"),
         FileSystemLoader(str(directory_parser_templates)),
     ]

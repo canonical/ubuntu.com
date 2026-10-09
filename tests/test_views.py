@@ -1617,6 +1617,8 @@ class TestDeveloperDiariesIndex(BaseViewTestCase):
         self.assertEqual(card.select_one(".p-chip--information").text, "Rock")
         # Likes only show on the article page
         self.assertIsNone(card.select_one(".p-icon--thumbs-up"))
+        # Dark theme border and footer rule, for the dark page
+        self.assertIn("is-dark", card["class"])
         self.assertTrue(
             soup.select_one("input[value=containers]").has_attr("checked")
         )

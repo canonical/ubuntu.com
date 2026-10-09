@@ -12,5 +12,6 @@
   },
   author=article.author_html,
   date=article.created.strftime("%-d %b %Y"),
-  footer={"content_type": article.tag_names} if article.tag_names else None
+  footer={"content_type": article.tag_names} if article.tag_names else None,
+  theme="dark"
 ) }}
