@@ -1,1 +1,140 @@
-{# Performance as standard: HP-07, HP-08 #}
+{# Performance as standard: HP-08 scroll motion still to come (WD-39512) #}
+{% from "home/_macros.html" import icon_with_name with context %}
+
+<section class="p-section js-performance-rail">
+  <div class="grid-row--50-50-on-large">
+    <hr class="p-rule" />
+    <div class="grid-col">
+      <h2>Performance as standard, across your stack</h2>
+    </div>
+    <div class="grid-col">
+      <p>
+        Benefit from an intuitive interface, accessible package ecosystem and robust performance – from installation, to development, to production – supported by extensive documentation.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid-row p-performance__row">
+    <div class="grid-col-2 grid-col-medium-1">
+      <h3 class="p-heading--4">Desktop</h3>
+    </div>
+    <div class="grid-col-2 grid-col-medium-1 u-hide--small p-performance__rail"
+         aria-hidden="true">
+      <span class="p-performance__ring is-active">
+        {{ image(url="https://assets.ubuntu.com/v1/388636e0-laptop.png",
+                  alt="",
+                  width="48",
+                  height="48",
+                  hi_def=True,
+                  loading="lazy") | safe
+        }}
+      </span>
+      <span class="p-performance__track"><span class="p-performance__fill"></span></span>
+    </div>
+    <div class="grid-col-4 grid-col-medium-2">
+      <h4 class="p-heading--5">Where elegance and functionality intersect</h4>
+      <p>
+        Access the world's most popular open source apps and toolchains. Get innovation at your fingertips in a familiar environment.
+      </p>
+      <p>
+        <a class="p-cta-text" href="/download/desktop">Download Ubuntu Desktop<i class="p-icon--arrow-right"></i></a>
+      </p>
+      <p class="p-performance__apps">
+        {{ icon_with_name("https://assets.ubuntu.com/v1/01826f67-gitkraken.png", "GitKraken", "performance-app-gitkraken") }}
+        {{ icon_with_name("https://assets.ubuntu.com/v1/37359d31-intellijidea.png", "IntelliJ", "performance-app-intellij") }}
+        {{ icon_with_name("https://assets.ubuntu.com/v1/fae26e39-msteams.png", "Microsoft Teams", "performance-app-microsoft-teams") }}
+        {{ icon_with_name("https://assets.ubuntu.com/v1/3d93e0f9-slack.png", "Slack", "performance-app-slack") }}
+        {{ icon_with_name("https://assets.ubuntu.com/v1/a90b78a2-vscode.png", "Visual Studio Code", "performance-app-visual-studio-code") }}
+      </p>
+    </div>
+  </div>
+
+  <div class="grid-row p-performance__row">
+    <div class="grid-col-2 grid-col-medium-1">
+      <h3 class="p-heading--4">Data centers</h3>
+    </div>
+    <div class="grid-col-2 grid-col-medium-1 u-hide--small p-performance__rail"
+         aria-hidden="true">
+      <span class="p-performance__ring is-active">
+        {{ image(url="https://assets.ubuntu.com/v1/24321a0e-server.png",
+                  alt="",
+                  width="48",
+                  height="48",
+                  hi_def=True,
+                  loading="lazy") | safe
+        }}
+      </span>
+      <span class="p-performance__track"><span class="p-performance__fill"></span></span>
+    </div>
+    <div class="grid-col-4 grid-col-medium-2">
+      <h4 class="p-heading--5">Straightforward deployment and scalability</h4>
+      <p>
+        Deploy workloads quickly, efficiently, and at scale with Ubuntu Server. Benefit from pre-integrated tools that simplify deployment of a complex network of services.
+      </p>
+      <p>
+        Get the best open source and commercial workloads built in, including Apache Hadoop, PostgreSQL, OpenStack, Ceph, and Kubernetes.
+      </p>
+      <p>
+        <a class="p-cta-text" href="/server">Download Ubuntu Server<i class="p-icon--arrow-right"></i></a>
+      </p>
+    </div>
+  </div>
+
+  <div class="grid-row p-performance__row">
+    <div class="grid-col-2 grid-col-medium-1">
+      <h3 class="p-heading--4">Public cloud</h3>
+    </div>
+    <div class="grid-col-2 grid-col-medium-1 u-hide--small p-performance__rail"
+         aria-hidden="true">
+      <span class="p-performance__ring is-active">
+        {{ image(url="https://assets.ubuntu.com/v1/9629cd21-cloud.png",
+                  alt="",
+                  width="48",
+                  height="48",
+                  hi_def=True,
+                  loading="lazy") | safe
+        }}
+      </span>
+      <span class="p-performance__track"><span class="p-performance__fill"></span></span>
+    </div>
+    <div class="grid-col-4 grid-col-medium-2">
+      <h4 class="p-heading--5">Optimized for all clouds</h4>
+      <p>
+        Canonical works hand-in-hand with cloud vendors to create optimized, pre-configured images for AWS, Azure, IBM Cloud, Oracle Cloud, and Google Cloud. Users benefit from lightweight, hardened base images that can be spun-up in seconds.
+      </p>
+      <p>
+        <a class="p-cta-text" href="/cloud/public-cloud">Learn about Ubuntu on public clouds<i class="p-icon--arrow-right"></i></a>
+      </p>
+    </div>
+  </div>
+
+  <div class="grid-row p-performance__row">
+    <div class="grid-col-2 grid-col-medium-1">
+      <h3 class="p-heading--4">IoT and edge</h3>
+    </div>
+    <div class="grid-col-2 grid-col-medium-1 u-hide--small p-performance__rail"
+         aria-hidden="true">
+      <span class="p-performance__ring is-active">
+        {{ image(url="https://assets.ubuntu.com/v1/22d309b2-cpu.png",
+                  alt="",
+                  width="48",
+                  height="48",
+                  hi_def=True,
+                  loading="lazy") | safe
+        }}
+      </span>
+    </div>
+    <div class="grid-col-4 grid-col-medium-2">
+      <h4 class="p-heading--5">The best of open source for embedded applications</h4>
+      <p>
+        Use the same OS from development to deployment. Speed up time to market, manage device fleets with ease, and keep control with remote, over-the-air updates.
+      </p>
+      <p>
+        Develop on Ubuntu and deploy to devices with <a href="/core">Ubuntu Core</a> for a locked-down, low-touch approach with minimal attack surface.
+      </p>
+      <p>
+        <a class="p-cta-text" href="/core">Discover Ubuntu Core<i class="p-icon--arrow-right"></i></a>
+      </p>
+    </div>
+  </div>
+</section>

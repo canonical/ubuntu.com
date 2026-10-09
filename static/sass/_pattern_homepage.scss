@@ -62,4 +62,74 @@
       color: $homepage-link-hover;
     }
   }
+
+  // Performance as standard: label, decorative ring rail, content.
+  // Rows touch so each track reaches the next ring; spacing sits inside rows.
+  $performance-row-spacing: $sp-unit * 6;
+  $performance-ring-easing: cubic-bezier(0.22, 1, 0.36, 1);
+
+  .p-performance__row {
+    padding-bottom: $performance-row-spacing;
+  }
+
+  .p-performance__rail {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .p-performance__ring {
+    align-items: center;
+    background-color: $colors--theme--background-hover;
+    border: 1.5px solid $colors--theme--border-low-contrast;
+    border-radius: 50%;
+    display: flex;
+    flex-shrink: 0;
+    height: $sp-unit * 10;
+    justify-content: center;
+    transition: border-color 0.4s $performance-ring-easing;
+    width: $sp-unit * 10;
+
+    img {
+      opacity: 0.6;
+      transition: opacity 0.4s $performance-ring-easing;
+    }
+
+    &.is-active {
+      border-color: $color-brand;
+
+      img {
+        opacity: 1;
+      }
+    }
+  }
+
+  .p-performance__track {
+    background-color: $colors--theme--border-low-contrast;
+    flex: 1 1 auto;
+    margin-bottom: -$performance-row-spacing;
+    overflow: hidden;
+    position: relative;
+    width: 2px;
+  }
+
+  .p-performance__fill {
+    background: linear-gradient($color-brand, #ff9b5a);
+    inset: 0;
+    position: absolute;
+    transform-origin: top;
+  }
+
+  .p-performance__apps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $sp-unit * 2;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .p-performance__ring,
+    .p-performance__ring img {
+      transition: none;
+    }
+  }
 }

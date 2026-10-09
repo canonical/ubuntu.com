@@ -1,0 +1,21 @@
+{#
+  Icon that shows its name above it on hover and keyboard focus.
+  Uses image(), so import with context:
+  {% from "home/_macros.html" import icon_with_name with context %}
+#}
+{% macro icon_with_name(src, name, id, width="32", height="32", class="") -%}
+  <span class="p-tooltip--top-center js-icon-tooltip"
+        tabindex="0"
+        role="img"
+        aria-labelledby="{{ id }}">
+    {{ image(url=src,
+            alt="",
+            width=width,
+            height=height,
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": class}) | safe
+    }}
+    <span class="p-tooltip__message" role="tooltip" id="{{ id }}">{{ name }}</span>
+  </span>
+{%- endmacro %}
