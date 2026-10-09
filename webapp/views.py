@@ -442,7 +442,8 @@ def build_engage_index(engage_docs):
     def engage_index():
         page = flask.request.args.get("page", default=1, type=int)
         preview = flask.request.args.get("preview")
-        language = flask.request.args.get("language", default=None, type=str)
+        language = flask.request.args.get("language", default="en", type=str)
+        language_filter = None if language == "all" else language
         resource = flask.request.args.get("resource", default=None, type=str)
         tags = flask.request.args.getlist("tag")
         if len(tags) == 1:
@@ -454,26 +455,62 @@ def build_engage_index(engage_docs):
         limit = 14  # adjust as needed
         offset = (page - 1) * limit
 
-        # Only show active items unless previewing. get_index only
-        # supports 2 key/value filter slots (+ tag_value), so push
-        # active=true into whichever of key/second_key isn't already
-        # claimed by resource/language, keeping pagination (current_total)
-        # accurate. If both slots are taken, fall back to filtering the
-        # returned page in Python (current_total stays unfiltered, so
-        # total_pages may include a short trailing page rather than
-        # hiding real pages of content).
+        # Only show active items unless previewing. When resource and
+        # language are both selected, scan active resource results and apply
+        # the language filter before paginating because get_index supports
+        # only two key/value filters (+ tag_value).
         key, value = "type", resource
-        second_key, second_value = "language", language
+        second_key, second_value = "language", language_filter
         filter_active_in_query = False
+        filter_language_before_pagination = False
         if preview is None:
-            if not resource:
+            if resource and language_filter:
+                key, value = "active", "true"
+                second_key, second_value = "type", resource
+                filter_active_in_query = True
+                filter_language_before_pagination = True
+            elif not resource:
                 key, value = "active", "true"
                 filter_active_in_query = True
-            elif not language:
+            elif not language_filter:
                 second_key, second_value = "active", "true"
                 filter_active_in_query = True
 
-        if tag or resource or language or filter_active_in_query:
+        if filter_language_before_pagination:
+            active_items = []
+            scan_limit = 100
+            scan_offset = 0
+            scan_total = None
+            while scan_total is None or scan_offset < scan_total:
+                (
+                    batch,
+                    count,
+                    active_count,
+                    scan_total,
+                ) = engage_docs.get_index(
+                    scan_limit,
+                    scan_offset,
+                    tag_value=tag,
+                    key=key,
+                    value=value,
+                    second_key=second_key,
+                    second_value=second_value,
+                )
+                if not batch:
+                    break
+                active_items.extend(batch)
+                scan_offset += len(batch)
+
+            metadata = [
+                item
+                for item in active_items
+                if str(item.get("language", "")).strip().lower()
+                == language_filter.lower()
+            ]
+            current_total = len(metadata)
+            end_offset = offset + limit
+            metadata = metadata[offset:end_offset]
+        elif tag or resource or language_filter or filter_active_in_query:
             (
                 metadata,
                 count,
@@ -498,7 +535,11 @@ def build_engage_index(engage_docs):
                 limit, offset, key="is_static", value=None
             )
 
-        if preview is None and not filter_active_in_query:
+        if (
+            preview is None
+            and not filter_active_in_query
+            and not filter_language_before_pagination
+        ):
             metadata = [
                 item
                 for item in metadata
