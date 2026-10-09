@@ -508,7 +508,8 @@ def build_engage_index(engage_docs):
                 == language_filter.lower()
             ]
             current_total = len(metadata)
-            metadata = metadata[offset : offset + limit]
+            end_offset = offset + limit
+            metadata = metadata[offset:end_offset]
         elif tag or resource or language_filter or filter_active_in_query:
             (
                 metadata,
