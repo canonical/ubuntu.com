@@ -77,6 +77,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_hardware-details-table";
 @import "pattern_heading-icon";
 @import "pattern_homepage";
+@import "pattern_homepage-latest";
 @import "pattern_icons";
 @import "pattern_inline-list-midline";
 @import "pattern_invoices";
@@ -135,6 +136,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 // Homepage-only patterns, scoped by the class templates/index.html adds to <body>
 .p-homepage {
   @include ubuntu-p-homepage;
+  @include ubuntu-p-homepage-latest;
 }
 @include ubuntu-p-inline-list-midline;
 @include ubuntu-p-invoices;
