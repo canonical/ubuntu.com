@@ -1,5 +1,4 @@
 {# A world of open source: HP-11 markup and layouts. HP-12 behaviour (WD-39511), HP-13 rotating command still to come #}
-{% from "_macros/shared/vf_section_top_rule.jinja" import vf_section_top_rule %}
 {% from "_macros/vf_logo-section.jinja" import vf_logo_section %}
 
 {% set photos = {
@@ -56,7 +55,7 @@
 {% set arrow_links = {
   "ai": {
     "text": "Learn more about Ubuntu for AI",
-    "href": "https://ubuntu.com/ai"
+    "href": "/ai"
   },
   "ai_portfolio": {
     "text": "Discover Canonical's AI portfolio",
@@ -64,7 +63,7 @@
   },
   "landscape": {
     "text": "Learn about Landscape",
-    "href": "https://ubuntu.com/landscape"
+    "href": "/landscape"
   },
   "authd": {
     "text": "Discover AuthD",
@@ -84,7 +83,7 @@
   },
   "pro": {
     "text": "Why Ubuntu Pro",
-    "href": "https://ubuntu.com/pro/why-pro"
+    "href": "/pro/why-pro"
   }
 } %}
 {# SRE and CTO photos reuse others until their own are uploaded #}
@@ -127,7 +126,7 @@
 
 <section class="p-section js-open-source-carousel">
   <div class="grid-row--50-50-on-large">
-    {{ vf_section_top_rule() }}
+    <hr class="p-rule" />
     <div class="grid-col">
       <h2>
         A world of open source.
