@@ -36,8 +36,9 @@
       {%- endif %}
     </div>
     <div class="p-community-tile__content">
-      <h3 class="p-heading--5 u-no-padding--top p-community-tile__title">{{ tile.title }}</h3>
-      <div class="p-community-tile__details">
+      <h3 class="p-heading--5 u-no-padding--top">{{ tile.title }}</h3>
+      {# Wrapped so the overlay can push the text and button to the bottom #}
+      <div>
         <p>{{ tile.body }}</p>
         <a class="p-button u-no-margin--bottom" href="{{ tile.button.href }}">{{ tile.button.text }}</a>
       </div>

@@ -5,19 +5,20 @@
   $community-easing: cubic-bezier(0.22, 1, 0.36, 1);
   // Below this width the wide tiles are too short for the overlay text
   $community-overlay-min-width: 1280px;
+  $community-overlay: "(hover: hover) and (min-width: #{$community-overlay-min-width})";
 
   .p-community__hint {
     display: none;
   }
 
   .p-community__tiles {
-    row-gap: 2rem;
+    row-gap: $sp-unit * 4;
   }
 
   .p-community__stack {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: $sp-unit * 4;
   }
 
   .p-community-tile__frame {
@@ -37,23 +38,23 @@
   // With the text under the tiles, the square tile's column is shorter than
   // the stack beside it. Let its frame fill the column so both end level;
   // the media is absolutely positioned so it can't set the height itself.
-  @media (min-width: $breakpoint-large) and (not ((hover: hover) and (min-width: $community-overlay-min-width))) {
+  @media (min-width: $breakpoint-large) and (not (#{$community-overlay})) {
     .p-community-tile.is-square {
       display: flex;
       flex-direction: column;
       height: 100%;
-    }
 
-    .p-community-tile.is-square .p-community-tile__frame {
-      aspect-ratio: auto;
-      flex: 1 1 auto;
-      min-height: 20rem;
-      position: relative;
-    }
+      .p-community-tile__frame {
+        aspect-ratio: auto;
+        flex: 1 1 auto;
+        min-height: $sp-unit * 40;
+        position: relative;
+      }
 
-    .p-community-tile.is-square .p-community-tile__media {
-      inset: 0;
-      position: absolute;
+      .p-community-tile__media {
+        inset: 0;
+        position: absolute;
+      }
     }
   }
 
@@ -65,30 +66,30 @@
   }
 
   .p-community-tile__content {
-    padding-top: 1rem;
+    padding-top: $spv--large;
   }
 
-  @media (hover: hover) and (min-width: $community-overlay-min-width) {
+  @media #{$community-overlay} {
     .p-community__hint {
       display: block;
     }
 
     .p-community__stack {
-      gap: 1.5rem;
+      gap: $spv--x-large;
     }
 
     .p-community-tile {
       position: relative;
     }
 
-    .p-community-tile.is-square,
-    .p-community-tile.is-square .p-community-tile__frame {
-      height: 100%;
-    }
-
     // Match the stacked tiles' height rather than forcing a square
-    .p-community-tile.is-square .p-community-tile__frame {
-      aspect-ratio: auto;
+    .p-community-tile.is-square {
+      height: 100%;
+
+      .p-community-tile__frame {
+        aspect-ratio: auto;
+        height: 100%;
+      }
     }
 
     .p-community-tile__media {
@@ -101,7 +102,7 @@
       inset: 0;
       justify-content: space-between;
       opacity: 0;
-      padding: 2rem;
+      padding: $sp-unit * 4;
       // Click-through until revealed, so a first tap on a touch laptop
       // can't hit the hidden button; still focusable for :focus-within
       pointer-events: none;
@@ -127,11 +128,6 @@
     .p-community-tile__media,
     .p-community-tile__content {
       transition: none;
-    }
-
-    .p-community-tile:hover .p-community-tile__content,
-    .p-community-tile:focus-within .p-community-tile__content {
-      transition-delay: 0s;
     }
   }
 }
