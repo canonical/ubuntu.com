@@ -1,4 +1,4 @@
-{# A world of open source: HP-11 markup and layouts. HP-12 behaviour (WD-39511), HP-13 rotating command still to come #}
+{# A world of open source: HP-11 markup and layouts, HP-12 and HP-13 behaviour in static/js/src/homepage/open-source-carousel.js #}
 {% from "_macros/vf_logo-section.jinja" import vf_logo_section %}
 
 {% set photos = {
@@ -145,14 +145,14 @@
     <div class="grid-col-4 grid-col-medium-4 p-open-source__media">
       <div class="p-open-source__controls u-hide--medium u-hide--large">
         <span>
-          <button type="button" class="p-open-source__button" aria-label="Previous slide">
+          <button type="button" class="p-open-source__button js-open-source-step" data-step="-1" aria-label="Previous slide">
             <i class="p-icon--chevron-left"></i>
           </button>
-          <button type="button" class="p-open-source__button" aria-label="Next slide">
+          <button type="button" class="p-open-source__button js-open-source-step" data-step="1" aria-label="Next slide">
             <i class="p-icon--chevron-right"></i>
           </button>
         </span>
-        <button type="button" class="p-open-source__button" aria-label="Pause">
+        <button type="button" class="p-open-source__button js-open-source-pause" aria-label="Pause carousel">
           <i class="p-icon--pause"></i>
         </button>
       </div>
@@ -175,7 +175,7 @@
 
     <div class="grid-col-4 grid-col-medium-4 p-open-source__slides">
       <div class="p-open-source__controls u-hide--small">
-        <button type="button" class="p-open-source__button" aria-label="Pause">
+        <button type="button" class="p-open-source__button js-open-source-pause" aria-label="Pause carousel">
           <i class="p-icon--pause"></i>
         </button>
       </div>
@@ -186,7 +186,9 @@
           <h3 class="p-heading--5">
             <a class="p-open-source__title" href="#open-source-{{ slide.id }}">{{ slide.title }}</a>
           </h3>
-          <div class="p-open-source__panel">
+          <div class="p-open-source__panel"
+               id="open-source-{{ slide.id }}-panel">
+            <div class="p-open-source__panel-inner">
             {% for block in slide.blocks %}
               {% if block.p %}
                 <p>{{ block.p }}</p>
@@ -206,9 +208,11 @@
                 {%- endcall -%}
               {% endif %}
             {% endfor %}
+            </div>
           </div>
         </div>
       {% endfor %}
     </div>
   </div>
+  <div class="u-off-screen" aria-live="polite"></div>
 </section>
