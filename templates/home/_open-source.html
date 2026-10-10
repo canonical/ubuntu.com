@@ -191,6 +191,7 @@
           </h3>
           <div class="p-open-source__panel"
                id="open-source-{{ slide.id }}-panel">
+            <div class="p-open-source__panel-inner">
             {% for block in slide.blocks %}
               {% if block.p %}
                 <p>{{ block.p }}</p>
@@ -210,6 +211,7 @@
                 {%- endcall -%}
               {% endif %}
             {% endfor %}
+            </div>
           </div>
         </div>
       {% endfor %}

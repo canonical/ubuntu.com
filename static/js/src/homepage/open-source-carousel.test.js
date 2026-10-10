@@ -1,4 +1,9 @@
-import { SLIDE_MS, startOpenSourceCarousel } from "./open-source-carousel";
+import {
+  COLLAPSE_MS,
+  GAP_MS,
+  SLIDE_MS,
+  startOpenSourceCarousel,
+} from "./open-source-carousel";
 
 let reduced;
 let observe;
@@ -78,7 +83,7 @@ describe("startOpenSourceCarousel", () => {
   it("advances after 8s and loops from the last slide", () => {
     const root = setup();
 
-    tick(SLIDE_MS + 500);
+    tick(SLIDE_MS + COLLAPSE_MS + GAP_MS + 50);
     expect(active(root)).toBe(1);
 
     tick(2 * SLIDE_MS);
@@ -89,10 +94,24 @@ describe("startOpenSourceCarousel", () => {
     const root = setup();
 
     click(titles(root)[2]);
-    tick(500);
+    tick(COLLAPSE_MS + GAP_MS);
 
     expect(active(root)).toBe(2);
     expect(pauseLabel(root)).toBe("Play carousel");
+  });
+
+  it("opens the new slide after collapse and gap, and the last go wins", () => {
+    const root = setup();
+    const [, b, c] = titles(root);
+
+    click(b);
+    tick(COLLAPSE_MS + GAP_MS - 1);
+    expect(active(root)).toBe(-1);
+    click(c);
+    tick(COLLAPSE_MS + GAP_MS - 1);
+    expect(active(root)).toBe(-1);
+    tick(1);
+    expect(active(root)).toBe(2);
   });
 
   it("freezes the bar on pause and resumes on play", () => {
@@ -114,11 +133,11 @@ describe("startOpenSourceCarousel", () => {
     const root = setup();
 
     click(root.querySelector('[aria-label="Previous slide"]'));
-    tick(500);
+    tick(COLLAPSE_MS + GAP_MS);
     expect(active(root)).toBe(2);
 
     click(root.querySelector('[aria-label="Next slide"]'));
-    tick(500);
+    tick(COLLAPSE_MS + GAP_MS);
     expect(active(root)).toBe(0);
   });
 
@@ -151,7 +170,7 @@ describe("startOpenSourceCarousel", () => {
     expect(active(root)).toBe(0);
 
     observe(true);
-    tick(SLIDE_MS + 500);
+    tick(SLIDE_MS + COLLAPSE_MS + GAP_MS + 50);
     expect(active(root)).toBe(1);
 
     click(titles(root)[0]);
@@ -172,7 +191,7 @@ describe("startOpenSourceCarousel", () => {
     expect(code(0).textContent).not.toBe(COMMAND);
     expect(code(1).textContent).toBe(COMMAND);
 
-    tick(450);
+    tick(COLLAPSE_MS + GAP_MS);
     expect(code(1).firstChild.textContent).toBe("$ sudo snap install ");
     tick(90);
     expect(code(1).firstChild.textContent).toBe("$ sudo snap install k");

@@ -2,11 +2,14 @@ import { prefersReducedMotion, onReducedMotionChange } from "./reduced-motion";
 import { createTypewriter } from "./typewriter";
 
 export const SLIDE_MS = 8000;
-// Matches the CSS fade, so the outgoing text finishes before the next shows
-const FADE_MS = 450;
+// Match the CSS: the old panel collapses, nothing moves, then the new opens
+export const COLLAPSE_MS = 550;
+export const GAP_MS = 60;
 
 // Vanilla's large breakpoint: the command only types on desktop
 const DESKTOP_QUERY = "(min-width: 1036px)";
+// Phones show one slide at a time, so there is no height to animate
+const PHONE_QUERY = "(max-width: 619px)";
 const COMMAND_PREFIX = "$ sudo snap install ";
 
 const NAV_KEYS = {
@@ -60,6 +63,7 @@ export function startOpenSourceCarousel(root) {
     return createTypewriter(code, words);
   });
   const desktop = window.matchMedia(DESKTOP_QUERY);
+  const phone = window.matchMedia(PHONE_QUERY);
 
   let index = 0;
   let shown = 0;
@@ -126,7 +130,6 @@ export function startOpenSourceCarousel(root) {
   function showSlide() {
     slides.forEach((slide, i) => {
       slide.classList.toggle("is-active", i === index);
-      slide.classList.remove("is-leaving");
     });
     shown = index;
     syncCommand();
@@ -149,11 +152,12 @@ export function startOpenSourceCarousel(root) {
     );
 
     window.clearTimeout(swapTimer);
-    if (instant || prefersReducedMotion() || shown === index) {
+    if (instant || prefersReducedMotion() || phone.matches || shown === index) {
       showSlide();
     } else {
-      slides[shown].classList.add("is-leaving");
-      swapTimer = window.setTimeout(showSlide, FADE_MS);
+      // Collapse the old panel now, open the new one after the gap
+      slides[shown].classList.remove("is-active");
+      swapTimer = window.setTimeout(showSlide, COLLAPSE_MS + GAP_MS);
     }
   }
 
