@@ -2,13 +2,18 @@ import { SLIDE_MS, startOpenSourceCarousel } from "./open-source-carousel";
 
 let reduced;
 let observe;
+let desktop;
+
+const COMMAND = "$ sudo snap install kube/juju";
 
 function slide(id, title) {
   return `
     <div class="p-open-source__slide" id="open-source-${id}">
       <span class="p-open-source__bar"></span>
       <a class="p-open-source__title" href="#open-source-${id}">${title}</a>
-      <div class="p-open-source__panel" id="open-source-${id}-panel"></div>
+      <div class="p-open-source__panel" id="open-source-${id}-panel">
+        <div class="p-open-source__command"><code>${COMMAND}</code></div>
+      </div>
     </div>`;
 }
 
@@ -52,9 +57,12 @@ const tick = (ms) => jest.advanceTimersByTime(ms);
 beforeEach(() => {
   jest.useFakeTimers();
   reduced = false;
+  desktop = false;
   observe = null;
   window.matchMedia = (query) => ({
-    matches: reduced && query.includes("reduced"),
+    matches:
+      (reduced && query.includes("reduced")) ||
+      (desktop && query.includes("1036")),
     addEventListener: () => {},
     removeEventListener: () => {},
   });
@@ -151,6 +159,23 @@ describe("startOpenSourceCarousel", () => {
     observe(true);
     tick(2 * SLIDE_MS);
     expect(pauseLabel(root)).toBe("Play carousel");
+    expect(active(root)).toBe(0);
+  });
+
+  it("types the incoming command only once its slide shows", () => {
+    desktop = true;
+    const root = setup();
+    const code = (i) =>
+      root.querySelectorAll(".p-open-source__slide")[i].querySelector("code");
+
+    tick(SLIDE_MS + 50);
+    expect(code(0).textContent).not.toBe(COMMAND);
+    expect(code(1).textContent).toBe(COMMAND);
+
+    tick(450);
+    expect(code(1).firstChild.textContent).toBe("$ sudo snap install ");
+    tick(90);
+    expect(code(1).firstChild.textContent).toBe("$ sudo snap install k");
   });
 
   it("starts paused with reduced motion", () => {

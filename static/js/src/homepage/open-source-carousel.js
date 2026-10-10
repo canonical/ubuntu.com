@@ -72,14 +72,14 @@ export function startOpenSourceCarousel(root) {
 
   const held = () => !onScreen || document.hidden;
 
-  // Only the active slide types, and only while playing on desktop
+  // Only the visible slide types, and only while playing on desktop
   function syncCommand() {
     const animate = desktop.matches && !prefersReducedMotion();
     typewriters.forEach((writer, i) => {
       if (!writer) {
         return;
       }
-      if (i !== index || !animate) {
+      if (i !== shown || !animate) {
         writer.reset();
       } else if (playing && !held()) {
         writer.start();
