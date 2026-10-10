@@ -1,9 +1,4 @@
-import {
-  COLLAPSE_MS,
-  GAP_MS,
-  SLIDE_MS,
-  startOpenSourceCarousel,
-} from "./open-source-carousel";
+import { SLIDE_MS, startOpenSourceCarousel } from "./open-source-carousel";
 
 let reduced;
 let observe;
@@ -28,8 +23,8 @@ function setup({ hash = "" } = {}) {
   document.body.innerHTML = `
     <section class="js-open-source-carousel">
       <button class="js-open-source-pause"><i class="p-icon--pause"></i></button>
-      <button aria-label="Previous slide"></button>
-      <button aria-label="Next slide"></button>
+      <button class="js-open-source-step" data-step="-1"></button>
+      <button class="js-open-source-step" data-step="1"></button>
       ${names.map((name) => `<img class="p-open-source__image">`).join("")}
       <div class="p-open-source__progress">
         <span class="p-open-source__bar"></span>
@@ -83,7 +78,7 @@ describe("startOpenSourceCarousel", () => {
   it("advances after 8s and loops from the last slide", () => {
     const root = setup();
 
-    tick(SLIDE_MS + COLLAPSE_MS + GAP_MS + 50);
+    tick(SLIDE_MS + 50);
     expect(active(root)).toBe(1);
 
     tick(2 * SLIDE_MS);
@@ -94,24 +89,9 @@ describe("startOpenSourceCarousel", () => {
     const root = setup();
 
     click(titles(root)[2]);
-    tick(COLLAPSE_MS + GAP_MS);
 
     expect(active(root)).toBe(2);
     expect(pauseLabel(root)).toBe("Play carousel");
-  });
-
-  it("opens the new slide after collapse and gap, and the last go wins", () => {
-    const root = setup();
-    const [, b, c] = titles(root);
-
-    click(b);
-    tick(COLLAPSE_MS + GAP_MS - 1);
-    expect(active(root)).toBe(-1);
-    click(c);
-    tick(COLLAPSE_MS + GAP_MS - 1);
-    expect(active(root)).toBe(-1);
-    tick(1);
-    expect(active(root)).toBe(2);
   });
 
   it("freezes the bar on pause and resumes on play", () => {
@@ -131,13 +111,12 @@ describe("startOpenSourceCarousel", () => {
 
   it("wraps with Previous and Next", () => {
     const root = setup();
+    const [previous, next] = root.querySelectorAll(".js-open-source-step");
 
-    click(root.querySelector('[aria-label="Previous slide"]'));
-    tick(COLLAPSE_MS + GAP_MS);
+    click(previous);
     expect(active(root)).toBe(2);
 
-    click(root.querySelector('[aria-label="Next slide"]'));
-    tick(COLLAPSE_MS + GAP_MS);
+    click(next);
     expect(active(root)).toBe(0);
   });
 
@@ -170,7 +149,7 @@ describe("startOpenSourceCarousel", () => {
     expect(active(root)).toBe(0);
 
     observe(true);
-    tick(SLIDE_MS + COLLAPSE_MS + GAP_MS + 50);
+    tick(SLIDE_MS + 50);
     expect(active(root)).toBe(1);
 
     click(titles(root)[0]);
@@ -181,19 +160,17 @@ describe("startOpenSourceCarousel", () => {
     expect(active(root)).toBe(0);
   });
 
-  it("types the incoming command only once its slide shows", () => {
+  it("types the incoming command after the lead-in", () => {
     desktop = true;
     const root = setup();
     const code = (i) =>
       root.querySelectorAll(".p-open-source__slide")[i].querySelector("code");
 
     tick(SLIDE_MS + 50);
-    expect(code(0).textContent).not.toBe(COMMAND);
-    expect(code(1).textContent).toBe(COMMAND);
-
-    tick(COLLAPSE_MS + GAP_MS);
+    expect(code(0).textContent).toBe(COMMAND);
     expect(code(1).firstChild.textContent).toBe("$ sudo snap install ");
-    tick(90);
+
+    tick(1500);
     expect(code(1).firstChild.textContent).toBe("$ sudo snap install k");
   });
 
@@ -203,7 +180,7 @@ describe("startOpenSourceCarousel", () => {
     const text = () => root.querySelectorAll("code")[1].textContent;
 
     click(titles(root)[1]);
-    tick(COLLAPSE_MS + GAP_MS + 90);
+    tick(1500 + 90);
     const first = text();
     tick(300);
     expect(text()).not.toBe(first);

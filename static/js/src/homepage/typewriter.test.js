@@ -1,6 +1,5 @@
 import { createTypewriter } from "./typewriter";
 
-const WORDS = ["docker", "git"];
 const STATIC = "$ sudo snap install docker/git";
 let el;
 let writer;
@@ -10,26 +9,33 @@ const typed = () =>
     .querySelector("[aria-hidden]")
     .textContent.replace("$ sudo snap install ", "");
 const tick = (ms) => jest.advanceTimersByTime(ms);
+// Start, then skip the lead-in so the first letter is one typeMs away
+const begin = () => {
+  writer.start();
+  tick(1500 - 90);
+};
 
 beforeEach(() => {
   jest.useFakeTimers();
   document.body.innerHTML = `<code>${STATIC}</code>`;
   el = document.querySelector("code");
-  writer = createTypewriter(el, WORDS, { typeMs: 90, holdMs: 1500 });
+  writer = createTypewriter(el, { typeMs: 90, holdMs: 1500 });
 });
 
 afterEach(() => jest.useRealTimers());
 
 describe("createTypewriter", () => {
-  it("types the first word one character per 90ms", () => {
+  it("waits 1.5s, then types one character per 90ms", () => {
     writer.start();
-    tick(90 * 3);
+    tick(1499);
+    expect(typed()).toBe("");
 
+    tick(1 + 90 * 2);
     expect(typed()).toBe("doc");
   });
 
   it("holds, deletes, then types the next word", () => {
-    writer.start();
+    begin();
     tick(90 * 6 + 1400);
     expect(typed()).toBe("docker");
 
@@ -41,7 +47,7 @@ describe("createTypewriter", () => {
   });
 
   it("freezes on stop and resumes on start", () => {
-    writer.start();
+    begin();
     tick(90 * 2);
 
     writer.stop();

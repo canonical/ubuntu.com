@@ -2,15 +2,9 @@ import { prefersReducedMotion, onReducedMotionChange } from "./reduced-motion";
 import { createTypewriter } from "./typewriter";
 
 export const SLIDE_MS = 8000;
-// Match the CSS: the old panel collapses, nothing moves, then the new opens
-export const COLLAPSE_MS = 550;
-export const GAP_MS = 60;
 
 // Vanilla's large breakpoint: the command only types on desktop
 const DESKTOP_QUERY = "(min-width: 1036px)";
-// Phones show one slide at a time, so there is no height to animate
-const PHONE_QUERY = "(max-width: 619px)";
-const COMMAND_PREFIX = "$ sudo snap install ";
 
 const NAV_KEYS = {
   ArrowUp: -1,
@@ -32,12 +26,12 @@ function toButton(link, panel) {
   return button;
 }
 
+// The slide swap animation (collapse, gap, expand) is all CSS: this only
+// moves is-active, runs the progress bar and drives the typing.
 export function startOpenSourceCarousel(root) {
   const slides = [...root.querySelectorAll(".p-open-source__slide")];
   const images = [...root.querySelectorAll(".p-open-source__image")];
   const pauseButtons = [...root.querySelectorAll(".js-open-source-pause")];
-  const previous = root.querySelector('[aria-label="Previous slide"]');
-  const next = root.querySelector('[aria-label="Next slide"]');
   const live = root.querySelector("[aria-live]");
   const list = root.querySelector(".p-open-source__slides");
   const phoneBar = root.querySelector(
@@ -52,42 +46,68 @@ export function startOpenSourceCarousel(root) {
       slide.querySelector(".p-open-source__panel"),
     ),
   );
-
   // One typewriter per slide that has a command, null otherwise
-  const typewriters = slides.map((slide) => {
+  const writers = slides.map((slide) => {
     const code = slide.querySelector(".p-open-source__command code");
-    if (!code) {
-      return null;
-    }
-    const words = code.textContent.replace(COMMAND_PREFIX, "").split("/");
-    return createTypewriter(code, words);
+    return code && createTypewriter(code);
   });
   const desktop = window.matchMedia(DESKTOP_QUERY);
-  const phone = window.matchMedia(PHONE_QUERY);
 
   let index = 0;
-  let shown = 0;
-  let playing = true;
-  // Only the Pause button freezes the typing; choosing a slide just stops autoplay
-  let frozen = false;
-  let elapsed = 0;
+  // playing: autoplay and typing. chosen: a visitor picked a slide, so
+  // autoplay stops but the command keeps typing. paused: Pause froze both.
+  let mode = "playing";
   let onScreen = true;
+  let elapsed = 0;
   let frame = null;
   let last = null;
-  let swapTimer = null;
 
-  const held = () => !onScreen || document.hidden;
+  const wrap = (i) => (i + slides.length) % slides.length;
+  const visible = () => onScreen && !document.hidden;
 
-  // Only the visible slide types, and only on desktop, unless frozen
-  function syncCommand() {
-    const animate = desktop.matches && !prefersReducedMotion();
-    typewriters.forEach((writer, i) => {
+  function paint(transform) {
+    bars[index].style.transform = transform;
+    phoneBar.style.transform = transform;
+  }
+
+  function tick(now) {
+    frame = null;
+    elapsed += last === null ? 0 : now - last;
+    last = now;
+    if (elapsed >= SLIDE_MS) {
+      go(wrap(index + 1));
+    } else {
+      paint(`scaleX(${elapsed / SLIDE_MS})`);
+      frame = window.requestAnimationFrame(tick);
+    }
+  }
+
+  // Bring the frame loop, the Pause buttons and the typing in line with state
+  function sync() {
+    const running = mode === "playing" && visible();
+    if (running && frame === null) {
+      frame = window.requestAnimationFrame(tick);
+    } else if (!running && frame !== null) {
+      window.cancelAnimationFrame(frame);
+      frame = null;
+      last = null;
+    }
+
+    const label = mode === "playing" ? "Pause carousel" : "Play carousel";
+    const icon = mode === "playing" ? "p-icon--pause" : "p-icon--play";
+    pauseButtons.forEach((button) => {
+      button.setAttribute("aria-label", label);
+      button.querySelector("i").className = icon;
+    });
+
+    const typing = desktop.matches && !prefersReducedMotion();
+    writers.forEach((writer, i) => {
       if (!writer) {
         return;
       }
-      if (i !== shown || !animate) {
+      if (i !== index || !typing) {
         writer.reset();
-      } else if (!frozen && !held()) {
+      } else if (mode !== "paused" && visible()) {
         writer.start();
       } else {
         writer.stop();
@@ -95,94 +115,30 @@ export function startOpenSourceCarousel(root) {
     });
   }
 
-  function draw() {
-    const scale = `scaleX(${Math.min(elapsed / SLIDE_MS, 1)})`;
-    bars[index].style.transform = scale;
-    if (phoneBar) {
-      phoneBar.style.transform = scale;
-    }
-  }
-
-  function tick(now) {
-    frame = null;
-    if (last !== null) {
-      elapsed += now - last;
-    }
-    last = now;
-    if (elapsed >= SLIDE_MS) {
-      go((index + 1) % slides.length);
-    } else {
-      draw();
-    }
-    schedule();
-  }
-
-  function schedule() {
-    const shouldRun = playing && !held();
-    if (shouldRun && frame === null) {
-      frame = window.requestAnimationFrame(tick);
-    } else if (!shouldRun && frame !== null) {
-      window.cancelAnimationFrame(frame);
-      frame = null;
-      last = null;
-    }
-    syncCommand();
-  }
-
-  function showSlide() {
-    slides.forEach((slide, i) => {
-      slide.classList.toggle("is-active", i === index);
-    });
-    shown = index;
-    syncCommand();
-  }
-
-  function go(target, instant = false) {
+  function go(target) {
+    paint("");
     index = target;
     elapsed = 0;
-    bars.forEach((bar) => {
-      bar.style.transform = "";
-    });
-    if (phoneBar) {
-      phoneBar.style.transform = "";
-    }
-    images.forEach((image, i) =>
-      image.classList.toggle("is-active", i === index),
+    [slides, images].forEach((group) =>
+      group.forEach((el, i) => el.classList.toggle("is-active", i === index)),
     );
     titles.forEach((title, i) =>
       title.setAttribute("aria-expanded", String(i === index)),
     );
-
-    window.clearTimeout(swapTimer);
-    if (instant || prefersReducedMotion() || phone.matches || shown === index) {
-      showSlide();
-    } else {
-      // Collapse the old panel now, open the new one after the gap
-      slides[shown].classList.remove("is-active");
-      swapTimer = window.setTimeout(showSlide, COLLAPSE_MS + GAP_MS);
-    }
+    sync();
   }
 
-  function renderPause() {
-    const label = playing ? "Pause carousel" : "Play carousel";
-    pauseButtons.forEach((button) => {
-      button.setAttribute("aria-label", label);
-      const icon = button.querySelector("i");
-      icon.className = playing ? "p-icon--pause" : "p-icon--play";
-    });
+  function setMode(next) {
+    mode = next;
+    sync();
   }
 
-  function setPlaying(value, freeze = false) {
-    playing = value;
-    frozen = freeze;
-    renderPause();
-    schedule();
-  }
-
-  // A visitor's choice stops autoplay (not the typing), and is announced
+  // A visitor's choice stops autoplay (not a Pause), and is announced
   function choose(target) {
+    if (mode === "playing") {
+      mode = "chosen";
+    }
     go(target);
-    setPlaying(false, frozen);
     live.textContent = `Slide ${target + 1} of ${slides.length}: ${
       titles[target].textContent
     }`;
@@ -195,7 +151,7 @@ export function startOpenSourceCarousel(root) {
     }
     let target = null;
     if (event.key in NAV_KEYS) {
-      target = (current + NAV_KEYS[event.key] + titles.length) % titles.length;
+      target = wrap(current + NAV_KEYS[event.key]);
     } else if (event.key === "Home") {
       target = 0;
     } else if (event.key === "End") {
@@ -210,32 +166,35 @@ export function startOpenSourceCarousel(root) {
   titles.forEach((title, i) =>
     title.addEventListener("click", () => choose(i)),
   );
-  previous.addEventListener("click", () =>
-    choose((index - 1 + slides.length) % slides.length),
-  );
-  next.addEventListener("click", () => choose((index + 1) % slides.length));
+  root
+    .querySelectorAll(".js-open-source-step")
+    .forEach((button) =>
+      button.addEventListener("click", () =>
+        choose(wrap(index + Number(button.dataset.step))),
+      ),
+    );
   pauseButtons.forEach((button) =>
-    button.addEventListener("click", () => setPlaying(!playing, playing)),
+    button.addEventListener("click", () =>
+      setMode(mode === "playing" ? "paused" : "playing"),
+    ),
   );
   list.addEventListener("keydown", onKeydown);
-  document.addEventListener("visibilitychange", schedule);
+  document.addEventListener("visibilitychange", sync);
   if ("IntersectionObserver" in window) {
     new window.IntersectionObserver((entries) => {
       onScreen = entries.some((entry) => entry.isIntersecting);
-      schedule();
+      sync();
     }).observe(root);
   }
-  desktop.addEventListener("change", syncCommand);
-  onReducedMotionChange((reduced) => reduced && setPlaying(false));
+  desktop.addEventListener("change", sync);
+  onReducedMotionChange((reduced) => reduced && setMode("paused"));
 
   // The no-JS :target state is replaced by this one
   const hashed = slides.findIndex((slide) => `#${slide.id}` === location.hash);
   if (hashed !== -1) {
     window.history.replaceState(null, "", location.pathname + location.search);
   }
-  go(Math.max(hashed, 0), true);
+  mode = hashed === -1 && !prefersReducedMotion() ? "playing" : "chosen";
+  go(Math.max(hashed, 0));
   root.classList.add("is-enhanced");
-  playing = hashed === -1 && !prefersReducedMotion();
-  renderPause();
-  schedule();
 }
