@@ -4,6 +4,7 @@ import re
 import unittest
 
 # Packages
+from bs4 import BeautifulSoup
 from vcr_unittest import VCRTestCase
 
 # Local
@@ -97,6 +98,33 @@ class TestHomepageRender(VCRTestCase):
             "Carrier–grade private cloud",
         ]:
             self.assertFalse(removed in html, f"Still present: {removed}")
+
+    def test_community_tiles(self):
+        """
+        The community tiles load only posters up front, offer each video in
+        three codecs, and serve every image through image()
+        """
+
+        response = self.client.get("/")
+        soup = BeautifulSoup(response.get_data(as_text=True), "lxml")
+
+        self.assertIn("p-homepage", soup.body["class"])
+        self.assertEqual(len(soup.select(".p-community-tile")), 3)
+        image = soup.select_one("img.p-community-tile__media")
+        self.assertIn("res.cloudinary.com", image["src"])
+        videos = soup.select("video.p-community-tile__media")
+        self.assertEqual(len(videos), 2)
+        for video in videos:
+            self.assertEqual(video["preload"], "none")
+            self.assertIn("res.cloudinary.com", video["poster"])
+            self.assertEqual(
+                [source["type"] for source in video.find_all("source")],
+                [
+                    'video/webm; codecs="av01.0.05M.08"',
+                    'video/mp4; codecs="hvc1.1.6.L93.B0"',
+                    "video/mp4",
+                ],
+            )
 
 
 if __name__ == "__main__":
