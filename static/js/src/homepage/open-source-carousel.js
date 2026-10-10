@@ -68,6 +68,8 @@ export function startOpenSourceCarousel(root) {
   let index = 0;
   let shown = 0;
   let playing = true;
+  // Only the Pause button freezes the typing; choosing a slide just stops autoplay
+  let frozen = false;
   let elapsed = 0;
   let onScreen = true;
   let frame = null;
@@ -76,7 +78,7 @@ export function startOpenSourceCarousel(root) {
 
   const held = () => !onScreen || document.hidden;
 
-  // Only the visible slide types, and only while playing on desktop
+  // Only the visible slide types, and only on desktop, unless frozen
   function syncCommand() {
     const animate = desktop.matches && !prefersReducedMotion();
     typewriters.forEach((writer, i) => {
@@ -85,7 +87,7 @@ export function startOpenSourceCarousel(root) {
       }
       if (i !== shown || !animate) {
         writer.reset();
-      } else if (playing && !held()) {
+      } else if (!frozen && !held()) {
         writer.start();
       } else {
         writer.stop();
@@ -170,16 +172,17 @@ export function startOpenSourceCarousel(root) {
     });
   }
 
-  function setPlaying(value) {
+  function setPlaying(value, freeze = false) {
     playing = value;
+    frozen = freeze;
     renderPause();
     schedule();
   }
 
-  // A visitor's choice always pauses, and is announced
+  // A visitor's choice stops autoplay (not the typing), and is announced
   function choose(target) {
     go(target);
-    setPlaying(false);
+    setPlaying(false, frozen);
     live.textContent = `Slide ${target + 1} of ${slides.length}: ${
       titles[target].textContent
     }`;
@@ -212,7 +215,7 @@ export function startOpenSourceCarousel(root) {
   );
   next.addEventListener("click", () => choose((index + 1) % slides.length));
   pauseButtons.forEach((button) =>
-    button.addEventListener("click", () => setPlaying(!playing)),
+    button.addEventListener("click", () => setPlaying(!playing, playing)),
   );
   list.addEventListener("keydown", onKeydown);
   document.addEventListener("visibilitychange", schedule);
