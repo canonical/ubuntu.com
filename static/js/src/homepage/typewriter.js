@@ -1,5 +1,3 @@
-const PREFIX = "$ sudo snap install ";
-
 function span(className, text) {
   const node = document.createElement("span");
   node.className = className;
@@ -7,15 +5,15 @@ function span(className, text) {
   return node;
 }
 
-// Types each word after the fixed prefix, holds it, deletes it, then moves on.
+// "$ sudo snap install a/b/c": the text up to the last space stays, and each
+// word of the slash list is typed, held, deleted, then the next one starts.
 // Until start() the element keeps its server-rendered full list.
-export function createTypewriter(
-  el,
-  words,
-  { typeMs = 90, holdMs = 1500 } = {},
-) {
+export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
   const staticHtml = el.innerHTML;
   const staticText = el.textContent;
+  const cut = staticText.lastIndexOf(" ") + 1;
+  const prefix = staticText.slice(0, cut);
+  const words = staticText.slice(cut).split("/");
   let typed = null;
   let wordIndex = 0;
   let chars = 0;
@@ -27,7 +25,7 @@ export function createTypewriter(
     typed = document.createElement("span");
     const visible = document.createElement("span");
     visible.setAttribute("aria-hidden", "true");
-    visible.append(PREFIX, typed, span("p-open-source__cursor", ""));
+    visible.append(prefix, typed, span("p-open-source__cursor", ""));
     el.replaceChildren(visible, span("u-off-screen", staticText));
   }
 
@@ -54,15 +52,18 @@ export function createTypewriter(
     timer = window.setTimeout(step, delay);
   }
 
+  // A fresh start blinks the cursor for holdMs first, so a panel that is
+  // still opening shows the prompt before the typing begins
   function start() {
     if (timer !== null) {
       return;
     }
-    if (!typed) {
+    const fresh = !typed;
+    if (fresh) {
       build();
       render();
     }
-    timer = window.setTimeout(step, typeMs);
+    timer = window.setTimeout(step, fresh ? holdMs : typeMs);
   }
 
   function stop() {

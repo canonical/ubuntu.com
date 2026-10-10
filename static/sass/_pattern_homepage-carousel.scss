@@ -3,8 +3,10 @@
   // active slide expanded in place. Phone swaps the list for one slide.
   // Without JS the targeted slide (:target) takes over from slide 1.
   $carousel-slide-count: 6;
-  // Framer's accordion timing: collapse, a short gap (set in JS), expand
+  // Framer's accordion timing: the old panel collapses, then after a short
+  // gap the new one expands
   $carousel-duration: 0.55s;
+  $carousel-swap-delay: $carousel-duration + 0.06s;
   $carousel-easing: cubic-bezier(0.22, 1, 0.36, 1);
 
   .p-open-source__images {
@@ -122,7 +124,14 @@
 
   .p-open-source__panel {
     display: none;
-    padding-bottom: $sp-unit * 3;
+  }
+
+  // The gap under an open panel: a spacer, not padding, so a collapsed (0fr)
+  // panel is truly zero height
+  .p-open-source__panel-inner::after {
+    content: "";
+    display: block;
+    height: $sp-unit * 3;
   }
 
   .p-open-source__slide.is-active .p-open-source__panel,
@@ -134,58 +143,51 @@
     }
   }
 
-  .p-open-source__panel-inner::after {
-    content: "";
-    display: block;
-    height: $sp-unit * 3;
-  }
+  // Tablet and up, with motion: the panel is a one-row grid, so its height
+  // animates 0fr to 1fr without measuring. The old panel collapses at once,
+  // the new one waits for it plus a gap. Collapsed panels leave the focus
+  // order once hidden. Elsewhere the display rules above apply as they are.
+  @media (min-width: $breakpoint-small) and (prefers-reduced-motion: no-preference) {
+    .js-open-source-carousel.is-enhanced {
+      .p-open-source__panel {
+        animation: none;
+        display: grid;
+        grid-template-rows: 0fr;
+        opacity: 0;
+        transition:
+          grid-template-rows $carousel-duration $carousel-easing,
+          opacity $carousel-duration $carousel-easing,
+          visibility 0s linear $carousel-duration;
+        visibility: hidden;
+      }
 
-  // Enhanced: the panel is a one-row grid, so height animates 0fr to 1fr
-  // without measuring. The old panel collapses, the new one opens after a gap
-  // (timed in the carousel script). Collapsed panels are hidden from focus
-  // and assistive tech once the collapse ends.
-  .js-open-source-carousel.is-enhanced {
-    .p-open-source__panel {
-      animation: none;
-      display: grid;
-      grid-template-rows: 0fr;
-      opacity: 0;
-      padding-bottom: 0;
-      transition:
-        grid-template-rows $carousel-duration $carousel-easing,
-        opacity $carousel-duration $carousel-easing,
-        visibility 0s linear $carousel-duration;
-      visibility: hidden;
-    }
+      .p-open-source__panel-inner {
+        filter: blur(3px);
+        min-height: 0;
+        overflow: hidden;
+        transform: translateY(5px);
+        // Keep the content blurred until the collapse has finished
+        transition:
+          filter 0s linear $carousel-duration,
+          transform 0s linear $carousel-duration;
+      }
 
-    .p-open-source__panel-inner {
-      filter: blur(3px);
-      min-height: 0;
-      overflow: hidden;
-      transform: translateY(5px);
-      // Keep the content blurred until the collapse has finished
-      transition:
-        filter 0s linear $carousel-duration,
-        transform 0s linear $carousel-duration;
-    }
+      .p-open-source__slide.is-active {
+        .p-open-source__panel {
+          grid-template-rows: 1fr;
+          opacity: 1;
+          transition-delay: $carousel-swap-delay;
+          visibility: visible;
+        }
 
-    .p-open-source__slide.is-active .p-open-source__panel {
-      animation: none;
-      grid-template-rows: 1fr;
-      opacity: 1;
-      transition:
-        grid-template-rows $carousel-duration $carousel-easing,
-        opacity $carousel-duration $carousel-easing,
-        visibility 0s;
-      visibility: visible;
-    }
-
-    .p-open-source__slide.is-active .p-open-source__panel-inner {
-      filter: none;
-      transform: none;
-      transition:
-        filter $carousel-duration $carousel-easing,
-        transform $carousel-duration $carousel-easing;
+        .p-open-source__panel-inner {
+          filter: none;
+          transform: none;
+          transition:
+            filter $carousel-duration $carousel-easing $carousel-swap-delay,
+            transform $carousel-duration $carousel-easing $carousel-swap-delay;
+        }
+      }
     }
   }
 
@@ -245,39 +247,7 @@
     }
   }
 
-  // Phones show one slide at a time: no height animation, just a text fade
-  @media (max-width: $breakpoint-small - 1) {
-    .js-open-source-carousel.is-enhanced {
-      .p-open-source__panel,
-      .p-open-source__slide.is-active .p-open-source__panel {
-        grid-template-rows: 1fr;
-        transition: none;
-      }
-
-      .p-open-source__panel-inner,
-      .p-open-source__slide.is-active .p-open-source__panel-inner {
-        filter: none;
-        transform: none;
-        transition: none;
-      }
-
-      .p-open-source__slide.is-active .p-open-source__panel {
-        @media (prefers-reduced-motion: no-preference) {
-          animation: p-open-source-fade-in 0.45s ease-out;
-        }
-      }
-    }
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .p-open-source__image,
-    .js-open-source-carousel.is-enhanced {
-      .p-open-source__panel,
-      .p-open-source__panel-inner {
-        transition: none;
-      }
-    }
-
     .p-open-source__image {
       transition: none;
     }
