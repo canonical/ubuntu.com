@@ -1,0 +1,133 @@
+// "Built by you. For you." tiles. On wide screens with a hovering pointer,
+// hovering or focusing a tile dims and blurs its media and reveals the text
+// over it. Everywhere else the text sits under the media, always visible.
+@mixin ubuntu-p-homepage-community {
+  $community-easing: cubic-bezier(0.22, 1, 0.36, 1);
+  // Below this width the wide tiles are too short for the overlay text
+  $community-overlay-min-width: 1280px;
+  $community-overlay: "(hover: hover) and (min-width: #{$community-overlay-min-width})";
+
+  .p-community__hint {
+    display: none;
+  }
+
+  .p-community__tiles {
+    row-gap: $sp-unit * 4;
+  }
+
+  .p-community__stack {
+    display: flex;
+    flex-direction: column;
+    gap: $sp-unit * 4;
+  }
+
+  .p-community-tile__frame {
+    aspect-ratio: 600 / 288;
+    overflow: hidden;
+  }
+
+  // Square on phones and desktop; on tablet a full-width square is too tall
+  .p-community-tile.is-square .p-community-tile__frame {
+    aspect-ratio: 1;
+
+    @media (min-width: $breakpoint-small) and (max-width: $breakpoint-large - 1) {
+      aspect-ratio: 600 / 288;
+    }
+  }
+
+  // With the text under the tiles, the square tile's column is shorter than
+  // the stack beside it. Let its frame fill the column so both end level;
+  // the media is absolutely positioned so it can't set the height itself.
+  @media (min-width: $breakpoint-large) and (not (#{$community-overlay})) {
+    .p-community-tile.is-square {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+      .p-community-tile__frame {
+        aspect-ratio: auto;
+        flex: 1 1 auto;
+        min-height: $sp-unit * 40;
+        position: relative;
+      }
+
+      .p-community-tile__media {
+        inset: 0;
+        position: absolute;
+      }
+    }
+  }
+
+  .p-community-tile__media {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .p-community-tile__content {
+    padding-top: $spv--large;
+  }
+
+  @media #{$community-overlay} {
+    .p-community__hint {
+      display: block;
+    }
+
+    .p-community__stack {
+      gap: $spv--x-large;
+    }
+
+    .p-community-tile {
+      position: relative;
+    }
+
+    // Match the stacked tiles' height rather than forcing a square
+    .p-community-tile.is-square {
+      height: 100%;
+
+      .p-community-tile__frame {
+        aspect-ratio: auto;
+        height: 100%;
+      }
+    }
+
+    .p-community-tile__media {
+      transition: filter 200ms $community-easing;
+    }
+
+    .p-community-tile__content {
+      display: flex;
+      flex-direction: column;
+      inset: 0;
+      justify-content: space-between;
+      opacity: 0;
+      padding: $sp-unit * 4;
+      // Click-through until revealed, so a first tap on a touch laptop
+      // can't hit the hidden button; still focusable for :focus-within
+      pointer-events: none;
+      position: absolute;
+      transition: opacity 400ms $community-easing;
+    }
+
+    .p-community-tile:hover,
+    .p-community-tile:focus-within {
+      .p-community-tile__media {
+        filter: brightness(0.1) blur(10px);
+      }
+
+      .p-community-tile__content {
+        opacity: 1;
+        pointer-events: auto;
+        transition-delay: 80ms;
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .p-community-tile__media,
+    .p-community-tile__content {
+      transition: none;
+    }
+  }
+}
