@@ -197,6 +197,31 @@ describe("startOpenSourceCarousel", () => {
     expect(code(1).firstChild.textContent).toBe("$ sudo snap install k");
   });
 
+  it("keeps typing after a slide is chosen, until Pause freezes it", () => {
+    desktop = true;
+    const root = setup();
+    const text = () => root.querySelectorAll("code")[1].textContent;
+
+    click(titles(root)[1]);
+    tick(COLLAPSE_MS + GAP_MS + 90);
+    const first = text();
+    tick(300);
+    expect(text()).not.toBe(first);
+    expect(pauseLabel(root)).toBe("Play carousel");
+
+    const pause = root.querySelector(".js-open-source-pause");
+    click(pause);
+    tick(300);
+    click(pause);
+    const stopped = text();
+    tick(1000);
+    expect(text()).toBe(stopped);
+
+    click(pause);
+    tick(300);
+    expect(text()).not.toBe(stopped);
+  });
+
   it("starts paused with reduced motion", () => {
     reduced = true;
     const root = setup();
