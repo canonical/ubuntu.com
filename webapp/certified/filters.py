@@ -386,9 +386,7 @@ def build_filter_view_models(options_by_key, selected):
             value
             if definition.control == "checkbox"
             and definition.selection == "multiple"
-            else [value]
-            if definition.selection == "single" and value
-            else []
+            else [value] if definition.selection == "single" and value else []
         )
         known_values = {
             option["value"] for option in options_by_key[definition.key]
@@ -444,20 +442,26 @@ def build_filter_view_models(options_by_key, selected):
             {
                 **asdict(definition),
                 "options": option_models,
-                "selected_count": int(is_active)
-                if definition.control in {"range", "year"}
-                or definition.selection == "single"
-                else len(selected_values),
+                "selected_count": (
+                    int(is_active)
+                    if definition.control in {"range", "year"}
+                    or definition.selection == "single"
+                    else len(selected_values)
+                ),
                 "expanded": definition.default_expanded or is_active,
                 "show_option_search": definition.control == "checkbox"
                 and len(option_models) > FILTER_OPTION_LIMIT,
                 "value": value,
-                "memory_min": value["min"]
-                if definition.control == "range"
-                else MEMORY_MIN_GB,
-                "memory_max": value["max"]
-                if definition.control == "range"
-                else MEMORY_MAX_GB,
+                "memory_min": (
+                    value["min"]
+                    if definition.control == "range"
+                    else MEMORY_MIN_GB
+                ),
+                "memory_max": (
+                    value["max"]
+                    if definition.control == "range"
+                    else MEMORY_MAX_GB
+                ),
                 "memory_min_limit": MEMORY_MIN_GB,
                 "memory_max_limit": MEMORY_MAX_GB,
                 "memory_step": MEMORY_STEP_GB,
@@ -480,8 +484,7 @@ def _memory_bound(value, default):
     value = max(MEMORY_MIN_GB, min(MEMORY_MAX_GB, value))
     return min(
         MEMORY_MAX_GB,
-        ((value + MEMORY_STEP_GB // 2) // MEMORY_STEP_GB)
-        * MEMORY_STEP_GB,
+        ((value + MEMORY_STEP_GB // 2) // MEMORY_STEP_GB) * MEMORY_STEP_GB,
     )
 
 
@@ -495,8 +498,5 @@ def _is_valid_year(value):
 
 def _filter_is_active(control, value):
     if control == "range":
-        return (
-            value["min"] > MEMORY_MIN_GB
-            or value["max"] < MEMORY_MAX_GB
-        )
+        return value["min"] > MEMORY_MIN_GB or value["max"] < MEMORY_MAX_GB
     return bool(value)

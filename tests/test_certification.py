@@ -80,8 +80,8 @@ class TestCertification(VCRTestCase):
         self.assertIsInstance(response.json, dict)
         # If below test fails data structure changed
         # so please change it also in the certified-search-results.js
-        self.assertIn("release_filters", response.json.keys())
-        self.assertIn("vendor_filters", response.json.keys())
+        self.assertIn("filters", response.json.keys())
+        self.assertIn("derived_filters_pending", response.json.keys())
 
     def test_autocomplete_min_chars(self):
         response = self.client.get("/certified/autocomplete.json?q=ab")

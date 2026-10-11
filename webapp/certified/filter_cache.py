@@ -234,12 +234,8 @@ def build_derived_filter_options(api):
     model_families = [
         {
             "value": platform_id,
-            "label": _model_family_label(
-                platform["make"], platform["name"]
-            ),
-            "available_for": _ordered_categories(
-                platform["available_for"]
-            ),
+            "label": _model_family_label(platform["make"], platform["name"]),
+            "available_for": _ordered_categories(platform["available_for"]),
         }
         for platform_id, platform in platforms.items()
     ]
@@ -256,9 +252,7 @@ def build_derived_filter_options(api):
 
 
 def _model_family_label(make, platform_name):
-    if not make or platform_name.casefold().startswith(
-        f"{make.casefold()} "
-    ):
+    if not make or platform_name.casefold().startswith(f"{make.casefold()} "):
         return platform_name
     return f"{make} {platform_name}"
 
@@ -273,9 +267,7 @@ def _configuration_details(api):
         )
         details = payload.get("results", [])
         if not isinstance(details, list):
-            raise ValueError(
-                "Certified configuration details must be a list"
-            )
+            raise ValueError("Certified configuration details must be a list")
 
         yield from details
 
