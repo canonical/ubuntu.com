@@ -242,7 +242,7 @@ function initDerivedFilterRefresh(filterRoot) {
       const status = filterRoot.querySelector(".js-derived-filters-status");
       if (status) {
         status.textContent =
-          "Model family, GPU and processor options are temporarily unavailable.";
+          "Model family, processor, GPU and architecture options are temporarily unavailable.";
       }
     }
   };

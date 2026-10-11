@@ -14,10 +14,15 @@ from filelock import Timeout as FileLockTimeout
 
 logger = logging.getLogger(__name__)
 
-CACHE_VERSION = 5
+CACHE_VERSION = 6
 CACHE_TTL_SECONDS = 7 * 24 * 60 * 60
 CONFIGURATION_DETAIL_PAGE_SIZE = 500
-DERIVED_OPTION_KEYS = ("model_family", "processor_model", "gpu")
+DERIVED_OPTION_KEYS = (
+    "model_family",
+    "processor_model",
+    "gpu",
+    "architecture",
+)
 DEFAULT_CACHE_PATH = "/tmp/ubuntu-com-certified-filter-options.json"
 FILTER_CATEGORY_BY_API_VALUE = {
     "Laptop": "Laptop",
@@ -164,6 +169,7 @@ def build_derived_filter_options(api):
     platforms = {}
     video_categories_by_name = {}
     processor_categories_by_name = {}
+    architecture_categories_by_name = {}
 
     for detail in _configuration_details(api):
         filter_category = FILTER_CATEGORY_BY_API_VALUE.get(
@@ -171,6 +177,12 @@ def build_derived_filter_options(api):
         )
         if filter_category is None:
             continue
+
+        architecture = str(detail.get("architecture") or "").strip()
+        if architecture:
+            architecture_categories_by_name.setdefault(
+                architecture, set()
+            ).add(filter_category)
 
         platform_id = str(detail.get("platform_id") or "").strip()
         platform_name = str(detail.get("platform_name") or "").strip()
@@ -237,8 +249,9 @@ def build_derived_filter_options(api):
 
     return {
         "model_family": model_families,
-        "processor_model": _device_options(processor_categories_by_name),
-        "gpu": _device_options(video_categories_by_name),
+        "processor_model": _named_options(processor_categories_by_name),
+        "gpu": _named_options(video_categories_by_name),
+        "architecture": _named_options(architecture_categories_by_name),
     }
 
 
@@ -287,7 +300,7 @@ def _ordered_categories(categories):
     ]
 
 
-def _device_options(categories_by_name):
+def _named_options(categories_by_name):
     options = [
         {
             "value": name,

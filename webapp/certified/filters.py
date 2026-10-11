@@ -69,10 +69,9 @@ FILTER_DEFINITIONS = (
     FilterDefinition(
         key="gpu",
         title="Graphics Processing Unit (GPU)",
-        api_parameter="gpu_name",
+        api_parameter="gpu_name__in",
         option_source="gpu",
         plural="GPUs",
-        selection="single",
     ),
     FilterDefinition(
         key="memory",
@@ -84,9 +83,16 @@ FILTER_DEFINITIONS = (
         url_keys=("memory_min", "memory_max"),
     ),
     FilterDefinition(
+        key="architecture",
+        title="Architecture",
+        api_parameter="arch_name__in",
+        option_source="architecture",
+        plural="architectures",
+    ),
+    FilterDefinition(
         key="certified_year",
-        title="Certified in",
-        api_parameter="completed__year",
+        title="Certified in or after",
+        api_parameter="completed__year__gte",
         option_source="",
         plural="",
         control="year",
@@ -265,7 +271,12 @@ def build_options_by_key(
         )
         seen_releases.add(value)
 
-    for key in ("model_family", "gpu", "processor_model"):
+    for key in (
+        "model_family",
+        "processor_model",
+        "gpu",
+        "architecture",
+    ):
         for option in derived_options.get(key, []):
             if not isinstance(option, dict):
                 continue
@@ -418,7 +429,12 @@ def build_filter_view_models(options_by_key, selected):
         is_active = _filter_is_active(definition.control, value)
         if (
             definition.option_source
-            in {"model_family", "gpu", "processor_model"}
+            in {
+                "model_family",
+                "processor_model",
+                "gpu",
+                "architecture",
+            }
             and not option_models
             and not is_active
         ):
