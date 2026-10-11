@@ -1,3 +1,5 @@
+import { initAutocomplete } from "./autocomplete.js";
+
 export const DEFAULT_FILTER_LIMIT = 5;
 
 const DERIVED_FILTER_REFRESH_INTERVAL = 10000;
@@ -401,3 +403,49 @@ function hideDrawerPageReload() {
 initCertifiedFilters();
 updateResultsPerPage();
 hideDrawerPageReload();
+// initAutocomplete() is a generic, reusable widget defined in autocomplete.js
+const AUTOCOMPLETE_MIN_CHARS = 3;
+const AUTOCOMPLETE_MAX_SUGGESTIONS = 5;
+const AUTOCOMPLETE_DEBOUNCE_MS = 200;
+
+function initCertifiedAutocomplete() {
+  // Model names rarely repeat the vendor name (e.g. "XPS 13", not "Dell
+  // XPS 13") - prefix it for display (and fill/search on it too) so it's
+  // clear which vendor a suggestion is from, without duplicating it when
+  // the model name already includes it
+  function suggestionLabel({ make, model }) {
+    if (make && !model.toLowerCase().startsWith(make.toLowerCase())) {
+      return `${make} ${model}`;
+    }
+    return model;
+  }
+
+  initAutocomplete({
+    inputSelector: "#certified-search",
+    suggestionsSelector: "#certified-search-suggestions",
+    containerSelector: ".p-certified-autocomplete",
+    minChars: AUTOCOMPLETE_MIN_CHARS,
+    maxSuggestions: AUTOCOMPLETE_MAX_SUGGESTIONS,
+    debounceMs: AUTOCOMPLETE_DEBOUNCE_MS,
+    getLabel: suggestionLabel,
+    buildUrl(term) {
+      const params = new URLSearchParams(window.location.search);
+      const url = new URL(
+        `${window.location.origin}/certified/autocomplete.json`,
+      );
+      url.searchParams.set("q", term);
+      params
+        .getAll("category")
+        .forEach((value) => url.searchParams.append("category", value));
+      params
+        .getAll("vendor")
+        .forEach((value) => url.searchParams.append("vendor", value));
+      params
+        .getAll("release")
+        .forEach((value) => url.searchParams.append("release", value));
+      return url;
+    },
+  });
+}
+
+initCertifiedAutocomplete();
