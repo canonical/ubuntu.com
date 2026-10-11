@@ -49,6 +49,9 @@ class CertificationAPI:
             },
         ).json()
 
+    def certified_platform_certificates(self, platform_id):
+        return self._get(f"certified-platforms/{platform_id}").json()
+
     def certified_vendors(
         self,
         limit=None,
@@ -95,6 +98,12 @@ class CertificationAPI:
         device_bus=None,
         device_subsystem=None,
         device_vendor_id=None,
+        gpu_name__in=None,
+        arch_name__in=None,
+        cpu_model=None,
+        memory_gte=None,
+        memory_lte=None,
+        completed__year__gte=None,
     ):
         response = self._get(
             "certified-configurations",
@@ -120,6 +129,12 @@ class CertificationAPI:
                 "device_bus": device_bus,
                 "device_subsystem": device_subsystem,
                 "device_vendor_id": device_vendor_id,
+                "gpu_name__in": _get_clean_in_filter(gpu_name__in),
+                "arch_name__in": _get_clean_in_filter(arch_name__in),
+                "cpu_model": cpu_model,
+                "memory_gte": memory_gte,
+                "memory_lte": memory_lte,
+                "completed__year__gte": completed__year__gte,
             },
         )
         response.raise_for_status()
