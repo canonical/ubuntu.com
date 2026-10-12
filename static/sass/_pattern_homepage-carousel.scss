@@ -177,11 +177,11 @@
     }
   }
 
-  // Tablet and up, with motion: the panel is a one-row grid, so its height
+  // Desktop, with motion: the panel is a one-row grid, so its height
   // animates 0fr to 1fr without measuring. The old panel collapses at once,
   // the new one waits for it plus a gap. Collapsed panels leave the focus
   // order once hidden. Elsewhere the display rules above apply as they are.
-  @media (min-width: $breakpoint-small) and (prefers-reduced-motion: no-preference) {
+  @media (min-width: $breakpoint-large) and (prefers-reduced-motion: no-preference) {
     .js-open-source-carousel.is-enhanced {
       .p-open-source__panel {
         animation: none;
