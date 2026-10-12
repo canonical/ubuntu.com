@@ -126,25 +126,27 @@
 ] %}
 
 <section class="p-section js-open-source-carousel">
-  <div class="grid-row--50-50-on-large">
-    <hr class="p-rule" />
-    <div class="grid-col">
-      <h2>
-        A world of open source.
-        <br />
-        At your command.
-      </h2>
-    </div>
-    <div class="grid-col">
-      <p>
-        If it runs, you can run it on Ubuntu. Access thousands of open source packages from your OS, get security maintenance with Ubuntu Pro.
-      </p>
+  <div class="p-section--shallow">
+    <div class="grid-row--50-50-on-large">
+      <hr class="p-rule" />
+      <div class="grid-col">
+        <h2>
+          A world of open source.
+          <br />
+          At your command.
+        </h2>
+      </div>
+      <div class="grid-col">
+        <p>
+          If it runs, you can run it on Ubuntu. Access thousands of open source packages from your OS, get security maintenance with Ubuntu Pro.
+        </p>
+      </div>
     </div>
   </div>
 
   <div class="grid-row p-open-source">
-    <div class="grid-col-4 grid-col-medium-4 p-open-source__media">
-      <div class="p-open-source__controls u-hide--medium u-hide--large">
+    <div class="grid-col-4 grid-col-medium-6 p-open-source__media">
+      <div class="p-open-source__controls u-hide--large">
         <span>
           <button type="button" class="p-open-source__button" aria-label="Previous slide">
             <i class="p-icon--chevron-left"></i>
@@ -168,14 +170,14 @@
             attrs={"class": "p-open-source__image" ~ (" is-active" if loop.first else "")}) | safe
           }}
         {% endfor %}
-        <div class="p-open-source__progress u-hide--medium u-hide--large">
+        <div class="p-open-source__progress u-hide--large">
           <span class="p-open-source__bar"></span>
         </div>
       </div>
     </div>
 
-    <div class="grid-col-4 grid-col-medium-4 p-open-source__slides">
-      <div class="p-open-source__controls u-hide--small">
+    <div class="grid-col-4 grid-col-medium-6 p-open-source__slides">
+      <div class="p-open-source__controls u-hide--small u-hide--medium">
         <button type="button" class="p-open-source__button" aria-label="Pause">
           <i class="p-icon--pause"></i>
         </button>

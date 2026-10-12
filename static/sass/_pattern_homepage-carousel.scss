@@ -1,6 +1,7 @@
 @mixin ubuntu-p-homepage-carousel {
   // Open source carousel: portrait image beside a list of slide titles, the
-  // active slide expanded in place. Phone swaps the list for one slide.
+  // active slide expanded in place. Phone and tablet swap the list for one
+  // slide.
   // Without JS the targeted slide (:target) takes over from slide 1.
   $carousel-easing: cubic-bezier(0.22, 1, 0.36, 1);
   $carousel-slide-count: 6;
@@ -38,7 +39,7 @@
     display: flex;
     justify-content: space-between;
 
-    @media (min-width: $breakpoint-small) {
+    @media (min-width: $breakpoint-large) {
       justify-content: flex-end;
     }
   }
@@ -58,7 +59,7 @@
   .p-open-source__progress {
     background-color: $colors--theme--border-low-contrast;
     bottom: 0;
-    height: 2px;
+    height: 3px;
     left: 0;
     position: absolute;
     right: 0;
@@ -67,26 +68,42 @@
   .p-open-source__bar {
     background-color: $colors--theme--text-default;
     display: block;
-    height: 2px;
+    height: 3px;
     transform: scaleX(0);
     transform-origin: left;
     width: 100%;
   }
 
+  // Rules as on canonical.com's homepage tabs: 1px, lit on hover, 3px under
+  // the active slide's progress bar. Positioned, so they never shift the text.
   .p-open-source__slide {
-    border-top: 1px solid $colors--theme--border-low-contrast;
     position: relative;
 
-    &.is-active,
-    &:target {
-      border-top-width: 2px;
+    &::before {
+      background-color: $colors--theme--border-low-contrast;
+      content: "";
+      height: 1px;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
     }
 
-    // The progress bar sits on the active slide's rule
+    &:hover::before {
+      background-color: $colors--theme--text-default;
+    }
+
+    &.is-active::before,
+    &:target::before {
+      background-color: $colors--theme--border-low-contrast;
+      height: 3px;
+    }
+
     .p-open-source__bar {
       left: 0;
       position: absolute;
-      top: -2px;
+      top: 0;
+      z-index: 1;
     }
 
     h3 {
@@ -100,14 +117,22 @@
     padding: $sp-unit * 2 0;
     text-decoration: none;
 
+    // Muted until hovered or active, as on canonical.com
     &,
     &:visited {
-      color: $colors--theme--text-default;
+      color: $colors--theme--text-muted;
     }
 
     &:hover,
     &:focus-visible {
-      color: $color-brand;
+      color: $colors--theme--text-default;
+    }
+  }
+
+  .inner-wrapper .p-open-source__slide.is-active,
+  .inner-wrapper .p-open-source__slide:target {
+    .p-open-source__title {
+      color: $colors--theme--text-default;
     }
   }
 
@@ -141,7 +166,13 @@
     }
 
     .p-open-source__slide.is-active:not(:target) {
-      border-top-width: 1px;
+      &::before {
+        height: 1px;
+      }
+
+      .p-open-source__title {
+        color: $colors--theme--text-muted;
+      }
 
       .p-open-source__panel {
         display: none;
@@ -157,8 +188,9 @@
     }
   }
 
-  // Once WD-39511 adds is-enhanced, phones show only the active slide
-  @media (max-width: $breakpoint-small - 1) {
+  // Once WD-39511 adds is-enhanced, phones and tablets show only the active
+  // slide
+  @media (max-width: $breakpoint-large - 1) {
     .js-open-source-carousel.is-enhanced .p-open-source__slide:not(.is-active) {
       display: none;
     }
