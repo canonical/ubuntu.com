@@ -187,8 +187,16 @@
   // Once WD-39511 adds is-enhanced, phones and tablets show only the active
   // slide
   @media (max-width: $breakpoint-large - 1) {
-    .js-open-source-carousel.is-enhanced .p-open-source__slide:not(.is-active) {
-      display: none;
+    .js-open-source-carousel.is-enhanced {
+      .p-open-source__slide:not(.is-active) {
+        display: none;
+      }
+
+      // The bar under the image stands in for the slide's rule
+      .p-open-source__slide::before,
+      .p-open-source__slide .p-open-source__bar {
+        display: none;
+      }
     }
   }
 
