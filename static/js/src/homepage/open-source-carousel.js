@@ -6,13 +6,6 @@ export const SLIDE_MS = 8000;
 // Vanilla's large breakpoint: the command only types on desktop
 const DESKTOP_QUERY = "(min-width: 1036px)";
 
-const NAV_KEYS = {
-  ArrowUp: -1,
-  ArrowLeft: -1,
-  ArrowDown: 1,
-  ArrowRight: 1,
-};
-
 // The title becomes a button: the panel sits between titles, so this is an
 // accordion, and a button gives Enter and Space for free.
 function toButton(link, panel) {
@@ -146,20 +139,17 @@ export function startOpenSourceCarousel(root) {
 
   function onKeydown(event) {
     const current = titles.indexOf(event.target);
-    if (current === -1) {
-      return;
-    }
-    let target = null;
-    if (event.key in NAV_KEYS) {
-      target = wrap(current + NAV_KEYS[event.key]);
-    } else if (event.key === "Home") {
-      target = 0;
-    } else if (event.key === "End") {
-      target = titles.length - 1;
-    }
-    if (target !== null) {
+    const targets = {
+      ArrowUp: wrap(current - 1),
+      ArrowLeft: wrap(current - 1),
+      ArrowDown: wrap(current + 1),
+      ArrowRight: wrap(current + 1),
+      Home: 0,
+      End: titles.length - 1,
+    };
+    if (current !== -1 && event.key in targets) {
       event.preventDefault();
-      titles[target].focus();
+      titles[targets[event.key]].focus();
     }
   }
 

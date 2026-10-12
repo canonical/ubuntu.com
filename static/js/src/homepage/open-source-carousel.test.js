@@ -1,70 +1,63 @@
 import { SLIDE_MS, startOpenSourceCarousel } from "./open-source-carousel";
 
-let reduced;
-let observe;
-let desktop;
-
 const COMMAND = "$ sudo snap install kube/juju";
+const LEAD_IN_MS = 1500;
 
-function slide(id, title) {
-  return `
-    <div class="p-open-source__slide" id="open-source-${id}">
-      <span class="p-open-source__bar"></span>
-      <a class="p-open-source__title" href="#open-source-${id}">${title}</a>
-      <div class="p-open-source__panel" id="open-source-${id}-panel">
-        <div class="p-open-source__command"><code>${COMMAND}</code></div>
-      </div>
-    </div>`;
-}
+let root;
+let reduced;
+let desktop;
+let observe;
 
-function setup({ hash = "" } = {}) {
+function setup(hash = "") {
   window.history.replaceState(null, "", `/${hash}`);
-  const names = ["a", "b", "c"];
+  const slides = ["a", "b", "c"].map(
+    (id) => `
+      <div class="p-open-source__slide" id="open-source-${id}">
+        <span class="p-open-source__bar"></span>
+        <a class="p-open-source__title" href="#open-source-${id}">${id}</a>
+        <div class="p-open-source__panel" id="open-source-${id}-panel">
+          <div class="p-open-source__command"><code>${COMMAND}</code></div>
+        </div>
+      </div>`,
+  );
   document.body.innerHTML = `
     <section class="js-open-source-carousel">
-      <button class="js-open-source-pause"><i class="p-icon--pause"></i></button>
+      <button class="js-open-source-pause"><i></i></button>
       <button class="js-open-source-step" data-step="-1"></button>
       <button class="js-open-source-step" data-step="1"></button>
-      ${names.map((name) => `<img class="p-open-source__image">`).join("")}
+      ${'<img class="p-open-source__image">'.repeat(slides.length)}
       <div class="p-open-source__progress">
         <span class="p-open-source__bar"></span>
       </div>
-      <div class="p-open-source__slides">
-        ${names.map((name) => slide(name, name.toUpperCase())).join("")}
-      </div>
+      <div class="p-open-source__slides">${slides.join("")}</div>
       <div aria-live="polite"></div>
     </section>`;
-  const root = document.querySelector(".js-open-source-carousel");
+  root = document.querySelector("section");
   startOpenSourceCarousel(root);
-  return root;
 }
 
-const active = (root) =>
-  [...root.querySelectorAll(".p-open-source__slide")].findIndex((el) =>
-    el.classList.contains("is-active"),
+const active = () =>
+  [...root.querySelectorAll(".p-open-source__slide")].findIndex((slide) =>
+    slide.classList.contains("is-active"),
   );
-const pauseLabel = (root) =>
-  root.querySelector(".js-open-source-pause").getAttribute("aria-label");
-const titles = (root) => root.querySelectorAll(".p-open-source__title");
-const phoneBar = (root) =>
-  root.querySelector(".p-open-source__progress .p-open-source__bar");
-const click = (el) =>
-  el.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-const press = (el, key) =>
-  el.dispatchEvent(new KeyboardEvent("keydown", { key, bubbles: true }));
+const pause = () => root.querySelector(".js-open-source-pause");
+const titles = () => root.querySelectorAll(".p-open-source__title");
+const command = (i) => root.querySelectorAll("code")[i];
+// The visible, typed part of a command
+const typed = (i) => command(i).firstChild.textContent;
+const press = (key) =>
+  document.activeElement.dispatchEvent(
+    new KeyboardEvent("keydown", { key, bubbles: true }),
+  );
 const tick = (ms) => jest.advanceTimersByTime(ms);
 
 beforeEach(() => {
   jest.useFakeTimers();
   reduced = false;
   desktop = false;
-  observe = null;
   window.matchMedia = (query) => ({
-    matches:
-      (reduced && query.includes("reduced")) ||
-      (desktop && query.includes("1036")),
+    matches: query.includes("reduced") ? reduced : desktop,
     addEventListener: () => {},
-    removeEventListener: () => {},
   });
   window.IntersectionObserver = function (callback) {
     observe = (isIntersecting) => callback([{ isIntersecting }]);
@@ -75,145 +68,132 @@ beforeEach(() => {
 afterEach(() => jest.useRealTimers());
 
 describe("startOpenSourceCarousel", () => {
-  it("advances after 8s and loops from the last slide", () => {
-    const root = setup();
+  it("advances after 8s, not typing on phones, and loops", () => {
+    setup();
 
     tick(SLIDE_MS + 50);
-    expect(active(root)).toBe(1);
+    expect(active()).toBe(1);
+    expect(command(1).textContent).toBe(COMMAND);
 
     tick(2 * SLIDE_MS);
-    expect(active(root)).toBe(0);
+    expect(active()).toBe(0);
   });
 
-  it("shows the chosen slide and pauses", () => {
-    const root = setup();
+  it("expands, announces and types a chosen slide, until Play", () => {
+    desktop = true;
+    setup();
+    const title = titles()[2];
 
-    click(titles(root)[2]);
+    title.click();
+    tick(LEAD_IN_MS + 100);
+    expect(typed(2)).toBe("$ sudo snap install ku");
+    expect(title.getAttribute("aria-expanded")).toBe("true");
+    expect(title.getAttribute("aria-controls")).toBe("open-source-c-panel");
+    expect(root.querySelector("[aria-live]").textContent).toContain("3 of 3");
+    expect(pause().getAttribute("aria-label")).toBe("Play carousel");
 
-    expect(active(root)).toBe(2);
-    expect(pauseLabel(root)).toBe("Play carousel");
+    tick(2 * SLIDE_MS);
+    expect(active()).toBe(2);
+
+    pause().click();
+    tick(SLIDE_MS + 50);
+    expect(active()).toBe(0);
   });
 
-  it("freezes the bar on pause and resumes on play", () => {
-    const root = setup();
-    const pause = root.querySelector(".js-open-source-pause");
-    tick(4000);
+  it("freezes the bar and the typing on Pause, resumes on Play", () => {
+    desktop = true;
+    setup();
+    const bar = root.querySelector(".p-open-source__progress span");
+    const state = () => [bar.style.transform, typed(0)];
+    tick(LEAD_IN_MS + 100);
 
-    click(pause);
-    const frozen = phoneBar(root).style.transform;
-    tick(4000);
-    expect(phoneBar(root).style.transform).toBe(frozen);
-
-    click(pause);
+    pause().click();
+    const frozen = state();
     tick(1000);
-    expect(phoneBar(root).style.transform).not.toBe(frozen);
+    expect(state()).toEqual(frozen);
+
+    pause().click();
+    tick(100);
+    expect(bar.style.transform).not.toBe(frozen[0]);
+    expect(typed(0)).toBe("$ sudo snap install kub");
   });
 
   it("wraps with Previous and Next", () => {
-    const root = setup();
+    setup();
     const [previous, next] = root.querySelectorAll(".js-open-source-step");
 
-    click(previous);
-    expect(active(root)).toBe(2);
+    previous.click();
+    expect(active()).toBe(2);
 
-    click(next);
-    expect(active(root)).toBe(0);
+    next.click();
+    expect(active()).toBe(0);
   });
 
-  it("moves focus with arrows and End inside the title list", () => {
-    const root = setup();
-    const [first, , last] = titles(root);
+  it("moves focus with arrows, Home and End in the title list only", () => {
+    setup();
+    const [first, second, last] = titles();
     first.focus();
 
-    press(first, "ArrowDown");
-    expect(document.activeElement).toBe(titles(root)[1]);
+    press("ArrowDown");
+    expect(document.activeElement).toBe(second);
 
-    press(document.activeElement, "End");
+    press("End");
     expect(document.activeElement).toBe(last);
+
+    press("Home");
+    expect(document.activeElement).toBe(first);
+
+    pause().focus();
+    press("End");
+    expect(document.activeElement).toBe(pause());
   });
 
-  it("ignores keys outside the title list", () => {
-    const spy = jest.spyOn(document, "addEventListener");
+  it("holds off screen and resumes unless stopped", () => {
     setup();
-    press(document.body, "ArrowDown");
-
-    expect(document.activeElement).toBe(document.body);
-    expect(spy).not.toHaveBeenCalledWith("keydown", expect.anything());
-  });
-
-  it("holds off screen and resumes unless paused", () => {
-    const root = setup();
 
     observe(false);
     tick(2 * SLIDE_MS);
-    expect(active(root)).toBe(0);
+    expect(active()).toBe(0);
 
     observe(true);
     tick(SLIDE_MS + 50);
-    expect(active(root)).toBe(1);
+    expect(active()).toBe(1);
 
-    click(titles(root)[0]);
+    titles()[0].click();
     observe(false);
     observe(true);
     tick(2 * SLIDE_MS);
-    expect(pauseLabel(root)).toBe("Play carousel");
-    expect(active(root)).toBe(0);
+    expect(active()).toBe(0);
   });
 
-  it("types the incoming command after the lead-in", () => {
+  it("types the incoming command after the lead-in, on desktop", () => {
     desktop = true;
-    const root = setup();
-    const code = (i) =>
-      root.querySelectorAll(".p-open-source__slide")[i].querySelector("code");
+    setup();
 
     tick(SLIDE_MS + 50);
-    expect(code(0).textContent).toBe(COMMAND);
-    expect(code(1).firstChild.textContent).toBe("$ sudo snap install ");
+    expect(command(0).textContent).toBe(COMMAND);
+    expect(typed(1)).toBe("$ sudo snap install ");
 
-    tick(1500);
-    expect(code(1).firstChild.textContent).toBe("$ sudo snap install k");
-  });
-
-  it("keeps typing after a slide is chosen, until Pause freezes it", () => {
-    desktop = true;
-    const root = setup();
-    const text = () => root.querySelectorAll("code")[1].textContent;
-
-    click(titles(root)[1]);
-    tick(1500 + 90);
-    const first = text();
-    tick(300);
-    expect(text()).not.toBe(first);
-    expect(pauseLabel(root)).toBe("Play carousel");
-
-    const pause = root.querySelector(".js-open-source-pause");
-    click(pause);
-    tick(300);
-    click(pause);
-    const stopped = text();
-    tick(1000);
-    expect(text()).toBe(stopped);
-
-    click(pause);
-    tick(300);
-    expect(text()).not.toBe(stopped);
+    tick(LEAD_IN_MS);
+    expect(typed(1)).toBe("$ sudo snap install k");
   });
 
   it("starts paused with reduced motion", () => {
     reduced = true;
-    const root = setup();
+    setup();
 
     tick(2 * SLIDE_MS);
 
-    expect(pauseLabel(root)).toBe("Play carousel");
-    expect(active(root)).toBe(0);
+    expect(active()).toBe(0);
+    expect(pause().getAttribute("aria-label")).toBe("Play carousel");
   });
 
   it("starts on a hashed slide, paused, and clears the hash", () => {
-    const root = setup({ hash: "#open-source-c" });
+    setup("#open-source-c");
 
-    expect(active(root)).toBe(2);
-    expect(pauseLabel(root)).toBe("Play carousel");
+    tick(2 * SLIDE_MS);
+
+    expect(active()).toBe(2);
     expect(window.location.hash).toBe("");
   });
 });

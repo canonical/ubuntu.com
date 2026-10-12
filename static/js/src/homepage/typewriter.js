@@ -29,10 +29,6 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
     el.replaceChildren(visible, span("u-off-screen", staticText));
   }
 
-  function render() {
-    typed.textContent = words[wordIndex].slice(0, chars);
-  }
-
   function step() {
     let delay = typeMs;
     if (phase === "typing") {
@@ -48,7 +44,7 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
         phase = "typing";
       }
     }
-    render();
+    typed.textContent = words[wordIndex].slice(0, chars);
     timer = window.setTimeout(step, delay);
   }
 
@@ -61,7 +57,6 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
     const fresh = !typed;
     if (fresh) {
       build();
-      render();
     }
     timer = window.setTimeout(step, fresh ? holdMs : typeMs);
   }

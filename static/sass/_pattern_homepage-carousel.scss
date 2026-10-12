@@ -3,12 +3,12 @@
   // active slide expanded in place. Phone and tablet swap the list for one
   // slide.
   // Without JS the targeted slide (:target) takes over from slide 1.
+  $carousel-easing: cubic-bezier(0.22, 1, 0.36, 1);
   $carousel-slide-count: 6;
   // Framer's accordion timing: the old panel collapses, then after a short
   // gap the new one expands
   $carousel-duration: 0.55s;
   $carousel-swap-delay: $carousel-duration + 0.06s;
-  $carousel-easing: cubic-bezier(0.22, 1, 0.36, 1);
 
   .p-open-source__images {
     aspect-ratio: 4 / 3;
@@ -172,7 +172,8 @@
     display: block;
 
     @media (prefers-reduced-motion: no-preference) {
-      animation: p-open-source-fade-in 0.45s ease-out;
+      // FadeIn is the shared keyframe in styles.scss
+      animation: FadeIn 0.45s ease-out;
     }
   }
 
@@ -297,16 +298,6 @@
   @media (prefers-reduced-motion: reduce) {
     .p-open-source__image {
       transition: none;
-    }
-  }
-
-  @keyframes p-open-source-fade-in {
-    from {
-      opacity: 0;
-    }
-
-    to {
-      opacity: 1;
     }
   }
 
