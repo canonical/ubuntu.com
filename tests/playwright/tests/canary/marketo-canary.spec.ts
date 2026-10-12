@@ -33,11 +33,6 @@ const loadPage = async (page: Page, url: string) => {
       return;
     } catch (error) {
       lastError = error;
-      const reason = String((error as Error).message).split("\n")[0];
-      // Remove after QA
-      console.log(
-        `goto attempt ${attempt}/${GOTO_ATTEMPTS} failed for ${url}: ${reason}`,
-      );
     }
   }
   throw lastError;
