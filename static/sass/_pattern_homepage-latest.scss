@@ -1,6 +1,10 @@
 // Latest stories: four blog cards filled in by the latest-news package.
 // The whole card is one link; its title takes the link colour on hover.
 @mixin ubuntu-p-homepage-latest {
+  // Framer's chip tint and date colour; Vanilla has no orange tints
+  $story-chip-background: rgba(#ff7300, 0.2);
+  $story-date-color: #fc764c;
+
   .p-latest-stories {
     row-gap: 2rem;
   }
@@ -56,19 +60,28 @@
 
   .p-story-card__body {
     flex: 1 1 auto;
-    padding: 1rem 1rem 0;
+    padding: $spv--small $sph--large 0;
   }
 
+  // Framer's rule sits 17px under the date
   .p-story-card__date {
-    color: #fc764c;
+    color: $story-date-color;
+    margin-bottom: calc(#{$spv--large} + 1px);
   }
 
+  // Flex, so the chip sits 8px from the rule and the card edge rather than
+  // on a taller line box
   .p-story-card__footer {
+    align-items: center;
     border-top: 1px solid $colors--dark-theme--border-low-contrast;
-    padding: 0.5rem 1rem;
+    display: flex;
+    padding: $spv--small $sph--large;
 
+    // 25px tall, as in Framer: 2.5px above and below, less the 1px border
     .p-chip {
+      background-color: $story-chip-background;
       margin: 0;
+      padding: 1.5px $sph--small;
     }
   }
 }
