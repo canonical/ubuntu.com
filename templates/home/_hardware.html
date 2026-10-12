@@ -1,1 +1,91 @@
-{# Certified hardware: HP-09 #}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_logo-section.jinja" import vf_logo_section %}
+
+{% set description_html %}
+  <h3 class="p-heading--5">Longstanding hardware partnerships</h3>
+  <p>
+    Canonical works directly with hardware and silicon vendors to test, optimize, and certify Ubuntu for their latest platforms.
+  </p>
+  <p>
+    Benefit from a straightforward, out-of-the-box experience. Browse over 1,000 pieces of hardware, from laptops and servers to IoT boards.
+  </p>
+  <p>With certified hardware, it's ready, set, build.</p>
+{% endset %}
+
+{{ vf_basic_section(
+  title={"text": "Go further and faster <br class='u-hide--small u-hide--medium' /> with certified hardware"},
+  padding="shallow",
+  is_split_on_medium=true,
+  items=[
+    {
+      "type": "description",
+      "item": {"type": "html", "content": description_html}
+    },
+    {
+      "type": "cta-block",
+      "item": {
+        "link": {
+          "content_html": "Discover certified hardware<i class=\"p-icon--arrow-right\"></i>",
+          "attrs": {"class": "p-cta-text", "href": "/certified"}
+        }
+      }
+    }
+  ]
+) }}
+
+{%- call(slot) vf_logo_section(
+  title={},
+  mode="minimal",
+  blocks=[
+    {
+      "type": "logo-block",
+      "item": {
+        "logos": [
+          image(url="https://assets.ubuntu.com/v1/9bb95650-amd_logo.png",
+                alt="AMD",
+                width="246",
+                height="312",
+                hi_def=True,
+                loading="lazy",
+                output_mode="attrs"),
+          image(url="https://assets.ubuntu.com/v1/bea5df02-dell_logo.png",
+                alt="Dell Technologies",
+                width="546",
+                height="312",
+                hi_def=True,
+                loading="lazy",
+                output_mode="attrs"),
+          image(url="https://assets.ubuntu.com/v1/0e1d412a-hp_logo.png",
+                alt="HP",
+                width="130",
+                height="312",
+                hi_def=True,
+                loading="lazy",
+                output_mode="attrs"),
+          image(url="https://assets.ubuntu.com/v1/5df474dd-intel_new_logo.png",
+                alt="Intel",
+                width="186",
+                height="312",
+                hi_def=True,
+                loading="lazy",
+                output_mode="attrs"),
+          image(url="https://assets.ubuntu.com/v1/107480b5-lenovo_logo.png",
+                alt="Lenovo",
+                width="291",
+                height="312",
+                hi_def=True,
+                loading="lazy",
+                output_mode="attrs"),
+          image(url="https://assets.ubuntu.com/v1/d08fd6c8-nvidia_logo.png",
+                alt="NVIDIA",
+                width="411",
+                height="312",
+                hi_def=True,
+                loading="lazy",
+                output_mode="attrs")
+        ]
+      }
+    }
+  ]
+) -%}
+{%- endcall -%}
