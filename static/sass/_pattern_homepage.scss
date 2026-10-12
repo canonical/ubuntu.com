@@ -118,6 +118,8 @@
     inset: 0;
     position: absolute;
     transform-origin: top;
+    // Smooths wheel steps, as in the Framer draft
+    transition: transform 0.15s linear;
   }
 
   .p-performance__apps {
@@ -128,7 +130,8 @@
 
   @media (prefers-reduced-motion: reduce) {
     .p-performance__ring,
-    .p-performance__ring img {
+    .p-performance__ring img,
+    .p-performance__fill {
       transition: none;
     }
   }
