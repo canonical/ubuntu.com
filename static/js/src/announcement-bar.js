@@ -8,7 +8,8 @@
 
 // Must match DISMISS_COOKIE_NAME in webapp/announcement_bar.py
 const DISMISS_COOKIE_NAME = "_announcement_bar_dismissed";
-const DISMISS_MAX_AGE_SECONDS = 72 * 60 * 60;
+// Browsers cap cookie lifetime at 400 days, the longest a cookie can persist
+const DISMISS_MAX_AGE_SECONDS = 400 * 24 * 60 * 60;
 
 const bar = document.querySelector(".announcement-bar");
 const closeButton = bar && bar.querySelector(".announcement-bar__close");
