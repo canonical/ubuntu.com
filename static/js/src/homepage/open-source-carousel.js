@@ -47,9 +47,9 @@ export function startOpenSourceCarousel(root) {
   const desktop = window.matchMedia(DESKTOP_QUERY);
 
   let index = 0;
-  // playing: autoplay and typing. chosen: a visitor picked a slide, so
-  // autoplay stops but the command keeps typing. paused: Pause froze both.
-  let mode = "playing";
+  // Autoplay only: Pause or a visitor's choice stops the slides advancing,
+  // the command keeps typing either way
+  let playing = true;
   let onScreen = true;
   let elapsed = 0;
   let frame = null;
@@ -77,7 +77,7 @@ export function startOpenSourceCarousel(root) {
 
   // Bring the frame loop, the Pause buttons and the typing in line with state
   function sync() {
-    const running = mode === "playing" && visible();
+    const running = playing && visible();
     if (running && frame === null) {
       frame = window.requestAnimationFrame(tick);
     } else if (!running && frame !== null) {
@@ -86,8 +86,8 @@ export function startOpenSourceCarousel(root) {
       last = null;
     }
 
-    const label = mode === "playing" ? "Pause carousel" : "Play carousel";
-    const icon = mode === "playing" ? "p-icon--pause" : "p-icon--play";
+    const label = playing ? "Pause carousel" : "Play carousel";
+    const icon = playing ? "p-icon--pause" : "p-icon--play";
     pauseButtons.forEach((button) => {
       button.setAttribute("aria-label", label);
       button.querySelector("i").className = icon;
@@ -100,7 +100,7 @@ export function startOpenSourceCarousel(root) {
       }
       if (i !== index || !typing) {
         writer.reset();
-      } else if (mode !== "paused" && visible()) {
+      } else if (visible()) {
         writer.start();
       } else {
         writer.stop();
@@ -121,16 +121,14 @@ export function startOpenSourceCarousel(root) {
     sync();
   }
 
-  function setMode(next) {
-    mode = next;
+  function setPlaying(next) {
+    playing = next;
     sync();
   }
 
   // A visitor's choice stops autoplay (not a Pause), and is announced
   function choose(target) {
-    if (mode === "playing") {
-      mode = "chosen";
-    }
+    playing = false;
     go(target);
     live.textContent = `Slide ${target + 1} of ${slides.length}: ${
       titles[target].textContent
@@ -164,9 +162,7 @@ export function startOpenSourceCarousel(root) {
       ),
     );
   pauseButtons.forEach((button) =>
-    button.addEventListener("click", () =>
-      setMode(mode === "playing" ? "paused" : "playing"),
-    ),
+    button.addEventListener("click", () => setPlaying(!playing)),
   );
   list.addEventListener("keydown", onKeydown);
   document.addEventListener("visibilitychange", sync);
@@ -177,14 +173,14 @@ export function startOpenSourceCarousel(root) {
     }).observe(root);
   }
   desktop.addEventListener("change", sync);
-  onReducedMotionChange((reduced) => reduced && setMode("paused"));
+  onReducedMotionChange((reduced) => reduced && setPlaying(false));
 
   // The no-JS :target state is replaced by this one
   const hashed = slides.findIndex((slide) => `#${slide.id}` === location.hash);
   if (hashed !== -1) {
     window.history.replaceState(null, "", location.pathname + location.search);
   }
-  mode = hashed === -1 && !prefersReducedMotion() ? "playing" : "chosen";
+  playing = hashed === -1 && !prefersReducedMotion();
   go(Math.max(hashed, 0));
   root.classList.add("is-enhanced");
 }

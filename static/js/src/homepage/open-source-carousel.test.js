@@ -100,22 +100,22 @@ describe("startOpenSourceCarousel", () => {
     expect(active()).toBe(0);
   });
 
-  it("freezes the bar and the typing on Pause, resumes on Play", () => {
+  it("freezes the bar but keeps typing on Pause, resumes on Play", () => {
     desktop = true;
     setup();
     const bar = root.querySelector(".p-open-source__progress span");
-    const state = () => [bar.style.transform, typed(0)];
     tick(LEAD_IN_MS + 100);
 
     pause().click();
-    const frozen = state();
+    const frozen = bar.style.transform;
+    const typedAtPause = typed(0);
     tick(1000);
-    expect(state()).toEqual(frozen);
+    expect(bar.style.transform).toBe(frozen);
+    expect(typed(0)).not.toBe(typedAtPause);
 
     pause().click();
     tick(100);
-    expect(bar.style.transform).not.toBe(frozen[0]);
-    expect(typed(0)).toBe("$ sudo snap install kub");
+    expect(bar.style.transform).not.toBe(frozen);
   });
 
   it("wraps with Previous and Next", () => {
