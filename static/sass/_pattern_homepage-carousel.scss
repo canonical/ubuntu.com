@@ -10,28 +10,17 @@
   $carousel-duration: 0.55s;
   $carousel-swap-delay: $carousel-duration + 0.06s;
 
-  .p-open-source__images {
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    position: relative;
-
-    @media (min-width: $breakpoint-small) {
-      aspect-ratio: 16 / 9;
-    }
-
-    @media (min-width: $breakpoint-large) {
-      aspect-ratio: 2 / 3;
+  // p-image-container sizes and stacks the images. Vanilla has no 4:3, so
+  // phones stretch its 16:9 spacer
+  .p-open-source__images::before {
+    @media (max-width: $breakpoint-small - 1) {
+      padding-bottom: 75%;
     }
   }
 
   .p-open-source__image {
-    height: 100%;
-    inset: 0;
-    object-fit: cover;
     opacity: 0;
-    position: absolute;
     transition: opacity $carousel-duration $carousel-easing;
-    width: 100%;
 
     &.is-active {
       opacity: 1;
@@ -116,11 +105,6 @@
       position: absolute;
       top: 0;
       z-index: 1;
-    }
-
-    h3 {
-      margin: 0;
-      padding: 0;
     }
   }
 

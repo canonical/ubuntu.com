@@ -165,7 +165,7 @@
           <i class="p-icon--pause"></i>
         </button>
       </div>
-      <div class="p-open-source__images">
+      <div class="p-open-source__images p-image-container--16-9 p-image-container--2-3-on-large is-cover">
         {% for slide in slides %}
           {{ image(url=slide.photo,
             alt="",
@@ -173,7 +173,7 @@
             height="900",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-open-source__image" ~ (" is-active" if loop.first else "")}) | safe
+            attrs={"class": "p-open-source__image p-image-container__image" ~ (" is-active" if loop.first else "")}) | safe
           }}
         {% endfor %}
       </div>
@@ -192,7 +192,7 @@
         <div class="p-open-source__slide{{ ' is-active' if loop.first }}"
              id="open-source-{{ slide.id }}">
           <span class="p-open-source__bar"></span>
-          <h3 class="p-heading--5">
+          <h3 class="p-heading--5 u-no-margin u-no-padding">
             <a class="p-open-source__title" href="#open-source-{{ slide.id }}">{{ slide.title }}</a>
           </h3>
           <div class="p-open-source__panel" id="open-source-{{ slide.id }}-panel">
