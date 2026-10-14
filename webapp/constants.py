@@ -240,6 +240,8 @@ CSP = {
         "cdn.livechatinc.com",
         "secure.livechatinc.com",
         "fonts.google.com",
+        # Hosts the font files served by the Google Fonts CSS
+        "fonts.gstatic.com",
     ],
     "script-src": [
         "'self'",
@@ -248,6 +250,9 @@ CSP = {
         "*.youtube.com",
         "*.google.com",
         "*.livechat-static.com",
+        # Bing UET's bat.js — already allowed in connect-src; browsers
+        # without script-src-elem support fall back to this directive.
+        "bat.bing.com",
         "'unsafe-eval'",
     ],
     "connect-src": [
@@ -266,6 +271,8 @@ CSP = {
         "*.g.doubleclick.net",
         "js.zi-scripts.com",
         "*.mktoresp.com",
+        # Marketo Web Personalization beacons to the account host
+        "*.mktoutil.com",
         "prompts.maze.co",
         "*.google-analytics.com",
         "pixel-config.reddit.com",
@@ -324,6 +331,11 @@ CSP = {
         "*.livechatinc.com",
         "*.youtube.com",
         "*.google.com",
+        # Google Fonts stylesheet host (fonts.gstatic.com serves the
+        # font files themselves, see font-src)
+        "fonts.googleapis.com",
+        # Marketo Web Personalization injects its stylesheet from here
+        "rtp-static.marketo.com",
         "'unsafe-inline'",
     ],
     "media-src": [

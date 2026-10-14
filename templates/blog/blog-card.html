@@ -14,7 +14,7 @@
     hi_def=True,
     loading="auto",
     output_mode="attrs"
-  ),
+  ) if article.image and article.image.source_url else None,
   footer={
     "content_type": article.group.name if article.group else "Company"
   },

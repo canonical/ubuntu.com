@@ -79,7 +79,13 @@ def login_handler():
     response = session.request(
         method="get", url=f"{api_url}v1/canonical-sso-macaroon"
     )
-    flask.session["macaroon_root"] = response.json()["macaroon"]
+    try:
+        flask.session["macaroon_root"] = response.json()["macaroon"]
+    except (ValueError, KeyError):
+        return (
+            flask.render_template("templates/_error_login.html"),
+            503,
+        )
 
     for caveat in Macaroon.deserialize(
         flask.session["macaroon_root"]
