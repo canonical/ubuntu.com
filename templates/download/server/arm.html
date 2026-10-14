@@ -70,6 +70,13 @@
                data-ga-category="Download" data-ga-action="ARM server download" data-ga-label="{{ releases_yaml.lts.short_version }}">
               Download {{ releases_yaml.lts.full_version }} LTS (64k page size)
             </a>
+            {% if releases_yaml.latest.short_version > releases_yaml.lts.short_version %}
+              <a href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.latest.short_version }}/release/ubuntu-{{ releases_yaml.latest.full_version }}-live-server-arm64+largemem.iso"
+                 class="p-button"
+                 data-ga-category="Download" data-ga-action="ARM server download" data-ga-label="{{ releases_yaml.latest.short_version }}">
+                Download {{ releases_yaml.latest.full_version }} (64k page size)
+              </a>
+            {% endif %}
             <p>
               <a href="/server/docs/choosing-between-the-arm64-and-arm64-largemem-installer-options">Find out if 64k page size is for you&nbsp;&rsaquo;</a>
             </p>
