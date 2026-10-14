@@ -197,6 +197,8 @@
           </h3>
           <div class="p-open-source__panel" id="open-source-{{ slide.id }}-panel">
             <div class="p-open-source__panel-inner">
+              {# The section's padding sits inside the collapsing row, so a closed panel is zero height #}
+              <div class="p-section--shallow">
             {% for block in slide.blocks %}
               {% if block.p %}
                 <p>{{ block.p }}</p>
@@ -216,6 +218,7 @@
                 {%- endcall -%}
               {% endif %}
             {% endfor %}
+              </div>
             </div>
           </div>
         </div>

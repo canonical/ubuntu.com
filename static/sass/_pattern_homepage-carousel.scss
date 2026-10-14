@@ -120,6 +120,7 @@
 
     h3 {
       margin: 0;
+      padding: 0;
     }
   }
 
@@ -131,7 +132,9 @@
     display: block;
     font: inherit;
     margin: 0;
-    padding: $sp-unit * 2 0;
+    // The h5 nudge and gap as padding, so the whole row stays clickable
+    padding: map-get($settings-text-h5, nudge) 0
+      (map-get($settings-text-h5, sp-after) - map-get($settings-text-h5, nudge));
     text-align: left;
     text-decoration: none;
     width: 100%;
@@ -157,14 +160,6 @@
 
   .p-open-source__panel {
     display: none;
-  }
-
-  // The gap under an open panel: a spacer, not padding, so a collapsed (0fr)
-  // panel is truly zero height
-  .p-open-source__panel-inner::after {
-    content: "";
-    display: block;
-    height: $sp-unit * 3;
   }
 
   .p-open-source__slide.is-active .p-open-source__panel,
