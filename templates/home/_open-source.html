@@ -111,8 +111,9 @@
     attrs={"data-icon": "play", "hidden": "hidden"}) | safe
   }}
 {% endset %}
+{# focus: the object-position kept when tablet and phone crop the portrait photo; centre by default #}
 {% set slides = [
-  {"id": "developers", "title": "Developers", "photo": photos.developers, "blocks": [
+  {"id": "developers", "title": "Developers", "photo": photos.developers, "focus": "50% 15%", "blocks": [
     {"p": "Ubuntu is the #1 Linux amongst developers. Benefit from seamless integration with familiar tools for development and deployment, and access a growing range of toolchains."},
     {"command": "sudo snap install docker/vscode/git/github/dev-pack-for-spring/dev-pack-for-go"},
     {"logos": logos},
@@ -142,7 +143,7 @@
     {"p": "Deploy a comprehensive portfolio of hardened, production-ready database clusters optimized for Kubernetes, virtual machines, bare metal, and multi-cloud deployments."},
     {"link": arrow_links.data},
   ]},
-  {"id": "ctos", "title": "CTOs, CIOs and CISOs", "photo": photos.ctos, "blocks": [
+  {"id": "ctos", "title": "CTOs, CIOs and CISOs", "photo": photos.ctos, "focus": "50% 85%", "blocks": [
     {"p": "Get all the open source you need to empower your team, while meeting your security requirements and compliance audits. Benefit from operational stability and Canonical's extensive open source expertise at simple and transparent pricing."},
     {"link": arrow_links.pro},
   ]},
@@ -194,7 +195,8 @@
             height="900",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-open-source__image p-image-container__image" ~ (" is-active" if loop.first else "")}) | safe
+            attrs={"class": "p-open-source__image p-image-container__image" ~ (" is-active" if loop.first else ""),
+                   "style": "object-position: " ~ (slide.focus or "center")}) | safe
           }}
         {% endfor %}
       </div>
