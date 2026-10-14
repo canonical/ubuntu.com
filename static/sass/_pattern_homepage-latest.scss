@@ -1,21 +1,11 @@
 // Latest stories: four blog cards filled in by the latest-news package.
 // The whole card is one link; its title takes the link colour on hover.
 @mixin ubuntu-p-homepage-latest {
-  // Framer's chip tint and date colour; Vanilla has no orange tints
+  // Framer's chip tint; Vanilla has no orange tints
   $story-chip-background: rgba(#ff7300, 0.2);
-  $story-date-color: #fc764c;
 
   .p-latest-stories {
     row-gap: $sp-unit * 4;
-  }
-
-  // Scoped to outrank the blog's `.article-title` clamp of 3 lines
-  .p-story-card .p-story-card__title {
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    overflow: hidden;
   }
 
   .p-story-card {
@@ -52,7 +42,6 @@
 
   // Framer's rule sits 17px under the date
   .p-story-card__date {
-    color: $story-date-color;
     margin-bottom: calc(#{$spv--large} + 1px);
   }
 
