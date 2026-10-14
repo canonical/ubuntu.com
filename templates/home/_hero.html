@@ -3,15 +3,14 @@
   The desktop is decoration: hidden from assistive tech and on phones,
   animated in by CSS, with its wallpaper video and clock started by hero.js.
 #}
-{# TODO(WD-39186): swap for the final assets.ubuntu.com uploads #}
-{% set hero_video = "/static/hero-preview/wallpaper-stingray.mp4" %}
-{% set hero_wallpaper = "/static/hero-preview/wallpaper-final-frame.jpg" %}
+{% set hero_video = "https://assets.ubuntu.com/v1/d91c14a6-stingray_hero_1440.mp4" %}
+{% set hero_wallpaper = "https://assets.ubuntu.com/v1/25e47e0c-stingray_hero_1440_final.jpg" %}
 {% set dock_icons = [
-  "https://framerusercontent.com/images/KWlsZZ1LfdlIXCEotjwDyStQ14.png",
-  "https://framerusercontent.com/images/o6tbMGfQNNkaXTyxgvbZwWoHE.png",
-  "https://framerusercontent.com/images/CbrSOh6mxpuon1AgmWmYKBxBI.png",
-  "https://framerusercontent.com/images/3UZOukbVCcCneN6gK0NT8dXc.png",
-  "https://framerusercontent.com/images/ghSxSGBlOXWDSLpxqs4KYyysges.png"
+  "https://assets.ubuntu.com/v1/507b99d6-dock_firefox.png",
+  "https://assets.ubuntu.com/v1/1b4a7749-dock_files.png",
+  "https://assets.ubuntu.com/v1/63ba45ed-dock_app_center.png",
+  "https://assets.ubuntu.com/v1/ddc45f05-dock_terminal.png",
+  "https://assets.ubuntu.com/v1/155e0cfc-dock_trash.png"
 ] %}
 
 <section class="p-hero js-hero">
@@ -47,7 +46,7 @@
                         width="48",
                         height="48",
                         loading="lazy",
-                        bypass_cloudinary=True) | safe
+                        hi_def=True) | safe
             }}
           </li>
         {% endfor %}
