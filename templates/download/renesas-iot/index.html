@@ -112,6 +112,18 @@
                     role="tab"
                     aria-controls="renesas-rz-v2n-tab">RZ/V2N</button>
           </li>
+          <li>
+            <button class="p-tabs__item"
+                    id="renesas-rz-n2h"
+                    role="tab"
+                    aria-controls="renesas-rz-n2h-tab">RZ/N2H</button>
+          </li>
+          <li>
+            <button class="p-tabs__item"
+                    id="renesas-rz-t2h"
+                    role="tab"
+                    aria-controls="renesas-rz-t2h-tab">RZ/T2H</button>
+          </li>
         </ul>
         <!-- form dropdown for smaller screens -->
         <form class="u-hide--large u-hide--medium">
@@ -124,6 +136,8 @@
             <option value="renesas-rz-g3s-tab" selected="">RZ/G3S</option>
             <option value="renesas-rz-v2h-tab" selected="">RZ/V2H</option>
             <option value="renesas-rz-v2n-tab" selected="">RZ/V2N</option>
+            <option value="renesas-rz-n2h-tab">RZ/N2H</option>
+            <option value="renesas-rz-t2h-tab">RZ/T2H</option>
           </select>
         </form>
       </div>
@@ -136,6 +150,8 @@
         {% include "download/renesas-iot/tab-6-renesas-rz-g3s.html" %}
         {% include "download/renesas-iot/tab-7-renesas-rz-v2h.html" %}
         {% include "download/renesas-iot/tab-8-renesas-rz-v2n.html" %}
+        {% include "download/renesas-iot/tab-9-renesas-rz-n2h.html" %}
+        {% include "download/renesas-iot/tab-10-renesas-rz-t2h.html" %}
       </div>
     </div>
   </section>
