@@ -1,0 +1,218 @@
+// Hero: headline above a mock GNOME desktop that fades up on load.
+// The desktop is drawn at Framer's 1232px width; hero-cq() scales each part
+// with the desktop's actual width, so it keeps its proportions at any size.
+@function hero-cq($px) {
+  @return calc(#{$px} * 100cqw / 1232);
+}
+
+@mixin ubuntu-p-homepage-hero {
+  // Framer's mock desktop and glow colours; Vanilla has no tokens for these
+  $desktop-panel: #131313;
+  $desktop-divider: #3b3b3b;
+  $desktop-wallpaper: #4c1437;
+  $hero-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  .p-hero {
+    overflow: clip;
+    padding-bottom: $spv--strip-regular;
+    padding-top: $spv--strip-regular;
+    position: relative;
+
+    @media (min-width: $breakpoint-small) {
+      padding-bottom: 0;
+    }
+
+    > .u-fixed-width {
+      position: relative;
+    }
+  }
+
+  // Framer's sizes: Vanilla's h1 below the large breakpoint, its display
+  // heading from there up, always at the display heading's thin weight
+  .p-hero__title {
+    font-weight: $font-weight-display-heading;
+
+    @media (min-width: $breakpoint-large) {
+      font-size: #{map-get($settings-text-display, font-size)}rem;
+      line-height: map-get($settings-text-display, line-height);
+      margin-bottom: map-get($settings-text-display, sp-after) - map-get(
+          $settings-text-display,
+          nudge
+        );
+      padding-top: map-get($settings-text-display, nudge);
+    }
+  }
+
+  .p-hero__intro {
+    max-width: 40rem;
+  }
+
+  .p-hero__background {
+    background-image: linear-gradient(rgba(#fff, 0) 6%, rgba(#fff, 0.05) 100%);
+    inset: 0;
+    position: absolute;
+
+    &::before {
+      background-image: radial-gradient(
+        45% 40% at 50% 45%,
+        rgba(233, 84, 32, 0.34) 0%,
+        rgba(190, 60, 90, 0.2) 32%,
+        rgba(120, 45, 90, 0.1) 55%,
+        rgba(80, 40, 90, 0) 75%
+      );
+      content: "";
+      filter: blur(130px);
+      height: 1000px;
+      left: 50%;
+      position: absolute;
+      top: $spv--strip-regular;
+      transform: translateX(-50%);
+      width: 1720px;
+    }
+  }
+
+  // The hero cuts off the bottom of the desktop: a fifth of it on large
+  // screens, a sliver below that. Only the vertical axis is clipped, so the
+  // shadow still shows at the sides.
+  .p-hero__stage {
+    container-type: inline-size;
+    margin-top: $spv--x-large;
+    overflow-y: clip;
+
+    @media (min-width: $breakpoint-large) {
+      margin-top: $spv--strip-regular;
+    }
+  }
+
+  .p-hero__background,
+  .p-hero__stage {
+    @media (max-width: $breakpoint-small - 1) {
+      display: none;
+    }
+  }
+
+  .p-hero__desktop {
+    animation: p-hero-desktop-in 600ms $hero-ease both;
+    aspect-ratio: 1232 / 770;
+    box-shadow:
+      0 2px 6px rgba(46, 20, 0, 0.05),
+      0 20px 50px -16px rgba(46, 20, 0, 0.2),
+      0 60px 140px -40px rgba(46, 20, 0, 0.3),
+      inset 0 1px 0 rgba(#fff, 0.1);
+    container-type: inline-size;
+    margin-bottom: hero-cq(-16);
+    overflow: hidden;
+    position: relative;
+
+    @media (min-width: $breakpoint-large) {
+      margin-bottom: hero-cq(-157);
+    }
+  }
+
+  // The finished wallpaper shows until the video plays, and stays for
+  // visitors without JS or with reduced motion
+  .p-hero__video {
+    background: $desktop-wallpaper var(--hero-wallpaper) center / cover
+      no-repeat;
+    display: block;
+    height: hero-cq(768);
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: hero-cq(32);
+    width: 100%;
+  }
+
+  .p-hero.is-playing .p-hero__video {
+    background-image: none;
+  }
+
+  .p-hero__top-bar {
+    background-color: $desktop-panel;
+    display: block;
+    height: hero-cq(32);
+    position: relative;
+    width: 100%;
+  }
+
+  .p-hero__clock {
+    color: #fff;
+    font-size: hero-cq(14.66);
+    left: 50%;
+    line-height: hero-cq(32);
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    white-space: pre;
+  }
+
+  .p-hero__dock {
+    align-items: center;
+    background-color: $desktop-panel;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: hero-cq(10);
+    left: 0;
+    list-style: none;
+    margin: 0;
+    padding: hero-cq(12) hero-cq(10);
+    position: absolute;
+    top: hero-cq(32);
+    width: hero-cq(68);
+  }
+
+  .p-hero__dock-item,
+  .p-hero__dock-divider {
+    animation: p-hero-dock-in 500ms $hero-ease calc(var(--i) * 130ms) both;
+    margin: 0;
+    padding: 0;
+    width: hero-cq(48);
+  }
+
+  .p-hero__dock-item img {
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+
+  .p-hero__dock-divider {
+    background-color: $desktop-divider;
+    height: 1px;
+  }
+
+  // Framer's orange wash over the whole desktop, strongest at the bottom
+  .p-hero__tint {
+    background-image: linear-gradient(
+      340deg,
+      rgba(233, 84, 32, 0.64) 18%,
+      rgba(233, 84, 32, 0) 80%
+    );
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .p-hero__desktop,
+    .p-hero__dock-item,
+    .p-hero__dock-divider {
+      animation: none;
+    }
+  }
+
+  @keyframes p-hero-desktop-in {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+  }
+
+  @keyframes p-hero-dock-in {
+    from {
+      filter: blur(hero-cq(10));
+      opacity: 0;
+      transform: translateY(hero-cq(14));
+    }
+  }
+}

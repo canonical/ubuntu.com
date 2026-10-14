@@ -1,0 +1,58 @@
+{#
+  Hero: headline and download button above a mock GNOME desktop.
+  The desktop is decoration: hidden from assistive tech and on phones,
+  animated in by CSS, with its wallpaper video and clock started by hero.js.
+#}
+{# TODO(WD-39186): swap for the final assets.ubuntu.com uploads #}
+{% set hero_video = "/static/hero-preview/wallpaper-stingray.mp4" %}
+{% set hero_wallpaper = "/static/hero-preview/wallpaper-final-frame.jpg" %}
+{% set dock_icons = [
+  "https://framerusercontent.com/images/KWlsZZ1LfdlIXCEotjwDyStQ14.png",
+  "https://framerusercontent.com/images/o6tbMGfQNNkaXTyxgvbZwWoHE.png",
+  "https://framerusercontent.com/images/CbrSOh6mxpuon1AgmWmYKBxBI.png",
+  "https://framerusercontent.com/images/3UZOukbVCcCneN6gK0NT8dXc.png",
+  "https://framerusercontent.com/images/ghSxSGBlOXWDSLpxqs4KYyysges.png"
+] %}
+
+<section class="p-hero js-hero">
+  <div class="p-hero__background" aria-hidden="true"></div>
+  <div class="u-fixed-width">
+    <h1 class="p-hero__title">
+      Enterprise resilience.
+      <br />
+      Developer velocity.
+    </h1>
+    <p class="p-hero__intro">
+      Build with confidence on Ubuntu. The enterprise Linux that delivers the latest and greatest open source with 15 years of support.
+    </p>
+    <a class="p-button--brand" href="/download">Download Ubuntu</a>
+  </div>
+  <div class="u-fixed-width p-hero__stage" aria-hidden="true">
+    <div class="p-hero__desktop"
+         style="--hero-wallpaper: url('{{ hero_wallpaper }}')">
+      <video class="p-hero__video"
+             data-src="{{ hero_video }}"
+             muted
+             playsinline
+             preload="none"
+             tabindex="-1"></video>
+      {% include "home/_hero-top-bar.svg" %}
+      <time class="p-hero__clock js-desktop-clock"></time>
+      <ul class="p-hero__dock">
+        {% for icon in dock_icons %}
+          {% if loop.last %}<li class="p-hero__dock-divider" style="--i: {{ loop.index0 }}"></li>{% endif %}
+          <li class="p-hero__dock-item" style="--i: {{ loop.index0 + loop.last }}">
+            {{ image(url=icon,
+                        alt="",
+                        width="48",
+                        height="48",
+                        loading="lazy",
+                        bypass_cloudinary=True) | safe
+            }}
+          </li>
+        {% endfor %}
+      </ul>
+      <div class="p-hero__tint"></div>
+    </div>
+  </div>
+</section>
