@@ -2,7 +2,7 @@
   // Open source carousel: portrait image beside a list of slide titles, the
   // active slide expanded in place. Phone and tablet swap the list for one
   // slide.
-  // Without JS the targeted slide (:target) takes over from slide 1.
+  // Without JS the slide whose anchor is targeted takes over from slide 1.
   $carousel-easing: cubic-bezier(0.22, 1, 0.36, 1);
   $carousel-slide-count: 6;
   // Framer's accordion timing: the old panel collapses, then after a short
@@ -94,8 +94,7 @@
       background-color: $colors--theme--text-default;
     }
 
-    &.is-active::before,
-    &:target::before {
+    &.is-active::before {
       background-color: $colors--theme--border-low-contrast;
       height: 3px;
     }
@@ -135,8 +134,7 @@
     }
   }
 
-  .inner-wrapper .p-open-source__slide.is-active,
-  .inner-wrapper .p-open-source__slide:target {
+  .inner-wrapper .p-open-source__slide.is-active {
     .p-open-source__title {
       color: $colors--theme--text-default;
     }
@@ -146,8 +144,7 @@
     display: none;
   }
 
-  .p-open-source__slide.is-active .p-open-source__panel,
-  .p-open-source__slide:target .p-open-source__panel {
+  .p-open-source__slide.is-active .p-open-source__panel {
     display: block;
 
     @media (prefers-reduced-motion: no-preference) {
@@ -212,7 +209,7 @@
     word-break: normal;
   }
 
-  // Block cursor while the command types (desktop, script-driven)
+  // Block cursor while the command types (script-driven)
   .p-open-source__cursor {
     background-color: currentcolor;
     display: inline-block;
@@ -230,13 +227,16 @@
     white-space: nowrap;
   }
 
-  // No JS: the targeted slide replaces the first one
-  .js-open-source-carousel:has(.p-open-source__slide:target) {
+  // No JS: the titles link to anchors at the top of the section, so the
+  // heading stays in view, and the targeted anchor's slide replaces the first
+  .js-open-source-carousel:not(.is-enhanced):has(
+      .p-open-source__anchor:target
+    ) {
     .p-open-source__image.is-active {
       opacity: 0;
     }
 
-    .p-open-source__slide.is-active:not(:target) {
+    .p-open-source__slide.is-active {
       &::before {
         height: 1px;
       }
@@ -251,10 +251,25 @@
     }
 
     @for $i from 1 through $carousel-slide-count {
-      // Slides follow the pause controls, so they are offset by one
-      &:has(.p-open-source__slide:nth-child(#{$i + 1}):target)
+      &:has(.p-open-source__anchor:nth-child(#{$i}):target) {
         .p-open-source__image:nth-child(#{$i}) {
-        opacity: 1;
+          opacity: 1;
+        }
+
+        // Slides follow the pause controls, so they are offset by one
+        .p-open-source__slide:nth-child(#{$i + 1}) {
+          &::before {
+            height: 3px;
+          }
+
+          .p-open-source__title {
+            color: $colors--theme--text-default;
+          }
+
+          .p-open-source__panel {
+            display: block;
+          }
+        }
       }
     }
   }

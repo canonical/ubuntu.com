@@ -5,14 +5,13 @@ const LEAD_IN_MS = 1500;
 
 let root;
 let reduced;
-let desktop;
 let observe;
 
 function setup(hash = "") {
   window.history.replaceState(null, "", `/${hash}`);
   const slides = ["a", "b", "c"].map(
     (id) => `
-      <div class="p-open-source__slide" id="open-source-${id}">
+      <div class="p-open-source__slide">
         <span class="p-open-source__bar"></span>
         <a class="p-open-source__title" href="#open-source-${id}">${id}</a>
         <div class="p-open-source__panel" id="open-source-${id}-panel">
@@ -22,7 +21,15 @@ function setup(hash = "") {
   );
   document.body.innerHTML = `
     <section class="js-open-source-carousel">
-      <button class="js-open-source-pause"><i></i></button>
+      ${["a", "b", "c"]
+        .map(
+          (id) =>
+            `<span class="p-open-source__anchor" id="open-source-${id}"></span>`,
+        )
+        .join("")}
+      <button class="js-open-source-pause">
+        <img data-icon="pause"><img data-icon="play" hidden>
+      </button>
       <button class="js-open-source-step" data-step="-1"></button>
       <button class="js-open-source-step" data-step="1"></button>
       ${'<img class="p-open-source__image">'.repeat(slides.length)}
@@ -54,9 +61,8 @@ const tick = (ms) => jest.advanceTimersByTime(ms);
 beforeEach(() => {
   jest.useFakeTimers();
   reduced = false;
-  desktop = false;
   window.matchMedia = (query) => ({
-    matches: query.includes("reduced") ? reduced : desktop,
+    matches: reduced,
     addEventListener: () => {},
   });
   window.IntersectionObserver = function (callback) {
@@ -68,19 +74,17 @@ beforeEach(() => {
 afterEach(() => jest.useRealTimers());
 
 describe("startOpenSourceCarousel", () => {
-  it("advances after 8s, not typing on phones, and loops", () => {
+  it("advances after 8s and loops", () => {
     setup();
 
     tick(SLIDE_MS + 50);
     expect(active()).toBe(1);
-    expect(command(1).textContent).toBe(COMMAND);
 
     tick(2 * SLIDE_MS);
     expect(active()).toBe(0);
   });
 
   it("expands, announces and types a chosen slide, until Play", () => {
-    desktop = true;
     setup();
     const title = titles()[2];
 
@@ -101,12 +105,13 @@ describe("startOpenSourceCarousel", () => {
   });
 
   it("freezes the bar but keeps typing on Pause, resumes on Play", () => {
-    desktop = true;
     setup();
+    const shown = () => pause().querySelector("img:not([hidden])");
     const bar = root.querySelector(".p-open-source__progress span");
     tick(LEAD_IN_MS + 100);
 
     pause().click();
+    expect(shown().dataset.icon).toBe("play");
     const frozen = bar.style.transform;
     const typedAtPause = typed(0);
     tick(1000);
@@ -166,8 +171,7 @@ describe("startOpenSourceCarousel", () => {
     expect(active()).toBe(0);
   });
 
-  it("types the incoming command after the lead-in, on desktop", () => {
-    desktop = true;
+  it("types the incoming command after the lead-in", () => {
     setup();
 
     tick(SLIDE_MS + 50);

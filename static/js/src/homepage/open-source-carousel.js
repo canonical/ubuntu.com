@@ -3,9 +3,6 @@ import { createTypewriter } from "./typewriter";
 
 export const SLIDE_MS = 8000;
 
-// Vanilla's large breakpoint: the command only types on desktop
-const DESKTOP_QUERY = "(min-width: 1036px)";
-
 // The title becomes a button: the panel sits between titles, so this is an
 // accordion, and a button gives Enter and Space for free.
 function toButton(link, panel) {
@@ -44,7 +41,6 @@ export function startOpenSourceCarousel(root) {
     const code = slide.querySelector(".p-open-source__command code");
     return code && createTypewriter(code);
   });
-  const desktop = window.matchMedia(DESKTOP_QUERY);
 
   let index = 0;
   // Autoplay only: Pause or a visitor's choice stops the slides advancing,
@@ -87,13 +83,15 @@ export function startOpenSourceCarousel(root) {
     }
 
     const label = playing ? "Pause carousel" : "Play carousel";
-    const icon = playing ? "p-icon--pause" : "p-icon--play";
+    const icon = playing ? "pause" : "play";
     pauseButtons.forEach((button) => {
       button.setAttribute("aria-label", label);
-      button.querySelector("i").className = icon;
+      button
+        .querySelectorAll("[data-icon]")
+        .forEach((img) => (img.hidden = img.dataset.icon !== icon));
     });
 
-    const typing = desktop.matches && !prefersReducedMotion();
+    const typing = !prefersReducedMotion();
     writers.forEach((writer, i) => {
       if (!writer) {
         return;
@@ -172,11 +170,12 @@ export function startOpenSourceCarousel(root) {
       sync();
     }).observe(root);
   }
-  desktop.addEventListener("change", sync);
   onReducedMotionChange((reduced) => reduced && setPlaying(false));
 
   // The no-JS :target state is replaced by this one
-  const hashed = slides.findIndex((slide) => `#${slide.id}` === location.hash);
+  const hashed = [...root.querySelectorAll(".p-open-source__anchor")].findIndex(
+    (anchor) => `#${anchor.id}` === location.hash,
+  );
   if (hashed !== -1) {
     window.history.replaceState(null, "", location.pathname + location.search);
   }

@@ -94,6 +94,23 @@
     "href": "/pro/why-pro"
   }
 } %}
+{# Pause and Play, both circled; the script shows the one for the current state #}
+{% set pause_icons %}
+  {{ image(url="https://assets.ubuntu.com/v1/398d9c17-pause.svg",
+    alt="",
+    width="24",
+    height="24",
+    loading="eager",
+    attrs={"data-icon": "pause"}) | safe
+  }}
+  {{ image(url="https://assets.ubuntu.com/v1/58c707b0-play.svg",
+    alt="",
+    width="24",
+    height="24",
+    loading="eager",
+    attrs={"data-icon": "play", "hidden": "hidden"}) | safe
+  }}
+{% endset %}
 {% set slides = [
   {"id": "developers", "title": "Developers", "photo": photos.developers, "blocks": [
     {"p": "Ubuntu is the #1 Linux amongst developers. Benefit from seamless integration with familiar tools for development and deployment, and access a growing range of toolchains."},
@@ -132,6 +149,10 @@
 ] %}
 
 <section class="p-section js-open-source-carousel">
+  {# The no-JS title links land here, keeping the heading in view #}
+  <div>
+    {% for slide in slides %}<span class="p-open-source__anchor" id="open-source-{{ slide.id }}"></span>{% endfor %}
+  </div>
   <div class="p-section--shallow">
     <div class="grid-row--50-50-on-large">
       <hr class="p-rule" />
@@ -162,7 +183,7 @@
           </button>
         </span>
         <button type="button" class="p-open-source__button js-open-source-pause" aria-label="Pause carousel">
-          <i class="p-icon--pause"></i>
+          {{ pause_icons }}
         </button>
       </div>
       <div class="p-open-source__images p-image-container--16-9 p-image-container--2-3-on-large is-cover">
@@ -185,12 +206,11 @@
     <div class="grid-col-4 grid-col-medium-6 p-open-source__slides">
       <div class="p-open-source__controls u-hide--small u-hide--medium">
         <button type="button" class="p-open-source__button js-open-source-pause" aria-label="Pause carousel">
-          <i class="p-icon--pause"></i>
+          {{ pause_icons }}
         </button>
       </div>
       {% for slide in slides %}
-        <div class="p-open-source__slide{{ ' is-active' if loop.first }}"
-             id="open-source-{{ slide.id }}">
+        <div class="p-open-source__slide{{ ' is-active' if loop.first }}">
           <span class="p-open-source__bar"></span>
           <h3 class="p-heading--5 u-no-margin u-no-padding">
             <a class="p-open-source__title" href="#open-source-{{ slide.id }}">{{ slide.title }}</a>
