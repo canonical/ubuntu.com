@@ -6,7 +6,7 @@
   $story-date-color: #fc764c;
 
   .p-latest-stories {
-    row-gap: 2rem;
+    row-gap: $sp-unit * 4;
   }
 
   // Scoped to outrank the blog's `.article-title` clamp of 3 lines
@@ -19,7 +19,7 @@
   }
 
   .p-story-card {
-    border: 1px solid $colors--dark-theme--border-low-contrast;
+    border: 1px solid $colors--theme--border-low-contrast;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -30,7 +30,7 @@
       text-decoration: none;
 
       .p-story-card__title {
-        color: $colors--dark-theme--link-default;
+        color: $colors--theme--link-default;
       }
     }
   }
@@ -41,20 +41,7 @@
   .inner-wrapper a.p-story-card:not([class^="p-button"]) {
     &,
     &:visited {
-      color: $colors--dark-theme--text-default;
-    }
-  }
-
-  // The package inserts the image; the 16:9 box holds its space while loading
-  .p-story-card__image {
-    aspect-ratio: 16 / 9;
-    background-color: $colors--dark-theme--background-alt;
-    overflow: hidden;
-
-    img {
-      height: 100%;
-      object-fit: cover;
-      width: 100%;
+      color: $colors--theme--text-default;
     }
   }
 
@@ -73,14 +60,13 @@
   // on a taller line box
   .p-story-card__footer {
     align-items: center;
-    border-top: 1px solid $colors--dark-theme--border-low-contrast;
+    border-top: 1px solid $colors--theme--border-low-contrast;
     display: flex;
     padding: $spv--small $sph--large;
 
     // 25px tall, as in Framer: 2.5px above and below, less the 1px border
     .p-chip {
       background-color: $story-chip-background;
-      margin: 0;
       padding: 1.5px $sph--small;
     }
   }

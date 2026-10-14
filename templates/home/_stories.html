@@ -30,7 +30,7 @@
   <template id="homepage-latest-article-template">
     <div class="grid-col-2 grid-col-medium-2">
       <a class="p-story-card article-link">
-        <div class="p-story-card__image article-image"></div>
+        <div class="p-image-container--16-9 is-cover is-highlighted article-image"></div>
         <div class="p-story-card__body">
           <h3 class="p-heading--4">
             <span class="p-story-card__title article-title"></span>
@@ -40,7 +40,7 @@
           </p>
         </div>
         <div class="p-story-card__footer">
-          <span class="p-chip is-readonly is-dense"><span class="p-chip__value article-group"></span></span>
+          <span class="p-chip is-readonly is-dense is-inline"><span class="p-chip__value article-group"></span></span>
         </div>
       </a>
     </div>
@@ -53,6 +53,7 @@
       articlesContainerSelector: "#homepage-latest-articles",
       articleTemplateSelector: "#homepage-latest-article-template",
       gtmEventLabel: "ubuntu.com homepage",
+      imageClasses: ["p-image-container__image"],
       limit: "4",
     });
   </script>
