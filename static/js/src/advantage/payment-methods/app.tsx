@@ -2,7 +2,6 @@ import * as Sentry from "@sentry/react";
 import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import type { InvoiceRow } from "./Invoices";
 import type { PaymentMethodProps } from "./PaymentMethods";
 import AccountRoutes from "./Routes";
 
@@ -25,12 +24,7 @@ Sentry.init({
   allowUrls: ["ubuntu.com"],
 });
 
-type AccountPageData = Partial<PaymentMethodProps> & {
-  invoices?: InvoiceRow[];
-  marketplace?: string;
-  currentPage?: number;
-  totalPages?: number;
-};
+type AccountPageData = Partial<PaymentMethodProps>;
 
 declare global {
   interface Window {
@@ -50,21 +44,10 @@ if (root) {
     cardBrand: data.cardBrand ?? "",
     cardLast4: data.cardLast4 ?? "",
   };
-  const invoiceProps = {
-    accountId,
-    invoices: data.invoices ?? [],
-    marketplace: data.marketplace ?? "",
-    currentPage: data.currentPage ?? 1,
-    totalPages: data.totalPages ?? 1,
-  };
-
   createRoot(root).render(
     <Sentry.ErrorBoundary fallback={<p>An error has occurred</p>}>
       <QueryClientProvider client={queryClient}>
-        <AccountRoutes
-          paymentMethodProps={paymentMethodProps}
-          invoiceProps={invoiceProps}
-        />
+        <AccountRoutes paymentMethodProps={paymentMethodProps} />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </Sentry.ErrorBoundary>,

@@ -802,13 +802,14 @@ def pro_check_user_contracts(advantage_mapper, **kwargs):
 
 @shop_decorator(area="advantage", response="json")
 def portal_proxy(portal_path, **kwargs):
-    portal_url = "http://localhost:8999/"
+    portal_url = "http://localhost:8999/pro/"
     # portal_url = get_flask_env("APP_PRO_FEATURE_PORTAL_URL")
     macaroon = flask.session.get("authentication_token")
     headers = dict(flask.request.headers)
     if macaroon:
         headers["Authorization"] = f"Macaroon {macaroon}"
     print(f"Proxying request to: {portal_url+portal_path}")
+    print(f"Request headers: {headers}")
     response = requests.request(
         method=flask.request.method,
         url=portal_url+portal_path,

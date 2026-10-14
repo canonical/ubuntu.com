@@ -18,7 +18,8 @@
             "pendingPurchaseId": "{{pending_purchase_id or ''}}",
             "initialHasPaymentMethod": "{{not not payment_method.get('id')}}",
             "cardBrand": "{{payment_method.get('brand', '')}}",
-            "cardLast4": "{{payment_method.get('last4', '')}}"
+            "cardLast4": "{{payment_method.get('last4', '')}}",
+            "newStripePublishableKey": "{{new_stripe_publishable_key}}"
           };
      </script>
 

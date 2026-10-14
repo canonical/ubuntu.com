@@ -89,8 +89,19 @@ def get_purchase_account_status(advantage_mapper: AdvantageMapper, **kwargs):
 
 
 @shop_decorator(area="account", permission="user", response="html")
-@use_kwargs(invoice_view, location="query")
 def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
+    try:
+        account = advantage_mapper.get_purchase_account("canonical-ua")
+    except UAContractsUserHasNoAccount:
+        account = None
+    except AccessForbiddenError:
+        return flask.render_template("account/forbidden.html", reason="is_technical")
+    return flask.render_template("account/invoices/index.html")
+
+
+@shop_decorator(area="account", permission="user", response="json")
+@use_kwargs(invoice_view, location="query")
+def get_invoices(advantage_mapper: AdvantageMapper, **kwargs):
     marketplace = kwargs.get("marketplace")
     page = kwargs.get("page", 1)
 
@@ -99,9 +110,7 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
     except UAContractsUserHasNoAccount:
         account = None
     except AccessForbiddenError:
-        return flask.render_template(
-            "account/forbidden.html", reason="is_technical"
-        )
+        return flask.jsonify({"error": "access forbidden"}), 403
 
     payments = []
 
@@ -160,13 +169,12 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
             }
         )
 
-    return flask.render_template(
-        "account/invoices/index.html",
-        account_id=account.id if account else None,
-        invoices_data=invoice_rows,
-        marketplace=marketplace,
-        total_pages=(len(payments) // per_page) + 1,
-        current_page=page,
+    return flask.jsonify(
+        accountId=account.id if account else "",
+        invoices=invoice_rows,
+        marketplace=marketplace or "",
+        totalPages=max(1, (len(payments) + per_page - 1) // per_page),
+        currentPage=page,
     )
 
 
@@ -224,6 +232,10 @@ def payment_methods_view(advantage_mapper, ua_contracts_api, **kwargs):
         default_payment_method=default_payment_method,
         pending_purchase_id=pending_purchase_id,
         account_id=account_id,
+        new_stripe_publishable_key=get_flask_env(
+            "APP_PRO_NEW_STRIPE_PUBLISHABLE_KEY",
+            "your_new_stripe_publishable_key_here",
+        ),
     )
 
 

@@ -1,0 +1,76 @@
+@mixin ubuntu-p-custom-select {
+  .p-custom-select__wrapper {
+    position: relative;
+  }
+
+  .p-custom-select__toggle {
+    @extend %vf-input-elements;
+    @include vf-icon-chevron-themed;
+
+    appearance: none;
+    background-position: right calc(map-get($grid-margin-widths, default) / 2)
+      center;
+    background-repeat: no-repeat;
+    background-size: map-get($icon-sizes, default);
+    border-top: none;
+    box-shadow: none;
+    min-height: map-get($line-heights, default-text);
+    padding-right: calc($default-icon-size + 2 * $sph--small);
+    text-indent: 0.01px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &.active,
+    &:focus {
+      box-shadow: inset 0 0 0 3px $color-focus;
+    }
+
+    .toggle-label {
+      display: flow-root;
+      text-align: left;
+      width: 100%;
+    }
+  }
+
+  .p-custom-select__dropdown {
+    background-color: $colors--theme--background-alt;
+    box-shadow: $box-shadow--deep;
+    left: 0;
+    min-width: 100%;
+    outline: none;
+    position: absolute;
+    top: 100%;
+    z-index: 10;
+
+    .p-custom-select__search {
+      padding: $sph--x-small;
+      padding-bottom: $sph--small;
+    }
+
+    .p-custom-select__option {
+      background-color: $colors--theme--background-alt;
+      font-weight: $font-weight-regular-text;
+      padding: $sph--x-small $sph--small;
+
+      &.highlight {
+        background-color: #06c;
+        cursor: pointer;
+
+        * {
+          color: white;
+        }
+      }
+    }
+
+    .p-list {
+      max-height: 30rem;
+      overflow: auto;
+    }
+  }
+}

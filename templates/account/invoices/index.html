@@ -9,16 +9,6 @@
 {% block content %}
      <div id="account-pages-app"></div>
 
-     <script nonce="{{ csp_nonce }}">
-          window.APP_CONFIG = {
-            "accountId": "{{account_id or ''}}",
-            "invoices": "{{ invoices_data | tojson }}",
-            "marketplace": "{{ marketplace or '' }}",
-            "currentPage": "{{ current_page }}",
-            "totalPages": "{{ total_pages }}"
-          }
-     </script>
-
   <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/ua-payment-methods.js') }}"
           type="module"
           defer></script>

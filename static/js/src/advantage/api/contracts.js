@@ -62,6 +62,17 @@ export async function getCustomerInfo(accountId) {
   return data;
 }
 
+export async function getInvoices(search) {
+  const response = await fetch(`/account/invoices/list${search}`, {
+    cache: "no-store",
+    headers: { Accept: "application/json" },
+  });
+  if (!response.ok) {
+    throw new Error("Unable to load invoices");
+  }
+  return await response.json();
+}
+
 export async function getUserInfo() {
   const queryString = window.location.search; // Pass arguments to the flask backend
   const response = await fetch(`/pro/user-info${queryString}`, {

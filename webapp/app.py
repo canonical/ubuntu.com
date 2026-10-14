@@ -101,6 +101,7 @@ from webapp.shop.views import (
     download_invoice,
     ensure_purchase_account,
     get_customer_info,
+    get_invoices,
     get_last_purchase_ids,
     get_purchase,
     get_purchase_account_status,
@@ -484,6 +485,9 @@ app.add_url_rule(
     view_func=invoices_view,
 )
 app.add_url_rule("/pro/distributor/invoice", view_func=invoices_view)
+app.add_url_rule(
+    "/account/invoices/list", view_func=get_invoices, methods=["GET"]
+)
 app.add_url_rule(
     "/account/invoices/download/<purchase_id>",
     view_func=download_invoice,

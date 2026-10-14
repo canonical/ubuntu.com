@@ -2,11 +2,22 @@ import type { Stripe, StripeCardElement } from "@stripe/stripe-js";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   deletePaymentMethod,
+  getInvoices,
   getPurchase,
   retryPurchase,
   setPaymentMethod,
 } from "../api/contracts";
-import { listSubscriptions } from "advantage/api/cancon";
+import {
+  listOrganizationPaymentMethods,
+  listSubscriptions,
+} from "advantage/api/cancon";
+import type { InvoicesData } from "./Invoices";
+
+export const useInvoicesQuery = (search: string) =>
+  useQuery<InvoicesData>({
+    queryKey: ["invoices", search],
+    queryFn: () => getInvoices(search),
+  });
 
 type RetryPaymentVariables = {
   pendingPurchaseId: string;
@@ -83,4 +94,10 @@ export const useListSubscriptions = () =>
   useQuery({
     queryKey: ["subscriptions"],
     queryFn: listSubscriptions,
+  });
+
+export const useListOrganizationPaymentMethods = () =>
+  useQuery({
+    queryKey: ["organizationPaymentMethods"],
+    queryFn: listOrganizationPaymentMethods,
   });
