@@ -26,6 +26,13 @@ class TestHomepageOpenSource(VCRTestCase):
     def _get_vcr_kwargs(self):
         return {
             "record_mode": os.environ.get("VCR_RECORD_MODE", "none"),
+            "filter_headers": [
+                "Authorization",
+                "Cookie",
+                "Api-Key",
+                "X-Discourse-Username",
+                "Api-Username",
+            ],
             "filter_query_parameters": ["key", "api_key", "api_username"],
         }
 
