@@ -1895,6 +1895,14 @@ ol.p-stepped-list.no-full-stop
   column-gap: 1rem;
 }
 
+// Download button group: horizontal gap only, no vertical gap when wrapped.
+.download-button-group {
+  align-items: baseline;
+  column-gap: $sph--large;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .zephyr-resources {
   .p-article-block {
     row-gap: 0;
