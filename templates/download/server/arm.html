@@ -64,7 +64,7 @@
               {% endif %}
             </div>
             <div class="p-section--shallow">
-              <a href="https://cdimage.ubuntu.com/releases">Alternative and previous releases&nbsp;&rsaquo;</a>
+              <a href="https://cdimage.ubuntu.com/ubuntu/releases">Alternative and previous releases&nbsp;&rsaquo;</a>
               &nbsp;&nbsp;
               <a href="/server/docs/tutorial/basic-installation/">How to install&nbsp;&rsaquo;</a>
             </div>
@@ -78,7 +78,7 @@
           <div class="col-6 col-medium-3 p-section">
             <p>This ISO image is suited for servers with ample memory running memory-intensive applications.</p>
             <hr class="p-rule" />
-            <a href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.lts.short_version }}/release/ubuntu-{{ releases_yaml.lts.full_version }}-live-server-arm64+largemem.iso"
+            <a href="https://cdimage.ubuntu.com/ubuntu/releases/{{ releases_yaml.lts.short_version }}/release/ubuntu-{{ releases_yaml.lts.full_version }}-live-server-arm64+largemem.iso"
                class="p-button"
                data-ga-category="Download"
                data-ga-action="ARM server download"
@@ -86,7 +86,7 @@
               Download {{ releases_yaml.lts.full_version }} LTS (64k page size)
             </a>
             {% if releases_yaml.latest.short_version > releases_yaml.lts.short_version %}
-              <a href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.latest.short_version }}/release/ubuntu-{{ releases_yaml.latest.full_version }}-live-server-arm64+largemem.iso"
+              <a href="https://cdimage.ubuntu.com/ubuntu/releases/{{ releases_yaml.latest.short_version }}/release/ubuntu-{{ releases_yaml.latest.full_version }}-live-server-arm64+largemem.iso"
                  class="p-button"
                  data-ga-category="Download"
                  data-ga-action="ARM server download"

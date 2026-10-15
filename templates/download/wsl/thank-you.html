@@ -29,7 +29,7 @@
     {% if architecture == 'arm64' %}
       <noscript>
         <meta http-equiv="refresh"
-              content="3;url=https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-wsl-arm64.wsl" />
+              content="3;url=https://cdimage.ubuntu.com/ubuntu/releases/{{ version }}/release/ubuntu-{{ version }}-wsl-arm64.wsl" />
       </noscript>
     {% else %}
       <noscript>
@@ -53,7 +53,7 @@
           <p>
             Your download should start automatically. If it doesn't,
             {% if architecture == 'arm64' %}
-              <a href="https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-wsl-arm64.wsl">download now</a>.
+              <a href="https://cdimage.ubuntu.com/ubuntu/releases/{{ version }}/release/ubuntu-{{ version }}-wsl-arm64.wsl">download now</a>.
             {% else %}
               <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-wsl-amd64.wsl">download now</a>.
             {% endif %}
@@ -198,7 +198,7 @@
         var GAlabel = version + '-wsl-' + architecture;
 
         if (architecture === 'arm64') {
-          window.location.href = 'https://cdimage.ubuntu.com/releases/' + version + '/release/' + imageName;
+          window.location.href = 'https://cdimage.ubuntu.com/ubuntu/releases/' + version + '/release/' + imageName;
         } else {
           window.initImageDownload(version + '/' + imageName, GAlabel);
         }

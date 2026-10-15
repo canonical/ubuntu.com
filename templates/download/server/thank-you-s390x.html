@@ -24,11 +24,11 @@
         <hr class="p-rule" />
         <a class="p-button--positive"
            data-ga-category="Download" data-ga-action="LinuxONE server" data-ga-label="{{ releases_yaml.lts.short_version }}"
-           href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.lts.short_version }}/release/ubuntu-{{ releases_yaml.lts.full_version }}-live-server-s390x.iso">Download Ubuntu Server {{ releases_yaml.lts.full_version }} <abbr title="Long-term support">LTS</abbr></a>
+           href="https://cdimage.ubuntu.com/ubuntu/releases/{{ releases_yaml.lts.short_version }}/release/ubuntu-{{ releases_yaml.lts.full_version }}-live-server-s390x.iso">Download Ubuntu Server {{ releases_yaml.lts.full_version }} <abbr title="Long-term support">LTS</abbr></a>
         {% if releases_yaml.latest.short_version > releases_yaml.lts.short_version %}
           <a class="p-button"
              data-ga-category="Download" data-ga-action="LinuxONE server" data-ga-label="{{ releases_yaml.latest.short_version }}"
-             href="https://cdimage.ubuntu.com/releases/{{ releases_yaml.latest.short_version }}/release/ubuntu-{{ releases_yaml.latest.full_version }}-live-server-s390x.iso">Download Ubuntu Server {{ releases_yaml.latest.full_version }}</a>
+             href="https://cdimage.ubuntu.com/ubuntu/releases/{{ releases_yaml.latest.short_version }}/release/ubuntu-{{ releases_yaml.latest.full_version }}-live-server-s390x.iso">Download Ubuntu Server {{ releases_yaml.latest.full_version }}</a>
         {% endif %}
       </div>
     </div>
