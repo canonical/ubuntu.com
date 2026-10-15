@@ -1,6 +1,5 @@
-// Hero: headline above a mock GNOME desktop that fades up on load.
-// The desktop is drawn at Framer's 1232px width; hero-cq() scales each part
-// with the desktop's actual width, so it keeps its proportions at any size.
+// The mock desktop is drawn at Framer's 1232px width; hero-cq() scales
+// each part with the desktop's actual width
 @function hero-cq($px) {
   @return calc(#{$px} * 100cqw / 1232);
 }
@@ -28,16 +27,14 @@
     }
   }
 
-  // From the small breakpoint the desktop follows the button: the gap is the
-  // stage's margin alone
+  // The stage's margin alone sets the gap above the desktop
   .p-hero .p-button--brand {
     @media (min-width: $breakpoint-small) {
       margin-bottom: 0;
     }
   }
 
-  // Framer's sizes: Vanilla's h1 below the large breakpoint, its display
-  // heading from there up, always at the display heading's thin weight
+  // Vanilla's h1 below large, its display heading from there up
   .p-hero__title {
     font-weight: $font-weight-display-heading;
 
@@ -79,9 +76,7 @@
     }
   }
 
-  // The hero cuts off the bottom fifth of the desktop at every size, so the
-  // mascot sits midway between the top bar and the cut. Only the vertical
-  // axis is clipped, so the shadow still shows at the sides.
+  // Cuts off the desktop's bottom fifth; only vertically, to keep the shadow
   .p-hero__stage {
     container-type: inline-size;
     margin-top: $spv--strip-regular * 0.5;
@@ -106,9 +101,8 @@
     position: relative;
   }
 
-  // The finished wallpaper shows until the video plays, and stays for
-  // visitors without JS or with reduced motion. A <video> with no source
-  // paints an opaque box, so the video stays hidden until it plays.
+  // The finished still shows until the video plays. An empty <video>
+  // paints an opaque box, so it stays hidden until then.
   .p-hero__wallpaper {
     background: $desktop-wallpaper var(--hero-wallpaper) center / cover
       no-repeat;
@@ -141,7 +135,6 @@
     background-color: $desktop-panel;
     display: block;
     height: hero-cq(32);
-    position: relative;
     width: 100%;
   }
 
@@ -159,24 +152,18 @@
   .p-hero__dock {
     align-items: center;
     background-color: $desktop-panel;
-    bottom: 0;
     display: flex;
     flex-direction: column;
     gap: hero-cq(10);
-    left: 0;
-    list-style: none;
-    margin: 0;
+    inset: hero-cq(32) auto 0 0;
     padding: hero-cq(12) hero-cq(10);
     position: absolute;
-    top: hero-cq(32);
     width: hero-cq(68);
   }
 
   .p-hero__dock-item,
   .p-hero__dock-divider {
     animation: p-hero-dock-in 500ms $hero-ease calc(var(--i) * 130ms) both;
-    margin: 0;
-    padding: 0;
     width: hero-cq(48);
   }
 
@@ -191,20 +178,16 @@
     height: 1px;
   }
 
-  // Framer's orange wash over the wallpaper and dock, strongest at the
-  // bottom. It starts below the top bar so the bar stays untinted.
+  // Framer's orange wash, below the top bar so the bar stays untinted
   .p-hero__tint {
     background-image: linear-gradient(
       340deg,
       rgba($color-brand, 0.64) 27%,
       rgba($color-brand, 0) 74%
     );
-    bottom: 0;
-    left: 0;
+    inset: hero-cq(32) 0 0;
     pointer-events: none;
     position: absolute;
-    right: 0;
-    top: hero-cq(32);
   }
 
   @media (prefers-reduced-motion: reduce) {

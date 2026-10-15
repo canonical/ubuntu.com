@@ -1,8 +1,4 @@
-{#
-  Hero: headline and download button above a mock GNOME desktop.
-  The desktop is decoration: hidden from assistive tech and on phones,
-  animated in by CSS, with its wallpaper video and clock started by hero.js.
-#}
+{# Hero: headline above a decorative mock desktop, started by hero.js #}
 {% set hero_video = "https://assets.ubuntu.com/v1/d91c14a6-stingray_hero_1440.mp4" %}
 {% set hero_wallpaper = "https://assets.ubuntu.com/v1/25e47e0c-stingray_hero_1440_final.jpg" %}
 {% set dock_icons = [
@@ -33,16 +29,14 @@
         <video class="p-hero__video"
                data-src="{{ hero_video }}"
                muted
-               playsinline
-               preload="none"
-               tabindex="-1"></video>
+               playsinline></video>
       </div>
       {% include "home/_hero-top-bar.svg" %}
-      <time class="p-hero__clock js-desktop-clock"></time>
-      <ul class="p-hero__dock">
+      <span class="p-hero__clock js-desktop-clock"></span>
+      <div class="p-hero__dock">
         {% for icon in dock_icons %}
-          {% if loop.last %}<li class="p-hero__dock-divider" style="--i: {{ loop.index0 }}"></li>{% endif %}
-          <li class="p-hero__dock-item" style="--i: {{ loop.index0 + loop.last }}">
+          {% if loop.last %}<div class="p-hero__dock-divider" style="--i: {{ loop.index0 }}"></div>{% endif %}
+          <div class="p-hero__dock-item" style="--i: {{ loop.index0 + loop.last }}">
             {{ image(url=icon,
                         alt="",
                         width="48",
@@ -50,9 +44,9 @@
                         loading="lazy",
                         hi_def=True) | safe
             }}
-          </li>
+          </div>
         {% endfor %}
-      </ul>
+      </div>
       <div class="p-hero__tint"></div>
     </div>
   </div>

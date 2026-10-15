@@ -1,52 +1,29 @@
 import { startDesktopClock } from "./desktop-clock";
-import { prefersReducedMotion, onReducedMotionChange } from "./reduced-motion";
+import { prefersReducedMotion } from "./reduced-motion";
 
 // Vanilla's small breakpoint; below it the mock desktop is hidden
 export const WIDE_QUERY = "(min-width: 620px)";
 
 export function startHero(root) {
   const video = root.querySelector(".p-hero__video");
-  const clock = root.querySelector(".js-desktop-clock");
   const wideQuery = window.matchMedia(WIDE_QUERY);
+  startDesktopClock(root.querySelector(".js-desktop-clock"));
 
-  // Back to the finished wallpaper behind the video
-  function stopVideo() {
-    video.pause();
-    video.removeAttribute("src");
-    video.load();
-    root.classList.remove("is-playing");
-  }
-
+  // Keep the finished still until the first frame is on screen. If the
+  // browser refuses autoplay, e.g. in battery saver mode, the still stays.
   function playVideo() {
-    root.classList.add("is-playing");
+    video.addEventListener("playing", () => root.classList.add("is-playing"));
     video.src = video.dataset.src;
-    // Browsers can refuse autoplay, e.g. in battery saver mode
-    Promise.resolve(video.play()).catch(stopVideo);
-    onReducedMotionChange((reduced) => {
-      if (reduced) {
-        stopVideo();
-      }
-    });
+    video.play().catch(() => {});
   }
 
-  // Only load and run the desktop once it's on screen
-  function activate() {
-    wideQuery.removeEventListener("change", onWideChange);
-    startDesktopClock(clock);
-    if (!prefersReducedMotion()) {
-      playVideo();
-    }
+  if (prefersReducedMotion()) {
+    return;
   }
-
-  function onWideChange(event) {
-    if (event.matches) {
-      activate();
-    }
-  }
-
+  // Only load the video once the desktop is on screen
   if (wideQuery.matches) {
-    activate();
+    playVideo();
   } else {
-    wideQuery.addEventListener("change", onWideChange);
+    wideQuery.addEventListener("change", playVideo, { once: true });
   }
 }

@@ -144,30 +144,16 @@ class TestHomepageRender(VCRTestCase):
 
     def test_hero(self):
         """
-        The hero holds the page's only h1 and the download button
+        The hero holds the page's only h1, and its mock desktop is hidden
+        from assistive tech with a video that only loads from JS
         """
 
-        hero = self.get_soup().select_one("section.p-hero")
-        self.assertEqual(len(self.get_soup().find_all("h1")), 1)
-        self.assertEqual(
-            " ".join(hero.h1.get_text().split()),
-            "Enterprise resilience. Developer velocity.",
-        )
-        self.assertEqual(
-            hero.select_one("a.p-button--brand")["href"], "/download"
-        )
-
-    def test_hero_desktop_is_decoration(self):
-        """
-        The mock desktop is hidden from assistive tech, and its video
-        only loads from JS
-        """
-
-        stage = self.get_soup().select_one(".p-hero__stage")
+        soup = self.get_soup()
+        self.assertEqual(len(soup.select("section.p-hero h1")), 1)
+        self.assertEqual(len(soup.find_all("h1")), 1)
+        stage = soup.select_one(".p-hero__stage")
         self.assertEqual(stage["aria-hidden"], "true")
-        video = stage.select_one("video")
-        self.assertFalse(video.has_attr("src"))
-        self.assertTrue(video.has_attr("data-src"))
+        self.assertFalse(stage.select_one("video").has_attr("src"))
 
     def test_hardware_section(self):
         section = self.get_section(

@@ -15,29 +15,8 @@ export function formatClock(date, locale) {
 }
 
 export function startDesktopClock(el) {
-  let timer = null;
-
-  function tick() {
-    const now = new Date();
-    el.textContent = formatClock(now);
-    el.setAttribute("datetime", now.toISOString());
-    // Wake on the next whole minute, so the clock turns over with the system's
-    timer = setTimeout(tick, 60000 - (now.getTime() % 60000));
-  }
-
-  // Timers stall while a tab sleeps, so catch up as soon as it's shown again
-  function onVisibilityChange() {
-    if (document.visibilityState === "visible") {
-      clearTimeout(timer);
-      tick();
-    }
-  }
-
-  document.addEventListener("visibilitychange", onVisibilityChange);
-  tick();
-
-  return () => {
-    clearTimeout(timer);
-    document.removeEventListener("visibilitychange", onVisibilityChange);
-  };
+  const now = new Date();
+  el.textContent = formatClock(now);
+  // Wake on the next whole minute, so the clock turns over with the system's
+  setTimeout(() => startDesktopClock(el), 60000 - (now % 60000));
 }
