@@ -58,10 +58,10 @@
     }
   }
 
-  // With the text under the tiles, the square tile's column is shorter than
-  // the stack beside it. Let its frame fill the column so both end level;
-  // the media is absolutely positioned so it can't set the height itself.
-  @media (min-width: $breakpoint-large) and (not (#{$community-overlay})) {
+  // On large screens the square tile's frame fills its column so it ends
+  // level with the stack beside it, with the text under it or overlaid; the
+  // media is absolutely positioned so it can't set the height itself.
+  @media (min-width: $breakpoint-large) {
     .p-community-tile.is-square {
       display: flex;
       flex-direction: column;
@@ -103,16 +103,6 @@
 
     .p-community-tile {
       position: relative;
-    }
-
-    // Match the stacked tiles' height rather than forcing a square
-    .p-community-tile.is-square {
-      height: 100%;
-
-      .p-community-tile__frame {
-        aspect-ratio: auto;
-        height: 100%;
-      }
     }
 
     .p-community-tile__media {

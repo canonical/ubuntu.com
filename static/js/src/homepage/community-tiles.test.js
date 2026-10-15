@@ -34,12 +34,15 @@ function renderTile() {
       <button class="js-community-pause u-hide">
         <img data-icon="pause" /><img data-icon="play" hidden />
       </button>
-      <article class="p-community-tile">
-        <img /><template class="js-community-video"><video></video></template>
-      </article>
+      <article class="p-community-tile"><div>
+        <img src="https://example.com/poster.jpg" />
+        <template class="js-community-video"><video></video></template>
+      </div></article>
     </section>
   `;
   startCommunityTiles(document.querySelector("section"));
+  // Count only what the tests do, not the pause from startup
+  jest.clearAllMocks();
   return {
     tile: document.querySelector(".p-community-tile"),
     video: document.querySelector("video"),
@@ -51,10 +54,11 @@ const setVisible = (tile, isIntersecting) =>
   observerCallback([{ target: tile, isIntersecting }]);
 
 describe("startCommunityTiles", () => {
-  it("swaps the poster image for the video", () => {
-    renderTile();
+  it("swaps the image for the video, as its poster", () => {
+    const { video } = renderTile();
     expect(document.querySelector("article img")).toBeNull();
     expect(document.querySelector("template")).toBeNull();
+    expect(video.poster).toBe("https://example.com/poster.jpg");
   });
 
   it("plays only while the tile is on screen", () => {
