@@ -41,7 +41,7 @@ export function startCommunityTiles(root) {
   // With reduced motion nothing plays, so there is nothing to pause
   const syncPauseButton = () => {
     const icon = isPaused ? "play" : "pause";
-    pauseButton.hidden = prefersReducedMotion();
+    pauseButton.classList.toggle("u-hide", prefersReducedMotion());
     pauseButton.setAttribute(
       "aria-label",
       isPaused ? "Play videos" : "Pause videos",

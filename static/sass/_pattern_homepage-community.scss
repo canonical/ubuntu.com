@@ -11,18 +11,13 @@
     display: none;
   }
 
-  // Centred on the Pause button, so the hint drops its baseline nudge
+  // Centred on the Pause button; the hint drops its baseline nudge in markup
   .p-community__controls {
     align-items: center;
     display: flex;
     gap: $sp-unit * 2;
     justify-content: space-between;
     margin-bottom: $spv--large;
-
-    .p-community__hint {
-      margin-bottom: 0;
-      padding-top: 0;
-    }
   }
 
   // Circled icon button, as the open source carousel's Pause
@@ -37,10 +32,6 @@
     margin: 0 0 0 auto;
     padding: 0;
     width: $sp-unit * 5.5;
-
-    &[hidden] {
-      display: none;
-    }
   }
 
   .p-community__tiles {

@@ -31,7 +31,7 @@ afterEach(() => {
 function renderTile() {
   document.body.innerHTML = `
     <section>
-      <button class="js-community-pause" hidden>
+      <button class="js-community-pause u-hide">
         <img data-icon="pause" /><img data-icon="play" hidden />
       </button>
       <article class="p-community-tile">
@@ -94,7 +94,7 @@ describe("startCommunityTiles", () => {
   it("holds every video while Pause is pressed", () => {
     const { tile, video, button } = renderTile();
     setVisible(tile, true);
-    expect(button.hidden).toBe(false);
+    expect(button.classList).not.toContain("u-hide");
 
     button.click();
     setVisible(tile, true);
