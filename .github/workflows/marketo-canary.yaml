@@ -6,6 +6,11 @@ on:
 
 permissions:
   contents: read
+  actions: read
+
+concurrency:
+  group: marketo-canary
+  cancel-in-progress: false
 
 jobs:
   marketo-canary:
@@ -43,8 +48,25 @@ jobs:
           path: playwright-report/
           retention-days: 7
 
-      - name: Send message on failure
+      - name: Get previous run result
+        id: previous
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          conclusion=$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/marketo-canary.yaml/runs?status=completed&branch=${BRANCH}&per_page=20" \
+            --jq '[.workflow_runs[] | select(.conclusion=="success" or .conclusion=="failure")][0].conclusion // ""' || true)
+          echo "conclusion=${conclusion}" >> "$GITHUB_OUTPUT"
+
+      - name: Send message on new failure
         env:
           BOT_URL: ${{ secrets.BOT_URL }}
-        if: failure()
+        if: failure() && steps.previous.outputs.conclusion != 'failure'
         run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" $BOT_URL?room=web-alerts
+
+      - name: Send message on recovery
+        env:
+          BOT_URL: ${{ secrets.BOT_URL }}
+        if: success() && steps.previous.outputs.conclusion == 'failure'
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW} (recovered)" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" $BOT_URL?room=web-alerts
