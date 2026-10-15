@@ -27,14 +27,16 @@
     <a class="p-button--brand" href="/download">Download Ubuntu</a>
   </div>
   <div class="u-fixed-width p-hero__stage" aria-hidden="true">
-    <div class="p-hero__desktop"
-         style="--hero-wallpaper: url('{{ hero_wallpaper }}')">
-      <video class="p-hero__video"
-             data-src="{{ hero_video }}"
-             muted
-             playsinline
-             preload="none"
-             tabindex="-1"></video>
+    <div class="p-hero__desktop">
+      <div class="p-hero__wallpaper"
+           style="--hero-wallpaper: url('{{ hero_wallpaper }}')">
+        <video class="p-hero__video"
+               data-src="{{ hero_video }}"
+               muted
+               playsinline
+               preload="none"
+               tabindex="-1"></video>
+      </div>
       {% include "home/_hero-top-bar.svg" %}
       <time class="p-hero__clock js-desktop-clock"></time>
       <ul class="p-hero__dock">
@@ -53,5 +55,8 @@
       </ul>
       <div class="p-hero__tint"></div>
     </div>
+  </div>
+  <div class="u-fixed-width u-hide--medium u-hide--large">
+    <hr class="p-rule p-hero__rule" />
   </div>
 </section>

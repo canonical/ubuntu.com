@@ -14,17 +14,18 @@
 
   .p-hero {
     overflow: clip;
-    padding-bottom: $spv--strip-regular;
     padding-top: $spv--strip-regular;
     position: relative;
-
-    @media (min-width: $breakpoint-small) {
-      padding-bottom: 0;
-    }
 
     > .u-fixed-width {
       position: relative;
     }
+  }
+
+  // Phones have no desktop, so a rule closes the hero instead, about 28px
+  // under the button as in Figma
+  .p-hero__rule {
+    margin: $sp-unit 0 0;
   }
 
   // Framer's sizes: Vanilla's h1 below the large breakpoint, its display
@@ -110,21 +111,34 @@
   }
 
   // The finished wallpaper shows until the video plays, and stays for
-  // visitors without JS or with reduced motion
-  .p-hero__video {
+  // visitors without JS or with reduced motion. A <video> with no source
+  // paints an opaque box, so the video stays hidden until it plays.
+  .p-hero__wallpaper {
     background: $desktop-wallpaper var(--hero-wallpaper) center / cover
       no-repeat;
-    display: block;
     height: hero-cq(768);
     left: 0;
-    object-fit: cover;
     position: absolute;
     top: hero-cq(32);
     width: 100%;
   }
 
-  .p-hero.is-playing .p-hero__video {
-    background-image: none;
+  .p-hero__video {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    visibility: hidden;
+    width: 100%;
+  }
+
+  .p-hero.is-playing {
+    .p-hero__wallpaper {
+      background-image: none;
+    }
+
+    .p-hero__video {
+      visibility: visible;
+    }
   }
 
   .p-hero__top-bar {
