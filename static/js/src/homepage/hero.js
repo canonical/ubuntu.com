@@ -20,7 +20,6 @@ export function startHero(root) {
   if (prefersReducedMotion()) {
     return;
   }
-  // Only load the video once the desktop is on screen
   if (wideQuery.matches) {
     playVideo();
   } else {

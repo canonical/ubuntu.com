@@ -1,11 +1,11 @@
-// The mock desktop is drawn at Framer's 1232px width; hero-cq() scales
-// each part with the desktop's actual width
+// The mock desktop is designed 1232px wide; hero-cq() scales each part
+// with the desktop's actual width
 @function hero-cq($px) {
   @return calc(#{$px} * 100cqw / 1232);
 }
 
 @mixin ubuntu-p-homepage-hero {
-  // Framer's mock desktop and glow colours; Vanilla has no tokens for these
+  // Mock desktop colours; Vanilla has no tokens for these
   $desktop-panel: #131313;
   $desktop-divider: #3b3b3b;
   $desktop-wallpaper: #4c1437;
@@ -34,7 +34,6 @@
     }
   }
 
-  // Vanilla's h1 below large, its display heading from there up
   .p-hero__title {
     font-weight: $font-weight-display-heading;
 
@@ -141,6 +140,7 @@
   .p-hero__clock {
     color: $color-x-light;
     font-size: hero-cq(14.66);
+    font-variant-numeric: tabular-nums;
     left: 50%;
     line-height: hero-cq(32);
     position: absolute;
@@ -178,7 +178,7 @@
     height: 1px;
   }
 
-  // Framer's orange wash, below the top bar so the bar stays untinted
+  // Starts below the top bar so the bar stays untinted
   .p-hero__tint {
     background-image: linear-gradient(
       340deg,
