@@ -17,15 +17,15 @@
     padding-top: $spv--strip-regular;
     position: relative;
 
+    // Phones keep the section padding; from here the cut-off desktop ends
+    // the hero instead
+    @media (min-width: $breakpoint-small) {
+      padding-bottom: 0;
+    }
+
     > .u-fixed-width {
       position: relative;
     }
-  }
-
-  // Phones have no desktop, so the hero ends like a regular section, with
-  // a rule after the section padding
-  .p-hero__rule {
-    margin: $spv--strip-regular * 0.5 0 0;
   }
 
   // From the small breakpoint the desktop follows the button: the gap is the
