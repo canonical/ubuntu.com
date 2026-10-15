@@ -22,10 +22,18 @@
     }
   }
 
-  // Phones have no desktop, so a rule closes the hero instead, about 28px
-  // under the button as in Figma
+  // Phones have no desktop, so the hero ends like a regular section, with
+  // a rule after the section padding
   .p-hero__rule {
-    margin: $sp-unit 0 0;
+    margin: $spv--strip-regular * 0.5 0 0;
+  }
+
+  // From the small breakpoint the desktop follows the button: the gap is the
+  // stage's margin alone
+  .p-hero .p-button--brand {
+    @media (min-width: $breakpoint-small) {
+      margin-bottom: 0;
+    }
   }
 
   // Framer's sizes: Vanilla's h1 below the large breakpoint, its display
@@ -72,12 +80,12 @@
     }
   }
 
-  // The hero cuts off the bottom of the desktop: a fifth of it on large
-  // screens, a sliver below that. Only the vertical axis is clipped, so the
-  // shadow still shows at the sides.
+  // The hero cuts off the bottom fifth of the desktop at every size, so the
+  // mascot sits midway between the top bar and the cut. Only the vertical
+  // axis is clipped, so the shadow still shows at the sides.
   .p-hero__stage {
     container-type: inline-size;
-    margin-top: $spv--x-large;
+    margin-top: $spv--strip-regular * 0.5;
     overflow-y: clip;
 
     @media (min-width: $breakpoint-large) {
@@ -101,13 +109,9 @@
       0 60px 140px -40px rgba(46, 20, 0, 0.3),
       inset 0 1px 0 rgba(#fff, 0.1);
     container-type: inline-size;
-    margin-bottom: hero-cq(-16);
+    margin-bottom: hero-cq(-157);
     overflow: hidden;
     position: relative;
-
-    @media (min-width: $breakpoint-large) {
-      margin-bottom: hero-cq(-157);
-    }
   }
 
   // The finished wallpaper shows until the video plays, and stays for
@@ -195,16 +199,20 @@
     height: 1px;
   }
 
-  // Framer's orange wash over the whole desktop, strongest at the bottom
+  // Framer's orange wash over the wallpaper and dock, strongest at the
+  // bottom. It starts below the top bar so the bar stays untinted.
   .p-hero__tint {
     background-image: linear-gradient(
       340deg,
-      rgba(233, 84, 32, 0.64) 18%,
-      rgba(233, 84, 32, 0) 80%
+      rgba(233, 84, 32, 0.64) 27%,
+      rgba(233, 84, 32, 0) 74%
     );
-    inset: 0;
+    bottom: 0;
+    left: 0;
     pointer-events: none;
     position: absolute;
+    right: 0;
+    top: hero-cq(32);
   }
 
   @media (prefers-reduced-motion: reduce) {
