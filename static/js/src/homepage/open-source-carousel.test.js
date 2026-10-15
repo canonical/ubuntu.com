@@ -104,6 +104,27 @@ describe("startOpenSourceCarousel", () => {
     expect(active()).toBe(0);
   });
 
+  it("holds the active slide while the pointer is on it, not others", () => {
+    setup();
+    const slides = root.querySelectorAll(".p-open-source__slide");
+    const move = (slide) =>
+      slide.dispatchEvent(new Event("pointermove", { bubbles: true }));
+
+    move(slides[1]);
+    tick(SLIDE_MS + 50);
+    expect(active()).toBe(1);
+
+    titles()[2].dispatchEvent(new MouseEvent("click", { detail: 1 }));
+    tick(2 * SLIDE_MS);
+    expect(active()).toBe(2);
+    expect(root.classList.contains("is-held")).toBe(true);
+
+    move(slides[0]);
+    expect(root.classList.contains("is-held")).toBe(false);
+    tick(SLIDE_MS + 50);
+    expect(active()).toBe(0);
+  });
+
   it("freezes the bar but keeps typing on Pause, resumes on Play", () => {
     setup();
     const shown = () => pause().querySelector("img:not([hidden])");

@@ -46,6 +46,10 @@ export function startOpenSourceCarousel(root) {
   // Autoplay only: Pause or a visitor's choice stops the slides advancing,
   // the command keeps typing either way
   let playing = true;
+  // The slide under the pointer, -1 for none; the active one holds the timer.
+  // Set from real moves only: the accordion moves a clicked title from under
+  // a still cursor, and that slide should hold until the cursor moves.
+  let hovered = -1;
   let onScreen = true;
   let elapsed = 0;
   let frame = null;
@@ -73,7 +77,9 @@ export function startOpenSourceCarousel(root) {
 
   // Bring the frame loop, the Pause buttons and the typing in line with state
   function sync() {
-    const running = playing && visible();
+    const held = hovered === index;
+    const running = playing && !held && visible();
+    root.classList.toggle("is-held", held);
     if (running && frame === null) {
       frame = window.requestAnimationFrame(tick);
     } else if (!running && frame !== null) {
@@ -124,9 +130,11 @@ export function startOpenSourceCarousel(root) {
     sync();
   }
 
-  // A visitor's choice stops autoplay (not a Pause), and is announced
-  function choose(target) {
-    playing = false;
+  // A visitor's choice is announced. Keyboard and step choices stop autoplay
+  // (not a Pause); a mouse click leaves it to resume once the pointer leaves
+  // the slide.
+  function choose(target, keepPlaying = false) {
+    playing = playing && keepPlaying;
     go(target);
     live.textContent = `Slide ${target + 1} of ${slides.length}: ${
       titles[target].textContent
@@ -150,8 +158,24 @@ export function startOpenSourceCarousel(root) {
   }
 
   titles.forEach((title, i) =>
-    title.addEventListener("click", () => choose(i)),
+    // detail is 0 for a click made with Enter or Space
+    title.addEventListener("click", (event) => {
+      if (event.detail > 0) {
+        hovered = i;
+      }
+      choose(i, event.detail > 0);
+    }),
   );
+  function hover(target) {
+    if (target !== hovered) {
+      hovered = target;
+      sync();
+    }
+  }
+  list.addEventListener("pointermove", (event) =>
+    hover(slides.findIndex((slide) => slide.contains(event.target))),
+  );
+  list.addEventListener("pointerleave", () => hover(-1));
   root
     .querySelectorAll(".js-open-source-step")
     .forEach((button) =>

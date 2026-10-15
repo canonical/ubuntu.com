@@ -107,6 +107,12 @@
     }
   }
 
+  // As on canonical.com, the active rule turns solid while the pointer is
+  // on the active slide, which holds the timer (is-held, script-driven)
+  .js-open-source-carousel.is-held .p-open-source__slide.is-active::before {
+    background-color: $colors--theme--text-default;
+  }
+
   // Same specificity trick as .p-cta-text: beats the dark theme link colour
   .inner-wrapper a.p-open-source__title:not([class^="p-button"]),
   .inner-wrapper button.p-open-source__title {
