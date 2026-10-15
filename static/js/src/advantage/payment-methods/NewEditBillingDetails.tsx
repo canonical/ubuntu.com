@@ -1,11 +1,11 @@
 import { updateOrganization } from "advantage/api/cancon";
 import { countries, USStates } from "../countries-and-states";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchUserOrganization } from "advantage/api/cancon";
 import { useMutation } from "@tanstack/react-query";
 import { Form, Formik } from "formik";
 import { Button, FormikField } from "@canonical/react-components";
-import { UpdateOrganizationInput } from "advantage/api/cancon.types";
+import { Organization } from "advantage/api/cancon.types";
 import CustomSelect from "./CustomSelect";
 
 type Props = {
@@ -28,6 +28,7 @@ export const NewEditBillingDetails = ({ accountId, onClose }: Props) => {
     queryFn: () => fetchUserOrganization(),
     enabled: !!accountId,
   });
+  const queryClient = useQueryClient();
   const formikInitialValues: FormValues = {
     fieldCountry: organizationData?.address?.country || ``,
     fieldState: organizationData?.address?.state || ``,
@@ -44,8 +45,15 @@ export const NewEditBillingDetails = ({ accountId, onClose }: Props) => {
       payload,
     }: {
       organizationId: string;
-      payload: UpdateOrganizationInput;
+      payload: Organization;
     }) => updateOrganization(organizationId, payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["organization", accountId] });
+      onClose();
+    },
+    onError: (error) => {
+      console.error("Failed to save billing details:", error);
+    },
   });
   const closeModal = () => {
     if (isSaveBillingPending) return;
@@ -56,7 +64,9 @@ export const NewEditBillingDetails = ({ accountId, onClose }: Props) => {
     saveBilling({
       organizationId: organizationData?.id!,
       payload: {
-        name: organizationData?.name || ``,
+        ...organizationData,
+        name: organizationData?.name,
+        // version: organizationData?.version, 
         address: {
           country: values.fieldCountry,
           state: values.fieldState,
@@ -151,6 +161,7 @@ export const NewEditBillingDetails = ({ accountId, onClose }: Props) => {
                             name={`fieldState`}
                             label={`State/Province`}
                             required={true}
+                            disabled
                             options={USStates}
                             value={values.fieldState || ``}
                             onChange={(value: string) => {
@@ -207,11 +218,18 @@ export const NewEditBillingDetails = ({ accountId, onClose }: Props) => {
                   style={{ justifyContent: `end`, display: `flex` }}
                 >
                   <Button
+                    type={`button`}
+                    disabled={isSubmitting}
+                    onClick={closeModal}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
                     appearance={`positive`}
                     type={`submit`}
                     disabled={isSubmitting}
                   >
-                    Continue to pay
+                    Save
                   </Button>
                 </div>
               </div>

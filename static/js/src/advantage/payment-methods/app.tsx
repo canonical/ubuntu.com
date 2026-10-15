@@ -5,15 +5,13 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { PaymentMethodProps } from "./PaymentMethods";
 import AccountRoutes from "./Routes";
 
-const oneHour = 1000 * 60 * 60;
+const Mins_5 = 1000 * 60 * 5;
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: false,
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      staleTime: oneHour,
-      retryOnMount: false,
+      refetchOnWindowFocus: true,
+      refetchOnMount: true,
+      staleTime: Mins_5,
     },
   },
 });

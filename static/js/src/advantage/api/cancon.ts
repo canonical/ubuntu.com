@@ -1,4 +1,4 @@
-import { Organization, UpdateOrganizationInput } from "./cancon.types";
+import { Organization } from "./cancon.types";
 
 interface Subscription {
   autoRenew: boolean;
@@ -52,7 +52,7 @@ export const attachPaymentMethodToSubscription = async (
 
 export const updateOrganization = async (
   organizationId: string,
-  payload: UpdateOrganizationInput,
+  payload: Organization,
 ): Promise<void> => {
   await fetch(`/portal-proxy/api/organization/${organizationId}`, {
     method: "PUT",
