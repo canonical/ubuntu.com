@@ -54,19 +54,36 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           BRANCH: ${{ github.event.repository.default_branch }}
+          ALERT_EVERY_FAILED: 6
         run: |
-          conclusion=$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/marketo-canary.yaml/runs?status=completed&branch=${BRANCH}&per_page=20" \
-            --jq '[.workflow_runs[] | select(.conclusion=="success" or .conclusion=="failure")][0].conclusion // ""' || true)
-          echo "conclusion=${conclusion}" >> "$GITHUB_OUTPUT"
+          if ! runs=$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/marketo-canary.yaml/runs?status=completed&branch=${BRANCH}&per_page=100" \
+            --jq '[.workflow_runs[] | select(.conclusion=="success" or .conclusion=="failure") | .conclusion]'); then
+            # Lookup failed, alert rather than stay silent
+            echo "notify=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
 
-      - name: Send message on new failure
+          # Consecutive failures before this run, since the last success
+          streak=$(jq 'index("success") // length' <<< "$runs")
+          notify=false
+          if (( (streak + 1) % ALERT_EVERY_FAILED == 0 )); then notify=true; fi
+          recovered=false
+          if (( streak >= ALERT_EVERY_FAILED )); then recovered=true; fi
+
+          echo "notify=${notify}" >> "$GITHUB_OUTPUT"
+          echo "recovered=${recovered}" >> "$GITHUB_OUTPUT"
+
+      - name: Send message on repeated failures
         env:
           BOT_URL: ${{ secrets.BOT_URL }}
-        if: failure() && steps.previous.outputs.conclusion != 'failure'
+        if: failure() && steps.previous.outputs.notify == 'true'
         run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" $BOT_URL?room=web-alerts
 
       - name: Send message on recovery
         env:
           BOT_URL: ${{ secrets.BOT_URL }}
-        if: success() && steps.previous.outputs.conclusion == 'failure'
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW} (recovered)" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" $BOT_URL?room=web-alerts
+        if: success() && steps.previous.outputs.recovered == 'true'
+        run: |
+          message="[${GITHUB_WORKFLOW}](https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}) recovered"
+          encoded=$(jq -rn --arg m "$message" '$m | @uri')
+          curl -X POST "${BOT_URL}?room=web-alerts&custom_message=${encoded}"
