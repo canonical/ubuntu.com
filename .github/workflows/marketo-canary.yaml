@@ -1,8 +1,14 @@
-name: Marketo form submission canary
+name: TEST - Marketo form submission canary
 on:
   schedule:
     - cron: "0 * * * *"
   workflow_dispatch:
+    # QA: remove before merging
+    inputs:
+      fail:
+        description: Force the canary step to fail
+        type: boolean
+        default: true
 
 permissions:
   contents: read
@@ -23,38 +29,46 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      # - uses: actions/setup-node@v4
+      #   with:
+      #     node-version: 20
 
-      - name: Install dependencies
-        run: yarn install --immutable
+      # - name: Install dependencies
+      #   run: yarn install --immutable
 
-      - name: Install Playwright Browsers
-        run: yarn playwright install --with-deps chromium
+      # - name: Install Playwright Browsers
+      #   run: yarn playwright install --with-deps chromium
 
-      - name: Submit canary forms on ubuntu.com
+      # - name: Submit canary forms on ubuntu.com
+      #   env:
+      #     PLAYWRIGHT_BASE_URL: https://ubuntu.com
+      #     INCLUDE_CANARY: true
+      #     CI: true
+      #   run: yarn playwright test canary --reporter=line,html
+
+      # - name: Upload Playwright report
+      #   if: failure()
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: marketo-canary-report
+      #     path: playwright-report/
+      #     retention-days: 7
+
+      # QA: remove before merging
+      - name: Fake canary
         env:
-          PLAYWRIGHT_BASE_URL: https://ubuntu.com
-          INCLUDE_CANARY: true
-          CI: true
-        run: yarn playwright test canary --reporter=line,html
-
-      - name: Upload Playwright report
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: marketo-canary-report
-          path: playwright-report/
-          retention-days: 7
+          FAIL: ${{ inputs.fail }}
+        run: '[ "$FAIL" != "true" ]'
 
       - name: Get previous run result
         id: previous
         if: always()
         env:
           GH_TOKEN: ${{ github.token }}
-          BRANCH: ${{ github.event.repository.default_branch }}
-          ALERT_EVERY_FAILED: 6
+          BRANCH: ${{ github.ref_name }} # TEST ONLY
+          ALERT_EVERY_FAILED: 2 # TEST ONLY
+          # BRANCH: ${{ github.event.repository.default_branch }}
+          # ALERT_EVERY_FAILED: 6
         run: |
           if ! runs=$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/marketo-canary.yaml/runs?status=completed&branch=${BRANCH}&per_page=100" \
             --jq '[.workflow_runs[] | select(.conclusion=="success" or .conclusion=="failure") | .conclusion]'); then
@@ -78,12 +92,3 @@ jobs:
           BOT_URL: ${{ secrets.BOT_URL }}
         if: failure() && steps.previous.outputs.notify == 'true'
         run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" $BOT_URL?room=web-alerts
-
-      - name: Send message on recovery
-        env:
-          BOT_URL: ${{ secrets.BOT_URL }}
-        if: success() && steps.previous.outputs.recovered == 'true'
-        run: |
-          message="[${GITHUB_WORKFLOW}](https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}) recovered"
-          encoded=$(jq -rn --arg m "$message" '$m | @uri')
-          curl -X POST "${BOT_URL}?room=web-alerts&custom_message=${encoded}"
