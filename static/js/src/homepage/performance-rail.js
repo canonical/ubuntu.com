@@ -37,10 +37,10 @@ export function startPerformanceRail(root) {
     });
   }
 
-  // Back to the no-JS state: fully filled, every ring lit
-  function reset() {
+  // The static state for reduced motion: fully filled, every ring lit
+  function fillAll() {
     fills.forEach((fill) => {
-      fill.style.transform = "";
+      fill.style.transform = "scaleY(1)";
     });
     rings.forEach((ring) => ring.classList.add("is-active"));
   }
@@ -98,7 +98,6 @@ export function startPerformanceRail(root) {
         observer.disconnect();
       }
       unlisten();
-      reset();
     };
   }
 
@@ -106,9 +105,12 @@ export function startPerformanceRail(root) {
     const shouldRun = wideQuery.matches && !prefersReducedMotion();
     if (shouldRun && !stopCurrent) {
       stopCurrent = start();
-    } else if (!shouldRun && stopCurrent) {
-      stopCurrent();
-      stopCurrent = null;
+    } else if (!shouldRun) {
+      if (stopCurrent) {
+        stopCurrent();
+        stopCurrent = null;
+      }
+      fillAll();
     }
   }
 

@@ -288,17 +288,10 @@ class TestHomepageRender(VCRTestCase):
                 "/core",
             ],
         )
-        inline_links = [
-            link
-            for link in section.select('a[href="/core"]')
-            if "p-cta-text" not in link.get("class", [])
-        ]
-        self.assertEqual(
-            [link.get_text(strip=True) for link in inline_links],
-            ["Ubuntu Core"],
-        )
+        self.assertEqual(len(section.select('a[href="/core"]')), 1)
+        self.assertEqual(len(section.select("hr.u-hide--medium")), 4)
 
-    def test_performance_rail_renders_filled_without_js(self):
+    def test_performance_rail_renders_empty_without_js(self):
         section = self.get_performance_section()
         rails = section.select(".p-performance__rail")
         self.assertEqual(len(rails), 4)
@@ -308,7 +301,7 @@ class TestHomepageRender(VCRTestCase):
         rings = section.select(".p-performance__ring")
         self.assertEqual(len(rings), 4)
         for ring in rings:
-            self.assertIn("is-active", ring["class"])
+            self.assertNotIn("is-active", ring["class"])
         self.assertEqual(len(section.select(".p-performance__fill")), 3)
 
     def test_performance_rings_use_asset_images(self):
@@ -333,16 +326,9 @@ class TestHomepageRender(VCRTestCase):
         section = self.get_performance_section()
         names = []
         sources = []
-        for icon in section.select(".js-icon-tooltip"):
-            self.assertEqual(icon.get("tabindex"), "0")
-            self.assertEqual(icon.get("role"), "img")
-            message = section.find(id=icon["aria-labelledby"])
-            self.assertEqual(message.get("role"), "tooltip")
-            names.append(message.get_text(strip=True))
-
-            image = icon.find("img")
-            self.assertEqual(image.get("alt"), "")
-            self.assertIsNone(image.get("title"))
+        for image in section.select(".p-performance__apps img"):
+            self.assertEqual(image.get("title"), image.get("alt"))
+            names.append(image["alt"])
             self.assertIn("res.cloudinary.com", image["src"])
             sources.append(unquote(image["src"]).rsplit("/", 1)[-1])
 
