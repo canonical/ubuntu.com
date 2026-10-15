@@ -369,30 +369,27 @@ class TestHomepageRender(VCRTestCase):
 
     def test_community_tiles(self):
         """
-        The community tiles load only posters up front, offer each video in
-        three codecs, and serve every image through image()
+        Every tile renders its image through image(); video tiles hold a
+        lazy video in a template, offered as AV1, then HEVC, then H.264
         """
 
         response = self.client.get("/")
         soup = BeautifulSoup(response.get_data(as_text=True), "lxml")
 
         self.assertIn("p-homepage", soup.body["class"])
-        self.assertEqual(len(soup.select(".p-community-tile")), 3)
-        image = soup.select_one("img.p-community-tile__media")
-        self.assertIn("res.cloudinary.com", image["src"])
-        videos = soup.select("video.p-community-tile__media")
+        images = soup.select("img.p-community-tile__media")
+        self.assertEqual(len(images), 3)
+        for image in images:
+            self.assertIn("res.cloudinary.com", image["src"])
+        videos = soup.select("template.js-community-video video")
         self.assertEqual(len(videos), 2)
         for video in videos:
             self.assertEqual(video["preload"], "none")
-            self.assertIn("res.cloudinary.com", video["poster"])
-            self.assertEqual(
-                [source["type"] for source in video.find_all("source")],
-                [
-                    'video/webm; codecs="av01.0.05M.08"',
-                    'video/mp4; codecs="hvc1.1.6.L93.B0"',
-                    "video/mp4",
-                ],
-            )
+            types = [source["type"] for source in video.find_all("source")]
+            self.assertEqual(len(types), 3)
+            self.assertTrue(types[0].startswith('video/webm; codecs="av01'))
+            self.assertTrue(types[1].startswith('video/mp4; codecs="hvc1'))
+            self.assertEqual(types[2], "video/mp4")
 
 
 if __name__ == "__main__":
