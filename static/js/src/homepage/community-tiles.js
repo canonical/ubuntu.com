@@ -4,15 +4,24 @@ import { prefersReducedMotion, onReducedMotionChange } from "./reduced-motion";
 // pauses it while the pointer or focus is on the tile so its text is readable.
 // With reduced motion, videos never play and only the poster shows.
 export function startCommunityTiles(root) {
+  if (typeof window.IntersectionObserver !== "function") {
+    return;
+  }
+
+  // Each video waits in a template beside its poster image, so no-JS
+  // visitors never get the browser's forced video controls.
   const tiles = new Map();
   root.querySelectorAll(".p-community-tile").forEach((tile) => {
-    const video = tile.querySelector("video");
-    if (video) {
+    const template = tile.querySelector(".js-community-video");
+    if (template) {
+      const video = template.content.querySelector("video");
+      template.previousElementSibling.replaceWith(video);
+      template.remove();
       tiles.set(tile, { video, isVisible: false, isActive: false });
     }
   });
 
-  if (!tiles.size || typeof window.IntersectionObserver !== "function") {
+  if (!tiles.size) {
     return;
   }
 

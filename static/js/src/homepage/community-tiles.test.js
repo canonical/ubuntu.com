@@ -30,7 +30,9 @@ afterEach(() => {
 
 function renderTile() {
   document.body.innerHTML = `
-    <section><article class="p-community-tile"><video></video></article></section>
+    <section><article class="p-community-tile">
+      <img /><template class="js-community-video"><video></video></template>
+    </article></section>
   `;
   startCommunityTiles(document.querySelector("section"));
   return {
@@ -43,6 +45,12 @@ const setVisible = (tile, isIntersecting) =>
   observerCallback([{ target: tile, isIntersecting }]);
 
 describe("startCommunityTiles", () => {
+  it("swaps the poster image for the video", () => {
+    renderTile();
+    expect(document.querySelector("img")).toBeNull();
+    expect(document.querySelector("template")).toBeNull();
+  });
+
   it("plays only while the tile is on screen", () => {
     const { tile, video } = renderTile();
 

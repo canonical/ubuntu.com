@@ -1,8 +1,9 @@
 {#
   A "Built by you" tile. With a "video" dict ({"webm": AV1 url, "hevc": url,
-  "mp4": H.264 url}) it renders a muted looping <video> with the image as its
-  poster; without one it renders the image. Browsers take the first source
-  whose codec they can decode. Uses image(), so import with context.
+  "mp4": H.264 url}) it renders the image, which the tiles script swaps for a
+  muted looping <video> using it as the poster; without one it renders the
+  image. Browsers take the first source whose codec they can decode. Uses
+  image(), so import with context.
 #}
 {% macro community_tile(tile) -%}
   <article class="p-community-tile{% if tile.is_square %} is-square{% endif %}">
@@ -13,17 +14,25 @@
                 width="1200",
                 hi_def=False,
                 output_mode="attrs") %}
-        <video class="p-community-tile__media"
-               muted
-               loop
-               playsinline
-               preload="none"
-               poster="{{ poster.src }}"
-               aria-hidden="true">
-          <source src="{{ tile.video.webm }}" type='video/webm; codecs="av01.0.08M.08"' />
-          <source src="{{ tile.video.hevc }}" type='video/mp4; codecs="hvc1.1.6.L120.B0"' />
-          <source src="{{ tile.video.mp4 }}" type="video/mp4" />
-        </video>
+        {# Without JS browsers force native controls on a video, so it only
+           replaces the poster image once the tiles script runs #}
+        <img class="p-community-tile__media"
+             src="{{ poster.src }}"
+             alt=""
+             loading="lazy" />
+        <template class="js-community-video">
+          <video class="p-community-tile__media"
+                 muted
+                 loop
+                 playsinline
+                 preload="none"
+                 poster="{{ poster.src }}"
+                 aria-hidden="true">
+            <source src="{{ tile.video.webm }}" type='video/webm; codecs="av01.0.08M.08"' />
+            <source src="{{ tile.video.hevc }}" type='video/mp4; codecs="hvc1.1.6.L120.B0"' />
+            <source src="{{ tile.video.mp4 }}" type="video/mp4" />
+          </video>
+        </template>
       {%- else %}
         {{ image(url=tile.image.url,
                 alt="",
