@@ -25,14 +25,40 @@ export function startCommunityTiles(root) {
     return;
   }
 
+  // Pause holds every video until pressed again, whatever the tile state
+  const pauseButton = root.querySelector(".js-community-pause");
+  let isPaused = false;
+
   const update = (tile) => {
     const { video, isVisible, isActive } = tiles.get(tile);
-    if (isVisible && !isActive && !prefersReducedMotion()) {
+    if (isVisible && !isActive && !isPaused && !prefersReducedMotion()) {
       video.play().catch(() => {});
     } else {
       video.pause();
     }
   };
+
+  // With reduced motion nothing plays, so there is nothing to pause
+  const syncPauseButton = () => {
+    const icon = isPaused ? "play" : "pause";
+    pauseButton.hidden = prefersReducedMotion();
+    pauseButton.setAttribute(
+      "aria-label",
+      isPaused ? "Play videos" : "Pause videos",
+    );
+    pauseButton
+      .querySelectorAll("[data-icon]")
+      .forEach((img) => (img.hidden = img.dataset.icon !== icon));
+  };
+
+  if (pauseButton) {
+    pauseButton.addEventListener("click", () => {
+      isPaused = !isPaused;
+      syncPauseButton();
+      tiles.forEach((state, tile) => update(tile));
+    });
+    syncPauseButton();
+  }
 
   const observer = new window.IntersectionObserver((entries) => {
     entries.forEach(({ target, isIntersecting }) => {
@@ -57,5 +83,10 @@ export function startCommunityTiles(root) {
     observer.observe(tile);
   });
 
-  onReducedMotionChange(() => tiles.forEach((state, tile) => update(tile)));
+  onReducedMotionChange(() => {
+    if (pauseButton) {
+      syncPauseButton();
+    }
+    tiles.forEach((state, tile) => update(tile));
+  });
 }

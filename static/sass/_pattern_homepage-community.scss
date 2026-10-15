@@ -11,6 +11,31 @@
     display: none;
   }
 
+  .p-community__controls {
+    align-items: baseline;
+    display: flex;
+    gap: $sp-unit * 2;
+    justify-content: space-between;
+  }
+
+  // Circled icon button, as the open source carousel's Pause
+  .p-community__pause {
+    align-items: center;
+    background: none;
+    border: 0;
+    display: inline-flex;
+    flex-shrink: 0;
+    height: $sp-unit * 5.5;
+    justify-content: center;
+    margin: 0 0 0 auto;
+    padding: 0;
+    width: $sp-unit * 5.5;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
   .p-community__tiles {
     row-gap: $sp-unit * 4;
   }

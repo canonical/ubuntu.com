@@ -30,14 +30,20 @@ afterEach(() => {
 
 function renderTile() {
   document.body.innerHTML = `
-    <section><article class="p-community-tile">
-      <img /><template class="js-community-video"><video></video></template>
-    </article></section>
+    <section>
+      <button class="js-community-pause" hidden>
+        <img data-icon="pause" /><img data-icon="play" hidden />
+      </button>
+      <article class="p-community-tile">
+        <img /><template class="js-community-video"><video></video></template>
+      </article>
+    </section>
   `;
   startCommunityTiles(document.querySelector("section"));
   return {
     tile: document.querySelector(".p-community-tile"),
     video: document.querySelector("video"),
+    button: document.querySelector("button"),
   };
 }
 
@@ -47,7 +53,7 @@ const setVisible = (tile, isIntersecting) =>
 describe("startCommunityTiles", () => {
   it("swaps the poster image for the video", () => {
     renderTile();
-    expect(document.querySelector("img")).toBeNull();
+    expect(document.querySelector("article img")).toBeNull();
     expect(document.querySelector("template")).toBeNull();
   });
 
@@ -83,5 +89,19 @@ describe("startCommunityTiles", () => {
 
     setVisible(tile, true);
     expect(video.play).toHaveBeenCalledTimes(1);
+  });
+
+  it("holds every video while Pause is pressed", () => {
+    const { tile, video, button } = renderTile();
+    setVisible(tile, true);
+    expect(button.hidden).toBe(false);
+
+    button.click();
+    setVisible(tile, true);
+    expect(video.play).toHaveBeenCalledTimes(1);
+    expect(button.getAttribute("aria-label")).toBe("Play videos");
+
+    button.click();
+    expect(video.play).toHaveBeenCalledTimes(2);
   });
 });
