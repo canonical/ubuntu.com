@@ -2312,7 +2312,49 @@ def build_release_cycle_view():
                 "compatible-ubuntu-lts", []
             ),
             "has_compatible_components": has_compatible_components,
+            "compliance": version_dict.get("compliance", []),
         }
+
+    def build_compliance_options(raw_products):
+        """Build filter options from the available compliance frameworks."""
+        frameworks = set()
+        for product in raw_products.values():
+            for deployment in product.get("deployment", []):
+                for version in deployment.get("versions", []):
+                    for entry in version.get("compliance", []):
+                        framework = entry.get("framework")
+                        if framework:
+                            frameworks.add(framework)
+        return [{"value": "None", "label": "None"}] + [
+            {"value": framework, "label": framework}
+            for framework in sorted(frameworks)
+        ]
+
+    def version_has_no_compliance(version):
+        """Return whether the version has no achieved compliance entries."""
+        entries = version.get("compliance", [])
+        return not any(entry.get("status") != "None" for entry in entries)
+
+    def filter_versions_by_compliance(versions, selected_frameworks):
+        """Filter versions by selected compliance frameworks."""
+        if not selected_frameworks:
+            return versions
+
+        selected = set(selected_frameworks)
+        wants_none = "None" in selected
+        real_frameworks = selected - {"None"}
+
+        filtered = []
+        for version in versions:
+            version_frameworks = {
+                entry.get("framework")
+                for entry in version.get("compliance", [])
+            }
+            if real_frameworks and (version_frameworks & real_frameworks):
+                filtered.append(version)
+            elif wants_none and version_has_no_compliance(version):
+                filtered.append(version)
+        return filtered
 
     def display_github_data():
         product = flask.request.args.get("product", type=str, default="ubuntu")
@@ -2320,6 +2362,7 @@ def build_release_cycle_view():
             "release", type=str, default="ubuntu"
         )
         version = flask.request.args.get("version", type=str, default="all")
+        selected_compliance = flask.request.args.getlist("compliance")
 
         raw_files = get_combined_products(
             ["products-data/25.10/products.json"]
@@ -2327,6 +2370,7 @@ def build_release_cycle_view():
         raw_products = raw_files.get("products", {})
 
         products_data = build_ui_products(raw_products)
+        compliance_options = build_compliance_options(raw_products)
 
         versions = []
         selected_version = None
@@ -2335,7 +2379,9 @@ def build_release_cycle_view():
         if product and release_name:
             deployment = get_deployment(products_data, product, release_name)
             if deployment:
-                versions = deployment.get("versions", [])
+                versions = filter_versions_by_compliance(
+                    deployment.get("versions", []), selected_compliance
+                )
 
             if version and version != "all":
                 # Look up the selected version among visible ones
@@ -2351,6 +2397,8 @@ def build_release_cycle_view():
                 if selected_version is None:
                     version = "all"
 
+        show_release_notice = bool(product) and not deployment
+
         return flask.render_template(
             "about/release-cycle.html",
             products_data=products_data,
@@ -2360,6 +2408,9 @@ def build_release_cycle_view():
             versions=versions,
             selected_version=selected_version,
             deployment=deployment,
+            show_release_notice=show_release_notice,
+            compliance_options=compliance_options,
+            selected_compliance=selected_compliance,
             now=datetime.utcnow(),
         )
 
