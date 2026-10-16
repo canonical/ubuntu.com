@@ -1,0 +1,58 @@
+{#
+  Vanilla pagination pattern: https://vanillaframework.io/docs/patterns/pagination
+  Shows the first, last, current and adjacent pages, truncating the rest.
+  Links keep the other query parameters (topic filters) and land on #articles.
+  Params: current_page, total_pages
+#}
+{% if total_pages and total_pages > 1 %}
+  {% set pages = [] %}
+  {% for number in range(1, total_pages + 1) %}
+    {% if number == 1 or number == total_pages or (number - current_page) | abs <= 1 %}
+      {% set _ = pages.append(number) %}
+    {% endif %}
+  {% endfor %}
+
+  {% macro page_link(number) -%}
+    <li class="p-pagination__item">
+      <a class="p-pagination__link{% if number == current_page %} is-active{% endif %}"
+         href="?{{ modify_query({'page': number}) }}#articles"
+         aria-label="Page {{ number }}"
+         {% if number == current_page %}aria-current="page"{% endif %}>{{ number }}</a>
+    </li>
+  {%- endmacro %}
+
+  <nav class="p-pagination" aria-label="Pagination">
+    <ol class="p-pagination__items">
+      <li class="p-pagination__item">
+        {% if current_page > 1 %}
+          <a class="p-pagination__link--previous"
+             href="?{{ modify_query({'page': current_page - 1}) }}#articles"
+             title="Previous page"><i class="p-icon--chevron-down">Previous page</i></a>
+        {% else %}
+          <span class="p-pagination__link--previous is-disabled" aria-disabled="true"><i class="p-icon--chevron-down">Previous page</i></span>
+        {% endif %}
+      </li>
+
+      {% set gap = namespace(previous=0) %}
+      {% for number in pages %}
+        {% if number - gap.previous == 2 %}
+          {{ page_link(number - 1) }}
+        {% elif number - gap.previous > 2 %}
+          <li class="p-pagination__item p-pagination__item--truncation">&hellip;</li>
+        {% endif %}
+        {{ page_link(number) }}
+        {% set gap.previous = number %}
+      {% endfor %}
+
+      <li class="p-pagination__item">
+        {% if current_page < total_pages %}
+          <a class="p-pagination__link--next"
+             href="?{{ modify_query({'page': current_page + 1}) }}#articles"
+             title="Next page"><i class="p-icon--chevron-down">Next page</i></a>
+        {% else %}
+          <span class="p-pagination__link--next is-disabled" aria-disabled="true"><i class="p-icon--chevron-down">Next page</i></span>
+        {% endif %}
+      </li>
+    </ol>
+  </nav>
+{% endif %}

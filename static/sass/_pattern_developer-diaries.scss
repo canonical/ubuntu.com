@@ -1,0 +1,78 @@
+// Developer diaries: /community/developer-diaries and its articles, scoped
+// to the body class those pages set.
+@mixin ubuntu-p-developer-diaries {
+  .developer-diaries {
+    // Likes count on the article cards and headers
+    @include vf-p-icon-thumbs-up;
+
+    // Dim the articles while the next filtered page or page of results loads
+    [aria-busy="true"] {
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+
+    // Keep the in-page navigation below the sticky secondary navigation
+    // (3.5rem tall), like the side navigation TOCs elsewhere (top: 4rem)
+    .p-in-page-navigation {
+      max-height: calc(100vh - 4rem);
+      top: 4rem;
+    }
+
+    @media screen and (width >= $threshold-4-8-col) {
+      // Keep the article sidebar (discussion and share links) in view, like
+      // the blog article's share links, level with the in-page navigation
+      .developer-diaries__sidebar {
+        position: sticky;
+        top: 4rem;
+      }
+    }
+
+    @media screen and (width < $threshold-4-8-col) {
+      [class^="grid-col"]:has(> .p-in-page-navigation) {
+        top: 3.5rem;
+      }
+
+      // Only the horizontally scrolling list, without the dropdown toggle
+      .p-in-page-navigation__dropdown-toggle {
+        display: none;
+      }
+
+      // Shallow spacing below the "Browse our latest articles" heading on
+      // large screens only
+      .developer-diaries__heading {
+        padding-bottom: 0;
+      }
+    }
+
+    // cookie-policy.css, loaded after styles.css, redeclares the dark theme
+    // code background with its own older value: restore Vanilla's
+    &.is-dark {
+      --vf-color-background-code: #{$colors--dark-theme--background-code};
+    }
+
+    // Keep Vanilla's colours over the dark theme link colours
+    // (.is-dark .inner-wrapper a), even once visited
+    &.is-dark .inner-wrapper {
+      // In-page navigation: muted, and white when hovered or active
+      a.p-in-page-navigation__link {
+        &,
+        &:visited {
+          color: $colors--dark-theme--text-muted;
+        }
+
+        &:hover,
+        &.is-active {
+          color: $colors--dark-theme--text-default;
+        }
+      }
+
+      // Pagination: white page numbers
+      a.p-pagination__link {
+        &,
+        &:visited {
+          color: $colors--dark-theme--text-default;
+        }
+      }
+    }
+  }
+}
