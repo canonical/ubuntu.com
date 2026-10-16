@@ -104,15 +104,20 @@ describe("startOpenSourceCarousel", () => {
     tick(SLIDE_MS + 50);
     expect(active()).toBe(1);
 
+    move(slides[0]);
+    tick(SLIDE_MS + 50);
+    expect(active()).toBe(2);
+  });
+
+  it("stops autoplay on a mouse click, even once the pointer leaves", () => {
+    setup();
     titles()[2].dispatchEvent(new MouseEvent("click", { detail: 1 }));
+    root
+      .querySelector(".p-open-source__slides")
+      .dispatchEvent(new Event("pointerleave"));
     tick(2 * SLIDE_MS);
     expect(active()).toBe(2);
-    expect(root.classList.contains("is-held")).toBe(true);
-
-    move(slides[0]);
-    expect(root.classList.contains("is-held")).toBe(false);
-    tick(SLIDE_MS + 50);
-    expect(active()).toBe(0);
+    expect(pause().getAttribute("aria-label")).toBe("Play carousel");
   });
 
   it("freezes the bar but keeps typing on Pause, resumes on Play", () => {

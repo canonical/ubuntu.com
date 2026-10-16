@@ -46,9 +46,7 @@ export function startOpenSourceCarousel(root) {
   // Autoplay only: Pause or a visitor's choice stops the slides advancing,
   // the command keeps typing either way
   let playing = true;
-  // The slide under the pointer, -1 for none; the active one holds the timer.
-  // Set from real moves only: the accordion moves a clicked title from under
-  // a still cursor, and that slide should hold until the cursor moves.
+  // The slide under the pointer, -1 for none; the active one holds the timer
   let hovered = -1;
   let onScreen = true;
   let elapsed = 0;
@@ -133,11 +131,9 @@ export function startOpenSourceCarousel(root) {
     sync();
   }
 
-  // A visitor's choice is announced. Keyboard and step choices stop autoplay
-  // (not a Pause); a mouse click leaves it to resume once the pointer leaves
-  // the slide.
-  function choose(target, keepPlaying = false) {
-    playing = playing && keepPlaying;
+  // A visitor's choice stops autoplay (not a Pause), and is announced
+  function choose(target) {
+    playing = false;
     go(target);
     live.textContent = `Slide ${target + 1} of ${slides.length}: ${
       titles[target].textContent
@@ -161,13 +157,7 @@ export function startOpenSourceCarousel(root) {
   }
 
   titles.forEach((title, i) =>
-    // detail is 0 for a click made with Enter or Space
-    title.addEventListener("click", (event) => {
-      if (event.detail > 0) {
-        hovered = i;
-      }
-      choose(i, event.detail > 0);
-    }),
+    title.addEventListener("click", () => choose(i)),
   );
   function hover(target) {
     if (target !== hovered) {
@@ -191,8 +181,7 @@ export function startOpenSourceCarousel(root) {
   );
   list.addEventListener("keydown", onKeydown);
   // Keyboard focus inside stops autoplay, so a focused title or link is never
-  // hidden under it; only Play resumes (WAI-ARIA carousel pattern). Mouse
-  // clicks focus buttons too, but those keep the hover hold above.
+  // hidden under it; only Play resumes (WAI-ARIA carousel pattern)
   root.addEventListener("focusin", (event) => {
     if (event.target.matches(":focus-visible")) {
       setPlaying(false);
