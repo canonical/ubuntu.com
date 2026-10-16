@@ -21,7 +21,12 @@ export function startCommunityTiles(root) {
       const video = template.content.querySelector("video");
       video.poster = image.currentSrc || image.src;
       frame.replaceChildren(video);
-      tiles.set(tile, { video, isVisible: false, isActive: false });
+      tiles.set(tile, {
+        video,
+        isVisible: false,
+        isHovered: false,
+        isFocused: false,
+      });
     }
   });
 
@@ -33,8 +38,9 @@ export function startCommunityTiles(root) {
   let isPaused = false;
 
   const update = (tile) => {
-    const { video, isVisible, isActive } = tiles.get(tile);
-    if (isVisible && !isActive && !isPaused && !prefersReducedMotion()) {
+    const { video, isVisible, isHovered, isFocused } = tiles.get(tile);
+    const isHeld = isHovered || isFocused || isPaused;
+    if (isVisible && !isHeld && !prefersReducedMotion()) {
       video.play().catch(() => {});
     } else {
       video.pause();
@@ -69,16 +75,17 @@ export function startCommunityTiles(root) {
   });
 
   tiles.forEach((state, tile) => {
-    const setActive = (isActive) => () => {
-      state.isActive = isActive;
+    // Hover and focus are tracked apart, so ending one keeps the other's pause
+    const set = (key, value) => {
+      state[key] = value;
       update(tile);
     };
-    tile.addEventListener("mouseenter", setActive(true));
-    tile.addEventListener("mouseleave", setActive(false));
-    tile.addEventListener("focusin", setActive(true));
+    tile.addEventListener("mouseenter", () => set("isHovered", true));
+    tile.addEventListener("mouseleave", () => set("isHovered", false));
+    tile.addEventListener("focusin", () => set("isFocused", true));
     tile.addEventListener("focusout", (event) => {
       if (!tile.contains(event.relatedTarget)) {
-        setActive(false)();
+        set("isFocused", false);
       }
     });
     observer.observe(tile);

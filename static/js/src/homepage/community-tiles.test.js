@@ -71,15 +71,16 @@ describe("startCommunityTiles", () => {
     expect(video.pause).toHaveBeenCalledTimes(1);
   });
 
-  it("pauses on hover or focus and resumes on leave", () => {
+  it("pauses while hovered or focused, resuming once neither is", () => {
     const { tile, video } = renderTile();
     setVisible(tile, true);
 
     tile.dispatchEvent(new MouseEvent("mouseenter"));
     tile.dispatchEvent(new FocusEvent("focusin", { bubbles: true }));
-    expect(video.pause).toHaveBeenCalledTimes(2);
-
     tile.dispatchEvent(new MouseEvent("mouseleave"));
+    expect(video.pause).toHaveBeenCalledTimes(3);
+
+    tile.dispatchEvent(new FocusEvent("focusout", { bubbles: true }));
     expect(video.play).toHaveBeenCalledTimes(2);
   });
 
