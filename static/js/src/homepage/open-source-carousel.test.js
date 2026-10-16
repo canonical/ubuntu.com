@@ -83,11 +83,13 @@ describe("startOpenSourceCarousel", () => {
     expect(title.getAttribute("aria-controls")).toBe("open-source-c-panel");
     expect(root.querySelector("[aria-live]").textContent).toContain("3 of 3");
     expect(pause().getAttribute("aria-label")).toBe("Play carousel");
+    expect(root.classList.contains("is-held")).toBe(true);
 
     tick(2 * SLIDE_MS);
     expect(active()).toBe(2);
 
     pause().click();
+    expect(root.classList.contains("is-held")).toBe(false);
     tick(SLIDE_MS + 50);
     expect(active()).toBe(0);
   });

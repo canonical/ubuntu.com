@@ -108,7 +108,8 @@
   }
 
   // As on canonical.com, the active rule turns solid while the pointer is
-  // on the active slide, which holds the timer (is-held, script-driven)
+  // on the active slide, and for a slide chosen while paused (is-held,
+  // script-driven)
   .js-open-source-carousel.is-held .p-open-source__slide.is-active::before {
     background-color: $colors--theme--text-default;
   }

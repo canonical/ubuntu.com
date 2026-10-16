@@ -79,7 +79,10 @@ export function startOpenSourceCarousel(root) {
   function sync() {
     const held = hovered === index;
     const running = playing && !held && visible();
-    root.classList.toggle("is-held", held);
+    // The rule turns solid while the pointer holds the slide, and for a slide
+    // chosen with autoplay off, whose bar would otherwise stay empty. A
+    // paused bar that has started keeps showing its progress.
+    root.classList.toggle("is-held", held || (!playing && elapsed === 0));
     if (running && frame === null) {
       frame = window.requestAnimationFrame(tick);
     } else if (!running && frame !== null) {
