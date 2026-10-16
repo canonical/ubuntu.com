@@ -33,15 +33,12 @@ const hidePackagesLinks = document.querySelectorAll(".js-hide-packages");
 const detailedSwitch = document.querySelector(".js-detailed-switch");
 const detailedTables = document.querySelectorAll(".detailed-table");
 const cveDescs = document.querySelectorAll(".cve-summary");
-// eslint-disable-next-line no-undef
 const maintainedReleases = Object.values(maintainedReleasesObj).map(
   (release) => release.codename,
 );
-// eslint-disable-next-line no-undef
 const ltsReleases = Object.values(ltsReleasesObj).map(
   (release) => release.codename,
 );
-// eslint-disable-next-line no-undef
 const unmaintainedReleases = Object.values(unmaintainedReleasesObj).map(
   (release) => release.codename,
 );

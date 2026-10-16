@@ -53,6 +53,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 // import site specific patterns and overrides
 @import "pattern_accordion";
 @import "pattern_ai";
+@import "pattern_announcement-bar";
 @import "pattern_blog-card";
 @import "pattern_blog-article";
 @import "pattern_blog-topic";
@@ -72,6 +73,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_cube-progression";
 @import "pattern_cube-table";
 @import "pattern_cve";
+@import "pattern_developer-diaries";
 @import "pattern_grid";
 @import "pattern_footer";
 @import "pattern_hardware-details-table";
@@ -127,6 +129,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-cube-animation;
 @include ubuntu-p-cube-progression;
 @include ubuntu-p-cve;
+@include ubuntu-p-developer-diaries;
 @include ubuntu-p-floating-image;
 @include ubuntu-p-footer;
 @include ubuntu-p-grid;
@@ -1892,6 +1895,14 @@ ol.p-stepped-list.no-full-stop
   display: flex;
   flex-wrap: wrap;
   column-gap: 1rem;
+}
+
+// Download button group: horizontal gap only, no vertical gap when wrapped.
+.download-button-group {
+  align-items: baseline;
+  column-gap: $sph--large;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .zephyr-resources {

@@ -161,9 +161,22 @@ export var serverAndDesktopReleases = [
     taskName: "26.04 LTS (Resolute Raccoon)",
     status: "PRO_LEGACY_SUPPORT",
   },
+  {
+    startDate: new Date("2026-10-01T00:00:00"),
+    endDate: new Date("2027-07-07T00:00:00"),
+    taskName: "26.10 (Stonking Stingray)",
+    status: "INTERIM_RELEASE",
+  },
 ];
 
 export var kernelReleases = [
+  {
+    startDate: new Date("2026-10-15T00:00:00"),
+    endDate: new Date("2027-07-01T00:00:00"),
+    taskName: "26.10",
+    taskVersion: "7.3 kernel",
+    status: "INTERIM_RELEASE",
+  },
   {
     startDate: new Date("2026-07-15T00:00:00"),
     endDate: new Date("2029-05-01T00:00:00"),
@@ -1452,6 +1465,7 @@ export var microStackStatus = {
 };
 
 export var desktopServerReleaseNames = [
+  "26.10 (Stonking Stingray)",
   "26.04 LTS (Resolute Raccoon)",
   "24.04 LTS (Noble Numbat)",
   "22.04 LTS (Jammy Jellyfish)",
@@ -1462,6 +1476,7 @@ export var desktopServerReleaseNames = [
 ];
 
 export var kernelReleaseNames = [
+  "26.10",
   "24.04.5 LTS (HWE)",
   "26.04.0 LTS",
   "24.04.4 LTS (HWE)",
@@ -1487,6 +1502,7 @@ export var kernelReleaseNames = [
 
 // Index-parallel to kernelReleaseNames; blank repeats the version of the row above.
 export var kernelVersionNames = [
+  "7.3",
   "7.0",
   "",
   "6.17",

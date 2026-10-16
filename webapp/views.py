@@ -36,6 +36,7 @@ from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
 from canonicalwebteam.directory_parser import generate_sitemap
 from geolite2 import geolite2
+from markupsafe import Markup
 from requests import Session
 from requests.exceptions import HTTPError, RequestException
 from werkzeug.exceptions import BadRequest, ServiceUnavailable
@@ -2120,6 +2121,100 @@ def build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter):
     return display_ubuntu_weekly_newsletter
 
 
+# Topic filters on /community/developer-diaries: an article matches a topic
+# when it has any of the topic's Discourse tags
+DEVELOPER_DIARIES_TOPICS = [
+    {"name": "Snaps", "slug": "snaps", "tags": ["snap", "snapcraft"]},
+    {
+        "name": "Containers",
+        "slug": "containers",
+        "tags": ["rock", "rockcraft", "container", "chisel"],
+    },
+    {"name": "AI", "slug": "ai", "tags": ["ai"]},
+    {
+        "name": "Devpacks and toolchains",
+        "slug": "devpacks-and-toolchains",
+        "tags": ["foundations"],
+    },
+    {
+        "name": "Local development",
+        "slug": "local-development",
+        "tags": ["multipass", "lxd", "workshop"],
+    },
+]
+
+
+# Tag names capitalize() gets wrong
+DEVELOPER_DIARIES_TAG_NAMES = {"ai": "AI", "lxd": "LXD"}
+
+
+def _developer_diaries_tag_names(tags):
+    return [
+        DEVELOPER_DIARIES_TAG_NAMES.get(tag, tag.capitalize()) for tag in tags
+    ]
+
+
+def build_developer_diaries_index(developer_diaries):
+    def developer_diaries_index():
+        page = max(flask.request.args.get("page", default=1, type=int), 1)
+        selected_topics = flask.request.args.getlist("topic")
+        tags = [
+            tag
+            for topic in DEVELOPER_DIARIES_TOPICS
+            if topic["slug"] in selected_topics
+            for tag in topic["tags"]
+        ]
+        limit = 12
+
+        articles, total = developer_diaries.get_index(
+            limit=limit, offset=(page - 1) * limit, tags=tags
+        )
+
+        # vf_card joins the author into raw HTML, so it needs a plain
+        # str with the user-chosen name already escaped: unescaped
+        # would allow injection, a Markup would escape the card itself
+        for article in articles:
+            article["tag_names"] = _developer_diaries_tag_names(
+                article["tags"]
+            )
+            if article["author"]:
+                article["author_html"] = str(
+                    Markup(
+                        '<a class="p-content-card__author-link" '
+                        'href="{}">{}</a>'
+                    ).format(
+                        article["author"]["url"], article["author"]["name"]
+                    )
+                )
+
+        return flask.render_template(
+            "community/developer-diaries/index.html",
+            articles=articles,
+            topics=DEVELOPER_DIARIES_TOPICS,
+            selected_topics=selected_topics,
+            current_page=page,
+            total_pages=math.ceil(total / limit),
+        )
+
+    return developer_diaries_index
+
+
+def build_developer_diaries_article(developer_diaries):
+    def developer_diaries_article(slug):
+        article = developer_diaries.get_article(slug)
+
+        if not article:
+            flask.abort(404)
+
+        article["tag_names"] = _developer_diaries_tag_names(article["tags"])
+
+        return flask.render_template(
+            "community/developer-diaries/article.html", article=article
+        )
+
+    return developer_diaries_article
+
+
 # TODO: remove this after CI check is added to target repo
 def _load_json(raw: bytes):
     return json.loads(raw.decode("utf-8"))
@@ -2353,7 +2448,49 @@ def build_release_cycle_view():
                 "compatible-ubuntu-lts", []
             ),
             "has_compatible_components": has_compatible_components,
+            "compliance": version_dict.get("compliance", []),
         }
+
+    def build_compliance_options(raw_products):
+        """Build filter options from the available compliance frameworks."""
+        frameworks = set()
+        for product in raw_products.values():
+            for deployment in product.get("deployment", []):
+                for version in deployment.get("versions", []):
+                    for entry in version.get("compliance", []):
+                        framework = entry.get("framework")
+                        if framework:
+                            frameworks.add(framework)
+        return [{"value": "None", "label": "None"}] + [
+            {"value": framework, "label": framework}
+            for framework in sorted(frameworks)
+        ]
+
+    def version_has_no_compliance(version):
+        """Return whether the version has no achieved compliance entries."""
+        entries = version.get("compliance", [])
+        return not any(entry.get("status") != "None" for entry in entries)
+
+    def filter_versions_by_compliance(versions, selected_frameworks):
+        """Filter versions by selected compliance frameworks."""
+        if not selected_frameworks:
+            return versions
+
+        selected = set(selected_frameworks)
+        wants_none = "None" in selected
+        real_frameworks = selected - {"None"}
+
+        filtered = []
+        for version in versions:
+            version_frameworks = {
+                entry.get("framework")
+                for entry in version.get("compliance", [])
+            }
+            if real_frameworks and (version_frameworks & real_frameworks):
+                filtered.append(version)
+            elif wants_none and version_has_no_compliance(version):
+                filtered.append(version)
+        return filtered
 
     def display_github_data():
         product = flask.request.args.get("product", type=str, default="ubuntu")
@@ -2361,6 +2498,7 @@ def build_release_cycle_view():
             "release", type=str, default="ubuntu"
         )
         version = flask.request.args.get("version", type=str, default="all")
+        selected_compliance = flask.request.args.getlist("compliance")
 
         raw_files = get_combined_products(
             ["products-data/25.10/products.json"]
@@ -2368,6 +2506,7 @@ def build_release_cycle_view():
         raw_products = raw_files.get("products", {})
 
         products_data = build_ui_products(raw_products)
+        compliance_options = build_compliance_options(raw_products)
 
         versions = []
         selected_version = None
@@ -2376,7 +2515,9 @@ def build_release_cycle_view():
         if product and release_name:
             deployment = get_deployment(products_data, product, release_name)
             if deployment:
-                versions = deployment.get("versions", [])
+                versions = filter_versions_by_compliance(
+                    deployment.get("versions", []), selected_compliance
+                )
 
             if version and version != "all":
                 # Look up the selected version among visible ones
@@ -2392,6 +2533,8 @@ def build_release_cycle_view():
                 if selected_version is None:
                     version = "all"
 
+        show_release_notice = bool(product) and not deployment
+
         return flask.render_template(
             "about/release-cycle.html",
             products_data=products_data,
@@ -2401,6 +2544,9 @@ def build_release_cycle_view():
             versions=versions,
             selected_version=selected_version,
             deployment=deployment,
+            show_release_notice=show_release_notice,
+            compliance_options=compliance_options,
+            selected_compliance=selected_compliance,
             now=datetime.utcnow(),
         )
 

@@ -41,11 +41,11 @@
   {% if version %}
     {% if architecture == 'amd64+mac' %}
       <meta http-equiv="refresh"
-            content="3;url=https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso" />
+            content="3;url=https://cdimage.ubuntu.com/ubuntu/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso" />
     {% elif architecture == 'arm64' %}
       <noscript>
         <meta http-equiv="refresh"
-              content="3;url=https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-arm64.iso" />
+              content="3;url=https://cdimage.ubuntu.com/ubuntu/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-arm64.iso" />
       </noscript>
     {% else %}
       <noscript>
@@ -63,9 +63,9 @@
           <p>
             Your download should start automatically. If it doesn't,
             {% if architecture == 'amd64+mac' %}
-              <a href="https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso">download now</a>.
+              <a href="https://cdimage.ubuntu.com/ubuntu/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso">download now</a>.
             {% elif architecture == 'arm64' %}
-              <a href="https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-arm64.iso">download now</a>.
+              <a href="https://cdimage.ubuntu.com/ubuntu/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-arm64.iso">download now</a>.
             {% else %}
               <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download now</a>.
             {% endif %}
@@ -320,7 +320,7 @@
         if (architecture === 'arm64') {
           // arm64 downloads are not hosted on releases.ubuntu.com so we go
           // straight through cdimage
-          window.location.href = 'https://cdimage.ubuntu.com/releases/' + version + '/release/' + imageName;
+          window.location.href = 'https://cdimage.ubuntu.com/ubuntu/releases/' + version + '/release/' + imageName;
         } else {
           window.initImageDownload(version + '/' + imageName, GAlabel);
         }
