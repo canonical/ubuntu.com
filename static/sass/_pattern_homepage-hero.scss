@@ -27,6 +27,18 @@
     }
   }
 
+  // With no padding under the cut-off desktop, the next section adds the
+  // same gap the hero leaves above it
+  .p-hero ~ .p-latest-block {
+    @media (min-width: $breakpoint-small) {
+      padding-top: $spv--strip-regular * 0.5;
+    }
+
+    @media (min-width: $breakpoint-large) {
+      padding-top: $spv--strip-regular;
+    }
+  }
+
   // The stage's margin alone sets the gap above the desktop
   .p-hero .p-button--brand {
     @media (min-width: $breakpoint-small) {
