@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../helpers/fixtures";
 import { acceptCookiePolicy } from "../helpers/commands";
 
 test.describe("Certified search results", () => {
