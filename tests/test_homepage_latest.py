@@ -1,12 +1,14 @@
 # Standard library
 import os
 import unittest
+from unittest.mock import patch
 
 # Packages
 from bs4 import BeautifulSoup
 from vcr_unittest import VCRTestCase
 
 # Local
+from webapp import app as app_module
 from webapp.app import app
 
 
@@ -122,6 +124,44 @@ class TestSharedLatestNewsStrip(unittest.TestCase):
             html = client.get(path).get_data(as_text=True)
             self.assertIn('id="horizontal-latest-articles"', html, path)
             self.assertIn('id="horizontal-articles-template"', html, path)
+
+
+class TestTakeoverPreview(unittest.TestCase):
+    """/takeovers previews each takeover as the homepage Latest block"""
+
+    def test_takeovers_render_as_latest_blocks(self):
+        takeover = {
+            "title": "Preview title",
+            "subtitle": "Preview text",
+            "class": "dark",
+            "image": "https://assets.ubuntu.com/v1/8e73cb11-tag.svg",
+            "image_width": "191",
+            "image_height": "300",
+            "primary_url": "/primary",
+            "primary_cta": "Primary",
+            "secondary_url": "/secondary",
+            "secondary_cta": "Secondary",
+            "lang": "",
+            "lang_skip": "",
+            "active": "true",
+        }
+        with patch.object(
+            app_module.discourse_takeovers,
+            "get_index",
+            return_value=([takeover], 1, 1, 1),
+        ):
+            app.testing = True
+            html = app.test_client().get("/takeovers").get_data(as_text=True)
+
+        block = BeautifulSoup(html, "lxml").select_one(".p-latest-block")
+        self.assertIsNotNone(block)
+        self.assertEqual(
+            block.select_one(".p-chip").get_text(strip=True), "Latest"
+        )
+        self.assertEqual(block.select_one("a.p-button")["href"], "/primary")
+        secondary = block.select_one("a.p-cta-text")
+        self.assertEqual(secondary["href"], "/secondary")
+        self.assertIsNotNone(secondary.select_one(".p-icon--arrow-right"))
 
 
 if __name__ == "__main__":
