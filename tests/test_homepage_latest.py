@@ -45,12 +45,12 @@ class TestHomepageLatest(VCRTestCase):
         }
 
     def setUp(self):
+        super().setUp()
         app.testing = True
         self.client = app.test_client()
         response = self.client.get("/")
         self.html = response.get_data(as_text=True)
         self.soup = BeautifulSoup(self.html, "lxml")
-        return super().setUp()
 
     def test_takeover_renders_as_latest_block(self):
         takeover = self.soup.find(id="takeover")
