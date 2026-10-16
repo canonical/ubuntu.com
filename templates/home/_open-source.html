@@ -149,7 +149,7 @@
   ]},
 ] %}
 
-<section class="p-section js-open-source-carousel">
+<section class="p-section js-open-source-carousel" aria-labelledby="open-source-heading">
   {# The no-JS title links land here, keeping the heading in view #}
   <div>
     {% for slide in slides %}<span class="p-open-source__anchor" id="open-source-{{ slide.id }}"></span>{% endfor %}
@@ -158,7 +158,7 @@
     <div class="grid-row--50-50-on-large">
       <hr class="p-rule" />
       <div class="grid-col">
-        <h2>
+        <h2 id="open-source-heading">
           A world of open source.
           <br />
           At your command.
