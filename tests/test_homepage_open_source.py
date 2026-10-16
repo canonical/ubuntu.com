@@ -49,10 +49,11 @@ class TestHomepageOpenSource(VCRTestCase):
         active = [s for s in self.slides if "is-active" in s["class"]]
         self.assertEqual(active, self.slides[:1])
 
-    def test_titles_link_to_their_slides(self):
+    def test_titles_link_to_anchors_above_the_heading(self):
         for slide in self.slides:
-            link = slide.select_one("a.p-open-source__title")
-            self.assertEqual(link["href"], "#" + slide["id"])
+            href = slide.select_one("a.p-open-source__title")["href"]
+            anchor = self.soup.select_one(".p-open-source__anchor" + href)
+            self.assertIsNotNone(anchor)
 
     def test_images_go_through_image_template(self):
         images = self.soup.select("img.p-open-source__image")
