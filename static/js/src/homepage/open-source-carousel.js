@@ -187,6 +187,14 @@ export function startOpenSourceCarousel(root) {
     button.addEventListener("click", () => setPlaying(!playing)),
   );
   list.addEventListener("keydown", onKeydown);
+  // Keyboard focus inside stops autoplay, so a focused title or link is never
+  // hidden under it; only Play resumes (WAI-ARIA carousel pattern). Mouse
+  // clicks focus buttons too, but those keep the hover hold above.
+  root.addEventListener("focusin", (event) => {
+    if (event.target.matches(":focus-visible")) {
+      setPlaying(false);
+    }
+  });
   document.addEventListener("visibilitychange", sync);
   if ("IntersectionObserver" in window) {
     new window.IntersectionObserver((entries) => {

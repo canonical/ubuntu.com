@@ -132,6 +132,21 @@ describe("startOpenSourceCarousel", () => {
     expect(bar.style.transform).not.toBe(frozen);
   });
 
+  it("stops autoplay when keyboard focus enters, until Play", () => {
+    setup();
+    const title = titles()[1];
+    title.matches = (selector) => selector === ":focus-visible";
+
+    title.focus();
+    tick(2 * SLIDE_MS);
+    expect(active()).toBe(0);
+    expect(pause().getAttribute("aria-label")).toBe("Play carousel");
+
+    pause().click();
+    tick(SLIDE_MS + 50);
+    expect(active()).toBe(1);
+  });
+
   it("starts on a hashed slide, paused, and clears the hash", () => {
     setup("#open-source-c");
 
