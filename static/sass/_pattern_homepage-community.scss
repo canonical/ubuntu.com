@@ -58,19 +58,40 @@
     }
   }
 
-  // On large screens the square tile's frame fills its column so it ends
-  // level with the stack beside it, with the text under it or overlaid; the
-  // media is absolutely positioned so it can't set the height itself.
+  // On large screens both columns share four subgrid rows: two frames and
+  // two texts. The square tile's frame spans the first three, so it ends
+  // level with the lower frame and its text shares that tile's row, however
+  // the two wrap. Overlaid text is out of flow, leaving those rows empty.
+  // The media is absolutely positioned so it can't set the height itself.
   @media (min-width: $breakpoint-large) {
+    .p-community__tiles {
+      grid-template-rows: repeat(4, auto);
+      row-gap: 0;
+    }
+
+    .p-community__tiles > * {
+      display: grid;
+      grid-row: 1 / span 4;
+      grid-template-rows: subgrid;
+      row-gap: 0;
+    }
+
+    .p-community-tile {
+      display: grid;
+      grid-row: span 2;
+      grid-template-rows: subgrid;
+    }
+
+    .p-community__stack .p-community-tile + .p-community-tile {
+      margin-top: $sp-unit * 4;
+    }
+
     .p-community-tile.is-square {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
+      grid-row: span 4;
 
       .p-community-tile__frame {
         aspect-ratio: auto;
-        flex: 1 1 auto;
-        min-height: $sp-unit * 40;
+        grid-row: span 3;
         position: relative;
       }
 
@@ -97,12 +118,12 @@
       display: block;
     }
 
-    .p-community__stack {
-      gap: $spv--x-large;
-    }
-
     .p-community-tile {
       position: relative;
+    }
+
+    .p-community__stack .p-community-tile + .p-community-tile {
+      margin-top: $spv--x-large;
     }
 
     .p-community-tile__media {
