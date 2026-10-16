@@ -1,0 +1,62 @@
+// Latest stories: four blog cards filled in by the latest-news package.
+// The whole card is one link; its title takes the link colour on hover.
+@mixin ubuntu-p-homepage-latest {
+  // Framer's chip tint; Vanilla has no orange tints
+  $story-chip-background: rgba(#ff7300, 0.2);
+
+  .p-latest-stories {
+    row-gap: $sp-unit * 4;
+  }
+
+  .p-story-card {
+    border: 1px solid $colors--theme--border-low-contrast;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: none;
+
+      .p-story-card__title {
+        color: $colors--theme--link-default;
+      }
+    }
+  }
+
+  // Outranks the dark theme's `.is-dark .inner-wrapper a:not([class^="p-button"])`
+  // link colour in styles.scss. `.p-homepage` sits on the same <body> as
+  // `.is-dark`, so this selector can't include `.is-dark`.
+  .inner-wrapper a.p-story-card:not([class^="p-button"]) {
+    &,
+    &:visited {
+      color: $colors--theme--text-default;
+    }
+  }
+
+  .p-story-card__body {
+    flex: 1 1 auto;
+    padding: $spv--small $sph--large 0;
+  }
+
+  // Framer's rule sits 17px under the date
+  .p-story-card__date {
+    margin-bottom: calc(#{$spv--large} + 1px);
+  }
+
+  // Flex, so the chip sits 8px from the rule and the card edge rather than
+  // on a taller line box
+  .p-story-card__footer {
+    align-items: center;
+    border-top: 1px solid $colors--theme--border-low-contrast;
+    display: flex;
+    padding: $spv--small $sph--large;
+
+    // 25px tall, as in Framer: 2.5px above and below, less the 1px border
+    .p-chip {
+      background-color: $story-chip-background;
+      padding: 1.5px $sph--small;
+    }
+  }
+}

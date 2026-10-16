@@ -1,0 +1,56 @@
+{#
+  The "Latest" takeover block, shared by the homepage and the /takeovers
+  preview so the preview matches what the homepage shows.
+  Every id starts with `id`; the homepage script fills them in by id.
+  Uses image(), so import with context:
+  {% from "home/_latest-block.html" import latest_block with context %}
+#}
+{% macro latest_block(id,
+  title,
+  subtitle,
+  primary_url,
+  primary_cta,
+  secondary_url="",
+  secondary_cta="",
+  image_url="",
+  image_width="",
+  image_height="",
+  image_loading="lazy",
+  heading="h2",
+  animated=False,
+  attrs={}) -%}
+  <section id="{{ id }}"
+           class="p-section p-latest-block"{% for name, value in attrs.items() %} {{ name }}="{{ value }}"{% endfor %}>
+    <div class="grid-row--50-50-on-large{% if animated %} p-takeover-animation{% endif %}"
+         id="{{ id }}-animation">
+      <div class="grid-col">
+        <span class="p-chip is-readonly is-dense"><span class="p-chip__value">Latest</span></span>
+        <{{ heading }} class="p-heading--2" id="{{ id }}-title">{{ title }}</{{ heading }}>
+        <p id="{{ id }}-subtitle">{{ subtitle }}</p>
+        <div class="p-cta-block u-no-padding--bottom" id="{{ id }}-ctas">
+          <a id="{{ id }}-primary-url" href="{{ primary_url }}" class="p-button">{{ primary_cta }}</a>
+          {% if secondary_url %}
+            <a id="{{ id }}-secondary-url" class="p-cta-text" href="{{ secondary_url }}"><span>{{ secondary_cta }}</span><i class="p-icon--arrow-right"></i></a>
+          {% endif %}
+        </div>
+      </div>
+      {% if image_url %}
+        <div class="grid-col u-vertically-center u-align--center u-hide--medium u-hide--small">
+          {# The empty source stops small screens downloading the hidden image #}
+          <picture>
+            <source srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                    media="(max-width: 1036px)" />
+            {{ image(url=image_url,
+                    alt="",
+                    width=image_width,
+                    height=image_height,
+                    hi_def=True,
+                    loading=image_loading,
+                    attrs={"id": id + "-image"}) | safe
+            }}
+          </picture>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+{%- endmacro %}

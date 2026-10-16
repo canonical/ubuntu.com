@@ -1,1 +1,34 @@
-{# Latest announcement: HP-06 #}
+{#
+  Latest announcement: the active Discourse takeover, filled in by the inline
+  script in base_index.html from /takeovers.json. Keep every id the script
+  reads. The title stays an h1 until the hero provides the page's h1.
+#}
+{% from "home/_latest-block.html" import latest_block with context %}
+
+{{ latest_block(id="test-takeover",
+  title="A CTO's guide to real-time Linux",
+  subtitle="Understanding real-time systems, their use cases and inner workings.",
+  primary_url="/download",
+  primary_cta="Download now",
+  image_url="https://assets.ubuntu.com/v1/fb1ea84e-Kernelt%20industries@2x.png",
+  image_width="2382",
+  image_height="1684",
+  heading="h1",
+  animated=True,
+  attrs={"hidden": "hidden"}) }}
+
+{# Default takeover: the latest Ubuntu LTS #}
+{{ latest_block(id="takeover",
+  title="Ubuntu " ~ releases_yaml.lts.short_version ~ " LTS " ~ releases_yaml.lts.name ~ " is available for download",
+  subtitle="Discover the latest and greatest features in our most recent long term supported release.",
+  primary_url="/download",
+  primary_cta="Download for free",
+  secondary_url=releases_yaml.lts.blog_post_url,
+  secondary_cta="Read the deep dive",
+  image_url="https://assets.ubuntu.com/v1/21bcdd1e-resolute_raccoon_white.png",
+  image_width=197,
+  image_height=197,
+  image_loading="auto",
+  heading="h1",
+  animated=True,
+  attrs={"data-lang": "all"}) }}
