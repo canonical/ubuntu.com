@@ -155,8 +155,9 @@
     display: flex;
     flex-direction: column;
     gap: hero-cq(10);
-    inset: hero-cq(32) auto 0 0;
-    padding: hero-cq(12) hero-cq(10);
+    // Tucks 1px under the top bar so no seam shows at fractional zoom
+    inset: hero-cq(31) auto 0 0;
+    padding: hero-cq(13) hero-cq(10) hero-cq(12);
     position: absolute;
     width: hero-cq(68);
   }
