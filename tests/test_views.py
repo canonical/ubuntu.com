@@ -686,6 +686,56 @@ class TestBuildEngagePageResources(BaseViewTestCase):
         self.assertEqual(template_context["total_pages"], 2)
         self.assertEqual(template_context["metadata"], [active_items[14]])
 
+    @patch("webapp.views.flask.render_template")
+    def test_resource_language_scan_uses_raw_batch_offsets(
+        self, render_template
+    ):
+        for raw_total, excluded_count in [(32, 1), (101, 1), (101, 100)]:
+            with self.subTest(
+                raw_total=raw_total, excluded_count=excluded_count
+            ):
+                raw_items = [
+                    {
+                        "topic_name": f"English event {index}",
+                        "active": "true",
+                        "language": "en",
+                    }
+                    for index in range(raw_total)
+                ]
+                expected_items = raw_items[excluded_count:]
+                engage_docs = self._make_engage_docs([])
+                engage_docs.api.base_url = "https://discourse.ubuntu.com/"
+                engage_docs.get_engage_pages_tags.return_value = []
+
+                def get_index(limit, offset, **kwargs):
+                    batch = raw_items[
+                        max(offset, excluded_count) : offset + limit
+                    ]
+                    return batch, raw_total, raw_total, raw_total
+
+                engage_docs.get_index.side_effect = get_index
+
+                with self.app.test_request_context(
+                    "/engage?resource=event&language=en&page=3"
+                ):
+                    build_engage_index(engage_docs)()
+
+                self.assertEqual(
+                    [
+                        call.args[1]
+                        for call in engage_docs.get_index.call_args_list
+                    ],
+                    list(range(0, raw_total, 100)),
+                )
+                template_context = render_template.call_args.kwargs
+                self.assertEqual(
+                    template_context["metadata"], expected_items[28:42]
+                )
+                self.assertEqual(
+                    template_context["total_pages"],
+                    (len(expected_items) + 13) // 14,
+                )
+
     def test_filters_by_tag_and_resource(self):
         engage_docs = self._make_engage_docs([])
         view = build_engage_page_resources(engage_docs)

@@ -497,10 +497,8 @@ def build_engage_index(engage_docs):
                     second_key=second_key,
                     second_value=second_value,
                 )
-                if not batch:
-                    break
                 active_items.extend(batch)
-                scan_offset += len(batch)
+                scan_offset += scan_limit
 
             metadata = [
                 item
