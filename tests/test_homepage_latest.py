@@ -59,7 +59,7 @@ class TestHomepageLatest(VCRTestCase):
         self.assertIn("p-latest-block", takeover["class"])
         chip = takeover.select_one(".p-chip")
         self.assertEqual(chip.get_text(strip=True), "Latest")
-        self.assertEqual(self.soup.find(id="takeover-title").name, "h1")
+        self.assertEqual(self.soup.find(id="takeover-title").name, "h2")
         self.assertIn(
             "p-button", self.soup.find(id="takeover-primary-url")["class"]
         )
