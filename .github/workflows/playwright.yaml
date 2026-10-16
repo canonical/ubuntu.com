@@ -38,18 +38,6 @@ jobs:
       # cassette. See "Playwright cassette" in HACKING.md to re-record it.
       run: echo "GUNICORN_CMD_ARGS=-c tests/playwright/cassette.py" >> .env.local
 
-    - name: Disable Flask debug mode for the test server
-      # FLASK_DEBUG defaults to true (.env), which makes `entrypoint` start
-      # gunicorn with `--timeout 9999`. Pages that hit live, uncached
-      # endpoints (e.g. public Discourse docs requests not covered by the
-      # cassette above) can then wedge a worker forever instead of being
-      # killed and respawned, eventually hanging every request - including
-      # unrelated ones - until the whole Playwright run times out. TESTING
-      # keeps the /tests/<path> routes registered without debug mode.
-      run: |
-        echo "FLASK_DEBUG=false" >> .env.local
-        echo "TESTING=true" >> .env.local
-
     - name: Build assets and run dotrun
       run: |
         dotrun > dotrun.log 2>&1 & sleep 5
