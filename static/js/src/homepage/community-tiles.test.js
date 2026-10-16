@@ -1,0 +1,112 @@
+import { startCommunityTiles } from "./community-tiles";
+
+let observerCallback;
+let reducedMotion;
+let motionListener;
+
+beforeEach(() => {
+  reducedMotion = false;
+  window.IntersectionObserver = jest.fn((callback) => {
+    observerCallback = callback;
+    return { observe: jest.fn() };
+  });
+  window.matchMedia = jest.fn(() => ({
+    matches: reducedMotion,
+    addEventListener: (event, listener) => {
+      motionListener = listener;
+    },
+  }));
+  jest
+    .spyOn(window.HTMLMediaElement.prototype, "play")
+    .mockResolvedValue(undefined);
+  jest.spyOn(window.HTMLMediaElement.prototype, "pause").mockReturnValue();
+});
+
+afterEach(() => {
+  jest.restoreAllMocks();
+  delete window.IntersectionObserver;
+  delete window.matchMedia;
+});
+
+function renderTile() {
+  document.body.innerHTML = `
+    <section>
+      <button class="js-community-pause u-hide">
+        <img data-icon="pause" /><img data-icon="play" hidden />
+      </button>
+      <article class="p-community-tile"><div>
+        <img src="https://example.com/poster.jpg" />
+        <template class="js-community-video"><video></video></template>
+      </div></article>
+    </section>
+  `;
+  startCommunityTiles(document.querySelector("section"));
+  // Count only what the tests do, not the pause from startup
+  jest.clearAllMocks();
+  return {
+    tile: document.querySelector(".p-community-tile"),
+    video: document.querySelector("video"),
+    button: document.querySelector("button"),
+  };
+}
+
+const setVisible = (tile, isIntersecting) =>
+  observerCallback([{ target: tile, isIntersecting }]);
+
+describe("startCommunityTiles", () => {
+  it("swaps the image for the video, as its poster", () => {
+    const { video } = renderTile();
+    expect(document.querySelector("article img")).toBeNull();
+    expect(document.querySelector("template")).toBeNull();
+    expect(video.poster).toBe("https://example.com/poster.jpg");
+  });
+
+  it("plays only while the tile is on screen", () => {
+    const { tile, video } = renderTile();
+
+    setVisible(tile, true);
+    expect(video.play).toHaveBeenCalledTimes(1);
+
+    setVisible(tile, false);
+    expect(video.pause).toHaveBeenCalledTimes(1);
+  });
+
+  it("pauses while hovered or focused, resuming once neither is", () => {
+    const { tile, video } = renderTile();
+    setVisible(tile, true);
+
+    tile.dispatchEvent(new MouseEvent("mouseenter"));
+    tile.dispatchEvent(new FocusEvent("focusin", { bubbles: true }));
+    tile.dispatchEvent(new MouseEvent("mouseleave"));
+    expect(video.pause).toHaveBeenCalledTimes(3);
+
+    tile.dispatchEvent(new FocusEvent("focusout", { bubbles: true }));
+    expect(video.play).toHaveBeenCalledTimes(2);
+  });
+
+  it("never plays with reduced motion, and pauses when it turns on", () => {
+    const { tile, video } = renderTile();
+    setVisible(tile, true);
+
+    reducedMotion = true;
+    motionListener({ matches: true });
+    expect(video.pause).toHaveBeenCalledTimes(1);
+
+    setVisible(tile, true);
+    expect(video.play).toHaveBeenCalledTimes(1);
+  });
+
+  it("holds every video while Pause is pressed", () => {
+    const { tile, video, button } = renderTile();
+    setVisible(tile, true);
+    expect(button.classList).not.toContain("u-hide");
+
+    button.click();
+    setVisible(tile, true);
+    expect(video.play).toHaveBeenCalledTimes(1);
+    expect(button.getAttribute("aria-label")).toBe("Play videos");
+
+    button.click();
+    expect(video.play).toHaveBeenCalledTimes(2);
+  });
+});
