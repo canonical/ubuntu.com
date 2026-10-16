@@ -6,6 +6,11 @@ on:
 
 permissions:
   contents: read
+  actions: read
+
+concurrency:
+  group: marketo-canary
+  cancel-in-progress: false
 
 jobs:
   marketo-canary:
@@ -43,8 +48,50 @@ jobs:
           path: playwright-report/
           retention-days: 7
 
-      - name: Send message on failure
+  alert:
+    needs: marketo-canary
+    if: always() && github.repository == 'canonical/ubuntu.com' && needs.marketo-canary.result == 'failure'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Get previous run result
+        id: previous
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ github.event.repository.default_branch }}
+          ALERT_EVERY_FAILED: 6
+        run: |
+          runs="repos/${GITHUB_REPOSITORY}/actions/workflows/marketo-canary.yaml/runs"
+
+          # Failures since the last success, read from total_count so no paging is needed
+          if ! last_success=$(gh api -X GET "$runs" -f branch="$BRANCH" -f status=success -F per_page=1 \
+              --jq '.workflow_runs[0].created_at // ""'); then
+            # Alert on failed lookup
+            echo "notify=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          since=()
+          if [[ -n "$last_success" ]]; then since=(-f "created=>${last_success}"); fi
+
+          # Timeouts count as failures
+          streak=0
+          for conclusion in failure timed_out; do
+            if ! count=$(gh api -X GET "$runs" -f branch="$BRANCH" -f status="$conclusion" -F per_page=1 \
+                "${since[@]}" --jq '.total_count'); then
+              echo "notify=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            streak=$(( streak + count ))
+          done
+
+          notify=false
+          if (( (streak + 1) % ALERT_EVERY_FAILED == 0 )); then notify=true; fi
+          echo "notify=${notify}" >> "$GITHUB_OUTPUT"
+
+      - name: Send message on repeated failures
         env:
           BOT_URL: ${{ secrets.BOT_URL }}
-        if: failure()
+        if: steps.previous.outputs.notify == 'true'
         run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" $BOT_URL?room=web-alerts
