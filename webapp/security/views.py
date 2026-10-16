@@ -677,7 +677,7 @@ def cve(cve_id):
         "not-affected": {"name": "Not affected", "icon": "success"},
         "needed": {"name": "Vulnerable", "icon": "error"},
         "deferred": {"name": "Vulnerable, fix deferred", "icon": "error"},
-        "pending": {"name": "Vulnerable, work in progress", "icon": "error "},
+        "pending": {"name": "Vulnerable", "icon": "error "},
         "ignored": {"name": "Ignored", "icon": None},
         "released": {"name": "Fixed", "icon": "success"},
     }
