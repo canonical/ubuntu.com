@@ -20,12 +20,15 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
   let phase = "typing";
   let timer = null;
 
-  // Screen readers get the full list once, the keystrokes are hidden
+  // Screen readers get the full list once, the keystrokes are hidden. The
+  // word and cursor wrap as one, so a hyphenated name never splits.
   function build() {
     typed = document.createElement("span");
+    const word = span("p-open-source__nowrap", "");
+    word.append(typed, span("p-open-source__cursor", ""));
     const visible = document.createElement("span");
     visible.setAttribute("aria-hidden", "true");
-    visible.append(prefix, typed, span("p-open-source__cursor", ""));
+    visible.append(prefix, word);
     el.replaceChildren(visible, span("u-off-screen", staticText));
   }
 
