@@ -130,7 +130,7 @@ env:
     value: https://contracts.canonical.com/
 
   - name: SECURITY_API_URL
-    value: https://ubuntu.com/security/
+    value: https://api.security.ubuntu.com/security/
 
   - name: STRIPE_PUBLISHABLE_KEY
     value: pk_live_68aXqowUeX574aGsVck8eiIE
@@ -287,7 +287,7 @@ production:
           value: https://contracts.canonical.com/
 
         - name: SECURITY_API_URL
-          value: https://ubuntu.com/security/
+          value: https://api.security.ubuntu.com/security/
 
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_live_68aXqowUeX574aGsVck8eiIE
@@ -758,7 +758,7 @@ staging:
       value: https://contracts.staging.canonical.com/
 
     - name: SECURITY_API_URL
-      value: https://staging.ubuntu.com/security/
+      value: https://api.staging.security.ubuntu.com/security/
 
     - name: STRIPE_PUBLISHABLE_KEY
       value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
@@ -1130,7 +1130,7 @@ staging:
           value: https://624a17f6cb841af9f2c4b0998b8f30d2@o4510662863749120.ingest.de.sentry.io/4510709886419024
 
         - name: SECURITY_API_URL
-          value: https://staging.ubuntu.com/security/
+          value: https://api.staging.security.ubuntu.com/security/
 
     - paths: [/advantage, /account, /pro]
       name: ubuntu-com-advantage
@@ -1170,7 +1170,7 @@ staging:
           value: https://contracts.staging.canonical.com/
 
         - name: SECURITY_API_URL
-          value: https://staging.ubuntu.com/security/
+          value: https://api.staging.security.ubuntu.com/security/
 
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
@@ -1324,7 +1324,7 @@ demo:
       value: https://contracts.staging.canonical.com/
 
     - name: SECURITY_API_URL
-      value: https://staging.ubuntu.com/security/
+      value: https://api.staging.security.ubuntu.com/security/
 
     - name: STRIPE_PUBLISHABLE_KEY
       value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
