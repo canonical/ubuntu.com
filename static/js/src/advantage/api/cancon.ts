@@ -1,4 +1,4 @@
-import { Organization } from "./cancon.types";
+import { CanconOrganization, CanconInvoice } from "./cancon.types";
 
 interface Subscription {
   autoRenew: boolean;
@@ -52,7 +52,7 @@ export const attachPaymentMethodToSubscription = async (
 
 export const updateOrganization = async (
   organizationId: string,
-  payload: Organization,
+  payload: CanconOrganization,
 ): Promise<void> => {
   await fetch(`/portal-proxy/api/organization/${organizationId}`, {
     method: "PUT",
@@ -63,13 +63,27 @@ export const updateOrganization = async (
   });
 };
 
-export const fetchUserOrganization = async (): Promise<Organization> => {
+export const fetchUserOrganization = async (): Promise<CanconOrganization> => {
   const response = await fetch(
     `/portal-proxy/api/organization/user-organization`,
   );
   if (!response.ok) {
     throw new Error("Unable to load organization");
   }
-  const data: { organization: Organization } = await response.json();
+  const data: { organization: CanconOrganization } = await response.json();
   return data.organization;
+};
+
+export const listOrganizationInvoices = async (): Promise<{
+  invoices: CanconInvoice[];
+  paginationMetadata: {
+    nextPageToken: string;
+    totalRecords: number;
+  };
+}> => {
+  const response = await fetch(`/portal-proxy/api/invoices`);
+  if (!response.ok) {
+    throw new Error("Unable to load organization invoices");
+  }
+  return response.json();
 };

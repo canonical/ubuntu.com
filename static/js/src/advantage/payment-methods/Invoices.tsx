@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import EditBillingDetailsModal from "./EditBillingDetailsModal";
-import { useInvoicesQuery, useListSubscriptions } from "./hooks";
+import { useInvoicesQuery, useListOrganizationInvoices, useListSubscriptions } from "./hooks";
 import { NewEditBillingDetails } from "./NewEditBillingDetails";
 
 export type InvoiceRow = {
@@ -38,6 +38,8 @@ function Invoices(): JSX.Element {
   const marketplace =
     new URLSearchParams(location.search).get("marketplace") ?? "";
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const organizationInvoicesQuery = useListOrganizationInvoices();
 
   const changeMarketplace = (value: string) => {
     const search = new URLSearchParams(location.search);

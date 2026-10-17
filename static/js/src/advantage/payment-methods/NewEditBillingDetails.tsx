@@ -5,7 +5,7 @@ import { fetchUserOrganization } from "advantage/api/cancon";
 import { useMutation } from "@tanstack/react-query";
 import { Form, Formik } from "formik";
 import { Button, FormikField } from "@canonical/react-components";
-import { Organization } from "advantage/api/cancon.types";
+import { CanconOrganization } from "advantage/api/cancon.types";
 import CustomSelect from "./CustomSelect";
 
 type Props = {
@@ -45,7 +45,7 @@ export const NewEditBillingDetails = ({ accountId, onClose }: Props) => {
       payload,
     }: {
       organizationId: string;
-      payload: Organization;
+      payload: CanconOrganization;
     }) => updateOrganization(organizationId, payload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["organization", accountId] });

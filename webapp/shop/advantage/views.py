@@ -809,7 +809,8 @@ def portal_proxy(portal_path, **kwargs):
     if macaroon:
         headers["Authorization"] = f"Macaroon {macaroon}"
     print(f"Proxying request to: {portal_url+portal_path}")
-    print(f"Request headers: {headers}")
+    print(flask.request.get_json(silent=True))
+    print(flask.request)
     response = requests.request(
         method=flask.request.method,
         url=portal_url+portal_path,
@@ -818,6 +819,7 @@ def portal_proxy(portal_path, **kwargs):
         data=None if flask.request.is_json else flask.request.get_data(),
         headers=headers,
     )
+    print(response)
     return flask.Response(
         response.content,
         status=response.status_code,

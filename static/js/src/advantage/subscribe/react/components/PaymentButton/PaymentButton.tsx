@@ -22,7 +22,7 @@ export default function PaymentButton({ ...props }) {
   } = useContext(FormContext);
   let params = new URLSearchParams(document.location.search);
   let referral_id = params.get("referral_id") || "";
-  const { mutate: createPurchaseSession } = useCreatePurchaseSession();
+  const { mutate: createPurchaseSession, data: purchaseSessionResponse } = useCreatePurchaseSession();
 
   const contracts_enabled =
     window?.appConfig?.featureFlags?.contracts_enabled === `true`;
@@ -37,7 +37,7 @@ export default function PaymentButton({ ...props }) {
   };
 
   const handleSubmit = useCallback(
-    (e: React.FormEvent) => {
+    async (e: React.FormEvent) => {
       if (contracts_enabled) {
         // Add any additional logic for when contracts are enabled
         const publicCloud = getLocalStorageItem(
@@ -59,7 +59,9 @@ export default function PaymentButton({ ...props }) {
           },
         };
 
-        createPurchaseSession(purchaseSessionData);
+        await createPurchaseSession(purchaseSessionData);
+        if(!purchaseSessionResponse?.id) return;
+        window.location.href = `${window.appConfig?.featureFlags?.portal_url}organization/details?purchaseSessionId=${purchaseSessionResponse?.id}`;
         return;
       }
       e.preventDefault();

@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 const createPurchaseSession = async (
   purchaseSessionData: PurchaseSessionCreateInput,
 ) => {
-  const response = await fetch(`/portal-proxy/pro/api/cart/purchase-sessions`, {
+  const response = await fetch(`/portal-proxy/api/cart/purchase-sessions`, {
     method: `POST`,
     headers: {
       "Content-Type": `application/json`,
@@ -12,6 +12,7 @@ const createPurchaseSession = async (
     body: JSON.stringify(purchaseSessionData),
   });
   const data = await response.json();
+  console.log(data);
   return data;
 };
 

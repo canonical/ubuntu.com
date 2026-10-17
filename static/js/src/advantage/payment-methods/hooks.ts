@@ -8,6 +8,7 @@ import {
   setPaymentMethod,
 } from "../api/contracts";
 import {
+  listOrganizationInvoices,
   listOrganizationPaymentMethods,
   listSubscriptions,
 } from "advantage/api/cancon";
@@ -100,4 +101,10 @@ export const useListOrganizationPaymentMethods = () =>
   useQuery({
     queryKey: ["organizationPaymentMethods"],
     queryFn: listOrganizationPaymentMethods,
+  });
+
+export const useListOrganizationInvoices = () =>
+  useQuery({
+    queryKey: ["organizationInvoices"],
+    queryFn: listOrganizationInvoices,
   });
