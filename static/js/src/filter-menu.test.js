@@ -7,7 +7,7 @@
  */
 
 // Mirrors single_select_menu: passing `selected` marks the menu server-managed
-function singleMenu({ param, label, options, selected }) {
+function singleMenu({ param, label, options, selected, preserveAll = false }) {
   const menuId = `${param}-menu`;
   const selectedOption = options.find((o) => o.value === selected);
   const selectedAttr = selectedOption
@@ -29,8 +29,10 @@ function singleMenu({ param, label, options, selected }) {
               aria-expanded="false"
               data-filter-param="${param}"
               data-filter-type="single"
+              data-preserve-all="${preserveAll}"
               data-default-label="${label}"${selectedAttr}${serverManagedAttr}>
         <span>${selectedOption ? selectedOption.label : label}</span>
+
       </button>
       <span id="${menuId}" aria-hidden="true">
         <span class="p-contextual-menu__group">${optionButtons}</span>
@@ -223,6 +225,33 @@ describe("filter-menu clear behaviour", () => {
     const navigated = new URL(window.location);
     expect(navigated.searchParams.has("resource")).toBe(false);
     expect(navigated.searchParams.has("page")).toBe(false);
+  });
+
+  it("shows clear for all languages before and after submitting", () => {
+    const filterBar = bar({
+      menus: [
+        singleMenu({
+          param: "language",
+          label: "English",
+          preserveAll: true,
+          options: [
+            { value: "all", label: "All languages" },
+            { value: "en", label: "English" },
+          ],
+        }),
+      ],
+    });
+    loadFilterMenu("http://localhost/engage", filterBar);
+
+    document.querySelector('#language-menu [data-value="all"]').click();
+    expect(clearButton().classList.contains("u-hide")).toBe(false);
+
+    document.querySelector("[data-filter-submit]").click();
+
+    expect(new URL(window.location).searchParams.get("language")).toBe("all");
+
+    loadFilterMenu(window.location, filterBar);
+    expect(clearButton().classList.contains("u-hide")).toBe(false);
   });
 });
 
