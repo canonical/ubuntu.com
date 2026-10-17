@@ -181,7 +181,9 @@ function setupFilterBar(bar) {
       if (baseline !== undefined) {
         return value !== "" && value !== baseline;
       }
-      return value && (value !== "all" || toggle.dataset.preserveAll === "true");
+      return (
+        value && (value !== "all" || toggle.dataset.preserveAll === "true")
+      );
     });
     const multi = multiToggles.some(
       (toggle) => getCheckedValues(toggle).length > 0,

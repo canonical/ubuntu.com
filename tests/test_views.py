@@ -708,9 +708,9 @@ class TestBuildEngagePageResources(BaseViewTestCase):
                 engage_docs.get_engage_pages_tags.return_value = []
 
                 def get_index(limit, offset, **kwargs):
-                    batch = raw_items[
-                        max(offset, excluded_count) : offset + limit
-                    ]
+                    start = max(offset, excluded_count)
+                    end = offset + limit
+                    batch = raw_items[start:end]
                     return batch, raw_total, raw_total, raw_total
 
                 engage_docs.get_index.side_effect = get_index
