@@ -10,7 +10,7 @@
                   class="p-accordion__tab"
                   id="config-tab-{{ group.platform_id }}"
                   aria-controls="config-panel-{{ group.platform_id }}"
-                  aria-expanded="false">
+                  aria-expanded="{{ 'true' if loop.first else 'false' }}">
             <span class="p-heading--5">{{ group.label }}</span>
           </button>
           {% if group.details_url %}
@@ -20,7 +20,7 @@
         </div>
         <section class="p-accordion__panel"
                  id="config-panel-{{ group.platform_id }}"
-                 aria-hidden="true"
+                 aria-hidden="{{ 'false' if loop.first else 'true' }}"
                  aria-labelledby="config-tab-{{ group.platform_id }}">
           <ul class="p-certification-results__configurations">
             {% for configuration in group.configurations %}
