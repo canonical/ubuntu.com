@@ -147,8 +147,7 @@
         limit=limit,
         vendor_filters=vendor_filters,
         release_filters=release_filters,
-        results=results,
-        vendor_page="true" if vendor else False
+        grouped_results=grouped_results
         %}
         {% include "certified/search/_search-results-main-block.html" %}
       {% endwith %}

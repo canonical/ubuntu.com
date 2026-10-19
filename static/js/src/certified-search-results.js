@@ -424,22 +424,11 @@ function clearFilters() {
 // function to ensure only the option which has been changed is appended to the URL
 function updateResultsPerPage() {
   const searchResults = document.querySelector(".js-search-results");
-  const pageSizeTop = document.getElementById("page-size-top");
   const pageSizeBottom = document.getElementById("page-size-bottom");
 
-  if (pageSizeTop) {
-    pageSizeTop.addEventListener("change", (e) => {
-      // Needs to be set because the other dropdown is a placeholder
-      searchResults.submit();
-    });
-  }
-
   if (pageSizeBottom) {
-    pageSizeBottom.addEventListener("change", (e) => {
-      // Avoids submitting 2 redundant fields
-      const pageSizeTopChange = new Event("change");
-      pageSizeTop.value = e.target.value;
-      pageSizeTop.dispatchEvent(pageSizeTopChange);
+    pageSizeBottom.addEventListener("change", () => {
+      searchResults.submit();
     });
   }
 }

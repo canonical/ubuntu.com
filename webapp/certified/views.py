@@ -1,6 +1,7 @@
 import requests
 import math
 import sentry_sdk
+from functools import partial
 
 from flask import (
     request,
@@ -15,6 +16,8 @@ from webapp.certified.api import CertificationAPI, PartnersAPI
 from urllib.parse import urlencode
 
 from webapp.certified.helpers import (
+    _build_platform_label,
+    _format_configuration_summary,
     _get_category_pathname,
     _get_category_url_value,
     _normalize_categories,
@@ -867,6 +870,89 @@ def certified_autocomplete():
     return jsonify({"suggestions": suggestions})
 
 
+# Keeps the canonical_id__in query string well below proxy URI limits
+ENRICHMENT_BATCH_SIZE = 50
+
+
+def _fetch_in_batches(fetch, canonical_ids):
+    """
+    Call fetch(canonical_id__in=<batch>) per batch of unique IDs and
+    return the concatenated "results" lists.
+    """
+    unique_ids = list(dict.fromkeys(canonical_ids))
+    items = []
+    for start in range(0, len(unique_ids), ENRICHMENT_BATCH_SIZE):
+        end = start + ENRICHMENT_BATCH_SIZE
+        batch = unique_ids[start:end]
+        items.extend(fetch(canonical_id__in=batch)["results"])
+    return items
+
+
+def _group_configurations_by_platform(results, details_by_id, storage_by_id):
+    """
+    Group flat certified-configurations results into one row per platform,
+    enriched with certified-configuration-details data. details_by_id maps
+    canonical_id to a list of detail records (one per certified release).
+    Configurations whose detail lookup is missing (bulk fetch failure, or an
+    item the API didn't return) fall back to their own standalone,
+    unenriched group instead of being dropped.
+    """
+    groups = {}
+    order = []
+
+    for result in results:
+        canonical_id = result["canonical_id"]
+        candidates = details_by_id.get(canonical_id, [])
+        # Prefer the record for the release this result was selected for
+        detail = next(
+            (
+                candidate
+                for candidate in candidates
+                if candidate.get("certified_release") == result.get("release")
+            ),
+            candidates[0] if candidates else None,
+        )
+
+        if detail and detail.get("platform_id"):
+            group_key = detail["platform_id"]
+            label = _build_platform_label(
+                detail.get("make") or result["make"],
+                detail.get("platform_name") or result["model"],
+            )
+            details_url = f"/certified/platforms/{group_key}"
+        else:
+            group_key = canonical_id
+            label = _build_platform_label(result["make"], result["model"])
+            details_url = None
+
+        if group_key not in groups:
+            groups[group_key] = {
+                "platform_id": group_key,
+                "label": label,
+                "details_url": details_url,
+                "configurations": [],
+            }
+            order.append(group_key)
+
+        if detail:
+            enriched_detail = {
+                **detail,
+                "storage": storage_by_id.get(canonical_id, []),
+            }
+            summary = _format_configuration_summary(enriched_detail)
+        else:
+            summary = result["category"]
+
+        groups[group_key]["configurations"].append(
+            {
+                "canonical_id": canonical_id,
+                "summary": summary,
+            }
+        )
+
+    return [groups[key] for key in order]
+
+
 def certified_search():
     """
     Unified /certified/search page.
@@ -967,6 +1053,47 @@ def certified_search():
         if model["make"] == "nVidia":
             model["make"] = "NVIDIA"
 
+    # Bulk-enrich this page's configurations (form factor, CPU, GPU, etc.)
+    # so results can be grouped and displayed by platform
+    details_by_id = {}
+    storage_by_id = {}
+    canonical_ids = [result["canonical_id"] for result in results]
+    if canonical_ids:
+        try:
+            for detail in _fetch_in_batches(
+                partial(api.certified_configuration_details, limit="0"),
+                canonical_ids,
+            ):
+                details_by_id.setdefault(detail["canonical_id"], []).append(
+                    detail
+                )
+        except requests.exceptions.RequestException:
+            details_by_id = {}
+            # Degrade to unenriched, ungrouped rows rather than 500
+            sentry_sdk.capture_exception()
+
+        try:
+            for device in _fetch_in_batches(
+                partial(
+                    api.certified_configuration_devices,
+                    category="DISK",
+                    limit="0",
+                ),
+                canonical_ids,
+            ):
+                storage_by_id.setdefault(device["canonical_id"], []).append(
+                    device
+                )
+        except requests.exceptions.RequestException:
+            storage_by_id = {}
+            # Storage is best-effort - a failure here shouldn't blank out
+            # the rest of the enrichment
+            sentry_sdk.capture_exception()
+
+    grouped_results = _group_configurations_by_platform(
+        results, details_by_id, storage_by_id
+    )
+
     total_results = models_response["count"]
 
     # Vendor/release checkboxes are server-rendered up front, matching the
@@ -984,7 +1111,7 @@ def certified_search():
         vendor_data=vendor_data,
         vendor=vendor_name,
         hero_category=hero_category,
-        results=results,
+        grouped_results=grouped_results,
         query=query,
         category=categories,
         releases=releases,

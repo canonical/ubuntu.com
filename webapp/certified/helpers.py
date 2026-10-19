@@ -162,3 +162,54 @@ def _normalize_categories(categories):
             normalized.append(value)
 
     return normalized
+
+
+def _build_platform_label(make, name):
+    """
+    Build a "<vendor> <platform name>" label, skipping the vendor prefix
+    if it's already present (e.g. "Dell Pro 13" stays as-is instead
+    of becoming "Dell Dell Pro 13").
+    """
+    if not make:
+        return name
+    if name and name.lower().startswith(make.lower()):
+        return name
+    return f"{make} {name}"
+
+
+# Configuration summary fields, in display order. Each value is a list of
+# device dicts (with a "name" key) except "form_factor", a bare string.
+# "ram" has no source anywhere in the Certification API - kept here so the
+# ordering is documented, but it will always be skipped as empty.
+_CONFIGURATION_SUMMARY_FIELDS = [
+    "form_factor",
+    "processor",
+    "video",
+    "ram",
+    "storage",
+    "wireless",
+    "network",
+]
+
+_MAX_CONFIGURATION_SUMMARY_FIELDS = 5
+
+
+def _format_configuration_summary(detail):
+    """
+    Build the "Form factor · CPU · GPU · Storage · Wireless" summary line
+    (max 5 data points) for an enriched configuration record, skipping any
+    field that is empty/missing rather than showing it blank.
+    """
+    parts = []
+    for field in _CONFIGURATION_SUMMARY_FIELDS:
+        if len(parts) >= _MAX_CONFIGURATION_SUMMARY_FIELDS:
+            break
+        value = detail.get(field)
+        if not value:
+            continue
+        if field == "form_factor":
+            parts.append(value)
+        else:
+            parts.append(" + ".join(device["name"] for device in value))
+
+    return " · ".join(parts)
