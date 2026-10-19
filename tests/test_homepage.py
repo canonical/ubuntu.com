@@ -130,12 +130,12 @@ class TestHomepageRender(VCRTestCase):
         for expected in [
             "js/dist/homepage.js",
             'id="takeover"',
-            'id="test-takeover"',
             'data-js="latest-news"',
             "The Standard Support period for Ubuntu 20.04 LTS has ended",
         ]:
             self.assertTrue(expected in html, f"Missing: {expected}")
         for removed in [
+            'id="test-takeover"',
             "Energize your engineers",
             "Carrier–grade private cloud",
         ]:

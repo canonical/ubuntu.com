@@ -1,1 +1,17 @@
-{# Latest announcement: HP-06 #}
+{# Default LTS takeover; the script in base_index.html swaps in a Discourse one by id #}
+{% from "home/_latest-block.html" import latest_block with context %}
+
+{{ latest_block(id="takeover",
+  title="Ubuntu " ~ releases_yaml.lts.short_version ~ " LTS " ~ releases_yaml.lts.name ~ " is available for download",
+  subtitle="Discover the latest and greatest features in our most recent long term supported release.",
+  primary_url="/download",
+  primary_cta="Download for free",
+  secondary_url=releases_yaml.lts.blog_post_url,
+  secondary_cta="Read the deep dive",
+  image_url=releases_yaml.lts.mascot_image_large_white.url,
+  image_width=releases_yaml.lts.mascot_image_large_white.width,
+  image_height=releases_yaml.lts.mascot_image_large_white.height,
+  image_loading="auto",
+  heading="h1",
+  animated=True,
+  attrs={"data-lang": "all"}) }}
