@@ -67,11 +67,11 @@ function renderRail() {
   document.body.innerHTML = `
     <section class="js-performance-rail">
       <div class="p-performance__rail">
-        <span class="p-performance__ring is-active"></span>
+        <span class="p-performance__ring"></span>
         <span class="p-performance__track"><span class="p-performance__fill"></span></span>
       </div>
       <div class="p-performance__rail">
-        <span class="p-performance__ring is-active"></span>
+        <span class="p-performance__ring"></span>
       </div>
     </section>
   `;
@@ -214,14 +214,14 @@ describe("startPerformanceRail", () => {
     expect(scrollListenerAttached()).toBe(false);
   });
 
-  it("does nothing on phones", () => {
+  it("stays filled and still on phones", () => {
     mockMatchMedia({ wide: false });
     const { root, rings, fills } = renderRail();
     startPerformanceRail(root);
 
     expect(window.IntersectionObserver).not.toHaveBeenCalled();
     expect(scrollListenerAttached()).toBe(false);
-    expect(fills[0].style.transform).toBe("");
+    expect(fills[0].style.transform).toBe("scaleY(1)");
     rings.forEach((ring) =>
       expect(ring.classList.contains("is-active")).toBe(true),
     );
@@ -234,7 +234,7 @@ describe("startPerformanceRail", () => {
 
     expect(window.IntersectionObserver).not.toHaveBeenCalled();
     expect(scrollListenerAttached()).toBe(false);
-    expect(fills[0].style.transform).toBe("");
+    expect(fills[0].style.transform).toBe("scaleY(1)");
     rings.forEach((ring) =>
       expect(ring.classList.contains("is-active")).toBe(true),
     );
@@ -249,7 +249,7 @@ describe("startPerformanceRail", () => {
     changeMedia("(prefers-reduced-motion: reduce)", true);
     expect(scrollListenerAttached()).toBe(false);
     expect(observers[0].disconnect).toHaveBeenCalled();
-    expect(fills[0].style.transform).toBe("");
+    expect(fills[0].style.transform).toBe("scaleY(1)");
     rings.forEach((ring) =>
       expect(ring.classList.contains("is-active")).toBe(true),
     );
@@ -268,7 +268,7 @@ describe("startPerformanceRail", () => {
     changeMedia(WIDE_QUERY, false);
 
     expect(scrollListenerAttached()).toBe(false);
-    expect(fills[0].style.transform).toBe("");
+    expect(fills[0].style.transform).toBe("scaleY(1)");
     rings.forEach((ring) =>
       expect(ring.classList.contains("is-active")).toBe(true),
     );

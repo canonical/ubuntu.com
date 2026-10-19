@@ -64,12 +64,15 @@
   }
 
   // Performance as standard: label, decorative ring rail, content.
-  // Rows touch so each track reaches the next ring; spacing sits inside rows.
-  $performance-row-spacing: $sp-unit * 6;
+  // Rows touch so each track reaches the next ring; spacing sits inside rows,
+  // as each row's p-section padding.
   $performance-ring-easing: cubic-bezier(0.22, 1, 0.36, 1);
 
+  // Phones drop the rail, so the rows sit closer, as one group
   .p-performance__row {
-    padding-bottom: $performance-row-spacing;
+    @media (max-width: $breakpoint-small - 1) {
+      padding-bottom: $spv--x-large;
+    }
   }
 
   .p-performance__rail {
@@ -107,16 +110,23 @@
   .p-performance__track {
     background-color: $colors--theme--border-low-contrast;
     flex: 1 1 auto;
-    margin-bottom: -$performance-row-spacing;
+    // Runs through the row's p-section padding to the next ring
+    margin-bottom: -$spv--strip-regular * 0.5;
     overflow: hidden;
     position: relative;
     width: 2px;
+
+    @media (min-width: $breakpoint-large) {
+      margin-bottom: -$spv--strip-regular;
+    }
   }
 
   .p-performance__fill {
     background: linear-gradient($color-brand, #ff9b5a);
     inset: 0;
     position: absolute;
+    // Empty without JS; the script fills it as the page scrolls
+    transform: scaleY(0);
     transform-origin: top;
     // Smooths wheel steps, as in the Framer draft
     transition: transform 0.15s linear;
@@ -126,6 +136,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: $sp-unit * 2;
+    padding-top: $spv--small;
   }
 
   @media (prefers-reduced-motion: reduce) {
