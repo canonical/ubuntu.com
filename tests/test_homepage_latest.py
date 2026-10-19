@@ -20,12 +20,6 @@ TAKEOVER_SCRIPT_IDS = [
     "takeover-image",
     "takeover-primary-url",
     "takeover-secondary-url",
-    "test-takeover",
-    "test-takeover-animation",
-    "test-takeover-title",
-    "test-takeover-subtitle",
-    "test-takeover-image",
-    "test-takeover-primary-url",
 ]
 
 
@@ -74,7 +68,7 @@ class TestHomepageLatest(VCRTestCase):
             self.assertEqual(
                 len(self.soup.find_all(id=element_id)), 1, element_id
             )
-        self.assertTrue(self.soup.find(id="test-takeover").has_attr("hidden"))
+        self.assertIsNone(self.soup.find(id="test-takeover"))
 
     def test_latest_block_comes_before_the_sections(self):
         self.assertLess(
