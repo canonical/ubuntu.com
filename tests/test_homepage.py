@@ -150,9 +150,9 @@ class TestHomepageRender(VCRTestCase):
         self.assertIsNotNone(section.select_one(".grid-row--50-50"))
         self.assertIsNone(section.select_one(".grid-row--50-50-on-large"))
 
-        logos = self.get_soup().select(
-            ".p-logo-section__items img.p-logo-section__logo"
-        )
+        # The logo row follows the section; the carousel has its own
+        logo_row = section.find_next(class_="p-logo-section")
+        logos = logo_row.select("img.p-logo-section__logo")
         self.assertEqual(
             [logo["alt"] for logo in logos],
             [

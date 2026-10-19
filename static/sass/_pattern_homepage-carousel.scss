@@ -1,0 +1,220 @@
+@mixin ubuntu-p-homepage-carousel {
+  // Open source carousel: portrait image beside a list of slide titles, the
+  // active slide expanded in place. Phone and tablet swap the list for one
+  // slide.
+  // Without JS the targeted slide (:target) takes over from slide 1.
+  $carousel-easing: cubic-bezier(0.22, 1, 0.36, 1);
+  $carousel-slide-count: 6;
+
+  .p-open-source__images {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    position: relative;
+
+    @media (min-width: $breakpoint-small) {
+      aspect-ratio: 16 / 9;
+    }
+
+    @media (min-width: $breakpoint-large) {
+      aspect-ratio: 2 / 3;
+    }
+  }
+
+  .p-open-source__image {
+    height: 100%;
+    inset: 0;
+    object-fit: cover;
+    opacity: 0;
+    position: absolute;
+    transition: opacity 0.4s $carousel-easing;
+    width: 100%;
+
+    &.is-active {
+      opacity: 1;
+    }
+  }
+
+  .p-open-source__controls {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    @media (min-width: $breakpoint-large) {
+      justify-content: flex-end;
+    }
+  }
+
+  .p-open-source__button {
+    align-items: center;
+    background: none;
+    border: 0;
+    display: inline-flex;
+    height: $sp-unit * 5.5;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: $sp-unit * 5.5;
+  }
+
+  // Previous and Next, as in Figma: 4px around each chevron, 8px apart
+  .p-open-source__steps {
+    display: flex;
+    gap: $sp-unit;
+
+    .p-open-source__button {
+      height: auto;
+      padding: $sp-unit * 0.5;
+      width: auto;
+    }
+  }
+
+  // Phone and tablet: the bar runs on a solid track under the image
+  .p-open-source__progress {
+    background-color: $colors--theme--border-default;
+  }
+
+  .p-open-source__bar {
+    background-color: $colors--theme--text-default;
+    display: block;
+    height: 3px;
+    transform: scaleX(0);
+    transform-origin: left;
+    width: 100%;
+  }
+
+  // Rules as on canonical.com's homepage tabs: 1px, lit on hover, 3px under
+  // the active slide's progress bar. Positioned, so they never shift the text.
+  .p-open-source__slide {
+    position: relative;
+
+    &::before {
+      background-color: $colors--theme--border-low-contrast;
+      content: "";
+      height: 1px;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    &:hover::before {
+      background-color: $colors--theme--text-default;
+    }
+
+    &.is-active::before,
+    &:target::before {
+      background-color: $colors--theme--border-low-contrast;
+      height: 3px;
+    }
+
+    .p-open-source__bar {
+      left: 0;
+      position: absolute;
+      top: 0;
+      z-index: 1;
+    }
+
+    h3 {
+      margin: 0;
+    }
+  }
+
+  // Same specificity trick as .p-cta-text: beats the dark theme link colour
+  .inner-wrapper a.p-open-source__title:not([class^="p-button"]) {
+    display: block;
+    padding: $sp-unit * 2 0;
+    text-decoration: none;
+
+    // Muted until hovered or active, as on canonical.com
+    &,
+    &:visited {
+      color: $colors--theme--text-muted;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: $colors--theme--text-default;
+    }
+  }
+
+  .inner-wrapper .p-open-source__slide.is-active,
+  .inner-wrapper .p-open-source__slide:target {
+    .p-open-source__title {
+      color: $colors--theme--text-default;
+    }
+  }
+
+  .p-open-source__panel {
+    display: none;
+    padding-bottom: $sp-unit * 3;
+  }
+
+  .p-open-source__slide.is-active .p-open-source__panel,
+  .p-open-source__slide:target .p-open-source__panel {
+    display: block;
+  }
+
+  .p-open-source__command {
+    background-color: $colors--theme--background-hover;
+    overflow-wrap: normal;
+    padding: $sp-unit * 2;
+    white-space: pre-wrap;
+    word-break: normal;
+  }
+
+  // Hyphens are break opportunities too, keep each path part whole
+  .p-open-source__nowrap {
+    white-space: nowrap;
+  }
+
+  // No JS: the targeted slide replaces the first one
+  .js-open-source-carousel:has(.p-open-source__slide:target) {
+    .p-open-source__image.is-active {
+      opacity: 0;
+    }
+
+    .p-open-source__slide.is-active:not(:target) {
+      &::before {
+        height: 1px;
+      }
+
+      .p-open-source__title {
+        color: $colors--theme--text-muted;
+      }
+
+      .p-open-source__panel {
+        display: none;
+      }
+    }
+
+    @for $i from 1 through $carousel-slide-count {
+      // Slides follow the pause controls, so they are offset by one
+      &:has(.p-open-source__slide:nth-child(#{$i + 1}):target)
+        .p-open-source__image:nth-child(#{$i}) {
+        opacity: 1;
+      }
+    }
+  }
+
+  // Once WD-39511 adds is-enhanced, phones and tablets show only the active
+  // slide
+  @media (max-width: $breakpoint-large - 1) {
+    .js-open-source-carousel.is-enhanced {
+      .p-open-source__slide:not(.is-active) {
+        display: none;
+      }
+
+      // The bar under the image stands in for the slide's rule
+      .p-open-source__slide::before,
+      .p-open-source__slide .p-open-source__bar {
+        display: none;
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .p-open-source__image {
+      transition: none;
+    }
+  }
+}
