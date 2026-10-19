@@ -68,6 +68,13 @@
   // as each row's p-section padding.
   $performance-ring-easing: cubic-bezier(0.22, 1, 0.36, 1);
 
+  // Phones drop the rail, so the rows sit closer, as one group
+  .p-performance__row {
+    @media (max-width: $breakpoint-small - 1) {
+      padding-bottom: $spv--x-large;
+    }
+  }
+
   .p-performance__rail {
     align-items: center;
     display: flex;
