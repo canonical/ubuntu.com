@@ -126,24 +126,6 @@
       }
     }
 
-    .certified-year-validation {
-      &__input {
-        margin-bottom: 0;
-        max-width: none;
-        width: 100%;
-      }
-
-      &.is-error &__input {
-        background-color: $colors--theme--background-default;
-        border: 1px solid $colors--theme--border-negative;
-      }
-
-      &__message {
-        color: $colors--theme--border-negative;
-        margin: $sp-x-small 0 0;
-      }
-    }
-
     .p-button--link:disabled {
       cursor: not-allowed;
     }

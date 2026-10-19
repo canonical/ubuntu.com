@@ -122,10 +122,10 @@
                   {% endif %}
                 </div>
               {% elif filter.control == "year" %}
-                <div class="certified-year-validation{% if filter.year_is_invalid %} is-error{% endif %}">
+                <div class="p-form-validation{% if filter.year_is_invalid %} is-error{% endif %}">
                   <label class="u-off-screen" for="filter-certified-year">{{ filter.title }}</label>
                   <input type="text"
-                         class="certified-year-validation__input js-certified-year"
+                         class="p-form-validation__input js-certified-year"
                          id="filter-certified-year"
                          name="certified_year"
                          value="{{ filter.value }}"
@@ -135,7 +135,7 @@
                          placeholder="YYYY"
                          aria-invalid="{{ 'true' if filter.year_is_invalid else 'false' }}"
                          aria-describedby="filter-certified-year-error" />
-                  <p class="certified-year-validation__message js-certified-year-error{% if not filter.year_is_invalid %} u-hide{% endif %}"
+                  <p class="p-form-validation__message js-certified-year-error{% if not filter.year_is_invalid %} u-hide{% endif %}"
                      id="filter-certified-year-error"
                      aria-live="polite">Please insert a four-digit year.</p>
                 </div>

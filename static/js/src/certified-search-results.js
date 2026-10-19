@@ -345,7 +345,7 @@ function isValidYear(value) {
 }
 
 function setYearValidity(input, isValid) {
-  const validation = input.closest(".certified-year-validation");
+  const validation = input.closest(".p-form-validation");
   const message = validation.querySelector(".js-certified-year-error");
 
   validation.classList.toggle("is-error", !isValid);
