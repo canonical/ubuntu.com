@@ -113,10 +113,19 @@ def get_secondary_navigation(path):
             # Mark the parent nav item active when the current path matches
             # a dropdown sub-item.
             for grandchild in child.get("children", []):
+                grandchild_path, _, query_string = grandchild[
+                    "path"
+                ].partition("?")
                 if (
-                    grandchild["path"] == path
-                    and path.startswith(nav_section["path"])
-                ) or (path.startswith(grandchild["path"])):
+                    (
+                        grandchild_path == path
+                        and path.startswith(nav_section["path"])
+                    )
+                    or path.startswith(grandchild_path)
+                ) and all(
+                    flask.request.args.getlist(key) == values
+                    for key, values in parse_qs(query_string).items()
+                ):
                     if len(grandchild["path"]) > longest_match_path:
                         longest_match_path = len(grandchild["path"])
                         child_to_set_active = child

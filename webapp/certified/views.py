@@ -1,6 +1,7 @@
 import requests
 import math
 import sentry_sdk
+from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 
 from flask import (
@@ -805,20 +806,32 @@ def certified_autocomplete():
 
 # Keeps the canonical_id__in query string well below proxy URI limits
 ENRICHMENT_BATCH_SIZE = 50
+# Bounds concurrent Certification API requests per page render
+ENRICHMENT_MAX_WORKERS = 6
 
 
 def _fetch_in_batches(fetch, canonical_ids):
     """
-    Call fetch(canonical_id__in=<batch>) per batch of unique IDs and
-    return the concatenated "results" lists.
+    Call fetch(canonical_id__in=<batch>) per batch of unique IDs, a few at
+    a time, and return the concatenated "results" lists in batch order.
     """
     unique_ids = list(dict.fromkeys(canonical_ids))
-    items = []
+    batches = []
     for start in range(0, len(unique_ids), ENRICHMENT_BATCH_SIZE):
         end = start + ENRICHMENT_BATCH_SIZE
-        batch = unique_ids[start:end]
-        items.extend(fetch(canonical_id__in=batch)["results"])
-    return items
+        batches.append(unique_ids[start:end])
+    if len(batches) <= 1:
+        return [
+            item
+            for batch in batches
+            for item in fetch(canonical_id__in=batch)["results"]
+        ]
+
+    with ThreadPoolExecutor(max_workers=ENRICHMENT_MAX_WORKERS) as executor:
+        responses = executor.map(
+            lambda batch: fetch(canonical_id__in=batch)["results"], batches
+        )
+        return [item for items in responses for item in items]
 
 
 def _group_configurations_by_platform(results, details_by_id, storage_by_id):
