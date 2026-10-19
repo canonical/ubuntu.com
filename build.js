@@ -40,7 +40,10 @@ let entries = {
   "linux-patch-management": "./static/js/src/advantage/linux-patch-management/app.tsx",
   prism: "./static/js/src/prism.js",
   "active-nav-scroll": "./static/js/src/active-nav-scroll.js",
+  "in-page-navigation": "./static/js/src/in-page-navigation.js",
+  "developer-diaries": "./static/js/src/developer-diaries.js",
   resources: "./static/js/src/resources.js",
+  "filter-menu": "./static/js/src/filter-menu.js",
   "cookie-policy-with-callback":
     "./static/js/src/cookie-policy-with-callback.js",
 };

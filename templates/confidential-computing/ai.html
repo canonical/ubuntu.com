@@ -1,4 +1,5 @@
 {% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_divided-section.jinja" import vf_divided_section %}
 
 {% extends "confidential-computing/base_confidential-computing.html" %}
 
@@ -41,21 +42,212 @@
     </div>
   </section>
 
+  {{ vf_basic_section(
+    title={"text": "Why you need  Ubuntu for confidential AI"},
+    is_split_on_medium=true,
+    items=[
+      {
+        "type": "list",
+        "item": {
+          "list_items": [
+            {
+              "list_item_type": "tick",
+              "content": "Harness AI's power with hardware-backed protection"
+            },
+            {
+              "list_item_type": "tick",
+              "content": "Protect your security-sensitive AI data at run-time"
+            },
+            {
+              "list_item_type": "tick",
+              "content": "Fine-tune your model securely with your enterprise data"
+            },
+            {
+              "list_item_type": "tick",
+              "content": "Safeguard your intellectual property and protect your model"
+            },
+            {
+              "list_item_type": "tick",
+              "content": "Deploy your AI workload securely even in untrusted environments"
+            },
+            {
+              "list_item_type": "tick",
+              "content": "Strengthen your compliance posture"
+            },
+          ]
+        }
+      }
+    ]
+  ) }}
+
+  {% set how_it_works_description %}
+    <p>
+      Confidential AI is made possible thanks to confidential computing. Confidential VMs aim to protect private guest memory from the host operating system and hypervisor, reducing the software your workload must trust. The guest software and the platform’s trusted hardware and firmware remain part of that trust boundary.
+    </p>
+    <p>
+      Confidential AI applies this protection to AI workloads. By running the model and its supporting software inside the protected environment, it shields sensitive inputs, model weights, and outputs from the host operating system and hypervisor while they are being processed. For GPU-accelerated workloads, that protection must extend to the GPU and the data exchanged with it.
+    </p>
+    <p>
+      <a href="/confidential-computing">Learn more about confidential computing&nbsp;&rsaquo;</a>
+    </p>
+    <div class="u-aspect-ratio--16-9 u-background--fade u-align--center u-vertically-center">
+      {{ image(url="https://assets.ubuntu.com/v1/99e2659e-diagram_1.png",
+                alt="",
+                width="600",
+                height="338",
+                hi_def=True,
+                loading="lazy") | safe
+      }}
+    </div>
+  {% endset %}
+
+  {{ vf_divided_section(
+    title={"text": "How confidential AI&nbsp;works"},
+    is_split_on_medium=true,
+    blocks=[
+      {
+        "type": "description-block",
+        "items": [
+          {
+            "type": "description",
+            "item": {
+              "type": "html",
+              "content": how_it_works_description
+            }
+          }
+        ]
+      },
+      {
+        "type": "divided-block",
+        "bullet_type": "none",
+        "items": [
+          {
+            "title_text": "CPU-based confidential computing",
+            "contents": [
+              {
+                "type": "description",
+                "item": {
+                  "type": "text",
+                  "content": "Ubuntu confidential VMs use Intel TDX or AMD SEV-SNP to protect your workload’s private memory through hardware-backed encryption and isolation."
+                }
+              }
+            ]
+          },
+          {
+            "title_text": "GPU-based confidential computing",
+            "contents": [
+              {
+                "type": "description",
+                "item": {
+                  "type": "text",
+                  "content": "On Ubuntu, supported NVIDIA GPUs, including the H200, extend protection to GPU computation and memory when configured in confidential computing mode."
+                }
+              }
+            ]
+          },
+          {
+            "title_text": "Securely integrated CPU-GPU solution",
+            "contents": [
+              {
+                "type": "description",
+                "item": {
+                  "type": "text",
+                  "content": "In supported configurations, CPU-GPU transfers are encrypted and integrity-protected. On Ubuntu, remote attestation lets you verify CPU and GPU security evidence before releasing sensitive data or keys."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  ) }}
+
+  {% set nvidia_ai_image %}
+    <div class="u-aspect-ratio--16-9 u-background--fade u-vertically-center u-align--center">
+      {{ image(url="https://assets.ubuntu.com/v1/b8e6b3c5-diagram_updated_final.png",
+                alt="Ubuntu confidential VMs establish a secure encrypted communication channel with NVIDIA GPUs",
+                width="600",
+                height="338",
+                hi_def=True,
+                loading="lazy") | safe
+      }}
+    </div>
+  {% endset %}
+
+  {{ vf_divided_section(
+    title={"text": "Confidential AI with Ubuntu and NVIDIA GPUs"},
+    is_split_on_medium=true,
+    blocks=[
+      {
+        "type": "description-block",
+        "items": [
+          {
+            "type": "description",
+            "item": {
+              "type": "html",
+              "content": nvidia_ai_image
+            },
+            "padding": "shallow"
+          }
+        ]
+      },
+      {
+        "type": "divided-block",
+        "bullet_type": "none",
+        "items": [
+          {
+            "title_text": "Confidential AI on your own infrastructure",
+            "contents": [
+              {
+                "type": "description",
+                "item": {
+                  "type": "text",
+                  "content": "Run confidential AI with Ubuntu, Intel TDX or AMD SEV-SNP, and supported NVIDIA GPUs. GPU passthrough assigns the GPU to the confidential VM, while encrypted bounce buffers protect CPU–GPU transfers. NVIDIA’s deployment guides specify compatible Ubuntu host and guest versions, GPUs, drivers, and firmware."
+                }
+              },
+              {
+                "type": "description",
+                "item": {
+                  "type": "html",
+                  "content": "<p><a href='https://docs.nvidia.com/cc-deployment-guide-snp.pdf'>Explore deployment requirements&nbsp;&rsaquo;</a></p>"
+                }
+              }
+            ]
+          },
+          {
+            "title_text": "Confidential AI in the public cloud",
+            "contents": [
+              {
+                "type": "description",
+                "item": {
+                  "type": "text",
+                  "content": "Get the same protection without owning the hardware. On Google Cloud, G4 instances run Ubuntu 24.04 LTS with NVIDIA RTX PRO 6000 Blackwell GPUs and AMD SEV, and are generally available across all G4 regions. A3 High instances run Ubuntu 22.04 LTS with NVIDIA H100 GPUs and Intel TDX. On Azure, NCCads H100 v5 instances run Ubuntu 22.04 LTS or 24.04 LTS with NVIDIA H100 GPUs and AMD SEV-SNP."
+                }
+              },
+              {
+                "type": "description",
+                "item": {
+                  "type": "html",
+                  "content": "<p><a href='https://learn.microsoft.com/en-us/azure/confidential-computing/gpu-options'>Get started with confidential AI on Azure with Ubuntu&nbsp;&rsaquo;</a></p>"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  ) }}
+
   <section class="p-section">
     <hr class="p-rule is-fixed-width" />
     <div class="row--50-50">
       <div class="col">
-        <h2>Why you need  Ubuntu for confidential AI</h2>
+        <h2>Enterprise-ready confidential computing in Ubuntu 26.04 LTS</h2>
       </div>
       <div class="col">
-        <ul class="p-list--divided u-no-margin--bottom">
-          <li class="p-list__item is-ticked">Harness AI's power with utmost security assurance</li>
-          <li class="p-list__item is-ticked">Protect your security-sensitive AI data at run-time</li>
-          <li class="p-list__item is-ticked">Fine-tune your model securely with your enterprise data</li>
-          <li class="p-list__item is-ticked">Safeguard your intellectual property and protect your model</li>
-          <li class="p-list__item is-ticked">Deploy your AI workload securely even in untrusted environments</li>
-          <li class="p-list__item is-ticked">Strengthen your compliance posture</li>
-        </ul>
+        <p>
+          Ubuntu 26.04 LTS is the first enterprise Linux distribution to support both Intel TDX and AMD SEV-SNP across host and guest. Deploy confidential VMs on your own infrastructure with an integrated virtualization stack, protecting sensitive data during processing with hardware-backed isolation.
+        </p>
       </div>
     </div>
   </section>
@@ -64,151 +256,19 @@
     <hr class="p-rule is-fixed-width" />
     <div class="row--50-50">
       <div class="col">
-        <h2>How confidential AI&nbsp;works</h2>
+        <h2>New confidential computing features without leaving LTS</h2>
       </div>
-      <div class="col p-section--shallow ">
+      <div class="col">
         <p>
-          Confidential AI is made possible thanks to confidential computing. Unlike traditional VMs, where you have to trust that the host software is also secure, confidential VMs only require you to trust the software running within it and the platform's hardware root of trust.
+          Ubuntu 26.04 LTS’s optional virtualization Hardware Enablement (HWE) stack updates QEMU, libvirt and VM firmware every six months during the LTS’s first two years. It complements kernel HWE, bringing newer capabilities as they mature without requiring an upgrade to a new Ubuntu release.
         </p>
-        <div class="u-aspect-ratio--16-9 u-background--fade u-align--center u-vertically-center">
-          {{ image(url="https://assets.ubuntu.com/v1/01006e0d-ai-diagram@2x.png",
-                    alt="",
-                    width="600",
-                    height="338",
-                    hi_def=True,
-                    loading="lazy") | safe
-          }}
-        </div>
+        <p>
+          <a href="https://ubuntu.com/blog/ubuntu-virtualization-hwe-stack-confidential-computing">Explore virtualization HWE&nbsp;&rsaquo;</a>
+        </p>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
 
-        <hr class="p-rule--muted" />
-
-        <div class="row">
-
-          <div class="col-3 col-medium-2">
-
-            <h3 class="p-heading--5">CPU-based confidential computing</h3>
-
-          </div>
-
-          <div class="col-6 col-medium-3">
-
-            <p>
-              Ubuntu confidential VMs protect your workload's computation while in the CPU. It makes use of the newer hardware encryption engines to keep your data encrypted in system memory.
-            </p>
-
-          </div>
-
-        </div>
-
-        <hr class="p-rule--muted" />
-
-        <div class="row">
-
-          <div class="col-3 col-medium-2">
-
-            <h3 class="p-heading--5">GPU-based confidential computing</h3>
-
-          </div>
-
-          <div class="col-6 col-medium-3">
-
-            <p>
-              Nvidia H100 Tensor Core GPUs protect the confidentiality and integrity of the workload's computation within the GPU, using built-in firewalls.
-
-            </p>
-
-          </div>
-
-        </div>
-
-        <hr class="p-rule--muted" />
-
-        <div class="row">
-
-          <div class="col-3 col-medium-2">
-
-            <h3 class="p-heading--5">Securely integrated CPU-GPU solution</h3>
-
-          </div>
-
-          <div class="col-6 col-medium-3">
-
-            <p>
-              The CPU-GPU communication is encrypted, and a strong cryptographic guarantee is available for all remote parties to remotely attest the security claims of the platform.
-
-            </p>
-
-            <hr class="p-rule--muted is-fixed-width" />
-
-            <p>
-              <a href="/confidential-computing">Learn more about confidential computing&nbsp;&rsaquo;</a>
-            </p>
-
-          </div>
-
-        </div>
-      </div>
     </div>
   </section>
-
-  <section class="p-section">
-    <hr class="p-rule is-fixed-width" />
-    <div class="row--50-50">
-      <div class="col">
-        <h2>Confidential AI with Ubuntu and Nvidia&nbsp;H100&nbsp;GPUs</h2>
-      </div>
-      <div class="col">
-        <p>
-          Enterprises using machine learning in the cloud are concerned about the security of their data and the protection of their models. Industry regulations often prevent sharing sensitive data, hindering AI's full potential in important fields.
-        </p>
-        <p>
-          To address these challenges on Azure, a confidential AI is available with Ubuntu confidential VM using AMD 4th Gen EPYC processors with SEV-SNP, alongside  NVIDIA H100 GPUs.
-        </p>
-        <div class="p-section--shallow">
-          <div class="u-aspect-ratio--16-9 u-background--fade u-vertically-center u-align--center">
-            {{ image(url="https://assets.ubuntu.com/v1/fc0006be-cvm-diagram@2x.png",
-                        alt="Ubuntu confidential VMs establish a secure encrypted communication channel with Nvidia H100 GPUs",
-                        width="600",
-                        height="338",
-                        hi_def=True,
-                        loading="lazy") | safe
-            }}
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <p>
-          <a href="https://learn.microsoft.com/en-us/azure/confidential-computing/gpu-options">Get started with confidential AI on Azure with Ubuntu&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-section">
-    <hr class="p-rule is-fixed-width" />
-    <div class="row--50-50">
-      <div class="col">
-        <h2>Run Confidential AI Workloads on NVIDIA® H100&nbsp;Tensor</h2>
-      </div>
-      <div class="col">
-        <p>
-          Building on our prior implementation of confidential computing with Intel® TDX, we are excited to announce the latest tech preview release for Ubuntu Plucky 25.04 with shared device pass-through support for the H100.  This new feature adds the ability to run confidential AI workloads on the H100 GPUs.
-        </p>
-        <p>
-          With this release, all AI workloads making use of the NVIDIA® H100 GPUs from inside a TD (TDX virtual machine) can now benefit from end-to-end confidentiality protection on CPU, GPU, and in transit.
-        </p>
-
-        <hr class="p-rule--muted" />
-        <p>
-          <a href="https://github.com/canonical/tdx">Visit our GitHub repository for more information&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
 
 {{ vf_basic_section(
   title={"text": "Use Ubuntu Pro to further harden your confidential VMs"},
@@ -219,7 +279,7 @@
       "item": {
         "aspect_ratio": "4-3",
         "attrs": {
-          "src": "https://assets.ubuntu.com/v1/df38fad4-ubuntu-pro.png",
+          "src": "https://assets.ubuntu.com/v1/f601227b-ubuntu_pro.png",
           "alt": "Ubuntu Pro"
         }
       }
@@ -263,52 +323,28 @@
   ]
 ) }}
 
-  <section class="p-section">
-    <hr class="p-rule is-fixed-width" />
-    <div class="row--50-50">
-      <div class="col">
-        <h2>Deploy confidential computing on your private cloud with Ubuntu and Intel TDX</h2>
-      </div>
-      <div class="col">
-        <p>
-          Your on-premises servers are vulnerable to insiders' attacks, and they also run the same privileged system software found in the public cloud. Therefore, they are susceptible to the same vulnerabilities and security risks.
-        </p>
-
-        <p>
-          To help you seamlessly enable confidential computing within your private cloud, Canonical offers a tech preview of Intel TDX on Ubuntu 24.04 which provides base host OS, guest OS, and remote attestation functionalities.
-        </p>
-
-        <hr class="p-rule--muted" />
-        <p>
-          <a href="https://github.com/canonical/tdx">Deploy Intel TDX with Ubuntu 24.04 today&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-section">
-    <hr class="p-rule is-fixed-width" />
-    <div class="row--50-50">
-      <div class="col">
-        <h2>Learn&nbsp;more about confidential&nbsp;computing</h2>
-      </div>
-      <div class="col">
-        <ul class="p-list--divided u-no-margin--bottom">
-          <li class="p-list__item">
-            <a href="/engage/webinar-confidential-computing-intro">Delve into the main building blocks of confidential computing</a>
-          </li>
-          <li class="p-list__item">
-            <a href="/blog/introducing-confidential-vms-on-ubuntu-pro-for-azure">Introducing Confidential VMs on Ubuntu Pro for Azure</a>
-          </li>
-          <li class="p-list__item">
-            <a href="/engage/confidential-ai-webinar">Secure your AI workloads with confidential computing</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <hr class="p-rule is-fixed-width" />
+  {{ vf_basic_section(
+    title={"text": "Learn&nbsp;more about confidential&nbsp;computing"},
+    is_split_on_medium=true,
+    items=[
+      {
+        "type": "list",
+        "item": {
+          "list_items": [
+            {
+              "content": "<a href='/engage/webinar-confidential-computing-intro'>Delve into the main building blocks of confidential computing</a>"
+            },
+            {
+              "content": "<a href='/blog/introducing-confidential-vms-on-ubuntu-pro-for-azure'>Introducing Confidential VMs on Ubuntu Pro for Azure</a>"
+            },
+            {
+              "content": "<a href='/engage/confidential-ai-webinar'>Secure your AI workloads with confidential computing</a>"
+            },
+          ]
+        }
+      }
+    ]
+  ) }}
 
   <section class="p-strip is-deep">
     <div class="row">

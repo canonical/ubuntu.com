@@ -1,45 +1,17 @@
-{% extends "templates/one-column.html" %}
+{% extends "blog/topics/_topic-page.html" %}
 
-{% block title %}Juju and JAAS{% endblock %}
+{% block topic_page_title %}Juju and JAAS{% endblock %}
 
-{% block meta_description %}
+{% block topic_meta_description %}
   Operate big software at scale on any cloud. All the latest news on Juju – the open source application modelling tool for public and private clouds.
 {% endblock %}
 
-{% block content %}
+{% block hero_title_text %}Juju{% endblock %}
 
-  <section class="p-strip--suru-blog-header is-dark">
-    <div class="u-fixed-width">
-      <p>
-        {{ image(url="https://assets.ubuntu.com/v1/67057b2c-product-page-juju-logo.svg",
-                alt="",
-                height="50",
-                width="140",
-                hi_def=True,
-                loading="auto",
-                attrs={"class": "p-blog-heading__icon", "style": "height: 50px;"}) | safe
-        }}
-      </p>
-      <h2 class="p-heading--4">
-        All the latest news on Juju &ndash; the open source application
-        <br class="u-hide u-show--large" />
-        modelling tool for public and private clouds.
-      </h2>
-      <p>
-        <a class="p-link--inverted" href="https://canonical.com/jaas">Learn more about Juju</a>
-      </p>
-    </div>
-  </section>
-
-  <section class="p-strip is-shallow">
-    {% include 'blog/posts.html' %}
-  </section>
-
-  <section class="p-strip is-shallow">
-    {% with %}
-      {% set total_pages = total_pages %}
-      {% set current_page = current_page %}
-      {% include "shared/_pagination.html" %}
-    {% endwith %}
-  </section>
+{% block hero_description_text %}
+  All the latest news on Juju – the open source application modelling tool for public and private clouds.
 {% endblock %}
+
+{% block hero_cta_text %}Learn more about Juju ›{% endblock %}
+
+{% block hero_cta_href %}https://canonical.com/jaas{% endblock %}

@@ -1,0 +1,118 @@
+# Reusable contextual filter-menu macros, wired up by static/js/src/filter-menu.js
+# (which discovers filter bars via [data-js-filters]).
+
+# param_key:     query-string key (e.g. "language")
+# default_label: label shown when nothing is selected
+# options:       [{"value", "label"}, ...]; first entry should be the "all"
+#                reset option. Each may include "data" for extra data-*
+#                attributes on the option button (e.g. tagging a parent group)
+# menu_id:       (optional) dropdown id, defaults to "<param_key>-menu"
+# key_label:     (optional) static bold prefix (e.g. "Product: Ubuntu")
+# selected:      (optional) pre-select an option server-side, skipping the JS URL restore
+# default_value: (optional) baseline value used to detect "actively filtered" for Clear
+{% macro single_select_menu(param_key, default_label, options, menu_id=None, key_label=None, selected=None, default_value=None) %}
+  {% set menu_id = menu_id or param_key ~ "-menu" %}
+  {% set selected_option = (options | selectattr("value", "equalto", selected) | list | first) if selected is not none else none %}
+  {% set toggle_label = selected_option.label if selected_option else default_label %}
+  <div class="p-form__group p-form__control">
+    <span class="p-contextual-menu--left p-filter-menu__item p-filter-menu__item--{{ param_key }}">
+      <button type="button"
+              class="p-contextual-menu__toggle p-filter-menu__toggle has-icon{% if selected_option %} is-active{% endif %}"
+              aria-controls="{{ menu_id }}"
+              aria-expanded="false"
+              aria-haspopup="true"
+              data-filter-param="{{ param_key }}"
+              data-filter-type="single"
+              data-default-label="{{ default_label }}"
+              {%- if selected_option %} data-selected-value="{{ selected_option.value }}"{% endif %}
+              {%- if selected is not none %} data-filter-server-managed{% endif %}
+              {%- if default_value is not none %} data-filter-default-value="{{ default_value }}"{% endif %}>
+        {% if key_label %}<strong class="p-filter-menu__key-label">{{ key_label }}:</strong>{% endif %}<span>{{ toggle_label }}</span><i class="p-icon--chevron-down p-contextual-menu__indicator"></i>
+      </button>
+      <span class="p-contextual-menu__dropdown p-filter-menu__dropdown"
+            id="{{ menu_id }}"
+            aria-hidden="true">
+        <span class="p-contextual-menu__group">
+          {% for option in options %}
+            <button type="button"
+                    class="p-contextual-menu__link p-filter-menu__link"
+                    data-value="{{ option.value }}"
+                    {%- for data_key, data_value in (option.data or {}).items() %} data-{{ data_key }}="{{ data_value }}"{% endfor %}>{{ option.label }}</button>
+          {% endfor %}
+        </span>
+      </span>
+    </span>
+  </div>
+{% endmacro %}
+
+# See single_select_menu for param_key/default_label/options/menu_id/key_label.
+# selected: (optional) list of currently-selected values; shown first, above a rule
+# show_clear_selection: (optional) set to false to hide the dropdown's own
+#                        "Clear" action, e.g. when at least one option must
+#                        always stay selected
+{% macro multi_select_menu(param_key, default_label, options, selected=[], menu_id=None, key_label=None, show_clear_selection=true) %}
+  {% set menu_id = menu_id or param_key ~ "-menu" %}
+  {% set selected_options = options | selectattr("value", "in", selected) | list %}
+  {% set unselected_options = options | rejectattr("value", "in", selected) | list %}
+  <div class="p-form__group p-form__control">
+    <span class="p-contextual-menu--left p-filter-menu__item p-filter-menu__item--{{ param_key }}">
+      <button type="button"
+              class="p-contextual-menu__toggle p-filter-menu__toggle p-filter-menu__toggle--multi has-icon"
+              aria-controls="{{ menu_id }}"
+              aria-expanded="false"
+              aria-haspopup="true"
+              data-filter-param="{{ param_key }}"
+              data-filter-type="multi"
+              data-default-label="{{ default_label }}">
+        {% if key_label %}<strong class="p-filter-menu__key-label">{{ key_label }}:</strong>{% endif %}<span>{{ default_label }}</span><span class="p-badge"
+              data-filter-count
+              aria-live="polite"
+              hidden>0</span><i class="p-icon--chevron-down p-contextual-menu__indicator"></i>
+      </button>
+      <span class="p-contextual-menu__dropdown p-filter-menu__dropdown p-filter-menu__dropdown--multi"
+            id="{{ menu_id }}"
+            aria-hidden="true">
+        <span class="p-contextual-menu__group p-filter-menu__group p-filter-menu__group--multi">
+          {% for option in selected_options %}
+            {{ _multi_option(option, true) }}
+          {% endfor %}
+          {% if selected_options and unselected_options %}<hr class="p-rule--muted u-no-margin--bottom" />{% endif %}
+          {% for option in unselected_options %}
+            {{ _multi_option(option, false) }}
+          {% endfor %}
+        </span>
+        <span class="p-filter-menu__actions">
+          <button type="button" class="p-filter-menu__action" data-filter-select-all>Select all</button>
+          {% if show_clear_selection %}
+            <button type="button" class="p-filter-menu__action" data-filter-clear-selection>Clear</button>
+          {% endif %}
+        </span>
+      </span>
+    </span>
+  </div>
+{% endmacro %}
+
+{% macro _multi_option(option, is_checked) %}
+  <label class="p-checkbox p-filter-menu__option">
+    <input type="checkbox"
+           class="p-checkbox__input p-filter-menu__checkbox"
+           data-filter-option
+           value="{{ option.value }}"
+           {{ "checked" if is_checked }} />
+    <span class="p-checkbox__label"><span class="p-filter-menu__label-text">{{ option.label }}</span></span>
+  </label>
+{% endmacro %}
+
+# label: (optional) submit button text
+{% macro filter_submit(label="Apply filters") %}
+  <div class="p-form__group">
+    <button type="button" class="p-button--positive p-filter-menu__submit" data-filter-submit>{{ label }}</button>
+  </div>
+{% endmacro %}
+
+# label: (optional) clear-filters button text; hidden until JS shows it
+{% macro filter_clear(label="Clear filters") %}
+  <div class="p-form__group">
+    <button type="button" class="p-button--link p-filter-menu__clear u-hide" data-filter-clear>{{ label }}</button>
+  </div>
+{% endmacro %}

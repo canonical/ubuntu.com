@@ -69,11 +69,22 @@ class TestRoutes(VCRTestCase):
             self.client.get("/blog/topics/design").status_code, 200
         )
         self.assertEqual(
-            self.client.get("/blog/internet-of-things").status_code, 200
-        )
-        self.assertEqual(
             self.client.get("/blog/installing-ros-in-lxd").status_code, 200
         )
+
+    def test_archived_blog_group_routes(self):
+        """Archived blog group routes should permanently redirect to /blog."""
+        archived_slugs = [
+            "cloud-and-server",
+            "desktop",
+            "internet-of-things",
+            "people-and-culture",
+        ]
+
+        for slug in archived_slugs:
+            response = self.client.get(f"/blog/{slug}")
+            self.assertEqual(response.status_code, 302)
+            self.assertEqual(response.location, "/blog")
 
     def test_tutorials_homepage(self):
         """
@@ -181,6 +192,20 @@ class TestRoutes(VCRTestCase):
         self.assertEqual(response.status_code, 200)
         soup = BeautifulSoup(response.data, "html.parser")
         self.assertIsNotNone(soup.find("meta", {"name": "description"}))
+
+    @patch("webapp.app.BlogViews")
+    def test_security_ncsc_code_of_practice(self, mock_blog_views):
+        """
+        When given the NCSC Code of Practice URL,
+        we should return a 200 status code
+        """
+        mock_blog_views.return_value.get_index.return_value = {"articles": []}
+        response = self.client.get("/security/ncsc-code-of-practice")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(
+            b"Alignment with the UK NCSC",
+            response.data,
+        )
 
     def test_18_04_bubble(self):
         """

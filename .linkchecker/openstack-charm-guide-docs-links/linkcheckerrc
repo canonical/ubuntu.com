@@ -1,0 +1,23 @@
+[checking]
+maxrequestspersecond=5
+
+[filtering]
+nofollow=!https:\/\/docs.openstack.org\/charm-guide\/latest\/
+checkextern=1
+ignore=
+  http://localhost:8001\*
+  https://groups\.openstack\.org
+  https://openstack\.org/projects
+  https://openstack\.org/projects\/openstack-faq
+  ^.*\.css
+  ^.*\.js
+
+[output]
+status=0
+warnings=0
+ignoreerrors=
+  ^https?://.* ^.*(500|502|503|504)
+  ^https?://.* Connection aborted
+  ^https?://.* Connection reset by peer
+  ^https?://.* RemoteDisconnected
+  ^https?://.* Read timed out

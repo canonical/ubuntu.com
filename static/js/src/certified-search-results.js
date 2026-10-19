@@ -378,19 +378,13 @@ function applyCertifiedYear(input) {
 
 function updateResultsPerPage() {
   const searchResults = document.querySelector(".js-search-results");
-  const pageSizeTop = document.getElementById("page-size-top");
   const pageSizeBottom = document.getElementById("page-size-bottom");
 
-  pageSizeTop?.addEventListener("change", () => {
+  pageSizeBottom?.addEventListener("change", () => {
     if (!searchResults.reportValidity()) {
       return;
     }
     searchResults.submit();
-  });
-
-  pageSizeBottom?.addEventListener("change", (event) => {
-    pageSizeTop.value = event.target.value;
-    pageSizeTop.dispatchEvent(new Event("change"));
   });
 }
 

@@ -142,7 +142,11 @@ class CertificationAPI:
         return response.json()
 
     def certified_configuration_details(
-        self, limit=None, offset=None, canonical_id=None
+        self,
+        limit=None,
+        offset=None,
+        canonical_id=None,
+        canonical_id__in=None,
     ):
         return self._get(
             "certified-configuration-details",
@@ -150,6 +154,7 @@ class CertificationAPI:
                 "limit": limit,
                 "offset": offset,
                 "canonical_id": canonical_id,
+                "canonical_id__in": _get_clean_in_filter(canonical_id__in),
             },
         ).json()
 
@@ -159,6 +164,7 @@ class CertificationAPI:
         offset=None,
         query=None,
         canonical_id=None,
+        canonical_id__in=None,
         identifier=None,
         subsystem=None,
         category=None,
@@ -175,6 +181,7 @@ class CertificationAPI:
                 "offset": offset,
                 "query": query,
                 "canonical_id": canonical_id,
+                "canonical_id__in": _get_clean_in_filter(canonical_id__in),
                 "identifier": identifier,
                 "subsystem": subsystem,
                 "category": category,

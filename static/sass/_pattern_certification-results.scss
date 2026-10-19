@@ -5,25 +5,56 @@
     }
   }
 
-  .p-certification-results {
-    th {
-      padding-top: 0.6rem;
+  .p-certification-results__heading {
+    position: relative;
+
+    .p-accordion__tab {
+      width: 100%;
     }
-    th,
-    td {
-      &:nth-child(1) {
-        width: 20%;
-      }
+  }
 
-      &:nth-child(2) {
-        width: 35%;
-      }
+  .p-certification-results__details-link {
+    font-size: 0.875rem;
+    position: absolute;
+    right: $sp-medium;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    // above the accordion tab button (z-index: 2), so it stays clickable
+    z-index: 3;
 
-      &:nth-child(3) {
-        width: 10%;
-        @media only screen and (max-width: $breakpoint-small) {
-          width: 20%;
-        }
+    @media only screen and (max-width: $breakpoint-small) {
+      display: block;
+      padding: 0 $sp-medium $sp-medium $sp-xxx-large;
+      position: static;
+      transform: none;
+    }
+  }
+
+  .p-certification-results__configurations {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      padding: $sp-small 0;
+    }
+  }
+
+  .p-certification-results__page-size {
+    text-align: right;
+
+    @media only screen and (max-width: $breakpoint-small - 1px) {
+      text-align: left;
+    }
+  }
+
+  .p-certification-results__footer {
+    // pagination sits inside a column, so drop its extra padding to left-align with the page size
+    @media only screen and (max-width: $breakpoint-large - 1px) {
+      .u-fixed-width {
+        padding-left: 0;
+        padding-right: 0;
       }
     }
   }
@@ -180,6 +211,14 @@
     }
   }
 
+  .p-certification-results .p-accordion__group + .p-accordion__group::after {
+    background-color: $colors--theme--border-low-contrast;
+  }
+
+  .p-results-per-page-label {
+    padding-right: $sp-small;
+  }
+
   .p-results-per-page {
     max-width: 5.3rem;
     min-width: 5.3rem;
@@ -187,30 +226,30 @@
 
   .p-certified-autocomplete {
     position: relative;
+  }
 
-    &__list {
-      background: #fff;
-      border: 1px solid $colors--light-theme--border-default;
-      border-top: none;
-      left: 0;
-      list-style: none;
-      margin: 0;
-      max-height: 15rem;
-      overflow-y: auto;
-      padding: 0;
-      position: absolute;
-      right: 0;
-      top: 100%;
-      z-index: 10;
+  .p-certified-autocomplete__list {
+    background: #fff;
+    border: 1px solid $colors--theme--border-low-contrast;
+    border-top: none;
+    left: 0;
+    list-style: none;
+    margin: 0;
+    max-height: 15rem;
+    overflow-y: auto;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: 10;
 
-      li {
-        cursor: pointer;
-        padding: $sp-small $sp-medium;
+    li {
+      cursor: pointer;
+      padding: $sp-small $sp-medium;
 
-        &:hover,
-        &.is-active {
-          background: #f3f3f3;
-        }
+      &:hover,
+      &.is-active {
+        background: #f3f3f3;
       }
     }
   }

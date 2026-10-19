@@ -146,8 +146,7 @@
         offset=offset,
         limit=limit,
         filters=filters,
-        results=results,
-        vendor_page="true" if vendor else False
+        grouped_results=grouped_results
         %}
         {% include "certified/search/_search-results-main-block.html" %}
       {% endwith %}

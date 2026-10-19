@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../helpers/fixtures";
 import { acceptCookiePolicy } from "../helpers/commands";
 
 test.describe("Certified search results", () => {
@@ -6,8 +6,8 @@ test.describe("Certified search results", () => {
     await page.goto("/certified/search?q=dell");
     await acceptCookiePolicy(page);
     
-    await page.locator('#page-size-top').waitFor({ state: 'visible' });
-    await page.locator('#page-size-top').selectOption({ label: '40' });
+    await page.locator('#page-size-bottom').waitFor({ state: 'visible' });
+    await page.locator('#page-size-bottom').selectOption({ label: '40' });
 
     await page.waitForURL(/\/certified\/search\?q=dell&limit=40/, { timeout: 10000 });
     await expect(page).toHaveURL('/certified/search?q=dell&limit=40');

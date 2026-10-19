@@ -2,9 +2,12 @@
 Unit tests for webapp.views helper functions.
 """
 
+import re
+from datetime import datetime
 from unittest import TestCase
 from unittest.mock import Mock, patch, MagicMock
 
+from bs4 import BeautifulSoup
 from werkzeug.exceptions import NotFound, InternalServerError
 
 from webapp.app import app
@@ -17,10 +20,14 @@ from webapp.views import (
     build_tutorials_query,
     match_tags,
     build_engage_page,
+    engage_thank_you,
     community_landing_page,
+    build_developer_diaries_index,
+    build_developer_diaries_article,
     enrich_acquisition_url,
     build_engage_page_resources,
     append_utms_cookie_to_canonical_links,
+    build_release_cycle_view,
 )
 from webapp.certified.views import certified_platform_details_by_release
 
@@ -31,6 +38,73 @@ class BaseViewTestCase(TestCase):
     def setUp(self):
         self.app = app
         self.app.testing = True
+
+
+class TestReleaseCycleEmptyResults(BaseViewTestCase):
+    def setUp(self):
+        super().setUp()
+        products = {
+            "ubuntu": {
+                "product": "Ubuntu",
+                "deployment": [
+                    {
+                        "name": "Ubuntu",
+                        "versions": [
+                            {
+                                "release": "24.04 LTS",
+                                "release-date": "2024-04-25",
+                                "supported": "2099-04-25",
+                                "pro-supported": "2099-04-25",
+                                "legacy-supported": "2099-04-25",
+                                "compliance": [],
+                            }
+                        ],
+                    }
+                ],
+            }
+        }
+        with patch("webapp.views.build_github_data_access") as mock_access:
+            mock_access.return_value.return_value = {"products": products}
+            self.view = build_release_cycle_view()
+
+    def render_page(self, query=""):
+        with self.app.test_request_context("/about/release-cycle" + query):
+            return BeautifulSoup(self.view(), "html.parser")
+
+    def test_no_matching_compliance_shows_notification(self):
+        page = self.render_page("?compliance=FIPS")
+        notification = page.select_one(".p-notification--information")
+        self.assertIsNotNone(notification)
+        self.assertEqual(
+            notification.select_one(".p-notification__title").get_text(),
+            "There are no results matching your search.",
+        )
+        self.assertEqual(
+            notification.select_one(".p-notification__message").get_text(),
+            "Search for another product, release type, version, or "
+            "compliance standard, or reset your input.",
+        )
+        reset_link = notification.find("a", string="reset your input")
+        self.assertEqual(reset_link["href"], "/about/release-cycle")
+        self.assertFalse(page.select(".release-cycle-table"))
+
+        defaults = self.render_page()
+        self.assertFalse(defaults.select(".p-notification--information"))
+        self.assertEqual(len(defaults.select(".release-cycle-table")), 2)
+        for param, value in (
+            ("product", "ubuntu"),
+            ("release", "ubuntu"),
+            ("version", "all"),
+        ):
+            toggle = defaults.select_one(f'[data-filter-param="{param}"]')
+            self.assertEqual(toggle["data-selected-value"], value)
+        self.assertFalse(defaults.select("[data-filter-option][checked]"))
+
+    def test_missing_release_preserves_invalid_input_notice(self):
+        page = self.render_page("?release=")
+        self.assertIsNotNone(page.select_one("[data-filter-error]"))
+        self.assertFalse(page.select(".p-notification--information"))
+        self.assertFalse(page.select(".release-cycle-table"))
 
 
 class TestShortenAcquisitionURL(BaseViewTestCase):
@@ -592,6 +666,72 @@ class TestBuildEngagePageResources(BaseViewTestCase):
         engage_docs.get_index.assert_called_once_with(
             limit=3, key="is_static", value=None
         )
+
+
+class TestEngageThankYou(BaseViewTestCase):
+    """
+    Unit tests for `engage_thank_you`.
+
+    `resource_url` is optional for engage pages that have a form. These tests
+    verify that:
+      • A page with a form but no `resource_url` renders (no 404 or 500)
+      • Missing `resource_url`/`type` metadata keys do not raise a KeyError
+      • A page with neither a form, a `resource_url`, nor `contact_form_only`
+        still 404s (to prevent spam)
+    """
+
+    def _make_engage_pages(self, metadata):
+        mock = Mock()
+        mock.get_engage_page.return_value = metadata
+        return mock
+
+    def test_form_page_without_resource_url_renders(self):
+        engage_pages = self._make_engage_pages(
+            {
+                "path": "/engage/test-event",
+                "language": "en",
+                "type": "event",
+                "form_id": "1234",
+            }
+        )
+        view = engage_thank_you(engage_pages)
+
+        with self.app.test_request_context("/engage/test-event/thank-you"):
+            response = view(language=None, page="test-event")
+
+        status = getattr(response, "status_code", 200)
+        self.assertEqual(status, 200)
+
+    def test_contact_form_only_without_resource_url_renders(self):
+        engage_pages = self._make_engage_pages(
+            {
+                "path": "/engage/test-event",
+                "language": "en",
+                "type": "event",
+                "contact_form_only": "true",
+            }
+        )
+        view = engage_thank_you(engage_pages)
+
+        with self.app.test_request_context("/engage/test-event/thank-you"):
+            response = view(language=None, page="test-event")
+
+            status = getattr(response, "status_code", 200)
+            self.assertEqual(status, 200)
+
+    def test_page_without_form_or_resource_returns_404(self):
+        engage_pages = self._make_engage_pages(
+            {
+                "path": "/engage/test-event",
+                "language": "en",
+                "type": "event",
+            }
+        )
+        view = engage_thank_you(engage_pages)
+
+        with self.app.test_request_context("/engage/test-event/thank-you"):
+            with self.assertRaises(NotFound):
+                view(language=None, page="test-event")
 
 
 class TestMatchTags(TestCase):
@@ -1474,3 +1614,259 @@ class TestRateLimitedErrorHandling(TestCase):
                 view()
 
         self.assertEqual(render.call_args.kwargs["newsletters"], [])
+
+
+def _developer_diaries_article(**overrides):
+    return {
+        "id": 1,
+        "title": "Hardening old Docker images",
+        "slug": "hardening",
+        "path": "/community/developer-diaries/hardening",
+        "image": "https://example.com/hardening.png",
+        "tags": ["rock"],
+        "created": datetime(2026, 6, 30),
+        "forum_url": "https://discourse.ubuntu.com/t/hardening/1",
+        "likes": 9,
+        "author": {
+            "name": "Jane Doe",
+            "username": "jdoe",
+            "avatar_url": "https://discourse.ubuntu.com/avatar/96.png",
+            "url": "https://discourse.ubuntu.com/u/jdoe",
+        },
+        **overrides,
+    }
+
+
+class TestDeveloperDiariesIndex(BaseViewTestCase):
+    """
+    Unit tests for `build_developer_diaries_index`.
+    """
+
+    def _get(self, url, articles=None, total=None):
+        articles = articles or []
+        developer_diaries = Mock()
+        developer_diaries.get_index.return_value = (
+            articles,
+            len(articles) if total is None else total,
+        )
+        view = build_developer_diaries_index(developer_diaries)
+
+        with self.app.test_request_context(url):
+            html = view()
+
+        return developer_diaries, BeautifulSoup(html, "html.parser")
+
+    def test_pages_and_filters_by_the_tags_of_known_topics(self):
+        developer_diaries, _ = self._get(
+            "/community/developer-diaries"
+            "?page=3&topic=snaps&topic=ai&topic=bogus"
+        )
+
+        developer_diaries.get_index.assert_called_once_with(
+            limit=12, offset=24, tags=["snap", "snapcraft", "ai"]
+        )
+
+    def test_renders_article_cards(self):
+        _, soup = self._get(
+            "/community/developer-diaries?topic=containers",
+            articles=[_developer_diaries_article()],
+            total=25,
+        )
+
+        card = soup.select_one(".p-content-card")
+        self.assertEqual(
+            card.select_one(".p-content-card__main-link")["href"],
+            "/community/developer-diaries/hardening",
+        )
+        self.assertEqual(
+            card.select_one(".p-content-card__author-link").text, "Jane Doe"
+        )
+        self.assertIn("30 Jun 2026", card.text)
+        self.assertEqual(card.select_one(".p-chip--information").text, "Rock")
+        # Likes only show on the article page
+        self.assertIsNone(card.select_one(".p-icon--thumbs-up"))
+        # Dark theme border and footer rule, for the dark page
+        self.assertIn("is-dark", card["class"])
+        self.assertTrue(
+            soup.select_one("input[value=containers]").has_attr("checked")
+        )
+        self.assertFalse(
+            soup.select_one("input[value=snaps]").has_attr("checked")
+        )
+        self.assertEqual(len(soup.select(".p-pagination__link")), 3)
+
+    def test_escapes_author_names(self):
+        _, soup = self._get(
+            "/community/developer-diaries",
+            articles=[
+                _developer_diaries_article(
+                    author={
+                        "name": "<b>Jane</b>",
+                        "url": "https://discourse.ubuntu.com/u/jdoe",
+                    }
+                )
+            ],
+        )
+
+        author_link = soup.select_one(".p-content-card__author-link")
+        self.assertEqual(author_link.text, "<b>Jane</b>")
+        self.assertIsNone(author_link.find("b"))
+
+    def test_tag_names_on_cards(self):
+        _, soup = self._get(
+            "/community/developer-diaries",
+            articles=[_developer_diaries_article(tags=["ai", "lxd", "rock"])],
+        )
+
+        self.assertEqual(
+            [chip.text for chip in soup.select(".p-chip--information")],
+            ["AI", "LXD", "Rock"],
+        )
+
+    def test_no_card_footer_for_articles_without_tags(self):
+        _, soup = self._get(
+            "/community/developer-diaries",
+            articles=[_developer_diaries_article(tags=[])],
+        )
+
+        card = soup.select_one(".p-content-card")
+        self.assertIsNone(card.select_one(".p-content-card__footer-container"))
+        self.assertIsNone(card.select_one("hr"))
+
+    def test_default_image_for_articles_without_one(self):
+        _, soup = self._get(
+            "/community/developer-diaries",
+            articles=[_developer_diaries_article(image=None)],
+        )
+
+        self.assertEqual(
+            soup.select_one(".p-content-card__image")["src"],
+            "https://assets.ubuntu.com/v1/94c82a15-blog_fallback_image.png",
+        )
+
+    def test_pagination_truncates_and_keeps_filters(self):
+        _, soup = self._get(
+            "/community/developer-diaries?topic=containers&page=5",
+            articles=[_developer_diaries_article()],
+            total=120,
+        )
+
+        items = [
+            item.get_text(strip=True)
+            for item in soup.select(".p-pagination__items > li")
+        ]
+        self.assertEqual(
+            items,
+            [
+                "Previous page",
+                "1",
+                "…",
+                "4",
+                "5",
+                "6",
+                "…",
+                "10",
+                "Next page",
+            ],
+        )
+        current = soup.select_one(".p-pagination__link[aria-current=page]")
+        self.assertEqual(current.text, "5")
+        self.assertEqual(
+            soup.select_one(".p-pagination__link--next")["href"],
+            "?topic=containers&page=6#articles",
+        )
+
+    def test_pagination_disables_previous_on_first_page(self):
+        _, soup = self._get(
+            "/community/developer-diaries",
+            articles=[_developer_diaries_article()],
+            total=30,
+        )
+
+        previous = soup.select_one(".p-pagination__link--previous")
+        self.assertEqual(previous.name, "span")
+        self.assertEqual(previous["aria-disabled"], "true")
+        self.assertEqual(
+            [link.text for link in soup.select(".p-pagination__link")],
+            ["1", "2", "3"],
+        )
+
+    def test_renders_without_articles(self):
+        _, soup = self._get("/community/developer-diaries?topic=ai")
+
+        self.assertIsNone(soup.select_one(".p-content-card"))
+        self.assertIsNone(soup.select_one(".p-pagination"))
+        self.assertIn("No articles match", soup.text)
+
+
+class TestDeveloperDiariesArticle(BaseViewTestCase):
+    """
+    Unit tests for `build_developer_diaries_article`.
+    """
+
+    def test_unknown_article_is_not_found(self):
+        developer_diaries = Mock()
+        developer_diaries.get_article.return_value = None
+        view = build_developer_diaries_article(developer_diaries)
+
+        with self.app.test_request_context(
+            "/community/developer-diaries/missing"
+        ):
+            with self.assertRaises(NotFound):
+                view("missing")
+
+    def test_renders_article(self):
+        developer_diaries = Mock()
+        developer_diaries.get_article.return_value = (
+            _developer_diaries_article(
+                updated=datetime(2026, 7, 1),
+                body_html='<h2 id="intro">Intro</h2><p>Body</p>',
+                excerpt="Body",
+                read_time=8,
+                navigation=[
+                    {
+                        "id": "intro",
+                        "text": "Intro",
+                        "children": [
+                            {"id": "usage", "text": "Usage", "children": []}
+                        ],
+                    }
+                ],
+            )
+        )
+        view = build_developer_diaries_article(developer_diaries)
+
+        with self.app.test_request_context(
+            "/community/developer-diaries/hardening"
+        ):
+            soup = BeautifulSoup(view("hardening"), "html.parser")
+
+        developer_diaries.get_article.assert_called_once_with("hardening")
+        self.assertEqual(
+            soup.select_one("h1").text.strip(), "Hardening old Docker images"
+        )
+        self.assertIn("8 min read", soup.text)
+        self.assertEqual(
+            [
+                link["href"]
+                for link in soup.select(".p-in-page-navigation__link")
+            ],
+            ["#intro", "#usage"],
+        )
+        self.assertEqual(
+            {
+                link["href"]
+                for link in soup.find_all(
+                    "a", string=re.compile("Join the discussion|reply")
+                )
+            },
+            {"https://discourse.ubuntu.com/t/hardening/1"},
+        )
+        # Only in the sidebar, not under the author too
+        discussion_links = soup.find_all("a", string="Join the discussion")
+        self.assertEqual(len(discussion_links), 1)
+        self.assertIsNotNone(
+            discussion_links[0].find_parent(
+                class_="developer-diaries__sidebar"
+            )
+        )
