@@ -1,0 +1,167 @@
+// "Built by you. For you." tiles. On wide screens with a hovering pointer,
+// hovering or focusing a tile dims and blurs its media and reveals the text
+// over it. Everywhere else the text sits under the media, always visible.
+@mixin ubuntu-p-homepage-community {
+  $community-easing: cubic-bezier(0.22, 1, 0.36, 1);
+  // Below this width the wide tiles are too short for the overlay text
+  $community-overlay-min-width: 1280px;
+  $community-overlay: "(hover: hover) and (min-width: #{$community-overlay-min-width})";
+
+  .p-community__hint {
+    display: none;
+  }
+
+  // Centred on the Pause button; the hint drops its baseline nudge in markup
+  .p-community__controls {
+    align-items: center;
+    display: flex;
+    gap: $sp-unit * 2;
+    justify-content: space-between;
+    margin-bottom: $spv--large;
+  }
+
+  // Circled icon button, as the open source carousel's Pause
+  .p-community__pause {
+    align-items: center;
+    background: none;
+    border: 0;
+    display: inline-flex;
+    flex-shrink: 0;
+    height: $sp-unit * 5.5;
+    justify-content: center;
+    margin: 0 0 0 auto;
+    padding: 0;
+    width: $sp-unit * 5.5;
+  }
+
+  .p-community__tiles {
+    row-gap: $sp-unit * 4;
+  }
+
+  .p-community__stack {
+    display: flex;
+    flex-direction: column;
+    gap: $sp-unit * 4;
+  }
+
+  .p-community-tile__frame {
+    aspect-ratio: 600 / 288;
+    overflow: hidden;
+  }
+
+  // Square on phones and desktop; on tablet a full-width square is too tall
+  .p-community-tile.is-square .p-community-tile__frame {
+    aspect-ratio: 1;
+
+    @media (min-width: $breakpoint-small) and (max-width: $breakpoint-large - 1) {
+      aspect-ratio: 600 / 288;
+    }
+  }
+
+  // On large screens both columns share four subgrid rows: two frames and
+  // two texts. The square tile's frame spans the first three, so it ends
+  // level with the lower frame and its text shares that tile's row, however
+  // the two wrap. Overlaid text is out of flow, leaving those rows empty.
+  // The media is absolutely positioned so it can't set the height itself.
+  @media (min-width: $breakpoint-large) {
+    .p-community__tiles {
+      grid-template-rows: repeat(4, auto);
+      row-gap: 0;
+    }
+
+    .p-community__tiles > * {
+      display: grid;
+      grid-row: 1 / span 4;
+      grid-template-rows: subgrid;
+      row-gap: 0;
+    }
+
+    .p-community-tile {
+      display: grid;
+      grid-row: span 2;
+      grid-template-rows: subgrid;
+    }
+
+    .p-community__stack .p-community-tile + .p-community-tile {
+      margin-top: $sp-unit * 4;
+    }
+
+    .p-community-tile.is-square {
+      grid-row: span 4;
+
+      .p-community-tile__frame {
+        aspect-ratio: auto;
+        grid-row: span 3;
+        position: relative;
+      }
+
+      .p-community-tile__media {
+        inset: 0;
+        position: absolute;
+      }
+    }
+  }
+
+  .p-community-tile__media {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .p-community-tile__content {
+    padding-top: $spv--large;
+  }
+
+  @media #{$community-overlay} {
+    .p-community__hint {
+      display: block;
+    }
+
+    .p-community-tile {
+      position: relative;
+    }
+
+    .p-community__stack .p-community-tile + .p-community-tile {
+      margin-top: $spv--x-large;
+    }
+
+    .p-community-tile__media {
+      transition: filter 200ms $community-easing;
+    }
+
+    .p-community-tile__content {
+      display: flex;
+      flex-direction: column;
+      inset: 0;
+      justify-content: space-between;
+      opacity: 0;
+      padding: $sp-unit * 4;
+      // Click-through until revealed, so a first tap on a touch laptop
+      // can't hit the hidden button; still focusable for :focus-within
+      pointer-events: none;
+      position: absolute;
+      transition: opacity 400ms $community-easing;
+    }
+
+    .p-community-tile:hover,
+    .p-community-tile:focus-within {
+      .p-community-tile__media {
+        filter: brightness(0.1) blur(10px);
+      }
+
+      .p-community-tile__content {
+        opacity: 1;
+        pointer-events: auto;
+        transition-delay: 80ms;
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .p-community-tile__media,
+    .p-community-tile__content {
+      transition: none;
+    }
+  }
+}

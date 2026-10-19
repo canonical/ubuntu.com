@@ -353,6 +353,30 @@ class TestHomepageRender(VCRTestCase):
             ],
         )
 
+    def test_community_tiles(self):
+        """
+        Every tile renders its image through image(); video tiles hold a
+        lazy video in a template, offered as AV1, then HEVC, then H.264
+        """
+
+        response = self.client.get("/")
+        soup = BeautifulSoup(response.get_data(as_text=True), "lxml")
+
+        self.assertIn("p-homepage", soup.body["class"])
+        images = soup.select("img.p-community-tile__media")
+        self.assertEqual(len(images), 3)
+        for image in images:
+            self.assertIn("res.cloudinary.com", image["src"])
+        videos = soup.select("template.js-community-video video")
+        self.assertEqual(len(videos), 2)
+        for video in videos:
+            self.assertEqual(video["preload"], "none")
+            types = [source["type"] for source in video.find_all("source")]
+            self.assertEqual(len(types), 3)
+            self.assertTrue(types[0].startswith('video/webm; codecs="av01'))
+            self.assertTrue(types[1].startswith('video/mp4; codecs="hvc1'))
+            self.assertEqual(types[2], "video/mp4")
+
 
 if __name__ == "__main__":
     unittest.main()
