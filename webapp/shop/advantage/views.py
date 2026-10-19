@@ -714,11 +714,11 @@ def activate_magic_attach(advantage_mapper, **kwargs):
             client_ip=client_ip,
         )
         return flask.render_template(
-            "/pro/attach/confirmation.html", status=activation_status
+            "/pro/attach/partials/_confirmation.html", status=activation_status
         )
     except Exception as e:
         return flask.render_template(
-            "/pro/attach/confirmation.html",
+            "/pro/attach/partials/_confirmation.html",
             status=json.loads(e.response.content),
         )
 

@@ -1,0 +1,27 @@
+[checking]
+maxrequestspersecond=5
+
+[filtering]
+nofollow=!https:\/\/ubuntu.com\/kubernetes\/docs
+checkextern=1
+ignore=
+  https://res\.cloudinary\.com
+  http://snap-proxy\.example\.com
+  https://example\.com\/docker-registry
+  http://localhost*
+  /q_auto
+  c_fill
+  /fl_sanitize
+  e_sharpen
+  /w_
+  /h_
+
+[output]
+status=0
+warnings=0
+ignoreerrors=
+  ^https?://.* ^.*(500|502|503|504)
+  ^https?://.* Connection aborted
+  ^https?://.* Connection reset by peer
+  ^https?://.* RemoteDisconnected
+  ^https?://.* Read timed out

@@ -1,0 +1,23 @@
+[checking]
+maxrequestspersecond=5
+
+[filtering]
+nofollow=!https:\/\/docs.openstack.org\/project-deploy-guide\/charm-deployment-guide\/latest\/
+checkextern=1
+ignore=
+  http://localhost\*
+  https://www\.openstack\.org\/projects
+  https://openstack\.org\/projects\/openstack-faq
+  https://openstack\.org/\projects
+  https://groups\.openstack\.org
+  ^.*\.css
+
+[output]
+status=0
+warnings=0
+ignoreerrors=
+  ^https?://.* ^.*(500|502|503|504)
+  ^https?://.* Connection aborted
+  ^https?://.* Connection reset by peer
+  ^https?://.* RemoteDisconnected
+  ^https?://.* Read timed out

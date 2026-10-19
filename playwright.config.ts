@@ -11,7 +11,12 @@ dotenv.config({
  */
 export default defineConfig({
   testDir: path.join(__dirname, "tests/playwright/tests"),
-  testIgnore: process.env.INCLUDE_FORMS ? ['**\/pro/**'] : ['**\/pro/**', '**/forms/**'],
+  testIgnore: [
+    '**\/pro/**',
+    ...(process.env.INCLUDE_FORMS ? [] : ['**/forms/**']),
+    // Canary submits real leads
+    ...(process.env.INCLUDE_CANARY ? [] : ['**/canary/**']),
+  ],
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -25,7 +30,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   timeout: 60000,
   use: {
-    baseURL: "http://0.0.0.0:8001",
+    baseURL: process.env.PLAYWRIGHT_BASE_URL || "http://0.0.0.0:8001",
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     ignoreHTTPSErrors: true,

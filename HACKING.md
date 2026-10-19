@@ -148,7 +148,31 @@ After recording, verify the tests pass without the environment variable (using t
 task test-python
 ```
 
-**Note:** Cassettes are stored in `tests/cassettes/`. Review the changes before committing to ensure no sensitive data was recorded.
+**Note:** Cassettes are stored in `tests/cassettes/` (and `tests/playwright/cassettes/` for the Playwright cassette below). Review the changes before committing to ensure no sensitive data was recorded.
+
+#### Playwright cassette
+
+The Playwright job in CI has no Discourse credentials, so the server it tests serves every Discourse data-explorer request (the only Discourse endpoint that needs an admin API key) from `tests/playwright/cassettes/engage.yaml`. The workflow switches this on by adding
+
+```bash
+GUNICORN_CMD_ARGS=-c tests/playwright/cassette.py
+```
+
+to `.env.local`, which makes every gunicorn worker replay the cassette (`tests/playwright/cassette.py`). All other requests, including the public Discourse endpoints behind the docs pages, are unaffected. Playback matches on method, URL and request body, so any new filter combination the engage tests navigate to needs re-recording.
+
+To re-record you need real `DISCOURSE_API_KEY` and `DISCOURSE_API_USERNAME` values in `.env.local`. Stop any running server, then start the recorder, which serves the site single-process on port 8001:
+
+```bash
+dotrun exec python3 -m tests.playwright.cassette
+```
+
+In another terminal, drive the pages you want recorded:
+
+```bash
+yarn playwright test tests/playwright/tests/engage.spec.ts --workers=1
+```
+
+Stop the recorder with Ctrl+C; the cassette is written on exit. API keys, usernames and session cookies are stripped from the recording, but review the diff before committing. To verify playback, add the `GUNICORN_CMD_ARGS` line above to `.env.local`, start the project with `dotrun`, run the spec again, then remove the line.
 
 ### Working on Credentials
 
@@ -195,8 +219,55 @@ sudo apt update && sudo apt install python3-pip nodejs
 # (for macOS hopefully these can be installed with brew instead?)
 sudo pip3 install black flake8
 sudo npm install -g prettier eslint stylelint
+```
+
+djLint is missing from that list on purpose. Its version is pinned in
+`requirements.txt`, because djLint's formatting output changes between releases
+and two people on different versions will undo each other's work.
+
+Which copy your editor uses depends on how you run the project. The editor
+extensions below do not bundle djLint; they run whichever one they find,
+preferring a usable project virtualenv.
+
+- **With Taskfile**, `.venv` is on your machine and your editor uses the pinned
+  version. `install-python` is fingerprinted against `requirements.txt`, so
+  `task start` reinstalls whenever the pin changes. Check with
+  `.venv/bin/djlint --version`.
+- **With dotrun**, `.venv` is built inside the container and your editor cannot
+  run it, so your global djLint is what formats your templates.
+
+Keep any global djLint on **1.41.0 or later**. Older versions flatten the
+contents of multiline jinja macro calls and then report the file as correctly
+formatted, so the damage is silent:
+
+``` bash
 python -m pip install -U djlint
 ```
+
+A global install is still worth having, since some of our other repos do not pin
+djLint at all. It only needs to stay off the old versions.
+
+Note that `.djlintrc` is read from the project directory by whichever `djlint`
+runs, so config changes reach your editor even when the pin does not. Options
+that need a recent djLint, such as `ignore_blocks`, will be read by an old one
+and applied incorrectly.
+
+#### Macro formatting
+
+`.djlintrc` sets `ignore_blocks: macro` so djLint leaves the body of a
+`{% macro %}` at column 0, which is the style our macro files use. The trade-off
+is that reformatting a macro file also pulls its parameters back to column 0:
+
+``` jinja
+{% macro vf_highlighted_cta(     {% macro vf_highlighted_cta(
+  cta_text                  ->   cta_text
+) -%}                            ) -%}
+```
+
+Without the option djLint indents the closing `) -%}` and the whole macro body
+instead, which is worse. Both settings are stable, neither reproduces the hand
+formatting currently in the files, so expect a small diff either way when you
+reformat one.
 
 ### Configuring editors
 

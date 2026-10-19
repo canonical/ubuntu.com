@@ -1,0 +1,60 @@
+{% extends "templates/one-column.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
+{% block body_class %}is-paper{% endblock %}
+
+{% block title %}{% block topic_page_title %}{% endblock %}{% endblock %}
+
+{% block meta_description %}{% block topic_meta_description %}{% endblock %}{% endblock %}
+
+{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
+
+{% block content %}
+  {% call(slot) vf_hero(
+    title_text=self.hero_title_text()|trim,
+    subtitle_text=self.hero_subtitle_text()|trim,
+    layout='25/75',
+    display_blank_signpost_image_space=True,
+    blocks=[
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "text",
+          "content": self.hero_description_text()|trim
+        }
+      },
+      {
+        "type": "cta-block",
+        "item": {
+          "link": {
+            "content_html": self.hero_cta_text()|trim,
+            "attrs": {
+              "href": self.hero_cta_href()|trim
+            }
+          }
+        }
+      },
+    ]
+  ) -%}
+  {%- endcall -%}
+
+  <section class="p-strip is-shallow">
+    <div class="grid-row">
+      {% for article in articles%}
+        {% include "blog/blog-card.html" %}
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="p-section--deep">
+    {% with %}
+      {% set total_pages = total_pages %}
+      {% set current_page = current_page %}
+      {% include "shared/_pagination.html" %}
+    {% endwith %}
+  </section>
+{% endblock %}
+
+{% block hero_subtitle_text %}{% endblock %}

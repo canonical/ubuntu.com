@@ -2,6 +2,10 @@
 
 {% set hide_inner_wrapper = True %}
 
+{# Error pages render for whatever path the visitor hit, so path-based
+   exclusion can't hide the bar here; always suppress it instead. #}
+{% block announcement_bar %}{% endblock announcement_bar %}
+
 {% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 
 {% block title %}{{ error_code }}: {{ error_message }}{% endblock %}

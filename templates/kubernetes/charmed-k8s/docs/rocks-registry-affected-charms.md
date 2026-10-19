@@ -13,7 +13,7 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-Canonical is decommissioning the `rocks.canonical.com` container image registry. This affects Charmed Kubernetes releases 1.35 and earlier. Existing deployments must migrate to the new `ghcr.io/canonical/cdk` registry by updating the `image-registry` configuration for every deployed charm and component listed below.
+The `rocks.canonical.com` registry is now a temporary service and will be retired in early 2027. `ghcr.io/canonical/cdk` is the only supported registry going forward and is the default for new deployments of Charmed Kubernetes 1.36 and later. Existing clusters that still use `rocks.canonical.com` must be updated by setting `image-registry` on each of the charms below.
 
 - [ceph-csi-operator](https://github.com/charmed-kubernetes/ceph-csi-operator)
 - [charm-aws-cloud-provider](https://github.com/charmed-kubernetes/charm-aws-cloud-provider)
@@ -28,7 +28,6 @@ Canonical is decommissioning the `rocks.canonical.com` container image registry.
 - [charm-sriov-cni](https://github.com/charmed-kubernetes/charm-sriov-cni)
 - [charm-sriov-network-device-plugin](https://github.com/charmed-kubernetes/charm-sriov-network-device-plugin)
 - [cinder-csi-operator](https://github.com/canonical/cinder-csi-operator)
-- [k8s-operator](https://github.com/canonical/k8s-operator)
 - [keystone-k8s-auth-operator](https://github.com/canonical/keystone-k8s-auth-operator)
 - [kubernetes-metrics-server-operator](https://github.com/charmed-kubernetes/kubernetes-metrics-server-operator)
 - [layer-canal](https://github.com/charmed-kubernetes/layer-canal)

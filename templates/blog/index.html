@@ -1,59 +1,63 @@
-{% extends "templates/one-column.html" %}
+{% extends "templates/base.html" %}
+
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+
 {% block title %}Ubuntu Blog{% endblock %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block extra_metatags %}
-  <link rel="alternate" type="application/rss+xml"  href="/blog/feed" title="Ubuntu.com's Blog RSS feed">
+  <link rel="alternate"
+        type="application/rss+xml"
+        href="/blog/feed"
+        title="Ubuntu.com's Blog RSS feed" />
 {% endblock %}
 
-{% block content%}
-
-{% if current_page and current_page == 1 and featured_articles %}
-  {% include "blog/featured-articles.html" %}
-{% endif %}
-
-  <section class="p-strip is-shallow" id="posts-list">
-    {% with topic="" %}{% include "blog/filters.html" %}{% endwith %}
-    <div class="row u-equal-height u-clearfix">
-    {% for article in articles %}
-      {% if loop.index in [1,2] %}
-        {% with summary_visible=True %}{% include "blog/blog-card.html" %}{% endwith %}
-      {% elif loop.index == 3 %}
-        <div class="col-4 col-4 col-medium-2">
-          {% include 'blog/newsletter-form.html' %}
-        </div>
+{% block outer_content %}
+  <div class="p-strip--suru-shallow">
+    <div class="grid-row">
+      <div class="grid-col-6 grid-col-start-large-3">
+        <h1 class="p-heading--display">Ubuntu tech blog</h1>
+        <ul class="p-inline-list--middot">
+          <div class="p-heading--5" style="display: inline;">Stay informed:&MediumSpace;</div>
+          <li class="p-inline-list__item">
+            <a href="https://canonical.com/blog/latest-news">Press center</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="https://canonical.com/blog">Canonical blog</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="https://discourse.ubuntu.com/">Ubuntu Discourse</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="https://canonical.com/events"
+               aria-label="link to canonincal events">Events</a>
+          </li>
+        </ul>
       </div>
-      <div class="row u-equal-height u-clearfix">
-        {% include 'blog/blog-card.html' %}
-      {% elif (loop.index +1) % 3 == 0 and loop.index > 3 %}
-        {% include 'blog/blog-card.html' %}
-        </div>
-        <div class="row u-equal-height u-clearfix">
-      {% else %}
-        {% include 'blog/blog-card.html' %}
-      {% endif %}
-    {% endfor %}
+      <div class="p-suru u-hide--medium u-hide--small"></div>
+    </div>
+  </div>
+
+  {% if current_page and current_page == 1 and featured_articles %}
+    {% include "blog/featured-article.html" %}
+  {% endif %}
+
+  <section class="p-section--shallow">
+    <div class="grid-row">
+      {% for article in articles %}
+        {% if loop.index == 9 %}
+          <hr class="u-hide--large p-rule" />
+          <div>{% include 'blog/newsletter-form.html' %}</div>
+        {% endif %}
+        {% include "blog/blog-card.html" %}
+      {% endfor %}
     </div>
   </section>
 
-  {% if current_page and current_page == 1 and upcoming %}
-    <section class="p-strip--light">
-      <div class="u-fixed-width">
-        <h4>Events and webinars</h4>
-      </div>
-
-      <div class="row u-equal-height u-clearfix">
-        {% for article in upcoming %}
-          {% include 'blog/blog-card-upcoming.html' %}
-        {% endfor %}
-      </div>
-
-      <div class="u-fixed-width">
-        <p><a href="/blog">See more&nbsp;&rsaquo;</a></p>
-      </div>
-    </section>
-  {% endif %}
-
-  <section class="p-strip is-shallow">
+  <section class="p-section">
     {% with %}
       {% set total_pages = total_pages %}
       {% set current_page = current_page %}
@@ -61,4 +65,33 @@
     {% endwith %}
   </section>
 
-{% endblock content %}
+  {# djlint:off #}
+  {{ vf_basic_section(
+    title={"text": "Explore the vision<br class='u-hide--medium u-hide--small' /> behind the code"},
+    label_text="The source",
+    padding="deep",
+    items=[
+      {
+        "type": "description",
+        "item": {
+          "type": "text",
+          "content": "Curious about where the industry is heading? Visit our sister blog, The Source, where we share Canonical's perspective on the future of open source, insights into our product philosophies, and expert takes on the tech landscape."
+        }
+      },
+      {
+        "type": "cta-block",
+        "item": {
+          "primary": {
+            "content_html": "Go to The Source&nbsp;<i class='p-icon-themed--external-link'></i>",
+            "attrs": {
+              "href": "https://canonical.com/blog/",
+              "class": "p-button--themed"
+            }
+          }
+        }
+      }
+    ]
+  ) }}
+  {# djlint:on #}
+
+{% endblock %}

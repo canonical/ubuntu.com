@@ -40,7 +40,6 @@
       {% if downloads.intelnuc %}
         <a href="/appliance/{{ short_name }}/intel-nuc" class="p-button">Install on Intel NUC</a>
       {% endif %}
-      {% if downloads.pc %}<a href="/appliance/{{ short_name }}/vm" class="p-button">Install on VM</a>{% endif %}
     {%- endif -%}
     {%- if slot == 'signpost_image' -%}
       <img src="{{ logo }}" alt="" class="p-media-object__image is-round" />
@@ -198,9 +197,6 @@
             Grab a spare board
             {%- if downloads.pc -%}, PC{% endif %}
             or NUC.
-            {% if downloads.pc %}
-              We also have <a href="/appliance/{{ short_name }}/vm">instructions for virtual machine</a> testing of appliances.
-            {% endif %}
           </p>
         </div>
         <div class="grid-row">

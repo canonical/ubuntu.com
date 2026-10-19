@@ -1,0 +1,282 @@
+{% extends "vmware/base_vmware.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_basic-section.jinja" import vf_basic_section %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_macros/vf_data-spotlight.jinja" import vf_data_spotlight %}
+{% from "_macros/vf_divided-section.jinja" import vf_divided_section %}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
+
+{% block title %}Ubuntu Pro on VCF{% endblock %}
+
+{% block meta_description %}
+  Ubuntu Pro on VCF delivers security coverage, compliance tooling and fleet management at scale for platform teams.
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1F2GX4weHAEcb5YUBoH8eZj_OXTVcqX9qXvDIm58Plzs/edit
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+  {{ load_form("/vmware") | safe }}
+
+  {% call(slot) vf_hero(
+    title_text='Ubuntu Pro on
+    <br class="u-hide--medium u-hide--small" />
+    VMware Cloud Foundation',
+    subtitle_text='Security maintenance, compliance hardening, and fleet management for your VCF stack',
+    layout='50/50',
+    blocks=[
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "text",
+          "content": "
+          Benefit from enterprise-grade assurance, wherever you use Ubuntu, available natively on VMware Cloud Foundation (VCF).
+          "
+        }
+      },
+      {
+        "type": "cta-block",
+        "item": {
+          "primary": {
+            "content_html": "Contact us",
+            "attrs": {
+              "href": "/vmware#get-in-touch",
+              "class": "js-invoke-modal",
+              "aria-controls": "vmware-modal"
+            }
+          },
+          "link":
+          {
+            "content_html": "Discover Ubuntu Pro&nbsp;&rsaquo;",
+            "attrs": {
+              "href": "/pro"
+            }
+          }
+        }
+      },
+    ],
+  ) -%}
+  {% endcall -%}
+
+  {{ vf_basic_section(
+    title={
+      "text": 'What Ubuntu Pro adds
+      <br class="u-hide--medium u-hide--small" />
+      to your VCF environment'
+    },
+    items=[
+      {
+        "type": "description",
+        "item": {
+          "type": "html",
+          "content": "
+          <p>
+            Ubuntu Pro is Canonical’s comprehensive subscription for open source security and support. It gives platform teams and developers running Ubuntu on VCF the security maintenance, compliance tooling, and fleet management they need to operate Ubuntu at scale.
+            <br>
+            <br>
+            Available as an add-on from Canonical, teams benefit from up to 15 years of package maintenance, security patching, automated hardening, and centralized control via Landscape. Spend less time managing infrastructure and more time on the work that matters.
+          </p>
+          "
+        }
+      },
+      {
+        "type": "cta-block",
+        "item": {
+          "secondaries": [
+            {
+              "content_html": "Learn more",
+              "attrs": {
+                "href": "/pro",
+                "aria-label": "Learn more about Ubuntu Pro",
+              }
+            },
+          ],
+        }
+      },
+    ])
+  }}
+
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
+    {%- if slot == 'title' -%}
+      <h2>Security maintenance<br class="u-hide--medium u-hide--small" />across your VCF estate</h2>
+    {%- endif -%}
+
+    {%- if slot == 'description' -%}
+      <p>
+        Ubuntu Pro brings security maintenance, compliance tooling, and management capabilities at scale to platform teams running Ubuntu on VCF.
+      </p>
+      <div class="p-cta-block u-no-padding--bottom">
+        <a href="/vmware#get-in-touch"
+           class="p-button js-invoke-modal"
+           aria-controls="vmware-modal">Contact us</a>
+        <a href="/pro">Discover Ubuntu Pro&nbsp;&rsaquo;</a>
+      </div>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">Secure packages running across virtualized workloads</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+      <p>
+        Expanded Security Maintenance (ESM) lengthens support to up to 15 years, and broadens the scope of patching to include thousands of packages and tools from the open source universe, including Python, Rust, Go, Apache Kafka, PostgreSQL, and Redis. All available on Ubuntu’s repositories.
+      </p>
+      <div class="p-cta-block">
+        <a href="/security/esm">Learn about ESM&nbsp;&rsaquo;</a>
+      </div>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">Enable compliance tooling on vSphere</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+      <p>
+        Get CIS and DISA STIG profiles via Ubuntu Security Guide, with FIPS 140-3 certified modules for regulated environments.
+      </p>
+      <div class="p-cta-block">
+        <a href="https://documentation.ubuntu.com/security/compliance/usg/">Get started with Ubuntu Security Guide&nbsp;&rsaquo;</a>
+      </div>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_3' -%}
+      <h3 class="p-heading--5">Manage and patch Ubuntu across VCF nodes</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_3' -%}
+      <p>Use Canonical Landscape for centralized OS management, patching, and policy enforcement from a single console.</p>
+      <div class="p-cta-block">
+        <a href="/landscape">Discover Landscape&nbsp;&rsaquo;</a>
+      </div>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_4' -%}
+      <h3 class="p-heading--5">Keep workloads running without interruption</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_4' -%}
+      <p>
+        Canonical Livepatch applies high and critical kernel security patches to Ubuntu automatically, without reboots, minimizing downtime across your virtualized estate.
+      </p>
+      <div class="p-cta-block">
+        <a href="/security/livepatch">Learn about Livepatch&nbsp;&rsaquo;</a>
+      </div>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {{ vf_data_spotlight(title={
+    "text": "Ubuntu Pro in numbers",
+  },
+  blocks=[
+    {
+      "stat": "Up to 15 years",
+      "headline": "of patching and maintenance",
+      "description": "Ubuntu Pro increases the period of support for the OS from 5 years to up to 15 years.",
+    },
+    {
+      "stat": "Thousands",
+      "headline": "of open source packages covered",
+      "description": "Ubuntu Pro brings maintenance and updates for tens of thousands of packages from the wider open source ecosystem.",
+    },
+    {
+      "stat": "Zero downtime",
+      "headline": 'for critical <br class="u-hide--medium u-hide--small" />kernel CVEs',
+      "description": "Canonical Livepatch minimizes downtime by tackling critical and high kernel CVEs at runtime.",
+    }
+  ],) }}
+
+  {{ vf_divided_section(title={
+    "text": "Attaches seamlessly to your Ubuntu image in VCF",
+  },
+  blocks=[
+    {
+      "type": "description-block",
+      "items": [
+
+        {
+          "type": "description",
+          "item": {
+            "type": "html",
+            "content": "
+            <p>
+              Canonical and Broadcom partner directly to ensure Ubuntu Pro runs seamlessly on VMware Cloud Foundation.
+              <br>
+              <br>
+              Choose how to attach your token, based on your setup:
+              <br>
+              <br>
+              In the Ubuntu command line, you can run:
+            </p>
+            "
+          }
+        },
+        {
+          "type": "code-block",
+          "item": {
+            "is_code_snippet": true,
+            "content": 'sudo pro attach [YOUR_TOKEN]'
+          }
+        },
+        {
+          "type": "description",
+          "item": {
+            "type": "html",
+            "content": "
+            <p>
+              For bulk enrollment, you can attach your token via <a href=\"/server/docs/explanation/intro-to/cloud-init/\">cloud-init</a> in the VCF dashboard.
+              <br>
+              <br>
+              For more details on where to find your token, visit our <a href=\"https://documentation.ubuntu.com/pro/start-here/\">dedicated documentation</a>.
+            </p>
+            "
+          }
+        },
+      ]
+    },
+  ],)
+  }}
+
+  {% call(slot) vf_cta_section(
+    title_text='Get Ubuntu Pro today',
+    variant='block',
+    layout='100',
+    blocks=[
+      {
+        "type": "description",
+        "item": {
+          "type": "text",
+          "content": "30-day trial for enterprises. Always free for personal use."
+        }
+      },
+      {
+        "type": "cta",
+        "item": {
+          "primary": {
+            "content_html": "Talk to our team",
+            "attrs": {
+              "href": "/vmware#get-in-touch",
+              "class": "js-invoke-modal",
+              "aria-controls": "vmware-modal"
+            }
+          },
+          "link":
+          {
+            "content_html": "Learn about Ubuntu Pro&nbsp;&rsaquo;",
+            "attrs": {
+              "href": "/pro"
+            }
+          }
+        }
+      }
+    ]
+  ) -%}
+  {% endcall -%}
+
+{% endblock content %}
