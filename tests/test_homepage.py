@@ -164,9 +164,9 @@ class TestHomepageRender(VCRTestCase):
         self.assertIsNotNone(section.select_one(".grid-row--50-50"))
         self.assertIsNone(section.select_one(".grid-row--50-50-on-large"))
 
-        logos = self.get_soup().select(
-            ".p-logo-section__items img.p-logo-section__logo"
-        )
+        # The logo row follows the section; the carousel has its own
+        logo_row = section.find_next(class_="p-logo-section")
+        logos = logo_row.select("img.p-logo-section__logo")
         self.assertEqual(
             [logo["alt"] for logo in logos],
             [
@@ -258,7 +258,7 @@ class TestHomepageRender(VCRTestCase):
             list(heading.stripped_strings),
             [
                 "Discover more about Canonical",
-                "Trusted source for your whole stack",
+                "Trusted open source for your whole stack",
             ],
         )
         self.assertIsNotNone(heading.find("br"))
@@ -302,17 +302,10 @@ class TestHomepageRender(VCRTestCase):
                 "/core",
             ],
         )
-        inline_links = [
-            link
-            for link in section.select('a[href="/core"]')
-            if "p-cta-text" not in link.get("class", [])
-        ]
-        self.assertEqual(
-            [link.get_text(strip=True) for link in inline_links],
-            ["Ubuntu Core"],
-        )
+        self.assertEqual(len(section.select('a[href="/core"]')), 1)
+        self.assertEqual(len(section.select("hr.u-hide--medium")), 4)
 
-    def test_performance_rail_renders_filled_without_js(self):
+    def test_performance_rail_renders_empty_without_js(self):
         section = self.get_performance_section()
         rails = section.select(".p-performance__rail")
         self.assertEqual(len(rails), 4)
@@ -322,7 +315,7 @@ class TestHomepageRender(VCRTestCase):
         rings = section.select(".p-performance__ring")
         self.assertEqual(len(rings), 4)
         for ring in rings:
-            self.assertIn("is-active", ring["class"])
+            self.assertNotIn("is-active", ring["class"])
         self.assertEqual(len(section.select(".p-performance__fill")), 3)
 
     def test_performance_rings_use_asset_images(self):
@@ -347,16 +340,9 @@ class TestHomepageRender(VCRTestCase):
         section = self.get_performance_section()
         names = []
         sources = []
-        for icon in section.select(".js-icon-tooltip"):
-            self.assertEqual(icon.get("tabindex"), "0")
-            self.assertEqual(icon.get("role"), "img")
-            message = section.find(id=icon["aria-labelledby"])
-            self.assertEqual(message.get("role"), "tooltip")
-            names.append(message.get_text(strip=True))
-
-            image = icon.find("img")
-            self.assertEqual(image.get("alt"), "")
-            self.assertIsNone(image.get("title"))
+        for image in section.select(".p-performance__apps img"):
+            self.assertEqual(image.get("title"), image.get("alt"))
+            names.append(image["alt"])
             self.assertIn("res.cloudinary.com", image["src"])
             sources.append(unquote(image["src"]).rsplit("/", 1)[-1])
 
@@ -380,6 +366,30 @@ class TestHomepageRender(VCRTestCase):
                 "Visual Studio Code",
             ],
         )
+
+    def test_community_tiles(self):
+        """
+        Every tile renders its image through image(); video tiles hold a
+        lazy video in a template, offered as AV1, then HEVC, then H.264
+        """
+
+        response = self.client.get("/")
+        soup = BeautifulSoup(response.get_data(as_text=True), "lxml")
+
+        self.assertIn("p-homepage", soup.body["class"])
+        images = soup.select("img.p-community-tile__media")
+        self.assertEqual(len(images), 3)
+        for image in images:
+            self.assertIn("res.cloudinary.com", image["src"])
+        videos = soup.select("template.js-community-video video")
+        self.assertEqual(len(videos), 2)
+        for video in videos:
+            self.assertEqual(video["preload"], "none")
+            types = [source["type"] for source in video.find_all("source")]
+            self.assertEqual(len(types), 3)
+            self.assertTrue(types[0].startswith('video/webm; codecs="av01'))
+            self.assertTrue(types[1].startswith('video/mp4; codecs="hvc1'))
+            self.assertEqual(types[2], "video/mp4")
 
 
 if __name__ == "__main__":
