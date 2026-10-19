@@ -1269,7 +1269,13 @@ def marketo_submit():
 
     # Only attach UTM values when the user has consented to
     # non-essential cookies (functionality, performance, or all)
-    cookie_consent = flask.request.cookies.get("_cookies_accepted", "unset")
+    # Check consent values from cross-domain form submissions
+    cookie_consent = (
+        flask.request.cookies.get("_cookies_accepted")
+        or flask.request.form.get("_cookies_accepted")
+        or "unset"
+    )
+    form_fields.pop("_cookies_accepted", None)
     non_essential_consent = cookie_consent in {
         "functionality",
         "performance",
@@ -1288,18 +1294,27 @@ def marketo_submit():
     encoded_utms = flask.request.cookies.get("utms") or flask.request.form.get(
         "utms"
     )
+    approved_utms = [
+        "utm_source",
+        "utm_medium",
+        "utm_campaign",
+        "utm_content",
+        "utm_term",
+    ]
+    utm_dict = {}
     if encoded_utms:
         form_fields.pop("utms", None)
+        utms = unquote(encoded_utms)
+        utm_dict = dict(i.split(":", 1) for i in utms.split("&"))
+    else:
+        # No utms cookie (e.g. cross-domain post): use hidden utm_* inputs
+        for k in approved_utms:
+            form_key = "utmcontent" if k == "utm_content" else k
+            if form_fields.get(form_key):
+                utm_dict[k] = form_fields[form_key]
+
+    if utm_dict:
         if non_essential_consent:
-            utms = unquote(encoded_utms)
-            utm_dict = dict(i.split(":", 1) for i in utms.split("&"))
-            approved_utms = [
-                "utm_source",
-                "utm_medium",
-                "utm_campaign",
-                "utm_content",
-                "utm_term",
-            ]
             for k, v in utm_dict.items():
                 if k in approved_utms:
                     if k == "utm_content":
