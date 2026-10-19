@@ -77,11 +77,11 @@ class TestCertification(VCRTestCase):
 
     def test_filters_json(self):
         response = self.client.get("/certified/filters.json")
-        self.assertIsInstance(response.json, dict)
-        # If below test fails data structure changed
-        # so please change it also in the certified-search-results.js
-        self.assertIn("release_filters", response.json.keys())
-        self.assertIn("vendor_filters", response.json.keys())
+        # The JS polls this for derived filter readiness, so the payload
+        # is only the status flag
+        self.assertEqual(
+            set(response.json.keys()), {"derived_filters_pending"}
+        )
 
     def test_autocomplete_min_chars(self):
         response = self.client.get("/certified/autocomplete.json?q=ab")

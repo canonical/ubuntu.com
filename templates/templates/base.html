@@ -12,21 +12,6 @@
     <meta name="keywords" content="{{ self.meta_keywords() }}" />
     {%- endif %}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    {# Restore the scroll position certified-search-results.js saves before a
-       filter reload, as early as possible so the page never visibly renders
-       at the top first. Reserve the height up front so the restore isn't
-       clamped to whatever has been parsed so far. #}
-    <script nonce="{{ csp_nonce }}">
-      (function () {
-        var y = sessionStorage.getItem("certifiedFiltersScrollY");
-        if (y !== null) {
-          sessionStorage.removeItem("certifiedFiltersScrollY");
-          document.documentElement.style.minHeight = Number(y) + innerHeight + "px";
-          scrollTo(0, Number(y));
-        }
-      })();
-    </script>
     <title>{% filter trim %}{% block title %}{% endblock %}{% endfilter %} | Ubuntu</title>
     <link rel="preconnect" href="https://res.cloudinary.com" />
     <link rel="preconnect" href="https://assets.ubuntu.com" crossorigin />
