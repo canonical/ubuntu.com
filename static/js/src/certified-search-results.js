@@ -196,6 +196,8 @@ function filterKeys(filterRoot) {
 function initClearFilters(filterRoot) {
   const clearButton = document.querySelector(".js-clear-filters");
   clearButton?.addEventListener("click", () => {
+    // The year field's blur may have queued a navigation; drop it.
+    clearTimeout(filterNavigateTimer);
     window.location.assign(
       clearFilterValues(
         new URL(window.location.href),
@@ -206,7 +208,7 @@ function initClearFilters(filterRoot) {
 }
 
 async function derivedFiltersAreReady() {
-  const response = await fetch("/certified/filters.json?derived_status=1", {
+  const response = await fetch("/certified/filters.json", {
     cache: "no-store",
     headers: { Accept: "application/json" },
   });

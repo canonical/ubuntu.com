@@ -63,14 +63,13 @@
                 {% endif %}
                 <div class="js-filter-options">
                   {% for option in filter.options %}
-                    <label class="p-checkbox js-filter-option{% if option.disabled %} is-disabled{% endif %}{% if loop.index > filter_limit %} u-hide{% endif %}"
+                    <label class="p-checkbox js-filter-option{% if loop.index > filter_limit %} u-hide{% endif %}"
                            data-filter-label="{{ option.label|lower }}">
                       <input type="checkbox"
                              name="{{ filter.key }}"
                              class="p-checkbox__input"
                              value="{{ option.value }}"
-                             {% if option.selected %}checked{% endif %}
-                             {% if option.disabled %}disabled{% endif %} />
+                             {% if option.selected %}checked{% endif %} />
                       <span class="p-checkbox__label">{{ option.label }}</span>
                     </label>
                   {% endfor %}

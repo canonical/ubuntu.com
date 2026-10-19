@@ -294,20 +294,6 @@ def build_options_by_key(
     }
 
 
-def build_filter_catalog(options_by_key):
-    catalog = []
-    for definition in FILTER_DEFINITIONS:
-        options = options_by_key[definition.key]
-        catalog.append(
-            {
-                **asdict(definition),
-                "options": options,
-                "show_option_search": len(options) > FILTER_OPTION_LIMIT,
-            }
-        )
-    return catalog
-
-
 def build_canonical_query_params(request_args, selected):
     parameters = {}
     if "q" in request_args:
@@ -362,18 +348,14 @@ def option_is_available(option, selected_categories):
     return bool(set(selected_categories) & set(available_for))
 
 
-def order_filter_options(key, options, selected, selected_categories):
+def order_filter_options(key, options, selected):
     sorted_options = sort_filter_options(key, options)
     selected_values = set(selected)
 
-    def option_group(option):
-        if option["value"] in selected_values:
-            return 0
-        if option_is_available(option, selected_categories):
-            return 1
-        return 2
-
-    return sorted(sorted_options, key=option_group)
+    return sorted(
+        sorted_options,
+        key=lambda option: option["value"] not in selected_values,
+    )
 
 
 def build_filter_view_models(options_by_key, selected):
@@ -404,25 +386,16 @@ def build_filter_view_models(options_by_key, selected):
                 definition.key,
                 options_with_selected,
                 selected_values,
-                selected_categories,
             )
             if definition.control == "checkbox"
             else []
         )
-        option_models = []
-        for option in options:
-            option_models.append(
-                {
-                    **option,
-                    "selected": option["value"] in selected_values,
-                    "disabled": (
-                        option["value"] not in selected_values
-                        and not option_is_available(
-                            option, selected_categories
-                        )
-                    ),
-                }
-            )
+        option_models = [
+            {**option, "selected": option["value"] in selected_values}
+            for option in options
+            if option["value"] in selected_values
+            or option_is_available(option, selected_categories)
+        ]
 
         is_active = _filter_is_active(definition.control, value)
         if (

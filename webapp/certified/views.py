@@ -21,7 +21,6 @@ from webapp.certified.filter_cache import (
 from webapp.certified.filters import (
     build_api_filter_params,
     build_canonical_query_params,
-    build_filter_catalog,
     build_filter_view_models,
     build_options_by_key,
     canonicalize_selected_filters,
@@ -251,23 +250,8 @@ def _derived_filter_options_pending(options_by_key):
 
 
 def get_certified_filters():
-    if request.args.get("derived_status") == "1":
-        return jsonify(
-            {
-                "derived_filters_pending": (
-                    not filter_option_cache.has_options()
-                )
-            }
-        )
-
-    options_by_key = _get_certified_filter_options()
     return jsonify(
-        {
-            "filters": build_filter_catalog(options_by_key),
-            "derived_filters_pending": _derived_filter_options_pending(
-                options_by_key
-            ),
-        }
+        {"derived_filters_pending": not filter_option_cache.has_options()}
     )
 
 
