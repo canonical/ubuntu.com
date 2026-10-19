@@ -78,6 +78,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_heading-icon";
 @import "pattern_homepage";
 @import "pattern_homepage-latest";
+@import "pattern_homepage-community";
 @import "pattern_homepage-carousel";
 @import "pattern_icons";
 @import "pattern_inline-list-midline";
@@ -138,6 +139,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 .p-homepage {
   @include ubuntu-p-homepage;
   @include ubuntu-p-homepage-latest;
+  @include ubuntu-p-homepage-community;
   @include ubuntu-p-homepage-carousel;
 }
 @include ubuntu-p-inline-list-midline;
