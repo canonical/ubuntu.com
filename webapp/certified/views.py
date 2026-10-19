@@ -1,6 +1,7 @@
 import requests
 import math
 import sentry_sdk
+from functools import partial
 
 from flask import (
     request,
@@ -869,20 +870,48 @@ def certified_autocomplete():
     return jsonify({"suggestions": suggestions})
 
 
+# Keeps the canonical_id__in query string well below proxy URI limits
+ENRICHMENT_BATCH_SIZE = 50
+
+
+def _fetch_in_batches(fetch, canonical_ids):
+    """
+    Call fetch(canonical_id__in=<batch>) per batch of unique IDs and
+    return the concatenated "results" lists.
+    """
+    unique_ids = list(dict.fromkeys(canonical_ids))
+    items = []
+    for start in range(0, len(unique_ids), ENRICHMENT_BATCH_SIZE):
+        end = start + ENRICHMENT_BATCH_SIZE
+        batch = unique_ids[start:end]
+        items.extend(fetch(canonical_id__in=batch)["results"])
+    return items
+
+
 def _group_configurations_by_platform(results, details_by_id, storage_by_id):
     """
     Group flat certified-configurations results into one row per platform,
-    enriched with certified-configuration-details data. Configurations
-    whose detail lookup is missing (bulk fetch failure, or an item the API
-    didn't return) fall back to their own standalone, unenriched group
-    instead of being dropped.
+    enriched with certified-configuration-details data. details_by_id maps
+    canonical_id to a list of detail records (one per certified release).
+    Configurations whose detail lookup is missing (bulk fetch failure, or an
+    item the API didn't return) fall back to their own standalone,
+    unenriched group instead of being dropped.
     """
     groups = {}
     order = []
 
     for result in results:
         canonical_id = result["canonical_id"]
-        detail = details_by_id.get(canonical_id)
+        candidates = details_by_id.get(canonical_id, [])
+        # Prefer the record for the release this result was selected for
+        detail = next(
+            (
+                candidate
+                for candidate in candidates
+                if candidate.get("certified_release") == result.get("release")
+            ),
+            candidates[0] if candidates else None,
+        )
 
         if detail and detail.get("platform_id"):
             group_key = detail["platform_id"]
@@ -1031,26 +1060,32 @@ def certified_search():
     canonical_ids = [result["canonical_id"] for result in results]
     if canonical_ids:
         try:
-            details_response = api.certified_configuration_details(
-                canonical_id__in=canonical_ids, limit="0"
-            )
-            details_by_id = {
-                detail["canonical_id"]: detail
-                for detail in details_response["results"]
-            }
+            for detail in _fetch_in_batches(
+                partial(api.certified_configuration_details, limit="0"),
+                canonical_ids,
+            ):
+                details_by_id.setdefault(detail["canonical_id"], []).append(
+                    detail
+                )
         except requests.exceptions.RequestException:
+            details_by_id = {}
             # Degrade to unenriched, ungrouped rows rather than 500
             sentry_sdk.capture_exception()
 
         try:
-            devices_response = api.certified_configuration_devices(
-                canonical_id__in=canonical_ids, category="DISK", limit="0"
-            )
-            for device in devices_response["results"]:
+            for device in _fetch_in_batches(
+                partial(
+                    api.certified_configuration_devices,
+                    category="DISK",
+                    limit="0",
+                ),
+                canonical_ids,
+            ):
                 storage_by_id.setdefault(device["canonical_id"], []).append(
                     device
                 )
         except requests.exceptions.RequestException:
+            storage_by_id = {}
             # Storage is best-effort - a failure here shouldn't blank out
             # the rest of the enrichment
             sentry_sdk.capture_exception()
