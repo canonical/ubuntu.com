@@ -6,6 +6,10 @@
   }
 
   .p-certification-results {
+    .p-accordion__group + .p-accordion__group::after {
+      background-color: $colors--theme--border-low-contrast;
+    }
+
     &__heading {
       position: relative;
 
@@ -15,21 +19,6 @@
     }
 
     &__details-link {
-      // higher specificity than Vanilla's base `a:visited` rule, which
-      // would otherwise win over a plain class color override
-      &,
-      &:link,
-      &:visited,
-      &:hover,
-      &:active {
-        color: $colors--light-theme--text-default;
-      }
-
-      i.p-icon--arrow-top-right {
-        @extend %icon;
-        @include vf-icon-arrow-top-right($colors--light-theme--text-default);
-      }
-
       font-size: 0.875rem;
       position: absolute;
       right: 1rem;
@@ -54,6 +43,24 @@
 
       li {
         padding: 0.5rem 0;
+      }
+    }
+
+    &__page-size {
+      text-align: right;
+
+      @media only screen and (max-width: $breakpoint-small - 1px) {
+        text-align: left;
+      }
+    }
+
+    &__footer {
+      // pagination sits inside a column, so drop its extra padding to left-align with the page size
+      @media only screen and (max-width: $breakpoint-large - 1px) {
+        .u-fixed-width {
+          padding-left: 0;
+          padding-right: 0;
+        }
       }
     }
   }
@@ -121,6 +128,10 @@
     }
   }
 
+  .p-results-per-page-label {
+    padding-right: $sp-small;
+  }
+
   .p-results-per-page {
     max-width: 5.3rem;
     min-width: 5.3rem;
@@ -131,7 +142,7 @@
 
     &__list {
       background: #fff;
-      border: 1px solid $colors--light-theme--border-default;
+      border: 1px solid $colors--theme--border-low-contrast;
       border-top: none;
       left: 0;
       list-style: none;
