@@ -1349,7 +1349,6 @@ class TestTakeoversJson(TestCase):
         app.testing = True
         client = app.test_client()
 
-        # Complete takeovers, so only the active value decides
         fields = {"subtitle": "Text", "primary_url": "/", "primary_cta": "Go"}
         mixed = [
             {**fields, "title": "Active one", "active": "true"},

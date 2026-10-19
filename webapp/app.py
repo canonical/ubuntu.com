@@ -812,7 +812,6 @@ app.add_url_rule(
 )
 
 
-# The fields the homepage Latest block can't render without
 TAKEOVER_REQUIRED_FIELDS = ["title", "subtitle", "primary_url", "primary_cta"]
 
 

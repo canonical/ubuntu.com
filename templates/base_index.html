@@ -222,7 +222,7 @@
 
         if (secondaryUrl && selectedTakeover.secondary_url && selectedTakeover.secondary_cta) {
           secondaryUrl.href = selectedTakeover.secondary_url;
-          // Set the text only, keeping the arrow icon after it
+          // Keep the arrow icon
           secondaryUrl.querySelector("span").textContent = selectedTakeover.secondary_cta;
         } else {
           secondaryUrl?.remove();

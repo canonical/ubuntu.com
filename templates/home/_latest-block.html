@@ -1,10 +1,4 @@
-{#
-  The "Latest" takeover block, shared by the homepage and the /takeovers
-  preview so the preview matches what the homepage shows.
-  Every id starts with `id`; the homepage script fills them in by id.
-  Uses image(), so import with context:
-  {% from "home/_latest-block.html" import latest_block with context %}
-#}
+{# Takeover block for the homepage and /takeovers; import with context for image() #}
 {% macro latest_block(id,
   title,
   subtitle,

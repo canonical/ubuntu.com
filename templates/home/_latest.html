@@ -1,11 +1,6 @@
-{#
-  Latest announcement: the active Discourse takeover, filled in by the inline
-  script in base_index.html from /takeovers.json. Keep every id the script
-  reads. The title stays an h1 until the hero provides the page's h1.
-#}
+{# Default LTS takeover; the script in base_index.html swaps in a Discourse one by id #}
 {% from "home/_latest-block.html" import latest_block with context %}
 
-{# Default takeover: the latest Ubuntu LTS #}
 {{ latest_block(id="takeover",
   title="Ubuntu " ~ releases_yaml.lts.short_version ~ " LTS " ~ releases_yaml.lts.name ~ " is available for download",
   subtitle="Discover the latest and greatest features in our most recent long term supported release.",
