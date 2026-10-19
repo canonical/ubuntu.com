@@ -1,10 +1,4 @@
-{#
-  The "Latest" takeover block, shared by the homepage and the /takeovers
-  preview so the preview matches what the homepage shows.
-  Every id starts with `id`; the homepage script fills them in by id.
-  Uses image(), so import with context:
-  {% from "home/_latest-block.html" import latest_block with context %}
-#}
+{# Takeover block for the homepage and /takeovers; import with context for image() #}
 {% macro latest_block(id,
   title,
   subtitle,
@@ -29,7 +23,7 @@
         <p id="{{ id }}-subtitle">{{ subtitle }}</p>
         <div class="p-cta-block u-no-padding--bottom" id="{{ id }}-ctas">
           <a id="{{ id }}-primary-url" href="{{ primary_url }}" class="p-button">{{ primary_cta }}</a>
-          {% if secondary_url %}
+          {% if secondary_url and secondary_cta %}
             <a id="{{ id }}-secondary-url" class="p-cta-text" href="{{ secondary_url }}"><span>{{ secondary_cta }}</span><i class="p-icon--arrow-right"></i></a>
           {% endif %}
         </div>

@@ -64,41 +64,6 @@
             src="{{ versioned_static('js/dist/homepage.js') }}"
             defer></script>
     <script nonce="{{ csp_nonce }}" type="module">
-      const testTakeover = document.getElementById('test-takeover');
-      const mainTakeover = document.getElementById('takeover');
-
-      const getCookie = () => document.cookie.match(new RegExp('(^| )' + "control_or_variant" + '=([^;]+)'));
-      // Switch for turning takeover switching on and off on demand
-      const takeoverSwitch = false;
-      if (!takeoverSwitch) document.cookie = 'control_or_variant=;';
-      else {
-        // check if user doesn't already have a group
-        if (!getCookie()) {
-          // randomly assign to 'control' or 'variant' group
-          const group = Math.random() > 0.5 ?
-            "control" :
-            "variant";
-
-          // store group as cookie for 365 days
-          document.cookie = 'control_or_variant=' + group + ';max-age=31536000;';
-
-          // send group info in GA event
-          dataLayer.push({
-            event: "test",
-            test_type: "element visibility",
-            control_or_variant: group,
-          });
-        }
-      }
-
-      if (getCookie()?.[2] === 'variant') {
-        testTakeover.hidden = false;
-        mainTakeover.hidden = true;
-      } else {
-        testTakeover.hidden = true;
-        mainTakeover.hidden = false;
-      }
-
       // get the users language and remove any extra detail suffix (e.g. -gb)
       var primaryParentLanguage = getPrimaryParentLanguage();
 
@@ -111,12 +76,7 @@
       }
 
       var baseTakeover = document.getElementById('takeover');
-      let takeoverAnimation;
-      if (getCookie()?.[2] === 'variant') {
-        takeoverAnimation = document.getElementById("test-takeover-animation");
-      } else {
-        takeoverAnimation = document.getElementById("takeover-animation");
-      }
+      const takeoverAnimation = document.getElementById("takeover-animation");
 
       if (window.localStorage && baseTakeover) {
         /**
@@ -205,22 +165,12 @@
         // Default parameter
         index = typeof index !== 'undefined' ? index : 0;
 
-        // Get HTML elements for the correct takeover
-        let takeover, title, subtitle, image, primaryUrl, secondaryUrl;
-        if (getCookie()?.[2] === 'variant') {
-          takeover = document.getElementById("test-takeover");
-          title = document.getElementById("test-takeover-title");
-          subtitle = document.getElementById("test-takeover-subtitle");
-          image = document.getElementById("test-takeover-image");
-          primaryUrl = document.getElementById("test-takeover-primary-url");
-        } else {
-          takeover = document.getElementById("takeover");
-          title = document.getElementById("takeover-title");
-          subtitle = document.getElementById("takeover-subtitle");
-          image = document.getElementById("takeover-image");
-          primaryUrl = document.getElementById("takeover-primary-url");
-          secondaryUrl = document.getElementById("takeover-secondary-url");
-        }
+        const takeover = document.getElementById("takeover");
+        const title = document.getElementById("takeover-title");
+        const subtitle = document.getElementById("takeover-subtitle");
+        const image = document.getElementById("takeover-image");
+        const primaryUrl = document.getElementById("takeover-primary-url");
+        const secondaryUrl = document.getElementById("takeover-secondary-url");
 
         // Set values to homepage takeover
         var selectedTakeover = takeovers[index];
@@ -271,9 +221,9 @@
           primaryUrl.remove();
         }
 
-        if (secondaryUrl && selectedTakeover.secondary_url && selectedTakeover.secondary_url !== "") {
+        if (secondaryUrl && selectedTakeover.secondary_url && selectedTakeover.secondary_cta) {
           secondaryUrl.href = selectedTakeover.secondary_url;
-          // Set the text only, keeping the arrow icon after it
+          // Keep the arrow icon
           secondaryUrl.querySelector("span").textContent = selectedTakeover.secondary_cta;
         } else {
           secondaryUrl?.remove();

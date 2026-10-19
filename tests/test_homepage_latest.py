@@ -4,12 +4,14 @@ import unittest
 from unittest.mock import patch
 
 # Packages
+import flask
 from bs4 import BeautifulSoup
 from vcr_unittest import VCRTestCase
 
 # Local
 from webapp import app as app_module
 from webapp.app import app
+from webapp.context import releases
 
 
 TAKEOVER_SCRIPT_IDS = [
@@ -20,12 +22,6 @@ TAKEOVER_SCRIPT_IDS = [
     "takeover-image",
     "takeover-primary-url",
     "takeover-secondary-url",
-    "test-takeover",
-    "test-takeover-animation",
-    "test-takeover-title",
-    "test-takeover-subtitle",
-    "test-takeover-image",
-    "test-takeover-primary-url",
 ]
 
 
@@ -69,12 +65,17 @@ class TestHomepageLatest(VCRTestCase):
         self.assertIsNotNone(secondary.select_one("i.p-icon--arrow-right"))
         self.assertTrue(secondary.span.get_text(strip=True))
 
+    def test_takeover_image_is_the_lts_mascot(self):
+        mascot = releases()["lts"]["mascot_image_large_white"]
+        image = self.soup.find(id="takeover-image")
+        self.assertIn(mascot["url"].rsplit("/", 1)[-1], image["src"])
+
     def test_takeover_script_hooks_exist_once(self):
         for element_id in TAKEOVER_SCRIPT_IDS:
             self.assertEqual(
                 len(self.soup.find_all(id=element_id)), 1, element_id
             )
-        self.assertTrue(self.soup.find(id="test-takeover").has_attr("hidden"))
+        self.assertIsNone(self.soup.find(id="test-takeover"))
 
     def test_latest_block_comes_before_the_sections(self):
         self.assertLess(
@@ -129,32 +130,37 @@ class TestSharedLatestNewsStrip(unittest.TestCase):
 class TestTakeoverPreview(unittest.TestCase):
     """/takeovers previews each takeover as the homepage Latest block"""
 
-    def test_takeovers_render_as_latest_blocks(self):
-        takeover = {
-            "title": "Preview title",
-            "subtitle": "Preview text",
-            "class": "dark",
-            "image": "https://assets.ubuntu.com/v1/8e73cb11-tag.svg",
-            "image_width": "191",
-            "image_height": "300",
-            "primary_url": "/primary",
-            "primary_cta": "Primary",
-            "secondary_url": "/secondary",
-            "secondary_cta": "Secondary",
-            "lang": "",
-            "lang_skip": "",
-            "active": "true",
-        }
+    takeover = {
+        "title": "Preview title",
+        "subtitle": "Preview text",
+        "class": "dark",
+        "image": "https://assets.ubuntu.com/v1/8e73cb11-tag.svg",
+        "image_width": "191",
+        "image_height": "300",
+        "primary_url": "/primary",
+        "primary_cta": "Primary",
+        "secondary_url": "/secondary",
+        "secondary_cta": "Secondary",
+        "lang": "",
+        "lang_skip": "",
+        "active": "true",
+    }
+
+    def setUp(self):
+        app.testing = True
+        self.client = app.test_client()
+
+    def get_preview(self, takeovers):
         with patch.object(
             app_module.discourse_takeovers,
             "get_index",
-            return_value=([takeover], 1, 1, 1),
+            return_value=(takeovers, len(takeovers), 1, 1),
         ):
-            app.testing = True
-            html = app.test_client().get("/takeovers").get_data(as_text=True)
+            html = self.client.get("/takeovers").get_data(as_text=True)
+        return BeautifulSoup(html, "lxml").select(".p-latest-block")
 
-        block = BeautifulSoup(html, "lxml").select_one(".p-latest-block")
-        self.assertIsNotNone(block)
+    def test_takeovers_render_as_latest_blocks(self):
+        [block] = self.get_preview([self.takeover])
         self.assertEqual(
             block.select_one(".p-chip").get_text(strip=True), "Latest"
         )
@@ -162,6 +168,51 @@ class TestTakeoverPreview(unittest.TestCase):
         secondary = block.select_one("a.p-cta-text")
         self.assertEqual(secondary["href"], "/secondary")
         self.assertIsNotNone(secondary.select_one(".p-icon--arrow-right"))
+
+    def test_incomplete_takeovers_are_left_out(self):
+        incomplete = {**self.takeover, "title": " "}
+        self.assertEqual(len(self.get_preview([incomplete])), 0)
+
+        with patch.object(
+            app_module.discourse_takeovers,
+            "parse_active_takeovers",
+            return_value=[self.takeover, incomplete],
+        ):
+            takeovers = self.client.get("/takeovers.json").get_json()
+        self.assertEqual(takeovers, [self.takeover])
+
+
+class TestLatestBlockMacro(unittest.TestCase):
+    """The Latest block renders from partial takeover data"""
+
+    def render(self, **fields):
+        template = (
+            '{% from "home/_latest-block.html" import latest_block'
+            " with context %}{{ latest_block(**fields) }}"
+        )
+        required = {
+            "id": "block",
+            "title": "Title",
+            "subtitle": "Subtitle",
+            "primary_url": "/primary",
+            "primary_cta": "Primary",
+        }
+        with app.test_request_context():
+            html = flask.render_template_string(
+                template, fields={**required, **fields}
+            )
+        return BeautifulSoup(html, "lxml")
+
+    def test_required_fields_only(self):
+        block = self.render().select_one(".p-latest-block")
+        self.assertEqual(block.h2.get_text(), "Title")
+        self.assertEqual(block.select_one("a.p-button")["href"], "/primary")
+        self.assertIsNone(block.select_one("a.p-cta-text"))
+        self.assertIsNone(block.img)
+
+    def test_secondary_url_without_cta_is_left_out(self):
+        soup = self.render(secondary_url="/secondary")
+        self.assertIsNone(soup.select_one("a.p-cta-text"))
 
 
 if __name__ == "__main__":
