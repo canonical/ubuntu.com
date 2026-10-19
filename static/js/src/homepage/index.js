@@ -1,9 +1,11 @@
 import { initHomepage } from "./init";
 import { startPerformanceRail } from "./performance-rail";
+import { startOpenSourceCarousel } from "./open-source-carousel";
 
 // Each section adds { selector: ".js-…", start(root) } here.
 const modules = [
   { selector: ".js-performance-rail", start: startPerformanceRail },
+  { selector: ".js-open-source-carousel", start: startOpenSourceCarousel },
 ];
 
 initHomepage(modules);
