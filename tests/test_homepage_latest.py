@@ -10,6 +10,7 @@ from vcr_unittest import VCRTestCase
 # Local
 from webapp import app as app_module
 from webapp.app import app
+from webapp.context import releases
 
 
 TAKEOVER_SCRIPT_IDS = [
@@ -62,6 +63,11 @@ class TestHomepageLatest(VCRTestCase):
         self.assertIn("p-cta-text", secondary["class"])
         self.assertIsNotNone(secondary.select_one("i.p-icon--arrow-right"))
         self.assertTrue(secondary.span.get_text(strip=True))
+
+    def test_takeover_image_is_the_lts_mascot(self):
+        mascot = releases()["lts"]["mascot_image_large_white"]
+        image = self.soup.find(id="takeover-image")
+        self.assertIn(mascot["url"].rsplit("/", 1)[-1], image["src"])
 
     def test_takeover_script_hooks_exist_once(self):
         for element_id in TAKEOVER_SCRIPT_IDS:
