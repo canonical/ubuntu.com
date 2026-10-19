@@ -4,6 +4,7 @@ import unittest
 from unittest.mock import patch
 
 # Packages
+import flask
 from bs4 import BeautifulSoup
 from vcr_unittest import VCRTestCase
 
@@ -162,6 +163,39 @@ class TestTakeoverPreview(unittest.TestCase):
         secondary = block.select_one("a.p-cta-text")
         self.assertEqual(secondary["href"], "/secondary")
         self.assertIsNotNone(secondary.select_one(".p-icon--arrow-right"))
+
+
+class TestLatestBlockMacro(unittest.TestCase):
+    """The Latest block renders from partial takeover data"""
+
+    def render(self, **fields):
+        template = (
+            '{% from "home/_latest-block.html" import latest_block'
+            " with context %}{{ latest_block(**fields) }}"
+        )
+        required = {
+            "id": "block",
+            "title": "Title",
+            "subtitle": "Subtitle",
+            "primary_url": "/primary",
+            "primary_cta": "Primary",
+        }
+        with app.test_request_context():
+            html = flask.render_template_string(
+                template, fields={**required, **fields}
+            )
+        return BeautifulSoup(html, "lxml")
+
+    def test_required_fields_only(self):
+        block = self.render().select_one(".p-latest-block")
+        self.assertEqual(block.h2.get_text(), "Title")
+        self.assertEqual(block.select_one("a.p-button")["href"], "/primary")
+        self.assertIsNone(block.select_one("a.p-cta-text"))
+        self.assertIsNone(block.img)
+
+    def test_secondary_url_without_cta_is_left_out(self):
+        soup = self.render(secondary_url="/secondary")
+        self.assertIsNone(soup.select_one("a.p-cta-text"))
 
 
 if __name__ == "__main__":

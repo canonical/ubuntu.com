@@ -29,7 +29,7 @@
         <p id="{{ id }}-subtitle">{{ subtitle }}</p>
         <div class="p-cta-block u-no-padding--bottom" id="{{ id }}-ctas">
           <a id="{{ id }}-primary-url" href="{{ primary_url }}" class="p-button">{{ primary_cta }}</a>
-          {% if secondary_url %}
+          {% if secondary_url and secondary_cta %}
             <a id="{{ id }}-secondary-url" class="p-cta-text" href="{{ secondary_url }}"><span>{{ secondary_cta }}</span><i class="p-icon--arrow-right"></i></a>
           {% endif %}
         </div>
