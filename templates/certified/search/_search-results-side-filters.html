@@ -3,7 +3,7 @@
 <a href="#drawer"
    class="p-side-navigation__toggle js-drawer-toggle"
    aria-controls="drawer">Toggle filters</a>
-<div class="p-side-navigation__overlay" aria-controls="drawer"></div>
+<div class="p-side-navigation__overlay js-drawer-toggle" aria-controls="drawer"></div>
 <nav class="p-side-navigation__drawer" aria-label="Filter list">
   <div class="p-side-navigation__drawer-header">
     <a href="#"
@@ -132,6 +132,7 @@
                          inputmode="numeric"
                          pattern="[0-9]{4}"
                          maxlength="4"
+                         placeholder="YYYY"
                          aria-invalid="{{ 'true' if filter.year_is_invalid else 'false' }}"
                          aria-describedby="filter-certified-year-error" />
                   <p class="certified-year-validation__message js-certified-year-error{% if not filter.year_is_invalid %} u-hide{% endif %}"

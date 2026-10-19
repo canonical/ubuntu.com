@@ -61,6 +61,11 @@
       color: $colors--theme--text-muted;
     }
 
+    .p-side-navigation__drawer-header {
+      // keep the sticky header above the accordion tabs (z-index: 1)
+      z-index: 3;
+    }
+
     .p-accordion__group {
       &::after {
         display: none;
@@ -87,10 +92,6 @@
       @media screen and (min-width: $breakpoint-large) {
         margin-left: 0;
       }
-    }
-
-    .p-checkbox__label {
-      padding-left: 2.2rem;
     }
 
     .certified-memory-range {
@@ -161,6 +162,22 @@
       }
     }
 
+    @media screen and (max-width: $breakpoint-large - 1px) {
+      .p-side-navigation__drawer {
+        // stop scroll chaining to the page behind the drawer
+        overscroll-behavior: contain;
+      }
+
+      .p-accordion__panel {
+        padding-right: $sph--large;
+      }
+
+      // the tab uses u-no-padding--right, so pad the heading to keep the badge off the edge
+      .certified-filter-heading {
+        padding-right: $sph--large;
+      }
+    }
+
     @media screen and (min-width: $breakpoint-large) {
       .p-accordion__panel,
       .p-accordion__tab,
@@ -171,6 +188,13 @@
       .certified-filter-buttons {
         margin-left: 0;
       }
+    }
+  }
+
+  // lock page scroll while the filter drawer is open
+  @media screen and (max-width: $breakpoint-large - 1px) {
+    :root:has(.certified-filters.is-expanded) {
+      overflow: hidden;
     }
   }
 
