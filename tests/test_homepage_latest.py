@@ -130,32 +130,37 @@ class TestSharedLatestNewsStrip(unittest.TestCase):
 class TestTakeoverPreview(unittest.TestCase):
     """/takeovers previews each takeover as the homepage Latest block"""
 
-    def test_takeovers_render_as_latest_blocks(self):
-        takeover = {
-            "title": "Preview title",
-            "subtitle": "Preview text",
-            "class": "dark",
-            "image": "https://assets.ubuntu.com/v1/8e73cb11-tag.svg",
-            "image_width": "191",
-            "image_height": "300",
-            "primary_url": "/primary",
-            "primary_cta": "Primary",
-            "secondary_url": "/secondary",
-            "secondary_cta": "Secondary",
-            "lang": "",
-            "lang_skip": "",
-            "active": "true",
-        }
+    takeover = {
+        "title": "Preview title",
+        "subtitle": "Preview text",
+        "class": "dark",
+        "image": "https://assets.ubuntu.com/v1/8e73cb11-tag.svg",
+        "image_width": "191",
+        "image_height": "300",
+        "primary_url": "/primary",
+        "primary_cta": "Primary",
+        "secondary_url": "/secondary",
+        "secondary_cta": "Secondary",
+        "lang": "",
+        "lang_skip": "",
+        "active": "true",
+    }
+
+    def setUp(self):
+        app.testing = True
+        self.client = app.test_client()
+
+    def get_preview(self, takeovers):
         with patch.object(
             app_module.discourse_takeovers,
             "get_index",
-            return_value=([takeover], 1, 1, 1),
+            return_value=(takeovers, len(takeovers), 1, 1),
         ):
-            app.testing = True
-            html = app.test_client().get("/takeovers").get_data(as_text=True)
+            html = self.client.get("/takeovers").get_data(as_text=True)
+        return BeautifulSoup(html, "lxml").select(".p-latest-block")
 
-        block = BeautifulSoup(html, "lxml").select_one(".p-latest-block")
-        self.assertIsNotNone(block)
+    def test_takeovers_render_as_latest_blocks(self):
+        [block] = self.get_preview([self.takeover])
         self.assertEqual(
             block.select_one(".p-chip").get_text(strip=True), "Latest"
         )
@@ -163,6 +168,18 @@ class TestTakeoverPreview(unittest.TestCase):
         secondary = block.select_one("a.p-cta-text")
         self.assertEqual(secondary["href"], "/secondary")
         self.assertIsNotNone(secondary.select_one(".p-icon--arrow-right"))
+
+    def test_incomplete_takeovers_are_left_out(self):
+        incomplete = {**self.takeover, "title": " "}
+        self.assertEqual(len(self.get_preview([incomplete])), 0)
+
+        with patch.object(
+            app_module.discourse_takeovers,
+            "parse_active_takeovers",
+            return_value=[self.takeover, incomplete],
+        ):
+            takeovers = self.client.get("/takeovers.json").get_json()
+        self.assertEqual(takeovers, [self.takeover])
 
 
 class TestLatestBlockMacro(unittest.TestCase):

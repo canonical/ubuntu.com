@@ -812,6 +812,17 @@ app.add_url_rule(
 )
 
 
+# The fields the homepage Latest block can't render without
+TAKEOVER_REQUIRED_FIELDS = ["title", "subtitle", "primary_url", "primary_cta"]
+
+
+def is_complete_takeover(takeover):
+    return all(
+        str(takeover.get(field) or "").strip()
+        for field in TAKEOVER_REQUIRED_FIELDS
+    )
+
+
 def takeovers_json():
     active_takeovers = discourse_takeovers.parse_active_takeovers()
     # Defence-in-depth: the upstream data-explorer query matches the
@@ -822,6 +833,7 @@ def takeovers_json():
         takeover
         for takeover in active_takeovers
         if str(takeover.get("active", "")).strip().lower() == "true"
+        and is_complete_takeover(takeover)
     ]
     response = flask.jsonify(active_takeovers)
     response.cache_control.max_age = 300
@@ -843,7 +855,7 @@ def takeovers_index():
 
     return flask.render_template(
         "takeovers/index.html",
-        takeovers=all_takeovers,
+        takeovers=[t for t in all_takeovers if is_complete_takeover(t)],
         active_count=active_count,
         total_count=total_current,
         total_pages=total_pages,
