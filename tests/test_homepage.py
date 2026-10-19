@@ -20,6 +20,7 @@ BASE_INDEX = os.path.join(
 # section, update this list to match the home/_*.html includes in
 # templates/base_index.html.
 EXPECTED_ORDER = [
+    "hero",
     "latest",
     "performance",
     "hardware",
@@ -140,6 +141,19 @@ class TestHomepageRender(VCRTestCase):
             "Carrier–grade private cloud",
         ]:
             self.assertFalse(removed in html, f"Still present: {removed}")
+
+    def test_hero(self):
+        """
+        The hero holds the page's only h1, and its mock desktop is hidden
+        from assistive tech with a video that only loads from JS
+        """
+
+        soup = self.get_soup()
+        self.assertEqual(len(soup.select("section.p-hero h1")), 1)
+        self.assertEqual(len(soup.find_all("h1")), 1)
+        stage = soup.select_one(".p-hero__stage")
+        self.assertEqual(stage["aria-hidden"], "true")
+        self.assertFalse(stage.select_one("video").has_attr("src"))
 
     def test_hardware_section(self):
         section = self.get_section(
