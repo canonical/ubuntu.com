@@ -6,10 +6,6 @@
   }
 
   .p-certification-results {
-    .p-accordion__group + .p-accordion__group::after {
-      background-color: $colors--theme--border-low-contrast;
-    }
-
     &__heading {
       position: relative;
 
@@ -126,6 +122,10 @@
         margin-left: 0;
       }
     }
+  }
+
+  .p-certification-results .p-accordion__group + .p-accordion__group::after {
+    background-color: $colors--theme--border-low-contrast;
   }
 
   .p-results-per-page-label {
