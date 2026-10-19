@@ -1,4 +1,4 @@
-{# A world of open source: HP-11 markup and layouts. HP-12 behaviour (WD-39511), HP-13 rotating command still to come #}
+{# A world of open source: HP-11 markup and layouts, HP-12 and HP-13 behaviour in static/js/src/homepage/open-source-carousel.js #}
 {% from "_macros/vf_logo-section.jinja" import vf_logo_section %}
 
 {% set photos = {
@@ -13,6 +13,7 @@
 {% set logos = [
   image(url="https://assets.ubuntu.com/v1/969c190d-helm_logo.png",
         alt="Helm",
+        attrs={"title": "Helm"},
         width="147",
         height="312",
         hi_def=True,
@@ -20,6 +21,7 @@
         output_mode="attrs"),
   image(url="https://assets.ubuntu.com/v1/ee56db04-jenkins_logo.png",
         alt="Jenkins",
+        attrs={"title": "Jenkins"},
         width="138",
         height="312",
         hi_def=True,
@@ -27,6 +29,7 @@
         output_mode="attrs"),
   image(url="https://assets.ubuntu.com/v1/c405abe8-juju_logo.png",
         alt="Juju",
+        attrs={"title": "Juju"},
         width="246",
         height="312",
         hi_def=True,
@@ -34,6 +37,7 @@
         output_mode="attrs"),
   image(url="https://assets.ubuntu.com/v1/f0ecc28c-kubernetes_logo.png",
         alt="Kubernetes",
+        attrs={"title": "Kubernetes"},
         width="105",
         height="312",
         hi_def=True,
@@ -41,6 +45,7 @@
         output_mode="attrs"),
   image(url="https://assets.ubuntu.com/v1/052dcf06-spring_logo.png",
         alt="Spring",
+        attrs={"title": "Spring"},
         width="102",
         height="312",
         hi_def=True,
@@ -48,6 +53,7 @@
         output_mode="attrs"),
   image(url="https://assets.ubuntu.com/v1/6526645e-terraform_logo.png",
         alt="Terraform",
+        attrs={"title": "Terraform"},
         width="468",
         height="312",
         hi_def=True,
@@ -88,8 +94,26 @@
     "href": "/pro/why-pro"
   }
 } %}
+{# Pause and Play, both circled; the script shows the one for the current state #}
+{% set pause_icons %}
+  {{ image(url="https://assets.ubuntu.com/v1/398d9c17-pause.svg",
+    alt="",
+    width="24",
+    height="24",
+    loading="eager",
+    attrs={"data-icon": "pause"}) | safe
+  }}
+  {{ image(url="https://assets.ubuntu.com/v1/58c707b0-play.svg",
+    alt="",
+    width="24",
+    height="24",
+    loading="eager",
+    attrs={"data-icon": "play", "hidden": "hidden"}) | safe
+  }}
+{% endset %}
+{# focus: the object-position kept when tablet and phone crop the portrait photo; centre by default #}
 {% set slides = [
-  {"id": "developers", "title": "Developers", "photo": photos.developers, "blocks": [
+  {"id": "developers", "title": "Developers", "photo": photos.developers, "focus": "50% 15%", "blocks": [
     {"p": "Ubuntu is the #1 Linux amongst developers. Benefit from seamless integration with familiar tools for development and deployment, and access a growing range of toolchains."},
     {"command": "sudo snap install docker/vscode/git/github/dev-pack-for-spring/dev-pack-for-go"},
     {"logos": logos},
@@ -119,18 +143,22 @@
     {"p": "Deploy a comprehensive portfolio of hardened, production-ready database clusters optimized for Kubernetes, virtual machines, bare metal, and multi-cloud deployments."},
     {"link": arrow_links.data},
   ]},
-  {"id": "ctos", "title": "CTOs, CIOs and CISOs", "photo": photos.ctos, "blocks": [
+  {"id": "ctos", "title": "CTOs, CIOs and CISOs", "photo": photos.ctos, "focus": "50% 85%", "blocks": [
     {"p": "Get all the open source you need to empower your team, while meeting your security requirements and compliance audits. Benefit from operational stability and Canonical's extensive open source expertise at simple and transparent pricing."},
     {"link": arrow_links.pro},
   ]},
 ] %}
 
-<section class="p-section js-open-source-carousel">
+<section class="p-section js-open-source-carousel" aria-labelledby="open-source-heading">
+  {# The no-JS title links land here, keeping the heading in view #}
+  <div>
+    {% for slide in slides %}<span class="p-open-source__anchor" id="open-source-{{ slide.id }}"></span>{% endfor %}
+  </div>
   <div class="p-section--shallow">
     <div class="grid-row--50-50-on-large">
       <hr class="p-rule" />
       <div class="grid-col">
-        <h2>
+        <h2 id="open-source-heading">
           A world of open source.
           <br />
           At your command.
@@ -148,18 +176,18 @@
     <div class="grid-col-4 grid-col-medium-6 p-open-source__media">
       <div class="p-open-source__controls u-hide--large">
         <span class="p-open-source__steps">
-          <button type="button" class="p-open-source__button" aria-label="Previous slide">
+          <button type="button" class="p-open-source__button js-open-source-step" data-step="-1" aria-label="Previous slide">
             <i class="p-icon--chevron-left"></i>
           </button>
-          <button type="button" class="p-open-source__button" aria-label="Next slide">
+          <button type="button" class="p-open-source__button js-open-source-step" data-step="1" aria-label="Next slide">
             <i class="p-icon--chevron-right"></i>
           </button>
         </span>
-        <button type="button" class="p-open-source__button" aria-label="Pause">
-          <i class="p-icon--pause"></i>
+        <button type="button" class="p-open-source__button js-open-source-pause" aria-label="Pause carousel">
+          {{ pause_icons }}
         </button>
       </div>
-      <div class="p-open-source__images">
+      <div class="p-open-source__images p-image-container--16-9 p-image-container--2-3-on-large is-cover">
         {% for slide in slides %}
           {{ image(url=slide.photo,
             alt="",
@@ -167,7 +195,8 @@
             height="900",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-open-source__image" ~ (" is-active" if loop.first else "")}) | safe
+            attrs={"class": "p-open-source__image p-image-container__image" ~ (" is-active" if loop.first else ""),
+                   "style": "object-position: " ~ (slide.focus or "center")}) | safe
           }}
         {% endfor %}
       </div>
@@ -178,18 +207,20 @@
 
     <div class="grid-col-4 grid-col-medium-6 p-open-source__slides">
       <div class="p-open-source__controls u-hide--small u-hide--medium">
-        <button type="button" class="p-open-source__button" aria-label="Pause">
-          <i class="p-icon--pause"></i>
+        <button type="button" class="p-open-source__button js-open-source-pause" aria-label="Pause carousel">
+          {{ pause_icons }}
         </button>
       </div>
       {% for slide in slides %}
-        <div class="p-open-source__slide{{ ' is-active' if loop.first }}"
-             id="open-source-{{ slide.id }}">
+        <div class="p-open-source__slide{{ ' is-active' if loop.first }}">
           <span class="p-open-source__bar"></span>
-          <h3 class="p-heading--5">
+          <h3 class="p-heading--5 u-no-margin u-no-padding">
             <a class="p-open-source__title" href="#open-source-{{ slide.id }}">{{ slide.title }}</a>
           </h3>
-          <div class="p-open-source__panel">
+          <div class="p-open-source__panel" id="open-source-{{ slide.id }}-panel">
+            <div class="p-open-source__panel-inner">
+              {# The section's padding sits inside the collapsing row, so a closed panel is zero height #}
+              <div class="p-section--shallow">
             {% for block in slide.blocks %}
               {% if block.p %}
                 <p>{{ block.p }}</p>
@@ -209,9 +240,12 @@
                 {%- endcall -%}
               {% endif %}
             {% endfor %}
+              </div>
+            </div>
           </div>
         </div>
       {% endfor %}
     </div>
   </div>
+  <div class="u-off-screen" aria-live="polite"></div>
 </section>

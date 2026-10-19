@@ -2,32 +2,25 @@
   // Open source carousel: portrait image beside a list of slide titles, the
   // active slide expanded in place. Phone and tablet swap the list for one
   // slide.
-  // Without JS the targeted slide (:target) takes over from slide 1.
+  // Without JS the slide whose anchor is targeted takes over from slide 1.
   $carousel-easing: cubic-bezier(0.22, 1, 0.36, 1);
   $carousel-slide-count: 6;
+  // Framer's accordion timing: the old panel collapses, then after a short
+  // gap the new one expands
+  $carousel-duration: 0.55s;
+  $carousel-swap-delay: $carousel-duration + 0.06s;
 
-  .p-open-source__images {
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    position: relative;
-
-    @media (min-width: $breakpoint-small) {
-      aspect-ratio: 16 / 9;
-    }
-
-    @media (min-width: $breakpoint-large) {
-      aspect-ratio: 2 / 3;
+  // p-image-container sizes and stacks the images. Vanilla has no 4:3, so
+  // phones stretch its 16:9 spacer
+  .p-open-source__images::before {
+    @media (max-width: $breakpoint-small - 1) {
+      padding-bottom: 75%;
     }
   }
 
   .p-open-source__image {
-    height: 100%;
-    inset: 0;
-    object-fit: cover;
     opacity: 0;
-    position: absolute;
-    transition: opacity 0.4s $carousel-easing;
-    width: 100%;
+    transition: opacity $carousel-duration $carousel-easing;
 
     &.is-active {
       opacity: 1;
@@ -101,8 +94,7 @@
       background-color: $colors--theme--text-default;
     }
 
-    &.is-active::before,
-    &:target::before {
+    &.is-active::before {
       background-color: $colors--theme--border-low-contrast;
       height: 3px;
     }
@@ -113,17 +105,29 @@
       top: 0;
       z-index: 1;
     }
+  }
 
-    h3 {
-      margin: 0;
-    }
+  // As on canonical.com, the active rule turns solid while the pointer is
+  // on the active slide, and for a slide chosen while paused (is-held,
+  // script-driven)
+  .js-open-source-carousel.is-held .p-open-source__slide.is-active::before {
+    background-color: $colors--theme--text-default;
   }
 
   // Same specificity trick as .p-cta-text: beats the dark theme link colour
-  .inner-wrapper a.p-open-source__title:not([class^="p-button"]) {
+  .inner-wrapper a.p-open-source__title:not([class^="p-button"]),
+  .inner-wrapper button.p-open-source__title {
+    background: none;
+    border: 0;
     display: block;
-    padding: $sp-unit * 2 0;
+    font: inherit;
+    margin: 0;
+    // The h5 nudge and gap as padding, so the whole row stays clickable
+    padding: map-get($settings-text-h5, nudge) 0
+      (map-get($settings-text-h5, sp-after) - map-get($settings-text-h5, nudge));
+    text-align: left;
     text-decoration: none;
+    width: 100%;
 
     // Muted until hovered or active, as on canonical.com
     &,
@@ -137,8 +141,7 @@
     }
   }
 
-  .inner-wrapper .p-open-source__slide.is-active,
-  .inner-wrapper .p-open-source__slide:target {
+  .inner-wrapper .p-open-source__slide.is-active {
     .p-open-source__title {
       color: $colors--theme--text-default;
     }
@@ -146,12 +149,63 @@
 
   .p-open-source__panel {
     display: none;
-    padding-bottom: $sp-unit * 3;
   }
 
-  .p-open-source__slide.is-active .p-open-source__panel,
-  .p-open-source__slide:target .p-open-source__panel {
+  .p-open-source__slide.is-active .p-open-source__panel {
     display: block;
+
+    @media (prefers-reduced-motion: no-preference) {
+      // FadeIn is the shared keyframe in styles.scss
+      animation: FadeIn 0.45s ease-out;
+    }
+  }
+
+  // Desktop, with motion: the panel is a one-row grid, so its height
+  // animates 0fr to 1fr without measuring. The old panel collapses at once,
+  // the new one waits for it plus a gap. Collapsed panels leave the focus
+  // order once hidden. Elsewhere the display rules above apply as they are.
+  @media (min-width: $breakpoint-large) and (prefers-reduced-motion: no-preference) {
+    .js-open-source-carousel.is-enhanced {
+      .p-open-source__panel {
+        animation: none;
+        display: grid;
+        grid-template-rows: 0fr;
+        opacity: 0;
+        transition:
+          grid-template-rows $carousel-duration $carousel-easing,
+          opacity $carousel-duration $carousel-easing,
+          visibility 0s linear $carousel-duration;
+        visibility: hidden;
+      }
+
+      .p-open-source__panel-inner {
+        filter: blur(3px);
+        min-height: 0;
+        overflow: hidden;
+        transform: translateY(5px);
+        // Keep the content blurred until the collapse has finished
+        transition:
+          filter 0s linear $carousel-duration,
+          transform 0s linear $carousel-duration;
+      }
+
+      .p-open-source__slide.is-active {
+        .p-open-source__panel {
+          grid-template-rows: 1fr;
+          opacity: 1;
+          transition-delay: $carousel-swap-delay;
+          visibility: visible;
+        }
+
+        .p-open-source__panel-inner {
+          filter: none;
+          transform: none;
+          transition:
+            filter $carousel-duration $carousel-easing $carousel-swap-delay,
+            transform $carousel-duration $carousel-easing $carousel-swap-delay;
+        }
+      }
+    }
   }
 
   .p-open-source__command {
@@ -162,18 +216,34 @@
     word-break: normal;
   }
 
+  // Block cursor while the command types (script-driven)
+  .p-open-source__cursor {
+    background-color: currentcolor;
+    display: inline-block;
+    height: 1.1em;
+    vertical-align: text-bottom;
+    width: 0.6em;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: p-open-source-blink 1s steps(1) infinite;
+    }
+  }
+
   // Hyphens are break opportunities too, keep each path part whole
   .p-open-source__nowrap {
     white-space: nowrap;
   }
 
-  // No JS: the targeted slide replaces the first one
-  .js-open-source-carousel:has(.p-open-source__slide:target) {
+  // No JS: the titles link to anchors at the top of the section, so the
+  // heading stays in view, and the targeted anchor's slide replaces the first
+  .js-open-source-carousel:not(.is-enhanced):has(
+      .p-open-source__anchor:target
+    ) {
     .p-open-source__image.is-active {
       opacity: 0;
     }
 
-    .p-open-source__slide.is-active:not(:target) {
+    .p-open-source__slide.is-active {
       &::before {
         height: 1px;
       }
@@ -188,16 +258,30 @@
     }
 
     @for $i from 1 through $carousel-slide-count {
-      // Slides follow the pause controls, so they are offset by one
-      &:has(.p-open-source__slide:nth-child(#{$i + 1}):target)
+      &:has(.p-open-source__anchor:nth-child(#{$i}):target) {
         .p-open-source__image:nth-child(#{$i}) {
-        opacity: 1;
+          opacity: 1;
+        }
+
+        // Slides follow the pause controls, so they are offset by one
+        .p-open-source__slide:nth-child(#{$i + 1}) {
+          &::before {
+            height: 3px;
+          }
+
+          .p-open-source__title {
+            color: $colors--theme--text-default;
+          }
+
+          .p-open-source__panel {
+            display: block;
+          }
+        }
       }
     }
   }
 
-  // Once WD-39511 adds is-enhanced, phones and tablets show only the active
-  // slide
+  // is-enhanced is set by the carousel script
   @media (max-width: $breakpoint-large - 1) {
     .js-open-source-carousel.is-enhanced {
       .p-open-source__slide:not(.is-active) {
@@ -215,6 +299,12 @@
   @media (prefers-reduced-motion: reduce) {
     .p-open-source__image {
       transition: none;
+    }
+  }
+
+  @keyframes p-open-source-blink {
+    50% {
+      opacity: 0;
     }
   }
 }

@@ -244,7 +244,7 @@ class TestHomepageRender(VCRTestCase):
             list(heading.stripped_strings),
             [
                 "Discover more about Canonical",
-                "Trusted source for your whole stack",
+                "Trusted open source for your whole stack",
             ],
         )
         self.assertIsNotNone(heading.find("br"))
