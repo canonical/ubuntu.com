@@ -1313,21 +1313,20 @@ def marketo_submit():
             if form_fields.get(form_key):
                 utm_dict[k] = form_fields[form_key]
 
-    if utm_dict:
-        if non_essential_consent:
-            for k, v in utm_dict.items():
-                if k in approved_utms:
-                    if k == "utm_content":
-                        k = "utmcontent"
-                    enrichment_fields[k] = v
+    if utm_dict and non_essential_consent:
+        for k, v in utm_dict.items():
+            if k in approved_utms:
+                if k == "utm_content":
+                    k = "utmcontent"
+                enrichment_fields[k] = v
 
-            # Append utm values in acquisition url
-            acquisition_url = enrichment_fields.get("acquisition_url")
-            if acquisition_url:
-                enriched_acquisition_url = enrich_acquisition_url(
-                    acquisition_url, utm_dict, approved_utms
-                )
-                enrichment_fields["acquisition_url"] = enriched_acquisition_url
+        # Append utm values in acquisition url
+        acquisition_url = enrichment_fields.get("acquisition_url")
+        if acquisition_url:
+            enriched_acquisition_url = enrich_acquisition_url(
+                acquisition_url, utm_dict, approved_utms
+            )
+            enrichment_fields["acquisition_url"] = enriched_acquisition_url
 
     if not non_essential_consent:
         # Strip utm_* keys from form_fields (e.g. hidden inputs)
