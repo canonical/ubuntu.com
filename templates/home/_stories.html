@@ -1,0 +1,56 @@
+{# Homepage-only cards, so shared/_latest_news_strip.html stays unchanged #}
+
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
+
+<noscript>
+  {%- call(slot) vf_cta_section() -%}
+    {%- if slot == 'cta' -%}
+      <a href="/blog">Read the latest news on our blog&nbsp;&rsaquo;</a>
+    {%- endif -%}
+  {%- endcall -%}
+</noscript>
+
+<section class="p-section u-hide" data-js="latest-news">
+  <div class="grid-row">
+    <hr class="p-rule" />
+    <div class="grid-col-8">
+      <h2>Latest stories</h2>
+    </div>
+  </div>
+  <div class="grid-row p-latest-stories" id="homepage-latest-articles">
+    <div class="grid-col-8 p-latest-stories__loading">
+      <i class="p-icon--spinner u-animation--spin">Loading...</i>
+    </div>
+  </div>
+
+  <template id="homepage-latest-article-template">
+    <div class="grid-col-2 grid-col-medium-2">
+      <a class="p-story-card article-link">
+        <div class="p-image-container--16-9 is-cover is-highlighted article-image"></div>
+        <div class="p-story-card__body">
+          <h3 class="p-heading--4">
+            <span class="p-story-card__title article-title"></span>
+          </h3>
+          <p class="p-story-card__date p-text--small u-text--muted">
+            <time datetime="" class="article-time"></time>
+          </p>
+        </div>
+        <div class="p-story-card__footer">
+          <span class="p-chip is-readonly is-dense is-inline"><span class="p-chip__value article-group"></span></span>
+        </div>
+      </a>
+    </div>
+  </template>
+
+  <script nonce="{{ csp_nonce }}"
+          src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script nonce="{{ csp_nonce }}">
+    canonicalLatestNews.fetchLatestNews({
+      articlesContainerSelector: "#homepage-latest-articles",
+      articleTemplateSelector: "#homepage-latest-article-template",
+      gtmEventLabel: "ubuntu.com homepage",
+      imageClasses: ["p-image-container__image"],
+      limit: "4",
+    });
+  </script>
+</section>

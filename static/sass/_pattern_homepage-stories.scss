@@ -1,0 +1,57 @@
+// Latest stories: four blog cards from the latest-news package
+@mixin ubuntu-p-homepage-stories {
+  // Vanilla has no orange tints
+  $story-chip-background: rgba(#ff7300, 0.2);
+
+  .p-latest-stories {
+    row-gap: $sp-unit * 4;
+  }
+
+  .p-story-card {
+    border: 1px solid $colors--theme--border-low-contrast;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: none;
+
+      .p-story-card__title {
+        color: $colors--theme--link-default;
+      }
+    }
+  }
+
+  // Outranks the dark theme's `.inner-wrapper a` link colour
+  @at-root body#{&}.is-dark a.p-story-card {
+    &,
+    &:visited {
+      color: $colors--theme--text-default;
+    }
+  }
+
+  .p-story-card__body {
+    flex: 1 1 auto;
+    padding: $spv--small $sph--large 0;
+  }
+
+  .p-story-card__date {
+    margin-bottom: calc(#{$spv--large} + 1px);
+  }
+
+  // Flex, so the line box adds no height around the chip
+  .p-story-card__footer {
+    align-items: center;
+    border-top: 1px solid $colors--theme--border-low-contrast;
+    display: flex;
+    padding: $spv--small $sph--large;
+
+    // 25px tall including the 1px border
+    .p-chip {
+      background-color: $story-chip-background;
+      padding: 1.5px $sph--small;
+    }
+  }
+}

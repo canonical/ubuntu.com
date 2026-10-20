@@ -1,7 +1,15 @@
 {% extends "base_index.html" %}
 
+{% block title %}The enterprise Linux for open source innovation{% endblock %}
+
+{% block meta_description %}
+  Ubuntu is the modern, enterprise Linux operating system for servers, desktop, cloud, and IoT. Supported for up to 15 years
+{% endblock meta_description %}
+
 {% block head_extra %}
 {% endblock %}
+
+{% block body_class %}{{ super() }} p-homepage{% endblock %}
 
 {#
   # Creating takeovers

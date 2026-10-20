@@ -4,9 +4,11 @@
 
 {% block title %}Takeover index | Ubuntu{% endblock %}
 
-{% block body_class %}is-dark{% endblock body_class %}
+{# p-homepage applies the homepage styles the Latest block uses #}
+{% block body_class %}is-dark p-homepage{% endblock body_class %}
 
 {% block content %}
+{% from "home/_latest-block.html" import latest_block with context %}
 
 <section class="p-strip is-shallow">
   <div class="row">
@@ -22,25 +24,21 @@
 </section>
 {% if takeovers | length > 0 %}
   {% for takeover in takeovers %}
-    {% with
+    <div class="u-fixed-width">
+      <p class="u-text--muted u-no-margin--bottom">
+        {{ "Active" if takeover['active'] == "true" else "Hidden" }}{% if takeover['lang'] %} &middot; {{ takeover['lang'] }}{% endif %}
+      </p>
+    </div>
+    {{ latest_block(id="takeover-" ~ loop.index,
       title=takeover['title'],
       subtitle=takeover['subtitle'],
-      class="p-takeover--" + takeover['class'],
-      header_image=takeover['image'],
-      image_width=takeover['image_width'],
-      image_height=takeover['image_height'],
-      image_hide_small="true",
       primary_url=takeover['primary_url'],
       primary_cta=takeover['primary_cta'],
-      primary_cta_class="",
-      secondary_cta=takeover['secondary_cta'],
       secondary_url=takeover['secondary_url'],
-      lang=takeover['lang'],
-      lang_skip=takeover['lang_skip'],
-      active=takeover['active']
-      %}
-      {% include "takeovers/_template.html" %}
-    {% endwith %}
+      secondary_cta=takeover['secondary_cta'],
+      image_url=takeover['image'] if "://" in (takeover['image'] or "") else "",
+      image_width=takeover['image_width'],
+      image_height=takeover['image_height']) }}
   {% endfor %}
 
   <section class="p-strip is-shallow">
@@ -55,16 +53,5 @@
     <h3>No takeovers found &mdash; why not try widening your search?</h3>
   </div>
 {% endif %}
-
-<style>
-  .is-active::after {
-    background: rgba(249, 155, 17, 0.5);
-    content: "Active";
-    padding: .5rem 1rem;
-    position: absolute;
-    right: 15rem;
-    top: 5rem;
-  }
-</style>
 
 {% endblock %}

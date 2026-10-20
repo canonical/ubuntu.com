@@ -1422,17 +1422,19 @@ class TestTakeoversJson(TestCase):
         app.testing = True
         client = app.test_client()
 
+        fields = {"subtitle": "Text", "primary_url": "/", "primary_cta": "Go"}
         mixed = [
-            {"title": "Active one", "active": "true"},
+            {**fields, "title": "Active one", "active": "true"},
             # active=false but another boolean key is true: this is the
             # record that leaked through query #16's loose matching.
             {
+                **fields,
                 "title": "Leaks via equal_cols",
                 "active": "false",
                 "equal_cols": "true",
             },
-            {"title": "Active upper/space", "active": " True "},
-            {"title": "Inactive", "active": "false"},
+            {**fields, "title": "Active upper/space", "active": " True "},
+            {**fields, "title": "Inactive", "active": "false"},
         ]
 
         with patch.object(

@@ -1,0 +1,218 @@
+// The mock desktop is designed 1232px wide; hero-cq() scales each part
+// with the desktop's actual width
+@function hero-cq($px) {
+  @return calc(#{$px} * 100cqw / 1232);
+}
+
+@mixin ubuntu-p-homepage-hero {
+  // Mock desktop colours; Vanilla has no tokens for these
+  $desktop-panel: #131313;
+  $desktop-divider: #3b3b3b;
+  $desktop-wallpaper: #4c1437;
+  $hero-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  .p-hero {
+    overflow: clip;
+    padding-top: $spv--strip-regular * 0.5;
+    position: relative;
+
+    @media (min-width: $breakpoint-large) {
+      padding-top: $spv--strip-regular;
+    }
+
+    // Phones keep the section padding; from here the cut-off desktop ends
+    // the hero instead
+    @media (min-width: $breakpoint-small) {
+      padding-bottom: 0;
+    }
+
+    > .u-fixed-width {
+      position: relative;
+    }
+  }
+
+  // With no padding under the cut-off desktop, the next section adds the
+  // same gap the hero leaves above it
+  .p-hero ~ .p-latest-block {
+    @media (min-width: $breakpoint-small) {
+      padding-top: $spv--strip-regular * 0.5;
+    }
+
+    @media (min-width: $breakpoint-large) {
+      padding-top: $spv--strip-regular;
+    }
+  }
+
+  // The stage's margin alone sets the gap above the desktop
+  .p-hero .p-button--brand {
+    @media (min-width: $breakpoint-small) {
+      margin-bottom: 0;
+    }
+  }
+
+  .p-hero__background {
+    background-image: linear-gradient(
+      rgba($color-x-light, 0) 6%,
+      rgba($color-x-light, 0.05) 100%
+    );
+    inset: 0;
+    position: absolute;
+
+    &::before {
+      background-image: radial-gradient(
+        45% 40% at 50% 45%,
+        rgba($color-brand, 0.34) 0%,
+        rgba(190, 60, 90, 0.2) 32%,
+        rgba(120, 45, 90, 0.1) 55%,
+        rgba(80, 40, 90, 0) 75%
+      );
+      content: "";
+      filter: blur(130px);
+      height: 1000px;
+      left: 50%;
+      position: absolute;
+      top: $spv--strip-regular;
+      transform: translateX(-50%);
+      width: 1720px;
+    }
+  }
+
+  // Cuts off the desktop's bottom fifth; only vertically, to keep the shadow
+  .p-hero__stage {
+    container-type: inline-size;
+    margin-top: $spv--strip-regular * 0.5;
+    overflow-y: clip;
+
+    @media (min-width: $breakpoint-large) {
+      margin-top: $spv--strip-regular;
+    }
+  }
+
+  .p-hero__desktop {
+    animation: p-hero-desktop-in 600ms $hero-ease both;
+    aspect-ratio: 1232 / 770;
+    box-shadow:
+      0 2px 6px rgba(46, 20, 0, 0.05),
+      0 20px 50px -16px rgba(46, 20, 0, 0.2),
+      0 60px 140px -40px rgba(46, 20, 0, 0.3),
+      inset 0 1px 0 rgba($color-x-light, 0.1);
+    container-type: inline-size;
+    margin-bottom: hero-cq(-157);
+    overflow: hidden;
+    position: relative;
+  }
+
+  // The finished still shows until the video plays. An empty <video>
+  // paints an opaque box, so it stays hidden until then.
+  .p-hero__wallpaper {
+    background: $desktop-wallpaper var(--hero-wallpaper) center / cover
+      no-repeat;
+    height: hero-cq(768);
+    left: 0;
+    position: absolute;
+    top: hero-cq(32);
+    width: 100%;
+  }
+
+  .p-hero__video {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    visibility: hidden;
+    width: 100%;
+  }
+
+  .p-hero.is-playing {
+    .p-hero__wallpaper {
+      background-image: none;
+    }
+
+    .p-hero__video {
+      visibility: visible;
+    }
+  }
+
+  .p-hero__top-bar {
+    background-color: $desktop-panel;
+    display: block;
+    height: hero-cq(32);
+    width: 100%;
+  }
+
+  .p-hero__clock {
+    color: $color-x-light;
+    font-size: hero-cq(14.66);
+    font-variant-numeric: tabular-nums;
+    left: 50%;
+    line-height: hero-cq(32);
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    white-space: pre;
+  }
+
+  .p-hero__dock {
+    align-items: center;
+    background-color: $desktop-panel;
+    display: flex;
+    flex-direction: column;
+    gap: hero-cq(10);
+    // Tucks 1px under the top bar so no seam shows at fractional zoom
+    inset: hero-cq(31) auto 0 0;
+    padding: hero-cq(13) hero-cq(10) hero-cq(12);
+    position: absolute;
+    width: hero-cq(68);
+  }
+
+  .p-hero__dock-item,
+  .p-hero__dock-divider {
+    animation: p-hero-dock-in 500ms $hero-ease calc(var(--i) * 130ms) both;
+    width: hero-cq(48);
+  }
+
+  .p-hero__dock-item img {
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+
+  .p-hero__dock-divider {
+    background-color: $desktop-divider;
+    height: 1px;
+  }
+
+  // Starts below the top bar so the bar stays untinted
+  .p-hero__tint {
+    background-image: linear-gradient(
+      340deg,
+      rgba($color-brand, 0.64) 27%,
+      rgba($color-brand, 0) 74%
+    );
+    inset: hero-cq(32) 0 0;
+    pointer-events: none;
+    position: absolute;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .p-hero__desktop,
+    .p-hero__dock-item,
+    .p-hero__dock-divider {
+      animation: none;
+    }
+  }
+
+  @keyframes p-hero-desktop-in {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+  }
+
+  @keyframes p-hero-dock-in {
+    from {
+      filter: blur(hero-cq(10));
+      opacity: 0;
+      transform: translateY(hero-cq(14));
+    }
+  }
+}

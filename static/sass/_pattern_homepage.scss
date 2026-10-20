@@ -1,0 +1,147 @@
+@mixin ubuntu-p-homepage {
+  $homepage-link: #fc764c;
+  $homepage-link-hover: #fe8a66;
+
+  // Orange text link with a trailing arrow, matching canonical.com's
+  // `.p-cta-text` + `.p-icon--arrow-right`. The arrow nudges 3px on hover and
+  // focus (transform rather than canonical.com's padding, to avoid layout).
+  .p-cta-text {
+    text-decoration: none;
+
+    &,
+    &:link,
+    &:visited {
+      color: $homepage-link;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: $homepage-link-hover;
+      text-decoration: none;
+    }
+
+    .p-icon--arrow-right {
+      @extend %icon;
+      @include vf-themed-icon(
+        $light-value: vf-icon-arrow-right-url($colors--light-theme--icon),
+        $dark-value: vf-icon-arrow-right-url($homepage-link)
+      );
+
+      margin-left: 0.5rem;
+      transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    &:hover .p-icon--arrow-right,
+    &:focus-visible .p-icon--arrow-right {
+      transform: translateX(3px);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .p-icon--arrow-right {
+        transition: none;
+      }
+
+      &:hover .p-icon--arrow-right,
+      &:focus-visible .p-icon--arrow-right {
+        transform: none;
+      }
+    }
+  }
+
+  // Outranks the dark theme's `.inner-wrapper a` link colour
+  @at-root body#{&}.is-dark a.p-cta-text {
+    &,
+    &:visited {
+      color: $homepage-link;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: $homepage-link-hover;
+    }
+  }
+
+  // Performance as standard: label, decorative ring rail, content.
+  // Rows touch so each track reaches the next ring; spacing sits inside rows,
+  // as each row's p-section padding.
+  $performance-ring-easing: cubic-bezier(0.22, 1, 0.36, 1);
+
+  // Phones drop the rail, so the rows sit closer, as one group
+  .p-performance__row {
+    @media (max-width: $breakpoint-small - 1) {
+      padding-bottom: $spv--x-large;
+    }
+  }
+
+  .p-performance__rail {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .p-performance__ring {
+    align-items: center;
+    background-color: $colors--theme--background-hover;
+    border: 1.5px solid $colors--theme--border-low-contrast;
+    border-radius: 50%;
+    display: flex;
+    flex-shrink: 0;
+    height: $sp-unit * 10;
+    justify-content: center;
+    transition: border-color 0.4s $performance-ring-easing;
+    width: $sp-unit * 10;
+
+    img {
+      opacity: 0.6;
+      transition: opacity 0.4s $performance-ring-easing;
+    }
+
+    &.is-active {
+      border-color: $color-brand;
+
+      img {
+        opacity: 1;
+      }
+    }
+  }
+
+  .p-performance__track {
+    background-color: $colors--theme--border-low-contrast;
+    flex: 1 1 auto;
+    // Runs through the row's p-section padding to the next ring
+    margin-bottom: -$spv--strip-regular * 0.5;
+    overflow: hidden;
+    position: relative;
+    width: 2px;
+
+    @media (min-width: $breakpoint-large) {
+      margin-bottom: -$spv--strip-regular;
+    }
+  }
+
+  .p-performance__fill {
+    background: linear-gradient($color-brand, #ff9b5a);
+    inset: 0;
+    position: absolute;
+    // Empty without JS; the script fills it as the page scrolls
+    transform: scaleY(0);
+    transform-origin: top;
+    // Smooths wheel steps, as in the Framer draft
+    transition: transform 0.15s linear;
+  }
+
+  .p-performance__apps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $sp-unit * 2;
+    padding-top: $spv--small;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .p-performance__ring,
+    .p-performance__ring img,
+    .p-performance__fill {
+      transition: none;
+    }
+  }
+}
