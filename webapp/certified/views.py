@@ -11,6 +11,7 @@ from flask import (
     url_for,
 )
 from requests import Session
+from canonicalwebteam.flask_base.env import get_flask_env
 from webapp.certified.api import CertificationAPI, PartnersAPI
 from urllib.parse import urlencode
 
@@ -21,7 +22,11 @@ from webapp.certified.helpers import (
 
 session = Session()
 api = CertificationAPI(
-    base_url="https://certification.canonical.com/api/v2", session=session
+    base_url=get_flask_env(
+        "CERTIFICATION_API_URL",
+        "https://certification.canonical.com/api/v2",
+    ),
+    session=session,
 )
 partners_api = PartnersAPI(session=session)
 
