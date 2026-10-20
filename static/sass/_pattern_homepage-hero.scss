@@ -50,19 +50,6 @@
     }
   }
 
-  // Phones keep the h1 size, as the display size wraps every line
-  .p-hero .p-heading--display {
-    @media (max-width: $breakpoint-small - 1) {
-      font-size: #{map-get($settings-text-h1-mobile, font-size)}rem;
-      line-height: map-get($settings-text-h1-mobile, line-height);
-      margin-bottom: map-get($settings-text-h1-mobile, sp-after) - map-get(
-          $settings-text-h1-mobile,
-          nudge
-        );
-      padding-top: map-get($settings-text-h1-mobile, nudge);
-    }
-  }
-
   .p-hero__background {
     background-image: linear-gradient(
       rgba($color-x-light, 0) 6%,
