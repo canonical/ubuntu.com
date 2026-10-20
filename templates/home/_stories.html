@@ -1,13 +1,13 @@
 {# Homepage-only cards, so shared/_latest_news_strip.html stays unchanged #}
 
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
+
 <noscript>
-  <section class="p-section">
-    <div class="u-fixed-width">
-      <h2>
-        <a href="/blog">Read the latest news on our blog&nbsp;&rsaquo;</a>
-      </h2>
-    </div>
-  </section>
+  {%- call(slot) vf_cta_section() -%}
+    {%- if slot == 'cta' -%}
+      <a href="/blog">Read the latest news on our blog&nbsp;&rsaquo;</a>
+    {%- endif -%}
+  {%- endcall -%}
 </noscript>
 
 <section class="p-section u-hide" data-js="latest-news">
