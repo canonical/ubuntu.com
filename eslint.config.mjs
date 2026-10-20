@@ -58,6 +58,13 @@ const config = [
       }
     }
   },
+  {
+    // Root-level scripts are outside tsconfig.json's "include"
+    files: ["*.js"],
+    languageOptions: {
+      parserOptions: { project: null },
+    },
+  },
 ];
 
 export default config;
