@@ -554,18 +554,23 @@ certification:
   children:
     - title: Overview
       path: /certified
+    - title: Search hardware
+      path: /certified/search
+    - title: Category
+      path: /certified/category
+      children:
+        - title: Laptops
+          path: /certified/search?category=Laptop
+        - title: Desktops
+          path: /certified/search?category=Desktop
+        - title: Servers
+          path: /certified/search?category=Server
+        - title: IoT
+          path: /certified/search?category=IoT
+        - title: SoCs
+          path: /certified/search?category=SoC
     - title: Why certify?
       path: /certified/why-certify
-    - title: Laptops
-      path: /certified/laptops
-    - title: Desktops
-      path: /certified/desktops
-    - title: Servers
-      path: /certified/servers
-    - title: IoT
-      path: /certified/iot
-    - title: SoCs
-      path: /certified/socs
 
 edge-computing:
   title: Micro cloud

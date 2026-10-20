@@ -1,88 +1,161 @@
+{% set filter_limit = 5 %}
 <h2 class="p-muted-heading">Filters</h2>
 <a href="#drawer"
-    class="p-side-navigation__toggle js-drawer-toggle"
-    aria-controls="drawer">Toggle filters</a>
-<div class="p-side-navigation__overlay" aria-controls="drawer"></div>
+   class="p-side-navigation__toggle js-drawer-toggle"
+   aria-controls="drawer">Toggle filters</a>
+<div class="p-side-navigation__overlay js-drawer-toggle" aria-controls="drawer"></div>
 <nav class="p-side-navigation__drawer" aria-label="Filter list">
   <div class="p-side-navigation__drawer-header">
     <a href="#"
-        class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
-        aria-controls="drawer"
-        id="toggle-filters">Toggle filters</a>
+       class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
+       aria-controls="drawer"
+       id="toggle-filters">Toggle filters</a>
   </div>
   <div>
-    <aside class="p-accordion js-filter-count" data-multiple-expanded="true">
+    <aside class="p-accordion js-certified-filters"
+           data-filter-limit="{{ filter_limit }}"
+           data-derived-filters-pending="{{ 'true' if derived_filters_pending else 'false' }}"
+           data-multiple-expanded="true">
       <ul class="p-accordion__list">
-        <li class="p-accordion__group">
-          <div role="heading" aria-level="2">
-            <button type="button"
-                    class="p-accordion__tab u-no-padding--right"
-                    id="tab1"
-                    aria-controls="tab1-section"
-                    aria-expanded="true">
-              <span class="p-heading--5">Category</span>
-            </button>
-          </div>
-          {% include "/certified/search/_category-filters.html" %}
-        </li>
-        <li class="p-accordion__group" id="vendor-section">
-          <div role="heading" aria-level="2">
-            <button type="button"
-                    class="p-accordion__tab u-no-padding--right"
-                    id="tab2"
-                    aria-controls="tab2-section"
-                    aria-expanded="true">
-              <span class="p-heading--5">Vendor</span>
-            </button>
-          </div>
-          <section class="p-accordion__panel is-dense"
-                    id="tab2-section"
-                    aria-hidden="false"
-                    aria-labelledby="tab2">
-          </section>
-          <div class="js-show-expanded-vendor-filter-options">
-            <button class="p-button--link js-vendor-count p-reveal-vendors is-dense js-show-all-vendors"
-                    name="vendor"
-                    value="true">Show all vendors</button>
-            <button class="p-button--link p-reveal-vendors is-dense js-show-less-vendors u-hide"
-                    name="vendor"
-                    value="false">Show fewer</button>
-          </div>
-        </li>
-        <li class="p-accordion__group" id="version-section">
-          <div role="heading" aria-level="2">
-            <button type="button"
-                    class="p-accordion__tab u-no-padding--right"
-                    aria-controls="tab3-section"
-                    id="tab3"
-                    aria-expanded="true">
-              <span class="p-heading--5">Certified ubuntu release</span>
-            </button>
-          </div>
-          <section class="p-accordion__panel is-dense"
-                    id="tab3-section"
-                    aria-hidden="false"
-                    aria-labelledby="tab3">
-          </section>
-          <div class="js-show-expanded-release-filter-options">
-            <button class="p-button--link p-reveal-versions is-dense js-show-all-releases"
-                    name="release"
-                    value="true">Show all versions</button>
-            <button class="p-button--link p-reveal-versions is-dense js-show-less-releases u-hide"
-                    name="release"
-                    value="false">Show fewer</button>
-          </div>
-        </li>
+        {% for filter in filters %}
+          <li class="p-accordion__group js-filter-group"
+              data-filter-key="{{ filter.key }}"
+              data-filter-selection="{{ filter.selection }}"
+              data-filter-url-keys="{{ filter.url_keys|join(',') }}">
+            <div role="heading" aria-level="2">
+              <button type="button"
+                      class="p-accordion__tab u-no-padding--right"
+                      id="filter-{{ filter.key }}-tab"
+                      aria-controls="filter-{{ filter.key }}-panel"
+                      aria-expanded="{{ 'true' if filter.expanded else 'false' }}">
+                <span class="p-heading--5 certified-filter-heading">
+                  {{ filter.title }}
+                  <span class="p-badge js-filter-count{% if not filter.selected_count %} u-hide{% endif %}"
+                        aria-label="{{ filter.selected_count }} selected">{{ filter.selected_count }}</span>
+                </span>
+              </button>
+            </div>
+            <section class="p-accordion__panel is-dense"
+                     id="filter-{{ filter.key }}-panel"
+                     aria-hidden="{{ 'false' if filter.expanded else 'true' }}"
+                     aria-labelledby="filter-{{ filter.key }}-tab">
+              {% if filter.control == "checkbox" %}
+                {% if filter.show_option_search %}
+                  <div class="p-search-box certified-filter-search">
+                    <label class="u-off-screen" for="filter-{{ filter.key }}-search">Search {{ filter.plural }}</label>
+                    <input type="search"
+                           id="filter-{{ filter.key }}-search"
+                           class="p-search-box__input js-filter-search"
+                           placeholder="Search"
+                           autocomplete="off" />
+                    <button type="button"
+                            class="p-search-box__reset js-filter-search-reset"
+                            aria-label="Clear {{ filter.plural }} search">
+                      <i class="p-icon--close">Clear</i>
+                    </button>
+                    <button type="button"
+                            class="p-search-box__button"
+                            aria-label="Search {{ filter.plural }}"
+                            tabindex="-1">
+                      <i class="p-icon--search">Search</i>
+                    </button>
+                  </div>
+                {% endif %}
+                <div class="js-filter-options">
+                  {% for option in filter.options %}
+                    <label class="p-checkbox js-filter-option{% if loop.index > filter_limit %} u-hide{% endif %}"
+                           data-filter-label="{{ option.label|lower }}">
+                      <input type="checkbox"
+                             name="{{ filter.key }}"
+                             class="p-checkbox__input"
+                             value="{{ option.value }}"
+                             {% if option.selected %}checked{% endif %} />
+                      <span class="p-checkbox__label">{{ option.label }}</span>
+                    </label>
+                  {% endfor %}
+                </div>
+                <p class="js-filter-no-results u-hide">No matching {{ filter.plural }}.</p>
+                {% if filter.show_option_search %}
+                  <button type="button"
+                          class="p-button--link is-dense js-toggle-filter-options"
+                          data-expanded="false"
+                          data-plural="{{ filter.plural }}">Show all {{ filter.plural }}</button>
+                {% endif %}
+              {% elif filter.control == "range" %}
+                <div class="certified-memory-range js-memory-range">
+                  <div class="certified-memory-range__control">
+                    <label for="filter-memory-min">
+                      Minimum: <output class="js-memory-min-output">{{ filter.memory_min }}</output> GB
+                    </label>
+                    <div class="p-slider__wrapper">
+                      <input type="range"
+                             class="certified-memory-range__input js-memory-min"
+                             id="filter-memory-min"
+                             min="{{ filter.memory_min_limit }}"
+                             max="{{ filter.memory_max_limit }}"
+                             step="{{ filter.memory_step }}"
+                             value="{{ filter.memory_min }}"
+                             aria-valuetext="{{ filter.memory_min }} GB" />
+                    </div>
+                  </div>
+                  <div class="certified-memory-range__control">
+                    <label for="filter-memory-max">
+                      Maximum: <output class="js-memory-max-output">{{ filter.memory_max }}</output> GB
+                    </label>
+                    <div class="p-slider__wrapper">
+                      <input type="range"
+                             class="certified-memory-range__input js-memory-max"
+                             id="filter-memory-max"
+                             min="{{ filter.memory_min_limit }}"
+                             max="{{ filter.memory_max_limit }}"
+                             step="{{ filter.memory_step }}"
+                             value="{{ filter.memory_max }}"
+                             aria-valuetext="{{ filter.memory_max }} GB" />
+                    </div>
+                  </div>
+                  {% if filter.memory_min > filter.memory_min_limit %}
+                    <input type="hidden" name="memory_min" value="{{ filter.memory_min }}" />
+                  {% endif %}
+                  {% if filter.memory_max < filter.memory_max_limit %}
+                    <input type="hidden" name="memory_max" value="{{ filter.memory_max }}" />
+                  {% endif %}
+                </div>
+              {% elif filter.control == "year" %}
+                <div class="p-form-validation{% if filter.year_is_invalid %} is-error{% endif %}">
+                  <label class="u-off-screen" for="filter-certified-year">{{ filter.title }}</label>
+                  <input type="text"
+                         class="p-form-validation__input js-certified-year"
+                         id="filter-certified-year"
+                         name="certified_year"
+                         value="{{ filter.value }}"
+                         inputmode="numeric"
+                         pattern="[0-9]{4}"
+                         maxlength="4"
+                         placeholder="YYYY"
+                         aria-invalid="{{ 'true' if filter.year_is_invalid else 'false' }}"
+                         aria-describedby="filter-certified-year-error" />
+                  <p class="p-form-validation__message js-certified-year-error{% if not filter.year_is_invalid %} u-hide{% endif %}"
+                     id="filter-certified-year-error"
+                     aria-live="polite">Please insert a four-digit year.</p>
+                </div>
+              {% endif %}
+            </section>
+          </li>
+        {% endfor %}
       </ul>
+      {% if derived_filters_pending %}
+        <p class="certified-derived-filters-status js-derived-filters-status"
+           role="status">Model family, processor, GPU and architecture options are loading...</p>
+      {% endif %}
     </aside>
     <div class="certified-filters-footer">
       <div class="certified-filters-footer-buttons p-cta-block">
-        <button class="p-button--positive js-submit-filters">Apply filters</button>
-        <button class="p-button js-clear-filters">Clear all filters</button>
+        <button type="button" class="p-button js-clear-filters">Clear all filters</button>
       </div>
     </div>
   </div>
 </nav>
 
-<script nonce="{{ csp_nonce }}" type="module"
+<script nonce="{{ csp_nonce }}"
+        type="module"
         src="/static/js/src/side-navigation.js"></script>

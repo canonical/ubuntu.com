@@ -49,6 +49,9 @@ class CertificationAPI:
             },
         ).json()
 
+    def certified_platform_certificates(self, platform_id):
+        return self._get(f"certified-platforms/{platform_id}").json()
+
     def certified_vendors(
         self,
         limit=None,
@@ -85,13 +88,22 @@ class CertificationAPI:
         major_release__in=None,
         vendor=None,
         make__iexact=None,
+        make__icontains=None,
         query=None,
+        model__icontains=None,
         category__in=None,
         order_by=None,
+        ordering=None,
         device_identifier=None,
         device_bus=None,
         device_subsystem=None,
         device_vendor_id=None,
+        gpu_name__in=None,
+        arch_name__in=None,
+        cpu_model=None,
+        memory_gte=None,
+        memory_lte=None,
+        completed__year__gte=None,
     ):
         response = self._get(
             "certified-configurations",
@@ -104,16 +116,25 @@ class CertificationAPI:
                 # &vendor=item&vendor=item
                 "vendor": vendor,
                 "make__iexact": make__iexact,
+                "make__icontains": make__icontains,
                 "query": query,
+                "model__icontains": model__icontains,
                 "canonical_id": canonical_id,
                 "canonical_id__in": _get_clean_in_filter(canonical_id__in),
                 "category": category,
                 "category__in": _get_clean_in_filter(category__in),
                 "order_by": order_by,
+                "ordering": ordering,
                 "device_identifier": device_identifier,
                 "device_bus": device_bus,
                 "device_subsystem": device_subsystem,
                 "device_vendor_id": device_vendor_id,
+                "gpu_name__in": _get_clean_in_filter(gpu_name__in),
+                "arch_name__in": _get_clean_in_filter(arch_name__in),
+                "cpu_model": cpu_model,
+                "memory_gte": memory_gte,
+                "memory_lte": memory_lte,
+                "completed__year__gte": completed__year__gte,
             },
         )
         response.raise_for_status()
@@ -121,7 +142,11 @@ class CertificationAPI:
         return response.json()
 
     def certified_configuration_details(
-        self, limit=None, offset=None, canonical_id=None
+        self,
+        limit=None,
+        offset=None,
+        canonical_id=None,
+        canonical_id__in=None,
     ):
         return self._get(
             "certified-configuration-details",
@@ -129,6 +154,7 @@ class CertificationAPI:
                 "limit": limit,
                 "offset": offset,
                 "canonical_id": canonical_id,
+                "canonical_id__in": _get_clean_in_filter(canonical_id__in),
             },
         ).json()
 
@@ -138,6 +164,7 @@ class CertificationAPI:
         offset=None,
         query=None,
         canonical_id=None,
+        canonical_id__in=None,
         identifier=None,
         subsystem=None,
         category=None,
@@ -154,6 +181,7 @@ class CertificationAPI:
                 "offset": offset,
                 "query": query,
                 "canonical_id": canonical_id,
+                "canonical_id__in": _get_clean_in_filter(canonical_id__in),
                 "identifier": identifier,
                 "subsystem": subsystem,
                 "category": category,
