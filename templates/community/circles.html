@@ -168,60 +168,6 @@ meta_copydoc %}
   {{ vf_highlighted_cta(cta_text="Are you stuck and need help? <br /> <a href='https://ubuntu.com/community/support'>Take a look at how our community can support you.</a>") | safe }}
 
   <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
-  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/leaflet.js') }}"></script>
-  {# djlint:off #}
-  <script nonce="{{ csp_nonce }}">
-    var mapMarker = {{ map_markers | tojson | e }}
-
-    function initMap(mapSelector) {
-      const mapElement = document.getElementById(mapSelector);
-
-      if (!mapElement) {
-        return;
-      }
-
-      mapElement.style.height = "400px";
-      mapElement.style.zIndex = "1";
-
-      const map = L.map(mapSelector, {
-        minZoom: 2, // Prevents zooming out too far
-        maxBounds: [[-75, -180], [80, 180]], // Restricts panning
-        maxBoundsViscosity: 1.0
-      });
-      map.on('load', onMapLoad);
-      map.setView([31.505, -0.09], 2);
-
-      // Set up the tile layer with grey canvas (using CartoDB Positron without labels)
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png').addTo(map);
-
-      const customIcon = L.icon({
-        iconUrl: "https://assets.ubuntu.com/v1/ea30540d-marker-icon.png",
-        iconRetinaUrl: "https://assets.ubuntu.com/v1/ed796590-marker-icon-2x.png",
-        iconSize: [20, 32.8],
-        iconAnchor: [10, 32.8],
-        popupAnchor: [0, -32.8]
-      });
-
-      mapMarker.forEach(function(marker) {
-        if (marker.lat && marker.lon) {
-          L.marker([marker.lat, marker.lon], {
-              icon: customIcon
-            })
-            .bindPopup(marker.name)
-            .addTo(map);
-        }
-      });
-    }
-
-    function onMapLoad() {
-      locosMap = document.querySelector(".js-show-map");
-      locosMap.style.visibility = "visible";
-      locosMap.style.marginTop = "1rem";
-      locosMap.style.marginBottom = "1.5rem";
-      document.querySelector(".js-show-tabs").classList.remove("u-hide");
-    }
-
-    initMap("locations-map");
-</script>
-  {# djlint:on #}
+  <script nonce="{{ csp_nonce }}" id="map-markers" type="application/json">{{ map_markers | tojson }}</script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/community-map.js') }}"></script>
 {% endblock content %}
