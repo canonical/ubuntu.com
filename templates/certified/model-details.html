@@ -108,8 +108,43 @@
             {% for note in release.notes %}{{ note.comment | convert_markdown_to_html | safe }}{% endfor %}
 
             <div class="p-section--shallow">
+              {% if release.last_tested %}
+                <hr class="p-rule--muted" />
+                <h3 class="p-muted-heading">Latest automated validation</h3>
+                <p>This certified configuration continues to be tested for regressions after certification. These results do not extend certification to another Ubuntu release.</p>
+                <table aria-label="Last tested" style="margin-top:1.4rem">
+                  <tbody>
+                    {% if release.last_tested.date %}
+                      <tr>
+                        <th colspan="3" class="u-text--muted">Last tested</th>
+                        <td colspan="6">{{ format_date(release.last_tested.date) }}</td>
+                      </tr>
+                    {% endif %}
+                    {% if release.last_tested.kernel %}
+                      <tr>
+                        <th colspan="3" class="u-text--muted">Kernel</th>
+                        <td colspan="6">{{ release.last_tested.kernel }}</td>
+                      </tr>
+                    {% endif %}
+                    {% if release.last_tested.bios %}
+                      <tr>
+                        <th colspan="3" class="u-text--muted">BIOS</th>
+                        <td colspan="6">{{ release.last_tested.bios }}</td>
+                      </tr>
+                    {% endif %}
+                  </tbody>
+                </table>
+              {% endif %}
+              <h3 class="p-muted-heading">Certification baseline</h3>
+              <p>Software and firmware used when this certification was completed.</p>
               <table aria-label="Software" style="margin-top:1.4rem">
                 <tbody>
+                  {% if release.certificate_date %}
+                    <tr>
+                      <th colspan="3" class="u-text--muted">Certified</th>
+                      <td colspan="6">{{ release.certificate_date }}</td>
+                    </tr>
+                  {% endif %}
                   {% if release.kernel %}
                     <tr>
                       <th colspan="3" class="u-text--muted">Kernel</th>

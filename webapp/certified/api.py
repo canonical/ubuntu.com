@@ -132,6 +132,11 @@ class CertificationAPI:
             },
         ).json()
 
+    def certificate_latest_lab_report(self, certificate_id):
+        return self._get(
+            f"certificate-latest-lab-report/{certificate_id}"
+        ).json()
+
     def certified_configuration_devices(
         self,
         limit=None,

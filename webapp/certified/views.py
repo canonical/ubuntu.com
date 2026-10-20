@@ -590,6 +590,20 @@ def certified_model_details(canonical_id):
         "results"
     ]
 
+    # The certificate date is available at the platform level, keyed by
+    # canonical_id (same value shown on the platform details page).
+    certificate_date = None
+    platform_id = model_releases[0].get("platform_id")
+    if platform_id:
+        try:
+            platform = api.certified_platform_details(platform_id)
+            certificates = platform.get("certificates", {})
+            if not isinstance(certificates, dict):
+                certificates = {}
+            certificate_date = certificates.get(canonical_id, {}).get("date")
+        except Exception:
+            certificate_date = None
+
     release_details = {"components": {}, "releases": []}
     has_enabled_releases = False
 
@@ -600,6 +614,24 @@ def certified_model_details(canonical_id):
         if arch == "amd64":
             arch = "64 Bit"
 
+        # Fetch the latest lab report (last tests run) for this certificate.
+        # A missing report or an API error simply hides the table.
+        last_tested = None
+        try:
+            report = api.certificate_latest_lab_report(model_release["id"])
+            if report and (
+                report.get("date")
+                or report.get("kernel_version")
+                or report.get("bios_name")
+            ):
+                last_tested = {
+                    "date": report.get("date"),
+                    "kernel": report.get("kernel_version"),
+                    "bios": report.get("bios_name"),
+                }
+        except Exception:
+            last_tested = None
+
         release_info = {
             "name": f"Ubuntu {ubuntu_version} {arch}",
             "kernel": model_release["kernel_version"],
@@ -609,6 +641,8 @@ def certified_model_details(canonical_id):
             "version": ubuntu_version,
             "download_url": get_download_url(model_release),
             "release_notes_url": model_release.get("release_notes_url"),
+            "certificate_date": certificate_date,
+            "last_tested": last_tested,
             "components": {},
         }
 
