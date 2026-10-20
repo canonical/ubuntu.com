@@ -13,8 +13,12 @@
 
   .p-hero {
     overflow: clip;
-    padding-top: $spv--strip-regular;
+    padding-top: $spv--strip-regular * 0.5;
     position: relative;
+
+    @media (min-width: $breakpoint-large) {
+      padding-top: $spv--strip-regular;
+    }
 
     // Phones keep the section padding; from here the cut-off desktop ends
     // the hero instead
@@ -46,17 +50,16 @@
     }
   }
 
-  .p-hero__title {
-    font-weight: $font-weight-display-heading;
-
-    @media (min-width: $breakpoint-large) {
-      font-size: #{map-get($settings-text-display, font-size)}rem;
-      line-height: map-get($settings-text-display, line-height);
-      margin-bottom: map-get($settings-text-display, sp-after) - map-get(
-          $settings-text-display,
+  // Phones keep the h1 size, as the display size wraps every line
+  .p-hero .p-heading--display {
+    @media (max-width: $breakpoint-small - 1) {
+      font-size: #{map-get($settings-text-h1-mobile, font-size)}rem;
+      line-height: map-get($settings-text-h1-mobile, line-height);
+      margin-bottom: map-get($settings-text-h1-mobile, sp-after) - map-get(
+          $settings-text-h1-mobile,
           nudge
         );
-      padding-top: map-get($settings-text-display, nudge);
+      padding-top: map-get($settings-text-h1-mobile, nudge);
     }
   }
 
