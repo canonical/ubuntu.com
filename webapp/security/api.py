@@ -9,7 +9,7 @@ from urllib.parse import urlencode
 from canonicalwebteam.flask_base.env import get_flask_env
 
 SECURITY_API_URL = get_flask_env(
-    "SECURITY_API_URL", "https://api.security.ubuntu.com/security/"
+    "SECURITY_API_URL", "https://ubuntu.com/security/"
 )
 
 
