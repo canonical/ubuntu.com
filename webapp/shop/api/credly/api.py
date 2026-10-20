@@ -43,6 +43,7 @@ class CredlyAPI:
             json=json,
             allow_redirects=allow_redirects,
             auth=auth,
+            timeout=30,
         )
 
         if retry and response.status_code == 401:

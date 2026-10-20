@@ -59,8 +59,8 @@ const config = [
     }
   },
   {
-    // Root-level scripts are outside tsconfig.json's "include"
-    files: ["*.js"],
+    // These files are outside tsconfig.json's "include"
+    files: ["*.js", "static/js/third-party/**/*.js"],
     languageOptions: {
       parserOptions: { project: null },
     },

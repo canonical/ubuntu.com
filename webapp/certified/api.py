@@ -27,6 +27,7 @@ class CertificationAPI:
         response = self.session.get(
             f"{self.base_url}/{path.strip('/')}/?format=json",
             params=params,
+            timeout=30,
         )
 
         # Raise any HTTP errors

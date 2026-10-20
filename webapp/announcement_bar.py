@@ -13,8 +13,8 @@ import yaml
 # Must match the cookie name used in static/js/src/announcement-bar.js
 DISMISS_COOKIE_NAME = "_announcement_bar_dismissed"
 
-with open("announcement-bar.yaml") as announcement_bar_file:
-    _config = yaml.load(announcement_bar_file.read(), Loader=yaml.FullLoader)
+with open("announcement-bar.yaml", encoding="utf-8") as announcement_bar_file:
+    _config = yaml.safe_load(announcement_bar_file.read())
 
 
 def should_show_announcement_bar(path):

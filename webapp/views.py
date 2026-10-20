@@ -72,7 +72,9 @@ def _build_mirror_list(local=False, country_code=None):
     mirror_list = []
 
     try:
-        with open(f"{os.getcwd()}/etc/ubuntu-mirrors-rss.xml") as rss:
+        with open(
+            f"{os.getcwd()}/etc/ubuntu-mirrors-rss.xml", encoding="utf-8"
+        ) as rss:
             mirrors = feedparser.parse(rss.read()).entries
     except IOError:
         pass
@@ -164,8 +166,8 @@ def wsl_install_redirect():
 
 
 def appliance_install(appliance, device):
-    with open("appliances.yaml") as appliances:
-        appliances = yaml.load(appliances, Loader=yaml.FullLoader)
+    with open("appliances.yaml", encoding="utf-8") as appliances:
+        appliances = yaml.safe_load(appliances)
 
     return flask.render_template(
         f"appliance/{appliance}/{device}.html",
@@ -281,6 +283,7 @@ def json_asset_query(file_name):
         response = session.request(
             method="GET",
             url=f"https://assets.ubuntu.com/v1/{file_name}",
+            timeout=30,
         )
         json = response.json()
     except HTTPError:
@@ -947,7 +950,7 @@ class BlogCustomTopic(BlogView):
 class BlogSitemapIndex(BlogView):
     def dispatch_request(self):
         response = session.get(
-            "https://admin.insights.ubuntu.com/sitemap_index.xml"
+            "https://admin.insights.ubuntu.com/sitemap_index.xml", timeout=30
         )
 
         xml = response.text.replace(
@@ -963,7 +966,9 @@ class BlogSitemapIndex(BlogView):
 
 class BlogSitemapPage(BlogView):
     def dispatch_request(self, slug):
-        response = session.get(f"https://admin.insights.ubuntu.com/{slug}.xml")
+        response = session.get(
+            f"https://admin.insights.ubuntu.com/{slug}.xml", timeout=30
+        )
 
         if response.status_code == 404:
             return flask.abort(404)
@@ -1580,12 +1585,16 @@ def get_user_country_by_tz():
     timezone = flask.request.args.get("tz")
 
     with open(
-        os.path.join(APP_ROOT, "static/files/timezones.json"), "r"
+        os.path.join(APP_ROOT, "static/files/timezones.json"),
+        "r",
+        encoding="utf-8",
     ) as file:
         timezones = json.load(file)
 
     with open(
-        os.path.join(APP_ROOT, "static/files/countries.json"), "r"
+        os.path.join(APP_ROOT, "static/files/countries.json"),
+        "r",
+        encoding="utf-8",
     ) as file:
         countries = json.load(file)
 
@@ -1634,8 +1643,8 @@ def subscription_centre():
             subscription_centre_submit(sfdcLeadId, True)
             return flask.redirect(f"/{return_url}")
 
-    with open("subscriptions.yaml") as subscriptions:
-        subscriptions = yaml.load(subscriptions, Loader=yaml.FullLoader)
+    with open("subscriptions.yaml", encoding="utf-8") as subscriptions:
+        subscriptions = yaml.safe_load(subscriptions)
 
     try:
         response = marketo_api.request(
@@ -1829,7 +1838,7 @@ def build_sitemap_tree(exclude_paths=None):
                 directory_path, base_url, exclude_paths=exclude_paths
             )
             if xml_sitemap:
-                with open(sitemap_path, "w") as f:
+                with open(sitemap_path, "w", encoding="utf-8") as f:
                     f.write(xml_sitemap)
                 logging.info(f"Sitemap saved to {sitemap_path}")
 
@@ -1875,7 +1884,7 @@ def build_sitemap_tree(exclude_paths=None):
             return {"error": "Sitemap not available"}, 503
 
         # Serve the existing sitemap
-        with open(sitemap_path, "r") as f:
+        with open(sitemap_path, "r", encoding="utf-8") as f:
             xml_sitemap = f.read()
 
         response = flask.make_response(xml_sitemap)

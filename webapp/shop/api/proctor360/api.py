@@ -67,6 +67,7 @@ class Proctor360API:
             data=data,
             json=json,
             allow_redirects=allow_redirects,
+            timeout=30,
         )
         if retry and response.status_code == 401:
             response = self.make_request(

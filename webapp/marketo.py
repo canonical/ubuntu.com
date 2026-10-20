@@ -22,7 +22,7 @@ class MarketoAPI:
             "?grant_type=client_credentials&"
             f"client_id={self.client_id}&client_secret={self.client_secret}"
         )
-        request = self.session.get(auth_url)
+        request = self.session.get(auth_url, timeout=30)
         self.token = request.json()["access_token"]
         self.session.headers.update({"Authorization": f"Bearer {self.token}"})
 
@@ -35,6 +35,7 @@ class MarketoAPI:
             method=method,
             url=f"{self.base_url}{url}?{params}",
             json=json,
+            timeout=30,
         )
 
         errors = response.json().get("errors")
@@ -44,6 +45,7 @@ class MarketoAPI:
                 method=method,
                 url=f"{self.base_url}{url}?{params}",
                 json=json,
+                timeout=30,
             )
 
         return response
