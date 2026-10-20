@@ -3,6 +3,7 @@ import os
 import json
 import sentry_sdk
 from unittest.mock import Mock, patch
+from urllib.parse import parse_qs, urlparse
 
 from webapp.app import app
 from tests.helpers import MarketoFormTestCase
@@ -433,6 +434,118 @@ class TestMarketoSubmit(unittest.TestCase):
         )
         self.assertEqual(http_response.status_code, 302)
         self.assertIn("contact-form-fail", http_response.headers["Location"])
+
+    HIDDEN_UTMS = {
+        "utm_source": "canonical-com",
+        "utm_medium": "referral",
+        "utm_campaign": "spring",
+        "utm_content": "banner",
+        "utm_term": "linux",
+    }
+
+    def _submit_cross_domain(self, extra_data, cookie=None):
+        """
+        POST a form as a cross-domain page would: no utms cookie, with
+        hidden utm_* inputs. Returns (payload_fields, enrichment_fields).
+        """
+        data = {
+            "formid": "1234",
+            "email": "test@example.com",
+            "firstName": "Test",
+        }
+        data.update(extra_data)
+        if cookie:
+            # Werkzeug 2.2 signature: (server_name, key, value)
+            self.client.set_cookie("localhost", *cookie)
+        with patch(
+            "webapp.views.marketo_api.submit_form"
+        ) as mock_submit, patch("webapp.views.marketo_sentry_report"):
+            mock_submit.side_effect = [
+                self._mock_response(
+                    {"success": True, "result": [{"status": "created"}]}
+                ),
+                self._mock_response({"success": True}),
+            ]
+            self.client.post(
+                "/marketo/submit",
+                data=data,
+                environ_overrides={"REMOTE_ADDR": "127.0.0.1"},
+            )
+        payload, enriched = [c.args[0] for c in mock_submit.call_args_list]
+        return (
+            payload["input"][0]["leadFormFields"],
+            enriched["input"][0]["leadFormFields"],
+        )
+
+    def _assert_no_utms(self, payload_fields, enrichment_fields):
+        for fields in (payload_fields, enrichment_fields):
+            for key in (*self.HIDDEN_UTMS, "utmcontent"):
+                self.assertNotIn(key, fields)
+        query = urlparse(enrichment_fields["acquisition_url"]).query
+        self.assertFalse([k for k in parse_qs(query) if k.startswith("utm_")])
+
+    def test_cross_domain_form_consent_sends_hidden_utms(self):
+        """
+        With no cookies, a _cookies_accepted=all form field plus hidden utm_*
+        inputs results in the approved UTMs in the enrichment payload
+        (utm_content renamed to utmcontent) and the acquisition URL.
+        """
+        payload_fields, enrichment_fields = self._submit_cross_domain(
+            {
+                **self.HIDDEN_UTMS,
+                "utm_unapproved": "nope",
+                "_cookies_accepted": "all",
+            }
+        )
+        self.assertEqual(enrichment_fields["utm_source"], "canonical-com")
+        self.assertEqual(enrichment_fields["utm_medium"], "referral")
+        self.assertEqual(enrichment_fields["utm_campaign"], "spring")
+        self.assertEqual(enrichment_fields["utm_term"], "linux")
+        self.assertEqual(enrichment_fields["utmcontent"], "banner")
+        self.assertNotIn("utm_content", enrichment_fields)
+        self.assertNotIn("utm_unapproved", enrichment_fields)
+
+        acquisition_params = parse_qs(
+            urlparse(enrichment_fields["acquisition_url"]).query
+        )
+        for key, value in self.HIDDEN_UTMS.items():
+            self.assertEqual(acquisition_params[key], [value])
+        self.assertNotIn("utm_unapproved", acquisition_params)
+
+        # The consent flag is not forwarded to Marketo
+        self.assertNotIn("_cookies_accepted", payload_fields)
+        self.assertNotIn("_cookies_accepted", enrichment_fields)
+
+    def test_cross_domain_without_consent_strips_hidden_utms(self):
+        """
+        Hidden utm_* inputs are not forwarded when no consent is supplied
+        by either cookie or form.
+        """
+        payload_fields, enrichment_fields = self._submit_cross_domain(
+            dict(self.HIDDEN_UTMS)
+        )
+        self._assert_no_utms(payload_fields, enrichment_fields)
+
+    def test_cross_domain_non_consenting_form_value_strips_utms(self):
+        """
+        A form-supplied _cookies_accepted value that isn't a non-essential
+        consent value does not unlock UTM forwarding.
+        """
+        payload_fields, enrichment_fields = self._submit_cross_domain(
+            {**self.HIDDEN_UTMS, "_cookies_accepted": "essential"}
+        )
+        self._assert_no_utms(payload_fields, enrichment_fields)
+
+    def test_denial_cookie_takes_precedence_over_form_consent(self):
+        """
+        An existing non-consenting _cookies_accepted cookie wins over a
+        form field claiming consent, so no UTMs are forwarded.
+        """
+        payload_fields, enrichment_fields = self._submit_cross_domain(
+            {**self.HIDDEN_UTMS, "_cookies_accepted": "all"},
+            cookie=("_cookies_accepted", "essential"),
+        )
+        self._assert_no_utms(payload_fields, enrichment_fields)
 
 
 if __name__ == "__main__":
