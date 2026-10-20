@@ -447,37 +447,6 @@ production:
         - name: SENTRY_DSN
           value: https://624a17f6cb841af9f2c4b0998b8f30d2@o4510662863749120.ingest.de.sentry.io/4510709886419024
 
-    - paths:
-        [
-          /security/cves\.json,
-          /security/cves/.*\.json,
-          /security/released/cves\.json,
-          /security/released/cves/.*\.json,
-          /security/sitemap/cves\.json,
-          /security/sitemap/cves/.*\.json,
-          /security/sitemap/notices\.json,
-          /security/sitemap/notices/.*\.json,
-          /security/releases\.json,
-          /security/releases/.*\.json,
-          /security/api/.*,
-          /security/page/.*\.json,
-        ]
-      service_name: ubuntu-com-security-api
-
-    - paths:
-        [
-          /security/notices\.json,
-          /security/notices/.*\.json,
-        ]
-      service_name: ubuntu-com-security-api-notices
-
-    - paths:
-        [
-          /security/flat/notices\.json,
-          /security/flat/notices/.*\.json,
-        ]
-      service_name: ubuntu-com-security-api-flat-notices
-
     - paths: [/security]
       name: ubuntu-com-security
       app_name: ubuntu.com-security
@@ -629,6 +598,14 @@ production:
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Proto $scheme;
       proxy_read_timeout 300s;
+    }
+    location ~* ^/security/(api/|((cves|released/cves|sitemap/cves|sitemap/notices|releases|notices|flat/notices)(/.*)?|page/.*)\.json$) {
+      proxy_pass https://api.security.ubuntu.com;
+      proxy_ssl_server_name on;
+      proxy_set_header Host api.security.ubuntu.com;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
     }
 
 # Overrides for staging
@@ -1077,37 +1054,6 @@ staging:
         - name: SENTRY_DSN
           value: https://624a17f6cb841af9f2c4b0998b8f30d2@o4510662863749120.ingest.de.sentry.io/4510709886419024
 
-    - paths:
-        [
-          /security/cves\.json,
-          /security/cves/.*\.json,
-          /security/released/cves\.json,
-          /security/released/cves/.*\.json,
-          /security/sitemap/cves\.json,
-          /security/sitemap/cves/.*\.json,
-          /security/sitemap/notices\.json,
-          /security/sitemap/notices/.*\.json,
-          /security/releases\.json,
-          /security/releases/.*\.json,
-          /security/api/.*,
-          /security/page/.*\.json,
-        ]
-      service_name: ubuntu-com-security-api
-    
-    - paths:
-       [
-          /security/notices\.json,
-          /security/notices/.*\.json,
-       ]
-      service_name: ubuntu-com-security-api-notices
-
-    - paths:
-        [
-          /security/flat/notices\.json,
-          /security/flat/notices/.*\.json,
-        ]
-      service_name: ubuntu-com-security-api-flat-notices
-
     - paths: [/security]
       name: ubuntu-com-security
       app_name: ubuntu.com-security
@@ -1226,6 +1172,14 @@ staging:
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Proto $scheme;
       proxy_read_timeout 300s;
+    }
+    location ~* ^/security/(api/|((cves|released/cves|sitemap/cves|sitemap/notices|releases|notices|flat/notices)(/.*)?|page/.*)\.json$) {
+      proxy_pass https://api.staging.security.ubuntu.com;
+      proxy_ssl_server_name on;
+      proxy_set_header Host api.staging.security.ubuntu.com;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
     }
 
 demo:
