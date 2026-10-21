@@ -38,3 +38,14 @@ it("keeps the finished wallpaper with reduced motion", () => {
   const { video } = setUpHero({ reduced: true });
   expect(video.hasAttribute("src")).toBe(false);
 });
+
+it("waits for the page to load before fetching the video", () => {
+  const readyState = jest
+    .spyOn(document, "readyState", "get")
+    .mockReturnValue("interactive");
+  const { video } = setUpHero();
+  expect(video.hasAttribute("src")).toBe(false);
+  window.dispatchEvent(new Event("load"));
+  expect(video.getAttribute("src")).toBe("/wallpaper.mp4");
+  readyState.mockRestore();
+});

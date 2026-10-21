@@ -21,7 +21,12 @@ export function startHero(root) {
     return;
   }
   if (wideQuery.matches) {
-    playVideo();
+    // The video is the biggest download; keep it out of the page load
+    if (document.readyState === "complete") {
+      playVideo();
+    } else {
+      window.addEventListener("load", playVideo, { once: true });
+    }
   } else {
     wideQuery.addEventListener("change", playVideo, { once: true });
   }
