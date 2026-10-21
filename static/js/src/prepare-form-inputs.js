@@ -26,6 +26,21 @@ export async function prepareInputFields(phoneInput, countryInput) {
   }
 }
 
+const preparedInputs = new WeakSet();
+
+/**
+ * Runs prepareInputFields once per set of inputs, so a modal that is opened
+ * again keeps its first setup.
+ */
+export function prepareInputFieldsOnce(phoneInput, countryInput) {
+  const key = phoneInput || countryInput;
+  if (!key || preparedInputs.has(key)) {
+    return;
+  }
+  preparedInputs.add(key);
+  return prepareInputFields(phoneInput, countryInput);
+}
+
 /**
  * Sets the value of the country input field.
  *
@@ -142,11 +157,17 @@ function resetErrorState(errorElement, phoneInput) {
   }
 }
 
-// This block checks for the presence of 'phone number' and 'country' input fields on the page. If either input field exists, it triggers the `prepareInputFields` function to set them up. Note: In a modal form scenario, these inputs are not present at page load and thus, `prepareInputFields` is not invoked here. Instead, the function is imported and executed within `dynamic-forms.js` when the modal is opened.
+// Sets up the phone and country fields of forms on the page. Modal forms,
+// including generated ones already in the page, are set up by
+// `dynamic-forms.js` when the modal opens, so the page load doesn't fetch the
+// user's country or the phone number formatting script.
 const phoneNumberInput = document.querySelector("input#phone");
 const countryInput = document.querySelector("select#country");
+const isInModal = [phoneNumberInput, countryInput].some((input) =>
+  input?.closest(".js-modal-ready"),
+);
 
-if (phoneNumberInput || countryInput) {
+if ((phoneNumberInput || countryInput) && !isInModal) {
   prepareInputFields(phoneNumberInput, countryInput);
 }
 
