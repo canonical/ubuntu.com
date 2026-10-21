@@ -11,7 +11,7 @@
     "lint-js": "eslint static/js/src/**/*.{js,jsx,ts,tsx}",
     "lint-ts": "tsc --noEmit",
     "test-js": "TZ=UTC NODE_ICU_DATA=node_modules/full-icu jest",
-    "build-css": "sass static/sass:static/css --load-path=node_modules --style=compressed --quiet-deps && postcss --replace 'static/css/**/*.css' --no-map && cp node_modules/@canonical/cookie-policy/build/css/cookie-policy.css static/css/",
+    "build-css": "sass static/sass:static/css --load-path=node_modules --style=compressed --quiet-deps && postcss --replace 'static/css/**/*.css' --no-map && cp node_modules/@canonical/cookie-policy/build/css/cookie-policy.css static/css/ && node scripts/strip-font-faces.js static/css/cookie-policy.css",
     "build-js": "node build.js && ./scripts/build-modules.sh",
     "build-vanilla-framework": "yarn run build-vanilla-macros && yarn run build-vanilla-js",
     "build-vanilla-macros": "mkdir -p static/js/modules/vanilla-framework && cp -r node_modules/vanilla-framework/templates/_macros/ static/js/modules/vanilla-framework",
