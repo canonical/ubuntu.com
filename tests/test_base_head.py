@@ -14,9 +14,12 @@ class TestBaseHead(unittest.TestCase):
         head = BeautifulSoup(html, "html.parser").head
         self.assertNotIn("lazysizes", str(head))
         self.assertIsNone(head.select_one('link[href*="cookie-policy.css"]'))
-        for src in ("cookie-policy.js", "cookie-policy-with-callback.js"):
-            script = head.select_one(f'script[src*="{src}"]')
-            self.assertTrue(script.has_attr("defer"))
+        # cookie-policy.js creates dataLayer and the consent default, which
+        # inline scripts and GTM need before the page finishes parsing
+        policy = head.select_one('script[src*="/cookie-policy.js"]')
+        self.assertFalse(policy.has_attr("defer"))
+        callback = head.select_one('script[src*="cookie-policy-with-"]')
+        self.assertTrue(callback.has_attr("defer"))
         self.assertEqual(head.select('link[rel="preconnect"]'), [])
 
 

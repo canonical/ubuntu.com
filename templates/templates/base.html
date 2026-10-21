@@ -165,10 +165,10 @@
             }
           </style>
 
-          <!-- Cookie policy; its stylesheet is at the end of <body> -->
+          <!-- Cookie policy; its stylesheet is at the end of <body>. Not
+               deferred: it sets up dataLayer and the consent default -->
           <script nonce="{{ csp_nonce }}"
-                  src="{{ versioned_static('js/dist/cookie-policy.js') }}"
-                  defer></script>
+                  src="{{ versioned_static('js/dist/cookie-policy.js') }}"></script>
           <script nonce="{{ csp_nonce }}"
                   src="{{ versioned_static('js/dist/cookie-policy-with-callback.js') }}"
                   defer></script>
