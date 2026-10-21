@@ -23,7 +23,7 @@ class BadgrAPI:
         headers["Authorization"] = f"Bearer {self.token}"
 
         response = self.session.request(
-            method, uri, data=data, headers=headers, timeout=30
+            method, uri, data=data, headers=headers
         )
 
         if retry and response.status_code == 401:
@@ -39,7 +39,7 @@ class BadgrAPI:
 
         data = {"username": self.username, "password": self.password}
 
-        response = self.session.post(uri, data=data, timeout=30).json()
+        response = self.session.post(uri, data=data).json()
         self.token = response["access_token"]
 
     def get_assertions(self, issuer: str, email: str):

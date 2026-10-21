@@ -79,7 +79,6 @@ def login_handler():
     response = session.request(
         method="get",
         url=f"{api_url}v1/canonical-sso-macaroon",
-        timeout=30,
     )
     flask.session["macaroon_root"] = response.json()["macaroon"]
 

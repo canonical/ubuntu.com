@@ -283,7 +283,6 @@ def json_asset_query(file_name):
         response = session.request(
             method="GET",
             url=f"https://assets.ubuntu.com/v1/{file_name}",
-            timeout=30,
         )
         json = response.json()
     except HTTPError:
@@ -950,7 +949,7 @@ class BlogCustomTopic(BlogView):
 class BlogSitemapIndex(BlogView):
     def dispatch_request(self):
         response = session.get(
-            "https://admin.insights.ubuntu.com/sitemap_index.xml", timeout=30
+            "https://admin.insights.ubuntu.com/sitemap_index.xml"
         )
 
         xml = response.text.replace(
@@ -967,7 +966,7 @@ class BlogSitemapIndex(BlogView):
 class BlogSitemapPage(BlogView):
     def dispatch_request(self, slug):
         response = session.get(
-            f"https://admin.insights.ubuntu.com/{slug}.xml", timeout=30
+            f"https://admin.insights.ubuntu.com/{slug}.xml"
         )
 
         if response.status_code == 404:
