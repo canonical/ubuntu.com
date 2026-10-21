@@ -126,6 +126,12 @@
   .p-post__content {
     .table-responsive {
       overflow-x: auto;
+
+      // WordPress nests the table in invalid markup, which leaves an empty
+      // figure behind; its default side margin adds a stray sideways scroll.
+      figure:empty {
+        display: none;
+      }
     }
 
     table {
