@@ -876,7 +876,7 @@ if (accountContainer) {
     .then((response) => response.json())
     .then((data) => {
       if (data.account === null) {
-        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;" tabindex="0" role="button" data-js-stop-propagation>Sign in</a>`;
+        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;" tabindex="0" role="menuitem" data-js-stop-propagation>Sign in</a>`;
       } else {
         window.accountJSONRes = data.account;
         if (data.account && data.account.email) {
