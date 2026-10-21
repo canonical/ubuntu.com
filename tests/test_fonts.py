@@ -12,7 +12,7 @@ class TestLocalFonts(unittest.TestCase):
     def test_preloads_match_font_faces(self):
         app.testing = True
         html = app.test_client().get("/about").get_data(as_text=True)
-        soup = BeautifulSoup(html, "lxml")
+        soup = BeautifulSoup(html, "html.parser")
         preloads = [
             link["href"] for link in soup.select("link[rel=preload][as=font]")
         ]
