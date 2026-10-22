@@ -174,13 +174,19 @@ describe("startOpenSourceCarousel", () => {
     expect(window.location.hash).toBe("");
   });
 
-  it("types only the package names, showing each one's own flags", () => {
+  it("types a snap's flags after its name", () => {
     setup("", ["kube", ["juju", "--classic"]]);
+    const seen = [];
+    for (let i = 0; i < 60; i += 1) {
+      tick(90);
+      seen.push(typed(0));
+    }
 
-    tick(LEAD_IN_MS + 100);
-    expect(typed(0)).toBe("$ sudo snap install ku");
-    tick(2500);
-    expect(typed(0)).toBe("$ sudo snap install juju --classic");
+    const name = seen.indexOf("$ sudo snap install juju");
+    expect(name).toBeGreaterThan(-1);
+    expect(seen.indexOf("$ sudo snap install juju --classic")).toBeGreaterThan(
+      name,
+    );
   });
 
   it("stays on a slide until its command has typed every snap", () => {

@@ -7,16 +7,15 @@ function span(className, text) {
 
 // Types a command's snaps in turn: the code element's data-prefix stays, and
 // each [data-name] snap is typed, held, deleted, then the next one starts. A
-// snap's data-flags show beside it as it types, without being typed.
+// snap's data-flags are typed after its name, as someone would at a prompt.
 // Until start() the element keeps its server-rendered full list.
 export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
   const staticHtml = el.innerHTML;
   const staticText = el.textContent;
   const prefix = el.dataset.prefix;
   const snaps = [...el.querySelectorAll("[data-name]")];
-  const words = snaps.map((snap) => snap.dataset.name);
-  const flags = snaps.map(({ dataset }) =>
-    dataset.flags ? ` ${dataset.flags}` : "",
+  const words = snaps.map(({ dataset }) =>
+    dataset.flags ? `${dataset.name} ${dataset.flags}` : dataset.name,
   );
   // From the lead-in until the last word has been typed and held
   const durationMs = words.reduce((total, word, i) => {
@@ -25,7 +24,6 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
     return total + typing + deleting;
   }, holdMs);
   let typed = null;
-  let flag = null;
   let wordIndex = 0;
   let chars = 0;
   let phase = "typing";
@@ -39,8 +37,7 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
     word.append(typed, span("p-open-source__cursor", ""));
     const visible = document.createElement("span");
     visible.setAttribute("aria-hidden", "true");
-    flag = document.createTextNode(flags[0]);
-    visible.append(prefix, word, flag);
+    visible.append(prefix, word);
     el.replaceChildren(visible, span("u-off-screen", staticText));
   }
 
@@ -60,7 +57,6 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
       }
     }
     typed.textContent = words[wordIndex].slice(0, chars);
-    flag.textContent = flags[wordIndex];
     timer = window.setTimeout(step, delay);
   }
 
