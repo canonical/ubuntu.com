@@ -38,7 +38,10 @@ export function prepareInputFieldsOnce(phoneInput, countryInput) {
     return;
   }
   preparedInputs.add(key);
-  return prepareInputFields(phoneInput, countryInput);
+  // A failed lookup leaves plain inputs; let the next open try again
+  return prepareInputFields(phoneInput, countryInput).catch(() =>
+    preparedInputs.delete(key),
+  );
 }
 
 /**

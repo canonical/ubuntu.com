@@ -27,3 +27,12 @@ test("prepares the same inputs only once", async () => {
   await prepareInputFieldsOnce(phone, country);
   expect(global.fetch).toHaveBeenCalledTimes(1);
 });
+
+test("retries the inputs after a failed country lookup", async () => {
+  const { prepareInputFieldsOnce } = await import("./prepare-form-inputs.js");
+  const phone = document.querySelector("#phone");
+  global.fetch.mockResolvedValueOnce({ ok: false, status: 500 });
+  await prepareInputFieldsOnce(phone, null);
+  await prepareInputFieldsOnce(phone, null);
+  expect(global.fetch).toHaveBeenCalledTimes(2);
+});
