@@ -18,6 +18,12 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
   const flags = snaps.map(({ dataset }) =>
     dataset.flags ? ` ${dataset.flags}` : "",
   );
+  // From the lead-in until the last word has been typed and held
+  const durationMs = words.reduce((total, word, i) => {
+    const typing = (word.length - 1) * typeMs + holdMs;
+    const deleting = i < words.length - 1 ? word.length * typeMs : 0;
+    return total + typing + deleting;
+  }, holdMs);
   let typed = null;
   let flag = null;
   let wordIndex = 0;
@@ -64,11 +70,13 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
     if (timer !== null) {
       return;
     }
-    const fresh = !typed;
-    if (fresh) {
+    if (!typed) {
       build();
     }
-    timer = window.setTimeout(step, fresh ? holdMs : typeMs);
+    // A stop during the lead-in (e.g. the section scrolled off before typing
+    // began) restarts it, keeping the typing in step with durationMs
+    const leadIn = wordIndex === 0 && chars === 0;
+    timer = window.setTimeout(step, leadIn ? holdMs : typeMs);
   }
 
   function stop() {
@@ -87,5 +95,5 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
     phase = "typing";
   }
 
-  return { start, stop, reset };
+  return { start, stop, reset, durationMs };
 }

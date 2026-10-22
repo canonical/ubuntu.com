@@ -182,4 +182,14 @@ describe("startOpenSourceCarousel", () => {
     tick(2500);
     expect(typed(0)).toBe("$ sudo snap install juju --classic");
   });
+
+  it("stays on a slide until its command has typed every snap", () => {
+    // Lead-in, 79 more characters, then the hold: 1500 + 7110 + 1500
+    setup("", ["x".repeat(80)]);
+
+    tick(SLIDE_MS + 50);
+    expect(active()).toBe(0);
+    tick(10110 - SLIDE_MS);
+    expect(active()).toBe(1);
+  });
 });

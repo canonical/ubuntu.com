@@ -41,6 +41,11 @@ export function startOpenSourceCarousel(root) {
     const code = slide.querySelector(".p-open-source__command code");
     return code && createTypewriter(code);
   });
+  // A slide stays at least SLIDE_MS, longer if its command needs the time to
+  // type every snap
+  const durations = writers.map((writer) =>
+    Math.max(SLIDE_MS, writer ? writer.durationMs : 0),
+  );
 
   let index = 0;
   // Autoplay only: Pause or a visitor's choice stops the slides advancing,
@@ -65,10 +70,10 @@ export function startOpenSourceCarousel(root) {
     frame = null;
     elapsed += last === null ? 0 : now - last;
     last = now;
-    if (elapsed >= SLIDE_MS) {
+    if (elapsed >= durations[index]) {
       go(wrap(index + 1));
     } else {
-      paint(`scaleX(${elapsed / SLIDE_MS})`);
+      paint(`scaleX(${elapsed / durations[index]})`);
       frame = window.requestAnimationFrame(tick);
     }
   }
