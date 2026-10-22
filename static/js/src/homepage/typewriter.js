@@ -5,6 +5,14 @@ function span(className, text) {
   return node;
 }
 
+function sharedLength(a, b) {
+  let n = 0;
+  while (n < a.length && a[n] === b[n]) {
+    n += 1;
+  }
+  return n;
+}
+
 // Types a command's options in turn: the code element's data-prefix stays,
 // and each [data-type] string is typed, held, deleted, then the next one
 // starts. Until start() the element keeps its server-rendered full list.
@@ -15,10 +23,19 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
   const words = [...el.querySelectorAll("[data-type]")].map(
     ({ dataset }) => dataset.type,
   );
+  // How much of each word stays when moving on to the next: what they share,
+  // retyping at least one character so a lone word still clears
+  const keeps = words.map((word, i) => {
+    const next = words[(i + 1) % words.length];
+    return words.length === 1
+      ? 0
+      : Math.min(sharedLength(word, next), next.length - 1);
+  });
   // From the lead-in until the last word has been typed and held
   const durationMs = words.reduce((total, word, i) => {
-    const typing = (word.length - 1) * typeMs + holdMs;
-    const deleting = i < words.length - 1 ? word.length * typeMs : 0;
+    const typing = (word.length - (i ? keeps[i - 1] : 0) - 1) * typeMs + holdMs;
+    const deleting =
+      i < words.length - 1 ? (word.length - keeps[i]) * typeMs : 0;
     return total + typing + deleting;
   }, holdMs);
   let typed = null;
@@ -59,8 +76,10 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
         delay = holdMs;
       }
     } else {
-      chars -= 1;
-      if (chars === 0) {
+      if (chars > keeps[wordIndex]) {
+        chars -= 1;
+      }
+      if (chars === keeps[wordIndex]) {
         wordIndex = (wordIndex + 1) % words.length;
         phase = "typing";
       }

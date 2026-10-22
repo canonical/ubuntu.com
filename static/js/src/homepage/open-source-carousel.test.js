@@ -195,4 +195,17 @@ describe("startOpenSourceCarousel", () => {
     tick(10110 - SLIDE_MS);
     expect(active()).toBe(1);
   });
+
+  it("deletes only back to the start the next word shares", () => {
+    setup("", ["kube", "kuma"]);
+    const seen = [];
+    for (let i = 0; i < 50; i += 1) {
+      tick(TYPE_MS);
+      seen.push(typed(0));
+    }
+
+    const after = seen.slice(seen.indexOf("$ sudo snap install kube"));
+    expect(after).toContain("$ sudo snap install kuma");
+    expect(after).not.toContain("$ sudo snap install k");
+  });
 });
