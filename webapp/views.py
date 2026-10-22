@@ -965,9 +965,7 @@ class BlogSitemapIndex(BlogView):
 
 class BlogSitemapPage(BlogView):
     def dispatch_request(self, slug):
-        response = session.get(
-            f"https://admin.insights.ubuntu.com/{slug}.xml"
-        )
+        response = session.get(f"https://admin.insights.ubuntu.com/{slug}.xml")
 
         if response.status_code == 404:
             return flask.abort(404)
