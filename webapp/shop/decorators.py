@@ -1,4 +1,3 @@
-from distutils.util import strtobool
 from functools import wraps
 from datetime import datetime
 from dateutil.parser import parse
@@ -6,6 +5,7 @@ from dateutil.parser import parse
 import flask
 import pytz
 
+from webapp.utils import strtobool
 from webapp.shop.api.ua_contracts.api import UAContractsAPI
 from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
 from webapp.shop.api.badgr.api import BadgrAPI

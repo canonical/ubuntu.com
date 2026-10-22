@@ -177,8 +177,8 @@ WORDPRESS_APPLICATION_PASSWORD = get_flask_env(
 
 # Sitemaps that are already generated and don't need to be updated.
 # Can be seen on sitemap_index.xml
-with open("dynamic-sitemaps.yaml") as sitemaps_file:
-    DYNAMIC_SITEMAPS = yaml.load(sitemaps_file.read(), Loader=yaml.FullLoader)
+with open("dynamic-sitemaps.yaml", encoding="utf-8") as sitemaps_file:
+    DYNAMIC_SITEMAPS = yaml.safe_load(sitemaps_file.read())
 
 # LLM-friendly site index (https://llmstxt.org/): the hand-written
 # templates/llms.txt. Built once at startup, like the config above, rather
@@ -226,7 +226,7 @@ def llms_full_txt():
     if not os.path.exists(file_path):
         return {"error": "llms-full.txt not available"}, 503
 
-    with open(file_path) as f:
+    with open(file_path, encoding="utf-8") as f:
         content = f.read()
 
     response = flask.make_response(content)
@@ -608,8 +608,8 @@ app.add_url_rule("/wsl/install", view_func=wsl_install_redirect)
 
 app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
 
-with open("navigation.yaml") as navigation_file:
-    navigation = yaml.load(navigation_file.read(), Loader=yaml.FullLoader)
+with open("navigation.yaml", encoding="utf-8") as navigation_file:
+    navigation = yaml.safe_load(navigation_file.read())
 
 app.add_url_rule(
     "/search",

@@ -27,7 +27,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Test JS
-        run: yarn test-js --coverage
+        run: yarn test-js --coverage --coverageReporters=cobertura
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -96,10 +96,8 @@ jobs:
           name: ubuntu-com-coverage
           path: coverage
 
-      - name: Move coverage report to expected location
-        run: |
-          mkdir -p .coverage &&
-          mv coverage/coverage.xml .coverage/coverage.xml
+      - name: Point JS coverage paths at this workspace
+        run: sed -i "s#<source>[^<]*</source>#<source>${GITHUB_WORKSPACE}</source>#" coverage/cobertura-coverage.xml
 
       - name: Run TICS analysis with github-action
         uses: tiobe/tics-github-action@v3
