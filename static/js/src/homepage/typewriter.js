@@ -5,17 +5,15 @@ function span(className, text) {
   return node;
 }
 
-// Types a command's snaps in turn: the code element's data-prefix stays, and
-// each [data-name] snap is typed, held, deleted, then the next one starts. A
-// snap's data-flags are typed after its name, as someone would at a prompt.
-// Until start() the element keeps its server-rendered full list.
+// Types a command's options in turn: the code element's data-prefix stays,
+// and each [data-type] string is typed, held, deleted, then the next one
+// starts. Until start() the element keeps its server-rendered full list.
 export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
   const staticHtml = el.innerHTML;
   const staticText = el.textContent;
   const prefix = el.dataset.prefix;
-  const snaps = [...el.querySelectorAll("[data-name]")];
-  const words = snaps.map(({ dataset }) =>
-    dataset.flags ? `${dataset.name} ${dataset.flags}` : dataset.name,
+  const words = [...el.querySelectorAll("[data-type]")].map(
+    ({ dataset }) => dataset.type,
   );
   // From the lead-in until the last word has been typed and held
   const durationMs = words.reduce((total, word, i) => {
@@ -24,21 +22,32 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
     return total + typing + deleting;
   }, holdMs);
   let typed = null;
+  let cursor = null;
   let wordIndex = 0;
   let chars = 0;
   let phase = "typing";
   let timer = null;
 
-  // Screen readers get the full list once, the keystrokes are hidden. The
-  // word and cursor wrap as one, so a hyphenated name never splits.
+  // Screen readers get the full list once, the keystrokes are hidden
   function build() {
     typed = document.createElement("span");
-    const word = span("p-open-source__nowrap", "");
-    word.append(typed, span("p-open-source__cursor", ""));
-    const visible = document.createElement("span");
-    visible.setAttribute("aria-hidden", "true");
-    visible.append(prefix, word);
-    el.replaceChildren(visible, span("u-off-screen", staticText));
+    cursor = span("p-open-source__cursor", "");
+    typed.setAttribute("aria-hidden", "true");
+    el.replaceChildren(typed, span("u-off-screen", staticText));
+    render();
+  }
+
+  // Each space-separated part stays whole, so a hyphenated name never splits
+  // but a long command can still wrap between a name and its flags. The
+  // cursor rides with the last part.
+  function render() {
+    const parts = words[wordIndex].slice(0, chars).split(" ");
+    const spans = parts.map((part) => span("p-open-source__nowrap", part));
+    spans[spans.length - 1].append(cursor);
+    typed.replaceChildren(
+      prefix,
+      ...spans.flatMap((part, i) => (i ? [" ", part] : [part])),
+    );
   }
 
   function step() {
@@ -56,7 +65,7 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
         phase = "typing";
       }
     }
-    typed.textContent = words[wordIndex].slice(0, chars);
+    render();
     timer = window.setTimeout(step, delay);
   }
 

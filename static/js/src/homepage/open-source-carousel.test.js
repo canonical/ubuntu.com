@@ -3,15 +3,13 @@ import { SLIDE_MS, startOpenSourceCarousel } from "./open-source-carousel";
 const COMMAND = "$ sudo snap install kube/juju";
 const SNAPS = ["kube", "juju"];
 const LEAD_IN_MS = 1500;
+const TYPE_MS = 90;
 
 let root;
 
-// Mirrors the template: each snap is a name, or a [name, flags] pair
+// Mirrors the template: one span per snap, with the text to type
 function code(snaps) {
-  const spans = snaps.map((snap) => {
-    const [name, flags = ""] = [].concat(snap);
-    return `<span data-name="${name}" data-flags="${flags}">${name}${flags && ` ${flags}`}</span>`;
-  });
+  const spans = snaps.map((snap) => `<span data-type="${snap}">${snap}</span>`);
   const prefix = "$ sudo snap install ";
   return `<code data-prefix="${prefix}">${prefix}${spans.join("/")}</code>`;
 }
@@ -175,18 +173,17 @@ describe("startOpenSourceCarousel", () => {
   });
 
   it("types a snap's flags after its name", () => {
-    setup("", ["kube", ["juju", "--classic"]]);
+    setup("", ["kube", "juju --classic"]);
     const seen = [];
     for (let i = 0; i < 60; i += 1) {
-      tick(90);
+      tick(TYPE_MS);
       seen.push(typed(0));
     }
 
     const name = seen.indexOf("$ sudo snap install juju");
+    const flag = seen.indexOf("$ sudo snap install juju --classic");
     expect(name).toBeGreaterThan(-1);
-    expect(seen.indexOf("$ sudo snap install juju --classic")).toBeGreaterThan(
-      name,
-    );
+    expect(flag).toBeGreaterThan(name);
   });
 
   it("stays on a slide until its command has typed every snap", () => {

@@ -239,7 +239,7 @@
                   <a class="p-cta-text" href="{{ block.link.href }}">{{ block.link.text }}<i class="p-icon--arrow-right"></i></a>
                 </p>
               {% elif block.command %}
-                <pre class="p-open-source__command"><code data-prefix="$ {{ block.command.prefix }} ">$ {{ block.command.prefix }} {% for snap in block.command.snaps %}<span class="p-open-source__nowrap" data-name="{{ snap.name }}" data-flags="{{ snap.flags }}">{{ snap.name }}{{ " " ~ snap.flags if snap.flags }}{{ "/" if not loop.last }}</span>{{ "<wbr>" | safe if not loop.last }}{% endfor %}</code></pre>
+                <pre class="p-open-source__command"><code data-prefix="$ {{ block.command.prefix }} ">$ {{ block.command.prefix }} {% for snap in block.command.snaps %}{% set snap_text = snap.name ~ (" " ~ snap.flags if snap.flags else "") %}<span class="p-open-source__nowrap" data-type="{{ snap_text }}">{{ snap_text }}{{ "/" if not loop.last }}</span>{{ "<wbr>" | safe if not loop.last }}{% endfor %}</code></pre>
               {% elif block.logos %}
                 {%- call(slot) vf_logo_section(
                   title={},
