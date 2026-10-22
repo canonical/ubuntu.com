@@ -5,7 +5,7 @@ const LEAD_IN_MS = 1500;
 
 let root;
 
-function setup(hash = "") {
+function setup(hash = "", command = COMMAND) {
   window.history.replaceState(null, "", `/${hash}`);
   const slides = ["a", "b", "c"].map(
     (id) => `
@@ -13,7 +13,7 @@ function setup(hash = "") {
         <span class="p-open-source__bar"></span>
         <a class="p-open-source__title" href="#open-source-${id}">${id}</a>
         <div class="p-open-source__panel" id="open-source-${id}-panel">
-          <div class="p-open-source__command"><code>${COMMAND}</code></div>
+          <div class="p-open-source__command"><code>${command}</code></div>
         </div>
       </div>`,
   );
@@ -161,5 +161,14 @@ describe("startOpenSourceCarousel", () => {
 
     expect(active()).toBe(2);
     expect(window.location.hash).toBe("");
+  });
+
+  it("types only the package names, keeping trailing flags", () => {
+    setup("", "$ sudo snap install kube/juju --classic");
+
+    tick(LEAD_IN_MS + 100);
+    expect(typed(0)).toBe("$ sudo snap install ku --classic");
+    tick(2 * 90);
+    expect(typed(0)).toBe("$ sudo snap install kube --classic");
   });
 });
