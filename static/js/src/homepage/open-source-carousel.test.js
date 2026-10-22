@@ -1,11 +1,22 @@
 import { SLIDE_MS, startOpenSourceCarousel } from "./open-source-carousel";
 
 const COMMAND = "$ sudo snap install kube/juju";
+const SNAPS = ["kube", "juju"];
 const LEAD_IN_MS = 1500;
 
 let root;
 
-function setup(hash = "", command = COMMAND) {
+// Mirrors the template: each snap is a name, or a [name, flags] pair
+function code(snaps) {
+  const spans = snaps.map((snap) => {
+    const [name, flags = ""] = [].concat(snap);
+    return `<span data-name="${name}" data-flags="${flags}">${name}${flags && ` ${flags}`}</span>`;
+  });
+  const prefix = "$ sudo snap install ";
+  return `<code data-prefix="${prefix}">${prefix}${spans.join("/")}</code>`;
+}
+
+function setup(hash = "", snaps = SNAPS) {
   window.history.replaceState(null, "", `/${hash}`);
   const slides = ["a", "b", "c"].map(
     (id) => `
@@ -13,7 +24,7 @@ function setup(hash = "", command = COMMAND) {
         <span class="p-open-source__bar"></span>
         <a class="p-open-source__title" href="#open-source-${id}">${id}</a>
         <div class="p-open-source__panel" id="open-source-${id}-panel">
-          <div class="p-open-source__command"><code>${command}</code></div>
+          <div class="p-open-source__command">${code(snaps)}</div>
         </div>
       </div>`,
   );
@@ -164,7 +175,7 @@ describe("startOpenSourceCarousel", () => {
   });
 
   it("types only the package names, showing each one's own flags", () => {
-    setup("", "$ sudo snap install kube/juju --classic");
+    setup("", ["kube", ["juju", "--classic"]]);
 
     tick(LEAD_IN_MS + 100);
     expect(typed(0)).toBe("$ sudo snap install ku");

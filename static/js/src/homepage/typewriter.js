@@ -5,27 +5,19 @@ function span(className, text) {
   return node;
 }
 
-// "$ sudo snap install a/b --flag/c": the text before the slash list stays,
-// and each name in the list is typed, held, deleted, then the next one
-// starts. A name's flags show beside it as it types, without being typed.
+// Types a command's snaps in turn: the code element's data-prefix stays, and
+// each [data-name] snap is typed, held, deleted, then the next one starts. A
+// snap's data-flags show beside it as it types, without being typed.
 // Until start() the element keeps its server-rendered full list.
 export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
   const staticHtml = el.innerHTML;
   const staticText = el.textContent;
-  // The list starts at the first word with a slash (or the last word),
-  // stepping back past any flags to the name they belong to
-  const tokens = staticText.split(" ");
-  let first = tokens.findIndex((token) => token.includes("/"));
-  if (first === -1) {
-    first = tokens.length - 1;
-  }
-  while (first > 0 && tokens[first].startsWith("-")) {
-    first -= 1;
-  }
-  const prefix = tokens.slice(0, first).join(" ") + " ";
-  const items = tokens.slice(first).join(" ").split("/");
-  const words = items.map((item) => item.split(" ")[0]);
-  const flags = items.map((item, i) => item.slice(words[i].length));
+  const prefix = el.dataset.prefix;
+  const snaps = [...el.querySelectorAll("[data-name]")];
+  const words = snaps.map((snap) => snap.dataset.name);
+  const flags = snaps.map(({ dataset }) =>
+    dataset.flags ? ` ${dataset.flags}` : "",
+  );
   let typed = null;
   let flag = null;
   let wordIndex = 0;
