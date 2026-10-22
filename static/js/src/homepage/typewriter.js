@@ -5,16 +5,27 @@ function span(className, text) {
   return node;
 }
 
-// "$ sudo snap install a/b/c": the text up to the last space stays, and each
-// word of the slash list is typed, held, deleted, then the next one starts.
+// Types a command's snaps in turn: the code element's data-prefix stays, and
+// each [data-name] snap is typed, held, deleted, then the next one starts. A
+// snap's data-flags show beside it as it types, without being typed.
 // Until start() the element keeps its server-rendered full list.
 export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
   const staticHtml = el.innerHTML;
   const staticText = el.textContent;
-  const cut = staticText.lastIndexOf(" ") + 1;
-  const prefix = staticText.slice(0, cut);
-  const words = staticText.slice(cut).split("/");
+  const prefix = el.dataset.prefix;
+  const snaps = [...el.querySelectorAll("[data-name]")];
+  const words = snaps.map((snap) => snap.dataset.name);
+  const flags = snaps.map(({ dataset }) =>
+    dataset.flags ? ` ${dataset.flags}` : "",
+  );
+  // From the lead-in until the last word has been typed and held
+  const durationMs = words.reduce((total, word, i) => {
+    const typing = (word.length - 1) * typeMs + holdMs;
+    const deleting = i < words.length - 1 ? word.length * typeMs : 0;
+    return total + typing + deleting;
+  }, holdMs);
   let typed = null;
+  let flag = null;
   let wordIndex = 0;
   let chars = 0;
   let phase = "typing";
@@ -28,7 +39,8 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
     word.append(typed, span("p-open-source__cursor", ""));
     const visible = document.createElement("span");
     visible.setAttribute("aria-hidden", "true");
-    visible.append(prefix, word);
+    flag = document.createTextNode(flags[0]);
+    visible.append(prefix, word, flag);
     el.replaceChildren(visible, span("u-off-screen", staticText));
   }
 
@@ -48,6 +60,7 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
       }
     }
     typed.textContent = words[wordIndex].slice(0, chars);
+    flag.textContent = flags[wordIndex];
     timer = window.setTimeout(step, delay);
   }
 
@@ -57,11 +70,13 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
     if (timer !== null) {
       return;
     }
-    const fresh = !typed;
-    if (fresh) {
+    if (!typed) {
       build();
     }
-    timer = window.setTimeout(step, fresh ? holdMs : typeMs);
+    // A stop during the lead-in (e.g. the section scrolled off before typing
+    // began) restarts it, keeping the typing in step with durationMs
+    const leadIn = wordIndex === 0 && chars === 0;
+    timer = window.setTimeout(step, leadIn ? holdMs : typeMs);
   }
 
   function stop() {
@@ -80,5 +95,5 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
     phase = "typing";
   }
 
-  return { start, stop, reset };
+  return { start, stop, reset, durationMs };
 }
