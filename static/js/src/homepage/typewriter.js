@@ -5,15 +5,17 @@ function span(className, text) {
   return node;
 }
 
-// "$ sudo snap install a/b/c": the text up to the last space stays, and each
-// word of the slash list is typed, held, deleted, then the next one starts.
+// "$ sudo snap install a/b/c --flag": the text before the slash list and any
+// trailing flags stay, and each word of the list is typed, held, deleted, then
+// the next one starts.
 // Until start() the element keeps its server-rendered full list.
 export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
   const staticHtml = el.innerHTML;
   const staticText = el.textContent;
-  const cut = staticText.lastIndexOf(" ") + 1;
-  const prefix = staticText.slice(0, cut);
-  const words = staticText.slice(cut).split("/");
+  const [, prefix, list, suffix] = staticText.match(
+    /^(.*?)(\S+)((?:\s+-\S+)*)$/s,
+  );
+  const words = list.split("/");
   let typed = null;
   let wordIndex = 0;
   let chars = 0;
@@ -28,7 +30,7 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
     word.append(typed, span("p-open-source__cursor", ""));
     const visible = document.createElement("span");
     visible.setAttribute("aria-hidden", "true");
-    visible.append(prefix, word);
+    visible.append(prefix, word, suffix);
     el.replaceChildren(visible, span("u-off-screen", staticText));
   }
 
