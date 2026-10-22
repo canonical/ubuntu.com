@@ -12,11 +12,19 @@ function span(className, text) {
 export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
   const staticHtml = el.innerHTML;
   const staticText = el.textContent;
-  const [, prefix, list] = staticText.match(
-    /^(.*?\s)(\S+(?:\s+-\S+)*(?:\/\S+(?:\s+-\S+)*)*)$/s,
-  );
-  const items = list.split("/");
-  const words = items.map((item) => item.match(/^\S+/)[0]);
+  // The list starts at the first word with a slash (or the last word),
+  // stepping back past any flags to the name they belong to
+  const tokens = staticText.split(" ");
+  let first = tokens.findIndex((token) => token.includes("/"));
+  if (first === -1) {
+    first = tokens.length - 1;
+  }
+  while (first > 0 && tokens[first].startsWith("-")) {
+    first -= 1;
+  }
+  const prefix = tokens.slice(0, first).join(" ") + " ";
+  const items = tokens.slice(first).join(" ").split("/");
+  const words = items.map((item) => item.split(" ")[0]);
   const flags = items.map((item, i) => item.slice(words[i].length));
   let typed = null;
   let flag = null;
