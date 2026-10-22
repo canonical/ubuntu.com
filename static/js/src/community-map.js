@@ -1,7 +1,6 @@
 import L from "leaflet";
-// Unmodified Natural Earth 1:110m countries GeoJSON, v5.1.2 (public domain).
+// Natural Earth 1:110m countries GeoJSON, v5.1.2 (public domain).
 // Source: https://github.com/nvkelso/natural-earth-vector/blob/v5.1.2/geojson/ne_110m_admin_0_countries.geojson
-// To update, replace natural-earth-countries.json from a pinned upstream release.
 import countries from "../data/natural-earth-countries.json";
 
 const mapElement = document.getElementById("locations-map");
