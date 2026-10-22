@@ -17,17 +17,21 @@ export function startHero(root) {
     video.play().catch(() => {});
   }
 
-  if (prefersReducedMotion()) {
-    return;
-  }
-  if (wideQuery.matches) {
-    // The video is the biggest download; keep it out of the page load
+  // The video is the biggest download; keep it out of the page load
+  function playAfterLoad() {
     if (document.readyState === "complete") {
       playVideo();
     } else {
       window.addEventListener("load", playVideo, { once: true });
     }
+  }
+
+  if (prefersReducedMotion()) {
+    return;
+  }
+  if (wideQuery.matches) {
+    playAfterLoad();
   } else {
-    wideQuery.addEventListener("change", playVideo, { once: true });
+    wideQuery.addEventListener("change", playAfterLoad, { once: true });
   }
 }

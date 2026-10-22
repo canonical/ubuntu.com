@@ -49,3 +49,15 @@ it("waits for the page to load before fetching the video", () => {
   expect(video.getAttribute("src")).toBe("/wallpaper.mp4");
   readyState.mockRestore();
 });
+
+it("waits for the page to load when widened mid-load", () => {
+  const readyState = jest
+    .spyOn(document, "readyState", "get")
+    .mockReturnValue("interactive");
+  const { video, wideQuery } = setUpHero({ wide: false });
+  wideQuery.addEventListener.mock.calls[0][1]();
+  expect(video.hasAttribute("src")).toBe(false);
+  window.dispatchEvent(new Event("load"));
+  expect(video.getAttribute("src")).toBe("/wallpaper.mp4");
+  readyState.mockRestore();
+});
