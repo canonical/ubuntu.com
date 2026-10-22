@@ -13,9 +13,35 @@ function sharedLength(a, b) {
   return n;
 }
 
-// Types a command's options in turn: the code element's data-prefix stays,
-// and each [data-type] string is typed, held, deleted, then the next one
-// starts. Until start() the element keeps its server-rendered full list.
+// Frames of [text, ms]: type each word, hold it, delete to what the next shares
+function timeline(words, typeMs, holdMs) {
+  const frames = [];
+  let durationMs = holdMs;
+  let from = 0;
+  words.forEach((word, i) => {
+    const next = words[(i + 1) % words.length];
+    // Always retype at least one character, and fully clear a lone word
+    const keep =
+      words.length === 1
+        ? 0
+        : Math.min(sharedLength(word, next), next.length - 1);
+    for (let n = from + 1; n <= word.length; n += 1) {
+      frames.push([word.slice(0, n), n === word.length ? holdMs : typeMs]);
+    }
+    // A slide lasts from the lead-in until its last word is typed and held
+    if (i === words.length - 1) {
+      durationMs = frames.reduce((total, [, ms]) => total + ms, holdMs);
+    }
+    for (let n = word.length - 1; n >= keep; n -= 1) {
+      frames.push([word.slice(0, n), typeMs]);
+    }
+    from = keep;
+  });
+  // Later loops skip the first word's start, which the last word left typed
+  return { frames, durationMs, loopStart: from };
+}
+
+// Types each [data-type] string in turn after the data-prefix, looping
 export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
   const staticHtml = el.innerHTML;
   const staticText = el.textContent;
@@ -23,26 +49,10 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
   const words = [...el.querySelectorAll("[data-type]")].map(
     ({ dataset }) => dataset.type,
   );
-  // How much of each word stays when moving on to the next: what they share,
-  // retyping at least one character so a lone word still clears
-  const keeps = words.map((word, i) => {
-    const next = words[(i + 1) % words.length];
-    return words.length === 1
-      ? 0
-      : Math.min(sharedLength(word, next), next.length - 1);
-  });
-  // From the lead-in until the last word has been typed and held
-  const durationMs = words.reduce((total, word, i) => {
-    const typing = (word.length - (i ? keeps[i - 1] : 0) - 1) * typeMs + holdMs;
-    const deleting =
-      i < words.length - 1 ? (word.length - keeps[i]) * typeMs : 0;
-    return total + typing + deleting;
-  }, holdMs);
+  const { frames, durationMs, loopStart } = timeline(words, typeMs, holdMs);
   let typed = null;
   let cursor = null;
-  let wordIndex = 0;
-  let chars = 0;
-  let phase = "typing";
+  let index = -1;
   let timer = null;
 
   // Screen readers get the full list once, the keystrokes are hidden
@@ -51,15 +61,12 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
     cursor = span("p-open-source__cursor", "");
     typed.setAttribute("aria-hidden", "true");
     el.replaceChildren(typed, span("u-off-screen", staticText));
-    render();
+    render("");
   }
 
-  // Each space-separated part stays whole, so a hyphenated name never splits
-  // but a long command can still wrap between a name and its flags. The
-  // cursor rides with the last part.
-  function render() {
-    const parts = words[wordIndex].slice(0, chars).split(" ");
-    const spans = parts.map((part) => span("p-open-source__nowrap", part));
+  // Parts split on spaces stay whole, so a name never breaks at a hyphen
+  function render(text) {
+    const spans = text.split(" ").map((p) => span("p-open-source__nowrap", p));
     spans[spans.length - 1].append(cursor);
     typed.replaceChildren(
       prefix,
@@ -68,28 +75,13 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
   }
 
   function step() {
-    let delay = typeMs;
-    if (phase === "typing") {
-      chars += 1;
-      if (chars === words[wordIndex].length) {
-        phase = "deleting";
-        delay = holdMs;
-      }
-    } else {
-      if (chars > keeps[wordIndex]) {
-        chars -= 1;
-      }
-      if (chars === keeps[wordIndex]) {
-        wordIndex = (wordIndex + 1) % words.length;
-        phase = "typing";
-      }
-    }
-    render();
+    index = index + 1 < frames.length ? index + 1 : loopStart;
+    const [text, delay] = frames[index];
+    render(text);
     timer = window.setTimeout(step, delay);
   }
 
-  // A fresh start blinks the cursor for holdMs first, so a panel that is
-  // still opening shows the prompt before the typing begins
+  // A fresh start, or a stop before typing began, blinks for holdMs first
   function start() {
     if (timer !== null) {
       return;
@@ -97,10 +89,7 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
     if (!typed) {
       build();
     }
-    // A stop during the lead-in (e.g. the section scrolled off before typing
-    // began) restarts it, keeping the typing in step with durationMs
-    const leadIn = wordIndex === 0 && chars === 0;
-    timer = window.setTimeout(step, leadIn ? holdMs : typeMs);
+    timer = window.setTimeout(step, index === -1 ? holdMs : typeMs);
   }
 
   function stop() {
@@ -114,9 +103,7 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
       el.innerHTML = staticHtml;
       typed = null;
     }
-    wordIndex = 0;
-    chars = 0;
-    phase = "typing";
+    index = -1;
   }
 
   return { start, stop, reset, durationMs };

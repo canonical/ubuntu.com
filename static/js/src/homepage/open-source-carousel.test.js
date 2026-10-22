@@ -58,6 +58,12 @@ const command = (i) => root.querySelectorAll("code")[i];
 // The visible, typed part of a command
 const typed = (i) => command(i).firstChild.textContent;
 const tick = (ms) => jest.advanceTimersByTime(ms);
+// The first command's typed text after each of the next count keystrokes
+const typedEachStep = (count) =>
+  Array.from({ length: count }, () => {
+    tick(TYPE_MS);
+    return typed(0);
+  });
 
 beforeEach(() => {
   jest.useFakeTimers();
@@ -174,11 +180,7 @@ describe("startOpenSourceCarousel", () => {
 
   it("types a snap's flags after its name", () => {
     setup("", ["kube", "juju --classic"]);
-    const seen = [];
-    for (let i = 0; i < 60; i += 1) {
-      tick(TYPE_MS);
-      seen.push(typed(0));
-    }
+    const seen = typedEachStep(60);
 
     const name = seen.indexOf("$ sudo snap install juju");
     const flag = seen.indexOf("$ sudo snap install juju --classic");
@@ -198,11 +200,7 @@ describe("startOpenSourceCarousel", () => {
 
   it("deletes only back to the start the next word shares", () => {
     setup("", ["kube", "kuma"]);
-    const seen = [];
-    for (let i = 0; i < 50; i += 1) {
-      tick(TYPE_MS);
-      seen.push(typed(0));
-    }
+    const seen = typedEachStep(50);
 
     const after = seen.slice(seen.indexOf("$ sudo snap install kube"));
     expect(after).toContain("$ sudo snap install kuma");
