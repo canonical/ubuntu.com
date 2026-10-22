@@ -1932,6 +1932,13 @@ def process_local_communities(local_communities):
                     lat_str, lon_str = coordinates.split(",")
                     lat = float(lat_str.strip())
                     lon = float(lon_str.strip())
+                    if not (
+                        math.isfinite(lat)
+                        and math.isfinite(lon)
+                        and -90 <= lat <= 90
+                        and -180 <= lon <= 180
+                    ):
+                        raise ValueError("coordinates out of range")
                     community["lat"] = lat
                     community["lon"] = lon
 

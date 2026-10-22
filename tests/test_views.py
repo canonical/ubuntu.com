@@ -211,6 +211,26 @@ class TestProcessLocalCommunities(BaseViewTestCase):
         self.assertEqual(africa_marker["lat"], 4.71111)
         self.assertEqual(africa_marker["lon"], -74.07222)
 
+    @patch("flask.render_template")
+    def test_invalid_coordinates_are_skipped(self, mock_render):
+        rows = [
+            {"name": name, "continent": "europe", "coordinates": coordinates}
+            for name, coordinates in [
+                ("Origin", "0, 0"),
+                ("NaN", "nan, 1"),
+                ("Infinity", "1, inf"),
+                ("Out of range", "91, 0"),
+                ("Invalid", "not a coordinate"),
+            ]
+        ]
+        local_communities = Mock()
+        local_communities.get_category_index_metadata.return_value = rows
+
+        process_local_communities(local_communities)()
+
+        markers = mock_render.call_args.kwargs["map_markers"]
+        self.assertEqual([marker["name"] for marker in markers], ["Origin"])
+
 
 class TestBuildMirrorList(BaseViewTestCase):
     """
