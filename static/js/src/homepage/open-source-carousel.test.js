@@ -163,12 +163,12 @@ describe("startOpenSourceCarousel", () => {
     expect(window.location.hash).toBe("");
   });
 
-  it("types only the package names, keeping trailing flags", () => {
+  it("types only the package names, showing each one's own flags", () => {
     setup("", "$ sudo snap install kube/juju --classic");
 
     tick(LEAD_IN_MS + 100);
-    expect(typed(0)).toBe("$ sudo snap install ku --classic");
-    tick(2 * 90);
-    expect(typed(0)).toBe("$ sudo snap install kube --classic");
+    expect(typed(0)).toBe("$ sudo snap install ku");
+    tick(2500);
+    expect(typed(0)).toBe("$ sudo snap install juju --classic");
   });
 });

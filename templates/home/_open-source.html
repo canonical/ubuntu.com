@@ -115,7 +115,7 @@
 {% set slides = [
   {"id": "developers", "title": "Developers", "photo": photos.developers, "focus": "50% 15%", "blocks": [
     {"p": "Ubuntu is the #1 Linux amongst developers. Benefit from seamless integration with familiar tools for development and deployment, and access a growing range of toolchains."},
-    {"command": "sudo snap install docker/devpack-for-spring/devpack-for-go"},
+    {"command": "sudo snap install docker/devpack-for-spring --classic/devpack-for-go --classic"},
     {"logos": logos},
   ]},
   {"id": "devops", "title": "DevOps engineers", "photo": photos.devops, "blocks": [
@@ -138,7 +138,7 @@
   ]},
   {"id": "sre", "title": "Site reliability engineers", "photo": photos.sre, "blocks": [
     {"p": "Access everything you need for seamless deployment, monitoring, orchestration, and observability."},
-    {"command": "sudo snap install k8s/parca-agent --classic"},
+    {"command": "sudo snap install k8s --classic/parca-agent --classic"},
     {"link": arrow_links.observability},
     {"p": "Deploy a comprehensive portfolio of hardened, production-ready database clusters optimized for Kubernetes, virtual machines, bare metal, and multi-cloud deployments."},
     {"link": arrow_links.data},

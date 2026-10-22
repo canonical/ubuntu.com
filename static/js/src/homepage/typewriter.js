@@ -5,18 +5,21 @@ function span(className, text) {
   return node;
 }
 
-// "$ sudo snap install a/b/c --flag": the text before the slash list and any
-// trailing flags stay, and each word of the list is typed, held, deleted, then
-// the next one starts.
+// "$ sudo snap install a/b --flag/c": the text before the slash list stays,
+// and each name in the list is typed, held, deleted, then the next one
+// starts. A name's flags show beside it as it types, without being typed.
 // Until start() the element keeps its server-rendered full list.
 export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
   const staticHtml = el.innerHTML;
   const staticText = el.textContent;
-  const [, prefix, list, suffix] = staticText.match(
-    /^(.*?)(\S+)((?:\s+-\S+)*)$/s,
+  const [, prefix, list] = staticText.match(
+    /^(.*?\s)(\S+(?:\s+-\S+)*(?:\/\S+(?:\s+-\S+)*)*)$/s,
   );
-  const words = list.split("/");
+  const items = list.split("/");
+  const words = items.map((item) => item.match(/^\S+/)[0]);
+  const flags = items.map((item, i) => item.slice(words[i].length));
   let typed = null;
+  let flag = null;
   let wordIndex = 0;
   let chars = 0;
   let phase = "typing";
@@ -30,7 +33,8 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
     word.append(typed, span("p-open-source__cursor", ""));
     const visible = document.createElement("span");
     visible.setAttribute("aria-hidden", "true");
-    visible.append(prefix, word, suffix);
+    flag = document.createTextNode(flags[0]);
+    visible.append(prefix, word, flag);
     el.replaceChildren(visible, span("u-off-screen", staticText));
   }
 
@@ -50,6 +54,7 @@ export function createTypewriter(el, { typeMs = 90, holdMs = 1500 } = {}) {
       }
     }
     typed.textContent = words[wordIndex].slice(0, chars);
+    flag.textContent = flags[wordIndex];
     timer = window.setTimeout(step, delay);
   }
 
