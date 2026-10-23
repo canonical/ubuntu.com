@@ -3,15 +3,13 @@ import { SLIDE_MS, startOpenSourceCarousel } from "./open-source-carousel";
 const COMMAND = "$ sudo snap install kube/juju";
 const SNAPS = ["kube", "juju"];
 const LEAD_IN_MS = 1500;
+const TYPE_MS = 90;
 
 let root;
 
-// Mirrors the template: each snap is a name, or a [name, flags] pair
+// Mirrors the template: one span per snap, with the text to type
 function code(snaps) {
-  const spans = snaps.map((snap) => {
-    const [name, flags = ""] = [].concat(snap);
-    return `<span data-name="${name}" data-flags="${flags}">${name}${flags && ` ${flags}`}</span>`;
-  });
+  const spans = snaps.map((snap) => `<span data-type="${snap}">${snap}</span>`);
   const prefix = "$ sudo snap install ";
   return `<code data-prefix="${prefix}">${prefix}${spans.join("/")}</code>`;
 }
@@ -60,6 +58,12 @@ const command = (i) => root.querySelectorAll("code")[i];
 // The visible, typed part of a command
 const typed = (i) => command(i).firstChild.textContent;
 const tick = (ms) => jest.advanceTimersByTime(ms);
+// The first command's typed text after each of the next count keystrokes
+const typedEachStep = (count) =>
+  Array.from({ length: count }, () => {
+    tick(TYPE_MS);
+    return typed(0);
+  });
 
 beforeEach(() => {
   jest.useFakeTimers();
@@ -174,13 +178,14 @@ describe("startOpenSourceCarousel", () => {
     expect(window.location.hash).toBe("");
   });
 
-  it("types only the package names, showing each one's own flags", () => {
-    setup("", ["kube", ["juju", "--classic"]]);
+  it("types a snap's flags after its name", () => {
+    setup("", ["kube", "juju --classic"]);
+    const seen = typedEachStep(60);
 
-    tick(LEAD_IN_MS + 100);
-    expect(typed(0)).toBe("$ sudo snap install ku");
-    tick(2500);
-    expect(typed(0)).toBe("$ sudo snap install juju --classic");
+    const name = seen.indexOf("$ sudo snap install juju");
+    const flag = seen.indexOf("$ sudo snap install juju --classic");
+    expect(name).toBeGreaterThan(-1);
+    expect(flag).toBeGreaterThan(name);
   });
 
   it("stays on a slide until its command has typed every snap", () => {
@@ -191,5 +196,14 @@ describe("startOpenSourceCarousel", () => {
     expect(active()).toBe(0);
     tick(10110 - SLIDE_MS);
     expect(active()).toBe(1);
+  });
+
+  it("deletes only back to the start the next word shares", () => {
+    setup("", ["kube", "kuma"]);
+    const seen = typedEachStep(50);
+
+    const after = seen.slice(seen.indexOf("$ sudo snap install kube"));
+    expect(after).toContain("$ sudo snap install kuma");
+    expect(after).not.toContain("$ sudo snap install k");
   });
 });
