@@ -101,7 +101,8 @@
             "label": "Türkçe"
           }
         ] %}
-        {{ single_select_menu('language', 'Language', language_options) }}
+        {{ single_select_menu('language', 'English', language_options,
+                  preserve_all=true) }}
         {% set resource_options = [{"value": "all", "label": "All resource types"}] %}
         {% for type in resource_types %}
           {% set _ = resource_options.append({'value': type | lower, 'label': type}) %}
