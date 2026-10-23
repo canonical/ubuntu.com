@@ -10,6 +10,12 @@
 ] %}
 
 <section class="p-section p-hero js-hero">
+  {# The wallpaper is a CSS background, which the browser finds late; it is the desktop LCP #}
+  <link rel="preload"
+        as="image"
+        href="{{ hero_wallpaper }}"
+        fetchpriority="high"
+        media="(min-width: 620px)" />
   <div class="p-hero__background u-hide--small" aria-hidden="true"></div>
   <div class="u-fixed-width">
     <h1 class="p-heading--display">

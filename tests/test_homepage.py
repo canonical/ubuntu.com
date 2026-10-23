@@ -391,6 +391,14 @@ class TestHomepageRender(VCRTestCase):
             self.assertTrue(types[1].startswith('video/mp4; codecs="hvc1'))
             self.assertEqual(types[2], "video/mp4")
 
+    def test_hero_wallpaper_is_preloaded(self):
+        soup = self.get_soup()
+        preload = soup.select_one('link[rel="preload"][as="image"]')
+        style = soup.select_one(".p-hero__wallpaper")["style"]
+        self.assertIn(preload["href"], style)
+        self.assertEqual(preload["fetchpriority"], "high")
+        self.assertEqual(preload["media"], "(min-width: 620px)")
+
 
 if __name__ == "__main__":
     unittest.main()
