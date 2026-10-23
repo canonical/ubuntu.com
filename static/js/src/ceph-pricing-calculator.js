@@ -71,7 +71,7 @@ function initializeSliders() {
 
   /**
       Renders gradient to fake progress color in webkit browsers.
-      @param {HTMLElement} slider Slider element to render background on.
+      @param {HTMLInputElement} slider Slider element to render background on.
       */
   function renderSlider(slider) {
     if (isWebkit) {
@@ -120,7 +120,7 @@ function initializeSliders() {
 
   /**
         Attaches change listener to sliders to update their background color.
-        @param {HTMLElement} slider Slider element to render background on.
+        @param {HTMLInputElement} slider Slider element to render background on.
       */
   function initSlider(slider) {
     const input = document.getElementById(slider.id + "-input");
@@ -180,9 +180,11 @@ function initializeSliders() {
     });
   }
 
-  const compareCostsForm = document.querySelector("#compare-costs-form");
+  const compareCostsForm = /** @type {HTMLElement} */ (
+    document.querySelector("#compare-costs-form")
+  );
   compareCostsForm.addEventListener("click", function (e) {
-    if (e.target.tagName === "INPUT") {
+    if (e.target instanceof HTMLInputElement) {
       hideNotifications();
     }
   });
@@ -195,9 +197,15 @@ function initializeSliders() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const monthsInput = document.querySelector("input[name='months']");
-  const storageInput = document.querySelector("input[name='storage']");
-  const managedInputs = document.querySelectorAll("input[name='managed']");
+  const monthsInput = /** @type {HTMLInputElement} */ (
+    document.querySelector("input[name='months']")
+  );
+  const storageInput = /** @type {HTMLInputElement} */ (
+    document.querySelector("input[name='storage']")
+  );
+  const managedInputs = /** @type {NodeListOf<HTMLInputElement>} */ (
+    document.querySelectorAll("input[name='managed']")
+  );
 
   let selectedMonths = parseInt(monthsInput.value, 10);
   let selectedStorage = parseFloat(storageInput.value);
@@ -209,11 +217,12 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function calculateCosts() {
-    const capacitySpecs =
-      capacityTable.find((row) => row.capacity === selectedStorage) || {};
+    const capacitySpecs = capacityTable.find(
+      (row) => row.capacity === selectedStorage,
+    );
 
-    const nodes = capacitySpecs.nodes;
-    const switches = capacitySpecs.switches;
+    const nodes = capacitySpecs?.nodes;
+    const switches = capacitySpecs?.switches;
 
     // Ceph self-hosted cost, see the formula in the spreadsheet copydoc
     // https://docs.google.com/spreadsheets/d/1cn5daIlWGpKF5557ERFY4Ok4_0IlJKTDbZjRXcXyhjk/edit?

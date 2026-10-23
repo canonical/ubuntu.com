@@ -38,26 +38,34 @@ const fetchAndRenderResources = (tag = "", resource = "") => {
     .then((r) => r.json())
     .then((resources) => {
       if (!resources || !resources.length) return;
-      const list = document.getElementById("engage-resources__list");
+      const list = /** @type {HTMLElement} */ (
+        document.getElementById("engage-resources__list")
+      );
 
       resources.forEach((resource) => {
         if (!resource.topic_name || !resource.path) return;
 
-        const card = template.content.cloneNode(true);
+        const card = /** @type {DocumentFragment} */ (
+          template.content.cloneNode(true)
+        );
 
         if (resource.meta_image) {
-          card.querySelector("[data-key='meta_image']").src =
-            resource.meta_image;
+          /** @type {HTMLImageElement} */ (
+            card.querySelector("[data-key='meta_image']")
+          ).src = resource.meta_image;
         } else {
           card.querySelector("[data-key='meta_image_container']").remove();
         }
 
-        const link = card.querySelector("[data-key='path_name']");
+        const link = /** @type {HTMLAnchorElement} */ (
+          card.querySelector("[data-key='path_name']")
+        );
         link.href = resource.path;
         link.textContent = resource.topic_name;
 
-        card.querySelector("[data-key='subtitle']").textContent =
-          resource.subtitle || "";
+        /** @type {HTMLElement} */ (
+          card.querySelector("[data-key='subtitle']")
+        ).textContent = resource.subtitle || "";
         list.appendChild(card);
       });
 

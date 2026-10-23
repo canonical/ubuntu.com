@@ -1,9 +1,15 @@
 import { debounce } from "./utils/debounce.js";
 
 (function () {
-  const cartContainer = document.querySelector("#cart-container");
-  const cartTemplate = document.querySelector("[data-template=cart]");
-  const mainCart = document.querySelector(".p-shop-cart");
+  const cartContainer = /** @type {HTMLElement} */ (
+    document.querySelector("#cart-container")
+  );
+  const cartTemplate = /** @type {HTMLTemplateElement} */ (
+    document.querySelector("[data-template=cart]")
+  );
+  const mainCart = /** @type {HTMLElement} */ (
+    document.querySelector(".p-shop-cart")
+  );
 
   const STATE = {
     package: "standard",
@@ -54,14 +60,16 @@ import { debounce } from "./utils/debounce.js";
       });
     });
 
-    const usersCount = document.querySelector("#quantity-input");
+    const usersCount = /** @type {HTMLInputElement} */ (
+      document.querySelector("#quantity-input")
+    );
 
     usersCount.addEventListener(
       "input",
       debounce((e) => {
         updateState(STATE, {
           type: "ADD_OR_REMOVE_USERS",
-          value: parseInt(e.target.value),
+          value: parseInt(usersCount.value),
         });
 
         if (STATE.users > 0) {
@@ -94,32 +102,42 @@ import { debounce } from "./utils/debounce.js";
     cartContainer.innerHTML = "";
     cartContainer.appendChild(cart);
 
-    const userCount = cartContainer.querySelector("[data-prop=user-count]");
+    const userCount = /** @type {HTMLElement} */ (
+      cartContainer.querySelector("[data-prop=user-count]")
+    );
     userCount.innerText = STATE.users;
 
-    const packageName = cartContainer.querySelector(
-      "[data-prop=selected-package]",
+    const packageName = /** @type {HTMLElement} */ (
+      cartContainer.querySelector("[data-prop=selected-package]")
     );
     packageName.innerText =
       STATE.package === "advanced"
         ? "Blender Support Advanced"
         : "Blender Support Standard";
 
-    const billing = cartContainer.querySelector("[data-prop=billing]");
+    const billing = /** @type {HTMLInputElement} */ (
+      cartContainer.querySelector("[data-prop=billing]")
+    );
     billing.value = STATE.billingPeriod;
 
-    const totalCost = cartContainer.querySelector("[data-prop=total-cost]");
+    const totalCost = /** @type {HTMLElement} */ (
+      cartContainer.querySelector("[data-prop=total-cost]")
+    );
     totalCost.innerText = parseInt(calculateTotalCost());
 
-    const period = cartContainer.querySelector("[data-prop=period]");
+    const period = /** @type {HTMLElement} */ (
+      cartContainer.querySelector("[data-prop=period]")
+    );
     period.innerText = STATE.billingPeriod === "monthly" ? "month" : "year";
 
-    const billingPeriod = document.querySelector("#billing-period");
+    const billingPeriod = /** @type {HTMLSelectElement} */ (
+      document.querySelector("#billing-period")
+    );
 
-    billingPeriod.addEventListener("change", (e) => {
+    billingPeriod.addEventListener("change", () => {
       updateState(STATE, {
         type: "CHANGE_BILLING_PERIOD",
-        value: e.target.value,
+        value: billingPeriod.value,
       });
     });
   }

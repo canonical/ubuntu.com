@@ -100,8 +100,12 @@ function chooseEquivalentItem(totalAmount) {
 }
 
 function updateEquivalentItem(item) {
-  const image = document.querySelector(".js-equivalent-image");
-  const description = document.querySelector(".js-equivalent-description");
+  const image = /** @type {HTMLImageElement} */ (
+    document.querySelector(".js-equivalent-image")
+  );
+  const description = /** @type {HTMLElement} */ (
+    document.querySelector(".js-equivalent-description")
+  );
 
   image.src = "https://assets.ubuntu.com/v1/" + item["imageFile"];
   image.alt = item["description"];
@@ -109,7 +113,9 @@ function updateEquivalentItem(item) {
 }
 
 function toggleSubmit(total) {
-  const submitButton = document.querySelector(".js-contribute-submit");
+  const submitButton = /** @type {HTMLButtonElement} */ (
+    document.querySelector(".js-contribute-submit")
+  );
 
   if (total <= 0) {
     submitButton.disabled = true;
@@ -120,7 +126,9 @@ function toggleSubmit(total) {
 
 function updateSummary() {
   // Get the total amount of all the contribution items selected
-  const inputs = document.querySelectorAll(".p-slider__input");
+  const inputs = /** @type {NodeListOf<HTMLInputElement>} */ (
+    document.querySelectorAll("input.p-slider__input")
+  );
   let total = 0;
 
   inputs.forEach((valueElement) => {
@@ -129,7 +137,9 @@ function updateSummary() {
 
   const item = chooseEquivalentItem(total);
 
-  document.querySelector(".js-total-amount").innerText = total;
+  /** @type {HTMLElement} */ (
+    document.querySelector(".js-total-amount")
+  ).innerText = total;
   updateEquivalentItem(item);
   toggleSubmit(total);
 }
@@ -140,8 +150,12 @@ function updateSummary() {
  */
 function sendContributionFormAnalytics() {
   // preparing GA submission. step 1 _addTrans
-  const inputs = document.querySelectorAll(".p-slider__input");
-  const total = document.querySelector(".js-total-amount").innerText;
+  const inputs = /** @type {NodeListOf<HTMLInputElement>} */ (
+    document.querySelectorAll("input.p-slider__input")
+  );
+  const total = /** @type {HTMLElement} */ (
+    document.querySelector(".js-total-amount")
+  ).innerText;
 
   let dataLayerObject = {
     event: "contribution",
@@ -150,7 +164,7 @@ function sendContributionFormAnalytics() {
 
   // add the individual items
   inputs.forEach((amountElement) => {
-    const name = amountElement.parentNode.parentNode.id;
+    const name = amountElement.closest("div[id]").id;
     let value = amountElement.value || 0;
 
     if (value > 0) {
@@ -177,12 +191,22 @@ function detectBrowser() {
   return browser;
 }
 
+/**
+ * @param {HTMLInputElement} receive
+ * @param {HTMLInputElement} give
+ */
 function equaliseValues(receive, give) {
   receive.value = give.value;
   give.value = receive.value;
 }
 
 // Fix for Chrome and Safari as they don't support CSS slider progress
+/**
+ * @param {HTMLInputElement} slider
+ * @param {string} progressColour
+ * @param {string} emptyColour
+ * @param {string} browser
+ */
 function renderSlider(slider, progressColour, emptyColour, browser) {
   if (browser === "Chrome" || browser === "Safari") {
     const value = (slider.value - slider.min) / (slider.max - slider.min);
@@ -201,8 +225,12 @@ function renderSlider(slider, progressColour, emptyColour, browser) {
 }
 
 function initContributionSummary(optionsArea) {
-  const form = document.querySelector("#contributions-form");
-  const inputs = document.querySelectorAll(".p-slider__input");
+  const form = /** @type {HTMLFormElement} */ (
+    document.querySelector("#contributions-form")
+  );
+  const inputs = /** @type {NodeListOf<HTMLInputElement>} */ (
+    document.querySelectorAll("input.p-slider__input")
+  );
 
   // Submit analytics before submitting form
   form.addEventListener("submit", sendContributionFormAnalytics);
@@ -229,7 +257,9 @@ function initSliders(sliders) {
   const emptyColour = "#D9D9D9";
 
   sliders.forEach((slider) => {
-    let input = document.getElementById(slider.id + "-input");
+    let input = /** @type {HTMLInputElement | null} */ (
+      document.getElementById(slider.id + "-input")
+    );
     renderSlider(slider, progressColour, emptyColour, browser);
 
     if (input) {

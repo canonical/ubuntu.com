@@ -39,7 +39,8 @@ function scrollToRegularAnchor() {
       `a[href='${window.location.hash}']`,
     )[0];
     if (header) {
-      const sectionId = header.parentNode.parentNode.parentNode.id;
+      const sectionId =
+        header.parentElement.parentElement.parentElement.id;
 
       const reloadSection = new Promise((resolve) => {
         window.location.hash = sectionId;
@@ -108,6 +109,7 @@ const tutorialFeedbackResult = document.querySelector(
 
 tutorialFeedbackIcons.forEach((icon) => {
   icon.addEventListener("click", function (e) {
+    if (!(e.target instanceof Element)) return;
     const feedbackValue = e.target.getAttribute("data-feedback-value");
     dataLayer.push({
       event: "GAEvent",
@@ -125,16 +127,19 @@ tutorialFeedbackIcons.forEach((icon) => {
 const polls = document.querySelectorAll(".poll");
 
 polls.forEach((poll) => {
-  const answers = poll.querySelectorAll('[type="radio"]');
+  const answers = poll.querySelectorAll('input[type="radio"]');
   const pollId = poll.getAttribute("data-poll-name");
 
   answers.forEach((answer) => {
     answer.addEventListener("change", (e) => {
-      const answerLabel = document.querySelector(
-        'label[for="' + e.target.id + '"]',
+      const answerLabel = /** @type {HTMLLabelElement | null} */ (
+        document.querySelector('label[for="' + answer.id + '"]')
       );
+      if (!answerLabel) return;
       const eventLabel = answerLabel.innerText;
-      const eventAction = document.getElementById(pollId).innerText;
+      const eventAction = /** @type {HTMLElement} */ (
+        document.getElementById(pollId)
+      ).innerText;
 
       dataLayer.push({
         event: "GAEvent",

@@ -8,20 +8,26 @@
  *   for the coverage tables.
  */
 (function initReleaseCycleCascade() {
-  const filterBar = document.querySelector("[data-js-release-cycle-filters]");
+  const filterBar = /** @type {HTMLElement | null} */ (
+    document.querySelector("[data-js-release-cycle-filters]")
+  );
   if (!filterBar) {
     return;
   }
 
   function singleToggle(param) {
-    return filterBar.querySelector(
-      '[data-filter-param="' + param + '"][data-filter-type="single"]',
+    return /** @type {HTMLButtonElement | null} */ (
+      filterBar.querySelector(
+        '[data-filter-param="' + param + '"][data-filter-type="single"]',
+      )
     );
   }
 
   function menuFor(toggle) {
     return toggle
-      ? document.getElementById(toggle.getAttribute("aria-controls"))
+      ? /** @type {HTMLElement | null} */ (
+          document.getElementById(toggle.getAttribute("aria-controls"))
+        )
       : null;
   }
 
@@ -33,7 +39,11 @@
 
   function optionsOf(menu) {
     return menu
-      ? Array.from(menu.querySelectorAll(".p-filter-menu__link"))
+      ? Array.from(
+          /** @type {NodeListOf<HTMLButtonElement>} */ (
+            menu.querySelectorAll(".p-filter-menu__link")
+          ),
+        )
       : [];
   }
 
@@ -126,14 +136,20 @@
   }
 
   const ANY_LABEL = "Any";
-  const complianceToggle = filterBar.querySelector(
-    '[data-filter-param="compliance"][data-filter-type="multi"]',
+  const complianceToggle = /** @type {HTMLButtonElement | null} */ (
+    filterBar.querySelector(
+      '[data-filter-param="compliance"][data-filter-type="multi"]',
+    )
   );
   const complianceMenu = menuFor(complianceToggle);
 
   function complianceCheckboxes() {
     return complianceMenu
-      ? Array.from(complianceMenu.querySelectorAll("[data-filter-option]"))
+      ? Array.from(
+          /** @type {NodeListOf<HTMLInputElement>} */ (
+            complianceMenu.querySelectorAll("input[data-filter-option]")
+          ),
+        )
       : [];
   }
 
@@ -174,7 +190,9 @@
     complianceToggle.classList.add("is-active");
 
     // Nothing left to select once every option is already checked
-    const selectAll = complianceMenu?.querySelector("[data-filter-select-all]");
+    const selectAll = /** @type {HTMLButtonElement | null} */ (
+      complianceMenu?.querySelector("[data-filter-select-all]")
+    );
     if (selectAll) {
       const allSelected = total > 0 && checkedCount === total;
       selectAll.disabled = allSelected;
@@ -201,7 +219,9 @@
       });
     });
 
-    const selectAll = complianceMenu.querySelector("[data-filter-select-all]");
+    const selectAll = /** @type {HTMLButtonElement | null} */ (
+      complianceMenu.querySelector("[data-filter-select-all]")
+    );
     if (selectAll) {
       selectAll.addEventListener("click", () => {
         updateComplianceVisualState();

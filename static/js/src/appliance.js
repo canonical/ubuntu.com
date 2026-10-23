@@ -2,14 +2,14 @@ import lightbox from "./lightbox";
 
 function initLightbox() {
   const lightboxElements = Array.from(
-    document.getElementsByClassName("js-lightbox-item"),
+    document.querySelectorAll("a.js-lightbox-item"),
   );
 
-  let images = lightboxElements.map(function (element) {
+  const images = lightboxElements.map(function (element) {
     return element.href;
   });
 
-  let lightboxClosure = function (event, currentElement, images) {
+  const lightboxClosure = function (event, currentElement, images) {
     event.preventDefault();
     let imageURL = currentElement.href;
     imageURL = imageURL.substring(0, imageURL.indexOf("?"));

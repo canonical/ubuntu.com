@@ -127,11 +127,11 @@ const requiresAuthentication = (invoice) => {
 };
 
 const handleUpdateClick = (id, VPSize) => {
-  const resizeField = document.querySelector(
-    `#resize-input--${id}[data-viewport="${VPSize}"]`,
+  const resizeField = /** @type {HTMLInputElement} */ (
+    document.querySelector(`#resize-input--${id}[data-viewport="${VPSize}"]`)
   );
-  const updateButton = document.querySelector(
-    `#save-changes--${id}[data-viewport="${VPSize}"]`,
+  const updateButton = /** @type {HTMLButtonElement} */ (
+    document.querySelector(`#save-changes--${id}[data-viewport="${VPSize}"]`)
   );
 
   const { accountId, productListingId, previousPurchaseId, billingPeriod } =
@@ -190,12 +190,16 @@ const handleUpdateClick = (id, VPSize) => {
 };
 
 const cancelSubscription = (id, VPSize) => {
-  const cancelSubscriptionButton = document.querySelector(
-    `#cancel-subscription--${id}[data-viewport="${VPSize}"]`,
+  const cancelSubscriptionButton = /** @type {HTMLButtonElement} */ (
+    document.querySelector(
+      `#cancel-subscription--${id}[data-viewport="${VPSize}"]`,
+    )
   );
   const { accountId, productListingId, previousPurchaseId } =
     cancelSubscriptionButton.dataset;
-  const confirmCancelButton = document.querySelector(`#confirmCancelButton`);
+  const confirmCancelButton = /** @type {HTMLButtonElement} */ (
+    document.querySelector(`#confirmCancelButton`)
+  );
 
   const successNotificationElements = document.querySelectorAll(
     `.success-${id}`,
@@ -242,8 +246,10 @@ const cancelSubscription = (id, VPSize) => {
 };
 
 const createModal = (id, VPSize) => {
-  const cancelSubscriptionButton = document.querySelector(
-    `#cancel-subscription--${id}[data-viewport="${VPSize}"]`,
+  const cancelSubscriptionButton = /** @type {HTMLButtonElement} */ (
+    document.querySelector(
+      `#cancel-subscription--${id}[data-viewport="${VPSize}"]`,
+    )
   );
 
   const { contractName, machineCount } = cancelSubscriptionButton.dataset;
@@ -274,8 +280,9 @@ const createModal = (id, VPSize) => {
   confirmCancelField.type = "text";
   confirmCancelField.name = "confirm-cancel";
 
-  confirmCancelField.oninput = (e) => {
-    confirmCancelButton.disabled = e.target.value.toLowerCase() !== "cancel";
+  confirmCancelField.oninput = () => {
+    confirmCancelButton.disabled =
+      confirmCancelField.value.toLowerCase() !== "cancel";
   };
 
   container.innerHTML = `
@@ -306,50 +313,56 @@ const createModal = (id, VPSize) => {
   `;
   document.body.appendChild(container);
 
-  const fieldWrapper = document.querySelector("#cancel-modal-field-wrapper");
+  const fieldWrapper = /** @type {HTMLElement} */ (
+    document.querySelector("#cancel-modal-field-wrapper")
+  );
   fieldWrapper.appendChild(confirmCancelField);
 
-  const buttonWrapper = document.querySelector("#cancel-modal-buttons-wrapper");
+  const buttonWrapper = /** @type {HTMLElement} */ (
+    document.querySelector("#cancel-modal-buttons-wrapper")
+  );
   buttonWrapper.appendChild(goBackButton);
   buttonWrapper.appendChild(confirmCancelButton);
 };
 
 const handleCancelChangesClick = (id, VPSize) => {
   // Hide edit options
-  const previewSection = document.querySelector(
-    `#view-mode--${id}[data-viewport="${VPSize}"]`,
+  const previewSection = /** @type {HTMLElement} */ (
+    document.querySelector(`#view-mode--${id}[data-viewport="${VPSize}"]`)
   );
-  const editSection = document.querySelector(
-    `#edit-mode--${id}[data-viewport="${VPSize}"]`,
+  const editSection = /** @type {HTMLElement} */ (
+    document.querySelector(`#edit-mode--${id}[data-viewport="${VPSize}"]`)
   );
   previewSection.classList.remove("u-hide");
   editSection.classList.add("u-hide");
 
   // Reset input and help text
-  const resizeField = document.querySelector(
-    `#resize-input--${id}[data-viewport="${VPSize}"]`,
+  const resizeField = /** @type {HTMLInputElement} */ (
+    document.querySelector(`#resize-input--${id}[data-viewport="${VPSize}"]`)
   );
   resizeField.oninput = () => {};
   resizeField.value = resizeField.defaultValue;
-  const resizeSummary = document.querySelector(
-    `#resize-summary--${id}[data-viewport="${VPSize}"]`,
+  const resizeSummary = /** @type {HTMLElement} */ (
+    document.querySelector(`#resize-summary--${id}[data-viewport="${VPSize}"]`)
   );
-  const newPayment = document.querySelector(
-    `#new-payment--${id}[data-viewport="${VPSize}"]`,
+  const newPayment = /** @type {HTMLElement} */ (
+    document.querySelector(`#new-payment--${id}[data-viewport="${VPSize}"]`)
   );
-  const updateButton = document.querySelector(
-    `#save-changes--${id}[data-viewport="${VPSize}"]`,
+  const updateButton = /** @type {HTMLButtonElement} */ (
+    document.querySelector(`#save-changes--${id}[data-viewport="${VPSize}"]`)
   );
   resizeSummary.classList.add("u-hide");
   newPayment.classList.add("u-hide");
   updateButton.disabled = true;
 
   // Remove buttons handlers
-  const cancelSubscriptionButton = document.querySelector(
-    `#cancel-subscription--${id}[data-viewport="${VPSize}"]`,
+  const cancelSubscriptionButton = /** @type {HTMLButtonElement | null} */ (
+    document.querySelector(
+      `#cancel-subscription--${id}[data-viewport="${VPSize}"]`,
+    )
   );
-  const cancelChangesButton = document.querySelector(
-    `#cancel-changes--${id}[data-viewport="${VPSize}"]`,
+  const cancelChangesButton = /** @type {HTMLButtonElement} */ (
+    document.querySelector(`#cancel-changes--${id}[data-viewport="${VPSize}"]`)
   );
   updateButton.onclick = () => {};
   cancelChangesButton.onclick = () => {};
@@ -366,31 +379,32 @@ const handleCancelChangesClick = (id, VPSize) => {
 };
 
 const handleChange = (e, id, VPSize) => {
-  const defaultValue = Number.parseInt(e.target.defaultValue);
-  let newValue = Number.parseInt(e.target.value);
+  const input = /** @type {HTMLInputElement} */ (e.currentTarget);
+  const defaultValue = Number.parseInt(input.defaultValue);
+  let newValue = Number.parseInt(input.value);
 
-  const unitPrice = Number.parseFloat(e.target.dataset.unitPrice / 100);
+  const unitPrice = Number.parseFloat(input.dataset.unitPrice / 100);
   const nextPayment = Number.parseFloat(
-    e.target.dataset.nextPayment.split(" ")[0],
+    input.dataset.nextPayment.split(" ")[0],
   );
-  const billingPeriod = e.target.dataset.billingPeriod;
+  const billingPeriod = input.dataset.billingPeriod;
 
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
   });
 
-  const resizeSummary = document.querySelector(
-    `#resize-summary--${id}[data-viewport="${VPSize}"]`,
+  const resizeSummary = /** @type {HTMLElement} */ (
+    document.querySelector(`#resize-summary--${id}[data-viewport="${VPSize}"]`)
   );
-  const newPayment = document.querySelector(
-    `#new-payment--${id}[data-viewport="${VPSize}"]`,
+  const newPayment = /** @type {HTMLElement} */ (
+    document.querySelector(`#new-payment--${id}[data-viewport="${VPSize}"]`)
   );
-  const updateButton = document.querySelector(
-    `#save-changes--${id}[data-viewport="${VPSize}"]`,
+  const updateButton = /** @type {HTMLButtonElement} */ (
+    document.querySelector(`#save-changes--${id}[data-viewport="${VPSize}"]`)
   );
 
-  const { min, max } = e.target;
+  const { min, max } = input;
 
   const valid = newValue >= min && newValue <= max;
 
@@ -433,50 +447,54 @@ const handleChange = (e, id, VPSize) => {
 };
 
 const handleBlur = (e, id, VPSize) => {
-  const defaultValue = Number.parseInt(e.target.defaultValue);
-  let newValue = Number.parseInt(e.target.value);
+  const input = /** @type {HTMLInputElement} */ (e.currentTarget);
+  const defaultValue = Number.parseInt(input.defaultValue);
+  let newValue = Number.parseInt(input.value);
 
-  const { min, max } = e.target;
+  const { min, max } = input;
 
   if (newValue < min) {
     newValue = Number.parseInt(min);
-    e.target.value = min;
+    input.value = min;
   }
 
   if (newValue > max) {
     newValue = Number.parseInt(max);
-    e.target.value = max;
+    input.value = max;
   }
 
   if (isNaN(newValue)) {
-    e.target.value = defaultValue;
+    input.value = defaultValue;
   }
 
   handleChange(e, id, VPSize);
 };
 
+/** @this {HTMLButtonElement} */
 function handleChangeClick() {
   const id = this.dataset.id;
   const VPSize = this.dataset.viewport;
-  const updateButton = document.querySelector(
-    `#save-changes--${id}[data-viewport="${VPSize}"]`,
+  const updateButton = /** @type {HTMLButtonElement} */ (
+    document.querySelector(`#save-changes--${id}[data-viewport="${VPSize}"]`)
   );
-  const cancelChangesButton = document.querySelector(
-    `#cancel-changes--${id}[data-viewport="${VPSize}"]`,
+  const cancelChangesButton = /** @type {HTMLButtonElement} */ (
+    document.querySelector(`#cancel-changes--${id}[data-viewport="${VPSize}"]`)
   );
-  const cancelSubscriptionButton = document.querySelector(
-    `#cancel-subscription--${id}[data-viewport="${VPSize}"]`,
+  const cancelSubscriptionButton = /** @type {HTMLButtonElement | null} */ (
+    document.querySelector(
+      `#cancel-subscription--${id}[data-viewport="${VPSize}"]`,
+    )
   );
-  const resizeField = document.querySelector(
-    `#resize-input--${id}[data-viewport="${VPSize}"]`,
+  const resizeField = /** @type {HTMLInputElement} */ (
+    document.querySelector(`#resize-input--${id}[data-viewport="${VPSize}"]`)
   );
 
   // Show edit options
-  const previewSection = document.querySelector(
-    `#view-mode--${id}[data-viewport="${VPSize}"]`,
+  const previewSection = /** @type {HTMLElement} */ (
+    document.querySelector(`#view-mode--${id}[data-viewport="${VPSize}"]`)
   );
-  const editSection = document.querySelector(
-    `#edit-mode--${id}[data-viewport="${VPSize}"]`,
+  const editSection = /** @type {HTMLElement} */ (
+    document.querySelector(`#edit-mode--${id}[data-viewport="${VPSize}"]`)
   );
   previewSection.classList.add("u-hide");
   editSection.classList.remove("u-hide");
@@ -527,7 +545,9 @@ editButtons.forEach((button) => {
   button.addEventListener("click", handleChangeClick);
 });
 
-const endTrialButtons = document.querySelectorAll(".js-end-trial");
+const endTrialButtons = /** @type {NodeListOf<HTMLButtonElement>} */ (
+  document.querySelectorAll(".js-end-trial")
+);
 const accountId = endTrialButtons[0].dataset.accountId;
 
 endTrialButtons.forEach((endTrialButton) => {

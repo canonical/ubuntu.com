@@ -1,24 +1,38 @@
 const url = new URL(window.location.href);
 const urlParams = new URLSearchParams(url.search);
-const releaseFilter = document.querySelector("#release-filter");
-const releaseCheckboxes = releaseFilter
-  ? releaseFilter.querySelectorAll(".p-checkbox__input")
-  : null;
-const applyFiltersButton = document.querySelector("#apply-filters");
-const clearFiltersButton = document.querySelector("#clear-filters");
-const unmaintainedReleasesContainer = document.querySelector(
-  ".js-unmaintained-releases",
+const releaseFilter = /** @type {HTMLFormElement} */ (
+  document.querySelector("#release-filter")
 );
-const form = document.querySelector(".js-notice-form");
+const releaseCheckboxes = /** @type {NodeListOf<HTMLInputElement>} */ (
+  releaseFilter.querySelectorAll("input.p-checkbox__input")
+);
+const applyFiltersButton = /** @type {HTMLButtonElement} */ (
+  document.querySelector("#apply-filters")
+);
+const clearFiltersButton = /** @type {HTMLButtonElement} */ (
+  document.querySelector("#clear-filters")
+);
+const unmaintainedReleasesContainer = /** @type {HTMLElement} */ (
+  document.querySelector(".js-unmaintained-releases")
+);
+const form = /** @type {HTMLFormElement} */ (
+  document.querySelector(".js-notice-form")
+);
 const orderInput = document.querySelector(".js-order-input");
 const details = document.querySelector(".js-details");
 const release = document.querySelector(".js-release");
-const submit = document.querySelector(".js-submit");
-const unmaintainedReleasesLink = document.querySelector(
-  ".js-show-unmaintained-releases",
+const submit = /** @type {HTMLButtonElement} */ (
+  document.querySelector(".js-submit")
 );
-const searchClose = form.querySelector(".p-icon--close");
-const searchInput = form.querySelector(".p-search-box__input");
+const unmaintainedReleasesLink = /** @type {HTMLAnchorElement} */ (
+  document.querySelector(".js-show-unmaintained-releases")
+);
+const searchClose = /** @type {HTMLButtonElement} */ (
+  form.querySelector(".p-icon--close")
+);
+const searchInput = /** @type {HTMLInputElement} */ (
+  form.querySelector(".p-search-box__input")
+);
 const noticesListSection = document.querySelector("#notices-list");
 
 // External data
@@ -98,11 +112,12 @@ function applyFilters() {
 function handleClearFilters() {
   if (clearFiltersButton) {
     clearFiltersButton.addEventListener("click", function (event) {
-      let keys = [...urlParams.keys()];
+      const keys = new Set();
+      urlParams.forEach((value, key) => {
+        if (key === "release") keys.add(key);
+      });
       keys.forEach((key) => {
-        if (key == "release") {
-          urlParams.delete(key);
-        }
+        urlParams.delete(key);
       });
 
       url.search = urlParams.toString();
@@ -125,11 +140,11 @@ function showUnmaintainedReleases() {
 function handleFilters() {
   if (releaseCheckboxes) {
     releaseCheckboxes.forEach(function (checkbox) {
-      checkbox.addEventListener("change", function (event) {
-        if (event.target.checked) {
-          addParam(releaseFilter.name, event.target.value);
+      checkbox.addEventListener("change", function () {
+        if (checkbox.checked) {
+          addParam(releaseFilter.name, checkbox.value);
         } else {
-          removeParam(releaseFilter.name, event.target.value);
+          removeParam(releaseFilter.name, checkbox.value);
         }
       });
     });
@@ -163,8 +178,8 @@ function removeParam(param, value) {
     });
   } else {
     if (maintainedReleases.includes(value)) {
-      const maintainedCheckbox = document.querySelector(
-        "input[type='checkbox'][value='maintained']",
+      const maintainedCheckbox = /** @type {HTMLInputElement} */ (
+        document.querySelector("input[type='checkbox'][value='maintained']")
       );
       maintainedCheckbox.checked = false;
     }
@@ -185,8 +200,8 @@ function handleFilterPersist() {
     }
 
     if (includesFilterSubset(params, maintainedReleases)) {
-      let maintainedCheckbox = releaseFilter.querySelector(
-        "input[value='maintained']",
+      let maintainedCheckbox = /** @type {HTMLInputElement} */ (
+        releaseFilter.querySelector("input[value='maintained']")
       );
       maintainedCheckbox.checked = true;
     }

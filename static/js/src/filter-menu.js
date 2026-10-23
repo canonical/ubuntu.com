@@ -42,11 +42,17 @@ function setupFilterBar(bar) {
   const resetParams = (bar.dataset.filterResetParams || "")
     .split(/\s+/)
     .filter(Boolean);
-  const singleToggles = Array.from(bar.querySelectorAll(HOOKS.singleToggle));
-  const multiToggles = Array.from(bar.querySelectorAll(HOOKS.multiToggle));
+  const singleToggles = /** @type {HTMLButtonElement[]} */ (
+    Array.from(bar.querySelectorAll(HOOKS.singleToggle))
+  );
+  const multiToggles = /** @type {HTMLButtonElement[]} */ (
+    Array.from(bar.querySelectorAll(HOOKS.multiToggle))
+  );
 
   function dropdownFor(toggle) {
-    return document.getElementById(toggle.getAttribute("aria-controls"));
+    return /** @type {HTMLElement | null} */ (
+      document.getElementById(toggle.getAttribute("aria-controls"))
+    );
   }
 
   function closeAllMenus() {
@@ -93,7 +99,9 @@ function setupFilterBar(bar) {
       return [];
     }
     return Array.from(
-      menu.querySelectorAll(HOOKS.checkedCheckbox),
+      /** @type {NodeListOf<HTMLInputElement>} */ (
+        menu.querySelectorAll(HOOKS.checkedCheckbox)
+      ),
       (checkbox) => checkbox.value,
     );
   }
@@ -103,7 +111,9 @@ function setupFilterBar(bar) {
     if (!menu) {
       return;
     }
-    menu.querySelectorAll(HOOKS.checkbox).forEach((checkbox) => {
+    /** @type {NodeListOf<HTMLInputElement>} */ (
+      menu.querySelectorAll(HOOKS.checkbox)
+    ).forEach((checkbox) => {
       checkbox.checked = isChecked;
     });
   }
@@ -114,7 +124,9 @@ function setupFilterBar(bar) {
       return;
     }
 
-    menu.querySelectorAll(HOOKS.checkbox).forEach((checkbox) => {
+    /** @type {NodeListOf<HTMLInputElement>} */ (
+      menu.querySelectorAll(HOOKS.checkbox)
+    ).forEach((checkbox) => {
       const label = checkbox.nextElementSibling;
       if (label && label.classList.contains("p-checkbox__label")) {
         const labelText = label.querySelector(HOOKS.labelText);
@@ -124,7 +136,9 @@ function setupFilterBar(bar) {
       }
     });
 
-    const checked = menu.querySelectorAll(HOOKS.checkedCheckbox);
+    const checked = /** @type {NodeListOf<HTMLInputElement>} */ (
+      menu.querySelectorAll(HOOKS.checkedCheckbox)
+    );
     const count = toggle.querySelector(HOOKS.count);
     if (count) {
       count.textContent = String(checked.length);
@@ -150,7 +164,11 @@ function setupFilterBar(bar) {
     if (!menu) {
       return;
     }
-    const option = Array.from(menu.querySelectorAll(HOOKS.option)).find(
+    const option = Array.from(
+      /** @type {NodeListOf<HTMLButtonElement>} */ (
+        menu.querySelectorAll(HOOKS.option)
+      ),
+    ).find(
       (candidate) => candidate.dataset.value === value,
     );
     if (!option) {
@@ -166,7 +184,9 @@ function setupFilterBar(bar) {
       return;
     }
     const selected = new Set(urlParams().getAll(toggle.dataset.filterParam));
-    menu.querySelectorAll(HOOKS.checkbox).forEach((checkbox) => {
+    /** @type {NodeListOf<HTMLInputElement>} */ (
+      menu.querySelectorAll(HOOKS.checkbox)
+    ).forEach((checkbox) => {
       checkbox.checked = selected.has(checkbox.value);
     });
     updateMultiVisualState(toggle);
@@ -315,7 +335,9 @@ function setupFilterBar(bar) {
     // Keep the menu open while interacting with its checkboxes/actions
     menu.addEventListener("click", (e) => e.stopPropagation());
 
-    menu.querySelectorAll(HOOKS.checkbox).forEach((checkbox) => {
+    /** @type {NodeListOf<HTMLInputElement>} */ (
+      menu.querySelectorAll(HOOKS.checkbox)
+    ).forEach((checkbox) => {
       checkbox.addEventListener("change", () => {
         updateMultiVisualState(toggle);
         updateClearVisibility();

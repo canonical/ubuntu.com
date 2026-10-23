@@ -379,7 +379,9 @@ function applyCertifiedYear(input) {
 }
 
 function updateResultsPerPage() {
-  const searchResults = document.querySelector(".js-search-results");
+  const searchResults = /** @type {HTMLFormElement} */ (
+    document.querySelector(".js-search-results")
+  );
   const pageSizeBottom = document.getElementById("page-size-bottom");
 
   pageSizeBottom?.addEventListener("change", () => {

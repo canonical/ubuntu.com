@@ -12,8 +12,11 @@ if (!String.prototype.startsWith) {
 }
 
 if (!Element.prototype.matches) {
+  const legacyMatches = /** @type {{ msMatchesSelector?: (selector: string) => boolean }} */ (
+    Element.prototype
+  ).msMatchesSelector;
   Element.prototype.matches =
-    Element.prototype.msMatchesSelector ||
+    legacyMatches ||
     Element.prototype.webkitMatchesSelector;
 }
 

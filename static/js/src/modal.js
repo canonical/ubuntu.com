@@ -92,6 +92,7 @@ function initModals(modalId, ariaControls, open) {
 
   // Add click handler for clicks on elements with aria-controls
   document.addEventListener("click", function (event) {
+    if (!(event.target instanceof Element)) return;
     var targetControls = event.target.getAttribute("aria-controls");
     if (targetControls) {
       toggleModal(document.getElementById(targetControls), event.target);
@@ -100,6 +101,7 @@ function initModals(modalId, ariaControls, open) {
 
   // Add handler to close modal when clicking 'close' or outside the modal
   document.addEventListener("click", function (e) {
+    if (!(e.target instanceof Element)) return;
     if (!e.target.closest(ariaControls)) {
       if (
         e.target.matches(".p-modal__close") ||

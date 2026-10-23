@@ -11,11 +11,17 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
     const triggeringHash = "#get-in-touch";
-    const formContainer = document.getElementById("contact-form-container");
-    const contactButtons = document.querySelectorAll(".js-invoke-modal");
+    const formContainer = /** @type {HTMLElement} */ (
+      document.getElementById("contact-form-container")
+    );
+    const contactButtons = /** @type {NodeListOf<HTMLAnchorElement>} */ (
+      document.querySelectorAll(".js-invoke-modal")
+    );
     let returnData = window.location.pathname + "#success";
     let modalTrigger = document.activeElement || document.body;
-    const modalAlreadyExists = document.querySelector(".js-modal-ready");
+    const modalAlreadyExists = /** @type {HTMLElement | null} */ (
+      document.querySelector(".js-modal-ready")
+    );
     // If the modal contains the class "js-modal-ready", it means we are using the form generator
     // And each form will have a unique ID
     let contactModalSelector = modalAlreadyExists
@@ -148,7 +154,9 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       }
 
       // Set product in form field
-      const productContext = document.getElementById("product-context");
+      const productContext = /** @type {HTMLInputElement | null} */ (
+        document.getElementById("product-context")
+      );
       if (productContext) {
         productContext.value = product;
       }
@@ -156,24 +164,36 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
     function setUTMs(formId) {
       const params = new URLSearchParams(window.location.search);
-      const targetForm = document.getElementById(`mktoForm_${formId}`);
-      const utm_campaign = targetForm.querySelector("#utm_campaign");
+      const targetForm = /** @type {HTMLFormElement} */ (
+        document.getElementById(`mktoForm_${formId}`)
+      );
+      const utm_campaign = /** @type {HTMLInputElement | null} */ (
+        targetForm.querySelector("#utm_campaign")
+      );
       if (utm_campaign) {
         utm_campaign.value = params.get("utm_campaign");
       }
-      const utm_source = targetForm.querySelector("#utm_source");
+      const utm_source = /** @type {HTMLInputElement | null} */ (
+        targetForm.querySelector("#utm_source")
+      );
       if (utm_source) {
         utm_source.value = params.get("utm_source");
       }
-      const utm_medium = targetForm.querySelector("#utm_medium");
+      const utm_medium = /** @type {HTMLInputElement | null} */ (
+        targetForm.querySelector("#utm_medium")
+      );
       if (utm_medium) {
         utm_medium.value = params.get("utm_medium");
       }
-      const utm_content = targetForm.querySelector("#utm_content");
+      const utm_content = /** @type {HTMLInputElement | null} */ (
+        targetForm.querySelector("#utm_content")
+      );
       if (utm_content) {
         utm_content.value = params.get("utm_content");
       }
-      const utm_term = targetForm.querySelector("#utm_term");
+      const utm_term = /** @type {HTMLInputElement | null} */ (
+        targetForm.querySelector("#utm_term")
+      );
       if (utm_term) {
         utm_term.value = params.get("utm_term");
       }
@@ -181,7 +201,9 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
     function setGclid() {
       if (localStorage.getItem("gclid")) {
-        const gclidField = document.getElementById("GCLID__c");
+        const gclidField = /** @type {HTMLInputElement | null} */ (
+          document.getElementById("GCLID__c")
+        );
         const gclid = JSON.parse(localStorage.getItem("gclid"));
         const isGclidValid = new Date().getTime() < gclid.expiryDate;
         if (gclid && isGclidValid && gclidField) {
@@ -192,7 +214,9 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
     function setFBclid() {
       if (localStorage.getItem("fbclid")) {
-        const fbclidField = document.getElementById("Facebook_Click_ID__c");
+        const fbclidField = /** @type {HTMLInputElement | null} */ (
+          document.getElementById("Facebook_Click_ID__c")
+        );
         const fbclid = JSON.parse(localStorage.getItem("fbclid"));
         const fbclidIsValid = new Date().getTime() < fbclid.expiryDate;
         if (fbclid && fbclidIsValid && fbclidField) {
@@ -227,20 +251,36 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
     function initialiseForm() {
       let contactIndex = 1;
-      const contactModal = document.getElementById(contactModalSelector);
-      const closeModal = document.querySelector(".p-modal__close");
-      const closeModalButton = document.querySelector(".js-close");
+      const contactModal = /** @type {HTMLElement} */ (
+        document.getElementById(contactModalSelector)
+      );
+      const closeModal = /** @type {HTMLElement | null} */ (
+        document.querySelector(".p-modal__close")
+      );
+      const closeModalButton = /** @type {HTMLElement | null} */ (
+        document.querySelector(".js-close")
+      );
       const modalPaginationButtons =
         contactModal.querySelectorAll(".pagination a");
       const paginationContent = contactModal.querySelectorAll(".js-pagination");
-      const submitButton = contactModal.querySelector('button[type="submit"]');
-      const comment = contactModal.querySelector("#Comments_from_lead__c");
-      const otherContainers = document.querySelectorAll(".js-other-container");
-      const phoneNumberInput = document.querySelector("#phone");
-      const countryInput = document.querySelector("#country");
+      const submitButton = /** @type {HTMLButtonElement} */ (
+        contactModal.querySelector('button[type="submit"]')
+      );
+      const comment = /** @type {HTMLTextAreaElement} */ (
+        contactModal.querySelector("#Comments_from_lead__c")
+      );
+      const otherContainers = /** @type {NodeListOf<HTMLElement>} */ (
+        document.querySelectorAll(".js-other-container")
+      );
+      const phoneNumberInput = /** @type {HTMLInputElement} */ (
+        document.querySelector("#phone")
+      );
+      const countryInput = /** @type {HTMLInputElement} */ (
+        document.querySelector("#country")
+      );
       modalTrigger = document.activeElement || document.body;
       const isMultipage =
-        contactModal.querySelector(".js-pagination")?.length > 1;
+        contactModal.querySelectorAll(".js-pagination").length > 1;
       let isClickStartedInside = false;
 
       document.onkeydown = function (evt) {
@@ -268,7 +308,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       modalPaginationButtons.forEach(function (modalPaginationButton) {
         modalPaginationButton.addEventListener("click", function (e) {
           e.preventDefault();
-          const button = e.target.closest("a");
+          const button = /** @type {HTMLAnchorElement} */ (e.currentTarget);
           let index = contactIndex;
           if (button.classList.contains("pagination__link--previous")) {
             index = index - 1;
@@ -291,14 +331,14 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       });
 
       otherContainers.forEach(function (otherContainer) {
-        const checkbox = otherContainer.querySelector(
-          ".js-other-container__checkbox",
+        const checkbox = /** @type {HTMLInputElement | null} */ (
+          otherContainer.querySelector(".js-other-container__checkbox")
         );
-        const input = otherContainer.querySelector(
-          ".js-other-container__input",
+        const input = /** @type {HTMLInputElement | null} */ (
+          otherContainer.querySelector(".js-other-container__input")
         );
-        checkbox?.addEventListener("change", function (e) {
-          if (e.target.checked) {
+        checkbox?.addEventListener("change", function () {
+          if (checkbox.checked) {
             input.style.display = "block";
             input.focus();
           } else {
@@ -356,68 +396,72 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       // Concatinate the options selected into a string
       function createMessage(submit) {
-        const contactModal = document.getElementById(contactModalSelector);
+        const contactModal = /** @type {HTMLElement} */ (
+          document.getElementById(contactModalSelector)
+        );
         let message = "";
         if (contactModal) {
-          const formFields = contactModal.querySelectorAll(".js-formfield");
+          const formFields = /** @type {NodeListOf<HTMLElement>} */ (
+            contactModal.querySelectorAll(".js-formfield")
+          );
           formFields.forEach(function (formField) {
             const comma = ",";
-            const fieldsetForm = formField.querySelector(".js-formfield-title");
-            let fieldTitle = "";
-            if (fieldsetForm) {
-              fieldTitle = fieldsetForm;
-            } else {
-              fieldTitle =
-                formField.querySelector(".p-heading--5") ??
-                formField.querySelector(".p-modal__question-heading");
-            }
-            const inputs = formField.querySelectorAll("input, textarea");
+            const fieldsetForm = /** @type {HTMLElement | null} */ (
+              formField.querySelector(".js-formfield-title")
+            );
+            const fieldTitle =
+              fieldsetForm ||
+              /** @type {HTMLElement | null} */ (
+                formField.querySelector(".p-heading--5") ||
+                  formField.querySelector(".p-modal__question-heading")
+              );
+            const inputs = /** @type {NodeListOf<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>} */ (
+              formField.querySelectorAll("input, textarea, select")
+            );
             if (fieldTitle) {
               message += fieldTitle.innerText + "\r\n";
             }
 
             inputs.forEach(function (input) {
               switch (input.type) {
-                case "select-one":
+                case "select-one": {
+                  const selectInput = /** @type {HTMLSelectElement} */ (input);
                   message +=
-                    input.options[input.selectedIndex]?.textContent +
+                    selectInput.options[selectInput.selectedIndex]?.textContent +
                     comma +
                     " ";
                   break;
+                }
                 case "radio":
-                  if (input.checked) {
+                  if (/** @type {HTMLInputElement} */ (input).checked) {
                     message += input.value + comma + " ";
                   }
                   break;
                 case "checkbox":
-                  if (input.checked) {
+                  if (/** @type {HTMLInputElement} */ (input).checked) {
                     if (fieldsetForm) {
                       message += input.value + comma + " ";
                     } else {
                       // Forms that have column separation
                       let subSectionText = "";
-                      if (
-                        input.closest('[class*="col-"]') &&
+                      const subSection = /** @type {HTMLElement | null} */ (
                         input
                           .closest('[class*="col-"]')
-                          .querySelector(".js-sub-section")
-                      ) {
-                        let subSection = input
-                          .closest('[class*="col-"]')
-                          .querySelector(".js-sub-section");
+                          ?.querySelector(".js-sub-section")
+                      );
+                      if (subSection) {
                         subSectionText = subSection.innerText + ": ";
                       }
 
-                      let label = formField.querySelector(
-                        "span#" + input.getAttribute("aria-labelledby"),
+                      const label = /** @type {HTMLElement | null} */ (
+                        formField.querySelector(
+                          "span#" + input.getAttribute("aria-labelledby"),
+                        )
                       );
-
-                      if (label) {
-                        label = subSectionText + label.innerText;
-                      } else {
-                        label = input.getAttribute("aria-labelledby");
-                      }
-                      message += label + comma + "\r\n\r\n";
+                      const labelText = label
+                        ? subSectionText + label.innerText
+                        : input.getAttribute("aria-labelledby");
+                      message += labelText + comma + "\r\n\r\n";
                     }
                   }
                   break;
@@ -473,22 +517,21 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         const radioGroups = document.querySelectorAll(".js-radio-group");
 
         radioGroups.forEach((radioGroup) => {
-          const radioButtons = radioGroup.querySelectorAll("[type='radio']");
-
-          const descriptionToggle = radioGroup.querySelector(
-            ".js-toggle-description-field",
+          const radioButtons = radioGroup.querySelectorAll(
+            "input[type='radio']",
           );
 
-          const descriptionField = document.getElementById(
-            descriptionToggle.dataset.descriptionFieldId,
+          const descriptionToggle = /** @type {HTMLInputElement} */ (
+            radioGroup.querySelector(".js-toggle-description-field")
+          );
+
+          const descriptionField = /** @type {HTMLElement} */ (
+            document.getElementById(descriptionToggle.dataset.descriptionFieldId)
           );
 
           radioButtons.forEach((radioButton) => {
-            radioButton.addEventListener("change", (e) => {
-              if (
-                e.currentTarget === descriptionToggle &&
-                e.currentTarget.checked
-              ) {
+            radioButton.addEventListener("change", () => {
+              if (radioButton === descriptionToggle && radioButton.checked) {
                 descriptionField.classList.remove("u-hide");
               } else {
                 descriptionField.classList.add("u-hide");
@@ -519,8 +562,9 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
         const handleChoiceLimitContainer = (choiceLimitContainer) => {
           const choiceLimit = choiceLimitContainer.dataset.choiceLimit;
-          const choices =
-            choiceLimitContainer.querySelectorAll("[type='checkbox']");
+          const choices = /** @type {NodeListOf<HTMLInputElement>} */ (
+            choiceLimitContainer.querySelectorAll("input[type='checkbox']")
+          );
 
           choices.forEach((choice) => {
             choice.addEventListener("change", () => {
@@ -552,8 +596,9 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       // Set preferredLanguage hidden input
       function setpreferredLanguage() {
         const preferredLanguage = getPrimaryParentLanguage();
-        const preferredLanguageInput =
-          contactModal.querySelector("#preferredLanguage");
+        const preferredLanguageInput = /** @type {HTMLInputElement | null} */ (
+          contactModal.querySelector("#preferredLanguage")
+        );
 
         if (preferredLanguageInput) {
           preferredLanguageInput.value = preferredLanguage || "";
@@ -591,16 +636,20 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       }
 
       // Add event listeners to toggle checkbox visibility
-      const ubuntuVersionCheckboxes = document.querySelector(
-        "fieldset.js-toggle-checkbox-visibility",
+      const ubuntuVersionCheckboxes = /** @type {HTMLFieldSetElement | null} */ (
+        document.querySelector("fieldset.js-toggle-checkbox-visibility")
       );
       ubuntuVersionCheckboxes?.addEventListener("change", function (event) {
-        toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
+        if (event.target instanceof HTMLInputElement) {
+          toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
+        }
       });
 
       // Add event listeners if there are required fieldsets present
       if (requiredFieldsets.length > 0) {
-        const submitButton = document.querySelector(".js-submit-button");
+        const submitButton = /** @type {HTMLButtonElement} */ (
+          document.querySelector(".js-submit-button")
+        );
         submitButton.disabled = true;
       }
       requiredFieldsets?.forEach((fieldset) => {
@@ -645,11 +694,17 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       }
 
       function handleModalMouseDown(e) {
-        isClickStartedInside = e.target.id !== contactModalSelector;
+        if (e.target instanceof Element) {
+          isClickStartedInside = e.target.id !== contactModalSelector;
+        }
       }
 
       function handleModalMouseUp(e) {
-        if (!isClickStartedInside && e.target.id === contactModalSelector) {
+        if (
+          !isClickStartedInside &&
+          e.target instanceof Element &&
+          e.target.id === contactModalSelector
+        ) {
           e.preventDefault();
           close();
         }
@@ -659,9 +714,13 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     // Sets the focus inside the modal and trap it
     function setFocus() {
       modalTrigger = document.activeElement || document.body;
-      const modal = document.querySelector(".p-modal");
-      const firstFocusableEle = modal.querySelector(
-        "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])",
+      const modal = /** @type {HTMLElement} */ (
+        document.querySelector(".p-modal")
+      );
+      const firstFocusableEle = /** @type {HTMLElement} */ (
+        modal.querySelector(
+          "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])",
+        )
       );
 
       // set initial focus inside the modal
@@ -669,10 +728,15 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       // trap focus
       firstFocusableEle.addEventListener("keydown", function (e) {
+        if (!(e instanceof KeyboardEvent)) return;
         if (e.shiftKey && e.key === "Tab") {
           e.preventDefault();
-          const targetPage = modal.querySelector(".js-pagination:not(.u-hide)");
-          const targetEle = targetPage.querySelector(".pagination__link--next");
+          const targetPage = /** @type {HTMLElement} */ (
+            modal.querySelector(".js-pagination:not(.u-hide)")
+          );
+          const targetEle = /** @type {HTMLElement} */ (
+            targetPage.querySelector(".pagination__link--next")
+          );
           targetEle.focus();
         }
       });
@@ -683,6 +747,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         const lastFocusEle = page.querySelector(".pagination__link--next");
         if (lastFocusEle) {
           lastFocusEle.addEventListener("keydown", function (e) {
+            if (!(e instanceof KeyboardEvent)) return;
             if (!e.shiftKey && e.key === "Tab") {
               e.preventDefault();
               firstFocusableEle.focus();
@@ -717,10 +782,16 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
      * - Can only check one __other item at a time
      * - When all visible checkboxes or any __other checkbox is unchecked, all checkboxes will be enabled
      */
+    /**
+     * @param {HTMLFieldSetElement} fieldset
+     * @param {HTMLInputElement} checklistItem
+     */
     function toggleCheckboxVisibility(fieldset, checklistItem) {
-      const checkboxes = fieldset.querySelectorAll(".js-checkbox-visibility");
-      const otherCheckboxes = fieldset.querySelectorAll(
-        ".js-checkbox-visibility__other",
+      const checkboxes = /** @type {NodeListOf<HTMLInputElement>} */ (
+        fieldset.querySelectorAll(".js-checkbox-visibility")
+      );
+      const otherCheckboxes = /** @type {NodeListOf<HTMLInputElement>} */ (
+        fieldset.querySelectorAll(".js-checkbox-visibility__other")
       );
       const isVisible = checklistItem.classList.contains(
         "js-checkbox-visibility",
@@ -766,14 +837,18 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
      * Submit button is only enabled when ALL required fieldsets have at least one checkbox checked
      */
     function checkRequiredCheckboxes() {
-      const submitButton = document.querySelector(".js-submit-button");
+      const submitButton = /** @type {HTMLButtonElement} */ (
+        document.querySelector(".js-submit-button")
+      );
       const allRequiredFieldsets = document.querySelectorAll(
         "fieldset.js-required-checkbox",
       );
       let allFieldsetsValid = true;
 
       allRequiredFieldsets?.forEach((fieldset) => {
-        const checkboxes = fieldset.querySelectorAll("input[type='checkbox']");
+        const checkboxes = /** @type {NodeListOf<HTMLInputElement>} */ (
+          fieldset.querySelectorAll("input[type='checkbox']")
+        );
         let hasCheckedCheckbox = false;
 
         checkboxes?.forEach((checkbox) => {

@@ -5,8 +5,8 @@ let iti;
 /**
  * Initializes phone input field with intlTelInput and pre-fills the country input based on the user's timezone.
  *
- * @param {HTMLElement} phoneInput - The input element for the phone number.
- * @param {HTMLElement} countryInput - The select element for the country.
+ * @param {HTMLInputElement} phoneInput - The input element for the phone number.
+ * @param {HTMLSelectElement} countryInput - The select element for the country.
  */
 export async function prepareInputFields(phoneInput, countryInput) {
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -30,7 +30,7 @@ export async function prepareInputFields(phoneInput, countryInput) {
  * Sets the value of the country input field.
  *
  * @param {string} countryCode - ISO country code to set as the value.
- * @param {HTMLElement} countryInput - The select element for the country.
+ * @param {HTMLSelectElement} countryInput - The select element for the country.
  */
 function preFormatCountry(countryCode, countryInput) {
   if (countryInput.dataset.noPreselectCountry === "true") {
@@ -52,7 +52,7 @@ function preFormatCountry(countryCode, countryInput) {
  * Configures intlTelInput.
  *
  * @param {string} countryCode - ISO country code for initializing the plugin.
- * @param {HTMLElement} phoneInput - The input element for the phone number.
+ * @param {HTMLInputElement} phoneInput - The input element for the phone number.
  */
 export function setupIntlTelInput(countryCode, phoneInput) {
   iti = intlTelInput(phoneInput, {
@@ -71,11 +71,13 @@ export function setupIntlTelInput(countryCode, phoneInput) {
 /**
  * Adds validation logic and styling to the phone input field.
  *
- * @param {HTMLElement} phoneInput - The input element for the phone number.
+ * @param {HTMLInputElement} phoneInput - The input element for the phone number.
  */
 function addInputValidation(phoneInput) {
-  const mobileInput = document.querySelector(".iti");
-  const parentNode = mobileInput.parentNode;
+  const mobileInput = /** @type {HTMLElement} */ (
+    document.querySelector(".iti")
+  );
+  const parentNode = /** @type {HTMLElement} */ (mobileInput.parentElement);
   parentNode.classList.add("p-form-validation");
 
   phoneInput.classList.add("p-form-validation__input");
@@ -106,12 +108,13 @@ function createErrorMessage() {
  * Validates the phone number and shows or hides the error message accordingly.
  *
  * @param {HTMLElement} errorElement - The error message element.
+ * @param {HTMLInputElement} phoneInput - The phone input element.
  */
 function validateInput(phoneInput, errorElement) {
   resetErrorState(errorElement, phoneInput);
   const isValid = isValidNumber(phoneInput.value.trim());
   if (!isValid) {
-    phoneInput.parentNode.parentNode.classList.add("is-error");
+    phoneInput.parentElement.parentElement.classList.add("is-error");
     phoneInput.parentNode.after(errorElement);
     phoneInput.setAttribute("aria-describedby", "invalid-number-message");
   }
@@ -135,7 +138,7 @@ function isValidNumber(number) {
  * @param {HTMLElement} errorElement - The error message element to remove.
  */
 function resetErrorState(errorElement, phoneInput) {
-  phoneInput?.parentNode?.parentNode.classList.remove("is-error");
+  phoneInput?.parentElement?.parentElement?.classList.remove("is-error");
   phoneInput?.removeAttribute("aria-describedby", "invalid-number-message");
   if (errorElement.parentNode) {
     errorElement.remove();
@@ -143,8 +146,12 @@ function resetErrorState(errorElement, phoneInput) {
 }
 
 // This block checks for the presence of 'phone number' and 'country' input fields on the page. If either input field exists, it triggers the `prepareInputFields` function to set them up. Note: In a modal form scenario, these inputs are not present at page load and thus, `prepareInputFields` is not invoked here. Instead, the function is imported and executed within `dynamic-forms.js` when the modal is opened.
-const phoneNumberInput = document.querySelector("input#phone");
-const countryInput = document.querySelector("select#country");
+const phoneNumberInput = /** @type {HTMLInputElement | null} */ (
+  document.querySelector("input#phone")
+);
+const countryInput = /** @type {HTMLSelectElement | null} */ (
+  document.querySelector("select#country")
+);
 
 if (phoneNumberInput || countryInput) {
   prepareInputFields(phoneNumberInput, countryInput);
@@ -154,13 +161,15 @@ if (phoneNumberInput || countryInput) {
  * Initializes 'other' inputs. Where selecting the input triggers a textarea to appear.
  */
 function setupOtherInputs() {
-  const otherTextarea = document.querySelectorAll(".js-other-input");
+  const otherTextarea = /** @type {NodeListOf<HTMLTextAreaElement>} */ (
+    document.querySelectorAll("textarea.js-other-input")
+  );
   otherTextarea.forEach((textarea) => {
-    const triggerInputEle = document.querySelector(
-      `#${textarea.dataset.inputId}`,
+    const triggerInputEle = /** @type {HTMLInputElement} */ (
+      document.querySelector(`#${textarea.dataset.inputId}`)
     );
     document
-      .querySelectorAll(`[name=${triggerInputEle.name}]`)
+      .querySelectorAll(`input[name="${triggerInputEle.name}"]`)
       .forEach((input) => {
         input.onclick = () => {
           if (input.type === "radio") {

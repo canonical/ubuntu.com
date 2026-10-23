@@ -1,7 +1,11 @@
+/**
+ * @param {HTMLFormElement} form
+ * @param {number} formId
+ */
 function setUpStaticForms(form, formId) {
   /**
    *
-   * @param {Node[]} otherContainers
+  * @param {NodeListOf<HTMLElement>} otherContainers
    *
    * Attaches event listeners to the "other" checkboxes/radios in
    * the form to reveal a text input when selected, and hide
@@ -19,11 +23,11 @@ function setUpStaticForms(form, formId) {
     }
 
     Array.prototype.forEach.call(otherContainers, function (otherContainer) {
-      const otherInput = otherContainer.querySelector(
-        ".js-other-container__other-toggle",
+      const otherInput = /** @type {HTMLInputElement} */ (
+        otherContainer.querySelector(".js-other-container__other-toggle")
       );
-      const textInput = otherContainer.querySelector(
-        ".js-other-container__input",
+      const textInput = /** @type {HTMLInputElement} */ (
+        otherContainer.querySelector(".js-other-container__input")
       );
 
       if (otherInput.type === "radio") {
@@ -43,7 +47,9 @@ function setUpStaticForms(form, formId) {
       }
     });
   }
-  const otherContainers = document.querySelectorAll(".js-other-container");
+  const otherContainers = /** @type {NodeListOf<HTMLElement>} */ (
+    document.querySelectorAll(".js-other-container")
+  );
   if (otherContainers?.length) {
     setUpOtherContainers(otherContainers);
   }
@@ -57,8 +63,7 @@ function setUpStaticForms(form, formId) {
     let language =
       navigator.language ||
       navigator.userLanguage ||
-      navigator.browserLanguage ||
-      navigator.systemLanguage;
+      "";
 
     if (language.indexOf("-") !== -1) {
       if (language !== "zh-TW") {
@@ -68,7 +73,9 @@ function setUpStaticForms(form, formId) {
 
     return language;
   }
-  const preferredLanguageInput = document.querySelector("#preferredLanguage");
+  const preferredLanguageInput = /** @type {HTMLInputElement} */ (
+    document.querySelector("#preferredLanguage")
+  );
   if (preferredLanguageInput) {
     preferredLanguageInput.value = getPrimaryParentLanguage() || "";
   }
@@ -85,29 +92,41 @@ function setUpStaticForms(form, formId) {
 
     form?.addEventListener("submit", (e) => {
       var message = "";
-      var commentsFromLead = document.querySelector("#Comments_from_lead__c");
-      var formFields = document.querySelectorAll(".js-formfield");
+      var commentsFromLead = /** @type {HTMLInputElement} */ (
+        document.querySelector("#Comments_from_lead__c")
+      );
+      var formFields = /** @type {NodeListOf<HTMLElement>} */ (
+        document.querySelectorAll(".js-formfield")
+      );
       formFields.forEach(function (formField) {
         var comma = ",";
-        var fieldTitle = formField.querySelector(".js-formfield-title");
-        var inputs = formField.querySelectorAll("input, textarea, select");
+        var fieldTitle = /** @type {HTMLElement | null} */ (
+          formField.querySelector(".js-formfield-title")
+        );
+        var inputs = /** @type {NodeListOf<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>} */ (
+          formField.querySelectorAll("input, textarea, select")
+        );
         if (fieldTitle) {
           message += fieldTitle.innerText + "\r\n";
         }
 
         inputs.forEach(function (input) {
           switch (input.type) {
-            case "select-one":
+            case "select-one": {
+              const selectInput = /** @type {HTMLSelectElement} */ (input);
               message +=
-                input.options[input.selectedIndex]?.textContent + comma + " ";
+                selectInput.options[selectInput.selectedIndex]?.textContent +
+                comma +
+                " ";
               break;
+            }
             case "radio":
-              if (input.checked) {
+              if (/** @type {HTMLInputElement} */ (input).checked) {
                 message += input.value + comma + " ";
               }
               break;
             case "checkbox":
-              if (input.checked) {
+              if (/** @type {HTMLInputElement} */ (input).checked) {
                 message += input.value + comma + " ";
               }
               break;
@@ -165,7 +184,7 @@ function setUpStaticForms(form, formId) {
 
   /**
    *
-   * @param {Node} submitButton
+  * @param {HTMLButtonElement} submitButton
    *
    * Attaches a loading spinner to the submit button on
    * form submission
@@ -187,9 +206,11 @@ function setUpStaticForms(form, formId) {
     submitButton.appendChild(spinnerIcon);
   }
 
-  const submitButton = form.querySelector('button[type="submit"]');
+  const submitButton = /** @type {HTMLButtonElement | null} */ (
+    form.querySelector('button[type="submit"]')
+  );
   // Exclude forms that don't need loader
-  const cancelLoader = submitButton.classList.contains("no-loader");
+  const cancelLoader = submitButton?.classList.contains("no-loader");
 
   if (submitButton && !cancelLoader) {
     // Save the state of the button to get around bfcache
@@ -218,7 +239,7 @@ function setUpStaticForms(form, formId) {
   const requiredCheckboxes = document.querySelectorAll(
     "fieldset.js-required-checkbox",
   );
-  if (requiredCheckboxes.length) {
+  if (requiredCheckboxes.length && submitButton) {
     submitButton.disabled = true;
   }
 
@@ -258,9 +279,11 @@ if (forms.length) {
  * - When all visible checkboxes or any __other checkbox is unchecked, all checkboxes will be enabled
  */
 function toggleCheckboxVisibility(fieldset, checklistItem) {
-  const checkboxes = fieldset.querySelectorAll(".js-checkbox-visibility");
-  const otherCheckboxes = fieldset.querySelectorAll(
-    ".js-checkbox-visibility__other",
+  const checkboxes = /** @type {NodeListOf<HTMLInputElement>} */ (
+    fieldset.querySelectorAll(".js-checkbox-visibility")
+  );
+  const otherCheckboxes = /** @type {NodeListOf<HTMLInputElement>} */ (
+    fieldset.querySelectorAll(".js-checkbox-visibility__other")
   );
   const isVisible = checklistItem.classList.contains("js-checkbox-visibility");
   if (checklistItem.checked) {
@@ -297,11 +320,13 @@ function toggleCheckboxVisibility(fieldset, checklistItem) {
     }
   }
 }
-const ubuntuVersionCheckboxes = document.querySelector(
-  "fieldset.js-toggle-checkbox-visibility",
+const ubuntuVersionCheckboxes = /** @type {HTMLFieldSetElement | null} */ (
+  document.querySelector("fieldset.js-toggle-checkbox-visibility")
 );
 ubuntuVersionCheckboxes?.addEventListener("change", function (event) {
-  toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
+  if (event.target instanceof HTMLInputElement) {
+    toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
+  }
 });
 
 // Add event listeners to required fieldsets
@@ -319,14 +344,18 @@ requiredFieldsets?.forEach((fieldset) => {
  * Submit button is only enabled when ALL required fieldsets have at least one checkbox checked
  */
 function checkRequiredCheckboxes() {
-  const submitButton = document.querySelector(".js-submit-button");
+  const submitButton = /** @type {HTMLButtonElement} */ (
+    document.querySelector(".js-submit-button")
+  );
   const allRequiredFieldsets = document.querySelectorAll(
     "fieldset.js-required-checkbox",
   );
   let allFieldsetsValid = true;
 
   allRequiredFieldsets.forEach((fieldset) => {
-    const checkboxes = fieldset.querySelectorAll("input[type='checkbox']");
+    const checkboxes = /** @type {NodeListOf<HTMLInputElement>} */ (
+      fieldset.querySelectorAll("input[type='checkbox']")
+    );
     let hasCheckedCheckbox = false;
 
     checkboxes.forEach((checkbox) => {

@@ -7,9 +7,15 @@
  * plain page loads.
  */
 
-const form = document.querySelector(".js-topic-filters");
-const results = document.querySelector(".js-articles-results");
-const section = document.getElementById("articles");
+const form = /** @type {HTMLFormElement | null} */ (
+  document.querySelector(".js-topic-filters")
+);
+const results = /** @type {HTMLElement | null} */ (
+  document.querySelector(".js-articles-results")
+);
+const section = /** @type {HTMLElement | null} */ (
+  document.getElementById("articles")
+);
 let controller;
 // Query string of the results on display, to tell history entries apart
 let shownSearch = window.location.search;
@@ -87,7 +93,10 @@ if (form && results && section) {
   });
 
   results.addEventListener("click", (event) => {
-    const link = event.target.closest(".p-pagination a");
+    if (!(event.target instanceof Element)) return;
+    const link = /** @type {HTMLAnchorElement | null} */ (
+      event.target.closest(".p-pagination a")
+    );
     if (!link) {
       return;
     }

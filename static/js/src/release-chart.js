@@ -394,8 +394,8 @@ function getMaxNumberOfLines(svg, textList, width) {
 
 /**
  *
- * @param {String} text
- * @param {Int} width
+ * @param {*} text D3 text selection.
+ * @param {number} width
  *
  * At the point where a text would be longer that the container width,
  * split the text into tspan (two lines)

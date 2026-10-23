@@ -2,6 +2,7 @@
  Renders slider gradient
  https://vanillaframework.io/docs/patterns/slider
 */
+/** @param {HTMLInputElement} slider */
 function renderSlider(slider) {
   var isWebkit =
     /Chrome/i.test(navigator.userAgent) || /Safari/i.test(navigator.userAgent);
@@ -19,13 +20,25 @@ function renderSlider(slider) {
 window.addEventListener("DOMContentLoaded", () => {
   var sliderElm = document.querySelector(".js-cloud-price-slider");
 
-  var publicCapexElm = document.querySelector("#public-capex");
-  var publicOpexElm = document.querySelector("#public-opex");
-  var publicTcoElm = document.querySelector("#public-tco");
+  var publicCapexElm = /** @type {HTMLElement} */ (
+    document.querySelector("#public-capex")
+  );
+  var publicOpexElm = /** @type {HTMLElement} */ (
+    document.querySelector("#public-opex")
+  );
+  var publicTcoElm = /** @type {HTMLElement} */ (
+    document.querySelector("#public-tco")
+  );
 
-  var privateCapexElm = document.querySelector("#private-capex");
-  var privateOpexElm = document.querySelector("#private-opex");
-  var privateTcoElm = document.querySelector("#private-tco");
+  var privateCapexElm = /** @type {HTMLElement} */ (
+    document.querySelector("#private-capex")
+  );
+  var privateOpexElm = /** @type {HTMLElement} */ (
+    document.querySelector("#private-opex")
+  );
+  var privateTcoElm = /** @type {HTMLElement} */ (
+    document.querySelector("#private-tco")
+  );
 
   // Defaults
   var publicCapexValue = 6;
@@ -54,12 +67,14 @@ window.addEventListener("DOMContentLoaded", () => {
   publicTcoElm.style.border = destructiveBorderStyle;
 
   if (sliderElm) {
-    var hrsRange = sliderElm.querySelector("#hours__range");
+    var hrsRange = /** @type {HTMLInputElement} */ (
+      sliderElm.querySelector("#hours__range")
+    );
     renderSlider(hrsRange);
 
     var isIE = /NET/i.test(navigator.userAgent);
     hrsRange.addEventListener(isIE ? "change" : "input", function (e) {
-      var vmHours = e.target.value;
+      var vmHours = /** @type {HTMLInputElement} */ (e.currentTarget).value;
 
       renderSlider(hrsRange);
 

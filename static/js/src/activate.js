@@ -1,8 +1,12 @@
 // validate messages for keys
 const formControl = document.querySelector(".p-form__control");
 const activation_key = document.querySelector(".activate-input");
-const validate_message = document.querySelector(".p-form-validation__message");
-const notification = document.querySelector("#notification");
+const validate_message = /** @type {HTMLElement} */ (
+  document.querySelector(".p-form-validation__message")
+);
+const notification = /** @type {HTMLElement} */ (
+  document.querySelector("#notification")
+);
 
 function addIsError() {
   const formControl = document.querySelector(".p-form__control");
@@ -127,48 +131,52 @@ const shouldCreateAccount = document.querySelector(
   "#create-purchase-account-form",
 );
 if (shouldCreateAccount) {
-  const organisationContainer = document.querySelector(
-    ".js-organisation-container",
+  const organisationContainer = /** @type {HTMLElement} */ (
+    document.querySelector(".js-organisation-container")
   );
-  const radioMyself = organisationContainer.querySelector(".radio-myself");
-  const radioOrganisation = organisationContainer.querySelector(
-    ".radio-organisation",
+  const radioMyself = /** @type {HTMLInputElement} */ (
+    organisationContainer.querySelector(".radio-myself")
   );
-  const organisationNameContainer = organisationContainer.querySelector(
-    ".js-organisation-name-container",
+  const radioOrganisation = /** @type {HTMLInputElement} */ (
+    organisationContainer.querySelector(".radio-organisation")
   );
-  const organisationNameInput = organisationNameContainer.querySelector(
-    'input[name="activate-organisation-name"]',
+  const organisationNameContainer = /** @type {HTMLElement} */ (
+    organisationContainer.querySelector(".js-organisation-name-container")
   );
-  radioOrganisation.addEventListener("change", function (e) {
-    if (e.target.checked) {
+  const organisationNameInput = /** @type {HTMLInputElement} */ (
+    organisationNameContainer.querySelector(
+      'input[name="activate-organisation-name"]',
+    )
+  );
+  radioOrganisation.addEventListener("change", function () {
+    if (radioOrganisation.checked) {
       organisationNameContainer.style.display = "block";
       organisationNameContainer.focus();
       organisationNameInput.setAttribute("required", true);
     }
   });
-  radioMyself.addEventListener("change", function (e) {
-    if (e.target.checked) {
+  radioMyself.addEventListener("change", function () {
+    if (radioMyself.checked) {
       organisationNameContainer.style.display = "none";
       organisationNameInput.removeAttribute("required");
     }
   });
 
-  const createPurchaseAccountForm = document.getElementById(
-    "create-purchase-account-form",
+  const createPurchaseAccountForm = /** @type {HTMLFormElement} */ (
+    document.getElementById("create-purchase-account-form")
   );
 
   createPurchaseAccountForm.addEventListener("submit", function (event) {
     event.preventDefault();
-    const selectedOption = document.querySelector(
-      'input[name="activate-buy-for"]:checked',
+    const selectedOption = /** @type {HTMLInputElement} */ (
+      document.querySelector('input[name="activate-buy-for"]:checked')
     );
-    let accountName = document.querySelector(
-      'input[name="activate-name"]',
+    let accountName = /** @type {HTMLInputElement} */ (
+      document.querySelector('input[name="activate-name"]')
     ).value;
     if (selectedOption.value == "organisation") {
-      accountName = document.querySelector(
-        'input[name="activate-organisation-name"]',
+      accountName = /** @type {HTMLInputElement} */ (
+        document.querySelector('input[name="activate-organisation-name"]')
       ).value;
     }
 
@@ -197,14 +205,18 @@ if (shouldCreateAccount) {
 }
 
 //submit activate key
-const activateKeyForm = document.getElementById("activate-key-form");
+const activateKeyForm = /** @type {HTMLFormElement} */ (
+  document.getElementById("activate-key-form")
+);
 
 activateKeyForm.addEventListener("submit", function (event) {
   event.preventDefault();
   if (validate_message.textContent.length > 0) {
     return;
   } else {
-    const key = document.querySelector('input[name="key"]').value;
+    const key = /** @type {HTMLInputElement} */ (
+      document.querySelector('input[name="key"]')
+    ).value;
     fetch("/pro/activate", {
       method: "POST",
       headers: {
@@ -226,7 +238,9 @@ activateKeyForm.addEventListener("submit", function (event) {
       })
       .catch(function (err) {
         const meta = document.querySelector(".p-notification__meta");
-        const message = document.querySelector("#notification-message");
+        const message = /** @type {HTMLElement} */ (
+          document.querySelector("#notification-message")
+        );
         const errorMessage = JSON.parse(err?.message)?.errors;
         notification.style.display = "block";
         message.innerHTML = errorMessage;

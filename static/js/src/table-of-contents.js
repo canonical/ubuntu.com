@@ -1,12 +1,14 @@
 (function () {
   const content = document.querySelector(".page-content");
   const container = document.querySelector("#table-of-contents");
-  const headings = content.querySelectorAll("h2, h3, h4");
   const urlHash = window.location.hash;
   // Do not render if there is no content or container for the table of contents
   if (!content || !container) {
     return;
   }
+  const headings = /** @type {NodeListOf<HTMLElement>} */ (
+    content.querySelectorAll("h2, h3, h4")
+  );
 
   const list = document.createElement("ul");
   list.classList.add("p-table-of-contents__list");

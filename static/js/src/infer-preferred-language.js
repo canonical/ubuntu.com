@@ -8,8 +8,7 @@ function getPrimaryParentLanguage() {
   var language =
     navigator.language ||
     navigator.userLanguage ||
-    navigator.browserLanguage ||
-    navigator.systemLanguage;
+    "";
 
   if (language.indexOf("-") !== -1) {
     if (language !== "zh-TW") {

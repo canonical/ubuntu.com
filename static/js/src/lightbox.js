@@ -1,5 +1,5 @@
 function openLightbox(url, images) {
-  const lightboxEl = initLightboxEl(images);
+  const lightboxEl = initLightboxEl();
 
   openLightboxEl(lightboxEl, url, images);
 }
@@ -18,11 +18,10 @@ const lightboxTpl = `
 `;
 
 const initLightboxEl = () => {
-  let lightboxEl = document.querySelector(".vbox-overlay");
-  if (!lightboxEl) {
-    lightboxEl = document.createElement("div");
-    lightboxEl.className = "vbox-overlay";
-  }
+  const lightboxEl = /** @type {HTMLDivElement} */ (
+    document.querySelector(".vbox-overlay") || document.createElement("div")
+  );
+  lightboxEl.className = "vbox-overlay";
 
   lightboxEl.style.display = "none";
   lightboxEl.style.display = "0";
@@ -33,10 +32,10 @@ const initLightboxEl = () => {
     closeLightboxEl(lightboxEl);
   };
 
-  lightboxEl
-    .querySelector(".vbox-close")
+  /** @type {HTMLElement} */ (lightboxEl.querySelector(".vbox-close"))
     .addEventListener("click", closeLightbox);
   lightboxEl.addEventListener("click", (event) => {
+    if (!(event.target instanceof Element)) return;
     const ignore = ["figlio", "vbox-next", "vbox-prev"];
     // This assumes a single class on each item
     if (ignore.indexOf(event.target.className) < 0) {
@@ -48,7 +47,9 @@ const initLightboxEl = () => {
 };
 
 const loadLightboxImage = (lightboxEl, url, images) => {
-  const contentEl = lightboxEl.querySelector(".vbox-content");
+  const contentEl = /** @type {HTMLElement} */ (
+    lightboxEl.querySelector(".vbox-content")
+  );
   // hide content before it loads
   contentEl.style.opacity = "0";
   const currentMedia = contentEl.querySelector(".figlio");
@@ -67,14 +68,18 @@ const loadLightboxImage = (lightboxEl, url, images) => {
       contentEl.appendChild(media);
       contentEl.style.opacity = "1";
 
-      const originalEl = document.body.querySelector(
-        `[data-original="${url}"]`,
+      const originalEl = /** @type {HTMLElement} */ (
+        document.body.querySelector(`[data-original="${url}"]`)
       );
 
       if (media.canPlayType("video/webm")) {
-        media.src = originalEl.querySelector("[type='video/webm']").src;
+        media.src = /** @type {HTMLSourceElement} */ (
+          originalEl.querySelector("[type='video/webm']")
+        ).src;
       } else if (media.canPlayType("video/mp4")) {
-        media.src = originalEl.querySelector("[type='video/mp4']").src;
+        media.src = /** @type {HTMLSourceElement} */ (
+          originalEl.querySelector("[type='video/mp4']")
+        ).src;
       }
     } catch (e) {
       media.parentNode.removeChild(media);

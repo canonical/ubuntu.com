@@ -2,13 +2,27 @@ export function setupAppLayoutExamples() {
   var aside = document.querySelector(".l-aside");
   var navigation = document.querySelector(".l-navigation");
 
-  var menuToggle = document.querySelector(".js-menu-toggle");
-  var menuClose = document.querySelector(".js-menu-close");
-  var menuPin = document.querySelector(".js-menu-pin");
-  var asideOpen = document.querySelector(".js-aside-open");
-  var asideClose = document.querySelector(".js-aside-close");
-  var asideResize = document.querySelectorAll(".js-aside-resize");
-  var asidePin = document.querySelector(".js-aside-pin");
+  var menuToggle = /** @type {HTMLElement} */ (
+    document.querySelector(".js-menu-toggle")
+  );
+  var menuClose = /** @type {HTMLElement} */ (
+    document.querySelector(".js-menu-close")
+  );
+  var menuPin = /** @type {HTMLElement} */ (
+    document.querySelector(".js-menu-pin")
+  );
+  var asideOpen = /** @type {HTMLElement} */ (
+    document.querySelector(".js-aside-open")
+  );
+  var asideClose = /** @type {HTMLElement} */ (
+    document.querySelector(".js-aside-close")
+  );
+  var asideResize = /** @type {NodeListOf<HTMLButtonElement>} */ (
+    document.querySelectorAll(".js-aside-resize")
+  );
+  var asidePin = /** @type {HTMLButtonElement} */ (
+    document.querySelector(".js-aside-pin")
+  );
 
   if (menuToggle) {
     menuToggle.addEventListener("click", function () {
@@ -19,7 +33,9 @@ export function setupAppLayoutExamples() {
   if (menuClose) {
     menuClose.addEventListener("click", function (e) {
       navigation.classList.add("is-collapsed");
-      document.activeElement.blur();
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
     });
   }
 
@@ -60,7 +76,9 @@ export function setupAppLayoutExamples() {
         menuPin.querySelector("i").classList.add("p-icon--pin");
         menuPin.querySelector("i").classList.remove("p-icon--close");
       }
-      document.activeElement.blur();
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
     });
   }
 

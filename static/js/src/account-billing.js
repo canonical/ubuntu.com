@@ -78,6 +78,7 @@ function createModal({ modalSelector, triggerButton }) {
   }
 
   document.addEventListener("click", (e) => {
+    if (!(e.target instanceof Element)) return;
     const inDialog = e.target.closest(".p-modal__dialog");
     const isToggle = e.target.matches("[aria-controls]");
     if ((isToggle && inDialog) || (!inDialog && !isToggle)) close();
@@ -94,7 +95,13 @@ function createModal({ modalSelector, triggerButton }) {
   const triggerButton = document.querySelector("#edit-billing-btn");
   const saveButton = document.querySelector("#save-modal-btn");
   const errorContainer = document.querySelector("#error-container");
-  const form = document.querySelector("#edit-billing-form");
+  const form = /** @type {HTMLFormElement} */ (
+    document.querySelector("#edit-billing-form")
+  );
+
+  function getInput(name) {
+    return /** @type {HTMLInputElement} */ (form.elements.namedItem(name));
+  }
 
   const modal = createModal({
     modalSelector: "edit-billing-modal",
@@ -122,7 +129,7 @@ function createModal({ modalSelector, triggerButton }) {
 
     const requiredFields = ["name", "address", "city", "postal-code"];
     for (const field of requiredFields) {
-      const el = form.elements[field];
+      const el = getInput(field);
       const isEmpty = el.value.trim() === "";
       if (isEmpty) {
         isValid = false;
@@ -177,13 +184,13 @@ function createModal({ modalSelector, triggerButton }) {
 
     form.querySelector("#country").textContent = country;
     if (isVatRequired(countryCode)) {
-      form.elements["vat"].value = vat;
-      form.elements["vat"].closest(".p-form__group").classList.remove("u-hide");
+      getInput("vat").value = vat;
+      getInput("vat").closest(".p-form__group").classList.remove("u-hide");
     }
-    form.elements["name"].value = name;
-    form.elements["address"].value = address;
-    form.elements["city"].value = city;
-    form.elements["postal-code"].value = postalCode;
+    getInput("name").value = name;
+    getInput("address").value = address;
+    getInput("city").value = city;
+    getInput("postal-code").value = postalCode;
   }
 
   async function submit() {
@@ -212,7 +219,7 @@ function createModal({ modalSelector, triggerButton }) {
         // VAT number is the only field in this modal that may raise
         // validation errors. We show the error message in the field.
         setFieldError(
-          form.elements["vat"],
+          getInput("vat"),
           true,
           "The VAT number entered is invalid: check the number<br class='u-hide--medium u-hide--small'/> and try again",
         );

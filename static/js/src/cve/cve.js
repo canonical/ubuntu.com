@@ -1,36 +1,64 @@
-const searchForm = document.querySelector("#searchForm");
-const searchSubmitButton = document.querySelector("#cve-search-button");
+const searchForm = /** @type {HTMLFormElement} */ (
+  document.querySelector("#searchForm")
+);
+const searchSubmitButton = /** @type {HTMLButtonElement} */ (
+  document.querySelector("#cve-search-button")
+);
 const url = new URL(window.location.href);
 const urlParams = new URLSearchParams(url.search);
 const apiBase = "https://ubuntu.com/security/cves.json";
-const limitSelect = document.querySelector(".js-limit-select");
-const orderSelect = document.querySelector(".js-order-select");
-const exportLink = document.querySelector("#js-export-link");
-const releaseFilter = document.querySelector("#release-filter");
-const priorityFilter = document.querySelector("#priority-filter");
-const statusFilter = document.querySelector("#status-filter");
-const clearFiltersButton = document.querySelector("#clear-filters");
+const limitSelect = /** @type {HTMLSelectElement} */ (
+  document.querySelector(".js-limit-select")
+);
+const orderSelect = /** @type {HTMLSelectElement} */ (
+  document.querySelector(".js-order-select")
+);
+const exportLink = /** @type {HTMLAnchorElement} */ (
+  document.querySelector("#js-export-link")
+);
+const releaseFilter = /** @type {HTMLFormElement} */ (
+  document.querySelector("#release-filter")
+);
+const priorityFilter = /** @type {HTMLFormElement} */ (
+  document.querySelector("#priority-filter")
+);
+const statusFilter = /** @type {HTMLFormElement} */ (
+  document.querySelector("#status-filter")
+);
+const clearFiltersButton = /** @type {HTMLButtonElement} */ (
+  document.querySelector("#clear-filters")
+);
 const vulnerableStatuses = ["pending", "needed", "deferred"];
-const releaseCheckboxes = releaseFilter
-  ? releaseFilter.querySelectorAll(".p-checkbox__input")
-  : null;
-const applyFiltersButton = document.querySelector("#apply-filters");
-const packageInput = document.querySelector("#affectedPackages");
-const priorityCheckboxes = priorityFilter
-  ? priorityFilter.querySelectorAll(".p-checkbox__input")
-  : null;
-const statusCheckboxes = statusFilter
-  ? statusFilter.querySelectorAll(".p-checkbox__input")
-  : null;
-const unmaintainedReleasesLink = document.querySelector(
-  ".js-show-unmaintained-releases",
+const releaseCheckboxes = /** @type {NodeListOf<HTMLInputElement>} */ (
+  releaseFilter.querySelectorAll("input.p-checkbox__input")
 );
-const unmaintainedReleasesContainer = document.querySelector(
-  ".js-unmaintained-releases",
+const applyFiltersButton = /** @type {HTMLButtonElement} */ (
+  document.querySelector("#apply-filters")
 );
-const showPackagesLinks = document.querySelectorAll(".js-show-packages");
-const hidePackagesLinks = document.querySelectorAll(".js-hide-packages");
-const detailedSwitch = document.querySelector(".js-detailed-switch");
+const packageInput = /** @type {HTMLInputElement} */ (
+  document.querySelector("#affectedPackages")
+);
+const priorityCheckboxes = /** @type {NodeListOf<HTMLInputElement>} */ (
+  priorityFilter.querySelectorAll("input.p-checkbox__input")
+);
+const statusCheckboxes = /** @type {NodeListOf<HTMLInputElement>} */ (
+  statusFilter.querySelectorAll("input.p-checkbox__input")
+);
+const unmaintainedReleasesLink = /** @type {HTMLElement} */ (
+  document.querySelector(".js-show-unmaintained-releases")
+);
+const unmaintainedReleasesContainer = /** @type {HTMLElement} */ (
+  document.querySelector(".js-unmaintained-releases")
+);
+const showPackagesLinks = /** @type {NodeListOf<HTMLAnchorElement>} */ (
+  document.querySelectorAll(".js-show-packages")
+);
+const hidePackagesLinks = /** @type {NodeListOf<HTMLAnchorElement>} */ (
+  document.querySelectorAll(".js-hide-packages")
+);
+const detailedSwitch = /** @type {HTMLInputElement} */ (
+  document.querySelector(".js-detailed-switch")
+);
 const detailedTables = document.querySelectorAll(".detailed-table");
 const cveDescs = document.querySelectorAll(".cve-summary");
 const maintainedReleases = Object.values(maintainedReleasesObj).map(
@@ -46,9 +74,7 @@ const unmaintainedReleases = Object.values(unmaintainedReleasesObj).map(
 function handleSearchInput() {
   const formData = new FormData(searchForm);
 
-  for (const key of formData.values()) {
-    urlParams.set("q", key);
-  }
+  formData.forEach((value) => urlParams.set("q", value));
 
   url.search = urlParams.toString();
   window.location.href = url.href;
@@ -74,11 +100,11 @@ handlePackageInput();
 function handleFilters() {
   if (releaseCheckboxes) {
     releaseCheckboxes.forEach(function (checkbox) {
-      checkbox.addEventListener("change", function (event) {
-        if (event.target.checked) {
-          addParam(releaseFilter.name, event.target.value);
+      checkbox.addEventListener("change", function () {
+        if (checkbox.checked) {
+          addParam(releaseFilter.name, checkbox.value);
         } else {
-          removeParam(releaseFilter.name, event.target.value);
+          removeParam(releaseFilter.name, checkbox.value);
         }
       });
     });
@@ -86,11 +112,11 @@ function handleFilters() {
 
   if (priorityCheckboxes) {
     priorityCheckboxes.forEach(function (checkbox) {
-      checkbox.addEventListener("change", function (event) {
-        if (event.target.checked) {
-          addParam(priorityFilter?.name, event.target.value);
+      checkbox.addEventListener("change", function () {
+        if (checkbox.checked) {
+          addParam(priorityFilter.name, checkbox.value);
         } else {
-          removeParam(priorityFilter?.name, event.target.value);
+          removeParam(priorityFilter.name, checkbox.value);
         }
       });
     });
@@ -98,11 +124,11 @@ function handleFilters() {
 
   if (statusCheckboxes) {
     statusCheckboxes.forEach(function (checkbox) {
-      checkbox.addEventListener("change", function (event) {
-        if (event.target.checked) {
-          addParam(statusFilter?.name, event.target.value);
+      checkbox.addEventListener("change", function () {
+        if (checkbox.checked) {
+          addParam(statusFilter.name, checkbox.value);
         } else {
-          removeParam(statusFilter?.name, event.target.value);
+          removeParam(statusFilter.name, checkbox.value);
         }
       });
     });
@@ -124,8 +150,8 @@ function removeParam(param, value) {
     });
   } else {
     if (maintainedReleases.includes(value)) {
-      const maintainedCheckbox = document.querySelector(
-        "input[type='checkbox'][value='maintained']",
+      const maintainedCheckbox = /** @type {HTMLInputElement} */ (
+        document.querySelector("input[type='checkbox'][value='maintained']")
       );
       maintainedCheckbox.checked = false;
     }
@@ -163,8 +189,8 @@ function handleFilterPersist() {
     }
 
     if (includesFilterSubset(params, maintainedReleases)) {
-      let maintainedCheckbox = releaseFilter.querySelector(
-        "input[value='maintained']",
+      let maintainedCheckbox = /** @type {HTMLInputElement} */ (
+        releaseFilter.querySelector("input[value='maintained']")
       );
       maintainedCheckbox.checked = true;
     }
@@ -186,7 +212,9 @@ function handleFilterPersist() {
     const params = urlParams.getAll("status");
 
     if (params.includes("pending") && statusFilter) {
-      const checkbox = statusFilter.querySelector("input[value='vulnerable']");
+      const checkbox = /** @type {HTMLInputElement} */ (
+        statusFilter.querySelector("input[value='vulnerable']")
+      );
       checkbox.checked = true;
     }
 
@@ -201,7 +229,7 @@ function handleFilterPersist() {
 
   if (urlParams.has("detailed") && detailedSwitch) {
     detailedSwitch.checked = true;
-    handleDetailedViewSwitch({ target: detailedSwitch });
+    handleDetailedViewSwitch(detailedSwitch);
   }
 }
 handleFilterPersist();
@@ -209,7 +237,8 @@ handleFilterPersist();
 function handleClearFilters() {
   if (clearFiltersButton) {
     clearFiltersButton.addEventListener("click", function (event) {
-      let keys = [...urlParams.keys()];
+      const keys = new Set();
+      urlParams.forEach((value, key) => keys.add(key));
       keys.forEach((key) => {
         urlParams.delete(key);
       });
@@ -275,7 +304,6 @@ function handleLimitSelect() {
 
   if (limitSelect) {
     limitSelect.onchange = function (event) {
-      limitSelect.value = event.target.value;
       urlParams.set("limit", limitSelect.value);
       url.search = urlParams.toString();
       window.location.href = url.href;
@@ -291,7 +319,6 @@ function handleOrderSelect() {
 
   if (orderSelect) {
     orderSelect.onchange = function (event) {
-      orderSelect.value = event.target.value;
       urlParams.set("order", orderSelect.value);
       url.search = urlParams.toString();
       window.location.href = url.href;
@@ -313,11 +340,11 @@ exportToJSON();
 
 // Button to handle detailed view of packages
 // Adds and removes param to maintain table view state on filter
-function handleDetailedViewSwitch(event) {
-  if (event.target.checked) {
+function handleDetailedViewSwitch(input) {
+  if (input.checked) {
     detailedTables.forEach((table) => table.classList.remove("u-hide"));
     cveDescs.forEach((desc) => desc.classList.add("u-hide"));
-    urlParams.append("detailed", event.target.checked);
+    urlParams.append("detailed", input.checked);
   } else {
     detailedTables.forEach((table) => table.classList.add("u-hide"));
     cveDescs.forEach((desc) => desc.classList.remove("u-hide"));
@@ -325,7 +352,9 @@ function handleDetailedViewSwitch(event) {
   }
 }
 if (detailedSwitch) {
-  detailedSwitch.addEventListener("click", handleDetailedViewSwitch);
+  detailedSwitch.addEventListener("click", () =>
+    handleDetailedViewSwitch(detailedSwitch),
+  );
 }
 
 // Show detailed view of packages

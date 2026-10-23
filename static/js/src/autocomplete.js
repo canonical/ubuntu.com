@@ -151,6 +151,7 @@ export function initAutocomplete({
   searchInput.addEventListener("blur", closeSuggestions);
 
   document.addEventListener("click", (e) => {
+    if (!(e.target instanceof Element)) return;
     if (!e.target.closest(containerSelector)) {
       closeSuggestions();
     }

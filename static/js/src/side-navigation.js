@@ -13,11 +13,11 @@
  @param {Boolean} ignoreTogglerFocus when we click on menu there is no redirect, the focus should jump into selected section
  */
 export function toggleDrawer(sideNavigation, show, ignoreTogglerFocus = false) {
-  const toggleButtonOutsideDrawer = sideNavigation.querySelector(
-    ".p-side-navigation__toggle",
+  const toggleButtonOutsideDrawer = /** @type {HTMLElement | null} */ (
+    sideNavigation.querySelector(".p-side-navigation__toggle")
   );
-  const toggleButtonInsideDrawer = sideNavigation.querySelector(
-    ".p-side-navigation__toggle--in-drawer",
+  const toggleButtonInsideDrawer = /** @type {HTMLElement | null} */ (
+    sideNavigation.querySelector(".p-side-navigation__toggle--in-drawer")
   );
 
   if (sideNavigation) {
@@ -53,9 +53,15 @@ const setupToggleMenu = (toggleMenu) => {
   if (!isExpanded) {
     toggleMenu.setAttribute("aria-expanded", isExpanded);
   }
-  const item = toggleMenu.closest(".p-side-navigation__item");
-  const link = item.querySelector(".p-side-navigation__link");
-  const nestedList = item.querySelector(".p-side-navigation__list");
+  const item = /** @type {HTMLElement} */ (
+    toggleMenu.closest(".p-side-navigation__item")
+  );
+  const link = /** @type {HTMLElement} */ (
+    item.querySelector(".p-side-navigation__link")
+  );
+  const nestedList = /** @type {HTMLElement} */ (
+    item.querySelector(".p-side-navigation__list")
+  );
   if (!link?.hasAttribute("aria-expanded")) {
     link.setAttribute("aria-expanded", isExpanded);
   }
@@ -70,10 +76,19 @@ const setupToggleMenu = (toggleMenu) => {
  @param {Event} e
  */
 const handleToggleMenu = (e) => {
-  const item = e.currentTarget.closest(".p-side-navigation__item");
-  const button = item.querySelector(".p-side-navigation__expand");
-  const link = item.querySelector(".p-side-navigation__link");
-  const nestedList = item.querySelector(".p-side-navigation__list");
+  const currentTarget = /** @type {HTMLElement} */ (e.currentTarget);
+  const item = /** @type {HTMLElement} */ (
+    currentTarget.closest(".p-side-navigation__item")
+  );
+  const button = /** @type {HTMLElement} */ (
+    item.querySelector(".p-side-navigation__expand")
+  );
+  const link = /** @type {HTMLElement} */ (
+    item.querySelector(".p-side-navigation__link")
+  );
+  const nestedList = /** @type {HTMLElement} */ (
+    item.querySelector(".p-side-navigation__list")
+  );
   [button, link, nestedList].forEach((el) =>
     el.setAttribute(
       "aria-expanded",
@@ -123,9 +138,9 @@ function setupSideNavigation(sideNavigation) {
     const currentHash = window.location.hash;
     const currentPath = window.location.pathname;
     const currentUrl = currentPath + currentHash;
-    const links = [
-      ...sideNavigation.querySelectorAll(".p-side-navigation__link"),
-    ];
+    const links = /** @type {HTMLAnchorElement[]} */ (
+      Array.from(sideNavigation.querySelectorAll(".p-side-navigation__link"))
+    );
     links.forEach(function (link) {
       link.addEventListener("click", function () {
         links.forEach(function (link) {

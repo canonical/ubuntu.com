@@ -11,7 +11,7 @@ var EMPTY_COLOUR = "#D9D9D9";
 
 /**
  Renders gradient to fake progress color in webkit browsers.
-  @param {HTMLElement} slider Slider element to render background on.
+   @param {HTMLInputElement} slider Slider element to render background on.
 */
 function renderSlider(slider) {
   if (isWebkit) {
@@ -36,7 +36,7 @@ function equaliseValues(receive, give) {
 
 /**
   Attaches change listener to sliders to update their background color.
-  @param {HTMLElement} slider Slider element to render background on.
+  @param {HTMLInputElement} slider Slider element to render background on.
 */
 function initSlider(slider) {
   var input = document.getElementById(slider.id + "-input");

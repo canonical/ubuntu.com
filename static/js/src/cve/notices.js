@@ -32,9 +32,15 @@ function resetSearch(input, resetBtn) {
 }
 
 function handleSearch(section) {
-  const form = document.querySelector(`.js-${section}-form`);
-  const input = form?.querySelector('input[type="search"]');
-  const resetBtn = form?.querySelector(".p-search-box__reset");
+  const form = /** @type {HTMLFormElement | null} */ (
+    document.querySelector(`.js-${section}-form`)
+  );
+  const input = /** @type {HTMLInputElement | null} */ (
+    form?.querySelector('input[type="search"]')
+  );
+  const resetBtn = /** @type {HTMLButtonElement | null} */ (
+    form?.querySelector(".p-search-box__reset")
+  );
 
   const params = new URLSearchParams(window.location.search);
   const queryValue = params.get(section);

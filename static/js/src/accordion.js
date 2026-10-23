@@ -58,22 +58,12 @@ function setupAccordion(accordionContainer) {
   // and removed and events do not need to be managed separately.
   accordionContainer.addEventListener("click", function (event) {
     var target = event.target;
+    if (!(target instanceof Element)) return;
     var multipleAccordionsOpen = accordionContainer.getAttribute(
       "data-multiple-expanded",
     );
 
-    if (target.closest) {
-      target = target.closest('[class*="p-accordion__tab"]');
-    } else if (target.msMatchesSelector) {
-      // IE friendly `Element.closest` equivalent
-      // as in https://developer.mozilla.org/en-US/docs/Web/API/Element/closest
-      do {
-        if (target.msMatchesSelector('[class*="p-accordion__tab"]')) {
-          break;
-        }
-        target = target.parentElement || target.parentNode;
-      } while (target !== null && target.nodeType === 1);
-    }
+    target = target.closest('[class*="p-accordion__tab"]');
 
     if (target) {
       var isTargetOpen = target.getAttribute("aria-expanded") === "true";

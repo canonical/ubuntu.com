@@ -40,13 +40,16 @@
 
     if (compatibleDirection[pressed]) {
       const target = event.target;
-      if (target.index !== undefined) {
-        if (tabs[target.index + compatibleDirection[pressed]]) {
-          tabs[target.index + compatibleDirection[pressed]].focus();
-        } else if (pressed === compatibleKeys.left) {
-          tabs[tabs.length - 1].focus();
-        } else if (pressed === compatibleKeys.right) {
-          tabs[0].focus();
+      if (target instanceof HTMLElement) {
+        const currentIndex = tabs.indexOf(target);
+        if (currentIndex !== -1) {
+          if (tabs[currentIndex + compatibleDirection[pressed]]) {
+            tabs[currentIndex + compatibleDirection[pressed]].focus();
+          } else if (pressed === compatibleKeys.left) {
+            tabs[tabs.length - 1].focus();
+          } else if (pressed === compatibleKeys.right) {
+            tabs[0].focus();
+          }
         }
       }
     }
@@ -59,7 +62,7 @@
       @param {Boolean} persistURLHash whether to add the tab ID to the URL
     */
   const attachEvents = (tabs, persistURLHash) => {
-    tabs.forEach(function (tab, index) {
+    tabs.forEach(function (tab) {
       tab.addEventListener("keyup", function (e) {
         let compatibleKeys = IEKeys;
         let key = e.keyCode;
@@ -90,8 +93,6 @@
       tab.addEventListener("focus", () => {
         setActiveTab(tab, tabs);
       });
-
-      tab.index = index;
     });
   };
 
@@ -197,8 +198,12 @@
   });
 
   document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("js-tab")) {
+    if (
+      e.target instanceof Element &&
+      e.target.classList.contains("js-tab")
+    ) {
       const tabContainer = e.target.closest(".js-tabs");
+      if (!tabContainer) return;
       const tabs = [].slice.call(
         tabContainer.querySelectorAll("[aria-controls]"),
       );
@@ -214,7 +219,9 @@
   // Toggles show board based on selection on small screens
 
   const boards = document.querySelectorAll(`[role=tabpanel]`);
-  const dropdownSelect = document.getElementById("boardSelect");
+    const dropdownSelect = /** @type {HTMLSelectElement | null} */ (
+      document.getElementById("boardSelect")
+    );
   const maintainHash = dropdownSelect?.getAttribute("data-maintain-hash");
 
   dropdownSelect?.addEventListener("change", () => {

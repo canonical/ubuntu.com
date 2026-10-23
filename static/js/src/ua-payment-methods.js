@@ -38,13 +38,23 @@ const elements = stripe.elements({
 
 const card = elements.create("card", { style });
 
-const cardElement = document.getElementById("card-element");
-const editSection = document.getElementById("edit-payment-method-section");
-const paymentErrorElement = document.getElementById("payment-errors");
-const paymentWarningElement = document.getElementById("payment-warnings");
-const paymentSuccessElement = document.getElementById("payment-success");
-const emptyPaymentSection = document.getElementById(
-  "no-payment-method-section",
+const cardElement = /** @type {HTMLElement} */ (
+  document.getElementById("card-element")
+);
+const editSection = /** @type {HTMLElement} */ (
+  document.getElementById("edit-payment-method-section")
+);
+const paymentErrorElement = /** @type {HTMLElement} */ (
+  document.getElementById("payment-errors")
+);
+const paymentWarningElement = /** @type {HTMLElement} */ (
+  document.getElementById("payment-warnings")
+);
+const paymentSuccessElement = /** @type {HTMLElement} */ (
+  document.getElementById("payment-success")
+);
+const emptyPaymentSection = /** @type {HTMLElement} */ (
+  document.getElementById("no-payment-method-section")
 );
 
 const handleSuccess = (message) => {
@@ -80,15 +90,27 @@ if (cardElement) {
     }
   });
 
-  const editButton = document.getElementById("edit-payment-details");
-  const cancelButton = document.getElementById("cancel-payment-details");
-  const updateButton = document.getElementById("update-payment-details");
-  const previewSection = document.getElementById(
-    "default-payment-method-section",
+  const editButton = /** @type {HTMLButtonElement} */ (
+    document.getElementById("edit-payment-details")
   );
-  const cardErrorElement = document.getElementById("card-errors");
-  const tryAgainButton = document.getElementById("try-again-button");
-  const tryAgainSpinner = document.getElementById("try-again-spinner");
+  const cancelButton = /** @type {HTMLButtonElement | null} */ (
+    document.getElementById("cancel-payment-details")
+  );
+  const updateButton = /** @type {HTMLButtonElement} */ (
+    document.getElementById("update-payment-details")
+  );
+  const previewSection = /** @type {HTMLElement} */ (
+    document.getElementById("default-payment-method-section")
+  );
+  const cardErrorElement = /** @type {HTMLElement} */ (
+    document.getElementById("card-errors")
+  );
+  const tryAgainButton = /** @type {HTMLButtonElement} */ (
+    document.getElementById("try-again-button")
+  );
+  const tryAgainSpinner = /** @type {HTMLElement} */ (
+    document.getElementById("try-again-spinner")
+  );
 
   if (window.pendingPurchaseId) {
     paymentWarningElement.classList.remove("u-hide");
@@ -99,7 +121,7 @@ if (cardElement) {
         "";
 
       tryAgainSpinner.classList.remove("u-hide");
-      this.disabled = true;
+      tryAgainButton.disabled = true;
 
       retryPayment(tryAgainSpinner);
     });
@@ -117,7 +139,7 @@ if (cardElement) {
     this.classList.add("is-processing");
     this.innerHTML =
       '<i class="p-icon--spinner u-animation--spin is-light"></i>';
-    this.disabled = true;
+    updateButton.disabled = true;
     if (cancelButton) cancelButton.disabled = true;
 
     stripe
@@ -246,9 +268,15 @@ if (cardElement) {
 
 // Remove payment method
 
-const removePaymentModal = document.getElementById("remove-payment-modal");
-const addPaymentButton = document.getElementById("add-payment-method");
-const confirmRemoveButton = document.getElementById("confirm-remove-payment");
+const removePaymentModal = /** @type {HTMLElement} */ (
+  document.getElementById("remove-payment-modal")
+);
+const addPaymentButton = /** @type {HTMLButtonElement} */ (
+  document.getElementById("add-payment-method")
+);
+const confirmRemoveButton = /** @type {HTMLButtonElement} */ (
+  document.getElementById("confirm-remove-payment")
+);
 
 addPaymentButton.addEventListener("click", () => {
   emptyPaymentSection.classList.add("u-hide");
@@ -259,7 +287,9 @@ confirmRemoveButton.addEventListener("click", function () {
   this.classList.add("is-processing");
   this.innerHTML = '<i class="p-icon--spinner u-animation--spin is-light"></i>';
   this.disabled = true;
-  const cancelButton = document.getElementById("cancel-remove-payment");
+  const cancelButton = /** @type {HTMLButtonElement} */ (
+    document.getElementById("cancel-remove-payment")
+  );
   cancelButton.disabled = true;
 
   deletePaymentMethod(window.accountId)

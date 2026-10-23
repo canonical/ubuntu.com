@@ -8,18 +8,24 @@ const renderTutorials = (topic) => {
     .then((data) => {
       if (data.length) {
         const tutorials = data;
-        const tutorialStrip = document.querySelector("#tutorial-strip");
-        const tutorialContainer = document.querySelector(
-          "#tutorials-container",
+        const tutorialStrip = /** @type {HTMLElement} */ (
+          document.querySelector("#tutorial-strip")
         );
-        const tutorialTemplate = document.querySelector("#tutorial-template");
+        const tutorialContainer = /** @type {HTMLElement} */ (
+          document.querySelector("#tutorials-container")
+        );
+        const tutorialTemplate = /** @type {HTMLTemplateElement} */ (
+          document.querySelector("#tutorial-template")
+        );
 
         for (let i = 0; i < tutorials.length; i++) {
-          const tutorialCard = tutorialTemplate.content
-            .cloneNode(true)
-            .querySelector("div");
+          const tutorialCard = /** @type {HTMLDivElement} */ (
+            tutorialTemplate.content.cloneNode(true).querySelector("div")
+          );
 
-          const linkEle = tutorialCard.querySelector("a");
+          const linkEle = /** @type {HTMLAnchorElement} */ (
+            tutorialCard.querySelector("a")
+          );
 
           linkEle.innerHTML = tutorials[i].title;
           linkEle.href = tutorials[i].link;
