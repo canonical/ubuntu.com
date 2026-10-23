@@ -30,7 +30,7 @@ jobs:
       url: ${{ vars.WEBSITE_URL }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           persist-credentials: false
       - name: Deploy
@@ -58,7 +58,7 @@ jobs:
       url: ${{ vars.WEBSITE_URL }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           persist-credentials: false
       - name: Deploy
