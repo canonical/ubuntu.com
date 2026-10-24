@@ -38,11 +38,6 @@ on:
           - ps6
           - ps7
         default: both
-      force-charm-rebuild:
-        description: "Bypass the charm cache and force a rebuild"
-        required: false
-        type: boolean
-        default: false
 
 concurrency:
   group: deploy
@@ -58,7 +53,6 @@ jobs:
     uses: ./.github/workflows/pack.yaml
     with:
       ref: ${{ inputs.commit || inputs.branch || github.sha }}
-      force-charm-rebuild: ${{ inputs.force-charm-rebuild == true }}
 
   ps6:
     needs: pack
