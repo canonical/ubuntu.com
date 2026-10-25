@@ -130,24 +130,27 @@ test.describe("Radio field handling", () => {
   });
 });
 
-test.describe("Required checkbox validation", () => {
-  test("should disable submit button when required checkbox is not checked", async ({ page }) => {    
-    await page.goto("/tests/_static-default-form");
-    await acceptCookiePolicy(page);
-
-    // Check that submit button is disabled
-    const submitButton = page.getByRole("button", { name: /Submit/ });
-    await expect(submitButton).toBeDisabled();
-  });
-
-  test("should enable submit button when required checkbox is checked", async ({ page }) => {
-    await page.goto("/tests/_static-default-form");
-    await acceptCookiePolicy(page);
-
-    // Check the required checkbox
-    await page.locator('input[aria-labelledby="physical-server"]').check({ force: true });
-
-    const submitButton = page.getByRole("button", { name: /Submit/ });
-    await expect(submitButton).toBeEnabled();
-  });
-});
+// Required checkbox validation
+//
+// Task 5 removed the legacy fieldset.js-required-checkbox /
+// checkRequiredCheckboxes gating from static-forms.js. The
+// "disable-until-checked" coverage this used to provide for
+// _default-contact-us-form.html moves to Task 7's "the default
+// contact-us form is gated" test in required-field-gate.spec.ts, which
+// asserts against the real mechanism (aria-disabled, is-disabled, the
+// summary) once that template is migrated onto the new gate — not
+// toBeDisabled() against a native disabled attribute the design
+// deliberately never sets, which would start passing again for the
+// wrong reason.
+//
+// Task 7 also removed its sibling, "should enable submit button when
+// required checkbox is checked". Once the template carries
+// data-required-gate, ticking one checkbox still leaves the form's
+// other required fields empty, so the button stays aria-disabled and
+// Playwright reports it disabled — the test's whole premise, that one
+// checkbox is the deciding factor, is no longer true. That coverage now
+// lives in required-field-gate.spec.ts's "Opt-in scoping" block, in the
+// test "the default contact-us form un-gates once every required answer
+// is supplied" — not the identically-named tests in the Inline/Modal
+// form gating blocks, which exercise the generated fixture forms, not
+// this template.

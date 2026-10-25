@@ -54,12 +54,14 @@ export const clickRecaptcha = async (page: Page) => {
  * @param testTextFields List of text fields to fill
  * @param testCheckboxFields List of checkbox fields to fill
  * @param testRadioFields List of radio fields to fill
+ * @param testSelectFields List of select fields to fill
  */
 export const fillExistingFields = async (
   page: Page | Locator,
   testTextFields: { field: string; value: string }[],
   testCheckboxFields: { field: string }[],
-  testRadioFields: { field: string }[]
+  testRadioFields: { field: string }[],
+  testSelectFields: { field: string; value: string }[] = []
 ) => {
   for (const { field, value } of testTextFields) {
     if (await isExistingField(page, field)) {
@@ -74,6 +76,11 @@ export const fillExistingFields = async (
   for (const { field } of testRadioFields) {
     if (await isExistingField(page, field)) {
       await page.locator(field).click({ force: true });
+    }
+  }
+  for (const { field, value } of testSelectFields) {
+    if (await isExistingField(page, field)) {
+      await page.locator(field).selectOption(value);
     }
   }
 };
