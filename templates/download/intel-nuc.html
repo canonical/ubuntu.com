@@ -143,7 +143,9 @@
           </div>
         </li>
         {% include "download/shared/_first-boot-setup.html" %}
-        {% include "download/shared/_login.html" %}
+        {% with device_name="Intel NUC" %}
+          {% include "download/shared/_login.html" %}
+        {% endwith %}
       </ol>
     </div>
   </section>
