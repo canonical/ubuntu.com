@@ -13,7 +13,6 @@ from webapp import app as app_module
 from webapp.app import app
 from webapp.context import releases
 
-
 TAKEOVER_SCRIPT_IDS = [
     "takeover",
     "takeover-animation",
