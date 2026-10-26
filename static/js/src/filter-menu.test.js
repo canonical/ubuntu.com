@@ -6,8 +6,15 @@
  * isolated from any page or API.
  */
 
-function singleMenu({ param, label, options }) {
+// Mirrors single_select_menu: passing `selected` marks the menu server-managed
+function singleMenu({ param, label, options, selected, preserveAll = false }) {
   const menuId = `${param}-menu`;
+  const selectedOption = options.find((o) => o.value === selected);
+  const selectedAttr = selectedOption
+    ? ` data-selected-value="${selectedOption.value}"`
+    : "";
+  const serverManagedAttr =
+    selected !== undefined ? " data-filter-server-managed" : "";
   const optionButtons = options
     .map(
       (o) =>
@@ -22,8 +29,10 @@ function singleMenu({ param, label, options }) {
               aria-expanded="false"
               data-filter-param="${param}"
               data-filter-type="single"
-              data-default-label="${label}">
-        <span>${label}</span>
+              data-preserve-all="${preserveAll}"
+              data-default-label="${label}"${selectedAttr}${serverManagedAttr}>
+        <span>${selectedOption ? selectedOption.label : label}</span>
+
       </button>
       <span id="${menuId}" aria-hidden="true">
         <span class="p-contextual-menu__group">${optionButtons}</span>
@@ -217,6 +226,33 @@ describe("filter-menu clear behaviour", () => {
     expect(navigated.searchParams.has("resource")).toBe(false);
     expect(navigated.searchParams.has("page")).toBe(false);
   });
+
+  it("shows clear for all languages before and after submitting", () => {
+    const filterBar = bar({
+      menus: [
+        singleMenu({
+          param: "language",
+          label: "English",
+          preserveAll: true,
+          options: [
+            { value: "all", label: "All languages" },
+            { value: "en", label: "English" },
+          ],
+        }),
+      ],
+    });
+    loadFilterMenu("http://localhost/engage", filterBar);
+
+    document.querySelector('#language-menu [data-value="all"]').click();
+    expect(clearButton().classList.contains("u-hide")).toBe(false);
+
+    document.querySelector("[data-filter-submit]").click();
+
+    expect(new URL(window.location).searchParams.get("language")).toBe("all");
+
+    loadFilterMenu(window.location, filterBar);
+    expect(clearButton().classList.contains("u-hide")).toBe(false);
+  });
 });
 
 describe("filter-menu is agnostic to param keys, order and quantity", () => {
@@ -307,5 +343,28 @@ describe("filter-menu is agnostic to param keys, order and quantity", () => {
     // Bar A's clear button shows; bar B's stays hidden.
     expect(clearButton(barA).classList.contains("u-hide")).toBe(false);
     expect(clearButton(barB).classList.contains("u-hide")).toBe(true);
+  });
+});
+
+describe("filter-menu server-managed single selects", () => {
+  afterEach(() => {
+    document.body.innerHTML = "";
+  });
+
+  it("keeps a server reset instead of restoring the raw URL value", () => {
+    loadFilterMenu(
+      "http://localhost/page?resource=webinar",
+      bar({
+        menus: [
+          singleMenu({
+            ...RESOURCE_MENU,
+            selected: "all",
+          }),
+        ],
+      }),
+    );
+
+    expect(toggleLabel("resource")).toBe("All resource types");
+    expect(toggle("resource").dataset.selectedValue).toBe("all");
   });
 });

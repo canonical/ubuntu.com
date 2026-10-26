@@ -135,7 +135,7 @@ meta_copydoc %}
 
         {%- if slot == 'list_item_title_2' -%}
           <h3 class="p-heading--5">
-            Ubuntu Desktop {{ releases_yaml.previous_lts.full_version }} LTS
+            Ubuntu Desktop {{ releases_yaml.previous_lts.desktop_version }} LTS
           </h3>
         {%- endif -%}
 
@@ -149,7 +149,7 @@ meta_copydoc %}
                 <div class="grid-col-1">
                   <a
                     class="p-button"
-                    href="https://releases.ubuntu.com/{{ releases_yaml.previous_lts.short_version }}/ubuntu-{{ releases_yaml.previous_lts.full_version }}-desktop-amd64.iso.torrent"
+                    href="https://releases.ubuntu.com/{{ releases_yaml.previous_lts.short_version }}/ubuntu-{{ releases_yaml.previous_lts.desktop_version }}-desktop-amd64.iso.torrent"
                   >
                     Download
                   </a>

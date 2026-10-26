@@ -1,57 +1,73 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../helpers/fixtures";
 import { acceptCookiePolicy } from "../helpers/commands";
 
 test.describe("Certified search results", () => {
   test("should update results per page when pagination is selected", async ({ page }) => {
-    await page.goto("/certified?q=dell");
+    await page.goto("/certified/search?q=dell");
     await acceptCookiePolicy(page);
     
-    await page.locator('#page-size-top').waitFor({ state: 'visible' });
-    await page.locator('#page-size-top').selectOption({ label: '40' });
+    await page.locator('#page-size-bottom').waitFor({ state: 'visible' });
+    await page.locator('#page-size-bottom').selectOption({ label: '40' });
 
-    await page.waitForURL(/\/certified\?q=dell&limit=40/, { timeout: 10000 });
-    await expect(page).toHaveURL('/certified?q=dell&limit=40');
+    await page.waitForURL(/\/certified\/search\?q=dell&limit=40/, { timeout: 10000 });
+    await expect(page).toHaveURL('/certified/search?q=dell&limit=40');
     await expect(page.getByText(/results/)).toContainText('40');
   });
 
-  test("should update results when Apply is selected", async ({ page }) => {
-    await page.goto("/certified/laptops");
+  test("should update results when a filter is selected", async ({ page }) => {
+    await page.goto("/certified/search?category=Laptop");
     await acceptCookiePolicy(page);
 
-    await page.getByLabel('Vendor').getByText('Dell').click();
-    await page.getByRole("button", { name: /Apply/i }).click();
+    // Filters apply automatically: the URL updates, then the page reloads
+    await Promise.all([
+      page.waitForEvent("load"),
+      page.getByLabel('Vendor').getByText('Dell').click(),
+    ]);
 
-    await page.waitForSelector('a:has-text("Dell")', { timeout: 10000 });
-    expect(page.url().includes('vendor=Dell')).toBe(true);
-    await expect(page.getByRole('link', { name: 'Dell' }).first()).toBeVisible();
+    await expect(page).toHaveURL(/vendor=Dell/);
+    await expect(
+      page.locator('.p-certification-results .p-accordion__tab').filter({ hasText: /dell/i }).first()
+    ).toBeVisible();
   });
 
   test("should clear filters when clear is selected", async ({ page }) => {
-    await page.goto("/certified/socs");
+    await page.goto("/certified/search?category=SoC");
     await acceptCookiePolicy(page);
 
-    await page.getByText(/20.04 LTS/i).click();
-    await page.getByRole("button", { name: /Apply/i }).click();
+    await Promise.all([
+      page.waitForEvent("load"),
+      page.getByText(/20.04 LTS/i).click(),
+    ]);
+    await expect(page).toHaveURL(/release=20\.04\+LTS/);
+    await expect(page.getByLabel('20.04 LTS')).toBeChecked();
 
-    await page.waitForFunction(() => window.location.href.includes('release=20.04+LTS'));
-    expect(page.url().includes('release=20.04+LTS')).toBe(true);
-
-    await page.getByRole("button", { name: /Clear/i }).click();
-    await page.waitForFunction(() => !window.location.href.includes('release=20.04+LTS'));
-    expect(page.url().includes('release=20.04+LTS')).toBe(false);
+    await Promise.all([
+      page.waitForEvent("load"),
+      page.getByRole("button", { name: "Clear all filters" }).click(),
+    ]);
+    await expect(page).not.toHaveURL(/release=/);
     await expect(page.getByLabel('20.04 LTS')).not.toBeChecked();
   });
   
   test("should keep query string when filters are cleared", async ({ page }) => {
-    await page.goto("/certified?q=hp");
+    await page.goto("/certified/search?q=hp");
     await acceptCookiePolicy(page);
 
     await page.getByText("Show all versions").click({ force: true });
     await page.waitForSelector('input[type="checkbox"]');
-    await page.getByRole("checkbox", { name: /20.04 LTS/i }).click({ force: true });
-    await page.getByRole("button", { name: /Apply/i }).click({ force: true });
-    await page.getByRole("button", { name: /Clear/i }).click({ force: true });
-    await expect(page.getByPlaceholder('Search', { exact: true })).toHaveValue("hp");
+    // No force: the sticky filters footer can cover the checkbox itself
+    await Promise.all([
+      page.waitForEvent("load"),
+      page.getByText(/20.04 LTS/i).click(),
+    ]);
+    await expect(page).toHaveURL(/release=20\.04\+LTS/);
+
+    await Promise.all([
+      page.waitForEvent("load"),
+      page.getByRole("button", { name: "Clear all filters" }).click(),
+    ]);
+    await expect(page).not.toHaveURL(/release=/);
+    await expect(page.locator('#certified-search')).toHaveValue("hp");
   });
 
   test("should take you to search results page when search bar is used", async ({ page }) => {
@@ -63,7 +79,9 @@ test.describe("Certified search results", () => {
     
     await page.waitForSelector('text=results', { timeout: 10000 });
     await expect(page.getByText(/results/)).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Dell' }).first()).toBeVisible();
+    await expect(
+      page.locator('.p-certification-results .p-accordion__tab').filter({ hasText: /dell/i }).first()
+    ).toBeVisible();
   });
   
 });

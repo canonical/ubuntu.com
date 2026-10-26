@@ -1,7 +1,8 @@
 {
   "scripts": {
-    "test": "yarn run lint-scss && yarn run lint-python && yarn run lint-llms && yarn run test-python",
+    "test": "yarn run lint-scss && yarn run lint-python && yarn run lint-llms && yarn run test-python && yarn run test-shell",
     "test-python": "python3 -m unittest discover tests",
+    "test-shell": "for f in tests/shell/*.sh; do bash \"$f\" || exit 1; done",
     "lint-python": "flake8 webapp tests && black --check --line-length 79 webapp tests",
     "lint-llms": "python3 webapp/llms.py lint",
     "format-python": "black --line-length 79 webapp tests",
@@ -75,7 +76,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
     "jest-fetch-mock": "3.0.3",
-    "js-yaml": "^4.3.1",
+    "js-yaml": "^4.3.2",
     "prettier": "3.3.3",
     "stylelint": "16.8.1",
     "stylelint-config-prettier": "9.0.5",
@@ -129,11 +130,12 @@
     "url-search-params-polyfill": "8.2.5",
     "use-query-params": "^2.2.1",
     "uuid": "^14.0.1",
-    "vanilla-framework": "4.58.1",
+    "vanilla-framework": "4.61.0",
     "yup": "1.4.0"
   },
   "resolutions": {
-    "lodash": "4.18.1"
+    "lodash": "4.18.1",
+    "@isaacs/cliui": "npm:cliui@8.0.0"
   },
   "jest": {
     "testEnvironment": "jsdom",

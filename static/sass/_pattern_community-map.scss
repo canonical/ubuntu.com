@@ -1,0 +1,20 @@
+@mixin ubuntu-p-community-map {
+  .p-community-map {
+    margin: $spv--large 0 $spv--x-large;
+
+    &:not(.is-ready) {
+      visibility: hidden;
+    }
+  }
+
+  .p-community-map__canvas {
+    background: #e6e6e6;
+    height: 400px;
+    z-index: 1;
+  }
+
+  .p-community-map__caption {
+    font-style: normal;
+    padding-top: $spv--small;
+  }
+}

@@ -8,6 +8,7 @@ let entries = {
   "side-navigation": "./static/js/src/side-navigation.js",
   "dynamic-toc": "./static/js/src/dynamic-toc.js",
   "image-download": "./static/js/src/image-download.js",
+  homepage: "./static/js/src/homepage/index.js",
   main: "./static/js/src/main.js",
   "release-chart-manager": "./static/js/src/release-chart-manager.js",
   "developer-chart": "./static/js/src/developer-chart.js",
@@ -34,12 +35,15 @@ let entries = {
   activate: "./static/js/src/activate.js",
   "chiseled-chart": "./static/js/src/charts/chiseled-chart.js",
   tabbedContent: "./static/js/src/tabbed-content.js",
+  "community-map": "./static/js/src/community-map.js",
   credentialsDashboard:
     "./static/js/src/advantage/credentials/dashboard/app.tsx",
   "table-of-contents": "./static/js/src/table-of-contents.js",
   "linux-patch-management": "./static/js/src/advantage/linux-patch-management/app.tsx",
   prism: "./static/js/src/prism.js",
   "active-nav-scroll": "./static/js/src/active-nav-scroll.js",
+  "in-page-navigation": "./static/js/src/in-page-navigation.js",
+  "developer-diaries": "./static/js/src/developer-diaries.js",
   resources: "./static/js/src/resources.js",
   "filter-menu": "./static/js/src/filter-menu.js",
   "cookie-policy-with-callback":

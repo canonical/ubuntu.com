@@ -1,0 +1,310 @@
+@mixin ubuntu-p-homepage-carousel {
+  // Open source carousel: portrait image beside a list of slide titles, the
+  // active slide expanded in place. Phone and tablet swap the list for one
+  // slide.
+  // Without JS the slide whose anchor is targeted takes over from slide 1.
+  $carousel-easing: cubic-bezier(0.22, 1, 0.36, 1);
+  $carousel-slide-count: 6;
+  // Framer's accordion timing: the old panel collapses, then after a short
+  // gap the new one expands
+  $carousel-duration: 0.55s;
+  $carousel-swap-delay: $carousel-duration + 0.06s;
+
+  // p-image-container sizes and stacks the images. Vanilla has no 4:3, so
+  // phones stretch its 16:9 spacer
+  .p-open-source__images::before {
+    @media (max-width: $breakpoint-small - 1) {
+      padding-bottom: 75%;
+    }
+  }
+
+  .p-open-source__image {
+    opacity: 0;
+    transition: opacity $carousel-duration $carousel-easing;
+
+    &.is-active {
+      opacity: 1;
+    }
+  }
+
+  .p-open-source__controls {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    @media (min-width: $breakpoint-large) {
+      justify-content: flex-end;
+    }
+  }
+
+  .p-open-source__button {
+    align-items: center;
+    background: none;
+    border: 0;
+    display: inline-flex;
+    height: $sp-unit * 5.5;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: $sp-unit * 5.5;
+  }
+
+  // Previous and Next, as in Figma: 4px around each chevron, 8px apart
+  .p-open-source__steps {
+    display: flex;
+    gap: $sp-unit;
+
+    .p-open-source__button {
+      height: auto;
+      padding: $sp-unit * 0.5;
+      width: auto;
+    }
+  }
+
+  // Phone and tablet: the bar runs on a solid track under the image
+  .p-open-source__progress {
+    background-color: $colors--theme--border-default;
+  }
+
+  .p-open-source__bar {
+    background-color: $colors--theme--text-default;
+    display: block;
+    height: 3px;
+    transform: scaleX(0);
+    transform-origin: left;
+    width: 100%;
+  }
+
+  // Rules as on canonical.com's homepage tabs: 1px, lit on hover, 3px under
+  // the active slide's progress bar. Positioned, so they never shift the text.
+  .p-open-source__slide {
+    position: relative;
+
+    &::before {
+      background-color: $colors--theme--border-low-contrast;
+      content: "";
+      height: 1px;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    &:hover::before {
+      background-color: $colors--theme--text-default;
+    }
+
+    &.is-active::before {
+      background-color: $colors--theme--border-low-contrast;
+      height: 3px;
+    }
+
+    .p-open-source__bar {
+      left: 0;
+      position: absolute;
+      top: 0;
+      z-index: 1;
+    }
+  }
+
+  // As on canonical.com, the active rule turns solid while the pointer is
+  // on the active slide, and for a slide chosen while paused (is-held,
+  // script-driven)
+  .js-open-source-carousel.is-held .p-open-source__slide.is-active::before {
+    background-color: $colors--theme--text-default;
+  }
+
+  // Same specificity trick as .p-cta-text: beats the dark theme link colour
+  .inner-wrapper a.p-open-source__title:not([class^="p-button"]),
+  .inner-wrapper button.p-open-source__title {
+    background: none;
+    border: 0;
+    display: block;
+    font: inherit;
+    margin: 0;
+    // The h5 nudge and gap as padding, so the whole row stays clickable
+    padding: map-get($settings-text-h5, nudge) 0
+      (map-get($settings-text-h5, sp-after) - map-get($settings-text-h5, nudge));
+    text-align: left;
+    text-decoration: none;
+    width: 100%;
+
+    // Muted until hovered or active, as on canonical.com
+    &,
+    &:visited {
+      color: $colors--theme--text-muted;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: $colors--theme--text-default;
+    }
+  }
+
+  .inner-wrapper .p-open-source__slide.is-active {
+    .p-open-source__title {
+      color: $colors--theme--text-default;
+    }
+  }
+
+  .p-open-source__panel {
+    display: none;
+  }
+
+  .p-open-source__slide.is-active .p-open-source__panel {
+    display: block;
+
+    @media (prefers-reduced-motion: no-preference) {
+      // FadeIn is the shared keyframe in styles.scss
+      animation: FadeIn 0.45s ease-out;
+    }
+  }
+
+  // Desktop, with motion: the panel is a one-row grid, so its height
+  // animates 0fr to 1fr without measuring. The old panel collapses at once,
+  // the new one waits for it plus a gap. Collapsed panels leave the focus
+  // order once hidden. Elsewhere the display rules above apply as they are.
+  @media (min-width: $breakpoint-large) and (prefers-reduced-motion: no-preference) {
+    .js-open-source-carousel.is-enhanced {
+      .p-open-source__panel {
+        animation: none;
+        display: grid;
+        grid-template-rows: 0fr;
+        opacity: 0;
+        transition:
+          grid-template-rows $carousel-duration $carousel-easing,
+          opacity $carousel-duration $carousel-easing,
+          visibility 0s linear $carousel-duration;
+        visibility: hidden;
+      }
+
+      .p-open-source__panel-inner {
+        filter: blur(3px);
+        min-height: 0;
+        overflow: hidden;
+        transform: translateY(5px);
+        // Keep the content blurred until the collapse has finished
+        transition:
+          filter 0s linear $carousel-duration,
+          transform 0s linear $carousel-duration;
+      }
+
+      .p-open-source__slide.is-active {
+        .p-open-source__panel {
+          grid-template-rows: 1fr;
+          opacity: 1;
+          transition-delay: $carousel-swap-delay;
+          visibility: visible;
+        }
+
+        .p-open-source__panel-inner {
+          filter: none;
+          transform: none;
+          transition:
+            filter $carousel-duration $carousel-easing $carousel-swap-delay,
+            transform $carousel-duration $carousel-easing $carousel-swap-delay;
+        }
+      }
+    }
+  }
+
+  .p-open-source__command {
+    background-color: $colors--theme--background-hover;
+    overflow-wrap: normal;
+    padding: $sp-unit * 2;
+    white-space: pre-wrap;
+    word-break: normal;
+  }
+
+  // Block cursor while the command types (script-driven)
+  .p-open-source__cursor {
+    background-color: currentcolor;
+    display: inline-block;
+    height: 1.1em;
+    vertical-align: text-bottom;
+    width: 0.6em;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: p-open-source-blink 1s steps(1) infinite;
+    }
+  }
+
+  // Hyphens are break opportunities too, keep each path part whole
+  .p-open-source__nowrap {
+    white-space: nowrap;
+  }
+
+  // No JS: the titles link to anchors at the top of the section, so the
+  // heading stays in view, and the targeted anchor's slide replaces the first
+  .js-open-source-carousel:not(.is-enhanced):has(
+      .p-open-source__anchor:target
+    ) {
+    .p-open-source__image.is-active {
+      opacity: 0;
+    }
+
+    .p-open-source__slide.is-active {
+      &::before {
+        height: 1px;
+      }
+
+      .p-open-source__title {
+        color: $colors--theme--text-muted;
+      }
+
+      .p-open-source__panel {
+        display: none;
+      }
+    }
+
+    @for $i from 1 through $carousel-slide-count {
+      &:has(.p-open-source__anchor:nth-child(#{$i}):target) {
+        .p-open-source__image:nth-child(#{$i}) {
+          opacity: 1;
+        }
+
+        // Slides follow the pause controls, so they are offset by one
+        .p-open-source__slide:nth-child(#{$i + 1}) {
+          &::before {
+            height: 3px;
+          }
+
+          .p-open-source__title {
+            color: $colors--theme--text-default;
+          }
+
+          .p-open-source__panel {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  // is-enhanced is set by the carousel script
+  @media (max-width: $breakpoint-large - 1) {
+    .js-open-source-carousel.is-enhanced {
+      .p-open-source__slide:not(.is-active) {
+        display: none;
+      }
+
+      // The bar under the image stands in for the slide's rule
+      .p-open-source__slide::before,
+      .p-open-source__slide .p-open-source__bar {
+        display: none;
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .p-open-source__image {
+      transition: none;
+    }
+  }
+
+  @keyframes p-open-source-blink {
+    50% {
+      opacity: 0;
+    }
+  }
+}

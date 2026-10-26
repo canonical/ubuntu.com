@@ -1,0 +1,100 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.0
+    method: GET
+    uri: https://certification.canonical.com/api/v2/certified-configurations/?format=json&limit=25&offset=0&model__icontains=alienware&ordering=model&pagination=limitoffset
+  response:
+    body:
+      string: '{"count":0,"next":null,"previous":null,"results":[]}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '52'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 06 Sep 2026 14:07:19 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Vary:
+      - Accept, Cookie
+      X-QueryInspect-Duplicate-SQL-Queries:
+      - '0'
+      X-QueryInspect-Num-SQL-Queries:
+      - '1'
+      X-QueryInspect-Total-Request-Time:
+      - 78 ms
+      X-QueryInspect-Total-SQL-Time:
+      - 61 ms
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.0
+    method: GET
+    uri: https://certification.canonical.com/api/v2/certified-configurations/?format=json&limit=25&offset=0&make__icontains=alienware&ordering=model&pagination=limitoffset
+  response:
+    body:
+      string: '{"count":7,"next":null,"previous":null,"results":[{"canonical_id":"202412-36068","make":"Alienware","model":"16
+        Aurora (Core 5 210H, GeForce RTX 3050 6GB)","level":"Certified Pre-Install","release":"24.04
+        LTS","category":"Laptop","major_release":"24.04 LTS","completed":"2025-08-13T09:20:48.194833+01:00","resource_uri":"/api/v2/certified-configurations/202412-36068"},{"canonical_id":"202412-36070","make":"Alienware","model":"16
+        Aurora (Core 7 240H, GeForce RTX 4050 Max-Q)","level":"Certified Pre-Install","release":"24.04
+        LTS","category":"Laptop","major_release":"24.04 LTS","completed":"2025-08-13T09:23:17.842631+01:00","resource_uri":"/api/v2/certified-configurations/202412-36070"},{"canonical_id":"202504-36590","make":"Alienware","model":"16
+        Aurora (Core 7 240H, GeForce RTX 5050 Max-Q)","level":"Certified Pre-Install","release":"24.04
+        LTS","category":"Laptop","major_release":"24.04 LTS","completed":"2025-08-13T09:24:38.110828+01:00","resource_uri":"/api/v2/certified-configurations/202504-36590"},{"canonical_id":"202504-36589","make":"Alienware","model":"16
+        Aurora (Core 9 270H, GeForce RTX 5060 Max-Q)","level":"Certified Pre-Install","release":"24.04
+        LTS","category":"Laptop","major_release":"24.04 LTS","completed":"2025-08-13T09:25:45.981078+01:00","resource_uri":"/api/v2/certified-configurations/202504-36589"},{"canonical_id":"202504-36588","make":"Alienware","model":"16
+        Aurora (Core 9 270H, GeForce RTX 5070 Max-Q)","level":"Certified Pre-Install","release":"24.04
+        LTS","category":"Laptop","major_release":"24.04 LTS","completed":"2025-08-13T09:27:06.364344+01:00","resource_uri":"/api/v2/certified-configurations/202504-36588"},{"canonical_id":"202412-36067","make":"Alienware","model":"16
+        Aurora (Nvidia GeForce RTX 3050)","level":"Certified Pre-Install","release":"24.04
+        LTS","category":"Laptop","major_release":"24.04 LTS","completed":"2025-05-28T06:13:22.285485+01:00","resource_uri":"/api/v2/certified-configurations/202412-36067"},{"canonical_id":"202412-36069","make":"Alienware","model":"16
+        Aurora (Nvidia GeForce RTX 4050)","level":"Certified Pre-Install","release":"24.04
+        LTS","category":"Laptop","major_release":"24.04 LTS","completed":"2025-05-28T06:29:44.460432+01:00","resource_uri":"/api/v2/certified-configurations/202412-36069"}]}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2272'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 06 Sep 2026 14:07:20 GMT
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Vary:
+      - Accept, Cookie
+      X-QueryInspect-Duplicate-SQL-Queries:
+      - '0'
+      X-QueryInspect-Num-SQL-Queries:
+      - '2'
+      X-QueryInspect-Total-Request-Time:
+      - 43 ms
+      X-QueryInspect-Total-SQL-Time:
+      - 29 ms
+    status:
+      code: 200
+      message: OK
+version: 1

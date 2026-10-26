@@ -148,7 +148,31 @@ After recording, verify the tests pass without the environment variable (using t
 task test-python
 ```
 
-**Note:** Cassettes are stored in `tests/cassettes/`. Review the changes before committing to ensure no sensitive data was recorded.
+**Note:** Cassettes are stored in `tests/cassettes/` (and `tests/playwright/cassettes/` for the Playwright cassette below). Review the changes before committing to ensure no sensitive data was recorded.
+
+#### Playwright cassette
+
+The Playwright job in CI has no Discourse credentials, so the server it tests serves every Discourse data-explorer request (the only Discourse endpoint that needs an admin API key) from `tests/playwright/cassettes/engage.yaml`. The workflow switches this on by adding
+
+```bash
+GUNICORN_CMD_ARGS=-c tests/playwright/cassette.py
+```
+
+to `.env.local`, which makes every gunicorn worker replay the cassette (`tests/playwright/cassette.py`). All other requests, including the public Discourse endpoints behind the docs pages, are unaffected. Playback matches on method, URL and request body, so any new filter combination the engage tests navigate to needs re-recording.
+
+To re-record you need real `DISCOURSE_API_KEY` and `DISCOURSE_API_USERNAME` values in `.env.local`. Stop any running server, then start the recorder, which serves the site single-process on port 8001:
+
+```bash
+dotrun exec python3 -m tests.playwright.cassette
+```
+
+In another terminal, drive the pages you want recorded:
+
+```bash
+yarn playwright test tests/playwright/tests/engage.spec.ts --workers=1
+```
+
+Stop the recorder with Ctrl+C; the cassette is written on exit. API keys, usernames and session cookies are stripped from the recording, but review the diff before committing. To verify playback, add the `GUNICORN_CMD_ARGS` line above to `.env.local`, start the project with `dotrun`, run the spec again, then remove the line.
 
 ### Working on Credentials
 

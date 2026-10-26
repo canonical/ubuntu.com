@@ -36,6 +36,7 @@ from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
 from canonicalwebteam.directory_parser import generate_sitemap
 from geolite2 import geolite2
+from markupsafe import Markup
 from requests import Session
 from requests.exceptions import HTTPError, RequestException
 from werkzeug.exceptions import BadRequest, ServiceUnavailable
@@ -71,7 +72,9 @@ def _build_mirror_list(local=False, country_code=None):
     mirror_list = []
 
     try:
-        with open(f"{os.getcwd()}/etc/ubuntu-mirrors-rss.xml") as rss:
+        with open(
+            f"{os.getcwd()}/etc/ubuntu-mirrors-rss.xml", encoding="utf-8"
+        ) as rss:
             mirrors = feedparser.parse(rss.read()).entries
     except IOError:
         pass
@@ -163,8 +166,8 @@ def wsl_install_redirect():
 
 
 def appliance_install(appliance, device):
-    with open("appliances.yaml") as appliances:
-        appliances = yaml.load(appliances, Loader=yaml.FullLoader)
+    with open("appliances.yaml", encoding="utf-8") as appliances:
+        appliances = yaml.safe_load(appliances)
 
     return flask.render_template(
         f"appliance/{appliance}/{device}.html",
@@ -442,7 +445,8 @@ def build_engage_index(engage_docs):
     def engage_index():
         page = flask.request.args.get("page", default=1, type=int)
         preview = flask.request.args.get("preview")
-        language = flask.request.args.get("language", default=None, type=str)
+        language = flask.request.args.get("language", default="en", type=str)
+        language_filter = None if language == "all" else language
         resource = flask.request.args.get("resource", default=None, type=str)
         tags = flask.request.args.getlist("tag")
         if len(tags) == 1:
@@ -454,7 +458,60 @@ def build_engage_index(engage_docs):
         limit = 14  # adjust as needed
         offset = (page - 1) * limit
 
-        if tag or resource or language:
+        # Only show active items unless previewing. When resource and
+        # language are both selected, scan active resource results and apply
+        # the language filter before paginating because get_index supports
+        # only two key/value filters (+ tag_value).
+        key, value = "type", resource
+        second_key, second_value = "language", language_filter
+        filter_active_in_query = False
+        filter_language_before_pagination = False
+        if preview is None:
+            if resource and language_filter:
+                key, value = "active", "true"
+                second_key, second_value = "type", resource
+                filter_active_in_query = True
+                filter_language_before_pagination = True
+            elif not resource:
+                key, value = "active", "true"
+                filter_active_in_query = True
+            elif not language_filter:
+                second_key, second_value = "active", "true"
+                filter_active_in_query = True
+
+        if filter_language_before_pagination:
+            active_items = []
+            scan_limit = 100
+            scan_offset = 0
+            scan_total = None
+            while scan_total is None or scan_offset < scan_total:
+                (
+                    batch,
+                    count,
+                    active_count,
+                    scan_total,
+                ) = engage_docs.get_index(
+                    scan_limit,
+                    scan_offset,
+                    tag_value=tag,
+                    key=key,
+                    value=value,
+                    second_key=second_key,
+                    second_value=second_value,
+                )
+                active_items.extend(batch)
+                scan_offset += scan_limit
+
+            metadata = [
+                item
+                for item in active_items
+                if str(item.get("language", "")).strip().lower()
+                == language_filter.lower()
+            ]
+            current_total = len(metadata)
+            end_offset = offset + limit
+            metadata = metadata[offset:end_offset]
+        elif tag or resource or language_filter or filter_active_in_query:
             (
                 metadata,
                 count,
@@ -464,10 +521,10 @@ def build_engage_index(engage_docs):
                 limit,
                 offset,
                 tag_value=tag,
-                key="type",
-                value=resource,
-                second_key="language",
-                second_value=language,
+                key=key,
+                value=value,
+                second_key=second_key,
+                second_value=second_value,
             )
         else:
             (
@@ -478,6 +535,17 @@ def build_engage_index(engage_docs):
             ) = engage_docs.get_index(
                 limit, offset, key="is_static", value=None
             )
+
+        if (
+            preview is None
+            and not filter_active_in_query
+            and not filter_language_before_pagination
+        ):
+            metadata = [
+                item
+                for item in metadata
+                if str(item.get("active", "")).strip().lower() == "true"
+            ]
 
         # Fixed so that engage page authors don't create random resource types
         resource_types = [
@@ -639,12 +707,10 @@ def engage_thank_you(engage_pages):
             flask.abort(404)
 
         # Stop potential spamming of /engage/<engage-page>/thank-you
-        if (
-            "resource_url" not in metadata or metadata["resource_url"] == ""
-        ) and (
-            "contact_form_only" not in metadata
-            or metadata["contact_form_only"] != "true"
-        ):
+        has_resource_url = bool(metadata.get("resource_url", ""))
+        has_form = bool(metadata.get("form_id", ""))
+        is_contact_form_only = metadata.get("contact_form_only") == "true"
+        if not (has_resource_url or has_form or is_contact_form_only):
             return flask.abort(404)
 
         language = metadata["language"]
@@ -662,8 +728,8 @@ def engage_thank_you(engage_pages):
             template_language,
             request_url=flask.request.referrer,
             metadata=metadata,
-            resource_name=metadata["type"],
-            resource_url=metadata["resource_url"],
+            resource_name=metadata.get("type", ""),
+            resource_url=metadata.get("resource_url", ""),
             form_details=form_details,
         )
 
@@ -1244,7 +1310,13 @@ def marketo_submit():
 
     # Only attach UTM values when the user has consented to
     # non-essential cookies (functionality, performance, or all)
-    cookie_consent = flask.request.cookies.get("_cookies_accepted", "unset")
+    # Check consent values from cross-domain form submissions
+    cookie_consent = (
+        flask.request.cookies.get("_cookies_accepted")
+        or flask.request.form.get("_cookies_accepted")
+        or "unset"
+    )
+    form_fields.pop("_cookies_accepted", None)
     non_essential_consent = cookie_consent in {
         "functionality",
         "performance",
@@ -1263,31 +1335,39 @@ def marketo_submit():
     encoded_utms = flask.request.cookies.get("utms") or flask.request.form.get(
         "utms"
     )
+    approved_utms = [
+        "utm_source",
+        "utm_medium",
+        "utm_campaign",
+        "utm_content",
+        "utm_term",
+    ]
+    utm_dict = {}
     if encoded_utms:
         form_fields.pop("utms", None)
-        if non_essential_consent:
-            utms = unquote(encoded_utms)
-            utm_dict = dict(i.split(":", 1) for i in utms.split("&"))
-            approved_utms = [
-                "utm_source",
-                "utm_medium",
-                "utm_campaign",
-                "utm_content",
-                "utm_term",
-            ]
-            for k, v in utm_dict.items():
-                if k in approved_utms:
-                    if k == "utm_content":
-                        k = "utmcontent"
-                    enrichment_fields[k] = v
+        utms = unquote(encoded_utms)
+        utm_dict = dict(i.split(":", 1) for i in utms.split("&"))
+    else:
+        # No utms cookie (e.g. cross-domain post): use hidden utm_* inputs
+        for k in approved_utms:
+            form_key = "utmcontent" if k == "utm_content" else k
+            if form_fields.get(form_key):
+                utm_dict[k] = form_fields[form_key]
 
-            # Append utm values in acquisition url
-            acquisition_url = enrichment_fields.get("acquisition_url")
-            if acquisition_url:
-                enriched_acquisition_url = enrich_acquisition_url(
-                    acquisition_url, utm_dict, approved_utms
-                )
-                enrichment_fields["acquisition_url"] = enriched_acquisition_url
+    if utm_dict and non_essential_consent:
+        for k, v in utm_dict.items():
+            if k in approved_utms:
+                if k == "utm_content":
+                    k = "utmcontent"
+                enrichment_fields[k] = v
+
+        # Append utm values in acquisition url
+        acquisition_url = enrichment_fields.get("acquisition_url")
+        if acquisition_url:
+            enriched_acquisition_url = enrich_acquisition_url(
+                acquisition_url, utm_dict, approved_utms
+            )
+            enrichment_fields["acquisition_url"] = enriched_acquisition_url
 
     if not non_essential_consent:
         # Strip utm_* keys from form_fields (e.g. hidden inputs)
@@ -1541,12 +1621,16 @@ def get_user_country_by_tz():
     timezone = flask.request.args.get("tz")
 
     with open(
-        os.path.join(APP_ROOT, "static/files/timezones.json"), "r"
+        os.path.join(APP_ROOT, "static/files/timezones.json"),
+        "r",
+        encoding="utf-8",
     ) as file:
         timezones = json.load(file)
 
     with open(
-        os.path.join(APP_ROOT, "static/files/countries.json"), "r"
+        os.path.join(APP_ROOT, "static/files/countries.json"),
+        "r",
+        encoding="utf-8",
     ) as file:
         countries = json.load(file)
 
@@ -1595,8 +1679,8 @@ def subscription_centre():
             subscription_centre_submit(sfdcLeadId, True)
             return flask.redirect(f"/{return_url}")
 
-    with open("subscriptions.yaml") as subscriptions:
-        subscriptions = yaml.load(subscriptions, Loader=yaml.FullLoader)
+    with open("subscriptions.yaml", encoding="utf-8") as subscriptions:
+        subscriptions = yaml.safe_load(subscriptions)
 
     try:
         response = marketo_api.request(
@@ -1790,7 +1874,7 @@ def build_sitemap_tree(exclude_paths=None):
                 directory_path, base_url, exclude_paths=exclude_paths
             )
             if xml_sitemap:
-                with open(sitemap_path, "w") as f:
+                with open(sitemap_path, "w", encoding="utf-8") as f:
                     f.write(xml_sitemap)
                 logging.info(f"Sitemap saved to {sitemap_path}")
 
@@ -1836,7 +1920,7 @@ def build_sitemap_tree(exclude_paths=None):
             return {"error": "Sitemap not available"}, 503
 
         # Serve the existing sitemap
-        with open(sitemap_path, "r") as f:
+        with open(sitemap_path, "r", encoding="utf-8") as f:
             xml_sitemap = f.read()
 
         response = flask.make_response(xml_sitemap)
@@ -1887,6 +1971,13 @@ def process_local_communities(local_communities):
                     lat_str, lon_str = coordinates.split(",")
                     lat = float(lat_str.strip())
                     lon = float(lon_str.strip())
+                    if not (
+                        math.isfinite(lat)
+                        and math.isfinite(lon)
+                        and -90 <= lat <= 90
+                        and -180 <= lon <= 180
+                    ):
+                        raise ValueError("coordinates out of range")
                     community["lat"] = lat
                     community["lon"] = lon
 
@@ -2053,6 +2144,100 @@ def build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter):
         )
 
     return display_ubuntu_weekly_newsletter
+
+
+# Topic filters on /community/developer-diaries: an article matches a topic
+# when it has any of the topic's Discourse tags
+DEVELOPER_DIARIES_TOPICS = [
+    {"name": "Snaps", "slug": "snaps", "tags": ["snap", "snapcraft"]},
+    {
+        "name": "Containers",
+        "slug": "containers",
+        "tags": ["rock", "rockcraft", "container", "chisel"],
+    },
+    {"name": "AI", "slug": "ai", "tags": ["ai"]},
+    {
+        "name": "Devpacks and toolchains",
+        "slug": "devpacks-and-toolchains",
+        "tags": ["foundations"],
+    },
+    {
+        "name": "Local development",
+        "slug": "local-development",
+        "tags": ["multipass", "lxd", "workshop"],
+    },
+]
+
+
+# Tag names capitalize() gets wrong
+DEVELOPER_DIARIES_TAG_NAMES = {"ai": "AI", "lxd": "LXD"}
+
+
+def _developer_diaries_tag_names(tags):
+    return [
+        DEVELOPER_DIARIES_TAG_NAMES.get(tag, tag.capitalize()) for tag in tags
+    ]
+
+
+def build_developer_diaries_index(developer_diaries):
+    def developer_diaries_index():
+        page = max(flask.request.args.get("page", default=1, type=int), 1)
+        selected_topics = flask.request.args.getlist("topic")
+        tags = [
+            tag
+            for topic in DEVELOPER_DIARIES_TOPICS
+            if topic["slug"] in selected_topics
+            for tag in topic["tags"]
+        ]
+        limit = 12
+
+        articles, total = developer_diaries.get_index(
+            limit=limit, offset=(page - 1) * limit, tags=tags
+        )
+
+        # vf_card joins the author into raw HTML, so it needs a plain
+        # str with the user-chosen name already escaped: unescaped
+        # would allow injection, a Markup would escape the card itself
+        for article in articles:
+            article["tag_names"] = _developer_diaries_tag_names(
+                article["tags"]
+            )
+            if article["author"]:
+                article["author_html"] = str(
+                    Markup(
+                        '<a class="p-content-card__author-link" '
+                        'href="{}">{}</a>'
+                    ).format(
+                        article["author"]["url"], article["author"]["name"]
+                    )
+                )
+
+        return flask.render_template(
+            "community/developer-diaries/index.html",
+            articles=articles,
+            topics=DEVELOPER_DIARIES_TOPICS,
+            selected_topics=selected_topics,
+            current_page=page,
+            total_pages=math.ceil(total / limit),
+        )
+
+    return developer_diaries_index
+
+
+def build_developer_diaries_article(developer_diaries):
+    def developer_diaries_article(slug):
+        article = developer_diaries.get_article(slug)
+
+        if not article:
+            flask.abort(404)
+
+        article["tag_names"] = _developer_diaries_tag_names(article["tags"])
+
+        return flask.render_template(
+            "community/developer-diaries/article.html", article=article
+        )
+
+    return developer_diaries_article
 
 
 # TODO: remove this after CI check is added to target repo
@@ -2288,7 +2473,49 @@ def build_release_cycle_view():
                 "compatible-ubuntu-lts", []
             ),
             "has_compatible_components": has_compatible_components,
+            "compliance": version_dict.get("compliance", []),
         }
+
+    def build_compliance_options(raw_products):
+        """Build filter options from the available compliance frameworks."""
+        frameworks = set()
+        for product in raw_products.values():
+            for deployment in product.get("deployment", []):
+                for version in deployment.get("versions", []):
+                    for entry in version.get("compliance", []):
+                        framework = entry.get("framework")
+                        if framework:
+                            frameworks.add(framework)
+        return [{"value": "None", "label": "None"}] + [
+            {"value": framework, "label": framework}
+            for framework in sorted(frameworks)
+        ]
+
+    def version_has_no_compliance(version):
+        """Return whether the version has no achieved compliance entries."""
+        entries = version.get("compliance", [])
+        return not any(entry.get("status") != "None" for entry in entries)
+
+    def filter_versions_by_compliance(versions, selected_frameworks):
+        """Filter versions by selected compliance frameworks."""
+        if not selected_frameworks:
+            return versions
+
+        selected = set(selected_frameworks)
+        wants_none = "None" in selected
+        real_frameworks = selected - {"None"}
+
+        filtered = []
+        for version in versions:
+            version_frameworks = {
+                entry.get("framework")
+                for entry in version.get("compliance", [])
+            }
+            if real_frameworks and (version_frameworks & real_frameworks):
+                filtered.append(version)
+            elif wants_none and version_has_no_compliance(version):
+                filtered.append(version)
+        return filtered
 
     def display_github_data():
         product = flask.request.args.get("product", type=str, default="ubuntu")
@@ -2296,6 +2523,7 @@ def build_release_cycle_view():
             "release", type=str, default="ubuntu"
         )
         version = flask.request.args.get("version", type=str, default="all")
+        selected_compliance = flask.request.args.getlist("compliance")
 
         raw_files = get_combined_products(
             ["products-data/25.10/products.json"]
@@ -2303,6 +2531,7 @@ def build_release_cycle_view():
         raw_products = raw_files.get("products", {})
 
         products_data = build_ui_products(raw_products)
+        compliance_options = build_compliance_options(raw_products)
 
         versions = []
         selected_version = None
@@ -2311,7 +2540,9 @@ def build_release_cycle_view():
         if product and release_name:
             deployment = get_deployment(products_data, product, release_name)
             if deployment:
-                versions = deployment.get("versions", [])
+                versions = filter_versions_by_compliance(
+                    deployment.get("versions", []), selected_compliance
+                )
 
             if version and version != "all":
                 # Look up the selected version among visible ones
@@ -2327,6 +2558,8 @@ def build_release_cycle_view():
                 if selected_version is None:
                     version = "all"
 
+        show_release_notice = bool(product) and not deployment
+
         return flask.render_template(
             "about/release-cycle.html",
             products_data=products_data,
@@ -2336,6 +2569,9 @@ def build_release_cycle_view():
             versions=versions,
             selected_version=selected_version,
             deployment=deployment,
+            show_release_notice=show_release_notice,
+            compliance_options=compliance_options,
+            selected_compliance=selected_compliance,
             now=datetime.utcnow(),
         )
 

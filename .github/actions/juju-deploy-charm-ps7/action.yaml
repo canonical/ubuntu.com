@@ -1,0 +1,84 @@
+name: Deploy to PS7
+description: Deploy the ubuntu-com charm to a ProdStack 7 Juju model using JAAS OAuth credentials.
+
+inputs:
+  image-url:
+    description: "Full GHCR image URL to deploy as the flask-app-image resource"
+    required: true
+  app-name:
+    description: "Juju application name"
+    required: true
+  controller-name:
+    description: "Juju controller name"
+    required: true
+  controller-address:
+    description: "Juju controller address for juju login"
+    required: true
+  model-name:
+    description: "Juju model short name"
+    required: true
+  juju-version:
+    description: "Juju snap channel"
+    required: false
+    default: "3/stable"
+  juju-client-id:
+    description: "JAAS OAuth client id"
+    required: true
+  juju-client-secret:
+    description: "JAAS OAuth client secret"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Install Juju
+      shell: bash
+      env:
+        JUJU_VERSION: ${{ inputs.juju-version }}
+      run: sudo snap install juju --channel="$JUJU_VERSION"
+
+    - name: Download charm artifact
+      uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+      with:
+        name: charm
+
+    - name: Authenticate with JAAS
+      shell: bash
+      env:
+        JUJU_CLIENT_ID: ${{ inputs.juju-client-id }}
+        JUJU_CLIENT_SECRET: ${{ inputs.juju-client-secret }}
+        JUJU_CONTROLLER_ADDRESS: ${{ inputs.controller-address }}
+        JUJU_CONTROLLER_NAME: ${{ inputs.controller-name }}
+      run: |
+        set -e
+        juju login "$JUJU_CONTROLLER_ADDRESS" -c "$JUJU_CONTROLLER_NAME" --debug
+
+    - name: Switch to model
+      shell: bash
+      env:
+        JUJU_CLIENT_ID: ${{ inputs.juju-client-id }}
+        JUJU_CLIENT_SECRET: ${{ inputs.juju-client-secret }}
+        JUJU_CONTROLLER_NAME: ${{ inputs.controller-name }}
+        JUJU_MODEL_NAME: ${{ inputs.model-name }}
+      run: |
+        set -e
+        FULL_MODEL=$(juju models -c "$JUJU_CONTROLLER_NAME" --format json | \
+          jq -r --arg model "$JUJU_MODEL_NAME" '.models[] | select(.["short-name"] == $model) | .name')
+        juju switch "$JUJU_CONTROLLER_NAME:${FULL_MODEL}"
+
+    - name: Deploy charm
+      shell: bash
+      env:
+        JUJU_CLIENT_ID: ${{ inputs.juju-client-id }}
+        JUJU_CLIENT_SECRET: ${{ inputs.juju-client-secret }}
+        APP_NAME: ${{ inputs.app-name }}
+        IMAGE_URL: ${{ inputs.image-url }}
+      run: |
+        set -e
+        CHARM_FILE=$(ls ./*.charm | head -1)
+        if juju show-application "$APP_NAME" &>/dev/null; then
+          juju refresh "$APP_NAME" --path="./$CHARM_FILE" --resource flask-app-image="$IMAGE_URL"
+        else
+          juju deploy "./$CHARM_FILE" "$APP_NAME" --resource flask-app-image="$IMAGE_URL"
+        fi
+        juju wait-for application "$APP_NAME" --query="name=='$APP_NAME' && (status=='active' || status=='idle')"

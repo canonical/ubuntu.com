@@ -10,6 +10,8 @@ env:
   MARKETO_API_URL: "https://066-EOV-335.mktorest.com"
   MARKETO_API_CLIENT: ${{ secrets.MARKETO_API_CLIENT }}
   MARKETO_API_SECRET: ${{ secrets.MARKETO_API_SECRET }}
+  DISCOURSE_API_KEY: test_key
+  DISCOURSE_API_USERNAME: test_user
 
 jobs:
   build-coverage:
@@ -25,7 +27,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Test JS
-        run: yarn test-js --coverage
+        run: yarn test-js --coverage --coverageReporters=cobertura
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -69,14 +71,21 @@ jobs:
       - name: Install Python requirements
         run: |
           sudo apt update
-          sudo apt-get install --yes python3-setuptools
+          sudo apt-get install --yes \
+            build-essential \
+            python3-dev \
+            python3-setuptools \
+            python3-venv
 
-          pip install \
-          -r requirements.txt \
-          coverage \
-          pylint \
-          flake8 \
-          --break-system-packages
+          python3 -m venv .venv
+          .venv/bin/python -m pip install --upgrade pip
+          .venv/bin/python -m pip install \
+            -r requirements.txt \
+            coverage \
+            pylint \
+            flake8
+
+          echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
 
       - name: Install node dependencies
         run: yarn install --immutable
@@ -87,10 +96,8 @@ jobs:
           name: ubuntu-com-coverage
           path: coverage
 
-      - name: Move coverage report to expected location
-        run: |
-          mkdir -p .coverage &&
-          mv coverage/coverage.xml .coverage/coverage.xml
+      - name: Point JS coverage paths at this workspace
+        run: sed -i "s#<source>[^<]*</source>#<source>${GITHUB_WORKSPACE}</source>#" coverage/cobertura-coverage.xml
 
       - name: Run TICS analysis with github-action
         uses: tiobe/tics-github-action@v3

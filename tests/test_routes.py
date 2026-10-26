@@ -193,6 +193,20 @@ class TestRoutes(VCRTestCase):
         soup = BeautifulSoup(response.data, "html.parser")
         self.assertIsNotNone(soup.find("meta", {"name": "description"}))
 
+    @patch("webapp.app.BlogViews")
+    def test_security_ncsc_code_of_practice(self, mock_blog_views):
+        """
+        When given the NCSC Code of Practice URL,
+        we should return a 200 status code
+        """
+        mock_blog_views.return_value.get_index.return_value = {"articles": []}
+        response = self.client.get("/security/ncsc-code-of-practice")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(
+            b"Alignment with the UK NCSC",
+            response.data,
+        )
+
     def test_18_04_bubble(self):
         """
         When given the 18-04 page,

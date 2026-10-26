@@ -20,14 +20,14 @@ logger = logging.getLogger(__name__)
 api_session = CachedSession(fallback_cache_duration=3600)
 
 # Read secondary-navigation.yaml
-with open("secondary-navigation.yaml") as secondary_navigation_file:
-    nav_sections = yaml.load(
-        secondary_navigation_file.read(), Loader=yaml.FullLoader
-    )
+with open(
+    "secondary-navigation.yaml", encoding="utf-8"
+) as secondary_navigation_file:
+    nav_sections = yaml.safe_load(secondary_navigation_file.read())
 
 # Read navigation.yaml
-with open("navigation.yaml") as navigation_file:
-    navigation = yaml.load(navigation_file.read(), Loader=yaml.FullLoader)
+with open("navigation.yaml", encoding="utf-8") as navigation_file:
+    navigation = yaml.safe_load(navigation_file.read())
 
 
 # Process data from YAML files
@@ -42,8 +42,8 @@ def releases():
     Exposes them as "releases_yaml".
     """
 
-    with open("releases.yaml") as releases:
-        return yaml.load(releases, Loader=yaml.FullLoader)
+    with open("releases.yaml", encoding="utf-8") as releases:
+        return yaml.safe_load(releases)
 
 
 def products():
@@ -54,8 +54,8 @@ def products():
     Exposes them as "products_yaml".
     """
 
-    with open("products.yaml") as products_file:
-        return yaml.load(products_file, Loader=yaml.FullLoader)
+    with open("products.yaml", encoding="utf-8") as products_file:
+        return yaml.safe_load(products_file)
 
 
 def get_navigation(section):
@@ -109,6 +109,31 @@ def get_secondary_navigation(path):
 
                 # Include all siblings
                 breadcrumbs["children"] = nav_section.get("children", [])
+
+            # Mark the parent nav item active when the current path matches
+            # a dropdown sub-item.
+            for grandchild in child.get("children", []):
+                grandchild_path, _, query_string = grandchild[
+                    "path"
+                ].partition("?")
+                if (
+                    (
+                        grandchild_path == path
+                        and path.startswith(nav_section["path"])
+                    )
+                    or path.startswith(grandchild_path)
+                ) and all(
+                    flask.request.args.getlist(key) == values
+                    for key, values in parse_qs(query_string).items()
+                ):
+                    if len(grandchild["path"]) > longest_match_path:
+                        longest_match_path = len(grandchild["path"])
+                        child_to_set_active = child
+                    grandchild["active"] = True
+
+                    nav_section["active"] = True
+                    breadcrumbs["section"] = nav_section
+                    breadcrumbs["children"] = nav_section.get("children", [])
 
         # set the child most closely matching the current path as active
         if child_to_set_active:

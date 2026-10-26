@@ -18,8 +18,8 @@
     <div class="row">
       <div class="col-9 col-medium-4 col-start-medium-3 col-start-large-4">
         <h1 class="p-muted-heading">
-          <a href="/certified/{{ category_pathname }}">{{ category_pathname }}</a> &rsaquo; <a href="/certified/platforms/{{ platform_id }}">{{ platform_name }}</a>
-          {% if platform_name != name %}&rsaquo; {{ name }}{% endif %}
+          <a href="/certified/search?category={{ category_url | urlencode }}">{{ category_pathname }}</a> &rsaquo; <a href="/certified/platforms/{{ platform_id }}">{{ platform_name }}</a>
+          &rsaquo; {{ name }}
         </h1>
       </div>
     </div>
@@ -65,17 +65,17 @@
         </div>
       </div>
     {% else %}
-      <hr class="p-rule"/>
+      <hr class="p-rule" />
     {% endif %}
 
     <div class="row--25-75">
       <div class="col u-hide--small">
         {{ image(url="https://assets.ubuntu.com/v1/d9c2c5bf-ubuntu_certified.png",
-                  alt="Ubuntu Hardware Certification",
-                  width="112",
-                  height="157",
-                  hi_def=True,
-                  loading="auto") | safe
+                alt="Ubuntu Hardware Certification",
+                width="112",
+                height="157",
+                hi_def=True,
+                loading="auto") | safe
         }}
       </div>
       <div class="col">
@@ -93,7 +93,7 @@
               {% if vendor == "NXP" %}
                 <a href="/certified/202309-32027/contact-us" class="p-button">Get in touch</a>
               {% endif %}
-              {% elif release.level == "Certified" %}
+            {% elif release.level == "Certified" %}
               <p>
                 The {{ vendor }} {{ name }} with the components described below has been awarded the status of certified for Ubuntu.
               </p>
@@ -108,8 +108,43 @@
             {% for note in release.notes %}{{ note.comment | convert_markdown_to_html | safe }}{% endfor %}
 
             <div class="p-section--shallow">
+              {% if release.last_tested %}
+                <hr class="p-rule--muted" />
+                <h3 class="p-muted-heading">Latest automated validation</h3>
+                <p>This certified configuration continues to be tested for regressions after certification. These results do not extend certification to another Ubuntu release.</p>
+                <table aria-label="Last tested" style="margin-top:1.4rem">
+                  <tbody>
+                    {% if release.last_tested.date %}
+                      <tr>
+                        <th colspan="3" class="u-text--muted">Last tested</th>
+                        <td colspan="6">{{ format_date(release.last_tested.date) }}</td>
+                      </tr>
+                    {% endif %}
+                    {% if release.last_tested.kernel %}
+                      <tr>
+                        <th colspan="3" class="u-text--muted">Kernel</th>
+                        <td colspan="6">{{ release.last_tested.kernel }}</td>
+                      </tr>
+                    {% endif %}
+                    {% if release.last_tested.bios %}
+                      <tr>
+                        <th colspan="3" class="u-text--muted">BIOS</th>
+                        <td colspan="6">{{ release.last_tested.bios }}</td>
+                      </tr>
+                    {% endif %}
+                  </tbody>
+                </table>
+              {% endif %}
+              <h3 class="p-muted-heading">Certification baseline</h3>
+              <p>Software and firmware used when this certification was completed.</p>
               <table aria-label="Software" style="margin-top:1.4rem">
                 <tbody>
+                  {% if release.certificate_date %}
+                    <tr>
+                      <th colspan="3" class="u-text--muted">Certified</th>
+                      <td colspan="6">{{ release.certificate_date }}</td>
+                    </tr>
+                  {% endif %}
                   {% if release.kernel %}
                     <tr>
                       <th colspan="3" class="u-text--muted">Kernel</th>

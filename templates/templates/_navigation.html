@@ -36,6 +36,7 @@
       <nav class="p-navigation__nav js-show-nav" aria-label="Categories">
         <ul class="p-navigation__items" role="menu">
           <li class="p-navigation__item--dropdown-toggle"
+              role="none"
               id="products"
               data-js-dropdown-url="/templates/navigation/products">
             <a class="p-navigation__link"
@@ -45,6 +46,7 @@
                tabindex="0">Products</a>
           </li>
           <li class="p-navigation__item--dropdown-toggle"
+              role="none"
               id="use-case"
               data-js-dropdown-url="/templates/navigation/use-case">
             <a class="p-navigation__link"
@@ -54,6 +56,7 @@
                tabindex="0">Use cases</a>
           </li>
           <li class="p-navigation__item--dropdown-toggle"
+              role="none"
               id="support"
               data-js-dropdown-url="/templates/navigation/support">
             <a class="p-navigation__link"
@@ -63,6 +66,7 @@
                tabindex="0">Support</a>
           </li>
           <li class="p-navigation__item--dropdown-toggle"
+              role="none"
               id="community"
               data-js-dropdown-url="/templates/navigation/community">
             <a class="p-navigation__link"
@@ -72,6 +76,7 @@
                tabindex="0">Community</a>
           </li>
           <li class="p-navigation__item--dropdown-toggle"
+              role="none"
               id="download-ubuntu"
               data-js-dropdown-url="/templates/navigation/download-ubuntu">
             <a class="p-navigation__link"
@@ -81,6 +86,7 @@
                tabindex="0">Get Ubuntu</a>
           </li>
           <li class="p-navigation__item--dropdown-toggle"
+              role="none"
               id="careers"
               data-js-dropdown-url="/templates/navigation/careers">
             <a class="p-navigation__link"
@@ -93,9 +99,11 @@
               role="menuitem"
               id="all-canonical"></li>
           <li class="p-navigation__item--dropdown-toggle js-account"
+              role="none"
               id="canonical-login"></li>
-          <li class="p-navigation__item">
+          <li class="p-navigation__item" role="none">
             <a href="/search"
+               role="menuitem"
                aria-label="Search"
                class="js-search-button p-navigation__link--search-toggle"></a>
           </li>
@@ -191,6 +199,23 @@
                           {% endfor %}
                         </span>
                       </span>
+                    </li>
+                  {# Nav item with sub-children renders as an inline Vanilla dropdown. #}
+                  {% elif child.children %}
+                    <li class="p-navigation__item--dropdown-toggle {% if child.active %}is-selected{% endif %}" id="secondary-nav-dropdown-{{ loop.index }}">
+                      <a href="#secondary-nav-dropdown-{{ loop.index }}-menu"
+                         aria-controls="secondary-nav-dropdown-{{ loop.index }}-menu"
+                         aria-expanded="false"
+                         aria-haspopup="true"
+                         class="p-navigation__link">{{ child.title }}</a>
+                      <ul class="p-navigation__dropdown" id="secondary-nav-dropdown-{{ loop.index }}-menu" aria-hidden="true">
+                        {% for item in child.children %}
+                          <li>
+                            <a href="{{ item.path }}" class="p-navigation__dropdown-item"
+                               {% if item.active %}aria-current="page"{% endif %}>{{ item.title }}</a>
+                          </li>
+                        {% endfor %}
+                      </ul>
                     </li>
                   {% elif child.path != '/blog/archives' %}
                     {% set has_access = not child.login_required or child.login_required and user_info %}

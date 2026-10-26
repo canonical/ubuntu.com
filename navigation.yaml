@@ -140,6 +140,9 @@ products:
             - title: Ubuntu Server
               description: Scalable Linux for the cloud
               url: /server
+            - title: Ubuntu on VMware
+              description: For VCF workloads
+              url: /vmware
             - title: Landscape
               description: Monitor and manage machines
               url: /landscape
@@ -266,6 +269,9 @@ products:
             - title: CMMC
               description: Certification and hardening
               url: /security/cmmc
+            - title: Firefighting support
+              description: Enhanced support coverage
+              url: /support/firefighting
 
       secondary_links:
         - title: Quick links
@@ -372,19 +378,19 @@ products:
               url: /certified
             - title: PC and laptops
               description: Certified for Ubuntu
-              url: /certified?q=&limit=20&category=Laptop&category=Desktop
+              url: /certified/search?category=Laptop&category=Desktop
             - title: Servers
               description: Hardware for data centers
-              url: /certified/servers
+              url: /certified/search?category=Server
             - title: IoT devices
               description: Stable and security-maintained devices
-              url: /certified/devices
+              url: /certified/search?category=IoT
             - title: SoCs
               description: System on a Chip hardware
-              url: /certified/socs
+              url: /certified/search?category=SoC
             - title: Raspberry Pi
               description: Certified Pi devices
-              url: /certified?q=&limit=20&vendor=Raspberry+Pi+Foundation
+              url: /certified/search?vendor=Raspberry+Pi+Foundation
 
       secondary_links:
         - title: Quick links
@@ -417,7 +423,7 @@ products:
               url: https://canonical.com/solutions/open-source-security/cyber-resilience-act
             - title: Certified devices
               description: Hardware/OS compatibility
-              url: /certified/devices
+              url: /certified/search?category=IoT
             - title: Ubuntu Frame
               description: Embedded graphical displays
               url: /frame
@@ -430,6 +436,9 @@ products:
             - title: Real-time Ubuntu
               description: Low-latency kernel
               url: /real-time
+            - title: Zephyr LTS
+              description: Support for microcontroller fleets
+              url: /zephyr
             - title: IoT Professional Services
               description: Bring IoT devices to market
               url: /core/services
@@ -874,7 +883,7 @@ download_ubuntu:
               url: https://maas.io/
             - title: Certified hardware
               description: Ubuntu hardware you can trust
-              url: /certified/servers
+              url: /certified/search?category=Server
             - title: Public clouds
               description: AWS, Azure and Google Cloud
               url: /cloud/public-cloud
@@ -907,7 +916,7 @@ download_ubuntu:
               url: /download/raspberry-pi-core
             - title: Ubuntu-ready Pi devices
               description: Certified hardware
-              url: /certified?q=&limit=20&vendor=Raspberry+Pi+Foundation
+              url: /certified/search?vendor=Raspberry+Pi+Foundation
       secondary_links:
         - title: Quick links
           links:
@@ -937,7 +946,7 @@ download_ubuntu:
               url: /core/services
             - title: Ubuntu-ready devices
               description: Certified hardware
-              url: /certified?q=&limit=20&category=Device&category=SoC
+              url: /certified/search?category=IoT&category=SoC
             - title: Embedded Linux
               description: Developers, apps, and hardware
               url: /embedded

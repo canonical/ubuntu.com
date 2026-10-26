@@ -7,7 +7,7 @@ import os
 
 import flask
 import requests
-from jinja2 import ChoiceLoader, FileSystemLoader
+from jinja2 import ChoiceLoader, FileSystemLoader, PrefixLoader
 import yaml
 import sentry_sdk
 from werkzeug.exceptions import HTTPException
@@ -21,6 +21,7 @@ import random
 from sentry_sdk.integrations.flask import FlaskIntegration
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
+    Articles,
     DiscourseAPI,
     ResponseCache,
     DocParser,
@@ -130,6 +131,8 @@ from webapp.views import (
     process_community_events,
     community_landing_page,
     build_ubuntu_weekly_newsletter,
+    build_developer_diaries_index,
+    build_developer_diaries_article,
     build_engage_index,
     build_engage_page,
     build_engage_pages_sitemap,
@@ -174,8 +177,8 @@ WORDPRESS_APPLICATION_PASSWORD = get_flask_env(
 
 # Sitemaps that are already generated and don't need to be updated.
 # Can be seen on sitemap_index.xml
-with open("dynamic-sitemaps.yaml") as sitemaps_file:
-    DYNAMIC_SITEMAPS = yaml.load(sitemaps_file.read(), Loader=yaml.FullLoader)
+with open("dynamic-sitemaps.yaml", encoding="utf-8") as sitemaps_file:
+    DYNAMIC_SITEMAPS = yaml.safe_load(sitemaps_file.read())
 
 # LLM-friendly site index (https://llmstxt.org/): the hand-written
 # templates/llms.txt. Built once at startup, like the config above, rather
@@ -223,7 +226,7 @@ def llms_full_txt():
     if not os.path.exists(file_path):
         return {"error": "llms-full.txt not available"}, 503
 
-    with open(file_path) as f:
+    with open(file_path, encoding="utf-8") as f:
         content = f.read()
 
     response = flask.make_response(content)
@@ -239,7 +242,15 @@ directory_parser_templates = (
 loader = ChoiceLoader(
     [
         FileSystemLoader("templates"),
-        FileSystemLoader("node_modules/vanilla-framework/templates/"),
+        # Only Vanilla's macros, as its npm package ships: installed from
+        # git, Vanilla also has its docs templates, which mustn't be served
+        PrefixLoader(
+            {
+                "_macros": FileSystemLoader(
+                    "node_modules/vanilla-framework/templates/_macros"
+                )
+            }
+        ),
         FileSystemLoader("static/js/modules/vanilla-framework/"),
         FileSystemLoader(str(directory_parser_templates)),
     ]
@@ -597,8 +608,8 @@ app.add_url_rule("/wsl/install", view_func=wsl_install_redirect)
 
 app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
 
-with open("navigation.yaml") as navigation_file:
-    navigation = yaml.load(navigation_file.read(), Loader=yaml.FullLoader)
+with open("navigation.yaml", encoding="utf-8") as navigation_file:
+    navigation = yaml.safe_load(navigation_file.read())
 
 app.add_url_rule(
     "/search",
@@ -615,7 +626,7 @@ app.add_url_rule(
 app.add_url_rule(
     (
         "/appliance/<regex('[a-z-]+'):appliance>/"
-        "<regex('(raspberry-pi2?|intel-nuc|vm)'):device>"
+        "<regex('(raspberry-pi2?|intel-nuc)'):device>"
     ),
     view_func=appliance_install,
 )
@@ -812,6 +823,16 @@ app.add_url_rule(
 )
 
 
+TAKEOVER_REQUIRED_FIELDS = ["title", "subtitle", "primary_url", "primary_cta"]
+
+
+def is_complete_takeover(takeover):
+    return all(
+        str(takeover.get(field) or "").strip()
+        for field in TAKEOVER_REQUIRED_FIELDS
+    )
+
+
 def takeovers_json():
     active_takeovers = discourse_takeovers.parse_active_takeovers()
     # Defence-in-depth: the upstream data-explorer query matches the
@@ -822,6 +843,7 @@ def takeovers_json():
         takeover
         for takeover in active_takeovers
         if str(takeover.get("active", "")).strip().lower() == "true"
+        and is_complete_takeover(takeover)
     ]
     response = flask.jsonify(active_takeovers)
     response.cache_control.max_age = 300
@@ -843,7 +865,7 @@ def takeovers_index():
 
     return flask.render_template(
         "takeovers/index.html",
-        takeovers=all_takeovers,
+        takeovers=[t for t in all_takeovers if is_complete_takeover(t)],
         active_count=active_count,
         total_count=total_current,
         total_pages=total_pages,
@@ -943,6 +965,31 @@ app.add_url_rule(
     "/community/uwn/<path:path>",
     view_func=build_ubuntu_weekly_newsletter(ubuntu_weekly_newsletter),
     endpoint="uwn_page",
+)
+
+# Developer diaries: articles from the Discourse topics tagged
+# "developer-diaries". Anonymous reads, so only public topics are
+# published and the admin API bucket is left alone. Own session, as
+# the shared one carries the admin API key headers.
+developer_diaries = Articles(
+    api=DiscourseAPI(
+        base_url="https://discourse.ubuntu.com/",
+        session=requests.Session(),
+        cache=ResponseCache(ttl=300),
+    ),
+    tag="developer-diaries",
+    url_prefix="/community/developer-diaries",
+    hidden_tags=["blog", "featured"],
+)
+
+app.add_url_rule(
+    "/community/developer-diaries",
+    view_func=build_developer_diaries_index(developer_diaries),
+)
+
+app.add_url_rule(
+    "/community/developer-diaries/<slug>",
+    view_func=build_developer_diaries_article(developer_diaries),
 )
 
 
@@ -1333,6 +1380,37 @@ def render_cmmc_blogs():
 
 
 app.add_url_rule("/security/cmmc", view_func=render_cmmc_blogs)
+
+
+# NCSC Code of Practice resources blogs tab
+def render_ncsc_code_of_practice_blogs():
+    blogs = BlogViews(
+        api=BlogAPI(
+            session=session, thumbnail_width=640, thumbnail_height=340
+        ),
+        tag_ids=[
+            4632,
+            4554,
+            4869,
+            4580,
+            4579,
+        ],
+        excluded_tags=[3184, 3265],
+        per_page=4,
+        blog_title="NCSC Code of Practice blogs",
+    )
+    sorted_articles = sorted(
+        blogs.get_index()["articles"], key=lambda x: x["date"]
+    )
+    return flask.render_template(
+        "/security/ncsc-code-of-practice.html", blogs=sorted_articles
+    )
+
+
+app.add_url_rule(
+    "/security/ncsc-code-of-practice",
+    view_func=render_ncsc_code_of_practice_blogs,
+)
 
 
 # Supermicro blog section

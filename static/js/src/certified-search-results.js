@@ -1,463 +1,447 @@
-// New filters
-const filters2Elm = document.querySelector("#tab2-section");
-const filters3Elm = document.querySelector("#tab3-section");
-const filters1Elm = document.querySelector("#tab1-section");
-const showAllVendors = document.querySelector(".js-show-all-vendors");
-const showAllReleases = document.querySelector(".js-show-all-releases");
-const showLessVendors = document.querySelector(".js-show-less-vendors");
-const showLessReleases = document.querySelector(".js-show-less-releases");
-const tabBtn2 = document.querySelector("#tab2");
-const tabBtn3 = document.querySelector("#tab3");
+import { initAutocomplete } from "./autocomplete.js";
 
-const showExpandedVendorFilterOptions = document.querySelector(
-  ".js-show-expanded-vendor-filter-options",
-);
-const showExpandedReleaseFilterOptions = document.querySelector(
-  ".js-show-expanded-release-filter-options",
-);
+export const DEFAULT_FILTER_LIMIT = 5;
 
-// Hide more/less links when tabs are collapsed
-tabBtn2.addEventListener("click", (e) => {
-  if (tabBtn2.ariaExpanded === "true") {
-    showExpandedVendorFilterOptions.classList.add("u-hide");
-  } else {
-    showExpandedVendorFilterOptions.classList.remove("u-hide");
-  }
-});
+const DERIVED_FILTER_REFRESH_INTERVAL = 10000;
+const DERIVED_FILTER_REFRESH_ATTEMPTS = 90;
+let filterNavigateTimer = null;
 
-tabBtn3.addEventListener("click", (e) => {
-  if (tabBtn3.ariaExpanded === "true") {
-    showExpandedReleaseFilterOptions.classList.add("u-hide");
-  } else {
-    showExpandedReleaseFilterOptions.classList.remove("u-hide");
-  }
-});
-
-// Set global filter limit for vendors and releases
-let filterLimit = 5;
-
-function loadFilters() {
-  const { category, vendor, release } = retrieveSelectedFilters();
-  renderFilters(category, vendor, release);
+function scheduleFilterNavigation() {
+  clearTimeout(filterNavigateTimer);
+  filterNavigateTimer = setTimeout(() => {
+    window.location.assign(window.location.href);
+  }, 300);
 }
 
-/**
- *
- * @returns {object} current state of filters in a flat object
- *
- * This function is used as state management
- * It provides the current state of all filters (category, vendor and release)
- */
-function retrieveSelectedFilters() {
-  const url = new URL(window.location.href);
-  const urlParams = new URLSearchParams(url.search);
-  const path = window.location.pathname;
-  const pathCategory = path.replace("/certified/", "");
+export function setFilterValue(url, key, value, isSelected) {
+  const selectedValues = url.searchParams
+    .getAll(key)
+    .filter((selectedValue) => selectedValue !== value);
 
-  let selectedCategories = [];
-  let selectedVendors = urlParams.getAll("vendor");
-  let selectedReleases = urlParams.getAll("release");
-
-  if (pathCategory !== "/certified") {
-    selectedCategories = urlParams.getAll("category");
-    selectedCategories.push(pathCategory);
-  } else {
-    selectedCategories = urlParams.getAll("category");
+  if (isSelected) {
+    selectedValues.push(value);
   }
-  return {
-    category: selectedCategories,
-    vendor: selectedVendors,
-    release: selectedReleases,
-  };
+
+  url.searchParams.delete(key);
+  selectedValues.forEach((selectedValue) => {
+    url.searchParams.append(key, selectedValue);
+  });
+  url.searchParams.delete("offset");
+  return url;
 }
 
-function toggleFilterExpandLinks(data, total, elementMore, elementLess) {
-  if (data.length < total) {
-    // Not surpassing length so hide all
-    elementMore.classList.remove("u-hide");
-    elementLess.classList.add("u-hide");
+function setSingleFilterValue(url, key, value) {
+  if (value) {
+    url.searchParams.set(key, value);
+  } else {
+    url.searchParams.delete(key);
+  }
+  url.searchParams.delete("offset");
+  return url;
+}
+
+export function clearFilterValues(url, filterKeys) {
+  filterKeys.forEach((key) => url.searchParams.delete(key));
+  url.searchParams.delete("offset");
+  return url;
+}
+
+function navigateTo(url) {
+  const relativeUrl = `${url.pathname}${url.search}${url.hash}`;
+  window.history.pushState({ path: relativeUrl }, "", relativeUrl);
+  scheduleFilterNavigation();
+}
+
+function filterLimit(filterRoot) {
+  return Number(filterRoot.dataset.filterLimit) || DEFAULT_FILTER_LIMIT;
+}
+
+function optionElements(group) {
+  return [...group.querySelectorAll(".js-filter-option")];
+}
+
+export function updateOptionVisibility(group, limit = DEFAULT_FILTER_LIMIT) {
+  const options = optionElements(group);
+  const searchInput = group.querySelector(".js-filter-search");
+  const resetButton = group.querySelector(".js-filter-search-reset");
+  const toggleButton = group.querySelector(".js-toggle-filter-options");
+  const noResults = group.querySelector(".js-filter-no-results");
+  const query = searchInput?.value.trim().toLocaleLowerCase() || "";
+  const isExpanded = toggleButton?.dataset.expanded === "true";
+  let matchingIndex = 0;
+  let visibleCount = 0;
+
+  options.forEach((option) => {
+    const matches = option.dataset.filterLabel.includes(query);
+    const withinLimit = isExpanded || matchingIndex < limit;
+    const isVisible = matches && withinLimit;
+
+    option.classList.toggle("u-hide", !isVisible);
+    if (matches) {
+      matchingIndex += 1;
+    }
+    if (isVisible) {
+      visibleCount += 1;
+    }
+  });
+
+  if (resetButton) {
+    resetButton.classList.toggle("u-hide", !query);
+  }
+  if (noResults) {
+    noResults.classList.toggle("u-hide", visibleCount > 0);
+  }
+  if (toggleButton) {
+    toggleButton.classList.toggle("u-hide", matchingIndex <= limit);
+    toggleButton.textContent = isExpanded
+      ? `Show fewer ${toggleButton.dataset.plural}`
+      : `Show all ${toggleButton.dataset.plural}`;
+  }
+}
+
+function updateSelectedCount(group) {
+  const count = group.querySelectorAll('input[type="checkbox"]:checked').length;
+  const badge = group.querySelector(".js-filter-count");
+
+  badge.textContent = count;
+  badge.setAttribute("aria-label", `${count} selected`);
+  badge.classList.toggle("u-hide", count === 0);
+}
+
+function handleFilterChange(event) {
+  const input = event.target.closest('input[type="checkbox"]');
+  if (!input) {
+    if (event.target.closest(".js-memory-range")) {
+      applyMemoryRange(event.target.closest(".js-filter-group"), event.target);
+    }
     return;
-  } else {
-    elementMore.classList.add("u-hide");
-    elementLess.classList.remove("u-hide");
   }
 
-  if (data.length <= filterLimit) {
-    elementMore.classList.add("u-hide");
-    elementLess.classList.add("u-hide");
-  }
-}
-
-async function renderFilters(
-  categories,
-  vendors,
-  releases,
-  vendorLimit,
-  releaseLimit,
-  renderVendorFilters = true,
-  renderReleaseFilters = true,
-) {
-  const filters = await fetchFilters(
-    categories,
-    vendors,
-    releases,
-    vendorLimit,
-    releaseLimit,
-  );
-  if (categories && categories.length > 0) {
-    if (renderVendorFilters && filters.vendor_filters) {
-      filters2Elm.innerHTML = "";
-      filters.vendor_filters.data.forEach((item) => {
-        renderCheckboxes(item, "vendor", filters2Elm);
-      });
-      // Show and hide links not needed
-      toggleFilterExpandLinks(
-        filters.vendor_filters.data,
-        filters.vendor_filters.total,
-        showAllVendors,
-        showLessVendors,
-      );
-    }
-
-    if (renderReleaseFilters && filters.release_filters) {
-      filters3Elm.innerHTML = "";
-      filters.release_filters.data.forEach((item) => {
-        renderCheckboxes(item, "release", filters3Elm);
-      });
-      // Show and hide links not needed
-      toggleFilterExpandLinks(
-        filters.release_filters.data,
-        filters.release_filters.total,
-        showAllReleases,
-        showLessReleases,
-      );
-    }
-  } else {
-    if (renderVendorFilters && filters.vendor_filters) {
-      filters2Elm.innerHTML = "";
-      filters.vendor_filters.data.forEach((item) => {
-        renderCheckboxes(item, "vendor", filters2Elm);
-      });
-      // Show and hide links not needed
-      toggleFilterExpandLinks(
-        filters.vendor_filters.data,
-        filters.vendor_filters.total,
-        showAllVendors,
-        showLessVendors,
-      );
-    }
-
-    if (renderReleaseFilters && filters.release_filters) {
-      filters3Elm.innerHTML = "";
-      filters.release_filters.data.forEach((item) => {
-        renderCheckboxes(item, "release", filters3Elm);
-      });
-      // Show and hide links not needed
-      toggleFilterExpandLinks(
-        filters.release_filters.data,
-        filters.release_filters.total,
-        showAllReleases,
-        showLessReleases,
-      );
-    }
-  }
-}
-
-function renderCheckboxes(value, name, parentElement) {
-  const label = document.createElement("label");
-  const input = document.createElement("input");
-  const span = document.createElement("span");
-  let urlParams = new URLSearchParams(window.location.search);
-  label.className = "p-checkbox";
-  input.type = "checkbox";
-  input.name = name;
-  input.className = "p-checkbox__input";
-  input.value = value;
-  input.addEventListener("click", handleFilterClick);
-
-  if (name === "vendor") {
-    const vendorParams = urlParams.getAll("vendor");
-    if (vendorParams && vendorParams.includes(value)) {
-      input.checked = true;
-    }
-  }
-
-  if (name === "release") {
-    const releaseParams = urlParams.getAll("release");
-    if (releaseParams && releaseParams.includes(value)) {
-      input.checked = true;
-    }
-  }
-
-  span.className = "p-checkbox__label";
-  span.innerHTML = value;
-  span.id = value.replace(" ", "-");
-  label.appendChild(input);
-  label.appendChild(span);
-  parentElement.appendChild(label);
-}
-
-/**
- *
- * @param {array} category
- * @returns json
- */
-async function fetchFilters(
-  categoriesList = [],
-  selectedVendors = [],
-  selectedReleases = [],
-  vendorLimit = filterLimit,
-  releaseLimit = filterLimit,
-) {
-  let url = new URL(`${window.location.origin}/certified/filters.json`);
-  if (categoriesList.length > 0) {
-    categoriesList.forEach((cat) => {
-      url.searchParams.append("category", cat);
-    });
-  }
-  if (selectedVendors.length > 0) {
-    selectedVendors.forEach((cat) => {
-      url.searchParams.append("vendor", cat);
-    });
-  }
-
-  if (selectedReleases.length > 0) {
-    selectedReleases.forEach((cat) => {
-      url.searchParams.append("release", cat);
-    });
-  }
-
-  url.searchParams.append("vendors_limit", vendorLimit);
-  url.searchParams.append("releases_limit", releaseLimit);
-
-  return await fetch(url).then((res) => res.json());
-}
-
-async function handleCategoryClick(e) {
-  // Reset every time category is clicked
-  filters2Elm.innerHTML = "";
-  filters3Elm.innerHTML = "";
-
-  handleFilterClick(e);
+  const group = input.closest(".js-filter-group");
   const url = new URL(window.location.href);
-  const newURLParams = new URLSearchParams(url.search);
-  if (newURLParams.getAll("category").length === 0) {
-    renderFilters([]);
+
+  if (group.dataset.filterSelection === "single") {
+    if (input.checked) {
+      group
+        .querySelectorAll('input[type="checkbox"]:checked')
+        .forEach((selectedInput) => {
+          selectedInput.checked = selectedInput === input;
+        });
+    }
+    updateSelectedCount(group);
+    navigateTo(
+      setSingleFilterValue(url, input.name, input.checked ? input.value : ""),
+    );
+    return;
+  }
+
+  updateSelectedCount(group);
+  navigateTo(setFilterValue(url, input.name, input.value, input.checked));
+}
+
+function handleFilterInput(event, limit) {
+  if (event.target.matches(".js-filter-search")) {
+    updateOptionVisibility(event.target.closest(".js-filter-group"), limit);
+  } else if (event.target.matches(".js-memory-min, .js-memory-max")) {
+    updateMemoryRange(event.target.closest(".js-memory-range"), event.target);
+  } else if (event.target.matches(".js-certified-year")) {
+    event.target.value = event.target.value.replace(/\D/g, "").slice(0, 4);
+    if (!event.target.value || isValidYear(event.target.value)) {
+      setYearValidity(event.target, true);
+    }
+  }
+}
+
+function handleFilterKeydown(event) {
+  if (event.target.matches(".js-filter-search") && event.key === "Enter") {
+    event.preventDefault();
+  } else if (
+    event.target.matches(".js-certified-year") &&
+    event.key === "Enter"
+  ) {
+    event.preventDefault();
+    applyCertifiedYear(event.target);
+  }
+}
+
+function handleFilterClick(event, limit) {
+  const resetButton = event.target.closest(".js-filter-search-reset");
+  if (resetButton) {
+    const group = resetButton.closest(".js-filter-group");
+    const input = group.querySelector(".js-filter-search");
+    input.value = "";
+    input.focus();
+    updateOptionVisibility(group, limit);
+    return;
+  }
+
+  const toggleButton = event.target.closest(".js-toggle-filter-options");
+  if (toggleButton) {
+    const isExpanded = toggleButton.dataset.expanded === "true";
+    toggleButton.dataset.expanded = String(!isExpanded);
+    updateOptionVisibility(toggleButton.closest(".js-filter-group"), limit);
+  }
+}
+
+function filterKeys(filterRoot) {
+  return [
+    ...new Set(
+      [...filterRoot.querySelectorAll(".js-filter-group")].flatMap((group) =>
+        group.dataset.filterUrlKeys.split(",").filter(Boolean),
+      ),
+    ),
+  ];
+}
+
+function initClearFilters(filterRoot) {
+  const clearButton = document.querySelector(".js-clear-filters");
+  clearButton?.addEventListener("click", () => {
+    // The year field's blur may have queued a navigation; drop it.
+    clearTimeout(filterNavigateTimer);
+    window.location.assign(
+      clearFilterValues(
+        new URL(window.location.href),
+        filterKeys(filterRoot),
+      ).toString(),
+    );
+  });
+}
+
+async function derivedFiltersAreReady() {
+  const response = await fetch("/certified/filters.json", {
+    cache: "no-store",
+    headers: { Accept: "application/json" },
+  });
+  if (!response.ok) {
+    return false;
+  }
+
+  const payload = await response.json();
+  return payload.derived_filters_pending === false;
+}
+
+function initDerivedFilterRefresh(filterRoot) {
+  if (filterRoot.dataset.derivedFiltersPending !== "true") {
+    return;
+  }
+
+  let attemptsRemaining = DERIVED_FILTER_REFRESH_ATTEMPTS;
+  const checkForOptions = async () => {
+    let optionsAreReady = false;
+    try {
+      optionsAreReady = await derivedFiltersAreReady();
+    } catch {
+      optionsAreReady = false;
+    }
+
+    if (optionsAreReady) {
+      window.location.reload();
+      return;
+    }
+
+    attemptsRemaining -= 1;
+    if (attemptsRemaining > 0) {
+      window.setTimeout(checkForOptions, DERIVED_FILTER_REFRESH_INTERVAL);
+    } else {
+      const status = filterRoot.querySelector(".js-derived-filters-status");
+      if (status) {
+        status.textContent =
+          "Model family, processor, GPU and architecture options are temporarily unavailable.";
+      }
+    }
+  };
+
+  window.setTimeout(checkForOptions, DERIVED_FILTER_REFRESH_INTERVAL);
+}
+
+export function initCertifiedFilters() {
+  const filterRoot = document.querySelector(".js-certified-filters");
+  if (!filterRoot) {
+    return;
+  }
+
+  const limit = filterLimit(filterRoot);
+  filterRoot.querySelectorAll(".js-filter-group").forEach((group) => {
+    updateOptionVisibility(group, limit);
+  });
+  filterRoot.querySelectorAll(".js-memory-range").forEach((container) => {
+    updateMemoryRange(container);
+  });
+
+  filterRoot.addEventListener("change", handleFilterChange);
+  filterRoot.addEventListener("input", (event) => {
+    handleFilterInput(event, limit);
+  });
+  filterRoot.addEventListener("keydown", handleFilterKeydown);
+  filterRoot.addEventListener("click", (event) => {
+    handleFilterClick(event, limit);
+  });
+  filterRoot.addEventListener(
+    "blur",
+    (event) => {
+      if (event.target.matches(".js-certified-year")) {
+        applyCertifiedYear(event.target);
+      }
+    },
+    true,
+  );
+
+  initClearFilters(filterRoot);
+  initDerivedFilterRefresh(filterRoot);
+}
+
+function updateMemoryRange(container, changedInput) {
+  const minimum = container.querySelector(".js-memory-min");
+  const maximum = container.querySelector(".js-memory-max");
+
+  if (Number(minimum.value) > Number(maximum.value)) {
+    if (changedInput === minimum) {
+      maximum.value = minimum.value;
+    } else {
+      minimum.value = maximum.value;
+    }
+  }
+
+  container.querySelector(".js-memory-min-output").value = minimum.value;
+  container.querySelector(".js-memory-max-output").value = maximum.value;
+  updateSliderProgress(minimum);
+  updateSliderProgress(maximum);
+}
+
+function updateSliderProgress(input) {
+  const minimum = Number(input.min);
+  const maximum = Number(input.max);
+  const progress =
+    ((Number(input.value) - minimum) / (maximum - minimum)) * 100;
+
+  input.style.setProperty("--slider-progress", `${progress}%`);
+  input.setAttribute("aria-valuetext", `${input.value} GB`);
+}
+
+function applyMemoryRange(group, changedInput) {
+  const container = group.querySelector(".js-memory-range");
+  const minimum = container.querySelector(".js-memory-min");
+  const maximum = container.querySelector(".js-memory-max");
+  const url = new URL(window.location.href);
+
+  updateMemoryRange(container, changedInput);
+
+  if (minimum.value === minimum.min) {
+    url.searchParams.delete("memory_min");
   } else {
-    const checkbox = filters1Elm.querySelectorAll("input");
-    let categories = [];
-    checkbox.forEach((box) => {
-      if (box.checked) {
-        categories.push(box.dataset.filter);
-      }
-    });
-    renderFilters(categories);
-  }
-}
-
-function handleFilterClick(e) {
-  const { value, name, checked, dataset, id } = e.target;
-  let url = new URL(window.location.href);
-  let urlParams = url.searchParams;
-  const vendorParams = urlParams.getAll("vendor");
-  const releasesParams = urlParams.getAll("release");
-  const categoryParams = urlParams.getAll("category");
-  const pathCategory = window.location.pathname.replace("/certified/", "");
-
-  if (name === "category") {
-    if (categoryParams.includes(value) || pathCategory === id) {
-      urlParams.delete(name);
-      // Only category pages
-      if (pathCategory === id) {
-        const newURL = `/certified?${urlParams.toString()}`;
-        window.history.pushState({ path: newURL }, "", newURL);
-      }
-      // Append back deleted params
-      // If multiple selected
-      if (categoryParams.length > 1) {
-        categoryParams.forEach((param) => {
-          if (param !== value) {
-            urlParams.append(name, param);
-          }
-        });
-      }
-    } else {
-      urlParams.append(name, value);
-    }
+    url.searchParams.set("memory_min", minimum.value);
   }
 
-  if (name === "vendor") {
-    if (vendorParams.includes(value)) {
-      urlParams.delete(name);
-      if (vendorParams.length > 1) {
-        // Append back deleted params
-        vendorParams.forEach((param) => {
-          if (param !== value) {
-            urlParams.append(name, param);
-          }
-        });
-      }
-    } else {
-      urlParams.append(name, value);
-    }
-  }
-
-  if (name === "release") {
-    if (releasesParams.includes(value)) {
-      urlParams.delete(name);
-      if (releasesParams.length > 1) {
-        // Append back deleted params
-        releasesParams.forEach((param) => {
-          if (param !== value) {
-            urlParams.append(name, param);
-          }
-        });
-      }
-    } else {
-      urlParams.append(name, value);
-    }
-  }
-
-  const newURL = `${window.location.pathname}?${urlParams.toString()}`;
-  window.history.pushState({ path: newURL }, "", newURL);
-}
-
-function submitFilters() {
-  window.location.replace(window.location.href);
-}
-
-/**
- *
- * @param {Event} e JS event
- * @param {Element} element context, which contains the DOM element
- * the value true/false of the button element represents show/hide
- */
-function toggleExpandFilters(e, element) {
-  e.preventDefault();
-  const { name, value } = element;
-  const { category, vendor, release } = retrieveSelectedFilters();
-
-  if (name === "vendor") {
-    if (value === "true") {
-      // Show all
-      renderFilters(category, vendor, release, -1, filterLimit, true, false);
-    } else {
-      // Show default filterLimit
-      renderFilters(
-        category,
-        vendor,
-        release,
-        filterLimit,
-        filterLimit,
-        true,
-        false,
-      );
-    }
-  } else if (name === "release") {
-    if (value === "true") {
-      // Show all
-      renderFilters(category, vendor, release, filterLimit, -1, false, true);
-    } else {
-      // Show default filterLimit
-      renderFilters(
-        category,
-        vendor,
-        release,
-        filterLimit,
-        filterLimit,
-        false,
-        true,
-      );
-    }
-  }
-}
-
-function clearFilters() {
-  filters1Elm
-    .querySelectorAll("input")
-    .forEach((item) => (item.checked = false));
-  filters2Elm
-    .querySelectorAll("input")
-    .forEach((item) => (item.checked = false));
-  filters3Elm
-    .querySelectorAll("input")
-    .forEach((item) => (item.checked = false));
-
-  let objUrl = new URL(window.location);
-  const { href } = window.location;
-  if (href.includes("q=") && !href.includes("q=&")) {
-    const startOfQuery = href.indexOf("q");
-    const endOfQuery = href.indexOf("&");
-    const searchQuery = href.substring(startOfQuery, endOfQuery);
-    objUrl.search = searchQuery;
+  if (maximum.value === maximum.max) {
+    url.searchParams.delete("memory_max");
   } else {
-    objUrl.search = "";
+    url.searchParams.set("memory_max", maximum.value);
   }
-  window.history.pushState({ url: objUrl }, "", objUrl);
+
+  url.searchParams.delete("offset");
+  navigateTo(url);
 }
 
-// function to ensure only the option which has been changed is appended to the URL
+function isValidYear(value) {
+  return /^\d{4}$/.test(value);
+}
+
+function setYearValidity(input, isValid) {
+  const validation = input.closest(".p-form-validation");
+  const message = validation.querySelector(".js-certified-year-error");
+
+  validation.classList.toggle("is-error", !isValid);
+  input.setAttribute("aria-invalid", String(!isValid));
+  message.classList.toggle("u-hide", isValid);
+}
+
+function applyCertifiedYear(input) {
+  const value = input.value;
+  const url = new URL(window.location.href);
+
+  if (!value) {
+    setYearValidity(input, true);
+    if (url.searchParams.has("certified_year")) {
+      navigateTo(setSingleFilterValue(url, "certified_year", ""));
+    }
+    return;
+  }
+
+  if (!isValidYear(value)) {
+    setYearValidity(input, false);
+    return;
+  }
+
+  setYearValidity(input, true);
+  if (url.searchParams.get("certified_year") !== value) {
+    navigateTo(setSingleFilterValue(url, "certified_year", value));
+  }
+}
+
 function updateResultsPerPage() {
   const searchResults = document.querySelector(".js-search-results");
-  const pageSizeTop = document.getElementById("page-size-top");
   const pageSizeBottom = document.getElementById("page-size-bottom");
 
-  if (pageSizeTop) {
-    pageSizeTop.addEventListener("change", (e) => {
-      // Needs to be set because the other dropdown is a placeholder
-      searchResults.submit();
-    });
-  }
-
-  if (pageSizeBottom) {
-    pageSizeBottom.addEventListener("change", (e) => {
-      // Avoids submitting 2 redundant fields
-      const pageSizeTopChange = new Event("change");
-      pageSizeTop.value = e.target.value;
-      pageSizeTop.dispatchEvent(pageSizeTopChange);
-    });
-  }
+  pageSizeBottom?.addEventListener("change", () => {
+    if (!searchResults.reportValidity()) {
+      return;
+    }
+    searchResults.submit();
+  });
 }
 
 function hideDrawerPageReload() {
   if (window.location.href.includes("drawer")) {
-    const closeDrawerButton = document.querySelector("#toggle-filters");
-    closeDrawerButton.click();
+    document.querySelector("#toggle-filters")?.click();
   }
 }
 
-// Bind the statically-rendered filter controls (category checkboxes, the
-// vendor/release show-all / show-less toggles, and the apply / clear buttons)
-// that previously used inline on* handlers, now disallowed under our CSP.
-function wireStaticFilterHandlers() {
-  if (filters1Elm) {
-    filters1Elm.querySelectorAll("input").forEach((input) => {
-      input.addEventListener("click", handleCategoryClick);
-    });
-  }
-
-  [showAllVendors, showLessVendors, showAllReleases, showLessReleases].forEach(
-    (button) => {
-      if (button) {
-        button.addEventListener("click", (e) => {
-          toggleExpandFilters(e, button);
-        });
-      }
-    },
-  );
-
-  const submitFiltersButton = document.querySelector(".js-submit-filters");
-  if (submitFiltersButton) {
-    submitFiltersButton.addEventListener("click", submitFilters);
-  }
-
-  const clearFiltersButton = document.querySelector(".js-clear-filters");
-  if (clearFiltersButton) {
-    clearFiltersButton.addEventListener("click", clearFilters);
-  }
-}
-
-loadFilters();
+initCertifiedFilters();
 updateResultsPerPage();
 hideDrawerPageReload();
-wireStaticFilterHandlers();
+// initAutocomplete() is a generic, reusable widget defined in autocomplete.js
+const AUTOCOMPLETE_MIN_CHARS = 3;
+const AUTOCOMPLETE_MAX_SUGGESTIONS = 5;
+const AUTOCOMPLETE_DEBOUNCE_MS = 200;
+
+function initCertifiedAutocomplete() {
+  // Model names rarely repeat the vendor name (e.g. "XPS 13", not "Dell
+  // XPS 13") - prefix it for display (and fill/search on it too) so it's
+  // clear which vendor a suggestion is from, without duplicating it when
+  // the model name already includes it
+  function suggestionLabel({ make, model }) {
+    if (make && !model.toLowerCase().startsWith(make.toLowerCase())) {
+      return `${make} ${model}`;
+    }
+    return model;
+  }
+
+  initAutocomplete({
+    inputSelector: "#certified-search",
+    suggestionsSelector: "#certified-search-suggestions",
+    containerSelector: ".p-certified-autocomplete",
+    minChars: AUTOCOMPLETE_MIN_CHARS,
+    maxSuggestions: AUTOCOMPLETE_MAX_SUGGESTIONS,
+    debounceMs: AUTOCOMPLETE_DEBOUNCE_MS,
+    getLabel: suggestionLabel,
+    buildUrl(term) {
+      const params = new URLSearchParams(window.location.search);
+      const url = new URL(
+        `${window.location.origin}/certified/autocomplete.json`,
+      );
+      url.searchParams.set("q", term);
+      params
+        .getAll("category")
+        .forEach((value) => url.searchParams.append("category", value));
+      params
+        .getAll("vendor")
+        .forEach((value) => url.searchParams.append("vendor", value));
+      params
+        .getAll("release")
+        .forEach((value) => url.searchParams.append("release", value));
+      return url;
+    },
+  });
+}
+
+initCertifiedAutocomplete();

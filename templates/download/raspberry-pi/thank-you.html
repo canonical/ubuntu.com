@@ -22,7 +22,7 @@
 
   {% if version %}
     <meta http-equiv="refresh"
-          content="3;url={% if version==releases_yaml.latest.core_version %}https://cdimage.ubuntu.com/ubuntu-core/{{ version }}/stable/current/ubuntu-{{ architecture }}.img.xz{% else %}https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz{% endif %}" />
+          content="3;url={% if version==releases_yaml.latest.core_version %}https://cdimage.ubuntu.com/ubuntu-core/{{ version }}/stable/current/ubuntu-{{ architecture }}.img.xz{% else %}https://cdimage.ubuntu.com/ubuntu/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz{% endif %}" />
   {% endif %}
 
   <section class="p-strip is-shallow u-no-padding--bottom">
@@ -40,7 +40,7 @@
           </h1>
           <p>
             Your download should start automatically. If it doesn't,
-            <a href="{% if version==releases_yaml.latest.core_version %}https://cdimage.ubuntu.com/ubuntu-core/{{ version }}/stable/current/ubuntu-{{ architecture }}.img.xz{% else %}https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz{% endif %}">download now</a>.
+            <a href="{% if version==releases_yaml.latest.core_version %}https://cdimage.ubuntu.com/ubuntu-core/{{ version }}/stable/current/ubuntu-{{ architecture }}.img.xz{% else %}https://cdimage.ubuntu.com/ubuntu/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz{% endif %}">download now</a>.
             <br />
             {% with version=version, system=architecture, architecture=architecture %}
               {% include "download/shared/_verify-checksums.html" %}

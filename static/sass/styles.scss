@@ -38,7 +38,6 @@ $colors--light-theme--border-low-contrast: rgba(
 // import vanilla-framework
 @import "vanilla-framework";
 @include vanilla;
-@import "fonts"; // Include after 'vanilla' to override
 
 @import "vanilla-placeholders";
 
@@ -53,6 +52,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 // import site specific patterns and overrides
 @import "pattern_accordion";
 @import "pattern_ai";
+@import "pattern_announcement-bar";
 @import "pattern_blog-card";
 @import "pattern_blog-article";
 @import "pattern_blog-topic";
@@ -66,16 +66,23 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_chart";
 @import "pattern_component-details-table";
 @import "pattern_component-table";
+@import "pattern_community-map";
 @import "pattern_contact-modal";
 @import "pattern_cube-animation";
 @import "pattern_cube-image";
 @import "pattern_cube-progression";
 @import "pattern_cube-table";
 @import "pattern_cve";
+@import "pattern_developer-diaries";
 @import "pattern_grid";
 @import "pattern_footer";
 @import "pattern_hardware-details-table";
 @import "pattern_heading-icon";
+@import "pattern_homepage";
+@import "pattern_homepage-hero";
+@import "pattern_homepage-stories";
+@import "pattern_homepage-community";
+@import "pattern_homepage-carousel";
 @import "pattern_icons";
 @import "pattern_inline-list-midline";
 @import "pattern_invoices";
@@ -123,14 +130,24 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-cards;
 @include ubuntu-p-certification-results;
 @include ubuntu-p-checkout;
+@include ubuntu-p-community-map;
 @include ubuntu-p-contact-modal;
 @include ubuntu-p-cube-animation;
 @include ubuntu-p-cube-progression;
 @include ubuntu-p-cve;
+@include ubuntu-p-developer-diaries;
 @include ubuntu-p-floating-image;
 @include ubuntu-p-footer;
 @include ubuntu-p-grid;
 @include ubuntu-p-heading-icon;
+// Homepage-only patterns, scoped by the class templates/index.html adds to <body>
+.p-homepage {
+  @include ubuntu-p-homepage;
+  @include ubuntu-p-homepage-hero;
+  @include ubuntu-p-homepage-stories;
+  @include ubuntu-p-homepage-community;
+  @include ubuntu-p-homepage-carousel;
+}
 @include ubuntu-p-inline-list-midline;
 @include ubuntu-p-invoices;
 @include ubuntu-p-attention-icon;
@@ -170,6 +187,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include vf-p-icon-restart;
 @include vf-p-icon-begin-downloading;
 @include vf-p-icon-video-play;
+@include vf-p-icon-pause;
 @include vf-p-icon-machines;
 @include vf-p-icon-units;
 @include vf-p-icon-plans;
@@ -217,10 +235,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 .iti {
   margin-bottom: $input-margin-bottom;
   width: 100%;
-}
-
-.leaflet-control-attribution {
-  display: none;
 }
 
 // Bug fixes
@@ -1892,6 +1906,24 @@ ol.p-stepped-list.no-full-stop
   display: flex;
   flex-wrap: wrap;
   column-gap: 1rem;
+}
+
+// Download button group: horizontal gap only, no vertical gap when wrapped.
+.download-button-group {
+  align-items: baseline;
+  column-gap: $sph--large;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.zephyr-resources {
+  .p-article-block {
+    row-gap: 0;
+  }
+
+  > .p-section > .p-section--shallow > div:last-child {
+    padding-bottom: 1.5rem;
+  }
 }
 
 // Truncates text to two lines with ellipsis

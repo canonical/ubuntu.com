@@ -30,7 +30,7 @@ def build_llms_txt(llms_txt_path):
     so an unhandled error here would crash the whole app.
     """
     try:
-        with open(llms_txt_path) as llms_txt_file:
+        with open(llms_txt_path, encoding="utf-8") as llms_txt_file:
             return llms_txt_file.read().rstrip("\n") + "\n"
     except (OSError, UnicodeDecodeError):
         logger.exception("Failed to read %s", llms_txt_path)
@@ -50,7 +50,7 @@ def lint_llms_txt(llms_txt_path=DEFAULT_LLMS_TXT_PATH):
     if not os.path.exists(llms_txt_path):
         return [f"{llms_txt_path}: not found"], []
 
-    with open(llms_txt_path) as llms_txt_file:
+    with open(llms_txt_path, encoding="utf-8") as llms_txt_file:
         content = llms_txt_file.read()
 
     errors = []

@@ -119,7 +119,12 @@ export class NavigationComponent {
   }
 
   async goto(path: string): Promise<void> {
-    await this.page.goto(path);
+    // "domcontentloaded" instead of the default "load": tests only assert
+    // on DOM nav elements, so there's no need to wait for third-party
+    // resources (GTM, YouTube embeds, assets.ubuntu.com scripts, etc.)
+    // that aren't covered by the Discourse VCR cassette and can stall or
+    // time out on the real network in CI.
+    await this.page.goto(path, { waitUntil: "domcontentloaded" });
     await acceptCookiePolicy(this.page);
   }
 
