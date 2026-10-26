@@ -11,7 +11,6 @@ from pathlib import Path
 from filelock import FileLock
 from filelock import Timeout as FileLockTimeout
 
-
 logger = logging.getLogger(__name__)
 
 CACHE_VERSION = 6

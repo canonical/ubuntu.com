@@ -11,7 +11,6 @@ from vcr_unittest import VCRTestCase
 # Local
 from webapp.app import app
 
-
 BASE_INDEX = os.path.join(
     os.path.dirname(__file__), "..", "templates", "base_index.html"
 )
