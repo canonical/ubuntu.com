@@ -1,16 +1,17 @@
 # Percy snapshots
 
-This repo runs visual regression tests via [Percy](https://percy.io/). Three workflows orchestrate it:
+This repo runs visual regression tests via [Percy](https://percy.io/). Two workflows orchestrate it:
 
 - `.github/workflows/percy.yml` — PRs from this repo targeting `main`
-- `.github/workflows/percy-fork-pr.yml` — PRs from forks targeting `main` (uses `pull_request_target` with an approval gate)
 - `.github/workflows/percy-baseline.yaml` — pushes to `main` (refreshes the baseline that PRs compare against)
+
+PRs from forks don't get Percy runs for now, so that fork code never runs alongside the Percy token.
 
 The shared gate logic lives in `.github/actions/percy-gate/action.yml`.
 
 ## When Percy runs
 
-For PRs (both internal and fork) the `decide` job evaluates, in order:
+For PRs the `decide` job evaluates, in order:
 
 1. **`run-percy` label present on the PR?** → RUN.
 2. **Author is `dependabot[bot]` or `renovate[bot]`?** → SKIP (bots must use the label to opt in).
