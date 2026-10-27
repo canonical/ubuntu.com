@@ -43,10 +43,8 @@
       <meta http-equiv="refresh"
             content="3;url=https://cdimage.ubuntu.com/ubuntu/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso" />
     {% elif architecture == 'arm64' %}
-      <noscript>
-        <meta http-equiv="refresh"
-              content="3;url=https://cdimage.ubuntu.com/ubuntu/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-arm64.iso" />
-      </noscript>
+      <meta http-equiv="refresh"
+            content="3;url=https://cdimage.ubuntu.com/ubuntu/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-arm64.iso" />
     {% else %}
       <noscript>
         <meta http-equiv="refresh"
@@ -313,17 +311,13 @@
       var architecture = '{{ architecture }}';
       var version = '{{ version }}';
 
-      if (version && architecture && architecture != 'amd64+mac') {
+      // amd64+mac and arm64 images are not hosted on releases.ubuntu.com,
+      // so those are downloaded straight from cdimage via the meta refresh
+      if (version && architecture && architecture != 'amd64+mac' && architecture != 'arm64') {
         var GAlabel = version + '-desktop-' + architecture;
         var imageName = 'ubuntu-' + version + '-desktop-' + architecture + '.iso';
 
-        if (architecture === 'arm64') {
-          // arm64 downloads are not hosted on releases.ubuntu.com so we go
-          // straight through cdimage
-          window.location.href = 'https://cdimage.ubuntu.com/ubuntu/releases/' + version + '/release/' + imageName;
-        } else {
-          window.initImageDownload(version + '/' + imageName, GAlabel);
-        }
+        window.initImageDownload(version + '/' + imageName, GAlabel);
       }
     </script>
   {% endif %}

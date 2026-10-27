@@ -14,15 +14,15 @@
 
 {% block content %}
   {% if version %}
-    <noscript>
-      {% if architecture == 'arm64' %}
-        <meta http-equiv="refresh"
-              content="3;url=https://cdimage.ubuntu.com/ubuntu/releases/{{ version }}/release/ubuntu-{{ version }}-live-server-arm64.iso" />
-      {% else %}
+    {% if architecture == 'arm64' %}
+      <meta http-equiv="refresh"
+            content="3;url=https://cdimage.ubuntu.com/ubuntu/releases/{{ version }}/release/ubuntu-{{ version }}-live-server-arm64.iso" />
+    {% else %}
+      <noscript>
         <meta http-equiv="refresh"
               content="3;url=https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-amd64.iso" />
-      {% endif %}
-    </noscript>
+      </noscript>
+    {% endif %}
   {% endif %}
 
   <section class="p-strip is-shallow u-no-padding--bottom">
@@ -255,17 +255,13 @@
   <script nonce="{{ csp_nonce }}" defer>
     var architecture = '{{ architecture }}';
     var version = '{{ version }}';
-    if (version) {
+    // arm64 images are not hosted on releases.ubuntu.com, so those are
+    // downloaded straight from cdimage via the meta refresh
+    if (version && architecture !== 'arm64') {
       var GAlabel = version + '-server-' + (architecture || 'amd64');
       var imageName = 'ubuntu-' + version + '-live-server-' + (architecture || 'amd64') + '.iso';
 
-      if (architecture === 'arm64') {
-        // arm64 downloads are not hosted on releases.ubuntu.com so we go
-        // straight through cdimage
-        window.location.href = 'https://cdimage.ubuntu.com/ubuntu/releases/' + version + '/release/' + imageName;
-      } else {
-        window.initImageDownload(version + '/' + imageName, GAlabel);
-      }
+      window.initImageDownload(version + '/' + imageName, GAlabel);
     }
   </script>
 {% endblock footer_extra %}
