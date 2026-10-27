@@ -27,10 +27,8 @@
     <meta http-equiv="refresh" content="3;url={{ pro_download_url }}" />
   {% elif version %}
     {% if architecture == 'arm64' %}
-      <noscript>
-        <meta http-equiv="refresh"
-              content="3;url=https://cdimage.ubuntu.com/ubuntu/releases/{{ version }}/release/ubuntu-{{ version }}-wsl-arm64.wsl" />
-      </noscript>
+      <meta http-equiv="refresh"
+            content="3;url=https://cdimage.ubuntu.com/ubuntu/releases/{{ version }}/release/ubuntu-{{ version }}-wsl-arm64.wsl" />
     {% else %}
       <noscript>
         <meta http-equiv="refresh"
@@ -183,25 +181,19 @@
 {% endblock content %}
 
 {% block footer_extra %}
-  {% if architecture == 'pro' %}
-    <script nonce="{{ csp_nonce }}" defer>
-      window.location.href = '{{ pro_download_url }}';
-    </script>
-  {% elif version %}
+  {% if version and architecture != 'pro' %}
     <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/image-download.js') }}"></script>
     <script nonce="{{ csp_nonce }}" defer>
       var architecture = '{{ architecture }}';
       var version = '{{ version }}';
 
-      if (version && architecture) {
+      // arm64 images are not hosted on releases.ubuntu.com, so those are
+      // downloaded straight from cdimage via the meta refresh
+      if (version && architecture && architecture !== 'arm64') {
         var imageName = 'ubuntu-' + version + '-wsl-' + architecture + '.wsl';
         var GAlabel = version + '-wsl-' + architecture;
 
-        if (architecture === 'arm64') {
-          window.location.href = 'https://cdimage.ubuntu.com/ubuntu/releases/' + version + '/release/' + imageName;
-        } else {
-          window.initImageDownload(version + '/' + imageName, GAlabel);
-        }
+        window.initImageDownload(version + '/' + imageName, GAlabel);
       }
     </script>
   {% endif %}
