@@ -6,7 +6,7 @@
  * - "Comments_from_lead__c" must be a hidden field.
  */
 import "infer-preferred-language.js";
-import { prepareInputFields } from "./prepare-form-inputs.js";
+import { prepareInputFieldsOnce } from "./prepare-form-inputs.js";
 
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
@@ -544,10 +544,8 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       // Sets up dial code dropdown options aka. intlTelInput.js
       // and pre fills the country field
-      // Prepares input fields for opened modal if it has not been initialised
-      if (!modalAlreadyExists) {
-        prepareInputFields(phoneNumberInput, countryInput);
-      }
+      // Prepares input fields for the opened modal the first time it opens
+      prepareInputFieldsOnce(phoneNumberInput, countryInput);
 
       // Set preferredLanguage hidden input
       function setpreferredLanguage() {
