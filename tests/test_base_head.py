@@ -20,7 +20,13 @@ class TestBaseHead(unittest.TestCase):
         self.assertFalse(policy.has_attr("defer"))
         callback = head.select_one('script[src*="cookie-policy-with-"]')
         self.assertTrue(callback.has_attr("defer"))
-        self.assertEqual(head.select('link[rel="preconnect"]'), [])
+        preconnects = {
+            link["href"] for link in head.select('link[rel="preconnect"]')
+        }
+        self.assertEqual(
+            preconnects,
+            {"https://assets.ubuntu.com", "https://res.cloudinary.com"},
+        )
 
 
 if __name__ == "__main__":

@@ -13,6 +13,10 @@
     {%- endif %}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% filter trim %}{% block title %}{% endblock %}{% endfilter %} | Ubuntu</title>
+    {# Also sent as a Link header by the konf nginx config; kept here so
+       Juju deployments, which don't use that config, get them too #}
+    <link rel="preconnect" href="https://assets.ubuntu.com" crossorigin />
+    <link rel="preconnect" href="https://res.cloudinary.com" />
     <script nonce="{{ csp_nonce }}"
             src="{{ versioned_static('js/src/navigation.js') }}"
             defer></script>
