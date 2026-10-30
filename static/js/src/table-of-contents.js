@@ -24,7 +24,7 @@
     listItem.style.marginLeft = `${(level - 2) * 1}rem`;
     const anchor = document.createElement("a");
     anchor.classList.add("p-table-of-contents__link");
-    anchor.href = `#${id}`;
+    anchor.href = `#${encodeURIComponent(id)}`;
     anchor.innerText = heading.innerText;
     listItem.appendChild(anchor);
     list.appendChild(listItem);
