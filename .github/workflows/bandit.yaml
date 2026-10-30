@@ -13,6 +13,11 @@ jobs:
     steps:
       - name: Perform Bandit Analysis
         uses: PyCQA/bandit-action@67a458d90fa11fb1463e91e7f4c8f068b5863c7f # v1.0.1
+        with:
+          # Action defaults, plus unit tests (asserts and fake credentials
+          # are expected there) and charm/lib, which is vendored from
+          # Charmhub via `charmcraft fetch-lib` and must not be edited.
+          exclude: .svn,CVS,.bzr,.hg,.git,__pycache__,.tox,.eggs,*.egg,./tests,./charm/lib
 
       - name: Send message on failure
         env:
