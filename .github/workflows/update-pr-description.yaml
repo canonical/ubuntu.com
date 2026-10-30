@@ -19,12 +19,15 @@ jobs:
         continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          # Branch names are user-controlled; pass via env, never ${{ }} in run.
+          BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
         run: |
           set +e
-          pr_number="${{ github.event.pull_request.number }}"
-          branch_name="${{ github.event.pull_request.head.ref }}"
+          pr_number="$PR_NUMBER"
+          branch_name="$BRANCH_NAME"
           demo_link="https://ubuntu-com-${pr_number}.demos.haus/"
-          repo="${{ github.repository }}"
+          repo="$GITHUB_REPOSITORY"
           
           if [[ "$branch_name" =~ ([Ww][Dd]-[0-9]+) ]]; then
             jira_ticket="${BASH_REMATCH[1]}"

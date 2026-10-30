@@ -5,6 +5,9 @@ on:
     - cron: "0 13 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   check-links:
     runs-on: ubuntu-latest
@@ -23,9 +26,11 @@ jobs:
 
       - name: Send message on failure
         if: failure()
+        env:
+          BOT_URL: ${{ secrets.BOT_URL }}
         run: |
           curl -X POST \
           -F "workflow=${GITHUB_WORKFLOW}" \
           -F "repo_name=${GITHUB_REPOSITORY}" \
           -F "action_id=${GITHUB_RUN_ID}" \
-          ${{ secrets.BOT_URL }}?room=docs
+          "${BOT_URL}?room=docs"

@@ -3,7 +3,8 @@ on:
   schedule:
     - cron: "0 22 * * 5"
   workflow_dispatch:
-permissions: read-all
+permissions:
+  contents: read
 env:
   SECRET_KEY: insecure_test_key
   SEARCH_API_KEY: fake-key
@@ -22,6 +23,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.base_ref }}
+          persist-credentials: false
 
       - name: Install node dependencies
         run: yarn install --immutable
@@ -56,11 +58,17 @@ jobs:
   TICS:
     runs-on: [self-hosted, linux, amd64, tiobe, noble]
     needs: build-coverage
+    permissions:
+      contents: read
+      # tics-github-action lists the run's jobs via the Actions API
+      actions: read
     strategy:
       matrix:
         node-version: [22.x]
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -100,7 +108,7 @@ jobs:
         run: sed -i "s#<source>[^<]*</source>#<source>${GITHUB_WORKSPACE}</source>#" coverage/cobertura-coverage.xml
 
       - name: Run TICS analysis with github-action
-        uses: tiobe/tics-github-action@v3
+        uses: tiobe/tics-github-action@016a4d79f3027fe7b4a2901619a58c745ab7cadf # v3.10.0
         with:
           mode: qserver
           project: ubuntu.com
