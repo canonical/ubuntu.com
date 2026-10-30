@@ -11,6 +11,7 @@ from webapp.macaroons import (
     MacaroonResponse,
 )
 from canonicalwebteam.flask_base.env import get_flask_env
+from webapp.utils import safe_redirect_url
 
 COMMUNITY_TEAM = "ubuntumembers"
 CREDENTIALS_TEAM = "canonical-credentials"
@@ -158,4 +159,4 @@ def logout():
 
     empty_session(flask.session)
 
-    return flask.redirect(return_to)
+    return flask.redirect(safe_redirect_url(return_to))

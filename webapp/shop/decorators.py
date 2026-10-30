@@ -1,5 +1,6 @@
 from functools import wraps
 from datetime import datetime
+from urllib.parse import urlencode
 from dateutil.parser import parse
 
 import flask
@@ -139,7 +140,10 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 if not user_token:
                     redirect_path = redirect or flask.request.full_path
 
-                    return flask.redirect(f"/login?next={redirect_path}")
+                    # Encode so a "&" in the path can't truncate `next`.
+                    return flask.redirect(
+                        "/login?" + urlencode({"next": redirect_path})
+                    )
 
             ua_contracts_api = get_ua_contracts_api_instance(
                 user_token,

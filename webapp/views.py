@@ -46,7 +46,7 @@ from flask.views import View
 # Local
 from webapp.login import user_info
 from webapp.marketo import MarketoAPI
-from webapp.utils import format_community_event_time
+from webapp.utils import format_community_event_time, safe_redirect_url
 from webapp.constants import (
     ENGAGE_UI_TRANSLATIONS,
     MARKETO_INJECTION_PATTERNS,
@@ -253,7 +253,7 @@ def releasenotes_redirect():
         if version == release["Version"]:
             version_tuple = release["VersionTuple"]
             if version_tuple == (22, 4) or version_tuple >= (24, 4):
-                return flask.redirect(f"{base_uri}{version}/")
+                return flask.redirect(f"{base_uri}{release['Version']}/")
 
             release_slug = release["Name"].replace(" ", "")
             return flask.redirect(
@@ -985,6 +985,22 @@ class BlogCustomTopic(BlogView):
         return flask.render_template(f"blog/topics/{slug}.html", **context)
 
 
+def strip_xml_stylesheets(xml):
+    """
+    Remove <?xml-stylesheet ...?> instructions from a sitemap. Uses plain
+    string search rather than a backtracking regex to stay linear-time.
+    """
+    start = xml.find("<?xml-stylesheet")
+    while start != -1:
+        end = xml.find("?>", start)
+        if end == -1:
+            break
+        stop = end + len("?>")
+        xml = xml[:start] + xml[stop:]
+        start = xml.find("<?xml-stylesheet", start)
+    return xml
+
+
 class BlogSitemapIndex(BlogView):
     def dispatch_request(self):
         response = session.get(
@@ -995,11 +1011,9 @@ class BlogSitemapIndex(BlogView):
             "https://admin.insights.ubuntu.com/",
             "https://ubuntu.com/blog/sitemap/",
         )
-        xml = re.sub(r"<\?xml-stylesheet.*\?>", "", xml)
+        xml = strip_xml_stylesheets(xml)
 
-        response = flask.make_response(xml)
-        response.headers["Content-Type"] = "application/xml"
-        return response
+        return flask.Response(xml, content_type="application/xml")
 
 
 class BlogSitemapPage(BlogView):
@@ -1012,11 +1026,9 @@ class BlogSitemapPage(BlogView):
         xml = response.text.replace(
             "https://admin.insights.ubuntu.com/", "https://ubuntu.com/blog/"
         )
-        xml = re.sub(r"<\?xml-stylesheet.*\?>", "", xml)
+        xml = strip_xml_stylesheets(xml)
 
-        response = flask.make_response(xml)
-        response.headers["Content-Type"] = "application/xml"
-        return response
+        return flask.Response(xml, content_type="application/xml")
 
 
 class RoboticsDocsSitemapIndex(View):
@@ -1035,11 +1047,9 @@ class RoboticsDocsSitemapIndex(View):
             "https://canonical-robotics.readthedocs-hosted.com/en/latest/",
             "https://ubuntu.com/robotics/docs/",
         )
-        xml = re.sub(r"<\?xml-stylesheet.*\?>", "", xml)
+        xml = strip_xml_stylesheets(xml)
 
-        response = flask.make_response(xml)
-        response.headers["Content-Type"] = "application/xml"
-        return response
+        return flask.Response(xml, content_type="application/xml")
 
 
 def sitemap_index():
@@ -1220,10 +1230,8 @@ def marketo_submit():
             form_fields.pop("website", None)
             form_fields.pop("name", None)
 
-    referrer = (
-        flask.request.referrer
-        if flask.request.referrer
-        else "https://ubuntu.com"
+    referrer = safe_redirect_url(
+        flask.request.referrer, default="https://ubuntu.com"
     )
 
     # Drop submissions that look like script/command injection probes
@@ -1503,18 +1511,23 @@ def marketo_submit():
             if return_url.startswith("http://") or return_url.startswith(
                 "https://"
             ):
-                return flask.redirect(return_url)
+                return flask.redirect(
+                    safe_redirect_url(return_url, default=referrer)
+                )
 
             if referrer:
                 parsed_return_url = urlparse(return_url)
                 parsed_referrer = urlparse(referrer)
 
                 return flask.redirect(
-                    f"{parsed_referrer.scheme}://{parsed_referrer.netloc}"
-                    f"{parsed_return_url.path}#{parsed_return_url.fragment}"
+                    safe_redirect_url(
+                        f"{parsed_referrer.scheme}://{parsed_referrer.netloc}"
+                        f"{parsed_return_url.path}"
+                        f"#{parsed_return_url.fragment}"
+                    )
                 )
 
-            return flask.redirect(return_url)
+            return flask.redirect(safe_redirect_url(return_url))
     else:
 
         # Both payload and enrichment submissions failed
@@ -1566,8 +1579,10 @@ def marketo_submit():
             parsed_return_url = urlparse(return_url)
             parsed_referrer = urlparse(referrer)
             return flask.redirect(
-                f"{parsed_referrer.scheme}://{parsed_referrer.netloc}"
-                f"{parsed_return_url.path}#contact-form-fail"
+                safe_redirect_url(
+                    f"{parsed_referrer.scheme}://{parsed_referrer.netloc}"
+                    f"{parsed_return_url.path}#contact-form-fail"
+                )
             )
         return flask.redirect("/#contact-form-fail")
 
@@ -1673,11 +1688,13 @@ def subscription_centre():
         if not return_url:
             subscription_centre_submit(sfdcLeadId, False)
             return flask.redirect(
-                f"{flask.request.path}?id={sfdcLeadId}#updated"
+                safe_redirect_url(
+                    f"{flask.request.path}?id={sfdcLeadId}#updated"
+                )
             )
         else:
             subscription_centre_submit(sfdcLeadId, True)
-            return flask.redirect(f"/{return_url}")
+            return flask.redirect(safe_redirect_url(f"/{return_url}"))
 
     with open("subscriptions.yaml", encoding="utf-8") as subscriptions:
         subscriptions = yaml.safe_load(subscriptions)
