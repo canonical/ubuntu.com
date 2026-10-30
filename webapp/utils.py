@@ -1,5 +1,77 @@
+from urllib.parse import urlsplit
+
 import dateutil.parser
+import flask
 import pytz
+
+# Canonical sites whose pages post forms to, or link back through,
+# ubuntu.com. Redirects may go to these domains and their subdomains.
+REDIRECT_ALLOWED_DOMAINS = (
+    "ubuntu.com",
+    "canonical.com",
+    "anbox-cloud.io",
+    "canonical.design",
+    "charmed-kubeflow.io",
+    "maas.io",
+    "microk8s.io",
+    "multipass.run",
+    "snapcraft.io",
+)
+
+# Browsers strip these from both ends of a URL before parsing it.
+_C0_CONTROL_OR_SPACE = "".join(chr(code) for code in range(0x21))
+
+
+def _is_allowed_redirect_host(netloc, hostname):
+    if flask.has_request_context() and netloc == flask.request.host:
+        return True
+    return any(
+        hostname == domain or hostname.endswith(f".{domain}")
+        for domain in REDIRECT_ALLOWED_DOMAINS
+    )
+
+
+def safe_redirect_url(url, default="/"):
+    """
+    Return `url` if it is safe to redirect to, otherwise `default`.
+
+    Relative URLs always stay on this site: tricks like "//evil.com" or
+    "/\\evil.com" collapse to a single leading slash. Absolute URLs must
+    be http(s) on the current host or a REDIRECT_ALLOWED_DOMAINS site.
+    """
+    if not url:
+        return default
+
+    # Browsers ignore tabs and newlines inside URLs and read backslashes
+    # as slashes, so normalise those before parsing.
+    url = url.strip(_C0_CONTROL_OR_SPACE).replace("\\", "/")
+    for char in "\t\r\n":
+        url = url.replace(char, "")
+
+    try:
+        parts = urlsplit(url)
+    except ValueError:
+        return default
+
+    path = parts.path
+    if parts.query:
+        path += "?" + parts.query
+    if parts.fragment:
+        path += "#" + parts.fragment
+
+    if not parts.scheme and not parts.netloc:
+        return "/" + path.lstrip("/")
+
+    hostname = (parts.hostname or "").rstrip(".")
+    if (
+        parts.scheme not in ("http", "https")
+        or "@" in parts.netloc
+        or not _is_allowed_redirect_host(parts.netloc, hostname)
+    ):
+        return default
+
+    scheme = "https://" if parts.scheme == "https" else "http://"
+    return scheme + parts.netloc + path
 
 
 def strtobool(value):
