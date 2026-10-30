@@ -91,7 +91,8 @@ def convert_markdown_to_html(text):
     clean_html = bleach.clean(
         html_content, tags=allowed_tags, attributes=allowed_attrs, strip=True
     )
-    return Markup(clean_html)
+    # Safe: bleach has already stripped everything outside the allowlist.
+    return Markup(clean_html)  # nosec B704
 
 
 def _get_clean_in_filter(filter_in):
