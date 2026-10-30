@@ -49,7 +49,7 @@ function setUserId() {
     if (!getCookie("user_id")) {
       // Generate a universally unique identifier
       const user_id = uuidv4();
-      document.cookie = "user_id=" + user_id + ";max-age=31536000;";
+      document.cookie = "user_id=" + user_id + ";max-age=31536000;secure;";
 
       dataLayer.push({
         user_id: user_id,
