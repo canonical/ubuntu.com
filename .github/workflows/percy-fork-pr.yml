@@ -4,7 +4,13 @@ name: Percy testing on PRs from forks
 run-name: "Testing Percy on fork PR #${{ github.event.pull_request.number }}"
 
 on:
-  pull_request_target:
+  # Accepted risk: fork PRs need PERCY_TOKEN_WRITE, which pull_request
+  # can't provide. The snapshot job builds and runs the PR's code with that
+  # token, so it is gated behind required-reviewer approval in the
+  # percy-testing environment: review the fork's diff before approving.
+  # GITHUB_TOKEN is read-only, no checkout persists credentials, and the
+  # composite action itself is loaded from the base branch, not the PR.
+  pull_request_target: # zizmor: ignore[dangerous-triggers]
     branches:
       - main
     types:
