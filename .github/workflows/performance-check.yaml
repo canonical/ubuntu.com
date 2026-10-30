@@ -8,6 +8,9 @@ on:
 env:
   THRESHOLD: 70
 
+permissions:
+  contents: read
+
 jobs:
   read-config:
     runs-on: ubuntu-latest
@@ -16,6 +19,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-node@v4
         with:
@@ -52,7 +57,7 @@ jobs:
       - name: Running performance checks on ${{ matrix.name }}
         id: perf-check
         continue-on-error: true
-        uses: jakepartusch/psi-action@v1.3
+        uses: jakepartusch/psi-action@87122f61c0b80b92f44aadf16099294b5accc589 # v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
           url: ${{ matrix.url }}
@@ -61,9 +66,12 @@ jobs:
 
       - name: Save result
         id: save-result
+        env:
+          MATRIX_NAME: ${{ matrix.name }}
+          PERF_OUTCOME: ${{ steps.perf-check.outcome }}
         run: |
-          sanitized_name=$(echo "${{ matrix.name }}" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
-          obj=$(jq -cn --arg name "$sanitized_name" --arg value "${{ steps.perf-check.outcome }}" '{name: $name, value: $value}')
+          sanitized_name=$(echo "$MATRIX_NAME" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
+          obj=$(jq -cn --arg name "$sanitized_name" --arg value "$PERF_OUTCOME" '{name: $name, value: $value}')
           echo "$obj" > "result-${sanitized_name}.json"
           echo "sanitized_name=$sanitized_name" >> $GITHUB_OUTPUT
 
@@ -117,4 +125,6 @@ jobs:
 
       - name: Send message on failure
         if: failure()
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=web-alerts
+        env:
+          BOT_URL: ${{ secrets.BOT_URL }}
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" "${BOT_URL}?room=web-alerts"
