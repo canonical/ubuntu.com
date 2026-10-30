@@ -69,7 +69,10 @@ jobs:
     permissions:
       contents: read
     uses: ./.github/workflows/deploy-ps6.yaml
-    secrets: inherit
+    # Values come from the ps6-* environment secrets in the called jobs.
+    secrets:
+      VAULT_APPROLE_ROLE_ID: ${{ secrets.VAULT_APPROLE_ROLE_ID }}
+      VAULT_APPROLE_SECRET_ID: ${{ secrets.VAULT_APPROLE_SECRET_ID }}
     with:
       image-url: ${{ needs.pack.outputs.image_url }}
       environment: ${{ inputs.environment || 'both' }}
@@ -83,7 +86,10 @@ jobs:
     permissions:
       contents: read
     uses: ./.github/workflows/deploy-ps7.yaml
-    secrets: inherit
+    # Values come from the ps7-* environment secrets in the called jobs.
+    secrets:
+      JUJU_CLIENT_ID: ${{ secrets.JUJU_CLIENT_ID }}
+      JUJU_CLIENT_SECRET: ${{ secrets.JUJU_CLIENT_SECRET }}
     with:
       image-url: ${{ needs.pack.outputs.image_url }}
       environment: ${{ inputs.environment || 'both' }}
