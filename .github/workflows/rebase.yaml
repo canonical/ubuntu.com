@@ -3,6 +3,9 @@ on:
   issue_comment:
     types: [created]
 
+permissions:
+  contents: read
+
 jobs:
   rebase:
     name: Rebase
@@ -23,11 +26,51 @@ jobs:
       - name: Checkout the latest code
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.REBASE_TOKEN }}
           fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
+          persist-credentials: false
+      # Same steps as the now-archived cirrus-actions/rebase@1.8.
       - name: Automatic Rebase
-        uses: cirrus-actions/rebase@1.8
-        with:
-          autosquash: ${{ contains(github.event.comment.body, '/autosquash') || contains(github.event.comment.body, '/rebase-autosquash') }}
         env:
-          GITHUB_TOKEN: ${{ secrets.REBASE_TOKEN }}
+          GH_TOKEN: ${{ secrets.REBASE_TOKEN }}
+          PR_NUMBER: ${{ github.event.issue.number }}
+          COMMENTER: ${{ github.event.comment.user.login }}
+          AUTOSQUASH: ${{ contains(github.event.comment.body, '/autosquash') || contains(github.event.comment.body, '/rebase-autosquash') }}
+        run: |
+          set -euo pipefail
+
+          # GitHub computes `rebaseable` lazily, so retry while it is null.
+          for _ in 1 2 3 4 5 6; do
+            pr=$(gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER")
+            rebaseable=$(jq -r .rebaseable <<< "$pr")
+            [ "$rebaseable" != "null" ] && break
+            echo "The PR is not ready to rebase, retry after 10 seconds"
+            sleep 10
+          done
+          if [ "$rebaseable" != "true" ]; then
+            echo "GitHub doesn't think that the PR is rebaseable!"
+            exit 1
+          fi
+
+          base_branch=$(jq -r .base.ref <<< "$pr")
+          head_repo=$(jq -r .head.repo.full_name <<< "$pr")
+          head_branch=$(jq -r .head.ref <<< "$pr")
+
+          user=$(gh api "users/$COMMENTER")
+          name=$(jq -r '.name // empty' <<< "$user")
+          email=$(jq -r '.email // empty' <<< "$user")
+          git config user.name "${name:-$COMMENTER} (Rebase PR Action)"
+          git config user.email "${email:-$COMMENTER@users.noreply.github.com}"
+
+          remote="https://x-access-token:${GH_TOKEN}@github.com"
+          git remote set-url origin "$remote/$GITHUB_REPOSITORY.git"
+          git remote add fork "$remote/$head_repo.git"
+
+          git fetch origin "$base_branch"
+          git fetch fork "$head_branch"
+          git checkout -b rebase-target "fork/$head_branch"
+          if [ "$AUTOSQUASH" = "true" ]; then
+            GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash "origin/$base_branch"
+          else
+            git rebase "origin/$base_branch"
+          fi
+          git push --force-with-lease fork "rebase-target:$head_branch"
