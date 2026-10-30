@@ -195,7 +195,11 @@ def ubuntu_release_meta():
         for release in meta_data.content.decode("utf-8").split("\n\n"):
             # use the baseloader to prevent it from munging the version
             # from a string to some odd integer value
-            release_data = yaml.load(release, Loader=yaml.BaseLoader)
+            # BaseLoader only builds str/list/dict, so it can't construct
+            # arbitrary objects.
+            release_data = yaml.load(  # nosec B506
+                release, Loader=yaml.BaseLoader
+            )
 
             if (
                 "Version" not in release_data
@@ -1289,7 +1293,7 @@ def marketo_submit():
                     "iso_code"
                 ]
         except Exception:
-            pass
+            logging.debug("GeoIP lookup failed", exc_info=True)
 
     user_id = flask.request.cookies.get("user_id") or flask.request.form.get(
         "user_id"

@@ -326,9 +326,9 @@ def sentry_before_send(event, hint):
                 f"{code} error" in error_msg
                 for code in ["500", "502", "503", "504"]
             ):
-                if (
-                    random.random() > 0.05
-                ):  # Drop 95% of security API retry errors
+                # Drop 95% of security API retry errors. This is log
+                # sampling, not security, so the standard PRNG is fine.
+                if random.random() > 0.05:  # nosec B311
                     return None
 
     return event
