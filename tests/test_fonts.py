@@ -17,8 +17,10 @@ class TestLocalFonts(unittest.TestCase):
             link["href"] for link in soup.select("link[rel=preload][as=font]")
         ]
         faces = re.findall(r'src: url\("([^"]+)"\)', html)
-        self.assertEqual(len(preloads), 3)
-        self.assertEqual(sorted(preloads), sorted(faces))
+        self.assertEqual(len(preloads), 1)
+        self.assertIn("ubuntu-variable-latin.woff2", preloads[0])
+        self.assertIn(preloads[0], faces)
+        self.assertEqual(html.count("font-display: swap"), 3)
 
 
 if __name__ == "__main__":
