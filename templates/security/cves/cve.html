@@ -275,7 +275,7 @@
         {% if cve.mitigation %}
           <div class="p-section">
             <h2 class="section-heading" id="mitigation">Mitigation</h2>
-            <p>{{ cve.mitigation }}</p>
+            <p style="white-space: pre-wrap;">{{ cve.mitigation | trim }}</p>
           </div>
         {% endif %}
 
