@@ -6,9 +6,8 @@ name: Pack
 #   already exists in GHCR, the build is skipped entirely.
 #
 # - The charm is uploaded as a run artifact for the calling workflow to
-#   deploy. Since the charm only depends on the charm/ directory (not on
-#   app source), it is restored from an actions/cache entry whenever
-#   possible instead of being rebuilt from scratch.
+#   deploy. It is always packed from source: nothing on the deploy path is
+#   restored from actions/cache.
 #
 # This workflow is intended to be called ONCE per deploy run (see
 # .github/workflows/deploy.yaml)
@@ -20,11 +19,6 @@ on:
         description: "Git ref (branch, tag, or commit SHA) to build"
         required: true
         type: string
-      force-charm-rebuild:
-        description: "Bypass the charm cache and force a rebuild"
-        required: false
-        type: boolean
-        default: false
     outputs:
       image_url:
         description: "Full GHCR image URL that was pushed"
@@ -105,25 +99,6 @@ jobs:
           else
             echo "exists=false" >> "$GITHUB_OUTPUT"
           fi
-      # caching dependencies to save time
-      - name: Cache yarn dependencies
-        if: steps.check-image.outputs.exists != 'true'
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
-        with:
-          path: ~/.cache/yarn
-          key: yarn-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            yarn-${{ runner.os }}-
-
-      - name: Cache pip dependencies
-        if: steps.check-image.outputs.exists != 'true'
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
-        with:
-          path: ~/.cache/pip
-          key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
-          restore-keys: |
-            pip-${{ runner.os }}-
-
       - name: Setup Rockcraft
         if: steps.check-image.outputs.exists != 'true'
         run: sudo snap install rockcraft --classic --channel=latest/stable
@@ -159,47 +134,14 @@ jobs:
       - name: Setup Charmcraft
         run: sudo snap install charmcraft --classic --channel=latest/stable
 
-      - name: Resolve charmcraft version
-        id: charmcraft-version
-        run: echo "version=$(charmcraft version)" >> "$GITHUB_OUTPUT"
-
-      - name: Compute cache week bucket
-        id: week
-        # Belt-and-braces: force a rebuild at least once a week even if
-        # nothing under charm/ changed, so the charm can never drift more
-        # than 7 days from upstream base images.
-        run: echo "value=$(date -u +%G-W%V)" >> "$GITHUB_OUTPUT"
-
-      - name: Restore charm cache
-        id: charm-cache
-        if: inputs.force-charm-rebuild != true
-        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
-        with:
-          path: ./charm/*.charm
-          key: charm-${{ steps.charmcraft-version.outputs.version }}-${{ steps.week.outputs.value }}-${{ hashFiles('charm/**', '!charm/*.charm') }}
-
       - name: Setup LXD
-        if: steps.charm-cache.outputs.cache-hit != 'true'
         uses: canonical/setup-lxd@8c6a87bfb56aa48f3fb9b830baa18562d8bfd4ee # v1
 
       - name: Pack charm
-        if: steps.charm-cache.outputs.cache-hit != 'true'
         run: charmcraft pack -v --project-dir ./charm
 
-      - name: Save charm cache
-        # Cache-poisoning guard: only cache on a push trigger on main branch
-        if: >-
-          steps.charm-cache.outputs.cache-hit != 'true' &&
-          inputs.force-charm-rebuild != true &&
-          github.event_name == 'push'
-        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
-        with:
-          path: ./charm/*.charm
-          key: charm-${{ steps.charmcraft-version.outputs.version }}-${{ steps.week.outputs.value }}-${{ hashFiles('charm/**', '!charm/*.charm') }}
-
       - name: Upload charm artifact
-        # Always runs, whether the charm came from cache or was just built,
-        # since the deploy jobs unconditionally download this artifact.
+        # The deploy jobs unconditionally download this artifact.
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: charm
