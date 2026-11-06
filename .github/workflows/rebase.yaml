@@ -1,6 +1,8 @@
 name: Automatic Rebase
 on:
-  issue_comment:
+  # Accepted risk: only OWNER/MEMBER/COLLABORATOR comments trigger it (see
+  # `if:` below), and the job only rebases and pushes; it never runs PR code.
+  issue_comment: # zizmor: ignore[dangerous-triggers]
     types: [created]
 
 jobs:
