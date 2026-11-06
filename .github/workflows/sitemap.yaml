@@ -6,6 +6,9 @@ on:
     paths:
       - "templates/**"
 
+permissions:
+  contents: read
+
 jobs:
   generate-sitemap:
     if: github.repository == 'canonical/ubuntu.com'
@@ -14,6 +17,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Call sitemap generation endpoint
         env:
