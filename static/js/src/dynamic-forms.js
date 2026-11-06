@@ -71,8 +71,18 @@ import { prepareInputFieldsOnce } from "./prepare-form-inputs.js";
               .replace(/%% returnURL %%/g, formData.returnUrl);
 
             if (formData.title) {
-              const title = document.getElementById("modal-title");
-              title.innerHTML = formData.title;
+              // Resolve the title within the fetched modal, using the ID
+              // its dialog references (IDs are modal-specific)
+              const dialog = formContainer.querySelector(
+                "[role='dialog'][aria-labelledby]",
+              );
+              const titleId = dialog?.getAttribute("aria-labelledby");
+              const title = titleId
+                ? formContainer.querySelector(`[id="${CSS.escape(titleId)}"]`)
+                : formContainer.querySelector("#modal-title");
+              if (title) {
+                title.innerHTML = formData.title;
+              }
             }
             initialiseFormData(formData, contactButton);
           })
