@@ -6,6 +6,26 @@ test.beforeEach(async ({ page }) => {
   await acceptCookiePolicy(page);
 });
 
+test("Uses the existing global navigation without a Launchpad submenu", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  const navigation = page.locator("#navigation");
+
+  await expect(navigation).not.toHaveClass(/is-reduced/);
+  await expect(navigation.locator(".p-navigation__logo-icon")).toBeVisible();
+  await expect(
+    navigation.getByRole("link", { name: "Canonical Ubuntu", exact: true }),
+  ).toBeVisible();
+  await expect(
+    navigation.getByRole("menuitem", { name: "Products", exact: true }),
+  ).toBeVisible();
+  await expect(
+    navigation.getByRole("menuitem", { name: "Get Ubuntu", exact: true }),
+  ).toBeVisible();
+  await expect(page.locator("#secondary-navigation")).toHaveCount(0);
+});
+
 test("Feature tabs reveal their content with clicks and arrow keys", async ({
   page,
 }) => {
