@@ -22,7 +22,9 @@ DERIVED_OPTION_KEYS = (
     "gpu",
     "architecture",
 )
-DEFAULT_CACHE_PATH = "/tmp/ubuntu-com-certified-filter-options.json"
+DEFAULT_CACHE_PATH = os.path.join(
+    tempfile.gettempdir(), "ubuntu-com-certified-filter-options.json"
+)
 FILTER_CATEGORY_BY_API_VALUE = {
     "Laptop": "Laptop",
     "Desktop": "Desktop",
