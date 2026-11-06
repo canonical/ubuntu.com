@@ -1,7 +1,6 @@
-<div class="p-footer p-strip" data-nosnippet>
+<div class="p-footer p-strip {{ small_footer_class | default('') }}"
+     data-nosnippet>
   <div class="u-fixed-width">
-    <div class="p-footer--secondary row">
-      {% include "templates/_footer-copyright-and-legal.html" %}
-    </div>
+    <div class="p-footer--secondary row">{% include "templates/_footer-copyright-and-legal.html" %}</div>
   </div>
 </div>
