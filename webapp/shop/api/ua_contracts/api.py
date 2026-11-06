@@ -5,7 +5,8 @@ from requests.exceptions import HTTPError
 
 
 class UAContractsAPI:
-    def __init__(  # nosec B107 - "Macaroon" is a token type
+    # "Macaroon" is a token type, not a password.
+    def __init__(  # nosec B107
         self,
         session,
         authentication_token,

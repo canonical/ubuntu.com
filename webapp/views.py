@@ -1293,7 +1293,7 @@ def marketo_submit():
                     "iso_code"
                 ]
         except Exception:
-            logging.debug("GeoIP lookup failed", exc_info=True)
+            logging.warning("GeoIP lookup failed", exc_info=True)
 
     user_id = flask.request.cookies.get("user_id") or flask.request.form.get(
         "user_id"

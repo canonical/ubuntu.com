@@ -212,18 +212,14 @@ def get_user_subscription_statuses(
         # has_access_to_support describes whether this user subscription
         # displays the Support portal button. At the moment `billing` users
         # do not have access
-        "has_access_to_support": False,
+        "has_access_to_support": account.role != "billing",
         # has_access_to_token describes whether this user subscription displays
         # the token or not. At the moment `billing` users do not have access
-        "has_access_to_token": False,
+        "has_access_to_token": account.role != "billing",
         # is_renewed describes whether this user subscription has been renewed
         # already or not
         "is_renewed": False,
     }
-
-    if account.role != "billing":
-        statuses["has_access_to_support"] = True
-        statuses["has_access_to_token"] = True
 
     if type == "free":
         return statuses
