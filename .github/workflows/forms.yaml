@@ -10,6 +10,9 @@ on:
 env:
   SECRET_KEY: insecure_test_key
 
+permissions:
+  contents: read
+
 jobs:
   test-playwright-forms:
     if: github.repository == 'canonical/ubuntu.com'
@@ -17,6 +20,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      with:
+        persist-credentials: false
 
     - uses: actions/setup-node@v4
       with:
@@ -57,6 +62,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.base_ref }}
+          persist-credentials: false
 
       - name: Install node dependencies
         run: yarn install --immutable

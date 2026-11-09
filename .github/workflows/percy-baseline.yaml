@@ -39,6 +39,8 @@ jobs:
     steps:
       - name: Checkout SCM
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - uses: ./.github/actions/percy-snapshot
         with:

@@ -1,3 +1,4 @@
+import logging
 from functools import wraps
 from datetime import datetime
 from dateutil.parser import parse
@@ -345,14 +346,15 @@ def get_proctor_api_instance(area, proctor_session) -> Proctor360API:
     try:
         instance.set_time_zone_ids()
     except Exception:
-        pass
+        logging.warning("Could not load Proctor360 time zones", exc_info=True)
     return instance
 
 
 def get_ua_contracts_api_instance(
     user_token, response, session, remote_addr
 ) -> UAContractsAPI:
-    ua_contracts_api = UAContractsAPI(
+    # "Macaroon" is a token type, not a password.
+    ua_contracts_api = UAContractsAPI(  # nosec B106
         session=session,
         authentication_token=user_token,
         token_type="Macaroon",

@@ -1859,7 +1859,7 @@ class TestDeveloperDiariesIndex(BaseViewTestCase):
 
         self.assertEqual(
             soup.select_one(".p-content-card__image")["src"],
-            "https://assets.ubuntu.com/v1/94c82a15-blog_fallback_image.png",
+            "https://assets.ubuntu.com/v1/abf693f3-ubuntu_placeholder_2.jpg",
         )
 
     def test_pagination_truncates_and_keeps_filters(self):
