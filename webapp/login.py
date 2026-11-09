@@ -75,7 +75,7 @@ def login_handler():
     )
 
     if user_info(flask.session):
-        return flask.redirect(open_id.get_next_url())
+        return flask.redirect(safe_redirect_url(open_id.get_next_url()))
 
     response = session.request(
         method="get",
@@ -147,7 +147,7 @@ def after_login(resp):
         "is_credentials_support": is_credentials_support,
     }
 
-    return flask.redirect(open_id.get_next_url())
+    return flask.redirect(safe_redirect_url(open_id.get_next_url()))
 
 
 def logout():

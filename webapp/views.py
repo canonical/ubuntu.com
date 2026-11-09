@@ -990,15 +990,19 @@ def strip_xml_stylesheets(xml):
     Remove <?xml-stylesheet ...?> instructions from a sitemap. Uses plain
     string search rather than a backtracking regex to stay linear-time.
     """
-    start = xml.find("<?xml-stylesheet")
-    while start != -1:
+    parts = []
+    pos = 0
+    while True:
+        start = xml.find("<?xml-stylesheet", pos)
+        if start == -1:
+            break
         end = xml.find("?>", start)
         if end == -1:
             break
-        stop = end + len("?>")
-        xml = xml[:start] + xml[stop:]
-        start = xml.find("<?xml-stylesheet", start)
-    return xml
+        parts.append(xml[pos:start])
+        pos = end + len("?>")
+    parts.append(xml[pos:])
+    return "".join(parts)
 
 
 class BlogSitemapIndex(BlogView):
