@@ -219,7 +219,14 @@ class TestHomepageRender(VCRTestCase):
         logos = section.select("img.p-logo-section__logo")
         self.assertEqual(
             [logo["alt"] for logo in logos],
-            ["BT Group", "ESA", "OEDIV", "PhonePe", "SBI BITS"],
+            [
+                "BT Group",
+                "ESA",
+                "LaunchDarkly",
+                "OEDIV",
+                "PhonePe",
+                "SBI BITS",
+            ],
         )
 
     def test_containers_section(self):
