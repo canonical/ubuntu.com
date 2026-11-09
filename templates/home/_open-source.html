@@ -116,7 +116,9 @@
   {"id": "developers", "title": "Developers", "photo": photos.developers, "focus": "50% 15%", "blocks": [
     {"p": "Ubuntu is the #1 Linux amongst developers. Benefit from seamless integration with familiar tools for development and deployment, and access a growing range of toolchains."},
     {"command": {"prefix": "sudo snap install", "snaps": [
+      {"name": "docker"},
       {"name": "devpack-for-spring", "flags": "--classic"},
+      {"name": "devpack-for-go", "flags": "--classic"},
     ]}},
     {"logos": logos},
   ]},
