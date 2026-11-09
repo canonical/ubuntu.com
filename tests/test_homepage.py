@@ -24,6 +24,7 @@ EXPECTED_ORDER = [
     "performance",
     "hardware",
     "pro",
+    "trusted-by",
     "open-source",
     "containers",
     "stories",
