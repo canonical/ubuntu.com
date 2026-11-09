@@ -7,9 +7,6 @@ on:
 
 jobs:
   analyze:
-    # bandit-action v1.0.1 hardcodes Python 3.9, which has no build for
-    # ubuntu-latest (26.04). Move back once a release lets us pick the
-    # version: https://github.com/PyCQA/bandit-action/issues/48
     runs-on: ubuntu-24.04
     permissions:
       security-events: write
