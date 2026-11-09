@@ -124,7 +124,30 @@ check "dedup run exits 0" 0 "$status"
 check "recheck receives 1 copy of /a" 1 "$(sed -n 2p "$STUB_LOG" | grep -o 'https://example\.com/a\b' | wc -l | tr -d ' ')"
 contains "recheck reports 2 links" "rechecking 2 link(s)"
 
-# 6. Missing arguments print usage and exit 2.
+# 6. Links still broken after the last pass are written to LINK_REPORT_PATH
+# with the pages they were found on; links that recovered are left out.
+export LINK_REPORT_PATH="${STUB_DIR}/report.json"
+run_case "1 1 1 1" "https://example.com/dead,https://example.com/gone https://example.com/dead https://example.com/dead https://example.com/dead"
+check "report run exits 1" 1 "$status"
+report="$(python3 -c '
+import json
+import sys
+
+for entry in json.load(open(sys.argv[1])):
+    print(entry["url"], entry["result"], ",".join(entry["parents"]), sep="|")
+' "$LINK_REPORT_PATH")"
+check "report lists only links still broken, with their pages" \
+  "https://example.com/dead|404 Not Found|https://example.com" "$report"
+
+# 7. No report is written when every link recovers.
+rm -f "$LINK_REPORT_PATH"
+run_case "1 0" "https://example.com/flaky -"
+check "recovered run exits 0" 0 "$status"
+check "recovered run writes no report" absent \
+  "$([ -e "$LINK_REPORT_PATH" ] && echo present || echo absent)"
+unset LINK_REPORT_PATH
+
+# 8. Missing arguments print usage and exit 2.
 output="$(PATH="${STUB_DIR}:${PATH}" bash "$TARGET" "$CONFIG" 2>&1)"
 status=$?
 check "missing URL exits 2" 2 "$status"
