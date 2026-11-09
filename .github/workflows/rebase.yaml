@@ -26,7 +26,7 @@ jobs:
       - name: Checkout the latest code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
+          fetch-depth: 0 # rebase needs full history to find the merge base
           persist-credentials: false
       # Same steps as the now-archived cirrus-actions/rebase@1.8.
       - name: Automatic Rebase
@@ -61,9 +61,9 @@ jobs:
           git config user.name "${name:-$COMMENTER} (Rebase PR Action)"
           git config user.email "${email:-$COMMENTER@users.noreply.github.com}"
 
-          remote="https://x-access-token:${GH_TOKEN}@github.com"
-          git remote set-url origin "$remote/$GITHUB_REPOSITORY.git"
-          git remote add fork "$remote/$head_repo.git"
+          # Git asks gh for credentials, and gh reads GH_TOKEN from env.
+          gh auth setup-git
+          git remote add fork "https://github.com/$head_repo.git"
 
           git fetch origin "$base_branch"
           git fetch fork "$head_branch"
