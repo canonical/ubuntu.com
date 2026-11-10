@@ -1,0 +1,63 @@
+{% from "_macros/vf_logo-section.jinja" import vf_logo_section %}
+
+{%- call(slot) vf_logo_section(
+  title={"text": "Trusted by"},
+  blocks=[
+    {
+      "type": "logo-block",
+      "item": {
+        "logos": [
+          image(url="https://assets.ubuntu.com/v1/c52c5bcd-bt_group_logo.png",
+                alt="BT Group",
+                attrs={"title": "BT Group"},
+                width="309",
+                height="312",
+                hi_def=True,
+                loading="lazy",
+                output_mode="attrs"),
+          image(url="https://assets.ubuntu.com/v1/f46047b4-esa_logo.png",
+                alt="ESA",
+                attrs={"title": "ESA"},
+                width="246",
+                height="312",
+                hi_def=True,
+                loading="lazy",
+                output_mode="attrs"),
+          image(url="https://assets.ubuntu.com/v1/850fb2ed-launchdarkly_logo.png",
+                alt="LaunchDarkly",
+                attrs={"title": "LaunchDarkly"},
+                width="570",
+                height="312",
+                hi_def=True,
+                loading="lazy",
+                output_mode="attrs"),
+          image(url="https://assets.ubuntu.com/v1/c7d44b22-oediv_logo.png",
+                alt="OEDIV",
+                attrs={"title": "OEDIV"},
+                width="261",
+                height="312",
+                hi_def=True,
+                loading="lazy",
+                output_mode="attrs"),
+          image(url="https://assets.ubuntu.com/v1/51ca5bc4-phonepe_logo.png",
+                alt="PhonePe",
+                attrs={"title": "PhonePe"},
+                width="369",
+                height="312",
+                hi_def=True,
+                loading="lazy",
+                output_mode="attrs"),
+          image(url="https://assets.ubuntu.com/v1/ee2f731f-sbi_bits_logo.png",
+                alt="SBI BITS",
+                attrs={"title": "SBI BITS"},
+                width="297",
+                height="312",
+                hi_def=True,
+                loading="lazy",
+                output_mode="attrs")
+        ]
+      }
+    }
+  ]
+) -%}
+{%- endcall -%}
