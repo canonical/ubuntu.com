@@ -15,6 +15,7 @@ import json
 import os
 import sys
 from html.parser import HTMLParser
+from urllib.parse import urlsplit
 from urllib.request import Request, urlopen
 
 # The webbot request body is limited to 100 kB.
@@ -44,6 +45,13 @@ def find_copydoc(html):
     return parser.copydoc
 
 
+def loggable_url(url):
+    """The URL without credentials, query string or fragment."""
+    parts = urlsplit(url)
+    host = parts.netloc.rpartition("@")[2]
+    return f"{parts.scheme}://{host}{parts.path}"
+
+
 def fetch_page(url):
     """Return the page HTML, or None if it cannot be fetched."""
     if not url.startswith(("http://", "https://")):
@@ -53,7 +61,8 @@ def fetch_page(url):
         with urlopen(request, timeout=FETCH_TIMEOUT) as response:
             body = response.read(MAX_PAGE_BYTES)
     except OSError as error:
-        print(f"Could not fetch {url}: {error}", file=sys.stderr)
+        # The CI log is public: a query string can carry tokens.
+        print(f"Could not fetch {loggable_url(url)}: {error}", file=sys.stderr)
         return None
     return body.decode("utf-8", errors="replace")
 

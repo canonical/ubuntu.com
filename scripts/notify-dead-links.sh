@@ -6,12 +6,13 @@
 # BOT_DEAD_LINKS_URL and BOT_DEAD_LINKS_TOKEN. Does nothing if any is missing.
 #
 # Direct messages are opt-in: unless LINK_CHECKER_NOTIFY_PAGE_OWNERS is exactly
-# "true" (a
-# repository variable, so it can be changed in the GitHub settings), webbot is
-# asked for a dry run. It then sends no direct messages but still lists the
-# copydocs whose owner it could not find.
+# "true" (a repository variable, so it can be changed in the GitHub settings),
+# webbot is asked for a dry run. It then sends no direct messages but still
+# lists the copydocs whose owner it could not find.
 #
-# Only counts are printed: the CI logs are public.
+# The CI logs are public, so no owner or secret is printed, only counts. The
+# one other line is link_report.py's note about a page it could not fetch,
+# which shows the page URL without its query string.
 
 set -euo pipefail
 

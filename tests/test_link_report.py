@@ -1,6 +1,9 @@
+import contextlib
+import io
 import os
 import sys
 import unittest
+from unittest import mock
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
 
@@ -175,6 +178,32 @@ class TestBuildPayload(unittest.TestCase):
 class TestFetchPage(unittest.TestCase):
     def test_ignores_non_http_urls(self):
         self.assertIsNone(link_report.fetch_page("file:///etc/passwd"))
+
+    def test_logs_failures_without_credentials_query_or_fragment(self):
+        url = "https://user:pw@ubuntu.com/page?token=secret#frag"
+        stderr = io.StringIO()
+
+        with mock.patch.object(
+            link_report, "urlopen", side_effect=OSError("timed out")
+        ), contextlib.redirect_stderr(stderr):
+            self.assertIsNone(link_report.fetch_page(url))
+
+        self.assertEqual(
+            stderr.getvalue(),
+            "Could not fetch https://ubuntu.com/page: timed out\n",
+        )
+
+
+class TestLoggableUrl(unittest.TestCase):
+    def test_keeps_only_scheme_host_port_and_path(self):
+        self.assertEqual(
+            link_report.loggable_url("http://u:p@host:8080/a/b?x=1#f"),
+            "http://host:8080/a/b",
+        )
+        self.assertEqual(
+            link_report.loggable_url("https://ubuntu.com/"),
+            "https://ubuntu.com/",
+        )
 
 
 if __name__ == "__main__":

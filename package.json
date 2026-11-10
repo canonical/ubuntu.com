@@ -5,7 +5,7 @@
     "test-shell": "for f in tests/shell/*.sh; do bash \"$f\" || exit 1; done",
     "lint-python": "flake8 webapp tests scripts/link_report.py && black --check --line-length 79 webapp tests scripts/link_report.py",
     "lint-llms": "python3 webapp/llms.py lint",
-    "format-python": "black --line-length 79 webapp tests",
+    "format-python": "black --line-length 79 webapp tests scripts/link_report.py",
     "format-js": "prettier -w 'static/js/src/**/*.{js,jsx,ts,tsx}'",
     "lint-scss": "stylelint 'static/sass/**/*.scss'",
     "lint-js": "eslint static/js/src/**/*.{js,jsx,ts,tsx}",
