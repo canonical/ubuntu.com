@@ -43,8 +43,15 @@
     }
   }
 
-  // The stage's margin alone sets the gap above the desktop
   .p-hero .p-button--brand {
+    // White text on the brand orange fails the 4.5:1 AA contrast minimum
+    color: $colors--light-theme--text-default;
+
+    &:visited {
+      color: $colors--light-theme--text-default;
+    }
+
+    // The stage's margin alone sets the gap above the desktop
     @media (min-width: $breakpoint-small) {
       margin-bottom: 0;
     }
