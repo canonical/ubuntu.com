@@ -1,0 +1,350 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Launchpad – Collaborate on the platform that publishes Ubuntu{% endblock %}
+
+{% block meta_description %}
+  Build, publish, and collaborate on open source software with Launchpad. Host code, track bugs, answer questions, and translate your projects.
+{% endblock meta_description %}
+
+{% block body_class %}is-paper{% endblock body_class %}
+
+{% set small_footer = True %}
+{% set small_footer_class = "is-dark" %}
+
+{% block announcement_bar %}
+{% endblock announcement_bar %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_data-spotlight.jinja" import vf_data_spotlight %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_macros/vf_equal-heights.jinja" import vf_equal_heights %}
+{% from "_macros/vf_tab-section.jinja" import vf_tab_section %}
+{% from "_macros/vf_cta-section.jinja" import vf_cta_section %}
+
+{% block outer_content %}
+  {% call(slot) vf_hero(
+    title_text="Launchpad",
+    subtitle_text="Collaborate on the platform that publishes Ubuntu",
+    layout="50/50",
+    blocks=[
+      {
+        "type": "description",
+        "padding": "shallow",
+        "item": {
+          "type": "html",
+          "content": "<p class=\"u-no-margin--bottom\">Share your software with millions of Linux users through Launchpad.</p><p class=\"u-no-margin--bottom\">Launchpad, the same platform that publishes Ubuntu, is an open source platform for collaborating, hosting, building, and publishing software.</p><p>Find the tools and community to help you share your projects and contribute to others.</p>"
+        }
+      },
+      {
+        "type": "cta-block",
+        "item": {
+          "primary": {
+            "content_html": "Create an account",
+            "attrs": {"href": "https://launchpad.net/+login"}
+          },
+          "link": {
+            "content_html": "Get the source code&nbsp;&rsaquo;",
+            "attrs": {"href": "https://git.launchpad.net/launchpad"}
+          }
+        }
+      },
+      {
+        "type": "image",
+        "item": {
+          "aspect_ratio": "3-2",
+          "is_highlighted": true,
+          "attrs": {
+            "src": "https://assets.ubuntu.com/v1/a59b25f6-hero_illustration.png",
+            "alt": "",
+            "width": "600",
+            "height": "400",
+            "loading": "eager"
+          }
+        }
+      }
+    ]
+  ) %}
+  {% endcall %}
+
+  {{ vf_data_spotlight(title={"text": "20+ years of Launchpad"},
+    blocks=[
+      {"stat": "49,000+", "description": "Projects"},
+      {"stat": "9", "description": "Build architectures"},
+      {"stat": "200,000+", "description": "Monthly builds"}
+  ]) }}
+
+  <div id="why-launchpad">
+    {% call(slot) vf_tiered_list(
+      is_description_full_width_on_desktop=false,
+      is_list_full_width_on_tablet=true
+    ) %}
+      {% if slot == "title" %}
+        <h2>Why choose Launchpad?</h2>
+      {% elif slot == "description" %}
+        <p>
+          Build, publish, and maintain your open source projects for free. Enable users to install and update your software
+          &ndash; just like any Ubuntu package.
+        </p>
+      {% elif slot == "list_item_title_1" %}
+        <h3 class="p-heading--5">A trusted platform</h3>
+      {% elif slot == "list_item_description_1" %}
+        <p>
+          Launchpad is the main hub for developing and publishing software that runs on different flavors of Ubuntu and
+          downstream operating systems (OSs). Launch your software on a platform that developers trust.
+        </p>
+      {% elif slot == "list_item_title_2" %}
+        <h3 class="p-heading--5">Personal Package Archives (PPAs)</h3>
+      {% elif slot == "list_item_description_2" %}
+        <p>
+          PPAs make the user's journey easier, enabling them to install and update software packages with familiar apt commands.
+        </p>
+        <p>
+          <a href="https://documentation.ubuntu.com/launchpad/en/latest/user/how-to/packaging/create-ppa/">Learn more about PPAs&nbsp;&rsaquo;</a>
+        </p>
+      {% elif slot == "list_item_title_3" %}
+        <h3 class="p-heading--5">Cross-platform bug tracking</h3>
+      {% elif slot == "list_item_description_3" %}
+        <p>
+          Simplify your workflow. Use our bug tracking feature to track bugs reported in Launchpad and external bug trackers.
+        </p>
+        <p>
+          <a href="https://bugs.launchpad.net/">Track bugs&nbsp;&rsaquo;</a>
+        </p>
+      {% elif slot == "list_item_title_4" %}
+        <h3 class="p-heading--5">Nine architectures, direct to stores</h3>
+      {% elif slot == "list_item_description_4" %}
+        <p>
+          Build and publish binaries for nine CPU architectures, including AMD64, ARM64, RISC-V64, and s390x.
+          Publish directly to the Snap Store or Charmhub.
+        </p>
+        <p>
+          <a href="https://launchpad.net/builders">Launchpad build farm&nbsp;&rsaquo;</a>
+        </p>
+      {% elif slot == "list_item_title_5" %}
+        <h3 class="p-heading--5">Free code hosting</h3>
+      {% elif slot == "list_item_description_5" %}
+        <p>Host your open source project and push and pull code to your repositories, without paying any fees.</p>
+        <p>
+          <a href="https://code.launchpad.net/+code-imports/+new">Import your code&nbsp;&rsaquo;</a>
+        </p>
+      {% elif slot == "list_item_title_6" %}
+        <h3 class="p-heading--5">Grow your community</h3>
+      {% elif slot == "list_item_description_6" %}
+        <p>
+          Build a community of users and developers around your projects and contribute to other projects.
+          Respond quickly to users through Launchpad Answers, build a team to collaborate and share responsibilities,
+          and have your project translated and shared in multiple languages.
+        </p>
+        <p>
+          <a href="https://answers.launchpad.net/">Launchpad Answers&nbsp;&rsaquo;</a>
+        </p>
+      {% endif %}
+    {% endcall %}
+  </div>
+
+  {% call(slot) vf_equal_heights(
+    title_text="Stable and consistent builds on Launchpad",
+    attrs={"id": "builds"},
+    highlight_images=true,
+    image_aspect_ratio_large="square",
+    items=[
+      {
+        "title_text": "Build snaps",
+        "title_link_attrs": {"href": "https://documentation.ubuntu.com/launchpad/en/latest/user/how-to/packaging/build-snaps-in-launchpad/"},
+        "image_html": image(url="https://assets.ubuntu.com/v1/5f9cafb1-snapcraft.png", alt="", width=284, height=284, hi_def=true, attrs={"class": "p-image-container__image"}),
+        "description_html": "<p>Build snaps for different architectures and publish directly to the <a href=\"https://snapcraft.io/\">Snap Store</a>.</p>"
+      },
+      {
+        "title_text": "Build rocks",
+        "title_link_attrs": {"href": "https://documentation.ubuntu.com/launchpad/en/latest/user/how-to/packaging/build-rocks-in-launchpad/"},
+        "image_html": image(url="https://assets.ubuntu.com/v1/80e9a6b5-rockstore.png", alt="", width=284, height=284, hi_def=true, attrs={"class": "p-image-container__image"}),
+        "description_html": "<p>Convert your software package into an Open Container Initiative (OCI) compliant container image based on Ubuntu Long Term Support (LTS).</p>"
+      },
+      {
+        "title_text": "Build charms",
+        "title_link_attrs": {"href": "https://documentation.ubuntu.com/launchpad/en/latest/user/how-to/packaging/build-charms-in-launchpad/"},
+        "image_html": image(url="https://assets.ubuntu.com/v1/395fe32b-charmhub.png", alt="", width=284, height=284, hi_def=true, attrs={"class": "p-image-container__image"}),
+        "description_html": "<p>Use Launchpad to get consistent charm builds and publish directly to <a href=\"https://charmhub.io/\">Charmhub</a>.</p>"
+      },
+      {
+        "title_text": "Build OCI images",
+        "title_link_attrs": {"href": "https://documentation.ubuntu.com/launchpad/en/latest/user/how-to/packaging/build-oci-images-in-launchpad/"},
+        "image_html": image(url="https://assets.ubuntu.com/v1/42feb65e-oci_image.png", alt="", width=284, height=284, hi_def=true, attrs={"class": "p-image-container__image"}),
+        "description_html": "<p>Build containerized application images you can deploy consistently on Docker, Podman, and Kubernetes.</p>"
+      }
+    ]
+  ) %}
+    {% if slot == "description" %}
+      <p>
+        With the Launchpad build farm, you can build software packages with better consistency, ensuring predictable
+        operations across different platforms and architectures. You can also publish your snaps and charms directly
+        to the store, ensuring a reliable delivery pipeline.
+      </p>
+    {% endif %}
+  {% endcall %}
+
+  {{ vf_tab_section(title={"text": "Feature highlights"},
+    attrs={"id": "features"},
+    layout="50-50",
+    tabs=[
+      {
+        "tab_html": "Host code",
+        "type": "basic-section",
+        "item": {
+          "items": [
+            {
+              "type": "image",
+              "padding": "shallow",
+              "item": {
+                "aspect_ratio": "3-2",
+                "is_highlighted": false,
+                "attrs": {
+                  "src": "https://assets.ubuntu.com/v1/f68b0ca9-panel_0.png",
+                  "alt": "Launchpad's code hosting page with Git clone and push commands and merge proposals.",
+                  "width": "1200",
+                  "height": "800",
+                  "loading": "lazy"
+                }
+              }
+            },
+            {
+              "type": "description",
+              "item": {
+                "type": "text",
+                "content": "Launchpad Git hosting enables you to share your project code, access other open source code, and review and merge contributions to your project."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "tab_html": "Track bugs",
+        "type": "basic-section",
+        "item": {
+          "items": [
+            {
+              "type": "image",
+              "padding": "shallow",
+              "item": {
+                "aspect_ratio": "3-2",
+                "is_highlighted": false,
+                "attrs": {
+                  "src": "https://assets.ubuntu.com/v1/3184c5b9-panel_1.png",
+                  "alt": "Launchpad bug tracker showing bug importance, status, and affected projects.",
+                  "width": "1200",
+                  "height": "800",
+                  "loading": "lazy"
+                }
+              }
+            },
+            {
+              "type": "description",
+              "item": {
+                "type": "text",
+                "content": "Report software bugs and track fixes, or import bugs reported on other platforms and track them on Launchpad."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "tab_html": "Answer users",
+        "type": "basic-section",
+        "item": {
+          "items": [
+            {
+              "type": "image",
+              "padding": "shallow",
+              "item": {
+                "aspect_ratio": "3-2",
+                "is_highlighted": false,
+                "attrs": {
+                  "src": "https://assets.ubuntu.com/v1/7ffcd178-panel_2.png",
+                  "alt": "Launchpad Answers listing Ubuntu questions and their status.",
+                  "width": "1200",
+                  "height": "800",
+                  "loading": "lazy"
+                }
+              }
+            },
+            {
+              "type": "description",
+              "item": {
+                "type": "text",
+                "content": "Track support requests using Answers, respond directly to user questions, and build a knowledge base for your project."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "tab_html": "Translate projects",
+        "type": "basic-section",
+        "item": {
+          "items": [
+            {
+              "type": "image",
+              "padding": "shallow",
+              "item": {
+                "aspect_ratio": "3-2",
+                "is_highlighted": false,
+                "attrs": {
+                  "src": "https://assets.ubuntu.com/v1/17b37554-panel_3.png",
+                  "alt": "Launchpad translation dashboard showing progress for multiple languages.",
+                  "width": "1200",
+                  "height": "800",
+                  "loading": "lazy"
+                }
+              }
+            },
+            {
+              "type": "description",
+              "item": {
+                "type": "text",
+                "content": "Translate your project into multiple languages with the help of translation groups."
+              }
+            }
+          ]
+        }
+      }
+  ]) }}
+
+  {% call(slot) vf_cta_section(
+    title_text="Start your journey on Launchpad",
+    variant="block",
+    layout="100",
+    blocks=[
+      {
+        "type": "description",
+        "item": {
+          "type": "text",
+          "content": "Launchpad provides the tools and resources you need to build and publish open source software. Access Launchpad today."
+        }
+      },
+      {
+        "type": "cta",
+        "item": {
+          "primary": {
+            "content_html": "Create an account",
+            "attrs": {"href": "https://launchpad.net/+login"}
+          },
+          "secondaries": [
+            {
+              "content_html": "Explore projects",
+              "attrs": {"href": "https://launchpad.net/projects"}
+            }
+          ],
+          "link": {
+            "content_html": "View our quick start guide&nbsp;&rsaquo;",
+            "attrs": {"href": "https://documentation.ubuntu.com/launchpad/en/latest/user/get-started/"}
+          }
+        }
+      }
+    ]
+  ) %}
+  {% endcall %}
+
+  <script nonce="{{ csp_nonce }}"
+          type="module"
+          src="{{ versioned_static('js/modules/vanilla-framework/js/tabs.js') }}"></script>
+{% endblock outer_content %}
