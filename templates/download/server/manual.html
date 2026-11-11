@@ -22,7 +22,7 @@
   </section>
   <section class="p-section--shallow">
     <div class="u-fixed-width">
-      <nav class="p-tabs js-tabbed-content" data-maintain-hash="true">
+      <nav class="p-tabs js-tabbed-content" data-maintain-hash="true" data-tab-order="sequential">
         <ul class="p-tabs__list u-no-margin--bottom" role="tablist">
           <li class="p-tabs__item">
             <a class="p-tabs__link"
@@ -104,7 +104,8 @@
 
         <nav class="p-tabs js-tabbed-content"
              id="first-child-tab"
-             data-maintain-hash="true">
+             data-maintain-hash="true"
+             data-tab-order="sequential">
           <ul class="p-tabs__list u-no-margin--bottom" role="tablist">
             <li class="p-tabs__item">
               <a class="p-tabs__link"
@@ -121,7 +122,7 @@
                  id="system-requirements-tab-lts"
                  href="#system-requirements-lts"
                  aria-controls="system-requirements-lts"
-                 tabindex="-1">System requirements</a>
+                 tabindex="0">System requirements</a>
             </li>
             <li class="p-tabs__item">
               <a class="p-tabs__link"
@@ -130,7 +131,7 @@
                  id="how-to-install-tab-lts"
                  href="#how-to-install-lts"
                  aria-controls="how-to-install-lts"
-                 tabindex="-1">How to install</a>
+                 tabindex="0">How to install</a>
             </li>
           </ul>
         </nav>
@@ -272,6 +273,7 @@
           class="p-tabs js-tabbed-content"
           id="first-child-tab"
           data-maintain-hash="true"
+          data-tab-order="sequential"
         >
           <ul class="p-tabs__list u-no-margin--bottom" role="tablist">
             <li class="p-tabs__item">
