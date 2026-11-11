@@ -41,12 +41,29 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile
 
+      # Retry each URL so a transient failed load (e.g. a 504 on a static
+      # asset) doesn't fail the run; real a11y errors fail every attempt
       - name: Run a11y tests
         env:
           URL_LIST: ${{ needs.read-config.outputs.urls }}
           PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
+          MAX_ATTEMPTS: 3
         run: |
-          yarn pa11y-ci $URL_LIST
+          failed=()
+          for url in $URL_LIST; do
+            for attempt in $(seq 1 "$MAX_ATTEMPTS"); do
+              if yarn --silent pa11y-ci "$url"; then
+                continue 2
+              fi
+              echo "::warning::$url failed attempt $attempt of $MAX_ATTEMPTS"
+              if [ "$attempt" -lt "$MAX_ATTEMPTS" ]; then sleep 10; fi
+            done
+            failed+=("$url")
+          done
+          if [ ${#failed[@]} -gt 0 ]; then
+            echo "::error::Failed after $MAX_ATTEMPTS attempts: ${failed[*]}"
+            exit 1
+          fi
 
       - name: Send message on failure
         env:
