@@ -411,11 +411,11 @@ def get_headline_cvss(cve, cvss_v3_entries):
 
     legacy_score = None
     legacy_severity = None
-    if cvss_v3_entries:
+    if cve.get("cvss3") is not None:
+        legacy_score = cve["cvss3"]
+    elif cvss_v3_entries:
         legacy_score = cvss_v3_entries[0]["cvss"].get("baseScore")
         legacy_severity = cvss_v3_entries[0]["cvss"].get("baseSeverity")
-    elif cve.get("cvss3") is not None:
-        legacy_score = cve["cvss3"]
 
     if legacy_score is None:
         return None
