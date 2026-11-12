@@ -235,6 +235,42 @@
     }
   }
 
+  .u-pre-wrap {
+    white-space: pre-wrap;
+  }
+
+  .cve-mitigation {
+    p,
+    h3,
+    h4,
+    h5,
+    pre {
+      max-width: 45rem;
+    }
+
+    p {
+      white-space: pre-wrap;
+    }
+
+    h4 {
+      font-size: 1.25rem;
+      font-weight: $font-weight-bold;
+      line-height: 1.75rem;
+      margin-bottom: 0.75rem;
+      padding-top: 0.5rem;
+    }
+
+    h2 + h3,
+    h3 + h4,
+    h4 + h5 {
+      margin-top: 0 !important;
+    }
+
+    pre + h3 {
+      padding-top: 1.5rem;
+    }
+  }
+
   #cvss-v3-section,
   #cvss-v4-section {
     table th,

@@ -40,6 +40,7 @@ from webapp.context import (
 )
 from webapp.login import empty_session, user_info
 from webapp.security.api import SecurityAPIError
+from webapp.security.helpers import format_cve_mitigation
 from webapp.shop.api.ua_contracts.api import (
     UAContractsAPIError,
     UAContractsAPIErrorView,
@@ -566,6 +567,8 @@ def init_handlers(app):
     app.add_template_filter(sort_by_key_and_ordered_list)
 
     app.add_template_filter(convert_markdown_to_html)
+
+    app.add_template_filter(format_cve_mitigation)
 
     @app.template_filter()
     def slug(text):
