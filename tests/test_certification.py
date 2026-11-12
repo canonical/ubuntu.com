@@ -78,6 +78,15 @@ class TestCertification(VCRTestCase):
         response = self.client.get("/certified/search?vendor=HP")
         self.assertEqual(response.status_code, 200)
 
+    def test_legacy_certification_hardware_redirect(self):
+        path = "/certified/certification/hardware/201809-26463"
+
+        response = self.client.get(path)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(
+            response.headers.get("Location"), "/certified/201809-26463"
+        )
+
     def test_filters_json(self):
         response = self.client.get("/certified/filters.json")
         # The JS polls this for derived filter readiness, so the payload
