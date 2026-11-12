@@ -36,6 +36,7 @@ from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
 from canonicalwebteam.directory_parser import generate_sitemap
 from geolite2 import geolite2
+from markupsafe import escape
 from requests import Session
 from requests.exceptions import HTTPError, RequestException
 from werkzeug.exceptions import BadRequest, ServiceUnavailable
@@ -2198,10 +2199,15 @@ def build_developer_diaries_index(developer_diaries):
             limit=limit, offset=(page - 1) * limit, tags=tags
         )
 
+        # vf_card joins the author into raw HTML, so it needs a plain
+        # str with the user-chosen name already escaped: unescaped
+        # would allow injection, a Markup would escape the card itself
         for article in articles:
             article["tag_names"] = _developer_diaries_tag_names(
                 article["tags"]
             )
+            if article["author"]:
+                article["author_name"] = str(escape(article["author"]["name"]))
 
         return flask.render_template(
             "community/developer-diaries/index.html",

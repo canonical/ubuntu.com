@@ -1,7 +1,7 @@
 {% from "_macros/vf_card.jinja" import vf_card %}
 
-{# Authors and likes only show on the article page. Without tags, there's
-   no footer (nor its rule) at all. #}
+{# Authors are plain text rather than links, and likes only show on the
+   article page. Without tags, there's no footer (nor its rule) at all. #}
 {{ vf_card(
   columns="2",
   link=article.path,
@@ -10,6 +10,7 @@
     "src": article.image or "https://assets.ubuntu.com/v1/abf693f3-ubuntu_placeholder_2.jpg",
     "alt": ""
   },
+  author=article.author_name,
   date=article.created.strftime("%-d %b %Y"),
   footer={"content_type": article.tag_names} if article.tag_names else None,
   theme="dark"

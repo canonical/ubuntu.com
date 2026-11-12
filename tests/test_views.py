@@ -1798,9 +1798,11 @@ class TestDeveloperDiariesIndex(BaseViewTestCase):
         )
         self.assertIn("30 Jun 2026", card.text)
         self.assertEqual(card.select_one(".p-chip--information").text, "Rock")
-        # Authors and likes only show on the article page
-        self.assertIsNone(card.select_one(".p-content-card__author-link"))
-        self.assertNotIn("Jane Doe", card.text)
+        # Authors are plain text, not links
+        byline = card.select_one(".p-content-card__author-and-date")
+        self.assertIn("Jane Doe", byline.text)
+        self.assertIsNone(byline.find("a"))
+        # Likes only show on the article page
         self.assertIsNone(card.select_one(".p-icon--thumbs-up"))
         # Dark theme border and footer rule, for the dark page
         self.assertIn("is-dark", card["class"])
@@ -1811,6 +1813,23 @@ class TestDeveloperDiariesIndex(BaseViewTestCase):
             soup.select_one("input[value=snaps]").has_attr("checked")
         )
         self.assertEqual(len(soup.select(".p-pagination__link")), 3)
+
+    def test_escapes_author_names(self):
+        _, soup = self._get(
+            "/community/developer-diaries",
+            articles=[
+                _developer_diaries_article(
+                    author={
+                        "name": "<b>Jane</b>",
+                        "url": "https://discourse.ubuntu.com/u/jdoe",
+                    }
+                )
+            ],
+        )
+
+        byline = soup.select_one(".p-content-card__author-and-date")
+        self.assertIn("<b>Jane</b>", byline.text)
+        self.assertIsNone(byline.find("b"))
 
     def test_tag_names_on_cards(self):
         _, soup = self._get(
