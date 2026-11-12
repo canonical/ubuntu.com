@@ -8,7 +8,7 @@ var smartquotes = require("smartquotes");
  * @param {HTMLElement | null} root - Root container element to process.
  */
 export function applySmartQuotes(root) {
-  if (!root) {
+  if (!root || root.closest("[data-no-smartquotes]")) {
     return;
   }
 
@@ -19,27 +19,16 @@ export function applySmartQuotes(root) {
       !element.parentElement.closest("[data-no-smartquotes]"),
   );
 
-  const placeholders = excluded
-    .map((element) => {
-      const parent = element.parentNode;
-      if (!parent) {
-        return null;
-      }
-      const placeholder = document.createComment("no-smartquotes");
-      parent.replaceChild(placeholder, element);
-      return { element, placeholder };
-    })
-    .filter((entry) => entry !== null);
+  const placeholders = excluded.map((element) => {
+    const placeholder = document.createComment("no-smartquotes");
+    element.replaceWith(placeholder);
+    return { element, placeholder };
+  });
 
   smartquotes(root);
 
   placeholders.reverse().forEach((entry) => {
-    if (entry && entry.placeholder.parentNode) {
-      entry.placeholder.parentNode.replaceChild(
-        entry.element,
-        entry.placeholder,
-      );
-    }
+    entry.placeholder.replaceWith(entry.element);
   });
 }
 

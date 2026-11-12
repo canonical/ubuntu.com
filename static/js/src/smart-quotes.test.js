@@ -9,6 +9,21 @@ describe("applySmartQuotes", () => {
     expect(() => applySmartQuotes(null)).not.toThrow();
   });
 
+  it("skips processing when root or an ancestor is marked", () => {
+    document.body.innerHTML = [
+      '<div id="marked-root" data-no-smartquotes="true">',
+      '  <p id="direct">"direct"</p>',
+      '  <div id="nested-root"><span id="child">"child"</span></div>',
+      "</div>",
+    ].join("\n");
+
+    applySmartQuotes(document.getElementById("marked-root"));
+    applySmartQuotes(document.getElementById("nested-root"));
+
+    expect(document.getElementById("direct")?.textContent).toBe('"direct"');
+    expect(document.getElementById("child")?.textContent).toBe('"child"');
+  });
+
   it("skips [data-no-smartquotes] subtrees", () => {
     const singleQuotedCmd = "printf '%s\\n'";
     const escapedDoubleFlag = '--u32 "0&gt;&gt;24"';
