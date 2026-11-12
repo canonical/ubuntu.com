@@ -11,6 +11,7 @@ the <meta name="copydoc"> tag.
 """
 
 import argparse
+import http.client
 import json
 import os
 import sys
@@ -23,7 +24,12 @@ MAX_PAYLOAD_BYTES = 90_000
 MAX_PAGES = 40
 MAX_LINKS_PER_PAGE = 15
 MAX_PAGE_BYTES = 2_000_000
-FETCH_TIMEOUT = 15
+FETCH_TIMEOUT = 10
+# A link broken on more than this many pages (a footer link, say) is reported
+# once as widespread instead of once per page, where it would crowd out the
+# findings that belong to a single owner.
+WIDESPREAD_MIN_PAGES = 10
+MAX_WIDESPREAD_LINKS = 20
 
 
 class CopydocParser(HTMLParser):
@@ -64,6 +70,14 @@ def fetch_page(url):
         # The CI log is public: a query string can carry tokens.
         print(f"Could not fetch {loggable_url(url)}: {error}", file=sys.stderr)
         return None
+    except (http.client.HTTPException, ValueError) as error:
+        # Unlike an OSError, the text of these (InvalidURL, for one) can
+        # contain the URL with its query string, so only name the error.
+        print(
+            f"Could not fetch {loggable_url(url)}: {type(error).__name__}",
+            file=sys.stderr,
+        )
+        return None
     return body.decode("utf-8", errors="replace")
 
 
@@ -74,11 +88,32 @@ def to_json(payload):
 def build_payload(report, room, run_url=None, fetch=fetch_page, dry_run=False):
     """Group broken links by the page they are on and attach each copydoc.
 
-    Pages and links that do not fit the size limits are left out and counted
-    in omitted_pages and omitted_links.
+    Links broken on more than WIDESPREAD_MIN_PAGES pages are taken out of
+    the per-page lists and reported once in widespread_links. Pages and links
+    that do not fit the size limits are left out and counted in omitted_pages
+    and omitted_links.
     """
+    parents_by_link = {}
+    results = {}
+    for entry in report:
+        parents = parents_by_link.setdefault(entry["url"], set())
+        parents.update(entry.get("parents", []))
+        results[entry["url"]] = entry.get("result", "")
+
+    widespread = sorted(
+        (
+            {"url": url, "result": results[url], "page_count": len(parents)}
+            for url, parents in parents_by_link.items()
+            if len(parents) > WIDESPREAD_MIN_PAGES
+        ),
+        key=lambda link: (-link["page_count"], link["url"]),
+    )
+    widespread_urls = {link["url"] for link in widespread}
+
     links_by_page = {}
     for entry in report:
+        if entry["url"] in widespread_urls:
+            continue
         for parent in entry.get("parents", []):
             links_by_page.setdefault(parent, []).append(
                 {"url": entry["url"], "result": entry.get("result", "")}
@@ -89,15 +124,19 @@ def build_payload(report, room, run_url=None, fetch=fetch_page, dry_run=False):
     pages = []
     for page_url in page_urls[:MAX_PAGES]:
         html = fetch(page_url)
-        pages.append(
-            {
-                "page_url": page_url,
-                "copydoc_url": find_copydoc(html) if html else None,
-                "broken_links": links_by_page[page_url][:MAX_LINKS_PER_PAGE],
-            }
-        )
+        page = {
+            "page_url": page_url,
+            "copydoc_url": find_copydoc(html) if html else None,
+            "broken_links": links_by_page[page_url][:MAX_LINKS_PER_PAGE],
+        }
+        if html is None:
+            # Tells webbot the copydoc is unknown, not that there is none.
+            page["fetch_failed"] = True
+        pages.append(page)
 
     payload = {"room": room, "pages": pages}
+    if widespread:
+        payload["widespread_links"] = widespread[:MAX_WIDESPREAD_LINKS]
     if run_url:
         payload["run_url"] = run_url
     if dry_run:
@@ -111,7 +150,11 @@ def build_payload(report, room, run_url=None, fetch=fetch_page, dry_run=False):
 
     included_links = sum(len(page["broken_links"]) for page in pages)
     omitted_pages = len(page_urls) - len(pages)
-    omitted_links = total_links - included_links
+    omitted_links = (
+        total_links
+        - included_links
+        + max(len(widespread) - MAX_WIDESPREAD_LINKS, 0)
+    )
     if omitted_pages:
         payload["omitted_pages"] = omitted_pages
     if omitted_links:

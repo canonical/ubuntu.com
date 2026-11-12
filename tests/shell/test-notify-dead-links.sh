@@ -26,8 +26,8 @@ for arg in "$@"; do
   prev="$arg"
 done
 [ "${STUB_CURL_EXIT:-0}" -ne 0 ] && exit "$STUB_CURL_EXIT"
-printf '{"sent":[{"username":"someone","pages":1,"links":1}],"unresolved":[],"resolved_owners":1,"dry_run":%s}' \
-  "${STUB_DRY_RUN:-false}" > "$out"
+printf '{"sent":[{"username":"someone","pages":1,"links":1}],"unresolved":[],"resolved_owners":1,"widespread_links":%s,"dry_run":%s}' \
+  "${STUB_WIDESPREAD:-0}" "${STUB_DRY_RUN:-false}" > "$out"
 STUB
 chmod +x "${STUB_DIR}/curl"
 
@@ -96,6 +96,13 @@ run_notify
 check "successful run exits 0" 0 "$status"
 contains "request goes to the webbot URL" "$(cat "$STUB_LOG")" "$BOT_DEAD_LINKS_URL"
 contains "request carries the bearer token" "$(cat "$STUB_LOG")" "Authorization: Bearer s3cret-token"
+contains "request has a time limit" "$(cat "$STUB_LOG")" "--max-time 60"
+case "$output" in
+  *"broken on many pages"*) check "no widespread line without widespread links" absent present ;;
+  *) check "no widespread line without widespread links" absent absent ;;
+esac
+STUB_WIDESPREAD=2 run_notify
+contains "widespread links are counted" "$output" "2 link(s) broken on many pages"
 contains "payload names the broken page" "$(cat "$STUB_PAYLOAD")" "http://127.0.0.1:9/page"
 contains "payload defaults to web-alerts" "$(cat "$STUB_PAYLOAD")" '"room":"web-alerts"'
 contains "run prints the counts" "$output" "Webbot sent 1 direct message(s)"

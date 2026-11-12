@@ -208,6 +208,8 @@ Direct messages to page owners are off by default. To turn them on, set the repo
 
 Webbot has a second switch, `dead_links.send_direct_messages` in its config, which must also be `true` for any direct message to be sent. It is the master switch, and a change there is a change to the bot's deployment configuration.
 
+Two kinds of findings are reported in `web-alerts` rather than to an owner. A link broken on more than 10 pages (a footer link, for example) is listed once with its page count, instead of in every page's list. A page that could not be fetched is listed as such, because its copydoc is then unknown. If webbot cannot post to `web-alerts` it answers with an error and the step fails, which is visible in the run. The step is limited to 10 minutes, and each page fetch and the request to webbot have their own time limits.
+
 ## Linting / formatting
 
 When making changes to the codebase please make sure it's properly formatted and linted.

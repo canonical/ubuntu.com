@@ -38,7 +38,9 @@ fi
 python3 "$(dirname "$0")/link_report.py" "$LINK_REPORT_PATH" \
   ${args[@]+"${args[@]}"} > "$payload"
 
-curl --fail --silent --show-error -X POST \
+# The request is capped at 60 seconds, as webbot reads a Google Doc for each
+# copydoc. Webbot answers 502 if it could not post to the channel.
+curl --fail --silent --show-error --max-time 60 -X POST \
   -H "Authorization: Bearer ${BOT_DEAD_LINKS_TOKEN}" \
   -H "Content-Type: application/json" \
   --data @"$payload" \
@@ -58,4 +60,9 @@ print(
     f"{result['resolved_owners']} owner(s) found, "
     f"{len(result['unresolved'])} copydoc(s) without a reachable owner{note}."
 )
+if result.get("widespread_links"):
+    print(
+        f"{result['widespread_links']} link(s) broken on many pages were "
+        "reported once in the channel."
+    )
 PY

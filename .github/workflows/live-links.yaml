@@ -37,6 +37,7 @@ jobs:
       - name: Notify page owners of broken links
         if: failure()
         continue-on-error: true
+        timeout-minutes: 10
         env:
           BOT_DEAD_LINKS_URL: ${{ secrets.BOT_DEAD_LINKS_URL }}
           BOT_DEAD_LINKS_TOKEN: ${{ secrets.BOT_DEAD_LINKS_TOKEN }}
