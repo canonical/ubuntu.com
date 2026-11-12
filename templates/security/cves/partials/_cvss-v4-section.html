@@ -1,31 +1,22 @@
-<div id="cvss-v4-section">
+<div>
 
   {% set baseScore = cvssV4.baseScore %}
-  {% if baseScore <= 3.9 %}
-    {% set severityLabel = "Low" %}
-    {% set severityIcon = "https://assets.ubuntu.com/v1/03ac6f86-CVE-Priority-icon-Low.svg" %}
-  {% elif baseScore <= 6.9 %}
-    {% set severityLabel = "Medium" %}
-    {% set severityIcon = "https://assets.ubuntu.com/v1/8010f9e0-CVE-Priority-icon-Medium.svg" %}
-  {% elif baseScore <= 8.9 %}
-    {% set severityLabel = "High" %}
-    {% set severityIcon = "https://assets.ubuntu.com/v1/3887354e-CVE-Priority-icon-High.svg" %}
-  {% elif baseScore <= 10 %}
-    {% set severityLabel = "Critical" %}
-    {% set severityIcon = "https://assets.ubuntu.com/v1/c96f27b9-CVE-Priority-icon-Critical.svg" %}
-  {% endif %}
+  {% set severityLabel = (entry.severity or "") | capitalize %}
+  {% set severityIcon = severity_icons[(entry.severity or "") | lower] %}
 
   <p class="u-sv1">
     <span class="cve-score-summary">
       <strong>Base score</strong>
-      {{ image(url=severityIcon,
-                                alt="",
-                                width="16",
-                                height="16",
-                                hi_def=True,
-                                loading="auto") | safe
-      }}
-      <span>{{ baseScore }} &middot; {{ severityLabel }}</span>
+      {% if severityIcon %}
+        {{ image(url=severityIcon,
+                                  alt="",
+                                  width="16",
+                                  height="16",
+                                  hi_def=True,
+                                  loading="auto") | safe
+        }}
+      {% endif %}
+      <span>{{ baseScore }}{% if severityLabel %} &middot; {{ severityLabel }}{% endif %}</span>
     </span>
   </p>
 
@@ -37,14 +28,14 @@
           <div role="heading" aria-level="3" class="p-accordion__heading">
             <button type="button"
                     class="p-accordion__tab"
-                    id="base-metrics-tab"
-                    aria-controls="base-metrics-section"
+                    id="{{ idp }}base-metrics-tab"
+                    aria-controls="{{ idp }}base-metrics-section"
                     aria-expanded="true">Base metrics</button>
           </div>
           <section class="p-accordion__panel"
-                   id="base-metrics-section"
+                   id="{{ idp }}base-metrics-section"
                    aria-hidden="false"
-                   aria-labelledby="base-metrics-tab">
+                   aria-labelledby="{{ idp }}base-metrics-tab">
             <table>
               <thead>
                 <tr>
@@ -109,14 +100,14 @@
           <div role="heading" aria-level="3" class="p-accordion__heading">
             <button type="button"
                     class="p-accordion__tab"
-                    id="supplemental-metrics-tab"
-                    aria-controls="supplemental-metrics-section"
+                    id="{{ idp }}supplemental-metrics-tab"
+                    aria-controls="{{ idp }}supplemental-metrics-section"
                     aria-expanded="false">Supplemental metrics</button>
           </div>
           <section class="p-accordion__panel"
-                   id="supplemental-metrics-section"
+                   id="{{ idp }}supplemental-metrics-section"
                    aria-hidden="true"
-                   aria-labelledby="supplemental-metrics-tab">
+                   aria-labelledby="{{ idp }}supplemental-metrics-tab">
             <table>
               <thead>
                 <tr>
@@ -161,14 +152,14 @@
           <div role="heading" aria-level="3" class="p-accordion__heading">
             <button type="button"
                     class="p-accordion__tab"
-                    id="environmental-metrics-tab"
-                    aria-controls="environmental-metrics-section"
+                    id="{{ idp }}environmental-metrics-tab"
+                    aria-controls="{{ idp }}environmental-metrics-section"
                     aria-expanded="false">Environmental metrics</button>
           </div>
           <section class="p-accordion__panel"
-                   id="environmental-metrics-section"
+                   id="{{ idp }}environmental-metrics-section"
                    aria-hidden="true"
-                   aria-labelledby="environmental-metrics-tab">
+                   aria-labelledby="{{ idp }}environmental-metrics-tab">
             <table>
               <thead>
                 <tr>
@@ -247,14 +238,14 @@
           <div role="heading" aria-level="3" class="p-accordion__heading">
             <button type="button"
                     class="p-accordion__tab"
-                    id="threat-metrics-tab"
-                    aria-controls="threat-metrics-section"
+                    id="{{ idp }}threat-metrics-tab"
+                    aria-controls="{{ idp }}threat-metrics-section"
                     aria-expanded="false">Threat metrics</button>
           </div>
           <section class="p-accordion__panel"
-                   id="threat-metrics-section"
+                   id="{{ idp }}threat-metrics-section"
                    aria-hidden="true"
-                   aria-labelledby="threat-metrics-tab">
+                   aria-labelledby="{{ idp }}threat-metrics-tab">
             <table>
               <thead>
                 <tr>
@@ -277,14 +268,14 @@
         <div role="heading" aria-level="3" class="p-accordion__heading">
           <button type="button"
                   class="p-accordion__tab"
-                  id="scores-tab"
-                  aria-controls="scores-section"
+                  id="{{ idp }}scores-tab"
+                  aria-controls="{{ idp }}scores-section"
                   aria-expanded="false">Scores</button>
         </div>
         <section class="p-accordion__panel"
-                 id="scores-section"
+                 id="{{ idp }}scores-section"
                  aria-hidden="true"
-                 aria-labelledby="scores-tab">
+                 aria-labelledby="{{ idp }}scores-tab">
           <table>
             <thead>
               <tr>
