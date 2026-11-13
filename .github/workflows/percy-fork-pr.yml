@@ -2,9 +2,12 @@
 
 name: Percy testing on PRs from forks
 run-name: "Testing Percy on fork PR #${{ github.event.pull_request.number }}"
+# This workflow handles Percy testing for PRs from forks securely
+# It uses pull_request_target to access secrets while checking out the PR code
+# GitHub Actions workflow execution policies must allow pull_request_target for this workflow.
 
 on:
-  pull_request_target:
+  pull_request_target: # zizmor: ignore[dangerous-triggers]
     branches:
       - main
     types:
