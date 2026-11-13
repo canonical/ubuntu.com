@@ -35,6 +35,14 @@ on:
 
 permissions: {}
 
+# Pin craft tools to exact snap revisions: neither snap publishes
+# minor-version tracks, and a minor bump inside a track has broken packing
+# before (charmcraft 4.4.2 -> 4.5.0 changed the output location). Bump these
+# deliberately; `snap info <name>` lists the revisions.
+env:
+  ROCKCRAFT_REVISION: "5304" # rockcraft 1.21.2
+  CHARMCRAFT_REVISION: "8526" # charmcraft 4.5.0
+
 jobs:
   resolve-base:
     # We build the rock with `rockcraft pack --destructive-mode` directly on
@@ -126,7 +134,7 @@ jobs:
 
       - name: Setup Rockcraft
         if: steps.check-image.outputs.exists != 'true'
-        run: sudo snap install rockcraft --classic --channel=latest/stable
+        run: sudo snap install rockcraft --classic --revision="$ROCKCRAFT_REVISION"
 
       - name: Pack rock
         if: steps.check-image.outputs.exists != 'true'
@@ -157,7 +165,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Charmcraft
-        run: sudo snap install charmcraft --classic --channel=latest/stable
+        run: sudo snap install charmcraft --classic --revision="$CHARMCRAFT_REVISION"
 
       - name: Resolve charmcraft version
         id: charmcraft-version
@@ -184,7 +192,10 @@ jobs:
 
       - name: Pack charm
         if: steps.charm-cache.outputs.cache-hit != 'true'
-        run: charmcraft pack -v --project-dir ./charm
+        # --output is explicit: charmcraft's default output directory has
+        # changed between releases, and the cache/upload steps below expect
+        # the charm in ./charm.
+        run: charmcraft pack -v --project-dir ./charm --output ./charm
 
       - name: Save charm cache
         # Cache-poisoning guard: only cache on a push trigger on main branch

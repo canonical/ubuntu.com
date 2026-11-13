@@ -74,11 +74,22 @@ runs:
         APP_NAME: ${{ inputs.app-name }}
         IMAGE_URL: ${{ inputs.image-url }}
       run: |
-        set -e
-        CHARM_FILE=$(ls ./*.charm | head -1)
-        if juju show-application "$APP_NAME" &>/dev/null; then
-          juju refresh "$APP_NAME" --path="./$CHARM_FILE" --resource flask-app-image="$IMAGE_URL"
+        set -euo pipefail
+        shopt -s nullglob
+        CHARMS=(./*.charm)
+        if [ "${#CHARMS[@]}" -ne 1 ]; then
+          echo "::error::Expected exactly one .charm file, found ${#CHARMS[@]}: ${CHARMS[*]}"
+          exit 1
+        fi
+        CHARM_FILE="${CHARMS[0]}"
+        # Only deploy when Juju explicitly reports the application as missing;
+        # any other failure (API/network/auth error) must not be treated as "absent".
+        if SHOW_OUTPUT=$(juju show-application "$APP_NAME" 2>&1); then
+          juju refresh "$APP_NAME" --path="$CHARM_FILE" --resource flask-app-image="$IMAGE_URL"
+        elif grep -qF "application \"$APP_NAME\" not found" <<< "$SHOW_OUTPUT"; then
+          juju deploy "$CHARM_FILE" "$APP_NAME" --resource flask-app-image="$IMAGE_URL"
         else
-          juju deploy "./$CHARM_FILE" "$APP_NAME" --resource flask-app-image="$IMAGE_URL"
+          echo "::error::Could not determine whether '$APP_NAME' exists: $SHOW_OUTPUT"
+          exit 1
         fi
         juju wait-for application "$APP_NAME" --query="name=='$APP_NAME' && (status=='active' || status=='idle')"
