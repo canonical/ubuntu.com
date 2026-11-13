@@ -57,8 +57,13 @@ const Form = () => {
                   <Strip includeCol={false}>
                     <Col size={6}>
                       <h2 className="p-stepped-list__title">
-                        For how many machines?
+                        For how many machines?{" "}
                       </h2>
+                      <p style={{ marginLeft: "3.6rem" }}>
+                        Subscriptions should cover all Ubuntu systems running
+                        within the same environment. Partial or
+                        per-application/per-package licensing is not available.
+                      </p>
                     </Col>
                     <Col size={6}>
                       <Quantity />
@@ -79,7 +84,8 @@ const Form = () => {
                         Ubuntu Pro is available for Ubuntu 16.04 LTS and higher.
                         <br />{" "}
                         <a href="/contact-us/form?product=pro">
-                          Are you using an older version?
+                          Contact us to get the Legacy add-on for an older
+                          version.
                         </a>
                       </p>
                     </Col>

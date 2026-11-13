@@ -419,7 +419,10 @@ const ProductType = () => {
         {productType === ProductTypes.desktop && (
           <Col size={12} style={{ marginLeft: "35px" }}>
             <p>
-              A subscription limited to single-user machine Desktop use-cases
+              A subscription for single-user desktop use cases. Applies strictly
+              to physical workstations. For virtual machines (VMs) or virtual
+              desktop infrastructure (VDI), please select Ubuntu Pro Server or
+              Cloud.
             </p>
           </Col>
         )}
