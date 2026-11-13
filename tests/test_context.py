@@ -1,9 +1,22 @@
 from unittest import TestCase
 from unittest.mock import MagicMock, patch
-from webapp.context import get_careers_role_counts, schedule_banner
+from webapp.context import (
+    format_date,
+    get_careers_role_counts,
+    schedule_banner,
+)
 
 
 class TestContextFunctions(TestCase):
+    def test_format_date_preserves_iso_month_and_day(self):
+        self.assertEqual(format_date("2026-11-05"), "5 November 2026")
+        self.assertEqual(
+            format_date("2026-11-05T18:39:00Z"), "5 November 2026"
+        )
+
+    def test_format_date_supports_day_first_dates(self):
+        self.assertEqual(format_date("05/11/2026"), "5 November 2026")
+
     def test_schedule_banner(self):
         """
         Test schedule banner should return True
