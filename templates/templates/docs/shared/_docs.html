@@ -187,9 +187,16 @@
       selectField.onchange = updatePage;
     })();
 
+    // Options are same-site paths; never follow anything else.
+    function goToVersion(path) {
+      if (path.charAt(0) === "/" && path.charAt(1) !== "/") {
+        window.location.href = encodeURI(path);
+      }
+    }
+
     function updatePage(e) {
       this.changed = true;
-      window.location.href = e.target.value;
+      goToVersion(e.target.value);
     }
 
     function selectFocussed() {
@@ -199,7 +206,7 @@
     function selectUnFocussed() {
       if (this.value != this.initValue) {
         this.changed = true;
-        window.location.href = this.value;
+        goToVersion(this.value);
       }
     }
 
@@ -217,7 +224,7 @@
 
       if (validConfirmKeys.includes(theKeyPressed) && this.value != this.initValue) {
         this.changed = true;
-        window.location.href = this.value;
+        goToVersion(this.value);
       } else if (validCancleKeys.includes(theKeyPressed)) {
         this.value = this.initValue;
       } else {

@@ -21,8 +21,10 @@
   var select = document.querySelector('.js-submit-on-change');
   select.addEventListener('change', function(e) {
     var form = this.closest('form');
-    if (form) {
-      location.href=document.getElementById("filter").value;
+    var path = document.getElementById("filter").value;
+    // Options are same-site paths; never follow anything else.
+    if (form && path.charAt(0) === "/" && path.charAt(1) !== "/") {
+      location.href = encodeURI(path);
     }
   });
 </script>
