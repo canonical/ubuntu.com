@@ -1796,11 +1796,12 @@ class TestDeveloperDiariesIndex(BaseViewTestCase):
             card.select_one(".p-content-card__main-link")["href"],
             "/community/developer-diaries/hardening",
         )
-        self.assertEqual(
-            card.select_one(".p-content-card__author-link").text, "Jane Doe"
-        )
         self.assertIn("30 Jun 2026", card.text)
         self.assertEqual(card.select_one(".p-chip--information").text, "Rock")
+        # Authors are plain text, not links
+        byline = card.select_one(".p-content-card__author-and-date")
+        self.assertIn("Jane Doe", byline.text)
+        self.assertIsNone(byline.find("a"))
         # Likes only show on the article page
         self.assertIsNone(card.select_one(".p-icon--thumbs-up"))
         # Dark theme border and footer rule, for the dark page
@@ -1826,9 +1827,9 @@ class TestDeveloperDiariesIndex(BaseViewTestCase):
             ],
         )
 
-        author_link = soup.select_one(".p-content-card__author-link")
-        self.assertEqual(author_link.text, "<b>Jane</b>")
-        self.assertIsNone(author_link.find("b"))
+        byline = soup.select_one(".p-content-card__author-and-date")
+        self.assertIn("<b>Jane</b>", byline.text)
+        self.assertIsNone(byline.find("b"))
 
     def test_tag_names_on_cards(self):
         _, soup = self._get(
