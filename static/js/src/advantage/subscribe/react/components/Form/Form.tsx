@@ -84,7 +84,8 @@ const Form = () => {
                         Ubuntu Pro is available for Ubuntu 16.04 LTS and higher.
                         <br />{" "}
                         <a href="/contact-us/form?product=pro">
-                          Contact us to get the Legacy add-on for an older version.
+                          Contact us to get the Legacy add-on for an older
+                          version.
                         </a>
                       </p>
                     </Col>
