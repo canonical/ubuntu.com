@@ -151,7 +151,11 @@ def current_year():
 
 
 def format_date(datestring):
-    date = dateutil.parser.parse(datestring, dayfirst=True)
+    try:
+        date = dateutil.parser.isoparse(datestring)
+    except ValueError:
+        # Vulnerability metadata uses day-first dates.
+        date = dateutil.parser.parse(datestring, dayfirst=True)
     return date.strftime("%-d %B %Y")
 
 
