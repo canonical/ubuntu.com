@@ -345,3 +345,84 @@ def get_attention_banner(details):
     )
 
     return attention_banner, instructions
+
+
+def get_cvss_severity(score):
+    """
+    Map a CVSS base score to its qualitative severity rating.
+    """
+    if score is None:
+        return None
+    if score == 0:
+        return "NONE"
+    if score <= 3.9:
+        return "LOW"
+    if score <= 6.9:
+        return "MEDIUM"
+    if score <= 8.9:
+        return "HIGH"
+    return "CRITICAL"
+
+
+def get_cvss_entries(metric, key):
+    """
+    Return the source-tagged CVSS scores of a base metric
+    (baseMetricV3 or baseMetricV4) as [{"source": ..., "cvss": {...}}].
+
+    Falls back to the legacy single score (without a source) for CVEs
+    that don't have the "sources" list yet.
+    """
+    metric = metric or {}
+    entries = [
+        {"source": item.get("source"), "cvss": item[key]}
+        for item in metric.get("sources") or []
+        if item.get(key)
+    ]
+
+    if not entries and metric.get(key):
+        entries = [{"source": None, "cvss": metric[key]}]
+
+    for entry in entries:
+        cvss = entry["cvss"]
+        entry["severity"] = cvss.get("baseSeverity") or get_cvss_severity(
+            cvss.get("baseScore")
+        )
+
+    return entries
+
+
+def get_headline_cvss(cve, cvss_v3_entries):
+    """
+    Return the score to show at the top of the CVE page.
+
+    The headline score is picked by the Ubuntu security team and is shown as
+    sent. CVEs without it fall back to the legacy CVSS v3 score.
+    """
+    headline = cve.get("headline_cvss")
+
+    if headline and headline.get("baseScore") is not None:
+        return {
+            "version": headline.get("version"),
+            "source": headline.get("source"),
+            "baseScore": headline["baseScore"],
+            "baseSeverity": headline.get("baseSeverity")
+            or get_cvss_severity(headline["baseScore"]),
+        }
+
+    legacy_score = None
+    legacy_severity = None
+    if cve.get("cvss3") is not None:
+        legacy_score = cve["cvss3"]
+    elif cvss_v3_entries:
+        legacy_score = cvss_v3_entries[0]["cvss"].get("baseScore")
+        legacy_severity = cvss_v3_entries[0]["cvss"].get("baseSeverity")
+
+    if legacy_score is None:
+        return None
+
+    return {
+        "version": "3",
+        "source": None,
+        "baseScore": legacy_score,
+        "baseSeverity": legacy_severity or get_cvss_severity(legacy_score),
+    }

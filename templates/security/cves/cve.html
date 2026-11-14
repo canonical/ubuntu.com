@@ -9,8 +9,14 @@
 {% block content %}
 
   {% set cvss = cvss | default({}) %}
-  {% set cvssV3 = cvss.v3 | default(none) %}
-  {% set cvssV4 = cvss.v4 | default(none) %}
+  {% set cvssV3 = cvss.v3 | default([]) %}
+  {% set cvssV4 = cvss.v4 | default([]) %}
+  {% set severity_icons = {
+    "low": "https://assets.ubuntu.com/v1/03ac6f86-CVE-Priority-icon-Low.svg",
+    "medium": "https://assets.ubuntu.com/v1/8010f9e0-CVE-Priority-icon-Medium.svg",
+    "high": "https://assets.ubuntu.com/v1/3887354e-CVE-Priority-icon-High.svg",
+    "critical": "https://assets.ubuntu.com/v1/c96f27b9-CVE-Priority-icon-Critical.svg"
+  } %}
 
   <section class="p-strip is-shallow u-no-padding--bottom">
     <div class="row p-section">
@@ -36,7 +42,7 @@
         {% endif %}
 
         <hr class="p-rule" />
-        {% if cve.priority or cvssV3 %}
+        {% if cve.priority or headline_cvss %}
           <div class="row cve-hero-scores">
             {% if cve.priority %}
               <div>
@@ -119,14 +125,17 @@
               </div>
             {% endif %}
 
-            {% if cvssV3 %}
+            {% if headline_cvss %}
+              {% set severity = (headline_cvss.baseSeverity or "") | lower %}
               <div>
-                <h2 class="p-text--small-caps"  style="margin-bottom: 0.5rem;">Cvss 3 Severity Score</h2>
+                <h2 class="p-text--small-caps" style="margin-bottom: 0.5rem;">
+                  CVSS {{ headline_cvss.version }} severity score
+                  {%- if headline_cvss.source %} ({{ headline_cvss.source }}){% endif %}
+                </h2>
                 <div class="p-heading-icon--small">
                   <div class="p-heading-icon__header">
-                    {% set baseScore = cvssV3.baseScore %}
-                    {% if baseScore <= 3.9 %}
-                      {{ image(url="https://assets.ubuntu.com/v1/03ac6f86-CVE-Priority-icon-Low.svg",
+                    {% if severity in severity_icons %}
+                      {{ image(url=severity_icons[severity],
                                             alt="",
                                             width="16",
                                             height="16",
@@ -134,55 +143,15 @@
                                             loading="auto",
                                             attrs={"class":"p-heading-icon__img"}) | safe
                       }}
-                      <p class="p-heading-icon__title p-heading--4">
-                        <strong>{{ cvssV3.baseScore | capitalize }} &middot; Low</strong>
-                      </p>
-                    {% elif baseScore <= 6.9 %}
-                      {{ image(url="https://assets.ubuntu.com/v1/8010f9e0-CVE-Priority-icon-Medium.svg",
-                                            alt="",
-                                            width="16",
-                                            height="16",
-                                            hi_def=True,
-                                            loading="auto",
-                                            attrs={"class":"p-heading-icon__img"}) | safe
-                      }}
-                      <p class="p-heading-icon__title p-heading--4">
-                        <strong>{{ cvssV3.baseScore | capitalize }} &middot; Medium</strong>
-                      </p>
-                    {% elif baseScore <= 8.9 %}
-                      {{ image(url="https://assets.ubuntu.com/v1/3887354e-CVE-Priority-icon-High.svg",
-                                            alt="",
-                                            width="16",
-                                            height="16",
-                                            hi_def=True,
-                                            loading="auto",
-                                            attrs={"class":"p-heading-icon__img"}) | safe
-                      }}
-                      <p class="p-heading-icon__title p-heading--4">
-                        <strong>{{ cvssV3.baseScore | capitalize }} &middot; High</strong>
-                      </p>
-                    {% elif baseScore <= 10 %}
-                      {{ image(url="https://assets.ubuntu.com/v1/c96f27b9-CVE-Priority-icon-Critical.svg",
-                                            alt="",
-                                            width="16",
-                                            height="16",
-                                            hi_def=True,
-                                            loading="auto",
-                                            attrs={"class":"p-heading-icon__img"}) | safe
-                      }}
-                      <p class="p-heading-icon__title p-heading--4">
-                        <strong>{{ cvssV3.baseScore | capitalize }} &middot; Critical</strong>
-                      </p>
                     {% endif %}
+                    <p class="p-heading-icon__title p-heading--4">
+                      <strong>{{ headline_cvss.baseScore }}{% if severity %} &middot; {{ severity | capitalize }}{% endif %}</strong>
+                    </p>
                   </div>
                 </div>
                 <p>
-                  <a href="#impact-score">Score breakdown</a>
+{% if cvssV3 or cvssV4 %}<a href="#impact-score">Score breakdown</a>{% endif %}
                 </p>
-              </div>
-            {% elif cve.cvss3 %}
-              <div>
-                <p>CVSS 3 base score: {{ cve.cvss3 }}</p>
               </div>
             {% endif %}
           </div>
@@ -501,11 +470,19 @@
             </p>
 
             {% if cvssV4 %}
-              {% include "security/cves/partials/_cvss-v4-section.html" %}
+              <div id="cvss-v4-section">
+                {% set entries = cvssV4 %}
+                {% set version_key = "v4" %}
+                {% include "security/cves/partials/_cvss-sources.html" %}
+              </div>
             {% endif %}
 
             {% if cvssV3 %}
-              {% include "security/cves/partials/_cvss-v3-section.html" %}
+              <div id="cvss-v3-section"{% if cvssV4 %} class="u-hide"{% endif %}>
+                {% set entries = cvssV3 %}
+                {% set version_key = "v3" %}
+                {% include "security/cves/partials/_cvss-sources.html" %}
+              </div>
             {% endif %}
           </div>
         {% endif %}
@@ -578,6 +555,7 @@
   <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/dynamic-toc.js') }}" defer></script>
   <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/notices.js') }}" defer></script>
   <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/cve-detail.js') }}" defer></script>
+  <script nonce="{{ csp_nonce }}" src="{{ versioned_static('js/dist/tabbedContent.js') }}" defer></script>
 
   <script nonce="{{ csp_nonce }}">
     function handleHiddenReleasesSwitch() {

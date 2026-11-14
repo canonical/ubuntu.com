@@ -23,6 +23,8 @@ from webapp.security.helpers import (
     get_friendly_pockets,
     get_processed_details,
     get_attention_banner,
+    get_cvss_entries,
+    get_headline_cvss,
 )
 
 markdown_parser = Markdown(
@@ -730,14 +732,16 @@ def cve(cve_id):
     impact = cve.get("impact") or {}
 
     cvss = {
-        "v3": impact.get("baseMetricV3", {}).get("cvssV3"),
-        "v4": impact.get("baseMetricV4", {}).get("cvssV4"),
+        "v3": get_cvss_entries(impact.get("baseMetricV3"), "cvssV3"),
+        "v4": get_cvss_entries(impact.get("baseMetricV4"), "cvssV4"),
     }
+    headline_cvss = get_headline_cvss(cve, cvss["v3"])
 
     return flask.render_template(
         "security/cves/cve.html",
         cve=cve,
         cvss=cvss,
+        headline_cvss=headline_cvss,
         patches=formatted_patches,
         tags=formatted_tags,
         maintained_count=maintained_count,

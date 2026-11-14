@@ -1,0 +1,35 @@
+{# One CVSS score per source, shown as tabs. Legacy scores have no source and no tabs #}
+{% set has_tabs = entries | length > 1 or entries[0].source %}
+
+{% if has_tabs %}
+  <div class="p-tabs js-tabbed-content">
+    <div class="p-tabs__list" role="tablist" aria-label="CVSS {{ version_key }} sources">
+      {% for entry in entries %}
+        <div class="p-tabs__item">
+          <button class="p-tabs__link"
+                  role="tab"
+                  id="cvss-{{ version_key }}-{{ loop.index }}-source-tab"
+                  aria-controls="cvss-{{ version_key }}-{{ loop.index }}-source-panel"
+                  aria-selected="{{ 'true' if loop.first else 'false' }}"
+                  tabindex="{{ '0' if loop.first else '-1' }}">
+            {{ entry.source or "Unknown source" }}
+            {%- if entry.cvss.baseScore is not none %} ({{ entry.cvss.baseScore }}{% if entry.severity %} - {{ entry.severity | capitalize }}{% endif %}){% endif %}
+          </button>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% for entry in entries %}
+  {% set idp = "cvss-" ~ version_key ~ "-" ~ loop.index ~ "-" %}
+  <div {% if has_tabs %} role="tabpanel" id="cvss-{{ version_key }}-{{ loop.index }}-source-panel" aria-labelledby="cvss-{{ version_key }}-{{ loop.index }}-source-tab" tabindex="0" {% if not loop.first %}class="u-hide"{% endif %} {% endif %}>
+    {% if version_key == "v4" %}
+      {% set cvssV4 = entry.cvss %}
+      {% include "security/cves/partials/_cvss-v4-section.html" %}
+    {% else %}
+      {% set cvssV3 = entry.cvss %}
+      {% include "security/cves/partials/_cvss-v3-section.html" %}
+    {% endif %}
+  </div>
+{% endfor %}
