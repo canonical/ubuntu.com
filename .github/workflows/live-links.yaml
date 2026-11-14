@@ -3,6 +3,7 @@ name: Links on ubuntu.com live
 on:
   schedule:
     - cron: "20 7 * * 1-5"
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -12,6 +13,8 @@ jobs:
     if: github.repository == 'canonical/ubuntu.com'
     runs-on: ubuntu-latest
     timeout-minutes: 60
+    env:
+      LINK_REPORT_PATH: /tmp/broken-links.json
 
     steps:
       - name: Checkout
@@ -30,3 +33,13 @@ jobs:
         env:
           BOT_URL: ${{ secrets.BOT_URL }}
         run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" "${BOT_URL}?room=web-alerts"
+
+      - name: Notify page owners of broken links
+        if: failure()
+        continue-on-error: true
+        timeout-minutes: 10
+        env:
+          BOT_DEAD_LINKS_URL: ${{ secrets.BOT_DEAD_LINKS_URL }}
+          BOT_DEAD_LINKS_TOKEN: ${{ secrets.BOT_DEAD_LINKS_TOKEN }}
+          LINK_CHECKER_NOTIFY_PAGE_OWNERS: ${{ vars.LINK_CHECKER_NOTIFY_PAGE_OWNERS }}
+        run: bash scripts/notify-dead-links.sh
