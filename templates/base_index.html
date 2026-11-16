@@ -28,6 +28,42 @@
 
     {% include "home/_hero.html" %}
     {% include "home/_latest.html" %}
+    {# Takeover position A/B test: the variant group sees the Latest block above the hero #}
+    <script nonce="{{ csp_nonce }}">
+      (function() {
+        const takeoverSwitch = false;
+        const cookieName = "control_or_variant";
+
+        if (!takeoverSwitch) {
+          document.cookie = cookieName + "=; max-age=0; path=/";
+          return;
+        }
+
+        let group = document.cookie.match(new RegExp("(^| )" + cookieName + "=(control|variant)"))?.[2];
+        if (!group) {
+          group = Math.random() < 0.5 ? "control" : "variant";
+          document.cookie = cookieName + "=" + group + "; max-age=31536000; path=/";
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+          event: "test",
+          test_type: "takeover position",
+          control_or_variant: group,
+        });
+
+        const hero = document.querySelector(".js-hero");
+        const takeover = document.getElementById("takeover");
+        if (group !== "variant" || !hero || !takeover) return;
+
+        // Moving the element keeps the tab order the same as the visual order
+        hero.before(takeover);
+        // Marketing tracks the variant's clicks by these ids in GTM
+        for (const link of takeover.querySelectorAll("#takeover-primary-url, #takeover-secondary-url")) {
+          link.id = "test-" + link.id;
+        }
+      })();
+    </script>
 
     <div class="p-section">
       <div class="u-fixed-width">
@@ -170,8 +206,9 @@
         const title = document.getElementById("takeover-title");
         const subtitle = document.getElementById("takeover-subtitle");
         const image = document.getElementById("takeover-image");
-        const primaryUrl = document.getElementById("takeover-primary-url");
-        const secondaryUrl = document.getElementById("takeover-secondary-url");
+        // The position test's variant group prefixes these ids with "test-"
+        const primaryUrl = takeover.querySelector("[id$='takeover-primary-url']");
+        const secondaryUrl = takeover.querySelector("[id$='takeover-secondary-url']");
 
         // Set values to homepage takeover
         var selectedTakeover = takeovers[index];
