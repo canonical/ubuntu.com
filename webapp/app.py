@@ -119,7 +119,6 @@ from webapp.views import (
     BlogRedirects,
     BlogSitemapIndex,
     BlogSitemapPage,
-    RoboticsDocsSitemapIndex,
     account_query,
     append_utms_cookie_to_canonical_links,
     appliance_install,
@@ -1450,11 +1449,6 @@ app.add_url_rule(
     "/sitemap_tree.xml",
     view_func=build_sitemap_tree(DYNAMIC_SITEMAPS),
     methods=["GET", "POST"],
-)
-
-app.add_url_rule(
-    "/robotics/docs/sitemap.xml",
-    view_func=RoboticsDocsSitemapIndex.as_view("robotics_docs_sitemap"),
 )
 
 # Create endpoints for testing environment only
