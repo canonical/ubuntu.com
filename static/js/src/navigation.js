@@ -125,8 +125,60 @@ mainList.addEventListener("click", function (e) {
 
 // The current set up of the navigation doesn't work well with notifications. The simplest fix for this is to close all notifications when a dropdown is clicked. Can be removed on migration to vanilla navigation.
 function closeNotifications() {
-  const notification = document.querySelector(".p-popup-notification:target");
-  if (notification) notification.style.display = "none";
+  document
+    .querySelectorAll(".p-popup-notification:popover-open")
+    .forEach((notification) => {
+      notification.hidePopover();
+    });
+}
+// Announce popup notifications to screen readers.
+
+function announceNotifications() {
+  const notifications = document.querySelectorAll(
+    "#notifications .p-popup-notification",
+  );
+  const announcement = document.querySelector("#notification-announcement");
+
+  notifications.forEach((notification) => {
+    notification.addEventListener("toggle", (event) => {
+      if (event.newState !== "open") {
+        return;
+      }
+
+      const messageElement = notification.querySelector(
+        ".p-notification__message",
+      );
+      const messageContent = messageElement?.cloneNode(true);
+
+      messageContent?.querySelector(".p-notification__close")?.remove();
+
+      const message = messageContent?.textContent.trim();
+
+      if (!message) {
+        return;
+      }
+
+      if (typeof notification.ariaNotify === "function") {
+        notification.ariaNotify(message);
+      } else if (announcement) {
+        announcement.textContent = "";
+
+        requestAnimationFrame(() => {
+          announcement.textContent = message;
+        });
+      }
+    });
+  });
+}
+
+announceNotifications();
+
+// Open popup notifications when the page loads with a notification hash.
+const notificationId = window.location.hash.slice(1);
+const notification = document.getElementById(notificationId);
+
+if (notification?.matches("#notifications .p-popup-notification")) {
+  notification.showPopover();
 }
 
 let wasBelowSpecificWidth = window.innerWidth < MOBILE_VIEW_BREAKPOINT;
