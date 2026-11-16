@@ -34,7 +34,9 @@
         const takeoverSwitch = false;
         const cookieName = "control_or_variant";
 
-        if (!takeoverSwitch) {
+        // Like user_id, a group is only assigned after analytics consent
+        const consent = document.cookie.match(/(^| )_cookies_accepted=([^;]+)/)?.[2];
+        if (!takeoverSwitch || !["all", "performance"].includes(consent)) {
           document.cookie = cookieName + "=; max-age=0; path=/";
           return;
         }
