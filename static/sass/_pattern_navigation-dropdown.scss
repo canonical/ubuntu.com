@@ -46,7 +46,12 @@
     height: auto;
     max-height: calc(100vh - 3rem);
     overflow-y: auto;
-    position: fixed;
+    position: -webkit-sticky;
+    position: sticky;
+    // Keep the menu directly under the sticky header: a fixed panel with no
+    // `top` sits at its static position, which in Firefox and Safari wrongly
+    // includes the sticky header's scroll offset (#17035).
+    top: 100%;
     width: 100%;
     z-index: 11;
   }

@@ -237,6 +237,28 @@ test.describe("Link validation in dropdowns", () => {
 });
 
 test.describe("Dropdown overlay & edge cases", () => {
+  test("dropdown opens directly under the header after scrolling (#17035)", async ({
+    nav,
+  }) => {
+    // Regression test: on single-header pages the menu panel must open right
+    // under the header regardless of scroll position. When `.dropdown-window`
+    // was `position: fixed` with no `top`, Firefox and Safari placed it at
+    // its static position, which includes the sticky header's scroll offset.
+    await nav.page.mouse.wheel(0, 2000);
+    await expect
+      .poll(async () => nav.page.evaluate(() => window.scrollY))
+      .toBeGreaterThan(0);
+
+    await nav.openDropdown("products");
+
+    const headerBox = await nav.headerEl.boundingBox();
+    const dropdownBox = await nav.dropdownWindow.boundingBox();
+    if (!headerBox || !dropdownBox) {
+      throw new Error("Header or dropdown window not visible");
+    }
+    expect(dropdownBox.y).toBe(headerBox.y + headerBox.height);
+  });
+
   test("clicking overlay closes active dropdown", async ({ nav }) => {
     await nav.openDropdown("products");
 
