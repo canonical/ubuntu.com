@@ -39,6 +39,7 @@ test("the variant group sees the takeover above the hero", async ({ page }) => {
 
   expect(await takeoverIsFirst(page)).toBe(true);
   await expect(page.locator("#test-takeover-primary-url")).toBeVisible();
+  await expect(page.locator("#test-takeover-secondary-url")).toBeVisible();
   expect(await testEvents(page)).toMatchObject([
     { test_type: "takeover position", control_or_variant: "variant" },
   ]);
@@ -52,6 +53,18 @@ test("the control group keeps the hero first", async ({ page }) => {
 
   expect(await takeoverIsFirst(page)).toBe(false);
   await expect(page.locator("#takeover-primary-url")).toBeVisible();
+  await expect(page.locator("#takeover-secondary-url")).toBeVisible();
+});
+
+test("a new visitor is assigned a group and keeps it", async ({ page }) => {
+  await openHomepage(page, { _cookies_accepted: "all" });
+
+  const cookies = await page.context().cookies();
+  const group = cookies.find((cookie) => cookie.name === "control_or_variant");
+  expect(["control", "variant"]).toContain(group?.value);
+  expect(await takeoverIsFirst(page)).toBe(group?.value === "variant");
+  // The cookie lasts about a year
+  expect(group?.expires).toBeGreaterThan(Date.now() / 1000 + 364 * 86400);
 });
 
 test("no group is assigned without analytics consent", async ({ page }) => {
