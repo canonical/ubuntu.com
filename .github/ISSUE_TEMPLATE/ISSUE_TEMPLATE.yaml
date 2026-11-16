@@ -1,60 +1,58 @@
-name: Default issue
-description: Issue from anywhere, perhaps from the footer of the site
+name: Website issue
+description: Report a website bug or content problem, or suggest an improvement
 body:
 - type: markdown
   attributes:
     value: |
-      *Note - filling in this form will file an issue against the www.ubuntu.com website, not against Ubuntu itself, for Ubuntu OS related bugs please [go here](https://help.ubuntu.com/community/ReportingBugs).*
-- type: markdown
+      Use this form for issues with the **ubuntu.com website**, including its
+      content and services.
+
+      - For Ubuntu OS, hardware, or software package bugs, [report an Ubuntu
+        bug](https://bugs.launchpad.net/ubuntu/).
+      - For security vulnerabilities, [submit a private security
+        advisory](https://github.com/canonical/ubuntu.com/security/advisories/new).
+- type: dropdown
+  id: issue_type
   attributes:
-    value: |
-      *Please provide as many details as possible in order to provide maintainers more context about the issue. Don't skip/remove any of the sections below. If there is no data to provide in one of the sections, please specify it by typing "N/A" or similar. That will help maintainers reproduce the issue and be able to help quickly. Thanks.*
-- type: markdown
-  attributes:
-    value: |
-      *If you want to report a vulnerability, please don't use this form and report it [here](https://github.com/canonical/ubuntu.com/security/advisories/new) instead.*
+    label: Issue type
+    description: What kind of issue are you reporting?
+    options:
+      - Bug
+      - Content
+      - Improvement
+  validations:
+    required: true
 - type: textarea
   id: summary
   attributes:
-    label: Summary
-    description: Please describe the issue
+    label: Details
+    description: Describe the website problem, content correction, or improvement.
+    placeholder: |
+      What happened, or what would you like to change?
+      What did you expect to happen?
+      Include any error messages or screenshots that may help.
   validations:
     required: true
+- type: input
+  id: reported_from
+  attributes:
+    label: Affected page or URL
+    description: Add the relevant ubuntu.com URL, if applicable. This is filled automatically when you use the site's "Report a bug" link.
 - type: textarea
   id: steps
   attributes:
-    label: Steps to reproduce the behavior
+    label: Steps to reproduce
+    description: For a bug, list the steps needed to see the problem. Leave blank if not applicable.
     placeholder: |
       1. Go to '...'
-      2. Click on '....'
-      3. Scroll down to '....'
-      4. See error
-  validations:
-    required: true
-- type: textarea
-  id: behavior
-  attributes:
-    label: Expected behavior
-    description: A clear and concise description of what you expected to happen
-  validations:
-    required: true
+      2. Click on '...'
+      3. See the problem
 - type: textarea
   id: browser
   attributes:
     label: Browser/device details
+    description: If relevant, include your browser and version, operating system, and device.
     placeholder: |
-      - Device: [e.g. iPhone6]
-      - OS: [e.g. iOS8.1]
-      - Browser [e.g. stock browser, safari]
-      - Version [e.g. 22]
-  validations:
-    required: true
-- type: markdown
-  attributes:
-    value: |
-      *Please provide a screenshot in the comments after you have created an issue to help the maintainers debug the issue quicker.*
-- type: input
-  id: reported_from
-  attributes:
-    label: Reported from
-    value: GitHub
+      Browser and version:
+      Operating system:
+      Device:

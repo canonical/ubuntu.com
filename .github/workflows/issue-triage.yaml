@@ -1,0 +1,129 @@
+name: Issue triage
+
+on:
+  issues:
+    types: [opened, edited]
+  issue_comment:
+    types: [created]
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  check:
+    name: Check new issue
+    if: >-
+      github.event_name == 'issues' &&
+      github.event.action == 'opened' &&
+      !contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.issue.author_association) &&
+      github.event.issue.user.type != 'Bot'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            // Field labels and issue type options below must match
+            // .github/ISSUE_TEMPLATE/ISSUE_TEMPLATE.yaml
+            const labels = [
+              "Issue type",
+              "Details",
+              "Affected page or URL",
+              "Steps to reproduce",
+              "Browser/device details",
+            ];
+            const body = (context.payload.issue.body || "").replace(/\r\n/g, "\n");
+            const typeAnswer =
+              /^### Issue type[ \t]*\n\s*(Bug|Content|Improvement)[ \t]*$/m;
+            const type = body.match(typeAnswer)?.[1] ?? null;
+
+            // Judge everything the reporter wrote, wherever they wrote it, so
+            // deleting or reusing the form's sections is never penalised
+            const headings = new RegExp(`^### (${labels.join("|")})[ \\t]*$`, "gm");
+            const written = body
+              .replace(typeAnswer, "")
+              .replace(headings, "")
+              .replace(/^_No response_$/gm, "");
+            const words = written.split(/\s+/).filter(Boolean).length;
+            const hasAttachment =
+              /!\[[^\]]*\]\(|<img\s|github\.com\/user-attachments\//i.test(body);
+
+            const issue = { ...context.repo, issue_number: context.issue.number };
+
+            if (words < 4 && !hasAttachment) {
+              await github.rest.issues.createComment({
+                ...issue,
+                body:
+                  "Thanks for opening this issue. It has been closed because " +
+                  "the description is blank or only one word. Please comment " +
+                  "with the details and a maintainer will reopen it.",
+              });
+              await github.rest.issues.update({
+                ...issue,
+                state: "closed",
+                state_reason: "not_planned",
+              });
+              return;
+            }
+
+            const hasUrl =
+              /(^|[^\w.-])([\w-]+\.)*ubuntu\.com\b/i.test(body) ||
+              /^### Affected page or URL[ \t]*\n\s*\/\S/m.test(body);
+
+            // Only ask when the reporter chose a type that needs a page
+            if ((type === "Bug" || type === "Content") && !hasUrl) {
+              await github.rest.issues.createComment({
+                ...issue,
+                body:
+                  "Thanks for reporting this. To help us look into it, please " +
+                  "edit the issue or comment with the ubuntu.com page this " +
+                  "relates to, for example `https://ubuntu.com/desktop/download`." +
+                  "\n\nIf there is no response within 7 days, this issue will " +
+                  "be closed automatically.",
+              });
+              await github.rest.issues.addLabels({ ...issue, labels: ["needs-info"] });
+            }
+
+  author-responded:
+    name: Clear needs-info on reply
+    if: >-
+      github.event.issue.state == 'open' &&
+      contains(github.event.issue.labels.*.name, 'needs-info') &&
+      github.event.sender.login == github.event.issue.user.login &&
+      (github.event_name == 'issue_comment' ||
+       (github.event.action == 'edited' && github.event.changes.body))
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            await github.rest.issues.removeLabel({
+              ...context.repo,
+              issue_number: context.issue.number,
+              name: "needs-info",
+            });
+
+  close-stale:
+    name: Close issues still needing info
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/stale@1e223db275d687790206a7acac4d1a11bd6fe629 # v10.4.0
+        with:
+          only-issue-labels: needs-info
+          days-before-issue-stale: 7
+          days-before-issue-close: 0
+          days-before-pr-stale: -1
+          days-before-pr-close: -1
+          close-issue-reason: not_planned
+          close-issue-message: >-
+            This issue has been closed because the requested details weren't
+            added within 7 days. If this is still a problem, comment with the
+            details and a maintainer will reopen it.
