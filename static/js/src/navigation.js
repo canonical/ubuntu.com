@@ -125,6 +125,10 @@ mainList.addEventListener("click", function (e) {
 
 // The current set up of the navigation doesn't work well with notifications. The simplest fix for this is to close all notifications when a dropdown is clicked. Can be removed on migration to vanilla navigation.
 function closeNotifications() {
+  if (typeof HTMLElement.prototype.hidePopover !== "function") {
+    return;
+  }
+
   document
     .querySelectorAll(".p-popup-notification:popover-open")
     .forEach((notification) => {
