@@ -210,7 +210,7 @@ extraHosts:
 
 # Overrides for production
 production:
-  replicas: 9
+  replicas: 12
   env:
     - name: FLASK_ENV
       value: "production"
@@ -480,7 +480,7 @@ production:
 
     - paths: [/security/updates/.*]
       service_name: ubuntu-com-security-api-updates
-      replicas: 2
+      replicas: 5
       memoryLimit: 1Gi
 
     - paths: [/security]
@@ -512,7 +512,7 @@ production:
       name: ubuntu-com-advantage
       app_name: ubuntu.com-advantage
       image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
-      replicas: 3
+      replicas: 5
       memoryLimit: 512Mi
       env:
         - name: STORE_MAINTENANCE
@@ -841,7 +841,7 @@ staging:
       name: ubuntu-com-blog
       app_name: ubuntu.com-blog
       image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
-      replicas: 3
+      replicas: 5
       memoryLimit: 512Mi
       env:
         - name: SEARCH_API_KEY
