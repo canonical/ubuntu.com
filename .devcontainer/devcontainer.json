@@ -1,0 +1,31 @@
+{
+  "name": "ubuntu.com",
+  "image": "mcr.microsoft.com/devcontainers/universal:linux",
+  "remoteEnv": {
+    "PATH": "/home/codespace/.local/share/mise/shims:/home/codespace/.local/bin:${containerEnv:PATH}"
+  },
+  "onCreateCommand": "bash .devcontainer/setup.sh",
+  "updateContentCommand": "task install && task build",
+  "forwardPorts": [8001],
+  "portsAttributes": {
+    "8001": {
+      "label": "ubuntu.com",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "${containerWorkspaceFolder}/.venv/bin/python"
+      },
+      "extensions": [
+        "ms-python.python",
+        "dbaeumer.vscode-eslint",
+        "EditorConfig.EditorConfig",
+        "stylelint.vscode-stylelint",
+        "esbenp.prettier-vscode",
+        "monosans.djlint"
+      ]
+    }
+  }
+}

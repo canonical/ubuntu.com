@@ -42,6 +42,21 @@ To learn about `dotrun`'s options:
 dotrun --help
 ```
 
+### With GitHub Codespaces
+
+This repository includes a [devcontainer](.devcontainer/devcontainer.json) configuration.
+
+Creating the codespace installs Taskfile, mise, Python and Node.js, the project dependencies, and builds the static assets. Once it has finished, start the site with:
+
+```bash
+task
+```
+
+Once built you will be prompted to open the application in browser. You can also navigate to it manually at `https://<codespace-name>-8001.app.github.dev`.
+
+> [!NOTE]
+> Some pages and sections rely on external APIs that need keys, such as Discourse, Google Search or Marketo. These won't work unless you add the keys to `.env.local`.
+
 ### Running the site with native python
 
 Since the site is basically a Flask app, you can also run the site in the traditional way using [python 3](https://docs.python.org/3/) and [venv](https://docs.python.org/3/library/venv.html?highlight=venv#module-venv):
