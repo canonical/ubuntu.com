@@ -23,6 +23,7 @@ class MarketoAPI:
             f"client_id={self.client_id}&client_secret={self.client_secret}"
         )
         request = self.session.get(auth_url)
+        request.raise_for_status()
         self.token = request.json()["access_token"]
         self.session.headers.update({"Authorization": f"Bearer {self.token}"})
 
@@ -36,6 +37,7 @@ class MarketoAPI:
             url=f"{self.base_url}{url}?{params}",
             json=json,
         )
+        response.raise_for_status()
 
         errors = response.json().get("errors")
         if errors and errors[0]["code"] in ["601", "602"]:
@@ -45,6 +47,7 @@ class MarketoAPI:
                 url=f"{self.base_url}{url}?{params}",
                 json=json,
             )
+            response.raise_for_status()
 
         return response
 
