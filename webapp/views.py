@@ -2650,6 +2650,8 @@ def google_ads_verification():
     Serve the Google Ads account-access verification token from the domain
     root. Google fetches /Google-Ads.txt directly and does not reliably
     follow redirects, so this is served in place via a dedicated route.
+    Keep the backing file blank when there is no active access request to
+    avoid publishing an outdated instruction.
     """
     return flask.send_from_directory(
         flask.current_app.static_folder, "files/Google-Ads.txt"
