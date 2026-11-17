@@ -841,7 +841,7 @@ staging:
       name: ubuntu-com-blog
       app_name: ubuntu.com-blog
       image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
-      replicas: 5
+      replicas: 3
       memoryLimit: 512Mi
       env:
         - name: SEARCH_API_KEY
