@@ -487,7 +487,7 @@ production:
       name: ubuntu-com-security
       app_name: ubuntu.com-security
       image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
-      replicas: 3
+      replicas: 5
       memoryLimit: 512Mi
       env:
         - name: SEARCH_API_KEY
