@@ -177,7 +177,10 @@ announceNotifications();
 const notificationId = window.location.hash.slice(1);
 const notification = document.getElementById(notificationId);
 
-if (notification?.matches("#notifications .p-popup-notification")) {
+if (
+  notification?.matches("#notifications .p-popup-notification") &&
+  typeof notification.showPopover === "function"
+) {
   notification.showPopover();
 }
 
