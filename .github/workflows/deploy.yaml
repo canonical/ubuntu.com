@@ -9,8 +9,6 @@ on:
   push:
     branches:
       - main
-      # TEMPORARY: test deploy fixes; remove before merging
-      - fix-deploy-charm-path-and-refresh-detection
   workflow_dispatch:
     inputs:
       branch:
@@ -74,8 +72,7 @@ jobs:
     secrets: inherit
     with:
       image-url: ${{ needs.pack.outputs.image_url }}
-      # Pushes to non-main branches only deploy to staging
-      environment: ${{ inputs.environment || (github.ref_name == 'main' && 'both') || 'staging' }}
+      environment: ${{ inputs.environment || 'both' }}
 
   ps7:
     needs: pack
@@ -89,5 +86,4 @@ jobs:
     secrets: inherit
     with:
       image-url: ${{ needs.pack.outputs.image_url }}
-      # Pushes to non-main branches only deploy to staging
-      environment: ${{ inputs.environment || (github.ref_name == 'main' && 'both') || 'staging' }}
+      environment: ${{ inputs.environment || 'both' }}
