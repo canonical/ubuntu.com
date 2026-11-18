@@ -43,6 +43,27 @@
     }
   }
 
+  // Takeover position test variant: the block is first, so the gaps swap
+  .p-latest-block:has(~ .p-hero) {
+    padding-top: $spv--strip-regular * 0.5;
+
+    @media (min-width: $breakpoint-large) {
+      padding-top: $spv--strip-regular;
+    }
+  }
+
+  .p-latest-block ~ .p-hero {
+    padding-top: 0;
+
+    @media (min-width: $breakpoint-small) {
+      padding-bottom: $spv--strip-regular * 0.5;
+    }
+
+    @media (min-width: $breakpoint-large) {
+      padding-bottom: $spv--strip-regular;
+    }
+  }
+
   // The stage's margin alone sets the gap above the desktop
   .p-hero .p-button--brand {
     color: $colors--light-theme--text-default;
