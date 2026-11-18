@@ -33,18 +33,20 @@
       (function() {
         const takeoverSwitch = false;
         const cookieName = "control_or_variant";
+        const readCookie = (name) =>
+          document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"))?.[2];
 
         // Like user_id, a group is only assigned after analytics consent
-        const consent = document.cookie.match(/(^| )_cookies_accepted=([^;]+)/)?.[2];
+        const consent = readCookie("_cookies_accepted");
         if (!takeoverSwitch || !["all", "performance"].includes(consent)) {
           document.cookie = cookieName + "=; max-age=0; path=/";
           return;
         }
 
-        let group = document.cookie.match(new RegExp("(^| )" + cookieName + "=(control|variant)(;|$)"))?.[2];
-        if (!group) {
+        let group = readCookie(cookieName);
+        if (group !== "control" && group !== "variant") {
           group = Math.random() < 0.5 ? "control" : "variant";
-          document.cookie = cookieName + "=" + group + "; max-age=31536000; path=/";
+          document.cookie = cookieName + "=" + group + "; max-age=1209600; path=/";
         }
 
         window.dataLayer = window.dataLayer || [];
@@ -59,7 +61,7 @@
         if (!hero || !takeover) return;
 
         // Marketing tracks each individual group's clicks by these ids in GTM
-        for (const link of takeover.querySelectorAll("#takeover-primary-url, #takeover-secondary-url")) {
+        for (const link of takeover.querySelectorAll("#takeover-ctas a")) {
           link.id = group + "-" + link.id;
         }
 
@@ -211,9 +213,7 @@
         const title = document.getElementById("takeover-title");
         const subtitle = document.getElementById("takeover-subtitle");
         const image = document.getElementById("takeover-image");
-        // The position test prefixes these ids with the visitor's group
-        const primaryUrl = takeover.querySelector("[id$='takeover-primary-url']");
-        const secondaryUrl = takeover.querySelector("[id$='takeover-secondary-url']");
+        const [primaryUrl, secondaryUrl] = document.querySelectorAll("#takeover-ctas a");
 
         // Set values to homepage takeover
         var selectedTakeover = takeovers[index];

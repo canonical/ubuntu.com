@@ -69,8 +69,10 @@ test("a new visitor is assigned a group and keeps it", async ({ page }) => {
   await expect(
     page.locator(`#${group?.value}-takeover-secondary-url`),
   ).toBeVisible();
-  // The cookie lasts about a year
-  expect(group?.expires).toBeGreaterThan(Date.now() / 1000 + 364 * 86400);
+  // The cookie lasts two weeks
+  const days = ((group?.expires ?? 0) - Date.now() / 1000) / 86400;
+  expect(days).toBeGreaterThan(13);
+  expect(days).toBeLessThan(15);
 });
 
 test("no group is assigned without analytics consent", async ({ page }) => {
