@@ -52,16 +52,22 @@
     }
   }
 
+  // A margin, so the hero's background still ends with the desktop
   .p-latest-block ~ .p-hero {
     padding-top: 0;
 
     @media (min-width: $breakpoint-small) {
-      padding-bottom: $spv--strip-regular * 0.5;
+      margin-bottom: $spv--strip-regular * 0.5;
     }
 
     @media (min-width: $breakpoint-large) {
-      padding-bottom: $spv--strip-regular;
+      margin-bottom: $spv--strip-regular;
     }
+  }
+
+  // The rule now sits between the takeover and the hero instead
+  .p-latest-block ~ .p-hero ~ .js-performance-rail .p-rule {
+    display: none;
   }
 
   // The stage's margin alone sets the gap above the desktop

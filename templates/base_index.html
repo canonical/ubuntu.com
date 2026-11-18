@@ -68,6 +68,10 @@
         if (group === "variant") {
           // Moving the element keeps the tab order the same as the visual order
           hero.before(takeover);
+          takeover.insertAdjacentHTML(
+            "afterend",
+            '<div class="u-fixed-width"><hr class="p-rule" /></div>',
+          );
         }
       })();
     </script>
