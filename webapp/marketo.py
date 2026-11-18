@@ -37,6 +37,13 @@ class MarketoAPI:
             url=f"{self.base_url}{url}?{params}",
             json=json,
         )
+        if response.status_code in [401, 403]:
+            self._authenticate()
+            response = self.session.request(
+                method=method,
+                url=f"{self.base_url}{url}?{params}",
+                json=json,
+            )
         response.raise_for_status()
 
         errors = response.json().get("errors")
