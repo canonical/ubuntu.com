@@ -2,7 +2,7 @@
   "name": "ubuntu.com",
   "image": "mcr.microsoft.com/devcontainers/universal:linux",
   "remoteEnv": {
-    "PATH": "/home/codespace/.local/share/mise/shims:/home/codespace/.local/bin:${containerEnv:PATH}"
+    "PATH": "${containerEnv:HOME}/.local/share/mise/shims:${containerEnv:HOME}/.local/bin:${containerEnv:PATH}"
   },
   "onCreateCommand": "bash .devcontainer/setup.sh",
   "updateContentCommand": "task install && task build",
