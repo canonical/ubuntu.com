@@ -1,4 +1,4 @@
-from requests import Session
+from requests import HTTPError, Session
 from urllib.parse import urlencode
 
 
@@ -23,7 +23,11 @@ class MarketoAPI:
             f"client_id={self.client_id}&client_secret={self.client_secret}"
         )
         request = self.session.get(auth_url)
-        request.raise_for_status()
+        if request.status_code >= 400:
+            raise HTTPError(
+                f"Marketo identity request failed with status "
+                f"{request.status_code}"
+            )
         self.token = request.json()["access_token"]
         self.session.headers.update({"Authorization": f"Bearer {self.token}"})
 
