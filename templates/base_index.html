@@ -49,13 +49,6 @@
           document.cookie = cookieName + "=" + group + "; max-age=1209600; path=/";
         }
 
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-          event: "test",
-          test_type: "takeover position",
-          control_or_variant: group,
-        });
-
         const hero = document.querySelector(".js-hero");
         const takeover = document.getElementById("takeover");
         if (!hero || !takeover) return;
@@ -73,6 +66,13 @@
             '<div class="p-section--shallow"><div class="u-fixed-width"><hr class="p-rule" /></div></div>',
           );
         }
+
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+          event: "test",
+          test_type: "takeover position",
+          control_or_variant: group,
+        });
       })();
     </script>
 
