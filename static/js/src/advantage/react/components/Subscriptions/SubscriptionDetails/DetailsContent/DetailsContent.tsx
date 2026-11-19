@@ -11,7 +11,11 @@ import {
   Tooltip,
 } from "@canonical/react-components";
 import { UserSubscriptionType } from "advantage/api/enum";
-import { useContractToken, useUserSubscriptions } from "advantage/react/hooks";
+import {
+  useAccountTOS,
+  useContractToken,
+  useUserSubscriptions,
+} from "advantage/react/hooks";
 import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
 import {
   currencyFormatter,
@@ -22,6 +26,7 @@ import {
 } from "advantage/react/utils";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import { SelectedId } from "../../Content/types";
+import AcceptTermsModal from "../../AcceptTermsModal";
 import DetailsTabs from "../DetailsTabs";
 
 type Props = {
@@ -59,7 +64,20 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
   });
   const hasAccessToToken = subscription?.statuses.has_access_to_token;
   const isBlender = isBlenderSubscription(subscription);
-  const isTokenVisible = hasAccessToToken && !isBlender;
+  // Admins viewing as another user must not be prompted on their behalf.
+  const isViewingAsAnotherUser = new URLSearchParams(
+    window.location.search,
+  ).has("email");
+  const { data: accountTOS } = useAccountTOS(
+    subscription?.account_id,
+    !isBlender && !isViewingAsAnotherUser,
+  );
+  const [isTermsModalDismissed, setIsTermsModalDismissed] = useState(false);
+  // Only block the token when the API confirms the terms are not accepted, so
+  // a failed check does not lock users out.
+  const isTermsAcceptancePending = accountTOS?.accepted === false;
+  const isTokenVisible =
+    hasAccessToToken && !isBlender && !isTermsAcceptancePending;
 
   const { data: token, isLoading: isLoadingToken } = useContractToken(
     subscription?.contract_id,
@@ -190,6 +208,28 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
         ])}
       </Row>
       {isTokenVisible ? <SubscriptionToken /> : null}
+      {isTermsAcceptancePending && hasAccessToToken ? (
+        <Notification
+          severity="caution"
+          title="Accept the Ubuntu Pro service terms:"
+          actions={[
+            {
+              label: "Review and accept",
+              onClick: () => setIsTermsModalDismissed(false),
+            },
+          ]}
+        >
+          Your account hasn&apos;t accepted the service terms yet. Accept them
+          now, or ask someone on your account who has the authority to accept
+          them for your organization.
+        </Notification>
+      ) : null}
+      {isTermsAcceptancePending && !isTermsModalDismissed ? (
+        <AcceptTermsModal
+          accountId={subscription.account_id}
+          onClose={() => setIsTermsModalDismissed(true)}
+        />
+      ) : null}
       <DetailsTabs
         subscription={subscription}
         setHasUnsavedChanges={setHasUnsavedChanges}

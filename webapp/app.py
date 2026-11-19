@@ -72,6 +72,7 @@ from webapp.shop.advantage.views import (
     cancel_trial,
     delete_account_user_role,
     get_account_offers,
+    get_account_tos,
     get_account_users,
     get_activate_view,
     get_advantage_offers,
@@ -91,6 +92,7 @@ from webapp.shop.advantage.views import (
     pro_get_request_attributes,
     pro_page_view,
     put_account_user_role,
+    put_account_tos,
     put_contract_entitlements,
 )
 from webapp.shop.views import (
@@ -415,6 +417,16 @@ app.add_url_rule(
     "/pro/accounts/<account_id>/user",
     view_func=delete_account_user_role,
     methods=["DELETE"],
+)
+app.add_url_rule(
+    "/pro/accounts/<account_id>/tos",
+    view_func=get_account_tos,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/pro/accounts/<account_id>/tos",
+    view_func=put_account_tos,
+    methods=["PUT"],
 )
 app.add_url_rule("/pro/subscribe", view_func=advantage_shop_view)
 app.add_url_rule("/pro/subscribe/blender", view_func=blender_shop_view)
