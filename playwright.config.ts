@@ -30,7 +30,8 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   timeout: 60000,
   use: {
-    baseURL: process.env.PLAYWRIGHT_BASE_URL || "http://0.0.0.0:8001",
+    // localhost, not 0.0.0.0: Firefox refuses to connect to 0.0.0.0
+    baseURL: process.env.PLAYWRIGHT_BASE_URL || "http://localhost:8001",
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     ignoreHTTPSErrors: true,
@@ -43,6 +44,17 @@ export default defineConfig({
       name: 'checkout',
       testMatch: "*.spec.ts",
       use: { ...devices['Desktop Chrome']},
+    },
+    // The dropdown position bug (#17035) only appeared in Firefox and WebKit.
+    {
+      name: 'firefox',
+      testMatch: "**/navigation/dropdown-scroll.spec.ts",
+      use: { ...devices['Desktop Firefox']},
+    },
+    {
+      name: 'webkit',
+      testMatch: "**/navigation/dropdown-scroll.spec.ts",
+      use: { ...devices['Desktop Safari']},
     },
   ],
 });
