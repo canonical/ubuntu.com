@@ -68,20 +68,22 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
   const isViewingAsAnotherUser = new URLSearchParams(
     window.location.search,
   ).has("email");
-  const { data: accountTOS } = useAccountTOS(
+  const isTermsCheckEnabled = !isBlender && !isViewingAsAnotherUser;
+  const { data: accountTOS, isError: isTermsCheckError } = useAccountTOS(
     subscription?.account_id,
-    !isBlender && !isViewingAsAnotherUser,
+    isTermsCheckEnabled,
   );
   const [isTermsModalDismissed, setIsTermsModalDismissed] = useState(false);
-  // Only block the token when the API confirms the terms are not accepted, so
-  // a failed check does not lock users out.
   const isTermsAcceptancePending = accountTOS?.accepted === false;
+  // Don't request the token until acceptance is confirmed.
+  const canLoadToken =
+    !isTermsCheckEnabled || accountTOS?.accepted === true || isTermsCheckError;
   const isTokenVisible =
     hasAccessToToken && !isBlender && !isTermsAcceptancePending;
 
   const { data: token, isLoading: isLoadingToken } = useContractToken(
     subscription?.contract_id,
-    isTokenVisible,
+    isTokenVisible && canLoadToken,
   );
 
   const SubscriptionToken = () => {
@@ -90,7 +92,7 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
         <h5 className="u-no-padding--top p-subscriptions__details-small-title">
           Token
         </h5>
-        {isLoadingToken ? (
+        {isLoadingToken || !canLoadToken ? (
           <div className="u-sv4" data-test="token-spinner">
             <Spinner />
           </div>

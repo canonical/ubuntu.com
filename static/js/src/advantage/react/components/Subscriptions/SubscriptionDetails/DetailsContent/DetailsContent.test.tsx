@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, screen } from "@testing-library/react";
 import { mount } from "enzyme";
+import * as contracts from "advantage/api/contracts";
 import {
   UserSubscriptionMarketplace,
   UserSubscriptionPeriod,
@@ -118,6 +119,25 @@ describe("DetailsContent", () => {
     expect(screen.getByText(contractToken.contract_token)).toBeInTheDocument();
   });
 
+  it("does not request the token while the terms check is pending", () => {
+    const getContractTokenSpy = jest.spyOn(contracts, "getContractToken");
+    jest
+      .spyOn(contracts, "getAccountTOS")
+      .mockReturnValue(new Promise(() => {}));
+    const contract = userSubscriptionFactory.build();
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
+    render(
+      <QueryClientProvider client={queryClient}>
+        <DetailsContent
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
+      </QueryClientProvider>,
+    );
+    expect(getContractTokenSpy).not.toHaveBeenCalled();
+    jest.restoreAllMocks();
+  });
+
   it("asks to accept the terms and hides the token until accepted", () => {
     const contract = userSubscriptionFactory.build();
     const contractToken = contractTokenFactory.build();
@@ -158,6 +178,11 @@ describe("DetailsContent", () => {
       ["contractToken", contract.contract_id],
       contractToken,
     );
+    queryClient.setQueryData(["accountTOS", contract.account_id], {
+      accepted: true,
+      accepted_at: "2026-11-19T10:00:00Z",
+      email: "user@example.com",
+    });
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <DetailsContent
@@ -166,7 +191,6 @@ describe("DetailsContent", () => {
         />
       </QueryClientProvider>,
     );
-
     act(() => {
       wrapper.find("[data-test='contract-token']").simulate("click");
     });
