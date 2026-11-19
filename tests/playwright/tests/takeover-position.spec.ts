@@ -38,7 +38,9 @@ test("the variant group sees the takeover above the hero", async ({ page }) => {
   });
 
   expect(await takeoverIsFirst(page)).toBe(true);
-  await expect(page.locator("#takeover + .u-fixed-width > hr")).toBeVisible();
+  await expect(
+    page.locator("#takeover + .p-section--shallow hr"),
+  ).toBeVisible();
   await expect(page.locator("#variant-takeover-primary-url")).toBeVisible();
   await expect(page.locator("#variant-takeover-secondary-url")).toBeVisible();
   expect(await testEvents(page)).toMatchObject([

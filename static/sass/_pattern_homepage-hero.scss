@@ -65,6 +65,11 @@
     }
   }
 
+  // On phones the rule under the hero would sit right on the notification
+  .p-latest-block ~ .p-hero + .u-fixed-width {
+    display: none;
+  }
+
   // The rule now sits between the takeover and the hero instead
   .p-latest-block ~ .p-hero ~ .js-performance-rail .p-rule {
     display: none;
