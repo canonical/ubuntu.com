@@ -4,6 +4,8 @@
 # Triggered when the "copilot" label is added to an issue.
 # Only runs for users with write access (admin, maintainer, write roles).
 # Generate workflow file using `gh aw compile`
+description: Assigns the GitHub Copilot coding agent to issues labelled "copilot"
+emoji: 🤖
 on:
   issues:
     types: [labeled]
@@ -12,7 +14,7 @@ on:
       issue_number:
         description: 'Issue number to assign Copilot to'
         required: true
-        type: string
+        type: number
   roles: [admin, maintainer, write]
   permissions:
     contents: read
@@ -27,10 +29,12 @@ engine:
   model: gpt-5
 
 permissions:
-  issues: read
   contents: read
-  pull-requests: read
   copilot-requests: write
+
+# The agent only calls the assign-to-agent safe output, so it needs no GitHub read tools.
+tools:
+  github: false
 
 safe-outputs:
   assign-to-agent:
