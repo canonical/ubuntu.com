@@ -11,6 +11,7 @@ from webapp.macaroons import (
     MacaroonResponse,
 )
 from canonicalwebteam.flask_base.env import get_flask_env
+from webapp.utils import safe_redirect_url
 
 COMMUNITY_TEAM = "ubuntumembers"
 CREDENTIALS_TEAM = "canonical-credentials"
@@ -74,7 +75,7 @@ def login_handler():
     )
 
     if user_info(flask.session):
-        return flask.redirect(open_id.get_next_url())
+        return flask.redirect(safe_redirect_url(open_id.get_next_url()))
 
     response = session.request(
         method="get",
@@ -146,7 +147,7 @@ def after_login(resp):
         "is_credentials_support": is_credentials_support,
     }
 
-    return flask.redirect(open_id.get_next_url())
+    return flask.redirect(safe_redirect_url(open_id.get_next_url()))
 
 
 def logout():
@@ -158,4 +159,4 @@ def logout():
 
     empty_session(flask.session)
 
-    return flask.redirect(return_to)
+    return flask.redirect(safe_redirect_url(return_to))

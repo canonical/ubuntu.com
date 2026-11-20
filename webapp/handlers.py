@@ -48,6 +48,7 @@ from webapp.shop.api.ua_contracts.api import (
 )
 from webapp.shop.flaskparser import UAContractsValidationError
 from webapp.certified.helpers import convert_markdown_to_html
+from webapp.utils import safe_redirect_url
 from webapp.announcement_bar import (
     get_announcement_bar_context,
     should_show_announcement_bar,
@@ -431,7 +432,7 @@ def init_handlers(app):
         if error.response.status_code == 401:
             empty_session(flask.session)
 
-            return flask.redirect(flask.request.url)
+            return flask.redirect(safe_redirect_url(flask.request.full_path))
 
         return flask.render_template("500.html"), 500
 

@@ -14,6 +14,7 @@ from sortedcontainers import SortedDict
 
 # Local
 from webapp.security.api import SecurityAPI
+from webapp.utils import safe_redirect_url
 from webapp.security.helpers import (
     get_summarized_status,
     is_only_upstream,
@@ -484,7 +485,7 @@ def cve_index():
 
     # Get cve with specific id
     if is_cve_id and cves_response.get(query.upper()):
-        return flask.redirect(f"/security/{query.lower()}")
+        return flask.redirect(safe_redirect_url(f"/security/{query.lower()}"))
 
     return flask.render_template(
         "security/cves/index.html",

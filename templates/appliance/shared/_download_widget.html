@@ -19,7 +19,7 @@
       const selectElement = downloadForm.querySelector('.js-platform-select');
       if (linkElement && selectElement) {
         selectElement.addEventListener('change', function() {
-          linkElement.href = window.location.pathname + '/' + selectElement.value;
+          linkElement.href = window.location.pathname + '/' + encodeURIComponent(selectElement.value);
         });
       }
     }
