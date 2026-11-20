@@ -1,0 +1,91 @@
+import { test, expect, Page } from "@playwright/test";
+
+// The test ships switched off, so turn it on in the served HTML
+async function openHomepage(page: Page, cookies: Record<string, string>) {
+  await page.context().addCookies(
+    Object.entries(cookies).map(([name, value]) => ({
+      name,
+      value,
+      url: test.info().project.use.baseURL,
+    })),
+  );
+  await page.route("**/takeovers.json", (route) => route.fulfill({ json: [] }));
+  await page.route(/\/$/, async (route) => {
+    const response = await route.fetch();
+    const body = (await response.text()).replace(
+      "const takeoverSwitch = false;",
+      "const takeoverSwitch = true;",
+    );
+    await route.fulfill({ response, body });
+  });
+  await page.goto("/");
+}
+
+const takeoverIsFirst = (page: Page) =>
+  page.evaluate(
+    () => document.querySelector(".js-hero, #takeover")?.id === "takeover",
+  );
+
+const testEvents = (page: Page) =>
+  page.evaluate(() =>
+    (window.dataLayer ?? []).filter((entry) => entry.event === "test"),
+  );
+
+test("the variant group sees the takeover above the hero", async ({ page }) => {
+  await openHomepage(page, {
+    _cookies_accepted: "all",
+    control_or_variant: "variant",
+  });
+
+  expect(await takeoverIsFirst(page)).toBe(true);
+  await expect(
+    page.locator("#takeover + .p-section--shallow hr"),
+  ).toBeVisible();
+  await expect(page.locator("#variant-takeover-primary-url")).toBeVisible();
+  await expect(page.locator("#variant-takeover-secondary-url")).toBeVisible();
+  expect(await testEvents(page)).toMatchObject([
+    { test_type: "takeover position", control_or_variant: "variant" },
+  ]);
+});
+
+test("the control group keeps the hero first", async ({ page }) => {
+  await openHomepage(page, {
+    _cookies_accepted: "all",
+    control_or_variant: "control",
+  });
+
+  expect(await takeoverIsFirst(page)).toBe(false);
+  await expect(page.locator("#control-takeover-primary-url")).toBeVisible();
+  await expect(page.locator("#control-takeover-secondary-url")).toBeVisible();
+});
+
+test("a new visitor is assigned a group and keeps it", async ({ page }) => {
+  await openHomepage(page, { _cookies_accepted: "all" });
+
+  const cookies = await page.context().cookies();
+  const group = cookies.find((cookie) => cookie.name === "control_or_variant");
+  expect(["control", "variant"]).toContain(group?.value);
+  expect(await takeoverIsFirst(page)).toBe(group?.value === "variant");
+  await expect(
+    page.locator(`#${group?.value}-takeover-primary-url`),
+  ).toBeVisible();
+  await expect(
+    page.locator(`#${group?.value}-takeover-secondary-url`),
+  ).toBeVisible();
+  // The cookie lasts two weeks
+  const days = ((group?.expires ?? 0) - Date.now() / 1000) / 86400;
+  expect(days).toBeGreaterThan(13);
+  expect(days).toBeLessThan(15);
+});
+
+test("no group is assigned without analytics consent", async ({ page }) => {
+  await openHomepage(page, { control_or_variant: "variant" });
+
+  expect(await takeoverIsFirst(page)).toBe(false);
+  expect(await testEvents(page)).toEqual([]);
+  expect(await page.evaluate(() => document.cookie)).not.toContain(
+    "control_or_variant",
+  );
+  await expect(page.locator("#takeover-primary-url")).toBeVisible();
+  await expect(page.locator("#takeover-secondary-url")).toBeVisible();
+});

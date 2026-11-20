@@ -28,6 +28,53 @@
 
     {% include "home/_hero.html" %}
     {% include "home/_latest.html" %}
+    {# Takeover position A/B test: the variant group sees the Latest block above the hero #}
+    <script nonce="{{ csp_nonce }}">
+      (function() {
+        const takeoverSwitch = false;
+        const cookieName = "control_or_variant";
+        const readCookie = (name) =>
+          document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"))?.[2];
+
+        // Like user_id, a group is only assigned after analytics consent
+        const consent = readCookie("_cookies_accepted");
+        if (!takeoverSwitch || !["all", "performance"].includes(consent)) {
+          document.cookie = cookieName + "=; max-age=0; path=/";
+          return;
+        }
+
+        let group = readCookie(cookieName);
+        if (group !== "control" && group !== "variant") {
+          group = Math.random() < 0.5 ? "control" : "variant";
+          document.cookie = cookieName + "=" + group + "; max-age=1209600; path=/";
+        }
+
+        const hero = document.querySelector(".js-hero");
+        const takeover = document.getElementById("takeover");
+        if (!hero || !takeover) return;
+
+        // Marketing tracks each individual group's clicks by these ids in GTM
+        for (const link of takeover.querySelectorAll("#takeover-ctas a")) {
+          link.id = group + "-" + link.id;
+        }
+
+        if (group === "variant") {
+          // Moving the element keeps the tab order the same as the visual order
+          hero.before(takeover);
+          takeover.insertAdjacentHTML(
+            "afterend",
+            '<div class="p-section--shallow"><div class="u-fixed-width"><hr class="p-rule" /></div></div>',
+          );
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+          event: "test",
+          test_type: "takeover position",
+          control_or_variant: group,
+        });
+      })();
+    </script>
 
     <div class="p-section">
       <div class="u-fixed-width">
@@ -170,8 +217,7 @@
         const title = document.getElementById("takeover-title");
         const subtitle = document.getElementById("takeover-subtitle");
         const image = document.getElementById("takeover-image");
-        const primaryUrl = document.getElementById("takeover-primary-url");
-        const secondaryUrl = document.getElementById("takeover-secondary-url");
+        const [primaryUrl, secondaryUrl] = document.querySelectorAll("#takeover-ctas a");
 
         // Set values to homepage takeover
         var selectedTakeover = takeovers[index];

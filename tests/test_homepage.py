@@ -142,6 +142,19 @@ class TestHomepageRender(VCRTestCase):
         ]:
             self.assertFalse(removed in html, f"Still present: {removed}")
 
+    def test_takeover_position_test_ships_switched_off(self):
+        """
+        The takeover position A/B test is on the page, switched off
+        """
+
+        script = self.get_soup().find(
+            "script", string=re.compile("takeover position")
+        )
+        self.assertIsNotNone(script)
+        self.assertIn("const takeoverSwitch = false;", script.string)
+        # It has to run straight after the block it moves, before paint
+        self.assertEqual(script.find_previous("section")["id"], "takeover")
+
     def test_hero(self):
         """
         The hero holds the page's only h1, and its mock desktop is hidden
