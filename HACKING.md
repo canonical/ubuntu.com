@@ -198,6 +198,18 @@ To enable the React Query devtools you need to add `NODE_ENV="development"` to y
 
 Percy runs visual regression snapshots on PRs and on every merge to `main`, but only when the diff touches files that can affect rendered output (SCSS, JS source, templates, nav YAMLs, snapshot config, `package.json`/`yarn.lock`). See [.github/PERCY.md](.github/PERCY.md) for the full behaviour, watched-paths list, and how to force a run via the `run-percy` label.
 
+### Link checker notifications
+
+When the `Links on ubuntu.com live` workflow still finds broken links after its retries, `scripts/check-links.sh` writes a report of them and the pages they are on. `scripts/notify-dead-links.sh` sends it to [webbot](https://github.com/canonical/webteam-webbot), which reads the "Page owner" row of each page's copydoc (the `<meta name="copydoc">` tag), sends the owner a direct message, and lists the copydocs whose owner it could not find in `web-alerts`.
+
+The workflow needs two repository secrets, `BOT_DEAD_LINKS_URL` (the webbot `/webhooks/dead-links` URL) and `BOT_DEAD_LINKS_TOKEN`. Without them the step does nothing.
+
+Direct messages to page owners are off by default. To turn them on, set the repository variable `LINK_CHECKER_NOTIFY_PAGE_OWNERS` to `true` (**Settings → Secrets and variables → Actions → Variables**). Set it to anything else, or delete it, to turn them off again. The change applies from the next run and needs no code change. While they are off, the copydocs without an owner are still listed in `web-alerts`.
+
+Webbot has a second switch, `dead_links.send_direct_messages` in its config, which must also be `true` for any direct message to be sent. It is the master switch, and a change there is a change to the bot's deployment configuration.
+
+Two kinds of findings are reported in `web-alerts` rather than to an owner. A link broken on more than 10 pages (a footer link, for example) is listed once with its page count, instead of in every page's list. A page that could not be fetched is listed as such, because its copydoc is then unknown. If webbot cannot post to `web-alerts` it answers with an error and the step fails, which is visible in the run. The step is limited to 10 minutes, and each page fetch and the request to webbot have their own time limits.
+
 ## Linting / formatting
 
 When making changes to the codebase please make sure it's properly formatted and linted.

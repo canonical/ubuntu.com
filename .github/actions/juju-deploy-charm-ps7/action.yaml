@@ -1,5 +1,5 @@
 name: Deploy to PS7
-description: Deploy the ubuntu-com charm to a ProdStack 7 Juju model using JAAS OAuth credentials.
+description: Deploy the ubuntu-com charm to a ProdStack 7 Juju model using JAAS OAuth credentials read from Vault.
 
 inputs:
   image-url:
@@ -21,11 +21,11 @@ inputs:
     description: "Juju snap channel"
     required: false
     default: "3/stable"
-  juju-client-id:
-    description: "JAAS OAuth client id"
+  vault-role-id:
+    description: "Vault AppRole role id"
     required: true
-  juju-client-secret:
-    description: "JAAS OAuth client secret"
+  vault-secret-id:
+    description: "Vault AppRole secret id"
     required: true
 
 runs:
@@ -42,11 +42,30 @@ runs:
       with:
         name: charm
 
+    - name: Fetch JAAS credentials from Vault
+      shell: bash
+      env:
+        VAULT_ADDR: "https://vault.ps7.admin.canonical.com"
+        VAULT_ROLE_ID: ${{ inputs.vault-role-id }}
+        VAULT_SECRET_ID: ${{ inputs.vault-secret-id }}
+        VAULT_SECRET_PATH: groups/canonical-webdesign/service_account
+      run: |
+        set -euo pipefail
+        sudo snap install vault --classic
+        VAULT_TOKEN=$(vault write -f -field=token auth/approle/login role_id="$VAULT_ROLE_ID" secret_id="$VAULT_SECRET_ID")
+        export VAULT_TOKEN
+        JUJU_CLIENT_ID=$(vault kv get -mount=secret -field=juju_client_id "$VAULT_SECRET_PATH")
+        JUJU_CLIENT_SECRET=$(vault kv get -mount=secret -field=juju_client_secret "$VAULT_SECRET_PATH")
+        echo "::add-mask::$JUJU_CLIENT_ID"
+        echo "::add-mask::$JUJU_CLIENT_SECRET"
+        {
+          echo "JUJU_CLIENT_ID=$JUJU_CLIENT_ID"
+          echo "JUJU_CLIENT_SECRET=$JUJU_CLIENT_SECRET"
+        } >> "$GITHUB_ENV"
+
     - name: Authenticate with JAAS
       shell: bash
       env:
-        JUJU_CLIENT_ID: ${{ inputs.juju-client-id }}
-        JUJU_CLIENT_SECRET: ${{ inputs.juju-client-secret }}
         JUJU_CONTROLLER_ADDRESS: ${{ inputs.controller-address }}
         JUJU_CONTROLLER_NAME: ${{ inputs.controller-name }}
       run: |
@@ -56,8 +75,6 @@ runs:
     - name: Switch to model
       shell: bash
       env:
-        JUJU_CLIENT_ID: ${{ inputs.juju-client-id }}
-        JUJU_CLIENT_SECRET: ${{ inputs.juju-client-secret }}
         JUJU_CONTROLLER_NAME: ${{ inputs.controller-name }}
         JUJU_MODEL_NAME: ${{ inputs.model-name }}
       run: |
@@ -69,16 +86,25 @@ runs:
     - name: Deploy charm
       shell: bash
       env:
-        JUJU_CLIENT_ID: ${{ inputs.juju-client-id }}
-        JUJU_CLIENT_SECRET: ${{ inputs.juju-client-secret }}
         APP_NAME: ${{ inputs.app-name }}
         IMAGE_URL: ${{ inputs.image-url }}
       run: |
-        set -e
-        CHARM_FILE=$(ls ./*.charm | head -1)
-        if juju show-application "$APP_NAME" &>/dev/null; then
-          juju refresh "$APP_NAME" --path="./$CHARM_FILE" --resource flask-app-image="$IMAGE_URL"
+        set -euo pipefail
+        shopt -s nullglob
+        CHARMS=(./*.charm)
+        if [ "${#CHARMS[@]}" -ne 1 ]; then
+          echo "::error::Expected exactly one .charm file, found ${#CHARMS[@]}: ${CHARMS[*]}"
+          exit 1
+        fi
+        CHARM_FILE="${CHARMS[0]}"
+        # Only deploy when Juju explicitly reports the application as missing;
+        # any other failure (API/network/auth error) must not be treated as "absent".
+        if SHOW_OUTPUT=$(juju show-application "$APP_NAME" 2>&1); then
+          juju refresh "$APP_NAME" --path="$CHARM_FILE" --resource flask-app-image="$IMAGE_URL"
+        elif grep -qF "application \"$APP_NAME\" not found" <<< "$SHOW_OUTPUT"; then
+          juju deploy "$CHARM_FILE" "$APP_NAME" --resource flask-app-image="$IMAGE_URL"
         else
-          juju deploy "./$CHARM_FILE" "$APP_NAME" --resource flask-app-image="$IMAGE_URL"
+          echo "::error::Could not determine whether '$APP_NAME' exists: $SHOW_OUTPUT"
+          exit 1
         fi
         juju wait-for application "$APP_NAME" --query="name=='$APP_NAME' && (status=='active' || status=='idle')"

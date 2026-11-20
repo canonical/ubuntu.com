@@ -24,6 +24,7 @@ EXPECTED_ORDER = [
     "performance",
     "hardware",
     "pro",
+    "trusted-by",
     "open-source",
     "containers",
     "stories",
@@ -210,6 +211,22 @@ class TestHomepageRender(VCRTestCase):
         self.assertEqual(
             self.arrow_link_hrefs(section),
             ["/pro", "/what-is-enterprise-linux"],
+        )
+
+    def test_trusted_by_section(self):
+        section = self.get_section("Trusted by")
+        self.assertIsNotNone(section.select_one("h2.p-text--small-caps"))
+        logos = section.select("img.p-logo-section__logo")
+        self.assertEqual(
+            [logo["alt"] for logo in logos],
+            [
+                "BT Group",
+                "ESA",
+                "LaunchDarkly",
+                "OEDIV",
+                "PhonePe",
+                "SBI BITS",
+            ],
         )
 
     def test_containers_section(self):

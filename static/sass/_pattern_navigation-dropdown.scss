@@ -46,13 +46,12 @@
     height: auto;
     max-height: calc(100vh - 3rem);
     overflow-y: auto;
-    position: fixed;
+    // Absolute, not fixed: the panel sits inside the sticky .l-sticky-header
+    // and must move with it. A fixed panel with no top is drawn off-screen
+    // after scrolling in Firefox and WebKit.
+    position: absolute;
     width: 100%;
     z-index: 11;
-  }
-
-  .p-navigation--sliding.is-reduced ~ .dropdown-window {
-    position: absolute;
   }
 
   .dropdown-window__content {

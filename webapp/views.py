@@ -36,7 +36,7 @@ from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
 from canonicalwebteam.directory_parser import generate_sitemap
 from geolite2 import geolite2
-from markupsafe import Markup
+from markupsafe import escape
 from requests import Session
 from requests.exceptions import HTTPError, RequestException
 from werkzeug.exceptions import BadRequest, ServiceUnavailable
@@ -2207,14 +2207,7 @@ def build_developer_diaries_index(developer_diaries):
                 article["tags"]
             )
             if article["author"]:
-                article["author_html"] = str(
-                    Markup(
-                        '<a class="p-content-card__author-link" '
-                        'href="{}">{}</a>'
-                    ).format(
-                        article["author"]["url"], article["author"]["name"]
-                    )
-                )
+                article["author_name"] = str(escape(article["author"]["name"]))
 
         return flask.render_template(
             "community/developer-diaries/index.html",
@@ -2650,6 +2643,8 @@ def google_ads_verification():
     Serve the Google Ads account-access verification token from the domain
     root. Google fetches /Google-Ads.txt directly and does not reliably
     follow redirects, so this is served in place via a dedicated route.
+    Keep the backing file blank when there is no active access request to
+    avoid publishing an outdated instruction.
     """
     return flask.send_from_directory(
         flask.current_app.static_folder, "files/Google-Ads.txt"
