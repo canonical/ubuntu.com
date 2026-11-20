@@ -163,11 +163,61 @@ describe("DetailsContent", () => {
       screen.getByRole("dialog", { name: "Accept terms" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: "Review and accept" }),
+      screen.getByRole("button", { name: "Review terms" }),
     ).toBeInTheDocument();
     expect(
       screen.queryByText(contractToken.contract_token),
     ).not.toBeInTheDocument();
+  });
+
+  it("does not skip the terms check when the email param is empty", () => {
+    window.history.pushState({}, "", "/pro/dashboard?email=");
+    const getContractTokenSpy = jest.spyOn(contracts, "getContractToken");
+    const getAccountTOSSpy = jest
+      .spyOn(contracts, "getAccountTOS")
+      .mockReturnValue(new Promise(() => {}));
+    const contract = userSubscriptionFactory.build();
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
+    render(
+      <QueryClientProvider client={queryClient}>
+        <DetailsContent
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
+      </QueryClientProvider>,
+    );
+    expect(getAccountTOSSpy).toHaveBeenCalled();
+    expect(getContractTokenSpy).not.toHaveBeenCalled();
+    jest.restoreAllMocks();
+    window.history.pushState({}, "", "/");
+  });
+
+  it("shows the token when the terms check fails", async () => {
+    queryClient = new QueryClient({
+      defaultOptions: { queries: { retry: false } },
+    });
+    const contractToken = contractTokenFactory.build();
+    jest.spyOn(contracts, "getContractToken").mockResolvedValue(contractToken);
+    jest
+      .spyOn(contracts, "getAccountTOS")
+      .mockResolvedValue({ errors: "Unexpected error" });
+    const contract = userSubscriptionFactory.build();
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
+    render(
+      <QueryClientProvider client={queryClient}>
+        <DetailsContent
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
+      </QueryClientProvider>,
+    );
+    expect(
+      await screen.findByText(contractToken.contract_token),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("dialog", { name: "Accept terms" }),
+    ).not.toBeInTheDocument();
+    jest.restoreAllMocks();
   });
 
   it("can display the token copied notification", async () => {

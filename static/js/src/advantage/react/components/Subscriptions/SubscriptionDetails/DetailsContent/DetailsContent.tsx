@@ -65,9 +65,9 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
   const hasAccessToToken = subscription?.statuses.has_access_to_token;
   const isBlender = isBlenderSubscription(subscription);
   // Admins viewing as another user must not be prompted on their behalf.
-  const isViewingAsAnotherUser = new URLSearchParams(
+  const isViewingAsAnotherUser = !!new URLSearchParams(
     window.location.search,
-  ).has("email");
+  ).get("email");
   const isTermsCheckEnabled = !isBlender && !isViewingAsAnotherUser;
   const { data: accountTOS, isError: isTermsCheckError } = useAccountTOS(
     subscription?.account_id,
@@ -75,7 +75,8 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
   );
   const [isTermsModalDismissed, setIsTermsModalDismissed] = useState(false);
   const isTermsAcceptancePending = accountTOS?.accepted === false;
-  // Don't request the token until acceptance is confirmed.
+  // Don't request the token until acceptance is confirmed, unless the check
+  // itself fails: an outage must not lock customers out of their token.
   const canLoadToken =
     !isTermsCheckEnabled || accountTOS?.accepted === true || isTermsCheckError;
   const isTokenVisible =
@@ -213,17 +214,16 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
       {isTermsAcceptancePending && hasAccessToToken ? (
         <Notification
           severity="caution"
-          title="Accept the Ubuntu Pro service terms:"
+          title="Accept the Ubuntu Pro terms of service"
           actions={[
             {
-              label: "Review and accept",
+              label: "Review terms",
               onClick: () => setIsTermsModalDismissed(false),
             },
           ]}
         >
-          Your account hasn&apos;t accepted the service terms yet. Accept them
-          now, or ask someone on your account who has the authority to accept
-          them for your organization.
+          To continue accessing your token, accept or ask another user on this
+          account with the authority to accept them for your organization.
         </Notification>
       ) : null}
       {isTermsAcceptancePending && !isTermsModalDismissed ? (
