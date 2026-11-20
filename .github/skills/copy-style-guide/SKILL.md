@@ -234,7 +234,7 @@ Official product names should be capitalized and written as follows. You will al
 | Snapd | More info:  [Snap terminology](https://docs.google.com/document/d/1SmeAgRtEldTmxvPsyzdCl3V6QIKJjYcxGHHbIfzQfU8/edit?usp=sharing) |  |
 | Snapcraft | More info:  [Snap terminology](https://docs.google.com/document/d/1SmeAgRtEldTmxvPsyzdCl3V6QIKJjYcxGHHbIfzQfU8/edit?usp=sharing) |  |
 | Real-time Ubuntu | More info: [Real-time Ubuntu terminology](https://docs.google.com/document/d/1weeGIJVcKhnWAmpY9Ixd-Q48GBJtYj0twEgoNlM-c4E/edit) |  |
-| Chisel/chiseled  | A tool for carving and cutting Ubuntu packages. [Chisel documentation](https://documentation.ubuntu.com/chisel/en/latest/)  | Only capitalized at the beginning of a sentence or heading. For instance: “Chiseled containers are...” and “...with chiseled Ubuntu containers.”  |
+| Chisel/chiseled  | A tool for carving and cutting Ubuntu packages. [Chisel documentation](https://ubuntu.com/chisel/docs/latest/)  | Only capitalized at the beginning of a sentence or heading. For instance: “Chiseled containers are...” and “...with chiseled Ubuntu containers.”  |
 | ROCKs | Canonical-supported Open Container Initiative (OCI) images |  |
 | MAAS | *MAAS* (*Metal* as a Service) offers cloud style provisioning for physical servers. It is open source and free to use, with commercial support available from Canonical through the Ubuntu Pro subscription.  |  |
 | Landscape | Landscape is the management and administration tool for Ubuntu. Landscape is available with an Ubuntu Pro subscription. Among its many features, Landscape makes it easy to install, update and remove software and define policies for automated security patching, audit logging and compliance reporting.  |  |
