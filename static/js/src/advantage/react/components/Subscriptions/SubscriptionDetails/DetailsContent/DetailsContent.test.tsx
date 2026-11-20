@@ -165,6 +165,7 @@ describe("DetailsContent", () => {
     expect(
       screen.getByRole("button", { name: "Review terms" }),
     ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Token" })).toBeInTheDocument();
     expect(
       screen.queryByText(contractToken.contract_token),
     ).not.toBeInTheDocument();

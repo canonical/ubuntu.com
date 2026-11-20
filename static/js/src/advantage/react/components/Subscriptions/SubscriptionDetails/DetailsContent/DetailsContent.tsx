@@ -93,7 +93,21 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
         <h5 className="u-no-padding--top p-subscriptions__details-small-title">
           Token
         </h5>
-        {isLoadingToken || !canLoadToken ? (
+        {isTermsAcceptancePending ? (
+          <Notification
+            severity="caution"
+            title="Accept the Ubuntu Pro terms of service"
+            actions={[
+              {
+                label: "Review terms",
+                onClick: () => setIsTermsModalDismissed(false),
+              },
+            ]}
+          >
+            To continue accessing your token, accept or ask another user on this
+            account with the authority to accept them for your organization.
+          </Notification>
+        ) : isLoadingToken || !canLoadToken ? (
           <div className="u-sv4" data-test="token-spinner">
             <Spinner />
           </div>
@@ -210,22 +224,7 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
               ]),
         ])}
       </Row>
-      {isTokenVisible ? <SubscriptionToken /> : null}
-      {isTermsAcceptancePending && hasAccessToToken ? (
-        <Notification
-          severity="caution"
-          title="Accept the Ubuntu Pro terms of service"
-          actions={[
-            {
-              label: "Review terms",
-              onClick: () => setIsTermsModalDismissed(false),
-            },
-          ]}
-        >
-          To continue accessing your token, accept or ask another user on this
-          account with the authority to accept them for your organization.
-        </Notification>
-      ) : null}
+      {hasAccessToToken && !isBlender ? <SubscriptionToken /> : null}
       {isTermsAcceptancePending && !isTermsModalDismissed ? (
         <AcceptTermsModal
           accountId={subscription.account_id}
