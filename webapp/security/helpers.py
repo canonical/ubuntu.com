@@ -1,6 +1,11 @@
 # Standard library
 from datetime import datetime
+import html
 import re
+import textwrap
+
+# Packages
+from markupsafe import Markup
 
 """
 Return the summarized status for a CVE
@@ -345,3 +350,126 @@ def get_attention_banner(details):
     )
 
     return attention_banner, instructions
+
+
+FENCED_CODE_RE = re.compile(
+    r"(?m)^([ \t]*)```[^\n]*\n(.*?)^[ \t]*```[ \t]*(?:\n|$)",
+    re.DOTALL,
+)
+HEADING_RE = re.compile(r"^[ \t]*(#{2,4})[ \t]+(.+?)[ \t]*$")
+INLINE_CODE_RE = re.compile(r"`([^`\n]+)`")
+INLINE_TOKEN_RE = re.compile(
+    r"`([^`\n]+)`"
+    r"|\*\*(?!\s|\*\*)((?:`[^`\n]+`|(?!\*\*)[^\n`])+?)(?<!\s)\*\*"
+)
+
+
+def _format_inline_code(text):
+    """
+    Escape plain text while converting single-line `code` spans to <code>.
+    """
+    parts = []
+    last = 0
+    for match in INLINE_CODE_RE.finditer(text):
+        start = match.start()
+        parts.append(html.escape(text[last:start], quote=True))
+        code_span = html.escape(match.group(1), quote=True)
+        parts.append(f"<code>{code_span}</code>")
+        last = match.end()
+    parts.append(html.escape(text[last:], quote=True))
+    return "".join(parts)
+
+
+def _format_inline_markup(text):
+    """
+    Escape plain text while converting explicit `code` and **bold** spans.
+    """
+    parts = []
+    last = 0
+    for match in INLINE_TOKEN_RE.finditer(text):
+        start = match.start()
+        parts.append(html.escape(text[last:start], quote=True))
+        code_group = match.group(1)
+        if code_group is not None:
+            escaped = html.escape(code_group, quote=True)
+            parts.append(f"<code>{escaped}</code>")
+        else:
+            bold_inner = _format_inline_code(match.group(2))
+            parts.append(f"<strong>{bold_inner}</strong>")
+        last = match.end()
+    parts.append(html.escape(text[last:], quote=True))
+    return "".join(parts)
+
+
+def _render_prose_blocks(segment):
+    """
+    Convert non-code mitigation lines into escaped headings and paragraphs.
+    """
+    blocks = []
+    paragraph_lines = []
+
+    def flush_paragraph():
+        if paragraph_lines:
+            body = _format_inline_markup("\n".join(paragraph_lines))
+            blocks.append(f"<p>{body}</p>")
+            paragraph_lines.clear()
+
+    for line in segment.split("\n"):
+        if not line.replace("\u2800", "").strip():
+            flush_paragraph()
+            continue
+
+        heading_match = HEADING_RE.match(line)
+        if heading_match:
+            flush_paragraph()
+            level = len(heading_match.group(1)) + 1
+            title = _format_inline_markup(heading_match.group(2))
+            blocks.append(f"<h{level}>{title}</h{level}>")
+            continue
+
+        paragraph_lines.append(line)
+
+    flush_paragraph()
+    return blocks
+
+
+def format_cve_mitigation(text):
+    """
+    Render CVE mitigation text safely with explicit ``` fenced code blocks,
+    ##/###/#### headings, **bold**, and inline `code` spans while preserving
+    plain-text line breaks and escaping all raw HTML.
+    """
+    if not text or not text.replace("\u2800", "").strip():
+        return ""
+
+    cleaned = textwrap.dedent(text.strip("\r\n"))
+    blocks = []
+    last = 0
+
+    for match in FENCED_CODE_RE.finditer(cleaned):
+        start = match.start()
+        blocks.extend(_render_prose_blocks(cleaned[last:start]))
+
+        indent = match.group(1)
+        indent_len = len(indent)
+        code_body = match.group(2)
+        if code_body.endswith("\n"):
+            code_body = code_body[:-1]
+
+        code_lines = []
+        for line in code_body.split("\n"):
+            if indent_len and line.startswith(indent):
+                line = line[indent_len:]
+            if not line.replace("\u2800", "").strip():
+                line = ""
+            code_lines.append(line)
+
+        escaped_code = html.escape("\n".join(code_lines), quote=True)
+        blocks.append(f"<pre><code>{escaped_code}</code></pre>")
+        last = match.end()
+
+    blocks.extend(_render_prose_blocks(cleaned[last:]))
+
+    # Safe: every prose, heading, and code fragment is escaped via html.escape.
+    clean_html = "\n".join(blocks)
+    return Markup(clean_html)  # nosec B704
