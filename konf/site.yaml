@@ -478,11 +478,6 @@ production:
         ]
       service_name: ubuntu-com-security-api-flat-notices
 
-    - paths: [/security/updates/.*]
-      service_name: ubuntu-com-security-api-updates
-      replicas: 2
-      memoryLimit: 1Gi
-
     - paths: [/security]
       name: ubuntu-com-security
       app_name: ubuntu.com-security
@@ -624,6 +619,16 @@ production:
     }
     location ^~ /usn-db-stg/ {
       proxy_pass http://seceng-people.internal/%7Eubuntu-security/usn/;
+    }
+    # Security API runs on PS7 (Juju) with its own DB
+    location ^~ /security/updates/ {
+      proxy_pass https://api.security.ubuntu.com;
+      proxy_ssl_server_name on;
+      proxy_set_header Host api.security.ubuntu.com;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_read_timeout 300s;
     }
 
 # Overrides for staging
@@ -1086,7 +1091,6 @@ staging:
           /security/releases/.*\.json,
           /security/api/.*,
           /security/page/.*\.json,
-          /security/updates/.*,
         ]
       service_name: ubuntu-com-security-api
     
@@ -1212,6 +1216,16 @@ staging:
   nginxServerSnippet: |
     location ^~ /wp-content/uploads/ {
       proxy_pass https://admin.insights.ubuntu.com/wp-content/uploads/;
+    }
+    # Security API runs on PS7 (Juju) with its own DB
+    location ^~ /security/updates/ {
+      proxy_pass https://api.staging.security.ubuntu.com;
+      proxy_ssl_server_name on;
+      proxy_set_header Host api.staging.security.ubuntu.com;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_read_timeout 300s;
     }
 
 demo:
