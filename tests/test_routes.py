@@ -45,10 +45,19 @@ class TestRoutes(VCRTestCase):
     def test_homepage(self):
         """
         When given the index URL,
-        we should return a 200 status code
+        we should return a 200 status code and provide a main-content bypass
+        link for keyboard users.
         """
 
-        self.assertEqual(self.client.get("/").status_code, 200)
+        response = self.client.get("/")
+
+        self.assertEqual(response.status_code, 200)
+
+        soup = BeautifulSoup(response.data, "html.parser")
+        skip_link = soup.find("a", class_="p-link--skip")
+        self.assertIsNotNone(skip_link)
+        self.assertEqual(skip_link.get("href"), "#main-content")
+        self.assertIsNotNone(soup.find(id="main-content"))
 
     def test_mirrors(self):
         """
