@@ -39,6 +39,11 @@
         <h2>{{ platform.certificates|length }} certified configurations</h2>
         {% endif %}
       </div>
+      {% if platform.website %}
+      <div class="p-cta-block">
+        <a href="{{ platform.website }}" class="p-button">Visit vendor website</a>
+      </div>
+      {% endif %}
     </div>
   </div>
 </section>

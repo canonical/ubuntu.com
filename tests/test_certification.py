@@ -224,6 +224,65 @@ class TestCertification(VCRTestCase):
         self.assertIn("&lt;img src=", content)
 
 
+class TestCertifiedPlatformDetails(unittest.TestCase):
+    def setUp(self):
+        app.testing = True
+        self.client = app.test_client()
+        self.platform = {
+            "id": 12728,
+            "name": "XPS 13 Plus",
+            "vendor": "Dell",
+            "category": "Laptop",
+            "certificates": {
+                "202112-29802": {
+                    "name": "XPS 13 Plus (Core i7-1280P)",
+                    "releases": ["22.04 LTS"],
+                    "date": "18 July 2022",
+                    "processor": [],
+                    "video": [],
+                    "network": [],
+                    "wireless": [],
+                }
+            },
+        }
+        patcher = patch(
+            "webapp.certified.views.api.certified_platform_details",
+            return_value=self.platform,
+        )
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        self.paths = (
+            "/certified/platforms/12728",
+            "/certified/platforms/12728/22.04%20LTS",
+        )
+
+    def test_vendor_website_link(self):
+        """Test that both platform pages link to the vendor website."""
+        self.platform["website"] = "https://example.com/platform"
+        for path in self.paths:
+            with self.subTest(path=path):
+                response = self.client.get(path)
+                self.assertEqual(response.status_code, 200)
+                self.assertIn(
+                    '<a href="https://example.com/platform" '
+                    'class="p-button">Visit vendor website</a>',
+                    response.get_data(as_text=True),
+                )
+
+    def test_vendor_link_hidden_without_website(self):
+        """Test that no vendor link appears without a website."""
+        for fields in ({}, {"website": ""}, {"website": None}):
+            self.platform.pop("website", None)
+            self.platform.update(fields)
+            for path in self.paths:
+                with self.subTest(fields=fields, path=path):
+                    response = self.client.get(path)
+                    self.assertEqual(response.status_code, 200)
+                    self.assertNotIn(
+                        "Visit vendor website", response.get_data(as_text=True)
+                    )
+
+
 def _build_model_release(**overrides):
     """
     Minimal certified-configuration-details result used by the
