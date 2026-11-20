@@ -13,6 +13,11 @@ on:
         description: "Target environment: both, staging or production"
         required: true
         type: string
+    secrets:
+      JUJU_CLIENT_ID:
+        required: false
+      JUJU_CLIENT_SECRET:
+        required: false
 
 permissions: {}
 

@@ -241,7 +241,7 @@ jobs:
           persist-credentials: false
 
       - name: woke
-        uses: canonical-web-and-design/inclusive-naming@7aa0f7a606f182bd03a7adb28e0d710216101ca5 # main
+        uses: canonical-web-and-design/inclusive-naming@965ea21624a58f27460725561603914b422d693e # main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-check
