@@ -6,7 +6,38 @@ from unittest.mock import Mock, patch
 from urllib.parse import parse_qs, urlparse
 
 from webapp.app import app
+from webapp.marketo import MarketoAPI
 from tests.helpers import MarketoFormTestCase
+
+
+class TestMarketoAPI(unittest.TestCase):
+    def test_request_reauthenticates_after_unauthorized_response(self):
+        for status_code in [401, 403]:
+            with self.subTest(status_code=status_code):
+                session = Mock()
+                session.headers = {}
+                unauthorized_response = Mock(status_code=status_code)
+                retry_response = Mock(status_code=200)
+                retry_response.json.return_value = {"success": True}
+                session.request.side_effect = [
+                    unauthorized_response,
+                    retry_response,
+                ]
+                auth_response = Mock()
+                auth_response.json.return_value = {"access_token": "new"}
+                session.get.return_value = auth_response
+                api = MarketoAPI(
+                    "https://example.com", "client-id", "secret", session
+                )
+                api.token = "expired"
+
+                response = api.request("GET", "/resource")
+
+                self.assertIs(response, retry_response)
+                self.assertEqual(session.request.call_count, 2)
+                session.get.assert_called_once()
+                unauthorized_response.raise_for_status.assert_not_called()
+                retry_response.raise_for_status.assert_called_once()
 
 
 class TestFormGenerator(MarketoFormTestCase):
